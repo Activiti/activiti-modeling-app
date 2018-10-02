@@ -1,0 +1,13 @@
+<div class="process-properties">
+    <mat-card class="process-properties-card">
+        <mat-card-title>Properties</mat-card-title>
+        <mat-card-content>
+            <adf-card-view [properties]="properties$ | async" [editable]="true">
+
+            </adf-card-view>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- @deprecated: bpmnjs-properties -->
+    <div #bpmnPropertiesPanel class="bpmn-properties process-properties-bpmnjs"></div>
+</div>

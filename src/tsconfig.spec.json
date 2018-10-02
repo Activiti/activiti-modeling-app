@@ -1,0 +1,22 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../out-tsc/spec",
+        "baseUrl": "./",
+        "module": "commonjs",
+        "target": "es5",
+        "types": ["jasmine", "node"],
+        "paths": {
+            "alfresco-js-api": ["../node_modules/alfresco-js-api/dist/alfresco-js-api.js"],
+            "rxjs/*": ["../node_modules/rxjs/*"],
+            "@angular/*": ["../node_modules/@angular/*"],
+            "@alfresco/adf-core": ["../../alfresco-ng2-components/lib/core"]
+        },
+        "allowJs": true
+    },
+    "files": ["test.ts"],
+    "include": ["**/*.spec.ts", "**/*.d.ts"],
+    "angularCompilerOptions": {
+        "skipTemplateCodegen": false
+    }
+}

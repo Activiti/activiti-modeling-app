@@ -1,0 +1,33 @@
+<div class="bpmn-controls bpmn-actions-controls">
+    <button (click)="undo()"
+            [matTooltip]="'APP.PROCESS_EDITOR.ACTIONS.UNDO' | translate"
+            data-automation-class="undo-button"
+            matTooltipPosition="before">
+        <mat-icon>undo</mat-icon>
+    </button>
+    <hr>
+    <button (click)="redo()"
+            [matTooltip]="'APP.PROCESS_EDITOR.ACTIONS.REDO' | translate"
+            data-automation-class="redo-button"
+            matTooltipPosition="before">
+        <mat-icon>redo</mat-icon>
+    </button>
+</div>
+
+<div class="bpmn-controls bpmn-zoom-controls">
+    <button (click)="zoomIn()"
+            [matTooltip]="'APP.PROCESS_EDITOR.ACTIONS.ZOOM_IN' | translate"
+            data-automation-class="zoom-in-button"
+            matTooltipPosition="before">
+        <mat-icon>add</mat-icon>
+    </button>
+    <hr>
+    <button (click)="zoomOut()"
+            [matTooltip]="'APP.PROCESS_EDITOR.ACTIONS.ZOOM_OUT' | translate"
+            data-automation-class="zoom-out-button"
+            matTooltipPosition="before">
+        <mat-icon>remove</mat-icon>
+    </button>
+</div>
+
+<div #canvas class="canvas-editor"></div>

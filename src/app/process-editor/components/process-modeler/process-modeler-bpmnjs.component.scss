@@ -1,0 +1,180 @@
+@mixin ama-process-modeler-bpmnjs($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+    $isDark: map-get($theme, is-dark);
+
+    .bjs-container {
+        .djs-palette {
+            background: mat-color($background, app-bar);
+            border-color: mat-color($foreground, text, 0.07);
+
+            .entry {
+                color: mat-color($foreground, text);
+                cursor: pointer;
+
+                &:hover {
+                    color: mat-color($primary);
+                }
+            }
+
+            .separator {
+                border-color: mat-color($foreground, text, 0.07);
+            }
+        }
+
+        .djs-overlay-context-pad {
+            width: 84px;
+        }
+
+        .djs-context-pad .entry {
+            background-color: mat-color($background, card);
+            box-shadow: 0 0 2px 1px mat-color($foreground, text, 0.07);
+            -webkit-box-shadow: 0 0 2px 1px mat-color($background, card, 0.07);
+            padding: 2px;
+
+            &:hover {
+                background-color: mat-color($primary);
+            }
+        }
+
+        .djs-popup-body {
+            background-color: mat-color($background, card);
+
+            .entry {
+                &.bpmn-icon-start-event-message,
+                &.bpmn-icon-start-event-condition,
+                &.bpmn-icon-end-event-message,
+                &.bpmn-icon-end-event-escalation,
+                &.bpmn-icon-end-event-error,
+                &.bpmn-icon-end-event-compensation,
+                &.bpmn-icon-intermediate-event-catch-message,
+                &.bpmn-icon-intermediate-event-throw-message,
+                &.bpmn-icon-intermediate-event-catch-timer,
+                &.bpmn-icon-intermediate-event-catch-condition,
+                &.bpmn-icon-intermediate-event-catch-link,
+                &.bpmn-icon-intermediate-event-throw-escalation,
+                &.bpmn-icon-intermediate-event-throw-link,
+                &.bpmn-icon-intermediate-event-throw-compensation,
+                &.bpmn-icon-send,
+                &.bpmn-icon-receive,
+                &.bpmn-icon-manual,
+                &.bpmn-icon-business-rule,
+                &.bpmn-icon-script,
+                &.bpmn-icon-subprocess-collapsed,
+                &.bpmn-icon-subprocess-expanded {
+                    display: none;
+                }
+            }
+
+            .entry:hover {
+                background-color: mat-color($primary);
+            }
+        }
+    }
+
+    .bpmn-properties .bpp-properties-panel {
+        background-color: transparent;
+        border-left: 1px solid mat-color($foreground, text, 0.07);
+
+        & [type=text],
+        & [contenteditable],
+        & textarea,
+        & select {
+            box-sizing: border-box;
+        }
+
+        & [contenteditable],
+        & input,
+        & select {
+            background: mat-color($background, card);
+            color: mat-color($foreground, text);
+
+            &:focus {
+                border-color: mat-color($primary);
+            }
+
+            @if $isDark {
+                background: mat-color($background, selected-button);
+                border-color: mat-color($background, unselected-chip);
+            }
+        }
+
+        .bpp-field-wrapper {
+            input {
+                height: 30px;
+                line-height: 30px;
+            }
+
+            input + button.clear {
+                background-color: transparent;
+                margin-top: 3px;
+            }
+        }
+
+        & [contenteditable] {
+            min-height: 30px;
+        }
+
+        button {
+            background-color: mat-color($background, raised-button);
+            color: mat-color($foreground, text);
+        }
+
+        .bpp-properties-group {
+            & > .group-toggle:hover {
+                background-color: mat-color($primary);
+            }
+
+            &:hover {
+                & > .group-toggle {
+                    background-color: mat-color($foreground, text, 0.07);
+
+                    &:hover {
+                        background-color: mat-color($primary);
+                    }
+                }
+            }
+
+            &.group-closed {
+                max-height: 30px;
+                line-height: 30px;
+                background-color: transparent;
+
+                &:hover > .group-label {
+                    color: mat-color($primary);
+                }
+            }
+
+            & > .group-label {
+                font-style: normal;
+                color: mat-color($foreground, text);
+            }
+        }
+
+        & label {
+            color: mat-color($foreground, text);
+        }
+
+        ul.bpp-properties-tabs-links > li > a {
+            background-color: transparent;
+            color: mat-color($foreground, text);
+            border-color: mat-color($foreground, text, 0.07);
+            border-width: 2px;
+        }
+
+        ul.bpp-properties-tabs-links > li.bpp-active a {
+            border-top: 2px solid mat-color($primary);
+        }
+    }
+
+    .bpp-properties-tab-bar {
+        border-color: mat-color($foreground, text, 0.07);
+    }
+
+    .bpp-properties-header {
+        // display: none;
+
+    }
+}

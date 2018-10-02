@@ -1,0 +1,7 @@
+@import './components/applications-list/applications-list.component';
+@import './components/dahboard-navigation/dashboard-navigation.component';
+
+@mixin ama-dashboard-module($theme) {
+    @include ama-applications-list($theme);
+    @include ama-dashboard-navigation($theme);
+}

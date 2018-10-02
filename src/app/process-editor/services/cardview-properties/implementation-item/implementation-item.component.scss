@@ -1,0 +1,39 @@
+@mixin ama-implementation-item($theme) {
+    $foreground: map-get($theme, foreground);
+
+    .no-process-properties-msg {
+        font-size: 9px;
+    }
+
+    .implementation-block {
+        .mat-form-field {
+            width: 100%;
+        }
+
+        .adf-property-label {
+            margin-bottom: 5px;
+        }
+
+        .mat-row, .mat-header-row {
+            padding: 0 10px;
+        }
+    }
+
+    .ama-input-properties {
+        border: 1px solid mat-color($foreground, text, 0.07);
+
+        .mat-header-cell:first-of-type {
+            padding-left: 0;
+        }
+        .mat-header-cell:last-of-type {
+            padding-right: 0;
+        }
+
+        .mat-cell {
+            margin-right: 10px;
+            padding: 5px;
+            display: block;
+            min-height: initial;
+        }
+    }
+}

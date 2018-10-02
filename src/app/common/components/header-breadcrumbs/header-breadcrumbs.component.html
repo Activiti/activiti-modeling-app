@@ -1,0 +1,25 @@
+<div data-automation-id="breadcrumb"
+    class="ama-breadcrumb-container">
+    <li *ngFor="let item of breadcrumbs$ | async; let last = last"
+        [class.active]="last || !item.url"
+        [class.dirty]="(dirtyState$ | async) && last"
+        [ngSwitch]="last || !item.url"
+        class="ama-breadcrumb-item">
+
+        <a *ngSwitchDefault
+            [routerLink]="[item.url]"
+            class="ama-breadcrumb-item-anchor">
+            {{ item.name }}
+        </a>
+
+        <div *ngSwitchCase="true"
+            class="ama-breadcrumb-item-current">
+            {{ item.name }}
+        </div>
+
+        <mat-icon class="ama-breadcrumb-item-chevron"
+            *ngIf="!last">
+            chevron_right
+        </mat-icon>
+    </li>
+</div>

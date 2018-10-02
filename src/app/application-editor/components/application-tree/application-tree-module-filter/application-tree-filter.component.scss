@@ -1,0 +1,90 @@
+@mixin ama-application-tree-filter($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $foreground: map-get($theme, foreground);
+
+    .application-tree-filter {
+        .mat-expansion-panel {
+            &-body {
+                padding: 0 0 16px 24px;
+            }
+
+            &-header {
+                padding: 0 0 0 8px;
+                height: 48px !important;
+                position: relative;
+
+                &:hover {
+                    background: none;
+                }
+
+                .mat-content {
+                    align-items: center;
+                }
+            }
+        }
+
+        .mat-expansion-panel-body {
+            padding: 0;
+
+            .application-tree-filter__button.active {
+                background: mat-color($foreground, text, 0.3);
+            }
+        }
+
+        &__content {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        &__icon {
+            margin-right: 8px;
+
+            &.filter-icon {
+                color: mat-color($primary);
+            }
+        }
+
+        &__title {
+            display: flex;
+            align-items: center;
+            width: 240px;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        &__button.mat-button {
+            flex: 1 0 auto;
+            padding: 0 8px;
+            margin-left: 19px;
+            text-align: left;
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 26px;
+            line-height: 26px;
+
+            mat-icon {
+                font-size: 16px;
+                width: 18px;
+                height: 22px;
+                margin-right: 4px;
+                line-height: 20px;
+            }
+        }
+
+        &__spinner {
+            margin-right: 8px;
+            height: 24px;
+            width: 24px;
+        }
+
+        &__no-content {
+            font-size: 12px;
+            padding-left: 44px;
+        }
+    }
+}

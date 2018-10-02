@@ -1,0 +1,34 @@
+<adf-sidenav-layout #sidenavLayout [sidenavMin]="70" [sidenavMax]="220" [stepOver]="600" [expandedSidenav]="menuOpened$ | async"
+    (expanded)="dispatchToggleMenuAction($event)">
+
+    <adf-sidenav-layout-header>
+        <ng-template let-toggleMenu="toggleMenu">
+            <adf-layout-header title="{{'APP.HEADER.APP_NAME' | translate }}" (clicked)="toggleMenu()">
+                <div class="adf-app-layout-menu-spacer" fxFlex="1 1 auto"></div>
+
+                <button *ngIf="showLanguagePicker" mat-icon-button [matMenuTriggerFor]="langMenu">
+                    <mat-icon>language</mat-icon>
+                </button>
+
+                <mat-menu #langMenu="matMenu">
+                    <adf-language-menu></adf-language-menu>
+                </mat-menu>
+
+                <ama-current-user (logout)="onLogout()"></ama-current-user>
+            </adf-layout-header>
+        </ng-template>
+    </adf-sidenav-layout-header>
+
+    <adf-sidenav-layout-navigation>
+        <ng-template>
+            <router-outlet name="navigation"></router-outlet>
+        </ng-template>
+    </adf-sidenav-layout-navigation>
+
+    <adf-sidenav-layout-content>
+        <ng-template>
+            <router-outlet></router-outlet>
+        </ng-template>
+    </adf-sidenav-layout-content>
+
+</adf-sidenav-layout>

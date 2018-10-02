@@ -1,0 +1,12 @@
+<div>
+    <button mat-icon-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>person</mat-icon>
+    </button>
+
+    <mat-menu #userMenu="matMenu" [overlapTrigger]="false" class="ama-current-user-menu">
+        <button mat-menu-item (click)="onLogout()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>{{ 'APP.HEADER.SIGN_OUT' | translate }}</span>
+        </button>
+    </mat-menu>
+</div>

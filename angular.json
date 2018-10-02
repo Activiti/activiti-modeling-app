@@ -1,0 +1,233 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "dist": {
+            "root": "",
+            "sourceRoot": "src",
+            "projectType": "application",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist",
+                        "index": "src/index.html",
+                        "main": "src/main.ts",
+                        "tsConfig": "src/tsconfig.app.json",
+                        "polyfills": "src/polyfills.ts",
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["node_modules"]
+                        },
+                        "assets": [
+                            "src/assets",
+                            "src/favicon.ico",
+                            "src/app.config.json",
+                            "src/versions.json",
+                            {
+                                "glob": "**/*",
+                                "input": "resources",
+                                "output": "/resources"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "src/app/components/lazy-loading/i18n",
+                                "output": "/resources/lazy-loading/i18n"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "node_modules/@alfresco/adf-core/prebuilt-themes",
+                                "output": "/assets/prebuilt-themes"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "node_modules/@alfresco/adf-core/bundles/assets",
+                                "output": "/assets"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "node_modules/ngx-monaco-editor/assets/monaco",
+                                "output": "/assets/monaco"
+                            }
+                        ],
+                        "styles": ["src/styles.scss", ".tmp/bpmn-properties.css"],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "dist:build",
+                        "port": 4200
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "dist:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "dist:build"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                }
+            }
+        },
+        "dev": {
+            "root": "",
+            "sourceRoot": "src",
+            "projectType": "application",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist",
+                        "index": "src/index.html",
+                        "main": "src/main.ts",
+                        "tsConfig": "src/tsconfig.dev.json",
+                        "polyfills": "src/polyfills.ts",
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["../alfresco-ng2-components/lib"]
+                        },
+                        "assets": [
+                            "src/assets",
+                            "src/app.config.json",
+                            "src/favicon.ico",
+                            "src/versions.json",
+                            {
+                                "glob": "**/*",
+                                "input": "resources",
+                                "output": "/resources"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "src/app/components/lazy-loading/i18n",
+                                "output": "/resources/lazy-loading/i18n"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "dist-dev-temp",
+                                "output": "/"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "node_modules/ngx-monaco-editor/assets/monaco",
+                                "output": "/assets/monaco"
+                            }
+                        ],
+                        "styles": ["src/styles.scss", ".tmp/bpmn-properties.css"],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "dev:build",
+                        "port": 4200
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "dev:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "dev:build"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                }
+            }
+        },
+        "ama-sdk": {
+            "root": "projects/ama-sdk",
+            "sourceRoot": "projects/ama-sdk/src",
+            "projectType": "library",
+            "prefix": "amasdk",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "options": {
+                        "tsConfig": "projects/ama-sdk/tsconfig.lib.json",
+                        "project": "projects/ama-sdk/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "project": "projects/ama-sdk/ng-package.prod.json"
+                        }
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["projects/ama-sdk/tsconfig.lib.json", "projects/ama-sdk/tsconfig.spec.json"],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                }
+            }
+        }
+    },
+    "defaultProject": "dist",
+    "schematics": {
+        "@ngrx/schematics:component": {
+            "prefix": "app",
+            "styleext": "scss"
+        },
+        "@ngrx/schematics:directive": {
+            "prefix": "app"
+        }
+    }
+}

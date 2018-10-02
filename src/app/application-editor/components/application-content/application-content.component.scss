@@ -1,0 +1,11 @@
+@mixin ama-application-content($theme) {
+
+    .application-header {
+        .application-name {
+            font-size: 14px;
+        }
+        .application-version-label {
+            font-size: 13px;
+        }
+    }
+}

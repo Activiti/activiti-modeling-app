@@ -1,0 +1,14 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../out-tsc/app",
+        "module": "es2015",
+        "baseUrl": "",
+        "types": ["node"],
+        "paths": {
+            "ama-sdk": ["../dist-sdk/ama-sdk"],
+            "ama-sdk/*": ["../dist-sdk/ama-sdk/*"]
+        }
+    },
+    "exclude": ["test.ts", "**/*.spec.ts", "**/*.mock.ts"]
+}

@@ -1,0 +1,27 @@
+@mixin ama-upload-file-button($theme) {
+    $primary: map-get($theme, primary);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+    .ama-upload-button {
+        input[type="file"] {
+            display: none;
+        }
+
+        .mat-icon-button {
+            height: 34px;
+            width: 34px;
+            line-height: 33px;
+            border-radius: 2px;
+
+            &:hover {
+                background: mat-color($primary);
+            }
+        }
+
+        mat-icon {
+            font-size: 18px;
+            color: mat-color($foreground, icons);
+        }
+    }
+}

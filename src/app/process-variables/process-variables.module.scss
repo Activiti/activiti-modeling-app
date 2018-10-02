@@ -1,0 +1,7 @@
+@import "./properties-viewer/properties-viewer.component";
+@import "./process-variables.component";
+
+@mixin ama-process-variables-module($theme) {
+    @include ama-process-variables($theme);
+    @include ama-properties-viewer($theme);
+}

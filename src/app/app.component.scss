@@ -1,0 +1,19 @@
+@import "./app/app-layout/app-layout.component";
+@import "./app/app-layout/app-layout-global.component";
+@import "./app/app-login/app-login.component";
+@import "./app/header/current-user/current-user.component";
+@import "./dashboard/dashboard.module";
+@import "./process-editor/process-editor.module";
+@import "./application-editor/application-editor.module";
+@import "./common/components/header-breadcrumbs/header-breadcrumbs.component";
+
+@mixin ama-theme($theme) {
+    @include ama-layout-global-theme($theme);
+    @include ama-app-login($theme);
+    @include ama-layout-theme($theme);
+    @include ama-current-user($theme);
+    @include ama-dashboard-module($theme);
+    @include ama-process-editor-module($theme);
+    @include ama-application-editor-module($theme);
+    @include ama-header-breadcrumbs($theme);
+}

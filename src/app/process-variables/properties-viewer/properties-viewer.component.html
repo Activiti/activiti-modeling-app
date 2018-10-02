@@ -1,0 +1,69 @@
+
+<div class="properties-viewer">
+    <mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>{{ 'APP.PROCESS_EDITOR.PROPERTIES.TABLE.COLUMN_NAME' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+            <mat-header-cell *matHeaderCellDef>{{ 'APP.PROCESS_EDITOR.PROPERTIES.TABLE.COLUMN_TYPE' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.type}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="required">
+            <mat-header-cell *matHeaderCellDef>{{ 'APP.PROCESS_EDITOR.PROPERTIES.TABLE.COLUMN_REQUIRED' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                {{element.required}}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="value">
+            <mat-header-cell *matHeaderCellDef >{{ 'APP.PROCESS_EDITOR.PROPERTIES.TABLE.COLUMN_VALUE' | translate }}</mat-header-cell>
+            <mat-cell *matCellDef="let element" >
+                {{element.value}}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element, let i = index">
+                <mat-icon (click)="deleteRow(element, i)" color="primary" class="delete-btn">
+                    delete
+                </mat-icon>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" (click)="editRow(row, i)" [class.active]="i == position"></mat-row>
+    </mat-table>
+    <button mat-raised-button class="add-btn" color="primary" (click)="addRow()" [disabled]="error">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+
+<ng-container *ngIf="showForm; else noApplicationsTemplate">
+    <div class="properties-form">
+        <mat-form-field floatLabel="never">
+            <input matInput placeholder="Name" [(ngModel)]="name" (keyup)="saveChanges()">
+            <p class="mat-error" *ngIf="!name.length">{{ 'APP.PROCESS_EDITOR.PROPERTIES.ERRORS.EMPTY_NAME' | translate }}</p>
+        </mat-form-field>
+        <mat-form-field floatLabel="never">
+            <mat-select placeholder="Type" [(ngModel)]="selectedType" (selectionChange)="saveChanges()">
+                <mat-option *ngFor="let type of types" [value]="type">
+                    {{type}}
+                  </mat-option>
+                </mat-select>
+        </mat-form-field>
+        <mat-form-field floatLabel="never">
+            <input matInput placeholder="Value" [(ngModel)]="value" (keyup)="saveChanges()">
+        </mat-form-field>
+        <mat-checkbox [(ngModel)]= "required" (keyup)="saveChanges()" color="primary">
+            {{ 'APP.PROCESS_EDITOR.PROPERTIES.TABLE.COLUMN_REQUIRED' | translate }}
+        </mat-checkbox>
+    </div>
+</ng-container>
+
+<ng-template #noApplicationsTemplate>
+    <p class="no-properties">{{'APP.PROCESS_EDITOR.PROPERTIES.TABLE.NO_PROPERTIES' | translate}}</p>
+</ng-template>
