@@ -12,6 +12,7 @@ The Activiti Modeling Application (AMA) is an application built using
 ### Development server
 
 ```bash
+$ npm install
 $ npm start
 ```
 
