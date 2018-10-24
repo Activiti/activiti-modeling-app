@@ -1,0 +1,28 @@
+<div class="app-navigation">
+
+    <adf-sidebar-action-menu [title]="'APP.APPLICATION.NEW_MENU.LABEL' | translate"
+        [expanded]="(expanded$ | async)"
+        class="app-navigation__section app-navigation__section--new"
+        [ngClass]="{ 'section--new--mini': !(expanded$ | async) }">
+        <mat-icon sidebar-menu-title-icon>arrow_drop_down</mat-icon>
+        <div sidebar-menu-expand-icon>
+            <mat-icon>add_box</mat-icon>
+        </div>
+        <div sidebar-menu-options>
+            <button mat-menu-item
+                (click)="openProcessDialog()">
+                <mat-icon>device_hub</mat-icon>
+                <span>{{ 'APP.APPLICATION.NEW_MENU.MENU_ITEMS.CREATE_PROCESS' | translate }}</span>
+            </button>
+        </div>
+    </adf-sidebar-action-menu>
+
+    <div class="app-navigation__section app-navigation__section--menu">
+        <ng-container *ngIf="(expanded$ | async); else collapsedApplicationTree">
+            <ama-application-tree></ama-application-tree>
+        </ng-container>
+        <ng-template #collapsedApplicationTree>
+            <ama-application-tree-icons [applicationId]="selectedAppId$ | async"></ama-application-tree-icons>
+        </ng-template>
+    </div>
+</div>

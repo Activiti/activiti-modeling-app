@@ -1,0 +1,37 @@
+@mixin ama-layout-theme($theme) {
+    $primary: map-get($theme, primary);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+    $minimumAppWidth: 320px;
+
+    .adf-app-layout {
+        display: flex;
+        flex: 1;
+        min-width: $minimumAppWidth;
+        height: 100%;
+
+        .mat-sidenav-content {
+            > div {
+                height: 100%;
+
+                > div {
+                    height: 100%;
+                }
+            }
+
+            .adf-toolbar .mat-toolbar {
+                border-left: none;
+                border-right: none;
+                height: 48px;
+            }
+        }
+
+        .mat-sidenav {
+            background-color: mat-color($background, app-bar);
+        }
+
+        adf-layout-header .mat-toolbar-single-row {
+            background-color: mat-color($primary, 800);
+        }
+    }
+}

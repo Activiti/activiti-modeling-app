@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>{{ data.title | translate }}</h2>
+
+<mat-dialog-content>
+    <br />
+    <mat-form-field class="adf-full-width">
+        <input matInput required placeholder="{{ data.nameField | translate }}"
+                data-automation-id="name-field"
+                [(ngModel)]="form.name"
+        />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="adf-full-width">
+        <textarea matInput placeholder="{{ data.descriptionField | translate }}"
+                data-automation-id="desc-field"
+                [(ngModel)]="form.description">
+        </textarea>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions class="adf-dialog-buttons">
+    <span class="adf-fill-remaining-space"></span>
+
+    <button mat-button mat-dialog-close>
+        {{ 'APP.DIALOGS.CANCEL' | translate }}
+    </button>
+
+    <button class="adf-dialog-action-button"
+            mat-button (click)="submit()"
+            data-automation-id="submit-button"
+            [disabled]="!form.name.trim().length">
+        {{ submitButton | translate }}
+    </button>
+</mat-dialog-actions>

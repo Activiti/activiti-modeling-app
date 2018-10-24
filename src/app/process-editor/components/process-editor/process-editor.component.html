@@ -1,0 +1,24 @@
+<div class="process-editor">
+    <ng-container *ngIf="loadingFinished$ | async; else loading;">
+        <div class="process-editor-modeling" [attr.data-automation-id]="'process-editor-modeling'">
+            <ama-process-header [process]="process$ | async"
+                [breadcrumbs$]="breadcrumbs$"
+                (save)="saveDiagram($event)"
+                (download)="downloadDiagram($event)"
+                (delete)="deleteProcess($event)">
+            </ama-process-header>
+            <div class="process-editor-modeling-area">
+                <ama-process-modeler [source]="diagram$ | async"
+                    class="process-editor-modeling-area-modeler">
+                </ama-process-modeler>
+                <ama-process-properties class="process-editor-modeling-area-properties"></ama-process-properties>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-template #loading>
+        <div class="process-editor-spinner">
+            <mat-spinner></mat-spinner>
+        </div>
+    </ng-template>
+</div>

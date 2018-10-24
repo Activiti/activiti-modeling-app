@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>{{ title | translate }}</h2>
+
+<mat-dialog-content>
+    <p>{{ subtitle | translate }}</p>
+
+    <ul *ngIf="errors.length">
+        <li *ngFor="let error of errors">{{ error | translate }}</li>
+    </ul>
+</mat-dialog-content>
+
+<mat-dialog-actions class="adf-dialog-buttons">
+    <span class="adf-fill-remaining-space"></span>
+
+    <button mat-button
+        [attr.data-automation-id]="'dialog-close'"
+        mat-dialog-close
+        (click)="choose(false)">
+        {{ 'APP.DIALOGS.CANCEL' | translate }}
+    </button>
+
+    <button class="adf-dialog-action-button"
+        [attr.data-automation-id]="'dialog-confirm'"
+        color="primary"
+        mat-button
+        (click)="choose(true)">
+        {{ 'APP.DIALOGS.CONFIRM.BUTTON' | translate }}
+    </button>
+</mat-dialog-actions>

@@ -1,0 +1,33 @@
+@mixin ama-process-properties-panel($theme) {
+    $background: map-get($theme, background);
+
+    .process-properties {
+        height: 100%;
+        background: mat-color($background, app-bar);
+        padding: 12px;
+        box-sizing: border-box;
+        overflow: scroll;
+        display: flex;
+        flex-direction: column;
+
+        &-card {
+            flex: 1 0 auto;
+            min-height: calc(100% - 48px);
+        }
+
+        /** @deprecated: bpmnjs-properties */
+        &-bpmnjs {
+            margin-top: 12px;
+            margin-bottom: 12px;
+
+            &:empty {
+                display: hidden;
+                margin: 0;
+            }
+        }
+    }
+
+    .mat-form-field-type-mat-select {
+        width: 100%;
+    }
+}

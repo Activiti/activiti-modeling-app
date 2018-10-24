@@ -1,0 +1,5 @@
+@import "./components/header-breadcrumbs/header-breadcrumbs.component.scss";
+
+@mixin amasdk-shared-module($theme) {
+    @include amasdk-header-breadcrumbs($theme);
+}

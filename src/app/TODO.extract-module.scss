@@ -1,0 +1,7 @@
+@import "../../projects/ama-sdk/src/lib/json-editor/json-editor.module.scss";
+@import "../../projects/ama-sdk/src/lib/helpers/shared.module.scss";
+
+@mixin todo-extract-css-to-modules($theme) {
+    @include amasdk-json-editor-module($theme);
+    @include amasdk-shared-module($theme);
+}

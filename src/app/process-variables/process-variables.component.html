@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Process variables</h2>
+
+<mat-dialog-content class='properties-content'>
+    <mat-tab-group [@.disabled]="true" selectedIndex="0">
+
+        <mat-tab label="{{ 'APP.PROCESS_EDITOR.PROPERTIES.TABS.VIEWER' | translate }}">
+           <ama-properties-viewer [properties]='editorContent'></ama-properties-viewer>
+        </mat-tab>
+        <mat-tab label="{{ 'APP.PROCESS_EDITOR.PROPERTIES.TABS.JSON_EDITOR' | translate }}">
+            <amasdk-json-editor
+                [content]="editorContent"
+                (changed)="onChange($event)"
+            ></amasdk-json-editor>
+            <p class="mat-error" *ngIf="error">{{ error | translate }}</p>
+        </mat-tab>
+
+    </mat-tab-group>
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions class="adf-dialog-buttons">
+    <span class="adf-fill-remaining-space"></span>
+
+    <button mat-button mat-dialog-close (click)="onClose()">
+        {{ 'APP.DIALOGS.CLOSE' | translate }}
+    </button>
+
+    <button [disabled]="error && error!=='undefined'" class="adf-dialog-action-button save-btn" color="primary" mat-button (click)="save()">
+        {{ 'APP.DIALOGS.UPDATE' | translate }}
+    </button>
+</mat-dialog-actions>

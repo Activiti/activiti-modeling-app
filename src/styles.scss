@@ -1,0 +1,65 @@
+@import "~@alfresco/adf-core/theming";
+
+@import "~@angular/material/theming";
+@import "./app/app.component";
+@import "./app/TODO.extract-module";
+
+@include mat-core($alfresco-typography);
+
+$ama-green: (
+    50 : #eaf6e3,
+    100 : #cbe9b9,
+    200 : #a8da8a,
+    300 : #85cb5b,
+    400 : #6bbf37,
+    500 : #51b414,
+    600 : #4aad12,
+    700 : #40a40e,
+    800 : #379c0b,
+    900 : #278c06,
+    A100 : #c7ffb9,
+    A200 : #9dff86,
+    A400 : #74ff53,
+    A700 : #5fff3a,
+    contrast: (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: white,
+        400: white,
+        500: $white-87-opacity,
+        600: $white-87-opacity,
+        700: $white-87-opacity,
+        800: $white-87-opacity,
+        900: $white-87-opacity,
+        A100: $black-87-opacity,
+        A200: white,
+        A400: white,
+        A700: $white-87-opacity,
+    )
+);
+
+$primary: mat-palette($ama-green);
+$accent: mat-palette($alfresco-accent-orange);
+$warn: mat-palette($alfresco-warn);
+$theme: mat-light-theme($primary, $accent, $warn);
+
+@include angular-material-theme($theme);
+@include adf-core-theme($theme);
+@include ama-theme($theme);
+// TODO ========================================================
+@include todo-extract-css-to-modules($theme);
+// =============================================================
+
+body, html {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    font-size: mat-font-size($alfresco-typography, body-1);
+    font-family: mat-font-family($alfresco-typography);
+    line-height: mat-line-height($alfresco-typography, body-1);
+}
+
+body {
+    overflow: auto;
+}
