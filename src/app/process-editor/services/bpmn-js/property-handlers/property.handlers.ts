@@ -9,7 +9,7 @@ import { candidateGroupsHandler } from './candidateGroups.handler';
 import { candidateUsersHandler } from './candidateUsers.handler';
 import { dueDateHandler } from './dueDate.handler';
 import { priorityHandler } from './priority.handler';
-import { activityNameHandler } from './activityName.handler';
+import { calledElementHandler } from './calledElement.handler';
 import { expressionHandler } from './expression.handler';
 
 export const handlers = {
@@ -23,6 +23,6 @@ export const handlers = {
     [BpmnProperty.candidateUsers]: candidateUsersHandler,
     [BpmnProperty.dueDate]: dueDateHandler,
     [BpmnProperty.priority]: priorityHandler,
-    [BpmnProperty.activityName]: activityNameHandler,
+    [BpmnProperty.calledElement]: calledElementHandler,
     [BpmnProperty.conditionExpression]: expressionHandler
 };

@@ -19,8 +19,8 @@ import { handlers } from './property.handlers';
 import { BpmnProperty } from '../../bpmn/properties';
 import { getDiagramElementMock, getModelingMock } from '../bpmn-js.mock';
 
-describe('activityNameHandler', () => {
-    const property = BpmnProperty.activityName;
+describe('calledElementHandler', () => {
+    const property = BpmnProperty.calledElement;
 
     let handler, mockElement, modeling;
 
@@ -35,24 +35,24 @@ describe('activityNameHandler', () => {
     });
 
     describe('get', () => {
-        it('should return the activityName from the element', () => {
+        it('should return the calledElement from the element', () => {
             const get = handler.get;
-            const activityName = get(mockElement);
+            const calledElement = get(mockElement);
 
-            expect(activityName).toBe('new-value');
+            expect(calledElement).toBe('new-value');
         });
     });
 
     describe('set', () => {
-        it('should set the new activityName value', () => {
+        it('should set the new calledElement value', () => {
             const set = handler.set,
                 get = handler.get,
                 modifiedValue = 'modified-value';
 
             set(modeling, mockElement, modifiedValue);
-            const activityName = get(mockElement);
+            const calledElement = get(mockElement);
 
-            expect(activityName).toBe('modified-value');
+            expect(calledElement).toBe('modified-value');
         });
     });
 });

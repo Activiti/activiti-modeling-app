@@ -10,7 +10,7 @@ import { createCandidateGroupsProperty } from './candidateGroups-cardview-proper
 import { createCandidateUsersProperty } from './candidateUsers-cardview-property';
 import { createDueDateProperty } from './dueDate-cardview-property';
 import { createPriorityProperty } from './priority-cardview-property';
-import { createActivityNameProperty } from './activityName-cardview-property';
+import { createCalledElementProperty } from './calledElement-cardview-property';
 import { createProcessVariablesProperty } from './process-variable-item-property';
 import { createExpressionProperty } from './expression-cardview-property';
 
@@ -26,7 +26,7 @@ export const bpmn2cardView = {
     [BpmnProperty.candidateUsers]: createCandidateUsersProperty,
     [BpmnProperty.dueDate]: createDueDateProperty,
     [BpmnProperty.priority]: createPriorityProperty,
-    [BpmnProperty.activityName]: createActivityNameProperty,
+    [BpmnProperty.calledElement]: createCalledElementProperty,
     [BpmnProperty.properties]: createProcessVariablesProperty,
     [BpmnProperty.conditionExpression]: createExpressionProperty
 };

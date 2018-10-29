@@ -4,9 +4,9 @@ import { BpmnProperty } from '../bpmn/properties';
 import { FactoryProps } from './cardview-properties.factory';
 import { selectProcessesKeyLabelArray } from '../../store/process-editor.selectors';
 
-const propertyName = BpmnProperty.activityName;
+const propertyName = BpmnProperty.calledElement;
 
-export function createActivityNameProperty({ element, store }: FactoryProps) {
+export function createCalledElementProperty({ element, store }: FactoryProps) {
     return new CardViewSelectItemModel({
         label: 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.ACTIVITY_NAME',
         options$: store.select(selectProcessesKeyLabelArray),
