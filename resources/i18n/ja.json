@@ -1,0 +1,196 @@
+{
+    "APP": {
+        "HEADER": {
+            "APP_NAME": "Modeling Application",
+            "SIGN_OUT": "Sign out"
+        },
+        "DIALOGS": {
+            "CANCEL": "キャンセル",
+            "SAVE": "保存",
+            "CREATE": "新規作成",
+            "UPDATE": "更新",
+            "CLOSE": "閉じる",
+            "EDIT_PROPERTIES": "プロセス変数の編集",
+            "ERROR": {
+                "TITLE": "Do you want to save it any way?",
+                "SUBTITLE": "Validation errors:"
+            },
+            "CONFIRM": {
+                "TITLE": "Are you sure?",
+                "SUBTITLE": "Are you sure that you want to do this action?",
+                "BUTTON": "Confirm",
+                "CUSTOM": {
+                    "APPLICATION": "Are you sure that you want to delete this application?",
+                    "PROCESS": "Are you sure that you want to delete this process?",
+                    "UNSAVED_PAGE": "Are you sure you want to leave without saving this page?"
+                }
+            }
+        },
+        "MENU": {
+            "EDIT": "編集",
+            "DELETE": "削除"
+        },
+        "HOME": {
+            "NEW_MENU": {
+                "LABEL": "Create new",
+                "CREATE_APP_TITLE": "Create new application",
+                "EDIT_APP_TITLE": "Edit application",
+                "APP_CREATED": "The application was successfully created",
+                "APP_UPLOADED": "The application was successfully uploaded",
+                "APP_UPDATED": "The application was successfully updated",
+                "APP_DELETED": "The application was successfully deleted",
+                "MENU_ITEMS": {
+                    "CREATE_APP": "Application",
+                    "UPLOAD_APP": "Upload application"
+                }
+            },
+            "DIALOGS": {
+                "APP_NAME": "Application name",
+                "APP_DESC": "Application description"
+            },
+            "NAVIGATION": {
+                "APPLICATIONS": {
+                    "LABEL": "Applications",
+                    "TOOLTIP": "Published applications"
+                },
+                "PROCESSES": {
+                    "LABEL": "Processes",
+                    "TOOLTIP": "Published processes"
+                }
+            },
+            "TABLE": {
+                "COLUMN_NAME": "Name",
+                "COLUMN_VERSION": "Version",
+                "COLUMN_CREATED": "Created",
+                "COLUMN_CREATED_BY": "Created By",
+                "COLUMN_OPTIONS": "Options",
+                "NO_ITEMS": "You don't have any items in this list yet."
+            },
+            "ERROR": {
+                "LOAD_APPLICATIONS": "Unknown error happened during the loading of applications.",
+                "LOAD_PROCESSES": "Unknown error happened during the loading of processes."
+            }
+        },
+        "APPLICATION": {
+            "BACKTO": "Applications",
+            "UPLOAD_FILE": "Upload file",
+            "UPLOAD_FILE_SUCCESS": "The file was successfully uploaded",
+            "NO_CONTENT": "<empty>",
+            "NO_SELECTION": "Please choose a model to edit from the left sidebar",
+            "NEW_MENU": {
+                "LABEL": "Create new",
+                "CREATE_PROCESS_TITLE": "Create new process",
+                "MENU_ITEMS": {
+                    "CREATE_PROCESS": "Process"
+                }
+            },
+            "TREE": {
+                "PROCESSES": "Processes"
+            },
+            "PROCESS_DIALOG": {
+                "TITLE_CREATE": "Create new process",
+                "TITLE_UPDATE": "Update process",
+                "PROCESS_NAME": "Process name:",
+                "PROCESS_DESC": "Process documentation:",
+                "PROCESS_CREATED": "The process was successfully created",
+                "PROCESS_DELETED": "The process was successfully deleted",
+                "PROCESS_UPDATED": "The process was successfully updated"
+            },
+            "ERROR": {
+                "UPLOAD_FILE": "Upload error.",
+                "DELETE_APPLICATION": "Unknown error happened during the deleting the application.",
+                "DELETE_PROCESS": "Unknown error happened during the deleting the process.",
+                "LOAD_MODELS": "Unknown error happened while loading the models.",
+                "CREATE_PROCESS": {
+                    "DUPLICATION": "Process with the same name already exists",
+                    "GENERAL": "Unknown error happened during the creating a new process."
+                },
+                "UPDATE_PROCESS": {
+                    "DUPLICATION": "Process with the same name already exists",
+                    "GENERAL": "Unknown error happened during the updating the process."
+                },
+                "CREATE_APPLICATION": {
+                    "DUPLICATION": "Application with the same name already exists",
+                    "GENERAL": "Unknown error happened during the creating a new application."
+                },
+                "UPDATE_APPLICATION": {
+                    "DUPLICATION": "Application with the same name already exists",
+                    "GENERAL": "Unknown error happened during the updating the application."
+                },
+                "UPLOAD_APPLICATION": {
+                    "DUPLICATION": "Application with the same name already exists",
+                    "GENERAL": "Unknown error happened during the upload of the application."
+                },
+                "GET_APPLICATION": "Unknown error happened during the loading of application."
+            }
+        },
+        "PROCESS_EDITOR": {
+            "PRIORITIES": {
+                "LOW": "Low",
+                "MEDIUM": "Medium",
+                "HIGH": "High"
+            },
+            "ACTIONS": {
+                "ZOOM_IN": "Zoom in",
+                "ZOOM_OUT": "Zoom out",
+                "UNDO": "Undo",
+                "REDO": "Redo"
+            },
+            "ELEMENT_PROPERTIES": {
+                "ID": "id",
+                "NAME": "Name",
+                "VERSION": "Version",
+                "VARIABLES": "Variables",
+                "DOCUMENTATION": "Documentation",
+                "EXECUTABLE": "Executable",
+                "IMPLEMENTATION": "Implementation",
+                "ACTION": "Action",
+                "INPUT": "Input",
+                "INPUT_MAPPING": "Input mapping",
+                "OUTPUT": "Output",
+                "OUTPUT_MAPPING": "Output mapping",
+                "ASSIGNEE": "Assignee",
+                "CANDIDATE_GROUPS": "Candidate groups",
+                "CANDIDATE_USERS": "Candidate users",
+                "DUE_DATE": "Due date",
+                "PRIORITY": "Priority",
+                "ACTIVITY_NAME": "Activity name",
+                "PROCESS_VARIABLE": "Process variable",
+                "EXPRESSION": "Condition Expression"
+            },
+            "PROCESS_UPDATED": "The process was successfully updated",
+            "SELECT_PROCESS_VARIABLE": "Select process variable",
+            "ERRORS": {
+                "NO_PROCESS_PROPERTIES": "No process properties.",
+                "NO_CONNECTOR_ACTIONS": "No connector actions.",
+                "LOAD_DIAGRAM": "Could not load the diagram.",
+                "SAVE_DIAGRAM": "Could not save the diagram.",
+                "DOWNLOAD_DIAGRAM": "Could not download the diagram",
+                "CHANGE_FAVORITE": "Unknown error happened during the changing favorite state of the process."
+            },
+            "PROPERTIES": {
+                "TABS": {
+                    "VIEWER": "Properties viewer",
+                    "JSON_EDITOR": "JSON editor"
+                },
+                "TABLE": {
+                    "COLUMN_NAME": "Name",
+                    "COLUMN_TYPE": "Type",
+                    "COLUMN_REQUIRED": "Required",
+                    "COLUMN_VALUE": "Value",
+                    "NO_PROPERTIES": "You don't have any property selected"
+                },
+                "ERRORS": {
+                    "EMPTY_NAME": "Name field cannot be empty"
+                }
+            }
+        },
+        "GENERAL": {
+            "ERRORS": {
+                "NOT_VALID_JSON": "Not valid JSON object.",
+                "NOT_VALID_SCHEMA": "The JSON object does not match to schema."
+            }
+        }
+
+    }
+}
