@@ -11,6 +11,7 @@ import { dueDateHandler } from './dueDate.handler';
 import { priorityHandler } from './priority.handler';
 import { calledElementHandler } from './calledElement.handler';
 import { expressionHandler } from './expression.handler';
+import { processPropertyHandler } from './process-variables.handler';
 
 export const handlers = {
     [BpmnProperty.id]: idHandler,
@@ -24,5 +25,6 @@ export const handlers = {
     [BpmnProperty.dueDate]: dueDateHandler,
     [BpmnProperty.priority]: priorityHandler,
     [BpmnProperty.calledElement]: calledElementHandler,
-    [BpmnProperty.conditionExpression]: expressionHandler
+    [BpmnProperty.conditionExpression]: expressionHandler,
+    [BpmnProperty.properties]: processPropertyHandler
 };

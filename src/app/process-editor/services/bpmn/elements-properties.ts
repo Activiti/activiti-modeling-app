@@ -6,7 +6,8 @@ export const elementsProperties = {
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.version,
-        BpmnProperty.documentation
+        BpmnProperty.documentation,
+        BpmnProperty.properties
     ],
     [BpmnElement.IntermediateCatchEvent]: [
         BpmnProperty.id,
