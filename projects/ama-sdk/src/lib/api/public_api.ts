@@ -11,3 +11,4 @@ export * from './data-api.interface';
 export * from './decision-table-api.interface';
 export * from './process-api.interface';
 export * from './types';
+export * from './../api-implementations/aps-api/content-types';

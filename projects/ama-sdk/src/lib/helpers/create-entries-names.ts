@@ -34,12 +34,6 @@ export const changeFileName = (file: File, newName: string): File => {
     return new File([blob], newName, { type: file.type });
 };
 
-export const formatUuid = (name: string, uuid: string): string => {
-    let formatedName = name.toLowerCase().replace(/[^a-z]+/g, '').slice(0, 10);
-
-    if (formatedName.length === 0) {
-        formatedName = 'entry';
-    }
-
-    return `${formatedName}-${uuid}`;
+export const formatUuid = (contentType: string, uuid: string): string => {
+    return `${ contentType.toLowerCase()}-${uuid}`;
 };
