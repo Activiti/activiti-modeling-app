@@ -10,7 +10,7 @@ export enum BpmnProperty {
     candidateGroups = 'candidateGroups',
     dueDate = 'dueDate',
     priority = 'priority',
-    activityName = 'activityName',
+    calledElement = 'calledElement',
     properties = 'properties',
     conditionExpression = 'conditionExpression'
 }

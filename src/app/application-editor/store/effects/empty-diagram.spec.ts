@@ -1,5 +1,4 @@
 import { getEmptyDiagram } from './empty-diagram';
-import { formatUuid } from 'ama-sdk';
 
 describe('Empty diagram', () => {
     const buidlXML = (process) => {
@@ -22,7 +21,7 @@ describe('Empty diagram', () => {
         const name = diagram.getElementsByTagName('bpmn2:process')[0].getAttribute('name');
 
         expect(documentation[0].textContent).toBe('');
-        expect(id).toBe(formatUuid(mockProcess.name, mockProcess.id));
+        expect(id).toBe('process-id1');
         expect(name).toBe('process1');
     });
 
@@ -39,7 +38,7 @@ describe('Empty diagram', () => {
         const name = diagram.getElementsByTagName('bpmn2:process')[0].getAttribute('name');
 
         expect(documentation[0].textContent).toBe('desc');
-        expect(id).toBe(formatUuid(mockProcess.name, mockProcess.id));
+        expect(id).toBe('process-id1');
         expect(name).toBe('process1');
     });
 });

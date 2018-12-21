@@ -1,6 +1,6 @@
 import { BpmnProperty } from '../../bpmn/properties';
 
-const propertyKey = BpmnProperty.activityName;
+const propertyKey = BpmnProperty.calledElement;
 
 const get = element => element.businessObject.get(propertyKey);
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
@@ -9,4 +9,4 @@ const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) 
     });
 };
 
-export const activityNameHandler = { get, set };
+export const calledElementHandler = { get, set };

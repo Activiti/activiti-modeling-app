@@ -21,10 +21,15 @@ export class EntityFactory {
         const type = PROCESS,
             description = '',
             version = '0.0.1',
-            parentId = '';
+            parentId = '',
+            extensions = {
+                properties: {},
+                variablesMappings: {}
+            };
 
         return {
             type,
+            extensions,
             ...backendProcess,
             description,
             version,

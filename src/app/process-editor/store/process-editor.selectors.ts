@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ProcessEditorState } from './process-editor.state';
-import { createProcessName } from 'ama-sdk';
 import { selectProcesses } from '../../application-editor/store/selectors/application-tree.selectors';
+import { formatUuid, ContentType, createProcessName } from 'ama-sdk';
 
 export const PROCESS_EDITOR_STATE_NAME = 'process-editor';
 
@@ -31,7 +31,7 @@ export const selectProcessPropertiesArray = createSelector(
 
 export const selectProcessesKeyLabelArray = createSelector(selectProcesses, processes => {
     return Object.values(processes).map(process => ({
-        key: process.id,
+        key: formatUuid(ContentType.Process, process.id),
         label: createProcessName(process.name)
     }));
 });
