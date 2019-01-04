@@ -53,8 +53,10 @@
           branch 'master'
         }
         steps {
-            // Run updatebot to update other repos
-            sh './updatebot.sh'
+            container('nodejs') {
+                // Run updatebot to update other repos
+                sh './updatebot.sh'
+            }
           }
 
       }
