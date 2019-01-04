@@ -1,7 +1,7 @@
      //  sh "updatebot push-regex -r "\s+tag: (.*)" -v \$(cat VERSION) --previous-line "\s+repository: activiti/activiti-model" **/values.yaml) --merge false"
  pipeline {
     agent {
-        label "jenkins-javascript"
+        label "jenkins-nodejs"
     }
     environment {
       ORG               = 'activiti'
@@ -16,7 +16,7 @@
           branch 'PR-*'
         }
         steps {
-          container('javascript') {
+          container('nodejs') {
             sh "npm install"
             sh "npm build"
             sh "npm npm test"
@@ -30,7 +30,7 @@
           branch 'master'
         }
         steps {
-          container('javascript') {
+          container('nodejs') {
             // ensure we're not on a detached head
             sh "git checkout master"
             sh "git config --global credential.helper store"
