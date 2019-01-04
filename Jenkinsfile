@@ -57,11 +57,11 @@
             sh './updatebot.sh'
           }
  
-
+      }
     }  
     post {
         always {
             cleanWs()
         }
-    }
+    }  
 }
