@@ -18,7 +18,7 @@
         steps {
           container('nodejs') {
             sh "npm install"
-            sh "npm build"
+            sh "npm run build"
             sh "npm test"
             sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
 
@@ -39,7 +39,7 @@
             // so we can retrieve the version in later steps
             sh "echo \$(jx-release-version) > VERSION"
             sh "npm install"
-            sh "npm build"
+            sh "npm run build"
             sh "npm test"
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
