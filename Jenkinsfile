@@ -57,7 +57,7 @@
             sh './updatebot.sh'
           }
 
-
+      }
     }
     post {
         always {
