@@ -19,7 +19,7 @@
           container('nodejs') {
             sh "npm install"
             sh "npm build"
-            sh "npm npm test"
+            sh "npm test"
             sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
 
           }
@@ -40,7 +40,7 @@
             sh "echo \$(jx-release-version) > VERSION"
             sh "npm install"
             sh "npm build"
-            sh "npm npm test"
+            sh "npm test"
 
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
