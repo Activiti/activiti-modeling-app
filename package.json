@@ -1,5 +1,5 @@
 {
-  "name": "activiti-modeling-application",
+  "name": "activiti-modeling-app",
   "description": "Activiti Modeling Application",
   "version": "0.2.0",
   "author": "Alfresco Software, Ltd.",
@@ -81,7 +81,16 @@
     "angular2",
     "alfresco"
   ],
-  "private": true,
+  "private": false,
+  "files": [
+      "config",
+      "jest",
+      "projects",
+      "resources",
+      "scripts",
+      "src",
+      "jest.config.js"
+  ],
   "dependencies": {
     "@alfresco/adf-core": "3.0.0-074225970d81f1c7dced40e6708527fd9e2d3473",
     "@alfresco/adf-extensions": "3.0.0-074225970d81f1c7dced40e6708527fd9e2d3473",
