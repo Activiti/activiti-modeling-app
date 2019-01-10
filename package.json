@@ -81,10 +81,10 @@
   "files": [
     "config",
     "jest",
-    "projects/**/{*,!(*.spec.ts)}",
+    "projects/**/{!(*.spec.ts)}",
     "resources",
     "scripts",
-    "src/**/{*,!(*.spec.ts)}",
+    "src/**/{!(*.spec.ts)}",
     "jest.config.js"
   ],
   "dependencies": {
