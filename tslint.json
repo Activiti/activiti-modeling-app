@@ -7,6 +7,7 @@
         "rxjs-tslint-rules"
     ],
     "rules": {
+        "adf-license-banner": [true, "**/*.ts", "./license-header.txt"],
         "ban": [
             true,
             "eval",
