@@ -25,7 +25,7 @@ $ npm install
 $ npm start
 ```
 
-Run the script above for the development server. Navigate to `http://localhost:4200/` (opens by default).
+Run the script above for the development server. Navigate to `http://localhost:4100/` (opens by default).
 
 ### Development server with local ADF components
 
@@ -39,7 +39,7 @@ Run the script above for the development server using the local ADF components. 
     -   *activiti-modeler-application*
     -   **alfresco-adf-components**
 
-After starting the dev server, navigate to `http://localhost:4200/` (opens by default).
+After starting the dev server, navigate to `http://localhost:4100/` (opens by default).
 
 ### Production server
 
@@ -49,7 +49,7 @@ $ npm run start:prod
 
 Run the script above for the production server. This command is only intended to be used when running on the target environment.
 
-After starting the production server, navigate to `http://localhost:4200/`.
+After starting the production server, navigate to `http://localhost:4100/`.
 
 ---
 
