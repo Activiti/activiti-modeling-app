@@ -1,0 +1,37 @@
+@import "bpmn-io";
+
+@mixin ama-process-editor($theme) {
+    .process-editor {
+        height: 100%;
+        overflow-y: hidden;
+
+        &-modeling {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+
+            &-area {
+                display: flex;
+                flex-direction: row;
+                flex: 1 0 auto;
+                max-height: calc(100% - 48px);
+
+                &-modeler {
+                    flex: 1 1 auto;
+                }
+
+                &-properties {
+                    width: 300px;
+                    flex: 0 0 auto;
+                }
+            }
+        }
+
+        &-spinner {
+            padding-top: 48px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "skipLibCheck": true,
+        "noUnusedLocals": true,
+        "target": "es5",
+        "allowSyntheticDefaultImports": true,
+        "typeRoots": ["node_modules/@types"],
+        "lib": ["es2018", "dom"],
+        "module": "es2015",
+        "baseUrl": "./",
+        "paths": {
+            "ama-sdk": ["projects/ama-sdk"],
+            "ama-sdk/*": ["projects/ama-sdk/*"]
+        }
+    },
+    "exclude": ["node_modules"],
+    "angularCompilerOptions": {
+        "preserveWhitespaces": false
+    }
+}

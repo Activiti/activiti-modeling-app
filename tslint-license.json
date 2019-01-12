@@ -1,0 +1,7 @@
+{
+    "rulesDirectory": ["node_modules/codelyzer", "node_modules/adf-tslint-rules"],
+    "rules": {
+        "adf-license-banner": [true, "src/**/*.ts", "./license-header.txt"],
+        "adf-enterprise-license-banner": [true, "projects/ama-sdk/**/*.ts", "./license-header.txt"]
+    }
+}

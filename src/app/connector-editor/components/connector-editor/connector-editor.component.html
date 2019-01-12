@@ -1,0 +1,51 @@
+<div class="ama-connector-editor" data-automation-id="connector-editor-modeling">
+    <ng-container *ngIf="!(loadingState$ | async); else loading;">
+        <ng-container *ngIf="editorContent$ | async; let editorContent">
+
+            <ama-connector-header [disableSave]="disableSave"
+                [connectorId]="connectorId$ | async"
+                [content]="editorContent"
+                class="ama-connector-header">
+            </ama-connector-header>
+
+            <ng-container *ngIf="isAdvancedEditorEmbedded()">
+                <mat-tab-group
+                    (selectedTabChange)="onTabChange()"
+                    [@.disabled]="true"
+                    class="ama-connector-tab-group">
+                    <mat-tab label="{{ 'APP.CONNECTOR_EDITOR.TABS.CONNECTOR_EDITOR' | translate }}">
+                        <div class="ama-connector-page"
+                            data-automation-id="connector-advanced-tab">
+                            <adf-dynamic-component
+                                [id]="componentKey"
+                                [data]="getDynamicComponentData(editorContent)">
+                            </adf-dynamic-component>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="{{ 'APP.CONNECTOR_EDITOR.TABS.JSON_EDITOR' | translate }}">
+                        <div class="ama-connector-page ama-connector-page-raw-editor"
+                            data-automation-id="connector-basic-tab">
+                            <amasdk-json-editor [vsTheme]="vsTheme$ | async"
+                                [content]="editorContent"
+                                (changed)="onChangeAttempt($event)">
+                            </amasdk-json-editor>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+            </ng-container>
+
+            <ng-container *ngIf="!isAdvancedEditorEmbedded()">
+                <amasdk-json-editor [vsTheme]="vsTheme$ | async"
+                    [content]="editorContent"
+                    (changed)="onChangeAttempt($event)">
+                </amasdk-json-editor>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+
+    <ng-template #loading>
+        <div class="ama-connector-editor-spinner">
+            <mat-spinner></mat-spinner>
+        </div>
+    </ng-template>
+</div>

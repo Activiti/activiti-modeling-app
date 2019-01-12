@@ -1,0 +1,115 @@
+ /*!
+ * @license
+ * Copyright 2018 Alfresco, Inc. and/or its affiliates.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { Action } from '@ngrx/store';
+import { UPDATE_SETTINGS, UpdateSettingsAction, SET_MENU, SetMenuAction } from '../actions';
+import { INITIAL_APP_STATE } from '../states/app.state';
+import { SELECT_APPLICATION, SelectApplicationAction } from '../../application-editor/store/actions/application';
+import { appThemes } from '../../app/themes';
+import { AppActionTypes, AsyncInitAction } from '../actions/app.actions';
+import {
+    AppState,
+    SET_APP_DIRTY_STATE,
+    SetAppDirtyStateAction,
+    MODEL_OPENED,
+    ModelOpenedAction,
+    MODEL_CLOSED,
+    ModelClosedAction
+} from 'ama-sdk';
+
+export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action): AppState {
+    let newState: AppState;
+
+    switch (action.type) {
+        case AppActionTypes.AsyncInit:
+            newState = ayncInit(state, <AsyncInitAction>action);
+            break;
+        case UPDATE_SETTINGS:
+            newState = updateSettings(state, <UpdateSettingsAction>action);
+            break;
+
+        case SET_MENU:
+            newState = setMenuState(state, <SetMenuAction>action);
+            break;
+
+        case SELECT_APPLICATION:
+            newState = selectApplication(state, <SelectApplicationAction>action);
+            break;
+
+        case MODEL_OPENED:
+            newState = selectOpenedModel(state, <ModelOpenedAction>action);
+            break;
+
+        case MODEL_CLOSED:
+            newState = deselectOpenedModel(state, <ModelClosedAction>action);
+            break;
+
+        case SET_APP_DIRTY_STATE:
+            newState = setDirtyState(state, <SetAppDirtyStateAction>action);
+            break;
+
+        default:
+            newState = Object.assign({}, state);
+    }
+
+    return newState;
+}
+
+function setDirtyState(state: AppState, action: SetAppDirtyStateAction): AppState {
+    return { ...state, dirtyState: action.payload };
+}
+
+function ayncInit(state: AppState, action: AsyncInitAction): AppState {
+    const menuOpened = action.config.menuOpened;
+
+    return {
+        ...state,
+        selectedTheme: action.config.selectedTheme,
+        ...(menuOpened !== null ? { menuOpened } : {})
+    };
+}
+
+function updateSettings(state: AppState, action: UpdateSettingsAction): AppState {
+    const newState = Object.assign({}, state);
+    newState.selectedTheme = appThemes.find(appTheme => appTheme.className === action.payload.theme);
+    return newState;
+}
+
+function setMenuState(state: AppState, action: SetMenuAction): AppState {
+    const newState = Object.assign({}, state);
+    newState.menuOpened = action.payload;
+    return newState;
+}
+
+function selectApplication(state: AppState, action: SelectApplicationAction): AppState {
+    const newState = Object.assign({}, state);
+    newState.selectedAppId = action.payload;
+    newState.openedModel = null;
+    return newState;
+}
+
+function selectOpenedModel(state: AppState, action: ModelOpenedAction): AppState {
+    const newState = Object.assign({}, state);
+    newState.openedModel = action.model;
+    return newState;
+}
+
+function deselectOpenedModel(state: AppState, action: ModelClosedAction): AppState {
+    const newState = Object.assign({}, state);
+    newState.openedModel = null;
+    return newState;
+}

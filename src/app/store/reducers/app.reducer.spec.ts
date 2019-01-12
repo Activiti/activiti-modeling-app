@@ -1,0 +1,63 @@
+ /*!
+ * @license
+ * Copyright 2018 Alfresco, Inc. and/or its affiliates.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { appReducer } from './app.reducer';
+import { PROCESS, ModelOpenedAction, MODEL_OPENED, ModelClosedAction, MODEL_CLOSED } from 'ama-sdk';
+import { SelectApplicationAction } from 'src/app/application-editor/store/actions/application';
+
+describe('appReducer', () => {
+
+    it('should set selectedModel to the latest one if no model is selected yet', () => {
+        const selectedModel = { id: '1', type: PROCESS };
+        const mockAction = <ModelOpenedAction>{ type: MODEL_OPENED, model: selectedModel };
+        const newState = appReducer(undefined, mockAction);
+
+        expect(newState.openedModel).toEqual(selectedModel);
+    });
+
+    it('should set selectedModel to the latest one if a model is already selected', () => {
+        const selectedModel1 = { id: '1', type: PROCESS };
+        const selectedModel2 = { id: '2', type: PROCESS };
+        const mockAction1 = <ModelOpenedAction>{ type: MODEL_OPENED, model: selectedModel1 };
+        const mockAction2 = <ModelOpenedAction>{ type: MODEL_OPENED, model: selectedModel2 };
+        const newState1 = appReducer(undefined, mockAction1);
+        const newState = appReducer(newState1, mockAction2);
+
+        expect(newState.openedModel).toEqual(selectedModel2);
+    });
+
+    it('should unset selectedModel to the latest one if a model is already selected', () => {
+        const selectedModel = { id: '1', type: PROCESS };
+        const mockAction1 = <ModelOpenedAction>{ type: MODEL_OPENED, model: selectedModel };
+        const mockAction2 = <ModelClosedAction>{ type: MODEL_CLOSED, model: selectedModel };
+        const newState1 = appReducer(undefined, mockAction1);
+        const newState = appReducer(newState1, mockAction2);
+
+        expect(newState.openedModel).toEqual(null);
+    });
+
+    it('should unset selectedModel when selecting (a new) project', () => {
+        const selectedModel = { id: '1', type: PROCESS };
+        const mockAction = <ModelOpenedAction>{ type: MODEL_OPENED, model: selectedModel };
+        const initialState = appReducer(undefined, mockAction);
+
+        const selectAppAction = new SelectApplicationAction('app-id');
+        const newState = appReducer(initialState, selectAppAction);
+
+        expect(newState.openedModel).toEqual(null);
+    });
+});

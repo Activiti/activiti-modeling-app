@@ -1,0 +1,16 @@
+@import "ama-theming.scss";
+@import "./json-editor/json-editor.module.scss";
+@import "./helpers/shared.module.scss";
+@import "./variables/variables.module.scss";
+
+body {
+    @include amasdk-json-editor-module($theme);
+    @include amasdk-shared-module($theme);
+    @include ama-variables-module($theme);
+}
+
+body.dark-theme {
+    @include amasdk-json-editor-module($dark-theme);
+    @include amasdk-shared-module($dark-theme);
+    @include ama-variables-module($dark-theme);
+}

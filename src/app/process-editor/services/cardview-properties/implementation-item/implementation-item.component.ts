@@ -1,0 +1,77 @@
+ /*!
+ * @license
+ * Copyright 2018 Alfresco, Inc. and/or its affiliates.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { CardItemTypeService, CardViewUpdateService, LogService } from '@alfresco/adf-core';
+import { Store } from '@ngrx/store';
+import { ProcessEditorState } from '../../../store/process-editor.state';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { selectProcessMappingsFor, UpdateServiceParametersAction, ImplementationItemModel } from 'ama-sdk';
+
+@Component({
+    selector: 'ama-process-implementation',
+    templateUrl: './implementation-item.component.html',
+    providers: [CardItemTypeService]
+})
+export class CardViewImplementationItemComponent implements OnInit, OnDestroy {
+    @Input() property: ImplementationItemModel;
+
+    implementation: string;
+    input: string;
+    output: string;
+    onDestroy$: Subject<void> = new Subject();
+
+    constructor(
+        private cardViewUpdateService: CardViewUpdateService,
+        private store: Store<ProcessEditorState>,
+        private logService: LogService
+    ) {}
+
+    ngOnInit() {
+        this.implementation = this.property.value;
+        this.store.select(selectProcessMappingsFor(this.elementId)).pipe(
+            takeUntil(this.onDestroy$)
+        ).subscribe(variablesMapping => {
+            this.input = JSON.stringify(variablesMapping.input);
+            this.output = JSON.stringify(variablesMapping.output);
+        });
+    }
+
+    ngOnDestroy() {
+        this.onDestroy$.complete();
+    }
+
+    changeImplementation(): void {
+        this.cardViewUpdateService.update(this.property, this.implementation);
+    }
+
+    changeVariablesMapping(): void {
+        try {
+            const input = JSON.parse(this.input),
+                output = JSON.parse(this.output);
+
+            this.store.dispatch(new UpdateServiceParametersAction(this.elementId, { input, output }));
+        } catch (error) {
+            this.logService.error(error);
+        }
+    }
+
+    private get elementId() {
+        return this.property.data.id;
+    }
+}

@@ -1,0 +1,36 @@
+<adf-toolbar>
+    <adf-toolbar-title>
+        <amasdk-header-breadcrumbs [breadcrumbs$]="breadcrumbs$">
+        </amasdk-header-breadcrumbs>
+    </adf-toolbar-title>
+
+    <div class="adf-toolbar--spacer"></div>
+
+    <button mat-icon-button
+        (click)="onDownload()"
+        data-automation-id="connector-editor-download-button">
+        <mat-icon>file_download</mat-icon>
+    </button>
+
+    <button mat-icon-button
+        data-automation-id="connector-editor-save-button"
+        [disabled]="disableSave"
+        (click)="onSave()">
+        <mat-icon>save</mat-icon>
+    </button>
+
+    <button mat-icon-button
+        data-automation-id="connector-editor-menu-button"
+        [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item
+            (click)="onDelete()"
+            data-automation-id="connector-editor-delete-button">
+            <mat-icon>delete</mat-icon>
+            <span>{{ 'APP.MENU.DELETE' | translate }}</span>
+        </button>
+    </mat-menu>
+</adf-toolbar>

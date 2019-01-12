@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>
+    {{ 'APP.SETTINGS.HEADER' | translate }}
+</h2>
+
+<mat-dialog-content>
+    <mat-form-field>
+        <mat-select placeholder="Theme" [(ngModel)]="form.theme">
+            <mat-option *ngFor="let theme of themes" [value]="theme.className">
+                {{ theme.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br />
+</mat-dialog-content>
+
+<mat-dialog-actions class="adf-dialog-buttons">
+    <span class="adf-fill-remaining-space"></span>
+
+    <button mat-button mat-dialog-close>
+        {{ 'APP.DIALOGS.CANCEL' | translate }}
+    </button>
+
+    <button class="adf-dialog-action-button" mat-button (click)="submit()">
+        {{ 'APP.DIALOGS.SAVE' | translate }}
+    </button>
+</mat-dialog-actions>

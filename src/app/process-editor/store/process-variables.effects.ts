@@ -1,0 +1,84 @@
+ /*!
+ * @license
+ * Copyright 2018 Alfresco, Inc. and/or its affiliates.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { OpenProcessVariablesDialogAction, OPEN_PROCESS_VARIABLES_DIALOG, UpdateProcessVariablesAction, UPDATE_PROCESS_VARIABLES } from './process-variables.actions';
+import { ofType, Actions, Effect } from '@ngrx/effects';
+import { switchMap, tap, take, map, mergeMap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { LogService } from '@alfresco/adf-core';
+import { Router } from '@angular/router';
+import { ProcessModelerService } from '../services/process-modeler.service';
+import { selectProcess } from './process-editor.selectors';
+import { AmaState, DialogService, BaseEffects, SetAppDirtyStateAction, EntityProperties, selectSelectedTheme } from 'ama-sdk';
+import { Store } from '@ngrx/store';
+import { Subject, of } from 'rxjs';
+import { VariablesComponent } from 'ama-sdk';
+
+@Injectable()
+export class ProcessVariablesEffects extends BaseEffects {
+
+    constructor(
+        private actions$: Actions,
+        protected logService: LogService,
+        protected router: Router,
+        private dialogService: DialogService,
+        private modelerService: ProcessModelerService,
+        private store: Store<AmaState>
+    ) {
+        super(router, logService);
+    }
+
+    @Effect({ dispatch: false })
+    openProcessVariablesDialogEffect = this.actions$.pipe(
+        ofType<OpenProcessVariablesDialogAction>(OPEN_PROCESS_VARIABLES_DIALOG),
+        switchMap(() => this.store.select(selectProcess).pipe(take(1))),
+        tap((process) => this.openVariablesDialog(process.extensions.properties)
+    ));
+
+
+    @Effect()
+    updateProcessVariablesEffect = this.actions$.pipe(
+        ofType<UpdateProcessVariablesAction>(UPDATE_PROCESS_VARIABLES),
+        map(action => {
+            const shapeId = this.modelerService.getRootProcessElement().id;
+            this.modelerService.updateElementProperty(shapeId, 'properties', action.properties);
+        }),
+        mergeMap(() => of(new SetAppDirtyStateAction(true)))
+    );
+
+    private openVariablesDialog(properties: EntityProperties) {
+        const propertiesUpdate$ = new Subject<EntityProperties>();
+        const title = 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS_VARIABLES';
+        const required = true;
+        const columns = [ 'name', 'type', 'required', 'value', 'delete' ];
+
+        const theme$ = this.store.select(selectSelectedTheme).pipe(
+            map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light'))
+        );
+
+        this.dialogService.openDialog(VariablesComponent, {
+            disableClose: true,
+            height: '480px',
+            width: '1000px',
+            data: {properties, title, columns, required, propertiesUpdate$, theme$},
+        });
+
+        propertiesUpdate$.subscribe(data => {
+            this.store.dispatch(new UpdateProcessVariablesAction(data));
+         });
+    }
+}

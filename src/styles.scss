@@ -1,0 +1,31 @@
+@import "ama-theming.scss";
+@import "~@alfresco/adf-core/theming";
+@import "~@angular/material/theming";
+@import "./app/app.component";
+
+@include mat-core($alfresco-typography);
+
+body, html {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    font-size: mat-font-size($alfresco-typography, body-1);
+    font-family: mat-font-family($alfresco-typography);
+    line-height: mat-line-height($alfresco-typography, body-1);
+}
+
+body {
+    overflow: auto;
+}
+
+body {
+    @include angular-material-theme($theme);
+    @include adf-core-theme($theme);
+    @include ama-theme($theme);
+}
+
+body.dark-theme {
+    @include angular-material-theme($dark-theme);
+    @include adf-core-theme($dark-theme);
+    @include ama-theme($dark-theme);
+}

@@ -1,0 +1,482 @@
+{
+    "APP": {
+        "HEADER": {
+            "APP_NAME": "Modeling Application",
+            "SIGN_OUT": "Sign out",
+            "SETTINGS": "Settings"
+        },
+        "DIALOGS": {
+            "CANCEL": "Cancel",
+            "SAVE": "Save",
+            "CREATE": "Create",
+            "UPDATE": "Update",
+            "CLOSE": "Close",
+            "EDIT_PROPERTIES": "Edit Process Variables",
+            "EDIT_FORM_PROPERTIES": "Edit Form Variables",
+            "EDIT_VISIBILITY_CONDITIONS": "Edit Visibility Conditions",
+            "ERROR": {
+                "TITLE": "Do you want to save it any way?",
+                "SUBTITLE": "Validation errors:"
+            },
+            "CONFIRM": {
+                "TITLE": "Are you sure?",
+                "SUBTITLE": "Are you sure that you want to do this action?",
+                "BUTTON": "Confirm",
+                "CUSTOM": {
+                    "APPLICATION": "Are you sure that you want to delete this project?",
+                    "PROCESS": "Are you sure that you want to delete this process?",
+                    "FORM": "Are you sure that you want to delete this form?",
+                    "UI": "Are you sure that you want to delete this ui?",
+                    "DATA": "Are you sure that you want to delete this data object?",
+                    "DECISION_TABLE": "Are you sure that you want to delete this decision table?",
+                    "CONNECTOR": "Are you sure that you want to delete this connector?",
+                    "UNSAVED_PAGE": "Are you sure you want to leave without saving this page?"
+                }
+            }
+        },
+        "MENU": {
+            "EDIT": "Edit",
+            "DELETE": "Delete"
+        },
+        "SETTINGS": {
+            "HEADER": "App settings"
+        },
+        "HOME": {
+            "NEW_MENU": {
+                "LABEL": "Create new",
+                "CREATE_APP_TITLE": "Create new project",
+                "EDIT_APP_TITLE": "Edit project",
+                "APP_CREATED": "The project was successfully created",
+                "APP_UPLOADED": "The project was successfully uploaded",
+                "APP_UPDATED": "The project was successfully updated",
+                "APP_DELETED": "The project was successfully deleted",
+                "MENU_ITEMS": {
+                    "CREATE_APP": "Project",
+                    "UPLOAD_APP": "Upload project"
+                }
+            },
+            "DIALOGS": {
+                "APP_NAME": "Project name",
+                "APP_DESC": "Project description"
+            },
+            "NAVIGATION": {
+                "APPLICATIONS": {
+                    "LABEL": "Projects",
+                    "TOOLTIP": "Published projects"
+                },
+                "PROCESSES": {
+                    "LABEL": "Processes",
+                    "TOOLTIP": "Published processes"
+                },
+                "FAVORITES": {
+                    "LABEL": "Favorites",
+                    "TOOLTIP": "Favorites"
+                }
+            },
+            "TABLE": {
+                "COLUMN_NAME": "Name",
+                "COLUMN_VERSION": "Version",
+                "COLUMN_CREATED": "Created",
+                "COLUMN_CREATED_BY": "Created By",
+                "COLUMN_OPTIONS": "Options",
+                "NO_ITEMS": "You don't have any items in this list yet.",
+                "NO_FAV_PROCESSES": "You don't have any favourited process yet",
+                "NO_FAV_APPLICATIONS": "You don't have any favourited project yet"
+            },
+            "ERROR": {
+                "LOAD_APPLICATIONS": "Unknown error happened during the loading of projects.",
+                "LOAD_PROCESSES": "Unknown error happened during the loading of processes."
+            }
+        },
+        "APPLICATION": {
+            "BACKTO": "Projects",
+            "UPLOAD_FILE": "Upload file",
+            "UPLOAD_FILE_SUCCESS": "The file was successfully uploaded",
+            "NO_CONTENT": "<empty>",
+            "NO_SELECTION": "Please choose a model to edit from the left sidebar",
+            "NEW_MENU": {
+                "LABEL": "Create new",
+                "CREATE_PROCESS_TITLE": "Create new process",
+                "MENU_ITEMS": {
+                    "CREATE_PROCESS": "Process",
+                    "CREATE_CONNECTOR": "Connector",
+                    "CREATE_FORM": "Form",
+                    "CREATE_UI": "UI",
+                    "CREATE_DATA": "Data object",
+                    "CREATE_DECISION_TABLE": "Decision table"
+                }
+            },
+            "TREE": {
+                "PROCESSES": "Processes",
+                "FORMS": "Forms",
+                "CONNECTORS": "Connectors",
+                "DATA": "Data",
+                "DECISION_TABLES": "Decision tables",
+                "UIS": "UI"
+            },
+            "PROCESS_DIALOG": {
+                "TITLE_CREATE": "Create new process",
+                "TITLE_UPDATE": "Update process",
+                "PROCESS_NAME": "Process name:",
+                "PROCESS_DESC": "Process documentation:",
+                "PROCESS_CREATED": "The process was successfully created",
+                "PROCESS_DELETED": "The process was successfully deleted",
+                "PROCESS_UPDATED": "The process was successfully updated"
+            },
+            "CONNECTOR_DIALOG": {
+                "TITLE_CREATE": "Create new connector",
+                "TITLE_UPDATE": "Update connector",
+                "CONNECTOR_NAME": "Connector name:",
+                "CONNECTOR_DESC": "Connector description:",
+                "CONNECTOR_CREATED": "The connector was successfully created",
+                "CONNECTOR_DELETED": "The connector was successfully deleted",
+                "CONNECTOR_UPDATED": "The connector was successfully updated"
+            },
+            "FORM_DIALOG": {
+                "TITLE_CREATE": "Create new form",
+                "TITLE_UPDATE": "Update form",
+                "FORM_NAME": "Form name:",
+                "FORM_DESC": "Form description:",
+                "FORM_CREATED": "The form was successfully created",
+                "FORM_DELETED": "The form was successfully deleted",
+                "FORM_UPDATED": "The form was successfully updated"
+            },
+            "UI_DIALOG": {
+                "TITLE_CREATE": "Create new UI",
+                "TITLE_UPDATE": "Update UI",
+                "UI_NAME": "UI name:",
+                "UI_DESC": "UI description:",
+                "UI_CREATED": "The UI was successfully created",
+                "UI_DELETED": "The UI was successfully deleted",
+                "UI_UPDATED": "The UI was successfully updated"
+            },
+            "DATA_DIALOG": {
+                "TITLE_CREATE": "Create new data object",
+                "TITLE_UPDATE": "Update data object",
+                "DATA_NAME": "Data object name:",
+                "DATA_DESC": "Data object description:",
+                "DATA_CREATED": "The data object was successfully created",
+                "DATA_DELETED": "The data object was successfully deleted",
+                "DATA_UPDATED": "The data object was successfully updated"
+            },
+
+            "DECISION_TABLE_DIALOG": {
+                "TITLE_CREATE": "Create new decision table",
+                "TITLE_UPDATE": "Update table",
+                "DECISION_TABLE_NAME": "Decision table name:",
+                "DECISION_TABLE_DESC": "Decision table description:",
+                "DECISION_TABLE_CREATED": "The decision table was successfully created",
+                "DECISION_TABLE_DELETED": "The decision table was successfully deleted",
+                "DECISION_TABLE_UPDATED": "The decision table was successfully updated"
+            },
+            "ACTION_DIALOG": {
+                "ACTION_DETAILS": "Action details",
+                "ACTION_NAME": "Action name",
+                "ACTION_DESC": "Action description",
+                "ADD_ACTION": "Add new Action",
+                "DEL_ACTION": "Delete Action"
+            },
+            "ERROR": {
+                "UPLOAD_FILE": "Upload error.",
+                "DELETE_APPLICATION": "Unknown error happened during the deleting the project.",
+                "CHANGE_FAVORITE": "Unknown error happened during the changing favorite state of the project.",
+                "DELETE_PROCESS": "Unknown error happened during the deleting the process.",
+                "LOAD_MODELS": "Unknown error happened while loading the models.",
+                "CREATE_PROCESS": {
+                    "DUPLICATION": "Process with the same name already exists",
+                    "GENERAL": "Unknown error happened during the creating a new process."
+                },
+                "UPDATE_PROCESS": {
+                    "DUPLICATION": "Process with the same name already exists",
+                    "GENERAL": "Unknown error happened during the updating the process."
+                },
+                "CREATE_CONNECTOR": {
+                    "DUPLICATION": "Connector with the same name already exists",
+                    "GENERAL": "Unknown error happened during the creating a new connector."
+                },
+                "UPDATE_CONNECTOR": {
+                    "DUPLICATION": "Connector with the same name already exists",
+                    "GENERAL": "Unknown error happened during the updating the connector."
+                },
+                "CREATE_FORM": {
+                    "DUPLICATION": "Form with the same name already exists",
+                    "GENERAL": "Unknown error happened during the creating a new form."
+                },
+                "UPDATE_FORM": {
+                    "DUPLICATION": "Form with the same name already exists",
+                    "GENERAL": "Unknown error happened during the updating the form."
+                },
+                "CREATE_UI": {
+                    "DUPLICATION": "UI with the same name already exists",
+                    "GENERAL": "Unknown error happened during the creating a new ui."
+                },
+                "UPDATE_UI": {
+                    "DUPLICATION": "UI with the same name already exists",
+                    "GENERAL": "Unknown error happened during the updating the ui."
+                },
+                "CREATE_DECISION_TABLE": {
+                    "DUPLICATION": "Decision table with the same name already exists",
+                    "GENERAL": "Unknown error happened during the creating a new decision table."
+                },
+                "UPDATE_DECISION_TABLE": {
+                    "DUPLICATION": "Decision table with the same name already exists",
+                    "GENERAL": "Unknown error happened during the updating the decision table."
+                },
+                "CREATE_DATA": {
+                    "DUPLICATION": "Data object with the same name already exists",
+                    "GENERAL": "Unknown error happened during the creating a new data object."
+                },
+                "UPDATE_DATA": {
+                    "DUPLICATION": "Data object with the same name already exists",
+                    "GENERAL": "Unknown error happened during the updating the data object."
+                },
+                "CREATE_APPLICATION": {
+                    "DUPLICATION": "Project with the same name already exists",
+                    "GENERAL": "Unknown error happened during the creating a new project."
+                },
+                "UPDATE_APPLICATION": {
+                    "DUPLICATION": "Project with the same name already exists",
+                    "GENERAL": "Unknown error happened during the updating the project."
+                },
+                "UPLOAD_APPLICATION": {
+                    "DUPLICATION": "Project with the same name already exists",
+                    "GENERAL": "Unknown error happened during the upload of the project."
+                },
+                "GET_APPLICATION": "Unknown error happened during the loading of project."
+            }
+        },
+        "PROCESS_EDITOR": {
+            "PRIORITIES": {
+                "LOW": "Low",
+                "MEDIUM": "Medium",
+                "HIGH": "High"
+            },
+            "ACTIONS": {
+                "ZOOM_IN": "Zoom in",
+                "ZOOM_OUT": "Zoom out",
+                "UNDO": "Undo",
+                "REDO": "Redo"
+            },
+            "ELEMENT_PROPERTIES": {
+                "ID": "id",
+                "NAME": "Name",
+                "VERSION": "Version",
+                "VARIABLES": "Variables",
+                "DOCUMENTATION": "Documentation",
+                "EXECUTABLE": "Executable",
+                "IMPLEMENTATION": "Implementation",
+                "ACTION": "Action",
+                "INPUT": "Input",
+                "INPUT_MAPPING": "Input mapping",
+                "OUTPUT": "Output",
+                "OUTPUT_MAPPING": "Output mapping",
+                "ASSIGNEE": "Assignee",
+                "CANDIDATE_GROUPS": "Candidate groups",
+                "CANDIDATE_USERS": "Candidate users",
+                "DUE_DATE": "Due date",
+                "PRIORITY": "Priority",
+                "ACTIVITY_NAME": "Activity name",
+                "PROCESS_VARIABLE": "Process variable",
+                "PROCESS_VARIABLES": "Process variables",
+                "EXPRESSION": "Condition Expression",
+                "FORM_SELECTOR": "Form selector"
+            },
+            "PROCESS_UPDATED": "The process was successfully updated",
+            "SELECT_PROCESS_VARIABLE": "Select process variable",
+            "ERRORS": {
+                "NO_PROCESS_PROPERTIES": "No process properties.",
+                "NO_CONNECTOR_ACTIONS": "No connector actions.",
+                "LOAD_DIAGRAM": "Could not load the diagram.",
+                "SAVE_DIAGRAM": "Could not save the diagram.",
+                "DOWNLOAD_DIAGRAM": "Could not download the diagram",
+                "CHANGE_FAVORITE": "Unknown error happened during the changing favorite state of the process."
+            },
+            "PROPERTIES": {
+                "TABS": {
+                    "VIEWER": "Properties viewer",
+                    "JSON_EDITOR": "JSON editor"
+                },
+                "TABLE": {
+                    "COLUMN_NAME": "Name",
+                    "COLUMN_TYPE": "Type",
+                    "COLUMN_REQUIRED": "Required",
+                    "COLUMN_VALUE": "Value",
+                    "NO_PROPERTIES": "You don't have any property selected"
+                },
+                "ERRORS": {
+                    "EMPTY_NAME": "Name field cannot be empty"
+                }
+            }
+        },
+        "CONNECTOR_EDITOR": {
+            "TABS": {
+                "CONNECTOR_EDITOR": "Connector editor",
+                "JSON_EDITOR": "JSON editor"
+            },
+            "EDITOR": {
+                "CONNECTOR_DETAILS": "Connector details",
+                "INPUTS": "Input parameters",
+                "OUTPUTS": "Output parameters",
+                "ACTIONS": "Actions",
+                "ADD_NEW_PARAMETER": "Add new parameter",
+                "NAME": "Name",
+                "DESCRIPTION": "Description",
+                "TYPE": "Type",
+                "BUTTONS": {
+                    "SAVE": "Save"
+                },
+                "REQUIRED": "Required"
+            },
+            "ERRORS": {
+                "GET_CONNECTOR": "Unknown error happened during loading of the connector, please try again."
+            }
+        },
+        "FORM_EDITOR": {
+            "TABS": {
+                "FORM_EDITOR": "Form editor",
+                "JSON_EDITOR": "JSON editor"
+            },
+            "FORM_VARIABLES": "Form variables",
+            "VISIBLITY_CONDITIONS": {
+                "DEPENDS": "Depends on",
+                "OPERATOR": "If it's",
+                "VALUE": "Value",
+                "NEXT_CONDITION": "Next condition operator"
+            },
+            "FIELD_PROPERTIES": {
+                "DESCRIPTION": "Description",
+                "NAME": "Name",
+                "COLUMNS": "Number of columns",
+                "REQUIRED": "Required",
+                "MULTIPLE_UPLOAD": "Allow multiple files to be attached",
+                "LINK_FILE": "Just link to files, do not copy files to Alfresco Process Services (this also means files cannot be uploaded from one of a user's devices)",
+                "FILE_SOURCE": "File source",
+                "ALL_SOURCES": "All file sources",
+                "LOCAL_FILE": "Local file",
+                "PLACEHOLDER": "Placeholder",
+                "COLSPAN": "Colspan",
+                "LABEL": "Label",
+                "ID": "ID",
+                "OVERRIDE_ID": "Override ID?",
+                "VALUE": "Text to display",
+                "DISPLAY_TEXT": "Display text",
+                "MIN_LENGTH": "Min length",
+                "MAX_LENGTH": "Max length",
+                "MIN_VALUE": "Min value",
+                "MAX_VALUE": "Max value",
+                "REGEX": "Regex pattern",
+                "INPUT_MASK": "Input mask",
+                "INPUT_MASK_PLACEHOLDER": "Input mask placeholder",
+                "INPUT_MASK_RESERVED": "Reversed",
+                "MIN_DATE": "Min Date",
+                "MAX_DATE": "Max Date",
+                "DATE_DISPLAY_FORMAT": "Date display format",
+                "DATE_FORMAT_PREVIEW": "Current date using custom format",
+                "CURRENCY": "Currency",
+                "DECIMALS": "Enable decimals",
+                "HYPERLINK_URL": "Hyperlink URL",
+                "ALLOW_COLLAPSE": "Allow collapse",
+                "COLLAPSE_BY_DEFAULT": "Collapse by default",
+                "REST_SERVICE": {
+                    "DIALOG_TITLE": "URL test",
+                    "REST_URL": "Rest URL",
+                    "TEST_BUTTON": "Test",
+                    "RESPONSE_PATH": "Path to array in JSON response",
+                    "ID_PROP": "ID property",
+                    "LABEL_PROP": "Label property"
+                },
+                "KEY_VALUE_PROPERTY": {
+                    "ADD": "Add",
+                    "ADD_OPTION": "Add a new option",
+                    "LABEL": "Label",
+                    "ID": "ID",
+                    "INFO": "This is the 'empty value' option. Selecting this at runtime is taken to mean 'no value' or 'empty'. This is allowed for optional fields, but not for required fields.",
+                    "CLEAR_SELECTION": "Clear selection",
+                    "OPTIONS": "Options"
+                },
+                "ADVANCED_RADIO_BUTTON": {
+                    "MANUAL": "Manual",
+                    "REST_SERVICE": "Rest Service"
+                }
+            },
+            "EDITOR": {
+                "ADD_NEW_TAB": "Add new tab",
+                "DELETE_TAB": "Delete tab",
+                "ADD_NEW_OUTCOME": "Add outcome",
+                "DELETE_OUTCOME": "Delete outcome",
+                "EDIT": "Edit",
+                "DELETE": "Delete",
+                "MOVE": "Move"
+            },
+            "ERRORS": {
+                "GET_FORM": "Unknown error happened during loading of the form, please try again.",
+                "DELETE_FORM": "Unknown error happened during deleting the form, please try again."
+            }
+        },
+        "UI_EDITOR": {
+            "TABS": {
+                "UI_EDITOR": "UI editor",
+                "JSON_EDITOR": "JSON editor"
+            },
+            "EDITOR": {
+            },
+            "ERRORS": {
+                "GET_UI": "Unknown error happened during loading of the ui, please try again.",
+                "DELETE_UI": "Unknown error happened during deleting the ui, please try again."
+            }
+        },
+        "DATA_EDITOR": {
+            "TABS": {
+                "DATA_EDITOR": "Data object editor",
+                "JSON_EDITOR": "JSON editor"
+            },
+
+            "EDITOR": {
+            },
+            "ERRORS": {
+                "GET_DATA": "Unknown error happened during loading of the data object, please try again.",
+                "DELETE_DATA": "Unknown error happened during deleting the data object, please try again."
+            }
+        },
+
+        "DECISION_TABLE_EDITOR": {
+            "TABS": {
+                "DECISION_TABLE_EDITOR": "Decision table editor",
+                "JSON_EDITOR": "JSON editor"
+            },
+            "EDITOR": {
+            },
+            "ERRORS": {
+                "GET_DECISION_TABLE": "Unknown error happened during loading of the decision table, please try again.",
+                "DELETE_DECISION_TABLE": "Unknown error happened during deleting the decision table, please try again."
+            }
+        },
+        "GENERAL": {
+            "ERRORS": {
+                "NOT_VALID_JSON": "Not valid JSON object.",
+                "NOT_VALID_SCHEMA": "The JSON object does not match to schema."
+            }
+        }
+
+    },
+
+    "SDK":
+        {
+            "VARIABLES_EDITOR": {
+                "ERRORS": {
+                    "EMPTY_NAME": "Name field cannot be empty"
+                },
+                "TABS": {
+                    "VIEWER": "Properties viewer",
+                    "JSON_EDITOR": "JSON editor"
+                },
+                "TABLE": {
+                    "COLUMN_NAME": "Name",
+                    "COLUMN_TYPE": "Type",
+                    "COLUMN_REQUIRED": "Required",
+                    "COLUMN_VALUE": "Value",
+                    "NO_PROPERTIES": "You don't have any property selected"
+                }
+            }
+        }
+}

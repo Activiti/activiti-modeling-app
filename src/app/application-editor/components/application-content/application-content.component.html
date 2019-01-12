@@ -1,0 +1,18 @@
+<adf-toolbar class="inline application-header">
+    <ng-container *ngIf="application$ | async as application;">
+        <adf-toolbar-title>
+            <a color="accent"
+                mat-icon-button
+                routerLink="/">
+                <mat-icon>home</mat-icon>
+            </a>
+            <span class="application-name">{{ application.name }}</span>
+        </adf-toolbar-title>
+
+        <div class="adf-toolbar--spacer"></div>
+        <a mat-icon-button data-automation-id="application-download-button"
+            (click)="downloadApp(application)" class="download-app-btn"><mat-icon>file_download</mat-icon></a>
+        <span class="application-version-label">Version: {{ application.version }}</span>
+    </ng-container>
+</adf-toolbar>
+<h1 class="ama-no-selection">{{ 'APP.APPLICATION.NO_SELECTION' | translate}}</h1>

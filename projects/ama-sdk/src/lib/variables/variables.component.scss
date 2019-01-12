@@ -1,0 +1,10 @@
+@mixin ama-variables($theme) {
+    .properties-content {
+        height: 340px;
+
+        .json-editor {
+            height: 260px;
+            overflow: hidden;
+        }
+    }
+}

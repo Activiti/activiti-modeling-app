@@ -1,0 +1,193 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "[ACS] [Local] All e2e",
+            "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
+            "args": [
+                "${workspaceFolder}/protractor.conf.js",
+                "--suite=ACS"
+            ],
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "smartStep": true,
+            "skipFiles": [
+                "${workspaceFolder}/node_modules/**/*.js",
+                "<node_internals>/**/*.js"
+            ],
+            "internalConsoleOptions": "neverOpen",
+            "envFile": "${workspaceFolder}/e2e/local.env",
+            "env": {
+                "BROWSER_RUN": "true",
+                "BACKEND": "ACS"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "[ACS] [Local] Single e2e",
+            "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
+            "args": [
+                "${workspaceFolder}/protractor.conf.js",
+                "--specs=${file}"
+            ],
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "smartStep": true,
+            "skipFiles": [
+                "${workspaceFolder}/node_modules/**/*.js",
+                "<node_internals>/**/*.js"
+            ],
+            "internalConsoleOptions": "neverOpen",
+            "envFile": "${workspaceFolder}/e2e/local.env",
+            "env": {
+                "BROWSER_RUN": "true",
+                "BACKEND": "ACS"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "[ACS] [Remote] All e2e",
+            "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
+            "args": [
+                "${workspaceFolder}/protractor.conf.js",
+                "--suite=ACS"
+            ],
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "smartStep": true,
+            "skipFiles": [
+                "${workspaceFolder}/node_modules/**/*.js",
+                "<node_internals>/**/*.js"
+            ],
+            "internalConsoleOptions": "neverOpen",
+            "envFile": "${workspaceFolder}/e2e/amadev.env",
+            "env": {
+                "BROWSER_RUN": "true",
+                "BACKEND": "ACS"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "[ACS] [Remote] Single e2e",
+            "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
+            "args": [
+                "${workspaceFolder}/protractor.conf.js",
+                "--specs=${file}"
+            ],
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "smartStep": true,
+            "skipFiles": [
+                "${workspaceFolder}/node_modules/**/*.js",
+                "<node_internals>/**/*.js"
+            ],
+            "internalConsoleOptions": "neverOpen",
+            "envFile": "${workspaceFolder}/e2e/amadev.env",
+            "env": {
+                "BROWSER_RUN": "true",
+                "BACKEND": "ACS"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "[APS] [Local] All e2e",
+            "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
+            "args": [
+                "${workspaceFolder}/protractor.conf.js",
+                "--suite=APS"
+            ],
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "smartStep": true,
+            "skipFiles": [
+                "${workspaceFolder}/node_modules/**/*.js",
+                "<node_internals>/**/*.js"
+            ],
+            "internalConsoleOptions": "neverOpen",
+            "envFile": "${workspaceFolder}/e2e/local.env",
+            "env": {
+                "BROWSER_RUN": "true",
+                "BACKEND": "APS"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "[APS] [Local] Single e2e",
+            "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
+            "args": [
+                "${workspaceFolder}/protractor.conf.js",
+                "--specs=${file}"
+            ],
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "smartStep": true,
+            "skipFiles": [
+                "${workspaceFolder}/node_modules/**/*.js",
+                "<node_internals>/**/*.js"
+            ],
+            "internalConsoleOptions": "neverOpen",
+            "envFile": "${workspaceFolder}/e2e/local.env",
+            "env": {
+                "BROWSER_RUN": "true",
+                "BACKEND": "APS"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "[APS] [Remote] All e2e",
+            "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
+            "args": [
+                "${workspaceFolder}/protractor.conf.js",
+                "--suite=APS"
+            ],
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "smartStep": true,
+            "skipFiles": [
+                "${workspaceFolder}/node_modules/**/*.js",
+                "<node_internals>/**/*.js"
+            ],
+            "internalConsoleOptions": "neverOpen",
+            "envFile": "${workspaceFolder}/e2e/amadev.env",
+            "env": {
+                "BROWSER_RUN": "true",
+                "BACKEND": "APS"
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "[APS] [Remote] Single e2e",
+            "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
+            "args": [
+                "${workspaceFolder}/protractor.conf.js",
+                "--specs=${file}"
+            ],
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "smartStep": true,
+            "skipFiles": [
+                "${workspaceFolder}/node_modules/**/*.js",
+                "<node_internals>/**/*.js"
+            ],
+            "internalConsoleOptions": "neverOpen",
+            "envFile": "${workspaceFolder}/e2e/amadev.env",
+            "env": {
+                "BROWSER_RUN": "true",
+                "BACKEND": "APS"
+            }
+        }
+    ]
+}

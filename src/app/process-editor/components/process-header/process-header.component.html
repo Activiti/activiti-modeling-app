@@ -1,0 +1,35 @@
+<adf-toolbar>
+    <adf-toolbar-title>
+        <amasdk-header-breadcrumbs [breadcrumbs$]="breadcrumbs$"></amasdk-header-breadcrumbs>
+    </adf-toolbar-title>
+
+    <div class="adf-toolbar--spacer"></div>
+
+    <button mat-icon-button
+        data-automation-id="process-editor-download-button"
+        (click)="onDownload(process)">
+        <mat-icon>file_download</mat-icon>
+    </button>
+
+    <button mat-icon-button
+        data-automation-id="process-editor-save-button"
+        (click)="onSaveClick()">
+        <mat-icon>save</mat-icon>
+    </button>
+
+    <button mat-icon-button
+        data-automation-id="process-editor-menu-button"
+        [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item
+            data-automation-id="process-editor-delete-button"
+            (click)="deleteProcess()">
+            <mat-icon>delete</mat-icon>
+            <span>{{ 'APP.MENU.DELETE' | translate }}</span>
+        </button>
+    </mat-menu>
+
+</adf-toolbar>

@@ -1,0 +1,5 @@
+@import "./components/connector-editor/connector-editor.component";
+
+@mixin ama-connector-editor-module($theme) {
+    @include ama-connector-editor($theme);
+}
