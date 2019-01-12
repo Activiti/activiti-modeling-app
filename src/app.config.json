@@ -21,7 +21,7 @@
         "redirectUri": "/",
         "redirectUriLogout": "/login"
     },
-    "languagePicker": false,
+    "languagePicker": true,
     "roles": [
         "ACTIVITI_MODELER"
     ],
