@@ -23,6 +23,7 @@ import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material';
 import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
 import { CoreModule } from '@alfresco/adf-core';
+import { AllowedCharactersDirective } from './directives/allowed-characters.directive';
 
 @NgModule({
     imports: [
@@ -34,13 +35,15 @@ import { CoreModule } from '@alfresco/adf-core';
     declarations: [
         ProcessNamePipe,
         HeaderBreadcrumbsComponent,
-        EntityDialogComponent
+        EntityDialogComponent,
+        AllowedCharactersDirective
     ],
     entryComponents: [ EntityDialogComponent ],
     exports: [
         ProcessNamePipe,
         HeaderBreadcrumbsComponent,
-        EntityDialogComponent
+        EntityDialogComponent,
+        AllowedCharactersDirective
     ]
 })
 export class SharedModule {}

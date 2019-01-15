@@ -126,7 +126,7 @@
             true,
             "attribute",
             "ama",
-            "camelCase"
+            "kebab-case"
         ],
         "component-selector": [
             true,
