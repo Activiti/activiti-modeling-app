@@ -120,7 +120,7 @@ export interface ConnectorContent {
     id: string;
     name: string;
     description?: string;
-    actions?: ConnectorActionData[];
+    actions?: ConnectorActionData;
 }
 
 export interface ConnectorActionData {
