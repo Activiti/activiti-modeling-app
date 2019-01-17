@@ -39,7 +39,7 @@ export class ACMApplicationApi implements ApplicationApi {
 
     public get(applicationId: string): Observable<Application> {
         return this.requestApiHelper
-            .get(`/v1/applications/${applicationId}`)
+            .get(`/v1/projects/${applicationId}`)
                 .pipe(
                     map((response: any) => response.entry),
                     map(this.createApplication.bind(this))
@@ -48,7 +48,7 @@ export class ACMApplicationApi implements ApplicationApi {
 
     public create(application: Partial<Application>): Observable<Application> {
         return this.requestApiHelper
-        .post('/v1/applications/', {bodyParam: application})
+        .post('/v1/projects/', {bodyParam: application})
             .pipe(
                 map((response: any) => response.entry),
                 map(this.createApplication.bind(this))
@@ -57,7 +57,7 @@ export class ACMApplicationApi implements ApplicationApi {
 
     public update(applicationId: string, application: Partial<Application>): Observable<Application> {
         return this.requestApiHelper
-        .put(`/v1/applications/${applicationId}`, {bodyParam: application})
+        .put(`/v1/projects/${applicationId}`, {bodyParam: application})
             .pipe(
                 map((response: any) => response.entry),
                 map(this.createApplication.bind(this))
@@ -65,12 +65,12 @@ export class ACMApplicationApi implements ApplicationApi {
     }
 
     public delete(applicationId: string): Observable<void> {
-        return this.requestApiHelper.delete(`/v1/applications/${applicationId}`);
+        return this.requestApiHelper.delete(`/v1/projects/${applicationId}`);
     }
 
     public import(file: File ): Observable<Partial<Application>> {
         return this.requestApiHelper
-            .post(`/v1/applications/import`, {formParams: {'file': file}, contentTypes: ['multipart/form-data']})
+            .post(`/v1/projects/import`, {formParams: {'file': file}, contentTypes: ['multipart/form-data']})
                 .pipe(
                     map((response: any) => response.entry),
                     map(this.createApplication.bind(this))
@@ -79,14 +79,14 @@ export class ACMApplicationApi implements ApplicationApi {
 
     public export(applicationId: string): Observable<Blob>  {
         return this.requestApiHelper.get(
-            `/v1/applications/${applicationId}/export`,
+            `/v1/projects/${applicationId}/export`,
             { queryParams: { 'attachment': false }, returnType: 'Blob' }
         );
     }
 
     public getAll(): Observable<Application[]> {
         return this.requestApiHelper
-            .get('/v1/applications')
+            .get('/v1/projects')
             .pipe(
                 map((nodePaging: any) => {
                     return nodePaging.list.entries
