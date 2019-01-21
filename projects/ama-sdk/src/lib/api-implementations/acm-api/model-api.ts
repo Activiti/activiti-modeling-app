@@ -49,7 +49,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
     public getList(containerId: string): Observable<T[]> {
         return this.requestApiHelper
             .get<ModelsResponse<T>>(
-                `/v1/applications/${containerId}/models`,
+                `/v1/projects/${containerId}/models`,
                 { queryParams: { type: this.modelVariation.contentType} })
             .pipe(
                 map((nodePaging) => {
@@ -63,7 +63,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
     public create(model: Partial<MinimalModelSummary>, containerId: string): Observable<T> {
         return this.requestApiHelper
             .post<ModelResponse<T>>(
-                `/v1/applications/${containerId}/models`,
+                `/v1/projects/${containerId}/models`,
                 { bodyParam: { ...model, type: this.modelVariation.contentType }})
             .pipe(
                 map(response => response.entry),
@@ -139,7 +139,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
         };
 
         return this.requestApiHelper
-            .post<ModelResponse<T>>(`/v1/applications/${containerId}/models/import`, requestOptions)
+            .post<ModelResponse<T>>(`/v1/projects/${containerId}/models/import`, requestOptions)
             .pipe(
                 map(response => this.createEntity(response.entry, containerId))
             );
