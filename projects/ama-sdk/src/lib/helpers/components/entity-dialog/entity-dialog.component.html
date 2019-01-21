@@ -3,10 +3,13 @@
 <mat-dialog-content>
     <br />
     <mat-form-field class="adf-full-width">
-        <input matInput required placeholder="{{ data.nameField | translate }}"
-                data-automation-id="name-field"
-                [(ngModel)]="form.name"
-        />
+        <input
+            matInput
+            required
+            placeholder="{{ data.nameField | translate }}"
+            data-automation-id="name-field"
+            [(ngModel)]="form.name"
+            [amasdk-allowed-characters]/>
     </mat-form-field>
     <br />
     <mat-form-field class="adf-full-width">

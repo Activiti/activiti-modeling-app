@@ -32,13 +32,40 @@ export const selectApplicationConnectorsArray = createSelector(
     (connectors, selectedAppId) => Object.values(connectors).filter((connector: Connector) => connector.applicationId === selectedAppId)
 );
 
-export const selectConnectorActions = id => createSelector(
+export const connectorByName = name => createSelector(
+    selectConnectorEntities,
+    (entities) => {
+        if (!name) {
+            return null;
+        }
+
+        const wantedConnector = Object.keys(entities)
+            .map(connectorId => entities[connectorId])
+            .filter(connector => connector.name === name);
+
+        return wantedConnector[0] || null;
+    }
+);
+
+export const connectorContentById = id => createSelector(
+    selectConnectorEntityContents,
+    (entityContents) => {
+        if (!id) {
+            return null;
+        }
+
+        return entityContents[id] || null;
+    }
+);
+
+
+export const connectorActions = id => createSelector(
     selectConnectorEntityContents,
     (entities) => {
         if (!id) {
             return null;
         }
 
-        return entities && entities[id] && entities[id].actions ? entities[id].actions : {};
+        return entities && entities[id] && entities[id].actions ? entities[id].actions : null;
     }
 );

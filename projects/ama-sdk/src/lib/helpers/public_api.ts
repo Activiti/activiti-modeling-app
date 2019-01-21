@@ -23,5 +23,6 @@ export * from './empty-diagram';
 export * from './primitive-types';
 export * from './blob2json';
 export { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
+export { AllowedCharactersDirective } from './directives/allowed-characters.directive';
 
 
