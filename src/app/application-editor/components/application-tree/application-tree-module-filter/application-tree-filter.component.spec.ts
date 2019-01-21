@@ -20,9 +20,8 @@ import { ApplicationTreeFilterComponent } from './application-tree-filter.compon
 import { MatExpansionModule, MatIconModule, MatProgressSpinnerModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { SharedModule } from 'ama-sdk';
+import { SharedModule, PROCESS } from 'ama-sdk';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { PROCESS } from 'ama-sdk';
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 
 describe('ApplicationTreeFilterComponent ', () => {
@@ -63,7 +62,7 @@ describe('ApplicationTreeFilterComponent ', () => {
         component.expanded = false;
         component.ignoreOpenEmit = false;
         component.applicationId = 'appIdTest';
-        component.filter = {
+        component.filter = <any>{
             icon: '',
             name: 'Processes',
             type: PROCESS
@@ -88,7 +87,7 @@ describe('ApplicationTreeFilterComponent ', () => {
         component.expanded = false;
 
         component.applicationId = 'appIdTest';
-        component.filter = {
+        component.filter = <any>{
             icon: '',
             name: 'Processes',
             type: PROCESS

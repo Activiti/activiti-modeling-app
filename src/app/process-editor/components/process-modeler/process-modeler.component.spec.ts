@@ -21,15 +21,14 @@ import { Store, StoreModule } from '@ngrx/store';
 import { MatTooltipModule, MatIconModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
-import { AmaState, PROCESS_EDITOR_STATE_NAME } from 'ama-sdk';
-import { selectProcess } from '../../store/process-editor.selectors';
-import { processEditorReducer } from '../../store/process-editor.reducer';
+import { AmaState, PROCESS_EDITOR_STATE_NAME, selectSelectedProcess } from 'ama-sdk';
 import { ProcessModelerService } from '../../services/process-modeler.service';
 import { BpmnFactoryToken } from '../../services/bpmn-factory.token';
 import { BpmnFactoryMock, getDiagramElementMock } from '../../services/bpmn-js/bpmn-js.mock';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { mockProcess } from '../../store/process.mock';
+import { processEntitiesReducer } from '../../store/process-entities.reducer';
 
 describe('ProcessModelerComponent', () => {
     let fixture: ComponentFixture<ProcessModelerComponent>;
@@ -43,7 +42,7 @@ describe('ProcessModelerComponent', () => {
                 MatTooltipModule,
                 MatIconModule,
                 StoreModule.forRoot({
-                    [PROCESS_EDITOR_STATE_NAME]: processEditorReducer
+                    [PROCESS_EDITOR_STATE_NAME]: processEntitiesReducer
                 }),
                 TranslateModule.forRoot(),
                 NoopAnimationsModule
@@ -55,7 +54,7 @@ describe('ProcessModelerComponent', () => {
                     provide: Store,
                     useValue: {
                         select: jest.fn().mockImplementation((selector) => {
-                            if (selector === selectProcess) {
+                            if (selector === selectSelectedProcess) {
                                 return of(mockProcess);
                             }
 

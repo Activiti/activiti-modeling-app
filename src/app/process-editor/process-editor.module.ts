@@ -26,12 +26,11 @@ import { ProcessHeaderComponent } from './components/process-header/process-head
 import { ProcessModelerService } from './services/process-modeler.service';
 import { ProcessEditorService } from './services/process-editor.service';
 import { ProcessEditorEffects } from './store/process-editor.effects';
-import { processEditorReducer } from './store/process-editor.reducer';
 import { StoreModule } from '@ngrx/store';
 import { ProcessEditorRoutingModule } from './router/process-editor-routing.module';
 import { CardViewPropertiesFactory } from './services/cardview-properties/cardview-properties.factory';
 import { Title } from '@angular/platform-browser';
-import { AmaTitleService, ENTITIES_REDUCER_TOKEN, provideEntity, PROCESS_EDITOR_STATE_NAME, providePropertyHandler, BpmnProperty } from 'ama-sdk';
+import { AmaTitleService, ENTITIES_REDUCER_TOKEN, provideEntity, providePropertyHandler, BpmnProperty } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { BpmnFactoryToken } from './services/bpmn-factory.token';
 import { SharedModule } from 'ama-sdk';
@@ -53,7 +52,6 @@ import { ProcessVariablesEffects } from './store/process-variables.effects';
         ProcessEditorRoutingModule,
         EffectsModule.forFeature([ProcessEditorEffects, ProcessVariablesEffects]),
         StoreModule.forFeature('entities', ENTITIES_REDUCER_TOKEN),
-        StoreModule.forFeature(PROCESS_EDITOR_STATE_NAME, processEditorReducer),
         SharedModule,
         VariablesModule,
         MatTooltipModule

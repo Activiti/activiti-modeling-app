@@ -25,7 +25,7 @@ import { ApplicationEditorService } from '../../services/application-editor.serv
 import { provideMockActions } from '@ngrx/effects/testing';
 import { LogService, AlfrescoApiService, AlfrescoApiServiceMock } from '@alfresco/adf-core';
 import { Router } from '@angular/router';
-import { ExportApplicationAction } from '../actions/application';
+import { ExportApplicationAction } from '../application-editor.actions';
 import { hot, getTestScheduler, cold } from 'jasmine-marbles';
 
 describe('Application Effects', () => {

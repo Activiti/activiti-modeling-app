@@ -19,7 +19,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ApplicationEditorState, Application, selectApplication } from 'ama-sdk';
 import { Observable, Subscription } from 'rxjs';
-import { ExportApplicationAction } from '../../store/actions/application';
+import { ExportApplicationAction } from '../../store/application-editor.actions';
 import { LeaveApplicationAction } from 'ama-sdk';
 
 @Component({

@@ -17,7 +17,7 @@
 
 import { MODEL_CREATORS, ModelCreator } from 'ama-sdk';
 import { PROCESS_ICON } from './processes-filter.extension';
-import { CreateProcessAttemptAction } from '../../application-editor/store/actions/processes';
+import { CreateProcessAttemptAction } from '../store/process-editor.actions';
 
 export function createProcessCreator(): ModelCreator {
     return {

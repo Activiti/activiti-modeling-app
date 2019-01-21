@@ -22,19 +22,23 @@ import {
     DELETE_PROCESS_SUCCESS,
     CreateProcessSuccessAction,
     GetProcessesSuccessAction,
-    DeleteProcessSuccessAction
-} from '../../application-editor/store/actions/processes';
-import {
+    DeleteProcessSuccessAction,
     UPDATE_PROCESS_SUCCESS,
     GET_PROCESS_SUCCESS,
     GetProcessSuccessAction,
-    UpdateProcessSuccessAction
+    UpdateProcessSuccessAction,
+    SELECT_MODELER_ELEMENT,
+    SelectModelerElementAction,
+    REMOVE_DIAGRAM_ELEMENT,
+    RemoveDiagramElementAction
 } from './process-editor.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState, processAdapter } from './process-entities.state';
-import { Process } from 'ama-sdk';
+import { Process, UPDATE_SERVICE_PARAMETERS, UpdateServiceParametersAction } from 'ama-sdk';
 import { Update } from '@ngrx/entity';
 import { LEAVE_APPLICATION } from 'ama-sdk';
 import { Action } from '@ngrx/store';
+import { UPDATE_PROCESS_VARIABLES, UpdateProcessVariablesAction } from './process-variables.actions';
+const cloneDeep = require('lodash/cloneDeep');
 
 export function processEntitiesReducer(
     state: ProcessEntitiesState = initialProcessEntitiesState,
@@ -45,10 +49,7 @@ export function processEntitiesReducer(
             return createProcess(state, <CreateProcessSuccessAction>action);
 
         case GET_PROCESSES_ATTEMPT:
-            return {
-                ...state,
-                loading: true
-            };
+            return { ...state, loading: true };
 
         case GET_PROCESSES_SUCCESS:
             return getProcessesSuccess(state, <GetProcessesSuccessAction> action);
@@ -62,6 +63,18 @@ export function processEntitiesReducer(
         case GET_PROCESS_SUCCESS:
             return getProcessSuccess(state, <GetProcessSuccessAction>action);
 
+        case SELECT_MODELER_ELEMENT:
+            return setSelectedElement(state, <SelectModelerElementAction>action);
+
+        case REMOVE_DIAGRAM_ELEMENT:
+            return removeElement(state, <RemoveDiagramElementAction> action);
+
+        case UPDATE_PROCESS_VARIABLES:
+            return updateProcessVariables(state, <UpdateProcessVariablesAction> action);
+
+        case UPDATE_SERVICE_PARAMETERS:
+            return updateProcessVariablesMapping(state, <UpdateServiceParametersAction> action);
+
         case LEAVE_APPLICATION:
             return {
                 ...state,
@@ -73,23 +86,61 @@ export function processEntitiesReducer(
     }
 }
 
+function updateProcessVariables(state: ProcessEntitiesState, action: UpdateProcessVariablesAction): ProcessEntitiesState {
+    const extensions = { ...state.entities[action.payload.processId].extensions };
+    extensions.properties = action.payload.properties;
+
+    return {
+        ...state,
+        entities: { ...state.entities, [action.payload.processId]: {
+            ...state.entities[action.payload.processId],
+            extensions
+        } }
+    };
+}
+
+function updateProcessVariablesMapping(state: ProcessEntitiesState, action: UpdateServiceParametersAction): ProcessEntitiesState {
+    const newState = cloneDeep(state);
+    newState.entities[action.processId].extensions = { variablesMappings: {}, ...newState.entities[action.processId].extensions };
+    newState.entities[action.processId].extensions.variablesMappings[action.serviceId] = { ...action.serviceParameterMappings };
+
+    return newState;
+}
+
+function setSelectedElement(state: ProcessEntitiesState, action: SelectModelerElementAction): ProcessEntitiesState {
+    return {
+        ...state,
+        selectedElement: action.element
+    };
+}
+
+function removeElement(state: ProcessEntitiesState, action: RemoveDiagramElementAction): ProcessEntitiesState {
+    if (state.selectedElement && state.selectedElement.id === action.element.id) {
+        return {
+            ...state,
+            selectedElement: null,
+        };
+    }
+
+    return { ...state };
+}
+
 function createProcess(state: ProcessEntitiesState, action: CreateProcessSuccessAction): ProcessEntitiesState {
     return processAdapter.addOne(action.process, state);
 }
 
 function removeProcess(state: ProcessEntitiesState, action: DeleteProcessSuccessAction): ProcessEntitiesState {
-    const newState = { ...state, entityContents: { ...state.entityContents } };
-    delete newState.entityContents[action.processId];
+    const newState = { ...state, selectedProcessContent: null };
 
-    return processAdapter.removeOne(action.processId, state);
+    return processAdapter.removeOne(action.processId, newState);
 }
 
 function getProcessSuccess(state: ProcessEntitiesState, action: GetProcessSuccessAction): ProcessEntitiesState {
-    const process = action.payload.process,
-        processContent = action.payload.diagram;
-
-    const newState = { ...state, entityContents: { ...state.entityContents } };
-    newState.entityContents[process.id] = processContent;
+    const process = action.payload.process;
+    const newState = {
+        ...state,
+        selectedProcessContent: action.payload.diagram
+    };
 
     return processAdapter.upsertOne(process, newState);
 }
@@ -105,10 +156,7 @@ function getProcessesSuccess(state: ProcessEntitiesState, action: GetProcessesSu
 function updateProcess(state: ProcessEntitiesState, action: UpdateProcessSuccessAction): ProcessEntitiesState {
     const newState = {
         ...state,
-        entityContents: {
-            ...state.entityContents,
-            [action.payload.processId]: action.payload.content
-        }
+        selectedProcessContent: action.payload.content
     };
 
     return processAdapter.updateOne(<Update<Partial<Process>>>{

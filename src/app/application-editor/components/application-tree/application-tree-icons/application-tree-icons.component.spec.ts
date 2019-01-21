@@ -23,9 +23,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { ApplicationTreeHelper } from '../application-tree.helper';
 import { MatIconModule } from '@angular/material';
-import { PROCESS, CONNECTOR, MODEL_TYPE, ModelFilter, OpenFilterAction, OPEN_FILTER } from 'ama-sdk';
+import { PROCESS, CONNECTOR, MODEL_TYPE, ModelFilter, OpenFilterAction, OPEN_FILTER, AmaState } from 'ama-sdk';
 import { SetMenuAction, SET_MENU } from '../../../../store/actions';
-import { AmaState } from 'ama-sdk';
 
 class ApplicationTreeHelperMock {
     public calledWithType: MODEL_TYPE;

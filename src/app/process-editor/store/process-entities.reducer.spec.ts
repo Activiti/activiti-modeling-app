@@ -23,12 +23,19 @@ import {
     GetProcessesSuccessAction,
     GET_PROCESSES_SUCCESS,
     DeleteProcessSuccessAction,
-    DELETE_PROCESS_SUCCESS
-} from '../../application-editor/store/actions/processes';
-import { ProcessEntitiesState, initialProcessEntitiesState } from './process-entities.state';
-import { ProcessActions, UpdateProcessSuccessAction, UPDATE_PROCESS_SUCCESS, GetProcessSuccessAction } from './process-editor.actions';
-import { PROCESS, Process, ProcessContent } from 'ama-sdk';
+    DELETE_PROCESS_SUCCESS,
+    ProcessActions,
+    UpdateProcessSuccessAction,
+    UPDATE_PROCESS_SUCCESS,
+    GetProcessSuccessAction,
+    RemoveDiagramElementAction,
+    REMOVE_DIAGRAM_ELEMENT
+} from './process-editor.actions';
+import { ProcessEntitiesState, initialProcessEntitiesState, SelectedProcessElement } from './process-entities.state';
+import { PROCESS, Process, ProcessContent, ServiceParameterMappings, UpdateServiceParametersAction, EntityProperty, EntityProperties } from 'ama-sdk';
 import { processEntitiesReducer } from './process-entities.reducer';
+import { mockProcess, variablesMappings } from './process.mock';
+import * as processVariablesActions from './process-variables.actions';
 
 const deepFreeze = require('deep-freeze-strict');
 
@@ -142,7 +149,7 @@ describe('ProcessEntitiesReducer', () => {
 
             const newState = processEntitiesReducer(initialState, action);
 
-            expect(newState.entityContents[process.id]).toEqual(diagram);
+            expect(newState.selectedProcessContent).toEqual(diagram);
         });
 
         it('should update the content with default values if no content from backend. The id must be prefixed with process-', () => {
@@ -150,7 +157,67 @@ describe('ProcessEntitiesReducer', () => {
 
             const newState = processEntitiesReducer(initialState, action);
 
-            expect(newState.entityContents[process.id]).toEqual('');
+            expect(newState.selectedProcessContent).toEqual('');
         });
+    });
+
+    it('should handle REMOVE_DIAGRAM_ELEMENT', () => {
+        const mockElement1: SelectedProcessElement = { id: 'id1', type: 'type1' };
+        const mockElement2: SelectedProcessElement = { id: 'id2', type: 'type2' };
+
+        initialState = {
+            ...initialProcessEntitiesState,
+            selectedElement: mockElement1
+        };
+
+        const newState1 = processEntitiesReducer(initialState, <RemoveDiagramElementAction>{
+            type: REMOVE_DIAGRAM_ELEMENT,
+            element: mockElement2
+        });
+        expect(newState1.selectedElement.id).toBe(mockElement1.id);
+
+        const newState2 = processEntitiesReducer(initialState, <RemoveDiagramElementAction>{
+            type: REMOVE_DIAGRAM_ELEMENT,
+            element: mockElement1
+        });
+        expect(newState2.selectedElement).toBeNull();
+    });
+
+    it('should handle UPDATE_SERVICE_PARAMETERS', () => {
+        const serviceTaskId = 'serviceTaskId';
+        const serviceParameterMappings: ServiceParameterMappings = {
+            input: { 'param1': 'variable1'},
+            output: { 'param2': 'variable'}
+        };
+        initialState = {
+            ...initialProcessEntitiesState,
+            entities: { [mockProcess.id]: mockProcess },
+            ids: [mockProcess.id]
+        };
+
+        const newState = processEntitiesReducer(initialState, new UpdateServiceParametersAction(mockProcess.id, serviceTaskId, serviceParameterMappings));
+
+        expect(newState.entities[mockProcess.id].extensions.variablesMappings).toEqual({
+            ...variablesMappings,
+            'serviceTaskId': serviceParameterMappings
+        });
+    });
+
+    it('should handle UPDATE_PROCESS_VARIABLES', () => {
+        initialState = {
+            ...initialProcessEntitiesState,
+            entities: { [mockProcess.id]: mockProcess },
+            ids: [mockProcess.id]
+        };
+
+        const mockProperty: EntityProperty = { 'id': 'id', 'name': 'appa', 'type': 'string', 'required': false, 'value': '' };
+        const mockProperties: EntityProperties = { [mockProperty.id]: mockProperty };
+        const newState = processEntitiesReducer(initialState, new processVariablesActions.UpdateProcessVariablesAction({
+            processId: mockProcess.id,
+            properties: mockProperties
+        }));
+
+        expect(newState.entities[mockProcess.id].extensions.properties).toEqual(mockProperties);
+        expect(newState.entities[mockProcess.id].extensions.variablesMappings).toEqual(mockProcess.extensions.variablesMappings);
     });
 });

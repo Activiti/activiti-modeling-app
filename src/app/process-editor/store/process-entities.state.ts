@@ -18,10 +18,17 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { Process, ProcessContent } from 'ama-sdk';
 
+export interface SelectedProcessElement {
+    id: string;
+    type: string;
+    name?: string;
+}
+
 export interface ProcessEntitiesState extends EntityState<Process>  {
     loading: boolean;
     loaded: boolean;
-    entityContents: {[key: string]: ProcessContent};
+    selectedProcessContent: ProcessContent;
+    selectedElement: SelectedProcessElement;
 }
 
 export const processAdapter = createEntityAdapter<Process>();
@@ -30,5 +37,6 @@ export const initialProcessEntitiesState = processAdapter.getInitialState<Proces
     ...processAdapter.getInitialState(),
     loading: false,
     loaded: false,
-    entityContents: {}
+    selectedProcessContent: null,
+    selectedElement: null
 });

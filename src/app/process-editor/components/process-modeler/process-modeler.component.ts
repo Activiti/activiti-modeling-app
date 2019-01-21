@@ -20,13 +20,13 @@ import { ProcessModelerService } from '../../services/process-modeler.service';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil, switchMap, filter, map } from 'rxjs/operators';
 import { ProcessContent, SnackbarErrorAction } from 'ama-sdk';
-import { ProcessEditorState } from '../../store/process-editor.state';
 import { Store } from '@ngrx/store';
 import {
     SelectModelerElementAction,
     ChangedProcessAction,
     RemoveDiagramElementAction
 } from '../../store/process-editor.actions';
+import { ProcessEntitiesState } from '../../store/process-entities.state';
 
 @Component({
     selector: 'ama-process-modeler',
@@ -43,7 +43,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
         this.diagramData$.next(diagramData);
     }
 
-    constructor(private store: Store<ProcessEditorState>, private processModelerService: ProcessModelerService) {}
+    constructor(private store: Store<ProcessEntitiesState>, private processModelerService: ProcessModelerService) {}
 
     ngOnInit() {
         this.processModelerService.init({

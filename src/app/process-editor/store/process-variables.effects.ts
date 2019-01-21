@@ -22,11 +22,10 @@ import { Injectable } from '@angular/core';
 import { LogService } from '@alfresco/adf-core';
 import { Router } from '@angular/router';
 import { ProcessModelerService } from '../services/process-modeler.service';
-import { selectProcess } from './process-editor.selectors';
 import { AmaState, DialogService, BaseEffects, SetAppDirtyStateAction, EntityProperties, selectSelectedTheme } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { Subject, of } from 'rxjs';
-import { VariablesComponent } from 'ama-sdk';
+import { VariablesComponent, selectSelectedProcess } from 'ama-sdk';
 
 @Injectable()
 export class ProcessVariablesEffects extends BaseEffects {
@@ -45,8 +44,8 @@ export class ProcessVariablesEffects extends BaseEffects {
     @Effect({ dispatch: false })
     openProcessVariablesDialogEffect = this.actions$.pipe(
         ofType<OpenProcessVariablesDialogAction>(OPEN_PROCESS_VARIABLES_DIALOG),
-        switchMap(() => this.store.select(selectProcess).pipe(take(1))),
-        tap((process) => this.openVariablesDialog(process.extensions.properties)
+        switchMap(() => this.store.select(selectSelectedProcess).pipe(take(1))),
+        tap((process) => this.openVariablesDialog(process.id, process.extensions.properties)
     ));
 
 
@@ -55,12 +54,12 @@ export class ProcessVariablesEffects extends BaseEffects {
         ofType<UpdateProcessVariablesAction>(UPDATE_PROCESS_VARIABLES),
         map(action => {
             const shapeId = this.modelerService.getRootProcessElement().id;
-            this.modelerService.updateElementProperty(shapeId, 'properties', action.properties);
+            this.modelerService.updateElementProperty(shapeId, 'properties', action.payload.properties);
         }),
         mergeMap(() => of(new SetAppDirtyStateAction(true)))
     );
 
-    private openVariablesDialog(properties: EntityProperties) {
+    private openVariablesDialog(processId: string, properties: EntityProperties) {
         const propertiesUpdate$ = new Subject<EntityProperties>();
         const title = 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS_VARIABLES';
         const required = true;
@@ -74,11 +73,11 @@ export class ProcessVariablesEffects extends BaseEffects {
             disableClose: true,
             height: '480px',
             width: '1000px',
-            data: {properties, title, columns, required, propertiesUpdate$, theme$},
+            data: { properties, title, columns, required, propertiesUpdate$, theme$ },
         });
 
         propertiesUpdate$.subscribe(data => {
-            this.store.dispatch(new UpdateProcessVariablesAction(data));
-         });
+            this.store.dispatch(new UpdateProcessVariablesAction({ processId, properties: data }));
+        });
     }
 }

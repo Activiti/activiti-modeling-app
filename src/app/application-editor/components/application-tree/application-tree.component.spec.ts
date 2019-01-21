@@ -21,8 +21,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ApplicationTreeHelper } from './application-tree.helper';
 import { of } from 'rxjs';
-import { PROCESS, FORM } from 'ama-sdk';
-import { selectSelectedAppId } from 'ama-sdk';
+import { PROCESS, FORM, selectSelectedAppId } from 'ama-sdk';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 

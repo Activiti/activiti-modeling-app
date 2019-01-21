@@ -17,7 +17,7 @@
 
 import { appReducer } from './app.reducer';
 import { PROCESS, ModelOpenedAction, MODEL_OPENED, ModelClosedAction, MODEL_CLOSED } from 'ama-sdk';
-import { SelectApplicationAction } from 'src/app/application-editor/store/actions/application';
+import { SelectApplicationAction } from '../../application-editor/store/application-editor.actions';
 
 describe('appReducer', () => {
 

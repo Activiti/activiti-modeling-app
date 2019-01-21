@@ -19,8 +19,7 @@ import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { SetMenuAction } from '../../../../store/actions';
 import { ApplicationTreeHelper } from '../application-tree.helper';
-import { MODEL_TYPE, ModelFilter, OpenFilterAction } from 'ama-sdk';
-import { AmaState } from 'ama-sdk';
+import { MODEL_TYPE, ModelFilter, OpenFilterAction, AmaState } from 'ama-sdk';
 
 @Component({
     selector: 'ama-application-tree-icons',

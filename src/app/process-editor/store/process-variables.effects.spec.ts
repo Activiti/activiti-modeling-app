@@ -30,6 +30,7 @@ import { BpmnFactoryToken } from '../services/bpmn-factory.token';
 import { SetAppDirtyStateAction, DialogService } from 'ama-sdk';
 import { UpdateProcessVariablesAction } from './process-variables.actions';
 import { hot, cold } from 'jasmine-marbles';
+import { mockProcess } from './process.mock';
 
 describe('Process variables effects', () => {
     let effects: ProcessVariablesEffects;
@@ -84,7 +85,10 @@ describe('Process variables effects', () => {
 
         it('updateProcessVariablesEffect should dispatch SetAppDirtyStateAction', () => {
             actions$ = hot('a', { a: new UpdateProcessVariablesAction({
-                'id': { id: 'dsd', name: 'name', value: 'test', type: 'string', required: true}
+                processId: mockProcess.id,
+                properties: {
+                    'id': { id: 'dsd', name: 'name', value: 'test', type: 'string', required: true}
+                }
             })});
             const expected = cold('b', {
                 b: new SetAppDirtyStateAction(true)

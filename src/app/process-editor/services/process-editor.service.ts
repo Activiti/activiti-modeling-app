@@ -18,29 +18,45 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PROCESS_FILE_FORMAT, AmaApi, DownloadResourceService, Process, ProcessContent } from 'ama-sdk';
+import { PROCESS_FILE_FORMAT, AmaApi, DownloadResourceService, Process, ProcessContent, EntityDialogForm, UploadFileAttemptPayload } from 'ama-sdk';
 
 @Injectable()
 export class ProcessEditorService {
     constructor(private amaApi: AmaApi, private downloadService: DownloadResourceService) {}
 
-    updateProcess(processId: string, process: Process, processData: ProcessContent, applicationId: string): Observable<Partial<Process>> {
+    getAll(applicationId: string): Observable<Process[]> {
+        return this.amaApi.Process.getList(applicationId);
+    }
+
+    create(form: Partial<EntityDialogForm>, applicationId: string): Observable<Process> {
+        return this.amaApi.Process.create(form, applicationId);
+    }
+
+    delete(processId: string): Observable<any> {
+        return this.amaApi.Process.delete(processId);
+    }
+
+    upload(payload: UploadFileAttemptPayload): Observable<Process> {
+        return this.amaApi.Process.import(payload.file, payload.applicationId);
+    }
+
+    update(processId: string, process: Process, processData: ProcessContent, applicationId: string): Observable<Partial<Process>> {
         return this.amaApi.Process.update(processId, process, processData, applicationId);
     }
 
-    validateProcess(processId: string, diagramData: ProcessContent): Observable<any> {
+    validate(processId: string, diagramData: ProcessContent): Observable<any> {
         return this.amaApi.Process.validate(processId, diagramData);
     }
 
-    getProcessDetails(processId: string, applicationId: string) {
+    getDetails(processId: string, applicationId: string) {
         return this.amaApi.Process.retrieve(processId, applicationId);
     }
 
-    getProcessDiagram(processId: string) {
+    getDiagram(processId: string) {
         return this.amaApi.Process.export(processId);
     }
 
-    downloadProcessDiagram(processName: string, processData: string) {
+    downloadDiagram(processName: string, processData: string) {
         const blob = new Blob([processData], { type: 'octet/stream' });
         this.downloadService.downloadResource(processName, blob, PROCESS_FILE_FORMAT);
     }

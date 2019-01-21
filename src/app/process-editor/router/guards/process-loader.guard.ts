@@ -21,13 +21,13 @@ import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { ProcessEditorState } from '../../store/process-editor.state';
 import { GetProcessAttemptAction } from '../../store/process-editor.actions';
+import { ProcessEntitiesState } from '../../store/process-entities.state';
 
 @Injectable()
 export class ProcessLoaderGuard implements CanActivate {
 
-    constructor(private store: Store<ProcessEditorState>) { }
+    constructor(private store: Store<ProcessEntitiesState>) { }
 
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
         const processId = route.params.processId;

@@ -17,11 +17,10 @@
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest, of } from 'rxjs';
 import { ProcessModelerService } from '../../services/process-modeler.service';
 import {
     selectProcessDiagram,
-    selectProcess,
     selectProcessCrumb
 } from '../../store/process-editor.selectors';
 import {
@@ -32,11 +31,10 @@ import {
     AmaState,
     SnackbarErrorAction,
     EntityDialogForm,
-    selectApplicationCrumb
+    selectApplicationCrumb,
+    selectSelectedProcess
 } from 'ama-sdk';
-import { DeleteProcessAttemptAction } from '../../../application-editor/store/actions/processes';
-import { DownloadProcessAction, ValidateProcessAttemptAction, UpdateProcessAttemptAction } from '../../store/process-editor.actions';
-import { combineLatest, of } from 'rxjs';
+import { DownloadProcessAction, ValidateProcessAttemptAction, UpdateProcessAttemptAction, DeleteProcessAttemptAction } from '../../store/process-editor.actions';
 import { map, filter } from 'rxjs/operators';
 import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
 import { nameHandler } from '../../services/bpmn-js/property-handlers/name.handler';
@@ -54,7 +52,7 @@ export class ProcessEditorComponent implements OnInit {
     constructor(private store: Store<AmaState>, private processModeler: ProcessModelerService) {}
 
     ngOnInit() {
-        this.process$ = this.store.select(selectProcess);
+        this.process$ = this.store.select(selectSelectedProcess);
         this.diagram$ = this.store.select(selectProcessDiagram);
         this.loadingFinished$ = combineLatest(this.process$, this.diagram$).pipe(
             map(([process, diagram]) => process !== null && diagram !== null)

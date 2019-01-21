@@ -22,7 +22,7 @@ import { MatIconModule } from '@angular/material';
 import { ToolbarModule } from '@alfresco/adf-core';
 import { ApplicationEditorState } from 'ama-sdk';
 import { of } from 'rxjs';
-import { ExportApplicationAction } from '../../store/actions/application';
+import { ExportApplicationAction } from '../../store/application-editor.actions';
 import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 

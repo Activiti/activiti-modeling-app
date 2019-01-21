@@ -20,10 +20,10 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatTooltipModule, MatIconModule } from '@angular/material';
 import { Store } from '@ngrx/store';
-import { UploadProcessAttemptAction, UPLOAD_PROCESS_ATTEMPT } from '../../store/actions/processes';
 import { AmaState, MODEL_UPLOADERS, PROCESS } from 'ama-sdk';
 import { LogService } from '@alfresco/adf-core';
 import { HttpClientModule } from '@angular/common/http';
+import { UploadProcessAttemptAction, UPLOAD_PROCESS_ATTEMPT } from 'src/app/process-editor/store/process-editor.actions';
 
 
 describe('UploadFileButtonComponent', () => {

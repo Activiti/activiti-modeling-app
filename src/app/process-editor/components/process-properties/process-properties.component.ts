@@ -18,7 +18,6 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit, Inject } from '@angular/core';
 import { CardViewItem, CardViewUpdateService, UpdateNotification, CardItemTypeService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
-import { ProcessEditorState } from '../../store/process-editor.state';
 import { selectSelectedElement } from '../../store/process-editor.selectors';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -26,6 +25,7 @@ import { Observable } from 'rxjs';
 import { ProcessModelerService } from '../../services/process-modeler.service';
 import { CardViewPropertiesFactory } from '../../services/cardview-properties/cardview-properties.factory';
 import { PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS, ProcessEditorCustomProperty } from 'ama-sdk';
+import { ProcessEntitiesState } from '../../store/process-entities.state';
 
 @Component({
     selector: 'ama-process-properties',
@@ -40,7 +40,7 @@ export class ProcessPropertiesComponent implements OnInit, OnDestroy, AfterViewI
     properties$: Observable<CardViewItem[]>;
 
     constructor(
-        private store: Store<ProcessEditorState>,
+        private store: Store<ProcessEntitiesState>,
         private processModelerService: ProcessModelerService,
         private cardViewFactory: CardViewPropertiesFactory,
         private cardViewUpdateService: CardViewUpdateService,
