@@ -54,7 +54,8 @@ export interface Model extends MinimalModelSummary {
     id: string;
     description: string;
     version: string;
-    applicationId: string;
+    applicationId?: string; // To remove, since BE finally returns it
+    projectId: string;
     type: string;
     creationDate: Date;
     createdBy: string;
