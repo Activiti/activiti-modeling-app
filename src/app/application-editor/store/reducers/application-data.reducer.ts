@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { GET_APPLICATION_SUCCESS, GetApplicationSuccessAction, SELECT_APPLICATION } from '../actions/application';
+import { GET_APPLICATION_SUCCESS, GetApplicationSuccessAction, SELECT_APPLICATION } from '../application-editor.actions';
 import { INITIAL_APPLICATION_DATA_STATE as init, ApplicationDataState } from 'ama-sdk';
 
 export function applicationDataReducer(state: ApplicationDataState = init, action: Action): ApplicationDataState {

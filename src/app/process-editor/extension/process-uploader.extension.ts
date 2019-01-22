@@ -16,7 +16,7 @@
  */
 
 import { ModelUploader, MODEL_UPLOADERS, PROCESS } from 'ama-sdk';
-import { UploadProcessAttemptAction } from '../../application-editor/store/actions/processes';
+import { UploadProcessAttemptAction } from '../store/process-editor.actions';
 
 export function createProcessUploader(): ModelUploader {
     return {

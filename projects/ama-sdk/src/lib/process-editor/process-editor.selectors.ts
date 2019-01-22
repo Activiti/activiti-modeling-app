@@ -17,11 +17,18 @@
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { EntityProperty, ServiceParameterMappings } from '../api/types';
+import { getEntitiesState } from '../store/entities';
+import { selectOpenedModel } from '../store/public_api';
 
 export const PROCESS_EDITOR_STATE_NAME = 'process-editor';
 export const getProcessEditorFeatureState = createFeatureSelector(PROCESS_EDITOR_STATE_NAME);
 
-export const selectProcess = createSelector(getProcessEditorFeatureState, (state: any) => state.process);
+export const selectProcessEntityContainer = createSelector(getEntitiesState, state => state.processes);
+
+export const selectSelectedProcess = createSelector(
+    selectOpenedModel,
+    selectProcessEntityContainer,
+    (openedModel, state) =>  openedModel ? state.entities[openedModel.id] : null);
 
 export const selectProcessPropertiesArray = createSelector(
     getProcessEditorFeatureState,
@@ -36,7 +43,7 @@ export const selectProcessPropertiesArray = createSelector(
 
 export const selectProcessMappingsFor = (serviceId) => {
     return createSelector(
-        selectProcess,
+        selectSelectedProcess,
         (process): ServiceParameterMappings => {
             if (!process || !process.extensions) {
                 return {};

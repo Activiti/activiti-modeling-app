@@ -23,7 +23,6 @@ import { CoreModule } from '@alfresco/adf-core';
 import { SharedModule, Blob2JsonService } from 'ama-sdk';
 import { ApplicationEditorRoutingModule } from './router/application-editor-routing.module';
 import { ApplicationEffects } from './store/effects/application.effects';
-import { ProcessesEffects } from './store/effects/processes.effects';
 import { APPLICATION_EDITOR_STATE_NAME } from 'ama-sdk';
 import { applicationDataReducer as application } from './store/reducers/application-data.reducer';
 import { applicationTreeReducer as tree } from './store/reducers/application-tree.reducer';
@@ -43,7 +42,7 @@ import { ApplicationTreeIconsComponent } from './components/application-tree/app
         CoreModule.forChild(),
         SharedModule,
         StoreModule.forFeature(APPLICATION_EDITOR_STATE_NAME, { application, tree }),
-        EffectsModule.forFeature([ApplicationEffects, ProcessesEffects])
+        EffectsModule.forFeature([ApplicationEffects])
     ],
     declarations: [
         ApplicationContentComponent,

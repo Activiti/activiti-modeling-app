@@ -20,7 +20,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Process, PROCESS, FilterDataAdaper, AmaState } from 'ama-sdk';
 import { selectProcessesArray, selectProcessesLoading } from '../store/process-editor.selectors';
-import { ShowProcessesAction } from '../../application-editor/store/actions/processes';
+import { ShowProcessesAction } from '../store/process-editor.actions';
 
 @Injectable()
 export class ProcessesFilterDataAdapter implements FilterDataAdaper {

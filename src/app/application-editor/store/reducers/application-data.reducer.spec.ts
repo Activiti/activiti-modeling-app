@@ -15,10 +15,9 @@
  * limitations under the License.
  */
 
-import { ApplicationDataState, INITIAL_APPLICATION_DATA_STATE } from 'ama-sdk';
+import { ApplicationDataState, INITIAL_APPLICATION_DATA_STATE, Application } from 'ama-sdk';
 import { applicationDataReducer } from './application-data.reducer';
-import { SELECT_APPLICATION, GetApplicationSuccessAction } from '../actions/application';
-import { Application } from 'ama-sdk';
+import { SELECT_APPLICATION, GetApplicationSuccessAction } from '../application-editor.actions';
 
 describe('Application data reducer', () => {
     let initState: ApplicationDataState;

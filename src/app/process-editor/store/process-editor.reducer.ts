@@ -18,18 +18,13 @@
 import { Action } from '@ngrx/store';
 import { ProcessEditorState, INITIAL_PROCESS_EDITOR_STATE } from './process-editor.state';
 import {
-    GET_PROCESS_SUCCESS,
-    GetProcessSuccessAction,
-    GET_PROCESS_ATTEMPT,
     SELECT_MODELER_ELEMENT,
     SelectModelerElementAction,
-    UpdateProcessSuccessAction,
-    UPDATE_PROCESS_SUCCESS,
     RemoveDiagramElementAction,
-    REMOVE_DIAGRAM_ELEMENT
+    REMOVE_DIAGRAM_ELEMENT,
+    GET_PROCESS_ATTEMPT,
+    GET_PROCESS_SUCCESS
 } from './process-editor.actions';
-import { UPDATE_PROCESS_VARIABLES, UpdateProcessVariablesAction } from './process-variables.actions';
-import { UPDATE_SERVICE_PARAMETERS, UpdateServiceParametersAction } from 'ama-sdk';
 
 export function processEditorReducer(
     state: ProcessEditorState = { ...INITIAL_PROCESS_EDITOR_STATE },
@@ -43,28 +38,15 @@ export function processEditorReducer(
             break;
 
         case GET_PROCESS_SUCCESS:
-            newState = gotProcessData(state, <GetProcessSuccessAction>action);
+            newState = { ...state, loading: false };
             break;
 
         case SELECT_MODELER_ELEMENT:
             newState = setSelectedElement(state, <SelectModelerElementAction>action);
             break;
 
-        case UPDATE_PROCESS_SUCCESS:
-            newState = updateProcess(state, <UpdateProcessSuccessAction> action);
-            break;
-
         case REMOVE_DIAGRAM_ELEMENT:
-            newState = removeElement(state, <RemoveDiagramElementAction> action);
-            break;
-
-        case UPDATE_PROCESS_VARIABLES:
-            newState = updateProcessVariables(state, <UpdateProcessVariablesAction> action);
-            break;
-
-        case UPDATE_SERVICE_PARAMETERS:
-            newState = updateProcessVariablesMapping(state, <UpdateServiceParametersAction> action);
-            break;
+            return removeElement(state, <RemoveDiagramElementAction> action);
 
         default:
             newState = Object.assign({}, state);
@@ -73,14 +55,11 @@ export function processEditorReducer(
     return newState;
 }
 
-function updateProcessVariablesMapping(state: ProcessEditorState, action: UpdateServiceParametersAction): ProcessEditorState {
-    const newState = { ...state };
-    newState.process = { ...state.process };
-    newState.process.extensions = { ...state.process.extensions };
-    newState.process.extensions.variablesMappings = { ...state.process.extensions.variablesMappings };
-    newState.process.extensions.variablesMappings[action.serviceId] = { ...action.serviceParameterMappings };
-
-    return newState;
+function setSelectedElement(state: ProcessEditorState, action: SelectModelerElementAction): ProcessEditorState {
+    return {
+        ...state,
+        selectedElement: action.element
+    };
 }
 
 function removeElement(state: ProcessEditorState, action: RemoveDiagramElementAction): ProcessEditorState {
@@ -93,41 +72,3 @@ function removeElement(state: ProcessEditorState, action: RemoveDiagramElementAc
 
     return { ...state };
 }
-
-function gotProcessData(state: ProcessEditorState, action: GetProcessSuccessAction): ProcessEditorState {
-    return {
-        ...state,
-        loading: false,
-        process: action.payload.process,
-        diagram: action.payload.diagram
-    };
-}
-
-function updateProcess(state: ProcessEditorState, action: UpdateProcessSuccessAction): ProcessEditorState {
-    return {
-        ...state,
-        process: {
-            ...state.process,
-            name: action.payload.metadata.name,
-            description: action.payload.metadata.description,
-        }
-    };
-}
-
-function setSelectedElement(state: ProcessEditorState, action: SelectModelerElementAction): ProcessEditorState {
-    return {
-        ...state,
-        selectedElement: action.element
-    };
-}
-
-function updateProcessVariables(state: ProcessEditorState, actions: UpdateProcessVariablesAction): ProcessEditorState {
-    const extensions = { ...state.process.extensions };
-    extensions.properties = actions.properties;
-
-    return {
-        ...state,
-        process: { ...state.process, extensions }
-    };
-}
-

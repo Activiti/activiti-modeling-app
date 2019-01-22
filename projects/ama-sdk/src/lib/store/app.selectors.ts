@@ -24,6 +24,7 @@ export const selectApp = (state: AmaState) => state.app;
 export const selectSelectedTheme = createSelector(selectApp, (state: AppState) => state.selectedTheme);
 export const selectSelectedAppId = createSelector(selectApp, (state: AppState) => state.selectedAppId);
 export const selectAppDirtyState = createSelector(selectApp, (state: AppState) => state.dirtyState);
+export const selectOpenedModel = createSelector(selectApp, (state: AppState) => state.openedModel);
 
 export const selectApplicationCrumb = createSelector(selectApplication, application => {
     return application ? { url: `/applications/${application.id}`, name: application.name } : null;

@@ -25,15 +25,16 @@ import { LogService, CoreModule } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { ProcessModelerService } from '../services/process-modeler.service';
 import { ProcessEditorService } from '../services/process-editor.service';
-import { ProcessEditorState } from './process-editor.state';
-import { selectSelectedElement, selectProcess } from './process-editor.selectors';
+import { selectSelectedElement, selectProcessesLoaded } from './process-editor.selectors';
 import { BpmnFactoryToken } from '../services/bpmn-factory.token';
 import { BpmnFactoryMock } from '../services/bpmn-js/bpmn-js.mock';
 import {
     ChangedProcessAction,
     SelectModelerElementAction,
     UpdateProcessAttemptAction,
-    UpdateProcessSuccessAction
+    UpdateProcessSuccessAction,
+    ShowProcessesAction,
+    GET_PROCESSES_ATTEMPT
 } from './process-editor.actions';
 import { throwError, of, Observable } from 'rxjs';
 import { mockProcess } from './process.mock';
@@ -45,14 +46,16 @@ import {
     SnackbarErrorAction,
     SnackbarInfoAction,
     SetAppDirtyStateAction,
-    AmaTitleService
+    AmaTitleService,
+    selectSelectedProcess
 } from 'ama-sdk';
+import { ProcessEntitiesState } from './process-entities.state';
 
 describe('ProcessEditorEffects', () => {
     let effects: ProcessEditorEffects;
     let metadata: EffectsMetadata<ProcessEditorEffects>;
     let actions$: Observable<any>;
-    let store: Store<ProcessEditorState>;
+    let store: Store<ProcessEntitiesState>;
     let process: Process;
     let processEditorService: ProcessEditorService;
 
@@ -86,7 +89,7 @@ describe('ProcessEditorEffects', () => {
                         select: jest.fn().mockImplementation(selector => {
                             if (selector === selectSelectedElement) {
                                 return of(false);
-                            } else if (selector === selectProcess) {
+                            } else if (selector === selectSelectedProcess) {
                                 return of(process);
                             }
 
@@ -101,6 +104,26 @@ describe('ProcessEditorEffects', () => {
         metadata = getEffectsMetadata(effects);
         store = TestBed.get(Store);
         processEditorService = TestBed.get(ProcessEditorService);
+    });
+
+    describe('updateProcessEffect', () => {
+        it('ShowProcesses effect should dispatch an action', () => {
+            expect(metadata.showProcessesEffect).toEqual({ dispatch: true });
+        });
+
+        it('ShowProcesses effect should dispatch a GetProcessesAtteptAction if there are no processes loaded', () => {
+            actions$ = hot('a', { a: new ShowProcessesAction('test') });
+            store.select = jest.fn(selectProcessesLoaded).mockReturnValue(of(false));
+            const expected = cold('b', { b: { applicationId: 'test', type: GET_PROCESSES_ATTEMPT } });
+            expect(effects.showProcessesEffect).toBeObservable(expected);
+        });
+
+        it('ShowProcesses effect should not dispatch a new GetApplicationAtteptAction if there are apps loaded', () => {
+            actions$ = hot('a', { a: new ShowProcessesAction('test') });
+            const expected = cold('');
+            store.select = jest.fn(selectProcessesLoaded).mockReturnValue(of(true));
+            expect(effects.showProcessesEffect).toBeObservable(expected);
+        });
     });
 
     describe('updateProcessEffect', () => {
@@ -120,13 +143,13 @@ describe('ProcessEditorEffects', () => {
         });
 
         it('should call the update process endpoint with the proper parameters', () => {
-            processEditorService.updateProcess = jest.fn().mockReturnValue(of(process));
+            processEditorService.update = jest.fn().mockReturnValue(of(process));
             actions$ = hot('a', { a: new UpdateProcessAttemptAction(mockActionPayload) });
 
             effects.updateProcessEffect.subscribe(() => {});
             getTestScheduler().flush();
 
-            expect(processEditorService.updateProcess).toHaveBeenCalledWith(
+            expect(processEditorService.update).toHaveBeenCalledWith(
                 mockActionPayload.processId,
                 { ...mockProcess, ...mockActionPayload.metadata },
                 mockActionPayload.content,
@@ -135,7 +158,7 @@ describe('ProcessEditorEffects', () => {
         });
 
         it('should trigger the right action on successful update', () => {
-            processEditorService.updateProcess = jest.fn().mockReturnValue(of(process));
+            processEditorService.update = jest.fn().mockReturnValue(of(process));
             actions$ = hot('a', { a: new UpdateProcessAttemptAction(mockActionPayload) });
 
             const expected = cold('(bcd)', {
@@ -148,7 +171,7 @@ describe('ProcessEditorEffects', () => {
         });
 
         it('should trigger the right action on unsuccessful update', () => {
-            processEditorService.updateProcess = jest.fn().mockReturnValue(throwError(new Error()));
+            processEditorService.update = jest.fn().mockReturnValue(throwError(new Error()));
             actions$ = hot('a', { a: new UpdateProcessAttemptAction(mockActionPayload) });
 
             const expected = cold('b', {

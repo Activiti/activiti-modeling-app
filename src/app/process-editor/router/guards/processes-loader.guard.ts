@@ -17,12 +17,10 @@
 
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AmaState, OpenFilterAction } from 'ama-sdk';
-import { ShowProcessesAction } from '../../../application-editor/store/actions/processes';
-import { PROCESS } from 'ama-sdk';
+import { AmaState, OpenFilterAction, PROCESS } from 'ama-sdk';
+import { ShowProcessesAction } from '../../store/process-editor.actions';
 
 @Injectable()
 export class ProcessesLoaderGuard implements CanActivate {

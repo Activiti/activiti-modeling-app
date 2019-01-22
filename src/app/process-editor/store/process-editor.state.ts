@@ -15,7 +15,8 @@
  * limitations under the License.
  */
 
- import { Process, ProcessContent } from 'ama-sdk';
+import { createEntityAdapter } from '@ngrx/entity';
+import { Process } from 'ama-sdk';
 
 export interface SelectedProcessElement {
     id: string;
@@ -25,16 +26,12 @@ export interface SelectedProcessElement {
 
 export interface ProcessEditorState {
     loading: boolean;
-    process: Process;
-    diagram: ProcessContent;
     selectedElement: SelectedProcessElement;
-    dirty: boolean;
 }
+
+export const processAdapter = createEntityAdapter<Process>();
 
 export const INITIAL_PROCESS_EDITOR_STATE: ProcessEditorState = {
     loading: false,
-    process: null,
-    diagram: null,
-    selectedElement: null,
-    dirty: false
+    selectedElement: null
 };

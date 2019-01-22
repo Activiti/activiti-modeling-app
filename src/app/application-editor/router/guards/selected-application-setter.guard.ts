@@ -18,9 +18,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
-import { SelectApplicationAction } from '../../store/actions/application';
+import { Observable, of } from 'rxjs';
+import { SelectApplicationAction } from '../../store/application-editor.actions';
 import { AmaState } from 'ama-sdk';
 
 

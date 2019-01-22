@@ -17,27 +17,22 @@
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest, of } from 'rxjs';
 import { ProcessModelerService } from '../../services/process-modeler.service';
-import {
-    selectProcessDiagram,
-    selectProcess,
-    selectProcessCrumb
-} from '../../store/process-editor.selectors';
+import { selectProcessCrumb, selectProcessLoading, selectSelectedProcessDiagram } from '../../store/process-editor.selectors';
 import {
     Process,
-    ProcessContent,
     OpenConfirmDialogAction,
     BreadcrumbItem,
     AmaState,
     SnackbarErrorAction,
     EntityDialogForm,
-    selectApplicationCrumb
+    selectApplicationCrumb,
+    ProcessContent,
+    selectSelectedProcess,
 } from 'ama-sdk';
-import { DeleteProcessAttemptAction } from '../../../application-editor/store/actions/processes';
-import { DownloadProcessAction, ValidateProcessAttemptAction, UpdateProcessAttemptAction } from '../../store/process-editor.actions';
-import { combineLatest, of } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import { DownloadProcessAction, ValidateProcessAttemptAction, UpdateProcessAttemptAction, DeleteProcessAttemptAction } from '../../store/process-editor.actions';
+import { filter } from 'rxjs/operators';
 import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
 import { nameHandler } from '../../services/bpmn-js/property-handlers/name.handler';
 
@@ -46,19 +41,17 @@ import { nameHandler } from '../../services/bpmn-js/property-handlers/name.handl
     encapsulation: ViewEncapsulation.None
 })
 export class ProcessEditorComponent implements OnInit {
-    process$: Observable<Process>;
-    diagram$: Observable<ProcessContent>;
-    loadingFinished$: Observable<boolean>;
+    loading$: Observable<boolean>;
     breadcrumbs$: Observable<BreadcrumbItem[]>;
+    diagram$: Observable<ProcessContent>;
+    process$: Observable<Process>;
 
     constructor(private store: Store<AmaState>, private processModeler: ProcessModelerService) {}
 
     ngOnInit() {
-        this.process$ = this.store.select(selectProcess);
-        this.diagram$ = this.store.select(selectProcessDiagram);
-        this.loadingFinished$ = combineLatest(this.process$, this.diagram$).pipe(
-            map(([process, diagram]) => process !== null && diagram !== null)
-        );
+        this.loading$ = this.store.select(selectProcessLoading);
+        this.process$ = this.store.select(selectSelectedProcess);
+        this.diagram$ = this.store.select(selectSelectedProcessDiagram);
 
         this.breadcrumbs$ = combineLatest(
             of({ url: '/home', name: 'Dashboard' }),

@@ -18,7 +18,7 @@
 import { Action } from '@ngrx/store';
 import { UPDATE_SETTINGS, UpdateSettingsAction, SET_MENU, SetMenuAction } from '../actions';
 import { INITIAL_APP_STATE } from '../states/app.state';
-import { SELECT_APPLICATION, SelectApplicationAction } from '../../application-editor/store/actions/application';
+import { SELECT_APPLICATION, SelectApplicationAction } from '../../application-editor/store/application-editor.actions';
 import { appThemes } from '../../app/themes';
 import { AppActionTypes, AsyncInitAction } from '../actions/app.actions';
 import {

@@ -1,5 +1,5 @@
 <div class="process-editor">
-    <ng-container *ngIf="loadingFinished$ | async; else loading;">
+    <ng-container *ngIf="!(loading$ | async); else loading;">
         <div class="process-editor-modeling" [attr.data-automation-id]="'process-editor-modeling'">
             <ama-process-header [process]="process$ | async"
                 [breadcrumbs$]="breadcrumbs$"

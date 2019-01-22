@@ -18,8 +18,8 @@
 import { Component } from '@angular/core';
 import { OpenProcessVariablesDialogAction } from './../../../store/process-variables.actions';
 import { Store } from '@ngrx/store';
-import { ProcessEditorState } from '../../../store/process-editor.state';
 import { CardItemTypeService } from '@alfresco/adf-core';
+import { ProcessEntitiesState } from '../../../store/process-entities.state';
 
 @Component({
     selector: 'ama-processvariables',
@@ -28,7 +28,7 @@ import { CardItemTypeService } from '@alfresco/adf-core';
 })
 
 export class CardViewProcessVariablesItemComponent {
-    constructor(private store: Store<ProcessEditorState>) {
+    constructor(private store: Store<ProcessEntitiesState>) {
     }
 
     openProcessVariablesDialog(): void {

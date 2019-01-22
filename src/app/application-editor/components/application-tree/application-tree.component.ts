@@ -19,11 +19,9 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
-import { selectSelectedAppId, MODEL_TYPE, ModelFilter, OpenFilterAction } from 'ama-sdk';
-import { FilterType } from 'ama-sdk';
+import { selectSelectedAppId, MODEL_TYPE, ModelFilter, OpenFilterAction, FilterType, AmaState } from 'ama-sdk';
 import { ApplicationTreeHelper } from './application-tree.helper';
-import { CloseFilterAction } from '../../store/actions/application';
-import { AmaState } from 'ama-sdk';
+import { CloseFilterAction } from '../../store/application-editor.actions';
 import { selectOpenedFilters } from '../../store/selectors/application-tree.selectors';
 import { map } from 'rxjs/operators';
 

@@ -18,7 +18,7 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { Process, ProcessContent } from 'ama-sdk';
 
-export interface ProcessEntitiesState extends EntityState<Process>  {
+export interface ProcessEntitiesState extends EntityState<Process> {
     loading: boolean;
     loaded: boolean;
     entityContents: {[key: string]: ProcessContent};

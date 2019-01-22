@@ -23,12 +23,17 @@ import {
     GetProcessesSuccessAction,
     GET_PROCESSES_SUCCESS,
     DeleteProcessSuccessAction,
-    DELETE_PROCESS_SUCCESS
-} from '../../application-editor/store/actions/processes';
+    DELETE_PROCESS_SUCCESS,
+    ProcessActions,
+    UpdateProcessSuccessAction,
+    UPDATE_PROCESS_SUCCESS,
+    GetProcessSuccessAction
+} from './process-editor.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState } from './process-entities.state';
-import { ProcessActions, UpdateProcessSuccessAction, UPDATE_PROCESS_SUCCESS, GetProcessSuccessAction } from './process-editor.actions';
-import { PROCESS, Process, ProcessContent } from 'ama-sdk';
+import { PROCESS, Process, ProcessContent, ServiceParameterMappings, UpdateServiceParametersAction, EntityProperty, EntityProperties } from 'ama-sdk';
 import { processEntitiesReducer } from './process-entities.reducer';
+import { mockProcess, variablesMappings } from './process.mock';
+import * as processVariablesActions from './process-variables.actions';
 
 const deepFreeze = require('deep-freeze-strict');
 
@@ -152,5 +157,43 @@ describe('ProcessEntitiesReducer', () => {
 
             expect(newState.entityContents[process.id]).toEqual('');
         });
+    });
+
+    it('should handle UPDATE_SERVICE_PARAMETERS', () => {
+        const serviceTaskId = 'serviceTaskId';
+        const serviceParameterMappings: ServiceParameterMappings = {
+            input: { 'param1': 'variable1'},
+            output: { 'param2': 'variable'}
+        };
+        initialState = {
+            ...initialProcessEntitiesState,
+            entities: { [mockProcess.id]: mockProcess },
+            ids: [mockProcess.id]
+        };
+
+        const newState = processEntitiesReducer(initialState, new UpdateServiceParametersAction(mockProcess.id, serviceTaskId, serviceParameterMappings));
+
+        expect(newState.entities[mockProcess.id].extensions.variablesMappings).toEqual({
+            ...variablesMappings,
+            'serviceTaskId': serviceParameterMappings
+        });
+    });
+
+    it('should handle UPDATE_PROCESS_VARIABLES', () => {
+        initialState = {
+            ...initialProcessEntitiesState,
+            entities: { [mockProcess.id]: mockProcess },
+            ids: [mockProcess.id]
+        };
+
+        const mockProperty: EntityProperty = { 'id': 'id', 'name': 'appa', 'type': 'string', 'required': false, 'value': '' };
+        const mockProperties: EntityProperties = { [mockProperty.id]: mockProperty };
+        const newState = processEntitiesReducer(initialState, new processVariablesActions.UpdateProcessVariablesAction({
+            processId: mockProcess.id,
+            properties: mockProperties
+        }));
+
+        expect(newState.entities[mockProcess.id].extensions.properties).toEqual(mockProperties);
+        expect(newState.entities[mockProcess.id].extensions.variablesMappings).toEqual(mockProcess.extensions.variablesMappings);
     });
 });

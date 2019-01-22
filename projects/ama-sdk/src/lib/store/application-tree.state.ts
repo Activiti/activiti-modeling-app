@@ -15,18 +15,13 @@
  * limitations under the License.
  */
 
-import { Process, MODEL_TYPE } from '../api/types';
+import { MODEL_TYPE } from '../api/types';
 
-export interface ProcessSummaryEntities {
-    [processId: string]: Partial<Process>;
-}
 
 export interface ApplicationTreeState {
-    processes: ProcessSummaryEntities;
     openedFilters: MODEL_TYPE[];
 }
 
 export const INITIAL_APPLICATION_TREE_STATE: ApplicationTreeState = {
-    processes: {},
     openedFilters: []
 };

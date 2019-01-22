@@ -17,7 +17,7 @@
 
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { catchError, switchMap, map, filter } from 'rxjs/operators';
+import { catchError, switchMap, map, filter, withLatestFrom } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
@@ -38,20 +38,33 @@ import {
     UpdateProcessPayload,
     ValidateProcessAttemptAction,
     VALIDATE_PROCESS_ATTEMPT,
-    ValidateProcessPayload
+    ValidateProcessPayload,
+    ShowProcessesAction,
+    SHOW_PROCESSES,
+    GetProcessesAttemptAction,
+    GET_PROCESSES_ATTEMPT,
+    CREATE_PROCESS_ATTEMPT,
+    CreateProcessAttemptAction,
+    UploadProcessAttemptAction,
+    UPLOAD_PROCESS_ATTEMPT,
+    DELETE_PROCESS_ATTEMPT,
+    DeleteProcessAttemptAction,
+    DELETE_PROCESS_SUCCESS,
+    DeleteProcessSuccessAction,
+    CreateProcessSuccessAction,
+    GetProcessesSuccessAction
 } from './process-editor.actions';
-import { BaseEffects, OpenConfirmDialogAction, ModelOpenedAction } from 'ama-sdk';
+import { BaseEffects, OpenConfirmDialogAction, ModelOpenedAction, UploadFileAttemptPayload, ModelClosedAction, PROCESS, EntityDialogForm } from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { SetAppDirtyStateAction } from 'ama-sdk';
 import { forkJoin } from 'rxjs';
 import { ProcessModelerService } from '../services/process-modeler.service';
-import { selectSelectedElement, selectProcess } from './process-editor.selectors';
+import { selectSelectedElement, selectProcessesLoaded } from './process-editor.selectors';
 import { Store } from '@ngrx/store';
 import { zip } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { Process, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
-import { createProcessName } from 'ama-sdk';
-import { selectSelectedAppId, AmaState } from 'ama-sdk';
+import { selectSelectedAppId, AmaState, selectSelectedProcess, createProcessName } from 'ama-sdk';
 
 @Injectable()
 export class ProcessEditorEffects extends BaseEffects {
@@ -67,10 +80,59 @@ export class ProcessEditorEffects extends BaseEffects {
     }
 
     @Effect()
+    showProcessesEffect = this.actions$.pipe(
+        ofType<ShowProcessesAction>(SHOW_PROCESSES),
+        map(action => action.applicationId),
+        switchMap(applicationId => zip(of(applicationId), this.store.select(selectProcessesLoaded))),
+        switchMap(([applicationId, loaded]) => {
+            if (!loaded) {
+                return of(new GetProcessesAttemptAction(applicationId));
+            } else {
+                return of();
+            }
+        })
+    );
+
+    @Effect()
+    getProcessesEffect = this.actions$.pipe(
+        ofType<GetProcessesAttemptAction>(GET_PROCESSES_ATTEMPT),
+        switchMap(action => this.getProcesses(action.applicationId))
+    );
+
+    @Effect()
+    createProcessEffect = this.actions$.pipe(
+        ofType<CreateProcessAttemptAction>(CREATE_PROCESS_ATTEMPT),
+        mergeMap(action => zip(of(action.payload), this.store.select(selectSelectedAppId))),
+        mergeMap(([form, appId]) => this.createProcess(form, appId))
+    );
+
+    @Effect()
+    uploadProcessEffect = this.actions$.pipe(
+        ofType<UploadProcessAttemptAction>(UPLOAD_PROCESS_ATTEMPT),
+        switchMap(action => this.uploadProcess(action.payload))
+    );
+
+    @Effect()
+    deleteProcessEffect = this.actions$.pipe(
+        ofType<DeleteProcessAttemptAction>(DELETE_PROCESS_ATTEMPT),
+        map(action => action.processId),
+        mergeMap(processId => this.deleteProcess(processId))
+    );
+
+    @Effect({ dispatch: false })
+    deleteProcessSuccessEffect = this.actions$.pipe(
+        ofType<DeleteProcessSuccessAction>(DELETE_PROCESS_SUCCESS),
+        withLatestFrom(this.store.select(selectSelectedAppId)),
+        map(([action, applicationId]) => {
+            this.router.navigate(['/applications', applicationId]);
+        })
+    );
+
+    @Effect()
     updateProcessEffect = this.actions$.pipe(
         ofType<UpdateProcessAttemptAction>(UPDATE_PROCESS_ATTEMPT),
         map(action => action.payload),
-        mergeMap(payload => zip(of(payload), this.store.select(selectProcess), this.store.select(selectSelectedAppId))),
+        mergeMap(payload => zip(of(payload), this.store.select(selectSelectedProcess), this.store.select(selectSelectedAppId))),
         mergeMap(([payload, process, appId]) => this.updateProcess(payload, process, appId))
     );
 
@@ -115,7 +177,7 @@ export class ProcessEditorEffects extends BaseEffects {
     );
 
     private validateProcess(payload: ValidateProcessPayload) {
-        return this.processEditorService.validateProcess(payload.processId, payload.content).pipe(
+        return this.processEditorService.validate(payload.processId, payload.content).pipe(
             switchMap(() => [ payload.action ]),
             catchError(response => [ new OpenConfirmDialogAction({
                 dialogData: {
@@ -129,7 +191,7 @@ export class ProcessEditorEffects extends BaseEffects {
     }
 
     private updateProcess(payload: UpdateProcessPayload, process: Process, appId: string): Observable<SnackbarErrorAction | {}> {
-        return this.processEditorService.updateProcess(
+        return this.processEditorService.update(
             payload.processId,
             { ...process, ...payload.metadata },
             payload.content,
@@ -148,15 +210,15 @@ export class ProcessEditorEffects extends BaseEffects {
         const name = createProcessName(processName);
         return this.processModelerService
             .export()
-            .then(data => this.processEditorService.downloadProcessDiagram(name, data))
+            .then(data => this.processEditorService.downloadDiagram(name, data))
             .catch(err => {
                 this.genericErrorHandler(this.handleError.bind(this, 'APP.PROCESSES.ERRORS.DOWNLOAD_DIAGRAM'), err);
             });
     }
 
     private getProcess(processId: string, appId: string): Observable<GetProcessSuccessAction | SnackbarErrorAction> {
-        const processDetails$ = this.processEditorService.getProcessDetails(processId, appId),
-            processDiagram$ = this.processEditorService.getProcessDiagram(processId);
+        const processDetails$ = this.processEditorService.getDetails(processId, appId),
+            processDiagram$ = this.processEditorService.getDiagram(processId);
 
         return forkJoin(processDetails$, processDiagram$).pipe(
             switchMap(([process, diagram]) => [
@@ -167,6 +229,51 @@ export class ProcessEditorEffects extends BaseEffects {
             catchError<any, SnackbarErrorAction>(e =>
                 this.genericErrorHandler(this.handleError.bind(this, 'APP.PROCESS_EDITOR.ERRORS.LOAD_DIAGRAM'), e)
             )
+        );
+    }
+
+    private uploadProcess(payload: UploadFileAttemptPayload): Observable<void | {} | SnackbarInfoAction | CreateProcessSuccessAction> {
+        return this.processEditorService.upload(payload).pipe(
+            switchMap(process => [
+                new CreateProcessSuccessAction(process),
+                new SnackbarInfoAction('APP.APPLICATION.UPLOAD_FILE_SUCCESS')
+            ]),
+            catchError(e =>
+                this.genericErrorHandler(this.handleError.bind(this, 'APP.APPLICATION.ERROR.UPLOAD_FILE'), e)
+            )
+        );
+    }
+
+    private getProcesses(applicationId: string): Observable<{} | GetProcessesSuccessAction> {
+        return this.processEditorService.getAll(applicationId).pipe(
+            switchMap(processes => of(new GetProcessesSuccessAction(processes))),
+            catchError(e =>
+                this.genericErrorHandler(this.handleError.bind(this, 'APP.APPLICATION.ERROR.LOAD_MODELS'), e)
+            )
+        );
+    }
+
+    private deleteProcess(processId: string): Observable<{} | SnackbarInfoAction | DeleteProcessSuccessAction> {
+        return this.processEditorService.delete(processId).pipe(
+            switchMap(() => [
+                new DeleteProcessSuccessAction(processId),
+                new SetAppDirtyStateAction(false),
+                new ModelClosedAction({ id: processId, type: PROCESS }),
+                new SnackbarInfoAction('APP.APPLICATION.PROCESS_DIALOG.PROCESS_DELETED')
+            ]),
+            catchError(e =>
+                this.genericErrorHandler(this.handleError.bind(this, 'APP.APPLICATION.ERROR.DELETE_PROCESS'), e)
+            )
+        );
+    }
+
+    private createProcess(form: Partial<EntityDialogForm>, appId: string): Observable<{} | SnackbarInfoAction | CreateProcessSuccessAction> {
+        return this.processEditorService.create(form, appId).pipe(
+            switchMap((process) => [
+                new CreateProcessSuccessAction(process),
+                new SnackbarInfoAction('APP.APPLICATION.PROCESS_DIALOG.PROCESS_CREATED')
+            ]),
+            catchError(e => this.genericErrorHandler(this.handleProcessCreationError.bind(this), e))
         );
     }
 
@@ -181,6 +288,18 @@ export class ProcessEditorEffects extends BaseEffects {
             errorMessage = 'APP.APPLICATION.ERROR.UPDATE_PROCESS.DUPLICATION';
         } else {
             errorMessage = 'APP.APPLICATION.ERROR.UPDATE_PROCESS.GENERAL';
+        }
+
+        return of(new SnackbarErrorAction(errorMessage));
+    }
+
+    private handleProcessCreationError(error): Observable<SnackbarErrorAction> {
+        let errorMessage;
+
+        if (error.status === 409) {
+            errorMessage = 'APP.APPLICATION.ERROR.CREATE_PROCESS.DUPLICATION';
+        } else {
+            errorMessage = 'APP.APPLICATION.ERROR.CREATE_PROCESS.GENERAL';
         }
 
         return of(new SnackbarErrorAction(errorMessage));

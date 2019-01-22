@@ -25,8 +25,13 @@ export class OpenProcessVariablesDialogAction implements Action {
     constructor() {}
 }
 
+export interface UpdateProcessVariablesPayload {
+    processId: string;
+    properties: EntityProperties;
+}
+
 export const UPDATE_PROCESS_VARIABLES = 'UPDATE_PROCESS_VARIABLES';
 export class UpdateProcessVariablesAction implements Action {
     readonly type = UPDATE_PROCESS_VARIABLES;
-    constructor(public properties: EntityProperties) {}
+    constructor(public payload: UpdateProcessVariablesPayload) {}
 }

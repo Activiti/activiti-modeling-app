@@ -18,10 +18,9 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, LogService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
-import { ProcessEditorState } from '../../../store/process-editor.state';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { selectProcessMappingsFor, UpdateServiceParametersAction, ImplementationItemModel } from 'ama-sdk';
+import { selectProcessMappingsFor, UpdateServiceParametersAction, ImplementationItemModel, selectOpenedModel, AmaState } from 'ama-sdk';
 
 @Component({
     selector: 'ama-process-implementation',
@@ -38,7 +37,7 @@ export class CardViewImplementationItemComponent implements OnInit, OnDestroy {
 
     constructor(
         private cardViewUpdateService: CardViewUpdateService,
-        private store: Store<ProcessEditorState>,
+        private store: Store<AmaState>,
         private logService: LogService
     ) {}
 
@@ -65,7 +64,9 @@ export class CardViewImplementationItemComponent implements OnInit, OnDestroy {
             const input = JSON.parse(this.input),
                 output = JSON.parse(this.output);
 
-            this.store.dispatch(new UpdateServiceParametersAction(this.elementId, { input, output }));
+            this.store.select(selectOpenedModel).pipe(takeUntil(this.onDestroy$)).subscribe(openedModel => {
+                this.store.dispatch(new UpdateServiceParametersAction(openedModel.id, this.elementId, { input, output }));
+            });
         } catch (error) {
             this.logService.error(error);
         }

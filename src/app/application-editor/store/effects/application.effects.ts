@@ -29,7 +29,7 @@ import {
     GetApplicationSuccessAction,
     ExportApplicationAction,
     EXPORT_APPLICATION,
-} from '../actions/application';
+} from '../application-editor.actions';
 
 @Injectable()
 export class ApplicationEffects extends BaseEffects {

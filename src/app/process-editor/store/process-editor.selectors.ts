@@ -15,54 +15,51 @@
  * limitations under the License.
  */
 
-import { createSelector } from '@ngrx/store';
-import { ProcessEditorState } from './process-editor.state';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
 import {
     createProcessName,
-    selectApplicationTree,
-    getEntitiesState,
     PROCESS,
     selectSelectedModelIdFor,
-    getProcessEditorFeatureState,
     formatUuid,
-    ContentType
+    ContentType,
+    selectProcessEntityContainer,
+    selectSelectedProcess,
+    Process
 } from 'ama-sdk';
+import { ProcessEditorState } from './process-editor.state';
 import { ProcessEntitiesState } from './process-entities.state';
 
-export interface EntitiesWithProcesses { processes: ProcessEntitiesState; }
-export const selectProcessesEntityContainer = createSelector(getEntitiesState, (state: EntitiesWithProcesses) => state.processes);
+export const PROCESS_EDITOR_STATE_NAME = 'process-editor';
+export const getProcessEditorFeatureState = createFeatureSelector(PROCESS_EDITOR_STATE_NAME);
 
-export const selectProcessIds = createSelector(selectProcessesEntityContainer, state => state.ids);
-export const selectProcessEntities = createSelector(selectProcessesEntityContainer, state => state.entities);
-export const selectProcessEntityContents = createSelector(selectProcessesEntityContainer, state => state.entityContents);
-export const selectProcessesLoading = createSelector(selectProcessesEntityContainer, state => state.loading);
-export const selectProcessesLoaded = createSelector(selectProcessesEntityContainer, state => state.loaded);
-
+export const selectProcessIds = createSelector(selectProcessEntityContainer, state => state.ids);
+export const selectProcessEntities = createSelector(selectProcessEntityContainer, state => state.entities);
+export const selectProcessesLoading = createSelector(selectProcessEntityContainer, state => state.loading);
+export const selectProcessesLoaded = createSelector(selectProcessEntityContainer, state => state.loaded);
+export const selectEntityContents = createSelector(selectProcessEntityContainer, (state: ProcessEntitiesState) => state.entityContents);
 export const selectSelectedProcessId = selectSelectedModelIdFor(PROCESS);
+export const selectProcesses = createSelector(selectProcessEntityContainer, state => state.entities);
+export const selectProcessesArray = createSelector(selectProcessEntityContainer, state => Object.values(state.entities));
+export const selectSelectedElement = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.selectedElement);
+export const selectProcessLoading = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.loading);
 
-export const selectProcesses = createSelector(selectApplicationTree, state => state.processes);
-export const selectProcessesArray = createSelector(selectProcesses, processes => Object.values(processes));
-
-export const selectProcess = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.process);
-export const selectProcessDiagram = createSelector(
-    getProcessEditorFeatureState,
-    (state: ProcessEditorState) => state.diagram
-);
-export const selectLoading = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.loading);
-export const selectSelectedElement = createSelector(
-    getProcessEditorFeatureState,
-    (state: ProcessEditorState) => state.selectedElement
+export const selectSelectedProcessDiagram = createSelector(
+    selectSelectedProcessId,
+    selectProcessEntityContainer,
+    (processId: string, state: ProcessEntitiesState) => state.entityContents[processId]
 );
 
-export const selectProcessesKeyLabelArray = createSelector(selectProcesses, processes => {
-    return Object.values(processes).map(process => ({
+export const selectProcessesKeyLabelArray = createSelector(
+    selectProcesses,
+    processes => Object.values(processes).map((process: Process) => ({
         key: formatUuid(ContentType.Process, process.id),
         label: createProcessName(process.name)
-    }));
-});
+    }))
+);
 
-export const selectProcessCrumb = createSelector(selectProcess, process => {
-    return process ? { name: `${createProcessName(process.name)} (${process.version})` } : null;
-});
+export const selectProcessCrumb = createSelector(
+    selectSelectedProcess,
+    process => process ? { name: `${createProcessName(process.name)} (${process.version})` } : null
+);
 
 
