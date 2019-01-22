@@ -19,10 +19,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, of } from 'rxjs';
 import { ProcessModelerService } from '../../services/process-modeler.service';
-import {
-    selectEntityContents,
-    selectProcessCrumb
-} from '../../store/process-editor.selectors';
+import { selectProcessCrumb, selectProcessLoading, selectSelectedProcessDiagram } from '../../store/process-editor.selectors';
 import {
     Process,
     OpenConfirmDialogAction,
@@ -31,10 +28,11 @@ import {
     SnackbarErrorAction,
     EntityDialogForm,
     selectApplicationCrumb,
-    selectSelectedProcess
+    ProcessContent,
+    selectSelectedProcess,
 } from 'ama-sdk';
 import { DownloadProcessAction, ValidateProcessAttemptAction, UpdateProcessAttemptAction, DeleteProcessAttemptAction } from '../../store/process-editor.actions';
-import { map, filter } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
 import { nameHandler } from '../../services/bpmn-js/property-handlers/name.handler';
 
@@ -43,16 +41,17 @@ import { nameHandler } from '../../services/bpmn-js/property-handlers/name.handl
     encapsulation: ViewEncapsulation.None
 })
 export class ProcessEditorComponent implements OnInit {
-    loadingFinished$: Observable<boolean>;
+    loading$: Observable<boolean>;
     breadcrumbs$: Observable<BreadcrumbItem[]>;
+    diagram$: Observable<ProcessContent>;
+    process$: Observable<Process>;
 
     constructor(private store: Store<AmaState>, private processModeler: ProcessModelerService) {}
 
     ngOnInit() {
-        this.loadingFinished$ = combineLatest(
-            this.store.select(selectSelectedProcess),
-            this.store.select(selectEntityContents)
-        ).pipe(map(([process, contents]) => process !== null && contents !== null && !!contents[process.id]));
+        this.loading$ = this.store.select(selectProcessLoading);
+        this.process$ = this.store.select(selectSelectedProcess);
+        this.diagram$ = this.store.select(selectSelectedProcessDiagram);
 
         this.breadcrumbs$ = combineLatest(
             of({ url: '/home', name: 'Dashboard' }),

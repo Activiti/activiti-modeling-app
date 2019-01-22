@@ -41,6 +41,13 @@ export const selectSelectedProcessId = selectSelectedModelIdFor(PROCESS);
 export const selectProcesses = createSelector(selectProcessEntityContainer, state => state.entities);
 export const selectProcessesArray = createSelector(selectProcessEntityContainer, state => Object.values(state.entities));
 export const selectSelectedElement = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.selectedElement);
+export const selectProcessLoading = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.loading);
+
+export const selectSelectedProcessDiagram = createSelector(
+    selectSelectedProcessId,
+    selectProcessEntityContainer,
+    (processId: string, state: ProcessEntitiesState) => state.entityContents[processId]
+);
 
 export const selectProcessesKeyLabelArray = createSelector(
     selectProcesses,
