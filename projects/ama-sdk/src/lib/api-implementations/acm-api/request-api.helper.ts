@@ -25,7 +25,6 @@ export interface RequestApiHelperOptions {
     headerParams?: { [key: string]: any} ;
     formParams?: { [key: string]: any} ;
     bodyParam?: { [key: string]: any} ;
-    authNames?: string[];
     contentTypes?: string[];
     accepts?: string[];
     returnType?: any;
@@ -40,7 +39,6 @@ function getDefaultOptions(): RequestApiHelperOptions {
         headerParams: {},
         formParams: {},
         bodyParam: {},
-        authNames: [],
         contentTypes: ['application/json'],
         accepts: ['application/json'],
         returnType: {'String': 'String'}
@@ -96,7 +94,6 @@ export class RequestApiHelper {
             headerParams,
             formParams,
             bodyParam,
-            authNames,
             contentTypes,
             accepts,
             returnType,
@@ -112,7 +109,6 @@ export class RequestApiHelper {
             headerParams,
             formParams,
             bodyParam,
-            authNames,
             contentTypes,
             accepts,
             returnType,

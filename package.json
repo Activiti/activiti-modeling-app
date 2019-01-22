@@ -88,8 +88,9 @@
         "jest.config.js"
     ],
     "dependencies": {
-        "@alfresco/adf-core": "3.0.0-074225970d81f1c7dced40e6708527fd9e2d3473",
-        "@alfresco/adf-extensions": "3.0.0-074225970d81f1c7dced40e6708527fd9e2d3473",
+        "@alfresco/adf-core": "3.0.0-beta8",
+        "@alfresco/adf-extensions": "3.0.0-beta8",
+        "@alfresco/js-api": "3.0.0-e9c8ed80decc71d2fc6833cef22851b64ce4b604",
         "@angular/animations": "7.0.1",
         "@angular/cdk": "7.0.2",
         "@angular/common": "7.0.1",
@@ -115,7 +116,6 @@
         "@types/lodash": "^4.14.112",
         "adf-tslint-rules": "0.0.5",
         "ajv": "^6.5.2",
-        "alfresco-js-api": "3.0.0-beta7",
         "bpmn-js": "^3.0.4",
         "bpmn-js-properties-panel": "^0.28.2",
         "camunda-bpmn-moddle": "^3.2.0",
