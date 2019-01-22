@@ -20,12 +20,11 @@ import { Store } from '@ngrx/store';
 import { Observable, combineLatest, of } from 'rxjs';
 import { ProcessModelerService } from '../../services/process-modeler.service';
 import {
-    selectProcessDiagram,
+    selectEntityContents,
     selectProcessCrumb
 } from '../../store/process-editor.selectors';
 import {
     Process,
-    ProcessContent,
     OpenConfirmDialogAction,
     BreadcrumbItem,
     AmaState,
@@ -44,19 +43,16 @@ import { nameHandler } from '../../services/bpmn-js/property-handlers/name.handl
     encapsulation: ViewEncapsulation.None
 })
 export class ProcessEditorComponent implements OnInit {
-    process$: Observable<Process>;
-    diagram$: Observable<ProcessContent>;
     loadingFinished$: Observable<boolean>;
     breadcrumbs$: Observable<BreadcrumbItem[]>;
 
     constructor(private store: Store<AmaState>, private processModeler: ProcessModelerService) {}
 
     ngOnInit() {
-        this.process$ = this.store.select(selectSelectedProcess);
-        this.diagram$ = this.store.select(selectProcessDiagram);
-        this.loadingFinished$ = combineLatest(this.process$, this.diagram$).pipe(
-            map(([process, diagram]) => process !== null && diagram !== null)
-        );
+        this.loadingFinished$ = combineLatest(
+            this.store.select(selectSelectedProcess),
+            this.store.select(selectEntityContents)
+        ).pipe(map(([process, contents]) => process !== null && contents !== null && !!contents[process.id]));
 
         this.breadcrumbs$ = combineLatest(
             of({ url: '/home', name: 'Dashboard' }),

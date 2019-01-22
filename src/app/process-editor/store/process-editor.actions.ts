@@ -19,7 +19,7 @@ import { Action } from '@ngrx/store';
 import { Process, ProcessContent, UpdateServiceParametersAction } from 'ama-sdk';
 import { EntityDialogForm } from 'ama-sdk';
 import { UploadFileAttemptPayload } from 'ama-sdk';
-import { SelectedProcessElement } from './process-entities.state';
+import { SelectedProcessElement } from './process-editor.state';
 
 export const SHOW_PROCESSES = '[App Tree] Show Processes';
 export class ShowProcessesAction implements Action {

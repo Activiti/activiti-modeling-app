@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+import { Update } from '@ngrx/entity';
+import { Action } from '@ngrx/store';
 import {
     GET_PROCESSES_ATTEMPT,
     GET_PROCESSES_SUCCESS,
@@ -26,18 +28,12 @@ import {
     UPDATE_PROCESS_SUCCESS,
     GET_PROCESS_SUCCESS,
     GetProcessSuccessAction,
-    UpdateProcessSuccessAction,
-    SELECT_MODELER_ELEMENT,
-    SelectModelerElementAction,
-    REMOVE_DIAGRAM_ELEMENT,
-    RemoveDiagramElementAction
+    UpdateProcessSuccessAction
 } from './process-editor.actions';
-import { ProcessEntitiesState, initialProcessEntitiesState, processAdapter } from './process-entities.state';
-import { Process, UPDATE_SERVICE_PARAMETERS, UpdateServiceParametersAction } from 'ama-sdk';
-import { Update } from '@ngrx/entity';
-import { LEAVE_APPLICATION } from 'ama-sdk';
-import { Action } from '@ngrx/store';
 import { UPDATE_PROCESS_VARIABLES, UpdateProcessVariablesAction } from './process-variables.actions';
+import { ProcessEntitiesState, initialProcessEntitiesState, processAdapter } from './process-entities.state';
+import { Process, UPDATE_SERVICE_PARAMETERS, UpdateServiceParametersAction, LEAVE_APPLICATION } from 'ama-sdk';
+
 const cloneDeep = require('lodash/cloneDeep');
 
 export function processEntitiesReducer(
@@ -62,12 +58,6 @@ export function processEntitiesReducer(
 
         case GET_PROCESS_SUCCESS:
             return getProcessSuccess(state, <GetProcessSuccessAction>action);
-
-        case SELECT_MODELER_ELEMENT:
-            return setSelectedElement(state, <SelectModelerElementAction>action);
-
-        case REMOVE_DIAGRAM_ELEMENT:
-            return removeElement(state, <RemoveDiagramElementAction> action);
 
         case UPDATE_PROCESS_VARIABLES:
             return updateProcessVariables(state, <UpdateProcessVariablesAction> action);
@@ -107,42 +97,24 @@ function updateProcessVariablesMapping(state: ProcessEntitiesState, action: Upda
     return newState;
 }
 
-function setSelectedElement(state: ProcessEntitiesState, action: SelectModelerElementAction): ProcessEntitiesState {
-    return {
-        ...state,
-        selectedElement: action.element
-    };
-}
-
-function removeElement(state: ProcessEntitiesState, action: RemoveDiagramElementAction): ProcessEntitiesState {
-    if (state.selectedElement && state.selectedElement.id === action.element.id) {
-        return {
-            ...state,
-            selectedElement: null,
-        };
-    }
-
-    return { ...state };
-}
-
 function createProcess(state: ProcessEntitiesState, action: CreateProcessSuccessAction): ProcessEntitiesState {
     return processAdapter.addOne(action.process, state);
 }
 
 function removeProcess(state: ProcessEntitiesState, action: DeleteProcessSuccessAction): ProcessEntitiesState {
-    const newState = { ...state, selectedProcessContent: null };
+    const newState = cloneDeep(state);
+
+    newState.entityContents[action.processId] = null;
 
     return processAdapter.removeOne(action.processId, newState);
 }
 
 function getProcessSuccess(state: ProcessEntitiesState, action: GetProcessSuccessAction): ProcessEntitiesState {
-    const process = action.payload.process;
-    const newState = {
-        ...state,
-        selectedProcessContent: action.payload.diagram
-    };
+    const newState = cloneDeep(state);
 
-    return processAdapter.upsertOne(process, newState);
+    newState.entityContents[action.payload.process.id] = action.payload.diagram;
+
+    return processAdapter.upsertOne(action.payload.process, newState);
 }
 
 function getProcessesSuccess(state: ProcessEntitiesState, action: GetProcessesSuccessAction): ProcessEntitiesState {
@@ -154,10 +126,9 @@ function getProcessesSuccess(state: ProcessEntitiesState, action: GetProcessesSu
 }
 
 function updateProcess(state: ProcessEntitiesState, action: UpdateProcessSuccessAction): ProcessEntitiesState {
-    const newState = {
-        ...state,
-        selectedProcessContent: action.payload.content
-    };
+    const newState = cloneDeep(state);
+
+    newState.entityContents[action.payload.processId] = action.payload.content;
 
     return processAdapter.updateOne(<Update<Partial<Process>>>{
         id: action.payload.processId,

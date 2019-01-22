@@ -2,21 +2,21 @@
     "$schema": "../node_modules/@alfresco/adf-core/app.config.schema.json",
     "ecmHost": "http://{hostname}:{port}",
     "bpmHost": "http://{hostname}:{port}",
-    "authType" : "OAUTH",
+    "authType": "OAUTH",
+    "providers": "ECM",
     "logLevel": "trace",
     "application": {
-        "name": "Activiti Modeling Application"
+        "name": "Modeling Application"
     },
-    "backend": "http://activiti-cloud-gateway.35.204.66.71.nip.io",
-    "pathPrefix": "activiti-cloud-modeling",
+    "backend": "http://aps2dev.envalfresco.com",
+    "pathPrefix": "alfresco-modeling-service",
     "oauth2": {
-        "host": "http://activiti-keycloak.35.204.66.71.nip.io/auth/realms/activiti",
-        "authPath": "/protocol/openid-connect/token/",
+        "host": "http://aps2dev.envalfresco.com/auth/realms/alfresco",
         "clientId": "activiti",
         "scope": "openid",
         "secret": "",
         "implicitFlow": true,
-        "silentLogin": true,
+        "silentLogin": false,
         "redirectSilentIframeUri": "/assets/silent-refresh.html",
         "redirectUri": "/",
         "redirectUriLogout": "/login"

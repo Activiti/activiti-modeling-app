@@ -27,11 +27,9 @@ import {
     ProcessActions,
     UpdateProcessSuccessAction,
     UPDATE_PROCESS_SUCCESS,
-    GetProcessSuccessAction,
-    RemoveDiagramElementAction,
-    REMOVE_DIAGRAM_ELEMENT
+    GetProcessSuccessAction
 } from './process-editor.actions';
-import { ProcessEntitiesState, initialProcessEntitiesState, SelectedProcessElement } from './process-entities.state';
+import { ProcessEntitiesState, initialProcessEntitiesState } from './process-entities.state';
 import { PROCESS, Process, ProcessContent, ServiceParameterMappings, UpdateServiceParametersAction, EntityProperty, EntityProperties } from 'ama-sdk';
 import { processEntitiesReducer } from './process-entities.reducer';
 import { mockProcess, variablesMappings } from './process.mock';
@@ -149,7 +147,7 @@ describe('ProcessEntitiesReducer', () => {
 
             const newState = processEntitiesReducer(initialState, action);
 
-            expect(newState.selectedProcessContent).toEqual(diagram);
+            expect(newState.entityContents[process.id]).toEqual(diagram);
         });
 
         it('should update the content with default values if no content from backend. The id must be prefixed with process-', () => {
@@ -157,30 +155,8 @@ describe('ProcessEntitiesReducer', () => {
 
             const newState = processEntitiesReducer(initialState, action);
 
-            expect(newState.selectedProcessContent).toEqual('');
+            expect(newState.entityContents[process.id]).toEqual('');
         });
-    });
-
-    it('should handle REMOVE_DIAGRAM_ELEMENT', () => {
-        const mockElement1: SelectedProcessElement = { id: 'id1', type: 'type1' };
-        const mockElement2: SelectedProcessElement = { id: 'id2', type: 'type2' };
-
-        initialState = {
-            ...initialProcessEntitiesState,
-            selectedElement: mockElement1
-        };
-
-        const newState1 = processEntitiesReducer(initialState, <RemoveDiagramElementAction>{
-            type: REMOVE_DIAGRAM_ELEMENT,
-            element: mockElement2
-        });
-        expect(newState1.selectedElement.id).toBe(mockElement1.id);
-
-        const newState2 = processEntitiesReducer(initialState, <RemoveDiagramElementAction>{
-            type: REMOVE_DIAGRAM_ELEMENT,
-            element: mockElement1
-        });
-        expect(newState2.selectedElement).toBeNull();
     });
 
     it('should handle UPDATE_SERVICE_PARAMETERS', () => {

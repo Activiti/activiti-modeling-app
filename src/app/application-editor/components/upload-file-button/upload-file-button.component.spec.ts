@@ -23,7 +23,7 @@ import { Store } from '@ngrx/store';
 import { AmaState, MODEL_UPLOADERS, PROCESS } from 'ama-sdk';
 import { LogService } from '@alfresco/adf-core';
 import { HttpClientModule } from '@angular/common/http';
-import { UploadProcessAttemptAction, UPLOAD_PROCESS_ATTEMPT } from 'src/app/process-editor/store/process-editor.actions';
+import { UploadProcessAttemptAction, UPLOAD_PROCESS_ATTEMPT } from '../../../process-editor/store/process-editor.actions';
 
 
 describe('UploadFileButtonComponent', () => {

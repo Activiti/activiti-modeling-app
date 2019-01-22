@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { createSelector } from '@ngrx/store';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
 import {
     createProcessName,
     PROCESS,
@@ -26,16 +26,21 @@ import {
     selectSelectedProcess,
     Process
 } from 'ama-sdk';
+import { ProcessEditorState } from './process-editor.state';
+import { ProcessEntitiesState } from './process-entities.state';
+
+export const PROCESS_EDITOR_STATE_NAME = 'process-editor';
+export const getProcessEditorFeatureState = createFeatureSelector(PROCESS_EDITOR_STATE_NAME);
 
 export const selectProcessIds = createSelector(selectProcessEntityContainer, state => state.ids);
 export const selectProcessEntities = createSelector(selectProcessEntityContainer, state => state.entities);
 export const selectProcessesLoading = createSelector(selectProcessEntityContainer, state => state.loading);
 export const selectProcessesLoaded = createSelector(selectProcessEntityContainer, state => state.loaded);
-export const selectProcessDiagram = createSelector(selectProcessEntityContainer, state => state.selectedProcessContent);
+export const selectEntityContents = createSelector(selectProcessEntityContainer, (state: ProcessEntitiesState) => state.entityContents);
 export const selectSelectedProcessId = selectSelectedModelIdFor(PROCESS);
 export const selectProcesses = createSelector(selectProcessEntityContainer, state => state.entities);
 export const selectProcessesArray = createSelector(selectProcessEntityContainer, state => Object.values(state.entities));
-export const selectSelectedElement = createSelector(selectProcessEntityContainer, state => state.selectedElement);
+export const selectSelectedElement = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.selectedElement);
 
 export const selectProcessesKeyLabelArray = createSelector(
     selectProcesses,

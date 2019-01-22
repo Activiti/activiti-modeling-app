@@ -44,6 +44,8 @@ import { getProcessCreatorProvider } from './extension/process-creator.extension
 import { getProcessUploaderProvider } from './extension/process-uploader.extension';
 import { processEntitiesReducer } from './store/process-entities.reducer';
 import { ProcessVariablesEffects } from './store/process-variables.effects';
+import { processEditorReducer } from './store/process-editor.reducer';
+import { PROCESS_EDITOR_STATE_NAME } from './store/process-editor.selectors';
 
 @NgModule({
     imports: [
@@ -52,6 +54,7 @@ import { ProcessVariablesEffects } from './store/process-variables.effects';
         ProcessEditorRoutingModule,
         EffectsModule.forFeature([ProcessEditorEffects, ProcessVariablesEffects]),
         StoreModule.forFeature('entities', ENTITIES_REDUCER_TOKEN),
+        StoreModule.forFeature(PROCESS_EDITOR_STATE_NAME, processEditorReducer),
         SharedModule,
         VariablesModule,
         MatTooltipModule

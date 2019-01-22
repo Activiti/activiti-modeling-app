@@ -15,20 +15,23 @@
  * limitations under the License.
  */
 
-import { EntityState, createEntityAdapter } from '@ngrx/entity';
-import { Process, ProcessContent } from 'ama-sdk';
+import { createEntityAdapter } from '@ngrx/entity';
+import { Process } from 'ama-sdk';
 
-export interface ProcessEntitiesState extends EntityState<Process> {
+export interface SelectedProcessElement {
+    id: string;
+    type: string;
+    name?: string;
+}
+
+export interface ProcessEditorState {
     loading: boolean;
-    loaded: boolean;
-    entityContents: {[key: string]: ProcessContent};
+    selectedElement: SelectedProcessElement;
 }
 
 export const processAdapter = createEntityAdapter<Process>();
 
-export const initialProcessEntitiesState = processAdapter.getInitialState<ProcessEntitiesState>({
-    ...processAdapter.getInitialState(),
+export const INITIAL_PROCESS_EDITOR_STATE: ProcessEditorState = {
     loading: false,
-    loaded: false,
-    entityContents: {}
-});
+    selectedElement: null
+};
