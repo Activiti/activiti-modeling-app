@@ -62,7 +62,8 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
                         "browserTarget": "dist:build",
-                        "port": 4100
+                        "port": 4100,
+                        "proxyConfig": "config/proxy.conf.js"
                     },
                     "configurations": {
                         "production": {
@@ -145,7 +146,8 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
                         "browserTarget": "dev:build",
-                        "port": 4100
+                        "port": 4100,
+                        "proxyConfig": "config/proxy.conf.js"
                     },
                     "configurations": {
                         "production": {

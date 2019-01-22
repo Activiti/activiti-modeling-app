@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
-import { AppConfigService, AlfrescoApiService } from '@alfresco/adf-core';
+import { AppConfigService, AlfrescoApiService, StorageService } from '@alfresco/adf-core';
 
 export interface RequestApiHelperOptions {
     pathParams?: { [key: string]: any} ;
@@ -48,7 +48,11 @@ function getDefaultOptions(): RequestApiHelperOptions {
 @Injectable()
 export class RequestApiHelper {
 
-    constructor(private appConfig: AppConfigService, private alfrescoApiService: AlfrescoApiService) {}
+    constructor(
+        private appConfig: AppConfigService,
+        private storageService: StorageService,
+        private alfrescoApiService: AlfrescoApiService
+    ) {}
 
     private get api() {
         return this.alfrescoApiService.getInstance().oauth2Auth;
@@ -56,13 +60,16 @@ export class RequestApiHelper {
 
     private buildUrl(endPoint: string): string {
         const trimSlash = (str: string) => str.replace(/^\/|\/$/g, '');
+        const path = '/' + trimSlash(endPoint);
 
-        const host = trimSlash(this.appConfig.get('backend')),
-            pathPrefix = trimSlash(this.appConfig.get('pathPrefix') || ''),
-            prefix = (pathPrefix.length ) ? '/' + pathPrefix : '',
-            path = '/' + trimSlash(endPoint);
+        let host;
+        if (this.storageService.hasItem('bpmHost')) {
+            host = this.storageService.getItem('bpmHost');
+        } else {
+            host = trimSlash(this.appConfig.get('bpmHost'));
+        }
 
-        return `${host}${prefix}${path}`;
+        return `${host}${path}`;
     }
 
     public get<T>(endPoint: string, overriddenOptions?: RequestApiHelperOptions) {
