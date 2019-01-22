@@ -41,6 +41,10 @@
             &:hover {
                 background-color: mat-color($primary);
             }
+
+            &.bpmn-icon-intermediate-event-none {
+                display: none;
+            }
         }
 
         .djs-popup-body {
@@ -61,6 +65,7 @@
                 &.bpmn-icon-intermediate-event-throw-escalation,
                 &.bpmn-icon-intermediate-event-throw-link,
                 &.bpmn-icon-intermediate-event-throw-compensation,
+                &.bpmn-icon-intermediate-event-none,
                 &.bpmn-icon-send,
                 &.bpmn-icon-receive,
                 &.bpmn-icon-manual,
