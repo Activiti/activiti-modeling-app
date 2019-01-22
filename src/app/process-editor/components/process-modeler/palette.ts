@@ -130,11 +130,6 @@ PaletteProvider.prototype.getPaletteEntries = function(element: any) {
             'event',
             'bpmn-icon-start-event-none'
         ),
-        'create.intermediate-event': createAction(
-            'bpmn:IntermediateThrowEvent',
-            'event',
-            'bpmn-icon-intermediate-event-none'
-        ),
         'create.end-event': createAction(
             'bpmn:EndEvent',
             'event',

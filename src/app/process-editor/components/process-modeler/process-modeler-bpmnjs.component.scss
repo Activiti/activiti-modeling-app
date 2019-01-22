@@ -41,6 +41,10 @@
             &:hover {
                 background-color: mat-color($primary);
             }
+
+            &.bpmn-icon-intermediate-event-none {
+                display: none;
+            }
         }
 
         .djs-popup-body {
@@ -61,6 +65,7 @@
                 &.bpmn-icon-intermediate-event-throw-escalation,
                 &.bpmn-icon-intermediate-event-throw-link,
                 &.bpmn-icon-intermediate-event-throw-compensation,
+                &.bpmn-icon-intermediate-event-none,
                 &.bpmn-icon-send,
                 &.bpmn-icon-receive,
                 &.bpmn-icon-manual,
@@ -70,7 +75,11 @@
                 &.bpmn-icon-subprocess-expanded,
                 &.bpmn-icon-gateway-eventbased,
                 &.bpmn-icon-gateway-or,
-                &.bpmn-icon-gateway-complex {
+                &.bpmn-icon-gateway-complex,
+                &.bpmn-icon-end-event-signal,
+                &.bpmn-icon-end-event-terminate,
+                &.bpmn-icon-start-event-timer,
+                &.bpmn-icon-start-event-signal {
                     display: none;
                 }
             }
