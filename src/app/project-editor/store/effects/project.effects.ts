@@ -29,7 +29,7 @@ import {
     GetProjectSuccessAction,
     ExportProjectAction,
     EXPORT_PROJECT,
-} from '../actions/project';
+} from '../project-editor.actions';
 
 @Injectable()
 export class ProjectEffects extends BaseEffects {

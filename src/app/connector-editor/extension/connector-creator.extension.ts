@@ -21,13 +21,13 @@ import { CONNECTOR_ICON } from './connectors-filter.extension';
 
 export function createConnectorCreator(): ModelCreator {
     return {
-        name: 'APP.APPLICATION.NEW_MENU.MENU_ITEMS.CREATE_CONNECTOR',
+        name: 'APP.PROJECT.NEW_MENU.MENU_ITEMS.CREATE_CONNECTOR',
         icon: CONNECTOR_ICON,
         order: 1,
         dialog: {
-            title: 'APP.APPLICATION.CONNECTOR_DIALOG.TITLE_CREATE',
-            nameField: 'APP.APPLICATION.CONNECTOR_DIALOG.CONNECTOR_NAME',
-            descriptionField: 'APP.APPLICATION.CONNECTOR_DIALOG.CONNECTOR_DESC',
+            title: 'APP.PROJECT.CONNECTOR_DIALOG.TITLE_CREATE',
+            nameField: 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_NAME',
+            descriptionField: 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_DESC',
             action: CreateConnectorAttemptAction
         }
     };

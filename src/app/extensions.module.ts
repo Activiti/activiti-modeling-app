@@ -18,7 +18,7 @@
 import { NgModule } from '@angular/core';
 
 // Main entry point for external extensions only.
-// For any application-specific code use CoreExtensionsModule instead.
+// For any project-specific code use CoreExtensionsModule instead.
 
 @NgModule({
     imports: []

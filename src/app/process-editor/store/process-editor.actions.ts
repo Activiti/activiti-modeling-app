@@ -25,13 +25,13 @@ import { Update } from '@ngrx/entity';
 export const SHOW_PROCESSES = '[App Tree] Show Processes';
 export class ShowProcessesAction implements Action {
     readonly type = SHOW_PROCESSES;
-    constructor(public applicationId: string) {}
+    constructor(public projectId: string) {}
 }
 
 export const GET_PROCESSES_ATTEMPT = 'GET_PROCESSES_ATTEMPT';
 export class GetProcessesAttemptAction implements Action {
     readonly type = GET_PROCESSES_ATTEMPT;
-    constructor(public applicationId: string) {}
+    constructor(public projectId: string) {}
 }
 
 export const GET_PROCESSES_SUCCESS = 'GET_PROCESSES_SUCCESS';

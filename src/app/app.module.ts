@@ -33,7 +33,7 @@ import { HostSettingsComponent } from './app/host-settings/host-settings.compone
 import { AdfModule } from './common/adf.module';
 import { AppStoreModule } from './app-store.module';
 import { ProcessEditorModule } from './process-editor/process-editor.module';
-import { ApplicationEditorModule } from './application-editor/application-editor.module';
+import { ProjectEditorModule } from './project-editor/project-editor.module';
 
 import { appRoutes } from './app.routes';
 import { ConnectorEditorModule } from './connector-editor/connector-editor.module';
@@ -66,7 +66,7 @@ import { RouterModule } from '@angular/router';
 
         RouterModule.forRoot(appRoutes),
 
-        ApplicationEditorModule,
+        ProjectEditorModule,
         ProcessEditorModule,
         ConnectorEditorModule,
 

@@ -27,8 +27,8 @@ export class ProcessesLoaderGuard implements CanActivate {
     constructor(private store: Store<AmaState>) {}
 
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-        const applicationId = route.params.applicationId;
-        this.store.dispatch(new ShowProcessesAction(applicationId));
+        const projectId = route.params.projectId;
+        this.store.dispatch(new ShowProcessesAction(projectId));
         this.store.dispatch(new OpenFilterAction(PROCESS));
 
         return of(true);

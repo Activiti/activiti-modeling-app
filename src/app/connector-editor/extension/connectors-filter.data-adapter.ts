@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Connector, CONNECTOR, FilterDataAdaper, AmaState, selectApplicationConnectorsArray } from 'ama-sdk';
+import { Connector, CONNECTOR, FilterDataAdaper, AmaState, selectProjectConnectorsArray } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { selectConnectorsLoading } from '../store/connector-editor.selectors';
 import { ShowConnectorsAction } from '../store/connector-editor.actions';
@@ -31,14 +31,14 @@ export class ConnectorsFilterDataAdapter implements FilterDataAdaper {
     }
 
     get contents(): Observable<Connector[]> {
-        return this.store.select(selectApplicationConnectorsArray);
+        return this.store.select(selectProjectConnectorsArray);
     }
 
     get loading(): Observable<boolean> {
         return this.store.select(selectConnectorsLoading);
     }
 
-    load(applicationId: string): void {
-        this.store.dispatch(new ShowConnectorsAction(applicationId));
+    load(projectId: string): void {
+        this.store.dispatch(new ShowConnectorsAction(projectId));
     }
 }

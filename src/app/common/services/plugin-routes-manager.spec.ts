@@ -25,7 +25,7 @@ describe('PluginRoutesManagerService', () => {
     const INJECTION_POINT = 'INJECTION_POINT',
         ANOTHER_INJECTION_POINT = 'ANOTHER_INJECTION_POINT';
 
-    let applicationsPath,
+    let projectsPath,
         dashboardPath,
         processesPath,
         connectorsPath,
@@ -48,7 +48,7 @@ describe('PluginRoutesManagerService', () => {
         service = TestBed.get(PluginRoutesManagerService);
         router = TestBed.get(Router);
 
-        applicationsPath = { path: 'applications', data: {}, loadChildren: 'somewhere#applicationsModule' },
+        projectsPath = { path: 'projects', data: {}, loadChildren: 'somewhere#projectsModule' },
         dashboardPath = { path: 'dashboard', loadChildren: 'dashboard#processModule' },
         processesPath = { path: 'processes', data: { injectTo: INJECTION_POINT }, loadChildren: 'somewhere#processModule' };
         connectorsPath = { path: 'connectors', data: { injectTo: INJECTION_POINT }, loadChildren: 'somewhere#connectorModule' };
@@ -62,7 +62,7 @@ describe('PluginRoutesManagerService', () => {
     it('should remove all routes from the root, which has the data of { injectTo: ... }', () => {
         router.resetConfig([
             processesPath,
-            applicationsPath,
+            projectsPath,
             kittensPath,
             dashboardPath
         ]);
@@ -70,7 +70,7 @@ describe('PluginRoutesManagerService', () => {
         service.patchRoutes();
 
         expect(router.config.length).toBe(2);
-        expect(router.config[0]).toEqual(applicationsPath);
+        expect(router.config[0]).toEqual(projectsPath);
         expect(router.config[1]).toEqual(dashboardPath);
     });
 
@@ -78,7 +78,7 @@ describe('PluginRoutesManagerService', () => {
         router.resetConfig([
             processesPath,
             {
-                path: 'application-editor',
+                path: 'project-editor',
                 data: { hostFor: INJECTION_POINT },
                 children: [
                     { path: 'one-path', loadChildren: 'somewhere#onePath' }
@@ -100,7 +100,7 @@ describe('PluginRoutesManagerService', () => {
         router.resetConfig([
             processesPath,
             {
-                path: 'application-editor',
+                path: 'project-editor',
                 data: { hostFor: INJECTION_POINT },
                 children: [
                     { path: 'one-path', loadChildren: 'somewhere#onePath' }
@@ -125,7 +125,7 @@ describe('PluginRoutesManagerService', () => {
         router.resetConfig([
             processesPath,
             {
-                path: 'application-editor',
+                path: 'project-editor',
                 data: { hostFor: INJECTION_POINT },
                 children: [
                     { path: 'one-path', loadChildren: 'somewhere#onePath' }
@@ -155,7 +155,7 @@ describe('PluginRoutesManagerService', () => {
         router.resetConfig([
             processesPath,
             {
-                path: 'application-editor',
+                path: 'project-editor',
                 children: [
                     {
                         path: 'another-level',

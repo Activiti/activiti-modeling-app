@@ -46,7 +46,7 @@ describe('ProcessEntitiesReducer', () => {
         id: 'mock-id',
         name: 'mock-name',
         description: 'mock-description',
-        applicationId: 'mock-app-id'
+        projectId: 'mock-app-id'
     };
 
     beforeEach(() => {
@@ -62,7 +62,7 @@ describe('ProcessEntitiesReducer', () => {
     });
 
     it('should handle GET_PROCESSES_ATTEMPT', () => {
-        action = <GetProcessesAttemptAction>{ type: GET_PROCESSES_ATTEMPT, applicationId: 'app-id' };
+        action = <GetProcessesAttemptAction>{ type: GET_PROCESSES_ATTEMPT, projectId: 'app-id' };
 
         const newState = processEntitiesReducer(initialState, action);
 

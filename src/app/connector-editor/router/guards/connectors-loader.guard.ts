@@ -27,8 +27,8 @@ export class ConnectorsLoaderGuard implements CanActivate {
     constructor(private store: Store<AmaState>) {}
 
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-        const applicationId = route.params.applicationId;
-        this.store.dispatch(new ShowConnectorsAction(applicationId));
+        const projectId = route.params.projectId;
+        this.store.dispatch(new ShowConnectorsAction(projectId));
         this.store.dispatch(new OpenFilterAction(CONNECTOR));
 
         return of(true);

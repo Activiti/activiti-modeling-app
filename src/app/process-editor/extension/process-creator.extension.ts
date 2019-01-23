@@ -21,13 +21,13 @@ import { CreateProcessAttemptAction } from '../store/process-editor.actions';
 
 export function createProcessCreator(): ModelCreator {
     return {
-        name: 'APP.APPLICATION.NEW_MENU.MENU_ITEMS.CREATE_PROCESS',
+        name: 'APP.PROJECT.NEW_MENU.MENU_ITEMS.CREATE_PROCESS',
         icon: PROCESS_ICON,
         order: 0,
         dialog: {
-            title: 'APP.APPLICATION.PROCESS_DIALOG.TITLE_CREATE',
-            nameField: 'APP.APPLICATION.PROCESS_DIALOG.PROCESS_NAME',
-            descriptionField: 'APP.APPLICATION.PROCESS_DIALOG.PROCESS_DESC',
+            title: 'APP.PROJECT.PROCESS_DIALOG.TITLE_CREATE',
+            nameField: 'APP.PROJECT.PROCESS_DIALOG.PROCESS_NAME',
+            descriptionField: 'APP.PROJECT.PROCESS_DIALOG.PROCESS_DESC',
             action: CreateProcessAttemptAction
         }
     };

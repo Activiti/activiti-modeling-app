@@ -23,7 +23,7 @@ export const CONNECTOR_ICON = 'wrap_text';
 export function createConnectorsFilter(connectorsFilterDataAdapter: ConnectorsFilterDataAdapter): ModelFilter {
     return {
         type: CONNECTOR,
-        name: 'APP.APPLICATION.TREE.CONNECTORS',
+        name: 'APP.PROJECT.TREE.CONNECTORS',
         icon: CONNECTOR_ICON,
         adapter: connectorsFilterDataAdapter,
         order: 2

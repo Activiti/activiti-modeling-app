@@ -21,7 +21,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { ConnectorsFilterDataAdapter } from './connectors-filter.data-adapter';
-import { CONNECTOR, selectApplicationConnectorsArray } from 'ama-sdk';
+import { CONNECTOR, selectProjectConnectorsArray } from 'ama-sdk';
 import { cold } from 'jasmine-marbles';
 import { AmaState } from 'ama-sdk';
 import { selectConnectorsLoading, selectSelectedConnectorId } from '../store/connector-editor.selectors';
@@ -35,7 +35,7 @@ describe('ConnectorsFilterDataAdapter ', () => {
         id: 'mock-id',
         name: 'mock-name',
         description: 'mock-description',
-        applicationId: 'mock-app-id'
+        projectId: 'mock-app-id'
     };
 
     beforeEach(async(() => {
@@ -50,7 +50,7 @@ describe('ConnectorsFilterDataAdapter ', () => {
                         select: jest.fn().mockImplementation((selector) => {
                             if (selector === selectConnectorsLoading) {
                                 return of(true);
-                            } else if (selector === selectApplicationConnectorsArray) {
+                            } else if (selector === selectProjectConnectorsArray) {
                                 return of([mockConnector]);
                             } else if (selector === selectSelectedConnectorId) {
                                 return of(mockConnector.id);

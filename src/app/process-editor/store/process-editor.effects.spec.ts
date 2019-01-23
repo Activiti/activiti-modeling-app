@@ -114,11 +114,11 @@ describe('ProcessEditorEffects', () => {
         it('ShowProcesses effect should dispatch a GetProcessesAtteptAction if there are no processes loaded', () => {
             actions$ = hot('a', { a: new ShowProcessesAction('test') });
             store.select = jest.fn(selectProcessesLoaded).mockReturnValue(of(false));
-            const expected = cold('b', { b: { applicationId: 'test', type: GET_PROCESSES_ATTEMPT } });
+            const expected = cold('b', { b: { projectId: 'test', type: GET_PROCESSES_ATTEMPT } });
             expect(effects.showProcessesEffect).toBeObservable(expected);
         });
 
-        it('ShowProcesses effect should not dispatch a new GetApplicationAtteptAction if there are apps loaded', () => {
+        it('ShowProcesses effect should not dispatch a new GetProjectAtteptAction if there are apps loaded', () => {
             actions$ = hot('a', { a: new ShowProcessesAction('test') });
             const expected = cold('');
             store.select = jest.fn(selectProcessesLoaded).mockReturnValue(of(true));
@@ -175,7 +175,7 @@ describe('ProcessEditorEffects', () => {
             actions$ = hot('a', { a: new UpdateProcessAttemptAction(mockActionPayload) });
 
             const expected = cold('b', {
-                b: new SnackbarErrorAction('APP.APPLICATION.ERROR.UPDATE_PROCESS.GENERAL')
+                b: new SnackbarErrorAction('APP.PROJECT.ERROR.UPDATE_PROCESS.GENERAL')
             });
 
             expect(effects.updateProcessEffect).toBeObservable(expected);

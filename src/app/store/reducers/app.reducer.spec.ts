@@ -17,7 +17,7 @@
 
 import { appReducer } from './app.reducer';
 import { PROCESS, ModelOpenedAction, MODEL_OPENED, ModelClosedAction, MODEL_CLOSED } from 'ama-sdk';
-import { SelectApplicationAction } from '../../application-editor/store/application-editor.actions';
+import { SelectProjectAction } from '../../project-editor/store/project-editor.actions';
 
 describe('appReducer', () => {
 
@@ -55,7 +55,7 @@ describe('appReducer', () => {
         const mockAction = <ModelOpenedAction>{ type: MODEL_OPENED, model: selectedModel };
         const initialState = appReducer(undefined, mockAction);
 
-        const selectAppAction = new SelectApplicationAction('app-id');
+        const selectAppAction = new SelectProjectAction('app-id');
         const newState = appReducer(initialState, selectAppAction);
 
         expect(newState.openedModel).toEqual(null);

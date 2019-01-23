@@ -45,25 +45,25 @@ export class ChangeConnectorContent implements Action {
 
 export interface UpdateConnectorPayload {
     connectorId: string;
-    applicationId: string;
+    projectId: string;
     form: Partial<EntityDialogForm>;
 }
 
 export interface ConnectorDialogPayload {
-    applicationId: string;
+    projectId: string;
     connector?: Connector;
 }
 
 export const SHOW_CONNECTORS = '[Conectors] Show the list';
 export class ShowConnectorsAction implements Action {
     readonly type = SHOW_CONNECTORS;
-    constructor(public applicationId: string) {}
+    constructor(public projectId: string) {}
 }
 
 export const GET_CONNECTORS_ATTEMPT = '[Conectors] Get attempt';
 export class GetConnectorsAttemptAction implements Action {
     readonly type = GET_CONNECTORS_ATTEMPT;
-    constructor(public applicationId: string) {}
+    constructor(public projectId: string) {}
 }
 
 export const GET_CONNECTORS_SUCCESS = '[Conectors] Get success';

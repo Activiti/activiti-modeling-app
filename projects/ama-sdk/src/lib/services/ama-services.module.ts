@@ -22,7 +22,7 @@ import { DownloadResourceService } from './download-resource.service';
 
 @NgModule()
 export class AmaServicesModule {
-    static forProject(): ModuleWithProviders {
+    static forApplication(): ModuleWithProviders {
         return {
             ngModule: AmaServicesModule,
             providers: [

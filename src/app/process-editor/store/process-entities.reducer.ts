@@ -31,7 +31,7 @@ import {
 } from './process-editor.actions';
 import { UPDATE_PROCESS_VARIABLES, UpdateProcessVariablesAction } from './process-variables.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState, processAdapter } from './process-entities.state';
-import { UPDATE_SERVICE_PARAMETERS, UpdateServiceParametersAction, LEAVE_APPLICATION } from 'ama-sdk';
+import { UPDATE_SERVICE_PARAMETERS, UpdateServiceParametersAction, LEAVE_PROJECT } from 'ama-sdk';
 
 const cloneDeep = require('lodash/cloneDeep');
 
@@ -64,7 +64,7 @@ export function processEntitiesReducer(
         case UPDATE_SERVICE_PARAMETERS:
             return updateProcessVariablesMapping(state, <UpdateServiceParametersAction> action);
 
-        case LEAVE_APPLICATION:
+        case LEAVE_PROJECT:
             return {
                 ...state,
                 loaded: false

@@ -5,7 +5,7 @@
 @import "./app/settings/settings-dialog.component";
 @import "./dashboard/dashboard.module";
 @import "./process-editor/process-editor.module";
-@import "./application-editor/application-editor.module";
+@import "./project-editor/project-editor.module";
 @import "./connector-editor/connector-editor.module";
 
 @mixin ama-theme($theme) {
@@ -16,6 +16,6 @@
     @include adf-dialog-theme($theme);
     @include ama-dashboard-module($theme);
     @include ama-process-editor-module($theme);
-    @include ama-application-editor-module($theme);
+    @include ama-project-editor-module($theme);
     @include ama-connector-editor-module($theme);
 }

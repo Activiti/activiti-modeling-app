@@ -31,12 +31,12 @@ import {
 export class ConnectorEditorService {
     constructor(private amaApi: AmaApi, private downloadService: DownloadResourceService) {}
 
-    update(connectorId: string, model: Connector, content: ConnectorContent, applicationId: string): Observable<Connector> {
-        return this.amaApi.Connector.update(connectorId, model, content, applicationId);
+    update(connectorId: string, model: Connector, content: ConnectorContent, projectId: string): Observable<Connector> {
+        return this.amaApi.Connector.update(connectorId, model, content, projectId);
     }
 
-    getDetails(connectorId: string, applicationId: string) {
-        return this.amaApi.Connector.retrieve(connectorId, applicationId);
+    getDetails(connectorId: string, projectId: string) {
+        return this.amaApi.Connector.retrieve(connectorId, projectId);
     }
 
     getContent(connectorId: string) {
@@ -51,12 +51,12 @@ export class ConnectorEditorService {
         return this.amaApi.Connector.create(form, appId);
     }
 
-    fetchAll(applicationId: string): Observable<Connector[]> {
-        return this.amaApi.Connector.getList(applicationId);
+    fetchAll(projectId: string): Observable<Connector[]> {
+        return this.amaApi.Connector.getList(projectId);
     }
 
     upload(payload: UploadFileAttemptPayload): Observable<Partial<Connector>> {
-        return this.amaApi.Connector.import(payload.file, payload.applicationId);
+        return this.amaApi.Connector.import(payload.file, payload.projectId);
     }
 
     download(connectorName: string, connectorData: string) {

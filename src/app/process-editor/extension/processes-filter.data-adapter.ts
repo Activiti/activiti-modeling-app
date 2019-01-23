@@ -38,7 +38,7 @@ export class ProcessesFilterDataAdapter implements FilterDataAdaper {
         return this.store.select(selectProcessesLoading);
     }
 
-    load(applicationId: string): void {
-        this.store.dispatch(new ShowProcessesAction(applicationId));
+    load(projectId: string): void {
+        this.store.dispatch(new ShowProcessesAction(projectId));
     }
 }

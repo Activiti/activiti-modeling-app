@@ -28,15 +28,15 @@ export class PluginRoutesManagerService {
 
     patchRoutes(): void {
         const pluginRoutes = this.router.config.filter(this.isPluginRoute),
-            applicationRoutes = this.router.config.filter(route => !this.isPluginRoute(route));
+            projectRoutes = this.router.config.filter(route => !this.isPluginRoute(route));
 
-        const routes = this.injectPluginRoutes(applicationRoutes, pluginRoutes);
+        const routes = this.injectPluginRoutes(projectRoutes, pluginRoutes);
         this.router.resetConfig(routes);
     }
 
     private injectPluginRoutes(routes: Route[], pluginRoutes: Route[]) {
-        return routes.map(applicationRoute => {
-            const route = cloneDeep(applicationRoute);
+        return routes.map(projectRoute => {
+            const route = cloneDeep(projectRoute);
             const hostFor = route.data && route.data[HOST_PROPERTY];
 
             if (route.children) {

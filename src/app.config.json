@@ -55,11 +55,11 @@
         "main": [
             {
                 "icon": "apps",
-                "label": "APP.HOME.NAVIGATION.APPLICATIONS.LABEL",
-                "title": "APP.HOME.NAVIGATION.APPLICATIONS.TOOLTIP",
+                "label": "APP.HOME.NAVIGATION.PROJECTS.LABEL",
+                "title": "APP.HOME.NAVIGATION.PROJECTS.TOOLTIP",
                 "disabled": false,
                 "route": {
-                    "url": "/dashboard/applications"
+                    "url": "/dashboard/projects"
                 }
             }
         ]

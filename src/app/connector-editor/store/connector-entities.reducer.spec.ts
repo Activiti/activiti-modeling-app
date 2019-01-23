@@ -42,7 +42,7 @@ describe('ConnectorEntitiesReducer', () => {
         id: 'mock-id',
         name: 'mock-name',
         description: 'mock-description',
-        applicationId: 'mock-app-id'
+        projectId: 'mock-app-id'
     };
 
     beforeEach(() => {
@@ -58,7 +58,7 @@ describe('ConnectorEntitiesReducer', () => {
     });
 
     it('should handle GET_CONNECTORS_ATTEMPT', () => {
-        action = <GetConnectorsAttemptAction>{ type: GET_CONNECTORS_ATTEMPT, applicationId: 'app-id' };
+        action = <GetConnectorsAttemptAction>{ type: GET_CONNECTORS_ATTEMPT, projectId: 'app-id' };
 
         const newState = connectorEntitiesReducer(initialState, action);
 
