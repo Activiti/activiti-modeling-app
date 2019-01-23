@@ -247,9 +247,8 @@ describe('ConnectorEditorEffects', () => {
             getConnectorContent.mockReturnValue(of(connectorContent));
 
             actions$ = hot('a', { a: new GetConnectorAttemptAction('connector-id') });
-            const expected = cold('(bc)', {
-                b: new GetConnectorSuccessAction(connector, connectorContent),
-                c: new ModelOpenedAction({id: connector.id, type: connector.type})
+            const expected = cold('b', {
+                b: new GetConnectorSuccessAction(connector, connectorContent)
             });
 
             expect(effects.getConnectorEffect).toBeObservable(expected);

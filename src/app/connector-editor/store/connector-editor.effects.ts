@@ -46,30 +46,25 @@ import {
 import { map, switchMap, catchError, mergeMap, take, withLatestFrom } from 'rxjs/operators';
 import {
     EntityDialogForm,
-    ModelOpenedAction,
     CONNECTOR,
     ModelClosedAction,
     OpenConfirmDialogAction,
     GetConnectorAttemptAction,
-    GET_CONNECTOR_ATTEMPT
+    GET_CONNECTOR_ATTEMPT,
+    ModelOpenedAction,
+    LOAD_CONNECTOR_ATTEMPT,
+    LoadConnectorAttemptAction,
+    SetAppDirtyStateAction
 } from 'ama-sdk';
-import { SetAppDirtyStateAction } from 'ama-sdk';
-import { Observable } from 'rxjs';
 import { ConnectorEditorService } from '../services/connector-editor.service';
-import { forkJoin } from 'rxjs';
-import { BaseEffects } from 'ama-sdk';
-import { of } from 'rxjs';
+import { of, zip, forkJoin, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
-import { zip } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AmaState, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
-import { selectSelectedAppId } from 'ama-sdk';
-import { ConnectorContent, Connector } from 'ama-sdk';
 import { CHANGE_CONNECTOR_CONTENT, ChangeConnectorContent } from './connector-editor.actions';
 import { selectConnectorsLoaded, selectSelectedConnectorContent, selectSelectedConnector } from './connector-editor.selectors';
-import { UploadFileAttemptPayload } from 'ama-sdk';
-import { changeFileName } from 'ama-sdk';
+import { UploadFileAttemptPayload, changeFileName, ConnectorContent, Connector, selectSelectedAppId, BaseEffects } from 'ama-sdk';
 
 @Injectable()
 export class ConnectorEditorEffects extends BaseEffects {
@@ -118,6 +113,13 @@ export class ConnectorEditorEffects extends BaseEffects {
         ofType<GetConnectorAttemptAction>(GET_CONNECTOR_ATTEMPT),
         mergeMap(action => zip(of(action.connectorId), this.store.select(selectSelectedAppId))),
         switchMap(([connectorId, appId]) => this.getConnector(connectorId, appId))
+    );
+
+    @Effect()
+    loadConnectorEffect = this.actions$.pipe(
+        ofType<LoadConnectorAttemptAction>(LOAD_CONNECTOR_ATTEMPT),
+        mergeMap(action => zip(of(action.connectorId), this.store.select(selectSelectedAppId))),
+        switchMap(([connectorId, appId]) => this.getConnector(connectorId, appId, true))
     );
 
     @Effect()
@@ -241,14 +243,14 @@ export class ConnectorEditorEffects extends BaseEffects {
         );
     }
 
-    private getConnector(connectorId: string, appId: string): Observable<GetConnectorSuccessAction | SnackbarErrorAction> {
+    private getConnector(connectorId: string, appId: string, loadConnector?: boolean): Observable<GetConnectorSuccessAction | SnackbarErrorAction> {
         const connectorDetails$ = this.connectorEditorService.getDetails(connectorId, appId),
             connectorContent$ = this.connectorEditorService.getContent(connectorId);
 
         return forkJoin(connectorDetails$, connectorContent$).pipe(
             switchMap(([connector, connectorContent]) => [
                 new GetConnectorSuccessAction(connector, connectorContent),
-                new ModelOpenedAction({id: connector.id, type: connector.type})
+                ...(loadConnector ? [new ModelOpenedAction({ id: connectorId, type: CONNECTOR })] : [])
             ]),
             catchError<any, SnackbarErrorAction>(e =>
                 this.genericErrorHandler(this.handleError.bind(this, 'APP.CONNECTOR_EDITOR.ERRORS.GET_CONNECTOR'), e)

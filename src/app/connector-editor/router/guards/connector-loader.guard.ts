@@ -21,7 +21,7 @@ import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { ApplicationEditorState, GetConnectorAttemptAction, SetAppDirtyStateAction } from 'ama-sdk';
+import { ApplicationEditorState, SetAppDirtyStateAction, LoadConnectorAttemptAction } from 'ama-sdk';
 
 @Injectable()
 export class ConnectorLoaderGuard implements CanActivate {
@@ -31,7 +31,7 @@ export class ConnectorLoaderGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
         const connectorId = route.params.connectorId;
         this.store.dispatch(new SetAppDirtyStateAction(false));
-        this.store.dispatch(new GetConnectorAttemptAction(connectorId));
+        this.store.dispatch(new LoadConnectorAttemptAction(connectorId));
         return of(true);
     }
 }
