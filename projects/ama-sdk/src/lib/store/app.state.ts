@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ModelIdentifier } from './application.actions';
+import { ModelIdentifier } from './project.actions';
 
 export interface AppTheme {
     name: string;

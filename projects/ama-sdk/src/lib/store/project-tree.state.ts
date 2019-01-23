@@ -15,15 +15,13 @@
  * limitations under the License.
  */
 
-import { ApplicationTreeState, INITIAL_APPLICATION_TREE_STATE } from './application-tree.state';
-import { ApplicationDataState, INITIAL_APPLICATION_DATA_STATE } from './application-data.state';
+import { MODEL_TYPE } from '../api/types';
 
-export interface ApplicationEditorState {
-    application: ApplicationDataState;
-    tree: ApplicationTreeState;
+
+export interface ProjectTreeState {
+    openedFilters: MODEL_TYPE[];
 }
 
-export const INITIAL_APPLICATION_EDITOR_STATE: ApplicationEditorState = {
-    application: INITIAL_APPLICATION_DATA_STATE,
-    tree: INITIAL_APPLICATION_TREE_STATE
+export const INITIAL_PROJECT_TREE_STATE: ProjectTreeState = {
+    openedFilters: []
 };

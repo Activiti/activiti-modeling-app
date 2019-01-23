@@ -16,6 +16,6 @@
  */
 
 export * from './api.interface';
-export * from './application-api.interface';
+export * from './project-api.interface';
 export * from './generalmodel-api.interface';
 export * from './types';

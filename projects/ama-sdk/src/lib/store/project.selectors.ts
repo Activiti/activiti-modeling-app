@@ -16,23 +16,23 @@
  */
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ApplicationEditorState } from './application.state';
+import { ProjectEditorState } from './project.state';
 
-export const APPLICATION_EDITOR_STATE_NAME = 'application-editor';
+export const PROJECT_EDITOR_STATE_NAME = 'project-editor';
 
-export const getApplicationEditorFeatureState = createFeatureSelector<ApplicationEditorState>(APPLICATION_EDITOR_STATE_NAME);
+export const getProjectEditorFeatureState = createFeatureSelector<ProjectEditorState>(PROJECT_EDITOR_STATE_NAME);
 
-export const selectApplication = createSelector(
-    getApplicationEditorFeatureState,
-    (state: ApplicationEditorState) => state.application.datum
+export const selectProject = createSelector(
+    getProjectEditorFeatureState,
+    (state: ProjectEditorState) => state.project.datum
 );
 
-export const selectApplicationLoading = createSelector(
-    getApplicationEditorFeatureState,
-    (state: ApplicationEditorState) => state.application.loading
+export const selectProjectLoading = createSelector(
+    getProjectEditorFeatureState,
+    (state: ProjectEditorState) => state.project.loading
 );
 
-export const selectApplicationTree = createSelector(
-    getApplicationEditorFeatureState,
-    (state: ApplicationEditorState) => state.tree
+export const selectProjectTree = createSelector(
+    getProjectEditorFeatureState,
+    (state: ProjectEditorState) => state.tree
 );

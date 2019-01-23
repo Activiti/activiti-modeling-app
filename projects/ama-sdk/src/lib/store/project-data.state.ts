@@ -15,13 +15,15 @@
  * limitations under the License.
  */
 
-import { MODEL_TYPE } from '../api/types';
+import { Project } from '../api/types';
 
-
-export interface ApplicationTreeState {
-    openedFilters: MODEL_TYPE[];
+export interface ProjectDataState {
+    datum: Partial<Project>;
+    loading: boolean;
+    error?: any;
 }
 
-export const INITIAL_APPLICATION_TREE_STATE: ApplicationTreeState = {
-    openedFilters: []
+export const INITIAL_PROJECT_DATA_STATE: ProjectDataState = {
+    datum: null,
+    loading: false
 };

@@ -23,7 +23,7 @@ export interface FilterDataAdaper {
     expandedPredicate: (filters) => boolean;
     contents: Observable<Partial<FilterType>[]>;
     loading: Observable<boolean>;
-    load(applicationId: string): void;
+    load(projectId: string): void;
 }
 
 export interface ModelFilter {

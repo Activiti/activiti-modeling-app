@@ -33,7 +33,7 @@ describe('HeaderBreadcrumbsComponent', () => {
 
     const mockCrumbs = [
         { url: '/home', name: 'Dashboard' },
-        { url: '/application', name: 'Application' },
+        { url: '/project', name: 'Project' },
         { name: 'Process' }
     ];
 

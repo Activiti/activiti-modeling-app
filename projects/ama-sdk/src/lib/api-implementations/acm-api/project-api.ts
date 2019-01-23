@@ -16,13 +16,13 @@
  */
 
 import { Injectable } from '@angular/core';
-import { ApplicationApi } from '../../api/application-api.interface';
+import { ProjectApi } from '../../api/project-api.interface';
 import { Observable } from 'rxjs';
-import { Application, APPLICATION } from '../../api/types';
+import { Project, PROJECT } from '../../api/types';
 import { map } from 'rxjs/operators';
 import { RequestApiHelper } from './request-api.helper';
 
-export interface BackendApplication {
+export interface BackendProject {
     id: string;
     name: string;
     creationDate: Date;
@@ -32,78 +32,78 @@ export interface BackendApplication {
 }
 
 @Injectable()
-export class ACMApplicationApi implements ApplicationApi {
+export class ACMProjectApi implements ProjectApi {
     constructor(
         private requestApiHelper: RequestApiHelper
     ) {}
 
-    public get(applicationId: string): Observable<Application> {
+    public get(projectId: string): Observable<Project> {
         return this.requestApiHelper
-            .get(`/v1/projects/${applicationId}`)
+            .get(`/v1/projects/${projectId}`)
                 .pipe(
                     map((response: any) => response.entry),
-                    map(this.createApplication.bind(this))
+                    map(this.createProject.bind(this))
                 );
     }
 
-    public create(application: Partial<Application>): Observable<Application> {
+    public create(project: Partial<Project>): Observable<Project> {
         return this.requestApiHelper
-        .post('/v1/projects/', {bodyParam: application})
+        .post('/v1/projects/', {bodyParam: project})
             .pipe(
                 map((response: any) => response.entry),
-                map(this.createApplication.bind(this))
+                map(this.createProject.bind(this))
             );
     }
 
-    public update(applicationId: string, application: Partial<Application>): Observable<Application> {
+    public update(projectId: string, project: Partial<Project>): Observable<Project> {
         return this.requestApiHelper
-        .put(`/v1/projects/${applicationId}`, {bodyParam: application})
+        .put(`/v1/projects/${projectId}`, {bodyParam: project})
             .pipe(
                 map((response: any) => response.entry),
-                map(this.createApplication.bind(this))
+                map(this.createProject.bind(this))
             );
     }
 
-    public delete(applicationId: string): Observable<void> {
-        return this.requestApiHelper.delete(`/v1/projects/${applicationId}`);
+    public delete(projectId: string): Observable<void> {
+        return this.requestApiHelper.delete(`/v1/projects/${projectId}`);
     }
 
-    public import(file: File ): Observable<Partial<Application>> {
+    public import(file: File ): Observable<Partial<Project>> {
         return this.requestApiHelper
             .post(`/v1/projects/import`, {formParams: {'file': file}, contentTypes: ['multipart/form-data']})
                 .pipe(
                     map((response: any) => response.entry),
-                    map(this.createApplication.bind(this))
+                    map(this.createProject.bind(this))
                 );
     }
 
-    public export(applicationId: string): Observable<Blob>  {
+    public export(projectId: string): Observable<Blob>  {
         return this.requestApiHelper.get(
-            `/v1/projects/${applicationId}/export`,
+            `/v1/projects/${projectId}/export`,
             { queryParams: { 'attachment': false }, returnType: 'Blob' }
         );
     }
 
-    public getAll(): Observable<Application[]> {
+    public getAll(): Observable<Project[]> {
         return this.requestApiHelper
             .get('/v1/projects')
             .pipe(
                 map((nodePaging: any) => {
                     return nodePaging.list.entries
                         .map(entry => entry.entry)
-                        .map(this.createApplication.bind(this));
+                        .map(this.createProject.bind(this));
                 })
             );
     }
 
-    private createApplication(backendApplication: BackendApplication): Application {
-        const type = APPLICATION,
+    private createProject(backendProject: BackendProject): Project {
+        const type = PROJECT,
             description = '',
             version = '0.0.1';
 
         return {
             type,
-            ...backendApplication,
+            ...backendProject,
             description,
             version
         };

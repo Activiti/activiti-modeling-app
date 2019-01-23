@@ -25,7 +25,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { AmaState } from '../../../store/app.state';
 import { EntityDialogPayload } from '../../common';
-import { CreateApplicationAttemptAction } from '../../../store/application.actions';
+import { CreateProjectAttemptAction } from '../../../store/project.actions';
 import { By } from '@angular/platform-browser';
 
 
@@ -42,7 +42,7 @@ describe('EntityDialogComponent', () => {
         title: 'mock-title',
         nameField: 'name',
         descriptionField: 'desc',
-        action: CreateApplicationAttemptAction
+        action: CreateProjectAttemptAction
     };
 
     beforeEach(async(() => {

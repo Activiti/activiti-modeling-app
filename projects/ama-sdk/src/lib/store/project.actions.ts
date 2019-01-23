@@ -18,9 +18,9 @@
 import { EntityDialogForm } from '../helpers/common';
 import { Action } from '@ngrx/store';
 
-export const CREATE_APPLICATION_ATTEMPT = 'CREATE_APPLICATION_ATTEMPT';
-export class CreateApplicationAttemptAction implements Action {
-    readonly type = CREATE_APPLICATION_ATTEMPT;
+export const CREATE_PROJECT_ATTEMPT = 'CREATE_PROJECT_ATTEMPT';
+export class CreateProjectAttemptAction implements Action {
+    readonly type = CREATE_PROJECT_ATTEMPT;
     constructor(public payload: Partial<EntityDialogForm>) {}
 }
 

@@ -153,7 +153,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
         return {
             description: '',
             version: '0.0.1',
-            applicationId: entity.projectId,
+            projectId: entity.projectId,
             // Patch: BE does not return empty or not yet defined properties at all, like extensions
             ...(this.modelVariation.patchModel(entity) as object)
         } as T;

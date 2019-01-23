@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-import { Application } from '../api/types';
+import { ProjectTreeState, INITIAL_PROJECT_TREE_STATE } from './project-tree.state';
+import { ProjectDataState, INITIAL_PROJECT_DATA_STATE } from './project-data.state';
 
-export interface ApplicationDataState {
-    datum: Partial<Application>;
-    loading: boolean;
-    error?: any;
+export interface ProjectEditorState {
+    project: ProjectDataState;
+    tree: ProjectTreeState;
 }
 
-export const INITIAL_APPLICATION_DATA_STATE: ApplicationDataState = {
-    datum: null,
-    loading: false
+export const INITIAL_PROJECT_EDITOR_STATE: ProjectEditorState = {
+    project: INITIAL_PROJECT_DATA_STATE,
+    tree: INITIAL_PROJECT_TREE_STATE
 };

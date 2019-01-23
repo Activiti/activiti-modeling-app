@@ -18,7 +18,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ACMApi } from './acm-api';
-import { ACMApplicationApi } from './application-api';
+import { ACMProjectApi } from './project-api';
 import { AmaApi } from '../../api/api.interface';
 import { UiApiVariation, UI_API } from './model-variations/ui-api-variation';
 import { DecisionTableApiVariation, DECISION_TABLE_API } from './model-variations/decision-table-api-variations';
@@ -43,7 +43,7 @@ export class ACMApiModule {
             providers: [
                 { provide: AmaApi, useClass: ACMApi },
                 RequestApiHelper,
-                ACMApplicationApi,
+                ACMProjectApi,
 
                 UiApiVariation,
                 { provide: UI_API, useFactory: modelApiFactory, deps: [UiApiVariation, RequestApiHelper] },

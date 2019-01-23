@@ -17,7 +17,7 @@
 
 import { Injectable, Inject } from '@angular/core';
 import { AmaApi } from '../../api/api.interface';
-import { ACMApplicationApi } from './application-api';
+import { ACMProjectApi } from './project-api';
 import { UI_API } from './model-variations/ui-api-variation';
 import { DECISION_TABLE_API } from './model-variations/decision-table-api-variations';
 import { ModelApiInterface } from '../../api/generalmodel-api.interface';
@@ -43,7 +43,7 @@ import { DATA_API } from './model-variations/data-api-variation';
 @Injectable()
 export class ACMApi implements AmaApi {
     constructor(
-        public Application: ACMApplicationApi,
+        public Project: ACMProjectApi,
         @Inject(PROCESS_API) public Process: ModelApiInterface<ProcessType, ProcessContent>,
         @Inject(CONNECTOR_API) public Connector: ModelApiInterface<ConnectorType, ConnectorContent>,
         @Inject(FORM_API) public Form: ModelApiInterface<FormType, FormContent>,
