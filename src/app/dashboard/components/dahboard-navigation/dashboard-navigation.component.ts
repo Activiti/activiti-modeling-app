@@ -19,8 +19,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppConfigService } from '@alfresco/adf-core';
-import { UploadApplicationAttemptAction } from '../../store/actions/applications';
-import { AmaState, CreateApplicationAttemptAction } from 'ama-sdk';
+import { UploadProjectAttemptAction } from '../../store/actions/projects';
+import { AmaState, CreateProjectAttemptAction } from 'ama-sdk';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
 import { OpenEntityDialogAction } from '../../../store/actions/dialog';
 
@@ -45,7 +45,7 @@ export class DashboardNavigationComponent implements OnInit {
     }
 
     onUpload(files: File[]): void {
-        this.store.dispatch(new UploadApplicationAttemptAction(files[0]));
+        this.store.dispatch(new UploadProjectAttemptAction(files[0]));
         this.fileInput.nativeElement.value = null;
     }
 
@@ -56,12 +56,12 @@ export class DashboardNavigationComponent implements OnInit {
         return Object.keys(data).map(key => data[key]);
     }
 
-    public openApplicationDialog() {
+    public openProjectDialog() {
         this.store.dispatch(new OpenEntityDialogAction({
             title: 'APP.HOME.NEW_MENU.CREATE_APP_TITLE',
             nameField: 'APP.HOME.DIALOGS.APP_NAME',
             descriptionField: 'APP.HOME.DIALOGS.APP_DESC',
-            action: CreateApplicationAttemptAction
+            action: CreateProjectAttemptAction
         }));
     }
 }

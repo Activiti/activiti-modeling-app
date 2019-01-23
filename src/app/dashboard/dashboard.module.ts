@@ -24,14 +24,14 @@ import { CoreModule } from '@alfresco/adf-core';
 import { MomentModule } from 'ngx-moment';
 
 import { DashboardNavigationComponent } from './components/dahboard-navigation/dashboard-navigation.component';
-import { ApplicationsListComponent } from './components/applications-list/applications-list.component';
+import { ProjectsListComponent } from './components/projects-list/projects-list.component';
 
 import { DashboardService } from './services/dashboard.service';
 import { StoreModule } from '@ngrx/store';
 import { dashboardReducer } from './store/reducers/dashboard.reducer';
 import { DASHBOARD_STATE_NAME } from './store/selectors/dashboard.selectors';
 import { EffectsModule } from '@ngrx/effects';
-import { ApplicationsEffects } from './store/effects/applications.effects';
+import { ProjectsEffects } from './store/effects/projects.effects';
 import { SharedModule } from 'ama-sdk';
 
 @NgModule({
@@ -42,11 +42,11 @@ import { SharedModule } from 'ama-sdk';
         CoreModule.forChild(),
         SharedModule,
         StoreModule.forFeature(DASHBOARD_STATE_NAME, dashboardReducer),
-        EffectsModule.forFeature([ApplicationsEffects])
+        EffectsModule.forFeature([ProjectsEffects])
     ],
     declarations: [
         DashboardNavigationComponent,
-        ApplicationsListComponent,
+        ProjectsListComponent,
     ],
     exports: [DashboardRoutingModule],
     providers: [DashboardService]

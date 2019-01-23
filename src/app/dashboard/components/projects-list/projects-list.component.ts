@@ -21,59 +21,59 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material';
-import { selectApplicationSummaries, selectLoading } from '../../store/selectors/dashboard.selectors';
-import { AmaState, Application, OpenConfirmDialogAction } from 'ama-sdk';
+import { selectProjectSummaries, selectLoading } from '../../store/selectors/dashboard.selectors';
+import { AmaState, Project, OpenConfirmDialogAction } from 'ama-sdk';
 import { OpenEntityDialogAction } from '../../../store/actions/dialog';
 import {
-    DeleteApplicationAttemptAction,
-    UpdateApplicationAttemptAction
-} from '../../store/actions/applications';
+    DeleteProjectAttemptAction,
+    UpdateProjectAttemptAction
+} from '../../store/actions/projects';
 import { sortEntriesByName } from '../../../common/helpers/sort-entries-by-name';
 
 @Component({
-    selector: 'ama-applications-list',
-    templateUrl: './applications-list.component.html'
+    selector: 'ama-projects-list',
+    templateUrl: './projects-list.component.html'
 })
-export class ApplicationsListComponent implements OnInit {
-    dataSource$: Observable<MatTableDataSource<Partial<Application>>>;
+export class ProjectsListComponent implements OnInit {
+    dataSource$: Observable<MatTableDataSource<Partial<Project>>>;
     loading$: Observable<boolean>;
     displayedColumns = ['thumbnail', 'name', 'created', 'createdBy', 'version', 'menu'];
 
-    @Input() customDataSource$: Observable<Partial<Application>[]>;
+    @Input() customDataSource$: Observable<Partial<Project>[]>;
 
     constructor(private store: Store<AmaState>, private router: Router ) {}
 
     ngOnInit() {
         this.loading$ = this.store.select(selectLoading);
-        this.dataSource$ = (this.customDataSource$ || this.store.select(selectApplicationSummaries).pipe(
+        this.dataSource$ = (this.customDataSource$ || this.store.select(selectProjectSummaries).pipe(
             map(entries => Object.keys(entries).map(id => entries[id]))
         )).pipe(
             map(sortEntriesByName),
-            map(entriesArray =>  new MatTableDataSource<Partial<Application>>(entriesArray))
+            map(entriesArray =>  new MatTableDataSource<Partial<Project>>(entriesArray))
         );
     }
 
-    rowSelected(item: Partial<Application>): void {
-        this.router.navigate(['applications', item.id]);
+    rowSelected(item: Partial<Project>): void {
+        this.router.navigate(['projects', item.id]);
     }
 
-    editRow(item: Partial<Application>): void {
+    editRow(item: Partial<Project>): void {
         const { id, name, description } = item;
         this.store.dispatch(new OpenEntityDialogAction({
             title: 'APP.HOME.NEW_MENU.EDIT_APP_TITLE',
             nameField: 'APP.HOME.DIALOGS.APP_NAME',
             descriptionField: 'APP.HOME.DIALOGS.APP_DESC',
             values: { id, name, description },
-            action: UpdateApplicationAttemptAction
+            action: UpdateProjectAttemptAction
         }));
     }
 
-    deleteRow(item: Partial<Application>): void {
-        const action = new DeleteApplicationAttemptAction(item.id);
+    deleteRow(item: Partial<Project>): void {
+        const action = new DeleteProjectAttemptAction(item.id);
 
         this.store.dispatch(new OpenConfirmDialogAction({
             dialogData: {
-                subtitle: 'APP.DIALOGS.CONFIRM.CUSTOM.APPLICATION'
+                subtitle: 'APP.DIALOGS.CONFIRM.CUSTOM.PROJECT'
             },
             action: action
         }));

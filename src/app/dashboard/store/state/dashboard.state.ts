@@ -15,20 +15,20 @@
  * limitations under the License.
  */
 
-import { Application } from 'ama-sdk';
+import { Project } from 'ama-sdk';
 
-export interface ApplicationSummaryEntities {
-    [key: string]: Partial<Application>;
+export interface ProjectSummaryEntities {
+    [key: string]: Partial<Project>;
 }
 
 export interface DashboardState {
-    applications: ApplicationSummaryEntities;
+    projects: ProjectSummaryEntities;
     loading: boolean;
-    applicationsLoaded: boolean;
+    projectsLoaded: boolean;
 }
 
 export const INITIAL_DASHBOARD_STATE: DashboardState = {
-    applications: {},
+    projects: {},
     loading: false,
-    applicationsLoaded: false
+    projectsLoaded: false
 };

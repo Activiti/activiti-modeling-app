@@ -25,7 +25,7 @@ import { TranslationMock, TranslationService, AppConfigService } from '@alfresco
 import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { UploadApplicationAttemptAction, UPLOAD_APPLICATION_ATTEMPT } from '../../store/actions/applications';
+import { UploadProjectAttemptAction, UPLOAD_PROJECT_ATTEMPT } from '../../store/actions/projects';
 import { AmaState } from 'ama-sdk';
 
 describe ('Dashboard navigation Component', () => {
@@ -64,7 +64,7 @@ describe ('Dashboard navigation Component', () => {
         component.ngOnInit();
     });
 
-    it('clicking on upload button should dispatch a UploadApplicationAttemptAction, and the fileImput should be cleaned', () => {
+    it('clicking on upload button should dispatch a UploadProjectAttemptAction, and the fileImput should be cleaned', () => {
         const button = fixture.nativeElement.querySelector('.app-upload-btn');
         spyOn(component.fileInput.nativeElement, 'click');
         spyOn(store, 'dispatch');
@@ -76,9 +76,9 @@ describe ('Dashboard navigation Component', () => {
         fixture.detectChanges();
         expect(store.dispatch).toHaveBeenCalled();
 
-        const uploadAction: UploadApplicationAttemptAction = store.dispatch.calls.argsFor(0)[0];
+        const uploadAction: UploadProjectAttemptAction = store.dispatch.calls.argsFor(0)[0];
         const file = store.dispatch.calls.argsFor(0)[1];
-        expect(uploadAction.type).toBe(UPLOAD_APPLICATION_ATTEMPT);
+        expect(uploadAction.type).toBe(UPLOAD_PROJECT_ATTEMPT);
         expect(uploadAction.file).toBe(file);
 
         expect(component.fileInput.nativeElement.value).toBe('');

@@ -17,15 +17,15 @@
 
 import { dashboardReducer } from './dashboard.reducer';
 import {
-    DeleteApplicationSuccessAction,
-    UploadApplicationSuccessAction,
-    GetApplicationsSuccessAction,
-    CreateApplicationSuccessAction,
-    UpdateApplicationSuccessAction
-} from '../actions/applications';
+    DeleteProjectSuccessAction,
+    UploadProjectSuccessAction,
+    GetProjectsSuccessAction,
+    CreateProjectSuccessAction,
+    UpdateProjectSuccessAction
+} from '../actions/projects';
 import { INITIAL_DASHBOARD_STATE, DashboardState } from '../state/dashboard.state';
-import { Application } from 'ama-sdk';
-import { mockApplication } from '../effects/application.mock';
+import { Project } from 'ama-sdk';
+import { mockProject } from '../effects/project.mock';
 
 describe('dashboardReducer', () => {
 
@@ -33,68 +33,68 @@ describe('dashboardReducer', () => {
 
     beforeEach(() => {
         initialState = { ...INITIAL_DASHBOARD_STATE };
-        initialState.applications = {
+        initialState.projects = {
             '1': { id: '1' },
             '2': { id: '2' },
             '3': { id: '3' }
         };
     });
 
-    describe('GET_APPLICATIONS_SUCCESS', () => {
-        const action = new GetApplicationsSuccessAction(<Partial<Application>[]>[mockApplication]);
+    describe('GET_PROJECTS_SUCCESS', () => {
+        const action = new GetProjectsSuccessAction(<Partial<Project>[]>[mockProject]);
 
-        it('should load the applications', () => {
+        it('should load the projects', () => {
             const newState = dashboardReducer(initialState, action);
 
-            expect(newState.applicationsLoaded).toBe(true);
-            expect(newState.applications).toEqual({ [mockApplication.id]: mockApplication });
+            expect(newState.projectsLoaded).toBe(true);
+            expect(newState.projects).toEqual({ [mockProject.id]: mockProject });
         });
     });
 
-    describe('CREATE_APPLICATION_SUCCESS', () => {
-        const action = new CreateApplicationSuccessAction(<Partial<Application>>mockApplication);
+    describe('CREATE_PROJECT_SUCCESS', () => {
+        const action = new CreateProjectSuccessAction(<Partial<Project>>mockProject);
 
-        it('should append the application to the list', () => {
+        it('should append the project to the list', () => {
             const newState = dashboardReducer(initialState, action);
 
-            expect(newState.applications).toEqual({ ...newState.applications, [mockApplication.id]: mockApplication });
+            expect(newState.projects).toEqual({ ...newState.projects, [mockProject.id]: mockProject });
         });
     });
 
-    describe('UPDATE_APPLICATION_SUCCESS', () => {
-        const newApplication = { ...mockApplication, name: 'new-name', description: 'new-description' };
-        const action = new UpdateApplicationSuccessAction(<Partial<Application>>newApplication);
+    describe('UPDATE_PROJECT_SUCCESS', () => {
+        const newProject = { ...mockProject, name: 'new-name', description: 'new-description' };
+        const action = new UpdateProjectSuccessAction(<Partial<Project>>newProject);
 
-        it('should update the application in the list', () => {
+        it('should update the project in the list', () => {
             const newState = dashboardReducer(initialState, action);
 
-            expect(newState.applications).toEqual({ ...newState.applications, [newApplication.id]: newApplication });
+            expect(newState.projects).toEqual({ ...newState.projects, [newProject.id]: newProject });
         });
     });
 
-    describe('DELETE_APPLICATION_SUCCESS', () => {
-        const action = new DeleteApplicationSuccessAction('2');
+    describe('DELETE_PROJECT_SUCCESS', () => {
+        const action = new DeleteProjectSuccessAction('2');
 
-        it('should delete the application', () => {
+        it('should delete the project', () => {
             const newState = dashboardReducer(initialState, action);
 
-            expect(newState.applications['1']).not.toBe(undefined);
-            expect(newState.applications['2']).toBe(undefined);
-            expect(newState.applications['3']).not.toBe(undefined);
+            expect(newState.projects['1']).not.toBe(undefined);
+            expect(newState.projects['2']).toBe(undefined);
+            expect(newState.projects['3']).not.toBe(undefined);
         });
     });
 
-    describe('UPLOAD_APPLICATION_SUCCESS', () => {
-        const application = {
+    describe('UPLOAD_PROJECT_SUCCESS', () => {
+        const project = {
             id: '4',
             name: 'test'
         };
 
-        const action = new UploadApplicationSuccessAction(application);
+        const action = new UploadProjectSuccessAction(project);
 
-        it('shoudl add a new application to the state', () => {
+        it('shoudl add a new project to the state', () => {
             const newState = dashboardReducer(initialState, action);
-            expect(newState.applications['4']).not.toBe(undefined);
+            expect(newState.projects['4']).not.toBe(undefined);
         });
     });
 });

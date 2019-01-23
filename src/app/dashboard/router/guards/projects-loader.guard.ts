@@ -15,16 +15,22 @@
  * limitations under the License.
  */
 
-import { Application, APPLICATION } from 'ama-sdk';
+import { Injectable } from '@angular/core';
+import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 
-export const mockApplication: Application = {
-    id: 'app-id',
-    name: 'app-name',
-    description: 'description',
-    version: '0.0.1',
-    type: APPLICATION,
-    createdBy: 'user',
-    creationDate: new Date(),
-    lastModifiedBy: 'user',
-    lastModifiedDate: new Date()
-};
+import { Observable } from 'rxjs';
+import { of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { ShowProjectsAction } from '../../store/actions/projects';
+import { AmaState } from 'ama-sdk';
+
+@Injectable()
+export class ProjectsLoaderGuard implements CanActivate {
+
+    constructor(private store: Store<AmaState>) { }
+
+    canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
+        this.store.dispatch(new ShowProjectsAction());
+        return of(true);
+    }
+}

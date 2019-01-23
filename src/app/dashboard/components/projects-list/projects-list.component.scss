@@ -1,4 +1,4 @@
-@mixin ama-applications-list($theme) {
+@mixin ama-projects-list($theme) {
     $primary: map-get($theme, primary);
     $accent: map-get($theme, accent);
     $foreground: map-get($theme, foreground);

@@ -16,9 +16,9 @@
                         <mat-cell
                             *matCellDef="let element"
                             (click)="rowSelected(element)"
-                            [attr.data-automation-id]="'application-' + element.id"
-                            [attr.data-application-id]="element.id"
-                            [attr.data-application-name]="element.name">
+                            [attr.data-automation-id]="'project-' + element.id"
+                            [attr.data-project-id]="element.id"
+                            [attr.data-project-name]="element.name">
                             <span> {{element.name}} </span>
                         </mat-cell>
                     </ng-container>
@@ -41,14 +41,14 @@
                     <ng-container matColumnDef="menu">
                         <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_OPTIONS' | translate }}</mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            <button mat-icon-button [matMenuTriggerFor]="menu" [attr.data-automation-id]="'application-context-' + element.id">
+                            <button mat-icon-button [matMenuTriggerFor]="menu" [attr.data-automation-id]="'project-context-' + element.id">
                                 <mat-icon>more_vert</mat-icon>
                             </button>
                             <mat-menu #menu="matMenu">
-                                <button mat-menu-item (click)="editRow(element)" [attr.data-automation-id]="'application-edit-' + element.id">
+                                <button mat-menu-item (click)="editRow(element)" [attr.data-automation-id]="'project-edit-' + element.id">
                                     <mat-icon>create</mat-icon> <span>{{ 'APP.MENU.EDIT' | translate }}</span>
                                 </button>
-                                <button mat-menu-item (click)="deleteRow(element)" [attr.data-automation-id]="'application-delete-' + element.id">
+                                <button mat-menu-item (click)="deleteRow(element)" [attr.data-automation-id]="'project-delete-' + element.id">
                                     <mat-icon>delete</mat-icon> <span>{{ 'APP.MENU.DELETE' | translate }}</span>
                                 </button>
                             </mat-menu>

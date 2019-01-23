@@ -17,29 +17,29 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Application, AmaApi, EntityDialogForm } from 'ama-sdk';
+import { Project, AmaApi, EntityDialogForm } from 'ama-sdk';
 
 @Injectable()
 export class DashboardService {
     constructor(private amaApi: AmaApi) {}
 
-    fetchApplications(): Observable<Partial<Application>[]> {
-        return this.amaApi.Application.getAll();
+    fetchProjects(): Observable<Partial<Project>[]> {
+        return this.amaApi.Project.getAll();
     }
 
-    createApplication(form: Partial<EntityDialogForm>): Observable<Partial<Application>> {
-        return this.amaApi.Application.create(form);
+    createProject(form: Partial<EntityDialogForm>): Observable<Partial<Project>> {
+        return this.amaApi.Project.create(form);
     }
 
-    updateApplication(applicationId: string, form: Partial<EntityDialogForm>): Observable<Partial<Application>> {
-        return this.amaApi.Application.update(applicationId, form);
+    updateProject(projectId: string, form: Partial<EntityDialogForm>): Observable<Partial<Project>> {
+        return this.amaApi.Project.update(projectId, form);
     }
 
-    deleteApplication(applicationId: string): Observable<void> {
-        return this.amaApi.Application.delete(applicationId);
+    deleteProject(projectId: string): Observable<void> {
+        return this.amaApi.Project.delete(projectId);
     }
 
-    importApplication(file: File): Observable<Partial<Application>> {
-        return this.amaApi.Application.import(file);
+    importProject(file: File): Observable<Partial<Project>> {
+        return this.amaApi.Project.import(file);
     }
 }

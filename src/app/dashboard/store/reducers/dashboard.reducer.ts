@@ -19,44 +19,44 @@ import { Action } from '@ngrx/store';
 import {
     DashboardState,
     INITIAL_DASHBOARD_STATE,
-    ApplicationSummaryEntities
+    ProjectSummaryEntities
 } from '../state/dashboard.state';
 import {
-    GET_APPLICATIONS_SUCCESS,
-    GetApplicationsSuccessAction,
-    CreateApplicationSuccessAction,
-    CREATE_APPLICATION_SUCCESS,
-    UPDATE_APPLICATION_SUCCESS,
-    UpdateApplicationSuccessAction,
-    DELETE_APPLICATION_SUCCESS,
-    DeleteApplicationSuccessAction,
-    UploadApplicationSuccessAction,
-    UPLOAD_APPLICATION_SUCCESS
-} from '../actions/applications';
+    GET_PROJECTS_SUCCESS,
+    GetProjectsSuccessAction,
+    CreateProjectSuccessAction,
+    CREATE_PROJECT_SUCCESS,
+    UPDATE_PROJECT_SUCCESS,
+    UpdateProjectSuccessAction,
+    DELETE_PROJECT_SUCCESS,
+    DeleteProjectSuccessAction,
+    UploadProjectSuccessAction,
+    UPLOAD_PROJECT_SUCCESS
+} from '../actions/projects';
 
 export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE, action: Action): DashboardState {
     let newState: DashboardState;
 
     switch (action.type) {
 
-        case GET_APPLICATIONS_SUCCESS:
-            newState = setApplications(state, <GetApplicationsSuccessAction>action);
+        case GET_PROJECTS_SUCCESS:
+            newState = setProjects(state, <GetProjectsSuccessAction>action);
             break;
 
-        case CREATE_APPLICATION_SUCCESS:
-            newState = createApplication(state, <CreateApplicationSuccessAction>action);
+        case CREATE_PROJECT_SUCCESS:
+            newState = createProject(state, <CreateProjectSuccessAction>action);
             break;
 
-        case UPDATE_APPLICATION_SUCCESS:
-            newState = updateApplication(state, <UpdateApplicationSuccessAction>action);
+        case UPDATE_PROJECT_SUCCESS:
+            newState = updateProject(state, <UpdateProjectSuccessAction>action);
             break;
 
-        case DELETE_APPLICATION_SUCCESS:
-            newState = deleteApplication(state, <DeleteApplicationSuccessAction>action);
+        case DELETE_PROJECT_SUCCESS:
+            newState = deleteProject(state, <DeleteProjectSuccessAction>action);
             break;
 
-        case UPLOAD_APPLICATION_SUCCESS:
-            newState = uploadApplication(state, <UploadApplicationSuccessAction> action);
+        case UPLOAD_PROJECT_SUCCESS:
+            newState = uploadProject(state, <UploadProjectSuccessAction> action);
             break;
 
         default:
@@ -66,51 +66,51 @@ export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE
     return newState;
 }
 
-function setApplications(state: DashboardState, action: GetApplicationsSuccessAction): DashboardState {
+function setProjects(state: DashboardState, action: GetProjectsSuccessAction): DashboardState {
     const newState = Object.assign({}, state);
-    newState.applicationsLoaded = true;
-    newState.applications = action.payload.reduce<ApplicationSummaryEntities>((applications, application) => {
-        return { ...applications, [application.id]: application };
+    newState.projectsLoaded = true;
+    newState.projects = action.payload.reduce<ProjectSummaryEntities>((projects, project) => {
+        return { ...projects, [project.id]: project };
     }, {});
 
     return newState;
 }
 
-function createApplication(state: DashboardState, action: CreateApplicationSuccessAction): DashboardState {
+function createProject(state: DashboardState, action: CreateProjectSuccessAction): DashboardState {
     const newState = Object.assign({}, state);
-    const application = action.payload;
-    newState.applications = {
-        ...state.applications,
-        [application.id]: application
+    const project = action.payload;
+    newState.projects = {
+        ...state.projects,
+        [project.id]: project
     };
     return newState;
 }
 
-function updateApplication(state: DashboardState, action: UpdateApplicationSuccessAction): DashboardState {
+function updateProject(state: DashboardState, action: UpdateProjectSuccessAction): DashboardState {
     const newState = Object.assign({}, state);
-    const application = action.payload;
-    newState.applications = {
-        ...state.applications,
-        [application.id]: { ...newState.applications[application.id], ...application }
+    const project = action.payload;
+    newState.projects = {
+        ...state.projects,
+        [project.id]: { ...newState.projects[project.id], ...project }
     };
     return newState;
 }
 
-function deleteApplication(state: DashboardState, action: DeleteApplicationSuccessAction): DashboardState {
+function deleteProject(state: DashboardState, action: DeleteProjectSuccessAction): DashboardState {
     const newState = { ...state };
 
-    newState.applications = { ...state.applications };
-    delete newState.applications[action.payload];
+    newState.projects = { ...state.projects };
+    delete newState.projects[action.payload];
 
     return newState;
 }
 
-function uploadApplication(state: DashboardState, action: UploadApplicationSuccessAction): DashboardState {
+function uploadProject(state: DashboardState, action: UploadProjectSuccessAction): DashboardState {
     const newState = Object.assign({}, state);
-    const application = action.payload;
-    newState.applications = {
-        ...state.applications,
-        [application.id]: application
+    const project = action.payload;
+    newState.projects = {
+        ...state.projects,
+        [project.id]: project
     };
     return newState;
 }
