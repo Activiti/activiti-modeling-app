@@ -1,0 +1,20 @@
+@mixin ama-project-tree-icons($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+
+    .project-tree-icons {
+        height: 48px;
+        padding: 0 0 0 8px;
+        display: flex;
+        align-items: center;
+
+        .project-tree-icon {
+            color: mat-color($primary);
+            cursor: pointer;
+
+            &:hover {
+                color: mat-color($accent);
+            }
+        }
+    }
+}

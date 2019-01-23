@@ -1,0 +1,15 @@
+@mixin ama-project-tree($theme) {
+    .project-tree {
+        .mat-expansion-panel {
+            background: transparent;
+
+            &-spacing {
+                margin: 0;
+            }
+
+            &:not([class*=mat-elevation-z]) {
+                box-shadow: none;
+            }
+        }
+    }
+}

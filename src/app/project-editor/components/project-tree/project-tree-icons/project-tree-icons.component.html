@@ -1,0 +1,6 @@
+<ng-container *ngFor="let filter of filters">
+    <div class="project-tree-icons">
+        <mat-icon class="project-tree-icon" data-automation-class="project-tree-icon"
+            (click)="onFilterIconClicked(filter.type)">{{ filter.icon }}</mat-icon>
+    </div>
+</ng-container>
