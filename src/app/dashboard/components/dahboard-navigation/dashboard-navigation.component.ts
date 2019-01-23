@@ -58,9 +58,9 @@ export class DashboardNavigationComponent implements OnInit {
 
     public openProjectDialog() {
         this.store.dispatch(new OpenEntityDialogAction({
-            title: 'APP.HOME.NEW_MENU.CREATE_APP_TITLE',
-            nameField: 'APP.HOME.DIALOGS.APP_NAME',
-            descriptionField: 'APP.HOME.DIALOGS.APP_DESC',
+            title: 'APP.HOME.NEW_MENU.CREATE_PROJECT_TITLE',
+            nameField: 'APP.HOME.DIALOGS.PROJECT_NAME',
+            descriptionField: 'APP.HOME.DIALOGS.PROJECT_DESC',
             action: CreateProjectAttemptAction
         }));
     }

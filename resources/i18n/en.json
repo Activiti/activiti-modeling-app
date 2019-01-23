@@ -23,7 +23,7 @@
                 "SUBTITLE": "Are you sure that you want to do this action?",
                 "BUTTON": "Confirm",
                 "CUSTOM": {
-                    "APPLICATION": "Are you sure that you want to delete this project?",
+                    "PROJECT": "Are you sure that you want to delete this project?",
                     "PROCESS": "Are you sure that you want to delete this process?",
                     "FORM": "Are you sure that you want to delete this form?",
                     "UI": "Are you sure that you want to delete this ui?",
@@ -44,23 +44,23 @@
         "HOME": {
             "NEW_MENU": {
                 "LABEL": "Create new",
-                "CREATE_APP_TITLE": "Create new project",
-                "EDIT_APP_TITLE": "Edit project",
-                "APP_CREATED": "The project was successfully created",
-                "APP_UPLOADED": "The project was successfully uploaded",
-                "APP_UPDATED": "The project was successfully updated",
-                "APP_DELETED": "The project was successfully deleted",
+                "CREATE_PROJECT_TITLE": "Create new project",
+                "EDIT_PROJECT_TITLE": "Edit project",
+                "PROJECT_CREATED": "The project was successfully created",
+                "PROJECT_UPLOADED": "The project was successfully uploaded",
+                "PROJECT_UPDATED": "The project was successfully updated",
+                "PROJECT_DELETED": "The project was successfully deleted",
                 "MENU_ITEMS": {
-                    "CREATE_APP": "Project",
-                    "UPLOAD_APP": "Upload project"
+                    "CREATE_PROJECT": "Project",
+                    "UPLOAD_PROJECT": "Upload project"
                 }
             },
             "DIALOGS": {
-                "APP_NAME": "Project name",
-                "APP_DESC": "Project description"
+                "PROJECT_NAME": "Project name",
+                "PROJECT_DESC": "Project description"
             },
             "NAVIGATION": {
-                "APPLICATIONS": {
+                "PROJECTS": {
                     "LABEL": "Projects",
                     "TOOLTIP": "Published projects"
                 },
@@ -81,14 +81,14 @@
                 "COLUMN_OPTIONS": "Options",
                 "NO_ITEMS": "You don't have any items in this list yet.",
                 "NO_FAV_PROCESSES": "You don't have any favourited process yet",
-                "NO_FAV_APPLICATIONS": "You don't have any favourited project yet"
+                "NO_FAV_PROJECTS": "You don't have any favourited project yet"
             },
             "ERROR": {
-                "LOAD_APPLICATIONS": "Unknown error happened during the loading of projects.",
+                "LOAD_PROJECTS": "Unknown error happened during the loading of projects.",
                 "LOAD_PROCESSES": "Unknown error happened during the loading of processes."
             }
         },
-        "APPLICATION": {
+        "PROJECT": {
             "BACKTO": "Projects",
             "UPLOAD_FILE": "Upload file",
             "UPLOAD_FILE_SUCCESS": "The file was successfully uploaded",
@@ -178,7 +178,7 @@
             },
             "ERROR": {
                 "UPLOAD_FILE": "Upload error.",
-                "DELETE_APPLICATION": "Unknown error happened during the deleting the project.",
+                "DELETE_PROJECT": "Unknown error happened during the deleting the project.",
                 "CHANGE_FAVORITE": "Unknown error happened during the changing favorite state of the project.",
                 "DELETE_PROCESS": "Unknown error happened during the deleting the process.",
                 "LOAD_MODELS": "Unknown error happened while loading the models.",
@@ -230,19 +230,19 @@
                     "DUPLICATION": "Data object with the same name already exists",
                     "GENERAL": "Unknown error happened during the updating the data object."
                 },
-                "CREATE_APPLICATION": {
+                "CREATE_PROJECT": {
                     "DUPLICATION": "Project with the same name already exists",
                     "GENERAL": "Unknown error happened during the creating a new project."
                 },
-                "UPDATE_APPLICATION": {
+                "UPDATE_PROJECT": {
                     "DUPLICATION": "Project with the same name already exists",
                     "GENERAL": "Unknown error happened during the updating the project."
                 },
-                "UPLOAD_APPLICATION": {
+                "UPLOAD_PROJECT": {
                     "DUPLICATION": "Project with the same name already exists",
                     "GENERAL": "Unknown error happened during the upload of the project."
                 },
-                "GET_APPLICATION": "Unknown error happened during the loading of project."
+                "GET_PROJECT": "Unknown error happened during the loading of project."
             }
         },
         "PROCESS_EDITOR": {

@@ -110,7 +110,7 @@ export class ProjectsEffects extends BaseEffects {
         return this.dashboardService.deleteProject(projectId).pipe(
             switchMap(() => [
                 new DeleteProjectSuccessAction(projectId),
-                new SnackbarInfoAction('APP.HOME.NEW_MENU.APP_DELETED')
+                new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED')
             ]),
             catchError<any, SnackbarErrorAction>(e =>
                 this.genericErrorHandler(
@@ -125,7 +125,7 @@ export class ProjectsEffects extends BaseEffects {
         return this.dashboardService.updateProject(projectId, form).pipe(
             switchMap(project => [
                 new UpdateProjectSuccessAction(project),
-                new SnackbarInfoAction('APP.HOME.NEW_MENU.APP_UPDATED')
+                new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_UPDATED')
             ]),
             catchError<any, SnackbarErrorAction>(e =>
                 this.genericErrorHandler(this.handleProjectUpdateError.bind(this, e), e)
@@ -137,7 +137,7 @@ export class ProjectsEffects extends BaseEffects {
         return this.dashboardService.createProject(form).pipe(
             switchMap(project => [
                 new CreateProjectSuccessAction(project),
-                new SnackbarInfoAction('APP.HOME.NEW_MENU.APP_CREATED')
+                new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_CREATED')
             ]),
             catchError<any, SnackbarErrorAction>(e =>
                 this.genericErrorHandler(this.handleProjectCreateError.bind(this, e), e)
@@ -158,7 +158,7 @@ export class ProjectsEffects extends BaseEffects {
         return this.dashboardService.importProject(file).pipe(
             switchMap(project => [
                 new UploadProjectSuccessAction(project),
-                new SnackbarInfoAction('APP.HOME.NEW_MENU.APP_UPLOADED')
+                new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_UPLOADED')
             ]),
             catchError<any, SnackbarErrorAction>(e =>
                 this.genericErrorHandler(this.handleProjectUploadError.bind(this, e), e)

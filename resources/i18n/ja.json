@@ -20,7 +20,7 @@
                 "SUBTITLE": "この操作を行ってもよろしいですか？",
                 "BUTTON": "確認",
                 "CUSTOM": {
-                    "APPLICATION": "このアプリケーションを削除しても問題ありませんか？",
+                    "PROJECT": "このアプリケーションを削除しても問題ありませんか？",
                     "PROCESS": "このプロセスを削除しても問題ありませんか？",
                     "UNSAVED_PAGE": "このままページを移動しますか? 行った変更が保存されていません。"
                 }
@@ -33,23 +33,23 @@
         "HOME": {
             "NEW_MENU": {
                 "LABEL": "新規作成",
-                "CREATE_APP_TITLE": "新しいアプリケーションの作成",
-                "EDIT_APP_TITLE": "アプリケーションの編集",
-                "APP_CREATED": "アプリケーションの作成に成功しました。",
-                "APP_UPLOADED": "アプリケーションのアップロードに成功しました。",
-                "APP_UPDATED": "アプリケーションの更新に成功しました。",
-                "APP_DELETED": "アプリケーションの削除に成功しました。",
+                "CREATE_PROJECT_TITLE": "新しいアプリケーションの作成",
+                "EDIT_PROJECT_TITLE": "アプリケーションの編集",
+                "PROJECT_CREATED": "アプリケーションの作成に成功しました。",
+                "PROJECT_UPLOADED": "アプリケーションのアップロードに成功しました。",
+                "PROJECT_UPDATED": "アプリケーションの更新に成功しました。",
+                "PROJECT_DELETED": "アプリケーションの削除に成功しました。",
                 "MENU_ITEMS": {
-                    "CREATE_APP": "アプリケーション",
-                    "UPLOAD_APP": "アップロード"
+                    "CREATE_PROJECT": "アプリケーション",
+                    "UPLOAD_PROJECT": "アップロード"
                 }
             },
             "DIALOGS": {
-                "APP_NAME": "アプリケーション名",
-                "APP_DESC": "アプリケーションの説明"
+                "PROJECT_NAME": "アプリケーション名",
+                "PROJECT_DESC": "アプリケーションの説明"
             },
             "NAVIGATION": {
-                "APPLICATIONS": {
+                "PROJECTS": {
                     "LABEL": "アプリケーション",
                     "TOOLTIP": "アプリケーションの公開"
                 },
@@ -67,11 +67,11 @@
                 "NO_ITEMS": "あなたのアイテムは、まだこのリストに存在しません。"
             },
             "ERROR": {
-                "LOAD_APPLICATIONS": "アプリケーションの読み込み中に予期せぬエラーが発生しました。.",
+                "LOAD_PROJECTS": "アプリケーションの読み込み中に予期せぬエラーが発生しました。.",
                 "LOAD_PROCESSES": "プロセスの読み込み中に予期せぬエラーが発生しました。"
             }
         },
-        "APPLICATION": {
+        "PROJECT": {
             "BACKTO": "アプリケーション",
             "UPLOAD_FILE": "ファイルのアップロード",
             "UPLOAD_FILE_SUCCESS": "ファイルのアップロードに成功しました。",
@@ -98,7 +98,7 @@
             },
             "ERROR": {
                 "UPLOAD_FILE": "アップロードエラー",
-                "DELETE_APPLICATION": "アプリケーションの削除処理にて予期せぬエラーが発生しました。",
+                "DELETE_PROJECT": "アプリケーションの削除処理にて予期せぬエラーが発生しました。",
                 "DELETE_PROCESS": "プロセスの削除処理にて予期せぬエラーが発生しました。",
                 "LOAD_MODELS": "モデルの読み込み中に予期せぬエラーが発生しました。",
                 "CREATE_PROCESS": {
@@ -109,19 +109,19 @@
                     "DUPLICATION": "同じプロセスのアプリケーションがすでに存在します。",
                     "GENERAL": "プロセスの更新中に予期せぬエラーが発生しました。"
                 },
-                "CREATE_APPLICATION": {
+                "CREATE_PROJECT": {
                     "DUPLICATION": "同じ名前のアプリケーションがすでに存在します。",
                     "GENERAL": "アプリケーションの作成中に予期せぬエラーが発生しました。"
                 },
-                "UPDATE_APPLICATION": {
+                "UPDATE_PROJECT": {
                     "DUPLICATION": "同じ名前のアプリケーションがすでに存在します。",
                     "GENERAL": "アプリケーションの更新中に予期せぬエラーが発生しました。"
                 },
-                "UPLOAD_APPLICATION": {
+                "UPLOAD_PROJECT": {
                     "DUPLICATION": "同じ名前のアプリケーションがすでに存在します。",
                     "GENERAL": "アプリケーションのアップロード中に予期せぬエラーが発生しました。"
                 },
-                "GET_APPLICATION": "アプリケーションの読み込み中に予期せぬエラーが発生しました。"
+                "GET_PROJECT": "アプリケーションの読み込み中に予期せぬエラーが発生しました。"
             }
         },
         "PROCESS_EDITOR": {
