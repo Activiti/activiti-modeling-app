@@ -22,3 +22,10 @@ export class GetConnectorAttemptAction implements Action {
     readonly type = GET_CONNECTOR_ATTEMPT;
     constructor(public connectorId: string) {}
 }
+
+export const LOAD_CONNECTOR_ATTEMPT = '[Conector] Load attempt';
+export class LoadConnectorAttemptAction implements Action {
+    readonly type = LOAD_CONNECTOR_ATTEMPT;
+    constructor(public connectorId: string) {}
+}
+
