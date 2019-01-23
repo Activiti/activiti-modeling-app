@@ -46,7 +46,6 @@ import {
 import { map, switchMap, catchError, mergeMap, take, withLatestFrom } from 'rxjs/operators';
 import {
     EntityDialogForm,
-    ModelOpenedAction,
     CONNECTOR,
     ModelClosedAction,
     OpenConfirmDialogAction,
@@ -247,8 +246,7 @@ export class ConnectorEditorEffects extends BaseEffects {
 
         return forkJoin(connectorDetails$, connectorContent$).pipe(
             switchMap(([connector, connectorContent]) => [
-                new GetConnectorSuccessAction(connector, connectorContent),
-                new ModelOpenedAction({id: connector.id, type: connector.type})
+                new GetConnectorSuccessAction(connector, connectorContent)
             ]),
             catchError<any, SnackbarErrorAction>(e =>
                 this.genericErrorHandler(this.handleError.bind(this, 'APP.CONNECTOR_EDITOR.ERRORS.GET_CONNECTOR'), e)
