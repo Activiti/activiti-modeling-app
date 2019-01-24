@@ -25,7 +25,7 @@ import { ProjectEditorService } from '../../services/project-editor.service';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { LogService, AlfrescoApiService, AlfrescoApiServiceMock } from '@alfresco/adf-core';
 import { Router } from '@angular/router';
-import { ExportProjectAction } from '../actions/project';
+import { ExportProjectAction } from '../project-editor.actions';
 import { hot, getTestScheduler, cold } from 'jasmine-marbles';
 
 describe('Project Effects', () => {
