@@ -198,7 +198,7 @@ export class ProcessEditorEffects extends BaseEffects {
             appId
         ).pipe(
             switchMap(() => [
-                new UpdateProcessSuccessAction(payload),
+                new UpdateProcessSuccessAction({ id: payload.processId, changes: payload.metadata }, payload.content),
                 new SetAppDirtyStateAction(false),
                 new SnackbarInfoAction('APP.PROCESS_EDITOR.PROCESS_UPDATED')
             ]),

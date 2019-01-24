@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-import { Update } from '@ngrx/entity';
 import { Action } from '@ngrx/store';
 import {
     GET_PROCESSES_ATTEMPT,
@@ -32,7 +31,7 @@ import {
 } from './process-editor.actions';
 import { UPDATE_PROCESS_VARIABLES, UpdateProcessVariablesAction } from './process-variables.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState, processAdapter } from './process-entities.state';
-import { Process, UPDATE_SERVICE_PARAMETERS, UpdateServiceParametersAction, LEAVE_APPLICATION } from 'ama-sdk';
+import { UPDATE_SERVICE_PARAMETERS, UpdateServiceParametersAction, LEAVE_APPLICATION } from 'ama-sdk';
 
 const cloneDeep = require('lodash/cloneDeep');
 
@@ -126,12 +125,13 @@ function getProcessesSuccess(state: ProcessEntitiesState, action: GetProcessesSu
 }
 
 function updateProcess(state: ProcessEntitiesState, action: UpdateProcessSuccessAction): ProcessEntitiesState {
-    const newState = cloneDeep(state);
+    const newState = {
+        ...state,
+        entityContents: {
+            ...state.entityContents,
+            [action.payload.id]: action.content
+        }
+    };
 
-    newState.entityContents[action.payload.processId] = action.payload.content;
-
-    return processAdapter.updateOne(<Update<Partial<Process>>>{
-        id: action.payload.processId,
-        ...action.payload.metadata
-    }, newState);
+    return processAdapter.updateOne({ ...action.payload, changes: action.payload.changes }, newState);
 }
