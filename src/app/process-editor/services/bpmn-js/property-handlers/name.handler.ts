@@ -16,11 +16,16 @@
  */
 
  import { BpmnProperty } from 'ama-sdk';
+import { BpmnElement } from '../../bpmn/elements';
+import { sanitizeString } from 'ama-sdk';
 
 const propertyKey = BpmnProperty.name;
 
 const get = element => element.businessObject[propertyKey];
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
+    if (element.type === BpmnElement.Process) {
+        value = sanitizeString(value);
+    }
     modeling.updateProperties(element, {
         [propertyKey]: value
     });
