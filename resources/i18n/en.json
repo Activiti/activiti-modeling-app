@@ -341,7 +341,8 @@
                 "DEPENDS": "Depends on",
                 "OPERATOR": "If it's",
                 "VALUE": "Value",
-                "NEXT_CONDITION": "Next condition operator"
+                "NEXT_CONDITION": "Next condition operator",
+                "NO_PROPERTY": "No property selected"
             },
             "FIELD_PROPERTIES": {
                 "DESCRIPTION": "Description",
