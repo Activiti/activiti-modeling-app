@@ -20,6 +20,7 @@ import { Process, ProcessContent, UpdateServiceParametersAction } from 'ama-sdk'
 import { EntityDialogForm } from 'ama-sdk';
 import { UploadFileAttemptPayload } from 'ama-sdk';
 import { SelectedProcessElement } from './process-editor.state';
+import { Update } from '@ngrx/entity';
 
 export const SHOW_PROCESSES = '[App Tree] Show Processes';
 export class ShowProcessesAction implements Action {
@@ -118,7 +119,7 @@ export class UpdateProcessAttemptAction implements Action {
 export const UPDATE_PROCESS_SUCCESS = '[Process] Update success';
 export class UpdateProcessSuccessAction implements Action {
     readonly type = UPDATE_PROCESS_SUCCESS;
-    constructor(public payload: UpdateProcessPayload) {}
+    constructor(public payload: Update<Partial<Process>>, public content: string) {}
 }
 
 export interface DownloadProcessPayload {

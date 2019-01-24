@@ -112,11 +112,8 @@ describe('ProcessEntitiesReducer', () => {
         };
         action = <UpdateProcessSuccessAction>{
             type: UPDATE_PROCESS_SUCCESS,
-            payload: {
-                processId: process.id,
-                content: '',
-                metadata: changes
-            }
+            payload: changes,
+            content: ''
         };
 
         const newState = processEntitiesReducer(stateWithAddedProcesses, action);

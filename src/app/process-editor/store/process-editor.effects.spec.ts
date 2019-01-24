@@ -162,7 +162,7 @@ describe('ProcessEditorEffects', () => {
             actions$ = hot('a', { a: new UpdateProcessAttemptAction(mockActionPayload) });
 
             const expected = cold('(bcd)', {
-                b: new UpdateProcessSuccessAction(mockActionPayload),
+                b: new UpdateProcessSuccessAction({id: mockProcess.id, changes: mockActionPayload.metadata}, mockActionPayload.content),
                 c: new SetAppDirtyStateAction(false),
                 d: new SnackbarInfoAction('APP.PROCESS_EDITOR.PROCESS_UPDATED')
             });
