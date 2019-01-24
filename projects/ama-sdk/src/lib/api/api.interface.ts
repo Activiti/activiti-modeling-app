@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { ApplicationApi } from './application-api.interface';
+import { ProjectApi } from './project-api.interface';
 import { ModelApiInterface } from './generalmodel-api.interface';
 import {
     Process,
@@ -35,7 +35,7 @@ import {
 
 @Injectable()
 export abstract class AmaApi {
-    public Application: ApplicationApi;
+    public Project: ProjectApi;
     public Process: ModelApiInterface<Process, ProcessContent>;
     public Connector: ModelApiInterface<Connector, ConnectorContent>;
     public Form: ModelApiInterface<Form, FormContent>;

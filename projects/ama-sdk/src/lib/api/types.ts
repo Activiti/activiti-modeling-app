@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-export type APPLICATION_TYPE = 'application';
+export type PROJECT_TYPE = 'project';
 export type PROCESS_TYPE = 'process';
 export type FORM_TYPE = 'form';
 export type CONNECTOR_TYPE = 'connector';
@@ -24,7 +24,7 @@ export type DECISION_TABLE_TYPE = 'decision';
 export type UI_TYPE = 'ui';
 export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DATA_TYPE | DECISION_TABLE_TYPE | UI_TYPE;
 
-export const APPLICATION: APPLICATION_TYPE = 'application';
+export const PROJECT: PROJECT_TYPE = 'project';
 export const PROCESS: PROCESS_TYPE = 'process';
 export const FORM: FORM_TYPE = 'form';
 export const CONNECTOR: CONNECTOR_TYPE = 'connector';
@@ -33,8 +33,8 @@ export const DECISION_TABLE: DECISION_TABLE_TYPE = 'decision';
 export const UI: UI_TYPE = 'ui';
 export type FilterType = Process | Connector | Form | Data | DecisionTable | Ui;
 
-export interface Application {
-    type: APPLICATION_TYPE;
+export interface Project {
+    type: PROJECT_TYPE;
     id: string;
     name: string;
     creationDate: Date;

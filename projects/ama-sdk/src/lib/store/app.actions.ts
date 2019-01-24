@@ -65,8 +65,8 @@ export class OpenFilterAction implements Action {
     constructor(public filterType: MODEL_TYPE) {}
 }
 
-export const LEAVE_APPLICATION = 'Leave application edititor';
-export class LeaveApplicationAction implements Action {
-    readonly type = LEAVE_APPLICATION;
+export const LEAVE_PROJECT = 'Leave project edititor';
+export class LeaveProjectAction implements Action {
+    readonly type = LEAVE_PROJECT;
     constructor() {}
 }

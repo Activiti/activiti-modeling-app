@@ -27,7 +27,7 @@ import {
     AmaState,
     SnackbarErrorAction,
     EntityDialogForm,
-    selectApplicationCrumb,
+    selectProjectCrumb,
     ProcessContent,
     selectSelectedProcess,
 } from 'ama-sdk';
@@ -55,7 +55,7 @@ export class ProcessEditorComponent implements OnInit {
 
         this.breadcrumbs$ = combineLatest(
             of({ url: '/home', name: 'Dashboard' }),
-            this.store.select(selectApplicationCrumb).pipe(filter(value => value !== null)),
+            this.store.select(selectProjectCrumb).pipe(filter(value => value !== null)),
             this.store.select(selectProcessCrumb).pipe(filter(value => value !== null))
         );
     }

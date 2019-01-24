@@ -17,7 +17,7 @@
 
 import { createSelector } from '@ngrx/store';
 import { AmaState, AppState } from './app.state';
-import { selectApplication } from './application.selectors';
+import { selectProject } from './project.selectors';
 
 export const selectApp = (state: AmaState) => state.app;
 
@@ -26,8 +26,8 @@ export const selectSelectedAppId = createSelector(selectApp, (state: AppState) =
 export const selectAppDirtyState = createSelector(selectApp, (state: AppState) => state.dirtyState);
 export const selectOpenedModel = createSelector(selectApp, (state: AppState) => state.openedModel);
 
-export const selectApplicationCrumb = createSelector(selectApplication, application => {
-    return application ? { url: `/applications/${application.id}`, name: application.name } : null;
+export const selectProjectCrumb = createSelector(selectProject, project => {
+    return project ? { url: `/projects/${project.id}`, name: project.name } : null;
 });
 
 export const selectSelectedModelIdFor = function(modelType: string) {

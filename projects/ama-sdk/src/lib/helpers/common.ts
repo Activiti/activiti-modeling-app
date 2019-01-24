@@ -19,7 +19,7 @@ export interface EntityDialogForm {
     id?: string;
     name: string;
     description?: string;
-    applicationId?: string;
+    projectId?: string;
 }
 
 export interface BreadcrumbItem {
@@ -29,7 +29,7 @@ export interface BreadcrumbItem {
 
 export interface UploadFileAttemptPayload {
     file: File;
-    applicationId: string;
+    projectId: string;
 }
 
 export interface EntityDialogPayload {

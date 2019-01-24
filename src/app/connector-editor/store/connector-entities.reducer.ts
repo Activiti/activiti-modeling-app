@@ -36,7 +36,7 @@ import {
     ConnectorEntitiesState,
     connectorEntityAdapter
 } from 'ama-sdk';
-import { LEAVE_APPLICATION } from 'ama-sdk';
+import { LEAVE_PROJECT } from 'ama-sdk';
 import { Action } from '@ngrx/store';
 
 export function connectorEntitiesReducer(
@@ -64,7 +64,7 @@ export function connectorEntitiesReducer(
 
         case GET_CONNECTOR_SUCCESS:
             return getConnectorSuccess(state, <GetConnectorSuccessAction>action);
-        case LEAVE_APPLICATION:
+        case LEAVE_PROJECT:
             return {
                 ...state,
                 loaded: false

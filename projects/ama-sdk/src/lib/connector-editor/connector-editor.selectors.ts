@@ -26,10 +26,10 @@ export const selectConnectorsEntityContainer = createSelector(getEntitiesState, 
 export const selectConnectorEntities = createSelector(selectConnectorsEntityContainer, state => state.entities);
 export const selectConnectorEntityContents = createSelector(selectConnectorsEntityContainer, state => state.entityContents);
 
-export const selectApplicationConnectorsArray = createSelector(
+export const selectProjectConnectorsArray = createSelector(
     selectConnectorEntities,
     selectSelectedAppId,
-    (connectors, selectedAppId) => Object.values(connectors).filter((connector: Connector) => connector.applicationId === selectedAppId)
+    (connectors, selectedAppId) => Object.values(connectors).filter((connector: Connector) => connector.projectId === selectedAppId)
 );
 
 export const connectorByName = name => createSelector(

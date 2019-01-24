@@ -43,7 +43,7 @@
     </button>
 </div>
 
-<ng-container *ngIf="showForm; else noApplicationsTemplate">
+<ng-container *ngIf="showForm; else noProjectsTemplate">
     <div class="properties-form">
         <mat-form-field floatLabel="never">
             <input matInput placeholder="Name" [(ngModel)]="name" (keyup)="saveChanges()" data-automation-id="variable-name">
@@ -65,6 +65,6 @@
     </div>
 </ng-container>
 
-<ng-template #noApplicationsTemplate>
+<ng-template #noProjectsTemplate>
     <p class="no-properties">{{'SDK.VARIABLES_EDITOR.TABLE.NO_PROPERTIES' | translate}}</p>
 </ng-template>

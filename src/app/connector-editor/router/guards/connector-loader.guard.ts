@@ -21,12 +21,12 @@ import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { ApplicationEditorState, SetAppDirtyStateAction, LoadConnectorAttemptAction } from 'ama-sdk';
+import { ProjectEditorState, LoadConnectorAttemptAction, SetAppDirtyStateAction } from 'ama-sdk';
 
 @Injectable()
 export class ConnectorLoaderGuard implements CanActivate {
 
-    constructor(private store: Store<ApplicationEditorState>) { }
+    constructor(private store: Store<ProjectEditorState>) { }
 
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
         const connectorId = route.params.connectorId;

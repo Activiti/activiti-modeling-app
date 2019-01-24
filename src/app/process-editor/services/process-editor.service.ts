@@ -24,12 +24,12 @@ import { PROCESS_FILE_FORMAT, AmaApi, DownloadResourceService, Process, ProcessC
 export class ProcessEditorService {
     constructor(private amaApi: AmaApi, private downloadService: DownloadResourceService) {}
 
-    getAll(applicationId: string): Observable<Process[]> {
-        return this.amaApi.Process.getList(applicationId);
+    getAll(projectId: string): Observable<Process[]> {
+        return this.amaApi.Process.getList(projectId);
     }
 
-    create(form: Partial<EntityDialogForm>, applicationId: string): Observable<Process> {
-        return this.amaApi.Process.create(form, applicationId);
+    create(form: Partial<EntityDialogForm>, projectId: string): Observable<Process> {
+        return this.amaApi.Process.create(form, projectId);
     }
 
     delete(processId: string): Observable<any> {
@@ -37,19 +37,19 @@ export class ProcessEditorService {
     }
 
     upload(payload: UploadFileAttemptPayload): Observable<Process> {
-        return this.amaApi.Process.import(payload.file, payload.applicationId);
+        return this.amaApi.Process.import(payload.file, payload.projectId);
     }
 
-    update(processId: string, process: Process, processData: ProcessContent, applicationId: string): Observable<Partial<Process>> {
-        return this.amaApi.Process.update(processId, process, processData, applicationId);
+    update(processId: string, process: Process, processData: ProcessContent, projectId: string): Observable<Partial<Process>> {
+        return this.amaApi.Process.update(processId, process, processData, projectId);
     }
 
     validate(processId: string, diagramData: ProcessContent): Observable<any> {
         return this.amaApi.Process.validate(processId, diagramData);
     }
 
-    getDetails(processId: string, applicationId: string) {
-        return this.amaApi.Process.retrieve(processId, applicationId);
+    getDetails(processId: string, projectId: string) {
+        return this.amaApi.Process.retrieve(processId, projectId);
     }
 
     getDiagram(processId: string) {

@@ -1,0 +1,30 @@
+<div class="app-navigation">
+
+    <adf-sidebar-action-menu [title]="'APP.PROJECT.NEW_MENU.LABEL' | translate"
+        [expanded]="(expanded$ | async)"
+        class="app-navigation__section app-navigation__section--new"
+        [ngClass]="{ 'section--new--mini': !(expanded$ | async) }">
+        <mat-icon sidebar-menu-title-icon>arrow_drop_down</mat-icon>
+        <div sidebar-menu-expand-icon>
+            <mat-icon>add_box</mat-icon>
+        </div>
+        <div sidebar-menu-options>
+            <button
+                *ngFor="let creator of creators"
+                mat-menu-item
+                (click)="openModelCreationDialog(creator.dialog)">
+                <mat-icon>{{ creator.icon }}</mat-icon>
+                <span>{{ creator.name | translate }}</span>
+            </button>
+        </div>
+    </adf-sidebar-action-menu>
+
+    <div class="app-navigation__section app-navigation__section--menu">
+        <ng-container *ngIf="(expanded$ | async); else collapsedProjectTree">
+            <ama-project-tree></ama-project-tree>
+        </ng-container>
+        <ng-template #collapsedProjectTree>
+            <ama-project-tree-icons [projectId]="selectedAppId$ | async"></ama-project-tree-icons>
+        </ng-template>
+    </div>
+</div>

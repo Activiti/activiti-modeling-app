@@ -103,8 +103,8 @@ export class ConnectorEditorEffects extends BaseEffects {
     deleteConnectorSuccessEffect = this.actions$.pipe(
         ofType<DeleteConnectorSuccessAction>(DELETE_CONNECTOR_SUCCESS),
         mergeMap(() => this.store.select(selectSelectedAppId)),
-        map(applicationId => {
-            this.router.navigate(['/applications', applicationId]);
+        map(projectId => {
+            this.router.navigate(['/projects', projectId]);
         })
     );
 
@@ -146,11 +146,11 @@ export class ConnectorEditorEffects extends BaseEffects {
     @Effect()
     showConnectorsEffect = this.actions$.pipe(
         ofType<ShowConnectorsAction>(SHOW_CONNECTORS),
-        map(action => action.applicationId),
-        mergeMap(applicationId => zip(of(applicationId), this.store.select(selectConnectorsLoaded))),
-        mergeMap(([applicationId, loaded]) => {
+        map(action => action.projectId),
+        mergeMap(projectId => zip(of(projectId), this.store.select(selectConnectorsLoaded))),
+        mergeMap(([projectId, loaded]) => {
             if (!loaded) {
-                return of(new GetConnectorsAttemptAction(applicationId));
+                return of(new GetConnectorsAttemptAction(projectId));
             } else {
                 return of();
             }
@@ -160,7 +160,7 @@ export class ConnectorEditorEffects extends BaseEffects {
     @Effect()
     getConnectorsEffect = this.actions$.pipe(
         ofType<GetConnectorsAttemptAction>(GET_CONNECTORS_ATTEMPT),
-        mergeMap(action => this.getConnectors(action.applicationId))
+        mergeMap(action => this.getConnectors(action.projectId))
     );
 
     @Effect()
@@ -194,19 +194,19 @@ export class ConnectorEditorEffects extends BaseEffects {
         return this.connectorEditorService.upload({ ...payload, file }).pipe(
             switchMap((connector: Connector) => [
                 new CreateConnectorSuccessAction(connector),
-                new SnackbarInfoAction('APP.APPLICATION.UPLOAD_FILE_SUCCESS')
+                new SnackbarInfoAction('APP.PROJECT.UPLOAD_FILE_SUCCESS')
             ]),
             catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'APP.APPLICATION.ERROR.UPLOAD_FILE'), e)
+                this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.UPLOAD_FILE'), e)
             )
         );
     }
 
-    private getConnectors(applicationId: string): Observable<{} | GetConnectorsSuccessAction> {
-        return this.connectorEditorService.fetchAll(applicationId).pipe(
+    private getConnectors(projectId: string): Observable<{} | GetConnectorsSuccessAction> {
+        return this.connectorEditorService.fetchAll(projectId).pipe(
             mergeMap(connectors => of(new GetConnectorsSuccessAction(connectors))),
             catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'APP.APPLICATION.ERROR.LOAD_MODELS'), e)
+                this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.LOAD_MODELS'), e)
             )
         );
     }
@@ -215,7 +215,7 @@ export class ConnectorEditorEffects extends BaseEffects {
         return this.connectorEditorService.create(form, appId).pipe(
             mergeMap((connector) => [
                 new CreateConnectorSuccessAction(connector),
-                new SnackbarInfoAction('APP.APPLICATION.CONNECTOR_DIALOG.CONNECTOR_CREATED')
+                new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_CREATED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleConnectorCreationError.bind(this), e))
         );
@@ -227,7 +227,7 @@ export class ConnectorEditorEffects extends BaseEffects {
                 new DeleteConnectorSuccessAction(connectorId),
                 new ModelClosedAction({id: connectorId, type: CONNECTOR}),
                 new SetAppDirtyStateAction(false),
-                new SnackbarInfoAction('APP.APPLICATION.CONNECTOR_DIALOG.CONNECTOR_DELETED')
+                new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_DELETED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleConnectorUpdatingError.bind(this), e))
         );
@@ -237,7 +237,7 @@ export class ConnectorEditorEffects extends BaseEffects {
         return this.connectorEditorService.update(connector.id, connector, content, appId).pipe(
             mergeMap(() => [
                 new UpdateConnectorSuccessAction({ id: connector.id, changes: content }),
-                new SnackbarInfoAction('APP.APPLICATION.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
+                new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleConnectorUpdatingError.bind(this), e))
         );
@@ -262,9 +262,9 @@ export class ConnectorEditorEffects extends BaseEffects {
         let errorMessage;
 
         if (error.status === 409) {
-            errorMessage = 'APP.APPLICATION.ERROR.UPDATE_CONNECTOR.DUPLICATION';
+            errorMessage = 'APP.PROJECT.ERROR.UPDATE_CONNECTOR.DUPLICATION';
         } else {
-            errorMessage = 'APP.APPLICATION.ERROR.UPDATE_CONNECTOR.GENERAL';
+            errorMessage = 'APP.PROJECT.ERROR.UPDATE_CONNECTOR.GENERAL';
         }
 
         return of(new SnackbarErrorAction(errorMessage));
@@ -274,9 +274,9 @@ export class ConnectorEditorEffects extends BaseEffects {
         let errorMessage;
 
         if (error.status === 409) {
-            errorMessage = 'APP.APPLICATION.ERROR.CREATE_CONNECTOR.DUPLICATION';
+            errorMessage = 'APP.PROJECT.ERROR.CREATE_CONNECTOR.DUPLICATION';
         } else {
-            errorMessage = 'APP.APPLICATION.ERROR.CREATE_CONNECTOR.GENERAL';
+            errorMessage = 'APP.PROJECT.ERROR.CREATE_CONNECTOR.GENERAL';
         }
 
         return of(new SnackbarErrorAction(errorMessage));

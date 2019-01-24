@@ -16,16 +16,16 @@
  */
 
 import { Routes } from '@angular/router';
-import { ApplicationsLoaderGuard } from './guards/applications-loader.guard';
+import { ProjectsLoaderGuard } from './guards/projects-loader.guard';
 import { DashboardNavigationComponent } from '../components/dahboard-navigation/dashboard-navigation.component';
-import { ApplicationsListComponent } from '../components/applications-list/applications-list.component';
+import { ProjectsListComponent } from '../components/projects-list/projects-list.component';
 
 export const dashboardRoutes: Routes = [
     {
-        path: 'applications',
-        component: ApplicationsListComponent,
+        path: 'projects',
+        component: ProjectsListComponent,
         canActivate: [
-            ApplicationsLoaderGuard
+            ProjectsLoaderGuard
         ]
     },
     {
@@ -33,5 +33,5 @@ export const dashboardRoutes: Routes = [
         component: DashboardNavigationComponent,
         outlet: 'navigation'
     },
-    { path: '', redirectTo: 'applications', pathMatch: 'full' }
+    { path: '', redirectTo: 'projects', pathMatch: 'full' }
 ];

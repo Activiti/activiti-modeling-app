@@ -23,10 +23,10 @@ export const DASHBOARD_STATE_NAME = 'dashboard';
 const getDashboardFeatureState = createFeatureSelector<DashboardState>(DASHBOARD_STATE_NAME);
 
 const selectLoadingFromState = (state: DashboardState) => state.loading;
-const selectApplicationsLoadedFromState = (state: DashboardState) => state.applicationsLoaded;
-const selectApplicationSummariesFromState = (state: DashboardState) => state.applications;
+const selectProjectsLoadedFromState = (state: DashboardState) => state.projectsLoaded;
+const selectProjectSummariesFromState = (state: DashboardState) => state.projects;
 
 export const selectLoading = createSelector(getDashboardFeatureState, selectLoadingFromState);
-export const selectApplicationsLoaded = createSelector(getDashboardFeatureState, selectApplicationsLoadedFromState);
-export const selectApplicationSummaries = createSelector(getDashboardFeatureState, selectApplicationSummariesFromState);
-export const selectApplicationsArray = createSelector(selectApplicationSummaries, application => Object.values(application));
+export const selectProjectsLoaded = createSelector(getDashboardFeatureState, selectProjectsLoadedFromState);
+export const selectProjectSummaries = createSelector(getDashboardFeatureState, selectProjectSummariesFromState);
+export const selectProjectsArray = createSelector(selectProjectSummaries, project => Object.values(project));

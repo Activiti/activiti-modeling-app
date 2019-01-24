@@ -18,14 +18,14 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { dashboardRoutes } from './dashboard.routes';
-import { ApplicationsLoaderGuard } from './guards/applications-loader.guard';
+import { ProjectsLoaderGuard } from './guards/projects-loader.guard';
 
 @NgModule({
     imports: [
         RouterModule.forChild(dashboardRoutes)
     ],
     providers: [
-        ApplicationsLoaderGuard
+        ProjectsLoaderGuard
     ],
     exports: [
         RouterModule

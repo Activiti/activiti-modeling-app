@@ -22,7 +22,7 @@ import { combineLatest } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AmaState, OpenConfirmDialogAction } from 'ama-sdk';
 import { of } from 'rxjs';
-import { selectApplicationCrumb } from 'ama-sdk';
+import { selectProjectCrumb } from 'ama-sdk';
 import { filter } from 'rxjs/operators';
 import { selectConnectorCrumb } from '../../store/connector-editor.selectors';
 import { DeleteConnectorAttemptAction, ValidateConnectorAttemptAction, DownloadConnectorAction, UpdateConnectorContentAttemptAction } from '../../store/connector-editor.actions';
@@ -49,7 +49,7 @@ export class ConnectorHeaderComponent {
     constructor(private store: Store<AmaState>) {
         this.breadcrumbs$ = combineLatest(
             of({ url: '/home', name: 'Dashboard' }),
-            this.store.select(selectApplicationCrumb).pipe(filter(value => value !== null)),
+            this.store.select(selectProjectCrumb).pipe(filter(value => value !== null)),
             this.store.select(selectConnectorCrumb).pipe(filter(value => value !== null))
         );
     }

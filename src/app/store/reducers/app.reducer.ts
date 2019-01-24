@@ -18,7 +18,7 @@
 import { Action } from '@ngrx/store';
 import { UPDATE_SETTINGS, UpdateSettingsAction, SET_MENU, SetMenuAction } from '../actions';
 import { INITIAL_APP_STATE } from '../states/app.state';
-import { SELECT_APPLICATION, SelectApplicationAction } from '../../application-editor/store/application-editor.actions';
+import { SELECT_PROJECT, SelectProjectAction } from '../../project-editor/store/project-editor.actions';
 import { appThemes } from '../../app/themes';
 import { AppActionTypes, AsyncInitAction } from '../actions/app.actions';
 import {
@@ -46,8 +46,8 @@ export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action):
             newState = setMenuState(state, <SetMenuAction>action);
             break;
 
-        case SELECT_APPLICATION:
-            newState = selectApplication(state, <SelectApplicationAction>action);
+        case SELECT_PROJECT:
+            newState = selectProject(state, <SelectProjectAction>action);
             break;
 
         case MODEL_OPENED:
@@ -95,7 +95,7 @@ function setMenuState(state: AppState, action: SetMenuAction): AppState {
     return newState;
 }
 
-function selectApplication(state: AppState, action: SelectApplicationAction): AppState {
+function selectProject(state: AppState, action: SelectProjectAction): AppState {
     const newState = Object.assign({}, state);
     newState.selectedAppId = action.payload;
     newState.openedModel = null;

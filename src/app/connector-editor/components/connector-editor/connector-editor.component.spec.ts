@@ -41,7 +41,7 @@ describe('ConnectorEditorComponent', () => {
         id: 'mock-id',
         name: 'mock-name',
         description: 'mock-description',
-        applicationId: 'mock-app-id'
+        projectId: 'mock-app-id'
     };
 
     beforeEach(async(() => {
