@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+import { sanitizeString } from 'ama-sdk';
 export const PROCESS_FILE_FORMAT = '.bpmn20.xml';
 export const CONNECTOR_FILE_FORMAT = '.json';
 export const FORM_FILE_FORMAT = '.json';
@@ -23,7 +24,7 @@ export const DATA_FILE_FORMAT = '.json';
 export const DECISION_TABLE_FILE_FORMAT = '.json';
 
 export const createProcessName = (name) => {
-    return name.replace(PROCESS_FILE_FORMAT, '');
+    return sanitizeString(name.replace(PROCESS_FILE_FORMAT, ''));
 };
 
 export const changeFileName = (file: File, newName: string): File => {

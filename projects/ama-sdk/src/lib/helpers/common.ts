@@ -39,3 +39,12 @@ export interface EntityDialogPayload {
     values?: EntityDialogForm;
     action: any;
 }
+
+export const sanitizeString = (text: string) => {
+    const allowedChars = 'a-zA-Z0-9_';
+    const pastedText = text,
+        negativeRegex = new RegExp(`[^${allowedChars}]`, 'g'),
+        sanitizedValue = pastedText.replace(negativeRegex, '').replace(/\s/g, '');
+    return sanitizedValue;
+};
+
