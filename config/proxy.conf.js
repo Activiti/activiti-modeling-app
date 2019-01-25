@@ -12,7 +12,7 @@ module.exports = {
       "pathRewrite": {
         "^/api": "/" + SERVICE_PREFIX
       },
-      "logLevel": "debug"
+      "logLevel": "silent"
     },
     "/auth": {
         "target": API_HOST,
@@ -21,6 +21,6 @@ module.exports = {
         "pathRewrite": {
             "^/auth": "/auth/realms/" + REALM
         },
-        "logLevel": "debug"
+        "logLevel": "silent"
     }
 };
