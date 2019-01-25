@@ -112,7 +112,7 @@ export class ConnectorEditorEffects extends BaseEffects {
     @Effect({ dispatch: false })
     createConnectorSuccessEffect = this.actions$.pipe(
         ofType<CreateConnectorSuccessAction>(CREATE_CONNECTOR_SUCCESS),
-        withLatestFrom(this.store.select(selectSelectedAppId)),
+        withLatestFrom(this.store.select(selectSelectedProjectId)),
         map(([action, projectId]) => {
             this.router.navigate(['/projects', projectId, 'connector', action.connector.id]);
         })

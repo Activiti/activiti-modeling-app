@@ -132,7 +132,7 @@ export class ProcessEditorEffects extends BaseEffects {
     @Effect({ dispatch: false })
     createProcessSuccessEffect = this.actions$.pipe(
         ofType<CreateProcessSuccessAction>(CREATE_PROCESS_SUCCESS),
-        withLatestFrom(this.store.select(selectSelectedAppId)),
+        withLatestFrom(this.store.select(selectSelectedProjectId)),
         map(([action, projectId]) => {
             this.router.navigate(['/projects', projectId, 'process', action.process.id]);
         })
