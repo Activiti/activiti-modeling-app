@@ -42,4 +42,3 @@ export const changeFileName = (file: File, newName: string): File => {
 export const formatUuid = (contentType: string, uuid: string): string => {
     return `${ contentType.toLowerCase()}-${uuid}`;
 };
-
