@@ -34,7 +34,9 @@ import {
     UpdateProcessAttemptAction,
     UpdateProcessSuccessAction,
     ShowProcessesAction,
-    GET_PROCESSES_ATTEMPT
+    GET_PROCESSES_ATTEMPT,
+    CreateProcessSuccessAction,
+    UploadProcessAttemptAction
 } from './process-editor.actions';
 import { throwError, of, Observable } from 'rxjs';
 import { mockProcess } from './process.mock';
@@ -47,7 +49,8 @@ import {
     SnackbarInfoAction,
     SetAppDirtyStateAction,
     AmaTitleService,
-    selectSelectedProcess
+    selectSelectedProcess,
+    UploadFileAttemptPayload
 } from 'ama-sdk';
 import { ProcessEntitiesState } from './process-entities.state';
 
@@ -64,7 +67,6 @@ describe('ProcessEditorEffects', () => {
             imports: [CoreModule],
             providers: [
                 ProcessEditorEffects,
-                ProcessEditorService,
                 ProcessModelerService,
                 AmaTitleService,
                 DownloadResourceService,
@@ -96,6 +98,19 @@ describe('ProcessEditorEffects', () => {
                             return of({});
                         })
                     }
+                },
+                {
+                    provide: ProcessEditorService,
+                    useValue: {
+                        update: jest.fn().mockReturnValue(of(mockProcess)),
+                        delete: jest.fn().mockReturnValue(of(mockProcess.id)),
+                        getDetails: jest.fn(),
+                        getContent: jest.fn(),
+                        create: jest.fn().mockReturnValue(of(mockProcess)),
+                        upload: jest.fn().mockReturnValue(of(mockProcess)),
+                        fetchAll: jest.fn().mockReturnValue(of([mockProcess])),
+                        validate: jest.fn().mockReturnValue(of([mockProcess]))
+                    }
                 }
             ]
         });
@@ -107,6 +122,10 @@ describe('ProcessEditorEffects', () => {
     });
 
     describe('updateProcessEffect', () => {
+        beforeEach(() => {
+            process = <Process>mockProcess;
+        });
+
         it('ShowProcesses effect should dispatch an action', () => {
             expect(metadata.showProcessesEffect).toEqual({ dispatch: true });
         });
@@ -123,6 +142,26 @@ describe('ProcessEditorEffects', () => {
             const expected = cold('');
             store.select = jest.fn(selectProcessesLoaded).mockReturnValue(of(true));
             expect(effects.showProcessesEffect).toBeObservable(expected);
+        });
+    });
+
+    describe('uploadProcessEffect', () => {
+        beforeEach(() => {
+            process = <Process>mockProcess;
+        });
+
+        it('uploadProcessEffect should dispatch an action', () => {
+            expect(metadata.uploadProcessEffect).toEqual({ dispatch: true });
+        });
+
+        it('uploadProcessEffect should dispatch the CreateConnectorSuccessAction', () => {
+            actions$ = hot('a', { a: new UploadProcessAttemptAction(<UploadFileAttemptPayload>{file: new File([''], 'filename')}) });
+            const expected = cold('(bc)', {
+                b: new CreateProcessSuccessAction(process),
+                c: new SnackbarInfoAction('APP.PROCESS_EDITOR.UPLOAD_SUCCESS'),
+            });
+
+            expect(effects.uploadProcessEffect).toBeObservable(expected);
         });
     });
 
@@ -188,6 +227,10 @@ describe('ProcessEditorEffects', () => {
             type: 'mock-element-type',
             name: 'mock-element-name'
         };
+
+        beforeEach(() => {
+            process = <Process>mockProcess;
+        });
 
         it('should dispatch an action', () => {
             expect(metadata.changedElementEffect).toEqual({ dispatch: true });

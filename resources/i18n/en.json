@@ -281,6 +281,7 @@
                 "EXPRESSION": "Condition Expression",
                 "FORM_SELECTOR": "Form selector"
             },
+            "UPLOAD_SUCCESS": "The process was successfully uploaded",
             "PROCESS_UPDATED": "The process was successfully updated",
             "SELECT_PROCESS_VARIABLE": "Select process variable",
             "ERRORS": {
@@ -309,6 +310,7 @@
             }
         },
         "CONNECTOR_EDITOR": {
+            "UPLOAD_SUCCESS": "The connector was successfully uploaded",
             "TABS": {
                 "CONNECTOR_EDITOR": "Connector editor",
                 "JSON_EDITOR": "JSON editor"
@@ -332,6 +334,7 @@
             }
         },
         "FORM_EDITOR": {
+            "UPLOAD_SUCCESS": "The form was successfully uploaded",
             "TABS": {
                 "FORM_EDITOR": "Form editor",
                 "JSON_EDITOR": "JSON editor"
@@ -415,6 +418,7 @@
             }
         },
         "UI_EDITOR": {
+            "UPLOAD_SUCCESS": "The UI was successfully uploaded",
             "TABS": {
                 "UI_EDITOR": "UI editor",
                 "JSON_EDITOR": "JSON editor"
@@ -427,6 +431,7 @@
             }
         },
         "DATA_EDITOR": {
+            "UPLOAD_SUCCESS": "The data object was successfully uploaded",
             "TABS": {
                 "DATA_EDITOR": "Data object editor",
                 "JSON_EDITOR": "JSON editor"
@@ -439,8 +444,8 @@
                 "DELETE_DATA": "Unknown error happened during deleting the data object, please try again."
             }
         },
-
         "DECISION_TABLE_EDITOR": {
+            "UPLOAD_SUCCESS": "The decision table was successfully uploaded",
             "TABS": {
                 "DECISION_TABLE_EDITOR": "Decision table editor",
                 "JSON_EDITOR": "JSON editor"

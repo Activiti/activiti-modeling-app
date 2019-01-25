@@ -246,7 +246,7 @@ export class ProcessEditorEffects extends BaseEffects {
         return this.processEditorService.upload(payload).pipe(
             switchMap(process => [
                 new CreateProcessSuccessAction(process),
-                new SnackbarInfoAction('APP.PROJECT.UPLOAD_FILE_SUCCESS')
+                new SnackbarInfoAction('APP.PROCESS_EDITOR.UPLOAD_SUCCESS')
             ]),
             catchError(e =>
                 this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.UPLOAD_FILE'), e)
