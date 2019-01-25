@@ -52,7 +52,8 @@ import {
     DELETE_PROCESS_SUCCESS,
     DeleteProcessSuccessAction,
     CreateProcessSuccessAction,
-    GetProcessesSuccessAction
+    GetProcessesSuccessAction,
+    CREATE_PROCESS_SUCCESS
 } from './process-editor.actions';
 import { BaseEffects, OpenConfirmDialogAction, ModelOpenedAction, UploadFileAttemptPayload, ModelClosedAction, PROCESS, EntityDialogForm } from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
@@ -125,6 +126,15 @@ export class ProcessEditorEffects extends BaseEffects {
         withLatestFrom(this.store.select(selectSelectedAppId)),
         map(([action, projectId]) => {
             this.router.navigate(['/projects', projectId]);
+        })
+    );
+
+    @Effect({ dispatch: false })
+    createProcessSuccessEffect = this.actions$.pipe(
+        ofType<CreateProcessSuccessAction>(CREATE_PROCESS_SUCCESS),
+        withLatestFrom(this.store.select(selectSelectedAppId)),
+        map(([action, projectId]) => {
+            this.router.navigate(['/projects', projectId, 'process', action.process.id]);
         })
     );
 
