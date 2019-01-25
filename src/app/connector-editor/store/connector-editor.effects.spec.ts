@@ -161,7 +161,7 @@ describe('ConnectorEditorEffects', () => {
             actions$ = hot('a', { a: new UploadConnectorAttemptAction(<UploadFileAttemptPayload>{file: new File([''], 'filename')}) });
             const expected = cold('(bc)', {
                 b: new CreateConnectorSuccessAction(connector),
-                c: new SnackbarInfoAction('APP.PROJECT.UPLOAD_FILE_SUCCESS'),
+                c: new SnackbarInfoAction('APP.CONNECTOR_EDITOR.UPLOAD_SUCCESS'),
             });
 
             expect(effects.uploadConnectorEffect).toBeObservable(expected);

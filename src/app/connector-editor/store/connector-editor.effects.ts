@@ -204,7 +204,7 @@ export class ConnectorEditorEffects extends BaseEffects {
         return this.connectorEditorService.upload({ ...payload, file }).pipe(
             switchMap((connector: Connector) => [
                 new CreateConnectorSuccessAction(connector),
-                new SnackbarInfoAction('APP.PROJECT.UPLOAD_FILE_SUCCESS')
+                new SnackbarInfoAction('APP.CONNECTOR_EDITOR.UPLOAD_SUCCESS')
             ]),
             catchError(e =>
                 this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.UPLOAD_FILE'), e)
