@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-import { sanitizeString } from 'ama-sdk';
 export const PROCESS_FILE_FORMAT = '.bpmn20.xml';
 export const CONNECTOR_FILE_FORMAT = '.json';
 export const FORM_FILE_FORMAT = '.json';
@@ -43,3 +42,4 @@ export const changeFileName = (file: File, newName: string): File => {
 export const formatUuid = (contentType: string, uuid: string): string => {
     return `${ contentType.toLowerCase()}-${uuid}`;
 };
+
