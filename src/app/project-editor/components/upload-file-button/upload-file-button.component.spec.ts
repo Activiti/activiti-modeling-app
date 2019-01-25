@@ -65,7 +65,7 @@ describe('UploadFileButtonComponent', () => {
         fixture = TestBed.createComponent(UploadFileButtonComponent);
         store = TestBed.get(Store);
         component = fixture.componentInstance;
-        component.projectId = 'appId';
+        component.projectId = 'projectId';
     });
 
     it('should test acceptedFileTypes getter if type is process', () => {

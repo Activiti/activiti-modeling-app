@@ -18,7 +18,7 @@
 import { createSelector } from '@ngrx/store';
 import { ConnectorEntitiesState } from './connector-entities.state';
 import { getEntitiesState } from '../store/entities';
-import { selectSelectedAppId } from '../store/app.selectors';
+import { selectSelectedProjectId } from '../store/app.selectors';
 import { Connector } from '../api/types';
 
 export interface EntitiesWithConnectors { connectors: ConnectorEntitiesState; }
@@ -28,8 +28,8 @@ export const selectConnectorEntityContents = createSelector(selectConnectorsEnti
 
 export const selectProjectConnectorsArray = createSelector(
     selectConnectorEntities,
-    selectSelectedAppId,
-    (connectors, selectedAppId) => Object.values(connectors).filter((connector: Connector) => connector.projectId === selectedAppId)
+    selectSelectedProjectId,
+    (connectors, selectedProjectId) => Object.values(connectors).filter((connector: Connector) => connector.projectId === selectedProjectId)
 );
 
 export const connectorByName = name => createSelector(

@@ -19,7 +19,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
-import { selectSelectedAppId, MODEL_TYPE, ModelFilter, OpenFilterAction, FilterType, AmaState } from 'ama-sdk';
+import { selectSelectedProjectId, MODEL_TYPE, ModelFilter, OpenFilterAction, FilterType, AmaState } from 'ama-sdk';
 import { ProjectTreeHelper } from './project-tree.helper';
 import { CloseFilterAction } from '../../store/project-editor.actions';
 import { selectOpenedFilters } from '../../store/selectors/project-tree.selectors';
@@ -31,7 +31,7 @@ import { map } from 'rxjs/operators';
 })
 export class ProjectTreeComponent implements OnInit {
     expanded$: Observable<boolean>;
-    selectedAppId$: Observable<string>;
+    selectedProjectId$: Observable<string>;
     openedFilters$: Observable<MODEL_TYPE[]>;
 
     filters: ModelFilter[];
@@ -42,7 +42,7 @@ export class ProjectTreeComponent implements OnInit {
 
     ngOnInit() {
         this.expanded$ = this.store.select(selectMenuOpened);
-        this.selectedAppId$ = this.store.select(selectSelectedAppId);
+        this.selectedProjectId$ = this.store.select(selectSelectedProjectId);
         this.openedFilters$ = this.store.select(selectOpenedFilters);
     }
 

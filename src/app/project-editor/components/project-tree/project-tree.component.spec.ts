@@ -21,7 +21,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProjectTreeHelper } from './project-tree.helper';
 import { of } from 'rxjs';
-import { PROCESS, FORM, selectSelectedAppId } from 'ama-sdk';
+import { PROCESS, FORM, selectSelectedProjectId } from 'ama-sdk';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -34,7 +34,7 @@ describe('ProjectTreeFilterComponent ', () => {
         { type: FORM, name: 'APP.PROJECT.TREE.FORMS', icon: 'subject' },
     ];
 
-    const appId = 'appId';
+    const projectId = 'projectId';
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -47,8 +47,8 @@ describe('ProjectTreeFilterComponent ', () => {
                         select: jest.fn().mockImplementation((selector) => {
                             if (selector === selectMenuOpened) {
                                 return of(true);
-                            } else if (selector === selectSelectedAppId) {
-                                return of(appId);
+                            } else if (selector === selectSelectedProjectId) {
+                                return of(projectId);
                             }
                             return of({});
                         }),

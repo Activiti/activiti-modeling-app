@@ -65,7 +65,7 @@ import { Store } from '@ngrx/store';
 import { AmaState, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
 import { CHANGE_CONNECTOR_CONTENT, ChangeConnectorContent } from './connector-editor.actions';
 import { selectConnectorsLoaded, selectSelectedConnectorContent, selectSelectedConnector } from './connector-editor.selectors';
-import { UploadFileAttemptPayload, changeFileName, ConnectorContent, Connector, selectSelectedAppId, BaseEffects } from 'ama-sdk';
+import { UploadFileAttemptPayload, changeFileName, ConnectorContent, Connector, selectSelectedProjectId, BaseEffects } from 'ama-sdk';
 
 @Injectable()
 export class ConnectorEditorEffects extends BaseEffects {
@@ -89,8 +89,8 @@ export class ConnectorEditorEffects extends BaseEffects {
     updateConnectorContentEffect = this.actions$.pipe(
         ofType<UpdateConnectorContentAttemptAction>(UPDATE_CONNECTOR_CONTENT_ATTEMPT),
         map(action => action.payload),
-        withLatestFrom(this.store.select(selectSelectedConnector), this.store.select(selectSelectedAppId)),
-        mergeMap(([content, model, appId]) => this.updateConnector(model, content, appId))
+        withLatestFrom(this.store.select(selectSelectedConnector), this.store.select(selectSelectedProjectId)),
+        mergeMap(([content, model, projectId]) => this.updateConnector(model, content, projectId))
     );
 
     @Effect()
@@ -103,7 +103,7 @@ export class ConnectorEditorEffects extends BaseEffects {
     @Effect({ dispatch: false })
     deleteConnectorSuccessEffect = this.actions$.pipe(
         ofType<DeleteConnectorSuccessAction>(DELETE_CONNECTOR_SUCCESS),
-        mergeMap(() => this.store.select(selectSelectedAppId)),
+        mergeMap(() => this.store.select(selectSelectedProjectId)),
         map(projectId => {
             this.router.navigate(['/projects', projectId]);
         })
@@ -112,7 +112,7 @@ export class ConnectorEditorEffects extends BaseEffects {
     @Effect({ dispatch: false })
     createConnectorSuccessEffect = this.actions$.pipe(
         ofType<CreateConnectorSuccessAction>(CREATE_CONNECTOR_SUCCESS),
-        withLatestFrom(this.store.select(selectSelectedAppId)),
+        withLatestFrom(this.store.select(selectSelectedProjectId)),
         map(([action, projectId]) => {
             this.router.navigate(['/projects', projectId, 'connector', action.connector.id]);
         })
@@ -121,15 +121,15 @@ export class ConnectorEditorEffects extends BaseEffects {
     @Effect()
     getConnectorEffect = this.actions$.pipe(
         ofType<GetConnectorAttemptAction>(GET_CONNECTOR_ATTEMPT),
-        mergeMap(action => zip(of(action.connectorId), this.store.select(selectSelectedAppId))),
-        switchMap(([connectorId, appId]) => this.getConnector(connectorId, appId))
+        mergeMap(action => zip(of(action.connectorId), this.store.select(selectSelectedProjectId))),
+        switchMap(([connectorId, projectId]) => this.getConnector(connectorId, projectId))
     );
 
     @Effect()
     loadConnectorEffect = this.actions$.pipe(
         ofType<LoadConnectorAttemptAction>(LOAD_CONNECTOR_ATTEMPT),
-        mergeMap(action => zip(of(action.connectorId), this.store.select(selectSelectedAppId))),
-        switchMap(([connectorId, appId]) => this.getConnector(connectorId, appId, true))
+        mergeMap(action => zip(of(action.connectorId), this.store.select(selectSelectedProjectId))),
+        switchMap(([connectorId, projectId]) => this.getConnector(connectorId, projectId, true))
     );
 
     @Effect()
@@ -147,9 +147,9 @@ export class ConnectorEditorEffects extends BaseEffects {
     @Effect()
     createConnectorEffect = this.actions$.pipe(
         ofType<CreateConnectorAttemptAction>(CREATE_CONNECTOR_ATTEMPT),
-        mergeMap(action => zip(of(action.payload), this.store.select(selectSelectedAppId))),
-        mergeMap(([form, appId]) => {
-            return this.createConnector(form, appId);
+        mergeMap(action => zip(of(action.payload), this.store.select(selectSelectedProjectId))),
+        mergeMap(([form, projectId]) => {
+            return this.createConnector(form, projectId);
         })
     );
 
@@ -221,8 +221,8 @@ export class ConnectorEditorEffects extends BaseEffects {
         );
     }
 
-    private createConnector(form: Partial<EntityDialogForm>, appId: string): Observable<{} | SnackbarInfoAction | CreateConnectorSuccessAction> {
-        return this.connectorEditorService.create(form, appId).pipe(
+    private createConnector(form: Partial<EntityDialogForm>, projectId: string): Observable<{} | SnackbarInfoAction | CreateConnectorSuccessAction> {
+        return this.connectorEditorService.create(form, projectId).pipe(
             mergeMap((connector) => [
                 new CreateConnectorSuccessAction(connector),
                 new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_CREATED')
@@ -243,8 +243,8 @@ export class ConnectorEditorEffects extends BaseEffects {
         );
     }
 
-    private updateConnector(connector: Connector, content: ConnectorContent, appId: string): Observable<{} | SnackbarInfoAction | UpdateConnectorSuccessAction> {
-        return this.connectorEditorService.update(connector.id, connector, content, appId).pipe(
+    private updateConnector(connector: Connector, content: ConnectorContent, projectId: string): Observable<{} | SnackbarInfoAction | UpdateConnectorSuccessAction> {
+        return this.connectorEditorService.update(connector.id, connector, content, projectId).pipe(
             mergeMap(() => [
                 new UpdateConnectorSuccessAction({ id: connector.id, changes: content }),
                 new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
@@ -253,8 +253,8 @@ export class ConnectorEditorEffects extends BaseEffects {
         );
     }
 
-    private getConnector(connectorId: string, appId: string, loadConnector?: boolean): Observable<GetConnectorSuccessAction | SnackbarErrorAction> {
-        const connectorDetails$ = this.connectorEditorService.getDetails(connectorId, appId),
+    private getConnector(connectorId: string, projectId: string, loadConnector?: boolean): Observable<GetConnectorSuccessAction | SnackbarErrorAction> {
+        const connectorDetails$ = this.connectorEditorService.getDetails(connectorId, projectId),
             connectorContent$ = this.connectorEditorService.getContent(connectorId);
 
         return forkJoin(connectorDetails$, connectorContent$).pipe(

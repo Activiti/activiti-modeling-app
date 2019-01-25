@@ -65,7 +65,7 @@ import { Store } from '@ngrx/store';
 import { zip } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { Process, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
-import { selectSelectedAppId, AmaState, selectSelectedProcess, createProcessName } from 'ama-sdk';
+import { selectSelectedProjectId, AmaState, selectSelectedProcess, createProcessName } from 'ama-sdk';
 
 @Injectable()
 export class ProcessEditorEffects extends BaseEffects {
@@ -103,8 +103,8 @@ export class ProcessEditorEffects extends BaseEffects {
     @Effect()
     createProcessEffect = this.actions$.pipe(
         ofType<CreateProcessAttemptAction>(CREATE_PROCESS_ATTEMPT),
-        mergeMap(action => zip(of(action.payload), this.store.select(selectSelectedAppId))),
-        mergeMap(([form, appId]) => this.createProcess(form, appId))
+        mergeMap(action => zip(of(action.payload), this.store.select(selectSelectedProjectId))),
+        mergeMap(([form, projectId]) => this.createProcess(form, projectId))
     );
 
     @Effect()
@@ -123,7 +123,7 @@ export class ProcessEditorEffects extends BaseEffects {
     @Effect({ dispatch: false })
     deleteProcessSuccessEffect = this.actions$.pipe(
         ofType<DeleteProcessSuccessAction>(DELETE_PROCESS_SUCCESS),
-        withLatestFrom(this.store.select(selectSelectedAppId)),
+        withLatestFrom(this.store.select(selectSelectedProjectId)),
         map(([action, projectId]) => {
             this.router.navigate(['/projects', projectId]);
         })
@@ -132,7 +132,7 @@ export class ProcessEditorEffects extends BaseEffects {
     @Effect({ dispatch: false })
     createProcessSuccessEffect = this.actions$.pipe(
         ofType<CreateProcessSuccessAction>(CREATE_PROCESS_SUCCESS),
-        withLatestFrom(this.store.select(selectSelectedAppId)),
+        withLatestFrom(this.store.select(selectSelectedProjectId)),
         map(([action, projectId]) => {
             this.router.navigate(['/projects', projectId, 'process', action.process.id]);
         })
@@ -142,8 +142,8 @@ export class ProcessEditorEffects extends BaseEffects {
     updateProcessEffect = this.actions$.pipe(
         ofType<UpdateProcessAttemptAction>(UPDATE_PROCESS_ATTEMPT),
         map(action => action.payload),
-        mergeMap(payload => zip(of(payload), this.store.select(selectSelectedProcess), this.store.select(selectSelectedAppId))),
-        mergeMap(([payload, process, appId]) => this.updateProcess(payload, process, appId))
+        mergeMap(payload => zip(of(payload), this.store.select(selectSelectedProcess), this.store.select(selectSelectedProjectId))),
+        mergeMap(([payload, process, projectId]) => this.updateProcess(payload, process, projectId))
     );
 
     @Effect()
@@ -155,8 +155,8 @@ export class ProcessEditorEffects extends BaseEffects {
     @Effect()
     getProcessEffect = this.actions$.pipe(
         ofType<GetProcessAttemptAction>(GET_PROCESS_ATTEMPT),
-        mergeMap(action => zip(of(action.payload), this.store.select(selectSelectedAppId))),
-        mergeMap(([processId, appId]) =>  this.getProcess(processId, appId))
+        mergeMap(action => zip(of(action.payload), this.store.select(selectSelectedProjectId))),
+        mergeMap(([processId, projectId]) =>  this.getProcess(processId, projectId))
     );
 
     @Effect({ dispatch: false })
@@ -200,12 +200,12 @@ export class ProcessEditorEffects extends BaseEffects {
         );
     }
 
-    private updateProcess(payload: UpdateProcessPayload, process: Process, appId: string): Observable<SnackbarErrorAction | {}> {
+    private updateProcess(payload: UpdateProcessPayload, process: Process, projectId: string): Observable<SnackbarErrorAction | {}> {
         return this.processEditorService.update(
             payload.processId,
             { ...process, ...payload.metadata },
             payload.content,
-            appId
+            projectId
         ).pipe(
             switchMap(() => [
                 new UpdateProcessSuccessAction({ id: payload.processId, changes: payload.metadata }, payload.content),
@@ -226,8 +226,8 @@ export class ProcessEditorEffects extends BaseEffects {
             });
     }
 
-    private getProcess(processId: string, appId: string): Observable<GetProcessSuccessAction | SnackbarErrorAction> {
-        const processDetails$ = this.processEditorService.getDetails(processId, appId),
+    private getProcess(processId: string, projectId: string): Observable<GetProcessSuccessAction | SnackbarErrorAction> {
+        const processDetails$ = this.processEditorService.getDetails(processId, projectId),
             processDiagram$ = this.processEditorService.getDiagram(processId);
 
         return forkJoin(processDetails$, processDiagram$).pipe(
@@ -277,8 +277,8 @@ export class ProcessEditorEffects extends BaseEffects {
         );
     }
 
-    private createProcess(form: Partial<EntityDialogForm>, appId: string): Observable<{} | SnackbarInfoAction | CreateProcessSuccessAction> {
-        return this.processEditorService.create(form, appId).pipe(
+    private createProcess(form: Partial<EntityDialogForm>, projectId: string): Observable<{} | SnackbarInfoAction | CreateProcessSuccessAction> {
+        return this.processEditorService.create(form, projectId).pipe(
             switchMap((process) => [
                 new CreateProcessSuccessAction(process),
                 new SnackbarInfoAction('APP.PROJECT.PROCESS_DIALOG.PROCESS_CREATED')

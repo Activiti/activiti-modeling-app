@@ -61,7 +61,7 @@ describe('ProjectTreeFilterComponent ', () => {
 
         component.expanded = false;
         component.ignoreOpenEmit = false;
-        component.projectId = 'appIdTest';
+        component.projectId = 'projectIdTest';
         component.filter = <any>{
             icon: '',
             name: 'Processes',
@@ -75,7 +75,7 @@ describe('ProjectTreeFilterComponent ', () => {
         fixture.detectChanges();
 
         expect(component.opened.emit).toHaveBeenCalledWith({
-            projectId: 'appIdTest',
+            projectId: 'projectIdTest',
             type: PROCESS,
             loadData: true
         });
@@ -86,7 +86,7 @@ describe('ProjectTreeFilterComponent ', () => {
 
         component.expanded = false;
 
-        component.projectId = 'appIdTest';
+        component.projectId = 'projectIdTest';
         component.filter = <any>{
             icon: '',
             name: 'Processes',

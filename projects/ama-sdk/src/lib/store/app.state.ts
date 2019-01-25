@@ -23,7 +23,7 @@ export interface AppTheme {
 }
 export interface AppState {
     menuOpened: boolean;
-    selectedAppId: string | null;
+    selectedProjectId: string | null;
     openedModel: ModelIdentifier;
     selectedTheme: AppTheme;
     dirtyState: boolean;

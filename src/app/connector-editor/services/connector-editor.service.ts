@@ -47,8 +47,8 @@ export class ConnectorEditorService {
         return this.amaApi.Connector.delete(connectorId);
     }
 
-    create(form: Partial<EntityDialogForm>, appId: string): Observable<Connector> {
-        return this.amaApi.Connector.create(form, appId);
+    create(form: Partial<EntityDialogForm>, projectId: string): Observable<Connector> {
+        return this.amaApi.Connector.create(form, projectId);
     }
 
     fetchAll(projectId: string): Observable<Connector[]> {
