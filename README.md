@@ -15,8 +15,20 @@ The Activiti Modeling Application (AMA) is an application built using
 
 ### Prerequisites
 
+#### Installing dependencies
+
 ```bash
 $ npm install
+```
+
+#### Setting up environment variables
+
+To be able to run the local dev server, we need to set some environment variable. Simply crete a `.env` file (this is gitignored) in the root of the repository with filling in the following data:
+
+```bash
+API_HOST="http://my-acm.implementation.com"
+REALM="<realm of keycloak>"
+SERVICE_PREFIX="<the service prefix, right after the API_HOST>"
 ```
 
 ### Development server
