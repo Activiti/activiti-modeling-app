@@ -31,6 +31,7 @@ import { createCalledElementProperty } from './calledElement-cardview-property';
 import { createProcessVariablesProperty } from './process-variable-item-property';
 import { createExpressionProperty } from './expression-cardview-property';
 import { createFormKeyProperty } from './formSelector-cardview-property';
+import { createProcessNameProperty } from './process-name-cardview-property';
 
 export const bpmn2cardView = {
     [BpmnProperty.id]: createIdProperty,
@@ -47,5 +48,6 @@ export const bpmn2cardView = {
     [BpmnProperty.calledElement]: createCalledElementProperty,
     [BpmnProperty.properties]: createProcessVariablesProperty,
     [BpmnProperty.conditionExpression]: createExpressionProperty,
-    [BpmnProperty.formKey]: createFormKeyProperty
+    [BpmnProperty.formKey]: createFormKeyProperty,
+    [BpmnProperty.processName]: createProcessNameProperty
 };

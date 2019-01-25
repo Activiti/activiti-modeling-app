@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-import { sanitizeString } from 'ama-sdk';
 export const PROCESS_FILE_FORMAT = '.bpmn20.xml';
 export const CONNECTOR_FILE_FORMAT = '.json';
 export const FORM_FILE_FORMAT = '.json';
 export const UI_FILE_FORMAT = '.json';
 export const DATA_FILE_FORMAT = '.json';
 export const DECISION_TABLE_FILE_FORMAT = '.json';
+export const MODEL_NAME_CHARACTERS = 'a-zA-Z0-9_';
 
 export const createProcessName = (name) => {
     return sanitizeString(name.replace(PROCESS_FILE_FORMAT, ''));
@@ -34,4 +34,11 @@ export const changeFileName = (file: File, newName: string): File => {
 
 export const formatUuid = (contentType: string, uuid: string): string => {
     return `${ contentType.toLowerCase()}-${uuid}`;
+};
+
+export const sanitizeString = (text: string) => {
+    const pastedText = text,
+        negativeRegex = new RegExp(`[^${MODEL_NAME_CHARACTERS}]`, 'g'),
+        sanitizedValue = pastedText.replace(negativeRegex, '').replace(/\s/g, '');
+    return sanitizedValue;
 };

@@ -16,7 +16,7 @@
  */
 
 import { Pipe, PipeTransform } from '@angular/core';
-import { createProcessName } from '../create-entries-names';
+import { createProcessName } from '../utils/create-entries-names';
 
 @Pipe({ name: 'processName' })
 export class ProcessNamePipe implements PipeTransform {

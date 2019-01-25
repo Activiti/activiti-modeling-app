@@ -16,7 +16,7 @@
  */
 
 import { createProcessName, formatUuid } from './create-entries-names';
-import { ContentType } from './../api-implementations/acm-api/content-types';
+import { ContentType } from './../../api-implementations/acm-api/content-types';
 
 
 /* tslint:disable */

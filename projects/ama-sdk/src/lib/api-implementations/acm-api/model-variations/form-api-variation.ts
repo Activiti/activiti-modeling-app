@@ -17,7 +17,7 @@
 
 import { Injectable, InjectionToken } from '@angular/core';
 import { ContentType } from '../content-types';
-import { formatUuid } from '../../../helpers/create-entries-names';
+import { formatUuid } from '../../../helpers/utils/create-entries-names';
 import { ModelApiVariation, ModelApi } from '../model-api';
 import { Form, FormContent } from '../../../api/types';
 import { createEmptyForm } from '../form-definition';

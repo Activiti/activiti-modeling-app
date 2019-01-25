@@ -15,15 +15,17 @@
  * limitations under the License.
  */
 
- import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty } from 'ama-sdk';
+import { sanitizeString } from 'ama-sdk';
 
 const propertyKey = BpmnProperty.name;
 
 const get = element => element.businessObject[propertyKey];
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
+    value = sanitizeString(value);
     modeling.updateProperties(element, {
         [propertyKey]: value
     });
 };
 
-export const nameHandler = { get, set };
+export const processNameHandler = { get, set };

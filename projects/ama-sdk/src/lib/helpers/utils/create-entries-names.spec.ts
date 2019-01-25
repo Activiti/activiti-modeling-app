@@ -15,15 +15,22 @@
  * limitations under the License.
  */
 
- import { BpmnProperty } from 'ama-sdk';
+import { sanitizeString, createProcessName, formatUuid } from './create-entries-names';
 
-const propertyKey = BpmnProperty.name;
-
-const get = element => element.businessObject[propertyKey];
-const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {
-        [propertyKey]: value
+describe('Create entries names', () => {
+    it ('test sanitizeString function', () => {
+        const text = 'abc!!!---01023';
+        expect(sanitizeString(text)).toEqual('abc01023');
     });
-};
 
-export const nameHandler = { get, set };
+    it('test createProcessName function', () => {
+        const name = 'process.bpmn20.xml';
+        expect(createProcessName(name)).toEqual('process');
+    });
+
+    it('test formatUid', () => {
+        expect(formatUuid('testType', '1234')).toEqual('testtype-1234');
+    });
+
+});
+
