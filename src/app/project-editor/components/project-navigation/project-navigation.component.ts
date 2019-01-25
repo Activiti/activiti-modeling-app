@@ -20,7 +20,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
 import { OpenEntityDialogAction } from '../../../store/actions/dialog';
-import { AmaState, selectSelectedAppId, ModelCreatorDialogParams, MODEL_CREATORS, ModelCreator } from 'ama-sdk';
+import { AmaState, selectSelectedProjectId, ModelCreatorDialogParams, MODEL_CREATORS, ModelCreator } from 'ama-sdk';
 const orderBy = require('lodash/orderBy');
 
 @Component({
@@ -28,7 +28,7 @@ const orderBy = require('lodash/orderBy');
 })
 export class ProjectNavigationComponent {
     expanded$: Observable<boolean>;
-    selectedAppId$: Observable<string>;
+    selectedProjectId$: Observable<string>;
     public creators:  ModelCreator[];
 
     constructor(
@@ -36,7 +36,7 @@ export class ProjectNavigationComponent {
         @Inject(MODEL_CREATORS) modelCreators: ModelCreator[]
     ) {
         this.expanded$ = this.store.select(selectMenuOpened);
-        this.selectedAppId$ = this.store.select(selectSelectedAppId);
+        this.selectedProjectId$ = this.store.select(selectSelectedProjectId);
         this.creators = orderBy(modelCreators, ['order'], ['asc']);
     }
 

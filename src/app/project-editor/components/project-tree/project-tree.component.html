@@ -1,4 +1,4 @@
-<ng-container *ngIf="(selectedAppId$ | async); let selectedAppId;">
+<ng-container *ngIf="(selectedProjectId$ | async); let selectedProjectId;">
     <div class="project-tree__content">
         <mat-accordion [@.disabled]="true"
             [multi]="true"
@@ -6,7 +6,7 @@
             [displayMode]="'flat'"
             class="project-tree">
             <ng-container *ngFor="let filter of filters">
-                <ama-project-tree-filter [projectId]="selectedAppId"
+                <ama-project-tree-filter [projectId]="selectedProjectId"
                     [filter]="filter"
                     [expanded]="getFilteredContentExpandedState(filter.type) | async"
                     [contents]="getFilteredContents(filter.type) | async"

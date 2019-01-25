@@ -19,7 +19,7 @@ import { appThemes } from '../../app/themes';
 import { AppState, AmaState } from 'ama-sdk';
 
 export const INITIAL_APP_STATE: AppState = {
-    selectedAppId: null,
+    selectedProjectId: null,
     openedModel: null,
     menuOpened: true,
     selectedTheme: appThemes[0],

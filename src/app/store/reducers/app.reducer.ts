@@ -97,7 +97,7 @@ function setMenuState(state: AppState, action: SetMenuAction): AppState {
 
 function selectProject(state: AppState, action: SelectProjectAction): AppState {
     const newState = Object.assign({}, state);
-    newState.selectedAppId = action.payload;
+    newState.selectedProjectId = action.payload;
     newState.openedModel = null;
     return newState;
 }

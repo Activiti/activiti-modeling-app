@@ -46,7 +46,7 @@ import { hot, cold, getTestScheduler } from 'jasmine-marbles';
 import {
     EntityDialogForm,
     SetAppDirtyStateAction,
-    selectSelectedAppId,
+    selectSelectedProjectId,
     AmaTitleService,
     AmaApi,
     SnackbarErrorAction,
@@ -120,7 +120,7 @@ describe('ConnectorEditorEffects', () => {
                                 return of(false);
                             }
 
-                            if (selector === selectSelectedAppId) {
+                            if (selector === selectSelectedProjectId) {
                                 return of(connector.projectId);
                             }
 

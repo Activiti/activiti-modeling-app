@@ -22,7 +22,7 @@ import { selectProject } from './project.selectors';
 export const selectApp = (state: AmaState) => state.app;
 
 export const selectSelectedTheme = createSelector(selectApp, (state: AppState) => state.selectedTheme);
-export const selectSelectedAppId = createSelector(selectApp, (state: AppState) => state.selectedAppId);
+export const selectSelectedProjectId = createSelector(selectApp, (state: AppState) => state.selectedProjectId);
 export const selectAppDirtyState = createSelector(selectApp, (state: AppState) => state.dirtyState);
 export const selectOpenedModel = createSelector(selectApp, (state: AppState) => state.openedModel);
 
