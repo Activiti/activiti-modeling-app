@@ -41,7 +41,8 @@ import {
     DOWNLOAD_CONNECTOR,
     ValidateConnectorAttemptAction,
     VALIDATE_CONNECTOR_ATTEMPT,
-    ValidateConnectorPayload
+    ValidateConnectorPayload,
+    CREATE_CONNECTOR_SUCCESS
 } from './connector-editor.actions';
 import { map, switchMap, catchError, mergeMap, take, withLatestFrom } from 'rxjs/operators';
 import {
@@ -105,6 +106,15 @@ export class ConnectorEditorEffects extends BaseEffects {
         mergeMap(() => this.store.select(selectSelectedAppId)),
         map(projectId => {
             this.router.navigate(['/projects', projectId]);
+        })
+    );
+
+    @Effect({ dispatch: false })
+    createConnectorSuccessEffect = this.actions$.pipe(
+        ofType<CreateConnectorSuccessAction>(CREATE_CONNECTOR_SUCCESS),
+        withLatestFrom(this.store.select(selectSelectedAppId)),
+        map(([action, projectId]) => {
+            this.router.navigate(['/projects', projectId, 'connector', action.connector.id]);
         })
     );
 
