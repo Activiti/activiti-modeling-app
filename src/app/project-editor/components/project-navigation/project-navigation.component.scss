@@ -9,7 +9,11 @@
         flex-direction: column;
         height: 100%;
 
-        adf-sidebar-action-menu {
+        &-options {
+            width: 171px;
+        }
+
+        .adf-sidebar-action-menu {
             .adf-sidebar-action-menu-icon {
                 margin: 0;
                 color: mat-color($accent);

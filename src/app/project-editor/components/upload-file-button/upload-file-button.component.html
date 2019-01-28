@@ -1,8 +1,14 @@
 <div class="ama-upload-button">
-    <button mat-icon-button [matTooltip]="'APP.PROJECT.UPLOAD_FILE' | translate" matTooltipPosition="after" color="primary"
-        (click)="onClick($event)" data-automation-id="upload-button">
-        <mat-icon>file_upload</mat-icon>
-    </button>
+
+    <div (click)="onClick($event)" data-automation-id="upload-button">
+        <div #ref><ng-content></ng-content></div>
+
+        <div *ngIf="!ref.innerHTML.trim()">
+            <button class="deafult-upload-button" mat-icon-button [matTooltip]="'APP.PROJECT.UPLOAD_FILE' | translate" matTooltipPosition="after" color="primary">
+                <mat-icon>file_upload</mat-icon>
+            </button>
+        </div>
+    </div>
 
     <input type="file" #fileInput (click)="$event.stopPropagation()" (change)="onUpload($event.target.files)" accept="{{ acceptedFileTypes }}"
         class="ama-upload-button__file-input" data-automation-id="upload-input"/>

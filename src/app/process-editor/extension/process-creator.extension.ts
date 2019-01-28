@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { MODEL_CREATORS, ModelCreator } from 'ama-sdk';
+import { MODEL_CREATORS, ModelCreator, PROCESS } from 'ama-sdk';
 import { PROCESS_ICON } from './processes-filter.extension';
 import { CreateProcessAttemptAction } from '../store/process-editor.actions';
 
@@ -23,6 +23,7 @@ export function createProcessCreator(): ModelCreator {
     return {
         name: 'APP.PROJECT.NEW_MENU.MENU_ITEMS.CREATE_PROCESS',
         icon: PROCESS_ICON,
+        type: PROCESS,
         order: 0,
         dialog: {
             title: 'APP.PROJECT.PROCESS_DIALOG.TITLE_CREATE',

@@ -53,10 +53,9 @@ export class UploadFileButtonComponent {
 
     onUpload(files: File[]): void {
         try {
-            const ActionClass = this.uploader.action,
-                action = new ActionClass({ file: files[0], projectId: this.projectId });
+            const ActionClass = this.uploader.action;
 
-            this.store.dispatch(action);
+            this.store.dispatch(new ActionClass({ file: files[0], projectId: this.projectId }));
             this.fileInput.nativeElement.value = null;
         } catch (error) {
             this.logger.error('Problem occured while trying to upload model.');

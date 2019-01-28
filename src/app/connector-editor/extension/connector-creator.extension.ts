@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { MODEL_CREATORS, ModelCreator } from 'ama-sdk';
+import { MODEL_CREATORS, ModelCreator, CONNECTOR } from 'ama-sdk';
 import { CreateConnectorAttemptAction } from '../store/connector-editor.actions';
 import { CONNECTOR_ICON } from './connectors-filter.extension';
 
@@ -24,6 +24,7 @@ export function createConnectorCreator(): ModelCreator {
         name: 'APP.PROJECT.NEW_MENU.MENU_ITEMS.CREATE_CONNECTOR',
         icon: CONNECTOR_ICON,
         order: 1,
+        type: CONNECTOR,
         dialog: {
             title: 'APP.PROJECT.CONNECTOR_DIALOG.TITLE_CREATE',
             nameField: 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_NAME',
