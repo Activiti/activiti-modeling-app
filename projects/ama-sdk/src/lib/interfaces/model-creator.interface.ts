@@ -17,6 +17,7 @@
 
 import { InjectionToken } from '@angular/core';
 import { Action } from '@ngrx/store';
+import { MODEL_TYPE } from '../api/types';
 
 export interface ActionConstructor {
     new (...args: any[]): Action;
@@ -31,6 +32,7 @@ export interface ModelCreatorDialogParams {
 
 export interface ModelCreator {
     name: string;
+    type: MODEL_TYPE;
     icon: string;
     order: number;
     dialog: ModelCreatorDialogParams;

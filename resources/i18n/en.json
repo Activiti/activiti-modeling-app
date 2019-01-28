@@ -95,7 +95,9 @@
             "NO_CONTENT": "<empty>",
             "NO_SELECTION": "Please choose a model to edit from the left sidebar",
             "NEW_MENU": {
-                "LABEL": "Create new",
+                "LABEL": "New",
+                "CREATE": "Create",
+                "IMPORT": "Import",
                 "CREATE_PROCESS_TITLE": "Create new process",
                 "MENU_ITEMS": {
                     "CREATE_PROCESS": "Process",

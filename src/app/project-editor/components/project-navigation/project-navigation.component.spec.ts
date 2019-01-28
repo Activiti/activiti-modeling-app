@@ -75,8 +75,14 @@ describe('ProjectNavigationComponent', () => {
 
         it('click on menu button should open a entity dialog', () => {
             spyOn(store, 'dispatch');
-            const button = element.query(By.css('button'));
-            button.triggerEventHandler('click', {});
+            const button = element.query(By.css('.adf-sidebar-action-menu-icon'));
+            button.triggerEventHandler('click', { stopPropagation: jest.fn() });
+
+            const button2 = element.query(By.css('[data-automation-id="app-navigation-create"]'));
+            button2.triggerEventHandler('click', { stopPropagation: jest.fn() });
+
+            const button3 = element.query(By.css('[data-automation-id="app-navigation-create-model"]'));
+            button3.triggerEventHandler('click', { stopPropagation: jest.fn() });
 
             const action: OpenEntityDialogAction =  store.dispatch.calls.argsFor(0)[0];
 

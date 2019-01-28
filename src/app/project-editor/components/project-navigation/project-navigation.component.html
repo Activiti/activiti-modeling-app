@@ -1,23 +1,49 @@
 <div class="app-navigation">
 
-    <adf-sidebar-action-menu [title]="'APP.PROJECT.NEW_MENU.LABEL' | translate"
-        [expanded]="(expanded$ | async)"
-        class="app-navigation__section app-navigation__section--new"
-        [ngClass]="{ 'section--new--mini': !(expanded$ | async) }">
-        <mat-icon sidebar-menu-title-icon>arrow_drop_down</mat-icon>
-        <div sidebar-menu-expand-icon>
-            <mat-icon>add_box</mat-icon>
-        </div>
-        <div sidebar-menu-options>
-            <button
+    <div class="app-navigation__section app-navigation__section--new adf-sidebar-action-menu" [ngClass]="{ 'section--new--mini': !(expanded$ | async) }">
+        <button mat-button
+            *ngIf="(expanded$ | async)"
+            [matMenuTriggerFor]="menu"
+            data-automation-id="create-button"
+            class="adf-sidebar-action-menu-button mat-raised-button">
+            {{ 'APP.PROJECT.NEW_MENU.LABEL' | translate }} <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+
+        <mat-icon *ngIf="!(expanded$ | async)" [matMenuTriggerFor]="menu" class="adf-sidebar-action-menu-icon">add_box</mat-icon>
+
+        <mat-menu #menu="matMenu" class="app-navigation-options">
+            <button mat-menu-item [matMenuTriggerFor]="create" data-automation-id="app-navigation-create">
+                <mat-icon>add</mat-icon>
+                <span>{{ 'APP.PROJECT.NEW_MENU.CREATE' | translate }}</span>
+            </button>
+            <button mat-menu-item [matMenuTriggerFor]="upload" data-automation-id="app-navigation-upload">
+                <mat-icon>file_upload</mat-icon>
+                <span>{{ 'APP.PROJECT.NEW_MENU.IMPORT' | translate }}</span>
+            </button>
+        </mat-menu>
+
+        <mat-menu #create="matMenu" class="app-navigation-options">
+            <button mat-menu-item
+                data-automation-id="app-navigation-create-model"
                 *ngFor="let creator of creators"
-                mat-menu-item
                 (click)="openModelCreationDialog(creator.dialog)">
                 <mat-icon>{{ creator.icon }}</mat-icon>
                 <span>{{ creator.name | translate }}</span>
             </button>
-        </div>
-    </adf-sidebar-action-menu>
+        </mat-menu>
+
+        <mat-menu #upload="matMenu" class="app-navigation-options">
+            <ama-upload-file-button class="mat-menu-item"
+                data-automation-id="app-navigation-upload-model"
+                *ngFor="let creator of creators"
+                [type]="creator.type"
+                [projectId]="selectedProjectId$ | async">
+                <mat-icon>{{ creator.icon }}</mat-icon>
+                <span>{{ creator.name | translate }}</span>
+            </ama-upload-file-button>
+        </mat-menu>
+    </div>
+
 
     <div class="app-navigation__section app-navigation__section--menu">
         <ng-container *ngIf="(expanded$ | async); else collapsedProjectTree">
