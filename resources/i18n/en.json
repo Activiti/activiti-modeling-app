@@ -427,6 +427,10 @@
                 "JSON_EDITOR": "JSON editor"
             },
             "EDITOR": {
+                "DETAILS": "UI details",
+                "DESCRIPTION": "Description",
+                "NAME": "Name",
+                "TEMPLATE": "Template"
             },
             "ERRORS": {
                 "GET_UI": "Unknown error happened during loading of the ui, please try again.",
