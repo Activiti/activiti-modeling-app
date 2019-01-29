@@ -28,6 +28,7 @@ import {
 } from 'ama-sdk';
 import { ProcessEditorState } from './process-editor.state';
 import { ProcessEntitiesState } from './process-entities.state';
+import { selectSelectedProjectId } from 'ama-sdk';
 
 export const PROCESS_EDITOR_STATE_NAME = 'process-editor';
 export const getProcessEditorFeatureState = createFeatureSelector(PROCESS_EDITOR_STATE_NAME);
@@ -39,9 +40,14 @@ export const selectProcessesLoaded = createSelector(selectProcessEntityContainer
 export const selectEntityContents = createSelector(selectProcessEntityContainer, (state: ProcessEntitiesState) => state.entityContents);
 export const selectSelectedProcessId = selectSelectedModelIdFor(PROCESS);
 export const selectProcesses = createSelector(selectProcessEntityContainer, state => state.entities);
-export const selectProcessesArray = createSelector(selectProcessEntityContainer, state => Object.values(state.entities));
 export const selectSelectedElement = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.selectedElement);
 export const selectProcessLoading = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.loading);
+
+export const selectProcessesArray = createSelector(
+    selectProcessEntities,
+    selectSelectedProjectId,
+    (processes, selectedProjectId) => Object.values(processes).filter((process: Process) => process.projectId === selectedProjectId)
+);
 
 export const selectSelectedProcessDiagram = createSelector(
     selectSelectedProcessId,
