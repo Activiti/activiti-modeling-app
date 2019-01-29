@@ -8,20 +8,17 @@
             display: none;
         }
 
-        .mat-icon-button {
-            height: 34px;
-            width: 34px;
-            line-height: 33px;
-            border-radius: 2px;
+        .deafult-upload-button {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            line-height: 25px;
 
-            &:hover {
-                background: mat-color($primary);
+            mat-icon {
+                font-size: 18px;
+                color: mat-color($foreground, icons);
+                line-height: 25px;
             }
-        }
-
-        .deafult-upload-button mat-icon {
-            font-size: 18px;
-            color: mat-color($foreground, icons);
         }
     }
 }
