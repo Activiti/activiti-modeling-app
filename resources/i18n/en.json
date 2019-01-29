@@ -91,6 +91,7 @@
         "PROJECT": {
             "BACKTO": "Projects",
             "UPLOAD_FILE": "Upload file",
+            "CREATE_NEW": "Create new",
             "UPLOAD_FILE_SUCCESS": "The file was successfully uploaded",
             "NO_CONTENT": "<empty>",
             "NO_SELECTION": "Please choose a model to edit from the left sidebar",
