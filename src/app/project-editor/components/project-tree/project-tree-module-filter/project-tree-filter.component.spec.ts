@@ -20,9 +20,10 @@ import { ProjectTreeFilterComponent } from './project-tree-filter.component';
 import { MatExpansionModule, MatIconModule, MatProgressSpinnerModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { SharedModule, PROCESS } from 'ama-sdk';
+import { SharedModule, PROCESS, MODEL_CREATORS } from 'ama-sdk';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
+import { Store } from '@ngrx/store';
 
 describe('ProjectTreeFilterComponent ', () => {
     let fixture: ComponentFixture<ProjectTreeFilterComponent>;
@@ -40,6 +41,20 @@ describe('ProjectTreeFilterComponent ', () => {
             ],
             declarations: [ProjectTreeFilterComponent],
             providers: [
+                {
+                    provide: Store,
+                    useValue: {
+                        dispatch: jest.fn()
+                    }
+                },
+                {
+                    provide: MODEL_CREATORS, multi: true, useValue: {
+                        icon: 'device_hub',
+                        name: 'Processes',
+                        order: 1,
+                        dialog: {}
+                    }
+                },
                 { provide: TranslationService, useClass: TranslationMock }
             ],
             schemas: [NO_ERRORS_SCHEMA]
