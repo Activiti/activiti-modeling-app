@@ -19,7 +19,7 @@ import { Injectable, InjectionToken } from '@angular/core';
 import { ContentType } from '../content-types';
 import { ModelApiVariation, ModelApi } from '../model-api';
 import { Process, ProcessContent } from '../../../api/types';
-import { getEmptyDiagram } from '../../../helpers/empty-diagram';
+import { getEmptyDiagram } from '../../../helpers/utils/empty-diagram';
 
 export const PROCESS_API = new InjectionToken<ModelApi<Process, ProcessContent>>('connector-api');
 

@@ -21,9 +21,17 @@ export const FORM_FILE_FORMAT = '.json';
 export const UI_FILE_FORMAT = '.json';
 export const DATA_FILE_FORMAT = '.json';
 export const DECISION_TABLE_FILE_FORMAT = '.json';
+export const MODEL_NAME_CHARACTERS = 'a-zA-Z0-9_';
+
+export const sanitizeString = (text: string) => {
+    const pastedText = text,
+        negativeRegex = new RegExp(`[^${MODEL_NAME_CHARACTERS}]`, 'g'),
+        sanitizedValue = pastedText.replace(negativeRegex, '').replace(/\s/g, '');
+    return sanitizedValue;
+};
 
 export const createProcessName = (name) => {
-    return name.replace(PROCESS_FILE_FORMAT, '');
+    return sanitizeString(name.replace(PROCESS_FILE_FORMAT, ''));
 };
 
 export const changeFileName = (file: File, newName: string): File => {

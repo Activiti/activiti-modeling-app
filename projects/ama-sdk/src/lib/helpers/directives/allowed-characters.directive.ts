@@ -16,13 +16,14 @@
  */
 
 import { Directive, HostListener, ElementRef, Input, Renderer2 } from '@angular/core';
+import { MODEL_NAME_CHARACTERS } from './../utils/create-entries-names';
 
 @Directive({
     selector: '[amasdk-allowed-characters]'
 })
 export class AllowedCharactersDirective {
     /*tslint:disable-next-line:no-input-rename*/
-    @Input('amasdk-allowed-characters') allowedChars = 'a-zA-Z0-9_';
+    @Input('amasdk-allowed-characters') allowedChars =  MODEL_NAME_CHARACTERS;
 
     constructor(private el: ElementRef, private renderer: Renderer2) {}
 

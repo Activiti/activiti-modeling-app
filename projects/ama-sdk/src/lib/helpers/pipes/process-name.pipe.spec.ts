@@ -16,7 +16,7 @@
  */
 
 import { ProcessNamePipe } from './process-name.pipe';
-import * as hellper from '../create-entries-names';
+import * as hellper from '../utils/create-entries-names';
 
 describe('ProcessNamePipe', () => {
     let pipe: ProcessNamePipe;

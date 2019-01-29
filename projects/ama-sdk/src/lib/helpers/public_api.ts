@@ -17,11 +17,11 @@
 
 export * from './common';
 export * from './unsaved-page.guard';
-export * from './create-entries-names';
+export * from './utils/create-entries-names';
 export * from './shared.module';
-export * from './empty-diagram';
+export * from './utils/empty-diagram';
 export * from './primitive-types';
-export * from './blob2json';
+export * from './utils/blob2json';
 export { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
 export { AllowedCharactersDirective } from './directives/allowed-characters.directive';
 

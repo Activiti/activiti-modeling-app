@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+
 export interface EntityDialogForm {
     id?: string;
     name: string;
@@ -39,3 +40,4 @@ export interface EntityDialogPayload {
     values?: EntityDialogForm;
     action: any;
 }
+

@@ -15,16 +15,22 @@
  * limitations under the License.
  */
 
-import { Pipe, PipeTransform } from '@angular/core';
-import { createProcessName } from '../utils/create-entries-names';
+import { sanitizeString, createProcessName, formatUuid } from './create-entries-names';
 
-@Pipe({ name: 'processName' })
-export class ProcessNamePipe implements PipeTransform {
-    transform(value: string, args: string[]): string {
-        if (!value) {
-            return value;
-        }
+describe('Create entries names', () => {
+    it ('test sanitizeString function', () => {
+        const text = 'abc!!!---01023';
+        expect(sanitizeString(text)).toEqual('abc01023');
+    });
 
-        return createProcessName(value);
-    }
-}
+    it('test createProcessName function', () => {
+        const name = 'process.bpmn20.xml';
+        expect(createProcessName(name)).toEqual('process');
+    });
+
+    it('test formatUid', () => {
+        expect(formatUuid('testType', '1234')).toEqual('testtype-1234');
+    });
+
+});
+

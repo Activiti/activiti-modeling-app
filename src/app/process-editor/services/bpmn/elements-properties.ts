@@ -21,7 +21,7 @@ import { BpmnProperty } from 'ama-sdk';
 export const elementsProperties = {
     [BpmnElement.Process]: [
         BpmnProperty.id,
-        BpmnProperty.name,
+        BpmnProperty.processName,
         BpmnProperty.version,
         BpmnProperty.documentation,
         BpmnProperty.properties

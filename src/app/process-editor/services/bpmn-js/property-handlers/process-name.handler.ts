@@ -15,16 +15,17 @@
  * limitations under the License.
  */
 
-import { Pipe, PipeTransform } from '@angular/core';
-import { createProcessName } from '../utils/create-entries-names';
+import { BpmnProperty } from 'ama-sdk';
+import { sanitizeString } from 'ama-sdk';
 
-@Pipe({ name: 'processName' })
-export class ProcessNamePipe implements PipeTransform {
-    transform(value: string, args: string[]): string {
-        if (!value) {
-            return value;
-        }
+const propertyKey = BpmnProperty.name;
 
-        return createProcessName(value);
-    }
-}
+const get = element => element.businessObject[propertyKey];
+const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
+    value = sanitizeString(value);
+    modeling.updateProperties(element, {
+        [propertyKey]: value
+    });
+};
+
+export const processNameHandler = { get, set };

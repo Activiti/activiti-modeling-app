@@ -19,7 +19,7 @@ import { Injectable, InjectionToken } from '@angular/core';
 import { Ui, UiContent } from '../../../api/types';
 import { ModelApi, ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
-import { formatUuid } from '../../../helpers/create-entries-names';
+import { formatUuid } from '../../../helpers/utils/create-entries-names';
 
 export const UI_API = new InjectionToken<ModelApi<Ui, UiContent>>('ui-api');
 
