@@ -15,8 +15,10 @@
  * limitations under the License.
  */
 
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { MODEL_TYPE, ModelFilter } from 'ama-sdk';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, Inject } from '@angular/core';
+import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS } from 'ama-sdk';
+import { Store } from '@ngrx/store';
+import { OpenEntityDialogAction } from '../../../../store/actions';
 
 @Component({
     selector: 'ama-project-tree-filter',
@@ -32,7 +34,15 @@ export class ProjectTreeFilterComponent implements OnInit {
     @Output() opened = new EventEmitter<{ projectId: string; type: string, loadData: boolean }>();
     @Output() closed = new EventEmitter<{ type: string }>();
 
-    ignoreOpenEmit = false;
+    public ignoreOpenEmit: boolean;
+    public creators:  ModelCreator[];
+
+    constructor(
+        private store: Store<AmaState>,
+        @Inject(MODEL_CREATORS) modelCreators: ModelCreator[]
+    ) {
+        this.creators = modelCreators;
+    }
 
     ngOnInit() {
         if (this.expanded) {
@@ -57,5 +67,11 @@ export class ProjectTreeFilterComponent implements OnInit {
         if (!this.ignoreOpenEmit) {
             this.ignoreOpenEmit = false;
         }
+    }
+
+    openModelCreationModal(event: MouseEvent): void {
+        event.stopPropagation();
+        const modelCreator = this.creators.find(creator => creator.type === this.filter.type);
+        this.store.dispatch(new OpenEntityDialogAction(modelCreator.dialog));
     }
 }

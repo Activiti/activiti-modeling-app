@@ -5,12 +5,13 @@
     (closed)="filterClosed(filter.type)">
 
     <mat-expansion-panel-header [attr.data-automation-id]="'project-filter-' + filter.type">
-        <mat-icon class="project-tree-filter__icon filter-icon"
-            *ngIf="!loading; else contentsAreLoading;">{{ filter.icon }}</mat-icon>
+        <mat-icon class="project-tree-filter__icon filter-icon" *ngIf="!loading; else contentsAreLoading;">
+            {{ filter.icon }}
+        </mat-icon>
         <span class="project-tree-filter__title">{{ filter.name | translate }}</span>
-        <ama-upload-file-button [type]="filter.type"
-            [projectId]="projectId">
-        </ama-upload-file-button>
+        <button mat-icon-button [matTooltip]="'APP.PROJECT.CREATE_NEW' | translate" matTooltipPosition="after">
+            <mat-icon (click)="openModelCreationModal($event)">add</mat-icon>
+        </button>
     </mat-expansion-panel-header>
 
     <div class="project-tree-filter__content" [attr.data-automation-id]="'project-filter-' + filter.type + '-container'">
@@ -24,15 +25,15 @@
                 <mat-icon class="project-tree-filter__icon">insert_drive_file</mat-icon>
                 <span class="project-tree-filter__name">{{ item.name | processName }}</span>
             </a>
-            <div class="project-tree-filter__no-content"
-                *ngIf="contentsAreEmpty()">{{ 'APP.PROJECT.NO_CONTENT' | translate }}</div>
+            <div class="project-tree-filter__no-content" *ngIf="contentsAreEmpty()">
+                {{ 'APP.PROJECT.NO_CONTENT' | translate }}
+            </div>
         </ng-container>
     </div>
 </mat-expansion-panel>
 
 <ng-template #contentsAreLoading>
     <div class="project-tree-filter__spinner">
-        <mat-spinner [diameter]="20"
-            [strokeWidth]="2"></mat-spinner>
+        <mat-spinner [diameter]="20" [strokeWidth]="2"></mat-spinner>
     </div>
 </ng-template>
