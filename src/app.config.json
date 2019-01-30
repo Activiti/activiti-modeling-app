@@ -7,16 +7,15 @@
     "application": {
         "name": "Activiti Modeling Application"
     },
-    "backend": "http://activiti-cloud-gateway.35.204.66.71.nip.io",
-    "pathPrefix": "activiti-cloud-modeling",
+    "backend": "http://aps2dev.envalfresco.com",
+    "pathPrefix": "alfresco-modeling-service",
     "oauth2": {
-        "host": "http://activiti-keycloak.35.204.66.71.nip.io/auth/realms/activiti",
-        "authPath": "/protocol/openid-connect/token/",
+        "host": "http://aps2dev.envalfresco.com/auth/realms/alfresco",
         "clientId": "activiti",
         "scope": "openid",
         "secret": "",
         "implicitFlow": true,
-        "silentLogin": true,
+        "silentLogin": false,
         "redirectSilentIframeUri": "/assets/silent-refresh.html",
         "redirectUri": "/",
         "redirectUriLogout": "/login"

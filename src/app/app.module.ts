@@ -68,7 +68,7 @@ import { RouterModule } from '@angular/router';
 
         ProjectEditorModule,
         ProcessEditorModule,
-        ConnectorEditorModule,
+        environment.connectors ? ConnectorEditorModule : [],
 
         MatInputModule,
         ConfirmationDialogModule,
