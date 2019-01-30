@@ -137,14 +137,14 @@
         "ngx-monaco-editor": "6.0.0",
         "pdfjs-dist": "2.0.303",
         "reflect-metadata": "0.1.10",
-        "rxjs": "^6.2.2",
+        "rxjs": "6.3.3",
         "uuid": "^3.3.2",
         "web-animations-js": "2.3.1",
         "xml-js": "^1.6.8",
         "zone.js": "0.8.26"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "0.10.3",
+        "@angular-devkit/build-angular": "^0.12.3",
         "@angular-devkit/build-ng-packagr": "0.10.3",
         "@angular-devkit/core": "7.0.3",
         "@angular/cli": "7.0.3",
