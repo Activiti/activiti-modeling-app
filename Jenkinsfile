@@ -18,6 +18,7 @@
         }
         steps {
           container('nodejs') {
+            sh "npm install rimraf -g"
             sh " npm run clean"
             sh "npm install"
             sh "npm run build"
