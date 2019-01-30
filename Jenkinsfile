@@ -19,8 +19,11 @@
         steps {
           container('nodejs') {
             sh "npm install rimraf -g"
-            sh " npm run clean"
+            sh "npm run clean"
             sh "npm install"
+            sh "node --version"
+            sh "npm version"
+            sh "npm list rxjs"
             sh "npm run build"
             //sh "npm test"
             sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
