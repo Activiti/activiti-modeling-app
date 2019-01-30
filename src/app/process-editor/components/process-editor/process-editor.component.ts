@@ -34,7 +34,7 @@ import {
 import { DownloadProcessAction, ValidateProcessAttemptAction, UpdateProcessAttemptAction, DeleteProcessAttemptAction } from '../../store/process-editor.actions';
 import { filter } from 'rxjs/operators';
 import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
-import { nameHandler } from '../../services/bpmn-js/property-handlers/name.handler';
+import { processNameHandler } from '../../services/bpmn-js/property-handlers/process-name.handler';
 
 @Component({
     templateUrl: './process-editor.component.html',
@@ -63,7 +63,7 @@ export class ProcessEditorComponent implements OnInit {
     saveDiagram(processId: string): void {
         const element = this.processModeler.getRootProcessElement();
         const metadata: Partial<EntityDialogForm> = {
-            name: nameHandler.get(element),
+            name: processNameHandler.get(element),
             description: documentationHandler.get(element),
         };
         this.processModeler

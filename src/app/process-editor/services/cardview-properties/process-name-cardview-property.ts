@@ -21,7 +21,7 @@ import { BpmnProperty } from 'ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
 import { sanitizeString } from 'ama-sdk';
 
-const propertyName = BpmnProperty.name;
+const propertyName = BpmnProperty.processName;
 
 export function createProcessNameProperty({ element }: FactoryProps) {
     return new CardViewTextItemModel({

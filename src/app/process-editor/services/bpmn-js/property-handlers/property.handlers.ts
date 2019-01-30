@@ -34,6 +34,7 @@ import { processNameHandler } from './process-name.handler';
 
 export const handlers = {
     [BpmnProperty.id]: idHandler,
+    [BpmnProperty.processName]: processNameHandler,
     [BpmnProperty.name]: nameHandler,
     [BpmnProperty.version]: versionHandler,
     [BpmnProperty.documentation]: documentationHandler,
@@ -46,6 +47,5 @@ export const handlers = {
     [BpmnProperty.calledElement]: calledElementHandler,
     [BpmnProperty.conditionExpression]: expressionHandler,
     [BpmnProperty.formKey]: formSelectorHandler,
-    [BpmnProperty.properties]: processPropertyHandler,
-    [BpmnProperty.processName]: processNameHandler
+    [BpmnProperty.properties]: processPropertyHandler
 };
