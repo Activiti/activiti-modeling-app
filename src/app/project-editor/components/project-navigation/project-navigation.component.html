@@ -24,7 +24,7 @@
 
         <mat-menu #create="matMenu" class="app-navigation-options">
             <button mat-menu-item
-                data-automation-id="app-navigation-create-model"
+                [attr.data-automation-id]="'app-navigation-create-' + creator.type"
                 *ngFor="let creator of creators"
                 (click)="openModelCreationDialog(creator.dialog)">
                 <mat-icon>{{ creator.icon }}</mat-icon>
@@ -34,7 +34,7 @@
 
         <mat-menu #upload="matMenu" class="app-navigation-options">
             <ama-upload-file-button class="mat-menu-item"
-                data-automation-id="app-navigation-upload-model"
+                [attr.data-automation-id]="'app-navigation-upload-' + creator.type"
                 *ngFor="let creator of creators"
                 [type]="creator.type"
                 [projectId]="selectedProjectId$ | async">
