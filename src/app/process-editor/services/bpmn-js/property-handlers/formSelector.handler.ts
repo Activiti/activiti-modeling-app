@@ -15,11 +15,14 @@
  * limitations under the License.
  */
 
-const propertyKey = 'formKey';
+import { BpmnProperty } from 'ama-sdk';
+
+const propertyKey = BpmnProperty.formKey;
 
 const get = element => element.businessObject[propertyKey];
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
     modeling.updateProperties(element, {
+        [BpmnProperty.implementation]: undefined,
         [propertyKey]: value
     });
 };
