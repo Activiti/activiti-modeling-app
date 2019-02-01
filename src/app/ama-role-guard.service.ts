@@ -40,7 +40,7 @@ export class AmaRoleGuard implements CanActivate {
             }
         });
 
-        if (!this.isAllowed) {
+        if ( ('BASIC' !== this.appConfig.get<string>('authType')) && (!this.isAllowed) ) {
             this.amaAuthService.logout();
         }
        return true;

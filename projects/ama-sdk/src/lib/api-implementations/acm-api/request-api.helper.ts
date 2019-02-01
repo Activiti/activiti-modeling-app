@@ -53,7 +53,12 @@ export class RequestApiHelper {
     constructor(private appConfig: AppConfigService, private alfrescoApiService: AlfrescoApiService) {}
 
     private get api() {
-        return this.alfrescoApiService.getInstance().oauth2Auth;
+        const alfrescoApiService = this.alfrescoApiService.getInstance();
+        if (alfrescoApiService.oauth2Auth) {
+            return alfrescoApiService.oauth2Auth;
+        } else {
+            return alfrescoApiService.ecmClient;
+        }
     }
 
     private buildUrl(endPoint: string): string {
