@@ -33,6 +33,7 @@ describe('ProjectNavigationComponent', () => {
     let fixture: ComponentFixture<ProjectNavigationComponent>;
     let store: Store<AmaState>;
     let element: DebugElement;
+    let component: ProjectNavigationComponent;
 
     describe('For tests when extended is false', () => {
         beforeEach(async(() => {
@@ -71,9 +72,12 @@ describe('ProjectNavigationComponent', () => {
             element = fixture.debugElement;
             fixture.detectChanges();
             store = TestBed.get(Store);
+            component = fixture.componentInstance;
         });
 
         it('click on menu button should open a entity dialog', () => {
+            component.creators[0].type = 'process';
+            fixture.detectChanges();
             spyOn(store, 'dispatch');
             const button = element.query(By.css('.adf-sidebar-action-menu-icon'));
             button.triggerEventHandler('click', { stopPropagation: jest.fn() });
@@ -81,7 +85,7 @@ describe('ProjectNavigationComponent', () => {
             const button2 = element.query(By.css('[data-automation-id="app-navigation-create"]'));
             button2.triggerEventHandler('click', { stopPropagation: jest.fn() });
 
-            const button3 = element.query(By.css('[data-automation-id="app-navigation-create-model"]'));
+            const button3 = element.query(By.css('[data-automation-id="app-navigation-create-process"]'));
             button3.triggerEventHandler('click', { stopPropagation: jest.fn() });
 
             const action: OpenEntityDialogAction =  store.dispatch.calls.argsFor(0)[0];
