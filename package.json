@@ -181,6 +181,7 @@
         "protractor-html-reporter-2": "^1.0.4",
         "rimraf": "2.6.3",
         "rxjs-tslint-rules": "^4.4.4",
+        "terser": "3.14.1",
         "ts-node": "~4.1.0",
         "tsickle": "0.33.1",
         "tslib": "^1.9.0",
