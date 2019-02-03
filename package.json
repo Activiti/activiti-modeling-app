@@ -26,7 +26,7 @@
         "package:sdk": "npm run build:sdk && npm run pack:sdk",
         "07": "echo ------------------------------------------- Unit tests ---------------------------------------------",
         "pretest": "rimraf dist",
-        "test": "jest --notify --config jest.config.js",
+        "test": "jest --detectOpenHandles --notify --config jest.config.js",
         "pretest:watch": "npm run pretest",
         "test:watch": "npm test -- --watch",
         "pretest:ci": "npm run pretest",
