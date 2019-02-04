@@ -29,10 +29,7 @@
                 {{ 'APP.PROJECT.NO_CONTENT' | translate }}
             </div>
         </ng-container>
-        <ama-upload-file-button 
-            [attr.data-automation-id]="'upload-' + filter.type" 
-            [projectId]="projectId" [type]="filter.type">
-        </ama-upload-file-button>
+        <ama-upload-file-button [projectId]="projectId" [type]="filter.type"></ama-upload-file-button>
     </div>
 </mat-expansion-panel>
 
