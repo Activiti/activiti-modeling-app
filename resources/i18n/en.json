@@ -348,7 +348,14 @@
                 "OPERATOR": "If it's",
                 "VALUE": "Value",
                 "NEXT_CONDITION": "Next condition operator",
-                "NO_PROPERTY": "No property selected"
+                "NO_PROPERTY": "No property selected",
+                "FIELDS": "Fields",
+                "VARIABLE": "Variable",
+                "SELECT_FIELD": "Select a field",
+                "SELECT_VARIABLE": "Select a variable",
+                "FORM_FIELD": "Form field",
+                "NEXT_OPERATOR": "Next condition operator"
+
             },
             "FIELD_PROPERTIES": {
                 "DESCRIPTION": "Description",
