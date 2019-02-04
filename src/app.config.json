@@ -7,7 +7,7 @@
     "application": {
         "name": "Activiti Modeling Application"
     },
-    "backend": "http://localhost:8080",
+    "backend": "/",
     "pathPrefix": "",
     "oauth2": {
         "host": "http://activiti-keycloak.35.204.66.71.nip.io/auth/realms/activiti",
