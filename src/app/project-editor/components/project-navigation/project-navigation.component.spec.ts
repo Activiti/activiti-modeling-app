@@ -27,7 +27,7 @@ import { selectMenuOpened } from '../../../store/selectors/app.selectors';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { OpenEntityDialogAction, OPEN_ENTITY_DIALOG } from '../../../store/actions/dialog';
-import { AmaState, MODEL_CREATORS } from 'ama-sdk';
+import { AmaState, MODEL_CREATORS, ModelCreator, ModelCreatorDialogParams } from 'ama-sdk';
 
 describe('ProjectNavigationComponent', () => {
     let fixture: ComponentFixture<ProjectNavigationComponent>;
@@ -36,6 +36,15 @@ describe('ProjectNavigationComponent', () => {
 
     describe('For tests when extended is false', () => {
         beforeEach(async(() => {
+
+            const processCreator: ModelCreator = {
+                icon: 'device_hub',
+                name: 'Processes',
+                type: 'process',
+                order: 1,
+                dialog: <ModelCreatorDialogParams>{}
+            };
+
             TestBed.configureTestingModule({
                 imports: [
                     TranslateModule.forRoot(),
@@ -46,14 +55,7 @@ describe('ProjectNavigationComponent', () => {
                 ],
                 providers: [
                     { provide: TranslationService, useClass: TranslationMock },
-                    {
-                        provide: MODEL_CREATORS, multi: true, useValue: {
-                            icon: 'device_hub',
-                            name: 'Processes',
-                            order: 1,
-                            dialog: {}
-                        }
-                    },
+                    { provide: MODEL_CREATORS, multi: true, useValue: processCreator },
                     {
                         provide: Store,
                         useValue: {
@@ -81,7 +83,7 @@ describe('ProjectNavigationComponent', () => {
             const button2 = element.query(By.css('[data-automation-id="app-navigation-create"]'));
             button2.triggerEventHandler('click', { stopPropagation: jest.fn() });
 
-            const button3 = element.query(By.css('[data-automation-id="app-navigation-create-model"]'));
+            const button3 = element.query(By.css('[data-automation-id="app-navigation-create-process"]'));
             button3.triggerEventHandler('click', { stopPropagation: jest.fn() });
 
             const action: OpenEntityDialogAction =  store.dispatch.calls.argsFor(0)[0];
