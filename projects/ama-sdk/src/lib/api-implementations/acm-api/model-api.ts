@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RequestApiHelper, RequestApiHelperOptions } from './request-api.helper';
 import { map, concatMap } from 'rxjs/operators';
@@ -41,7 +40,6 @@ export interface ModelApiVariation<M extends MinimalModelSummary, C> {
     patchModel(model: Partial<M>): M;
 }
 
-@Injectable()
 export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
 
     constructor(private modelVariation: ModelApiVariation<T, S>, private requestApiHelper: RequestApiHelper) {}
