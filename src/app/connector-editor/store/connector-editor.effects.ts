@@ -103,8 +103,8 @@ export class ConnectorEditorEffects extends BaseEffects {
     @Effect({ dispatch: false })
     deleteConnectorSuccessEffect = this.actions$.pipe(
         ofType<DeleteConnectorSuccessAction>(DELETE_CONNECTOR_SUCCESS),
-        mergeMap(() => this.store.select(selectSelectedProjectId)),
-        map(projectId => {
+        withLatestFrom(this.store.select(selectSelectedProjectId)),
+        map(([action, projectId]) => {
             this.router.navigate(['/projects', projectId]);
         })
     );
