@@ -30,7 +30,15 @@
                     "DATA": "Are you sure that you want to delete this data object?",
                     "DECISION_TABLE": "Are you sure that you want to delete this decision table?",
                     "CONNECTOR": "Are you sure that you want to delete this connector?",
-                    "UNSAVED_PAGE": "Are you sure you want to leave without saving this page?"
+                    "UNSAVED_PAGE": "Are you sure you want to leave without saving "
+                },
+                "TYPES": {
+                    "DECISION": "decision table",
+                    "DATA": "data",
+                    "UI": "ui",
+                    "CONNECTOR": "connector",
+                    "FORM": "form",
+                    "PROCESS": "process"
                 }
             }
         },
