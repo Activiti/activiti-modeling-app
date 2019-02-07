@@ -137,6 +137,7 @@ describe('ProcessEditorComponent', () => {
 
             fixture.whenStable().then(() => {
                 const expected = new ValidateProcessAttemptAction({
+                    title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.PROCESS',
                     processId: mockProcess.id,
                     content: processContent,
                     action: new DownloadProcessAction(mockProcess)
