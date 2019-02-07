@@ -30,7 +30,7 @@ export const selectOpenedModel = createSelector(selectApp, (state: AppState) => 
 export const selectSelectedModel = createSelector(getEntitiesState, selectApp, (entities, app) => {
     for (let i = 0; i < Object.keys(entities).length; i++) {
         const key = Object.keys(entities)[i];
-        if (entities[key].ids.indexOf(app.openedModel.id) !== -1) {
+        if (app.openedModel && entities[key].ids.indexOf(app.openedModel.id) !== -1) {
             return entities[key].entities[app.openedModel.id];
         }
     }

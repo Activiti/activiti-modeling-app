@@ -60,11 +60,9 @@ describe('ConfirmationDialog Component', () => {
             fixture.detectChanges();
         });
 
-        it('check if there are no custom title/subtitle/errors added the default values are set', () => {
-            expect(component.subtitle).toBeDefined();
+        it('check if there are no custom title/errors added the default values are set', () => {
             expect(component.title).toBeDefined();
             expect(component.title).toEqual('APP.DIALOGS.CONFIRM.TITLE');
-            expect(component.subtitle).toEqual('APP.DIALOGS.CONFIRM.SUBTITLE');
             expect(component.errors).toEqual([]);
         });
     });

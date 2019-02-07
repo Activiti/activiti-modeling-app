@@ -99,6 +99,7 @@ export interface UpdateProcessPayload {
 }
 
 export interface ValidateProcessPayload {
+    title: string;
     processId: string;
     content: ProcessContent;
     action: Action;

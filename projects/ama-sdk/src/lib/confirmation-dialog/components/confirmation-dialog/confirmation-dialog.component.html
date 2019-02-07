@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>{{ title | translate }}</h2>
 
 <mat-dialog-content>
-    <p>{{ subtitle | translate }}</p>
+    <p *ngIf="subtitle">{{ subtitle | translate }}</p>
 
     <ul *ngIf="errors.length">
         <li *ngFor="let error of errors">{{ error | translate }}</li>
