@@ -16,7 +16,7 @@
  */
 
 import { Routes } from '@angular/router';
-import { AuthGuard } from '@alfresco/adf-core';
+import { AuthGuard, AboutComponent } from '@alfresco/adf-core';
 import { AppLayoutComponent } from './app/app-layout/app-layout.component';
 import { AppLoginComponent } from './app/app-login/app-login.component';
 import { projectEditorRoutes } from './project-editor/router/project-editor.routes';
@@ -27,6 +27,7 @@ import { AmaRoleGuard } from './ama-role-guard.service';
 export const appRoutes: Routes = [
     { path: 'login', component: AppLoginComponent },
     { path: 'settings', component: HostSettingsComponent },
+    { path: 'about', component: AboutComponent },
     {
         path: '',
         component: AppLayoutComponent,
