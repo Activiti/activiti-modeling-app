@@ -26,6 +26,7 @@ import {
 } from 'ama-sdk';
 
 export interface ValidateConnectorPayload {
+    title: string;
     connectorId: string;
     connectorContent: ConnectorContent;
     action: Action;

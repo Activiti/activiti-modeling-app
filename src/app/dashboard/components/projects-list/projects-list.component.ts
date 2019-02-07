@@ -69,13 +69,9 @@ export class ProjectsListComponent implements OnInit {
     }
 
     deleteRow(item: Partial<Project>): void {
-        const action = new DeleteProjectAttemptAction(item.id);
-
         this.store.dispatch(new OpenConfirmDialogAction({
-            dialogData: {
-                subtitle: 'APP.DIALOGS.CONFIRM.CUSTOM.PROJECT'
-            },
-            action: action
+            dialogData: { title: 'APP.DIALOGS.CONFIRM.DELETE.PROJECT' },
+            action: new DeleteProjectAttemptAction(item.id)
         }));
     }
 }

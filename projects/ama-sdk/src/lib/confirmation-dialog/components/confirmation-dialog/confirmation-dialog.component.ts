@@ -46,7 +46,7 @@ export class ConfirmationDialogComponent implements OnInit {
 
     ngOnInit() {
         this.title = this.data.title || 'APP.DIALOGS.CONFIRM.TITLE';
-        this.subtitle = this.data.subtitle || 'APP.DIALOGS.CONFIRM.SUBTITLE';
+        this.subtitle = this.data.subtitle;
         this.subject = this.data.subject;
         this.confirmButton = this.data.confirmButton;
         this.errors = this.data.errors || [];

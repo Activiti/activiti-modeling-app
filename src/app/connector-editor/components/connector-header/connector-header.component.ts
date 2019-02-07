@@ -56,6 +56,7 @@ export class ConnectorHeaderComponent {
 
     onSave() {
         this.store.dispatch(new ValidateConnectorAttemptAction({
+            title: 'APP.DIALOGS.CONFIRM.SAVE.CONNECTOR',
             connectorId: this.connectorId,
             connectorContent: JSON.parse(this.content),
             action: new UpdateConnectorContentAttemptAction(JSON.parse(this.content))
@@ -63,20 +64,17 @@ export class ConnectorHeaderComponent {
     }
 
     onDelete() {
-        const action = new DeleteConnectorAttemptAction(this.connectorId);
-
         this.store.dispatch(
             new OpenConfirmDialogAction({
-                dialogData: {
-                    subtitle: 'APP.DIALOGS.CONFIRM.CUSTOM.CONNECTOR'
-                },
-                action: action
+                dialogData: { title: 'APP.DIALOGS.CONFIRM.DELETE.CONNECTOR' },
+                action: new DeleteConnectorAttemptAction(this.connectorId)
             })
         );
     }
 
     onDownload() {
         this.store.dispatch(new ValidateConnectorAttemptAction({
+            title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.CONNECTOR',
             connectorId: this.connectorId,
             connectorContent: JSON.parse(this.content),
             action: new DownloadConnectorAction()
