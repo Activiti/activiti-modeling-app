@@ -22,15 +22,39 @@
                 "TITLE": "Are you sure?",
                 "SUBTITLE": "Are you sure that you want to do this action?",
                 "BUTTON": "Confirm",
-                "CUSTOM": {
-                    "PROJECT": "Are you sure that you want to delete this project?",
-                    "PROCESS": "Are you sure that you want to delete this process?",
-                    "FORM": "Are you sure that you want to delete this form?",
-                    "UI": "Are you sure that you want to delete this ui?",
-                    "DATA": "Are you sure that you want to delete this data object?",
-                    "DECISION_TABLE": "Are you sure that you want to delete this decision table?",
-                    "CONNECTOR": "Are you sure that you want to delete this connector?",
-                    "UNSAVED_PAGE": "Are you sure you want to leave without saving this page?"
+                "UNSAVED_PAGE": "Are you sure you want to leave without saving",
+                "TYPES": {
+                    "DECISION": "decision table",
+                    "DATA": "data",
+                    "UI": "ui",
+                    "CONNECTOR": "connector",
+                    "FORM": "form",
+                    "PROCESS": "process"
+                },
+                "DELETE": {
+                    "PROJECT": "Are you sure you want to delete this project?",
+                    "PROCESS": "Are you sure you want to delete this process?",
+                    "FORM": "Are you sure you want to delete this form?",
+                    "UI": "Are you sure you want to delete this ui?",
+                    "DATA": "Are you sure you want to delete this data object?",
+                    "DECISION_TABLE": "Are you sure you want to delete this decision table?",
+                    "CONNECTOR": "Are you sure you want to delete this connector?"
+                },
+                "SAVE": {
+                    "PROCESS": "Are you sure you want to save this process?",
+                    "FORM": "Are you sure you want to save this form?",
+                    "UI": "Are you sure you want to save this ui?",
+                    "DATA": "Are you sure you want to save this data object?",
+                    "DECISION_TABLE": "Are you sure you want to save this decision table?",
+                    "CONNECTOR": "Are you sure you want to save this connector?"
+                },
+                "DOWNLOAD": {
+                    "PROCESS": "Are you sure you want to download this process?",
+                    "FORM": "Are you sure you want to download this form?",
+                    "UI": "Are you sure you want to download this ui?",
+                    "DATA": "Are you sure you want to download this data object?",
+                    "DECISION_TABLE": "Are you sure you want to download this decision table?",
+                    "CONNECTOR": "Are you sure you want to download this connector?"
                 }
             }
         },
@@ -348,7 +372,14 @@
                 "OPERATOR": "If it's",
                 "VALUE": "Value",
                 "NEXT_CONDITION": "Next condition operator",
-                "NO_PROPERTY": "No property selected"
+                "NO_PROPERTY": "No property selected",
+                "FIELDS": "Fields",
+                "VARIABLE": "Variable",
+                "SELECT_FIELD": "Select a field",
+                "SELECT_VARIABLE": "Select a variable",
+                "FORM_FIELD": "Form field",
+                "NEXT_OPERATOR": "Next condition operator"
+
             },
             "FIELD_PROPERTIES": {
                 "DESCRIPTION": "Description",

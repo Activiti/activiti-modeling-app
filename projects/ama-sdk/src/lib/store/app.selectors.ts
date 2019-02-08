@@ -18,6 +18,7 @@
 import { createSelector } from '@ngrx/store';
 import { AmaState, AppState } from './app.state';
 import { selectProject } from './project.selectors';
+import { getEntitiesState } from './entities';
 
 export const selectApp = (state: AmaState) => state.app;
 
@@ -25,6 +26,15 @@ export const selectSelectedTheme = createSelector(selectApp, (state: AppState) =
 export const selectSelectedProjectId = createSelector(selectApp, (state: AppState) => state.selectedProjectId);
 export const selectAppDirtyState = createSelector(selectApp, (state: AppState) => state.dirtyState);
 export const selectOpenedModel = createSelector(selectApp, (state: AppState) => state.openedModel);
+
+export const selectSelectedModel = createSelector(getEntitiesState, selectApp, (entities, app) => {
+    for (let i = 0; i < Object.keys(entities).length; i++) {
+        const key = Object.keys(entities)[i];
+        if (app.openedModel && entities[key].ids.indexOf(app.openedModel.id) !== -1) {
+            return entities[key].entities[app.openedModel.id];
+        }
+    }
+});
 
 export const selectProjectCrumb = createSelector(selectProject, project => {
     return project ? { url: `/projects/${project.id}`, name: project.name } : null;

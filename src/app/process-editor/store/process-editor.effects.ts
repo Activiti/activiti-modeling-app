@@ -191,7 +191,7 @@ export class ProcessEditorEffects extends BaseEffects {
             switchMap(() => [ payload.action ]),
             catchError(response => [ new OpenConfirmDialogAction({
                 dialogData: {
-                    title: 'APP.DIALOGS.CONFIRM.TITLE',
+                    title: payload.title || 'APP.DIALOGS.CONFIRM.TITLE',
                     subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
                     errors: JSON.parse(response.message).errors.map(error => error.description)
                 },

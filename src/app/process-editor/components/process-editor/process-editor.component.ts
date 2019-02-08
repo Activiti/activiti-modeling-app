@@ -69,6 +69,7 @@ export class ProcessEditorComponent implements OnInit {
         this.processModeler
             .export()
             .then(content => this.store.dispatch(new ValidateProcessAttemptAction({
+                title: 'APP.DIALOGS.CONFIRM.SAVE.PROCESS',
                 processId,
                 content,
                 action: new UpdateProcessAttemptAction({ processId, content, metadata })
@@ -80,6 +81,7 @@ export class ProcessEditorComponent implements OnInit {
         this.processModeler
             .export()
             .then(content => this.store.dispatch(new ValidateProcessAttemptAction({
+                title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.PROCESS',
                 processId: process.id,
                 content,
                 action: new DownloadProcessAction(process)
@@ -90,9 +92,7 @@ export class ProcessEditorComponent implements OnInit {
     deleteProcess(processId: string): void {
         this.store.dispatch(
             new OpenConfirmDialogAction({
-                dialogData: {
-                    subtitle: 'APP.DIALOGS.CONFIRM.CUSTOM.PROCESS'
-                },
+                dialogData: { title: 'APP.DIALOGS.CONFIRM.DELETE.PROCESS' },
                 action: new DeleteProcessAttemptAction(processId)
             })
         );

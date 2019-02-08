@@ -103,8 +103,8 @@ export class ConnectorEditorEffects extends BaseEffects {
     @Effect({ dispatch: false })
     deleteConnectorSuccessEffect = this.actions$.pipe(
         ofType<DeleteConnectorSuccessAction>(DELETE_CONNECTOR_SUCCESS),
-        mergeMap(() => this.store.select(selectSelectedProjectId)),
-        map(projectId => {
+        withLatestFrom(this.store.select(selectSelectedProjectId)),
+        map(([action, projectId]) => {
             this.router.navigate(['/projects', projectId]);
         })
     );
@@ -185,13 +185,13 @@ export class ConnectorEditorEffects extends BaseEffects {
         switchMap(() => this.downloadConnector())
     );
 
-    private validateConnector({ connectorId, connectorContent, action }: ValidateConnectorPayload) {
+    private validateConnector({ connectorId, connectorContent, action, title }: ValidateConnectorPayload) {
         return this.connectorEditorService.validate(connectorId, connectorContent).pipe(
             switchMap(() => [ action ]),
             catchError(response => [ new OpenConfirmDialogAction({
                 action,
                 dialogData: {
-                    title: 'APP.DIALOGS.CONFIRM.TITLE',
+                    title: title || 'APP.DIALOGS.CONFIRM.TITLE',
                     subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
                     errors: JSON.parse(response.message).errors.map(error => error.description)
                 }

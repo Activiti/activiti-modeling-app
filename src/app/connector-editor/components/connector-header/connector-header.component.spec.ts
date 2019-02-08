@@ -89,6 +89,7 @@ describe('ConnectorHeaderComponent', () => {
         fixture.detectChanges();
 
         const payload = {
+            title: 'APP.DIALOGS.CONFIRM.SAVE.CONNECTOR',
             connectorId: component.connectorId,
             connectorContent: JSON.parse(component.content),
             action: new UpdateConnectorContentAttemptAction(JSON.parse(component.content))
@@ -116,7 +117,7 @@ describe('ConnectorHeaderComponent', () => {
 
         const payload = new OpenConfirmDialogAction({
             dialogData: {
-                subtitle: 'APP.DIALOGS.CONFIRM.CUSTOM.CONNECTOR'
+                title: 'APP.DIALOGS.CONFIRM.DELETE.CONNECTOR'
             },
             action: new DeleteConnectorAttemptAction(component.connectorId)
         });
@@ -132,6 +133,7 @@ describe('ConnectorHeaderComponent', () => {
         fixture.detectChanges();
 
         const payload = {
+            title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.CONNECTOR',
             connectorId: component.connectorId,
             connectorContent: JSON.parse(component.content),
             action: new DownloadConnectorAction()
