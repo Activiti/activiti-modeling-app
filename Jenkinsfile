@@ -21,7 +21,7 @@
             sh "npm install"
             sh "npm run build"
             //sh "npm test"
-            sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
+            //sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
 
           }
         }
@@ -42,7 +42,11 @@
             sh "npm install"
             sh "npm run build"
             //sh "npm test"
-
+            dir("./charts/$APP_NAME") {
+              retry(5) { 
+                sh "make tag"
+              }     
+            }
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
 
