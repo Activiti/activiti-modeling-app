@@ -26,7 +26,7 @@ import { JsonEditorComponent } from './components/json-editor/json-editor.compon
     imports: [
         CommonModule,
         FormsModule,
-        MonacoEditorModule.forRoot()
+        MonacoEditorModule.forRoot({baseUrl: './assets'})
     ],
     declarations: [JsonEditorComponent],
     exports: [
