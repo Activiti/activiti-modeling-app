@@ -1,4 +1,7 @@
 @mixin ama-connector-editor($theme) {
+    .mat-tab-body.mat-tab-body-active {
+        position: absolute;
+    }
     .ama-connector-editor {
         height: 100%;
         display: flex;
