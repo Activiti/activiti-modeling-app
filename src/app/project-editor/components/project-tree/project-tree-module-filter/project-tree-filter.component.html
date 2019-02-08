@@ -9,8 +9,11 @@
             {{ filter.icon }}
         </mat-icon>
         <span class="project-tree-filter__title">{{ filter.name | translate }}</span>
-        <button mat-icon-button [matTooltip]="'APP.PROJECT.CREATE_NEW' | translate" matTooltipPosition="after">
-            <mat-icon (click)="openModelCreationModal($event)">add</mat-icon>
+        <button mat-icon-button
+            (click)="openModelCreationModal($event)"
+            [matTooltip]="'APP.PROJECT.CREATE_NEW' | translate"
+            matTooltipPosition="after">
+            <mat-icon>add</mat-icon>
         </button>
     </mat-expansion-panel-header>
 
