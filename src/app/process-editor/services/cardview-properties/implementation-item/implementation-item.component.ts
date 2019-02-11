@@ -31,8 +31,8 @@ export class CardViewImplementationItemComponent implements OnInit, OnDestroy {
     @Input() property: ImplementationItemModel;
 
     implementation: string;
-    input: string;
-    output: string;
+    inputs: string;
+    outputs: string;
     onDestroy$: Subject<void> = new Subject();
 
     constructor(
@@ -46,8 +46,8 @@ export class CardViewImplementationItemComponent implements OnInit, OnDestroy {
         this.store.select(selectProcessMappingsFor(this.elementId)).pipe(
             takeUntil(this.onDestroy$)
         ).subscribe(variablesMapping => {
-            this.input = JSON.stringify(variablesMapping.inputs);
-            this.output = JSON.stringify(variablesMapping.outputs);
+            this.inputs = JSON.stringify(variablesMapping.inputs);
+            this.outputs = JSON.stringify(variablesMapping.outputs);
         });
     }
 
@@ -61,8 +61,8 @@ export class CardViewImplementationItemComponent implements OnInit, OnDestroy {
 
     changeVariablesMapping(): void {
         try {
-            const inputs = JSON.parse(this.input),
-                outputs = JSON.parse(this.output);
+            const inputs = JSON.parse(this.inputs),
+                outputs = JSON.parse(this.outputs);
 
             this.store.select(selectOpenedModel).pipe(takeUntil(this.onDestroy$)).subscribe(openedModel => {
                 this.store.dispatch(new UpdateServiceParametersAction(openedModel.id, this.elementId, { inputs, outputs }));
