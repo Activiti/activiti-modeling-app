@@ -27,7 +27,7 @@
                     "DECISION": "ディシジョンテーブル",
                     "DATA": "データ",
                     "UI": "UI",
-                    "CONNECTOR": "コネクター",
+                    "CONNECTOR": "コネクタ",
                     "FORM": "フォーム",
                     "PROCESS": "プロセス"
                 },
@@ -38,7 +38,7 @@
                     "UI": "このUIを削除しますか？",
                     "DATA": "このデータオブジェクトを削除しますか？",
                     "DECISION_TABLE": "このディシジョンテーブルを削除しますか？",
-                    "CONNECTOR": "このコネクターを削除しますか？"
+                    "CONNECTOR": "このコネクタを削除しますか？"
                 },
                 "SAVE": {
                     "PROCESS": "このプロセスを保存しますか？",
@@ -46,7 +46,7 @@
                     "UI": "このUIを保存しますか？",
                     "DATA": "このデータオブジェクトを保存しますか？",
                     "DECISION_TABLE": "このディシジョンテーブルを保存しますか？",
-                    "CONNECTOR": "このコネクターを保存しますか？"
+                    "CONNECTOR": "このコネクタを保存しますか？"
                 },
                 "DOWNLOAD": {
                     "PROCESS": "このプロセスをダウンロードしますか？",
@@ -54,7 +54,7 @@
                     "UI": "このUIをダウンロードしますか？",
                     "DATA": "このデータオブジェクトをダウンロードしますか？",
                     "DECISION_TABLE": "このディシジョンテーブルをダウンロードしますか？",
-                    "CONNECTOR": "このコネクターをダウンロードしますか？"
+                    "CONNECTOR": "このコネクタをダウンロードしますか？"
                 }
             }
         },
@@ -114,7 +114,7 @@
         },
         "PROJECT": {
             "BACKTO": "プロジェクト",
-            "UPLOAD_FILE": "のアップロード",
+            "UPLOAD_FILE": "ファイルのアップロード",
             "CREATE_NEW": "新規作成",
             "UPLOAD_FILE_SUCCESS": "ファイルのアップロードに成功しました。",
             "NO_CONTENT": "<空>",
@@ -126,7 +126,7 @@
                 "CREATE_PROCESS_TITLE": "プロセスの新規作成",
                 "MENU_ITEMS": {
                     "CREATE_PROCESS": "プロセス",
-                    "CREATE_CONNECTOR": "コネクター",
+                    "CREATE_CONNECTOR": "コネクタ",
                     "CREATE_FORM": "フォーム",
                     "CREATE_UI": "UI",
                     "CREATE_DATA": "データオブジェクト",
@@ -136,7 +136,7 @@
             "TREE": {
                 "PROCESSES": "プロセス",
                 "FORMS": "フォーム",
-                "CONNECTORS": "コネクター",
+                "CONNECTORS": "コネクタ",
                 "DATA": "データ",
                 "DECISION_TABLES": "ディシジョンテーブル",
                 "UIS": "UI"
@@ -151,13 +151,13 @@
                 "PROCESS_UPDATED": "プロセスの更新に成功しました。"
             },
             "CONNECTOR_DIALOG": {
-                "TITLE_CREATE": "コネクターの新規作成",
-                "TITLE_UPDATE": "コネクターの更新",
-                "CONNECTOR_NAME": "コネクター名:",
-                "CONNECTOR_DESC": "コネクターの説明:",
-                "CONNECTOR_CREATED": "コネクターの作成に成功しました。",
-                "CONNECTOR_DELETED": "コネクターの削除に成功しました。",
-                "CONNECTOR_UPDATED": "コネクターの更新に成功しました。"
+                "TITLE_CREATE": "コネクタの新規作成",
+                "TITLE_UPDATE": "コネクタの更新",
+                "CONNECTOR_NAME": "コネクタ名:",
+                "CONNECTOR_DESC": "コネクタの説明:",
+                "CONNECTOR_CREATED": "コネクタの作成に成功しました。",
+                "CONNECTOR_DELETED": "コネクタの削除に成功しました。",
+                "CONNECTOR_UPDATED": "コネクタの更新に成功しました。"
             },
             "FORM_DIALOG": {
                 "TITLE_CREATE": "フォームの新規作成",
@@ -218,12 +218,12 @@
                     "GENERAL": "プロセスの更新中に予期せぬエラーが発生しました。"
                 },
                 "CREATE_CONNECTOR": {
-                    "DUPLICATION": "同名のコネクターがすでに存在します。",
-                    "GENERAL": "コネクターの作成中に予期せぬエラーが発生しました。"
+                    "DUPLICATION": "同名のコネクタがすでに存在します。",
+                    "GENERAL": "コネクタの作成中に予期せぬエラーが発生しました。"
                 },
                 "UPDATE_CONNECTOR": {
-                    "DUPLICATION": "同名のコネクターがすでに存在します。",
-                    "GENERAL": "コネクターの更新中に予期せぬエラーが発生しました。"
+                    "DUPLICATION": "同名のコネクタがすでに存在します。",
+                    "GENERAL": "コネクタの更新中に予期せぬエラーが発生しました。"
                 },
                 "CREATE_FORM": {
                     "DUPLICATION": "同名のフォームがすでに存在します。",
@@ -313,7 +313,7 @@
             "SELECT_PROCESS_VARIABLE": "プロセス変数を選択してください。",
             "ERRORS": {
                 "NO_PROCESS_PROPERTIES": "プロセスのプロパティが存在しません。",
-                "NO_CONNECTOR_ACTIONS": "コネクターのアクションが存在しません。",
+                "NO_CONNECTOR_ACTIONS": "コネクタのアクションが存在しません。",
                 "LOAD_DIAGRAM": "プロセス図の読み込みに失敗しました。",
                 "SAVE_DIAGRAM": "プロセス図の保存に失敗しました。",
                 "DOWNLOAD_DIAGRAM": "プロセス図のダウンロードに失敗しました。",
@@ -497,7 +497,7 @@
         },
         "GENERAL": {
             "ERRORS": {
-                "NOT_VALID_JSON": "不正な形式なJSONです。",
+                "NOT_VALID_JSON": "不正な形式のJSONです。",
                 "NOT_VALID_SCHEMA": "JSONがスキーマに違反しています。"
             }
         }
