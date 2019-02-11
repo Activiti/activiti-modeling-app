@@ -46,6 +46,7 @@ import { processEntitiesReducer } from './store/process-entities.reducer';
 import { ProcessVariablesEffects } from './store/process-variables.effects';
 import { processEditorReducer } from './store/process-editor.reducer';
 import { PROCESS_EDITOR_STATE_NAME } from './store/process-editor.selectors';
+import { CardViewDefaultSequenceFlowItemComponent } from './services/cardview-properties/default-sequence-flow/default-sequence-flow-item.component';
 
 @NgModule({
     imports: [
@@ -65,11 +66,13 @@ import { PROCESS_EDITOR_STATE_NAME } from './store/process-editor.selectors';
         ProcessModelerComponent,
         ProcessPropertiesComponent,
         CardViewProcessVariablesItemComponent,
-        CardViewImplementationItemComponent
+        CardViewImplementationItemComponent,
+        CardViewDefaultSequenceFlowItemComponent
     ],
     entryComponents: [
         CardViewProcessVariablesItemComponent,
         CardViewImplementationItemComponent,
+        CardViewDefaultSequenceFlowItemComponent,
         ProcessEditorComponent
     ],
     exports: [ProcessEditorRoutingModule],
@@ -84,6 +87,7 @@ import { PROCESS_EDITOR_STATE_NAME } from './store/process-editor.selectors';
         providePropertyHandler(BpmnProperty.properties, CardViewProcessVariablesItemComponent),
         providePropertyHandler(BpmnProperty.implementation, CardViewImplementationItemComponent),
         providePropertyHandler(BpmnProperty.formKey, CardViewTextItemComponent),
+        providePropertyHandler(BpmnProperty.defaultSequenceFlow, CardViewDefaultSequenceFlowItemComponent),
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider()

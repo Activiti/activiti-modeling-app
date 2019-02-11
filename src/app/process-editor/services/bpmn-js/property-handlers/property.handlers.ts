@@ -31,6 +31,7 @@ import { expressionHandler } from './expression.handler';
 import { formSelectorHandler } from './formSelector.handler';
 import { processPropertyHandler } from './process-variables.handler';
 import { processNameHandler } from './process-name.handler';
+import { defaultSequenceFlowHandler } from './default-sequence-flow.handler';
 
 export const handlers = {
     [BpmnProperty.id]: idHandler,
@@ -47,5 +48,6 @@ export const handlers = {
     [BpmnProperty.calledElement]: calledElementHandler,
     [BpmnProperty.conditionExpression]: expressionHandler,
     [BpmnProperty.formKey]: formSelectorHandler,
-    [BpmnProperty.properties]: processPropertyHandler
+    [BpmnProperty.properties]: processPropertyHandler,
+    [BpmnProperty.defaultSequenceFlow]: defaultSequenceFlowHandler
 };

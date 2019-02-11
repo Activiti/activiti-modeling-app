@@ -32,6 +32,7 @@ import { createProcessVariablesProperty } from './process-variable-item-property
 import { createExpressionProperty } from './expression-cardview-property';
 import { createFormKeyProperty } from './formSelector-cardview-property';
 import { createProcessNameProperty } from './process-name-cardview-property';
+import { createDefaultSequenceFlowProperty } from './default-sequence-flow-cardview-property';
 
 export const bpmn2cardView = {
     [BpmnProperty.id]: createIdProperty,
@@ -49,5 +50,6 @@ export const bpmn2cardView = {
     [BpmnProperty.properties]: createProcessVariablesProperty,
     [BpmnProperty.conditionExpression]: createExpressionProperty,
     [BpmnProperty.formKey]: createFormKeyProperty,
-    [BpmnProperty.processName]: createProcessNameProperty
+    [BpmnProperty.processName]: createProcessNameProperty,
+    [BpmnProperty.defaultSequenceFlow]: createDefaultSequenceFlowProperty
 };

@@ -1,0 +1,11 @@
+@mixin ama-default-sequence-flow-item($theme) {
+    .default-sequence-flow-block {
+        .mat-form-field-appearance-legacy .mat-form-field-label {
+            display: none;
+            &.mat-form-field-empty {
+                display: block;
+                top: 40px;
+            }
+        }
+    }
+}

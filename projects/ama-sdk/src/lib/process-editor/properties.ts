@@ -33,7 +33,8 @@ export enum BpmnProperty {
     calledElement = 'calledElement',
     properties = 'properties',
     conditionExpression = 'conditionExpression',
-    processName = 'processName'
+    processName = 'processName',
+    defaultSequenceFlow = 'default'
 }
 
 export const PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS = new InjectionToken<ProcessEditorCustomProperty[]>('process-editor-custom-property-handlers');
