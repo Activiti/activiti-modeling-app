@@ -1,12 +1,13 @@
 @mixin ama-connector-editor($theme) {
-    .mat-tab-body.mat-tab-body-active {
-        position: absolute;
-    }
     .ama-connector-editor {
         height: 100%;
         display: flex;
         flex-direction: column;
         overflow: hidden;
+
+        .mat-tab-body.mat-tab-body-active {
+            position: absolute;
+        }
 
         &-spinner {
             padding-top: 48px;
