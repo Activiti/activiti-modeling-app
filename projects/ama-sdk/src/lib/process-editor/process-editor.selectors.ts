@@ -48,7 +48,7 @@ export const selectProcessMappingsFor = (serviceId) => {
             if (!process || !process.extensions) {
                 return {};
             }
-            const mapping = process.extensions.variablesMappings;
+            const mapping = process.extensions.mappings;
             return mapping && mapping[serviceId] ? mapping[serviceId] : {};
         }
     );
