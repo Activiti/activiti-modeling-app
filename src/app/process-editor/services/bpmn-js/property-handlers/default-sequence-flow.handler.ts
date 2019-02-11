@@ -15,9 +15,17 @@
  * limitations under the License.
  */
 
-export * from './properties';
-export * from './process-editor.actions';
-export * from './process-editor.selectors';
-export * from './cardview-properties/implementation-item.model';
-export * from './cardview-properties/form-key.model';
-export * from './cardview-properties/default-sequence-flow-item.model';
+import { BpmnProperty } from 'ama-sdk';
+
+const propertyKey = BpmnProperty.defaultSequenceFlow;
+
+const get = (element: Bpmn.DiagramElement) => ({
+    list: element.businessObject.outgoing,
+    default: element.businessObject.default
+});
+
+const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
+    modeling.updateProperties(element, { [propertyKey]: value });
+};
+
+export const defaultSequenceFlowHandler = { get, set };

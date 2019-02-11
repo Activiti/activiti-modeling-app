@@ -56,9 +56,9 @@ export const elementsProperties = {
     [BpmnElement.ExclusiveGateway]: [
         BpmnProperty.id,
         BpmnProperty.name,
-        BpmnProperty.documentation
+        BpmnProperty.documentation,
+        BpmnProperty.defaultSequenceFlow
     ],
-
     [BpmnElement.ParallelGateway]: [
         BpmnProperty.id,
         BpmnProperty.name,
