@@ -306,7 +306,8 @@
                 "PROCESS_VARIABLE": "Process variable",
                 "PROCESS_VARIABLES": "Process variables",
                 "EXPRESSION": "Condition Expression",
-                "FORM_SELECTOR": "Form selector"
+                "FORM_SELECTOR": "Form selector",
+                "DEFAULT_SEQUENCE_FLOW": "Default sequence flow"
             },
             "UPLOAD_SUCCESS": "The process was successfully uploaded",
             "PROCESS_UPDATED": "The process was successfully updated",

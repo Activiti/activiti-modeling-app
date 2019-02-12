@@ -2,7 +2,8 @@
     "APP": {
         "HEADER": {
             "APP_NAME": "Modeling Application",
-            "SIGN_OUT": "サインアウト"
+            "SIGN_OUT": "サインアウト",
+            "SETTINGS": "設定"
         },
         "DIALOGS": {
             "CANCEL": "キャンセル",
@@ -11,18 +12,49 @@
             "UPDATE": "更新",
             "CLOSE": "閉じる",
             "EDIT_PROPERTIES": "プロセス変数の編集",
+            "EDIT_FORM_PROPERTIES": "フォーム変数の編集",
+            "EDIT_VISIBILITY_CONDITIONS": "表示条件の編集",
             "ERROR": {
-                "TITLE": "入力チェックエラーを無視して保存しますか?",
+                "TITLE": "入力チェックエラーを無視して保存しますか？",
                 "SUBTITLE": "入力チェックエラー:"
             },
             "CONFIRM": {
-                "TITLE": "よろしいですか?",
+                "TITLE": "よろしいですか？",
                 "SUBTITLE": "この操作を行ってもよろしいですか？",
                 "BUTTON": "確認",
-                "CUSTOM": {
-                    "PROJECT": "このアプリケーションを削除しても問題ありませんか？",
-                    "PROCESS": "このプロセスを削除しても問題ありませんか？",
-                    "UNSAVED_PAGE": "このままページを移動しますか? 行った変更が保存されていません。"
+                "UNSAVED_PAGE": "保存する前に移動すると、編集した内容が失われます。 移動をしますか？",
+                "TYPES": {
+                    "DECISION": "ディシジョンテーブル",
+                    "DATA": "データ",
+                    "UI": "UI",
+                    "CONNECTOR": "コネクタ",
+                    "FORM": "フォーム",
+                    "PROCESS": "プロセス"
+                },
+                "DELETE": {
+                    "PROJECT": "このプロジェクトを削除しますか？",
+                    "PROCESS": "このプロセスを削除しますか？",
+                    "FORM": "このフォームを削除しますか？",
+                    "UI": "このUIを削除しますか？",
+                    "DATA": "このデータオブジェクトを削除しますか？",
+                    "DECISION_TABLE": "このディシジョンテーブルを削除しますか？",
+                    "CONNECTOR": "このコネクタを削除しますか？"
+                },
+                "SAVE": {
+                    "PROCESS": "このプロセスを保存しますか？",
+                    "FORM": "このフォームを保存しますか？",
+                    "UI": "このUIを保存しますか？",
+                    "DATA": "このデータオブジェクトを保存しますか？",
+                    "DECISION_TABLE": "このディシジョンテーブルを保存しますか？",
+                    "CONNECTOR": "このコネクタを保存しますか？"
+                },
+                "DOWNLOAD": {
+                    "PROCESS": "このプロセスをダウンロードしますか？",
+                    "FORM": "このフォームをダウンロードしますか？",
+                    "UI": "このUIをダウンロードしますか？",
+                    "DATA": "このデータオブジェクトをダウンロードしますか？",
+                    "DECISION_TABLE": "このディシジョンテーブルをダウンロードしますか？",
+                    "CONNECTOR": "このコネクタをダウンロードしますか？"
                 }
             }
         },
@@ -30,32 +62,39 @@
             "EDIT": "編集",
             "DELETE": "削除"
         },
+        "SETTINGS": {
+            "HEADER": "アプリケーション設定"
+        },
         "HOME": {
             "NEW_MENU": {
                 "LABEL": "新規作成",
-                "CREATE_PROJECT_TITLE": "新しいアプリケーションの作成",
-                "EDIT_PROJECT_TITLE": "アプリケーションの編集",
-                "PROJECT_CREATED": "アプリケーションの作成に成功しました。",
-                "PROJECT_UPLOADED": "アプリケーションのアップロードに成功しました。",
-                "PROJECT_UPDATED": "アプリケーションの更新に成功しました。",
-                "PROJECT_DELETED": "アプリケーションの削除に成功しました。",
+                "CREATE_PROJECT_TITLE": "新しいプロジェクトの作成",
+                "EDIT_PROJECT_TITLE": "プロジェクトの編集",
+                "PROJECT_CREATED": "プロジェクトの作成に成功しました。",
+                "PROJECT_UPLOADED": "プロジェクトのアップロードに成功しました。",
+                "PROJECT_UPDATED": "プロジェクトの更新に成功しました。",
+                "PROJECT_DELETED": "プロジェクトの削除に成功しました。",
                 "MENU_ITEMS": {
-                    "CREATE_PROJECT": "アプリケーション",
-                    "UPLOAD_PROJECT": "アップロード"
+                    "CREATE_PROJECT": "プロジェクト",
+                    "UPLOAD_PROJECT": "プロジェクトのアップロード"
                 }
             },
             "DIALOGS": {
-                "PROJECT_NAME": "アプリケーション名",
-                "PROJECT_DESC": "アプリケーションの説明"
+                "PROJECT_NAME": "プロジェクト名",
+                "PROJECT_DESC": "プロジェクトの説明"
             },
             "NAVIGATION": {
                 "PROJECTS": {
-                    "LABEL": "アプリケーション",
-                    "TOOLTIP": "アプリケーションの公開"
+                    "LABEL": "プロジェクト",
+                    "TOOLTIP": "プロジェクトの公開"
                 },
                 "PROCESSES": {
                     "LABEL": "プロセス",
                     "TOOLTIP": "プロセスの公開"
+                },
+                "FAVORITES": {
+                    "LABEL": "お気に入り",
+                    "TOOLTIP": "お気に入り"
                 }
             },
             "TABLE": {
@@ -64,28 +103,43 @@
                 "COLUMN_CREATED": "作成日時",
                 "COLUMN_CREATED_BY": "作成者",
                 "COLUMN_OPTIONS": "オプション",
-                "NO_ITEMS": "あなたのアイテムは、まだこのリストに存在しません。"
+                "NO_ITEMS": "あなたのアイテムは、まだこのリストに存在しません。",
+                "NO_FAV_PROCESSES": "お気に入りのプロセスが設定されていません。",
+                "NO_FAV_PROJECTS": "お気に入りのプロジェクトが設定されていません。"
             },
             "ERROR": {
-                "LOAD_PROJECTS": "アプリケーションの読み込み中に予期せぬエラーが発生しました。.",
+                "LOAD_PROJECTS": "プロジェクトの読み込み中に予期せぬエラーが発生しました。",
                 "LOAD_PROCESSES": "プロセスの読み込み中に予期せぬエラーが発生しました。"
             }
         },
         "PROJECT": {
-            "BACKTO": "アプリケーション",
+            "BACKTO": "プロジェクト",
             "UPLOAD_FILE": "ファイルのアップロード",
+            "CREATE_NEW": "新規作成",
             "UPLOAD_FILE_SUCCESS": "ファイルのアップロードに成功しました。",
             "NO_CONTENT": "<空>",
             "NO_SELECTION": "左メニューから編集するモデルを選択してください。",
             "NEW_MENU": {
-                "LABEL": "新規作成",
+                "LABEL": "新規",
+                "CREATE": "作成",
+                "IMPORT": "インポート",
                 "CREATE_PROCESS_TITLE": "プロセスの新規作成",
                 "MENU_ITEMS": {
-                    "CREATE_PROCESS": "プロセス"
+                    "CREATE_PROCESS": "プロセス",
+                    "CREATE_CONNECTOR": "コネクタ",
+                    "CREATE_FORM": "フォーム",
+                    "CREATE_UI": "UI",
+                    "CREATE_DATA": "データオブジェクト",
+                    "CREATE_DECISION_TABLE": "ディシジョンテーブル"
                 }
             },
             "TREE": {
-                "PROCESSES": "プロセス"
+                "PROCESSES": "プロセス",
+                "FORMS": "フォーム",
+                "CONNECTORS": "コネクタ",
+                "DATA": "データ",
+                "DECISION_TABLES": "ディシジョンテーブル",
+                "UIS": "UI"
             },
             "PROCESS_DIALOG": {
                 "TITLE_CREATE": "プロセスの新規作成",
@@ -96,32 +150,126 @@
                 "PROCESS_DELETED": "プロセスの削除に成功しました。",
                 "PROCESS_UPDATED": "プロセスの更新に成功しました。"
             },
+            "CONNECTOR_DIALOG": {
+                "TITLE_CREATE": "コネクタの新規作成",
+                "TITLE_UPDATE": "コネクタの更新",
+                "CONNECTOR_NAME": "コネクタ名:",
+                "CONNECTOR_DESC": "コネクタの説明:",
+                "CONNECTOR_CREATED": "コネクタの作成に成功しました。",
+                "CONNECTOR_DELETED": "コネクタの削除に成功しました。",
+                "CONNECTOR_UPDATED": "コネクタの更新に成功しました。"
+            },
+            "FORM_DIALOG": {
+                "TITLE_CREATE": "フォームの新規作成",
+                "TITLE_UPDATE": "フォームの更新",
+                "FORM_NAME": "フォーム名:",
+                "FORM_DESC": "フォームの説明:",
+                "FORM_CREATED": "フォームの作成に成功しました。",
+                "FORM_DELETED": "フォームの削除に成功しました。",
+                "FORM_UPDATED": "フォームの更新に成功しました。"
+            },
+            "UI_DIALOG": {
+                "TITLE_CREATE": "UIの新規作成",
+                "TITLE_UPDATE": "UIの更新",
+                "UI_NAME": "UI名:",
+                "UI_DESC": "UIの説明:",
+                "UI_CREATED": "UIの作成に成功しました。",
+                "UI_DELETED": "UIの削除に成功しました。",
+                "UI_UPDATED": "UIの更新に成功しました。"
+            },
+            "DATA_DIALOG": {
+                "TITLE_CREATE": "データオブジェクトの新規作成",
+                "TITLE_UPDATE": "データオブジェクトの更新",
+                "DATA_NAME": "データオブジェクト名:",
+                "DATA_DESC": "データオブジェクトの説明:",
+                "DATA_CREATED": "データオブジェクトの作成に成功しました。",
+                "DATA_DELETED": "データオブジェクトの削除に成功しました。",
+                "DATA_UPDATED": "データオブジェクトの更新に成功しました。"
+            },
+
+            "DECISION_TABLE_DIALOG": {
+                "TITLE_CREATE": "ディシジョンテーブルの新規作成",
+                "TITLE_UPDATE": "ディシジョンテーブルの更新",
+                "DECISION_TABLE_NAME": "ディシジョンテーブル名:",
+                "DECISION_TABLE_DESC": "ディシジョンテーブルの説明:",
+                "DECISION_TABLE_CREATED": "ディシジョンテーブルの作成に成功しました。",
+                "DECISION_TABLE_DELETED": "ディシジョンテーブルの削除に成功しました。",
+                "DECISION_TABLE_UPDATED": "ディシジョンテーブルの更新に成功しました。"
+            },
+            "ACTION_DIALOG": {
+                "ACTION_DETAILS": "アクション詳細",
+                "ACTION_NAME": "アクション名",
+                "ACTION_DESC": "アクションの説明",
+                "ADD_ACTION": "アクションの追加",
+                "DEL_ACTION": "アクションの削除"
+            },
             "ERROR": {
                 "UPLOAD_FILE": "アップロードエラー",
-                "DELETE_PROJECT": "アプリケーションの削除処理にて予期せぬエラーが発生しました。",
+                "DELETE_PROJECT": "プロジェクトの削除処理にて予期せぬエラーが発生しました。",
+                "CHANGE_FAVORITE": "プロジェクトのお気に入りの状態を変更する際に予期せぬエラーが発生しました。",
                 "DELETE_PROCESS": "プロセスの削除処理にて予期せぬエラーが発生しました。",
                 "LOAD_MODELS": "モデルの読み込み中に予期せぬエラーが発生しました。",
                 "CREATE_PROCESS": {
-                    "DUPLICATION": "同じプロセスのアプリケーションがすでに存在します。",
+                    "DUPLICATION": "同名のプロセスがすでに存在します。",
                     "GENERAL": "プロセスの作成中に予期せぬエラーが発生しました。"
                 },
                 "UPDATE_PROCESS": {
-                    "DUPLICATION": "同じプロセスのアプリケーションがすでに存在します。",
+                    "DUPLICATION": "同名のプロセスがすでに存在します。",
                     "GENERAL": "プロセスの更新中に予期せぬエラーが発生しました。"
                 },
+                "CREATE_CONNECTOR": {
+                    "DUPLICATION": "同名のコネクタがすでに存在します。",
+                    "GENERAL": "コネクタの作成中に予期せぬエラーが発生しました。"
+                },
+                "UPDATE_CONNECTOR": {
+                    "DUPLICATION": "同名のコネクタがすでに存在します。",
+                    "GENERAL": "コネクタの更新中に予期せぬエラーが発生しました。"
+                },
+                "CREATE_FORM": {
+                    "DUPLICATION": "同名のフォームがすでに存在します。",
+                    "GENERAL": "フォームの作成中に予期せぬエラーが発生しました。"
+                },
+                "UPDATE_FORM": {
+                    "DUPLICATION": "同名のフォームがすでに存在します。",
+                    "GENERAL": "フォームの更新中に予期せぬエラーが発生しました。"
+                },
+                "CREATE_UI": {
+                    "DUPLICATION": "同名のUIがすでに存在します。",
+                    "GENERAL": "UIの作成中に予期せぬエラーが発生しました。"
+                },
+                "UPDATE_UI": {
+                    "DUPLICATION": "同名のUIがすでに存在します。",
+                    "GENERAL": "UIの更新中に予期せぬエラーが発生しました。"
+                },
+                "CREATE_DECISION_TABLE": {
+                    "DUPLICATION": "同名のディシジョンテーブルがすでに存在します。",
+                    "GENERAL": "ディシジョンテーブルの作成中に予期せぬエラーが発生しました。"
+                },
+                "UPDATE_DECISION_TABLE": {
+                    "DUPLICATION": "同名のディシジョンテーブルがすでに存在します。",
+                    "GENERAL": "ディシジョンテーブルの更新中に予期せぬエラーが発生しました。"
+                },
+                "CREATE_DATA": {
+                    "DUPLICATION": "同名のデータオブジェクトがすでに存在します。",
+                    "GENERAL": "データオブジェクトの作成中に予期せぬエラーが発生しました。"
+                },
+                "UPDATE_DATA": {
+                    "DUPLICATION": "同名のデータオブジェクトがすでに存在します。",
+                    "GENERAL": "データオブジェクトの更新中に予期せぬエラーが発生しました。"
+                },
                 "CREATE_PROJECT": {
-                    "DUPLICATION": "同じ名前のアプリケーションがすでに存在します。",
-                    "GENERAL": "アプリケーションの作成中に予期せぬエラーが発生しました。"
+                    "DUPLICATION": "同名のプロジェクトがすでに存在します。",
+                    "GENERAL": "プロジェクトの作成中に予期せぬエラーが発生しました。"
                 },
                 "UPDATE_PROJECT": {
-                    "DUPLICATION": "同じ名前のアプリケーションがすでに存在します。",
-                    "GENERAL": "アプリケーションの更新中に予期せぬエラーが発生しました。"
+                    "DUPLICATION": "同名のプロジェクトがすでに存在します。",
+                    "GENERAL": "プロジェクトの更新中に予期せぬエラーが発生しました。"
                 },
                 "UPLOAD_PROJECT": {
-                    "DUPLICATION": "同じ名前のアプリケーションがすでに存在します。",
-                    "GENERAL": "アプリケーションのアップロード中に予期せぬエラーが発生しました。"
+                    "DUPLICATION": "同名のプロジェクトがすでに存在します。",
+                    "GENERAL": "プロジェクトのアップロード中に予期せぬエラーが発生しました。"
                 },
-                "GET_PROJECT": "アプリケーションの読み込み中に予期せぬエラーが発生しました。"
+                "GET_PROJECT": "プロジェクトの読み込み中に予期せぬエラーが発生しました。"
             }
         },
         "PROCESS_EDITOR": {
@@ -134,7 +282,7 @@
                 "ZOOM_IN": "拡大",
                 "ZOOM_OUT": "縮小",
                 "UNDO": "元に戻す",
-                "REDO": "やり直し"
+                "REDO": "やり直す"
             },
             "ELEMENT_PROPERTIES": {
                 "ID": "ID",
@@ -156,13 +304,16 @@
                 "PRIORITY": "優先度",
                 "ACTIVITY_NAME": "アクティビティ名",
                 "PROCESS_VARIABLE": "プロセス変数",
-                "EXPRESSION": "条件式"
+                "PROCESS_VARIABLES": "プロセス変数",
+                "EXPRESSION": "条件式",
+                "FORM_SELECTOR": "フォームセレクタ"
             },
+            "UPLOAD_SUCCESS": "プロセスのアップロードに成功しました。",
             "PROCESS_UPDATED": "プロセスの更新に成功しました。",
             "SELECT_PROCESS_VARIABLE": "プロセス変数を選択してください。",
             "ERRORS": {
                 "NO_PROCESS_PROPERTIES": "プロセスのプロパティが存在しません。",
-                "NO_CONNECTOR_ACTIONS": "コネクターのアクションが存在しません。",
+                "NO_CONNECTOR_ACTIONS": "コネクタのアクションが存在しません。",
                 "LOAD_DIAGRAM": "プロセス図の読み込みに失敗しました。",
                 "SAVE_DIAGRAM": "プロセス図の保存に失敗しました。",
                 "DOWNLOAD_DIAGRAM": "プロセス図のダウンロードに失敗しました。",
@@ -178,19 +329,198 @@
                     "COLUMN_TYPE": "種別",
                     "COLUMN_REQUIRED": "必須",
                     "COLUMN_VALUE": "値",
-                    "NO_PROPERTIES": "選択されているプロパティが存在しません。"
+                    "NO_PROPERTIES": "プロパティが選択されていません。"
                 },
                 "ERRORS": {
-                    "EMPTY_NAME": "名前は必須項目です。"
+                    "EMPTY_NAME": "名前フィールドは、入力必須です。"
                 }
+            }
+        },
+        "CONNECTOR_EDITOR": {
+            "UPLOAD_SUCCESS": "コネクタのアップロードに成功しました。",
+            "TABS": {
+                "CONNECTOR_EDITOR": "コネクタエディタ",
+                "JSON_EDITOR": "JSONエディタ"
+            },
+            "EDITOR": {
+                "CONNECTOR_DETAILS": "コネクタ詳細",
+                "INPUTS": "入力パラメータ",
+                "OUTPUTS": "出力パラメータ",
+                "ACTIONS": "アクション",
+                "ADD_NEW_PARAMETER": "パラメータの追加",
+                "NAME": "名前",
+                "DESCRIPTION": "説明",
+                "TYPE": "種別",
+                "BUTTONS": {
+                    "SAVE": "保存"
+                },
+                "REQUIRED": "必須"
+            },
+            "ERRORS": {
+                "GET_CONNECTOR": "コネクタの読み込み中に予期せぬエラーが発生しました。再実行してください。"
+            }
+        },
+        "FORM_EDITOR": {
+            "UPLOAD_SUCCESS": "フォームのアップロードに成功しました。",
+            "TABS": {
+                "FORM_EDITOR": "フォームエディタ",
+                "JSON_EDITOR": "JSONエディタ"
+            },
+            "FORM_VARIABLES": "フォーム変数",
+            "VISIBLITY_CONDITIONS": {
+                "DEPENDS": "Depends on",
+                "OPERATOR": "If it's",
+                "VALUE": "値",
+                "NEXT_CONDITION": "次の条件演算子",
+                "NO_PROPERTY": "プロパティが選択されていません。",
+                "FIELDS": "フィールド",
+                "VARIABLE": "変数",
+                "SELECT_FIELD": "フィールドを選択してください。",
+                "SELECT_VARIABLE": "変数を選択してください。",
+                "FORM_FIELD": "フォームフィールド",
+                "NEXT_OPERATOR": "次の条件演算子"
+
+            },
+            "FIELD_PROPERTIES": {
+                "DESCRIPTION": "説明",
+                "NAME": "名前",
+                "COLUMNS": "列の数",
+                "REQUIRED": "必須",
+                "MULTIPLE_UPLOAD": "複数ファイルを添付することが可能です。",
+                "LINK_FILE": "Alfresco Process Servicesに対してファイルをコピーせず、リンクを設定するだけにしてください（ファイルはユーザのデバイスからアップロードできないということを意味します）。",
+                "FILE_SOURCE": "ファイルソース",
+                "ALL_SOURCES": "すべてのファイルソース",
+                "LOCAL_FILE": "ローカルファイル",
+                "PLACEHOLDER": "プレースホルダ",
+                "COLSPAN": "Colspan",
+                "LABEL": "ラベル",
+                "ID": "ID",
+                "OVERRIDE_ID": "IDを上書きしますか？",
+                "VALUE": "表示用テキスト",
+                "DISPLAY_TEXT": "テキストを表示します",
+                "MIN_LENGTH": "最小文字数",
+                "MAX_LENGTH": "最大文字数",
+                "MIN_VALUE": "最小値",
+                "MAX_VALUE": "最大値",
+                "REGEX": "正規表現",
+                "INPUT_MASK": "入力マスク",
+                "INPUT_MASK_PLACEHOLDER": "入力マスクプレースホルダ",
+                "INPUT_MASK_RESERVED": "反転",
+                "MIN_DATE": "最短日数",
+                "MAX_DATE": "最長日数",
+                "DATE_DISPLAY_FORMAT": "日付表示形式",
+                "DATE_FORMAT_PREVIEW": "現在日時（指定フォーマット適用）",
+                "CURRENCY": "通貨",
+                "DECIMALS": "小数を許可します",
+                "HYPERLINK_URL": "ハイパーリンクURL",
+                "ALLOW_COLLAPSE": "折りたたみを許可します",
+                "COLLAPSE_BY_DEFAULT": "デフォルトで折りたたむ",
+                "REST_SERVICE": {
+                    "DIALOG_TITLE": "URL テスト",
+                    "REST_URL": "Rest URL",
+                    "TEST_BUTTON": "テスト実行",
+                    "RESPONSE_PATH": "JSONレスポンス内の配列へのパス",
+                    "ID_PROP": "IDプロパティ",
+                    "LABEL_PROP": "ラベルプロパティ"
+                },
+                "KEY_VALUE_PROPERTY": {
+                    "ADD": "追加",
+                    "ADD_OPTION": "オプションの新規追加",
+                    "LABEL": "ラベル",
+                    "ID": "ID",
+                    "INFO": "こちらは、空のオプションです。実行時にこちらのオプションを選択することは、値がない、もしくは空を意味します。こちらは、オプションのフィールドに対して許可されています。入力必須のフィールドに対しては、許可されていません。",
+                    "CLEAR_SELECTION": "選択解除",
+                    "OPTIONS": "オプション"
+                },
+                "ADVANCED_RADIO_BUTTON": {
+                    "MANUAL": "手動",
+                    "REST_SERVICE": "Restサービス"
+                }
+            },
+            "EDITOR": {
+                "ADD_NEW_TAB": "タブの新規追加",
+                "DELETE_TAB": "タブの削除",
+                "ADD_NEW_OUTCOME": "結果の追加",
+                "DELETE_OUTCOME": "結果の削除",
+                "EDIT": "編集",
+                "DELETE": "削除",
+                "MOVE": "移動"
+            },
+            "ERRORS": {
+                "GET_FORM": "フォームの読み込み中に予期せぬエラーが発生しました。再実行してください。",
+                "DELETE_FORM": "フォームの削除中に予期せぬエラーが発生しました。再実行してください。"
+            }
+        },
+        "UI_EDITOR": {
+            "UPLOAD_SUCCESS": "UIのアップロードに成功しました。",
+            "TABS": {
+                "UI_EDITOR": "UIエディタ",
+                "JSON_EDITOR": "JSONエディタ"
+            },
+            "EDITOR": {
+                "DETAILS": "UI詳細",
+                "DESCRIPTION": "説明",
+                "NAME": "名前",
+                "TEMPLATE": "テンプレート"
+            },
+            "ERRORS": {
+                "GET_UI": "UIの読み込み中に予期せぬエラーが発生しました。再実行してください。",
+                "DELETE_UI": "UIの削除中に予期せぬエラーが発生しました。再実行してください。"
+            }
+        },
+        "DATA_EDITOR": {
+            "UPLOAD_SUCCESS": "データオブジェクトのアップロードに成功しました。",
+            "TABS": {
+                "DATA_EDITOR": "データオブジェクトエディタ",
+                "JSON_EDITOR": "JSONエディタ"
+            },
+
+            "EDITOR": {
+            },
+            "ERRORS": {
+                "GET_DATA": "データオブジェクトの読み込み中に予期せぬエラーが発生しました。再実行してください。",
+                "DELETE_DATA": "データオブジェクトの削除中に予期せぬエラーが発生しました。再実行してください。"
+            }
+        },
+        "DECISION_TABLE_EDITOR": {
+            "UPLOAD_SUCCESS": "ディシジョンテーブルのアップロードに成功しました。",
+            "TABS": {
+                "DECISION_TABLE_EDITOR": "ディシジョンテーブルエディタ",
+                "JSON_EDITOR": "JSONエディタ"
+            },
+            "EDITOR": {
+            },
+            "ERRORS": {
+                "GET_DECISION_TABLE": "ディシジョンテーブルの読み込み中に予期せぬエラーが発生しました。再実行してください。",
+                "DELETE_DECISION_TABLE": "ディシジョンテーブルの削除中に予期せぬエラーが発生しました。再実行してください。"
             }
         },
         "GENERAL": {
             "ERRORS": {
-                "NOT_VALID_JSON": "JSONが不正です。",
+                "NOT_VALID_JSON": "不正な形式のJSONです。",
                 "NOT_VALID_SCHEMA": "JSONがスキーマに違反しています。"
             }
         }
 
-    }
+    },
+
+    "SDK":
+        {
+            "VARIABLES_EDITOR": {
+                "ERRORS": {
+                    "EMPTY_NAME": "名前フィールドは、入力必須です。"
+                },
+                "TABS": {
+                    "VIEWER": "プロパティビューア",
+                    "JSON_EDITOR": "JSONエディタ"
+                },
+                "TABLE": {
+                    "COLUMN_NAME": "名前",
+                    "COLUMN_TYPE": "種別",
+                    "COLUMN_REQUIRED": "必須",
+                    "COLUMN_VALUE": "値",
+                    "NO_PROPERTIES": "プロパティが選択されていません。"
+                }
+            }
+        }
 }

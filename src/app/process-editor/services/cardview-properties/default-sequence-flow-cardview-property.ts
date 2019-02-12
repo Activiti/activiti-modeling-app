@@ -15,9 +15,19 @@
  * limitations under the License.
  */
 
-export * from './properties';
-export * from './process-editor.actions';
-export * from './process-editor.selectors';
-export * from './cardview-properties/implementation-item.model';
-export * from './cardview-properties/form-key.model';
-export * from './cardview-properties/default-sequence-flow-item.model';
+import { ElementHelper } from '../bpmn-js/element.helper';
+import { BpmnProperty, DefaultSequenceFlowItemModel } from 'ama-sdk';
+import { FactoryProps } from './cardview-properties.factory';
+
+const property = BpmnProperty.defaultSequenceFlow;
+
+export function createDefaultSequenceFlowProperty({ element }: FactoryProps) {
+    return new DefaultSequenceFlowItemModel({
+        label: 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.DEFAULT_SEQUENCE_FLOW',
+        value: ElementHelper.getProperty(element, property),
+        key: property,
+        default: '',
+        editable: true,
+        data: { id: element.id }
+    });
+}
