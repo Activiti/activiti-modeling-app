@@ -16,9 +16,9 @@
  */
 
 import { TestBed } from '@angular/core/testing';
-import { JsonValidatorService, AjvInjectionToken } from './json-validator.service';
+import { CodeValidatorService, AjvInjectionToken } from './code-validator.service';
 
-describe('JsonValidatorService', () => {
+describe('CodeValidatorService', () => {
     const dummySchema = {
         '$schema': 'http://json-schema.org/schema',
         'type': 'object',
@@ -30,15 +30,15 @@ describe('JsonValidatorService', () => {
         'required': [ 'food' ]
     };
 
-    let service: JsonValidatorService, ajv;
+    let service: CodeValidatorService, ajv;
 
     beforeEach(() => {
         ajv = { validate: jest.fn().mockReturnValue(false) };
         TestBed.configureTestingModule({
-            providers: [{ provide: AjvInjectionToken, useValue: ajv }, JsonValidatorService]
+            providers: [{ provide: AjvInjectionToken, useValue: ajv }, CodeValidatorService]
         });
 
-        service = TestBed.get(JsonValidatorService);
+        service = TestBed.get(CodeValidatorService);
     });
 
     it('should return proper erratic validation response when SYNTACTICALLY WRONG json is present', () => {

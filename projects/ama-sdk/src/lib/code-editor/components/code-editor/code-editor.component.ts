@@ -28,11 +28,11 @@ const createMemoizedEditorOptions = memoize(
 );
 
 @Component({
-    selector: 'amasdk-json-editor',
-    templateUrl: './json-editor.component.html',
+    selector: 'amasdk-code-editor',
+    templateUrl: './code-editor.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class JsonEditorComponent implements OnDestroy {
+export class CodeEditorComponent implements OnDestroy {
     @Input() vsTheme = 'vs-light';
 
     @Input() content = '';

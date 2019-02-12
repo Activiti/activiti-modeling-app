@@ -20,7 +20,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/materia
 import { Subject, Subscription, Observable } from 'rxjs';
 import { VariablesService } from './variables.service';
 import { EntityProperties } from './../api/types';
-import { JsonValidatorService } from './../json-editor/services/json-validator.service';
+import { CodeValidatorService } from './../code-editor/services/code-validator.service';
 import { propertiesSchema } from './../schemas/properties.schema';
 
 const Ajv = require('ajv');
@@ -54,7 +54,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
         @Inject(MAT_DIALOG_DATA) public data: VariableDialogData,
 
         private variablesService: VariablesService,
-        private jsonValidatorService: JsonValidatorService
+        private codeValidatorService: CodeValidatorService
     ) {
         this.vsTheme$ = data.theme$;
         this.title = data.title;
@@ -89,7 +89,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
     }
 
     validate(properties: string) {
-        return this.jsonValidatorService.validate(properties, propertiesSchema);
+        return this.codeValidatorService.validate(properties, propertiesSchema);
     }
 
     save() {

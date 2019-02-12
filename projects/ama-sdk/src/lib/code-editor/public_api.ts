@@ -19,9 +19,9 @@
  * Public API Surface of ama-sdk
  */
 
-export { JsonEditorModule } from './json-editor.module';
+export { CodeEditorModule } from './code-editor.module';
 export {
-    JsonValidatorService,
+    CodeValidatorService,
     AjvInjectionToken,
     ValidationResponse
-} from './services/json-validator.service';
+} from './services/code-validator.service';

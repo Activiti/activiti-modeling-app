@@ -25,6 +25,7 @@ import { ConnectorEditorRoutingModule } from './router/connector-editor-routing.
 import { ConnectorHeaderComponent } from './components/connector-header/connector-header.component';
 import {
     JsonEditorModule,
+    CodeEditorModule,
     provideEntity,
     ENTITIES_REDUCER_TOKEN,
     SharedModule,
@@ -48,7 +49,7 @@ import { getConnectorUploaderProvider } from './extension/connector-uploader.ext
         ExtensionsModule,
         ConnectorEditorRoutingModule,
         SharedModule,
-        JsonEditorModule,
+        CodeEditorModule,
         EffectsModule.forFeature([ConnectorEditorEffects]),
         StoreModule.forFeature('entities', ENTITIES_REDUCER_TOKEN),
         StoreModule.forFeature(CONNECTOR_EDITOR_STATE_NAME, connectorEditorReducer)

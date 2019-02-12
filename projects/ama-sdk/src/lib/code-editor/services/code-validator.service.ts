@@ -38,7 +38,7 @@ export const AjvInjectionToken = new InjectionToken<string>('AjvInjectionToken',
 @Injectable({
     providedIn: 'root'
 })
-export class JsonValidatorService {
+export class CodeValidatorService {
 
     constructor(@Inject(AjvInjectionToken) private ajv: Ajv) {}
 

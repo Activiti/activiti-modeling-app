@@ -20,13 +20,15 @@
  */
 
 export * from './lib/api/public_api';
+export * from './lib/code-editor/public_api';
+export * from './lib/process-editor/public_api';
+export * from './lib/connector-editor/public_api';
 export * from './lib/confirmation-dialog/public_api';
 export * from './lib/connector-editor/public_api';
 export * from './lib/extension/public_api';
 export * from './lib/helpers/public_api';
 export * from './lib/i18n/public_api';
 export * from './lib/interfaces/public_api';
-export * from './lib/json-editor/public_api';
 export * from './lib/process-editor/public_api';
 export * from './lib/schemas/public_api';
 export * from './lib/services/public_api';
