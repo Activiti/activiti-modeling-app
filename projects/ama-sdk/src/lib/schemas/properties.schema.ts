@@ -29,7 +29,7 @@ export const propertiesSchema = {
                 "type": "boolean"
             },
             "value": {
-                "type": "string"
+                "type":  ["number", "string"]
             }
 
         },
