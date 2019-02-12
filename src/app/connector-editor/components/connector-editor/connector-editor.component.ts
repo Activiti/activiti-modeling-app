@@ -91,7 +91,7 @@ export class ConnectorEditorComponent {
     }
 
     private validate(connectorContentString: string): ValidationResponse<ConnectorContent> {
-        return this.codeValidatorService.validate<ConnectorContent>(connectorContentString, connectorSchema);
+        return this.codeValidatorService.validateJson<ConnectorContent>(connectorContentString, connectorSchema);
     }
 
     private getVsTheme(): Observable<string> {

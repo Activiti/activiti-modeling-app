@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter, Input, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnDestroy, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { NgxEditorModel } from 'ngx-monaco-editor';
 const memoize = require('lodash/memoize');
 
@@ -32,27 +32,30 @@ const createMemoizedEditorOptions = memoize(
     templateUrl: './code-editor.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CodeEditorComponent implements OnDestroy {
+export class CodeEditorComponent implements OnDestroy, OnInit {
     @Input() vsTheme = 'vs-light';
-
+    @Input() language: string;
     @Input() content = '';
-
     @Output() changed = new EventEmitter<string>();
 
     private editor: monaco.editor.ICodeEditor = <monaco.editor.ICodeEditor>{ dispose: () => {} };
     editorModel: NgxEditorModel;
 
-    private defaultOptions: EditorOptions = {
-        language: 'json',
-        scrollBeyondLastLine: false,
-        contextmenu: false,
-        formatOnPaste: true,
-        formatOnType: true,
-        minimap: {
-            enabled: false
-        },
-        automaticLayout: true
-    };
+    private defaultOptions: EditorOptions;
+
+    ngOnInit() {
+        this.defaultOptions = {
+            language: this.language || 'json',
+            scrollBeyondLastLine: false,
+            contextmenu: false,
+            formatOnPaste: true,
+            formatOnType: true,
+            minimap: {
+                enabled: false
+            },
+            automaticLayout: true
+        };
+    }
 
     get editorOptions(): EditorOptions {
         return createMemoizedEditorOptions(this.vsTheme, this.defaultOptions);

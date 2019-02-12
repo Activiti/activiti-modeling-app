@@ -42,7 +42,7 @@ export class CodeValidatorService {
 
     constructor(@Inject(AjvInjectionToken) private ajv: Ajv) {}
 
-    validate<T>(jsonString: string = '', schema: any): ValidationResponse<T> {
+    validateJson<T>(jsonString: string = '', schema: any): ValidationResponse<T> {
         let json,
             validationResponse: ValidationResponse<T>;
 

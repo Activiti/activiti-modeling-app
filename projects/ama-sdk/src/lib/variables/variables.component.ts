@@ -89,7 +89,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
     }
 
     validate(properties: string) {
-        return this.codeValidatorService.validate(properties, propertiesSchema);
+        return this.codeValidatorService.validateJson(properties, propertiesSchema);
     }
 
     save() {
