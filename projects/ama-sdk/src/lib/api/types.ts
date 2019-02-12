@@ -76,8 +76,8 @@ export interface ServiceParameterMapping {
 }
 
 export interface ServiceParameterMappings {
-    input?: ServiceParameterMapping;
-    output?: ServiceParameterMapping;
+    inputs?: ServiceParameterMapping;
+    outputs?: ServiceParameterMapping;
 }
 
 export interface ServicesParameterMappings {
@@ -86,7 +86,7 @@ export interface ServicesParameterMappings {
 
 export interface ProcessExtensions {
     properties: EntityProperties;
-    variablesMappings: ServicesParameterMappings;
+    mappings: ServicesParameterMappings;
 }
 
 export interface EntityProperty {

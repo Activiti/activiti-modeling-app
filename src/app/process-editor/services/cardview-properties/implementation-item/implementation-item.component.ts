@@ -31,8 +31,8 @@ export class CardViewImplementationItemComponent implements OnInit, OnDestroy {
     @Input() property: ImplementationItemModel;
 
     implementation: string;
-    input: string;
-    output: string;
+    inputs: string;
+    outputs: string;
     onDestroy$: Subject<void> = new Subject();
 
     constructor(
@@ -45,9 +45,9 @@ export class CardViewImplementationItemComponent implements OnInit, OnDestroy {
         this.implementation = this.property.value;
         this.store.select(selectProcessMappingsFor(this.elementId)).pipe(
             takeUntil(this.onDestroy$)
-        ).subscribe(variablesMapping => {
-            this.input = JSON.stringify(variablesMapping.input);
-            this.output = JSON.stringify(variablesMapping.output);
+        ).subscribe(mappings => {
+            this.inputs = JSON.stringify(mappings.inputs);
+            this.outputs = JSON.stringify(mappings.outputs);
         });
     }
 
@@ -61,11 +61,22 @@ export class CardViewImplementationItemComponent implements OnInit, OnDestroy {
 
     changeVariablesMapping(): void {
         try {
-            const input = JSON.parse(this.input),
-                output = JSON.parse(this.output);
+            let inputs, outputs;
+
+            try {
+                inputs = JSON.parse(this.inputs);
+            } catch {
+                inputs = {};
+            }
+
+            try {
+                outputs = JSON.parse(this.outputs);
+            } catch {
+                outputs = {};
+            }
 
             this.store.select(selectOpenedModel).pipe(takeUntil(this.onDestroy$)).subscribe(openedModel => {
-                this.store.dispatch(new UpdateServiceParametersAction(openedModel.id, this.elementId, { input, output }));
+                this.store.dispatch(new UpdateServiceParametersAction(openedModel.id, this.elementId, { inputs, outputs }));
             });
         } catch (error) {
             this.logService.error(error);

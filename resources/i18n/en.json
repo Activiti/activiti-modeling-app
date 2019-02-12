@@ -292,6 +292,8 @@
                 "DOCUMENTATION": "Documentation",
                 "EXECUTABLE": "Executable",
                 "IMPLEMENTATION": "Implementation",
+                "INPUTS": "Inputs",
+                "OUTPUTS": "Outputs",
                 "ACTION": "Action",
                 "INPUT": "Input",
                 "INPUT_MAPPING": "Input mapping",

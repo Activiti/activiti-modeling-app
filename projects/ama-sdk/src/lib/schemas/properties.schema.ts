@@ -7,7 +7,7 @@ export const propertiesSchema = {
     "type": "object",
     "additionalProperties" : {
         "type": "object",
-        "additionalProperties" : false,
+        "additionalProperties" : true,
         "properties": {
             "id": {
                 "type": "string"
@@ -20,6 +20,7 @@ export const propertiesSchema = {
                 "type": "string",
                 "enum": [
                     "string",
+                    "object",
                     "integer",
                     "boolean",
                     "date"
@@ -27,9 +28,6 @@ export const propertiesSchema = {
             },
             "required": {
                 "type": "boolean"
-            },
-            "value": {
-                "type": "string"
             }
 
         },

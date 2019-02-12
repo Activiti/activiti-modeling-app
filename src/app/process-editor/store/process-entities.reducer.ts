@@ -90,8 +90,8 @@ function updateProcessVariables(state: ProcessEntitiesState, action: UpdateProce
 
 function updateProcessVariablesMapping(state: ProcessEntitiesState, action: UpdateServiceParametersAction): ProcessEntitiesState {
     const newState = cloneDeep(state);
-    newState.entities[action.processId].extensions = { variablesMappings: {}, ...newState.entities[action.processId].extensions };
-    newState.entities[action.processId].extensions.variablesMappings[action.serviceId] = { ...action.serviceParameterMappings };
+    newState.entities[action.processId].extensions = { mappings: {}, ...newState.entities[action.processId].extensions };
+    newState.entities[action.processId].extensions.mappings[action.serviceId] = { ...action.serviceParameterMappings };
 
     return newState;
 }

@@ -32,7 +32,7 @@ import {
 import { ProcessEntitiesState, initialProcessEntitiesState } from './process-entities.state';
 import { PROCESS, Process, ProcessContent, ServiceParameterMappings, UpdateServiceParametersAction, EntityProperty, EntityProperties } from 'ama-sdk';
 import { processEntitiesReducer } from './process-entities.reducer';
-import { mockProcess, variablesMappings } from './process.mock';
+import { mockProcess, mappings } from './process.mock';
 import * as processVariablesActions from './process-variables.actions';
 
 const deepFreeze = require('deep-freeze-strict');
@@ -159,8 +159,8 @@ describe('ProcessEntitiesReducer', () => {
     it('should handle UPDATE_SERVICE_PARAMETERS', () => {
         const serviceTaskId = 'serviceTaskId';
         const serviceParameterMappings: ServiceParameterMappings = {
-            input: { 'param1': 'variable1'},
-            output: { 'param2': 'variable'}
+            inputs: { 'param1': 'variable1'},
+            outputs: { 'param2': 'variable'}
         };
         initialState = {
             ...initialProcessEntitiesState,
@@ -170,8 +170,8 @@ describe('ProcessEntitiesReducer', () => {
 
         const newState = processEntitiesReducer(initialState, new UpdateServiceParametersAction(mockProcess.id, serviceTaskId, serviceParameterMappings));
 
-        expect(newState.entities[mockProcess.id].extensions.variablesMappings).toEqual({
-            ...variablesMappings,
+        expect(newState.entities[mockProcess.id].extensions.mappings).toEqual({
+            ...mappings,
             'serviceTaskId': serviceParameterMappings
         });
     });
@@ -191,6 +191,6 @@ describe('ProcessEntitiesReducer', () => {
         }));
 
         expect(newState.entities[mockProcess.id].extensions.properties).toEqual(mockProperties);
-        expect(newState.entities[mockProcess.id].extensions.variablesMappings).toEqual(mockProcess.extensions.variablesMappings);
+        expect(newState.entities[mockProcess.id].extensions.mappings).toEqual(mockProcess.extensions.mappings);
     });
 });
