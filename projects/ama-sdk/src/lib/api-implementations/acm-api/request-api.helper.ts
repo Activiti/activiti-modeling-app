@@ -41,7 +41,7 @@ function getDefaultOptions(): RequestApiHelperOptions {
         bodyParam: {},
         contentTypes: ['application/json'],
         accepts: ['application/json'],
-        returnType: {'String': 'String'}
+        returnType: null
     };
 }
 

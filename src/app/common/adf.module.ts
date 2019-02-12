@@ -21,7 +21,7 @@ import { CoreModule, AppConfigService, DebugAppConfigService, TRANSLATION_PROVID
 import { TranslateStore } from '@ngx-translate/core';
 
 @NgModule({
-    imports: [ CoreModule ],
+    imports: [ CoreModule.forRoot() ],
     exports: [ CoreModule ],
     providers: [
         TranslateStore,
