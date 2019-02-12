@@ -34,27 +34,27 @@ const createMemoizedEditorOptions = memoize(
 })
 export class CodeEditorComponent implements OnDestroy, OnInit {
     @Input() vsTheme = 'vs-light';
-    @Input() language: string;
+    @Input() options: EditorOptions;
     @Input() content = '';
     @Output() changed = new EventEmitter<string>();
 
     private editor: monaco.editor.ICodeEditor = <monaco.editor.ICodeEditor>{ dispose: () => {} };
     editorModel: NgxEditorModel;
 
-    private defaultOptions: EditorOptions;
+    private defaultOptions: EditorOptions = {
+        language: 'json',
+        scrollBeyondLastLine: false,
+        contextmenu: false,
+        formatOnPaste: true,
+        formatOnType: true,
+        minimap: {
+            enabled: false
+        },
+        automaticLayout: true
+    };
 
     ngOnInit() {
-        this.defaultOptions = {
-            language: this.language || 'json',
-            scrollBeyondLastLine: false,
-            contextmenu: false,
-            formatOnPaste: true,
-            formatOnType: true,
-            minimap: {
-                enabled: false
-            },
-            automaticLayout: true
-        };
+        this.defaultOptions = Object.assign({}, this.defaultOptions, this.options);
     }
 
     get editorOptions(): EditorOptions {
