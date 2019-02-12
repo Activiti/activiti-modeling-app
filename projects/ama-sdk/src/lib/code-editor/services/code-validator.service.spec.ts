@@ -44,7 +44,7 @@ describe('CodeValidatorService', () => {
     it('should return proper erratic validation response when SYNTACTICALLY WRONG json is present', () => {
         const jsonString = '{ "mistyped": json ';
 
-        const validationResponse = service.validate(jsonString, dummySchema);
+        const validationResponse = service.validateJson(jsonString, dummySchema);
 
         expect(validationResponse.json).toBe(null);
         expect(validationResponse.valid).toBe(false);
@@ -53,7 +53,7 @@ describe('CodeValidatorService', () => {
 
     it('should return proper erratic validation response when schemantically INVALID json is present', () => {
         const json = { foodx: 'potato' };
-        const validationResponse = service.validate(JSON.stringify(json), dummySchema);
+        const validationResponse = service.validateJson(JSON.stringify(json), dummySchema);
 
         expect(validationResponse.json).toBe(null);
         expect(validationResponse.valid).toBe(false);
@@ -63,7 +63,7 @@ describe('CodeValidatorService', () => {
     it('should return proper successful validation response when schemantically VALID json is present', () => {
         const json = { food: 'potato' };
         ajv.validate.mockReturnValue(true);
-        const validationResponse = service.validate(JSON.stringify(json), dummySchema);
+        const validationResponse = service.validateJson(JSON.stringify(json), dummySchema);
         expect(validationResponse.json).toEqual({ food: 'potato' });
         expect(validationResponse.valid).toBe(true);
         expect(validationResponse.error).toBe(null);
