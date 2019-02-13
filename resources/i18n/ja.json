@@ -292,6 +292,8 @@
                 "DOCUMENTATION": "説明",
                 "EXECUTABLE": "実行可能",
                 "IMPLEMENTATION": "実装",
+                "INPUTS": "入力",
+                "OUTPUTS": "出力",
                 "ACTION": "アクション",
                 "INPUT": "入力",
                 "INPUT_MAPPING": "入力マッピング",
@@ -306,7 +308,8 @@
                 "PROCESS_VARIABLE": "プロセス変数",
                 "PROCESS_VARIABLES": "プロセス変数",
                 "EXPRESSION": "条件式",
-                "FORM_SELECTOR": "フォームセレクタ"
+                "FORM_SELECTOR": "フォームセレクタ",
+                "DEFAULT_SEQUENCE_FLOW": "デフォルトフロー"
             },
             "UPLOAD_SUCCESS": "プロセスのアップロードに成功しました。",
             "PROCESS_UPDATED": "プロセスの更新に成功しました。",
