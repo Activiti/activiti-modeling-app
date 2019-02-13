@@ -25,7 +25,7 @@ const propertyName = BpmnProperty.dueDate;
 
 export function createDueDateProperty({ element }: FactoryProps) {
     return new CardViewDateItemModel({
-        label: 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.DUE_DATE',
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.DUE_DATE',
         value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,
         editable: true,

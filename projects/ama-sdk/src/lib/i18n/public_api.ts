@@ -15,19 +15,4 @@
  * limitations under the License.
  */
 
-import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty, ImplementationItemModel } from 'ama-sdk';
-import { FactoryProps } from './cardview-properties.factory';
-
-const property = BpmnProperty.implementation;
-
-export function createImplementationProperty({ element }: FactoryProps) {
-    return new ImplementationItemModel({
-        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.IMPLEMENTATION',
-        value: ElementHelper.getProperty(element, property),
-        key: property,
-        default: '',
-        editable: true,
-        data: { id: element.id }
-    });
-}
+export * from './provide-translations';

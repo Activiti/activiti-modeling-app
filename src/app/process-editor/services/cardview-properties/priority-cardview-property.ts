@@ -25,7 +25,7 @@ const propertyName = BpmnProperty.priority;
 
 export function createPriorityProperty({ element, appConfigService }: FactoryProps) {
     return new CardViewSelectItemModel({
-        label: 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.PRIORITY',
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PRIORITY',
         options$: of(appConfigService.get('process-modeler.priorities')),
         value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,

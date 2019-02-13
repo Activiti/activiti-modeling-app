@@ -23,7 +23,7 @@ const property = BpmnProperty.defaultSequenceFlow;
 
 export function createDefaultSequenceFlowProperty({ element }: FactoryProps) {
     return new DefaultSequenceFlowItemModel({
-        label: 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.DEFAULT_SEQUENCE_FLOW',
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.DEFAULT_SEQUENCE_FLOW',
         value: ElementHelper.getProperty(element, property),
         key: property,
         default: '',

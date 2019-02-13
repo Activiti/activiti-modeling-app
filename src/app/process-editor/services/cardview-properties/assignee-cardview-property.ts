@@ -24,7 +24,7 @@ const propertyName = BpmnProperty.assignee;
 
 export function createAssigneeProperty({ element }: FactoryProps) {
     return new CardViewTextItemModel({
-        label: 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.ASSIGNEE',
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ASSIGNEE',
         value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,
         default: '',

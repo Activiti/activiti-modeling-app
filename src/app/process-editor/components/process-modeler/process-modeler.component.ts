@@ -89,7 +89,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
             )
             .subscribe(
                 () => this.processModelerService.fitViewPort(),
-                (e) => this.store.dispatch(new SnackbarErrorAction('APP.PROCESS_EDITOR.ERRORS.LOAD_DIAGRAM'))
+                (e) => this.store.dispatch(new SnackbarErrorAction('PROCESS_EDITOR.ERRORS.LOAD_DIAGRAM'))
             );
     }
 

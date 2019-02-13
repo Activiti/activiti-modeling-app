@@ -25,7 +25,7 @@ const propertyName = BpmnProperty.processName;
 
 export function createProcessNameProperty({ element }: FactoryProps) {
     return new CardViewTextItemModel({
-        label: 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.NAME',
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.NAME',
         value: sanitizeString(ElementHelper.getProperty(element, propertyName)),
         key: propertyName,
         default: '',

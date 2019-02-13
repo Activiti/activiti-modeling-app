@@ -1,0 +1,69 @@
+{
+    "PROCESS_EDITOR": {
+        "PRIORITIES": {
+            "LOW": "Low",
+            "MEDIUM": "Medium",
+            "HIGH": "High"
+        },
+        "ACTIONS": {
+            "ZOOM_IN": "Zoom in",
+            "ZOOM_OUT": "Zoom out",
+            "UNDO": "Undo",
+            "REDO": "Redo"
+        },
+        "ELEMENT_PROPERTIES": {
+            "ID": "id",
+            "NAME": "Name",
+            "VERSION": "Version",
+            "VARIABLES": "Variables",
+            "DOCUMENTATION": "Documentation",
+            "EXECUTABLE": "Executable",
+            "IMPLEMENTATION": "Implementation",
+            "INPUTS": "Inputs",
+            "OUTPUTS": "Outputs",
+            "ACTION": "Action",
+            "INPUT": "Input",
+            "INPUT_MAPPING": "Input mapping",
+            "OUTPUT": "Output",
+            "OUTPUT_MAPPING": "Output mapping",
+            "ASSIGNEE": "Assignee",
+            "CANDIDATE_GROUPS": "Candidate groups",
+            "CANDIDATE_USERS": "Candidate users",
+            "DUE_DATE": "Due date",
+            "PRIORITY": "Priority",
+            "ACTIVITY_NAME": "Activity name",
+            "PROCESS_VARIABLE": "Process variable",
+            "PROCESS_VARIABLES": "Process variables",
+            "EXPRESSION": "Condition Expression",
+            "FORM_SELECTOR": "Form selector",
+            "DEFAULT_SEQUENCE_FLOW": "Default sequence flow"
+        },
+        "UPLOAD_SUCCESS": "The process was successfully uploaded",
+        "PROCESS_UPDATED": "The process was successfully updated",
+        "SELECT_PROCESS_VARIABLE": "Select process variable",
+        "ERRORS": {
+            "NO_PROCESS_PROPERTIES": "No process properties.",
+            "NO_CONNECTOR_ACTIONS": "No connector actions.",
+            "LOAD_DIAGRAM": "Could not load the diagram.",
+            "SAVE_DIAGRAM": "Could not save the diagram.",
+            "DOWNLOAD_DIAGRAM": "Could not download the diagram",
+            "CHANGE_FAVORITE": "Unknown error happened during the changing favorite state of the process."
+        },
+        "PROPERTIES": {
+            "TABS": {
+                "VIEWER": "Properties viewer",
+                "JSON_EDITOR": "JSON editor"
+            },
+            "TABLE": {
+                "COLUMN_NAME": "Name",
+                "COLUMN_TYPE": "Type",
+                "COLUMN_REQUIRED": "Required",
+                "COLUMN_VALUE": "Value",
+                "NO_PROPERTIES": "You don't have any property selected"
+            },
+            "ERRORS": {
+                "EMPTY_NAME": "Name field cannot be empty"
+            }
+        }
+    }
+}
