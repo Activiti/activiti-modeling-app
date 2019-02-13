@@ -42,4 +42,8 @@ export class DashboardService {
     importProject(file: File): Observable<Partial<Project>> {
         return this.amaApi.Project.import(file);
     }
+
+    releaseProject(project: Partial<Project>): Observable<Partial<Project>> {
+        return this.amaApi.Project.release(project);
+    }
 }

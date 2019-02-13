@@ -26,6 +26,7 @@ import {
 import { INITIAL_DASHBOARD_STATE, DashboardState } from '../state/dashboard.state';
 import { Project } from 'ama-sdk';
 import { mockProject } from '../effects/project.mock';
+import { ARIA_DESCRIBER_PROVIDER } from '@angular/cdk/a11y';
 
 describe('dashboardReducer', () => {
 
@@ -97,4 +98,17 @@ describe('dashboardReducer', () => {
             expect(newState.projects['4']).not.toBe(undefined);
         });
     });
+
+    describe('RELEASE_PROJECT_SUCCESS', () => {
+        const newProject = { ...mockProject, name: 'new-name', description: 'new-description', version: '1' };
+        const action = new UpdateProjectSuccessAction(<Partial<Project>>newProject);
+
+        it('should update the version of the project', () => {
+            const newState = dashboardReducer(initialState, action);
+
+            expect(newState.projects).toEqual({ ...newState.projects, [newProject.id]: newProject });
+        });
+    });
+
+
 });

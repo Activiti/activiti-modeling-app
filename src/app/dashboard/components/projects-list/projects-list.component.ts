@@ -26,7 +26,8 @@ import { AmaState, Project, OpenConfirmDialogAction } from 'ama-sdk';
 import { OpenEntityDialogAction } from '../../../store/actions/dialog';
 import {
     DeleteProjectAttemptAction,
-    UpdateProjectAttemptAction
+    UpdateProjectAttemptAction,
+    ReleaseProjectAttemptAction
 } from '../../store/actions/projects';
 import { sortEntriesByName } from '../../../common/helpers/sort-entries-by-name';
 
@@ -72,6 +73,13 @@ export class ProjectsListComponent implements OnInit {
         this.store.dispatch(new OpenConfirmDialogAction({
             dialogData: { title: 'APP.DIALOGS.CONFIRM.DELETE.PROJECT' },
             action: new DeleteProjectAttemptAction(item.id)
+        }));
+    }
+
+    releaseProject(project: Partial<Project>): void {
+        this.store.dispatch(new OpenConfirmDialogAction({
+            dialogData: { title: 'APP.DIALOGS.CONFIRM.RELEASE' },
+            action: new ReleaseProjectAttemptAction(project)
         }));
     }
 }
