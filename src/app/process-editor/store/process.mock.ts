@@ -19,12 +19,12 @@ import { Process, ServicesParameterMappings, PROCESS } from 'ama-sdk';
 
 const deepFreeze = require('deep-freeze-strict');
 
-export const variablesMappings: ServicesParameterMappings = {
+export const mappings: ServicesParameterMappings = {
     'taskId': {
-        input: {
+        inputs: {
             'input-param': 'terrifying-variable'
         },
-        output: {
+        outputs: {
             'output-param': 'beautiful-variable'
         }
     }
@@ -48,6 +48,6 @@ export const mockProcess: Process = deepFreeze({
     version: '',
     extensions: {
         properties: [{name: '', type: '', required: false, value: ''}],
-        variablesMappings
+        mappings
     }
 });
