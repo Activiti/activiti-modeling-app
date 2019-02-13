@@ -1,5 +1,7 @@
 @mixin amasdk-code-editor($theme) {
-    // $primary: map-get($theme, danger);
+    .mat-dialog-container .mat-tab-body.mat-tab-body-active {
+        min-height: 280px;
+    }
 
     .code-editor {
         display: flex;
