@@ -23,31 +23,12 @@
                             "src/assets",
                             "src/app.config.json",
                             "src/versions.json",
-                            {
-                                "glob": "**/*",
-                                "input": "resources",
-                                "output": "/resources"
-                            },
-                            {
-                                "glob": "**/*",
-                                "input": "src/app/process-editor/i18n",
-                                "output": "/assets/process-editor/i18n"
-                            },
-                            {
-                                "glob": "**/*",
-                                "input": "node_modules/@alfresco/adf-core/prebuilt-themes",
-                                "output": "/assets/prebuilt-themes"
-                            },
-                            {
-                                "glob": "**/*",
-                                "input": "node_modules/@alfresco/adf-core/bundles/assets",
-                                "output": "/assets"
-                            },
-                            {
-                                "glob": "**/*",
-                                "input": "node_modules/ngx-monaco-editor/assets/monaco",
-                                "output": "/assets/monaco"
-                            }
+                            { "input": "resources", "output": "/resources", "glob": "**/*"},
+                            { "input": "src/app/process-editor/i18n", "output": "/assets/process-editor/i18n", "glob": "**/*"},
+                            { "input": "src/app/connector-editor/i18n", "output": "/assets/connector-editor/i18n", "glob": "**/*"},
+                            { "input": "node_modules/@alfresco/adf-core/prebuilt-themes", "output": "/assets/prebuilt-themes", "glob": "**/*"},
+                            { "input": "node_modules/@alfresco/adf-core/bundles/assets", "output": "/assets", "glob": "**/*"},
+                            { "input": "node_modules/ngx-monaco-editor/assets/monaco", "output": "/assets/monaco", "glob": "**/*" }
                         ],
                         "styles": [
                             "src/styles.scss",
@@ -125,26 +106,11 @@
                             "src/app.config.json",
                             "src/favicon.ico",
                             "src/versions.json",
-                            {
-                                "glob": "**/*",
-                                "input": "resources",
-                                "output": "/resources"
-                            },
-                            {
-                                "glob": "**/*",
-                                "input": "src/app/process-editor/i18n",
-                                "output": "/assets/process-editor/i18n"
-                            },
-                            {
-                                "glob": "**/*",
-                                "input": "dist/dev-temp",
-                                "output": "/"
-                            },
-                            {
-                                "glob": "**/*",
-                                "input": "node_modules/ngx-monaco-editor/assets/monaco",
-                                "output": "/assets/monaco"
-                            }
+                            { "input": "resources", "output": "/resources", "glob": "**/*" },
+                            { "input": "src/app/process-editor/i18n", "output": "/assets/process-editor/i18n", "glob": "**/*" },
+                            { "input": "src/app/connector-editor/i18n", "output": "/assets/connector-editor/i18n", "glob": "**/*"},
+                            { "input": "dist/dev-temp", "output": "/", "glob": "**/*" },
+                            { "input": "node_modules/ngx-monaco-editor/assets/monaco", "output": "/assets/monaco", "glob": "**/*" }
                         ],
                         "styles": [
                             "src/styles.scss",

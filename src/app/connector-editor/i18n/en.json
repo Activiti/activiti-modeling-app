@@ -1,0 +1,26 @@
+{
+    "CONNECTOR_EDITOR": {
+        "UPLOAD_SUCCESS": "The connector was successfully uploaded",
+        "TABS": {
+            "CONNECTOR_EDITOR": "Connector editor",
+            "JSON_EDITOR": "JSON editor"
+        },
+        "EDITOR": {
+            "CONNECTOR_DETAILS": "Connector details",
+            "INPUTS": "Input parameters",
+            "OUTPUTS": "Output parameters",
+            "ACTIONS": "Actions",
+            "ADD_NEW_PARAMETER": "Add new parameter",
+            "NAME": "Name",
+            "DESCRIPTION": "Description",
+            "TYPE": "Type",
+            "BUTTONS": {
+                "SAVE": "Save"
+            },
+            "REQUIRED": "Required"
+        },
+        "ERRORS": {
+            "GET_CONNECTOR": "Unknown error happened during loading of the connector, please try again."
+        }
+    }
+}

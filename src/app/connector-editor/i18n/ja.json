@@ -1,0 +1,26 @@
+{
+    "CONNECTOR_EDITOR": {
+        "UPLOAD_SUCCESS": "コネクタのアップロードに成功しました。",
+        "TABS": {
+            "CONNECTOR_EDITOR": "コネクタエディタ",
+            "JSON_EDITOR": "JSONエディタ"
+        },
+        "EDITOR": {
+            "CONNECTOR_DETAILS": "コネクタ詳細",
+            "INPUTS": "入力パラメータ",
+            "OUTPUTS": "出力パラメータ",
+            "ACTIONS": "アクション",
+            "ADD_NEW_PARAMETER": "パラメータの追加",
+            "NAME": "名前",
+            "DESCRIPTION": "説明",
+            "TYPE": "種別",
+            "BUTTONS": {
+                "SAVE": "保存"
+            },
+            "REQUIRED": "必須"
+        },
+        "ERRORS": {
+            "GET_CONNECTOR": "コネクタの読み込み中に予期せぬエラーが発生しました。再実行してください。"
+        }
+    }
+}
