@@ -108,9 +108,9 @@ export class ACMProjectApi implements ProjectApi {
         };
     }
 
-    public release(project: Project): Observable<Project> {
+    public release(projectId: string): Observable<Project> {
         return this.requestApiHelper
-        .post(`/v1/projects/${project.id}/releases`, {bodyParam: project})
+        .post(`/v1/projects/${projectId}/releases`)
             .pipe(
                 map((response: any) => response.entry)
             );

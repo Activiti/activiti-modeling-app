@@ -324,7 +324,7 @@ describe('ProjectsEffects', () => {
 
         it('should trigger the right action on successful release', () => {
             dashboardService.releaseProject = jest.fn().mockReturnValue(of(mockProject));
-            actions$ = hot('a', { a: new ReleaseProjectAttemptAction(mockProject) });
+            actions$ = hot('a', { a: new ReleaseProjectAttemptAction(mockProject.id) });
 
             const expected = cold('(bc)', {
                 b: new ReleaseProjectSuccessAction(mockProject),

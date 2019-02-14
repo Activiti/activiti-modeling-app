@@ -112,7 +112,7 @@ export class ProjectsEffects extends BaseEffects {
     @Effect()
     releaseProjectAttemptEffect = this.actions$.pipe(
         ofType<ReleaseProjectAttemptAction>(RELEASE_PROJECT_ATTEMPT),
-        mergeMap(action => this.releaseProject(action.project))
+        mergeMap(action => this.releaseProject(action.projectId))
     );
 
     private deleteProject(projectId: string): Observable<Partial<Project>> {
@@ -142,10 +142,10 @@ export class ProjectsEffects extends BaseEffects {
         );
     }
 
-    private releaseProject(project: Partial<Project>) {
-        return this.dashboardService.releaseProject(project).pipe(
-            switchMap(releasedProject => [
-                new ReleaseProjectSuccessAction(releasedProject),
+    private releaseProject(projectId: string) {
+        return this.dashboardService.releaseProject(projectId).pipe(
+            switchMap(project => [
+                new ReleaseProjectSuccessAction(project),
                 new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_RELEASED')
             ]),
             catchError<any, SnackbarErrorAction>(e =>

@@ -76,10 +76,10 @@ export class ProjectsListComponent implements OnInit {
         }));
     }
 
-    releaseProject(project: Partial<Project>): void {
+    releaseProject(projectId: string): void {
         this.store.dispatch(new OpenConfirmDialogAction({
             dialogData: { title: 'APP.DIALOGS.CONFIRM.RELEASE' },
-            action: new ReleaseProjectAttemptAction(project)
+            action: new ReleaseProjectAttemptAction(projectId)
         }));
     }
 }

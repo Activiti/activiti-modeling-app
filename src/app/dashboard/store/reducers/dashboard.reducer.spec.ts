@@ -26,7 +26,6 @@ import {
 import { INITIAL_DASHBOARD_STATE, DashboardState } from '../state/dashboard.state';
 import { Project } from 'ama-sdk';
 import { mockProject } from '../effects/project.mock';
-import { ARIA_DESCRIBER_PROVIDER } from '@angular/cdk/a11y';
 
 describe('dashboardReducer', () => {
 

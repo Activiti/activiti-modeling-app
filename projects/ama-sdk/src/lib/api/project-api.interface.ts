@@ -30,5 +30,5 @@ export abstract class ProjectApi {
     public abstract import(file: File):  Observable<any>;
     public abstract export(projectId: string): Observable<Blob>;
     public abstract getAll(): Observable<Project[]>;
-    public abstract release(project: Partial<Project>): Observable<Partial<Project>>;
+    public abstract release(projectId: string): Observable<Partial<Project>>;
 }
