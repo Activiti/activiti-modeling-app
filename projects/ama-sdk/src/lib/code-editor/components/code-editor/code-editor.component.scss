@@ -1,8 +1,4 @@
 @mixin amasdk-code-editor($theme) {
-    .mat-dialog-container .mat-tab-body.mat-tab-body-active {
-        min-height: 280px;
-    }
-
     .code-editor {
         display: flex;
         width: 100%;
