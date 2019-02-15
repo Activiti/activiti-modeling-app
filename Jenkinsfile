@@ -30,12 +30,12 @@
       }
       stage('Build Release') {
         when {
-          branch 'master'
+          branch '7.0.x'
         }
         steps {
           container('nodejs') {
             // ensure we're not on a detached head
-            sh "git checkout master"
+            sh "git checkout 7.0.x"
             sh "git config --global credential.helper store"
 
             sh "jx step git credentials"
@@ -62,7 +62,7 @@
         steps {
             container('nodejs') {
                 // Run updatebot to update other repos
-                sh './updatebot.sh'
+                //sh './updatebot.sh'
             }
           }
 
