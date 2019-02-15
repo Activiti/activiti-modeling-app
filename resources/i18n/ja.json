@@ -272,97 +272,6 @@
                 "GET_PROJECT": "プロジェクトの読み込み中に予期せぬエラーが発生しました。"
             }
         },
-        "FORM_EDITOR": {
-            "UPLOAD_SUCCESS": "フォームのアップロードに成功しました。",
-            "TABS": {
-                "FORM_EDITOR": "フォームエディタ",
-                "JSON_EDITOR": "JSONエディタ"
-            },
-            "FORM_VARIABLES": "フォーム変数",
-            "VISIBLITY_CONDITIONS": {
-                "DEPENDS": "Depends on",
-                "OPERATOR": "If it's",
-                "VALUE": "値",
-                "NEXT_CONDITION": "次の条件演算子",
-                "NO_PROPERTY": "プロパティが選択されていません。",
-                "FIELDS": "フィールド",
-                "VARIABLE": "変数",
-                "SELECT_FIELD": "フィールドを選択してください。",
-                "SELECT_VARIABLE": "変数を選択してください。",
-                "FORM_FIELD": "フォームフィールド",
-                "NEXT_OPERATOR": "次の条件演算子"
-
-            },
-            "FIELD_PROPERTIES": {
-                "DESCRIPTION": "説明",
-                "NAME": "名前",
-                "COLUMNS": "列の数",
-                "REQUIRED": "必須",
-                "MULTIPLE_UPLOAD": "複数ファイルを添付することが可能です。",
-                "LINK_FILE": "Alfresco Process Servicesに対してファイルをコピーせず、リンクを設定するだけにしてください（ファイルはユーザのデバイスからアップロードできないということを意味します）。",
-                "FILE_SOURCE": "ファイルソース",
-                "ALL_SOURCES": "すべてのファイルソース",
-                "LOCAL_FILE": "ローカルファイル",
-                "PLACEHOLDER": "プレースホルダ",
-                "COLSPAN": "Colspan",
-                "LABEL": "ラベル",
-                "ID": "ID",
-                "OVERRIDE_ID": "IDを上書きしますか？",
-                "VALUE": "表示用テキスト",
-                "DISPLAY_TEXT": "テキストを表示します",
-                "MIN_LENGTH": "最小文字数",
-                "MAX_LENGTH": "最大文字数",
-                "MIN_VALUE": "最小値",
-                "MAX_VALUE": "最大値",
-                "REGEX": "正規表現",
-                "INPUT_MASK": "入力マスク",
-                "INPUT_MASK_PLACEHOLDER": "入力マスクプレースホルダ",
-                "INPUT_MASK_RESERVED": "反転",
-                "MIN_DATE": "最短日数",
-                "MAX_DATE": "最長日数",
-                "DATE_DISPLAY_FORMAT": "日付表示形式",
-                "DATE_FORMAT_PREVIEW": "現在日時（指定フォーマット適用）",
-                "CURRENCY": "通貨",
-                "DECIMALS": "小数を許可します",
-                "HYPERLINK_URL": "ハイパーリンクURL",
-                "ALLOW_COLLAPSE": "折りたたみを許可します",
-                "COLLAPSE_BY_DEFAULT": "デフォルトで折りたたむ",
-                "REST_SERVICE": {
-                    "DIALOG_TITLE": "URL テスト",
-                    "REST_URL": "Rest URL",
-                    "TEST_BUTTON": "テスト実行",
-                    "RESPONSE_PATH": "JSONレスポンス内の配列へのパス",
-                    "ID_PROP": "IDプロパティ",
-                    "LABEL_PROP": "ラベルプロパティ"
-                },
-                "KEY_VALUE_PROPERTY": {
-                    "ADD": "追加",
-                    "ADD_OPTION": "オプションの新規追加",
-                    "LABEL": "ラベル",
-                    "ID": "ID",
-                    "INFO": "こちらは、空のオプションです。実行時にこちらのオプションを選択することは、値がない、もしくは空を意味します。こちらは、オプションのフィールドに対して許可されています。入力必須のフィールドに対しては、許可されていません。",
-                    "CLEAR_SELECTION": "選択解除",
-                    "OPTIONS": "オプション"
-                },
-                "ADVANCED_RADIO_BUTTON": {
-                    "MANUAL": "手動",
-                    "REST_SERVICE": "Restサービス"
-                }
-            },
-            "EDITOR": {
-                "ADD_NEW_TAB": "タブの新規追加",
-                "DELETE_TAB": "タブの削除",
-                "ADD_NEW_OUTCOME": "結果の追加",
-                "DELETE_OUTCOME": "結果の削除",
-                "EDIT": "編集",
-                "DELETE": "削除",
-                "MOVE": "移動"
-            },
-            "ERRORS": {
-                "GET_FORM": "フォームの読み込み中に予期せぬエラーが発生しました。再実行してください。",
-                "DELETE_FORM": "フォームの削除中に予期せぬエラーが発生しました。再実行してください。"
-            }
-        },
         "UI_EDITOR": {
             "UPLOAD_SUCCESS": "UIのアップロードに成功しました。",
             "TABS": {
@@ -413,7 +322,6 @@
                 "NOT_VALID_SCHEMA": "JSONがスキーマに違反しています。"
             }
         }
-
     },
 
     "SDK":
