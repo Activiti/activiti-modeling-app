@@ -272,23 +272,6 @@
                 "GET_PROJECT": "プロジェクトの読み込み中に予期せぬエラーが発生しました。"
             }
         },
-        "UI_EDITOR": {
-            "UPLOAD_SUCCESS": "UIのアップロードに成功しました。",
-            "TABS": {
-                "UI_EDITOR": "UIエディタ",
-                "JSON_EDITOR": "JSONエディタ"
-            },
-            "EDITOR": {
-                "DETAILS": "UI詳細",
-                "DESCRIPTION": "説明",
-                "NAME": "名前",
-                "TEMPLATE": "テンプレート"
-            },
-            "ERRORS": {
-                "GET_UI": "UIの読み込み中に予期せぬエラーが発生しました。再実行してください。",
-                "DELETE_UI": "UIの削除中に予期せぬエラーが発生しました。再実行してください。"
-            }
-        },
         "DATA_EDITOR": {
             "UPLOAD_SUCCESS": "データオブジェクトのアップロードに成功しました。",
             "TABS": {

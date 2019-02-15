@@ -272,23 +272,6 @@
                 "GET_PROJECT": "Unknown error happened during the loading of project."
             }
         },
-        "UI_EDITOR": {
-            "UPLOAD_SUCCESS": "The UI was successfully uploaded",
-            "TABS": {
-                "UI_EDITOR": "UI editor",
-                "JSON_EDITOR": "JSON editor"
-            },
-            "EDITOR": {
-                "DETAILS": "UI details",
-                "DESCRIPTION": "Description",
-                "NAME": "Name",
-                "TEMPLATE": "Template"
-            },
-            "ERRORS": {
-                "GET_UI": "Unknown error happened during loading of the ui, please try again.",
-                "DELETE_UI": "Unknown error happened during deleting the ui, please try again."
-            }
-        },
         "DATA_EDITOR": {
             "UPLOAD_SUCCESS": "The data object was successfully uploaded",
             "TABS": {
