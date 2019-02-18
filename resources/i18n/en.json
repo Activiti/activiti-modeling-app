@@ -376,6 +376,8 @@
                 "VALUE": "Value",
                 "NEXT_CONDITION": "Next condition operator",
                 "NO_PROPERTY": "No property selected",
+                "NO_FIELDS": "No fields available",
+                "NO_VARIABLES": "No fields available",
                 "FIELDS": "Fields",
                 "VARIABLE": "Variable",
                 "SELECT_FIELD": "Select a field",
