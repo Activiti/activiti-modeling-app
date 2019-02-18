@@ -17,7 +17,7 @@
         "secret": "",
         "implicitFlow": true,
         "silentLogin": true,
-        "redirectSilentIframeUri": "/assets/silent-refresh.html",
+        "redirectSilentIframeUri": "",
         "redirectUri": "/",
         "redirectUriLogout": "/login"
     },
@@ -39,15 +39,15 @@
         "priorities": [
             {
                 "key": "low",
-                "label": "APP.PROCESS_EDITOR.PRIORITIES.LOW"
+                "label": "PROCESS_EDITOR.PRIORITIES.LOW"
             },
             {
                 "key": "medium",
-                "label": "APP.PROCESS_EDITOR.PRIORITIES.MEDIUM"
+                "label": "PROCESS_EDITOR.PRIORITIES.MEDIUM"
             },
             {
                 "key": "high",
-                "label": "APP.PROCESS_EDITOR.PRIORITIES.HIGH"
+                "label": "PROCESS_EDITOR.PRIORITIES.HIGH"
             }
         ]
     },

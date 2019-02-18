@@ -15,19 +15,12 @@
  * limitations under the License.
  */
 
-import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty, ImplementationItemModel } from 'ama-sdk';
-import { FactoryProps } from './cardview-properties.factory';
+import { TRANSLATION_PROVIDER } from '@alfresco/adf-core';
 
-const property = BpmnProperty.implementation;
-
-export function createImplementationProperty({ element }: FactoryProps) {
-    return new ImplementationItemModel({
-        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.IMPLEMENTATION',
-        value: ElementHelper.getProperty(element, property),
-        key: property,
-        default: '',
-        editable: true,
-        data: { id: element.id }
-    });
+export function provideTranslations(moduleName: string) {
+    return {
+        provide: TRANSLATION_PROVIDER,
+        multi: true,
+        useValue: { name: moduleName, source: `assets/${moduleName}` }
+    };
 }

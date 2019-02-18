@@ -189,7 +189,7 @@ describe('ProcessEditorComponent', () => {
             fixture.detectChanges();
 
             fixture.whenStable().catch(() => {
-                const expected = new SnackbarErrorAction('APP.PROCESS_EDITOR.ERRORS.SAVE_DIAGRAM');
+                const expected = new SnackbarErrorAction('PROCESS_EDITOR.ERRORS.SAVE_DIAGRAM');
                 expect(store.dispatch).toHaveBeenCalledWith(expected);
             });
         }));

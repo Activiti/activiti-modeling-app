@@ -24,7 +24,7 @@ const propertyName = BpmnProperty.version;
 
 export function createVersionProperty({ element }: FactoryProps) {
     return new CardViewTextItemModel({
-        label: 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.VERSION',
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.VERSION',
         value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,
         default: '',

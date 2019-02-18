@@ -61,7 +61,7 @@ export class ProcessVariablesEffects extends BaseEffects {
 
     private openVariablesDialog(processId: string, properties: EntityProperties) {
         const propertiesUpdate$ = new Subject<EntityProperties>();
-        const title = 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS_VARIABLES';
+        const title = 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS_VARIABLES';
         const required = true;
         const columns = [ 'name', 'type', 'required', 'value', 'delete' ];
 

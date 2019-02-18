@@ -23,8 +23,13 @@ import { ExtensionsModule } from '@alfresco/adf-extensions';
 import { ConnectorEditorComponent } from './components/connector-editor/connector-editor.component';
 import { ConnectorEditorRoutingModule } from './router/connector-editor-routing.module';
 import { ConnectorHeaderComponent } from './components/connector-header/connector-header.component';
-import { SharedModule } from 'ama-sdk';
-import { JsonEditorModule, provideEntity, ENTITIES_REDUCER_TOKEN } from 'ama-sdk';
+import {
+    JsonEditorModule,
+    provideEntity,
+    ENTITIES_REDUCER_TOKEN,
+    SharedModule,
+    provideTranslations
+} from 'ama-sdk';
 import { EffectsModule } from '@ngrx/effects';
 import { ConnectorEditorEffects } from './store/connector-editor.effects';
 import { ConnectorEditorService } from './services/connector-editor.service';
@@ -55,6 +60,7 @@ import { getConnectorUploaderProvider } from './extension/connector-uploader.ext
     exports: [ ConnectorEditorRoutingModule ],
     providers: [
         ConnectorEditorService,
+        provideTranslations('connector-editor'),
         provideEntity({ connectors: connectorEntitiesReducer }),
         ...getConnectorsFilterProvider(),
         ...getConnectorCreatorProvider(),

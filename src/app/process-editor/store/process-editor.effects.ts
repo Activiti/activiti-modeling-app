@@ -210,7 +210,7 @@ export class ProcessEditorEffects extends BaseEffects {
             switchMap(() => [
                 new UpdateProcessSuccessAction({ id: payload.processId, changes: payload.metadata }, payload.content),
                 new SetAppDirtyStateAction(false),
-                new SnackbarInfoAction('APP.PROCESS_EDITOR.PROCESS_UPDATED')
+                new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_UPDATED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleProcessUpdatingError.bind(this), e))
         );
@@ -237,7 +237,7 @@ export class ProcessEditorEffects extends BaseEffects {
                 new SetAppDirtyStateAction(false)
             ]),
             catchError<any, SnackbarErrorAction>(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'APP.PROCESS_EDITOR.ERRORS.LOAD_DIAGRAM'), e)
+                this.genericErrorHandler(this.handleError.bind(this, 'PROCESS_EDITOR.ERRORS.LOAD_DIAGRAM'), e)
             )
         );
     }
@@ -246,7 +246,7 @@ export class ProcessEditorEffects extends BaseEffects {
         return this.processEditorService.upload(payload).pipe(
             switchMap(process => [
                 new CreateProcessSuccessAction(process),
-                new SnackbarInfoAction('APP.PROCESS_EDITOR.UPLOAD_SUCCESS')
+                new SnackbarInfoAction('PROCESS_EDITOR.UPLOAD_SUCCESS')
             ]),
             catchError(e =>
                 this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.UPLOAD_FILE'), e)

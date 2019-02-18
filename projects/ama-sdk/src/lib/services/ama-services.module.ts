@@ -19,6 +19,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { UuidService } from './uuid.service';
 import { AmaTitleService } from './title.service';
 import { DownloadResourceService } from './download-resource.service';
+import { provideTranslations } from '../i18n/provide-translations';
 
 @NgModule()
 export class AmaServicesModule {
@@ -26,6 +27,7 @@ export class AmaServicesModule {
         return {
             ngModule: AmaServicesModule,
             providers: [
+                provideTranslations('ama-sdk'),
                 UuidService,
                 AmaTitleService,
                 DownloadResourceService

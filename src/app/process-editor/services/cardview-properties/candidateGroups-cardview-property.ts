@@ -24,7 +24,7 @@ const propertyName = BpmnProperty.candidateGroups;
 
 export function createCandidateGroupsProperty({ element }: FactoryProps) {
     return new CardViewTextItemModel({
-        label: 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_GROUPS',
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_GROUPS',
         value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,
         default: '',

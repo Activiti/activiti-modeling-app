@@ -74,7 +74,7 @@ export class ProcessEditorComponent implements OnInit {
                 content,
                 action: new UpdateProcessAttemptAction({ processId, content, metadata })
             })))
-            .catch(() => this.store.dispatch(new SnackbarErrorAction('APP.PROCESS_EDITOR.ERRORS.SAVE_DIAGRAM')));
+            .catch(() => this.store.dispatch(new SnackbarErrorAction('PROCESS_EDITOR.ERRORS.SAVE_DIAGRAM')));
     }
 
     downloadDiagram(process: Process): void {

@@ -1,0 +1,12 @@
+{
+    "CONNECTOR_EDITOR": {
+        "UPLOAD_SUCCESS": "コネクタのアップロードに成功しました。",
+        "TABS": {
+            "CONNECTOR_EDITOR": "コネクタエディタ",
+            "JSON_EDITOR": "JSONエディタ"
+        },
+        "ERRORS": {
+            "GET_CONNECTOR": "コネクタの読み込み中に予期せぬエラーが発生しました。再実行してください。"
+        }
+    }
+}
