@@ -272,20 +272,6 @@
                 "GET_PROJECT": "Unknown error happened during the loading of project."
             }
         },
-        "DATA_EDITOR": {
-            "UPLOAD_SUCCESS": "The data object was successfully uploaded",
-            "TABS": {
-                "DATA_EDITOR": "Data object editor",
-                "JSON_EDITOR": "JSON editor"
-            },
-
-            "EDITOR": {
-            },
-            "ERRORS": {
-                "GET_DATA": "Unknown error happened during loading of the data object, please try again.",
-                "DELETE_DATA": "Unknown error happened during deleting the data object, please try again."
-            }
-        },
         "DECISION_TABLE_EDITOR": {
             "UPLOAD_SUCCESS": "The decision table was successfully uploaded",
             "TABS": {
@@ -305,7 +291,6 @@
                 "NOT_VALID_SCHEMA": "The JSON object does not match to schema."
             }
         }
-
     },
 
     "SDK":

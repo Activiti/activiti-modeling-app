@@ -272,20 +272,6 @@
                 "GET_PROJECT": "プロジェクトの読み込み中に予期せぬエラーが発生しました。"
             }
         },
-        "DATA_EDITOR": {
-            "UPLOAD_SUCCESS": "データオブジェクトのアップロードに成功しました。",
-            "TABS": {
-                "DATA_EDITOR": "データオブジェクトエディタ",
-                "JSON_EDITOR": "JSONエディタ"
-            },
-
-            "EDITOR": {
-            },
-            "ERRORS": {
-                "GET_DATA": "データオブジェクトの読み込み中に予期せぬエラーが発生しました。再実行してください。",
-                "DELETE_DATA": "データオブジェクトの削除中に予期せぬエラーが発生しました。再実行してください。"
-            }
-        },
         "DECISION_TABLE_EDITOR": {
             "UPLOAD_SUCCESS": "ディシジョンテーブルのアップロードに成功しました。",
             "TABS": {
