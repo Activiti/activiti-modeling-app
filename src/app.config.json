@@ -17,7 +17,7 @@
         "secret": "",
         "implicitFlow": true,
         "silentLogin": true,
-        "redirectSilentIframeUri": "/assets/silent-refresh.html",
+        "redirectSilentIframeUri": "",
         "redirectUri": "/",
         "redirectUriLogout": "/login"
     },
