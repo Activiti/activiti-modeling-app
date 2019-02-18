@@ -278,24 +278,5 @@
                 "NOT_VALID_SCHEMA": "JSONがスキーマに違反しています。"
             }
         }
-    },
-    "SDK":
-        {
-            "VARIABLES_EDITOR": {
-                "ERRORS": {
-                    "EMPTY_NAME": "名前フィールドは、入力必須です。"
-                },
-                "TABS": {
-                    "VIEWER": "プロパティビューア",
-                    "JSON_EDITOR": "JSONエディタ"
-                },
-                "TABLE": {
-                    "COLUMN_NAME": "名前",
-                    "COLUMN_TYPE": "種別",
-                    "COLUMN_REQUIRED": "必須",
-                    "COLUMN_VALUE": "値",
-                    "NO_PROPERTIES": "プロパティが選択されていません。"
-                }
-            }
-        }
+    }
 }
