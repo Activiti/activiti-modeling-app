@@ -272,19 +272,6 @@
                 "GET_PROJECT": "プロジェクトの読み込み中に予期せぬエラーが発生しました。"
             }
         },
-        "DECISION_TABLE_EDITOR": {
-            "UPLOAD_SUCCESS": "ディシジョンテーブルのアップロードに成功しました。",
-            "TABS": {
-                "DECISION_TABLE_EDITOR": "ディシジョンテーブルエディタ",
-                "JSON_EDITOR": "JSONエディタ"
-            },
-            "EDITOR": {
-            },
-            "ERRORS": {
-                "GET_DECISION_TABLE": "ディシジョンテーブルの読み込み中に予期せぬエラーが発生しました。再実行してください。",
-                "DELETE_DECISION_TABLE": "ディシジョンテーブルの削除中に予期せぬエラーが発生しました。再実行してください。"
-            }
-        },
         "GENERAL": {
             "ERRORS": {
                 "NOT_VALID_JSON": "不正な形式のJSONです。",
@@ -292,7 +279,6 @@
             }
         }
     },
-
     "SDK":
         {
             "VARIABLES_EDITOR": {

@@ -272,19 +272,6 @@
                 "GET_PROJECT": "Unknown error happened during the loading of project."
             }
         },
-        "DECISION_TABLE_EDITOR": {
-            "UPLOAD_SUCCESS": "The decision table was successfully uploaded",
-            "TABS": {
-                "DECISION_TABLE_EDITOR": "Decision table editor",
-                "JSON_EDITOR": "JSON editor"
-            },
-            "EDITOR": {
-            },
-            "ERRORS": {
-                "GET_DECISION_TABLE": "Unknown error happened during loading of the decision table, please try again.",
-                "DELETE_DECISION_TABLE": "Unknown error happened during deleting the decision table, please try again."
-            }
-        },
         "GENERAL": {
             "ERRORS": {
                 "NOT_VALID_JSON": "Not valid JSON object.",
@@ -292,7 +279,6 @@
             }
         }
     },
-
     "SDK":
         {
             "VARIABLES_EDITOR": {
