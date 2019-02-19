@@ -240,7 +240,7 @@ export class ProcessEditorEffects extends BaseEffects {
             });
     }
 
-    private getProcess(processId: string, projectId: string): Observable<GetProcessSuccessAction | SnackbarErrorAction> {
+    private getProcess(processId: string, projectId: string) {
         const processDetails$ = this.processEditorService.getDetails(processId, projectId),
             processDiagram$ = this.processEditorService.getDiagram(processId);
 
@@ -250,7 +250,7 @@ export class ProcessEditorEffects extends BaseEffects {
                 new ModelOpenedAction({ id: process.id, type: process.type }),
                 new SetAppDirtyStateAction(false)
             ]),
-            catchError<any, SnackbarErrorAction>(e =>
+            catchError(e =>
                 this.genericErrorHandler(this.handleError.bind(this, 'PROCESS_EDITOR.ERRORS.LOAD_DIAGRAM'), e)
             )
         );

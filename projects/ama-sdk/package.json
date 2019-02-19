@@ -2,19 +2,19 @@
     "name": "ama-sdk",
     "version": "0.0.1",
     "peerDependencies": {
-        "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-        "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
-        "@angular/material": "^6.4.6",
-        "@angular/material-moment-adapter": "^6.4.6",
-        "@mat-datetimepicker/core": "^2.0.1",
-        "@mat-datetimepicker/moment": "^2.0.1",
+        "@angular/common": "7.2.5",
+        "@angular/core": "7.2.5",
+        "@angular/material": "7.3.2",
+        "@angular/material-moment-adapter": "7.3.2",
+        "@mat-datetimepicker/core": "2.0.1",
+        "@mat-datetimepicker/moment": "2.0.1",
         "ngx-monaco-editor": "6.0.0",
-        "adf-tslint-rules": "0.0.5",
-        "rxjs": "6.3.2",
-        "@types/lodash": "^4.14.112",
-        "ajv": "^6.5.2",
-        "@alfresco/adf-core": "3.0.0-ca5cba87713a193c54ebeca4ecb74332ce4f901a",
-        "@alfresco/js-api": "3.0.0-b3058fe44a1376e2502359b21f4aa55f4abd6c9a"
+        "adf-tslint-rules": "0.0.7",
+        "rxjs": "6.4.0",
+        "@types/lodash": "4.14.112",
+        "ajv": "6.9.1",
+        "@alfresco/adf-core": "3.0.0",
+        "@alfresco/js-api": "3.0.0"
     },
     "main": "src/public_api.ts"
 }

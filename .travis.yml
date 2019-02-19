@@ -22,11 +22,8 @@ env:
 
 jobs:
     include:
-        - stage: Code linting and unit tests
-          script: npm run lint && npm run test:ci
-
-        - stage: Build AMA SDK and the application in prod mode
-          script: npm run package:sdk && npm run build:prod
+        - stage: Lint & Unit tests & Build
+          script: npm run lint && npm run test:ci & npm run package:sdk && npm run build:prod
 
 # Send coverage data to codecov
 # after_success:
