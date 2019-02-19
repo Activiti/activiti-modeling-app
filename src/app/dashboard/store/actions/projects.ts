@@ -84,3 +84,15 @@ export class ShowProjectsAction implements Action {
     readonly type = SHOW_PROJECTS;
     constructor() {}
 }
+
+export const RELEASE_PROJECT_ATTEMPT = 'RELEASE_PROJECT_ATTEMPT';
+export class ReleaseProjectAttemptAction implements Action {
+    readonly type = RELEASE_PROJECT_ATTEMPT;
+    constructor(public projectId: string) {}
+}
+
+export const RELEASE_PROJECT_SUCCESS = 'RELEASE_PROJECT_SUCCESS';
+export class ReleaseProjectSuccessAction implements Action {
+    readonly type = RELEASE_PROJECT_SUCCESS;
+    constructor(public project: Partial<Project>) {}
+}

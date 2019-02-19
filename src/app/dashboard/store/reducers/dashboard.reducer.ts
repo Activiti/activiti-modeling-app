@@ -31,7 +31,9 @@ import {
     DELETE_PROJECT_SUCCESS,
     DeleteProjectSuccessAction,
     UploadProjectSuccessAction,
-    UPLOAD_PROJECT_SUCCESS
+    UPLOAD_PROJECT_SUCCESS,
+    RELEASE_PROJECT_SUCCESS,
+    ReleaseProjectSuccessAction
 } from '../actions/projects';
 
 export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE, action: Action): DashboardState {
@@ -49,6 +51,10 @@ export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE
 
         case UPDATE_PROJECT_SUCCESS:
             newState = updateProject(state, <UpdateProjectSuccessAction>action);
+            break;
+
+        case RELEASE_PROJECT_SUCCESS:
+            newState = releaseProject(state, <ReleaseProjectSuccessAction> action);
             break;
 
         case DELETE_PROJECT_SUCCESS:
@@ -114,3 +120,14 @@ function uploadProject(state: DashboardState, action: UploadProjectSuccessAction
     };
     return newState;
 }
+
+function releaseProject(state: DashboardState, action: ReleaseProjectSuccessAction): DashboardState {
+    const newState = Object.assign({}, state);
+    const project = action.project;
+    newState.projects = {
+        ...state.projects,
+        [project.id]: { ...newState.projects[project.id], ...project }
+    };
+    return newState;
+}
+

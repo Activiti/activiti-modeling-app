@@ -23,6 +23,7 @@
                 "SUBTITLE": "Are you sure that you want to do this action?",
                 "BUTTON": "Confirm",
                 "UNSAVED_PAGE": "Are you sure you want to leave without saving",
+                "RELEASE": "Are you sure you want to release and create a new version of this project",
                 "TYPES": {
                     "DECISION": "decision table",
                     "DATA": "data",
@@ -60,7 +61,8 @@
         },
         "MENU": {
             "EDIT": "Edit",
-            "DELETE": "Delete"
+            "DELETE": "Delete",
+            "RELEASE": "Release"
         },
         "SETTINGS": {
             "HEADER": "App settings"
@@ -73,6 +75,7 @@
                 "PROJECT_CREATED": "The project was successfully created",
                 "PROJECT_UPLOADED": "The project was successfully uploaded",
                 "PROJECT_UPDATED": "The project was successfully updated",
+                "PROJECT_RELEASED": "The project was successfully released",
                 "PROJECT_DELETED": "The project was successfully deleted",
                 "MENU_ITEMS": {
                     "CREATE_PROJECT": "Project",
@@ -209,6 +212,7 @@
                 "CHANGE_FAVORITE": "Unknown error happened during the changing favorite state of the project.",
                 "DELETE_PROCESS": "Unknown error happened during the deleting the process.",
                 "LOAD_MODELS": "Unknown error happened while loading the models.",
+                "RELEASE_PROJECT": "Unknown error happened while releasing the project.",
                 "CREATE_PROCESS": {
                     "DUPLICATION": "Process with the same name already exists",
                     "GENERAL": "Unknown error happened during the creating a new process."

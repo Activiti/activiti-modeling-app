@@ -39,7 +39,10 @@ import {
     SHOW_PROJECTS,
     UploadProjectAttemptAction,
     UPLOAD_PROJECT_ATTEMPT,
-    UploadProjectSuccessAction
+    UploadProjectSuccessAction,
+    ReleaseProjectAttemptAction,
+    RELEASE_PROJECT_ATTEMPT,
+    ReleaseProjectSuccessAction,
 } from '../actions/projects';
 import { Store, Action } from '@ngrx/store';
 import { AmaState, CreateProjectAttemptAction, CREATE_PROJECT_ATTEMPT, } from 'ama-sdk';
@@ -106,6 +109,12 @@ export class ProjectsEffects extends BaseEffects {
         switchMap(() => this.getProjectsAttempt())
     );
 
+    @Effect()
+    releaseProjectAttemptEffect = this.actions$.pipe(
+        ofType<ReleaseProjectAttemptAction>(RELEASE_PROJECT_ATTEMPT),
+        mergeMap(action => this.releaseProject(action.projectId))
+    );
+
     private deleteProject(projectId: string): Observable<Partial<Project>> {
         return this.dashboardService.deleteProject(projectId).pipe(
             switchMap(() => [
@@ -129,6 +138,18 @@ export class ProjectsEffects extends BaseEffects {
             ]),
             catchError<any, SnackbarErrorAction>(e =>
                 this.genericErrorHandler(this.handleProjectUpdateError.bind(this, e), e)
+            )
+        );
+    }
+
+    private releaseProject(projectId: string) {
+        return this.dashboardService.releaseProject(projectId).pipe(
+            switchMap(project => [
+                new ReleaseProjectSuccessAction(project),
+                new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_RELEASED')
+            ]),
+            catchError<any, SnackbarErrorAction>(e =>
+                this.genericErrorHandler(this.handleError('APP.PROJECT.ERROR.RELEASE_PROJECT'), e)
             )
         );
     }
