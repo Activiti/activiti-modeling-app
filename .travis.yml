@@ -23,7 +23,7 @@ env:
 jobs:
     include:
         - stage: Lint & Unit tests & Build
-          script: npm run lint && npm run test:ci & npm run package:sdk && npm run build:prod
+          script: npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod
 
 # Send coverage data to codecov
 # after_success:
