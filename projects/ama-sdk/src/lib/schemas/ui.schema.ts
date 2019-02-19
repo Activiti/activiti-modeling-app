@@ -44,7 +44,7 @@ export const uiSchema = {
         },
         "adf-template": {
             "type": "string",
-            "enum": [ "content", "process" ]
+            "enum": [ "content", "process", "" ]
         },
         "plugins": { "$ref": "#/definitions/plugins" },
         "configs": { "$ref": "#/definitions/configs" }
