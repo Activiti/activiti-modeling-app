@@ -24,7 +24,6 @@ import { ConnectorEditorComponent } from './components/connector-editor/connecto
 import { ConnectorEditorRoutingModule } from './router/connector-editor-routing.module';
 import { ConnectorHeaderComponent } from './components/connector-header/connector-header.component';
 import {
-    JsonEditorModule,
     CodeEditorModule,
     provideEntity,
     ENTITIES_REDUCER_TOKEN,
