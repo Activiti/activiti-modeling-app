@@ -19,9 +19,7 @@ import { InjectionToken } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { MODEL_TYPE } from '../api/types';
 
-export interface ActionConstructor {
-    new (...args: any[]): Action;
-}
+export type ActionConstructor = new (...args: any[]) => Action;
 
 export interface ModelCreatorDialogParams {
     title: string;

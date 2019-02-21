@@ -72,7 +72,7 @@ describe('ProcessEditorComponent', () => {
             schemas: [NO_ERRORS_SCHEMA],
             imports: [
                 SharedModule,
-                CoreModule,
+                CoreModule.forRoot(),
                 MatIconModule,
                 TranslateModule.forRoot(),
                 NoopAnimationsModule,

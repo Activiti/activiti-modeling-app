@@ -64,7 +64,7 @@ describe('ProcessEditorEffects', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [CoreModule],
+            imports: [CoreModule.forRoot()],
             providers: [
                 ProcessEditorEffects,
                 ProcessModelerService,

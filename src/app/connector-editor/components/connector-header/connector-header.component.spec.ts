@@ -41,7 +41,7 @@ describe('ConnectorHeaderComponent', () => {
             imports: [
                 RouterTestingModule,
                 SharedModule,
-                CoreModule,
+                CoreModule.forRoot(),
                 CommonModule,
                 MatIconModule,
                 TranslateModule.forRoot(),
