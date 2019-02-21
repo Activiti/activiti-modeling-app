@@ -69,7 +69,7 @@
         },
         "HOME": {
             "NEW_MENU": {
-                "LABEL": "Create NEW",
+                "LABEL": "NEW",
                 "CREATE_PROJECT_TITLE": "Create new project",
                 "EDIT_PROJECT_TITLE": "Edit project",
                 "PROJECT_CREATED": "The project was successfully created",
