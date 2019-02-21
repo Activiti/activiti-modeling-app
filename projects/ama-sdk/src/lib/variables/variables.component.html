@@ -1,17 +1,17 @@
 <h2 mat-dialog-title>{{title | translate}}</h2>
 
-<mat-dialog-content class='properties-content' data-automation-id="variables-dialog">
+<mat-dialog-content class="properties-content variables-dialog-content" data-automation-id="variables-dialog">
     <mat-tab-group [@.disabled]="true" selectedIndex="0">
 
         <mat-tab label="{{ 'SDK.VARIABLES_EDITOR.TABS.VIEWER' | translate }}">
            <amasdk-properties-viewer [properties]="editorContent" [requiredCheckbox]="requiredCheckbox" [displayedColumns]="columns"></amasdk-properties-viewer>
         </mat-tab>
         <mat-tab label="{{ 'SDK.VARIABLES_EDITOR.TABS.JSON_EDITOR' | translate }}">
-            <amasdk-json-editor
+            <amasdk-code-editor
                 [vsTheme]="vsTheme$ | async"
                 [content]="editorContent"
                 (changed)="onChange($event)"
-            ></amasdk-json-editor>
+            ></amasdk-code-editor>
             <p class="mat-error" *ngIf="error">{{ error | translate }}</p>
         </mat-tab>
 

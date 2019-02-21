@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, ViewChild, ElementRef, Input, OnDestroy, AfterViewInit, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input, OnDestroy, AfterViewInit, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProcessModelerService } from '../../services/process-modeler.service';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil, switchMap, filter, map } from 'rxjs/operators';
@@ -38,6 +38,8 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
     diagramData$: BehaviorSubject<ProcessContent> = new BehaviorSubject<ProcessContent>(null);
     onDestroy$: Subject<void> = new Subject<void>();
 
+    @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
+
     @Input()
     set source(diagramData: string) {
         this.diagramData$.next(diagramData);
@@ -49,7 +51,10 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
         this.processModelerService.init({
             clickHandler: event =>
                 this.store.dispatch(new SelectModelerElementAction(this.createSelectedElement(event))),
-            changeHandler: event => this.store.dispatch(new ChangedProcessAction(this.createSelectedElement(event))),
+            changeHandler: event => {
+                this.store.dispatch(new ChangedProcessAction(this.createSelectedElement(event)));
+                this.onChange.emit(event);
+            },
             removeHandler: event =>
                 this.store.dispatch(new RemoveDiagramElementAction(this.createSelectedElement(event))),
             selectHandler: event => {

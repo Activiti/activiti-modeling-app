@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
-import { JsonEditorComponent } from './components/json-editor/json-editor.component';
+import { CodeEditorComponent } from './components/code-editor/code-editor.component';
 
 @NgModule({
     imports: [
@@ -28,12 +28,12 @@ import { JsonEditorComponent } from './components/json-editor/json-editor.compon
         FormsModule,
         MonacoEditorModule.forRoot({baseUrl: './assets'})
     ],
-    declarations: [JsonEditorComponent],
+    declarations: [CodeEditorComponent],
     exports: [
         CommonModule,
         FormsModule,
         MonacoEditorModule,
-        JsonEditorComponent
+        CodeEditorComponent
     ]
 })
-export class JsonEditorModule {}
+export class CodeEditorModule {}

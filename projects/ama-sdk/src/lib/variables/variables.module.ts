@@ -17,7 +17,7 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { JsonEditorModule } from './../json-editor/json-editor.module';
+import { CodeEditorModule } from './../code-editor/code-editor.module';
 import { CoreModule } from '@alfresco/adf-core';
 import { VariablesComponent } from './variables.component';
 import { PropertiesViwerComponent } from './properties-viewer/properties-viewer.component';
@@ -27,7 +27,7 @@ import { VariablesService } from './variables.service';
     imports: [
         CommonModule,
         CoreModule.forChild(),
-        JsonEditorModule
+        CodeEditorModule
     ],
     declarations: [
         VariablesComponent,

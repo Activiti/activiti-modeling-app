@@ -25,20 +25,20 @@
                     <mat-tab label="{{ 'CONNECTOR_EDITOR.TABS.JSON_EDITOR' | translate }}">
                         <div class="ama-connector-page ama-connector-page-raw-editor"
                             data-automation-id="connector-basic-tab">
-                            <amasdk-json-editor [vsTheme]="vsTheme$ | async"
+                            <amasdk-code-editor [vsTheme]="vsTheme$ | async"
                                 [content]="editorContent"
                                 (changed)="onChangeAttempt($event)">
-                            </amasdk-json-editor>
+                            </amasdk-code-editor>
                         </div>
                     </mat-tab>
                 </mat-tab-group>
             </ng-container>
 
             <ng-container *ngIf="!isAdvancedEditorEmbedded()">
-                <amasdk-json-editor [vsTheme]="vsTheme$ | async"
+                <amasdk-code-editor [vsTheme]="vsTheme$ | async"
                     [content]="editorContent"
                     (changed)="onChangeAttempt($event)">
-                </amasdk-json-editor>
+                </amasdk-code-editor>
             </ng-container>
         </ng-container>
     </ng-container>

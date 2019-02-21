@@ -1,5 +1,0 @@
-@import "./components/json-editor/json-editor.component";
-
-@mixin amasdk-json-editor-module($theme) {
-    @include amasdk-json-editor($theme);
-}

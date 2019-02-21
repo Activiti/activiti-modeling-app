@@ -30,6 +30,7 @@ import { CardViewPropertiesFactory } from '../../services/cardview-properties/ca
 import { RouterTestingModule } from '@angular/router/testing';
 import { mockProcess } from '../../store/process.mock';
 import { DownloadProcessAction, ValidateProcessAttemptAction } from '../../store/process-editor.actions';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 
 @Component({
@@ -68,6 +69,7 @@ describe('ProcessEditorComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            schemas: [NO_ERRORS_SCHEMA],
             imports: [
                 SharedModule,
                 CoreModule,

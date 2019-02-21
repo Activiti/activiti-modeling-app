@@ -17,23 +17,23 @@
 
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { JsonEditorComponent, EditorOptions } from './json-editor.component';
+import { CodeEditorComponent, EditorOptions } from './code-editor.component';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { FormsModule } from '@angular/forms';
 
-describe('JsonEditorComponent', () => {
-    let fixture: ComponentFixture<JsonEditorComponent>;
-    let component: JsonEditorComponent;
+describe('CodeEditorComponent', () => {
+    let fixture: ComponentFixture<CodeEditorComponent>;
+    let component: CodeEditorComponent;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [FormsModule, MonacoEditorModule.forRoot()],
-            declarations: [JsonEditorComponent]
+            declarations: [CodeEditorComponent]
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(JsonEditorComponent);
+        fixture = TestBed.createComponent(CodeEditorComponent);
         component = fixture.componentInstance;
         component.content = JSON.stringify({ foo: 'bar' });
 

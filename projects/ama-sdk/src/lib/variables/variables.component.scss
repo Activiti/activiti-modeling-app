@@ -2,6 +2,12 @@
     .properties-content {
         height: 340px;
 
+        &.variables-dialog-content {
+            .mat-tab-body.mat-tab-body-active {
+                min-height: 280px;
+            }
+        }
+
         .json-editor {
             height: 260px;
             overflow: hidden;

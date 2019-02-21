@@ -1,9 +1,8 @@
-@mixin amasdk-json-editor($theme) {
-    // $primary: map-get($theme, danger);
-
-    .json-editor {
+@mixin amasdk-code-editor($theme) {
+    .code-editor {
         display: flex;
         width: 100%;
+        min-height: 280px;
         height: 100%;
 
         .monaco-editor {

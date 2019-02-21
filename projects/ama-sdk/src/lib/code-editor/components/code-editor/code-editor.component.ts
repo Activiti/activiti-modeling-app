@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter, Input, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnDestroy, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { NgxEditorModel } from 'ngx-monaco-editor';
 const memoize = require('lodash/memoize');
 
@@ -28,15 +28,14 @@ const createMemoizedEditorOptions = memoize(
 );
 
 @Component({
-    selector: 'amasdk-json-editor',
-    templateUrl: './json-editor.component.html',
+    selector: 'amasdk-code-editor',
+    templateUrl: './code-editor.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class JsonEditorComponent implements OnDestroy {
+export class CodeEditorComponent implements OnDestroy, OnInit {
     @Input() vsTheme = 'vs-light';
-
+    @Input() options: EditorOptions;
     @Input() content = '';
-
     @Output() changed = new EventEmitter<string>();
 
     private editor: monaco.editor.ICodeEditor = <monaco.editor.ICodeEditor>{ dispose: () => {} };
@@ -53,6 +52,10 @@ export class JsonEditorComponent implements OnDestroy {
         },
         automaticLayout: true
     };
+
+    ngOnInit() {
+        this.defaultOptions = Object.assign({}, this.defaultOptions, this.options);
+    }
 
     get editorOptions(): EditorOptions {
         return createMemoizedEditorOptions(this.vsTheme, this.defaultOptions);
