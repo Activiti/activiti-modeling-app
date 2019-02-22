@@ -71,13 +71,8 @@ export interface Process extends Model {
 
 export type ProcessVariableId = string;
 
-export type MappingsType = 'variable' | 'value';
-
 export interface ServiceParameterMapping {
-    [parameterId: string]: {
-        type: MappingsType,
-        value: string;
-    };
+    [parameterId: string]: ProcessVariableId;
 }
 
 export interface ServiceParameterMappings {
