@@ -5,7 +5,6 @@
   "author": "Alfresco Software, Ltd.",
   "scripts": {
     "ng": "ng",
-    "precommit": "lint-staged",
     "postinstall": "node jest/transpile-es2015-modules-for-jest.js",
     "01": "echo --------------------------------------- Community servers ------------------------------------------",
     "prestart": "npm run validate-config && rimraf dist && npm run compile-less && npm run package:sdk",
@@ -43,6 +42,11 @@
     "clean-lock": "rimraf package-lock.json",
     "webpack": "node node_modules/webpack/bin/webpack.js",
     "compile-less": "lessc ./node_modules/bpmn-js-properties-panel/styles/properties.less .tmp/bpmn-properties.css"
+  },
+  "husky": {
+      "hooks": {
+        "pre-commit": "lint-staged"
+    }
   },
   "repository": {
     "type": "git",
