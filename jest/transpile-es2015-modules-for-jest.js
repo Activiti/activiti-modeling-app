@@ -38,5 +38,9 @@ const dirs = [
 
 for (let dir of dirs) {
   const workPath = __dirname + '/../node_modules/' + dir;
-  transformFiles(workPath);
+  if (fs.existsSync(workPath)) {
+    transformFiles(workPath);
+  } else {
+      console.log(`${workPath} does not exists.`);
+  }
 }

@@ -44,8 +44,8 @@
     "compile-less": "lessc ./node_modules/bpmn-js-properties-panel/styles/properties.less .tmp/bpmn-properties.css"
   },
   "husky": {
-      "hooks": {
-        "pre-commit": "lint-staged"
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
   },
   "repository": {
