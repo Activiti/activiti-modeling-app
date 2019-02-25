@@ -56,8 +56,8 @@
                 }
 
                 &-properties {
-                    width: 300px;
-                    flex: 0 0 auto;
+                    width: 360px;
+                    box-sizing: border-box;
                 }
             }
         }
