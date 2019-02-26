@@ -18,7 +18,6 @@
 import { Injectable, InjectionToken } from '@angular/core';
 import { Connector, ConnectorContent } from '../../../api/types';
 import { ContentType } from '../content-types';
-import { formatUuid } from '../../../helpers/utils/create-entries-names';
 import { ModelApiVariation, ModelApi } from '../model-api';
 
 export const CONNECTOR_API = new InjectionToken<ModelApi<Connector, ConnectorContent>>('connector-api');
@@ -34,7 +33,6 @@ export class ConnectorApiVariation<M extends Connector, C extends ConnectorConte
 
     public createInitialContent(model: M): C {
         return <C>{
-            id: formatUuid(this.contentType, model.id),
             name: model.name,
             description: model.description
         };

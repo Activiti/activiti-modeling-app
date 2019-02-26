@@ -37,7 +37,7 @@ describe('ConnectorEntitiesReducer', () => {
     let initialState: ConnectorEntitiesState;
     let action: ConnectorActions;
 
-    const connector = {
+    const connector = <any>{
         type: CONNECTOR,
         id: 'mock-id',
         name: 'mock-name',
@@ -145,7 +145,6 @@ describe('ConnectorEntitiesReducer', () => {
             const newState = connectorEntitiesReducer(initialState, action);
 
             expect(newState.entityContents[connector.id]).toEqual({
-                id: 'connector-mock-id',
                 name: connector.name,
                 description: connector.description
             });

@@ -122,7 +122,6 @@ export interface ConnectorParameter {
 }
 
 export interface ConnectorContent {
-    id: string;
     name: string;
     description?: string;
     actions?: ConnectorActionData;

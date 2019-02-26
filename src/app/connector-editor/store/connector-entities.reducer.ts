@@ -30,13 +30,11 @@ import {
 } from './connector-editor.actions';
 import {
     ConnectorContent,
-    formatUuid,
-    ContentType,
     initialConnectorEntitiesState,
     ConnectorEntitiesState,
-    connectorEntityAdapter
+    connectorEntityAdapter,
+    LEAVE_PROJECT
 } from 'ama-sdk';
-import { LEAVE_PROJECT } from 'ama-sdk';
 import { Action } from '@ngrx/store';
 
 export function connectorEntitiesReducer(
@@ -104,7 +102,6 @@ function getConnectorSuccess(state: ConnectorEntitiesState, action: GetConnector
         newState.entityContents[connector.id] = connectorContent;
     } else {
         newState.entityContents[connector.id] = {
-            id: formatUuid(ContentType.Connector, connector.id),
             name: connector.name,
             description: connector.description
         };

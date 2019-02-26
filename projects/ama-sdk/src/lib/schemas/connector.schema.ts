@@ -58,10 +58,6 @@ export const connectorSchema = {
 
     "additionalProperties" : false,
     "properties": {
-        "id": {
-            "description": "The connector's id",
-            "type": "string"
-        },
         "name": {
             "description": "The connector's name",
             "type": "string"
@@ -77,5 +73,5 @@ export const connectorSchema = {
         }
 
     },
-    "required": [ "id", "name" ]
+    "required": [ "name" ]
 };
