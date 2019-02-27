@@ -149,7 +149,7 @@ export class ProjectsEffects extends BaseEffects {
                 new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_RELEASED')
             ]),
             catchError<any, SnackbarErrorAction>(e =>
-                this.genericErrorHandler(this.handleError('APP.PROJECT.ERROR.RELEASE_PROJECT'), e)
+                this.genericErrorHandler(this.handleProjectReleaseError.bind(this, e), e)
             )
         );
     }
@@ -219,6 +219,14 @@ export class ProjectsEffects extends BaseEffects {
         } else {
             errorMessage = 'APP.PROJECT.ERROR.UPLOAD_PROJECT.GENERAL';
         }
+
+        return of(new SnackbarErrorAction(errorMessage));
+    }
+
+    private handleProjectReleaseError(error): Observable<SnackbarErrorAction> {
+        let errorMessage;
+
+        errorMessage = 'APP.PROJECT.ERROR.RELEASE_PROJECT';
 
         return of(new SnackbarErrorAction(errorMessage));
     }
