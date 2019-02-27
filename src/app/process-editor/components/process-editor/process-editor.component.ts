@@ -17,26 +17,20 @@
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, combineLatest, of, Subject, BehaviorSubject } from 'rxjs';
+import { filter, map, take } from 'rxjs/operators';
+import { Observable, combineLatest, of } from 'rxjs';
 import { ProcessModelerService } from '../../services/process-modeler.service';
 import { selectProcessCrumb, selectProcessLoading, selectSelectedProcessDiagram } from '../../store/process-editor.selectors';
 import {
     Process,
-    OpenConfirmDialogAction,
     BreadcrumbItem,
     AmaState,
-    SnackbarErrorAction,
-    EntityDialogForm,
     selectProjectCrumb,
     ProcessContent,
     selectSelectedProcess,
     selectSelectedTheme,
     SetAppDirtyStateAction,
 } from 'ama-sdk';
-import { DownloadProcessAction, ValidateProcessAttemptAction, UpdateProcessAttemptAction, DeleteProcessAttemptAction } from '../../store/process-editor.actions';
-import { filter, map, takeUntil } from 'rxjs/operators';
-import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
-import { processNameHandler } from '../../services/bpmn-js/property-handlers/process-name.handler';
 
 @Component({
     templateUrl: './process-editor.component.html',
@@ -45,11 +39,10 @@ import { processNameHandler } from '../../services/bpmn-js/property-handlers/pro
 export class ProcessEditorComponent implements OnInit {
     loading$: Observable<boolean>;
     breadcrumbs$: Observable<BreadcrumbItem[]>;
-    diagram$: Observable<ProcessContent>;
+    content$: Observable<ProcessContent>;
+    bpmnContent$: Observable<ProcessContent>;
     process$: Observable<Process>;
     vsTheme$: Observable<string>;
-    diagramChange$ = new BehaviorSubject<string>('');
-    onDestroy$: Subject<void> = new Subject<void>();
 
     constructor(private store: Store<AmaState>, private processModeler: ProcessModelerService) {
         this.vsTheme$ = this.getVsTheme();
@@ -58,10 +51,8 @@ export class ProcessEditorComponent implements OnInit {
     ngOnInit() {
         this.loading$ = this.store.select(selectProcessLoading);
         this.process$ = this.store.select(selectSelectedProcess);
-        this.diagram$ = this.store.select(selectSelectedProcessDiagram);
-
-        this.diagram$.pipe(takeUntil(this.onDestroy$))
-            .subscribe(content => this.diagramChange$.next(content));
+        this.content$ = this.store.select(selectSelectedProcessDiagram);
+        this.bpmnContent$ = this.store.select(selectSelectedProcessDiagram);
 
         this.breadcrumbs$ = combineLatest(
             of({ url: '/home', name: 'Dashboard' }),
@@ -76,52 +67,13 @@ export class ProcessEditorComponent implements OnInit {
             .pipe(map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light')));
     }
 
-    onDiagramChange(): void {
-        this.processModeler.export()
-            .then(content => this.diagramChange$.next(content));
+    onBpmnEditorChange(): void {
+        this.processModeler.export().then(content => this.content$ = of(content));
     }
 
     onXmlChangeAttempt(processContent: ProcessContent): void {
         this.processModeler.loadXml(processContent)
-            .pipe(takeUntil(this.onDestroy$))
+            .pipe(take(1))
             .subscribe(() => this.store.dispatch(new SetAppDirtyStateAction(true)));
-    }
-
-    saveDiagram(processId: string): void {
-        const element = this.processModeler.getRootProcessElement();
-        const metadata: Partial<EntityDialogForm> = {
-            name: processNameHandler.get(element),
-            description: documentationHandler.get(element),
-        };
-        this.processModeler
-            .export()
-            .then(content => this.store.dispatch(new ValidateProcessAttemptAction({
-                title: 'APP.DIALOGS.CONFIRM.SAVE.PROCESS',
-                processId,
-                content,
-                action: new UpdateProcessAttemptAction({ processId, content, metadata })
-            })))
-            .catch(() => this.store.dispatch(new SnackbarErrorAction('PROCESS_EDITOR.ERRORS.SAVE_DIAGRAM')));
-    }
-
-    downloadDiagram(process: Process): void {
-        this.processModeler
-            .export()
-            .then(content => this.store.dispatch(new ValidateProcessAttemptAction({
-                title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.PROCESS',
-                processId: process.id,
-                content,
-                action: new DownloadProcessAction(process)
-            })))
-            .catch(() => this.store.dispatch(new SnackbarErrorAction('APP.PROCESSES.ERRORS.DOWNLOAD_DIAGRAM')));
-    }
-
-    deleteProcess(processId: string): void {
-        this.store.dispatch(
-            new OpenConfirmDialogAction({
-                dialogData: { title: 'APP.DIALOGS.CONFIRM.DELETE.PROCESS' },
-                action: new DeleteProcessAttemptAction(processId)
-            })
-        );
     }
 }

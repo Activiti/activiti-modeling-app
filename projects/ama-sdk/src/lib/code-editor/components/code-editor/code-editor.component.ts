@@ -22,9 +22,8 @@ const memoize = require('lodash/memoize');
 export type EditorOptions = monaco.editor.IEditorOptions | { language: string; theme: string };
 
 const createMemoizedEditorOptions = memoize(
-    (theme, basicOptions): EditorOptions => {
-        return { ...basicOptions, theme };
-    }
+    (theme, language, basicOptions): EditorOptions => ({ ...basicOptions, theme, language }),
+    (theme, language) => `${theme}-${language}`
 );
 
 @Component({
@@ -41,7 +40,7 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     private editor: monaco.editor.ICodeEditor = <monaco.editor.ICodeEditor>{ dispose: () => {} };
     editorModel: NgxEditorModel;
 
-    private defaultOptions: EditorOptions = {
+    private defaultOptions = {
         language: 'json',
         scrollBeyondLastLine: false,
         contextmenu: false,
@@ -58,7 +57,7 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     }
 
     get editorOptions(): EditorOptions {
-        return createMemoizedEditorOptions(this.vsTheme, this.defaultOptions);
+        return createMemoizedEditorOptions(this.vsTheme, this.defaultOptions.language, this.defaultOptions);
     }
 
     ngOnDestroy() {
