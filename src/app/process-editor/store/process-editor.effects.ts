@@ -55,7 +55,15 @@ import {
     GetProcessesSuccessAction,
     CREATE_PROCESS_SUCCESS
 } from './process-editor.actions';
-import { BaseEffects, OpenConfirmDialogAction, ModelOpenedAction, UploadFileAttemptPayload, ModelClosedAction, PROCESS, EntityDialogForm } from 'ama-sdk';
+import {
+    BaseEffects,
+    OpenConfirmDialogAction,
+    ModelOpenedAction,
+    UploadFileAttemptPayload,
+    ModelClosedAction,
+    PROCESS, EntityDialogForm,
+    UPDATE_SERVICE_PARAMETERS
+} from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { SetAppDirtyStateAction } from 'ama-sdk';
 import { forkJoin } from 'rxjs';
@@ -168,6 +176,12 @@ export class ProcessEditorEffects extends BaseEffects {
     @Effect()
     changedProcessDiagramEffect = this.actions$.pipe(
         ofType(CHANGED_PROCESS_DIAGRAM),
+        mergeMap(() => of(new SetAppDirtyStateAction(true)))
+    );
+
+    @Effect()
+     updateServiceParameterSEffect = this.actions$.pipe(
+        ofType(UPDATE_SERVICE_PARAMETERS),
         mergeMap(() => of(new SetAppDirtyStateAction(true)))
     );
 

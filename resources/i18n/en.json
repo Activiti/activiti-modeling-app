@@ -23,7 +23,7 @@
                 "SUBTITLE": "Are you sure that you want to do this action?",
                 "BUTTON": "Confirm",
                 "UNSAVED_PAGE": "Are you sure you want to leave without saving",
-                "RELEASE": "Are you sure you want to release and create a new version of this project",
+                "RELEASE": "Are you sure you want to release and create a new version of this project?",
                 "TYPES": {
                     "DECISION": "decision table",
                     "DATA": "data",
