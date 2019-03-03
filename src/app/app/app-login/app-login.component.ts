@@ -17,7 +17,7 @@
 
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LogService, AppConfigService } from '@alfresco/adf-core';
+import { LogService } from '@alfresco/adf-core';
 import { Validators } from '@angular/forms';
 
 @Component({
@@ -30,15 +30,7 @@ export class AppLoginComponent implements OnInit {
     customMinLength = 2;
     form: any;
 
-    get provider() {
-        return this.appConfig.get<string>('providers');
-    }
-
-    constructor(
-        private router: Router,
-        private logService: LogService,
-        private appConfig: AppConfigService
-    ) {
+    constructor(private router: Router, private logService: LogService) {
         this.customValidation = {
             username: ['', Validators.compose([Validators.required, Validators.minLength(this.customMinLength)])],
             password: ['', Validators.required]

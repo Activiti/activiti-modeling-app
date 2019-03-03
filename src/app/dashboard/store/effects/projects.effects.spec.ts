@@ -64,7 +64,7 @@ describe('ProjectsEffects', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [CoreModule],
+            imports: [CoreModule.forRoot()],
             providers: [
                 ProjectsEffects,
                 AmaAuthenticationService,

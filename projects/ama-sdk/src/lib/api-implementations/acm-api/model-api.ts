@@ -144,7 +144,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
     }
 
     public export(modelId: string): Observable<S> {
-        return this.requestApiHelper.get<S>(`/v1/models/${modelId}/content`, { returnType: 'string' });
+        return this.requestApiHelper.get<S>(`/v1/models/${modelId}/content`);
     }
 
     private createEntity(entity: Partial<T>, containerId: string): T {

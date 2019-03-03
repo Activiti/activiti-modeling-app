@@ -40,7 +40,7 @@ describe('ProcessHeaderComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 SharedModule,
-                CoreModule,
+                CoreModule.forRoot(),
                 MatIconModule,
                 TranslateModule.forRoot(),
                 NoopAnimationsModule,

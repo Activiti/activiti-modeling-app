@@ -2,6 +2,7 @@
     "$schema": "../node_modules/@alfresco/adf-core/app.config.schema.json",
     "ecmHost": "http://{hostname}:{port}",
     "bpmHost": "http://{hostname}:{port}",
+    "provider": "BPM",
     "authType" : "OAUTH",
     "logLevel": "trace",
     "application": {
@@ -25,6 +26,7 @@
     "roles": [
         "ACTIVITI_MODELER"
     ],
+    "locale" : "en",
     "languages": [
         {
             "key": "en",

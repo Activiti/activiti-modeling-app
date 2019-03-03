@@ -253,7 +253,7 @@ export class ConnectorEditorEffects extends BaseEffects {
         );
     }
 
-    private getConnector(connectorId: string, projectId: string, loadConnector?: boolean): Observable<GetConnectorSuccessAction | SnackbarErrorAction> {
+    private getConnector(connectorId: string, projectId: string, loadConnector?: boolean) {
         const connectorDetails$ = this.connectorEditorService.getDetails(connectorId, projectId),
             connectorContent$ = this.connectorEditorService.getContent(connectorId);
 
@@ -262,7 +262,7 @@ export class ConnectorEditorEffects extends BaseEffects {
                 new GetConnectorSuccessAction(connector, connectorContent),
                 ...(loadConnector ? [new ModelOpenedAction({ id: connectorId, type: CONNECTOR })] : [])
             ]),
-            catchError<any, SnackbarErrorAction>(e =>
+            catchError(e =>
                 this.genericErrorHandler(this.handleError.bind(this, 'CONNECTOR_EDITOR.ERRORS.GET_CONNECTOR'), e)
             )
         );
