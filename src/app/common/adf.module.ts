@@ -18,13 +18,11 @@
 import { NgModule } from '@angular/core';
 
 import { CoreModule, AppConfigService, DebugAppConfigService, TRANSLATION_PROVIDER } from '@alfresco/adf-core';
-import { TranslateStore } from '@ngx-translate/core';
 
 @NgModule({
     imports: [ CoreModule.forRoot() ],
     exports: [ CoreModule ],
     providers: [
-        TranslateStore,
         { provide: AppConfigService, useClass: DebugAppConfigService },
         { provide: TRANSLATION_PROVIDER, multi: true, useValue: { name: 'app', source: 'resources' } }
     ]

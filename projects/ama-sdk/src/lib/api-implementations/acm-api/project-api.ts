@@ -81,7 +81,7 @@ export class ACMProjectApi implements ProjectApi {
     public export(projectId: string): Observable<Blob>  {
         return this.requestApiHelper.get(
             `/v1/projects/${projectId}/export`,
-            { queryParams: { 'attachment': false }, returnType: 'Blob' }
+            { queryParams: { 'attachment': false }, responseType: 'blob' }
         );
     }
 
