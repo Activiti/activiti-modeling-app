@@ -52,15 +52,7 @@ if [[ -n "${API_URL}" ]]
 then
   replace="\/"
   encoded=${API_URL//\//$replace}
-  sed -e "s/\"backend\": \".*\"/\"backend\": \"${encoded}\"/g" \
-    -i ./app.config.json
-fi
-
-if [[ -n "${API_PATH_PREFIX}" ]]
-then
-  replace="\/"
-  encoded=${API_PATH_PREFIX//\//$replace}
-  sed -e "s/\"pathPrefix\": \".*\"/\"pathPrefix\": \"${encoded}\"/g" \
+  sed -e "s/\"bpmHost\": \".*\"/\"bpmHost\": \"${encoded}\"/g" \
     -i ./app.config.json
 fi
 

@@ -1,26 +1,23 @@
 {
     "$schema": "../node_modules/@alfresco/adf-core/app.config.schema.json",
-    "ecmHost": "http://{hostname}:{port}",
-    "bpmHost": "http://{hostname}:{port}",
-    "provider": "BPM",
-    "authType" : "OAUTH",
-    "logLevel": "trace",
-    "application": {
-        "name": "Activiti Modeling Application"
-    },
-    "backend": "http://activiti-cloud-gateway.35.204.66.71.nip.io",
-    "pathPrefix": "activiti-cloud-modeling",
+    "authType": "OAUTH",
+    "providers": "BPM",
+    "bpmHost": "http://localhost:4100/api",
     "oauth2": {
-        "host": "http://activiti-keycloak.35.204.66.71.nip.io/auth/realms/activiti",
+        "host": "http://localhost:4100/auth",
         "authPath": "/protocol/openid-connect/token/",
         "clientId": "activiti",
         "scope": "openid",
         "secret": "",
         "implicitFlow": true,
-        "silentLogin": true,
+        "silentLogin": false,
         "redirectSilentIframeUri": "",
         "redirectUri": "/",
         "redirectUriLogout": "/login"
+    },
+    "logLevel": "trace",
+    "application": {
+        "name": "Activiti Modeling Application"
     },
     "languagePicker": true,
     "roles": [
