@@ -1,7 +1,7 @@
 {
     "$schema": "../node_modules/@alfresco/adf-core/app.config.schema.json",
-    "authType" : "OAUTH",
-    "provider": "BPM",
+    "authType": "OAUTH",
+    "providers": "BPM",
     "bpmHost": "http://localhost:4100/api",
     "oauth2": {
         "host": "http://localhost:4100/auth",
@@ -10,7 +10,7 @@
         "scope": "openid",
         "secret": "",
         "implicitFlow": true,
-        "silentLogin": true,
+        "silentLogin": false,
         "redirectSilentIframeUri": "",
         "redirectUri": "/",
         "redirectUriLogout": "/login"
