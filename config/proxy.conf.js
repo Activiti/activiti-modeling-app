@@ -1,8 +1,7 @@
 require('dotenv').config();
 
 const API_HOST = process.env.API_HOST;
-const SERVICE_PREFIX = process.env.SERVICE_PREFIX;
-const REALM = process.env.REALM;
+const OAUTH_HOST = process.env.OAUTH_HOST;
 
 module.exports = {
     "/api": {
@@ -10,16 +9,16 @@ module.exports = {
       "secure": false,
       "changeOrigin": true,
       "pathRewrite": {
-        "^/api": "/" + SERVICE_PREFIX
+        "^/api": ""
       },
       "logLevel": "silent"
     },
     "/auth": {
-        "target": API_HOST,
+        "target": OAUTH_HOST,
         "secure": false,
         "changeOrigin": true,
         "pathRewrite": {
-            "^/auth": "/auth/realms/" + REALM
+            "^/auth": ""
         },
         "logLevel": "silent"
     }
