@@ -48,10 +48,10 @@ if [ -n "${APP_CONFIG_OAUTH2_REDIRECT_LOGOUT}" ];then
     -i ./app.config.json
 fi
 
-if [[ -n "${API_URL}" ]]
+if [[ -n "${APP_CONFIG_BPM_HOST}" ]]
 then
   replace="\/"
-  encoded=${API_URL//\//$replace}
+  encoded=${APP_CONFIG_BPM_HOST//\//$replace}
   sed -e "s/\"bpmHost\": \".*\"/\"bpmHost\": \"${encoded}\"/g" \
     -i ./app.config.json
 fi
