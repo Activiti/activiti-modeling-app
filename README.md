@@ -92,7 +92,7 @@ Then `docker build . -t alfresco/alfresco-modeler-app:latest` to build the image
 
 Start with below (substituting with values for your deployment):
 
-`docker run -it -e APP_CONFIG_OAUTH2_HOST="http://KEYCLOAKHOST/auth/realms/activiti" -e APP_CONFIG_OAUTH2_CLIENTID="activiti" -e API_URL="http://GATEWAYHOST" -p 8080:80 alfresco/alfresco-modeling-app:latest`
+`docker run -it -e APP_CONFIG_OAUTH2_HOST="http://KEYCLOAKHOST/auth/realms/activiti" -e APP_CONFIG_OAUTH2_CLIENTID="activiti" -e APP_CONFIG_BPM_HOST="http://GATEWAYHOST" -p 8080:80 alfresco/alfresco-modeling-app:latest`
 
 If any substitutions don't work then check that the placeholders in `docker-entrypoint.sh` match `src/app.config.json`
 
