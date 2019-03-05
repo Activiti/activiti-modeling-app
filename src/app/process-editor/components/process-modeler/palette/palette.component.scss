@@ -1,8 +1,8 @@
-@mixin amasdk-palette($theme) {
+@mixin ama-palette($theme) {
     $foreground: map-get($theme, foreground);
     $primary: map-get($theme, primary);
 
-    amasdk-palette .mat-card {
+    ama-palette .mat-card {
         height: 450px;
         width: 45px;
         border: 1px solid mat-color($foreground, text, 0.07);

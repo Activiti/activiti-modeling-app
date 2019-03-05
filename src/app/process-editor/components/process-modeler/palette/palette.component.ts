@@ -19,7 +19,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
     templateUrl: './palette.component.html',
-    selector: 'amasdk-palette'
+    selector: 'ama-palette'
 })
 export class PaletteComponent {
 

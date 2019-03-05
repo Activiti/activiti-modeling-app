@@ -21,4 +21,3 @@ export * from './process-editor.selectors';
 export * from './cardview-properties/implementation-item.model';
 export * from './cardview-properties/form-key.model';
 export * from './cardview-properties/default-sequence-flow-item.model';
-export { PaletteModule } from './palette/palette.module';
