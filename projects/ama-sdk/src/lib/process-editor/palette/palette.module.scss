@@ -1,0 +1,5 @@
+@import "./palette.component.scss";
+
+@mixin amasdk-palette-module($theme) {
+    @include amasdk-palette($theme);
+}

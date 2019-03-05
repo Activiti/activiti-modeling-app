@@ -30,7 +30,7 @@ import { StoreModule } from '@ngrx/store';
 import { ProcessEditorRoutingModule } from './router/process-editor-routing.module';
 import { CardViewPropertiesFactory } from './services/cardview-properties/cardview-properties.factory';
 import { Title } from '@angular/platform-browser';
-import { AmaTitleService, ENTITIES_REDUCER_TOKEN, provideEntity, providePropertyHandler, BpmnProperty, CodeEditorModule, provideTranslations } from 'ama-sdk';
+import { AmaTitleService, ENTITIES_REDUCER_TOKEN, provideEntity, providePropertyHandler, BpmnProperty, CodeEditorModule, provideTranslations, PaletteModule } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { BpmnFactoryToken } from './services/bpmn-factory.token';
 import { SharedModule } from 'ama-sdk';
@@ -59,7 +59,8 @@ import { CardViewDefaultSequenceFlowItemComponent } from './services/cardview-pr
         SharedModule,
         VariablesModule,
         MatTooltipModule,
-        CodeEditorModule
+        CodeEditorModule,
+        PaletteModule
     ],
     declarations: [
         ProcessEditorComponent,

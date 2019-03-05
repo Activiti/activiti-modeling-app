@@ -1,0 +1,9 @@
+<mat-card>
+    <div cdkDropList>
+        <ng-container *ngFor="let item of paletteIcons; let i = index;">
+            <div class="entry {{item.icon}}" title="{{item.title}}" (click)="createShape($event)">
+            </div>
+            <hr *ngIf="i===3 || i === 5 || i === 6" class="separator">
+        </ng-container>
+    </div>
+</mat-card>

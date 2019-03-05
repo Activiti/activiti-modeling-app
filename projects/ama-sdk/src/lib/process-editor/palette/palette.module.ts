@@ -15,10 +15,21 @@
  * limitations under the License.
  */
 
-export * from './properties';
-export * from './process-editor.actions';
-export * from './process-editor.selectors';
-export * from './cardview-properties/implementation-item.model';
-export * from './cardview-properties/form-key.model';
-export * from './cardview-properties/default-sequence-flow-item.model';
-export { PaletteModule } from './palette/palette.module';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CoreModule } from '@alfresco/adf-core';
+import { PaletteComponent } from './palette.component';
+
+@NgModule({
+    imports: [
+        CommonModule,
+        CoreModule.forChild(),
+    ],
+    declarations: [
+        PaletteComponent
+    ],
+    exports: [
+        PaletteComponent
+    ]
+})
+export class PaletteModule {}
