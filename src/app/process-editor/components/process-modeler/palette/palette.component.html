@@ -1,9 +1,12 @@
 <mat-card>
-    <div cdkDropList>
-        <ng-container *ngFor="let item of paletteIcons; let i = index;">
-            <div class="entry {{item.icon}}" title="{{item.title}}" (click)="createShape($event)">
+    <ng-container *ngFor="let item of paletteIcons; let i = index;">
+        <div class="entry {{item.icon}}" title="{{item.title}}">
+            <button *ngIf="item.children"  [matMenuTriggerFor]= "menu"></button>
+        </div>
+        <mat-menu  #menu="matMenu" class="palette-drawer">
+            <div *ngFor="let child of item.children" class="entry {{child.icon}}" title="{{child.title}}" >
             </div>
-            <hr *ngIf="i===3 || i === 5 || i === 6" class="separator">
-        </ng-container>
-    </div>
+        </mat-menu>
+        <hr *ngIf="i===3 || i === 5 || i === 6" class="separator">
+    </ng-container>
 </mat-card>

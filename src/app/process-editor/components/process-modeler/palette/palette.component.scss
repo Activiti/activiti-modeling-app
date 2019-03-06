@@ -3,7 +3,6 @@
     $primary: map-get($theme, primary);
 
     ama-palette .mat-card {
-        height: 450px;
         width: 45px;
         border: 1px solid mat-color($foreground, text, 0.07);
         background: mat-color($foreground, text, 0.03);
@@ -14,7 +13,28 @@
 
         .entry {
             font-size: 30px;
-            margin-top: 10px;
+            border: 0;
+            background: transparent;
+            padding: 0;
+
+            &:not(:first-child) {
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            button {
+                position: absolute;
+                height: 30px;
+                width: 30px;
+                margin-left: -30px;
+                background: transparent;
+                border: none;
+                outline: none;
+            }
 
             &:hover {
                 color: mat-color($primary);
@@ -25,5 +45,32 @@
         .separator {
             border-color: mat-color($foreground, text, 0.05);
         }
+    }
+
+    .mat-menu-panel.palette-drawer {
+        min-width: 45px;
+        text-align: center;
+        font-size: 30px;
+        background: mat-color($foreground, text, 0.03);
+        margin-left: 40px;
+        margin-top: -45px;
+
+        .entry {
+
+            &:hover {
+                color: mat-color($primary);
+                cursor: pointer;
+            }
+        }
+
+        .entry:not(:first-child) {
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
     }
 }
