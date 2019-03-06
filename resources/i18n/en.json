@@ -455,7 +455,15 @@
                 "DELETE_OUTCOME": "Delete outcome",
                 "EDIT": "Edit",
                 "DELETE": "Delete",
-                "MOVE": "Move"
+                "MOVE": "Move",
+                "TITLES": {
+                    "FORM": "Form editor",
+                    "ROW": "Row editor",
+                    "HEADER": "Header editor",
+                    "TAB": "Tab editor",
+                    "OUTCOME": "Outcome editor",
+                    "FIELD": "Field editor"
+                }
             },
             "ERRORS": {
                 "GET_FORM": "Unknown error happened during loading of the form, please try again.",
