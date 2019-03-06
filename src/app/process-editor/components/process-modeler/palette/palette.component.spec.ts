@@ -91,7 +91,4 @@ describe('Palette component', () => {
 
         expect(subMenu).toBeNull();
     });
-
-
-
 });

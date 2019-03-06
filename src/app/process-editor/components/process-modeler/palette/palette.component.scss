@@ -2,7 +2,7 @@
     $foreground: map-get($theme, foreground);
     $primary: map-get($theme, primary);
 
-    ama-palette .mat-card {
+    ama-process-palette .mat-card {
         width: 45px;
         border: 1px solid mat-color($foreground, text, 0.07);
         background: mat-color($foreground, text, 0.03);

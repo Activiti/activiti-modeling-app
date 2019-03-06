@@ -1,12 +1,33 @@
 <mat-card>
-    <ng-container *ngFor="let item of paletteIcons; let i = index;">
-        <div class="entry {{item.icon}}" title="{{item.title}}">
-            <button *ngIf="item.children"  [matMenuTriggerFor]= "menu"></button>
-        </div>
-        <mat-menu  #menu="matMenu" class="palette-drawer">
-            <div *ngFor="let child of item.children" class="entry {{child.icon}}" title="{{child.title}}" >
-            </div>
-        </mat-menu>
-        <hr *ngIf="i===3 || i === 5 || i === 6" class="separator">
+    <ng-container *ngFor="let item of paletteElements">
+        <ng-container *ngIf="!isSeparator(item); else separator">
+            <ng-container *ngTemplateOutlet="hasChildren(item) ? containerElement : clickableElement; context: { $implicit: item }">
+            </ng-container>
+        </ng-container>
     </ng-container>
 </mat-card>
+
+<ng-template #containerElement let-item>
+    <div class="entry {{item.icon}}" title="{{item.title}}">
+        <button [matMenuTriggerFor]= "menu"></button>
+    </div>
+    <mat-menu #menu="matMenu" class="palette-drawer">
+        <div *ngFor="let child of item.children" class="entry {{child.icon}}" title="{{child.title}}" >
+        </div>
+    </mat-menu>
+</ng-template>
+
+<ng-template #clickableElement let-item>
+    <div class="entry {{item.icon}}" title="{{item.title}}">
+        <button
+            *ngIf="!hasChildren(item)"
+            draggable="true"
+            (click)="delegateEvent(item, $event)"
+            (dragstart)="delegateEvent(item, $event)">
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #separator>
+    <hr class="separator">
+</ng-template>

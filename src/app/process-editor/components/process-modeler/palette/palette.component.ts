@@ -15,95 +15,35 @@
  * limitations under the License.
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Optional } from '@angular/core';
+import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
+import { PaletteElement, CustomPaletteElementsToken } from 'ama-sdk';
+const paletteElements = require('../../../config/palette-elements.json');
 
 @Component({
     templateUrl: './palette.component.html',
-    selector: 'ama-palette'
+    selector: 'ama-process-palette'
 })
 export class PaletteComponent {
 
-    opened = 'isOpen';
-
-    paletteIcons = [
-        {
-            icon: 'bpmn-icon-hand-tool',
-            title: 'Activate the hand tool',
-            children: null
-        },
-        {
-            icon: 'bpmn-icon-connection-multi',
-            title: 'Activate the global connect tool',
-            children: null
-        },
-        {
-            icon: 'bpmn-icon-space-tool',
-            title: 'Activate the create/remove space tool',
-            children: null
-        },
-        {
-            icon: 'bpmn-icon-lasso-tool',
-            title: 'Activate the lasso tool',
-            children: null
-        },
-        {
-            icon: 'bpmn-icon-start-event-none',
-            title: 'Create Start Event',
-            children: null
-        },
-        {
-            icon: 'bpmn-icon-end-event-none',
-            title: 'Create End Event',
-            children: null
-        },
-        {
-            icon: 'bpmn-icon-gateway-none',
-            title: 'Create Gateway',
-            children: null
-        },
-        {
-            icon: 'bpmn-icon-user-task',
-            title: 'User Task',
-            children: null
-        },
-        {
-            icon: 'bpmn-icon-service-task',
-            title: 'Service Task',
-            children: null
-        },
-        {
-            icon: 'bpmn-icon-send-task',
-            title: 'Dedicated services',
-            children: [
-                {
-                    icon: 'bpmn-icon-receive-task',
-                    title: 'Dedicated service1',
-                },
-                {
-                    icon: 'bpmn-icon-receive-task',
-                    title: 'Dedicated service2',
-                },
-                {
-                    icon: 'bpmn-icon-receive-task',
-                    title: 'Dedicated service3',
-                }
-            ]
-        },
-        {
-            icon: 'bpmn-icon-call-activity',
-            title: 'Call Activity',
-            children: null
-        }
-    ];
-
-    @Input()
-    connectedDropLists: string[] = [];
-    draggingItemType: string;
+    public paletteElements: PaletteElement[];
 
     constructor(
-    ) {}
+        private processModelerPaletteService: ProcessModelerPaletteService,
+        @Optional() @Inject(CustomPaletteElementsToken) customPaletteElements: PaletteElement[]
+    ) {
+        this.paletteElements = paletteElements.concat(customPaletteElements || []);
+    }
 
-    createShape(event) {
+    public isSeparator(element: PaletteElement) {
+        return element.group === 'separator';
+    }
 
+    public hasChildren(element: PaletteElement) {
+        return element.group === 'container' && element.children && element.children.length;
+    }
+
+    delegateEvent(paletteItem: PaletteElement, event: any) {
+        this.processModelerPaletteService.delegateEvent(paletteItem, event);
     }
 }

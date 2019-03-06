@@ -9,7 +9,7 @@
             <mat-tab-group [@.disabled]="true" class="ama-process-tab-group">
                 <mat-tab label="{{ 'APP.PROCESS_EDITOR.TABS.PROCESS_EDITOR' | translate }}">
                     <div class="process-editor-modeling-area">
-                        <ama-palette></ama-palette>
+                        <ama-process-palette></ama-process-palette>
                         <ama-process-modeler
                             (onChange)="onBpmnEditorChange($event)"
                             [source]="bpmnContent$ | async"

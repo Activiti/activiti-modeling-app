@@ -20,8 +20,8 @@ import { Injectable } from '@angular/core';
 import * as propertiesPanelModule from 'bpmn-js-properties-panel';
 import * as bpmnPropertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/bpmn';
 import * as camundaPropertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/camunda';
-import { BpmnFactoryService } from '../process-editor/services/bpmn-factory.service';
-import { PaletteProvider } from '../process-editor/components/process-modeler/palette';
+import { BpmnFactoryService, emptyPaletteModule } from '../process-editor/services/bpmn-factory.service';
+import { PaletteProvider } from './palette';
 
 const activitiModdleDescriptor = require('./../process-editor/services/activiti.json');
 
@@ -33,12 +33,13 @@ const customPaletteModule = {
 @Injectable()
 export class BpmnFactoryWithPropertiesService extends BpmnFactoryService {
     protected getBpmnPropertiesPanelConfig() {
-        const camundaDescriptors = false;
+        const camundaDescriptors = false,
+            bpmnCustomPalette = false;
 
         return {
             additionalModules: [
                 propertiesPanelModule,
-                customPaletteModule,
+                ...(bpmnCustomPalette ? [customPaletteModule] : [emptyPaletteModule]),
                 ...(camundaDescriptors ? camundaPropertiesProviderModule : bpmnPropertiesProviderModule)
             ],
             moddleExtensions: { activiti: activitiModdleDescriptor }

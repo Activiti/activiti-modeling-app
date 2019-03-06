@@ -17,7 +17,6 @@
 
 import { Injectable } from '@angular/core';
 import * as bpmnPropertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/bpmn';
-import { PaletteProvider } from '../components/process-modeler/palette';
 import { ModelerInitOptions, BpmnFactory } from './bpmn-factory.token';
 /*
     Angular 6 --prod mode doesn't seem to work with the normal way of importing the bmpnjs library.
@@ -25,8 +24,11 @@ import { ModelerInitOptions, BpmnFactory } from './bpmn-factory.token';
 */
 import BpmnModeler from 'bpmn-js/dist/bpmn-modeler.production.min';
 
-const customPaletteModule = {
-    paletteProvider: ['type', PaletteProvider]
+function EmptyPaletteProvider() {
+    this.getPaletteEntries = () => {};
+}
+export const emptyPaletteModule = {
+    paletteProvider: ['type', EmptyPaletteProvider]
 };
 
 const activitiModdleDescriptor = require('./activiti.json');
@@ -50,7 +52,7 @@ export class BpmnFactoryService implements BpmnFactory {
     protected getBpmnPropertiesPanelConfig() {
         return {
             additionalModules: [
-                customPaletteModule,
+                emptyPaletteModule,
                 bpmnPropertiesProviderModule
             ],
             moddleExtensions: { activiti: activitiModdleDescriptor }

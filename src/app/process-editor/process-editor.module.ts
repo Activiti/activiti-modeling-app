@@ -30,7 +30,15 @@ import { StoreModule } from '@ngrx/store';
 import { ProcessEditorRoutingModule } from './router/process-editor-routing.module';
 import { CardViewPropertiesFactory } from './services/cardview-properties/cardview-properties.factory';
 import { Title } from '@angular/platform-browser';
-import { AmaTitleService, ENTITIES_REDUCER_TOKEN, provideEntity, providePropertyHandler, BpmnProperty, CodeEditorModule, provideTranslations } from 'ama-sdk';
+import {
+    AmaTitleService,
+    ENTITIES_REDUCER_TOKEN,
+    provideEntity,
+    providePropertyHandler,
+    BpmnProperty,
+    CodeEditorModule,
+    provideTranslations
+} from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { BpmnFactoryToken } from './services/bpmn-factory.token';
 import { SharedModule } from 'ama-sdk';
@@ -48,6 +56,9 @@ import { processEditorReducer } from './store/process-editor.reducer';
 import { PROCESS_EDITOR_STATE_NAME } from './store/process-editor.selectors';
 import { CardViewDefaultSequenceFlowItemComponent } from './services/cardview-properties/default-sequence-flow/default-sequence-flow-item.component';
 import { PaletteComponent } from './components/process-modeler/palette/palette.component';
+import { ProcessModelerPaletteService } from './services/palette/process-modeler-palette.service';
+import { ElementCreationHandler } from './services/palette/handlers/element-creation';
+import { ToolsHandler } from './services/palette/handlers/tools';
 
 @NgModule({
     imports: [
@@ -83,7 +94,10 @@ import { PaletteComponent } from './components/process-modeler/palette/palette.c
         ProcessEditorService,
         { provide: BpmnFactoryToken, useClass: BpmnFactoryService },
         ProcessModelerService,
+        ProcessModelerPaletteService,
+        ElementCreationHandler,
         CardViewPropertiesFactory,
+        ToolsHandler,
         AmaTitleService,
         Title,
         provideTranslations('process-editor'),

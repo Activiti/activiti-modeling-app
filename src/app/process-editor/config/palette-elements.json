@@ -1,0 +1,92 @@
+[
+    {
+        "group": "tool",
+        "type": "hand-tool",
+        "icon": "bpmn-icon-hand-tool",
+        "title": "Activate the hand tool"
+    },
+    {
+        "group": "tool",
+        "type": "connect-tool",
+        "icon": "bpmn-icon-connection-multi",
+        "title": "Activate the global connect tool"
+    },
+    {
+        "group": "tool",
+        "type": "space-tool",
+        "icon": "bpmn-icon-space-tool",
+        "title": "Activate the create/remove space tool"
+    },
+    {
+        "group": "tool",
+        "type": "lasso-tool",
+        "icon": "bpmn-icon-lasso-tool",
+        "title": "Activate the lasso tool"
+    },
+    { "group": "separator" },
+    {
+        "group": "element",
+        "type": "bpmn:StartEvent",
+        "icon": "bpmn-icon-start-event-none",
+        "title": "Create Start Event"
+    },
+    {
+        "group": "element",
+        "type": "bpmn:EndEvent",
+        "icon": "bpmn-icon-end-event-none",
+        "title": "Create End Event"
+    },
+    { "group": "separator" },
+    {
+        "group": "element",
+        "type": "bpmn:Gateway",
+        "icon": "bpmn-icon-gateway-none",
+        "title": "Create Gateway"
+    },
+    { "group": "separator" },
+    {
+        "group": "element",
+        "type": "bpmn:UserTask",
+        "icon": "bpmn-icon-user-task",
+        "title": "User Task"
+    },
+    {
+        "group": "element",
+        "type": "bpmn:ServiceTask",
+        "icon": "bpmn-icon-service-task",
+        "title": "Service Task"
+    },
+    {
+        "group": "element",
+        "type": "bpmn:CallActivity",
+        "icon": "bpmn-icon-call-activity",
+        "title": "Call Activity",
+        "children": null
+    },
+    { "group": "separator" },
+    {
+        "group": "container",
+        "icon": "bpmn-icon-send-task",
+        "title": "Dedicated services",
+        "children": [
+            {
+                "group": "element",
+                "type": "",
+                "icon": "bpmn-icon-receive-task",
+                "title": "Dedicated service1"
+            },
+            {
+                "group": "element",
+                "type": "",
+                "icon": "bpmn-icon-receive-task",
+                "title": "Dedicated service2"
+            },
+            {
+                "group": "element",
+                "type": "",
+                "icon": "bpmn-icon-receive-task",
+                "title": "Dedicated service3"
+            }
+        ]
+    }
+]

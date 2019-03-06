@@ -34,6 +34,10 @@ export class ProcessModelerService {
         this.modeler.attachTo(container);
     }
 
+    getFromModeler(token) {
+        return this.modeler.get(token);
+    }
+
     getElement(shapeId): Bpmn.DiagramElement {
         return this.modeler.get('elementRegistry').get(shapeId);
     }
