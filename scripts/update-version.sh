@@ -150,8 +150,6 @@ if $EXEC_COMPONENT == true; then
 
      if $JS_API == true; then
 
-     update_component_js_version_for_all ${VERSION}
-
       if $DIFFERENT_JS_API == true; then
           update_component_js_version_for_all ${VERSION_JS_API}
       else
