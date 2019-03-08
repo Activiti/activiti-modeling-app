@@ -17,7 +17,7 @@
 
 import { Component, Inject, Optional, HostListener } from '@angular/core';
 import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
-import { PaletteElement, CustomPaletteElementsToken } from 'ama-sdk';
+import { PaletteElement, CustomPaletteElementsToken, ToolTrigger } from 'ama-sdk';
 const paletteElements = require('../../../config/palette-elements.json');
 
 @Component({
@@ -26,7 +26,9 @@ const paletteElements = require('../../../config/palette-elements.json');
 })
 export class PaletteComponent {
 
+    public selectedTool: ToolTrigger;
     public paletteElements: PaletteElement[];
+    public opened = true;
 
     @HostListener('mousedown', ['$event'])
     onMouseDown(event) {
@@ -48,9 +50,17 @@ export class PaletteComponent {
         return element.group === 'container' && element.children && element.children.length;
     }
 
+    public toggleOpen() {
+        this.opened = !this.opened;
+    }
+
     public onClick(paletteItem: PaletteElement, event: any) {
         if (!paletteItem.clickable) {
             return;
+        }
+
+        if (paletteItem.group === 'tool') {
+            this.selectedTool = paletteItem;
         }
 
         this.delegateEvent(paletteItem, event);

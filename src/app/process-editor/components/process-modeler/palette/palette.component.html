@@ -1,10 +1,15 @@
-<mat-card>
-    <ng-container *ngFor="let item of paletteElements">
-        <ng-container *ngIf="!isSeparator(item); else separator">
-            <ng-container *ngTemplateOutlet="hasChildren(item) ? containerElement : clickableElement; context: { $implicit: item }">
+<mat-card cdkDrag cdkDragBoundary=".process-editor-modeling-area">
+    <div class="palette-header" cdkDragHandle>
+        <mat-icon (click)="toggleOpen()">more_horiz</mat-icon>
+    </div>
+    <div class="palette-body" [class.opened]="opened">
+        <ng-container *ngFor="let item of paletteElements">
+            <ng-container *ngIf="!isSeparator(item); else separator">
+                <ng-container *ngTemplateOutlet="hasChildren(item) ? containerElement : clickableElement; context: { $implicit: item }">
+                </ng-container>
             </ng-container>
         </ng-container>
-    </ng-container>
+    </div>
 </mat-card>
 
 <ng-template #containerElement let-item>
@@ -12,13 +17,15 @@
         <button [matMenuTriggerFor]="menu"></button>
     </div>
     <mat-menu #menu="matMenu" class="palette-drawer">
-        <div *ngFor="let child of item.children" class="entry {{child.icon}}" title="{{child.title}}" >
-        </div>
+        <ng-container *ngFor="let child of item.children">
+            <ng-container *ngTemplateOutlet="hasChildren(item) ? containerElement : clickableElement; context: { $implicit: child }">
+            </ng-container>
+        </ng-container>
     </mat-menu>
 </ng-template>
 
 <ng-template #clickableElement let-item>
-    <div class="entry {{item.icon}}" title="{{item.title}}">
+    <div class="entry {{item.icon}}" [class.selected]="item === selectedTool" title="{{item.title}}">
         <button
             *ngIf="!hasChildren(item)"
             draggable="true"

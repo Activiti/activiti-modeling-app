@@ -3,13 +3,38 @@
     $primary: map-get($theme, primary);
 
     ama-process-palette .mat-card {
-        width: 25px;
+        width: 37px;
         border: 1px solid mat-color($foreground, text, 0.07);
-        background: mat-color($foreground, text, 0.03);
         border-radius: 0px;
-        margin: 10px;
         box-sizing: content-box;
-        padding: 6px 6px 0 6px;
+        padding: 0;
+
+        .palette-header {
+            height: 12px;
+            background: mat-color($foreground, text, 0.08);
+            cursor: move;
+            position: relative;
+
+            mat-icon {
+                font-size: 10px;
+                width: 10px;
+                height: 10px;
+                margin: 0;
+                position: absolute;
+                right: 0px;
+                top: 1px;
+            }
+        }
+
+        .palette-body {
+            background: mat-color($foreground, text, 0.03);
+            padding: 6px;
+            display: none;
+
+            &.opened {
+                display: block;
+            }
+        }
 
         .entry {
             font-size: 25px;
@@ -37,7 +62,8 @@
                 outline: none;
             }
 
-            &:hover {
+            &:hover,
+            &.selected {
                 color: mat-color($primary);
             }
         }
@@ -58,6 +84,18 @@
         margin-top: -45px;
 
         .entry {
+
+            button {
+                cursor: pointer;
+                position: absolute;
+                height: 25px;
+                width: 25px;
+                margin-left: -30px;
+                background: transparent;
+                border: none;
+                outline: none;
+            }
+
             &:hover {
                 color: mat-color($primary);
                 cursor: pointer;

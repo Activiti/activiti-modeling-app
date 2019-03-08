@@ -59,6 +59,8 @@ import { PaletteComponent } from './components/process-modeler/palette/palette.c
 import { ProcessModelerPaletteService } from './services/palette/process-modeler-palette.service';
 import { ElementCreationHandler } from './services/palette/handlers/element-creation';
 import { ToolsHandler } from './services/palette/handlers/tools';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 @NgModule({
     imports: [
@@ -71,7 +73,8 @@ import { ToolsHandler } from './services/palette/handlers/tools';
         SharedModule,
         VariablesModule,
         MatTooltipModule,
-        CodeEditorModule
+        CodeEditorModule,
+        DragDropModule
     ],
     declarations: [
         ProcessEditorComponent,
