@@ -24,19 +24,19 @@ export class ToolsHandler implements TiggerHandler {
 
     constructor(private processModelerService: ProcessModelerService) {}
 
-    get handTool() {
+    private get handTool() {
         return this.processModelerService.getFromModeler('handTool');
     }
 
-    get globalConnect() {
+    private get globalConnect() {
         return this.processModelerService.getFromModeler('globalConnect');
     }
 
-    get lassoTool() {
+    private get lassoTool() {
         return this.processModelerService.getFromModeler('lassoTool');
     }
 
-    get spaceTool() {
+    private get spaceTool() {
         return this.processModelerService.getFromModeler('spaceTool');
     }
 

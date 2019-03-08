@@ -22,6 +22,8 @@ export interface ToolTrigger {
     type: string;
     icon: string;
     title: string;
+    clickable: boolean;
+    draggable: boolean;
 }
 
 export interface BpmnElementTrigger {
@@ -30,6 +32,8 @@ export interface BpmnElementTrigger {
     icon: string;
     title: string;
     options: any;
+    clickable: boolean;
+    draggable: boolean;
 }
 
 export type BpmnTrigger = BpmnElementTrigger & ToolTrigger;
@@ -39,6 +43,9 @@ export interface PaletteSeparatorElement {
 }
 
 export interface PaletteGroupElement {
+    group: 'container';
+    icon: string;
+    title: string;
     children?: BpmnTrigger[];
 }
 

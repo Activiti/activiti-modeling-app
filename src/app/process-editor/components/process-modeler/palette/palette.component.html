@@ -9,7 +9,7 @@
 
 <ng-template #containerElement let-item>
     <div class="entry {{item.icon}}" title="{{item.title}}">
-        <button [matMenuTriggerFor]= "menu"></button>
+        <button [matMenuTriggerFor]="menu"></button>
     </div>
     <mat-menu #menu="matMenu" class="palette-drawer">
         <div *ngFor="let child of item.children" class="entry {{child.icon}}" title="{{child.title}}" >
@@ -22,8 +22,8 @@
         <button
             *ngIf="!hasChildren(item)"
             draggable="true"
-            (click)="delegateEvent(item, $event)"
-            (dragstart)="delegateEvent(item, $event)">
+            (click)="onClick(item, $event)"
+            (dragstart)="onDrag(item, $event)">
         </button>
     </div>
 </ng-template>

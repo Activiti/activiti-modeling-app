@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Inject, Optional } from '@angular/core';
+import { Component, Inject, Optional, HostListener } from '@angular/core';
 import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
 import { PaletteElement, CustomPaletteElementsToken } from 'ama-sdk';
 const paletteElements = require('../../../config/palette-elements.json');
@@ -27,6 +27,11 @@ const paletteElements = require('../../../config/palette-elements.json');
 export class PaletteComponent {
 
     public paletteElements: PaletteElement[];
+
+    @HostListener('mousedown', ['$event'])
+    onMouseDown(event) {
+        event.stopPropagation();
+    }
 
     constructor(
         private processModelerPaletteService: ProcessModelerPaletteService,
@@ -43,7 +48,23 @@ export class PaletteComponent {
         return element.group === 'container' && element.children && element.children.length;
     }
 
-    delegateEvent(paletteItem: PaletteElement, event: any) {
+    public onClick(paletteItem: PaletteElement, event: any) {
+        if (!paletteItem.clickable) {
+            return;
+        }
+
+        this.delegateEvent(paletteItem, event);
+    }
+
+    public onDrag(paletteItem: PaletteElement, event: any) {
+        if (!paletteItem.draggable) {
+            return;
+        }
+
+        this.delegateEvent(paletteItem, event);
+    }
+
+    private delegateEvent(paletteItem: PaletteElement, event: any) {
         this.processModelerPaletteService.delegateEvent(paletteItem, event);
     }
 }

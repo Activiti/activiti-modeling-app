@@ -3,16 +3,16 @@
     $primary: map-get($theme, primary);
 
     ama-process-palette .mat-card {
-        width: 45px;
+        width: 25px;
         border: 1px solid mat-color($foreground, text, 0.07);
         background: mat-color($foreground, text, 0.03);
         border-radius: 0px;
         margin: 10px;
-        box-sizing: border-box;
-        padding: 6px;
+        box-sizing: content-box;
+        padding: 6px 6px 0 6px;
 
         .entry {
-            font-size: 30px;
+            font-size: 25px;
             border: 0;
             background: transparent;
             padding: 0;
@@ -27,9 +27,10 @@
             }
 
             button {
+                cursor: pointer;
                 position: absolute;
-                height: 30px;
-                width: 30px;
+                height: 25px;
+                width: 25px;
                 margin-left: -30px;
                 background: transparent;
                 border: none;
@@ -38,7 +39,6 @@
 
             &:hover {
                 color: mat-color($primary);
-                cursor: pointer;
             }
         }
 
@@ -48,15 +48,16 @@
     }
 
     .mat-menu-panel.palette-drawer {
-        min-width: 45px;
+        min-width: 25px;
+        box-sizing: content-box;
+        padding: 0 6px 0 6px;
         text-align: center;
-        font-size: 30px;
+        font-size: 25px;
         background: mat-color($foreground, text, 0.03);
         margin-left: 40px;
         margin-top: -45px;
 
         .entry {
-
             &:hover {
                 color: mat-color($primary);
                 cursor: pointer;

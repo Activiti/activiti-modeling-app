@@ -24,11 +24,19 @@ import { ModelerInitOptions, BpmnFactory } from './bpmn-factory.token';
 */
 import BpmnModeler from 'bpmn-js/dist/bpmn-modeler.production.min';
 
-function EmptyPaletteProvider() {
-    this.getPaletteEntries = () => {};
+function DummyPaletteProvider(palette) {
+    palette.registerProvider(this);
+    this.getPaletteEntries = () => ({
+        'hand-tool': {
+            group: 'tools',
+            className: 'bpmn-icon-hand-tool',
+            title: 'Dummy tool, otherwise diagramjs\'s palette crashes',
+            action: {}
+        }
+    });
 }
 export const emptyPaletteModule = {
-    paletteProvider: ['type', EmptyPaletteProvider]
+    paletteProvider: ['type', DummyPaletteProvider]
 };
 
 const activitiModdleDescriptor = require('./activiti.json');

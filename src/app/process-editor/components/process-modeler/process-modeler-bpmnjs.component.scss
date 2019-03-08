@@ -7,7 +7,7 @@
 
     .bjs-container {
         .djs-palette {
-            margin-left: 40px;
+            display: none;
             background: mat-color($background, app-bar);
             border-color: mat-color($foreground, text, 0.07);
 

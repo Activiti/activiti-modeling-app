@@ -3,65 +3,84 @@
         "group": "tool",
         "type": "hand-tool",
         "icon": "bpmn-icon-hand-tool",
-        "title": "Activate the hand tool"
+        "title": "Activate the hand tool",
+        "clickable": true,
+        "draggable": false
     },
     {
         "group": "tool",
         "type": "connect-tool",
         "icon": "bpmn-icon-connection-multi",
-        "title": "Activate the global connect tool"
+        "title": "Activate the global connect tool",
+        "clickable": true,
+        "draggable": false
     },
     {
         "group": "tool",
         "type": "space-tool",
         "icon": "bpmn-icon-space-tool",
-        "title": "Activate the create/remove space tool"
+        "title": "Activate the create/remove space tool",
+        "clickable": true,
+        "draggable": false
     },
     {
         "group": "tool",
         "type": "lasso-tool",
         "icon": "bpmn-icon-lasso-tool",
-        "title": "Activate the lasso tool"
+        "title": "Activate the lasso tool",
+        "clickable": true,
+        "draggable": false
     },
     { "group": "separator" },
     {
         "group": "element",
         "type": "bpmn:StartEvent",
         "icon": "bpmn-icon-start-event-none",
-        "title": "Create Start Event"
+        "title": "Create Start Event",
+        "clickable": true,
+        "draggable": true
     },
     {
         "group": "element",
         "type": "bpmn:EndEvent",
         "icon": "bpmn-icon-end-event-none",
-        "title": "Create End Event"
+        "title": "Create End Event",
+        "clickable": true,
+        "draggable": true
     },
     { "group": "separator" },
     {
         "group": "element",
         "type": "bpmn:Gateway",
         "icon": "bpmn-icon-gateway-none",
-        "title": "Create Gateway"
+        "title": "Create Gateway",
+        "clickable": true,
+        "draggable": true
     },
     { "group": "separator" },
     {
         "group": "element",
         "type": "bpmn:UserTask",
         "icon": "bpmn-icon-user-task",
-        "title": "User Task"
+        "title": "User Task",
+        "clickable": true,
+        "draggable": true
     },
     {
         "group": "element",
         "type": "bpmn:ServiceTask",
         "icon": "bpmn-icon-service-task",
-        "title": "Service Task"
+        "title": "Service Task",
+        "clickable": true,
+        "draggable": true
     },
     {
         "group": "element",
         "type": "bpmn:CallActivity",
         "icon": "bpmn-icon-call-activity",
         "title": "Call Activity",
-        "children": null
+        "clickable": true,
+        "draggable": true
     },
     { "group": "separator" },
     {
@@ -73,19 +92,25 @@
                 "group": "element",
                 "type": "",
                 "icon": "bpmn-icon-receive-task",
-                "title": "Dedicated service1"
+                "title": "Dedicated service1",
+                "clickable": true,
+                "draggable": true
             },
             {
                 "group": "element",
                 "type": "",
                 "icon": "bpmn-icon-receive-task",
-                "title": "Dedicated service2"
+                "title": "Dedicated service2",
+                "clickable": true,
+                "draggable": true
             },
             {
                 "group": "element",
                 "type": "",
                 "icon": "bpmn-icon-receive-task",
-                "title": "Dedicated service3"
+                "title": "Dedicated service3",
+                "clickable": true,
+                "draggable": true
             }
         ]
     }

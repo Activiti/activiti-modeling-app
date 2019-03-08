@@ -24,11 +24,11 @@ export class ElementCreationHandler implements TiggerHandler {
 
     constructor(private processModelerService: ProcessModelerService) {}
 
-    get create() {
+    private get create() {
         return this.processModelerService.getFromModeler('create');
     }
 
-    get elementFactory() {
+    private get elementFactory() {
         return this.processModelerService.getFromModeler('elementFactory');
     }
 
