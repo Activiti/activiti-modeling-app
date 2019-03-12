@@ -22,6 +22,10 @@ env:
 
 jobs:
     include:
+        - stage: E2E Test
+          script:
+            ./scripts/test-e2e-ama.sh -host "localhost" -port 4100 -u "$E2E_USERNAME" -p "$E2E_PASSWORD" --unauthorized-user "$E2E_UNAUTHORIZED_USER" --unauthorized-user-password "$E2E_UNAUTHORIZED_USER_PASSWORD" -save -sh-url "$SCREENSHOT_URL" -sh-user "$SCREENSHOT_USERNAME" -sh-pass "$SCREENSHOT_PASSWORD" -dev
+
         - stage: Lint & Unit tests & Build
           script: npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod
 
