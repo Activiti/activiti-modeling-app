@@ -15,20 +15,30 @@
  * limitations under the License.
  */
 
-import { Component, Inject, Optional, HostListener } from '@angular/core';
+import { Component, Inject, Optional, HostListener, ViewChild, ElementRef, AfterViewInit, ViewContainerRef, TemplateRef } from '@angular/core';
 import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
 import { PaletteElement, CustomPaletteElementsToken, ToolTrigger } from 'ama-sdk';
+import { Overlay, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
 const paletteElements = require('../../../config/palette-elements.json');
 
 @Component({
     templateUrl: './palette.component.html',
     selector: 'ama-process-palette'
 })
-export class PaletteComponent {
+export class PaletteComponent implements AfterViewInit {
 
     public selectedTool: ToolTrigger;
     public paletteElements: PaletteElement[];
     public opened = true;
+    overlayRef: OverlayRef;
+    overlayPosition: PositionStrategy;
+    templatePortal: TemplatePortal;
+
+    @ViewChild('submenu') submenuBtnRef: ElementRef;
+    @ViewChild('drawer') templatePortalContent: TemplateRef<any>;
+    content: ViewContainerRef;
+
 
     @HostListener('mousedown', ['$event'])
     onMouseDown(event) {
@@ -37,10 +47,40 @@ export class PaletteComponent {
 
     constructor(
         private processModelerPaletteService: ProcessModelerPaletteService,
+        private overlay: Overlay,
+        private viewContainerRef: ViewContainerRef,
         @Optional() @Inject(CustomPaletteElementsToken) customPaletteElements: PaletteElement[]
     ) {
         this.paletteElements = paletteElements.concat(customPaletteElements || []);
     }
+
+    ngAfterViewInit() {
+        this.overlayRef = this.overlay.create({
+          positionStrategy: this.getOverlayPosition(),
+          width: 200,
+        });
+    }
+
+    getOverlayPosition(): PositionStrategy {
+        this.overlayPosition = this.overlay.position()
+          .connectedTo(
+            this.submenuBtnRef,
+            {originX: 'start', originY: 'bottom'},
+            {overlayX: 'start', overlayY: 'bottom'}
+          );
+
+        return this.overlayPosition;
+      }
+
+    openSubmenu(item: any) {
+        this.templatePortal = new TemplatePortal(this.templatePortalContent, this.viewContainerRef);
+        this.templatePortal.context = {$implicit: item};
+        if (!this.overlayRef.hasAttached()) {
+            this.overlayRef.attach(this.templatePortal);
+          } else {
+            this.overlayRef.detach();
+          }
+        }
 
     public isSeparator(element: PaletteElement) {
         return element.group === 'separator';
@@ -64,6 +104,7 @@ export class PaletteComponent {
         }
 
         this.delegateEvent(paletteItem, event);
+        this.overlayRef.detach();
     }
 
     public onDrag(paletteItem: PaletteElement, event: any) {
@@ -72,6 +113,7 @@ export class PaletteComponent {
         }
 
         this.delegateEvent(paletteItem, event);
+        this.overlayRef.detach();
     }
 
     private delegateEvent(paletteItem: PaletteElement, event: any) {
