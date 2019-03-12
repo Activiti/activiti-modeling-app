@@ -17,6 +17,7 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { CoreModule, CardViewTextItemComponent } from '@alfresco/adf-core';
 import { EffectsModule } from '@ngrx/effects';
@@ -37,14 +38,16 @@ import {
     providePropertyHandler,
     BpmnProperty,
     CodeEditorModule,
-    provideTranslations
+    provideTranslations,
+    SharedModule,
+    VariablesModule,
+    providePaletteHandler,
+    providePaletteElements
 } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { BpmnFactoryToken } from './services/bpmn-factory.token';
-import { SharedModule } from 'ama-sdk';
 import { CardViewProcessVariablesItemComponent } from './services/cardview-properties/process-variable-item/process-variable-item.component';
 import { CardViewImplementationItemComponent } from './services/cardview-properties/implementation-item/implementation-item.component';
-import { VariablesModule } from 'ama-sdk';
 import { ProcessPropertiesComponent } from './components/process-properties/process-properties.component';
 import { MatTooltipModule } from '@angular/material';
 import { getProcessesFilterProvider } from './extension/processes-filter.extension';
@@ -59,8 +62,7 @@ import { PaletteComponent } from './components/process-modeler/palette/palette.c
 import { ProcessModelerPaletteService } from './services/palette/process-modeler-palette.service';
 import { ElementCreationHandler } from './services/palette/handlers/element-creation';
 import { ToolsHandler } from './services/palette/handlers/tools';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-
+const paletteElements = require('./config/palette-elements.json');
 
 @NgModule({
     imports: [
@@ -98,12 +100,13 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         { provide: BpmnFactoryToken, useClass: BpmnFactoryService },
         ProcessModelerService,
         ProcessModelerPaletteService,
-        ElementCreationHandler,
         CardViewPropertiesFactory,
-        ToolsHandler,
         AmaTitleService,
         Title,
         provideTranslations('process-editor'),
+        ...providePaletteHandler('tool', ToolsHandler),
+        ...providePaletteHandler('element', ElementCreationHandler),
+        providePaletteElements(paletteElements),
         provideEntity({ processes: processEntitiesReducer }),
         providePropertyHandler(BpmnProperty.properties, CardViewProcessVariablesItemComponent),
         providePropertyHandler(BpmnProperty.implementation, CardViewImplementationItemComponent),

@@ -17,10 +17,9 @@
 
 import { Component, Inject, Optional, HostListener, ViewChild, ElementRef, AfterViewInit, ViewContainerRef, TemplateRef } from '@angular/core';
 import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
-import { PaletteElement, CustomPaletteElementsToken, ToolTrigger } from 'ama-sdk';
+import { PaletteElement, PaletteElementsToken, ToolTrigger } from 'ama-sdk';
 import { Overlay, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-const paletteElements = require('../../../config/palette-elements.json');
 
 @Component({
     templateUrl: './palette.component.html',
@@ -49,9 +48,9 @@ export class PaletteComponent implements AfterViewInit {
         private processModelerPaletteService: ProcessModelerPaletteService,
         private overlay: Overlay,
         private viewContainerRef: ViewContainerRef,
-        @Optional() @Inject(CustomPaletteElementsToken) customPaletteElements: PaletteElement[]
+        @Optional() @Inject(PaletteElementsToken) paletteElements: PaletteElement[]
     ) {
-        this.paletteElements = paletteElements.concat(customPaletteElements || []);
+        this.paletteElements = (<any>paletteElements).flatten(1) || [];
     }
 
     ngAfterViewInit() {

@@ -81,29 +81,5 @@
         "title": "Call Activity",
         "clickable": true,
         "draggable": true
-    },
-    { "group": "separator" },
-    {
-        "group": "container",
-        "icon": "bpmn-icon-send-task",
-        "title": "Dedicated services",
-        "children": [
-            {
-                "group": "element",
-                "type": "bpmn:StartEvent",
-                "icon": "bpmn-icon-start-event-none",
-                "title": "Create Start Event",
-                "clickable": true,
-                "draggable": true
-            },
-            {
-                "group": "element",
-                "type": "bpmn:EndEvent",
-                "icon": "bpmn-icon-end-event-none",
-                "title": "Create End Event",
-                "clickable": true,
-                "draggable": true
-            }
-        ]
     }
 ]

@@ -15,28 +15,25 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
+import { Injectable, Injector, Inject } from '@angular/core';
 import { BpmnTrigger } from 'ama-sdk';
-import { ElementCreationHandler } from './handlers/element-creation';
 import { LogService } from '@alfresco/adf-core';
-import { ToolsHandler } from './handlers/tools';
+import { PaletteElementHandler, PaletteElementsHandlersToken } from 'ama-sdk/src/lib/process-editor/palette';
 
 @Injectable()
 export class ProcessModelerPaletteService {
 
-    triggers: { [ key: string ]: any };
-
-    constructor(elementCreationHandler: ElementCreationHandler, toolsHandler: ToolsHandler, private logger: LogService) {
-        this.triggers = {
-            'tool': toolsHandler,
-            'element': elementCreationHandler
-        };
-    }
+    constructor(
+        @Inject(PaletteElementsHandlersToken) private paletteHandlers: PaletteElementHandler[],
+        private logger: LogService,
+        private injector: Injector
+    ) {}
 
     delegateEvent(element: BpmnTrigger, event) {
         try {
-            const trigger = this.triggers[element.group];
-            trigger.processEvent(event.originalEvent || event, element);
+            const chosenHandler = this.paletteHandlers.find(paletteHandler => paletteHandler.key === element.group);
+            const handler = this.injector.get(chosenHandler.handler);
+            handler.processEvent(event.originalEvent || event, element);
         } catch (error) {
             this.logger.error(error);
         }

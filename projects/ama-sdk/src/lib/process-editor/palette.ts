@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { InjectionToken } from '@angular/core';
+import { InjectionToken, Type } from '@angular/core';
 
 export interface ToolTrigger {
     group: 'tool';
@@ -55,4 +55,29 @@ export interface TiggerHandler {
     processEvent(event: any, element: BpmnTrigger): void;
 }
 
-export const CustomPaletteElementsToken = new InjectionToken<PaletteElement>('custom-palette-elements');
+export interface PaletteElementHandler {
+    key: string;
+    handler: TiggerHandler;
+}
+
+export const PaletteElementsToken = new InjectionToken<PaletteElement>('palette-elements');
+export const PaletteElementsHandlersToken = new InjectionToken<PaletteElementHandler[]>('palette-element-handlers');
+
+export function providePaletteHandler(key: string, handler: Type<TiggerHandler>) {
+    return [
+        handler,
+        {
+            provide: PaletteElementsHandlersToken,
+            useValue: { key, handler },
+            multi: true
+        }
+    ];
+}
+
+export function providePaletteElements(elements: PaletteElement[]) {
+    return {
+        provide: PaletteElementsToken,
+        multi: true,
+        useValue: elements
+    };
+}
