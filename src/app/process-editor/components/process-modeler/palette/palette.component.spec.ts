@@ -25,11 +25,44 @@ import { By } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 import { ProcessModelerPaletteService } from 'src/app/process-editor/services/palette/process-modeler-palette.service';
 import { PaletteOverlayDirective } from './palette-overlay.directive';
+import { PaletteElementsToken } from 'ama-sdk';
+
 
 describe('Palette component', () => {
     let fixture: ComponentFixture<PaletteComponent>;
     let component: PaletteComponent;
     let processModelerPaletteService: ProcessModelerPaletteService;
+
+    const testPaletteElements = [
+        {   group: 'tool',
+            type: 'test',
+            icon: 'test',
+            title: '',
+            clickable: true,
+            draggable: true
+        },
+        {   group: 'container',
+            type: 'test',
+            icon: 'test1',
+            title: '',
+            children: [
+                {   group: 'tool',
+                    type: 'test',
+                    icon: 'submenu1',
+                    title: '',
+                    clickable: true,
+                    draggable: true
+                },
+                {   group: 'tool',
+                    type: 'test',
+                    icon: 'submenu2',
+                    title: '',
+                    clickable: true,
+                    draggable: true
+                }
+            ]
+        }
+    ];
 
 
     beforeEach(async(() => {
@@ -43,7 +76,8 @@ describe('Palette component', () => {
             ],
             providers: [
                 { provide: TranslationService, useClass: TranslationMock },
-                { provide: ProcessModelerPaletteService, useValue: {delegateEvent: jest.fn()}}
+                { provide: ProcessModelerPaletteService, useValue: {delegateEvent: jest.fn()}},
+                { provide: PaletteElementsToken, useValue: testPaletteElements},
             ],
             declarations: [PaletteComponent, PaletteOverlayDirective],
             schemas: [NO_ERRORS_SCHEMA]
@@ -54,36 +88,6 @@ describe('Palette component', () => {
         fixture = TestBed.createComponent(PaletteComponent);
         component = fixture.componentInstance;
         processModelerPaletteService = TestBed.get(ProcessModelerPaletteService);
-        component.paletteElements = [
-            {   group: 'tool',
-                type: 'test',
-                icon: 'test',
-                title: '',
-                clickable: true,
-                draggable: true
-            },
-            {   group: 'container',
-                type: 'test',
-                icon: 'test1',
-                title: '',
-                children: [
-                    {   group: 'tool',
-                        type: 'test',
-                        icon: 'submenu1',
-                        title: '',
-                        clickable: true,
-                        draggable: true
-                    },
-                    {   group: 'tool',
-                        type: 'test',
-                        icon: 'submenu2',
-                        title: '',
-                        clickable: true,
-                        draggable: true
-                    }
-                ]
-            }
-        ];
         fixture.detectChanges();
     });
 

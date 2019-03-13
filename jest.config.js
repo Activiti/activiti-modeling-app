@@ -9,6 +9,7 @@ module.exports = {
     "transformIgnorePatterns": [
         "node_modules/(?!bpmn-moddle|@alfresco\\/js-api)"
     ],
+    "setupFiles": ["core-js/es7/array"],
     "transform": {
         "^.+\\.(ts|html)$": "<rootDir>/node_modules/jest-preset-angular/preprocessor.js",
         "^.+\\.js$": "babel-jest"
