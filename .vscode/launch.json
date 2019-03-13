@@ -15,6 +15,41 @@
             ],
             "sourceMaps": true,
             "smartStep": true,
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "E2Es",
+            "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
+            "args": [
+                "${workspaceFolder}/e2e/protractor.conf.js"
+            ],
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "smartStep": true,
+            "skipFiles": [
+                "${workspaceFolder}/node_modules/**/*.js",
+                "<node_internals>/**/*.js"
+            ],
+            "internalConsoleOptions": "neverOpen"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "E2E",
+            "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
+            "args": [
+                "${workspaceFolder}/e2e/protractor.conf.js",
+                "--specs=${file}"
+            ],
+            "console": "integratedTerminal",
+            "sourceMaps": true,
+            "smartStep": true,
+            "skipFiles": [
+                "${workspaceFolder}/node_modules/**/*.js",
+                "<node_internals>/**/*.js"
+            ],
+            "internalConsoleOptions": "neverOpen"
         }
     ]
 }

@@ -1,0 +1,16 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../out-tsc/e2e",
+        "baseUrl": "./",
+        "sourceMap": true,
+        "resolveJsonModule": true,
+        "module": "commonjs",
+        "target": "es5",
+        "types": ["jasmine", "jasminewd2", "node"],
+        "paths": {
+            "ama-sdk": ["../projects/ama-sdk"],
+            "ama-sdk/*": ["../projects/ama-sdk/*"]
+        }
+    }
+}

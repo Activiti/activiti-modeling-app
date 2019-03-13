@@ -6,8 +6,8 @@
         "baseUrl": "",
         "types": ["node"],
         "paths": {
-            "ama-sdk": ["../dist/ama-sdk"],
-            "ama-sdk/*": ["../dist/ama-sdk/*"]
+            "ama-sdk": ["../projects/ama-sdk"],
+            "ama-sdk/*": ["../projects/ama-sdk/*"]
         }
     },
     "exclude": ["test.ts", "**/*.spec.ts", "**/*.mock.ts"]
