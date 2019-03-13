@@ -19,6 +19,7 @@ import { Component, Inject, Optional, HostListener, ViewChild, TemplateRef } fro
 import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
 import { PaletteElement, PaletteElementsToken, ToolTrigger } from 'ama-sdk';
 import { OverlayRef } from '@angular/cdk/overlay';
+import { PaletteOverlayDirective } from './palette-overlay.directive';
 
 @Component({
     templateUrl: './palette.component.html',
