@@ -18,7 +18,7 @@
 import { ProcessModelerComponent } from './process-modeler.component';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
-import { MatTooltipModule, MatIconModule } from '@angular/material';
+import { MatTooltipModule, MatIconModule, MatCardModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { AmaState, PROCESS_EDITOR_STATE_NAME, selectSelectedProcess } from 'ama-sdk';
@@ -29,6 +29,14 @@ import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { mockProcess } from '../../store/process.mock';
 import { processEntitiesReducer } from '../../store/process-entities.reducer';
+import { Component } from '@angular/core';
+
+@Component({
+    selector: 'ama-process-palette',
+    template: ''
+  })
+  class MockPaletteComponent {
+  }
 
 describe('ProcessModelerComponent', () => {
     let fixture: ComponentFixture<ProcessModelerComponent>;
@@ -45,6 +53,7 @@ describe('ProcessModelerComponent', () => {
                     [PROCESS_EDITOR_STATE_NAME]: processEntitiesReducer
                 }),
                 TranslateModule.forRoot(),
+                MatCardModule,
                 NoopAnimationsModule
             ],
             providers: [
@@ -64,7 +73,7 @@ describe('ProcessModelerComponent', () => {
                     }
                 }
             ],
-            declarations: [ProcessModelerComponent]
+            declarations: [ProcessModelerComponent, MockPaletteComponent]
         }).compileComponents();
     }));
 

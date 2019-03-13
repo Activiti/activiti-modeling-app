@@ -63,6 +63,8 @@ import { ProcessModelerPaletteService } from './services/palette/process-modeler
 import { ElementCreationHandler } from './services/palette/handlers/element-creation';
 import { ToolsHandler } from './services/palette/handlers/tools';
 const paletteElements = require('./config/palette-elements.json');
+import { PaletteOverlayDirective } from './components/process-modeler/palette/palette-overlay.directive';
+
 
 @NgModule({
     imports: [
@@ -81,12 +83,13 @@ const paletteElements = require('./config/palette-elements.json');
     declarations: [
         ProcessEditorComponent,
         ProcessHeaderComponent,
+        PaletteComponent,
+        PaletteOverlayDirective,
         ProcessModelerComponent,
         ProcessPropertiesComponent,
         CardViewProcessVariablesItemComponent,
         CardViewImplementationItemComponent,
         CardViewDefaultSequenceFlowItemComponent,
-        PaletteComponent
     ],
     entryComponents: [
         CardViewProcessVariablesItemComponent,

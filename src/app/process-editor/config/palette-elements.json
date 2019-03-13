@@ -3,7 +3,7 @@
         "group": "tool",
         "type": "hand-tool",
         "icon": "bpmn-icon-hand-tool",
-        "title": "Activate the hand tool",
+        "title": "APP.PROCESS_EDITOR.PALETTE.HAND_TOOL",
         "clickable": true,
         "draggable": false
     },
@@ -11,7 +11,7 @@
         "group": "tool",
         "type": "connect-tool",
         "icon": "bpmn-icon-connection-multi",
-        "title": "Activate the global connect tool",
+        "title": "APP.PROCESS_EDITOR.PALETTE.CONNECT_TOOL",
         "clickable": true,
         "draggable": false
     },
@@ -19,7 +19,7 @@
         "group": "tool",
         "type": "space-tool",
         "icon": "bpmn-icon-space-tool",
-        "title": "Activate the create/remove space tool",
+        "title": "APP.PROCESS_EDITOR.PALETTE.SPACE_TOOL",
         "clickable": true,
         "draggable": false
     },
@@ -27,7 +27,7 @@
         "group": "tool",
         "type": "lasso-tool",
         "icon": "bpmn-icon-lasso-tool",
-        "title": "Activate the lasso tool",
+        "title": "APP.PROCESS_EDITOR.PALETTE.LASSO_TOOL",
         "clickable": true,
         "draggable": false
     },
@@ -36,7 +36,7 @@
         "group": "element",
         "type": "bpmn:StartEvent",
         "icon": "bpmn-icon-start-event-none",
-        "title": "Create Start Event",
+        "title": "APP.PROCESS_EDITOR.PALETTE.START_EVENT",
         "clickable": true,
         "draggable": true
     },
@@ -44,7 +44,7 @@
         "group": "element",
         "type": "bpmn:EndEvent",
         "icon": "bpmn-icon-end-event-none",
-        "title": "Create End Event",
+        "title": "APP.PROCESS_EDITOR.PALETTE.END_EVENT",
         "clickable": true,
         "draggable": true
     },
@@ -53,7 +53,7 @@
         "group": "element",
         "type": "bpmn:Gateway",
         "icon": "bpmn-icon-gateway-none",
-        "title": "Create Gateway",
+        "title": "APP.PROCESS_EDITOR.PALETTE.GATEWAY",
         "clickable": true,
         "draggable": true
     },
@@ -62,7 +62,7 @@
         "group": "element",
         "type": "bpmn:UserTask",
         "icon": "bpmn-icon-user-task",
-        "title": "User Task",
+        "title": "APP.PROCESS_EDITOR.PALETTE.USER_TASK",
         "clickable": true,
         "draggable": true
     },
@@ -70,7 +70,7 @@
         "group": "element",
         "type": "bpmn:ServiceTask",
         "icon": "bpmn-icon-service-task",
-        "title": "Service Task",
+        "title": "APP.PROCESS_EDITOR.PALETTE.SERVICE_TASK",
         "clickable": true,
         "draggable": true
     },
@@ -78,7 +78,7 @@
         "group": "element",
         "type": "bpmn:CallActivity",
         "icon": "bpmn-icon-call-activity",
-        "title": "Call Activity",
+        "title": "APP.PROCESS_EDITOR.PALETTE.USER_TASK",
         "clickable": true,
         "draggable": true
     }

@@ -4,7 +4,8 @@
     </div>
     <div class="palette-body" [class.opened]="opened">
         <ng-container *ngFor="let item of paletteElements">
-            <ng-container *ngIf="!isSeparator(item); else separator">
+            <ng-container
+                 *ngIf="!isSeparator(item); else separator">
                 <ng-container *ngTemplateOutlet="hasChildren(item) ? containerElement : clickableElement; context: { $implicit: item }">
                 </ng-container>
             </ng-container>
@@ -13,14 +14,18 @@
 </mat-card>
 
 <ng-template #containerElement let-item>
-    <div class="entry {{item.icon}}" title="{{item.title}}">
-        <button #submenu (click)="openSubmenu(item)"></button>
+    <div class="entry {{item.icon}}"  [matTooltip]="item.title | translate" matTooltipPosition="after">
+        <button
+            ama-palette-overlay
+            [templatePortalContent]="templateContent"
+            [amaPaletteItem]="item"
+            [amaPaletteOverlayRef]="overlayRef">
+        </button>
     </div>
-
 </ng-template>
 
 <ng-template #clickableElement let-item>
-    <div class="entry {{item.icon}}" [class.selected]="item === selectedTool" title="{{item.title}}">
+    <div class="entry {{item.icon}}" [class.selected]="item === selectedTool" [matTooltip]="item.title | translate"  matTooltipPosition="after">
         <button
             *ngIf="!hasChildren(item)"
             draggable="true"

@@ -15,29 +15,24 @@
  * limitations under the License.
  */
 
-import { Component, Inject, Optional, HostListener, ViewChild, ElementRef, AfterViewInit, ViewContainerRef, TemplateRef } from '@angular/core';
+import { Component, Inject, Optional, HostListener, ViewChild, TemplateRef } from '@angular/core';
 import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
 import { PaletteElement, PaletteElementsToken, ToolTrigger } from 'ama-sdk';
-import { Overlay, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
+import { OverlayRef } from '@angular/cdk/overlay';
 
 @Component({
     templateUrl: './palette.component.html',
     selector: 'ama-process-palette'
 })
-export class PaletteComponent implements AfterViewInit {
+export class PaletteComponent {
 
     public selectedTool: ToolTrigger;
     public paletteElements: PaletteElement[];
     public opened = true;
+    public detach = false;
     overlayRef: OverlayRef;
-    overlayPosition: PositionStrategy;
-    templatePortal: TemplatePortal;
-
-    @ViewChild('submenu') submenuBtnRef: ElementRef;
-    @ViewChild('drawer') templatePortalContent: TemplateRef<any>;
-    content: ViewContainerRef;
-
+    @ViewChild('drawer') templateContent: TemplateRef<any>;
+    @ViewChild(PaletteOverlayDirective) paletteOverlayDirective;
 
     @HostListener('mousedown', ['$event'])
     onMouseDown(event) {
@@ -46,40 +41,10 @@ export class PaletteComponent implements AfterViewInit {
 
     constructor(
         private processModelerPaletteService: ProcessModelerPaletteService,
-        private overlay: Overlay,
-        private viewContainerRef: ViewContainerRef,
         @Optional() @Inject(PaletteElementsToken) paletteElements: PaletteElement[]
     ) {
         this.paletteElements = (<any>paletteElements).flatten(1) || [];
     }
-
-    ngAfterViewInit() {
-        this.overlayRef = this.overlay.create({
-          positionStrategy: this.getOverlayPosition(),
-          width: 200,
-        });
-    }
-
-    getOverlayPosition(): PositionStrategy {
-        this.overlayPosition = this.overlay.position()
-          .connectedTo(
-            this.submenuBtnRef,
-            {originX: 'start', originY: 'bottom'},
-            {overlayX: 'start', overlayY: 'bottom'}
-          );
-
-        return this.overlayPosition;
-      }
-
-    openSubmenu(item: any) {
-        this.templatePortal = new TemplatePortal(this.templatePortalContent, this.viewContainerRef);
-        this.templatePortal.context = {$implicit: item};
-        if (!this.overlayRef.hasAttached()) {
-            this.overlayRef.attach(this.templatePortal);
-          } else {
-            this.overlayRef.detach();
-          }
-        }
 
     public isSeparator(element: PaletteElement) {
         return element.group === 'separator';
@@ -103,7 +68,7 @@ export class PaletteComponent implements AfterViewInit {
         }
 
         this.delegateEvent(paletteItem, event);
-        this.overlayRef.detach();
+        this.paletteOverlayDirective.amaPaletteOverlayRef.detach();
     }
 
     public onDrag(paletteItem: PaletteElement, event: any) {
@@ -112,7 +77,7 @@ export class PaletteComponent implements AfterViewInit {
         }
 
         this.delegateEvent(paletteItem, event);
-        this.overlayRef.detach();
+        this.paletteOverlayDirective.amaPaletteOverlayRef.detach();
     }
 
     private delegateEvent(paletteItem: PaletteElement, event: any) {
