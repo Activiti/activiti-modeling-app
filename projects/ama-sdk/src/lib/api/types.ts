@@ -211,11 +211,7 @@ export interface DataContent {
     description?: string;
 }
 
-export interface DecisionTableContent {
-    id: string;
-    name: string;
-    description?: string;
-}
+export type DecisionTableContent = string;
 
 export interface Data extends Model {
     type: DATA_TYPE;

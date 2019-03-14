@@ -18,30 +18,26 @@
 import { Injectable, InjectionToken } from '@angular/core';
 import { DecisionTableContent, DecisionTable } from '../../../api/types';
 import { ContentType } from '../content-types';
-import { formatUuid } from '../../../helpers/utils/create-entries-names';
 import { ModelApiVariation, ModelApi } from '../model-api';
+import { getEmptyDecisionTable } from '../../../helpers/public_api';
 
 export const DECISION_TABLE_API = new InjectionToken<ModelApi<DecisionTable, DecisionTableContent>>('connector-api');
 
 @Injectable()
 export class DecisionTableApiVariation<M extends DecisionTable, C extends DecisionTableContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.DecisionTable;
-    readonly fileType = 'application/json';
+    readonly fileType = 'text/plain';
 
     public serialize(content: C): string {
-        return JSON.stringify(content);
+        return content;
     }
 
     public createInitialContent(model: M): C {
-        return <C>{
-            id: formatUuid(this.contentType, model.id),
-            name: model.name,
-            description: model.description
-        };
+        return <C>getEmptyDecisionTable(model);
     }
 
     public createSummaryPatch(model: Partial<M>, modelContent: C) {
-        const { name, description } = modelContent;
+        const { name, description } = model;
         return {
             name,
             description,

@@ -20,6 +20,7 @@ export * from './unsaved-page.guard';
 export * from './utils/create-entries-names';
 export * from './shared.module';
 export * from './utils/empty-diagram';
+export * from './utils/empty-decision-table';
 export * from './primitive-types';
 export * from './utils/blob2json';
 export { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
