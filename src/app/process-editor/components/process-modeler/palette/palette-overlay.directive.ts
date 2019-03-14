@@ -55,12 +55,14 @@ import { TemplatePortal } from '@angular/cdk/portal';
         return this.overlayPosition;
     }
 
-    @HostListener('click', ['$event']) onClick($event) {
-        this.templatePortal = new TemplatePortal(this.templatePortalContent, this.amaPaleteContainerRef);
-        this.templatePortal.context = {$implicit: this.amaPaletteItem};
-        if (!this.amaPaletteOverlayRef.hasAttached()) {
-            this.amaPaletteOverlayRef.attach(this.templatePortal);
-        } else {
+    @HostListener('window:click', ['$event']) onWindowClick($event) {
+        if ($event.target === this.submenuBtnRef.nativeElement) {
+            this.templatePortal = new TemplatePortal(this.templatePortalContent, this.amaPaleteContainerRef);
+            this.templatePortal.context = {$implicit: this.amaPaletteItem};
+            if (!this.amaPaletteOverlayRef.hasAttached()) {
+                this.amaPaletteOverlayRef.attach(this.templatePortal);
+            }
+        } else if (this.amaPaletteOverlayRef.hasAttached()) {
             this.amaPaletteOverlayRef.detach();
         }
     }

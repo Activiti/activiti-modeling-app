@@ -33,7 +33,6 @@ export class PaletteComponent {
     public detach = false;
     overlayRef: OverlayRef;
     @ViewChild('drawer') templateContent: TemplateRef<any>;
-    @ViewChild(PaletteOverlayDirective) paletteOverlayDirective;
 
     @HostListener('mousedown', ['$event'])
     onMouseDown(event) {
@@ -69,7 +68,6 @@ export class PaletteComponent {
         }
 
         this.delegateEvent(paletteItem, event);
-        this.paletteOverlayDirective.amaPaletteOverlayRef.detach();
     }
 
     public onDrag(paletteItem: PaletteElement, event: any) {
@@ -78,7 +76,6 @@ export class PaletteComponent {
         }
 
         this.delegateEvent(paletteItem, event);
-        this.paletteOverlayDirective.amaPaletteOverlayRef.detach();
     }
 
     private delegateEvent(paletteItem: PaletteElement, event: any) {
