@@ -15,14 +15,13 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
-import { TiggerHandler, ToolTrigger } from 'ama-sdk';
-import { ProcessModelerService } from '../../process-modeler.service';
+import { Injectable, Inject } from '@angular/core';
+import { TiggerHandler, ToolTrigger, ProcessModelerServiceToken, ProcessModelerService } from 'ama-sdk';
 
 @Injectable()
 export class ToolsHandler implements TiggerHandler {
 
-    constructor(private processModelerService: ProcessModelerService) {}
+    constructor(@Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService) {}
 
     private get handTool() {
         return this.processModelerService.getFromModeler('handTool');

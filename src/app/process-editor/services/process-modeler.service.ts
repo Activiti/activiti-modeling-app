@@ -17,11 +17,11 @@
 
 import { Injectable, Inject } from '@angular/core';
 import { ElementHelper } from './bpmn-js/element.helper';
-import { BpmnFactoryToken, BpmnFactory, ModelerInitOptions } from './bpmn-factory.token';
+import { BpmnFactoryToken, BpmnFactory, ModelerInitOptions, ProcessModelerService } from 'ama-sdk';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class ProcessModelerService {
+export class ProcessModelerServiceImplementation implements ProcessModelerService {
     private modeler: Bpmn.Modeler;
 
     constructor(@Inject(BpmnFactoryToken) private bpmnFactoryService: BpmnFactory) {}

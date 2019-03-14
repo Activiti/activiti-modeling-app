@@ -15,14 +15,13 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
-import { BpmnElementTrigger, TiggerHandler } from 'ama-sdk';
-import { ProcessModelerService } from '../../process-modeler.service';
+import { Injectable, Inject } from '@angular/core';
+import { BpmnElementTrigger, TiggerHandler, ProcessModelerServiceToken, ProcessModelerService } from 'ama-sdk';
 
 @Injectable()
 export class ElementCreationHandler implements TiggerHandler {
 
-    constructor(private processModelerService: ProcessModelerService) {}
+    constructor(@Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService) {}
 
     private get create() {
         return this.processModelerService.getFromModeler('create');

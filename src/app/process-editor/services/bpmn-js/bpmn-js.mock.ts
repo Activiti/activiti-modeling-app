@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnFactory } from '../bpmn-factory.token';
+import { BpmnFactory } from 'ama-sdk';
 
 export class BpmnFactoryMock implements BpmnFactory {
     create() {

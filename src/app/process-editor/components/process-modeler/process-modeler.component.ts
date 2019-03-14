@@ -15,11 +15,10 @@
  * limitations under the License.
  */
 
-import { Component, ViewChild, ElementRef, Input, OnDestroy, AfterViewInit, OnInit, Output, EventEmitter } from '@angular/core';
-import { ProcessModelerService } from '../../services/process-modeler.service';
+import { Component, ViewChild, ElementRef, Input, OnDestroy, AfterViewInit, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil, switchMap, filter, map } from 'rxjs/operators';
-import { ProcessContent, SnackbarErrorAction } from 'ama-sdk';
+import { ProcessContent, SnackbarErrorAction, ProcessModelerServiceToken, ProcessModelerService } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import {
     SelectModelerElementAction,
@@ -45,7 +44,10 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
         this.diagramData$.next(diagramData);
     }
 
-    constructor(private store: Store<ProcessEntitiesState>, private processModelerService: ProcessModelerService) {}
+    constructor(
+        private store: Store<ProcessEntitiesState>,
+        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService
+    ) {}
 
     ngOnInit() {
         this.processModelerService.init({

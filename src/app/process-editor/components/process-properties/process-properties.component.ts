@@ -22,9 +22,13 @@ import { selectSelectedElement } from '../../store/process-editor.selectors';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
-import { ProcessModelerService } from '../../services/process-modeler.service';
 import { CardViewPropertiesFactory } from '../../services/cardview-properties/cardview-properties.factory';
-import { PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS, ProcessEditorCustomProperty } from 'ama-sdk';
+import {
+    PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS,
+    ProcessEditorCustomProperty,
+    ProcessModelerServiceToken,
+    ProcessModelerService
+} from 'ama-sdk';
 import { ProcessEntitiesState } from '../../store/process-entities.state';
 
 @Component({
@@ -41,7 +45,7 @@ export class ProcessPropertiesComponent implements OnInit, OnDestroy, AfterViewI
 
     constructor(
         private store: Store<ProcessEntitiesState>,
-        private processModelerService: ProcessModelerService,
+        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
         private cardViewFactory: CardViewPropertiesFactory,
         private cardViewUpdateService: CardViewUpdateService,
         private cardItemTypeService: CardItemTypeService,

@@ -16,7 +16,7 @@
  */
 
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { catchError, switchMap, map, filter, withLatestFrom } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
@@ -62,12 +62,13 @@ import {
     UploadFileAttemptPayload,
     ModelClosedAction,
     PROCESS, EntityDialogForm,
-    UPDATE_SERVICE_PARAMETERS
+    UPDATE_SERVICE_PARAMETERS,
+    ProcessModelerServiceToken,
+    ProcessModelerService
 } from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { SetAppDirtyStateAction } from 'ama-sdk';
 import { forkJoin } from 'rxjs';
-import { ProcessModelerService } from '../services/process-modeler.service';
 import { selectSelectedElement, selectProcessesLoaded } from './process-editor.selectors';
 import { Store } from '@ngrx/store';
 import { zip } from 'rxjs';
@@ -81,7 +82,7 @@ export class ProcessEditorEffects extends BaseEffects {
         private store: Store<AmaState>,
         private actions$: Actions,
         private processEditorService: ProcessEditorService,
-        private processModelerService: ProcessModelerService,
+        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
         logService: LogService,
         router: Router
     ) {

@@ -21,9 +21,8 @@ import { Store, StoreModule } from '@ngrx/store';
 import { MatTooltipModule, MatIconModule, MatCardModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
-import { AmaState, PROCESS_EDITOR_STATE_NAME, selectSelectedProcess } from 'ama-sdk';
-import { ProcessModelerService } from '../../services/process-modeler.service';
-import { BpmnFactoryToken } from '../../services/bpmn-factory.token';
+import { AmaState, PROCESS_EDITOR_STATE_NAME, selectSelectedProcess, BpmnFactoryToken, ProcessModelerService, ProcessModelerServiceToken } from 'ama-sdk';
+import { ProcessModelerServiceImplementation } from '../../services/process-modeler.service';
 import { BpmnFactoryMock, getDiagramElementMock } from '../../services/bpmn-js/bpmn-js.mock';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
@@ -57,7 +56,7 @@ describe('ProcessModelerComponent', () => {
                 NoopAnimationsModule
             ],
             providers: [
-                ProcessModelerService,
+                { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
                 { provide: BpmnFactoryToken, useClass: BpmnFactoryMock },
                 {
                     provide: Store,
@@ -81,7 +80,7 @@ describe('ProcessModelerComponent', () => {
         fixture = TestBed.createComponent(ProcessModelerComponent);
         component = fixture.componentInstance;
         store = TestBed.get(Store);
-        processModelerService = TestBed.get(ProcessModelerService);
+        processModelerService = TestBed.get(ProcessModelerServiceToken);
         fixture.detectChanges();
     });
 

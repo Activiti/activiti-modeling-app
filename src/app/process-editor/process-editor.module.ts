@@ -24,7 +24,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { ProcessEditorComponent } from './components/process-editor/process-editor.component';
 import { ProcessModelerComponent } from './components/process-modeler/process-modeler.component';
 import { ProcessHeaderComponent } from './components/process-header/process-header.component';
-import { ProcessModelerService } from './services/process-modeler.service';
+import { ProcessModelerServiceImplementation } from './services/process-modeler.service';
 import { ProcessEditorService } from './services/process-editor.service';
 import { ProcessEditorEffects } from './store/process-editor.effects';
 import { StoreModule } from '@ngrx/store';
@@ -42,10 +42,11 @@ import {
     SharedModule,
     VariablesModule,
     providePaletteHandler,
-    providePaletteElements
+    providePaletteElements,
+    BpmnFactoryToken,
+    ProcessModelerServiceToken
 } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
-import { BpmnFactoryToken } from './services/bpmn-factory.token';
 import { CardViewProcessVariablesItemComponent } from './services/cardview-properties/process-variable-item/process-variable-item.component';
 import { CardViewImplementationItemComponent } from './services/cardview-properties/implementation-item/implementation-item.component';
 import { ProcessPropertiesComponent } from './components/process-properties/process-properties.component';
@@ -101,7 +102,7 @@ import { PaletteOverlayDirective } from './components/process-modeler/palette/pa
     providers: [
         ProcessEditorService,
         { provide: BpmnFactoryToken, useClass: BpmnFactoryService },
-        ProcessModelerService,
+        { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
         ProcessModelerPaletteService,
         CardViewPropertiesFactory,
         AmaTitleService,
