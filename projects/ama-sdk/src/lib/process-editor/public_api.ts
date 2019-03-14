@@ -20,6 +20,7 @@
 export * from './cardview-properties/implementation-item.model';
 export * from './cardview-properties/form-key.model';
 export * from './cardview-properties/default-sequence-flow-item.model';
+export * from './bpmn-element';
 export * from './bpmn-modeler';
 export * from './palette';
 export * from './process-editor.actions';
