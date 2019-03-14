@@ -16,6 +16,7 @@
 <ng-template #containerElement let-item>
     <div class="entry {{item.icon}}"  [matTooltip]="item.title | translate" matTooltipPosition="after">
         <button
+            [attr.data-automation-id]="item.group + '::' + item.type"
             ama-palette-overlay
             [templatePortalContent]="templateContent"
             [amaPaletteItem]="item"
@@ -27,6 +28,7 @@
 <ng-template #clickableElement let-item>
     <div class="entry {{item.icon}}" [class.selected]="item === selectedTool" [matTooltip]="item.title | translate"  matTooltipPosition="after">
         <button
+            [attr.data-automation-id]="item.group + '::' + item.type"
             *ngIf="!hasChildren(item)"
             draggable="true"
             (click)="onClick(item, $event)"
