@@ -2,7 +2,7 @@
     "$schema": "../node_modules/@alfresco/adf-core/app.config.schema.json",
     "authType": "BASIC",
     "providers": "BPM",
-    "bpmHost": "/",
+    "bpmHost": "http://localhost:8080/",
     "oauth2": {
         "host": "http://localhost:4100/auth",
         "authPath": "/protocol/openid-connect/token/",
