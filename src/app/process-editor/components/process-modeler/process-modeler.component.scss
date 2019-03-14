@@ -21,7 +21,7 @@
     .bpmn-controls {
         width: auto;
         position: fixed;
-        right: 315px;
+        right: 360px;
         z-index: 2;
         background: mat-color($background, raised-button);
         box-shadow: 0 1px 4px mat-color($foreground, slider-off);
@@ -31,7 +31,7 @@
         margin: 0;
 
         &.bpmn-actions-controls {
-            top: 140px;
+            top: 185px;
         }
 
         &.bpmn-zoom-controls {

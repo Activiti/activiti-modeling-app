@@ -30,6 +30,7 @@ import { CardViewPropertiesFactory } from '../../services/cardview-properties/ca
 import { RouterTestingModule } from '@angular/router/testing';
 import { mockProcess } from '../../store/process.mock';
 import { DownloadProcessAction, ValidateProcessAttemptAction } from '../../store/process-editor.actions';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 
 @Component({
@@ -68,9 +69,10 @@ describe('ProcessEditorComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            schemas: [NO_ERRORS_SCHEMA],
             imports: [
                 SharedModule,
-                CoreModule,
+                CoreModule.forRoot(),
                 MatIconModule,
                 TranslateModule.forRoot(),
                 NoopAnimationsModule,
@@ -118,81 +120,6 @@ describe('ProcessEditorComponent', () => {
 
     it('should render component', () => {
         expect(component).not.toBeNull();
-    });
-
-    describe('downloadDiagram', () => {
-        let downloadDiagram: jest.Mock;
-
-        beforeEach(() => {
-            downloadDiagram = <jest.Mock>processModelerService.export;
-        });
-
-        it('should dispatch ValidateProcessAttemptAction if export() is ok', async(() => {
-            spyOn(store, 'dispatch');
-
-            const processContent = '<some xml />';
-            downloadDiagram.mockReturnValue(Promise.resolve(processContent));
-            component.downloadDiagram(mockProcess);
-            fixture.detectChanges();
-
-            fixture.whenStable().then(() => {
-                const expected = new ValidateProcessAttemptAction({
-                    title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.PROCESS',
-                    processId: mockProcess.id,
-                    content: processContent,
-                    action: new DownloadProcessAction(mockProcess)
-                });
-
-                expect(store.dispatch).toHaveBeenCalledWith(expected);
-            });
-        }));
-
-        it('should dispatch SnackbarErrorAction if export() return an error', async(() => {
-            spyOn(store, 'dispatch');
-
-            downloadDiagram.mockReturnValue(Promise.reject());
-            component.downloadDiagram(mockProcess);
-            fixture.detectChanges();
-
-            fixture.whenStable().catch(() => {
-                const expected = new SnackbarErrorAction('APP.PROCESSES.ERRORS.DOWNLOAD_DIAGRAM');
-                expect(store.dispatch).toHaveBeenCalledWith(expected);
-            });
-        }));
-    });
-
-    describe('saveDiagram', () => {
-        let saveDiagram: jest.Mock;
-
-        beforeEach(() => {
-            saveDiagram = <jest.Mock>processModelerService.export;
-        });
-
-        it('should dispatch UpdateProcessAttemptAction if export() is ok', async(() => {
-            spyOn(store, 'dispatch');
-
-            const processContent = '<some xml />';
-            saveDiagram.mockReturnValue(Promise.resolve(processContent));
-            component.saveDiagram(mockProcess.id);
-            fixture.detectChanges();
-
-            fixture.whenStable().then(() => {
-                expect(store.dispatch).toHaveBeenCalled();
-            });
-        }));
-
-        it('should dispatch SnackbarErrorAction if export() return an error', async(() => {
-            spyOn(store, 'dispatch');
-
-            saveDiagram.mockReturnValue(Promise.reject());
-            component.saveDiagram(mockProcess.id);
-            fixture.detectChanges();
-
-            fixture.whenStable().catch(() => {
-                const expected = new SnackbarErrorAction('APP.PROCESS_EDITOR.ERRORS.SAVE_DIAGRAM');
-                expect(store.dispatch).toHaveBeenCalledWith(expected);
-            });
-        }));
     });
 
 });

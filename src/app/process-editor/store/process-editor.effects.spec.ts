@@ -64,7 +64,7 @@ describe('ProcessEditorEffects', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [CoreModule],
+            imports: [CoreModule.forRoot()],
             providers: [
                 ProcessEditorEffects,
                 ProcessModelerService,
@@ -158,7 +158,7 @@ describe('ProcessEditorEffects', () => {
             actions$ = hot('a', { a: new UploadProcessAttemptAction(<UploadFileAttemptPayload>{file: new File([''], 'filename')}) });
             const expected = cold('(bc)', {
                 b: new CreateProcessSuccessAction(process),
-                c: new SnackbarInfoAction('APP.PROCESS_EDITOR.UPLOAD_SUCCESS'),
+                c: new SnackbarInfoAction('PROCESS_EDITOR.UPLOAD_SUCCESS'),
             });
 
             expect(effects.uploadProcessEffect).toBeObservable(expected);
@@ -203,7 +203,7 @@ describe('ProcessEditorEffects', () => {
             const expected = cold('(bcd)', {
                 b: new UpdateProcessSuccessAction({id: mockProcess.id, changes: mockActionPayload.metadata}, mockActionPayload.content),
                 c: new SetAppDirtyStateAction(false),
-                d: new SnackbarInfoAction('APP.PROCESS_EDITOR.PROCESS_UPDATED')
+                d: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_UPDATED')
             });
 
             expect(effects.updateProcessEffect).toBeObservable(expected);

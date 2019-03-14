@@ -7,7 +7,7 @@
         "target": "es5",
         "types": ["jasmine", "node"],
         "paths": {
-            "alfresco-js-api": ["../node_modules/alfresco-js-api/dist/alfresco-js-api.js"],
+            "@alfresco/js-api": ["../node_modules/@alfresco/js-api"],
             "rxjs/*": ["../node_modules/rxjs/*"],
             "@angular/*": ["../node_modules/@angular/*"],
             "@alfresco/adf-core": ["../../alfresco-ng2-components/lib/core"],

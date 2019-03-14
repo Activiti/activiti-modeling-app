@@ -29,6 +29,7 @@ export interface BackendProject {
     createdBy: string;
     lastModifiedDate: Date;
     lastModifiedBy: string;
+    version: string;
 }
 
 @Injectable()
@@ -80,7 +81,7 @@ export class ACMProjectApi implements ProjectApi {
     public export(projectId: string): Observable<Blob>  {
         return this.requestApiHelper.get(
             `/v1/projects/${projectId}/export`,
-            { queryParams: { 'attachment': false }, returnType: 'Blob' }
+            { queryParams: { 'attachment': false }, responseType: 'blob' }
         );
     }
 
@@ -98,14 +99,20 @@ export class ACMProjectApi implements ProjectApi {
 
     private createProject(backendProject: BackendProject): Project {
         const type = PROJECT,
-            description = '',
-            version = '0.0.1';
+            description = '';
 
         return {
             type,
             ...backendProject,
-            description,
-            version
+            description
         };
+    }
+
+    public release(projectId: string): Observable<Project> {
+        return this.requestApiHelper
+        .post(`/v1/projects/${projectId}/releases`)
+            .pipe(
+                map((response: any) => response.entry)
+            );
     }
 }

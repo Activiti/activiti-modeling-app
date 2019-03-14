@@ -1,0 +1,12 @@
+{
+    "CONNECTOR_EDITOR": {
+        "UPLOAD_SUCCESS": "The connector was successfully uploaded",
+        "TABS": {
+            "CONNECTOR_EDITOR": "Connector editor",
+            "JSON_EDITOR": "JSON editor"
+        },
+        "ERRORS": {
+            "GET_CONNECTOR": "Unknown error happened during loading of the connector, please try again."
+        }
+    }
+}

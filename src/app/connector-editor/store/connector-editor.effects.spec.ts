@@ -161,7 +161,7 @@ describe('ConnectorEditorEffects', () => {
             actions$ = hot('a', { a: new UploadConnectorAttemptAction(<UploadFileAttemptPayload>{file: new File([''], 'filename')}) });
             const expected = cold('(bc)', {
                 b: new CreateConnectorSuccessAction(connector),
-                c: new SnackbarInfoAction('APP.CONNECTOR_EDITOR.UPLOAD_SUCCESS'),
+                c: new SnackbarInfoAction('CONNECTOR_EDITOR.UPLOAD_SUCCESS'),
             });
 
             expect(effects.uploadConnectorEffect).toBeObservable(expected);
@@ -260,7 +260,7 @@ describe('ConnectorEditorEffects', () => {
 
             actions$ = hot('a', { a: new GetConnectorAttemptAction('connector-id') });
             const expected = cold('b', {
-                b: new SnackbarErrorAction('APP.CONNECTOR_EDITOR.ERRORS.GET_CONNECTOR')
+                b: new SnackbarErrorAction('CONNECTOR_EDITOR.ERRORS.GET_CONNECTOR')
             });
 
             expect(effects.getConnectorEffect).toBeObservable(expected);

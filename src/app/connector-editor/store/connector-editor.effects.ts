@@ -204,7 +204,7 @@ export class ConnectorEditorEffects extends BaseEffects {
         return this.connectorEditorService.upload({ ...payload, file }).pipe(
             switchMap((connector: Connector) => [
                 new CreateConnectorSuccessAction(connector),
-                new SnackbarInfoAction('APP.CONNECTOR_EDITOR.UPLOAD_SUCCESS')
+                new SnackbarInfoAction('CONNECTOR_EDITOR.UPLOAD_SUCCESS')
             ]),
             catchError(e =>
                 this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.UPLOAD_FILE'), e)
@@ -253,7 +253,7 @@ export class ConnectorEditorEffects extends BaseEffects {
         );
     }
 
-    private getConnector(connectorId: string, projectId: string, loadConnector?: boolean): Observable<GetConnectorSuccessAction | SnackbarErrorAction> {
+    private getConnector(connectorId: string, projectId: string, loadConnector?: boolean) {
         const connectorDetails$ = this.connectorEditorService.getDetails(connectorId, projectId),
             connectorContent$ = this.connectorEditorService.getContent(connectorId);
 
@@ -262,8 +262,8 @@ export class ConnectorEditorEffects extends BaseEffects {
                 new GetConnectorSuccessAction(connector, connectorContent),
                 ...(loadConnector ? [new ModelOpenedAction({ id: connectorId, type: CONNECTOR })] : [])
             ]),
-            catchError<any, SnackbarErrorAction>(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'APP.CONNECTOR_EDITOR.ERRORS.GET_CONNECTOR'), e)
+            catchError(e =>
+                this.genericErrorHandler(this.handleError.bind(this, 'CONNECTOR_EDITOR.ERRORS.GET_CONNECTOR'), e)
             )
         );
     }

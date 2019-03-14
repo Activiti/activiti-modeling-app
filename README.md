@@ -15,8 +15,19 @@ The Activiti Modeling Application (AMA) is an application built using
 
 ### Prerequisites
 
+#### Installing dependencies
+
 ```bash
 $ npm install
+```
+
+#### Setting up environment variables
+
+To be able to run the local dev server, we need to set some environment variable. Simply crete a `.env` file (this is gitignored) in the root of the repository with filling in the following data:
+
+```bash
+API_HOST="http://my-acm.implementation.com/whatever"
+OAUTH_HOST="http://my-acm.implementation.com/auth/realms/whatever"
 ```
 
 ### Development server
@@ -81,7 +92,7 @@ Then `docker build . -t alfresco/alfresco-modeler-app:latest` to build the image
 
 Start with below (substituting with values for your deployment):
 
-`docker run -it -e APP_CONFIG_OAUTH2_HOST="http://KEYCLOAKHOST/auth/realms/activiti" -e APP_CONFIG_OAUTH2_CLIENTID="activiti" -e API_URL="http://GATEWAYHOST" -p 8080:80 alfresco/alfresco-modeling-app:latest`
+`docker run -it -e APP_CONFIG_OAUTH2_HOST="http://KEYCLOAKHOST/auth/realms/activiti" -e APP_CONFIG_OAUTH2_CLIENTID="activiti" -e APP_CONFIG_BPM_HOST="http://GATEWAYHOST" -p 8080:80 alfresco/alfresco-modeling-app:latest`
 
 If any substitutions don't work then check that the placeholders in `docker-entrypoint.sh` match `src/app.config.json`
 

@@ -24,7 +24,7 @@ const propertyName = BpmnProperty.candidateUsers;
 
 export function createCandidateUsersProperty({ element }: FactoryProps) {
     return new CardViewTextItemModel({
-        label: 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_USERS',
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.CANDIDATE_USERS',
         value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,
         default: '',

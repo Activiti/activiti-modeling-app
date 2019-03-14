@@ -1,0 +1,20 @@
+{
+    "SDK": {
+        "VARIABLES_EDITOR": {
+            "ERRORS": {
+                "EMPTY_NAME": "Name field cannot be empty"
+            },
+            "TABS": {
+                "VIEWER": "Properties viewer",
+                "JSON_EDITOR": "JSON editor"
+            },
+            "TABLE": {
+                "COLUMN_NAME": "Name",
+                "COLUMN_TYPE": "Type",
+                "COLUMN_REQUIRED": "Required",
+                "COLUMN_VALUE": "Value",
+                "NO_PROPERTIES": "You don't have any property selected"
+            }
+        }
+    }
+}

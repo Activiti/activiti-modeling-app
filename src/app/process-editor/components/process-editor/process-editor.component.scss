@@ -5,6 +5,41 @@
         height: 100%;
         overflow-y: hidden;
 
+        .ama-process-tab-group {
+            flex: 1 1 auto;
+
+            .mat-tab-body-wrapper {
+                flex: 1 1 auto;
+
+                .mat-tab-body-content {
+                    flex: 1 1 auto;
+                    display: flex;
+                    overflow: hidden;
+
+                    .ama-process-code-editor {
+                        display: flex;
+                        flex: 1 1 auto;
+                        overflow: auto;
+
+                        &-raw-editor {
+                            overflow:hidden;
+                        }
+                    }
+                }
+            }
+        }
+
+        amasdk-code-editor {
+            display: flex;
+            width: 100%;
+            flex: 1 1 auto;
+
+            .code-editor {
+                flex: 1 0 auto;
+                height: auto;
+            }
+        }
+
         &-modeling {
             display: flex;
             flex-direction: column;
@@ -14,15 +49,15 @@
                 display: flex;
                 flex-direction: row;
                 flex: 1 0 auto;
-                max-height: calc(100% - 48px);
+                max-height: 100%;
 
                 &-modeler {
                     flex: 1 1 auto;
                 }
 
                 &-properties {
-                    width: 300px;
-                    flex: 0 0 auto;
+                    width: 360px;
+                    box-sizing: border-box;
                 }
             }
         }

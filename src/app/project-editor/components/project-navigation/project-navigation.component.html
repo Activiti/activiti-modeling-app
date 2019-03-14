@@ -6,10 +6,13 @@
             [matMenuTriggerFor]="menu"
             data-automation-id="create-button"
             class="adf-sidebar-action-menu-button mat-raised-button">
-            {{ 'APP.PROJECT.NEW_MENU.LABEL' | translate }} <mat-icon>arrow_drop_down</mat-icon>
+            <span class="adf-sidebar-action-menu-text">{{ 'APP.PROJECT.NEW_MENU.LABEL' | translate }}</span>
+            <mat-icon>arrow_drop_down</mat-icon>
         </button>
 
-        <mat-icon *ngIf="!(expanded$ | async)" [matMenuTriggerFor]="menu" class="adf-sidebar-action-menu-icon">add_box</mat-icon>
+        <div *ngIf="!(expanded$ | async)" class="adf-sidebar-action-menu-icon">
+            <mat-icon [matMenuTriggerFor]="menu">add_box</mat-icon>
+        </div>
 
         <mat-menu #menu="matMenu" class="app-navigation-options">
             <button mat-menu-item [matMenuTriggerFor]="create" data-automation-id="app-navigation-create">

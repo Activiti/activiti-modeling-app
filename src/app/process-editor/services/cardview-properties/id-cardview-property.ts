@@ -24,7 +24,7 @@ const propertyName = BpmnProperty.id;
 
 export function createIdProperty({ element }: FactoryProps) {
     return new CardViewTextItemModel({
-        label: 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.ID',
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ID',
         value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,
         default: '',

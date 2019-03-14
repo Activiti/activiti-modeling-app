@@ -20,7 +20,7 @@ import { ProcessHeaderComponent } from './process-header.component';
 import { MatIconModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from 'ama-sdk';
+import { SharedModule, AmaState, OpenConfirmDialogAction } from 'ama-sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { By } from '@angular/platform-browser';
 import { mockProcess } from '../../store/process.mock';
@@ -28,16 +28,19 @@ import { AmaTitleService } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DeleteProcessAttemptAction, DownloadProcessAction, ValidateProcessAttemptAction, UpdateProcessAttemptAction } from '../../store/process-editor.actions';
+import { ProcessModelerService } from '../../services/process-modeler.service';
 
 describe('ProcessHeaderComponent', () => {
     let fixture: ComponentFixture<ProcessHeaderComponent>;
     let component: ProcessHeaderComponent;
+    let store: Store<AmaState>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
                 SharedModule,
-                CoreModule,
+                CoreModule.forRoot(),
                 MatIconModule,
                 TranslateModule.forRoot(),
                 NoopAnimationsModule,
@@ -49,7 +52,19 @@ describe('ProcessHeaderComponent', () => {
                 {
                     provide: Store,
                     useValue: {
-                        select: jest.fn().mockReturnValue(of({}))
+                        select: jest.fn().mockReturnValue(of({})),
+                        dispatch: jest.fn()
+                    }
+                },
+                {
+                    provide: ProcessModelerService,
+                    useValue: {
+                        getRootProcessElement: jest.fn().mockReturnValue({
+                            businessObject: { name: mockProcess.name, get: (param) => {
+                                const data = { documentation: mockProcess.description };
+                                return data[param];
+                            }}
+                        })
                     }
                 }
             ],
@@ -62,6 +77,8 @@ describe('ProcessHeaderComponent', () => {
         component = fixture.componentInstance;
         fixture.detectChanges();
         component.process = mockProcess;
+        component.content = 'mockProcessContent';
+        store = TestBed.get(Store);
     });
 
     it('should render component', () => {
@@ -74,27 +91,45 @@ describe('ProcessHeaderComponent', () => {
     });
 
     it('should test download button', () => {
-        spyOn(component.download, 'emit');
+        spyOn(store, 'dispatch');
 
         const button = fixture.debugElement.query(By.css('[data-automation-id="process-editor-download-button"]'));
         button.triggerEventHandler('click', {});
         fixture.detectChanges();
 
-        expect(component.download.emit).toHaveBeenCalledWith(mockProcess);
+        const payload = new ValidateProcessAttemptAction({
+            title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.PROCESS',
+            processId: mockProcess.id,
+            content: component.content,
+            action: new DownloadProcessAction(mockProcess)
+        });
+
+        expect(store.dispatch).toHaveBeenCalledWith(payload);
     });
 
     it('should test save button', () => {
-        spyOn(component.save, 'emit');
+        spyOn(store, 'dispatch');
 
         const button = fixture.debugElement.query(By.css('[data-automation-id="process-editor-save-button"]'));
         button.triggerEventHandler('click', {});
         fixture.detectChanges();
 
-        expect(component.save.emit).toHaveBeenCalledWith(mockProcess.id);
+        const payload = new ValidateProcessAttemptAction({
+            title: 'APP.DIALOGS.CONFIRM.SAVE.PROCESS',
+            processId: mockProcess.id,
+            content: component.content,
+            action: new UpdateProcessAttemptAction({
+                processId: mockProcess.id,
+                content: component.content,
+                metadata: { name: mockProcess.name, description: mockProcess.description }
+            })
+        });
+
+        expect(store.dispatch).toHaveBeenCalledWith(payload);
     });
 
     it('should test delete button', () => {
-        spyOn(component.delete, 'emit');
+        spyOn(store, 'dispatch');
 
         const menuButton = fixture.debugElement.query(By.css('[data-automation-id="process-editor-menu-button"]'));
         menuButton.triggerEventHandler('click', {});
@@ -104,7 +139,14 @@ describe('ProcessHeaderComponent', () => {
         deleteButton.triggerEventHandler('click', {});
         fixture.detectChanges();
 
-        expect(component.delete.emit).toHaveBeenCalledWith(mockProcess.id);
+        const payload = new OpenConfirmDialogAction({
+            dialogData: {
+                title: 'APP.DIALOGS.CONFIRM.DELETE.PROCESS'
+            },
+            action: new DeleteProcessAttemptAction(mockProcess.id)
+        });
+
+        expect(store.dispatch).toHaveBeenCalledWith(payload);
     });
 
 });

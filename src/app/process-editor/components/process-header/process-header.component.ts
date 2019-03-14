@@ -15,10 +15,15 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Output, Input } from '@angular/core';
-import { Process } from 'ama-sdk';
+import { Component, Input } from '@angular/core';
+import { Process, AmaState, OpenConfirmDialogAction, ProcessContent, EntityDialogForm } from 'ama-sdk';
 import { BreadcrumbItem } from 'ama-sdk';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { DeleteProcessAttemptAction, ValidateProcessAttemptAction, DownloadProcessAction, UpdateProcessAttemptAction } from '../../store/process-editor.actions';
+import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
+import { processNameHandler } from '../../services/bpmn-js/property-handlers/process-name.handler';
+import { ProcessModelerService } from '../../services/process-modeler.service';
 
 @Component({
     selector: 'ama-process-header',
@@ -26,23 +31,41 @@ import { Observable } from 'rxjs';
 })
 export class ProcessHeaderComponent {
     @Input() process: Process;
+    @Input() content: ProcessContent;
     @Input() breadcrumbs$: Observable<BreadcrumbItem[]>;
 
-    @Output() save: EventEmitter<string> = new EventEmitter<string>();
-    @Output() delete: EventEmitter<string> = new EventEmitter<string>();
-    @Output() download: EventEmitter<Process> = new EventEmitter<Process>();
-
-    constructor() {}
+    constructor(private store: Store<AmaState>, private processModeler: ProcessModelerService) {}
 
     onSaveClick(): void {
-        this.save.emit(this.process.id);
+        const element = this.processModeler.getRootProcessElement();
+        const metadata: Partial<EntityDialogForm> = {
+            name: processNameHandler.get(element),
+            description: documentationHandler.get(element),
+        };
+
+        this.store.dispatch(new ValidateProcessAttemptAction({
+            title: 'APP.DIALOGS.CONFIRM.SAVE.PROCESS',
+            processId: this.process.id,
+            content: this.content,
+            action: new UpdateProcessAttemptAction({ processId: this.process.id, content: this.content, metadata })
+        }));
     }
 
     onDownload(process: Process): void {
-        this.download.emit(process);
+        this.store.dispatch(new ValidateProcessAttemptAction({
+            title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.PROCESS',
+            processId: process.id,
+            content: this.content,
+            action: new DownloadProcessAction(process)
+        }));
     }
 
     deleteProcess(): void {
-        this.delete.emit(this.process.id);
+        this.store.dispatch(
+            new OpenConfirmDialogAction({
+                dialogData: { title: 'APP.DIALOGS.CONFIRM.DELETE.PROCESS' },
+                action: new DeleteProcessAttemptAction(this.process.id)
+            })
+        );
     }
 }

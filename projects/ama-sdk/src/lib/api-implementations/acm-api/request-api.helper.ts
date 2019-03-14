@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
-import { AppConfigService, AlfrescoApiService } from '@alfresco/adf-core';
+import { AppConfigService, AlfrescoApiService, StorageService } from '@alfresco/adf-core';
 
 export interface RequestApiHelperOptions {
     pathParams?: { [key: string]: any} ;
@@ -25,7 +25,6 @@ export interface RequestApiHelperOptions {
     headerParams?: { [key: string]: any} ;
     formParams?: { [key: string]: any} ;
     bodyParam?: { [key: string]: any} ;
-    authNames?: string[];
     contentTypes?: string[];
     accepts?: string[];
     returnType?: any;
@@ -40,17 +39,20 @@ function getDefaultOptions(): RequestApiHelperOptions {
         headerParams: {},
         formParams: {},
         bodyParam: {},
-        authNames: [],
         contentTypes: ['application/json'],
         accepts: ['application/json'],
-        returnType: {'String': 'String'}
+        returnType: null
     };
 }
 
 @Injectable()
 export class RequestApiHelper {
 
-    constructor(private appConfig: AppConfigService, private alfrescoApiService: AlfrescoApiService) {}
+    constructor(
+        private appConfig: AppConfigService,
+        private storageService: StorageService,
+        private alfrescoApiService: AlfrescoApiService
+    ) {}
 
     private get api() {
         const alfrescoApiService = this.alfrescoApiService.getInstance();
@@ -63,13 +65,16 @@ export class RequestApiHelper {
 
     private buildUrl(endPoint: string): string {
         const trimSlash = (str: string) => str.replace(/^\/|\/$/g, '');
+        const path = '/' + trimSlash(endPoint);
 
-        const host = trimSlash(this.appConfig.get('backend')),
-            pathPrefix = trimSlash(this.appConfig.get('pathPrefix') || ''),
-            prefix = (pathPrefix.length ) ? '/' + pathPrefix : '',
-            path = '/' + trimSlash(endPoint);
+        let host;
+        if (this.storageService.hasItem('bpmHost')) {
+            host = this.storageService.getItem('bpmHost');
+        } else {
+            host = trimSlash(this.appConfig.get('bpmHost'));
+        }
 
-        return `${host}${prefix}${path}`;
+        return `${host}${path}`;
     }
 
     public get<T>(endPoint: string, overriddenOptions?: RequestApiHelperOptions) {
@@ -101,7 +106,6 @@ export class RequestApiHelper {
             headerParams,
             formParams,
             bodyParam,
-            authNames,
             contentTypes,
             accepts,
             returnType,
@@ -117,7 +121,6 @@ export class RequestApiHelper {
             headerParams,
             formParams,
             bodyParam,
-            authNames,
             contentTypes,
             accepts,
             returnType,

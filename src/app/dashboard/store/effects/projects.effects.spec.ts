@@ -39,7 +39,9 @@ import {
     DeleteProjectAttemptAction,
     DeleteProjectSuccessAction,
     GetProjectsAttemptAction,
-    GetProjectsSuccessAction
+    GetProjectsSuccessAction,
+    ReleaseProjectAttemptAction,
+    ReleaseProjectSuccessAction
 } from '../actions/projects';
 import {
     DialogService,
@@ -62,7 +64,7 @@ describe('ProjectsEffects', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [CoreModule],
+            imports: [CoreModule.forRoot()],
             providers: [
                 ProjectsEffects,
                 AmaAuthenticationService,
@@ -311,6 +313,25 @@ describe('ProjectsEffects', () => {
             });
 
             expect(effects.getProjectsAttemptEffect).toBeObservable(expected);
+        });
+    });
+
+    describe('ReleaseProjectAttemptEffect', () => {
+
+        it('should dispatch an action', () => {
+            expect(metadata.releaseProjectAttemptEffect).toEqual({ dispatch: true });
+        });
+
+        it('should trigger the right action on successful release', () => {
+            dashboardService.releaseProject = jest.fn().mockReturnValue(of(mockProject));
+            actions$ = hot('a', { a: new ReleaseProjectAttemptAction(mockProject.id) });
+
+            const expected = cold('(bc)', {
+                b: new ReleaseProjectSuccessAction(mockProject),
+                c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_RELEASED')
+            });
+
+            expect(effects.releaseProjectAttemptEffect).toBeObservable(expected);
         });
     });
 });

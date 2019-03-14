@@ -24,7 +24,7 @@ const property = BpmnProperty.formKey;
 
 export function createFormKeyProperty({ element }: FactoryProps) {
     return new CardViewFormKeyModel({
-        label: 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.FORM_SELECTOR',
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.FORM_SELECTOR',
         value: ElementHelper.getProperty(element, property),
         key: property,
         default: '',

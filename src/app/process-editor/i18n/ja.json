@@ -1,0 +1,63 @@
+{
+    "PROCESS_EDITOR": {
+        "PRIORITIES": {
+            "LOW": "低",
+            "MEDIUM": "中",
+            "HIGH": "高"
+        },
+        "ACTIONS": {
+            "ZOOM_IN": "拡大",
+            "ZOOM_OUT": "縮小",
+            "UNDO": "元に戻す",
+            "REDO": "やり直す"
+        },
+        "ELEMENT_PROPERTIES": {
+            "ID": "ID",
+            "NAME": "名前",
+            "VERSION": "バージョン",
+            "VARIABLES": "変数",
+            "DOCUMENTATION": "説明",
+            "EXECUTABLE": "実行可能",
+            "IMPLEMENTATION": "実装",
+            "INPUTS": "入力",
+            "OUTPUTS": "出力",
+            "INPUT": "入力",
+            "OUTPUT": "出力",
+            "ASSIGNEE": "担当者",
+            "CANDIDATE_GROUPS": "処理対象グループ",
+            "CANDIDATE_USERS": "処理対象ユーザ",
+            "DUE_DATE": "期限",
+            "PRIORITY": "優先度",
+            "ACTIVITY_NAME": "アクティビティ名",
+            "PROCESS_VARIABLE": "プロセス変数",
+            "PROCESS_VARIABLES": "プロセス変数",
+            "EXPRESSION": "条件式",
+            "FORM_SELECTOR": "フォームセレクタ",
+            "DEFAULT_SEQUENCE_FLOW": "デフォルトフロー"
+        },
+        "UPLOAD_SUCCESS": "プロセスのアップロードに成功しました。",
+        "PROCESS_UPDATED": "プロセスの更新に成功しました。",
+        "ERRORS": {
+            "LOAD_DIAGRAM": "プロセス図の読み込みに失敗しました。",
+            "SAVE_DIAGRAM": "プロセス図の保存に失敗しました。",
+            "DOWNLOAD_DIAGRAM": "プロセス図のダウンロードに失敗しました。",
+            "CHANGE_FAVORITE": "プロセスのお気に入りの状態を変更する際に予期せぬエラーが発生しました。"
+        },
+        "PROPERTIES": {
+            "TABS": {
+                "VIEWER": "プロパティビューア",
+                "JSON_EDITOR": "JSONエディタ"
+            },
+            "TABLE": {
+                "COLUMN_NAME": "名前",
+                "COLUMN_TYPE": "種別",
+                "COLUMN_REQUIRED": "必須",
+                "COLUMN_VALUE": "値",
+                "NO_PROPERTIES": "プロパティが選択されていません。"
+            },
+            "ERRORS": {
+                "EMPTY_NAME": "名前フィールドは、入力必須です。"
+            }
+        }
+    }
+}

@@ -37,6 +37,8 @@
 npm-debug.log
 testem.log
 /typings
+.protractor-fail-fast
+.env
 
 # e2e
 /e2e/*.map

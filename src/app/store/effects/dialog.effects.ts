@@ -18,7 +18,7 @@
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import {
     OPEN_DIALOG,
     OpenDialogAction,
@@ -58,7 +58,7 @@ export class DialogEffects {
         map(data => this.dialogService.openDialog(EntityDialogComponent, { data }))
     );
 
-    private openConfirmDialog(action: Action, dialogData: ConfirmDialogData): Observable<Action> {
+    private openConfirmDialog(action: Action, dialogData: ConfirmDialogData) {
         return this.dialogService.confirm(dialogData, action).pipe(
             switchMap(confirmation => {
                 if (confirmation) {

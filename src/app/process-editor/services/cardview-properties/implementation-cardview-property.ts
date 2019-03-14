@@ -23,7 +23,7 @@ const property = BpmnProperty.implementation;
 
 export function createImplementationProperty({ element }: FactoryProps) {
     return new ImplementationItemModel({
-        label: 'APP.PROCESS_EDITOR.ELEMENT_PROPERTIES.IMPLEMENTATION',
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.IMPLEMENTATION',
         value: ElementHelper.getProperty(element, property),
         key: property,
         default: '',

@@ -10,7 +10,13 @@ eval AUTO=false
 eval libs=( "core"
     "content-services"
     "process-services"
-    "insights" )
+    "insights",
+    "extensions" )
+
+eval paths=(
+     $DIR/../package.json
+     $DIR/../projects/ama-sdk/package.json
+)
 
 cd `dirname $0`
 
@@ -39,7 +45,7 @@ last_alpha_mode() {
     echo "====== version lib ${VERSION} ====="
 
     DIFFERENT_JS_API=true
-    VERSION_JS_API=$(npm view alfresco-js-api@alpha version)
+    VERSION_JS_API=$(npm view @alfresco/js-api@alpha version)
 
     echo "====== version js-api ${DIFFERENT_JS_API} ====="
 }
@@ -51,7 +57,7 @@ last_beta_mode() {
     echo "====== version lib ${VERSION} ====="
 
     DIFFERENT_JS_API=true
-    VERSION_JS_API=$(npm view alfresco-js-api@beta version)
+    VERSION_JS_API=$(npm view @alfresco/js-api@beta version)
 
     echo "====== version js-api ${DIFFERENT_JS_API} ====="
 }
@@ -75,22 +81,37 @@ version_js_change() {
 update_component_dependency_version(){
    for (( j=0; j<${libslength}; j++ ));
     do
+
        echo "====== UPDATE DEPENDENCY VERSION of ${prefix}${libs[$j]} to ~${VERSION}======"
 
-       sed "${sedi[@]}" "s/\"${prefix}${libs[$j]}\": \".*\"/\"${prefix}${libs[$j]}\": \"${VERSION}\"/g"  $DIR/../package.json
-       sed "${sedi[@]}" "s/\"${prefix}${libs[$j]}\": \"~.*\"/\"${prefix}${libs[$j]}\": \"~${VERSION}\"/g"  $DIR/../package.json
-       sed "${sedi[@]}" "s/\"${prefix}${libs[$j]}\": \"^.*\"/\"${prefix}${libs[$j]}\": \"^${VERSION}\"/g"  $DIR/../package.json
+       sed "${sedi[@]}" "s/\"${prefix}${libs[$j]}\": \".*\"/\"${prefix}${libs[$j]}\": \"${VERSION}\"/g" ${1}
+       sed "${sedi[@]}" "s/\"${prefix}${libs[$j]}\": \"~.*\"/\"${prefix}${libs[$j]}\": \"~${VERSION}\"/g" ${1}
+       sed "${sedi[@]}" "s/\"${prefix}${libs[$j]}\": \"^.*\"/\"${prefix}${libs[$j]}\": \"^${VERSION}\"/g" ${1}
 
     done
 }
 
+update_dependency_for_all() {
+    for (( k=0; k<${pathslength}; k++ )); do
+        echo "====== UPDATE DEPENDENCY VERSION for  ${paths[$k]} ====="
+        update_component_dependency_version ${paths[$k]}
+    done
+}
+
+
 update_component_js_version(){
    echo "====== UPDATE DEPENDENCY VERSION of alfresco-js-api in ${1} ======"
-   PACKAGETOCHANGE="alfresco-js-api"
+   PACKAGETOCHANGE="@alfresco\/js-api"
 
-   sed "${sedi[@]}" "s/\"${PACKAGETOCHANGE}\": \".*\"/\"${PACKAGETOCHANGE}\": \"${1}\"/g"  $DIR/../package.json
-   sed "${sedi[@]}" "s/\"${PACKAGETOCHANGE}\": \"~.*\"/\"${PACKAGETOCHANGE}\": \"${1}\"/g"  $DIR/../package.json
-   sed "${sedi[@]}" "s/\"${PACKAGETOCHANGE}\": \"^.*\"/\"${PACKAGETOCHANGE}\": \"${1}\"/g"  $DIR/../package.json
+   sed "${sedi[@]}" "s/\"${PACKAGETOCHANGE}\": \".*\"/\"${PACKAGETOCHANGE}\": \"${2}\"/g"  ${1}
+   sed "${sedi[@]}" "s/\"${PACKAGETOCHANGE}\": \"~.*\"/\"${PACKAGETOCHANGE}\": \"${2}\"/g"  ${1}
+   sed "${sedi[@]}" "s/\"${PACKAGETOCHANGE}\": \"^.*\"/\"${PACKAGETOCHANGE}\": \"${2}\"/g"  ${1}
+}
+
+update_component_js_version_for_all() {
+     for (( k=0; k<${pathslength}; k++ )); do
+        update_component_js_version ${paths[$k]} ${1}
+    done
 }
 
 while [[ $1  == -* ]]; do
@@ -120,18 +141,19 @@ fi
 
 projectslength=${#projects[@]}
 libslength=${#libs[@]}
+pathslength=${#paths[@]}
 
 if $EXEC_COMPONENT == true; then
     echo "====== UPDATE  ======"
 
-     update_component_dependency_version
+    update_dependency_for_all
 
      if $JS_API == true; then
 
       if $DIFFERENT_JS_API == true; then
-          update_component_js_version ${VERSION_JS_API}
+          update_component_js_version_for_all ${VERSION_JS_API}
       else
-          update_component_js_version ${VERSION}
+          update_component_js_version_for_all ${VERSION}
       fi
 
      fi

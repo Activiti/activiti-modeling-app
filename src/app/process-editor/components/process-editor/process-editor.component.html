@@ -1,20 +1,36 @@
 <div class="process-editor">
     <ng-container *ngIf="!(loading$ | async); else loading;">
         <div class="process-editor-modeling" [attr.data-automation-id]="'process-editor-modeling'">
-            <ama-process-header [process]="process$ | async"
+            <ama-process-header
+                [process]="process$ | async"
                 [breadcrumbs$]="breadcrumbs$"
-                (save)="saveDiagram($event)"
-                (download)="downloadDiagram($event)"
-                (delete)="deleteProcess($event)">
+                [content]="content$ | async">
             </ama-process-header>
-            <div class="process-editor-modeling-area">
-                <ama-process-modeler [source]="diagram$ | async"
-                    class="process-editor-modeling-area-modeler" [attr.data-automation-id]="'process-editor-modeler'">
-                </ama-process-modeler>
-                <ama-process-properties class="process-editor-modeling-area-properties"
-                    [attr.data-automation-id]="'process-editor-properties'">
-                </ama-process-properties>
-            </div>
+            <mat-tab-group [@.disabled]="true" class="ama-process-tab-group">
+                <mat-tab label="{{ 'APP.PROCESS_EDITOR.TABS.PROCESS_EDITOR' | translate }}">
+                    <div class="process-editor-modeling-area">
+                        <ama-process-modeler
+                            (onChange)="onBpmnEditorChange($event)"
+                            [source]="bpmnContent$ | async"
+                            class="process-editor-modeling-area-modeler"
+                            [attr.data-automation-id]="'process-editor-modeler'">
+                        </ama-process-modeler>
+                        <ama-process-properties class="process-editor-modeling-area-properties"
+                            [attr.data-automation-id]="'process-editor-properties'">
+                        </ama-process-properties>
+                    </div>
+                </mat-tab>
+                <mat-tab label="{{ 'APP.PROCESS_EDITOR.TABS.JSON_EDITOR' | translate }}">
+                    <div class="ama-process-code-editor" data-automation-id="process-basic-tab">
+                        <amasdk-code-editor
+                            (changed)="onXmlChangeAttempt($event)"
+                            [vsTheme]="vsTheme$ | async"
+                            [options]="{language: 'xml'}"
+                            [content]="content$ | async">
+                        </amasdk-code-editor>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
         </div>
     </ng-container>
 

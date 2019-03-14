@@ -1,0 +1,13 @@
+@mixin amasdk-code-editor($theme) {
+    .code-editor {
+        display: flex;
+        width: 100%;
+        min-height: 280px;
+        height: 100%;
+
+        .monaco-editor {
+            height: auto;
+            width: 100%;
+        }
+    }
+}

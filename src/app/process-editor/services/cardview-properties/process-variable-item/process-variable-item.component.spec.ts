@@ -22,6 +22,7 @@ import { ProcessEditorState } from '../../../store/process-editor.state';
 import { CardItemTypeService } from '@alfresco/adf-core';
 import { OpenProcessVariablesDialogAction, OPEN_PROCESS_VARIABLES_DIALOG } from '../../../store/process-variables.actions';
 import { TranslateModule } from '@ngx-translate/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ProcessVariableItemComponent', () => {
     let fixture: ComponentFixture<CardViewProcessVariablesItemComponent>;
@@ -32,7 +33,8 @@ describe('ProcessVariableItemComponent', () => {
         TestBed.configureTestingModule({
             providers: [CardItemTypeService, {provide: Store, useValue: { dispatch: jest.fn()}}],
             declarations: [CardViewProcessVariablesItemComponent],
-            imports: [TranslateModule.forRoot()]
+            imports: [TranslateModule.forRoot()],
+            schemas: [ NO_ERRORS_SCHEMA]
         }).compileComponents();
     }));
 
@@ -46,7 +48,7 @@ describe('ProcessVariableItemComponent', () => {
     it('template should have button', () => {
         const button = fixture.nativeElement.querySelector('button');
         expect (button === null).toBeFalsy();
-        expect(button.innerHTML).toEqual('APP.DIALOGS.EDIT_PROPERTIES');
+        expect(button.innerHTML).toEqual('<mat-icon class=\"variables-icon\">layers</mat-icon>APP.DIALOGS.EDIT_PROPERTIES');
     });
 
     it('clicking on edit button should dispatch a OPEN_VARIABLES_DIALOG action', () => {

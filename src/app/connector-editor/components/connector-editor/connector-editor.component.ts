@@ -27,7 +27,7 @@ import {
     connectorSchema,
     selectSelectedTheme,
     ConnectorContent,
-    JsonValidatorService,
+    CodeValidatorService,
     ValidationResponse,
     AdvancedConnectorEditorData,
     AdvancedConnectorEditorKey
@@ -52,7 +52,7 @@ export class ConnectorEditorComponent {
 
     constructor(
         private store: Store<AmaState>,
-        private jsonValidatorService: JsonValidatorService,
+        private codeValidatorService: CodeValidatorService,
         private changeDetectorRef: ChangeDetectorRef,
         private componentRegister: ComponentRegisterService
     ) {
@@ -91,7 +91,7 @@ export class ConnectorEditorComponent {
     }
 
     private validate(connectorContentString: string): ValidationResponse<ConnectorContent> {
-        return this.jsonValidatorService.validate<ConnectorContent>(connectorContentString, connectorSchema);
+        return this.codeValidatorService.validateJson<ConnectorContent>(connectorContentString, connectorSchema);
     }
 
     private getVsTheme(): Observable<string> {

@@ -23,6 +23,7 @@
                 "SUBTITLE": "Are you sure that you want to do this action?",
                 "BUTTON": "Confirm",
                 "UNSAVED_PAGE": "Are you sure you want to leave without saving",
+                "RELEASE": "Are you sure you want to release and create a new version of this project?",
                 "TYPES": {
                     "DECISION": "decision table",
                     "DATA": "data",
@@ -60,19 +61,21 @@
         },
         "MENU": {
             "EDIT": "Edit",
-            "DELETE": "Delete"
+            "DELETE": "Delete",
+            "RELEASE": "Release"
         },
         "SETTINGS": {
             "HEADER": "App settings"
         },
         "HOME": {
             "NEW_MENU": {
-                "LABEL": "Create new",
+                "LABEL": "NEW",
                 "CREATE_PROJECT_TITLE": "Create new project",
                 "EDIT_PROJECT_TITLE": "Edit project",
                 "PROJECT_CREATED": "The project was successfully created",
                 "PROJECT_UPLOADED": "The project was successfully uploaded",
                 "PROJECT_UPDATED": "The project was successfully updated",
+                "PROJECT_RELEASED": "The project was successfully released",
                 "PROJECT_DELETED": "The project was successfully deleted",
                 "MENU_ITEMS": {
                     "CREATE_PROJECT": "Project",
@@ -120,7 +123,7 @@
             "NO_CONTENT": "<empty>",
             "NO_SELECTION": "Please choose a model to edit from the left sidebar",
             "NEW_MENU": {
-                "LABEL": "New",
+                "LABEL": "NEW",
                 "CREATE": "Create",
                 "IMPORT": "Import",
                 "CREATE_PROCESS_TITLE": "Create new process",
@@ -209,6 +212,7 @@
                 "CHANGE_FAVORITE": "Unknown error happened during the changing favorite state of the project.",
                 "DELETE_PROCESS": "Unknown error happened during the deleting the process.",
                 "LOAD_MODELS": "Unknown error happened while loading the models.",
+                "RELEASE_PROJECT": "Unknown error happened while releasing the project.",
                 "CREATE_PROCESS": {
                     "DUPLICATION": "Process with the same name already exists",
                     "GENERAL": "Unknown error happened during the creating a new process."
@@ -273,6 +277,10 @@
             }
         },
         "PROCESS_EDITOR": {
+            "TABS": {
+                "PROCESS_EDITOR": "Process editor",
+                "JSON_EDITOR": "XML editor"
+            },
             "PRIORITIES": {
                 "LOW": "Low",
                 "MEDIUM": "Medium",
@@ -504,26 +512,5 @@
                 "NOT_VALID_SCHEMA": "The JSON object does not match to schema."
             }
         }
-
-    },
-
-    "SDK":
-        {
-            "VARIABLES_EDITOR": {
-                "ERRORS": {
-                    "EMPTY_NAME": "Name field cannot be empty"
-                },
-                "TABS": {
-                    "VIEWER": "Properties viewer",
-                    "JSON_EDITOR": "JSON editor"
-                },
-                "TABLE": {
-                    "COLUMN_NAME": "Name",
-                    "COLUMN_TYPE": "Type",
-                    "COLUMN_REQUIRED": "Required",
-                    "COLUMN_VALUE": "Value",
-                    "NO_PROPERTIES": "You don't have any property selected"
-                }
-            }
-        }
+    }
 }

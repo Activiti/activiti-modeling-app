@@ -39,11 +39,14 @@ import {
     SHOW_PROJECTS,
     UploadProjectAttemptAction,
     UPLOAD_PROJECT_ATTEMPT,
-    UploadProjectSuccessAction
+    UploadProjectSuccessAction,
+    ReleaseProjectAttemptAction,
+    RELEASE_PROJECT_ATTEMPT,
+    ReleaseProjectSuccessAction,
 } from '../actions/projects';
-import { Store, Action } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { AmaState, CreateProjectAttemptAction, CREATE_PROJECT_ATTEMPT, } from 'ama-sdk';
-import { Project, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
+import { SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
 import { selectProjectsLoaded } from '../selectors/dashboard.selectors';
 import { EntityDialogForm } from 'ama-sdk';
 
@@ -106,13 +109,19 @@ export class ProjectsEffects extends BaseEffects {
         switchMap(() => this.getProjectsAttempt())
     );
 
-    private deleteProject(projectId: string): Observable<Partial<Project>> {
+    @Effect()
+    releaseProjectAttemptEffect = this.actions$.pipe(
+        ofType<ReleaseProjectAttemptAction>(RELEASE_PROJECT_ATTEMPT),
+        mergeMap(action => this.releaseProject(action.projectId))
+    );
+
+    private deleteProject(projectId: string) {
         return this.dashboardService.deleteProject(projectId).pipe(
             switchMap(() => [
                 new DeleteProjectSuccessAction(projectId),
                 new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED')
             ]),
-            catchError<any, SnackbarErrorAction>(e =>
+            catchError(e =>
                 this.genericErrorHandler(
                     () => of(new SnackbarErrorAction('APP.PROJECT.ERROR.DELETE_PROJECT')),
                     e
@@ -121,34 +130,46 @@ export class ProjectsEffects extends BaseEffects {
         );
     }
 
-    private updateProject(projectId: string, form: Partial<EntityDialogForm>): Observable<Partial<Project>> {
+    private updateProject(projectId: string, form: Partial<EntityDialogForm>) {
         return this.dashboardService.updateProject(projectId, form).pipe(
             switchMap(project => [
                 new UpdateProjectSuccessAction(project),
                 new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_UPDATED')
             ]),
-            catchError<any, SnackbarErrorAction>(e =>
+            catchError(e =>
                 this.genericErrorHandler(this.handleProjectUpdateError.bind(this, e), e)
             )
         );
     }
 
-    private createProject(form: Partial<EntityDialogForm>): Observable<Partial<Project>> {
+    private releaseProject(projectId: string) {
+        return this.dashboardService.releaseProject(projectId).pipe(
+            switchMap(project => [
+                new ReleaseProjectSuccessAction(project),
+                new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_RELEASED')
+            ]),
+            catchError(e =>
+                this.genericErrorHandler(this.handleProjectReleaseError.bind(this, e), e)
+            )
+        );
+    }
+
+    private createProject(form: Partial<EntityDialogForm>) {
         return this.dashboardService.createProject(form).pipe(
             switchMap(project => [
                 new CreateProjectSuccessAction(project),
                 new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_CREATED')
             ]),
-            catchError<any, SnackbarErrorAction>(e =>
+            catchError(e =>
                 this.genericErrorHandler(this.handleProjectCreateError.bind(this, e), e)
             )
         );
     }
 
-    private getProjectsAttempt(): Observable<Action | Action[]> {
+    private getProjectsAttempt() {
         return this.dashboardService.fetchProjects().pipe(
             switchMap(projects => [new GetProjectsSuccessAction(projects)]),
-            catchError<any, SnackbarErrorAction>(e =>
+            catchError(e =>
                 this.genericErrorHandler(this.handleError.bind(this, 'APP.HOME.ERROR.LOAD_PROJECTS'), e)
             )
         );
@@ -160,7 +181,7 @@ export class ProjectsEffects extends BaseEffects {
                 new UploadProjectSuccessAction(project),
                 new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_UPLOADED')
             ]),
-            catchError<any, SnackbarErrorAction>(e =>
+            catchError(e =>
                 this.genericErrorHandler(this.handleProjectUploadError.bind(this, e), e)
             )
         );
@@ -198,6 +219,14 @@ export class ProjectsEffects extends BaseEffects {
         } else {
             errorMessage = 'APP.PROJECT.ERROR.UPLOAD_PROJECT.GENERAL';
         }
+
+        return of(new SnackbarErrorAction(errorMessage));
+    }
+
+    private handleProjectReleaseError(error): Observable<SnackbarErrorAction> {
+        let errorMessage;
+
+        errorMessage = 'APP.PROJECT.ERROR.RELEASE_PROJECT';
 
         return of(new SnackbarErrorAction(errorMessage));
     }

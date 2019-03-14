@@ -55,7 +55,15 @@ import {
     GetProcessesSuccessAction,
     CREATE_PROCESS_SUCCESS
 } from './process-editor.actions';
-import { BaseEffects, OpenConfirmDialogAction, ModelOpenedAction, UploadFileAttemptPayload, ModelClosedAction, PROCESS, EntityDialogForm } from 'ama-sdk';
+import {
+    BaseEffects,
+    OpenConfirmDialogAction,
+    ModelOpenedAction,
+    UploadFileAttemptPayload,
+    ModelClosedAction,
+    PROCESS, EntityDialogForm,
+    UPDATE_SERVICE_PARAMETERS
+} from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { SetAppDirtyStateAction } from 'ama-sdk';
 import { forkJoin } from 'rxjs';
@@ -172,6 +180,12 @@ export class ProcessEditorEffects extends BaseEffects {
     );
 
     @Effect()
+     updateServiceParameterSEffect = this.actions$.pipe(
+        ofType(UPDATE_SERVICE_PARAMETERS),
+        mergeMap(() => of(new SetAppDirtyStateAction(true)))
+    );
+
+    @Effect()
     changedElementEffect = this.actions$.pipe(
         ofType<ChangedProcessAction>(CHANGED_PROCESS_DIAGRAM),
         map(action => action.element),
@@ -210,7 +224,7 @@ export class ProcessEditorEffects extends BaseEffects {
             switchMap(() => [
                 new UpdateProcessSuccessAction({ id: payload.processId, changes: payload.metadata }, payload.content),
                 new SetAppDirtyStateAction(false),
-                new SnackbarInfoAction('APP.PROCESS_EDITOR.PROCESS_UPDATED')
+                new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_UPDATED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleProcessUpdatingError.bind(this), e))
         );
@@ -226,7 +240,7 @@ export class ProcessEditorEffects extends BaseEffects {
             });
     }
 
-    private getProcess(processId: string, projectId: string): Observable<GetProcessSuccessAction | SnackbarErrorAction> {
+    private getProcess(processId: string, projectId: string) {
         const processDetails$ = this.processEditorService.getDetails(processId, projectId),
             processDiagram$ = this.processEditorService.getDiagram(processId);
 
@@ -236,8 +250,8 @@ export class ProcessEditorEffects extends BaseEffects {
                 new ModelOpenedAction({ id: process.id, type: process.type }),
                 new SetAppDirtyStateAction(false)
             ]),
-            catchError<any, SnackbarErrorAction>(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'APP.PROCESS_EDITOR.ERRORS.LOAD_DIAGRAM'), e)
+            catchError(e =>
+                this.genericErrorHandler(this.handleError.bind(this, 'PROCESS_EDITOR.ERRORS.LOAD_DIAGRAM'), e)
             )
         );
     }
@@ -246,7 +260,7 @@ export class ProcessEditorEffects extends BaseEffects {
         return this.processEditorService.upload(payload).pipe(
             switchMap(process => [
                 new CreateProcessSuccessAction(process),
-                new SnackbarInfoAction('APP.PROCESS_EDITOR.UPLOAD_SUCCESS')
+                new SnackbarInfoAction('PROCESS_EDITOR.UPLOAD_SUCCESS')
             ]),
             catchError(e =>
                 this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.UPLOAD_FILE'), e)

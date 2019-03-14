@@ -16,7 +16,6 @@
  */
 
 import { Component, OnInit, Renderer2, OnDestroy } from '@angular/core';
-import { SettingsService, StorageService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -33,12 +32,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
     constructor(
         private store: Store<AmaState>,
-        private settingsService: SettingsService,
-        private storage: StorageService,
         private renderer: Renderer2,
         private pluginRoutesManager: PluginRoutesManagerService
     ) {
-        this.setProvider();
         this.pluginRoutesManager.patchRoutes();
     }
 
@@ -52,11 +48,5 @@ export class AppComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.onDestroy$.next();
         this.onDestroy$.complete();
-    }
-
-    private setProvider() {
-        if (this.storage.hasItem('providers')) {
-            this.settingsService.setProviders(this.storage.getItem('providers'));
-        }
     }
 }

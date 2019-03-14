@@ -26,7 +26,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
 import { VariablesComponent } from './variables.component';
 import { VariablesService } from './variables.service';
-import { JsonValidatorService } from './../json-editor/services/json-validator.service';
+import { CodeValidatorService } from './../code-editor/services/code-validator.service';
 import { Subject } from 'rxjs';
 
 describe('VariablesComponent', () => {
@@ -47,7 +47,7 @@ describe('VariablesComponent', () => {
             providers: [
                 CardItemTypeService,
                 VariablesService,
-                { provide: JsonValidatorService, useValue: {validator: jest.fn()}},
+                { provide: CodeValidatorService, useValue: {validator: jest.fn()}},
                 { provide: Store, useValue: { dispatch: jest.fn(), select: jest.fn().mockReturnValue(of())}},
                 { provide: MatDialogRef, useValue: mockDialog },
                 { provide: MAT_DIALOG_DATA, useValue: mockData }

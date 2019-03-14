@@ -13,7 +13,7 @@
                     (selectedTabChange)="onTabChange()"
                     [@.disabled]="true"
                     class="ama-connector-tab-group">
-                    <mat-tab label="{{ 'APP.CONNECTOR_EDITOR.TABS.CONNECTOR_EDITOR' | translate }}">
+                    <mat-tab label="{{ 'CONNECTOR_EDITOR.TABS.CONNECTOR_EDITOR' | translate }}">
                         <div class="ama-connector-page"
                             data-automation-id="connector-advanced-tab">
                             <adf-dynamic-component
@@ -22,23 +22,23 @@
                             </adf-dynamic-component>
                         </div>
                     </mat-tab>
-                    <mat-tab label="{{ 'APP.CONNECTOR_EDITOR.TABS.JSON_EDITOR' | translate }}">
+                    <mat-tab label="{{ 'CONNECTOR_EDITOR.TABS.JSON_EDITOR' | translate }}">
                         <div class="ama-connector-page ama-connector-page-raw-editor"
                             data-automation-id="connector-basic-tab">
-                            <amasdk-json-editor [vsTheme]="vsTheme$ | async"
+                            <amasdk-code-editor [vsTheme]="vsTheme$ | async"
                                 [content]="editorContent"
                                 (changed)="onChangeAttempt($event)">
-                            </amasdk-json-editor>
+                            </amasdk-code-editor>
                         </div>
                     </mat-tab>
                 </mat-tab-group>
             </ng-container>
 
             <ng-container *ngIf="!isAdvancedEditorEmbedded()">
-                <amasdk-json-editor [vsTheme]="vsTheme$ | async"
+                <amasdk-code-editor [vsTheme]="vsTheme$ | async"
                     [content]="editorContent"
                     (changed)="onChangeAttempt($event)">
-                </amasdk-json-editor>
+                </amasdk-code-editor>
             </ng-container>
         </ng-container>
     </ng-container>
