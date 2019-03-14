@@ -28,12 +28,11 @@ import { TemplatePortal } from '@angular/cdk/portal';
     templatePortal: TemplatePortal;
     @Input() templatePortalContent: TemplateRef<any>;
     @Input() amaPaletteItem: any;
-    @Input() amaPaletePortal: TemplatePortal;
     @Input() amaPaletteOverlayRef: OverlayRef;
 
      constructor(
         public submenuBtnRef: ElementRef,
-        public amaPaleteContainerRef: ViewContainerRef,
+        public amaPaletteContainerRef: ViewContainerRef,
         private overlay: Overlay
      ) {
      }
@@ -57,7 +56,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
 
     @HostListener('window:click', ['$event']) onWindowClick($event) {
         if ($event.target === this.submenuBtnRef.nativeElement) {
-            this.templatePortal = new TemplatePortal(this.templatePortalContent, this.amaPaleteContainerRef);
+            this.templatePortal = new TemplatePortal(this.templatePortalContent, this.amaPaletteContainerRef);
             this.templatePortal.context = {$implicit: this.amaPaletteItem};
             if (!this.amaPaletteOverlayRef.hasAttached()) {
                 this.amaPaletteOverlayRef.attach(this.templatePortal);
