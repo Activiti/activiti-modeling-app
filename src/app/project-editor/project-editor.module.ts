@@ -34,6 +34,7 @@ import { ProjectTreeFilterComponent } from './components/project-tree/project-tr
 import { ProjectEditorService } from './services/project-editor.service';
 import { ProjectTreeHelper } from './components/project-tree/project-tree.helper';
 import { ProjectTreeIconsComponent } from './components/project-tree/project-tree-icons/project-tree-icons.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
     imports: [
@@ -41,6 +42,7 @@ import { ProjectTreeIconsComponent } from './components/project-tree/project-tre
         ProjectEditorRoutingModule,
         CoreModule.forChild(),
         SharedModule,
+        OverlayModule,
         StoreModule.forFeature(PROJECT_EDITOR_STATE_NAME, { project, tree }),
         EffectsModule.forFeature([ProjectEffects])
     ],

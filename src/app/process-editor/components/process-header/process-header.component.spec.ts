@@ -20,7 +20,7 @@ import { ProcessHeaderComponent } from './process-header.component';
 import { MatIconModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule, AmaState, OpenConfirmDialogAction } from 'ama-sdk';
+import { SharedModule, AmaState, OpenConfirmDialogAction, ProcessModelerServiceToken } from 'ama-sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { By } from '@angular/platform-browser';
 import { mockProcess } from '../../store/process.mock';
@@ -29,7 +29,6 @@ import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DeleteProcessAttemptAction, DownloadProcessAction, ValidateProcessAttemptAction, UpdateProcessAttemptAction } from '../../store/process-editor.actions';
-import { ProcessModelerService } from '../../services/process-modeler.service';
 
 describe('ProcessHeaderComponent', () => {
     let fixture: ComponentFixture<ProcessHeaderComponent>;
@@ -57,7 +56,7 @@ describe('ProcessHeaderComponent', () => {
                     }
                 },
                 {
-                    provide: ProcessModelerService,
+                    provide: ProcessModelerServiceToken,
                     useValue: {
                         getRootProcessElement: jest.fn().mockReturnValue({
                             businessObject: { name: mockProcess.name, get: (param) => {

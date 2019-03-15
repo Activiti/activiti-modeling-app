@@ -1,0 +1,115 @@
+@mixin ama-palette($theme) {
+    $foreground: map-get($theme, foreground);
+    $primary: map-get($theme, primary);
+
+    ama-process-palette .mat-card {
+        width: 37px;
+        border: 1px solid mat-color($foreground, text, 0.07);
+        border-radius: 0px;
+        box-sizing: content-box;
+        padding: 0;
+
+        .palette-header {
+            height: 12px;
+            background: mat-color($foreground, text, 0.08);
+            cursor: move;
+            position: relative;
+
+            mat-icon {
+                font-size: 10px;
+                width: 10px;
+                height: 10px;
+                margin: 0;
+                position: absolute;
+                right: 0px;
+                top: 1px;
+            }
+        }
+
+        .palette-body {
+            background: mat-color($foreground, text, 0.03);
+            padding: 6px;
+            display: none;
+
+            &.opened {
+                display: block;
+            }
+        }
+
+        .entry {
+            font-size: 25px;
+            border: 0;
+            background: transparent;
+            padding: 0;
+
+            &:not(:first-child) {
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            button {
+                cursor: pointer;
+                position: absolute;
+                height: 25px;
+                width: 25px;
+                margin-left: -30px;
+                background: transparent;
+                border: none;
+                outline: none;
+            }
+
+            &:hover,
+            &.selected {
+                color: mat-color($primary);
+            }
+        }
+
+        .separator {
+            border-color: mat-color($foreground, text, 0.05);
+        }
+    }
+
+    .mat-card.palette-drawer {
+        min-width: 25px;
+        box-sizing: content-box;
+        padding: 6px;
+        text-align: center;
+        font-size: 25px;
+        background: mat-color($foreground, text, 0.03);
+        margin-left: 38px;
+        margin-bottom: -32px;
+
+        .entry {
+
+            button {
+                cursor: pointer;
+                position: absolute;
+                height: 25px;
+                width: 25px;
+                margin-left: -30px;
+                background: transparent;
+                border: none;
+                outline: none;
+            }
+
+            &:hover {
+                color: mat-color($primary);
+                cursor: pointer;
+            }
+        }
+
+        .entry:not(:first-child) {
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+    }
+}

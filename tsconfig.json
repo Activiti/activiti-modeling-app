@@ -13,7 +13,7 @@
         "target": "es5",
         "allowSyntheticDefaultImports": true,
         "typeRoots": ["node_modules/@types"],
-        "lib": ["es2018", "dom"],
+        "lib": ["esnext.array", "es2017", "dom"],
         "module": "es2015",
         "baseUrl": "./",
         "paths": {

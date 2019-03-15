@@ -15,14 +15,7 @@
  * limitations under the License.
  */
 
-
-
-export * from './cardview-properties/implementation-item.model';
-export * from './cardview-properties/form-key.model';
-export * from './cardview-properties/default-sequence-flow-item.model';
-export * from './bpmn-element';
-export * from './bpmn-modeler';
-export * from './palette';
-export * from './process-editor.actions';
-export * from './process-editor.selectors';
-export * from './properties';
+declare module '*.json' {
+  const value: any;
+  export default value;
+}

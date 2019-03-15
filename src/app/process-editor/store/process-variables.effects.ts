@@ -18,11 +18,19 @@
 import { OpenProcessVariablesDialogAction, OPEN_PROCESS_VARIABLES_DIALOG, UpdateProcessVariablesAction, UPDATE_PROCESS_VARIABLES } from './process-variables.actions';
 import { ofType, Actions, Effect } from '@ngrx/effects';
 import { switchMap, tap, take, map, mergeMap } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { LogService } from '@alfresco/adf-core';
 import { Router } from '@angular/router';
-import { ProcessModelerService } from '../services/process-modeler.service';
-import { AmaState, DialogService, BaseEffects, SetAppDirtyStateAction, EntityProperties, selectSelectedTheme } from 'ama-sdk';
+import {
+    AmaState,
+    DialogService,
+    BaseEffects,
+    SetAppDirtyStateAction,
+    EntityProperties,
+    selectSelectedTheme,
+    ProcessModelerServiceToken,
+    ProcessModelerService
+} from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { Subject, of } from 'rxjs';
 import { VariablesComponent, selectSelectedProcess } from 'ama-sdk';
@@ -35,7 +43,7 @@ export class ProcessVariablesEffects extends BaseEffects {
         protected logService: LogService,
         protected router: Router,
         private dialogService: DialogService,
-        private modelerService: ProcessModelerService,
+        @Inject(ProcessModelerServiceToken) private modelerService: ProcessModelerService,
         private store: Store<AmaState>
     ) {
         super(router, logService);

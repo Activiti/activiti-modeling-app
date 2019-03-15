@@ -15,15 +15,22 @@
  * limitations under the License.
  */
 
-import { Component, Input } from '@angular/core';
-import { Process, AmaState, OpenConfirmDialogAction, ProcessContent, EntityDialogForm } from 'ama-sdk';
+import { Component, Input, Inject } from '@angular/core';
+import {
+    Process,
+    AmaState,
+    OpenConfirmDialogAction,
+    ProcessContent,
+    EntityDialogForm,
+    ProcessModelerServiceToken,
+    ProcessModelerService
+} from 'ama-sdk';
 import { BreadcrumbItem } from 'ama-sdk';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { DeleteProcessAttemptAction, ValidateProcessAttemptAction, DownloadProcessAction, UpdateProcessAttemptAction } from '../../store/process-editor.actions';
 import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
 import { processNameHandler } from '../../services/bpmn-js/property-handlers/process-name.handler';
-import { ProcessModelerService } from '../../services/process-modeler.service';
 
 @Component({
     selector: 'ama-process-header',
@@ -34,7 +41,10 @@ export class ProcessHeaderComponent {
     @Input() content: ProcessContent;
     @Input() breadcrumbs$: Observable<BreadcrumbItem[]>;
 
-    constructor(private store: Store<AmaState>, private processModeler: ProcessModelerService) {}
+    constructor(
+        private store: Store<AmaState>,
+        @Inject(ProcessModelerServiceToken) private processModeler: ProcessModelerService
+    ) {}
 
     onSaveClick(): void {
         const element = this.processModeler.getRootProcessElement();

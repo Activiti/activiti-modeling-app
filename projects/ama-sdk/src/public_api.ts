@@ -19,6 +19,8 @@
  * Public API Surface of ama-sdk
  */
 
+/// <reference path="./lib/process-editor/bpmn.d.ts" />
+
 export * from './lib/api/public_api';
 export * from './lib/code-editor/public_api';
 export * from './lib/process-editor/public_api';

@@ -18,10 +18,19 @@
         background-color: mat-color($foreground, text, 0.02);
     }
 
+    .process-palette {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        display: block;
+        width: auto;
+        z-index: 2;
+    }
+
     .bpmn-controls {
         width: auto;
-        position: fixed;
-        right: 360px;
+        position: absolute;
+        right: 8px;
         z-index: 2;
         background: mat-color($background, raised-button);
         box-shadow: 0 1px 4px mat-color($foreground, slider-off);
@@ -31,11 +40,11 @@
         margin: 0;
 
         &.bpmn-actions-controls {
-            top: 185px;
+            top: 8px;
         }
 
         &.bpmn-zoom-controls {
-            bottom: 90px;
+            bottom: 80px;
         }
 
         hr {

@@ -22,11 +22,9 @@ export class ProcessModelerComponent extends GenericPage {
 
     readonly processEditorModeler = element(by.css(`[data-automation-id="process-editor-modeler"]`));
     readonly canvas = element(by.className(`canvas-editor`));
-    readonly paletteEntries = element(by.css(`[class*="palette-entries"]`));
-    readonly userTask = element(by.css(`[data-action="create.user-task"]`));
-    readonly serviceTask = element(by.css(`[data-action="create-service-task"]`));
-    readonly callActivity = element(by.css(`[data-action="create.callActivity"]`));
-    readonly dragElement = element(by.css(`.djs-drag-group`));
+    readonly userTask = element(by.css(`[data-automation-id="element::bpmn:UserTask"]`));
+    readonly serviceTask = element(by.css(`[data-automation-id="element::bpmn:ServiceTask"]`));
+    readonly callActivity = element(by.css(`[data-automation-id="element::bpmn:CallActivity"]`));
 
     readonly processStep = element(by.css(`[data-element-id*="ServiceTask"]`));
 

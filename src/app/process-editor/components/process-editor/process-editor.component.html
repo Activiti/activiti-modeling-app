@@ -8,7 +8,7 @@
             </ama-process-header>
             <mat-tab-group [@.disabled]="true" class="ama-process-tab-group">
                 <mat-tab label="{{ 'APP.PROCESS_EDITOR.TABS.PROCESS_EDITOR' | translate }}">
-                    <div class="process-editor-modeling-area">
+                    <div class="process-editor-modeling-area" cdkDropList>
                         <ama-process-modeler
                             (onChange)="onBpmnEditorChange($event)"
                             [source]="bpmnContent$ | async"

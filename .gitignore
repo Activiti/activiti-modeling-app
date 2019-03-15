@@ -49,3 +49,4 @@ testem.log
 Thumbs.db
 
 **/versions.json
+.env

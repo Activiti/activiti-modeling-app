@@ -19,17 +19,15 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule, AmaState, SnackbarErrorAction } from 'ama-sdk';
+import { SharedModule, AmaState, ProcessModelerService, ProcessModelerServiceToken } from 'ama-sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { ProcessEditorComponent } from './process-editor.component';
-import { ProcessModelerService } from '../../services/process-modeler.service';
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 import { CardViewPropertiesFactory } from '../../services/cardview-properties/cardview-properties.factory';
 import { RouterTestingModule } from '@angular/router/testing';
 import { mockProcess } from '../../store/process.mock';
-import { DownloadProcessAction, ValidateProcessAttemptAction } from '../../store/process-editor.actions';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 
@@ -82,7 +80,7 @@ describe('ProcessEditorComponent', () => {
                 CardViewPropertiesFactory,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
-                    provide: ProcessModelerService,
+                    provide: ProcessModelerServiceToken,
                     useValue: {
                         export: jest.fn().mockReturnValue(of({})),
                         getRootProcessElement: jest.fn().mockReturnValue({
@@ -113,7 +111,7 @@ describe('ProcessEditorComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ProcessEditorComponent);
         store = TestBed.get(Store);
-        processModelerService = TestBed.get(ProcessModelerService);
+        processModelerService = TestBed.get(ProcessModelerServiceToken);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

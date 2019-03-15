@@ -17,9 +17,8 @@
 
 import { CardViewTextItemModel } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty, BpmnElement } from 'ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
-import { BpmnElement } from '../bpmn/elements';
 
 const propertyName = BpmnProperty.conditionExpression;
 

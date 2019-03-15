@@ -5,6 +5,7 @@
 @import "./services/cardview-properties/implementation-item/implementation-item.component";
 @import "./services/cardview-properties/default-sequence-flow/default-sequence-flow-item.component";
 @import "./services/cardview-properties/process-variable-item/process-variable-item.component";
+@import "./components/process-modeler/palette/palette.component.scss";
 
 @mixin ama-process-editor-module($theme) {
     @include ama-implementation-item($theme);
@@ -14,4 +15,5 @@
     @include ama-process-properties-panel($theme);
     @include ama-process-modeler-bpmnjs($theme);
     @include ama-process-variable-item($theme);
+    @include ama-palette($theme);
 }
