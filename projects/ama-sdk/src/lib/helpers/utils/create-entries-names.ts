@@ -34,7 +34,7 @@ export const createProcessName = (name) => {
     return sanitizeString(name.replace(PROCESS_FILE_FORMAT, ''));
 };
 
-export const createRuleName = (name) => {
+export const createDecisionTableName = (name) => {
     return sanitizeString(name.replace(DECISION_TABLE_FILE_FORMAT, ''));
 };
 

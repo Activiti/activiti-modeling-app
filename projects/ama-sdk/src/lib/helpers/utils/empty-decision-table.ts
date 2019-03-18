@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-import { formatUuid, createRuleName } from './create-entries-names';
+import { formatUuid, createDecisionTableName } from './create-entries-names';
 import { ContentType } from './../../api-implementations/acm-api/content-types';
 import { DecisionTable } from '../../api/types';
 
 /* tslint:disable */
 export const getEmptyDecisionTable = (decisionTable: DecisionTable) => `<?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="${formatUuid(ContentType.DecisionTable, decisionTable.id)}" name="${createRuleName(decisionTable.name)}" documentation="${decisionTable.description ? decisionTable.description: ''}" namespace="http://camunda.org/schema/1.0/dmn" exporter="dmn-js (https://demo.bpmn.io/dmn)" exporterVersion="6.2.1">
-  <decision id="decision-${createRuleName(decisionTable.name)}" name="${createRuleName(decisionTable.name)}">
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="${formatUuid(ContentType.DecisionTable, decisionTable.id)}" name="${createDecisionTableName(decisionTable.name)}" documentation="${decisionTable.description ? decisionTable.description: ''}" namespace="http://camunda.org/schema/1.0/dmn" exporter="dmn-js (https://demo.bpmn.io/dmn)" exporterVersion="6.2.1">
+  <decision id="decision-${createDecisionTableName(decisionTable.name)}" name="${createDecisionTableName(decisionTable.name)}">
     <decisionTable id="decisionTable_1sue4jl">
       <input id="input1" label="">
         <inputExpression id="inputExpression1" typeRef="string">
