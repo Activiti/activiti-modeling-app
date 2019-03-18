@@ -118,6 +118,7 @@
         "PROJECT": {
             "BACKTO": "Projects",
             "UPLOAD_FILE": "Upload file",
+            "IMPORT": "Import",
             "CREATE_NEW": "Create new",
             "UPLOAD_FILE_SUCCESS": "The file was successfully uploaded",
             "NO_CONTENT": "<empty>",
@@ -294,6 +295,7 @@
                 "LASSO_TOOL": "Activate the lasso tool"
             },
             "ELEMENT_PROPERTIES": {
+                "PROPERTIES": "Properties",
                 "ID": "id",
                 "NAME": "Name",
                 "VERSION": "Version",
