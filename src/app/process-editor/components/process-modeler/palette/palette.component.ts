@@ -17,7 +17,7 @@
 
 import { Component, Inject, Optional, HostListener, ViewChild, TemplateRef } from '@angular/core';
 import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
-import { PaletteElement, PaletteElementsToken, ToolTrigger } from 'ama-sdk';
+import { PaletteElement, PaletteElementsToken, ToolTrigger, BpmnTrigger } from 'ama-sdk';
 import { OverlayRef } from '@angular/cdk/overlay';
 
 @Component({
@@ -57,7 +57,7 @@ export class PaletteComponent {
         this.opened = !this.opened;
     }
 
-    public onClick(paletteItem: PaletteElement, event: any) {
+    public onClick(paletteItem: BpmnTrigger, event: any) {
         if (!paletteItem.clickable) {
             return;
         }
@@ -69,7 +69,7 @@ export class PaletteComponent {
         this.delegateEvent(paletteItem, event);
     }
 
-    public onDrag(paletteItem: PaletteElement, event: any) {
+    public onDrag(paletteItem: BpmnTrigger, event: any) {
         if (!paletteItem.draggable) {
             return;
         }
@@ -77,7 +77,7 @@ export class PaletteComponent {
         this.delegateEvent(paletteItem, event);
     }
 
-    private delegateEvent(paletteItem: PaletteElement, event: any) {
+    private delegateEvent(paletteItem: BpmnTrigger, event: any) {
         this.processModelerPaletteService.delegateEvent(paletteItem, event);
     }
 }

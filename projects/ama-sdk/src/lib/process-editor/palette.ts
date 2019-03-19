@@ -27,16 +27,16 @@ export interface ToolTrigger {
 }
 
 export interface BpmnElementTrigger {
-    group: 'bpmn';
+    group: 'element';
     type: string;
     icon: string;
     title: string;
-    options: any;
+    options?: any;
     clickable: boolean;
     draggable: boolean;
 }
 
-export type BpmnTrigger = BpmnElementTrigger & ToolTrigger;
+export type BpmnTrigger = BpmnElementTrigger | ToolTrigger;
 
 export interface PaletteSeparatorElement {
     group: 'separator';
@@ -49,7 +49,7 @@ export interface PaletteGroupElement {
     children?: BpmnTrigger[];
 }
 
-export type PaletteElement = PaletteSeparatorElement & PaletteGroupElement & BpmnTrigger;
+export type PaletteElement = PaletteSeparatorElement | PaletteGroupElement | BpmnTrigger;
 
 export interface TiggerHandler {
     processEvent(event: any, element: BpmnTrigger): void;
