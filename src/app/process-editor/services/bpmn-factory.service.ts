@@ -43,7 +43,7 @@ const activitiModdleDescriptor = require('./activiti.json');
 
 @Injectable()
 export class BpmnFactoryService implements BpmnFactory {
-    create({ clickHandler, changeHandler, removeHandler, selectHandler }: ModelerInitOptions): Bpmn.Modeler {
+    create({ clickHandler, changeHandler, removeHandler, selectHandler, createHandler }: ModelerInitOptions): Bpmn.Modeler {
         const modeler = new BpmnModeler({
             keyboard: { bindTo: document },
             ...this.getBpmnPropertiesPanelConfig()
@@ -53,6 +53,7 @@ export class BpmnFactoryService implements BpmnFactory {
         modeler.on('element.changed', changeHandler);
         modeler.on('shape.remove', removeHandler);
         modeler.on('selection.changed', selectHandler);
+        modeler.on('create.end', createHandler);
 
         return modeler;
     }

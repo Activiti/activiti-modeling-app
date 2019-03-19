@@ -145,6 +145,12 @@ export class RemoveDiagramElementAction implements Action {
     constructor(public element?: SelectedProcessElement) {}
 }
 
+export const OPEN_OOB_DIALOG = 'OPEN_OOB_DIALOG';
+export class OpenOobDialogAction implements Action {
+    readonly type = OPEN_OOB_DIALOG;
+    constructor(public data: any) {}
+}
+
 export type ProcessActions =
     | ShowProcessesAction
     | UploadProcessAttemptAction

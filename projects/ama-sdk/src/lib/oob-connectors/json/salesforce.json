@@ -1,0 +1,335 @@
+{
+    "id": "connector-7c36a2d7-c3d0-440d-b9f6-d2a0966a6791",
+    "name": "salesforceConnector",
+    "description": "APS Connector that provides an integration with Salesforce",
+    "actions": {
+        "f2dec2c2-c469-48d0-80be-3d4a318d9d71": {
+            "id": "f2dec2c2-c469-48d0-80be-3d4a318d9d71",
+            "name": "approval_submit",
+            "description": "Submits a Record for Approval",
+            "inputs": [
+                {
+                    "id": "4b831c89-99f9-4704-a56d-41e2f8ec2934",
+                    "name": "salesforcePayload",
+                    "description": "Object to create the approval",
+                    "type": "string"
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "8b98ce4b-3179-433f-8571-7da21a147b32",
+                    "name": "salesforceResult",
+                    "description": "Object with lists with the type and attributes of the object, errors and success",
+                    "type": "string"
+                },
+                {
+                    "id": "63c5a974-5be5-4119-bb73-3ef35a2bee6e",
+                    "name": "salesforceStatus",
+                    "description": "HTTP status code",
+                    "type": "string"
+                }
+            ]
+        },
+        "d94cfd20-cf18-4122-bc2f-c0401340e1fc": {
+            "id": "d94cfd20-cf18-4122-bc2f-c0401340e1fc",
+            "name": "CREATE",
+            "description": "Creates an object of the specified type.",
+            "inputs": [
+                {
+                    "id": "381764aa-f418-46a9-8b75-ca67f1a4f575",
+                    "name": "SObjectName",
+                    "description": "Salesforce Object type",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "160dc300-05e4-4cde-9db6-6ea40e0b306b",
+                    "name": "salesforcePayload",
+                    "description": "Attributes of the object to be created.",
+                    "type": "string",
+                    "required": false
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "70b5f691-84ec-4fa3-a74a-4d8cd8da9571",
+                    "name": "salesforceResult",
+                    "description": "Result of the creation",
+                    "type": "string"
+                },
+                {
+                    "id": "d6e7612f-00f5-4291-a6db-704c3e39cd8f",
+                    "name": "salesforceStatus",
+                    "description": "HTTP status code",
+                    "type": "string"
+                },
+                {
+                    "id": "74a6315a-f9c7-4f41-ad8a-299cb81a8288",
+                    "name": "salesforceError",
+                    "description": "Error description when an error occurs calling Salesforce",
+                    "type": "string"
+                }
+            ]
+        },
+        "60b74bf4-b85c-4040-be63-0ce3b8ac32e0": {
+            "id": "60b74bf4-b85c-4040-be63-0ce3b8ac32e0",
+            "name": "GET",
+            "description": "Retrieves field values from a record.",
+            "inputs": [
+                {
+                    "id": "4d04acc2-3d59-44bf-86b7-01bdf354aef0",
+                    "name": "SObjectName",
+                    "description": "Salesforce Object type",
+                    "type": "string"
+                },
+                {
+                    "id": "d66d9fbd-8337-4523-81bd-057a534b7dd4",
+                    "name": "SObjectId",
+                    "description": "Salesforce Object ID",
+                    "type": "string",
+                    "required": false
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "5017aba2-1404-4407-95e5-380dad0d51cd",
+                    "name": "salesforceResult",
+                    "description": "Attributes of the object",
+                    "type": "string"
+                },
+                {
+                    "id": "b36149fb-f467-4b40-a0f5-0acb1fa8b926",
+                    "name": "salesforceStatus",
+                    "description": "HTTP status code",
+                    "type": "string"
+                },
+                {
+                    "id": "4c7c629d-8cfe-46b2-90af-32718dac77b3",
+                    "name": "salesforceError",
+                    "description": "Error description when an error occurs calling Salesforce",
+                    "type": "string"
+                }
+            ]
+        },
+        "c0998c9e-bc79-466b-92bc-61eb0835768d": {
+            "id": "c0998c9e-bc79-466b-92bc-61eb0835768d",
+            "name": "UPDATE",
+            "description": "Updates records. Provide the updated record information in your request data and use the PATCH method of the resource with a specific record ID to update that record",
+            "inputs": [
+                {
+                    "id": "b078b6ec-3374-45b5-a9da-f2231304b374",
+                    "name": "SObjectName",
+                    "description": "Salesforce Object type",
+                    "type": "string"
+                },
+                {
+                    "id": "0390e5bc-f6e4-4d52-91a0-9075b4442ec6",
+                    "name": "SObjectId",
+                    "description": "Salesforce Object ID",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "f58ee3f8-dce6-4a55-8664-e073d27c971b",
+                    "name": "salesforcePayload",
+                    "description": "Attributes of the object to be updated.",
+                    "type": "string",
+                    "required": false
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "55ee925d-001c-43b2-98d4-e84d857f5424",
+                    "name": "salesforceStatus",
+                    "description": "HTTP status code",
+                    "type": "string"
+                }
+            ]
+        },
+        "7f12c5dd-c932-4faf-9ce7-6955b219709c": {
+            "id": "7f12c5dd-c932-4faf-9ce7-6955b219709c",
+            "name": "DELETE",
+            "description": "Deletes records. Specify the record ID.",
+            "inputs": [
+                {
+                    "id": "9f5f987a-fca0-4782-acd5-90e7fccce4c4",
+                    "name": "SObjectName",
+                    "description": "Salesforce Object type",
+                    "type": "string"
+                },
+                {
+                    "id": "02f69fbf-6ad8-4797-9138-061e5e85aa9b",
+                    "name": "SObjectId",
+                    "description": "Salesforce Object ID",
+                    "type": "string",
+                    "required": false
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "7a4a8b4b-7104-4575-9257-a6eb335231ad",
+                    "name": "salesforceStatus",
+                    "description": "HTTP status code",
+                    "type": "string"
+                }
+            ]
+        },
+        "905b4773-0188-484c-ab0d-26a91b19af49": {
+            "id": "905b4773-0188-484c-ab0d-26a91b19af49",
+            "name": "QUERY",
+            "description": "Executes a SOQL query that returns all the results in a single response.",
+            "inputs": [
+                {
+                    "id": "17115a5c-efad-4e90-a9da-caf7afbf7690",
+                    "name": "salesforceQuery",
+                    "description": "Query to be executed",
+                    "type": "string"
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "7d606a26-3b75-4585-ae9c-2b08714e4e46",
+                    "name": "salesforceResult",
+                    "description": "Query results: totalSize, done and records",
+                    "type": "string"
+                },
+                {
+                    "id": "131c00ce-5407-4bca-b655-f9c052f1720a",
+                    "name": "salesforceStatus",
+                    "description": "HTTP status code",
+                    "type": "string"
+                },
+                {
+                    "id": "986b12e2-3840-4aa5-85b7-4b978fd1b58d",
+                    "name": "salesforceError",
+                    "description": "Error description when an error occurs calling Salesforce",
+                    "type": "string"
+                }
+            ]
+        },
+        "f168ebcf-131f-4992-b976-7672fe04623e": {
+            "id": "f168ebcf-131f-4992-b976-7672fe04623e",
+            "name": "approval_list",
+            "description": "Gets information about approvals",
+            "outputs": [
+                {
+                    "id": "bbd70ac5-85c5-44cb-8867-776a9b9a4414",
+                    "name": "salesforceResult",
+                    "description": "Object with lists with the type and attributes of the object",
+                    "type": "string"
+                },
+                {
+                    "id": "e3848eb0-6c84-411d-a627-b9813db95352",
+                    "name": "salesforceStatus",
+                    "description": "HTTP status code",
+                    "type": "string"
+                },
+                {
+                    "id": "da17f7ea-7afe-46e8-8342-b02a67f8f2a6",
+                    "name": "salesforceError",
+                    "description": "Error description when an error occurs calling Salesforce",
+                    "type": "string"
+                }
+            ]
+        },
+        "7cc90c0c-9091-40fb-b4cc-a1d230e2d81b": {
+            "id": "7cc90c0c-9091-40fb-b4cc-a1d230e2d81b",
+            "name": "approval_approve",
+            "description": "Approves a record.",
+            "inputs": [
+                {
+                    "id": "db426c04-d199-4ba2-b368-a95c63f141a7",
+                    "name": "salesforcePayload",
+                    "description": "Object to approve the approval",
+                    "type": "string"
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "f4b8eb3f-0426-4f25-9cf1-567a44fd6e49",
+                    "name": "salesforceResult",
+                    "description": "Object with a list with the approval results.",
+                    "type": "string"
+                },
+                {
+                    "id": "1633bf1f-7cac-487c-93de-99a8144d4a43",
+                    "name": "salesforceStatus",
+                    "description": "HTTP status code",
+                    "type": "string"
+                },
+                {
+                    "id": "608eff16-140d-454e-bdf2-f4aff82d83c7",
+                    "name": "salesforceError",
+                    "description": "Error description when an error occurs calling Salesforce",
+                    "type": "string"
+                }
+            ]
+        },
+        "054208c5-838f-4af2-8912-1731a040b688": {
+            "id": "054208c5-838f-4af2-8912-1731a040b688",
+            "name": "approval_reject",
+            "description": "Rejects a record.",
+            "outputs": [
+                {
+                    "id": "602b775d-971b-4ff9-8e4c-22eeea8a6f2e",
+                    "name": "salesforceResult",
+                    "description": "Object with a list with the approval results.",
+                    "type": "string"
+                },
+                {
+                    "id": "e25a8e35-665b-43b7-bf8e-e163111fb1d7",
+                    "name": "salesforceStatus",
+                    "description": "HTTP status code",
+                    "type": "string"
+                },
+                {
+                    "id": "2be9372e-dd18-414f-ae8b-681c0c26015e",
+                    "name": "salesforceError",
+                    "description": "Error description when an error occurs calling Salesforce",
+                    "type": "string"
+                }
+            ],
+            "inputs": [
+                {
+                    "id": "035dba9e-c74f-47b7-818c-9434f42e9148",
+                    "name": "salesforcePayload",
+                    "description": "Object to reject the approval",
+                    "type": "string"
+                }
+            ]
+        },
+        "044bc200-3492-49a8-9f74-cc8c84946766": {
+            "id": "044bc200-3492-49a8-9f74-cc8c84946766",
+            "name": "custom_object_create",
+            "description": "Creates a custom object",
+            "inputs": [
+                {
+                    "id": "7100410c-4dfe-4baa-b3d6-ba8d640fce69",
+                    "name": "salesforcePayload",
+                    "description": "Object with the custom object",
+                    "type": "string"
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "088c25e8-ce4e-4ce1-a4d0-eea18fc3062c",
+                    "name": "salesforceResult",
+                    "description": "name of the created object ",
+                    "type": "string"
+                },
+                {
+                    "id": "388ac3f7-9182-4f70-baa8-c2029cdaebda",
+                    "name": "salesforceStatus",
+                    "description": " status code",
+                    "type": "boolean"
+                },
+                {
+                    "id": "5129da52-dba5-49af-9776-5d29d02a9bd5",
+                    "name": "salesforceError",
+                    "description": "Error description when an error occurs calling Salesforce",
+                    "type": "string"
+                }
+            ]
+        }
+    }
+}

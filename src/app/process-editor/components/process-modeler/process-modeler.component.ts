@@ -23,7 +23,8 @@ import { Store } from '@ngrx/store';
 import {
     SelectModelerElementAction,
     ChangedProcessAction,
-    RemoveDiagramElementAction
+    RemoveDiagramElementAction,
+    OpenOobDialogAction
 } from '../../store/process-editor.actions';
 import { ProcessEntitiesState } from '../../store/process-entities.state';
 
@@ -68,6 +69,11 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
                             })
                         )
                     );
+                }
+            },
+            createHandler: event => {
+                if (event.shape.type === 'bpmn:ServiceTask') {
+                    this.store.dispatch(new OpenOobDialogAction({}));
                 }
             }
         });

@@ -15,30 +15,4 @@
  * limitations under the License.
  */
 
-
-export interface EntityDialogForm {
-    id?: string;
-    name: string;
-    description?: string;
-    projectId?: string;
-    template?: string;
-}
-
-export interface BreadcrumbItem {
-    name?: string;
-    url?: string;
-}
-
-export interface UploadFileAttemptPayload {
-    file: File;
-    projectId: string;
-}
-
-export interface EntityDialogPayload {
-    title: string;
-    nameField: string;
-    descriptionField: string;
-    values?: EntityDialogForm;
-    action: any;
-}
-
+ export { OobConnectorsService } from './oob-connectors.service';

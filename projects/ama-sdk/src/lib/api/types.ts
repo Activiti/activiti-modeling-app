@@ -111,6 +111,7 @@ export type ProcessContent = string;
 
 export interface Connector extends Model {
     type: CONNECTOR_TYPE;
+    template: string;
 }
 
 export interface ConnectorParameter {
@@ -125,6 +126,7 @@ export interface ConnectorContent {
     name: string;
     description?: string;
     actions?: ConnectorActionData;
+    template?: string;
 }
 
 export interface ConnectorActionData {

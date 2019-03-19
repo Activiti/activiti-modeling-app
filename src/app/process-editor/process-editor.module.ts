@@ -44,7 +44,8 @@ import {
     providePaletteHandler,
     providePaletteElements,
     BpmnFactoryToken,
-    ProcessModelerServiceToken
+    ProcessModelerServiceToken,
+    OobConnectorsService
 } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { CardViewProcessVariablesItemComponent } from './services/cardview-properties/process-variable-item/process-variable-item.component';
@@ -65,6 +66,7 @@ import { ElementCreationHandler } from './services/palette/handlers/element-crea
 import { ToolsHandler } from './services/palette/handlers/tools';
 const paletteElements = require('./config/palette-elements.json');
 import { PaletteOverlayDirective } from './components/process-modeler/palette/palette-overlay.directive';
+import { OobDialogComponent } from './components/oob-dialog/oob-dialog.component';
 
 
 @NgModule({
@@ -91,16 +93,19 @@ import { PaletteOverlayDirective } from './components/process-modeler/palette/pa
         CardViewProcessVariablesItemComponent,
         CardViewImplementationItemComponent,
         CardViewDefaultSequenceFlowItemComponent,
+        OobDialogComponent
     ],
     entryComponents: [
         CardViewProcessVariablesItemComponent,
         CardViewImplementationItemComponent,
         CardViewDefaultSequenceFlowItemComponent,
-        ProcessEditorComponent
+        ProcessEditorComponent,
+        OobDialogComponent
     ],
     exports: [ProcessEditorRoutingModule],
     providers: [
         ProcessEditorService,
+        OobConnectorsService,
         { provide: BpmnFactoryToken, useClass: BpmnFactoryService },
         { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
         ProcessModelerPaletteService,

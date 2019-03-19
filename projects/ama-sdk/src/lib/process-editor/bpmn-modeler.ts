@@ -23,6 +23,7 @@ export interface ModelerInitOptions {
     changeHandler: (event) => any | void;
     removeHandler: (event) => any | void;
     selectHandler: (event) => any | void;
+    createHandler: (event) => any | void;
 }
 
 export interface ProcessModelerService {

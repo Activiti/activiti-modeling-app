@@ -53,7 +53,8 @@ import {
     DeleteProcessSuccessAction,
     CreateProcessSuccessAction,
     GetProcessesSuccessAction,
-    CREATE_PROCESS_SUCCESS
+    CREATE_PROCESS_SUCCESS,
+    OPEN_OOB_DIALOG
 } from './process-editor.actions';
 import {
     BaseEffects,
@@ -64,7 +65,8 @@ import {
     PROCESS, EntityDialogForm,
     UPDATE_SERVICE_PARAMETERS,
     ProcessModelerServiceToken,
-    ProcessModelerService
+    ProcessModelerService,
+    DialogService
 } from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { SetAppDirtyStateAction } from 'ama-sdk';
@@ -75,6 +77,7 @@ import { zip } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { Process, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
 import { selectSelectedProjectId, AmaState, selectSelectedProcess, createProcessName } from 'ama-sdk';
+import { OobDialogComponent } from '../components/oob-dialog/oob-dialog.component';
 
 @Injectable()
 export class ProcessEditorEffects extends BaseEffects {
@@ -82,6 +85,7 @@ export class ProcessEditorEffects extends BaseEffects {
         private store: Store<AmaState>,
         private actions$: Actions,
         private processEditorService: ProcessEditorService,
+        private dialogService: DialogService,
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
         logService: LogService,
         router: Router
@@ -200,6 +204,13 @@ export class ProcessEditorEffects extends BaseEffects {
         }),
         mergeMap(([element, selected]) => of(new SelectModelerElementAction(element)))
     );
+
+    @Effect(({ dispatch: false }))
+    openOobDialogEffect = this.actions$.pipe(
+       ofType(OPEN_OOB_DIALOG),
+       map(() => this.dialogService.openDialog(OobDialogComponent, {data: {}})
+       )
+   );
 
     private validateProcess(payload: ValidateProcessPayload) {
         return this.processEditorService.validate(payload.processId, payload.content).pipe(

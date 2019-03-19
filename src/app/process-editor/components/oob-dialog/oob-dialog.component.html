@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>{{ 'APP.PROCESS_EDITOR.OOB_DIALOG.TITLE' | translate }}</h2>
+
+<mat-dialog-content>
+    <br />
+    <mat-form-field class="adf-full-width">
+        <input
+            matInput
+            data-automation-id="name-field"
+            [(ngModel)]="form.connectorName"
+            placeholder="{{ 'APP.PROCESS_EDITOR.OOB_DIALOG.NAME' | translate }}">
+    </mat-form-field>
+    <br />
+    <mat-form-field class="adf-full-width">
+        <mat-select [(ngModel)]="form.connectorInstance" placeholder="{{ 'APP.PROCESS_EDITOR.OOB_DIALOG.INSTANCE' | translate }}"  data-automation-id="instance-field">
+            <mat-option *ngFor="let connector of connectors | async" [value]="connector.name">
+                {{connector.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions class="adf-dialog-buttons">
+    <span class="adf-fill-remaining-space"></span>
+
+    <button mat-button mat-dialog-close>
+        {{ 'APP.DIALOGS.CANCEL' | translate }}
+    </button>
+
+    <button class="adf-dialog-action-button"
+            mat-button (click)="submit()"
+            data-automation-id="submit-button">
+        {{ 'APP.DIALOGS.CREATE' | translate }}
+    </button>
+</mat-dialog-actions>

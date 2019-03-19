@@ -1,0 +1,55 @@
+{
+    "id": "connector-67da2e29-71a7-4af1-af6d-714a856cc09a",
+    "name": "lambdaConnector",
+    "description": "The lambda connector supports invocation of AWS lambda functions from an APS Activiti 7 process instance, via the lambda service task.",
+    "actions": {
+        "ab1eb136-7bb2-4480-8248-edf72ef0016e": {
+            "id": "ab1eb136-7bb2-4480-8248-edf72ef0016e",
+            "name": "INVOKE",
+            "description": "Invokes a AWS lambda function",
+            "inputs": [
+                {
+                    "id": "098ceac9-c6d2-4ed1-8382-9023903d9a5f",
+                    "name": "function",
+                    "description": "The name of the lambda function.",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "id": "b77b7c14-402c-426e-853f-d2bd346a3ae6",
+                    "name": "payload",
+                    "description": "The payload object that will be passed to the function.",
+                    "type": "string",
+                    "required": true
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "b00ae3d8-d1ba-4a7f-bff1-cedda68986ff",
+                    "name": "lambdaPayload",
+                    "description": "Lambda function result payload",
+                    "type": "string"
+                },
+                {
+                    "id": "b0a7d476-4f30-4d80-8301-8e38ac13190e",
+                    "name": "lambdaStatus",
+                    "description": "Status code that indicates whether de function invocation was successful",
+                    "type": "integer",
+                    "required": true
+                },
+                {
+                    "id": "d1c649d8-9dc8-4881-8571-a03748455679",
+                    "name": "lambdaLog",
+                    "description": "Log produced during the lambda function invocation",
+                    "type": "string"
+                },
+                {
+                    "id": "05b62ed7-b05a-47dd-b9a1-674b566ed167",
+                    "name": "lambdaError",
+                    "description": "The lambdaError variable is populated if there were any issues with executing the connector or the lambda function.",
+                    "type": "string"
+                }
+            ]
+        }
+    }
+}

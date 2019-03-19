@@ -34,7 +34,8 @@ export class ConnectorApiVariation<M extends Connector, C extends ConnectorConte
     public createInitialContent(model: M): C {
         return <C>{
             name: model.name,
-            description: model.description
+            description: model.description,
+            template: model.template
         };
     }
 

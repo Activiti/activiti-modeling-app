@@ -1,0 +1,41 @@
+{
+    "id": "connector-6154a210-e291-4d96-9c2e-359e73de898a",
+    "name": "camelConnector",
+    "description": "Sample Connector developed with camel connector starter library",
+    "actions": {
+        "bf1deed5-2e01-4c63-b149-2c2ffa17f9e5": {
+            "id": "bf1deed5-2e01-4c63-b149-2c2ffa17f9e5",
+            "name": "INVOKE",
+            "description": "Invokes a Camel route from an APS task",
+            "inputs": [
+                {
+                    "id": "f7c7a1ac-3bba-4c45-8072-ea66c424abba",
+                    "name": "camelPayload",
+                    "description": "Camel message to be processed by the Exchange",
+                    "type": "string"
+                },
+                {
+                    "id": "e76025b4-8990-4292-84e3-7338dae82ef3",
+                    "name": "camelRouteId",
+                    "description": "Camel route that will be invoked.",
+                    "type": "string",
+                    "required": true
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "0ae85ee1-e42e-4a3e-940a-3e3237639834",
+                    "name": "camelResult",
+                    "description": "Camel message that is produced by the invoked Camel route",
+                    "type": "string"
+                },
+                {
+                    "id": "1ea525e1-2b6c-466d-8eea-f48aa4712b1c",
+                    "name": "camelError",
+                    "description": "Error description when the Camel route invocation fails",
+                    "type": "string"
+                }
+            ]
+        }
+    }
+}

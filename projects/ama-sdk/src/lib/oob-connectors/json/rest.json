@@ -1,0 +1,421 @@
+{
+    "id": "connector-53f47c39-111d-49cc-88f5-7bd960b387e3",
+    "name": "restConnector",
+    "description": "APS Connector that provides an HTTP client for consuming any REST service",
+    "actions": {
+        "0d06f1c3-ede6-498a-9ca6-e0ac0f1c9213": {
+            "id": "0d06f1c3-ede6-498a-9ca6-e0ac0f1c9213",
+            "name": "GET",
+            "description": "Invokes the HTTP GET method to get data from a specific resource.",
+            "inputs": [
+                {
+                    "id": "96f9f56e-01d3-4c89-a50e-6821b2e92b55",
+                    "name": "restUrl",
+                    "description": "URL of the REST endpoint including protocol, host and path.",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "id": "22b519bc-3bc0-4bf9-918c-307fd5c043b1",
+                    "name": "restUrlParams",
+                    "description": "URL params to append to the url.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "fc544981-0638-474b-a085-d07c87dc7221",
+                    "name": "requestHeaders",
+                    "description": "Map of request header names and values. Values can be fixed values, variables or form fields.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "de9961d8-6567-4543-baf3-93c90fce603f",
+                    "name": "circuitBreaker",
+                    "description": "If this variable is present and true with any value, the circuit breaker is enabled.",
+                    "type": "boolean",
+                    "required": false
+                },
+                {
+                    "id": "a5ec3067-38c1-4351-be77-5e60423371a6",
+                    "name": "timeout",
+                    "description": "Integer with the timeout call in milliseconds.",
+                    "type": "boolean"
+                },
+                {
+                    "id": "210a96d7-b9ad-41c8-bce5-fcc00b626af8",
+                    "name": "restUrlEncoded",
+                    "description": "Indicates whether the final URL should be encoded or not",
+                    "type": "boolean"
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "7a6fd408-3912-4253-98ea-e19be43a8447",
+                    "name": "restResult",
+                    "description": "The response from the REST service call",
+                    "type": "string"
+                },
+                {
+                    "id": "f4d19b9c-876f-4c59-bfa6-3e3067901881",
+                    "name": "restError",
+                    "description": "Error description when an error occurs calling the REST service",
+                    "type": "string"
+                },
+                {
+                    "id": "d2b5bec0-2c73-46ce-83f5-3d39a23e3b75",
+                    "name": "restStatus",
+                    "description": "HTTP response status code",
+                    "type": "integer"
+                }
+            ]
+        },
+        "9718c25a-0f3c-4ad2-85d4-148111ca4d4a": {
+            "id": "9718c25a-0f3c-4ad2-85d4-148111ca4d4a",
+            "name": "POST",
+            "description": "Invokes the HTTP POST method to send data to a server to create/update a resource.",
+            "inputs": [
+                {
+                    "id": "6e79e5e5-71ef-4915-b918-5c34f6e87d52",
+                    "name": "restUrl",
+                    "description": "URL of the REST endpoint including protocol, host and path.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "c048e6f7-1dad-4ef1-9bae-39c8282a85a7",
+                    "name": "restUrlParams",
+                    "description": "URL params to append to the url.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "98e3fa15-bf7b-4402-8a93-79be619de64f",
+                    "name": "requestPayload",
+                    "description": "Map of JSON properties and values to compose the request payload. Values can be fixed values, variables or form fields.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "7b48ca8b-8b07-4a67-ade9-2abf7a8b448a",
+                    "name": "requestHeaders",
+                    "description": "Map of request header names and values. Values can be fixed values, variables or form fields.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "d6e72d4a-8d59-41cc-9655-e22ff3f5dd81",
+                    "name": "circuitBreaker",
+                    "description": "If this variable is present with any value, the circuit breaker is enabled.",
+                    "type": "boolean",
+                    "required": false
+                },
+                {
+                    "id": "28deba6c-3104-4310-9c4b-f747c370aca2",
+                    "name": "timeout",
+                    "description": "Integer with the timeout call in milliseconds.",
+                    "type": "integer",
+                    "required": false
+                },
+                {
+                    "id": "9f6f0688-16ee-472a-abdf-baef6caaea02",
+                    "name": "restUrlEncoded",
+                    "description": "Indicates whether the final URL should be encoded or not",
+                    "type": "boolean"
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "5cebbf70-2408-4dd6-86e7-7c1eb77658d9",
+                    "name": "restResult",
+                    "description": "The response from the REST service call",
+                    "type": "string"
+                },
+                {
+                    "id": "15bca89a-3527-46c2-8433-524a6d0a7702",
+                    "name": "restError",
+                    "description": "Error description when an error occurs calling the REST service",
+                    "type": "string"
+                },
+                {
+                    "id": "c0f62a79-e1df-4d7c-9a4d-4ef0d211a8d2",
+                    "name": "restStatus",
+                    "description": "HTTP response status code",
+                    "type": "integer"
+                }
+            ]
+        },
+        "48a9c52c-faf8-4ebd-bfcc-884002e1a0df": {
+            "id": "48a9c52c-faf8-4ebd-bfcc-884002e1a0df",
+            "name": "PUT",
+            "description": "Invokes the PUT HTTP method to send data to a server to create/update a resource.",
+            "inputs": [
+                {
+                    "id": "e341d517-c842-4d53-b678-abe6794424b1",
+                    "name": "restUrl",
+                    "description": "URL of the REST endpoint including protocol, host and path.",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "id": "7a2aba34-103a-40e8-bb40-616e1535e789",
+                    "name": "restUrlParams",
+                    "description": "URL params to append to the url.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "8c55682d-5aba-4d6c-bcd9-20545286b2fd",
+                    "name": "requestPayload",
+                    "description": "Map of JSON properties and values to compose the request payload. Values can be fixed values, variables or form fields.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "9bffbc7a-2c42-4746-a802-e367ba2e683b",
+                    "name": "requestHeaders",
+                    "description": "Map of request header names and values. Values can be fixed values, variables or form fields.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "b5e43c1d-06c3-472a-b4ff-72adaf689095",
+                    "name": "circuitBreaker",
+                    "description": "If this variable is present with any value, the circuit breaker is enabled.",
+                    "type": "boolean",
+                    "required": false
+                },
+                {
+                    "id": "efeadbe9-3526-42bb-b129-78f6ff9376e6",
+                    "name": "timeout",
+                    "description": "Integer with the timeout call in milliseconds.",
+                    "type": "integer",
+                    "required": false
+                },
+                {
+                    "id": "2afa3b18-5cb9-408d-b0cf-ea7d4bfae7a9",
+                    "name": "restUrlEncoded",
+                    "description": "Indicates whether the final URL should be encoded or not",
+                    "type": "boolean"
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "a5587a45-675e-4197-a949-4f9c2153cfdf",
+                    "name": "restResult",
+                    "description": "The response from the REST service call",
+                    "type": "string"
+                },
+                {
+                    "id": "a872a945-d836-4066-98f2-d6211c14e104",
+                    "name": "restError",
+                    "description": "Error description when an error occurs calling the REST service",
+                    "type": "string"
+                },
+                {
+                    "id": "d0456ee8-bfa7-4987-9c8f-b87f9a00685c",
+                    "name": "restStatus",
+                    "description": "HTTP response status code",
+                    "type": "integer"
+                }
+            ]
+        },
+        "ec357914-11f2-448c-bf82-f02b93e816c2": {
+            "id": "ec357914-11f2-448c-bf82-f02b93e816c2",
+            "name": "PATCH",
+            "description": "Invokes the PATCH HTTP method to apply partial modifications to a resource",
+            "inputs": [
+                {
+                    "id": "7b7d3626-1127-4b77-8c2a-0aa79fb62387",
+                    "name": "restUrl",
+                    "description": "URL of the REST endpoint including protocol, host and path.",
+                    "type": "string"
+                },
+                {
+                    "id": "1c47e15d-5d16-41d4-9c33-219b8b4c7117",
+                    "name": "restUrlParams",
+                    "description": "URL params to append to the url.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "61c918d7-6171-4fc4-b7ff-42ce04f95bfe",
+                    "name": "requestPayload",
+                    "description": "Map of JSON properties and values to compose the request payload. Values can be fixed values, variables or form fields.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "9b4a704f-fa7a-4f13-bc85-b263211e7b42",
+                    "name": "requestHeaders",
+                    "description": "Map of request header names and values. Values can be fixed values, variables or form fields.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "861576b1-9d5e-4058-91e2-f2a641918c1d",
+                    "name": "circuitBreaker",
+                    "description": "If this variable is present with any value, the circuit breaker is enabled.",
+                    "type": "boolean",
+                    "required": false
+                },
+                {
+                    "id": "9c7786ee-f763-4a3f-8241-630428ddaa89",
+                    "name": "timeout",
+                    "description": "HTTP request timeout in milliseconds",
+                    "type": "integer",
+                    "required": false
+                },
+                {
+                    "id": "2a85c388-4ca8-4d63-802f-f4c1f945bb84",
+                    "name": "restUrlEncoded",
+                    "description": "Indicates whether the final URL should be encoded or not",
+                    "type": "boolean"
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "e8e3bc6a-5faf-4ea1-8656-42f2ff86dc69",
+                    "name": "restResult",
+                    "description": "The response from the REST service call",
+                    "type": "string"
+                },
+                {
+                    "id": "4a3d1544-706a-456e-9262-4593791419fa",
+                    "name": "restError",
+                    "description": "Error description when an error occurs calling the REST service",
+                    "type": "string"
+                },
+                {
+                    "id": "35d86bc8-17cc-4408-871a-a47e31d51d6b",
+                    "name": "restStatus",
+                    "description": "HTTP response status code",
+                    "type": "integer"
+                }
+            ]
+        },
+        "397284cc-178e-41e5-b25f-228e597fd919": {
+            "id": "397284cc-178e-41e5-b25f-228e597fd919",
+            "name": "DELETE",
+            "description": "Invokes the DELETE HTTP method to delete a resource",
+            "inputs": [
+                {
+                    "id": "ee54da23-4b9c-4c22-89cc-dfe70ff8f65f",
+                    "name": "restUrl",
+                    "description": "URL of the REST endpoint including protocol, host and path.",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "id": "4b8a1e5c-d0f7-4d42-be22-ceb4e301345e",
+                    "name": "restUrlParams",
+                    "description": "URL params to append to the url.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "bc2ba8fa-5f15-428c-b2db-a7dfe4e009ce",
+                    "name": "requestHeaders",
+                    "description": "Map of request header names and values. Values can be fixed values, variables or form fields.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "5bf41244-d8bd-426d-a93e-4bdb09a305ed",
+                    "name": "circuitBreaker",
+                    "description": "If this variable is present with any value, the circuit breaker is enabled.",
+                    "type": "boolean",
+                    "required": false
+                },
+                {
+                    "id": "b846314f-e9dc-4c60-978f-e564b0a37ddf",
+                    "name": "timeout",
+                    "description": "HTTP request timeout in milliseconds",
+                    "type": "integer",
+                    "required": false
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "d7c7a644-ecd9-43b4-8dea-065336ddc047",
+                    "name": "restError",
+                    "description": "Error description when an error occurs calling the REST service",
+                    "type": "string"
+                },
+                {
+                    "id": "3d3ab149-d250-4369-ba9a-2d2b39430b6c",
+                    "name": "restStatus",
+                    "description": "HTTP Response status code",
+                    "type": "integer"
+                },
+                {
+                    "id": "292329db-e96c-4419-9f8d-4e074607b002",
+                    "name": "restUrlEncoded",
+                    "description": "Indicates whether the final URL should be encoded or not",
+                    "type": "boolean"
+                }
+            ]
+        },
+        "878cf6eb-310a-402b-b1d6-e68efc5bcc41": {
+            "id": "878cf6eb-310a-402b-b1d6-e68efc5bcc41",
+            "name": "HEAD",
+            "description": "Invokes the HTTP HEAD method to ask for a response identical to that of a GET request, but without the response body.",
+            "inputs": [
+                {
+                    "id": "2625962e-0fb7-4ce3-a057-070af2ea03d4",
+                    "name": "restUrl",
+                    "description": "URL of the REST endpoint including protocol, host and path.",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "id": "db93403d-8758-4358-bbe8-ebc2cd4406d5",
+                    "name": "restUrlParams",
+                    "description": "URL params to append to the url.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "570a1292-fae5-4105-88ec-a477a5496f74",
+                    "name": "requestHeaders",
+                    "description": "Map of request header names and values. Values can be fixed values, variables or form fields.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "78337af6-452b-4c48-9a47-ce9c28bf1c62",
+                    "name": "circuitBreaker",
+                    "description": "If this variable is present with any value, the circuit breaker is enabled.",
+                    "type": "integer",
+                    "required": false
+                },
+                {
+                    "id": "5a3020d5-7a90-4627-a80b-fd31c477a10a",
+                    "name": "timeout",
+                    "description": "HTTP request timeout in milliseconds",
+                    "type": "integer"
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "9f90da24-11a8-4031-b731-dcb4e7094a07",
+                    "name": "restError",
+                    "description": "Error description when an error occurs calling the REST service",
+                    "type": "string"
+                },
+                {
+                    "id": "4f7c867e-4959-424f-82e2-e3814419de99",
+                    "name": "restStatus",
+                    "description": "HTTP Response status code",
+                    "type": "integer"
+                },
+                {
+                    "id": "165628c2-04f4-4405-b03c-cdac4167e957",
+                    "name": "restUrlEncoded",
+                    "description": "Indicates whether the final URL should be encoded or not",
+                    "type": "boolean"
+                }
+            ]
+        }
+    }
+}

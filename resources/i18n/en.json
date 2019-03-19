@@ -335,6 +335,11 @@
                 "CALL_ACTIVITY": "Call Activity",
                 "CONTAINER": "Dedicated services"
             },
+            "OOB_DIALOG": {
+                "TITLE": "Connector instance selector",
+                "NAME": "Create new instance",
+                "INSTANCE": "Connector instance"
+            },
             "UPLOAD_SUCCESS": "The process was successfully uploaded",
             "PROCESS_UPDATED": "The process was successfully updated",
             "SELECT_PROCESS_VARIABLE": "Select process variable",

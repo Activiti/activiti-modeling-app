@@ -1,0 +1,48 @@
+{
+    "id": "connector-710c576a-0252-4c89-9bf0-b8f1eaad4916",
+    "name": "twilioConnector",
+    "description": "APS Connector that provides an integration with Twilio to send and receive SMS",
+    "actions": {
+        "0e035be2-5b2b-4bbe-88aa-46e8ad37ea72": {
+            "id": "0e035be2-5b2b-4bbe-88aa-46e8ad37ea72",
+            "name": "send_sms",
+            "description": "Send SMS through Twilio",
+            "inputs": [
+                {
+                    "id": "e441111c-5a3d-4f78-a571-f57e67ce85bf",
+                    "name": "smsFrom",
+                    "description": "Phone number, origin of the communication",
+                    "type": "string"
+                },
+                {
+                    "id": "93155b04-cb61-48e5-b7cb-63334f084c4d",
+                    "name": "smsTo",
+                    "description": "List of phone numbers, destination of the communication",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "159ae58f-f34b-469a-b862-176e51d64d70",
+                    "name": "smsBody",
+                    "description": "Text to be sent. Freemarker templates are supported.",
+                    "type": "string",
+                    "required": false
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "aef1f9e4-206b-46c7-83ea-9950bc3938cc",
+                    "name": "twilioResult",
+                    "description": "List of sent messages id",
+                    "type": "string"
+                },
+                {
+                    "id": "d9b82750-c5f1-4979-b71c-e13488c718cd",
+                    "name": "twilioError",
+                    "description": "List of errors sending messages",
+                    "type": "string"
+                }
+            ]
+        }
+    }
+}

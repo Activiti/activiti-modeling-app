@@ -1,0 +1,77 @@
+{
+    "id": "connector-50991833-6231-4052-9d1b-170117f90165",
+    "name": "emailConnector",
+    "description": "Outbound Email Cloud Connector",
+    "actions": {
+        "647e0849-4937-4189-9650-eff4aa081979": {
+            "id": "647e0849-4937-4189-9650-eff4aa081979",
+            "name": "SEND",
+            "description": "Sends an email",
+            "inputs": [
+                {
+                    "id": "df9ed162-1efe-4a6f-ba59-0cbc087c30bf",
+                    "name": "to",
+                    "description": "The recipients of the e-mail. Allows multiple recipients.",
+                    "type": "string",
+                    "required": true
+                },
+                {
+                    "id": "27304c23-1020-4913-9077-fd022c5b34ad",
+                    "name": "from",
+                    "description": "The sender e-mail address. If not provided, the default configured from address is used.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "bb1f089a-9bb1-448a-8194-8686ad5f39cf",
+                    "name": "subject",
+                    "description": "The subject of the e-mail.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "5499e546-de5b-4363-b547-d64569d79517",
+                    "name": "cc",
+                    "description": "The cc’s of the e-mail. Allows multiple recipients.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "3b03d62f-a14c-4284-a3d2-03627628a84f",
+                    "name": "bcc",
+                    "description": "The bcc’s of the e-mail. Allows multiple BCC addresses.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "12026260-5fbd-49f8-8a09-91f40a4e0295",
+                    "name": "charset",
+                    "description": "Allows to change the charset of the email, which is necessary for many non-English languages.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "3272376c-68f3-4daf-944a-4ef3ce0b4a87",
+                    "name": "text",
+                    "description": "The content of the e-mail, in case one needs to send plain none-rich e-mails. Can be used in combination with html, for e-mail clients that don’t support rich content. The client will then fall back to this text-only alternative.",
+                    "type": "string",
+                    "required": false
+                },
+                {
+                    "id": "d4abe384-510f-42dd-b768-8215cdd95868",
+                    "name": "html",
+                    "description": "A piece of HTML that is the content of the e-mail.",
+                    "type": "string"
+                }
+            ],
+            "outputs": [
+                {
+                    "id": "ee510424-e7ed-4ae4-aa1d-19bcf9711eb6",
+                    "name": "email.error",
+                    "description": "Variable to hold email exceptions",
+                    "type": "string"
+                }
+            ]
+        }
+    }
+}
