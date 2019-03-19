@@ -16,31 +16,36 @@
  */
 
 import { TestConfig } from './test.config.interface';
-import * as appConfig from '../src/app.config.json';
+import * as appConfigJson from '../src/app.config.json';
+const apsConfigJson = <any>appConfigJson;
+
+// ==================
 require('dotenv').config();
-
-const apsConfig = <any>appConfig;
-
 const env = process.env;
 
-export const testConfig: TestConfig = {
-    main: {
-        default_timeout: parseInt(env.DEFAULT_TIMEOUT, 10) || 20000,
-        presence_timeout: parseInt(env.PRESENCE_TIMEOUT, 10) || 60000,
-        rootPath: __dirname
-    },
-    ama: {
-        url: env.E2E_HOST || 'http://localhost',
-        port: env.E2E_PORT || '4100',
-        backendConfig: {
-            authType: apsConfig.authType,
-            oauth2: apsConfig.oauth2,
-            bpmHost: apsConfig.bpmHost
+function getConfig(rootPath: string, apsConfig): TestConfig {
+    return {
+        main: {
+            default_timeout: parseInt(env.DEFAULT_TIMEOUT, 10) || 20000,
+            presence_timeout: parseInt(env.PRESENCE_TIMEOUT, 10) || 60000,
+            rootPath: rootPath
         },
-        user: env.E2E_USERNAME,
-        password: env.E2E_PASSWORD,
-        unauthorized_user: env.E2E_UNAUTHORIZED_USER,
-        unauthorized_user_password: env.E2E_UNAUTHORIZED_USER_PASSWORD,
-        appTitle: 'Activiti Modeling Application'
-    }
-};
+        ama: {
+            url: env.E2E_HOST || 'http://localhost',
+            port: env.E2E_PORT || '4100',
+            backendConfig: {
+                authType: apsConfig.authType,
+                oauth2: apsConfig.oauth2,
+                bpmHost: apsConfig.bpmHost
+            },
+            user: env.E2E_USERNAME,
+            password: env.E2E_PASSWORD,
+            unauthorized_user: env.E2E_UNAUTHORIZED_USER,
+            unauthorized_user_password: env.E2E_UNAUTHORIZED_USER_PASSWORD,
+            appTitle: apsConfig.application.name
+        }
+    };
+}
+// ==================
+
+export const testConfig = getConfig(__dirname, apsConfigJson);
