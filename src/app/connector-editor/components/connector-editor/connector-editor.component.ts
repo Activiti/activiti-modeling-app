@@ -19,8 +19,8 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { ComponentRegisterService } from '@alfresco/adf-extensions';
 import { Store } from '@ngrx/store';
 import { selectSelectedConnectorContent, selectConnectorLoadingState, selectSelectedConnectorId } from '../../store/connector-editor.selectors';
-import { map, tap, filter } from 'rxjs/operators';
-import { BehaviorSubject, Observable, merge, of } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 import { ChangeConnectorContent } from '../../store/connector-editor.actions';
 import {
     AmaState,
