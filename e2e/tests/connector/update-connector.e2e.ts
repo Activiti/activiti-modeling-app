@@ -25,6 +25,7 @@ import { AuthenticatedPage } from '../../pages/authenticated.page';
 import { CodeEditorWidget } from '../../pages/code-editor.widget';
 import { ProjectContentPage } from '../../pages/project-content.page';
 import { ConnectorContentPage } from '../../pages/connector-content.page';
+import { browser } from 'protractor';
 
 describe('Update connector', async () => {
     const adminUser = {
@@ -68,12 +69,14 @@ describe('Update connector', async () => {
 
     it('1. [C289327] Update connector in JSON editor', async () => {
         const newModel = {
-            name: 'Modifiedname'
+            name: 'Modifiedname',
+            description: 'new description'
         };
 
         await codeEditorWidget.isTextEditorPresent();
 
         await codeEditorWidget.updateCodeEditorContent(JSON.stringify(newModel));
+        await browser.sleep(1000);
         await connectorContentPage.save();
 
         expect(await snackBar.isUpdatedSuccessfully('connector')).toBe(true, 'Update snackbar was not displayed properly.');
