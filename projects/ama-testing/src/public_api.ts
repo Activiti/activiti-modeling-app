@@ -15,4 +15,4 @@
  * limitations under the License.
  */
 
-export * from './e2e/public_api';
+export * from './e2e';

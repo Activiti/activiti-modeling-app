@@ -17,7 +17,7 @@
 
 import { testConfig } from '../test.config';
 import { ACMBackend } from './acm/acm-backend';
-import { TestConfig } from '../test.config.interface';
+import { TestConfig } from 'ama-testing/e2e';
 import { Backend } from './api.interfaces';
 
 export function getBackend(): Backend {

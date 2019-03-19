@@ -15,8 +15,4 @@
  * limitations under the License.
  */
 
-import * as appConfigJson from '../src/app.config.json';
-import { getConfig } from 'ama-testing/e2e';
-const apsConfigJson = <any>appConfigJson;
-
-export const testConfig = getConfig(__dirname, apsConfigJson);
+ export * from './config';
