@@ -26,6 +26,7 @@ export class ConnectorContentPage extends GenericPage {
     readonly connectorEditorContextMenu = element(by.css(`[data-automation-id="connector-editor-menu-button"]`));
     readonly connectorEditorDeleteButton = element(by.css(`[data-automation-id="connector-editor-delete-button"]`));
     readonly connectorEditorSaveButton = element(by.css(`[data-automation-id="connector-editor-save-button"]`));
+    readonly disabledSaveButton = element(by.css(`[data-automation-id="connector-editor-save-button"]:disabled`));
     readonly connectorEditorDownloadButton = element(by.css(`[data-automation-id="connector-editor-download-button"]`));
     readonly codeEditorTabButton = element.all(by.css(`div.mat-tab-label`)).get(1);
 
@@ -57,6 +58,7 @@ export class ConnectorContentPage extends GenericPage {
     }
 
     async save() {
+        await super.waitForElementToBeInVisible(this.disabledSaveButton);
         browser.actions().mouseMove(this.connectorEditorSaveButton).perform();
         await super.click(this.connectorEditorSaveButton);
     }

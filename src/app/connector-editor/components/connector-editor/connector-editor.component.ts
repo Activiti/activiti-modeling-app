@@ -19,8 +19,8 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { ComponentRegisterService } from '@alfresco/adf-extensions';
 import { Store } from '@ngrx/store';
 import { selectSelectedConnectorContent, selectConnectorLoadingState, selectSelectedConnectorId } from '../../store/connector-editor.selectors';
-import { map, tap, filter } from 'rxjs/operators';
-import { BehaviorSubject, Observable, merge } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 import { ChangeConnectorContent } from '../../store/connector-editor.actions';
 import {
     AmaState,
@@ -44,7 +44,6 @@ export class ConnectorEditorComponent {
     vsTheme$: Observable<string>;
     editorContent$: Observable<string>;
     loadingState$: Observable<boolean>;
-    connectorContentChange$ = new BehaviorSubject<string>('');
     componentKey = AdvancedConnectorEditorKey;
 
     boundOnChangeAttempt: any;
@@ -57,9 +56,12 @@ export class ConnectorEditorComponent {
         private componentRegister: ComponentRegisterService
     ) {
         this.vsTheme$ = this.getVsTheme();
-        this.editorContent$ = this.getEditorContent();
         this.loadingState$ = this.store.select(selectConnectorLoadingState);
         this.connectorId$ = this.store.select(selectSelectedConnectorId);
+        this.editorContent$ = this.store.select(selectSelectedConnectorContent).pipe(
+            filter(content => !!content),
+            map(content => JSON.stringify(content, undefined, 4).trim())
+        );
 
         this.boundOnChangeAttempt = this.onChangeAttempt.bind(this);
         this.getMemoizedDynamicComponentData = memoize((connectorContent, onChangeAttempt) => {
@@ -83,7 +85,7 @@ export class ConnectorEditorComponent {
         this.disableSave = !this.validate(connectorContentString).valid;
 
         if (!this.disableSave) {
-            this.connectorContentChange$.next(connectorContentString);
+            this.editorContent$ = of(connectorContentString);
             this.store.dispatch(new ChangeConnectorContent());
         }
 
@@ -98,17 +100,5 @@ export class ConnectorEditorComponent {
         return this.store
             .select(selectSelectedTheme)
             .pipe(map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light')));
-    }
-
-    private getEditorContent(): Observable<string> {
-        const connectorContent$ = this.store.select(selectSelectedConnectorContent).pipe(
-            filter(content => !!content),
-            map(content => JSON.stringify(content, undefined, 4).trim()),
-            tap(connectorContentString => {
-                this.connectorContentChange$.next(connectorContentString);
-            })
-        );
-
-        return merge(connectorContent$, this.connectorContentChange$);
     }
 }

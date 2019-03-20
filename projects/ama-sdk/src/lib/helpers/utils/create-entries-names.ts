@@ -20,7 +20,7 @@ export const CONNECTOR_FILE_FORMAT = '.json';
 export const FORM_FILE_FORMAT = '.json';
 export const UI_FILE_FORMAT = '.json';
 export const DATA_FILE_FORMAT = '.json';
-export const DECISION_TABLE_FILE_FORMAT = '.json';
+export const DECISION_TABLE_FILE_FORMAT = '.dmn';
 export const MODEL_NAME_CHARACTERS = 'a-zA-Z0-9_';
 
 export const sanitizeString = (text: string) => {
@@ -33,6 +33,11 @@ export const sanitizeString = (text: string) => {
 export const createProcessName = (name) => {
     return sanitizeString(name.replace(PROCESS_FILE_FORMAT, ''));
 };
+
+export const createDecisionTableName = (name) => {
+    return sanitizeString(name.replace(DECISION_TABLE_FILE_FORMAT, ''));
+};
+
 
 export const changeFileName = (file: File, newName: string): File => {
     const blob = file.slice(0, file.size, file.type);
