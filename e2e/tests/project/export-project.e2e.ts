@@ -22,7 +22,7 @@ import { Toolbar } from '../../pages/toolbar';
 import { NodeEntry } from 'alfresco-js-api-node';
 import { Backend } from '../../api/api.interfaces';
 import { getBackend } from '../../api/helpers';
-import { UtilFile } from '../../util/file';
+import { UtilFile } from 'ama-testing/e2e';
 import { browser } from 'protractor';
 import { AuthenticatedPage } from '../../pages/authenticated.page';
 

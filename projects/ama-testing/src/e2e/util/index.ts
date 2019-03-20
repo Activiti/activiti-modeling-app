@@ -15,21 +15,9 @@
  * limitations under the License.
  */
 
-import { ConfirmationDialog } from '../common/confirmation.dialog';
-import { MESSAGES } from 'ama-testing/e2e';
-
-export class LeavePageDialog extends ConfirmationDialog {
-    itemType: string;
-    itemName: string;
-
-    constructor(itemType?: string, itemName?: string) {
-        super(MESSAGES.DIALOG.UNSAVED_PAGE);
-        this.itemType = itemType;
-        this.itemName = itemName;
-    }
-
-    async isTitleDisplayed() {
-        await super.waitForElementToBeVisible(this.titleElement);
-        return await this.titleElement.getText() === this.title.replace('ITEM', this.itemType).replace('NAME', this.itemName);
-    }
-}
+ export * from './api';
+ export * from './file';
+ export * from './flush-last-browser-logs';
+ export * from './logger';
+ export * from './messages';
+ export * from './random';

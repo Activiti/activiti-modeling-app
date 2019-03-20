@@ -16,7 +16,7 @@
  */
 
 import { browser, ElementFinder, ExpectedConditions, protractor } from 'protractor';
-import { Logger } from '../../util/logger';
+import { Logger } from 'ama-testing/e2e';
 
 export class GenericWebElement {
 

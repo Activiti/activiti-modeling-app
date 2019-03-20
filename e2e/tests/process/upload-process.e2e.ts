@@ -16,7 +16,7 @@
  */
 
 import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
-import { Resources } from '../../util/resources';
+import { Resources } from '../../resources/resources';
 import { SnackBar } from '../../pages/snackbar';
 import { Backend } from '../../api/api.interfaces';
 import { getBackend } from '../../api/helpers';

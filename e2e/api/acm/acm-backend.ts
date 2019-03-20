@@ -18,9 +18,8 @@
 import * as AlfrescoApi from 'alfresco-js-api-node';
 import { Backend, ModelCrud, ProjectApi } from '../api.interfaces';
 import { browser } from 'protractor';
-import { TestConfig } from 'ama-testing/e2e';
+import { TestConfig, Logger } from 'ama-testing/e2e';
 import { ACMProject } from './project';
-import { Logger } from '../../util/logger';
 import { ACMProcess } from './models/process';
 import { ACMConnector } from './models/connector';
 import { ACMDecisionTable } from './models/decision-table';

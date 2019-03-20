@@ -30,7 +30,7 @@ import { ProcessModelerComponent } from '../../pages/process-modeler.component';
 import { ProcessPropertiesCard } from '../../pages/process-properties.card';
 import { Toolbar } from '../../pages/toolbar';
 import { browser } from 'protractor';
-import { UtilFile } from '../../util/file';
+import { UtilFile } from 'ama-testing/e2e';
 
 const path = require('path');
 

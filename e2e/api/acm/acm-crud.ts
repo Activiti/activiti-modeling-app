@@ -16,13 +16,11 @@
  */
 
 import { NodeEntry, ResultSetPaging } from 'alfresco-js-api-node';
-import { UtilRandom } from '../../util/random';
-import { UtilApi } from '../../util/api';
+import { UtilRandom, Logger, UtilApi } from 'ama-testing/e2e';
 import { ACMBackend } from './acm-backend';
 import { ModelCrud } from '../api.interfaces';
 import { E2eRequestApiHelper, E2eRequestApiHelperOptions } from './e2e-request-api.helper';
-import { Logger } from '../../util/logger';
-import { getBlob } from './fakeBlob.helper';
+import { getBlob } from '../../util/fakeBlob.helper';
 
 
 export abstract class ACMCrud implements ModelCrud {

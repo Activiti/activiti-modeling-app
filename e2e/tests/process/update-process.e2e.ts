@@ -25,7 +25,7 @@ import { AuthenticatedPage } from '../../pages/authenticated.page';
 import { ProjectContentPage } from '../../pages/project-content.page';
 import { ProcessContentPage } from '../../pages/process-content.page';
 import { ProcessPropertiesCard } from '../../pages/process-properties.card';
-import { UtilFile } from '../../util/file';
+import { UtilFile } from 'ama-testing/e2e';
 import { Toolbar } from '../../pages/toolbar';
 import { LeavePageDialog } from '../../pages/dialog/leave-page.dialog';
 

@@ -16,7 +16,8 @@
  */
 
 import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
-import { Resources } from '../../util/resources';
+import { UtilFile } from 'ama-testing/e2e';
+import { Resources } from '../../resources/resources';
 import { SnackBar } from '../../pages/snackbar';
 import { Backend } from '../../api/api.interfaces';
 import { getBackend } from '../../api/helpers';
@@ -26,7 +27,6 @@ import { AuthenticatedPage } from '../../pages/authenticated.page';
 import { ProjectContentPage } from '../../pages/project-content.page';
 import { ConnectorContentPage } from '../../pages/connector-content.page';
 import { CodeEditorWidget } from '../../pages/code-editor.widget';
-import { UtilFile } from '../../util/file';
 import { SidebarActionMenu } from '../../pages/sidebar.menu';
 
 const path = require('path');

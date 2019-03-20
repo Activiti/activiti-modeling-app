@@ -16,7 +16,7 @@
  */
 
 import { browser } from 'protractor';
-import { Logger } from './logger';
+import { Logger } from 'ama-testing/e2e';
 
 const fs = require('fs');
 const path = require('path');

@@ -16,7 +16,7 @@
  */
 
 import * as fs from 'fs';
-const config = require('../../config/config.js');
+const config = require('../config/config.js');
 
 export function getBlob(filename: string, fileContent: string) {
     const filePath = `${config.paths.tmp}/${filename}`;

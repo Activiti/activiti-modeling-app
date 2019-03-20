@@ -24,7 +24,7 @@ import { SnackBar } from '../../pages/snackbar';
 import { Backend } from '../../api/api.interfaces';
 import { getBackend } from '../../api/helpers';
 import { AuthenticatedPage } from '../../pages/authenticated.page';
-import { Logger } from '../../util/logger';
+import { Logger } from 'ama-testing/e2e';
 
 describe('Create project', () => {
     const adminUser = {
