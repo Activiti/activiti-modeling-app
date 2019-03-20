@@ -17,26 +17,38 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { CoreModule, CardViewTextItemComponent } from '@alfresco/adf-core';
 import { EffectsModule } from '@ngrx/effects';
 import { ProcessEditorComponent } from './components/process-editor/process-editor.component';
 import { ProcessModelerComponent } from './components/process-modeler/process-modeler.component';
 import { ProcessHeaderComponent } from './components/process-header/process-header.component';
-import { ProcessModelerService } from './services/process-modeler.service';
+import { ProcessModelerServiceImplementation } from './services/process-modeler.service';
 import { ProcessEditorService } from './services/process-editor.service';
 import { ProcessEditorEffects } from './store/process-editor.effects';
 import { StoreModule } from '@ngrx/store';
 import { ProcessEditorRoutingModule } from './router/process-editor-routing.module';
 import { CardViewPropertiesFactory } from './services/cardview-properties/cardview-properties.factory';
 import { Title } from '@angular/platform-browser';
-import { AmaTitleService, ENTITIES_REDUCER_TOKEN, provideEntity, providePropertyHandler, BpmnProperty, CodeEditorModule, provideTranslations } from 'ama-sdk';
+import {
+    AmaTitleService,
+    ENTITIES_REDUCER_TOKEN,
+    provideEntity,
+    providePropertyHandler,
+    BpmnProperty,
+    CodeEditorModule,
+    provideTranslations,
+    SharedModule,
+    VariablesModule,
+    providePaletteHandler,
+    providePaletteElements,
+    BpmnFactoryToken,
+    ProcessModelerServiceToken
+} from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
-import { BpmnFactoryToken } from './services/bpmn-factory.token';
-import { SharedModule } from 'ama-sdk';
 import { CardViewProcessVariablesItemComponent } from './services/cardview-properties/process-variable-item/process-variable-item.component';
 import { CardViewImplementationItemComponent } from './services/cardview-properties/implementation-item/implementation-item.component';
-import { VariablesModule } from 'ama-sdk';
 import { ProcessPropertiesComponent } from './components/process-properties/process-properties.component';
 import { MatTooltipModule } from '@angular/material';
 import { getProcessesFilterProvider } from './extension/processes-filter.extension';
@@ -47,6 +59,13 @@ import { ProcessVariablesEffects } from './store/process-variables.effects';
 import { processEditorReducer } from './store/process-editor.reducer';
 import { PROCESS_EDITOR_STATE_NAME } from './store/process-editor.selectors';
 import { CardViewDefaultSequenceFlowItemComponent } from './services/cardview-properties/default-sequence-flow/default-sequence-flow-item.component';
+import { PaletteComponent } from './components/process-modeler/palette/palette.component';
+import { ProcessModelerPaletteService } from './services/palette/process-modeler-palette.service';
+import { ElementCreationHandler } from './services/palette/handlers/element-creation';
+import { ToolsHandler } from './services/palette/handlers/tools';
+const paletteElements = require('./config/palette-elements.json');
+import { PaletteOverlayDirective } from './components/process-modeler/palette/palette-overlay.directive';
+
 
 @NgModule({
     imports: [
@@ -59,16 +78,19 @@ import { CardViewDefaultSequenceFlowItemComponent } from './services/cardview-pr
         SharedModule,
         VariablesModule,
         MatTooltipModule,
-        CodeEditorModule
+        CodeEditorModule,
+        DragDropModule
     ],
     declarations: [
         ProcessEditorComponent,
         ProcessHeaderComponent,
+        PaletteComponent,
+        PaletteOverlayDirective,
         ProcessModelerComponent,
         ProcessPropertiesComponent,
         CardViewProcessVariablesItemComponent,
         CardViewImplementationItemComponent,
-        CardViewDefaultSequenceFlowItemComponent
+        CardViewDefaultSequenceFlowItemComponent,
     ],
     entryComponents: [
         CardViewProcessVariablesItemComponent,
@@ -80,11 +102,15 @@ import { CardViewDefaultSequenceFlowItemComponent } from './services/cardview-pr
     providers: [
         ProcessEditorService,
         { provide: BpmnFactoryToken, useClass: BpmnFactoryService },
-        ProcessModelerService,
+        { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
+        ProcessModelerPaletteService,
         CardViewPropertiesFactory,
         AmaTitleService,
         Title,
         provideTranslations('process-editor'),
+        ...providePaletteHandler('tool', ToolsHandler),
+        ...providePaletteHandler('element', ElementCreationHandler),
+        providePaletteElements(paletteElements),
         provideEntity({ processes: processEntitiesReducer }),
         providePropertyHandler(BpmnProperty.properties, CardViewProcessVariablesItemComponent),
         providePropertyHandler(BpmnProperty.implementation, CardViewImplementationItemComponent),

@@ -66,7 +66,11 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
 
     onEditorInit(editor: monaco.editor.ICodeEditor): void {
         this.editor = editor;
-        editor.onKeyUp(this.onEditorChange.bind(this));
+        let timer = null;
+        editor.onKeyUp(() => {
+            clearTimeout(timer);
+            timer = window.setTimeout(() => this.onEditorChange(), 1000);
+        });
     }
 
     onEditorChange(): void {

@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
+import { Observable } from 'rxjs';
 import { InjectionToken } from '@angular/core';
-export const BpmnFactoryToken = new InjectionToken('BpmnFactoryToken');
 
 export interface ModelerInitOptions {
     clickHandler: (event) => any | void;
@@ -25,6 +25,26 @@ export interface ModelerInitOptions {
     selectHandler: (event) => any | void;
 }
 
+export interface ProcessModelerService {
+    init(modelerInitOptions: ModelerInitOptions): void;
+    render(container): void;
+    getFromModeler(token: string): any;
+    getElement(shapeId: string): Bpmn.DiagramElement;
+    getRootProcessElement(): Bpmn.DiagramElement;
+    updateElementProperty(shapeId: string, propertyName: string, value: any): void;
+    loadXml(xml: string): Observable<any>;
+    export(): Promise<any>;
+    zoomIn(): void;
+    zoomOut(): void;
+    fitViewPort(): void;
+    undo(): void;
+    redo(): void;
+    destroy();
+}
+
 export interface BpmnFactory {
     create(modelerInitOptions: ModelerInitOptions): Bpmn.Modeler;
 }
+
+export const BpmnFactoryToken = new InjectionToken('bpmn-factory-token');
+export const ProcessModelerServiceToken = new InjectionToken<ProcessModelerService>('process-modeler-service');

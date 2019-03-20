@@ -25,9 +25,7 @@ import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
-import { ProcessModelerService } from '../services/process-modeler.service';
-import { BpmnFactoryToken } from '../services/bpmn-factory.token';
-import { SetAppDirtyStateAction, DialogService } from 'ama-sdk';
+import { SetAppDirtyStateAction, DialogService, BpmnFactoryToken, ProcessModelerServiceToken } from 'ama-sdk';
 import { UpdateProcessVariablesAction } from './process-variables.actions';
 import { hot, cold } from 'jasmine-marbles';
 import { mockProcess } from './process.mock';
@@ -61,7 +59,7 @@ describe('Process variables effects', () => {
                     useValue: {}
                 },
                 {
-                    provide:  ProcessModelerService,
+                    provide:  ProcessModelerServiceToken,
                     useValue: {
                         updateElementProperty: jest.fn(),
                         getRootProcessElement: jest.fn().mockReturnValue({ id: '' })

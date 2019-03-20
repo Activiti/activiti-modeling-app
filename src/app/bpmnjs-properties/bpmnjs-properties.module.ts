@@ -16,7 +16,7 @@
  */
 
 import { NgModule } from '@angular/core';
-import { BpmnFactoryToken } from '../process-editor/services/bpmn-factory.token';
+import { BpmnFactoryToken } from 'ama-sdk';
 import { BpmnFactoryWithPropertiesService } from './bpmn-factory-with-properties.service';
 
 /** @deprecated: bpmnjs-properties */

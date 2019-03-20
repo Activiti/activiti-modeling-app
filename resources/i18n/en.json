@@ -118,6 +118,7 @@
         "PROJECT": {
             "BACKTO": "Projects",
             "UPLOAD_FILE": "Upload file",
+            "IMPORT": "Import",
             "CREATE_NEW": "Create new",
             "UPLOAD_FILE_SUCCESS": "The file was successfully uploaded",
             "NO_CONTENT": "<empty>",
@@ -290,9 +291,11 @@
                 "ZOOM_IN": "Zoom in",
                 "ZOOM_OUT": "Zoom out",
                 "UNDO": "Undo",
-                "REDO": "Redo"
+                "REDO": "Redo",
+                "LASSO_TOOL": "Activate the lasso tool"
             },
             "ELEMENT_PROPERTIES": {
+                "PROPERTIES": "Properties",
                 "ID": "id",
                 "NAME": "Name",
                 "VERSION": "Version",
@@ -318,6 +321,19 @@
                 "EXPRESSION": "Condition Expression",
                 "FORM_SELECTOR": "Form selector",
                 "DEFAULT_SEQUENCE_FLOW": "Default sequence flow"
+            },
+            "PALETTE": {
+                "HAND_TOOL": "Activate the hand tool",
+                "CONNECT_TOOL": "Activate the global connect tool",
+                "SPACE_TOOL": "Activate the create/remove space tool",
+                "LASSO_TOOL": "Activate the lasso tool",
+                "START_EVENT": "Create Start Event",
+                "END_EVENT": "Create End Event",
+                "GATEWAY": "Create Gateway",
+                "USER_TASK": "User Task",
+                "SERVICE_TASK": "Service Task",
+                "CALL_ACTIVITY": "Call Activity",
+                "CONTAINER": "Dedicated services"
             },
             "UPLOAD_SUCCESS": "The process was successfully uploaded",
             "PROCESS_UPDATED": "The process was successfully updated",

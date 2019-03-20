@@ -15,11 +15,10 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { filter, map, take } from 'rxjs/operators';
 import { Observable, combineLatest, of } from 'rxjs';
-import { ProcessModelerService } from '../../services/process-modeler.service';
 import { selectProcessCrumb, selectProcessLoading, selectSelectedProcessDiagram } from '../../store/process-editor.selectors';
 import {
     Process,
@@ -30,6 +29,8 @@ import {
     selectSelectedProcess,
     selectSelectedTheme,
     SetAppDirtyStateAction,
+    ProcessModelerService,
+    ProcessModelerServiceToken,
 } from 'ama-sdk';
 
 @Component({
@@ -44,7 +45,10 @@ export class ProcessEditorComponent implements OnInit {
     process$: Observable<Process>;
     vsTheme$: Observable<string>;
 
-    constructor(private store: Store<AmaState>, private processModeler: ProcessModelerService) {
+    constructor(
+        private store: Store<AmaState>,
+        @Inject(ProcessModelerServiceToken) private processModeler: ProcessModelerService
+    ) {
         this.vsTheme$ = this.getVsTheme();
     }
 

@@ -15,8 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnElement } from './elements';
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty, BpmnElement } from 'ama-sdk';
 
 export const elementsProperties = {
     [BpmnElement.Process]: [

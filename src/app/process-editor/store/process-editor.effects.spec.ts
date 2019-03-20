@@ -23,10 +23,9 @@ import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { Router } from '@angular/router';
 import { LogService, CoreModule } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { ProcessModelerService } from '../services/process-modeler.service';
+import { ProcessModelerServiceImplementation } from '../services/process-modeler.service';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { selectSelectedElement, selectProcessesLoaded } from './process-editor.selectors';
-import { BpmnFactoryToken } from '../services/bpmn-factory.token';
 import { BpmnFactoryMock } from '../services/bpmn-js/bpmn-js.mock';
 import {
     ChangedProcessAction,
@@ -50,7 +49,9 @@ import {
     SetAppDirtyStateAction,
     AmaTitleService,
     selectSelectedProcess,
-    UploadFileAttemptPayload
+    UploadFileAttemptPayload,
+    BpmnFactoryToken,
+    ProcessModelerServiceToken
 } from 'ama-sdk';
 import { ProcessEntitiesState } from './process-entities.state';
 
@@ -67,7 +68,7 @@ describe('ProcessEditorEffects', () => {
             imports: [CoreModule.forRoot()],
             providers: [
                 ProcessEditorEffects,
-                ProcessModelerService,
+                { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
                 AmaTitleService,
                 DownloadResourceService,
                 AmaAuthenticationService,

@@ -43,6 +43,7 @@ PaletteProvider['$inject'] = [
     'globalConnect'
 ];
 
+
 PaletteProvider.prototype.getPaletteEntries = function(element: any) {
     const actions = {},
         create = this._create,
@@ -125,7 +126,7 @@ PaletteProvider.prototype.getPaletteEntries = function(element: any) {
             group: 'advanced',
             separator: true
         },
-        'create.start-event': createAction(
+        '.start-event': createAction(
             'bpmn:StartEvent',
             'event',
             'bpmn-icon-start-event-none'

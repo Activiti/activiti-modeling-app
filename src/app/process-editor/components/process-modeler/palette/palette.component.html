@@ -1,0 +1,60 @@
+<mat-card cdkDrag cdkDragBoundary=".process-editor-modeling-area">
+    <div class="palette-header" cdkDragHandle>
+        <mat-icon (click)="toggleOpen()">more_horiz</mat-icon>
+    </div>
+    <div class="palette-body" [class.opened]="opened">
+        <ng-container *ngFor="let item of paletteElements">
+            <ng-container
+                 *ngIf="!isSeparator(item); else separator">
+                <ng-container *ngTemplateOutlet="hasChildren(item) ? containerElement : clickableElement; context: { $implicit: item }">
+                </ng-container>
+            </ng-container>
+        </ng-container>
+    </div>
+</mat-card>
+
+<ng-template #containerElement let-item>
+    <div
+        class="entry {{item.icon}}"
+        [matTooltip]="item.title | translate"
+        matTooltipShowDelay="1000"
+        matTooltipPosition="after">
+        <button
+            [attr.data-automation-id]="item.group + '::' + item.type"
+            ama-palette-overlay
+            [templatePortalContent]="templateContent"
+            [amaPaletteItem]="item"
+            [amaPaletteOverlayRef]="overlayRef">
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #clickableElement let-item>
+    <div
+        class="entry {{item.icon}}"
+        [class.selected]="item === selectedTool"
+        [matTooltip]="item.title | translate"
+        matTooltipShowDelay="1000"
+        matTooltipPosition="after">
+        <button
+            [attr.data-automation-id]="item.group + '::' + item.type"
+            *ngIf="!hasChildren(item)"
+            draggable="true"
+            (click)="onClick(item, $event)"
+            (dragstart)="onDrag(item, $event)">
+        </button>
+    </div>
+</ng-template>
+
+<ng-template #separator>
+    <hr class="separator">
+</ng-template>
+
+<ng-template let-item #drawer>
+    <mat-card class="palette-drawer" >
+        <ng-container *ngFor="let child of item.children">
+            <ng-container *ngTemplateOutlet="hasChildren(child) ? containerElement : clickableElement; context: { $implicit: child }">
+            </ng-container>
+        </ng-container>
+    </mat-card>
+</ng-template>
