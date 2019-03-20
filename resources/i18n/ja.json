@@ -23,6 +23,7 @@
                 "SUBTITLE": "この操作を行ってもよろしいですか？",
                 "BUTTON": "確認",
                 "UNSAVED_PAGE": "保存する前に移動すると、編集した内容が失われます。 移動をしますか？",
+                "RELEASE": "Are you sure you want to release and create a new version of this project?",
                 "TYPES": {
                     "DECISION": "ディシジョンテーブル",
                     "DATA": "データ",
@@ -60,7 +61,8 @@
         },
         "MENU": {
             "EDIT": "編集",
-            "DELETE": "削除"
+            "DELETE": "削除",
+            "RELEASE": "Release"
         },
         "SETTINGS": {
             "HEADER": "アプリケーション設定"
@@ -73,6 +75,7 @@
                 "PROJECT_CREATED": "プロジェクトの作成に成功しました。",
                 "PROJECT_UPLOADED": "プロジェクトのアップロードに成功しました。",
                 "PROJECT_UPDATED": "プロジェクトの更新に成功しました。",
+                "PROJECT_RELEASED": "The project was successfully released",
                 "PROJECT_DELETED": "プロジェクトの削除に成功しました。",
                 "MENU_ITEMS": {
                     "CREATE_PROJECT": "プロジェクト",
@@ -115,6 +118,7 @@
         "PROJECT": {
             "BACKTO": "プロジェクト",
             "UPLOAD_FILE": "ファイルのアップロード",
+            "IMPORT": "Import",
             "CREATE_NEW": "新規作成",
             "UPLOAD_FILE_SUCCESS": "ファイルのアップロードに成功しました。",
             "NO_CONTENT": "<空>",
@@ -209,6 +213,7 @@
                 "CHANGE_FAVORITE": "プロジェクトのお気に入りの状態を変更する際に予期せぬエラーが発生しました。",
                 "DELETE_PROCESS": "プロセスの削除処理にて予期せぬエラーが発生しました。",
                 "LOAD_MODELS": "モデルの読み込み中に予期せぬエラーが発生しました。",
+                "RELEASE_PROJECT": "Unknown error happened while releasing the project.",
                 "CREATE_PROCESS": {
                     "DUPLICATION": "同名のプロセスがすでに存在します。",
                     "GENERAL": "プロセスの作成中に予期せぬエラーが発生しました。"
@@ -270,6 +275,251 @@
                     "GENERAL": "プロジェクトのアップロード中に予期せぬエラーが発生しました。"
                 },
                 "GET_PROJECT": "プロジェクトの読み込み中に予期せぬエラーが発生しました。"
+            }
+        },
+        "PROCESS_EDITOR": {
+            "TABS": {
+                "PROCESS_EDITOR": "Process editor",
+                "JSON_EDITOR": "XML editor"
+            },
+            "PRIORITIES": {
+                "LOW": "Low",
+                "MEDIUM": "Medium",
+                "HIGH": "High"
+            },
+            "ACTIONS": {
+                "ZOOM_IN": "Zoom in",
+                "ZOOM_OUT": "Zoom out",
+                "UNDO": "Undo",
+                "REDO": "Redo",
+                "LASSO_TOOL": "Activate the lasso tool"
+            },
+            "ELEMENT_PROPERTIES": {
+                "PROPERTIES": "Properties",
+                "ID": "id",
+                "NAME": "Name",
+                "VERSION": "Version",
+                "VARIABLES": "Variables",
+                "DOCUMENTATION": "Documentation",
+                "EXECUTABLE": "Executable",
+                "IMPLEMENTATION": "Implementation",
+                "INPUTS": "Inputs",
+                "OUTPUTS": "Outputs",
+                "ACTION": "Action",
+                "INPUT": "Input",
+                "INPUT_MAPPING": "Input mapping",
+                "OUTPUT": "Output",
+                "OUTPUT_MAPPING": "Output mapping",
+                "ASSIGNEE": "Assignee",
+                "CANDIDATE_GROUPS": "Candidate groups",
+                "CANDIDATE_USERS": "Candidate users",
+                "DUE_DATE": "Due date",
+                "PRIORITY": "Priority",
+                "ACTIVITY_NAME": "Activity name",
+                "PROCESS_VARIABLE": "Process variable",
+                "PROCESS_VARIABLES": "Process variables",
+                "EXPRESSION": "Condition Expression",
+                "FORM_SELECTOR": "Form selector",
+                "DEFAULT_SEQUENCE_FLOW": "Default sequence flow"
+            },
+            "PALETTE": {
+                "HAND_TOOL": "Activate the hand tool",
+                "CONNECT_TOOL": "Activate the global connect tool",
+                "SPACE_TOOL": "Activate the create/remove space tool",
+                "LASSO_TOOL": "Activate the lasso tool",
+                "START_EVENT": "Create Start Event",
+                "END_EVENT": "Create End Event",
+                "GATEWAY": "Create Gateway",
+                "USER_TASK": "User Task",
+                "SERVICE_TASK": "Service Task",
+                "CALL_ACTIVITY": "Call Activity",
+                "CONTAINER": "Dedicated services"
+            },
+            "UPLOAD_SUCCESS": "The process was successfully uploaded",
+            "PROCESS_UPDATED": "The process was successfully updated",
+            "SELECT_PROCESS_VARIABLE": "Select process variable",
+            "ERRORS": {
+                "NO_PROCESS_PROPERTIES": "No process properties.",
+                "NO_CONNECTOR_ACTIONS": "No connector actions.",
+                "LOAD_DIAGRAM": "Could not load the diagram.",
+                "SAVE_DIAGRAM": "Could not save the diagram.",
+                "DOWNLOAD_DIAGRAM": "Could not download the diagram",
+                "CHANGE_FAVORITE": "Unknown error happened during the changing favorite state of the process."
+            },
+            "PROPERTIES": {
+                "TABS": {
+                    "VIEWER": "Properties viewer",
+                    "JSON_EDITOR": "JSON editor"
+                },
+                "TABLE": {
+                    "COLUMN_NAME": "Name",
+                    "COLUMN_TYPE": "Type",
+                    "COLUMN_REQUIRED": "Required",
+                    "COLUMN_VALUE": "Value",
+                    "NO_PROPERTIES": "You don't have any property selected"
+                },
+                "ERRORS": {
+                    "EMPTY_NAME": "Name field cannot be empty"
+                }
+            }
+        },
+        "CONNECTOR_EDITOR": {
+            "UPLOAD_SUCCESS": "The connector was successfully uploaded",
+            "TABS": {
+                "CONNECTOR_EDITOR": "Connector editor",
+                "JSON_EDITOR": "JSON editor"
+            },
+            "EDITOR": {
+                "CONNECTOR_DETAILS": "Connector details",
+                "INPUTS": "Input parameters",
+                "OUTPUTS": "Output parameters",
+                "ACTIONS": "Actions",
+                "ADD_NEW_PARAMETER": "Add new parameter",
+                "NAME": "Name",
+                "DESCRIPTION": "Description",
+                "TYPE": "Type",
+                "BUTTONS": {
+                    "SAVE": "Save"
+                },
+                "REQUIRED": "Required"
+            },
+            "ERRORS": {
+                "GET_CONNECTOR": "Unknown error happened during loading of the connector, please try again."
+            }
+        },
+        "FORM_EDITOR": {
+            "UPLOAD_SUCCESS": "The form was successfully uploaded",
+            "TABS": {
+                "FORM_EDITOR": "Form editor",
+                "JSON_EDITOR": "JSON editor"
+            },
+            "FORM_VARIABLES": "Form variables",
+            "VISIBLITY_CONDITIONS": {
+                "DEPENDS": "Depends on",
+                "OPERATOR": "If it's",
+                "VALUE": "Value",
+                "NEXT_CONDITION": "Next condition operator",
+                "NO_PROPERTY": "No property selected",
+                "FIELDS": "Fields",
+                "VARIABLE": "Variable",
+                "SELECT_FIELD": "Select a field",
+                "SELECT_VARIABLE": "Select a variable",
+                "FORM_FIELD": "Form field",
+                "NEXT_OPERATOR": "Next condition operator"
+
+            },
+            "FIELD_PROPERTIES": {
+                "DESCRIPTION": "Description",
+                "NAME": "Name",
+                "COLUMNS": "Number of columns",
+                "REQUIRED": "Required",
+                "MULTIPLE_UPLOAD": "Allow multiple files to be attached",
+                "LINK_FILE": "Just link to files, do not copy files to Alfresco Process Services (this also means files cannot be uploaded from one of a user's devices)",
+                "FILE_SOURCE": "File source",
+                "ALL_SOURCES": "All file sources",
+                "LOCAL_FILE": "Local file",
+                "PLACEHOLDER": "Placeholder",
+                "COLSPAN": "Colspan",
+                "LABEL": "Label",
+                "ID": "ID",
+                "OVERRIDE_ID": "Override ID?",
+                "VALUE": "Text to display",
+                "DISPLAY_TEXT": "Display text",
+                "MIN_LENGTH": "Min length",
+                "MAX_LENGTH": "Max length",
+                "MIN_VALUE": "Min value",
+                "MAX_VALUE": "Max value",
+                "REGEX": "Regex pattern",
+                "INPUT_MASK": "Input mask",
+                "INPUT_MASK_PLACEHOLDER": "Input mask placeholder",
+                "INPUT_MASK_RESERVED": "Reversed",
+                "MIN_DATE": "Min Date",
+                "MAX_DATE": "Max Date",
+                "DATE_DISPLAY_FORMAT": "Date display format",
+                "DATE_FORMAT_PREVIEW": "Current date using custom format",
+                "CURRENCY": "Currency",
+                "DECIMALS": "Enable decimals",
+                "HYPERLINK_URL": "Hyperlink URL",
+                "ALLOW_COLLAPSE": "Allow collapse",
+                "COLLAPSE_BY_DEFAULT": "Collapse by default",
+                "REST_SERVICE": {
+                    "DIALOG_TITLE": "URL test",
+                    "REST_URL": "Rest URL",
+                    "TEST_BUTTON": "Test",
+                    "RESPONSE_PATH": "Path to array in JSON response",
+                    "ID_PROP": "ID property",
+                    "LABEL_PROP": "Label property"
+                },
+                "KEY_VALUE_PROPERTY": {
+                    "ADD": "Add",
+                    "ADD_OPTION": "Add a new option",
+                    "LABEL": "Label",
+                    "ID": "ID",
+                    "INFO": "This is the 'empty value' option. Selecting this at runtime is taken to mean 'no value' or 'empty'. This is allowed for optional fields, but not for required fields.",
+                    "CLEAR_SELECTION": "Clear selection",
+                    "OPTIONS": "Options"
+                },
+                "ADVANCED_RADIO_BUTTON": {
+                    "MANUAL": "Manual",
+                    "REST_SERVICE": "Rest Service"
+                }
+            },
+            "EDITOR": {
+                "ADD_NEW_TAB": "Add new tab",
+                "DELETE_TAB": "Delete tab",
+                "ADD_NEW_OUTCOME": "Add outcome",
+                "DELETE_OUTCOME": "Delete outcome",
+                "EDIT": "Edit",
+                "DELETE": "Delete",
+                "MOVE": "Move"
+            },
+            "ERRORS": {
+                "GET_FORM": "Unknown error happened during loading of the form, please try again.",
+                "DELETE_FORM": "Unknown error happened during deleting the form, please try again."
+            }
+        },
+        "UI_EDITOR": {
+            "UPLOAD_SUCCESS": "The UI was successfully uploaded",
+            "TABS": {
+                "UI_EDITOR": "UI editor",
+                "JSON_EDITOR": "JSON editor"
+            },
+            "EDITOR": {
+                "DETAILS": "UI details",
+                "DESCRIPTION": "Description",
+                "NAME": "Name",
+                "TEMPLATE": "Template"
+            },
+            "ERRORS": {
+                "GET_UI": "Unknown error happened during loading of the ui, please try again.",
+                "DELETE_UI": "Unknown error happened during deleting the ui, please try again."
+            }
+        },
+        "DATA_EDITOR": {
+            "UPLOAD_SUCCESS": "The data object was successfully uploaded",
+            "TABS": {
+                "DATA_EDITOR": "Data object editor",
+                "JSON_EDITOR": "JSON editor"
+            },
+
+            "EDITOR": {
+            },
+            "ERRORS": {
+                "GET_DATA": "Unknown error happened during loading of the data object, please try again.",
+                "DELETE_DATA": "Unknown error happened during deleting the data object, please try again."
+            }
+        },
+        "DECISION_TABLE_EDITOR": {
+            "UPLOAD_SUCCESS": "The decision table was successfully uploaded",
+            "TABS": {
+                "DECISION_TABLE_EDITOR": "Decision table editor",
+                "JSON_EDITOR": "JSON editor"
+            },
+            "EDITOR": {
+            },
+            "ERRORS": {
+                "GET_DECISION_TABLE": "Unknown error happened during loading of the decision table, please try again.",
+                "DELETE_DECISION_TABLE": "Unknown error happened during deleting the decision table, please try again."
             }
         },
         "GENERAL": {
