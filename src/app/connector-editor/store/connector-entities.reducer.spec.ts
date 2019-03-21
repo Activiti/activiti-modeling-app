@@ -103,7 +103,9 @@ describe('ConnectorEntitiesReducer', () => {
             changes: {
                 ...connector,
                 name: 'name2',
-                description: 'desc2'
+                description: 'desc2',
+                template: 'slackConnector',
+                actions: []
             }
         };
         action = <UpdateConnectorSuccessAction>{ type: UPDATE_CONNECTOR_SUCCESS, connector: changes };
@@ -112,6 +114,7 @@ describe('ConnectorEntitiesReducer', () => {
         expect(newState.entities[connector.id]).toEqual({
             ...connector,
             name: 'name2',
+            template: 'slackConnector',
             description: 'desc2'
         });
     });

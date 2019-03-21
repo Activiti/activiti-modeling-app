@@ -118,6 +118,6 @@ function updateConnector(state: ConnectorEntitiesState, action: UpdateConnectorS
             [action.connector.id]: <ConnectorContent>action.connector.changes
         }
     };
-    const { id, ...changes } = action.connector.changes;
-    return connectorEntityAdapter.updateOne({ ...action.connector, changes }, newState);
+    const { name, description, template } = action.connector.changes;
+    return connectorEntityAdapter.updateOne({ ...action.connector, changes: { name, description, template } }, newState);
 }
