@@ -63,8 +63,9 @@ import { PaletteComponent } from './components/process-modeler/palette/palette.c
 import { ProcessModelerPaletteService } from './services/palette/process-modeler-palette.service';
 import { ElementCreationHandler } from './services/palette/handlers/element-creation';
 import { ToolsHandler } from './services/palette/handlers/tools';
-const paletteElements = require('./config/palette-elements.json');
 import { PaletteOverlayDirective } from './components/process-modeler/palette/palette-overlay.directive';
+// Angular can't bundle json data into prod build, that is why the file is .json.ts
+import { paletteElements } from './config/palette-elements.json';
 
 
 @NgModule({
