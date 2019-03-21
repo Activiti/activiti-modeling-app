@@ -17,7 +17,7 @@
 
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable, Inject } from '@angular/core';
-import { catchError, switchMap, map, filter, withLatestFrom } from 'rxjs/operators';
+import { catchError, switchMap, map, filter, withLatestFrom, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
@@ -112,8 +112,8 @@ export class ProcessEditorEffects extends BaseEffects {
     @Effect()
     createProcessEffect = this.actions$.pipe(
         ofType<CreateProcessAttemptAction>(CREATE_PROCESS_ATTEMPT),
-        mergeMap(action => zip(of(action.payload), this.store.select(selectSelectedProjectId))),
-        mergeMap(([form, projectId]) => this.createProcess(form, projectId))
+        mergeMap(action => zip(of(action), this.store.select(selectSelectedProjectId))),
+        mergeMap(([action, projectId]) => this.createProcess(action.payload, action.navigateTo, projectId))
     );
 
     @Effect()
@@ -142,8 +142,10 @@ export class ProcessEditorEffects extends BaseEffects {
     createProcessSuccessEffect = this.actions$.pipe(
         ofType<CreateProcessSuccessAction>(CREATE_PROCESS_SUCCESS),
         withLatestFrom(this.store.select(selectSelectedProjectId)),
-        map(([action, projectId]) => {
-            this.router.navigate(['/projects', projectId, 'process', action.process.id]);
+        tap(([action, projectId]) => {
+            if (action.navigateTo) {
+                this.router.navigate(['/projects', projectId, 'process', action.process.id]);
+            }
         })
     );
 
@@ -292,10 +294,10 @@ export class ProcessEditorEffects extends BaseEffects {
         );
     }
 
-    private createProcess(form: Partial<EntityDialogForm>, projectId: string): Observable<{} | SnackbarInfoAction | CreateProcessSuccessAction> {
+    private createProcess(form: Partial<EntityDialogForm>, navigateTo: boolean, projectId: string): Observable<{} | SnackbarInfoAction | CreateProcessSuccessAction> {
         return this.processEditorService.create(form, projectId).pipe(
             switchMap((process) => [
-                new CreateProcessSuccessAction(process),
+                new CreateProcessSuccessAction(process, navigateTo),
                 new SnackbarInfoAction('APP.PROJECT.PROCESS_DIALOG.PROCESS_CREATED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleProcessCreationError.bind(this), e))
