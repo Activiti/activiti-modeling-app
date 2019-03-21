@@ -17,23 +17,21 @@
 
 import { InjectionToken, Type } from '@angular/core';
 
-export interface ToolTrigger {
-    group: 'tool';
+export interface GeneralTrigger {
+    group: string;
     type: string;
     icon: string;
     title: string;
     clickable: boolean;
     draggable: boolean;
 }
+export interface ToolTrigger extends GeneralTrigger {
+    group: 'tool';
+}
 
-export interface BpmnElementTrigger {
+export interface BpmnElementTrigger extends GeneralTrigger {
     group: 'element';
-    type: string;
-    icon: string;
-    title: string;
     options?: any;
-    clickable: boolean;
-    draggable: boolean;
 }
 
 export type BpmnTrigger = BpmnElementTrigger | ToolTrigger;
@@ -46,13 +44,13 @@ export interface PaletteGroupElement {
     group: 'container';
     icon: string;
     title: string;
-    children?: BpmnTrigger[];
+    children?: GeneralTrigger[];
 }
 
-export type PaletteElement = PaletteSeparatorElement | PaletteGroupElement | BpmnTrigger;
+export type PaletteElement = PaletteSeparatorElement | PaletteGroupElement | GeneralTrigger;
 
 export interface TiggerHandler {
-    processEvent(event: any, element: BpmnTrigger): void;
+    processEvent(event: any, element: GeneralTrigger): void;
 }
 
 export interface PaletteElementHandler {
