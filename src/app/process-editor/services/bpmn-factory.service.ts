@@ -23,22 +23,7 @@ import { ModelerInitOptions, BpmnFactory } from 'ama-sdk';
     Modify this import with care, doublechecking the process editor works in --prod mode.
 */
 import BpmnModeler from 'bpmn-js/dist/bpmn-modeler.production.min';
-
-function DummyPaletteProvider(palette) {
-    palette.registerProvider(this);
-    this.getPaletteEntries = () => ({
-        'hand-tool': {
-            group: 'tools',
-            className: 'bpmn-icon-hand-tool',
-            title: 'Dummy tool, otherwise diagramjs\'s palette crashes',
-            action: {}
-        }
-    });
-}
-export const emptyPaletteModule = {
-    paletteProvider: ['type', DummyPaletteProvider]
-};
-
+import { emptyPaletteModule } from './palette/dummy-bpmn-palette.provider';
 const activitiModdleDescriptor = require('./activiti.json');
 
 @Injectable()
