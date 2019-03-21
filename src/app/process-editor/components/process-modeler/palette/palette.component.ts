@@ -17,7 +17,14 @@
 
 import { Component, Inject, Optional, HostListener, ViewChild, TemplateRef } from '@angular/core';
 import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
-import { PaletteElement, PaletteElementsToken, ToolTrigger, BpmnTrigger } from 'ama-sdk';
+import {
+    PaletteElement,
+    PaletteElementsToken,
+    ToolTrigger,
+    BpmnTrigger,
+    PaletteGroupElement,
+    PaletteSeparatorElement
+} from 'ama-sdk';
 import { OverlayRef } from '@angular/cdk/overlay';
 
 @Component({
@@ -45,11 +52,11 @@ export class PaletteComponent {
         this.paletteElements = (<any>paletteElements).flatten(1) || [];
     }
 
-    public isSeparator(element: PaletteElement) {
+    public isSeparator(element: PaletteSeparatorElement) {
         return element.group === 'separator';
     }
 
-    public hasChildren(element: PaletteElement) {
+    public hasChildren(element: PaletteGroupElement) {
         return element.group === 'container' && element.children && element.children.length;
     }
 
