@@ -281,14 +281,14 @@ describe('ProcessEditorEffects', () => {
             expect(metadata.createProcessSuccessEffect).toEqual({ dispatch: false});
         });
 
-        it('should redirect to the new connector page if the payload received is true', () => {
+        it('should redirect to the new process page if the payload received is true', () => {
             actions$ = hot('a', { a: new CreateProcessSuccessAction(process, true) });
             effects.createProcessSuccessEffect.subscribe(() => {});
             getTestScheduler().flush();
             expect(router.navigate).toHaveBeenCalledWith(['/projects', 'test1', 'process', process.id]);
         });
 
-        it('should not redirect to the new connector page if the payload received is false', () => {
+        it('should not redirect to the new process page if the payload received is false', () => {
             actions$ = hot('a', { a: new CreateProcessSuccessAction(process, false) });
             effects.createProcessSuccessEffect.subscribe(() => {});
             getTestScheduler().flush();
