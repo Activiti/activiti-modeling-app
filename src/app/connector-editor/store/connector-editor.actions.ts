@@ -82,13 +82,13 @@ export class GetConnectorSuccessAction implements Action {
 export const CREATE_CONNECTOR_ATTEMPT = '[Connector] Create attempt';
 export class CreateConnectorAttemptAction implements Action {
     readonly type = CREATE_CONNECTOR_ATTEMPT;
-    constructor(public payload: Partial<EntityDialogForm>) {}
+    constructor(public payload: Partial<EntityDialogForm>, public navigateTo = false) {}
 }
 
 export const CREATE_CONNECTOR_SUCCESS = '[Connector] Create success';
 export class CreateConnectorSuccessAction implements Action {
     readonly type = CREATE_CONNECTOR_SUCCESS;
-    constructor(public connector: Connector) {}
+    constructor(public connector: Connector, public navigateTo = false) {}
 }
 
 export const UPDATE_CONNECTOR_CONTENT_ATTEMPT = '[Connector] Update content attempt';
