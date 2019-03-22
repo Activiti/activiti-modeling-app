@@ -262,7 +262,7 @@ export class ProcessEditorEffects extends BaseEffects {
     private uploadProcess(payload: UploadFileAttemptPayload): Observable<void | {} | SnackbarInfoAction | CreateProcessSuccessAction> {
         return this.processEditorService.upload(payload).pipe(
             switchMap(process => [
-                new CreateProcessSuccessAction(process),
+                new CreateProcessSuccessAction(process, true),
                 new SnackbarInfoAction('PROCESS_EDITOR.UPLOAD_SUCCESS')
             ]),
             catchError(e =>
