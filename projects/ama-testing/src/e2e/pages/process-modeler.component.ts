@@ -16,7 +16,7 @@
  */
 
 import { element, by } from 'protractor';
-import { GenericPage } from 'ama-testing/e2e';
+import { GenericPage } from './common/generic.page';
 
 export class ProcessModelerComponent extends GenericPage {
 

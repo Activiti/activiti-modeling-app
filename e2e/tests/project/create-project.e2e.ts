@@ -17,10 +17,10 @@
 
 import { testConfig } from '../../test.config';
 import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
-import { SidebarActionMenu } from '../../pages/sidebar.menu';
+import { SidebarActionMenu } from 'ama-testing/e2e';
 import { CreateEntityDialog } from 'ama-testing/e2e';
-import { DashboardPage } from '../../pages/dashboard.page';
-import { SnackBar } from '../../pages/snackbar';
+import { DashboardPage } from 'ama-testing/e2e';
+import { SnackBar } from 'ama-testing/e2e';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';

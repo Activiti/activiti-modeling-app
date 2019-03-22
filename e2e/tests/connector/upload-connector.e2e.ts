@@ -18,7 +18,7 @@
 import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { UtilFile } from 'ama-testing/e2e';
 import { Resources } from '../../resources/resources';
-import { SnackBar } from '../../pages/snackbar';
+import { SnackBar } from 'ama-testing/e2e';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
@@ -26,8 +26,8 @@ import { testConfig } from '../../test.config';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { ProjectContentPage } from 'ama-testing/e2e';
 import { ConnectorContentPage } from 'ama-testing/e2e';
-import { CodeEditorWidget } from '../../pages/code-editor.widget';
-import { SidebarActionMenu } from '../../pages/sidebar.menu';
+import { CodeEditorWidget } from 'ama-testing/e2e';
+import { SidebarActionMenu } from 'ama-testing/e2e';
 
 const path = require('path');
 

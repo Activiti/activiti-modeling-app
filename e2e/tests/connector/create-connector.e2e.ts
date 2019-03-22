@@ -16,15 +16,14 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation, AuthenticatedPage } from 'ama-testing/e2e';
-import { SidebarActionMenu } from '../../pages/sidebar.menu';
+import { LoginPage, LoginPageImplementation, AuthenticatedPage, SidebarActionMenu } from 'ama-testing/e2e';
 import { CreateEntityDialog } from 'ama-testing/e2e';
 import { ProjectContentPage } from 'ama-testing/e2e';
-import { SnackBar } from '../../pages/snackbar';
+import { SnackBar } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
-import { Toolbar } from '../../pages/toolbar';
+import { Toolbar } from 'ama-testing/e2e';
 
 describe('Create connector', async () => {
     const adminUser = {

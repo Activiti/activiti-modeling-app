@@ -17,12 +17,12 @@
 
 import { testConfig } from '../../test.config';
 import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
-import { SnackBar } from '../../pages/snackbar';
+import { SnackBar } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';
-import { CodeEditorWidget } from '../../pages/code-editor.widget';
+import { CodeEditorWidget } from 'ama-testing/e2e';
 import { ProjectContentPage } from 'ama-testing/e2e';
 import { ConnectorContentPage } from 'ama-testing/e2e';
 import { browser } from 'protractor';

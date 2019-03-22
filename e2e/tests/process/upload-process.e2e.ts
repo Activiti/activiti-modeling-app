@@ -17,14 +17,14 @@
 
 import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { Resources } from '../../resources/resources';
-import { SnackBar } from '../../pages/snackbar';
+import { SnackBar } from 'ama-testing/e2e';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
 import { testConfig } from '../../test.config';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { ProjectContentPage } from 'ama-testing/e2e';
-import { SidebarActionMenu } from '../../pages/sidebar.menu';
+import { SidebarActionMenu } from 'ama-testing/e2e';
 
 const path = require('path');
 

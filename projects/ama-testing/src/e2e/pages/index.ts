@@ -18,9 +18,16 @@
  export * from './common';
  export * from './dialog';
  export * from './authenticated.page';
+ export * from './code-editor.widget';
  export * from './connector-content.page';
+ export * from './dashboard.page';
  export * from './login-aps.page';
  export * from './login.page';
  export * from './process-content.page';
+ export * from './process-modeler.component';
+ export * from './process-properties.card';
  export * from './project-content.page';
+ export * from './sidebar.menu';
+ export * from './snackbar';
+ export * from './toolbar';
 

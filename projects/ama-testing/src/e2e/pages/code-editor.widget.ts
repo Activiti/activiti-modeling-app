@@ -16,8 +16,8 @@
  */
 
 import { element, by, browser } from 'protractor';
-import { Logger } from 'ama-testing/e2e';
-import { GenericWebElement } from 'ama-testing/e2e';
+import { Logger } from '../util/logger';
+import { GenericWebElement } from './common/generic.webelement';
 
 export class CodeEditorWidget extends GenericWebElement {
 

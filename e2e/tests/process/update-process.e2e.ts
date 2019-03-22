@@ -17,16 +17,16 @@
 
 import { testConfig } from '../../test.config';
 import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
-import { SnackBar } from '../../pages/snackbar';
+import { SnackBar } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { ProjectContentPage } from 'ama-testing/e2e';
 import { ProcessContentPage } from 'ama-testing/e2e';
-import { ProcessPropertiesCard } from '../../pages/process-properties.card';
+import { ProcessPropertiesCard } from 'ama-testing/e2e';
 import { UtilFile } from 'ama-testing/e2e';
-import { Toolbar } from '../../pages/toolbar';
+import { Toolbar } from 'ama-testing/e2e';
 import { LeavePageDialog } from 'ama-testing/e2e';
 
 describe('Update process', async () => {
@@ -46,7 +46,7 @@ describe('Update process', async () => {
     let process: NodeEntry;
     let projectContentPage: ProjectContentPage;
     let processContentPage: ProcessContentPage;
-    const processPropertiesCard: ProcessPropertiesCard = new ProcessPropertiesCard(testConfig);
+    const processPropertiesCard: ProcessPropertiesCard = new ProcessPropertiesCard();
 
 
     beforeAll(async () => {

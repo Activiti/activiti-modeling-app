@@ -22,9 +22,9 @@ import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { ProjectContentPage } from 'ama-testing/e2e';
-import { Toolbar } from '../../pages/toolbar';
-import { DashboardPage } from '../../pages/dashboard.page';
-import { SidebarActionMenu } from '../../pages/sidebar.menu';
+import { Toolbar } from 'ama-testing/e2e';
+import { DashboardPage } from 'ama-testing/e2e';
+import { SidebarActionMenu } from 'ama-testing/e2e';
 import { CreateEntityDialog } from 'ama-testing/e2e';
 
 describe('List connectors', async () => {

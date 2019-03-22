@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { GenericWebElement } from 'ama-testing/e2e';
+import { GenericWebElement } from './common/generic.webelement';
 import { element, by } from 'protractor';
 
 export class Toolbar extends GenericWebElement {
@@ -23,10 +23,6 @@ export class Toolbar extends GenericWebElement {
     readonly home = element(by.css(`.adf-toolbar-title>a`));
     readonly downloadButton = element(by.css(`[data-automation-id='project-download-button']`));
     readonly breadcrumbCss = `[data-automation-id='breadcrumb']`;
-
-    constructor() {
-        super();
-    }
 
     async isItemDisplayed(itemName) {
         const item = element(by.cssContainingText(`.ama-breadcrumb-item-current`, itemName));

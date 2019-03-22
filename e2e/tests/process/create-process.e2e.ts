@@ -17,18 +17,18 @@
 
 import { testConfig } from '../../test.config';
 import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
-import { SidebarActionMenu } from '../../pages/sidebar.menu';
+import { SidebarActionMenu } from 'ama-testing/e2e';
 import { CreateEntityDialog } from 'ama-testing/e2e';
-import { ProjectContentPage } from '../../../projects/ama-testing/src/e2e/pages/project-content.page';
-import { SnackBar } from '../../pages/snackbar';
+import { ProjectContentPage } from 'ama-testing/e2e';
+import { SnackBar } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { ProcessContentPage } from 'ama-testing/e2e';
-import { ProcessModelerComponent } from '../../pages/process-modeler.component';
-import { ProcessPropertiesCard } from '../../pages/process-properties.card';
-import { Toolbar } from '../../pages/toolbar';
+import { ProcessModelerComponent } from 'ama-testing/e2e';
+import { ProcessPropertiesCard } from 'ama-testing/e2e';
+import { Toolbar } from 'ama-testing/e2e';
 import { browser } from 'protractor';
 import { UtilFile } from 'ama-testing/e2e';
 
@@ -45,7 +45,7 @@ describe('Create process', async () => {
     const createEntityDialog = new CreateEntityDialog();
     const snackBar = new SnackBar();
     const processModelerComponent = new ProcessModelerComponent(testConfig);
-    const processProperties = new ProcessPropertiesCard(testConfig);
+    const processProperties = new ProcessPropertiesCard();
     const toolbar = new Toolbar();
 
     let backend: Backend;

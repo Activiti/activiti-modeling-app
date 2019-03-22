@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { GenericWebElement } from 'ama-testing/e2e';
+import { GenericWebElement } from './common/generic.webelement';
 import { element, by } from 'protractor';
 
 export class SidebarActionMenu extends GenericWebElement {

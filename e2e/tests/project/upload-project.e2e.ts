@@ -17,9 +17,9 @@
 
 import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { Resources } from '../../resources/resources';
-import { SidebarActionMenu } from '../../pages/sidebar.menu';
-import { DashboardPage } from '../../pages/dashboard.page';
-import { SnackBar } from '../../pages/snackbar';
+import { SidebarActionMenu } from 'ama-testing/e2e';
+import { DashboardPage } from 'ama-testing/e2e';
+import { SnackBar } from 'ama-testing/e2e';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { testConfig } from '../../test.config';

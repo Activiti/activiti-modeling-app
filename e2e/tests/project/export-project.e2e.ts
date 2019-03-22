@@ -17,8 +17,8 @@
 
 import { testConfig } from '../../test.config';
 import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
-import { DashboardPage } from '../../pages/dashboard.page';
-import { Toolbar } from '../../pages/toolbar';
+import { DashboardPage } from 'ama-testing/e2e';
+import { Toolbar } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';

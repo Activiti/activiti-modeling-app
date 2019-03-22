@@ -25,7 +25,7 @@ import { browser } from 'protractor';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { ProjectContentPage } from 'ama-testing/e2e';
 import { ProcessContentPage } from 'ama-testing/e2e';
-import { ProcessPropertiesCard } from '../../pages/process-properties.card';
+import { ProcessPropertiesCard } from 'ama-testing/e2e';
 
 const path = require('path');
 
@@ -72,7 +72,7 @@ describe('Export process', () => {
 
         const fileContent = JSON.parse(await UtilFile.parseXML(downloadedProcess));
         const bpmnProcessDetails = fileContent[`bpmn2:definitions`][`bpmn2:process`][`_attributes`];
-        const uiProcessId = await new ProcessPropertiesCard(testConfig).getProcessId();
+        const uiProcessId = await new ProcessPropertiesCard().getProcessId();
         const expectedProcessId = `process-${process.entry.id}`;
         expect(uiProcessId).toEqual(expectedProcessId);
         expect(UtilFile.getJSONItemValueByKey(bpmnProcessDetails, `id`)).toEqual(expectedProcessId);

@@ -22,9 +22,9 @@ import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { ProcessContentPage } from 'ama-testing/e2e';
-import { ProcessPropertiesCard } from '../../../pages/process-properties.card';
+import { ProcessPropertiesCard } from 'ama-testing/e2e';
 import { ProcessVariablesDialog } from '../../../pages/dialog/process-variables.dialog';
-import { CodeEditorWidget } from '../../../pages/code-editor.widget';
+import { CodeEditorWidget } from 'ama-testing/e2e';
 
 describe('Create process variable', async () => {
     const adminUser = {
