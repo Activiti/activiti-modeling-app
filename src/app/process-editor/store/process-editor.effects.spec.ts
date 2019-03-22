@@ -276,8 +276,8 @@ describe('ProcessEditorEffects', () => {
         });
     });
 
-    describe('createConnectorSuccessEffect Effect', () => {
-        it('createConnectorSuccessEffect should  not dispatch an action', () => {
+    describe('createProcessSuccessEffect Effect', () => {
+        it('createProcessSuccessEffect should  not dispatch an action', () => {
             expect(metadata.createProcessSuccessEffect).toEqual({ dispatch: false});
         });
 
