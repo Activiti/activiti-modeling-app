@@ -163,7 +163,7 @@ describe('ProcessEditorEffects', () => {
         it('uploadProcessEffect should dispatch the CreateConnectorSuccessAction', () => {
             actions$ = hot('a', { a: new UploadProcessAttemptAction(<UploadFileAttemptPayload>{file: new File([''], 'filename')}) });
             const expected = cold('(bc)', {
-                b: new CreateProcessSuccessAction(process),
+                b: new CreateProcessSuccessAction(process, true),
                 c: new SnackbarInfoAction('PROCESS_EDITOR.UPLOAD_SUCCESS'),
             });
 

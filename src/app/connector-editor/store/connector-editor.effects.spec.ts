@@ -160,7 +160,7 @@ describe('ConnectorEditorEffects', () => {
         it('uploadConnectorEffect should dispatch the CreateConnectorSuccessAction', () => {
             actions$ = hot('a', { a: new UploadConnectorAttemptAction(<UploadFileAttemptPayload>{file: new File([''], 'filename')}) });
             const expected = cold('(bc)', {
-                b: new CreateConnectorSuccessAction(connector),
+                b: new CreateConnectorSuccessAction(connector, true),
                 c: new SnackbarInfoAction('CONNECTOR_EDITOR.UPLOAD_SUCCESS'),
             });
 
