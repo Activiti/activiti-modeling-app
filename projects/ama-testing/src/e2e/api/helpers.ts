@@ -15,21 +15,10 @@
  * limitations under the License.
  */
 
-import { ConfirmationDialog } from 'ama-testing/e2e';
-import { MESSAGES } from 'ama-testing/e2e';
+import { ACMBackend } from './acm/acm-backend';
+import { TestConfig } from '../config/test.config.interface';
+import { Backend } from './api.interfaces';
 
-export class LeavePageDialog extends ConfirmationDialog {
-    itemType: string;
-    itemName: string;
-
-    constructor(itemType?: string, itemName?: string) {
-        super(MESSAGES.DIALOG.UNSAVED_PAGE);
-        this.itemType = itemType;
-        this.itemName = itemName;
-    }
-
-    async isTitleDisplayed() {
-        await super.waitForElementToBeVisible(this.titleElement);
-        return await this.titleElement.getText() === this.title.replace('ITEM', this.itemType).replace('NAME', this.itemName);
-    }
+export function getBackend(testConfig): Backend {
+    return new ACMBackend(<TestConfig>testConfig);
 }

@@ -16,16 +16,16 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { SidebarActionMenu } from '../../pages/sidebar.menu';
 import { CreateEntityDialog } from '../../pages/dialog/create-entity.dialog';
-import { ProjectContentPage } from '../../pages/project-content.page';
+import { ProjectContentPage } from '../../../projects/ama-testing/src/e2e/pages/project-content.page';
 import { SnackBar } from '../../pages/snackbar';
 import { NodeEntry } from 'alfresco-js-api-node';
-import { Backend } from '../../api/api.interfaces';
-import { getBackend } from '../../api/helpers';
-import { AuthenticatedPage } from '../../pages/authenticated.page';
-import { ProcessContentPage } from '../../pages/process-content.page';
+import { Backend } from 'ama-testing/e2e';
+import { getBackend } from 'ama-testing/e2e';
+import { AuthenticatedPage } from 'ama-testing/e2e';
+import { ProcessContentPage } from 'ama-testing/e2e';
 import { ProcessModelerComponent } from '../../pages/process-modeler.component';
 import { ProcessPropertiesCard } from '../../pages/process-properties.card';
 import { Toolbar } from '../../pages/toolbar';
@@ -41,11 +41,11 @@ describe('Create process', async () => {
     };
 
     const sidebarActionMenu = new SidebarActionMenu();
-    const authenticatedPage = new AuthenticatedPage();
+    const authenticatedPage = new AuthenticatedPage(testConfig);
     const createEntityDialog = new CreateEntityDialog();
     const snackBar = new SnackBar();
-    const processModelerComponent = new ProcessModelerComponent();
-    const processProperties = new ProcessPropertiesCard();
+    const processModelerComponent = new ProcessModelerComponent(testConfig);
+    const processProperties = new ProcessPropertiesCard(testConfig);
     const toolbar = new Toolbar();
 
     let backend: Backend;
@@ -57,19 +57,19 @@ describe('Create process', async () => {
     const downloadDir = browser.params.downloadDir;
 
     beforeAll(async () => {
-        backend = await getBackend().setUp();
+        backend = await getBackend(testConfig).setUp();
         project = await backend.project.createAndWaitUntilAvailable();
     });
 
     beforeAll(async () => {
-        loginPage = LoginPage.get();
+        loginPage = LoginPage.get(testConfig);
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
         await authenticatedPage.isLoggedIn();
     });
 
     beforeEach(async () => {
-        projectContentPage = new ProjectContentPage(project.entry.id);
+        projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
     });
 
     it('1. [C289346] Create process using New dropdown', async () => {
@@ -96,7 +96,7 @@ describe('Create process', async () => {
         process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
         callActivityProcess = await backend.process.createAndWaitUntilAvailable(project.entry.id);
 
-        processContentPage = new ProcessContentPage(project.entry.id, process.entry.id);
+        processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await processModelerComponent.addCallActivity();
         await processProperties.setActivity(callActivityProcess.entry.name);

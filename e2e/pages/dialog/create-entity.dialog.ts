@@ -17,7 +17,7 @@
 
 import { element, by } from 'protractor';
 import { UtilRandom } from 'ama-testing/e2e';
-import { GenericDialog } from '../common/generic.dialog';
+import { GenericDialog } from 'ama-testing/e2e';
 
 export interface CreatedEntity {
     name: string;

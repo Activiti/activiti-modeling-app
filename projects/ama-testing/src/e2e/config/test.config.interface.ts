@@ -35,6 +35,20 @@ export interface TestConfig {
         default_timeout: number;
         presence_timeout: number;
         rootPath: string;
+        browserWidth: number;
+        browserHeight: number;
+        paths: {
+            tmp: string;
+            screenShots: string;
+            junitReport: string;
+            reports: string;
+            download: string;
+        },
+        screenshots: {
+            url: string;
+            user: string;
+            password: string;
+        }
     };
     ama: {
         url: string;

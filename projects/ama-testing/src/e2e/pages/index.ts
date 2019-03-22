@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-import { testConfig } from '../test.config';
-import { ACMBackend } from './acm/acm-backend';
-import { TestConfig } from 'ama-testing/e2e';
-import { Backend } from './api.interfaces';
+ export * from './common';
+ export * from './authenticated.page';
+ export * from './connector-content.page';
+ export * from './login-aps.page';
+ export * from './login.page';
+ export * from './process-content.page';
+ export * from './project-content.page';
 
-export function getBackend(): Backend {
-    return new ACMBackend(<TestConfig>testConfig);
-}

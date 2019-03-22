@@ -15,13 +15,11 @@
  * limitations under the License.
  */
 
-import { testConfig } from '../test.config';
 import { element, by } from 'protractor';
-import { GenericPage } from './common/generic.page';
+import { GenericPage } from 'ama-testing/e2e';
 
 export class DataContentPage extends GenericPage {
 
-    readonly appUrl = `${testConfig.ama.url}${testConfig.ama.port !== '' ? `:${testConfig.ama.port}` : ''}`;
     readonly dataObjectEditorContextMenu = element(by.css(`[data-automation-id="data-object-editor-menu-button"]`));
     readonly dataObjectEditorDeleteButton = element(by.css(`[data-automation-id="data-object-editor-delete-button"]`));
     readonly dataObjectEditorSaveButton = element(by.css(`[data-automation-id="data-object-editor-save-button"]`));
@@ -45,7 +43,7 @@ export class DataContentPage extends GenericPage {
     }
 
     async navigateTo() {
-        await super.navigateTo(`${this.appUrl}/projects/${this.appId}/data/${this.dataObjectId}`);
+        await super.navigateTo(`projects/${this.appId}/data/${this.dataObjectId}`);
     }
 
     async selectAdvancedEditor() {

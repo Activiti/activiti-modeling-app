@@ -19,13 +19,30 @@ import { TestConfig } from './test.config.interface';
 require('dotenv').config();
 
 const env = process.env;
+const path = require('path');
+
 
 export function getConfig(rootPath: string, apsConfig): TestConfig {
+    const outputDir = path.join(rootPath, '/../e2e-output');
     return {
         main: {
             default_timeout: parseInt(env.DEFAULT_TIMEOUT, 10) || 20000,
             presence_timeout: parseInt(env.PRESENCE_TIMEOUT, 10) || 60000,
-            rootPath: rootPath
+            rootPath: rootPath,
+            browserWidth: 1600,
+            browserHeight: 1000,
+            paths: {
+                tmp: path.join(outputDir, '/tmp'),
+                screenShots: path.join(outputDir, '/screenshots'),
+                junitReport: path.join(outputDir, '/junit-report'),
+                reports: path.join(outputDir, '/reports/'),
+                download: path.join(outputDir, '/downloads')
+            },
+            screenshots: {
+                url: process.env.SCREENSHOT_URL,
+                user: process.env.SCREENSHOT_USERNAME,
+                password: process.env.SCREENSHOT_PASSWORD,
+            }
         },
         ama: {
             url: env.E2E_HOST || 'http://localhost',

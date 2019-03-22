@@ -15,21 +15,20 @@
  * limitations under the License.
  */
 
-import { testConfig } from '../test.config';
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
+import { TestConfig } from '../config';
 
 export class ProjectContentPage extends GenericPage {
 
-    readonly projectPageURL = `${testConfig.ama.url}${testConfig.ama.port !== '' ? `:${testConfig.ama.port}` : ''}/projects/`;
     readonly itemsListExpanded = element(by.css(`div.mat-expanded`));
 
-    constructor(public projectId: string) {
-        super();
+    constructor(testConfig: TestConfig, public projectId: string) {
+        super(testConfig);
     }
 
     async navigateTo() {
-        await super.navigateTo(`${this.projectPageURL}${this.projectId}`);
+        await super.navigateTo(`projects/${this.projectId}`);
     }
 
     async isModelInList(modelType: string, modelName: string) {

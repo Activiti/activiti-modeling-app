@@ -17,20 +17,23 @@
 
 import { LoginPageImplementation } from './login.page';
 import { element, by } from 'protractor';
-import { testConfig } from '../test.config';
 import { GenericPage } from './common/generic.page';
 import { AuthenticatedPage } from './authenticated.page';
+import { TestConfig } from '../config';
+
 
 export class LoginAPSPage extends GenericPage implements LoginPageImplementation {
-
-    private readonly loginURL = `${testConfig.ama.url}${testConfig.ama.port !== '' ? `:${testConfig.ama.port}` : ''}/login`;
 
     private readonly ssoButton = element(by.css(`[data-automation-id="login-button-sso"]`));
     private readonly usernameField = element(by.id('username'));
     private readonly passwordField = element(by.id('password'));
     private readonly loginButton = element(by.className('submit'));
 
-    private authenticatedPage = new AuthenticatedPage();
+    constructor(testConfig: TestConfig) {
+        super(testConfig);
+    }
+
+    private authenticatedPage = new AuthenticatedPage(this.testConfig);
 
     async login(username: string, password: string) {
         await this.clickOnSSOButton();
@@ -43,7 +46,8 @@ export class LoginAPSPage extends GenericPage implements LoginPageImplementation
     }
 
     async navigateTo() {
-        return await super.navigateTo(this.loginURL);
+        const loginURL = `login`;
+        return await super.navigateTo(loginURL);
     }
 
     async isLoginPageDisplayed() {

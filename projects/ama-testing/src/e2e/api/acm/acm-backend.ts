@@ -69,7 +69,7 @@ export class ACMBackend implements Backend {
 
     async setupLocalStorage() {
         browser.driver.manage().deleteAllCookies();
-        const loginPage: LoginPageImplementation = LoginPage.get();
+        const loginPage: LoginPageImplementation = LoginPage.get(this.config);
         await loginPage.navigateTo();
         await browser.executeScript('return window.sessionStorage.clear();');
         await browser.executeScript('return window.localStorage.clear();');

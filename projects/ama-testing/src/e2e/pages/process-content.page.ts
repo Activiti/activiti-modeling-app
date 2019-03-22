@@ -17,11 +17,10 @@
 
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
-import { testConfig } from '../test.config';
+import { TestConfig } from '../config';
 
 export class ProcessContentPage extends GenericPage {
 
-    readonly appUrl = `${testConfig.ama.url}${testConfig.ama.port !== '' ? `:${testConfig.ama.port}` : ''}`;
     readonly processEditorModeling = element(by.css(`[data-automation-id="process-editor-modeling"]`));
     readonly processEditorProperties = element(by.css(`[data-automation-id="process-editor-properties"]`));
     readonly processEditorContextMenu = element(by.css(`[data-automation-id="process-editor-menu-button"]`));
@@ -29,12 +28,12 @@ export class ProcessContentPage extends GenericPage {
     readonly processEditorDownloadButton = element(by.css(`[data-automation-id="process-editor-download-button"]`));
     readonly processEditorSaveButton = element(by.css(`[data-automation-id="process-editor-save-button"]`));
 
-    constructor(public appId?: string, public processId?: string) {
-        super();
+    constructor(testConfig: TestConfig, public appId?: string, public processId?: string) {
+        super(testConfig);
     }
 
     async navigateTo() {
-        await super.navigateTo(`${this.appUrl}/projects/${this.appId}/process/${this.processId}`);
+        await super.navigateTo(`projects/${this.appId}/process/${this.processId}`);
     }
 
     async isLoaded() {

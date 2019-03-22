@@ -15,13 +15,11 @@
  * limitations under the License.
  */
 
-import { testConfig } from '../test.config';
 import { element, by } from 'protractor';
-import { GenericPage } from './common/generic.page';
+import { GenericPage } from 'ama-testing/e2e';
 
 export class UiContentPage extends GenericPage {
 
-    readonly appUrl = `${testConfig.ama.url}${testConfig.ama.port !== '' ? `:${testConfig.ama.port}` : ''}`;
     readonly uiEditorContextMenu = element(by.css(`[data-automation-id="ui-editor-menu-button"]`));
     readonly uiEditorDeleteButton = element(by.css(`[data-automation-id="ui-editor-delete-button"]`));
     readonly uiEditorSaveButton = element(by.css(`[data-automation-id="ui-editor-save-button"]`));
@@ -45,7 +43,7 @@ export class UiContentPage extends GenericPage {
     }
 
     async navigateTo() {
-        await super.navigateTo(`${this.appUrl}/projects/${this.appId}/ui/${this.uiId}`);
+        await super.navigateTo(`projects/${this.appId}/ui/${this.uiId}`);
     }
 
     async selectAdvancedEditor() {

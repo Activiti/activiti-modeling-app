@@ -15,13 +15,11 @@
  * limitations under the License.
  */
 
-import { testConfig } from '../test.config';
 import { element, by } from 'protractor';
-import { GenericPage } from './common/generic.page';
+import { GenericPage } from 'ama-testing/e2e';
 
 export class DecisionTableContentPage extends GenericPage {
 
-    readonly appUrl = `${testConfig.ama.url}${testConfig.ama.port !== '' ? `:${testConfig.ama.port}` : ''}`;
     readonly decisionTableEditorContextMenu = element(by.css(`[data-automation-id="decision-table-editor-menu-button"]`));
     readonly decisionTableEditorDeleteButton = element(by.css(`[data-automation-id="decision-table-editor-delete-button"]`));
     readonly decisionTableEditorSaveButton = element(by.css(`[data-automation-id="decision-table-editor-save-button"]`));
@@ -45,7 +43,7 @@ export class DecisionTableContentPage extends GenericPage {
     }
 
     async navigateTo() {
-        await super.navigateTo(`${this.appUrl}/projects/${this.appId}/decision/${this.decisionTableId}`);
+        await super.navigateTo(`projects/${this.appId}/decision/${this.decisionTableId}`);
     }
 
     async selectAdvancedEditor() {

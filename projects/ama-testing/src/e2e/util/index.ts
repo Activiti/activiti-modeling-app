@@ -16,8 +16,10 @@
  */
 
  export * from './api';
+ export * from './fakeBlob.helper';
  export * from './file';
  export * from './flush-last-browser-logs';
  export * from './logger';
  export * from './messages';
  export * from './random';
+ export * from './take-screenshot';

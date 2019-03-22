@@ -16,14 +16,14 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { DashboardPage } from '../../pages/dashboard.page';
 import { CreateEntityDialog } from '../../pages/dialog/create-entity.dialog';
 import { SnackBar } from '../../pages/snackbar';
 import { NodeEntry } from 'alfresco-js-api-node';
-import { Backend } from '../../api/api.interfaces';
-import { getBackend } from '../../api/helpers';
-import { AuthenticatedPage } from '../../pages/authenticated.page';
+import { Backend } from 'ama-testing/e2e';
+import { getBackend } from 'ama-testing/e2e';
+import { AuthenticatedPage } from 'ama-testing/e2e';
 
 describe('Update project', () => {
     const adminUser = {
@@ -31,8 +31,8 @@ describe('Update project', () => {
         password: testConfig.ama.password
     };
 
-    const loginPage: LoginPageImplementation = LoginPage.get();
-    const authenticatedPage = new AuthenticatedPage();
+    const loginPage: LoginPageImplementation = LoginPage.get(testConfig);
+    const authenticatedPage = new AuthenticatedPage(testConfig);
     const dashboardPage = new DashboardPage();
     const snackBar = new SnackBar();
     const createEntityDialog = new CreateEntityDialog();
@@ -41,7 +41,7 @@ describe('Update project', () => {
     let app: NodeEntry;
 
     beforeAll(async () => {
-        backend = await getBackend().setUp();
+        backend = await getBackend(testConfig).setUp();
         app = await backend.project.createAndWaitUntilAvailable();
     });
 

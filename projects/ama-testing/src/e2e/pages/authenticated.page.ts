@@ -16,15 +16,18 @@
  */
 
 import { element, by } from 'protractor';
-import { testConfig } from '../test.config';
 import { GenericPage } from './common/generic.page';
+import { TestConfig } from '../config';
 
 export class AuthenticatedPage extends GenericPage {
 
-    private readonly loginURL = `${testConfig.ama.url}${testConfig.ama.port !== '' ? `:${testConfig.ama.port}` : ''}/dashboard/projects`;
     private readonly userLoggedIn = element(by.css(`[data-automation-id="user-logged-in"]`));
     private readonly userMenu = element(by.css(`[data-automation-id="user-menu"]`));
     private readonly userLogout = element(by.css(`[data-automation-id="user-logout"]`));
+
+    constructor(testConfig: TestConfig) {
+        super(testConfig);
+    }
 
     async isLoggedIn() {
         return await super.waitForElementToBeVisible(this.userLoggedIn);
@@ -36,6 +39,8 @@ export class AuthenticatedPage extends GenericPage {
     }
 
     async navigateTo() {
-        return await super.navigateTo(this.loginURL);
+        const loginURL = `dashboard/projects`;
+
+        return await super.navigateTo(loginURL);
     }
 }

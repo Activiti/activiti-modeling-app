@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { GenericWebElement } from './common/generic.webelement';
+import { GenericWebElement } from 'ama-testing/e2e';
 import { element, by } from 'protractor';
 
 export class Toolbar extends GenericWebElement {

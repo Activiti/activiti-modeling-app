@@ -16,12 +16,12 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
-import { Backend } from '../../api/api.interfaces';
-import { getBackend } from '../../api/helpers';
-import { AuthenticatedPage } from '../../pages/authenticated.page';
-import { ProjectContentPage } from '../../pages/project-content.page';
+import { Backend } from 'ama-testing/e2e';
+import { getBackend } from 'ama-testing/e2e';
+import { AuthenticatedPage } from 'ama-testing/e2e';
+import { ProjectContentPage } from 'ama-testing/e2e';
 import { Toolbar } from '../../pages/toolbar';
 import { DashboardPage } from '../../pages/dashboard.page';
 import { SidebarActionMenu } from '../../pages/sidebar.menu';
@@ -33,9 +33,9 @@ describe('List connectors', async () => {
         password: testConfig.ama.password
     };
 
-    const authenticatedPage = new AuthenticatedPage();
+    const authenticatedPage = new AuthenticatedPage(testConfig);
     const toolbar = new Toolbar();
-    const dashboardPage = new DashboardPage();
+    const dashboardPage = new DashboardPage(testConfig);
     const sidebarActionMenu = new SidebarActionMenu();
     const createEntityDialog = new CreateEntityDialog();
 
@@ -46,7 +46,7 @@ describe('List connectors', async () => {
     let projectContentPage: ProjectContentPage;
 
     beforeAll(async () => {
-        backend = await getBackend().setUp();
+        backend = await getBackend(testConfig).setUp();
 
         project1 = await backend.project.createAndWaitUntilAvailable();
         connector1 = await backend.connector.create(project1.entry.id);
@@ -56,14 +56,14 @@ describe('List connectors', async () => {
     });
 
     beforeAll(async () => {
-        loginPage = LoginPage.get();
+        loginPage = LoginPage.get(testConfig);
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
         await authenticatedPage.isLoggedIn();
     });
 
     beforeEach(async() => {
-        projectContentPage = new ProjectContentPage(project1.entry.id);
+        projectContentPage = new ProjectContentPage(testConfig, project1.entry.id);
     });
 
     it('1. [C290149] List of connectors is not empty when navigate to Dashboard - item is available', async () => {

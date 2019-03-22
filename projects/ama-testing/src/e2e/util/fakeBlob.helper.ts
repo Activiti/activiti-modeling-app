@@ -15,21 +15,10 @@
  * limitations under the License.
  */
 
-import { ConfirmationDialog } from 'ama-testing/e2e';
-import { MESSAGES } from 'ama-testing/e2e';
+import * as fs from 'fs';
 
-export class LeavePageDialog extends ConfirmationDialog {
-    itemType: string;
-    itemName: string;
-
-    constructor(itemType?: string, itemName?: string) {
-        super(MESSAGES.DIALOG.UNSAVED_PAGE);
-        this.itemType = itemType;
-        this.itemName = itemName;
-    }
-
-    async isTitleDisplayed() {
-        await super.waitForElementToBeVisible(this.titleElement);
-        return await this.titleElement.getText() === this.title.replace('ITEM', this.itemType).replace('NAME', this.itemName);
-    }
+export function getBlob(tmpPath: string, fileName: string, fileContent: string) {
+    const filePath = `${tmpPath}/${fileName}`;
+    fs.writeFileSync(filePath, fileContent);
+    return fs.createReadStream(filePath);
 }

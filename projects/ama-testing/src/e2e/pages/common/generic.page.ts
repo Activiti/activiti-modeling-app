@@ -17,14 +17,21 @@
 
 import { GenericWebElement } from './generic.webelement';
 import { browser } from 'protractor';
-import { testConfig } from '../../test.config';
+import { TestConfig } from '../../config/test.config.interface';
 
 export class GenericPage extends GenericWebElement {
 
+    testConfig: TestConfig;
     url: string;
 
+    constructor(testConfig?: TestConfig) {
+        super();
+        this.testConfig = testConfig;
+    }
+
     async navigateTo(url: string) {
-        return await browser.get(url);
+        const baseUrl = `${this.testConfig.ama.url}${this.testConfig.ama.port !== '' ? `:${this.testConfig.ama.port}` : ''}`;
+        return await browser.get(`${baseUrl}/${url}`);
     }
 
     async refreshPage() {
@@ -33,7 +40,7 @@ export class GenericPage extends GenericWebElement {
 
     async isPageInDirtyState() {
         const pageTitle = await browser.getTitle();
-        return pageTitle === `* ${testConfig.ama.appTitle}`;
+        return pageTitle === `* ${this.testConfig.ama.appTitle}`;
     }
 
     async getModelId() {

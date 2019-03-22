@@ -15,18 +15,15 @@
  * limitations under the License.
  */
 
-import { testConfig } from '../test.config';
-import { GenericPage } from './common/generic.page';
+import { GenericPage } from 'ama-testing/e2e';
 
 export class ProjectsPage extends GenericPage {
-
-    readonly appsPageURL = `${testConfig.ama.url}${testConfig.ama.port !== '' ? `:${testConfig.ama.port}` : ''}/dashboard/projects`;
 
     constructor() {
         super();
     }
 
     async navigateTo() {
-        return await super.navigateTo(this.appsPageURL);
+        return await super.navigateTo(`dashboard/projects`);
     }
 }

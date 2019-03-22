@@ -16,7 +16,7 @@
  */
 
 import { NodeEntry, ResultSetPaging } from 'alfresco-js-api-node';
-import { UtilRandom, Logger, UtilApi } from 'ama-testing/e2e';
+import { UtilRandom, Logger, UtilApi } from '../../util';
 import { ACMBackend } from './acm-backend';
 import { ModelCrud } from '../api.interfaces';
 import { E2eRequestApiHelper, E2eRequestApiHelperOptions } from './e2e-request-api.helper';
@@ -31,11 +31,13 @@ export abstract class ACMCrud implements ModelCrud {
     abstract contentType: string;
 
     requestApiHelper: E2eRequestApiHelper;
+    tmpFilePath: string;
 
     abstract getDefaultContent(entityName: string, entityId: string): string;
 
     constructor(backend: ACMBackend) {
         this.requestApiHelper = new E2eRequestApiHelper(backend);
+        this.tmpFilePath = backend.config.main.paths.tmp;
     }
 
     getContent(entityId: string) {
@@ -99,7 +101,7 @@ export abstract class ACMCrud implements ModelCrud {
 
     async updateModelContent(id: string, content: string) {
         const requestOptions: E2eRequestApiHelperOptions = {
-            formParams: { file: getBlob(`process-${id}.xml`, content) },
+            formParams: { file: getBlob(this.tmpFilePath, `process-${id}.xml`, content) },
             contentTypes: [ 'multipart/form-data' ]
         };
 

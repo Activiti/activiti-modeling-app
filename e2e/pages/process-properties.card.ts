@@ -16,7 +16,7 @@
  */
 
 import { element, by } from 'protractor';
-import { GenericPage } from './common/generic.page';
+import { GenericPage } from 'ama-testing/e2e';
 
 export class ProcessPropertiesCard extends GenericPage {
 

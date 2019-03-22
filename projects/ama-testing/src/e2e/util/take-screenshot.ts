@@ -16,21 +16,20 @@
  */
 
 import { browser } from 'protractor';
-import { Logger } from 'ama-testing/e2e';
+import { Logger } from './logger';
 
 const fs = require('fs');
 const path = require('path');
-const config = require('../config/config.js');
 
-export async function takeScreenshot(fileName) {
+export async function takeScreenshot(screenshotFilePath, fileName) {
     const pngData = await browser.takeScreenshot();
     const filenameWithExt = `${fileName}.png`;
     Logger.info('Taking screenshot: ', filenameWithExt);
-    writeScreenShot(pngData, filenameWithExt);
+    writeScreenShot(screenshotFilePath, pngData, filenameWithExt);
 }
 
-export function writeScreenShot(data, filenameWithExt) {
-    const fileWithPath = path.join(config.paths.screenShots, filenameWithExt);
+export function writeScreenShot(screenshotFilePath, data, filenameWithExt) {
+    const fileWithPath = path.join(screenshotFilePath, filenameWithExt);
     const stream = fs.createWriteStream(fileWithPath);
     stream.write(new Buffer(data, 'base64'));
     stream.end();

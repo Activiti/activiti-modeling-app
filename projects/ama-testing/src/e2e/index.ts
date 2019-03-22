@@ -15,5 +15,7 @@
  * limitations under the License.
  */
 
+ export * from './api';
  export * from './config';
+ export * from './pages';
  export * from './util';

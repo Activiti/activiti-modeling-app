@@ -16,12 +16,10 @@
  */
 
 import { element, by } from 'protractor';
-import { GenericPage } from './common/generic.page';
-import { testConfig } from '../test.config';
+import { GenericPage } from 'ama-testing/e2e';
 
 export class DashboardPage extends GenericPage {
 
-    readonly dashboardURL = `${testConfig.ama.url}${testConfig.ama.port !== '' ? `:${testConfig.ama.port}` : ''}/dashboard/projects`;
     readonly dashboardList = element(by.css(`mat-table.dashboard-list`));
 
     async isDashboardListDisplayed() {
@@ -87,6 +85,6 @@ export class DashboardPage extends GenericPage {
     }
 
     async navigateTo() {
-        await super.navigateTo(`${this.dashboardURL}`);
+        await super.navigateTo(`dashboard/projects`);
     }
 }

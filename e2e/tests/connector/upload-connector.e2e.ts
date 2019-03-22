@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { UtilFile } from 'ama-testing/e2e';
 import { Resources } from '../../resources/resources';
 import { SnackBar } from '../../pages/snackbar';
-import { Backend } from '../../api/api.interfaces';
-import { getBackend } from '../../api/helpers';
+import { Backend } from 'ama-testing/e2e';
+import { getBackend } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
 import { testConfig } from '../../test.config';
-import { AuthenticatedPage } from '../../pages/authenticated.page';
-import { ProjectContentPage } from '../../pages/project-content.page';
-import { ConnectorContentPage } from '../../pages/connector-content.page';
+import { AuthenticatedPage } from 'ama-testing/e2e';
+import { ProjectContentPage } from 'ama-testing/e2e';
+import { ConnectorContentPage } from 'ama-testing/e2e';
 import { CodeEditorWidget } from '../../pages/code-editor.widget';
 import { SidebarActionMenu } from '../../pages/sidebar.menu';
 
@@ -40,9 +40,9 @@ describe('Upload connector', () => {
     const CONNECTOR = Resources.COMPLEX_CONNECTOR;
     const absoluteFilePath = path.resolve(testConfig.main.rootPath + CONNECTOR.file_location);
 
-    const authenticatedPage = new AuthenticatedPage();
+    const authenticatedPage = new AuthenticatedPage(testConfig);
     const snackBar = new SnackBar();
-    const connectorContentPage = new ConnectorContentPage();
+    const connectorContentPage = new ConnectorContentPage(testConfig);
     const codeEditorWidget = new CodeEditorWidget();
     const sidebarActionMenu = new SidebarActionMenu();
 
@@ -53,19 +53,19 @@ describe('Upload connector', () => {
 
 
     beforeAll(async () => {
-        backend = await getBackend().setUp();
+        backend = await getBackend(testConfig).setUp();
         project = await backend.project.createAndWaitUntilAvailable();
     });
 
     beforeAll(async () => {
-        loginPage = LoginPage.get();
+        loginPage = LoginPage.get(testConfig);
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
         await authenticatedPage.isLoggedIn();
     });
 
     beforeEach(async () => {
-        projectContentPage = new ProjectContentPage(project.entry.id);
+        projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         await projectContentPage.navigateTo();
     });
 

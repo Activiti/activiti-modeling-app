@@ -16,12 +16,12 @@
  */
 
 import { testConfig } from '../../../test.config';
-import { LoginPage, LoginPageImplementation } from '../../../pages/login.page';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
-import { Backend } from '../../../api/api.interfaces';
-import { getBackend } from '../../../api/helpers';
-import { AuthenticatedPage } from '../../../pages/authenticated.page';
-import { ProcessContentPage } from '../../../pages/process-content.page';
+import { Backend } from 'ama-testing/e2e';
+import { getBackend } from 'ama-testing/e2e';
+import { AuthenticatedPage } from 'ama-testing/e2e';
+import { ProcessContentPage } from 'ama-testing/e2e';
 import { ProcessPropertiesCard } from '../../../pages/process-properties.card';
 import { ProcessVariablesDialog } from '../../../pages/dialog/process-variables.dialog';
 import { CodeEditorWidget } from '../../../pages/code-editor.widget';
@@ -38,17 +38,17 @@ describe('Create process variable', async () => {
     let process: NodeEntry;
     let processContentPage: ProcessContentPage;
     const processPropertiesCard = new ProcessPropertiesCard();
-    const authenticatedPage = new AuthenticatedPage();
+    const authenticatedPage = new AuthenticatedPage(testConfig);
     const processVariablesDialog = new ProcessVariablesDialog();
     const codeEditorWidget = new CodeEditorWidget();
 
     beforeAll(async () => {
-        backend = await getBackend().setUp();
+        backend = await getBackend(testConfig).setUp();
         project = await backend.project.createAndWaitUntilAvailable();
     });
 
     beforeAll(async () => {
-        loginPage = LoginPage.get();
+        loginPage = LoginPage.get(testConfig);
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
         await authenticatedPage.isLoggedIn();
@@ -59,7 +59,7 @@ describe('Create process variable', async () => {
     });
 
     beforeEach(async () => {
-        processContentPage = new ProcessContentPage(project.entry.id, process.entry.id);
+        processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await processPropertiesCard.isLoaded();
     });

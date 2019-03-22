@@ -16,14 +16,14 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { SidebarActionMenu } from '../../pages/sidebar.menu';
 import { CreateEntityDialog } from '../../pages/dialog/create-entity.dialog';
 import { DashboardPage } from '../../pages/dashboard.page';
 import { SnackBar } from '../../pages/snackbar';
-import { Backend } from '../../api/api.interfaces';
-import { getBackend } from '../../api/helpers';
-import { AuthenticatedPage } from '../../pages/authenticated.page';
+import { Backend } from 'ama-testing/e2e';
+import { getBackend } from 'ama-testing/e2e';
+import { AuthenticatedPage } from 'ama-testing/e2e';
 import { Logger } from 'ama-testing/e2e';
 
 describe('Create project', () => {
@@ -34,7 +34,7 @@ describe('Create project', () => {
 
     const sidebarActionMenu = new SidebarActionMenu();
     const createEntityDialog = new CreateEntityDialog();
-    const authenticatedPage = new AuthenticatedPage();
+    const authenticatedPage = new AuthenticatedPage(testConfig);
     const dashboardPage = new DashboardPage();
     const snackBar = new SnackBar();
 
@@ -42,11 +42,11 @@ describe('Create project', () => {
     let loginPage: LoginPageImplementation;
 
     beforeEach(async () => {
-        backend = await getBackend().setUp();
+        backend = await getBackend(testConfig).setUp();
     });
 
     beforeEach(async () => {
-        loginPage = LoginPage.get();
+        loginPage = LoginPage.get(testConfig);
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
         await authenticatedPage.isLoggedIn();

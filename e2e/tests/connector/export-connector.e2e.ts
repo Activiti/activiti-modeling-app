@@ -16,14 +16,14 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
-import { Backend } from '../../api/api.interfaces';
-import { getBackend } from '../../api/helpers';
+import { Backend } from 'ama-testing/e2e';
+import { getBackend } from 'ama-testing/e2e';
 import { UtilFile } from 'ama-testing/e2e';
 import { browser } from 'protractor';
-import { AuthenticatedPage } from '../../pages/authenticated.page';
-import { ConnectorContentPage } from '../../pages/connector-content.page';
+import { AuthenticatedPage } from 'ama-testing/e2e';
+import { ConnectorContentPage } from 'ama-testing/e2e';
 
 const path = require('path');
 
@@ -33,8 +33,8 @@ describe('Export connector', () => {
         password: testConfig.ama.password
     };
 
-    const loginPage: LoginPageImplementation = LoginPage.get();
-    const authenticatedPage = new AuthenticatedPage();
+    const loginPage: LoginPageImplementation = LoginPage.get(testConfig);
+    const authenticatedPage = new AuthenticatedPage(testConfig);
 
     let backend: Backend;
     let project: NodeEntry;
@@ -44,7 +44,7 @@ describe('Export connector', () => {
     const downloadDir = browser.params.downloadDir;
 
     beforeAll(async () => {
-        backend = await getBackend().setUp();
+        backend = await getBackend(testConfig).setUp();
         project = await backend.project.createAndWaitUntilAvailable();
     });
 
@@ -59,7 +59,7 @@ describe('Export connector', () => {
     });
 
     it('1. [C286439] Export connector', async () => {
-        connectorContentPage = new ConnectorContentPage(project.entry.id, connector.entry.id);
+        connectorContentPage = new ConnectorContentPage(testConfig, project.entry.id, connector.entry.id);
         await connectorContentPage.navigateTo();
         await connectorContentPage.download();
 

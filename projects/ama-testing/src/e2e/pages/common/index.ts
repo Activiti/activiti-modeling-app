@@ -15,17 +15,7 @@
  * limitations under the License.
  */
 
-import { testConfig } from '../test.config';
-import { LoginAPSPage } from './login-aps.page';
-
-export interface LoginPageImplementation {
-    login(username: string, password: string): Promise<void>;
-    navigateTo(): Promise<void>;
-    isLoginPageDisplayed(): Promise<{}>;
-}
-
-export class LoginPage {
-    static get(config = testConfig): LoginPageImplementation {
-        return new LoginAPSPage();
-    }
-}
+ export * from './confirmation.dialog';
+ export * from './generic.dialog';
+ export * from './generic.page';
+ export * from './generic.webelement';

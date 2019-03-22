@@ -17,11 +17,10 @@
 
 import { element, by, browser } from 'protractor';
 import { GenericPage } from './common/generic.page';
-import { testConfig } from '../test.config';
+import { TestConfig } from '../config/test.config.interface';
 
 export class ConnectorContentPage extends GenericPage {
 
-    readonly appUrl = `${testConfig.ama.url}${testConfig.ama.port !== '' ? `:${testConfig.ama.port}` : ''}`;
     readonly connectorEditorModeling = element(by.css(`[data-automation-id="connector-editor-modeling"]`));
     readonly connectorEditorContextMenu = element(by.css(`[data-automation-id="connector-editor-menu-button"]`));
     readonly connectorEditorDeleteButton = element(by.css(`[data-automation-id="connector-editor-delete-button"]`));
@@ -30,12 +29,12 @@ export class ConnectorContentPage extends GenericPage {
     readonly connectorEditorDownloadButton = element(by.css(`[data-automation-id="connector-editor-download-button"]`));
     readonly codeEditorTabButton = element.all(by.css(`div.mat-tab-label`)).get(1);
 
-    constructor(public appId?: string, public connectorId?: string) {
-        super();
+    constructor(public testConfig: TestConfig, public appId?: string, public connectorId?: string) {
+        super(testConfig);
     }
 
     async navigateTo() {
-        await super.navigateTo(`${this.appUrl}/projects/${this.appId}/connector/${this.connectorId}`);
+        await super.navigateTo(`projects/${this.appId}/connector/${this.connectorId}`);
     }
 
     async isLoaded() {

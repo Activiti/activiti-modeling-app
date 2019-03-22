@@ -16,15 +16,15 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
-import { Backend } from '../../api/api.interfaces';
-import { getBackend } from '../../api/helpers';
+import { Backend } from 'ama-testing/e2e';
+import { getBackend } from 'ama-testing/e2e';
 import { UtilFile } from 'ama-testing/e2e';
 import { browser } from 'protractor';
-import { AuthenticatedPage } from '../../pages/authenticated.page';
-import { ProjectContentPage } from '../../pages/project-content.page';
-import { ProcessContentPage } from '../../pages/process-content.page';
+import { AuthenticatedPage } from 'ama-testing/e2e';
+import { ProjectContentPage } from 'ama-testing/e2e';
+import { ProcessContentPage } from 'ama-testing/e2e';
 import { ProcessPropertiesCard } from '../../pages/process-properties.card';
 
 const path = require('path');
@@ -35,8 +35,8 @@ describe('Export process', () => {
         password: testConfig.ama.password
     };
 
-    const loginPage: LoginPageImplementation = LoginPage.get();
-    const authenticatedPage = new AuthenticatedPage();
+    const loginPage: LoginPageImplementation = LoginPage.get(testConfig);
+    const authenticatedPage = new AuthenticatedPage(testConfig);
 
     let backend: Backend;
     let project, process: NodeEntry;
@@ -46,7 +46,7 @@ describe('Export process', () => {
     const downloadDir = browser.params.downloadDir;
 
     beforeAll(async () => {
-        backend = await getBackend().setUp();
+        backend = await getBackend(testConfig).setUp();
         project = await backend.project.createAndWaitUntilAvailable();
     });
 
@@ -54,7 +54,7 @@ describe('Export process', () => {
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
         await authenticatedPage.isLoggedIn();
-        projectContentPage = new ProjectContentPage(project.entry.id);
+        projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         await projectContentPage.navigateTo();
     });
 
@@ -63,7 +63,7 @@ describe('Export process', () => {
     });
 
     it('1. [C286624] Export process', async () => {
-        processContentPage = new ProcessContentPage(project.entry.id, process.entry.id);
+        processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await processContentPage.downloadProcess();
 
@@ -72,7 +72,7 @@ describe('Export process', () => {
 
         const fileContent = JSON.parse(await UtilFile.parseXML(downloadedProcess));
         const bpmnProcessDetails = fileContent[`bpmn2:definitions`][`bpmn2:process`][`_attributes`];
-        const uiProcessId = await new ProcessPropertiesCard().getProcessId();
+        const uiProcessId = await new ProcessPropertiesCard(testConfig).getProcessId();
         const expectedProcessId = `process-${process.entry.id}`;
         expect(uiProcessId).toEqual(expectedProcessId);
         expect(UtilFile.getJSONItemValueByKey(bpmnProcessDetails, `id`)).toEqual(expectedProcessId);

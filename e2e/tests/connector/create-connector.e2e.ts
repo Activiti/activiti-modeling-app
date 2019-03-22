@@ -16,15 +16,14 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
+import { LoginPage, LoginPageImplementation, AuthenticatedPage } from 'ama-testing/e2e';
 import { SidebarActionMenu } from '../../pages/sidebar.menu';
 import { CreateEntityDialog } from '../../pages/dialog/create-entity.dialog';
-import { ProjectContentPage } from '../../pages/project-content.page';
+import { ProjectContentPage } from 'ama-testing/e2e';
 import { SnackBar } from '../../pages/snackbar';
 import { NodeEntry } from 'alfresco-js-api-node';
-import { Backend } from '../../api/api.interfaces';
-import { getBackend } from '../../api/helpers';
-import { AuthenticatedPage } from '../../pages/authenticated.page';
+import { Backend } from 'ama-testing/e2e';
+import { getBackend } from 'ama-testing/e2e';
 import { Toolbar } from '../../pages/toolbar';
 
 describe('Create connector', async () => {
@@ -34,7 +33,7 @@ describe('Create connector', async () => {
     };
 
     const sidebarActionMenu = new SidebarActionMenu();
-    const authenticatedPage = new AuthenticatedPage();
+    const authenticatedPage = new AuthenticatedPage(testConfig);
     const createEntityDialog = new CreateEntityDialog();
     const snackBar = new SnackBar();
     const toolbar = new Toolbar();
@@ -45,19 +44,19 @@ describe('Create connector', async () => {
     let projectContentPage: ProjectContentPage;
 
     beforeAll(async () => {
-        backend = await getBackend().setUp();
+        backend = await getBackend(testConfig).setUp();
         project = await backend.project.createAndWaitUntilAvailable();
     });
 
     beforeAll(async () => {
-        loginPage = LoginPage.get();
+        loginPage = LoginPage.get(testConfig);
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
         await authenticatedPage.isLoggedIn();
     });
 
     beforeAll(async () => {
-        projectContentPage = new ProjectContentPage(project.entry.id);
+        projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         await projectContentPage.navigateTo();
     });
 

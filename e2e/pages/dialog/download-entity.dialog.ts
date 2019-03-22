@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ConfirmationDialog } from '../common/confirmation.dialog';
+import { ConfirmationDialog } from 'ama-testing/e2e';
 
 export class DownloadEntityDialog extends ConfirmationDialog {
 

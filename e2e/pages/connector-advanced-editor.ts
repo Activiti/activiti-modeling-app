@@ -16,7 +16,7 @@
  */
 
 import { element, by, ElementFinder, browser } from 'protractor';
-import { GenericPage } from './common/generic.page';
+import { GenericPage } from 'ama-testing/e2e';
 
 export class ConnectorAdvancedEditor extends GenericPage {
 
