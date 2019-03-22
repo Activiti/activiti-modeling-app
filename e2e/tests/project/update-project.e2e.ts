@@ -18,7 +18,7 @@
 import { testConfig } from '../../test.config';
 import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { DashboardPage } from '../../pages/dashboard.page';
-import { CreateEntityDialog } from '../../pages/dialog/create-entity.dialog';
+import { CreateEntityDialog } from 'ama-testing/e2e';
 import { SnackBar } from '../../pages/snackbar';
 import { NodeEntry } from 'alfresco-js-api-node';
 import { Backend } from 'ama-testing/e2e';

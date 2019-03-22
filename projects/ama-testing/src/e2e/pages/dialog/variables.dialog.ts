@@ -16,7 +16,7 @@
  */
 
 import { element, by } from 'protractor';
-import { GenericDialog } from 'ama-testing/e2e';
+import { GenericDialog } from '../common/generic.dialog';
 
 export class VariablesDialog extends GenericDialog {
 

@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
- export * from './confirmation.dialog';
  export * from './generic.dialog';
  export * from './generic.page';
  export * from './generic.webelement';

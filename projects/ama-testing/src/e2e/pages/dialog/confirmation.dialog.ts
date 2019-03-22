@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { GenericDialog } from './generic.dialog';
+import { GenericDialog } from '../common/generic.dialog';
 import { element, by } from 'protractor';
 
 export class ConfirmationDialog extends GenericDialog {

@@ -30,7 +30,7 @@ describe('User Authorization', () => {
         await loginPage.navigateTo();
     });
 
-    xit('1. [C289335] Login with user with "ACTIVITI_MODELER" role', async () => {
+    it('1. [C289335] Login with user with "ACTIVITI_MODELER" role', async () => {
         await loginPage.login(testConfig.ama.user, testConfig.ama.password);
         expect(await authenticatedPage.isLoggedIn()).toBe(true);
         await authenticatedPage.logout();

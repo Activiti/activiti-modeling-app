@@ -15,15 +15,17 @@
  * limitations under the License.
  */
 
-import { ConfirmationDialog } from 'ama-testing/e2e';
+import { ConfirmationDialog } from './confirmation.dialog';
 
-export class DeleteEntityDialog extends ConfirmationDialog {
+export class DownloadEntityDialog extends ConfirmationDialog {
 
     constructor() {
-        super('Are you sure you want to delete this ITEM?');
+        super('Are you sure you want to download this ITEM?');
     }
 
-    async verifyDeleteDialog(itemType) {
-        await this.isTitleDisplayed(itemType);
+    async confirmDownload() {
+        await super.isDialogDisplayed();
+        await super.confirm();
+        await super.isDialogDismissed();
     }
 }

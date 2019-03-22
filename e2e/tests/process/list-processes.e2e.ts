@@ -25,7 +25,7 @@ import { ProjectContentPage } from 'ama-testing/e2e';
 import { Toolbar } from '../../pages/toolbar';
 import { DashboardPage } from '../../pages/dashboard.page';
 import { SidebarActionMenu } from '../../pages/sidebar.menu';
-import { CreateEntityDialog } from '../../pages/dialog/create-entity.dialog';
+import { CreateEntityDialog } from 'ama-testing/e2e';
 
 describe('List processes', async () => {
     const adminUser = {

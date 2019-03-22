@@ -15,21 +15,15 @@
  * limitations under the License.
  */
 
-import { ConfirmationDialog } from 'ama-testing/e2e';
-import { MESSAGES } from 'ama-testing/e2e';
+import { ConfirmationDialog } from './confirmation.dialog';
 
-export class LeavePageDialog extends ConfirmationDialog {
-    itemType: string;
-    itemName: string;
+export class DeleteEntityDialog extends ConfirmationDialog {
 
-    constructor(itemType?: string, itemName?: string) {
-        super(MESSAGES.DIALOG.UNSAVED_PAGE);
-        this.itemType = itemType;
-        this.itemName = itemName;
+    constructor() {
+        super('Are you sure you want to delete this ITEM?');
     }
 
-    async isTitleDisplayed() {
-        await super.waitForElementToBeVisible(this.titleElement);
-        return await this.titleElement.getText() === this.title.replace('ITEM', this.itemType).replace('NAME', this.itemName);
+    async verifyDeleteDialog(itemType) {
+        await this.isTitleDisplayed(itemType);
     }
 }

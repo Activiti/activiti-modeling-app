@@ -17,7 +17,7 @@
 
 import { testConfig } from '../../test.config';
 import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
-import { DeleteEntityDialog } from '../../pages/dialog/delete-entity.dialog';
+import { DeleteEntityDialog } from 'ama-testing/e2e';
 import { SnackBar } from '../../pages/snackbar';
 import { NodeEntry } from 'alfresco-js-api-node';
 import { Backend } from 'ama-testing/e2e';

@@ -15,17 +15,10 @@
  * limitations under the License.
  */
 
-import { ConfirmationDialog } from 'ama-testing/e2e';
-
-export class DownloadEntityDialog extends ConfirmationDialog {
-
-    constructor() {
-        super('Are you sure you want to download this ITEM?');
-    }
-
-    async confirmDownload() {
-        await super.isDialogDisplayed();
-        await super.confirm();
-        await super.isDialogDismissed();
-    }
-}
+ export * from './confirmation.dialog';
+ export * from './create-entity.dialog';
+ export * from './delete-entity.dialog';
+ export * from './download-entity.dialog';
+ export * from './leave-page.dialog';
+ export * from './save-entity.dialog';
+ export * from './variables.dialog';

@@ -15,10 +15,21 @@
  * limitations under the License.
  */
 
-import { VariablesDialog } from './variables.dialog';
+import { ConfirmationDialog } from './confirmation.dialog';
 
-export class FormVariablesDialog extends VariablesDialog {
+export class SaveEntityDialog extends ConfirmationDialog {
+
     constructor() {
-        super('Form variables');
+        super(`Are you sure you want to save this ITEM?`);
+    }
+
+    async verifySaveDialog(itemType) {
+        await this.isTitleDisplayed(itemType);
+    }
+
+    async confirmSave() {
+        await super.isDialogDisplayed();
+        await super.confirm();
+        await super.isDialogDismissed();
     }
 }

@@ -27,7 +27,7 @@ import { ProcessContentPage } from 'ama-testing/e2e';
 import { ProcessPropertiesCard } from '../../pages/process-properties.card';
 import { UtilFile } from 'ama-testing/e2e';
 import { Toolbar } from '../../pages/toolbar';
-import { LeavePageDialog } from '../../pages/dialog/leave-page.dialog';
+import { LeavePageDialog } from 'ama-testing/e2e';
 
 describe('Update process', async () => {
     const adminUser = {

@@ -15,21 +15,21 @@
  * limitations under the License.
  */
 
-import { ConfirmationDialog } from 'ama-testing/e2e';
+import { ConfirmationDialog } from './confirmation.dialog';
+import { MESSAGES } from '../../util';
 
-export class SaveEntityDialog extends ConfirmationDialog {
+export class LeavePageDialog extends ConfirmationDialog {
+    itemType: string;
+    itemName: string;
 
-    constructor() {
-        super(`Are you sure you want to save this ITEM?`);
+    constructor(itemType?: string, itemName?: string) {
+        super(MESSAGES.DIALOG.UNSAVED_PAGE);
+        this.itemType = itemType;
+        this.itemName = itemName;
     }
 
-    async verifySaveDialog(itemType) {
-        await this.isTitleDisplayed(itemType);
-    }
-
-    async confirmSave() {
-        await super.isDialogDisplayed();
-        await super.confirm();
-        await super.isDialogDismissed();
+    async isTitleDisplayed() {
+        await super.waitForElementToBeVisible(this.titleElement);
+        return await this.titleElement.getText() === this.title.replace('ITEM', this.itemType).replace('NAME', this.itemName);
     }
 }

@@ -16,6 +16,7 @@
  */
 
  export * from './common';
+ export * from './dialog';
  export * from './authenticated.page';
  export * from './connector-content.page';
  export * from './login-aps.page';
