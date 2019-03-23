@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-export function PaletteProvider(
+export function BpmnPaletteProvider(
     palette: any,
     create: any,
     elementFactory: any,
@@ -33,7 +33,7 @@ export function PaletteProvider(
     palette.registerProvider(this);
 }
 
-PaletteProvider['$inject'] = [
+BpmnPaletteProvider['$inject'] = [
     'palette',
     'create',
     'elementFactory',
@@ -44,7 +44,7 @@ PaletteProvider['$inject'] = [
 ];
 
 
-PaletteProvider.prototype.getPaletteEntries = function(element: any) {
+BpmnPaletteProvider.prototype.getPaletteEntries = function(element: any) {
     const actions = {},
         create = this._create,
         elementFactory = this._elementFactory,
@@ -174,4 +174,8 @@ PaletteProvider.prototype.getPaletteEntries = function(element: any) {
     });
 
     return actions;
+};
+
+export const customPaletteModule = {
+    paletteProvider: ['type', BpmnPaletteProvider]
 };

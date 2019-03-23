@@ -70,6 +70,9 @@ export const connectorSchema = {
             "type": "object",
             "additionalProperties": { "$ref": "#/definitions/connector-action" },
             "default": {}
+        },
+        "template": {
+            "type": "string"
         }
 
     },

@@ -20,14 +20,10 @@ import { Injectable } from '@angular/core';
 import * as propertiesPanelModule from 'bpmn-js-properties-panel';
 import * as bpmnPropertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/bpmn';
 import * as camundaPropertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/camunda';
-import { BpmnFactoryService, emptyPaletteModule } from '../process-editor/services/bpmn-factory.service';
-import { PaletteProvider } from './palette';
-
+import { BpmnFactoryService } from '../process-editor/services/bpmn-factory.service';
+import { emptyPaletteModule } from '../process-editor/services/palette/dummy-bpmn-palette.provider';
+import { customPaletteModule } from './bpmn-palette.provider';
 const activitiModdleDescriptor = require('./../process-editor/services/activiti.json');
-
-const customPaletteModule = {
-    paletteProvider: ['type', PaletteProvider]
-};
 
 /** @deprecated: bpmnjs-properties */
 @Injectable()
