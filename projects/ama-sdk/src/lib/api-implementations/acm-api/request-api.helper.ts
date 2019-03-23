@@ -59,7 +59,7 @@ export class RequestApiHelper {
         if (alfrescoApiService.oauth2Auth) {
             return alfrescoApiService.oauth2Auth;
         } else {
-            return alfrescoApiService.ecmClient;
+            return alfrescoApiService.bpmClient;
         }
     }
 
