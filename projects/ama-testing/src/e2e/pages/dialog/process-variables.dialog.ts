@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { VariablesDialog } from 'ama-testing/e2e';
+import { VariablesDialog } from './variables.dialog';
 
 export class ProcessVariablesDialog extends VariablesDialog {
     constructor() {
