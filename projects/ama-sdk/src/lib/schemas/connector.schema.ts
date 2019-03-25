@@ -72,7 +72,7 @@ export const connectorSchema = {
             "default": {}
         },
         "template": {
-            "type": "string"
+            "type": [ "null", "string" ]
         }
 
     },

@@ -33,7 +33,7 @@ export class ConnectorsFilterDataAdapter implements FilterDataAdaper {
 
     get contents(): Observable<Connector[]> {
         return this.store.select(selectProjectConnectorsArray).pipe(
-            map(connectors => connectors.filter(connector => !connector.template || connector.template === 'null'))
+            map(connectors => connectors.filter(connector => !connector.template))
         );
     }
 
