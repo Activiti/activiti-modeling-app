@@ -51,7 +51,7 @@ describe('ConnectorsFilterDataAdapter ', () => {
                             if (selector === selectConnectorsLoading) {
                                 return of(true);
                             } else if (selector === selectProjectConnectorsArray) {
-                                return of([mockConnector]);
+                                return of([mockConnector, {...mockConnector, template: 'slackConnector'}, {...mockConnector, template: null}]);
                             } else if (selector === selectSelectedConnectorId) {
                                 return of(mockConnector.id);
                             }
@@ -81,7 +81,7 @@ describe('ConnectorsFilterDataAdapter ', () => {
     });
 
     it('should test contents getter', () => {
-        const expected = cold('(x|)', { x: [mockConnector] });
+        const expected = cold('(x|)', { x: [mockConnector, {...mockConnector, template: null}] });
         expect(connectorsFilterDataAdapter.contents).toBeObservable(expected);
     });
 

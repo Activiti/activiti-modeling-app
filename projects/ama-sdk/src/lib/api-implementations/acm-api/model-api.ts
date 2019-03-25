@@ -48,7 +48,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
         return this.requestApiHelper
             .get<ModelsResponse<T>>(
                 `/v1/projects/${containerId}/models`,
-                { queryParams: { type: this.modelVariation.contentType} })
+                { queryParams: { type: this.modelVariation.contentType, maxItems: 1000 } })
             .pipe(
                 map((nodePaging) => {
                     return nodePaging.list.entries

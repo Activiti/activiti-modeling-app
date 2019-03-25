@@ -21,6 +21,7 @@ import { Connector, CONNECTOR, FilterDataAdaper, AmaState, selectProjectConnecto
 import { Store } from '@ngrx/store';
 import { selectConnectorsLoading } from '../store/connector-editor.selectors';
 import { ShowConnectorsAction } from '../store/connector-editor.actions';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ConnectorsFilterDataAdapter implements FilterDataAdaper {
@@ -31,7 +32,9 @@ export class ConnectorsFilterDataAdapter implements FilterDataAdaper {
     }
 
     get contents(): Observable<Connector[]> {
-        return this.store.select(selectProjectConnectorsArray);
+        return this.store.select(selectProjectConnectorsArray).pipe(
+            map(connectors => connectors.filter(connector => !connector.template))
+        );
     }
 
     get loading(): Observable<boolean> {
