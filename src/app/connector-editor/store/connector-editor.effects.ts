@@ -44,7 +44,7 @@ import {
     ValidateConnectorPayload,
     CREATE_CONNECTOR_SUCCESS
 } from './connector-editor.actions';
-import { map, switchMap, catchError, mergeMap, take, withLatestFrom } from 'rxjs/operators';
+import { map, switchMap, catchError, mergeMap, take, withLatestFrom, tap } from 'rxjs/operators';
 import {
     EntityDialogForm,
     CONNECTOR,
@@ -113,8 +113,10 @@ export class ConnectorEditorEffects extends BaseEffects {
     createConnectorSuccessEffect = this.actions$.pipe(
         ofType<CreateConnectorSuccessAction>(CREATE_CONNECTOR_SUCCESS),
         withLatestFrom(this.store.select(selectSelectedProjectId)),
-        map(([action, projectId]) => {
-            this.router.navigate(['/projects', projectId, 'connector', action.connector.id]);
+        tap(([action, projectId]) => {
+            if (action.navigateTo) {
+                this.router.navigate(['/projects', projectId, 'connector', action.connector.id]);
+            }
         })
     );
 
@@ -147,9 +149,9 @@ export class ConnectorEditorEffects extends BaseEffects {
     @Effect()
     createConnectorEffect = this.actions$.pipe(
         ofType<CreateConnectorAttemptAction>(CREATE_CONNECTOR_ATTEMPT),
-        mergeMap(action => zip(of(action.payload), this.store.select(selectSelectedProjectId))),
-        mergeMap(([form, projectId]) => {
-            return this.createConnector(form, projectId);
+        mergeMap(action => zip(of(action), this.store.select(selectSelectedProjectId))),
+        mergeMap(([action, projectId]) => {
+            return this.createConnector(action.payload, action.navigateTo, projectId);
         })
     );
 
@@ -203,7 +205,7 @@ export class ConnectorEditorEffects extends BaseEffects {
         const file = changeFileName(payload.file, payload.file.name);
         return this.connectorEditorService.upload({ ...payload, file }).pipe(
             switchMap((connector: Connector) => [
-                new CreateConnectorSuccessAction(connector),
+                new CreateConnectorSuccessAction(connector, true),
                 new SnackbarInfoAction('CONNECTOR_EDITOR.UPLOAD_SUCCESS')
             ]),
             catchError(e =>
@@ -221,10 +223,10 @@ export class ConnectorEditorEffects extends BaseEffects {
         );
     }
 
-    private createConnector(form: Partial<EntityDialogForm>, projectId: string): Observable<{} | SnackbarInfoAction | CreateConnectorSuccessAction> {
+    private createConnector(form: Partial<EntityDialogForm>, navigateTo: boolean, projectId: string): Observable<{} | SnackbarInfoAction | CreateConnectorSuccessAction> {
         return this.connectorEditorService.create(form, projectId).pipe(
             mergeMap((connector) => [
-                new CreateConnectorSuccessAction(connector),
+                new CreateConnectorSuccessAction(connector, navigateTo),
                 new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_CREATED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleConnectorCreationError.bind(this), e))

@@ -51,7 +51,7 @@ export class EntityDialogComponent implements OnInit {
     submit(): void {
         const { values } = this.data;
         const payload = values ? { id: values.id, form: this.form } : this.form;
-        this.store.dispatch(new this.data.action(payload));
+        this.store.dispatch(new this.data.action(payload, true));
         this.dialog.close();
     }
 

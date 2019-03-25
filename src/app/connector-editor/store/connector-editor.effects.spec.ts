@@ -160,7 +160,7 @@ describe('ConnectorEditorEffects', () => {
         it('uploadConnectorEffect should dispatch the CreateConnectorSuccessAction', () => {
             actions$ = hot('a', { a: new UploadConnectorAttemptAction(<UploadFileAttemptPayload>{file: new File([''], 'filename')}) });
             const expected = cold('(bc)', {
-                b: new CreateConnectorSuccessAction(connector),
+                b: new CreateConnectorSuccessAction(connector, true),
                 c: new SnackbarInfoAction('CONNECTOR_EDITOR.UPLOAD_SUCCESS'),
             });
 
@@ -361,6 +361,26 @@ describe('ConnectorEditorEffects', () => {
                 c: new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_CREATED')
             });
             expect(effects.createConnectorEffect).toBeObservable(expected);
+        });
+    });
+
+    describe('createConnectorSuccessEffect Effect', () => {
+        it('createConnectorSuccessEffect should  not dispatch an action', () => {
+            expect(metadata.createConnectorSuccessEffect).toEqual({ dispatch: false});
+        });
+
+        it('should redirect to the new connector page if the payload received is true', () => {
+            actions$ = hot('a', { a: new CreateConnectorSuccessAction(connector, true) });
+            effects.createConnectorSuccessEffect.subscribe(() => {});
+            getTestScheduler().flush();
+            expect(router.navigate).toHaveBeenCalledWith(['/projects', connector.projectId, 'connector', connector.id]);
+        });
+
+        it('should not redirect to the new connector page if the payload received is false', () => {
+            actions$ = hot('a', { a: new CreateConnectorSuccessAction(connector, false) });
+            effects.createConnectorSuccessEffect.subscribe(() => {});
+            getTestScheduler().flush();
+            expect(router.navigate).not.toHaveBeenCalled();
         });
     });
 

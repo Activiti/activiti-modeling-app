@@ -51,7 +51,8 @@ import {
     selectSelectedProcess,
     UploadFileAttemptPayload,
     BpmnFactoryToken,
-    ProcessModelerServiceToken
+    ProcessModelerServiceToken,
+    selectSelectedProjectId
 } from 'ama-sdk';
 import { ProcessEntitiesState } from './process-entities.state';
 
@@ -62,6 +63,7 @@ describe('ProcessEditorEffects', () => {
     let store: Store<ProcessEntitiesState>;
     let process: Process;
     let processEditorService: ProcessEditorService;
+    let router: Router;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -94,6 +96,8 @@ describe('ProcessEditorEffects', () => {
                                 return of(false);
                             } else if (selector === selectSelectedProcess) {
                                 return of(process);
+                            } else if (selector === selectSelectedProjectId) {
+                                return of('test1');
                             }
 
                             return of({});
@@ -119,6 +123,7 @@ describe('ProcessEditorEffects', () => {
         effects = TestBed.get(ProcessEditorEffects);
         metadata = getEffectsMetadata(effects);
         store = TestBed.get(Store);
+        router = TestBed.get(Router);
         processEditorService = TestBed.get(ProcessEditorService);
     });
 
@@ -158,7 +163,7 @@ describe('ProcessEditorEffects', () => {
         it('uploadProcessEffect should dispatch the CreateConnectorSuccessAction', () => {
             actions$ = hot('a', { a: new UploadProcessAttemptAction(<UploadFileAttemptPayload>{file: new File([''], 'filename')}) });
             const expected = cold('(bc)', {
-                b: new CreateProcessSuccessAction(process),
+                b: new CreateProcessSuccessAction(process, true),
                 c: new SnackbarInfoAction('PROCESS_EDITOR.UPLOAD_SUCCESS'),
             });
 
@@ -193,7 +198,7 @@ describe('ProcessEditorEffects', () => {
                 mockActionPayload.processId,
                 { ...mockProcess, ...mockActionPayload.metadata },
                 mockActionPayload.content,
-                {}
+                'test1'
             );
         });
 
@@ -268,6 +273,26 @@ describe('ProcessEditorEffects', () => {
 
             const expected = cold('');
             expect(effects.changedElementEffect).toBeObservable(expected);
+        });
+    });
+
+    describe('createProcessSuccessEffect Effect', () => {
+        it('createProcessSuccessEffect should  not dispatch an action', () => {
+            expect(metadata.createProcessSuccessEffect).toEqual({ dispatch: false});
+        });
+
+        it('should redirect to the new process page if the payload received is true', () => {
+            actions$ = hot('a', { a: new CreateProcessSuccessAction(process, true) });
+            effects.createProcessSuccessEffect.subscribe(() => {});
+            getTestScheduler().flush();
+            expect(router.navigate).toHaveBeenCalledWith(['/projects', 'test1', 'process', process.id]);
+        });
+
+        it('should not redirect to the new process page if the payload received is false', () => {
+            actions$ = hot('a', { a: new CreateProcessSuccessAction(process, false) });
+            effects.createProcessSuccessEffect.subscribe(() => {});
+            getTestScheduler().flush();
+            expect(router.navigate).not.toHaveBeenCalled();
         });
     });
 });

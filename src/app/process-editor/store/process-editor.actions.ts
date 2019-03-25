@@ -49,13 +49,13 @@ export class UploadProcessAttemptAction implements Action {
 export const CREATE_PROCESS_ATTEMPT = 'CREATE_PROCESS_ATTEMPT';
 export class CreateProcessAttemptAction implements Action {
     readonly type = CREATE_PROCESS_ATTEMPT;
-    constructor(public payload: Partial<EntityDialogForm>) {}
+    constructor(public payload: Partial<EntityDialogForm>, public navigateTo = false) {}
 }
 
 export const CREATE_PROCESS_SUCCESS = 'CREATE_PROCESS_SUCCESS';
 export class CreateProcessSuccessAction implements Action {
     readonly type = CREATE_PROCESS_SUCCESS;
-    constructor(public process: Process) {}
+    constructor(public process: Process, public navigateTo = false) {}
 }
 
 export const DELETE_PROCESS_ATTEMPT = 'DELETE_PROCESS_ATTEMPT';
