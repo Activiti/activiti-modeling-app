@@ -16,18 +16,18 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
-import { SnackBar } from '../../pages/snackbar';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { SnackBar } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
-import { Backend } from '../../api/api.interfaces';
-import { getBackend } from '../../api/helpers';
-import { AuthenticatedPage } from '../../pages/authenticated.page';
-import { ProjectContentPage } from '../../pages/project-content.page';
-import { ProcessContentPage } from '../../pages/process-content.page';
-import { ProcessPropertiesCard } from '../../pages/process-properties.card';
-import { UtilFile } from '../../util/file';
-import { Toolbar } from '../../pages/toolbar';
-import { LeavePageDialog } from '../../pages/dialog/leave-page.dialog';
+import { Backend } from 'ama-testing/e2e';
+import { getBackend } from 'ama-testing/e2e';
+import { AuthenticatedPage } from 'ama-testing/e2e';
+import { ProjectContentPage } from 'ama-testing/e2e';
+import { ProcessContentPage } from 'ama-testing/e2e';
+import { ProcessPropertiesCard } from 'ama-testing/e2e';
+import { UtilFile } from 'ama-testing/e2e';
+import { Toolbar } from 'ama-testing/e2e';
+import { LeavePageDialog } from 'ama-testing/e2e';
 
 describe('Update process', async () => {
     const adminUser = {
@@ -35,7 +35,7 @@ describe('Update process', async () => {
         password: testConfig.ama.password
     };
 
-    const authenticatedPage = new AuthenticatedPage();
+    const authenticatedPage = new AuthenticatedPage(testConfig);
     const snackBar = new SnackBar();
     const toolbar = new Toolbar();
     const leavePageDialog = new LeavePageDialog();
@@ -50,12 +50,12 @@ describe('Update process', async () => {
 
 
     beforeAll(async () => {
-        backend = await getBackend().setUp();
+        backend = await getBackend(testConfig).setUp();
         project = await backend.project.createAndWaitUntilAvailable();
     });
 
     beforeAll(async () => {
-        loginPage = LoginPage.get();
+        loginPage = LoginPage.get(testConfig);
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
         await authenticatedPage.isLoggedIn();
@@ -66,8 +66,8 @@ describe('Update process', async () => {
     });
 
     beforeEach(async () => {
-        projectContentPage = new ProjectContentPage(project.entry.id);
-        processContentPage = new ProcessContentPage(project.entry.id, process.entry.id);
+        projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
+        processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await processPropertiesCard.isLoaded();
     });
@@ -112,7 +112,7 @@ describe('Update process', async () => {
     it('3. [C286431] Update process - Dirty state without confirmation of navigating away', async () => {
         await processPropertiesCard.editProcessName(process.entry.name + '_updated');
         expect(await toolbar.isElementInDirtyState(process.entry.name)).toBe(true);
-        expect(await processContentPage.isPageInDirtyState()).toBe(true);
+        expect(await authenticatedPage.isPageInDirtyState()).toBe(true);
 
         await toolbar.navigateToBreadcrumbItem(project.entry.name);
         await leavePageDialog.checkDialogAndReject('process');

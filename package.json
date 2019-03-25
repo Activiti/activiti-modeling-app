@@ -195,6 +195,7 @@
     "rxjs-tslint-rules": "4.4.4",
     "terser": "3.16.1",
     "ts-node": "8.0.2",
+    "tsconfig-paths": "^3.8.0",
     "tsickle": "0.34.3",
     "tslib": "1.9.0",
     "tslint": "5.12.1",

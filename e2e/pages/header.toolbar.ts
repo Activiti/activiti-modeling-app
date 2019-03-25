@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { GenericWebElement } from './common/generic.webelement';
+import { GenericWebElement } from 'ama-testing/e2e';
 import { browser, element, by } from 'protractor';
 import { testConfig } from '../test.config';
 

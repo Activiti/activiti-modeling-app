@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
-import { Resources } from '../../util/resources';
-import { SidebarActionMenu } from '../../pages/sidebar.menu';
-import { DashboardPage } from '../../pages/dashboard.page';
-import { SnackBar } from '../../pages/snackbar';
-import { Backend } from '../../api/api.interfaces';
-import { getBackend } from '../../api/helpers';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { Resources } from '../../resources/resources';
+import { SidebarActionMenu } from 'ama-testing/e2e';
+import { DashboardPage } from 'ama-testing/e2e';
+import { SnackBar } from 'ama-testing/e2e';
+import { Backend } from 'ama-testing/e2e';
+import { getBackend } from 'ama-testing/e2e';
 import { testConfig } from '../../test.config';
-import { AuthenticatedPage } from '../../pages/authenticated.page';
-import { Logger } from '../../util/logger';
+import { AuthenticatedPage } from 'ama-testing/e2e';
+import { Logger } from 'ama-testing/e2e';
 
 const path = require('path');
 
@@ -35,7 +35,7 @@ describe('Upload project', () => {
     };
 
     const sidebarActionMenu = new SidebarActionMenu();
-    const authenticatedPage = new AuthenticatedPage();
+    const authenticatedPage = new AuthenticatedPage(testConfig);
     const dashboardPage = new DashboardPage();
     const snackBar = new SnackBar();
 
@@ -52,11 +52,11 @@ describe('Upload project', () => {
     }
 
     beforeAll(async () => {
-        backend = await getBackend().setUp();
+        backend = await getBackend(testConfig).setUp();
     });
 
     beforeAll(async () => {
-        loginPage = LoginPage.get();
+        loginPage = LoginPage.get(testConfig);
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
         await authenticatedPage.isLoggedIn();

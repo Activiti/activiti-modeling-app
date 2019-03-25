@@ -7,6 +7,7 @@ const config = require('../config');
 
 function onPrepare() {
     require('ts-node').register({ project: './e2e/tsconfig.e2e.json' });
+    require('tsconfig-paths').register();
 
     fs.ensureDirSync(config.paths.tmp);
 

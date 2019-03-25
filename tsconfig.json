@@ -18,7 +18,9 @@
         "baseUrl": "./",
         "paths": {
             "ama-sdk": ["projects/ama-sdk"],
-            "ama-sdk/*": ["projects/ama-sdk/*"]
+            "ama-sdk/*": ["projects/ama-sdk/*"],
+            "ama-testing": ["projects/ama-testing"],
+            "ama-testing/*": ["projects/ama-testing/src/*"]
         }
     },
     "exclude": ["node_modules"],

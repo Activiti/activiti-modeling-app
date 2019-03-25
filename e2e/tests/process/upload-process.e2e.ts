@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
-import { Resources } from '../../util/resources';
-import { SnackBar } from '../../pages/snackbar';
-import { Backend } from '../../api/api.interfaces';
-import { getBackend } from '../../api/helpers';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { Resources } from '../../resources/resources';
+import { SnackBar } from 'ama-testing/e2e';
+import { Backend } from 'ama-testing/e2e';
+import { getBackend } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
 import { testConfig } from '../../test.config';
-import { AuthenticatedPage } from '../../pages/authenticated.page';
-import { ProjectContentPage } from '../../pages/project-content.page';
-import { SidebarActionMenu } from '../../pages/sidebar.menu';
+import { AuthenticatedPage } from 'ama-testing/e2e';
+import { ProjectContentPage } from 'ama-testing/e2e';
+import { SidebarActionMenu } from 'ama-testing/e2e';
 
 const path = require('path');
 
@@ -40,7 +40,7 @@ describe('Upload process', () => {
     };
     const absoluteFilePath = path.resolve(testConfig.main.rootPath + processDetails.path);
 
-    const authenticatedPage = new AuthenticatedPage();
+    const authenticatedPage = new AuthenticatedPage(testConfig);
     const snackBar = new SnackBar();
     const sidebarActionMenu = new SidebarActionMenu();
 
@@ -50,19 +50,19 @@ describe('Upload process', () => {
     let projectContentPage: ProjectContentPage;
 
     beforeAll(async () => {
-        backend = await getBackend().setUp();
+        backend = await getBackend(testConfig).setUp();
         project = await backend.project.createAndWaitUntilAvailable();
     });
 
     beforeAll(async () => {
-        loginPage = LoginPage.get();
+        loginPage = LoginPage.get(testConfig);
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
         await authenticatedPage.isLoggedIn();
     });
 
     beforeEach(async () => {
-        projectContentPage = new ProjectContentPage(project.entry.id);
+        projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         await projectContentPage.navigateTo();
     });
 

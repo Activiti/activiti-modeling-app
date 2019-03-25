@@ -16,15 +16,15 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
-import { SnackBar } from '../../pages/snackbar';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { SnackBar } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
-import { Backend } from '../../api/api.interfaces';
-import { getBackend } from '../../api/helpers';
-import { AuthenticatedPage } from '../../pages/authenticated.page';
-import { CodeEditorWidget } from '../../pages/code-editor.widget';
-import { ProjectContentPage } from '../../pages/project-content.page';
-import { ConnectorContentPage } from '../../pages/connector-content.page';
+import { Backend } from 'ama-testing/e2e';
+import { getBackend } from 'ama-testing/e2e';
+import { AuthenticatedPage } from 'ama-testing/e2e';
+import { CodeEditorWidget } from 'ama-testing/e2e';
+import { ProjectContentPage } from 'ama-testing/e2e';
+import { ConnectorContentPage } from 'ama-testing/e2e';
 import { browser } from 'protractor';
 
 describe('Update connector', async () => {
@@ -33,7 +33,7 @@ describe('Update connector', async () => {
         password: testConfig.ama.password
     };
 
-    const authenticatedPage = new AuthenticatedPage();
+    const authenticatedPage = new AuthenticatedPage(testConfig);
     const codeEditorWidget = new CodeEditorWidget();
     const snackBar = new SnackBar();
 
@@ -46,12 +46,12 @@ describe('Update connector', async () => {
     let updatedContent;
 
     beforeAll(async () => {
-        backend = await getBackend().setUp();
+        backend = await getBackend(testConfig).setUp();
         project = await backend.project.createAndWaitUntilAvailable();
     });
 
     beforeAll(async () => {
-        loginPage = LoginPage.get();
+        loginPage = LoginPage.get(testConfig);
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
         await authenticatedPage.isLoggedIn();
@@ -62,8 +62,8 @@ describe('Update connector', async () => {
     });
 
     beforeEach(async () => {
-        projectContentPage = new ProjectContentPage(project.entry.id);
-        connectorContentPage = new ConnectorContentPage(project.entry.id, connector.entry.id);
+        projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
+        connectorContentPage = new ConnectorContentPage(testConfig, project.entry.id, connector.entry.id);
         await connectorContentPage.navigateTo();
     });
 

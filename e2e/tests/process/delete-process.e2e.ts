@@ -16,15 +16,15 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
-import { DeleteEntityDialog } from '../../pages/dialog/delete-entity.dialog';
-import { SnackBar } from '../../pages/snackbar';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { DeleteEntityDialog } from 'ama-testing/e2e';
+import { SnackBar } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
-import { Backend } from '../../api/api.interfaces';
-import { getBackend } from '../../api/helpers';
-import { AuthenticatedPage } from '../../pages/authenticated.page';
-import { ProjectContentPage } from '../../pages/project-content.page';
-import { ProcessContentPage } from '../../pages/process-content.page';
+import { Backend } from 'ama-testing/e2e';
+import { getBackend } from 'ama-testing/e2e';
+import { AuthenticatedPage } from 'ama-testing/e2e';
+import { ProjectContentPage } from 'ama-testing/e2e';
+import { ProcessContentPage } from 'ama-testing/e2e';
 
 describe('Delete process', () => {
     const adminUser = {
@@ -32,8 +32,8 @@ describe('Delete process', () => {
         password: testConfig.ama.password
     };
 
-    const loginPage: LoginPageImplementation = LoginPage.get();
-    const authenticatedPage = new AuthenticatedPage();
+    const loginPage: LoginPageImplementation = LoginPage.get(testConfig);
+    const authenticatedPage = new AuthenticatedPage(testConfig);
     const snackBar = new SnackBar();
     const deleteEntityDialog = new DeleteEntityDialog();
     let processContentPage: ProcessContentPage;
@@ -44,7 +44,7 @@ describe('Delete process', () => {
     let process: NodeEntry;
 
     beforeAll(async () => {
-        backend = await getBackend().setUp();
+        backend = await getBackend(testConfig).setUp();
         project = await backend.project.createAndWaitUntilAvailable();
     });
 
@@ -56,14 +56,14 @@ describe('Delete process', () => {
 
     beforeEach(async () => {
         process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
-        projectContentPage = new ProjectContentPage(project.entry.id);
+        projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         await projectContentPage.navigateTo();
         expect(await projectContentPage.isModelInList('process', process.entry.name)).toBe(true, 'Process should be in the left sidebar');
 
     });
 
     beforeEach(async () => {
-        processContentPage = new ProcessContentPage(project.entry.id, process.entry.id);
+        processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await processContentPage.isLoaded();
         await processContentPage.deleteProcess();

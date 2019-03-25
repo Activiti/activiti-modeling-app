@@ -16,17 +16,17 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from '../../pages/login.page';
-import { AuthenticatedPage } from '../../pages/authenticated.page';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { AuthenticatedPage } from 'ama-testing/e2e';
 
 describe('User Authorization', () => {
 
-    const authenticatedPage = new AuthenticatedPage();
+    const authenticatedPage = new AuthenticatedPage(testConfig);
 
     let loginPage: LoginPageImplementation;
 
     beforeEach(async () => {
-        loginPage = LoginPage.get();
+        loginPage = LoginPage.get(testConfig);
         await loginPage.navigateTo();
     });
 
