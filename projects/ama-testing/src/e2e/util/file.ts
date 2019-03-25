@@ -23,6 +23,7 @@ const path = require('path');
 const convert = require('xml-js');
 const unzipper = require('unzipper');
 
+// @dynamic
 export class UtilFile {
 
     static async fileExists(filePath, waitTimeout: number = 10000) {

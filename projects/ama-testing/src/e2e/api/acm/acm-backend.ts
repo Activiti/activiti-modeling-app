@@ -18,7 +18,7 @@
 import * as AlfrescoApi from 'alfresco-js-api-node';
 import { Backend, ModelCrud, ProjectApi } from '../api.interfaces';
 import { browser } from 'protractor';
-import { TestConfig, Logger } from 'ama-testing/e2e';
+import { TestConfig} from '../../config/test.config.interface';
 import { ACMProject } from './project';
 import { ACMProcess } from './models/process';
 import { ACMConnector } from './models/connector';
@@ -27,6 +27,7 @@ import { ACMForm } from './models/form';
 import { LoginPageImplementation, LoginPage } from '../../pages/login.page';
 import { ACMUi } from './models/ui';
 import { ACMData } from './models/data';
+import { Logger } from '../../util/logger';
 
 
 export class ACMBackend implements Backend {

@@ -17,7 +17,7 @@
 
 import { ProjectApi } from '../api.interfaces';
 import { NodeEntry, ResultSetPaging } from 'alfresco-js-api-node';
-import { UtilRandom, Logger, UtilApi } from 'ama-testing/e2e';
+import { UtilRandom, Logger, UtilApi } from '../../util';
 import { ACMBackend } from './acm-backend';
 import { E2eRequestApiHelper } from './e2e-request-api.helper';
 
