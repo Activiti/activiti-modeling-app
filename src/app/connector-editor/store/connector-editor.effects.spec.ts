@@ -33,7 +33,6 @@ import {
     DELETE_CONNECTOR_SUCCESS,
     ChangeConnectorContent,
     CreateConnectorAttemptAction,
-    CreateConnectorSuccessAction,
     ShowConnectorsAction,
     GET_CONNECTORS_ATTEMPT,
     GetConnectorsAttemptAction,
@@ -56,10 +55,10 @@ import {
     ConnectorContent,
     CONNECTOR,
     Connector,
-    ModelOpenedAction,
     ModelClosedAction,
     OpenConfirmDialogAction,
-    GetConnectorAttemptAction
+    GetConnectorAttemptAction,
+    CreateConnectorSuccessAction
 } from 'ama-sdk';
 import { of } from 'rxjs';
 import { throwError } from 'rxjs';
