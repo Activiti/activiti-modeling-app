@@ -38,7 +38,6 @@ export class ProcessPropertiesCard extends GenericPage {
     readonly outputMappingHeader = element(by.cssContainingText(`[data-automation-id="output-mapping-header"]`, `Output mapping:`));
     readonly mappingHeaderCellName = element(by.css(`[data-automation-id="table-header-cell-name"]`));
     readonly mappingHeaderCellProcessVariable = element(by.css(`[data-automation-id="table-header-cell-process-variables"]`));
-    readonly noPropertiesMsg = element(by.css('.no-process-properties-msg'));
     readonly processVariableSelector = element(by.css(`[data-automation-id="process-variable-selector"]`));
 
     async isLoaded() {
@@ -92,11 +91,24 @@ export class ProcessPropertiesCard extends GenericPage {
         await super.click(activityOption);
     }
 
-    async setProcessVariable(connectorId: string, variableName: string) {
+    async openProcessVariablesList(connectorId: string) {
         const processVariableSelector = element(by.css(`[data-automation-id="variable-selector-${connectorId}"]`));
         await super.click(processVariableSelector);
+    }
+
+    async selectVariable(variableName: string) {
         const processVariable = element(by.cssContainingText('.mat-option-text', variableName));
         await super.click(processVariable);
+    }
+
+    async setProcessVariable(connectorId: string, variableName: string) {
+        await this.openProcessVariablesList(connectorId);
+        await this.selectVariable(variableName);
+    }
+
+    async getProcessVariablesList(connectorId: string) {
+        await this.openProcessVariablesList(connectorId);
+        return await element.all((by.css('.mat-option-text'))).getText();
     }
 
     async isInputMappingHeaderDisplayed() {
@@ -115,8 +127,9 @@ export class ProcessPropertiesCard extends GenericPage {
         return true;
     }
 
-    async isNoProcessPropertiesMsg() {
-        await super.waitForElementToBeVisible(this.noPropertiesMsg);
+    async isNoProcessPropertiesMsg(connectorId: string) {
+        const noPropertiesMsg = element(by.css(`[data-automation-id="param-id-${connectorId}"]+mat-cell>.no-process-properties-msg`));
+        await super.waitForElementToBeVisible(noPropertiesMsg);
         return true;
     }
 
