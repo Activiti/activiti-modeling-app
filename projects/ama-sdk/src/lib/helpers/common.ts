@@ -21,6 +21,7 @@ export interface EntityDialogForm {
     name: string;
     description?: string;
     projectId?: string;
+    template?: string;
 }
 
 export interface BreadcrumbItem {

@@ -27,7 +27,6 @@ import {
     DeleteConnectorAttemptAction,
     DeleteConnectorSuccessAction,
     DELETE_CONNECTOR_SUCCESS,
-    CreateConnectorSuccessAction,
     GetConnectorsSuccessAction,
     GET_CONNECTORS_ATTEMPT,
     GetConnectorsAttemptAction,
@@ -41,8 +40,7 @@ import {
     DOWNLOAD_CONNECTOR,
     ValidateConnectorAttemptAction,
     VALIDATE_CONNECTOR_ATTEMPT,
-    ValidateConnectorPayload,
-    CREATE_CONNECTOR_SUCCESS
+    ValidateConnectorPayload
 } from './connector-editor.actions';
 import { map, switchMap, catchError, mergeMap, take, withLatestFrom, tap } from 'rxjs/operators';
 import {
@@ -55,7 +53,9 @@ import {
     ModelOpenedAction,
     LOAD_CONNECTOR_ATTEMPT,
     LoadConnectorAttemptAction,
-    SetAppDirtyStateAction
+    SetAppDirtyStateAction,
+    CreateConnectorSuccessAction,
+    CREATE_CONNECTOR_SUCCESS
 } from 'ama-sdk';
 import { ConnectorEditorService } from '../services/connector-editor.service';
 import { of, zip, forkJoin, Observable } from 'rxjs';
