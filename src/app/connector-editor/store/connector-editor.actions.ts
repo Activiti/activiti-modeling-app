@@ -85,12 +85,6 @@ export class CreateConnectorAttemptAction implements Action {
     constructor(public payload: Partial<EntityDialogForm>, public navigateTo = false) {}
 }
 
-export const CREATE_CONNECTOR_SUCCESS = '[Connector] Create success';
-export class CreateConnectorSuccessAction implements Action {
-    readonly type = CREATE_CONNECTOR_SUCCESS;
-    constructor(public connector: Connector, public navigateTo = false) {}
-}
-
 export const UPDATE_CONNECTOR_CONTENT_ATTEMPT = '[Connector] Update content attempt';
 export class UpdateConnectorContentAttemptAction implements Action {
     readonly type = UPDATE_CONNECTOR_CONTENT_ATTEMPT;
@@ -135,7 +129,6 @@ export type ConnectorActions =
     | GetConnectorAttemptAction
     | GetConnectorSuccessAction
     | CreateConnectorAttemptAction
-    | CreateConnectorSuccessAction
     | UpdateConnectorContentAttemptAction
     | UpdateConnectorSuccessAction
     | DeleteConnectorAttemptAction

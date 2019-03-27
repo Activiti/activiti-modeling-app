@@ -17,8 +17,6 @@
 
 import { connectorEntitiesReducer } from './connector-entities.reducer';
 import {
-    CREATE_CONNECTOR_SUCCESS,
-    CreateConnectorSuccessAction,
     ConnectorActions,
     GetConnectorsSuccessAction,
     GET_CONNECTORS_SUCCESS,
@@ -30,7 +28,14 @@ import {
     GET_CONNECTORS_ATTEMPT,
     GetConnectorsAttemptAction
 } from './connector-editor.actions';
-import { CONNECTOR, ConnectorContent, ConnectorEntitiesState, initialConnectorEntitiesState } from 'ama-sdk';
+import {
+    CONNECTOR,
+    ConnectorContent,
+    ConnectorEntitiesState,
+    initialConnectorEntitiesState,
+    CREATE_CONNECTOR_SUCCESS,
+    CreateConnectorSuccessAction
+} from 'ama-sdk';
 const deepFreeze = require('deep-freeze-strict');
 
 describe('ConnectorEntitiesReducer', () => {

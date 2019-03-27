@@ -16,7 +16,6 @@
  */
 
 import {
-    CREATE_CONNECTOR_SUCCESS,
     GET_CONNECTORS_SUCCESS,
     UPDATE_CONNECTOR_SUCCESS,
     GET_CONNECTOR_SUCCESS,
@@ -24,7 +23,6 @@ import {
     DELETE_CONNECTOR_SUCCESS,
     UpdateConnectorSuccessAction,
     GET_CONNECTORS_ATTEMPT,
-    CreateConnectorSuccessAction,
     GetConnectorsSuccessAction,
     DeleteConnectorSuccessAction
 } from './connector-editor.actions';
@@ -33,7 +31,9 @@ import {
     initialConnectorEntitiesState,
     ConnectorEntitiesState,
     connectorEntityAdapter,
-    LEAVE_PROJECT
+    LEAVE_PROJECT,
+    CreateConnectorSuccessAction,
+    CREATE_CONNECTOR_SUCCESS
 } from 'ama-sdk';
 import { Action } from '@ngrx/store';
 
