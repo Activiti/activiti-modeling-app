@@ -15,13 +15,11 @@
  * limitations under the License.
  */
 
-import { Injectable, InjectionToken } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ContentType } from '../content-types';
-import { ModelApiVariation, ModelApi } from '../model-api';
+import { ModelApiVariation } from '../model-api';
 import { Process, ProcessContent } from '../../../api/types';
 import { getEmptyDiagram } from '../../../helpers/utils/empty-diagram';
-
-export const PROCESS_API = new InjectionToken<ModelApi<Process, ProcessContent>>('connector-api');
 
 @Injectable()
 export class ProcessApiVariation<M extends Process, C extends ProcessContent> implements ModelApiVariation<M, C> {

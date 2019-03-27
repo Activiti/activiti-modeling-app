@@ -15,13 +15,11 @@
  * limitations under the License.
  */
 
-import { Injectable, InjectionToken } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { DecisionTableContent, DecisionTable } from '../../../api/types';
 import { ContentType } from '../content-types';
-import { ModelApiVariation, ModelApi } from '../model-api';
+import { ModelApiVariation } from '../model-api';
 import { getEmptyDecisionTable } from '../../../helpers/public_api';
-
-export const DECISION_TABLE_API = new InjectionToken<ModelApi<DecisionTable, DecisionTableContent>>('connector-api');
 
 @Injectable()
 export class DecisionTableApiVariation<M extends DecisionTable, C extends DecisionTableContent> implements ModelApiVariation<M, C> {

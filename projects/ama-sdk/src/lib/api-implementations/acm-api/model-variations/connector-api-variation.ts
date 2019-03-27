@@ -15,12 +15,10 @@
  * limitations under the License.
  */
 
-import { Injectable, InjectionToken } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Connector, ConnectorContent } from '../../../api/types';
 import { ContentType } from '../content-types';
-import { ModelApiVariation, ModelApi } from '../model-api';
-
-export const CONNECTOR_API = new InjectionToken<ModelApi<Connector, ConnectorContent>>('connector-api');
+import { ModelApiVariation } from '../model-api';
 
 @Injectable()
 export class ConnectorApiVariation<M extends Connector, C extends ConnectorContent> implements ModelApiVariation<M, C> {

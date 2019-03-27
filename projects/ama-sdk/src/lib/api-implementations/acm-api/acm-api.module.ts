@@ -19,15 +19,23 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ACMApi } from './acm-api';
 import { ACMProjectApi } from './project-api';
-import { AmaApi } from '../../api/api.interface';
-import { UiApiVariation, UI_API } from './model-variations/ui-api-variation';
-import { DecisionTableApiVariation, DECISION_TABLE_API } from './model-variations/decision-table-api-variations';
+import {
+    AmaApi,
+    CONNECTOR_API_TOKEN,
+    UI_API_TOKEN,
+    PROCESS_API_TOKEN,
+    FORM_API_TOKEN,
+    DECISION_TABLE_API_TOKEN,
+    DATA_API_TOKEN
+} from '../../api/api.interface';
+import { UiApiVariation } from './model-variations/ui-api-variation';
+import { DecisionTableApiVariation } from './model-variations/decision-table-api-variations';
 import { RequestApiHelper } from './request-api.helper';
-import { ConnectorApiVariation, CONNECTOR_API } from './model-variations/connector-api-variation';
+import { ConnectorApiVariation } from './model-variations/connector-api-variation';
 import { ModelApi, ModelApiVariation } from './model-api';
-import { FormApiVariation, FORM_API } from './model-variations/form-api-variation';
-import { ProcessApiVariation, PROCESS_API } from './model-variations/process-api-variation';
-import { DataApiVariation, DATA_API } from './model-variations/data-api-variation';
+import { FormApiVariation } from './model-variations/form-api-variation';
+import { ProcessApiVariation } from './model-variations/process-api-variation';
+import { DataApiVariation } from './model-variations/data-api-variation';
 
 export function modelApiFactory (modelVariation: ModelApiVariation<any, any>, requestApiHelper: RequestApiHelper) {
     return new ModelApi(modelVariation, requestApiHelper);
@@ -45,23 +53,23 @@ export class ACMApiModule {
                 RequestApiHelper,
                 ACMProjectApi,
 
-                UiApiVariation,
-                { provide: UI_API, useFactory: modelApiFactory, deps: [UiApiVariation, RequestApiHelper] },
-
-                DataApiVariation,
-                { provide: DATA_API, useFactory: modelApiFactory, deps: [DataApiVariation, RequestApiHelper] },
-
-                DecisionTableApiVariation,
-                {provide: DECISION_TABLE_API, useFactory: modelApiFactory, deps: [DecisionTableApiVariation, RequestApiHelper]},
+                ProcessApiVariation,
+                { provide: PROCESS_API_TOKEN, useFactory: modelApiFactory, deps: [ProcessApiVariation, RequestApiHelper] },
 
                 ConnectorApiVariation,
-                { provide: CONNECTOR_API, useFactory: modelApiFactory, deps: [ConnectorApiVariation, RequestApiHelper] },
+                { provide: CONNECTOR_API_TOKEN, useFactory: modelApiFactory, deps: [ConnectorApiVariation, RequestApiHelper] },
 
                 FormApiVariation,
-                { provide: FORM_API, useFactory: modelApiFactory, deps: [FormApiVariation, RequestApiHelper] },
+                { provide: FORM_API_TOKEN, useFactory: modelApiFactory, deps: [FormApiVariation, RequestApiHelper] },
 
-                ProcessApiVariation,
-                { provide: PROCESS_API, useFactory: modelApiFactory, deps: [ProcessApiVariation, RequestApiHelper] },
+                UiApiVariation,
+                { provide: UI_API_TOKEN, useFactory: modelApiFactory, deps: [UiApiVariation, RequestApiHelper] },
+
+                DecisionTableApiVariation,
+                {provide: DECISION_TABLE_API_TOKEN, useFactory: modelApiFactory, deps: [DecisionTableApiVariation, RequestApiHelper]},
+
+                DataApiVariation,
+                { provide: DATA_API_TOKEN, useFactory: modelApiFactory, deps: [DataApiVariation, RequestApiHelper] }
             ]
         };
     }

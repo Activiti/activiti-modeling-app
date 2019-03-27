@@ -15,20 +15,17 @@
  * limitations under the License.
  */
 
-/*
- * Public API Surface of ama-sdk
- */
+import { Action } from '@ngrx/store';
+import { Model } from '../api/types';
 
-export * from './app.state';
-export * from './app.selectors';
-export * from './entities';
-export * from './entity.actions';
-export * from './ama-store.module';
-export * from './app.actions';
-export * from './base.effects';
-export * from './project.state';
-export * from './project.selectors';
-export * from './project-data.state';
-export * from './project-tree.state';
-export * from './project.actions';
+export const GET_MODELS_ATTEMPT = '[Entities] Get models attempt';
+export class GetModelsAttemptAction implements Action {
+    readonly type = GET_MODELS_ATTEMPT;
+    constructor(public projectId: string) {}
+}
 
+export const GET_MODELS_SUCCESS = '[Entities] Get models success';
+export class GetModelsSuccessAction implements Action {
+    readonly type = GET_MODELS_SUCCESS;
+    constructor(public models: Model[]) {}
+}

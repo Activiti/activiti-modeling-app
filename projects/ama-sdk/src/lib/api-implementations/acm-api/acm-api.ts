@@ -16,13 +16,17 @@
  */
 
 import { Injectable, Inject } from '@angular/core';
-import { AmaApi } from '../../api/api.interface';
+import {
+    AmaApi,
+    CONNECTOR_API_TOKEN,
+    UI_API_TOKEN,
+    PROCESS_API_TOKEN,
+    FORM_API_TOKEN,
+    DECISION_TABLE_API_TOKEN,
+    DATA_API_TOKEN
+} from '../../api/api.interface';
 import { ACMProjectApi } from './project-api';
-import { UI_API } from './model-variations/ui-api-variation';
-import { DECISION_TABLE_API } from './model-variations/decision-table-api-variations';
 import { ModelApiInterface } from '../../api/generalmodel-api.interface';
-import { CONNECTOR_API } from './model-variations/connector-api-variation';
-import { FORM_API } from './model-variations/form-api-variation';
 import {
     Connector as ConnectorType,
     ConnectorContent,
@@ -37,18 +41,16 @@ import {
     DataContent,
     FormContent
 } from '../../api/types';
-import { PROCESS_API } from './model-variations/process-api-variation';
-import { DATA_API } from './model-variations/data-api-variation';
 
 @Injectable()
 export class ACMApi implements AmaApi {
     constructor(
         public Project: ACMProjectApi,
-        @Inject(PROCESS_API) public Process: ModelApiInterface<ProcessType, ProcessContent>,
-        @Inject(CONNECTOR_API) public Connector: ModelApiInterface<ConnectorType, ConnectorContent>,
-        @Inject(FORM_API) public Form: ModelApiInterface<FormType, FormContent>,
-        @Inject(DECISION_TABLE_API) public DecisionTable: ModelApiInterface<DecisionTableType, DecisionTableContent>,
-        @Inject(UI_API) public Ui: ModelApiInterface<UiType, UiContent>,
-        @Inject(DATA_API) public Data: ModelApiInterface<DataType, DataContent>
+        @Inject(PROCESS_API_TOKEN) public Process: ModelApiInterface<ProcessType, ProcessContent>,
+        @Inject(CONNECTOR_API_TOKEN) public Connector: ModelApiInterface<ConnectorType, ConnectorContent>,
+        @Inject(FORM_API_TOKEN) public Form: ModelApiInterface<FormType, FormContent>,
+        @Inject(DECISION_TABLE_API_TOKEN) public DecisionTable: ModelApiInterface<DecisionTableType, DecisionTableContent>,
+        @Inject(UI_API_TOKEN) public Ui: ModelApiInterface<UiType, UiContent>,
+        @Inject(DATA_API_TOKEN) public Data: ModelApiInterface<DataType, DataContent>
     ) {}
 }

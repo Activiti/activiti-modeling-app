@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
+import { Injectable, InjectionToken } from '@angular/core';
 import { ProjectApi } from './project-api.interface';
 import { ModelApiInterface } from './generalmodel-api.interface';
 import {
@@ -32,6 +32,20 @@ import {
     Data,
     DataContent
 } from './types';
+
+export const PROCESSES_ENTITY_NAME = 'processes';
+export const CONNECTORS_ENTITY_NAME = 'connectors';
+export const FORMS_ENTITY_NAME = 'forms';
+export const UIS_ENTITY_NAME = 'uis';
+export const DECISION_TABLES_ENTITY_NAME = 'decision-tables';
+export const DATA_ENTITY_NAME = 'data';
+
+export const PROCESS_API_TOKEN = new InjectionToken<ModelApiInterface<Process, ProcessContent>>('connector-api');
+export const CONNECTOR_API_TOKEN = new InjectionToken<ModelApiInterface<Connector, ConnectorContent>>('connector-api');
+export const FORM_API_TOKEN = new InjectionToken<ModelApiInterface<Form, FormContent>>('form-api');
+export const UI_API_TOKEN = new InjectionToken<ModelApiInterface<Ui, UiContent>>('ui-api');
+export const DECISION_TABLE_API_TOKEN = new InjectionToken<ModelApiInterface<DecisionTable, DecisionTableContent>>('connector-api');
+export const DATA_API_TOKEN = new InjectionToken<ModelApiInterface<Data, DataContent>>('data-api');
 
 @Injectable()
 export abstract class AmaApi {
