@@ -52,9 +52,11 @@
 
 <ng-template let-item #drawer>
     <mat-card class="palette-drawer" >
-        <ng-container *ngFor="let child of item.children">
-            <ng-container *ngTemplateOutlet="hasChildren(child) ? containerElement : clickableElement; context: { $implicit: child }">
+        <div class="palette-body">
+            <ng-container *ngFor="let child of item.children">
+                <ng-container *ngTemplateOutlet="hasChildren(child) ? containerElement : clickableElement; context: { $implicit: child }">
+                </ng-container>
             </ng-container>
-        </ng-container>
+        </div>
     </mat-card>
 </ng-template>
