@@ -115,7 +115,7 @@
                 }
             }
         },
-        "dev": {
+        "adfdev": {
             "root": "",
             "sourceRoot": "src",
             "projectType": "application",
@@ -126,7 +126,7 @@
                         "outputPath": "dist/app",
                         "index": "src/index.html",
                         "main": "src/main.ts",
-                        "tsConfig": "src/tsconfig.dev.json",
+                        "tsConfig": "src/tsconfig.adfdev.json",
                         "polyfills": "src/polyfills.ts",
                         "stylePreprocessorOptions": {
                             "includePaths": ["../alfresco-ng2-components/lib", "./projects/ama-sdk/src/lib/theming"]
@@ -197,20 +197,20 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "dev:build",
+                        "browserTarget": "adfdev:build",
                         "port": 4100,
                         "proxyConfig": "config/proxy.conf.js"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "dev:build:production"
+                            "browserTarget": "adfdev:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "dev:build"
+                        "browserTarget": "adfdev:build"
                     }
                 },
                 "lint": {
