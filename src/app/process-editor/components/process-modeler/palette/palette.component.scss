@@ -1,7 +1,10 @@
 @mixin ama-palette($theme) {
     $foreground: map-get($theme, foreground);
     $primary: map-get($theme, primary);
-    $background: map-get($theme, background);
+
+    .cdk-overlay-pane {
+        bottom: 65px !important;
+    }
 
     ama-process-palette .mat-card {
         width: 37px;
