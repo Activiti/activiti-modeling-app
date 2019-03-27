@@ -1,6 +1,7 @@
 @mixin ama-palette($theme) {
     $foreground: map-get($theme, foreground);
     $primary: map-get($theme, primary);
+    $background: map-get($theme, background);
 
     ama-process-palette .mat-card {
         width: 37px;
@@ -76,12 +77,16 @@
     .mat-card.palette-drawer {
         min-width: 25px;
         box-sizing: content-box;
-        padding: 6px;
         text-align: center;
         font-size: 25px;
-        background: mat-color($foreground, text, 0.03);
+        padding: 0;
         margin-left: 38px;
         margin-bottom: -32px;
+
+        .palette-body {
+            padding: 6px;
+            background: mat-color($foreground, text, 0.03);
+        }
 
         .entry {
 
