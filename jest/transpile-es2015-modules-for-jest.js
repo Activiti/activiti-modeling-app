@@ -1,7 +1,12 @@
 const fs = require('fs');
 const path = require('path');
+const rimraf = require('rimraf');
 
 function copyFolderSync(from, to) {
+  if (fs.existsSync(to)) {
+    rimraf.sync(to);
+  }
+
   fs.mkdirSync(to);
   fs.readdirSync(from).forEach(element => {
       if (fs.lstatSync(path.join(from, element)).isFile()) {
