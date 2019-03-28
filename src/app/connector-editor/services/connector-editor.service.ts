@@ -15,48 +15,52 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
-    AmaApi,
     DownloadResourceService,
     UploadFileAttemptPayload,
     EntityDialogForm,
     ConnectorContent,
     Connector,
-    CONNECTOR_FILE_FORMAT
+    CONNECTOR_FILE_FORMAT,
+    CONNECTOR_API_TOKEN,
+    ModelApiInterface
 } from 'ama-sdk';
 
 @Injectable()
 export class ConnectorEditorService {
-    constructor(private amaApi: AmaApi, private downloadService: DownloadResourceService) {}
+    constructor(
+        @Inject(CONNECTOR_API_TOKEN) private connectorApi: ModelApiInterface<Connector, ConnectorContent>,
+        private downloadService: DownloadResourceService
+    ) {}
 
     update(connectorId: string, model: Connector, content: ConnectorContent, projectId: string): Observable<Connector> {
-        return this.amaApi.Connector.update(connectorId, model, content, projectId);
+        return this.connectorApi.update(connectorId, model, content, projectId);
     }
 
     getDetails(connectorId: string, projectId: string) {
-        return this.amaApi.Connector.retrieve(connectorId, projectId);
+        return this.connectorApi.retrieve(connectorId, projectId);
     }
 
     getContent(connectorId: string) {
-        return this.amaApi.Connector.export(connectorId);
+        return this.connectorApi.export(connectorId);
     }
 
     delete(connectorId: string) {
-        return this.amaApi.Connector.delete(connectorId);
+        return this.connectorApi.delete(connectorId);
     }
 
     create(form: Partial<EntityDialogForm>, projectId: string): Observable<Connector> {
-        return this.amaApi.Connector.create(form, projectId);
+        return this.connectorApi.create(form, projectId);
     }
 
     fetchAll(projectId: string): Observable<Connector[]> {
-        return this.amaApi.Connector.getList(projectId);
+        return this.connectorApi.getList(projectId);
     }
 
     upload(payload: UploadFileAttemptPayload): Observable<Partial<Connector>> {
-        return this.amaApi.Connector.import(payload.file, payload.projectId);
+        return this.connectorApi.import(payload.file, payload.projectId);
     }
 
     download(connectorName: string, connectorData: string) {
@@ -65,6 +69,6 @@ export class ConnectorEditorService {
     }
 
     validate(id: string, content: ConnectorContent) {
-        return this.amaApi.Connector.validate(id, content);
+        return this.connectorApi.validate(id, content);
     }
 }

@@ -28,7 +28,11 @@ import {
     provideEntity,
     ENTITIES_REDUCER_TOKEN,
     SharedModule,
-    provideTranslations
+    provideTranslations,
+    CONNECTOR,
+    CONNECTOR_API_TOKEN,
+    CONNECTORS_ENTITY_NAME,
+    registerModel
 } from 'ama-sdk';
 import { EffectsModule } from '@ngrx/effects';
 import { ConnectorEditorEffects } from './store/connector-editor.effects';
@@ -61,6 +65,7 @@ import { getConnectorUploaderProvider } from './extension/connector-uploader.ext
     providers: [
         ConnectorEditorService,
         provideTranslations('connector-editor'),
+        ...registerModel(CONNECTOR, CONNECTOR_API_TOKEN, CONNECTORS_ENTITY_NAME),
         provideEntity({ connectors: connectorEntitiesReducer }),
         ...getConnectorsFilterProvider(),
         ...getConnectorCreatorProvider(),

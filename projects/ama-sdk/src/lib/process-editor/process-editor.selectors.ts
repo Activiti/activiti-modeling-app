@@ -17,13 +17,13 @@
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ServiceParameterMappings, EntityProperty } from '../api/types';
-import { getEntitiesState } from '../store/entities';
-import { selectOpenedModel } from '../store/public_api';
+import { getEntitiesState } from '../store/entity.selectors';
+import { selectOpenedModel } from '../store/app.selectors';
 
 export const PROCESS_EDITOR_STATE_NAME = 'process-editor';
 export const getProcessEditorFeatureState = createFeatureSelector(PROCESS_EDITOR_STATE_NAME);
 
-export const selectProcessEntityContainer = createSelector(getEntitiesState, state => state.processes);
+export const selectProcessEntityContainer = createSelector(getEntitiesState, (state: any) => state.processes);
 
 export const selectSelectedProcess = createSelector(
     selectOpenedModel,

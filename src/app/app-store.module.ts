@@ -32,6 +32,7 @@ import { AuthEffects } from './store/effects/auth.effects';
 import { rootReducers } from './store/reducers/reducers';
 import { INITIAL_STATE } from './store/states/app.state';
 import { metaReducers } from './store/reducers/meta.reducers';
+import { EntityEffects } from './store/effects/entity.effects';
 
 @NgModule({
     imports: [
@@ -41,7 +42,8 @@ import { metaReducers } from './store/reducers/meta.reducers';
             SnackbarEffects,
             DialogEffects,
             SettingsEffects,
-            UiEffects
+            UiEffects,
+            EntityEffects
         ]),
         StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
         !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 25 }) : []

@@ -16,16 +16,22 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Model } from '../api/types';
+import { Model, MODEL_TYPE } from '../api/types';
 
-export const GET_MODELS_ATTEMPT = '[Entities] Get models attempt';
-export class GetModelsAttemptAction implements Action {
-    readonly type = GET_MODELS_ATTEMPT;
-    constructor(public projectId: string) {}
+export const SHOW_MODELS = '[Entities] Show particular models';
+export class ShowModelsAction implements Action {
+    readonly type = SHOW_MODELS;
+    constructor(public projectId: string, public modelType: MODEL_TYPE) {}
 }
 
-export const GET_MODELS_SUCCESS = '[Entities] Get models success';
+export const GET_MODELS_ATTEMPT = '[Entities] Get particular models (attempt)';
+export class GetModelsAttemptAction implements Action {
+    readonly type = GET_MODELS_ATTEMPT;
+    constructor(public projectId: string, public modelType: MODEL_TYPE) {}
+}
+
+export const GET_MODELS_SUCCESS = '[Entities] Get particular models (success)';
 export class GetModelsSuccessAction implements Action {
     readonly type = GET_MODELS_SUCCESS;
-    constructor(public models: Model[]) {}
+    constructor(public models: Model[], public modelType: MODEL_TYPE) {}
 }

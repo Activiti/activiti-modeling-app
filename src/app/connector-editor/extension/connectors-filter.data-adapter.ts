@@ -17,10 +17,9 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Connector, CONNECTOR, FilterDataAdaper, AmaState, selectProjectConnectorsArray } from 'ama-sdk';
+import { Connector, CONNECTOR, FilterDataAdaper, AmaState, selectProjectConnectorsArray, ShowModelsAction } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { selectConnectorsLoading } from '../store/connector-editor.selectors';
-import { ShowConnectorsAction } from '../store/connector-editor.actions';
 import { map } from 'rxjs/operators';
 
 @Injectable()
@@ -33,7 +32,7 @@ export class ConnectorsFilterDataAdapter implements FilterDataAdaper {
 
     get contents(): Observable<Connector[]> {
         return this.store.select(selectProjectConnectorsArray).pipe(
-            map(connectors => connectors.filter(connector => !connector.template))
+            map<Connector[], Connector[]>(connectors => connectors.filter(connector => !connector.template))
         );
     }
 
@@ -42,6 +41,6 @@ export class ConnectorsFilterDataAdapter implements FilterDataAdaper {
     }
 
     load(projectId: string): void {
-        this.store.dispatch(new ShowConnectorsAction(projectId));
+        this.store.dispatch(new ShowModelsAction(projectId, CONNECTOR));
     }
 }

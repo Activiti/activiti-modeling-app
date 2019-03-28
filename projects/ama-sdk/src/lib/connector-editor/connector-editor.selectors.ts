@@ -17,12 +17,12 @@
 
 import { createSelector } from '@ngrx/store';
 import { ConnectorEntitiesState } from './connector-entities.state';
-import { getEntitiesState } from '../store/entities';
 import { selectSelectedProjectId } from '../store/app.selectors';
 import { Connector } from '../api/types';
+import { getEntitiesState } from '../store/entity.selectors';
 
 export interface EntitiesWithConnectors { connectors: ConnectorEntitiesState; }
-export const selectConnectorsEntityContainer = createSelector(getEntitiesState, (state: EntitiesWithConnectors) => state.connectors);
+export const selectConnectorsEntityContainer = createSelector(getEntitiesState, (state: any) => <ConnectorEntitiesState>state.connectors);
 export const selectConnectorEntities = createSelector(selectConnectorsEntityContainer, state => state.entities);
 export const selectConnectorEntityContents = createSelector(selectConnectorsEntityContainer, state => state.entityContents);
 

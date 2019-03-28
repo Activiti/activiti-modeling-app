@@ -20,7 +20,7 @@ import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AmaState, OpenFilterAction, CONNECTOR } from 'ama-sdk';
-import { ShowConnectorsAction } from '../../store/connector-editor.actions';
+import { ShowModelsAction } from 'ama-sdk';
 
 @Injectable()
 export class ConnectorsLoaderGuard implements CanActivate {
@@ -28,7 +28,7 @@ export class ConnectorsLoaderGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
         const projectId = route.params.projectId;
-        this.store.dispatch(new ShowConnectorsAction(projectId));
+        this.store.dispatch(new ShowModelsAction(projectId, CONNECTOR));
         this.store.dispatch(new OpenFilterAction(CONNECTOR));
 
         return of(true);

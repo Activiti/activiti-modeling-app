@@ -16,9 +16,26 @@
  */
 
 import { InjectionToken } from '@angular/core';
-import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
+import { ActionReducerMap } from '@ngrx/store';
+import { Model, MODEL_TYPE } from '../api/types';
+import { ModelApiInterface } from '../api/generalmodel-api.interface';
 
-export const getEntitiesState = createFeatureSelector<any>('entities');
+export interface ModelApiStorageRelation {
+    modelType: MODEL_TYPE;
+    token: InjectionToken<ModelApiInterface<Model, any>>;
+    entityKey: string;
+}
+export const MODEL_STORAGE_APIS_TOKEN = new InjectionToken<ModelApiStorageRelation[]>('model-storage-apis');
+
+export function registerModel(modelType: MODEL_TYPE, token: InjectionToken<ModelApiInterface<Model, any>>, entityKey: string) {
+    return [
+        { provide: MODEL_STORAGE_APIS_TOKEN, useValue: { modelType, token, entityKey }, multi: true }
+    ];
+}
+
+
+
+
 
 export const ENTITIES_REDUCER_TOKEN = new InjectionToken<ActionReducerMap<any>>('entities-reducer');
 export const ENTITY_REDUCERS_TOKEN = new InjectionToken<ActionReducerMap<any>>('entity-reducer');

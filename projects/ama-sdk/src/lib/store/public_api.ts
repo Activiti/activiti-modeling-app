@@ -23,6 +23,7 @@ export * from './app.state';
 export * from './app.selectors';
 export * from './entities';
 export * from './entity.actions';
+export * from './entity.selectors';
 export * from './ama-store.module';
 export * from './app.actions';
 export * from './base.effects';
