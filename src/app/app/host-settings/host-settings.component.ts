@@ -32,10 +32,10 @@ export class HostSettingsComponent {
     }
 
     onCancel() {
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
     }
 
     onSuccess() {
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
     }
 }
