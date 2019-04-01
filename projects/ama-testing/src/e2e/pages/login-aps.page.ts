@@ -18,7 +18,6 @@
 import { LoginPageImplementation } from './login.page';
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
-import { AuthenticatedPage } from './authenticated.page';
 import { TestConfig } from '../config';
 
 
@@ -33,16 +32,14 @@ export class LoginAPSPage extends GenericPage implements LoginPageImplementation
         super(testConfig);
     }
 
-    private authenticatedPage = new AuthenticatedPage(this.testConfig);
 
     async login(username: string, password: string) {
         await this.clickOnSSOButton();
-
         await super.waitForElementToBePresent(element(by.id('kc-form-login')));
         await this.enterUsername(username);
         await this.enterPassword(password);
         await this.clickOnLoginButton();
-        await this.authenticatedPage.isLoggedIn();
+
     }
 
     async navigateTo() {
