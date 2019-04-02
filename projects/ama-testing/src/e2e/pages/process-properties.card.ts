@@ -79,6 +79,13 @@ export class ProcessPropertiesCard extends GenericPage {
         await super.click(connectorActionOption);
     }
 
+    async checkConnectorInList(connectorName: string) {
+        await super.click(this.connectorSelector);
+        const connectorOption = element(by.cssContainingText('.mat-option-text', connectorName));
+        const isConnector = connectorOption ?  true :  false;
+        return isConnector;
+    }
+
     async setForm(formName: string) {
         await super.click(this.formSelector);
         const formOption = element(by.cssContainingText('.mat-option-text', formName));
