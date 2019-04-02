@@ -95,7 +95,6 @@ export class ProjectContentPage extends GenericPage {
     private async isItemInList(modelType: string, searchedItem: string) {
         const containerSelector = `[data-automation-id="project-filter-${modelType}-container"]`,
         model = element(by.cssContainingText(containerSelector, searchedItem));
-
         return await super.waitForElementToBeVisible(model);
     }
 }
