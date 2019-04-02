@@ -39,7 +39,8 @@ import { TemplatePortal } from '@angular/cdk/portal';
 
      ngAfterViewInit() {
         this.amaPaletteOverlayRef = this.overlay.create({
-          positionStrategy: this.getOverlayPosition()
+          positionStrategy: this.getOverlayPosition(),
+          panelClass: 'palette-drawer-container'
         });
     }
 
