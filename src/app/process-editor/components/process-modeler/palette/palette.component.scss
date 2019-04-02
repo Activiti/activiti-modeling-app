@@ -2,8 +2,9 @@
     $foreground: map-get($theme, foreground);
     $primary: map-get($theme, primary);
 
-    .cdk-overlay-pane {
-        bottom: 65px !important;
+    .palette-drawer-container {
+        top: 370px;
+        height: 340px;
     }
 
     ama-process-palette .mat-card {
@@ -84,7 +85,7 @@
         font-size: 25px;
         padding: 0;
         margin-left: 38px;
-        margin-bottom: -32px;
+        margin-bottom: 115px;
 
         .palette-body {
             padding: 6px;
