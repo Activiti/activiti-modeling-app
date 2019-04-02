@@ -29,6 +29,7 @@ export class ACMForm extends ACMCrud {
             'formRepresentation': {
                 id: this.type.toLowerCase() + '-' + entityId,
                 name: entityName,
+                version: 0,
                 'formDefinition': {
                     'tabs': [],
                     'fields': [],
