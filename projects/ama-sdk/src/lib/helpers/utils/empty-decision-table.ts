@@ -21,11 +21,10 @@ import { DecisionTable } from '../../api/types';
 
 export const getEmptyDecisionTable = (decisionTable: DecisionTable) => {
   const id = formatUuid(ContentType.DecisionTable, decisionTable.id),
-    name = createDecisionTableName(decisionTable.name),
-    description = decisionTable.description ? decisionTable.description : '';
+    name = createDecisionTableName(decisionTable.name);
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-  <definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="${id}" name="${name}" documentation="${description}"
+  <definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="${id}" name="${name}"
     namespace="http://camunda.org/schema/1.0/dmn" exporter="dmn-js (https://demo.bpmn.io/dmn)" exporterVersion="6.2.1">
   </definitions>`;
 };
