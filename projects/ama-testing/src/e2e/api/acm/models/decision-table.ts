@@ -22,12 +22,14 @@ export class ACMDecisionTable extends ACMCrud {
     displayName = 'Decision Table';
     namePrefix = 'QA_APS_DECISION_';
     type = 'DECISION';
-    contentType = 'application/json';
+    contentType = 'text/plain';
 
     getDefaultContent(entityName: string, entityId: string) {
-        return JSON.stringify({
-            id: this.type.toLowerCase() + '-' + entityId,
-          name: entityName
-        });
+        const id = this.type.toLowerCase() + '-' + entityId;
+
+        return `<?xml version="1.0" encoding="UTF-8"?>
+        <definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="${id}" name="${entityName}"
+        namespace="http://camunda.org/schema/1.0/dmn" exporter="dmn-js (https://demo.bpmn.io/dmn)" exporterVersion="6.2.1">
+        </definitions>`;
     }
 }
