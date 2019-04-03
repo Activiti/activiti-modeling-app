@@ -80,8 +80,8 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async checkConnectorInList(connectorName: string) {
-        const connectorOption = element(by.cssContainingText('.mat-option-text', connectorName));
         await super.click(this.connectorSelector);
+        const connectorOption = element(by.cssContainingText('.mat-option-text', connectorName));
         return !!connectorOption;
     }
 
