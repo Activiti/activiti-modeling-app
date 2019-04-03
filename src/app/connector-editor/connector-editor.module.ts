@@ -25,14 +25,13 @@ import { ConnectorEditorRoutingModule } from './router/connector-editor-routing.
 import { ConnectorHeaderComponent } from './components/connector-header/connector-header.component';
 import {
     CodeEditorModule,
-    provideEntity,
-    ENTITIES_REDUCER_TOKEN,
     SharedModule,
     provideTranslations,
     CONNECTOR,
     CONNECTOR_API_TOKEN,
-    CONNECTORS_ENTITY_NAME,
-    registerModel
+    CONNECTORS_ENTITY_KEY,
+    registerModel,
+    AmaStoreModule
 } from 'ama-sdk';
 import { EffectsModule } from '@ngrx/effects';
 import { ConnectorEditorEffects } from './store/connector-editor.effects';
@@ -54,7 +53,10 @@ import { getConnectorUploaderProvider } from './extension/connector-uploader.ext
         SharedModule,
         CodeEditorModule,
         EffectsModule.forFeature([ConnectorEditorEffects]),
-        StoreModule.forFeature('entities', ENTITIES_REDUCER_TOKEN),
+        AmaStoreModule.registerEntity({
+            key: CONNECTORS_ENTITY_KEY,
+            reducer: connectorEntitiesReducer
+        }),
         StoreModule.forFeature(CONNECTOR_EDITOR_STATE_NAME, connectorEditorReducer)
     ],
     declarations: [
@@ -65,8 +67,7 @@ import { getConnectorUploaderProvider } from './extension/connector-uploader.ext
     providers: [
         ConnectorEditorService,
         provideTranslations('connector-editor'),
-        ...registerModel(CONNECTOR, CONNECTOR_API_TOKEN, CONNECTORS_ENTITY_NAME),
-        provideEntity({ connectors: connectorEntitiesReducer }),
+        ...registerModel(CONNECTOR, CONNECTOR_API_TOKEN, CONNECTORS_ENTITY_KEY),
         ...getConnectorsFilterProvider(),
         ...getConnectorCreatorProvider(),
         ...getConnectorUploaderProvider()

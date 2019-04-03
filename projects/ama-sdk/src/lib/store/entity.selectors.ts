@@ -19,12 +19,13 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Model } from '../api/types';
 import { EntityState, EntityMap } from '@ngrx/entity';
 
-export const PROCESSES_ENTITY_NAME = 'processes';
-export const CONNECTORS_ENTITY_NAME = 'connectors';
-export const FORMS_ENTITY_NAME = 'forms';
-export const UIS_ENTITY_NAME = 'uis';
-export const DECISION_TABLES_ENTITY_NAME = 'decision-tables';
-export const DATA_ENTITY_NAME = 'data';
+export const ENTITIES_KEY = 'entities';
+export const PROCESSES_ENTITY_KEY = 'processes';
+export const CONNECTORS_ENTITY_KEY = 'connectors';
+export const FORMS_ENTITY_KEY = 'forms';
+export const UIS_ENTITY_KEY = 'uis';
+export const DECISION_TABLES_ENTITY_KEY = 'decision-tables';
+export const DATA_ENTITY_KEY = 'data';
 
 export interface ModelEntitiesState extends EntityState<Model>  {
     loading: boolean;

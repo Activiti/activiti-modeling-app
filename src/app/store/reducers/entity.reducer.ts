@@ -15,39 +15,43 @@
  * limitations under the License.
  */
 
-import {
-    GET_MODELS_ATTEMPT,
-    GET_MODELS_SUCCESS,
-    GetModelsSuccessAction,
-    ModelEntitiesState,
-    EntitiesState,
-    connectorEntityAdapter
-} from 'ama-sdk';
-import { Action } from '@ngrx/store';
+// import {
+//     GET_MODELS_ATTEMPT,
+//     GET_MODELS_SUCCESS,
+//     GetModelsSuccessAction,
+//     ModelEntitiesState,
+//     EntitiesState,
+//     connectorEntityAdapter,
+//     Model
+// } from 'ama-sdk';
+// import { Action } from '@ngrx/store';
+// import { createEntityAdapter } from '@ngrx/entity';
 
-export function entitiesReducer(
-    state: EntitiesState = {},
-    action: Action
-): EntitiesState {
-    switch (action.type) {
-        case GET_MODELS_ATTEMPT:
-            return {
-                ...state,
-                loading: true
-            };
+// export const modelEntityAdapter = createEntityAdapter<Model>();
 
-        case GET_MODELS_SUCCESS:
-            return getConnectorsSuccess(state, <GetModelsSuccessAction> action);
+// export function entitiesReducer(
+//     state: EntitiesState = {},
+//     action: Action
+// ): EntitiesState {
+//     switch (action.type) {
+//         case GET_MODELS_ATTEMPT:
+//             return {
+//                 ...state,
+//                 loading: true
+//             };
 
-        default:
-            return { ...state };
-    }
-}
+//         case GET_MODELS_SUCCESS:
+//             return getConnectorsSuccess(state, <GetModelsSuccessAction> action);
 
-function getConnectorsSuccess(state: any, action: any): any {
-    return connectorEntityAdapter.addMany(action.connectors, {
-        ...state,
-        loading: false,
-        loaded: true
-    });
-}
+//         default:
+//             return { ...state };
+//     }
+// }
+
+// function getConnectorsSuccess(state: any, action: any): any {
+//     return connectorEntityAdapter.addMany(action.connectors, {
+//         ...state,
+//         loading: false,
+//         loaded: true
+//     });
+// }

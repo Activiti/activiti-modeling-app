@@ -15,32 +15,33 @@
  * limitations under the License.
  */
 
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders, InjectionToken } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
-import { ENTITIES_REDUCER_TOKEN, ENTITY_REDUCERS_TOKEN, entityReducerFactory } from './entities';
+import { ActionReducerMap } from '@ngrx/store';
 
-/*
-    Experimental: It would be better to use it instead of the
+export const ENTITIES_REDUCER_TOKEN = new InjectionToken<ActionReducerMap<any>>('entities-reducer');
+export const ENTITY_REDUCERS_TOKEN = new InjectionToken<ActionReducerMap<any>>('entity-reducer');
 
-    StoreModule.forFeature('entities', ENTITIES_REDUCER_TOKEN)
-    and
-    provideEntity({ uis: uiEntitiesReducer })
+export function entityReducerFactory(entityReducers: any[]): ActionReducerMap<any> {
+    return entityReducers.reduce((reducers, entityReducer) => {
+        return {
+            ...reducers,
+            [entityReducer.key]: entityReducer.reducer
+        };
+    }, {});
+}
 
-    in Editor module uis
-
-    But when using it, Angular error is thrown:
-    Function calls are not supported in decorators but, ...
-*/
+// Don't remove this line below, otherwise typescript dies with metadata error in AOT
+// @dynamic
 @NgModule({
     imports: [ StoreModule.forFeature('entities', ENTITIES_REDUCER_TOKEN), ]
 })
 export class AmaStoreModule {
-    static registerEntity(entityName: string, entityReducer): ModuleWithProviders {
-        const entityReducerProvider = { [entityName]: entityReducer };
+    static registerEntity(entityReducerObject: any): ModuleWithProviders<AmaStoreModule> {
         return {
             ngModule: AmaStoreModule,
             providers: [
-                { provide: ENTITY_REDUCERS_TOKEN, useValue: entityReducerProvider, multi: true },
+                { provide: ENTITY_REDUCERS_TOKEN, useValue: entityReducerObject, multi: true },
                 { provide: ENTITIES_REDUCER_TOKEN, deps: [ ENTITY_REDUCERS_TOKEN ], useFactory: entityReducerFactory }
             ]
         };
