@@ -18,11 +18,7 @@ export const formSchema = {
                 }
             },
             "required": [ "id", "name" ]
-        },
-        "processScopeIdentifiers": {
-            "type": "array"
         }
-
     },
-    "required": [ "formRepresentation", "processScopeIdentifiers" ]
+    "required": [ "formRepresentation" ]
 };

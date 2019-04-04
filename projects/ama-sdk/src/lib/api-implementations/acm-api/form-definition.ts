@@ -23,24 +23,12 @@ export const createEmptyForm = (id: string, name: string, description?: string):
         name,
         description,
         version: 0,
-        lastUpdatedBy: '',
-        lastUpdatedByFullName: '',
-        lastUpdated: (new Date).toJSON().slice(0, -1) + '+0000',
-        stencilSetId: 0,
-        referenceId: null,
         formDefinition: {
             tabs: [],
             fields: [],
             outcomes: [],
-            javascriptEvents: [],
-            className: '',
-            style: '',
-            customFieldTemplates: {},
             metadata: {},
-            variables: [],
-            customFieldsValueInfo: {},
-            gridsterForm: false
+            variables: []
         }
-    },
-    processScopeIdentifiers: []
+    }
 });

@@ -147,7 +147,6 @@ export interface Form extends Model {
 
 export interface FormContent {
     formRepresentation: FormRepresentation;
-    processScopeIdentifiers: any[];
 }
 
 export interface FormRepresentation {
@@ -155,11 +154,6 @@ export interface FormRepresentation {
     name: string;
     description: string;
     version?: number;
-    lastUpdatedBy?: string;
-    lastUpdatedByFullName?: string;
-    lastUpdated?: string;
-    stencilSetId?: 0;
-    referenceId?: null;
     formDefinition?: FormDefinition;
 }
 
@@ -178,14 +172,8 @@ export interface FormDefinition {
     tabs: FormTab[];
     fields: any[];
     outcomes: FormOutcome[];
-    javascriptEvents: any[];
-    className: '';
-    style: '';
-    customFieldTemplates: {};
     metadata: {};
     variables: EntityProperties[];
-    customFieldsValueInfo: {};
-    gridsterForm: false;
 }
 
 export interface UiPlugin {
