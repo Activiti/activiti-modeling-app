@@ -34,14 +34,8 @@ export class ACMForm extends ACMCrud {
                     'tabs': [],
                     'fields': [],
                     'outcomes': [],
-                    'javascriptEvents': [],
-                    'className': '',
-                    'style': '',
-                    'customFieldTemplates': {},
                     'metadata': {},
-                    'variables': [],
-                    'customFieldsValueInfo': {},
-                    'gridsterForm': false
+                    'variables': []
                 }
             }
         });
