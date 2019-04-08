@@ -24,7 +24,7 @@ export const PROCESSES_ENTITY_KEY = 'processes';
 export const CONNECTORS_ENTITY_KEY = 'connectors';
 export const FORMS_ENTITY_KEY = 'forms';
 export const UIS_ENTITY_KEY = 'uis';
-export const DECISION_TABLES_ENTITY_KEY = 'decision-tables';
+export const DECISION_TABLES_ENTITY_KEY = 'decisionTables';
 export const DATA_ENTITY_KEY = 'data';
 
 export interface ModelEntitiesState extends EntityState<Model>  {
