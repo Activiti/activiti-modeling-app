@@ -66,7 +66,7 @@ export class ACMApiModule {
                 { provide: UI_API_TOKEN, useFactory: modelApiFactory, deps: [UiApiVariation, RequestApiHelper] },
 
                 DecisionTableApiVariation,
-                {provide: DECISION_TABLE_API_TOKEN, useFactory: modelApiFactory, deps: [DecisionTableApiVariation, RequestApiHelper]},
+                { provide: DECISION_TABLE_API_TOKEN, useFactory: modelApiFactory, deps: [DecisionTableApiVariation, RequestApiHelper]},
 
                 DataApiVariation,
                 { provide: DATA_API_TOKEN, useFactory: modelApiFactory, deps: [DataApiVariation, RequestApiHelper] }

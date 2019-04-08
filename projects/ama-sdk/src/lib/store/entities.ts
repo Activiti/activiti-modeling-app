@@ -19,15 +19,15 @@ import { InjectionToken } from '@angular/core';
 import { Model, MODEL_TYPE } from '../api/types';
 import { ModelApiInterface } from '../api/generalmodel-api.interface';
 
-export interface ModelApiStorageRelation {
+export interface ModelRegistration {
     modelType: MODEL_TYPE;
     token: InjectionToken<ModelApiInterface<Model, any>>;
     entityKey: string;
 }
-export const MODEL_STORAGE_APIS_TOKEN = new InjectionToken<ModelApiStorageRelation[]>('model-storage-apis');
+export const REGISTERED_MODELS_TOKEN = new InjectionToken<ModelRegistration[]>('model-storage-apis');
 
 export function registerModel(modelType: MODEL_TYPE, token: InjectionToken<ModelApiInterface<Model, any>>, entityKey: string) {
     return [
-        { provide: MODEL_STORAGE_APIS_TOKEN, useValue: { modelType, token, entityKey }, multi: true }
+        { provide: REGISTERED_MODELS_TOKEN, useValue: { modelType, token, entityKey }, multi: true }
     ];
 }

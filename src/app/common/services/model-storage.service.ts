@@ -20,15 +20,15 @@ import { Observable } from 'rxjs';
 import {
     MODEL_TYPE,
     Model,
-    MODEL_STORAGE_APIS_TOKEN,
-    ModelApiStorageRelation
+    REGISTERED_MODELS_TOKEN,
+    ModelRegistration
 } from 'ama-sdk';
 
 @Injectable()
 export class ModelStorageService {
     constructor(
         private injector: Injector,
-        @Inject(MODEL_STORAGE_APIS_TOKEN) private modelApiStorageRelations: ModelApiStorageRelation[]
+        @Inject(REGISTERED_MODELS_TOKEN) private modelApiStorageRelations: ModelRegistration[]
     ) {}
 
     fetchAll(projectId: string, modelType: MODEL_TYPE): Observable<Model[]> {

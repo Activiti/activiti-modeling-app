@@ -27,10 +27,7 @@ import {
     CodeEditorModule,
     SharedModule,
     provideTranslations,
-    CONNECTOR,
-    CONNECTOR_API_TOKEN,
     CONNECTORS_ENTITY_KEY,
-    registerModel,
     AmaStoreModule
 } from 'ama-sdk';
 import { EffectsModule } from '@ngrx/effects';
@@ -67,7 +64,6 @@ import { getConnectorUploaderProvider } from './extension/connector-uploader.ext
     providers: [
         ConnectorEditorService,
         provideTranslations('connector-editor'),
-        ...registerModel(CONNECTOR, CONNECTOR_API_TOKEN, CONNECTORS_ENTITY_KEY),
         ...getConnectorsFilterProvider(),
         ...getConnectorCreatorProvider(),
         ...getConnectorUploaderProvider()

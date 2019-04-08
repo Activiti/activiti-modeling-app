@@ -17,10 +17,11 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Connector, CONNECTOR, FilterDataAdaper, AmaState, selectProjectConnectorsArray, ShowModelsAction } from 'ama-sdk';
+import { Connector, CONNECTOR, FilterDataAdaper, AmaState, selectProjectConnectorsArray } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { selectConnectorsLoading } from '../store/connector-editor.selectors';
 import { map } from 'rxjs/operators';
+import { ShowConnectorsAction } from '../store/connector-editor.actions';
 
 @Injectable()
 export class ConnectorsFilterDataAdapter implements FilterDataAdaper {
@@ -41,6 +42,6 @@ export class ConnectorsFilterDataAdapter implements FilterDataAdaper {
     }
 
     load(projectId: string): void {
-        this.store.dispatch(new ShowModelsAction(projectId, CONNECTOR));
+        this.store.dispatch(new ShowConnectorsAction(projectId));
     }
 }

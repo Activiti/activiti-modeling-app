@@ -20,8 +20,9 @@ import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { GetProjectAttemptAction } from '../../store/project-editor.actions';
-import { ProjectEditorState, ShowModelsAction, CONNECTOR } from 'ama-sdk';
+import { ProjectEditorState } from 'ama-sdk';
 import { ShowProcessesAction } from '../../../process-editor/store/process-editor.actions';
+import { ShowConnectorsAction } from '../../../connector-editor/store/connector-editor.actions';
 
 @Injectable()
 export class ProjectLoaderGuard implements CanActivate {
@@ -31,7 +32,7 @@ export class ProjectLoaderGuard implements CanActivate {
         const projectId = route.params.projectId;
         this.store.dispatch(new GetProjectAttemptAction(projectId));
         this.store.dispatch(new ShowProcessesAction(projectId));
-        this.store.dispatch(new ShowModelsAction(projectId, CONNECTOR));
+        this.store.dispatch(new ShowConnectorsAction(projectId));
         return of(true);
     }
 }
