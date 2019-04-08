@@ -33,8 +33,6 @@ import { CardViewPropertiesFactory } from './services/cardview-properties/cardvi
 import { Title } from '@angular/platform-browser';
 import {
     AmaTitleService,
-    ENTITIES_REDUCER_TOKEN,
-    provideEntity,
     providePropertyHandler,
     BpmnProperty,
     CodeEditorModule,
@@ -44,7 +42,9 @@ import {
     providePaletteHandler,
     providePaletteElements,
     BpmnFactoryToken,
-    ProcessModelerServiceToken
+    ProcessModelerServiceToken,
+    AmaStoreModule,
+    PROCESSES_ENTITY_KEY
 } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { CardViewProcessVariablesItemComponent } from './services/cardview-properties/process-variable-item/process-variable-item.component';
@@ -67,14 +67,16 @@ import { PaletteOverlayDirective } from './components/process-modeler/palette/pa
 // Angular can't bundle json data into prod build, that is why the file is .json.ts
 import { paletteElements } from './config/palette-elements.json';
 
-
 @NgModule({
     imports: [
         CommonModule,
         CoreModule.forChild(),
         ProcessEditorRoutingModule,
         EffectsModule.forFeature([ProcessEditorEffects, ProcessVariablesEffects]),
-        StoreModule.forFeature('entities', ENTITIES_REDUCER_TOKEN),
+        AmaStoreModule.registerEntity({
+            key: PROCESSES_ENTITY_KEY,
+            reducer: processEntitiesReducer
+        }),
         StoreModule.forFeature(PROCESS_EDITOR_STATE_NAME, processEditorReducer),
         SharedModule,
         VariablesModule,
@@ -112,7 +114,6 @@ import { paletteElements } from './config/palette-elements.json';
         ...providePaletteHandler('tool', ToolsHandler),
         ...providePaletteHandler('element', ElementCreationHandler),
         providePaletteElements(paletteElements),
-        provideEntity({ processes: processEntitiesReducer }),
         providePropertyHandler(BpmnProperty.properties, CardViewProcessVariablesItemComponent),
         providePropertyHandler(BpmnProperty.implementation, CardViewImplementationItemComponent),
         providePropertyHandler(BpmnProperty.formKey, CardViewTextItemComponent),

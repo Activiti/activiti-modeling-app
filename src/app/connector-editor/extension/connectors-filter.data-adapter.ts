@@ -20,8 +20,8 @@ import { Observable } from 'rxjs';
 import { Connector, CONNECTOR, FilterDataAdaper, AmaState, selectProjectConnectorsArray } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { selectConnectorsLoading } from '../store/connector-editor.selectors';
-import { ShowConnectorsAction } from '../store/connector-editor.actions';
 import { map } from 'rxjs/operators';
+import { ShowConnectorsAction } from '../store/connector-editor.actions';
 
 @Injectable()
 export class ConnectorsFilterDataAdapter implements FilterDataAdaper {
@@ -33,7 +33,7 @@ export class ConnectorsFilterDataAdapter implements FilterDataAdaper {
 
     get contents(): Observable<Connector[]> {
         return this.store.select(selectProjectConnectorsArray).pipe(
-            map(connectors => connectors.filter(connector => !connector.template))
+            map<Connector[], Connector[]>(connectors => connectors.filter(connector => !connector.template))
         );
     }
 

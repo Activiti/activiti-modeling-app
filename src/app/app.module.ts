@@ -18,6 +18,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -45,7 +46,7 @@ import { MatInputModule } from '@angular/material';
 import { ACMApiModule, AmaServicesModule, ConfirmationDialogModule, AmaAuthenticationService, AuthTokenProcessorService } from 'ama-sdk';
 import { AmaRoleGuard } from './ama-role-guard.service';
 import { AppExtensionsModule } from './extensions.module';
-import { RouterModule } from '@angular/router';
+import { ModelStorageService } from './common/services/model-storage.service';
 
 @NgModule({
     imports: [
@@ -91,7 +92,8 @@ import { RouterModule } from '@angular/router';
         AmaLocalStorageMergeGuard,
         AmaRoleGuard,
         AuthTokenProcessorService,
-        AmaAuthenticationService
+        AmaAuthenticationService,
+        ModelStorageService
     ],
     bootstrap: [AppComponent]
 })

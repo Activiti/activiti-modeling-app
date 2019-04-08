@@ -15,14 +15,12 @@
  * limitations under the License.
  */
 
-import { Injectable, InjectionToken } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ContentType } from '../content-types';
 import { formatUuid } from '../../../helpers/utils/create-entries-names';
-import { ModelApiVariation, ModelApi } from '../model-api';
+import { ModelApiVariation } from '../model-api';
 import { Form, FormContent } from '../../../api/types';
 import { createEmptyForm } from '../form-definition';
-
-export const FORM_API = new InjectionToken<ModelApi<Form, FormContent>>('form-api');
 
 @Injectable()
 export class FormApiVariation<M extends Form, C extends FormContent> implements ModelApiVariation<M, C> {

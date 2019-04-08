@@ -16,25 +16,18 @@
  */
 
 import { InjectionToken } from '@angular/core';
-import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
+import { Model, MODEL_TYPE } from '../api/types';
+import { ModelApiInterface } from '../api/generalmodel-api.interface';
 
-export const getEntitiesState = createFeatureSelector<any>('entities');
-
-export const ENTITIES_REDUCER_TOKEN = new InjectionToken<ActionReducerMap<any>>('entities-reducer');
-export const ENTITY_REDUCERS_TOKEN = new InjectionToken<ActionReducerMap<any>>('entity-reducer');
-
-export function entityReducerFactory(entityReducers: any[]): ActionReducerMap<any> {
-    return entityReducers.reduce((reducers, entityReducer) => {
-        return {
-            ...reducers,
-            ...entityReducer
-        };
-    }, {});
+export interface ModelRegistration {
+    modelType: MODEL_TYPE;
+    token: InjectionToken<ModelApiInterface<Model, any>>;
+    entityKey: string;
 }
+export const REGISTERED_MODELS_TOKEN = new InjectionToken<ModelRegistration[]>('model-storage-apis');
 
-export function provideEntity(entityReducerObject: any) {
+export function registerModel(modelType: MODEL_TYPE, token: InjectionToken<ModelApiInterface<Model, any>>, entityKey: string) {
     return [
-        { provide: ENTITY_REDUCERS_TOKEN, useValue: entityReducerObject, multi: true },
-        { provide: ENTITIES_REDUCER_TOKEN, deps: [ ENTITY_REDUCERS_TOKEN ], useFactory: entityReducerFactory }
+        { provide: REGISTERED_MODELS_TOKEN, useValue: { modelType, token, entityKey }, multi: true }
     ];
 }

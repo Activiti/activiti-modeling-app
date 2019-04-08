@@ -18,7 +18,7 @@
 import { createSelector } from '@ngrx/store';
 import { AmaState, AppState } from './app.state';
 import { selectProject } from './project.selectors';
-import { getEntitiesState } from './entities';
+import { getEntitiesState } from './entity.selectors';
 
 export const selectApp = (state: AmaState) => state.app;
 

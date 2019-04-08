@@ -15,13 +15,11 @@
  * limitations under the License.
  */
 
-import { Injectable, InjectionToken } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { DataContent, Data } from '../../../api/types';
-import { ModelApi, ModelApiVariation } from '../model-api';
+import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { formatUuid } from '../../../helpers/utils/create-entries-names';
-
-export const DATA_API = new InjectionToken<ModelApi<Data, DataContent>>('data-api');
 
 @Injectable()
 export class DataApiVariation<M extends Data, C extends DataContent> implements ModelApiVariation<M, C> {

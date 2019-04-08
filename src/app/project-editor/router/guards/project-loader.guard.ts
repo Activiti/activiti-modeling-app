@@ -21,8 +21,8 @@ import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { GetProjectAttemptAction } from '../../store/project-editor.actions';
 import { ProjectEditorState } from 'ama-sdk';
-import { ShowConnectorsAction } from '../../../connector-editor/store/connector-editor.actions';
 import { ShowProcessesAction } from '../../../process-editor/store/process-editor.actions';
+import { ShowConnectorsAction } from '../../../connector-editor/store/connector-editor.actions';
 
 @Injectable()
 export class ProjectLoaderGuard implements CanActivate {
