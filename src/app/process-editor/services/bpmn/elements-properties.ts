@@ -17,6 +17,8 @@
 
 import { BpmnProperty, BpmnElement } from 'ama-sdk';
 
+// const isSignalEvent = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions;
+
 export const elementsProperties = {
     [BpmnElement.Process]: [
         BpmnProperty.id,
@@ -25,27 +27,24 @@ export const elementsProperties = {
         BpmnProperty.documentation,
         BpmnProperty.properties
     ],
-    [BpmnElement.IntermediateCatchEvent]: [
+    [BpmnElement.IntermediateCatchEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
         BpmnProperty.name,
-        BpmnProperty.documentation
+        BpmnProperty.documentation,
+        // ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : [])
     ],
-    [BpmnElement.IntermediateThrowEvent]: (element: Bpmn.DiagramElement) => {
-        return [
+    [BpmnElement.IntermediateThrowEvent]: (element: Bpmn.DiagramElement) => [
             BpmnProperty.id,
             BpmnProperty.name,
             BpmnProperty.documentation,
-            ...(element.businessObject.eventDefinitions ? [BpmnProperty.signalScope] : [])
-        ];
-    },
-    [BpmnElement.StartEvent]: (element: Bpmn.DiagramElement) => {
-        return [
+            // ...(isSignalEvent(element) ? [ BpmnProperty.signalRef, BpmnProperty.signalScope ] : [])
+    ],
+    [BpmnElement.StartEvent]: (element: Bpmn.DiagramElement) => [
             BpmnProperty.id,
             BpmnProperty.name,
             BpmnProperty.documentation,
-            ...(element.businessObject.eventDefinitions ? [] : [BpmnProperty.formKey])
-        ];
-    },
+            // ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : [BpmnProperty.formKey])
+    ],
     [BpmnElement.EndEvent]: [
         BpmnProperty.id,
         BpmnProperty.name,

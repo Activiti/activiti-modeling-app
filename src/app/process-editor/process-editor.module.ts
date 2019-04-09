@@ -66,6 +66,7 @@ import { ToolsHandler } from './services/palette/handlers/tools';
 import { PaletteOverlayDirective } from './components/process-modeler/palette/palette-overlay.directive';
 // Angular can't bundle json data into prod build, that is why the file is .json.ts
 import { paletteElements } from './config/palette-elements.json';
+import { SignalEventCreationHandler } from './services/palette/handlers/signalevent-creation';
 
 @NgModule({
     imports: [
@@ -113,6 +114,7 @@ import { paletteElements } from './config/palette-elements.json';
         provideTranslations('process-editor'),
         ...providePaletteHandler('tool', ToolsHandler),
         ...providePaletteHandler('element', ElementCreationHandler),
+        ...providePaletteHandler('signalevent', SignalEventCreationHandler),
         providePaletteElements(paletteElements),
         providePropertyHandler(BpmnProperty.properties, CardViewProcessVariablesItemComponent),
         providePropertyHandler(BpmnProperty.implementation, CardViewImplementationItemComponent),

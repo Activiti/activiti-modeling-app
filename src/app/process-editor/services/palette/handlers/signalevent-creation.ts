@@ -19,7 +19,7 @@ import { Injectable, Inject } from '@angular/core';
 import { BpmnElementTrigger, TiggerHandler, ProcessModelerServiceToken, ProcessModelerService } from 'ama-sdk';
 
 @Injectable()
-export class ElementCreationHandler implements TiggerHandler {
+export class SignalEventCreationHandler implements TiggerHandler {
 
     constructor(
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService
@@ -33,15 +33,25 @@ export class ElementCreationHandler implements TiggerHandler {
         return this.processModelerService.getFromModeler('elementFactory');
     }
 
-    processEvent(event: any, element: BpmnElementTrigger) {
-        const shape = this.elementFactory.createShape({
-            ...{ type: element.type }, ...element.options
-        });
+    private get bpmnFactory() {
+        return this.processModelerService.getFromModeler('bpmnFactory');
+    }
 
-        if (element.options) {
-            shape.businessObject.di.isExpanded = element.options.isExpanded;
-        }
+    processEvent(event: any, element: BpmnElementTrigger) {
+        const shape = this.elementFactory.createShape({ type: element.type });
+        shape.businessObject.eventDefinitions = [ this.createDefinitionAndItsSignal() ];
 
         this.create.start(event, shape);
+    }
+
+    private createDefinitionAndItsSignal() {
+        const signalElement = this.bpmnFactory.create('bpmn:Signal');
+        signalElement.name = signalElement.id;
+        this.processModelerService.getRootProcessElement().businessObject.$parent.rootElements.push(signalElement);
+
+        const signalDefinition = this.bpmnFactory.create('bpmn:SignalEventDefinition');
+        signalDefinition.$attrs.signalRef = signalElement.id;
+
+        return signalDefinition;
     }
 }

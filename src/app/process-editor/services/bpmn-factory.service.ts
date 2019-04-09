@@ -42,29 +42,6 @@ export class BpmnFactoryService implements BpmnFactory {
         return modeler;
     }
 
-    private onElementDelete() {
-
-    }
-
-    private onElementCreate() {
-
-    }
-
-    private onElementChange() {
-
-    }
-
-    private isSignalEvent(element: Bpmn.DiagramElement): boolean {
-        return true;
-    }
-
-    private createSignalEvent(modeler: BpmnModeler) {
-        const signalElement = modeler.get('bpmnFactory').create('bpmn:Signal');
-        signalElement.name = signalElement.id;
-        modeler.getRootProcessElement().businessObject.$parent.rootElements.push(signalElement);
-        return signalElement;
-    }
-
     protected getBpmnPropertiesPanelConfig() {
         return {
             additionalModules: [
