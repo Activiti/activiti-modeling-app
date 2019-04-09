@@ -81,7 +81,7 @@ describe('ConnectorsFilterDataAdapter ', () => {
     });
 
     it('should test contents getter', () => {
-        const expected = cold('(x|)', { x: [mockConnector, {...mockConnector, template: null}] });
+        const expected = cold('(x|)', { x: [mockConnector, {...mockConnector, template: 'slackConnector'}, {...mockConnector, template: null}] });
         expect(connectorsFilterDataAdapter.contents).toBeObservable(expected);
     });
 
