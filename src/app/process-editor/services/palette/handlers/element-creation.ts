@@ -21,7 +21,9 @@ import { BpmnElementTrigger, TiggerHandler, ProcessModelerServiceToken, ProcessM
 @Injectable()
 export class ElementCreationHandler implements TiggerHandler {
 
-    constructor(@Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService) {}
+    constructor(
+        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService
+    ) {}
 
     private get create() {
         return this.processModelerService.getFromModeler('create');
@@ -31,13 +33,31 @@ export class ElementCreationHandler implements TiggerHandler {
         return this.processModelerService.getFromModeler('elementFactory');
     }
 
+    private get bpmnFactory() {
+        return this.processModelerService.getFromModeler('bpmnFactory');
+    }
+
     processEvent(event: any, element: BpmnElementTrigger) {
-        const shape = this.elementFactory.createShape(
-            Object.assign({ type: element.type }, element.options)
-        );
+        const shape = this.elementFactory.createShape({
+            ...{ type: element.type }, ...element.options
+        });
+
         if (element.options) {
+            if (element.options.eventDefinitions) {
+                const signalElement = this.bpmnFactory.create('bpmn:Signal');
+                signalElement.name = signalElement.id;
+                this.processModelerService.getRootProcessElement().businessObject.$parent.rootElements.push(signalElement);
+
+                shape.businessObject.eventDefinitions = shape.eventDefinitions.map((eventName: string) => {
+                    const signalDefinition = this.bpmnFactory.create(eventName);
+                    signalDefinition.$attrs.signalRef = signalElement.id;
+                    return signalDefinition;
+                });
+            }
+
             shape.businessObject.di.isExpanded = element.options.isExpanded;
         }
+
         this.create.start(event, shape);
     }
 }

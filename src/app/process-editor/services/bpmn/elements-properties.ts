@@ -30,17 +30,22 @@ export const elementsProperties = {
         BpmnProperty.name,
         BpmnProperty.documentation
     ],
-    [BpmnElement.IntermediateThrowEvent]: [
-        BpmnProperty.id,
-        BpmnProperty.name,
-        BpmnProperty.documentation
-    ],
-    [BpmnElement.StartEvent]: [
-        BpmnProperty.id,
-        BpmnProperty.name,
-        BpmnProperty.documentation,
-        BpmnProperty.formKey
-    ],
+    [BpmnElement.IntermediateThrowEvent]: (element: Bpmn.DiagramElement) => {
+        return [
+            BpmnProperty.id,
+            BpmnProperty.name,
+            BpmnProperty.documentation,
+            ...(element.businessObject.eventDefinitions ? [BpmnProperty.signalScope] : [])
+        ];
+    },
+    [BpmnElement.StartEvent]: (element: Bpmn.DiagramElement) => {
+        return [
+            BpmnProperty.id,
+            BpmnProperty.name,
+            BpmnProperty.documentation,
+            ...(element.businessObject.eventDefinitions ? [] : [BpmnProperty.formKey])
+        ];
+    },
     [BpmnElement.EndEvent]: [
         BpmnProperty.id,
         BpmnProperty.name,

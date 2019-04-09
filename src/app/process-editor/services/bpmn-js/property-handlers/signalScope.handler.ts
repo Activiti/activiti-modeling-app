@@ -15,24 +15,12 @@
  * limitations under the License.
  */
 
-import BpmnModdle from 'bpmn-moddle';
-import { BpmnProperty } from 'ama-sdk';
-const moddle = new BpmnModdle();
 
-const propertyKey = BpmnProperty.conditionExpression;
-
-const get = (element: Bpmn.DiagramElement) => {
-    const businessObject = element.businessObject;
-    const expression = businessObject && businessObject.get(propertyKey),
-        body =  expression ? expression.body : '';
-
-    return body;
-};
-
+const get = element => element.businessObject.eventDefinitions[0].signalRef.$attrs.scope;
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {
-        [propertyKey]: moddle.create('bpmn:FormalExpression', { body: value })
-    });
+    /* tslint:disable */
+    console.log(element.businessObject.eventDefinitions[0].signalRef);
+    modeling.updateProperties(element, { scope: value });
 };
 
-export const expressionHandler = { get, set };
+export const signalScopeHandler = { get, set };

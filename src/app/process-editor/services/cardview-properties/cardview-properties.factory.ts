@@ -39,15 +39,16 @@ export class CardViewPropertiesFactory {
     ) {}
 
     createCardViewPropertiesFor(element: Bpmn.DiagramElement): CardViewItem[] {
-        const type = ElementHelper.getType(element),
-            bpmnPropertiesForElement = elementsProperties[type];
+        const type = ElementHelper.getType(element);
+        const bpmnPropertiesForElement = elementsProperties[type];
 
-        if (bpmnPropertiesForElement) {
-            return bpmnPropertiesForElement.map(this.createCardViewPropertyFor.bind(this, element));
-        } else {
+        if (!bpmnPropertiesForElement) {
             this.logService.debug(element);
             return [];
         }
+
+        const properties = Array.isArray(bpmnPropertiesForElement) ? bpmnPropertiesForElement : bpmnPropertiesForElement(element);
+        return properties.map(this.createCardViewPropertyFor.bind(this, element));
     }
 
     private createCardViewPropertyFor(element: Bpmn.DiagramElement, bpmnProperty: BpmnProperty): CardViewItem {

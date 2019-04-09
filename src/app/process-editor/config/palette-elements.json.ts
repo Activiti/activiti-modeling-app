@@ -61,11 +61,58 @@ export const paletteElements: PaletteElement[] = [
     },
     {
         group: 'element',
+        type: 'bpmn:IntermediateThrowEvent',
+        icon: 'bpmn-icon-intermediate-event-none',
+        title: 'APP.PROCESS_EDITOR.PALETTE.INTERMEDIATE_THROW_EVENT',
+        clickable: true,
+        draggable: true
+    },
+    {
+        group: 'element',
         type: 'bpmn:EndEvent',
         icon: 'bpmn-icon-end-event-none',
         title: 'APP.PROCESS_EDITOR.PALETTE.END_EVENT',
         clickable: true,
         draggable: true
+    },
+    {
+        group: 'element',
+        type: 'bpmn:StartEvent',
+        icon: 'bpmn-icon-start-event-signal',
+        title: 'APP.PROCESS_EDITOR.PALETTE.START_EVENT_SIGNAL',
+        clickable: true,
+        draggable: true,
+        options: {
+            eventDefinitions: [
+                'bpmn:SignalEventDefinition'
+            ]
+        }
+    },
+    {
+        group: 'element',
+        type: 'bpmn:IntermediateCatchEvent',
+        icon: 'bpmn-icon-intermediate-event-catch-signal',
+        title: 'APP.PROCESS_EDITOR.PALETTE.INTERMEDIATE_CATCH_EVENT_SIGNAL',
+        clickable: true,
+        draggable: true,
+        options: {
+            eventDefinitions: [
+                'bpmn:SignalEventDefinition'
+            ]
+        }
+    },
+    {
+        group: 'element',
+        type: 'bpmn:IntermediateThrowEvent',
+        icon: 'bpmn-icon-intermediate-event-throw-signal',
+        title: 'APP.PROCESS_EDITOR.PALETTE.INTERMEDIATE_THROW_EVENT_SIGNAL',
+        clickable: true,
+        draggable: true,
+        options: {
+            eventDefinitions: [
+                'bpmn:SignalEventDefinition'
+            ]
+        }
     },
     { group: 'separator' },
     {

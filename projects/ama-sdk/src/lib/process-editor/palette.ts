@@ -47,7 +47,7 @@ export interface PaletteGroupElement {
     children?: GeneralTrigger[];
 }
 
-export type PaletteElement = PaletteSeparatorElement | PaletteGroupElement | GeneralTrigger;
+export type PaletteElement = PaletteSeparatorElement | PaletteGroupElement | BpmnTrigger;
 
 export interface TiggerHandler {
     processEvent(event: any, element: GeneralTrigger): void;

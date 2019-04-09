@@ -14,6 +14,11 @@
         "ELEMENT_PROPERTIES": {
             "ID": "id",
             "NAME": "Name",
+            "SCOPE": "Scope",
+            "SCOPE_VALUES": {
+                "GLOBAL": "Global",
+                "PROCESS_INSTANCE": "Process Instance"
+            },
             "VERSION": "Version",
             "VARIABLES": "Variables",
             "DOCUMENTATION": "Documentation",
