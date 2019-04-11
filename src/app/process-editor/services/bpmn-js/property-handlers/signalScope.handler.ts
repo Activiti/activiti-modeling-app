@@ -21,15 +21,12 @@ const get = element => element.businessObject.eventDefinitions[0].signalRef.$att
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
     const signalRef = element.businessObject.eventDefinitions[0].signalRef;
-    if (signalRef) {
-        const signal = signalRef.$parent.rootElements.find(el => el.id === signalRef.id);
-        if (value === 'global') {
-            delete signal.$attrs['activiti:scope'];
-        } else {
-            signal.$attrs['activiti:scope'] = value;
-        }
-        modeling.updateProperties(element, {});
+    if (value === 'global') {
+        delete signalRef.$attrs['activiti:scope'];
+    } else {
+        signalRef.$attrs['activiti:scope'] = value;
     }
+    modeling.updateProperties(element, {});
 };
 
 export const signalScopeHandler = { get, set };
