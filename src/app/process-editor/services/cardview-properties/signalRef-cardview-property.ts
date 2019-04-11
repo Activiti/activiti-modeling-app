@@ -15,24 +15,19 @@
  * limitations under the License.
  */
 
-import { CardViewSelectItemModel } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty } from 'ama-sdk';
-import { of } from 'rxjs';
 import { FactoryProps } from './cardview-properties.factory';
+import { SignalRefItemModel } from './signal-ref-item/signal-ref-item.model';
 
-const propertyName = BpmnProperty.signalScope;
+const propertyName = BpmnProperty.signalRef;
 
-export function createSignalScopeProperty({ element }: FactoryProps) {
-    return new CardViewSelectItemModel({
-        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SCOPE',
-        options$: of([
-            { key: 'global', label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SCOPE_VALUES.GLOBAL' },
-            { key: 'processInstance', label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SCOPE_VALUES.PROCESS_INSTANCE' }
-        ]),
-        value: ElementHelper.getProperty(element, propertyName) || 'global',
+export function createSignalRefProperty({ element }: FactoryProps) {
+    return new SignalRefItemModel({
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SIGNAL',
+        value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,
         editable: true,
-        data: { id: element.id }
+        data: { id: element.id, element }
     });
 }

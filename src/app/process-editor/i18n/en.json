@@ -14,6 +14,8 @@
         "ELEMENT_PROPERTIES": {
             "ID": "id",
             "NAME": "Name",
+            "SIGNAL": "Signal",
+            "CREATE_NEW_SIGNAL": "Create new signal",
             "SCOPE": "Scope",
             "SCOPE_VALUES": {
                 "GLOBAL": "Global",

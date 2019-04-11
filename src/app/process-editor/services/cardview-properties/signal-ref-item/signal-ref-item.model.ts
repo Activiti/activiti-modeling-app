@@ -15,17 +15,13 @@
  * limitations under the License.
  */
 
-export enum BpmnElement {
-    Process = 'bpmn:Process',
-    IntermediateCatchEvent = 'bpmn:IntermediateCatchEvent',
-    IntermediateThrowEvent = 'bpmn:IntermediateThrowEvent',
-    StartEvent = 'bpmn:StartEvent',
-    EndEvent = 'bpmn:EndEvent',
-    BoundaryEvent = 'bpmn:BoundaryEvent',
-    SequenceFlow = 'bpmn:SequenceFlow',
-    ExclusiveGateway = 'bpmn:ExclusiveGateway',
-    ParallelGateway = 'bpmn:ParallelGateway',
-    ServiceTask = 'bpmn:ServiceTask',
-    UserTask = 'bpmn:UserTask',
-    CallActivity = 'bpmn:CallActivity'
+import { CardViewBaseItemModel, CardViewItem, DynamicComponentModel } from '@alfresco/adf-core';
+import { BpmnProperty } from 'ama-sdk';
+
+export class SignalRefItemModel extends CardViewBaseItemModel implements CardViewItem, DynamicComponentModel {
+    type = BpmnProperty.signalRef;
+
+    get displayValue() {
+        return this.default;
+    }
 }

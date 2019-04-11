@@ -75,30 +75,6 @@ export const paletteElements: PaletteElement[] = [
         clickable: true,
         draggable: true
     },
-    {
-        group: 'signalevent',
-        type: 'bpmn:StartEvent',
-        icon: 'bpmn-icon-start-event-signal',
-        title: 'APP.PROCESS_EDITOR.PALETTE.START_EVENT_SIGNAL',
-        clickable: true,
-        draggable: true
-    },
-    {
-        group: 'signalevent',
-        type: 'bpmn:IntermediateCatchEvent',
-        icon: 'bpmn-icon-intermediate-event-catch-signal',
-        title: 'APP.PROCESS_EDITOR.PALETTE.INTERMEDIATE_CATCH_EVENT_SIGNAL',
-        clickable: true,
-        draggable: true
-    },
-    {
-        group: 'signalevent',
-        type: 'bpmn:IntermediateThrowEvent',
-        icon: 'bpmn-icon-intermediate-event-throw-signal',
-        title: 'APP.PROCESS_EDITOR.PALETTE.INTERMEDIATE_THROW_EVENT_SIGNAL',
-        clickable: true,
-        draggable: true
-    },
     { group: 'separator' },
     {
         group: 'element',

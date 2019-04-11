@@ -79,6 +79,15 @@
                 &.bpmn-icon-gateway-complex,
                 &.bpmn-icon-end-event-signal,
                 &.bpmn-icon-end-event-terminate,
+                &.bpmn-icon-intermediate-event-catch-escalation,
+                &.bpmn-icon-intermediate-event-catch-error,
+                &.bpmn-icon-intermediate-event-catch-cancel,
+                &.bpmn-icon-intermediate-event-catch-compensation,
+                &.bpmn-icon-intermediate-event-catch-non-interrupting-message,
+                &.bpmn-icon-intermediate-event-catch-non-interrupting-timer,
+                &.bpmn-icon-intermediate-event-catch-non-interrupting-escalation,
+                &.bpmn-icon-intermediate-event-catch-non-interrupting-condition,
+                &.bpmn-icon-intermediate-event-catch-non-interrupting-signal,
                 &.bpmn-icon-start-event-timer {
                     display: none;
                 }

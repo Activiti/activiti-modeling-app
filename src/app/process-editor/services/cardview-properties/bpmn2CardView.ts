@@ -33,6 +33,7 @@ import { createExpressionProperty } from './expression-cardview-property';
 import { createFormKeyProperty } from './formSelector-cardview-property';
 import { createProcessNameProperty } from './process-name-cardview-property';
 import { createDefaultSequenceFlowProperty } from './default-sequence-flow-cardview-property';
+import { createSignalRefProperty } from './signalRef-cardview-property';
 import { createSignalScopeProperty } from './signalScope-cardview-property';
 
 export const bpmn2cardView = {
@@ -53,5 +54,6 @@ export const bpmn2cardView = {
     [BpmnProperty.formKey]: createFormKeyProperty,
     [BpmnProperty.processName]: createProcessNameProperty,
     [BpmnProperty.defaultSequenceFlow]: createDefaultSequenceFlowProperty,
-    [BpmnProperty.signalScope]: createSignalScopeProperty,
+    [BpmnProperty.signalRef]: createSignalRefProperty,
+    [BpmnProperty.signalScope]: createSignalScopeProperty
 };
