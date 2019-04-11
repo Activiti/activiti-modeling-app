@@ -67,6 +67,14 @@ export const paletteElements: PaletteElement[] = [
         clickable: true,
         draggable: true
     },
+    {
+        group: 'element',
+        type: 'bpmn:IntermediateThrowEvent',
+        icon: 'bpmn-icon-intermediate-event-none',
+        title: 'APP.PROCESS_EDITOR.PALETTE.INTERMEDIATE_THROW_EVENT',
+        clickable: true,
+        draggable: true
+    },
     { group: 'separator' },
     {
         group: 'element',

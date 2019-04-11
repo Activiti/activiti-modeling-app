@@ -66,6 +66,7 @@ import { ToolsHandler } from './services/palette/handlers/tools';
 import { PaletteOverlayDirective } from './components/process-modeler/palette/palette-overlay.directive';
 // Angular can't bundle json data into prod build, that is why the file is .json.ts
 import { paletteElements } from './config/palette-elements.json';
+import { CardViewSignalRefItemComponent } from './services/cardview-properties/signal-ref-item/signal-ref-item.component';
 
 @NgModule({
     imports: [
@@ -94,11 +95,13 @@ import { paletteElements } from './config/palette-elements.json';
         CardViewProcessVariablesItemComponent,
         CardViewImplementationItemComponent,
         CardViewDefaultSequenceFlowItemComponent,
+        CardViewSignalRefItemComponent
     ],
     entryComponents: [
         CardViewProcessVariablesItemComponent,
         CardViewImplementationItemComponent,
         CardViewDefaultSequenceFlowItemComponent,
+        CardViewSignalRefItemComponent,
         ProcessEditorComponent
     ],
     exports: [ProcessEditorRoutingModule],
@@ -118,6 +121,7 @@ import { paletteElements } from './config/palette-elements.json';
         providePropertyHandler(BpmnProperty.implementation, CardViewImplementationItemComponent),
         providePropertyHandler(BpmnProperty.formKey, CardViewTextItemComponent),
         providePropertyHandler(BpmnProperty.defaultSequenceFlow, CardViewDefaultSequenceFlowItemComponent),
+        providePropertyHandler(BpmnProperty.signalRef, CardViewSignalRefItemComponent),
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider()

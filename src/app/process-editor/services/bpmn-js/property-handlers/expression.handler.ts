@@ -31,9 +31,7 @@ const get = (element: Bpmn.DiagramElement) => {
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
     modeling.updateProperties(element, {
-        [propertyKey]: moddle.create('bpmn:FormalExpression', {
-                body: value,
-            })
+        [propertyKey]: moddle.create('bpmn:FormalExpression', { body: value })
     });
 };
 

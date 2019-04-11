@@ -17,6 +17,9 @@
 
 import { BpmnProperty, BpmnElement } from 'ama-sdk';
 
+const isSignalEvent = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions;
+const haveSignalRef = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions[0].signalRef;
+
 export const elementsProperties = {
     [BpmnElement.Process]: [
         BpmnProperty.id,
@@ -25,21 +28,30 @@ export const elementsProperties = {
         BpmnProperty.documentation,
         BpmnProperty.properties
     ],
-    [BpmnElement.IntermediateCatchEvent]: [
-        BpmnProperty.id,
-        BpmnProperty.name,
-        BpmnProperty.documentation
-    ],
-    [BpmnElement.IntermediateThrowEvent]: [
-        BpmnProperty.id,
-        BpmnProperty.name,
-        BpmnProperty.documentation
-    ],
-    [BpmnElement.StartEvent]: [
+    [BpmnElement.IntermediateCatchEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
-        BpmnProperty.formKey
+        ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : [])
+    ],
+    [BpmnElement.IntermediateThrowEvent]: (element: Bpmn.DiagramElement) => [
+        BpmnProperty.id,
+        BpmnProperty.name,
+        BpmnProperty.documentation,
+        ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : []),
+        ...(isSignalEvent(element) && haveSignalRef(element) ? [ BpmnProperty.signalScope ] : [])
+    ],
+    [BpmnElement.StartEvent]: (element: Bpmn.DiagramElement) => [
+        BpmnProperty.id,
+        BpmnProperty.name,
+        BpmnProperty.documentation,
+        ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : [BpmnProperty.formKey])
+    ],
+    [BpmnElement.BoundaryEvent]: [
+        BpmnProperty.id,
+        BpmnProperty.name,
+        BpmnProperty.documentation,
+        BpmnProperty.signalRef
     ],
     [BpmnElement.EndEvent]: [
         BpmnProperty.id,

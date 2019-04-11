@@ -15,17 +15,18 @@
  * limitations under the License.
  */
 
-export enum BpmnElement {
-    Process = 'bpmn:Process',
-    IntermediateCatchEvent = 'bpmn:IntermediateCatchEvent',
-    IntermediateThrowEvent = 'bpmn:IntermediateThrowEvent',
-    StartEvent = 'bpmn:StartEvent',
-    EndEvent = 'bpmn:EndEvent',
-    BoundaryEvent = 'bpmn:BoundaryEvent',
-    SequenceFlow = 'bpmn:SequenceFlow',
-    ExclusiveGateway = 'bpmn:ExclusiveGateway',
-    ParallelGateway = 'bpmn:ParallelGateway',
-    ServiceTask = 'bpmn:ServiceTask',
-    UserTask = 'bpmn:UserTask',
-    CallActivity = 'bpmn:CallActivity'
-}
+const propertyKey = 'activiti:scope';
+
+const get = element => element.businessObject.eventDefinitions[0].signalRef.$attrs[propertyKey] || 'global';
+
+const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
+    const signalRef = element.businessObject.eventDefinitions[0].signalRef;
+    if (value === 'global') {
+        delete signalRef.$attrs['activiti:scope'];
+    } else {
+        signalRef.$attrs['activiti:scope'] = value;
+    }
+    modeling.updateProperties(element, {});
+};
+
+export const signalScopeHandler = { get, set };

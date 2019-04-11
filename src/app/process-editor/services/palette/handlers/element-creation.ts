@@ -21,7 +21,9 @@ import { BpmnElementTrigger, TiggerHandler, ProcessModelerServiceToken, ProcessM
 @Injectable()
 export class ElementCreationHandler implements TiggerHandler {
 
-    constructor(@Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService) {}
+    constructor(
+        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService
+    ) {}
 
     private get create() {
         return this.processModelerService.getFromModeler('create');
@@ -32,12 +34,14 @@ export class ElementCreationHandler implements TiggerHandler {
     }
 
     processEvent(event: any, element: BpmnElementTrigger) {
-        const shape = this.elementFactory.createShape(
-            Object.assign({ type: element.type }, element.options)
-        );
+        const shape = this.elementFactory.createShape({
+            ...{ type: element.type }, ...element.options
+        });
+
         if (element.options) {
             shape.businessObject.di.isExpanded = element.options.isExpanded;
         }
+
         this.create.start(event, shape);
     }
 }

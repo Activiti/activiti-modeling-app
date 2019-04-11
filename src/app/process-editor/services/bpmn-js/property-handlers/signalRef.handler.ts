@@ -15,17 +15,12 @@
  * limitations under the License.
  */
 
-export enum BpmnElement {
-    Process = 'bpmn:Process',
-    IntermediateCatchEvent = 'bpmn:IntermediateCatchEvent',
-    IntermediateThrowEvent = 'bpmn:IntermediateThrowEvent',
-    StartEvent = 'bpmn:StartEvent',
-    EndEvent = 'bpmn:EndEvent',
-    BoundaryEvent = 'bpmn:BoundaryEvent',
-    SequenceFlow = 'bpmn:SequenceFlow',
-    ExclusiveGateway = 'bpmn:ExclusiveGateway',
-    ParallelGateway = 'bpmn:ParallelGateway',
-    ServiceTask = 'bpmn:ServiceTask',
-    UserTask = 'bpmn:UserTask',
-    CallActivity = 'bpmn:CallActivity'
-}
+
+const get = element => element.businessObject.eventDefinitions[0].signalRef;
+
+const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
+    element.businessObject.eventDefinitions[0].signalRef = value;
+    modeling.updateProperties(element, {});
+};
+
+export const signalRefHandler = { get, set };

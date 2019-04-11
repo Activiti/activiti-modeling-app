@@ -15,17 +15,19 @@
  * limitations under the License.
  */
 
-export enum BpmnElement {
-    Process = 'bpmn:Process',
-    IntermediateCatchEvent = 'bpmn:IntermediateCatchEvent',
-    IntermediateThrowEvent = 'bpmn:IntermediateThrowEvent',
-    StartEvent = 'bpmn:StartEvent',
-    EndEvent = 'bpmn:EndEvent',
-    BoundaryEvent = 'bpmn:BoundaryEvent',
-    SequenceFlow = 'bpmn:SequenceFlow',
-    ExclusiveGateway = 'bpmn:ExclusiveGateway',
-    ParallelGateway = 'bpmn:ParallelGateway',
-    ServiceTask = 'bpmn:ServiceTask',
-    UserTask = 'bpmn:UserTask',
-    CallActivity = 'bpmn:CallActivity'
+import { ElementHelper } from '../bpmn-js/element.helper';
+import { BpmnProperty } from 'ama-sdk';
+import { FactoryProps } from './cardview-properties.factory';
+import { SignalRefItemModel } from './signal-ref-item/signal-ref-item.model';
+
+const propertyName = BpmnProperty.signalRef;
+
+export function createSignalRefProperty({ element }: FactoryProps) {
+    return new SignalRefItemModel({
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SIGNAL',
+        value: ElementHelper.getProperty(element, propertyName),
+        key: propertyName,
+        editable: true,
+        data: { id: element.id, element }
+    });
 }

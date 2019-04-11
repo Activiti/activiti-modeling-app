@@ -1,0 +1,18 @@
+<div class="signal-ref-block">
+    <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SIGNAL' | translate }}</div>
+    <button mat-stroked-button
+            class="add-signal-button"
+            (click)="createNewSignal()"
+            matTooltip="{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.CREATE_NEW_SIGNAL' | translate }}"
+            [matTooltipPosition]="'before'">
+        <mat-icon>add</mat-icon>
+    </button>
+    <mat-form-field>
+        <mat-select (selectionChange)="changeSignalRef()" [(ngModel)]="selectedSignal">
+            <mat-option></mat-option>
+            <mat-option *ngFor="let signal of signals" [value]="signal">
+                {{ signal.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
