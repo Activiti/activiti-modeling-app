@@ -26,6 +26,8 @@
             "DOCUMENTATION": "Documentation",
             "EXECUTABLE": "Executable",
             "IMPLEMENTATION": "Implementation",
+            "DECISION_TASK": "Decision task",
+            "DECISION_TABLE_NAME": "Decision table name",
             "INPUTS": "Inputs",
             "OUTPUTS": "Outputs",
             "INPUT": "Input",

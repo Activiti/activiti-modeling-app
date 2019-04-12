@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
-import { BpmnProperty, BpmnElement } from 'ama-sdk';
+import { BpmnProperty, BpmnElement, DECISION_TASK_IMPLEMENTATION } from 'ama-sdk';
 
 const isSignalEvent = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions;
 const haveSignalRef = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions[0].signalRef;
+const isDecisionTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === DECISION_TASK_IMPLEMENTATION;
 
 export const elementsProperties = {
     [BpmnElement.Process]: [
@@ -75,11 +76,11 @@ export const elementsProperties = {
         BpmnProperty.name,
         BpmnProperty.documentation
     ],
-    [BpmnElement.ServiceTask]: [
+    [BpmnElement.ServiceTask]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
-        BpmnProperty.implementation
+        ...(isDecisionTask(element) ? [ BpmnProperty.decisionTask ] : [BpmnProperty.implementation])
     ],
     [BpmnElement.CallActivity]: [
         BpmnProperty.id,

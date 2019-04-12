@@ -49,6 +49,7 @@ import {
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { CardViewProcessVariablesItemComponent } from './services/cardview-properties/process-variable-item/process-variable-item.component';
 import { CardViewImplementationItemComponent } from './services/cardview-properties/implementation-item/implementation-item.component';
+import { CardViewDecisionTaskItemComponent } from './services/cardview-properties/decision-task-item/decision-task-item.component';
 import { ProcessPropertiesComponent } from './components/process-properties/process-properties.component';
 import { MatTooltipModule } from '@angular/material';
 import { getProcessesFilterProvider } from './extension/processes-filter.extension';
@@ -94,12 +95,14 @@ import { CardViewSignalRefItemComponent } from './services/cardview-properties/s
         ProcessPropertiesComponent,
         CardViewProcessVariablesItemComponent,
         CardViewImplementationItemComponent,
+        CardViewDecisionTaskItemComponent,
         CardViewDefaultSequenceFlowItemComponent,
         CardViewSignalRefItemComponent
     ],
     entryComponents: [
         CardViewProcessVariablesItemComponent,
         CardViewImplementationItemComponent,
+        CardViewDecisionTaskItemComponent,
         CardViewDefaultSequenceFlowItemComponent,
         CardViewSignalRefItemComponent,
         ProcessEditorComponent
@@ -119,6 +122,7 @@ import { CardViewSignalRefItemComponent } from './services/cardview-properties/s
         providePaletteElements(paletteElements),
         providePropertyHandler(BpmnProperty.properties, CardViewProcessVariablesItemComponent),
         providePropertyHandler(BpmnProperty.implementation, CardViewImplementationItemComponent),
+        providePropertyHandler(BpmnProperty.decisionTask, CardViewDecisionTaskItemComponent),
         providePropertyHandler(BpmnProperty.formKey, CardViewTextItemComponent),
         providePropertyHandler(BpmnProperty.defaultSequenceFlow, CardViewDefaultSequenceFlowItemComponent),
         providePropertyHandler(BpmnProperty.signalRef, CardViewSignalRefItemComponent),
