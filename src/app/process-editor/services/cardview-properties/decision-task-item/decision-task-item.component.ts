@@ -64,7 +64,7 @@ export class CardViewDecisionTaskItemComponent implements OnInit, OnDestroy {
         try {
             const inputs: ServiceParameterMapping = {
                 [DECISION_TABLE_INPUT_PARAM_NAME]: {
-                    type: 'value',
+                    type: 'static-value',
                     value: this.decisionTable
                 }
             };
