@@ -71,7 +71,7 @@ export interface Process extends Model {
 
 export type ProcessVariableId = string;
 
-export type MappingsType = 'variable' | 'value' | 'static-value';
+export type MappingsType = 'variable' | 'value' | 'static_value';
 
 export interface ServiceParameterMapping {
     [parameterId: string]: {
