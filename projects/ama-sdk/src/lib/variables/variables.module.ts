@@ -22,18 +22,36 @@ import { CoreModule } from '@alfresco/adf-core';
 import { VariablesComponent } from './variables.component';
 import { PropertiesViwerComponent } from './properties-viewer/properties-viewer.component';
 import { VariablesService } from './variables.service';
+import { ValueTypeInputComponent } from './properties-viewer/value-type-input.component';
+import { PropertiesViwerStringInputComponent } from './properties-viewer/value-type-inputs/string-input.component';
+import { PropertiesViwerIntegerInputComponent } from './properties-viewer/value-type-inputs/integer-input.component';
+import { PropertiesViwerBooleanInputComponent } from './properties-viewer/value-type-inputs/boolean-input.component';
+import { PropertiesViwerDateInputComponent } from './properties-viewer/value-type-inputs/date-input.component';
+import { SharedModule } from '../helpers/public_api';
 
 @NgModule({
     imports: [
         CommonModule,
         CoreModule.forChild(),
-        CodeEditorModule
+        CodeEditorModule,
+        SharedModule
     ],
     declarations: [
         VariablesComponent,
-        PropertiesViwerComponent
+        PropertiesViwerComponent,
+        ValueTypeInputComponent,
+        PropertiesViwerStringInputComponent,
+        PropertiesViwerIntegerInputComponent,
+        PropertiesViwerBooleanInputComponent,
+        PropertiesViwerDateInputComponent
     ],
-    entryComponents: [VariablesComponent],
+    entryComponents: [
+        VariablesComponent,
+        PropertiesViwerIntegerInputComponent,
+        PropertiesViwerStringInputComponent,
+        PropertiesViwerBooleanInputComponent,
+        PropertiesViwerDateInputComponent
+    ],
     providers: [
         VariablesService
     ]
