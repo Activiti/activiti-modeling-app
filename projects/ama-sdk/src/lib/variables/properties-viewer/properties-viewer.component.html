@@ -56,9 +56,9 @@
                   </mat-option>
                 </mat-select>
         </mat-form-field>
-        <mat-form-field floatLabel="never">
-            <input matInput placeholder="Value" [(ngModel)]="value" (keyup)="saveChanges()" data-automation-id="variable-value">
-        </mat-form-field>
+
+        <amasdk-value-type-input [(ngModel)]="value" [index]="position" [type]="selectedType" (change)="saveChanges()"></amasdk-value-type-input>
+
         <mat-checkbox  *ngIf="requiredCheckbox" [(ngModel)]= "required" (change)="saveChanges()" color="primary" data-automation-id="variable-required">
             {{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_REQUIRED' | translate }}
         </mat-checkbox>
