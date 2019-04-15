@@ -32,7 +32,10 @@ export class CodeEditorWidget extends GenericWebElement {
             // Reset monaco editor's content, otherwise it gets crazy
             // Having multiple instance at the same time in DOM can break it???
             await browser.executeScript(`this.monaco.editor.getModels()[0].setValue('');`);
-            await super.sendKeysIfPresent(this.codeEditorTexarea, content);
+            Logger.info('XML editor content before setting a value: \n', await this.getCodeEditorValue());
+            Logger.info('Value sent to XML editor: \n', content);
+            await super.sendKeysIfVisible(this.codeEditorTexarea, content);
+            Logger.info('XML editor content after setting a value: \n', await this.getCodeEditorValue());
         } catch (e) {
             Logger.error(`Updating editor content with '${content}' failed with thrown error: ${e.message}`);
             throw e;

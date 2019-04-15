@@ -24,12 +24,20 @@ export class ACMDecisionTable extends ACMCrud {
     type = 'DECISION';
     contentType = 'text/plain';
 
-    getDefaultContent(entityName: string, entityId: string) {
+    getDefaultContent(name: string, entityId: string) {
         const id = this.type.toLowerCase() + '-' + entityId;
 
         return `<?xml version="1.0" encoding="UTF-8"?>
-        <definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="${id}" name="${entityName}"
-        namespace="http://camunda.org/schema/1.0/dmn" exporter="dmn-js (https://demo.bpmn.io/dmn)" exporterVersion="6.2.1">
+        <definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="${id}" name="${name}"
+          namespace="http://activiti.org/schema/1.0/dmn" exporter="dmn-js (https://demo.bpmn.io/dmn)" exporterVersion="6.2.1">
+          <decision id="Decision_${name}" name="Decision_${name}">
+          <decisionTable id="DecisionTable_${name}">
+            <input id="InputClause_${name}">
+              <inputExpression id="LiteralExpression_${name}" typeRef="string" />
+            </input>
+            <output id="OutputClause_${name}" typeRef="string" />
+          </decisionTable>
+        </decision>
         </definitions>`;
     }
 }
