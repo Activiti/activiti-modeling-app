@@ -2,6 +2,10 @@
     $foreground: map-get($theme, foreground);
     $background: map-get($theme, background);
 
+    amasdk-value-type-input .mat-form-field-infix {
+        border-top: 0;
+    }
+
     amasdk-properties-viewer {
         padding: 10px;
         display: flex;
