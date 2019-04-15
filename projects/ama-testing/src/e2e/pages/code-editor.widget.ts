@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { element, by, browser, protractor } from 'protractor';
+import { element, by, browser } from 'protractor';
 import { Logger } from '../util/logger';
 import { GenericWebElement } from './common/generic.webelement';
 
