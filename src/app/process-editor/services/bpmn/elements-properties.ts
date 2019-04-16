@@ -48,11 +48,11 @@ export const elementsProperties = {
         BpmnProperty.documentation,
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : [BpmnProperty.formKey])
     ],
-    [BpmnElement.BoundaryEvent]: [
+    [BpmnElement.BoundaryEvent]: (element) => [
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
-        BpmnProperty.signalRef
+        ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : []),
     ],
     [BpmnElement.EndEvent]: [
         BpmnProperty.id,
