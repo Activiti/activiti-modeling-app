@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { element, by, browser } from 'protractor';
+import { element, by, browser, protractor } from 'protractor';
 import { Logger } from '../util/logger';
 import { GenericWebElement } from './common/generic.webelement';
 
@@ -34,8 +34,10 @@ export class CodeEditorWidget extends GenericWebElement {
             await browser.executeScript(`this.monaco.editor.getModels()[0].setValue('');`);
             Logger.info('XML editor content before setting a value: \n', await this.getCodeEditorValue());
             Logger.info('Value sent to XML editor: \n', content);
-            await super.sendKeysIfVisible(this.codeEditorTexarea, content);
+            await browser.executeScript('this.monaco.editor.getModels()[0].setValue(`' + content + '`);');
             Logger.info('XML editor content after setting a value: \n', await this.getCodeEditorValue());
+            await this.codeEditorTexarea.click();
+            await this.codeEditorTexarea.sendKeys(protractor.Key.HOME, protractor.Key.ENTER);
         } catch (e) {
             Logger.error(`Updating editor content with '${content}' failed with thrown error: ${e.message}`);
             throw e;
