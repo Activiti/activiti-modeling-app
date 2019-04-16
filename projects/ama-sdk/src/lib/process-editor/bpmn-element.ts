@@ -15,6 +15,9 @@
  * limitations under the License.
  */
 
+export const DECISION_TASK_IMPLEMENTATION = 'dmn-connector.EXECUTE_TABLE';
+export const DECISION_TABLE_INPUT_PARAM_NAME = '_activiti_dmn_table_';
+
 export enum BpmnElement {
     Process = 'bpmn:Process',
     IntermediateCatchEvent = 'bpmn:IntermediateCatchEvent',

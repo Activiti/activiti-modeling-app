@@ -23,6 +23,7 @@ export enum BpmnProperty {
     version = 'versionTag',
     documentation = 'documentation',
     implementation = 'implementation',
+    decisionTask = 'decisionTask',
     formKey = 'formKey',
     variables = 'variables',
     assignee = 'assignee',

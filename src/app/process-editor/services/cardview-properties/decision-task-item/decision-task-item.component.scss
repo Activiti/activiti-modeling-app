@@ -1,0 +1,17 @@
+@mixin ama-decision-task-item($theme) {
+    $foreground: map-get($theme, foreground);
+
+    .decision-task-block {
+        .mat-form-field {
+            width: 100%;
+        }
+
+        .adf-property-label {
+            margin-bottom: 5px;
+        }
+
+        .mat-row, .mat-header-row {
+            padding: 0 10px;
+        }
+    }
+}
