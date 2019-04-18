@@ -144,8 +144,8 @@ export class ProjectsEffects extends BaseEffects {
 
     private releaseProject(projectId: string) {
         return this.dashboardService.releaseProject(projectId).pipe(
-            switchMap(project => [
-                new ReleaseProjectSuccessAction(project),
+            switchMap(release => [
+                new ReleaseProjectSuccessAction(release, projectId),
                 new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_RELEASED')
             ]),
             catchError(e =>

@@ -94,5 +94,5 @@ export class ReleaseProjectAttemptAction implements Action {
 export const RELEASE_PROJECT_SUCCESS = 'RELEASE_PROJECT_SUCCESS';
 export class ReleaseProjectSuccessAction implements Action {
     readonly type = RELEASE_PROJECT_SUCCESS;
-    constructor(public project: Partial<Project>) {}
+    constructor(public release: Partial<Project>, public projectId: string) {}
 }

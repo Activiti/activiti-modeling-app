@@ -327,7 +327,7 @@ describe('ProjectsEffects', () => {
             actions$ = hot('a', { a: new ReleaseProjectAttemptAction(mockProject.id) });
 
             const expected = cold('(bc)', {
-                b: new ReleaseProjectSuccessAction(mockProject),
+                b: new ReleaseProjectSuccessAction(mockProject, mockProject.id),
                 c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_RELEASED')
             });
 
