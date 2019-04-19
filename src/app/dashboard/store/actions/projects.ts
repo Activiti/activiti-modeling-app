@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Project } from 'ama-sdk';
+import { Project, Release } from 'ama-sdk';
 import { EntityDialogForm } from 'ama-sdk';
 
 
@@ -94,5 +94,5 @@ export class ReleaseProjectAttemptAction implements Action {
 export const RELEASE_PROJECT_SUCCESS = 'RELEASE_PROJECT_SUCCESS';
 export class ReleaseProjectSuccessAction implements Action {
     readonly type = RELEASE_PROJECT_SUCCESS;
-    constructor(public release: Partial<Project>, public projectId: string) {}
+    constructor(public release: Partial<Release>, public projectId: string) {}
 }
