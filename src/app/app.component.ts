@@ -17,6 +17,7 @@
 
 import { Component, OnInit, Renderer2, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { selectSelectedTheme } from 'ama-sdk';
@@ -33,9 +34,11 @@ export class AppComponent implements OnInit, OnDestroy {
     constructor(
         private store: Store<AmaState>,
         private renderer: Renderer2,
-        private pluginRoutesManager: PluginRoutesManagerService
+        private pluginRoutesManager: PluginRoutesManagerService,
+        private router: Router
     ) {
         this.pluginRoutesManager.patchRoutes();
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
     ngOnInit() {
