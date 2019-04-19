@@ -25,7 +25,7 @@ import {
     ReleaseProjectSuccessAction
 } from '../actions/projects';
 import { INITIAL_DASHBOARD_STATE, DashboardState } from '../state/dashboard.state';
-import { Project } from 'ama-sdk';
+import { Project, Release } from 'ama-sdk';
 import { mockProject } from '../effects/project.mock';
 
 describe('dashboardReducer', () => {
@@ -101,7 +101,7 @@ describe('dashboardReducer', () => {
 
     describe('RELEASE_PROJECT_SUCCESS', () => {
         const newRelease = { ...mockProject, name: 'new-name', description: 'new-description', version: '2' };
-        const action = new ReleaseProjectSuccessAction(<Partial<Project>>newRelease, mockProject.id);
+        const action = new ReleaseProjectSuccessAction(<Release>newRelease, mockProject.id);
 
         it('should update the version of the project', () => {
             const newState = dashboardReducer(initialState, action);

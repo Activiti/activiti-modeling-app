@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project, AmaApi, EntityDialogForm } from 'ama-sdk';
+import { Project, AmaApi, EntityDialogForm, Release } from 'ama-sdk';
 
 @Injectable()
 export class DashboardService {
@@ -43,7 +43,7 @@ export class DashboardService {
         return this.amaApi.Project.import(file);
     }
 
-    releaseProject(projectId: string): Observable<Partial<Project>> {
+    releaseProject(projectId: string): Observable<Release> {
         return this.amaApi.Project.release(projectId);
     }
 }
