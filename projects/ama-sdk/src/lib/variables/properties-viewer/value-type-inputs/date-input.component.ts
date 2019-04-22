@@ -17,16 +17,34 @@
 
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import moment from 'moment-es6';
-import { MatDatepickerInputEvent } from '@angular/material';
+import { MatDatepickerInputEvent, MAT_DATE_FORMATS, DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
+import { MomentDateAdapter } from '@alfresco/adf-core';
+import { FormControl } from '@angular/forms';
+
+export const MY_FORMATS = {
+    parse: {
+      dateInput: 'YYYY-MM-DD',
+    },
+    display: {
+      dateInput: 'YYYY-MM-DD',
+      monthYearLabel: 'YYYY-MM-DD',
+      dateA11yLabel: 'YYYY-MM-DD',
+      monthYearA11yLabel: 'YYYY-MM-DD',
+    },
+  };
 
 @Component({
     template: `
         <mat-form-field>
-            <input matInput [matDatepicker]="picker" [value]="pickerDate" (dateChange)="onChange($event)" data-automation-id="variable-value">
+            <input matInput [matDatepicker]="picker" [formControl]="pickerDate" (dateChange)="onChange($event)" data-automation-id="variable-value">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-    `
+    `,
+    providers: [
+        {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+        {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    ]
 })
 
 export class PropertiesViwerDateInputComponent {
@@ -34,10 +52,10 @@ export class PropertiesViwerDateInputComponent {
     @Output() change = new EventEmitter();
     @Input() value: string;
 
-    format = 'M/DD/YYYY';
+    format = 'YYYY-MM-DD';
 
     get pickerDate() {
-        return moment(this.value, this.format).toDate();
+        return new FormControl(this.value ? moment(this.value, this.format) : moment(new Date()));
     }
 
     onChange(event: MatDatepickerInputEvent<Date>) {
