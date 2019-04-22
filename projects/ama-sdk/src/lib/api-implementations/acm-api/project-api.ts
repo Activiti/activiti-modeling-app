@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { ProjectApi } from '../../api/project-api.interface';
 import { Observable } from 'rxjs';
-import { Project, PROJECT } from '../../api/types';
+import { Project, PROJECT, Release } from '../../api/types';
 import { map } from 'rxjs/operators';
 import { RequestApiHelper } from './request-api.helper';
 
@@ -108,7 +108,7 @@ export class ACMProjectApi implements ProjectApi {
         };
     }
 
-    public release(projectId: string): Observable<Project> {
+    public release(projectId: string): Observable<Release> {
         return this.requestApiHelper
         .post(`/v1/projects/${projectId}/releases`)
             .pipe(

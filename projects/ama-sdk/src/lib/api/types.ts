@@ -45,6 +45,16 @@ export interface Project {
     version: string;
 }
 
+export interface Release {
+    id: string;
+    name: string;
+    creationDate: Date;
+    createdBy: string;
+    lastModifiedDate: Date;
+    lastModifiedBy: string;
+    version: string;
+}
+
 export interface MinimalModelSummary {
     name: string;
     description?: string;

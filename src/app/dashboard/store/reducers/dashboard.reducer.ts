@@ -123,11 +123,12 @@ function uploadProject(state: DashboardState, action: UploadProjectSuccessAction
 
 function releaseProject(state: DashboardState, action: ReleaseProjectSuccessAction): DashboardState {
     const newState = Object.assign({}, state);
-    const project = action.project;
+    const release = action.release;
     newState.projects = {
         ...state.projects,
-        [project.id]: { ...newState.projects[project.id], ...project }
+        [action.projectId]: { ...newState.projects[action.projectId], version: release.version }
     };
+
     return newState;
 }
 
