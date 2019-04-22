@@ -3,6 +3,7 @@
         <div class="process-editor-modeling" [attr.data-automation-id]="'process-editor-modeling'">
             <ama-process-header
                 [process]="process$ | async"
+                [disableSave]="disableSave"
                 [breadcrumbs$]="breadcrumbs$"
                 [content]="content$ | async">
             </ama-process-header>
@@ -27,6 +28,15 @@
                             [vsTheme]="vsTheme$ | async"
                             [options]="{language: 'xml'}"
                             [content]="content$ | async">
+                        </amasdk-code-editor>
+                    </div>
+                </mat-tab>
+                <mat-tab label="{{ 'APP.PROCESS_EDITOR.TABS.EXTENSIONS_EDITOR' | translate }}">
+                    <div class="ama-process-code-editor" data-automation-id="extensions-tab">
+                        <amasdk-code-editor
+                            (changed)="onExtensionsChangeAttempt($event)"
+                            [vsTheme]="vsTheme$ | async"
+                            [content]="extensions$ | async">
                         </amasdk-code-editor>
                     </div>
                 </mat-tab>

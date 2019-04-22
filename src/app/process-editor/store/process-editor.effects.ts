@@ -53,7 +53,9 @@ import {
     DeleteProcessSuccessAction,
     CreateProcessSuccessAction,
     GetProcessesSuccessAction,
-    CREATE_PROCESS_SUCCESS
+    CREATE_PROCESS_SUCCESS,
+    UpdateProcessExtensionsAction,
+    UPDATE_PROCESS_EXTENSIONS
 } from './process-editor.actions';
 import {
     BaseEffects,
@@ -64,7 +66,8 @@ import {
     PROCESS, EntityDialogForm,
     UPDATE_SERVICE_PARAMETERS,
     ProcessModelerServiceToken,
-    ProcessModelerService
+    ProcessModelerService,
+    selectOpenedModel
 } from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { SetAppDirtyStateAction } from 'ama-sdk';
@@ -128,6 +131,20 @@ export class ProcessEditorEffects extends BaseEffects {
         map(action => action.processId),
         mergeMap(processId => this.deleteProcess(processId))
     );
+
+    @Effect()
+    updateProcessExtensionsEffect = this.actions$.pipe(
+        ofType<UpdateProcessExtensionsAction>(UPDATE_PROCESS_EXTENSIONS),
+        withLatestFrom(this.store.select(selectOpenedModel)),
+        mergeMap(([action, process]) => {
+            if (!action.payload.processId) {
+                return of(new UpdateProcessExtensionsAction({ ...action.payload, processId: process.id }));
+            } else {
+                return of();
+            }
+        })
+    );
+
 
     @Effect({ dispatch: false })
     deleteProcessSuccessEffect = this.actions$.pipe(

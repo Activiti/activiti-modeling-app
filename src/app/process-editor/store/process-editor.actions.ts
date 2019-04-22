@@ -16,11 +16,22 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Process, ProcessContent, UpdateServiceParametersAction } from 'ama-sdk';
+import { Process, ProcessContent, UpdateServiceParametersAction, ProcessExtensions } from 'ama-sdk';
 import { EntityDialogForm } from 'ama-sdk';
 import { UploadFileAttemptPayload } from 'ama-sdk';
 import { SelectedProcessElement } from './process-editor.state';
 import { Update } from '@ngrx/entity';
+
+export interface UpdateProcessExtensionsPayload {
+    extensions: ProcessExtensions;
+    processId?: string;
+}
+
+export const UPDATE_PROCESS_EXTENSIONS = '[Process] Update extensions';
+export class UpdateProcessExtensionsAction implements Action {
+    readonly type = UPDATE_PROCESS_EXTENSIONS;
+    constructor(public payload: UpdateProcessExtensionsPayload) {}
+}
 
 export const SHOW_PROCESSES = '[App Tree] Show Processes';
 export class ShowProcessesAction implements Action {

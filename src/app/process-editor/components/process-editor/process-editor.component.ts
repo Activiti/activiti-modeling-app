@@ -31,7 +31,11 @@ import {
     SetAppDirtyStateAction,
     ProcessModelerService,
     ProcessModelerServiceToken,
+    CodeValidatorService,
+    ProcessExtensions,
+    extensionsSchema
 } from 'ama-sdk';
+import { UpdateProcessExtensionsAction } from '../../store/process-editor.actions';
 
 @Component({
     templateUrl: './process-editor.component.html',
@@ -43,10 +47,13 @@ export class ProcessEditorComponent implements OnInit {
     content$: Observable<ProcessContent>;
     bpmnContent$: Observable<ProcessContent>;
     process$: Observable<Process>;
+    extensions$: Observable<string>;
     vsTheme$: Observable<string>;
+    disableSave: boolean;
 
     constructor(
         private store: Store<AmaState>,
+        private codeValidatorService: CodeValidatorService,
         @Inject(ProcessModelerServiceToken) private processModeler: ProcessModelerService
     ) {
         this.vsTheme$ = this.getVsTheme();
@@ -57,6 +64,10 @@ export class ProcessEditorComponent implements OnInit {
         this.process$ = this.store.select(selectSelectedProcess);
         this.content$ = this.store.select(selectSelectedProcessDiagram);
         this.bpmnContent$ = this.store.select(selectSelectedProcessDiagram);
+        this.extensions$ = this.process$.pipe(
+            filter(process => !!process && !!process.extensions),
+            map(process => JSON.stringify(process.extensions, undefined, 4).trim())
+        );
 
         this.breadcrumbs$ = combineLatest(
             of({ url: '/home', name: 'Dashboard' }),
@@ -79,5 +90,15 @@ export class ProcessEditorComponent implements OnInit {
         this.processModeler.loadXml(processContent)
             .pipe(take(1))
             .subscribe(() => this.store.dispatch(new SetAppDirtyStateAction(true)));
+    }
+
+    onExtensionsChangeAttempt(extensionsString: string): void {
+        const validation = this.codeValidatorService.validateJson<ProcessExtensions>(extensionsString, extensionsSchema);
+
+        this.disableSave = !validation.valid;
+
+        if (validation.valid) {
+            this.store.dispatch(new UpdateProcessExtensionsAction({ extensions: JSON.parse(extensionsString) }));
+        }
     }
 }
