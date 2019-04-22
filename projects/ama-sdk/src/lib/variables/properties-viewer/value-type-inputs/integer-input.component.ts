@@ -30,7 +30,8 @@ export class PropertiesViwerIntegerInputComponent {
     @Input() value: string;
 
     onChange() {
-        this.change.emit(parseInt(this.value, 10));
+        const value = parseInt(this.value, 10);
+        this.change.emit(isNaN(value) ? null : value);
     }
 
 }
