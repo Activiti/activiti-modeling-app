@@ -112,7 +112,7 @@ export class PropertiesViwerComponent implements OnInit, OnDestroy {
         }
     }
 
-    editRow(element, index) {
+    editRow(element, index: number) {
         this.showForm = true;
         this.name = element.name;
         this.selectedType = element.type;
@@ -120,6 +120,11 @@ export class PropertiesViwerComponent implements OnInit, OnDestroy {
         this.value = element.value;
         this.position = index;
         this.id = element.id;
+    }
+
+    onTypeChange() {
+        this.value = null;
+        this.saveChanges();
     }
 
     saveChanges() {

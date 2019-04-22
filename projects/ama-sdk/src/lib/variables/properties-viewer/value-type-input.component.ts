@@ -62,7 +62,11 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
         this.change.emit(this.value);
     }
 
-    ngOnChanges() {
+    ngOnChanges(changes) {
+        if (changes.type && changes.type.previousValue !== changes.type.currentValue) {
+            this.value = null;
+        }
+
         this.valueTypeInput.clear();
         const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(valueTypeInputsMapping[this.type]);
 
