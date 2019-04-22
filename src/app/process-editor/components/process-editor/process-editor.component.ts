@@ -92,13 +92,14 @@ export class ProcessEditorComponent implements OnInit {
             .subscribe(() => this.store.dispatch(new SetAppDirtyStateAction(true)));
     }
 
-    onExtensionsChangeAttempt(extensionsString: string): void {
+    onExtensionsChangeAttempt(extensionsString: string, processId: string): void {
         const validation = this.codeValidatorService.validateJson<ProcessExtensions>(extensionsString, extensionsSchema);
 
         this.disableSave = !validation.valid;
 
         if (validation.valid) {
-            this.store.dispatch(new UpdateProcessExtensionsAction({ extensions: JSON.parse(extensionsString) }));
+            this.store.dispatch(new UpdateProcessExtensionsAction({ extensions: JSON.parse(extensionsString), processId }));
+            this.store.dispatch(new SetAppDirtyStateAction(true));
         }
     }
 }

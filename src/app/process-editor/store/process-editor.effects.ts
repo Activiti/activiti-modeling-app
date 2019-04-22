@@ -132,20 +132,6 @@ export class ProcessEditorEffects extends BaseEffects {
         mergeMap(processId => this.deleteProcess(processId))
     );
 
-    @Effect()
-    updateProcessExtensionsEffect = this.actions$.pipe(
-        ofType<UpdateProcessExtensionsAction>(UPDATE_PROCESS_EXTENSIONS),
-        withLatestFrom(this.store.select(selectOpenedModel)),
-        mergeMap(([action, process]) => {
-            if (!action.payload.processId) {
-                return of(new UpdateProcessExtensionsAction({ ...action.payload, processId: process.id }));
-            } else {
-                return of();
-            }
-        })
-    );
-
-
     @Effect({ dispatch: false })
     deleteProcessSuccessEffect = this.actions$.pipe(
         ofType<DeleteProcessSuccessAction>(DELETE_PROCESS_SUCCESS),

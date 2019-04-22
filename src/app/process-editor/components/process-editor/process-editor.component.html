@@ -7,7 +7,7 @@
                 [breadcrumbs$]="breadcrumbs$"
                 [content]="content$ | async">
             </ama-process-header>
-            <mat-tab-group [@.disabled]="true" class="ama-process-tab-group">
+            <mat-tab-group [@.disabled]="true" class="ama-process-tab-group" *ngIf="process$ | async as process;">
                 <mat-tab label="{{ 'APP.PROCESS_EDITOR.TABS.PROCESS_EDITOR' | translate }}">
                     <div class="process-editor-modeling-area" cdkDropList>
                         <ama-process-modeler
@@ -34,7 +34,7 @@
                 <mat-tab label="{{ 'APP.PROCESS_EDITOR.TABS.EXTENSIONS_EDITOR' | translate }}">
                     <div class="ama-process-code-editor" data-automation-id="extensions-tab">
                         <amasdk-code-editor
-                            (changed)="onExtensionsChangeAttempt($event)"
+                            (changed)="onExtensionsChangeAttempt($event, process.id)"
                             [vsTheme]="vsTheme$ | async"
                             [content]="extensions$ | async">
                         </amasdk-code-editor>

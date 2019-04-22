@@ -81,16 +81,10 @@ export function processEntitiesReducer(
 }
 
 function updateExtensions(state: ProcessEntitiesState, action: UpdateProcessExtensionsAction): ProcessEntitiesState {
-    const processId = action.payload.processId;
-
-    if (!processId) {
-        return state;
-    }
-
     return {
         ...state,
-        entities: { ...state.entities, [processId]: {
-            ...state.entities[processId],
+        entities: { ...state.entities, [action.payload.processId]: {
+            ...state.entities[action.payload.processId],
             extensions: action.payload.extensions
         }}
     };

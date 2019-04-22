@@ -24,7 +24,7 @@ import { Update } from '@ngrx/entity';
 
 export interface UpdateProcessExtensionsPayload {
     extensions: ProcessExtensions;
-    processId?: string;
+    processId: string;
 }
 
 export const UPDATE_PROCESS_EXTENSIONS = '[Process] Update extensions';
