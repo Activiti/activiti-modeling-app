@@ -25,7 +25,7 @@
     "pack:sdk": "cd dist/ama-sdk && npm pack",
     "package:sdk": "npm run build:sdk && npm run pack:sdk",
     "06": "echo ------------------------------------------- E2E tests ----------------------------------------------",
-    "pree2e": "npm run compile-less",
+    "pree2e": "npm run compile-less && webdriver-manager update --gecko=false",
     "e2e": "ng e2e",
     "07": "echo ------------------------------------------- Unit tests ---------------------------------------------",
     "pretest": "rimraf dist",
