@@ -126,8 +126,13 @@ export class PropertiesViwerComponent implements OnInit, OnDestroy {
         this.form.name = this.name;
         this.form.type = this.selectedType;
         this.form.required = this.required;
-        this.form.value = this.value;
         this.form.id = this.id;
+
+        if (this.value === null) {
+            delete this.form.value;
+        } else {
+            this.form.value = this.value;
+        }
 
         this.data[this.id] = this.form;
 
