@@ -81,7 +81,7 @@ describe('Create process variable', async () => {
         };
         await processVariablesDialog.goTocodeEditor();
 
-        expect(JSON.parse(await codeEditorWidget.getCodeEditorValue(1))).toEqual(expectedVariable, `Variables objects are not equal`);
+        expect(JSON.parse(await codeEditorWidget.getCodeEditorValue(2))).toEqual(expectedVariable, `Variables objects are not equal`);
 
         await processVariablesDialog.update();
         await processVariablesDialog.close();
