@@ -34,6 +34,7 @@ export class ProcessPropertiesCard extends GenericPage {
     readonly connectorActionSelector = element(by.css(`[data-automation-id="connector-action-selector"]`));
     readonly formSelector = element(by.css(`[data-automation-id="form-selector"]`));
     readonly activitySelector = element(by.css(`.mat-select`));
+    readonly decisionTableSelector = element(by.css(`[data-automation-id="decision-table-selector"]`));
     readonly inputMappingHeader = element(by.cssContainingText(`[data-automation-id="input-mapping-header"]`, `Input mapping:`));
     readonly outputMappingHeader = element(by.cssContainingText(`[data-automation-id="output-mapping-header"]`, `Output mapping:`));
     readonly mappingHeaderCellName = element(by.css(`[data-automation-id="table-header-cell-name"]`));
@@ -77,6 +78,12 @@ export class ProcessPropertiesCard extends GenericPage {
         await super.click(this.connectorActionSelector);
         const connectorActionOption = element(by.cssContainingText('.mat-option-text', actionName));
         await super.click(connectorActionOption);
+    }
+
+    async setDecisionTable(dtName: string) {
+        await super.click(this.decisionTableSelector);
+        const dtOption = element(by.cssContainingText('.mat-option-text', dtName));
+        await super.click(dtOption);
     }
 
     async setForm(formName: string) {

@@ -25,7 +25,7 @@ export class ProcessModelerComponent extends GenericPage {
     readonly userTask = element(by.css(`[data-automation-id="element::bpmn:UserTask"]`));
     readonly serviceTask = element(by.css(`[data-automation-id="element::bpmn:ServiceTask"]`));
     readonly callActivity = element(by.css(`[data-automation-id="element::bpmn:CallActivity"]`));
-
+    readonly decisionTask = element(by.css(`[data-automation-id="decision-task::decision-task"]`));
     readonly processStep = element(by.css(`[data-element-id*="ServiceTask"]`));
 
     async isLoaded() {
@@ -48,6 +48,10 @@ export class ProcessModelerComponent extends GenericPage {
 
     async addCallActivity() {
         await super.dragAndDrop(this.callActivity, this.canvas);
+    }
+
+    async addDecisionTask() {
+        await super.dragAndDrop(this.decisionTask, this.canvas);
     }
 
     async selectServiceTask() {
