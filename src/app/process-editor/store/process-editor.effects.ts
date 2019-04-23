@@ -53,9 +53,7 @@ import {
     DeleteProcessSuccessAction,
     CreateProcessSuccessAction,
     GetProcessesSuccessAction,
-    CREATE_PROCESS_SUCCESS,
-    UpdateProcessExtensionsAction,
-    UPDATE_PROCESS_EXTENSIONS
+    CREATE_PROCESS_SUCCESS
 } from './process-editor.actions';
 import {
     BaseEffects,
@@ -66,8 +64,7 @@ import {
     PROCESS, EntityDialogForm,
     UPDATE_SERVICE_PARAMETERS,
     ProcessModelerServiceToken,
-    ProcessModelerService,
-    selectOpenedModel
+    ProcessModelerService
 } from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { SetAppDirtyStateAction } from 'ama-sdk';
