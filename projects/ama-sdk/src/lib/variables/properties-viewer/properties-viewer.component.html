@@ -50,7 +50,7 @@
             <p class="mat-error" *ngIf="!name.length">{{ 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME' | translate }}</p>
         </mat-form-field>
         <mat-form-field floatLabel="never">
-            <mat-select placeholder="Type" [(ngModel)]="selectedType" (selectionChange)="saveChanges()" data-automation-id="variable-type">
+            <mat-select placeholder="Type" [(ngModel)]="selectedType" (selectionChange)="onTypeChange()" data-automation-id="variable-type">
                 <mat-option *ngFor="let type of types" [value]="type">
                     {{type}}
                   </mat-option>
@@ -59,7 +59,7 @@
 
         <amasdk-value-type-input [(ngModel)]="value" [index]="position" [type]="selectedType" (change)="saveChanges()"></amasdk-value-type-input>
 
-        <mat-checkbox  *ngIf="requiredCheckbox" [(ngModel)]= "required" (change)="saveChanges()" color="primary" data-automation-id="variable-required">
+        <mat-checkbox  *ngIf="requiredCheckbox" [(ngModel)]="required" (change)="saveChanges()" color="primary" data-automation-id="variable-required">
             {{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_REQUIRED' | translate }}
         </mat-checkbox>
     </div>
