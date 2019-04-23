@@ -1,27 +1,26 @@
 ## Running e2e tests
-End-to-end tests are implemented using **Protractor** and **Jasmine** frameworks. Tests execution is performed using a shell script.
+End-to-end tests are implemented using **Protractor** and **Jasmine** frameworks.
+Tests execution is performed using Angular CLI.
 
 ```
 $ cd <ama-repo-root>
 
 # run all tests:
-$ ./scripts/test-e2e-ama.sh \
--host <host | e.g.: localhost> \
--port <port | e.g.: 4300> \
--u <username | e.g.: admin> \
--p <password | e.g.: admin> \
---proxy <proxy | e.g.: localhost:8080> \
--b # For running it in chrome instead of headless browser \
--dev # For starting the dev server also (otherwise the server needs to be running)
+npm run e2e
 
-# run single test:
-./scripts/test-e2e-ama.sh -host <hostname> -port <port> -u <username> -p <password> -b -s <path-to-test-file>
+# run single spec file:
+npm run e2e -- --specs="./tests/project/delete-project.e2e.ts"
 
+# run suite of specs:
+npm run e2e -- --suite=“test”
 
-To run the tests after a fresh npm install, execute next command:
-`./node_modules/protractor/bin/webdriver-manager update --gecko=false`
+Note: The suite content (e.g.: test) is defined in protractor.conf.js file.
 
-Note:  **path-to-test-file** is the test file relative path to the current execution directory and it includes the test name (e.g.: ./e2e/tests/process/create-process.e2e.ts) 
+# End-to-end tests execution in Travis is performed using Environment Variables: **$E2E_SPECS**, respectively **$E2E_SUITE**.
+# Variables should be set prior to build execution.
+npm run e2e -- --specs="$E2E_SPECS"
+npm run e2e -- --suite="$E2E_SUITE"
+
 
 ```
 
