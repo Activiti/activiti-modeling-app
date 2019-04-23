@@ -280,7 +280,8 @@
         "PROCESS_EDITOR": {
             "TABS": {
                 "PROCESS_EDITOR": "Process editor",
-                "JSON_EDITOR": "XML editor"
+                "JSON_EDITOR": "XML editor",
+                "EXTENSIONS_EDITOR": "Extensions editor"
             },
             "PRIORITIES": {
                 "LOW": "Low",

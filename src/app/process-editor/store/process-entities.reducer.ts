@@ -27,7 +27,9 @@ import {
     UPDATE_PROCESS_SUCCESS,
     GET_PROCESS_SUCCESS,
     GetProcessSuccessAction,
-    UpdateProcessSuccessAction
+    UpdateProcessSuccessAction,
+    UPDATE_PROCESS_EXTENSIONS,
+    UpdateProcessExtensionsAction
 } from './process-editor.actions';
 import { UPDATE_PROCESS_VARIABLES, UpdateProcessVariablesAction } from './process-variables.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState, processAdapter } from './process-entities.state';
@@ -64,6 +66,9 @@ export function processEntitiesReducer(
         case UPDATE_SERVICE_PARAMETERS:
             return updateProcessVariablesMapping(state, <UpdateServiceParametersAction> action);
 
+        case UPDATE_PROCESS_EXTENSIONS:
+            return updateExtensions(state, <UpdateProcessExtensionsAction> action);
+
         case LEAVE_PROJECT:
             return {
                 ...state,
@@ -73,6 +78,16 @@ export function processEntitiesReducer(
         default:
             return { ...state };
     }
+}
+
+function updateExtensions(state: ProcessEntitiesState, action: UpdateProcessExtensionsAction): ProcessEntitiesState {
+    return {
+        ...state,
+        entities: { ...state.entities, [action.payload.processId]: {
+            ...state.entities[action.payload.processId],
+            extensions: action.payload.extensions
+        }}
+    };
 }
 
 function updateProcessVariables(state: ProcessEntitiesState, action: UpdateProcessVariablesAction): ProcessEntitiesState {

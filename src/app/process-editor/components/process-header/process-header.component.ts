@@ -40,6 +40,7 @@ export class ProcessHeaderComponent {
     @Input() process: Process;
     @Input() content: ProcessContent;
     @Input() breadcrumbs$: Observable<BreadcrumbItem[]>;
+    @Input() disableSave = false;
 
     constructor(
         private store: Store<AmaState>,

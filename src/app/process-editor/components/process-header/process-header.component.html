@@ -13,6 +13,7 @@
 
     <button mat-icon-button
         data-automation-id="process-editor-save-button"
+        [disabled]="disableSave"
         (click)="onSaveClick()">
         <mat-icon>save</mat-icon>
     </button>

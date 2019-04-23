@@ -21,6 +21,7 @@ import { decisionTableSchema } from './decision-table.schema';
 import { uiSchema } from './ui.schema';
 import { propertiesSchema } from './properties.schema';
 import { formSchema } from './form.schema';
+import { extensionsSchema } from './extensions.schema';
 
 export {
     connectorSchema,
@@ -28,5 +29,6 @@ export {
     decisionTableSchema,
     uiSchema,
     propertiesSchema,
-    formSchema
+    formSchema,
+    extensionsSchema
 };
