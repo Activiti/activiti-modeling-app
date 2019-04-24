@@ -19,6 +19,11 @@ import { AllowedCharactersDirective } from './allowed-characters.directive';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { TestBed, async, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { AmaState } from '../../store/app.state';
+import { TranslateService } from '@ngx-translate/core';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 
 @Component({
     template: `<input #input type="text" [amasdk-allowed-characters] />`
@@ -33,7 +38,8 @@ class TestComponent {
 
 describe('AllowedCharactersDirective', () => {
     let component: TestComponent,
-        fixture: ComponentFixture<TestComponent>;
+        fixture: ComponentFixture<TestComponent>,
+        store: Store<AmaState>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -41,6 +47,11 @@ describe('AllowedCharactersDirective', () => {
             declarations: [
                 AllowedCharactersDirective,
                 TestComponent
+            ],
+            providers: [
+                { provide: Store, useValue: { dispatch: jest.fn() } },
+                { provide: TranslateService, useValue: { instant: jest.fn() } },
+                { provide: TranslationService, useClass: TranslationMock }
             ]
         }).compileComponents();
     }));
@@ -49,6 +60,7 @@ describe('AllowedCharactersDirective', () => {
         fixture = TestBed.createComponent(TestComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
+        store = TestBed.get(Store);
     });
 
     afterEach(() => {
@@ -56,21 +68,17 @@ describe('AllowedCharactersDirective', () => {
     });
 
     it('should filter every not allowed letter by default value on key press', () => {
-        const text = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'.split('');
-        const notAllowedText = '`=+-$%^&*@'.split('');
+        const text = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        const notAllowedText = '`A_=+-$%^&*@';
 
-        for (const char of text) {
-            expect(component.directive.onKeyPress({ key: char })).toBe(true);
-        }
-
-        for (const char of notAllowedText) {
-            expect(component.directive.onKeyPress({ key: char })).toBe(false);
-        }
+        expect(component.directive.onKeyPress({ key: text[0], target: { value: text } })).toBe(true);
+        expect(component.directive.onKeyPress({ key: notAllowedText[0], target: { value: notAllowedText } })).toBe(false);
     });
 
     it('should filter every not allowed letter by default value on paste', fakeAsync(() => {
+        spyOn(store, 'dispatch');
         const text = 'T=h+e-_m$%ea^&ni*@ng{_}o/f:_.L;=+I[]F~E*_+i=s£@_4$&2^',
-            expectedText = 'The_meaning_of_LIFE_is_42';
+            expectedText = '';
 
         component.input.nativeElement.value = text;
         component.directive.onPaste(<ClipboardEvent>{ preventDefault: () => {} });
@@ -78,5 +86,6 @@ describe('AllowedCharactersDirective', () => {
         tick(1);
 
         expect(component.input.nativeElement.value).toBe(expectedText);
+        expect(store.dispatch).toHaveBeenCalled();
     }));
 });
