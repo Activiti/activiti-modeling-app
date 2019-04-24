@@ -38,6 +38,7 @@ export interface EntityDialogPayload {
     nameField: string;
     descriptionField: string;
     values?: EntityDialogForm;
+    allowedCharacters?: string;
     action: any;
 }
 

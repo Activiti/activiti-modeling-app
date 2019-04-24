@@ -19,7 +19,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 @Component({
     template: `
         <mat-form-field floatLabel="never">
-            <input matInput (keyup)="onChange()" [(ngModel)]="value" placeholder="Value" [amasdk-allowed-characters]="'0-9'" data-automation-id="variable-value">
+            <input matInput (keyup)="onChange()" [(ngModel)]="value" placeholder="Value" [amasdk-allowed-characters]="'^[0-9]*$'" data-automation-id="variable-value">
         </mat-form-field>
     `
 })

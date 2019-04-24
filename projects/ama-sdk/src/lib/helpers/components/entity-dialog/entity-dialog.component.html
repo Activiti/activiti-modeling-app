@@ -9,7 +9,7 @@
             placeholder="{{ data.nameField | translate }}"
             data-automation-id="name-field"
             [(ngModel)]="form.name"
-            [amasdk-allowed-characters]/>
+            [amasdk-allowed-characters]="data.allowedCharacters"/>
     </mat-form-field>
     <br />
     <mat-form-field class="adf-full-width">

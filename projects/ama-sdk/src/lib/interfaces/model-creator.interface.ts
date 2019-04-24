@@ -25,6 +25,7 @@ export interface ModelCreatorDialogParams {
     title: string;
     nameField: string;
     descriptionField: string;
+    allowedCharacters?: string;
     action: ActionConstructor;
 }
 
