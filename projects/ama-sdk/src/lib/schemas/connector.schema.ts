@@ -61,7 +61,7 @@ export const connectorSchema = {
         "name": {
             "description": "The connector's name",
             "type": "string",
-            "pattern": "^[a-z0-9]{0,63}$"
+            "pattern": "^[a-z0-9]{0,26}$"
         },
         "description": {
             "description": "The connector's description",
