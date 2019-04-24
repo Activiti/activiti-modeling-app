@@ -74,7 +74,7 @@ export class CardViewDecisionTaskItemComponent implements OnInit, OnDestroy {
                 .pipe(takeUntil(this.onDestroy$))
                 .subscribe(openedModel => {
                     this.store.dispatch(
-                        new UpdateServiceParametersAction(openedModel.id, this.elementId, { inputs, outputs: null })
+                        new UpdateServiceParametersAction(openedModel.id, this.elementId, { inputs })
                     );
                 });
         } catch (error) {
