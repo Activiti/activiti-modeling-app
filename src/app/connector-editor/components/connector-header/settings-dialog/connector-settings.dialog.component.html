@@ -1,8 +1,8 @@
 <h2 mat-dialog-title>{{ 'CONNECTOR_EDITOR.DIALOG.TITLE' | translate}}
 </h2>
 <mat-dialog-content>
-    <mat-slide-toggle [checked]="isChecked$ | async" (change)="onChange($event)">
-        {{ (checked? 'CONNECTOR_EDITOR.DIALOG.HIDE' : 'CONNECTOR_EDITOR.DIALOG.SHOW') | translate }}
+    <mat-slide-toggle [checked]="isChecked$ | async" (change)="onChange($event)" class="connector-switch">
+        {{ 'CONNECTOR_EDITOR.DIALOG.SHOW' | translate }}
     </mat-slide-toggle>
 </mat-dialog-content>
 

@@ -1,5 +1,7 @@
 @import "./components/connector-editor/connector-editor.component";
+@import "./components/connector-header/settings-dialog/connector-settings.dialog.component.scss";
 
 @mixin ama-connector-editor-module($theme) {
     @include ama-connector-editor($theme);
+    @include ama-connector-settings-dialog($theme);
 }

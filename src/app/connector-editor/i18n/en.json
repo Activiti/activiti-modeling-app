@@ -9,9 +9,8 @@
             "GET_CONNECTOR": "Unknown error happened during loading of the connector, please try again."
         },
         "DIALOG": {
-            "TITLE": "Show connectors with parent template on the left sidebar",
-            "SHOW": "Show connectors",
-            "HIDE": "Hide connectors",
+            "TITLE": "Connector editor's settings",
+            "SHOW": "Show connectors with parent template on the left sidebar",
             "CANCEL": "Cancel",
             "APPLY": "Apply"
         }
