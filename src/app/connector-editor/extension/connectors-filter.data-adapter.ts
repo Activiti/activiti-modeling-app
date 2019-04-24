@@ -16,14 +16,18 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, zip, of } from 'rxjs';
 import { Connector, CONNECTOR, FilterDataAdaper, AmaState, selectProjectConnectorsArray } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { selectConnectorsLoading } from '../store/connector-editor.selectors';
 import { ShowConnectorsAction } from '../store/connector-editor.actions';
+import { selectConnectorsSettings } from './../../store/selectors/settings.selectors';
+import { map, mergeMap } from 'rxjs/operators';
 
 @Injectable()
 export class ConnectorsFilterDataAdapter implements FilterDataAdaper {
+    connectorSettings$: Observable<boolean>;
+
     constructor(private store: Store<AmaState>) {}
 
     get expandedPredicate() {
@@ -31,10 +35,16 @@ export class ConnectorsFilterDataAdapter implements FilterDataAdaper {
     }
 
     get contents(): Observable<Connector[]> {
-        return this.store.select(selectProjectConnectorsArray);
-        // return this.store.select(selectProjectConnectorsArray).pipe(
-        //     map<Connector[], Connector[]>(connectors => connectors.filter(connector => !connector.template))
-        // );
+        return this.store.select(selectProjectConnectorsArray).pipe(
+            mergeMap((connectors) => zip(of(connectors), this.store.select(selectConnectorsSettings))),
+            map(([connectors, showWithTemplate]) => {
+                if (!showWithTemplate) {
+                    return  connectors.filter(connector => !connector.template);
+                } else {
+                    return connectors;
+                }
+            }
+        ));
     }
 
     get loading(): Observable<boolean> {

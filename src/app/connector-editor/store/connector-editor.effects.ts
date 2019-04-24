@@ -40,7 +40,11 @@ import {
     DOWNLOAD_CONNECTOR,
     ValidateConnectorAttemptAction,
     VALIDATE_CONNECTOR_ATTEMPT,
-    ValidateConnectorPayload
+    ValidateConnectorPayload,
+    OpenConnectorSettingsDialog,
+    OPEN_SETTINGS_DIALOG,
+    ChangedConnectorSettingsAction,
+    CHANGE_CONNECTOR_SETTINGS
 } from './connector-editor.actions';
 import { map, switchMap, catchError, mergeMap, take, withLatestFrom, tap } from 'rxjs/operators';
 import {
@@ -55,17 +59,19 @@ import {
     LoadConnectorAttemptAction,
     SetAppDirtyStateAction,
     CreateConnectorSuccessAction,
-    CREATE_CONNECTOR_SUCCESS
+    CREATE_CONNECTOR_SUCCESS,
+    DialogService
 } from 'ama-sdk';
 import { ConnectorEditorService } from '../services/connector-editor.service';
 import { of, zip, forkJoin, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { LogService } from '@alfresco/adf-core';
+import { LogService, StorageService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { AmaState, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
 import { CHANGE_CONNECTOR_CONTENT, ChangeConnectorContent } from './connector-editor.actions';
 import { selectConnectorsLoaded, selectSelectedConnectorContent, selectSelectedConnector } from './connector-editor.selectors';
 import { UploadFileAttemptPayload, changeFileName, ConnectorContent, Connector, selectSelectedProjectId, BaseEffects } from 'ama-sdk';
+import { ConnectorSettingsDialogComponent } from '../components/connector-header/settings-dialog/connector-settings.dialog.component';
 
 @Injectable()
 export class ConnectorEditorEffects extends BaseEffects {
@@ -73,6 +79,8 @@ export class ConnectorEditorEffects extends BaseEffects {
         private store: Store<AmaState>,
         private actions$: Actions,
         private connectorEditorService: ConnectorEditorService,
+        private dialogService: DialogService,
+        private storageService: StorageService,
         logService: LogService,
         router: Router
     ) {
@@ -186,6 +194,18 @@ export class ConnectorEditorEffects extends BaseEffects {
         ofType<DownloadConnectorAction>(DOWNLOAD_CONNECTOR),
         switchMap(() => this.downloadConnector())
     );
+
+    @Effect({ dispatch: false })
+    openConnectorSettingsDialogEffect = this.actions$.pipe(
+        ofType<OpenConnectorSettingsDialog>(OPEN_SETTINGS_DIALOG),
+        tap(() => this.openSettingsDialog()
+    ));
+
+    @Effect({ dispatch: false })
+    changedConnectorSettingsEffect = this.actions$.pipe(
+        ofType<ChangedConnectorSettingsAction>(CHANGE_CONNECTOR_SETTINGS),
+        tap(action => this.storageService.setItem('showConnectorsWithTemplate', action.isChecked.toString())
+    ));
 
     private validateConnector({ connectorId, connectorContent, action, title }: ValidateConnectorPayload) {
         return this.connectorEditorService.validate(connectorId, connectorContent).pipe(
@@ -303,5 +323,13 @@ export class ConnectorEditorEffects extends BaseEffects {
            map(content => this.connectorEditorService.download(content.name, JSON.stringify(content))),
            take(1)
        );
+    }
+
+    private openSettingsDialog() {
+        this.dialogService.openDialog(ConnectorSettingsDialogComponent, {
+            disableClose: true,
+            height: '200px',
+            width: '500px'
+        });
     }
 }

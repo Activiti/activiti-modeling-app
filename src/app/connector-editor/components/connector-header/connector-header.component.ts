@@ -25,7 +25,13 @@ import { of } from 'rxjs';
 import { selectProjectCrumb } from 'ama-sdk';
 import { filter } from 'rxjs/operators';
 import { selectConnectorCrumb } from '../../store/connector-editor.selectors';
-import { DeleteConnectorAttemptAction, ValidateConnectorAttemptAction, DownloadConnectorAction, UpdateConnectorContentAttemptAction } from '../../store/connector-editor.actions';
+import {
+    DeleteConnectorAttemptAction,
+    ValidateConnectorAttemptAction,
+    DownloadConnectorAction,
+    UpdateConnectorContentAttemptAction,
+    OpenConnectorSettingsDialog
+} from '../../store/connector-editor.actions';
 
 @Component({
     selector: 'ama-connector-header',
@@ -79,5 +85,9 @@ export class ConnectorHeaderComponent {
             connectorContent: JSON.parse(this.content),
             action: new DownloadConnectorAction()
         }));
+    }
+
+    openSettingsDialog() {
+        this.store.dispatch(new OpenConnectorSettingsDialog());
     }
 }

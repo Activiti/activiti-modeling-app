@@ -121,6 +121,18 @@ export class DownloadConnectorAction implements Action {
     constructor() {}
 }
 
+export const OPEN_SETTINGS_DIALOG = '[Connector] Open settings dialog';
+export class OpenConnectorSettingsDialog implements Action {
+    readonly type = OPEN_SETTINGS_DIALOG;
+    constructor() {}
+}
+
+export const CHANGE_CONNECTOR_SETTINGS = '[Connector] Changed connector settings';
+export class ChangedConnectorSettingsAction implements Action {
+    readonly type = CHANGE_CONNECTOR_SETTINGS;
+    constructor(public isChecked: boolean) {}
+}
+
 export type ConnectorActions =
     | ShowConnectorsAction
     | UploadConnectorAttemptAction
@@ -132,4 +144,5 @@ export type ConnectorActions =
     | UpdateConnectorContentAttemptAction
     | UpdateConnectorSuccessAction
     | DeleteConnectorAttemptAction
-    | DeleteConnectorSuccessAction;
+    | DeleteConnectorSuccessAction
+    | OpenConnectorSettingsDialog;

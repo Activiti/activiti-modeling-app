@@ -62,7 +62,8 @@
         "MENU": {
             "EDIT": "Edit",
             "DELETE": "Delete",
-            "RELEASE": "Release"
+            "RELEASE": "Release",
+            "SETTINGS": "Settings"
         },
         "SETTINGS": {
             "HEADER": "App settings"
