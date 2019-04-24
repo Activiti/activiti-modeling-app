@@ -22,7 +22,6 @@ import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { AmaState } from '../../store/app.state';
 import { TranslateService } from '@ngx-translate/core';
-import { HttpClient, HttpHandler } from '@angular/common/http';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 
 @Component({
