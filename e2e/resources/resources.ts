@@ -27,8 +27,8 @@ export const Resources = {
     },
 
     COMPLEX_CONNECTOR: {
-        file_location: `/resources/connector/AMA_QA_UPLOADED_CONNECTOR.json`,
-        connector_name: `AMA_QA_UPLOADED_CONNECTOR`,
+        file_location: `/resources/connector/amauploadedconnector.json`,
+        connector_name: `amauploadedconnector`,
         action_id: `e4751f94-3595-4666-bee7-0f157a19cf89`,
         inputParam_id: `68b2787e-76da-4a29-ba16-f1894a5a83e7`,
         outputParam_id: `84deeffa-82da-46fa-871c-d5b48ec7a60f`

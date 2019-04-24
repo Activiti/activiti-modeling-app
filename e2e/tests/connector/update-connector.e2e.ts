@@ -58,7 +58,7 @@ describe('Update connector', async () => {
     });
 
     beforeEach(async () => {
-        connector = await backend.connector.createAndWaitUntilAvailable(project.entry.id);
+        connector = await backend.connector.createAndWaitUntilAvailable(project.entry.id, 'qaconnector');
     });
 
     beforeEach(async () => {
@@ -69,7 +69,7 @@ describe('Update connector', async () => {
 
     it('1. [C289327] Update connector in JSON editor', async () => {
         const newModel = {
-            name: 'Modifiedname',
+            name: 'modifiedname',
             description: 'new description'
         };
 

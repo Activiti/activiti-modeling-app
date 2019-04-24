@@ -55,7 +55,7 @@ describe('Export connector', () => {
     });
 
     beforeEach( async() => {
-        connector = await backend.connector.create(project.entry.id);
+        connector = await backend.connector.create(project.entry.id, 'qaconnector');
     });
 
     it('1. [C286439] Export connector', async () => {
