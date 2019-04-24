@@ -62,7 +62,8 @@
         "MENU": {
             "EDIT": "Edit",
             "DELETE": "Delete",
-            "RELEASE": "Release"
+            "RELEASE": "Release",
+            "SETTINGS": "Settings"
         },
         "SETTINGS": {
             "HEADER": "App settings"
@@ -373,6 +374,13 @@
             "TABS": {
                 "CONNECTOR_EDITOR": "Connector editor",
                 "JSON_EDITOR": "JSON editor"
+            },
+            "DIALOG": {
+                "TITLE": "Show connectors with parent template on the left sidebar",
+                "SHOW": "Show connectors",
+                "HIDE": "Hide connectors",
+                "CANCEL": "Cancel",
+                "APPLY": "Apply"
             },
             "EDITOR": {
                 "CONNECTOR_DETAILS": "Connector details",

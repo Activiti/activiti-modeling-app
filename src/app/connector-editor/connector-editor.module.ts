@@ -40,6 +40,7 @@ import { connectorEntitiesReducer } from './store/connector-entities.reducer';
 import { getConnectorsFilterProvider } from './extension/connectors-filter.extension';
 import { getConnectorCreatorProvider } from './extension/connector-creator.extension';
 import { getConnectorUploaderProvider } from './extension/connector-uploader.extension';
+import { ConnectorSettingsDialogComponent } from './components/connector-header/settings-dialog/connector-settings.dialog.component';
 
 @NgModule({
     imports: [
@@ -58,8 +59,10 @@ import { getConnectorUploaderProvider } from './extension/connector-uploader.ext
     ],
     declarations: [
         ConnectorEditorComponent,
-        ConnectorHeaderComponent
+        ConnectorHeaderComponent,
+        ConnectorSettingsDialogComponent
     ],
+    entryComponents: [ConnectorSettingsDialogComponent],
     exports: [ ConnectorEditorRoutingModule ],
     providers: [
         ConnectorEditorService,

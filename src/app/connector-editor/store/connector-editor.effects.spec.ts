@@ -58,12 +58,14 @@ import {
     ModelClosedAction,
     OpenConfirmDialogAction,
     GetConnectorAttemptAction,
-    CreateConnectorSuccessAction
+    CreateConnectorSuccessAction,
+    DialogService
 } from 'ama-sdk';
 import { of } from 'rxjs';
 import { throwError } from 'rxjs';
 import { Update } from '@ngrx/entity';
 import { selectConnectorsLoaded, selectSelectedConnector } from './connector-editor.selectors';
+import { MatDialogRef, MatDialogModule } from '@angular/material';
 
 describe('ConnectorEditorEffects', () => {
     let actions$: Observable<any>;
@@ -92,12 +94,19 @@ describe('ConnectorEditorEffects', () => {
         description: ''
     };
 
+    const mockDialog = {
+        close: jest.fn()
+    };
+
     beforeEach(() => {
         TestBed.configureTestingModule({
+            imports: [MatDialogModule],
             providers: [
                 ConnectorEditorEffects,
                 AmaApi,
                 AmaTitleService,
+                DialogService,
+                { provide: MatDialogRef, useValue: mockDialog },
                 provideMockActions(() => actions$),
                 {
                     provide: LogService,

@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>{{ 'APP.CONNECTOR_EDITOR.DIALOG.TITLE' | translate}}
+</h2>
+<mat-dialog-content>
+    <mat-slide-toggle [checked]="isChecked$ | async" (change)="onChange($event)">
+        {{ (checked? 'APP.CONNECTOR_EDITOR.DIALOG.HIDE' : 'APP.CONNECTOR_EDITOR.DIALOG.SHOW') | translate }}
+    </mat-slide-toggle>
+</mat-dialog-content>
+
+<mat-dialog-actions class="adf-dialog-buttons">
+    <span class="adf-fill-remaining-space"></span>
+
+    <button mat-button mat-dialog-close data-automation-id="oob-dialog-close">
+        {{ 'APP.CONNECTOR_EDITOR.DIALOG.CANCEL' | translate }}
+    </button>
+
+    <button class="adf-dialog-action-button"
+            mat-button (click)="submit()"
+            data-automation-id="settings-submit-button"
+    >
+        {{ 'APP.CONNECTOR_EDITOR.DIALOG.APPLY' | translate }}
+    </button>
+</mat-dialog-actions>

@@ -15,12 +15,16 @@
  * limitations under the License.
  */
 
-import { routerReducer } from '@ngrx/router-store';
-import { appReducer } from './app.reducer';
-import { settingsReducer } from './settings.reducer';
+export interface AmaSettinsgState {
+    connectors: AmaConnectorSettings;
+}
 
-export const rootReducers = {
-    app: appReducer,
-    router: routerReducer,
-    settings: settingsReducer
+export interface AmaConnectorSettings {
+    showWithTemplate: boolean;
+}
+
+export const INITIAL_SETTINGS_STATE: AmaSettinsgState = {
+    connectors: {
+        showWithTemplate: false
+    }
 };

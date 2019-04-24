@@ -62,7 +62,8 @@ describe('AuthEffects', () => {
 
             const expectedAction = new AsyncInitAction(<any>{
                 selectedTheme: appThemes[0],
-                menuOpened: null
+                menuOpened: null,
+                showConnectorsWithTemplate: false
             });
             const expected = cold('(x)', { x: expectedAction });
 
@@ -78,7 +79,8 @@ describe('AuthEffects', () => {
 
             const expectedAction = new AsyncInitAction(<any>{
                 selectedTheme: appThemes[1],
-                menuOpened: true
+                menuOpened: true,
+                showConnectorsWithTemplate: false
             });
             const expected = cold('(x)', { x: expectedAction });
 
@@ -93,7 +95,8 @@ describe('AuthEffects', () => {
 
             const expectedAction = new AsyncInitAction(<any>{
                 selectedTheme: jasmine.any(Object),
-                menuOpened: false
+                menuOpened: false,
+                showConnectorsWithTemplate: false
             });
             const expected = cold('(x)', { x: expectedAction });
 
