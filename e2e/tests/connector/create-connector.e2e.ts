@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation, AuthenticatedPage, SidebarActionMenu } from 'ama-testing/e2e';
+import { LoginPage, LoginPageImplementation, AuthenticatedPage, SidebarActionMenu, UtilRandom } from 'ama-testing/e2e';
 import { CreateEntityDialog } from 'ama-testing/e2e';
 import { ProjectContentPage } from 'ama-testing/e2e';
 import { SnackBar } from 'ama-testing/e2e';
@@ -61,7 +61,7 @@ describe('Create connector', async () => {
 
     it('1. [C280408] Create connector using New dropdown', async () => {
         await sidebarActionMenu.createConnector();
-        const connector = await createEntityDialog.setEntityDetails();
+        const connector = await createEntityDialog.setEntityDetails('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
         expect(await snackBar.isCreatedSuccessfully('connector')).toBe(true, 'Connector creation snackbar should be displayed');
         expect(await projectContentPage.isModelInList('connector', connector.name)).toBe(true, 'Connector should be in the left sidebar');
         expect(await toolbar.isItemDisplayed(connector.name)).toBe(true, 'Connector name should be displayed in the breadcrumb');
@@ -69,7 +69,7 @@ describe('Create connector', async () => {
 
     it('2. [C291964] Create connector using + button', async () => {
         await projectContentPage.createConnector();
-        const connector = await createEntityDialog.setEntityDetails();
+        const connector = await createEntityDialog.setEntityDetails('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
         expect(await snackBar.isCreatedSuccessfully('connector')).toBe(true, 'Connector creation snackbar should be displayed');
         expect(await projectContentPage.isModelInList('connector', connector.name)).toBe(true, 'Connector should be in the left sidebar');
         expect(await toolbar.isItemDisplayed(connector.name)).toBe(true, 'Connector name should be displayed in the breadcrumb');
