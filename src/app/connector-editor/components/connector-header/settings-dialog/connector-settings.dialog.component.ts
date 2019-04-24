@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-import { Component, Optional, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AmaState } from 'ama-sdk';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { ChangedConnectorSettingsAction } from './../../../store/connector-editor.actions';
 import { Observable } from 'rxjs';
 import { selectConnectorsSettings } from './../../../../store/selectors/settings.selectors';
@@ -32,10 +32,7 @@ export class ConnectorSettingsDialogComponent {
     isChecked$: Observable<boolean>;
     constructor(
         private store: Store<AmaState>,
-        public dialog: MatDialogRef<ConnectorSettingsDialogComponent>,
-        @Optional()
-        @Inject(MAT_DIALOG_DATA)
-        public data: any
+        public dialog: MatDialogRef<ConnectorSettingsDialogComponent>
     ) {
         this.isChecked$ = this.store.select(selectConnectorsSettings);
     }

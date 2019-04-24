@@ -21,7 +21,7 @@ import { Observable } from 'rxjs';
 import { ConnectorEditorEffects } from './connector-editor.effects';
 import { Store } from '@ngrx/store';
 import { ConnectorEditorService } from '../services/connector-editor.service';
-import { LogService } from '@alfresco/adf-core';
+import { LogService, StorageService } from '@alfresco/adf-core';
 import { Router } from '@angular/router';
 import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import {
@@ -39,7 +39,9 @@ import {
     GetConnectorsSuccessAction,
     UploadConnectorAttemptAction,
     ValidateConnectorPayload,
-    ValidateConnectorAttemptAction
+    ValidateConnectorAttemptAction,
+    OpenConnectorSettingsDialog,
+    ChangedConnectorSettingsAction
 } from './connector-editor.actions';
 import { hot, cold, getTestScheduler } from 'jasmine-marbles';
 import {
@@ -66,6 +68,7 @@ import { throwError } from 'rxjs';
 import { Update } from '@ngrx/entity';
 import { selectConnectorsLoaded, selectSelectedConnector } from './connector-editor.selectors';
 import { MatDialogRef, MatDialogModule } from '@angular/material';
+import { ConnectorSettingsDialogComponent } from '../components/connector-header/settings-dialog/connector-settings.dialog.component';
 
 describe('ConnectorEditorEffects', () => {
     let actions$: Observable<any>;
@@ -74,6 +77,8 @@ describe('ConnectorEditorEffects', () => {
     let metadata: EffectsMetadata<ConnectorEditorEffects>;
     let connectorEditorService: ConnectorEditorService;
     let store: Store<AmaState>;
+    let dialogService: DialogService;
+    let storageService: StorageService;
 
     const connector: Connector = {
         type: CONNECTOR,
@@ -106,6 +111,7 @@ describe('ConnectorEditorEffects', () => {
                 AmaApi,
                 AmaTitleService,
                 DialogService,
+                StorageService,
                 { provide: MatDialogRef, useValue: mockDialog },
                 provideMockActions(() => actions$),
                 {
@@ -158,6 +164,8 @@ describe('ConnectorEditorEffects', () => {
         metadata = getEffectsMetadata(effects);
         store = TestBed.get(Store);
         actions$ = null;
+        dialogService = TestBed.get(DialogService);
+        storageService = TestBed.get(StorageService);
     });
 
     describe('uploadConnectorEffect', () => {
@@ -470,6 +478,56 @@ describe('ConnectorEditorEffects', () => {
             });
 
             expect(effects.validateConnectorEffect).toBeObservable(expected);
+        });
+    });
+
+    describe('openConnectorSettingsDialogEffect', () => {
+        it('openConnectorSettingsDialogEffect should not dispatch an action', () => {
+            expect(metadata.openConnectorSettingsDialogEffect).toEqual({ dispatch: false });
+        });
+
+        it('openConnectorSettingsDialogEffect should call the openDialog method of dialog service', () => {
+            spyOn(dialogService, 'openDialog');
+            actions$ = hot('a', { a: new OpenConnectorSettingsDialog() });
+            effects.openConnectorSettingsDialogEffect.subscribe(() => {});
+            getTestScheduler().flush();
+            expect(dialogService.openDialog).toHaveBeenCalledWith(ConnectorSettingsDialogComponent, {
+                disableClose: true,
+                height: '200px',
+                width: '500px'
+            });
+        });
+    });
+
+    describe('openConnectorSettingsDialogEffect', () => {
+        it('openConnectorSettingsDialogEffect should not dispatch an action', () => {
+            expect(metadata.openConnectorSettingsDialogEffect).toEqual({ dispatch: false });
+        });
+
+        it('openConnectorSettingsDialogEffect should call the openDialog method of dialog service', () => {
+            spyOn(dialogService, 'openDialog');
+            actions$ = hot('a', { a: new OpenConnectorSettingsDialog() });
+            effects.openConnectorSettingsDialogEffect.subscribe(() => {});
+            getTestScheduler().flush();
+            expect(dialogService.openDialog).toHaveBeenCalledWith(ConnectorSettingsDialogComponent, {
+                disableClose: true,
+                height: '200px',
+                width: '500px'
+            });
+        });
+    });
+
+    describe('changedConnectorSettingsEffect', () => {
+        it('changedConnectorSettingsEffect should not dispatch an action', () => {
+            expect(metadata.changedConnectorSettingsEffect).toEqual({ dispatch: false });
+        });
+
+        it('should call the setItem method of StorageService', () => {
+            spyOn(storageService, 'setItem');
+            actions$ = hot('a', { a: new ChangedConnectorSettingsAction(true) });
+            effects.changedConnectorSettingsEffect.subscribe(() => {});
+            getTestScheduler().flush();
+            expect(storageService.setItem).toHaveBeenCalledWith('showConnectorsWithTemplate', 'true');
         });
     });
 });

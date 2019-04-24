@@ -196,13 +196,13 @@ export class ConnectorEditorEffects extends BaseEffects {
     );
 
     @Effect({ dispatch: false })
-    openProcessVariablesDialogEffect = this.actions$.pipe(
+    openConnectorSettingsDialogEffect = this.actions$.pipe(
         ofType<OpenConnectorSettingsDialog>(OPEN_SETTINGS_DIALOG),
         tap(() => this.openSettingsDialog()
     ));
 
     @Effect({ dispatch: false })
-    changedConnectorSettings = this.actions$.pipe(
+    changedConnectorSettingsEffect = this.actions$.pipe(
         ofType<ChangedConnectorSettingsAction>(CHANGE_CONNECTOR_SETTINGS),
         tap(action => this.storageService.setItem('showConnectorsWithTemplate', action.isChecked.toString())
     ));
@@ -329,8 +329,7 @@ export class ConnectorEditorEffects extends BaseEffects {
         this.dialogService.openDialog(ConnectorSettingsDialogComponent, {
             disableClose: true,
             height: '200px',
-            width: '500px',
-            data: {  },
+            width: '500px'
         });
     }
 }
