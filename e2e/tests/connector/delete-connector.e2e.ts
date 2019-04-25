@@ -55,7 +55,7 @@ describe('Delete connector', () => {
     });
 
     beforeEach( async() => {
-        connector = await backend.connector.createAndWaitUntilAvailable(app.entry.id);
+        connector = await backend.connector.createAndWaitUntilAvailable(app.entry.id, 'qaconnector');
     });
 
     beforeEach(async () => {
