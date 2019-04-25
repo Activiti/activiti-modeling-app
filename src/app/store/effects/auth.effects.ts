@@ -50,8 +50,9 @@ export class AuthEffects {
     private setupFromStorage() {
         const menuOpened = JSON.parse(this.storageService.getItem('menuOpened')),
             preservedTheme = this.storageService.getItem('selectedTheme') || 'light-theme',
-            selectedTheme = appThemes.find(appTheme => appTheme.className === preservedTheme);
+            selectedTheme = appThemes.find(appTheme => appTheme.className === preservedTheme),
+            showConnectorsWithTemplate = JSON.parse(this.storageService.getItem('showConnectorsWithTemplate')) || false;
 
-        return of(new AsyncInitAction({ selectedTheme, menuOpened }));
+        return of(new AsyncInitAction({ selectedTheme, menuOpened, showConnectorsWithTemplate }));
     }
 }

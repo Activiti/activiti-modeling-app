@@ -32,5 +32,13 @@
             <mat-icon>delete</mat-icon>
             <span>{{ 'APP.MENU.DELETE' | translate }}</span>
         </button>
+
+        <button mat-menu-item
+            (click)="openSettingsDialog()"
+            data-automation-id="connector-editor-settings-button">
+            <mat-icon>settings</mat-icon>
+            <span>{{ 'APP.MENU.SETTINGS' | translate }}</span>
+    </button>
     </mat-menu>
+
 </adf-toolbar>
