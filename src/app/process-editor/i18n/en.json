@@ -15,6 +15,7 @@
             "ID": "id",
             "NAME": "Name",
             "SIGNAL": "Signal",
+            "SIGNAL_NAME": "Signal name",
             "CREATE_NEW_SIGNAL": "Create new signal",
             "SCOPE": "Scope",
             "SCOPE_VALUES": {
