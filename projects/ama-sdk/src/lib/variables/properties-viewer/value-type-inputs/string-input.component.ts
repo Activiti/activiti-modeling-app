@@ -30,7 +30,7 @@ export class PropertiesViwerStringInputComponent {
     @Input() value: string;
 
     onChange() {
-        this.change.emit(this.value);
+        this.change.emit(this.value.length ? this.value : null);
     }
 
 }

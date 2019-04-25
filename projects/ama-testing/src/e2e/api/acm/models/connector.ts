@@ -20,8 +20,8 @@ const uuidv4 = require('uuid/v4');
 
 export class ACMConnector extends ACMCrud {
 
-    displayName = 'Connector';
-    namePrefix = 'QA_APS_CONNECTOR_';
+    displayName = 'connector';
+    namePrefix = 'qaconnector';
     type = 'CONNECTOR';
     contentType = 'application/json';
 
