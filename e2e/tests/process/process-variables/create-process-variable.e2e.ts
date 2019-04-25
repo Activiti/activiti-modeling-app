@@ -25,6 +25,7 @@ import { ProcessContentPage } from 'ama-testing/e2e';
 import { ProcessPropertiesCard } from 'ama-testing/e2e';
 import { ProcessVariablesDialog } from 'ama-testing/e2e';
 import { CodeEditorWidget } from 'ama-testing/e2e';
+import { UtilDate } from 'ama-testing/e2e';
 
 describe('Create process variable', async () => {
     const adminUser = {
@@ -116,6 +117,28 @@ describe('Create process variable', async () => {
             const variableId = await processVariablesDialog.getVariableIdByRow(0);
             await processVariablesDialog.goTocodeEditor();
             expect(JSON.parse(await codeEditorWidget.getCodeEditorValue(2))[variableId].value).toEqual(123, `Variable value is not set correctly.`);
+
+            await processVariablesDialog.update();
+            await processVariablesDialog.close();
+
+            await processPropertiesCard.editProcessVariables();
+            expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer', '123')).toBe(true, 'Variable added is not displayed in the list.');
+        });
+
+        it('4. [C307118] Add date process variable', async () => {
+            const currentDate = UtilDate.getCurrentDate();
+            await processVariablesDialog.setVariable('dateVar', 'date');
+            expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
+            expect(await processVariablesDialog.isVariableDisplayed(0, 'dateVar', 'date', currentDate)).toBe(true, 'Variable added is not displayed in the list.');
+
+            const variableId = await processVariablesDialog.getVariableIdByRow(0);
+            await processVariablesDialog.goTocodeEditor();
+            expect(JSON.parse(await codeEditorWidget.getCodeEditorValue(2))[variableId].value).toEqual(currentDate, `Variable value is not set correctly.`);
+            await processVariablesDialog.update();
+            await processVariablesDialog.close();
+
+            await processPropertiesCard.editProcessVariables();
+            expect(await processVariablesDialog.isVariableDisplayed(0, 'dateVar', 'date', currentDate)).toBe(true, 'Variable added is not displayed in the list.');
         });
     });
 

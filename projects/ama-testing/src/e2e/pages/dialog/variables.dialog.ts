@@ -17,6 +17,7 @@
 
 import { element, by } from 'protractor';
 import { GenericDialog } from '../common/generic.dialog';
+import { Calendar } from '../calendar';
 
 export class VariablesDialog extends GenericDialog {
 
@@ -27,6 +28,7 @@ export class VariablesDialog extends GenericDialog {
     readonly name = element(by.css(`[data-automation-id="variable-name"]`));
     readonly type = element(by.css(`[data-automation-id="variable-type"]`));
     readonly value = element(by.css(`[data-automation-id="variable-value"]`));
+    readonly datePicker = element(by.className('mat-datepicker-toggle'));
     readonly required = element(by.css(`[data-automation-id="variable-required"]`));
     readonly nameCell = element(by.css(`[data-automation-id="variable-name-cell"]`));
     readonly typeCell = element(by.css(`[data-automation-id="variable-type-cell"]`));
@@ -36,6 +38,8 @@ export class VariablesDialog extends GenericDialog {
     readonly codeEditor = element(by.id(`mat-tab-label-1-1`));
     readonly updateButton = element(by.css(`[data-automation-id="update-button"]`));
     readonly closeButton = element(by.css(`[data-automation-id="close-button"]`));
+
+    readonly calendar = new Calendar();
 
     async isLoaded() {
         await super.waitForElementToBeVisible(this.variablesDialog);
@@ -68,6 +72,12 @@ export class VariablesDialog extends GenericDialog {
         await super.click(varValueOption);
     }
 
+    async setDateVariableValue() {
+        await super.click(this.datePicker);
+        await this.calendar.isDisplayed();
+        await this.calendar.setToday();
+    }
+
     async setVariableValue(value: string) {
         await super.sendKeysIfVisible(this.value, value);
     }
@@ -77,11 +87,17 @@ export class VariablesDialog extends GenericDialog {
             await super.click(this.required);
         }
     }
-    async setVariable(name: string, type: string, value: string, required: boolean = false) {
+    async setVariable(name: string = 'name', type: string = 'string', value: string  = '', required: boolean = false) {
         await this.setVariableName(name);
         await this.setVariableType(type);
 
-        type === 'boolean' ? this.setBooleanVariableValue(value) : this.setVariableValue(value);
+        if ( type === 'boolean' ) {
+            this.setBooleanVariableValue(value);
+        } else if ( type === 'date' ) {
+            this.setDateVariableValue();
+        } else {
+            this.setVariableValue(value);
+        }
     }
 
     async getVariableValue() {

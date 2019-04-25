@@ -15,12 +15,24 @@
  * limitations under the License.
  */
 
- export * from './api';
- export * from './date';
- export * from './fakeBlob.helper';
- export * from './file';
- export * from './flush-last-browser-logs';
- export * from './logger';
- export * from './messages';
- export * from './random';
- export * from './take-screenshot';
+import { element, by } from 'protractor';
+import { GenericPage } from './common/generic.page';
+
+export class Calendar extends GenericPage {
+
+    readonly datePicker = element(by.css(`.mat-calendar`));
+    readonly today = element(by.css(`.mat-calendar-body-today`));
+
+    async isDisplayed() {
+        return await super.waitForElementToBeVisible(this.datePicker);
+    }
+
+    async isDismissed() {
+        return await super.waitForElementToBeInVisible(this.datePicker);
+    }
+
+    async setToday() {
+        await super.click(this.today);
+        await this.isDismissed();
+    }
+}
