@@ -22,7 +22,8 @@ import {
     GetProjectsSuccessAction,
     CreateProjectSuccessAction,
     UpdateProjectSuccessAction,
-    ReleaseProjectSuccessAction
+    ReleaseProjectSuccessAction,
+    GetProjectsAttemptAction
 } from '../actions/projects';
 import { INITIAL_DASHBOARD_STATE, DashboardState } from '../state/dashboard.state';
 import { Project, Release } from 'ama-sdk';
@@ -41,6 +42,15 @@ describe('dashboardReducer', () => {
         };
     });
 
+    describe('GET_PROJECTS_ATTEMPT', () => {
+        const action = new GetProjectsAttemptAction();
+
+        it('loading shoul be true', () => {
+            const newState = dashboardReducer(initialState, action);
+            expect(newState.loading).toBe(true);
+        });
+    });
+
     describe('GET_PROJECTS_SUCCESS', () => {
         const action = new GetProjectsSuccessAction(<Partial<Project>[]>[mockProject]);
 
@@ -48,6 +58,7 @@ describe('dashboardReducer', () => {
             const newState = dashboardReducer(initialState, action);
 
             expect(newState.projectsLoaded).toBe(true);
+            expect(newState.loading).toBe(false);
             expect(newState.projects).toEqual({ [mockProject.id]: mockProject });
         });
     });
