@@ -51,7 +51,45 @@ export class VariablesDialog extends GenericDialog {
         await super.click(this.add);
     }
 
+    async setVariableName(name: string) {
+        await super.clear(this.name);
+        await super.sendKeysIfVisible(this.name, name);
+    }
+
+    async setVariableType(type: string) {
+        await super.click(this.type);
+        const varTypeOption = element(by.cssContainingText('.mat-option-text', type));
+        await super.click(varTypeOption);
+    }
+
+    async setBooleanVariableValue(value: string) {
+        await super.click(this.value);
+        const varValueOption = element(by.cssContainingText('.mat-option-text', value));
+        await super.click(varValueOption);
+    }
+
+    async setVariableValue(value: string) {
+        await super.sendKeysIfVisible(this.value, value);
+    }
+
+    async setRequired(required: boolean = false) {
+        if ( required ) {
+            await super.click(this.required);
+        }
+    }
+    async setVariable(name: string, type: string, value: string, required: boolean = false) {
+        await this.setVariableName(name);
+        await this.setVariableType(type);
+
+        type === 'boolean' ? this.setBooleanVariableValue(value) : this.setVariableValue(value);
+    }
+
+    async getVariableValue() {
+        return await this.value.getText();
+    }
+
     async isVariableDisplayed(rowIndex: number, name: string = 'name', type: string = 'string', value: string = '', required: string = 'false') {
+        let valueCell;
         const variableRow = `[data-automation-id*="variable-row-${rowIndex}"]`;
 
         const nameCell = element(by.css(`${variableRow}>[data-automation-id="variable-name-cell-${name}"]`));
@@ -63,7 +101,11 @@ export class VariablesDialog extends GenericDialog {
         const requiredCell = element(by.css(`${variableRow}>[data-automation-id="variable-required-cell-${required}"]`));
         await super.waitForElementToBeVisible(requiredCell);
 
-        const valueCell = element(by.css(`${variableRow}>[data-automation-id="variable-value-cell-${value}"]`));
+        if ( type !== 'string' && value === '' ) {
+            valueCell = element(by.css(`${variableRow}>[data-automation-id="variable-value-cell-undefined"]`));
+        } else {
+            valueCell = element(by.css(`${variableRow}>[data-automation-id="variable-value-cell-${value}"]`));
+        }
         await super.waitForElementToBeVisible(valueCell);
 
         return true;

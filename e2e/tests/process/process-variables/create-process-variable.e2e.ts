@@ -64,36 +64,59 @@ describe('Create process variable', async () => {
         await processPropertiesCard.isLoaded();
     });
 
-    it('1. [C282018] Create process variable', async () => {
-        await processPropertiesCard.editProcessVariables();
-        await processVariablesDialog.isLoaded();
-        await processVariablesDialog.addVariable();
-        expect(await processVariablesDialog.isVariableDisplayed(0)).toBe(true, 'Variable added is not displayed in the list.');
-
-        const variableId = await processVariablesDialog.getVariableIdByRow(0);
-        const expectedVariable = {};
-        expectedVariable[variableId] = {
-            'id': variableId,
-            'name': 'name',
-            'type': 'string',
-            'required': false,
-            'value': ''
-        };
-        await processVariablesDialog.goTocodeEditor();
-
-        expect(JSON.parse(await codeEditorWidget.getCodeEditorValue(2))).toEqual(expectedVariable, `Variables objects are not equal`);
-
-        await processVariablesDialog.update();
-        await processVariablesDialog.close();
-
-        await processPropertiesCard.editProcessVariables();
-        expect(await processVariablesDialog.isVariableDisplayed(0)).toBe(true, 'Variable added is not displayed in the list.');
-    });
-
-    it('2. [C299156] Verify icon from the button and the modal title', async () => {
+    it('1. [C299156] Verify icon from the button and the modal title', async () => {
         expect(await processPropertiesCard.isEditVariablesButtonIconDisplayed()).toBe(true, 'Icon is not displayed on the Edit Variables button.');
         await processPropertiesCard.editProcessVariables();
         expect(await processVariablesDialog.isTitleIconDisplayed()).toBe(true, 'Title icon is not displayed on the Edit Variables modal.');
+    });
+
+    describe('Add process variable', async () => {
+        beforeEach(async () => {
+            await processPropertiesCard.editProcessVariables();
+            await processVariablesDialog.isLoaded();
+            await processVariablesDialog.addVariable();
+        });
+
+        it('2. [C282018] Add process variable', async () => {
+            expect(await processVariablesDialog.isVariableDisplayed(0)).toBe(true, 'Variable added is not displayed in the list.');
+
+            const variableId = await processVariablesDialog.getVariableIdByRow(0);
+            const expectedVariable = {};
+            expectedVariable[variableId] = {
+                'id': variableId,
+                'name': 'name',
+                'type': 'string',
+                'required': false,
+                'value': ''
+            };
+            await processVariablesDialog.goTocodeEditor();
+
+            expect(JSON.parse(await codeEditorWidget.getCodeEditorValue(2))).toEqual(expectedVariable, `Variables objects are not equal`);
+
+            await processVariablesDialog.update();
+            await processVariablesDialog.close();
+
+            await processPropertiesCard.editProcessVariables();
+            expect(await processVariablesDialog.isVariableDisplayed(0)).toBe(true, 'Variable added is not displayed in the list.');
+        });
+
+        it('3. [C307117] Add integer process variable with invalid value', async () => {
+            await processVariablesDialog.setVariable('intVar', 'integer', `@$#&* {}[],=-().+;'/`);
+            expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
+            expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer')).toBe(true, 'Variable added is not displayed in the list.');
+
+            await processVariablesDialog.setVariableValue('Automation');
+            expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
+            expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer')).toBe(true, 'Variable added is not displayed in the list.');
+
+            await processVariablesDialog.setVariableValue('1Auto2mation3');
+            expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
+            expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer', '123')).toBe(true, 'Variable added is not displayed in the list.');
+
+            const variableId = await processVariablesDialog.getVariableIdByRow(0);
+            await processVariablesDialog.goTocodeEditor();
+            expect(JSON.parse(await codeEditorWidget.getCodeEditorValue(2))[variableId].value).toEqual(123, `Variable value is not set correctly.`);
+        });
     });
 
     afterAll(async () => {
