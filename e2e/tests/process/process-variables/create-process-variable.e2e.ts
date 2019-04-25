@@ -140,6 +140,14 @@ describe('Create process variable', async () => {
             await processPropertiesCard.editProcessVariables();
             expect(await processVariablesDialog.isVariableDisplayed(0, 'dateVar', 'date', currentDate)).toBe(true, 'Variable added is not displayed in the list.');
         });
+
+        it('5. [C307119] Switch process variable type', async () => {
+            await processVariablesDialog.setVariableValue('Automation');
+            await processVariablesDialog.setVariableType('integer');
+
+            expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Variable value was not set to empty when switching the type.');
+            expect(await processVariablesDialog.isVariableDisplayed(0, 'name', 'integer')).toBe(true, 'Variable added is not displayed in the list.');
+        });
     });
 
     afterAll(async () => {
