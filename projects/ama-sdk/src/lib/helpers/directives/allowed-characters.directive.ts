@@ -27,10 +27,10 @@ import { TranslationService } from '@alfresco/adf-core';
 })
 export class AllowedCharactersDirective {
 
-    defaultRegex = `^[${MODEL_NAME_CHARACTERS}]*$`;
+    defaultRegex: RegExp = new RegExp(`^[${MODEL_NAME_CHARACTERS}]*$`);
 
     /* tslint:disable-next-line:no-input-rename */
-    @Input('amasdk-allowed-characters') regexInput = this.defaultRegex;
+    @Input('amasdk-allowed-characters') regexInput: RegExp = this.defaultRegex;
 
     constructor(
         private el: ElementRef,
@@ -63,6 +63,6 @@ export class AllowedCharactersDirective {
     }
 
     private validate(value: string): boolean {
-        return new RegExp(this.regex).test(value);
+        return this.regex.test(value);
     }
 }

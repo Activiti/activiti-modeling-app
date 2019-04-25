@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { MODEL_CREATORS, ModelCreator, CONNECTOR } from 'ama-sdk';
+import { MODEL_CREATORS, ModelCreator, CONNECTOR, CONNECTOR_NAME_REGEX } from 'ama-sdk';
 import { CreateConnectorAttemptAction } from '../store/connector-editor.actions';
 import { CONNECTOR_ICON } from './connectors-filter.extension';
 
@@ -29,7 +29,7 @@ export function createConnectorCreator(): ModelCreator {
             title: 'APP.PROJECT.CONNECTOR_DIALOG.TITLE_CREATE',
             nameField: 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_NAME',
             descriptionField: 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_DESC',
-            allowedCharacters: '^[a-z0-9]{0,26}$',
+            allowedCharacters: CONNECTOR_NAME_REGEX,
             action: CreateConnectorAttemptAction
         }
     };

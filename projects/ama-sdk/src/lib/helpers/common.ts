@@ -38,7 +38,7 @@ export interface EntityDialogPayload {
     nameField: string;
     descriptionField: string;
     values?: EntityDialogForm;
-    allowedCharacters?: string;
+    allowedCharacters?: RegExp;
     action: any;
 }
 
