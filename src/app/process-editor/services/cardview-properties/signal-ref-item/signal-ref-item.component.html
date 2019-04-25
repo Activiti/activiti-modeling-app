@@ -15,4 +15,9 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
+
+    <mat-form-field *ngIf="selectedSignal">
+        <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SIGNAL_NAME' | translate }}</div>
+        <input matInput (change)="changeSignalRef()" [(ngModel)]="selectedSignal.name" />
+    </mat-form-field>
 </div>
