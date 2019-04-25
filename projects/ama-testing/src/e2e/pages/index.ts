@@ -18,6 +18,7 @@
  export * from './common';
  export * from './dialog';
  export * from './authenticated.page';
+ export * from './calendar';
  export * from './code-editor.widget';
  export * from './connector-content.page';
  export * from './dashboard.page';

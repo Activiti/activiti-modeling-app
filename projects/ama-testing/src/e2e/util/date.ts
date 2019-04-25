@@ -15,12 +15,11 @@
  * limitations under the License.
  */
 
- export * from './api';
- export * from './date';
- export * from './fakeBlob.helper';
- export * from './file';
- export * from './flush-last-browser-logs';
- export * from './logger';
- export * from './messages';
- export * from './random';
- export * from './take-screenshot';
+const moment = require('moment');
+
+export class UtilDate {
+
+    static getCurrentDate(format: string = 'YYYY-MM-DD') {
+        return moment().format(format);
+    }
+}
