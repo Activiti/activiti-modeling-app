@@ -33,13 +33,20 @@ import {
     UploadProjectSuccessAction,
     UPLOAD_PROJECT_SUCCESS,
     RELEASE_PROJECT_SUCCESS,
-    ReleaseProjectSuccessAction
+    ReleaseProjectSuccessAction,
+    GET_PROJECTS_ATTEMPT
 } from '../actions/projects';
 
 export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE, action: Action): DashboardState {
     let newState: DashboardState;
 
     switch (action.type) {
+
+        case GET_PROJECTS_ATTEMPT:
+        return {
+            ...state,
+            loading: true
+        };
 
         case GET_PROJECTS_SUCCESS:
             newState = setProjects(state, <GetProjectsSuccessAction>action);
@@ -75,6 +82,7 @@ export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE
 function setProjects(state: DashboardState, action: GetProjectsSuccessAction): DashboardState {
     const newState = Object.assign({}, state);
     newState.projectsLoaded = true;
+    newState.loading = false;
     newState.projects = action.payload.reduce<ProjectSummaryEntities>((projects, project) => {
         return { ...projects, [project.id]: project };
     }, {});
