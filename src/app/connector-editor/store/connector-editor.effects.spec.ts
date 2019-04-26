@@ -21,7 +21,7 @@ import { Observable } from 'rxjs';
 import { ConnectorEditorEffects } from './connector-editor.effects';
 import { Store } from '@ngrx/store';
 import { ConnectorEditorService } from '../services/connector-editor.service';
-import { LogService, StorageService } from '@alfresco/adf-core';
+import { LogService, StorageService, CoreModule } from '@alfresco/adf-core';
 import { Router } from '@angular/router';
 import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import {
@@ -105,7 +105,10 @@ describe('ConnectorEditorEffects', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [MatDialogModule],
+            imports: [
+                MatDialogModule,
+                CoreModule.forRoot()
+            ],
             providers: [
                 ConnectorEditorEffects,
                 AmaApi,

@@ -19,7 +19,7 @@ import { TestBed } from '@angular/core/testing';
 import { Observable } from 'rxjs';
 import { hot, getTestScheduler } from 'jasmine-marbles';
 import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
-import { StorageService } from '@alfresco/adf-core';
+import { StorageService, CoreModule } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { UiEffects } from './ui.effects';
 import { SetMenuAction } from '../actions/ui';
@@ -33,7 +33,9 @@ describe('UiEffects', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [],
+            imports: [
+                CoreModule.forRoot()
+            ],
             providers: [
                 UiEffects,
                 StorageService,
