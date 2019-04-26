@@ -8,13 +8,9 @@ eval DIFFERENT_JS_API=false
 eval AUTO=false
 
 eval libs=( "core"
-    "content-services"
-    "process-services"
-    "insights",
     "extensions" )
 
 eval paths=(
-     $DIR/../package.json
      $DIR/../projects/ama-sdk/package.json
 )
 
@@ -114,6 +110,24 @@ update_component_js_version_for_all() {
     done
 }
 
+update_main_dependency_version(){
+   for (( j=0; j<${libslength}; j++ )); do
+
+       prefix_new="@alfresco/adf-"
+
+       EXACT_VERSION="${prefix_new}${libs[$j]}@${VERSION}"
+       echo "====== UPDATE DEPENDENCY VERSION of ${EXACT_VERSION} ======"
+       npm i -E ${EXACT_VERSION}
+   done
+}
+
+update_main_component_js_version(){
+   echo "====== UPDATE DEPENDENCY VERSION of @alfresco/js-api in ${1} ======"
+   PACKAGETOCHANGE="@alfresco/js-api@${VERSION}"
+
+   npm i -E ${PACKAGETOCHANGE}
+}
+
 while [[ $1  == -* ]]; do
     case "$1" in
       -h|--help|-\?) show_help; exit 0;;
@@ -145,6 +159,9 @@ pathslength=${#paths[@]}
 
 if $EXEC_COMPONENT == true; then
     echo "====== UPDATE  ======"
+
+    update_main_dependency_version
+    update_main_component_js_version
 
     update_dependency_for_all
 
