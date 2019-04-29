@@ -51,7 +51,7 @@
                                 <button mat-menu-item (click)="deleteRow(element)" [attr.data-automation-id]="'project-delete-' + element.id">
                                     <mat-icon>delete</mat-icon> <span>{{ 'APP.MENU.DELETE' | translate }}</span>
                                 </button>
-                                <button mat-menu-item (click)="releaseProject(element.id)" [attr.data-automation-id]="'project-release-' + element.id">
+                                <button mat-menu-item (click)="releaseProject(element.id)" class="project-release-button" [attr.data-automation-id]="'project-release-' + element.id">
                                     <mat-icon>new_releases</mat-icon> <span>{{ 'APP.MENU.RELEASE' | translate }}</span>
                                 </button>
                             </mat-menu>

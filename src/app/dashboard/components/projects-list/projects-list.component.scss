@@ -4,6 +4,11 @@
     $foreground: map-get($theme, foreground);
     $background: map-get($theme, background);
 
+    // Remove it, when community supports project releases
+    .project-release-button {
+        display: none;
+    }
+
     .dashboard {
         display: flex;
         justify-content: center;
