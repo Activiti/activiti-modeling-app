@@ -20,13 +20,14 @@ import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { Observable, throwError, of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
-import { ACMApiModule, OpenConfirmDialogAction, DownloadResourceService, Blob2JsonService } from 'ama-sdk';
+import { ACMApiModule, OpenConfirmDialogAction, DownloadResourceService, Blob2JsonService, DialogService } from 'ama-sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { LogService, AlfrescoApiService, AlfrescoApiServiceMock } from '@alfresco/adf-core';
 import { Router } from '@angular/router';
 import { ExportProjectAction } from '../project-editor.actions';
 import { hot, getTestScheduler, cold } from 'jasmine-marbles';
+import { MatDialogRef, MatDialogModule } from '@angular/material';
 
 describe('Project Effects', () => {
     let effects: ProjectEffects;
@@ -35,12 +36,21 @@ describe('Project Effects', () => {
     let service: ProjectEditorService;
     let downloadService: DownloadResourceService;
 
+    const mockDialog = {
+        close: jest.fn()
+    };
+
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [ACMApiModule.forRoot()],
+            imports: [
+                ACMApiModule.forRoot(),
+                MatDialogModule
+            ],
             providers: [
+                DialogService,
                 ProjectEffects,
                 DownloadResourceService,
+                { provide: MatDialogRef, useValue: mockDialog },
                 provideMockActions(() => actions$),
                 {
                     provide: Router,
