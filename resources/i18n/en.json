@@ -121,7 +121,7 @@
             "UPLOAD_FILE": "Upload file",
             "DOWNLOAD_PROJECT": "Download project",
             "SETTINGS": {
-                "PROJECT_SETTINGS": "Project settings",
+                "PROJECT_SETTINGS": "Project editor settings",
                 "CONNECTORS_TAB_LABEL": "Connectors"
             },
             "IMPORT": "Import",
