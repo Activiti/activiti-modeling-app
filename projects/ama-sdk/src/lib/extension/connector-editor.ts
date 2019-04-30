@@ -21,3 +21,4 @@ export interface AdvancedConnectorEditorData {
 }
 
 export const AdvancedConnectorEditorKey = 'AdvancedConnectorEditorKey';
+export const ProjectSettingsConnectorTabKey = 'ProjectSettingsConnectorTabKey';

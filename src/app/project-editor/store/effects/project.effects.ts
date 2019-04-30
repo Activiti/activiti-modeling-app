@@ -17,11 +17,11 @@
 
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
-import { BaseEffects, OpenConfirmDialogAction, Blob2JsonService, SnackbarErrorAction, DownloadResourceService } from 'ama-sdk';
+import { BaseEffects, OpenConfirmDialogAction, Blob2JsonService, SnackbarErrorAction, DownloadResourceService, Project, DialogService } from 'ama-sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import {
     GetProjectAttemptAction,
@@ -29,7 +29,10 @@ import {
     GetProjectSuccessAction,
     ExportProjectAction,
     EXPORT_PROJECT,
+    OpenProjectSettingsDialog,
+    OPEN_PROJECT_SETTINGS_DIALOG,
 } from '../project-editor.actions';
+import { ProjectSettingsComponent } from '../../components/project-settings/project-settings.component';
 
 @Injectable()
 export class ProjectEffects extends BaseEffects {
@@ -39,6 +42,7 @@ export class ProjectEffects extends BaseEffects {
         protected logService: LogService,
         protected router: Router,
         protected downloadService: DownloadResourceService,
+        private dialogService: DialogService,
         protected blob2json: Blob2JsonService
     ) {
         super(router, logService);
@@ -57,6 +61,20 @@ export class ProjectEffects extends BaseEffects {
         map((action: ExportProjectAction) => action.payload),
         switchMap(payload => this.exportProject(payload.projectId, payload.projectName))
     );
+
+    @Effect({ dispatch: false })
+    openSettingsDialog = this.actions$.pipe(
+        ofType<OpenProjectSettingsDialog>(OPEN_PROJECT_SETTINGS_DIALOG),
+        tap(action => this.openProjectSettingsDialog(action.payload))
+    );
+
+    private openProjectSettingsDialog(project: Project) {
+        this.dialogService.openDialog(ProjectSettingsComponent, {
+            disableClose: true,
+            height: '400px',
+            width: '50%'
+        });
+    }
 
     private getProject(projectId: string) {
         return this.projectEditorService.fetchProject(projectId).pipe(

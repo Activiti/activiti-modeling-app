@@ -35,6 +35,8 @@ import { ProjectEditorService } from './services/project-editor.service';
 import { ProjectTreeHelper } from './components/project-tree/project-tree.helper';
 import { ProjectTreeIconsComponent } from './components/project-tree/project-tree-icons/project-tree-icons.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { ProjectSettingsComponent } from './components/project-settings/project-settings.component';
+import { ExtensionsModule } from '@alfresco/adf-extensions';
 
 @NgModule({
     imports: [
@@ -44,7 +46,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
         SharedModule,
         OverlayModule,
         StoreModule.forFeature(PROJECT_EDITOR_STATE_NAME, { project, tree }),
-        EffectsModule.forFeature([ProjectEffects])
+        EffectsModule.forFeature([ProjectEffects]),
+        ExtensionsModule
     ],
     declarations: [
         ProjectContentComponent,
@@ -52,9 +55,11 @@ import { OverlayModule } from '@angular/cdk/overlay';
         ProjectTreeComponent,
         ProjectTreeFilterComponent,
         UploadFileButtonComponent,
-        ProjectTreeIconsComponent
+        ProjectTreeIconsComponent,
+        ProjectSettingsComponent
     ],
     exports: [ProjectEditorRoutingModule],
+    entryComponents: [ ProjectSettingsComponent ],
     providers: [
         Blob2JsonService,
         ProjectEditorService,

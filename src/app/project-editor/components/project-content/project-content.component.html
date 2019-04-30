@@ -10,8 +10,16 @@
         </adf-toolbar-title>
 
         <div class="adf-toolbar--spacer"></div>
-        <a mat-icon-button data-automation-id="project-download-button"
-            (click)="downloadApp(project)" class="download-app-btn"><mat-icon>file_download</mat-icon></a>
+        <a mat-icon-button
+            data-automation-id="project-download-button"
+            (click)="downloadApp(project)"
+            class="download-app-btn">
+            <mat-icon>file_download</mat-icon>
+        </a>
+
+        <a mat-icon-button (click)="openSettingsDialog(project)">
+            <mat-icon>settings</mat-icon>
+        </a>
         <span class="project-version-label">Version: {{ project.version }}</span>
     </ng-container>
 </adf-toolbar>

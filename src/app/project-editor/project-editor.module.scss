@@ -4,9 +4,11 @@
 @import "./components/upload-file-button/upload-file-button.component";
 @import "./components/project-navigation/project-navigation.component";
 @import "./components/project-content/project-content.component";
+@import "./components/project-settings/project-settings.component";
 
 @mixin ama-project-editor-module($theme) {
     @include ama-project-content($theme);
+    @include ama-project-settings($theme);
     @include ama-project-tree($theme);
     @include ama-project-tree-icons($theme);
     @include ama-project-tree-filter($theme);
