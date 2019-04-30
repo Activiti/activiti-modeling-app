@@ -18,7 +18,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '@alfresco/adf-core';
-import { ExtensionsModule } from '@alfresco/adf-extensions';
+import { ExtensionsModule, ComponentRegisterService } from '@alfresco/adf-extensions';
 
 import { ConnectorEditorComponent } from './components/connector-editor/connector-editor.component';
 import { ConnectorEditorRoutingModule } from './router/connector-editor-routing.module';
@@ -28,7 +28,8 @@ import {
     SharedModule,
     provideTranslations,
     CONNECTORS_ENTITY_KEY,
-    AmaStoreModule
+    AmaStoreModule,
+    ProjectSettingsConnectorTabKey
 } from 'ama-sdk';
 import { EffectsModule } from '@ngrx/effects';
 import { ConnectorEditorEffects } from './store/connector-editor.effects';
@@ -72,4 +73,10 @@ import { ConnectorSettingsDialogComponent } from './components/connector-header/
         ...getConnectorUploaderProvider()
     ]
 })
-export class ConnectorEditorModule {}
+export class ConnectorEditorModule {
+    constructor(componentRegister: ComponentRegisterService) {
+        componentRegister.setComponents({
+            [ProjectSettingsConnectorTabKey]: ConnectorSettingsDialogComponent
+        });
+    }
+}

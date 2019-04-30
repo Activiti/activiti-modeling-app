@@ -119,6 +119,11 @@
         "PROJECT": {
             "BACKTO": "Projects",
             "UPLOAD_FILE": "Upload file",
+            "DOWNLOAD_PROJECT": "Download project",
+            "SETTINGS": {
+                "PROJECT_SETTINGS": "Project settings",
+                "CONNECTORS_TAB_LABEL": "Connectors"
+            },
             "IMPORT": "Import",
             "CREATE_NEW": "Create new",
             "UPLOAD_FILE_SUCCESS": "The file was successfully uploaded",

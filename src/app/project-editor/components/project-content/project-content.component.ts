@@ -17,10 +17,9 @@
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ProjectEditorState, Project, selectProject } from 'ama-sdk';
+import { ProjectEditorState, Project, selectProject, LeaveProjectAction } from 'ama-sdk';
 import { Observable, Subscription } from 'rxjs';
-import { ExportProjectAction } from '../../store/project-editor.actions';
-import { LeaveProjectAction } from 'ama-sdk';
+import { ExportProjectAction, OpenProjectSettingsDialog } from '../../store/project-editor.actions';
 
 @Component({
     templateUrl: './project-content.component.html'
@@ -46,5 +45,9 @@ export class ProjectContentComponent implements OnInit, OnDestroy {
         };
 
         this.store.dispatch(new ExportProjectAction(payload));
+    }
+
+    openSettingsDialog(project: Project) {
+        this.store.dispatch(new OpenProjectSettingsDialog(project));
     }
 }
