@@ -113,6 +113,7 @@ export interface ValidateProcessPayload {
     title: string;
     processId: string;
     content: ProcessContent;
+    extensions: ProcessExtensions;
     action: Action;
 }
 

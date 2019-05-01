@@ -100,6 +100,7 @@ describe('ProcessHeaderComponent', () => {
             title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.PROCESS',
             processId: mockProcess.id,
             content: component.content,
+            extensions: mockProcess.extensions,
             action: new DownloadProcessAction(mockProcess)
         });
 
@@ -117,6 +118,7 @@ describe('ProcessHeaderComponent', () => {
             title: 'APP.DIALOGS.CONFIRM.SAVE.PROCESS',
             processId: mockProcess.id,
             content: component.content,
+            extensions: mockProcess.extensions,
             action: new UpdateProcessAttemptAction({
                 processId: mockProcess.id,
                 content: component.content,

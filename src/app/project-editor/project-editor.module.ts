@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { CoreModule } from '@alfresco/adf-core';
-import { SharedModule, Blob2JsonService } from 'ama-sdk';
+import { SharedModule } from 'ama-sdk';
 import { ProjectEditorRoutingModule } from './router/project-editor-routing.module';
 import { ProjectEffects } from './store/effects/project.effects';
 import { PROJECT_EDITOR_STATE_NAME } from 'ama-sdk';
@@ -61,7 +61,6 @@ import { ExtensionsModule } from '@alfresco/adf-extensions';
     exports: [ProjectEditorRoutingModule],
     entryComponents: [ ProjectSettingsComponent ],
     providers: [
-        Blob2JsonService,
         ProjectEditorService,
         ProjectTreeHelper
     ]

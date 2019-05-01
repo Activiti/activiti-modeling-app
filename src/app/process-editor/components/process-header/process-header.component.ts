@@ -58,6 +58,7 @@ export class ProcessHeaderComponent {
             title: 'APP.DIALOGS.CONFIRM.SAVE.PROCESS',
             processId: this.process.id,
             content: this.content,
+            extensions: this.process.extensions,
             action: new UpdateProcessAttemptAction({ processId: this.process.id, content: this.content, metadata })
         }));
     }
@@ -67,6 +68,7 @@ export class ProcessHeaderComponent {
             title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.PROCESS',
             processId: process.id,
             content: this.content,
+            extensions: this.process.extensions,
             action: new DownloadProcessAction(process)
         }));
     }
