@@ -36,9 +36,14 @@ import { ModelApi, ModelApiVariation } from './model-api';
 import { FormApiVariation } from './model-variations/form-api-variation';
 import { ProcessApiVariation } from './model-variations/process-api-variation';
 import { DataApiVariation } from './model-variations/data-api-variation';
+import { ProcessAcmApi } from './process-api';
 
 export function modelApiFactory (modelVariation: ModelApiVariation<any, any>, requestApiHelper: RequestApiHelper) {
     return new ModelApi(modelVariation, requestApiHelper);
+}
+
+export function processApiFactory (modelVariation: ModelApiVariation<any, any>, requestApiHelper: RequestApiHelper) {
+    return new ProcessAcmApi(modelVariation, requestApiHelper);
 }
 
 @NgModule({
@@ -54,7 +59,7 @@ export class ACMApiModule {
                 ACMProjectApi,
 
                 ProcessApiVariation,
-                { provide: PROCESS_API_TOKEN, useFactory: modelApiFactory, deps: [ProcessApiVariation, RequestApiHelper] },
+                { provide: PROCESS_API_TOKEN, useFactory: processApiFactory, deps: [ProcessApiVariation, RequestApiHelper] },
 
                 ConnectorApiVariation,
                 { provide: CONNECTOR_API_TOKEN, useFactory: modelApiFactory, deps: [ConnectorApiVariation, RequestApiHelper] },

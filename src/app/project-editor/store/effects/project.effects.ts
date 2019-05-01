@@ -21,7 +21,7 @@ import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
-import { BaseEffects, OpenConfirmDialogAction, Blob2JsonService, SnackbarErrorAction, DownloadResourceService, Project, DialogService } from 'ama-sdk';
+import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, Project, DialogService } from 'ama-sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import {
     GetProjectAttemptAction,
@@ -43,7 +43,7 @@ export class ProjectEffects extends BaseEffects {
         protected router: Router,
         protected downloadService: DownloadResourceService,
         private dialogService: DialogService,
-        protected blob2json: Blob2JsonService
+        protected blobService: BlobService
     ) {
         super(router, logService);
     }
@@ -96,7 +96,7 @@ export class ProjectEffects extends BaseEffects {
     }
 
     private handleValidationError(response: any): Observable<OpenConfirmDialogAction> {
-        return this.blob2json.convert(response.error.response.body).pipe(
+        return this.blobService.convert2Json(response.error.response.body).pipe(
             switchMap(body => of(new OpenConfirmDialogAction({
                 dialogData: {
                     title: body.message,

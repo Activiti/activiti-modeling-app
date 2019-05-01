@@ -16,44 +16,56 @@
  */
 
 
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PROCESS_FILE_FORMAT, AmaApi, DownloadResourceService, Process, ProcessContent, EntityDialogForm, UploadFileAttemptPayload } from 'ama-sdk';
+import {
+    PROCESS_FILE_FORMAT,
+    DownloadResourceService,
+    Process,
+    ProcessContent,
+    EntityDialogForm,
+    UploadFileAttemptPayload,
+    PROCESS_API_TOKEN,
+    ModelApiInterface,
+    ProcessExtensions
+} from 'ama-sdk';
 
 @Injectable()
 export class ProcessEditorService {
-    constructor(private amaApi: AmaApi, private downloadService: DownloadResourceService) {}
+    constructor(
+        @Inject(PROCESS_API_TOKEN) private processApi: ModelApiInterface<Process, ProcessContent>,
+        private downloadService: DownloadResourceService) {}
 
     getAll(projectId: string): Observable<Process[]> {
-        return this.amaApi.Process.getList(projectId);
+        return this.processApi.getList(projectId);
     }
 
     create(form: Partial<EntityDialogForm>, projectId: string): Observable<Process> {
-        return this.amaApi.Process.create(form, projectId);
+        return this.processApi.create(form, projectId);
     }
 
     delete(processId: string): Observable<any> {
-        return this.amaApi.Process.delete(processId);
+        return this.processApi.delete(processId);
     }
 
     upload(payload: UploadFileAttemptPayload): Observable<Process> {
-        return this.amaApi.Process.import(payload.file, payload.projectId);
+        return this.processApi.import(payload.file, payload.projectId);
     }
 
     update(processId: string, process: Process, processData: ProcessContent, projectId: string): Observable<Partial<Process>> {
-        return this.amaApi.Process.update(processId, process, processData, projectId);
+        return this.processApi.update(processId, process, processData, projectId);
     }
 
-    validate(processId: string, diagramData: ProcessContent): Observable<any> {
-        return this.amaApi.Process.validate(processId, diagramData);
+    validate(processId: string, diagramData: ProcessContent, extensions: ProcessExtensions): Observable<any> {
+        return this.processApi.validate(processId, diagramData, extensions);
     }
 
     getDetails(processId: string, projectId: string) {
-        return this.amaApi.Process.retrieve(processId, projectId);
+        return this.processApi.retrieve(processId, projectId);
     }
 
     getDiagram(processId: string) {
-        return this.amaApi.Process.export(processId);
+        return this.processApi.export(processId);
     }
 
     downloadDiagram(processName: string, processData: string) {

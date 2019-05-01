@@ -17,11 +17,12 @@
 
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { createJsonBlob } from '../helpers/utils/createJsonBlob';
 
 @Injectable()
-export class Blob2JsonService {
+export class BlobService {
 
-    convert(blob: Blob): Observable<any> {
+    convert2Json(blob: Blob): Observable<any> {
         return new Observable((observer) => {
             const reader = new FileReader();
 
@@ -31,5 +32,9 @@ export class Blob2JsonService {
 
             reader.readAsText(blob);
         });
+    }
+
+    createJsonBlob(fileContent: string, fileName: string) {
+        return createJsonBlob(fileContent, fileName);
     }
 }

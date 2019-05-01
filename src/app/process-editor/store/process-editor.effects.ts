@@ -204,7 +204,7 @@ export class ProcessEditorEffects extends BaseEffects {
     );
 
     private validateProcess(payload: ValidateProcessPayload) {
-        return this.processEditorService.validate(payload.processId, payload.content).pipe(
+        return this.processEditorService.validate(payload.processId, payload.content, payload.extensions).pipe(
             switchMap(() => [ payload.action ]),
             catchError(response => [ new OpenConfirmDialogAction({
                 dialogData: {

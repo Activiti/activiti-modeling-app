@@ -20,6 +20,7 @@ import { UuidService } from './uuid.service';
 import { AmaTitleService } from './title.service';
 import { DownloadResourceService } from './download-resource.service';
 import { provideTranslations } from '../i18n/provide-translations';
+import { BlobService } from './blob.service';
 
 @NgModule()
 export class AmaServicesModule {
@@ -28,6 +29,7 @@ export class AmaServicesModule {
             ngModule: AmaServicesModule,
             providers: [
                 provideTranslations('ama-sdk'),
+                BlobService,
                 UuidService,
                 AmaTitleService,
                 DownloadResourceService

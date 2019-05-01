@@ -20,7 +20,7 @@ import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { Observable, throwError, of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
-import { ACMApiModule, OpenConfirmDialogAction, DownloadResourceService, Blob2JsonService, DialogService } from 'ama-sdk';
+import { ACMApiModule, OpenConfirmDialogAction, DownloadResourceService, BlobService, DialogService } from 'ama-sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { LogService, AlfrescoApiService, AlfrescoApiServiceMock } from '@alfresco/adf-core';
@@ -73,8 +73,8 @@ describe('Project Effects', () => {
                     useValue: {fetchProject: jest.fn(), exportProject: jest.fn().mockReturnValue(of())}
                 },
                 {
-                    provide: Blob2JsonService,
-                    useValue: { convert: jest.fn().mockReturnValue(of({ message: 'test', errors: [ {description: 'd1'}, {description: 'd2'}, {description: 'd3'} ] })) }
+                    provide: BlobService,
+                    useValue: { convert2Json: jest.fn().mockReturnValue(of({ message: 'test', errors: [ {description: 'd1'}, {description: 'd2'}, {description: 'd3'} ] })) }
                 }
             ]
         });

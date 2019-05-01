@@ -100,6 +100,7 @@ export interface ServicesParameterMappings {
 }
 
 export interface ProcessExtensions {
+    id: string;
     properties: EntityProperties;
     mappings: ServicesParameterMappings;
 }

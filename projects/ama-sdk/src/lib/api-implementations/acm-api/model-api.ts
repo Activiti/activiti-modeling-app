@@ -42,7 +42,7 @@ export interface ModelApiVariation<M extends MinimalModelSummary, C> {
 
 export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
 
-    constructor(private modelVariation: ModelApiVariation<T, S>, private requestApiHelper: RequestApiHelper) {}
+    constructor(protected modelVariation: ModelApiVariation<T, S>, protected requestApiHelper: RequestApiHelper) {}
 
     public getList(containerId: string): Observable<T[]> {
         return this.requestApiHelper
@@ -119,7 +119,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
             .delete(`/v1/models/${modelId}`);
     }
 
-    public validate(modelId: string, content: S): Observable<any> {
+    public validate(modelId: string, content: S, modelExtensions?: any): Observable<any> {
         const requestOptions: RequestApiHelperOptions = {
             formParams: { file: new Blob([this.modelVariation.serialize(content)], { type: 'text/plain' }) },
             contentTypes: [ 'multipart/form-data' ]
