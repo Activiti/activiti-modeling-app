@@ -20,7 +20,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppConfigService } from '@alfresco/adf-core';
 import { UploadProjectAttemptAction } from '../../store/actions/projects';
-import { AmaState, CreateProjectAttemptAction } from 'ama-sdk';
+import { AmaState, CreateProjectAttemptAction, PROJECT_NAME_REGEX } from 'ama-sdk';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
 import { OpenEntityDialogAction } from '../../../store/actions/dialog';
 
@@ -61,7 +61,8 @@ export class DashboardNavigationComponent implements OnInit {
             title: 'APP.HOME.NEW_MENU.CREATE_PROJECT_TITLE',
             nameField: 'APP.HOME.DIALOGS.PROJECT_NAME',
             descriptionField: 'APP.HOME.DIALOGS.PROJECT_DESC',
-            action: CreateProjectAttemptAction
+            action: CreateProjectAttemptAction,
+            allowedCharacters: PROJECT_NAME_REGEX
         }));
     }
 }
