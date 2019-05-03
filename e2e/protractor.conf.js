@@ -8,7 +8,7 @@ require('dotenv').config();
 const E2E_HOST = process.env.E2E_HOST || 'localhost',
     E2E_PORT = process.env.E2E_PORT || 4100,
     BROWSER_RUN = process.env.BROWSER_RUN,
-    FAIL_FAST = process.env.E2E_FAIL_FAST;
+    FAIL_FAST = process.env.E2E_FAIL_FAST === 'true';
 
 exports.config = {
     SELENIUM_PROMISE_MANAGER: false,

@@ -3,8 +3,8 @@ const uploadOutput = require('../utils/upload-output');
 const failFast = require('protractor-fail-fast');
 
 const FOLDER = process.env.FOLDER || '',
-    SAVE_SCREENSHOT = (process.env.SAVE_SCREENSHOT == 'true'),
-    FAIL_FAST = process.env.E2E_FAIL_FAST;
+    SAVE_SCREENSHOT = process.env.SAVE_SCREENSHOT === 'true',
+    FAIL_FAST = process.env.E2E_FAIL_FAST === 'true';
 
 async function afterLaunch(statusCode) {
 
