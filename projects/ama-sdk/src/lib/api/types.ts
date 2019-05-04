@@ -82,17 +82,26 @@ export interface Process extends Model {
 export type ProcessVariableId = string;
 
 export type MappingsType = 'variable' | 'value' | 'static_value';
+export type ConnectorActionInputParameter = string;
+export type ConnectorActionOutputParameterId = string;
 
-export interface ServiceParameterMapping {
+export interface ServiceInputParameterMapping {
     [parameterId: string]: {
         type: MappingsType,
-        value: string;
+        value: ConnectorActionInputParameter;
+    };
+}
+
+export interface ServiceOutputParameterMapping {
+    [variableId: string]: {
+        type: 'variable',
+        value: ConnectorActionOutputParameterId;
     };
 }
 
 export interface ServiceParameterMappings {
-    inputs?: ServiceParameterMapping;
-    outputs?: ServiceParameterMapping;
+    inputs?: ServiceInputParameterMapping;
+    outputs?: ServiceOutputParameterMapping;
 }
 
 export interface ServicesParameterMappings {

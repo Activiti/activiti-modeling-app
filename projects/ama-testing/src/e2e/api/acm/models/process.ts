@@ -16,7 +16,7 @@
  */
 
 import { ACMCrud } from '../acm-crud';
-import { ServiceParameterMapping, MappingsType } from 'ama-sdk';
+import { ServiceInputParameterMapping, MappingsType, ServiceOutputParameterMapping } from 'ama-sdk';
 
 export class ACMProcess extends ACMCrud {
 
@@ -53,19 +53,19 @@ export class ACMProcess extends ACMCrud {
 }
 
 export class ServiceParameterMappings {
-    inputs: ServiceParameterMapping;
-    outputs: ServiceParameterMapping;
+    inputs: ServiceInputParameterMapping;
+    outputs: ServiceOutputParameterMapping;
 
-    constructor(inputs?: ServiceParameterMapping, outputs?: ServiceParameterMapping) {
+    constructor(inputs?: ServiceInputParameterMapping, outputs?: ServiceOutputParameterMapping) {
       this.inputs = inputs;
       this.outputs = outputs;
     }
 
-    setInputs(inputs?: ServiceParameterMapping) {
+    setInputs(inputs?: ServiceInputParameterMapping) {
       this.inputs = Object.assign(this.inputs, inputs);
     }
 
-    setOutputs(outputs?: ServiceParameterMapping) {
+    setOutputs(outputs?: ServiceOutputParameterMapping) {
       this.outputs = Object.assign(this.outputs, outputs);
     }
 }
@@ -75,7 +75,7 @@ export class ParameterMapping {
       value: string;
       type: MappingsType;
 
-    static getParameterMapping(parameterId: string, processVariable: string, variableType: MappingsType): ServiceParameterMapping {
+    static getParameterMapping(parameterId: string, processVariable: string, variableType: MappingsType): ServiceInputParameterMapping {
         const mapping = {};
         mapping[parameterId] = {
           type: variableType,

@@ -3,7 +3,8 @@ const uploadOutput = require('../utils/upload-output');
 const failFast = require('protractor-fail-fast');
 
 const FOLDER = process.env.FOLDER || '',
-    SAVE_SCREENSHOT = (process.env.SAVE_SCREENSHOT == 'true');
+    SAVE_SCREENSHOT = process.env.SAVE_SCREENSHOT === 'true',
+    FAIL_FAST = process.env.E2E_FAIL_FAST === 'true';
 
 async function afterLaunch(statusCode) {
 
@@ -25,7 +26,7 @@ async function afterLaunch(statusCode) {
         console.log(`Status code is ${statusCode}, no need to save screenshots.`);
     }
 
-    failFast.clean();
+    FAIL_FAST && failFast.clean();
 }
 
 module.exports = afterLaunch;
