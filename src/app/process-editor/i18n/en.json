@@ -1,9 +1,9 @@
 {
     "PROCESS_EDITOR": {
         "PRIORITIES": {
-            "LOW": "Low",
-            "MEDIUM": "Medium",
-            "HIGH": "High"
+            "LOW": "0",
+            "MEDIUM": "1",
+            "HIGH": "2"
         },
         "ACTIONS": {
             "ZOOM_IN": "Zoom in",
