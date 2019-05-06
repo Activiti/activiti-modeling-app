@@ -37,15 +37,15 @@
     "process-modeler": {
         "priorities": [
             {
-                "key": "0",
+                "key": 0,
                 "label": "PROCESS_EDITOR.PRIORITIES.LOW"
             },
             {
-                "key": "1",
+                "key": 1,
                 "label": "PROCESS_EDITOR.PRIORITIES.MEDIUM"
             },
             {
-                "key": "2",
+                "key": 2,
                 "label": "PROCESS_EDITOR.PRIORITIES.HIGH"
             }
         ]
