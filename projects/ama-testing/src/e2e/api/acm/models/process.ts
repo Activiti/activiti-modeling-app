@@ -29,6 +29,7 @@ export class ACMProcess extends ACMCrud {
         const entityUuid = `${this.type.toLowerCase()}-${entityId}`;
         return `<?xml version="1.0" encoding="UTF-8"?>
         <bpmn2:definitions
+            xmlns:activiti="http://activiti.org/bpmn"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL"
             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
