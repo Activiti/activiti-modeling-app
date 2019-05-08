@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage, LoginPageImplementation, UtilRandom } from 'ama-testing/e2e';
 import { DashboardPage } from 'ama-testing/e2e';
 import { Toolbar } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
@@ -46,7 +46,7 @@ describe('Export project', () => {
 
     beforeEach(async () => {
         backend = await getBackend(testConfig).setUp();
-        app = await backend.project.createAndWaitUntilAvailable();
+        app = await backend.project.createAndWaitUntilAvailable('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
     });
 
     beforeEach(async () => {

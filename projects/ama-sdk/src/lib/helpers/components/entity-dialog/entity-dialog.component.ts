@@ -21,6 +21,7 @@ import { Store } from '@ngrx/store';
 import { AmaState } from '../../../store/app.state';
 import { EntityDialogPayload } from '../../common';
 import { EntityDialogForm } from '../../common';
+import { MODEL_NAME_REGEX } from '../../utils/create-entries-names';
 
 @Component({
     templateUrl: './entity-dialog.component.html'
@@ -28,6 +29,7 @@ import { EntityDialogForm } from '../../common';
 export class EntityDialogComponent implements OnInit {
 
     submitButton: string;
+    validationRegex: RegExp;
     form: Partial<EntityDialogForm>;
     ENTER_KEY = 13;
 
@@ -40,12 +42,17 @@ export class EntityDialogComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        const { values } = this.data;
+        const { values, allowedCharacters } = this.data;
         this.submitButton = values ? 'APP.DIALOGS.SAVE' : 'APP.DIALOGS.CREATE';
+        this.validationRegex = allowedCharacters || MODEL_NAME_REGEX;
         this.form = {
             name: values && values.name ? values.name : '',
             description: values && values.description ? values.description : ''
         };
+    }
+
+    validate(): boolean {
+        return this.validationRegex.test(this.form.name);
     }
 
     submit(): void {

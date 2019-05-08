@@ -17,8 +17,8 @@
 
 export const Resources = {
     SIMPLE_PROJECT: {
-        file_location: `/resources/project/AMA_QA_UPLOADED_APP.zip`,
-        project_name: `AMA_QA_UPLOADED_APP`
+        file_location: `/resources/project/qa-uploaded-project.zip`,
+        project_name: `qa-uploaded-project`
     },
 
     SIMPLE_PROCESS: {
