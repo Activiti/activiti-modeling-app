@@ -24,6 +24,7 @@ import { ModelerInitOptions, BpmnFactory } from 'ama-sdk';
 */
 import BpmnModeler from 'bpmn-js/dist/bpmn-modeler.production.min';
 import { emptyPaletteModule } from './palette/dummy-bpmn-palette.provider';
+import { DecisionTableRenderModule } from './bpmn-js/renderers/decision-table.renderer';
 const activitiModdleDescriptor = require('./activiti.json');
 
 @Injectable()
@@ -31,7 +32,12 @@ export class BpmnFactoryService implements BpmnFactory {
     create({ clickHandler, changeHandler, removeHandler, selectHandler }: ModelerInitOptions): Bpmn.Modeler {
         const modeler = new BpmnModeler({
             keyboard: { bindTo: document },
-            ...this.getBpmnPropertiesPanelConfig()
+            additionalModules: [
+                emptyPaletteModule,
+                DecisionTableRenderModule,
+                ...this.getBpmnPropertiesPanelConfig()
+            ],
+            moddleExtensions: { activiti: activitiModdleDescriptor }
         });
 
         modeler.on('element.click', clickHandler);
@@ -43,12 +49,8 @@ export class BpmnFactoryService implements BpmnFactory {
     }
 
     protected getBpmnPropertiesPanelConfig() {
-        return {
-            additionalModules: [
-                emptyPaletteModule,
-                bpmnPropertiesProviderModule
-            ],
-            moddleExtensions: { activiti: activitiModdleDescriptor }
-        };
+        return [
+            bpmnPropertiesProviderModule
+        ];
     }
 }
