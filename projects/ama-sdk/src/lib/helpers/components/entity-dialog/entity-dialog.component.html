@@ -8,9 +8,9 @@
             required
             placeholder="{{ data.nameField | translate }}"
             data-automation-id="name-field"
-            [(ngModel)]="form.name"
-            [amasdk-allowed-characters]="data.allowedCharacters"/>
+            [(ngModel)]="form.name" />
     </mat-form-field>
+    <mat-error *ngIf="form.name && !validate()">{{ 'APP.DIALOGS.ERROR.NAME_DOESNT_MATCH_PATTERN' | translate }}: {{ validationRegex.toString() }}</mat-error>
     <br />
     <mat-form-field class="adf-full-width">
         <textarea matInput placeholder="{{ data.descriptionField | translate }}"
@@ -31,7 +31,7 @@
     <button class="adf-dialog-action-button"
             mat-button (click)="submit()"
             data-automation-id="submit-button"
-            [disabled]="!form.name.trim().length">
+            [disabled]="!validate()">
         {{ submitButton | translate }}
     </button>
 </mat-dialog-actions>
