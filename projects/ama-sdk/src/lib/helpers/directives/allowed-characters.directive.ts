@@ -16,7 +16,7 @@
  */
 
 import { Directive, HostListener, ElementRef, Input, Renderer2 } from '@angular/core';
-import { MODEL_NAME_CHARACTERS } from './../utils/create-entries-names';
+import { MODEL_NAME_REGEX } from './../utils/create-entries-names';
 import { Store } from '@ngrx/store';
 import { AmaState } from '../../store/app.state';
 import { SnackbarErrorAction } from '../../store/public_api';
@@ -27,10 +27,8 @@ import { TranslationService } from '@alfresco/adf-core';
 })
 export class AllowedCharactersDirective {
 
-    defaultRegex: RegExp = new RegExp(`^[${MODEL_NAME_CHARACTERS}]*$`);
-
     /* tslint:disable-next-line:no-input-rename */
-    @Input('amasdk-allowed-characters') regexInput: RegExp = this.defaultRegex;
+    @Input('amasdk-allowed-characters') regexInput: RegExp = MODEL_NAME_REGEX;
 
     constructor(
         private el: ElementRef,
@@ -40,7 +38,7 @@ export class AllowedCharactersDirective {
     ) {}
 
     get regex() {
-        return this.regexInput || this.defaultRegex;
+        return this.regexInput || MODEL_NAME_REGEX;
     }
 
     @HostListener('keypress', ['$event']) onKeyPress(event) {
