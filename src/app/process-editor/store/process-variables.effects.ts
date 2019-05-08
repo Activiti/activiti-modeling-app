@@ -79,7 +79,7 @@ export class ProcessVariablesEffects extends BaseEffects {
 
         this.dialogService.openDialog(VariablesComponent, {
             disableClose: true,
-            height: '480px',
+            height: '530px',
             width: '1000px',
             data: { properties, title, columns, required, propertiesUpdate$, theme$ },
         });
