@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage, LoginPageImplementation, UtilRandom } from 'ama-testing/e2e';
 import { DashboardPage } from 'ama-testing/e2e';
 import { DeleteEntityDialog } from 'ama-testing/e2e';
 import { SnackBar } from 'ama-testing/e2e';
@@ -42,7 +42,7 @@ describe('Delete project', () => {
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        app = await backend.project.createAndWaitUntilAvailable();
+        app = await backend.project.createAndWaitUntilAvailable('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
     });
 
     beforeAll(async () => {

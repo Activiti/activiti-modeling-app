@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage, LoginPageImplementation, UtilRandom } from 'ama-testing/e2e';
 import { SidebarActionMenu } from 'ama-testing/e2e';
 import { CreateEntityDialog } from 'ama-testing/e2e';
 import { DashboardPage } from 'ama-testing/e2e';
@@ -55,7 +55,7 @@ describe('Create project', () => {
     it('1. [C284637] Create new project', async () => {
         await sidebarActionMenu.createProject();
 
-        const project = await createEntityDialog.setEntityDetails();
+        const project = await createEntityDialog.setEntityDetails('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
 
         expect(await snackBar.isCreatedSuccessfully('project')).toBe(true);
         expect(await dashboardPage.isProjectNameInList(project.name)).toBe(true);

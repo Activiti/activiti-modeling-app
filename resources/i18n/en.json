@@ -16,7 +16,8 @@
             "EDIT_VISIBILITY_CONDITIONS": "Edit Visibility Conditions",
             "ERROR": {
                 "TITLE": "Do you want to save it any way?",
-                "SUBTITLE": "Validation errors:"
+                "SUBTITLE": "Validation errors:",
+                "NAME_DOESNT_MATCH_PATTERN": "The name doesn't match the following pattern"
             },
             "CONFIRM": {
                 "TITLE": "Are you sure?",

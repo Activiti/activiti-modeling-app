@@ -22,7 +22,9 @@ export const UI_FILE_FORMAT = '.json';
 export const DATA_FILE_FORMAT = '.json';
 export const DECISION_TABLE_FILE_FORMAT = '.dmn';
 export const MODEL_NAME_CHARACTERS = 'a-zA-Z0-9_';
-export const CONNECTOR_NAME_REGEX = /^[a-z0-9]{0,26}$/;
+export const MODEL_NAME_REGEX = /^[a-zA-Z0-9_]{1,}$/;
+export const CONNECTOR_NAME_REGEX = /^[a-z0-9]{1,26}$/;
+export const PROJECT_NAME_REGEX = /^[a-z0-9]([-a-z0-9]{0,24}[a-z0-9])?$/;
 
 export const sanitizeString = (text: string) => {
     const pastedText = text,
