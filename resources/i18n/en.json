@@ -541,5 +541,18 @@
                 "NOT_VALID_SCHEMA": "The JSON object does not match to schema."
             }
         }
+    },
+
+    "ABOUT" : {
+        "TITLE": "Plugins",
+        "TABLE_HEADERS": {
+            "ID": "Id",
+            "NAME": "Name",
+            "VERSION": "Version",
+            "VENDOR": "Vendor",
+            "LICENSE": "License",
+            "RUNTIME": "Runtime",
+            "DESCRIPTION": "Description"
+        }
     }
 }
