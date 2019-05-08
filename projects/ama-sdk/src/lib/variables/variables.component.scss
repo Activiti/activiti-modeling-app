@@ -1,11 +1,16 @@
 @mixin ama-variables($theme) {
     .properties-content {
-        height: 340px;
+        height: 380px;
 
         &.variables-dialog-content {
             .mat-tab-body.mat-tab-body-active {
                 min-height: 280px;
             }
+        }
+
+        .code-editor {
+            max-height: 300px;
+            overflow: hidden;
         }
 
         .json-editor {
