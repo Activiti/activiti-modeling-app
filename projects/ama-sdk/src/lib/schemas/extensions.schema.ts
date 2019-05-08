@@ -28,6 +28,9 @@ export const extensionsSchema = {
 
     "additionalProperties" : false,
     "properties": {
+        "id": {
+            "type": "string"
+        },
         "properties": {
             "type": "object",
             "additionalProperties": false,
@@ -73,5 +76,6 @@ export const extensionsSchema = {
                 }
             }
         }
-    }
+    },
+    "required": [ "id" ]
 };
