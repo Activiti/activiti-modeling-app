@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage, LoginPageImplementation, UtilRandom } from 'ama-testing/e2e';
 import { DashboardPage } from 'ama-testing/e2e';
 import { CreateEntityDialog } from 'ama-testing/e2e';
 import { SnackBar } from 'ama-testing/e2e';
@@ -42,7 +42,7 @@ describe('Update project', () => {
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        app = await backend.project.createAndWaitUntilAvailable();
+        app = await backend.project.createAndWaitUntilAvailable('ama-qa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
     });
 
     beforeAll(async () => {
@@ -53,7 +53,7 @@ describe('Update project', () => {
 
     it('1. [C289977] Update project name and description', async () => {
         const appId = app.entry.id;
-        const updatedAppName = app.entry.name + '_updated';
+        const updatedAppName = app.entry.name + '-updated';
 
         await dashboardPage.editProject(appId);
         await createEntityDialog.setEntityDetails(updatedAppName, app.entry.name + ' description');
