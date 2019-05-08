@@ -26,7 +26,7 @@ describe('priorityHandler', () => {
 
     beforeEach(() => {
         handler = handlers[property];
-        mockElement = getDiagramElementMock({ [property]: 'new-value' });
+        mockElement = getDiagramElementMock({ [property]: '0' });
         modeling = getModelingMock();
     });
 
@@ -39,7 +39,7 @@ describe('priorityHandler', () => {
             const get = handler.get;
             const priority = get(mockElement);
 
-            expect(priority).toBe('new-value');
+            expect(priority).toBe('0');
         });
     });
 
@@ -47,12 +47,12 @@ describe('priorityHandler', () => {
         it('should set the new priority value', () => {
             const set = handler.set,
                 get = handler.get,
-                modifiedValue = 'modified-value';
+                modifiedValue = '0';
 
             set(modeling, mockElement, modifiedValue);
             const priority = get(mockElement);
 
-            expect(priority).toBe('modified-value');
+            expect(priority).toBe(0);
         });
     });
 });
