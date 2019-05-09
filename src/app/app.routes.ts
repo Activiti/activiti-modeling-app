@@ -23,6 +23,7 @@ import { projectEditorRoutes } from './project-editor/router/project-editor.rout
 import { HostSettingsComponent } from './app/host-settings/host-settings.component';
 import { AmaLocalStorageMergeGuard } from './common/services/ama-localstorage-merge-guard.service';
 import { AmaRoleGuard } from './ama-role-guard.service';
+import { ErrorContentComponent } from './app/error/error-content.component';
 
 export const appRoutes: Routes = [
     { path: 'login', component: AppLoginComponent },
@@ -31,11 +32,20 @@ export const appRoutes: Routes = [
     {
         path: '',
         component: AppLayoutComponent,
-        canActivate: [ AuthGuard, AmaRoleGuard, AmaLocalStorageMergeGuard ],
+        canActivate: [ AuthGuard, AmaLocalStorageMergeGuard ],
         children: [
-            { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+            { path: 'error/:id', component: ErrorContentComponent },
+            {
+                path: 'dashboard',
+                canActivate: [AmaRoleGuard],
+                loadChildren: './dashboard/dashboard.module#DashboardModule',
+            },
             // Impossible to lazily load ADF modules, that is why the hack
-            { path: 'projects', children: projectEditorRoutes },
+            {
+                path: 'projects',
+                canActivate: [AmaRoleGuard],
+                children: projectEditorRoutes
+            },
             { path: 'home', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
         ]

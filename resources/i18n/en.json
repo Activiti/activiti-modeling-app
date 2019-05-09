@@ -535,6 +535,7 @@
         },
         "GENERAL": {
             "ERRORS": {
+                "CHANGE_USER": "Change user",
                 "NOT_VALID_JSON": "Not valid JSON object.",
                 "NOT_VALID_SCHEMA": "The JSON object does not match to schema."
             }

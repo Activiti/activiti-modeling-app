@@ -15,21 +15,21 @@
  * limitations under the License.
  */
 
- export * from './common';
- export * from './dialog';
- export * from './authenticated.page';
- export * from './calendar';
- export * from './errors.page';
- export * from './code-editor.widget';
- export * from './connector-content.page';
- export * from './dashboard.page';
- export * from './login-aps.page';
- export * from './login.page';
- export * from './process-content.page';
- export * from './process-modeler.component';
- export * from './process-properties.card';
- export * from './project-content.page';
- export * from './sidebar.menu';
- export * from './snackbar';
- export * from './toolbar';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AmaState } from 'ama-sdk';
+import { LogoutAction } from '../../store/actions/app.actions';
 
+@Component({
+    selector: 'ama-error-content',
+    templateUrl: './error-content.component.html',
+    styleUrls: ['./error-content.component.scss']
+})
+export class ErrorContentComponent {
+    errorCode = '403';
+    constructor(private store: Store<AmaState>) {}
+
+    onUserChange() {
+        this.store.dispatch(new LogoutAction());
+    }
+}
