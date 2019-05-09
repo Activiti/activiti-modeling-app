@@ -17,16 +17,18 @@
 
 import { testConfig } from '../../test.config';
 import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
-import { AuthenticatedPage } from 'ama-testing/e2e';
+import { AuthenticatedPage, ErrorsPage } from 'ama-testing/e2e';
 
 describe('User Authorization', () => {
 
     const authenticatedPage = new AuthenticatedPage(testConfig);
 
     let loginPage: LoginPageImplementation;
+    let errorsPage: ErrorsPage;
 
     beforeEach(async () => {
         loginPage = LoginPage.get(testConfig);
+        errorsPage = new ErrorsPage(testConfig);
         await loginPage.navigateTo();
     });
 
@@ -38,6 +40,6 @@ describe('User Authorization', () => {
 
     it('2. [C289854] Login with user without "ACTIVITI_MODELER" role ', async () => {
         await loginPage.login(testConfig.ama.unauthorized_user, testConfig.ama.unauthorized_user_password);
-        expect(await loginPage.isLoginPageDisplayed()).toBe(true);
+        expect(await errorsPage.isUnauthorised()).toBe(true);
     });
 });
