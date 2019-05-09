@@ -41,5 +41,7 @@ describe('User Authorization', () => {
     it('2. [C289854] Login with user without "ACTIVITI_MODELER" role ', async () => {
         await loginPage.login(testConfig.ama.unauthorized_user, testConfig.ama.unauthorized_user_password);
         expect(await errorsPage.isUnauthorised()).toBe(true);
+
+        await authenticatedPage.logout();
     });
 });
