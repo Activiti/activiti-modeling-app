@@ -19,8 +19,6 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { AppConfigService } from '@alfresco/adf-core';
 import { AuthTokenProcessorService } from 'ama-sdk';
-import { Store } from '@ngrx/store';
-import { AmaState, AmaAuthenticationService } from 'ama-sdk';
 
 @Injectable()
 export class AmaRoleGuard implements CanActivate {
@@ -29,9 +27,7 @@ export class AmaRoleGuard implements CanActivate {
     constructor(
         private appConfig: AppConfigService,
         private router: Router,
-        private authService: AuthTokenProcessorService,
-        protected store: Store<AmaState>,
-        protected amaAuthService: AmaAuthenticationService) { }
+        private authService: AuthTokenProcessorService) { }
 
     canActivate(): boolean {
         const roles = this.appConfig.get<string[]>('roles');
@@ -43,7 +39,9 @@ export class AmaRoleGuard implements CanActivate {
 
         if (!this.isAllowed) {
             this.router.navigate(['/error/403']);
+            return false;
         }
-       return true;
+
+        return true;
     }
 }

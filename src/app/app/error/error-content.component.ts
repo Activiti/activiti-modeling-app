@@ -16,19 +16,20 @@
  */
 
 import { Component } from '@angular/core';
-import { AuthenticationService } from '@alfresco/adf-core';
+import { Store } from '@ngrx/store';
+import { AmaState } from 'ama-sdk';
+import { LogoutAction } from '../../store/actions/app.actions';
 
 @Component({
-  selector: 'ama-error-content',
-  templateUrl: './error-content.component.html',
-  styleUrls: ['./error-content.component.scss']
+    selector: 'ama-error-content',
+    templateUrl: './error-content.component.html',
+    styleUrls: ['./error-content.component.scss']
 })
 export class ErrorContentComponent {
+    errorCode = '403';
+    constructor(private store: Store<AmaState>) {}
 
-  errorCode = '403';
-  constructor(private authService: AuthenticationService) { }
-
-  onUserChange() {
-    this.authService.logout();
-  }
+    onUserChange() {
+        this.store.dispatch(new LogoutAction());
+    }
 }
