@@ -1,0 +1,7 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <adf-error-content [errorCode]="errorCode" [returnButtonUrl]="'#/logout'">
+    </adf-error-content>
+    <button mat-raised-button color="primary" (click)="onUserChange()">
+        {{ 'Change User' | uppercase }}
+    </button>
+</div>

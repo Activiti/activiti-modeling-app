@@ -39,6 +39,7 @@ import { ProjectEditorModule } from './project-editor/project-editor.module';
 import { appRoutes } from './app.routes';
 import { ConnectorEditorModule } from './connector-editor/connector-editor.module';
 import { AmaLocalStorageMergeGuard } from './common/services/ama-localstorage-merge-guard.service';
+import { ErrorContentComponent } from './app/error/error-content.component';
 import { BpmnjsPropertiesModule } from './bpmnjs-properties/bpmnjs-properties.module';
 import { environment } from '../environments/environment';
 import { MatInputModule } from '@angular/material';
@@ -83,6 +84,7 @@ import { ModelStorageService } from './common/services/model-storage.service';
         AppComponent,
         AppLoginComponent,
         AppLayoutComponent,
+        ErrorContentComponent,
         CurrentUserComponent,
         SettingsDialogComponent,
         HostSettingsComponent

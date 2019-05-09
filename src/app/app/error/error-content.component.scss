@@ -1,0 +1,6 @@
+@mixin ama-error-content-theme($theme) {
+
+    adf-error-content .adf-error-content .adf-error-content-buttons {
+        display: none !important;
+    }
+}

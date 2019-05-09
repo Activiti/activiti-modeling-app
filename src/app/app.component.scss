@@ -1,6 +1,7 @@
 @import "./app/app-layout/app-layout.component";
 @import "./app/app-layout/app-layout-global.component";
 @import "./app/app-login/app-login.component";
+@import "./app/error/error-content.component";
 @import "./app/header/current-user/current-user.component";
 @import "./app/settings/settings-dialog.component";
 @import "./dashboard/dashboard.module";
@@ -11,6 +12,7 @@
 @mixin ama-theme($theme) {
     @include ama-layout-global-theme($theme);
     @include ama-app-login($theme);
+    @include ama-error-content-theme($theme);
     @include ama-layout-theme($theme);
     @include ama-current-user($theme);
     @include adf-dialog-theme($theme);
