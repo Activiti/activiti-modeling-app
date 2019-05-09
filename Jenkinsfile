@@ -21,7 +21,9 @@
         steps {
           container('nodejs') {
             sh "npm install"
-            sh "npm run build"
+            //sh "npm run build"
+            sh "npm run e2e"
+            sh "npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod"  
             //sh "npm test"
             //sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
 
