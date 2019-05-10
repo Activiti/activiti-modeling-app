@@ -39,7 +39,7 @@ describe('priorityHandler', () => {
             const get = handler.get;
             const priority = get(mockElement);
 
-            expect(priority).toBe('0');
+            expect(priority).toBe(0);
         });
     });
 
