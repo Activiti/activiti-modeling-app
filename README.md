@@ -1,5 +1,8 @@
 # Activiti Modeling Application
 
+| master | [![Build Status](https://travis-ci.org/Activiti/activiti-modeling-app.svg?branch=master)](https://travis-ci.org/Activiti/activiti-modeling-app) |
+| - | - |
+
 <p align="center">
     <img title="Activiti" width="250px" src="activiti.png" alt="Activiti">
 </p>
