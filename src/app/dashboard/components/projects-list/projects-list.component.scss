@@ -12,14 +12,23 @@
     .dashboard {
         display: flex;
         justify-content: center;
+        height: 100%;
 
         .mat-paginator {
             padding: 10px 0;
+
+            .mat-form-field-type-mat-select {
+                width: 30%;
+            }
         }
 
         &-list {
             flex: 1 0 auto;
             background: transparent;
+
+            .mat-table {
+                min-height: calc(100% - 78px);
+            }
 
             .mat-header-row {
                 background: mat-color($background, card);

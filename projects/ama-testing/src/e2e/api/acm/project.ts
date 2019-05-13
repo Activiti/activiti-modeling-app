@@ -25,7 +25,7 @@ export class ACMProject implements ProjectApi {
 
     requestApiHelper: E2eRequestApiHelper;
     endPoint = '/v1/projects/';
-    namePrefix = 'QA_APS_APP_';
+    namePrefix = 'aps-app-';
 
     constructor(backend: ACMBackend) {
         this.requestApiHelper = new E2eRequestApiHelper(backend);
@@ -77,7 +77,7 @@ export class ACMProject implements ProjectApi {
     }
 
     private getRandomName(): string {
-        return this.namePrefix + UtilRandom.generateString();
+        return this.namePrefix + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz');
     }
 
 }

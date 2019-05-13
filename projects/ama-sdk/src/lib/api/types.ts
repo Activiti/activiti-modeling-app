@@ -238,3 +238,9 @@ export interface Pagination {
     skipCount: number;
     totalItems: number;
 }
+
+export interface PaginatedEntries<T> {
+    entries: T[];
+    pagination: Pagination;
+}
+

@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { ProjectApi } from '../../api/project-api.interface';
 import { Observable } from 'rxjs';
-import { Project, PROJECT, Release, Pagination } from '../../api/types';
+import { Project, PROJECT, Release, Pagination, PaginatedEntries } from '../../api/types';
 import { map } from 'rxjs/operators';
 import { RequestApiHelper } from './request-api.helper';
 
@@ -85,7 +85,7 @@ export class ACMProjectApi implements ProjectApi {
         );
     }
 
-    public getAll(pagination: Partial<Pagination> = {}): Observable<{ entries: Project[]; pagination: Pagination }> {
+    public getAll(pagination: Partial<Pagination> = {}): Observable<PaginatedEntries<Project>> {
         return this.requestApiHelper
             .get('/v1/projects', { queryParams: pagination })
             .pipe(

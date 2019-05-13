@@ -66,7 +66,7 @@
 
                     <div *ngIf="pagination$ | async; let pagination">
                         <mat-paginator
-                            (page)="onPageChange($event)"
+                            (page)="onPageChange($event, pagination)"
                             [pageIndex]="pagination.skipCount / pagination.maxItems"
                             [length]="pagination.totalItems"
                             [pageSize]="pagination.maxItems"

@@ -18,7 +18,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project, Release, Pagination } from './types';
+import { Project, Release, Pagination, PaginatedEntries } from './types';
 
 @Injectable()
 export abstract class ProjectApi {
@@ -29,6 +29,6 @@ export abstract class ProjectApi {
 
     public abstract import(file: File):  Observable<any>;
     public abstract export(projectId: string): Observable<Blob>;
-    public abstract getAll(pagination?: Partial<Pagination>): Observable<{ entries: Project[]; pagination: Pagination }>;
+    public abstract getAll(pagination?: Partial<Pagination>): Observable<PaginatedEntries<Project>>;
     public abstract release(projectId: string): Observable<Release>;
 }

@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Project, Release, Pagination } from 'ama-sdk';
+import { Project, Release, Pagination, PaginatedEntries } from 'ama-sdk';
 import { EntityDialogForm } from 'ama-sdk';
 
 
@@ -76,7 +76,7 @@ export class GetProjectsAttemptAction implements Action {
 export const GET_PROJECTS_SUCCESS = 'GET_PROJECTS_SUCCESS';
 export class GetProjectsSuccessAction implements Action {
     readonly type = GET_PROJECTS_SUCCESS;
-    constructor(public payload: { entries: Project[]; pagination: Pagination }) {}
+    constructor(public payload: PaginatedEntries<Project>) {}
 }
 
 export const SHOW_PROJECTS = 'SHOW_PROJECTS';

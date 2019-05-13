@@ -58,8 +58,11 @@ export class ProjectsListComponent implements OnInit {
         );
     }
 
-    onPageChange(event: PageEvent) {
-        this.store.dispatch(new GetProjectsAttemptAction({ maxItems: event.pageSize, skipCount: event.pageSize * event.pageIndex }));
+    onPageChange(event: PageEvent, pagination: Pagination) {
+        this.store.dispatch(new GetProjectsAttemptAction({
+            maxItems: event.pageSize,
+            skipCount: event.pageSize === pagination.maxItems ? event.pageSize * event.pageIndex : 0
+        }));
     }
 
     rowSelected(item: Partial<Project>): void {
