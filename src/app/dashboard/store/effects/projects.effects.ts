@@ -23,7 +23,7 @@ import { of } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { switchMap, catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { BaseEffects } from 'ama-sdk';
+import { BaseEffects, Pagination } from 'ama-sdk';
 import {
     GetProjectsAttemptAction,
     GET_PROJECTS_ATTEMPT,
@@ -42,7 +42,7 @@ import {
     UploadProjectSuccessAction,
     ReleaseProjectAttemptAction,
     RELEASE_PROJECT_ATTEMPT,
-    ReleaseProjectSuccessAction,
+    ReleaseProjectSuccessAction
 } from '../actions/projects';
 import { Store } from '@ngrx/store';
 import { AmaState, CreateProjectAttemptAction, CREATE_PROJECT_ATTEMPT, } from 'ama-sdk';
@@ -66,13 +66,7 @@ export class ProjectsEffects extends BaseEffects {
     showProjectsEffect = this.actions$.pipe(
         ofType<ShowProjectsAction>(SHOW_PROJECTS),
         withLatestFrom(this.store.select(selectProjectsLoaded)),
-        switchMap(([action, projectsLoaded]) => {
-            if (!projectsLoaded) {
-                return of(new GetProjectsAttemptAction());
-            } else {
-                return of();
-            }
-        })
+        switchMap(([action, loaded]) => loaded ? of() : of(new GetProjectsAttemptAction(action.pagination)))
     );
 
     @Effect()
@@ -106,7 +100,7 @@ export class ProjectsEffects extends BaseEffects {
     @Effect()
     getProjectsAttemptEffect = this.actions$.pipe(
         ofType<GetProjectsAttemptAction>(GET_PROJECTS_ATTEMPT),
-        switchMap(() => this.getProjectsAttempt())
+        switchMap(action => this.getProjectsAttempt(action.pagination))
     );
 
     @Effect()
@@ -166,12 +160,10 @@ export class ProjectsEffects extends BaseEffects {
         );
     }
 
-    private getProjectsAttempt() {
-        return this.dashboardService.fetchProjects().pipe(
+    private getProjectsAttempt(pagination: Partial<Pagination>) {
+        return this.dashboardService.fetchProjects(pagination).pipe(
             switchMap(projects => [new GetProjectsSuccessAction(projects)]),
-            catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'APP.HOME.ERROR.LOAD_PROJECTS'), e)
-            )
+            catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'APP.HOME.ERROR.LOAD_PROJECTS'), e))
         );
     }
 
@@ -181,9 +173,7 @@ export class ProjectsEffects extends BaseEffects {
                 new UploadProjectSuccessAction(project),
                 new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_UPLOADED')
             ]),
-            catchError(e =>
-                this.genericErrorHandler(this.handleProjectUploadError.bind(this, e), e)
-            )
+            catchError(e => this.genericErrorHandler(this.handleProjectUploadError.bind(this, e), e))
         );
     }
 

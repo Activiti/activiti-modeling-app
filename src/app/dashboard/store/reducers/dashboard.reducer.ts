@@ -83,7 +83,8 @@ function setProjects(state: DashboardState, action: GetProjectsSuccessAction): D
     const newState = Object.assign({}, state);
     newState.projectsLoaded = true;
     newState.loading = false;
-    newState.projects = action.payload.reduce<ProjectSummaryEntities>((projects, project) => {
+    newState.pagination = action.payload.pagination;
+    newState.projects = action.payload.entries.reduce<ProjectSummaryEntities>((projects, project) => {
         return { ...projects, [project.id]: project };
     }, {});
 

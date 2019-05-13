@@ -17,7 +17,6 @@
 
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
-
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -30,7 +29,7 @@ export class ProjectsLoaderGuard implements CanActivate {
     constructor(private store: Store<AmaState>) { }
 
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-        this.store.dispatch(new ShowProjectsAction());
+        this.store.dispatch(new ShowProjectsAction({ maxItems: 10 }));
         return of(true);
     }
 }

@@ -13,6 +13,10 @@
         display: flex;
         justify-content: center;
 
+        .mat-paginator {
+            padding: 10px 0;
+        }
+
         &-list {
             flex: 1 0 auto;
             background: transparent;

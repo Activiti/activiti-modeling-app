@@ -230,3 +230,11 @@ export interface Data extends Model {
 export interface DecisionTable extends Model {
     type: DECISION_TABLE_TYPE;
 }
+
+export interface Pagination {
+    count: number;
+    hasMoreItems: boolean;
+    maxItems: number;
+    skipCount: number;
+    totalItems: number;
+}
