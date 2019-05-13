@@ -29,7 +29,9 @@ import {
     GetProcessSuccessAction,
     UpdateProcessSuccessAction,
     UPDATE_PROCESS_EXTENSIONS,
-    UpdateProcessExtensionsAction
+    UpdateProcessExtensionsAction,
+    REMOVE_ELEMENT_MAPPING,
+    RemoveElementMappingAction
 } from './process-editor.actions';
 import { UPDATE_PROCESS_VARIABLES, UpdateProcessVariablesAction } from './process-variables.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState, processAdapter } from './process-entities.state';
@@ -69,6 +71,9 @@ export function processEntitiesReducer(
         case UPDATE_PROCESS_EXTENSIONS:
             return updateExtensions(state, <UpdateProcessExtensionsAction> action);
 
+        case REMOVE_ELEMENT_MAPPING:
+            return removeElementMapping(state, <RemoveElementMappingAction> action);
+
         case LEAVE_PROJECT:
             return {
                 ...state,
@@ -78,6 +83,12 @@ export function processEntitiesReducer(
         default:
             return { ...state };
     }
+}
+
+function removeElementMapping(state: ProcessEntitiesState, action: RemoveElementMappingAction): ProcessEntitiesState {
+    const newState = cloneDeep(state);
+    delete newState.entities[action.processId].extensions.mappings[action.elementId];
+    return newState;
 }
 
 function updateExtensions(state: ProcessEntitiesState, action: UpdateProcessExtensionsAction): ProcessEntitiesState {

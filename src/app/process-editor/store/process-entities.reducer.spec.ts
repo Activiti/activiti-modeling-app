@@ -27,7 +27,9 @@ import {
     ProcessActions,
     UpdateProcessSuccessAction,
     UPDATE_PROCESS_SUCCESS,
-    GetProcessSuccessAction
+    GetProcessSuccessAction,
+    RemoveElementMappingAction,
+    REMOVE_ELEMENT_MAPPING
 } from './process-editor.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState } from './process-entities.state';
 import { PROCESS, Process, ProcessContent, ServiceParameterMappings, UpdateServiceParametersAction, EntityProperty, EntityProperties } from 'ama-sdk';
@@ -81,6 +83,31 @@ describe('ProcessEntitiesReducer', () => {
         });
         expect(newState.loading).toEqual(false);
         expect(newState.loaded).toEqual(true);
+    });
+
+    it('should handle REMOVE_ELEMENT_MAPPING', () => {
+        const elementId = 'UserTask_0o7efx6';
+        const processes = [{ ...process, extensions: {
+            mappings: {
+                [elementId]: {
+                    inputs: {
+                        'e441111c-5a3d-4f78-a571-f57e67ce85bf': {
+                            type: 'value',
+                            value: 'test'
+                        }
+                    }
+                }
+            },
+            id: 'mock-id',
+            properties: {}
+        } }];
+        action = <GetProcessesSuccessAction>{ type: GET_PROCESSES_SUCCESS, processes };
+        let newState = processEntitiesReducer(initialState, action);
+
+        action = <RemoveElementMappingAction>{ type: REMOVE_ELEMENT_MAPPING, processId: process.id, elementId };
+        newState = processEntitiesReducer(newState, action);
+
+        expect(newState.entities[process.id].extensions.mappings).toEqual({});
     });
 
     it('should handle DELETE_PROCESS_SUCCESS', () => {

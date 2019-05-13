@@ -157,6 +157,12 @@ export class RemoveDiagramElementAction implements Action {
     constructor(public element?: SelectedProcessElement) {}
 }
 
+export const REMOVE_ELEMENT_MAPPING = '[Process] Remove elemet mapping';
+export class RemoveElementMappingAction implements Action {
+    readonly type = REMOVE_ELEMENT_MAPPING;
+    constructor(public elementId: string, public processId: string) {}
+}
+
 export type ProcessActions =
     | ShowProcessesAction
     | UploadProcessAttemptAction
@@ -170,4 +176,5 @@ export type ProcessActions =
     | UpdateProcessSuccessAction
     | DeleteProcessAttemptAction
     | DeleteProcessSuccessAction
+    | RemoveElementMappingAction
     | UpdateServiceParametersAction;

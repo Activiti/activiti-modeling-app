@@ -53,7 +53,10 @@ import {
     DeleteProcessSuccessAction,
     CreateProcessSuccessAction,
     GetProcessesSuccessAction,
-    CREATE_PROCESS_SUCCESS
+    CREATE_PROCESS_SUCCESS,
+    RemoveDiagramElementAction,
+    REMOVE_DIAGRAM_ELEMENT,
+    RemoveElementMappingAction
 } from './process-editor.actions';
 import {
     BaseEffects,
@@ -64,7 +67,8 @@ import {
     PROCESS, EntityDialogForm,
     UPDATE_SERVICE_PARAMETERS,
     ProcessModelerServiceToken,
-    ProcessModelerService
+    ProcessModelerService,
+    selectOpenedModel
 } from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { SetAppDirtyStateAction } from 'ama-sdk';
@@ -107,6 +111,13 @@ export class ProcessEditorEffects extends BaseEffects {
     getProcessesEffect = this.actions$.pipe(
         ofType<GetProcessesAttemptAction>(GET_PROCESSES_ATTEMPT),
         switchMap(action => this.getProcesses(action.projectId))
+    );
+
+    @Effect()
+    removeDiagramElementEffect = this.actions$.pipe(
+        ofType<RemoveDiagramElementAction>(REMOVE_DIAGRAM_ELEMENT),
+        mergeMap(action => zip(of(action), this.store.select(selectOpenedModel))),
+        mergeMap(([action, process]) => of(new RemoveElementMappingAction(action.element.id, process.id)))
     );
 
     @Effect()
