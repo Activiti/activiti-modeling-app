@@ -52,7 +52,14 @@ describe('dashboardReducer', () => {
     });
 
     describe('GET_PROJECTS_SUCCESS', () => {
-        const action = new GetProjectsSuccessAction(<Partial<Project>[]>[mockProject]);
+        const mockPagination = {
+            count: 1,
+            hasMoreItems: false,
+            maxItems: 10,
+            skipCount: 0,
+            totalItems: 1
+        };
+        const action = new GetProjectsSuccessAction(<any>{entries: [mockProject], pagination: mockPagination });
 
         it('should load the projects', () => {
             const newState = dashboardReducer(initialState, action);
@@ -60,6 +67,7 @@ describe('dashboardReducer', () => {
             expect(newState.projectsLoaded).toBe(true);
             expect(newState.loading).toBe(false);
             expect(newState.projects).toEqual({ [mockProject.id]: mockProject });
+            expect(newState.pagination).toEqual(mockPagination);
         });
     });
 
