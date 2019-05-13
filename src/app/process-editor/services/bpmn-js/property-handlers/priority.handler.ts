@@ -19,7 +19,7 @@
 
 const propertyKey = BpmnProperty.priority;
 
-const get = element => element.businessObject.get(propertyKey);
+const get = element => parseInt(element.businessObject.get(propertyKey), 10);
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
     modeling.updateProperties(element, {
         [propertyKey]: parseInt(value, 10)
