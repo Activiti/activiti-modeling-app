@@ -23,7 +23,6 @@ import { FactoryProps } from './cardview-properties.factory';
 const propertyName = BpmnProperty.conditionExpression;
 
 export function createExpressionProperty({ element }: FactoryProps) {
-   if (element.businessObject.sourceRef.$type ===  BpmnElement.ExclusiveGateway) {
     return new CardViewTextItemModel({
         label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.EXPRESSION',
         value: ElementHelper.getProperty(element, propertyName),
@@ -33,7 +32,4 @@ export function createExpressionProperty({ element }: FactoryProps) {
         editable: true,
         data: { id: element.id }
     });
-   } else {
-       return;
-   }
 }
