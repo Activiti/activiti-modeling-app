@@ -20,6 +20,7 @@ import { BpmnProperty, BpmnElement, DECISION_TASK_IMPLEMENTATION } from 'ama-sdk
 const isSignalEvent = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions;
 const haveSignalRef = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions[0].signalRef;
 const isDecisionTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === DECISION_TASK_IMPLEMENTATION;
+const isExclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type ===  BpmnElement.ExclusiveGateway;
 
 export const elementsProperties = {
     [BpmnElement.Process]: [
@@ -48,7 +49,7 @@ export const elementsProperties = {
         BpmnProperty.documentation,
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : [BpmnProperty.formKey])
     ],
-    [BpmnElement.BoundaryEvent]: (element) => [
+    [BpmnElement.BoundaryEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
@@ -59,11 +60,11 @@ export const elementsProperties = {
         BpmnProperty.name,
         BpmnProperty.documentation
     ],
-    [BpmnElement.SequenceFlow]: [
+    [BpmnElement.SequenceFlow]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
-        BpmnProperty.conditionExpression
+        ...(isExclusiveGateway(element) ? [ BpmnProperty.conditionExpression ] : [])
     ],
     [BpmnElement.ExclusiveGateway]: [
         BpmnProperty.id,
