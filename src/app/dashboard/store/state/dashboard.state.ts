@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Project } from 'ama-sdk';
+import { Project, Pagination } from 'ama-sdk';
 
 export interface ProjectSummaryEntities {
     [key: string]: Partial<Project>;
@@ -25,10 +25,12 @@ export interface DashboardState {
     projects: ProjectSummaryEntities;
     loading: boolean;
     projectsLoaded: boolean;
+    pagination: Pagination;
 }
 
 export const INITIAL_DASHBOARD_STATE: DashboardState = {
     projects: {},
+    pagination: null,
     loading: false,
     projectsLoaded: false
 };

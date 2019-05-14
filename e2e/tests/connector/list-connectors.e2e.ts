@@ -47,10 +47,8 @@ describe('List connectors', async () => {
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-
         project1 = await backend.project.createAndWaitUntilAvailable();
         connector1 = await backend.connector.create(project1.entry.id, 'qaconnector1');
-
         project2 = await backend.project.createAndWaitUntilAvailable();
         connector2 = await backend.connector.create(project2.entry.id, 'qaconnector2');
     });
@@ -99,9 +97,7 @@ describe('List connectors', async () => {
         await dashboardPage.navigateToProject(project1.entry.id);
         await projectContentPage.openFilter('connector');
         expect(await projectContentPage.isModelInList('connector', connector1.entry.name)).toBe(true, 'Connector is not displayed in the left sidebar');
-
         await toolbar.goToHome();
-
         await dashboardPage.navigateToProject(project2.entry.id);
         await projectContentPage.openFilter('connector');
         expect(await projectContentPage.isModelInList('connector', connector2.entry.name)).toBe(true, 'Connector is not displayed in the left sidebar');

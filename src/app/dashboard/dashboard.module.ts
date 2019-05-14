@@ -33,12 +33,14 @@ import { DASHBOARD_STATE_NAME } from './store/selectors/dashboard.selectors';
 import { EffectsModule } from '@ngrx/effects';
 import { ProjectsEffects } from './store/effects/projects.effects';
 import { SharedModule } from 'ama-sdk';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
     imports: [
         CommonModule,
         MomentModule,
         DashboardRoutingModule,
+        MatPaginatorModule,
         CoreModule.forChild(),
         SharedModule,
         StoreModule.forFeature(DASHBOARD_STATE_NAME, dashboardReducer),

@@ -15,19 +15,20 @@
  * limitations under the License.
  */
 
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { MatTableDataSource } from '@angular/material';
-import { selectProjectSummaries, selectLoading } from '../../store/selectors/dashboard.selectors';
-import { AmaState, Project, OpenConfirmDialogAction, PROJECT_NAME_REGEX } from 'ama-sdk';
+import { MatTableDataSource, PageEvent } from '@angular/material';
+import { selectProjectSummaries, selectLoading, selectPagination } from '../../store/selectors/dashboard.selectors';
+import { AmaState, Project, OpenConfirmDialogAction, PROJECT_NAME_REGEX, Pagination } from 'ama-sdk';
 import { OpenEntityDialogAction } from '../../../store/actions/dialog';
 import {
     DeleteProjectAttemptAction,
     UpdateProjectAttemptAction,
-    ReleaseProjectAttemptAction
+    ReleaseProjectAttemptAction,
+    GetProjectsAttemptAction
 } from '../../store/actions/projects';
 import { sortEntriesByName } from '../../../common/helpers/sort-entries-by-name';
 
@@ -38,7 +39,9 @@ import { sortEntriesByName } from '../../../common/helpers/sort-entries-by-name'
 export class ProjectsListComponent implements OnInit {
     dataSource$: Observable<MatTableDataSource<Partial<Project>>>;
     loading$: Observable<boolean>;
+    pagination$: Observable<Pagination>;
     displayedColumns = ['thumbnail', 'name', 'created', 'createdBy', 'version', 'menu'];
+    pageSizeOptions = [ 10, 25, 50, 100 ];
 
     @Input() customDataSource$: Observable<Partial<Project>[]>;
 
@@ -46,12 +49,20 @@ export class ProjectsListComponent implements OnInit {
 
     ngOnInit() {
         this.loading$ = this.store.select(selectLoading);
+        this.pagination$ = this.store.select(selectPagination);
         this.dataSource$ = (this.customDataSource$ || this.store.select(selectProjectSummaries).pipe(
             map(entries => Object.keys(entries).map(id => entries[id]))
         )).pipe(
             map(sortEntriesByName),
             map(entriesArray =>  new MatTableDataSource<Partial<Project>>(entriesArray))
         );
+    }
+
+    onPageChange(event: PageEvent, pagination: Pagination) {
+        this.store.dispatch(new GetProjectsAttemptAction({
+            maxItems: event.pageSize,
+            skipCount: event.pageSize === pagination.maxItems ? event.pageSize * event.pageIndex : 0
+        }));
     }
 
     rowSelected(item: Partial<Project>): void {

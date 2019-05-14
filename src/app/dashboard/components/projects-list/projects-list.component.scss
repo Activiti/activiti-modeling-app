@@ -10,11 +10,29 @@
     }
 
     .dashboard {
-        display: flex;
-        justify-content: center;
+        height: 100%;
+
+        .paginator-block {
+            border-top: 1px solid mat-color($foreground, text, 0.07);
+        }
+
+        .mat-paginator {
+            &-container {
+                position: relative;
+                .mat-paginator-page-size {
+                    position: absolute;
+                    left: 20px;
+                }
+            }
+
+            .mat-form-field-type-mat-select {
+                width: 56px;
+            }
+        }
 
         &-list {
-            flex: 1 0 auto;
+            overflow: scroll;
+            height: calc(100% - 55px);
             background: transparent;
 
             .mat-header-row {
@@ -67,6 +85,7 @@
 
         &-spinner {
             margin-top: 20%;
+            margin-left: calc(50% - 100px);
         }
 
         &-emptylist .adf-empty-content {
