@@ -63,16 +63,6 @@
                         <mat-row *matRowDef="let row; columns: displayedColumns;">
                         </mat-row>
                     </mat-table>
-
-                    <div *ngIf="pagination$ | async; let pagination">
-                        <mat-paginator
-                            (page)="onPageChange($event, pagination)"
-                            [pageIndex]="pagination.skipCount / pagination.maxItems"
-                            [length]="pagination.totalItems"
-                            [pageSize]="pagination.maxItems"
-                            [pageSizeOptions]="pageSizeOptions">
-                        </mat-paginator>
-                    </div>
                 </div>
             </ng-container>
 
@@ -86,8 +76,21 @@
         </ng-container>
     </ng-container>
 
+    <div *ngIf="(dataSource$ | async).data.length" class="paginator-block">
+        <mat-paginator
+            *ngIf="pagination$ | async; let pagination"
+            (page)="onPageChange($event, pagination)"
+            [pageIndex]="pagination.skipCount / pagination.maxItems"
+            [length]="pagination.totalItems"
+            [pageSize]="pagination.maxItems"
+            [pageSizeOptions]="pageSizeOptions">
+        </mat-paginator>
+    </div>
+
     <ng-template #loadingTemplate>
-        <mat-spinner class="dashboard-spinner"></mat-spinner>
+        <div class="dashboard-list">
+            <mat-spinner class="dashboard-spinner"></mat-spinner>
+        </div>
     </ng-template>
 
 </div>

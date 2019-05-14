@@ -29,7 +29,7 @@ export class ProjectsLoaderGuard implements CanActivate {
     constructor(private store: Store<AmaState>) { }
 
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-        this.store.dispatch(new ShowProjectsAction({ maxItems: 10 }));
+        this.store.dispatch(new ShowProjectsAction({ maxItems: 25 }));
         return of(true);
     }
 }
