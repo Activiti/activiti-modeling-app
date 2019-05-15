@@ -24,6 +24,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { ProcessEditorComponent } from './components/process-editor/process-editor.component';
 import { ProcessModelerComponent } from './components/process-modeler/process-modeler.component';
 import { ProcessHeaderComponent } from './components/process-header/process-header.component';
+import { EditorFooterComponent } from './components/editor-footer/editor-footer.component';
 import { ProcessModelerServiceImplementation } from './services/process-modeler.service';
 import { ProcessEditorService } from './services/process-editor.service';
 import { ProcessEditorEffects } from './store/process-editor.effects';
@@ -44,6 +45,7 @@ import {
     BpmnFactoryToken,
     ProcessModelerServiceToken,
     AmaStoreModule,
+    LoggingModule,
     PROCESSES_ENTITY_KEY
 } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
@@ -51,7 +53,7 @@ import { CardViewProcessVariablesItemComponent } from './services/cardview-prope
 import { CardViewImplementationItemComponent } from './services/cardview-properties/implementation-item/implementation-item.component';
 import { CardViewDecisionTaskItemComponent } from './services/cardview-properties/decision-task-item/decision-task-item.component';
 import { ProcessPropertiesComponent } from './components/process-properties/process-properties.component';
-import { MatTooltipModule } from '@angular/material';
+import { MatTooltipModule, MatChipsModule } from '@angular/material';
 import { getProcessesFilterProvider } from './extension/processes-filter.extension';
 import { getProcessCreatorProvider } from './extension/process-creator.extension';
 import { getProcessUploaderProvider } from './extension/process-uploader.extension';
@@ -82,13 +84,16 @@ import { CardViewSignalRefItemComponent } from './services/cardview-properties/s
         StoreModule.forFeature(PROCESS_EDITOR_STATE_NAME, processEditorReducer),
         SharedModule,
         VariablesModule,
+        LoggingModule,
         MatTooltipModule,
+        MatChipsModule,
         CodeEditorModule,
         DragDropModule
     ],
     declarations: [
         ProcessEditorComponent,
         ProcessHeaderComponent,
+        EditorFooterComponent,
         PaletteComponent,
         PaletteOverlayDirective,
         ProcessModelerComponent,

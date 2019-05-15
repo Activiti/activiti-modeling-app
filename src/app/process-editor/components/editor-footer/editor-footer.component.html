@@ -1,0 +1,25 @@
+<ng-container *ngIf="showConsole">
+    <mat-toolbar class="log-history-toolbar">
+        <span class="log-history-toolbar-title">Log history</span>
+        <div class="log-history-controls">
+            <button mat-icon-button (click)="toggleConsole()">
+                <mat-icon>expand_more</mat-icon>
+            </button>
+            <button mat-icon-button>
+                <mat-icon>delete_sweep</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+    <amasdk-log-history class="log-history"></amasdk-log-history>
+</ng-container>
+<mat-toolbar class="editor-footer-toolbar">
+    <div class="editor-footer-toolbar-left">
+        <div class="loading-indicator">
+            <mat-progress-spinner color="primary" mode="indeterminate" diameter="20"></mat-progress-spinner>
+        </div>
+    </div>
+    <div class="editor-footer-toolbar-right">
+        <div class="footer-user-message">Ln 21, Col 19</div>
+        <div class="message-indicator" (click)="toggleConsole()">16</div>
+    </div>
+</mat-toolbar>

@@ -1,5 +1,6 @@
 @import "./components/process-editor/process-editor.component";
 @import "./components/process-modeler/process-modeler.component";
+@import "./components/editor-footer/editor-footer.component";
 @import "./components/process-properties/process-properties.component";
 @import "./components/process-modeler/process-modeler-bpmnjs.component";
 @import "./services/cardview-properties/implementation-item/implementation-item.component";
@@ -16,6 +17,7 @@
     @include ama-default-sequence-flow-item($theme);
     @include ama-process-editor($theme);
     @include ama-process-modeler($theme);
+    @include ama-editor-footer($theme);
     @include ama-process-properties-panel($theme);
     @include ama-process-modeler-bpmnjs($theme);
     @include ama-process-variable-item($theme);

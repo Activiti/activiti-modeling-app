@@ -17,7 +17,7 @@
 
 import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { filter, map, take } from 'rxjs/operators';
+import { filter, map, take, catchError } from 'rxjs/operators';
 import { Observable, combineLatest, of } from 'rxjs';
 import { selectProcessCrumb, selectProcessLoading, selectSelectedProcessDiagram } from '../../store/process-editor.selectors';
 import {
@@ -33,7 +33,8 @@ import {
     ProcessModelerServiceToken,
     CodeValidatorService,
     ProcessExtensions,
-    extensionsSchema
+    extensionsSchema,
+    SnackbarErrorAction
 } from 'ama-sdk';
 import { UpdateProcessExtensionsAction } from '../../store/process-editor.actions';
 
@@ -88,7 +89,13 @@ export class ProcessEditorComponent implements OnInit {
 
     onXmlChangeAttempt(processContent: ProcessContent): void {
         this.processModeler.loadXml(processContent)
-            .pipe(take(1))
+            .pipe(
+                take(1),
+                catchError(error => {
+                    this.store.dispatch(new SnackbarErrorAction('Could not parse xml document, modifications won\'t be applied. \n' + error.message));
+                    return of();
+                })
+            )
             .subscribe(() => this.store.dispatch(new SetAppDirtyStateAction(true)));
     }
 
