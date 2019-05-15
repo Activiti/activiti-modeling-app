@@ -1,7 +1,7 @@
 <div class="log-entry log-{{log.type}}">
     <div class="log-meta">
         <mat-icon>chevron_right</mat-icon>
-        <span class="log-initiator">{{ log.initiator }}</span> at
+        <span class="log-initiator">{{ log.initiator.displayName }}</span> at
         <span class="log-datetime">{{ log.datetime | date:"HH:mm:ss" }} </span>
         <span class="log-level">[{{ log.type }}]</span>
     </div>

@@ -15,7 +15,11 @@
  * limitations under the License.
  */
 
-export * from './interfaces';
-export * from './logging.module';
-export * from './store/logging.actions';
-export * from './utils/logging.functions';
+import { Action } from '@ngrx/store';
+import { LogMessage } from '../interfaces';
+
+export const LOG_ACTION = 'LOG_ACTION';
+export class LogAction implements Action {
+    readonly type = LOG_ACTION;
+    constructor(public log: LogMessage) {}
+}

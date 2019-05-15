@@ -15,7 +15,21 @@
  * limitations under the License.
  */
 
-export * from './interfaces';
-export * from './logging.module';
-export * from './store/logging.actions';
-export * from './utils/logging.functions';
+import { Component, Inject } from '@angular/core';
+import { EDITOR_FOOTER_SERVICE_TOKEN, EditorFooterService } from '../../../services/editor-footer.service.interface';
+
+@Component({
+    selector: 'amasdk-editor-footer',
+    templateUrl: './editor-footer.component.html'
+})
+export class EditorFooterComponent {
+
+    showConsole = false;
+
+    constructor(@Inject(EDITOR_FOOTER_SERVICE_TOKEN) public editorFooterService: EditorFooterService) {}
+
+    toggleConsole() {
+        this.showConsole = !this.showConsole;
+        this.editorFooterService.setHistoryVisibility(this.showConsole);
+    }
+}

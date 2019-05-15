@@ -22,6 +22,13 @@ import { UploadFileAttemptPayload } from 'ama-sdk';
 import { SelectedProcessElement } from './process-editor.state';
 import { Update } from '@ngrx/entity';
 
+
+export const SET_LOG_HISTORY_VISIBILITY = '[Process] SET_LOG_HISTORY_VISIBILITY';
+export class SetLogHistoryVisibilityAction implements Action {
+    readonly type = SET_LOG_HISTORY_VISIBILITY;
+    constructor(public visible: boolean) {}
+}
+
 export interface UpdateProcessExtensionsPayload {
     extensions: ProcessExtensions;
     processId: string;

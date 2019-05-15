@@ -21,9 +21,15 @@ export enum MESSAGE {
     ERROR = 'error'
 }
 
+export interface LogMessageInitiator {
+    key: string | Symbol;
+    displayName: string;
+    extra?: any;
+}
+
 export interface LogMessage {
     type: MESSAGE;
     datetime: Date;
-    initiator: string;
+    initiator: LogMessageInitiator;
     messages: string[];
 }

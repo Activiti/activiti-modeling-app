@@ -16,7 +16,7 @@
  */
 
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { LogMessage, MESSAGE } from '../../interfaces';
+import { LogMessage } from '../../interfaces';
 
 @Component({
     selector: 'amasdk-log-history',
@@ -27,66 +27,4 @@ export class LogHistoryComponent {
 
     @Input()
     messages: LogMessage[];
-
-    constructor() {
-        this.messages = [{
-            type: MESSAGE.INFO,
-            initiator: 'Process Editor',
-            datetime: new Date(),
-            messages: [
-                '<script>alert("cheat")</script>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.',
-                'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.',
-                'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.'
-            ]
-        }, {
-            type: MESSAGE.ERROR,
-            initiator: 'System',
-            datetime: new Date(),
-            messages: [
-                'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.'
-            ]
-        }, {
-            type: MESSAGE.INFO,
-            initiator: 'API',
-            datetime: new Date(),
-            messages: [
-                'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.'
-            ]
-        }, {
-            type: MESSAGE.WARN,
-            initiator: 'System',
-            datetime: new Date(),
-            messages: [
-                'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.'
-            ]
-        }, {
-            type: MESSAGE.INFO,
-            initiator: 'Process Editor',
-            datetime: new Date(),
-            messages: [
-                'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.'
-            ]
-        }, {
-            type: MESSAGE.ERROR,
-            initiator: 'System',
-            datetime: new Date(),
-            messages: [
-                'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.'
-            ]
-        }, {
-            type: MESSAGE.INFO,
-            initiator: 'API',
-            datetime: new Date(),
-            messages: [
-                'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.'
-            ]
-        }, {
-            type: MESSAGE.WARN,
-            initiator: 'System',
-            datetime: new Date(),
-            messages: [
-                'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.'
-            ]
-        }];
-    }
 }

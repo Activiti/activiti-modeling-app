@@ -24,7 +24,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { ProcessEditorComponent } from './components/process-editor/process-editor.component';
 import { ProcessModelerComponent } from './components/process-modeler/process-modeler.component';
 import { ProcessHeaderComponent } from './components/process-header/process-header.component';
-import { EditorFooterComponent } from './components/editor-footer/editor-footer.component';
 import { ProcessModelerServiceImplementation } from './services/process-modeler.service';
 import { ProcessEditorService } from './services/process-editor.service';
 import { ProcessEditorEffects } from './store/process-editor.effects';
@@ -45,7 +44,6 @@ import {
     BpmnFactoryToken,
     ProcessModelerServiceToken,
     AmaStoreModule,
-    LoggingModule,
     PROCESSES_ENTITY_KEY
 } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
@@ -84,7 +82,6 @@ import { CardViewSignalRefItemComponent } from './services/cardview-properties/s
         StoreModule.forFeature(PROCESS_EDITOR_STATE_NAME, processEditorReducer),
         SharedModule,
         VariablesModule,
-        LoggingModule,
         MatTooltipModule,
         MatChipsModule,
         CodeEditorModule,
@@ -93,7 +90,6 @@ import { CardViewSignalRefItemComponent } from './services/cardview-properties/s
     declarations: [
         ProcessEditorComponent,
         ProcessHeaderComponent,
-        EditorFooterComponent,
         PaletteComponent,
         PaletteOverlayDirective,
         ProcessModelerComponent,

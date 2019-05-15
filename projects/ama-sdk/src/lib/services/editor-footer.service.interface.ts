@@ -15,7 +15,18 @@
  * limitations under the License.
  */
 
-export * from './interfaces';
-export * from './logging.module';
-export * from './store/logging.actions';
-export * from './utils/logging.functions';
+import { InjectionToken } from '@angular/core';
+import { Observable } from 'rxjs';
+import { LogMessage } from '../logging/interfaces';
+
+export interface EditorFooterService {
+    userMessage$: Observable<string>;
+    inProgress$: Observable<boolean>;
+    logs$: Observable<LogMessage[]>;
+    newErrorNumber$: Observable<number>;
+    isNewError$: Observable<boolean>;
+
+    setHistoryVisibility(visibility: boolean): void;
+}
+
+export const EDITOR_FOOTER_SERVICE_TOKEN = new InjectionToken<EditorFooterService>('editor-footer-service');

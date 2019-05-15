@@ -34,13 +34,20 @@ import {
     CodeValidatorService,
     ProcessExtensions,
     extensionsSchema,
-    SnackbarErrorAction
+    SnackbarErrorAction,
+    EDITOR_FOOTER_SERVICE_TOKEN,
+    logError
 } from 'ama-sdk';
 import { UpdateProcessExtensionsAction } from '../../store/process-editor.actions';
+import { ProcessEditorFooterService } from '../../services/process-editor-footer.service';
+import { getProcessLogInitiator } from '../../services/process-editor.constants';
 
 @Component({
     templateUrl: './process-editor.component.html',
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    providers: [
+        { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: ProcessEditorFooterService }
+    ]
 })
 export class ProcessEditorComponent implements OnInit {
     loading$: Observable<boolean>;
@@ -92,7 +99,8 @@ export class ProcessEditorComponent implements OnInit {
             .pipe(
                 take(1),
                 catchError(error => {
-                    this.store.dispatch(new SnackbarErrorAction('Could not parse xml document, modifications won\'t be applied. \n' + error.message));
+                    this.store.dispatch(logError(getProcessLogInitiator(), error.message));
+                    this.store.dispatch(new SnackbarErrorAction('Could not parse xml document'));
                     return of();
                 })
             )

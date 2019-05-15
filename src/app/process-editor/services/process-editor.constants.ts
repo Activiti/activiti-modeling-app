@@ -15,19 +15,14 @@
  * limitations under the License.
  */
 
-import { Component } from '@angular/core';
+import { LogMessageInitiator } from 'ama-sdk';
 
-@Component({
-    selector: 'ama-editor-footer',
-    templateUrl: './editor-footer.component.html'
-})
-export class EditorFooterComponent {
+export const PROCESS_EDITOR_LOGS = Symbol('Process Editor');
 
-    showConsole = false;
-
-    constructor() {}
-
-    toggleConsole() {
-        this.showConsole = !this.showConsole;
-    }
+export function getProcessLogInitiator(extra?: any): LogMessageInitiator {
+    return {
+        key: PROCESS_EDITOR_LOGS,
+        displayName: 'Process Editor',
+        extra
+    };
 }

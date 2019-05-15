@@ -24,18 +24,22 @@ import { MatIconModule } from '@angular/material';
 import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
 import { CoreModule } from '@alfresco/adf-core';
 import { AllowedCharactersDirective } from './directives/allowed-characters.directive';
+import { EditorFooterComponent } from './components/editor-footer/editor-footer.component';
+import { LoggingModule } from '../logging/logging.module';
 
 @NgModule({
     imports: [
         CommonModule,
         MatIconModule,
         RouterModule,
+        LoggingModule,
         CoreModule.forChild(),
     ],
     declarations: [
         ProcessNamePipe,
         HeaderBreadcrumbsComponent,
         EntityDialogComponent,
+        EditorFooterComponent,
         AllowedCharactersDirective
     ],
     entryComponents: [ EntityDialogComponent ],
@@ -43,6 +47,7 @@ import { AllowedCharactersDirective } from './directives/allowed-characters.dire
         ProcessNamePipe,
         HeaderBreadcrumbsComponent,
         EntityDialogComponent,
+        EditorFooterComponent,
         AllowedCharactersDirective
     ]
 })
