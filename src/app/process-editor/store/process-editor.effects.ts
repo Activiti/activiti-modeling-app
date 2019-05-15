@@ -68,7 +68,8 @@ import {
     UPDATE_SERVICE_PARAMETERS,
     ProcessModelerServiceToken,
     ProcessModelerService,
-    selectOpenedModel
+    selectOpenedModel,
+    BpmnElement
 } from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { SetAppDirtyStateAction } from 'ama-sdk';
@@ -98,13 +99,7 @@ export class ProcessEditorEffects extends BaseEffects {
         ofType<ShowProcessesAction>(SHOW_PROCESSES),
         map(action => action.projectId),
         switchMap(projectId => zip(of(projectId), this.store.select(selectProcessesLoaded))),
-        switchMap(([projectId, loaded]) => {
-            if (!loaded) {
-                return of(new GetProcessesAttemptAction(projectId));
-            } else {
-                return of();
-            }
-        })
+        switchMap(([projectId, loaded]) => loaded ? of(new GetProcessesAttemptAction(projectId)) : of())
     );
 
     @Effect()
@@ -116,6 +111,7 @@ export class ProcessEditorEffects extends BaseEffects {
     @Effect()
     removeDiagramElementEffect = this.actions$.pipe(
         ofType<RemoveDiagramElementAction>(REMOVE_DIAGRAM_ELEMENT),
+        filter(action => action.element.type === BpmnElement.ServiceTask),
         mergeMap(action => zip(of(action), this.store.select(selectOpenedModel))),
         mergeMap(([action, process]) => of(new RemoveElementMappingAction(action.element.id, process.id)))
     );
