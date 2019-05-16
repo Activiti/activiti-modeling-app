@@ -20,6 +20,7 @@
  */
 
 export { CodeEditorModule } from './code-editor.module';
+export { CodeEditorPosition } from './components/code-editor/code-editor.component';
 export {
     CodeValidatorService,
     AjvInjectionToken,

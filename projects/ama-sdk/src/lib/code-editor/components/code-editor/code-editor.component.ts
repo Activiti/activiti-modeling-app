@@ -20,6 +20,10 @@ import { NgxEditorModel } from 'ngx-monaco-editor';
 const memoize = require('lodash/memoize');
 
 export type EditorOptions = monaco.editor.IEditorOptions | { language: string; theme: string };
+export interface CodeEditorPosition {
+    column: number;
+    lineNumber: number;
+}
 
 const createMemoizedEditorOptions = memoize(
     (theme, language, basicOptions): EditorOptions => ({ ...basicOptions, theme, language }),
@@ -36,6 +40,7 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     @Input() options: EditorOptions;
     @Input() content = '';
     @Output() changed = new EventEmitter<string>();
+    @Output() positionChanged = new EventEmitter<CodeEditorPosition>();
 
     private editor: monaco.editor.ICodeEditor = <monaco.editor.ICodeEditor>{ dispose: () => {} };
     editorModel: NgxEditorModel;
@@ -70,6 +75,10 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
         editor.onKeyUp(() => {
             clearTimeout(timer);
             timer = window.setTimeout(() => this.onEditorChange(), 1000);
+        });
+
+        editor.onDidChangeCursorPosition((event: {position: CodeEditorPosition}) => {
+            this.positionChanged.emit(event.position);
         });
     }
 

@@ -27,6 +27,7 @@ export interface EditorFooterService {
     isNewError$: Observable<boolean>;
 
     setHistoryVisibility(visibility: boolean): void;
+    clearLogs(): void;
 }
 
 export const EDITOR_FOOTER_SERVICE_TOKEN = new InjectionToken<EditorFooterService>('editor-footer-service');

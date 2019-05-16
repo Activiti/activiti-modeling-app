@@ -29,6 +29,18 @@ export class SetLogHistoryVisibilityAction implements Action {
     constructor(public visible: boolean) {}
 }
 
+export const CLEAR_LOG_HISTORY = '[Process] CLEAR_LOG_HISTORY';
+export class ClearLogHistoryAction implements Action {
+    readonly type = CLEAR_LOG_HISTORY;
+    constructor() {}
+}
+
+export const TOOLBAR_MESSAGE = '[Process] TOOLBAR_MESSAGE';
+export class ToolbarMessageAction implements Action {
+    readonly type = TOOLBAR_MESSAGE;
+    constructor(public message: string) {}
+}
+
 export interface UpdateProcessExtensionsPayload {
     extensions: ProcessExtensions;
     processId: string;

@@ -36,11 +36,13 @@ import {
     extensionsSchema,
     SnackbarErrorAction,
     EDITOR_FOOTER_SERVICE_TOKEN,
-    logError
+    logError,
+    CodeEditorPosition
 } from 'ama-sdk';
-import { UpdateProcessExtensionsAction } from '../../store/process-editor.actions';
+import { UpdateProcessExtensionsAction, ToolbarMessageAction } from '../../store/process-editor.actions';
 import { ProcessEditorFooterService } from '../../services/process-editor-footer.service';
 import { getProcessLogInitiator } from '../../services/process-editor.constants';
+import { MatTabChangeEvent } from '@angular/material';
 
 @Component({
     templateUrl: './process-editor.component.html',
@@ -58,6 +60,7 @@ export class ProcessEditorComponent implements OnInit {
     extensions$: Observable<string>;
     vsTheme$: Observable<string>;
     disableSave: boolean;
+    tabNames = ['Diagram editor', 'XML editor', 'Extensions editor'];
 
     constructor(
         private store: Store<AmaState>,
@@ -90,6 +93,14 @@ export class ProcessEditorComponent implements OnInit {
             .pipe(map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light')));
     }
 
+    selectedTabChange(event: MatTabChangeEvent) {
+        this.store.dispatch(new ToolbarMessageAction(this.tabNames[event.index]));
+    }
+
+    codeEditorPositionChanged(position: CodeEditorPosition) {
+        this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
+    }
+
     onBpmnEditorChange(): void {
         this.processModeler.export().then(content => this.content$ = of(content));
     }
@@ -100,7 +111,7 @@ export class ProcessEditorComponent implements OnInit {
                 take(1),
                 catchError(error => {
                     this.store.dispatch(logError(getProcessLogInitiator(), error.message));
-                    this.store.dispatch(new SnackbarErrorAction('Could not parse xml document'));
+                    this.store.dispatch(new SnackbarErrorAction('Could not parse xml document. Diagram hasn\'t been updated.'));
                     return of();
                 })
             )

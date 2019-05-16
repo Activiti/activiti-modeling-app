@@ -28,7 +28,10 @@ import {
     VALIDATE_PROCESS_ATTEMPT,
     UPDATE_PROCESS_ATTEMPT,
     SetLogHistoryVisibilityAction,
-    SET_LOG_HISTORY_VISIBILITY
+    SET_LOG_HISTORY_VISIBILITY,
+    CLEAR_LOG_HISTORY,
+    TOOLBAR_MESSAGE,
+    ToolbarMessageAction
 } from './process-editor.actions';
 import { OPEN_CONFIRM_DIALOG, LOG_ACTION, LogAction } from 'ama-sdk';
 import { PROCESS_EDITOR_LOGS } from '../services/process-editor.constants';
@@ -55,8 +58,26 @@ export function processEditorReducer(
         case REMOVE_DIAGRAM_ELEMENT:
             return removeElement(state, <RemoveDiagramElementAction> action);
 
+        case TOOLBAR_MESSAGE:
+            return {
+                ...state,
+                toolbar: {
+                    ...state.toolbar,
+                    userMessage: (<ToolbarMessageAction>action).message
+                }
+            };
+
         case LOG_ACTION:
             return storeLog(state, <LogAction> action);
+
+        case CLEAR_LOG_HISTORY:
+            return {
+                ...state,
+                toolbar: {
+                    ...state.toolbar,
+                    logs: []
+                }
+            };
 
         case SET_LOG_HISTORY_VISIBILITY:
             return {

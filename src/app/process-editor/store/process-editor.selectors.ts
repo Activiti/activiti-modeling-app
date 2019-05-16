@@ -42,6 +42,7 @@ export const selectSelectedProcessId = selectSelectedModelIdFor(PROCESS);
 export const selectProcesses = createSelector(selectProcessEntityContainer, state => state.entities);
 export const selectSelectedElement = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.selectedElement);
 export const selectProcessLoading = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.loading);
+
 export const selectToolbarState = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.toolbar);
 export const selectToolbarUserMessage = createSelector(selectToolbarState, (state) => state.userMessage);
 export const selectToolbarInProgress = createSelector(selectToolbarState, (state) => state.inProgress);

@@ -32,4 +32,8 @@ export class EditorFooterComponent {
         this.showConsole = !this.showConsole;
         this.editorFooterService.setHistoryVisibility(this.showConsole);
     }
+
+    clearLogs() {
+        this.editorFooterService.clearLogs();
+    }
 }

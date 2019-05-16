@@ -23,7 +23,7 @@ import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
 import { selectToolbarUserMessage, selectToolbarInProgress, selectToolbarLogs, selectToolbarLogsVisibility } from '../store/process-editor.selectors';
 import { EditorFooterService, LogMessage, MESSAGE } from 'ama-sdk';
 import { map, tap } from 'rxjs/operators';
-import { SetLogHistoryVisibilityAction } from '../store/process-editor.actions';
+import { SetLogHistoryVisibilityAction, ClearLogHistoryAction } from '../store/process-editor.actions';
 
 @Injectable()
 export class ProcessEditorFooterService implements EditorFooterService  {
@@ -48,6 +48,10 @@ export class ProcessEditorFooterService implements EditorFooterService  {
     setHistoryVisibility(visibility: boolean) {
         this.errorNumberKnown$.next(this.lastlyAccumulatedErrorNumber);
         this.store.dispatch(new SetLogHistoryVisibilityAction(visibility));
+    }
+
+    clearLogs() {
+        this.store.dispatch(new ClearLogHistoryAction());
     }
 
     private setErrorIndicators() {
