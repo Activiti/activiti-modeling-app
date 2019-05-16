@@ -99,7 +99,7 @@ export class ProcessEditorEffects extends BaseEffects {
         ofType<ShowProcessesAction>(SHOW_PROCESSES),
         map(action => action.projectId),
         switchMap(projectId => zip(of(projectId), this.store.select(selectProcessesLoaded))),
-        switchMap(([projectId, loaded]) => loaded ? of(new GetProcessesAttemptAction(projectId)) : of())
+        switchMap(([projectId, loaded]) => loaded ? of() : of(new GetProcessesAttemptAction(projectId)))
     );
 
     @Effect()
