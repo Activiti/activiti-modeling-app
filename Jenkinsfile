@@ -43,7 +43,6 @@
             sh "echo \$(jx-release-version) > VERSION"
             sh "npm install"
             sh "npm run build:prod"
-	    sh "jx step next-version --filename package.json --tag"
             //sh "npm test"
             dir("./charts/$APP_NAME") {
               retry(5) { 
