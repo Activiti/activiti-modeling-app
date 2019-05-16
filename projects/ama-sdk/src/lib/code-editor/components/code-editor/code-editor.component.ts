@@ -77,7 +77,7 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
             timer = window.setTimeout(() => this.onEditorChange(), 1000);
         });
 
-        editor.onDidChangeCursorPosition((event: {position: CodeEditorPosition}) => {
+        editor.onDidChangeCursorPosition((event: { position: CodeEditorPosition }) => {
             this.positionChanged.emit(event.position);
         });
     }
