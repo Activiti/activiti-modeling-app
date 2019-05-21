@@ -12,6 +12,24 @@
       PREVIEW_VERSION = "0.0.0-SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER"
       NODE_OPTIONS = "--max_old_space_size=40000"
       OPTIMIZE_MEMORY = "true"
+        
+      API_HOST="http://activiti-cloud-gateway.jx-staging.35.228.195.195.nip.io/activiti-cloud-modeling-service"
+      OAUTH_HOST="http://activiti-cloud-keycloack.jx-staging.35.228.195.195.nip.io/auth/realms/activiti"
+      E2E_HOST="http://localhost"
+      E2E_PORT="4100"
+      E2E_USERNAME="modeler"
+      E2E_PASSWORD="password"
+      E2E_UNAUTHORIZED_USER="hruser"
+      E2E_UNAUTHORIZED_USER_PASSWORD="password"
+      E2E_FAIL_FAST="true"
+      BROWSER_RUN="false"
+      SAVE_SCREENSHOT="false"
+      SCREENSHOT_URL=""
+      SCREENSHOT_USERNAME=""
+      SCREENSHOT_PASSWORD="" 
+        
+      DISPLAY=:99.0
+        
     }
     stages {
       stage('CI Build and push snapshot') {
@@ -20,6 +38,8 @@
         }
         steps {
           container('nodejs') {
+            sh "Xvfb :99 &"
+              
             sh "npm install"
             //sh "npm run build"
             sh "npm run e2e"
