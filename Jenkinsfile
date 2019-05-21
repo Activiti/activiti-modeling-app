@@ -28,7 +28,7 @@
       SCREENSHOT_USERNAME=""
       SCREENSHOT_PASSWORD="" 
         
-      DISPLAY=:99.0
+      DISPLAY=":99.0"
         
     }
     stages {
