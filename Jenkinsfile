@@ -43,8 +43,8 @@
 
             sh "Xvfb :99 &"
             sh "sleep 3"  
-            sh "sudo chown root /opt/google/chrome/chrome-sandbox"
-            sh "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"  
+            sh "chown root /opt/google/chrome/chrome-sandbox"
+            sh "chmod 4755 /opt/google/chrome/chrome-sandbox"  
             sh "npm ci"
               
             sh "npm install"
