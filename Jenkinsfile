@@ -38,12 +38,20 @@
         }
         steps {
           container('nodejs') {
+            sh "node --version"  
+            sh "npm --version" 
+            sh "nvm --version"
             sh "Xvfb :99 &"
+            sh "sleep 3"  
+            sh "sudo chown root /opt/google/chrome/chrome-sandbox"
+            sh "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"  
+            sh "npm ci"
               
             sh "npm install"
             //sh "npm run build"
+            sh "npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod" 
             sh "npm run e2e"
-            sh "npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod"  
+              
             //sh "npm test"
             //sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
 
