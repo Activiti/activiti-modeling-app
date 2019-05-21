@@ -40,7 +40,7 @@
           container('nodejs') {
             sh "node --version"  
             sh "npm --version" 
-            sh "nvm --version"
+
             sh "Xvfb :99 &"
             sh "sleep 3"  
             sh "sudo chown root /opt/google/chrome/chrome-sandbox"
