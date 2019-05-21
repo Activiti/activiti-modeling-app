@@ -1,0 +1,48 @@
+@mixin ama-log-history($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+    .log-history {
+
+        .log-history-panel {
+            background-color: mat-color($background, status-bar, 0.7);
+            height: 200px;
+            overflow: auto;
+            padding: 12px;
+            font-family: 'Courier New', Courier, monospace;
+
+            .log-entry {
+                margin-bottom: 8px;
+
+                .log-meta {
+                    color: mat-color($primary);
+
+                    mat-icon {
+                        font-size: 16px;
+                        height: 16px;
+                        width: 16px;
+                        position: relative;
+                        top: 4px;
+                        left: -4px;
+                    }
+
+                    .log-initiator {
+                        font-weight: bold;
+                    }
+                }
+
+                &.log-warning .log-meta {
+                    color: mat-color($accent);
+                }
+
+                &.log-error .log-meta {
+                    color: mat-color($warn);
+                }
+
+            }
+        }
+    }
+}

@@ -51,7 +51,7 @@ import { CardViewProcessVariablesItemComponent } from './services/cardview-prope
 import { CardViewImplementationItemComponent } from './services/cardview-properties/implementation-item/implementation-item.component';
 import { CardViewDecisionTaskItemComponent } from './services/cardview-properties/decision-task-item/decision-task-item.component';
 import { ProcessPropertiesComponent } from './components/process-properties/process-properties.component';
-import { MatTooltipModule } from '@angular/material';
+import { MatTooltipModule, MatChipsModule } from '@angular/material';
 import { getProcessesFilterProvider } from './extension/processes-filter.extension';
 import { getProcessCreatorProvider } from './extension/process-creator.extension';
 import { getProcessUploaderProvider } from './extension/process-uploader.extension';
@@ -83,6 +83,7 @@ import { CardViewSignalRefItemComponent } from './services/cardview-properties/s
         SharedModule,
         VariablesModule,
         MatTooltipModule,
+        MatChipsModule,
         CodeEditorModule,
         DragDropModule
     ],

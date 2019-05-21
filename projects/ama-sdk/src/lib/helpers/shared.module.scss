@@ -1,5 +1,7 @@
-@import "./components/header-breadcrumbs/header-breadcrumbs.component.scss";
+@import "./components/header-breadcrumbs/header-breadcrumbs.component";
+@import "./components/editor-footer/editor-footer.component";
 
 @mixin amasdk-shared-module($theme) {
     @include amasdk-header-breadcrumbs($theme);
+    @include amasdk-editor-footer($theme);
 }

@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-/*
- * Public API Surface of ama-sdk
- */
+import { LogMessageInitiator } from 'ama-sdk';
 
-export { CodeEditorModule } from './code-editor.module';
-export { CodeEditorPosition } from './components/code-editor/code-editor.component';
-export {
-    CodeValidatorService,
-    AjvInjectionToken,
-    ValidationResponse
-} from './services/code-validator.service';
+export const PROCESS_EDITOR_LOGS = Symbol('Process Editor');
+
+export function getProcessLogInitiator(extra?: any): LogMessageInitiator {
+    return {
+        key: PROCESS_EDITOR_LOGS,
+        displayName: 'Process Editor',
+        extra
+    };
+}

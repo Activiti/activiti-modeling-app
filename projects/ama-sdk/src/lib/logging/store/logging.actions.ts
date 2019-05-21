@@ -15,14 +15,11 @@
  * limitations under the License.
  */
 
-/*
- * Public API Surface of ama-sdk
- */
+import { Action } from '@ngrx/store';
+import { LogMessage } from '../interfaces';
 
-export { CodeEditorModule } from './code-editor.module';
-export { CodeEditorPosition } from './components/code-editor/code-editor.component';
-export {
-    CodeValidatorService,
-    AjvInjectionToken,
-    ValidationResponse
-} from './services/code-validator.service';
+export const LOG_ACTION = 'LOG_ACTION';
+export class LogAction implements Action {
+    readonly type = LOG_ACTION;
+    constructor(public log: LogMessage) {}
+}

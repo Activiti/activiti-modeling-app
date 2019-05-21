@@ -15,14 +15,7 @@
  * limitations under the License.
  */
 
-/*
- * Public API Surface of ama-sdk
- */
-
-export { CodeEditorModule } from './code-editor.module';
-export { CodeEditorPosition } from './components/code-editor/code-editor.component';
-export {
-    CodeValidatorService,
-    AjvInjectionToken,
-    ValidationResponse
-} from './services/code-validator.service';
+export * from './interfaces';
+export * from './logging.module';
+export * from './store/logging.actions';
+export * from './utils/logging.functions';

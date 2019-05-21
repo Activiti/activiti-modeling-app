@@ -15,14 +15,19 @@
  * limitations under the License.
  */
 
-/*
- * Public API Surface of ama-sdk
- */
+import { InjectionToken } from '@angular/core';
+import { Observable } from 'rxjs';
+import { LogMessage } from '../logging/interfaces';
 
-export { CodeEditorModule } from './code-editor.module';
-export { CodeEditorPosition } from './components/code-editor/code-editor.component';
-export {
-    CodeValidatorService,
-    AjvInjectionToken,
-    ValidationResponse
-} from './services/code-validator.service';
+export interface EditorFooterService {
+    userMessage$: Observable<string>;
+    inProgress$: Observable<boolean>;
+    logs$: Observable<LogMessage[]>;
+    newErrorNumber$: Observable<number>;
+    isNewError$: Observable<boolean>;
+
+    setHistoryVisibility(visibility: boolean): void;
+    clearLogs(): void;
+}
+
+export const EDITOR_FOOTER_SERVICE_TOKEN = new InjectionToken<EditorFooterService>('editor-footer-service');

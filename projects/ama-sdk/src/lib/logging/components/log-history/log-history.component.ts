@@ -15,14 +15,16 @@
  * limitations under the License.
  */
 
-/*
- * Public API Surface of ama-sdk
- */
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { LogMessage } from '../../interfaces';
 
-export { CodeEditorModule } from './code-editor.module';
-export { CodeEditorPosition } from './components/code-editor/code-editor.component';
-export {
-    CodeValidatorService,
-    AjvInjectionToken,
-    ValidationResponse
-} from './services/code-validator.service';
+@Component({
+    selector: 'amasdk-log-history',
+    templateUrl: './log-history.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class LogHistoryComponent {
+
+    @Input()
+    messages: LogMessage[];
+}

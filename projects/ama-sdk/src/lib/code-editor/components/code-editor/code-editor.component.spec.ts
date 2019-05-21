@@ -17,7 +17,7 @@
 
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { CodeEditorComponent, EditorOptions } from './code-editor.component';
+import { CodeEditorComponent, EditorOptions, CodeEditorPosition } from './code-editor.component';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { FormsModule } from '@angular/forms';
 
@@ -81,7 +81,7 @@ describe('CodeEditorComponent', () => {
     });
 
     describe('onKeyUp', () => {
-        let dummyEditor: any, storedCallback;
+        let dummyEditor: any, storedCallback, storedPositionCallback;
 
         beforeEach(() => {
             dummyEditor = <any>{
@@ -89,8 +89,14 @@ describe('CodeEditorComponent', () => {
                 onKeyUp(callback) {
                     storedCallback = callback;
                 },
+                onDidChangeCursorPosition(callback) {
+                    storedPositionCallback = callback;
+                },
                 triggerKeyUp() {
                     storedCallback();
+                },
+                triggerPositionChange(position: CodeEditorPosition) {
+                    storedPositionCallback({position});
                 }
             };
         });
@@ -107,5 +113,22 @@ describe('CodeEditorComponent', () => {
 
             dummyEditor.triggerKeyUp();
         });
+
+        it('should trigger an event on position change with the new positions', done => {
+            component.content = 'Lorem ipsum dolor sit amet';
+            const expectedPosition: CodeEditorPosition = {
+                lineNumber: 42,
+                column: 24
+            };
+            component.onEditorInit(dummyEditor);
+
+            component.positionChanged.subscribe(position => {
+                expect(position).toBe(expectedPosition);
+                done();
+            });
+
+            dummyEditor.triggerPositionChange(expectedPosition);
+        });
+
     });
 });

@@ -15,14 +15,21 @@
  * limitations under the License.
  */
 
-/*
- * Public API Surface of ama-sdk
- */
+export enum MESSAGE {
+    INFO = 'info',
+    WARN = 'warning',
+    ERROR = 'error'
+}
 
-export { CodeEditorModule } from './code-editor.module';
-export { CodeEditorPosition } from './components/code-editor/code-editor.component';
-export {
-    CodeValidatorService,
-    AjvInjectionToken,
-    ValidationResponse
-} from './services/code-validator.service';
+export interface LogMessageInitiator {
+    key: string | Symbol;
+    displayName: string;
+    extra?: any;
+}
+
+export interface LogMessage {
+    type: MESSAGE;
+    datetime: Date;
+    initiator: LogMessageInitiator;
+    messages: string[];
+}

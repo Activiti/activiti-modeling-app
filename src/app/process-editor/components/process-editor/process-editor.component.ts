@@ -17,7 +17,7 @@
 
 import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { filter, map, take } from 'rxjs/operators';
+import { filter, map, take, catchError } from 'rxjs/operators';
 import { Observable, combineLatest, of } from 'rxjs';
 import { selectProcessCrumb, selectProcessLoading, selectSelectedProcessDiagram } from '../../store/process-editor.selectors';
 import {
@@ -33,13 +33,23 @@ import {
     ProcessModelerServiceToken,
     CodeValidatorService,
     ProcessExtensions,
-    extensionsSchema
+    extensionsSchema,
+    SnackbarErrorAction,
+    EDITOR_FOOTER_SERVICE_TOKEN,
+    logError,
+    CodeEditorPosition
 } from 'ama-sdk';
-import { UpdateProcessExtensionsAction } from '../../store/process-editor.actions';
+import { UpdateProcessExtensionsAction, ToolbarMessageAction } from '../../store/process-editor.actions';
+import { ProcessEditorFooterService } from '../../services/process-editor-footer.service';
+import { getProcessLogInitiator } from '../../services/process-editor.constants';
+import { MatTabChangeEvent } from '@angular/material';
 
 @Component({
     templateUrl: './process-editor.component.html',
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    providers: [
+        { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: ProcessEditorFooterService }
+    ]
 })
 export class ProcessEditorComponent implements OnInit {
     loading$: Observable<boolean>;
@@ -50,6 +60,7 @@ export class ProcessEditorComponent implements OnInit {
     extensions$: Observable<string>;
     vsTheme$: Observable<string>;
     disableSave: boolean;
+    tabNames = ['Diagram editor', 'XML editor', 'Extensions editor'];
 
     constructor(
         private store: Store<AmaState>,
@@ -82,13 +93,28 @@ export class ProcessEditorComponent implements OnInit {
             .pipe(map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light')));
     }
 
+    selectedTabChange(event: MatTabChangeEvent) {
+        this.store.dispatch(new ToolbarMessageAction(this.tabNames[event.index]));
+    }
+
+    codeEditorPositionChanged(position: CodeEditorPosition) {
+        this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
+    }
+
     onBpmnEditorChange(): void {
         this.processModeler.export().then(content => this.content$ = of(content));
     }
 
     onXmlChangeAttempt(processContent: ProcessContent): void {
         this.processModeler.loadXml(processContent)
-            .pipe(take(1))
+            .pipe(
+                take(1),
+                catchError(error => {
+                    this.store.dispatch(logError(getProcessLogInitiator(), error.message));
+                    this.store.dispatch(new SnackbarErrorAction('Could not parse xml document. Diagram hasn\'t been updated.'));
+                    return of();
+                })
+            )
             .subscribe(() => this.store.dispatch(new SetAppDirtyStateAction(true)));
     }
 
