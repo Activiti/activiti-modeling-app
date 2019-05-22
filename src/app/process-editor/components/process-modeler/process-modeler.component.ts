@@ -26,7 +26,7 @@ import {
     RemoveDiagramElementAction
 } from '../../store/process-editor.actions';
 import { ProcessEntitiesState } from '../../store/process-entities.state';
-import { ProcessLoaderService } from '../../services/process-loader.service';
+import { ProcessDiagramLoaderService } from '../../services/process-loader.service';
 
 @Component({
     selector: 'ama-process-modeler',
@@ -48,7 +48,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
     constructor(
         private store: Store<ProcessEntitiesState>,
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
-        private processLoaderService: ProcessLoaderService
+        private processLoaderService: ProcessDiagramLoaderService
     ) {}
 
     ngOnInit() {

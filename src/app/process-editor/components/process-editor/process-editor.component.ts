@@ -40,7 +40,7 @@ import {
 import { UpdateProcessExtensionsAction, ToolbarMessageAction } from '../../store/process-editor.actions';
 import { ProcessEditorFooterService } from '../../services/process-editor-footer.service';
 import { MatTabChangeEvent } from '@angular/material';
-import { ProcessLoaderService } from '../../services/process-loader.service';
+import { ProcessDiagramLoaderService } from '../../services/process-loader.service';
 
 @Component({
     templateUrl: './process-editor.component.html',
@@ -64,7 +64,7 @@ export class ProcessEditorComponent implements OnInit {
         private store: Store<AmaState>,
         private codeValidatorService: CodeValidatorService,
         @Inject(ProcessModelerServiceToken) private processModeler: ProcessModelerService,
-        private processLoaderService: ProcessLoaderService
+        private processLoaderService: ProcessDiagramLoaderService
     ) {
         this.vsTheme$ = this.getVsTheme();
     }

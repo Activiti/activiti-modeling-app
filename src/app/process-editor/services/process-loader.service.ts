@@ -23,12 +23,14 @@ import { ProcessModelerServiceToken, ProcessModelerService, logError, SnackbarEr
 import { ProcessEntitiesState } from '../store/process-entities.state';
 import { SelectModelerElementAction } from '../store/process-editor.actions';
 import { getProcessLogInitiator } from './process-editor.constants';
+import { TranslationService } from '@alfresco/adf-core';
 
 @Injectable()
-export class ProcessLoaderService {
+export class ProcessDiagramLoaderService {
     constructor(
         private store: Store<ProcessEntitiesState>,
-        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService
+        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
+        private translation: TranslationService
     ) {}
 
     load(xmlContent: string) {
@@ -38,8 +40,9 @@ export class ProcessLoaderService {
                 this.store.dispatch(new SelectModelerElementAction(element));
             }),
             catchError(error => {
+                const errorMessage = this.translation.instant('PROCESS_EDITOR.ERRORS.PARSE_BPMN');
                 this.store.dispatch(logError(getProcessLogInitiator(), error.message));
-                this.store.dispatch(new SnackbarErrorAction('Could not parse xml document. Diagram hasn\'t been updated.'));
+                this.store.dispatch(new SnackbarErrorAction(errorMessage));
                 return of();
             })
         );
