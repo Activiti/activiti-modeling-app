@@ -20,11 +20,12 @@ import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty } from 'ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
 import { sanitizeString } from 'ama-sdk';
+import { CardViewProcessNameValidator } from './validators/card-view-process-name.validator';
 
 const propertyName = BpmnProperty.processName;
 
 export function createProcessNameProperty({ element }: FactoryProps) {
-    return new CardViewTextItemModel({
+    const processNameItem = new CardViewTextItemModel({
         label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.NAME',
         value: sanitizeString(ElementHelper.getProperty(element, propertyName)),
         key: propertyName,
@@ -33,4 +34,8 @@ export function createProcessNameProperty({ element }: FactoryProps) {
         editable: true,
         data: { id: element.id }
     });
+
+    processNameItem.validators.push(new CardViewProcessNameValidator());
+
+    return processNameItem;
 }
