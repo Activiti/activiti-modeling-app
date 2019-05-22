@@ -51,6 +51,7 @@
         "ERRORS": {
             "LOAD_DIAGRAM": "Could not load the diagram.",
             "SAVE_DIAGRAM": "Could not save the diagram.",
+            "PARSE_BPMN": "Could not parse xml document. Diagram hasn't been updated.",
             "DOWNLOAD_DIAGRAM": "Could not download the diagram",
             "CHANGE_FAVORITE": "Unknown error happened during the changing favorite state of the process."
         },

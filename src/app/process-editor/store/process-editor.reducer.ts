@@ -138,7 +138,7 @@ function setSelectedElement(state: ProcessEditorState, action: SelectModelerElem
         selectedElement: action.element,
         toolbar: {
             ...state.toolbar,
-            userMessage: action.element.type
+            userMessage: action.element && action.element.type || ''
         }
     };
 }

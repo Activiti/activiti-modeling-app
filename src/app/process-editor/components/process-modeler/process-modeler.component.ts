@@ -17,7 +17,7 @@
 
 import { Component, ViewChild, ElementRef, Input, OnDestroy, AfterViewInit, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { takeUntil, switchMap, filter, map } from 'rxjs/operators';
+import { takeUntil, switchMap, filter } from 'rxjs/operators';
 import { ProcessContent, SnackbarErrorAction, ProcessModelerServiceToken, ProcessModelerService } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import {
@@ -26,6 +26,7 @@ import {
     RemoveDiagramElementAction
 } from '../../store/process-editor.actions';
 import { ProcessEntitiesState } from '../../store/process-entities.state';
+import { ProcessDiagramLoaderService } from '../../services/process-loader.service';
 
 @Component({
     selector: 'ama-process-modeler',
@@ -46,7 +47,8 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
 
     constructor(
         private store: Store<ProcessEntitiesState>,
-        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService
+        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
+        private processLoaderService: ProcessDiagramLoaderService
     ) {}
 
     ngOnInit() {
@@ -87,11 +89,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
         this.diagramData$
             .pipe(
                 filter(diagramData => diagramData !== null),
-                switchMap(diagramData => this.processModelerService.loadXml(diagramData)),
-                map(() => {
-                    const element = this.createSelectedElement({ element: this.processModelerService.getRootProcessElement() });
-                    this.store.dispatch(new SelectModelerElementAction(element));
-                }),
+                switchMap(diagramData => this.processLoaderService.load(diagramData)),
                 takeUntil(this.onDestroy$)
             )
             .subscribe(

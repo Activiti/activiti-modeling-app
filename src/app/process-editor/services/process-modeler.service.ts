@@ -23,11 +23,28 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class ProcessModelerServiceImplementation implements ProcessModelerService {
     private modeler: Bpmn.Modeler;
+    private modelerInitOptions: ModelerInitOptions;
 
     constructor(@Inject(BpmnFactoryToken) private bpmnFactoryService: BpmnFactory) {}
 
     init(modelerInitOptions: ModelerInitOptions): void {
-        this.modeler = this.bpmnFactoryService.create(modelerInitOptions);
+        this.modeler = this.bpmnFactoryService.create();
+        this.modelerInitOptions = modelerInitOptions;
+        this.listenToEventHandlers();
+    }
+
+    listenToEventHandlers() {
+        this.modeler.on('element.click', this.modelerInitOptions.clickHandler);
+        this.modeler.on('element.changed', this.modelerInitOptions.changeHandler);
+        this.modeler.on('shape.remove', this.modelerInitOptions.removeHandler);
+        this.modeler.on('selection.changed', this.modelerInitOptions.selectHandler);
+    }
+
+    muteEventHandlers() {
+        this.modeler.off('element.click', this.modelerInitOptions.clickHandler);
+        this.modeler.off('element.changed', this.modelerInitOptions.changeHandler);
+        this.modeler.off('shape.remove', this.modelerInitOptions.removeHandler);
+        this.modeler.off('selection.changed', this.modelerInitOptions.selectHandler);
     }
 
     render(container): void {
@@ -55,11 +72,13 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
 
     loadXml(xml: string): Observable<any> {
         return new Observable(subscriber => {
+            this.muteEventHandlers();
             this.modeler.importXML(xml, err => {
                 if (err) {
                     subscriber.error(err);
                 }
 
+                this.listenToEventHandlers();
                 subscriber.next(xml);
             });
         });

@@ -47,6 +47,7 @@ import {
     PROCESSES_ENTITY_KEY
 } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
+import { ProcessDiagramLoaderService } from './services/process-loader.service';
 import { CardViewProcessVariablesItemComponent } from './services/cardview-properties/process-variable-item/process-variable-item.component';
 import { CardViewImplementationItemComponent } from './services/cardview-properties/implementation-item/implementation-item.component';
 import { CardViewDecisionTaskItemComponent } from './services/cardview-properties/decision-task-item/decision-task-item.component';
@@ -111,6 +112,7 @@ import { CardViewSignalRefItemComponent } from './services/cardview-properties/s
     exports: [ProcessEditorRoutingModule],
     providers: [
         ProcessEditorService,
+        ProcessDiagramLoaderService,
         { provide: BpmnFactoryToken, useClass: BpmnFactoryService },
         { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
         ProcessModelerPaletteService,

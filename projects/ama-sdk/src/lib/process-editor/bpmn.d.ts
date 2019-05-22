@@ -47,7 +47,7 @@ declare namespace Bpmn {
         destroy(): void;
         on(event: string, priority: number, callback: any, targetContext: any): void;
         on(event: string, callback: any): void;
-        off(event: string, callback?: any): void;
+        off(event: string | string[], callback?: any): void;
         attachTo(parentNode: any): void;
         detach(): void;
     }
