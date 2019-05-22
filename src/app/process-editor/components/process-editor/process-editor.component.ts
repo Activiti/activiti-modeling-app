@@ -59,6 +59,7 @@ export class ProcessEditorComponent implements OnInit {
     vsTheme$: Observable<string>;
     disableSave: boolean;
     tabNames = ['Diagram editor', 'XML editor', 'Extensions editor'];
+    selectedTabIndex = 0;
 
     constructor(
         private store: Store<AmaState>,
@@ -93,11 +94,14 @@ export class ProcessEditorComponent implements OnInit {
     }
 
     selectedTabChange(event: MatTabChangeEvent) {
-        this.store.dispatch(new ToolbarMessageAction(this.tabNames[event.index]));
+        this.selectedTabIndex = event.index;
+        this.store.dispatch(new ToolbarMessageAction(this.tabNames[this.selectedTabIndex]));
     }
 
     codeEditorPositionChanged(position: CodeEditorPosition) {
-        this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
+        if (this.selectedTabIndex > 0) {
+            this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
+        }
     }
 
     onBpmnEditorChange(): void {
