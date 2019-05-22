@@ -25,17 +25,14 @@ import { CardViewProcessNameValidator } from './validators/card-view-process-nam
 const propertyName = BpmnProperty.processName;
 
 export function createProcessNameProperty({ element }: FactoryProps) {
-    const processNameItem = new CardViewTextItemModel({
+    return new CardViewTextItemModel({
         label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.NAME',
         value: sanitizeString(ElementHelper.getProperty(element, propertyName)),
         key: propertyName,
         default: '',
         multiline: false,
         editable: true,
-        data: { id: element.id }
+        data: { id: element.id },
+        validators: [new CardViewProcessNameValidator()]
     });
-
-    processNameItem.validators.push(new CardViewProcessNameValidator());
-
-    return processNameItem;
 }
