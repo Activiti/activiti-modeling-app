@@ -43,7 +43,8 @@
             "PROCESS_VARIABLES": "Process variables",
             "EXPRESSION": "Condition Expression",
             "FORM_SELECTOR": "Form selector",
-            "DEFAULT_SEQUENCE_FLOW": "Default sequence flow"
+            "DEFAULT_SEQUENCE_FLOW": "Default sequence flow",
+            "PROCESS_NAME_REQUIRED": "Process name is required"
         },
         "UPLOAD_SUCCESS": "The process was successfully uploaded",
         "PROCESS_UPDATED": "The process was successfully updated",

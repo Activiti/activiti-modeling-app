@@ -20,6 +20,7 @@ import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty } from 'ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
 import { sanitizeString } from 'ama-sdk';
+import { CardViewProcessNameValidator } from './validators/card-view-process-name.validator';
 
 const propertyName = BpmnProperty.processName;
 
@@ -31,6 +32,7 @@ export function createProcessNameProperty({ element }: FactoryProps) {
         default: '',
         multiline: false,
         editable: true,
-        data: { id: element.id }
+        data: { id: element.id },
+        validators: [new CardViewProcessNameValidator()]
     });
 }
