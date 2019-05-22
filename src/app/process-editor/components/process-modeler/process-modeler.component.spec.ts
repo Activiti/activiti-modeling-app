@@ -29,6 +29,7 @@ import { of } from 'rxjs';
 import { mockProcess } from '../../store/process.mock';
 import { processEntitiesReducer } from '../../store/process-entities.reducer';
 import { Component } from '@angular/core';
+import { ProcessLoaderService } from '../../services/process-loader.service';
 
 @Component({
     selector: 'ama-process-palette',
@@ -56,6 +57,7 @@ describe('ProcessModelerComponent', () => {
                 NoopAnimationsModule
             ],
             providers: [
+                ProcessLoaderService,
                 { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
                 { provide: BpmnFactoryToken, useClass: BpmnFactoryMock },
                 {
