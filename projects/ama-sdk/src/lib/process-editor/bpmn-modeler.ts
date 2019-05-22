@@ -43,7 +43,7 @@ export interface ProcessModelerService {
 }
 
 export interface BpmnFactory {
-    create(modelerInitOptions: ModelerInitOptions): Bpmn.Modeler;
+    create(): Bpmn.Modeler;
 }
 
 export const BpmnFactoryToken = new InjectionToken('bpmn-factory-token');

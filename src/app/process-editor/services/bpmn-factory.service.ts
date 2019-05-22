@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import * as bpmnPropertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/bpmn';
-import { ModelerInitOptions, BpmnFactory } from 'ama-sdk';
+import { BpmnFactory } from 'ama-sdk';
 /*
     Angular 6 --prod mode doesn't seem to work with the normal way of importing the bmpnjs library.
     Modify this import with care, doublechecking the process editor works in --prod mode.
@@ -29,8 +29,8 @@ const activitiModdleDescriptor = require('./activiti.json');
 
 @Injectable()
 export class BpmnFactoryService implements BpmnFactory {
-    create({ clickHandler, changeHandler, removeHandler, selectHandler }: ModelerInitOptions): Bpmn.Modeler {
-        const modeler = new BpmnModeler({
+    create(): Bpmn.Modeler {
+        return new BpmnModeler({
             keyboard: { bindTo: document },
             additionalModules: [
                 emptyPaletteModule,
@@ -39,13 +39,6 @@ export class BpmnFactoryService implements BpmnFactory {
             ],
             moddleExtensions: { activiti: activitiModdleDescriptor }
         });
-
-        modeler.on('element.click', clickHandler);
-        modeler.on('element.changed', changeHandler);
-        modeler.on('shape.remove', removeHandler);
-        modeler.on('selection.changed', selectHandler);
-
-        return modeler;
     }
 
     protected getBpmnPropertiesPanelConfig() {
