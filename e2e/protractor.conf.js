@@ -43,7 +43,7 @@ exports.config = {
             },
             args: [
                 '--incognito',
-                '--no-sandbox',
+//                '--no-sandbox',
                 `--window-size=${config.browserWidth},${config.browserHeight}`,
                 ...(BROWSER_RUN === 'true' ? [] : ['--headless'] )
             ],
