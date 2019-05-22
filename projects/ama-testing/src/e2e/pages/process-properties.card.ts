@@ -88,7 +88,7 @@ export class ProcessPropertiesCard extends GenericPage {
         // Click on DT selectbox untill the list of decision tables is populated.
         let i = 0;
         try {
-            while (await super.waitForElementToBeInVisible(dtOption, 500)) {
+            while (await super.waitForElementToBeInVisible(dtOption, 500) && i < 10) {
                 Logger.info('Click ', ++i, ' on DT selectbox.');
                 await super.click(this.decisionTableSelector);
             }
