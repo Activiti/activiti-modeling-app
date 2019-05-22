@@ -17,6 +17,7 @@
 
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
+import { Logger } from '../util';
 
 export class ProcessPropertiesCard extends GenericPage {
 
@@ -81,9 +82,20 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async setDecisionTable(dtName: string) {
-        await super.click(this.decisionTableSelector);
         const dtOption = element(by.cssContainingText('.mat-option-text', dtName));
-        await super.click(dtOption);
+        await super.click(this.decisionTableSelector);
+        // Workaround:
+        // Click on DT selectbox untill the list of decision tables is populated.
+        let i = 0;
+        try {
+            while (await super.waitForElementToBeInVisible(dtOption, 500)) {
+                Logger.info('Click ', ++i, ' on DT selectbox.');
+                await super.click(this.decisionTableSelector);
+            }
+        } catch (error) {
+            Logger.info('Decision table list is loaded. Item can be selected.');
+            await super.click(dtOption);
+        }
     }
 
     async setForm(formName: string) {

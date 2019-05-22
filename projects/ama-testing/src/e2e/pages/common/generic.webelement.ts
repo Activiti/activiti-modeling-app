@@ -27,6 +27,7 @@ export class GenericWebElement {
             await this.waitForElementToBeClickable(elem);
             await elem.click();
         } catch (clickErr) {
+            Logger.error(`Click on element '${elem}' was not performed. \n`, clickErr);
             try {
                 await browser.executeScript('arguments[0].scrollIntoView();', elem);
                 await browser.executeScript('arguments[0].click();', elem);
