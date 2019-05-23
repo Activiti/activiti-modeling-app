@@ -26,7 +26,7 @@ export class LoginAPSPage extends GenericPage implements LoginPageImplementation
     private readonly ssoButton = element(by.css(`[data-automation-id="login-button-sso"]`));
     private readonly usernameField = element(by.id('username'));
     private readonly passwordField = element(by.id('password'));
-    private readonly loginButton = element(by.className('submit'));
+    private readonly loginButton = element(by.css('input[type="submit"]'));
 
     constructor(testConfig: TestConfig) {
         super(testConfig);
