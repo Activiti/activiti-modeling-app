@@ -17,20 +17,27 @@
 
 import { Injectable, Inject } from '@angular/core';
 import { tap, catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { ProcessModelerServiceToken, ProcessModelerService, logError, SnackbarErrorAction } from 'ama-sdk';
+import { Store, Action } from '@ngrx/store';
+import {
+    ProcessModelerServiceToken,
+    ProcessModelerService,
+    logError,
+    SnackbarErrorAction,
+    logWarning,
+    SnackbarWarningAction,
+    XmlParsingProblem,
+    MESSAGE
+} from 'ama-sdk';
 import { ProcessEntitiesState } from '../store/process-entities.state';
 import { SelectModelerElementAction } from '../store/process-editor.actions';
 import { getProcessLogInitiator } from './process-editor.constants';
-import { TranslationService } from '@alfresco/adf-core';
+import { of } from 'rxjs';
 
 @Injectable()
 export class ProcessDiagramLoaderService {
     constructor(
         private store: Store<ProcessEntitiesState>,
-        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
-        private translation: TranslationService
+        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService
     ) {}
 
     load(xmlContent: string) {
@@ -39,13 +46,27 @@ export class ProcessDiagramLoaderService {
                 const element = this.createSelectedElement({ element: this.processModelerService.getRootProcessElement() });
                 this.store.dispatch(new SelectModelerElementAction(element));
             }),
-            catchError(error => {
-                const errorMessage = this.translation.instant('PROCESS_EDITOR.ERRORS.PARSE_BPMN');
-                this.store.dispatch(logError(getProcessLogInitiator(), error.message));
-                this.store.dispatch(new SnackbarErrorAction(errorMessage));
-                return of();
-            })
+            catchError(this.catchError.bind(this))
         );
+    }
+
+    private catchError(problem: XmlParsingProblem) {
+        let actions: Action[];
+
+        if (problem.type === MESSAGE.ERROR) {
+            actions = [
+                logError(getProcessLogInitiator(), problem.messages),
+                new SnackbarErrorAction('PROCESS_EDITOR.ERRORS.PARSE_BPMN')
+            ];
+        } else if (problem.type === MESSAGE.WARN) {
+            actions = [
+                logWarning(getProcessLogInitiator(), problem.messages),
+                new SnackbarWarningAction('PROCESS_EDITOR.ERRORS.PARSE_BPMN')
+            ];
+        }
+
+        actions.forEach(this.store.dispatch.bind(this.store));
+        return of('');
     }
 
     private createSelectedElement(event) {

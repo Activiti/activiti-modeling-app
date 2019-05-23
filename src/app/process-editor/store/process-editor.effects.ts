@@ -20,7 +20,7 @@ import { Injectable, Inject } from '@angular/core';
 import { catchError, switchMap, map, filter, withLatestFrom, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
-import { LogService } from '@alfresco/adf-core';
+import { LogService, TranslationService } from '@alfresco/adf-core';
 import { Observable } from 'rxjs';
 
 import {
@@ -69,7 +69,9 @@ import {
     ProcessModelerServiceToken,
     ProcessModelerService,
     selectOpenedModel,
-    BpmnElement
+    BpmnElement,
+    logError,
+    logInfo
 } from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { SetAppDirtyStateAction } from 'ama-sdk';
@@ -80,6 +82,7 @@ import { zip } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { Process, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
 import { selectSelectedProjectId, AmaState, selectSelectedProcess, createProcessName } from 'ama-sdk';
+import { getProcessLogInitiator } from '../services/process-editor.constants';
 
 @Injectable()
 export class ProcessEditorEffects extends BaseEffects {
@@ -87,6 +90,7 @@ export class ProcessEditorEffects extends BaseEffects {
         private store: Store<AmaState>,
         private actions$: Actions,
         private processEditorService: ProcessEditorService,
+        private translation: TranslationService,
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
         logService: LogService,
         router: Router
@@ -213,14 +217,20 @@ export class ProcessEditorEffects extends BaseEffects {
     private validateProcess(payload: ValidateProcessPayload) {
         return this.processEditorService.validate(payload.processId, payload.content, payload.extensions).pipe(
             switchMap(() => [ payload.action ]),
-            catchError(response => [ new OpenConfirmDialogAction({
-                dialogData: {
-                    title: payload.title || 'APP.DIALOGS.CONFIRM.TITLE',
-                    subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
-                    errors: JSON.parse(response.message).errors.map(error => error.description)
-                },
-                action: payload.action
-            })])
+            catchError(response => {
+                const errors = JSON.parse(response.message).errors.map(error => error.description);
+                return [
+                    new OpenConfirmDialogAction({
+                        dialogData: {
+                            title: payload.title || 'APP.DIALOGS.CONFIRM.TITLE',
+                            subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
+                            errors
+                        },
+                        action: payload.action
+                    }),
+                    logError(getProcessLogInitiator(), errors)
+                ];
+            })
         );
     }
 
@@ -234,6 +244,7 @@ export class ProcessEditorEffects extends BaseEffects {
             switchMap(() => [
                 new UpdateProcessSuccessAction({ id: payload.processId, changes: payload.metadata }, payload.content),
                 new SetAppDirtyStateAction(false),
+                logInfo(getProcessLogInitiator(), this.translation.instant('PROCESS_EDITOR.PROCESS_UPDATED')),
                 new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_UPDATED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleProcessUpdatingError.bind(this), e))

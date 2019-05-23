@@ -21,7 +21,7 @@ import { cold, hot, getTestScheduler } from 'jasmine-marbles';
 import { Store } from '@ngrx/store';
 import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { Router } from '@angular/router';
-import { LogService, CoreModule } from '@alfresco/adf-core';
+import { LogService, CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { ProcessModelerServiceImplementation } from '../services/process-modeler.service';
 import { ProcessEditorService } from '../services/process-editor.service';
@@ -52,9 +52,11 @@ import {
     UploadFileAttemptPayload,
     BpmnFactoryToken,
     ProcessModelerServiceToken,
-    selectSelectedProjectId
+    selectSelectedProjectId,
+    logInfo
 } from 'ama-sdk';
 import { ProcessEntitiesState } from './process-entities.state';
+import { getProcessLogInitiator } from '../services/process-editor.constants';
 
 describe('ProcessEditorEffects', () => {
     let effects: ProcessEditorEffects;
@@ -79,6 +81,10 @@ describe('ProcessEditorEffects', () => {
                 {
                     provide: BpmnFactoryToken,
                     useClass: BpmnFactoryMock
+                },
+                {
+                    provide: TranslationService,
+                    useClass: TranslationMock
                 },
                 {
                     provide: Router,
@@ -205,11 +211,14 @@ describe('ProcessEditorEffects', () => {
         it('should trigger the right action on successful update', () => {
             processEditorService.update = jest.fn().mockReturnValue(of(process));
             actions$ = hot('a', { a: new UpdateProcessAttemptAction(mockActionPayload) });
+            const expectedLogAction = logInfo(getProcessLogInitiator(), 'PROCESS_EDITOR.PROCESS_UPDATED');
+            expectedLogAction.log.datetime = (<any>expect).any(Date);
 
-            const expected = cold('(bcd)', {
+            const expected = cold('(bcde)', {
                 b: new UpdateProcessSuccessAction({id: mockProcess.id, changes: mockActionPayload.metadata}, mockActionPayload.content),
                 c: new SetAppDirtyStateAction(false),
-                d: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_UPDATED')
+                d: expectedLogAction,
+                e: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_UPDATED')
             });
 
             expect(effects.updateProcessEffect).toBeObservable(expected);
