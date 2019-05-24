@@ -27,10 +27,6 @@ export class DashboardService {
         return this.amaApi.Project.getAll(pagination);
     }
 
-    fetchReleases(pagination?: Partial<Pagination>): Observable<PaginatedEntries<ReleaseEntry>> {
-        return this.amaApi.Project.getAllReleases(pagination);
-    }
-
     createProject(form: Partial<EntityDialogForm>): Observable<Partial<Project>> {
         return this.amaApi.Project.create(form);
     }

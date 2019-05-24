@@ -117,19 +117,6 @@ export class ACMProjectApi implements ProjectApi {
             );
     }
 
-    public getAllReleases(pagination: Partial<Pagination> = {}): Observable<PaginatedEntries<ReleaseEntry>> {
-        return this.requestApiHelper
-            .get('/v1/projects/releases', { queryParams: pagination })
-            .pipe(
-                map((nodePaging: any) => {
-                    return {
-                        pagination: nodePaging.list.pagination,
-                        entries: nodePaging.list.entries
-                    };
-                })
-            );
-    }
-
     public getProjectReleases(projectId: string, pagination: Partial<Pagination> = {}): Observable<PaginatedEntries<ReleaseEntry>> {
         return this.requestApiHelper
         .get(`/v1/projects/${projectId}/releases`, { queryParams: pagination })
