@@ -22,7 +22,7 @@
       E2E_UNAUTHORIZED_USER="hruser"
       E2E_UNAUTHORIZED_USER_PASSWORD="password"
       E2E_FAIL_FAST="true"
-      BROWSER_RUN="false"
+      BROWSER_RUN="true"
       SAVE_SCREENSHOT="false"
       SCREENSHOT_URL=""
       SCREENSHOT_USERNAME=""
