@@ -27,7 +27,8 @@ import {
 } from '../actions/projects';
 import { INITIAL_DASHBOARD_STATE, DashboardState } from '../state/dashboard.state';
 import { Project, Release } from 'ama-sdk';
-import { mockProject } from '../effects/project.mock';
+import { mockProject, mockReleaseEntry } from '../effects/project.mock';
+import { GetReleasesSuccessAction } from '../actions/releases';
 
 describe('dashboardReducer', () => {
 

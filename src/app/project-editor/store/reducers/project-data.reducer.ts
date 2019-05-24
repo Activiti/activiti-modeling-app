@@ -17,7 +17,14 @@
 
 import { Action } from '@ngrx/store';
 import { GET_PROJECT_SUCCESS, GetProjectSuccessAction, SELECT_PROJECT } from '../project-editor.actions';
-import { INITIAL_PROJECT_DATA_STATE as init, ProjectDataState } from 'ama-sdk';
+import { INITIAL_PROJECT_DATA_STATE as init, ProjectDataState, ReleasesSummaryEntities } from 'ama-sdk';
+import {
+    GET_PROJECT_RELEASES_SUCCESS,
+    GetProjectReleasesSuccessAction,
+    GET_PROJECT_RELEASES_ATTEMPT,
+    GetProjectReleasesAttemptAction
+} from '../../../dashboard/store/actions/releases';
+const cloneDeep = require('lodash/cloneDeep');
 
 export function projectDataReducer(state: ProjectDataState = init, action: Action): ProjectDataState {
     let newState: ProjectDataState;
@@ -29,6 +36,13 @@ export function projectDataReducer(state: ProjectDataState = init, action: Actio
 
         case GET_PROJECT_SUCCESS:
             newState = setProject(state, <GetProjectSuccessAction>action);
+            break;
+        case GET_PROJECT_RELEASES_SUCCESS:
+            newState = setReleases(state, <GetProjectReleasesSuccessAction> action);
+            break;
+
+        case GET_PROJECT_RELEASES_ATTEMPT:
+            newState = getProjectReleasesAttempt(state, <GetProjectReleasesAttemptAction> action);
             break;
 
         default:
@@ -47,3 +61,23 @@ function setProject(state: ProjectDataState, action: GetProjectSuccessAction): P
     newState.datum = action.payload;
     return newState;
 }
+
+function setReleases(state: ProjectDataState, action: GetProjectReleasesSuccessAction): ProjectDataState {
+    const projectReleases = cloneDeep(state.projectReleases);
+    projectReleases.loadedReleases = false;
+    projectReleases.pagination = action.payload.pagination;
+    projectReleases.releases = action.payload.entries.reduce<ReleasesSummaryEntities>((releases, release) => {
+        return { ...releases, [release.entry.id]: release.entry };
+    }, {});
+    const newState = {...state, projectReleases: {...projectReleases}};
+
+    return newState;
+}
+
+function getProjectReleasesAttempt(state: ProjectDataState, action: GetProjectReleasesAttemptAction): ProjectDataState {
+    const projectReleases = cloneDeep(state.projectReleases);
+    projectReleases.loadedReleases = true;
+    const newState = {...state, projectReleases: {...projectReleases}};
+    return newState;
+}
+

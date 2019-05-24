@@ -1,0 +1,78 @@
+<div class="releases">
+    <ng-container *ngIf="!(loading$ | async); else loadingTemplate">
+        <ng-container *ngIf="dataSource$ | async; let dataSource">
+            <ng-container *ngIf="dataSource.data.length; else noDataTemplate">
+                <div class="releases-list">
+                    <mat-table [dataSource]="dataSource">
+                        <ng-container matColumnDef="thumbnail">
+                            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <mat-icon class="thumbnail" color="primary">assessment</mat-icon>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="id">
+                            <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.RELEASE_ID' | translate }}</mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <span> {{element.id}} </span>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="projectName">
+                            <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.PROJECT_NAME' | translate }}</mat-header-cell>
+                            <mat-cell
+                                *matCellDef="let element">
+                                <span> {{element.projectName}} </span>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="version">
+                            <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_VERSION' | translate }}</mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="createdBy">
+                            <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_CREATED_BY' | translate }}</mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{ element.createdBy }} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="created">
+                            <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_CREATED' | translate }}</mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.creationDate}}</mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;">
+                        </mat-row>
+                    </mat-table>
+                </div>
+            </ng-container>
+
+            <ng-template #noDataTemplate>
+                <adf-empty-content
+                    icon="apps"
+                    class="dashboard-emptylist"
+                    title="APP.HOME.TABLE.NO_ITEMS">
+                </adf-empty-content>
+            </ng-template>
+        </ng-container>
+    </ng-container>
+
+    <div *ngIf="(dataSource$ | async).data.length;" class="paginator-block">
+        <mat-paginator
+            *ngIf="pagination$ | async; let pagination"
+            (page)="onPageChange($event, pagination)"
+            [pageIndex]="pagination.skipCount / pagination.maxItems"
+            [length]="pagination.totalItems"
+            [pageSize]="pagination.maxItems"
+            [pageSizeOptions]="pageSizeOptions">
+        </mat-paginator>
+    </div>
+
+    <ng-template #loadingTemplate>
+        <div class="dashboard-list">
+            <mat-spinner class="dashboard-spinner"></mat-spinner>
+        </div>
+    </ng-template>
+
+</div>

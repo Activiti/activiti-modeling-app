@@ -19,6 +19,7 @@ import { Routes } from '@angular/router';
 import { ProjectsLoaderGuard } from './guards/projects-loader.guard';
 import { DashboardNavigationComponent } from '../components/dahboard-navigation/dashboard-navigation.component';
 import { ProjectsListComponent } from '../components/projects-list/projects-list.component';
+import { ReleaseListComponent } from '../components/releases-list/releases-list.component';
 
 export const dashboardRoutes: Routes = [
     {
@@ -32,6 +33,9 @@ export const dashboardRoutes: Routes = [
         path: '',
         component: DashboardNavigationComponent,
         outlet: 'navigation'
+    },
+    { path: 'projects/:projectId/releases',
+      component: ReleaseListComponent
     },
     { path: '', redirectTo: 'projects', pathMatch: 'full' }
 ];

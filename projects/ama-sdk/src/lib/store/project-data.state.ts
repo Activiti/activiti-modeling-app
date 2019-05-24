@@ -15,15 +15,32 @@
  * limitations under the License.
  */
 
-import { Project } from '../api/types';
+import { Project, Release } from '../api/types';
+import { Pagination } from 'ama-sdk';
+
+export interface ReleasesSummaryEntities {
+    [key: string]: Partial<Release>;
+}
+
+export interface ProjectReleasesState {
+    releases: ReleasesSummaryEntities;
+    loadedReleases: boolean;
+    pagination: Pagination;
+}
 
 export interface ProjectDataState {
     datum: Partial<Project>;
     loading: boolean;
+    projectReleases: ProjectReleasesState;
     error?: any;
 }
 
 export const INITIAL_PROJECT_DATA_STATE: ProjectDataState = {
     datum: null,
-    loading: false
+    loading: false,
+    projectReleases: {
+        releases: {},
+        loadedReleases: false,
+        pagination: null
+    }
 };

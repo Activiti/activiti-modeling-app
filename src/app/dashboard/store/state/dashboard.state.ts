@@ -32,5 +32,5 @@ export const INITIAL_DASHBOARD_STATE: DashboardState = {
     projects: {},
     pagination: null,
     loading: false,
-    projectsLoaded: false
+    projectsLoaded: false,
 };

@@ -64,7 +64,8 @@
             "EDIT": "Edit",
             "DELETE": "Delete",
             "RELEASE": "Release",
-            "SETTINGS": "Settings"
+            "SETTINGS": "Settings",
+            "SEE_RELEASES": "See releases"
         },
         "SETTINGS": {
             "HEADER": "App settings"
@@ -93,6 +94,10 @@
                     "LABEL": "Projects",
                     "TOOLTIP": "Published projects"
                 },
+                "RELEASES": {
+                    "LABEL": "Releases",
+                    "TOOLTIP": "Releases"
+                },
                 "PROCESSES": {
                     "LABEL": "Processes",
                     "TOOLTIP": "Published processes"
@@ -110,10 +115,13 @@
                 "COLUMN_OPTIONS": "Options",
                 "NO_ITEMS": "You don't have any items in this list yet.",
                 "NO_FAV_PROCESSES": "You don't have any favourited process yet",
-                "NO_FAV_PROJECTS": "You don't have any favourited project yet"
+                "NO_FAV_PROJECTS": "You don't have any favourited project yet",
+                "RELEASE_ID": "Release id",
+                "PROJECT_NAME": "Project name"
             },
             "ERROR": {
                 "LOAD_PROJECTS": "Unknown error happened during the loading of projects.",
+                "LOAD_RELEASES": "Unknown error happened during the loading of releases",
                 "LOAD_PROCESSES": "Unknown error happened during the loading of processes."
             }
         },

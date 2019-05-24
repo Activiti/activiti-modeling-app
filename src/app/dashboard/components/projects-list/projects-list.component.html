@@ -55,6 +55,9 @@
                                     <button mat-menu-item (click)="releaseProject(element.id)" class="project-release-button" [attr.data-automation-id]="'project-release-' + element.id">
                                         <mat-icon>new_releases</mat-icon> <span>{{ 'APP.MENU.RELEASE' | translate }}</span>
                                     </button>
+                                    <button mat-menu-item (click)="seeRelesesForProject(element.id)" class="project-release-button" [attr.data-automation-id]="'project-release-' + element.id">
+                                        <mat-icon>remove_red_eye</mat-icon> <span>{{ 'APP.MENU.SEE_RELEASES' | translate }}</span>
+                                    </button>
                                 </mat-menu>
                             </mat-cell>
                         </ng-container>
