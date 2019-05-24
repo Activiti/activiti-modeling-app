@@ -13,8 +13,10 @@
       NODE_OPTIONS = "--max_old_space_size=40000"
       OPTIMIZE_MEMORY = "true"
         
-      API_HOST="http://activiti-cloud-gateway.jx-staging.35.228.195.195.nip.io/activiti-cloud-modeling-backend"
-      OAUTH_HOST="http://activiti-cloud-gateway.jx-staging.35.228.195.195.nip.io/auth/realms/activiti"
+      //API_HOST="http://activiti-cloud-gateway.jx-staging.35.228.195.195.nip.io/activiti-cloud-modeling-backend"
+      //OAUTH_HOST="http://activiti-cloud-gateway.jx-staging.35.228.195.195.nip.io/auth/realms/activiti"
+      API_HOST="http://activiti-cloud-gateway.zzz.35.228.195.195.nip.io/activiti-cloud-modeling-backend"
+      OAUTH_HOST="http://activiti-cloud-gateway.zzz.35.228.195.195.nip.io/auth/realms/activiti"  
       E2E_HOST="http://localhost"
       E2E_PORT="4100"
       E2E_USERNAME="modeler"
