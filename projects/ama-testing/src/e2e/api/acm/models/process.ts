@@ -43,7 +43,7 @@ export class ACMProcess extends ACMCrud {
             <bpmn2:startEvent id="StartEvent_1"/>
           </bpmn2:process>
           <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-            <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+            <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="${entityUuid}">
               <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
                 <dc:Bounds height="36.0" width="36.0" x="412.0" y="240.0"/>
               </bpmndi:BPMNShape>
