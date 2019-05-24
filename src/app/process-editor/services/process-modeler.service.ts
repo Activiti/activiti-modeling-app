@@ -62,7 +62,7 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
         ElementHelper.setProperty(modeling, element, propertyName, value);
     }
 
-    loadXml(xml: string): Observable<string> {
+    loadXml(xml: string): Observable<void> {
         return new Observable(subscriber => {
             this.muteEventHandlers();
 
@@ -82,7 +82,8 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
                 }
 
                 this.listenToEventHandlers();
-                subscriber.next(xml);
+                subscriber.next();
+                subscriber.complete();
             });
         });
     }

@@ -17,7 +17,7 @@
 
 import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { filter, map, take } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { Observable, combineLatest, of } from 'rxjs';
 import { selectProcessCrumb, selectProcessLoading, selectSelectedProcessDiagram } from '../../store/process-editor.selectors';
 import {
@@ -40,7 +40,7 @@ import {
 import { UpdateProcessExtensionsAction, ToolbarMessageAction } from '../../store/process-editor.actions';
 import { ProcessEditorFooterService } from '../../services/process-editor-footer.service';
 import { MatTabChangeEvent } from '@angular/material';
-import { ProcessDiagramLoaderService } from '../../services/process-loader.service';
+import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
 
 @Component({
     templateUrl: './process-editor.component.html',
@@ -58,7 +58,11 @@ export class ProcessEditorComponent implements OnInit {
     extensions$: Observable<string>;
     vsTheme$: Observable<string>;
     disableSave: boolean;
-    tabNames = ['Diagram editor', 'XML editor', 'Extensions editor'];
+    tabNames = [
+        'PROCESS_EDITOR.TABS.DIAGRAM_EDITOR',
+        'PROCESS_EDITOR.TABS.RAW_EDITOR',
+        'PROCESS_EDITOR.TABS.EXTENSIONS_EDITOR'
+    ];
     selectedTabIndex = 0;
 
     constructor(
@@ -110,7 +114,6 @@ export class ProcessEditorComponent implements OnInit {
 
     onXmlChangeAttempt(processContent: ProcessContent): void {
         this.processLoaderService.load(processContent)
-            .pipe(take(1))
             .subscribe(() => this.store.dispatch(new SetAppDirtyStateAction(true)));
     }
 

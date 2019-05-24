@@ -39,7 +39,7 @@ export interface ProcessModelerService {
     getElement(shapeId: string): Bpmn.DiagramElement;
     getRootProcessElement(): Bpmn.DiagramElement;
     updateElementProperty(shapeId: string, propertyName: BpmnProperty, value: any): void;
-    loadXml(xml: string): Observable<string>;
+    loadXml(xml: string): Observable<void>;
     export(): Promise<any>;
     zoomIn(): void;
     zoomOut(): void;

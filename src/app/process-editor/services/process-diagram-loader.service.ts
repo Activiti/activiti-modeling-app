@@ -16,7 +16,7 @@
  */
 
 import { Injectable, Inject } from '@angular/core';
-import { tap, catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Store, Action } from '@ngrx/store';
 import {
     ProcessModelerServiceToken,
@@ -29,9 +29,10 @@ import {
     MESSAGE
 } from 'ama-sdk';
 import { ProcessEntitiesState } from '../store/process-entities.state';
-import { SelectModelerElementAction } from '../store/process-editor.actions';
 import { getProcessLogInitiator } from './process-editor.constants';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
+import { createSelectedElement } from '../store/process-editor.state';
+import { SelectModelerElementAction } from '../store/process-editor.actions';
 
 @Injectable()
 export class ProcessDiagramLoaderService {
@@ -40,18 +41,18 @@ export class ProcessDiagramLoaderService {
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService
     ) {}
 
-    load(xmlContent: string) {
+    load(xmlContent: string): Observable<string> {
         return this.processModelerService.loadXml(xmlContent).pipe(
             tap(() => {
-                const element = this.createSelectedElement({ element: this.processModelerService.getRootProcessElement() });
+                const element = createSelectedElement(this.processModelerService.getRootProcessElement());
                 this.store.dispatch(new SelectModelerElementAction(element));
             }),
             catchError(this.catchError.bind(this))
         );
     }
 
-    private catchError(problem: XmlParsingProblem) {
-        let actions: Action[];
+    private catchError(problem: XmlParsingProblem): Observable<void> {
+        let actions: Action[] = [];
 
         if (problem.type === MESSAGE.ERROR) {
             actions = [
@@ -65,15 +66,7 @@ export class ProcessDiagramLoaderService {
             ];
         }
 
-        actions.forEach(this.store.dispatch.bind(this.store));
-        return of('');
-    }
-
-    private createSelectedElement(event) {
-        return {
-            id: event.element.id,
-            type: event.element.type,
-            name: event.element.businessObject.name || ''
-        };
+        actions.forEach(action => this.store.dispatch(action));
+        return of();
     }
 }

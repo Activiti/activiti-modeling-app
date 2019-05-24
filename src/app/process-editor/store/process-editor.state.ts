@@ -18,6 +18,14 @@
 import { createEntityAdapter } from '@ngrx/entity';
 import { Process, LogMessage } from 'ama-sdk';
 
+export function createSelectedElement(element): SelectedProcessElement {
+    return {
+        id: element.id,
+        type: element.type,
+        name: element.businessObject && element.businessObject.name || ''
+    };
+}
+
 export interface SelectedProcessElement {
     id: string;
     type: string;
@@ -39,13 +47,15 @@ export interface ProcessEditorState {
 
 export const processAdapter = createEntityAdapter<Process>();
 
-export const INITIAL_PROCESS_EDITOR_STATE: ProcessEditorState = {
-    loading: false,
-    selectedElement: null,
-    toolbar: {
-        inProgress: false,
-        userMessage: '',
-        logHistoryVisible: false,
-        logs: []
-    }
-};
+export function getInitialProcessEditorState(): ProcessEditorState {
+    return {
+        loading: false,
+        selectedElement: null,
+        toolbar: {
+            inProgress: false,
+            userMessage: '',
+            logHistoryVisible: false,
+            logs: []
+        }
+    };
+}
