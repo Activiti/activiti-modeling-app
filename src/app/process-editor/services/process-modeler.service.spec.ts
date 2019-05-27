@@ -17,12 +17,15 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { ProcessModelerServiceImplementation } from './process-modeler.service';
-import { BpmnFactoryToken } from 'ama-sdk';
+import { BpmnFactoryToken, ModelerInitOptions, MESSAGE, XmlParsingProblem } from 'ama-sdk';
 import { BpmnFactoryMock } from './bpmn-js/bpmn-js.mock';
+import { of } from 'rxjs';
 
 describe('ProcessModelerServiceImplementation', () => {
 
-    let service: ProcessModelerServiceImplementation;
+    let service: ProcessModelerServiceImplementation,
+        bpmnFactoryMock: BpmnFactoryMock,
+        initConfig: ModelerInitOptions;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -36,14 +39,101 @@ describe('ProcessModelerServiceImplementation', () => {
 
     beforeEach(() => {
         service = TestBed.get(ProcessModelerServiceImplementation);
+        bpmnFactoryMock = TestBed.get(BpmnFactoryToken);
+
+        initConfig = {
+            clickHandler: jest.fn(),
+            changeHandler: jest.fn(),
+            removeHandler: jest.fn(),
+            selectHandler: jest.fn()
+        };
+        service.init(initConfig);
     });
 
     afterEach(() => {
         TestBed.resetTestingModule();
     });
 
-    it('should', () => {
+    describe('loadXml', () => {
 
-        expect(true).toBe(true);
+        function expectEventHandlersCalledTimes(times: number) {
+            const handlers = Object.keys(initConfig);
+            handlers.forEach(handler => {
+                expect(initConfig[handler].mock.calls.length).toEqual(times, `${handler} was not called in the right amouunt of number.`);
+            });
+        }
+
+        function fireEventHandlers() {
+            const events = ['element.click', 'element.changed', 'shape.remove', 'selection.changed'];
+            events.forEach(event => {
+                bpmnFactoryMock.modeler.get('eventBus').fire(event);
+            });
+        }
+
+        it('should mute event handlers when starting the load', () => {
+            expectEventHandlersCalledTimes(0);
+            fireEventHandlers();
+            expectEventHandlersCalledTimes(1);
+
+            service.loadXml('<xml />').subscribe(() => {});
+
+            fireEventHandlers();
+            expectEventHandlersCalledTimes(1);
+        });
+
+        it('should unmute event handlers when loaded successfully', (complete) => {
+            spyOn(bpmnFactoryMock.modeler, 'importXML')
+                .and.callFake((xml, callback) => callback(null, []));
+
+            service.loadXml('<xml />').subscribe({
+                next: () => {
+                    fireEventHandlers();
+                    expectEventHandlersCalledTimes(1);
+                },
+                complete
+            });
+        });
+
+        it('should unmute event handlers when loading WAS NOT successful', (complete) => {
+            spyOn(bpmnFactoryMock.modeler, 'importXML')
+                .and.callFake((xml, callback) => callback('error', []));
+
+            service.loadXml('<xml />').subscribe({
+                error: () => {
+                    fireEventHandlers();
+                    expectEventHandlersCalledTimes(1);
+                    complete();
+                }
+            });
+        });
+
+        it('should be errored when an error happens during importXml', (complete) => {
+            spyOn(bpmnFactoryMock.modeler, 'importXML')
+                .and.callFake((xml, callback) => callback('expected error', []));
+
+            service.loadXml('<xml />').subscribe({
+                error: (error: XmlParsingProblem) => {
+                    expect(error.type).toBe(MESSAGE.ERROR);
+                    expect(error.messages).toEqual(['expected error']);
+                    complete();
+                }
+            });
+        });
+
+        it('should be errored when a warning(s) happen(s) during importXml', (complete) => {
+            spyOn(bpmnFactoryMock.modeler, 'importXML')
+                .and.callFake((xml, callback) => callback(null, [
+                    { message: 'warning1'},
+                    { message: 'warning2'}
+                ]));
+
+            service.loadXml('<xml />').subscribe({
+                error: (error: XmlParsingProblem) => {
+                    expect(error.type).toBe(MESSAGE.WARN);
+                    expect(error.messages).toEqual(['warning1', 'warning2']);
+                    complete();
+                }
+            });
+        });
     });
 });

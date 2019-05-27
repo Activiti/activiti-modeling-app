@@ -22,13 +22,14 @@ import {
     BpmnFactory,
     ModelerInitOptions,
     ProcessModelerService,
-    BpmnProperty
+    BpmnProperty,
+    MESSAGE
 } from 'ama-sdk';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProcessModelerServiceImplementation implements ProcessModelerService {
-    private modeler: Bpmn.Modeler;
+    public modeler: Bpmn.Modeler;
     private modelerInitOptions: ModelerInitOptions;
 
     constructor(@Inject(BpmnFactoryToken) private bpmnFactoryService: BpmnFactory) {}
@@ -67,23 +68,22 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
             this.muteEventHandlers();
 
             this.modeler.importXML(xml, (error, warnings) => {
+                this.listenToEventHandlers();
+
                 if (error) {
                     subscriber.error({
-                        type: 'error',
+                        type: MESSAGE.ERROR,
                         messages: [error]
                     });
-                }
-
-                if (warnings.length) {
+                } else if (warnings.length) {
                     subscriber.error({
-                        type: 'warning',
+                        type: MESSAGE.WARN,
                         messages: warnings.map(entry => entry.message)
                     });
+                } else {
+                    subscriber.next();
+                    subscriber.complete();
                 }
-
-                this.listenToEventHandlers();
-                subscriber.next();
-                subscriber.complete();
             });
         });
     }
