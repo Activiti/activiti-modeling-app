@@ -18,7 +18,7 @@
 import { ProjectDataState, INITIAL_PROJECT_DATA_STATE, Project } from 'ama-sdk';
 import { projectDataReducer } from './project-data.reducer';
 import { SELECT_PROJECT, GetProjectSuccessAction } from '../project-editor.actions';
-import { mockReleaseEntry } from 'src/app/dashboard/store/effects/project.mock';
+import { mockReleaseEntry } from './../dashboard/store/effects/project.mock';
 import { GetProjectReleasesSuccessAction } from 'src/app/dashboard/store/actions/releases';
 
 describe('Project data reducer', () => {
@@ -40,16 +40,6 @@ describe('Project data reducer', () => {
         initState = {...INITIAL_PROJECT_DATA_STATE};
         const newState = projectDataReducer(initState, new GetProjectSuccessAction(project));
 
-        expect(newState.datum).toEqual(project);
-    });
-
-    it ('should handle GET_PROJECT_RELEASES_SUCCESS', () => {
-        initState = {...INITIAL_PROJECT_DATA_STATE};
-        const newState = projectDataReducer(initState, new GetProjectReleasesSuccessAction({entries: [mockReleaseEntry], pagination: null }));
-        const expectedResponse = {
-            [mockReleaseEntry.entry.id]: mockReleaseEntry.entry
-        };
-
-        expect(newState.projectReleases.releases).toEqual(expectedResponse);
+        expect(newState.project).toEqual(project);
     });
 });

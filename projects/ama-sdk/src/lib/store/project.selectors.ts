@@ -18,16 +18,13 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ProjectEditorState } from './project.state';
 
-const selectReleaseSummariesFromState = (state: ProjectEditorState) => state.project.projectReleases.releases;
-const selectReleasesPaginationFromState = (state: ProjectEditorState) => state.project.projectReleases.pagination;
-const selectProjectReleaseLoadedFromState = (state: ProjectEditorState) => state.project.projectReleases.loadedReleases;
 
 export const PROJECT_EDITOR_STATE_NAME = 'project-editor';
 export const getProjectEditorFeatureState = createFeatureSelector<ProjectEditorState>(PROJECT_EDITOR_STATE_NAME);
 
 export const selectProject = createSelector(
     getProjectEditorFeatureState,
-    (state: ProjectEditorState) => state.project.datum
+    (state: ProjectEditorState) => state.project.project
 );
 
 export const selectProjectLoading = createSelector(
@@ -39,7 +36,3 @@ export const selectProjectTree = createSelector(
     getProjectEditorFeatureState,
     (state: ProjectEditorState) => state.tree
 );
-
-export const selectReleaseSummaries = createSelector(getProjectEditorFeatureState, selectReleaseSummariesFromState);
-export const selectReleasesPagination = createSelector(getProjectEditorFeatureState, selectReleasesPaginationFromState);
-export const selectLoadedProjectReleases = createSelector(getProjectEditorFeatureState, selectProjectReleaseLoadedFromState);

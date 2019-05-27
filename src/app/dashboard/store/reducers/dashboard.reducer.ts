@@ -19,7 +19,8 @@ import { Action } from '@ngrx/store';
 import {
     DashboardState,
     INITIAL_DASHBOARD_STATE,
-    ProjectSummaryEntities
+    ProjectSummaryEntities,
+    ReleasesSummaryEntities
 } from '../state/dashboard.state';
 import {
     GET_PROJECTS_SUCCESS,
@@ -37,6 +38,7 @@ import {
     GET_PROJECTS_ATTEMPT
 
 } from '../actions/projects';
+import { GET_PROJECT_RELEASES_SUCCESS, GetProjectReleasesSuccessAction, GET_PROJECT_RELEASES_ATTEMPT, GetProjectReleasesAttemptAction } from '../actions/releases';
 
 
 export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE, action: Action): DashboardState {
@@ -72,6 +74,13 @@ export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE
 
         case UPLOAD_PROJECT_SUCCESS:
             newState = uploadProject(state, <UploadProjectSuccessAction> action);
+            break;
+        case GET_PROJECT_RELEASES_SUCCESS:
+            newState = setReleases(state, <GetProjectReleasesSuccessAction> action);
+            break;
+
+        case GET_PROJECT_RELEASES_ATTEMPT:
+            newState = getProjectReleasesAttempt(state, <GetProjectReleasesAttemptAction> action);
             break;
 
         default:
@@ -140,6 +149,23 @@ function releaseProject(state: DashboardState, action: ReleaseProjectSuccessActi
         [action.projectId]: { ...newState.projects[action.projectId], version: release.version }
     };
 
+    return newState;
+}
+
+function setReleases(state: DashboardState, action: GetProjectReleasesSuccessAction): DashboardState {
+    const newState = Object.assign({}, state);
+    newState.loadingReleases = false;
+    newState.releasesPagination = action.payload.pagination;
+    newState.releases = action.payload.entries.reduce<ReleasesSummaryEntities>((releases, release) => {
+        return { ...releases, [release.entry.id]: release.entry };
+    }, {});
+
+    return newState;
+}
+
+function getProjectReleasesAttempt(state: DashboardState, action: GetProjectReleasesAttemptAction): DashboardState {
+    const newState = Object.assign({}, state);
+    newState.loadingReleases = true;
     return newState;
 }
 

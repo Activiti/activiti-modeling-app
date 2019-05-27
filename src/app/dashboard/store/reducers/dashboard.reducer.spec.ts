@@ -28,7 +28,7 @@ import {
 import { INITIAL_DASHBOARD_STATE, DashboardState } from '../state/dashboard.state';
 import { Project, Release } from 'ama-sdk';
 import { mockProject, mockReleaseEntry } from '../effects/project.mock';
-import { GetReleasesSuccessAction } from '../actions/releases';
+import { GetReleasesSuccessAction, GetProjectReleasesSuccessAction } from '../actions/releases';
 
 describe('dashboardReducer', () => {
 
@@ -127,6 +127,18 @@ describe('dashboardReducer', () => {
             const newState = dashboardReducer(initialState, action);
 
             expect(newState.projects[mockProject.id].version).toEqual('2');
+        });
+    });
+
+    describe('GET_PROJECT_RELEASES_SUCCESS', () => {
+
+        it ('should handle GET_PROJECT_RELEASES_SUCCESS', () => {
+            const newState = dashboardReducer(initialState, new GetProjectReleasesSuccessAction({entries: [mockReleaseEntry], pagination: null }));
+            const expectedResponse = {
+                [mockReleaseEntry.entry.id]: mockReleaseEntry.entry
+            };
+
+            expect(newState.releases).toEqual(expectedResponse);
         });
     });
 

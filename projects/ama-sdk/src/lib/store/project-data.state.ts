@@ -15,32 +15,15 @@
  * limitations under the License.
  */
 
-import { Project, Release } from '../api/types';
-import { Pagination } from './../api/types';
-
-export interface ReleasesSummaryEntities {
-    [key: string]: Partial<Release>;
-}
-
-export interface ProjectReleasesState {
-    releases: ReleasesSummaryEntities;
-    loadedReleases: boolean;
-    pagination: Pagination;
-}
+import { Project } from '../api/types';
 
 export interface ProjectDataState {
-    datum: Partial<Project>;
+    project: Partial<Project>;
     loading: boolean;
-    projectReleases: ProjectReleasesState;
     error?: any;
 }
 
 export const INITIAL_PROJECT_DATA_STATE: ProjectDataState = {
-    datum: null,
-    loading: false,
-    projectReleases: {
-        releases: {},
-        loadedReleases: false,
-        pagination: null
-    }
+    project: null,
+    loading: false
 };

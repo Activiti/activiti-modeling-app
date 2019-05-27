@@ -1,4 +1,8 @@
 <div class="releases">
+    <adf-toolbar>
+        <amasdk-header-breadcrumbs [breadcrumbs$]="breadcrumbs$">
+        </amasdk-header-breadcrumbs>
+    </adf-toolbar>
     <ng-container *ngIf="!(loading$ | async); else loadingTemplate">
         <ng-container *ngIf="dataSource$ | async; let dataSource">
             <ng-container *ngIf="dataSource.data.length; else noDataTemplate">
