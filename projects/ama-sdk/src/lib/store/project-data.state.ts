@@ -16,7 +16,7 @@
  */
 
 import { Project, Release } from '../api/types';
-import { Pagination } from 'ama-sdk';
+import { Pagination } from './../api/types';
 
 export interface ReleasesSummaryEntities {
     [key: string]: Partial<Release>;
