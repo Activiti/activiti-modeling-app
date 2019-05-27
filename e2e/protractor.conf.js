@@ -16,7 +16,7 @@ exports.config = {
     allScriptsTimeout: 30000,
 
     specs: [
-        './tests/**/*.ts'
+        './tests/login-logout/login-logout-sanity.e2e.ts'
     ],
 
     suites: {
