@@ -40,7 +40,6 @@ export class AuthenticatedPage extends GenericPage {
 
     async navigateTo() {
         const loginURL = `dashboard/projects`;
-
         return await super.navigateTo(loginURL);
     }
 }

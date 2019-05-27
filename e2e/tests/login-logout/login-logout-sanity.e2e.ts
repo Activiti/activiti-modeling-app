@@ -19,6 +19,7 @@ import { testConfig } from '../../test.config';
 import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { Logger } from 'ama-testing/e2e';
+// import { browser } from 'protractor';
 
 describe('Application sanity check with Login and Logout', () => {
 
@@ -26,14 +27,27 @@ describe('Application sanity check with Login and Logout', () => {
 
     let loginPage: LoginPageImplementation;
 
-    it('1. [C310139] Login/Logout sanity check', async () => {
+    const originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+
+    beforeAll(async() => {
+        Logger.info('Jasmine DEFAULT TIMEOUT: ', originalTimeout);
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000;
+        Logger.info('Jasmine UPDATED TIMEOUT: ', jasmine.DEFAULT_TIMEOUT_INTERVAL);
         loginPage = LoginPage.get(testConfig);
         await loginPage.navigateTo();
+    });
+
+    it('1. [C310139] Login/Logout sanity check', async () => {
         for (let i = 0; i < 20; i++) {
-            Logger.info('Login/logout - interation ', i);
             await loginPage.login(testConfig.ama.user, testConfig.ama.password);
             expect(await authenticatedPage.isLoggedIn()).toBe(true);
             await authenticatedPage.logout();
+            Logger.info('Login/logout - interation ', i);
         }
+    });
+
+    afterAll(async () => {
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+        Logger.info('Jasmine RESTORED TIMEOUT: ', jasmine.DEFAULT_TIMEOUT_INTERVAL);
     });
 });

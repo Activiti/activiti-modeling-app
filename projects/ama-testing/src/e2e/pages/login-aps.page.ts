@@ -32,19 +32,17 @@ export class LoginAPSPage extends GenericPage implements LoginPageImplementation
         super(testConfig);
     }
 
-
     async login(username: string, password: string) {
         await this.clickOnSSOButton();
         await super.waitForElementToBePresent(element(by.id('kc-form-login')));
         await this.enterUsername(username);
         await this.enterPassword(password);
         await this.clickOnLoginButton();
-
     }
 
     async navigateTo() {
         const loginURL = `login`;
-        return await super.navigateTo(loginURL);
+        await super.navigateTo(loginURL);
     }
 
     async isLoginPageDisplayed() {
