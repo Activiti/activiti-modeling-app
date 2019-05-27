@@ -18,8 +18,6 @@
 import { ProjectDataState, INITIAL_PROJECT_DATA_STATE, Project } from 'ama-sdk';
 import { projectDataReducer } from './project-data.reducer';
 import { SELECT_PROJECT, GetProjectSuccessAction } from '../project-editor.actions';
-import { mockReleaseEntry } from './../dashboard/store/effects/project.mock';
-import { GetProjectReleasesSuccessAction } from 'src/app/dashboard/store/actions/releases';
 
 describe('Project data reducer', () => {
     let initState: ProjectDataState;

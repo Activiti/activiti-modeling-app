@@ -16,17 +16,16 @@
  */
 
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription, of, combineLatest } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { map, filter } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { MatTableDataSource, PageEvent } from '@angular/material';
-import { AmaState, Pagination, BreadcrumbItem } from 'ama-sdk';
+import { AmaState, Pagination, Project, selectProject } from 'ama-sdk';
 import { sortEntriesByName } from '../../../common/helpers/sort-entries-by-name';
 import { Release } from 'ama-sdk';
 import { GetProjectReleasesAttemptAction } from '../../store/actions/releases';
 import { ActivatedRoute } from '@angular/router';
 import { selectLoadedProjectReleases, selectReleasesPagination, selectReleaseSummaries } from '../../store/selectors/dashboard.selectors';
-import { selectProjectCrumb } from 'ama-sdk';
 
 @Component({
     selector: 'ama-release-list',
@@ -40,7 +39,7 @@ export class ReleaseListComponent implements OnInit, OnDestroy {
     subcription: Subscription = <Subscription>{ unsubscribe: () => {} };
     displayedColumns = ['thumbnail', 'projectName', 'id', 'createdBy',  'created', 'version'];
     pageSizeOptions = [ 10, 25, 50, 100 ];
-    breadcrumbs$: Observable<BreadcrumbItem[]>;
+    project$: Observable<Partial<Project>>;
 
     @Input() customDataSource$: Observable<Partial<Release>[]>;
 
@@ -58,10 +57,7 @@ export class ReleaseListComponent implements OnInit, OnDestroy {
             map(entriesArray =>  new MatTableDataSource<Partial<Release>>(entriesArray))
         );
 
-        this.breadcrumbs$ = combineLatest(
-            of({ url: '/home', name: 'Dashboard' }),
-            this.store.select(selectProjectCrumb).pipe(filter(value => value !== null)),
-        );
+        this.project$ = this.store.select(selectProject);
     }
 
     getProjectId() {
