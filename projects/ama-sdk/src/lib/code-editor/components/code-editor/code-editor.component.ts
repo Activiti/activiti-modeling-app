@@ -48,7 +48,7 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     private defaultOptions = {
         language: 'json',
         scrollBeyondLastLine: false,
-        contextmenu: false,
+        contextmenu: true,
         formatOnPaste: true,
         formatOnType: true,
         minimap: {

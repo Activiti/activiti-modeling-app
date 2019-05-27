@@ -1,16 +1,17 @@
 @mixin ama-layout-global-theme($theme) {
+    $primary: map-get($theme, primary);
     $warn: map-get($theme, warn);
     $accent: map-get($theme, accent);
 
     .error-snackbar {
         background-color: mat-color($warn);
-    }    
+    }
 
     .warning-snackbar {
-        background-color: mat-color($warn, 300);
-    }    
+        background-color: mat-color($accent);
+    }
 
     .info-snackbar {
-        background-color: mat-color($accent);
-    }    
+        background-color: mat-color($primary);
+    }
 }

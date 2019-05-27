@@ -5,5 +5,7 @@
         <span class="log-datetime">{{ log.datetime | date:"HH:mm:ss" }} </span>
         <span class="log-level">[{{ log.type }}]</span>
     </div>
-    <div class="log-content" [innerHTML]="message"></div>
+    <div class="log-content">
+        <div *ngFor="let message of log.messages">{{ message }}</div>
+    </div>
 </div>

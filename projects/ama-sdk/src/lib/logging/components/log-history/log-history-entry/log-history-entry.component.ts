@@ -15,8 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, ChangeDetectionStrategy, SecurityContext, OnInit } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { LogMessage } from '../../../interfaces';
 
 @Component({
@@ -24,24 +23,8 @@ import { LogMessage } from '../../../interfaces';
     templateUrl: './log-history-entry.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LogHistoryEntryComponent implements OnInit {
+export class LogHistoryEntryComponent {
 
     @Input()
     log: LogMessage;
-
-    message: SafeHtml;
-
-    constructor(private sanitizer: DomSanitizer) {}
-
-    ngOnInit() {
-        const sanitizedMessages = this.log.messages
-            .map(this.sanitize.bind(this))
-            .join('<br />');
-
-        this.message = this.sanitizer.bypassSecurityTrustHtml(sanitizedMessages);
-    }
-
-    private sanitize(str: string): string {
-        return this.sanitizer.sanitize(SecurityContext.HTML, str);
-    }
 }

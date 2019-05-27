@@ -29,8 +29,9 @@ import { of } from 'rxjs';
 import { mockProcess } from '../../store/process.mock';
 import { processEntitiesReducer } from '../../store/process-entities.reducer';
 import { Component } from '@angular/core';
-import { ProcessDiagramLoaderService } from '../../services/process-loader.service';
+import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
+import { createSelectedElement } from '../../store/process-editor.state';
 
 @Component({
     selector: 'ama-process-palette',
@@ -157,8 +158,7 @@ describe('ProcessModelerComponent', () => {
     });
 
     it('should test createSelectedElement function', () => {
-        const mockEvent = { element: getDiagramElementMock({ name: 'mock-element-name' }) };
-        const selectedElement = component.createSelectedElement(mockEvent);
+        const selectedElement = createSelectedElement(getDiagramElementMock({ name: 'mock-element-name' }));
 
         expect(selectedElement).toEqual({
             id: 'mock-element-id',

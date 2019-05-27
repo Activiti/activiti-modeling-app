@@ -5,6 +5,11 @@
             "MEDIUM": "1",
             "HIGH": "2"
         },
+        "TABS": {
+            "DIAGRAM_EDITOR": "Diagram editor",
+            "RAW_EDITOR": "XML editor",
+            "EXTENSIONS_EDITOR": "Extensions editor"
+        },
         "ACTIONS": {
             "ZOOM_IN": "Zoom in",
             "ZOOM_OUT": "Zoom out",

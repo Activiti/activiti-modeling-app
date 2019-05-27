@@ -16,12 +16,16 @@
  */
 
 import { BpmnFactory } from 'ama-sdk';
+import EventBus from 'diagram-js/lib/core/EventBus';
 
 export class BpmnFactoryMock implements BpmnFactory {
-    create() {
+    public modeler: Bpmn.Modeler;
+
+    create(): Bpmn.Modeler {
+        const eventBus = new EventBus();
         const canvasObject = { zoom: () => {} };
 
-        return {
+        this.modeler = {
             createDiagram() {},
             importXML() {},
             saveXML() {},
@@ -29,14 +33,20 @@ export class BpmnFactoryMock implements BpmnFactory {
             get(subject) {
                 if (subject === 'canvas') {
                     return canvasObject;
+                } else if (subject === 'eventBus') {
+                    return eventBus;
                 }
             },
-            destroy() {},
-            on() {},
-            off() {},
+            destroy() {
+                eventBus.fire('diagram.destroy');
+            },
+            on: eventBus.on.bind(eventBus),
+            off: eventBus.off.bind(eventBus),
             attachTo() {},
             detach() {}
         };
+
+        return this.modeler;
     }
 }
 
