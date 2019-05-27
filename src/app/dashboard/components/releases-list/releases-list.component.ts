@@ -18,7 +18,7 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription, of, combineLatest } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { map, filter, tap } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 import { MatTableDataSource, PageEvent } from '@angular/material';
 import { AmaState, Pagination, BreadcrumbItem } from 'ama-sdk';
 import { sortEntriesByName } from '../../../common/helpers/sort-entries-by-name';

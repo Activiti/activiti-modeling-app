@@ -31,7 +31,6 @@ import {
     GetProjectsAttemptAction
 } from '../../store/actions/projects';
 import { sortEntriesByName } from '../../../common/helpers/sort-entries-by-name';
-import { GetProjectAttemptAction } from '../../../project-editor/store/project-editor.actions';
 
 @Component({
     selector: 'ama-projects-list',
@@ -97,7 +96,6 @@ export class ProjectsListComponent implements OnInit {
     }
 
     seeRelesesForProject(projectId: string): void {
-        this.store.dispatch(new GetProjectAttemptAction(projectId));
         this.router.navigate(['dashboard', 'projects', projectId, 'releases']);
     }
 }
