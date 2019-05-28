@@ -1,12 +1,8 @@
 <adf-toolbar class = "release-header">
-    <ng-container *ngIf="project$ | async as project;">
-        <adf-toolbar-title>
-            <a color="accent" mat-icon-button routerLink="/">
-                <mat-icon>home</mat-icon>
-            </a>
-            <span class="project-name">{{ project.name }}</span>
-        </adf-toolbar-title>
-    </ng-container>
+    <adf-toolbar-title>
+        <amasdk-header-breadcrumbs [breadcrumbs$]="breadcrumbs$">
+        </amasdk-header-breadcrumbs>
+    </adf-toolbar-title>
 </adf-toolbar>
 <div class="releases">
     <ng-container *ngIf="!(loading$ | async); else loadingTemplate">
@@ -29,14 +25,6 @@
                             </mat-cell>
                         </ng-container>
 
-                        <ng-container matColumnDef="projectName">
-                            <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.PROJECT_NAME' | translate }}
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let element">
-                                <span> {{element.projectName}} </span>
-                            </mat-cell>
-                        </ng-container>
-
                         <ng-container matColumnDef="version">
                             <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_VERSION' | translate }}
                             </mat-header-cell>
@@ -52,7 +40,7 @@
                         <ng-container matColumnDef="created">
                             <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_CREATED' | translate }}
                             </mat-header-cell>
-                            <mat-cell *matCellDef="let element"> {{element.creationDate}}</mat-cell>
+                            <mat-cell *matCellDef="let element"> {{element.creationDate | amTimeAgo }}</mat-cell>
                         </ng-container>
 
                         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

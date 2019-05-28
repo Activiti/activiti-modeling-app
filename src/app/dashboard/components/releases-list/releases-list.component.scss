@@ -44,7 +44,7 @@
 
                 .mat-cell {
                     line-height: 48px;
-                    vertical-align: middle;
+                    text-align: left;
                 }
 
                 .mat-icon.thumbnail {
@@ -70,19 +70,14 @@
             }
 
             .cdk-column-id {
-                margin-left: -90px;
+                padding-left: 24px;
+                flex-grow: 1;
+                max-width: 330px;
             }
 
-            .cdk-column-projectName {
-                padding: 0 0 0 50px;
-            }
-
-            .cdk-column-version {
-                flex: 0 1 auto;
-            }
-
-            .cdk-column-created {
-                padding-right: 0px;
+            .cdk-column-created,
+            .cdk-column-createdBy {
+                max-width: 330px;
             }
         }
 
