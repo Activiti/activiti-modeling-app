@@ -48,7 +48,7 @@
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"  
             sh "npm ci"
               
-            sh "npm install"
+            //sh "npm install"
             //sh "npm run build"
             //sh "npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod" 
             sh "npm run e2e"

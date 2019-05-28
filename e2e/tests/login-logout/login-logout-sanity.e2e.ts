@@ -19,9 +19,8 @@ import { testConfig } from '../../test.config';
 import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { Logger } from 'ama-testing/e2e';
-// import { browser } from 'protractor';
 
-describe('Application sanity check with Login and Logout', () => {
+xdescribe('Application sanity check with Login and Logout', () => {
 
     const authenticatedPage = new AuthenticatedPage(testConfig);
 
