@@ -18,15 +18,41 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 
 import { CodeEditorComponent } from './components/code-editor/code-editor.component';
+import { connectorSchema, formSchema, uiSchema, dataSchema, extensionsSchema } from '../schemas/public_api';
+
+const editorConfig: NgxMonacoEditorConfig = {
+    baseUrl: './assets',
+    onMonacoLoad: () => {
+        monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+            validate: true,
+            schemas: [{
+                uri: 'connectorSchema',
+                schema: connectorSchema
+            }, {
+                uri: 'formSchema',
+                schema: formSchema
+            }, {
+                uri: 'uiSchema',
+                schema: uiSchema
+            }, {
+                uri: 'dataSchema',
+                schema: dataSchema
+            }, {
+                uri: 'extensionsSchema',
+                schema: extensionsSchema
+            }]
+        });
+    }
+};
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        MonacoEditorModule.forRoot({baseUrl: './assets'})
+        MonacoEditorModule.forRoot(editorConfig)
     ],
     declarations: [CodeEditorComponent],
     exports: [

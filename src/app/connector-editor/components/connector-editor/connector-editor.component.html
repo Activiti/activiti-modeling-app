@@ -2,7 +2,7 @@
     <ng-container *ngIf="!(loadingState$ | async); else loading;">
         <ng-container *ngIf="editorContent$ | async; let editorContent">
 
-            <ama-connector-header [disableSave]="disableSave"
+            <ama-connector-header
                 [connectorId]="connectorId$ | async"
                 [content]="editorContent"
                 class="ama-connector-header">
@@ -27,7 +27,8 @@
                             data-automation-id="connector-basic-tab">
                             <amasdk-code-editor [vsTheme]="vsTheme$ | async"
                                 [content]="editorContent"
-                                (changed)="onChangeAttempt($event)">
+                                (changed)="onChangeAttempt($event)"
+                                (uri)="schemaUri">
                             </amasdk-code-editor>
                         </div>
                     </mat-tab>
@@ -37,7 +38,8 @@
             <ng-container *ngIf="!isAdvancedEditorEmbedded()">
                 <amasdk-code-editor [vsTheme]="vsTheme$ | async"
                     [content]="editorContent"
-                    (changed)="onChangeAttempt($event)">
+                    (changed)="onChangeAttempt($event)"
+                    (uri)="schemaUri">
                 </amasdk-code-editor>
             </ng-container>
         </ng-container>

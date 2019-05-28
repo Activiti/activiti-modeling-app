@@ -64,6 +64,7 @@ export class ProcessEditorComponent implements OnInit {
         'PROCESS_EDITOR.TABS.EXTENSIONS_EDITOR'
     ];
     selectedTabIndex = 0;
+    extensionsSchema: string;
 
     constructor(
         private store: Store<AmaState>,
@@ -72,6 +73,7 @@ export class ProcessEditorComponent implements OnInit {
         private processLoaderService: ProcessDiagramLoaderService
     ) {
         this.vsTheme$ = this.getVsTheme();
+        this.extensionsSchema = 'extensionsSchema';
     }
 
     ngOnInit() {

@@ -16,7 +16,7 @@
  */
 
 import { Component, Output, EventEmitter, Input, OnDestroy, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { NgxEditorModel } from 'ngx-monaco-editor';
+import { NgxEditorModel, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 const memoize = require('lodash/memoize');
 
 export type EditorOptions = monaco.editor.IEditorOptions | { language: string; theme: string };
@@ -38,12 +38,17 @@ const createMemoizedEditorOptions = memoize(
 export class CodeEditorComponent implements OnDestroy, OnInit {
     @Input() vsTheme = 'vs-light';
     @Input() options: EditorOptions;
+    @Input() uri: string ;
     @Input() content = '';
     @Output() changed = new EventEmitter<string>();
     @Output() positionChanged = new EventEmitter<CodeEditorPosition>();
 
     private editor: monaco.editor.ICodeEditor = <monaco.editor.ICodeEditor>{ dispose: () => {} };
-    editorModel: NgxEditorModel;
+    editorModel: NgxEditorModel = {
+        value: this.content,
+        uri: this.uri
+    };
+    config: NgxMonacoEditorConfig;
 
     private defaultOptions = {
         language: 'json',
@@ -63,6 +68,10 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
 
     get editorOptions(): EditorOptions {
         return createMemoizedEditorOptions(this.vsTheme, this.defaultOptions.language, this.defaultOptions);
+    }
+
+    get editorConfig(): NgxMonacoEditorConfig {
+        return this.editorConfig;
     }
 
     ngOnDestroy() {

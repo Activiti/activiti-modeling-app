@@ -38,7 +38,8 @@
                             (changed)="onExtensionsChangeAttempt($event, process.id)"
                             (positionChanged)="codeEditorPositionChanged($event)"
                             [vsTheme]="vsTheme$ | async"
-                            [content]="extensions$ | async">
+                            [content]="extensions$ | async"
+                            (uri)="extensionsSchema">
                         </amasdk-code-editor>
                     </div>
                 </mat-tab>

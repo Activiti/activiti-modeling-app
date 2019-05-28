@@ -24,11 +24,11 @@ import { Observable, of } from 'rxjs';
 import { ChangeConnectorContent } from '../../store/connector-editor.actions';
 import {
     AmaState,
-    connectorSchema,
+    // connectorSchema,
     selectSelectedTheme,
-    ConnectorContent,
-    CodeValidatorService,
-    ValidationResponse,
+    // ConnectorContent,
+    // CodeValidatorService,
+    // ValidationResponse,
     AdvancedConnectorEditorData,
     AdvancedConnectorEditorKey
 } from 'ama-sdk';
@@ -48,10 +48,11 @@ export class ConnectorEditorComponent {
 
     boundOnChangeAttempt: any;
     getMemoizedDynamicComponentData: any;
+    schemaUri: string;
 
     constructor(
         private store: Store<AmaState>,
-        private codeValidatorService: CodeValidatorService,
+        // private codeValidatorService: CodeValidatorService,
         private changeDetectorRef: ChangeDetectorRef,
         private componentRegister: ComponentRegisterService
     ) {
@@ -67,6 +68,8 @@ export class ConnectorEditorComponent {
         this.getMemoizedDynamicComponentData = memoize((connectorContent, onChangeAttempt) => {
             return { connectorContent, onChangeAttempt };
         });
+
+        this.schemaUri = 'connectorSchema';
     }
 
     onTabChange(): void {
@@ -82,7 +85,7 @@ export class ConnectorEditorComponent {
     }
 
     onChangeAttempt(connectorContentString: string): void {
-        this.disableSave = !this.validate(connectorContentString).valid;
+       // this.disableSave = !this.validate(connectorContentString).valid;
 
         if (!this.disableSave) {
             this.editorContent$ = of(connectorContentString);
@@ -92,9 +95,9 @@ export class ConnectorEditorComponent {
         this.changeDetectorRef.detectChanges();
     }
 
-    private validate(connectorContentString: string): ValidationResponse<ConnectorContent> {
-        return this.codeValidatorService.validateJson<ConnectorContent>(connectorContentString, connectorSchema);
-    }
+    // private validate(connectorContentString: string): ValidationResponse<ConnectorContent> {
+    //     return this.codeValidatorService.validateJson<ConnectorContent>(connectorContentString, connectorSchema);
+    // }
 
     private getVsTheme(): Observable<string> {
         return this.store
