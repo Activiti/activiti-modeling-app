@@ -19,8 +19,6 @@
       E2E_HOST="http://localhost"
       E2E_PORT="4100"
 
-      E2E_UNAUTHORIZED_USER="zzz"
-      E2E_UNAUTHORIZED_USER_PASSWORD="zzz"
       BROWSER_RUN="false"
       SAVE_SCREENSHOT="true"
         
