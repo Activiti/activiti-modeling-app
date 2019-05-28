@@ -60,7 +60,8 @@ export class ReleaseListComponent implements OnInit, OnDestroy {
 
         this.breadcrumbs$ = combineLatest(
             of({ url: '/home', name: 'Dashboard' }),
-            this.store.select(selectProjectCrumb).pipe(filter(value => value !== null))
+            this.store.select(selectProjectCrumb).pipe(filter(value => value !== null)),
+            of({name: 'releases'})
         );
     }
 
