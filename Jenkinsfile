@@ -14,20 +14,15 @@
       OPTIMIZE_MEMORY = "true"
         
 
-      API_HOST="modeling backend url"
-      OAUTH_HOST="#gateway/auth/realms/activiti"  
+      API_HOST="http://activiti-cloud-gateway.jx-staging.35.228.195.195.nip.io/modeling-service/"
+      OAUTH_HOST="http://activiti-cloud-gateway.jx-staging.35.228.195.195.nip.io/auth/realms/activiti"
       E2E_HOST="http://localhost"
       E2E_PORT="4100"
-      E2E_USERNAME="modeler"
-      E2E_PASSWORD=""
-      E2E_UNAUTHORIZED_USER="hruser"
-      E2E_UNAUTHORIZED_USER_PASSWORD=""
-      E2E_FAIL_FAST="true"
+
+      E2E_UNAUTHORIZED_USER="zzz"
+      E2E_UNAUTHORIZED_USER_PASSWORD="zzz"
       BROWSER_RUN="false"
       SAVE_SCREENSHOT="true"
-      SCREENSHOT_URL=""
-      SCREENSHOT_USERNAME=""
-      SCREENSHOT_PASSWORD="" 
         
       DISPLAY=":99.0"
         
@@ -48,9 +43,6 @@
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"  
             sh "npm ci"
               
-            //sh "npm install"
-            //sh "npm run build"
-            //sh "npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod" 
             sh "npm run e2e"
               
             //sh "npm test"
