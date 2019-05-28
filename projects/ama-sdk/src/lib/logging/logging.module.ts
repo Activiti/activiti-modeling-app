@@ -34,7 +34,7 @@ import { MatChipsModule, MatIconModule } from '@angular/material';
     ],
     exports: [
         LogHistoryComponent,
-        LogHistoryEntryComponent,
+        LogHistoryEntryComponent
     ],
     providers: [
     ]

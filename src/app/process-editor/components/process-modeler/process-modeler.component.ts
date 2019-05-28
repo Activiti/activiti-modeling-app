@@ -23,10 +23,12 @@ import { Store } from '@ngrx/store';
 import {
     SelectModelerElementAction,
     ChangedProcessAction,
-    RemoveDiagramElementAction
+    RemoveDiagramElementAction,
+    ToolbarMessageAction
 } from '../../store/process-editor.actions';
 import { ProcessEntitiesState } from '../../store/process-entities.state';
-import { ProcessDiagramLoaderService } from '../../services/process-loader.service';
+import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
+import { createSelectedElement } from '../../store/process-editor.state';
 
 @Component({
     selector: 'ama-process-modeler',
@@ -53,34 +55,26 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
 
     ngOnInit() {
         this.processModelerService.init({
-            clickHandler: event =>
-                this.store.dispatch(new SelectModelerElementAction(this.createSelectedElement(event))),
+            clickHandler: event => {
+                this.store.dispatch(new SelectModelerElementAction(createSelectedElement(event.element))),
+                this.store.dispatch(new ToolbarMessageAction(event.element.type));
+            },
             changeHandler: event => {
-                this.store.dispatch(new ChangedProcessAction(this.createSelectedElement(event)));
+                this.store.dispatch(new ChangedProcessAction(createSelectedElement(event.element)));
                 this.onChange.emit(event);
             },
             removeHandler: event =>
-                this.store.dispatch(new RemoveDiagramElementAction(this.createSelectedElement(event))),
+                this.store.dispatch(new RemoveDiagramElementAction(createSelectedElement(event.element))),
             selectHandler: event => {
                 if (event.newSelection[0]) {
                     this.store.dispatch(
                         new SelectModelerElementAction(
-                            this.createSelectedElement({
-                                element: event.newSelection[0]
-                            })
+                            createSelectedElement(event.newSelection[0])
                         )
                     );
                 }
             }
         });
-    }
-
-    createSelectedElement(event) {
-        return {
-            id: event.element.id,
-            type: event.element.type,
-            name: event.element.businessObject.name || ''
-        };
     }
 
     ngAfterViewInit() {

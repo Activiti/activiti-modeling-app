@@ -31,6 +31,14 @@ declare namespace Bpmn {
 
     export type NamedDiagramService =
         | 'elementRegistry'
+        | 'bpmnFactory'
+        | 'create'
+        | 'elementFactory'
+        | 'handTool'
+        | 'globalConnect'
+        | 'globalConnect'
+        | 'lassoTool'
+        | 'spaceTool'
         | 'eventBus'
         | 'canvas'
         | 'modeling'

@@ -50,7 +50,7 @@ describe('CodeEditorComponent', () => {
             expect(component.editorOptions).toEqual({
                 language: 'json',
                 scrollBeyondLastLine: false,
-                contextmenu: false,
+                contextmenu: true,
                 formatOnPaste: true,
                 formatOnType: true,
                 minimap: {

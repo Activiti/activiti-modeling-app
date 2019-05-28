@@ -17,12 +17,19 @@
 
 import { Injectable, Inject } from '@angular/core';
 import { ElementHelper } from './bpmn-js/element.helper';
-import { BpmnFactoryToken, BpmnFactory, ModelerInitOptions, ProcessModelerService } from 'ama-sdk';
+import {
+    BpmnFactoryToken,
+    BpmnFactory,
+    ModelerInitOptions,
+    ProcessModelerService,
+    BpmnProperty,
+    MESSAGE
+} from 'ama-sdk';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProcessModelerServiceImplementation implements ProcessModelerService {
-    private modeler: Bpmn.Modeler;
+    public modeler: Bpmn.Modeler;
     private modelerInitOptions: ModelerInitOptions;
 
     constructor(@Inject(BpmnFactoryToken) private bpmnFactoryService: BpmnFactory) {}
@@ -33,29 +40,15 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
         this.listenToEventHandlers();
     }
 
-    listenToEventHandlers() {
-        this.modeler.on('element.click', this.modelerInitOptions.clickHandler);
-        this.modeler.on('element.changed', this.modelerInitOptions.changeHandler);
-        this.modeler.on('shape.remove', this.modelerInitOptions.removeHandler);
-        this.modeler.on('selection.changed', this.modelerInitOptions.selectHandler);
-    }
-
-    muteEventHandlers() {
-        this.modeler.off('element.click', this.modelerInitOptions.clickHandler);
-        this.modeler.off('element.changed', this.modelerInitOptions.changeHandler);
-        this.modeler.off('shape.remove', this.modelerInitOptions.removeHandler);
-        this.modeler.off('selection.changed', this.modelerInitOptions.selectHandler);
-    }
-
     render(container): void {
         this.modeler.attachTo(container);
     }
 
-    getFromModeler(token) {
+    getFromModeler(token: Bpmn.NamedDiagramService) {
         return this.modeler.get(token);
     }
 
-    getElement(shapeId): Bpmn.DiagramElement {
+    getElement(shapeId: string): Bpmn.DiagramElement {
         return this.modeler.get('elementRegistry').get(shapeId);
     }
 
@@ -63,28 +56,39 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
         return this.modeler.get('canvas').getRootElement();
     }
 
-    updateElementProperty(shapeId, propertyName, value): void {
+    updateElementProperty(shapeId: string, propertyName: BpmnProperty, value: any): void {
         const modeling: Bpmn.Modeling = this.modeler.get('modeling'),
             element = this.getElement(shapeId);
 
         ElementHelper.setProperty(modeling, element, propertyName, value);
     }
 
-    loadXml(xml: string): Observable<any> {
+    loadXml(xml: string): Observable<void> {
         return new Observable(subscriber => {
             this.muteEventHandlers();
-            this.modeler.importXML(xml, err => {
-                if (err) {
-                    subscriber.error(err);
-                }
 
+            this.modeler.importXML(xml, (error, warnings) => {
                 this.listenToEventHandlers();
-                subscriber.next(xml);
+
+                if (error) {
+                    subscriber.error({
+                        type: MESSAGE.ERROR,
+                        messages: [error]
+                    });
+                } else if (warnings.length) {
+                    subscriber.error({
+                        type: MESSAGE.WARN,
+                        messages: warnings.map(entry => entry.message)
+                    });
+                } else {
+                    subscriber.next();
+                    subscriber.complete();
+                }
             });
         });
     }
 
-    export(): Promise<any> {
+    export(): Promise<string> {
         return new Promise((resolve, reject) =>
             this.modeler.saveXML({ format: true }, (err, diagramData) => {
                 if (err) {
@@ -117,5 +121,19 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
 
     destroy() {
         this.modeler.destroy();
+    }
+
+    private listenToEventHandlers() {
+        this.modeler.on('element.click', this.modelerInitOptions.clickHandler);
+        this.modeler.on('element.changed', this.modelerInitOptions.changeHandler);
+        this.modeler.on('shape.remove', this.modelerInitOptions.removeHandler);
+        this.modeler.on('selection.changed', this.modelerInitOptions.selectHandler);
+    }
+
+    private muteEventHandlers() {
+        this.modeler.off('element.click', this.modelerInitOptions.clickHandler);
+        this.modeler.off('element.changed', this.modelerInitOptions.changeHandler);
+        this.modeler.off('shape.remove', this.modelerInitOptions.removeHandler);
+        this.modeler.off('selection.changed', this.modelerInitOptions.selectHandler);
     }
 }

@@ -23,11 +23,7 @@
                     .ama-process-code-editor {
                         display: flex;
                         flex: 1 1 auto;
-                        overflow: auto;
-
-                        &-raw-editor {
-                            overflow:hidden;
-                        }
+                        overflow: hidden;
                     }
                 }
             }

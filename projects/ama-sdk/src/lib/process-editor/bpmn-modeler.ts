@@ -17,6 +17,8 @@
 
 import { Observable } from 'rxjs';
 import { InjectionToken } from '@angular/core';
+import { MESSAGE } from '../logging/interfaces';
+import { BpmnProperty } from './properties';
 
 export interface ModelerInitOptions {
     clickHandler: (event) => any | void;
@@ -25,21 +27,26 @@ export interface ModelerInitOptions {
     selectHandler: (event) => any | void;
 }
 
+export interface XmlParsingProblem {
+    type: MESSAGE;
+    messages: string[];
+}
+
 export interface ProcessModelerService {
     init(modelerInitOptions: ModelerInitOptions): void;
     render(container): void;
-    getFromModeler(token: string): any;
+    getFromModeler(token: Bpmn.NamedDiagramService): any;
     getElement(shapeId: string): Bpmn.DiagramElement;
     getRootProcessElement(): Bpmn.DiagramElement;
-    updateElementProperty(shapeId: string, propertyName: string, value: any): void;
-    loadXml(xml: string): Observable<any>;
+    updateElementProperty(shapeId: string, propertyName: BpmnProperty, value: any): void;
+    loadXml(xml: string): Observable<void>;
     export(): Promise<any>;
     zoomIn(): void;
     zoomOut(): void;
     fitViewPort(): void;
     undo(): void;
     redo(): void;
-    destroy();
+    destroy(): void;
 }
 
 export interface BpmnFactory {

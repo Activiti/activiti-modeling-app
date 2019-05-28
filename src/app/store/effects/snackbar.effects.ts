@@ -50,7 +50,7 @@ export class SnackbarEffects {
     @Effect({dispatch: false}) errorEffect = this.actions$.pipe(
         ofType<SnackbarErrorAction>(SNACKBAR_ERROR),
         map((action: SnackbarErrorAction) => {
-            this.snackBar.open(this.translate(action.payload), null, { duration: 2000, panelClass: 'warning-snackbar' });
+            this.snackBar.open(this.translate(action.payload), null, { duration: 2000, panelClass: 'error-snackbar' });
         })
     );
 

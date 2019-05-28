@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { ProcessEditorState, INITIAL_PROCESS_EDITOR_STATE } from './process-editor.state';
+import { ProcessEditorState, getInitialProcessEditorState } from './process-editor.state';
 import {
     SELECT_MODELER_ELEMENT,
     SelectModelerElementAction,
@@ -37,7 +37,7 @@ import { OPEN_CONFIRM_DIALOG, LOG_ACTION, LogAction } from 'ama-sdk';
 import { PROCESS_EDITOR_LOGS } from '../services/process-editor.constants';
 
 export function processEditorReducer(
-    state: ProcessEditorState = { ...INITIAL_PROCESS_EDITOR_STATE },
+    state: ProcessEditorState = getInitialProcessEditorState(),
     action: Action
 ): ProcessEditorState {
     let newState: ProcessEditorState;
@@ -48,7 +48,7 @@ export function processEditorReducer(
             break;
 
         case GET_PROCESS_SUCCESS:
-            newState = { ...state, loading: false };
+            newState = getInitialProcessEditorState();
             break;
 
         case SELECT_MODELER_ELEMENT:
@@ -135,11 +135,7 @@ function storeLog(state: ProcessEditorState, action: LogAction): ProcessEditorSt
 function setSelectedElement(state: ProcessEditorState, action: SelectModelerElementAction): ProcessEditorState {
     return {
         ...state,
-        selectedElement: action.element,
-        toolbar: {
-            ...state.toolbar,
-            userMessage: action.element && action.element.type || ''
-        }
+        selectedElement: action.element
     };
 }
 

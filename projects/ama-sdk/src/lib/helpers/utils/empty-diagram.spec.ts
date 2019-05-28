@@ -18,7 +18,7 @@
 import { getEmptyDiagram } from './empty-diagram';
 
 describe('Empty diagram', () => {
-    const buidlXML = (process) => {
+    const buidlXML = process => {
         const generatedDiagram = getEmptyDiagram(process);
         const parser = new DOMParser();
         const diagram = parser.parseFromString(generatedDiagram, 'text/xml');
@@ -26,7 +26,7 @@ describe('Empty diagram', () => {
         return diagram;
     };
 
-    it('Test when description is missing. The id should pe prefixed with process-', () => {
+    it('process\' id should be prefixed with process-', () => {
         const mockProcess = {
             id: 'id1',
             name: 'process1'
@@ -35,14 +35,16 @@ describe('Empty diagram', () => {
         const diagram = buidlXML(mockProcess);
         const documentation = diagram.getElementsByTagName('bpmn2:documentation');
         const id = diagram.getElementsByTagName('bpmn2:process')[0].getAttribute('id');
+        const idReference = diagram.getElementsByTagName('bpmndi:BPMNPlane')[0].getAttribute('bpmnElement');
         const name = diagram.getElementsByTagName('bpmn2:process')[0].getAttribute('name');
 
         expect(documentation[0].textContent).toBe('');
         expect(id).toBe('process-id1');
+        expect(idReference).toBe('process-id1');
         expect(name).toBe('process1');
     });
 
-    it('Test when description is present', () => {
+    it('description should be in the xml properly', () => {
         const mockProcess = {
             id: 'id1',
             name: 'process1',
