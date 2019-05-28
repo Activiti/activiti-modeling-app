@@ -29,19 +29,7 @@
         stage ('Env print') {
             steps{
                 container('nodejs'){
-                    sh "echo  API_HOST=$API_HOST"
-                    sh "echo OAUTH_HOST=$OAUTH_HOST"
-                    sh  "echo E2E_HOST=E2E_HOST"
-                    sh "echo E2E_PORT=$E2E_PORT"
-                    sh "echo E2E_USERNAME=$E2E_USERNAME"
-                    sh "echo E2E_PASSWORD=$E2E_PASSWORD"
-                    sh "echo E2E_UNAUTHORIZED_USER=$E2E_UNAUTHORIZED_USER"
-                    sh "echo E2E_UNAUTHORIZED_USER_PASSWORD=$E2E_UNAUTHORIZED_USER_PASSWORD"
-                    sh "echo BROWSER_RUN=$BROWSER_RUN"
-                    sh "echo SAVE_SCREENSHOT=$SAVE_SCREENSHOT"
-                    sh "echo SCREENSHOT_URL=$SCREENSHOT_URL"
-                    sh "echo SCREENSHOT_USERNAME=$SCREENSHOT_USERNAME"
-                    sh "echo SCREENSHOT_PASSWORD=SCREENSHOT_PASSWORD"
+                    
                 }
             }
         }  
