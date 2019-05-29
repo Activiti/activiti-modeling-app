@@ -20,6 +20,7 @@ import { By } from '@angular/platform-browser';
 import { CodeEditorComponent, EditorOptions, CodeEditorPosition } from './code-editor.component';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { FormsModule } from '@angular/forms';
+import json5 = require('json5');
 
 describe('CodeEditorComponent', () => {
     let fixture: ComponentFixture<CodeEditorComponent>;
@@ -36,7 +37,6 @@ describe('CodeEditorComponent', () => {
         fixture = TestBed.createComponent(CodeEditorComponent);
         component = fixture.componentInstance;
         component.content = JSON.stringify({ foo: 'bar' });
-
         fixture.detectChanges();
     });
 
@@ -97,6 +97,9 @@ describe('CodeEditorComponent', () => {
                 },
                 triggerPositionChange(position: CodeEditorPosition) {
                     storedPositionCallback({position});
+                },
+                getValue() {
+                    return JSON.stringify({foo: 'bar'});
                 }
             };
         });

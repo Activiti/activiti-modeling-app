@@ -20,3 +20,5 @@
  export const uiModelUri = 'a:b//ui';
  export const dataModelUri = 'a:b//data';
  export const extensionsModelUri = 'a:b//extensions';
+ export const processesModelUri = 'a:b//processes';
+ export const decisionTablesModelUri = 'a:b//decision-tables';

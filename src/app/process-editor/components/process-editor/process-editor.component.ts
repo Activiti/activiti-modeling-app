@@ -35,7 +35,9 @@ import {
     ProcessExtensions,
     extensionsSchema,
     EDITOR_FOOTER_SERVICE_TOKEN,
-    CodeEditorPosition
+    CodeEditorPosition,
+    extensionsModelUri,
+    processesModelUri
 } from 'ama-sdk';
 import { UpdateProcessExtensionsAction, ToolbarMessageAction } from '../../store/process-editor.actions';
 import { ProcessEditorFooterService } from '../../services/process-editor-footer.service';
@@ -64,7 +66,10 @@ export class ProcessEditorComponent implements OnInit {
         'PROCESS_EDITOR.TABS.EXTENSIONS_EDITOR'
     ];
     selectedTabIndex = 0;
-    extensionsSchema: string;
+    extensionsModelUri: string;
+    processesModelUri: string;
+    extensionsLanguageType: string;
+    processesLanguageType: string;
 
     constructor(
         private store: Store<AmaState>,
@@ -73,7 +78,10 @@ export class ProcessEditorComponent implements OnInit {
         private processLoaderService: ProcessDiagramLoaderService
     ) {
         this.vsTheme$ = this.getVsTheme();
-        this.extensionsSchema = 'extensionsSchema';
+        this.extensionsModelUri = extensionsModelUri;
+        this.processesModelUri = processesModelUri;
+        this.extensionsLanguageType = 'json';
+        this.processesLanguageType = 'xml';
     }
 
     ngOnInit() {

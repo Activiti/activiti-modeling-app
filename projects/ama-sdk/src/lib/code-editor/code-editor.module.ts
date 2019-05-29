@@ -22,7 +22,19 @@ import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 
 import { CodeEditorComponent } from './components/code-editor/code-editor.component';
 import { connectorSchema } from '../schemas/connector.schema';
-import { connectorModelUri } from '../helpers/utils/models-uri';
+import {
+    connectorModelUri,
+    formModelUri,
+    uiModelUri,
+    dataModelUri,
+    extensionsModelUri,
+    decisionTablesModelUri,
+    processesModelUri
+} from '../helpers/utils/models-uri';
+import { formSchema } from '../schemas/form.schema';
+import { uiSchema } from '../schemas/ui.schema';
+import { dataSchema } from '../schemas/data.schema';
+import { extensionsSchema } from '../schemas/extensions.schema';
 
 const editorConfig: NgxMonacoEditorConfig = {
     baseUrl: './assets',
@@ -33,20 +45,30 @@ const editorConfig: NgxMonacoEditorConfig = {
                 uri: 'connectorSchema',
                 fileMatch: [connectorModelUri],
                 schema: connectorSchema
+            }, {
+                uri: 'formSchema',
+                fileMatch: [formModelUri],
+                schema: formSchema
+            }, {
+                uri: 'uiSchema',
+                fileMatch: [uiModelUri],
+                schema: uiSchema
+            }, {
+                uri: 'dataSchema',
+                fileMatch: [dataModelUri],
+                schema: dataSchema
+            }, {
+                uri: 'extensionsSchema',
+                fileMatch: [extensionsModelUri],
+                schema: extensionsSchema
+            }, {
+                uri: 'decisionTablesSchema',
+                fileMatch: [decisionTablesModelUri],
+            },
+            {
+                uri: 'processesSchema',
+                fileMatch: [processesModelUri],
             }
-            // {
-            //     uri: 'formSchema',
-            //     schema: formSchema
-            // }, {
-            //     uri: 'uiSchema',
-            //     schema: uiSchema
-            // }, {
-            //     uri: 'dataSchema',
-            //     schema: dataSchema
-            // }, {
-            //     uri: 'extensionsSchema',
-            //     schema: extensionsSchema
-            // }
         ]
         });
     }

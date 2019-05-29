@@ -38,7 +38,7 @@ const createMemoizedEditorOptions = memoize(
 export class CodeEditorComponent implements OnDestroy, OnInit {
     @Input() vsTheme = 'vs-light';
     @Input() options: EditorOptions;
-    @Input() uri: string ;
+    @Input() schemaUri: string ;
     @Input() language: string;
     @Input() content = '';
     @Output() changed = new EventEmitter<string>();
@@ -66,7 +66,7 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
          this.editorModel = {
             value: this.content,
             language: this.language,
-            uri: this.uri
+            uri: this.schemaUri
         };
     }
 

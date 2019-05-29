@@ -28,7 +28,9 @@
                             (positionChanged)="codeEditorPositionChanged($event)"
                             [vsTheme]="vsTheme$ | async"
                             [options]="{language: 'xml'}"
-                            [content]="content$ | async">
+                            [content]="content$ | async"
+                            [schemaUri]="processesModelUri"
+                            [language]="processesLanguageType">
                         </amasdk-code-editor>
                     </div>
                 </mat-tab>
@@ -39,7 +41,8 @@
                             (positionChanged)="codeEditorPositionChanged($event)"
                             [vsTheme]="vsTheme$ | async"
                             [content]="extensions$ | async"
-                            (uri)="extensionsSchema">
+                            [schemaUri]="extensionsModelUri"
+                            [language]="extensionsLanguageType">
                         </amasdk-code-editor>
                     </div>
                 </mat-tab>

@@ -50,7 +50,7 @@ export class ConnectorEditorComponent {
 
     boundOnChangeAttempt: any;
     getMemoizedDynamicComponentData: any;
-    schemaUri: string;
+    connectorsModelUri: string;
     languageType: string;
 
     constructor(
@@ -72,7 +72,7 @@ export class ConnectorEditorComponent {
             return { connectorContent, onChangeAttempt };
         });
 
-        this.schemaUri = connectorModelUri;
+        this.connectorsModelUri = connectorModelUri;
         this.languageType = 'json';
     }
 
