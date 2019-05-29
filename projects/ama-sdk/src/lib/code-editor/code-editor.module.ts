@@ -18,7 +18,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { CodeEditorComponent } from './components/code-editor/code-editor.component';
 import { connectorSchema } from '../schemas/connector.schema';
@@ -36,42 +36,44 @@ import { uiSchema } from '../schemas/ui.schema';
 import { dataSchema } from '../schemas/data.schema';
 import { extensionsSchema } from '../schemas/extensions.schema';
 
-const editorConfig: NgxMonacoEditorConfig = {
+export function onMonacoLoad() {
+    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
+        validate: true,
+        schemas: this._schemas
+    });
+}
+
+const editorConfig = {
     baseUrl: './assets',
-    onMonacoLoad: () => {
-        monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
-            validate: true,
-            schemas: [{
-                uri: 'connectorSchema',
-                fileMatch: [connectorModelUri],
-                schema: connectorSchema
-            }, {
-                uri: 'formSchema',
-                fileMatch: [formModelUri],
-                schema: formSchema
-            }, {
-                uri: 'uiSchema',
-                fileMatch: [uiModelUri],
-                schema: uiSchema
-            }, {
-                uri: 'dataSchema',
-                fileMatch: [dataModelUri],
-                schema: dataSchema
-            }, {
-                uri: 'extensionsSchema',
-                fileMatch: [extensionsModelUri],
-                schema: extensionsSchema
-            }, {
-                uri: 'decisionTablesSchema',
-                fileMatch: [decisionTablesModelUri],
-            },
-            {
-                uri: 'processesSchema',
-                fileMatch: [processesModelUri],
-            }
-        ]
-        });
-    }
+    _schemas: [{
+        uri: 'connectorSchema',
+        fileMatch: [connectorModelUri],
+        schema: connectorSchema
+    }, {
+        uri: 'formSchema',
+        fileMatch: [formModelUri],
+        schema: formSchema
+    }, {
+        uri: 'uiSchema',
+        fileMatch: [uiModelUri],
+        schema: uiSchema
+    }, {
+        uri: 'dataSchema',
+        fileMatch: [dataModelUri],
+        schema: dataSchema
+    }, {
+        uri: 'extensionsSchema',
+        fileMatch: [extensionsModelUri],
+        schema: extensionsSchema
+    }, {
+        uri: 'decisionTablesSchema',
+        fileMatch: [decisionTablesModelUri],
+    },
+    {
+        uri: 'processesSchema',
+        fileMatch: [processesModelUri],
+    }],
+    onMonacoLoad
 };
 
 @NgModule({
