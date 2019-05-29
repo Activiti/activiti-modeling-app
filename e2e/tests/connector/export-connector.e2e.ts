@@ -27,7 +27,7 @@ import { ConnectorContentPage } from 'ama-testing/e2e';
 
 const path = require('path');
 
-xdescribe('Export connector', () => {
+describe('Export connector', () => {
     const adminUser = {
         user: testConfig.ama.user,
         password: testConfig.ama.password
