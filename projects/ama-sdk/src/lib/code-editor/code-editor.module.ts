@@ -21,7 +21,8 @@ import { FormsModule } from '@angular/forms';
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 
 import { CodeEditorComponent } from './components/code-editor/code-editor.component';
-import { connectorSchema, formSchema, uiSchema, dataSchema, extensionsSchema } from '../schemas/public_api';
+import { connectorSchema } from '../schemas/connector.schema';
+import { connectorModelUri } from '../helpers/utils/models-uri';
 
 const editorConfig: NgxMonacoEditorConfig = {
     baseUrl: './assets',
@@ -30,20 +31,23 @@ const editorConfig: NgxMonacoEditorConfig = {
             validate: true,
             schemas: [{
                 uri: 'connectorSchema',
+                fileMatch: [connectorModelUri],
                 schema: connectorSchema
-            }, {
-                uri: 'formSchema',
-                schema: formSchema
-            }, {
-                uri: 'uiSchema',
-                schema: uiSchema
-            }, {
-                uri: 'dataSchema',
-                schema: dataSchema
-            }, {
-                uri: 'extensionsSchema',
-                schema: extensionsSchema
-            }]
+            }
+            // {
+            //     uri: 'formSchema',
+            //     schema: formSchema
+            // }, {
+            //     uri: 'uiSchema',
+            //     schema: uiSchema
+            // }, {
+            //     uri: 'dataSchema',
+            //     schema: dataSchema
+            // }, {
+            //     uri: 'extensionsSchema',
+            //     schema: extensionsSchema
+            // }
+        ]
         });
     }
 };

@@ -15,16 +15,8 @@
  * limitations under the License.
  */
 
-export * from './common';
-export * from './unsaved-page.guard';
-export * from './utils/create-entries-names';
-export * from './shared.module';
-export * from './utils/empty-diagram';
-export * from './utils/empty-decision-table';
-export * from './primitive-types';
-export * from './utils/createJsonBlob';
-export * from './utils/models-uri';
-export { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
-export { AllowedCharactersDirective } from './directives/allowed-characters.directive';
-
-
+ export const connectorModelUri = 'a:b//connectors';
+ export const formModelUri = 'a:b//forms';
+ export const uiModelUri = 'a:b//ui';
+ export const dataModelUri = 'a:b//data';
+ export const extensionsModelUri = 'a:b//extensions';

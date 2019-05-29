@@ -39,15 +39,14 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     @Input() vsTheme = 'vs-light';
     @Input() options: EditorOptions;
     @Input() uri: string ;
+    @Input() language: string;
     @Input() content = '';
     @Output() changed = new EventEmitter<string>();
     @Output() positionChanged = new EventEmitter<CodeEditorPosition>();
+    editorModel: NgxEditorModel;
 
     private editor: monaco.editor.ICodeEditor = <monaco.editor.ICodeEditor>{ dispose: () => {} };
-    editorModel: NgxEditorModel = {
-        value: this.content,
-        uri: this.uri
-    };
+
     config: NgxMonacoEditorConfig;
 
     private defaultOptions = {
@@ -64,6 +63,11 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
 
     ngOnInit() {
         this.defaultOptions = Object.assign({}, this.defaultOptions, this.options);
+         this.editorModel = {
+            value: this.content,
+            language: this.language,
+            uri: this.uri
+        };
     }
 
     get editorOptions(): EditorOptions {
@@ -92,6 +96,6 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     }
 
     onEditorChange(): void {
-        this.changed.emit(this.content.trim());
+        this.changed.emit(this.editor.getValue().trim());
     }
 }

@@ -2,7 +2,7 @@
     <ng-container *ngIf="!(loadingState$ | async); else loading;">
         <ng-container *ngIf="editorContent$ | async; let editorContent">
 
-            <ama-connector-header
+            <ama-connector-header [disableSave]="disableSave"
                 [connectorId]="connectorId$ | async"
                 [content]="editorContent"
                 class="ama-connector-header">
@@ -28,7 +28,8 @@
                             <amasdk-code-editor [vsTheme]="vsTheme$ | async"
                                 [content]="editorContent"
                                 (changed)="onChangeAttempt($event)"
-                                (uri)="schemaUri">
+                                [uri]="schemaUri"
+                                [language]="languageType">
                             </amasdk-code-editor>
                         </div>
                     </mat-tab>
@@ -39,7 +40,8 @@
                 <amasdk-code-editor [vsTheme]="vsTheme$ | async"
                     [content]="editorContent"
                     (changed)="onChangeAttempt($event)"
-                    (uri)="schemaUri">
+                    [uri]="schemaUri"
+                    [language]="languageType">
                 </amasdk-code-editor>
             </ng-container>
         </ng-container>
