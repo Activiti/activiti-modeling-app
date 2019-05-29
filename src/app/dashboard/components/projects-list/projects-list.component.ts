@@ -94,4 +94,8 @@ export class ProjectsListComponent implements OnInit {
             action: new ReleaseProjectAttemptAction(projectId)
         }));
     }
+
+    seeRelesesForProject(projectId: string): void {
+        this.router.navigate(['dashboard', 'projects', projectId, 'releases']);
+    }
 }

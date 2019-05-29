@@ -26,7 +26,7 @@ import { Router } from '@angular/router';
 import { LogService, CoreModule } from '@alfresco/adf-core';
 import { selectProjectsLoaded } from '../selectors/dashboard.selectors';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { mockProject } from './project.mock';
+import { mockProject, mockReleaseEntry } from './project.mock';
 import {
     ShowProjectsAction,
     GET_PROJECTS_ATTEMPT,
@@ -54,6 +54,7 @@ import {
     EntityDialogForm,
     DownloadResourceService
 } from 'ama-sdk';
+import { GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
 
 describe('ProjectsEffects', () => {
     let effects: ProjectsEffects;
@@ -315,6 +316,36 @@ describe('ProjectsEffects', () => {
             expect(effects.getProjectsAttemptEffect).toBeObservable(expected);
         });
     });
+
+    describe('GetProjectRelasesAttemptEffect', () => {
+
+        it('should dispatch an action', () => {
+            expect(metadata.getProjectReleasesAttemptEffect).toEqual({ dispatch: true });
+        });
+
+        it('should trigger the right action on successful get', () => {
+            dashboardService.fetchProjectReleases = jest.fn().mockReturnValue(of({ entries: [ mockReleaseEntry] , pagination: null }));
+            actions$ = hot('a', { a: new GetProjectReleasesAttemptAction('app-id', null) });
+
+            const expected = cold('b', {
+                b: new GetProjectReleasesSuccessAction({entries: [ mockReleaseEntry ], pagination: null})
+            });
+
+            expect(effects.getProjectReleasesAttemptEffect).toBeObservable(expected);
+        });
+
+        it('should trigger the right action on unsuccessful get', () => {
+            dashboardService.fetchProjects = jest.fn().mockReturnValue(throwError(new Error()));
+            actions$ = hot('a', { a: new GetProjectsAttemptAction() });
+
+            const expected = cold('b', {
+                b: new SnackbarErrorAction('APP.HOME.ERROR.LOAD_PROJECTS')
+            });
+
+            expect(effects.getProjectsAttemptEffect).toBeObservable(expected);
+        });
+    });
+
 
     describe('ReleaseProjectAttemptEffect', () => {
 

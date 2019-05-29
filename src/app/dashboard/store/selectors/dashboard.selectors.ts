@@ -26,9 +26,18 @@ const selectLoadingFromState = (state: DashboardState) => state.loading;
 const selectProjectsLoadedFromState = (state: DashboardState) => state.projectsLoaded;
 const selectProjectSummariesFromState = (state: DashboardState) => state.projects;
 const selectPaginationFromState = (state: DashboardState) => state.pagination;
+const selectReleaseSummariesFromState = (state: DashboardState) => state.releases;
+const selectReleasesPaginationFromState = (state: DashboardState) => state.releasesPagination;
+const selectProjectReleaseLoadedFromState = (state: DashboardState) => state.loadingReleases;
 
 export const selectLoading = createSelector(getDashboardFeatureState, selectLoadingFromState);
 export const selectPagination = createSelector(getDashboardFeatureState, selectPaginationFromState);
 export const selectProjectsLoaded = createSelector(getDashboardFeatureState, selectProjectsLoadedFromState);
 export const selectProjectSummaries = createSelector(getDashboardFeatureState, selectProjectSummariesFromState);
 export const selectProjectsArray = createSelector(selectProjectSummaries, project => Object.values(project));
+
+
+export const selectReleaseSummaries = createSelector(getDashboardFeatureState, selectReleaseSummariesFromState);
+export const selectReleasesPagination = createSelector(getDashboardFeatureState, selectReleasesPaginationFromState);
+export const selectLoadedProjectReleases = createSelector(getDashboardFeatureState, selectProjectReleaseLoadedFromState);
+

@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project, AmaApi, EntityDialogForm, Release, Pagination, PaginatedEntries } from 'ama-sdk';
+import { Project, AmaApi, EntityDialogForm, Pagination, PaginatedEntries, ReleaseEntry, Release } from 'ama-sdk';
 
 @Injectable()
 export class DashboardService {
@@ -45,5 +45,9 @@ export class DashboardService {
 
     releaseProject(projectId: string): Observable<Release> {
         return this.amaApi.Project.release(projectId);
+    }
+
+    fetchProjectReleases(projectId: string, pagination?: Partial<Pagination>): Observable<PaginatedEntries<ReleaseEntry>> {
+        return this.amaApi.Project.getProjectReleases(projectId, pagination);
     }
 }

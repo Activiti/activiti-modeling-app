@@ -18,12 +18,12 @@
 import { Project } from '../api/types';
 
 export interface ProjectDataState {
-    datum: Partial<Project>;
+    project: Partial<Project>;
     loading: boolean;
     error?: any;
 }
 
 export const INITIAL_PROJECT_DATA_STATE: ProjectDataState = {
-    datum: null,
+    project: null,
     loading: false
 };
