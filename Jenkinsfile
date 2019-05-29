@@ -14,8 +14,6 @@
       OPTIMIZE_MEMORY = "true"
         
 
-      API_HOST="http://activiti-cloud-gateway.jx-staging.35.228.195.195.nip.io/modeling-service/"
-      OAUTH_HOST="http://activiti-cloud-gateway.jx-staging.35.228.195.195.nip.io/auth/realms/activiti"
       E2E_HOST="http://localhost"
       E2E_PORT="4100"
 
