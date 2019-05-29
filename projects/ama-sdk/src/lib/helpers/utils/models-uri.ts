@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
- export const connectorModelUri = 'a:b//connectors';
- export const formModelUri = 'a:b//forms';
- export const uiModelUri = 'a:b//ui';
- export const dataModelUri = 'a:b//data';
- export const extensionsModelUri = 'a:b//extensions';
- export const processesModelUri = 'a:b//processes';
- export const decisionTablesModelUri = 'a:b//decision-tables';
+ export const connectorModelUri = 'connectors://*';
+ export const formModelUri = 'forms://*';
+ export const uiModelUri = 'ui://*';
+ export const dataModelUri = 'data://*';
+ export const extensionsModelUri = 'extensions://*';
+ export const processesModelUri = 'processes://*';
+ export const decisionTablesModelUri = 'decision-tables://*';

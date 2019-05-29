@@ -18,6 +18,7 @@
 import { Component, Output, EventEmitter, Input, OnDestroy, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { NgxEditorModel, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 const memoize = require('lodash/memoize');
+const uuidv4 = require('uuid/v4');
 
 export type EditorOptions = monaco.editor.IEditorOptions | { language: string; theme: string };
 export interface CodeEditorPosition {
@@ -66,7 +67,7 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
          this.editorModel = {
             value: this.content,
             language: this.language,
-            uri: this.schemaUri
+            uri: 'connectors://' + uuidv4()
         };
     }
 
