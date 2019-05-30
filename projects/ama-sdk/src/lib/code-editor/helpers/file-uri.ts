@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-import { MODEL_TYPE } from 'ama-sdk';
+import { MODEL_TYPE } from '../../api/types';
 
-export const getFileUri = (
-    scheme: MODEL_TYPE,
-    fileType: string,
-    uriParts: string
-) => `${scheme}://${fileType}:${uriParts}`;
+export function getFileUri(scheme: MODEL_TYPE, fileType: string, uriParts: string) {
+    return `${scheme}://${fileType}:${uriParts}`;
+}
 
-export const getFileUriPattern = (scheme: MODEL_TYPE, fileType: string) => getFileUri(scheme, fileType, '*');
+export function getFileUriPattern(scheme: MODEL_TYPE, fileType: string) {
+    return getFileUri(scheme, fileType, '*');
+}
