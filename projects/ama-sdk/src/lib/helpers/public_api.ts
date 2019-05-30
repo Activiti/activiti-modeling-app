@@ -23,7 +23,6 @@ export * from './utils/empty-diagram';
 export * from './utils/empty-decision-table';
 export * from './primitive-types';
 export * from './utils/createJsonBlob';
-export * from './utils/models-uri';
 export { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
 export { AllowedCharactersDirective } from './directives/allowed-characters.directive';
 

@@ -26,3 +26,4 @@ export {
     AjvInjectionToken,
     ValidationResponse
 } from './services/code-validator.service';
+export * from './helpers/file-uri';

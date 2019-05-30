@@ -31,7 +31,8 @@ import {
     ValidationResponse,
     AdvancedConnectorEditorData,
     AdvancedConnectorEditorKey,
-    connectorModelUri
+    CONNECTOR,
+    getFileUri
 } from 'ama-sdk';
 const memoize = require('lodash/memoize');
 
@@ -50,7 +51,7 @@ export class ConnectorEditorComponent {
 
     boundOnChangeAttempt: any;
     getMemoizedDynamicComponentData: any;
-    connectorsModelUri: string;
+    fileUri$: Observable<string>;
     languageType: string;
 
     constructor(
@@ -72,7 +73,9 @@ export class ConnectorEditorComponent {
             return { connectorContent, onChangeAttempt };
         });
 
-        this.connectorsModelUri = connectorModelUri;
+        this.fileUri$ = this.connectorId$.pipe(
+            map(id => getFileUri(CONNECTOR, 'json', id))
+        );
         this.languageType = 'json';
     }
 

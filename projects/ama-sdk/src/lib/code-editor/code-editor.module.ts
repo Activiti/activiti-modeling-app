@@ -22,18 +22,8 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { CodeEditorComponent } from './components/code-editor/code-editor.component';
 import { connectorSchema } from '../schemas/connector.schema';
-import {
-    connectorModelUri,
-    formModelUri,
-    uiModelUri,
-    dataModelUri,
-    extensionsModelUri,
-    decisionTablesModelUri,
-    processesModelUri
-} from '../helpers/utils/models-uri';
-import { formSchema } from '../schemas/form.schema';
-import { uiSchema } from '../schemas/ui.schema';
-import { dataSchema } from '../schemas/data.schema';
+import { CONNECTOR, PROCESS } from '../api/types';
+import { getFileUriPattern } from './helpers/file-uri';
 import { extensionsSchema } from '../schemas/extensions.schema';
 
 export function onMonacoLoad() {
@@ -47,31 +37,13 @@ const editorConfig = {
     baseUrl: './assets',
     _schemas: [{
         uri: 'connectorSchema',
-        fileMatch: [connectorModelUri],
+        fileMatch: [getFileUriPattern(CONNECTOR, 'json')],
         schema: connectorSchema
-    }, {
-        uri: 'formSchema',
-        fileMatch: [formModelUri],
-        schema: formSchema
-    }, {
-        uri: 'uiSchema',
-        fileMatch: [uiModelUri],
-        schema: uiSchema
-    }, {
-        uri: 'dataSchema',
-        fileMatch: [dataModelUri],
-        schema: dataSchema
-    }, {
-        uri: 'extensionsSchema',
-        fileMatch: [extensionsModelUri],
-        schema: extensionsSchema
-    }, {
-        uri: 'decisionTablesSchema',
-        fileMatch: [decisionTablesModelUri],
     },
     {
-        uri: 'processesSchema',
-        fileMatch: [processesModelUri],
+        uri: 'processExtensionSchema',
+        fileMatch: [getFileUriPattern(PROCESS, 'json')],
+        schema: extensionsSchema
     }],
     onMonacoLoad
 };

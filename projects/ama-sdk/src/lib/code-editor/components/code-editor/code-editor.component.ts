@@ -39,7 +39,7 @@ const createMemoizedEditorOptions = memoize(
 export class CodeEditorComponent implements OnDestroy, OnInit {
     @Input() vsTheme = 'vs-light';
     @Input() options: EditorOptions;
-    @Input() schemaUri: string ;
+    @Input() fileUri: string ;
     @Input() language: string;
     @Input() content = '';
     @Output() changed = new EventEmitter<string>();
@@ -64,10 +64,11 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
 
     ngOnInit() {
         this.defaultOptions = Object.assign({}, this.defaultOptions, this.options);
-         this.editorModel = {
+
+        this.editorModel = {
             value: this.content,
             language: this.language,
-            uri: 'connectors://' + uuidv4()
+            uri: this.getUniqueUri(this.fileUri)
         };
     }
 
@@ -86,6 +87,7 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     onEditorInit(editor: monaco.editor.ICodeEditor): void {
         this.editor = editor;
         let timer = null;
+
         editor.onKeyUp(() => {
             clearTimeout(timer);
             timer = window.setTimeout(() => this.onEditorChange(), 1000);
@@ -98,5 +100,9 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
 
     onEditorChange(): void {
         this.changed.emit(this.editor.getValue().trim());
+    }
+
+    private getUniqueUri(fileUri: string) {
+        return fileUri + '.' + uuidv4();
     }
 }

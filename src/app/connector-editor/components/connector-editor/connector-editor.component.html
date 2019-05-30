@@ -28,7 +28,7 @@
                             <amasdk-code-editor [vsTheme]="vsTheme$ | async"
                                 [content]="editorContent"
                                 (changed)="onChangeAttempt($event)"
-                                [schemaUri]="connectorsModelUri"
+                                [fileUri]="fileUri$ | async"
                                 [language]="languageType">
                             </amasdk-code-editor>
                         </div>
@@ -40,7 +40,7 @@
                 <amasdk-code-editor [vsTheme]="vsTheme$ | async"
                     [content]="editorContent"
                     (changed)="onChangeAttempt($event)"
-                    [schemaUri]="connectorsModelUri"
+                    [fileUri]="fileUri$ | async"
                     [language]="languageType">
                 </amasdk-code-editor>
             </ng-container>

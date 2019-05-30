@@ -15,10 +15,12 @@
  * limitations under the License.
  */
 
- export const connectorModelUri = 'connectors://*';
- export const formModelUri = 'forms://*';
- export const uiModelUri = 'ui://*';
- export const dataModelUri = 'data://*';
- export const extensionsModelUri = 'extensions://*';
- export const processesModelUri = 'processes://*';
- export const decisionTablesModelUri = 'decision-tables://*';
+import { MODEL_TYPE } from 'ama-sdk';
+
+export const getFileUri = (
+    scheme: MODEL_TYPE,
+    fileType: string,
+    uriParts: string
+) => `${scheme}://${fileType}:${uriParts}`;
+
+export const getFileUriPattern = (scheme: MODEL_TYPE, fileType: string) => getFileUri(scheme, fileType, '*');

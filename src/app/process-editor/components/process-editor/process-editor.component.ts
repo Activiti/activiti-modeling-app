@@ -36,8 +36,8 @@ import {
     extensionsSchema,
     EDITOR_FOOTER_SERVICE_TOKEN,
     CodeEditorPosition,
-    extensionsModelUri,
-    processesModelUri
+    PROCESS,
+    getFileUri
 } from 'ama-sdk';
 import { UpdateProcessExtensionsAction, ToolbarMessageAction } from '../../store/process-editor.actions';
 import { ProcessEditorFooterService } from '../../services/process-editor-footer.service';
@@ -66,8 +66,8 @@ export class ProcessEditorComponent implements OnInit {
         'PROCESS_EDITOR.TABS.EXTENSIONS_EDITOR'
     ];
     selectedTabIndex = 0;
-    extensionsModelUri: string;
-    processesModelUri: string;
+    extensionFileUri$: Observable<string>;
+    processFileUri$: Observable<string>;
     extensionsLanguageType: string;
     processesLanguageType: string;
 
@@ -78,8 +78,6 @@ export class ProcessEditorComponent implements OnInit {
         private processLoaderService: ProcessDiagramLoaderService
     ) {
         this.vsTheme$ = this.getVsTheme();
-        this.extensionsModelUri = extensionsModelUri;
-        this.processesModelUri = processesModelUri;
         this.extensionsLanguageType = 'json';
         this.processesLanguageType = 'xml';
     }
@@ -87,6 +85,12 @@ export class ProcessEditorComponent implements OnInit {
     ngOnInit() {
         this.loading$ = this.store.select(selectProcessLoading);
         this.process$ = this.store.select(selectSelectedProcess);
+        this.processFileUri$ = this.process$.pipe(
+            map(process => getFileUri(PROCESS, this.processesLanguageType, process.id))
+        );
+        this.extensionFileUri$ = this.process$.pipe(
+            map(process => getFileUri(PROCESS, this.extensionsLanguageType, process.id))
+        );
         this.content$ = this.store.select(selectSelectedProcessDiagram);
         this.bpmnContent$ = this.store.select(selectSelectedProcessDiagram);
         this.extensions$ = this.process$.pipe(

@@ -29,7 +29,7 @@
                             [vsTheme]="vsTheme$ | async"
                             [options]="{language: 'xml'}"
                             [content]="content$ | async"
-                            [schemaUri]="processesModelUri"
+                            [fileUri]="processFileUri$ | async"
                             [language]="processesLanguageType">
                         </amasdk-code-editor>
                     </div>
@@ -41,7 +41,7 @@
                             (positionChanged)="codeEditorPositionChanged($event)"
                             [vsTheme]="vsTheme$ | async"
                             [content]="extensions$ | async"
-                            [schemaUri]="extensionsModelUri"
+                            [fileUri]="extensionFileUri$ | async"
                             [language]="extensionsLanguageType">
                         </amasdk-code-editor>
                     </div>
