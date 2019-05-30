@@ -6,6 +6,7 @@
   "scripts": {
     "ng": "ng",
     "postinstall": "node jest/transpile-es2015-modules-for-jest.js",
+    "postci": "node jest/transpile-es2015-modules-for-jest.js",
     "01": "echo --------------------------------------- Community servers ------------------------------------------",
     "prestart": "npm run validate-config && rimraf dist && npm run compile-less && npm run package:sdk",
     "prestart:prod": "npm run prestart",

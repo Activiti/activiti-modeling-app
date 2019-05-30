@@ -12,16 +12,6 @@
       PREVIEW_VERSION = "0.0.0-SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER"
       NODE_OPTIONS = "--max_old_space_size=40000"
       OPTIMIZE_MEMORY = "true"
-        
-
-      E2E_HOST="http://localhost"
-      E2E_PORT="4100"
-
-      BROWSER_RUN="false"
-      SAVE_SCREENSHOT="true"
-        
-      DISPLAY=":99.0"
-        
     }
     stages {
         stage ('Env print') {
