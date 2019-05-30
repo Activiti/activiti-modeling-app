@@ -30,5 +30,6 @@ export enum BpmnElement {
     ParallelGateway = 'bpmn:ParallelGateway',
     ServiceTask = 'bpmn:ServiceTask',
     UserTask = 'bpmn:UserTask',
-    CallActivity = 'bpmn:CallActivity'
+    CallActivity = 'bpmn:CallActivity',
+    SubProcess= 'bpmn:SubProcess'
 }
