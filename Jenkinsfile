@@ -17,30 +17,41 @@
         stage ('Env print') {
             steps{
                 container('nodejs'){
-                    
+
                 }
             }
-        }  
+        }
       stage('CI Build and push snapshot') {
         when {
           branch 'PR-*'
         }
         steps {
           container('nodejs') {
-            sh "node --version"  
-            sh "npm --version" 
+            sh "node --version"
+            sh "npm --version"
 
             sh "Xvfb :99 &"
-            sh "sleep 3"  
+            sh "sleep 3"
             sh "chown root /opt/google/chrome/chrome-sandbox"
-            sh "chmod 4755 /opt/google/chrome/chrome-sandbox"  
-             
-            sh "npm config set unsafe-perm true && npm ci"  
-            sh "npm run webdriver-update-ci"
-            sh "npm run e2e -- --webdriver-update=false"
-            sh "npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod"  
-             
-              
+            sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
+
+            //sh "npm config set unsafe-perm true && npm ci"
+            //sh "npm run e2e"
+            //sh "npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod"
+            parallel {
+                stage('Lint Unit tests') {
+                    steps {
+                        echo "Lint & unit tests & build"
+                        sh "npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod"
+                    }
+               }
+                stage('E2E Tests') {
+                    steps {
+                        echo "Run E2E tests"
+                        sh "npm run e2e"
+                    }
+                }
+               }
             //sh "npm test"
             //sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
 
@@ -64,9 +75,9 @@
             sh "npm run build:prod"
             //sh "npm test"
             dir("./charts/$APP_NAME") {
-              retry(5) { 
+              retry(5) {
                 sh "make tag"
-              }     
+              }
             }
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
