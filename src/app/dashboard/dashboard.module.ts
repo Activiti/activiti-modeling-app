@@ -34,6 +34,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { ProjectsEffects } from './store/effects/projects.effects';
 import { SharedModule } from 'ama-sdk';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ReleaseListComponent } from './components/releases-list/releases-list.component';
 
 @NgModule({
     imports: [
@@ -49,6 +50,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     declarations: [
         DashboardNavigationComponent,
         ProjectsListComponent,
+        ReleaseListComponent
     ],
     exports: [DashboardRoutingModule],
     providers: [DashboardService]

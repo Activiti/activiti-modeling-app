@@ -49,6 +49,7 @@ import { AmaState, CreateProjectAttemptAction, CREATE_PROJECT_ATTEMPT, } from 'a
 import { SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
 import { selectProjectsLoaded } from '../selectors/dashboard.selectors';
 import { EntityDialogForm } from 'ama-sdk';
+import { GET_PROJECT_RELEASES_ATTEMPT, GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
 
 @Injectable()
 export class ProjectsEffects extends BaseEffects {
@@ -101,6 +102,12 @@ export class ProjectsEffects extends BaseEffects {
     getProjectsAttemptEffect = this.actions$.pipe(
         ofType<GetProjectsAttemptAction>(GET_PROJECTS_ATTEMPT),
         switchMap(action => this.getProjectsAttempt(action.pagination))
+    );
+
+    @Effect()
+    getProjectReleasesAttemptEffect = this.actions$.pipe(
+        ofType<GetProjectReleasesAttemptAction>(GET_PROJECT_RELEASES_ATTEMPT),
+        switchMap(action => this.getProjectReleasesAtempt(action.projectId, action.pagination))
     );
 
     @Effect()
@@ -164,6 +171,13 @@ export class ProjectsEffects extends BaseEffects {
         return this.dashboardService.fetchProjects(pagination).pipe(
             switchMap(projects => [new GetProjectsSuccessAction(projects)]),
             catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'APP.HOME.ERROR.LOAD_PROJECTS'), e))
+        );
+    }
+
+    private getProjectReleasesAtempt(projectId: string, pagination: Partial<Pagination>) {
+        return  this.dashboardService.fetchProjectReleases(projectId, pagination).pipe(
+            switchMap(releases => [new GetProjectReleasesSuccessAction(releases)]),
+            catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'APP.HOME.ERROR.LOAD_RELEASES'), e))
         );
     }
 

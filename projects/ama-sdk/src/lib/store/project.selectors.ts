@@ -18,13 +18,13 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ProjectEditorState } from './project.state';
 
-export const PROJECT_EDITOR_STATE_NAME = 'project-editor';
 
+export const PROJECT_EDITOR_STATE_NAME = 'project-editor';
 export const getProjectEditorFeatureState = createFeatureSelector<ProjectEditorState>(PROJECT_EDITOR_STATE_NAME);
 
 export const selectProject = createSelector(
     getProjectEditorFeatureState,
-    (state: ProjectEditorState) => state.project.datum
+    (state: ProjectEditorState) => state.project.project
 );
 
 export const selectProjectLoading = createSelector(

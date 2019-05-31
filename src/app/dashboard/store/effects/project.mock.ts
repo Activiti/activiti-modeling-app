@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Project, PROJECT } from 'ama-sdk';
+import { Project, PROJECT, ReleaseEntry } from 'ama-sdk';
 
 export const mockProject: Project = {
     id: 'app-id',
@@ -27,4 +27,16 @@ export const mockProject: Project = {
     creationDate: new Date(),
     lastModifiedBy: 'user',
     lastModifiedDate: new Date()
+};
+
+export const mockReleaseEntry: ReleaseEntry = {
+    entry: {
+        id: 'release-id',
+        name: '1',
+        createdBy: 'user',
+        creationDate: new Date(),
+        projectName: 'app-name',
+        lastModifiedBy: 'user',
+        lastModifiedDate: new Date()
+    }
 };

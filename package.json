@@ -5,6 +5,7 @@
   "author": "Alfresco Software, Ltd.",
   "scripts": {
     "ng": "ng",
+    "update-package-version": "./scripts/update-package-version.sh",
     "postinstall": "node jest/transpile-es2015-modules-for-jest.js",
     "postci": "npm run postinstall",
     "01": "echo --------------------------------------- Community servers ------------------------------------------",

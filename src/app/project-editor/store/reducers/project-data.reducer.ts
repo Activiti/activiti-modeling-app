@@ -44,6 +44,7 @@ function initProject(state: ProjectDataState): ProjectDataState {
 
 function setProject(state: ProjectDataState, action: GetProjectSuccessAction): ProjectDataState {
     const newState = Object.assign({}, state);
-    newState.datum = action.payload;
+    newState.project = action.payload;
     return newState;
 }
+

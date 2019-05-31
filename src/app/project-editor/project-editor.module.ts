@@ -56,7 +56,7 @@ import { ExtensionsModule } from '@alfresco/adf-extensions';
         ProjectTreeFilterComponent,
         UploadFileButtonComponent,
         ProjectTreeIconsComponent,
-        ProjectSettingsComponent
+        ProjectSettingsComponent,
     ],
     exports: [ProjectEditorRoutingModule],
     entryComponents: [ ProjectSettingsComponent ],

@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { ProjectApi } from '../../api/project-api.interface';
 import { Observable } from 'rxjs';
-import { Project, PROJECT, Release, Pagination, PaginatedEntries } from '../../api/types';
+import { Project, PROJECT, Release, Pagination, PaginatedEntries, ReleaseEntry } from '../../api/types';
 import { map } from 'rxjs/operators';
 import { RequestApiHelper } from './request-api.helper';
 
@@ -115,5 +115,18 @@ export class ACMProjectApi implements ProjectApi {
             .pipe(
                 map((response: any) => response.entry)
             );
+    }
+
+    public getProjectReleases(projectId: string, pagination: Partial<Pagination> = {}): Observable<PaginatedEntries<ReleaseEntry>> {
+        return this.requestApiHelper
+        .get(`/v1/projects/${projectId}/releases`, { queryParams: pagination })
+        .pipe(
+            map((nodePaging: any) => {
+                return {
+                    pagination: nodePaging.list.pagination,
+                    entries: nodePaging.list.entries
+                };
+            })
+        );
     }
 }

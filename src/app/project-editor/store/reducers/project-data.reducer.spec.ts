@@ -38,6 +38,6 @@ describe('Project data reducer', () => {
         initState = {...INITIAL_PROJECT_DATA_STATE};
         const newState = projectDataReducer(initState, new GetProjectSuccessAction(project));
 
-        expect(newState.datum).toEqual(project);
+        expect(newState.project).toEqual(project);
     });
 });
