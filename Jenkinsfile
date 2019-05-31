@@ -36,35 +36,19 @@
           branch 'PR-*'
         }
         parallel {
-                stage('Lint') {
+                stage('Lint & Package SDK') {
                   steps {
                       container('nodejs'){
-                        echo "Lint"
-                        sh "npm run lint"
+                        echo "Lint & Package SDK"
+                        sh "npm run lint && npm run package:sdk"
                       }
                   }
                 }
-                stage('Unit Tests') {
+                stage('Unit Tests && Build') {
                   steps {
                       container('nodejs'){
-                        echo "Run Unit Tests"
-                        sh "npm run test:ci"
-                      }
-                  }
-                }
-                stage('Package SDK') {
-                  steps {
-                      container('nodejs'){
-                        echo "Package"
-                        sh "npm run package:sdk"
-                      }
-                  }
-                }
-                stage('Build') {
-                  steps {
-                      container('nodejs'){
-                        echo "Build"
-                        sh "npm run build:prod"
+                        echo "Run Unit Tests && Build"
+                        sh "npm run test:ci && npm run build:prod"
                       }
                   }
                 }
