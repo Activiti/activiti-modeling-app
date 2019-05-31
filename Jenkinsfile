@@ -30,7 +30,11 @@
           }
         }
       }
-      parallel {
+      stage ('Tests') {
+        when {
+          branch 'PR-*'
+        }
+        parallel {
                 stage('Lint Unit tests') {
                   steps {
                       container('nodejs'){
@@ -47,6 +51,7 @@
                     }
                   }
                 }
+        }
       }
       stage('Build Release') {
         when {
