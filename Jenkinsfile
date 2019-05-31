@@ -14,7 +14,7 @@
       OPTIMIZE_MEMORY = "true"
     }
     stages {
-      stage('Prepare to test') {
+      stage('Prepare to run tests') {
         when {
           branch 'PR-*'
         }
@@ -36,18 +36,42 @@
           branch 'PR-*'
         }
         parallel {
-                stage('Lint Unit tests') {
+                stage('Lint') {
                   steps {
                       container('nodejs'){
-                        echo "Lint & unit tests & build"
-                        sh "npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod"
+                        echo "Lint"
+                        sh "npm run lint"
+                      }
+                  }
+                }
+                stage('Unit Tests') {
+                  steps {
+                      container('nodejs'){
+                        echo "Run Unit Tests"
+                        sh "npm run test:ci"
+                      }
+                  }
+                }
+                stage('Package SDK') {
+                  steps {
+                      container('nodejs'){
+                        echo "Package"
+                        sh "npm run package:sdk"
+                      }
+                  }
+                }
+                stage('Build') {
+                  steps {
+                      container('nodejs'){
+                        echo "Build"
+                        sh "npm run build:prod"
                       }
                   }
                 }
                 stage('E2E Tests') {
                   steps {
                     container('nodejs'){
-                      echo "Run E2E tests"
+                      echo "Run E2E Tests"
                       sh "npm run e2e"
                     }
                   }
