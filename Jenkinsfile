@@ -43,8 +43,10 @@
                     branch 'PR-*'
                   }
                   steps {
-                    echo "Lint & unit tests & build"
-                    sh "npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod"
+                      container('nodejs'){
+                        echo "Lint & unit tests & build"
+                        sh "npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod"
+                      }
                   }
                 }
                 stage('E2E Tests') {
@@ -52,8 +54,10 @@
                     branch 'PR-*'
                   }
                   steps {
-                    echo "Run E2E tests"
-                    sh "npm run e2e"
+                    container('nodejs'){
+                      echo "Run E2E tests"
+                      sh "npm run e2e"
+                    }
                   }
                 }
       }
