@@ -14,13 +14,6 @@
       OPTIMIZE_MEMORY = "true"
     }
     stages {
-        stage ('Env print') {
-            steps{
-                container('nodejs'){
-
-                }
-            }
-        }
       stage('CI Build and push snapshot') {
         when {
           branch 'PR-*'
@@ -36,10 +29,7 @@
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
           }
         }
-      stage('Tests')
-          when {
-              branch 'PR-*'
-          }
+      }
       parallel {
                 stage('Lint Unit tests') {
                   steps {
@@ -103,5 +93,4 @@
             cleanWs()
         }
     }
-  }
 }
