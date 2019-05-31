@@ -18,41 +18,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MonacoEditorModule } from 'ngx-monaco-editor';
-
+import { MonacoEditorModule, NGX_MONACO_EDITOR_CONFIG } from 'ngx-monaco-editor';
 import { CodeEditorComponent } from './components/code-editor/code-editor.component';
-import { connectorSchema } from '../schemas/connector.schema';
-import { CONNECTOR, PROCESS } from '../api/types';
-import { getFileUriPattern } from './helpers/file-uri';
-import { extensionsSchema } from '../schemas/extensions.schema';
+import { CodeEditorService } from './services/code-editor-service.service';
 
-export function onMonacoLoad() {
-    monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
-        validate: true,
-        schemas: this._schemas
-    });
+
+export function monacoEditorConfigFactory(codeEditorService: CodeEditorService) {
+    return codeEditorService.getConfig();
 }
-
-const editorConfig = {
-    baseUrl: './assets',
-    _schemas: [{
-        uri: 'connectorSchema',
-        fileMatch: [getFileUriPattern(CONNECTOR, 'json')],
-        schema: connectorSchema
-    },
-    {
-        uri: 'processExtensionSchema',
-        fileMatch: [getFileUriPattern(PROCESS, 'json')],
-        schema: extensionsSchema
-    }],
-    onMonacoLoad
-};
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        MonacoEditorModule.forRoot(editorConfig)
+        // We reprovide module's internal NGX_MONACO_EDITOR_CONFIG, see the providers
+        MonacoEditorModule.forRoot({})
     ],
     declarations: [CodeEditorComponent],
     exports: [
@@ -60,6 +40,13 @@ const editorConfig = {
         FormsModule,
         MonacoEditorModule,
         CodeEditorComponent
+    ],
+    providers: [
+        {
+            provide: NGX_MONACO_EDITOR_CONFIG,
+            useFactory: monacoEditorConfigFactory,
+            deps: [ CodeEditorService ]
+        }
     ]
 })
 export class CodeEditorModule {}
