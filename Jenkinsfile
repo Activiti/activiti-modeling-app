@@ -14,7 +14,7 @@
       OPTIMIZE_MEMORY = "true"
     }
     stages {
-      stage('CI Build and push snapshot') {
+      stage('Prepare to test') {
         when {
           branch 'PR-*'
         }
@@ -27,6 +27,7 @@
             sh "sleep 3"
             sh "chown root /opt/google/chrome/chrome-sandbox"
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
+            sh "npm config set unsafe-perm true && npm ci"
           }
         }
       }
