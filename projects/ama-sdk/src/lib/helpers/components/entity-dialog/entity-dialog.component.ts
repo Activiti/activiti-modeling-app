@@ -62,10 +62,11 @@ export class EntityDialogComponent implements OnInit {
         this.dialog.close();
     }
 
-    @HostListener('document:keyup', ['$event'])
+    @HostListener('document:keypress', ['$event'])
     keyEvent(event: KeyboardEvent) {
         const currentlySelectedElementIsDescription  = event.srcElement.classList.contains('mat-input-element');
         if (event.keyCode === this.ENTER_KEY && !currentlySelectedElementIsDescription) {
+            event.preventDefault();
             this.submit();
         }
     }
