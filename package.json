@@ -7,6 +7,7 @@
     "ng": "ng",
     "update-package-version": "./scripts/update-package-version.sh",
     "postinstall": "node jest/transpile-es2015-modules-for-jest.js",
+    "postci": "npm run postinstall",
     "01": "echo --------------------------------------- Community servers ------------------------------------------",
     "prestart": "npm run validate-config && rimraf dist && npm run compile-less && npm run package:sdk",
     "prestart:prod": "npm run prestart",

@@ -14,14 +14,32 @@
       OPTIMIZE_MEMORY = "true"
     }
     stages {
+        stage ('Env print') {
+            steps{
+                container('nodejs'){
+                    
+                }
+            }
+        }  
       stage('CI Build and push snapshot') {
         when {
           branch 'PR-*'
         }
         steps {
           container('nodejs') {
-            sh "npm install"
-            sh "npm run build"
+            sh "node --version"  
+            sh "npm --version" 
+
+            sh "Xvfb :99 &"
+            sh "sleep 3"  
+            sh "chown root /opt/google/chrome/chrome-sandbox"
+            sh "chmod 4755 /opt/google/chrome/chrome-sandbox"  
+             
+            sh "npm config set unsafe-perm true && npm ci"  
+            sh "npm run e2e"
+            sh "npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod"  
+             
+              
             //sh "npm test"
             //sh 'export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml'
 

@@ -26,12 +26,11 @@ export class LoginAPSPage extends GenericPage implements LoginPageImplementation
     private readonly ssoButton = element(by.css(`[data-automation-id="login-button-sso"]`));
     private readonly usernameField = element(by.id('username'));
     private readonly passwordField = element(by.id('password'));
-    private readonly loginButton = element(by.className('submit'));
+    private readonly loginButton = element(by.css('input[type="submit"]'));
 
     constructor(testConfig: TestConfig) {
         super(testConfig);
     }
-
 
     async login(username: string, password: string) {
         await this.clickOnSSOButton();
@@ -39,12 +38,11 @@ export class LoginAPSPage extends GenericPage implements LoginPageImplementation
         await this.enterUsername(username);
         await this.enterPassword(password);
         await this.clickOnLoginButton();
-
     }
 
     async navigateTo() {
         const loginURL = `login`;
-        return await super.navigateTo(loginURL);
+        await super.navigateTo(loginURL);
     }
 
     async isLoginPageDisplayed() {

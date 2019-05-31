@@ -98,7 +98,6 @@ export class SidebarActionMenu extends GenericWebElement {
 
         const modelInput = element(by.css(`[data-automation-id="app-navigation-upload-${itemType}"] input`));
         await super.sendKeysIfPresent(modelInput, filePath);
-        await this.clickOnBackdrop();
     }
 
     async importProcess(filePath: string) {
