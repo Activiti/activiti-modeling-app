@@ -92,6 +92,17 @@ describe('EntityDialogComponent', () => {
         expect(store.dispatch).toHaveBeenCalledWith(new mockDialogData.action(component.form));
     });
 
+    it('should test submit action on enter ', () => {
+        spyOn(store, 'dispatch');
+        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
+        component.form.name = 'test-name';
+        component.form.description = 'test-desc';
+
+        submitBtn.nativeElement.dispatchEvent(new KeyboardEvent('keypress', {'key': 'Enter'}));
+
+        expect(store.dispatch).toHaveBeenCalledTimes(1);
+    });
+
     it('should render input values', () => {
         const mockValues = { id: 'id', name: 'name', description: 'desc' };
         component.data = { ...mockDialogData, values: mockValues };
