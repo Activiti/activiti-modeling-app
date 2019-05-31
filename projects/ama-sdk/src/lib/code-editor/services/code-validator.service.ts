@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Injectable, InjectionToken, Inject } from '@angular/core';
+import { Injectable, InjectionToken/*, Inject*/ } from '@angular/core';
 /*
     Angular 6 --prod mode doesn't seem to work with the normal way of importing the ajv library.
     Modify this import with care, doublechecking the process editor works in --prod mode.
@@ -40,7 +40,7 @@ export const AjvInjectionToken = new InjectionToken<string>('AjvInjectionToken',
 })
 export class CodeValidatorService {
 
-    constructor(@Inject(AjvInjectionToken) private ajv: Ajv) {}
+    constructor(/*@Inject(AjvInjectionToken) private ajv: Ajv*/) {}
 
     validateJson<T>(jsonString: string = '', schema: any): ValidationResponse<T> {
         let json,
@@ -48,11 +48,12 @@ export class CodeValidatorService {
 
         try {
             json = JSON.parse(jsonString.trim());
-            if (!this.ajv.validate(schema, json)) {
-                validationResponse = { json: null, valid: false, error: 'APP.GENERAL.ERRORS.NOT_VALID_SCHEMA' };
-            } else {
-                validationResponse = { json, valid: true, error: null };
-            }
+            return { json, valid: true, error: null };
+            // if (!this.ajv.validate(schema, json)) {
+            //     validationResponse = { json: null, valid: false, error: 'APP.GENERAL.ERRORS.NOT_VALID_SCHEMA' };
+            // } else {
+            //     validationResponse = { json, valid: true, error: null };
+            // }
         } catch {
             validationResponse = { json: null, valid: false, error: 'APP.GENERAL.ERRORS.NOT_VALID_JSON' };
         }
