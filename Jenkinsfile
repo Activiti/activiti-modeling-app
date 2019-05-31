@@ -36,12 +36,12 @@
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
           }
         }
-
+      stage('Tests')
+          when {
+              branch 'PR-*'
+          }
       parallel {
                 stage('Lint Unit tests') {
-                  when {
-                    branch 'PR-*'
-                  }
                   steps {
                       container('nodejs'){
                         echo "Lint & unit tests & build"
@@ -50,9 +50,6 @@
                   }
                 }
                 stage('E2E Tests') {
-                  when {
-                    branch 'PR-*'
-                  }
                   steps {
                     container('nodejs'){
                       echo "Run E2E tests"
