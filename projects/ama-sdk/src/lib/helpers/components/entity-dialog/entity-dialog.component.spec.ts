@@ -66,10 +66,6 @@ describe('EntityDialogComponent', () => {
         store = TestBed.get(Store);
     });
 
-    it('should render component', () => {
-        expect(component).not.toBeNull();
-    });
-
     it('should render input placeholders', () => {
         const nameField = fixture.debugElement.query(By.css('[data-automation-id="name-field"]'));
         const descField = fixture.debugElement.query(By.css('[data-automation-id="desc-field"]'));
@@ -92,13 +88,24 @@ describe('EntityDialogComponent', () => {
         expect(store.dispatch).toHaveBeenCalledWith(new mockDialogData.action(component.form));
     });
 
-    it('should test submit action on enter ', () => {
+    it('should test submit action on enter keydown of submit button', () => {
         spyOn(store, 'dispatch');
         const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
         component.form.name = 'test-name';
         component.form.description = 'test-desc';
 
-        submitBtn.nativeElement.dispatchEvent(new KeyboardEvent('keypress', {'key': 'Enter'}));
+        submitBtn.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', bubbles: true}));
+
+        expect(store.dispatch).toHaveBeenCalledTimes(1);
+    });
+
+    it('should test submit action on enter keydown of name field', () => {
+        spyOn(store, 'dispatch');
+        const nameField = fixture.debugElement.query(By.css('[data-automation-id="name-field"]'));
+        component.form.name = 'test-name';
+        component.form.description = 'test-desc';
+
+        nameField.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', bubbles: true}));
 
         expect(store.dispatch).toHaveBeenCalledTimes(1);
     });
