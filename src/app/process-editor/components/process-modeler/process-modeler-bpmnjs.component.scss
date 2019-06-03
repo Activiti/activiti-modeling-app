@@ -72,8 +72,7 @@
                 &.bpmn-icon-manual,
                 &.bpmn-icon-business-rule,
                 &.bpmn-icon-script,
-                &.bpmn-icon-subprocess-collapsed,
-                &.bpmn-icon-subprocess-expanded,
+                &.bpmn-icon-event-subprocess-expanded,
                 &.bpmn-icon-gateway-eventbased,
                 &.bpmn-icon-gateway-or,
                 &.bpmn-icon-gateway-complex,
@@ -88,6 +87,7 @@
                 &.bpmn-icon-intermediate-event-catch-non-interrupting-escalation,
                 &.bpmn-icon-intermediate-event-catch-non-interrupting-condition,
                 &.bpmn-icon-intermediate-event-catch-non-interrupting-signal,
+                &.bpmn-icon-transaction,
                 &.bpmn-icon-start-event-timer {
                     display: none;
                 }

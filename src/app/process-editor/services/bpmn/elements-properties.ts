@@ -99,5 +99,10 @@ export const elementsProperties = {
         BpmnProperty.dueDate,
         BpmnProperty.priority,
         BpmnProperty.formKey
+    ],
+    [BpmnElement.SubProcess]: [
+        BpmnProperty.id,
+        BpmnProperty.name,
+        BpmnProperty.documentation
     ]
 };

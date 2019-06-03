@@ -108,5 +108,17 @@ export const paletteElements: PaletteElement[] = [
         title: 'APP.PROCESS_EDITOR.PALETTE.USER_TASK',
         clickable: true,
         draggable: true
+    },
+
+    {
+        group: 'element',
+        type: 'bpmn:SubProcess',
+        icon: 'bpmn-icon-subprocess-expanded',
+        title: 'APP.PROCESS_EDITOR.PALETTE.SUB_PROCESS',
+        clickable: true,
+        draggable: true,
+        options: {
+            isExpanded: true
+        }
     }
 ];
