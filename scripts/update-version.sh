@@ -123,7 +123,7 @@ update_main_dependency_version(){
 
 update_main_component_js_version(){
    echo "====== UPDATE DEPENDENCY VERSION of @alfresco/js-api in ${1} ======"
-   PACKAGETOCHANGE="@alfresco/js-api@${VERSION}"
+   PACKAGETOCHANGE="@alfresco/js-api@${1}"
 
    npm i -E ${PACKAGETOCHANGE}
 }
@@ -161,7 +161,12 @@ if $EXEC_COMPONENT == true; then
     echo "====== UPDATE  ======"
 
     update_main_dependency_version
-    update_main_component_js_version
+
+    if $DIFFERENT_JS_API == true; then
+        update_main_component_js_version ${VERSION_JS_API}
+    else
+        update_main_component_js_version ${VERSION}
+    fi
 
     update_dependency_for_all
 
