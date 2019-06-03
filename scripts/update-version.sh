@@ -162,11 +162,11 @@ if $EXEC_COMPONENT == true; then
 
     update_main_dependency_version
 
-      if $DIFFERENT_JS_API == true; then
-          update_main_component_js_version ${VERSION_JS_API}
-      else
-          update_main_component_js_version ${VERSION}
-      fi
+    if $DIFFERENT_JS_API == true; then
+        update_main_component_js_version ${VERSION_JS_API}
+    else
+        update_main_component_js_version ${VERSION}
+    fi
 
     update_dependency_for_all
 
