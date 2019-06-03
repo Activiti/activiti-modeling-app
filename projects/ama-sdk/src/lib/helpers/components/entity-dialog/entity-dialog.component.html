@@ -4,6 +4,7 @@
     <br />
     <mat-form-field class="adf-full-width">
         <input
+            #entityName
             matInput
             required
             placeholder="{{ data.nameField | translate }}"
@@ -24,14 +25,16 @@
 <mat-dialog-actions class="adf-dialog-buttons">
     <span class="adf-fill-remaining-space"></span>
 
-    <button mat-button mat-dialog-close>
+    <button mat-button mat-dialog-close class="cancel-btn">
         {{ 'APP.DIALOGS.CANCEL' | translate }}
     </button>
 
-    <button class="adf-dialog-action-button"
-            mat-button (click)="submit()"
-            data-automation-id="submit-button"
-            [disabled]="!validate()">
+    <button mat-button
+        #buttonSubmit
+        class="adf-dialog-action-button"
+        (click)="submit()"
+        data-automation-id="submit-button"
+        [disabled]="!validate()">
         {{ submitButton | translate }}
     </button>
 </mat-dialog-actions>

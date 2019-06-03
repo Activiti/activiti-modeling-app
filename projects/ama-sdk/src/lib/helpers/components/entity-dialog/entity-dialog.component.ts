@@ -15,14 +15,13 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, Optional, Inject, HostListener } from '@angular/core';
+import { Component, OnInit, Optional, Inject, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { AmaState } from '../../../store/app.state';
 import { EntityDialogPayload } from '../../common';
 import { EntityDialogForm } from '../../common';
 import { MODEL_NAME_REGEX } from '../../utils/create-entries-names';
-
 @Component({
     templateUrl: './entity-dialog.component.html'
 })
@@ -32,6 +31,12 @@ export class EntityDialogComponent implements OnInit {
     validationRegex: RegExp;
     form: Partial<EntityDialogForm>;
     ENTER_KEY = 13;
+
+    @ViewChild('entityName')
+    private entityNameField: ElementRef<HTMLElement>;
+
+    @ViewChild('buttonSubmit')
+    private submitButtonField: ElementRef<HTMLElement>;
 
     constructor(
         private store: Store<AmaState>,
@@ -62,10 +67,9 @@ export class EntityDialogComponent implements OnInit {
         this.dialog.close();
     }
 
-    @HostListener('document:keyup', ['$event'])
-    keyEvent(event: KeyboardEvent) {
-        const currentlySelectedElementIsDescription  = event.srcElement.classList.contains('mat-input-element');
-        if (event.keyCode === this.ENTER_KEY && !currentlySelectedElementIsDescription) {
+    @HostListener('document:keydown.enter', ['$event.target'])
+    keyEvent(element: HTMLElement) {
+        if (element === this.entityNameField.nativeElement || element === this.submitButtonField.nativeElement) {
             this.submit();
         }
     }
