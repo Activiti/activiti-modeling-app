@@ -15,12 +15,10 @@
  * limitations under the License.
  */
 
-import { MODEL_TYPE } from '../../api/types';
-
-export function getFileUri(scheme: MODEL_TYPE, fileType: string, uriParts: string) {
+export function getFileUri(scheme: string, fileType: string, uriParts: string) {
     return `${scheme}://${fileType}:${uriParts}`;
 }
 
-export function getFileUriPattern(scheme: MODEL_TYPE, fileType: string) {
+export function getFileUriPattern(scheme: string, fileType: string) {
     return getFileUri(scheme, fileType, '*');
 }

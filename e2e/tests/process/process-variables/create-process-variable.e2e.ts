@@ -92,7 +92,8 @@ describe('Create process variable', async () => {
             };
             await processVariablesDialog.goTocodeEditor();
 
-            expect(JSON.parse(await codeEditorWidget.getCodeEditorValue(2))).toEqual(expectedVariable, `Variables objects are not equal`);
+            const editorValue = await codeEditorWidget.getCodeEditorValue();
+            expect(JSON.parse(editorValue)).toEqual(expectedVariable, `Variables objects are not equal`);
 
             await processVariablesDialog.update();
             await processVariablesDialog.close();
@@ -116,7 +117,9 @@ describe('Create process variable', async () => {
 
             const variableId = await processVariablesDialog.getVariableIdByRow(0);
             await processVariablesDialog.goTocodeEditor();
-            expect(JSON.parse(await codeEditorWidget.getCodeEditorValue(2))[variableId].value).toEqual(123, `Variable value is not set correctly.`);
+
+            const editorValue = await codeEditorWidget.getCodeEditorValue();
+            expect(JSON.parse(editorValue)[variableId].value).toEqual(123, `Variable value is not set correctly.`);
 
             await processVariablesDialog.update();
             await processVariablesDialog.close();
@@ -133,7 +136,7 @@ describe('Create process variable', async () => {
 
             const variableId = await processVariablesDialog.getVariableIdByRow(0);
             await processVariablesDialog.goTocodeEditor();
-            expect(JSON.parse(await codeEditorWidget.getCodeEditorValue(2))[variableId].value).toEqual(currentDate, `Variable value is not set correctly.`);
+            expect(JSON.parse(await codeEditorWidget.getCodeEditorValue())[variableId].value).toEqual(currentDate, `Variable value is not set correctly.`);
             await processVariablesDialog.update();
             await processVariablesDialog.close();
 

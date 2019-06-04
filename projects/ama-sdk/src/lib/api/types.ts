@@ -24,6 +24,7 @@ export type DECISION_TABLE_TYPE = 'decision';
 export type UI_TYPE = 'ui';
 export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DATA_TYPE | DECISION_TABLE_TYPE | UI_TYPE;
 
+
 export const PROJECT: PROJECT_TYPE = 'project';
 export const PROCESS: PROCESS_TYPE = 'process';
 export const FORM: FORM_TYPE = 'form';
@@ -32,6 +33,9 @@ export const DATA: DATA_TYPE = 'data';
 export const DECISION_TABLE: DECISION_TABLE_TYPE = 'decision';
 export const UI: UI_TYPE = 'ui';
 export type FilterType = Process | Connector | Form | Data | DecisionTable | Ui;
+
+export const PROCESS_VARIABLES = 'process-variables';
+export const FORM_VARIABLES = 'form-variables';
 
 export interface Project {
     type: PROJECT_TYPE;

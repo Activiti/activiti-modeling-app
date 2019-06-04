@@ -48,7 +48,9 @@ import {
     CodeEditorService,
     getFileUriPattern,
     PROCESS,
-    extensionsSchema
+    extensionsSchema,
+    PROCESS_VARIABLES,
+    propertiesSchema
 } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { ProcessDiagramLoaderService } from './services/process-diagram-loader.service';
@@ -143,5 +145,6 @@ export class ProcessEditorModule {
         codeEditorService: CodeEditorService
     ) {
         codeEditorService.addSchema('processExtensionSchema', getFileUriPattern(PROCESS, 'json'), extensionsSchema);
+        codeEditorService.addSchema('processVariableSchema', getFileUriPattern(PROCESS_VARIABLES, 'json'), propertiesSchema);
     }
 }

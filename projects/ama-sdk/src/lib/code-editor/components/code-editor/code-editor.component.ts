@@ -17,6 +17,8 @@
 
 import { Component, Output, EventEmitter, Input, OnDestroy, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { NgxEditorModel, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
+import { Subject } from 'rxjs';
+import { filter } from 'rxjs/operators';
 const memoize = require('lodash/memoize');
 const uuidv4 = require('uuid/v4');
 
@@ -39,17 +41,34 @@ const createMemoizedEditorOptions = memoize(
 export class CodeEditorComponent implements OnDestroy, OnInit {
     @Input() vsTheme = 'vs-light';
     @Input() options: EditorOptions;
-    @Input() fileUri: string ;
+    @Input() fileUri: string;
     @Input() language: string;
-    @Input() content = '';
+
+    @Input()
+    set content(value: string) {
+        if (value !== this._content) {
+            this._content = value;
+            this.editorModelSubject$.next({
+                value: this._content,
+                language: this.language,
+                uri: this.getUniqueUri(this.fileUri)
+            });
+        }
+    }
+
+    get content() {
+        return this._content;
+    }
+
     @Output() changed = new EventEmitter<string>();
     @Output() positionChanged = new EventEmitter<CodeEditorPosition>();
+
     editorModel: NgxEditorModel;
-
-    private editor: monaco.editor.ICodeEditor = <monaco.editor.ICodeEditor>{ dispose: () => {} };
-
     config: NgxMonacoEditorConfig;
 
+    private _content: string;
+    private editorModelSubject$ = new Subject<NgxEditorModel>();
+    private editor: monaco.editor.ICodeEditor = <monaco.editor.ICodeEditor>{ dispose: () => {} };
     private defaultOptions = {
         language: 'json',
         scrollBeyondLastLine: false,
@@ -62,14 +81,14 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
         automaticLayout: true
     };
 
+    constructor() {
+        this.editorModelSubject$.pipe(
+            filter(model => model.value !== undefined && !!model.uri && !!model.language),
+        ).subscribe((model) => this.editorModel = model);
+    }
+
     ngOnInit() {
         this.defaultOptions = Object.assign({}, this.defaultOptions, this.options);
-
-        this.editorModel = {
-            value: this.content,
-            language: this.language,
-            uri: this.getUniqueUri(this.fileUri)
-        };
     }
 
     get editorOptions(): EditorOptions {
@@ -99,10 +118,15 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     }
 
     onEditorChange(): void {
-        this.changed.emit(this.editor.getValue().trim());
+        this._content = this.editor.getValue().trim();
+        this.changed.emit(this._content);
     }
 
     private getUniqueUri(fileUri: string) {
-        return fileUri + '.' + uuidv4();
+        if (fileUri) {
+            return fileUri + '.' + uuidv4();
+        } else {
+            return uuidv4();
+        }
     }
 }
