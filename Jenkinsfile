@@ -10,7 +10,7 @@
       GITHUB_CHARTS_REPO    = "https://github.com/Activiti/activiti-cloud-helm-charts.git"
       GITHUB_HELM_REPO_URL = "https://activiti.github.io/activiti-cloud-helm-charts/"
       PREVIEW_VERSION = "0.0.0-SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER"
-      NODE_OPTIONS = "--max_old_space_size=5120"
+      NODE_OPTIONS = "--max_old_space_size=40000"
       OPTIMIZE_MEMORY = "true"
     }
     stages {
