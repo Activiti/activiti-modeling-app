@@ -27,7 +27,8 @@
             sh "chown root /opt/google/chrome/chrome-sandbox"
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
 
-            sh "npm config set unsafe-perm true&&npm install"
+            //sh "npm config set unsafe-perm true&&
+            sh "npm install"
           }
         }
       }
