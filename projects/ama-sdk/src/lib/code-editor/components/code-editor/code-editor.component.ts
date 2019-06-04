@@ -98,6 +98,6 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     }
 
     onEditorChange(): void {
-        this.changed.emit(this.content);
+        this.changed.emit(this.content.trim());
     }
 }
