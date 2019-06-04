@@ -73,10 +73,10 @@ export class ConnectorEditorComponent {
             return { connectorContent, onChangeAttempt };
         });
 
-        this.fileUri$ = this.connectorId$.pipe(
-            map(id => getFileUri(CONNECTOR, 'json', id))
-        );
         this.languageType = 'json';
+        this.fileUri$ = this.connectorId$.pipe(
+            map(id => getFileUri(CONNECTOR, this.languageType, id))
+        );
     }
 
     onTabChange(): void {
