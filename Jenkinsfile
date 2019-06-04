@@ -27,7 +27,7 @@
             sh "chown root /opt/google/chrome/chrome-sandbox"
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
 
-            sh "yarn config set unsafe-perm true && yarn ci"
+            sh "yarn install"
           }
         }
       }
