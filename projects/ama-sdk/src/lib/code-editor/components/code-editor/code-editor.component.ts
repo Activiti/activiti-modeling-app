@@ -18,7 +18,7 @@
 import { Component, Output, EventEmitter, Input, OnDestroy, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { NgxEditorModel, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 import { Subject } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 const memoize = require('lodash/memoize');
 const uuidv4 = require('uuid/v4');
 
@@ -32,6 +32,18 @@ const createMemoizedEditorOptions = memoize(
     (theme, language, basicOptions): EditorOptions => ({ ...basicOptions, theme, language }),
     (theme, language) => `${theme}-${language}`
 );
+
+const DEFAULT_OPTIONS = {
+    language: 'json',
+    scrollBeyondLastLine: false,
+    contextmenu: true,
+    formatOnPaste: true,
+    formatOnType: true,
+    minimap: {
+        enabled: false
+    },
+    automaticLayout: true
+};
 
 @Component({
     selector: 'amasdk-code-editor',
@@ -69,26 +81,18 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     private _content: string;
     private editorModelSubject$ = new Subject<NgxEditorModel>();
     private editor: monaco.editor.ICodeEditor = <monaco.editor.ICodeEditor>{ dispose: () => {} };
-    private defaultOptions = {
-        language: 'json',
-        scrollBeyondLastLine: false,
-        contextmenu: true,
-        formatOnPaste: true,
-        formatOnType: true,
-        minimap: {
-            enabled: false
-        },
-        automaticLayout: true
-    };
+    private onDestroy$: Subject<void> = new Subject<void>();
+    private defaultOptions: any;
 
     constructor() {
         this.editorModelSubject$.pipe(
             filter(model => model.value !== undefined && !!model.uri && !!model.language),
+            takeUntil(this.onDestroy$)
         ).subscribe((model) => this.editorModel = model);
     }
 
     ngOnInit() {
-        this.defaultOptions = Object.assign({}, this.defaultOptions, this.options);
+        this.defaultOptions = Object.assign({}, DEFAULT_OPTIONS, this.options);
     }
 
     get editorOptions(): EditorOptions {
@@ -100,6 +104,8 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     }
 
     ngOnDestroy() {
+        this.onDestroy$.next();
+        this.onDestroy$.complete();
         this.editor.dispose();
     }
 
