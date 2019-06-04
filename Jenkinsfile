@@ -22,7 +22,6 @@
           container('nodejs') {
             sh "node --version"
             sh "npm --version"
-            sh "yarn version"
 
             sh "Xvfb :99 &"
             sh "chown root /opt/google/chrome/chrome-sandbox"
