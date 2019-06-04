@@ -27,7 +27,7 @@
             sh "chown root /opt/google/chrome/chrome-sandbox"
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
 
-            sh "yarn install"
+            sh "npm install"
           }
         }
       }
@@ -40,7 +40,7 @@
                   steps {
                       container('nodejs'){
                         echo "Lint & Package SDK"
-                        sh "yarn run lint && yarn run package:sdk"
+                        sh "npm run lint && npm run package:sdk"
                       }
                   }
                 }
@@ -48,7 +48,7 @@
                   steps {
                       container('nodejs'){
                         echo "Run Unit Tests && Build"
-                        sh "yarn run test:ci && yarn run build:prod"
+                        sh "npm run test:ci && npm run build:prod"
                       }
                   }
                 }
@@ -56,7 +56,7 @@
                   steps {
                     container('nodejs'){
                       echo "Run E2E Tests"
-                      sh "yarn run e2e"
+                      sh "npm run e2e"
                     }
                   }
                 }
