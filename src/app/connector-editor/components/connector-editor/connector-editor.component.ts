@@ -30,13 +30,16 @@ import {
     CodeValidatorService,
     ValidationResponse,
     AdvancedConnectorEditorData,
-    AdvancedConnectorEditorKey
+    AdvancedConnectorEditorKey,
+    CONNECTOR,
+    getFileUri
 } from 'ama-sdk';
 const memoize = require('lodash/memoize');
 
 @Component({
     templateUrl: './connector-editor.component.html'
 })
+
 export class ConnectorEditorComponent {
     disableSave = false;
 
@@ -48,6 +51,8 @@ export class ConnectorEditorComponent {
 
     boundOnChangeAttempt: any;
     getMemoizedDynamicComponentData: any;
+    fileUri$: Observable<string>;
+    languageType: string;
 
     constructor(
         private store: Store<AmaState>,
@@ -67,6 +72,11 @@ export class ConnectorEditorComponent {
         this.getMemoizedDynamicComponentData = memoize((connectorContent, onChangeAttempt) => {
             return { connectorContent, onChangeAttempt };
         });
+
+        this.languageType = 'json';
+        this.fileUri$ = this.connectorId$.pipe(
+            map(id => getFileUri(CONNECTOR, this.languageType, id))
+        );
     }
 
     onTabChange(): void {
@@ -82,7 +92,7 @@ export class ConnectorEditorComponent {
     }
 
     onChangeAttempt(connectorContentString: string): void {
-        this.disableSave = !this.validate(connectorContentString).valid;
+       this.disableSave = !this.validate(connectorContentString).valid;
 
         if (!this.disableSave) {
             this.editorContent$ = of(connectorContentString);

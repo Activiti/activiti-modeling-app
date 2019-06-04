@@ -28,7 +28,9 @@
                             (positionChanged)="codeEditorPositionChanged($event)"
                             [vsTheme]="vsTheme$ | async"
                             [options]="{language: 'xml'}"
-                            [content]="content$ | async">
+                            [content]="content$ | async"
+                            [fileUri]="processFileUri$ | async"
+                            [language]="processesLanguageType">
                         </amasdk-code-editor>
                     </div>
                 </mat-tab>
@@ -38,7 +40,9 @@
                             (changed)="onExtensionsChangeAttempt($event, process.id)"
                             (positionChanged)="codeEditorPositionChanged($event)"
                             [vsTheme]="vsTheme$ | async"
-                            [content]="extensions$ | async">
+                            [content]="extensions$ | async"
+                            [fileUri]="extensionFileUri$ | async"
+                            [language]="extensionsLanguageType">
                         </amasdk-code-editor>
                     </div>
                 </mat-tab>

@@ -36,7 +36,6 @@ describe('CodeEditorComponent', () => {
         fixture = TestBed.createComponent(CodeEditorComponent);
         component = fixture.componentInstance;
         component.content = JSON.stringify({ foo: 'bar' });
-
         fixture.detectChanges();
     });
 
@@ -97,6 +96,9 @@ describe('CodeEditorComponent', () => {
                 },
                 triggerPositionChange(position: CodeEditorPosition) {
                     storedPositionCallback({position});
+                },
+                getValue() {
+                    return JSON.stringify({foo: 'bar'});
                 }
             };
         });

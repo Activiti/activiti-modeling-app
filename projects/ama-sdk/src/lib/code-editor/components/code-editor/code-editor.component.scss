@@ -8,6 +8,10 @@
         .monaco-editor {
             height: auto;
             width: 100%;
+
+            .monaco-editor-hover {
+                top: 30px!important;
+            }
         }
     }
 }

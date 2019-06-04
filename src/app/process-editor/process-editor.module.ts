@@ -44,7 +44,13 @@ import {
     BpmnFactoryToken,
     ProcessModelerServiceToken,
     AmaStoreModule,
-    PROCESSES_ENTITY_KEY
+    PROCESSES_ENTITY_KEY,
+    CodeEditorService,
+    getFileUriPattern,
+    PROCESS,
+    extensionsSchema,
+    PROCESS_VARIABLES,
+    propertiesSchema
 } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { ProcessDiagramLoaderService } from './services/process-diagram-loader.service';
@@ -134,4 +140,11 @@ import { CardViewSignalRefItemComponent } from './services/cardview-properties/s
         ...getProcessUploaderProvider()
     ]
 })
-export class ProcessEditorModule {}
+export class ProcessEditorModule {
+    constructor(
+        codeEditorService: CodeEditorService
+    ) {
+        codeEditorService.addSchema('processExtensionSchema', getFileUriPattern(PROCESS, 'json'), extensionsSchema);
+        codeEditorService.addSchema('processVariableSchema', getFileUriPattern(PROCESS_VARIABLES, 'json'), propertiesSchema);
+    }
+}

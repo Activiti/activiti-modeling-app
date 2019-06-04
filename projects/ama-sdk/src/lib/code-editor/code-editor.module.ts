@@ -18,15 +18,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MonacoEditorModule } from 'ngx-monaco-editor';
-
+import { MonacoEditorModule, NGX_MONACO_EDITOR_CONFIG } from 'ngx-monaco-editor';
 import { CodeEditorComponent } from './components/code-editor/code-editor.component';
+import { CodeEditorService } from './services/code-editor-service.service';
+
+
+export function monacoEditorConfigFactory(codeEditorService: CodeEditorService) {
+    return codeEditorService.getConfig();
+}
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        MonacoEditorModule.forRoot({baseUrl: './assets'})
+        // We reprovide module's internal NGX_MONACO_EDITOR_CONFIG, see the providers
+        MonacoEditorModule.forRoot({})
     ],
     declarations: [CodeEditorComponent],
     exports: [
@@ -34,6 +40,13 @@ import { CodeEditorComponent } from './components/code-editor/code-editor.compon
         FormsModule,
         MonacoEditorModule,
         CodeEditorComponent
+    ],
+    providers: [
+        {
+            provide: NGX_MONACO_EDITOR_CONFIG,
+            useFactory: monacoEditorConfigFactory,
+            deps: [ CodeEditorService ]
+        }
     ]
 })
 export class CodeEditorModule {}

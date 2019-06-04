@@ -16,7 +16,7 @@
  */
 
 import { Component, Output, EventEmitter, Input, OnDestroy, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { NgxEditorModel } from 'ngx-monaco-editor';
+import { NgxEditorModel, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 const memoize = require('lodash/memoize');
 
 export type EditorOptions = monaco.editor.IEditorOptions | { language: string; theme: string };
@@ -30,6 +30,18 @@ const createMemoizedEditorOptions = memoize(
     (theme, language) => `${theme}-${language}`
 );
 
+const DEFAULT_OPTIONS = {
+    language: 'json',
+    scrollBeyondLastLine: false,
+    contextmenu: true,
+    formatOnPaste: true,
+    formatOnType: true,
+    minimap: {
+        enabled: false
+    },
+    automaticLayout: true
+};
+
 @Component({
     selector: 'amasdk-code-editor',
     templateUrl: './code-editor.component.html',
@@ -38,31 +50,33 @@ const createMemoizedEditorOptions = memoize(
 export class CodeEditorComponent implements OnDestroy, OnInit {
     @Input() vsTheme = 'vs-light';
     @Input() options: EditorOptions;
+    @Input() fileUri: string;
+    @Input() language: string;
     @Input() content = '';
     @Output() changed = new EventEmitter<string>();
     @Output() positionChanged = new EventEmitter<CodeEditorPosition>();
 
-    private editor: monaco.editor.ICodeEditor = <monaco.editor.ICodeEditor>{ dispose: () => {} };
     editorModel: NgxEditorModel;
+    config: NgxMonacoEditorConfig;
 
-    private defaultOptions = {
-        language: 'json',
-        scrollBeyondLastLine: false,
-        contextmenu: true,
-        formatOnPaste: true,
-        formatOnType: true,
-        minimap: {
-            enabled: false
-        },
-        automaticLayout: true
-    };
+    private editor: monaco.editor.ICodeEditor = <monaco.editor.ICodeEditor>{ dispose: () => {} };
+    private defaultOptions: any;
 
     ngOnInit() {
-        this.defaultOptions = Object.assign({}, this.defaultOptions, this.options);
+        this.defaultOptions = Object.assign({}, DEFAULT_OPTIONS, this.options);
+        this.editorModel = {
+            value: this.content,
+            language: this.language,
+            uri: this.fileUri
+        };
     }
 
     get editorOptions(): EditorOptions {
         return createMemoizedEditorOptions(this.vsTheme, this.defaultOptions.language, this.defaultOptions);
+    }
+
+    get editorConfig(): NgxMonacoEditorConfig {
+        return this.editorConfig;
     }
 
     ngOnDestroy() {
@@ -72,9 +86,10 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     onEditorInit(editor: monaco.editor.ICodeEditor): void {
         this.editor = editor;
         let timer = null;
+
         editor.onKeyUp(() => {
             clearTimeout(timer);
-            timer = window.setTimeout(() => this.onEditorChange(), 1000);
+            timer = window.setTimeout(() => this.onEditorChange(), 1);
         });
 
         editor.onDidChangeCursorPosition((event: { position: CodeEditorPosition }) => {

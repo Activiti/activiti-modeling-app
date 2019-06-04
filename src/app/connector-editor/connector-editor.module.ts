@@ -29,7 +29,11 @@ import {
     provideTranslations,
     CONNECTORS_ENTITY_KEY,
     AmaStoreModule,
-    ProjectSettingsConnectorTabKey
+    ProjectSettingsConnectorTabKey,
+    CodeEditorService,
+    getFileUriPattern,
+    CONNECTOR,
+    connectorSchema
 } from 'ama-sdk';
 import { EffectsModule } from '@ngrx/effects';
 import { ConnectorEditorEffects } from './store/connector-editor.effects';
@@ -74,9 +78,14 @@ import { ConnectorSettingsDialogComponent } from './components/connector-header/
     ]
 })
 export class ConnectorEditorModule {
-    constructor(componentRegister: ComponentRegisterService) {
+    constructor(
+        componentRegister: ComponentRegisterService,
+        codeEditorService: CodeEditorService
+    ) {
         componentRegister.setComponents({
             [ProjectSettingsConnectorTabKey]: ConnectorSettingsDialogComponent
         });
+
+        codeEditorService.addSchema('connectorSchema', getFileUriPattern(CONNECTOR, 'json'), connectorSchema);
     }
 }

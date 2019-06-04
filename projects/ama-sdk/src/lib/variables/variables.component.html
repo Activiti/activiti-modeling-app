@@ -10,6 +10,8 @@
             <amasdk-code-editor
                 [vsTheme]="vsTheme$ | async"
                 [content]="editorContent"
+                [fileUri]="fileUri"
+                language="json"
                 (changed)="onChange($event)"
             ></amasdk-code-editor>
             <p class="mat-error" *ngIf="error">{{ error | translate }}</p>

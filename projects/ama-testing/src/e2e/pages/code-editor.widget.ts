@@ -44,8 +44,19 @@ export class CodeEditorWidget extends GenericWebElement {
         }
     }
 
-    async getCodeEditorValue(index: number = 0) {
+    async getCodeEditorValue(modelUri: string = null) {
         await this.isTextEditorPresent();
-        return await browser.executeScript<string>('return this.monaco.editor.getModels()[' + index + '].getValue()');
+
+        let script;
+        if (modelUri) {
+            script = `return this.monaco.editor.getModel('${modelUri}').getValue()`;
+        } else {
+            script = `
+                var models = this.monaco.editor.getModels();
+                return models[models.length-1].getValue()
+            `;
+        }
+
+        return await browser.executeScript<string>(script);
     }
 }

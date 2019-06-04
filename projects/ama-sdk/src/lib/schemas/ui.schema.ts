@@ -1,54 +1,56 @@
 /* tslint:disable */
 export const uiSchema = {
-    "$schema": "http://json-schema.org/schema",
-    "title": "Ui schema",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "UI definition json schema",
     "type": "object",
-
-    "definitions": {
+    "properties": {
         "plugins": {
             "type": "array",
             "items": {
-                "type": "object",
-                "additionalProperties" : false,
                 "properties": {
                     "name": {
-                        "type": "string",
-                        "minLength": 1
+                        "description": "Name of the npm plugin",
+                        "type": "string"
                     },
                     "version": {
-                        "type": "string",
-                        "minLength": 1
+                        "description": "Version npm plugin",
+                        "type": "string"
                     },
                     "order": {
-                        "type": "string",
-                        "minLength": 1
+                        "description": "order of loading",
+                        "type": "number"
                     }
                 },
-                "required": [ "name", "version", "order" ]
+                "required": [
+                    "name",
+                    "version"
+                ]
             }
         },
-        "configs": {
-            "type": "object"
-        }
-    },
-
-    "properties": {
-        "id": {
-            "type": "string"
-        },
         "name": {
+            "minLength": 1,
+            "description": "UI name",
             "type": "string"
         },
         "description": {
+            "description": "UI Description ",
             "type": "string"
         },
-        "adf-template": {
-            "type": "string",
-            "enum": [ "content", "process" ]
+        "config": {
+            "description": "Config to overwrite the app.config.json",
+            "type": "object"
         },
-        "plugins": { "$ref": "#/definitions/plugins" },
-        "configs": { "$ref": "#/definitions/configs" }
-
+        "adf-template": {
+            "description": "Type of adf UI template",
+            "type": "string",
+            "enum": [
+                "content",
+                "process"
+            ]
+        }
     },
-    "required": [ "id", "name", "adf-template", "plugins" ]
+    "required": [
+        "name",
+        "adf-template"
+    ]
 };

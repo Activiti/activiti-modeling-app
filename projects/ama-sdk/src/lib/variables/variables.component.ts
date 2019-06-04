@@ -27,6 +27,7 @@ const Ajv = require('ajv');
 
 export interface VariableDialogData extends MatDialogConfig {
     properties: EntityProperties;
+    fileUri: string;
     columns: string[];
     title: string;
     required: boolean;
@@ -46,6 +47,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
     serviceSubscription: Subscription;
     vsTheme$: Observable<string>;
     title: string;
+    fileUri: string;
     requiredCheckbox: boolean;
     columns: string[];
 
@@ -58,6 +60,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
     ) {
         this.vsTheme$ = data.theme$;
         this.title = data.title;
+        this.fileUri = data.fileUri;
         this.requiredCheckbox = data.required;
         this.columns = data.columns;
     }

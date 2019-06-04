@@ -27,7 +27,9 @@
                             data-automation-id="connector-basic-tab">
                             <amasdk-code-editor [vsTheme]="vsTheme$ | async"
                                 [content]="editorContent"
-                                (changed)="onChangeAttempt($event)">
+                                (changed)="onChangeAttempt($event)"
+                                [fileUri]="fileUri$ | async"
+                                [language]="languageType">
                             </amasdk-code-editor>
                         </div>
                     </mat-tab>
@@ -37,7 +39,9 @@
             <ng-container *ngIf="!isAdvancedEditorEmbedded()">
                 <amasdk-code-editor [vsTheme]="vsTheme$ | async"
                     [content]="editorContent"
-                    (changed)="onChangeAttempt($event)">
+                    (changed)="onChangeAttempt($event)"
+                    [fileUri]="fileUri$ | async"
+                    [language]="languageType">
                 </amasdk-code-editor>
             </ng-container>
         </ng-container>

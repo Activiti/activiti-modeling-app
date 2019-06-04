@@ -17,10 +17,7 @@
 
 import { LogAction } from '../store/logging.actions';
 import { MESSAGE, LogMessageInitiator } from '../interfaces';
-
-function arrayize<T>(value: T | T[]): T[] {
-    return Array.isArray(value) ? value : [ value ];
-}
+import { arrayize } from '../../helpers/utils/arrayize';
 
 export function logInfo(initiator: LogMessageInitiator, messages: string | string[]) {
     return new LogAction({
