@@ -17,10 +17,7 @@
 
 import { Component, Output, EventEmitter, Input, OnDestroy, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { NgxEditorModel, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
-import { Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
 const memoize = require('lodash/memoize');
-const uuidv4 = require('uuid/v4');
 
 export type EditorOptions = monaco.editor.IEditorOptions | { language: string; theme: string };
 export interface CodeEditorPosition {
@@ -55,44 +52,23 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     @Input() options: EditorOptions;
     @Input() fileUri: string;
     @Input() language: string;
-
-    @Input()
-    set content(value: string) {
-        if (value !== this._content) {
-            this._content = value;
-            this.editorModelSubject$.next({
-                value: this._content,
-                language: this.language,
-                uri: this.getUniqueUri(this.fileUri)
-            });
-        }
-    }
-
-    get content() {
-        return this._content;
-    }
-
+    @Input() content = '';
     @Output() changed = new EventEmitter<string>();
     @Output() positionChanged = new EventEmitter<CodeEditorPosition>();
 
     editorModel: NgxEditorModel;
     config: NgxMonacoEditorConfig;
 
-    private _content: string;
-    private editorModelSubject$ = new Subject<NgxEditorModel>();
     private editor: monaco.editor.ICodeEditor = <monaco.editor.ICodeEditor>{ dispose: () => {} };
-    private onDestroy$: Subject<void> = new Subject<void>();
     private defaultOptions: any;
-
-    constructor() {
-        this.editorModelSubject$.pipe(
-            filter(model => model.value !== undefined && !!model.uri && !!model.language),
-            takeUntil(this.onDestroy$)
-        ).subscribe((model) => this.editorModel = model);
-    }
 
     ngOnInit() {
         this.defaultOptions = Object.assign({}, DEFAULT_OPTIONS, this.options);
+        this.editorModel = {
+            value: this.content,
+            language: this.language,
+            uri: this.fileUri
+        };
     }
 
     get editorOptions(): EditorOptions {
@@ -104,8 +80,6 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     }
 
     ngOnDestroy() {
-        this.onDestroy$.next();
-        this.onDestroy$.complete();
         this.editor.dispose();
     }
 
@@ -115,7 +89,7 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
 
         editor.onKeyUp(() => {
             clearTimeout(timer);
-            timer = window.setTimeout(() => this.onEditorChange(), 1000);
+            timer = window.setTimeout(() => this.onEditorChange(), 1);
         });
 
         editor.onDidChangeCursorPosition((event: { position: CodeEditorPosition }) => {
@@ -124,15 +98,6 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     }
 
     onEditorChange(): void {
-        this._content = this.editor.getValue().trim();
-        this.changed.emit(this._content);
-    }
-
-    private getUniqueUri(fileUri: string) {
-        if (fileUri) {
-            return fileUri + '.' + uuidv4();
-        } else {
-            return uuidv4();
-        }
+        this.changed.emit(this.content);
     }
 }

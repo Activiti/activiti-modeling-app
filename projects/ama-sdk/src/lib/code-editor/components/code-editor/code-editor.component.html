@@ -2,6 +2,8 @@
     <ngx-monaco-editor class="monaco-editor"
         [options]="editorOptions"
         [model]="editorModel"
-        (onInit)="onEditorInit($event)">
+        [(ngModel)]="content"
+        (onInit)="onEditorInit($event)"
+        [attr.data-file-uri]="editorModel?.uri">
     </ngx-monaco-editor>
 </div>

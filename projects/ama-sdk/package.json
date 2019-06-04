@@ -8,7 +8,7 @@
         "@angular/material-moment-adapter": "7.3.2",
         "@mat-datetimepicker/core": "2.0.1",
         "@mat-datetimepicker/moment": "2.0.1",
-        "ngx-monaco-editor": "6.0.0",
+        "ngx-monaco-editor": "7.0.0",
         "adf-tslint-rules": "0.0.7",
         "rxjs": "6.4.0",
         "@types/lodash": "4.14.112",

@@ -20,7 +20,6 @@ import { By } from '@angular/platform-browser';
 import { CodeEditorComponent, EditorOptions, CodeEditorPosition } from './code-editor.component';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { FormsModule } from '@angular/forms';
-import json5 = require('json5');
 
 describe('CodeEditorComponent', () => {
     let fixture: ComponentFixture<CodeEditorComponent>;
