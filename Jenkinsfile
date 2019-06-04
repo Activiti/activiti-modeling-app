@@ -37,6 +37,14 @@
           branch 'PR-*'
         }
         parallel {
+               stage('Lint & Package SDK') {
+                  steps {
+                      container('nodejs'){
+                        echo "Lint & Package SDK"
+                        sh "npm run lint && npm run package:sdk"
+                      }
+                  }
+                }
                 stage('Unit Tests && Build') {
                   steps {
                       container('nodejs'){
