@@ -22,12 +22,13 @@
           container('nodejs') {
             sh "node --version"
             sh "npm --version"
+            sh "yarn version"
 
             sh "Xvfb :99 &"
-            sh "sleep 3"
             sh "chown root /opt/google/chrome/chrome-sandbox"
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
-            sh "npm config set unsafe-perm true && npm ci"
+
+            sh "yarn config set unsafe-perm true && yarn ci"
           }
         }
       }
@@ -40,7 +41,7 @@
                   steps {
                       container('nodejs'){
                         echo "Lint & Package SDK"
-                        sh "npm run lint && npm run package:sdk"
+                        sh "yarn run lint && yarn run package:sdk"
                       }
                   }
                 }
@@ -48,7 +49,7 @@
                   steps {
                       container('nodejs'){
                         echo "Run Unit Tests && Build"
-                        sh "npm run test:ci && npm run build:prod"
+                        sh "yarn run test:ci && yarn run build:prod"
                       }
                   }
                 }
@@ -56,7 +57,7 @@
                   steps {
                     container('nodejs'){
                       echo "Run E2E Tests"
-                      sh "npm run e2e"
+                      sh "yarn run e2e"
                     }
                   }
                 }
