@@ -62,6 +62,7 @@ describe('Create process variable', async () => {
     beforeEach(async () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
+        await processContentPage.refreshPage();
         await processPropertiesCard.isLoaded();
     });
 
