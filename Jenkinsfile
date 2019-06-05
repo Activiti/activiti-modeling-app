@@ -60,7 +60,7 @@
           stage('Unit Tests && Build') {
             steps {
                 container('nodejs'){
-                  echo "Run Unit Tests && Build"
+                  sh "echo 'Run Unit Tests && Build'"
                   sh "yarn run test:ci && yarn run build:prod"
                 }
             }

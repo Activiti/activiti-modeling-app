@@ -16,6 +16,10 @@ exports.config = {
     allScriptsTimeout: 30000,
 
     specs: [
+        './tests/**/*.ts'
+    ],
+
+    suites: {
         "login-logout": [
             "./tests/login-logout/**/*.ts"
         ],
@@ -27,12 +31,6 @@ exports.config = {
         ],
         "connector": [
             "./tests/connector/**/*.ts"
-        ]
-    ],
-
-    suites: {
-        test: [
-            './tests/connector/export-connector.e2e.ts'
         ]
     },
 
