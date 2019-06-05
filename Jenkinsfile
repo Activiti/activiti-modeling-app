@@ -28,7 +28,7 @@
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
 
             //sh "npm config set unsafe-perm true&&
-            sh "yarn install"
+            sh "npm install"
           }
         }
       }
@@ -41,13 +41,13 @@
             script {
               parallel ([
                   "E2E Tests": {
-                      sh "yarn run e2e"
+                      sh "npm run e2e"
                   },
                   "Unit Tests": {
-                      sh "yarn run test:ci"
+                      sh "npm run test:ci"
                   },
                   "Build": {
-                      sh "yarn run build:prod"
+                      sh "npm run build:prod"
                   }
               ])
             }
