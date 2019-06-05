@@ -36,34 +36,36 @@
         when {
           branch 'PR-*'
         }
-        stage('E2E Tests') {
-          steps {
-            container('nodejs') {
-              script {
-                suites = [
-                    "Login-logout E2E Tests": {
-                        sh "yarn run e2e -- --suite=login-logout"
-                    },
-                    "Project E2E Tests": {
-                        sh "yarn run e2e -- --suite=project"
-                    },
-                    "Process E2E Tests": {
-                        sh "yarn run e2e -- --suite=process"
-                    },
-                    "Connector E2E Tests": {
-                        sh "yarn run e2e -- --suite=connector"
-                    }
-                  ]
-                parallel(suites)
+        stages {
+          stage('E2E Tests') {
+            steps {
+              container('nodejs') {
+                script {
+                  suites = [
+                      "Login-logout E2E Tests": {
+                          sh "yarn run e2e -- --suite=login-logout"
+                      },
+                      "Project E2E Tests": {
+                          sh "yarn run e2e -- --suite=project"
+                      },
+                      "Process E2E Tests": {
+                          sh "yarn run e2e -- --suite=process"
+                      },
+                      "Connector E2E Tests": {
+                          sh "yarn run e2e -- --suite=connector"
+                      }
+                    ]
+                  parallel(suites)
+                }
               }
             }
           }
-        }
-        stage('Unit Tests && Build') {
-          steps {
-            container('nodejs') {
-              sh "echo 'Run Unit Tests && Build'"
-              sh "yarn run test:ci && yarn run build:prod"
+          stage('Unit Tests && Build') {
+            steps {
+              container('nodejs') {
+                sh "echo 'Run Unit Tests && Build'"
+                sh "yarn run test:ci && yarn run build:prod"
+              }
             }
           }
         }
