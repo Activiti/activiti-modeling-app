@@ -36,36 +36,33 @@
         when {
           branch 'PR-*'
         }
-        parallel {
-          stage('E2E Tests') {
-            steps {
+        stage('E2E Tests') {
+          steps {
+            container('nodejs'){
+              parallel (
+                  "Login-logout E2E Tests": {
+                    sh "yarn run e2e -- --suite=login-logout"
+                  },
+                  "Project E2E Tests": {
+                    sh "yarn run e2e -- --suite=project"
+                  },
+                  "Process E2E Tests": {
+                    sh "yarn run e2e -- --suite=process"
+                  },
+                  "Connector E2E Tests": {
+                    sh "yarn run e2e -- --suite=connector"
+                  }
+              )
+            }
+          }
+        }
+        stage('Unit Tests && Build') {
+          steps {
               container('nodejs'){
-                parallel (
-                    "Login-logout E2E Tests": {
-                      sh "yarn run e2e -- --suite=login-logout"
-                    },
-                    "Project E2E Tests": {
-                      sh "yarn run e2e -- --suite=project"
-                    },
-                    "Process E2E Tests": {
-                      sh "yarn run e2e -- --suite=process"
-                    },
-                    "Connector E2E Tests": {
-                      sh "yarn run e2e -- --suite=connector"
-                    }
-                )
+                sh "echo 'Run Unit Tests && Build'"
+                sh "yarn run test:ci && yarn run build:prod"
               }
-            }
           }
-          stage('Unit Tests && Build') {
-            steps {
-                container('nodejs'){
-                  sh "echo 'Run Unit Tests && Build'"
-                  sh "yarn run test:ci && yarn run build:prod"
-                }
-            }
-          }
-
         }
       }
       stage('Build Release') {
