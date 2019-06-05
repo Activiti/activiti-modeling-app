@@ -26,7 +26,7 @@
             sh "Xvfb :99 &"
             sh "chown root /opt/google/chrome/chrome-sandbox"
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
-
+            sh "google-chrome --version"
             //sh "npm config set unsafe-perm true&&
             sh "npm install"
           }
@@ -41,13 +41,10 @@
             script {
               parallel ([
                   "E2E Tests": {
-                      sh "npm run e2e"
+                    sh "npm run e2e"
                   },
-                  "Unit Tests": {
-                      sh "npm run test:ci"
-                  },
-                  "Build": {
-                      sh "npm run build:prod"
+                  "Unit Tests & Build": {
+                    sh "npm run test:ci && pm run build:prod"
                   }
               ])
             }
