@@ -40,21 +40,21 @@
           steps {
             container('nodejs') {
               script {
-                def tests-suites = [
-                      "Login-logout E2E Tests": {
-                          sh "yarn run e2e -- --suite=login-logout"
-                      },
-                      "Project E2E Tests": {
-                          sh "yarn run e2e -- --suite=project"
-                      },
-                      "Process E2E Tests": {
-                          sh "yarn run e2e -- --suite=process"
-                      },
-                      "Connector E2E Tests": {
-                          sh "yarn run e2e -- --suite=connector"
-                      }
-                    ]
-                parallel tests-suites
+                suites = [
+                    "Login-logout E2E Tests": {
+                        sh "yarn run e2e -- --suite=login-logout"
+                    },
+                    "Project E2E Tests": {
+                        sh "yarn run e2e -- --suite=project"
+                    },
+                    "Process E2E Tests": {
+                        sh "yarn run e2e -- --suite=process"
+                    },
+                    "Connector E2E Tests": {
+                        sh "yarn run e2e -- --suite=connector"
+                    }
+                  ]
+                parallel(suites)
               }
             }
           }
