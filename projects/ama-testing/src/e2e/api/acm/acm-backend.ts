@@ -72,9 +72,6 @@ export class ACMBackend implements Backend {
         browser.driver.manage().deleteAllCookies();
         const loginPage: LoginPageImplementation = LoginPage.get(this.config);
         await loginPage.navigateTo();
-        await browser.executeScript('return window.sessionStorage.clear();');
-        await browser.executeScript('return window.localStorage.clear();');
-        await browser.executeScript(`return window.localStorage.setItem('authType', '${this.config.ama.backendConfig.authType}');`);
     }
 
     private async login() {
