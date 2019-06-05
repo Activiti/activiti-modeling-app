@@ -1,18 +1,4 @@
      //  sh "updatebot push-regex -r "\s+tag: (.*)" -v \$(cat VERSION) --previous-line "\s+repository: activiti/activiti-model" **/values.yaml) --merge false"
-tests-suites = [
-    "Login-logout E2E Tests": {
-        sh "yarn run e2e -- --suite=login-logout"
-    },
-    "Project E2E Tests": {
-        sh "yarn run e2e -- --suite=project"
-    },
-    "Process E2E Tests": {
-        sh "yarn run e2e -- --suite=process"
-    },
-    "Connector E2E Tests": {
-        sh "yarn run e2e -- --suite=connector"
-    }
-]
  pipeline {
     agent {
         label "jenkins-nodejs"
@@ -54,7 +40,21 @@ tests-suites = [
           steps {
             container('nodejs') {
               script {
-                parallel(tests-suites)
+                def tests-suites = [
+                      "Login-logout E2E Tests": {
+                          sh "yarn run e2e -- --suite=login-logout"
+                      },
+                      "Project E2E Tests": {
+                          sh "yarn run e2e -- --suite=project"
+                      },
+                      "Process E2E Tests": {
+                          sh "yarn run e2e -- --suite=process"
+                      },
+                      "Connector E2E Tests": {
+                          sh "yarn run e2e -- --suite=connector"
+                      }
+                    ]
+                parallel tests-suites
               }
             }
           }
