@@ -41,17 +41,18 @@
             steps {
               container('nodejs'){
                 parallel (
-                  echo "Login-logout E2E Tests"
-                  sh "yarn run e2e -- --suite=login-logout"
-
-                  echo "Project E2E Tests"
-                  sh "yarn run e2e -- --suite=project"
-
-                  echo "Process E2E Tests"
-                  sh "yarn run e2e -- --suite=process"
-
-                  echo "Connector E2E Tests"
-                  sh "yarn run e2e -- --suite=connector"
+                    "Login-logout E2E Tests": {
+                      sh "yarn run e2e -- --suite=login-logout"
+                    },
+                    "Project E2E Tests": {
+                      sh "yarn run e2e -- --suite=project"
+                    },
+                    "Process E2E Tests": {
+                      sh "yarn run e2e -- --suite=process"
+                    },
+                    "Connector E2E Tests": {
+                      sh "yarn run e2e -- --suite=connector"
+                    }
                 )
               }
             }
