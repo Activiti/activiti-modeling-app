@@ -13,7 +13,7 @@
         "silentLogin": false,
         "redirectSilentIframeUri": "",
         "redirectUri": "/",
-        "redirectUriLogout": "/login"
+        "redirectUriLogout": "/#login"
     },
     "logLevel": "trace",
     "application": {

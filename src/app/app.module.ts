@@ -66,7 +66,7 @@ import { ModelStorageService } from './common/services/model-storage.service';
 
         ACMApiModule.forRoot(),
 
-        RouterModule.forRoot(appRoutes),
+        RouterModule.forRoot(appRoutes, { useHash: true }),
 
         ProjectEditorModule,
         ProcessEditorModule,
