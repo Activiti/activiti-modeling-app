@@ -37,6 +37,14 @@
           branch 'PR-*'
         }
         parallel {
+               stage('E2E Tests') {
+                  steps {
+                    container('nodejs'){
+                      echo "Run E2E Tests"
+                      sh "npm run e2e"
+                    }
+                  }
+                }
                 stage('Unit Tests && Build') {
                   steps {
                       container('nodejs'){
@@ -45,14 +53,7 @@
                       }
                   }
                 }
-                stage('E2E Tests') {
-                  steps {
-                    container('nodejs'){
-                      echo "Run E2E Tests"
-                      sh "npm run e2e"
-                    }
-                  }
-                }
+
         }
       }
       stage('Build Release') {
@@ -70,7 +71,7 @@
             sh "echo \$(jx-release-version) > VERSION"
             sh "npm install"
             sh "npm run build:prod"
-            //sh "npm test"
+
             dir("./charts/$APP_NAME") {
               retry(5) {
                 sh "make tag"
