@@ -20,15 +20,15 @@
         }
         steps {
           container('nodejs') {
-            sh "node --version"
-            sh "npm --version"
+            // sh "node --version"
+            // sh "npm --version"
 
             sh "Xvfb :99 &"
             sh "chown root /opt/google/chrome/chrome-sandbox"
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
 
             //sh "npm config set unsafe-perm true&&
-            sh "npm install"
+            sh "yarn install"
           }
         }
       }
@@ -37,22 +37,33 @@
           branch 'PR-*'
         }
         parallel {
-               stage('E2E Tests') {
-                  steps {
-                    container('nodejs'){
-                      echo "Run E2E Tests"
-                      sh "npm run e2e"
-                    }
-                  }
+          stage('E2E Tests') {
+            steps {
+              container('nodejs'){
+                parallel (
+                  echo "Login-logout E2E Tests"
+                  sh "yarn run e2e -- --suite=login-logout"
+
+                  echo "Project E2E Tests"
+                  sh "yarn run e2e -- --suite=project"
+
+                  echo "Process E2E Tests"
+                  sh "yarn run e2e -- --suite=process"
+
+                  echo "Connector E2E Tests"
+                  sh "yarn run e2e -- --suite=connector"
+                )
+              }
+            }
+          }
+          stage('Unit Tests && Build') {
+            steps {
+                container('nodejs'){
+                  echo "Run Unit Tests && Build"
+                  sh "yarn run test:ci && yarn run build:prod"
                 }
-                stage('Unit Tests && Build') {
-                  steps {
-                      container('nodejs'){
-                        echo "Run Unit Tests && Build"
-                        sh "npm run test:ci && npm run build:prod"
-                      }
-                  }
-                }
+            }
+          }
 
         }
       }
