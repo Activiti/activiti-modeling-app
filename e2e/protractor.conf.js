@@ -20,17 +20,8 @@ exports.config = {
     ],
 
     suites: {
-        "login-logout": [
-            "./tests/login-logout/**/*.ts"
-        ],
-        "process": [
-            "./tests/process/**/*.ts"
-        ],
-        "project": [
-            "./tests/project/**/*.ts"
-        ],
-        "connector": [
-            "./tests/connector/**/*.ts"
+        test: [
+            './tests/connector/export-connector.e2e.ts'
         ]
     },
 
