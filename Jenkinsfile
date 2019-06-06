@@ -3,9 +3,6 @@
     agent {
         label "jenkins-nodejs"
     }
-    options {
-        parallelsAlwaysFailFast()
-    }
     environment {
       ORG               = 'activiti'
       APP_NAME          = 'activiti-modeling-app'
@@ -23,16 +20,15 @@
         }
         steps {
           container('nodejs') {
-            // sh "node --version"
-            // sh "npm --version"
+            sh "node --version"
+            sh "npm --version"
 
             sh "Xvfb :99 &"
             sh "chown root /opt/google/chrome/chrome-sandbox"
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
-            // sh "google-chrome --version"
-            // sh "npm config set unsafe-perm true&&
+
+            //sh "npm config set unsafe-perm true&&
             sh "npm install"
-            // sh "setsid npm run start >/dev/null 2>&1 < /dev/null &"
           }
         }
       }
@@ -40,22 +36,24 @@
         when {
           branch 'PR-*'
         }
-        failFast true
         parallel {
-          stage('E2E Tests') {
-            steps {
-              container('nodejs') {
-                sh "npm run e2e"
-              }
-            }
-          }
-          stage('Unit Tests && Build') {
-            steps {
-              container('nodejs') {
-                sh "npm run test:ci && npm run build:prod"
-              }
-            }
-          }
+               stage('E2E Tests') {
+                  steps {
+                    container('nodejs'){
+                      echo "Run E2E Tests"
+                      sh "npm run e2e"
+                    }
+                  }
+                }
+                stage('Unit Tests && Build') {
+                  steps {
+                      container('nodejs'){
+                        echo "Run Unit Tests && Build"
+                        sh "npm run test:ci && npm run build:prod"
+                      }
+                  }
+                }
+
         }
       }
       stage('Build Release') {
@@ -73,6 +71,7 @@
             sh "echo \$(jx-release-version) > VERSION"
             sh "npm install"
             sh "npm run build:prod"
+
             dir("./charts/$APP_NAME") {
               retry(5) {
                 sh "make tag"
@@ -80,6 +79,7 @@
             }
             sh 'export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml'
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
+
           }
         }
       }
