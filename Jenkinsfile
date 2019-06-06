@@ -41,7 +41,7 @@
         parallel {
           stage('E2E Tests') {
             steps {
-              container('nodejs') {
+              container('nodejs1') {
                 sh "npm run e2e"
               }
             }
