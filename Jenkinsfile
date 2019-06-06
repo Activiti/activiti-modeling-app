@@ -36,17 +36,40 @@
         when {
           branch 'PR-*'
         }
-        steps {
-          container('nodejs') {
-            script {
-              parallel ([
-                  "E2E Tests": {
-                    sh "npm run e2e"
-                  },
-                  "Unit Tests & Build": {
-                    sh "npm run test:ci && npm run build:prod"
-                  }
-              ])
+        parallel {
+          stage('Login-logout E2E Tests') {
+            steps {
+              container('nodejs') {
+                sh "npm run e2e -- --suite=login-logout"
+              }
+            }
+          }
+          stage('Project E2E Tests') {
+            steps {
+              container('nodejs') {
+                sh "npm run e2e -- --suite=project"
+              }
+            }
+          }
+          stage('Process E2E Tests') {
+            steps {
+              container('nodejs') {
+                sh "npm run e2e -- --suite=process"
+              }
+            }
+          }
+          stage('Connector E2E Tests') {
+            steps {
+              container('nodejs') {
+                sh "npm run e2e -- --suite=connector"
+              }
+            }
+          }
+          stage('Unit Tests && Build') {
+            steps {
+              container('nodejs') {
+                sh "npm run test:ci && npm run build:prod"
+              }
             }
           }
         }
