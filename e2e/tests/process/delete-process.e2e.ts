@@ -58,7 +58,6 @@ describe('Delete process', () => {
         process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
         projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         await projectContentPage.navigateTo();
-        await projectContentPage.refreshPage();
         expect(await projectContentPage.isModelInList('process', process.entry.name)).toBe(true, 'Process should be in the left sidebar');
     });
 

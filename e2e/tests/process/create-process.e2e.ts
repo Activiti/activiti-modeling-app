@@ -95,7 +95,6 @@ describe('Create process', async () => {
     it('3. [C289324] Create process with CallActivity', async () => {
         process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
         callActivityProcess = await backend.process.createAndWaitUntilAvailable(project.entry.id);
-        await projectContentPage.refreshPage();
 
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
