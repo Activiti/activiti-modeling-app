@@ -44,7 +44,7 @@
                     sh "npm run e2e"
                   },
                   "Unit Tests & Build": {
-                    sh "npm run test:ci && pm run build:prod"
+                    sh "npm run test:ci && npm run build:prod"
                   }
               ])
             }
