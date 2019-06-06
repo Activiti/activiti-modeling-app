@@ -27,9 +27,9 @@
             sh "chown root /opt/google/chrome/chrome-sandbox"
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
             // sh "google-chrome --version"
-            //sh "npm config set unsafe-perm true&&
+            // sh "npm config set unsafe-perm true&&
             sh "npm install"
-            sh "setsid npm run start >/dev/null 2>&1 < /dev/null &"
+            // sh "setsid npm run start >/dev/null 2>&1 < /dev/null &"
           }
         }
       }
@@ -37,36 +37,15 @@
         when {
           branch 'PR-*'
         }
+        failFast true
         parallel {
-          stage('Login-logout E2E Tests') {
+          stage('E2E Tests') {
             steps {
               container('nodejs') {
-
-                sh "npm run e2e -- --suite=login-logout --dev-server-target"
+                sh "npm run e2e"
               }
             }
           }
-          stage('Project E2E Tests') {
-            steps {
-              container('nodejs') {
-                sh "npm run e2e -- --suite=project --dev-server-target"
-              }
-            }
-          }
-//          stage('Process E2E Tests') {
-//            steps {
-//              container('nodejs') {
-//                sh "npm run e2e -- --suite=process"
-//              }
-//            }
-//          }
-//          stage('Connector E2E Tests') {
-//            steps {
-//              container('nodejs') {
-//                sh "npm run e2e -- --suite=connector"
-//              }
-//            }
-//          }
           stage('Unit Tests && Build') {
             steps {
               container('nodejs') {
