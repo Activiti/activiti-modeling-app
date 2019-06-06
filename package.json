@@ -146,7 +146,7 @@
     "moment-es6": "1.0.0",
     "ngrx-store-freeze": "0.2.4",
     "ngx-moment": "3.3.0",
-    "ngx-monaco-editor": "7.0.0",
+    "ngx-monaco-editor": "6.0.0",
     "pdfjs-dist": "2.0.943",
     "reflect-metadata": "0.1.13",
     "rxjs": "6.4.0",
