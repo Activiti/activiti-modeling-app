@@ -29,6 +29,7 @@
             sh "google-chrome --version"
             //sh "npm config set unsafe-perm true&&
             sh "npm install"
+            sh "npm run start"
           }
         }
       }
@@ -41,14 +42,14 @@
             steps {
               container('nodejs1') {
 
-                sh "npm run e2e -- --suite=login-logout"
+                sh "npm run e2e -- --suite=login-logout --dev-server-target"
               }
             }
           }
           stage('Project E2E Tests') {
             steps {
               container('nodejs') {
-                sh "npm run e2e -- --suite=project"
+                sh "npm run e2e -- --suite=project --dev-server-target"
               }
             }
           }
