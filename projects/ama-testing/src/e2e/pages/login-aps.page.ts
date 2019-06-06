@@ -19,9 +19,12 @@ import { LoginPageImplementation } from './login.page';
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config';
+import { Logger } from '../util';
 
 
 export class LoginAPSPage extends GenericPage implements LoginPageImplementation {
+
+    static LOGIN_ATTEMPT_COUNTER = 3;
 
     private readonly ssoButton = element(by.css(`[data-automation-id="login-button-sso"]`));
     private readonly usernameField = element(by.id('username'));
@@ -33,6 +36,21 @@ export class LoginAPSPage extends GenericPage implements LoginPageImplementation
     }
 
     async login(username: string, password: string) {
+        for (let i = 0; i < LoginAPSPage.LOGIN_ATTEMPT_COUNTER; i++) {
+            try {
+                await this.attemptToLogin(username, password);
+                return;
+            } catch (error) {
+                await this.navigateTo();
+                Logger.error(`Logging in was not successful for attempt: #${i + 1}`);
+            }
+        }
+
+        throw(new Error('Logging in was not possible'));
+    }
+
+    // Temporary fix for BE login form's issue
+    private async attemptToLogin(username: string, password: string) {
         await this.clickOnSSOButton();
         await super.waitForElementToBePresent(element(by.id('kc-form-login')));
         await this.enterUsername(username);

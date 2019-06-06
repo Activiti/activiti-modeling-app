@@ -59,7 +59,6 @@ describe('Delete process', () => {
         projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         await projectContentPage.navigateTo();
         expect(await projectContentPage.isModelInList('process', process.entry.name)).toBe(true, 'Process should be in the left sidebar');
-
     });
 
     beforeEach(async () => {

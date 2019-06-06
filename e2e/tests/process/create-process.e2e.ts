@@ -98,6 +98,7 @@ describe('Create process', async () => {
 
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
+
         await processModelerComponent.addCallActivity();
         await processProperties.setActivity(callActivityProcess.entry.name);
         await processContentPage.save();
