@@ -40,7 +40,7 @@
         parallel {
           stage('Login-logout E2E Tests') {
             steps {
-              container('nodejs1') {
+              container('nodejs') {
 
                 sh "npm run e2e -- --suite=login-logout --dev-server-target"
               }
