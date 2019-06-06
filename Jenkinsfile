@@ -3,6 +3,9 @@
     agent {
         label "jenkins-nodejs"
     }
+    options {
+        parallelsAlwaysFailFast()
+    }
     environment {
       ORG               = 'activiti'
       APP_NAME          = 'activiti-modeling-app'
