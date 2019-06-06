@@ -29,7 +29,7 @@
             sh "google-chrome --version"
             //sh "npm config set unsafe-perm true&&
             sh "npm install"
-            sh "npm run start"
+            sh "setsid npm run start >/dev/null 2>&1 < /dev/null &"
           }
         }
       }
