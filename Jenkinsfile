@@ -26,7 +26,7 @@
             sh "Xvfb :99 &"
             sh "chown root /opt/google/chrome/chrome-sandbox"
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
-            sh "google-chrome --version"
+            // sh "google-chrome --version"
             //sh "npm config set unsafe-perm true&&
             sh "npm install"
             sh "setsid npm run start >/dev/null 2>&1 < /dev/null &"

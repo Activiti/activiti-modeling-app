@@ -11,7 +11,7 @@ module.exports = {
       "pathRewrite": {
         "^/api": ""
       },
-      "logLevel": "silent"
+      "logLevel": "debug"
     },
     "/auth": {
         "target": OAUTH_HOST,
@@ -20,6 +20,6 @@ module.exports = {
         "pathRewrite": {
             "^/auth": ""
         },
-        "logLevel": "silent"
+        "logLevel": "debug"
     }
 };
