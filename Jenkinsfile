@@ -39,7 +39,8 @@
         parallel {
           stage('Login-logout E2E Tests') {
             steps {
-              container('nodejs') {
+              container('nodejs1') {
+
                 sh "npm run e2e -- --suite=login-logout"
               }
             }
@@ -51,20 +52,20 @@
               }
             }
           }
-          stage('Process E2E Tests') {
-            steps {
-              container('nodejs') {
-                sh "npm run e2e -- --suite=process"
-              }
-            }
-          }
-          stage('Connector E2E Tests') {
-            steps {
-              container('nodejs') {
-                sh "npm run e2e -- --suite=connector"
-              }
-            }
-          }
+//          stage('Process E2E Tests') {
+//            steps {
+//              container('nodejs') {
+//                sh "npm run e2e -- --suite=process"
+//              }
+//            }
+//          }
+//          stage('Connector E2E Tests') {
+//            steps {
+//              container('nodejs') {
+//                sh "npm run e2e -- --suite=connector"
+//              }
+//            }
+//          }
           stage('Unit Tests && Build') {
             steps {
               container('nodejs') {
