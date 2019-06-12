@@ -86,9 +86,11 @@ export class ProcessEditorComponent implements OnInit {
         this.loading$ = this.store.select(selectProcessLoading);
         this.process$ = this.store.select(selectSelectedProcess);
         this.processFileUri$ = this.process$.pipe(
+            filter(process => !!process),
             map(process => getFileUri(PROCESS, this.processesLanguageType, process.id))
         );
         this.extensionFileUri$ = this.process$.pipe(
+            filter(process => !!process),
             map(process => getFileUri(PROCESS, this.extensionsLanguageType, process.id))
         );
         this.content$ = this.store.select(selectSelectedProcessDiagram);
