@@ -90,21 +90,25 @@ export interface Process extends Model {
 
 export type ProcessVariableId = string;
 
-export type MappingsType = 'variable' | 'value' | 'static_value';
+export enum MappingType {
+    variable = 'variable',
+    value = 'value',
+    static = 'static_value'
+}
 export type ConnectorActionInputParameter = string;
-export type ConnectorActionOutputParameterId = string;
+export type ConnectorActionOutputParameterName = string;
 
 export interface ServiceInputParameterMapping {
-    [parameterId: string]: {
-        type: MappingsType,
+    [parameterName: string]: {
+        type: MappingType,
         value: ConnectorActionInputParameter;
     };
 }
 
 export interface ServiceOutputParameterMapping {
-    [variableId: string]: {
-        type: 'variable',
-        value: ConnectorActionOutputParameterId;
+    [variableName: string]: {
+        type: MappingType.variable,
+        value: ConnectorActionOutputParameterName;
     };
 }
 

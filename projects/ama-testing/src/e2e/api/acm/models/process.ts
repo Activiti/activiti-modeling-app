@@ -16,7 +16,7 @@
  */
 
 import { ACMCrud } from '../acm-crud';
-import { ServiceInputParameterMapping, MappingsType, ServiceOutputParameterMapping } from 'ama-sdk';
+import { ServiceInputParameterMapping, MappingType, ServiceOutputParameterMapping } from 'ama-sdk';
 
 export class ACMProcess extends ACMCrud {
 
@@ -74,9 +74,9 @@ export class ServiceParameterMappings {
 export class ParameterMapping {
       parameterId: string;
       value: string;
-      type: MappingsType;
+      type: MappingType;
 
-    static getParameterMapping(parameterId: string, processVariable: string, variableType: MappingsType): ServiceInputParameterMapping {
+    static getParameterMapping(parameterId: string, processVariable: string, variableType: MappingType): ServiceInputParameterMapping {
         const mapping = {};
         mapping[parameterId] = {
           type: variableType,

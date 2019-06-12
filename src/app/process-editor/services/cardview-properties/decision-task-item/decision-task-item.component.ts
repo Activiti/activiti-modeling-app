@@ -27,7 +27,8 @@ import {
     selectOpenedModel,
     AmaState,
     DECISION_TABLE_INPUT_PARAM_NAME,
-    ServiceInputParameterMapping
+    ServiceInputParameterMapping,
+    MappingType
 } from 'ama-sdk';
 
 @Component({
@@ -64,7 +65,7 @@ export class CardViewDecisionTaskItemComponent implements OnInit, OnDestroy {
         try {
             const inputs: ServiceInputParameterMapping = {
                 [DECISION_TABLE_INPUT_PARAM_NAME]: {
-                    type: 'static_value',
+                    type: MappingType.static,
                     value: this.decisionTable
                 }
             };
