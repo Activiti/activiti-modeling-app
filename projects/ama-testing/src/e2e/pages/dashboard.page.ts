@@ -17,10 +17,12 @@
 
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
+import { Pagination } from './pagination.component';
 
 export class DashboardPage extends GenericPage {
 
     readonly dashboardList = element(by.css(`mat-table.dashboard-list`));
+    private pagination = new Pagination();
 
     async isDashboardListDisplayed() {
         await super.waitForElementToBeVisible(this.dashboardList);
@@ -48,8 +50,15 @@ export class DashboardPage extends GenericPage {
     }
 
     async navigateToProject(projectId: string) {
-        const project = this.getProject(`project-${projectId}`);
-        await super.click(project);
+        try {
+            const project = this.getProject(`project-${projectId}`);
+            if (!(await project.isPresent()) && (await this.pagination.isOnLastPage() == null)) {
+                await this.pagination.set1000ItemsPerPage();
+            }
+            await super.click(project);
+        } catch (error) {
+            throw new Error(`Project '${projectId}' not found.\n ${error}`);
+        }
     }
 
     async editProject(projectId: string) {

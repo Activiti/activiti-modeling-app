@@ -41,7 +41,7 @@ export class ProjectsListComponent implements OnInit {
     loading$: Observable<boolean>;
     pagination$: Observable<Pagination>;
     displayedColumns = ['thumbnail', 'name', 'created', 'createdBy', 'version', 'menu'];
-    pageSizeOptions = [ 10, 25, 50, 100 ];
+    pageSizeOptions = [ 10, 25, 50, 100, 1000 ];
 
     @Input() customDataSource$: Observable<Partial<Project>[]>;
 
