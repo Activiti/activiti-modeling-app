@@ -36,7 +36,8 @@
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"  
              
             sh "npm config set unsafe-perm true && npm ci"  
-            sh "npm run e2e"
+            sh "npm run webdriver-update-ci"
+            sh "npm run e2e -- --webdriver-update=false"
             sh "npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod"  
              
               
