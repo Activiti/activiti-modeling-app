@@ -72,13 +72,13 @@ export class ServiceParameterMappings {
 }
 
 export class ParameterMapping {
-      parameterId: string;
+      parameterName: string;
       value: string;
       type: MappingType;
 
-    static getParameterMapping(parameterId: string, processVariable: string, variableType: MappingType): ServiceInputParameterMapping {
+    static getParameterMapping(parameterName: string, processVariable: string, variableType: MappingType): ServiceInputParameterMapping {
         const mapping = {};
-        mapping[parameterId] = {
+        mapping[parameterName] = {
           type: variableType,
           value: processVariable
         };
