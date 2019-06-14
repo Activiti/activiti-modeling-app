@@ -68,7 +68,7 @@ export class EntityDialogComponent implements OnInit {
     }
 
     @HostListener('document:keydown.enter', ['$event.target'])
-    keyEvent(element: HtmlElement) {
+    keyEvent(element: HTMLElement) {
         if (element === this.entityNameField.nativeElement || element === this.submitButtonField.nativeElement) {
             this.submit();
         }
