@@ -130,7 +130,10 @@ export class ProcessEditorComponent implements OnInit {
 
     onXmlChangeAttempt(processContent: ProcessContent): void {
         this.processLoaderService.load(processContent)
-            .subscribe(() => this.store.dispatch(new SetAppDirtyStateAction(true)));
+            .subscribe(() => {
+                this.content$ = of(processContent);
+                this.store.dispatch(new SetAppDirtyStateAction(true));
+            });
     }
 
     onExtensionsChangeAttempt(extensionsString: string, processId: string): void {
