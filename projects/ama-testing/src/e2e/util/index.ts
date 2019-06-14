@@ -24,3 +24,4 @@
  export * from './messages';
  export * from './random';
  export * from './take-screenshot';
+ export * from './types';
