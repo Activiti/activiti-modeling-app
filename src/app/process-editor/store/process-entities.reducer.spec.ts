@@ -32,7 +32,7 @@ import {
     REMOVE_ELEMENT_MAPPING
 } from './process-editor.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState } from './process-entities.state';
-import { PROCESS, Process, ProcessContent, ServiceParameterMappings, UpdateServiceParametersAction, EntityProperty, EntityProperties } from 'ama-sdk';
+import { PROCESS, Process, ProcessContent, ServiceParameterMappings, UpdateServiceParametersAction, EntityProperty, EntityProperties, MappingType } from 'ama-sdk';
 import { processEntitiesReducer } from './process-entities.reducer';
 import { mockProcess, mappings } from './process.mock';
 import * as processVariablesActions from './process-variables.actions';
@@ -92,7 +92,7 @@ describe('ProcessEntitiesReducer', () => {
                 [elementId]: {
                     inputs: {
                         'e441111c-5a3d-4f78-a571-f57e67ce85bf': {
-                            type: 'value',
+                            type: MappingType.value,
                             value: 'test'
                         }
                     }

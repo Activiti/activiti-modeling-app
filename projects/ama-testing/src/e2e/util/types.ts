@@ -15,13 +15,25 @@
  * limitations under the License.
  */
 
- export * from './api';
- export * from './date';
- export * from './fakeBlob.helper';
- export * from './file';
- export * from './flush-last-browser-logs';
- export * from './logger';
- export * from './messages';
- export * from './random';
- export * from './take-screenshot';
- export * from './types';
+export type ConnectorActionInputParameter = string;
+export type ConnectorActionOutputParameterName = string;
+
+export interface ServiceInputParameterMapping {
+    [parameterName: string]: {
+        type: MappingType,
+        value: ConnectorActionInputParameter;
+    };
+}
+
+export interface ServiceOutputParameterMapping {
+    [variableName: string]: {
+        type: MappingType.variable,
+        value: ConnectorActionOutputParameterName;
+    };
+}
+
+export enum MappingType {
+    variable = 'variable',
+    value = 'value',
+    static = 'static_value'
+}

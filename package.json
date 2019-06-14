@@ -27,6 +27,7 @@
     "pack:sdk": "cd dist/ama-sdk && npm pack",
     "package:sdk": "npm run build:sdk && npm run pack:sdk",
     "06": "echo ------------------------------------------- E2E tests ----------------------------------------------",
+    "webdriver-update-ci": "webdriver-manager update --standalone false --gecko false --versions.chrome 74.0.3729.6",
     "pree2e": "npm run compile-less",
     "e2e": "ng e2e",
     "07": "echo ------------------------------------------- Unit tests ---------------------------------------------",
