@@ -33,10 +33,10 @@ export class EntityDialogComponent implements OnInit {
     ENTER_KEY = 13;
 
     @ViewChild('entityName')
-    private entityNameField: ElementRef<any>;
+    private entityNameField: ElementRef<HTMLElement>;
 
     @ViewChild('buttonSubmit')
-    private submitButtonField: ElementRef<any>;
+    private submitButtonField: ElementRef<HTMLElement>;
 
     constructor(
         private store: Store<AmaState>,
@@ -68,7 +68,7 @@ export class EntityDialogComponent implements OnInit {
     }
 
     @HostListener('document:keydown.enter', ['$event.target'])
-    keyEvent(element: any) {
+    keyEvent(element: HtmlElement) {
         if (element === this.entityNameField.nativeElement || element === this.submitButtonField.nativeElement) {
             this.submit();
         }
