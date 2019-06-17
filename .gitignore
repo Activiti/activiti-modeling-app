@@ -5,6 +5,7 @@
 /lib/
 /tmp
 /.tmp
+/.ee_repo
 /out-tsc
 /e2e-output
 /reports
