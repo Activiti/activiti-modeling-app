@@ -40,6 +40,7 @@
                   steps {
                     container('nodejs'){
                       echo "Run E2E Tests"
+                      sh "npm run webdriver-update-ci"
                       sh "npm run e2e"
                     }
                   }
