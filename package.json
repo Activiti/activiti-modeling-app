@@ -30,6 +30,8 @@
     "webdriver-update-ci": "webdriver-manager update --standalone false --gecko false --versions.chrome 74.0.3729.6",
     "pree2e": "npm run compile-less",
     "e2e": "ng e2e",
+    "pree2e:ci": "npm run pree2e && npm run webdriver-update-ci",
+    "e2e:ci": "ng e2e --webdriverUpdate=false",
     "07": "echo ------------------------------------------- Unit tests ---------------------------------------------",
     "pretest": "rimraf dist",
     "test": "jest --detectOpenHandles --notify --config jest.config.js",

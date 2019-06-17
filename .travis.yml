@@ -22,11 +22,8 @@ env:
 
 jobs:
     include:
-        - stage: E2E Test
-          script: npm run e2e
-
-        - stage: Lint & Unit tests & Build
-          script: npm run lint && npm run test:ci && npm run package:sdk && npm run build:prod
+        - stage: Lint & Package SDK
+          script: npm run lint && npm run package:sdk
 
 # Send coverage data to codecov
 # after_success:
