@@ -79,6 +79,11 @@
             .cdk-column-createdBy {
                 max-width: 330px;
             }
+
+            .cdk-column-version {
+                flex: 0 1 auto;
+                padding-right: 24px
+            }
         }
 
         &-spinner {
