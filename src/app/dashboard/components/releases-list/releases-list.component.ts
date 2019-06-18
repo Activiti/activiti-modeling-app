@@ -21,7 +21,6 @@ import { Store } from '@ngrx/store';
 import { map, filter } from 'rxjs/operators';
 import { MatTableDataSource, PageEvent } from '@angular/material';
 import { AmaState, Pagination, BreadcrumbItem, selectProjectCrumb } from 'ama-sdk';
-import { sortEntriesByName } from '../../../common/helpers/sort-entries-by-name';
 import { Release } from 'ama-sdk';
 import { GetProjectReleasesAttemptAction } from '../../store/actions/releases';
 import { ActivatedRoute } from '@angular/router';
@@ -54,7 +53,6 @@ export class ReleaseListComponent implements OnInit, OnDestroy {
         this.dataSource$ = (this.customDataSource$ || this.store.select(selectReleaseSummaries).pipe(
             map(entries => Object.keys(entries).map(id => entries[id]))
         )).pipe(
-            map(sortEntriesByName),
             map(entriesArray =>  new MatTableDataSource<Partial<Release>>(entriesArray))
         );
 
