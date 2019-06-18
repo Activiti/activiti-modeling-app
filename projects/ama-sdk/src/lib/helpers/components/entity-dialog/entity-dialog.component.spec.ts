@@ -79,7 +79,7 @@ describe('EntityDialogComponent', () => {
 
         const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
 
-        component.form.name = 'test-name';
+        component.form.name = 'name';
         component.form.description = 'test-desc';
         fixture.detectChanges();
 
@@ -91,7 +91,7 @@ describe('EntityDialogComponent', () => {
     it('should test submit action on enter keydown of submit button', () => {
         spyOn(store, 'dispatch');
         const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
-        component.form.name = 'test-name';
+        component.form.name = 'name';
         component.form.description = 'test-desc';
 
         submitBtn.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', bubbles: true}));
@@ -102,12 +102,23 @@ describe('EntityDialogComponent', () => {
     it('should test submit action on enter keydown of name field', () => {
         spyOn(store, 'dispatch');
         const nameField = fixture.debugElement.query(By.css('[data-automation-id="name-field"]'));
-        component.form.name = 'test-name';
+        component.form.name = 'name';
         component.form.description = 'test-desc';
 
         nameField.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', bubbles: true}));
 
         expect(store.dispatch).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not submit action on enter keydown if the form is not valid', () => {
+        spyOn(store, 'dispatch');
+        const nameField = fixture.debugElement.query(By.css('[data-automation-id="name-field"]'));
+        component.form.name = 'not_valid-name';
+        component.form.description = 'test-desc';
+
+        nameField.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', bubbles: true}));
+
+        expect(store.dispatch).not.toHaveBeenCalled();
     });
 
     it('should render input values', () => {
