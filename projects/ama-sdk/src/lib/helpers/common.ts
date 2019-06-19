@@ -33,12 +33,17 @@ export interface UploadFileAttemptPayload {
     projectId: string;
 }
 
+export interface AllowedCharacters {
+    regex: RegExp;
+    error: string;
+}
+
 export interface EntityDialogPayload {
     title: string;
     nameField: string;
     descriptionField: string;
     values?: EntityDialogForm;
-    allowedCharacters?: RegExp;
+    allowedCharacters?: AllowedCharacters;
     action: any;
 }
 

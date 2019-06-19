@@ -62,7 +62,10 @@ export class DashboardNavigationComponent implements OnInit {
             nameField: 'APP.HOME.DIALOGS.PROJECT_NAME',
             descriptionField: 'APP.HOME.DIALOGS.PROJECT_DESC',
             action: CreateProjectAttemptAction,
-            allowedCharacters: PROJECT_NAME_REGEX
+            allowedCharacters: {
+                regex: PROJECT_NAME_REGEX,
+                error: 'APP.DIALOGS.ERROR.PROJECT_NAME_VALIDATION'
+            },
         }));
     }
 }

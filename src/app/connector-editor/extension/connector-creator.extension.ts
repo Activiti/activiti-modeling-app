@@ -29,7 +29,10 @@ export function createConnectorCreator(): ModelCreator {
             title: 'APP.PROJECT.CONNECTOR_DIALOG.TITLE_CREATE',
             nameField: 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_NAME',
             descriptionField: 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_DESC',
-            allowedCharacters: CONNECTOR_NAME_REGEX,
+            allowedCharacters: {
+                regex: CONNECTOR_NAME_REGEX,
+                error: 'APP.DIALOGS.ERROR.CONNECTOR_NAME_VALIDATION'
+            },
             action: CreateConnectorAttemptAction
         }
     };

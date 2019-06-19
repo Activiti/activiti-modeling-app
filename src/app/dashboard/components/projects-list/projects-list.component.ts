@@ -77,7 +77,10 @@ export class ProjectsListComponent implements OnInit {
             descriptionField: 'APP.HOME.DIALOGS.PROJECT_DESC',
             values: { id, name, description },
             action: UpdateProjectAttemptAction,
-            allowedCharacters: PROJECT_NAME_REGEX
+            allowedCharacters: {
+                regex: PROJECT_NAME_REGEX,
+                error: 'APP.DIALOGS.ERROR.PROJECT_NAME_VALIDATION'
+            }
         }));
     }
 

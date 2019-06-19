@@ -18,6 +18,7 @@
 import { InjectionToken } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { MODEL_TYPE } from '../api/types';
+import { AllowedCharacters } from '../helpers/common';
 
 export type ActionConstructor = new (...args: any[]) => Action;
 
@@ -25,7 +26,7 @@ export interface ModelCreatorDialogParams {
     title: string;
     nameField: string;
     descriptionField: string;
-    allowedCharacters?: RegExp;
+    allowedCharacters?: AllowedCharacters;
     action: ActionConstructor;
 }
 
