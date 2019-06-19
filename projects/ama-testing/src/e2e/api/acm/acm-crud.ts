@@ -29,6 +29,7 @@ export abstract class ACMCrud implements ModelCrud {
     abstract namePrefix: string;
     abstract type: string;
     abstract contentType: string;
+    abstract contentExtension: string;
 
     requestApiHelper: E2eRequestApiHelper;
     tmpFilePath: string;
@@ -58,7 +59,7 @@ export abstract class ACMCrud implements ModelCrud {
             });
             Logger.info(`[${this.displayName}] New model has been created with name: ${model.entry.name} and id: ${model.entry.id}.`);
 
-            await this.updateModelContent(model.entry.id, this.getDefaultContent(modelName, model.entry.id));
+            await this.updateModelContent(model.entry.id, modelName, this.getDefaultContent(modelName, model.entry.id));
             Logger.info(`[${this.displayName}] Model's content has been updated.`);
             return model;
         } catch (error) {
@@ -99,9 +100,9 @@ export abstract class ACMCrud implements ModelCrud {
         return await UtilApi.waitForApi(apiCall, predicate);
     }
 
-    async updateModelContent(id: string, content: string) {
+    async updateModelContent(id: string, modelName: string, content: string) {
         const requestOptions: E2eRequestApiHelperOptions = {
-            formParams: { file: getBlob(this.tmpFilePath, `process-${id}.xml`, content) },
+            formParams: { file: getBlob(this.tmpFilePath, `${modelName}.${this.contentExtension}`, content) },
             contentTypes: [ 'multipart/form-data' ]
         };
 

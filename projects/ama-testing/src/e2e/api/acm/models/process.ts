@@ -24,6 +24,7 @@ export class ACMProcess extends ACMCrud {
     namePrefix = 'QA_APS_PROCESS_';
     type = 'PROCESS';
     contentType = 'text/plain';
+    contentExtension = 'xml';
 
     getDefaultContent(entityName: string, entityId: string) {
         const entityUuid = `${this.type.toLowerCase()}-${entityId}`;

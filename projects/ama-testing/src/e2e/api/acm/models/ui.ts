@@ -23,6 +23,7 @@ export class ACMUi extends ACMCrud {
     namePrefix = 'QA_APS_UI_';
     type = 'UI';
     contentType = 'application/json';
+    contentExtension = 'json';
 
     getDefaultContent(entityName: string, entityId: string) {
         return JSON.stringify({

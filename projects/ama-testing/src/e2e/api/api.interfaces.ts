@@ -22,7 +22,7 @@ export interface ModelCrud {
     create(projectId: string, name?: string): Promise<NodeEntry>;
     createAndWaitUntilAvailable(projectId: string, name?: string): Promise<NodeEntry>;
     getContent(modelId: string): PromiseLike<any>;
-    updateModelContent(modelId: string, content: string): Promise<void>;
+    updateModelContent(modelId: string, modelName: string, content: string): Promise<void>;
     updateModelMetadata(modelId: string, content: any): Promise<void>;
     delete(modelId?: string): Promise<void>;
 }

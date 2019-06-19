@@ -23,6 +23,7 @@ export class ACMDecisionTable extends ACMCrud {
     namePrefix = 'QA_APS_DECISION_';
     type = 'DECISION';
     contentType = 'text/plain';
+    contentExtension = 'xml';
 
     getDefaultContent(name: string, entityId: string) {
         const id = this.type.toLowerCase() + '-' + entityId;

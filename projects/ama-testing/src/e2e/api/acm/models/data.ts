@@ -23,6 +23,7 @@ export class ACMData extends ACMCrud {
     namePrefix = 'QA_APS_Data_';
     type = 'DATA';
     contentType = 'application/json';
+    contentExtension = 'json';
 
     getDefaultContent(entityName: string, entityId: string) {
         return JSON.stringify({
