@@ -23,6 +23,7 @@ export class ACMForm extends ACMCrud {
     namePrefix = 'QA_APS_FORM_';
     type = 'FORM';
     contentType = 'application/json';
+    contentExtension = 'json';
 
     getDefaultContent(entityName: string, entityId: string) {
         return JSON.stringify({
