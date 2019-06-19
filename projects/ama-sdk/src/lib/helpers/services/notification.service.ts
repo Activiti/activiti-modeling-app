@@ -15,17 +15,19 @@
  * limitations under the License.
  */
 
-export * from './common';
-export * from './unsaved-page.guard';
-export * from './utils/create-entries-names';
-export * from './shared.module';
-export * from './utils/empty-diagram';
-export * from './utils/empty-decision-table';
-export * from './primitive-types';
-export * from './utils/createJsonBlob';
-export * from './utils/arrayize';
-export { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
-export { AllowedCharactersDirective } from './directives/allowed-characters.directive';
-export { GlobalErrorHandler } from './services/error-handler.service';
+import { Injectable} from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-
+@Injectable({
+  providedIn: 'root'
+})
+export class NotificationService {
+  
+  constructor(public snackBar: MatSnackBar) { }
+  
+  showError(message: string): void {
+    // The second parameter is the text in the button. 
+    // In the third, we send in the css class for the snack bar.
+    this.snackBar.open(message, 'X', {panelClass: ['error']});
+  }
+}

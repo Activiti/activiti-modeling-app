@@ -16,7 +16,7 @@
  */
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -48,6 +48,7 @@ import { ACMApiModule, AmaServicesModule, ConfirmationDialogModule, AmaAuthentic
 import { AmaRoleGuard } from './ama-role-guard.service';
 import { AppExtensionsModule } from './extensions.module';
 import { ModelStorageService } from './common/services/model-storage.service';
+import { GlobalErrorHandler } from 'ama-sdk';
 
 @NgModule({
     imports: [
@@ -91,6 +92,7 @@ import { ModelStorageService } from './common/services/model-storage.service';
     ],
     entryComponents: [SettingsDialogComponent],
     providers: [
+        { provide: ErrorHandler, useClass: GlobalErrorHandler },
         AmaLocalStorageMergeGuard,
         AmaRoleGuard,
         AuthTokenProcessorService,
