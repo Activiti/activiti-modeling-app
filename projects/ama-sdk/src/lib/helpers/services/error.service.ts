@@ -15,17 +15,26 @@
  * limitations under the License.
  */
 
-export * from './common';
-export * from './unsaved-page.guard';
-export * from './utils/create-entries-names';
-export * from './shared.module';
-export * from './utils/empty-diagram';
-export * from './utils/empty-decision-table';
-export * from './primitive-types';
-export * from './utils/createJsonBlob';
-export * from './utils/arrayize';
-export { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
-export { AllowedCharactersDirective } from './directives/allowed-characters.directive';
-export { GlobalErrorHandler } from './services/error-handler.service';
+import { Injectable } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
+@Injectable({
+    providedIn: 'root'
+})
+export class ErrorService {
 
+    getClientMessage(error: Error): string {
+        if (!navigator.onLine) {
+            return 'No Internet Connection';
+        }
+        return error.message ? error.message : error.toString();
+    }
+
+    getClientStack(error: Error): string {
+        return error.stack;
+    }
+
+    getServerMessage(error: HttpErrorResponse): string {
+        return error.message;
+    }
+}
