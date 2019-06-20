@@ -40,35 +40,55 @@ export class DashboardPage extends GenericPage {
     }
 
     async isProjectInList(projectId: string) {
-        const projectItem = this.getProject(`project-${projectId}`);
-        return await super.waitForElementToBeVisible(projectItem);
+        return await this.isProjectInListWithPageNavigation(projectId);
     }
 
     async isProjectNotInList(projectId: string) {
-        const projectItem = this.getProject(`project-${projectId}`);
-        return await super.waitForElementToBeInVisible(projectItem);
+        return await this.isProjectInListWithPageNavigation(projectId);
     }
 
     async navigateToProject(projectId: string) {
+        try {
+            if (await this.isProjectInListWithPageNavigation(projectId)) {
+                await super.click(this.getProject(`project-${projectId}`));
+            }
+        } catch (error) {
+            throw new Error(`Unable to navigate to project '${projectId}'.\n ${error}`);
+        }
+    }
+
+    async isProjectInListWithPageNavigation(projectId: string) {
+        let found = false;
         try {
             const project = this.getProject(`project-${projectId}`);
             if (!(await project.isPresent()) && (await this.pagination.isOnLastPage() == null)) {
                 await this.pagination.set1000ItemsPerPage();
             }
-            await super.click(project);
+            if (await project.isPresent()) {
+                found = true;
+            }
+            return found;
         } catch (error) {
             throw new Error(`Project '${projectId}' not found.\n ${error}`);
         }
     }
 
     async editProject(projectId: string) {
-        await this.openContextMenuFor(projectId);
-        await this.clickOnEditContextItemFor(projectId);
+        try {
+            await this.openContextMenuFor(projectId);
+            await this.clickOnEditContextItemFor(projectId);
+        } catch (error) {
+            throw new Error(`Edit project '${projectId}' failed.\n ${error}`);
+        }
     }
 
     async deleteProject(projectId: string) {
-        await this.openContextMenuFor(projectId);
-        await this.clickOnDeleteContextItemFor(projectId);
+        try {
+            await this.openContextMenuFor(projectId);
+            await this.clickOnDeleteContextItemFor(projectId);
+        } catch (error) {
+            throw new Error(`Delete project '${projectId}' failed.\n ${error}`);
+        }
     }
 
     private getProject(dataAutomationId: string) {
@@ -76,9 +96,17 @@ export class DashboardPage extends GenericPage {
     }
 
     private async openContextMenuFor(projectId: string) {
-        const projectContextMenu = this.getProject(`project-context-${projectId}`);
-        await super.waitForElementToBeVisible(projectContextMenu);
-        await super.click(projectContextMenu);
+        try {
+            if (await this.isProjectInListWithPageNavigation(projectId)) {
+                const projectContextMenu = this.getProject(`project-context-${projectId}`);
+                await super.waitForElementToBeVisible(projectContextMenu);
+                await super.click(projectContextMenu);
+            } else {
+                throw new Error(`Unable to find project '${projectId}'.`);
+            }
+        } catch (error) {
+            throw new Error(`Unable to open context menu for project '${projectId}'.\n ${error}`);
+        }
     }
 
     private async clickOnEditContextItemFor(projectId: string) {
