@@ -16,18 +16,17 @@
  */
 
 import { Injectable} from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Store } from '@ngrx/store';
+import { AmaState } from '../../store/app.state';
+import { SnackbarErrorAction } from '../../store/app.actions';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class NotificationService {
-  
-  constructor(public snackBar: MatSnackBar) { }
-  
+  constructor(private store: Store<AmaState>) { }
+
   showError(message: string): void {
-    // The second parameter is the text in the button. 
-    // In the third, we send in the css class for the snack bar.
-    this.snackBar.open(message, 'X', {panelClass: ['error']});
+      this.store.dispatch(new SnackbarErrorAction(message));
   }
 }
