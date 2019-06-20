@@ -19,7 +19,7 @@ import { Component, OnInit, Optional, Inject, HostListener, ViewChild, ElementRe
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { AmaState } from '../../../store/app.state';
-import { EntityDialogPayload } from '../../common';
+import { EntityDialogPayload, AllowedCharacters } from '../../common';
 import { EntityDialogForm } from '../../common';
 import { MODEL_NAME_REGEX } from '../../utils/create-entries-names';
 @Component({
@@ -28,7 +28,7 @@ import { MODEL_NAME_REGEX } from '../../utils/create-entries-names';
 export class EntityDialogComponent implements OnInit {
 
     submitButton: string;
-    validationRegex: RegExp;
+    allowedCharacters: AllowedCharacters;
     form: Partial<EntityDialogForm>;
     ENTER_KEY = 13;
 
@@ -49,7 +49,7 @@ export class EntityDialogComponent implements OnInit {
     ngOnInit() {
         const { values, allowedCharacters } = this.data;
         this.submitButton = values ? 'APP.DIALOGS.SAVE' : 'APP.DIALOGS.CREATE';
-        this.validationRegex = allowedCharacters || MODEL_NAME_REGEX;
+        this.allowedCharacters = allowedCharacters || { regex: MODEL_NAME_REGEX, error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION' };
         this.form = {
             name: values && values.name ? values.name : '',
             description: values && values.description ? values.description : ''
@@ -57,7 +57,7 @@ export class EntityDialogComponent implements OnInit {
     }
 
     validate(): boolean {
-        return this.validationRegex.test(this.form.name);
+        return this.allowedCharacters.regex.test(this.form.name);
     }
 
     submit(): void {

@@ -11,13 +11,12 @@
             data-automation-id="name-field"
             [(ngModel)]="form.name" />
     </mat-form-field>
-    <mat-error *ngIf="form.name && !validate()">{{ 'APP.DIALOGS.ERROR.NAME_DOESNT_MATCH_PATTERN' | translate }}: {{ validationRegex.toString() }}</mat-error>
+    <mat-error *ngIf="form.name && !validate()">{{ allowedCharacters.error | translate }}</mat-error>
     <br />
     <mat-form-field class="adf-full-width">
         <textarea matInput placeholder="{{ data.descriptionField | translate }}"
                 data-automation-id="desc-field"
-                [(ngModel)]="form.description"
-                >
+                [(ngModel)]="form.description">
         </textarea>
     </mat-form-field>
 </mat-dialog-content>
