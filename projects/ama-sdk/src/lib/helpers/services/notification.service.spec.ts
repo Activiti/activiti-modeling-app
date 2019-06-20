@@ -43,4 +43,6 @@ describe('NotificationsService ', () => {
         service.showError('my error');
 
         expect(store.dispatch).toHaveBeenCalledWith(new SnackbarErrorAction('my error'));
-   
+    });
+});
+
