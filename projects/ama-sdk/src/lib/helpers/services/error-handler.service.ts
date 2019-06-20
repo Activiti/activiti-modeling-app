@@ -18,7 +18,8 @@
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorService } from './error.service';
-import { NotificationService } from './notification.service';
+import { Store } from '@ngrx/store';
+import { SnackbarErrorAction } from '../../store/public_api';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
@@ -28,16 +29,16 @@ export class GlobalErrorHandler implements ErrorHandler {
     handleError(error: Error | HttpErrorResponse) {
 
         const errorService = this.injector.get(ErrorService);
-        const notifier = this.injector.get(NotificationService);
+        const store = this.injector.get(Store);
 
         let message;
 
         if (error instanceof HttpErrorResponse) {
             message = errorService.getServerMessage(error);
-            notifier.showError(message);
+            store.dispatch(new SnackbarErrorAction(message));
         } else {
             message = errorService.getClientMessage(error);
-            notifier.showError(message);
+            store.dispatch(new SnackbarErrorAction(message));
         }
         console.error(error);
     }
