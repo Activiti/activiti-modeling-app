@@ -331,6 +331,8 @@ export class ProcessEditorEffects extends BaseEffects {
 
         if (error.status === 409) {
             errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROCESS.DUPLICATION';
+        } else if ( JSON.parse(error.message).errors[0].code === 'model.invalid.name.empty') {
+            errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROCESS.EMPTY_NAME';
         } else {
             errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROCESS.GENERAL';
         }
