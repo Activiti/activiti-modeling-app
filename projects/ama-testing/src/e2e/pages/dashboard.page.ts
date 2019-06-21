@@ -54,8 +54,8 @@ export class DashboardPage extends GenericPage {
         return await super.waitForElementToBeVisible(projectVersion);
     }
 
-    async isProjectReleaseVisible(projectId: string, releaseId: string) {
-        const projectRelease = element(by.cssContainingText(`[data-automation-id="project-release-id-${projectId}"]`, releaseId));
+    async isProjectReleaseVisible(releaseId: string) {
+        const projectRelease = element(by.css(`[data-automation-id="project-release-id-${releaseId}"]`));
         return await super.waitForElementToBeVisible(projectRelease);
     }
 
