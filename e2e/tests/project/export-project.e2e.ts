@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation, UtilRandom } from 'ama-testing/e2e';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { DashboardPage } from 'ama-testing/e2e';
 import { Toolbar } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
@@ -40,18 +40,18 @@ describe('Export project', () => {
     const toolBar = new Toolbar();
 
     let backend: Backend;
-    let app: NodeEntry;
+    let project: NodeEntry;
 
     const downloadDir = browser.params.downloadDir;
 
     beforeEach(async () => {
         backend = await getBackend(testConfig).setUp();
-        app = await backend.project.createAndWaitUntilAvailable('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
+        project = await backend.project.createAndWaitUntilAvailable();
     });
 
     beforeEach(async () => {
         // clean-up files from download directory
-        UtilFile.deleteFilesByPattern(downloadDir, app.entry.name);
+        UtilFile.deleteFilesByPattern(downloadDir, project.entry.name);
     });
 
     beforeEach(async () => {
@@ -61,15 +61,15 @@ describe('Export project', () => {
     });
 
     it('1. [C286593] Export project', async () => {
-        const appId = app.entry.id;
-        await dashboardPage.navigateToProject(appId);
+        const projectId = project.entry.id;
+        await dashboardPage.navigateToProject(projectId);
         await toolBar.downloadFile();
-        const downloadedApp = path.join(downloadDir, `${app.entry.name}.zip`);
+        const downloadedApp = path.join(downloadDir, `${project.entry.name}.zip`);
         expect(await UtilFile.fileExists(downloadedApp)).toBe(true);
     });
 
     afterEach(async () => {
-        await backend.project.delete(app.entry.id);
+        await backend.project.delete(project.entry.id);
         await backend.tearDown();
         await authenticatedPage.logout();
     });
