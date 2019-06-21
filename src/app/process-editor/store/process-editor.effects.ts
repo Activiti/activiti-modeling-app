@@ -328,9 +328,11 @@ export class ProcessEditorEffects extends BaseEffects {
 
     private handleProcessUpdatingError(error): Observable<SnackbarErrorAction> {
         let errorMessage;
-
+        const message = error.message ? JSON.parse(error.message) : {};
         if (error.status === 409) {
             errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROCESS.DUPLICATION';
+        } else if ( message.errors && (message.errors[0].code === 'model.invalid.name.empty')) {
+            errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROCESS.EMPTY_NAME';
         } else {
             errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROCESS.GENERAL';
         }

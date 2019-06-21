@@ -238,7 +238,8 @@
                 },
                 "UPDATE_PROCESS": {
                     "DUPLICATION": "Process with the same name already exists",
-                    "GENERAL": "Unknown error happened during the updating the process."
+                    "GENERAL": "Unknown error happened during the updating the process.",
+                    "EMPTY_NAME": "The model name cannot be empty"
                 },
                 "CREATE_CONNECTOR": {
                     "DUPLICATION": "Connector with the same name already exists",
