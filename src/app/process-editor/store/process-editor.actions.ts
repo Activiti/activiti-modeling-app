@@ -154,6 +154,12 @@ export class UpdateProcessSuccessAction implements Action {
     constructor(public payload: Update<Partial<Process>>, public content: string) {}
 }
 
+export const UPDATE_PROCESS_FAILED = '[Process] Update failed';
+export class UpdateProcessFailedAction implements Action {
+    readonly type = UPDATE_PROCESS_FAILED;
+    constructor() {}
+}
+
 export interface DownloadProcessPayload {
     id: string;
     name: string;

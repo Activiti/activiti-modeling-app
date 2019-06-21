@@ -31,7 +31,8 @@ import {
     SET_LOG_HISTORY_VISIBILITY,
     CLEAR_LOG_HISTORY,
     TOOLBAR_MESSAGE,
-    ToolbarMessageAction
+    ToolbarMessageAction,
+    UPDATE_PROCESS_FAILED
 } from './process-editor.actions';
 import { OPEN_CONFIRM_DIALOG, LOG_ACTION, LogAction } from 'ama-sdk';
 import { PROCESS_EDITOR_LOGS } from '../services/process-editor.constants';
@@ -107,6 +108,15 @@ export function processEditorReducer(
                     inProgress: false
                 }
             };
+
+        case UPDATE_PROCESS_FAILED:
+                return {
+                    ...state,
+                    toolbar: {
+                        ...state.toolbar,
+                        inProgress: false
+                    }
+                };
 
         default:
             newState = Object.assign({}, state);

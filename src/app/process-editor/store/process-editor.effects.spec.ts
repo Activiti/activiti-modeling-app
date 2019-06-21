@@ -107,7 +107,8 @@ describe('ProcessEditorEffects', () => {
                             }
 
                             return of({});
-                        })
+                        }),
+                        dispatch: jest.fn()
                     }
                 },
                 {

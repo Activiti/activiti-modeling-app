@@ -56,7 +56,8 @@ import {
     CREATE_PROCESS_SUCCESS,
     RemoveDiagramElementAction,
     REMOVE_DIAGRAM_ELEMENT,
-    RemoveElementMappingAction
+    RemoveElementMappingAction,
+    UpdateProcessFailedAction
 } from './process-editor.actions';
 import {
     BaseEffects,
@@ -247,7 +248,11 @@ export class ProcessEditorEffects extends BaseEffects {
                 logInfo(getProcessLogInitiator(), this.translation.instant('PROCESS_EDITOR.PROCESS_UPDATED')),
                 new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_UPDATED')
             ]),
-            catchError(e => this.genericErrorHandler(this.handleProcessUpdatingError.bind(this), e))
+            catchError(e => {
+                this.store.dispatch(new UpdateProcessFailedAction());
+                return this.genericErrorHandler(this.handleProcessUpdatingError.bind(this), e);
+
+            })
         );
     }
 
