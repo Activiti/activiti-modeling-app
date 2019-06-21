@@ -56,7 +56,8 @@ import {
     CREATE_PROCESS_SUCCESS,
     RemoveDiagramElementAction,
     REMOVE_DIAGRAM_ELEMENT,
-    RemoveElementMappingAction
+    RemoveElementMappingAction,
+    UpdateProcessFailedAction
 } from './process-editor.actions';
 import {
     BaseEffects,
@@ -326,9 +327,10 @@ export class ProcessEditorEffects extends BaseEffects {
         return of(new SnackbarErrorAction(userMessage));
     }
 
-    private handleProcessUpdatingError(error): Observable<SnackbarErrorAction> {
+    private handleProcessUpdatingError(error): Observable<SnackbarErrorAction | {}> {
         let errorMessage;
         const message = error.message ? JSON.parse(error.message) : {};
+
         if (error.status === 409) {
             errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROCESS.DUPLICATION';
         } else if ( message.errors && (message.errors[0].code === 'model.invalid.name.empty')) {
@@ -336,8 +338,7 @@ export class ProcessEditorEffects extends BaseEffects {
         } else {
             errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROCESS.GENERAL';
         }
-
-        return of(new SnackbarErrorAction(errorMessage));
+        return of(new SnackbarErrorAction(errorMessage), new UpdateProcessFailedAction());
     }
 
     private handleProcessCreationError(error): Observable<SnackbarErrorAction> {

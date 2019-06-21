@@ -48,7 +48,7 @@ import { ACMApiModule, AmaServicesModule, ConfirmationDialogModule, AmaAuthentic
 import { AmaRoleGuard } from './ama-role-guard.service';
 import { AppExtensionsModule } from './extensions.module';
 import { ModelStorageService } from './common/services/model-storage.service';
-import { GlobalErrorHandler } from 'ama-sdk';
+import { GlobalErrorHandler } from './common/helpers/services/error-handler.service';
 
 @NgModule({
     imports: [

@@ -35,7 +35,8 @@ import {
     ShowProcessesAction,
     GET_PROCESSES_ATTEMPT,
     CreateProcessSuccessAction,
-    UploadProcessAttemptAction
+    UploadProcessAttemptAction,
+    UpdateProcessFailedAction
 } from './process-editor.actions';
 import { throwError, of, Observable } from 'rxjs';
 import { mockProcess } from './process.mock';
@@ -107,7 +108,8 @@ describe('ProcessEditorEffects', () => {
                             }
 
                             return of({});
-                        })
+                        }),
+                        dispatch: jest.fn()
                     }
                 },
                 {
@@ -228,8 +230,9 @@ describe('ProcessEditorEffects', () => {
             processEditorService.update = jest.fn().mockReturnValue(throwError(new Error()));
             actions$ = hot('a', { a: new UpdateProcessAttemptAction(mockActionPayload) });
 
-            const expected = cold('b', {
-                b: new SnackbarErrorAction('APP.PROJECT.ERROR.UPDATE_PROCESS.GENERAL')
+            const expected = cold('(bc)', {
+                b: new SnackbarErrorAction('APP.PROJECT.ERROR.UPDATE_PROCESS.GENERAL'),
+                c: new UpdateProcessFailedAction()
             });
 
             expect(effects.updateProcessEffect).toBeObservable(expected);
