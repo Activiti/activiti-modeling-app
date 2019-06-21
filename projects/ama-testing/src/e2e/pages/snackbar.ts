@@ -24,6 +24,7 @@ export class SnackBar extends GenericWebElement {
     readonly updateItemMessage = `The ITEM was successfully updated`;
     readonly uploadItemMessage = `The ITEM was successfully uploaded`;
     readonly deleteItemMessage = `The ITEM was successfully deleted`;
+    readonly releaseItemMessage = `The ITEM was successfully released`;
 
     async isOperationSuccessful(operationMessage: string, itemType: string) {
         const itemCreated = element(by.cssContainingText(`simple-snack-bar>span`, operationMessage.replace('ITEM', itemType)));
@@ -44,5 +45,9 @@ export class SnackBar extends GenericWebElement {
 
     async isDeletedSuccessfully(itemType: string) {
         return await this.isOperationSuccessful(this.deleteItemMessage, itemType);
+    }
+
+    async isReleasedSuccessfully(itemType: string) {
+        return await this.isOperationSuccessful(this.releaseItemMessage, itemType);
     }
 }

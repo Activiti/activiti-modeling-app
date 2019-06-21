@@ -36,7 +36,7 @@
 
                         <ng-container matColumnDef="version">
                             <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_VERSION' | translate }}</mat-header-cell>
-                            <mat-cell *matCellDef="let element" (click)="rowSelected(element)"> {{ element.version }} </mat-cell>
+                            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'project-version-' + element.id" (click)="rowSelected(element)"> {{ element.version }} </mat-cell>
                         </ng-container>
 
                         <ng-container matColumnDef="menu">
@@ -55,7 +55,7 @@
                                     <button mat-menu-item (click)="releaseProject(element.id)" class="project-release-button" [attr.data-automation-id]="'project-release-' + element.id">
                                         <mat-icon>new_releases</mat-icon> <span>{{ 'APP.MENU.RELEASE' | translate }}</span>
                                     </button>
-                                    <button mat-menu-item (click)="seeRelesesForProject(element.id)" class="project-release-button" [attr.data-automation-id]="'project-release-' + element.id">
+                                    <button mat-menu-item (click)="seeRelesesForProject(element.id)" class="project-releases-button" [attr.data-automation-id]="'project-releases-' + element.id">
                                         <mat-icon>remove_red_eye</mat-icon> <span>{{ 'APP.MENU.SEE_RELEASES' | translate }}</span>
                                     </button>
                                 </mat-menu>

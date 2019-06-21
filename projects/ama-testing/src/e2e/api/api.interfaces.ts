@@ -31,6 +31,7 @@ export interface ProjectApi {
     create(projectName?: string): Promise<AlfrescoApi.NodeEntry>;
     createAndWaitUntilAvailable(projectName?: string): Promise<AlfrescoApi.NodeEntry>;
     delete(projectId?: string): Promise<void>;
+    release(projectId?: string): Promise<AlfrescoApi.NodeEntry>;
     get(projectId?: string): Promise<AlfrescoApi.NodeEntry>;
 }
 
