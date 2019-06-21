@@ -49,6 +49,21 @@ export class DashboardPage extends GenericPage {
         return await this.isProjectNotInListWithPageNavigation(project);
     }
 
+    async isProjectVersionUpdated(projectId: string, version: number) {
+        const projectVersion = element(by.cssContainingText(`[data-automation-id="project-version-${projectId}"]`, version.toString()));
+        return await super.waitForElementToBeVisible(projectVersion);
+    }
+
+    async isProjectReleaseVisible(projectId: string, releaseId: string) {
+        const projectRelease = element(by.cssContainingText(`[data-automation-id="project-release-id-${projectId}"]`, releaseId));
+        return await super.waitForElementToBeVisible(projectRelease);
+    }
+
+    async isProjectReleaseEmpty() {
+        const emptyList = element(by.css(`[data-automation-id="project-releases-empty"]`));
+        return await super.waitForElementToBeInVisible(emptyList);
+    }
+
     async navigateToProject(projectId: string) {
         const project = this.getProject(`project-${projectId}`);
         try {
@@ -102,6 +117,20 @@ export class DashboardPage extends GenericPage {
         } catch (error) {
             throw new Error(`Delete project '${projectId}' failed.\n ${error}`);
         }
+    }
+
+    async releaseProject(projectId: string) {
+        await this.openContextMenuFor(projectId);
+        const projectReleaseButton = this.getProject(`project-release-${projectId}`);
+        await super.waitForElementToBeVisible(projectReleaseButton);
+        await super.click(projectReleaseButton);
+    }
+
+    async navigateToReleaseView(projectId: string) {
+        await this.openContextMenuFor(projectId);
+        const projectReleasesButton = this.getProject(`project-releases-${projectId}`);
+        await super.waitForElementToBeVisible(projectReleasesButton);
+        await super.click(projectReleasesButton);
     }
 
     private getProject(dataAutomationId: string) {

@@ -58,6 +58,10 @@ export class ACMProject implements ProjectApi {
         await this.requestApiHelper.delete(`/v1/projects/${projectId}`);
     }
 
+    async release(projectId: string) {
+        await this.requestApiHelper.post(`/v1/projects/${projectId}/releases`);
+    }
+
     private async searchProjects() {
         Logger.info(`[Project] Waiting created project to be ready for listing.`);
         return await this.requestApiHelper.get<ResultSetPaging>(this.endPoint);
