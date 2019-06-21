@@ -15,11 +15,12 @@
  * limitations under the License.
  */
 
-import { browser, ElementFinder, ExpectedConditions, protractor } from 'protractor';
+import { browser, ElementFinder, protractor } from 'protractor';
 import { Logger } from '../../util/logger';
 
 export class GenericWebElement {
 
+    private EC = protractor.ExpectedConditions;
     constructor(private readonly TIMEOUT_MS: number = 20000 ) {}
 
     public async click(elem: ElementFinder) {
@@ -60,7 +61,7 @@ export class GenericWebElement {
 
     protected async waitForElementToBeClickable(elem: ElementFinder, maxWaitTimeInMs = this.TIMEOUT_MS) {
         try {
-            await browser.wait(ExpectedConditions.elementToBeClickable(elem), maxWaitTimeInMs);
+            await browser.wait(this.EC.elementToBeClickable(elem), maxWaitTimeInMs);
         } catch (error) {
             const elementLocator = elem.locator();
             Logger.error(`Element '${elementLocator}' is not clickable. \n`, error);
@@ -70,7 +71,7 @@ export class GenericWebElement {
 
     protected async waitForElementToBeVisible(elem: ElementFinder, maxWaitTimeInMs = this.TIMEOUT_MS) {
         try {
-            return await browser.wait(ExpectedConditions.visibilityOf(elem), maxWaitTimeInMs);
+            return await browser.wait(this.EC.visibilityOf(elem), maxWaitTimeInMs);
         } catch (error) {
             const elementLocator = elem.locator();
             Logger.error(`Element '${elementLocator}' is not visible. \n`, error);
@@ -80,16 +81,17 @@ export class GenericWebElement {
 
     protected async waitForElementToBeInVisible(elem: ElementFinder, maxWaitTimeInMs = this.TIMEOUT_MS) {
         try {
-            return await browser.wait(ExpectedConditions.invisibilityOf(elem), maxWaitTimeInMs);
+            return await browser.wait(this.EC.invisibilityOf(elem), maxWaitTimeInMs);
         } catch (error) {
             const elementLocator = elem.locator();
             Logger.error(`Element '${elementLocator}' is still visible. \n`, error);
             throw error;
         }
     }
+
     protected async waitForElementToBePresent(elem: ElementFinder, maxWaitTimeInMs = this.TIMEOUT_MS) {
         try {
-            return await browser.wait(ExpectedConditions.presenceOf(elem), maxWaitTimeInMs);
+            return await browser.wait(this.EC.presenceOf(elem), maxWaitTimeInMs);
         } catch (error) {
             const elementLocator = elem.locator();
             Logger.error(`Element '${elementLocator}' is not present. \n`, error);
@@ -97,9 +99,19 @@ export class GenericWebElement {
         }
     }
 
+    protected async waitForElementToBeNotPresent(elem: ElementFinder, maxWaitTimeInMs = this.TIMEOUT_MS) {
+        try {
+            return await browser.wait(this.EC.not(this.EC.presenceOf(elem)), maxWaitTimeInMs);
+        } catch (error) {
+            const elementLocator = elem.locator();
+            Logger.error(`Element '${elementLocator}' is present. \n`, error);
+            throw error;
+        }
+    }
+
     protected async waitTextToBePresentInElement(elem: ElementFinder, text: string, maxWaitTimeInMs = this.TIMEOUT_MS) {
         try {
-            return await browser.wait(ExpectedConditions.textToBePresentInElement(elem, text), maxWaitTimeInMs);
+            return await browser.wait(this.EC.textToBePresentInElement(elem, text), maxWaitTimeInMs);
         } catch (error) {
             const elementLocator = elem.locator();
             Logger.error(`Text '${text}' is not present in Element '${elementLocator}'. \n`, error);

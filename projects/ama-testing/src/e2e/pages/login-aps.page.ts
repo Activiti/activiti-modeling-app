@@ -51,8 +51,9 @@ export class LoginAPSPage extends GenericPage implements LoginPageImplementation
 
     // Temporary fix for BE login form's issue
     private async attemptToLogin(username: string, password: string) {
+        const loginPageWaitTimeout = 10000;
         await this.clickOnSSOButton();
-        await super.waitForElementToBePresent(element(by.id('kc-form-login')));
+        await super.waitForElementToBePresent(element(by.id('kc-form-login')), loginPageWaitTimeout);
         await this.enterUsername(username);
         await this.enterPassword(password);
         await this.clickOnLoginButton();

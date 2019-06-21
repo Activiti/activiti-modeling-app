@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation, UtilRandom } from 'ama-testing/e2e';
+import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { DashboardPage } from 'ama-testing/e2e';
 import { DeleteEntityDialog } from 'ama-testing/e2e';
 import { SnackBar } from 'ama-testing/e2e';
@@ -38,11 +38,11 @@ describe('Delete project', () => {
     const deleteEntityDialog = new DeleteEntityDialog();
 
     let backend: Backend;
-    let app: NodeEntry;
+    let project: NodeEntry;
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        app = await backend.project.createAndWaitUntilAvailable('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
+        project = await backend.project.createAndWaitUntilAvailable();
     });
 
     beforeAll(async () => {
@@ -52,11 +52,11 @@ describe('Delete project', () => {
     });
 
     it('1. [C286407] Delete project with confirmation', async () => {
-        const appId = app.entry.id;
-        await dashboardPage.deleteProject(appId);
+        const projectId = project.entry.id;
+        await dashboardPage.deleteProject(projectId);
         await deleteEntityDialog.checkDialogAndConfirm('project');
         expect(await snackBar.isDeletedSuccessfully('project')).toBe(true);
-        expect(await dashboardPage.isProjectNotInList(appId)).toBe(true);
+        expect(await dashboardPage.isProjectNotInList(projectId)).toBe(true);
     });
 
     afterAll(async () => {

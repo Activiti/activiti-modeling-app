@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { element, by } from 'protractor';
+import { element, by, ElementFinder } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { Pagination } from './pagination.component';
 
@@ -30,46 +30,59 @@ export class DashboardPage extends GenericPage {
 
     async isProjectNameInList(projectName: string) {
         const projectItem = element(by.cssContainingText(`mat-cell.mat-column-name`, projectName));
-        return await super.waitForElementToBeVisible(projectItem);
+        return await this.isProjectInListWithPageNavigation(projectItem);
     }
 
     async getIdForProjectByItsName(projectName: string) {
         const projectItemColumn = element(by.css(`mat-cell.mat-column-name[data-project-name="${projectName}"]`));
-        await super.waitForElementToBeVisible(projectItemColumn);
+        await this.isProjectInListWithPageNavigation(projectItemColumn);
         return await projectItemColumn.getAttribute('data-project-id');
     }
 
     async isProjectInList(projectId: string) {
-        return await this.isProjectInListWithPageNavigation(projectId);
+        const project = this.getProject(`project-${projectId}`);
+        return await this.isProjectInListWithPageNavigation(project);
     }
 
     async isProjectNotInList(projectId: string) {
-        return await this.isProjectInListWithPageNavigation(projectId);
+        const project = this.getProject(`project-${projectId}`);
+        return await this.isProjectNotInListWithPageNavigation(project);
     }
 
     async navigateToProject(projectId: string) {
+        const project = this.getProject(`project-${projectId}`);
         try {
-            if (await this.isProjectInListWithPageNavigation(projectId)) {
-                await super.click(this.getProject(`project-${projectId}`));
+            if (await this.isProjectInListWithPageNavigation(project)) {
+                await super.click(project);
+            } else {
+                throw new Error(`Unable to find project '${projectId}'.`);
             }
         } catch (error) {
             throw new Error(`Unable to navigate to project '${projectId}'.\n ${error}`);
         }
     }
 
-    async isProjectInListWithPageNavigation(projectId: string) {
-        let found = false;
+    async isProjectInListWithPageNavigation(project: ElementFinder) {
         try {
-            const project = this.getProject(`project-${projectId}`);
             if (!(await project.isPresent()) && (await this.pagination.isOnLastPage() == null)) {
                 await this.pagination.set1000ItemsPerPage();
             }
-            if (await project.isPresent()) {
-                found = true;
-            }
-            return found;
+            return await super.waitForElementToBePresent(project);
         } catch (error) {
-            throw new Error(`Project '${projectId}' not found.\n ${error}`);
+            throw new Error(`Project '${project.locator()}' not found.\n ${error}`);
+            return false;
+        }
+    }
+
+    async isProjectNotInListWithPageNavigation(project: ElementFinder) {
+        try {
+            if (!(await project.isPresent()) && (await this.pagination.isOnLastPage() == null)) {
+                await this.pagination.set1000ItemsPerPage();
+            }
+            return await super.waitForElementToBeNotPresent(project);
+        } catch (error) {
+            throw new Error(`Project '${project.locator()}' not found.\n ${error}`);
+            return false;
         }
     }
 
@@ -96,8 +109,9 @@ export class DashboardPage extends GenericPage {
     }
 
     private async openContextMenuFor(projectId: string) {
+        const project = this.getProject(`project-${projectId}`);
         try {
-            if (await this.isProjectInListWithPageNavigation(projectId)) {
+            if (await this.isProjectInListWithPageNavigation(project)) {
                 const projectContextMenu = this.getProject(`project-context-${projectId}`);
                 await super.waitForElementToBeVisible(projectContextMenu);
                 await super.click(projectContextMenu);
