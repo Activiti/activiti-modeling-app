@@ -20,7 +20,7 @@
                         <ng-container matColumnDef="id">
                             <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.RELEASE_ID' | translate }}
                             </mat-header-cell>
-                            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'project-release-id-' + element.id">
+                            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'project-release-id-' + projectId">
                                 <span> {{element.id}} </span>
                             </mat-cell>
                         </ng-container>
