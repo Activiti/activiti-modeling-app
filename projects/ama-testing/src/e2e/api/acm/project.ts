@@ -59,7 +59,7 @@ export class ACMProject implements ProjectApi {
     }
 
     async release(projectId: string) {
-        await this.requestApiHelper.post(`/v1/projects/${projectId}/releases`);
+        return await this.requestApiHelper.post(`/v1/projects/${projectId}/releases`);
     }
 
     private async searchProjects() {
