@@ -761,6 +761,10 @@ export const formSchema = {
                 "version": {
                     "description": "Form Version",
                     "type": "number"
+                },
+                "visibleInStandalone": {
+                    "description": "Shows/hides form in standalone task",
+                    "type": "boolean"
                 }
             },
             "required": [
