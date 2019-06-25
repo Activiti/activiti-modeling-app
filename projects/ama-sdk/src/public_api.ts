@@ -23,6 +23,7 @@
 
 export * from './lib/api/public_api';
 export * from './lib/code-editor/public_api';
+export * from './lib/components/input-mapping-table/public_api';
 export * from './lib/process-editor/public_api';
 export * from './lib/connector-editor/public_api';
 export * from './lib/confirmation-dialog/public_api';

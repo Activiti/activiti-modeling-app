@@ -18,6 +18,13 @@
                 "COLUMN_VALUE": "Value",
                 "NO_PROPERTIES": "You don't have any property selected"
             }
+        },
+        "VARIABLE_MAPPING": {
+            "PARAMETER": "Parameter",
+            "VALUE": "Value",
+            "PROCESS_VARIABLE": "Process variable",
+            "SWITCH_VAR_VAL": "Switch variable/value",
+            "NO_PROCESS_PROPERTIES": "No process properties"
         }
     }
 }
