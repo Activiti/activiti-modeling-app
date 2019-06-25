@@ -188,7 +188,6 @@ export interface FormRepresentation {
     description: string;
     version?: number;
     formDefinition?: FormDefinition;
-    visibleInStandalone?: boolean;
 }
 
 export interface FormTab {
@@ -208,6 +207,8 @@ export interface FormDefinition {
     outcomes: FormOutcome[];
     metadata: {};
     variables: EntityProperties[];
+    standAlone?: boolean;
+
 }
 
 export interface UiPlugin {
