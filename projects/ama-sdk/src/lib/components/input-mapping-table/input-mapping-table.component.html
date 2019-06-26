@@ -19,14 +19,14 @@
             {{ 'SDK.VARIABLE_MAPPING.VALUE' | translate }}
         </mat-header-cell>
         <mat-cell *matCellDef="let parameter">
-            <ng-container *ngIf="mappingTypes[parameter.name] === VALUE_TYPE">
-               <input matInput
+            <div *ngIf="mappingTypes[parameter.name] === VALUE_TYPE">
+                <input matInput
                     class="amasdk-input-mapping-table__mapped-value"
                     [(ngModel)]="values[parameter.name]"
                     (change)="setParamWithValue(values[parameter.name], parameter)"
                     [attr.data-automation-id]="'value-input-' + parameter.id"
                 />
-            </ng-container>
+            </div>
             <ng-container *ngIf="mappingTypes[parameter.name] === VARIABLE_TYPE">
                 <mat-select
                     *ngIf="isThereOptionForParam(parameter); else noProcessPropertiesTmpl"
