@@ -200,7 +200,7 @@ describe('InputMappingTableComponent', () => {
     it('clicking on the icon should toggle it', () => {
         component.mappingTypes['name'] = MappingType.variable;
         fixture.detectChanges();
-        const icon = fixture.debugElement.query(By.css('.mapping-icon'));
+        const icon = fixture.debugElement.query(By.css('.amasdk-input-mapping-table__mapping-icon'));
         icon.nativeElement.click();
         fixture.detectChanges();
 
@@ -218,7 +218,7 @@ describe('InputMappingTableComponent', () => {
     it('when layers_clear icon is visible process value input box is visible', () => {
         component.mappingTypes['name'] = MappingType.value;
         fixture.detectChanges();
-        const inputBox = fixture.debugElement.query(By.css('.mapped-value'));
+        const inputBox = fixture.debugElement.query(By.css('.amasdk-input-mapping-table__mapped-value'));
 
         expect(inputBox).not.toBeNull();
     });
