@@ -1,0 +1,52 @@
+@mixin amasdk-output-mapping-table($theme) {
+    $foreground: map-get($theme, foreground);
+    $error: map-get($theme, warn);
+
+    .amasdk-output-mapping-table {
+        .mat-table {
+            border: 1px solid mat-color($foreground, text, 0.07);
+        }
+
+        .mat-header-cell:first-of-type {
+            padding-left: 0;
+        }
+
+        .mat-header-cell:last-of-type {
+            padding-right: 0;
+        }
+
+        .required-parameter {
+            color: mat-color($error);
+        }
+
+        .mat-cell {
+            margin: 0;
+            padding: 0;
+            display: block;
+            min-height: initial;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .mat-header-cell {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 0;
+        }
+
+        &__mapped-value {
+            border: 1px solid mat-color($foreground, text, 0.07);
+            margin-top: 0;
+        }
+
+        &__mapping-icon.mat-icon {
+            vertical-align: middle;
+            margin-left: 5px;
+            width: 20px;
+            height: 20px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

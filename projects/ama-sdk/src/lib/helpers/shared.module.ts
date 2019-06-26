@@ -26,6 +26,8 @@ import { CoreModule } from '@alfresco/adf-core';
 import { AllowedCharactersDirective } from './directives/allowed-characters.directive';
 import { EditorFooterComponent } from './components/editor-footer/editor-footer.component';
 import { LoggingModule } from '../logging/logging.module';
+import { InputMappingTableModule } from '../components/input-mapping-table/input-mapping-table.module';
+import { OutputMappingTableModule } from '../components/output-mapping-table/output-mapping-table.module';
 
 @NgModule({
     imports: [
@@ -33,6 +35,8 @@ import { LoggingModule } from '../logging/logging.module';
         MatIconModule,
         RouterModule,
         LoggingModule,
+        InputMappingTableModule,
+        OutputMappingTableModule,
         CoreModule.forChild(),
     ],
     declarations: [
@@ -48,7 +52,9 @@ import { LoggingModule } from '../logging/logging.module';
         HeaderBreadcrumbsComponent,
         EntityDialogComponent,
         EditorFooterComponent,
-        AllowedCharactersDirective
+        AllowedCharactersDirective,
+        InputMappingTableModule,
+        OutputMappingTableModule
     ]
 })
 export class SharedModule {}
