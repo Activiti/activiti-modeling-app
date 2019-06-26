@@ -188,6 +188,7 @@ export interface FormRepresentation {
     description: string;
     version?: number;
     formDefinition?: FormDefinition;
+    standAlone?: boolean;
 }
 
 export interface FormTab {
