@@ -27,15 +27,20 @@ export class LoginAPSPage extends GenericPage implements LoginPageImplementation
     static LOGIN_ATTEMPT_COUNTER = 3;
 
     private readonly ssoButton = element(by.css(`[data-automation-id="login-button-sso"]`));
+    private readonly loginForm = element(by.id('adf-login-form'));
     private readonly usernameField = element(by.id('username'));
     private readonly passwordField = element(by.id('password'));
-    private readonly loginButton = element(by.css('input[type="submit"]'));
+    private readonly loginButton = element(by.id('login-button'));
 
     constructor(testConfig: TestConfig) {
         super(testConfig);
     }
 
     async login(username: string, password: string) {
+        await this.signIn(username, password);
+    }
+
+    async loginWithRetry(username: string, password: string) {
         for (let i = 0; i < LoginAPSPage.LOGIN_ATTEMPT_COUNTER; i++) {
             try {
                 await this.attemptToLogin(username, password);
@@ -51,9 +56,13 @@ export class LoginAPSPage extends GenericPage implements LoginPageImplementation
 
     // Temporary fix for BE login form's issue
     private async attemptToLogin(username: string, password: string) {
-        const loginPageWaitTimeout = 10000;
         await this.clickOnSSOButton();
-        await super.waitForElementToBePresent(element(by.id('kc-form-login')), loginPageWaitTimeout);
+        await this.signIn(username, password);
+    }
+
+    // Temporary fix for BE login form's issue - redirect the user to login form
+    private async signIn(username: string, password: string) {
+        await super.waitForElementToBePresent(this.loginForm);
         await this.enterUsername(username);
         await this.enterPassword(password);
         await this.clickOnLoginButton();

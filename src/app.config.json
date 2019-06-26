@@ -9,7 +9,7 @@
         "clientId": "activiti",
         "scope": "openid",
         "secret": "",
-        "implicitFlow": true,
+        "implicitFlow": false,
         "silentLogin": false,
         "redirectSilentIframeUri": "",
         "redirectUri": "/",
