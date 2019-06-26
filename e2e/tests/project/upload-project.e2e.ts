@@ -25,6 +25,7 @@ import { getBackend } from 'ama-testing/e2e';
 import { testConfig } from '../../test.config';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { Logger } from 'ama-testing/e2e';
+// import { UtilFile } from 'ama-testing/e2e';
 
 const path = require('path');
 
@@ -41,6 +42,12 @@ describe('Upload project', () => {
 
     let backend: Backend;
     let loginPage: LoginPageImplementation;
+
+    const projectDetails = {
+        path: Resources.SIMPLE_PROJECT.file_location,
+        name: Resources.SIMPLE_PROJECT.project_name
+    };
+    const absoluteFilePath = path.resolve(testConfig.main.rootPath + projectDetails.path);
 
     async function cleanupProject(projectName: string) {
         try {
@@ -62,13 +69,8 @@ describe('Upload project', () => {
         await authenticatedPage.isLoggedIn();
     });
 
-    it('1. [C286559] Upload new project', async () => {
+    it('1. [C286559] Upload project', async () => {
         await sidebarActionMenu.clickOnCreateButton();
-        const projectDetails = {
-            path: Resources.SIMPLE_PROJECT.file_location,
-            name: Resources.SIMPLE_PROJECT.project_name
-        };
-        const absoluteFilePath = path.resolve(testConfig.main.rootPath + projectDetails.path);
         await sidebarActionMenu.uploadProject(absoluteFilePath);
         await sidebarActionMenu.isOptionsMenuDismissed();
 
@@ -76,8 +78,17 @@ describe('Upload project', () => {
         expect(await dashboardPage.isProjectNameInList(projectDetails.name)).toBe(true, `Item '${projectDetails.name}' was not found in the list.`);
     });
 
-    afterAll(async () => {
+    it('2. [C311378] Upload project using the REST API', async () => {
+        const project = await backend.project.import(absoluteFilePath);
+        await authenticatedPage.refreshPage();
+        expect(await dashboardPage.isProjectNameInList(project.entry.name)).toBe(true, `Item '${project.entry.name}' was not found in the list.`);
+    });
+
+    afterEach(async () => {
         await cleanupProject(Resources.SIMPLE_PROJECT.project_name);
+    });
+
+    afterAll(async () => {
         await backend.tearDown();
         await authenticatedPage.logout();
     });
