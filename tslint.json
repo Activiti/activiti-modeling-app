@@ -125,13 +125,13 @@
         "directive-selector": [
             true,
             "attribute",
-            "ama",
+            ["ama", "amasdk"],
             "kebab-case"
         ],
         "component-selector": [
             true,
             "element",
-            "ama",
+            ["ama", "amasdk" ],
             "kebab-case"
         ],
         "use-input-property-decorator": true,
