@@ -1256,17 +1256,6 @@ export const formSchema = {
                         }
                     ]
                 },
-                "rightFormFieldId": {
-                    "description": "right Form Field condition Id",
-                    "anyOf": [
-                        {
-                            "type": "null"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
                 "nextConditionOperator": {
                     "description": "Operator for the next condition",
                     "type": "string",
@@ -1293,18 +1282,7 @@ export const formSchema = {
                         }
                     ]
                 },
-                "rightRestResponseId": {
-                    "description": "Name of the tab where it belongs, if any is defined",
-                    "anyOf": [
-                        {
-                            "type": "null"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "leftFormFieldId": {
+                "leftValue": {
                     "description": "left Form Field condition Id",
                     "anyOf": [
                         {
@@ -1315,16 +1293,15 @@ export const formSchema = {
                         }
                     ]
                 },
-                "leftRestResponseId": {
-                    "description": "Name of the tab where it belongs, if any is defined",
-                    "anyOf": [
-                        {
-                            "type": "null"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
+                "leftType": {
+                    "description": "left Form Field condition Id",
+                    "type" : "string",
+                    "enum": ["variable", "field"]
+                },
+                "rightType": {
+                    "description": "left Form Field condition Id",
+                    "type" : "string",
+                    "enum": ["variable", "field", "value"]
                 },
                 "operator": {
                     "description": "math operations",
@@ -1338,17 +1315,6 @@ export const formSchema = {
                         ">=",
                         "empty",
                         "!empty"
-                    ]
-                },
-                "rightType": {
-                    "description": "right type",
-                    "anyOf": [
-                        {
-                            "type": "null"
-                        },
-                        {
-                            "type": "string"
-                        }
                     ]
                 }
             }
