@@ -1256,17 +1256,6 @@ export const formSchema = {
                         }
                     ]
                 },
-                "rightFormFieldId": {
-                    "description": "right Form Field condition Id",
-                    "anyOf": [
-                        {
-                            "type": "null"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
                 "nextConditionOperator": {
                     "description": "Operator for the next condition",
                     "type": "string",
@@ -1280,7 +1269,7 @@ export const formSchema = {
                     ]
                 },
                 "rightValue": {
-                    "description": "right value",
+                    "description": "This is the bare value or the id of the field or the id of the variable to pick up the value to compare",
                     "anyOf": [
                         {
                             "type": "null"
@@ -1293,8 +1282,8 @@ export const formSchema = {
                         }
                     ]
                 },
-                "rightRestResponseId": {
-                    "description": "Name of the tab where it belongs, if any is defined",
+                "leftValue": {
+                    "description": "This is the id of the field or the id of the variable to pick up the value to compare",
                     "anyOf": [
                         {
                             "type": "null"
@@ -1304,27 +1293,15 @@ export const formSchema = {
                         }
                     ]
                 },
-                "leftFormFieldId": {
-                    "description": "left Form Field condition Id",
-                    "anyOf": [
-                        {
-                            "type": "null"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
+                "leftType": {
+                    "description": "the type of the left value which can be field or variable",
+                    "type" : "string",
+                    "enum": ["variable", "field"]
                 },
-                "leftRestResponseId": {
-                    "description": "Name of the tab where it belongs, if any is defined",
-                    "anyOf": [
-                        {
-                            "type": "null"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ]
+                "rightType": {
+                    "description": "the type of the right value which can be value, field or variable",
+                    "type" : "string",
+                    "enum": ["variable", "field", "value"]
                 },
                 "operator": {
                     "description": "math operations",
@@ -1338,17 +1315,6 @@ export const formSchema = {
                         ">=",
                         "empty",
                         "!empty"
-                    ]
-                },
-                "rightType": {
-                    "description": "right type",
-                    "anyOf": [
-                        {
-                            "type": "null"
-                        },
-                        {
-                            "type": "string"
-                        }
                     ]
                 }
             }
