@@ -32,7 +32,9 @@ describe('Project data reducer', () => {
     it ('should handle GET_PROJECT_SUCCESS', () => {
         const project: Partial<Project> = {
             type: 'project',
+            /* cspell: disable-next-line */
             id: 'appid',
+            /* cspell: disable-next-line */
             name: 'appname'
         };
         initState = {...INITIAL_PROJECT_DATA_STATE};

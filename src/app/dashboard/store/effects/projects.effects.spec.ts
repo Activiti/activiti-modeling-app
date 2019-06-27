@@ -112,13 +112,13 @@ describe('ProjectsEffects', () => {
             expect(metadata.showProjectsEffect).toEqual({ dispatch: true });
         });
 
-        it('should dispatch a GetProjectAtteptAction if there are no projects loaded', () => {
+        it('should dispatch a GetProjectAttemptAction if there are no projects loaded', () => {
             actions$ = hot('a', { a: new ShowProjectsAction() });
             const expected = cold('b', { b: { type: GET_PROJECTS_ATTEMPT } });
             expect(effects.showProjectsEffect).toBeObservable(expected);
         });
 
-        it('should not dispatch a new GetProjectAtteptAction if there are apps loaded', () => {
+        it('should not dispatch a new GetProjectAttemptAction if there are apps loaded', () => {
             actions$ = hot('a', { a: new ShowProjectsAction() });
             const expected = cold('');
             projectsLoaded$.next(true);

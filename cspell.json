@@ -24,6 +24,11 @@
         "Devtools",
         "junit",
         "typeahead",
-        "uuidv"
+        "uuidv",
+        "diagramjs",
+        "webelement",
+        "localstorage",
+        "xdescribe",
+        "arraybuffer"
     ]
 }

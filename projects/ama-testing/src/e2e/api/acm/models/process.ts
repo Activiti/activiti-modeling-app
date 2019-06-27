@@ -28,6 +28,7 @@ export class ACMProcess extends ACMCrud {
 
     getDefaultContent(entityName: string, entityId: string) {
         const entityUuid = `${this.type.toLowerCase()}-${entityId}`;
+        /* cspell: disable-next-line */
         return `<?xml version="1.0" encoding="UTF-8"?>
         <bpmn2:definitions
             xmlns:activiti="http://activiti.org/bpmn"

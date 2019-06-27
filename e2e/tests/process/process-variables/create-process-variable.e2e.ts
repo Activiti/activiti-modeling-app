@@ -90,7 +90,7 @@ describe('Create process variable', async () => {
                 'required': false,
                 'value': ''
             };
-            await processVariablesDialog.goTocodeEditor();
+            await processVariablesDialog.goToCodeEditor();
 
             const editorValue = await codeEditorWidget.getCodeEditorValue(`process-variables://json:${process.entry.id}`);
             expect(JSON.parse(editorValue)).toEqual(expectedVariable, `Variables objects are not equal`);
@@ -111,12 +111,13 @@ describe('Create process variable', async () => {
             expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
             expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer')).toBe(true, 'Variable added is not displayed in the list.');
 
+            /* cspell: disable-next-line */
             await processVariablesDialog.setVariableValue('1Auto2mation3');
             expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
             expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer', '123')).toBe(true, 'Variable added is not displayed in the list.');
 
             const variableId = await processVariablesDialog.getVariableIdByRow(0);
-            await processVariablesDialog.goTocodeEditor();
+            await processVariablesDialog.goToCodeEditor();
 
             const editorValue = await codeEditorWidget.getCodeEditorValue(`process-variables://json:${process.entry.id}`);
             expect(JSON.parse(editorValue)[variableId].value).toEqual(123, `Variable value is not set correctly.`);
@@ -135,7 +136,7 @@ describe('Create process variable', async () => {
             expect(await processVariablesDialog.isVariableDisplayed(0, 'dateVar', 'date', currentDate)).toBe(true, 'Variable added is not displayed in the list.');
 
             const variableId = await processVariablesDialog.getVariableIdByRow(0);
-            await processVariablesDialog.goTocodeEditor();
+            await processVariablesDialog.goToCodeEditor();
 
             const editorValue = await codeEditorWidget.getCodeEditorValue(`process-variables://json:${process.entry.id}`);
             expect(JSON.parse(editorValue)[variableId].value).toEqual(currentDate, `Variable value is not set correctly.`);

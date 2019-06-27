@@ -56,7 +56,7 @@ export class ProjectEffects extends BaseEffects {
     );
 
     @Effect()
-    exportApplicatonEffect = this.actions$.pipe(
+    exportApplicationEffect = this.actions$.pipe(
         ofType<ExportProjectAction>(EXPORT_PROJECT),
         map((action: ExportProjectAction) => action.payload),
         switchMap(payload => this.exportProject(payload.projectId, payload.projectName))

@@ -41,7 +41,7 @@ xdescribe('Application sanity check with Login and Logout', () => {
             await loginPage.login(testConfig.ama.user, testConfig.ama.password);
             expect(await authenticatedPage.isLoggedIn()).toBe(true);
             await authenticatedPage.logout();
-            Logger.info('Login/logout - interation ', i);
+            Logger.info('Login/logout - interaction ', i);
         }
     });
 

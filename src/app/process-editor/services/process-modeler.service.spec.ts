@@ -59,7 +59,7 @@ describe('ProcessModelerServiceImplementation', () => {
         function expectEventHandlersCalledTimes(times: number) {
             const handlers = Object.keys(initConfig);
             handlers.forEach(handler => {
-                expect(initConfig[handler].mock.calls.length).toEqual(times, `${handler} was not called in the right amouunt of number.`);
+                expect(initConfig[handler].mock.calls.length).toEqual(times, `${handler} was not called in the right amount of number.`);
             });
         }
 

@@ -51,7 +51,7 @@ describe('ProcessEditorReducer', () => {
         expect (newState.toolbar.inProgress).toBe(true);
     });
 
-    it('should handle UPDATE_PROCESS_SUCESS', () => {
+    it('should handle UPDATE_PROCESS_SUCCESS', () => {
         const action = <UpdateProcessSuccessAction>{ type: UPDATE_PROCESS_SUCCESS};
 
         const newState = processEditorReducer(initialState, action);

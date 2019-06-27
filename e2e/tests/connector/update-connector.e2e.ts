@@ -58,6 +58,7 @@ describe('Update connector', async () => {
     });
 
     beforeEach(async () => {
+        /* cspell: disable-next-line */
         connector = await backend.connector.createAndWaitUntilAvailable(project.entry.id, 'qaconnector');
     });
 
