@@ -107,7 +107,7 @@ describe('ProcessModelerServiceImplementation', () => {
             });
         });
 
-        it('should be errored when an error happens during importXml', (complete) => {
+        it('should have error when an error happens during importXml', (complete) => {
             spyOn(bpmnFactoryMock.modeler, 'importXML')
                 .and.callFake((xml, callback) => callback('expected error', []));
 
@@ -120,7 +120,7 @@ describe('ProcessModelerServiceImplementation', () => {
             });
         });
 
-        it('should be errored when a warning(s) happen(s) during importXml', (complete) => {
+        it('should have error when a warning(s) happen(s) during importXml', (complete) => {
             spyOn(bpmnFactoryMock.modeler, 'importXML')
                 .and.callFake((xml, callback) => callback(null, [
                     { message: 'warning1'},

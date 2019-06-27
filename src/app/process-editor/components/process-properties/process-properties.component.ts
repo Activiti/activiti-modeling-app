@@ -60,7 +60,7 @@ export class ProcessPropertiesComponent implements OnInit, OnDestroy, AfterViewI
             .subscribe(this.updateElementProperty.bind(this));
 
         for (const handler of this.customPropertyHandlers) {
-            this.cardItemTypeService.setComponentTypeResolver(handler.type, () => handler.implmentationClass, true);
+            this.cardItemTypeService.setComponentTypeResolver(handler.type, () => handler.implementationClass, true);
         }
     }
 

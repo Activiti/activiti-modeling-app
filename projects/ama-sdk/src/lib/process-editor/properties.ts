@@ -44,13 +44,13 @@ export const PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS = new InjectionToken<Proces
 
 export interface ProcessEditorCustomProperty {
     type: string;
-    implmentationClass: Type<{}>;
+    implementationClass: Type<{}>;
 }
 
-export function providePropertyHandler(type: BpmnProperty, implmentationClass: Type<{}>) {
+export function providePropertyHandler(type: BpmnProperty, implementationClass: Type<{}>) {
     return {
         provide: PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS,
-        useValue: { type, implmentationClass },
+        useValue: { type, implementationClass: implementationClass },
         multi: true
     };
 }

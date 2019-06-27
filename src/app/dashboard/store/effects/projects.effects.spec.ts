@@ -317,7 +317,7 @@ describe('ProjectsEffects', () => {
         });
     });
 
-    describe('GetProjectRelasesAttemptEffect', () => {
+    describe('GetProjectReleasesAttemptEffect', () => {
 
         it('should dispatch an action', () => {
             expect(metadata.getProjectReleasesAttemptEffect).toEqual({ dispatch: true });

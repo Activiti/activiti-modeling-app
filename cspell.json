@@ -35,6 +35,8 @@
         "datepicker",
         "amalogin",
         "arrayize",
-        "minlength"
+        "minlength",
+        "generalmodel",
+        "moddle"
     ]
 }

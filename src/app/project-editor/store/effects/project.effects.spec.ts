@@ -88,7 +88,7 @@ describe('Project Effects', () => {
 
 
     it('ExportProject effect should dispatch an action', () =>
-        expect(metadata.exportApplicatonEffect).toEqual({ dispatch: true })
+        expect(metadata.exportApplicationEffect).toEqual({ dispatch: true })
     );
 
     it('ExportProject effect should call downloadResource', () => {

@@ -25,7 +25,9 @@ export class ProcessPropertiesCard extends GenericPage {
     readonly editName = element(by.css(`[data-automation-id="card-textitem-edit-icon-processName"]`));
     readonly editDocumentation = element(by.css(`[data-automation-id="card-textitem-edit-icon-documentation"]`));
     readonly id = element(by.css(`[data-automation-id="card-textitem-value-id"]`));
+    /* cspell: disable-next-line */
     readonly name = element(by.css(`[data-automation-id="card-textitem-editinput-processName"]`));
+    /* cspell: disable-next-line */
     readonly documentation = element(by.css(`[data-automation-id="card-textitem-edittextarea-documentation"]`));
     readonly updateName = element(by.css(`[data-automation-id="card-textitem-update-processName"]`));
     readonly updateDocumentation = element(by.css(`[data-automation-id="card-textitem-update-documentation"]`));

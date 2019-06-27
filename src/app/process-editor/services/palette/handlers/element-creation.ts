@@ -16,10 +16,10 @@
  */
 
 import { Injectable, Inject } from '@angular/core';
-import { BpmnElementTrigger, TiggerHandler, ProcessModelerServiceToken, ProcessModelerService } from 'ama-sdk';
+import { BpmnElementTrigger, TriggerHandler, ProcessModelerServiceToken, ProcessModelerService } from 'ama-sdk';
 
 @Injectable()
-export class ElementCreationHandler implements TiggerHandler {
+export class ElementCreationHandler implements TriggerHandler {
 
     constructor(
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService

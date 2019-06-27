@@ -51,7 +51,8 @@ describe('CodeValidatorService', () => {
         expect(validationResponse.error).toBe('APP.GENERAL.ERRORS.NOT_VALID_JSON');
     });
 
-    xit('should return proper erratic validation response when schemantically INVALID json is present', () => {
+    xit('should return proper erratic validation response when schematically INVALID json is present', () => {
+        /* cspell: disable-next-line */
         const json = { foodx: 'potato' };
         const validationResponse = service.validateJson(JSON.stringify(json), dummySchema);
 
@@ -60,7 +61,7 @@ describe('CodeValidatorService', () => {
         expect(validationResponse.error).toBe('APP.GENERAL.ERRORS.NOT_VALID_SCHEMA');
     });
 
-    it('should return proper successful validation response when schemantically VALID json is present', () => {
+    it('should return proper successful validation response when schematically VALID json is present', () => {
         const json = { food: 'potato' };
         ajv.validate.mockReturnValue(true);
         const validationResponse = service.validateJson(JSON.stringify(json), dummySchema);

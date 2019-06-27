@@ -49,19 +49,19 @@ export interface PaletteGroupElement {
 
 export type PaletteElement = PaletteSeparatorElement | PaletteGroupElement | BpmnTrigger | GeneralTrigger;
 
-export interface TiggerHandler {
+export interface TriggerHandler {
     processEvent(event: any, element: GeneralTrigger): void;
 }
 
 export interface PaletteElementHandler {
     key: string;
-    handler: TiggerHandler;
+    handler: TriggerHandler;
 }
 
 export const PaletteElementsToken = new InjectionToken<PaletteElement>('palette-elements');
 export const PaletteElementsHandlersToken = new InjectionToken<PaletteElementHandler[]>('palette-element-handlers');
 
-export function providePaletteHandler(key: string, handler: Type<TiggerHandler>) {
+export function providePaletteHandler(key: string, handler: Type<TriggerHandler>) {
     return [
         handler,
         {
