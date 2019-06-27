@@ -41,7 +41,21 @@ export const selectProcessPropertiesArray = createSelector(
     }
 );
 
-export const selectProcessMappingsFor = (serviceId) => {
+export const selectProcessPropertiesArrayFor = (processId: string) => {
+    return createSelector(
+        selectProcessEntityContainer,
+        (processes): EntityProperty[] => {
+            const process = processes.entities[processId];
+            if (process && process.extensions && process.extensions.properties) {
+                return Object.values(process.extensions.properties);
+            } else {
+                return [];
+            }
+        }
+    );
+};
+
+export const selectProcessMappingsFor = (serviceId: string) => {
     return createSelector(
         selectSelectedProcess,
         (process): ServiceParameterMappings => {

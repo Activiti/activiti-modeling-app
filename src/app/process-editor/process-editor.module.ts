@@ -75,6 +75,8 @@ import { PaletteOverlayDirective } from './components/process-modeler/palette/pa
 // Angular can't bundle json data into prod build, that is why the file is .json.ts
 import { paletteElements } from './config/palette-elements.json';
 import { CardViewSignalRefItemComponent } from './services/cardview-properties/signal-ref-item/signal-ref-item.component';
+import { CardViewCalledItemItemComponent } from './services/cardview-properties/called-element-item/called-element-item.component';
+import { InputMappingTableModule, OutputMappingTableModule } from 'ama-sdk';
 
 @NgModule({
     imports: [
@@ -92,7 +94,9 @@ import { CardViewSignalRefItemComponent } from './services/cardview-properties/s
         MatTooltipModule,
         MatChipsModule,
         CodeEditorModule,
-        DragDropModule
+        DragDropModule,
+        InputMappingTableModule,
+        OutputMappingTableModule
     ],
     declarations: [
         ProcessEditorComponent,
@@ -105,6 +109,7 @@ import { CardViewSignalRefItemComponent } from './services/cardview-properties/s
         CardViewImplementationItemComponent,
         CardViewDecisionTaskItemComponent,
         CardViewDefaultSequenceFlowItemComponent,
+        CardViewCalledItemItemComponent,
         CardViewSignalRefItemComponent
     ],
     entryComponents: [
@@ -113,6 +118,7 @@ import { CardViewSignalRefItemComponent } from './services/cardview-properties/s
         CardViewDecisionTaskItemComponent,
         CardViewDefaultSequenceFlowItemComponent,
         CardViewSignalRefItemComponent,
+        CardViewCalledItemItemComponent,
         ProcessEditorComponent
     ],
     exports: [ProcessEditorRoutingModule],
@@ -135,6 +141,7 @@ import { CardViewSignalRefItemComponent } from './services/cardview-properties/s
         providePropertyHandler(BpmnProperty.formKey, CardViewTextItemComponent),
         providePropertyHandler(BpmnProperty.defaultSequenceFlow, CardViewDefaultSequenceFlowItemComponent),
         providePropertyHandler(BpmnProperty.signalRef, CardViewSignalRefItemComponent),
+        providePropertyHandler(BpmnProperty.calledElement, CardViewCalledItemItemComponent),
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider()
