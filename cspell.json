@@ -1,0 +1,29 @@
+{
+    "version": "0.1",
+    "language": "en",
+    "dictionaries": ["html", "en-gb", "en_US"],
+    "words": [
+        "ngrx",
+        "classlist",
+        "polyfill",
+        "snackbar",
+        "Uploader",
+        "Uploaders",
+        "cardview",
+        "bpmnjs",
+        "sidenav",
+        "unzipper",
+        "bpmndi",
+        "activiti",
+        "submenu",
+        "amasdk",
+        "Memoized",
+        "upsert",
+        "paginator",
+        "camunda",
+        "Devtools",
+        "junit",
+        "typeahead",
+        "uuidv"
+    ]
+}

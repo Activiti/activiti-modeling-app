@@ -55,6 +55,7 @@ describe('Create project', () => {
     it('1. [C284637] Create new project', async () => {
         await sidebarActionMenu.createProject();
 
+        /* cspell: disable-next-line */
         const project = await createEntityDialog.setEntityDetails('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
 
         expect(await snackBar.isCreatedSuccessfully('project')).toBe(true);

@@ -28,6 +28,7 @@ describe('createDueDateProperty', () => {
     beforeEach(() => {
         element = getDiagramElementMock({
             $type: 'diagram-element-type',
+            /* cspell: disable-next-line */
             [BpmnProperty.name]: 'Nobuo Uematsu'
         });
 
