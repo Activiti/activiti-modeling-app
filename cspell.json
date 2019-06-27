@@ -29,6 +29,10 @@
         "webelement",
         "localstorage",
         "xdescribe",
-        "arraybuffer"
+        "arraybuffer",
+        "selectbox",
+        "textitem",
+        "datepicker",
+        "amalogin"
     ]
 }
