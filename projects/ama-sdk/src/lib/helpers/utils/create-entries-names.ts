@@ -51,6 +51,6 @@ export const formatUuid = (contentType: string, uuid: string): string => {
     return `${ contentType.toLowerCase()}-${uuid}`;
 };
 
-export const getRandomCharsAndNums = (noOfCharstringLengths: number): string => {
-    return Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, noOfCharstringLengths);
+export const getRandomCharsAndNums = (noOfCharStringLengths: number): string => {
+    return Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, noOfCharStringLengths);
 };

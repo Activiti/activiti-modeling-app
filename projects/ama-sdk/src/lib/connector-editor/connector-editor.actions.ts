@@ -18,13 +18,13 @@
 import { Action } from '@ngrx/store';
 import { Connector } from './../api/types';
 
-export const GET_CONNECTOR_ATTEMPT = '[Conector] Get attempt';
+export const GET_CONNECTOR_ATTEMPT = '[Connector] Get attempt';
 export class GetConnectorAttemptAction implements Action {
     readonly type = GET_CONNECTOR_ATTEMPT;
     constructor(public connectorId: string) {}
 }
 
-export const LOAD_CONNECTOR_ATTEMPT = '[Conector] Load attempt';
+export const LOAD_CONNECTOR_ATTEMPT = '[Connector] Load attempt';
 export class LoadConnectorAttemptAction implements Action {
     readonly type = LOAD_CONNECTOR_ATTEMPT;
     constructor(public connectorId: string) {}

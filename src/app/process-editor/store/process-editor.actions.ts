@@ -182,7 +182,7 @@ export class RemoveDiagramElementAction implements Action {
     constructor(public element?: SelectedProcessElement) {}
 }
 
-export const REMOVE_ELEMENT_MAPPING = '[Process] Remove elemet mapping';
+export const REMOVE_ELEMENT_MAPPING = '[Process] Remove element mapping';
 export class RemoveElementMappingAction implements Action {
     readonly type = REMOVE_ELEMENT_MAPPING;
     constructor(public elementId: string, public processId: string) {}

@@ -33,6 +33,8 @@
         "selectbox",
         "textitem",
         "datepicker",
-        "amalogin"
+        "amalogin",
+        "arrayize",
+        "minlength"
     ]
 }
