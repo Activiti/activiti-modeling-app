@@ -1269,7 +1269,7 @@ export const formSchema = {
                     ]
                 },
                 "rightValue": {
-                    "description": "right value",
+                    "description": "This is the bare value or the id of the field or the id of the variable to pick up the value to compare",
                     "anyOf": [
                         {
                             "type": "null"
@@ -1283,7 +1283,7 @@ export const formSchema = {
                     ]
                 },
                 "leftValue": {
-                    "description": "left Form Field condition Id",
+                    "description": "This is the id of the field or the id of the variable to pick up the value to compare",
                     "anyOf": [
                         {
                             "type": "null"
@@ -1294,12 +1294,12 @@ export const formSchema = {
                     ]
                 },
                 "leftType": {
-                    "description": "left Form Field condition Id",
+                    "description": "the type of the left value which can be field or variable",
                     "type" : "string",
                     "enum": ["variable", "field"]
                 },
                 "rightType": {
-                    "description": "left Form Field condition Id",
+                    "description": "the type of the right value which can be value, field or variable",
                     "type" : "string",
                     "enum": ["variable", "field", "value"]
                 },
