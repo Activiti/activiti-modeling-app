@@ -1,4 +1,4 @@
-<div class="advanced-implementation-block">
+<div class="called-element-block">
     <mat-form-field>
         <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ACTIVITY_NAME' | translate }}</div>
         <mat-select (selectionChange)="changeProcess()" [(ngModel)]="processId">
@@ -9,7 +9,7 @@
     </mat-form-field>
 
     <div *ngIf="processId">
-        <h5 data-automation-id="input-mapping-header">{{ 'ADV_CONNECTOR_EDITOR.ELEMENT_PROPERTIES.INPUT_MAPPING' | translate }}:</h5>
+        <h5 data-automation-id="input-mapping-header">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INPUT_MAPPING' | translate }}:</h5>
         <amasdk-input-mapping-table
             [parameters]="processVariables$ | async"
             [processProperties]="subProcessVariables$ | async"
@@ -17,7 +17,7 @@
             (update)="updateMapping($event, 'inputs')">
         </amasdk-input-mapping-table>
 
-        <h5 data-automation-id="output-mapping-header">{{ 'ADV_CONNECTOR_EDITOR.ELEMENT_PROPERTIES.OUTPUT_MAPPING' | translate }}:</h5>
+        <h5 data-automation-id="output-mapping-header">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.OUTPUT_MAPPING' | translate }}:</h5>
         <amasdk-input-mapping-table
             [parameters]="processVariables$ | async"
             [processProperties]="subProcessVariables$ | async"

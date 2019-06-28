@@ -34,6 +34,8 @@
             "IMPLEMENTATION": "Implementation",
             "DECISION_TASK": "Decision task",
             "DECISION_TABLE_NAME": "Decision table name",
+            "INPUT_MAPPING": "Input mapping",
+            "OUTPUT_MAPPING": "Output mapping:",
             "INPUTS": "Inputs",
             "OUTPUTS": "Outputs",
             "INPUT": "Input",
