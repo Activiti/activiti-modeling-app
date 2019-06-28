@@ -21,7 +21,7 @@ import { Store } from '@ngrx/store';
 import { CalledElementItemModel } from './called-element-item.model';
 import { selectProcessesArray } from '../../../store/process-editor.selectors';
 import { Observable, Subject, of, zip } from 'rxjs';
-import { filter, take, takeUntil, switchMap, map, tap } from 'rxjs/operators';
+import { filter, take, takeUntil, switchMap, map } from 'rxjs/operators';
 import {
     AmaState,
     Process,
