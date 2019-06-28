@@ -25,7 +25,6 @@ import { getBackend } from 'ama-testing/e2e';
 import { testConfig } from '../../test.config';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { Logger } from 'ama-testing/e2e';
-// import { UtilFile } from 'ama-testing/e2e';
 
 const path = require('path');
 
@@ -85,7 +84,7 @@ describe('Upload project', () => {
     });
 
     afterEach(async () => {
-        await cleanupProject(Resources.SIMPLE_PROJECT.project_name);
+        await cleanupProject(projectDetails.name);
     });
 
     afterAll(async () => {
