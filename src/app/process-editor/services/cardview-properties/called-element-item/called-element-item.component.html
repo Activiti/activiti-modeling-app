@@ -18,11 +18,11 @@
         </amasdk-input-mapping-table>
 
         <h5 data-automation-id="output-mapping-header">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.OUTPUT_MAPPING' | translate }}:</h5>
-        <amasdk-input-mapping-table
-            [parameters]="processVariables$ | async"
-            [processProperties]="subProcessVariables$ | async"
+        <amasdk-output-mapping-table
+            [parameters]="subProcessVariables$ | async"
+            [processProperties]="processVariables$ | async"
             [mapping]="mapping.outputs || {}"
             (update)="updateMapping($event, 'outputs')">
-        </amasdk-input-mapping-table>
+        </amasdk-output-mapping-table>
     </div>
 </div>

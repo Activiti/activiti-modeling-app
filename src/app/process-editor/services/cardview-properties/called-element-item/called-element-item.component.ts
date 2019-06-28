@@ -20,8 +20,8 @@ import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { CalledElementItemModel } from './called-element-item.model';
 import { selectProcessesArray } from '../../../store/process-editor.selectors';
-import { Observable, Subject } from 'rxjs';
-import { filter, take, takeUntil } from 'rxjs/operators';
+import { Observable, Subject, of, zip } from 'rxjs';
+import { filter, take, takeUntil, switchMap, map, tap } from 'rxjs/operators';
 import {
     AmaState,
     Process,
@@ -53,7 +53,10 @@ export class CardViewCalledItemItemComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
-        this.processes$ = this.store.select(selectProcessesArray);
+        this.processes$ = this.store.select(selectProcessesArray).pipe(
+            switchMap(processes => zip(of(processes), this.store.select(selectSelectedProcess))),
+            map(([processes, selectedProcess]) => processes.filter(process => process.id !== selectedProcess.id))
+        );
         this.processId = this.property.value;
         this.loadVariables();
 
