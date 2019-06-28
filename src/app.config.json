@@ -48,6 +48,25 @@
                 "key": 2,
                 "label": "PROCESS_EDITOR.PRIORITIES.HIGH"
             }
+        ],
+        "timer-types": [
+            {
+                "key": "",
+                "label": ""
+            },
+            {
+                "key": "cycle",
+                "label": "PROCESS_EDITOR.TIMER_TYPES.CYCLE"
+            },
+            {
+                "key": "duration",
+                "label": "PROCESS_EDITOR.TIMER_TYPES.DURATION"
+            },
+            {
+                "key": "date",
+                "label": "PROCESS_EDITOR.TIMER_TYPES.DATE"
+            }
+
         ]
     },
     "navigation": {

@@ -5,6 +5,11 @@
             "MEDIUM": "1",
             "HIGH": "2"
         },
+        "TIMER_TYPES": {
+            "CYCLE": "Cycle",
+            "DURATION": "Duration",
+            "DATE": "Date"
+        },
         "TABS": {
             "DIAGRAM_EDITOR": "Diagram editor",
             "RAW_EDITOR": "XML editor",
@@ -51,7 +56,10 @@
             "EXPRESSION": "Condition Expression",
             "FORM_SELECTOR": "Form selector",
             "DEFAULT_SEQUENCE_FLOW": "Default sequence flow",
-            "PROCESS_NAME_REQUIRED": "Process name is required"
+            "PROCESS_NAME_REQUIRED": "Process name is required",
+            "TIMER_DEFINITION_REQUIRED": "Timer definition is required",
+            "TIMER_TYPE": "Timer type",
+            "TIMER_DEFINITION": "Timer definition"
         },
         "UPLOAD_SUCCESS": "The process was successfully uploaded",
         "PROCESS_UPDATED": "The process was successfully updated",

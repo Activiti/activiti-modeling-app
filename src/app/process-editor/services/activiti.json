@@ -776,6 +776,9 @@
           "bpmn:ReceiveTask",
           "bpmn:CallActivity",
           "bpmn:TimerEventDefinition",
+          "bpmn:TimeCycle",
+          "bpmn:TimeDate",
+          "bpmn:TimeDuration",
           "bpmn:SignalEventDefinition",
           "bpmn:MultiInstanceLoopCharacteristics"
         ]

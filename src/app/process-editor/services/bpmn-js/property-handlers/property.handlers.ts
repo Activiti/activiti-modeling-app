@@ -35,6 +35,8 @@ import { processNameHandler } from './process-name.handler';
 import { defaultSequenceFlowHandler } from './default-sequence-flow.handler';
 import { signalRefHandler } from './signalRef.handler';
 import { signalScopeHandler } from './signalScope.handler';
+import { timerTypeHandler } from './timer-type.handler';
+import { timerDefinitionHandler } from './timer-definition.handler';
 
 export const handlers = {
     [BpmnProperty.id]: idHandler,
@@ -55,5 +57,7 @@ export const handlers = {
     [BpmnProperty.properties]: processPropertyHandler,
     [BpmnProperty.defaultSequenceFlow]: defaultSequenceFlowHandler,
     [BpmnProperty.signalRef]: signalRefHandler,
-    [BpmnProperty.signalScope]: signalScopeHandler
+    [BpmnProperty.signalScope]: signalScopeHandler,
+    [BpmnProperty.type]: timerTypeHandler,
+    [BpmnProperty.definition]: timerDefinitionHandler,
 };
