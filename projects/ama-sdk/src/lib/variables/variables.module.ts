@@ -20,13 +20,13 @@ import { CommonModule } from '@angular/common';
 import { CodeEditorModule } from './../code-editor/code-editor.module';
 import { CoreModule } from '@alfresco/adf-core';
 import { VariablesComponent } from './variables.component';
-import { PropertiesViwerComponent } from './properties-viewer/properties-viewer.component';
+import { PropertiesViewerComponent } from './properties-viewer/properties-viewer.component';
 import { VariablesService } from './variables.service';
 import { ValueTypeInputComponent } from './properties-viewer/value-type-input.component';
-import { PropertiesViwerStringInputComponent } from './properties-viewer/value-type-inputs/string-input.component';
-import { PropertiesViwerIntegerInputComponent } from './properties-viewer/value-type-inputs/integer-input.component';
-import { PropertiesViwerBooleanInputComponent } from './properties-viewer/value-type-inputs/boolean-input.component';
-import { PropertiesViwerDateInputComponent } from './properties-viewer/value-type-inputs/date-input.component';
+import { PropertiesViewerStringInputComponent } from './properties-viewer/value-type-inputs/string-input.component';
+import { PropertiesViewerIntegerInputComponent } from './properties-viewer/value-type-inputs/integer-input.component';
+import { PropertiesViewerBooleanInputComponent } from './properties-viewer/value-type-inputs/boolean-input.component';
+import { PropertiesViewerDateInputComponent } from './properties-viewer/value-type-inputs/date-input.component';
 import { SharedModule } from '../helpers/public_api';
 
 @NgModule({
@@ -38,19 +38,19 @@ import { SharedModule } from '../helpers/public_api';
     ],
     declarations: [
         VariablesComponent,
-        PropertiesViwerComponent,
+        PropertiesViewerComponent,
         ValueTypeInputComponent,
-        PropertiesViwerStringInputComponent,
-        PropertiesViwerIntegerInputComponent,
-        PropertiesViwerBooleanInputComponent,
-        PropertiesViwerDateInputComponent
+        PropertiesViewerStringInputComponent,
+        PropertiesViewerIntegerInputComponent,
+        PropertiesViewerBooleanInputComponent,
+        PropertiesViewerDateInputComponent
     ],
     entryComponents: [
         VariablesComponent,
-        PropertiesViwerIntegerInputComponent,
-        PropertiesViwerStringInputComponent,
-        PropertiesViwerBooleanInputComponent,
-        PropertiesViwerDateInputComponent
+        PropertiesViewerIntegerInputComponent,
+        PropertiesViewerStringInputComponent,
+        PropertiesViewerBooleanInputComponent,
+        PropertiesViewerDateInputComponent
     ],
     providers: [
         VariablesService

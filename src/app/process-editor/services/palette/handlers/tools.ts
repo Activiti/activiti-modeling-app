@@ -16,10 +16,10 @@
  */
 
 import { Injectable, Inject } from '@angular/core';
-import { TiggerHandler, ToolTrigger, ProcessModelerServiceToken, ProcessModelerService } from 'ama-sdk';
+import { TriggerHandler, ToolTrigger, ProcessModelerServiceToken, ProcessModelerService } from 'ama-sdk';
 
 @Injectable()
-export class ToolsHandler implements TiggerHandler {
+export class ToolsHandler implements TriggerHandler {
 
     constructor(@Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService) {}
 

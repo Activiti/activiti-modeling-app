@@ -19,7 +19,7 @@ import { Observable } from 'rxjs';
 import { FilterType, MODEL_TYPE } from '../api/types';
 import { InjectionToken } from '@angular/core';
 
-export interface FilterDataAdaper {
+export interface FilterDataAdapter {
     expandedPredicate: (filters) => boolean;
     contents: Observable<Partial<FilterType>[]>;
     loading: Observable<boolean>;
@@ -30,7 +30,7 @@ export interface ModelFilter {
     type: MODEL_TYPE;
     name: string;
     icon: string;
-    adapter: FilterDataAdaper;
+    adapter: FilterDataAdapter;
     order: number;
 }
 

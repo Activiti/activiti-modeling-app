@@ -20,14 +20,14 @@ import { MatDialogRef,  MatTableModule, MatTableDataSource } from '@angular/mate
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
-import { PropertiesViwerComponent } from './properties-viewer.component';
+import { PropertiesViewerComponent } from './properties-viewer.component';
 import { of } from 'rxjs';
 import { VariablesService } from '../variables.service';
 import { UuidService } from './../../services/uuid.service';
 
 describe('PropertiesViewerComponent', () => {
-    let fixture: ComponentFixture<PropertiesViwerComponent>;
-    let component: PropertiesViwerComponent;
+    let fixture: ComponentFixture<PropertiesViewerComponent>;
+    let component: PropertiesViewerComponent;
     let service: VariablesService;
 
     const mockDialog = {
@@ -42,14 +42,14 @@ describe('PropertiesViewerComponent', () => {
                 { provide: Store, useValue: { dispatch: jest.fn(), select: jest.fn().mockReturnValue(of()) }},
                 { provide: UuidService, useValue: { generate() { return 'generated-uuid'; } } }
             ],
-            declarations: [PropertiesViwerComponent],
+            declarations: [PropertiesViewerComponent],
             imports: [ MatTableModule, TranslateModule.forRoot()],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(PropertiesViwerComponent);
+        fixture = TestBed.createComponent(PropertiesViewerComponent);
         service = TestBed.get(VariablesService);
         component = fixture.componentInstance;
         fixture.detectChanges();

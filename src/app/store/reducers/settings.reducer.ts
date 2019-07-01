@@ -16,14 +16,14 @@
  */
 
 import { Action } from '@ngrx/store';
-import { INITIAL_SETTINGS_STATE, AmaSettinsgState } from './../states/settings.state';
+import { INITIAL_SETTINGS_STATE, AmaSettingsState } from './../states/settings.state';
 import { CHANGE_CONNECTOR_SETTINGS, ChangedConnectorSettingsAction } from './../../connector-editor/store/connector-editor.actions';
 import { AppActionTypes, AsyncInitAction } from '../actions/app.actions';
 
 export function settingsReducer(
-    state: AmaSettinsgState = INITIAL_SETTINGS_STATE,
+    state: AmaSettingsState = INITIAL_SETTINGS_STATE,
     action: Action
-): AmaSettinsgState {
+): AmaSettingsState {
     switch (action.type) {
         case CHANGE_CONNECTOR_SETTINGS:
             return changedConnectorSettings(state, <ChangedConnectorSettingsAction> action);
@@ -34,12 +34,12 @@ export function settingsReducer(
     }
 }
 
-function changedConnectorSettings(state: AmaSettinsgState, action: ChangedConnectorSettingsAction): AmaSettinsgState {
+function changedConnectorSettings(state: AmaSettingsState, action: ChangedConnectorSettingsAction): AmaSettingsState {
     const newState = {...state, connectors: {showWithTemplate: action.isChecked}};
     return newState;
 }
 
-function loadFromLocalStorage(state: AmaSettinsgState, action: AsyncInitAction) {
+function loadFromLocalStorage(state: AmaSettingsState, action: AsyncInitAction) {
     const newState = {...state, connectors: {showWithTemplate: action.config.showConnectorsWithTemplate}};
     return newState;
 }

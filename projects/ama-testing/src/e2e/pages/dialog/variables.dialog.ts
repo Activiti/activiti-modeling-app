@@ -131,7 +131,7 @@ export class VariablesDialog extends GenericDialog {
         await super.click(this.propertiesViewer);
     }
 
-    async goTocodeEditor() {
+    async goToCodeEditor() {
         await super.click(this.codeEditor);
     }
 

@@ -16,7 +16,7 @@
  */
 
 import { Injectable, Inject } from '@angular/core';
-import { FilterDataAdaper, MODEL_FILTERS, ModelFilter } from 'ama-sdk';
+import { FilterDataAdapter, MODEL_FILTERS, ModelFilter } from 'ama-sdk';
 const orderBy = require('lodash/orderBy');
 
 @Injectable()
@@ -27,7 +27,7 @@ export class ProjectTreeHelper {
         return orderBy(this.filters, ['order'], ['asc']);
     }
 
-    getDataAdapter(filterType: string): FilterDataAdaper {
+    getDataAdapter(filterType: string): FilterDataAdapter {
         const selectedFilter = this.filters.filter((filter => filter.type === filterType))[0];
         return selectedFilter.adapter;
     }

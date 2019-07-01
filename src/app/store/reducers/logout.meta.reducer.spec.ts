@@ -22,6 +22,7 @@ import { AppActionTypes } from '../actions/app.actions';
 describe('logoutMetaReducer', () => {
     let logoutReducer: any;
     const state = {
+        /* cspell: disable-next-line */
         whatever: 'Badabooom'
     };
 

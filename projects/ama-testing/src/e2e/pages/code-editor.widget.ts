@@ -21,10 +21,10 @@ import { GenericWebElement } from './common/generic.webelement';
 
 export class CodeEditorWidget extends GenericWebElement {
 
-    readonly codeEditorTexarea = element(by.css(`.monaco-editor textarea`));
+    readonly codeEditorTextArea = element(by.css(`.monaco-editor textarea`));
 
     async isTextEditorPresent() {
-        await super.waitForElementToBeVisible(this.codeEditorTexarea);
+        await super.waitForElementToBeVisible(this.codeEditorTextArea);
     }
 
     async updateCodeEditorContent(content: string) {
@@ -36,8 +36,8 @@ export class CodeEditorWidget extends GenericWebElement {
             Logger.info('Value sent to XML editor: \n', content);
             await browser.executeScript('this.monaco.editor.getModels()[0].setValue(`' + content + '`);');
             Logger.info('XML editor content after setting a value: \n', await this.getCodeEditorValue());
-            await this.codeEditorTexarea.click();
-            await this.codeEditorTexarea.sendKeys(protractor.Key.HOME, protractor.Key.ENTER);
+            await this.codeEditorTextArea.click();
+            await this.codeEditorTextArea.sendKeys(protractor.Key.HOME, protractor.Key.ENTER);
         } catch (e) {
             Logger.error(`Updating editor content with '${content}' failed with thrown error: ${e.message}`);
             throw e;

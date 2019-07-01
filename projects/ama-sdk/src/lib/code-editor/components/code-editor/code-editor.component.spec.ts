@@ -117,6 +117,7 @@ describe('CodeEditorComponent', () => {
         });
 
         it('should trigger an event on position change with the new positions', done => {
+            /* cspell: disable-next-line */
             component.content = 'Lorem ipsum dolor sit amet';
             const expectedPosition: CodeEditorPosition = {
                 lineNumber: 42,

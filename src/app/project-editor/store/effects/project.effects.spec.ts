@@ -88,7 +88,7 @@ describe('Project Effects', () => {
 
 
     it('ExportProject effect should dispatch an action', () =>
-        expect(metadata.exportApplicatonEffect).toEqual({ dispatch: true })
+        expect(metadata.exportApplicationEffect).toEqual({ dispatch: true })
     );
 
     it('ExportProject effect should call downloadResource', () => {
@@ -102,7 +102,7 @@ describe('Project Effects', () => {
         service.exportProject = jest.fn().mockReturnValue(of(mockPayload));
 
         actions$ = hot('a', { a: new ExportProjectAction(mockPayload) });
-        effects.exportApplicatonEffect.subscribe( () => {} );
+        effects.exportApplicationEffect.subscribe( () => {} );
         getTestScheduler().flush();
         expect(service.exportProject).toHaveBeenCalledWith('id1');
         getTestScheduler().flush();
@@ -124,7 +124,7 @@ describe('Project Effects', () => {
             }})
         });
 
-        expect(effects.exportApplicatonEffect).toBeObservable(expected);
+        expect(effects.exportApplicationEffect).toBeObservable(expected);
     });
 });
 

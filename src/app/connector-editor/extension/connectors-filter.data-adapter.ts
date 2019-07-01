@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable, zip, of } from 'rxjs';
-import { Connector, CONNECTOR, FilterDataAdaper, AmaState, selectProjectConnectorsArray } from 'ama-sdk';
+import { Connector, CONNECTOR, FilterDataAdapter, AmaState, selectProjectConnectorsArray } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { selectConnectorsLoading } from '../store/connector-editor.selectors';
 import { ShowConnectorsAction } from '../store/connector-editor.actions';
@@ -25,7 +25,7 @@ import { selectConnectorsSettings } from './../../store/selectors/settings.selec
 import { map, mergeMap } from 'rxjs/operators';
 
 @Injectable()
-export class ConnectorsFilterDataAdapter implements FilterDataAdaper {
+export class ConnectorsFilterDataAdapter implements FilterDataAdapter {
     connectorSettings$: Observable<boolean>;
 
     constructor(private store: Store<AmaState>) {}

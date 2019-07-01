@@ -58,6 +58,7 @@ describe('Update connector', async () => {
     });
 
     beforeEach(async () => {
+        /* cspell: disable-next-line */
         connector = await backend.connector.createAndWaitUntilAvailable(project.entry.id, 'qaconnector');
     });
 
@@ -69,6 +70,7 @@ describe('Update connector', async () => {
 
     it('1. [C289327] Update connector in JSON editor', async () => {
         const newModel = {
+            /* cspell: disable-next-line */
             name: 'modifiedname',
             description: 'new description'
         };

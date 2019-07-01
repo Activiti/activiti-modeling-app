@@ -36,7 +36,7 @@ export class ReleaseListComponent implements OnInit, OnDestroy {
     loading$: Observable<boolean>;
     projectId: string;
     pagination$: Observable<Pagination>;
-    subcription: Subscription = <Subscription>{ unsubscribe: () => {} };
+    subscription: Subscription = <Subscription>{ unsubscribe: () => {} };
     displayedColumns = ['thumbnail', 'id', 'createdBy',  'created', 'version'];
     pageSizeOptions = [ 10, 25, 50, 100 ];
     breadcrumbs$: Observable<BreadcrumbItem[]>;
@@ -64,7 +64,7 @@ export class ReleaseListComponent implements OnInit, OnDestroy {
     }
 
     getProjectId() {
-        this.subcription = this.route.params.subscribe(params => {
+        this.subscription = this.route.params.subscribe(params => {
             this.projectId = params['projectId'];
          });
     }
@@ -77,6 +77,6 @@ export class ReleaseListComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.subcription.unsubscribe();
+        this.subscription.unsubscribe();
       }
 }

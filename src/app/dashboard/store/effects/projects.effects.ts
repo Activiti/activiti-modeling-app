@@ -107,7 +107,7 @@ export class ProjectsEffects extends BaseEffects {
     @Effect()
     getProjectReleasesAttemptEffect = this.actions$.pipe(
         ofType<GetProjectReleasesAttemptAction>(GET_PROJECT_RELEASES_ATTEMPT),
-        switchMap(action => this.getProjectReleasesAtempt(action.projectId, action.pagination))
+        switchMap(action => this.getProjectReleasesAttempt(action.projectId, action.pagination))
     );
 
     @Effect()
@@ -174,7 +174,7 @@ export class ProjectsEffects extends BaseEffects {
         );
     }
 
-    private getProjectReleasesAtempt(projectId: string, pagination: Partial<Pagination>) {
+    private getProjectReleasesAttempt(projectId: string, pagination: Partial<Pagination>) {
         return  this.dashboardService.fetchProjectReleases(projectId, pagination).pipe(
             switchMap(releases => [new GetProjectReleasesSuccessAction(releases)]),
             catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'APP.HOME.ERROR.LOAD_RELEASES'), e))

@@ -26,6 +26,7 @@ describe('ElementHelper', () => {
     beforeEach(() => {
         element = getDiagramElementMock({
             $type: 'diagram-element-type',
+            /* cspell: disable-next-line */
             [BpmnProperty.name]: 'Nobuo Uematsu'
         });
 
@@ -50,7 +51,7 @@ describe('ElementHelper', () => {
     describe('getProperty', () => {
         it('should return the given property of the element', () => {
             const propertyValue = ElementHelper.getProperty(element, BpmnProperty.name);
-
+            /* cspell: disable-next-line */
             expect(propertyValue).toBe('Nobuo Uematsu');
         });
 
@@ -67,6 +68,7 @@ describe('ElementHelper', () => {
 
     describe('setProperty', () => {
         it('should set the given property', () => {
+            /* cspell: disable-next-line */
             const expectedPropertyValue = 'Yasunori Mitsuda';
 
             ElementHelper.setProperty(modeling, element, BpmnProperty.name, expectedPropertyValue);
@@ -77,6 +79,7 @@ describe('ElementHelper', () => {
 
         it(`should NOT set the given property if it doesn't have a handler defined`, () => {
             const setter = () => {
+                /* cspell: disable-next-line */
                 ElementHelper.setProperty(modeling, element, propertyWithoutHandler, 'Chrono Trigger');
             };
             expect(setter).not.toThrow();

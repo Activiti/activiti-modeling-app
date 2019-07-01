@@ -48,8 +48,10 @@ describe('List connectors', async () => {
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
         project1 = await backend.project.createAndWaitUntilAvailable();
+        /* cspell: disable-next-line */
         connector1 = await backend.connector.create(project1.entry.id, 'qaconnector1');
         project2 = await backend.project.createAndWaitUntilAvailable();
+        /* cspell: disable-next-line */
         connector2 = await backend.connector.create(project2.entry.id, 'qaconnector2');
     });
 
@@ -80,6 +82,7 @@ describe('List connectors', async () => {
         await dashboardPage.navigateTo();
         await dashboardPage.navigateToProject(project1.entry.id);
         await sidebarActionMenu.createConnector();
+        /* cspell: disable-next-line */
         const connectorItem = await createEntityDialog.setEntityDetails('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
         expect(await projectContentPage.isModelInList('connector', connectorItem.name)).toBe(true, 'Connector is not displayed in the left sidebar');
 

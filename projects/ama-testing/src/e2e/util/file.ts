@@ -86,8 +86,8 @@ export class UtilFile {
         return entriesMap.get(searchedKey);
     }
 
-    static unzip(zipFilePath: string, destionationPath: string) {
-        return fs.createReadStream(zipFilePath).pipe(unzipper.Extract({ path: destionationPath }));
+    static unzip(zipFilePath: string, destinationPath: string) {
+        return fs.createReadStream(zipFilePath).pipe(unzipper.Extract({ path: destinationPath }));
     }
 }
 

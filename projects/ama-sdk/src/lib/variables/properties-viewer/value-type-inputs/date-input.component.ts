@@ -48,7 +48,7 @@ import { FormControl } from '@angular/forms';
     ]
 })
 
-export class PropertiesViwerDateInputComponent {
+export class PropertiesViewerDateInputComponent {
 
     @Output() change = new EventEmitter();
     @Input() value: string;

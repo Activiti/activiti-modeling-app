@@ -29,7 +29,7 @@ import { EntityProperty, EntityProperties } from './../../api/types';
     selector: 'amasdk-properties-viewer'
 })
 
-export class PropertiesViwerComponent implements OnInit, OnDestroy {
+export class PropertiesViewerComponent implements OnInit, OnDestroy {
     types = primitive_types;
     subscription: Subscription;
     serviceSubscription: Subscription;

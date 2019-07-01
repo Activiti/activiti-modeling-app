@@ -29,6 +29,7 @@ describe('Create entries names', () => {
     });
 
     it('test formatUid', () => {
+        /* cspell: disable-next-line */
         expect(formatUuid('testType', '1234')).toEqual('testtype-1234');
     });
 

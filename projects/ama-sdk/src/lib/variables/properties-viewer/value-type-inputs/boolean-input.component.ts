@@ -27,7 +27,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
     `
 })
 
-export class PropertiesViwerBooleanInputComponent {
+export class PropertiesViewerBooleanInputComponent {
 
     @Output() change = new EventEmitter();
     @Input() value: boolean;
