@@ -11,8 +11,8 @@
     <div *ngIf="processId">
         <h5 data-automation-id="input-mapping-header">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INPUT_MAPPING' | translate }}:</h5>
         <amasdk-input-mapping-table
-            [parameters]="processVariables$ | async"
-            [processProperties]="subProcessVariables$ | async"
+            [parameters]="subProcessVariables$ | async"
+            [processProperties]="processVariables$ | async"
             [mapping]="mapping.inputs || {}"
             (update)="updateMapping($event, 'inputs')">
         </amasdk-input-mapping-table>
