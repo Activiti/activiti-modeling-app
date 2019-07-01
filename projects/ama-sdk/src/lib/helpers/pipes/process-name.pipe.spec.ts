@@ -16,7 +16,7 @@
  */
 
 import { ProcessNamePipe } from './process-name.pipe';
-import * as hellper from '../utils/create-entries-names';
+import * as helper from '../utils/create-entries-names';
 
 describe('ProcessNamePipe', () => {
     let pipe: ProcessNamePipe;
@@ -30,9 +30,9 @@ describe('ProcessNamePipe', () => {
     });
 
     it('providing value returns expected result', () => {
-        spyOn(hellper, 'createProcessName');
+        spyOn(helper, 'createProcessName');
 
         pipe.transform('name.bpmn', []);
-        expect(hellper.createProcessName).toHaveBeenCalledWith('name.bpmn');
+        expect(helper.createProcessName).toHaveBeenCalledWith('name.bpmn');
     });
 });

@@ -46,7 +46,7 @@ describe('dashboardReducer', () => {
     describe('GET_PROJECTS_ATTEMPT', () => {
         const action = new GetProjectsAttemptAction();
 
-        it('loading shoul be true', () => {
+        it('loading should be true', () => {
             const newState = dashboardReducer(initialState, action);
             expect(newState.loading).toBe(true);
         });
@@ -113,7 +113,7 @@ describe('dashboardReducer', () => {
 
         const action = new UploadProjectSuccessAction(project);
 
-        it('shoudl add a new project to the state', () => {
+        it('should add a new project to the state', () => {
             const newState = dashboardReducer(initialState, action);
             expect(newState.projects['4']).not.toBe(undefined);
         });

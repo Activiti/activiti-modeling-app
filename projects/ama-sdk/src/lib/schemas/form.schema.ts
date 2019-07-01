@@ -1,4 +1,6 @@
 /* tslint:disable */
+/* cSpell:disable */
+
 export const formSchema = {
     "$schema": "http://json-schema.org/draft-07/schema",
     "description": "Form definition json schema",

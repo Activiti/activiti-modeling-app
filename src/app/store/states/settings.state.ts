@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-export interface AmaSettinsgState {
+export interface AmaSettingsState {
     connectors: AmaConnectorSettings;
 }
 
@@ -23,7 +23,7 @@ export interface AmaConnectorSettings {
     showWithTemplate: boolean;
 }
 
-export const INITIAL_SETTINGS_STATE: AmaSettinsgState = {
+export const INITIAL_SETTINGS_STATE: AmaSettingsState = {
     connectors: {
         showWithTemplate: false
     }

@@ -23,7 +23,7 @@ import { DashboardRoutingModule } from './router/dashboard-routing.module';
 import { CoreModule } from '@alfresco/adf-core';
 import { MomentModule } from 'ngx-moment';
 
-import { DashboardNavigationComponent } from './components/dahboard-navigation/dashboard-navigation.component';
+import { DashboardNavigationComponent } from './components/dashboard-navigation/dashboard-navigation.component';
 import { ProjectsListComponent } from './components/projects-list/projects-list.component';
 
 import { DashboardService } from './services/dashboard.service';

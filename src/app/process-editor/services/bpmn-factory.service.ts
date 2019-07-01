@@ -19,8 +19,8 @@ import { Injectable } from '@angular/core';
 import * as bpmnPropertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/bpmn';
 import { BpmnFactory } from 'ama-sdk';
 /*
-    Angular 6 --prod mode doesn't seem to work with the normal way of importing the bmpnjs library.
-    Modify this import with care, doublechecking the process editor works in --prod mode.
+    Angular 6 --prod mode doesn't seem to work with the normal way of importing the bpmnjs library.
+    Modify this import with care, double-checking the process editor works in --prod mode.
 */
 import BpmnModeler from 'bpmn-js/dist/bpmn-modeler.production.min';
 import { emptyPaletteModule } from './palette/dummy-bpmn-palette.provider';

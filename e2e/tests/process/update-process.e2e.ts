@@ -98,7 +98,9 @@ describe('Update process', async () => {
 
     it('2. [C286410] Update process - Dirty state with confirmation of navigating away', async () => {
         await processPropertiesCard.editProcessName(process.entry.name + '_updated');
+        /* cspell: disable-next-line */
         expect(await toolbar.isElementInDirtyState(process.entry.name)).toBe(true, 'AZZZZ');
+        /* cspell: disable-next-line */
         expect(await processContentPage.isPageInDirtyState()).toBe(true, 'BZZZZ');
 
         await toolbar.navigateToBreadcrumbItem(project.entry.name);

@@ -18,12 +18,12 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Process, PROCESS, FilterDataAdaper, AmaState } from 'ama-sdk';
+import { Process, PROCESS, FilterDataAdapter, AmaState } from 'ama-sdk';
 import { selectProcessesArray, selectProcessesLoading } from '../store/process-editor.selectors';
 import { ShowProcessesAction } from '../store/process-editor.actions';
 
 @Injectable()
-export class ProcessesFilterDataAdapter implements FilterDataAdaper {
+export class ProcessesFilterDataAdapter implements FilterDataAdapter {
     constructor(private store: Store<AmaState>) {}
 
     get expandedPredicate() {

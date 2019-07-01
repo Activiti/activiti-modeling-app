@@ -56,7 +56,7 @@ describe('UiEffects', () => {
         });
     });
 
-    it('setMenu should modify the localstorage', () => {
+    it('setMenu should modify the localStorage', () => {
         storageService.setItem('menuOpened', 'true');
         const setMenuAction = new SetMenuAction(false);
         actions$ = hot('a', { a: setMenuAction });

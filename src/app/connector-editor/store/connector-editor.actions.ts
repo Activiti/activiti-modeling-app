@@ -55,25 +55,25 @@ export interface ConnectorDialogPayload {
     connector?: Connector;
 }
 
-export const SHOW_CONNECTORS = '[Conectors] Show the list';
+export const SHOW_CONNECTORS = '[Connectors] Show the list';
 export class ShowConnectorsAction implements Action {
     readonly type = SHOW_CONNECTORS;
     constructor(public projectId: string) {}
 }
 
-export const GET_CONNECTORS_ATTEMPT = '[Conectors] Get attempt';
+export const GET_CONNECTORS_ATTEMPT = '[Connectors] Get attempt';
 export class GetConnectorsAttemptAction implements Action {
     readonly type = GET_CONNECTORS_ATTEMPT;
     constructor(public projectId: string) {}
 }
 
-export const GET_CONNECTORS_SUCCESS = '[Conectors] Get success';
+export const GET_CONNECTORS_SUCCESS = '[Connectors] Get success';
 export class GetConnectorsSuccessAction implements Action {
     readonly type = GET_CONNECTORS_SUCCESS;
     constructor(public connectors: Connector[]) {}
 }
 
-export const GET_CONNECTOR_SUCCESS = '[Conector] Get success';
+export const GET_CONNECTOR_SUCCESS = '[Connector] Get success';
 export class GetConnectorSuccessAction implements Action {
     readonly type = GET_CONNECTOR_SUCCESS;
     constructor(public connector: Connector, public connectorContent: ConnectorContent) {}

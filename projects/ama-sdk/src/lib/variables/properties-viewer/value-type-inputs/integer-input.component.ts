@@ -24,7 +24,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
     `
 })
 
-export class PropertiesViwerIntegerInputComponent {
+export class PropertiesViewerIntegerInputComponent {
 
     @Output() change = new EventEmitter();
     @Input() value: string;

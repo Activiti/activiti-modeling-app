@@ -210,6 +210,7 @@ describe('ProcessEntitiesReducer', () => {
             ids: [mockProcess.id]
         };
 
+        /* cspell: disable-next-line */
         const mockProperty: EntityProperty = { 'id': 'id', 'name': 'appa', 'type': 'string', 'required': false, 'value': '' };
         const mockProperties: EntityProperties = { [mockProperty.id]: mockProperty };
         const newState = processEntitiesReducer(initialState, new processVariablesActions.UpdateProcessVariablesAction({

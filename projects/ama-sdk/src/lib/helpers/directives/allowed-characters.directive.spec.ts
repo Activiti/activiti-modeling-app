@@ -67,6 +67,7 @@ describe('AllowedCharactersDirective', () => {
     });
 
     it('should filter every not allowed letter by default value on key press', () => {
+        /* cspell: disable-next-line */
         const text = 'abcdefghijklmnopqrstuvwxyz0123456789';
         const notAllowedText = '`A_=+-$%^&*@';
 

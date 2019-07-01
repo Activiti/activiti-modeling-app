@@ -22,6 +22,7 @@ import { CardItemTypeService } from '@alfresco/adf-core';
 import { ProcessEntitiesState } from '../../../store/process-entities.state';
 
 @Component({
+    /* cspell: disable-next-line */
     selector: 'ama-processvariables',
     templateUrl: './process-variable-item.component.html',
     providers: [CardItemTypeService]

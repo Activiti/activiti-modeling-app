@@ -64,7 +64,7 @@ describe ('Dashboard navigation Component', () => {
         component.ngOnInit();
     });
 
-    it('clicking on upload button should dispatch a UploadProjectAttemptAction, and the fileImput should be cleaned', () => {
+    it('clicking on upload button should dispatch a UploadProjectAttemptAction, and the fileInput should be cleaned', () => {
         const button = fixture.nativeElement.querySelector('.app-upload-btn');
         spyOn(component.fileInput.nativeElement, 'click');
         spyOn(store, 'dispatch');

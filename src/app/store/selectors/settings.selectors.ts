@@ -16,9 +16,9 @@
  */
 
 
-import { AmaSettinsgState } from '../states/settings.state';
+import { AmaSettingsState } from '../states/settings.state';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 export const getSettingsState = createFeatureSelector<any>('settings');
 
-export const selectConnectorsSettings =  createSelector(getSettingsState, (state: AmaSettinsgState) => state.connectors.showWithTemplate);
+export const selectConnectorsSettings =  createSelector(getSettingsState, (state: AmaSettingsState) => state.connectors.showWithTemplate);

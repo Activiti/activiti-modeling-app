@@ -18,7 +18,7 @@
 import { Injectable, InjectionToken/*, Inject*/ } from '@angular/core';
 /*
     Angular 6 --prod mode doesn't seem to work with the normal way of importing the ajv library.
-    Modify this import with care, doublechecking the process editor works in --prod mode.
+    Modify this import with care, double-checking the process editor works in --prod mode.
 */
 import Ajv from 'ajv/dist/ajv.min';
 

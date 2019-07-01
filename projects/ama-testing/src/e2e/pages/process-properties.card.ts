@@ -23,9 +23,11 @@ export class ProcessPropertiesCard extends GenericPage {
 
     readonly editorProperties = element(by.css(`[data-automation-id="process-editor-properties"]`));
     readonly editName = element(by.css(`[data-automation-id="card-textitem-edit-icon-processName"]`));
-    readonly editdDocumentation = element(by.css(`[data-automation-id="card-textitem-edit-icon-documentation"]`));
+    readonly editDocumentation = element(by.css(`[data-automation-id="card-textitem-edit-icon-documentation"]`));
     readonly id = element(by.css(`[data-automation-id="card-textitem-value-id"]`));
+    /* cspell: disable-next-line */
     readonly name = element(by.css(`[data-automation-id="card-textitem-editinput-processName"]`));
+    /* cspell: disable-next-line */
     readonly documentation = element(by.css(`[data-automation-id="card-textitem-edittextarea-documentation"]`));
     readonly updateName = element(by.css(`[data-automation-id="card-textitem-update-processName"]`));
     readonly updateDocumentation = element(by.css(`[data-automation-id="card-textitem-update-documentation"]`));
@@ -59,7 +61,7 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async editProcessDocumentation(newDocumentation: string) {
-        await super.click(this.editdDocumentation);
+        await super.click(this.editDocumentation);
         await super.clear(this.documentation);
         await super.sendKeysIfVisible(this.documentation, newDocumentation);
         await super.click(this.updateDocumentation);
@@ -85,7 +87,7 @@ export class ProcessPropertiesCard extends GenericPage {
         const dtOption = element(by.cssContainingText('.mat-option-text', dtName));
         await super.click(this.decisionTableSelector);
         // Workaround:
-        // Click on DT selectbox untill the list of decision tables is populated.
+        // Click on DT selectbox until the list of decision tables is populated.
         let i = 0;
         try {
             while (await super.waitForElementToBeInVisible(dtOption, 500) && i < 10) {
@@ -159,20 +161,20 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async isToggleEnabled(connectorId: string) {
-        const toogleIcon = element(by.cssContainingText(`[data-automation-id="toggle-icon-${connectorId}"]`, `layers`));
-        await super.waitForElementToBeVisible(toogleIcon);
+        const toggleIcon = element(by.cssContainingText(`[data-automation-id="toggle-icon-${connectorId}"]`, `layers`));
+        await super.waitForElementToBeVisible(toggleIcon);
         return true;
     }
 
     async isToggleDisabled(connectorId: string) {
-        const toogleIcon = element(by.cssContainingText(`[data-automation-id="toggle-icon-${connectorId}"]`, `layers_clear`));
-        await super.waitForElementToBeVisible(toogleIcon);
+        const toggleIcon = element(by.cssContainingText(`[data-automation-id="toggle-icon-${connectorId}"]`, `layers_clear`));
+        await super.waitForElementToBeVisible(toggleIcon);
         return true;
     }
 
     async switchToggle(connectorId: string) {
-        const toogleIcon = element(by.css(`[data-automation-id="toggle-icon-${connectorId}"]`));
-        await super.click(toogleIcon);
+        const toggleIcon = element(by.css(`[data-automation-id="toggle-icon-${connectorId}"]`));
+        await super.click(toggleIcon);
     }
 
     async setValue(connectorId: string, value: string) {

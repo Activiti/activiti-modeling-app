@@ -55,6 +55,7 @@ describe('Delete connector', () => {
     });
 
     beforeEach( async() => {
+        /* cspell: disable-next-line */
         connector = await backend.connector.createAndWaitUntilAvailable(app.entry.id, 'qaconnector');
     });
 

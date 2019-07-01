@@ -21,7 +21,7 @@ export function DummyPaletteProvider(palette) {
         'hand-tool': {
             group: 'tools',
             className: 'bpmn-icon-hand-tool',
-            title: 'Dummy tool, otherwise diagramjs\'s palette crashes',
+            title: 'Dummy tool, otherwise diagramjs palette crashes',
             action: {}
         }
     });

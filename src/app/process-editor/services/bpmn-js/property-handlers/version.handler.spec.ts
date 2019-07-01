@@ -19,7 +19,7 @@ import { handlers } from './property.handlers';
 import { BpmnProperty } from 'ama-sdk';
 import { getDiagramElementMock, getModelingMock } from '../bpmn-js.mock';
 
-describe('verionHandler', () => {
+describe('versionHandler', () => {
     const property = BpmnProperty.version;
 
     let handler, mockElement, modeling;

@@ -81,6 +81,7 @@ export class ACMProject implements ProjectApi {
     }
 
     private getRandomName(): string {
+        /* cspell: disable-next-line */
         return this.namePrefix + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz');
     }
 

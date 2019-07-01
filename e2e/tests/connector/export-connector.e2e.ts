@@ -55,6 +55,7 @@ xdescribe('Export connector', () => {
     });
 
     beforeEach( async() => {
+        /* cspell: disable-next-line */
         connector = await backend.connector.create(project.entry.id, 'qaconnector');
     });
 

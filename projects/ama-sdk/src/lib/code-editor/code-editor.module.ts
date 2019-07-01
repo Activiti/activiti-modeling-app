@@ -31,7 +31,7 @@ export function monacoEditorConfigFactory(codeEditorService: CodeEditorService) 
     imports: [
         CommonModule,
         FormsModule,
-        // We reprovide module's internal NGX_MONACO_EDITOR_CONFIG, see the providers
+        // We re-provide module's internal NGX_MONACO_EDITOR_CONFIG, see the providers
         MonacoEditorModule.forRoot({})
     ],
     declarations: [CodeEditorComponent],

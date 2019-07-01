@@ -128,6 +128,7 @@ describe('ConnectorEntitiesReducer', () => {
         let connectorContent: ConnectorContent;
 
         beforeEach(() => {
+            /* cspell: disable-next-line */
             connectorContent = <ConnectorContent>{ name: 'Tom Marvolo Riddle', description: 'I am Lord Voldemort' };
         });
 

@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-import { PropertiesViwerIntegerInputComponent } from './integer-input.component';
-import { PropertiesViwerStringInputComponent } from './string-input.component';
-import { PropertiesViwerBooleanInputComponent } from './boolean-input.component';
-import { PropertiesViwerDateInputComponent } from './date-input.component';
+import { PropertiesViewerIntegerInputComponent } from './integer-input.component';
+import { PropertiesViewerStringInputComponent } from './string-input.component';
+import { PropertiesViewerBooleanInputComponent } from './boolean-input.component';
+import { PropertiesViewerDateInputComponent } from './date-input.component';
 
 export const valueTypeInputsMapping = {
-    'string': PropertiesViwerStringInputComponent,
-    'integer': PropertiesViwerIntegerInputComponent,
-    'boolean': PropertiesViwerBooleanInputComponent,
-    'date': PropertiesViwerDateInputComponent
+    'string': PropertiesViewerStringInputComponent,
+    'integer': PropertiesViewerIntegerInputComponent,
+    'boolean': PropertiesViewerBooleanInputComponent,
+    'date': PropertiesViewerDateInputComponent
 };

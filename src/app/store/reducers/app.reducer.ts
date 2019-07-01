@@ -36,7 +36,7 @@ export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action):
 
     switch (action.type) {
         case AppActionTypes.AsyncInit:
-            newState = ayncInit(state, <AsyncInitAction>action);
+            newState = asyncInit(state, <AsyncInitAction>action);
             break;
         case UPDATE_SETTINGS:
             newState = updateSettings(state, <UpdateSettingsAction>action);
@@ -73,7 +73,7 @@ function setDirtyState(state: AppState, action: SetAppDirtyStateAction): AppStat
     return { ...state, dirtyState: action.payload };
 }
 
-function ayncInit(state: AppState, action: AsyncInitAction): AppState {
+function asyncInit(state: AppState, action: AsyncInitAction): AppState {
     const menuOpened = action.config.menuOpened;
 
     return {

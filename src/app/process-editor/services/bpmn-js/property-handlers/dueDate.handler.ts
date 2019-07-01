@@ -20,7 +20,9 @@ import moment from 'moment-es6';
 
 const propertyKey = BpmnProperty.dueDate;
 
+/* cspell: disable-next-line */
 export const displayFormat = 'YYYY-MM-DDTHH:mm:ss';
+/* cspell: disable-next-line */
 export const exportFormat = 'YYYY-MM-DDTHH:mm:ss';
 
 const get = element => {

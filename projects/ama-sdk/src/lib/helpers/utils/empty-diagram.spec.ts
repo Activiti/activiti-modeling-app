@@ -18,7 +18,7 @@
 import { getEmptyDiagram } from './empty-diagram';
 
 describe('Empty diagram', () => {
-    const buidlXML = process => {
+    const buildXML = process => {
         const generatedDiagram = getEmptyDiagram(process);
         const parser = new DOMParser();
         const diagram = parser.parseFromString(generatedDiagram, 'text/xml');
@@ -32,7 +32,7 @@ describe('Empty diagram', () => {
             name: 'process1'
         };
 
-        const diagram = buidlXML(mockProcess);
+        const diagram = buildXML(mockProcess);
         const documentation = diagram.getElementsByTagName('bpmn2:documentation');
         const id = diagram.getElementsByTagName('bpmn2:process')[0].getAttribute('id');
         const idReference = diagram.getElementsByTagName('bpmndi:BPMNPlane')[0].getAttribute('bpmnElement');
@@ -51,7 +51,7 @@ describe('Empty diagram', () => {
             description: 'desc'
         };
 
-        const diagram = buidlXML(mockProcess);
+        const diagram = buildXML(mockProcess);
         const documentation = diagram.getElementsByTagName('bpmn2:documentation');
         const id = diagram.getElementsByTagName('bpmn2:process')[0].getAttribute('id');
         const name = diagram.getElementsByTagName('bpmn2:process')[0].getAttribute('name');
