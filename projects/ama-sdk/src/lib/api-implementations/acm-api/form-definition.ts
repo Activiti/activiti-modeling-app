@@ -23,6 +23,7 @@ export const createEmptyForm = (id: string, name: string, description?: string):
         name,
         description,
         version: 0,
+        standAlone: true,
         formDefinition: {
             tabs: [],
             fields: [],
