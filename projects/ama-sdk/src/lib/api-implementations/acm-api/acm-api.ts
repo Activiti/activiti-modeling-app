@@ -41,6 +41,7 @@ import {
     DataContent,
     FormContent
 } from '../../api/types';
+ import { DecisionTableApiInterface } from '../../api/decision-table-api.interface';
 
 @Injectable()
 export class ACMApi implements AmaApi {
@@ -49,7 +50,7 @@ export class ACMApi implements AmaApi {
         @Inject(PROCESS_API_TOKEN) public Process: ModelApiInterface<ProcessType, ProcessContent>,
         @Inject(CONNECTOR_API_TOKEN) public Connector: ModelApiInterface<ConnectorType, ConnectorContent>,
         @Inject(FORM_API_TOKEN) public Form: ModelApiInterface<FormType, FormContent>,
-        @Inject(DECISION_TABLE_API_TOKEN) public DecisionTable: ModelApiInterface<DecisionTableType, DecisionTableContent>,
+        @Inject(DECISION_TABLE_API_TOKEN) public DecisionTable: DecisionTableApiInterface<DecisionTableType, DecisionTableContent>,
         @Inject(UI_API_TOKEN) public Ui: ModelApiInterface<UiType, UiContent>,
         @Inject(DATA_API_TOKEN) public Data: ModelApiInterface<DataType, DataContent>
     ) {}
