@@ -166,6 +166,16 @@ export const formSchema = {
                         "group"
                     ]
                 },
+                "visibilityCondition": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/visibilityConditionObject"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
                 "params": {
                     "$ref": "#/definitions/paramsObject"
                 },
