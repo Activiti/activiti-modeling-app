@@ -19,16 +19,19 @@ import { ProjectApi } from '../api.interfaces';
 import { NodeEntry, ResultSetPaging } from 'alfresco-js-api-node';
 import { UtilRandom, Logger, UtilApi } from '../../util';
 import { ACMBackend } from './acm-backend';
-import { E2eRequestApiHelper } from './e2e-request-api.helper';
+import { E2eRequestApiHelper, E2eRequestApiHelperOptions } from './e2e-request-api.helper';
+import * as fs from 'fs';
 
 export class ACMProject implements ProjectApi {
 
     requestApiHelper: E2eRequestApiHelper;
+    tmpFilePath: string;
     endPoint = '/v1/projects/';
     namePrefix = 'aps-app-';
 
     constructor(backend: ACMBackend) {
         this.requestApiHelper = new E2eRequestApiHelper(backend);
+        this.tmpFilePath = backend.config.main.paths.tmp;
     }
 
     async create(modelName: string = this.getRandomName()) {
@@ -60,6 +63,23 @@ export class ACMProject implements ProjectApi {
 
     async release(projectId: string) {
         return await this.requestApiHelper.post(`/v1/projects/${projectId}/releases`);
+    }
+
+    async import(projectFilePath: string) {
+        const fileContent = await fs.createReadStream(projectFilePath);
+        const requestOptions: E2eRequestApiHelperOptions = {
+            formParams:  { file: fileContent },
+            contentTypes: [ 'multipart/form-data' ]
+        };
+        try {
+            const project =  await this.requestApiHelper
+                .post<NodeEntry>(`/v1/projects/import`, requestOptions);
+            Logger.info(`[Project] Project imported with name '${project.entry.name}' and id '${project.entry.id}'.`);
+            return project;
+        } catch (error) {
+            Logger.error(`[Project] Import project failed!`);
+            throw error;
+        }
     }
 
     private async searchProjects() {
