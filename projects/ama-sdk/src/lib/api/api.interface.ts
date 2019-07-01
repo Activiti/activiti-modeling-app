@@ -18,6 +18,7 @@
 import { Injectable, InjectionToken } from '@angular/core';
 import { ProjectApi } from './project-api.interface';
 import { ModelApiInterface } from './generalmodel-api.interface';
+ import { DecisionTableApiInterface } from './decision-table-api.interface';
 import {
     Process,
     ProcessContent,
@@ -37,7 +38,7 @@ export const PROCESS_API_TOKEN = new InjectionToken<ModelApiInterface<Process, P
 export const CONNECTOR_API_TOKEN = new InjectionToken<ModelApiInterface<Connector, ConnectorContent>>('connector-api');
 export const FORM_API_TOKEN = new InjectionToken<ModelApiInterface<Form, FormContent>>('form-api');
 export const UI_API_TOKEN = new InjectionToken<ModelApiInterface<Ui, UiContent>>('ui-api');
-export const DECISION_TABLE_API_TOKEN = new InjectionToken<ModelApiInterface<DecisionTable, DecisionTableContent>>('connector-api');
+export const DECISION_TABLE_API_TOKEN = new InjectionToken<DecisionTableApiInterface<DecisionTable, DecisionTableContent>>('connector-api');
 export const DATA_API_TOKEN = new InjectionToken<ModelApiInterface<Data, DataContent>>('data-api');
 
 @Injectable()
@@ -48,5 +49,5 @@ export abstract class AmaApi {
     public Form: ModelApiInterface<Form, FormContent>;
     public Ui: ModelApiInterface<Ui, UiContent>;
     public Data: ModelApiInterface<Data, DataContent>;
-    public DecisionTable: ModelApiInterface<DecisionTable, DecisionTableContent>;
+    public DecisionTable: DecisionTableApiInterface<DecisionTable, DecisionTableContent>;
 }

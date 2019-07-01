@@ -37,6 +37,7 @@ import { FormApiVariation } from './model-variations/form-api-variation';
 import { ProcessApiVariation } from './model-variations/process-api-variation';
 import { DataApiVariation } from './model-variations/data-api-variation';
 import { ProcessAcmApi } from './process-api';
+ import { DecisionTableApi } from './decision-table-api';
 
 export function modelApiFactory (modelVariation: ModelApiVariation<any, any>, requestApiHelper: RequestApiHelper) {
     return new ModelApi(modelVariation, requestApiHelper);
@@ -44,6 +45,10 @@ export function modelApiFactory (modelVariation: ModelApiVariation<any, any>, re
 
 export function processApiFactory (modelVariation: ModelApiVariation<any, any>, requestApiHelper: RequestApiHelper) {
     return new ProcessAcmApi(modelVariation, requestApiHelper);
+}
+
+export function decisionTableFactory (modelVariation: ModelApiVariation<any, any>, requestApiHelper: RequestApiHelper) {
+    return new DecisionTableApi(modelVariation, requestApiHelper);
 }
 
 @NgModule({
@@ -71,7 +76,7 @@ export class ACMApiModule {
                 { provide: UI_API_TOKEN, useFactory: modelApiFactory, deps: [UiApiVariation, RequestApiHelper] },
 
                 DecisionTableApiVariation,
-                { provide: DECISION_TABLE_API_TOKEN, useFactory: modelApiFactory, deps: [DecisionTableApiVariation, RequestApiHelper]},
+                { provide: DECISION_TABLE_API_TOKEN, useFactory: decisionTableFactory, deps: [DecisionTableApiVariation, RequestApiHelper]},
 
                 DataApiVariation,
                 { provide: DATA_API_TOKEN, useFactory: modelApiFactory, deps: [DataApiVariation, RequestApiHelper] }

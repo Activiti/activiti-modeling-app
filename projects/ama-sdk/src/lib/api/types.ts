@@ -258,3 +258,6 @@ export interface PaginatedEntries<T> {
     pagination: Pagination;
 }
 
+export interface DmnInputType {
+   name: string; value: any;
+ }
