@@ -20,7 +20,7 @@ import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config';
 import { Logger } from '../util';
-
+import { LoginPage } from '@alfresco/adf-testing';
 
 export class LoginAPSPage extends GenericPage implements LoginPageImplementation {
 
@@ -28,9 +28,6 @@ export class LoginAPSPage extends GenericPage implements LoginPageImplementation
 
     private readonly ssoButton = element(by.css(`[data-automation-id="login-button-sso"]`));
     private readonly loginForm = element(by.id('adf-login-form'));
-    private readonly usernameField = element(by.id('username'));
-    private readonly passwordField = element(by.id('password'));
-    private readonly loginButton = element(by.id('login-button'));
 
     constructor(testConfig: TestConfig) {
         super(testConfig);
@@ -63,9 +60,7 @@ export class LoginAPSPage extends GenericPage implements LoginPageImplementation
     // Temporary fix for BE login form's issue - redirect the user to login form
     private async signIn(username: string, password: string) {
         await super.waitForElementToBePresent(this.loginForm);
-        await this.enterUsername(username);
-        await this.enterPassword(password);
-        await this.clickOnLoginButton();
+        return await new LoginPage().login(username, password);
     }
 
     async navigateTo() {
@@ -80,28 +75,5 @@ export class LoginAPSPage extends GenericPage implements LoginPageImplementation
     private async clickOnSSOButton() {
         await super.waitForElementToBeClickable(this.ssoButton);
         await super.click(this.ssoButton);
-    }
-
-    private async clickOnLoginButton() {
-        await super.waitForElementToBeClickable(this.loginButton);
-        await super.click(this.loginButton);
-    }
-
-    private async enterUsername(username) {
-        await this.clearUsername();
-        await super.sendKeysIfVisible(this.usernameField, username);
-    }
-
-    private async enterPassword(password) {
-        await this.clearPassword();
-        await super.sendKeysIfVisible(this.passwordField, password);
-    }
-
-    private async clearUsername() {
-        await super.clear(this.usernameField);
-    }
-
-    private async clearPassword() {
-        await super.clear(this.passwordField);
     }
 }
