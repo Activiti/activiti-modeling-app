@@ -108,6 +108,7 @@
   "dependencies": {
     "@alfresco/adf-core": "3.3.0",
     "@alfresco/adf-extensions": "3.3.0",
+    "@alfresco/adf-testing": "^3.3.0",
     "@alfresco/js-api": "3.3.0",
     "@angular/animations": "7.2.5",
     "@angular/cdk": "7.3.2",
