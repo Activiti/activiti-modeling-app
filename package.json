@@ -53,7 +53,9 @@
     "clean-lib-angular": "rimraf ../alfresco-ng2-components/lib/node_modules/@angular",
     "clean-lock": "rimraf package-lock.json",
     "webpack": "node node_modules/webpack/bin/webpack.js",
-    "compile-less": "lessc ./node_modules/bpmn-js-properties-panel/styles/properties.less .tmp/bpmn-properties.css"
+    "compile-less": "lessc ./node_modules/bpmn-js-properties-panel/styles/properties.less .tmp/bpmn-properties.css",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "husky": {
     "hooks": {
@@ -159,7 +161,8 @@
     "uuid": "3.3.2",
     "web-animations-js": "2.3.1",
     "xml-js": "1.6.8",
-    "zone.js": "0.8.29"
+    "zone.js": "0.8.29",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
@@ -210,5 +213,6 @@
     "tslint": "5.12.1",
     "typescript": "3.2.4",
     "webpack-cli": "3.1.0"
-  }
+  },
+  "snyk": true
 }
