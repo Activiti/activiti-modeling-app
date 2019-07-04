@@ -8,8 +8,10 @@
 @import "./services/cardview-properties/default-sequence-flow/default-sequence-flow-item.component";
 @import "./services/cardview-properties/process-variable-item/process-variable-item.component";
 @import "./components/process-modeler/palette/palette.component.scss";
+@import "./services//cardview-properties/called-element-item/called-element-item.component";
 
 @mixin ama-process-editor-module($theme) {
+    @include ama-called-element-item($theme);
     @include ama-implementation-item($theme);
     @include ama-decision-task-item($theme);
     @include ama-signal-ref-item($theme);

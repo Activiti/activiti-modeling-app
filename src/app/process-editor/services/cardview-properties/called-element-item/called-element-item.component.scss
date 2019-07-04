@@ -1,0 +1,27 @@
+@mixin ama-called-element-item($theme) {
+    $error: map-get($theme, warn);
+
+    .called-element-block {
+        .mat-form-field {
+            width: 100%;
+        }
+
+        .adf-property-label {
+            margin-bottom: 5px;
+        }
+
+        .mat-row, .mat-header-row {
+            padding: 0 8px;
+        }
+
+        .action-form-field-error {
+            color: mat-color($error);
+            .adf-property-label, .mat-select-arrow {
+                color: mat-color($error);
+            }
+            .mat-form-field-ripple, .mat-form-field-underline {
+                background-color: mat-color($error);
+            }
+        }
+    }
+}

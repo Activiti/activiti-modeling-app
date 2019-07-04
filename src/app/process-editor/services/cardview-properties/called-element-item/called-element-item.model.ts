@@ -15,19 +15,13 @@
  * limitations under the License.
  */
 
-import { ElementHelper } from '../bpmn-js/element.helper';
+import { CardViewBaseItemModel, CardViewItem, DynamicComponentModel } from '@alfresco/adf-core';
 import { BpmnProperty } from 'ama-sdk';
-import { FactoryProps } from './cardview-properties.factory';
-import { CalledElementItemModel } from './called-element-item/called-element-item.model';
 
-const propertyName = BpmnProperty.calledElement;
+export class CalledElementItemModel extends CardViewBaseItemModel implements CardViewItem, DynamicComponentModel {
+    type = BpmnProperty.calledElement;
 
-export function createCalledElementProperty({ element, store }: FactoryProps) {
-    return new CalledElementItemModel({
-        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ACTIVITY_NAME',
-        value: ElementHelper.getProperty(element, propertyName),
-        key: propertyName,
-        editable: true,
-        data: { id: element.id }
-    });
+    get displayValue() {
+        return this.default;
+    }
 }

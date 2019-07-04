@@ -34,6 +34,8 @@
             "IMPLEMENTATION": "Implementation",
             "DECISION_TASK": "Decision task",
             "DECISION_TABLE_NAME": "Decision table name",
+            "INPUT_MAPPING": "Input mapping",
+            "OUTPUT_MAPPING": "Output mapping",
             "INPUTS": "Inputs",
             "OUTPUTS": "Outputs",
             "INPUT": "Input",
@@ -54,6 +56,8 @@
         "UPLOAD_SUCCESS": "The process was successfully uploaded",
         "PROCESS_UPDATED": "The process was successfully updated",
         "ERRORS": {
+            "NO_PROCESS_VARIABLES": "No process variables.",
+            "NO_SUB_PROCESS_VARIABLES": "No subprocess variables.",
             "LOAD_DIAGRAM": "Could not load the diagram.",
             "SAVE_DIAGRAM": "Could not save the diagram.",
             "PARSE_BPMN": "Could not parse xml document. Diagram hasn't been updated.",

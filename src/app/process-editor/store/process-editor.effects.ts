@@ -116,7 +116,7 @@ export class ProcessEditorEffects extends BaseEffects {
     @Effect()
     removeDiagramElementEffect = this.actions$.pipe(
         ofType<RemoveDiagramElementAction>(REMOVE_DIAGRAM_ELEMENT),
-        filter(action => action.element.type === BpmnElement.ServiceTask),
+        filter(action => [BpmnElement.ServiceTask, BpmnElement.CallActivity].includes(<BpmnElement>action.element.type)),
         mergeMap(action => zip(of(action), this.store.select(selectOpenedModel))),
         mergeMap(([action, process]) => of(new RemoveElementMappingAction(action.element.id, process.id)))
     );

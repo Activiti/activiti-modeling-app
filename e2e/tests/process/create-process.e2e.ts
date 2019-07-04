@@ -113,7 +113,7 @@ describe('Create process', async () => {
 
         const callActivityAttributes = UtilFile.getJSONItemValueByKey(bpmnCallActivity, `_attributes`);
 
-        expect(UtilFile.getJSONItemValueByKey(callActivityAttributes, `calledElement`)).toEqual(`process-${callActivityProcess.entry.id}`);
+        expect(UtilFile.getJSONItemValueByKey(callActivityAttributes, `calledElement`)).toEqual(`${callActivityProcess.entry.id}`);
     });
 
     afterAll(async () => {

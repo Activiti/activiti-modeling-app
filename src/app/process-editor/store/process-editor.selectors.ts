@@ -52,7 +52,7 @@ export const selectToolbarLogsVisibility = createSelector(selectToolbarState, (s
 export const selectProcessesArray = createSelector(
     selectProcessEntities,
     selectSelectedProjectId,
-    (processes, selectedProjectId) => Object.values(processes).filter((process: Process) => process.projectId === selectedProjectId)
+    (processes, selectedProjectId) => <Process[]>Object.values(processes).filter((process: Process) => process.projectId === selectedProjectId)
 );
 
 export const selectSelectedProcessDiagram = createSelector(
