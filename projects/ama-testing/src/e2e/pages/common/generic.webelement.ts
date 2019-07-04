@@ -128,11 +128,10 @@ export class GenericWebElement {
         await browser.actions().doubleClick(locationToDragTo).perform();
     }
 
-    async dragAndDropFormFields(elementToDrag: ElementFinder, locationToDragTo: ElementFinder) {
+    async dragAndDropNotClickableElement(elementToDrag: ElementFinder, locationToDragTo: ElementFinder) {
         await browser.actions().mouseMove( elementToDrag ).perform();
         await browser.actions().mouseDown( elementToDrag ).perform();
-        await browser.actions().mouseMove( {x: 100, y: 100 } ).perform();
-        await this.waitForElementToBeVisible(locationToDragTo);
+        await browser.actions().mouseMove( {x: 10, y: 100 } ).perform();
         await browser.actions().mouseMove( locationToDragTo ).perform();
         return browser.actions().mouseUp().perform();
     }
