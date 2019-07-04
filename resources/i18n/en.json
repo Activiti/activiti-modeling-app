@@ -21,7 +21,7 @@
                 "GENERAL_NAME_VALIDATION": "The name field can contain only letters, numbers and underscores, and must be at least 1 character long.",
                 "UI_NAME_VALIDATION": "UI name can contain only lowercased letters, number and dashes and must not start and end with a dash. It must be at least one character, at most 24 characters long.",
                 "PROJECT_NAME_VALIDATION": "Project name can contain only lowercased letters, number and dashes and must not start and end with a dash. It must be at least one character, at most 24 characters long.",
-                "CONNECTOR_NAME_VALIDATION": "Connector name can contain only lowercased letters and numbers, with the minimal length of 1 character and maximal length of 24 characters."
+                "CONNECTOR_NAME_VALIDATION": "Connector name can contain only lowercased letters and numbers and dashes and must not start and end with a dash, with the minimal length of 1 character and maximal length of 24 characters."
             },
             "CONFIRM": {
                 "TITLE": "Are you sure?",
