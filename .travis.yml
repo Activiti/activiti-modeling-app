@@ -22,8 +22,14 @@ env:
 
 jobs:
     include:
-        - stage: Lint & Package SDK
+        - stage: Community build and Enterprise update
           script: npm run lint && npm run package:sdk
+          name: Lint & Package SDK
+
+        - script:
+          - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
+          - ./scripts/build-pipeline/update-enterprise.sh -b $BRANCH -c $BRANCH -n $BUILD_REPO_NAME -t $BUILD_GITHUB_TOKEN
+          name: Notify Enterprise to update
 
 # Send coverage data to codecov
 # after_success:
