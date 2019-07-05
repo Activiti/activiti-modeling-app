@@ -34,6 +34,9 @@ export class OutputMappingTableComponent implements OnChanges {
     @Input()
     mapping: ServiceOutputParameterMapping;
 
+    @Input()
+    typeChecking = true;
+
     @Output()
     update = new EventEmitter<ServiceParameterMappings>();
     data: ServiceOutputParameterMapping = {};
@@ -84,12 +87,8 @@ export class OutputMappingTableComponent implements OnChanges {
         this.optionsForParams[param.name] = [
             ...(param.required === false ? [{ id: null, name: 'None' }] : []),
             ...this.processProperties
-                .filter(variable => variable.type === param.type)
-                .filter(
-                    variable =>
-                        !this.mapping[variable.name] ||
-                        this.mapping[variable.name].value === param.name
-                )
+                .filter(variable => this.typeChecking ? variable.type === param.type : true)
+                .filter(variable => !this.mapping[variable.name] || this.mapping[variable.name].value === param.name)
         ];
     }
 

@@ -43,6 +43,9 @@ export class InputMappingTableComponent implements OnChanges {
     @Input()
     mapping: ServiceInputParameterMapping;
 
+    @Input()
+    typeChecking = true;
+
     @Output()
     update = new EventEmitter<ServiceParameterMappings>();
 
@@ -100,7 +103,7 @@ export class InputMappingTableComponent implements OnChanges {
             this.optionsForParams[param.name] = [
                 { id: NoneValue, name: 'None' },
                 ...this.processProperties.filter(
-                    prop => prop.type === param.type
+                    prop => this.typeChecking ? prop.type === param.type : true
                 )
             ];
         });
