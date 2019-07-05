@@ -33,6 +33,9 @@ export class ConnectorContentPage extends GenericPage {
         super(testConfig);
     }
 
+
+
+
     async navigateTo() {
         await super.navigateTo(`projects/${this.appId}/connector/${this.connectorId}`);
     }
