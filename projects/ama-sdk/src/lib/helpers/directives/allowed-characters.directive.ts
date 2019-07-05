@@ -42,7 +42,10 @@ export class AllowedCharactersDirective {
     }
 
     @HostListener('keypress', ['$event']) onKeyPress(event) {
-        return this.validate(event.target.value + event.key);
+        const previousValue = event.target.value;
+        const characterLocation = event.target.selectionStart;
+        const newValue = [previousValue.slice(0, characterLocation), event.key, previousValue.slice(characterLocation)].join('');
+        return this.validate(newValue);
     }
 
     @HostListener('paste', ['$event']) onPaste(event: ClipboardEvent) {

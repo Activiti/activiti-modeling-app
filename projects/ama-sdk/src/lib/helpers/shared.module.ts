@@ -16,7 +16,6 @@
  */
 
 import { NgModule } from '@angular/core';
-import { ProcessNamePipe } from './pipes/process-name.pipe';
 import { HeaderBreadcrumbsComponent } from './components/header-breadcrumbs/header-breadcrumbs.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -40,7 +39,6 @@ import { OutputMappingTableModule } from '../components/output-mapping-table/out
         CoreModule.forChild(),
     ],
     declarations: [
-        ProcessNamePipe,
         HeaderBreadcrumbsComponent,
         EntityDialogComponent,
         EditorFooterComponent,
@@ -48,7 +46,6 @@ import { OutputMappingTableModule } from '../components/output-mapping-table/out
     ],
     entryComponents: [ EntityDialogComponent ],
     exports: [
-        ProcessNamePipe,
         HeaderBreadcrumbsComponent,
         EntityDialogComponent,
         EditorFooterComponent,
