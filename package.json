@@ -40,7 +40,7 @@
     "pretest:watch": "npm run pretest",
     "test:watch": "npm test -- --watch",
     "pretest:ci": "npm run pretest",
-    "test:ci": "node --max_old_space_size=3072 ./node_modules/jest/bin/jest.js --config jest.config.js --collectCoverage",
+    "test:ci": "node  ./node_modules/jest/bin/jest.js --config jest.config.js --collectCoverage",
     "09": "echo -------------------------------------- All the other stuff -----------------------------------------",
     "style:dev": "npm run webpack -- --config  config/webpack.style.js --progress --profile --bail",
     "lint": "ng lint && npm run spellcheck",
