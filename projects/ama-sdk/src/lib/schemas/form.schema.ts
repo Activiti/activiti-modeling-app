@@ -760,7 +760,8 @@ export const formSchema = {
                 },
                 "name": {
                     "description": "Form Name",
-                    "type": "string"
+                    "type": "string",
+                    "pattern": "^[a-zA-Z0-9_]{1,}$"
                 },
                 "description": {
                     "description": "Form Description",
