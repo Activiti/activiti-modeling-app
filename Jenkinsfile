@@ -40,7 +40,7 @@
                   steps {
                     container('nodejs'){
                       echo "Run E2E Tests"
-                      sh "npm run e2e:ci"
+                      sh "npm run e2e:cijenkins"
                     }
                   }
                 }
