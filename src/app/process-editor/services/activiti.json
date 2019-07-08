@@ -787,35 +787,6 @@
             ]
         },
         {
-            "name": "TimerEventDefinition",
-            "extends": [
-                "bpmn:TimerEventDefinition"
-            ],
-            "meta": {
-                "allowedIn": [
-                    "bpmn:TimeCycle"
-                ]
-            },
-            "properties": [
-                {
-                    "name": "type",
-                    "type": "TimeCycle",
-                    "isBody": true
-                }
-            ]
-        },
-        {
-            "name": "TimeCycle",
-            "superClass": ["Expression"],
-            "properties": [
-                {
-                    "name": "value",
-                    "isBody": true,
-                    "type": "String"
-                }
-            ]
-        },
-        {
             "name": "ExecutionListener",
             "superClass": [
                 "Element"
