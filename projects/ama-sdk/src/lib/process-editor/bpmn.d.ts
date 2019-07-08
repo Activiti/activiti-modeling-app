@@ -67,7 +67,6 @@ declare namespace Bpmn {
 
     export interface Moddle {
         create(tagName: string, property: { [key: string]: any }): void;
-        createAny(tagName: string, property: { [key: string]: any }): void;
     }
 
 }

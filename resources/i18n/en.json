@@ -308,11 +308,6 @@
                 "MEDIUM": "1",
                 "HIGH": "2"
             },
-            "TIMER_TYPES": {
-                "CYCLE": "Cycle",
-                "DURATION": "Duration",
-                "DATE": "Date"
-            },
             "ACTIONS": {
                 "ZOOM_IN": "Zoom in",
                 "ZOOM_OUT": "Zoom out",

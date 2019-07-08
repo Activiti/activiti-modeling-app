@@ -15,25 +15,27 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, AppConfigService } from '@alfresco/adf-core';
 import { FormBuilder, Validators, FormControl, FormGroup, AbstractControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
     selector: 'ama-process-timer-definition',
     templateUrl: './timer-definition-item.component.html',
     providers: [CardItemTypeService]
 })
-export class CardViewTimerDefinitionItemComponent implements OnInit {
+export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     @Input() property;
 
     timers = [];
     selectedTimer: Bpmn.DiagramElement;
     defaultTimerDefinition = '';
     defaultTimerType = '';
-
     timerDefinitionForm: FormGroup;
+
+    onDestroy$: Subject<void> = new Subject<void>();
 
     constructor(
         private cardViewUpdateService: CardViewUpdateService,
@@ -99,5 +101,10 @@ export class CardViewTimerDefinitionItemComponent implements OnInit {
 
     get timerDefinition(): AbstractControl {
         return this.timerDefinitionForm.get('timerDefinition');
+    }
+
+    ngOnDestroy() {
+        this.onDestroy$.next();
+        this.onDestroy$.complete();
     }
 }
