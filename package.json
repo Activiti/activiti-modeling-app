@@ -34,7 +34,6 @@
     "e2e:standalone": "ng e2e --devServerTarget",
     "pree2e:ci": "npm run pree2e && npm run webdriver-update-ci",
     "e2e:ci": "ng e2e --webdriverUpdate=false",
-    "e2e:cijenkins": "ng e2e --webdriverUpdate=false",  
     "07": "echo ------------------------------------------- Unit tests ---------------------------------------------",
     "pretest": "rimraf dist",
     "test": "jest --detectOpenHandles --notify --config jest.config.js",
