@@ -26,6 +26,7 @@ import BpmnModeler from 'bpmn-js/dist/bpmn-modeler.production.min';
 import { emptyPaletteModule } from './palette/dummy-bpmn-palette.provider';
 import { DecisionTableRenderModule } from './bpmn-js/renderers/decision-table.renderer';
 const activitiModdleDescriptor = require('./activiti.json');
+// const bpmnModdleDescriptor = require('bpmn-moddle/resources/bpmn/json/bpmn.json');
 
 @Injectable()
 export class BpmnFactoryService implements BpmnFactory {

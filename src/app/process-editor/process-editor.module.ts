@@ -77,6 +77,7 @@ import { paletteElements } from './config/palette-elements.json';
 import { CardViewSignalRefItemComponent } from './services/cardview-properties/signal-ref-item/signal-ref-item.component';
 import { CardViewCalledItemItemComponent } from './services/cardview-properties/called-element-item/called-element-item.component';
 import { InputMappingTableModule, OutputMappingTableModule } from 'ama-sdk';
+import { CardViewTimerDefinitionItemComponent } from './services/cardview-properties/timer-definition-item/timer-definition-item.component';
 
 @NgModule({
     imports: [
@@ -110,7 +111,8 @@ import { InputMappingTableModule, OutputMappingTableModule } from 'ama-sdk';
         CardViewDecisionTaskItemComponent,
         CardViewDefaultSequenceFlowItemComponent,
         CardViewCalledItemItemComponent,
-        CardViewSignalRefItemComponent
+        CardViewSignalRefItemComponent,
+        CardViewTimerDefinitionItemComponent
     ],
     entryComponents: [
         CardViewProcessVariablesItemComponent,
@@ -119,6 +121,7 @@ import { InputMappingTableModule, OutputMappingTableModule } from 'ama-sdk';
         CardViewDefaultSequenceFlowItemComponent,
         CardViewSignalRefItemComponent,
         CardViewCalledItemItemComponent,
+        CardViewTimerDefinitionItemComponent,
         ProcessEditorComponent
     ],
     exports: [ProcessEditorRoutingModule],
@@ -142,6 +145,7 @@ import { InputMappingTableModule, OutputMappingTableModule } from 'ama-sdk';
         providePropertyHandler(BpmnProperty.defaultSequenceFlow, CardViewDefaultSequenceFlowItemComponent),
         providePropertyHandler(BpmnProperty.signalRef, CardViewSignalRefItemComponent),
         providePropertyHandler(BpmnProperty.calledElement, CardViewCalledItemItemComponent),
+        providePropertyHandler(BpmnProperty.timerEventDefinition, CardViewTimerDefinitionItemComponent),
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider()

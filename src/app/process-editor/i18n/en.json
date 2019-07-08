@@ -59,7 +59,8 @@
             "PROCESS_NAME_REQUIRED": "Process name is required",
             "TIMER_DEFINITION_REQUIRED": "Timer definition is required",
             "TIMER_TYPE": "Timer type",
-            "TIMER_DEFINITION": "Timer definition"
+            "TIMER_DEFINITION": "Timer definition",
+            "REQUIRED": "Required"
         },
         "UPLOAD_SUCCESS": "The process was successfully uploaded",
         "PROCESS_UPDATED": "The process was successfully updated",

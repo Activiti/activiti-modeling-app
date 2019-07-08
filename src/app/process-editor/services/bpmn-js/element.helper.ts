@@ -35,16 +35,12 @@ export const ElementHelper = {
         }
     },
 
-    setProperty(modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, propertyName: BpmnProperty, value: any): void {
-        try {
+    setProperty(modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, propertyName: BpmnProperty, value: any, moddle: Bpmn.Moddle): void {
             const handler = getHandler(propertyName);
             const set = handler.set;
 
-            set(modeling, element, value);
-        } catch (error) {
-            /*tslint:disable-next-line*/
-            console.error(`Handler::set is not defined for ${propertyName}`, error);
-        }
+            set(modeling, element, value, moddle);
+
     }
 };
 

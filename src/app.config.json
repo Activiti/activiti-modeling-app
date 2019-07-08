@@ -51,10 +51,6 @@
         ],
         "timer-types": [
             {
-                "key": "",
-                "label": ""
-            },
-            {
                 "key": "cycle",
                 "label": "PROCESS_EDITOR.TIMER_TYPES.CYCLE"
             },

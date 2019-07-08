@@ -58,9 +58,10 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
 
     updateElementProperty(shapeId: string, propertyName: BpmnProperty, value: any): void {
         const modeling: Bpmn.Modeling = this.modeler.get('modeling'),
-            element = this.getElement(shapeId);
+            element = this.getElement(shapeId),
+            moddle: Bpmn.Moddle = this.modeler.get('moddle');
 
-        ElementHelper.setProperty(modeling, element, propertyName, value);
+        ElementHelper.setProperty(modeling, element, propertyName, value, moddle);
     }
 
     loadXml(xml: string): Observable<void> {

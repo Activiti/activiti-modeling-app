@@ -15,25 +15,19 @@
  * limitations under the License.
  */
 
-import { CardViewTextItemModel } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty } from 'ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
+import { TimerDefinitionItemModel } from './timer-definition-item/timer-definition-item.model';
 
-import { CardViewTimerDefinitionValidator } from './validators/card-view-timer-definition.validator';
-
-const propertyName = BpmnProperty.definition;
+const propertyName = BpmnProperty.timerEventDefinition;
 
 export function createTimerDefinitionProperty({ element }: FactoryProps) {
-    return new CardViewTextItemModel({
-        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMER_DEFINITION',
+    return new TimerDefinitionItemModel({
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMER_TYPE',
         value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,
-        default: '',
-        multiline: false,
         editable: true,
-        data: { id: element.id },
-        validators: [new CardViewTimerDefinitionValidator()]
+        data: { id: element.id, element }
     });
 }
-

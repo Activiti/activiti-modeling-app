@@ -1,0 +1,32 @@
+@mixin ama-signal-ref-item($theme) {
+    .mat-form-field-type-mat-select .mat-form-field-infix {
+        border-top: 0;
+    }
+
+    .signal-ref-block {
+        position: relative;
+
+        .mat-form-field {
+            width: 100%;
+        }
+
+        .mat-form-field-infix {
+            border-top: 0;
+        }
+
+        .add-signal-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0;
+            margin: 0;
+            min-width: 20px;
+            height: 20px;
+
+            .mat-icon {
+                font-size: 16px;
+                line-height: 6px;
+            }
+        }
+    }
+}

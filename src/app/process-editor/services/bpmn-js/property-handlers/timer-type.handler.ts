@@ -15,30 +15,27 @@
  * limitations under the License.
  */
 
-import BpmnModdle from 'bpmn-moddle';
-import { BpmnProperty } from 'ama-sdk';
-const moddle = new BpmnModdle();
+const get = element => element.businessObject.eventDefinitions[0].timeCycle;
+
+const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: { type: string, definition: string }, bpmnFactory: Bpmn.Moddle) => {
+
+    // const timerType = {
+    //     timeDuration : undefined,
+    //     timeCycle : undefined,
+    //     timeDate : undefined
+    // };
+
+    // timerType[value.type] = bpmnFactory.create('bpmn:FormalExpression', {body: value.definition });
+    // timerType[value.type].$parent = element.businessObject.eventDefinitions[0];
+    // element.businessObject.eventDefinitions[0][value.type] = timerType[value.type];
 
 
-const propertyKey = BpmnProperty.type;
+    let timer = undefined;
+    timer = bpmnFactory.create('bpmn:FormalExpression', { body: value.definition });
+    timer.$parent = element.businessObject.eventDefinitions[0];
+    element.businessObject.eventDefinitions[0][value.type] = timer;
 
-const get = (element: Bpmn.DiagramElement) => {
-    const businessObject = element.businessObject;
-    const timers = businessObject && businessObject.get(propertyKey),
-        text = timers && timers.length > 0 ? timers[0].text : '';
-
-    return text;
-};
-
-
-const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {
-        [propertyKey]: [
-            moddle.create('bpmn:TimeCycle', {
-                text: value
-            })
-        ]
-    });
+    modeling.updateProperties(element, {});
 };
 
 export const timerTypeHandler = { get, set };

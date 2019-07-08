@@ -40,8 +40,8 @@ export const elementsProperties = {
         BpmnProperty.name,
         BpmnProperty.documentation,
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : []),
-        ...(isTimerEvent(element) ? [ BpmnProperty.type ] : []),
-        ...(isTimerEvent(element) ? [ BpmnProperty.definition ] : [])
+        ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : []),
+        // ...(isTimerEvent(element) ? [ BpmnProperty.definition ] : [])
     ],
     [BpmnElement.IntermediateThrowEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
@@ -55,8 +55,8 @@ export const elementsProperties = {
         BpmnProperty.name,
         BpmnProperty.documentation,
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : [BpmnProperty.formKey]),
-        ...(isTimerEvent(element) ? [ BpmnProperty.type ] : []),
-        ...(isTimerEvent(element) ? [ BpmnProperty.definition ] : [])
+        ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : []),
+        // ...(isTimerEvent(element) ? [ BpmnProperty.definition ] : [])
 
     ],
     [BpmnElement.BoundaryEvent]: (element: Bpmn.DiagramElement) => [
@@ -64,8 +64,8 @@ export const elementsProperties = {
         BpmnProperty.name,
         BpmnProperty.documentation,
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : []),
-        ...(isTimerEvent(element) ? [ BpmnProperty.type ] : []),
-        ...(isTimerEvent(element) ? [ BpmnProperty.definition ] : [])
+        ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : []),
+        // ...(isTimerEvent(element) ? [ BpmnProperty.definition ] : [])
     ],
     [BpmnElement.EndEvent]: [
         BpmnProperty.id,
