@@ -341,8 +341,7 @@
                 "PROCESS_VARIABLES": "Process variables",
                 "EXPRESSION": "Condition Expression",
                 "FORM_SELECTOR": "Form selector",
-                "DEFAULT_SEQUENCE_FLOW": "Default sequence flow",
-                "REQUIRED": "Required"
+                "DEFAULT_SEQUENCE_FLOW": "Default sequence flow"
             },
             "PALETTE": {
                 "HAND_TOOL": "Activate the hand tool",

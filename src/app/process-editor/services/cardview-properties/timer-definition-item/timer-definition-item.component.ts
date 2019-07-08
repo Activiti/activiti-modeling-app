@@ -18,7 +18,7 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, AppConfigService } from '@alfresco/adf-core';
 import { FormBuilder, Validators, FormControl, FormGroup, AbstractControl } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -58,7 +58,8 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
 
         this.timerDefinitionForm.valueChanges
             .pipe(
-                debounceTime(500)
+                debounceTime(500),
+                takeUntil(this.onDestroy$)
             )
             .subscribe((timerDefinitionValues: any) => {
                 if (this.isFormValid()) {
