@@ -55,8 +55,7 @@ rm -rf $EE_REPO_DIR;
 
 git clone https://$TOKEN@github.com/$NAME_REPO.git $EE_REPO_DIR
 cd $EE_REPO_DIR
-# git checkout development
-git checkout dev-apopovics-APM-727-2
+git checkout development
 
 $EE_REPO_DIR/scripts/build-pipeline/create-updatebranch.sh -b $BRANCH_TO_CREATE -c $COMMITISH_TO_UPDATE_TO -t $TOKEN -p $TRAVIS_PULL_REQUEST
 
