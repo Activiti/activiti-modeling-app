@@ -17,6 +17,8 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, AppConfigService } from '@alfresco/adf-core';
+import { FormBuilder, Validators, FormControl, FormGroup, AbstractControl } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
     selector: 'ama-process-timer-definition',
@@ -28,22 +30,47 @@ export class CardViewTimerDefinitionItemComponent implements OnInit {
 
     timers = [];
     selectedTimer: Bpmn.DiagramElement;
-    timerDefinition = '';
-    timerType = '';
+    defaultTimerDefinition = '';
+    defaultTimerType = '';
+
+    timerDefinitionForm: FormGroup;
 
     constructor(
         private cardViewUpdateService: CardViewUpdateService,
-        private appConfigService: AppConfigService
+        private appConfigService: AppConfigService,
+        private formBuilder: FormBuilder
     ) {}
 
     ngOnInit() {
         this.setTimerFromXML();
         this.timers = this.appConfigService.get('process-modeler.timer-types');
+
+        this.buildForm();
     }
 
-    updateTimerDefinition() {
-        if (this.timerDefinition) {
-            this.cardViewUpdateService.update(this.property, {type: this.timerType, definition: this.timerDefinition});
+    buildForm() {
+        this.timerDefinitionForm = this.formBuilder.group({
+            timerType: new FormControl(this.defaultTimerType, [Validators.required]),
+            timerDefinition: new FormControl(this.defaultTimerDefinition, [Validators.required])
+        });
+
+        this.timerDefinitionForm.valueChanges
+            .pipe(
+                debounceTime(500)
+            )
+            .subscribe((timerDefinitionValues: any) => {
+                if (this.isFormValid()) {
+                    this.updateTimerDefinition(timerDefinitionValues);
+                }
+            });
+    }
+
+    updateTimerDefinition(timerDefinitionValues: any) {
+        if (timerDefinitionValues) {
+            this.cardViewUpdateService.update(this.property, {
+                type: timerDefinitionValues.timerType,
+                definition: timerDefinitionValues.timerDefinition
+            });
         }
     }
 
@@ -51,14 +78,26 @@ export class CardViewTimerDefinitionItemComponent implements OnInit {
         const timerEventDefinition = this.property.data.element.businessObject.eventDefinitions[0];
 
         if (timerEventDefinition.timeCycle) {
-            this.timerType = 'timeCycle';
-            this.timerDefinition = timerEventDefinition.timeCycle.body;
+            this.defaultTimerType = 'timeCycle';
+            this.defaultTimerDefinition = timerEventDefinition.timeCycle.body;
         } else if (timerEventDefinition.timeDuration) {
-            this.timerType = 'timeDuration';
-            this.timerDefinition = timerEventDefinition.timeDuration.body;
+            this.defaultTimerType = 'timeDuration';
+            this.defaultTimerDefinition = timerEventDefinition.timeDuration.body;
         } else if (timerEventDefinition.timeDate) {
-            this.timerType = 'timeDate';
-            this.timerDefinition = timerEventDefinition.timeDate.body;
+            this.defaultTimerType = 'timeDate';
+            this.defaultTimerDefinition = timerEventDefinition.timeDate.body;
         }
+    }
+
+    isFormValid() {
+        return this.timerDefinitionForm && this.timerDefinitionForm.dirty && this.timerDefinitionForm.valid;
+    }
+
+    get timerType(): AbstractControl {
+        return this.timerDefinitionForm.get('timerType');
+    }
+
+    get timerDefinition(): AbstractControl {
+        return this.timerDefinitionForm.get('timerDefinition');
     }
 }
