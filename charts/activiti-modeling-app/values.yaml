@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: draft
-  tag: dev
+  repository: 10.55.243.55:5000/activiti/activiti-modeling-app
+  tag: 0.0.124
   pullPolicy: IfNotPresent
 service:
   name: activiti-modeling-app

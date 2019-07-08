@@ -1,7 +1,7 @@
 {
   "name": "activiti-modeling-app",
   "description": "Activiti Modeling Application",
-  "version": "0.2.0",
+  "version": "0.0.124",
   "author": "Alfresco Software, Ltd.",
   "scripts": {
     "ng": "ng",
@@ -41,7 +41,7 @@
     "test:watch": "npm test -- --watch",
     "pretest:ci": "npm run pretest",
     "test:ci": "node --max_old_space_size=30000 ./node_modules/jest/bin/jest.js --config jest.config.js --collectCoverage",
-    "test:cijenkins": "node --max_old_space_size=3000 ./node_modules/jest/bin/jest.js --config jest.config.js --bail",  
+    "test:cijenkins": "node --max_old_space_size=3000 ./node_modules/jest/bin/jest.js --config jest.config.js --bail",
     "09": "echo -------------------------------------- All the other stuff -----------------------------------------",
     "style:dev": "npm run webpack -- --config  config/webpack.style.js --progress --profile --bail",
     "lint": "ng lint && npm run spellcheck",
