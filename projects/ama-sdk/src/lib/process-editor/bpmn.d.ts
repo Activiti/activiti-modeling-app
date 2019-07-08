@@ -47,7 +47,7 @@ declare namespace Bpmn {
         | 'propertiesPanel'
         | 'moddle';
 
-interface Modeler {
+    interface Modeler {
         createDiagram(done: any);
         importXML(xml: string, done: any);
         saveXML(options: { format?: boolean; preamble?: boolean }, done: any);

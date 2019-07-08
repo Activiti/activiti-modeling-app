@@ -35,4 +35,4 @@ const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: { typ
     modeling.updateProperties(element, {});
 };
 
-export const timerTypeHandler = { get, set };
+export const timerDefinitionHandler = { get, set };

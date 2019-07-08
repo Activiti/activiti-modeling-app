@@ -51,15 +51,15 @@
         ],
         "timer-types": [
             {
-                "key": "cycle",
+                "key": "timeCycle",
                 "label": "PROCESS_EDITOR.TIMER_TYPES.CYCLE"
             },
             {
-                "key": "duration",
+                "key": "timeDuration",
                 "label": "PROCESS_EDITOR.TIMER_TYPES.DURATION"
             },
             {
-                "key": "date",
+                "key": "timeDate",
                 "label": "PROCESS_EDITOR.TIMER_TYPES.DATE"
             }
         ]

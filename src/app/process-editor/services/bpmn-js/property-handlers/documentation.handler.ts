@@ -15,7 +15,9 @@
  * limitations under the License.
  */
 
+import BpmnModdle from 'bpmn-moddle';
 import { BpmnProperty } from 'ama-sdk';
+const moddle = new BpmnModdle();
 
 const propertyKey = BpmnProperty.documentation;
 
@@ -27,7 +29,7 @@ const get = (element: Bpmn.DiagramElement) => {
     return text;
 };
 
-const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any, moddle: Bpmn.Moddle) => {
+const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
     modeling.updateProperties(element, {
         [propertyKey]: [
             moddle.create('bpmn:Documentation', {
