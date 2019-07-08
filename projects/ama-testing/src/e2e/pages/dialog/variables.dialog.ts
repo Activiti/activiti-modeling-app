@@ -104,7 +104,7 @@ export class VariablesDialog extends GenericDialog {
         return await this.value.getText();
     }
 
-    async isVariableDisplayed(rowIndex: number, name: string = 'name', type: string = 'string', value: string = '', required: string = 'false') {
+    async isFormVariableDisplayed(rowIndex: number, name: string = 'name', type: string = 'string', value: string = '', required?: string) {
         let valueCell;
         const variableRow = `[data-automation-id*="variable-row-${rowIndex}"]`;
 
@@ -114,8 +114,10 @@ export class VariablesDialog extends GenericDialog {
         const typeCell = element(by.css(`${variableRow}>[data-automation-id="variable-type-cell-${type}"]`));
         await super.waitForElementToBeVisible(typeCell);
 
-        const requiredCell = element(by.css(`${variableRow}>[data-automation-id="variable-required-cell-${required}"]`));
-        await super.waitForElementToBeVisible(requiredCell);
+        if (required !== null && typeof required !== 'undefined') {
+            const requiredCell = element(by.css(`${variableRow}>[data-automation-id="variable-required-cell-${required}"]`));
+            await super.waitForElementToBeVisible(requiredCell);
+        }
 
         if ( type !== 'string' && value === '' ) {
             valueCell = element(by.css(`${variableRow}>[data-automation-id="variable-value-cell-undefined"]`));
@@ -125,6 +127,10 @@ export class VariablesDialog extends GenericDialog {
         await super.waitForElementToBeVisible(valueCell);
 
         return true;
+    }
+
+    async isVariableDisplayed(rowIndex: number, name: string = 'name', type: string = 'string', value: string = '', required: string = 'false') {
+        return await this.isFormVariableDisplayed(rowIndex, name, type, value, required);
     }
 
     async goToPropertiesViewer() {
