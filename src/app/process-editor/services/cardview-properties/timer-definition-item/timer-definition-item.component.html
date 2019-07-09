@@ -5,8 +5,7 @@
         </div>
         <mat-form-field>
             <mat-select
-                [formControl]="timerType"
-                (change)="updateTimerDefinition()">
+                [formControl]="timerType">
                 <mat-option></mat-option>
                 <mat-option *ngFor="let timer of timers" [value]="timer.key">
                     {{ timer.label | translate }}
