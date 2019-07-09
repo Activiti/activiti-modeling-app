@@ -34,14 +34,12 @@ import {
     CodeValidatorService,
     ProcessExtensions,
     extensionsSchema,
-    CodeEditorPosition,
     PROCESS,
     getFileUri
 } from 'ama-sdk';
 import { UpdateProcessExtensionsAction } from '../../store/process-editor.actions';
-import { MatTabChangeEvent } from '@angular/material';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
-import { ToolbarMessageAction } from '../../../../app/store/actions/app.actions';
+import { selectedTabChange, codeEditorPositionChanged } from '../../../common/helpers/editor.helpers';
 
 @Component({
     templateUrl: './process-editor.component.html',
@@ -66,6 +64,8 @@ export class ProcessEditorComponent implements OnInit {
     processFileUri$: Observable<string>;
     extensionsLanguageType: string;
     processesLanguageType: string;
+    selectedTabChange = selectedTabChange;
+    codeEditorPositionChanged = codeEditorPositionChanged;
 
     constructor(
         private store: Store<AmaState>,
@@ -107,17 +107,6 @@ export class ProcessEditorComponent implements OnInit {
         return this.store
             .select(selectSelectedTheme)
             .pipe(map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light')));
-    }
-
-    selectedTabChange(event: MatTabChangeEvent) {
-        this.selectedTabIndex = event.index;
-        this.store.dispatch(new ToolbarMessageAction(this.tabNames[this.selectedTabIndex]));
-    }
-
-    codeEditorPositionChanged(position: CodeEditorPosition) {
-        if (this.selectedTabIndex > 0) {
-            this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
-        }
     }
 
     onBpmnEditorChange(): void {

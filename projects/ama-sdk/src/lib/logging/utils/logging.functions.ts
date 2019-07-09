@@ -46,3 +46,5 @@ export function logError(initiator: LogMessageInitiator, messages: string | stri
         messages: arrayize(messages)
     });
 }
+
+
