@@ -16,7 +16,7 @@
  */
 
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { LogMessage } from '../../interfaces';
+import { LogMessage } from './../../../store/app.state';
 
 @Component({
     selector: 'amasdk-log-history',

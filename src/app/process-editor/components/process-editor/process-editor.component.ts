@@ -34,22 +34,18 @@ import {
     CodeValidatorService,
     ProcessExtensions,
     extensionsSchema,
-    EDITOR_FOOTER_SERVICE_TOKEN,
     CodeEditorPosition,
     PROCESS,
     getFileUri
 } from 'ama-sdk';
-import { UpdateProcessExtensionsAction, ToolbarMessageAction } from '../../store/process-editor.actions';
-import { ProcessEditorFooterService } from '../../services/process-editor-footer.service';
+import { UpdateProcessExtensionsAction } from '../../store/process-editor.actions';
 import { MatTabChangeEvent } from '@angular/material';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
+import { ToolbarMessageAction } from '../../../../app/store/actions/app.actions';
 
 @Component({
     templateUrl: './process-editor.component.html',
     encapsulation: ViewEncapsulation.None,
-    providers: [
-        { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: ProcessEditorFooterService }
-    ]
 })
 export class ProcessEditorComponent implements OnInit {
     loading$: Observable<boolean>;

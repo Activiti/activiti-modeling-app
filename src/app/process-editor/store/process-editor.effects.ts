@@ -71,8 +71,6 @@ import {
     ProcessModelerService,
     selectOpenedModel,
     BpmnElement,
-    logError,
-    logInfo
 } from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { SetAppDirtyStateAction } from 'ama-sdk';
@@ -84,6 +82,8 @@ import { mergeMap } from 'rxjs/operators';
 import { Process, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
 import { selectSelectedProjectId, AmaState, selectSelectedProcess, createProcessName } from 'ama-sdk';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
+import { logError, logInfo } from 'ama-sdk';
+
 
 @Injectable()
 export class ProcessEditorEffects extends BaseEffects {

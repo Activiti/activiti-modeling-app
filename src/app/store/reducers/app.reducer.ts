@@ -20,7 +20,15 @@ import { UPDATE_SETTINGS, UpdateSettingsAction, SET_MENU, SetMenuAction } from '
 import { INITIAL_APP_STATE } from '../states/app.state';
 import { SELECT_PROJECT, SelectProjectAction } from '../../project-editor/store/project-editor.actions';
 import { appThemes } from '../../app/themes';
-import { AppActionTypes, AsyncInitAction } from '../actions/app.actions';
+import {
+    AppActionTypes,
+    AsyncInitAction,
+    TOOLBAR_MESSAGE,
+    ToolbarMessageAction,
+    CLEAR_LOG_HISTORY,
+    SET_LOG_HISTORY_VISIBILITY,
+    SetLogHistoryVisibilityAction
+} from '../actions/app.actions';
 import {
     AppState,
     SET_APP_DIRTY_STATE,
@@ -30,6 +38,9 @@ import {
     MODEL_CLOSED,
     ModelClosedAction
 } from 'ama-sdk';
+import { LOG_ACTION, LogAction } from 'ama-sdk';
+
+import { PROCESS_EDITOR_LOGS } from './../../process-editor/services/process-editor.constants';
 
 export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action): AppState {
     let newState: AppState;
@@ -61,6 +72,33 @@ export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action):
         case SET_APP_DIRTY_STATE:
             newState = setDirtyState(state, <SetAppDirtyStateAction>action);
             break;
+
+         case TOOLBAR_MESSAGE:
+            return {
+                    ...state,
+                    toolbar: {
+                        ...state.toolbar,
+                        userMessage: (<ToolbarMessageAction>action).message
+                    }
+                };
+
+        case LOG_ACTION:
+            return storeLog(state, <LogAction> action);
+
+        case CLEAR_LOG_HISTORY:
+            return {
+                ...state,
+                logs: []
+            };
+
+        case SET_LOG_HISTORY_VISIBILITY:
+            return {
+                ...state,
+                toolbar: {
+                    ...state.toolbar,
+                    logHistoryVisible: (<SetLogHistoryVisibilityAction>action).visible
+                    }
+                };
 
         default:
             newState = Object.assign({}, state);
@@ -112,4 +150,21 @@ function deselectOpenedModel(state: AppState, action: ModelClosedAction): AppSta
     const newState = Object.assign({}, state);
     newState.openedModel = null;
     return newState;
+}
+
+function storeLog(state: AppState, action: LogAction): AppState {
+    if (action.log.initiator.key !== PROCESS_EDITOR_LOGS) {
+        return state;
+    }
+
+    return {
+        ...state,
+        toolbar: {
+            ...state.toolbar,
+        },
+        logs: [
+            action.log,
+            ...state.logs
+        ]
+    };
 }

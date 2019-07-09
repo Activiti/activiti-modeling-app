@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-export * from './interfaces';
 export * from './logging.module';
 export * from './store/logging.actions';
 export * from './utils/logging.functions';

@@ -26,11 +26,16 @@ import { Subject } from 'rxjs';
 import { SettingsDialogComponent } from '../settings/settings-dialog.component';
 import { LogoutAction } from '../../store/actions/app.actions';
 import { AmaState } from 'ama-sdk';
+import { AppFooterService } from '../../../app/common/services/app-footer.service';
+import { EDITOR_FOOTER_SERVICE_TOKEN } from 'ama-sdk';
 
 @Component({
     templateUrl: 'app-layout.component.html',
     host: { class: 'adf-app-layout' },
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    providers: [
+        { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: AppFooterService }
+    ]
 })
 export class AppLayoutComponent implements AfterViewInit, OnDestroy {
     @ViewChild('sidenavLayout') sidenavLayout: SidenavLayoutComponent;

@@ -39,4 +39,22 @@ export class LoggedInAction implements Action {
     constructor() {}
 }
 
+export const SET_LOG_HISTORY_VISIBILITY = '[App] SET_LOG_HISTORY_VISIBILITY';
+export class SetLogHistoryVisibilityAction implements Action {
+    readonly type = SET_LOG_HISTORY_VISIBILITY;
+    constructor(public visible: boolean) {}
+}
+
+export const CLEAR_LOG_HISTORY = '[App] CLEAR_LOG_HISTORY';
+export class ClearLogHistoryAction implements Action {
+    readonly type = CLEAR_LOG_HISTORY;
+    constructor() {}
+}
+
+export const TOOLBAR_MESSAGE = '[App] TOOLBAR_MESSAGE';
+export class ToolbarMessageAction implements Action {
+    readonly type = TOOLBAR_MESSAGE;
+    constructor(public message: string) {}
+}
+
 export type AppActions = AsyncInitAction | LogoutAction | LoggedInAction;

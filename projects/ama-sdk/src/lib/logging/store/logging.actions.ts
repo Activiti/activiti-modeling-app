@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { LogMessage } from '../interfaces';
+import { LogMessage } from '../../store/app.state';
 
 export const LOG_ACTION = 'LOG_ACTION';
 export class LogAction implements Action {

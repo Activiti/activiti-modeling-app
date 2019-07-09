@@ -44,7 +44,7 @@ import { BpmnjsPropertiesModule } from './bpmnjs-properties/bpmnjs-properties.mo
 import { environment } from '../environments/environment';
 import { MatInputModule } from '@angular/material';
 
-import { ACMApiModule, AmaServicesModule, ConfirmationDialogModule, AmaAuthenticationService, AuthTokenProcessorService } from 'ama-sdk';
+import { ACMApiModule, AmaServicesModule, ConfirmationDialogModule, AmaAuthenticationService, AuthTokenProcessorService, SharedModule } from 'ama-sdk';
 import { AmaRoleGuard } from './ama-role-guard.service';
 import { AppExtensionsModule } from './extensions.module';
 import { ModelStorageService } from './common/services/model-storage.service';
@@ -77,6 +77,7 @@ import { GlobalErrorHandler } from './common/helpers/services/error-handler.serv
         ConfirmationDialogModule,
 
         AppExtensionsModule,
+        SharedModule,
 
         /** @deprecated: bpmnjs-properties */
         !environment.production ? BpmnjsPropertiesModule : []

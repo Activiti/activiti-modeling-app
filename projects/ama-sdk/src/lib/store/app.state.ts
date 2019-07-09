@@ -27,8 +27,36 @@ export interface AppState {
     openedModel: ModelIdentifier;
     selectedTheme: AppTheme;
     dirtyState: boolean;
+    toolbar: ToolbarState;
+    logs: LogMessage[];
 }
 
 export interface AmaState {
     app: AppState;
 }
+
+export interface ToolbarState {
+    inProgress: boolean;
+    userMessage: string;
+    logHistoryVisible: boolean;
+}
+
+export interface LogMessage {
+    type: MESSAGE;
+    datetime: Date;
+    initiator: LogMessageInitiator;
+    messages: string[];
+}
+
+export enum MESSAGE {
+    INFO = 'info',
+    WARN = 'warning',
+    ERROR = 'error'
+}
+
+export interface LogMessageInitiator {
+    key: string | Symbol;
+    displayName: string;
+    extra?: any;
+}
+
