@@ -10,11 +10,32 @@
             "name": "Jest",
             "program": "${workspaceFolder}/node_modules/jest/bin/jest.js",
             "args": [
+                "--runInBand",
+                "--codeCoverage=false",
                 "config ${workspaceFolder}/jest.config.js",
                 "${file}"
             ],
-            "sourceMaps": true,
-            "smartStep": true,
+            // "sourceMaps": true,
+            // "smartStep": true,
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Jest watch",
+            "program": "${workspaceFolder}/node_modules/jest/bin/jest.js",
+            "args": [
+                "--runInBand",
+                "--codeCoverage=false",
+                "--watch",
+                "config ${workspaceFolder}/jest.config.js",
+                "${file}"
+            ],
+            // "sourceMaps": true,
+            // "smartStep": true,
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
         },
         {
             "type": "node",

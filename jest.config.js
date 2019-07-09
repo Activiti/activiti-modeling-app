@@ -24,5 +24,8 @@ module.exports = {
     "transform": {
         "^.+\\.(ts|html)$": "<rootDir>/node_modules/jest-preset-angular/preprocessor.js",
         "^.+\\.js$": "babel-jest"
+    },
+    "globals": {
+        "__TRANSFORM_HTML__": true
     }
 }
