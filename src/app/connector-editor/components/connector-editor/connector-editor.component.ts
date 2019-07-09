@@ -34,7 +34,7 @@ import {
     CONNECTOR,
     getFileUri
 } from 'ama-sdk';
-import { selectedTabChange, codeEditorPositionChanged } from './../../../common/helpers/editor.helpers';
+import { selectedTabChange, codeEditorPositionChanged } from '../../../../../projects/ama-sdk/editor.helpers';
 import { MatTabChangeEvent } from '@angular/material';
 const memoize = require('lodash/memoize');
 

@@ -16,7 +16,7 @@
  */
 
 import { MatTabChangeEvent } from '@angular/material';
-import { ToolbarMessageAction } from './../../store/actions/app.actions';
+import { ToolbarMessageAction } from '../../src/app/store/actions/app.actions';
 import { CodeEditorPosition } from 'ama-sdk';
 
 export function selectedTabChange(event: MatTabChangeEvent) {

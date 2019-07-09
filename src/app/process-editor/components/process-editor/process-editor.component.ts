@@ -39,7 +39,7 @@ import {
 } from 'ama-sdk';
 import { UpdateProcessExtensionsAction } from '../../store/process-editor.actions';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
-import { selectedTabChange, codeEditorPositionChanged } from '../../../common/helpers/editor.helpers';
+import { selectedTabChange, codeEditorPositionChanged } from '../../../../../projects/ama-sdk/editor.helpers';
 
 @Component({
     templateUrl: './process-editor.component.html',
