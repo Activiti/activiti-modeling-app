@@ -1,0 +1,29 @@
+<div class="timer-definition-block">
+    <form [formGroup]="timerDefinitionForm">
+        <div class="adf-property-label">
+            {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMER_TYPE' | translate }}
+        </div>
+        <mat-form-field>
+            <mat-select
+                [formControl]="timerType">
+                <mat-option></mat-option>
+                <mat-option *ngFor="let timer of timers" [value]="timer.key">
+                    {{ timer.label | translate }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="timerType.valid">
+            <div class="adf-property-label">
+                {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMER_DEFINITION' | translate}}
+            </div>
+            <input
+                matInput
+                (change)="updateTimerDefinition()"
+                [formControl]="timerDefinition"/>
+            <mat-error *ngIf="timerDefinition.hasError('required')">
+                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.REQUIRED' | translate }}
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>

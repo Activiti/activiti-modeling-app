@@ -23,6 +23,8 @@ export enum BpmnElement {
     IntermediateCatchEvent = 'bpmn:IntermediateCatchEvent',
     IntermediateThrowEvent = 'bpmn:IntermediateThrowEvent',
     StartEvent = 'bpmn:StartEvent',
+    TimerEventDefinition = 'bpmn:TimerEventDefinition',
+    SignalEventDefinition = 'bpmn:SignalEventDefinition',
     EndEvent = 'bpmn:EndEvent',
     BoundaryEvent = 'bpmn:BoundaryEvent',
     SequenceFlow = 'bpmn:SequenceFlow',

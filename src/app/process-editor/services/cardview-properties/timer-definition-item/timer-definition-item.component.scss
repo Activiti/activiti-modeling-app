@@ -1,0 +1,13 @@
+@mixin ama-timer-definition-item($theme) {
+
+    .timer-definition-block {
+
+        .mat-form-field {
+            width: 100%;
+        }
+
+        .mat-input-element {
+            margin-top: 7px;
+        }
+    }
+}

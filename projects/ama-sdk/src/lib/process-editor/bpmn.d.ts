@@ -44,7 +44,8 @@ declare namespace Bpmn {
         | 'modeling'
         | 'zoomScroll'
         | 'editorActions'
-        | 'propertiesPanel';
+        | 'propertiesPanel'
+        | 'moddle';
 
     interface Modeler {
         createDiagram(done: any);
@@ -63,4 +64,9 @@ declare namespace Bpmn {
     export interface Modeling {
         updateProperties(element: DiagramElement, properties: { [key: string]: any }): void;
     }
+
+    export interface Moddle {
+        create(tagName: string, property: { [key: string]: any }): void;
+    }
+
 }

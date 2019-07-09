@@ -17,7 +17,12 @@
 
 import { BpmnProperty, BpmnElement, DECISION_TASK_IMPLEMENTATION } from 'ama-sdk';
 
-const isSignalEvent = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions;
+const isSignalEvent = (element: Bpmn.DiagramElement) => {
+    return !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.SignalEventDefinition;
+};
+const isTimerEvent = (element: Bpmn.DiagramElement) => {
+    return !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.TimerEventDefinition;
+};
 const haveSignalRef = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions[0].signalRef;
 const isDecisionTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === DECISION_TASK_IMPLEMENTATION;
 const isExclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type ===  BpmnElement.ExclusiveGateway;
@@ -34,7 +39,8 @@ export const elementsProperties = {
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
-        ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : [])
+        ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : []),
+        ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : [])
     ],
     [BpmnElement.IntermediateThrowEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
@@ -47,13 +53,16 @@ export const elementsProperties = {
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
-        ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : [BpmnProperty.formKey])
+        ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : [BpmnProperty.formKey]),
+        ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : [])
+
     ],
     [BpmnElement.BoundaryEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : []),
+        ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : [])
     ],
     [BpmnElement.EndEvent]: [
         BpmnProperty.id,
