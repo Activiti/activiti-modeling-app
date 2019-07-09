@@ -31,7 +31,7 @@ export const uiSchema = {
             "minLength": 1,
             "description": "UI name",
             "type": "string",
-            "pattern": "^[a-zA-Z0-9_]{1,}$"
+            "pattern": "^[a-z0-9]([-a-z0-9]{0,24}[a-z0-9])?$"
         },
         "description": {
             "description": "UI Description ",

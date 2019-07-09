@@ -15,7 +15,7 @@ export const connectorSchema = {
                     "name": {
                         "minLength": 1,
                         "type": "string",
-                        "pattern": "^[a-zA-Z0-9_]{1,}$",
+                        "pattern": "^[a-z0-9]([-a-z0-9]{0,24}[a-z0-9])?$"
                     },
                     "description": {
                         "type": "string"
