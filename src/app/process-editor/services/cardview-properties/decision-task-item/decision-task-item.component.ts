@@ -58,6 +58,7 @@ export class CardViewDecisionTaskItemComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        this.onDestroy$.next();
         this.onDestroy$.complete();
     }
 

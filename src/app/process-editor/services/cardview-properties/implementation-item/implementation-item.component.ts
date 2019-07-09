@@ -52,6 +52,7 @@ export class CardViewImplementationItemComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        this.onDestroy$.next();
         this.onDestroy$.complete();
     }
 
