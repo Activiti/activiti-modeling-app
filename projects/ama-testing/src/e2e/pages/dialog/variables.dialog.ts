@@ -92,11 +92,11 @@ export class VariablesDialog extends GenericDialog {
         await this.setVariableType(type);
 
         if ( type === 'boolean' ) {
-            this.setBooleanVariableValue(value);
+            await this.setBooleanVariableValue(value);
         } else if ( type === 'date' ) {
-            this.setDateVariableValue();
+            await this.setDateVariableValue();
         } else {
-            this.setVariableValue(value);
+            await this.setVariableValue(value);
         }
     }
 
