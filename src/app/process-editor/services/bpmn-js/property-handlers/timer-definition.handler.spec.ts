@@ -39,8 +39,8 @@ describe('timerDefinitionHandler', () => {
     describe('get', () => {
         it('should return the value from the element', () => {
             const get = handler.get;
-            expect(get(mockElement).timeCycle).toBeDefined();
-            expect(get(mockElement).timeCycle.body).toBe('2017-06-01T18:43:26.000Z');
+            expect(get(mockElement)).toBeDefined();
+            expect(get(mockElement).body).toBe('2017-06-01T18:43:26.000Z');
         });
     });
 
@@ -55,8 +55,8 @@ describe('timerDefinitionHandler', () => {
 
             set(modeling, mockElement, timer, moddle);
 
-            expect(get(mockElement).timeCycle).toBeDefined();
-            expect(get(mockElement).timeCycle.body).toBe('P10H');
+            expect(get(mockElement)).toBeDefined();
+            expect(get(mockElement).body).toBe('P10H');
         });
     });
 });
