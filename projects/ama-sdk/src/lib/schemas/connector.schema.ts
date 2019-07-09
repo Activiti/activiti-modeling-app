@@ -14,7 +14,8 @@ export const connectorSchema = {
                 "properties": {
                     "name": {
                         "minLength": 1,
-                        "type": "string"
+                        "type": "string",
+                        "pattern": "^[a-zA-Z0-9_]{1,}$",
                     },
                     "description": {
                         "type": "string"
