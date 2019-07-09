@@ -26,7 +26,7 @@
                 [routerLink]="[filter.type, item.id]"
                 [routerLinkActive]="['active']">
                 <mat-icon class="project-tree-filter__icon">insert_drive_file</mat-icon>
-                <span class="project-tree-filter__name">{{ item.name | processName }}</span>
+                <span class="project-tree-filter__name">{{ item.name }}</span>
             </a>
             <div class="project-tree-filter__no-content" *ngIf="contentsAreEmpty()">
                 {{ 'APP.PROJECT.NO_CONTENT' | translate }}

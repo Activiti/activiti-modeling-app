@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { sanitizeString, createProcessName, formatUuid } from './create-entries-names';
+import { sanitizeString, createProcessName, formatUuid, MODEL_NAME_REGEX, CONNECTOR_NAME_REGEX, UI_NAME_REGEX, PROJECT_NAME_REGEX } from './create-entries-names';
 
 describe('Create entries names', () => {
     it ('test sanitizeString function', () => {
@@ -31,6 +31,66 @@ describe('Create entries names', () => {
     it('test formatUid', () => {
         /* cspell: disable-next-line */
         expect(formatUuid('testType', '1234')).toEqual('testtype-1234');
+    });
+
+    it('MODEL_NAME_REGEX should not allow empty strings', () => {
+        const testString = ' ';
+        expect(MODEL_NAME_REGEX.test(testString)).toBe(false);
+    });
+
+    it('MODEL_NAME_REGEX should not allow special character besides _', () => {
+        const testString = 'test%#$#text';
+        expect(MODEL_NAME_REGEX.test(testString)).toBe(false);
+    });
+
+    it('MODEL_NAME_REGEX should allow _ ', () => {
+        const testString = 'Test_123';
+        expect(MODEL_NAME_REGEX.test(testString)).toBe(true);
+    });
+
+    it('CONNECTOR_NAME_REGEX should not allow any special character besides -', () => {
+        const testString = 'Test_123%#$#text';
+        expect(CONNECTOR_NAME_REGEX.test(testString)).toBe(false);
+    });
+
+    it('CONNECTOR_NAME_REGEX should not allow - at the end of the string', () => {
+        const testString = 'test-';
+        expect(CONNECTOR_NAME_REGEX.test(testString)).toBe(false);
+    });
+
+    it('CONNECTOR_NAME_REGEX should allow - inside the string', () => {
+        const testString = 'test-123';
+        expect(CONNECTOR_NAME_REGEX.test(testString)).toBe(true);
+    });
+
+    it('UI_NAME_REGEX should not allow any special character besides -', () => {
+        const testString = 'Test_123%#$#text';
+        expect(UI_NAME_REGEX.test(testString)).toBe(false);
+    });
+
+    it('UI_NAME_REGEX should not allow - at the end of the string', () => {
+        const testString = 'test-';
+        expect(UI_NAME_REGEX.test(testString)).toBe(false);
+    });
+
+    it('UI_NAME_REGEX should allow - inside the string', () => {
+        const testString = 'test-123';
+        expect(UI_NAME_REGEX.test(testString)).toBe(true);
+    });
+
+    it('PROJECT_NAME_REGEX should not allow any special character besides -', () => {
+        const testString = 'Test_123%#$#text';
+        expect(PROJECT_NAME_REGEX.test(testString)).toBe(false);
+    });
+
+    it('PROJECT_NAME_REGEX should not allow - at the end of the string', () => {
+        const testString = 'test-';
+        expect(PROJECT_NAME_REGEX.test(testString)).toBe(false);
+    });
+
+    it('PROJECT_NAME_REGEX should allow - inside the string', () => {
+        const testString = 'test-123';
+        expect(PROJECT_NAME_REGEX.test(testString)).toBe(true);
     });
 
 });

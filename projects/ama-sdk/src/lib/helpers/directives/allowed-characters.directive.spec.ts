@@ -23,9 +23,10 @@ import { Store } from '@ngrx/store';
 import { AmaState } from '../../store/app.state';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
+import { MODEL_NAME_REGEX, CONNECTOR_NAME_REGEX } from '../utils/create-entries-names';
 
 @Component({
-    template: `<input #input type="text" [amasdk-allowed-characters] />`
+    template: `<input #input type="text" [amasdk-allowed-characters]="regex" />`
 })
 class TestComponent {
     @ViewChild(AllowedCharactersDirective)
@@ -33,6 +34,8 @@ class TestComponent {
 
     @ViewChild('input')
     public input: ElementRef;
+
+    regex = MODEL_NAME_REGEX;
 }
 
 describe('AllowedCharactersDirective', () => {
@@ -88,4 +91,13 @@ describe('AllowedCharactersDirective', () => {
         expect(component.input.nativeElement.value).toBe(expectedText);
         expect(store.dispatch).toHaveBeenCalled();
     }));
+
+    it('should filter based on CONNECTOR_NAME_REGEX', () => {
+        component.regex = CONNECTOR_NAME_REGEX;
+        fixture.detectChanges();
+        const text = 'test2344';
+        expect(component.directive.onKeyPress({key: '-' , target: {value: text, selectionStart: 2 }})).toBe(true);
+        expect(component.directive.onKeyPress({key: '-' , target: {value: text, selectionStart: text.length }})).toBe(false);
+        expect(component.directive.onKeyPress({key: '*' , target: {value: text, selectionStart: 2 }})).toBe(false);
+    });
 });

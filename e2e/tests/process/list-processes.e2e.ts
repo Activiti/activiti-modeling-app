@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage, LoginPageImplementation, UtilRandom } from 'ama-testing/e2e';
 import { NodeEntry } from 'alfresco-js-api-node';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
@@ -80,7 +80,8 @@ describe('List processes', async () => {
         await dashboardPage.navigateTo();
         await dashboardPage.navigateToProject(project1.entry.id);
         await sidebarActionMenu.createProcess();
-        const processItem = await createEntityDialog.setEntityDetails();
+        /* cspell: disable-next-line */
+        const processItem = await createEntityDialog.setEntityDetails('AMA_QA' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
         expect(await projectContentPage.isModelInList('process', processItem.name)).toBe(true, 'Process is not displayed in the left sidebar');
 
         await dashboardPage.navigateTo();

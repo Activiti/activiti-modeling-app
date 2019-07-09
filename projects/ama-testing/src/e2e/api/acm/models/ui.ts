@@ -20,7 +20,7 @@ import { ACMCrud } from '../acm-crud';
 export class ACMUi extends ACMCrud {
 
     displayName = 'Ui';
-    namePrefix = 'QA_APS_UI_';
+    namePrefix = 'qa-aps-ui-';
     type = 'UI';
     contentType = 'application/json';
     contentExtension = 'json';

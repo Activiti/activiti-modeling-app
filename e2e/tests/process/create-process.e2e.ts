@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage, LoginPageImplementation, UtilRandom } from 'ama-testing/e2e';
 import { SidebarActionMenu } from 'ama-testing/e2e';
 import { CreateEntityDialog } from 'ama-testing/e2e';
 import { ProjectContentPage } from 'ama-testing/e2e';
@@ -76,7 +76,8 @@ describe('Create process', async () => {
         await projectContentPage.navigateTo();
 
         await sidebarActionMenu.createProcess();
-        const processUI = await createEntityDialog.setEntityDetails();
+        /* cspell: disable-next-line */
+        const processUI = await createEntityDialog.setEntityDetails('AMA_QA' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
         expect(await snackBar.isCreatedSuccessfully('process')).toBe(true, 'Process creation snackbar should be displayed');
         expect(await projectContentPage.isModelInList('process', processUI.name)).toBe(true, 'Process should be in the left sidebar');
         expect(await toolbar.isItemDisplayed(processUI.name)).toBe(true, 'Process name should be displayed in the breadcrumb');
@@ -86,7 +87,8 @@ describe('Create process', async () => {
         await projectContentPage.navigateTo();
 
         await projectContentPage.createProcess();
-        const processUI = await createEntityDialog.setEntityDetails();
+        /* cspell: disable-next-line */
+        const processUI = await createEntityDialog.setEntityDetails('AMA_QA' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
         expect(await snackBar.isCreatedSuccessfully('process')).toBe(true, 'Process creation snackbar should be displayed');
         expect(await projectContentPage.isModelInList('process', processUI.name)).toBe(true, 'Process should be in the left sidebar');
         expect(await toolbar.isItemDisplayed(processUI.name)).toBe(true, 'Process name should be displayed in the breadcrumb');
