@@ -15,6 +15,7 @@
         "typeRoots": ["node_modules/@types"],
         "lib": ["esnext.array", "es2017", "dom"],
         "module": "es2015",
+        "types": ["jasmine"],
         "baseUrl": "./",
         "paths": {
             "ama-sdk": ["projects/ama-sdk"],
