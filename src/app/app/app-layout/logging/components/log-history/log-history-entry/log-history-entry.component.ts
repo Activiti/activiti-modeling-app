@@ -15,17 +15,18 @@
  * limitations under the License.
  */
 
-import { MatTabChangeEvent } from '@angular/material';
-import { ToolbarMessageAction } from '../../src/app/store/actions/app.actions';
-import { CodeEditorPosition } from 'ama-sdk';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { LogMessage } from 'ama-sdk';
 
-export function selectedTabChange(event: MatTabChangeEvent) {
-    this.selectedTabIndex = event.index;
-    this.store.dispatch(new ToolbarMessageAction(this.tabNames[this.selectedTabIndex]));
-}
+@Component({
+    selector: 'ama-log-history-entry',
+    templateUrl: './log-history-entry.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class LogHistoryEntryComponent {
 
-export function codeEditorPositionChanged(position: CodeEditorPosition) {
-    if (this.selectedTabIndex > 0) {
-        this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
-    }
+    @Input()
+    log: LogMessage;
+
+    constructor() {}
 }

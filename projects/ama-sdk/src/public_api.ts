@@ -33,7 +33,6 @@ export * from './lib/extension/public_api';
 export * from './lib/helpers/public_api';
 export * from './lib/i18n/public_api';
 export * from './lib/interfaces/public_api';
-export * from './lib/logging/public_api';
 export * from './lib/process-editor/public_api';
 export * from './lib/schemas/public_api';
 export * from './lib/services/public_api';

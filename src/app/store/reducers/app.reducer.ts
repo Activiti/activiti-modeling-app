@@ -23,8 +23,6 @@ import { appThemes } from '../../app/themes';
 import {
     AppActionTypes,
     AsyncInitAction,
-    TOOLBAR_MESSAGE,
-    ToolbarMessageAction,
     CLEAR_LOG_HISTORY,
     SET_LOG_HISTORY_VISIBILITY,
     SetLogHistoryVisibilityAction
@@ -36,11 +34,11 @@ import {
     MODEL_OPENED,
     ModelOpenedAction,
     MODEL_CLOSED,
-    ModelClosedAction
+    ModelClosedAction,
+    TOOLBAR_MESSAGE,
+    ToolbarMessageAction,
 } from 'ama-sdk';
 import { LOG_ACTION, LogAction } from 'ama-sdk';
-
-import { PROCESS_EDITOR_LOGS } from './../../process-editor/services/process-editor.constants';
 
 export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action): AppState {
     let newState: AppState;
@@ -153,10 +151,6 @@ function deselectOpenedModel(state: AppState, action: ModelClosedAction): AppSta
 }
 
 function storeLog(state: AppState, action: LogAction): AppState {
-    if (action.log.initiator.key !== PROCESS_EDITOR_LOGS) {
-        return state;
-    }
-
     return {
         ...state,
         toolbar: {

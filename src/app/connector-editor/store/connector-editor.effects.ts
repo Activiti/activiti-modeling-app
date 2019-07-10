@@ -72,9 +72,8 @@ import { CHANGE_CONNECTOR_CONTENT, ChangeConnectorContent } from './connector-ed
 import { selectConnectorsLoaded, selectSelectedConnectorContent, selectSelectedConnector } from './connector-editor.selectors';
 import { UploadFileAttemptPayload, changeFileName, ConnectorContent, Connector, selectSelectedProjectId, BaseEffects } from 'ama-sdk';
 import { ConnectorSettingsDialogComponent } from '../components/connector-header/settings-dialog/connector-settings.dialog.component';
-import { logError } from 'ama-sdk';
+import { logError, logInfo } from 'ama-sdk';
 import { getConnectorLogInitiator } from '../services/connector-edtitor.constants';
-import { logInfo } from 'ama-sdk/src/lib/logging/public_api';
 
 @Injectable()
 export class ConnectorEditorEffects extends BaseEffects {
@@ -279,6 +278,7 @@ export class ConnectorEditorEffects extends BaseEffects {
         return this.connectorEditorService.update(connector.id, connector, content, projectId).pipe(
             switchMap(() => [
                 new UpdateConnectorSuccessAction({ id: connector.id, changes: content }),
+                logInfo(getConnectorLogInitiator(), this.translation.instant('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')),
                 new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleConnectorUpdatingError.bind(this), e))

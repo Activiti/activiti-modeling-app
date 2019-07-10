@@ -51,10 +51,4 @@ export class ClearLogHistoryAction implements Action {
     constructor() {}
 }
 
-export const TOOLBAR_MESSAGE = '[App] TOOLBAR_MESSAGE';
-export class ToolbarMessageAction implements Action {
-    readonly type = TOOLBAR_MESSAGE;
-    constructor(public message: string) {}
-}
-
 export type AppActions = AsyncInitAction | LogoutAction | LoggedInAction;

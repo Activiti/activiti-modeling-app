@@ -39,7 +39,6 @@ import {
 } from 'ama-sdk';
 import { UpdateProcessExtensionsAction } from '../../store/process-editor.actions';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
-import { selectedTabChange, codeEditorPositionChanged } from '../../../../../projects/ama-sdk/editor.helpers';
 
 @Component({
     templateUrl: './process-editor.component.html',
@@ -64,14 +63,12 @@ export class ProcessEditorComponent implements OnInit {
     processFileUri$: Observable<string>;
     extensionsLanguageType: string;
     processesLanguageType: string;
-    selectedTabChange = selectedTabChange;
-    codeEditorPositionChanged = codeEditorPositionChanged;
 
     constructor(
         private store: Store<AmaState>,
         private codeValidatorService: CodeValidatorService,
         @Inject(ProcessModelerServiceToken) private processModeler: ProcessModelerService,
-        private processLoaderService: ProcessDiagramLoaderService
+        private processLoaderService: ProcessDiagramLoaderService,
     ) {
         this.vsTheme$ = this.getVsTheme();
         this.extensionsLanguageType = 'json';

@@ -15,10 +15,9 @@
  * limitations under the License.
  */
 
-import { LogAction } from '../store/logging.actions';
-import { arrayize } from '../../helpers/utils/arrayize';
-import { LogMessageInitiator } from '../../store/app.state';
-import { MESSAGE } from '../../store/app.state';
+import { LogAction } from '../../store/logging.actions';
+import { LogMessageInitiator, MESSAGE } from '../../store/app.state';
+import { arrayize } from './arrayize';
 
 export function logInfo(initiator: LogMessageInitiator, messages: string | string[]) {
     return new LogAction({

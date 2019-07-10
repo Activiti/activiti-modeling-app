@@ -15,16 +15,25 @@
  * limitations under the License.
  */
 
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { LogMessage } from '../../../../store/app.state';
+import { Component, Inject } from '@angular/core';
+import { EDITOR_FOOTER_SERVICE_TOKEN, EditorFooterService } from './editor-footer.service.interface';
 
 @Component({
-    selector: 'amasdk-log-history-entry',
-    templateUrl: './log-history-entry.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'ama-editor-footer',
+    templateUrl: './editor-footer.component.html'
 })
-export class LogHistoryEntryComponent {
+export class EditorFooterComponent {
 
-    @Input()
-    log: LogMessage;
+    showConsole = false;
+
+    constructor(@Inject(EDITOR_FOOTER_SERVICE_TOKEN) public editorFooterService: EditorFooterService) {}
+
+    toggleConsole() {
+        this.showConsole = !this.showConsole;
+        this.editorFooterService.setHistoryVisibility(this.showConsole);
+    }
+
+    clearLogs() {
+        this.editorFooterService.clearLogs();
+    }
 }

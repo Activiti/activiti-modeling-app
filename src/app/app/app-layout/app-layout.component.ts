@@ -27,7 +27,7 @@ import { SettingsDialogComponent } from '../settings/settings-dialog.component';
 import { LogoutAction } from '../../store/actions/app.actions';
 import { AmaState } from 'ama-sdk';
 import { AppFooterService } from '../../../app/common/services/app-footer.service';
-import { EDITOR_FOOTER_SERVICE_TOKEN } from 'ama-sdk';
+import { EDITOR_FOOTER_SERVICE_TOKEN } from './editor-footer/editor-footer.service.interface';
 
 @Component({
     templateUrl: 'app-layout.component.html',

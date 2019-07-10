@@ -34,7 +34,6 @@ import {
     CONNECTOR,
     getFileUri
 } from 'ama-sdk';
-import { selectedTabChange, codeEditorPositionChanged } from '../../../../../projects/ama-sdk/editor.helpers';
 import { MatTabChangeEvent } from '@angular/material';
 const memoize = require('lodash/memoize');
 
@@ -55,7 +54,6 @@ export class ConnectorEditorComponent {
     getMemoizedDynamicComponentData: any;
     fileUri$: Observable<string>;
     languageType: string;
-    codeEditorPositionChanged = codeEditorPositionChanged;
 
     constructor(
         private store: Store<AmaState>,
@@ -84,7 +82,6 @@ export class ConnectorEditorComponent {
 
     onTabChange(event: MatTabChangeEvent): void {
         this.disableSave = false;
-        selectedTabChange(event);
     }
 
     isAdvancedEditorEmbedded(): boolean {

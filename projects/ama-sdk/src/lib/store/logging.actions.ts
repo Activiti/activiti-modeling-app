@@ -15,16 +15,11 @@
  * limitations under the License.
  */
 
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { LogMessage } from './../../../store/app.state';
+import { Action } from '@ngrx/store';
+import { LogMessage } from 'ama-sdk';
 
-@Component({
-    selector: 'amasdk-log-history',
-    templateUrl: './log-history.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class LogHistoryComponent {
-
-    @Input()
-    messages: LogMessage[];
+export const LOG_ACTION = 'LOG_ACTION';
+export class LogAction implements Action {
+    readonly type = LOG_ACTION;
+    constructor(public log: LogMessage) {}
 }

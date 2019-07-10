@@ -23,8 +23,6 @@ import { MatIconModule } from '@angular/material';
 import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
 import { CoreModule } from '@alfresco/adf-core';
 import { AllowedCharactersDirective } from './directives/allowed-characters.directive';
-import { EditorFooterComponent } from './components/editor-footer/editor-footer.component';
-import { LoggingModule } from '../logging/logging.module';
 import { InputMappingTableModule } from '../components/input-mapping-table/input-mapping-table.module';
 import { OutputMappingTableModule } from '../components/output-mapping-table/output-mapping-table.module';
 
@@ -33,7 +31,6 @@ import { OutputMappingTableModule } from '../components/output-mapping-table/out
         CommonModule,
         MatIconModule,
         RouterModule,
-        LoggingModule,
         InputMappingTableModule,
         OutputMappingTableModule,
         CoreModule.forChild(),
@@ -41,14 +38,12 @@ import { OutputMappingTableModule } from '../components/output-mapping-table/out
     declarations: [
         HeaderBreadcrumbsComponent,
         EntityDialogComponent,
-        EditorFooterComponent,
         AllowedCharactersDirective
     ],
     entryComponents: [ EntityDialogComponent ],
     exports: [
         HeaderBreadcrumbsComponent,
         EntityDialogComponent,
-        EditorFooterComponent,
         AllowedCharactersDirective,
         InputMappingTableModule,
         OutputMappingTableModule

@@ -1,11 +1,9 @@
 @import "./components/header-breadcrumbs/header-breadcrumbs.component";
-@import "./components/editor-footer/editor-footer.component";
 @import "../components/input-mapping-table/input-mapping-table.component";
 @import "../components/output-mapping-table/output-mapping-table.component";
 
 @mixin amasdk-shared-module($theme) {
     @include amasdk-header-breadcrumbs($theme);
-    @include amasdk-editor-footer($theme);
     @include amasdk-input-mapping-table($theme);
     @include amasdk-output-mapping-table($theme);
 }

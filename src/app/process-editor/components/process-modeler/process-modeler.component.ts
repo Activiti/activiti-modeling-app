@@ -28,7 +28,7 @@ import {
 import { ProcessEntitiesState } from '../../store/process-entities.state';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
 import { createSelectedElement } from '../../store/process-editor.state';
-import { ToolbarMessageAction } from '../../../../app/store/actions/app.actions';
+import { ToolbarMessageAction } from 'ama-sdk';
 
 @Component({
     selector: 'ama-process-modeler',

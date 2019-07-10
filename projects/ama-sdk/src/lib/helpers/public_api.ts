@@ -26,5 +26,6 @@ export * from './utils/createJsonBlob';
 export * from './utils/arrayize';
 export { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
 export { AllowedCharactersDirective } from './directives/allowed-characters.directive';
+export * from './utils/logging.functions';
 
 
