@@ -23,7 +23,7 @@ import { TestBed } from '@angular/core/testing';
 import { ACMApiModule, OpenConfirmDialogAction, DownloadResourceService, BlobService, DialogService } from 'ama-sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { LogService, AlfrescoApiService, AlfrescoApiServiceMock } from '@alfresco/adf-core';
+import { LogService, AlfrescoApiService, AlfrescoApiServiceMock, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { Router } from '@angular/router';
 import { ExportProjectAction } from '../project-editor.actions';
 import { hot, getTestScheduler, cold } from 'jasmine-marbles';
@@ -63,6 +63,10 @@ describe('Project Effects', () => {
                 {
                     provide: LogService,
                     useValue: { error: jest.fn() }
+                },
+                {
+                    provide: TranslationService,
+                    useClass: TranslationMock
                 },
                 {
                     provide: Store,

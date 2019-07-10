@@ -23,7 +23,7 @@ import { DashboardService } from '../../services/dashboard.service';
 import { Store } from '@ngrx/store';
 import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { Router } from '@angular/router';
-import { LogService, CoreModule } from '@alfresco/adf-core';
+import { LogService, CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { selectProjectsLoaded } from '../selectors/dashboard.selectors';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { mockProject, mockReleaseEntry } from './project.mock';
@@ -52,15 +52,18 @@ import {
     SnackbarInfoAction,
     AmaAuthenticationService,
     EntityDialogForm,
-    DownloadResourceService
+    DownloadResourceService,
+    logInfo
 } from 'ama-sdk';
 import { GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
+import { getProjectEditorLogInitiator } from 'src/app/project-editor/services/project-editor.constants';
 
 describe('ProjectsEffects', () => {
     let effects: ProjectsEffects;
     let metadata: EffectsMetadata<ProjectsEffects>;
     let actions$: Observable<any>;
     let dashboardService: DashboardService;
+    let translationService: TranslationService;
     const projectsLoaded$ = new BehaviorSubject<boolean>(false);
 
     beforeEach(() => {
@@ -73,6 +76,10 @@ describe('ProjectsEffects', () => {
                 ProjectApi,
                 DashboardService,
                 DownloadResourceService,
+                {
+                    provide: TranslationService,
+                    useClass: TranslationMock
+                },
                 provideMockActions(() => actions$),
                 {
                     provide: Router,
@@ -105,6 +112,7 @@ describe('ProjectsEffects', () => {
         effects = TestBed.get(ProjectsEffects);
         metadata = getEffectsMetadata(effects);
         dashboardService = TestBed.get(DashboardService);
+        translationService = TestBed.get(TranslationService);
     });
 
     describe('ShowProject', () => {
@@ -356,10 +364,12 @@ describe('ProjectsEffects', () => {
         it('should trigger the right action on successful release', () => {
             dashboardService.releaseProject = jest.fn().mockReturnValue(of(mockProject));
             actions$ = hot('a', { a: new ReleaseProjectAttemptAction(mockProject.id) });
-
-            const expected = cold('(bc)', {
+            const expectedLogAction = logInfo(getProjectEditorLogInitiator(), 'APP.HOME.NEW_MENU.PROJECT_RELEASED');
+            expectedLogAction.log.datetime = (<any>expect).any(Date);
+            const expected = cold('(bcd)', {
                 b: new ReleaseProjectSuccessAction(mockProject, mockProject.id),
-                c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_RELEASED')
+                c: expectedLogAction,
+                d: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_RELEASED')
             });
 
             expect(effects.releaseProjectAttemptEffect).toBeObservable(expected);
