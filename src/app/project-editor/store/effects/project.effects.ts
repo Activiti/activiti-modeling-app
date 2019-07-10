@@ -20,8 +20,8 @@ import { Injectable } from '@angular/core';
 import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { LogService } from '@alfresco/adf-core';
-import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, Project, DialogService } from 'ama-sdk';
+import { LogService, TranslationService } from '@alfresco/adf-core';
+import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, Project, DialogService, logInfo } from 'ama-sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import {
     GetProjectAttemptAction,
@@ -33,6 +33,7 @@ import {
     OPEN_PROJECT_SETTINGS_DIALOG,
 } from '../project-editor.actions';
 import { ProjectSettingsComponent } from '../../components/project-settings/project-settings.component';
+import { getProjectEditorLogInitiator } from '../../services/project-editor.constants';
 
 @Injectable()
 export class ProjectEffects extends BaseEffects {
@@ -43,6 +44,7 @@ export class ProjectEffects extends BaseEffects {
         protected router: Router,
         protected downloadService: DownloadResourceService,
         private dialogService: DialogService,
+        private translation: TranslationService,
         protected blobService: BlobService
     ) {
         super(router, logService);
@@ -89,7 +91,9 @@ export class ProjectEffects extends BaseEffects {
         return this.projectEditorService.exportProject(projectId).pipe(
             switchMap(response => {
                 this.downloadService.downloadResource(name, response, '.zip');
-                return of();
+                return [
+                    logInfo(getProjectEditorLogInitiator(), this.translation.instant('APP.PROJECT.EXPORT_SUCCESS'))
+                ];
             }),
             catchError(response => this.genericErrorHandler(this.handleValidationError.bind(this, response), response))
         );
