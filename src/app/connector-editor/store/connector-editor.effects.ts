@@ -73,7 +73,7 @@ import { selectConnectorsLoaded, selectSelectedConnectorContent, selectSelectedC
 import { UploadFileAttemptPayload, changeFileName, ConnectorContent, Connector, selectSelectedProjectId, BaseEffects } from 'ama-sdk';
 import { ConnectorSettingsDialogComponent } from '../components/connector-header/settings-dialog/connector-settings.dialog.component';
 import { logError, logInfo } from 'ama-sdk';
-import { getConnectorLogInitiator } from '../services/connector-edtitor.constants';
+import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 
 @Injectable()
 export class ConnectorEditorEffects extends BaseEffects {

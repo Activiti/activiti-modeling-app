@@ -71,7 +71,7 @@ import { Update } from '@ngrx/entity';
 import { selectConnectorsLoaded, selectSelectedConnector } from './connector-editor.selectors';
 import { MatDialogRef, MatDialogModule } from '@angular/material';
 import { ConnectorSettingsDialogComponent } from '../components/connector-header/settings-dialog/connector-settings.dialog.component';
-import { getConnectorLogInitiator } from '../services/connector-edtitor.constants';
+import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 
 describe('ConnectorEditorEffects', () => {
     let actions$: Observable<any>;
