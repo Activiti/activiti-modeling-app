@@ -489,7 +489,7 @@ describe('ConnectorEditorEffects', () => {
             expectedLogAction.log.datetime = (<any>expect).any(Date);
             const expected = cold('(bc)', {
                 b: new OpenConfirmDialogAction(expectedPayload),
-                c: logError(getConnectorLogInitiator(), ['test'])
+                c: expectedLogAction
             });
 
             expect(effects.validateConnectorEffect).toBeObservable(expected);
