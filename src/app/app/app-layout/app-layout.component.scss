@@ -15,7 +15,12 @@
                 height: 100%;
 
                 > div {
-                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+
+                    ng-component {
+                        flex: 1;
+                    }
                 }
             }
 

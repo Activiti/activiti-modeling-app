@@ -25,7 +25,8 @@ import { CodeEditorPosition } from './../code-editor/components/code-editor/code
 @Injectable()
 export class EditorHelperService {
     selectedTabIndex: number;
-    store: Store<AmaState>;
+
+    constructor(private store: Store<AmaState>) {}
 
     selectedTabChange(event: MatTabChangeEvent, tabNames: string[]) {
         this.selectedTabIndex = event.index;

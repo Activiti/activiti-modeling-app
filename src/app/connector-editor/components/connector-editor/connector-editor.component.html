@@ -10,7 +10,7 @@
 
             <ng-container *ngIf="isAdvancedEditorEmbedded()">
                 <mat-tab-group
-                    (selectedTabChange)="onTabChange()"
+                    (selectedTabChange)="onTabChange($event)"
                     [@.disabled]="true"
                     class="ama-connector-tab-group">
                     <mat-tab label="{{ 'CONNECTOR_EDITOR.TABS.CONNECTOR_EDITOR' | translate }}">
@@ -27,6 +27,7 @@
                             data-automation-id="connector-basic-tab">
                             <amasdk-code-editor [vsTheme]="vsTheme$ | async"
                                 [content]="editorContent"
+                                (positionChanged)="editorHelper.codeEditorPositionChanged($event)"
                                 (changed)="onChangeAttempt($event)"
                                 [fileUri]="fileUri$ | async"
                                 [language]="languageType">

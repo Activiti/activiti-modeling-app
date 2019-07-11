@@ -7,7 +7,7 @@
                 [breadcrumbs$]="breadcrumbs$"
                 [content]="content$ | async">
             </ama-process-header>
-            <mat-tab-group [@.disabled]="true" class="ama-process-tab-group" *ngIf="process$ | async as process;">
+            <mat-tab-group [@.disabled]="true" class="ama-process-tab-group" *ngIf="process$ | async as process;"  (selectedTabChange)="editorHelper.selectedTabChange($event, tabNames)">
                 <mat-tab label="{{ 'PROCESS_EDITOR.TABS.DIAGRAM_EDITOR' | translate }}">
                     <div class="process-editor-modeling-area" cdkDropList>
                         <ama-process-modeler
@@ -25,6 +25,7 @@
                     <div class="ama-process-code-editor" data-automation-id="process-basic-tab">
                         <amasdk-code-editor
                             (changed)="onXmlChangeAttempt($event)"
+                            (positionChanged)="editorHelper.codeEditorPositionChanged($event)"
                             [vsTheme]="vsTheme$ | async"
                             [options]="{language: 'xml'}"
                             [content]="content$ | async"
@@ -37,6 +38,7 @@
                     <div class="ama-process-code-editor" data-automation-id="extensions-tab">
                         <amasdk-code-editor
                             (changed)="onExtensionsChangeAttempt($event, process.id)"
+                            (positionChanged)="editorHelper.codeEditorPositionChanged($event)"
                             [vsTheme]="vsTheme$ | async"
                             [content]="extensions$ | async"
                             [fileUri]="extensionFileUri$ | async"

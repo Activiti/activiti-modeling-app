@@ -28,7 +28,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { selectSelectedConnector, selectSelectedConnectorContent } from '../../store/connector-editor.selectors';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
-import { AmaTitleService, CONNECTOR, CodeValidatorService, AjvInjectionToken, SharedModule } from 'ama-sdk';
+import { AmaTitleService, CONNECTOR, CodeValidatorService, AjvInjectionToken, SharedModule, EditorHelperService } from 'ama-sdk';
 import { ExtensionsModule, ComponentRegisterService } from '@alfresco/adf-extensions';
 
 describe('ConnectorEditorComponent', () => {
@@ -64,6 +64,7 @@ describe('ConnectorEditorComponent', () => {
                 ComponentRegisterService,
                 AmaTitleService,
                 CodeValidatorService,
+                EditorHelperService,
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: AjvInjectionToken, useValue: ajv },
                 {

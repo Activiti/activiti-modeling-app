@@ -32,7 +32,8 @@ import {
     AdvancedConnectorEditorData,
     AdvancedConnectorEditorKey,
     CONNECTOR,
-    getFileUri
+    getFileUri,
+    EditorHelperService
 } from 'ama-sdk';
 import { MatTabChangeEvent } from '@angular/material';
 const memoize = require('lodash/memoize');
@@ -54,12 +55,17 @@ export class ConnectorEditorComponent {
     getMemoizedDynamicComponentData: any;
     fileUri$: Observable<string>;
     languageType: string;
+    tabNames = [
+        'CONNECTOR_EDITOR.TABS.CONNECTOR_EDITOR',
+        'CONNECTOR_EDITOR.TABS.JSON_EDITOR'
+    ];
 
     constructor(
         private store: Store<AmaState>,
         private codeValidatorService: CodeValidatorService,
         private changeDetectorRef: ChangeDetectorRef,
-        private componentRegister: ComponentRegisterService
+        private componentRegister: ComponentRegisterService,
+        public editorHelper: EditorHelperService
     ) {
         this.vsTheme$ = this.getVsTheme();
         this.loadingState$ = this.store.select(selectConnectorLoadingState);
@@ -82,6 +88,7 @@ export class ConnectorEditorComponent {
 
     onTabChange(event: MatTabChangeEvent): void {
         this.disableSave = false;
+        this.editorHelper.selectedTabChange(event, this.tabNames);
     }
 
     isAdvancedEditorEmbedded(): boolean {

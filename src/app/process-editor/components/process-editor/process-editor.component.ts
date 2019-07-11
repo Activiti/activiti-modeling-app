@@ -35,7 +35,8 @@ import {
     ProcessExtensions,
     extensionsSchema,
     PROCESS,
-    getFileUri
+    getFileUri,
+    EditorHelperService
 } from 'ama-sdk';
 import { UpdateProcessExtensionsAction } from '../../store/process-editor.actions';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
@@ -69,6 +70,7 @@ export class ProcessEditorComponent implements OnInit {
         private codeValidatorService: CodeValidatorService,
         @Inject(ProcessModelerServiceToken) private processModeler: ProcessModelerService,
         private processLoaderService: ProcessDiagramLoaderService,
+        public editorHelper: EditorHelperService
     ) {
         this.vsTheme$ = this.getVsTheme();
         this.extensionsLanguageType = 'json';
