@@ -17,6 +17,9 @@
 
 import { Component, Inject } from '@angular/core';
 import { EDITOR_FOOTER_SERVICE_TOKEN, EditorFooterService } from './editor-footer.service.interface';
+import { Store } from '@ngrx/store';
+import { AmaState } from 'ama-sdk/src/public_api';
+import { selectToolbarLogsVisibility } from '../../../../app/store/selectors/app.selectors';
 
 @Component({
     selector: 'ama-editor-footer',
@@ -26,7 +29,9 @@ export class EditorFooterComponent {
 
     showConsole = false;
 
-    constructor(@Inject(EDITOR_FOOTER_SERVICE_TOKEN) public editorFooterService: EditorFooterService) {}
+    constructor(@Inject(EDITOR_FOOTER_SERVICE_TOKEN) public editorFooterService: EditorFooterService, private store: Store<AmaState>) {
+         this.store.select(selectToolbarLogsVisibility).subscribe(visibily => this.showConsole = visibily);
+    }
 
     toggleConsole() {
         this.showConsole = !this.showConsole;

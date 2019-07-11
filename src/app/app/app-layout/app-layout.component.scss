@@ -13,6 +13,7 @@
         .mat-sidenav-content {
             > div {
                 height: 100%;
+                position: relative;
 
                 > div {
                     display: flex;
@@ -20,6 +21,11 @@
 
                     ng-component {
                         flex: 1;
+                    }
+
+                    ama-editor-footer {
+                        position: sticky;
+                        bottom: 0;
                     }
                 }
             }

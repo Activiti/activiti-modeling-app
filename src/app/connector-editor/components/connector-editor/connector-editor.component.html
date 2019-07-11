@@ -27,7 +27,7 @@
                             data-automation-id="connector-basic-tab">
                             <amasdk-code-editor [vsTheme]="vsTheme$ | async"
                                 [content]="editorContent"
-                                (positionChanged)="editorHelper.codeEditorPositionChanged($event)"
+                                (positionChanged)="codeEditorPositionChanged($event)"
                                 (changed)="onChangeAttempt($event)"
                                 [fileUri]="fileUri$ | async"
                                 [language]="languageType">

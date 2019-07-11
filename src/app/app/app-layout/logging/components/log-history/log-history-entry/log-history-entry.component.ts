@@ -27,6 +27,4 @@ export class LogHistoryEntryComponent {
 
     @Input()
     log: LogMessage;
-
-    constructor() {}
 }

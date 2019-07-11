@@ -44,7 +44,7 @@ import { BpmnjsPropertiesModule } from './bpmnjs-properties/bpmnjs-properties.mo
 import { environment } from '../environments/environment';
 import { MatInputModule } from '@angular/material';
 
-import { ACMApiModule, AmaServicesModule, ConfirmationDialogModule, AmaAuthenticationService, AuthTokenProcessorService, SharedModule, EditorHelperService } from 'ama-sdk';
+import { ACMApiModule, AmaServicesModule, ConfirmationDialogModule, AmaAuthenticationService, AuthTokenProcessorService } from 'ama-sdk';
 import { AmaRoleGuard } from './ama-role-guard.service';
 import { AppExtensionsModule } from './extensions.module';
 import { ModelStorageService } from './common/services/model-storage.service';
@@ -52,6 +52,8 @@ import { GlobalErrorHandler } from './common/helpers/services/error-handler.serv
 import { LogHistoryComponent } from './app/app-layout/logging/components/log-history/log-history.component';
 import { LogHistoryEntryComponent } from './app/app-layout/logging/components/log-history/log-history-entry/log-history-entry.component';
 import { EditorFooterComponent } from './app/app-layout/editor-footer/editor-footer.component';
+import { AppFooterService } from './common/services/app-footer.service';
+import { EDITOR_FOOTER_SERVICE_TOKEN } from './app/app-layout/editor-footer/editor-footer.service.interface';
 
 @NgModule({
     imports: [
@@ -80,7 +82,6 @@ import { EditorFooterComponent } from './app/app-layout/editor-footer/editor-foo
         ConfirmationDialogModule,
 
         AppExtensionsModule,
-        SharedModule,
 
         /** @deprecated: bpmnjs-properties */
         !environment.production ? BpmnjsPropertiesModule : []
@@ -105,7 +106,7 @@ import { EditorFooterComponent } from './app/app-layout/editor-footer/editor-foo
         AuthTokenProcessorService,
         AmaAuthenticationService,
         ModelStorageService,
-        EditorHelperService
+        { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: AppFooterService }
     ],
     bootstrap: [AppComponent]
 })

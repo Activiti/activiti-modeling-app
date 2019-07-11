@@ -36,10 +36,12 @@ import {
     extensionsSchema,
     PROCESS,
     getFileUri,
-    EditorHelperService
+    CodeEditorPosition
 } from 'ama-sdk';
 import { UpdateProcessExtensionsAction } from '../../store/process-editor.actions';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
+import { MatTabChangeEvent } from '@angular/material';
+import { ToolbarMessageAction } from 'ama-sdk';
 
 @Component({
     templateUrl: './process-editor.component.html',
@@ -69,8 +71,7 @@ export class ProcessEditorComponent implements OnInit {
         private store: Store<AmaState>,
         private codeValidatorService: CodeValidatorService,
         @Inject(ProcessModelerServiceToken) private processModeler: ProcessModelerService,
-        private processLoaderService: ProcessDiagramLoaderService,
-        public editorHelper: EditorHelperService
+        private processLoaderService: ProcessDiagramLoaderService
     ) {
         this.vsTheme$ = this.getVsTheme();
         this.extensionsLanguageType = 'json';
@@ -128,6 +129,17 @@ export class ProcessEditorComponent implements OnInit {
         if (validation.valid) {
             this.store.dispatch(new UpdateProcessExtensionsAction({ extensions: JSON.parse(extensionsString), processId }));
             this.store.dispatch(new SetAppDirtyStateAction(true));
+        }
+    }
+
+    selectedTabChange(event: MatTabChangeEvent) {
+        this.selectedTabIndex = event.index;
+        this.store.dispatch(new ToolbarMessageAction(this.tabNames[this.selectedTabIndex]));
+    }
+
+    codeEditorPositionChanged(position: CodeEditorPosition) {
+        if (this.selectedTabIndex > 0) {
+            this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
         }
     }
 }
