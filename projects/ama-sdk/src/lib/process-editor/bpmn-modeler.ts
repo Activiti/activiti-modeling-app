@@ -17,7 +17,7 @@
 
 import { Observable } from 'rxjs';
 import { InjectionToken } from '@angular/core';
-import { MESSAGE } from 'ama-sdk';
+import { MESSAGE } from './../store/app.state';
 import { BpmnProperty } from './properties';
 
 export interface ModelerInitOptions {
