@@ -63,7 +63,8 @@ import {
     CreateConnectorSuccessAction,
     DialogService,
     logInfo,
-    logError
+    logError,
+    LoadApplicationAction
 } from 'ama-sdk';
 import { of } from 'rxjs';
 import { throwError } from 'rxjs';
@@ -212,10 +213,11 @@ describe('ConnectorEditorEffects', () => {
             actions$ = hot('a', { a: new UpdateConnectorContentAttemptAction(mockPayload) });
             const expectedLogAction = logInfo(getConnectorLogInitiator(), 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED');
             expectedLogAction.log.datetime = (<any>expect).any(Date);
-            const expected = cold('(bcd)', {
-                b: new UpdateConnectorSuccessAction({ id: connector.id, changes: mockPayload }),
-                c: expectedLogAction,
-                d: new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
+            const expected = cold('(bcdf)', {
+                b: new LoadApplicationAction(true),
+                c: new UpdateConnectorSuccessAction({ id: connector.id, changes: mockPayload }),
+                d: expectedLogAction,
+                f: new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
             });
 
             expect(effects.updateConnectorContentEffect).toBeObservable(expected);
@@ -318,8 +320,9 @@ describe('ConnectorEditorEffects', () => {
 
         it('updateConnectorSuccessEffect should dispatch SetAppDirtyStateAction', () => {
             actions$ = hot('a', { a: new UpdateConnectorSuccessAction(<Update<Partial<Connector>>>{}) });
-            const expected = cold('b', {
-                b: new SetAppDirtyStateAction(false)
+            const expected = cold('(bc)', {
+                b: new LoadApplicationAction(false),
+                c: new SetAppDirtyStateAction(false)
             });
 
             expect(effects.updateConnectorSuccessEffect).toBeObservable(expected);
@@ -464,8 +467,9 @@ describe('ConnectorEditorEffects', () => {
         it('validateConnectorEffect should dispatch the action from payload if connector is valid', () => {
             actions$ = hot('a', { a: new ValidateConnectorAttemptAction(payload) });
 
-            const expected = cold('b', {
-                b: payload.action
+            const expected = cold('(bc)', {
+                b: new LoadApplicationAction(true),
+                c: payload.action
             });
 
             expect(effects.validateConnectorEffect).toBeObservable(expected);

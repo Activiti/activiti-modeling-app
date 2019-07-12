@@ -37,6 +37,8 @@ import {
     ModelClosedAction,
     TOOLBAR_MESSAGE,
     ToolbarMessageAction,
+    LOADED_APPLICATION,
+    LoadApplicationAction,
 } from 'ama-sdk';
 import { LOG_ACTION, LogAction } from 'ama-sdk';
 
@@ -79,6 +81,10 @@ export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action):
                         userMessage: (<ToolbarMessageAction>action).message
                     }
                 };
+
+        case LOADED_APPLICATION:
+            return setLoadedAppState(state, <LoadApplicationAction> action);
+            break;
 
         case LOG_ACTION:
             return storeLog(state, <LogAction> action);
@@ -161,4 +167,15 @@ function storeLog(state: AppState, action: LogAction): AppState {
             ...state.logs
         ]
     };
+}
+
+function setLoadedAppState(state: AppState, action: LoadApplicationAction): AppState {
+    return {
+        ...state,
+        toolbar: {
+            ...state.toolbar,
+            inProgress: action.loading
+        }
+    };
+
 }

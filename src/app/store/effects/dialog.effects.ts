@@ -18,14 +18,13 @@
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
 import {
     OPEN_DIALOG,
     OpenDialogAction,
     CLOSE_ALL_DIALOGS,
     CloseAllDialogsAction,
 } from '../actions';
-import { OPEN_CONFIRM_DIALOG, OpenConfirmDialogAction, DialogService, ConfirmDialogData, EntityDialogComponent } from 'ama-sdk';
+import { OPEN_CONFIRM_DIALOG, OpenConfirmDialogAction, DialogService, ConfirmDialogData, EntityDialogComponent, LoadApplicationAction } from 'ama-sdk';
 import { Action } from '@ngrx/store';
 import { OpenEntityDialogAction, OPEN_ENTITY_DIALOG } from '../actions/dialog';
 
@@ -60,13 +59,7 @@ export class DialogEffects {
 
     private openConfirmDialog(action: Action, dialogData: ConfirmDialogData) {
         return this.dialogService.confirm(dialogData, action).pipe(
-            switchMap(confirmation => {
-                if (confirmation) {
-                    return of(action);
-                } else {
-                    return of();
-                }
-            })
+            switchMap(confirmation =>  confirmation ? [new LoadApplicationAction(false), action] : [new LoadApplicationAction(false) ])
         );
     }
 }

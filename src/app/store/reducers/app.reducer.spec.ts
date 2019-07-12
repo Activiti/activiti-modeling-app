@@ -16,7 +16,7 @@
  */
 
 import { appReducer } from './app.reducer';
-import { PROCESS, ModelOpenedAction, MODEL_OPENED, ModelClosedAction, MODEL_CLOSED } from 'ama-sdk';
+import { PROCESS, ModelOpenedAction, MODEL_OPENED, ModelClosedAction, MODEL_CLOSED, LoadApplicationAction, LOADED_APPLICATION } from 'ama-sdk';
 import { SelectProjectAction } from '../../project-editor/store/project-editor.actions';
 
 describe('appReducer', () => {
@@ -59,5 +59,12 @@ describe('appReducer', () => {
         const newState = appReducer(initialState, selectAppAction);
 
         expect(newState.openedModel).toEqual(null);
+    });
+
+    it('should handle LOADED_APPLICATION with true as parameter', () => {
+        const action = <LoadApplicationAction>{ type: LOADED_APPLICATION, loading: true };
+        const initialState = appReducer(undefined, action);
+        const newState = appReducer(initialState, action);
+        expect (newState.toolbar.inProgress).toBe(true);
     });
 });

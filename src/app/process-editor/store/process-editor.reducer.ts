@@ -23,13 +23,8 @@ import {
     RemoveDiagramElementAction,
     REMOVE_DIAGRAM_ELEMENT,
     GET_PROCESS_ATTEMPT,
-    GET_PROCESS_SUCCESS,
-    UPDATE_PROCESS_SUCCESS,
-    VALIDATE_PROCESS_ATTEMPT,
-    UPDATE_PROCESS_ATTEMPT,
-    UPDATE_PROCESS_FAILED
+    GET_PROCESS_SUCCESS
 } from './process-editor.actions';
-import { OPEN_CONFIRM_DIALOG } from 'ama-sdk';
 
 export function processEditorReducer(
     state: ProcessEditorState = getInitialProcessEditorState(),
@@ -52,35 +47,6 @@ export function processEditorReducer(
 
         case REMOVE_DIAGRAM_ELEMENT:
             return removeElement(state, <RemoveDiagramElementAction> action);
-
-        case UPDATE_PROCESS_ATTEMPT:
-        case VALIDATE_PROCESS_ATTEMPT:
-            return {
-                ...state,
-                toolbar: {
-                    ...state.toolbar,
-                    inProgress: true
-                }
-            };
-
-        case OPEN_CONFIRM_DIALOG:
-        case UPDATE_PROCESS_SUCCESS:
-            return {
-                ...state,
-                toolbar: {
-                    ...state.toolbar,
-                    inProgress: false
-                }
-            };
-
-        case UPDATE_PROCESS_FAILED:
-                return {
-                    ...state,
-                    toolbar: {
-                        ...state.toolbar,
-                        inProgress: false
-                    }
-                };
 
         default:
             newState = Object.assign({}, state);

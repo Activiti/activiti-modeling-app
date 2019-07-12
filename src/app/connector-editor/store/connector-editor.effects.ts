@@ -60,7 +60,8 @@ import {
     SetAppDirtyStateAction,
     CreateConnectorSuccessAction,
     CREATE_CONNECTOR_SUCCESS,
-    DialogService
+    DialogService,
+    LoadApplicationAction
 } from 'ama-sdk';
 import { ConnectorEditorService } from '../services/connector-editor.service';
 import { of, zip, forkJoin, Observable } from 'rxjs';
@@ -154,7 +155,10 @@ export class ConnectorEditorEffects extends BaseEffects {
     @Effect()
     updateConnectorSuccessEffect = this.actions$.pipe(
         ofType<UpdateConnectorSuccessAction>(UPDATE_CONNECTOR_SUCCESS),
-        mergeMap(() => of(new SetAppDirtyStateAction(false)))
+        mergeMap(() => [
+            new LoadApplicationAction(false),
+            new SetAppDirtyStateAction(false)
+        ])
     );
 
     @Effect()
@@ -212,7 +216,7 @@ export class ConnectorEditorEffects extends BaseEffects {
 
     private validateConnector({ connectorId, connectorContent, action, title }: ValidateConnectorPayload) {
         return this.connectorEditorService.validate(connectorId, connectorContent).pipe(
-            switchMap(() => [action]),
+            switchMap(() => [ new LoadApplicationAction(true), action]),
             catchError(response => {
                 const errors = JSON.parse(response.message).errors.map(error => error.description);
                 return [
@@ -277,6 +281,7 @@ export class ConnectorEditorEffects extends BaseEffects {
     private updateConnector(connector: Connector, content: ConnectorContent, projectId: string): Observable<{} | SnackbarInfoAction | UpdateConnectorSuccessAction> {
         return this.connectorEditorService.update(connector.id, connector, content, projectId).pipe(
             switchMap(() => [
+                new LoadApplicationAction(true),
                 new UpdateConnectorSuccessAction({ id: connector.id, changes: content }),
                 logInfo(getConnectorLogInitiator(), this.translation.instant('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')),
                 new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
