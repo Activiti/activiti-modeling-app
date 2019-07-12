@@ -123,10 +123,6 @@ export class ConnectorEditorComponent {
     }
 
     codeEditorPositionChanged(position: CodeEditorPosition) {
-        if (!this.isAdvancedEditorEmbedded()) {
-            this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
-        } else if (this.selectedTabIndex > 0) {
-            this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
-        }
+        this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
     }
 }
