@@ -23,7 +23,7 @@ import { of } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { switchMap, catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { BaseEffects, Pagination, logInfo, logError } from 'ama-sdk';
+import { BaseEffects, Pagination, logInfo, logError, LogAction } from 'ama-sdk';
 import {
     GetProjectsAttemptAction,
     GET_PROJECTS_ATTEMPT,
@@ -152,10 +152,7 @@ export class ProjectsEffects extends BaseEffects {
                 logInfo(getProjectEditorLogInitiator(), this.translation.instant('APP.HOME.NEW_MENU.PROJECT_RELEASED')),
                 new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_RELEASED')
             ]),
-            catchError(e => [
-                this.genericErrorHandler(this.handleProjectReleaseError.bind(this, e), e),
-                logError(getProjectEditorLogInitiator(), e)
-            ])
+            catchError(e => this.genericErrorHandler(this.handleProjectReleaseError.bind(this, e), e))
         );
     }
 
@@ -231,12 +228,15 @@ export class ProjectsEffects extends BaseEffects {
         return of(new SnackbarErrorAction(errorMessage));
     }
 
-    private handleProjectReleaseError(error): Observable<SnackbarErrorAction> {
+    private handleProjectReleaseError(error): Observable<SnackbarErrorAction | LogAction> {
         let errorMessage;
 
         errorMessage = 'APP.PROJECT.ERROR.RELEASE_PROJECT';
 
-        return of(new SnackbarErrorAction(errorMessage));
+        return of(
+            new SnackbarErrorAction(errorMessage),
+            logError(getProjectEditorLogInitiator(), errorMessage)
+        );
     }
 
     private handleError(userMessage) {

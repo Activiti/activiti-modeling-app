@@ -7,7 +7,7 @@
                 [breadcrumbs$]="breadcrumbs$"
                 [content]="content$ | async">
             </ama-process-header>
-            <mat-tab-group [@.disabled]="true" class="ama-process-tab-group" *ngIf="process$ | async as process;"  (selectedTabChange)="selectedTabChange($event, tabNames)">
+            <mat-tab-group [@.disabled]="true" class="ama-process-tab-group" *ngIf="process$ | async as process;"  (selectedTabChange)="selectedTabChange($event)">
                 <mat-tab label="{{ 'PROCESS_EDITOR.TABS.DIAGRAM_EDITOR' | translate }}">
                     <div class="process-editor-modeling-area" cdkDropList>
                         <ama-process-modeler

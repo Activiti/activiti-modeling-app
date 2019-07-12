@@ -1,4 +1,4 @@
-<ng-container *ngIf="showConsole">
+<ng-container *ngIf="showConsole$ | async let showConsole;">
     <mat-toolbar class="log-history-toolbar">
         <span class="log-history-toolbar-title">Log history</span>
         <div class="log-history-controls">
@@ -23,6 +23,8 @@
         <div
             class="message-indicator"
             [class.inactive]="!(editorFooterService.isNewError$ | async)"
-            (click)="toggleConsole()">{{ editorFooterService.newErrorNumber$ | async }}</div>
+            (click)="toggleConsole()">
+                {{ editorFooterService.newErrorNumber$ | async }}
+            </div>
     </div>
 </mat-toolbar>

@@ -53,7 +53,8 @@ import {
     AmaAuthenticationService,
     EntityDialogForm,
     DownloadResourceService,
-    logInfo
+    logInfo,
+    logError
 } from 'ama-sdk';
 import { GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
 import { getProjectEditorLogInitiator } from 'src/app/project-editor/services/project-editor.constants';
@@ -63,7 +64,6 @@ describe('ProjectsEffects', () => {
     let metadata: EffectsMetadata<ProjectsEffects>;
     let actions$: Observable<any>;
     let dashboardService: DashboardService;
-    let translationService: TranslationService;
     const projectsLoaded$ = new BehaviorSubject<boolean>(false);
 
     beforeEach(() => {
@@ -112,7 +112,6 @@ describe('ProjectsEffects', () => {
         effects = TestBed.get(ProjectsEffects);
         metadata = getEffectsMetadata(effects);
         dashboardService = TestBed.get(DashboardService);
-        translationService = TestBed.get(TranslationService);
     });
 
     describe('ShowProject', () => {
@@ -374,5 +373,22 @@ describe('ProjectsEffects', () => {
 
             expect(effects.releaseProjectAttemptEffect).toBeObservable(expected);
         });
+
+
+    it('should trigger the right action on error', () => {
+        const error: any = new Error();
+        error.message = JSON.stringify({ errors: [ { description: 'test' } ]});
+        dashboardService.releaseProject = jest.fn().mockReturnValue(throwError(error));
+
+        actions$ = hot('a', { a: new ReleaseProjectAttemptAction(mockProject.id) });
+        const expectedLogAction = logError(getProjectEditorLogInitiator(), 'APP.PROJECT.ERROR.RELEASE_PROJECT');
+        expectedLogAction.log.datetime = (<any>expect).any(Date);
+        const expected = cold('(bc)', {
+            b: new SnackbarErrorAction('APP.PROJECT.ERROR.RELEASE_PROJECT'),
+            c: expectedLogAction
+        });
+
+        expect(effects.releaseProjectAttemptEffect).toBeObservable(expected);
+    });
     });
 });
