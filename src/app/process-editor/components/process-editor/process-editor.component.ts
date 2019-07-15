@@ -138,6 +138,8 @@ export class ProcessEditorComponent implements OnInit {
     }
 
     codeEditorPositionChanged(position: CodeEditorPosition) {
-        this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
+        if (this.selectedTabIndex > 0 ) {
+            this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
+        }
     }
 }
