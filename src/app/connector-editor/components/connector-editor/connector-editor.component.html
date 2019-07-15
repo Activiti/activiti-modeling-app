@@ -38,15 +38,14 @@
             </ng-container>
 
             <ng-container *ngIf="!isAdvancedEditorEmbedded()">
-                <div [@.disabled]="true">
                 <amasdk-code-editor [vsTheme]="vsTheme$ | async"
+                    class="connector-json"
                     [content]="editorContent"
                     (positionChanged)="codeEditorPositionChanged($event)"
                     (changed)="onChangeAttempt($event)"
                     [fileUri]="fileUri$ | async"
                     [language]="languageType">
                 </amasdk-code-editor>
-                </div>
             </ng-container>
         </ng-container>
     </ng-container>
