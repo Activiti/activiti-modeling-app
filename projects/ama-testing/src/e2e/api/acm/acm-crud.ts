@@ -63,6 +63,7 @@ export abstract class ACMCrud implements ModelCrud {
             Logger.info(`[${this.displayName}] Model's content has been updated.`);
             return model;
         } catch (error) {
+            Logger.error(`[${this.displayName}] Creating model failed with entire message: ${error}`);
             Logger.error(`[${this.displayName}] Creating model failed with message: ${error.message}`);
             throw(error);
         }
