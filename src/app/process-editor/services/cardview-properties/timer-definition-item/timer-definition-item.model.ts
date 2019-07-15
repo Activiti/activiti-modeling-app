@@ -16,7 +16,7 @@
  */
 
 import { CardViewBaseItemModel, CardViewItem, DynamicComponentModel } from '@alfresco/adf-core';
-import { BpmnProperty } from 'ama-sdk/src/public_api';
+import { BpmnProperty } from 'ama-sdk';
 
 export class TimerDefinitionItemModel extends CardViewBaseItemModel implements CardViewItem, DynamicComponentModel {
     type = BpmnProperty.timerEventDefinition;

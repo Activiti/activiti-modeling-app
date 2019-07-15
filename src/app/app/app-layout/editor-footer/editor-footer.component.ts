@@ -18,7 +18,7 @@
 import { Component, Inject } from '@angular/core';
 import { EDITOR_FOOTER_SERVICE_TOKEN, EditorFooterService } from './editor-footer.service.interface';
 import { Store } from '@ngrx/store';
-import { AmaState } from 'ama-sdk/src/public_api';
+import { AmaState } from 'ama-sdk';
 import { selectToolbarLogsVisibility } from '../../../../app/store/selectors/app.selectors';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
