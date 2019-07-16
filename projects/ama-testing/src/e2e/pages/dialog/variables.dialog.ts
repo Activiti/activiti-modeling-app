@@ -151,7 +151,6 @@ export class VariablesDialog extends GenericDialog {
 
     async update() {
         await super.click(this.updateButton);
-        await super.isDialogDisplayed();
     }
 
     async close() {
