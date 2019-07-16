@@ -123,6 +123,9 @@ function updateProcessVariablesMapping(state: ProcessEntitiesState, action: Upda
     const newState = cloneDeep(state);
     newState.entities[action.processId].extensions = { mappings: {}, ...newState.entities[action.processId].extensions };
     newState.entities[action.processId].extensions.mappings[action.serviceId] = { ...action.serviceParameterMappings };
+    if (!Object.values(newState.entities[action.processId].extensions.mappings[action.serviceId]).length) {
+        delete newState.entities[action.processId].extensions.mappings[action.serviceId];
+    }
 
     return newState;
 }

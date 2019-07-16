@@ -32,7 +32,8 @@ import {
     REMOVE_ELEMENT_MAPPING
 } from './process-editor.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState } from './process-entities.state';
-import { PROCESS, Process, ProcessContent, ServiceParameterMappings, UpdateServiceParametersAction, EntityProperty, EntityProperties, MappingType } from 'ama-sdk';
+import { PROCESS, Process, ProcessContent, ServiceParameterMappings,
+    UpdateServiceParametersAction, EntityProperty, EntityProperties, MappingType, UPDATE_SERVICE_PARAMETERS } from 'ama-sdk';
 import { processEntitiesReducer } from './process-entities.reducer';
 import { mockProcess, mappings } from './process.mock';
 import * as processVariablesActions from './process-variables.actions';
@@ -107,6 +108,42 @@ describe('ProcessEntitiesReducer', () => {
         action = <RemoveElementMappingAction>{ type: REMOVE_ELEMENT_MAPPING, processId: process.id, elementId };
         newState = processEntitiesReducer(newState, action);
 
+        expect(newState.entities[process.id].extensions.mappings).toEqual({});
+    });
+
+    it('should handle UPDATE_SERVICE_PARAMETERS', () => {
+        const elementId = 'UserTask_0o7efx6';
+        const mockMapping = {
+            inputs: {
+                'e441111c-5a3d-4f78-a571-f57e67ce85bf': {
+                    type: MappingType.value,
+                    value: 'test'
+                }
+            }
+        };
+        const processes = [{ ...process, extensions: {
+            mappings: {},
+            id: 'mock-id',
+            properties: {}
+        } }];
+        let newState = processEntitiesReducer(initialState, <GetProcessesSuccessAction>{ type: GET_PROCESSES_SUCCESS, processes });
+
+        newState = processEntitiesReducer(newState, <UpdateServiceParametersAction>{
+            type: UPDATE_SERVICE_PARAMETERS,
+            processId: process.id,
+            serviceId: elementId,
+            serviceParameterMappings: mockMapping
+        });
+        expect(newState.entities[process.id].extensions.mappings).toEqual({
+            [elementId]: mockMapping
+        });
+
+        newState = processEntitiesReducer(newState, <UpdateServiceParametersAction>{
+            type: UPDATE_SERVICE_PARAMETERS,
+            processId: process.id,
+            serviceId: elementId,
+            serviceParameterMappings: {}
+        });
         expect(newState.entities[process.id].extensions.mappings).toEqual({});
     });
 
