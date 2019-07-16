@@ -381,7 +381,7 @@ describe('ProjectsEffects', () => {
         dashboardService.releaseProject = jest.fn().mockReturnValue(throwError(error));
 
         actions$ = hot('a', { a: new ReleaseProjectAttemptAction(mockProject.id) });
-        const expectedLogAction = logError(getProjectEditorLogInitiator(), 'APP.PROJECT.ERROR.RELEASE_PROJECT');
+        const expectedLogAction = logError(getProjectEditorLogInitiator(), 'test');
         expectedLogAction.log.datetime = (<any>expect).any(Date);
         const expected = cold('(bc)', {
             b: new SnackbarErrorAction('APP.PROJECT.ERROR.RELEASE_PROJECT'),
