@@ -16,15 +16,15 @@
  */
 
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { LogMessage } from '../../interfaces';
+import { LogMessage } from 'ama-sdk';
 
 @Component({
-    selector: 'amasdk-log-history',
-    templateUrl: './log-history.component.html',
+    selector: 'ama-log-history-entry',
+    templateUrl: './log-history-entry.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LogHistoryComponent {
+export class LogHistoryEntryComponent {
 
     @Input()
-    messages: LogMessage[];
+    log: LogMessage;
 }

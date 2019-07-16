@@ -17,13 +17,13 @@
 
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { LogService } from '@alfresco/adf-core';
+import { LogService, TranslationService } from '@alfresco/adf-core';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { switchMap, catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { BaseEffects, Pagination } from 'ama-sdk';
+import { BaseEffects, Pagination, logInfo, logError, LogAction } from 'ama-sdk';
 import {
     GetProjectsAttemptAction,
     GET_PROJECTS_ATTEMPT,
@@ -50,6 +50,7 @@ import { SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
 import { selectProjectsLoaded } from '../selectors/dashboard.selectors';
 import { EntityDialogForm } from 'ama-sdk';
 import { GET_PROJECT_RELEASES_ATTEMPT, GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
+import { getProjectEditorLogInitiator } from '../../../project-editor/services/project-editor.constants';
 
 @Injectable()
 export class ProjectsEffects extends BaseEffects {
@@ -58,6 +59,7 @@ export class ProjectsEffects extends BaseEffects {
         private dashboardService: DashboardService,
         private store: Store<AmaState>,
         logService: LogService,
+        private translation: TranslationService,
         router: Router,
     ) {
         super(router, logService);
@@ -147,11 +149,10 @@ export class ProjectsEffects extends BaseEffects {
         return this.dashboardService.releaseProject(projectId).pipe(
             switchMap(release => [
                 new ReleaseProjectSuccessAction(release, projectId),
+                logInfo(getProjectEditorLogInitiator(), this.translation.instant('APP.HOME.NEW_MENU.PROJECT_RELEASED')),
                 new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_RELEASED')
             ]),
-            catchError(e =>
-                this.genericErrorHandler(this.handleProjectReleaseError.bind(this, e), e)
-            )
+            catchError(e => this.genericErrorHandler(this.handleProjectReleaseError.bind(this, e), e))
         );
     }
 
@@ -227,12 +228,15 @@ export class ProjectsEffects extends BaseEffects {
         return of(new SnackbarErrorAction(errorMessage));
     }
 
-    private handleProjectReleaseError(error): Observable<SnackbarErrorAction> {
+    private handleProjectReleaseError(error): Observable<SnackbarErrorAction | LogAction> {
         let errorMessage;
 
         errorMessage = 'APP.PROJECT.ERROR.RELEASE_PROJECT';
 
-        return of(new SnackbarErrorAction(errorMessage));
+        return of(
+            new SnackbarErrorAction(errorMessage),
+            logError(getProjectEditorLogInitiator(), errorMessage)
+        );
     }
 
     private handleError(userMessage) {

@@ -13,9 +13,20 @@
         .mat-sidenav-content {
             > div {
                 height: 100%;
+                position: relative;
 
                 > div {
-                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+
+                    ng-component {
+                        flex: 1;
+                    }
+
+                    ama-projects-list {
+                        min-height: 0;
+                        flex: 1;
+                    }
                 }
             }
 

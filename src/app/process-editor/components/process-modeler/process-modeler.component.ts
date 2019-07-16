@@ -24,11 +24,11 @@ import {
     SelectModelerElementAction,
     ChangedProcessAction,
     RemoveDiagramElementAction,
-    ToolbarMessageAction
 } from '../../store/process-editor.actions';
 import { ProcessEntitiesState } from '../../store/process-entities.state';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
 import { createSelectedElement } from '../../store/process-editor.state';
+import { ToolbarMessageAction } from 'ama-sdk';
 
 @Component({
     selector: 'ama-process-modeler',

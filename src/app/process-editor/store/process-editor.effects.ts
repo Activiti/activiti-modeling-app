@@ -57,7 +57,9 @@ import {
     RemoveDiagramElementAction,
     REMOVE_DIAGRAM_ELEMENT,
     RemoveElementMappingAction,
-    UpdateProcessFailedAction
+    UpdateProcessFailedAction,
+    UPDATE_PROCESS_SUCCESS,
+    UPDATE_PROCESS_FAILED
 } from './process-editor.actions';
 import {
     BaseEffects,
@@ -71,8 +73,7 @@ import {
     ProcessModelerService,
     selectOpenedModel,
     BpmnElement,
-    logError,
-    logInfo
+    LoadApplicationAction,
 } from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { SetAppDirtyStateAction } from 'ama-sdk';
@@ -84,6 +85,8 @@ import { mergeMap } from 'rxjs/operators';
 import { Process, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
 import { selectSelectedProjectId, AmaState, selectSelectedProcess, createProcessName } from 'ama-sdk';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
+import { logError, logInfo } from 'ama-sdk';
+
 
 @Injectable()
 export class ProcessEditorEffects extends BaseEffects {
@@ -170,6 +173,19 @@ export class ProcessEditorEffects extends BaseEffects {
     );
 
     @Effect()
+    updateProcessSuccessEffect = this.actions$.pipe(
+        ofType<UpdateProcessSuccessAction>(UPDATE_PROCESS_SUCCESS),
+        mergeMap(() => of(new LoadApplicationAction(false)))
+    );
+
+    @Effect()
+    updateProcessFailedEffect = this.actions$.pipe(
+        ofType<UpdateProcessFailedAction>(UPDATE_PROCESS_FAILED),
+        mergeMap(() => of(new LoadApplicationAction(false)))
+    );
+
+
+    @Effect()
     validateProcessEffect = this.actions$.pipe(
         ofType<ValidateProcessAttemptAction>(VALIDATE_PROCESS_ATTEMPT),
         mergeMap(action => this.validateProcess(action.payload))
@@ -217,7 +233,7 @@ export class ProcessEditorEffects extends BaseEffects {
 
     private validateProcess(payload: ValidateProcessPayload) {
         return this.processEditorService.validate(payload.processId, payload.content, payload.extensions).pipe(
-            switchMap(() => [ payload.action ]),
+            switchMap(() => [ new LoadApplicationAction(true), payload.action ]),
             catchError(response => {
                 const errors = JSON.parse(response.message).errors.map(error => error.description);
                 return [
@@ -243,6 +259,7 @@ export class ProcessEditorEffects extends BaseEffects {
             projectId
         ).pipe(
             switchMap(() => [
+                new LoadApplicationAction(true),
                 new UpdateProcessSuccessAction({ id: payload.processId, changes: payload.metadata }, payload.content),
                 new SetAppDirtyStateAction(false),
                 logInfo(getProcessLogInitiator(), this.translation.instant('PROCESS_EDITOR.PROCESS_UPDATED')),

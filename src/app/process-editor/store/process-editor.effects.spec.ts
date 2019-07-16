@@ -54,7 +54,8 @@ import {
     BpmnFactoryToken,
     ProcessModelerServiceToken,
     selectSelectedProjectId,
-    logInfo
+    logInfo,
+    LoadApplicationAction
 } from 'ama-sdk';
 import { ProcessEntitiesState } from './process-entities.state';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
@@ -216,11 +217,12 @@ describe('ProcessEditorEffects', () => {
             const expectedLogAction = logInfo(getProcessLogInitiator(), 'PROCESS_EDITOR.PROCESS_UPDATED');
             expectedLogAction.log.datetime = (<any>expect).any(Date);
 
-            const expected = cold('(bcde)', {
-                b: new UpdateProcessSuccessAction({id: mockProcess.id, changes: mockActionPayload.metadata}, mockActionPayload.content),
-                c: new SetAppDirtyStateAction(false),
-                d: expectedLogAction,
-                e: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_UPDATED')
+            const expected = cold('(bcdef)', {
+                b: new LoadApplicationAction(true),
+                c: new UpdateProcessSuccessAction({id: mockProcess.id, changes: mockActionPayload.metadata}, mockActionPayload.content),
+                d: new SetAppDirtyStateAction(false),
+                e: expectedLogAction,
+                f: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_UPDATED')
             });
 
             expect(effects.updateProcessEffect).toBeObservable(expected);

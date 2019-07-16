@@ -15,19 +15,14 @@
  * limitations under the License.
  */
 
-import { InjectionToken } from '@angular/core';
-import { Observable } from 'rxjs';
-import { LogMessage } from '../logging/interfaces';
+import { LogMessageInitiator } from 'ama-sdk';
 
-export interface EditorFooterService {
-    userMessage$: Observable<string>;
-    inProgress$: Observable<boolean>;
-    logs$: Observable<LogMessage[]>;
-    newErrorNumber$: Observable<number>;
-    isNewError$: Observable<boolean>;
+export const CONNECTOR_EDITOR_LOGS = Symbol('Connector Editor');
 
-    setHistoryVisibility(visibility: boolean): void;
-    clearLogs(): void;
+export function getConnectorLogInitiator(extra?: any): LogMessageInitiator {
+    return {
+        key: CONNECTOR_EDITOR_LOGS,
+        displayName: 'Connector Editor',
+        extra
+    };
 }
-
-export const EDITOR_FOOTER_SERVICE_TOKEN = new InjectionToken<EditorFooterService>('editor-footer-service');

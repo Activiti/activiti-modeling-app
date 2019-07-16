@@ -23,7 +23,14 @@ export const INITIAL_APP_STATE: AppState = {
     openedModel: null,
     menuOpened: true,
     selectedTheme: appThemes[0],
-    dirtyState: false
+    dirtyState: false,
+    toolbar: {
+        inProgress: false,
+        userMessage: '',
+        logHistoryVisible: false,
+    },
+    logs: []
+
 
 };
 

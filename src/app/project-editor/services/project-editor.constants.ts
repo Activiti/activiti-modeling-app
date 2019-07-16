@@ -15,16 +15,14 @@
  * limitations under the License.
  */
 
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { LogMessage } from '../../../interfaces';
+import { LogMessageInitiator } from 'ama-sdk';
 
-@Component({
-    selector: 'amasdk-log-history-entry',
-    templateUrl: './log-history-entry.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class LogHistoryEntryComponent {
+export const PROJECT_EDITOR_LOGS = Symbol('Project Editor');
 
-    @Input()
-    log: LogMessage;
+export function getProjectEditorLogInitiator(extra?: any): LogMessageInitiator {
+    return {
+        key: PROJECT_EDITOR_LOGS,
+        displayName: 'Project Editor',
+        extra
+    };
 }

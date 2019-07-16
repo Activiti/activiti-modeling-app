@@ -49,6 +49,11 @@ import { AmaRoleGuard } from './ama-role-guard.service';
 import { AppExtensionsModule } from './extensions.module';
 import { ModelStorageService } from './common/services/model-storage.service';
 import { GlobalErrorHandler } from './common/helpers/services/error-handler.service';
+import { LogHistoryComponent } from './app/app-layout/logging/components/log-history/log-history.component';
+import { LogHistoryEntryComponent } from './app/app-layout/logging/components/log-history/log-history-entry/log-history-entry.component';
+import { EditorFooterComponent } from './app/app-layout/editor-footer/editor-footer.component';
+import { AppFooterService } from './common/services/app-footer.service';
+import { EDITOR_FOOTER_SERVICE_TOKEN } from './app/app-layout/editor-footer/editor-footer.service.interface';
 
 @NgModule({
     imports: [
@@ -88,7 +93,10 @@ import { GlobalErrorHandler } from './common/helpers/services/error-handler.serv
         ErrorContentComponent,
         CurrentUserComponent,
         SettingsDialogComponent,
-        HostSettingsComponent
+        HostSettingsComponent,
+        LogHistoryComponent,
+        LogHistoryEntryComponent,
+        EditorFooterComponent
     ],
     entryComponents: [SettingsDialogComponent],
     providers: [
@@ -97,7 +105,8 @@ import { GlobalErrorHandler } from './common/helpers/services/error-handler.serv
         AmaRoleGuard,
         AuthTokenProcessorService,
         AmaAuthenticationService,
-        ModelStorageService
+        ModelStorageService,
+        { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: AppFooterService }
     ],
     bootstrap: [AppComponent]
 })

@@ -21,7 +21,7 @@ import { Observable } from 'rxjs';
 import { ConnectorEditorEffects } from './connector-editor.effects';
 import { Store } from '@ngrx/store';
 import { ConnectorEditorService } from '../services/connector-editor.service';
-import { LogService, StorageService, CoreModule } from '@alfresco/adf-core';
+import { LogService, StorageService, CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { Router } from '@angular/router';
 import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import {
@@ -61,7 +61,10 @@ import {
     OpenConfirmDialogAction,
     GetConnectorAttemptAction,
     CreateConnectorSuccessAction,
-    DialogService
+    DialogService,
+    logInfo,
+    logError,
+    LoadApplicationAction
 } from 'ama-sdk';
 import { of } from 'rxjs';
 import { throwError } from 'rxjs';
@@ -69,6 +72,7 @@ import { Update } from '@ngrx/entity';
 import { selectConnectorsLoaded, selectSelectedConnector } from './connector-editor.selectors';
 import { MatDialogRef, MatDialogModule } from '@angular/material';
 import { ConnectorSettingsDialogComponent } from '../components/connector-header/settings-dialog/connector-settings.dialog.component';
+import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 
 describe('ConnectorEditorEffects', () => {
     let actions$: Observable<any>;
@@ -115,6 +119,10 @@ describe('ConnectorEditorEffects', () => {
                 AmaTitleService,
                 DialogService,
                 StorageService,
+                {
+                    provide: TranslationService,
+                    useClass: TranslationMock
+                },
                 { provide: MatDialogRef, useValue: mockDialog },
                 provideMockActions(() => actions$),
                 {
@@ -203,9 +211,13 @@ describe('ConnectorEditorEffects', () => {
             updateConnector.mockReturnValue(of(connector));
 
             actions$ = hot('a', { a: new UpdateConnectorContentAttemptAction(mockPayload) });
-            const expected = cold('(bc)', {
-                b: new UpdateConnectorSuccessAction({ id: connector.id, changes: mockPayload }),
-                c: new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
+            const expectedLogAction = logInfo(getConnectorLogInitiator(), 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED');
+            expectedLogAction.log.datetime = (<any>expect).any(Date);
+            const expected = cold('(bcdf)', {
+                b: new LoadApplicationAction(true),
+                c: new UpdateConnectorSuccessAction({ id: connector.id, changes: mockPayload }),
+                d: expectedLogAction,
+                f: new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
             });
 
             expect(effects.updateConnectorContentEffect).toBeObservable(expected);
@@ -308,8 +320,9 @@ describe('ConnectorEditorEffects', () => {
 
         it('updateConnectorSuccessEffect should dispatch SetAppDirtyStateAction', () => {
             actions$ = hot('a', { a: new UpdateConnectorSuccessAction(<Update<Partial<Connector>>>{}) });
-            const expected = cold('b', {
-                b: new SetAppDirtyStateAction(false)
+            const expected = cold('(bc)', {
+                b: new LoadApplicationAction(false),
+                c: new SetAppDirtyStateAction(false)
             });
 
             expect(effects.updateConnectorSuccessEffect).toBeObservable(expected);
@@ -454,8 +467,9 @@ describe('ConnectorEditorEffects', () => {
         it('validateConnectorEffect should dispatch the action from payload if connector is valid', () => {
             actions$ = hot('a', { a: new ValidateConnectorAttemptAction(payload) });
 
-            const expected = cold('b', {
-                b: payload.action
+            const expected = cold('(bc)', {
+                b: new LoadApplicationAction(true),
+                c: payload.action
             });
 
             expect(effects.validateConnectorEffect).toBeObservable(expected);
@@ -475,9 +489,11 @@ describe('ConnectorEditorEffects', () => {
                 },
                 action: payload.action
             };
-
-            const expected = cold('b', {
-                b: new OpenConfirmDialogAction(expectedPayload)
+            const expectedLogAction = logError(getConnectorLogInitiator(), 'test');
+            expectedLogAction.log.datetime = (<any>expect).any(Date);
+            const expected = cold('(bc)', {
+                b: new OpenConfirmDialogAction(expectedPayload),
+                c: expectedLogAction
             });
 
             expect(effects.validateConnectorEffect).toBeObservable(expected);

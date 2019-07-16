@@ -15,21 +15,11 @@
  * limitations under the License.
  */
 
-export enum MESSAGE {
-    INFO = 'info',
-    WARN = 'warning',
-    ERROR = 'error'
-}
+import { Action } from '@ngrx/store';
+import { LogMessage } from './../store/app.state';
 
-export interface LogMessageInitiator {
-    key: string | Symbol;
-    displayName: string;
-    extra?: any;
-}
-
-export interface LogMessage {
-    type: MESSAGE;
-    datetime: Date;
-    initiator: LogMessageInitiator;
-    messages: string[];
+export const LOG_ACTION = 'LOG_ACTION';
+export class LogAction implements Action {
+    readonly type = LOG_ACTION;
+    constructor(public log: LogMessage) {}
 }

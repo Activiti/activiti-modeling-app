@@ -19,3 +19,10 @@ import { createSelector } from '@ngrx/store';
 import { AppState, selectApp } from 'ama-sdk';
 
 export const selectMenuOpened = createSelector(selectApp, (state: AppState) => state.menuOpened);
+
+export const selectToolbarState = createSelector(selectApp, (state: AppState) => state.toolbar);
+export const selectToolbarUserMessage = createSelector(selectToolbarState, (state) => state.userMessage);
+export const selectToolbarInProgress = createSelector(selectToolbarState, (state) => state.inProgress);
+export const selectToolbarLogs = createSelector(selectApp, (state: AppState) => state.logs);
+export const selectToolbarLogsVisibility = createSelector(selectToolbarState, (state) => state.logHistoryVisible);
+

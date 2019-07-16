@@ -18,15 +18,16 @@
 
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ProcessEditorState } from '../store/process-editor.state';
 import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
-import { selectToolbarUserMessage, selectToolbarInProgress, selectToolbarLogs, selectToolbarLogsVisibility } from '../store/process-editor.selectors';
-import { EditorFooterService, LogMessage, MESSAGE } from 'ama-sdk';
+import { LogMessage, MESSAGE } from 'ama-sdk';
 import { map, tap } from 'rxjs/operators';
-import { SetLogHistoryVisibilityAction, ClearLogHistoryAction } from '../store/process-editor.actions';
+import { ClearLogHistoryAction, SetLogHistoryVisibilityAction } from '../../../app/store/actions/app.actions';
+import { selectToolbarUserMessage, selectToolbarInProgress, selectToolbarLogs, selectToolbarLogsVisibility } from '../../../app/store/selectors/app.selectors';
+import { AmaState } from 'ama-sdk';
+import { EditorFooterService } from '../../app/app-layout/editor-footer/editor-footer.service.interface';
 
 @Injectable()
-export class ProcessEditorFooterService implements EditorFooterService  {
+export class AppFooterService implements EditorFooterService  {
     userMessage$: Observable<string>;
     inProgress$: Observable<boolean>;
     logs$: Observable<LogMessage[]>;
@@ -37,7 +38,7 @@ export class ProcessEditorFooterService implements EditorFooterService  {
     errorNumberKnown$ = new BehaviorSubject<number>(0);
     lastlyAccumulatedErrorNumber = 0;
 
-    constructor(private store: Store<ProcessEditorState>) {
+    constructor(private store: Store<AmaState>) {
         this.userMessage$ = this.store.select(selectToolbarUserMessage);
         this.inProgress$ = this.store.select(selectToolbarInProgress);
         this.logs$ = this.store.select(selectToolbarLogs);

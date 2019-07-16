@@ -3,7 +3,7 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        overflow: hidden;
+        position: relative;
 
         .mat-tab-body.mat-tab-body-active {
             position: absolute;
@@ -18,6 +18,12 @@
 
         .ama-connector-header {
             flex: 0 0 auto;
+        }
+
+        .connector-json {
+            position: absolute;
+            top: 60px;
+            height: calc(100% - 60px);
         }
 
         .ama-connector-tab-group {

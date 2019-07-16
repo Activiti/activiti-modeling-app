@@ -1,4 +1,4 @@
-@mixin amasdk-editor-footer($theme) {
+@mixin ama-editor-footer($theme) {
     $primary: map-get($theme, primary);
     $accent: map-get($theme, accent);
     $warn: map-get($theme, warn);

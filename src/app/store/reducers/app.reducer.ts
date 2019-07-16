@@ -20,7 +20,13 @@ import { UPDATE_SETTINGS, UpdateSettingsAction, SET_MENU, SetMenuAction } from '
 import { INITIAL_APP_STATE } from '../states/app.state';
 import { SELECT_PROJECT, SelectProjectAction } from '../../project-editor/store/project-editor.actions';
 import { appThemes } from '../../app/themes';
-import { AppActionTypes, AsyncInitAction } from '../actions/app.actions';
+import {
+    AppActionTypes,
+    AsyncInitAction,
+    CLEAR_LOG_HISTORY,
+    SET_LOG_HISTORY_VISIBILITY,
+    SetLogHistoryVisibilityAction
+} from '../actions/app.actions';
 import {
     AppState,
     SET_APP_DIRTY_STATE,
@@ -28,8 +34,13 @@ import {
     MODEL_OPENED,
     ModelOpenedAction,
     MODEL_CLOSED,
-    ModelClosedAction
+    ModelClosedAction,
+    TOOLBAR_MESSAGE,
+    ToolbarMessageAction,
+    LOADED_APPLICATION,
+    LoadApplicationAction,
 } from 'ama-sdk';
+import { LOG_ACTION, LogAction } from 'ama-sdk';
 
 export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action): AppState {
     let newState: AppState;
@@ -61,6 +72,37 @@ export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action):
         case SET_APP_DIRTY_STATE:
             newState = setDirtyState(state, <SetAppDirtyStateAction>action);
             break;
+
+         case TOOLBAR_MESSAGE:
+            return {
+                    ...state,
+                    toolbar: {
+                        ...state.toolbar,
+                        userMessage: (<ToolbarMessageAction>action).message
+                    }
+                };
+
+        case LOADED_APPLICATION:
+            return setLoadedAppState(state, <LoadApplicationAction> action);
+            break;
+
+        case LOG_ACTION:
+            return storeLog(state, <LogAction> action);
+
+        case CLEAR_LOG_HISTORY:
+            return {
+                ...state,
+                logs: []
+            };
+
+        case SET_LOG_HISTORY_VISIBILITY:
+            return {
+                ...state,
+                toolbar: {
+                    ...state.toolbar,
+                    logHistoryVisible: (<SetLogHistoryVisibilityAction>action).visible
+                    }
+                };
 
         default:
             newState = Object.assign({}, state);
@@ -112,4 +154,28 @@ function deselectOpenedModel(state: AppState, action: ModelClosedAction): AppSta
     const newState = Object.assign({}, state);
     newState.openedModel = null;
     return newState;
+}
+
+function storeLog(state: AppState, action: LogAction): AppState {
+    return {
+        ...state,
+        toolbar: {
+            ...state.toolbar,
+        },
+        logs: [
+            action.log,
+            ...state.logs
+        ]
+    };
+}
+
+function setLoadedAppState(state: AppState, action: LoadApplicationAction): AppState {
+    return {
+        ...state,
+        toolbar: {
+            ...state.toolbar,
+            inProgress: action.loading
+        }
+    };
+
 }

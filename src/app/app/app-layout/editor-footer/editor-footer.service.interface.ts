@@ -15,11 +15,19 @@
  * limitations under the License.
  */
 
-import { Action } from '@ngrx/store';
-import { LogMessage } from '../interfaces';
+import { InjectionToken } from '@angular/core';
+import { Observable } from 'rxjs';
+import { LogMessage } from 'ama-sdk';
 
-export const LOG_ACTION = 'LOG_ACTION';
-export class LogAction implements Action {
-    readonly type = LOG_ACTION;
-    constructor(public log: LogMessage) {}
+export interface EditorFooterService {
+    userMessage$: Observable<string>;
+    inProgress$: Observable<boolean>;
+    logs$: Observable<LogMessage[]>;
+    newErrorNumber$: Observable<number>;
+    isNewError$: Observable<boolean>;
+
+    setHistoryVisibility(visibility: boolean): void;
+    clearLogs(): void;
 }
+
+export const EDITOR_FOOTER_SERVICE_TOKEN = new InjectionToken<EditorFooterService>('editor-footer-service');

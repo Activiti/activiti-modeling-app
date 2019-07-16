@@ -22,25 +22,6 @@ import { UploadFileAttemptPayload } from 'ama-sdk';
 import { SelectedProcessElement } from './process-editor.state';
 import { Update } from '@ngrx/entity';
 
-
-export const SET_LOG_HISTORY_VISIBILITY = '[Process] SET_LOG_HISTORY_VISIBILITY';
-export class SetLogHistoryVisibilityAction implements Action {
-    readonly type = SET_LOG_HISTORY_VISIBILITY;
-    constructor(public visible: boolean) {}
-}
-
-export const CLEAR_LOG_HISTORY = '[Process] CLEAR_LOG_HISTORY';
-export class ClearLogHistoryAction implements Action {
-    readonly type = CLEAR_LOG_HISTORY;
-    constructor() {}
-}
-
-export const TOOLBAR_MESSAGE = '[Process] TOOLBAR_MESSAGE';
-export class ToolbarMessageAction implements Action {
-    readonly type = TOOLBAR_MESSAGE;
-    constructor(public message: string) {}
-}
-
 export interface UpdateProcessExtensionsPayload {
     extensions: ProcessExtensions;
     processId: string;

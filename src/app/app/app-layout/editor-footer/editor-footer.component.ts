@@ -16,21 +16,29 @@
  */
 
 import { Component, Inject } from '@angular/core';
-import { EDITOR_FOOTER_SERVICE_TOKEN, EditorFooterService } from '../../../services/editor-footer.service.interface';
+import { EDITOR_FOOTER_SERVICE_TOKEN, EditorFooterService } from './editor-footer.service.interface';
+import { Store } from '@ngrx/store';
+import { AmaState } from 'ama-sdk';
+import { selectToolbarLogsVisibility } from '../../../../app/store/selectors/app.selectors';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
-    selector: 'amasdk-editor-footer',
+    selector: 'ama-editor-footer',
     templateUrl: './editor-footer.component.html'
 })
 export class EditorFooterComponent {
 
-    showConsole = false;
+    showConsole$: Observable<boolean>;
 
-    constructor(@Inject(EDITOR_FOOTER_SERVICE_TOKEN) public editorFooterService: EditorFooterService) {}
+    constructor(@Inject(EDITOR_FOOTER_SERVICE_TOKEN) public editorFooterService: EditorFooterService, private store: Store<AmaState>) {
+         this.showConsole$ = this.store.select(selectToolbarLogsVisibility);
+    }
 
     toggleConsole() {
-        this.showConsole = !this.showConsole;
-        this.editorFooterService.setHistoryVisibility(this.showConsole);
+        this.showConsole$.pipe(take(1)).subscribe(
+            showConsole => this.editorFooterService.setHistoryVisibility(!showConsole)
+        );
     }
 
     clearLogs() {

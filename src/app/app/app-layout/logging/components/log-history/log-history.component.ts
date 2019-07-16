@@ -15,7 +15,16 @@
  * limitations under the License.
  */
 
-export * from './interfaces';
-export * from './logging.module';
-export * from './store/logging.actions';
-export * from './utils/logging.functions';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { LogMessage } from 'ama-sdk';
+
+@Component({
+    selector: 'ama-log-history',
+    templateUrl: './log-history.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class LogHistoryComponent {
+
+    @Input()
+    messages: LogMessage[];
+}

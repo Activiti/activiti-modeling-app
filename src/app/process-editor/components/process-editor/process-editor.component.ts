@@ -34,22 +34,18 @@ import {
     CodeValidatorService,
     ProcessExtensions,
     extensionsSchema,
-    EDITOR_FOOTER_SERVICE_TOKEN,
-    CodeEditorPosition,
     PROCESS,
-    getFileUri
+    getFileUri,
+    CodeEditorPosition
 } from 'ama-sdk';
-import { UpdateProcessExtensionsAction, ToolbarMessageAction } from '../../store/process-editor.actions';
-import { ProcessEditorFooterService } from '../../services/process-editor-footer.service';
-import { MatTabChangeEvent } from '@angular/material';
+import { UpdateProcessExtensionsAction } from '../../store/process-editor.actions';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
+import { MatTabChangeEvent } from '@angular/material';
+import { ToolbarMessageAction } from 'ama-sdk';
 
 @Component({
     templateUrl: './process-editor.component.html',
     encapsulation: ViewEncapsulation.None,
-    providers: [
-        { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: ProcessEditorFooterService }
-    ]
 })
 export class ProcessEditorComponent implements OnInit {
     loading$: Observable<boolean>;
@@ -113,17 +109,6 @@ export class ProcessEditorComponent implements OnInit {
             .pipe(map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light')));
     }
 
-    selectedTabChange(event: MatTabChangeEvent) {
-        this.selectedTabIndex = event.index;
-        this.store.dispatch(new ToolbarMessageAction(this.tabNames[this.selectedTabIndex]));
-    }
-
-    codeEditorPositionChanged(position: CodeEditorPosition) {
-        if (this.selectedTabIndex > 0) {
-            this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
-        }
-    }
-
     onBpmnEditorChange(): void {
         this.processModeler.export().then(content => this.content$ = of(content));
     }
@@ -144,6 +129,17 @@ export class ProcessEditorComponent implements OnInit {
         if (validation.valid) {
             this.store.dispatch(new UpdateProcessExtensionsAction({ extensions: JSON.parse(extensionsString), processId }));
             this.store.dispatch(new SetAppDirtyStateAction(true));
+        }
+    }
+
+    selectedTabChange(event: MatTabChangeEvent) {
+        this.selectedTabIndex = event.index;
+        this.store.dispatch(new ToolbarMessageAction(this.tabNames[this.selectedTabIndex]));
+    }
+
+    codeEditorPositionChanged(position: CodeEditorPosition) {
+        if (this.selectedTabIndex > 0 ) {
+            this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
         }
     }
 }

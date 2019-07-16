@@ -8,6 +8,8 @@
 @import "./process-editor/process-editor.module";
 @import "./project-editor/project-editor.module";
 @import "./connector-editor/connector-editor.module";
+@import "./app/app-layout/logging/components/log-history/log-history.component";
+@import "./app/app-layout/editor-footer/editor-footer.component";
 
 @mixin ama-theme($theme) {
     @include ama-layout-global-theme($theme);
@@ -20,4 +22,6 @@
     @include ama-process-editor-module($theme);
     @include ama-project-editor-module($theme);
     @include ama-connector-editor-module($theme);
+    @include ama-log-history($theme);
+    @include ama-editor-footer($theme);
 }

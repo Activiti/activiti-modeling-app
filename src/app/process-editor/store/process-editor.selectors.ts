@@ -43,12 +43,6 @@ export const selectProcesses = createSelector(selectProcessEntityContainer, stat
 export const selectSelectedElement = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.selectedElement);
 export const selectProcessLoading = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.loading);
 
-export const selectToolbarState = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.toolbar);
-export const selectToolbarUserMessage = createSelector(selectToolbarState, (state) => state.userMessage);
-export const selectToolbarInProgress = createSelector(selectToolbarState, (state) => state.inProgress);
-export const selectToolbarLogs = createSelector(selectToolbarState, (state) => state.logs);
-export const selectToolbarLogsVisibility = createSelector(selectToolbarState, (state) => state.logHistoryVisible);
-
 export const selectProcessesArray = createSelector(
     selectProcessEntities,
     selectSelectedProjectId,

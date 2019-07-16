@@ -133,6 +133,7 @@
             "BACKTO": "Projects",
             "UPLOAD_FILE": "Upload file",
             "DOWNLOAD_PROJECT": "Download project",
+            "EXPORT_SUCCESS": "Project exported succesfully",
             "SETTINGS": {
                 "PROJECT_SETTINGS": "Project editor settings",
                 "CONNECTORS_TAB_LABEL": "Connectors"

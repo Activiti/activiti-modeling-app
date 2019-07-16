@@ -21,9 +21,7 @@ import { Store, Action } from '@ngrx/store';
 import {
     ProcessModelerServiceToken,
     ProcessModelerService,
-    logError,
     SnackbarErrorAction,
-    logWarning,
     SnackbarWarningAction,
     XmlParsingProblem,
     MESSAGE
@@ -33,6 +31,7 @@ import { getProcessLogInitiator } from './process-editor.constants';
 import { of, Observable } from 'rxjs';
 import { createSelectedElement } from '../store/process-editor.state';
 import { SelectModelerElementAction } from '../store/process-editor.actions';
+import { logError, logWarning } from 'ama-sdk';
 
 @Injectable()
 export class ProcessDiagramLoaderService {

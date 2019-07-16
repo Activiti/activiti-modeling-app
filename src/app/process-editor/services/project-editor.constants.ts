@@ -15,17 +15,14 @@
  * limitations under the License.
  */
 
-export * from './common';
-export * from './unsaved-page.guard';
-export * from './utils/create-entries-names';
-export * from './shared.module';
-export * from './utils/empty-diagram';
-export * from './utils/empty-decision-table';
-export * from './primitive-types';
-export * from './utils/createJsonBlob';
-export * from './utils/arrayize';
-export { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
-export { AllowedCharactersDirective } from './directives/allowed-characters.directive';
-export * from './utils/logging.functions';
+import { LogMessageInitiator } from 'ama-sdk';
 
+export const PROJECT_EDITOR_LOGS = Symbol('Project Editor');
 
+export function getProjectLogInitiator(extra?: any): LogMessageInitiator {
+    return {
+        key: PROJECT_EDITOR_LOGS,
+        displayName: 'Project Editor',
+        extra
+    };
+}

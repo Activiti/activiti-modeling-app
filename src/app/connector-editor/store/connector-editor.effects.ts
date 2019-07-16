@@ -60,18 +60,21 @@ import {
     SetAppDirtyStateAction,
     CreateConnectorSuccessAction,
     CREATE_CONNECTOR_SUCCESS,
-    DialogService
+    DialogService,
+    LoadApplicationAction
 } from 'ama-sdk';
 import { ConnectorEditorService } from '../services/connector-editor.service';
 import { of, zip, forkJoin, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { LogService, StorageService } from '@alfresco/adf-core';
+import { LogService, StorageService, TranslationService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { AmaState, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
 import { CHANGE_CONNECTOR_CONTENT, ChangeConnectorContent } from './connector-editor.actions';
 import { selectConnectorsLoaded, selectSelectedConnectorContent, selectSelectedConnector } from './connector-editor.selectors';
 import { UploadFileAttemptPayload, changeFileName, ConnectorContent, Connector, selectSelectedProjectId, BaseEffects } from 'ama-sdk';
 import { ConnectorSettingsDialogComponent } from '../components/connector-header/settings-dialog/connector-settings.dialog.component';
+import { logError, logInfo } from 'ama-sdk';
+import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 
 @Injectable()
 export class ConnectorEditorEffects extends BaseEffects {
@@ -81,6 +84,7 @@ export class ConnectorEditorEffects extends BaseEffects {
         private connectorEditorService: ConnectorEditorService,
         private dialogService: DialogService,
         private storageService: StorageService,
+        private translation: TranslationService,
         logService: LogService,
         router: Router
     ) {
@@ -151,7 +155,10 @@ export class ConnectorEditorEffects extends BaseEffects {
     @Effect()
     updateConnectorSuccessEffect = this.actions$.pipe(
         ofType<UpdateConnectorSuccessAction>(UPDATE_CONNECTOR_SUCCESS),
-        mergeMap(() => of(new SetAppDirtyStateAction(false)))
+        mergeMap(() => [
+            new LoadApplicationAction(false),
+            new SetAppDirtyStateAction(false)
+        ])
     );
 
     @Effect()
@@ -209,15 +216,21 @@ export class ConnectorEditorEffects extends BaseEffects {
 
     private validateConnector({ connectorId, connectorContent, action, title }: ValidateConnectorPayload) {
         return this.connectorEditorService.validate(connectorId, connectorContent).pipe(
-            switchMap(() => [ action ]),
-            catchError(response => [ new OpenConfirmDialogAction({
-                action,
-                dialogData: {
-                    title: title || 'APP.DIALOGS.CONFIRM.TITLE',
-                    subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
-                    errors: JSON.parse(response.message).errors.map(error => error.description)
-                }
-            })])
+            switchMap(() => [ new LoadApplicationAction(true), action]),
+            catchError(response => {
+                const errors = JSON.parse(response.message).errors.map(error => error.description);
+                return [
+                    new OpenConfirmDialogAction({
+                        action,
+                        dialogData: {
+                            title: title || 'APP.DIALOGS.CONFIRM.TITLE',
+                            subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
+                            errors
+                        }
+                    }),
+                        logError(getConnectorLogInitiator(), errors)
+                    ];
+            })
         );
     }
 
@@ -267,8 +280,10 @@ export class ConnectorEditorEffects extends BaseEffects {
 
     private updateConnector(connector: Connector, content: ConnectorContent, projectId: string): Observable<{} | SnackbarInfoAction | UpdateConnectorSuccessAction> {
         return this.connectorEditorService.update(connector.id, connector, content, projectId).pipe(
-            mergeMap(() => [
+            switchMap(() => [
+                new LoadApplicationAction(true),
                 new UpdateConnectorSuccessAction({ id: connector.id, changes: content }),
+                logInfo(getConnectorLogInitiator(), this.translation.instant('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')),
                 new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleConnectorUpdatingError.bind(this), e))

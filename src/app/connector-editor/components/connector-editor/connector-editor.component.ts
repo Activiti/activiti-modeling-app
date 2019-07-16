@@ -32,8 +32,11 @@ import {
     AdvancedConnectorEditorData,
     AdvancedConnectorEditorKey,
     CONNECTOR,
-    getFileUri
+    getFileUri,
+    ToolbarMessageAction,
+    CodeEditorPosition
 } from 'ama-sdk';
+import { MatTabChangeEvent } from '@angular/material';
 const memoize = require('lodash/memoize');
 
 @Component({
@@ -53,6 +56,11 @@ export class ConnectorEditorComponent {
     getMemoizedDynamicComponentData: any;
     fileUri$: Observable<string>;
     languageType: string;
+    tabNames = [
+        'CONNECTOR_EDITOR.TABS.CONNECTOR_EDITOR',
+        'CONNECTOR_EDITOR.TABS.JSON_EDITOR'
+    ];
+    selectedTabIndex = 0;
 
     constructor(
         private store: Store<AmaState>,
@@ -79,8 +87,10 @@ export class ConnectorEditorComponent {
         );
     }
 
-    onTabChange(): void {
+    onTabChange(event: MatTabChangeEvent): void {
         this.disableSave = false;
+        this.selectedTabIndex = event.index;
+        this.store.dispatch(new ToolbarMessageAction(this.tabNames[this.selectedTabIndex]));
     }
 
     isAdvancedEditorEmbedded(): boolean {
@@ -110,5 +120,11 @@ export class ConnectorEditorComponent {
         return this.store
             .select(selectSelectedTheme)
             .pipe(map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light')));
+    }
+
+    codeEditorPositionChanged(position: CodeEditorPosition) {
+        if (!this.isAdvancedEditorEmbedded() || this.selectedTabIndex > 0 ) {
+            this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
+        }
     }
 }

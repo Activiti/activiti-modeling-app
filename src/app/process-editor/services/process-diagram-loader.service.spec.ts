@@ -24,9 +24,7 @@ import {
     ProcessModelerService,
     XmlParsingProblem,
     MESSAGE,
-    logWarning,
     SnackbarWarningAction,
-    logError,
     SnackbarErrorAction
 } from 'ama-sdk';
 import { Store } from '@ngrx/store';
@@ -34,6 +32,7 @@ import { BpmnFactoryMock } from './bpmn-js/bpmn-js.mock';
 import { of, throwError } from 'rxjs';
 import { getProcessLogInitiator } from './process-editor.constants';
 import { SelectModelerElementAction } from '../store/process-editor.actions';
+import { logError, logWarning } from 'ama-sdk';
 
 describe('ProcessDiagramLoaderService', () => {
 

@@ -1,4 +1,4 @@
-<ng-container *ngIf="showConsole">
+<ng-container *ngIf="showConsole$ | async let showConsole;">
     <mat-toolbar class="log-history-toolbar">
         <span class="log-history-toolbar-title">Log history</span>
         <div class="log-history-controls">
@@ -10,20 +10,21 @@
             </button>
         </div>
     </mat-toolbar>
-    <amasdk-log-history class="log-history" [messages]="editorFooterService.logs$ | async"></amasdk-log-history>
+    <ama-log-history class="log-history" [messages]="editorFooterService.logs$ | async"></ama-log-history>
 </ng-container>
 <mat-toolbar class="editor-footer-toolbar">
     <div class="editor-footer-toolbar-left">
-        <div class="loading-indicator" *ngIf="editorFooterService.inProgress$">
+        <div class="loading-indicator" *ngIf="editorFooterService.inProgress$ | async">
             <mat-progress-spinner color="primary" mode="indeterminate" diameter="20"></mat-progress-spinner>
         </div>
-
     </div>
     <div class="editor-footer-toolbar-right">
         <div class="footer-user-message">{{ editorFooterService.userMessage$ | async | translate }}</div>
         <div
             class="message-indicator"
             [class.inactive]="!(editorFooterService.isNewError$ | async)"
-            (click)="toggleConsole()">{{ editorFooterService.newErrorNumber$ | async }}</div>
+            (click)="toggleConsole()">
+                {{ editorFooterService.newErrorNumber$ | async }}
+            </div>
     </div>
 </mat-toolbar>

@@ -2,18 +2,15 @@
 @import "./code-editor/code-editor.module";
 @import "./helpers/shared.module";
 @import "./variables/variables.module";
-@import "./logging/logging.module";
 
 body {
     @include amasdk-code-editor-module($theme);
     @include amasdk-shared-module($theme);
     @include ama-variables-module($theme);
-    @include amasdk-logging-module($theme);
 }
 
 body.dark-theme {
     @include amasdk-code-editor-module($dark-theme);
     @include amasdk-shared-module($dark-theme);
     @include ama-variables-module($dark-theme);
-    @include amasdk-logging-module($dark-theme);
 }

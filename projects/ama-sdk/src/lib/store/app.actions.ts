@@ -70,3 +70,15 @@ export class LeaveProjectAction implements Action {
     readonly type = LEAVE_PROJECT;
     constructor() {}
 }
+
+export const TOOLBAR_MESSAGE = '[App] TOOLBAR_MESSAGE';
+export class ToolbarMessageAction implements Action {
+    readonly type = TOOLBAR_MESSAGE;
+    constructor(public message: string) {}
+}
+
+export const LOADED_APPLICATION = '[App] APPLICATION_LOADED';
+export class LoadApplicationAction implements Action {
+    readonly type = LOADED_APPLICATION;
+    constructor(public loading: boolean) {}
+}

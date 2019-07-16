@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+
 import { ACMCrud } from '../acm-crud';
 
 export class ACMDecisionTable extends ACMCrud {

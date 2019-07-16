@@ -14,14 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { map, switchMap, catchError, tap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { LogService } from '@alfresco/adf-core';
-import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, Project, DialogService } from 'ama-sdk';
+import { LogService, TranslationService } from '@alfresco/adf-core';
+import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, Project, DialogService, logInfo, logError, LogAction } from 'ama-sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import {
     GetProjectAttemptAction,
@@ -33,6 +32,7 @@ import {
     OPEN_PROJECT_SETTINGS_DIALOG,
 } from '../project-editor.actions';
 import { ProjectSettingsComponent } from '../../components/project-settings/project-settings.component';
+import { getProjectEditorLogInitiator } from '../../services/project-editor.constants';
 
 @Injectable()
 export class ProjectEffects extends BaseEffects {
@@ -43,6 +43,7 @@ export class ProjectEffects extends BaseEffects {
         protected router: Router,
         protected downloadService: DownloadResourceService,
         private dialogService: DialogService,
+        private translation: TranslationService,
         protected blobService: BlobService
     ) {
         super(router, logService);
@@ -89,22 +90,30 @@ export class ProjectEffects extends BaseEffects {
         return this.projectEditorService.exportProject(projectId).pipe(
             switchMap(response => {
                 this.downloadService.downloadResource(name, response, '.zip');
-                return of();
+                return [
+                    logInfo(getProjectEditorLogInitiator(), this.translation.instant('APP.PROJECT.EXPORT_SUCCESS'))
+                ];
             }),
-            catchError(response => this.genericErrorHandler(this.handleValidationError.bind(this, response), response))
-        );
+            catchError(response => this.genericErrorHandler(this.handleValidationError.bind(this, response), response)
+            ));
     }
 
-    private handleValidationError(response: any): Observable<OpenConfirmDialogAction> {
+    private handleValidationError(response: any): Observable<OpenConfirmDialogAction | LogAction> {
         return this.blobService.convert2Json(response.error.response.body).pipe(
-            switchMap(body => of(new OpenConfirmDialogAction({
-                dialogData: {
-                    title: body.message,
-                    subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
-                    errors: body.errors.map(error => error.description)
-                }
-            })))
-        );
+            switchMap(body => {
+                const errors = body.errors.map(error => error.description);
+
+                return [new OpenConfirmDialogAction({
+                    dialogData: {
+                        title: body.message,
+                        subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
+                        errors: errors
+                    }
+                }),
+                logError(getProjectEditorLogInitiator(), errors)
+                ];
+            }
+            ));
     }
 
     private handleError(userMessage: string) {

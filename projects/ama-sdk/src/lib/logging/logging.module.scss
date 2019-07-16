@@ -1,5 +1,0 @@
-@import "./components/log-history/log-history.component";
-
-@mixin amasdk-logging-module($theme) {
-    @include ama-log-history($theme);
-}
