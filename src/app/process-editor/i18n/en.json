@@ -57,10 +57,22 @@
             "FORM_SELECTOR": "Form selector",
             "DEFAULT_SEQUENCE_FLOW": "Default sequence flow",
             "PROCESS_NAME_REQUIRED": "Process name is required",
-            "TIMER_DEFINITION_REQUIRED": "Timer definition is required",
-            "TIMER_TYPE": "Timer type",
-            "TIMER_DEFINITION": "Timer definition",
-            "REQUIRED": "Required"
+            "TIMERS": {
+                "TIMER_TYPE": "Timer type",
+                "TIMER_DEFINITION": "Timer definition",
+                "REQUIRED": "Required",
+                "YEARS": "Years",
+                "MONTHS": "Months",
+                "WEEKS": "Weeks",
+                "DAYS": "Days",
+                "HOURS": "Hours",
+                "MINUTES": "Minutes",
+                "SECONDS": "Seconds",
+                "REPETITIONS": "Repetitions",
+                "DATE": "Date",
+                "USE_PROCESS_VARIABLE": "Use process variable",
+                "PROCESS_VARIABLE": "Process variable"
+            }
         },
         "UPLOAD_SUCCESS": "The process was successfully uploaded",
         "PROCESS_UPDATED": "The process was successfully updated",
