@@ -232,10 +232,11 @@ export class ProjectsEffects extends BaseEffects {
         let errorMessage;
 
         errorMessage = 'APP.PROJECT.ERROR.RELEASE_PROJECT';
+        const errorLog = JSON.parse(error.message).errors.map(e => e.description);
 
         return of(
             new SnackbarErrorAction(errorMessage),
-            logError(getProjectEditorLogInitiator(), errorMessage)
+            logError(getProjectEditorLogInitiator(), errorLog)
         );
     }
 
