@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { CoreModule } from '@alfresco/adf-core';
-import { SharedModule } from 'ama-sdk';
+import { SharedModule, provideLogFilterItems } from 'ama-sdk';
 import { ProjectEditorRoutingModule } from './router/project-editor-routing.module';
 import { ProjectEffects } from './store/effects/project.effects';
 import { PROJECT_EDITOR_STATE_NAME } from 'ama-sdk';
@@ -37,6 +37,7 @@ import { ProjectTreeIconsComponent } from './components/project-tree/project-tre
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ProjectSettingsComponent } from './components/project-settings/project-settings.component';
 import { ExtensionsModule } from '@alfresco/adf-extensions';
+import { getProjectEditorLogInitiator } from './services/project-editor.constants';
 
 @NgModule({
     imports: [
@@ -62,7 +63,8 @@ import { ExtensionsModule } from '@alfresco/adf-extensions';
     entryComponents: [ ProjectSettingsComponent ],
     providers: [
         ProjectEditorService,
-        ProjectTreeHelper
+        ProjectTreeHelper,
+        provideLogFilterItems([getProjectEditorLogInitiator().displayName])
     ]
 })
 export class ProjectEditorModule {}

@@ -33,7 +33,8 @@ import {
     CodeEditorService,
     getFileUriPattern,
     CONNECTOR,
-    connectorSchema
+    connectorSchema,
+    provideLogFilterItems
 } from 'ama-sdk';
 import { EffectsModule } from '@ngrx/effects';
 import { ConnectorEditorEffects } from './store/connector-editor.effects';
@@ -46,6 +47,7 @@ import { getConnectorsFilterProvider } from './extension/connectors-filter.exten
 import { getConnectorCreatorProvider } from './extension/connector-creator.extension';
 import { getConnectorUploaderProvider } from './extension/connector-uploader.extension';
 import { ConnectorSettingsDialogComponent } from './components/connector-header/settings-dialog/connector-settings.dialog.component';
+import { getConnectorLogInitiator } from './services/connector-editor.constants';
 
 @NgModule({
     imports: [
@@ -74,7 +76,8 @@ import { ConnectorSettingsDialogComponent } from './components/connector-header/
         provideTranslations('connector-editor'),
         ...getConnectorsFilterProvider(),
         ...getConnectorCreatorProvider(),
-        ...getConnectorUploaderProvider()
+        ...getConnectorUploaderProvider(),
+        provideLogFilterItems([getConnectorLogInitiator().displayName])
     ]
 })
 export class ConnectorEditorModule {

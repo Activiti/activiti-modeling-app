@@ -44,7 +44,7 @@ import { BpmnjsPropertiesModule } from './bpmnjs-properties/bpmnjs-properties.mo
 import { environment } from '../environments/environment';
 import { MatInputModule } from '@angular/material';
 
-import { ACMApiModule, AmaServicesModule, ConfirmationDialogModule, AmaAuthenticationService, AuthTokenProcessorService } from 'ama-sdk';
+import { ACMApiModule, AmaServicesModule, ConfirmationDialogModule, AmaAuthenticationService, AuthTokenProcessorService, provideLogFilterItems } from 'ama-sdk';
 import { AmaRoleGuard } from './ama-role-guard.service';
 import { AppExtensionsModule } from './extensions.module';
 import { ModelStorageService } from './common/services/model-storage.service';
@@ -106,7 +106,8 @@ import { EDITOR_FOOTER_SERVICE_TOKEN } from './app/app-layout/editor-footer/edit
         AuthTokenProcessorService,
         AmaAuthenticationService,
         ModelStorageService,
-        { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: AppFooterService }
+        { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: AppFooterService },
+        provideLogFilterItems(['All'])
     ],
     bootstrap: [AppComponent]
 })
