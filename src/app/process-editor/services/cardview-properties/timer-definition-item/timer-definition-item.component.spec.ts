@@ -90,7 +90,7 @@ describe('CardViewTimerDefinitionItemComponent', () => {
 
     it('should not display timer inputs if processVariable is selected', () => {
         component.timerType.setValue('timeCycle');
-        component.isProcessVariable.setValue(true);
+        component.useProcessVariable.setValue(true);
         fixture.detectChanges();
         const cycleInput = fixture.nativeElement.querySelector('div[class="timer-cycle"]');
         const dateInput = fixture.nativeElement.querySelector('div[class="timer-date"]');
@@ -177,10 +177,25 @@ describe('CardViewTimerDefinitionItemComponent', () => {
         });
     });
 
+    it('should update timer definition when the cycle input is filled with cron expression', () => {
+        spyOn(cardViewUpdateService, 'update');
+        component.timerType.setValue('timeCycle');
+        component.useCronExpression.setValue(true);
+        component.cronExpression.setValue('0 0/5 * * * ?');
+
+        component.updateTimerDefinition();
+        fixture.detectChanges();
+
+        expect(cardViewUpdateService.update).toHaveBeenCalledWith(component.property, {
+            type: 'timeCycle',
+            definition: '0 0/5 * * * ?'
+        });
+    });
+
     it('should update timer definition when the process variable input is filled', () => {
         spyOn(cardViewUpdateService, 'update');
         component.timerType.setValue('timeCycle');
-        component.isProcessVariable.setValue(true);
+        component.useProcessVariable.setValue(true);
         component.processVariable.setValue('myVariable');
 
         component.updateTimerDefinition();

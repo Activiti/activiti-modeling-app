@@ -15,10 +15,10 @@
         </div>
 
         <div *ngIf="isTimerTypeDefined()" class="timer-variable">
-            <mat-checkbox [formControl]="isProcessVariable">
+            <mat-checkbox [formControl]="useProcessVariable">
                 {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.USE_PROCESS_VARIABLE' | translate}}
             </mat-checkbox>
-            <mat-form-field *ngIf="isProcessVariable.value">
+            <mat-form-field *ngIf="useProcessVariable.value">
                 <div class="adf-property-label">
                     {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.PROCESS_VARIABLE' | translate}}
                 </div>
@@ -27,7 +27,20 @@
         </div>
 
         <div *ngIf="isCycleTimer()" class="timer-cycle">
-            <mat-form-field>
+            <mat-checkbox [formControl]="useCronExpression">
+                {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.USE_CRON_EXPRESSION' | translate}}
+            </mat-checkbox>
+            <mat-form-field *ngIf="useCronExpression.value">
+                <div class="adf-property-label">
+                    {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.CRON_EXPRESSION' | translate}}
+                </div>
+                <input matInput [formControl]="cronExpression" />
+                <mat-error *ngIf="cronExpression.invalid">
+                    {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.INVALID_CRON_EXPRESSION' | translate}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="!useCronExpression.value">
                 <div class="adf-property-label">
                     {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.REPETITIONS' | translate}}
                 </div>

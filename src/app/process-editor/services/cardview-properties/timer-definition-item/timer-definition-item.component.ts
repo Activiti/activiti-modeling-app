@@ -29,6 +29,7 @@ import moment from 'moment-es6';
 })
 export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
 
+    CRON_REGEX = '((\\*|\\?|\\d+((\\/|\\-){0,1}(\\d+))*)\\s*){6}';
     MIN_TIME_VALUE = 0;
 
     @Input() property;
@@ -67,8 +68,10 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
             minutes: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
             seconds: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
             repetitions: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            cronExpression: new FormControl(undefined, [Validators.pattern(this.CRON_REGEX)]),
+            useCronExpression: new FormControl(false, []),
             processVariable: new FormControl(undefined, []),
-            isProcessVariable: new FormControl(false, []),
+            useProcessVariable: new FormControl(false, []),
         });
 
         this.timerDefinitionForm.valueChanges
@@ -76,11 +79,19 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
                 debounceTime(500),
                 takeUntil(this.onDestroy$)
             )
-            .subscribe(() => {
-                if (this.isFormValid()) {
-                    this.updateTimerDefinition();
-                }
+            .subscribe((formChanges: any) => {
+                this.updateForm(formChanges);
             });
+    }
+
+    updateForm(formChanges) {
+        if (formChanges.timerType === 'timeDuration' || formChanges.timerType === 'timeDate') {
+            this.useCronExpression.setValue(false);
+        }
+
+        if (this.isFormValid()) {
+            this.updateTimerDefinition();
+        }
     }
 
     updateTimerDefinition() {
@@ -95,8 +106,12 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     getTimerDefinitionFromForm(): string {
         let definition = '';
 
-        if (this.isProcessVariable.value) {
+        if (this.useProcessVariable.value) {
             return '${' + this.processVariable.value + '}';
+        }
+
+        if (this.useCronExpression.value) {
+            return this.cronExpression.value;
         }
 
         if (this.isCycleTimer()) {
@@ -143,6 +158,9 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     extractCycleFromXML(cycleDefinitionValue: string) {
         if (cycleDefinitionValue.includes('$')) {
             this.extractProcessVariableFromXML(cycleDefinitionValue);
+        } else if (this.isCronExpression(cycleDefinitionValue)) {
+            this.cronExpression.setValue(cycleDefinitionValue);
+            this.useCronExpression.setValue(true);
         } else {
             const timerDefinitions = cycleDefinitionValue.split('/');
             this.repetitions.setValue(timerDefinitions[0].substring(1));
@@ -150,6 +168,11 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
             this.extractDateFromXML(timerDefinitions[1]);
             this.extractDurationFromXML(timerDefinitions[2]);
         }
+    }
+
+    isCronExpression(cycleDefinitionValue: string): boolean {
+        const cronRegex = RegExp(this.CRON_REGEX);
+        return cronRegex.test(cycleDefinitionValue);
     }
 
     extractDateFromXML(dateDefinitionValue: string) {
@@ -179,7 +202,7 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     extractProcessVariableFromXML(processVariableDefinition: string) {
         const processVariable = processVariableDefinition.substr(2, processVariableDefinition.length - 3);
         this.processVariable.setValue(processVariable);
-        this.isProcessVariable.setValue(true);
+        this.useProcessVariable.setValue(true);
     }
 
     isFormValid() {
@@ -187,15 +210,20 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     }
 
     isDateTimer() {
-        return (this.timerType.value === 'timeDate' || this.isCycleTimer()) && !this.isProcessVariable.value;
+        return (this.timerType.value === 'timeDate' || this.isCycleTimer())
+            && !this.useProcessVariable.value
+            && !this.useCronExpression.value;
     }
 
     isDurationTimer() {
-        return (this.timerType.value === 'timeDuration' || this.isCycleTimer()) && !this.isProcessVariable.value;
+        return (this.timerType.value === 'timeDuration' || this.isCycleTimer())
+            && !this.useProcessVariable.value
+            && !this.useCronExpression.value;
     }
 
     isCycleTimer() {
-        return this.timerType.value === 'timeCycle' && !this.isProcessVariable.value;
+        return this.timerType.value === 'timeCycle'
+            && !this.useProcessVariable.value;
     }
 
     isTimerTypeDefined() {
@@ -246,8 +274,16 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
         return this.timerDefinitionForm.get('processVariable');
     }
 
-    get isProcessVariable(): AbstractControl {
-        return this.timerDefinitionForm.get('isProcessVariable');
+    get useProcessVariable(): AbstractControl {
+        return this.timerDefinitionForm.get('useProcessVariable');
+    }
+
+    get cronExpression(): AbstractControl {
+        return this.timerDefinitionForm.get('cronExpression');
+    }
+
+    get useCronExpression(): AbstractControl {
+        return this.timerDefinitionForm.get('useCronExpression');
     }
 
     ngOnDestroy() {

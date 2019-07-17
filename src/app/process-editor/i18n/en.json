@@ -71,7 +71,10 @@
                 "REPETITIONS": "Repetitions",
                 "DATE": "Date",
                 "USE_PROCESS_VARIABLE": "Use process variable",
-                "PROCESS_VARIABLE": "Process variable"
+                "PROCESS_VARIABLE": "Process variable",
+                "USE_CRON_EXPRESSION": "Use cron expression",
+                "CRON_EXPRESSION": "Cron expression",
+                "INVALID_CRON_EXPRESSION": "Invalid cron expression"
             }
         },
         "UPLOAD_SUCCESS": "The process was successfully uploaded",
