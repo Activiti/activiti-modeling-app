@@ -803,6 +803,7 @@
                     "bpmn:ExclusiveGateway",
                     "bpmn:SequenceFlow",
                     "bpmn:ParallelGateway",
+                    "bpmn:InclusiveGateway",
                     "bpmn:StartEvent",
                     "bpmn:IntermediateCatchEvent",
                     "bpmn:IntermediateThrowEvent",
