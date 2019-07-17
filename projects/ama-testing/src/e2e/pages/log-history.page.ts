@@ -1,0 +1,62 @@
+ /*!
+ * @license
+ * Copyright 2019 Alfresco, Inc. and/or its affiliates.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { element, by } from 'protractor';
+import { GenericPage } from 'ama-testing/e2e/pages/common/generic.page';
+
+export class LogHistoryPage extends GenericPage {
+
+    readonly messageIndicator = element(by.css(`.message-indicator`));
+    readonly messageIndicatorInactive = element(by.css(`div[class='message-indicator inactive']`));
+    readonly logIcon = element(by.css(`div[class='log-meta'] mat-icon`));
+    readonly logInitiator = element(by.css(`div[class='log-meta'] span[class='log-initiator']`));
+    readonly logDateTime = element(by.css(`div[class='log-meta'] span[class='log-datetime']`));
+    readonly logLevel = element(by.css(`div[class='log-meta'] span[class='log-level']`));
+    readonly logContent = element(by.css(`div[class='log-content'] div`));
+    readonly logSection = element(by.css(`ama-log-history section`));
+
+    constructor() {
+        super();
+    }
+
+    async clickMessageIndicatorInactive() {
+        await super.click(this.messageIndicatorInactive);
+        await super.waitForElementToBeVisible(this.logSection);
+    }
+
+    async clickMessageIndicator() {
+        await super.click(this.messageIndicator);
+        await super.waitForElementToBeVisible(this.logSection);
+    }
+
+    async getInitiator() {
+        await super.waitForElementToBeVisible(this.logInitiator);
+        return await this.logInitiator.getText();
+    }
+
+    async getDateTime() {
+        return await this.logDateTime.getText();
+    }
+
+    async getLevel() {
+        return await this.logLevel.getText();
+    }
+
+    async getMessage() {
+        return await this.logContent.getText();
+    }
+}
