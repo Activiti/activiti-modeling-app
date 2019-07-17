@@ -31,6 +31,7 @@ export class ACMForm extends ACMCrud {
                 id: this.type.toLowerCase() + '-' + entityId,
                 name: entityName,
                 version: 0,
+                standAlone: true,
                 'formDefinition': {
                     'tabs': [],
                     'fields': [],
