@@ -54,7 +54,6 @@ export class LogHistoryPage extends GenericPage {
 
     async clickMessageIndicatorInactive() {
         await super.click(this.messageIndicatorInactive);
-        await super.waitForElementToBeVisible(this.logSection);
     }
 
     async clickMessageIndicator() {

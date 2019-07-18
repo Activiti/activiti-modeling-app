@@ -75,6 +75,7 @@ describe('Log history', () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await logHistoryPage.clickMessageIndicatorInactive();
+        expect(await logHistoryPage.isLogSectionDisplayed()).toBe(true, 'Log section is not displayed');
         await processContentPage.save();
         expect(await logHistoryPage.getInitiator()).toEqual(initiator);
         expect(await logHistoryPage.getLevel()).toEqual(errorLevel.info);
@@ -112,6 +113,7 @@ describe('Log history', () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await logHistoryPage.clickMessageIndicatorInactive();
+        expect(await logHistoryPage.isLogSectionDisplayed()).toBe(true, 'Log section is not displayed');
         await processContentPage.save();
         expect(await logHistoryPage.getInitiator()).toEqual(initiator);
         expect(await logHistoryPage.isLogHistoryNotEmpty()).toBe(true, 'Log history is empty');
@@ -124,7 +126,7 @@ describe('Log history', () => {
         await processContentPage.navigateTo();
         await logHistoryPage.clickMessageIndicatorInactive();
         expect(await logHistoryPage.isLogSectionDisplayed()).toBe(true, 'Log section is not displayed');
-        await logHistoryPage.clickMessageIndicator();
+        await logHistoryPage.clickMessageIndicatorInactive();
         expect(await logHistoryPage.isLogSectionNotDisplayed()).toBe(true, 'Log section is displayed');
         await logHistoryPage.clickMessageIndicatorInactive();
         expect(await logHistoryPage.isLogSectionDisplayed()).toBe(true, 'Log section is not displayed');
