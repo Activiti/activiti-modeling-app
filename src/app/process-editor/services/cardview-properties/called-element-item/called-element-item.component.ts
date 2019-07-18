@@ -69,7 +69,7 @@ export class CardViewCalledItemItemComponent implements OnInit, OnDestroy {
 
     loadVariables() {
         this.processVariables$ = this.store.select(selectProcessPropertiesArray);
-        this.subProcessVariables$ = this.store.select(selectProcessPropertiesArrayFor(this.processId));
+        this.subProcessVariables$ = this.store.select(selectProcessPropertiesArrayFor(this.processId.replace('process-', '')));
     }
 
     changeProcess() {
