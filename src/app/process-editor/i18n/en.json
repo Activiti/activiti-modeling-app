@@ -5,6 +5,7 @@
             "MEDIUM": "1",
             "HIGH": "2"
         },
+        "NAME": "Process Editor",
         "TIMER_TYPES": {
             "CYCLE": "Cycle",
             "DURATION": "Duration",

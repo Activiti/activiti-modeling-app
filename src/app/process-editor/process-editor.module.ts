@@ -50,7 +50,8 @@ import {
     PROCESS,
     extensionsSchema,
     PROCESS_VARIABLES,
-    propertiesSchema
+    propertiesSchema,
+    provideLogFilter
 } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { ProcessDiagramLoaderService } from './services/process-diagram-loader.service';
@@ -78,6 +79,7 @@ import { CardViewSignalRefItemComponent } from './services/cardview-properties/s
 import { CardViewCalledItemItemComponent } from './services/cardview-properties/called-element-item/called-element-item.component';
 import { InputMappingTableModule, OutputMappingTableModule } from 'ama-sdk';
 import { CardViewTimerDefinitionItemComponent } from './services/cardview-properties/timer-definition-item/timer-definition-item.component';
+import { getProcessLogInitiator } from './services/process-editor.constants';
 
 @NgModule({
     imports: [
@@ -148,7 +150,8 @@ import { CardViewTimerDefinitionItemComponent } from './services/cardview-proper
         providePropertyHandler(BpmnProperty.timerEventDefinition, CardViewTimerDefinitionItemComponent),
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
-        ...getProcessUploaderProvider()
+        ...getProcessUploaderProvider(),
+        provideLogFilter(getProcessLogInitiator())
     ]
 })
 export class ProcessEditorModule {

@@ -15,18 +15,21 @@
  * limitations under the License.
  */
 
-export * from './common';
-export * from './unsaved-page.guard';
-export * from './utils/create-entries-names';
-export * from './shared.module';
-export * from './utils/empty-diagram';
-export * from './utils/empty-decision-table';
-export * from './primitive-types';
-export * from './utils/createJsonBlob';
-export * from './utils/arrayize';
-export { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
-export { AllowedCharactersDirective } from './directives/allowed-characters.directive';
-export * from './utils/logging.functions';
-export * from './utils/log-filters';
+import { InjectionToken } from '@angular/core';
+import { LogMessageInitiator } from '../../store/app.state';
 
+export const ALL_LOGS = '*';
+export const allLogFilter: LogMessageInitiator  = {
+        key: ALL_LOGS,
+        displayName: 'SDK.ALL'
+};
 
+export const LOG_FILTER_ITEM_TOKEN = new InjectionToken<LogMessageInitiator>('log-filter-item');
+
+export function provideLogFilter(logFilter: LogMessageInitiator) {
+    return {
+        provide: LOG_FILTER_ITEM_TOKEN,
+        multi: true,
+        useValue: logFilter
+    };
+}

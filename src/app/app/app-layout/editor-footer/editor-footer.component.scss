@@ -15,12 +15,21 @@
             font-size: 12px;
 
             &.mat-toolbar-single-row {
-                height: 32px;
+                height: 35px;
                 line-height: 32px;
                 padding: 6px 12px;
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
+            }
+
+            .log-history-filters {
+                width: 150px;
+                margin-left: 10px;
+            }
+
+            .log-history-controls {
+                margin-left: auto;
             }
 
             &.editor-footer-toolbar {

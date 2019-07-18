@@ -18,8 +18,8 @@
 import { Component, Inject } from '@angular/core';
 import { EDITOR_FOOTER_SERVICE_TOKEN, EditorFooterService } from './editor-footer.service.interface';
 import { Store } from '@ngrx/store';
-import { AmaState } from 'ama-sdk';
-import { selectToolbarLogsVisibility } from '../../../../app/store/selectors/app.selectors';
+import { AmaState, LogMessage,  LOG_FILTER_ITEM_TOKEN, LogMessageInitiator  } from 'ama-sdk';
+import { selectToolbarLogsVisibility, selectLogsByInitiator } from '../../../../app/store/selectors/app.selectors';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
@@ -28,11 +28,19 @@ import { take } from 'rxjs/operators';
     templateUrl: './editor-footer.component.html'
 })
 export class EditorFooterComponent {
-
+    filters: LogMessageInitiator[];
     showConsole$: Observable<boolean>;
+    filterType: LogMessageInitiator;
+    logs$: Observable<LogMessage[]>;
 
-    constructor(@Inject(EDITOR_FOOTER_SERVICE_TOKEN) public editorFooterService: EditorFooterService, private store: Store<AmaState>) {
+    constructor(
+            @Inject(EDITOR_FOOTER_SERVICE_TOKEN) public editorFooterService: EditorFooterService,
+            @Inject( LOG_FILTER_ITEM_TOKEN ) public logFilters: LogMessageInitiator[],
+            private store: Store<AmaState>
+        ) {
          this.showConsole$ = this.store.select(selectToolbarLogsVisibility);
+         this.logs$ = this.editorFooterService.logs$;
+         this.filters = (<any>logFilters).flatten(1) || [];
     }
 
     toggleConsole() {
@@ -43,5 +51,9 @@ export class EditorFooterComponent {
 
     clearLogs() {
         this.editorFooterService.clearLogs();
+    }
+
+    changeFilter() {
+     this.logs$ = this.store.select(selectLogsByInitiator(this.filterType));
     }
 }

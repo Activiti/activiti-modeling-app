@@ -16,7 +16,7 @@
  */
 
 import { createSelector } from '@ngrx/store';
-import { AppState, selectApp } from 'ama-sdk';
+import { AppState, selectApp, allLogFilter } from 'ama-sdk';
 
 export const selectMenuOpened = createSelector(selectApp, (state: AppState) => state.menuOpened);
 
@@ -25,4 +25,13 @@ export const selectToolbarUserMessage = createSelector(selectToolbarState, (stat
 export const selectToolbarInProgress = createSelector(selectToolbarState, (state) => state.inProgress);
 export const selectToolbarLogs = createSelector(selectApp, (state: AppState) => state.logs);
 export const selectToolbarLogsVisibility = createSelector(selectToolbarState, (state) => state.logHistoryVisible);
+export const selectLogsByInitiator = initiator => createSelector(
+    selectToolbarLogs,
+    (logs) => {
+        if (initiator.key === allLogFilter.key) {
+            return logs;
+        }
+        return logs.filter(log => log.initiator.key === initiator.key);
+    }
+);
 

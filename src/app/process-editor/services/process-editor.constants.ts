@@ -17,12 +17,12 @@
 
 import { LogMessageInitiator } from 'ama-sdk';
 
-export const PROCESS_EDITOR_LOGS = Symbol('Process Editor');
+export const PROCESS_EDITOR_LOGS = 'Process Editor';
 
 export function getProcessLogInitiator(extra?: any): LogMessageInitiator {
     return {
         key: PROCESS_EDITOR_LOGS,
-        displayName: 'Process Editor',
+        displayName: 'PROCESS_EDITOR.NAME',
         extra
     };
 }

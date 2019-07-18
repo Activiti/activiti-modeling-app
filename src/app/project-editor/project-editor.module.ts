@@ -37,6 +37,8 @@ import { ProjectTreeIconsComponent } from './components/project-tree/project-tre
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ProjectSettingsComponent } from './components/project-settings/project-settings.component';
 import { ExtensionsModule } from '@alfresco/adf-extensions';
+import { getProjectEditorLogInitiator } from './services/project-editor.constants';
+import { provideLogFilter } from 'ama-sdk';
 
 @NgModule({
     imports: [
@@ -62,7 +64,8 @@ import { ExtensionsModule } from '@alfresco/adf-extensions';
     entryComponents: [ ProjectSettingsComponent ],
     providers: [
         ProjectEditorService,
-        ProjectTreeHelper
+        ProjectTreeHelper,
+        provideLogFilter(getProjectEditorLogInitiator())
     ]
 })
 export class ProjectEditorModule {}

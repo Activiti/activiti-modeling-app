@@ -131,6 +131,7 @@
         },
         "PROJECT": {
             "BACKTO": "Projects",
+            "NAME": "Project Editor",
             "UPLOAD_FILE": "Upload file",
             "DOWNLOAD_PROJECT": "Download project",
             "EXPORT_SUCCESS": "Project exported succesfully",
@@ -392,6 +393,7 @@
         },
         "CONNECTOR_EDITOR": {
             "UPLOAD_SUCCESS": "The connector was successfully uploaded",
+            "NAME": "Connector Editor",
             "TABS": {
                 "CONNECTOR_EDITOR": "Connector editor",
                 "JSON_EDITOR": "JSON editor"
