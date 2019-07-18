@@ -108,6 +108,30 @@ describe('Log history', () => {
         expect(await logHistoryPage.getMessage()).toEqual('unknown attribute <test>');
     });
 
+    it('4. [C311466] Clear logs', async () => {
+        processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
+        await processContentPage.navigateTo();
+        await logHistoryPage.clickMessageIndicatorInactive();
+        await processContentPage.save();
+        expect(await logHistoryPage.getInitiator()).toEqual(initiator);
+        expect(await logHistoryPage.isLogHistoryNotEmpty()).toBe(true, 'Log history is empty');
+        await logHistoryPage.deleteLogs();
+        expect(await logHistoryPage.isLogHistoryEmpty()).toBe(true, 'Log history is not empty');
+    });
+
+    it('5. [C311471] Expand and collapse log history', async () => {
+        processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
+        await processContentPage.navigateTo();
+        await logHistoryPage.clickMessageIndicatorInactive();
+        expect(await logHistoryPage.isLogSectionDisplayed()).toBe(true, 'Log section is not displayed');
+        await logHistoryPage.clickMessageIndicator();
+        expect(await logHistoryPage.isLogSectionNotDisplayed()).toBe(true, 'Log section is displayed');
+        await logHistoryPage.clickMessageIndicatorInactive();
+        expect(await logHistoryPage.isLogSectionDisplayed()).toBe(true, 'Log section is not displayed');
+        await logHistoryPage.clickCollapseArrow();
+        expect(await logHistoryPage.isLogSectionNotDisplayed()).toBe(true, 'Log section is displayed');
+    });
+
     afterAll(async () => {
         await backend.project.delete(project.entry.id);
         await backend.tearDown();

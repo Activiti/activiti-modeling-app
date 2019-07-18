@@ -28,9 +28,28 @@ export class LogHistoryPage extends GenericPage {
     readonly logLevel = element(by.css(`div[class='log-meta'] span[class='log-level']`));
     readonly logContent = element(by.css(`div[class='log-content'] div`));
     readonly logSection = element(by.css(`ama-log-history section`));
+    readonly logEntry = element(by.css(`ama-log-history-entry`));
+    readonly deleteIcon = element(by.css(`[data-automation-id='deleteLogs']`));
+    readonly collapseArrow = element(by.css(`[data-automation-id='collapse']`));
 
     constructor() {
         super();
+    }
+
+    async isLogSectionDisplayed() {
+        try {
+            return await super.waitForElementToBeVisible(this.logSection);
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async isLogSectionNotDisplayed() {
+        try {
+            return await super.waitForElementToBeInVisible(this.logSection);
+        } catch (error) {
+            return false;
+        }
     }
 
     async clickMessageIndicatorInactive() {
@@ -58,5 +77,29 @@ export class LogHistoryPage extends GenericPage {
 
     async getMessage() {
         return await this.logContent.getText();
+    }
+
+    async isLogHistoryEmpty() {
+        try {
+            return await super.waitForElementToBeInVisible(this.logEntry);
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async isLogHistoryNotEmpty() {
+        try {
+            return await super.waitForElementToBeVisible(this.logEntry);
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async deleteLogs() {
+        await super.click(this.deleteIcon);
+    }
+
+    async clickCollapseArrow() {
+        return await super.click(this.collapseArrow);
     }
 }
