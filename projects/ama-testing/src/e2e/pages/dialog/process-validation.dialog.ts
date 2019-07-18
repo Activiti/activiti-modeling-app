@@ -30,7 +30,7 @@ export class ProcessValidationDialog extends GenericDialog {
 
     async isTitleDisplayed() {
         try {
-            await super.waitForElementToBeInVisible(this.titleElement);
+            await super.waitForElementToBeVisible(this.titleElement);
         } catch (error) { return false; }
         return await this.titleElement.getText() === this.title;
     }
