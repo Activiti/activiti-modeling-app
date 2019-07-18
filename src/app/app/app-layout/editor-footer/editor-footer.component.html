@@ -2,10 +2,10 @@
     <mat-toolbar class="log-history-toolbar">
         <span class="log-history-toolbar-title">Log history</span>
         <div class="log-history-controls">
-            <button mat-icon-button (click)="toggleConsole()">
+            <button mat-icon-button data-automation-id='collapse' (click)="toggleConsole()">
                 <mat-icon>expand_more</mat-icon>
             </button>
-            <button mat-icon-button (click)="clearLogs()">
+            <button mat-icon-button data-automation-id='deleteLogs' (click)="clearLogs()">
                 <mat-icon>delete_sweep</mat-icon>
             </button>
         </div>

@@ -37,6 +37,7 @@
         "arrayize",
         "minlength",
         "generalmodel",
-        "moddle"
+        "moddle",
+        "unparsable"
     ]
 }
