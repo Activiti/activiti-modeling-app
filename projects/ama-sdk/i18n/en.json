@@ -3,6 +3,7 @@
         "SNACKBAR": {
             "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Pasted value needs to follow this pattern"
         },
+        "ALL": "All",
         "VARIABLES_EDITOR": {
             "ERRORS": {
                 "EMPTY_NAME": "Name field cannot be empty"

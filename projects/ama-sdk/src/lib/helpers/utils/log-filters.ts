@@ -16,14 +16,20 @@
  */
 
 import { InjectionToken } from '@angular/core';
+import { LogMessageInitiator } from '../../store/app.state';
 
-export const LOG_FILTER_ITEM_TOKEN = new InjectionToken<string>('log-filter-item');
+export const ALL_LOGS = '*';
+export const allLogFilter: LogMessageInitiator  = {
+        key: ALL_LOGS,
+        displayName: 'SDK.ALL'
+};
 
+export const LOG_FILTER_ITEM_TOKEN = new InjectionToken<LogMessageInitiator>('log-filter-item');
 
-export function provideLogFilterItems(items: string[]) {
+export function provideLogFilter(logFilter: LogMessageInitiator) {
     return {
         provide: LOG_FILTER_ITEM_TOKEN,
         multi: true,
-        useValue: items
+        useValue: logFilter
     };
 }

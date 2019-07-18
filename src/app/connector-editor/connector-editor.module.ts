@@ -34,7 +34,7 @@ import {
     getFileUriPattern,
     CONNECTOR,
     connectorSchema,
-    provideLogFilterItems
+    provideLogFilter
 } from 'ama-sdk';
 import { EffectsModule } from '@ngrx/effects';
 import { ConnectorEditorEffects } from './store/connector-editor.effects';
@@ -77,7 +77,7 @@ import { getConnectorLogInitiator } from './services/connector-editor.constants'
         ...getConnectorsFilterProvider(),
         ...getConnectorCreatorProvider(),
         ...getConnectorUploaderProvider(),
-        provideLogFilterItems([getConnectorLogInitiator().displayName])
+        provideLogFilter(getConnectorLogInitiator())
     ]
 })
 export class ConnectorEditorModule {

@@ -51,7 +51,7 @@ import {
     extensionsSchema,
     PROCESS_VARIABLES,
     propertiesSchema,
-    provideLogFilterItems
+    provideLogFilter
 } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { ProcessDiagramLoaderService } from './services/process-diagram-loader.service';
@@ -151,7 +151,7 @@ import { getProcessLogInitiator } from './services/process-editor.constants';
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider(),
-        provideLogFilterItems([getProcessLogInitiator().displayName])
+        provideLogFilter(getProcessLogInitiator())
     ]
 })
 export class ProcessEditorModule {

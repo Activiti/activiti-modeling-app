@@ -3,7 +3,7 @@
         <span class="log-history-toolbar-title">Log history for</span>
             <mat-select placeholder="All" [(ngModel)]="filterType" (selectionChange)="changeFilter()" class="log-history-filters">
                 <mat-option *ngFor="let filter of filters" [value]="filter">
-                    {{filter}}
+                    {{filter.displayName | translate}}
                 </mat-option>
             </mat-select>
         <div class="log-history-controls">

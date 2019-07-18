@@ -18,24 +18,24 @@
 import { Component, Inject } from '@angular/core';
 import { EDITOR_FOOTER_SERVICE_TOKEN, EditorFooterService } from './editor-footer.service.interface';
 import { Store } from '@ngrx/store';
-import { AmaState, LogMessage,  LOG_FILTER_ITEM_TOKEN  } from 'ama-sdk';
-import { selectToolbarLogsVisibility } from '../../../../app/store/selectors/app.selectors';
+import { AmaState, LogMessage,  LOG_FILTER_ITEM_TOKEN, LogMessageInitiator  } from 'ama-sdk';
+import { selectToolbarLogsVisibility, selectLogsByInitiator } from '../../../../app/store/selectors/app.selectors';
 import { Observable } from 'rxjs';
-import { take, map } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 @Component({
     selector: 'ama-editor-footer',
     templateUrl: './editor-footer.component.html'
 })
 export class EditorFooterComponent {
-    filters: string[];
+    filters: LogMessageInitiator[];
     showConsole$: Observable<boolean>;
-    filterType: string;
+    filterType: LogMessageInitiator;
     logs$: Observable<LogMessage[]>;
 
     constructor(
             @Inject(EDITOR_FOOTER_SERVICE_TOKEN) public editorFooterService: EditorFooterService,
-            @Inject( LOG_FILTER_ITEM_TOKEN ) public logFilters: string[],
+            @Inject( LOG_FILTER_ITEM_TOKEN ) public logFilters: LogMessageInitiator[],
             private store: Store<AmaState>
         ) {
          this.showConsole$ = this.store.select(selectToolbarLogsVisibility);
@@ -54,12 +54,6 @@ export class EditorFooterComponent {
     }
 
     changeFilter() {
-      if (this.filterType === 'All' ) {
-            this.logs$ = this.editorFooterService.logs$;
-        } else {
-            this.logs$ = this.editorFooterService.logs$.pipe(
-                map(logs => logs.filter(log => log.initiator.displayName === this.filterType))
-            );
-        }
+     this.logs$ = this.store.select(selectLogsByInitiator(this.filterType));
     }
 }

@@ -17,12 +17,12 @@
 
 import { LogMessageInitiator } from 'ama-sdk';
 
-export const PROJECT_EDITOR_LOGS = Symbol('Project Editor');
+export const PROJECT_EDITOR_LOGS = 'Project Editor';
 
 export function getProjectLogInitiator(extra?: any): LogMessageInitiator {
     return {
         key: PROJECT_EDITOR_LOGS,
-        displayName: 'Project Editor',
+        displayName: 'APP.PROJECT.NAME',
         extra
     };
 }

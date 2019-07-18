@@ -17,12 +17,12 @@
 
 import { LogMessageInitiator } from 'ama-sdk';
 
-export const CONNECTOR_EDITOR_LOGS = Symbol('Connector Editor');
+export const CONNECTOR_EDITOR_LOGS = 'Connector Editor';
 
 export function getConnectorLogInitiator(extra?: any): LogMessageInitiator {
     return {
         key: CONNECTOR_EDITOR_LOGS,
-        displayName: 'Connector Editor',
+        displayName: 'APP.CONNECTOR_EDITOR.NAME',
         extra
     };
 }

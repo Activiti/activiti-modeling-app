@@ -17,7 +17,7 @@
 
 import { LogMessageInitiator } from 'ama-sdk';
 
-export const PROJECT_EDITOR_LOGS = Symbol('Project Editor');
+export const PROJECT_EDITOR_LOGS = 'Project Editor';
 
 export function getProjectEditorLogInitiator(extra?: any): LogMessageInitiator {
     return {
