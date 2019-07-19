@@ -29,6 +29,8 @@ import { ProcessContentPage } from 'ama-testing/e2e';
 import { ProcessModelerComponent } from 'ama-testing/e2e';
 import { ProcessPropertiesCard } from 'ama-testing/e2e';
 import { Toolbar } from 'ama-testing/e2e';
+import { TaskPropertiesCardPage } from 'ama-testing/e2e';
+import { ProcessValidationDialog } from 'ama-testing/e2e';
 import { browser } from 'protractor';
 import { UtilFile } from 'ama-testing/e2e';
 
@@ -46,6 +48,8 @@ describe('Create process', async () => {
     const snackBar = new SnackBar();
     const processModelerComponent = new ProcessModelerComponent(testConfig);
     const processProperties = new ProcessPropertiesCard();
+    const taskProperties = new TaskPropertiesCardPage();
+    const processValidation = new ProcessValidationDialog();
     const toolbar = new Toolbar();
 
     let backend: Backend;
@@ -117,6 +121,62 @@ describe('Create process', async () => {
 
         expect(UtilFile.getJSONItemValueByKey(callActivityAttributes, `calledElement`)).toEqual(`process-${callActivityProcess.entry.id}`);
     });
+
+    it('4. [C311460] Create a process with User Task with the assignee', async () => {
+        process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
+
+        processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
+        await processContentPage.navigateTo();
+        await processModelerComponent.addUserTask();
+
+        await processContentPage.save();
+        expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
+        await processValidation.confirm();
+
+        await taskProperties.setAssignee('userAssignee');
+
+        await processContentPage.save();
+        expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+
+    });
+
+
+    it('5. [C311461] Create a process with User Task with the candidate user', async () => {
+        process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
+
+        processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
+        await processContentPage.navigateTo();
+        await processModelerComponent.addUserTask();
+
+        await processContentPage.save();
+        expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
+        await processValidation.confirm();
+
+        await taskProperties.setCandidateUser('candidateUser');
+
+        await processContentPage.save();
+        expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+
+    });
+
+    it('6. [C311462] Create a process with User Task with the candidate group', async () => {
+        process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
+
+        processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
+        await processContentPage.navigateTo();
+        await processModelerComponent.addUserTask();
+
+        await processContentPage.save();
+        expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
+        await processValidation.confirm();
+
+        await taskProperties.setCandidateGroup('CandidateGroup');
+
+        await processContentPage.save();
+        expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+
+    });
+
 
     afterAll(async () => {
         await backend.project.delete(project.entry.id);

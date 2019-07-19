@@ -32,5 +32,7 @@
  export * from './sidebar.menu';
  export * from './snackbar';
  export * from './toolbar';
+ export * from './task-properties.card';
  export * from './log-history.page';
+
 
