@@ -16,7 +16,7 @@
  */
 
 import { element, by } from 'protractor';
-import { GenericPage } from 'ama-testing/e2e/pages/common/generic.page';
+import { GenericPage } from './common/generic.page';
 
 export class LogHistoryPage extends GenericPage {
 
