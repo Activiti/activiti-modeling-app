@@ -234,6 +234,90 @@
             "sourceRoot": "src",
             "projectType": "application",
             "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/app",
+                        "index": "src/index.html",
+                        "main": "src/main.ts",
+                        "tsConfig": "src/tsconfig.app.json",
+                        "polyfills": "src/polyfills.ts",
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["node_modules", "./projects/ama-sdk/src/lib/theming"]
+                        },
+                        "assets": [
+                            "src/assets",
+                            "src/app.config.json",
+                            "src/versions.json",
+                            {
+                                "input": "resources",
+                                "output": "/resources",
+                                "glob": "**/*"
+                            },
+                            {
+                                "input": "src/app/process-editor/i18n",
+                                "output": "/assets/process-editor/i18n",
+                                "glob": "**/*"
+                            },
+                            {
+                                "input": "src/app/connector-editor/i18n",
+                                "output": "/assets/connector-editor/i18n",
+                                "glob": "**/*"
+                            },
+                            {
+                                "input": "projects/ama-sdk/i18n",
+                                "output": "/assets/ama-sdk/i18n",
+                                "glob": "**/*"
+                            },
+                            {
+                                "input": "node_modules/@alfresco/adf-core/prebuilt-themes",
+                                "output": "/assets/prebuilt-themes",
+                                "glob": "**/*"
+                            },
+                            {
+                                "input": "node_modules/@alfresco/adf-core/bundles/assets",
+                                "output": "/assets",
+                                "glob": "**/*"
+                            },
+                            {
+                                "input": "node_modules/ngx-monaco-editor/assets/monaco",
+                                "output": "/assets/monaco",
+                                "glob": "**/*"
+                            }
+                        ],
+                        "styles": [
+                            "src/styles.scss",
+                            ".tmp/bpmn-properties.css",
+                            "projects/ama-sdk/src/lib/ama-sdk.module.scss"
+                        ],
+                        "scripts": [],
+                        "fileReplacements": [
+                            {
+                                "replace": "./src/app.config.json",
+                                "with": "./e2e/app.config.json"
+                            }
+                        ]
+                    },
+                    "configurations": {
+                        "production": {
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ]
+                        }
+                    }
+                },
                 "e2e": {
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
@@ -244,7 +328,7 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "dist:build",
+                        "browserTarget": "e2e:build",
                         "proxyConfig": "config/proxy.conf.js",
                         "host": "localhost",
                         "port": 4100
