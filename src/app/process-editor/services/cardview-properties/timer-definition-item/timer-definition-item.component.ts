@@ -156,17 +156,23 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     }
 
     extractCycleFromXML(cycleDefinitionValue: string) {
-        if (cycleDefinitionValue.includes('$')) {
-            this.extractProcessVariableFromXML(cycleDefinitionValue);
-        } else if (this.isCronExpression(cycleDefinitionValue)) {
-            this.cronExpression.setValue(cycleDefinitionValue);
-            this.useCronExpression.setValue(true);
-        } else {
-            const timerDefinitions = cycleDefinitionValue.split('/');
-            this.repetitions.setValue(timerDefinitions[0].substring(1));
+        if (cycleDefinitionValue) {
+            if (cycleDefinitionValue.includes('$')) {
+                this.extractProcessVariableFromXML(cycleDefinitionValue);
+            } else if (this.isCronExpression(cycleDefinitionValue)) {
+                this.cronExpression.setValue(cycleDefinitionValue);
+                this.useCronExpression.setValue(true);
+            } else {
+                const timerDefinitions = cycleDefinitionValue.split('/');
+                this.repetitions.setValue(timerDefinitions[0].substring(1));
 
-            this.extractDateFromXML(timerDefinitions[1]);
-            this.extractDurationFromXML(timerDefinitions[2]);
+                if (timerDefinitions.length === 2) {
+                    this.extractDurationFromXML(timerDefinitions[1]);
+                } else {
+                    this.extractDateFromXML(timerDefinitions[1]);
+                    this.extractDurationFromXML(timerDefinitions[2]);
+                }
+            }
         }
     }
 
@@ -176,26 +182,30 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     }
 
     extractDateFromXML(dateDefinitionValue: string) {
-        if (dateDefinitionValue.includes('$')) {
-            this.extractProcessVariableFromXML(dateDefinitionValue);
-        } else {
-            this.date.setValue(new Date(dateDefinitionValue));
+        if (dateDefinitionValue) {
+            if (dateDefinitionValue.includes('$')) {
+                this.extractProcessVariableFromXML(dateDefinitionValue);
+            } else {
+                this.date.setValue(new Date(dateDefinitionValue));
+            }
         }
     }
 
     extractDurationFromXML(durationDefinition: string) {
-        if (durationDefinition.includes('$')) {
-            this.extractProcessVariableFromXML(durationDefinition);
-        } else {
-            const parsedDuration = <any>moment.duration(durationDefinition);
+        if (durationDefinition) {
+            if (durationDefinition.includes('$')) {
+                this.extractProcessVariableFromXML(durationDefinition);
+            } else {
+                const parsedDuration = <any>moment.duration(durationDefinition);
 
-            this.years.setValue(parsedDuration._data.years);
-            this.months.setValue(parsedDuration._data.months);
-            this.weeks.setValue(Math.floor(parsedDuration._data.days / 7));
-            this.days.setValue(parsedDuration._data.days % 7);
-            this.hours.setValue(parsedDuration._data.hours);
-            this.minutes.setValue(parsedDuration._data.minutes);
-            this.seconds.setValue(parsedDuration._data.seconds);
+                this.years.setValue(parsedDuration._data.years);
+                this.months.setValue(parsedDuration._data.months);
+                this.weeks.setValue(Math.floor(parsedDuration._data.days / 7));
+                this.days.setValue(parsedDuration._data.days % 7);
+                this.hours.setValue(parsedDuration._data.hours);
+                this.minutes.setValue(parsedDuration._data.minutes);
+                this.seconds.setValue(parsedDuration._data.seconds);
+            }
         }
     }
 
