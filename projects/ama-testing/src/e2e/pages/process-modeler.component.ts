@@ -61,4 +61,8 @@ export class ProcessModelerComponent extends GenericPage {
     async selectStartEvent() {
         await super.click(element(by.css(`[data-element-id*="StartEvent"]`)));
     }
+
+    async selectUserTask() {
+        await super.click(element(by.css(`[data-element-id*="UserTask"]`)));
+    }
 }

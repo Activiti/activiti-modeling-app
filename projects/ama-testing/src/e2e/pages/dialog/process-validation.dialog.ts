@@ -23,6 +23,7 @@ export class ProcessValidationDialog extends GenericDialog {
     readonly titleElement = element(by.css(`.mat-dialog-title`));
     readonly confirmButton = element(by.css(`[data-automation-id="dialog-confirm"]`));
     readonly closeButton = element(by.css(`[data-automation-id="dialog-close"]`));
+    readonly validationDialog = element(by.css(`.cdk-overlay-pane`));
 
     constructor(title?: string) {
         super(title ? title : 'Are you sure you want to save this process?');
@@ -35,6 +36,10 @@ export class ProcessValidationDialog extends GenericDialog {
         return await this.titleElement.getText() === this.title;
     }
 
+    async isDialogDismissed() {
+        await super.waitForElementToBeInVisible(this.validationDialog);
+    }
+
     async confirm() {
         await super.click(this.confirmButton);
     }
@@ -42,4 +47,5 @@ export class ProcessValidationDialog extends GenericDialog {
     async reject() {
         await super.click(this.closeButton);
     }
+
 }
