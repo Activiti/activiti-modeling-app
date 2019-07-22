@@ -50,4 +50,8 @@ export class SnackBar extends GenericWebElement {
     async isReleasedSuccessfully(itemType: string) {
         return await this.isOperationSuccessful(this.releaseItemMessage, itemType);
     }
+
+    async isSnackBarNotDisplayed() {
+        return await this.waitForElementToBeInVisible(element(by.css(`simple-snack-bar`)));
+    }
 }

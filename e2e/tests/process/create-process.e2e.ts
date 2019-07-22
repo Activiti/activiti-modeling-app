@@ -132,8 +132,10 @@ describe('Create process', async () => {
         await processContentPage.save();
         expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
         await processValidation.confirm();
-
+        expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+        expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
         await processValidation.isDialogDismissed();
+        await processModelerComponent.selectUserTask();
         await taskProperties.setAssignee('userAssignee');
 
         await processContentPage.save();
@@ -148,12 +150,15 @@ describe('Create process', async () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await processModelerComponent.addUserTask();
-
         await processContentPage.save();
         expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
         await processValidation.confirm();
 
+        expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+        expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
         await processValidation.isDialogDismissed();
+
+        await processModelerComponent.selectUserTask();
         await taskProperties.setCandidateUser('candidateUser');
 
         await processContentPage.save();
@@ -167,12 +172,14 @@ describe('Create process', async () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await processModelerComponent.addUserTask();
-
         await processContentPage.save();
         expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
         await processValidation.confirm();
 
+        expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+        expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
         await processValidation.isDialogDismissed();
+        await processModelerComponent.selectUserTask();
         await taskProperties.setCandidateGroup('CandidateGroup');
 
         await processContentPage.save();
