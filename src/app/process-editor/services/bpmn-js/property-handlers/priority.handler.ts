@@ -21,9 +21,13 @@ const propertyKey = BpmnProperty.priority;
 
 const get = element => parseInt(element.businessObject.get(propertyKey), 10);
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {
-        [propertyKey]: parseInt(value, 10)
-    });
+    const shapeRef = element.businessObject;
+    if (value !== null) {
+        shapeRef[propertyKey] = parseInt(value, 10);
+    } else {
+        delete shapeRef[propertyKey];
+    }
+    modeling.updateProperties(element, {});
 };
 
 export const priorityHandler = { get, set };
