@@ -64,7 +64,7 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
 
     ngOnInit() {
         this.defaultOptions = Object.assign({}, DEFAULT_OPTIONS, this.options);
-        this.editorModel = {
+            this.editorModel = {
             value: this.content,
             language: this.language,
             uri: this.fileUri
@@ -85,9 +85,10 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
 
     onEditorInit(editor: monaco.editor.ICodeEditor): void {
         this.editor = editor;
+        this.editor.focus();
         let timer = null;
 
-        editor.onKeyUp(() => {
+        editor.onKeyUp((event) => {
             clearTimeout(timer);
             timer = window.setTimeout(() => this.onEditorChange(), 1);
         });
@@ -98,6 +99,6 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
     }
 
     onEditorChange(): void {
-        this.changed.emit(this.content.trim());
+        this.changed.emit(this.content);
     }
 }
