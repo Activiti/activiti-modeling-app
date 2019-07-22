@@ -30,6 +30,7 @@ export enum BpmnElement {
     SequenceFlow = 'bpmn:SequenceFlow',
     ExclusiveGateway = 'bpmn:ExclusiveGateway',
     ParallelGateway = 'bpmn:ParallelGateway',
+    InclusiveGateway = 'bpmn:InclusiveGateway',
     ServiceTask = 'bpmn:ServiceTask',
     UserTask = 'bpmn:UserTask',
     CallActivity = 'bpmn:CallActivity',

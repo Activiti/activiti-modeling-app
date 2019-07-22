@@ -86,6 +86,11 @@ export const elementsProperties = {
         BpmnProperty.name,
         BpmnProperty.documentation
     ],
+    [BpmnElement.InclusiveGateway]: [
+        BpmnProperty.id,
+        BpmnProperty.name,
+        BpmnProperty.documentation
+    ],
     [BpmnElement.ServiceTask]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
         BpmnProperty.name,
