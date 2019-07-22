@@ -1313,8 +1313,19 @@ export const formSchema = {
                 },
                 "rightType": {
                     "description": "the type of the right value which can be value, field or variable",
-                    "type" : "string",
-                    "enum": ["variable", "field", "value"]
+                    "anyOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "value",
+                            "field",
+                            "variable"
+                          ]
+                        }
+                      ]
                 },
                 "operator": {
                     "description": "math operations",
