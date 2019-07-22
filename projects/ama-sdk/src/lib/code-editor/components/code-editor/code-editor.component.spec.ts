@@ -103,19 +103,6 @@ describe('CodeEditorComponent', () => {
             };
         });
 
-        it('should trigger an event on key up with the trimmed content', done => {
-            const jsonString = JSON.stringify({ foo: 'bar' });
-            component.content = '    ' + jsonString + '    ';
-            component.onEditorInit(dummyEditor);
-
-            component.changed.subscribe(value => {
-                expect(value).toBe(jsonString);
-                done();
-            });
-
-            dummyEditor.triggerKeyUp();
-        });
-
         it('should trigger an event on position change with the new positions', done => {
             /* cspell: disable-next-line */
             component.content = 'Lorem ipsum dolor sit amet';
