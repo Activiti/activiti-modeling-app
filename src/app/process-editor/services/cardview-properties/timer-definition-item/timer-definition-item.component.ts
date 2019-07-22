@@ -20,6 +20,7 @@ import { CardItemTypeService, CardViewUpdateService, AppConfigService } from '@a
 import { FormBuilder, Validators, FormControl, FormGroup, AbstractControl } from '@angular/forms';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import moment from 'moment-es6';
 
 @Component({
     selector: 'ama-process-timer-definition',
@@ -27,6 +28,10 @@ import { Subject } from 'rxjs';
     providers: [CardItemTypeService]
 })
 export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
+
+    CRON_REGEX = '((\\*|\\?|\\d+((\\/|\\-){0,1}(\\d+))*)\\s*){6}';
+    MIN_TIME_VALUE = 0;
+
     @Input() property;
 
     timers = [];
@@ -34,6 +39,7 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     defaultTimerDefinition = '';
     defaultTimerType = '';
     timerDefinitionForm: FormGroup;
+    today = new Date();
 
     onDestroy$: Subject<void> = new Subject<void>();
 
@@ -41,19 +47,31 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
         private cardViewUpdateService: CardViewUpdateService,
         private appConfigService: AppConfigService,
         private formBuilder: FormBuilder
-    ) {}
+    ) { }
 
     ngOnInit() {
-        this.setTimerFromXML();
         this.timers = this.appConfigService.get('process-modeler.timer-types');
 
         this.buildForm();
+        this.setTimerFromXML();
     }
 
     buildForm() {
         this.timerDefinitionForm = this.formBuilder.group({
-            timerType: new FormControl(this.defaultTimerType, [Validators.required]),
-            timerDefinition: new FormControl(this.defaultTimerDefinition, [Validators.required])
+            timerType: new FormControl(undefined, [Validators.required]),
+            date: new FormControl(undefined, []),
+            years: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            months: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            weeks: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            days: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            hours: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            minutes: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            seconds: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            repetitions: new FormControl(undefined, [Validators.min(this.MIN_TIME_VALUE)]),
+            cronExpression: new FormControl(undefined, [Validators.pattern(this.CRON_REGEX)]),
+            useCronExpression: new FormControl(false, []),
+            processVariable: new FormControl(undefined, []),
+            useProcessVariable: new FormControl(false, []),
         });
 
         this.timerDefinitionForm.valueChanges
@@ -61,47 +79,211 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
                 debounceTime(500),
                 takeUntil(this.onDestroy$)
             )
-            .subscribe((timerDefinitionValues: any) => {
-                if (this.isFormValid()) {
-                    this.updateTimerDefinition(timerDefinitionValues);
-                }
+            .subscribe((formChanges: any) => {
+                this.updateForm(formChanges);
             });
     }
 
-    updateTimerDefinition(timerDefinitionValues: any) {
-        if (timerDefinitionValues) {
-            this.cardViewUpdateService.update(this.property, {
-                type: timerDefinitionValues.timerType,
-                definition: timerDefinitionValues.timerDefinition
-            });
+    updateForm(formChanges) {
+        if (formChanges.timerType === 'timeDuration' || formChanges.timerType === 'timeDate') {
+            this.useCronExpression.setValue(false);
         }
+
+        if (this.isFormValid()) {
+            this.updateTimerDefinition();
+        }
+    }
+
+    updateTimerDefinition() {
+        const timerDefinition = this.getTimerDefinitionFromForm();
+
+            this.cardViewUpdateService.update(this.property, {
+                type: this.timerType.value,
+                definition: timerDefinition
+            });
+    }
+
+    getTimerDefinitionFromForm(): string {
+        let definition = '';
+
+        if (this.useProcessVariable.value) {
+            return '${' + this.processVariable.value + '}';
+        }
+
+        if (this.useCronExpression.value) {
+            return this.cronExpression.value;
+        }
+
+        if (this.isCycleTimer()) {
+            definition += 'R';
+            definition += this.repetitions.value ? this.repetitions.value : '';
+            definition += '/';
+        }
+
+        if (this.isDateTimer()) {
+            definition += this.date.value ? this.date.value.toISOString() : '';
+            definition += this.isCycleTimer() && this.date.value ? '/' : '';
+        }
+
+        if (this.isDurationTimer()) {
+            definition += moment.duration({
+                seconds: this.seconds.value,
+                minutes: this.minutes.value,
+                hours: this.hours.value,
+                days: this.days.value,
+                weeks: this.weeks.value,
+                months: this.months.value,
+                years: this.years.value
+            }).toISOString();
+        }
+
+        return definition;
     }
 
     setTimerFromXML() {
         const timerEventDefinition = this.property.data.element.businessObject.eventDefinitions[0];
 
         if (timerEventDefinition.timeCycle) {
-            this.defaultTimerType = 'timeCycle';
-            this.defaultTimerDefinition = timerEventDefinition.timeCycle.body;
+            this.timerType.setValue('timeCycle');
+            this.extractCycleFromXML(timerEventDefinition.timeCycle.body);
         } else if (timerEventDefinition.timeDuration) {
-            this.defaultTimerType = 'timeDuration';
-            this.defaultTimerDefinition = timerEventDefinition.timeDuration.body;
+            this.timerType.setValue('timeDuration');
+            this.extractDurationFromXML(timerEventDefinition.timeDuration.body);
         } else if (timerEventDefinition.timeDate) {
-            this.defaultTimerType = 'timeDate';
-            this.defaultTimerDefinition = timerEventDefinition.timeDate.body;
+            this.timerType.setValue('timeDate');
+            this.extractDateFromXML(timerEventDefinition.timeDate.body);
         }
+    }
+
+    extractCycleFromXML(cycleDefinitionValue: string) {
+        if (cycleDefinitionValue.includes('$')) {
+            this.extractProcessVariableFromXML(cycleDefinitionValue);
+        } else if (this.isCronExpression(cycleDefinitionValue)) {
+            this.cronExpression.setValue(cycleDefinitionValue);
+            this.useCronExpression.setValue(true);
+        } else {
+            const timerDefinitions = cycleDefinitionValue.split('/');
+            this.repetitions.setValue(timerDefinitions[0].substring(1));
+
+            this.extractDateFromXML(timerDefinitions[1]);
+            this.extractDurationFromXML(timerDefinitions[2]);
+        }
+    }
+
+    isCronExpression(cycleDefinitionValue: string): boolean {
+        const cronRegex = RegExp(this.CRON_REGEX);
+        return cronRegex.test(cycleDefinitionValue);
+    }
+
+    extractDateFromXML(dateDefinitionValue: string) {
+        if (dateDefinitionValue.includes('$')) {
+            this.extractProcessVariableFromXML(dateDefinitionValue);
+        } else {
+            this.date.setValue(new Date(dateDefinitionValue));
+        }
+    }
+
+    extractDurationFromXML(durationDefinition: string) {
+        if (durationDefinition.includes('$')) {
+            this.extractProcessVariableFromXML(durationDefinition);
+        } else {
+            const parsedDuration = <any>moment.duration(durationDefinition);
+
+            this.years.setValue(parsedDuration._data.years);
+            this.months.setValue(parsedDuration._data.months);
+            this.weeks.setValue(Math.floor(parsedDuration._data.days / 7));
+            this.days.setValue(parsedDuration._data.days % 7);
+            this.hours.setValue(parsedDuration._data.hours);
+            this.minutes.setValue(parsedDuration._data.minutes);
+            this.seconds.setValue(parsedDuration._data.seconds);
+        }
+    }
+
+    extractProcessVariableFromXML(processVariableDefinition: string) {
+        const processVariable = processVariableDefinition.substr(2, processVariableDefinition.length - 3);
+        this.processVariable.setValue(processVariable);
+        this.useProcessVariable.setValue(true);
     }
 
     isFormValid() {
         return this.timerDefinitionForm && this.timerDefinitionForm.dirty && this.timerDefinitionForm.valid;
     }
 
+    isDateTimer() {
+        return (this.timerType.value === 'timeDate' || this.isCycleTimer())
+            && !this.useProcessVariable.value
+            && !this.useCronExpression.value;
+    }
+
+    isDurationTimer() {
+        return (this.timerType.value === 'timeDuration' || this.isCycleTimer())
+            && !this.useProcessVariable.value
+            && !this.useCronExpression.value;
+    }
+
+    isCycleTimer() {
+        return this.timerType.value === 'timeCycle'
+            && !this.useProcessVariable.value;
+    }
+
+    isTimerTypeDefined() {
+        return !!this.timerType.value;
+    }
+
     get timerType(): AbstractControl {
         return this.timerDefinitionForm.get('timerType');
     }
 
-    get timerDefinition(): AbstractControl {
-        return this.timerDefinitionForm.get('timerDefinition');
+    get date(): AbstractControl {
+        return this.timerDefinitionForm.get('date');
+    }
+
+    get years(): AbstractControl {
+        return this.timerDefinitionForm.get('years');
+    }
+
+    get months(): AbstractControl {
+        return this.timerDefinitionForm.get('months');
+    }
+
+    get weeks(): AbstractControl {
+        return this.timerDefinitionForm.get('weeks');
+    }
+
+    get days(): AbstractControl {
+        return this.timerDefinitionForm.get('days');
+    }
+
+    get hours(): AbstractControl {
+        return this.timerDefinitionForm.get('hours');
+    }
+
+    get minutes(): AbstractControl {
+        return this.timerDefinitionForm.get('minutes');
+    }
+
+    get seconds(): AbstractControl {
+        return this.timerDefinitionForm.get('seconds');
+    }
+
+    get repetitions(): AbstractControl {
+        return this.timerDefinitionForm.get('repetitions');
+    }
+
+    get processVariable(): AbstractControl {
+        return this.timerDefinitionForm.get('processVariable');
+    }
+
+    get useProcessVariable(): AbstractControl {
+        return this.timerDefinitionForm.get('useProcessVariable');
+    }
+
+    get cronExpression(): AbstractControl {
+        return this.timerDefinitionForm.get('cronExpression');
+    }
+
+    get useCronExpression(): AbstractControl {
+        return this.timerDefinitionForm.get('useCronExpression');
     }
 
     ngOnDestroy() {

@@ -1,29 +1,109 @@
 <div class="timer-definition-block">
     <form [formGroup]="timerDefinitionForm">
-        <div class="adf-property-label">
-            {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMER_TYPE' | translate }}
-        </div>
-        <mat-form-field>
-            <mat-select
-                [formControl]="timerType">
-                <mat-option></mat-option>
-                <mat-option *ngFor="let timer of timers" [value]="timer.key">
-                    {{ timer.label | translate }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <mat-form-field *ngIf="timerType.valid">
+        <div class="timer-type">
             <div class="adf-property-label">
-                {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMER_DEFINITION' | translate}}
+                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.TIMER_TYPE' | translate }}
             </div>
-            <input
-                matInput
-                (change)="updateTimerDefinition()"
-                [formControl]="timerDefinition"/>
-            <mat-error *ngIf="timerDefinition.hasError('required')">
-                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.REQUIRED' | translate }}
-            </mat-error>
-        </mat-form-field>
+            <mat-form-field>
+                <mat-select [formControl]="timerType">
+                    <mat-option></mat-option>
+                    <mat-option *ngFor="let timer of timers" [value]="timer.key">
+                        {{ timer.label | translate }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div *ngIf="isTimerTypeDefined()" class="timer-variable">
+            <mat-checkbox [formControl]="useProcessVariable">
+                {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.USE_PROCESS_VARIABLE' | translate}}
+            </mat-checkbox>
+            <mat-form-field *ngIf="useProcessVariable.value">
+                <div class="adf-property-label">
+                    {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.PROCESS_VARIABLE' | translate}}
+                </div>
+                <input matInput [formControl]="processVariable" />
+            </mat-form-field>
+        </div>
+
+        <div *ngIf="isCycleTimer()" class="timer-cycle">
+            <mat-checkbox [formControl]="useCronExpression">
+                {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.USE_CRON_EXPRESSION' | translate}}
+            </mat-checkbox>
+            <mat-form-field *ngIf="useCronExpression.value">
+                <div class="adf-property-label">
+                    {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.CRON_EXPRESSION' | translate}}
+                </div>
+                <input matInput [formControl]="cronExpression" />
+                <mat-error *ngIf="cronExpression.invalid">
+                    {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.INVALID_CRON_EXPRESSION' | translate}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="!useCronExpression.value">
+                <div class="adf-property-label">
+                    {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.REPETITIONS' | translate}}
+                </div>
+                <input matInput [formControl]="repetitions" />
+            </mat-form-field>
+        </div>
+
+        <div *ngIf="isDateTimer()" class="timer-date">
+            <mat-form-field>
+                <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.DATE' | translate}}</div>
+                <mat-datetimepicker-toggle [for]="datetimePicker" matSuffix></mat-datetimepicker-toggle>
+                <mat-datetimepicker #datetimePicker type="datetime" openOnFocus="true" timeInterval="1">
+                </mat-datetimepicker>
+                <input matInput [formControl]="date" [matDatetimepicker]="datetimePicker" [min]="today"
+                    autocomplete="false">
+            </mat-form-field>
+        </div>
+
+        <div *ngIf="isDurationTimer()" class="timer-duration">
+            <div class="timer-duration-date">
+                <mat-form-field>
+                    <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.YEARS' | translate}}
+                    </div>
+                    <input matInput [formControl]="years" />
+                </mat-form-field>
+                <mat-form-field>
+                    <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.MONTHS' | translate}}
+                    </div>
+                    <input matInput [formControl]="months" />
+                </mat-form-field>
+            </div>
+
+            <div class="timer-duration-date">
+                <mat-form-field>
+                    <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.WEEKS' | translate}}
+                    </div>
+                    <input matInput [formControl]="weeks" />
+                </mat-form-field>
+                <mat-form-field>
+                    <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.DAYS' | translate}}
+                    </div>
+                    <input matInput [formControl]="days" />
+                </mat-form-field>
+            </div>
+
+            <div class="timer-duration-time">
+                <mat-form-field>
+                    <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.HOURS' | translate}}
+                    </div>
+                    <input matInput [formControl]="hours" />
+                </mat-form-field>
+                <mat-form-field>
+                    <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.MINUTES' | translate}}
+                    </div>
+                    <input matInput [formControl]="minutes" />
+                </mat-form-field>
+                <mat-form-field>
+                    <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.SECONDS' | translate}}
+                    </div>
+                    <input matInput [formControl]="seconds" />
+                </mat-form-field>
+            </div>
+        </div>
+
     </form>
 </div>
