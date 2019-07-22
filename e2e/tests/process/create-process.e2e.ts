@@ -133,6 +133,7 @@ describe('Create process', async () => {
         expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
         await processValidation.confirm();
 
+        await processValidation.isDialogDismissed();
         await taskProperties.setAssignee('userAssignee');
 
         await processContentPage.save();
@@ -152,6 +153,7 @@ describe('Create process', async () => {
         expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
         await processValidation.confirm();
 
+        await processValidation.isDialogDismissed();
         await taskProperties.setCandidateUser('candidateUser');
 
         await processContentPage.save();
@@ -170,13 +172,13 @@ describe('Create process', async () => {
         expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
         await processValidation.confirm();
 
+        await processValidation.isDialogDismissed();
         await taskProperties.setCandidateGroup('CandidateGroup');
 
         await processContentPage.save();
         expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
 
     });
-
 
     afterAll(async () => {
         await backend.project.delete(project.entry.id);
