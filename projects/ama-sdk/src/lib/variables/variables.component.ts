@@ -98,9 +98,11 @@ export class VariablesComponent implements OnInit, OnDestroy {
     save() {
         const data = JSON.parse(this.editorContent);
         this.data.propertiesUpdate$.next(data);
+        this.data.propertiesUpdate$.complete();
+        this.dialog.close();
     }
 
     onClose() {
-        this.data.propertiesUpdate$.complete();
+       this.data.propertiesUpdate$.complete();
     }
 }

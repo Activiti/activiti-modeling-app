@@ -34,8 +34,6 @@ export class VariablesDialog extends GenericDialog {
     readonly typeCell = element(by.css(`[data-automation-id="variable-type-cell"]`));
     readonly valueCell = element(by.css(`[data-automation-id="variable-value-cell"]`));
     readonly requiredCell = element(by.css(`[data-automation-id="variable-required-cell"]`));
-    readonly propertiesViewer = element(by.id(`mat-tab-label-0-0`));
-    readonly codeEditor = element(by.id(`mat-tab-label-1-1`));
     readonly updateButton = element(by.css(`[data-automation-id="update-button"]`));
     readonly closeButton = element(by.css(`[data-automation-id="close-button"]`));
 
@@ -133,14 +131,6 @@ export class VariablesDialog extends GenericDialog {
         return await this.isFormVariableDisplayed(rowIndex, name, type, value, required);
     }
 
-    async goToPropertiesViewer() {
-        await super.click(this.propertiesViewer);
-    }
-
-    async goToCodeEditor() {
-        await super.click(this.codeEditor);
-    }
-
     async getVariableIdByRow(rowIndex: number) {
         const rowLocator = `variable-row-${rowIndex}`;
         const variableRow = element(by.css(`[data-automation-id*="${rowLocator}"]`));
@@ -151,7 +141,6 @@ export class VariablesDialog extends GenericDialog {
 
     async update() {
         await super.click(this.updateButton);
-        await super.isDialogDisplayed();
     }
 
     async close() {

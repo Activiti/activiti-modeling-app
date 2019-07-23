@@ -19,6 +19,12 @@
         }
     }
 
+    .properties-viewer {
+        .mat-table {
+            height: 300px !important;
+        }
+    }
+
     .variables-icon {
         vertical-align: middle;
         margin-right: 5px;

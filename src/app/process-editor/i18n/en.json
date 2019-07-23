@@ -90,10 +90,6 @@
             "CHANGE_FAVORITE": "Unknown error happened during the changing favorite state of the process."
         },
         "PROPERTIES": {
-            "TABS": {
-                "VIEWER": "Properties viewer",
-                "JSON_EDITOR": "JSON editor"
-            },
             "TABLE": {
                 "COLUMN_NAME": "Name",
                 "COLUMN_TYPE": "Type",
