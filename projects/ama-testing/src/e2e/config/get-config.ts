@@ -46,7 +46,7 @@ export function getConfig(rootPath: string, apsConfig): TestConfig {
         },
         ama: {
             url: env.E2E_HOST || 'http://localhost',
-            port: env.E2E_PORT || '4100',
+            port: env.E2E_PORT_COMMUNITY || '4100',
             backendConfig: {
                 authType: apsConfig.authType,
                 oauth2: apsConfig.oauth2,
