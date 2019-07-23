@@ -31,9 +31,13 @@ const get = element => {
 };
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {
-        [propertyKey]: moment(value).format(exportFormat),
-    });
+    const shapeRef = element.businessObject;
+    if (value !== null) {
+        shapeRef[propertyKey] =  moment(value).format(exportFormat);
+    } else {
+        delete shapeRef[propertyKey];
+    }
+    modeling.updateProperties(element, {});
 };
 
 export const dueDateHandler = { get, set };

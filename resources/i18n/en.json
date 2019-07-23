@@ -306,7 +306,6 @@
                 "EXTENSIONS_EDITOR": "Extensions editor"
             },
             "PRIORITIES": {
-                "NONE": "None",
                 "LOW": "0",
                 "MEDIUM": "1",
                 "HIGH": "2"
