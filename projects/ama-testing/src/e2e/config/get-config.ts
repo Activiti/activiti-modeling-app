@@ -22,7 +22,7 @@ const env = process.env;
 const path = require('path');
 
 
-export function getConfig(rootPath: string, apsConfig): TestConfig {
+export function getConfig(rootPath: string, apsConfig, url = 'http://localhost', port = '4100'): TestConfig {
     const outputDir = path.join(rootPath, '/../e2e-output');
     return {
         main: {
@@ -45,8 +45,8 @@ export function getConfig(rootPath: string, apsConfig): TestConfig {
             }
         },
         ama: {
-            url: env.E2E_HOST || 'http://localhost',
-            port: env.E2E_PORT_COMMUNITY || '4100',
+            url,
+            port,
             backendConfig: {
                 authType: apsConfig.authType,
                 oauth2: apsConfig.oauth2,
