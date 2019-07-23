@@ -24,7 +24,6 @@ import { AuthenticatedPage } from 'ama-testing/e2e';
 import { ProcessContentPage } from 'ama-testing/e2e';
 import { ProcessPropertiesCard } from 'ama-testing/e2e';
 import { ProcessVariablesDialog } from 'ama-testing/e2e';
-import { CodeEditorWidget } from 'ama-testing/e2e';
 import { UtilDate } from 'ama-testing/e2e';
 
 describe('Create process variable', async () => {
@@ -41,7 +40,6 @@ describe('Create process variable', async () => {
     const processPropertiesCard = new ProcessPropertiesCard();
     const authenticatedPage = new AuthenticatedPage(testConfig);
     const processVariablesDialog = new ProcessVariablesDialog();
-    const codeEditorWidget = new CodeEditorWidget();
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
@@ -90,13 +88,8 @@ describe('Create process variable', async () => {
                 'required': false,
                 'value': ''
             };
-            await processVariablesDialog.goToCodeEditor();
-
-            const editorValue = await codeEditorWidget.getCodeEditorValue(`process-variables://json:${process.entry.id}`);
-            expect(JSON.parse(editorValue)).toEqual(expectedVariable, `Variables objects are not equal`);
 
             await processVariablesDialog.update();
-            await processVariablesDialog.close();
 
             await processPropertiesCard.editProcessVariables();
             expect(await processVariablesDialog.isVariableDisplayed(0)).toBe(true, 'Variable added is not displayed in the list.');
@@ -116,14 +109,7 @@ describe('Create process variable', async () => {
             expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
             expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer', '123')).toBe(true, 'Variable added is not displayed in the list.');
 
-            const variableId = await processVariablesDialog.getVariableIdByRow(0);
-            await processVariablesDialog.goToCodeEditor();
-
-            const editorValue = await codeEditorWidget.getCodeEditorValue(`process-variables://json:${process.entry.id}`);
-            expect(JSON.parse(editorValue)[variableId].value).toEqual(123, `Variable value is not set correctly.`);
-
             await processVariablesDialog.update();
-            await processVariablesDialog.close();
 
             await processPropertiesCard.editProcessVariables();
             expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer', '123')).toBe(true, 'Variable added is not displayed in the list.');
@@ -135,13 +121,7 @@ describe('Create process variable', async () => {
             expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
             expect(await processVariablesDialog.isVariableDisplayed(0, 'dateVar', 'date', currentDate)).toBe(true, 'Variable added is not displayed in the list.');
 
-            const variableId = await processVariablesDialog.getVariableIdByRow(0);
-            await processVariablesDialog.goToCodeEditor();
-
-            const editorValue = await codeEditorWidget.getCodeEditorValue(`process-variables://json:${process.entry.id}`);
-            expect(JSON.parse(editorValue)[variableId].value).toEqual(currentDate, `Variable value is not set correctly.`);
             await processVariablesDialog.update();
-            await processVariablesDialog.close();
 
             await processPropertiesCard.editProcessVariables();
             expect(await processVariablesDialog.isVariableDisplayed(0, 'dateVar', 'date', currentDate)).toBe(true, 'Variable added is not displayed in the list.');
@@ -157,9 +137,6 @@ describe('Create process variable', async () => {
     });
 
     afterAll(async () => {
-        if ( processVariablesDialog.isLoaded() ) {
-            await processVariablesDialog.close();
-        }
         await backend.project.delete(project.entry.id);
         await backend.tearDown();
         await authenticatedPage.logout();
