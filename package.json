@@ -163,6 +163,7 @@
     "zone.js": "0.8.29"
   },
   "devDependencies": {
+    "@alfresco/adf-cli": "^3.4.0-525f0a06dbeebec9ed9be3c52cc2ab002c58cb54",
     "@angular-builders/jest": "^7.4.4",
     "@angular-devkit/build-angular": "~0.13.0",
     "@angular-devkit/build-ng-packagr": "0.13.2",
