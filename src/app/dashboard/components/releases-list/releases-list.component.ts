@@ -29,7 +29,8 @@ import { combineLatest } from 'rxjs';
 
 @Component({
     selector: 'ama-release-list',
-    templateUrl: './releases-list.component.html'
+    templateUrl: 'releases-list.component.html',
+    host: { class: 'ama-release-list'}
 })
 export class ReleaseListComponent implements OnInit, OnDestroy {
     dataSource$: Observable<MatTableDataSource<Partial<Release>>>;

@@ -3,97 +3,107 @@
     $accent: map-get($theme, accent);
     $foreground: map-get($theme, foreground);
     $background: map-get($theme, background);
-    .release-header .project-name {
-        font-size: 14px;
-    }
 
-    .releases {
-        height: 100%;
+    .ama-release-list {
+        flex: 1;
 
-        .paginator-block {
-            border-top: 1px solid mat-color($foreground, text, 0.07);
+        .release-header .project-name {
+            font-size: 14px;
         }
 
-        .mat-paginator {
-            &-container {
-                position: relative;
-                .mat-paginator-page-size {
-                    position: absolute;
-                    left: 20px;
-                }
+        .releases {
+            height: 100%;
+
+            .paginator-block {
+                border-top: 1px solid mat-color($foreground, text, 0.07);
             }
 
-            .mat-form-field-type-mat-select {
-                width: 56px;
-            }
-        }
-
-        &-list {
-            overflow: scroll;
-            height: calc(100% - 55px);
-            background: transparent;
-
-            .mat-header-row {
-                background: mat-color($background, card);
-            }
-
-            .mat-row {
-                cursor: pointer;
-                transition: background-color 250ms;
-                padding: 0 24px 0 0;
-
-                .mat-cell {
-                    line-height: 48px;
-                    text-align: left;
-                }
-
-                .mat-icon.thumbnail {
-                    transition: color 250ms;
-                }
-
-                &:hover {
-                    background-color: mat-color($background, selected-button);
-
-                    .mat-icon.thumbnail {
-                        color: mat-color($accent);
+            .mat-paginator {
+                &-container {
+                    position: relative;
+                    .mat-paginator-page-size {
+                        position: absolute;
+                        left: 20px;
                     }
                 }
-            }
 
-            .cdk-column-thumbnail {
-                flex: 0 1 auto;
-                min-width: 24px;
-                padding-left: 24px;
-                .mat-icon {
-                    vertical-align: middle;
+                .mat-form-field-type-mat-select {
+                    width: 56px;
                 }
             }
 
-            .cdk-column-id {
-                padding-left: 24px;
-                flex-grow: 1;
-                max-width: 330px;
+            &-list {
+                overflow: scroll;
+                height: calc(100% - 55px);
+                background: transparent;
+
+                .mat-header-row {
+                    background: mat-color($background, card);
+                }
+
+                .mat-row {
+                    cursor: pointer;
+                    transition: background-color 250ms;
+                    padding: 0 24px 0 0;
+
+                    .mat-cell {
+                        line-height: 48px;
+                        text-align: left;
+                    }
+
+                    .mat-icon.thumbnail {
+                        transition: color 250ms;
+                    }
+
+                    &:hover {
+                        background-color: mat-color($background, selected-button);
+
+                        .mat-icon.thumbnail {
+                            color: mat-color($accent);
+                        }
+                    }
+                }
+
+                .cdk-column-thumbnail {
+                    flex: 0 1 auto;
+                    min-width: 24px;
+                    padding-left: 24px;
+                    .mat-icon {
+                        vertical-align: middle;
+                    }
+                }
+
+                .cdk-column-id {
+                    padding-left: 24px;
+                    flex-grow: 1;
+                    max-width: 330px;
+                }
+
+                .cdk-column-created,
+                .cdk-column-createdBy {
+                    max-width: 330px;
+                }
+
+                .cdk-column-version {
+                    flex: 0 1 auto;
+                    padding-right: 24px
+                }
             }
 
-            .cdk-column-created,
-            .cdk-column-createdBy {
-                max-width: 330px;
+            &-spinner {
+                margin-top: 20%;
+                margin-left: calc(50% - 100px);
             }
 
-            .cdk-column-version {
-                flex: 0 1 auto;
-                padding-right: 24px
+            &-emptylist {
+                height: calc(100% - 60px);
+                justify-content: center;
+
+                .adf-empty-content {
+                    margin-top: 48px;
+                    text-align: center;
+                }
             }
-        }
-
-        &-spinner {
-            margin-top: 20%;
-            margin-left: calc(50% - 100px);
-        }
-
-        &-emptylist .adf-empty-content {
-            margin-top: 48px;
-            text-align: center;
         }
     }
 }
