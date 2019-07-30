@@ -26,6 +26,7 @@ const isTimerEvent = (element: Bpmn.DiagramElement) => {
 const haveSignalRef = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions[0].signalRef;
 const isDecisionTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === DECISION_TASK_IMPLEMENTATION;
 const isExclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type ===  BpmnElement.ExclusiveGateway;
+const isInclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type ===  BpmnElement.InclusiveGateway;
 
 export const elementsProperties = {
     [BpmnElement.Process]: [
@@ -73,7 +74,8 @@ export const elementsProperties = {
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
-        ...(isExclusiveGateway(element) ? [ BpmnProperty.conditionExpression ] : [])
+        ...(isExclusiveGateway(element) ? [ BpmnProperty.conditionExpression ] : []),
+        ...(isInclusiveGateway(element) ? [ BpmnProperty.conditionExpression ] : [])
     ],
     [BpmnElement.ExclusiveGateway]: [
         BpmnProperty.id,
@@ -89,7 +91,8 @@ export const elementsProperties = {
     [BpmnElement.InclusiveGateway]: [
         BpmnProperty.id,
         BpmnProperty.name,
-        BpmnProperty.documentation
+        BpmnProperty.documentation,
+        BpmnProperty.defaultSequenceFlow
     ],
     [BpmnElement.ServiceTask]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
