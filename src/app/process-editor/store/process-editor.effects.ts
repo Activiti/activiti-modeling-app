@@ -233,7 +233,7 @@ export class ProcessEditorEffects extends BaseEffects {
 
     private validateProcess(payload: ValidateProcessPayload) {
         return this.processEditorService.validate(payload.processId, payload.content, payload.extensions).pipe(
-            switchMap(() => [ new LoadApplicationAction(true), payload.action ]),
+            switchMap(() => [ new LoadApplicationAction(true), payload.action, new LoadApplicationAction(false) ]),
             catchError(response => {
                 const errors = JSON.parse(response.message).errors.map(error => error.description);
                 return [
