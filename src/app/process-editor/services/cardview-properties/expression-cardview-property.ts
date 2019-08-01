@@ -19,6 +19,7 @@ import { CardViewTextItemModel } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty } from 'ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
+import { CardViewExpressionValidator } from './validators/card-view-expression.validator';
 
 const propertyName = BpmnProperty.conditionExpression;
 
@@ -30,6 +31,7 @@ export function createExpressionProperty({ element }: FactoryProps) {
         default: '',
         multiline: true,
         editable: true,
-        data: { id: element.id }
+        data: { id: element.id },
+        validators: [new CardViewExpressionValidator()]
     });
 }
