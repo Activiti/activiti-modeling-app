@@ -25,6 +25,7 @@ export interface ModelCrud {
     updateModelContent(modelId: string, content: string, modelName?: string): Promise<void>;
     updateModelMetadata(modelId: string, content: any): Promise<void>;
     delete(modelId?: string): Promise<void>;
+    import(processXmlFile: string, projectId: string): Promise<AlfrescoApi.NodeEntry>;
 }
 
 export interface ProjectApi {

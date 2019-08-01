@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:activiti="http://activiti.org/bpmn" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+  <bpmn2:process id="process-4fc7fcde-e078-41ff-b171-b0c350cccd99" name="BoundaryTimerInterruptingDuration" isExecutable="true">
+    <bpmn2:documentation />
+    <bpmn2:startEvent id="StartEvent_1">
+      <bpmn2:outgoing>SequenceFlow_1qorbat</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_1qorbat" sourceRef="StartEvent_1" targetRef="Task_06z104s" />
+    <bpmn2:userTask id="Task_06z104s" name="Interrupting Duration" activiti:assignee="hruser">
+      <bpmn2:incoming>SequenceFlow_1qorbat</bpmn2:incoming>
+    </bpmn2:userTask>
+    <bpmn2:boundaryEvent id="BoundaryEvent_1te9ze0" name="BoundaryTimerInterruptingDuration" attachedToRef="Task_06z104s">
+      <bpmn2:outgoing>SequenceFlow_14srqvq</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition>
+        <bpmn2:timeDuration xsi:type="bpmn2:tFormalExpression">PT30S</bpmn2:timeDuration>
+      </bpmn2:timerEventDefinition>
+    </bpmn2:boundaryEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_14srqvq" sourceRef="BoundaryEvent_1te9ze0" targetRef="Task_1mb5v34" />
+    <bpmn2:userTask id="Task_1mb5v34" name="Boundary Timer Interrupting Duration" activiti:assignee="hruser">
+      <bpmn2:incoming>SequenceFlow_14srqvq</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_1qphxd3</bpmn2:outgoing>
+    </bpmn2:userTask>
+    <bpmn2:endEvent id="EndEvent_0idgal7">
+      <bpmn2:incoming>SequenceFlow_1qphxd3</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_1qphxd3" sourceRef="Task_1mb5v34" targetRef="EndEvent_0idgal7" />
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="process-4fc7fcde-e078-41ff-b171-b0c350cccd99">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="91" y="114" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1qorbat_di" bpmnElement="SequenceFlow_1qorbat">
+        <di:waypoint x="127" y="132" />
+        <di:waypoint x="177" y="132" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1qtxoja_di" bpmnElement="Task_06z104s">
+        <dc:Bounds x="177" y="92" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BoundaryEvent_052kuez_di" bpmnElement="BoundaryEvent_1te9ze0">
+        <dc:Bounds x="209" y="154" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="183" y="124" width="88" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_14srqvq_di" bpmnElement="SequenceFlow_14srqvq">
+        <di:waypoint x="227" y="190" />
+        <di:waypoint x="227" y="252" />
+        <di:waypoint x="295" y="252" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0fh27iu_di" bpmnElement="Task_1mb5v34">
+        <dc:Bounds x="295" y="212" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0idgal7_di" bpmnElement="EndEvent_0idgal7">
+        <dc:Bounds x="445" y="234" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1qphxd3_di" bpmnElement="SequenceFlow_1qphxd3">
+        <di:waypoint x="395" y="252" />
+        <di:waypoint x="445" y="252" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

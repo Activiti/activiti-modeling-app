@@ -34,6 +34,7 @@
     "e2e:standalone": "ng e2e --devServerTarget",
     "pree2e:ci": "npm run pree2e && npm run webdriver-update-ci",
     "e2e:ci": "ng e2e --webdriverUpdate=false",
+    "build:testing": "ng build ama-testing --prod",
     "07": "echo ------------------------------------------- Unit tests ---------------------------------------------",
     "pretest": "rimraf dist",
     "pretest:watch": "npm run pretest",

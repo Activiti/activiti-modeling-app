@@ -21,6 +21,7 @@ import { ACMBackend } from './acm-backend';
 import { ModelCrud } from '../api.interfaces';
 import { E2eRequestApiHelper, E2eRequestApiHelperOptions } from './e2e-request-api.helper';
 import { getBlob } from '../../util/fakeBlob.helper';
+import * as fs from 'fs';
 
 
 export abstract class ACMCrud implements ModelCrud {
@@ -39,6 +40,24 @@ export abstract class ACMCrud implements ModelCrud {
     constructor(backend: ACMBackend) {
         this.requestApiHelper = new E2eRequestApiHelper(backend);
         this.tmpFilePath = backend.config.main.paths.tmp;
+    }
+
+    async import(processFilePath: string, projectId: string) {
+        const fileContent = await fs.createReadStream(processFilePath);
+        const requestOptions: E2eRequestApiHelperOptions = {
+            queryParams: { type: 'PROCESS' },
+            formParams: { file: fileContent },
+            contentTypes: [ 'multipart/form-data' ]
+        };
+        try {
+            const process =  await this.requestApiHelper
+                .post<NodeEntry>(`${this.endPoint(projectId)}/import`, requestOptions);
+            Logger.info(`[Process] Process imported with name '${process.entry.name}' and id '${process.entry.id}'.`);
+            return process;
+        } catch (error) {
+            Logger.error(`[Process] Import process failed!`);
+            throw error;
+        }
     }
 
     getContent(entityId: string) {

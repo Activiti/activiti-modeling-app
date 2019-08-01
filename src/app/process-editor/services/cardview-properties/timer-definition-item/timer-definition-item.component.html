@@ -5,7 +5,7 @@
                 {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.TIMER_TYPE' | translate }}
             </div>
             <mat-form-field>
-                <mat-select [formControl]="timerType">
+                <mat-select [formControl]="timerType" data-automation-id="timer-type">
                     <mat-option></mat-option>
                     <mat-option *ngFor="let timer of timers" [value]="timer.key">
                         {{ timer.label | translate }}
@@ -44,7 +44,7 @@
                 <div class="adf-property-label">
                     {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.REPETITIONS' | translate}}
                 </div>
-                <input matInput [formControl]="repetitions" />
+                <input matInput [formControl]="repetitions"/>
             </mat-form-field>
         </div>
 
@@ -64,12 +64,12 @@
                 <mat-form-field>
                     <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.YEARS' | translate}}
                     </div>
-                    <input matInput [formControl]="years" />
+                    <input matInput [formControl]="years"/>
                 </mat-form-field>
                 <mat-form-field>
                     <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.MONTHS' | translate}}
                     </div>
-                    <input matInput [formControl]="months" />
+                    <input matInput [formControl]="months"/>
                 </mat-form-field>
             </div>
 
@@ -77,12 +77,12 @@
                 <mat-form-field>
                     <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.WEEKS' | translate}}
                     </div>
-                    <input matInput [formControl]="weeks" />
+                    <input matInput [formControl]="weeks"/>
                 </mat-form-field>
                 <mat-form-field>
                     <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.DAYS' | translate}}
                     </div>
-                    <input matInput [formControl]="days" />
+                    <input matInput [formControl]="days"/>
                 </mat-form-field>
             </div>
 
@@ -90,17 +90,17 @@
                 <mat-form-field>
                     <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.HOURS' | translate}}
                     </div>
-                    <input matInput [formControl]="hours" />
+                    <input matInput [formControl]="hours">
                 </mat-form-field>
                 <mat-form-field>
                     <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.MINUTES' | translate}}
                     </div>
-                    <input matInput [formControl]="minutes" />
+                    <input matInput [formControl]="minutes"/>
                 </mat-form-field>
                 <mat-form-field>
                     <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.SECONDS' | translate}}
                     </div>
-                    <input matInput [formControl]="seconds" />
+                    <input matInput [formControl]="seconds"/>
                 </mat-form-field>
             </div>
         </div>
