@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
- import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty } from 'ama-sdk';
+import { updateShapeProperty } from './update-shape-property.handler';
 
 const propertyKey = BpmnProperty.priority;
 
 const get = element => parseInt(element.businessObject.get(propertyKey), 10);
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {
-        [propertyKey]: parseInt(value, 10)
-    });
+    updateShapeProperty(element, propertyKey, value || value === 0 ? parseInt(value, 10) : undefined);
+    modeling.updateProperties(element, {});
 };
 
 export const priorityHandler = { get, set };

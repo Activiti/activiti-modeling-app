@@ -16,14 +16,14 @@
  */
 
 import { BpmnProperty } from 'ama-sdk';
+import { updateShapeProperty } from './update-shape-property.handler';
 
 const propertyKey = BpmnProperty.candidateGroups;
 
 const get = element => element.businessObject.get(propertyKey);
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {
-        [propertyKey]: value
-    });
+    updateShapeProperty(element, propertyKey, value);
+    modeling.updateProperties(element, {});
 };
 
 export const candidateGroupsHandler = { get, set };

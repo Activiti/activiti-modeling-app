@@ -15,15 +15,14 @@
  * limitations under the License.
  */
 
-import { BpmnProperty } from 'ama-sdk';
-import { updateShapeProperty } from './update-shape-property.handler';
-
-const propertyKey = BpmnProperty.id;
-
-const get = element => element.businessObject.get(propertyKey);
-const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    updateShapeProperty(element, propertyKey, value);
-    modeling.updateProperties(element, {});
+const isValid = (value: any) => {
+    return value || value === 0;
 };
 
-export const idHandler = { get, set };
+export const updateShapeProperty = (element: Bpmn.DiagramElement, propertyKey: string, value: any) => {
+    if (isValid(value)) {
+        element.businessObject[propertyKey] = value;
+    } else {
+        delete element.businessObject[propertyKey];
+    }
+};

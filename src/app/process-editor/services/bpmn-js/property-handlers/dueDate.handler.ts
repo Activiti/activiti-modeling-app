@@ -17,6 +17,7 @@
 
 import { BpmnProperty } from 'ama-sdk';
 import moment from 'moment-es6';
+import { updateShapeProperty } from './update-shape-property.handler';
 
 const propertyKey = BpmnProperty.dueDate;
 
@@ -31,9 +32,8 @@ const get = element => {
 };
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {
-        [propertyKey]: moment(value).format(exportFormat),
-    });
+    updateShapeProperty(element, propertyKey, value ? moment(value).format(exportFormat) : undefined);
+    modeling.updateProperties(element, {});
 };
 
 export const dueDateHandler = { get, set };

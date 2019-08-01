@@ -106,7 +106,7 @@
     "jest.config.js"
   ],
   "dependencies": {
-    "@alfresco/adf-core": "3.4.0-beta8",
+    "@alfresco/adf-core": "3.4.0-795bdda4e4c84bd0faf72ef5059684a5cf236a5d",
     "@alfresco/adf-extensions": "3.4.0-beta8",
     "@alfresco/js-api": "3.3.0",
     "@angular/animations": "7.2.5",
