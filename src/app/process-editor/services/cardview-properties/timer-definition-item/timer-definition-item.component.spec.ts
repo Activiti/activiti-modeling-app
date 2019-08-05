@@ -206,4 +206,17 @@ describe('CardViewTimerDefinitionItemComponent', () => {
             definition: '${myVariable}'
         });
     });
+
+    it('should hide process variable option when the event is of type StartEvent', () => {
+        component.eventType = 'bpmn:StartEvent';
+        component.timerType.setValue('timeCycle');
+        fixture.detectChanges();
+        let processVariableContainer = fixture.nativeElement.querySelector('div[class="timer-variable"]');
+        expect(processVariableContainer).toBeNull();
+
+        component.eventType = 'bpmn:BoundaryEvent';
+        fixture.detectChanges();
+        processVariableContainer = fixture.nativeElement.querySelector('div[class="timer-variable"]');
+        expect(processVariableContainer).not.toBeNull();
+    });
 });

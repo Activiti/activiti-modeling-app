@@ -14,7 +14,7 @@
             </mat-form-field>
         </div>
 
-        <div *ngIf="isTimerTypeDefined()" class="timer-variable">
+        <div *ngIf="isProcessVariableAvailable()" class="timer-variable">
             <mat-checkbox [formControl]="useProcessVariable">
                 {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.USE_PROCESS_VARIABLE' | translate}}
             </mat-checkbox>

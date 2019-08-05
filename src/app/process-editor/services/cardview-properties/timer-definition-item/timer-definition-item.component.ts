@@ -40,6 +40,7 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     defaultTimerType = '';
     timerDefinitionForm: FormGroup;
     today = new Date();
+    eventType: string;
 
     onDestroy$: Subject<void> = new Subject<void>();
 
@@ -142,6 +143,7 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
 
     setTimerFromXML() {
         const timerEventDefinition = this.property.data.element.businessObject.eventDefinitions[0];
+        this.eventType = this.property.data.element.businessObject.$type;
 
         if (timerEventDefinition.timeCycle) {
             this.timerType.setValue('timeCycle');
@@ -215,29 +217,33 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
         this.useProcessVariable.setValue(true);
     }
 
-    isFormValid() {
+    isFormValid(): boolean {
         return this.timerDefinitionForm && this.timerDefinitionForm.dirty && this.timerDefinitionForm.valid;
     }
 
-    isDateTimer() {
+    isDateTimer(): boolean {
         return (this.timerType.value === 'timeDate' || this.isCycleTimer())
             && !this.useProcessVariable.value
             && !this.useCronExpression.value;
     }
 
-    isDurationTimer() {
+    isDurationTimer(): boolean {
         return (this.timerType.value === 'timeDuration' || this.isCycleTimer())
             && !this.useProcessVariable.value
             && !this.useCronExpression.value;
     }
 
-    isCycleTimer() {
+    isCycleTimer(): boolean {
         return this.timerType.value === 'timeCycle'
             && !this.useProcessVariable.value;
     }
 
-    isTimerTypeDefined() {
+    isTimerTypeDefined(): boolean {
         return !!this.timerType.value;
+    }
+
+    isProcessVariableAvailable(): boolean {
+        return this.eventType !== 'bpmn:StartEvent' && this.isTimerTypeDefined();
     }
 
     get timerType(): AbstractControl {
