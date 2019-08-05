@@ -19,7 +19,7 @@ import { CardViewDateItemModel } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty } from 'ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
-import { displayFormat } from '../bpmn-js/property-handlers/dueDate.handler';
+import { dateFormat } from '../bpmn-js/property-handlers/dueDate.handler';
 
 const propertyName = BpmnProperty.dueDate;
 
@@ -29,7 +29,7 @@ export function createDueDateProperty({ element }: FactoryProps) {
         value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,
         editable: true,
-        format: displayFormat,
+        format: dateFormat,
         data: { id: element.id }
     });
 }

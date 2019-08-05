@@ -19,7 +19,7 @@ import { handlers } from './property.handlers';
 import { BpmnProperty } from 'ama-sdk';
 import { getDiagramElementMock, getModelingMock } from '../bpmn-js.mock';
 import moment from 'moment-es6';
-import { displayFormat, exportFormat } from './dueDate.handler';
+import { dateFormat } from './dueDate.handler';
 
 describe('dueDateHandler', () => {
     const property = BpmnProperty.dueDate;
@@ -29,7 +29,7 @@ describe('dueDateHandler', () => {
 
     beforeEach(() => {
         handler = handlers[property];
-        mockElement = getDiagramElementMock({ [property]: mockDate.format(exportFormat) });
+        mockElement = getDiagramElementMock({ [property]: mockDate.format(dateFormat) });
         modeling = getModelingMock();
     });
 
@@ -42,7 +42,7 @@ describe('dueDateHandler', () => {
             const get = handler.get;
             const dueDate = get(mockElement);
 
-            expect(dueDate).toBe(mockDate.format(displayFormat));
+            expect(dueDate).toBe(mockDate.format(dateFormat));
         });
     });
 
@@ -55,7 +55,7 @@ describe('dueDateHandler', () => {
             set(modeling, mockElement, newMockDate);
             const dueDate = get(mockElement);
 
-            expect(dueDate).toBe(moment(newMockDate).format(displayFormat));
+            expect(dueDate).toBe(moment(newMockDate).format(dateFormat));
         });
     });
 });

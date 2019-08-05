@@ -22,17 +22,15 @@ import { updateShapeProperty } from './update-shape-property.handler';
 const propertyKey = BpmnProperty.dueDate;
 
 /* cspell: disable-next-line */
-export const displayFormat = 'YYYY-MM-DDTHH:mm:ss';
-/* cspell: disable-next-line */
-export const exportFormat = 'YYYY-MM-DDTHH:mm:ss';
+export const dateFormat = 'YYYY-MM-DDTHH:mm:ss';
 
 const get = element => {
     const property = element.businessObject.get(propertyKey);
-    return property ? moment(property, exportFormat).format(displayFormat) : '';
+    return property ? property : '';
 };
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    updateShapeProperty(element, propertyKey, value ? moment(value).format(exportFormat) : undefined);
+    updateShapeProperty(element, propertyKey, value ? moment(value).format(dateFormat) : undefined);
     modeling.updateProperties(element, {});
 };
 
