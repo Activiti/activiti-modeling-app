@@ -24,6 +24,6 @@ export class CardViewExpressionValidator implements CardViewItemValidator {
 
     isValid(value: string): boolean {
         const expressions = /\{([^}]+)\}/g.exec(value);
-        return !!expressions;
+        return !!expressions || !value;
     }
 }
