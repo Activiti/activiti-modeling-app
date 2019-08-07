@@ -80,8 +80,13 @@ export class ProcessPropertiesComponent implements OnInit, OnDestroy, AfterViewI
             return [];
         }
 
-        const element = this.processModelerService.getElement(shape.id);
-        return this.cardViewFactory.createCardViewPropertiesFor(element);
+        try {
+            const element = this.processModelerService.getElement(shape.id);
+            return this.cardViewFactory.createCardViewPropertiesFor(element);
+        } catch {
+            /*tslint:disable-next-line*/
+            console.warn(`Element with id ${shape.id} not found in process editor`);
+        }
     }
 
     private updateElementProperty(updateObject: UpdateNotification) {
