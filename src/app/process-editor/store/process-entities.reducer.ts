@@ -88,9 +88,14 @@ export function processEntitiesReducer(
 function removeElementMapping(state: ProcessEntitiesState, action: RemoveElementMappingAction): ProcessEntitiesState {
     const newState = cloneDeep(state);
     const mappings = newState.entities[action.processId].extensions.mappings;
+    const constants = newState.entities[action.processId].extensions.constants;
 
     if (mappings && mappings[action.elementId]) {
         delete newState.entities[action.processId].extensions.mappings[action.elementId];
+    }
+
+    if (constants && constants[action.elementId]) {
+        delete newState.entities[action.processId].extensions.constants[action.elementId];
     }
 
     return newState;
@@ -121,10 +126,15 @@ function updateProcessVariables(state: ProcessEntitiesState, action: UpdateProce
 
 function updateProcessVariablesMapping(state: ProcessEntitiesState, action: UpdateServiceParametersAction): ProcessEntitiesState {
     const newState = cloneDeep(state);
-    newState.entities[action.processId].extensions = { mappings: {}, ...newState.entities[action.processId].extensions };
+    newState.entities[action.processId].extensions = { constants: {}, mappings: {}, ...newState.entities[action.processId].extensions };
     newState.entities[action.processId].extensions.mappings[action.serviceId] = { ...action.serviceParameterMappings };
+
     if (!Object.values(newState.entities[action.processId].extensions.mappings[action.serviceId]).length) {
         delete newState.entities[action.processId].extensions.mappings[action.serviceId];
+    }
+
+    if (action.constants) {
+        newState.entities[action.processId].extensions.constants[action.serviceId] = { ...action.constants };
     }
 
     return newState;

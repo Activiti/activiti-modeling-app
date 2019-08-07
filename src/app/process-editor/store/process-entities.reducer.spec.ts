@@ -100,6 +100,13 @@ describe('ProcessEntitiesReducer', () => {
                 }
             },
             id: 'mock-id',
+            constants: {
+                [elementId]: {
+                    '_activiti_dmn_table_"': {
+                        'value': 'dt'
+                    }
+                }
+            },
             properties: {}
         } }];
         action = <GetProcessesSuccessAction>{ type: GET_PROCESSES_SUCCESS, processes };
@@ -109,6 +116,7 @@ describe('ProcessEntitiesReducer', () => {
         newState = processEntitiesReducer(newState, action);
 
         expect(newState.entities[process.id].extensions.mappings).toEqual({});
+        expect(newState.entities[process.id].extensions.constants).toEqual({});
     });
 
     it('should handle UPDATE_SERVICE_PARAMETERS', () => {
@@ -119,6 +127,11 @@ describe('ProcessEntitiesReducer', () => {
                     type: MappingType.value,
                     value: 'test'
                 }
+            }
+        };
+        const mockConstants = {
+            '_activiti_dmn_table_"': {
+                'value': 'dt'
             }
         };
         const processes = [{ ...process, extensions: {
@@ -132,10 +145,14 @@ describe('ProcessEntitiesReducer', () => {
             type: UPDATE_SERVICE_PARAMETERS,
             processId: process.id,
             serviceId: elementId,
-            serviceParameterMappings: mockMapping
+            serviceParameterMappings: mockMapping,
+            constants: mockConstants
         });
         expect(newState.entities[process.id].extensions.mappings).toEqual({
             [elementId]: mockMapping
+        });
+        expect(newState.entities[process.id].extensions.constants).toEqual({
+            [elementId]: mockConstants
         });
 
         newState = processEntitiesReducer(newState, <UpdateServiceParametersAction>{

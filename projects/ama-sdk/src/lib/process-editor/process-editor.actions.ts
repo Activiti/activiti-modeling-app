@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { ServiceParameterMappings } from '../api/types';
+import { ServiceParameterMappings, ServicesParameterConstants } from '../api/types';
 
 export const UPDATE_SERVICE_PARAMETERS = '[ProcessEditor] Update Service Parameters';
 export class UpdateServiceParametersAction implements Action {
@@ -24,6 +24,7 @@ export class UpdateServiceParametersAction implements Action {
     constructor(
         public processId: string,
         public serviceId: string,
-        public serviceParameterMappings: ServiceParameterMappings
+        public serviceParameterMappings: ServiceParameterMappings,
+        public constants?: ServicesParameterConstants
     ) {}
 }

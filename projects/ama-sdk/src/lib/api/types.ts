@@ -121,10 +121,21 @@ export interface ServicesParameterMappings {
     [serviceTaskId: string]: ServiceParameterMappings;
 }
 
+export interface ServicesConstants {
+    [serviceTaskId: string]: ServicesParameterConstants;
+}
+
+export interface ServicesParameterConstants {
+    [type: string]: {
+        value: string;
+    };
+}
+
 export interface ProcessExtensions {
     id: string;
     properties: EntityProperties;
     mappings: ServicesParameterMappings;
+    constants: ServicesConstants;
 }
 
 export interface EntityProperty {
