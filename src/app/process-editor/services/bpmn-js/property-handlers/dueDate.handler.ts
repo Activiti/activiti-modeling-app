@@ -22,7 +22,8 @@ import { updateShapeProperty } from './update-shape-property.handler';
 const propertyKey = BpmnProperty.dueDate;
 
 /* cspell: disable-next-line */
-export const dateFormat = 'YYYY-MM-DDTHH:mm:ss';
+export const exportDate = 'YYYY-MM-DDTHH:mm:ss';
+export const displayDate = 'yyyy-MM-ddTHH:mm:ss';
 
 const get = element => {
     const property = element.businessObject.get(propertyKey);
@@ -30,7 +31,7 @@ const get = element => {
 };
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    updateShapeProperty(element, propertyKey, value ? moment(value).format(dateFormat) : undefined);
+    updateShapeProperty(element, propertyKey, value ? moment(value).format(exportDate) : undefined);
     modeling.updateProperties(element, {});
 };
 

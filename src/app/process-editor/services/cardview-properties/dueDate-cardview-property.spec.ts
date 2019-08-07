@@ -19,7 +19,7 @@ import { BpmnProperty } from 'ama-sdk';
 import { createDueDateProperty } from './dueDate-cardview-property';
 import { CardViewDateItemModel } from '@alfresco/adf-core';
 import { getDiagramElementMock } from '../bpmn-js/bpmn-js.mock';
-import { dateFormat } from '../bpmn-js/property-handlers/dueDate.handler';
+import { displayDate } from '../bpmn-js/property-handlers/dueDate.handler';
 
 describe('createDueDateProperty', () => {
     let element: Bpmn.DiagramElement;
@@ -36,6 +36,6 @@ describe('createDueDateProperty', () => {
     });
 
     it('the format should be ISO8601 formatted', () => {
-        expect(property.format).toBe(dateFormat);
+        expect(property.format).toBe(displayDate);
     });
 });
