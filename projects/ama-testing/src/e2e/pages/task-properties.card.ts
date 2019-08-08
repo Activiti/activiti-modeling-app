@@ -50,4 +50,10 @@ export class TaskPropertiesCardPage extends GenericPage {
         await super.click(this.candidateGroupSaveButton);
     }
 
+    async errorMessageIsDisplayed(errorId: string) {
+        const error = element(by.css(`[data-automation-id="${errorId}"]`));
+        await super.waitForElementToBeVisible(error);
+        return true;
+    }
+
 }

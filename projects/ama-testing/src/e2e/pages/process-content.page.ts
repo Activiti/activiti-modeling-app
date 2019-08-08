@@ -27,7 +27,9 @@ export class ProcessContentPage extends GenericPage {
     readonly processEditorDeleteButton = element(by.css(`[data-automation-id="process-editor-delete-button"]`));
     readonly processEditorDownloadButton = element(by.css(`[data-automation-id="process-editor-download-button"]`));
     readonly processEditorSaveButton = element(by.css(`[data-automation-id="process-editor-save-button"]`));
+    readonly extensionsEditorTabButton = element(by.css(`[id="mat-tab-label-0-2"]`));
     readonly codeEditorTabButton = element(by.css(`[id="mat-tab-label-0-1"]`));
+    readonly modelerEditorTabButton = element(by.css(`[id="mat-tab-label-0-0"]`));
 
     constructor(testConfig: TestConfig, public appId?: string, public processId?: string) {
         super(testConfig);
@@ -67,4 +69,13 @@ export class ProcessContentPage extends GenericPage {
     async selectCodeEditor() {
         await super.click(this.codeEditorTabButton);
     }
+
+    async selectExtensionsEditor() {
+        await super.click(this.extensionsEditorTabButton);
+    }
+
+    async selectModelerEditorTab() {
+        await super.click(this.modelerEditorTabButton);
+    }
+
 }

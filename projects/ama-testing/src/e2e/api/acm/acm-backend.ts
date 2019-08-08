@@ -17,14 +17,12 @@
 
 import * as AlfrescoApi from 'alfresco-js-api-node';
 import { Backend, ModelCrud, ProjectApi } from '../api.interfaces';
-import { browser } from 'protractor';
 import { TestConfig} from '../../config/test.config.interface';
 import { ACMProject } from './project';
 import { ACMProcess } from './models/process';
 import { ACMConnector } from './models/connector';
 import { ACMDecisionTable } from './models/decision-table';
 import { ACMForm } from './models/form';
-import { LoginPageImplementation, LoginPage } from '../../pages/login.page';
 import { ACMUi } from './models/ui';
 import { ACMData } from './models/data';
 import { Logger } from '../../util/logger';
@@ -50,7 +48,6 @@ export class ACMBackend implements Backend {
 
     async setUp() {
         await this.login();
-        await this.setupLocalStorage();
 
         this.project = new ACMProject(this);
         this.process = new ACMProcess(this);
@@ -66,12 +63,6 @@ export class ACMBackend implements Backend {
     async tearDown() {
         await this.api.logout();
         return this;
-    }
-
-    async setupLocalStorage() {
-        browser.driver.manage().deleteAllCookies();
-        const loginPage: LoginPageImplementation = LoginPage.get(this.config);
-        await loginPage.navigateTo();
     }
 
     private async login() {

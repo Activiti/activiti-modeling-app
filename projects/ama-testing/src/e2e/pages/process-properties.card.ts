@@ -112,9 +112,15 @@ export class ProcessPropertiesCard extends GenericPage {
         await super.click(activityOption);
     }
 
-    async openProcessVariablesList(connectorId: string) {
-        const processVariableSelector = element(by.css(`[data-automation-id="variable-selector-${connectorId}"]`));
-        await super.click(processVariableSelector);
+    async openProcessVariablesList(connectorId: string, table?: string) {
+        let selector: string;
+        if (table) {
+            selector = `[data-automation-id="${table}-mapping-table"] [data-automation-id="variable-selector-${connectorId}"]`;
+        } else {
+            selector = `[data-automation-id="variable-selector-${connectorId}"]`;
+        }
+
+        await super.click(element(by.css(selector)));
     }
 
     async selectVariable(variableName: string) {
@@ -122,8 +128,8 @@ export class ProcessPropertiesCard extends GenericPage {
         await super.click(processVariable);
     }
 
-    async setProcessVariable(connectorId: string, variableName: string) {
-        await this.openProcessVariablesList(connectorId);
+    async setProcessVariable(connectorId: string, variableName: string, table?: string) {
+        await this.openProcessVariablesList(connectorId, table);
         await this.selectVariable(variableName);
     }
 
