@@ -56,4 +56,19 @@ export class TaskPropertiesCardPage extends GenericPage {
         return true;
     }
 
+    async getMappingTypeValue(): Promise<string> {
+        const selectorElement = element(by.css(`[data-automation-id="mapping-type"] .mat-select`));
+        await super.waitForElementToBeVisible(selectorElement);
+        return await selectorElement.getText();
+    }
+
+    async setMappingTypeValue(value: string) {
+        const selectorElement = element(by.css(`[data-automation-id="mapping-type"] .mat-select`));
+        await super.waitForElementToBeVisible(selectorElement);
+        await super.click(selectorElement);
+
+        const option = element(by.cssContainingText('.mat-option-text', value));
+        await super.click(option);
+    }
+
 }
