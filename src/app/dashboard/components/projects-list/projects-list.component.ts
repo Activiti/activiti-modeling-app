@@ -22,7 +22,7 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { MatTableDataSource, PageEvent } from '@angular/material';
 import { selectProjectSummaries, selectLoading, selectPagination } from '../../store/selectors/dashboard.selectors';
-import { AmaState, Project, OpenConfirmDialogAction, PROJECT_NAME_REGEX, Pagination } from 'ama-sdk';
+import { AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination } from 'ama-sdk';
 import { OpenEntityDialogAction } from '../../../store/actions/dialog';
 import {
     DeleteProjectAttemptAction,
@@ -78,7 +78,7 @@ export class ProjectsListComponent implements OnInit {
             values: { id, name, description },
             action: UpdateProjectAttemptAction,
             allowedCharacters: {
-                regex: PROJECT_NAME_REGEX,
+                regex: MODELER_NAME_REGEX,
                 error: 'APP.DIALOGS.ERROR.PROJECT_NAME_VALIDATION'
             }
         }));

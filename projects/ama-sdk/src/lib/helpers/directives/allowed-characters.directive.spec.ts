@@ -23,7 +23,7 @@ import { Store } from '@ngrx/store';
 import { AmaState } from '../../store/app.state';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
-import { MODEL_NAME_REGEX, CONNECTOR_NAME_REGEX } from '../utils/create-entries-names';
+import { MODEL_NAME_REGEX, MODELER_NAME_REGEX } from '../utils/create-entries-names';
 
 @Component({
     template: `<input #input type="text" [amasdk-allowed-characters]="regex" />`
@@ -92,8 +92,8 @@ describe('AllowedCharactersDirective', () => {
         expect(store.dispatch).toHaveBeenCalled();
     }));
 
-    it('should filter based on CONNECTOR_NAME_REGEX', () => {
-        component.regex = CONNECTOR_NAME_REGEX;
+    it('should filter based on MODELER_NAME_REGEX', () => {
+        component.regex = MODELER_NAME_REGEX;
         fixture.detectChanges();
         const text = 'test2344';
         expect(component.directive.onKeyPress({key: '-' , target: {value: text, selectionStart: 2 }})).toBe(true);

@@ -20,7 +20,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppConfigService } from '@alfresco/adf-core';
 import { UploadProjectAttemptAction } from '../../store/actions/projects';
-import { AmaState, CreateProjectAttemptAction, PROJECT_NAME_REGEX } from 'ama-sdk';
+import { AmaState, CreateProjectAttemptAction, MODELER_NAME_REGEX } from 'ama-sdk';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
 import { OpenEntityDialogAction } from '../../../store/actions/dialog';
 
@@ -63,7 +63,7 @@ export class DashboardNavigationComponent implements OnInit {
             descriptionField: 'APP.HOME.DIALOGS.PROJECT_DESC',
             action: CreateProjectAttemptAction,
             allowedCharacters: {
-                regex: PROJECT_NAME_REGEX,
+                regex: MODELER_NAME_REGEX,
                 error: 'APP.DIALOGS.ERROR.PROJECT_NAME_VALIDATION'
             },
         }));
