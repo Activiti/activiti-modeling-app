@@ -9,23 +9,34 @@
     </mat-form-field>
 
     <div *ngIf="processId">
-        <div *ngIf="(processVariables$ | async).length; else noProcessVariables">
-            <div *ngIf="(subProcessVariables$ | async).length; else noSubProcessVariables">
-                <h5 data-automation-id="input-mapping-header">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INPUT_MAPPING' | translate }}:</h5>
-                <amasdk-input-mapping-table
-                    [parameters]="subProcessVariables$ | async"
-                    [processProperties]="processVariables$ | async"
-                    [mapping]="mapping.inputs || {}"
-                    (update)="updateMapping($event, 'inputs')">
-                </amasdk-input-mapping-table>
 
-                <h5 data-automation-id="output-mapping-header">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.OUTPUT_MAPPING' | translate }}:</h5>
-                <amasdk-output-mapping-table
-                    [parameters]="subProcessVariables$ | async"
-                    [processProperties]="processVariables$ | async"
-                    [mapping]="mapping.outputs || {}"
-                    (update)="updateMapping($event, 'outputs')">
-                </amasdk-output-mapping-table>
+        <mat-form-field>
+            <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MAPPING_TYPE' | translate }}</div>
+            <mat-select [(ngModel)]="sendNoVariables" (selectionChange)="changeMappingType($event)">
+                <mat-option [value]="false">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SEND_ALL_VARIABLES' | translate }}</mat-option>
+                <mat-option [value]="true">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SEND_NO_VARIABLES' | translate }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="!sendNoVariables">
+            <div *ngIf="(processVariables$ | async).length; else noProcessVariables">
+                <div *ngIf="(subProcessVariables$ | async).length; else noSubProcessVariables">
+                    <h5 data-automation-id="input-mapping-header">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INPUT_MAPPING' | translate }}:</h5>
+                    <amasdk-input-mapping-table
+                        [parameters]="subProcessVariables$ | async"
+                        [processProperties]="processVariables$ | async"
+                        [mapping]="mapping.inputs || {}"
+                        (update)="changeMapping($event, 'inputs')">
+                    </amasdk-input-mapping-table>
+
+                    <h5 data-automation-id="output-mapping-header">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.OUTPUT_MAPPING' | translate }}:</h5>
+                    <amasdk-output-mapping-table
+                        [parameters]="subProcessVariables$ | async"
+                        [processProperties]="processVariables$ | async"
+                        [mapping]="mapping.outputs || {}"
+                        (update)="changeMapping($event, 'outputs')">
+                    </amasdk-output-mapping-table>
+                </div>
             </div>
         </div>
     </div>

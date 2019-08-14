@@ -5,9 +5,11 @@ const disableCSSAnimation = require('../utils/disable-css-animation');
 const fs = require('fs-extra');
 const config = require('../config');
 
+const configTs = require(__dirname + '/../../tsconfig.e2e.json');
+
 function onPrepare() {
     require('ts-node').register({ project: './e2e/tsconfig.e2e.json' });
-    require('tsconfig-paths').register();
+    require('tsconfig-paths').register({baseUrl: './e2e', paths: configTs.compilerOptions.paths});
 
     fs.ensureDirSync(config.paths.tmp);
 

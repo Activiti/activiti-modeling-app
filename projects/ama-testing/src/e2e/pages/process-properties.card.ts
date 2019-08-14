@@ -125,6 +125,8 @@ export class ProcessPropertiesCard extends GenericPage {
 
     async selectVariable(variableName: string) {
         const processVariable = element(by.cssContainingText('.mat-option-text', variableName));
+
+        await super.waitForElementToBeVisible(processVariable);
         await super.click(processVariable);
     }
 

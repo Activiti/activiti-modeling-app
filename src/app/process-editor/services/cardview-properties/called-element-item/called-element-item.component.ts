@@ -29,8 +29,11 @@ import {
     selectProcessPropertiesArrayFor,
     selectProcessMappingsFor,
     UpdateServiceParametersAction,
-    selectSelectedProcess
+    selectSelectedProcess,
+    ServiceInputParameterMapping,
+    ServiceOutputParameterMapping
 } from 'ama-sdk';
+import { MatSelectChange } from '@angular/material';
 
 @Component({
     selector: 'ama-process-called-element',
@@ -43,6 +46,7 @@ export class CardViewCalledItemItemComponent implements OnInit, OnDestroy {
     onDestroy$: Subject<void> = new Subject<void>();
     processes$: Observable<Process[]>;
     processId: string;
+    sendNoVariables: boolean;
     processVariables$;
     subProcessVariables$;
     mapping = {};
@@ -64,7 +68,16 @@ export class CardViewCalledItemItemComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.onDestroy$))
             .subscribe((mapping) => {
                 this.mapping = mapping;
+                this.sendNoVariables = !!mapping.inputs && !!mapping.outputs
+                    && !Object.values(mapping.inputs).length
+                    && !Object.values(mapping.outputs).length;
             });
+    }
+
+    changeMappingType(event: MatSelectChange): void {
+        this.sendNoVariables = event.value;
+        this.mapping = this.sendNoVariables ? { inputs: {}, outputs: {} } : {};
+        this.updateMapping();
     }
 
     loadVariables() {
@@ -80,8 +93,12 @@ export class CardViewCalledItemItemComponent implements OnInit, OnDestroy {
         this.loadVariables();
     }
 
-    updateMapping(mapping, type): void {
+    changeMapping(mapping: ServiceInputParameterMapping | ServiceOutputParameterMapping, type: string): void {
         this.mapping = { ...this.mapping, [type]: mapping };
+        this.updateMapping();
+    }
+
+    updateMapping(): void {
         this.store.select(selectSelectedProcess).pipe(
             filter(process => !!process),
             take(1)
