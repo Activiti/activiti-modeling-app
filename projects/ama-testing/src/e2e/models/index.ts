@@ -15,8 +15,4 @@
  * limitations under the License.
  */
 
- export * from './api';
- export * from './config';
- export * from './pages';
- export * from './util';
- export * from './models';
+export * from './processDefinition.model';

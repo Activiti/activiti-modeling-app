@@ -81,6 +81,11 @@ export class UtilFile {
         return result;
     }
 
+    static async parseJSONToXML(json) {
+        const result = convert.json2xml(json, {compact: true, spaces: 4});
+        return result;
+    }
+
     static getJSONItemValueByKey(json: Object, searchedKey: string) {
         const entriesMap = new Map(Object.entries(json));
         return entriesMap.get(searchedKey);

@@ -25,6 +25,7 @@ export class ProcessPropertiesCard extends GenericPage {
     readonly editName = element(by.css(`[data-automation-id="card-textitem-edit-icon-processName"]`));
     readonly editDocumentation = element(by.css(`[data-automation-id="card-textitem-edit-icon-documentation"]`));
     readonly id = element(by.css(`[data-automation-id="card-textitem-value-id"]`));
+    readonly nameValue = element(by.css(`[data-automation-id="card-textitem-value-processName"]`));
     /* cspell: disable-next-line */
     readonly name = element(by.css(`[data-automation-id="card-textitem-editinput-processName"]`));
     /* cspell: disable-next-line */
@@ -58,6 +59,10 @@ export class ProcessPropertiesCard extends GenericPage {
         await super.clear(this.name);
         await super.sendKeysIfVisible(this.name, newName);
         await super.click(this.updateName);
+    }
+
+    async getProcessName() {
+        return await this.nameValue.getText();
     }
 
     async editProcessDocumentation(newDocumentation: string) {
