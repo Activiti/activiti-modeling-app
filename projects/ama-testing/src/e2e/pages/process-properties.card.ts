@@ -196,6 +196,18 @@ export class ProcessPropertiesCard extends GenericPage {
         return await valueInput.getAttribute('value');
     }
 
+    async isValueInputVisible(connectorId: string) {
+        const valueInput = element(by.css(`[data-automation-id="value-input-${connectorId}"]`));
+        await super.waitForElementToBeVisible(valueInput);
+        return true;
+    }
+
+    async isVariableSelectorVisible(connectorId: string) {
+        const valueInput = element(by.css(`[data-automation-id="variable-selector-${connectorId}"]`));
+        await super.waitForElementToBeVisible(valueInput);
+        return true;
+    }
+
     async getProcessVariable(connectorId: string) {
         const variable = element(by.css(`[data-automation-id="variable-selector-${connectorId}"] span span`));
         await super.waitForElementToBeVisible(variable);
