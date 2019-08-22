@@ -19,9 +19,9 @@ import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 import { Subject, Subscription, Observable } from 'rxjs';
 import { VariablesService } from './variables.service';
-import { EntityProperties } from './../api/types';
 import { CodeValidatorService } from './../code-editor/services/code-validator.service';
 import { propertiesSchema } from './../schemas/properties.schema';
+import { EntityProperties } from '../../lib/api/types';
 
 const Ajv = require('ajv');
 
@@ -50,6 +50,8 @@ export class VariablesComponent implements OnInit, OnDestroy {
     fileUri: string;
     requiredCheckbox: boolean;
     columns: string[];
+    validVariables = true;
+
 
     constructor(
         public dialog: MatDialogRef<VariablesComponent>,
@@ -91,8 +93,22 @@ export class VariablesComponent implements OnInit, OnDestroy {
         this.variablesService.sendData($event, this.error);
     }
 
+    onPropertyChanged() {
+        try {
+            const data = JSON.parse(this.editorContent);
+            this.validVariables = this.validateDuplicateVariable(<EntityProperties> data);
+        } catch (e) {
+            // tslint:disable-next-line:no-console
+            console.log('Error cannot parse JSON', e);
+        }
+    }
+
     validate(properties: string) {
         return this.codeValidatorService.validateJson(properties, propertiesSchema);
+    }
+
+    validateDuplicateVariable(variables: EntityProperties): boolean {
+        return this.variablesService.validateFormVariable(variables);
     }
 
     save() {
@@ -104,5 +120,9 @@ export class VariablesComponent implements OnInit, OnDestroy {
 
     onClose() {
        this.data.propertiesUpdate$.complete();
+    }
+
+    isSaveDisabled(): boolean {
+        return !!(this.error && this.error !== 'undefined' || !this.validVariables);
     }
 }

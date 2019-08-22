@@ -1,18 +1,19 @@
 <h2 mat-dialog-title><mat-icon class="variables-icon">layers</mat-icon>{{title | translate}}</h2>
 
 <mat-dialog-content class="properties-content variables-dialog-content" data-automation-id="variables-dialog">
-    <amasdk-properties-viewer [properties]="editorContent" [requiredCheckbox]="requiredCheckbox" [displayedColumns]="columns"></amasdk-properties-viewer>
+    <amasdk-properties-viewer [properties]="editorContent" [requiredCheckbox]="requiredCheckbox" [displayedColumns]="columns" (propertyChanged)="onPropertyChanged()"></amasdk-properties-viewer>
 </mat-dialog-content>
 
 
 <mat-dialog-actions class="adf-dialog-buttons">
+    <p class="error-message" *ngIf="!validVariables">{{ 'SDK.VARIABLES_EDITOR.ERRORS.NAME_ALREADY_EXISTS' | translate }}</p>
     <span class="adf-fill-remaining-space"></span>
 
     <button mat-button mat-dialog-close (click)="onClose()" data-automation-id="close-button">
         {{ 'APP.DIALOGS.CANCEL' | translate }}
     </button>
 
-    <button [disabled]="error && error!=='undefined'" class="adf-dialog-action-button save-btn" color="primary" mat-button (click)="save()"
+    <button [disabled]="isSaveDisabled()" class="adf-dialog-action-button save-btn" color="primary" mat-button (click)="save()"
         data-automation-id="update-button">
         {{ 'APP.DIALOGS.UPDATE' | translate }}
     </button>

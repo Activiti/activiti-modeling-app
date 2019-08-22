@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -49,6 +49,7 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
     @Input() properties = '';
     @Input() requiredCheckbox = true;
     @Input() displayedColumns = [ 'name', 'type', 'required', 'value', 'delete' ];
+    @Output() propertyChanged: EventEmitter<boolean> = new EventEmitter();
 
 
     constructor (private variablesService: VariablesService, private uuidService: UuidService) {
@@ -110,6 +111,7 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
         if (this.isNotEmpty(this.data)) {
             this.error = false;
         }
+        this.propertyChanged.emit(true);
     }
 
     editRow(element, index: number) {
@@ -148,6 +150,7 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
             this.variablesService.sendData(JSON.stringify(this.data, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME');
             this.error = true;
         }
+        this.propertyChanged.emit(true);
     }
 
     isNotEmpty(data: EntityProperties) {
@@ -170,5 +173,6 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
         this.variablesService.sendData(JSON.stringify(this.data, null, 2), null);
         const length = Object.keys(this.data).length;
         this.editRow(newVariable, length - 1);
+        this.propertyChanged.emit(true);
     }
 }

@@ -16,6 +16,7 @@
  */
 
 import { Injectable, Output, EventEmitter } from '@angular/core';
+import { EntityProperties, EntityProperty } from '../../lib/api/types';
 
 @Injectable()
 export class VariablesService {
@@ -24,6 +25,22 @@ export class VariablesService {
 
     sendData(data: string, error: string) {
         this.variablesData.emit({ data: data, error: error });
+    }
+
+    validateFormVariable(variables: EntityProperties): boolean {
+        for (const key of Object.keys(variables)) {
+            if (this.variableNameExists(variables[key], variables)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private variableNameExists(variable: EntityProperty, variables: EntityProperties): boolean {
+        const variableIndex = Object.keys(variables).findIndex( key => {
+            return variables[key].name === variable.name && variables[key].id !== variable.id;
+        });
+        return variableIndex > -1;
     }
 
 }

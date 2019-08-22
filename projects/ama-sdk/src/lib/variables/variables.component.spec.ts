@@ -99,4 +99,36 @@ describe('VariablesComponent', () => {
         fixture.detectChanges();
         expect(component.data.propertiesUpdate$.next).toHaveBeenCalledWith(result);
     });
+
+    it('should validate unique variable names', () => {
+        const data = {
+            '123': {
+                'id': '123',
+                'name': 'test',
+                'type': 'string',
+                'required': false,
+                'value': ''
+            },
+            '1234': {
+                'id': '1234',
+                'name': 'test',
+                'type': 'string',
+                'required': false,
+                'value': ''
+            }
+        };
+
+        component.editorContent = JSON.stringify(data, null, 2);
+        const button = fixture.nativeElement.querySelector('.save-btn');
+        button.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+        expect(component.isSaveDisabled()).toBe(false);
+
+        const validVariables = component.validateDuplicateVariable(JSON.parse(component.editorContent));
+        expect(validVariables).toEqual(false);
+
+        fixture.detectChanges();
+        const errorMessageLabel = fixture.nativeElement.querySelector('.error-message');
+        expect(errorMessageLabel).toBeDefined();
+    });
 });

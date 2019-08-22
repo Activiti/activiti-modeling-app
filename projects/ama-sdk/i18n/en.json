@@ -6,7 +6,8 @@
         "ALL": "All",
         "VARIABLES_EDITOR": {
             "ERRORS": {
-                "EMPTY_NAME": "Name field cannot be empty"
+                "EMPTY_NAME": "Name field cannot be empty",
+                "NAME_ALREADY_EXISTS": "Variables name must be unique"
             },
             "TABS": {
                 "VIEWER": "Properties viewer",
