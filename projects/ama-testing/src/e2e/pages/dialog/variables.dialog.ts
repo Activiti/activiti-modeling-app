@@ -53,6 +53,10 @@ export class VariablesDialog extends GenericDialog {
         await super.click(this.add);
     }
 
+    async deleteVariable() {
+        await super.click(this.delete);
+    }
+
     async setVariableName(name: string) {
         await super.clear(this.name);
         await super.sendKeysIfVisible(this.name, name);

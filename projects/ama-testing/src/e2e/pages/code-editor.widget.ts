@@ -59,4 +59,15 @@ export class CodeEditorWidget extends GenericWebElement {
 
         return await browser.executeScript<string>(script);
     }
+
+    async enterBulkConfiguration(text) {
+        await super.clear(this.codeEditorTextArea);
+        const script = `
+                var models = this.monaco.editor.getModels();
+                return models[models.length-1].setValue('` + JSON.stringify(text) + `')
+            `;
+        browser.executeScript<string>(script);
+        await this.codeEditorTextArea.click();
+        await this.codeEditorTextArea.sendKeys(protractor.Key.HOME, protractor.Key.ENTER);
+    }
 }

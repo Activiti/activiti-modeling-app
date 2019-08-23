@@ -24,6 +24,8 @@ export class ProcessValidationDialog extends GenericDialog {
     readonly confirmButton = element(by.css(`[data-automation-id="dialog-confirm"]`));
     readonly closeButton = element(by.css(`[data-automation-id="dialog-close"]`));
     readonly validationDialog = element(by.css(`.cdk-overlay-pane`));
+    readonly validationError = element(by.css(`.mat-dialog-content ul>li`));
+
 
     constructor(title?: string) {
         super(title ? title : 'Are you sure you want to save this process?');
@@ -48,4 +50,8 @@ export class ProcessValidationDialog extends GenericDialog {
         await super.click(this.closeButton);
     }
 
+    async getErrorMessage() {
+        await super.waitForElementToBeVisible(this.validationError);
+        return await this.validationError.getText();
+    }
 }
