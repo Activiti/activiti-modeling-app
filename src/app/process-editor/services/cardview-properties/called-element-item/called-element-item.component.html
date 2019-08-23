@@ -9,8 +9,7 @@
     </mat-form-field>
 
     <div *ngIf="processId">
-
-        <mat-form-field>
+        <mat-form-field data-automation-id="mapping-type">
             <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MAPPING_TYPE' | translate }}</div>
             <mat-select [(ngModel)]="sendNoVariables" (selectionChange)="changeMappingType($event)">
                 <mat-option [value]="false">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SEND_ALL_VARIABLES' | translate }}</mat-option>

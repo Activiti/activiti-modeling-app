@@ -15,14 +15,9 @@
  * limitations under the License.
  */
 
- export * from './api';
- export * from './date';
- export * from './fakeBlob.helper';
- export * from './file';
- export * from './flush-last-browser-logs';
- export * from './logger';
- export * from './messages';
- export * from './random';
- export * from './take-screenshot';
- export * from './types';
- export * from './constants';
+export const NO_PROCESS_VARIABLES_ERROR = 'no-process-variables-error';
+export const NO_SUBPROCESS_VARIABLES_ERROR = 'no-subprocess-variables-error';
+export const NO_FORM_FIELDS_ERROR = 'no-form-fields-error';
+
+export const sendAllVariablesOption = 'Send all variables';
+export const sendNoVariablesOption = 'Send no variables';
