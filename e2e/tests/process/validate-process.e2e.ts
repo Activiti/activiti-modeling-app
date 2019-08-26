@@ -74,7 +74,7 @@ describe('Validate process - update process using XML editor', async () => {
         const processDefinitionModel = new ProcessDefinitionModel(xmlContent);
         expect(await processDefinitionModel.getProcessName()).toEqual(process.entry.name);
 
-        await processDefinitionModel.setProcessName('validNewName');
+        await processDefinitionModel.setProcessName('valid-new-name');
         const updatedXML = await UtilFile.parseJSONToXML(processDefinitionModel);
 
         await processContentPage.selectCodeEditor();
@@ -86,7 +86,7 @@ describe('Validate process - update process using XML editor', async () => {
         expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
 
         await processContentPage.selectModelerEditorTab();
-        expect(await processPropertiesCard.getProcessName()).toEqual('validNewName');
+        expect(await processPropertiesCard.getProcessName()).toEqual('valid-new-name');
     });
 
     afterAll(async () => {

@@ -33,7 +33,8 @@ export const formSchema = {
                 },
                 "id": {
                     "description": "Field Id",
-                    "type": "string"
+                    "type": "string",
+                    "pattern": "^[a-z]([-a-z0-9]{0,24}[a-z0-9])?$"
                 },
                 "type": {
                     "description": "Field Type",

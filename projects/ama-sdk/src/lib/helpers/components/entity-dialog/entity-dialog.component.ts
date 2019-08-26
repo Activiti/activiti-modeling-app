@@ -21,7 +21,7 @@ import { Store } from '@ngrx/store';
 import { AmaState } from '../../../store/app.state';
 import { EntityDialogPayload, AllowedCharacters } from '../../common';
 import { EntityDialogForm } from '../../common';
-import { MODEL_NAME_REGEX } from '../../utils/create-entries-names';
+import { MODELER_NAME_REGEX } from '../../utils/create-entries-names';
 @Component({
     templateUrl: './entity-dialog.component.html'
 })
@@ -49,7 +49,7 @@ export class EntityDialogComponent implements OnInit {
     ngOnInit() {
         const { values, allowedCharacters } = this.data;
         this.submitButton = values ? 'APP.DIALOGS.SAVE' : 'APP.DIALOGS.CREATE';
-        this.allowedCharacters = allowedCharacters || { regex: MODEL_NAME_REGEX, error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION' };
+        this.allowedCharacters = allowedCharacters || { regex: MODELER_NAME_REGEX, error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION' };
         this.form = {
             name: values && values.name ? values.name : '',
             description: values && values.description ? values.description : ''

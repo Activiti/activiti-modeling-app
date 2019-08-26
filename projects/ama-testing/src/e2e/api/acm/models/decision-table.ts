@@ -21,7 +21,7 @@ import { ACMCrud } from '../acm-crud';
 export class ACMDecisionTable extends ACMCrud {
 
     displayName = 'Decision Table';
-    namePrefix = 'QA_APS_DECISION_';
+    namePrefix = 'qa-aps-decision-table-';
     type = 'DECISION';
     contentType = 'text/plain';
     contentExtension = 'xml';

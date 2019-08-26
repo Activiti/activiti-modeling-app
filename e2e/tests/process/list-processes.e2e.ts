@@ -81,7 +81,7 @@ describe('List processes', async () => {
         await dashboardPage.navigateToProject(project1.entry.id);
         await sidebarActionMenu.createProcess();
         /* cspell: disable-next-line */
-        const processItem = await createEntityDialog.setEntityDetails('AMA_QA' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
+        const processItem = await createEntityDialog.setEntityDetails('ama-qa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
         expect(await projectContentPage.isModelInList('process', processItem.name)).toBe(true, 'Process is not displayed in the left sidebar');
 
         await dashboardPage.navigateTo();

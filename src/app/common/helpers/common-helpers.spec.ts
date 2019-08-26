@@ -21,7 +21,7 @@ import { sortEntriesByName } from './sort-entries-by-name';
 describe('Common Helpers', () => {
 
     it('should test createProcessName function', () => {
-        const testName = 'testName';
+        const testName = 'test-name-123';
         expect(createProcessName(testName + PROCESS_FILE_FORMAT)).toBe(testName);
     });
 

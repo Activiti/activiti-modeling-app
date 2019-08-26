@@ -137,7 +137,8 @@ export abstract class ACMCrud implements ModelCrud {
     }
 
     private getRandomName(): string {
-        return this.namePrefix + UtilRandom.generateString();
+        /* cspell: disable-next-line */
+        return this.namePrefix + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz');
     }
 
     private endPoint(projectId: string) {

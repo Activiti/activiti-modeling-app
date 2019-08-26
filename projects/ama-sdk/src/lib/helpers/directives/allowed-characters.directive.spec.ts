@@ -23,7 +23,7 @@ import { Store } from '@ngrx/store';
 import { AmaState } from '../../store/app.state';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
-import { MODEL_NAME_REGEX, MODELER_NAME_REGEX } from '../utils/create-entries-names';
+import { MODELER_NAME_REGEX } from '../utils/create-entries-names';
 
 @Component({
     template: `<input #input type="text" [amasdk-allowed-characters]="regex" />`
@@ -35,7 +35,7 @@ class TestComponent {
     @ViewChild('input')
     public input: ElementRef;
 
-    regex = MODEL_NAME_REGEX;
+    regex = MODELER_NAME_REGEX;
 }
 
 describe('AllowedCharactersDirective', () => {
@@ -71,7 +71,7 @@ describe('AllowedCharactersDirective', () => {
 
     it('should filter every not allowed letter by default value on key press', () => {
         /* cspell: disable-next-line */
-        const text = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        const text = 'abcdef-01';
         const notAllowedText = '`A_=+-$%^&*@';
 
         expect(component.directive.onKeyPress({ key: text[0], target: { value: text } })).toBe(true);

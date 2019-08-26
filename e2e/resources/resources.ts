@@ -22,8 +22,8 @@ export const Resources = {
     },
 
     SIMPLE_PROCESS: {
-        file_location: `/resources/process/AMA_QA_UPLOADED_PROCESS.bpmn20.xml`,
-        process_name: `AMA_QA_UPLOADED_PROCESS`
+        file_location: `/resources/process/ama-qa-uploaded-process.bpmn20.xml`,
+        process_name: `ama-qa-uploaded-process`
     },
 
     COMPLEX_CONNECTOR: {
@@ -36,22 +36,22 @@ export const Resources = {
     },
 
     SIMPLE_FORM: {
-        file_location: `/resources/form/AMA_QA_UPLOADED_FORM.json`,
-        form_name: `AMA_QA_UPLOADED_FORM`
+        file_location: `/resources/form/ama-qa-uploaded-form.json`,
+        form_name: `ama-qa-uploaded-form`
     },
 
     SIMPLE_DATA_OBJECT: {
-        file_location: `/resources/data/AMA_QA_UPLOADED_DATA_OBJECT.json`,
-        dataObject_name: `AMA_QA_UPLOADED_DATA_OBJECT`
+        file_location: `/resources/data/ama-qa-uploaded-data-object.json`,
+        dataObject_name: `ama-qa-uploaded-data-object`
     },
 
     SIMPLE_UI: {
-        file_location: `/resources/ui/AMA_QA_UPLOADED_UI.json`,
-        ui_name: `AMA_QA_UPLOADED_UI`
+        file_location: `/resources/ui/ama-qa-uploaded-ui.json`,
+        ui_name: `ama-qa-uploaded-ui`
     },
 
     SIMPLE_DECISION_TABLE: {
-        file_location: `/resources/decision-table/AMA_QA_UPLOADED_DECISION_TABLE.json`,
-        decisionTable_name: `AMA_QA_UPLOADED_DECISION_TABLE`
+        file_location: `/resources/decision-table/ama-qa-uploaded-decision-table.json`,
+        decisionTable_name: `ama-qa-uploaded-decision-table`
     }
 };

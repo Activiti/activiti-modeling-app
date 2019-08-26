@@ -20,7 +20,7 @@ import { ACMCrud } from '../acm-crud';
 export class ACMData extends ACMCrud {
 
     displayName = 'Data';
-    namePrefix = 'QA_APS_Data_';
+    namePrefix = 'qa-aps-data-';
     type = 'DATA';
     contentType = 'application/json';
     contentExtension = 'json';

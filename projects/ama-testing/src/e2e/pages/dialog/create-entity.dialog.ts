@@ -50,7 +50,7 @@ export class CreateEntityDialog extends GenericDialog {
 
     async setEntityDetails(
         /* cspell: disable-next-line */
-        entityName: string = 'AMA_QA_' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz_ABCDEFGHIJKLMNOPQRSTVWXYZ'),
+        entityName: string = 'ama-qa-' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'),
         entityDescription: string = UtilRandom.generateString()): Promise<CreatedEntity> {
         await this.isDialogDisplayed();
         await this.setEntityName(entityName);

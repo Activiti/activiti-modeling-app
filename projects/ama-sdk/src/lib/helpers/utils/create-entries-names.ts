@@ -21,8 +21,7 @@ export const FORM_FILE_FORMAT = '.json';
 export const UI_FILE_FORMAT = '.json';
 export const DATA_FILE_FORMAT = '.json';
 export const DECISION_TABLE_FILE_FORMAT = '.dmn';
-export const MODEL_NAME_CHARACTERS = 'a-zA-Z0-9_';
-export const MODEL_NAME_REGEX = /^[a-zA-Z0-9_]{1,}$/;
+export const MODEL_NAME_CHARACTERS = 'a-z0-9-';
 export const MODELER_NAME_REGEX = /^[a-z]([-a-z0-9]{0,24}[a-z0-9])?$/;
 
 export const sanitizeString = (text: string) => {

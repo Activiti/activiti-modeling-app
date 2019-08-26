@@ -21,7 +21,7 @@ import { ServiceInputParameterMapping, MappingType, ServiceOutputParameterMappin
 export class ACMProcess extends ACMCrud {
 
     displayName = 'Process';
-    namePrefix = 'QA_APS_PROCESS_';
+    namePrefix = 'qa-aps-process-';
     type = 'PROCESS';
     contentType = 'text/plain';
     contentExtension = 'xml';

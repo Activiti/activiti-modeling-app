@@ -20,7 +20,7 @@ import { ACMCrud } from '../acm-crud';
 export class ACMForm extends ACMCrud {
 
     displayName = 'Form';
-    namePrefix = 'QA_APS_FORM_';
+    namePrefix = 'qa-aps-form-';
     type = 'FORM';
     contentType = 'application/json';
     contentExtension = 'json';
