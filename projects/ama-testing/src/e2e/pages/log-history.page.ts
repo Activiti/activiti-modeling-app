@@ -31,6 +31,9 @@ export class LogHistoryPage extends GenericPage {
     readonly logEntry = element(by.css(`ama-log-history-entry`));
     readonly deleteIcon = element(by.css(`[data-automation-id='deleteLogs']`));
     readonly collapseArrow = element(by.css(`[data-automation-id='collapse']`));
+    readonly filtersDropdown =  element(by.css(`.log-history-filters`));
+    readonly filtersDropdownText = element.all(by.css('.mat-option-text'));
+    readonly allLogContent = element.all(by.css(`div[class='log-content'] div`));
 
     constructor() {
         super();
@@ -101,4 +104,24 @@ export class LogHistoryPage extends GenericPage {
     async clickCollapseArrow() {
         return await super.click(this.collapseArrow);
     }
+
+    async selectFilter(filter: string) {
+        await super.click(this.filtersDropdown);
+        const field = element(by.cssContainingText('.mat-option-text', filter));
+        await super.click(field);
+    }
+
+    async getFiltersValue() {
+        await super.click(this.filtersDropdown);
+        return await this.filtersDropdownText.getText();
+    }
+
+    async getDefaultValue() {
+        return await this.filtersDropdown.getText();
+    }
+
+    async getNumberOfMessages() {
+        return await this.allLogContent.count();
+    }
+
 }

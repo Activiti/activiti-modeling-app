@@ -62,6 +62,10 @@ export class ConnectorContentPage extends GenericPage {
         await super.click(this.connectorEditorSaveButton);
     }
 
+    async saveConnector() {
+        await super.click(this.connectorEditorSaveButton);
+    }
+
     async download() {
         await super.click(this.connectorEditorDownloadButton);
     }
