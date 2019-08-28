@@ -65,10 +65,11 @@ export const elementsProperties = {
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : []),
         ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : [])
     ],
-    [BpmnElement.EndEvent]: [
+    [BpmnElement.EndEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
         BpmnProperty.name,
-        BpmnProperty.documentation
+        BpmnProperty.documentation,
+        ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : [])
     ],
     [BpmnElement.SequenceFlow]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,

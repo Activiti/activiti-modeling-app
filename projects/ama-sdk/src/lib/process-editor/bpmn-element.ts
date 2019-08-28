@@ -23,6 +23,7 @@ export enum BpmnElement {
     IntermediateCatchEvent = 'bpmn:IntermediateCatchEvent',
     IntermediateThrowEvent = 'bpmn:IntermediateThrowEvent',
     StartEvent = 'bpmn:StartEvent',
+    ErrorEventDefinition = 'bpmn:ErrorEventDefinition',
     TimerEventDefinition = 'bpmn:TimerEventDefinition',
     SignalEventDefinition = 'bpmn:SignalEventDefinition',
     EndEvent = 'bpmn:EndEvent',
