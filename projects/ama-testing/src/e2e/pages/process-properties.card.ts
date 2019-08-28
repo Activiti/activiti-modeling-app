@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { element, by } from 'protractor';
+import { element, by, browser } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { Logger } from '../util';
 
@@ -86,6 +86,11 @@ export class ProcessPropertiesCard extends GenericPage {
         await super.click(this.connectorActionSelector);
         const connectorActionOption = element(by.cssContainingText('.mat-option-text', actionName));
         await super.click(connectorActionOption);
+    }
+
+    async scrollToBottom() {
+        const cardViewScrollBottomScript = 'document.getElementsByClassName("process-properties-card mat-card")[0].scrollIntoView()';
+        await browser.executeScript(cardViewScrollBottomScript);
     }
 
     async setDecisionTable(dtName: string) {
