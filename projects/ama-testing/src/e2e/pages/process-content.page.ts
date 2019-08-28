@@ -78,4 +78,9 @@ export class ProcessContentPage extends GenericPage {
         await super.click(this.modelerEditorTabButton);
     }
 
+    async selectTask(taskId: string) {
+        const taskElement = element(by.css(`[data-element-id="${taskId}"]`));
+        await super.click(taskElement);
+    }
+
 }
