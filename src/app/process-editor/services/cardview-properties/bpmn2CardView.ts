@@ -37,6 +37,7 @@ import { createDefaultSequenceFlowProperty } from './default-sequence-flow-cardv
 import { createSignalRefProperty } from './signalRef-cardview-property';
 import { createSignalScopeProperty } from './signalScope-cardview-property';
 import { createTimerDefinitionProperty } from './timerDefinition-cardview-property';
+import { createErrorRefProperty } from './errorRef-cardview-property';
 
 export const bpmn2cardView = {
     [BpmnProperty.id]: createIdProperty,
@@ -58,6 +59,7 @@ export const bpmn2cardView = {
     [BpmnProperty.processName]: createProcessNameProperty,
     [BpmnProperty.defaultSequenceFlow]: createDefaultSequenceFlowProperty,
     [BpmnProperty.signalRef]: createSignalRefProperty,
+    [BpmnProperty.errorRef]: createErrorRefProperty,
     [BpmnProperty.signalScope]: createSignalScopeProperty,
     [BpmnProperty.timerEventDefinition]: createTimerDefinitionProperty
 };

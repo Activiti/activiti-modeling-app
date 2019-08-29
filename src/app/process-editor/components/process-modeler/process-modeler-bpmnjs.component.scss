@@ -70,12 +70,11 @@
                 &.bpmn-icon-manual,
                 &.bpmn-icon-business-rule,
                 &.bpmn-icon-script,
-                &.bpmn-icon-event-subprocess-expanded,
+                &.bpmn-icon-end-event-signal,
                 &.bpmn-icon-gateway-eventbased,
                 &.bpmn-icon-gateway-complex,
                 &.bpmn-icon-end-event-terminate,
                 &.bpmn-icon-intermediate-event-catch-escalation,
-                &.bpmn-icon-intermediate-event-catch-error,
                 &.bpmn-icon-intermediate-event-catch-cancel,
                 &.bpmn-icon-intermediate-event-catch-compensation,
                 &.bpmn-icon-intermediate-event-catch-non-interrupting-message,
@@ -190,10 +189,5 @@
 
     .bpp-properties-tab-bar {
         border-color: mat-color($foreground, text, 0.07);
-    }
-
-    .bpp-properties-header {
-        // display: none;
-
     }
 }

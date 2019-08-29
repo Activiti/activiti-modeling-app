@@ -23,6 +23,9 @@ const isSignalEvent = (element: Bpmn.DiagramElement) => {
 const isTimerEvent = (element: Bpmn.DiagramElement) => {
     return !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.TimerEventDefinition;
 };
+const isErrorEvent = (element: Bpmn.DiagramElement) => {
+    return !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.ErrorEventDefinition;
+};
 const haveSignalRef = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions[0].signalRef;
 const isDecisionTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === DECISION_TASK_IMPLEMENTATION;
 const isExclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type ===  BpmnElement.ExclusiveGateway;
@@ -55,21 +58,23 @@ export const elementsProperties = {
         BpmnProperty.name,
         BpmnProperty.documentation,
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : [BpmnProperty.formKey]),
-        ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : [])
-
+        ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : []),
+        ...(isErrorEvent(element) ? [ BpmnProperty.errorRef ] : [])
     ],
     [BpmnElement.BoundaryEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : []),
-        ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : [])
+        ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : []),
+        ...(isErrorEvent(element) ? [ BpmnProperty.errorRef ] : [])
     ],
     [BpmnElement.EndEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
-        ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : [])
+        ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : []),
+        ...(isErrorEvent(element) ? [ BpmnProperty.errorRef ] : [])
     ],
     [BpmnElement.SequenceFlow]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
