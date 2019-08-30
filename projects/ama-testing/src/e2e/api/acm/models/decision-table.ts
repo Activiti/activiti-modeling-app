@@ -15,13 +15,12 @@
  * limitations under the License.
  */
 
-
 import { ACMCrud } from '../acm-crud';
 
 export class ACMDecisionTable extends ACMCrud {
 
     displayName = 'Decision Table';
-    namePrefix = 'qa-decision-table-';
+    namePrefix = 'qa-dt-';
     type = 'DECISION';
     contentType = 'text/plain';
     contentExtension = 'xml';
