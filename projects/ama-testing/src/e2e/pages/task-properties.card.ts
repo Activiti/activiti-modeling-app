@@ -71,4 +71,10 @@ export class TaskPropertiesCardPage extends GenericPage {
         await super.click(option);
     }
 
+    async getSelectedFormName() {
+        const selectedFormNameElement = element(by.css(`mat-select[data-automation-id="form-selector"] div span span`));
+        await super.waitForElementToBeVisible(selectedFormNameElement);
+        return await selectedFormNameElement.getText();
+    }
+
 }
