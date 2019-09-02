@@ -31,7 +31,7 @@ export function createConnectorCreator(): ModelCreator {
             descriptionField: 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_DESC',
             allowedCharacters: {
                 regex: MODELER_NAME_REGEX,
-                error: 'APP.DIALOGS.ERROR.CONNECTOR_NAME_VALIDATION'
+                error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
             },
             action: CreateConnectorAttemptAction
         }

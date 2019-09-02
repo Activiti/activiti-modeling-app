@@ -64,7 +64,7 @@ export class DashboardNavigationComponent implements OnInit {
             action: CreateProjectAttemptAction,
             allowedCharacters: {
                 regex: MODELER_NAME_REGEX,
-                error: 'APP.DIALOGS.ERROR.PROJECT_NAME_VALIDATION'
+                error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
             },
         }));
     }
