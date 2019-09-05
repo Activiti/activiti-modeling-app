@@ -5,141 +5,35 @@ export const formSchema = {
     "$schema": "http://json-schema.org/draft-07/schema",
     "description": "Form definition json schema",
     "type": "object",
+    "properties": {
+        "formRepresentation": {
+            "$ref": "#/definitions/formRepresentationObject"
+        }
+    },
+    "required": [
+        "formRepresentation"
+    ],
     "definitions": {
-        "formFieldsBooleanObject": {
-            "additionalProperties": false,
-            "type": "object",
-            "properties": {
-                "colspan": {
-                    "description": "It reflect the HTML colspan property to expand on more columns ",
-                    "type": [
-                        "number",
-                        "null"
-                    ]
-                },
-                "visibilityCondition": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/visibilityConditionObject"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
-                "name": {
-                    "description": "Field name",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "Field Id",
-                    "type": "string",
-                    "pattern": "^[a-z]([-a-z0-9]{0,24}[a-z0-9])?$"
-                },
-                "type": {
-                    "description": "Field Type",
-                    "type": "string",
-                    "enum": [
-                        "boolean"
-                    ]
-                },
-                "params": {
-                    "$ref": "#/definitions/paramsObject"
-                },
-                "required": {
-                    "description": "Indicates if the field is required in the validation",
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "type",
-                "id",
-                "name",
-                "required"
-            ]
-        },
-        "formFieldsTextObject": {
-            "additionalProperties": false,
-            "type": "object",
-            "properties": {
-                "colspan": {
-                    "description": "It reflect the HTML colspan property to expand on more columns ",
-                    "type": [
-                        "number",
-                        "null"
-                    ]
-                },
-                "minLength": {
-                    "description": "minLength ",
-                    "type": [
-                        "number",
-                        "null"
-                    ]
-                },
-                "visibilityCondition": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/visibilityConditionObject"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
-                "name": {
-                    "description": "Field name",
-                    "type": "string"
-                },
-                "regexPattern": {
-                    "description": "Regular expr.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "Field Id",
-                    "type": "string"
-                },
-                "placeholder": {
-                    "description": "placeholder",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "type": {
-                    "description": "Field Type",
-                    "type": "string",
-                    "enum": [
-                        "text",
-                        "multi-line-text"
-                    ]
-                },
-                "params": {
-                    "$ref": "#/definitions/paramsObject"
-                },
-                "required": {
-                    "description": "Indicates if the field is required in the validation",
-                    "type": "boolean"
-                },
-                "maxLength": {
-                    "description": "maxLength",
-                    "type": "number"
-                }
-            },
-            "required": [
-                "type",
-                "id",
-                "name",
-                "required"
-            ]
-        },
         "containerFieldsObject": {
-            "additionalProperties": false,
             "title": "Containers and Group",
             "type": "object",
             "properties": {
+                "type": {
+                    "description": "At this level the form type can be a Container or Group which are the elements that contains the form elements",
+                    "type": "string",
+                    "enum": [
+                        "container",
+                        "group"
+                    ]
+                },
+                "id": {
+                    "description": "Field Container Id",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Field Container Name",
+                    "type": "string"
+                },
                 "tab": {
                     "description": "Name of the tab where it belongs, if any is defined",
                     "type": [
@@ -151,32 +45,6 @@ export const formSchema = {
                     "description": "Number of columns inside the container",
                     "type": "number"
                 },
-                "name": {
-                    "description": "Field Container Name",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "Field Container Id",
-                    "type": "string"
-                },
-                "type": {
-                    "description": "At this level the form type can be a Container or Group which are the elements that contains the form elements",
-                    "type": "string",
-                    "enum": [
-                        "container",
-                        "group"
-                    ]
-                },
-                "visibilityCondition": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/visibilityConditionObject"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
                 "params": {
                     "$ref": "#/definitions/paramsObject"
                 },
@@ -187,168 +55,6 @@ export const formSchema = {
                                 "^[0-9]+$": {
                                     "type": "array",
                                     "items": {
-                                        "else": {
-                                            "else": {
-                                                "else": {
-                                                    "else": {
-                                                        "else": {
-                                                            "else": {
-                                                                "else": {
-                                                                    "else": {
-                                                                        "else": {
-                                                                            "else": {
-                                                                                "else": {
-                                                                                    "else": {
-                                                                                        "type": "null"
-                                                                                    },
-                                                                                    "then": {
-                                                                                        "$ref": "#/definitions/formFieldsRadioButtonsObject"
-                                                                                    },
-                                                                                    "if": {
-                                                                                        "properties": {
-                                                                                            "type": {
-                                                                                                "enum": [
-                                                                                                    "radio-buttons"
-                                                                                                ]
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                },
-                                                                                "then": {
-                                                                                    "$ref": "#/definitions/formFieldsDropDownRepresentationObject"
-                                                                                },
-                                                                                "if": {
-                                                                                    "properties": {
-                                                                                        "type": {
-                                                                                            "enum": [
-                                                                                                "dropdown"
-                                                                                            ]
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            },
-                                                                            "then": {
-                                                                                "$ref": "#/definitions/formFieldsDateObject"
-                                                                            },
-                                                                            "if": {
-                                                                                "properties": {
-                                                                                    "type": {
-                                                                                        "enum": [
-                                                                                            "date"
-                                                                                        ]
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        },
-                                                                        "then": {
-                                                                            "$ref": "#/definitions/formFieldsBooleanObject"
-                                                                        },
-                                                                        "if": {
-                                                                            "properties": {
-                                                                                "type": {
-                                                                                    "enum": [
-                                                                                        "boolean"
-                                                                                    ]
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    },
-                                                                    "then": {
-                                                                        "$ref": "#/definitions/formFieldsIntegerObject"
-                                                                    },
-                                                                    "if": {
-                                                                        "properties": {
-                                                                            "type": {
-                                                                                "enum": [
-                                                                                    "integer"
-                                                                                ]
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                },
-                                                                "then": {
-                                                                    "$ref": "#/definitions/formFieldsTextObject"
-                                                                },
-                                                                "if": {
-                                                                    "properties": {
-                                                                        "type": {
-                                                                            "enum": [
-                                                                                "text",
-                                                                                "multi-line-text"
-                                                                            ]
-                                                                        }
-                                                                    }
-                                                                }
-                                                            },
-                                                            "then": {
-                                                                "$ref": "#/definitions/formFieldsReadOnlyTestRepresentationObject"
-                                                            },
-                                                            "if": {
-                                                                "properties": {
-                                                                    "type": {
-                                                                        "enum": [
-                                                                            "readonly-text",
-                                                                            "readonly"
-                                                                        ]
-                                                                    }
-                                                                }
-                                                            }
-                                                        },
-                                                        "then": {
-                                                            "$ref": "#/definitions/formFieldsHyperlinkRepresentationObject"
-                                                        },
-                                                        "if": {
-                                                            "properties": {
-                                                                "type": {
-                                                                    "enum": [
-                                                                        "hyperlink"
-                                                                    ]
-                                                                }
-                                                            }
-                                                        }
-                                                    },
-                                                    "then": {
-                                                        "$ref": "#/definitions/formFieldsAmountFieldRepresentationObject"
-                                                    },
-                                                    "if": {
-                                                        "properties": {
-                                                            "type": {
-                                                                "enum": [
-                                                                    "amount"
-                                                                ]
-                                                            }
-                                                        }
-                                                    }
-                                                },
-                                                "then": {
-                                                    "$ref": "#/definitions/formFieldsAttachFileFieldRepresentationObject"
-                                                },
-                                                "if": {
-                                                    "properties": {
-                                                        "type": {
-                                                            "enum": [
-                                                                "upload"
-                                                            ]
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            "then": {
-                                                "$ref": "#/definitions/formFieldsTypeHeaddRepresentationObject"
-                                            },
-                                            "if": {
-                                                "properties": {
-                                                    "type": {
-                                                        "enum": [
-                                                            "typeahead"
-                                                        ]
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        "then": {
-                                            "$ref": "#/definitions/formFieldsObject"
-                                        },
                                         "if": {
                                             "properties": {
                                                 "type": {
@@ -362,10 +68,182 @@ export const formSchema = {
                                                     ]
                                                 }
                                             }
+                                        },
+                                        "then": {
+                                            "$ref": "#/definitions/formFieldsObject"
+                                        },
+                                        "else": {
+                                            "if": {
+                                                "properties": {
+                                                    "type": {
+                                                        "enum": [
+                                                            "typeahead"
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "then": {
+                                                "$ref": "#/definitions/formFieldsTypeHeaddRepresentationObject"
+                                            },
+                                            "else": {
+                                                "if": {
+                                                    "properties": {
+                                                        "type": {
+                                                            "enum": [
+                                                                "upload"
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                "then": {
+                                                    "$ref": "#/definitions/formFieldsAttachFileFieldRepresentationObject"
+                                                },
+                                                "else": {
+                                                    "if": {
+                                                        "properties": {
+                                                            "type": {
+                                                                "enum": [
+                                                                    "amount"
+                                                                ]
+                                                            }
+                                                        }
+                                                    },
+                                                    "then": {
+                                                        "$ref": "#/definitions/formFieldsAmountFieldRepresentationObject"
+                                                    },
+                                                    "else": {
+                                                        "if": {
+                                                            "properties": {
+                                                                "type": {
+                                                                    "enum": [
+                                                                        "hyperlink"
+                                                                    ]
+                                                                }
+                                                            }
+                                                        },
+                                                        "then": {
+                                                            "$ref": "#/definitions/formFieldsHyperlinkRepresentationObject"
+                                                        },
+                                                        "else": {
+                                                            "if": {
+                                                                "properties": {
+                                                                    "type": {
+                                                                        "enum": [
+                                                                            "readonly-text",
+                                                                            "readonly"
+                                                                        ]
+                                                                    }
+                                                                }
+                                                            },
+                                                            "then": {
+                                                                "$ref": "#/definitions/formFieldsReadOnlyTestRepresentationObject"
+                                                            },
+                                                            "else": {
+                                                                "if": {
+                                                                    "properties": {
+                                                                        "type": {
+                                                                            "enum": [
+                                                                                "text",
+                                                                                "multi-line-text"
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "then": {
+                                                                    "$ref": "#/definitions/formFieldsTextObject"
+                                                                },
+                                                                "else": {
+                                                                    "if": {
+                                                                        "properties": {
+                                                                            "type": {
+                                                                                "enum": [
+                                                                                    "integer"
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "then": {
+                                                                        "$ref": "#/definitions/formFieldsIntegerObject"
+                                                                    },
+                                                                    "else": {
+                                                                        "if": {
+                                                                            "properties": {
+                                                                                "type": {
+                                                                                    "enum": [
+                                                                                        "boolean"
+                                                                                    ]
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "then": {
+                                                                            "$ref": "#/definitions/formFieldsBooleanObject"
+                                                                        },
+                                                                        "else": {
+                                                                            "if": {
+                                                                                "properties": {
+                                                                                    "type": {
+                                                                                        "enum": [
+                                                                                            "date"
+                                                                                        ]
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            "then": {
+                                                                                "$ref": "#/definitions/formFieldsDateObject"
+                                                                            },
+                                                                            "else": {
+                                                                                "if": {
+                                                                                    "properties": {
+                                                                                        "type": {
+                                                                                            "enum": [
+                                                                                                "dropdown"
+                                                                                            ]
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                "then": {
+                                                                                    "$ref": "#/definitions/formFieldsDropDownRepresentationObject"
+                                                                                },
+                                                                                "else": {
+                                                                                    "if": {
+                                                                                        "properties": {
+                                                                                            "type": {
+                                                                                                "enum": [
+                                                                                                    "radio-buttons"
+                                                                                                ]
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    "then": {
+                                                                                        "$ref": "#/definitions/formFieldsRadioButtonsObject"
+                                                                                    },
+                                                                                    "else": {
+                                                                                        "type": "null"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
                             }
+                        }
+                    ]
+                },
+                "visibilityCondition": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/visibilityConditionObject"
+                        },
+                        {
+                            "type": "null"
                         }
                     ]
                 }
@@ -376,38 +254,68 @@ export const formSchema = {
                 "name",
                 "numberOfColumns",
                 "fields"
-            ]
+            ],
+            "additionalProperties": false
         },
-        "formFieldsRadioButtonsObject": {
-            "additionalProperties": false,
+        "containerDynamicTableObject": {
             "type": "object",
             "properties": {
-                "restResponsePath": {
-                    "description": "restResponsePath",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "visibilityCondition": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/visibilityConditionObject"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
                 "type": {
                     "description": "Field type",
                     "type": "string",
                     "enum": [
-                        "radio-buttons"
+                        "dynamic-table"
                     ]
+                },
+                "id": {
+                    "description": "Field Id",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Field name",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Indicates if the field is required in the validation",
+                    "type": "boolean"
                 },
                 "params": {
                     "$ref": "#/definitions/paramsObject"
+                },
+                "columnDefinitions": {
+                    "$ref": "#/definitions/columnDefinitionsObject"
+                }
+            },
+            "required": [
+                "type",
+                "id",
+                "name",
+                "required",
+                "columnDefinitions"
+            ]
+        },
+        "formFieldsObject": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "description": "Field Type",
+                    "type": "string",
+                    "enum": [
+                        "datetime",
+                        "select-folder",
+                        "document",
+                        "group",
+                        "people",
+                        "functional-group"
+                    ]
+                },
+                "id": {
+                    "description": "Field Id",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Field name",
+                    "type": "string"
                 },
                 "required": {
                     "description": "Indicates if the field is required in the validation",
@@ -417,51 +325,25 @@ export const formSchema = {
                     "description": "It reflect the HTML colspan property to expand on more columns ",
                     "type": "number"
                 },
-                "optionType": {
-                    "description": "optionType rest or options",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "restUrl": {
-                    "description": "restUrl",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "restLabelProperty": {
-                    "description": "restLabelProperty",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "Field name",
-                    "type": "string"
-                },
-                "options": {
+                "visibilityCondition": {
                     "anyOf": [
                         {
-                            "$ref": "#/definitions/optionsObject"
+                            "$ref": "#/definitions/visibilityConditionObject"
                         },
                         {
                             "type": "null"
                         }
                     ]
                 },
-                "id": {
-                    "description": "Field Id",
-                    "type": "string"
+                "metaDataColumnDefinitions": {
+                    "description": "Meta data column definitions !!!NEEDS REVIEW!!!",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/metaDataColumnDefinitionsObject"
+                    }
                 },
-                "restIdProperty": {
-                    "description": "restIdProperty",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                "params": {
+                    "$ref": "#/definitions/paramsObject"
                 }
             },
             "required": [
@@ -471,190 +353,34 @@ export const formSchema = {
                 "required"
             ]
         },
-        "paramsObject": {
-            "description": "Field visibility condition ca be based on others fields or variables",
+        "formFieldsDateObject": {
             "type": "object",
             "properties": {
-                "inputMaskReversed": {
-                    "description": "if the mask is reversed",
-                    "type": "boolean"
-                },
-                "inputMaskPlaceholder": {
-                    "items": {
-                        "$ref": "#/definitions/inputMaskPlaceholderObject"
-                    }
-                },
-                "fileSource": {
-                    "items": {
-                        "$ref": "#/definitions/fileSourceObject"
-                    }
-                },
-                "inputMask": {
-                    "description": "input mask value",
-                    "type": "string"
-                }
-            }
-        },
-        "formFieldsReadOnlyTestRepresentationObject": {
-            "additionalProperties": false,
-            "type": "object",
-            "properties": {
-                "colspan": {
-                    "description": "It reflect the HTML colspan property to expand on more columns ",
-                    "type": "number"
-                },
-                "visibilityCondition": {
-                    "description": "Tab visibility condition",
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/visibilityConditionObject"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
-                "name": {
-                    "description": "Field name",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "Field Id",
-                    "type": "string"
-                },
                 "type": {
                     "description": "Field Type",
                     "type": "string",
                     "enum": [
-                        "readonly-text",
-                        "readonly"
-                    ]
-                },
-                "params": {
-                    "$ref": "#/definitions/paramsObject"
-                },
-                "value": {
-                    "description": "text to display",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "type",
-                "id",
-                "name"
-            ]
-        },
-        "formDefinitionObject": {
-            "description": "Form Definition",
-            "additionalProperties": false,
-            "type": "object",
-            "properties": {
-                "variables": {
-                    "description": "Possible Variable of the Form (optional)",
-                    "$ref": "#/definitions/variablesObject"
-                },
-                "metadata": {
-                    "description": "Property in the form {name1:value1, name2:value2}",
-                    "type": "object"
-                },
-                "outcomes": {
-                    "description": "Possible Outcome of the Form (optional)",
-                    "type": "array"
-                },
-                "tabs": {
-                    "description": "Tabs defined in the form",
-                    "$ref": "#/definitions/tabsObject"
-                },
-                "fields": {
-                    "description": "Form Definition",
-                    "type": "array",
-                    "items": {
-                        "else": {
-                            "$ref": "#/definitions/containerDynamicTableObject"
-                        },
-                        "then": {
-                            "$ref": "#/definitions/containerFieldsObject"
-                        },
-                        "if": {
-                            "properties": {
-                                "type": {
-                                    "enum": [
-                                        "container",
-                                        "group"
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "required": [
-                "fields"
-            ]
-        },
-        "dropDownOptionsObject": {
-            "title": "Each element in the drop down",
-            "type": "object",
-            "properties": {
-                "name": {
-                    "description": "option label",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "option id",
-                    "type": "string"
-                }
-            }
-        },
-        "formFieldsAmountFieldRepresentationObject": {
-            "additionalProperties": false,
-            "type": "object",
-            "properties": {
-                "colspan": {
-                    "description": "It reflect the HTML colspan property to expand on more columns ",
-                    "type": "number"
-                },
-                "minValue": {
-                    "description": "minValue ",
-                    "type": [
-                        "number",
-                        "null"
-                    ]
-                },
-                "maxValue": {
-                    "description": "maxValue",
-                    "type": [
-                        "number",
-                        "null"
-                    ]
-                },
-                "visibilityCondition": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/visibilityConditionObject"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
-                "name": {
-                    "description": "Field name",
-                    "type": "string"
-                },
-                "currency": {
-                    "description": "currency",
-                    "type": [
-                        "string",
-                        "null"
+                        "date"
                     ]
                 },
                 "id": {
                     "description": "Field Id",
                     "type": "string"
+                },
+                "name": {
+                    "description": "Field name",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Indicates if the field is required in the validation",
+                    "type": "boolean"
+                },
+                "colspan": {
+                    "description": "It reflect the HTML colspan property to expand on more columns ",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
                 },
                 "placeholder": {
                     "description": "placeholder",
@@ -663,171 +389,18 @@ export const formSchema = {
                         "null"
                     ]
                 },
-                "enableFractions": {
-                    "description": "enableFractions",
-                    "type": [
-                        "boolean",
-                        "null"
-                    ]
-                },
-                "type": {
-                    "description": "Field Type",
-                    "type": "string",
-                    "enum": [
-                        "amount"
-                    ]
-                },
-                "params": {
-                    "$ref": "#/definitions/paramsObject"
-                },
-                "required": {
-                    "description": "Indicates if the field is required in the validation",
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "type",
-                "id",
-                "name",
-                "required"
-            ]
-        },
-        "formFieldsTypeHeaddRepresentationObject": {
-            "type": "object",
-            "properties": {
-                "colspan": {
-                    "description": "It reflect the HTML colspan property to expand on more columns ",
-                    "type": "number"
-                },
-                "hasEmptyValue": {
-                    "description": "Indicates if options can be also empty",
+                "visibilityCondition": {
                     "anyOf": [
                         {
-                            "type": "boolean"
+                            "$ref": "#/definitions/visibilityConditionObject"
                         },
                         {
                             "type": "null"
                         }
                     ]
                 },
-                "name": {
-                    "description": "Field name",
-                    "type": "string"
-                },
-                "options": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/optionsObject"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
-                "id": {
-                    "description": "Field Id",
-                    "type": "string"
-                },
-                "type": {
-                    "description": "Field type",
-                    "type": "string",
-                    "enum": [
-                        "radio-buttons",
-                        "typeahead"
-                    ]
-                },
                 "params": {
                     "$ref": "#/definitions/paramsObject"
-                },
-                "required": {
-                    "description": "Indicates if the field is required in the validation",
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "type",
-                "id",
-                "name",
-                "required"
-            ]
-        },
-        "formRepresentationObject": {
-            "description": "Form Representation",
-            "additionalProperties": false,
-            "type": "object",
-            "properties": {
-                "formDefinition": {
-                    "$ref": "#/definitions/formDefinitionObject"
-                },
-                "name": {
-                    "description": "Form Name",
-                    "type": "string",
-                    "pattern": "^[a-zA-Z0-9_]{1,}$"
-                },
-                "description": {
-                    "description": "Form Description",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "Form Id",
-                    "type": "string"
-                },
-                "version": {
-                    "description": "Form Version",
-                    "type": "number"
-                },
-                "standAlone": {
-                    "description": "Shows/hides form in standAlone task",
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "id",
-                "name",
-                "version",
-                "formDefinition"
-            ]
-        },
-        "tabsObject": {
-            "type": "array",
-            "items": {
-                "properties": {
-                    "visibilityCondition": {
-                        "description": "Tab visibility condition",
-                        "anyOf": [
-                            {
-                                "$ref": "#/definitions/visibilityConditionObject"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "id": {
-                        "description": "Tab id",
-                        "type": "string"
-                    },
-                    "title": {
-                        "description": "Tab displayed name",
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "id",
-                    "title"
-                ]
-            }
-        },
-        "formFieldsDateObject": {
-            "additionalProperties": false,
-            "type": "object",
-            "properties": {
-                "colspan": {
-                    "description": "It reflect the HTML colspan property to expand on more columns ",
-                    "type": [
-                        "number",
-                        "null"
-                    ]
                 },
                 "minValue": {
                     "description": "minValue",
@@ -843,6 +416,51 @@ export const formSchema = {
                         "null"
                     ]
                 },
+                "dateDisplayFormat": {
+                    "description": "dateDisplayFormat",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "type",
+                "id",
+                "name",
+                "required"
+            ],
+            "additionalProperties": false
+        },
+        "formFieldsBooleanObject": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "description": "Field Type",
+                    "type": "string",
+                    "enum": [
+                        "boolean"
+                    ]
+                },
+                "id": {
+                    "description": "Field Id",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Field name",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Indicates if the field is required in the validation",
+                    "type": "boolean"
+                },
+                "colspan": {
+                    "description": "It reflect the HTML colspan property to expand on more columns ",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
                 "visibilityCondition": {
                     "anyOf": [
                         {
@@ -853,20 +471,40 @@ export const formSchema = {
                         }
                     ]
                 },
-                "dateDisplayFormat": {
-                    "description": "dateDisplayFormat",
-                    "type": [
-                        "string",
-                        "null"
+                "params": {
+                    "$ref": "#/definitions/paramsObject"
+                }
+            },
+            "required": [
+                "type",
+                "id",
+                "name",
+                "required"
+            ],
+            "additionalProperties": false
+        },
+        "formFieldsTextObject": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "description": "Field Type",
+                    "type": "string",
+                    "enum": [
+                        "text",
+                        "multi-line-text"
                     ]
+                },
+                "id": {
+                    "description": "Field Id",
+                    "type": "string"
                 },
                 "name": {
                     "description": "Field name",
                     "type": "string"
                 },
-                "id": {
-                    "description": "Field Id",
-                    "type": "string"
+                "required": {
+                    "description": "Indicates if the field is required in the validation",
+                    "type": "boolean"
                 },
                 "placeholder": {
                     "description": "placeholder",
@@ -875,88 +513,30 @@ export const formSchema = {
                         "null"
                     ]
                 },
-                "type": {
-                    "description": "Field Type",
-                    "type": "string",
-                    "enum": [
-                        "date"
-                    ]
-                },
-                "params": {
-                    "$ref": "#/definitions/paramsObject"
-                },
-                "required": {
-                    "description": "Indicates if the field is required in the validation",
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "type",
-                "id",
-                "name",
-                "required"
-            ]
-        },
-        "inputMaskPlaceholderObject": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "description": "description input mask placeholder",
-                    "type": "string"
-                },
-                "type": {
-                    "description": "type mask placeholder",
-                    "type": "string"
-                }
-            }
-        },
-        "containerDynamicTableObject": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "description": "Field name",
-                    "type": "string"
-                },
-                "columnDefinitions": {
-                    "$ref": "#/definitions/columnDefinitionsObject"
-                },
-                "id": {
-                    "description": "Field Id",
-                    "type": "string"
-                },
-                "type": {
-                    "description": "Field type",
-                    "type": "string",
-                    "enum": [
-                        "dynamic-table"
-                    ]
-                },
-                "params": {
-                    "$ref": "#/definitions/paramsObject"
-                },
-                "required": {
-                    "description": "Indicates if the field is required in the validation",
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "type",
-                "id",
-                "name",
-                "required",
-                "columnDefinitions"
-            ]
-        },
-        "formFieldsDropDownRepresentationObject": {
-            "additionalProperties": false,
-            "type": "object",
-            "properties": {
-                "restResponsePath": {
-                    "description": "restResponsePath",
+                "regexPattern": {
+                    "description": "Regular expr.",
                     "type": [
                         "string",
                         "null"
                     ]
+                },
+                "colspan": {
+                    "description": "It reflect the HTML colspan property to expand on more columns ",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "minLength": {
+                    "description": "minLength ",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "maxLength": {
+                    "description": "maxLength",
+                    "type": "number"
                 },
                 "visibilityCondition": {
                     "anyOf": [
@@ -968,69 +548,8 @@ export const formSchema = {
                         }
                     ]
                 },
-                "type": {
-                    "description": "Field type",
-                    "type": "string",
-                    "enum": [
-                        "dropdown"
-                    ]
-                },
                 "params": {
                     "$ref": "#/definitions/paramsObject"
-                },
-                "required": {
-                    "description": "Indicates if the field is required in the validation",
-                    "type": "boolean"
-                },
-                "colspan": {
-                    "description": "It reflect the HTML colspan property to expand on more columns ",
-                    "type": "number"
-                },
-                "optionType": {
-                    "description": "optionType rest or options",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "restUrl": {
-                    "description": "restUrl",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "restLabelProperty": {
-                    "description": "restLabelProperty",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "Field name",
-                    "type": "string"
-                },
-                "options": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/optionsObject"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
-                "id": {
-                    "description": "Field Id",
-                    "type": "string"
-                },
-                "restIdProperty": {
-                    "description": "restIdProperty",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
                 }
             },
             "required": [
@@ -1038,25 +557,38 @@ export const formSchema = {
                 "id",
                 "name",
                 "required"
-            ]
-        },
-        "fileSourceObject": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "description": "file source name",
-                    "type": "string"
-                },
-                "serviceId": {
-                    "description": "file source id",
-                    "type": "string"
-                }
-            }
+            ],
+            "additionalProperties": false
         },
         "formFieldsIntegerObject": {
-            "additionalProperties": false,
             "type": "object",
             "properties": {
+                "type": {
+                    "description": "Field Type",
+                    "type": "string",
+                    "enum": [
+                        "integer"
+                    ]
+                },
+                "id": {
+                    "description": "Field Id",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Field name",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Indicates if the field is required in the validation",
+                    "type": "boolean"
+                },
+                "placeholder": {
+                    "description": "placeholder",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "colspan": {
                     "description": "It reflect the HTML colspan property to expand on more columns ",
                     "type": "number"
@@ -1085,34 +617,68 @@ export const formSchema = {
                         }
                     ]
                 },
-                "name": {
-                    "description": "Field name",
-                    "type": "string"
+                "params": {
+                    "$ref": "#/definitions/paramsObject"
+                }
+            },
+            "required": [
+                "type",
+                "id",
+                "name",
+                "required"
+            ],
+            "additionalProperties": false
+        },
+        "formFieldsTypeHeaddRepresentationObject": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "description": "Field type",
+                    "type": "string",
+                    "enum": [
+                        "radio-buttons",
+                        "typeahead"
+                    ]
                 },
                 "id": {
                     "description": "Field Id",
                     "type": "string"
                 },
-                "placeholder": {
-                    "description": "placeholder",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "type": {
-                    "description": "Field Type",
-                    "type": "string",
-                    "enum": [
-                        "integer"
-                    ]
-                },
-                "params": {
-                    "$ref": "#/definitions/paramsObject"
+                "name": {
+                    "description": "Field name",
+                    "type": "string"
                 },
                 "required": {
                     "description": "Indicates if the field is required in the validation",
                     "type": "boolean"
+                },
+                "colspan": {
+                    "description": "It reflect the HTML colspan property to expand on more columns ",
+                    "type": "number"
+                },
+                "options": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/optionsObject"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "hasEmptyValue": {
+                    "description": "Indicates if options can be also empty",
+                    "anyOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "params": {
+                    "$ref": "#/definitions/paramsObject"
                 }
             },
             "required": [
@@ -1122,35 +688,48 @@ export const formSchema = {
                 "required"
             ]
         },
-        "metaDataColumnDefinitionsObject": {
+        "formFieldsRadioButtonsObject": {
             "type": "object",
             "properties": {
-                "propertyType": {
-                    "description": "property type",
+                "type": {
+                    "description": "Field type",
+                    "type": "string",
+                    "enum": [
+                        "radio-buttons"
+                    ]
+                },
+                "id": {
+                    "description": "Field Id",
                     "type": "string"
                 },
-                "fileProperty": {
-                    "description": "File property",
+                "name": {
+                    "description": "Field name",
                     "type": "string"
                 },
-                "formField": {
-                    "$ref": "#/definitions/formFieldsObject"
-                }
-            }
-        },
-        "formFieldsObject": {
-            "type": "object",
-            "properties": {
+                "required": {
+                    "description": "Indicates if the field is required in the validation",
+                    "type": "boolean"
+                },
                 "colspan": {
                     "description": "It reflect the HTML colspan property to expand on more columns ",
                     "type": "number"
                 },
-                "metaDataColumnDefinitions": {
-                    "description": "Meta data column definitions !!!NEEDS REVIEW!!!",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/metaDataColumnDefinitionsObject"
-                    }
+                "options": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/optionsObject"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "value": {
+                    "description": "name preselected option",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "visibilityCondition": {
                     "anyOf": [
@@ -1162,32 +741,43 @@ export const formSchema = {
                         }
                     ]
                 },
-                "name": {
-                    "description": "Field name",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "Field Id",
-                    "type": "string"
-                },
-                "type": {
-                    "description": "Field Type",
-                    "type": "string",
-                    "enum": [
-                        "datetime",
-                        "select-folder",
-                        "document",
-                        "group",
-                        "people",
-                        "functional-group"
-                    ]
-                },
                 "params": {
                     "$ref": "#/definitions/paramsObject"
                 },
-                "required": {
-                    "description": "Indicates if the field is required in the validation",
-                    "type": "boolean"
+                "optionType": {
+                    "description": "optionType rest or options",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "restUrl": {
+                    "description": "restUrl",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "restResponsePath": {
+                    "description": "restResponsePath",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "restIdProperty": {
+                    "description": "restIdProperty",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "restLabelProperty": {
+                    "description": "restLabelProperty",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 }
             },
             "required": [
@@ -1195,12 +785,258 @@ export const formSchema = {
                 "id",
                 "name",
                 "required"
-            ]
+            ],
+            "additionalProperties": false
         },
-        "formFieldsHyperlinkRepresentationObject": {
-            "additionalProperties": false,
+        "formFieldsDropDownRepresentationObject": {
             "type": "object",
             "properties": {
+                "type": {
+                    "description": "Field type",
+                    "type": "string",
+                    "enum": [
+                        "dropdown"
+                    ]
+                },
+                "id": {
+                    "description": "Field Id",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Field name",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Indicates if the field is required in the validation",
+                    "type": "boolean"
+                },
+                "colspan": {
+                    "description": "It reflect the HTML colspan property to expand on more columns ",
+                    "type": "number"
+                },
+                "options": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/optionsObject"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "visibilityCondition": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/visibilityConditionObject"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "params": {
+                    "$ref": "#/definitions/paramsObject"
+                },
+                "optionType": {
+                    "description": "optionType rest or options",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "restUrl": {
+                    "description": "restUrl",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "value": {
+                    "description": "name preselected option",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "restResponsePath": {
+                    "description": "restResponsePath",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "restIdProperty": {
+                    "description": "restIdProperty",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "restLabelProperty": {
+                    "description": "restLabelProperty",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "type",
+                "id",
+                "name",
+                "required"
+            ],
+            "additionalProperties": false
+        },
+        "formFieldsAttachFileFieldRepresentationObject": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "description": "Field Type",
+                    "type": "string",
+                    "enum": [
+                        "upload"
+                    ]
+                },
+                "id": {
+                    "description": "Field Id",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Field name",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Indicates if the field is required in the validation",
+                    "type": "boolean"
+                },
+                "colspan": {
+                    "description": "It reflect the HTML colspan property to expand on more columns ",
+                    "type": "number"
+                },
+                "visibilityCondition": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/visibilityConditionObject"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "params": {
+                    "$ref": "#/definitions/paramsObject"
+                }
+            },
+            "required": [
+                "type",
+                "id",
+                "name",
+                "required"
+            ],
+            "additionalProperties": false
+        },
+        "formFieldsAmountFieldRepresentationObject": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "description": "Field Type",
+                    "type": "string",
+                    "enum": [
+                        "amount"
+                    ]
+                },
+                "id": {
+                    "description": "Field Id",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Field name",
+                    "type": "string"
+                },
+                "required": {
+                    "description": "Indicates if the field is required in the validation",
+                    "type": "boolean"
+                },
+                "minValue": {
+                    "description": "minValue ",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "maxValue": {
+                    "description": "maxValue",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "placeholder": {
+                    "description": "placeholder",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "enableFractions": {
+                    "description": "enableFractions",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "currency": {
+                    "description": "currency",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "colspan": {
+                    "description": "It reflect the HTML colspan property to expand on more columns ",
+                    "type": "number"
+                },
+                "visibilityCondition": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/visibilityConditionObject"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "params": {
+                    "$ref": "#/definitions/paramsObject"
+                }
+            },
+            "required": [
+                "type",
+                "id",
+                "name",
+                "required"
+            ],
+            "additionalProperties": false
+        },
+        "formFieldsHyperlinkRepresentationObject": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "description": "Field Type",
+                    "type": "string",
+                    "enum": [
+                        "hyperlink"
+                    ]
+                },
+                "id": {
+                    "description": "Field Id",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Field name",
+                    "type": "string"
+                },
                 "colspan": {
                     "description": "It reflect the HTML colspan property to expand on more columns ",
                     "type": "number"
@@ -1229,21 +1065,6 @@ export const formSchema = {
                         }
                     ]
                 },
-                "name": {
-                    "description": "Field name",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "Field Id",
-                    "type": "string"
-                },
-                "type": {
-                    "description": "Field Type",
-                    "type": "string",
-                    "enum": [
-                        "hyperlink"
-                    ]
-                },
                 "params": {
                     "$ref": "#/definitions/paramsObject"
                 }
@@ -1253,20 +1074,118 @@ export const formSchema = {
                 "id",
                 "name",
                 "hyperlinkUrl"
-            ]
+            ],
+            "additionalProperties": false
+        },
+        "formFieldsReadOnlyTestRepresentationObject": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "description": "Field Type",
+                    "type": "string",
+                    "enum": [
+                        "readonly-text",
+                        "readonly"
+                    ]
+                },
+                "id": {
+                    "description": "Field Id",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "text to display",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Field name",
+                    "type": "string"
+                },
+                "colspan": {
+                    "description": "It reflect the HTML colspan property to expand on more columns ",
+                    "type": "number"
+                },
+                "visibilityCondition": {
+                    "description": "Tab visibility condition",
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/visibilityConditionObject"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "params": {
+                    "$ref": "#/definitions/paramsObject"
+                }
+            },
+            "required": [
+                "type",
+                "id",
+                "name"
+            ],
+            "additionalProperties": false
         },
         "visibilityConditionObject": {
             "description": "Field visibility condition ca be based on others fields or variables",
             "type": "object",
             "properties": {
-                "nextCondition": {
-                    "description": "nextConditionm, would make more sense if visibilityCondition was an array this innested is impossible to check !!!NEEDS REVIEW!!!",
+                "leftValue": {
+                    "description": "The left value: the id of the field or the name of the process variable to compare",
+                    "type": "string"
+                },
+                "leftType": {
+                    "description": "The type of left value",
+                    "type": "string",
+                    "enum": [
+                        "field",
+                        "variable"
+                    ]
+                },
+                "operator": {
+                    "description": "The operation to be applied between left value and right value",
+                    "type": "string",
+                    "enum": [
+                        "==",
+                        "!=",
+                        "<",
+                        ">",
+                        "<=",
+                        ">=",
+                        "empty",
+                        "!empty"
+                    ]
+                },
+                "rightValue": {
+                    "description": "The right value: the bare value or the id of the field or the name of the process variable to compare",
                     "anyOf": [
                         {
                             "type": "null"
                         },
                         {
-                            "type": "object"
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ]
+                },
+                "rightType": {
+                    "description": "The type of right value",
+                    "anyOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "value",
+                                "field",
+                                "variable"
+                            ]
                         }
                     ]
                 },
@@ -1282,65 +1201,180 @@ export const formSchema = {
                         null
                     ]
                 },
-                "rightValue": {
-                    "description": "This is the bare value or the id of the field or the id of the variable to pick up the value to compare",
+                "nextCondition": {
+                    "description": "nextConditionm, would make more sense if visibilityCondition was an array this innested is impossible to check !!!NEEDS REVIEW!!!",
                     "anyOf": [
                         {
                             "type": "null"
                         },
                         {
-                            "type": "string"
-                        },
-                        {
-                            "type": "number"
+                            "type": "object"
                         }
                     ]
+                }
+            }
+        },
+        "paramsObject": {
+            "description": "Field visibility condition ca be based on others fields or variables",
+            "type": "object",
+            "properties": {
+                "inputMask": {
+                    "description": "input mask value",
+                    "type": "string"
                 },
-                "leftValue": {
-                    "description": "This is the id of the field or the id of the variable to pick up the value to compare",
-                    "anyOf": [
-                        {
-                            "type": "null"
+                "inputMaskReversed": {
+                    "description": "if the mask is reversed",
+                    "type": "boolean"
+                },
+                "inputMaskPlaceholder": {
+                    "items": {
+                        "$ref": "#/definitions/inputMaskPlaceholderObject"
+                    }
+                },
+                "fileSource": {
+                    "items": {
+                        "$ref": "#/definitions/fileSourceObject"
+                    }
+                }
+            }
+        },
+        "formDefinitionObject": {
+            "description": "Form Definition",
+            "type": "object",
+            "properties": {
+                "fields": {
+                    "description": "Form Definition",
+                    "type": "array",
+                    "items": {
+                        "if": {
+                            "properties": {
+                                "type": {
+                                    "enum": [
+                                        "container",
+                                        "group"
+                                    ]
+                                }
+                            }
                         },
-                        {
-                            "type": "string"
-                        }
-                    ]
-                },
-                "leftType": {
-                    "description": "the type of the left value which can be field or variable",
-                    "type" : "string",
-                    "enum": ["variable", "field"]
-                },
-                "rightType": {
-                    "description": "the type of the right value which can be value, field or variable",
-                    "anyOf": [
-                        {
-                          "type": "null"
+                        "then": {
+                            "$ref": "#/definitions/containerFieldsObject"
                         },
-                        {
-                          "type": "string",
-                          "enum": [
-                            "value",
-                            "field",
-                            "variable"
-                          ]
+                        "else": {
+                            "$ref": "#/definitions/containerDynamicTableObject"
                         }
-                      ]
+                    }
                 },
-                "operator": {
-                    "description": "math operations",
-                    "type": "string",
-                    "enum": [
-                        "==",
-                        "!=",
-                        "<",
-                        ">",
-                        "<=",
-                        ">=",
-                        "empty",
-                        "!empty"
-                    ]
+                "outcomes": {
+                    "description": "Possible Outcome of the Form (optional)",
+                    "type": "array"
+                },
+                "variables": {
+                    "description": "Possible Variable of the Form (optional)",
+                    "$ref": "#/definitions/variablesObject"
+                },
+                "metadata": {
+                    "description": "Property in the form {name1:value1, name2:value2}",
+                    "type": "object"
+                },
+                "tabs": {
+                    "description": "Tabs defined in the form",
+                    "$ref": "#/definitions/tabsObject"
+                }
+            },
+            "required": [
+                "fields"
+            ],
+            "additionalProperties": false
+        },
+        "formRepresentationObject": {
+            "description": "Form Representation",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "Form Id",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Form Name",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Form Description",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "Form Version",
+                    "type": "number"
+                },
+                "standAlone": {
+                    "description": "Enable form on standalone tasks",
+                    "type": "boolean"
+                },
+                "formDefinition": {
+                    "$ref": "#/definitions/formDefinitionObject"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "version",
+                "formDefinition"
+            ],
+            "additionalProperties": false
+        },
+        "fileSourceObject": {
+            "type": "object",
+            "properties": {
+                "serviceId": {
+                    "description": "file source id",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "file source name",
+                    "type": "string"
+                }
+            }
+        },
+        "inputMaskPlaceholderObject": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "description": "description input mask placeholder",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "type mask placeholder",
+                    "type": "string"
+                }
+            }
+        },
+        "dropDownOptionsObject": {
+            "title": "Each element in the drop down",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "option label",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "option id",
+                    "type": "string"
+                }
+            }
+        },
+        "metaDataColumnDefinitionsObject": {
+            "type": "object",
+            "properties": {
+                "fileProperty": {
+                    "description": "File property",
+                    "type": "string"
+                },
+                "propertyType": {
+                    "description": "property type",
+                    "type": "string"
+                },
+                "formField": {
+                    "$ref": "#/definitions/formFieldsObject"
                 }
             }
         },
@@ -1348,12 +1382,12 @@ export const formSchema = {
             "type": "array",
             "items": {
                 "properties": {
-                    "name": {
-                        "description": "Name option",
-                        "type": "string"
-                    },
                     "id": {
                         "description": "Id option",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Name option",
                         "type": "string"
                     }
                 },
@@ -1367,25 +1401,13 @@ export const formSchema = {
             "type": "array",
             "items": {
                 "properties": {
-                    "visible": {
-                        "description": "Indicates if is a visible field",
-                        "type": "boolean"
-                    },
-                    "editable": {
-                        "description": "Indicates if is a editable field",
-                        "type": "boolean"
-                    },
-                    "name": {
-                        "description": "Name option",
-                        "type": "string"
-                    },
                     "id": {
                         "description": "Id option",
                         "type": "string"
                     },
-                    "sortable": {
-                        "description": "Indicates if is sortable column",
-                        "type": "boolean"
+                    "name": {
+                        "description": "Name option",
+                        "type": "string"
                     },
                     "type": {
                         "description": "Column type",
@@ -1393,6 +1415,18 @@ export const formSchema = {
                     },
                     "required": {
                         "description": "Indicates if is a Required field",
+                        "type": "boolean"
+                    },
+                    "editable": {
+                        "description": "Indicates if is a editable field",
+                        "type": "boolean"
+                    },
+                    "sortable": {
+                        "description": "Indicates if is sortable column",
+                        "type": "boolean"
+                    },
+                    "visible": {
+                        "description": "Indicates if is a visible field",
                         "type": "boolean"
                     }
                 },
@@ -1410,14 +1444,13 @@ export const formSchema = {
         "variablesObject": {
             "type": "array",
             "items": {
-                "additionalProperties": false,
                 "properties": {
-                    "name": {
-                        "description": "Variable name",
-                        "type": "string"
-                    },
                     "id": {
                         "description": "Id",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Variable name",
                         "type": "string"
                     },
                     "type": {
@@ -1429,7 +1462,9 @@ export const formSchema = {
                             "boolean",
                             "date",
                             "people",
-                            "group"
+                            "group",
+                            "file",
+                            "json"
                         ]
                     },
                     "value": {
@@ -1439,64 +1474,39 @@ export const formSchema = {
                 "required": [
                     "name",
                     "type"
-                ]
+                ],
+                "additionalProperties": false
             }
         },
-        "formFieldsAttachFileFieldRepresentationObject": {
-            "additionalProperties": false,
-            "type": "object",
-            "properties": {
-                "colspan": {
-                    "description": "It reflect the HTML colspan property to expand on more columns ",
-                    "type": "number"
+        "tabsObject": {
+            "type": "array",
+            "items": {
+                "properties": {
+                    "id": {
+                        "description": "Tab id",
+                        "type": "string"
+                    },
+                    "title": {
+                        "description": "Tab displayed name",
+                        "type": "string"
+                    },
+                    "visibilityCondition": {
+                        "description": "Tab visibility condition",
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/visibilityConditionObject"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    }
                 },
-                "visibilityCondition": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/definitions/visibilityConditionObject"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
-                "name": {
-                    "description": "Field name",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "Field Id",
-                    "type": "string"
-                },
-                "type": {
-                    "description": "Field Type",
-                    "type": "string",
-                    "enum": [
-                        "upload"
-                    ]
-                },
-                "params": {
-                    "$ref": "#/definitions/paramsObject"
-                },
-                "required": {
-                    "description": "Indicates if the field is required in the validation",
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "type",
-                "id",
-                "name",
-                "required"
-            ]
+                "required": [
+                    "id",
+                    "title"
+                ]
+            }
         }
-    },
-    "properties": {
-        "formRepresentation": {
-            "$ref": "#/definitions/formRepresentationObject"
-        }
-    },
-    "required": [
-        "formRepresentation"
-    ]
+    }
 };
