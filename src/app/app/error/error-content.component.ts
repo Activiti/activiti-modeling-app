@@ -16,9 +16,6 @@
  */
 
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AmaState } from 'ama-sdk';
-import { LogoutAction } from '../../store/actions/app.actions';
 
 @Component({
     selector: 'ama-error-content',
@@ -26,10 +23,5 @@ import { LogoutAction } from '../../store/actions/app.actions';
     styleUrls: ['./error-content.component.scss']
 })
 export class ErrorContentComponent {
-    errorCode = '403';
-    constructor(private store: Store<AmaState>) {}
-
-    onUserChange() {
-        this.store.dispatch(new LogoutAction());
-    }
+    constructor() {}
 }

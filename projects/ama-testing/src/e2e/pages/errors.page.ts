@@ -22,7 +22,7 @@ import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class ErrorsPage extends GenericPage {
 
-    private readonly amaUnauthorisedPage = element(by.css(`[data-automation-id="ama-error-page-403"]`));
+    private readonly amaUnauthorisedPage = element(by.css(`[data-automation-id="ama-error-page"]`));
 
     constructor(testConfig: TestConfig) {
         super(testConfig);
