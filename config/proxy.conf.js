@@ -9,7 +9,7 @@ module.exports = {
         "secure": false,
         "changeOrigin": true,
         "pathRewrite": {
-            "^/modeling-service": ""
+            "^/modeling-service/modeling-service": ""
         },
         "logLevel": "silent"
     },
@@ -18,7 +18,7 @@ module.exports = {
         "secure": false,
         "changeOrigin": true,
         "pathRewrite": {
-            "^/dmn-service": ""
+            "^/dmn-service/dmn-service": ""
         },
         "logLevel": "silent"
     },
