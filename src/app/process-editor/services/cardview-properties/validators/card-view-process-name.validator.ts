@@ -16,13 +16,13 @@
  */
 
 import { CardViewItemValidator } from '@alfresco/adf-core';
-
+import { MODELER_NAME_REGEX } from 'ama-sdk';
 
 export class CardViewProcessNameValidator implements CardViewItemValidator {
 
-    message = 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS_NAME_REQUIRED';
+    message = 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_PROCESS_NAME';
 
     isValid(value: string): boolean {
-        return value.length > 0;
+        return value.length > 0 && MODELER_NAME_REGEX.test(value);
     }
 }

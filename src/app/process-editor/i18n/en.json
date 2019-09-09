@@ -65,6 +65,7 @@
             "FORM_SELECTOR": "Form selector",
             "DEFAULT_SEQUENCE_FLOW": "Default sequence flow",
             "PROCESS_NAME_REQUIRED": "Process name is required",
+            "INVALID_PROCESS_NAME": "Invalid process name",
             "INVALID_EXPRESSION": "Invalid expression. ${condition}",
             "TIMERS": {
                 "TIMER_TYPE": "Timer type",
