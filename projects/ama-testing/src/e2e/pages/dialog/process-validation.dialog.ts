@@ -17,6 +17,7 @@
 
 import { GenericDialog } from '../common/generic.dialog';
 import { element, by } from 'protractor';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class ProcessValidationDialog extends GenericDialog {
 
@@ -33,13 +34,13 @@ export class ProcessValidationDialog extends GenericDialog {
 
     async isTitleDisplayed() {
         try {
-            await super.waitForElementToBeVisible(this.titleElement);
+            await BrowserVisibility.waitUntilElementIsVisible(this.titleElement);
         } catch (error) { return false; }
         return await this.titleElement.getText() === this.title;
     }
 
     async isDialogDismissed() {
-        await super.waitForElementToBeInVisible(this.validationDialog);
+        await BrowserVisibility.waitUntilElementIsNotVisible(this.validationDialog);
     }
 
     async confirm() {
@@ -51,7 +52,7 @@ export class ProcessValidationDialog extends GenericDialog {
     }
 
     async getErrorMessage() {
-        await super.waitForElementToBeVisible(this.validationError);
+        await BrowserVisibility.waitUntilElementIsVisible(this.validationError);
         return await this.validationError.getText();
     }
 }

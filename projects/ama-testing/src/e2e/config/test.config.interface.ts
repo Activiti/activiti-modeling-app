@@ -52,7 +52,6 @@ export interface TestConfig {
     };
     ama: {
         url: string;
-        port: string;
         backendConfig: APSBackendConfig;
         user: string;
         password: string;

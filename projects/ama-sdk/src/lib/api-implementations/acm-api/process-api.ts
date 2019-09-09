@@ -39,6 +39,6 @@ export class ProcessAcmApi<T extends Process, S extends ProcessContent> extends 
         };
 
         return from(this.requestApiHelper
-            .post(`/v1/models/${modelId}/validate`, requestOptions));
+            .post(`/modeling-service/v1/models/${modelId}/validate`, requestOptions));
     }
 }

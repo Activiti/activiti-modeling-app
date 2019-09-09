@@ -44,10 +44,10 @@
          backend = await getBackend(testConfig).setUp();
          project = await backend.project.createAndWaitUntilAvailable();
 
-         loginPage = LoginPage.get(testConfig);
+         loginPage = LoginPage.get();
          await loginPage.navigateTo();
          await loginPage.login(adminUser.user, adminUser.password);
-         await authenticatedPage.isLoggedIn();
+
      });
 
      it('[C311473] Create process with Boundary Timer (Interrupting) - Cycle', async () => {

@@ -17,6 +17,7 @@
 
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class TaskPropertiesCardPage extends GenericPage {
 
@@ -52,19 +53,19 @@ export class TaskPropertiesCardPage extends GenericPage {
 
     async errorMessageIsDisplayed(errorId: string) {
         const error = element(by.css(`[data-automation-id="${errorId}"]`));
-        await super.waitForElementToBeVisible(error);
+        await BrowserVisibility.waitUntilElementIsVisible(error);
         return true;
     }
 
     async getMappingTypeValue(): Promise<string> {
         const selectorElement = element(by.css(`[data-automation-id="mapping-type"] .mat-select`));
-        await super.waitForElementToBeVisible(selectorElement);
+        await BrowserVisibility.waitUntilElementIsVisible(selectorElement);
         return await selectorElement.getText();
     }
 
     async setMappingTypeValue(value: string) {
         const selectorElement = element(by.css(`[data-automation-id="mapping-type"] .mat-select`));
-        await super.waitForElementToBeVisible(selectorElement);
+        await BrowserVisibility.waitUntilElementIsVisible(selectorElement);
         await super.click(selectorElement);
 
         const option = element(by.cssContainingText('.mat-option-text', value));
@@ -73,7 +74,7 @@ export class TaskPropertiesCardPage extends GenericPage {
 
     async getSelectedFormName() {
         const selectedFormNameElement = element(by.css(`mat-select[data-automation-id="form-selector"] div span span`));
-        await super.waitForElementToBeVisible(selectedFormNameElement);
+        await BrowserVisibility.waitUntilElementIsVisible(selectedFormNameElement);
         return await selectedFormNameElement.getText();
     }
 

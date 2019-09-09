@@ -17,6 +17,7 @@
 
 import { ConfirmationDialog } from './confirmation.dialog';
 import { MESSAGES } from '../../util';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class LeavePageDialog extends ConfirmationDialog {
     itemType: string;
@@ -29,7 +30,7 @@ export class LeavePageDialog extends ConfirmationDialog {
     }
 
     async isTitleDisplayed() {
-        await super.waitForElementToBeVisible(this.titleElement);
+        await BrowserVisibility.waitUntilElementIsVisible(this.titleElement);
         return await this.titleElement.getText() === this.title.replace('ITEM', this.itemType).replace('NAME', this.itemName);
     }
 }

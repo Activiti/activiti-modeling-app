@@ -18,6 +18,7 @@
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class AuthenticatedPage extends GenericPage {
 
@@ -30,7 +31,7 @@ export class AuthenticatedPage extends GenericPage {
     }
 
     async isLoggedIn() {
-        return await super.waitForElementToBeVisible(this.userLoggedIn);
+        return await BrowserVisibility.waitUntilElementIsVisible(this.userLoggedIn);
     }
 
     async logout() {

@@ -30,18 +30,14 @@ export class GenericPage extends GenericWebElement {
     }
 
     async navigateTo(url: string) {
-        const baseUrl = `${this.testConfig.ama.url}${this.testConfig.ama.port !== '' ? `:${this.testConfig.ama.port}` : ''}`;
+        const baseUrl = this.testConfig.ama.url;
         await browser.get(`${baseUrl}/#/${url}`);
-        return await this.refreshPage();
-    }
-
-    async refreshPage() {
         await browser.refresh();
     }
 
     async isPageInDirtyState() {
         const pageTitle = await browser.getTitle();
-        return pageTitle === `* ${this.testConfig.ama.appTitle}`;
+        return pageTitle.includes('*');
     }
 
     async getModelId() {

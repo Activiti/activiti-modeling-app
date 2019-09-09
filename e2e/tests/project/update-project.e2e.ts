@@ -31,7 +31,7 @@ describe('Update project', () => {
         password: testConfig.ama.password
     };
 
-    const loginPage: LoginPageImplementation = LoginPage.get(testConfig);
+    const loginPage: LoginPageImplementation = LoginPage.get();
     const authenticatedPage = new AuthenticatedPage(testConfig);
     const dashboardPage = new DashboardPage();
     const snackBar = new SnackBar();
@@ -48,7 +48,7 @@ describe('Update project', () => {
     beforeAll(async () => {
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
-        await authenticatedPage.isLoggedIn();
+
     });
 
     it('1. [C289977] Update project name and description', async () => {

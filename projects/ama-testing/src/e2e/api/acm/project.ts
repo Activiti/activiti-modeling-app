@@ -16,8 +16,8 @@
  */
 
 import { ProjectApi } from '../api.interfaces';
-import { NodeEntry, ResultSetPaging } from 'alfresco-js-api-node';
-import { UtilRandom, Logger, UtilApi } from '../../util';
+import { NodeEntry } from 'alfresco-js-api-node';
+import { UtilRandom, Logger } from '../../util';
 import { ACMBackend } from './acm-backend';
 import { E2eRequestApiHelper, E2eRequestApiHelperOptions } from './e2e-request-api.helper';
 import * as fs from 'fs';
@@ -26,7 +26,7 @@ export class ACMProject implements ProjectApi {
 
     requestApiHelper: E2eRequestApiHelper;
     tmpFilePath: string;
-    endPoint = '/v1/projects/';
+    endPoint = '/modeling-service/v1/projects/';
     namePrefix = 'aps-app-';
 
     constructor(backend: ACMBackend) {
@@ -45,24 +45,37 @@ export class ACMProject implements ProjectApi {
     async createAndWaitUntilAvailable(modelName: string = this.getRandomName()) {
         try {
             const project = await this.create(modelName);
-            await this.retrySearchProject(project.entry.id);
             return project;
         } catch (error) {
-            Logger.error(`[Project] Create and wait for project to be available failed!`);
+            Logger.error(`[Project] Create and wait for project to be available failed!` + JSON.stringify(error));
             throw error;
         }
     }
 
     async get(projectId: string) {
-        return await this.requestApiHelper.get(`/v1/projects/${projectId}`);
+        return await this.requestApiHelper.get(`/modeling-service/v1/projects/${projectId}`);
+    }
+
+    async getDecisionTableId(projectId: string, decisionTableName: string): Promise<string> {
+        const requestOptions: E2eRequestApiHelperOptions = {
+            queryParams: { type: 'DECISION' }
+        };
+        const projectDetails = await this.requestApiHelper.get(`/modeling-service/v1/projects/${projectId}/models`, requestOptions);
+        const projectDetailsObject = JSON.parse(JSON.stringify(projectDetails));
+        const map = new Map<string, string>();
+
+        for (const entry of projectDetailsObject.list.entries) {
+            map.set(entry.entry.name, entry.entry.id);
+        }
+        return await map.get(decisionTableName);
     }
 
     async delete(projectId: string) {
-        await this.requestApiHelper.delete(`/v1/projects/${projectId}`);
+        await this.requestApiHelper.delete(`/modeling-service/v1/projects/${projectId}`);
     }
 
     async release(projectId: string) {
-        return await this.requestApiHelper.post(`/v1/projects/${projectId}/releases`);
+        return await this.requestApiHelper.post(`/modeling-service/v1/projects/${projectId}/releases`);
     }
 
     async import(projectFilePath: string) {
@@ -73,31 +86,13 @@ export class ACMProject implements ProjectApi {
         };
         try {
             const project =  await this.requestApiHelper
-                .post<NodeEntry>(`/v1/projects/import`, requestOptions);
+                .post<NodeEntry>(`/modeling-service/v1/projects/import`, requestOptions);
             Logger.info(`[Project] Project imported with name '${project.entry.name}' and id '${project.entry.id}'.`);
             return project;
         } catch (error) {
             Logger.error(`[Project] Import project failed!`);
             throw error;
         }
-    }
-
-    private async searchProjects() {
-        Logger.info(`[Project] Waiting created project to be ready for listing.`);
-        return await this.requestApiHelper.get<ResultSetPaging>(this.endPoint);
-    }
-
-    private async retrySearchProject(modelId): Promise<{}> {
-        const predicate = (result: ResultSetPaging) => {
-            const foundModel = result.list.entries.find(model => {
-                return model.entry.id === modelId;
-            });
-
-            return !!foundModel;
-        };
-        const apiCall = () => this.searchProjects();
-
-        return await UtilApi.waitForApi(apiCall, predicate);
     }
 
     private getRandomName(): string {

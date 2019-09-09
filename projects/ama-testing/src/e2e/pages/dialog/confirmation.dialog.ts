@@ -17,6 +17,7 @@
 
 import { GenericDialog } from '../common/generic.dialog';
 import { element, by } from 'protractor';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class ConfirmationDialog extends GenericDialog {
 
@@ -32,7 +33,7 @@ export class ConfirmationDialog extends GenericDialog {
     }
 
     async isTitleDisplayed(itemType) {
-        await super.waitForElementToBeVisible(this.titleElement);
+        await BrowserVisibility.waitUntilElementIsVisible(this.titleElement);
         return await this.titleElement.getText() === this.title.replace('ITEM', itemType);
     }
 

@@ -47,7 +47,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
     public getList(containerId: string): Observable<T[]> {
         return this.requestApiHelper
             .get<ModelsResponse<T>>(
-                `/v1/projects/${containerId}/models`,
+                `/modeling-service/v1/projects/${containerId}/models`,
                 { queryParams: { type: this.modelVariation.contentType, maxItems: 1000 } })
             .pipe(
                 map((nodePaging) => {
@@ -61,7 +61,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
     public create(model: Partial<MinimalModelSummary>, containerId: string): Observable<T> {
         return this.requestApiHelper
             .post<ModelResponse<T>>(
-                `/v1/projects/${containerId}/models`,
+                `/modeling-service/v1/projects/${containerId}/models`,
                 { bodyParam: { ...model, type: this.modelVariation.contentType }})
             .pipe(
                 map(response => response.entry),
@@ -81,7 +81,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
     public retrieve(modelId: string, containerId: string, queryParams?: any): Observable<T> {
         return this.requestApiHelper
             .get<ModelResponse<T>>(
-                `/v1/models/${modelId}`,
+                `/modeling-service/v1/models/${modelId}`,
                 {queryParams: queryParams})
             .pipe(
                 map(response => this.createEntity(response.entry, containerId))
@@ -93,7 +93,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
 
         return this.requestApiHelper
             // It is supposed to be a patch, rather than a put. Waiting for BE to implement it...
-            .put<ModelResponse<T>>(`/v1/models/${modelId}`, { bodyParam: summary})
+            .put<ModelResponse<T>>(`/modeling-service/v1/models/${modelId}`, { bodyParam: summary})
             .pipe(
                 concatMap(response => this.updateContent(response.entry, content)),
                 map(updatedEntity => this.createEntity(updatedEntity, containerId))
@@ -109,14 +109,14 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
         };
 
         return this.requestApiHelper
-            .put<void>(`/v1/models/${model.id}/content`, requestOptions)
+            .put<void>(`/modeling-service/v1/models/${model.id}/content`, requestOptions)
             .pipe(map(() => model));
     }
 
 
     public delete(modelId: string): Observable<void> {
         return this.requestApiHelper
-            .delete(`/v1/models/${modelId}`);
+            .delete(`/modeling-service/v1/models/${modelId}`);
     }
 
     public validate(modelId: string, content: S, modelExtensions?: any): Observable<any> {
@@ -126,7 +126,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
         };
 
         return this.requestApiHelper
-            .post(`/v1/models/${modelId}/validate`, requestOptions);
+            .post(`/modeling-service/v1/models/${modelId}/validate`, requestOptions);
     }
 
     public import(file: File, containerId: string): Observable<T> {
@@ -137,14 +137,14 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
         };
 
         return this.requestApiHelper
-            .post<ModelResponse<T>>(`/v1/projects/${containerId}/models/import`, requestOptions)
+            .post<ModelResponse<T>>(`/modeling-service/v1/projects/${containerId}/models/import`, requestOptions)
             .pipe(
                 map(response => this.createEntity(response.entry, containerId))
             );
     }
 
     public export(modelId: string): Observable<S> {
-        return this.requestApiHelper.get<S>(`/v1/models/${modelId}/content`);
+        return this.requestApiHelper.get<S>(`/modeling-service/v1/models/${modelId}/content`);
     }
 
     private createEntity(entity: Partial<T>, containerId: string): T {

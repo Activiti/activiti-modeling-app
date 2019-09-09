@@ -2,7 +2,7 @@
     "$schema": "../node_modules/@alfresco/adf-core/app.config.schema.json",
     "authType": "OAUTH",
     "providers": "BPM",
-    "bpmHost": "http://localhost:4200/api",
+    "bpmHost": "http://localhost:4200",
     "oauth2": {
         "host": "http://localhost:4200/auth",
         "authPath": "/protocol/openid-connect/token/",
@@ -15,6 +15,7 @@
         "redirectUri": "/",
         "redirectUriLogout": "/#/login"
     },
+    "notificationDefaultDuration": "4000",
     "logLevel": "trace",
     "application": {
         "name": "Activiti Modeling Application"

@@ -56,10 +56,10 @@ describe('List connectors', async () => {
     });
 
     beforeAll(async () => {
-        loginPage = LoginPage.get(testConfig);
+        loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
-        await authenticatedPage.isLoggedIn();
+
     });
 
     beforeEach(async() => {

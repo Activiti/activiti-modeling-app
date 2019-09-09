@@ -17,6 +17,7 @@
 
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class ProcessModelerComponent extends GenericPage {
 
@@ -29,12 +30,12 @@ export class ProcessModelerComponent extends GenericPage {
     readonly processStep = element(by.css(`[data-element-id*="ServiceTask"]`));
 
     async isLoaded() {
-        await super.waitForElementToBeVisible(this.processEditorModeler);
+        await BrowserVisibility.waitUntilElementIsVisible(this.processEditorModeler);
         return true;
     }
 
     async isUnloaded() {
-        await super.waitForElementToBeInVisible(this.processEditorModeler);
+        await BrowserVisibility.waitUntilElementIsNotVisible(this.processEditorModeler);
         return true;
     }
 

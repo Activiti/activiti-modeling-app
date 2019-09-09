@@ -23,38 +23,35 @@ import {
     SNACKBAR_INFO,
     SnackbarInfoAction,
     SnackbarWarningAction,
-    SNACKBAR_WARNING } from 'ama-sdk';
-import { MatSnackBar } from '@angular/material';
-import { TranslationService } from '@alfresco/adf-core';
+    SNACKBAR_WARNING
+} from 'ama-sdk';
+import { NotificationService } from '@alfresco/adf-core';
 import { map } from 'rxjs/operators';
 
 @Injectable()
 export class SnackbarEffects {
 
-    constructor(private actions$: Actions, private snackBar: MatSnackBar, private translationService: TranslationService) {}
+    constructor(private actions$: Actions, private notificationService: NotificationService) {
+    }
 
-    @Effect({dispatch: false}) infoEffect = this.actions$.pipe(
+    @Effect({ dispatch: false }) infoEffect = this.actions$.pipe(
         ofType<SnackbarInfoAction>(SNACKBAR_INFO),
         map((action: SnackbarInfoAction) => {
-            this.snackBar.open(this.translate(action.payload), null, { duration: 2000, panelClass: 'info-snackbar' });
+            this.notificationService.showInfo(action.payload);
         })
     );
 
-    @Effect({dispatch: false}) warningEffect = this.actions$.pipe(
+    @Effect({ dispatch: false }) warningEffect = this.actions$.pipe(
         ofType<SnackbarWarningAction>(SNACKBAR_WARNING),
         map((action: SnackbarWarningAction) => {
-            this.snackBar.open(this.translate(action.payload), null, { duration: 2000, panelClass: 'warning-snackbar' });
+            this.notificationService.showWarning(action.payload);
         })
     );
 
-    @Effect({dispatch: false}) errorEffect = this.actions$.pipe(
+    @Effect({ dispatch: false }) errorEffect = this.actions$.pipe(
         ofType<SnackbarErrorAction>(SNACKBAR_ERROR),
         map((action: SnackbarErrorAction) => {
-            this.snackBar.open(this.translate(action.payload), null, { duration: 2000, panelClass: 'error-snackbar' });
+            this.notificationService.showError(action.payload);
         })
     );
-
-    private translate(message: string): string {
-        return this.translationService.instant(message);
-    }
 }

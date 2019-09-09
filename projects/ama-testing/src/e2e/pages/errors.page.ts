@@ -18,6 +18,7 @@
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class ErrorsPage extends GenericPage {
 
@@ -28,6 +29,6 @@ export class ErrorsPage extends GenericPage {
     }
 
     async isUnauthorised() {
-        return await super.waitForElementToBeVisible(this.amaUnauthorisedPage);
+        return await BrowserVisibility.waitUntilElementIsVisible(this.amaUnauthorisedPage);
     }
 }

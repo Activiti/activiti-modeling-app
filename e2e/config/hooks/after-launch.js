@@ -1,10 +1,9 @@
 const argv = require('yargs').argv;
 const uploadOutput = require('../utils/upload-output');
-const failFast = require('protractor-fail-fast');
+const retry = require('protractor-retry').retry;
 
 const FOLDER = process.env.FOLDER || '',
-    SAVE_SCREENSHOT = process.env.SAVE_SCREENSHOT === 'true',
-    FAIL_FAST = process.env.E2E_FAIL_FAST === 'true';
+    SAVE_SCREENSHOT = process.env.SAVE_SCREENSHOT === 'true';
 
 async function afterLaunch(statusCode) {
 
@@ -20,13 +19,12 @@ async function afterLaunch(statusCode) {
             console.log('Screenshots saved successfully.');
         } catch (e) {
             console.log('Error happened while trying to upload screenshots and test reports.');
-            throw e;
         }
     } else {
         console.log(`Status code is ${statusCode}, no need to save screenshots.`);
     }
 
-    FAIL_FAST && failFast.clean();
+    return retry.afterLaunch(4);
 }
 
 module.exports = afterLaunch;

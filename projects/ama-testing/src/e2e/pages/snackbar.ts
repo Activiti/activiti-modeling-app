@@ -17,6 +17,7 @@
 
 import { GenericWebElement } from './common/generic.webelement';
 import { element, by } from 'protractor';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class SnackBar extends GenericWebElement {
 
@@ -28,7 +29,7 @@ export class SnackBar extends GenericWebElement {
 
     async isOperationSuccessful(operationMessage: string, itemType: string) {
         const itemCreated = element(by.cssContainingText(`simple-snack-bar>span`, operationMessage.replace('ITEM', itemType)));
-        return await super.waitForElementToBeVisible(itemCreated);
+        return await BrowserVisibility.waitUntilElementIsVisible(itemCreated);
     }
 
     async isCreatedSuccessfully(itemType: string) {
@@ -52,6 +53,6 @@ export class SnackBar extends GenericWebElement {
     }
 
     async isSnackBarNotDisplayed() {
-        return await this.waitForElementToBeInVisible(element(by.css(`simple-snack-bar`)));
+        return await BrowserVisibility.waitUntilElementIsNotVisible(element(by.css(`simple-snack-bar`)));
     }
 }

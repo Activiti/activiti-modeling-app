@@ -24,7 +24,7 @@
             "ama-testing/*": ["projects/ama-testing/src/*"]
         }
     },
-    "exclude": ["node_modules"],
+    "exclude": ["node_modules", ],
     "angularCompilerOptions": {
         "preserveWhitespaces": false
     }

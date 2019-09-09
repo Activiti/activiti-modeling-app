@@ -46,10 +46,10 @@ describe('Create project', () => {
     });
 
     beforeEach(async () => {
-        loginPage = LoginPage.get(testConfig);
+        loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
-        await authenticatedPage.isLoggedIn();
+
     });
 
     it('1. [C284637] Create new project', async () => {

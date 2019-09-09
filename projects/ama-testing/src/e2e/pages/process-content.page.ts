@@ -18,6 +18,7 @@
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class ProcessContentPage extends GenericPage {
 
@@ -40,12 +41,12 @@ export class ProcessContentPage extends GenericPage {
     }
 
     async isLoaded() {
-        await super.waitForElementToBeVisible(this.processEditorModeling);
+        await BrowserVisibility.waitUntilElementIsVisible(this.processEditorModeling);
         return true;
     }
 
     async isUnloaded() {
-        await super.waitForElementToBeInVisible(this.processEditorModeling);
+        await BrowserVisibility.waitUntilElementIsNotVisible(this.processEditorModeling);
         return true;
     }
 

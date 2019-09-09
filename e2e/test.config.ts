@@ -15,10 +15,6 @@
  * limitations under the License.
  */
 
-import * as appConfigJson from '../src/app.config.json';
 import { getConfig } from 'ama-testing/e2e';
-const apsConfigJson = <any>appConfigJson;
-require('dotenv').config();
-const env = process.env;
 
-export const testConfig = getConfig(__dirname, apsConfigJson, env.E2E_HOST, env.E2E_PORT);
+export const testConfig = getConfig(__dirname);

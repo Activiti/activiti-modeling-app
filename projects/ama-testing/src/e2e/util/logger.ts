@@ -15,6 +15,10 @@
  * limitations under the License.
  */
 
+require('dotenv').config({ path: process.env.ENV_FILE });
+
+const LOG_ON = process.env.LOG;
+
 const infoColor = '\x1b[36m%s\x1b[0m',
     logColor = '\x1b[35m%s\x1b[0m',
     warnColor = '\x1b[33m%s\x1b[0m',
@@ -22,16 +26,25 @@ const infoColor = '\x1b[36m%s\x1b[0m',
 
 /* tslint:disable:no-console */
 export class Logger {
-    static info(...messages): void  {
-        console.log(infoColor, messages.join(''));
+    static info(...messages): void {
+        if (LOG_ON) {
+            console.log(infoColor, messages.join(''));
+        }
     }
-    static log(...messages): void  {
-        console.log(logColor, messages.join(''));
+
+    static log(...messages): void {
+        if (LOG_ON) {
+            console.log(logColor, messages.join(''));
+        }
     }
-    static warn(...messages): void  {
-        console.log(warnColor, messages.join(''));
+
+    static warn(...messages): void {
+        if (LOG_ON) {
+            console.log(warnColor, messages.join(''));
+        }
     }
-    static error(...messages): void  {
+
+    static error(...messages): void {
         console.log(errorColor, messages.join(''));
     }
 }

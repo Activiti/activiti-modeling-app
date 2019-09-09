@@ -16,16 +16,16 @@
  */
 
 import { browser, ElementFinder, protractor } from 'protractor';
-import { Logger } from '../../util/logger';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class GenericWebElement {
 
-    private EC = protractor.ExpectedConditions;
-    constructor(private readonly TIMEOUT_MS: number = 20000 ) {}
+    constructor() {
+    }
 
     public async click(elem: ElementFinder) {
         try {
-            await this.waitForElementToBeClickable(elem);
+            await BrowserVisibility.waitUntilElementIsClickable(elem);
             await elem.click();
         } catch (clickErr) {
             try {
@@ -50,96 +50,34 @@ export class GenericWebElement {
     }
 
     protected async sendKeysIfVisible(elem: ElementFinder, text: string) {
-        await this.waitForElementToBeVisible(elem);
+        await BrowserVisibility.waitUntilElementIsVisible(elem);
         await elem.sendKeys(text);
     }
 
     protected async sendKeysIfPresent(elem: ElementFinder, text: string) {
-        await this.waitForElementToBePresent(elem);
+        await BrowserVisibility.waitUntilElementIsPresent(elem);
         await elem.sendKeys(text);
-    }
-
-    protected async waitForElementToBeClickable(elem: ElementFinder, maxWaitTimeInMs = this.TIMEOUT_MS) {
-        try {
-            await browser.wait(this.EC.elementToBeClickable(elem), maxWaitTimeInMs);
-        } catch (error) {
-            const elementLocator = elem.locator();
-            Logger.error(`Element '${elementLocator}' is not clickable. \n`, error);
-            throw error;
-        }
-    }
-
-    protected async waitForElementToBeVisible(elem: ElementFinder, maxWaitTimeInMs = this.TIMEOUT_MS) {
-        try {
-            return await browser.wait(this.EC.visibilityOf(elem), maxWaitTimeInMs);
-        } catch (error) {
-            const elementLocator = elem.locator();
-            Logger.error(`Element '${elementLocator}' is not visible. \n`, error);
-            throw error;
-        }
-    }
-
-    protected async waitForElementToBeInVisible(elem: ElementFinder, maxWaitTimeInMs = this.TIMEOUT_MS) {
-        try {
-            return await browser.wait(this.EC.invisibilityOf(elem), maxWaitTimeInMs);
-        } catch (error) {
-            const elementLocator = elem.locator();
-            Logger.error(`Element '${elementLocator}' is still visible. \n`, error);
-            throw error;
-        }
-    }
-
-    protected async waitForElementToBePresent(elem: ElementFinder, maxWaitTimeInMs = this.TIMEOUT_MS) {
-        try {
-            return await browser.wait(this.EC.presenceOf(elem), maxWaitTimeInMs);
-        } catch (error) {
-            const elementLocator = elem.locator();
-            Logger.error(`Element '${elementLocator}' is not present. \n`, error);
-            throw error;
-        }
-    }
-
-    protected async waitForElementToBeNotPresent(elem: ElementFinder, maxWaitTimeInMs = this.TIMEOUT_MS) {
-        try {
-            return await browser.wait(this.EC.not(this.EC.presenceOf(elem)), maxWaitTimeInMs);
-        } catch (error) {
-            const elementLocator = elem.locator();
-            Logger.error(`Element '${elementLocator}' is present. \n`, error);
-            throw error;
-        }
-    }
-
-    protected async waitTextToBePresentInElement(elem: ElementFinder, text: string, maxWaitTimeInMs = this.TIMEOUT_MS) {
-        try {
-            return await browser.wait(this.EC.textToBePresentInElement(elem, text), maxWaitTimeInMs);
-        } catch (error) {
-            const elementLocator = elem.locator();
-            Logger.error(`Text '${text}' is not present in Element '${elementLocator}'. \n`, error);
-            throw error;
-        }
     }
 
     protected async dragAndDrop(elementToDrag: ElementFinder, locationToDragTo: ElementFinder) {
         await this.click(elementToDrag);
-        await browser.actions().
-            mouseDown(elementToDrag).
-            mouseMove(locationToDragTo, {x: 230, y: 280}).
-            mouseUp().perform();
+        await browser.actions().mouseDown(elementToDrag).mouseMove(locationToDragTo, {
+            x: 230,
+            y: 280
+        }).mouseUp().perform();
         await browser.actions().doubleClick(locationToDragTo).perform();
     }
 
     async dragAndDropNotClickableElement(elementToDrag: ElementFinder, locationToDragTo: ElementFinder) {
-        await browser.actions().mouseMove( elementToDrag ).perform();
-        await browser.actions().mouseDown( elementToDrag ).perform();
-        await browser.actions().mouseMove( {x: 10, y: 100 } ).perform();
-        await browser.actions().mouseMove( locationToDragTo ).perform();
+        await browser.actions().mouseMove(elementToDrag).perform();
+        await browser.actions().mouseDown(elementToDrag).perform();
+        await browser.actions().mouseMove({ x: 10, y: 100 }).perform();
+        await browser.actions().mouseMove(locationToDragTo).perform();
         return browser.actions().mouseUp().perform();
     }
 
     protected async dropElement(locationToDragTo: ElementFinder) {
-        await browser.actions().
-            mouseDown(locationToDragTo).
-            perform();
+        await browser.actions().mouseDown(locationToDragTo).perform();
     }
 
 }

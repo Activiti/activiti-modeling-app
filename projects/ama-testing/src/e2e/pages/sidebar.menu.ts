@@ -17,6 +17,7 @@
 
 import { GenericWebElement } from './common/generic.webelement';
 import { element, by } from 'protractor';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class SidebarActionMenu extends GenericWebElement {
 
@@ -28,11 +29,11 @@ export class SidebarActionMenu extends GenericWebElement {
     readonly backDrop = element(by.css(`.cdk-overlay-container > .cdk-overlay-backdrop:first-child`));
 
     async isActionMenuDisplayed() {
-        await super.waitForElementToBeVisible(this.actionMenu);
+        await BrowserVisibility.waitUntilElementIsVisible(this.actionMenu);
     }
 
     async isOptionsMenuDismissed() {
-        await super.waitForElementToBeInVisible(this.menuOptions);
+        await BrowserVisibility.waitUntilElementIsNotVisible(this.menuOptions);
     }
 
     async clickOnCreateButton() {

@@ -43,7 +43,7 @@
             "name": "E2Es",
             "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
             "args": [
-                "${workspaceFolder}/e2e/protractor.conf.js"
+                "${workspaceFolder}/e2e/protractor.conf.ts"
             ],
             "console": "integratedTerminal",
             "sourceMaps": true,
@@ -60,7 +60,7 @@
             "name": "E2E",
             "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
             "args": [
-                "${workspaceFolder}/e2e/protractor.conf.js",
+                "${workspaceFolder}/e2e/protractor.conf.ts",
                 "--specs=${file}"
             ],
             "console": "integratedTerminal",

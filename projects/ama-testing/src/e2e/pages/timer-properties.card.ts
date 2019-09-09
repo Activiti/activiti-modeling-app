@@ -17,6 +17,7 @@
 
 import { element, by } from 'protractor';
  import {ProcessPropertiesCard} from './process-properties.card';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class TimerPropertiesCard extends ProcessPropertiesCard {
 
@@ -30,15 +31,15 @@ export class TimerPropertiesCard extends ProcessPropertiesCard {
     }
 
     async cyclePropertiesAreDisplayed() {
-        return super.waitForElementToBeVisible(this.timerCycle);
+        return BrowserVisibility.waitUntilElementIsVisible(this.timerCycle);
     }
 
     async datePropertiesAreDisplayed() {
-        return super.waitForElementToBeVisible(this.timerDate);
+        return BrowserVisibility.waitUntilElementIsVisible(this.timerDate);
     }
 
     async durationPropertiesAreDisplayed() {
-        return super.waitForElementToBeVisible(this.timerDuration);
+        return BrowserVisibility.waitUntilElementIsVisible(this.timerDuration);
     }
 
 }

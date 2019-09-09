@@ -18,6 +18,7 @@
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class ProjectContentPage extends GenericPage {
 
@@ -37,7 +38,7 @@ export class ProjectContentPage extends GenericPage {
 
     async isModelNotInList(modelType: string, modelId: string) {
         const modelRow = element(by.css(`[data-automation-id="${modelType}-${modelId}"]`));
-        return await super.waitForElementToBeInVisible(modelRow);
+        return await BrowserVisibility.waitUntilElementIsNotVisible(modelRow);
     }
 
     async clickOnModel(modelType: string, modelId: string) {
@@ -54,7 +55,7 @@ export class ProjectContentPage extends GenericPage {
     async openFilter(modelType: string) {
         const filterCss = `[data-automation-id="project-filter-${modelType}"]`;
         const spinner = element(by.css(`${filterCss} mat-spinner`));
-        await super.waitForElementToBeInVisible(spinner);
+        await BrowserVisibility.waitUntilElementIsNotVisible(spinner);
         await super.click(element(by.css(filterCss)));
     }
 
@@ -96,6 +97,6 @@ export class ProjectContentPage extends GenericPage {
         const containerSelector = `[data-automation-id="project-filter-${modelType}-container"]`,
         model = element(by.cssContainingText(containerSelector, searchedItem));
 
-        return await super.waitForElementToBeVisible(model);
+        return await BrowserVisibility.waitUntilElementIsVisible(model);
     }
 }

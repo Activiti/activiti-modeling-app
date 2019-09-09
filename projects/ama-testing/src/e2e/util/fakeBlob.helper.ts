@@ -16,9 +16,16 @@
  */
 
 import * as fs from 'fs';
+import { Logger } from 'ama-testing/e2e/util/index';
 
 export function getBlob(tmpPath: string, fileName: string, fileContent: string) {
     const filePath = `${tmpPath}/${fileName}`;
+
+    Logger.info(`Write file in ${filePath}`);
+
     fs.writeFileSync(filePath, fileContent);
+
+    Logger.info(`File present ${filePath}`);
+
     return fs.createReadStream(filePath);
 }

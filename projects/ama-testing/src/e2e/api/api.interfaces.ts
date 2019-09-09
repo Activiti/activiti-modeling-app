@@ -34,6 +34,7 @@ export interface ProjectApi {
     delete(projectId?: string): Promise<void>;
     release(projectId?: string): Promise<AlfrescoApi.NodeEntry>;
     get(projectId?: string): Promise<AlfrescoApi.NodeEntry>;
+    getDecisionTableId(projectId: string, decisionTableName: string): Promise<string>;
     import(projectZipFile: string): Promise<AlfrescoApi.NodeEntry>;
 }
 

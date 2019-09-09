@@ -32,7 +32,7 @@ xdescribe('Application sanity check with Login and Logout', () => {
         Logger.info('Jasmine DEFAULT TIMEOUT: ', originalTimeout);
         jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000;
         Logger.info('Jasmine UPDATED TIMEOUT: ', jasmine.DEFAULT_TIMEOUT_INTERVAL);
-        loginPage = LoginPage.get(testConfig);
+        loginPage = LoginPage.get();
         await loginPage.navigateTo();
     });
 

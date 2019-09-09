@@ -44,10 +44,10 @@ describe('Boundary Timer - Non-Interrupting', async () => {
         backend = await getBackend(testConfig).setUp();
         project = await backend.project.createAndWaitUntilAvailable();
 
-        loginPage = LoginPage.get(testConfig);
+        loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
-        await authenticatedPage.isLoggedIn();
+
     });
 
     it('[C311484] Create process with Start Timer - Cycle', async () => {

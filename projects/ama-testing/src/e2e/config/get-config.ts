@@ -16,13 +16,16 @@
  */
 
 import { TestConfig } from './test.config.interface';
-require('dotenv').config();
+
+require('dotenv').config({ path: process.env.ENV_FILE });
 
 const env = process.env;
 const path = require('path');
 
+const E2E_HOST = process.env.E2E_HOST || 'localhost',
+    E2E_PORT = process.env.E2E_PORT;
 
-export function getConfig(rootPath: string, apsConfig, url = 'http://localhost', port = '4200'): TestConfig {
+export function getConfig(rootPath: string = __dirname): TestConfig {
     const outputDir = path.join(rootPath, '/../e2e-output');
     return {
         main: {
@@ -45,18 +48,26 @@ export function getConfig(rootPath: string, apsConfig, url = 'http://localhost',
             }
         },
         ama: {
-            url,
-            port,
+            url: `${E2E_HOST}${E2E_PORT ? `:${E2E_PORT}` : ''  }`,
             backendConfig: {
-                authType: apsConfig.authType,
-                oauth2: apsConfig.oauth2,
-                bpmHost: apsConfig.bpmHost
+                authType: 'OAUTH',
+                oauth2: {
+                    host: process.env.OAUTH_HOST,
+                    clientId: process.env.OAUTH_CLIENDID || 'alfresco',
+                    scope: 'openid',
+                    secret: '',
+                    implicitFlow: true,
+                    silentLogin: true,
+                    redirectUri: '/',
+                    redirectUriLogout: '/logout'
+                },
+                bpmHost: process.env.API_HOST
             },
             user: env.E2E_USERNAME,
             password: env.E2E_PASSWORD,
             unauthorized_user: env.E2E_UNAUTHORIZED_USER,
             unauthorized_user_password: env.E2E_UNAUTHORIZED_USER_PASSWORD,
-            appTitle: apsConfig.application.name
+            appTitle: 'AMA'
         }
     };
 }

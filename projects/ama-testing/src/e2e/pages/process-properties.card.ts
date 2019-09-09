@@ -18,6 +18,7 @@
 import { element, by, browser } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { Logger } from '../util';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class ProcessPropertiesCard extends GenericPage {
 
@@ -46,7 +47,7 @@ export class ProcessPropertiesCard extends GenericPage {
     readonly processVariableSelector = element(by.css(`[data-automation-id="process-variable-selector"]`));
 
     async isLoaded() {
-        await super.waitForElementToBeVisible(this.editorProperties);
+        await BrowserVisibility.waitUntilElementIsVisible(this.editorProperties);
         return true;
     }
 
@@ -100,7 +101,7 @@ export class ProcessPropertiesCard extends GenericPage {
         // Click on DT selectbox until the list of decision tables is populated.
         let i = 0;
         try {
-            while (await super.waitForElementToBeInVisible(dtOption, 500) && i < 10) {
+            while (await BrowserVisibility.waitUntilElementIsNotVisible(dtOption, 500) && i < 10) {
                 Logger.info('Click ', ++i, ' on DT selectbox.');
                 await super.click(this.decisionTableSelector);
             }
@@ -136,7 +137,7 @@ export class ProcessPropertiesCard extends GenericPage {
     async selectVariable(variableName: string) {
         const processVariable = element(by.cssContainingText('.mat-option-text', variableName));
 
-        await super.waitForElementToBeVisible(processVariable);
+        await BrowserVisibility.waitUntilElementIsVisible(processVariable);
         await super.click(processVariable);
     }
 
@@ -151,42 +152,42 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async isInputMappingHeaderDisplayed() {
-        await super.waitForElementToBeVisible(this.inputMappingHeader);
+        await BrowserVisibility.waitUntilElementIsVisible(this.inputMappingHeader);
         return true;
     }
 
     async isMappingTableHeaderDisplayed() {
-        await super.waitForElementToBeVisible(this.mappingHeaderCellName);
-        await super.waitForElementToBeVisible(this.mappingHeaderCellProcessVariable);
+        await BrowserVisibility.waitUntilElementIsVisible(this.mappingHeaderCellName);
+        await BrowserVisibility.waitUntilElementIsVisible(this.mappingHeaderCellProcessVariable);
         return true;
     }
 
     async isOutputMappingHeaderDisplayed() {
-        await super.waitForElementToBeVisible(this.outputMappingHeader);
+        await BrowserVisibility.waitUntilElementIsVisible(this.outputMappingHeader);
         return true;
     }
 
     async isNoProcessPropertiesMsg(connectorId: string) {
         const noPropertiesMsg = element(by.css(`[data-automation-id="param-id-${connectorId}"]+mat-cell>.no-process-properties-msg`));
-        await super.waitForElementToBeVisible(noPropertiesMsg);
+        await BrowserVisibility.waitUntilElementIsVisible(noPropertiesMsg);
         return true;
     }
 
     async getConnectorParam(connectorId: string) {
         const connectorParam = element(by.css(`[data-automation-id="param-id-${connectorId}"]>span`));
-        await super.waitForElementToBeVisible(connectorParam);
+        await BrowserVisibility.waitUntilElementIsVisible(connectorParam);
         return await connectorParam.getText();
     }
 
     async isToggleEnabled(connectorId: string) {
         const toggleIcon = element(by.cssContainingText(`[data-automation-id="toggle-icon-${connectorId}"]`, `layers`));
-        await super.waitForElementToBeVisible(toggleIcon);
+        await BrowserVisibility.waitUntilElementIsVisible(toggleIcon);
         return true;
     }
 
     async isToggleDisabled(connectorId: string) {
         const toggleIcon = element(by.cssContainingText(`[data-automation-id="toggle-icon-${connectorId}"]`, `layers_clear`));
-        await super.waitForElementToBeVisible(toggleIcon);
+        await BrowserVisibility.waitUntilElementIsVisible(toggleIcon);
         return true;
     }
 
@@ -202,30 +203,30 @@ export class ProcessPropertiesCard extends GenericPage {
 
     async getValue(connectorId: string) {
         const valueInput = element(by.css(`[data-automation-id="value-input-${connectorId}"]`));
-        await super.waitForElementToBeVisible(valueInput);
+        await BrowserVisibility.waitUntilElementIsVisible(valueInput);
         return await valueInput.getAttribute('value');
     }
 
     async isValueInputVisible(connectorId: string) {
         const valueInput = element(by.css(`[data-automation-id="value-input-${connectorId}"]`));
-        await super.waitForElementToBeVisible(valueInput);
+        await BrowserVisibility.waitUntilElementIsVisible(valueInput);
         return true;
     }
 
     async isVariableSelectorVisible(connectorId: string) {
         const valueInput = element(by.css(`[data-automation-id="variable-selector-${connectorId}"]`));
-        await super.waitForElementToBeVisible(valueInput);
+        await BrowserVisibility.waitUntilElementIsVisible(valueInput);
         return true;
     }
 
     async getProcessVariable(connectorId: string) {
         const variable = element(by.css(`[data-automation-id="variable-selector-${connectorId}"] span span`));
-        await super.waitForElementToBeVisible(variable);
+        await BrowserVisibility.waitUntilElementIsVisible(variable);
         return await variable.getText();
     }
 
     async isEditVariablesButtonIconDisplayed() {
-        await super.waitForElementToBeVisible(this.editVariablesIcon);
+        await BrowserVisibility.waitUntilElementIsVisible(this.editVariablesIcon);
         return true;
     }
 }

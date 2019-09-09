@@ -20,11 +20,10 @@ import { LoginAPSPage } from './login-aps.page';
 export interface LoginPageImplementation {
     login(username: string, password: string): Promise<void>;
     navigateTo(): Promise<void>;
-    isLoginPageDisplayed(): Promise<{}>;
 }
 
 export class LoginPage {
-    static get(testConfig): LoginPageImplementation {
-        return new LoginAPSPage(testConfig);
+    static get(): LoginPageImplementation {
+        return new LoginAPSPage();
     }
 }

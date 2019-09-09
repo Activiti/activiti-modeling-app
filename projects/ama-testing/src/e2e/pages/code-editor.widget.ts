@@ -18,13 +18,14 @@
 import { element, by, browser, protractor } from 'protractor';
 import { Logger } from '../util/logger';
 import { GenericWebElement } from './common/generic.webelement';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class CodeEditorWidget extends GenericWebElement {
 
     readonly codeEditorTextArea = element(by.css(`.monaco-editor textarea`));
 
     async isTextEditorPresent() {
-        await super.waitForElementToBeVisible(this.codeEditorTextArea);
+        await BrowserVisibility.waitUntilElementIsVisible(this.codeEditorTextArea);
     }
 
     async updateCodeEditorContent(content: string) {

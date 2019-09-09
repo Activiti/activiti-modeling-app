@@ -17,6 +17,7 @@
 
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class Pagination extends GenericPage {
 
@@ -34,13 +35,7 @@ export class Pagination extends GenericPage {
     }
 
     async isOnLastPage() {
-        await super.waitForElementToBePresent(this.nextPage);
+        await BrowserVisibility.waitUntilElementIsPresent(this.nextPage);
         return await this.nextPage.getAttribute('disabled');
-    }
-
-    async goToNextPage() {
-        if (await this.isOnLastPage() == null) {
-            super.click(this.nextPage);
-        }
     }
 }

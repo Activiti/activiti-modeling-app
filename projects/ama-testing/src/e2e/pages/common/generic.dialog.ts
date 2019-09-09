@@ -17,10 +17,11 @@
 
 import { GenericWebElement } from './generic.webelement';
 import { element, by } from 'protractor';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class GenericDialog extends GenericWebElement {
 
-    readonly dialog = element(by.css(`.mat-dialog-container`));
+    readonly dialog = element.all(by.css(`.mat-dialog-container`)).first();
     readonly titleElement = element(by.css(`.mat-dialog-title`));
     readonly cancelButton = element(by.css(`[data-automation-id="dialog-close"]`));
 
@@ -32,15 +33,15 @@ export class GenericDialog extends GenericWebElement {
     }
 
     async isDialogDisplayed() {
-        await super.waitForElementToBeVisible(this.dialog);
+        await BrowserVisibility.waitUntilElementIsVisible(this.dialog);
     }
 
     async isDialogDismissed() {
-        await super.waitForElementToBeInVisible(this.dialog);
+        await BrowserVisibility.waitUntilElementIsNotVisible(this.dialog);
     }
 
     async isTitleDisplayed(itemType?: string) {
-        await super.waitForElementToBeVisible(this.titleElement);
+        await BrowserVisibility.waitUntilElementIsVisible(this.titleElement);
         return await this.titleElement.getText() === this.title.replace('ITEM', itemType);
     }
 

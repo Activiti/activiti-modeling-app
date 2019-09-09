@@ -18,6 +18,7 @@
 import { element, by, browser } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config/test.config.interface';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class ConnectorContentPage extends GenericPage {
 
@@ -38,12 +39,12 @@ export class ConnectorContentPage extends GenericPage {
     }
 
     async isLoaded() {
-        await super.waitForElementToBeVisible(this.connectorEditorModeling);
+        await BrowserVisibility.waitUntilElementIsVisible(this.connectorEditorModeling);
         return true;
     }
 
     async isUnloaded() {
-        await super.waitForElementToBeInVisible(this.connectorEditorModeling);
+        await BrowserVisibility.waitUntilElementIsNotVisible(this.connectorEditorModeling);
         return true;
     }
 
@@ -57,7 +58,7 @@ export class ConnectorContentPage extends GenericPage {
     }
 
     async save() {
-        await super.waitForElementToBeInVisible(this.disabledSaveButton);
+        await BrowserVisibility.waitUntilElementIsNotVisible(this.disabledSaveButton);
         browser.actions().mouseMove(this.connectorEditorSaveButton).perform();
         await super.click(this.connectorEditorSaveButton);
     }

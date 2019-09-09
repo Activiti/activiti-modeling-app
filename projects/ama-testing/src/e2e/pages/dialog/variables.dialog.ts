@@ -18,6 +18,7 @@
 import { element, by } from 'protractor';
 import { GenericDialog } from '../common/generic.dialog';
 import { Calendar } from '../calendar';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class VariablesDialog extends GenericDialog {
 
@@ -40,12 +41,12 @@ export class VariablesDialog extends GenericDialog {
     readonly calendar = new Calendar();
 
     async isLoaded() {
-        await super.waitForElementToBeVisible(this.variablesDialog);
+        await BrowserVisibility.waitUntilElementIsVisible(this.variablesDialog);
         return true;
     }
 
     async isTitleIconDisplayed() {
-        await super.waitForElementToBeVisible(this.variablesDialogTitleIcon);
+        await BrowserVisibility.waitUntilElementIsVisible(this.variablesDialogTitleIcon);
         return true;
     }
 
@@ -111,14 +112,14 @@ export class VariablesDialog extends GenericDialog {
         const variableRow = `[data-automation-id*="variable-row-${rowIndex}"]`;
 
         const nameCell = element(by.css(`${variableRow}>[data-automation-id="variable-name-cell-${name}"]`));
-        await super.waitForElementToBeVisible(nameCell);
+        await BrowserVisibility.waitUntilElementIsVisible(nameCell);
 
         const typeCell = element(by.css(`${variableRow}>[data-automation-id="variable-type-cell-${type}"]`));
-        await super.waitForElementToBeVisible(typeCell);
+        await BrowserVisibility.waitUntilElementIsVisible(typeCell);
 
         if (required !== null && typeof required !== 'undefined') {
             const requiredCell = element(by.css(`${variableRow}>[data-automation-id="variable-required-cell-${required}"]`));
-            await super.waitForElementToBeVisible(requiredCell);
+            await BrowserVisibility.waitUntilElementIsVisible(requiredCell);
         }
 
         if ( type !== 'string' && value === '' ) {
@@ -126,7 +127,7 @@ export class VariablesDialog extends GenericDialog {
         } else {
             valueCell = element(by.css(`${variableRow}>[data-automation-id="variable-value-cell-${value}"]`));
         }
-        await super.waitForElementToBeVisible(valueCell);
+        await BrowserVisibility.waitUntilElementIsVisible(valueCell);
 
         return true;
     }

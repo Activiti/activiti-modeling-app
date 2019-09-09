@@ -17,15 +17,16 @@
 
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class LogHistoryPage extends GenericPage {
 
     readonly messageIndicator = element(by.css(`.message-indicator`));
     readonly messageIndicatorInactive = element(by.css(`div[class='message-indicator inactive']`));
     readonly logIcon = element(by.css(`div[class='log-meta'] mat-icon`));
-    readonly logInitiator = element(by.css(`div[class='log-meta'] span[class='log-initiator']`));
+    readonly logInitiator = element.all(by.css(`div[class='log-meta'] span[class='log-initiator']`)).first();
     readonly logDateTime = element(by.css(`div[class='log-meta'] span[class='log-datetime']`));
-    readonly logLevel = element(by.css(`div[class='log-meta'] span[class='log-level']`));
+    readonly logLevel = element.all(by.css(`div[class='log-meta'] span[class='log-level']`)).first();
     readonly logContent = element(by.css(`div[class='log-content'] div`));
     readonly logSection = element(by.css(`ama-log-history section`));
     readonly logEntry = element(by.css(`ama-log-history-entry`));
@@ -41,7 +42,7 @@ export class LogHistoryPage extends GenericPage {
 
     async isLogSectionDisplayed() {
         try {
-            return await super.waitForElementToBeVisible(this.logSection);
+            return await BrowserVisibility.waitUntilElementIsVisible(this.logSection);
         } catch (error) {
             return false;
         }
@@ -49,7 +50,7 @@ export class LogHistoryPage extends GenericPage {
 
     async isLogSectionNotDisplayed() {
         try {
-            return await super.waitForElementToBeInVisible(this.logSection);
+            return await BrowserVisibility.waitUntilElementIsNotVisible(this.logSection);
         } catch (error) {
             return false;
         }
@@ -61,11 +62,11 @@ export class LogHistoryPage extends GenericPage {
 
     async clickMessageIndicator() {
         await super.click(this.messageIndicator);
-        await super.waitForElementToBeVisible(this.logSection);
+        await BrowserVisibility.waitUntilElementIsVisible(this.logSection);
     }
 
     async getInitiator() {
-        await super.waitForElementToBeVisible(this.logInitiator);
+        await BrowserVisibility.waitUntilElementIsVisible(this.logInitiator);
         return await this.logInitiator.getText();
     }
 
@@ -83,7 +84,7 @@ export class LogHistoryPage extends GenericPage {
 
     async isLogHistoryEmpty() {
         try {
-            return await super.waitForElementToBeInVisible(this.logEntry);
+            return await BrowserVisibility.waitUntilElementIsNotVisible(this.logEntry);
         } catch (error) {
             return false;
         }
@@ -91,7 +92,7 @@ export class LogHistoryPage extends GenericPage {
 
     async isLogHistoryNotEmpty() {
         try {
-            return await super.waitForElementToBeVisible(this.logEntry);
+            return await BrowserVisibility.waitUntilElementIsVisible(this.logEntry);
         } catch (error) {
             return false;
         }

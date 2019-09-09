@@ -18,6 +18,7 @@
 import { GenericWebElement } from 'ama-testing/e2e';
 import { browser, element, by } from 'protractor';
 import { testConfig } from '../test.config';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 
 export class HeaderToolbar extends GenericWebElement {
@@ -32,13 +33,13 @@ export class HeaderToolbar extends GenericWebElement {
     }
 
     async isAppTitleDisplayed() {
-        await super.waitForElementToBeVisible(this.appTitle);
+        await BrowserVisibility.waitUntilElementIsVisible(this.appTitle);
         await browser.refresh();
     }
 
     async clickOnUserAvatar() {
         await this.click(this.userAvatar);
-        await this.waitForElementToBeVisible(this.userMenu);
+        await BrowserVisibility.waitUntilElementIsVisible(this.userMenu);
     }
 
     async goToSettings() {

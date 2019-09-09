@@ -47,10 +47,10 @@ export abstract class ACMCrud implements ModelCrud {
         const requestOptions: E2eRequestApiHelperOptions = {
             queryParams: { type: 'PROCESS' },
             formParams: { file: fileContent },
-            contentTypes: [ 'multipart/form-data' ]
+            contentTypes: ['multipart/form-data']
         };
         try {
-            const process =  await this.requestApiHelper
+            const process = await this.requestApiHelper
                 .post<NodeEntry>(`${this.endPoint(projectId)}/import`, requestOptions);
             Logger.info(`[Process] Process imported with name '${process.entry.name}' and id '${process.entry.id}'.`);
             return process;
@@ -61,7 +61,7 @@ export abstract class ACMCrud implements ModelCrud {
     }
 
     getContent(entityId: string) {
-        return this.requestApiHelper.get(`/v1/models/${entityId}/content`, { returnType: 'Binary' });
+        return this.requestApiHelper.get(`/modeling-service/v1/models/${entityId}/content`, { returnType: 'Binary' });
     }
 
     async create(
@@ -70,12 +70,12 @@ export abstract class ACMCrud implements ModelCrud {
     ): Promise<NodeEntry> {
         try {
             const model = await this.requestApiHelper
-            .post<NodeEntry>(this.endPoint(projectId), {
-                bodyParam: {
-                    name: modelName,
-                    type: this.type
-                }
-            });
+                .post<NodeEntry>(this.endPoint(projectId), {
+                    bodyParam: {
+                        name: modelName,
+                        type: this.type
+                    }
+                });
             Logger.info(`[${this.displayName}] New model has been created with name: ${model.entry.name} and id: ${model.entry.id}.`);
 
             await this.updateModelContent(model.entry.id, this.getDefaultContent(modelName, model.entry.id), modelName);
@@ -103,7 +103,7 @@ export abstract class ACMCrud implements ModelCrud {
 
     async searchModels(projectId: string, modelType: string) {
         Logger.info(`[${this.displayName}] Waiting created model to be ready for listing.`);
-        return await this.requestApiHelper.get<ResultSetPaging>(this.endPoint(projectId),  {queryParams: {'type': modelType}});
+        return await this.requestApiHelper.get<ResultSetPaging>(this.endPoint(projectId), { queryParams: { 'type': modelType } });
     }
 
     async retrySearchModels(projectId: string, modelId: string, modelType: string): Promise<{}> {
@@ -122,18 +122,18 @@ export abstract class ACMCrud implements ModelCrud {
     async updateModelContent(id: string, content: string, modelName = this.getRandomName()) {
         const requestOptions: E2eRequestApiHelperOptions = {
             formParams: { file: getBlob(this.tmpFilePath, `${modelName}.${this.contentExtension}`, content) },
-            contentTypes: [ 'multipart/form-data' ]
+            contentTypes: ['multipart/form-data']
         };
 
-        await this.requestApiHelper.put(`/v1/models/${id}/content`, requestOptions);
+        await this.requestApiHelper.put(`/modeling-service/v1/models/${id}/content`, requestOptions);
     }
 
     async updateModelMetadata(id: string, content: object) {
-        await this.requestApiHelper.put(`/v1/models/${id}`, {bodyParam: content});
+        await this.requestApiHelper.put(`/modeling-service/v1/models/${id}`, { bodyParam: content });
     }
 
     async delete(id: string) {
-        await this.requestApiHelper.delete(`/v1/models/${id}`);
+        await this.requestApiHelper.delete(`/modeling-service/v1/models/${id}`);
     }
 
     private getRandomName(): string {
@@ -142,6 +142,6 @@ export abstract class ACMCrud implements ModelCrud {
     }
 
     private endPoint(projectId: string) {
-        return `/v1/projects/${projectId}/models`;
+        return `/modeling-service/v1/projects/${projectId}/models`;
     }
 }

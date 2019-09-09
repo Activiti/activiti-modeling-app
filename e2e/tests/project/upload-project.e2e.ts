@@ -62,10 +62,10 @@ describe('Upload project', () => {
     });
 
     beforeAll(async () => {
-        loginPage = LoginPage.get(testConfig);
+        loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
-        await authenticatedPage.isLoggedIn();
+
     });
 
     it('1. [C286559] Upload project', async () => {
@@ -79,7 +79,6 @@ describe('Upload project', () => {
 
     it('2. [C311378] Upload project using the REST API', async () => {
         const project = await backend.project.import(absoluteFilePath);
-        await authenticatedPage.refreshPage();
         expect(await dashboardPage.isProjectNameInList(project.entry.name)).toBe(true, `Item '${project.entry.name}' was not found in the list.`);
     });
 

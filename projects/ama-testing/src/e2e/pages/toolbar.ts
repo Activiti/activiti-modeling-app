@@ -17,6 +17,7 @@
 
 import { GenericWebElement } from './common/generic.webelement';
 import { element, by } from 'protractor';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class Toolbar extends GenericWebElement {
 
@@ -26,7 +27,7 @@ export class Toolbar extends GenericWebElement {
 
     async isItemDisplayed(itemName) {
         const item = element(by.cssContainingText(`.ama-breadcrumb-item-current`, itemName));
-        return await super.waitForElementToBeVisible(item);
+        return await BrowserVisibility.waitUntilElementIsVisible(item);
     }
 
     async goToHome() {
@@ -34,7 +35,7 @@ export class Toolbar extends GenericWebElement {
     }
 
     async downloadFile() {
-        await super.waitForElementToBeVisible(this.downloadButton);
+        await BrowserVisibility.waitUntilElementIsVisible(this.downloadButton);
         await super.click(this.downloadButton);
     }
 
@@ -45,11 +46,11 @@ export class Toolbar extends GenericWebElement {
 
     async isElementInDirtyState(itemName: string) {
         const item = element(by.cssContainingText(`${this.breadcrumbCss}>[class='ama-breadcrumb-item active ng-star-inserted dirty']>div`, itemName));
-        return await super.waitForElementToBeVisible(item);
+        return await BrowserVisibility.waitUntilElementIsVisible(item);
     }
 
     async isElementNotInDirtyState(itemName: string) {
         const item = element(by.cssContainingText(`${this.breadcrumbCss}>[class='ama-breadcrumb-item active ng-star-inserted']>div`, itemName));
-        return await super.waitForElementToBeVisible(item);
+        return await BrowserVisibility.waitUntilElementIsVisible(item);
     }
 }

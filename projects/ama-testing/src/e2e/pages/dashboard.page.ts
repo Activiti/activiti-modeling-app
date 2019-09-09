@@ -18,14 +18,16 @@
 import { element, by, ElementFinder } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { Pagination } from './pagination.component';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class DashboardPage extends GenericPage {
 
     readonly dashboardList = element(by.css(`mat-table.dashboard-list`));
+    readonly releaseList = element(by.tagName(`ama-release-list`));
     private pagination = new Pagination();
 
     async isDashboardListDisplayed() {
-        await super.waitForElementToBeVisible(this.dashboardList);
+        await BrowserVisibility.waitUntilElementIsVisible(this.dashboardList);
     }
 
     async isProjectNameInList(projectName: string) {
@@ -51,17 +53,17 @@ export class DashboardPage extends GenericPage {
 
     async isProjectVersionUpdated(projectId: string, version: number) {
         const projectVersion = element(by.cssContainingText(`[data-automation-id="project-version-${projectId}"]`, version.toString()));
-        return await super.waitForElementToBeVisible(projectVersion);
+        return await BrowserVisibility.waitUntilElementIsVisible(projectVersion);
     }
 
     async isProjectReleaseVisible(releaseId: string) {
         const projectRelease = element(by.css(`[data-automation-id="project-release-id-${releaseId}"]`));
-        return await super.waitForElementToBeVisible(projectRelease);
+        return await BrowserVisibility.waitUntilElementIsVisible(projectRelease);
     }
 
     async isProjectReleaseEmpty() {
         const emptyList = element(by.css(`[data-automation-id="project-releases-empty"]`));
-        return await super.waitForElementToBeInVisible(emptyList);
+        return await BrowserVisibility.waitUntilElementIsVisible(emptyList);
     }
 
     async navigateToProject(projectId: string) {
@@ -82,7 +84,7 @@ export class DashboardPage extends GenericPage {
             if (!(await project.isPresent()) && (await this.pagination.isOnLastPage() == null)) {
                 await this.pagination.set1000ItemsPerPage();
             }
-            return await super.waitForElementToBePresent(project);
+            return await BrowserVisibility.waitUntilElementIsPresent(project);
         } catch (error) {
             throw new Error(`Project '${project.locator()}' not found.\n ${error}`);
             return false;
@@ -94,7 +96,7 @@ export class DashboardPage extends GenericPage {
             if (!(await project.isPresent()) && (await this.pagination.isOnLastPage() == null)) {
                 await this.pagination.set1000ItemsPerPage();
             }
-            return await super.waitForElementToBeNotPresent(project);
+            return await BrowserVisibility.waitUntilElementIsNotPresent(project);
         } catch (error) {
             throw new Error(`Project '${project.locator()}' not found.\n ${error}`);
             return false;
@@ -122,15 +124,16 @@ export class DashboardPage extends GenericPage {
     async releaseProject(projectId: string) {
         await this.openContextMenuFor(projectId);
         const projectReleaseButton = this.getProject(`project-release-${projectId}`);
-        await super.waitForElementToBeVisible(projectReleaseButton);
+        await BrowserVisibility.waitUntilElementIsVisible(projectReleaseButton);
         await super.click(projectReleaseButton);
     }
 
     async navigateToReleaseView(projectId: string) {
         await this.openContextMenuFor(projectId);
         const projectReleasesButton = this.getProject(`project-releases-${projectId}`);
-        await super.waitForElementToBeVisible(projectReleasesButton);
+        await BrowserVisibility.waitUntilElementIsVisible(projectReleasesButton);
         await super.click(projectReleasesButton);
+        await BrowserVisibility.waitUntilElementIsVisible(this.releaseList);
     }
 
     private getProject(dataAutomationId: string) {
@@ -142,7 +145,7 @@ export class DashboardPage extends GenericPage {
         try {
             if (await this.isProjectInListWithPageNavigation(project)) {
                 const projectContextMenu = this.getProject(`project-context-${projectId}`);
-                await super.waitForElementToBeVisible(projectContextMenu);
+                await BrowserVisibility.waitUntilElementIsVisible(projectContextMenu);
                 await super.click(projectContextMenu);
             } else {
                 throw new Error(`Unable to find project '${projectId}'.`);
@@ -154,13 +157,13 @@ export class DashboardPage extends GenericPage {
 
     private async clickOnEditContextItemFor(projectId: string) {
         const projectEditButton = this.getProject(`project-edit-${projectId}`);
-        await super.waitForElementToBeVisible(projectEditButton);
+        await BrowserVisibility.waitUntilElementIsVisible(projectEditButton);
         await super.click(projectEditButton);
     }
 
     private async clickOnDeleteContextItemFor(projectId: string) {
         const projectDeleteButton = this.getProject(`project-delete-${projectId}`);
-        await super.waitForElementToBeVisible(projectDeleteButton);
+        await BrowserVisibility.waitUntilElementIsVisible(projectDeleteButton);
         await super.click(projectDeleteButton);
     }
 

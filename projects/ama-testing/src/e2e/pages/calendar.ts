@@ -17,6 +17,7 @@
 
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class Calendar extends GenericPage {
 
@@ -24,11 +25,11 @@ export class Calendar extends GenericPage {
     readonly today = element(by.css(`.mat-calendar-body-today`));
 
     async isDisplayed() {
-        return await super.waitForElementToBeVisible(this.datePicker);
+        return await BrowserVisibility.waitUntilElementIsVisible(this.datePicker);
     }
 
     async isDismissed() {
-        return await super.waitForElementToBeInVisible(this.datePicker);
+        return await BrowserVisibility.waitUntilElementIsNotVisible(this.datePicker);
     }
 
     async setToday() {

@@ -44,7 +44,7 @@ describe('Log history', () => {
         successfully: 'The process was successfully updated',
     };
 
-    const loginPage: LoginPageImplementation = LoginPage.get(testConfig);
+    const loginPage: LoginPageImplementation = LoginPage.get();
     const authenticatedPage = new AuthenticatedPage(testConfig);
     const logHistoryPage = new LogHistoryPage();
     const codeEditorWidget = new CodeEditorWidget();
@@ -62,7 +62,7 @@ describe('Log history', () => {
     beforeAll(async () => {
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
-        await authenticatedPage.isLoggedIn();
+
         projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         await projectContentPage.navigateTo();
     });

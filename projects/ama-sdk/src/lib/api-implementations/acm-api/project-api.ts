@@ -40,7 +40,7 @@ export class ACMProjectApi implements ProjectApi {
 
     public get(projectId: string): Observable<Project> {
         return this.requestApiHelper
-            .get(`/v1/projects/${projectId}`)
+            .get(`/modeling-service/v1/projects/${projectId}`)
                 .pipe(
                     map((response: any) => response.entry),
                     map(this.createProject.bind(this))
@@ -49,7 +49,7 @@ export class ACMProjectApi implements ProjectApi {
 
     public create(project: Partial<Project>): Observable<Project> {
         return this.requestApiHelper
-        .post('/v1/projects/', {bodyParam: project})
+        .post('/modeling-service/v1/projects/', {bodyParam: project})
             .pipe(
                 map((response: any) => response.entry),
                 map(this.createProject.bind(this))
@@ -58,7 +58,7 @@ export class ACMProjectApi implements ProjectApi {
 
     public update(projectId: string, project: Partial<Project>): Observable<Project> {
         return this.requestApiHelper
-        .put(`/v1/projects/${projectId}`, {bodyParam: project})
+        .put(`/modeling-service/v1/projects/${projectId}`, {bodyParam: project})
             .pipe(
                 map((response: any) => response.entry),
                 map(this.createProject.bind(this))
@@ -66,12 +66,12 @@ export class ACMProjectApi implements ProjectApi {
     }
 
     public delete(projectId: string): Observable<void> {
-        return this.requestApiHelper.delete(`/v1/projects/${projectId}`);
+        return this.requestApiHelper.delete(`/modeling-service/v1/projects/${projectId}`);
     }
 
     public import(file: File ): Observable<Partial<Project>> {
         return this.requestApiHelper
-            .post(`/v1/projects/import`, {formParams: {'file': file}, contentTypes: ['multipart/form-data']})
+            .post(`/modeling-service/v1/projects/import`, {formParams: {'file': file}, contentTypes: ['multipart/form-data']})
                 .pipe(
                     map((response: any) => response.entry),
                     map(this.createProject.bind(this))
@@ -80,14 +80,14 @@ export class ACMProjectApi implements ProjectApi {
 
     public export(projectId: string): Observable<Blob>  {
         return this.requestApiHelper.get(
-            `/v1/projects/${projectId}/export`,
+            `/modeling-service/v1/projects/${projectId}/export`,
             { queryParams: { 'attachment': false }, responseType: 'blob' }
         );
     }
 
     public getAll(pagination: Partial<Pagination> = {}): Observable<PaginatedEntries<Project>> {
         return this.requestApiHelper
-            .get('/v1/projects', { queryParams: pagination })
+            .get('/modeling-service/v1/projects', { queryParams: pagination })
             .pipe(
                 map((nodePaging: any) => {
                     return {
@@ -111,7 +111,7 @@ export class ACMProjectApi implements ProjectApi {
 
     public release(projectId: string): Observable<Release> {
         return this.requestApiHelper
-        .post(`/v1/projects/${projectId}/releases`)
+        .post(`/modeling-service/v1/projects/${projectId}/releases`)
             .pipe(
                 map((response: any) => response.entry)
             );
@@ -119,7 +119,7 @@ export class ACMProjectApi implements ProjectApi {
 
     public getProjectReleases(projectId: string, pagination: Partial<Pagination> = {}): Observable<PaginatedEntries<ReleaseEntry>> {
         return this.requestApiHelper
-        .get(`/v1/projects/${projectId}/releases`, { queryParams: pagination })
+        .get(`/modeling-service/v1/projects/${projectId}/releases`, { queryParams: pagination })
         .pipe(
             map((nodePaging: any) => {
                 return {

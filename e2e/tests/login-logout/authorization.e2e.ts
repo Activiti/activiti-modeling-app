@@ -27,7 +27,7 @@ describe('User Authorization', () => {
     let errorsPage: ErrorsPage;
 
     beforeEach(async () => {
-        loginPage = LoginPage.get(testConfig);
+        loginPage = LoginPage.get();
         errorsPage = new ErrorsPage(testConfig);
         await loginPage.navigateTo();
     });
