@@ -16,7 +16,7 @@
  */
 
 import * as fs from 'fs';
-import { Logger } from 'ama-testing/e2e/util/index';
+import { Logger } from './logger';
 
 export function getBlob(tmpPath: string, fileName: string, fileContent: string) {
     const filePath = `${tmpPath}/${fileName}`;

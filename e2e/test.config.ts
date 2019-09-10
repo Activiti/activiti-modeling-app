@@ -15,6 +15,6 @@
  * limitations under the License.
  */
 
-import { getConfig } from 'ama-testing/e2e';
+import { getConfig } from '../projects/ama-testing/src/e2e';
 
 export const testConfig = getConfig(__dirname);
