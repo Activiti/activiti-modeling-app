@@ -100,4 +100,18 @@ export class ACMProject implements ProjectApi {
         return this.namePrefix + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz');
     }
 
+    async getModelId(projectId: string, modelType: string, modelName: string): Promise<string> {
+        const requestOptions: E2eRequestApiHelperOptions = {
+            queryParams: { type: `${modelType}` }
+        };
+        const projectDetails = await this.requestApiHelper.get(`/modeling-service/v1/projects/${projectId}/models`, requestOptions);
+        const projectDetailsObject = JSON.parse(JSON.stringify(projectDetails));
+        const map = new Map<string, string>();
+
+        for (const entry of projectDetailsObject.list.entries) {
+            map.set(entry.entry.name, entry.entry.id);
+        }
+        return await map.get(modelName);
+    }
+
 }

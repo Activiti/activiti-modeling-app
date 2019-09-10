@@ -36,6 +36,7 @@ export interface ProjectApi {
     get(projectId?: string): Promise<AlfrescoApi.NodeEntry>;
     getDecisionTableId(projectId: string, decisionTableName: string): Promise<string>;
     import(projectZipFile: string): Promise<AlfrescoApi.NodeEntry>;
+    getModelId(projectId: string, modelType: string, modelName: string): Promise<string>;
 }
 
 export interface Backend {
