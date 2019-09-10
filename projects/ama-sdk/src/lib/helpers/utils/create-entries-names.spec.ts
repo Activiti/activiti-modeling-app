@@ -43,46 +43,6 @@ describe('Create entries names', () => {
         expect(MODELER_NAME_REGEX.test(testString)).toBe(false);
     });
 
-    it('MODELER_NAME_REGEX should allow -', () => {
-        const testString = 'test-123';
-        expect(MODELER_NAME_REGEX.test(testString)).toBe(true);
-    });
-
-    it('MODELER_NAME_REGEX should not allow any special character besides -', () => {
-        const testString = 'Test_123%#$#text';
-        expect(MODELER_NAME_REGEX.test(testString)).toBe(false);
-    });
-
-    it('MODELER_NAME_REGEX should not allow - at the end of the string', () => {
-        const testString = 'test-';
-        expect(MODELER_NAME_REGEX.test(testString)).toBe(false);
-    });
-
-    it('MODELER_NAME_REGEX should allow - inside the string', () => {
-        const testString = 'test-123';
-        expect(MODELER_NAME_REGEX.test(testString)).toBe(true);
-    });
-
-    it('MODELER_NAME_REGEX should not allow any special character besides -', () => {
-        const testString = 'Test_123%#$#text';
-        expect(MODELER_NAME_REGEX.test(testString)).toBe(false);
-    });
-
-    it('MODELER_NAME_REGEX should not allow - at the end of the string', () => {
-        const testString = 'test-';
-        expect(MODELER_NAME_REGEX.test(testString)).toBe(false);
-    });
-
-    it('MODELER_NAME_REGEX should allow - inside the string', () => {
-        const testString = 'test-123';
-        expect(MODELER_NAME_REGEX.test(testString)).toBe(true);
-    });
-
-    it('MODELER_NAME_REGEX should not allow any special character besides -', () => {
-        const testString = 'Test_123%#$#text';
-        expect(MODELER_NAME_REGEX.test(testString)).toBe(false);
-    });
-
     it('MODELER_NAME_REGEX should not allow - at the end of the string', () => {
         const testString = 'test-';
         expect(MODELER_NAME_REGEX.test(testString)).toBe(false);
