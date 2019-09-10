@@ -24,6 +24,8 @@ export class ConfirmationDialog extends GenericDialog {
     readonly titleElement = element(by.css(`.mat-dialog-title`));
     readonly confirmButton = element(by.css(`[data-automation-id="dialog-confirm"]`));
     readonly closeButton = element(by.css(`[data-automation-id="dialog-close"]`));
+    readonly subTitle = element(by.css(`mat-dialog-content p`));
+    readonly messageCount = element.all(by.css('mat-dialog-content ul li'));
 
     title: string;
 
@@ -35,6 +37,21 @@ export class ConfirmationDialog extends GenericDialog {
     async isTitleDisplayed(itemType) {
         await BrowserVisibility.waitUntilElementIsVisible(this.titleElement);
         return await this.titleElement.getText() === this.title.replace('ITEM', itemType);
+    }
+
+    async getSubTitleText() {
+        await BrowserVisibility.waitUntilElementIsVisible(this.subTitle);
+        return this.subTitle.getText();
+    }
+
+    async getMessageText(messageIndex: number) {
+        await BrowserVisibility.waitUntilElementIsVisible(this.titleElement);
+        return element(by.xpath(`//mat-dialog-content/ul/li[${messageIndex}]`)).getText();
+    }
+
+    async getTotalMessageCount() {
+        await BrowserVisibility.waitUntilElementIsVisible(this.titleElement);
+        return this.messageCount.count();
     }
 
     async confirm() {
