@@ -37,6 +37,9 @@ import { signalRefHandler } from './signalRef.handler';
 import { signalScopeHandler } from './signalScope.handler';
 import { timerDefinitionHandler } from './timer-definition.handler';
 import { errorRefHandler } from './errorRef.handler';
+import { messageHandler } from './message.handler';
+import { correlationKeyHandler } from './correlation-key.handler';
+import { processMessagesHandler } from './process-messages.handler';
 
 export const handlers = {
     [BpmnProperty.id]: idHandler,
@@ -59,5 +62,8 @@ export const handlers = {
     [BpmnProperty.signalRef]: signalRefHandler,
     [BpmnProperty.signalScope]: signalScopeHandler,
     [BpmnProperty.timerEventDefinition]: timerDefinitionHandler,
-    [BpmnProperty.errorRef]: errorRefHandler
+    [BpmnProperty.errorRef]: errorRefHandler,
+    [BpmnProperty.messageRef]: messageHandler,
+    [BpmnProperty.correlationKey]: correlationKeyHandler,
+    [BpmnProperty.messages]: processMessagesHandler,
 };

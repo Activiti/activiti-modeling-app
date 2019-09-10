@@ -52,13 +52,9 @@
             background-color: mat-color($background, card);
 
             .entry {
-                &.bpmn-icon-start-event-message,
                 &.bpmn-icon-start-event-condition,
-                &.bpmn-icon-end-event-message,
                 &.bpmn-icon-end-event-escalation,
                 &.bpmn-icon-end-event-compensation,
-                &.bpmn-icon-intermediate-event-catch-message,
-                &.bpmn-icon-intermediate-event-throw-message,
                 &.bpmn-icon-intermediate-event-catch-condition,
                 &.bpmn-icon-intermediate-event-catch-link,
                 &.bpmn-icon-intermediate-event-throw-escalation,
@@ -77,7 +73,6 @@
                 &.bpmn-icon-intermediate-event-catch-escalation,
                 &.bpmn-icon-intermediate-event-catch-cancel,
                 &.bpmn-icon-intermediate-event-catch-compensation,
-                &.bpmn-icon-intermediate-event-catch-non-interrupting-message,
                 &.bpmn-icon-intermediate-event-catch-non-interrupting-escalation,
                 &.bpmn-icon-intermediate-event-catch-non-interrupting-condition,
                 &.bpmn-icon-intermediate-event-catch-non-interrupting-signal,

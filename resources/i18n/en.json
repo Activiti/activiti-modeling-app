@@ -12,6 +12,7 @@
             "UPDATE": "Update",
             "CLOSE": "Close",
             "EDIT_PROPERTIES": "Edit Process Variables",
+            "EDIT_PROCESS_MESSAGES": "Edit Process Messages",
             "EDIT_FORM_PROPERTIES": "Edit Form Variables",
             "EDIT_VISIBILITY_CONDITIONS": "Edit Visibility Conditions",
             "ERROR": {

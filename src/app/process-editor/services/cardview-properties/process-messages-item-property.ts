@@ -15,17 +15,18 @@
  * limitations under the License.
  */
 
+import { FactoryProps } from './cardview-properties.factory';
 import { BpmnProperty } from 'ama-sdk';
+import { CardViewProcessMessagesItemModel } from './process-messages-item/process-messages-item.model';
 
-const propertyKey = BpmnProperty.implementation;
+const propertyName = BpmnProperty.messages;
 
-const get = element => element.businessObject[propertyKey];
-
-const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {
-        [BpmnProperty.formKey]: undefined,
-        [propertyKey]: value
+export function createProcessMessagesProperty({ element }: FactoryProps) {
+    return new CardViewProcessMessagesItemModel({
+        label: '',
+        value: '',
+        key: propertyName,
+        default: '',
+        editable: false
     });
-};
-
-export const implementationHandler = { get, set };
+}

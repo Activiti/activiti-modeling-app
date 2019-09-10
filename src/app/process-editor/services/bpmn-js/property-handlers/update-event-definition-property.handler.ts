@@ -15,17 +15,10 @@
  * limitations under the License.
  */
 
-import { BpmnProperty } from 'ama-sdk';
-
-const propertyKey = BpmnProperty.implementation;
-
-const get = element => element.businessObject[propertyKey];
-
-const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {
-        [BpmnProperty.formKey]: undefined,
-        [propertyKey]: value
-    });
+export const updateEventDefinitionProperty = (element: Bpmn.DiagramElement, propertyKey: string, value: any) => {
+    if (!!value) {
+        element.businessObject.eventDefinitions[0][propertyKey] = value;
+    } else {
+        delete element.businessObject.eventDefinitions[0][propertyKey];
+    }
 };
-
-export const implementationHandler = { get, set };

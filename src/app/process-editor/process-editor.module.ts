@@ -81,13 +81,18 @@ import { InputMappingTableModule, OutputMappingTableModule } from 'ama-sdk';
 import { CardViewTimerDefinitionItemComponent } from './services/cardview-properties/timer-definition-item/timer-definition-item.component';
 import { getProcessLogInitiator } from './services/process-editor.constants';
 import { CardViewErrorRefItemComponent } from './services/cardview-properties/error-ref-item/error-ref-item.component';
+import { CardViewMessageItemComponent } from './services/cardview-properties/message-item/message-item.component';
+import { CardViewProcessMessagesItemComponent } from './services/cardview-properties/process-messages-item/process-messages-item.component';
+import { ProcessMessagesEffects } from './store/process-messages.effects';
+import { MessagesDialogComponent } from 'ama-sdk/src/lib/messages/messages-dialog.component';
+import { MessagesService } from 'ama-sdk/src/lib/messages/messages.service';
 
 @NgModule({
     imports: [
         CommonModule,
         CoreModule.forChild(),
         ProcessEditorRoutingModule,
-        EffectsModule.forFeature([ProcessEditorEffects, ProcessVariablesEffects]),
+        EffectsModule.forFeature([ProcessEditorEffects, ProcessVariablesEffects, ProcessMessagesEffects]),
         AmaStoreModule.registerEntity({
             key: PROCESSES_ENTITY_KEY,
             reducer: processEntitiesReducer
@@ -109,6 +114,7 @@ import { CardViewErrorRefItemComponent } from './services/cardview-properties/er
         PaletteOverlayDirective,
         ProcessModelerComponent,
         ProcessPropertiesComponent,
+        MessagesDialogComponent,
         CardViewProcessVariablesItemComponent,
         CardViewImplementationItemComponent,
         CardViewDecisionTaskItemComponent,
@@ -116,7 +122,10 @@ import { CardViewErrorRefItemComponent } from './services/cardview-properties/er
         CardViewCalledItemItemComponent,
         CardViewSignalRefItemComponent,
         CardViewErrorRefItemComponent,
-        CardViewTimerDefinitionItemComponent
+        CardViewTimerDefinitionItemComponent,
+        CardViewMessageItemComponent,
+        CardViewProcessMessagesItemComponent,
+        CardViewMessageItemComponent
     ],
     entryComponents: [
         CardViewProcessVariablesItemComponent,
@@ -127,7 +136,10 @@ import { CardViewErrorRefItemComponent } from './services/cardview-properties/er
         CardViewErrorRefItemComponent,
         CardViewCalledItemItemComponent,
         CardViewTimerDefinitionItemComponent,
-        ProcessEditorComponent
+        CardViewMessageItemComponent,
+        CardViewProcessMessagesItemComponent,
+        ProcessEditorComponent,
+        MessagesDialogComponent
     ],
     exports: [ProcessEditorRoutingModule],
     providers: [
@@ -138,6 +150,7 @@ import { CardViewErrorRefItemComponent } from './services/cardview-properties/er
         ProcessModelerPaletteService,
         CardViewPropertiesFactory,
         AmaTitleService,
+        MessagesService,
         Title,
         provideTranslations('process-editor'),
         ...providePaletteHandler('tool', ToolsHandler),
@@ -152,6 +165,8 @@ import { CardViewErrorRefItemComponent } from './services/cardview-properties/er
         providePropertyHandler(BpmnProperty.errorRef, CardViewErrorRefItemComponent),
         providePropertyHandler(BpmnProperty.calledElement, CardViewCalledItemItemComponent),
         providePropertyHandler(BpmnProperty.timerEventDefinition, CardViewTimerDefinitionItemComponent),
+        providePropertyHandler(BpmnProperty.messageRef, CardViewMessageItemComponent),
+        providePropertyHandler(BpmnProperty.messages, CardViewProcessMessagesItemComponent),
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider(),

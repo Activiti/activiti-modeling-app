@@ -1,0 +1,77 @@
+<h2 mat-dialog-title>
+    <mat-icon class="variables-icon">email</mat-icon>{{ 'SDK.MESSAGES_EDITOR.TITLE' | translate}}
+</h2>
+
+<mat-dialog-content class="properties-content variables-dialog-content" data-automation-id="variables-dialog">
+    <div class="message-dialog">
+        <div class=message-table>
+            <mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef>{{ 'SDK.MESSAGES_EDITOR.TABLE.COLUMN_ID' | translate }}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element" [attr.data-automation-id]="'message-id-cell-' + element.id">
+                        {{element.id}}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef>{{ 'SDK.MESSAGES_EDITOR.TABLE.COLUMN_NAME' | translate }}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element" [attr.data-automation-id]="'message-name-cell-' + element.name">
+                        {{element.name}}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="delete">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <mat-icon (click)="deleteMessage(element)" color="primary" class="delete-btn"
+                            data-automation-id="delete-message">
+                            delete
+                        </mat-icon>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" (click)="editMessage(row, i)"
+                    [class.active]="i == position" [attr.data-automation-id]="'message-row-' + i + '-' + row.id">
+                </mat-row>
+            </mat-table>
+            <button mat-raised-button class="add-btn" color="primary" (click)="createMessage()"
+                data-automation-id="create-new-message">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+
+        <ng-container *ngIf="showForm; else noMessagesTemplate">
+            <div class="message-form">
+                <mat-form-field>
+                    <div class="adf-messages-form-label">{{'SDK.MESSAGES_EDITOR.TABLE.COLUMN_ID' | translate}}</div>
+                    <input matInput [(ngModel)]="selectedMessage.id" data-automation-id="message-id" disabled>
+                </mat-form-field>
+                <mat-form-field>
+                    <div class="adf-property-label">{{'SDK.MESSAGES_EDITOR.TABLE.COLUMN_NAME' | translate}}</div>
+                    <input matInput [(ngModel)]="selectedMessage.name" data-automation-id="message-name" (keyup)="onMessageChanged()">
+                </mat-form-field>
+                <div class="mat-error error-message" *ngIf="!selectedMessage.name.length">
+                    {{ 'SDK.MESSAGES_EDITOR.ERRORS.EMPTY_NAME' | translate }}</div>
+            </div>
+        </ng-container>
+
+        <ng-template #noMessagesTemplate>
+            <p class="no-messages">{{'SDK.MESSAGES_EDITOR.TABLE.NO_MESSAGES' | translate}}</p>
+        </ng-template>
+    </div>
+</mat-dialog-content>
+
+
+<mat-dialog-actions class="adf-dialog-buttons">
+    <button mat-button (click)="onClose()" data-automation-id="close-button">
+        {{ 'APP.DIALOGS.CANCEL' | translate }}
+    </button>
+
+    <button class="adf-dialog-action-button save-btn" color="primary" mat-button [disabled]="!messagesChanged"
+        (click)="onSave()" data-automation-id="update-button">
+        {{ 'APP.DIALOGS.SAVE' | translate }}
+    </button>
+</mat-dialog-actions>

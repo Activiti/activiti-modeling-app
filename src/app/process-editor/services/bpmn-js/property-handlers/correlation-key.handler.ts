@@ -17,15 +17,14 @@
 
 import { BpmnProperty } from 'ama-sdk';
 
-const propertyKey = BpmnProperty.implementation;
+import { updateEventDefinitionProperty } from './update-event-definition-property.handler';
 
-const get = element => element.businessObject[propertyKey];
+const propertyKey = BpmnProperty.correlationKey;
 
+const get = element => element.businessObject.eventDefinitions[0][propertyKey];
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {
-        [BpmnProperty.formKey]: undefined,
-        [propertyKey]: value
-    });
+    updateEventDefinitionProperty(element, propertyKey, value);
+    modeling.updateProperties(element, {});
 };
 
-export const implementationHandler = { get, set };
+export const correlationKeyHandler = { get, set };

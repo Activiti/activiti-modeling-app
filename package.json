@@ -41,6 +41,7 @@
     "pretest:ci": "npm run pretest",
     "test": "ng test --detectOpenHandles --notify",
     "test:watch": "npm test -- --watch",
+    "test:spec": "jest",
     "test:ci": "ng test --detectOpenHandles --ci --collectCoverage",
     "test:cijenkins": "node --max_old_space_size=3000 ./node_modules/jest/bin/jest.js --config jest.config.js --bail",
     "09": "echo -------------------------------------- All the other stuff -----------------------------------------",

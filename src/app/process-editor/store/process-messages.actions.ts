@@ -15,17 +15,11 @@
  * limitations under the License.
  */
 
-import { BpmnProperty } from 'ama-sdk';
+import { Action } from '@ngrx/store';
 
-const propertyKey = BpmnProperty.implementation;
+export const OPEN_PROCESS_MESSAGES_DIALOG = 'Open process messages dialog';
 
-const get = element => element.businessObject[propertyKey];
-
-const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {
-        [BpmnProperty.formKey]: undefined,
-        [propertyKey]: value
-    });
-};
-
-export const implementationHandler = { get, set };
+export class OpenProcessMessagesDialogAction implements Action {
+    readonly type = OPEN_PROCESS_MESSAGES_DIALOG;
+    constructor() {}
+}

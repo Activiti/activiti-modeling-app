@@ -26,6 +26,8 @@ export enum BpmnElement {
     ErrorEventDefinition = 'bpmn:ErrorEventDefinition',
     TimerEventDefinition = 'bpmn:TimerEventDefinition',
     SignalEventDefinition = 'bpmn:SignalEventDefinition',
+    MessageEventDefinition = 'bpmn:MessageEventDefinition',
+    Message = 'bpmn:Message',
     EndEvent = 'bpmn:EndEvent',
     BoundaryEvent = 'bpmn:BoundaryEvent',
     SequenceFlow = 'bpmn:SequenceFlow',

@@ -35,6 +35,7 @@ export const UI: UI_TYPE = 'ui';
 export type FilterType = Process | Connector | Form | Data | DecisionTable | Ui;
 
 export const PROCESS_VARIABLES = 'process-variables';
+export const PROCESS_MESSAGES = 'process-messages';
 export const FORM_VARIABLES = 'form-variables';
 
 export interface Project {

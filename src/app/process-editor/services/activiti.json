@@ -395,6 +395,24 @@
             ]
         },
         {
+            "name": "MessagePayload",
+            "extends": [
+                "bpmn:MessageEventDefinition"
+            ],
+            "properties": [
+                {
+                    "name": "correlationKey",
+                    "isAttr": true,
+                    "type": "String"
+                },
+                {
+                    "name": "messageExpression",
+                    "isAttr": true,
+                    "type": "String"
+                }
+            ]
+        },
+        {
             "name": "DmnCapable",
             "extends": [
                 "bpmn:BusinessRuleTask"

@@ -38,6 +38,9 @@ import { createSignalRefProperty } from './signalRef-cardview-property';
 import { createSignalScopeProperty } from './signalScope-cardview-property';
 import { createTimerDefinitionProperty } from './timerDefinition-cardview-property';
 import { createErrorRefProperty } from './errorRef-cardview-property';
+import { createMessageProperty } from './message-cardview-property';
+import { createCorrelationKeyProperty } from './correlationKey-cardview-property';
+import { createProcessMessagesProperty } from './process-messages-item-property';
 
 export const bpmn2cardView = {
     [BpmnProperty.id]: createIdProperty,
@@ -61,5 +64,8 @@ export const bpmn2cardView = {
     [BpmnProperty.signalRef]: createSignalRefProperty,
     [BpmnProperty.errorRef]: createErrorRefProperty,
     [BpmnProperty.signalScope]: createSignalScopeProperty,
-    [BpmnProperty.timerEventDefinition]: createTimerDefinitionProperty
+    [BpmnProperty.timerEventDefinition]: createTimerDefinitionProperty,
+    [BpmnProperty.messageRef]: createMessageProperty,
+    [BpmnProperty.messages]: createProcessMessagesProperty,
+    [BpmnProperty.correlationKey]: createCorrelationKeyProperty
 };

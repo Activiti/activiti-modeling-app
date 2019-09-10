@@ -28,6 +28,18 @@
             "SWITCH_VAR_VAL": "Switch variable/value",
             "NO_PROCESS_PROPERTIES": "No process properties",
             "CLEAR_ASSIGNMENT": "Clear assignment"
+        },
+        "MESSAGES_EDITOR": {
+            "TITLE": "Process messages",
+            "ERRORS": {
+                "EMPTY_NAME": "Name field cannot be empty",
+                "NAME_ALREADY_EXISTS": "Message name must be unique"
+            },
+            "TABLE": {
+                "COLUMN_NAME": "Name",
+                "COLUMN_ID": "ID",
+                "NO_MESSAGES": "You haven't selected any message"
+            }
         }
     }
 }

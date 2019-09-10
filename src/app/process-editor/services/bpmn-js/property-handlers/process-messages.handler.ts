@@ -17,15 +17,12 @@
 
 import { BpmnProperty } from 'ama-sdk';
 
-const propertyKey = BpmnProperty.implementation;
-
-const get = element => element.businessObject[propertyKey];
+const propertyKey = BpmnProperty.messages;
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
     modeling.updateProperties(element, {
-        [BpmnProperty.formKey]: undefined,
         [propertyKey]: value
     });
 };
 
-export const implementationHandler = { get, set };
+export const processMessagesHandler = { set };

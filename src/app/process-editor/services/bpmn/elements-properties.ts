@@ -26,6 +26,9 @@ const isTimerEvent = (element: Bpmn.DiagramElement) => {
 const isErrorEvent = (element: Bpmn.DiagramElement) => {
     return !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.ErrorEventDefinition;
 };
+const isMessageEvent = (element: Bpmn.DiagramElement) => {
+    return !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.MessageEventDefinition;
+};
 const haveSignalRef = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions[0].signalRef;
 const isDecisionTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === DECISION_TASK_IMPLEMENTATION;
 const isExclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type ===  BpmnElement.ExclusiveGateway;
@@ -37,21 +40,24 @@ export const elementsProperties = {
         BpmnProperty.processName,
         BpmnProperty.version,
         BpmnProperty.documentation,
-        BpmnProperty.properties
+        BpmnProperty.properties,
+        BpmnProperty.messages
     ],
     [BpmnElement.IntermediateCatchEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : []),
-        ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : [])
+        ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : []),
+        ...(isMessageEvent(element) ? [ BpmnProperty.messageRef, BpmnProperty.correlationKey ] : [])
     ],
     [BpmnElement.IntermediateThrowEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : []),
-        ...(isSignalEvent(element) && haveSignalRef(element) ? [ BpmnProperty.signalScope ] : [])
+        ...(isSignalEvent(element) && haveSignalRef(element) ? [ BpmnProperty.signalScope ] : []),
+        ...(isMessageEvent(element) ? [ BpmnProperty.messageRef, BpmnProperty.correlationKey  ] : [])
     ],
     [BpmnElement.StartEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
@@ -59,7 +65,9 @@ export const elementsProperties = {
         BpmnProperty.documentation,
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : [BpmnProperty.formKey]),
         ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : []),
-        ...(isErrorEvent(element) ? [ BpmnProperty.errorRef ] : [])
+        ...(isErrorEvent(element) ? [ BpmnProperty.errorRef ] : []),
+        ...(isMessageEvent(element) ? [ BpmnProperty.messageRef ] : [])
+
     ],
     [BpmnElement.BoundaryEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
@@ -67,14 +75,16 @@ export const elementsProperties = {
         BpmnProperty.documentation,
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : []),
         ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : []),
-        ...(isErrorEvent(element) ? [ BpmnProperty.errorRef ] : [])
+        ...(isErrorEvent(element) ? [ BpmnProperty.errorRef ] : []),
+        ...(isMessageEvent(element) ? [ BpmnProperty.messageRef, BpmnProperty.correlationKey ] : [])
     ],
     [BpmnElement.EndEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : []),
-        ...(isErrorEvent(element) ? [ BpmnProperty.errorRef ] : [])
+        ...(isErrorEvent(element) ? [ BpmnProperty.errorRef ] : []),
+        ...(isMessageEvent(element) ? [ BpmnProperty.messageRef, BpmnProperty.correlationKey ] : [])
     ],
     [BpmnElement.SequenceFlow]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,

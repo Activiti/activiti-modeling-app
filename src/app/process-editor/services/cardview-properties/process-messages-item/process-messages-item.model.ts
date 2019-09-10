@@ -15,17 +15,13 @@
  * limitations under the License.
  */
 
+import { CardViewBaseItemModel, CardViewItem, DynamicComponentModel } from '@alfresco/adf-core';
 import { BpmnProperty } from 'ama-sdk';
 
-const propertyKey = BpmnProperty.implementation;
+export class CardViewProcessMessagesItemModel extends CardViewBaseItemModel implements CardViewItem, DynamicComponentModel {
+    type = BpmnProperty.messages;
 
-const get = element => element.businessObject[propertyKey];
-
-const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {
-        [BpmnProperty.formKey]: undefined,
-        [propertyKey]: value
-    });
-};
-
-export const implementationHandler = { get, set };
+    get displayValue(): string {
+        return this.default;
+    }
+}

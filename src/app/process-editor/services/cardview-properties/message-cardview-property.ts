@@ -15,17 +15,19 @@
  * limitations under the License.
  */
 
+import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty } from 'ama-sdk';
+import { FactoryProps } from './cardview-properties.factory';
+import { MessageItemModel } from './message-item/message-item.model';
 
-const propertyKey = BpmnProperty.implementation;
+const propertyName = BpmnProperty.messageRef;
 
-const get = element => element.businessObject[propertyKey];
-
-const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {
-        [BpmnProperty.formKey]: undefined,
-        [propertyKey]: value
+export function createMessageProperty({ element }: FactoryProps) {
+    return new MessageItemModel({
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE',
+        value: ElementHelper.getProperty(element, propertyName),
+        key: propertyName,
+        editable: true,
+        data: { id: element.id, element }
     });
-};
-
-export const implementationHandler = { get, set };
+}

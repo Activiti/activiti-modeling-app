@@ -1,0 +1,10 @@
+@mixin ama-process-messages-item ($theme) {
+    ama-process-messages button {
+        width: 100%;
+    }
+
+    .messages-icon {
+        vertical-align: middle;
+        margin-right: 5px;
+    }
+}
