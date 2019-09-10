@@ -62,10 +62,9 @@
             text-align: left;
             font-size: 12px;
             white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
             height: 26px;
             line-height: 26px;
+            overflow-x: scroll;
 
             mat-icon {
                 font-size: 16px;
