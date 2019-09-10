@@ -15,11 +15,18 @@
  * limitations under the License.
  */
 
-export const primitive_types: string[] = [
-    'string',
-    'integer',
-    'boolean',
-    'date',
-    'file',
-    'json'
-];
+import { Component, Output, EventEmitter, Input } from '@angular/core';
+@Component({
+    template: ``
+})
+
+export class PropertiesViewerFileInputComponent {
+
+    @Output() change = new EventEmitter();
+    @Input() value: string;
+
+    onChange() {
+        this.change.emit(this.value.length ? this.value : null);
+    }
+
+}

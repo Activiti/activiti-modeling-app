@@ -56,7 +56,6 @@ export class VariablesComponent implements OnInit, OnDestroy {
     constructor(
         public dialog: MatDialogRef<VariablesComponent>,
         @Inject(MAT_DIALOG_DATA) public data: VariableDialogData,
-
         private variablesService: VariablesService,
         private codeValidatorService: CodeValidatorService
     ) {
@@ -113,13 +112,23 @@ export class VariablesComponent implements OnInit, OnDestroy {
 
     save() {
         const data = JSON.parse(this.editorContent);
+
+        this.convertJsonStringVariablesToJsonObjects(data);
         this.data.propertiesUpdate$.next(data);
         this.data.propertiesUpdate$.complete();
         this.dialog.close();
     }
 
+    private convertJsonStringVariablesToJsonObjects(data) {
+        for (const key  in data) {
+            if (data[key].type === 'json' && typeof(data[key].value) !== 'object') {
+                data[key].value = JSON.parse(data[key].value);
+            }
+        }
+    }
+
     onClose() {
-       this.data.propertiesUpdate$.complete();
+        this.data.propertiesUpdate$.complete();
     }
 
     isSaveDisabled(): boolean {

@@ -77,7 +77,10 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
 
     writeValue(value) {
         if (value !== undefined && value !== null) {
-            this.setInputValue(value);
+            if (this.type === 'json' && typeof(value) === 'object') {
+                value = JSON.stringify(value);
+            }
+            this.valueTypeInputRef.instance.value = value;
         }
     }
 

@@ -180,7 +180,7 @@ describe('PropertiesViewerComponent', () => {
         const data = {
             'generated-uuid': {
                 'id': 'generated-uuid',
-                'name': 'name',
+                'name': '',
                 'type': 'string',
                 'value': '',
                 'required': false

@@ -51,8 +51,7 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
     @Input() displayedColumns = [ 'name', 'type', 'required', 'value', 'delete' ];
     @Output() propertyChanged: EventEmitter<boolean> = new EventEmitter();
 
-
-    constructor (private variablesService: VariablesService, private uuidService: UuidService) {
+    constructor(private variablesService: VariablesService, private uuidService: UuidService) {
         this.form = {
             id: '',
             name: '',
@@ -70,10 +69,10 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
         if (this.properties) {
             let dataArray: EntityProperty[] = [];
             dataArray = Object.values(JSON.parse(this.properties));
+            this.convertJsonObjectsToJsonStringVariables(dataArray);
 
             this.dataSource = new MatTableDataSource(dataArray);
             this.data = JSON.parse(this.properties);
-
         }
         this.serviceSubscription = this.variablesService.variablesData.subscribe(dataObj => {
             if (!dataObj.error || dataObj.error === 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME') {
@@ -96,6 +95,14 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
                 this.error = false;
             }
         });
+    }
+
+    private convertJsonObjectsToJsonStringVariables(properties) {
+        for (const key  in properties) {
+            if (properties[key].type === 'json' && typeof(properties[key].value) === 'object') {
+                properties[key].value = JSON.stringify(properties[key].value);
+            }
+        }
     }
 
     ngOnDestroy() {
@@ -160,8 +167,8 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
     addRow() {
         const newVariable = {
             'id': this.uuidService.generate(),
-            'name' : 'name',
-            'type' : 'string',
+            'name': '',
+            'type': 'string',
             'value': ''
         };
 

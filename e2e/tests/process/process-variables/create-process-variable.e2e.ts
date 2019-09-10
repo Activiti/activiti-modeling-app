@@ -74,6 +74,7 @@ describe('Create process variable', async () => {
             await processPropertiesCard.editProcessVariables();
             await processVariablesDialog.isLoaded();
             await processVariablesDialog.addVariable();
+            await processVariablesDialog.setVariableName('name');
         });
 
         it('2. [C282018] Add process variable', async () => {

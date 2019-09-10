@@ -27,6 +27,8 @@ import { PropertiesViewerStringInputComponent } from './properties-viewer/value-
 import { PropertiesViewerIntegerInputComponent } from './properties-viewer/value-type-inputs/integer-input.component';
 import { PropertiesViewerBooleanInputComponent } from './properties-viewer/value-type-inputs/boolean-input.component';
 import { PropertiesViewerDateInputComponent } from './properties-viewer/value-type-inputs/date-input.component';
+import { PropertiesViewerJsonInputComponent } from './properties-viewer/value-type-inputs/json-input.component';
+import { PropertiesViewerFileInputComponent } from './properties-viewer/value-type-inputs/file-input.component';
 import { SharedModule } from '../helpers/public_api';
 
 @NgModule({
@@ -43,14 +45,18 @@ import { SharedModule } from '../helpers/public_api';
         PropertiesViewerStringInputComponent,
         PropertiesViewerIntegerInputComponent,
         PropertiesViewerBooleanInputComponent,
-        PropertiesViewerDateInputComponent
+        PropertiesViewerDateInputComponent,
+        PropertiesViewerJsonInputComponent,
+        PropertiesViewerFileInputComponent
     ],
     entryComponents: [
         VariablesComponent,
         PropertiesViewerIntegerInputComponent,
         PropertiesViewerStringInputComponent,
         PropertiesViewerBooleanInputComponent,
-        PropertiesViewerDateInputComponent
+        PropertiesViewerDateInputComponent,
+        PropertiesViewerJsonInputComponent,
+        PropertiesViewerFileInputComponent
     ],
     providers: [
         VariablesService
