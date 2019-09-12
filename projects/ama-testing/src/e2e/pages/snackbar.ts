@@ -25,11 +25,21 @@ export class SnackBar extends GenericWebElement {
     readonly updateItemMessage = `The ITEM was successfully updated`;
     readonly uploadItemMessage = `The ITEM was successfully uploaded`;
     readonly deleteItemMessage = `The ITEM was successfully deleted`;
-    readonly releaseItemMessage = `The ITEM was successfully released`;
+    readonly releaseItemMessage = `The project was successfully released`;
+    readonly releaseItemError = `Unknown error happened while releasing the project.`;
 
-    async isOperationSuccessful(operationMessage: string, itemType: string) {
-        const itemCreated = element(by.cssContainingText(`simple-snack-bar>span`, operationMessage.replace('ITEM', itemType)));
-        return await BrowserVisibility.waitUntilElementIsVisible(itemCreated);
+    private getMessage(operationMessage: string, itemType?: string) {
+        return itemType ? operationMessage.replace('ITEM', itemType) : operationMessage;
+    }
+
+    async isOperationSuccessful(operationMessage: string, itemType?: string) {
+        const successMessage = element(by.cssContainingText(`simple-snack-bar>span`, this.getMessage(operationMessage, itemType)));
+        return await BrowserVisibility.waitUntilElementIsVisible(successMessage);
+    }
+
+    async isOperationUnsuccessful(operationMessage: string, itemType?: string) {
+        const failureMessage = element(by.cssContainingText(`simple-snack-bar>span`, this.getMessage(operationMessage, itemType)));
+        return await BrowserVisibility.waitUntilElementIsVisible(failureMessage);
     }
 
     async isCreatedSuccessfully(itemType: string) {
@@ -48,8 +58,12 @@ export class SnackBar extends GenericWebElement {
         return await this.isOperationSuccessful(this.deleteItemMessage, itemType);
     }
 
-    async isReleasedSuccessfully(itemType: string) {
-        return await this.isOperationSuccessful(this.releaseItemMessage, itemType);
+    async isReleasedSuccessfully() {
+        return await this.isOperationSuccessful(this.releaseItemMessage);
+    }
+
+    async isNotReleased() {
+        return await this.isOperationUnsuccessful(this.releaseItemError);
     }
 
     async isSnackBarNotDisplayed() {

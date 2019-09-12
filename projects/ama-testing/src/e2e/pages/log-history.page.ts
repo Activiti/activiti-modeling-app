@@ -21,6 +21,16 @@ import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class LogHistoryPage extends GenericPage {
 
+    static readonly FILTER = {
+        projectEditor: 'Project Editor',
+        processEditor: 'Process Editor',
+        connectorEditor: 'Connector Editor',
+        formEditor: 'Form Editor',
+        uiEditor: 'UI Editor',
+        decisionTableEditor: 'Decision Table Editor',
+        all: 'All'
+    };
+
     readonly messageIndicator = element(by.css(`.message-indicator`));
     readonly messageIndicatorInactive = element(by.css(`div[class='message-indicator inactive']`));
     readonly logIcon = element(by.css(`div[class='log-meta'] mat-icon`));

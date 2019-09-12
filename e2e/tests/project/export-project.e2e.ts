@@ -25,6 +25,7 @@ import { getBackend } from 'ama-testing/e2e';
 import { UtilFile } from 'ama-testing/e2e';
 import { browser } from 'protractor';
 import { AuthenticatedPage } from 'ama-testing/e2e';
+import { ConfirmationDialog } from 'ama-testing/e2e';
 
 const path = require('path');
 
@@ -60,8 +61,20 @@ describe('Export project', () => {
 
     });
 
-    it('1. [C286593] Export project', async () => {
+    it('1. [C286593] Export project without process', async () => {
         const projectId = project.entry.id;
+        await dashboardPage.navigateToProject(projectId);
+        await toolBar.downloadFile();
+
+        const confirmationDialog = new ConfirmationDialog('Validation errors found in project\'s models');
+        await expect(await confirmationDialog.getSubTitleText()).toBe('Validation errors:');
+        await expect(await confirmationDialog.getMessageText(1)).toBe('Project must contain at least one process');
+        await expect(await confirmationDialog.getTotalMessageCount()).toBe(1);
+    });
+
+    it('2. [C286635] Export project with process', async () => {
+        const projectId = project.entry.id;
+        await backend.process.create(project.entry.id);
         await dashboardPage.navigateToProject(projectId);
         await toolBar.downloadFile();
         const downloadedApp = path.join(downloadDir, `${project.entry.name}.zip`);
