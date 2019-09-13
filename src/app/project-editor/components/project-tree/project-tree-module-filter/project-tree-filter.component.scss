@@ -64,7 +64,8 @@
             white-space: nowrap;
             height: 26px;
             line-height: 26px;
-            overflow-x: scroll;
+            overflow: hidden;
+            text-overflow: ellipsis;
 
             mat-icon {
                 font-size: 16px;

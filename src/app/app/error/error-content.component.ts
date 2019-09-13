@@ -19,8 +19,7 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'ama-error-content',
-    templateUrl: './error-content.component.html',
-    styleUrls: ['./error-content.component.scss']
+    templateUrl: './error-content.component.html'
 })
 export class ErrorContentComponent {
     constructor() {}

@@ -24,7 +24,9 @@
                 class="project-tree-filter__button"
                 *ngFor="let item of contents"
                 [routerLink]="[filter.type, item.id]"
-                [routerLinkActive]="['active']">
+                [routerLinkActive]="['active']"
+                [title]="item.name"
+            >
                 <mat-icon class="project-tree-filter__icon">insert_drive_file</mat-icon>
                 <span class="project-tree-filter__name">{{ item.name }}</span>
             </a>
