@@ -8,7 +8,7 @@
             matTooltipShowDelay="1000"
             [attr.data-automation-id]="'param-id-' + parameter.id">
             <span>
-                {{ parameter.name }}
+                {{ parameter.label || parameter.name }}
                 <span class="required-parameter" *ngIf="parameter.required">*</span>
             </span>
         </mat-cell>

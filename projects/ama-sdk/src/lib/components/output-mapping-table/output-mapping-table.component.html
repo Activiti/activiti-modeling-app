@@ -7,7 +7,7 @@
             matTooltipPosition="before"
             matTooltipShowDelay="1000"
             [attr.data-automation-id]="'param-id-' + parameter.id">
-            <span>{{ parameter.name }}</span>
+            <span>{{ parameter.label || parameter.name }}</span>
         </mat-cell>
     </ng-container>
     <ng-container matColumnDef="process-variable">
