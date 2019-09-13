@@ -19,12 +19,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatTableDataSource, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material';
 import { MessagesService } from './messages.service';
-import { EntityProperties } from '../api/types';
 import { Subject } from 'rxjs';
 
 export interface MessageDialogData extends MatDialogConfig {
     columns: string[];
-    propertiesUpdate$: Subject<EntityProperties>;
+    propertiesUpdate$: Subject<Bpmn.BusinessObject[]>;
 }
 
 @Component({
@@ -52,7 +51,7 @@ export class MessagesDialogComponent implements OnInit {
 
     ngOnInit() {
         const messagesFromXML = this.messagesService.getUpdatedMessages();
-        this.messages = JSON.parse(JSON.stringify(messagesFromXML));
+        this.messages = [...messagesFromXML];
         this.updateMessages();
     }
 

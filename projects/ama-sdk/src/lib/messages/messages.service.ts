@@ -49,19 +49,12 @@ export class MessagesService {
     }
 
     getUpdatedMessages(): Bpmn.BusinessObject[] {
-        return this.rootElements.filter(element => {
-            return element.$type === BpmnElement.Message;
-        });
+        return this.rootElements.filter((element) => element.$type === BpmnElement.Message);
     }
 
     saveMessages(messages: Bpmn.BusinessObject[]) {
-        this.rootElements = this.rootElements.filter(element => {
-            return element.$type !== BpmnElement.Message;
-        });
-        messages.map((message) => {
-            this.rootElements.push(message);
-            this.processModelerService.updateElementProperty(this.rootProcessElement.id, BpmnProperty.properties, message);
-        });
+        this.rootElements = this.rootElements.filter((element) => element.$type !== BpmnElement.Message);
+        messages.forEach((message) => this.rootElements.push(message));
+        this.processModelerService.updateElementProperty(this.rootProcessElement.id, BpmnProperty.messages, messages);
     }
-
 }
