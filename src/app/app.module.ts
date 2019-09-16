@@ -54,6 +54,10 @@ import { LogHistoryEntryComponent } from './app/app-layout/logging/components/lo
 import { EditorFooterComponent } from './app/app-layout/editor-footer/editor-footer.component';
 import { AppFooterService } from './common/services/app-footer.service';
 import { EDITOR_FOOTER_SERVICE_TOKEN } from './app/app-layout/editor-footer/editor-footer.service.interface';
+import localeJa from '@angular/common/locales/ja';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localeJa);
 
 @NgModule({
     imports: [
