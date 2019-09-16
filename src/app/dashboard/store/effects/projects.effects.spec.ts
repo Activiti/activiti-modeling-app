@@ -65,6 +65,7 @@ describe('ProjectsEffects', () => {
     let actions$: Observable<any>;
     let dashboardService: DashboardService;
     const projectsLoaded$ = new BehaviorSubject<boolean>(false);
+    let router: Router;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -110,6 +111,7 @@ describe('ProjectsEffects', () => {
         });
 
         effects = TestBed.get(ProjectsEffects);
+        router = TestBed.get(Router);
         metadata = getEffectsMetadata(effects);
         dashboardService = TestBed.get(DashboardService);
     });
@@ -218,6 +220,15 @@ describe('ProjectsEffects', () => {
             });
 
             expect(effects.createProjectAttemptEffect).toBeObservable(expected);
+        });
+
+        it('should navigate when project created successfully', () => {
+            spyOn(router, 'navigate');
+            actions$ = of(new CreateProjectSuccessAction(mockProject));
+            // tslint:disable-next-line: rxjs-no-ignored-subscribe
+            effects.createProjectSuccessEffect$.subscribe();
+            expect(router.navigate).toHaveBeenCalledTimes(1);
+            expect(router.navigate).toHaveBeenCalledWith(['/projects', 'app-id']);
         });
     });
 

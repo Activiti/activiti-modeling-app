@@ -25,6 +25,7 @@ import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { Logger } from 'ama-testing/e2e';
+ import { browser } from 'protractor';
 
 describe('Create project', () => {
     const adminUser = {
@@ -59,7 +60,7 @@ describe('Create project', () => {
         const project = await createEntityDialog.setEntityDetails('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
 
         expect(await snackBar.isCreatedSuccessfully('project')).toBe(true);
-        expect(await dashboardPage.isProjectNameInList(project.name)).toBe(true);
+        await browser.navigate().back();
 
         try {
             const createdAppId = await dashboardPage.getIdForProjectByItsName(project.name);

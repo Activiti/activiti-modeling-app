@@ -21,7 +21,7 @@ import { LogService, TranslationService } from '@alfresco/adf-core';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
-import { switchMap, catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
+import { tap, switchMap, catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { BaseEffects, Pagination, logInfo, logError, LogAction } from 'ama-sdk';
 import {
@@ -42,7 +42,8 @@ import {
     UploadProjectSuccessAction,
     ReleaseProjectAttemptAction,
     RELEASE_PROJECT_ATTEMPT,
-    ReleaseProjectSuccessAction
+    ReleaseProjectSuccessAction,
+    CREATE_PROJECT_SUCCESS
 } from '../actions/projects';
 import { Store } from '@ngrx/store';
 import { AmaState, CreateProjectAttemptAction, CREATE_PROJECT_ATTEMPT, } from 'ama-sdk';
@@ -116,6 +117,12 @@ export class ProjectsEffects extends BaseEffects {
     releaseProjectAttemptEffect = this.actions$.pipe(
         ofType<ReleaseProjectAttemptAction>(RELEASE_PROJECT_ATTEMPT),
         mergeMap(action => this.releaseProject(action.projectId))
+    );
+
+    @Effect({ dispatch: false })
+    createProjectSuccessEffect$ = this.actions$.pipe(
+        ofType<CreateProjectSuccessAction>(CREATE_PROJECT_SUCCESS),
+        tap((action) => this.router.navigate([ '/projects', action.payload.id]))
     );
 
     private deleteProject(projectId: string) {
