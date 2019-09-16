@@ -86,7 +86,7 @@ export interface Model extends MinimalModelSummary {
 export interface Process extends Model {
     type: PROCESS_TYPE;
     parentId?: string;
-    extensions?: ProcessExtensions;
+    extensions?: ProcessExtensionsContent;
 }
 
 export type ProcessVariableId = string;
@@ -132,11 +132,15 @@ export interface ServicesParameterConstants {
     };
 }
 
-export interface ProcessExtensions {
-    id: string;
+export interface ProcessExtensionsContent {
     properties: EntityProperties;
     mappings: ServicesParameterMappings;
     constants: ServicesConstants;
+}
+
+export interface ProcessExtensions {
+    id: string;
+    extensions: ProcessExtensionsContent;
 }
 
 export interface EntityProperty {

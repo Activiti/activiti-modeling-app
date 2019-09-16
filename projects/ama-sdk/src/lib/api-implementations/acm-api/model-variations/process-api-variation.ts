@@ -20,7 +20,6 @@ import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
 import { Process, ProcessContent } from '../../../api/types';
 import { getEmptyDiagram } from '../../../helpers/utils/empty-diagram';
-import { formatUuid } from '../../../helpers/utils/create-entries-names';
 
 @Injectable()
 export class ProcessApiVariation<M extends Process, C extends ProcessContent> implements ModelApiVariation<M, C> {
@@ -49,7 +48,6 @@ export class ProcessApiVariation<M extends Process, C extends ProcessContent> im
         return {
             ...<M>model,
             extensions: {
-                id: formatUuid(ContentType.Process, model.id),
                 ...model.extensions
             }
         };

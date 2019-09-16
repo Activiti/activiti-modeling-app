@@ -99,7 +99,6 @@ describe('ProcessEntitiesReducer', () => {
                     }
                 }
             },
-            id: 'mock-id',
             constants: {
                 [elementId]: {
                     '_activiti_dmn_table_"': {

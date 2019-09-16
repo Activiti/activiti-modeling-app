@@ -16,14 +16,14 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Process, ProcessContent, UpdateServiceParametersAction, ProcessExtensions } from 'ama-sdk';
+import { Process, ProcessContent, UpdateServiceParametersAction, ProcessExtensionsContent } from 'ama-sdk';
 import { EntityDialogForm } from 'ama-sdk';
 import { UploadFileAttemptPayload } from 'ama-sdk';
 import { SelectedProcessElement } from './process-editor.state';
 import { Update } from '@ngrx/entity';
 
 export interface UpdateProcessExtensionsPayload {
-    extensions: ProcessExtensions;
+    extensions: ProcessExtensionsContent;
     processId: string;
 }
 
@@ -113,7 +113,7 @@ export interface ValidateProcessPayload {
     title: string;
     processId: string;
     content: ProcessContent;
-    extensions: ProcessExtensions;
+    extensions: ProcessExtensionsContent;
     action: Action;
 }
 
