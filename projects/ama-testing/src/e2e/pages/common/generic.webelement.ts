@@ -59,12 +59,9 @@ export class GenericWebElement {
         await elem.sendKeys(text);
     }
 
-    protected async dragAndDrop(elementToDrag: ElementFinder, locationToDragTo: ElementFinder) {
+    protected async dragAndDrop(elementToDrag: ElementFinder, locationToDragTo: ElementFinder, locationOffset = { x: 230, y: 280 }) {
         await this.click(elementToDrag);
-        await browser.actions().mouseDown(elementToDrag).mouseMove(locationToDragTo, {
-            x: 230,
-            y: 280
-        }).mouseUp().perform();
+        await browser.actions().mouseDown(elementToDrag).mouseMove(locationToDragTo, locationOffset).mouseUp().perform();
         await browser.actions().doubleClick(locationToDragTo).perform();
     }
 

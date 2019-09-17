@@ -24,10 +24,16 @@ export class ProcessModelerComponent extends GenericPage {
     readonly processEditorModeler = element(by.css(`[data-automation-id="process-editor-modeler"]`));
     readonly canvas = element(by.className(`canvas-editor`));
     readonly userTask = element(by.css(`[data-automation-id="element::bpmn:UserTask"]`));
+    readonly startEvent = element(by.css(`[data-automation-id="element::bpmn:StartEvent"]`));
+    readonly intermediateThrowEvent = element(by.css(`[data-automation-id="element::bpmn:IntermediateThrowEvent"]`));
+    readonly endEvent = element(by.css(`[data-automation-id="element::bpmn:EndEvent"]`));
     readonly serviceTask = element(by.css(`[data-automation-id="element::bpmn:ServiceTask"]`));
     readonly callActivity = element(by.css(`[data-automation-id="element::bpmn:CallActivity"]`));
     readonly decisionTask = element(by.css(`[data-automation-id="decision-task::decision-task"]`));
+    readonly subProcess = element(by.css(`[data-automation-id="element::bpmn:SubProcess"]`));
     readonly processStep = element(by.css(`[data-element-id*="ServiceTask"]`));
+    readonly typeReplacePopup = element(by.css('.djs-popup.bpmn-replace'));
+    readonly typeReplaceButton = element(by.css('[data-action="replace"]'));
 
     async isLoaded() {
         await BrowserVisibility.waitUntilElementIsVisible(this.processEditorModeler);
@@ -49,6 +55,22 @@ export class ProcessModelerComponent extends GenericPage {
 
     async addCallActivity() {
         await super.dragAndDrop(this.callActivity, this.canvas);
+    }
+
+    async addStartEvent(containerSelector: string) {
+        await super.dragAndDrop(this.startEvent, element(by.css(containerSelector)), { x: 10, y: 10 });
+    }
+
+    async addEndEvent() {
+        await super.dragAndDrop(this.endEvent, this.canvas);
+    }
+
+    async addBoundaryEvent(containerSelector: string) {
+        await super.dragAndDrop(this.intermediateThrowEvent, element(by.css(containerSelector)), { x: 10, y: 10 });
+    }
+
+    async addSubProcess() {
+        await super.dragAndDrop(this.subProcess, this.canvas);
     }
 
     async addDecisionTask() {
@@ -73,5 +95,14 @@ export class ProcessModelerComponent extends GenericPage {
 
     async selectIntermediateEvent() {
         await super.click(element.all(by.css(`[data-element-id*="IntermediateThrowEvent"]`)).first());
+    }
+
+    async changeElementType(type: string) {
+        const selector = `[data-id="${type}"]`;
+
+        await super.click(this.typeReplaceButton);
+        await BrowserVisibility.waitUntilElementIsVisible(element(by.css(selector)));
+        await super.click(element(by.css(selector)));
+        await BrowserVisibility.waitUntilElementIsNotVisible(this.typeReplacePopup);
     }
 }

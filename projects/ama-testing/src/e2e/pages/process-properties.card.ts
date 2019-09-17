@@ -45,6 +45,7 @@ export class ProcessPropertiesCard extends GenericPage {
     readonly mappingHeaderCellName = element(by.css(`[data-automation-id="table-header-cell-name"]`));
     readonly mappingHeaderCellProcessVariable = element(by.css(`[data-automation-id="table-header-cell-process-variables"]`));
     readonly processVariableSelector = element(by.css(`[data-automation-id="process-variable-selector"]`));
+    readonly newErrorButton = element(by.css(`[data-automation-id="new-error-button"]`));
 
     async isLoaded() {
         await BrowserVisibility.waitUntilElementIsVisible(this.editorProperties);
@@ -75,6 +76,10 @@ export class ProcessPropertiesCard extends GenericPage {
 
     async editProcessVariables() {
         await super.click(this.editVariables);
+    }
+
+    async createNewError() {
+        await super.click(this.newErrorButton);
     }
 
     async setConnector(connectorName: string) {
