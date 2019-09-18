@@ -25,6 +25,7 @@ import { AmaLocalStorageMergeGuard } from './common/services/ama-localstorage-me
 import { AmaRoleGuard } from './ama-role-guard.service';
 import { ErrorContentComponent } from './app/error/error-content.component';
 import { AboutComponent } from './app/about/about.component';
+import { dashboardRoutes } from './dashboard/router/dashboard.routes';
 
 export const appRoutes: Routes = [
     { path: 'login', component: AppLoginComponent },
@@ -38,7 +39,7 @@ export const appRoutes: Routes = [
             {
                 path: 'dashboard',
                 canActivate: [AmaRoleGuard],
-                loadChildren: './dashboard/dashboard.module#DashboardModule',
+                children: dashboardRoutes,
             },
             // Impossible to lazily load ADF modules, that is why the hack
             {

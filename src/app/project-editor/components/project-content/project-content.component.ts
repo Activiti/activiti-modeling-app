@@ -17,9 +17,11 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ProjectEditorState, Project, selectProject } from 'ama-sdk';
+import { ProjectEditorState, Project, selectProject, LeaveProjectAction, OpenConfirmDialogAction } from 'ama-sdk';
 import { Observable, Subscription } from 'rxjs';
 import { ExportProjectAction, OpenProjectSettingsDialog } from '../../store/project-editor.actions';
+import { ReleaseProjectAttemptAction } from '../../../dashboard/store/actions/projects';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './project-content.component.html'
@@ -28,7 +30,7 @@ export class ProjectContentComponent implements OnInit {
     project$: Observable<Partial<Project>>;
     openedFilters$: Subscription;
 
-    constructor(private store: Store<ProjectEditorState>) {}
+    constructor(private store: Store<ProjectEditorState>, private router: Router) {}
 
     ngOnInit() {
         this.project$ = this.store.select(selectProject);
@@ -45,5 +47,16 @@ export class ProjectContentComponent implements OnInit {
 
     openSettingsDialog(project: Project) {
         this.store.dispatch(new OpenProjectSettingsDialog(project));
+    }
+
+    releaseProject(projectId: string): void {
+        this.store.dispatch(new OpenConfirmDialogAction({
+            dialogData: { title: 'APP.DIALOGS.CONFIRM.RELEASE' },
+            action: new ReleaseProjectAttemptAction(projectId)
+        }));
+    }
+
+    seeReleasesForProject(projectId: string): void {
+        this.router.navigate(['dashboard', 'projects', projectId, 'releases']);
     }
 }

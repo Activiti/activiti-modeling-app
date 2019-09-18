@@ -18,6 +18,7 @@
 import { Action } from '@ngrx/store';
 import { GET_PROJECT_SUCCESS, GetProjectSuccessAction, SELECT_PROJECT } from '../project-editor.actions';
 import { INITIAL_PROJECT_DATA_STATE as init, ProjectDataState } from 'ama-sdk';
+import { ReleaseProjectSuccessAction, RELEASE_PROJECT_SUCCESS } from '../../../dashboard/store/actions/projects';
 
 export function projectDataReducer(state: ProjectDataState = init, action: Action): ProjectDataState {
     let newState: ProjectDataState;
@@ -29,6 +30,10 @@ export function projectDataReducer(state: ProjectDataState = init, action: Actio
 
         case GET_PROJECT_SUCCESS:
             newState = setProject(state, <GetProjectSuccessAction>action);
+            break;
+
+        case RELEASE_PROJECT_SUCCESS:
+            newState = updateRelease(state, <ReleaseProjectSuccessAction> action);
             break;
 
         default:
@@ -48,3 +53,12 @@ function setProject(state: ProjectDataState, action: GetProjectSuccessAction): P
     return newState;
 }
 
+function updateRelease(state: ProjectDataState, action: ReleaseProjectSuccessAction): ProjectDataState {
+    return {
+        ...state,
+        project: {
+            ...state.project,
+            version: action.release.version
+        }
+    };
+}

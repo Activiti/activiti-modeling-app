@@ -20,6 +20,19 @@
         <a mat-icon-button (click)="openSettingsDialog(project)">
             <mat-icon>settings</mat-icon>
         </a>
+
+        <button mat-icon-button [matMenuTriggerFor]="menu" [attr.data-automation-id]="'project-context-' + project.id">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="releaseProject(project.id)" class="project-release-button" [attr.data-automation-id]="'project-release-' + project.id">
+                <mat-icon>new_releases</mat-icon> <span>{{ 'APP.MENU.RELEASE' | translate }}</span>
+            </button>
+            <button mat-menu-item (click)="seeReleasesForProject(project.id)" class="project-releases-button" [attr.data-automation-id]="'project-releases-' + project.id">
+                <mat-icon>remove_red_eye</mat-icon> <span>{{ 'APP.MENU.SEE_RELEASES' | translate }}</span>
+            </button>
+        </mat-menu>
+
         <span class="project-version-label">Version: {{ project.version }}</span>
     </ng-container>
 </adf-toolbar>
