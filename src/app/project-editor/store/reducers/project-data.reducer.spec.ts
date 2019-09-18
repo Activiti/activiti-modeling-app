@@ -18,6 +18,7 @@
 import { ProjectDataState, INITIAL_PROJECT_DATA_STATE, Project } from 'ama-sdk';
 import { projectDataReducer } from './project-data.reducer';
 import { SELECT_PROJECT, GetProjectSuccessAction } from '../project-editor.actions';
+import { ReleaseProjectSuccessAction } from '../../../dashboard/store/actions/projects';
 
 describe('Project data reducer', () => {
     let initState: ProjectDataState;
@@ -41,5 +42,13 @@ describe('Project data reducer', () => {
         const newState = projectDataReducer(initState, new GetProjectSuccessAction(project));
 
         expect(newState.project).toEqual(project);
+    });
+
+    it ('should handle RELEASE_PROJECT_SUCCESS', () => {
+        initState = {...INITIAL_PROJECT_DATA_STATE};
+        const action = new ReleaseProjectSuccessAction({ version: '2' }, 'project_id');
+        const newState = projectDataReducer(initState, action);
+
+        expect(newState.project.version).toEqual(action.release.version);
     });
 });
