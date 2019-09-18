@@ -1,12 +1,17 @@
 <div>
     <button mat-icon-button [matMenuTriggerFor]="userMenu" data-automation-id="user-menu">
-        <mat-icon>person</mat-icon>
+        <mat-icon>more_vert</mat-icon>
     </button>
 
     <mat-menu #userMenu="matMenu" [overlapTrigger]="false" class="ama-current-user-menu">
         <button mat-menu-item (click)="onOpenSettings()" data-automation-id="user-settings">
             <mat-icon>settings</mat-icon>
             <span>{{ 'APP.HEADER.SETTINGS' | translate }}</span>
+        </button>
+
+        <button mat-menu-item (click)="onAbout()" data-automation-id="user-about">
+            <mat-icon>info_outline</mat-icon>
+            <span>{{ 'APP.HEADER.ABOUT' | translate }}</span>
         </button>
 
         <button mat-menu-item (click)="onLogout()" data-automation-id="user-logout">

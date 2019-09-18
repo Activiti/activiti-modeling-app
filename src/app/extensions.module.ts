@@ -16,11 +16,17 @@
  */
 
 import { NgModule } from '@angular/core';
-
-// Main entry point for external extensions only.
-// For any project-specific code use CoreExtensionsModule instead.
+import { APP_GITHUB_COMMIT, APP_VERSION, APP_DEPS } from 'ama-sdk';
+import { repository, version, dependencies, commit } from '../../package.json';
+const latestCommitUrl = repository.url.replace('.git', '/commit/') + commit;
 
 @NgModule({
-    imports: []
+    imports: [
+    ],
+    providers: [
+        { provide: APP_GITHUB_COMMIT, useValue: latestCommitUrl },
+        { provide: APP_VERSION, useValue: version },
+        { provide: APP_DEPS, useValue: dependencies }
+    ]
 })
 export class AppExtensionsModule {}

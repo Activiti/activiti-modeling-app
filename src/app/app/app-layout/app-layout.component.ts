@@ -26,6 +26,7 @@ import { Subject } from 'rxjs';
 import { SettingsDialogComponent } from '../settings/settings-dialog.component';
 import { LogoutAction } from '../../store/actions/app.actions';
 import { AmaState } from 'ama-sdk';
+ import { Router } from '@angular/router';
 
 @Component({
     templateUrl: 'app-layout.component.html',
@@ -38,7 +39,7 @@ export class AppLayoutComponent implements AfterViewInit, OnDestroy {
     menuOpened$: Observable<boolean>;
     onDestroy$ = new Subject<void>();
 
-    constructor(private store: Store<AmaState>, private appConfig: AppConfigService) {
+    constructor(private store: Store<AmaState>, private appConfig: AppConfigService, private router: Router) {
         this.menuOpened$ = this.store.select(selectMenuOpened).pipe(first());
     }
 
@@ -69,6 +70,10 @@ export class AppLayoutComponent implements AfterViewInit, OnDestroy {
 
     onOpenSettings() {
         this.store.dispatch(new OpenDialogAction(SettingsDialogComponent));
+    }
+
+    onOpenAbout() {
+        this.router.navigate(['/about']);
     }
 
     ngOnDestroy() {

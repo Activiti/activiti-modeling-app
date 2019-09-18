@@ -3,7 +3,8 @@
         "HEADER": {
             "APP_NAME": "Modeling Application",
             "SIGN_OUT": "Sign out",
-            "SETTINGS": "Settings"
+            "SETTINGS": "Settings",
+            "ABOUT": "About"
         },
         "DIALOGS": {
             "CANCEL": "Cancel",

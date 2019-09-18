@@ -16,7 +16,7 @@
  */
 
 import { Routes } from '@angular/router';
-import { AuthGuard, AboutComponent } from '@alfresco/adf-core';
+import { AuthGuard } from '@alfresco/adf-core';
 import { AppLayoutComponent } from './app/app-layout/app-layout.component';
 import { AppLoginComponent } from './app/app-login/app-login.component';
 import { projectEditorRoutes } from './project-editor/router/project-editor.routes';
@@ -24,11 +24,11 @@ import { HostSettingsComponent } from './app/host-settings/host-settings.compone
 import { AmaLocalStorageMergeGuard } from './common/services/ama-localstorage-merge-guard.service';
 import { AmaRoleGuard } from './ama-role-guard.service';
 import { ErrorContentComponent } from './app/error/error-content.component';
+import { AboutComponent } from './app/about/about.component';
 
 export const appRoutes: Routes = [
     { path: 'login', component: AppLoginComponent },
     { path: 'settings', component: HostSettingsComponent },
-    { path: 'about', component: AboutComponent },
     {
         path: '',
         component: AppLayoutComponent,
@@ -46,6 +46,7 @@ export const appRoutes: Routes = [
                 canActivate: [AmaRoleGuard],
                 children: projectEditorRoutes
             },
+            { path: 'about', component: AboutComponent },
             { path: 'home', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
         ]

@@ -15,29 +15,8 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
-@Component({
-    selector: 'ama-current-user',
-    templateUrl: './current-user.component.html'
-})
-export class CurrentUserComponent {
-
-    @Output() logout = new EventEmitter<void>();
-    @Output() openSettings = new EventEmitter<void>();
-    @Output() openAbout = new EventEmitter<void>();
-
-    user: any = null;
-
-    onLogout(): void {
-        this.logout.next();
-    }
-
-    onOpenSettings() {
-        this.openSettings.next();
-    }
-
-    onAbout() {
-        this.openAbout.next();
-    }
-}
+export const APP_GITHUB_COMMIT = new InjectionToken<string>('app_github_commit');
+export const APP_VERSION = new InjectionToken<string>('app_version');
+export const APP_DEPS = new InjectionToken<any[]>('app_dependencies');

@@ -15,29 +15,20 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { APP_GITHUB_COMMIT, APP_VERSION, APP_DEPS } from 'ama-sdk';
 
 @Component({
-    selector: 'ama-current-user',
-    templateUrl: './current-user.component.html'
+    selector: 'ama-about',
+    templateUrl: './about.component.html',
+    styleUrls: [ 'about.component.css' ]
 })
-export class CurrentUserComponent {
+export class AboutComponent {
+    showExtensions = true;
 
-    @Output() logout = new EventEmitter<void>();
-    @Output() openSettings = new EventEmitter<void>();
-    @Output() openAbout = new EventEmitter<void>();
-
-    user: any = null;
-
-    onLogout(): void {
-        this.logout.next();
-    }
-
-    onOpenSettings() {
-        this.openSettings.next();
-    }
-
-    onAbout() {
-        this.openAbout.next();
-    }
+    constructor(
+        @Inject(APP_GITHUB_COMMIT) public url: string,
+        @Inject(APP_VERSION) public version: string,
+        @Inject(APP_DEPS) public dependencies: any[]
+    ) {}
 }

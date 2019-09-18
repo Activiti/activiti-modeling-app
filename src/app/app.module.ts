@@ -25,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './common/material.module';
 
 import { AppComponent } from './app.component';
+import { AboutComponent } from './app/about/about.component';
 import { AppLoginComponent } from './app/app-login/app-login.component';
 import { AppLayoutComponent } from './app/app-layout/app-layout.component';
 import { CurrentUserComponent } from './app/header/current-user/current-user.component';
@@ -44,7 +45,15 @@ import { BpmnjsPropertiesModule } from './bpmnjs-properties/bpmnjs-properties.mo
 import { environment } from '../environments/environment';
 import { MatInputModule } from '@angular/material';
 
-import { ACMApiModule, AmaServicesModule, ConfirmationDialogModule, AmaAuthenticationService, AuthTokenProcessorService, allLogFilter, provideLogFilter } from 'ama-sdk';
+import {
+    ACMApiModule,
+    AmaServicesModule,
+    ConfirmationDialogModule,
+    AmaAuthenticationService,
+    AuthTokenProcessorService,
+    allLogFilter,
+    provideLogFilter
+} from 'ama-sdk';
 import { AmaRoleGuard } from './ama-role-guard.service';
 import { AppExtensionsModule } from './extensions.module';
 import { ModelStorageService } from './common/services/model-storage.service';
@@ -92,6 +101,7 @@ registerLocaleData(localeJa);
     ],
     declarations: [
         AppComponent,
+        AboutComponent,
         AppLoginComponent,
         AppLayoutComponent,
         ErrorContentComponent,
@@ -100,7 +110,8 @@ registerLocaleData(localeJa);
         HostSettingsComponent,
         LogHistoryComponent,
         LogHistoryEntryComponent,
-        EditorFooterComponent
+        EditorFooterComponent,
+        AboutComponent
     ],
     entryComponents: [SettingsDialogComponent],
     providers: [
