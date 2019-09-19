@@ -114,4 +114,20 @@ export class ACMProject implements ProjectApi {
         return await map.get(modelName);
     }
 
+    async getProjectByName(projectName: string): Promise<any> {
+        const projects = await this.getProjects();
+        return projects.list.entries.find((el) => {
+            if (el.entry.name === projectName) {
+                return el;
+            }
+        });
+    }
+
+    async getProjects(): Promise<any> {
+        return this.requestApiHelper.get(
+            `/modeling-service/v1/projects`,
+            { queryParams: { 'maxItems': 1000 } }
+        );
+    }
+
 }
