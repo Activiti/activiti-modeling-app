@@ -18,7 +18,7 @@
 import { element, by } from 'protractor';
 import { GenericDialog } from '../common/generic.dialog';
 import { Calendar } from '../calendar';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class VariablesDialog extends GenericDialog {
 
@@ -51,7 +51,7 @@ export class VariablesDialog extends GenericDialog {
     }
 
     async addVariable() {
-        await super.click(this.add);
+        await BrowserActions.click(this.add);
     }
 
     async deleteVariable() {
@@ -59,30 +59,29 @@ export class VariablesDialog extends GenericDialog {
     }
 
     async setVariableName(name: string) {
-        await super.clear(this.name);
-        await super.sendKeysIfVisible(this.name, name);
+        await BrowserActions.clearSendKeys(this.name, name);
     }
 
     async setVariableType(type: string) {
-        await super.click(this.type);
+        await BrowserActions.click(this.type);
         const varTypeOption = element(by.cssContainingText('.mat-option-text', type));
-        await super.click(varTypeOption);
+        await BrowserActions.click(varTypeOption);
     }
 
     async setBooleanVariableValue(value: string) {
-        await super.click(this.value);
+        await BrowserActions.click(this.value);
         const varValueOption = element(by.cssContainingText('.mat-option-text', value));
-        await super.click(varValueOption);
+        await BrowserActions.click(varValueOption);
     }
 
     async setDateVariableValue() {
-        await super.click(this.datePicker);
+        await BrowserActions.click(this.datePicker);
         await this.calendar.isDisplayed();
         await this.calendar.setToday();
     }
 
     async setVariableValue(value: string) {
-        await super.sendKeysIfVisible(this.value, value);
+        await BrowserActions.clearSendKeys(this.value, value);
     }
 
     async setRequired(required: boolean = false) {
@@ -145,7 +144,7 @@ export class VariablesDialog extends GenericDialog {
     }
 
     async update() {
-        await super.click(this.updateButton);
+        await BrowserActions.click(this.updateButton);
     }
 
     async close() {
