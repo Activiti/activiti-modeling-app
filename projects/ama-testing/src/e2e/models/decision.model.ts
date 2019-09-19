@@ -15,5 +15,27 @@
  * limitations under the License.
  */
 
-export * from './processDefinition.model';
-export * from './decisionTableDefinition.model';
+import { DecisionTableModel } from 'ama-testing/e2e/models/decisionTable.model';
+
+export class DecisionModel {
+    '_attributes' = {
+        id: '',
+        name: ''
+    };
+    'decisionTable' = new DecisionTableModel();
+
+    constructor(details?: any) {
+        if (details) {
+            Object.assign(this['_attributes'], details['_attributes']);
+            this['decisionTable'] = details['decisionTable'] ? new DecisionTableModel(details['decisionTable']) : null;
+        }
+    }
+
+    getId() {
+        return this['_attributes'].id;
+    }
+
+    getName() {
+        return this['_attributes'].name;
+    }
+}

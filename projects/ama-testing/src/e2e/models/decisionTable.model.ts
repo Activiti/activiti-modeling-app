@@ -15,5 +15,21 @@
  * limitations under the License.
  */
 
-export * from './processDefinition.model';
-export * from './decisionTableDefinition.model';
+export class DecisionTableModel {
+    '_attributes' = {
+        id: ''
+    };
+
+    'input' = {};
+
+    constructor(details?: any) {
+        if (details) {
+            Object.assign(this['_attributes'], details['_attributes']);
+            Object.assign(this['input'], details['input']);
+        }
+    }
+
+    getId() {
+        return this['_attributes'].id;
+    }
+}
