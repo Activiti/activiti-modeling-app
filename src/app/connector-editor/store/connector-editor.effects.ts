@@ -46,7 +46,7 @@ import {
     ChangedConnectorSettingsAction,
     CHANGE_CONNECTOR_SETTINGS
 } from './connector-editor.actions';
-import { map, switchMap, catchError, mergeMap, take, withLatestFrom, tap, finalize } from 'rxjs/operators';
+import { map, switchMap, catchError, mergeMap, take, withLatestFrom, tap } from 'rxjs/operators';
 import {
     EntityDialogForm,
     CONNECTOR,
@@ -216,8 +216,7 @@ export class ConnectorEditorEffects extends BaseEffects {
 
     private validateConnector({ connectorId, connectorContent, action, title }: ValidateConnectorPayload) {
         return this.connectorEditorService.validate(connectorId, connectorContent).pipe(
-            switchMap(() => [ new LoadApplicationAction(true), action]),
-            finalize(() => new LoadApplicationAction(false)),
+            switchMap(() => [new LoadApplicationAction(true), action, new LoadApplicationAction(false)]),
             catchError(response => {
                 const errors = JSON.parse(response.message).errors.map(error => error.description);
                 return [
@@ -337,8 +336,7 @@ export class ConnectorEditorEffects extends BaseEffects {
     private downloadConnector() {
        return this.store.select(selectSelectedConnectorContent).pipe(
            map(content => this.connectorEditorService.download(content.name, JSON.stringify(content))),
-           map(() => new LoadApplicationAction(false),
-           ),
+           map(() => new LoadApplicationAction(false)),
            take(1)
        );
     }

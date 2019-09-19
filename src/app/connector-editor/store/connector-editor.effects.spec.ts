@@ -467,9 +467,10 @@ describe('ConnectorEditorEffects', () => {
         it('validateConnectorEffect should dispatch the action from payload if connector is valid', () => {
             actions$ = hot('a', { a: new ValidateConnectorAttemptAction(payload) });
 
-            const expected = cold('(bc)', {
+            const expected = cold('(bcd)', {
                 b: new LoadApplicationAction(true),
-                c: payload.action
+                c: payload.action,
+                d: new LoadApplicationAction(false)
             });
 
             expect(effects.validateConnectorEffect).toBeObservable(expected);
