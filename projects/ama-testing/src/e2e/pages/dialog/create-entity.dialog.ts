@@ -18,7 +18,7 @@
 import { element, by } from 'protractor';
 import { UtilRandom } from '../../util/random';
 import { GenericDialog } from '../common/generic.dialog';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export interface CreatedEntity {
     name: string;
@@ -37,17 +37,15 @@ export class CreateEntityDialog extends GenericDialog {
     }
 
     async submit() {
-        await super.click(this.submitButton);
+        await BrowserActions.click(this.submitButton);
     }
 
     async setEntityName(entityName) {
-        await super.clear(this.nameField);
-        await super.sendKeysIfVisible(this.nameField, entityName);
+        await BrowserActions.clearSendKeys(this.nameField, entityName);
     }
 
     async setEntityDescription(entityDescription) {
-        await super.clear(this.descriptionField);
-        await super.sendKeysIfVisible(this.descriptionField, entityDescription);
+        await BrowserActions.clearSendKeys(this.descriptionField, entityDescription);
     }
 
     async setEntityDetails(

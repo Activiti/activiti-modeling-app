@@ -18,7 +18,7 @@
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class ProjectContentPage extends GenericPage {
 
@@ -43,20 +43,20 @@ export class ProjectContentPage extends GenericPage {
 
     async clickOnModel(modelType: string, modelId: string) {
         const modelRow = element(by.css(`[data-automation-id="${modelType}-${modelId}"]`));
-        await super.click(modelRow);
+        await BrowserActions.click(modelRow);
     }
 
     async clickOnModelByName(modelType: string, modelName: string) {
         const containerSelector = `[data-automation-id="project-filter-${modelType}-container"] a`,
         model = element(by.cssContainingText(containerSelector, modelName));
-        await super.click(model);
+        await BrowserActions.click(model);
     }
 
     async openFilter(modelType: string) {
         const filterCss = `[data-automation-id="project-filter-${modelType}"]`;
         const spinner = element(by.css(`${filterCss} mat-spinner`));
         await BrowserVisibility.waitUntilElementIsNotVisible(spinner);
-        await super.click(element(by.css(filterCss)));
+        await BrowserActions.click(element(by.css(filterCss)));
     }
 
     async importModel(modelType: string, filePath: string) {
@@ -66,7 +66,7 @@ export class ProjectContentPage extends GenericPage {
 
     async createModel(modelType: string) {
         const addButton = element(by.css(`[data-automation-id="project-filter-${modelType}"] button`));
-        await super.click(addButton);
+        await BrowserActions.click(addButton);
     }
 
     async createProcess() {

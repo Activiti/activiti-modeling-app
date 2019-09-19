@@ -18,7 +18,7 @@
 import { element, by, browser } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config/test.config.interface';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class ConnectorContentPage extends GenericPage {
 
@@ -49,25 +49,25 @@ export class ConnectorContentPage extends GenericPage {
     }
 
     async deleteConnector() {
-        await super.click(this.connectorEditorContextMenu);
-        await super.click(this.connectorEditorDeleteButton);
+        await BrowserActions.click(this.connectorEditorContextMenu);
+        await BrowserActions.click(this.connectorEditorDeleteButton);
     }
 
     async selectCodeEditor() {
-        await super.click(this.codeEditorTabButton);
+        await BrowserActions.click(this.codeEditorTabButton);
     }
 
     async save() {
         await BrowserVisibility.waitUntilElementIsNotVisible(this.disabledSaveButton);
         browser.actions().mouseMove(this.connectorEditorSaveButton).perform();
-        await super.click(this.connectorEditorSaveButton);
+        await BrowserActions.click(this.connectorEditorSaveButton);
     }
 
     async saveConnector() {
-        await super.click(this.connectorEditorSaveButton);
+        await BrowserActions.click(this.connectorEditorSaveButton);
     }
 
     async download() {
-        await super.click(this.connectorEditorDownloadButton);
+        await BrowserActions.click(this.connectorEditorDownloadButton);
     }
 }

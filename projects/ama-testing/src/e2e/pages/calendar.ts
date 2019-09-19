@@ -17,7 +17,7 @@
 
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class Calendar extends GenericPage {
 
@@ -33,7 +33,7 @@ export class Calendar extends GenericPage {
     }
 
     async setToday() {
-        await super.click(this.today);
+        await BrowserActions.click(this.today);
         await this.isDismissed();
     }
 }

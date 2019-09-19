@@ -17,7 +17,7 @@
 
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class LogHistoryPage extends GenericPage {
 
@@ -67,11 +67,11 @@ export class LogHistoryPage extends GenericPage {
     }
 
     async clickMessageIndicatorInactive() {
-        await super.click(this.messageIndicatorInactive);
+        await BrowserActions.click(this.messageIndicatorInactive);
     }
 
     async clickMessageIndicator() {
-        await super.click(this.messageIndicator);
+        await BrowserActions.click(this.messageIndicator);
         await BrowserVisibility.waitUntilElementIsVisible(this.logSection);
     }
 
@@ -109,21 +109,21 @@ export class LogHistoryPage extends GenericPage {
     }
 
     async deleteLogs() {
-        await super.click(this.deleteIcon);
+        await BrowserActions.click(this.deleteIcon);
     }
 
     async clickCollapseArrow() {
-        return await super.click(this.collapseArrow);
+        return await BrowserActions.click(this.collapseArrow);
     }
 
     async selectFilter(filter: string) {
-        await super.click(this.filtersDropdown);
+        await BrowserActions.click(this.filtersDropdown);
         const field = element(by.cssContainingText('.mat-option-text', filter));
-        await super.click(field);
+        await BrowserActions.click(field);
     }
 
     async getFiltersValue() {
-        await super.click(this.filtersDropdown);
+        await BrowserActions.click(this.filtersDropdown);
         return await this.filtersDropdownText.getText();
     }
 

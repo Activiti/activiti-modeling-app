@@ -18,7 +18,7 @@
 import { element, by, browser } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { Logger } from '../util';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class ProcessPropertiesCard extends GenericPage {
 
@@ -58,10 +58,9 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async editProcessName(newName: string) {
-        await super.click(this.editName);
-        await super.clear(this.name);
-        await super.sendKeysIfVisible(this.name, newName);
-        await super.click(this.updateName);
+        await BrowserActions.click(this.editName);
+        await BrowserActions.clearSendKeys(this.name, newName);
+        await BrowserActions.click(this.updateName);
     }
 
     async getProcessName() {
@@ -69,30 +68,29 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async editProcessDocumentation(newDocumentation: string) {
-        await super.click(this.editDocumentation);
-        await super.clear(this.documentation);
-        await super.sendKeysIfVisible(this.documentation, newDocumentation);
-        await super.click(this.updateDocumentation);
+        await BrowserActions.click(this.editDocumentation);
+        await BrowserActions.clearSendKeys(this.documentation, newDocumentation);
+        await BrowserActions.click(this.updateDocumentation);
     }
 
     async editProcessVariables() {
-        await super.click(this.editVariables);
+        await BrowserActions.click(this.editVariables);
     }
 
     async createNewError() {
-        await super.click(this.newErrorButton);
+        await BrowserActions.click(this.newErrorButton);
     }
 
     async setConnector(connectorName: string) {
-        await super.click(this.connectorSelector);
+        await BrowserActions.click(this.connectorSelector);
         const connectorOption = element(by.cssContainingText('.mat-option-text', connectorName));
-        await super.click(connectorOption);
+        await BrowserActions.click(connectorOption);
     }
 
     async setConnectorAction(actionName: string) {
-        await super.click(this.connectorActionSelector);
+        await BrowserActions.click(this.connectorActionSelector);
         const connectorActionOption = element(by.cssContainingText('.mat-option-text', actionName));
-        await super.click(connectorActionOption);
+        await BrowserActions.click(connectorActionOption);
     }
 
     async scrollToBottom() {
@@ -102,31 +100,31 @@ export class ProcessPropertiesCard extends GenericPage {
 
     async setDecisionTable(dtName: string) {
         const dtOption = element(by.cssContainingText('.mat-option-text', dtName));
-        await super.click(this.decisionTableSelector);
+        await BrowserActions.click(this.decisionTableSelector);
         // Workaround:
         // Click on DT selectbox until the list of decision tables is populated.
         let i = 0;
         try {
             while (await BrowserVisibility.waitUntilElementIsNotVisible(dtOption, 500) && i < 10) {
                 Logger.info('Click ', ++i, ' on DT selectbox.');
-                await super.click(this.decisionTableSelector);
+                await BrowserActions.click(this.decisionTableSelector);
             }
         } catch (error) {
             Logger.info('Decision table list is loaded. Item can be selected.');
-            await super.click(dtOption);
+            await BrowserActions.click(dtOption);
         }
     }
 
     async setForm(formName: string) {
-        await super.click(this.formSelector);
+        await BrowserActions.click(this.formSelector);
         const formOption = element(by.cssContainingText('.mat-option-text', formName));
-        await super.click(formOption);
+        await BrowserActions.click(formOption);
     }
 
     async setActivity(activityName: string) {
-        await super.click(this.activitySelector);
+        await BrowserActions.click(this.activitySelector);
         const activityOption = element(by.cssContainingText('.mat-option-text', activityName));
-        await super.click(activityOption);
+        await BrowserActions.click(activityOption);
     }
 
     async openProcessVariablesList(connectorId: string, table?: string) {
@@ -137,14 +135,14 @@ export class ProcessPropertiesCard extends GenericPage {
             selector = `[data-automation-id="variable-selector-${connectorId}"]`;
         }
 
-        await super.click(element(by.css(selector)));
+        await BrowserActions.click(element(by.css(selector)));
     }
 
     async selectVariable(variableName: string) {
         const processVariable = element(by.cssContainingText('.mat-option-text', variableName));
 
         await BrowserVisibility.waitUntilElementIsVisible(processVariable);
-        await super.click(processVariable);
+        await BrowserActions.click(processVariable);
     }
 
     async setProcessVariable(connectorId: string, variableName: string, table?: string) {
@@ -199,12 +197,12 @@ export class ProcessPropertiesCard extends GenericPage {
 
     async switchToggle(connectorId: string) {
         const toggleIcon = element(by.css(`[data-automation-id="toggle-icon-${connectorId}"]`));
-        await super.click(toggleIcon);
+        await BrowserActions.click(toggleIcon);
     }
 
     async setValue(connectorId: string, value: string) {
         const valueInput = element(by.css(`[data-automation-id="value-input-${connectorId}"]`));
-        await super.sendKeysIfVisible(valueInput, value);
+        await BrowserActions.clearSendKeys(valueInput, value);
     }
 
     async getValue(connectorId: string) {

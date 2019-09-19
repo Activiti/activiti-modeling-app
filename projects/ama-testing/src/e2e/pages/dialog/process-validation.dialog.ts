@@ -17,7 +17,7 @@
 
 import { GenericDialog } from '../common/generic.dialog';
 import { element, by } from 'protractor';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class ValidationDialog extends GenericDialog {
 
@@ -44,11 +44,11 @@ export class ValidationDialog extends GenericDialog {
     }
 
     async confirm() {
-        await super.click(this.confirmButton);
+        await BrowserActions.click(this.confirmButton);
     }
 
     async reject() {
-        await super.click(this.closeButton);
+        await BrowserActions.click(this.closeButton);
     }
 
     async getErrorMessage() {

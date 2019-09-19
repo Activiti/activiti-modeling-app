@@ -18,7 +18,7 @@
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class AuthenticatedPage extends GenericPage {
 
@@ -35,8 +35,8 @@ export class AuthenticatedPage extends GenericPage {
     }
 
     async logout() {
-        await super.click(this.userMenu);
-        await super.click(this.userLogout);
+        await BrowserActions.click(this.userMenu);
+        await BrowserActions.click(this.userLogout);
     }
 
     async navigateTo() {

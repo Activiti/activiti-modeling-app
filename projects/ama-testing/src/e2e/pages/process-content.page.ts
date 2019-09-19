@@ -18,7 +18,7 @@
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class ProcessContentPage extends GenericPage {
 
@@ -51,37 +51,37 @@ export class ProcessContentPage extends GenericPage {
     }
 
     async deleteProcess() {
-        await super.click(this.processEditorContextMenu);
-        await super.click(this.processEditorDeleteButton);
+        await BrowserActions.click(this.processEditorContextMenu);
+        await BrowserActions.click(this.processEditorDeleteButton);
     }
 
     async downloadProcess() {
-        await super.click(this.processEditorDownloadButton);
+        await BrowserActions.click(this.processEditorDownloadButton);
     }
 
     async selectProcessEditorModeler() {
-        await super.click(this.processEditorModeling);
+        await BrowserActions.click(this.processEditorModeling);
     }
 
     async save() {
-        await super.click(this.processEditorSaveButton);
+        await BrowserActions.click(this.processEditorSaveButton);
     }
 
     async selectCodeEditor() {
-        await super.click(this.codeEditorTabButton);
+        await BrowserActions.click(this.codeEditorTabButton);
     }
 
     async selectExtensionsEditor() {
-        await super.click(this.extensionsEditorTabButton);
+        await BrowserActions.click(this.extensionsEditorTabButton);
     }
 
     async selectModelerEditorTab() {
-        await super.click(this.modelerEditorTabButton);
+        await BrowserActions.click(this.modelerEditorTabButton);
     }
 
     async selectTask(taskId: string) {
         const taskElement = element(by.css(`[data-element-id="${taskId}"]`));
-        await super.click(taskElement);
+        await BrowserActions.click(taskElement);
     }
 
 }

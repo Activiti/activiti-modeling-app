@@ -17,7 +17,7 @@
 
 import { GenericWebElement } from './common/generic.webelement';
 import { element, by } from 'protractor';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class Toolbar extends GenericWebElement {
 
@@ -31,17 +31,16 @@ export class Toolbar extends GenericWebElement {
     }
 
     async goToHome() {
-        await super.click(this.home);
+        await BrowserActions.click(this.home);
     }
 
     async downloadFile() {
-        await BrowserVisibility.waitUntilElementIsVisible(this.downloadButton);
-        await super.click(this.downloadButton);
+        await BrowserActions.click(this.downloadButton);
     }
 
     async navigateToBreadcrumbItem(itemName: string) {
         const item = element(by.cssContainingText(`${this.breadcrumbCss}>li>a`, itemName));
-        await super.click(item);
+        await BrowserActions.click(item);
     }
 
     async isElementInDirtyState(itemName: string) {

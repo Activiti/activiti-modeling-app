@@ -17,7 +17,7 @@
 
 import { GenericWebElement } from './common/generic.webelement';
 import { element, by } from 'protractor';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class SidebarActionMenu extends GenericWebElement {
 
@@ -37,7 +37,7 @@ export class SidebarActionMenu extends GenericWebElement {
     }
 
     async clickOnCreateButton() {
-        await super.click(this.createButton);
+        await BrowserActions.click(this.createButton);
     }
 
     async clickOnBackdrop() {
@@ -46,16 +46,16 @@ export class SidebarActionMenu extends GenericWebElement {
 
     async createItem(itemType: string) {
         const menuCreate = element(by.css('[data-automation-id="app-navigation-create"]'));
-        await super.click(menuCreate);
+        await BrowserActions.click(menuCreate);
 
         const modelItem = element(by.css(`[data-automation-id="app-navigation-create-${itemType}"]`));
-        await super.click(modelItem);
+        await BrowserActions.click(modelItem);
     }
 
     async createProject() {
         await this.clickOnCreateButton();
         const project = element(by.cssContainingText(`.mat-menu-item>span`, 'Project'));
-        await super.click(project);
+        await BrowserActions.click(project);
     }
 
     async uploadProject(filePath: string) {
@@ -95,7 +95,7 @@ export class SidebarActionMenu extends GenericWebElement {
 
     async importItem(itemType: string, filePath: string) {
         const menuImport = element(by.css('[data-automation-id="app-navigation-upload"]'));
-        await super.click(menuImport);
+        await BrowserActions.click(menuImport);
 
         const modelInput = element(by.css(`[data-automation-id="app-navigation-upload-${itemType}"] input`));
         await super.sendKeysIfPresent(modelInput, filePath);

@@ -17,7 +17,7 @@
 
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class ProcessModelerComponent extends GenericPage {
 
@@ -78,31 +78,30 @@ export class ProcessModelerComponent extends GenericPage {
     }
 
     async selectServiceTask() {
-        await super.click(element(by.css(`[data-element-id*="ServiceTask"]`)));
+        await BrowserActions.click(element(by.css(`[data-element-id*="ServiceTask"]`)));
     }
 
     async selectStartEvent() {
-        await super.click(element(by.css(`[data-element-id*="StartEvent"]`)));
+        await BrowserActions.click(element(by.css(`[data-element-id*="StartEvent"]`)));
     }
 
     async selectUserTask() {
-        await super.click(element(by.css(`[data-element-id*="Task"]`)));
+        await BrowserActions.click(element(by.css(`[data-element-id*="UserTask"]`)));
     }
 
     async selectBoundaryEvent() {
-        await super.click(element.all(by.css(`[data-element-id*="BoundaryEvent"]`)).first());
+        await BrowserActions.click(element.all(by.css(`[data-element-id*="BoundaryEvent"]`)).first());
     }
 
     async selectIntermediateEvent() {
-        await super.click(element.all(by.css(`[data-element-id*="IntermediateThrowEvent"]`)).first());
+        await BrowserActions.click(element.all(by.css(`[data-element-id*="IntermediateThrowEvent"]`)).first());
     }
 
     async changeElementType(type: string) {
         const selector = `[data-id="${type}"]`;
 
-        await super.click(this.typeReplaceButton);
-        await BrowserVisibility.waitUntilElementIsVisible(element(by.css(selector)));
-        await super.click(element(by.css(selector)));
+        await BrowserActions.click(this.typeReplaceButton);
+        await BrowserActions.click(element(by.css(selector)));
         await BrowserVisibility.waitUntilElementIsNotVisible(this.typeReplacePopup);
     }
 }

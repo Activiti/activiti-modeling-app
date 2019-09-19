@@ -17,7 +17,7 @@
 
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class TaskPropertiesCardPage extends GenericPage {
 
@@ -34,21 +34,21 @@ export class TaskPropertiesCardPage extends GenericPage {
     readonly candidateGroupEditButton = element(by.css('[data-automation-id="card-textitem-edit-icon-candidateGroups"]'));
 
     async setAssignee(assigneeName: string) {
-        await super.click(this.assigneeEditButton);
-        await super.sendKeysIfVisible(this.assignee, assigneeName);
-        await super.click(this.assigneeSaveButton);
+        await BrowserActions.click(this.assigneeEditButton);
+        await BrowserActions.clearSendKeys(this.assignee, assigneeName);
+        await BrowserActions.click(this.assigneeSaveButton);
     }
 
     async setCandidateUser(candidateUserName: string) {
-        await super.click(this.candidateUserEditButton);
-        await super.sendKeysIfVisible(this.candidateUser, candidateUserName);
-        await super.click(this.candidateUserSaveButton);
+        await BrowserActions.click(this.candidateUserEditButton);
+        await BrowserActions.clearSendKeys(this.candidateUser, candidateUserName);
+        await BrowserActions.click(this.candidateUserSaveButton);
     }
 
     async setCandidateGroup(candidateGroupName: string) {
-        await super.click(this.candidateGroupEditButton);
-        await super.sendKeysIfVisible(this.candidateGroup, candidateGroupName);
-        await super.click(this.candidateGroupSaveButton);
+        await BrowserActions.click(this.candidateGroupEditButton);
+        await BrowserActions.clearSendKeys(this.candidateGroup, candidateGroupName);
+        await BrowserActions.click(this.candidateGroupSaveButton);
     }
 
     async errorMessageIsDisplayed(errorId: string) {
@@ -65,11 +65,10 @@ export class TaskPropertiesCardPage extends GenericPage {
 
     async setMappingTypeValue(value: string) {
         const selectorElement = element(by.css(`[data-automation-id="mapping-type"] .mat-select`));
-        await BrowserVisibility.waitUntilElementIsVisible(selectorElement);
-        await super.click(selectorElement);
+        await BrowserActions.click(selectorElement);
 
         const option = element(by.cssContainingText('.mat-option-text', value));
-        await super.click(option);
+        await BrowserActions.click(option);
     }
 
     async getSelectedFormName() {

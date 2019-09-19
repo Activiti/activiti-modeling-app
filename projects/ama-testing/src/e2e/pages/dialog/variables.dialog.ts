@@ -55,7 +55,7 @@ export class VariablesDialog extends GenericDialog {
     }
 
     async deleteVariable() {
-        await super.click(this.delete);
+        await BrowserActions.click(this.delete);
     }
 
     async setVariableName(name: string) {
@@ -86,7 +86,7 @@ export class VariablesDialog extends GenericDialog {
 
     async setRequired(required: boolean = false) {
         if ( required ) {
-            await super.click(this.required);
+            await BrowserActions.click(this.required);
         }
     }
     async setVariable(name: string = 'name', type: string = 'string', value: string  = '', required: boolean = false) {
@@ -148,7 +148,7 @@ export class VariablesDialog extends GenericDialog {
     }
 
     async close() {
-        await super.click(this.closeButton);
+        await BrowserActions.click(this.closeButton);
         await super.isDialogDismissed();
     }
 }

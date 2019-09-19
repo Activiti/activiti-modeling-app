@@ -17,7 +17,7 @@
 
 import { GenericWebElement } from './generic.webelement';
 import { element, by } from 'protractor';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class GenericDialog extends GenericWebElement {
 
@@ -46,6 +46,6 @@ export class GenericDialog extends GenericWebElement {
     }
 
     async cancel() {
-        await super.click(this.cancelButton);
+        await BrowserActions.click(this.cancelButton);
     }
 }

@@ -17,7 +17,7 @@
 
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class Pagination extends GenericPage {
 
@@ -25,9 +25,9 @@ export class Pagination extends GenericPage {
     readonly nextPage = element(by.css(`.mat-paginator-navigation-next`));
 
     async setItemsPerPage(itemsNo: number) {
-        await super.click(this.pageSize);
+        await BrowserActions.click(this.pageSize);
         const itemsPerPage = element(by.cssContainingText('.mat-option-text', itemsNo.toString()));
-        await super.click(itemsPerPage);
+        await BrowserActions.click(itemsPerPage);
     }
 
     async set1000ItemsPerPage() {

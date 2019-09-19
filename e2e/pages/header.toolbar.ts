@@ -18,7 +18,7 @@
 import { GenericWebElement } from 'ama-testing/e2e';
 import { browser, element, by } from 'protractor';
 import { testConfig } from '../test.config';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 
 export class HeaderToolbar extends GenericWebElement {
@@ -38,11 +38,11 @@ export class HeaderToolbar extends GenericWebElement {
     }
 
     async clickOnUserAvatar() {
-        await this.click(this.userAvatar);
+        await BrowserActions.click(this.userAvatar);
         await BrowserVisibility.waitUntilElementIsVisible(this.userMenu);
     }
 
     async goToSettings() {
-        await super.click(this.settings);
+        await BrowserActions.click(this.settings);
     }
 }
