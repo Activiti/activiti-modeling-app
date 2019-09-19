@@ -24,7 +24,7 @@ export class ProcessValidationDialog extends GenericDialog {
     readonly titleElement = element(by.css(`.mat-dialog-title`));
     readonly confirmButton = element(by.css(`[data-automation-id="dialog-confirm"]`));
     readonly closeButton = element(by.css(`[data-automation-id="dialog-close"]`));
-    readonly validationDialog = element(by.css(`.cdk-overlay-pane`));
+    readonly validationDialog = element.all(by.css(`.cdk-overlay-pane`)).first();
     readonly validationError = element(by.css(`.mat-dialog-content ul>li`));
 
 
