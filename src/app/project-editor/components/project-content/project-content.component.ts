@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ProjectEditorState, Project, selectProject, LeaveProjectAction } from 'ama-sdk';
+import { ProjectEditorState, Project, selectProject } from 'ama-sdk';
 import { Observable, Subscription } from 'rxjs';
 import { ExportProjectAction, OpenProjectSettingsDialog } from '../../store/project-editor.actions';
 
 @Component({
     templateUrl: './project-content.component.html'
 })
-export class ProjectContentComponent implements OnInit, OnDestroy {
+export class ProjectContentComponent implements OnInit {
     project$: Observable<Partial<Project>>;
     openedFilters$: Subscription;
 
@@ -32,10 +32,6 @@ export class ProjectContentComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.project$ = this.store.select(selectProject);
-    }
-
-    ngOnDestroy() {
-        this.store.dispatch(new LeaveProjectAction());
     }
 
     downloadApp(project) {

@@ -16,11 +16,12 @@
  */
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { map, switchMap, catchError, tap } from 'rxjs/operators';
+import { map, switchMap, catchError, tap, filter, mergeMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LogService, TranslationService } from '@alfresco/adf-core';
-import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, Project, DialogService, logInfo, logError, LogAction } from 'ama-sdk';
+import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, Project, DialogService, logInfo, logError, LogAction,
+    LeaveProjectAction } from 'ama-sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import {
     GetProjectAttemptAction,
@@ -33,6 +34,7 @@ import {
 } from '../project-editor.actions';
 import { ProjectSettingsComponent } from '../../components/project-settings/project-settings.component';
 import { getProjectEditorLogInitiator } from '../../services/project-editor.constants';
+ import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 
 @Injectable()
 export class ProjectEffects extends BaseEffects {
@@ -67,6 +69,13 @@ export class ProjectEffects extends BaseEffects {
     openSettingsDialog = this.actions$.pipe(
         ofType<OpenProjectSettingsDialog>(OPEN_PROJECT_SETTINGS_DIALOG),
         tap(action => this.openProjectSettingsDialog(action.payload))
+    );
+
+    @Effect()
+    leaveProjectEffect = this.actions$.pipe(
+        ofType<RouterNavigatedAction>(ROUTER_NAVIGATED),
+        filter(() => !this.router.url.startsWith('/projects')),
+        mergeMap(() => of(new LeaveProjectAction()))
     );
 
     private openProjectSettingsDialog(project: Project) {
