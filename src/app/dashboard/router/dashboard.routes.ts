@@ -41,5 +41,5 @@ export const dashboardRoutes: Routes = [
           ProjectReleasesLoaderGuard
       ]
     },
-    { path: '', redirectTo: 'projects', pathMatch: 'full' }
+    { path: '', redirectTo: '/dashboard/projects', pathMatch: 'full' }
 ];

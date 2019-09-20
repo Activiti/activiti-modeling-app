@@ -39,7 +39,7 @@ export const appRoutes: Routes = [
             {
                 path: 'dashboard',
                 canActivate: [AmaRoleGuard],
-                children: dashboardRoutes,
+                children: dashboardRoutes
             },
             // Impossible to lazily load ADF modules, that is why the hack
             {
