@@ -22,7 +22,6 @@
                         "assets": [
                             "src/assets",
                             "src/app.config.json",
-                            "src/versions.json",
                             {
                                 "input": "resources",
                                 "output": "/resources",
@@ -141,7 +140,6 @@
                             "src/assets",
                             "src/app.config.json",
                             "src/favicon.ico",
-                            "src/versions.json",
                             {
                                 "input": "resources",
                                 "output": "/resources",
@@ -248,7 +246,6 @@
                         "assets": [
                             "src/assets",
                             "src/app.config.json",
-                            "src/versions.json",
                             {
                                 "input": "resources",
                                 "output": "/resources",
