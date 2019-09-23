@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { DecisionTableModel } from 'ama-testing/e2e/models/decisionTable.model';
+import { DecisionTableModel } from './decisionTable.model';
 
 export class DecisionModel {
     '_attributes' = {
