@@ -42,7 +42,6 @@ export enum BpmnProperty {
     errorRef = 'errorRef',
     messageRef = 'messageRef',
     correlationKey = 'correlationKey',
-    messageExpression = 'messageExpression',
     messages = 'messages'
 }
 

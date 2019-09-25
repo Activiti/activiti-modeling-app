@@ -1,7 +1,4 @@
-<div *ngIf="hasMessageExpression()" class="message-type-checkbox">
-    <mat-checkbox [(ngModel)]="isMessageExpression">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.USE_MESSAGE_EXPRESSION' | translate }}</mat-checkbox>
-</div>
-<div *ngIf="!isMessageExpression" class="message-block">
+<div class="message-block">
     <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE' | translate }}</div>
     <button mat-stroked-button class="add-message-button" (click)="createNewMessage()"
         matTooltip="{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.CREATE_NEW_MESSAGE' | translate }}"
@@ -21,13 +18,4 @@
         <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_NAME' | translate }}</div>
         <input matInput (change)="onMessageChange()" [(ngModel)]="selectedMessage.name" />
     </mat-form-field>
-</div>
-<div *ngIf="isMessageExpression" class="message-block">
-    <mat-form-field>
-        <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_EXPRESSION' | translate }}</div>
-        <input matInput (change)="onMessageExpressionChange()" [(ngModel)]="messageExpression" />
-    </mat-form-field>
-    <div class="mat-error error-message" *ngIf="!messageExpression.length">
-        {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_EXPRESSION_REQUIRED' | translate }}
-    </div>
 </div>

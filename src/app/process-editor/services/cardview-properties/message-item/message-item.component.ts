@@ -17,7 +17,7 @@
 
 import { Component, Input, OnInit, Inject } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
-import { ProcessModelerServiceToken, ProcessModelerService, AmaState, BpmnElement } from 'ama-sdk';
+import { ProcessModelerServiceToken, ProcessModelerService, AmaState } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { SelectModelerElementAction } from '../../../store/process-editor.actions';
 import { MessageItemModel } from './message-item.model';
@@ -28,12 +28,11 @@ import { MessageItemModel } from './message-item.model';
     providers: [CardItemTypeService]
 })
 export class CardViewMessageItemComponent implements OnInit {
+
     @Input() property: MessageItemModel;
 
     messages: Bpmn.DiagramElement[] = [];
     selectedMessage: Bpmn.DiagramElement;
-    isMessageExpression = false;
-    messageExpression = '';
 
     constructor(
         private cardViewUpdateService: CardViewUpdateService,
@@ -54,13 +53,7 @@ export class CardViewMessageItemComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.eventDefinition.messageRef) {
-            this.selectedMessage = this.eventDefinition.messageRef;
-        } else if (this.eventDefinition.messageExpression) {
-            this.messageExpression = this.eventDefinition.messageExpression || '';
-            this.isMessageExpression = true;
-        }
-
+        this.selectedMessage = this.eventDefinition.messageRef;
         this.messages = this.rootElements.filter(element => {
             return element.$type === 'bpmn:Message';
         });
@@ -82,16 +75,5 @@ export class CardViewMessageItemComponent implements OnInit {
             const { id, type, name } = this.property.data.element;
             this.store.dispatch(new SelectModelerElementAction({ id, type, name }));
         }
-    }
-
-    onMessageExpressionChange() {
-        if (this.messageExpression.length) {
-            this.cardViewUpdateService.update(this.property, this.messageExpression);
-        }
-    }
-
-    hasMessageExpression(): boolean {
-        return this.property.data.element.businessObject.$type === BpmnElement.IntermediateCatchEvent ||
-        this.property.data.element.businessObject.$type === BpmnElement.BoundaryEvent;
     }
 }

@@ -15,20 +15,15 @@
  * limitations under the License.
  */
 
-import { BpmnProperty, BpmnElement } from 'ama-sdk';
-import { updateEventDefinitionProperty } from './update-event-definition-property.handler';
-
-const get = element => element.businessObject.eventDefinitions[0].messageRef ||
-    element.businessObject.eventDefinitions[0].messageExpression;
+const get = element => element.businessObject.eventDefinitions[0].messageRef;
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    if (value.$type && value.$type === BpmnElement.Message) {
+    if (value) {
         element.businessObject.eventDefinitions[0].messageRef = value;
-        delete element.businessObject.eventDefinitions[0].messageExpression;
     } else {
-        updateEventDefinitionProperty(element, BpmnProperty.messageExpression, value);
         delete element.businessObject.eventDefinitions[0].messageRef;
     }
+
     modeling.updateProperties(element, {});
 };
 
