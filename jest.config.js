@@ -20,6 +20,9 @@ module.exports = {
     transformIgnorePatterns: [
         'node_modules/(?!@alfresco\\/js-api)'
     ],
+    modulePathIgnorePatterns: [
+        `<rootDir>/dist`
+    ],
     setupFiles: ['core-js/es7/array'],
     transform: {
         '^.+\\.(ts|html)$': '<rootDir>/node_modules/jest-preset-angular/preprocessor.js',

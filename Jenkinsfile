@@ -12,7 +12,7 @@
       PREVIEW_VERSION = "0.0.0-SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER"
       NODE_OPTIONS = "--max_old_space_size=3000"
       OPTIMIZE_MEMORY = "true"
-      E2E_FAIL_FAST = "true"   
+      E2E_FAIL_FAST = "true"
     }
     stages {
       stage('Prepare to run tests') {
