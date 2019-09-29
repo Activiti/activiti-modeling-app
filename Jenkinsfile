@@ -71,7 +71,7 @@
             sh "echo \$(jx-release-version) > VERSION"
             sh "npm install"
             sh "npm install @alfresco/adf-cli@alpha"
-            sh "./node_modules/@alfresco/adf-cli/bin/adf-cli update-commit-sha --pointer "HEAD" --pathPackage "$(pwd)""
+            sh "./node_modules/@alfresco/adf-cli/bin/adf-cli update-commit-sha --pointer \"HEAD\" --pathPackage \"\$(pwd)\""
             sh "npm run build:prod"
 
             dir("./charts/$APP_NAME") {
