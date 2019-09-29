@@ -413,6 +413,19 @@
             ]
         },
         {
+            "name": "SignalScope",
+            "extends": [
+                "bpmn:Signal"
+            ],
+            "properties": [
+                {
+                    "name": "scope",
+                    "isAttr": true,
+                    "type": "String"
+                }
+            ]
+        },
+        {
             "name": "DmnCapable",
             "extends": [
                 "bpmn:BusinessRuleTask"
