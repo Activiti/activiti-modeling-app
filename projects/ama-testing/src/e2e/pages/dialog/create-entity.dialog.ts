@@ -18,6 +18,7 @@
 import { element, by } from 'protractor';
 import { UtilRandom } from '../../util/random';
 import { GenericDialog } from '../common/generic.dialog';
+import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export interface CreatedEntity {
     name: string;
@@ -29,6 +30,7 @@ export class CreateEntityDialog extends GenericDialog {
     readonly nameField = element(by.css(`input[data-automation-id='name-field']`));
     readonly descriptionField = element(by.css(`textarea[data-automation-id='desc-field']`));
     readonly submitButton = element(by.css(`button[data-automation-id='submit-button']`));
+    readonly error = element.all(by.css(`.mat-error`)).first();
 
     constructor() {
         super('Create new ITEM');
@@ -61,5 +63,10 @@ export class CreateEntityDialog extends GenericDialog {
             name: entityName,
             description: entityDescription
         };
+    }
+
+    async getErrorMessage() {
+        await BrowserVisibility.waitUntilElementIsVisible(this.error);
+        return await this.error.getText();
     }
 }

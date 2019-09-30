@@ -86,7 +86,7 @@ export class ProcessModelerComponent extends GenericPage {
     }
 
     async selectUserTask() {
-        await super.click(element(by.css(`[data-element-id*="UserTask"]`)));
+        await super.click(element(by.css(`[data-element-id*="Task"]`)));
     }
 
     async selectBoundaryEvent() {

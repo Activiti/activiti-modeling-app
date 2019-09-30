@@ -19,13 +19,13 @@ import { GenericDialog } from '../common/generic.dialog';
 import { element, by } from 'protractor';
 import { BrowserVisibility } from '@alfresco/adf-testing';
 
-export class ProcessValidationDialog extends GenericDialog {
+export class ValidationDialog extends GenericDialog {
 
     readonly titleElement = element(by.css(`.mat-dialog-title`));
     readonly confirmButton = element(by.css(`[data-automation-id="dialog-confirm"]`));
     readonly closeButton = element(by.css(`[data-automation-id="dialog-close"]`));
-    readonly validationDialog = element.all(by.css(`.cdk-overlay-pane`)).first();
-    readonly validationError = element(by.css(`.mat-dialog-content ul>li`));
+    readonly validationDialog = element(by.css(`.cdk-overlay-pane`));
+    readonly validationError = element.all(by.css(`.mat-dialog-content ul>li`)).first();
 
 
     constructor(title?: string) {

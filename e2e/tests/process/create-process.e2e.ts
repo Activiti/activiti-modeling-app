@@ -30,7 +30,7 @@ import { ProcessModelerComponent } from 'ama-testing/e2e';
 import { ProcessPropertiesCard } from 'ama-testing/e2e';
 import { Toolbar } from 'ama-testing/e2e';
 import { TaskPropertiesCardPage } from 'ama-testing/e2e';
-import { ProcessValidationDialog } from 'ama-testing/e2e';
+import { ValidationDialog } from 'ama-testing/e2e';
 import { browser } from 'protractor';
 import { UtilFile } from 'ama-testing/e2e';
 
@@ -49,7 +49,7 @@ describe('Create process', async () => {
     const processModelerComponent = new ProcessModelerComponent(testConfig);
     const processProperties = new ProcessPropertiesCard();
     const taskProperties = new TaskPropertiesCardPage();
-    const processValidation = new ProcessValidationDialog();
+    const processValidation = new ValidationDialog();
     const toolbar = new Toolbar();
 
     let backend: Backend;
