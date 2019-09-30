@@ -47,6 +47,21 @@ export const connectorByName = name => createSelector(
     }
 );
 
+export const projectConnectorByName = (projectId: string, name: string) => createSelector(
+    selectConnectorEntities,
+    (entities) => {
+        if (!projectId || !name) {
+            return null;
+        }
+
+        const wantedConnector = Object.keys(entities)
+            .map(connectorId => entities[connectorId])
+            .filter(connector => connector.name === name && connector.projectId === projectId);
+
+        return wantedConnector[0] || null;
+    }
+);
+
 export const connectorContentById = id => createSelector(
     selectConnectorEntityContents,
     (entityContents) => {

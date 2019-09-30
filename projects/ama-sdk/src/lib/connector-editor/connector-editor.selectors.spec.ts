@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { connectorActions, EntitiesWithConnectors, connectorByName, connectorContentById } from './connector-editor.selectors';
+import { connectorActions, EntitiesWithConnectors, projectConnectorByName, connectorContentById } from './connector-editor.selectors';
 import { ConnectorContent, Connector } from '../api/types';
 
 describe('Connector selectors', () => {
@@ -40,16 +40,16 @@ describe('Connector selectors', () => {
 
         it('should return null if there is no entities at all', () => {
             state = createState({});
-            const actionsSelector = connectorByName('whatever-name');
+            const actionsSelector = projectConnectorByName('', 'whatever-name');
 
             const connector = actionsSelector(state);
 
             expect(connector).toEqual(null);
         });
 
-        it('should return null if name is null', () => {
+        it('should return null if projectId or name is null', () => {
             state = createState({});
-            const actionsSelector = connectorByName(null);
+            const actionsSelector = projectConnectorByName(null, null);
 
             const connector = actionsSelector(state);
 
@@ -58,15 +58,27 @@ describe('Connector selectors', () => {
 
         it('should return the connector if it exists', () => {
             state = createState({
-                '1': <Connector>{ type: 'connector', id: '1', name: 'connector-1' },
-                '2': <Connector>{ type: 'connector', id: '2', name: 'connector-2' },
-                '3': <Connector>{ type: 'connector', id: '3', name: 'connector-3' },
+                '1': <Connector>{ type: 'connector', id: '1', name: 'connector-1', projectId: 'project-1' },
+                '2': <Connector>{ type: 'connector', id: '2', name: 'connector-2', projectId: 'project-1' },
+                '3': <Connector>{ type: 'connector', id: '3', name: 'connector-2', projectId: 'project-2' },
             });
-            const actionsSelector = connectorByName('connector-2');
+            const actionsSelector = projectConnectorByName('project-2', 'connector-2');
 
             const connector = actionsSelector(state);
 
-            expect(connector).toBe(state.entities.connectors.entities['2']);
+            expect(connector).toBe(state.entities.connectors.entities['3']);
+        });
+
+        it('should return null if it doesn\'t exist in the right project', () => {
+            state = createState({
+                '1': <Connector>{ type: 'connector', id: '1', name: 'connector-a', projectId: 'project-1' },
+                '2': <Connector>{ type: 'connector', id: '2', name: 'connector-a', projectId: 'project-2' }
+            });
+            const actionsSelector = projectConnectorByName('project-3', 'connector-a');
+
+            const connector = actionsSelector(state);
+
+            expect(connector).toBe(null);
         });
     });
 
