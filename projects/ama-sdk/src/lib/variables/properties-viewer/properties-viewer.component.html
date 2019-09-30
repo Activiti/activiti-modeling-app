@@ -1,44 +1,52 @@
-
 <div class="properties-viewer">
     <mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_NAME' | translate }}</mat-header-cell>
-            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'variable-name-cell-' + element.name">{{element.name}}</mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_NAME' | translate }}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'variable-name-cell-' + element.name">
+                {{element.name}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="type">
-            <mat-header-cell *matHeaderCellDef>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_TYPE' | translate }}</mat-header-cell>
-            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'variable-type-cell-' + element.type">{{element.type}}</mat-cell>
+            <mat-header-cell *matHeaderCellDef>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_TYPE' | translate }}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'variable-type-cell-' + element.type">
+                {{element.type}}</mat-cell>
         </ng-container>
 
-        <ng-container *ngIf="requiredCheckbox" matColumnDef="required" >
-            <mat-header-cell *matHeaderCellDef>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_REQUIRED' | translate }}</mat-header-cell>
-            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'variable-required-cell-' + element.required">
+        <ng-container *ngIf="requiredCheckbox" matColumnDef="required">
+            <mat-header-cell *matHeaderCellDef>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_REQUIRED' | translate }}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"
+                [attr.data-automation-id]="'variable-required-cell-' + element.required">
                 {{element.required}}
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="value">
-            <mat-header-cell *matHeaderCellDef >{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_VALUE' | translate }}</mat-header-cell>
-            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'variable-value-cell-' + element.value">
-                {{element.value}}
+            <mat-header-cell *matHeaderCellDef>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_VALUE' | translate }}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'variable-value-cell-' + element.value" class="ellipsis-cell">
+                {{ element.value }}
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="delete">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let element, let i = index">
-                <mat-icon (click)="deleteRow(element, i)" color="primary" class="delete-btn" data-automation-id="delete-variable">
+                <mat-icon (click)="deleteRow(element, i)" color="primary" class="delete-btn"
+                    data-automation-id="delete-variable">
                     delete
                 </mat-icon>
             </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" (click)="editRow(row, i)" [class.active]="i == position"
-        [attr.data-automation-id]="'variable-row-' + i + '-' + row.id"></mat-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" (click)="editRow(row, i)"
+            [class.active]="i == position" [attr.data-automation-id]="'variable-row-' + i + '-' + row.id"></mat-row>
     </mat-table>
-    <button mat-raised-button class="add-btn" color="primary" (click)="addRow()" [disabled]="error" data-automation-id="add-variable">
+    <button mat-raised-button class="add-btn" color="primary" (click)="addRow()" [disabled]="error"
+        data-automation-id="add-variable">
         <mat-icon>add</mat-icon>
     </button>
 </div>
@@ -46,20 +54,24 @@
 <ng-container *ngIf="showForm; else noProjectsTemplate">
     <div class="properties-form">
         <mat-form-field floatLabel="never">
-            <input matInput placeholder="Name" [(ngModel)]="name" (keyup)="saveChanges()" data-automation-id="variable-name">
+            <input matInput placeholder="Name" [(ngModel)]="name" (keyup)="saveChanges()"
+                data-automation-id="variable-name">
             <p class="mat-error" *ngIf="!name.length">{{ 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME' | translate }}</p>
         </mat-form-field>
         <mat-form-field floatLabel="never">
-            <mat-select placeholder="Type" [(ngModel)]="selectedType" (selectionChange)="onTypeChange()" data-automation-id="variable-type">
+            <mat-select placeholder="Type" [(ngModel)]="selectedType" (selectionChange)="onTypeChange()"
+                data-automation-id="variable-type">
                 <mat-option *ngFor="let type of types" [value]="type">
                     {{type}}
-                  </mat-option>
-                </mat-select>
+                </mat-option>
+            </mat-select>
         </mat-form-field>
 
-        <amasdk-value-type-input [(ngModel)]="value" [index]="position" [type]="selectedType" (change)="saveChanges()"></amasdk-value-type-input>
+        <amasdk-value-type-input [(ngModel)]="value" [index]="position" [type]="selectedType" (change)="saveChanges()">
+        </amasdk-value-type-input>
 
-        <mat-checkbox  *ngIf="requiredCheckbox" [(ngModel)]="required" (change)="saveChanges()" color="primary" data-automation-id="variable-required">
+        <mat-checkbox *ngIf="requiredCheckbox" [(ngModel)]="required" (change)="saveChanges()" color="primary"
+            data-automation-id="variable-required">
             {{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_REQUIRED' | translate }}
         </mat-checkbox>
     </div>

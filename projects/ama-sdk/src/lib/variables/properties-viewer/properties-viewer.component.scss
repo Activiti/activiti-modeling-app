@@ -42,6 +42,14 @@
             &:last-of-type {
                 border-bottom: 0;
             }
+
+            .ellipsis-cell {
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                line-height: 48px;
+            }
         }
 
         .add-btn {

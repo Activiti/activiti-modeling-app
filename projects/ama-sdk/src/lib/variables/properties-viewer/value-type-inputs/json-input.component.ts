@@ -42,12 +42,16 @@ export class PropertiesViewerJsonInputComponent {
     };
 
     onChange() {
-        try {
-            JSON.parse(this.value);
-        } catch (e) {
-            return;
+        if (this.value.trim()) {
+            try {
+                JSON.parse(this.value);
+            } catch (e) {
+                return;
+            }
+            this.change.emit(this.value);
+        } else {
+            this.change.emit(null);
         }
-        this.change.emit(this.value.length ? this.value : null);
     }
 
 }
