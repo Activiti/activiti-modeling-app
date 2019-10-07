@@ -192,7 +192,7 @@ describe('PropertiesViewerComponent', () => {
         button.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data, null, 2), null);
+        expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME');
         expect(component.data).toEqual(data);
     });
 });
