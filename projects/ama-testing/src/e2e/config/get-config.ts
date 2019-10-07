@@ -22,9 +22,6 @@ require('dotenv').config({ path: process.env.ENV_FILE });
 const env = process.env;
 const path = require('path');
 
-const E2E_HOST = process.env.E2E_HOST || 'localhost',
-    E2E_PORT = process.env.E2E_PORT;
-
 export function getConfig(rootPath: string = __dirname): TestConfig {
     const outputDir = path.join(rootPath, '/../e2e-output');
     return {
@@ -40,15 +37,9 @@ export function getConfig(rootPath: string = __dirname): TestConfig {
                 junitReport: path.join(outputDir, '/junit-report'),
                 reports: path.join(outputDir, '/reports/'),
                 download: path.join(outputDir, '/downloads')
-            },
-            screenshots: {
-                url: process.env.SCREENSHOT_URL,
-                user: process.env.SCREENSHOT_USERNAME,
-                password: process.env.SCREENSHOT_PASSWORD,
             }
         },
         ama: {
-            url: `${E2E_HOST}${E2E_PORT ? `:${E2E_PORT}` : ''  }`,
             backendConfig: {
                 authType: 'OAUTH',
                 oauth2: {

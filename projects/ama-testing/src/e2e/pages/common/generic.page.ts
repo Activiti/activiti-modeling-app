@@ -30,8 +30,7 @@ export class GenericPage extends GenericWebElement {
     }
 
     async navigateTo(url: string) {
-        const baseUrl = this.testConfig.ama.url;
-        await browser.get(`${baseUrl}/#/${url}`);
+        await browser.get(`/#/${url}`);
         await browser.refresh();
     }
 

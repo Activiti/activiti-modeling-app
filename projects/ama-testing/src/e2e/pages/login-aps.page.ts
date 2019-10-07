@@ -16,7 +16,6 @@
  */
 
 import { LoginSSOPage, BrowserActions } from '@alfresco/adf-testing';
-import { testConfig } from '../../../../../e2e/test.config';
 
 export class LoginAPSPage {
 
@@ -27,6 +26,6 @@ export class LoginAPSPage {
     }
 
     async navigateTo(): Promise<void> {
-        await BrowserActions.getUrl(`${testConfig.ama.url}/#/login`);
+        await BrowserActions.getUrl(`/#/login`);
     }
 }

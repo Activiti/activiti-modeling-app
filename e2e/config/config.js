@@ -12,11 +12,12 @@ module.exports = {
         reports: path.join(outputDir, '/reports/'),
         download: path.join(outputDir, '/downloads')
     },
-
-    screenshots: {
-        url: process.env.SCREENSHOT_URL,
-        user: process.env.SCREENSHOT_USERNAME,
-        password: process.env.SCREENSHOT_PASSWORD,
+    ama: {
+        backendConfig: {
+            bpmHost: process.env.API_HOST
+        },
+        user: process.env.E2E_USERNAME,
+        password: process.env.E2E_PASSWORD
     }
 }
 

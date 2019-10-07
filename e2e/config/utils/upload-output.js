@@ -42,8 +42,8 @@ uploadOutput = async function(FOLDER, retryCount = 1) {
 
     fs.writeFileSync(fileName, output, 'utf8');
 
-    let alfrescoJsApi = new AlfrescoApi({ provider: 'ECM', hostEcm: config.screenshots.url });
-    alfrescoJsApi.login(config.screenshots.user, config.screenshots.password);
+    let alfrescoJsApi = new AlfrescoApi({ provider: 'ECM', hostEcm: config.ama.backendConfig.bpmHost });
+    alfrescoJsApi.login(config.ama.user, config.ama.password);
 
     await saveScreenshots(alfrescoJsApi, retryCount);
     await saveReport(filenameReport, alfrescoJsApi);

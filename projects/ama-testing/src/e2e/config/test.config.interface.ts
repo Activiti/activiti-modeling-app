@@ -43,15 +43,9 @@ export interface TestConfig {
             junitReport: string;
             reports: string;
             download: string;
-        },
-        screenshots: {
-            url: string;
-            user: string;
-            password: string;
         }
     };
     ama: {
-        url: string;
         backendConfig: APSBackendConfig;
         user: string;
         password: string;
