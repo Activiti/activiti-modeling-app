@@ -17,7 +17,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ProjectEditorState, Project, selectProject, LeaveProjectAction, OpenConfirmDialogAction } from 'ama-sdk';
+import { ProjectEditorState, Project, selectProject, OpenConfirmDialogAction } from 'ama-sdk';
 import { Observable, Subscription } from 'rxjs';
 import { ExportProjectAction, OpenProjectSettingsDialog } from '../../store/project-editor.actions';
 import { ReleaseProjectAttemptAction } from '../../../dashboard/store/actions/projects';
