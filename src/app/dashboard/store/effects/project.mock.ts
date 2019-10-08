@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Project, PROJECT, ReleaseEntry } from 'ama-sdk';
+import { Project, PROJECT, ReleaseEntry, Pagination } from 'ama-sdk';
 
 export const mockProject: Project = {
     id: 'app-id',
@@ -39,4 +39,12 @@ export const mockReleaseEntry: ReleaseEntry = {
         lastModifiedBy: 'user',
         lastModifiedDate: new Date()
     }
+};
+
+export const paginationMock: Pagination = {
+    count: 1,
+    hasMoreItems: false,
+    maxItems: 25,
+    skipCount: 0,
+    totalItems: 1
 };

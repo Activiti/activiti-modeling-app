@@ -26,7 +26,7 @@ import { Router } from '@angular/router';
 import { LogService, CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { selectProjectsLoaded } from '../selectors/dashboard.selectors';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { mockProject, mockReleaseEntry } from './project.mock';
+import { mockProject, mockReleaseEntry, paginationMock } from './project.mock';
 import {
     ShowProjectsAction,
     GET_PROJECTS_ATTEMPT,
@@ -286,9 +286,10 @@ describe('ProjectsEffects', () => {
             dashboardService.deleteProject = jest.fn().mockReturnValue(of(mockProject));
             actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id) });
 
-            const expected = cold('(bc)', {
+            const expected = cold('(bce)', {
                 b: new DeleteProjectSuccessAction(mockProject.id),
-                c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED')
+                c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
+                e: new GetProjectsAttemptAction({})
             });
 
             expect(effects.deleteProjectAttemptEffect).toBeObservable(expected);
@@ -300,6 +301,20 @@ describe('ProjectsEffects', () => {
 
             const expected = cold('b', {
                 b: new SnackbarErrorAction('APP.PROJECT.ERROR.DELETE_PROJECT')
+            });
+
+            expect(effects.deleteProjectAttemptEffect).toBeObservable(expected);
+        });
+
+        it('should refresh projects on successful delete', () => {
+            dashboardService.deleteProject = jest.fn().mockReturnValue(of(mockProject));
+            actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id) });
+
+            const expected = cold('(bce)', {
+                b:  new DeleteProjectSuccessAction(mockProject.id),
+                c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
+                e: new GetProjectsAttemptAction({})
+
             });
 
             expect(effects.deleteProjectAttemptEffect).toBeObservable(expected);

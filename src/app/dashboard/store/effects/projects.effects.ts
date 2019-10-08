@@ -48,7 +48,7 @@ import {
 import { Store } from '@ngrx/store';
 import { AmaState, CreateProjectAttemptAction, CREATE_PROJECT_ATTEMPT, } from 'ama-sdk';
 import { SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
-import { selectProjectsLoaded } from '../selectors/dashboard.selectors';
+import { selectProjectsLoaded, selectPagination } from '../selectors/dashboard.selectors';
 import { EntityDialogForm } from 'ama-sdk';
 import { GET_PROJECT_RELEASES_ATTEMPT, GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
 import { getProjectEditorLogInitiator } from '../../../project-editor/services/project-editor.constants';
@@ -98,7 +98,8 @@ export class ProjectsEffects extends BaseEffects {
     deleteProjectAttemptEffect = this.actions$.pipe(
         ofType<DeleteProjectAttemptAction>(DELETE_PROJECT_ATTEMPT),
         map(action => action.payload),
-        mergeMap(projectId => this.deleteProject(projectId))
+        withLatestFrom(this.store.select(selectPagination)),
+        mergeMap(([projectId, pagination]) => this.deleteProject(projectId, pagination))
     );
 
     @Effect()
@@ -125,11 +126,12 @@ export class ProjectsEffects extends BaseEffects {
         tap((action) => this.router.navigate([ '/projects', action.payload.id]))
     );
 
-    private deleteProject(projectId: string) {
+    private deleteProject(projectId: string, pagination: Pagination) {
         return this.dashboardService.deleteProject(projectId).pipe(
             switchMap(() => [
                 new DeleteProjectSuccessAction(projectId),
-                new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED')
+                new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
+                new GetProjectsAttemptAction(pagination)
             ]),
             catchError(e =>
                 this.genericErrorHandler(
