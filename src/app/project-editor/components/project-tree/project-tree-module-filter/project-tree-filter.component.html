@@ -25,9 +25,8 @@
                 *ngFor="let item of contents"
                 [routerLink]="[filter.type, item.id]"
                 [routerLinkActive]="['active']"
-                [title]="item.name"
-            >
-                <mat-icon class="project-tree-filter__icon">insert_drive_file</mat-icon>
+                [title]="item.name">
+                <mat-icon class="project-tree-filter__icon">{{ filter.icon }}</mat-icon>
                 <span class="project-tree-filter__name">{{ item.name }}</span>
             </a>
             <div class="project-tree-filter__no-content" *ngIf="contentsAreEmpty()">
