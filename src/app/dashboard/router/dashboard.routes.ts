@@ -16,7 +16,6 @@
  */
 
 import { Routes } from '@angular/router';
-import { ProjectsLoaderGuard } from './guards/projects-loader.guard';
 import { DashboardNavigationComponent } from '../components/dashboard-navigation/dashboard-navigation.component';
 import { ProjectsListComponent } from '../components/projects-list/projects-list.component';
 import { ReleaseListComponent } from '../components/releases-list/releases-list.component';
@@ -26,9 +25,6 @@ export const dashboardRoutes: Routes = [
     {
         path: 'projects',
         component: ProjectsListComponent,
-        canActivate: [
-            ProjectsLoaderGuard
-        ]
     },
     {
         path: '',
@@ -41,5 +37,5 @@ export const dashboardRoutes: Routes = [
           ProjectReleasesLoaderGuard
       ]
     },
-    { path: '', redirectTo: '/dashboard/projects', pathMatch: 'full' }
+    { path: '', redirectTo: '/dashboard/projects?maxItems=25&skipCount=0&sort=name,asc', pathMatch: 'full' }
 ];

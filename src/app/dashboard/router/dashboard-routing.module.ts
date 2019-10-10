@@ -18,7 +18,6 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { dashboardRoutes } from './dashboard.routes';
-import { ProjectsLoaderGuard } from './guards/projects-loader.guard';
 import { ProjectReleasesLoaderGuard } from './guards/project-releases-loader.guard';
 
 @NgModule({
@@ -26,7 +25,6 @@ import { ProjectReleasesLoaderGuard } from './guards/project-releases-loader.gua
         RouterModule.forChild(dashboardRoutes)
     ],
     providers: [
-        ProjectsLoaderGuard,
         ProjectReleasesLoaderGuard
     ],
     exports: [

@@ -23,7 +23,7 @@ import { of } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { tap, switchMap, catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { BaseEffects, Pagination, logInfo, logError, LogAction } from 'ama-sdk';
+import { BaseEffects, Pagination, logInfo, logError, LogAction, ServerSideSorting } from 'ama-sdk';
 import {
     GetProjectsAttemptAction,
     GET_PROJECTS_ATTEMPT,
@@ -52,6 +52,11 @@ import { selectProjectsLoaded, selectPagination } from '../selectors/dashboard.s
 import { EntityDialogForm } from 'ama-sdk';
 import { GET_PROJECT_RELEASES_ATTEMPT, GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
 import { getProjectEditorLogInitiator } from '../../../project-editor/services/project-editor.constants';
+
+export interface ProjectError {
+   status: number;
+   message: string;
+}
 
 @Injectable()
 export class ProjectsEffects extends BaseEffects {
@@ -105,7 +110,7 @@ export class ProjectsEffects extends BaseEffects {
     @Effect()
     getProjectsAttemptEffect = this.actions$.pipe(
         ofType<GetProjectsAttemptAction>(GET_PROJECTS_ATTEMPT),
-        switchMap(action => this.getProjectsAttempt(action.pagination))
+        switchMap(action => this.getProjectsAttempt(action.pagination, action.sorting))
     );
 
     @Effect()
@@ -177,8 +182,8 @@ export class ProjectsEffects extends BaseEffects {
         );
     }
 
-    private getProjectsAttempt(pagination: Partial<Pagination>) {
-        return this.dashboardService.fetchProjects(pagination).pipe(
+    private getProjectsAttempt(pagination: Partial<Pagination>, sorting: ServerSideSorting) {
+        return this.dashboardService.fetchProjects(pagination, sorting).pipe(
             switchMap(projects => [new GetProjectsSuccessAction(projects)]),
             catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'APP.HOME.ERROR.LOAD_PROJECTS'), e))
         );
@@ -213,8 +218,8 @@ export class ProjectsEffects extends BaseEffects {
         return of(new SnackbarErrorAction(errorMessage));
     }
 
-    private handleProjectUpdateError(error): Observable<SnackbarErrorAction> {
-        let errorMessage;
+    private handleProjectUpdateError(error: ProjectError): Observable<SnackbarErrorAction> {
+        let errorMessage: string;
 
         if (error.status === 409) {
             errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROJECT.DUPLICATION';
@@ -225,8 +230,8 @@ export class ProjectsEffects extends BaseEffects {
         return of(new SnackbarErrorAction(errorMessage));
     }
 
-    private handleProjectUploadError(error): Observable<SnackbarErrorAction> {
-        let errorMessage;
+    private handleProjectUploadError(error: ProjectError): Observable<SnackbarErrorAction> {
+        let errorMessage: string;
 
         if (error.status === 409) {
             errorMessage = 'APP.PROJECT.ERROR.UPLOAD_PROJECT.DUPLICATION';
@@ -237,11 +242,11 @@ export class ProjectsEffects extends BaseEffects {
         return of(new SnackbarErrorAction(errorMessage));
     }
 
-    private handleProjectReleaseError(error): Observable<SnackbarErrorAction | LogAction> {
-        let errorMessage;
+    private handleProjectReleaseError(error: ProjectError): Observable<SnackbarErrorAction | LogAction> {
+        let errorMessage: string;
 
         errorMessage = 'APP.PROJECT.ERROR.RELEASE_PROJECT';
-        const errorLog = JSON.parse(error.message).errors.map(e => e.description);
+        const errorLog = JSON.parse(error.message).errors.map((e: any) => e.description);
 
         return of(
             new SnackbarErrorAction(errorMessage),
@@ -249,7 +254,7 @@ export class ProjectsEffects extends BaseEffects {
         );
     }
 
-    private handleError(userMessage) {
+    private handleError(userMessage: string) {
         return of(new SnackbarErrorAction(userMessage));
     }
 }

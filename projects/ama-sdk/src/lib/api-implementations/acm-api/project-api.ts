@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { ProjectApi } from '../../api/project-api.interface';
 import { Observable } from 'rxjs';
-import { Project, PROJECT, Release, Pagination, PaginatedEntries, ReleaseEntry } from '../../api/types';
+import { Project, PROJECT, Release, Pagination, PaginatedEntries, ReleaseEntry, ServerSideSorting } from '../../api/types';
 import { map } from 'rxjs/operators';
 import { RequestApiHelper } from './request-api.helper';
 
@@ -85,9 +85,17 @@ export class ACMProjectApi implements ProjectApi {
         );
     }
 
-    public getAll(pagination: Partial<Pagination> = {}): Observable<PaginatedEntries<Project>> {
+    public getAll(
+        pagination: Partial<Pagination> = {},
+        sorting: ServerSideSorting = { key: 'name', direction: 'asc' }
+    ): Observable<PaginatedEntries<Project>> {
+        const queryParams = {
+            ...pagination,
+            sort: `${sorting.key},${sorting.direction}`
+        };
+
         return this.requestApiHelper
-            .get('/modeling-service/v1/projects', { queryParams: pagination })
+            .get('/modeling-service/v1/projects', { queryParams })
             .pipe(
                 map((nodePaging: any) => {
                     return {

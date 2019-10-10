@@ -4,7 +4,13 @@
         <ng-container *ngIf="dataSource$ | async; let dataSource">
             <ng-container *ngIf="dataSource.data.length; else noDataTemplate">
                 <div class="dashboard-list">
-                    <mat-table [dataSource]="dataSource">
+                    <mat-table
+                        [dataSource]="dataSource"
+                        matSort
+                        [matSortActive]="sorting.key"
+                        [matSortDirection]="sorting.direction"
+                        [matSortDisableClear]="true"
+                        (matSortChange)="onSortChange($event)">
                         <ng-container matColumnDef="thumbnail">
                             <mat-header-cell *matHeaderCellDef></mat-header-cell>
                             <mat-cell *matCellDef="let element" (click)="rowSelected(element)">
@@ -13,7 +19,7 @@
                         </ng-container>
 
                         <ng-container matColumnDef="name">
-                            <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_NAME' | translate }}</mat-header-cell>
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_NAME' | translate }}</mat-header-cell>
                             <mat-cell
                                 *matCellDef="let element"
                                 (click)="rowSelected(element)"
@@ -24,18 +30,18 @@
                             </mat-cell>
                         </ng-container>
 
-                        <ng-container matColumnDef="created">
-                            <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_CREATED' | translate }}</mat-header-cell>
+                        <ng-container matColumnDef="creationDate">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_CREATED' | translate }}</mat-header-cell>
                             <mat-cell *matCellDef="let element" (click)="rowSelected(element)"> {{ element.creationDate | amTimeAgo }} </mat-cell>
                         </ng-container>
 
                         <ng-container matColumnDef="createdBy">
-                            <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_CREATED_BY' | translate }}</mat-header-cell>
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_CREATED_BY' | translate }}</mat-header-cell>
                             <mat-cell *matCellDef="let element" (click)="rowSelected(element)"> {{ element.createdBy }} </mat-cell>
                         </ng-container>
 
                         <ng-container matColumnDef="version">
-                            <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_VERSION' | translate }}</mat-header-cell>
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_VERSION' | translate }}</mat-header-cell>
                             <mat-cell *matCellDef="let element" [attr.data-automation-id]="'project-version-' + element.id" (click)="rowSelected(element)"> {{ element.version }} </mat-cell>
                         </ng-container>
 

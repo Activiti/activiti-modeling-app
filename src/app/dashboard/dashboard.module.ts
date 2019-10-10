@@ -35,6 +35,7 @@ import { ProjectsEffects } from './store/effects/projects.effects';
 import { SharedModule } from 'ama-sdk';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReleaseListComponent } from './components/releases-list/releases-list.component';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
     imports: [
@@ -42,6 +43,7 @@ import { ReleaseListComponent } from './components/releases-list/releases-list.c
         MomentModule,
         DashboardRoutingModule,
         MatPaginatorModule,
+        MatSortModule,
         CoreModule.forChild(),
         SharedModule,
         StoreModule.forFeature(DASHBOARD_STATE_NAME, dashboardReducer),

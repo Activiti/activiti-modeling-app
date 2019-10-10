@@ -274,3 +274,7 @@ export interface PaginatedEntries<T> {
     pagination: Pagination;
 }
 
+export interface ServerSideSorting {
+    key: string;
+    direction: string;
+}

@@ -18,11 +18,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { MatTableDataSource, PageEvent } from '@angular/material';
+import { MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import { selectProjectSummaries, selectLoading, selectPagination } from '../../store/selectors/dashboard.selectors';
-import { AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination } from 'ama-sdk';
+import { AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting } from 'ama-sdk';
 import { OpenEntityDialogAction } from '../../../store/actions/dialog';
 import {
     DeleteProjectAttemptAction,
@@ -30,7 +30,9 @@ import {
     ReleaseProjectAttemptAction,
     GetProjectsAttemptAction
 } from '../../store/actions/projects';
-import { sortEntriesByName } from '../../../common/helpers/sort-entries-by-name';
+
+const DEFAULT_SORT_KEY: string = 'name';
+const DEFAULT_SORT_DIRECTION: string = 'asc';
 
 @Component({
     selector: 'ama-projects-list',
@@ -40,29 +42,80 @@ export class ProjectsListComponent implements OnInit {
     dataSource$: Observable<MatTableDataSource<Partial<Project>>>;
     loading$: Observable<boolean>;
     pagination$: Observable<Pagination>;
-    displayedColumns = ['thumbnail', 'name', 'created', 'createdBy', 'version', 'menu'];
+    displayedColumns = ['thumbnail', 'name', 'creationDate', 'createdBy', 'version', 'menu'];
     pageSizeOptions = [ 10, 25, 50, 100, 1000 ];
+    sorting: ServerSideSorting = {
+        key: DEFAULT_SORT_KEY,
+        direction: DEFAULT_SORT_DIRECTION
+    };
 
     @Input() customDataSource$: Observable<Partial<Project>[]>;
 
-    constructor(private store: Store<AmaState>, private router: Router ) {}
+    private maxItems: number = 25;
+    private skipCount: number = 0;
+
+    constructor(
+        private store: Store<AmaState>,
+        private router: Router,
+        private route: ActivatedRoute) {}
 
     ngOnInit() {
+        this.maxItems = +this.route.snapshot.queryParamMap.get('maxItems') || 25;
+        this.skipCount = +this.route.snapshot.queryParamMap.get('skipCount') || 0;
+        this.sorting = this.parseSorting(this.route.snapshot.queryParamMap.get('sort'));
+
+        this.loadProjects();
+
         this.loading$ = this.store.select(selectLoading);
         this.pagination$ = this.store.select(selectPagination);
         this.dataSource$ = (this.customDataSource$ || this.store.select(selectProjectSummaries).pipe(
             map(entries => Object.keys(entries).map(id => entries[id]))
         )).pipe(
-            map(sortEntriesByName),
             map(entriesArray =>  new MatTableDataSource<Partial<Project>>(entriesArray))
         );
     }
 
+    private parseSorting(value: string): ServerSideSorting {
+        if (value) {
+            const [key, direction] = value.split(',');
+            return {
+                key: key || DEFAULT_SORT_KEY,
+                direction: direction || DEFAULT_SORT_DIRECTION
+            };
+        }
+
+        return { key: DEFAULT_SORT_KEY, direction: DEFAULT_SORT_DIRECTION };
+    }
+
+    private loadProjects() {
+       const { maxItems, skipCount, sorting } = this;
+
+        this.store.dispatch(
+            new GetProjectsAttemptAction({ maxItems, skipCount }, sorting)
+        );
+    }
+
     onPageChange(event: PageEvent, pagination: Pagination) {
-        this.store.dispatch(new GetProjectsAttemptAction({
-            maxItems: event.pageSize,
-            skipCount: event.pageSize === pagination.maxItems ? event.pageSize * event.pageIndex : 0
-        }));
+        const maxItems = event.pageSize;
+        const skipCount = event.pageSize === pagination.maxItems ? event.pageSize * event.pageIndex : 0;
+
+        this.router.navigate(
+            ['dashboard', 'projects'],
+            {
+                queryParams: { maxItems, skipCount },
+                queryParamsHandling: 'merge'
+            }
+        );
+    }
+
+    onSortChange(sort: Sort) {
+        this.router.navigate(
+            ['dashboard', 'projects'],
+            {
+                queryParams: { sort: `${sort.active},${sort.direction}` },
+                queryParamsHandling: 'merge'
+            }
+        );
     }
 
     rowSelected(item: Partial<Project>): void {

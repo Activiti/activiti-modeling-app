@@ -16,19 +16,10 @@
  */
 
 import { createProcessName, PROCESS_FILE_FORMAT } from 'ama-sdk';
-import { sortEntriesByName } from './sort-entries-by-name';
 
 describe('Common Helpers', () => {
-
     it('should test createProcessName function', () => {
         const testName = 'test-name-123';
         expect(createProcessName(testName + PROCESS_FILE_FORMAT)).toBe(testName);
-    });
-
-    it('should test sortEntriesByName function', () => {
-        const entries = [{ name: 'B' }, { name: 'd' }, { name: 'A' }, { name: 'c' }];
-        const sortedEntries = [{ name: 'A' }, { name: 'B' }, { name: 'c' }, { name: 'd' }];
-
-        expect(sortEntriesByName(entries)).toEqual(sortedEntries);
     });
 });
