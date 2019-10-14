@@ -1,27 +1,39 @@
 <adf-toolbar class="inline project-header">
     <ng-container *ngIf="project$ | async as project;">
         <adf-toolbar-title>
-            <a color="accent"
+            <button
+                data-automation-id="project-navigate-home"
+                color="accent"
                 mat-icon-button
-                routerLink="/">
+                routerLink="/"
+                [title]="'APP.PROJECT.BACK_TO' | translate">
                 <mat-icon>home</mat-icon>
-            </a>
-            <span class="project-name">{{ project.name }}</span>
+            </button>
+            <span class="project-name">{{ project.name }} ({{ project.version }})</span>
         </adf-toolbar-title>
 
         <div class="adf-toolbar--spacer"></div>
-        <a mat-icon-button
+
+        <button
+            mat-icon-button
             data-automation-id="project-download-button"
-            (click)="downloadApp(project)"
-            class="download-app-btn">
+            [title]="'APP.DOWNLOAD_APP' | translate"
+            (click)="downloadApp(project)">
             <mat-icon>file_download</mat-icon>
-        </a>
+        </button>
 
-        <a mat-icon-button (click)="openSettingsDialog(project)">
+        <button
+            mat-icon-button
+            [title]="'APP.PROJECT.SETTINGS.PROJECT_SETTINGS' | translate"
+            (click)="openSettingsDialog(project)">
             <mat-icon>settings</mat-icon>
-        </a>
+        </button>
 
-        <button mat-icon-button [matMenuTriggerFor]="menu" [attr.data-automation-id]="'project-context-' + project.id">
+        <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            [attr.data-automation-id]="'project-context-' + project.id"
+            [title]="'APP.MORE_ACTIONS' | translate">
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
@@ -32,8 +44,6 @@
                 <mat-icon>remove_red_eye</mat-icon> <span>{{ 'APP.MENU.SEE_RELEASES' | translate }}</span>
             </button>
         </mat-menu>
-
-        <span class="project-version-label">Version: {{ project.version }}</span>
     </ng-container>
 </adf-toolbar>
 <h1 class="ama-no-selection">{{ 'APP.PROJECT.NO_SELECTION' | translate}}</h1>

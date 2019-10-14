@@ -36,7 +36,7 @@ export class ProjectContentComponent implements OnInit {
         this.project$ = this.store.select(selectProject);
     }
 
-    downloadApp(project) {
+    downloadApp(project: Project) {
         const payload = {
             projectId: project.id,
             projectName: project.name

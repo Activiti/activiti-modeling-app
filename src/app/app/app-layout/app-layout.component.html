@@ -6,7 +6,8 @@
             <adf-layout-header title="{{'APP.HEADER.APP_NAME' | translate }}" (clicked)="toggleMenu()">
                 <div class="adf-app-layout-menu-spacer" fxFlex="1 1 auto"></div>
 
-                <button *ngIf="showLanguagePicker" mat-icon-button [matMenuTriggerFor]="langMenu">
+                <button *ngIf="showLanguagePicker" mat-icon-button [matMenuTriggerFor]="langMenu"
+                    [title]="'APP.HEADER.LANGUAGE' | translate">
                     <mat-icon>language</mat-icon>
                 </button>
 

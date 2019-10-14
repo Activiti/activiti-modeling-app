@@ -14,12 +14,9 @@
 </mat-card>
 
 <ng-template #containerElement let-item>
-    <div
-        class="entry {{item.icon}}"
-        [matTooltip]="item.title | translate"
-        matTooltipShowDelay="1000"
-        matTooltipPosition="after">
+    <div class="entry {{item.icon}}">
         <button
+            [title]="item.title | translate"
             [attr.data-automation-id]="item.group + '::' + item.type"
             ama-palette-overlay
             [templatePortalContent]="templateContent"
@@ -32,11 +29,9 @@
 <ng-template #clickableElement let-item>
     <div
         class="entry {{item.icon}}"
-        [class.selected]="item === selectedTool"
-        [matTooltip]="item.title | translate"
-        matTooltipShowDelay="1000"
-        matTooltipPosition="after">
+        [class.selected]="item === selectedTool">
         <button
+            [title]="item.title | translate"
             [attr.data-automation-id]="item.group + '::' + item.type"
             *ngIf="!hasChildren(item)"
             draggable="true"

@@ -31,8 +31,8 @@ import {
     GetProjectsAttemptAction
 } from '../../store/actions/projects';
 
-const DEFAULT_SORT_KEY: string = 'name';
-const DEFAULT_SORT_DIRECTION: string = 'asc';
+const DEFAULT_SORT_KEY = 'name';
+const DEFAULT_SORT_DIRECTION = 'asc';
 
 @Component({
     selector: 'ama-projects-list',
@@ -51,8 +51,8 @@ export class ProjectsListComponent implements OnInit {
 
     @Input() customDataSource$: Observable<Partial<Project>[]>;
 
-    private maxItems: number = 25;
-    private skipCount: number = 0;
+    private maxItems = 25;
+    private skipCount = 0;
 
     constructor(
         private store: Store<AmaState>,

@@ -1,10 +1,24 @@
 {
     "APP": {
+        "MORE_ACTIONS": "More actions",
+        "DOWNLOAD_PROJECT": "Download project",
+        "DOWNLOAD_PROCESS": "Download process",
+        "DOWNLOAD_FORM": "Download form",
+        "DOWNLOAD_CONNECTOR": "Download connector",
+        "DOWNLOAD_DECISION_TABLE": "Download decision table",
+        "DOWNLOAD_UI": "Download UI",
+        "SAVE_PROCESS": "Save process",
+        "SAVE_FORM": "Save form",
+        "SAVE_CONNECTOR": "Save connector",
+        "SAVE_DECISION_TABLE": "Save decision table",
+        "SAVE_UI": "Save UI",
+        "ADD_ACTION": "Add new Action",
         "HEADER": {
             "APP_NAME": "Modeling Application",
             "SIGN_OUT": "Sign out",
             "SETTINGS": "Settings",
-            "ABOUT": "About"
+            "ABOUT": "About",
+            "LANGUAGE": "Language"
         },
         "DIALOGS": {
             "CANCEL": "Cancel",
@@ -129,7 +143,7 @@
             }
         },
         "PROJECT": {
-            "BACKTO": "Projects",
+            "BACK_TO": "Back to Projects",
             "NAME": "Project Editor",
             "UPLOAD_FILE": "Upload file",
             "DOWNLOAD_PROJECT": "Download project",

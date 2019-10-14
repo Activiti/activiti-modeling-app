@@ -27,13 +27,19 @@
                 #rla="routerLinkActive"
                 title="{{ item.title || '' | translate }}">
 
-                <button [routerLink]="item.route.url" [color]="rla.isActive ? 'accent': 'primary'" mat-icon-button mat-ripple matRippleColor="primary"
-                    [matRippleTrigger]="rippleTrigger" [matRippleCentered]="true">
-
+                <button
+                    mat-icon-button mat-ripple matRippleColor="primary"
+                    [routerLink]="item.route.url"
+                    [color]="rla.isActive ? 'accent': 'primary'"
+                    [matRippleTrigger]="rippleTrigger" [matRippleCentered]="true"
+                    [title]="item.label | translate">
                     <mat-icon>{{ item.icon }}</mat-icon>
                 </button>
 
-                <span #rippleTrigger class="menu__item--label" [routerLink]="item.route.url" [hidden]="!(expanded$ | async)" [ngClass]="{
+                <span #rippleTrigger class="menu__item--label"
+                    [routerLink]="item.route.url"
+                    [hidden]="!(expanded$ | async)"
+                    [ngClass]="{
                         'menu__item--active': rla.isActive,
                         'menu__item--default': !rla.isActive
                     }">{{ item.label | translate }}</span>

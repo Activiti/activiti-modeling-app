@@ -48,7 +48,8 @@
                         <ng-container matColumnDef="menu">
                             <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_OPTIONS' | translate }}</mat-header-cell>
                             <mat-cell *matCellDef="let element">
-                                <button mat-icon-button [matMenuTriggerFor]="menu" [attr.data-automation-id]="'project-context-' + element.id">
+                                <button mat-icon-button [matMenuTriggerFor]="menu" [attr.data-automation-id]="'project-context-' + element.id"
+                                    [title]="'APP.MORE_ACTIONS' | translate">
                                     <mat-icon>more_vert</mat-icon>
                                 </button>
                                 <mat-menu #menu="matMenu">

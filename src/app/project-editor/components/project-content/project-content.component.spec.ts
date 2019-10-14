@@ -15,28 +15,40 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectContentComponent } from './project-content.component';
 import { Store } from '@ngrx/store';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule, MatButtonModule, MatMenuModule } from '@angular/material';
 import { ToolbarModule } from '@alfresco/adf-core';
 import { ProjectEditorState } from 'ama-sdk';
 import { of } from 'rxjs';
 import { ExportProjectAction } from '../../store/project-editor.actions';
 import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CommonModule } from '@angular/common';
 
 describe('ProjectContentComponent', () => {
     let fixture: ComponentFixture<ProjectContentComponent>;
     let store: Store<ProjectEditorState>;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [MatIconModule,  ToolbarModule, TranslateModule.forRoot()],
+            imports: [
+                CommonModule,
+                RouterTestingModule,
+                MatIconModule,
+                MatButtonModule,
+                MatMenuModule,
+                ToolbarModule,
+                TranslateModule.forRoot()
+            ],
             declarations: [ProjectContentComponent],
-            providers: [{provide: Store, useValue: {dispatch: jest.fn(), select: jest.fn().mockReturnValue(of({}))}}]
-        }).compileComponents();
-    }));
+            providers: [
+                {provide: Store, useValue: {dispatch: jest.fn(), select: jest.fn().mockReturnValue(of({}))}}
+            ]
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ProjectContentComponent);
@@ -45,14 +57,13 @@ describe('ProjectContentComponent', () => {
     });
 
     it('download button exists', () => {
-        const button = fixture.nativeElement.querySelector('.download-app-btn');
-
+        const button = fixture.nativeElement.querySelector('[data-automation-id="project-download-button"]');
         expect(button === null).toBeFalsy();
     });
 
     it('clicking on download button should dispatch an ExportProjectAction', () => {
         spyOn(store, 'dispatch');
-        const button = fixture.debugElement.query(By.css('.download-app-btn'));
+        const button = fixture.debugElement.query(By.css('[data-automation-id="project-download-button"]'));
         button.triggerEventHandler('click', {});
         fixture.detectChanges();
         const exportAction: ExportProjectAction = store.dispatch.calls.argsFor(0)[0];

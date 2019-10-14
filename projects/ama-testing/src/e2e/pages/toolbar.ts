@@ -21,11 +21,11 @@ import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class Toolbar extends GenericWebElement {
 
-    readonly home = element(by.css(`.adf-toolbar-title>a`));
+    readonly home = element(by.css(`[data-automation-id='project-navigate-home']`));
     readonly downloadButton = element(by.css(`[data-automation-id='project-download-button']`));
     readonly breadcrumbCss = `[data-automation-id='breadcrumb']`;
 
-    async isItemDisplayed(itemName) {
+    async isItemDisplayed(itemName: string) {
         const item = element(by.cssContainingText(`.ama-breadcrumb-item-current`, itemName));
         return await BrowserVisibility.waitUntilElementIsVisible(item);
     }
@@ -39,7 +39,7 @@ export class Toolbar extends GenericWebElement {
     }
 
     async navigateToBreadcrumbItem(itemName: string) {
-        const item = element(by.cssContainingText(`${this.breadcrumbCss}>li>a`, itemName));
+        const item = element(by.cssContainingText(`${this.breadcrumbCss}>div>a`, itemName));
         await BrowserActions.click(item);
     }
 

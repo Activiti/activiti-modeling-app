@@ -7,6 +7,7 @@
 
     <button mat-icon-button
         data-automation-id="process-editor-download-button"
+        [title]="'APP.DOWNLOAD_PROCESS' | translate"
         (click)="onDownload(process)">
         <mat-icon>file_download</mat-icon>
     </button>
@@ -14,12 +15,14 @@
     <button mat-icon-button
         data-automation-id="process-editor-save-button"
         [disabled]="disableSave"
+        [title]="'APP.SAVE_PROCESS' | translate"
         (click)="onSaveClick()">
         <mat-icon>save</mat-icon>
     </button>
 
     <button mat-icon-button
         data-automation-id="process-editor-menu-button"
+        [title]="'APP.MORE_ACTIONS' | translate"
         [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
     </button>

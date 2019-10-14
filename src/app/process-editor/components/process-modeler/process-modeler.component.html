@@ -1,32 +1,31 @@
 <div class="bpmn-controls bpmn-actions-controls">
-
-    <button (click)="undo()"
-            [matTooltip]="'PROCESS_EDITOR.ACTIONS.UNDO' | translate"
-            data-automation-class="undo-button"
-            matTooltipPosition="before">
+    <button
+        [title]="'PROCESS_EDITOR.ACTIONS.UNDO' | translate"
+        data-automation-class="undo-button"
+        (click)="undo()">
         <mat-icon>undo</mat-icon>
     </button>
     <hr>
-    <button (click)="redo()"
-            [matTooltip]="'PROCESS_EDITOR.ACTIONS.REDO' | translate"
-            data-automation-class="redo-button"
-            matTooltipPosition="before">
+    <button
+        [title]="'PROCESS_EDITOR.ACTIONS.REDO' | translate"
+        data-automation-class="redo-button"
+        (click)="redo()">
         <mat-icon>redo</mat-icon>
     </button>
 </div>
 
 <div class="bpmn-controls bpmn-zoom-controls">
-    <button (click)="zoomIn()"
-            [matTooltip]="'PROCESS_EDITOR.ACTIONS.ZOOM_IN' | translate"
-            data-automation-class="zoom-in-button"
-            matTooltipPosition="before">
+    <button
+        [title]="'PROCESS_EDITOR.ACTIONS.ZOOM_IN' | translate"
+        data-automation-class="zoom-in-button"
+        (click)="zoomIn()">
         <mat-icon>add</mat-icon>
     </button>
     <hr>
-    <button (click)="zoomOut()"
-            [matTooltip]="'PROCESS_EDITOR.ACTIONS.ZOOM_OUT' | translate"
-            data-automation-class="zoom-out-button"
-            matTooltipPosition="before">
+    <button
+        [title]="'PROCESS_EDITOR.ACTIONS.ZOOM_OUT' | translate"
+        data-automation-class="zoom-out-button"
+        (click)="zoomOut()">
         <mat-icon>remove</mat-icon>
     </button>
 </div>
