@@ -23,7 +23,7 @@ import { of } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { tap, switchMap, catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { BaseEffects, Pagination, logInfo, logError, LogAction, ServerSideSorting } from 'ama-sdk';
+import { BaseEffects, Pagination, logInfo, logError, LogAction, ServerSideSorting, ErrorResponse } from 'ama-sdk';
 import {
     GetProjectsAttemptAction,
     GET_PROJECTS_ATTEMPT,
@@ -52,11 +52,6 @@ import { selectProjectsLoaded, selectPagination } from '../selectors/dashboard.s
 import { EntityDialogForm } from 'ama-sdk';
 import { GET_PROJECT_RELEASES_ATTEMPT, GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
 import { getProjectEditorLogInitiator } from '../../../project-editor/services/project-editor.constants';
-
-export interface ProjectError {
-   status: number;
-   message: string;
-}
 
 @Injectable()
 export class ProjectsEffects extends BaseEffects {
@@ -206,8 +201,8 @@ export class ProjectsEffects extends BaseEffects {
         );
     }
 
-    private handleProjectCreateError(error): Observable<SnackbarErrorAction> {
-        let errorMessage;
+    private handleProjectCreateError(error: ErrorResponse): Observable<SnackbarErrorAction> {
+        let errorMessage: string;
 
         if (error.status === 409) {
             errorMessage = 'APP.PROJECT.ERROR.CREATE_PROJECT.DUPLICATION';
@@ -218,7 +213,7 @@ export class ProjectsEffects extends BaseEffects {
         return of(new SnackbarErrorAction(errorMessage));
     }
 
-    private handleProjectUpdateError(error: ProjectError): Observable<SnackbarErrorAction> {
+    private handleProjectUpdateError(error: ErrorResponse): Observable<SnackbarErrorAction> {
         let errorMessage: string;
 
         if (error.status === 409) {
@@ -230,7 +225,7 @@ export class ProjectsEffects extends BaseEffects {
         return of(new SnackbarErrorAction(errorMessage));
     }
 
-    private handleProjectUploadError(error: ProjectError): Observable<SnackbarErrorAction> {
+    private handleProjectUploadError(error: ErrorResponse): Observable<SnackbarErrorAction> {
         let errorMessage: string;
 
         if (error.status === 409) {
@@ -242,7 +237,7 @@ export class ProjectsEffects extends BaseEffects {
         return of(new SnackbarErrorAction(errorMessage));
     }
 
-    private handleProjectReleaseError(error: ProjectError): Observable<SnackbarErrorAction | LogAction> {
+    private handleProjectReleaseError(error: ErrorResponse): Observable<SnackbarErrorAction | LogAction> {
         let errorMessage: string;
 
         errorMessage = 'APP.PROJECT.ERROR.RELEASE_PROJECT';

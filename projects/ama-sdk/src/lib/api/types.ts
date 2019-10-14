@@ -278,3 +278,8 @@ export interface ServerSideSorting {
     key: string;
     direction: string;
 }
+
+export interface ErrorResponse {
+    status: number;
+    message: string;
+ }
