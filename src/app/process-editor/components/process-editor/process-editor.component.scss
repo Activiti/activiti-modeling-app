@@ -1,6 +1,7 @@
 @import "bpmn-io";
 
 @mixin ama-process-editor($theme) {
+
     .process-editor {
         height: 100%;
         overflow-y: hidden;

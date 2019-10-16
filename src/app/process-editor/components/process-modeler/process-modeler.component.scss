@@ -43,6 +43,13 @@
             top: 8px;
         }
 
+        &.bpmn-middle-controls {
+            top: 180px;
+            transform: rotate(90deg) translateX(-50%) translateY(-100%);
+            padding: 0 7px 0 7px !important;
+            right: -4px !important;
+        }
+
         &.bpmn-zoom-controls {
             bottom: 80px;
         }

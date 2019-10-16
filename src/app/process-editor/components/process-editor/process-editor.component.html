@@ -7,18 +7,36 @@
                 [breadcrumbs$]="breadcrumbs$"
                 [content]="content$ | async">
             </ama-process-header>
-            <mat-tab-group [@.disabled]="true" class="ama-process-tab-group" *ngIf="process$ | async as process;"  (selectedTabChange)="selectedTabChange($event)">
+            <mat-tab-group class="ama-process-tab-group" *ngIf="process$ | async as process;"
+                           (selectedTabChange)="selectedTabChange($event)">
                 <mat-tab label="{{ 'PROCESS_EDITOR.TABS.DIAGRAM_EDITOR' | translate }}">
-                    <div class="process-editor-modeling-area" cdkDropList>
-                        <ama-process-modeler
-                            (onChange)="onBpmnEditorChange($event)"
-                            [source]="bpmnContent$ | async"
-                            class="process-editor-modeling-area-modeler"
-                            [attr.data-automation-id]="'process-editor-modeler'">
-                        </ama-process-modeler>
-                        <ama-process-properties class="process-editor-modeling-area-properties"
-                            [attr.data-automation-id]="'process-editor-properties'">
-                        </ama-process-properties>
+                    <div class="process-editor-modeling-area" style="flex-direction: column">
+
+                        <mat-sidenav-container autosize>
+                            <mat-sidenav #sidenavProperties [opened]="true" mode="side" position="end">
+                                <ama-process-properties class="process-editor-modeling-area-properties"
+                                                        [attr.data-automation-id]="'process-editor-properties'">
+                                </ama-process-properties>
+                            </mat-sidenav>
+
+                            <mat-sidenav-content>
+                                <ama-process-modeler
+                                    [@.disabled]="true"
+                                    (onChange)="onBpmnEditorChange($event)"
+                                    [source]="bpmnContent$ | async"
+                                    class="process-editor-modeling-area-modeler"
+                                    [attr.data-automation-id]="'process-editor-modeler'">
+                                    <button (click)="sidenavProperties.toggle()"
+                                            [matTooltip]="'PROCESS_EDITOR.PROPERTIES_BUTTON' | translate"
+                                            data-automation-class="properties-button"
+                                            matTooltipPosition="before"
+                                            class="process-editor-properties_button">
+                                         {{ 'PROCESS_EDITOR.PROPERTIES_BUTTON' | translate }}
+                                    </button>
+                                </ama-process-modeler>
+                            </mat-sidenav-content>
+                        </mat-sidenav-container>
+
                     </div>
                 </mat-tab>
                 <mat-tab label="{{ 'PROCESS_EDITOR.TABS.RAW_EDITOR' | translate }}">
