@@ -178,6 +178,7 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
 
         this.data[newVariable.id] = newVariable;
         this.variablesService.sendData(JSON.stringify(this.data, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME');
+        this.error = true;
         const length = Object.keys(this.data).length;
         this.editRow(newVariable, length - 1);
         this.propertyChanged.emit(true);

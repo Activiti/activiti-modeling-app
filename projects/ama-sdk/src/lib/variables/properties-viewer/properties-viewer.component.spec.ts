@@ -193,6 +193,7 @@ describe('PropertiesViewerComponent', () => {
         fixture.detectChanges();
 
         expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME');
+        expect(component.error).toBe(true);
         expect(component.data).toEqual(data);
     });
 });
