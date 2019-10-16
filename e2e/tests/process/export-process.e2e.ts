@@ -62,7 +62,7 @@ describe('Export process', () => {
         process = await backend.process.create(project.entry.id);
     });
 
-    it('1. [C286624] Export process', async () => {
+    it('[C286624] Export process', async () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await processContentPage.downloadProcess();

@@ -31,10 +31,6 @@ export class VariablesDialog extends GenericDialog {
     readonly value = element(by.css(`[data-automation-id="variable-value"]`));
     readonly datePicker = element(by.className('mat-datepicker-toggle'));
     readonly required = element(by.css(`[data-automation-id="variable-required"]`));
-    readonly nameCell = element(by.css(`[data-automation-id="variable-name-cell"]`));
-    readonly typeCell = element(by.css(`[data-automation-id="variable-type-cell"]`));
-    readonly valueCell = element(by.css(`[data-automation-id="variable-value-cell"]`));
-    readonly requiredCell = element(by.css(`[data-automation-id="variable-required-cell"]`));
     readonly updateButton = element(by.css(`[data-automation-id="update-button"]`));
     readonly closeButton = element(by.css(`[data-automation-id="close-button"]`));
 
@@ -59,7 +55,8 @@ export class VariablesDialog extends GenericDialog {
     }
 
     async setVariableName(name: string) {
-        await BrowserActions.clearSendKeys(this.name, name);
+        await this.name.clear();
+        await this.name.sendKeys(name);
     }
 
     async setVariableType(type: string) {
@@ -89,7 +86,7 @@ export class VariablesDialog extends GenericDialog {
             await BrowserActions.click(this.required);
         }
     }
-    async setVariable(name: string = 'name', type: string = 'string', value: string  = '', required: boolean = false) {
+    async setVariable(name: string = 'name', type: string = 'string', value: string  = '') {
         await this.setVariableName(name);
         await this.setVariableType(type);
 

@@ -24,22 +24,25 @@ let arraySpecs = [];
 
 require('dotenv').config({ path: process.env.ENV_FILE });
 
-let specs = function () {
-    const LIST_SPECS = process.env.LIST_SPECS || [];
-    const FOLDER = process.env.FOLDER || '';
+ let specs = function () {
+     let LIST_SPECS;
 
-    const specsToRun = FOLDER ? `./tests/${FOLDER}/**/*.e2e.ts` : './tests/**/*.ts';
+     if (process.env.LIST_SPECS) {
+         LIST_SPECS = process.env.LIST_SPECS;
+     }
 
-    if (LIST_SPECS.length === 0) {
-        arraySpecs = [specsToRun];
-    } else {
+     if (LIST_SPECS && LIST_SPECS !== '') {
+         arraySpecs = LIST_SPECS.split(',');
+         arraySpecs = arraySpecs.map((el) => './' + el);
+     } else {
+         const FOLDER = process.env.FOLDER || '';
+         const specsToRun = FOLDER ? `./tests/${FOLDER}/**/*.e2e.ts` : './tests/**/*.ts';
+         arraySpecs = [specsToRun];
 
-        arraySpecs = LIST_SPECS.split(',');
-        arraySpecs = arraySpecs.map((el) => './' + el);
-    }
+     }
 
-    return arraySpecs;
-};
+     return arraySpecs;
+ };
 
 specs();
 

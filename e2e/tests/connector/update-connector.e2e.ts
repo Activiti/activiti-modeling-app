@@ -68,7 +68,7 @@ describe('Update connector', async () => {
         await connectorContentPage.navigateTo();
     });
 
-    it('1. [C289327] Update connector in JSON editor', async () => {
+    it('[C289327] Update connector in JSON editor', async () => {
         const newModel = {
             /* cspell: disable-next-line */
             name: 'modifiedname',

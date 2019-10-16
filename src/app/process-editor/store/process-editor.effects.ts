@@ -87,7 +87,6 @@ import { selectSelectedProjectId, AmaState, selectSelectedProcess, createProcess
 import { getProcessLogInitiator } from '../services/process-editor.constants';
 import { logError, logInfo } from 'ama-sdk';
 
-
 @Injectable()
 export class ProcessEditorEffects extends BaseEffects {
     constructor(
@@ -195,7 +194,7 @@ export class ProcessEditorEffects extends BaseEffects {
     getProcessEffect = this.actions$.pipe(
         ofType<GetProcessAttemptAction>(GET_PROCESS_ATTEMPT),
         mergeMap(action => zip(of(action.payload), this.store.select(selectSelectedProjectId))),
-        mergeMap(([processId, projectId]) =>  this.getProcess(processId, projectId))
+        mergeMap(([processId, projectId]) => this.getProcess(processId, projectId))
     );
 
     @Effect({ dispatch: false })
@@ -211,7 +210,7 @@ export class ProcessEditorEffects extends BaseEffects {
     );
 
     @Effect()
-     updateServiceParameterSEffect = this.actions$.pipe(
+    updateServiceParameterSEffect = this.actions$.pipe(
         ofType(UPDATE_SERVICE_PARAMETERS),
         mergeMap(() => of(new SetAppDirtyStateAction(true)))
     );
@@ -233,9 +232,9 @@ export class ProcessEditorEffects extends BaseEffects {
 
     private validateProcess(payload: ValidateProcessPayload) {
         return this.processEditorService.validate(payload.processId, payload.content, payload.extensions).pipe(
-            switchMap(() => [ new LoadApplicationAction(true), payload.action, new LoadApplicationAction(false) ]),
+            switchMap(() => [new LoadApplicationAction(true), payload.action, new LoadApplicationAction(false)]),
             catchError(response => {
-                const errors = JSON.parse(response.message).errors.map(error => error.description);
+                const errors = JSON.parse(response.message).errors ? JSON.parse(response.message).errors.map(error => error.description) : [JSON.parse(response.message).message];
                 return [
                     new OpenConfirmDialogAction({
                         dialogData: {
@@ -285,7 +284,7 @@ export class ProcessEditorEffects extends BaseEffects {
 
         return forkJoin(processDetails$, processDiagram$).pipe(
             switchMap(([process, diagram]) => [
-                new GetProcessSuccessAction({process, diagram}),
+                new GetProcessSuccessAction({ process, diagram }),
                 new ModelOpenedAction({ id: process.id, type: process.type }),
                 new SetAppDirtyStateAction(false)
             ]),
@@ -350,7 +349,7 @@ export class ProcessEditorEffects extends BaseEffects {
 
         if (error.status === 409) {
             errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROCESS.DUPLICATION';
-        } else if ( message.errors && (message.errors[0].code === 'model.invalid.name.empty')) {
+        } else if (message.errors && (message.errors[0].code === 'model.invalid.name.empty')) {
             errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROCESS.EMPTY_NAME';
         } else {
             errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROCESS.GENERAL';

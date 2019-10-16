@@ -23,4 +23,4 @@
  export * from './process-variables.dialog';
  export * from './save-entity.dialog';
  export * from './variables.dialog';
- export * from './process-validation.dialog';
+ export * from './validation.dialog';

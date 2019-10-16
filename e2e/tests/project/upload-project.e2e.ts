@@ -68,7 +68,7 @@ describe('Upload project', () => {
 
     });
 
-    it('1. [C286559] Upload project', async () => {
+    it('[C286559] Upload project', async () => {
         await sidebarActionMenu.clickOnCreateButton();
         await sidebarActionMenu.uploadProject(absoluteFilePath);
         await sidebarActionMenu.isOptionsMenuDismissed();
@@ -77,7 +77,7 @@ describe('Upload project', () => {
         expect(await dashboardPage.isProjectNameInList(projectDetails.name)).toBe(true, `Item '${projectDetails.name}' was not found in the list.`);
     });
 
-    it('2. [C311378] Upload project using the REST API', async () => {
+    it('[C311378] Upload project using the REST API', async () => {
         const project = await backend.project.import(absoluteFilePath);
         expect(await dashboardPage.isProjectNameInList(project.entry.name)).toBe(true, `Item '${project.entry.name}' was not found in the list.`);
     });

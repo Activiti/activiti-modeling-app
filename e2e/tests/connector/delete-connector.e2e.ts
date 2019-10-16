@@ -74,14 +74,14 @@ describe('Delete connector', () => {
         await connectorContentPage.deleteConnector();
     });
 
-    it('1. [C280483] Delete connector with confirmation', async () => {
+    it('[C280483] Delete connector with confirmation', async () => {
         await deleteEntityDialog.checkDialogAndConfirm('connector');
         expect(await snackBar.isDeletedSuccessfully('connector')).toBe(true, 'Connector deletion snackbar message was not displayed properly.');
         expect(await projectContentPage.isModelNotInList('connector', connector.entry.id)).toBe(true, 'Connector was not removed from the left sidebar.');
         expect(await connectorContentPage.isUnloaded()).toBe(true, 'After connector deletion, the connector editor should be unloaded');
     });
 
-    it('2. [C280488] Delete connector without confirmation', async () => {
+    it('[C280488] Delete connector without confirmation', async () => {
         await deleteEntityDialog.checkDialogAndReject('connector');
         expect(await projectContentPage.isModelInList('connector', connector.entry.name)).toBe(true, 'Connector should be in the left sidebar');
     });

@@ -51,7 +51,7 @@ describe('Update project', () => {
 
     });
 
-    it('1. [C289977] Update project name and description', async () => {
+    it('[C289977] Update project name and description', async () => {
         const appId = app.entry.id;
         const updatedAppName = app.entry.name + '-updated';
 

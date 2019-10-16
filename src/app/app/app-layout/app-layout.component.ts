@@ -60,6 +60,10 @@ export class AppLayoutComponent implements AfterViewInit, OnDestroy {
         return this.appConfig.get('languagePicker') || false;
     }
 
+    get showNotificationHistory() {
+        return this.appConfig.get('showNotificationHistory') || false;
+    }
+
     dispatchToggleMenuAction(menuOpened) {
         this.store.dispatch(new SetMenuAction(menuOpened));
     }

@@ -9,11 +9,6 @@ LITESERVER=false
 EXEC_VERSION_JSAPI=false
 TIMEOUT=120000
 DEBUG=false
-eval GNU=false
-
-gnu_mode() {
-    GNU=true
-}
 
 show_help() {
     echo "Usage: ./scripts/test-e2e-lib.sh -host adf.domain.com -u admin -p admin -e admin"
@@ -25,7 +20,7 @@ show_help() {
     echo "-identity_admin_password"
     echo "-e or --email"
     echo "-b or --browser run the test in the browser (No headless mode)"
-    echo "-s or --spec run a single test file"
+    echo "-s or --specs run a single test file"
     echo "-f or --folder run a single folder test"
     echo "--seleniumServer configure a selenium server to use to run the e2e test"
     echo "-proxy or --proxy proxy Back end URL to use only possible to use with -dev option"
@@ -41,7 +36,6 @@ show_help() {
     echo "-log or --log print all the browser log"
     echo "-db or --debug run the debugger"
     echo "-vjsapi install different version from npm of JS-API defined in the package.json"
-    echo "-gnu for gnu"
     echo "-h or --help"
 }
 
@@ -182,16 +176,9 @@ while [[ $1 == -* ]]; do
       -l|--lint)  lint; shift;;
       -m|--maxInstances)  max_instances $2; shift 2;;
       -vjsapi)  version_js_api $2; shift 2;;
-      -gnu) gnu_mode; shift;;
       -*) echo "invalid option: $1" 1>&2; show_help; exit 1;;
     esac
 done
-
-if $GNU; then
- sedi='-i'
-else
- sedi=('-i' '')
-fi
 
 rm -rf ./e2e-output/downloads/
 rm -rf ./e2e-output/screenshots/
@@ -217,30 +204,10 @@ if [[  $DEVELOPMENT == "true" ]]; then
 else
     if [[  $LITESERVER == "true" ]]; then
         echo "====== Run dist in lite-server ====="
-        ls dist/app
 
+        ls dist/app || exit 1
 
-        echo "OAUTH_HOST"${OAUTH_HOST}
-        echo "API_HOST"${API_HOST}
-
-        if [[ -n "${OAUTH_HOST}" ]]
-        then
-          replace="\/"
-          encoded=${OAUTH_HOST//\//$replace}
-          sed  -e "s/\"host\": \".*\"/\"host\": \"${encoded}\"/g"  "${sedi[@]}"  ./dist/app/app.config.json
-        fi
-
-        if [[ -n "${API_HOST}" ]]
-        then
-          replace="\/"
-          encoded=${API_HOST//\//$replace}
-          sed  -e "s/\"bpmHost\": \".*\"/\"bpmHost\": \"${encoded}\"/g"  "${sedi[@]}"  ./dist/app/app.config.json
-        fi
-
-         NOTIFICATION_LAST=8000
-         replace="\/"
-         encoded=${NOTIFICATION_LAST//\//$replace}
-         sed  -e "s/\"notificationDefaultDuration\": \".*\"/\"notificationDefaultDuration\": ${encoded}/g"  "${sedi[@]}"  ./dist/app/app.config.json
+        npm run postbuild:ci
 
         ./node_modules/lite-server/bin/lite-server --baseDir='./dist/app' -c ./e2e/lite-server-proxy.js >/dev/null & ./node_modules/protractor/bin/protractor e2e/protractor.conf.ts || exit 1
      else

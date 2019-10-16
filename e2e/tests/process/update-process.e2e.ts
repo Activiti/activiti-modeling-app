@@ -72,7 +72,7 @@ describe('Update process', async () => {
         await processPropertiesCard.isLoaded();
     });
 
-    it('1. [C280676] Update process', async () => {
+    it('[C280676] Update process', async () => {
         const updatedProcess = {
             name: process.entry.name + '-updated',
             documentation: process.entry.name + ' documentation updated'
@@ -96,7 +96,7 @@ describe('Update process', async () => {
         expect(UtilFile.getJSONItemValueByKey(bpmnProcessDocumentation, `_text`)).toEqual(updatedProcess.documentation);
     });
 
-    it('2. [C286410] Update process - Dirty state with confirmation of navigating away', async () => {
+    it('[C286410] Update process - Dirty state with confirmation of navigating away', async () => {
         await processPropertiesCard.editProcessName(process.entry.name + '-updated');
         /* cspell: disable-next-line */
         expect(await toolbar.isElementInDirtyState(process.entry.name)).toBe(true, 'AZZZZ');
@@ -111,7 +111,7 @@ describe('Update process', async () => {
         expect(await processContentPage.isPageInDirtyState()).toBe(false, 'AAAAA');
     });
 
-    it('3. [C286431] Update process - Dirty state without confirmation of navigating away', async () => {
+    it('[C286431] Update process - Dirty state without confirmation of navigating away', async () => {
         await processPropertiesCard.editProcessName(process.entry.name + '-updated');
         expect(await toolbar.isElementInDirtyState(process.entry.name)).toBe(true);
         expect(await authenticatedPage.isPageInDirtyState()).toBe(true);

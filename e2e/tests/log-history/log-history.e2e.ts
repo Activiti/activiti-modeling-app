@@ -71,7 +71,7 @@ describe('Log history', () => {
         process = await backend.process.create(project.entry.id);
     });
 
-    it('1. [C311463] Info message', async () => {
+    it('[C311463] Info message', async () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await logHistoryPage.clickMessageIndicatorInactive();
@@ -82,7 +82,7 @@ describe('Log history', () => {
         expect(await logHistoryPage.getMessage()).toEqual(errorMessage.successfully);
     });
 
-    it('2. [C311464] Error message', async () => {
+    it('[C311464] Error message', async () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await processContentPage.selectCodeEditor();
@@ -92,10 +92,10 @@ describe('Log history', () => {
         await processContentPage.save();
         expect(await logHistoryPage.getInitiator()).toEqual(initiator);
         expect(await logHistoryPage.getLevel()).toEqual(errorLevel.error);
-        expect(await logHistoryPage.getMessage()).toEqual('Error: unparsable content detected line: 0 column: 0 nested error: missing start tag');
+        expect(await logHistoryPage.getMessage()).toEqual('\Error: unparsable content detected line: 0 column: 0 nested error: missing start tag');
     });
 
-    it('3. [C311465] Warning message', async () => {
+    it('[C311465] Warning message', async () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await processContentPage.selectCodeEditor();
@@ -109,7 +109,7 @@ describe('Log history', () => {
         expect(await logHistoryPage.getMessage()).toEqual('unknown attribute <test>');
     });
 
-    it('4. [C311466] Clear logs', async () => {
+    it('[C311466] Clear logs', async () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await logHistoryPage.clickMessageIndicatorInactive();
@@ -121,7 +121,7 @@ describe('Log history', () => {
         expect(await logHistoryPage.isLogHistoryEmpty()).toBe(true, 'Log history is not empty');
     });
 
-    it('5. [C311471] Expand and collapse log history', async () => {
+    it('[C311471] Expand and collapse log history', async () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await logHistoryPage.clickMessageIndicatorInactive();

@@ -76,7 +76,7 @@ describe('Create process', async () => {
         projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
     });
 
-    it('1. [C289346] Create process using New dropdown', async () => {
+    it('[C289346] Create process using New dropdown', async () => {
         await projectContentPage.navigateTo();
 
         await sidebarActionMenu.createProcess();
@@ -87,7 +87,7 @@ describe('Create process', async () => {
         expect(await toolbar.isItemDisplayed(processUI.name)).toBe(true, 'Process name should be displayed in the breadcrumb');
     });
 
-    it('2. [C291962] Create process using + button', async () => {
+    it('[C291962] Create process using + button', async () => {
         await projectContentPage.navigateTo();
 
         await projectContentPage.createProcess();
@@ -98,7 +98,7 @@ describe('Create process', async () => {
         expect(await toolbar.isItemDisplayed(processUI.name)).toBe(true, 'Process name should be displayed in the breadcrumb');
     });
 
-    it('3. [C289324] Create process with CallActivity', async () => {
+    it('[C289324] Create process with CallActivity', async () => {
         process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
         callActivityProcess = await backend.process.createAndWaitUntilAvailable(project.entry.id);
 
@@ -122,7 +122,7 @@ describe('Create process', async () => {
         expect(UtilFile.getJSONItemValueByKey(callActivityAttributes, `calledElement`)).toEqual(`process-${callActivityProcess.entry.id}`);
     });
 
-    it('4. [C311460] Create a process with User Task with the assignee', async () => {
+    it('[C311460] Create a process with User Task with the assignee', async () => {
         process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
 
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
@@ -144,7 +144,7 @@ describe('Create process', async () => {
     });
 
 
-    it('5. [C311461] Create a process with User Task with the candidate user', async () => {
+    it('[C311461] Create a process with User Task with the candidate user', async () => {
         process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
 
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
@@ -166,7 +166,7 @@ describe('Create process', async () => {
 
     });
 
-    it('6. [C311462] Create a process with User Task with the candidate group', async () => {
+    it('[C311462] Create a process with User Task with the candidate group', async () => {
         process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
 
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);

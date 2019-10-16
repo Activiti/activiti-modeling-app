@@ -36,7 +36,7 @@ xdescribe('Application sanity check with Login and Logout', () => {
         await loginPage.navigateTo();
     });
 
-    it('1. [C310139] Login/Logout sanity check', async () => {
+    it('[C310139] Login/Logout sanity check', async () => {
         for (let i = 0; i < 20; i++) {
             await loginPage.login(testConfig.ama.user, testConfig.ama.password);
             expect(await authenticatedPage.isLoggedIn()).toBe(true);

@@ -43,7 +43,7 @@ export class ProjectsListComponent implements OnInit {
     loading$: Observable<boolean>;
     pagination$: Observable<Pagination>;
     displayedColumns = ['thumbnail', 'name', 'creationDate', 'createdBy', 'version', 'menu'];
-    pageSizeOptions = [ 10, 25, 50, 100, 1000 ];
+    pageSizeOptions = [10, 25, 50, 100, 1000];
     sorting: ServerSideSorting = {
         key: DEFAULT_SORT_KEY,
         direction: DEFAULT_SORT_DIRECTION
@@ -57,7 +57,8 @@ export class ProjectsListComponent implements OnInit {
     constructor(
         private store: Store<AmaState>,
         private router: Router,
-        private route: ActivatedRoute) {}
+        private route: ActivatedRoute) {
+    }
 
     ngOnInit() {
         this.maxItems = +this.route.snapshot.queryParamMap.get('maxItems') || 25;
@@ -71,7 +72,7 @@ export class ProjectsListComponent implements OnInit {
         this.dataSource$ = (this.customDataSource$ || this.store.select(selectProjectSummaries).pipe(
             map(entries => Object.keys(entries).map(id => entries[id]))
         )).pipe(
-            map(entriesArray =>  new MatTableDataSource<Partial<Project>>(entriesArray))
+            map(entriesArray => new MatTableDataSource<Partial<Project>>(entriesArray))
         );
     }
 
@@ -88,7 +89,7 @@ export class ProjectsListComponent implements OnInit {
     }
 
     private loadProjects() {
-       const { maxItems, skipCount, sorting } = this;
+        const { maxItems, skipCount, sorting } = this;
 
         this.store.dispatch(
             new GetProjectsAttemptAction({ maxItems, skipCount }, sorting)

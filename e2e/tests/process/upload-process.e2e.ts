@@ -66,13 +66,13 @@ describe('Upload process', () => {
         await projectContentPage.navigateTo();
     });
 
-    it('1. [C286536] Upload/Import process using New dropdown', async () => {
+    it('[C286536] Upload/Import process using New dropdown', async () => {
         await sidebarActionMenu.importProcess(absoluteFilePath);
         expect(await snackBar.isUploadedSuccessfully('process')).toBe(true, 'Process upload snackbar should be displayed');
         expect(await projectContentPage.isModelInList('process', processDetails.name)).toBe(true, `Item '${processDetails.name}' was not found in the list.`);
     });
 
-    it('2. [C291963] Upload/Import process using Import button', async () => {
+    it('[C291963] Upload/Import process using Import button', async () => {
         await projectContentPage.importModel('process', absoluteFilePath);
         expect(await snackBar.isUploadedSuccessfully('process')).toBe(true, 'Process upload snackbar should be displayed');
         expect(await projectContentPage.isModelInList('process', processDetails.name)).toBe(true, `Item '${processDetails.name}' was not found in the list.`);

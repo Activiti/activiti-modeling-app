@@ -69,7 +69,7 @@ describe('Upload connector', () => {
         await projectContentPage.navigateTo();
     });
 
-    it('1. [C286309] Upload/Import connector using New dropdown', async () => {
+    it('[C286309] Upload/Import connector using New dropdown', async () => {
         await sidebarActionMenu.importConnector(absoluteFilePath);
         expect(await snackBar.isUploadedSuccessfully('connector')).toBe(true, 'Connector upload snackbar should be displayed');
         expect(await projectContentPage.isModelInList('connector', CONNECTOR.connector_name)).toBe(true, `Item '${CONNECTOR.connector_name}' was not found in the list.`);
@@ -81,7 +81,7 @@ describe('Upload connector', () => {
         expect(JSON.parse(`${actualConnectorJSON}`)).toEqual(expectedConnectorJSON, `Connector JSON editor content is not correct.`);
     });
 
-    it('2. [C291965] Upload/Import connector using Import button', async () => {
+    it('[C291965] Upload/Import connector using Import button', async () => {
         await projectContentPage.importModel('connector', absoluteFilePath);
         expect(await snackBar.isUploadedSuccessfully('connector')).toBe(true, 'Connector upload snackbar should be displayed');
         expect(await projectContentPage.isModelInList('connector', CONNECTOR.connector_name)).toBe(true, `Item '${CONNECTOR.connector_name}' was not found in the list.`);

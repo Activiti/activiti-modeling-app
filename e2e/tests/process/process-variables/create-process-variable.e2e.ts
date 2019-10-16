@@ -63,7 +63,7 @@ describe('Create process variable', async () => {
         await processPropertiesCard.isLoaded();
     });
 
-    it('1. [C299156] Verify icon from the button and the modal title', async () => {
+    it('[C299156] Verify icon from the button and the modal title', async () => {
         expect(await processPropertiesCard.isEditVariablesButtonIconDisplayed()).toBe(true, 'Icon is not displayed on the Edit Variables button.');
         await processPropertiesCard.editProcessVariables();
         expect(await processVariablesDialog.isTitleIconDisplayed()).toBe(true, 'Title icon is not displayed on the Edit Variables modal.');
@@ -77,7 +77,7 @@ describe('Create process variable', async () => {
             await processVariablesDialog.setVariableName('name');
         });
 
-        it('2. [C282018] Add process variable', async () => {
+        it('[C282018] Add process variable', async () => {
             expect(await processVariablesDialog.isVariableDisplayed(0)).toBe(true, 'Variable added is not displayed in the list.');
 
             const variableId = await processVariablesDialog.getVariableIdByRow(0);
@@ -96,7 +96,7 @@ describe('Create process variable', async () => {
             expect(await processVariablesDialog.isVariableDisplayed(0)).toBe(true, 'Variable added is not displayed in the list.');
         });
 
-        it('3. [C307117] Add integer process variable with invalid value', async () => {
+        it('[C307117] Add integer process variable with invalid value', async () => {
             await processVariablesDialog.setVariable('intVar', 'integer', `@$#&* {}[],=-().+;'/`);
             expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
             expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer')).toBe(true, 'Variable added is not displayed in the list.');
@@ -116,7 +116,7 @@ describe('Create process variable', async () => {
             expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer', '123')).toBe(true, 'Variable added is not displayed in the list.');
         });
 
-        it('4. [C307118] Add date process variable', async () => {
+        it('[C307118] Add date process variable', async () => {
             const currentDate = UtilDate.getCurrentDate();
             await processVariablesDialog.setVariable('dateVar', 'date');
             expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
@@ -128,7 +128,7 @@ describe('Create process variable', async () => {
             expect(await processVariablesDialog.isVariableDisplayed(0, 'dateVar', 'date', currentDate)).toBe(true, 'Variable added is not displayed in the list.');
         });
 
-        it('5. [C307119] Switch process variable type', async () => {
+        it('[C307119] Switch process variable type', async () => {
             await processVariablesDialog.setVariableValue('Automation');
             await processVariablesDialog.setVariableType('integer');
 

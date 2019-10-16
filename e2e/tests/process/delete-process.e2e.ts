@@ -68,14 +68,14 @@ describe('Delete process', () => {
         await processContentPage.deleteProcess();
     });
 
-    it('1. [C282019] Delete process with confirmation', async () => {
+    it('[C282019] Delete process with confirmation', async () => {
         await deleteEntityDialog.checkDialogAndConfirm('process');
         expect(await snackBar.isDeletedSuccessfully('process')).toBe(true, 'Process deletion snackbar message was not displayed properly.');
         expect(await projectContentPage.isModelNotInList('process', process.entry.id)).toBe(true, 'Process was not removed from the left sidebar.');
         expect(await processContentPage.isUnloaded()).toBe(true, 'After process deletion, the process editor should be unloaded');
     });
 
-    it('2. [C286409] Prevent deletion of process if confirmation is rejected', async () => {
+    it('[C286409] Prevent deletion of process if confirmation is rejected', async () => {
         await deleteEntityDialog.checkDialogAndReject('process');
         expect(await projectContentPage.isModelInList('process', process.entry.name)).toBe(true, 'Process should be in the left sidebar');
     });

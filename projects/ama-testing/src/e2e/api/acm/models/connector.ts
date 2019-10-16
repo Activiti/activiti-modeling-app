@@ -27,7 +27,7 @@ export class ACMConnector extends ACMCrud {
     contentType = 'application/json';
     contentExtension = 'json';
 
-    getDefaultContent(entityName: string, entityId: string) {
+    getDefaultContent(entityName: string) {
         return JSON.stringify({
             name: entityName
         });

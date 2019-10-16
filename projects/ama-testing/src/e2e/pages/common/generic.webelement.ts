@@ -16,25 +16,11 @@
  */
 
 import { browser, ElementFinder, protractor } from 'protractor';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserActions, BrowserVisibility } from '@alfresco/adf-testing';
 
 export class GenericWebElement {
 
     constructor() {
-    }
-
-    public async click(elem: ElementFinder) {
-        try {
-            await BrowserVisibility.waitUntilElementIsClickable(elem);
-            await elem.click();
-        } catch (clickErr) {
-            try {
-                await browser.executeScript('arguments[0].scrollIntoView();', elem);
-                await browser.executeScript('arguments[0].click();', elem);
-            } catch (jsErr) {
-                throw jsErr;
-            }
-        }
     }
 
     public async clear(elem: ElementFinder) {
@@ -60,7 +46,7 @@ export class GenericWebElement {
     }
 
     protected async dragAndDrop(elementToDrag: ElementFinder, locationToDragTo: ElementFinder, locationOffset = { x: 230, y: 280 }) {
-        await this.click(elementToDrag);
+        await BrowserActions.click(elementToDrag);
         await browser.actions().mouseDown(elementToDrag).mouseMove(locationToDragTo, locationOffset).mouseUp().perform();
         await browser.actions().doubleClick(locationToDragTo).perform();
     }

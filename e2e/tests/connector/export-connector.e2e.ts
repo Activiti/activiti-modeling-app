@@ -59,7 +59,7 @@ xdescribe('Export connector', () => {
         connector = await backend.connector.create(project.entry.id, 'qaconnector');
     });
 
-    it('1. [C286439] Export connector', async () => {
+    it('[C286439] Export connector', async () => {
         connectorContentPage = new ConnectorContentPage(testConfig, project.entry.id, connector.entry.id);
         await connectorContentPage.navigateTo();
         await connectorContentPage.download();

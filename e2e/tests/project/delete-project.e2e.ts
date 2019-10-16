@@ -51,7 +51,7 @@ describe('Delete project', () => {
 
     });
 
-    it('1. [C286407] Delete project with confirmation', async () => {
+    it('[C286407] Delete project with confirmation', async () => {
         const projectId = project.entry.id;
         await dashboardPage.deleteProject(projectId);
         await deleteEntityDialog.checkDialogAndConfirm('project');

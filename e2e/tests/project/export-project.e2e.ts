@@ -61,7 +61,7 @@ describe('Export project', () => {
 
     });
 
-    it('1. [C286593] Export project without process', async () => {
+    it('[C286593] Export project without process', async () => {
         const projectId = project.entry.id;
         await dashboardPage.navigateToProject(projectId);
         await toolBar.downloadFile();
@@ -72,7 +72,7 @@ describe('Export project', () => {
         expect(await confirmationDialog.getTotalMessageCount()).toBe(1);
     });
 
-    it('2. [C286635] Export project with process', async () => {
+    it('[C286635] Export project with process', async () => {
         const projectId = project.entry.id;
         await backend.process.create(project.entry.id);
         await dashboardPage.navigateToProject(projectId);

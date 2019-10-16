@@ -66,7 +66,7 @@ describe('List processes', async () => {
         projectContentPage = new ProjectContentPage(testConfig, project1.entry.id);
     });
 
-    it('1. [C290148] List of processes is not empty when navigate to Dashboard - item is available', async () => {
+    it('[C290148] List of processes is not empty when navigate to Dashboard - item is available', async () => {
         await dashboardPage.navigateToProject(project1.entry.id);
         expect(await projectContentPage.isModelInList('process', process1.entry.name)).toBe(true, 'Process is not displayed in the left sidebar');
 
@@ -76,7 +76,7 @@ describe('List processes', async () => {
         expect(await projectContentPage.isModelInList('process', process1.entry.name)).toBe(true, 'Process is not displayed in the left sidebar');
     });
 
-    it('2. [C287799] List of processes is not empty when navigate to Dashboard', async () => {
+    it('[C287799] List of processes is not empty when navigate to Dashboard', async () => {
         await dashboardPage.navigateTo();
         await dashboardPage.navigateToProject(project1.entry.id);
         await sidebarActionMenu.createProcess();
@@ -90,7 +90,7 @@ describe('List processes', async () => {
         expect(await projectContentPage.isModelInList('process', processItem.name)).toBe(true, 'Process is not displayed in the left sidebar');
     });
 
-    it('3. [C291773] List of processes is not empty when navigate to Dashboard - switch between projects', async () => {
+    it('[C291773] List of processes is not empty when navigate to Dashboard - switch between projects', async () => {
         await dashboardPage.navigateTo();
         await dashboardPage.navigateToProject(project1.entry.id);
         expect(await projectContentPage.isModelInList('process', process1.entry.name)).toBe(true, 'Process is not displayed in the left sidebar');

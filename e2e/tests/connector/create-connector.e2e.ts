@@ -59,7 +59,7 @@ describe('Create connector', async () => {
         await projectContentPage.navigateTo();
     });
 
-    it('1. [C280408] Create connector using New dropdown', async () => {
+    it('[C280408] Create connector using New dropdown', async () => {
         await sidebarActionMenu.createConnector();
         /* cspell: disable-next-line */
         const connector = await createEntityDialog.setEntityDetails('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
@@ -68,7 +68,7 @@ describe('Create connector', async () => {
         expect(await toolbar.isItemDisplayed(connector.name)).toBe(true, 'Connector name should be displayed in the breadcrumb');
     });
 
-    it('2. [C291964] Create connector using + button', async () => {
+    it('[C291964] Create connector using + button', async () => {
         await projectContentPage.createConnector();
         /* cspell: disable-next-line */
         const connector = await createEntityDialog.setEntityDetails('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
