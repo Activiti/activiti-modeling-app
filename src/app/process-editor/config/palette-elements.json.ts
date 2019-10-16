@@ -105,7 +105,7 @@ export const paletteElements: PaletteElement[] = [
         group: 'element',
         type: 'bpmn:CallActivity',
         icon: 'bpmn-icon-call-activity',
-        title: 'APP.PROCESS_EDITOR.PALETTE.USER_TASK',
+        title: 'APP.PROCESS_EDITOR.PALETTE.CALL_ACTIVITY',
         clickable: true,
         draggable: true
     },
