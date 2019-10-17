@@ -72,7 +72,7 @@ describe('Update process', async () => {
         await processPropertiesCard.isLoaded();
     });
 
-    it('[C280676] Update process', async () => {
+    xit('[C280676] Update process', async () => {
         const updatedProcess = {
             name: process.entry.name + '-updated',
             documentation: process.entry.name + ' documentation updated'
