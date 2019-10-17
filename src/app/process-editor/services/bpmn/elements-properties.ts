@@ -29,6 +29,9 @@ const isErrorEvent = (element: Bpmn.DiagramElement) => {
 const isMessageEvent = (element: Bpmn.DiagramElement) => {
     return !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.MessageEventDefinition;
 };
+const isInsideSubProcess = (element: Bpmn.DiagramElement) => {
+    return element.businessObject.$parent.$type === BpmnElement.SubProcess;
+};
 const haveSignalRef = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions[0].signalRef;
 const isDecisionTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === DECISION_TASK_IMPLEMENTATION;
 const isExclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type ===  BpmnElement.ExclusiveGateway;
@@ -65,7 +68,8 @@ export const elementsProperties = {
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : [BpmnProperty.formKey]),
         ...(isTimerEvent(element) ? [ BpmnProperty.timerEventDefinition ] : []),
         ...(isErrorEvent(element) ? [ BpmnProperty.errorRef ] : []),
-        ...(isMessageEvent(element) ? [ BpmnProperty.messageRef ] : [])
+        ...(isMessageEvent(element) ? [ BpmnProperty.messageRef ] : []),
+        ...(isInsideSubProcess(element) && isMessageEvent(element) ? [ BpmnProperty.correlationKey ] : []),
 
     ],
     [BpmnElement.BoundaryEvent]: (element: Bpmn.DiagramElement) => [
