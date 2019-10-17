@@ -1,6 +1,6 @@
 {
     "name": "ama-sdk",
-    "version": "0.0.1",
+    "version": "0.0.203",
     "peerDependencies": {
         "@angular/common": "^7.2.15",
         "@angular/core": "^7.2.15",
