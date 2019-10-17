@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { ProjectApi } from '../../api/project-api.interface';
+import { ProjectApi, FetchQueries } from '../../api/project-api.interface';
 import { Observable } from 'rxjs';
 import { Project, PROJECT, Release, Pagination, PaginatedEntries, ReleaseEntry, ServerSideSorting } from '../../api/types';
 import { map } from 'rxjs/operators';
@@ -86,11 +86,11 @@ export class ACMProjectApi implements ProjectApi {
     }
 
     public getAll(
-        pagination: Partial<Pagination> = {},
+        fetchQueries: FetchQueries = {},
         sorting: ServerSideSorting = { key: 'name', direction: 'asc' }
     ): Observable<PaginatedEntries<Project>> {
         const queryParams = {
-            ...pagination,
+            ...fetchQueries,
             sort: `${sorting.key},${sorting.direction}`
         };
 

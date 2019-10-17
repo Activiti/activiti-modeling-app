@@ -23,7 +23,7 @@ import { of } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { tap, switchMap, catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { BaseEffects, Pagination, logInfo, logError, LogAction, ServerSideSorting, ErrorResponse } from 'ama-sdk';
+import { BaseEffects, Pagination, logInfo, logError, LogAction, FetchQueries, ServerSideSorting, ErrorResponse } from 'ama-sdk';
 import {
     GetProjectsAttemptAction,
     GET_PROJECTS_ATTEMPT,
@@ -70,7 +70,7 @@ export class ProjectsEffects extends BaseEffects {
     showProjectsEffect = this.actions$.pipe(
         ofType<ShowProjectsAction>(SHOW_PROJECTS),
         withLatestFrom(this.store.select(selectProjectsLoaded)),
-        switchMap(([action, loaded]) => loaded ? of() : of(new GetProjectsAttemptAction(action.pagination)))
+        switchMap(([action, loaded]) => loaded ? of() : of(new GetProjectsAttemptAction(<FetchQueries> action.pagination)))
     );
 
     @Effect()
@@ -105,7 +105,7 @@ export class ProjectsEffects extends BaseEffects {
     @Effect()
     getProjectsAttemptEffect = this.actions$.pipe(
         ofType<GetProjectsAttemptAction>(GET_PROJECTS_ATTEMPT),
-        switchMap(action => this.getProjectsAttempt(action.pagination, action.sorting))
+        switchMap(action => this.getProjectsAttempt(<FetchQueries> action.pagination, action.sorting))
     );
 
     @Effect()
@@ -131,7 +131,10 @@ export class ProjectsEffects extends BaseEffects {
             switchMap(() => [
                 new DeleteProjectSuccessAction(projectId),
                 new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
-                new GetProjectsAttemptAction(pagination)
+                new GetProjectsAttemptAction({
+                    skipCount: pagination.skipCount < (pagination.totalItems - 1) ? pagination.skipCount : pagination.skipCount - pagination.maxItems,
+                    maxItems: pagination.maxItems
+                })
             ]),
             catchError(e =>
                 this.genericErrorHandler(
@@ -177,7 +180,7 @@ export class ProjectsEffects extends BaseEffects {
         );
     }
 
-    private getProjectsAttempt(pagination: Partial<Pagination>, sorting: ServerSideSorting) {
+    private getProjectsAttempt(pagination: FetchQueries, sorting: ServerSideSorting) {
         return this.dashboardService.fetchProjects(pagination, sorting).pipe(
             switchMap(projects => [new GetProjectsSuccessAction(projects)]),
             catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'APP.HOME.ERROR.LOAD_PROJECTS'), e))

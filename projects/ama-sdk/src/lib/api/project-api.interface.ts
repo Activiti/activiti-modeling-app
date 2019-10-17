@@ -29,7 +29,12 @@ export abstract class ProjectApi {
 
     public abstract import(file: File):  Observable<any>;
     public abstract export(projectId: string): Observable<Blob>;
-    public abstract getAll(pagination?: Partial<Pagination>, sorting?: ServerSideSorting): Observable<PaginatedEntries<Project>>;
+    public abstract getAll(fetchQueries?: FetchQueries, sorting?: ServerSideSorting): Observable<PaginatedEntries<Project>>;
     public abstract release(projectId: string): Observable<Release>;
     public abstract getProjectReleases(projectId: string, pagination?: Partial<Pagination>): Observable<PaginatedEntries<ReleaseEntry>>;
+}
+
+export interface FetchQueries {
+    skipCount?: number;
+    maxItems?: number;
 }

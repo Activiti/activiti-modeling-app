@@ -44,7 +44,7 @@ export const mockReleaseEntry: ReleaseEntry = {
 export const paginationMock: Pagination = {
     count: 1,
     hasMoreItems: false,
-    maxItems: 25,
-    skipCount: 0,
-    totalItems: 1
+    maxItems: 10,
+    skipCount: 90,
+    totalItems: 90
 };

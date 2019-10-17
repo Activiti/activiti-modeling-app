@@ -24,7 +24,7 @@ import { Store } from '@ngrx/store';
 import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { Router } from '@angular/router';
 import { LogService, CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
-import { selectProjectsLoaded } from '../selectors/dashboard.selectors';
+import { selectProjectsLoaded, selectPagination } from '../selectors/dashboard.selectors';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { mockProject, mockReleaseEntry, paginationMock } from './project.mock';
 import {
@@ -54,7 +54,8 @@ import {
     EntityDialogForm,
     DownloadResourceService,
     logInfo,
-    logError
+    logError,
+    Pagination
 } from 'ama-sdk';
 import { GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
 import { getProjectEditorLogInitiator } from 'src/app/project-editor/services/project-editor.constants';
@@ -65,7 +66,13 @@ describe('ProjectsEffects', () => {
     let actions$: Observable<any>;
     let dashboardService: DashboardService;
     const projectsLoaded$ = new BehaviorSubject<boolean>(false);
+    const paginationLoaded$ = new BehaviorSubject<Pagination>(paginationMock);
     let router: Router;
+
+    const updatedPagination = {
+        maxItems: paginationMock.maxItems,
+        skipCount: paginationMock.skipCount - paginationMock.maxItems
+    };
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -96,6 +103,9 @@ describe('ProjectsEffects', () => {
                         select: jest.fn().mockImplementation((selector) => {
                             if (selector === selectProjectsLoaded) {
                                 return projectsLoaded$;
+                            }
+                            if (selector === selectPagination) {
+                                return paginationLoaded$;
                             }
 
                             return of({});
@@ -289,7 +299,21 @@ describe('ProjectsEffects', () => {
             const expected = cold('(bce)', {
                 b: new DeleteProjectSuccessAction(mockProject.id),
                 c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
-                e: new GetProjectsAttemptAction({})
+                e: new GetProjectsAttemptAction(updatedPagination)
+            });
+
+            expect(effects.deleteProjectAttemptEffect).toBeObservable(expected);
+        });
+
+        it('should modify pagination when the skipCount is equal with totalItems', () => {
+            dashboardService.deleteProject = jest.fn().mockReturnValue(of(mockProject));
+            actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id) });
+
+            const expected = cold('(bce)', {
+                b:  new DeleteProjectSuccessAction(mockProject.id),
+                c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
+                e: new GetProjectsAttemptAction(updatedPagination)
+
             });
 
             expect(effects.deleteProjectAttemptEffect).toBeObservable(expected);
@@ -313,7 +337,7 @@ describe('ProjectsEffects', () => {
             const expected = cold('(bce)', {
                 b:  new DeleteProjectSuccessAction(mockProject.id),
                 c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
-                e: new GetProjectsAttemptAction({})
+                e: new GetProjectsAttemptAction(updatedPagination)
 
             });
 
