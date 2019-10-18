@@ -19,7 +19,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
-import { CoreModule, CardViewTextItemComponent } from '@alfresco/adf-core';
+import { CardViewTextItemComponent, CoreModule } from '@alfresco/adf-core';
 import { EffectsModule } from '@ngrx/effects';
 import { ProcessEditorComponent } from './components/process-editor/process-editor.component';
 import { ProcessModelerComponent } from './components/process-modeler/process-modeler.component';
@@ -32,26 +32,28 @@ import { ProcessEditorRoutingModule } from './router/process-editor-routing.modu
 import { CardViewPropertiesFactory } from './services/cardview-properties/cardview-properties.factory';
 import { Title } from '@angular/platform-browser';
 import {
+    AmaStoreModule,
     AmaTitleService,
-    providePropertyHandler,
+    BpmnFactoryToken,
     BpmnProperty,
     CodeEditorModule,
+    CodeEditorService,
+    extensionsSchema,
+    getFileUriPattern,
+    InputMappingTableModule,
+    OutputMappingTableModule,
+    PROCESS,
+    PROCESS_VARIABLES,
+    PROCESSES_ENTITY_KEY,
+    ProcessModelerServiceToken,
+    propertiesSchema,
+    provideLogFilter,
+    providePaletteElements,
+    providePaletteHandler,
+    providePropertyHandler,
     provideTranslations,
     SharedModule,
-    VariablesModule,
-    providePaletteHandler,
-    providePaletteElements,
-    BpmnFactoryToken,
-    ProcessModelerServiceToken,
-    AmaStoreModule,
-    PROCESSES_ENTITY_KEY,
-    CodeEditorService,
-    getFileUriPattern,
-    PROCESS,
-    extensionsSchema,
-    PROCESS_VARIABLES,
-    propertiesSchema,
-    provideLogFilter
+    VariablesModule
 } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { ProcessDiagramLoaderService } from './services/process-diagram-loader.service';
@@ -59,7 +61,7 @@ import { CardViewProcessVariablesItemComponent } from './services/cardview-prope
 import { CardViewImplementationItemComponent } from './services/cardview-properties/implementation-item/implementation-item.component';
 import { CardViewDecisionTaskItemComponent } from './services/cardview-properties/decision-task-item/decision-task-item.component';
 import { ProcessPropertiesComponent } from './components/process-properties/process-properties.component';
-import { MatTooltipModule, MatChipsModule } from '@angular/material';
+import { MatChipsModule, MatTooltipModule } from '@angular/material';
 import { getProcessesFilterProvider } from './extension/processes-filter.extension';
 import { getProcessCreatorProvider } from './extension/process-creator.extension';
 import { getProcessUploaderProvider } from './extension/process-uploader.extension';
@@ -77,7 +79,6 @@ import { PaletteOverlayDirective } from './components/process-modeler/palette/pa
 import { paletteElements } from './config/palette-elements.json';
 import { CardViewSignalRefItemComponent } from './services/cardview-properties/signal-ref-item/signal-ref-item.component';
 import { CardViewCalledItemItemComponent } from './services/cardview-properties/called-element-item/called-element-item.component';
-import { InputMappingTableModule, OutputMappingTableModule } from 'ama-sdk';
 import { CardViewTimerDefinitionItemComponent } from './services/cardview-properties/timer-definition-item/timer-definition-item.component';
 import { getProcessLogInitiator } from './services/process-editor.constants';
 import { CardViewErrorRefItemComponent } from './services/cardview-properties/error-ref-item/error-ref-item.component';
@@ -86,6 +87,7 @@ import { CardViewProcessMessagesItemComponent } from './services/cardview-proper
 import { ProcessMessagesEffects } from './store/process-messages.effects';
 import { MessagesDialogComponent } from 'ama-sdk/src/lib/messages/messages-dialog.component';
 import { MessagesService } from 'ama-sdk/src/lib/messages/messages.service';
+import { CardViewMultiInstanceItemComponent } from './services/cardview-properties/multi-instance-item/multi-instance-item.component';
 
 @NgModule({
     imports: [
@@ -125,7 +127,8 @@ import { MessagesService } from 'ama-sdk/src/lib/messages/messages.service';
         CardViewTimerDefinitionItemComponent,
         CardViewMessageItemComponent,
         CardViewProcessMessagesItemComponent,
-        CardViewMessageItemComponent
+        CardViewMessageItemComponent,
+        CardViewMultiInstanceItemComponent
     ],
     entryComponents: [
         CardViewProcessVariablesItemComponent,
@@ -139,7 +142,8 @@ import { MessagesService } from 'ama-sdk/src/lib/messages/messages.service';
         CardViewMessageItemComponent,
         CardViewProcessMessagesItemComponent,
         ProcessEditorComponent,
-        MessagesDialogComponent
+        MessagesDialogComponent,
+        CardViewMultiInstanceItemComponent
     ],
     exports: [ProcessEditorRoutingModule],
     providers: [
@@ -167,6 +171,7 @@ import { MessagesService } from 'ama-sdk/src/lib/messages/messages.service';
         providePropertyHandler(BpmnProperty.timerEventDefinition, CardViewTimerDefinitionItemComponent),
         providePropertyHandler(BpmnProperty.messageRef, CardViewMessageItemComponent),
         providePropertyHandler(BpmnProperty.messages, CardViewProcessMessagesItemComponent),
+        providePropertyHandler(BpmnProperty.multiInstanceType, CardViewMultiInstanceItemComponent),
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider(),

@@ -138,6 +138,7 @@ export const elementsProperties = {
     [BpmnElement.SubProcess]: [
         BpmnProperty.id,
         BpmnProperty.name,
-        BpmnProperty.documentation
+        BpmnProperty.documentation,
+        BpmnProperty.multiInstanceType
     ]
 };

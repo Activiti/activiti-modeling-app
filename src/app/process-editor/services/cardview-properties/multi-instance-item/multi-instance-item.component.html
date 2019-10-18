@@ -1,0 +1,23 @@
+<div class="multi-instance-block">
+    <mat-form-field>
+        <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MULTI_INSTANCE_TYPE_NAME' | translate }}</div>
+        <mat-select (selectionChange)="onTypeChange($event.value)"
+                    [(ngModel)]="selectedType"
+                    data-automation-id="multi-instance-field">
+            <mat-option *ngFor="let type of options$ | async" [value]="type.key">
+                {{ type.label | translate }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="selectedType !== 'none'">
+        <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.CARDINALITY_NAME' | translate }} *</div>
+        <input  [formControl]="cardinality"
+                (change)="onCardinalityChange($event.target.value)"
+                data-automation-id="cardinality-field"
+                matInput/>
+        <mat-error *ngIf="cardinality.hasError('message')">
+            {{ cardinality.getError('message') | translate }}
+        </mat-error>
+    </mat-form-field>
+</div>

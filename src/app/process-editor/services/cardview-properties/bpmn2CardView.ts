@@ -41,6 +41,7 @@ import { createErrorRefProperty } from './errorRef-cardview-property';
 import { createMessageProperty } from './message-cardview-property';
 import { createCorrelationKeyProperty } from './correlationKey-cardview-property';
 import { createProcessMessagesProperty } from './process-messages-item-property';
+import { createMultiInstanceProperty } from './multi-instance-cardview-property';
 
 export const bpmn2cardView = {
     [BpmnProperty.id]: createIdProperty,
@@ -67,5 +68,6 @@ export const bpmn2cardView = {
     [BpmnProperty.timerEventDefinition]: createTimerDefinitionProperty,
     [BpmnProperty.messageRef]: createMessageProperty,
     [BpmnProperty.messages]: createProcessMessagesProperty,
-    [BpmnProperty.correlationKey]: createCorrelationKeyProperty
+    [BpmnProperty.correlationKey]: createCorrelationKeyProperty,
+    [BpmnProperty.multiInstanceType]: createMultiInstanceProperty
 };

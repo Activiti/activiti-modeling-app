@@ -11,6 +11,11 @@
             "DURATION": "Duration",
             "DATE": "Date"
         },
+        "MULTI_INSTANCE_TYPES": {
+            "NONE": "None",
+            "PARALLEL": "Parallel",
+            "SEQUENCE": "Sequence"
+        },
         "TABS": {
             "DIAGRAM_EDITOR": "Diagram editor",
             "RAW_EDITOR": "XML editor",
@@ -77,6 +82,9 @@
             "MESSAGE_EXPRESSION": "Message expression",
             "USE_MESSAGE_EXPRESSION": "Use message expression",
             "MESSAGE_EXPRESSION_REQUIRED": "Message expression required",
+            "MULTI_INSTANCE_TYPE_NAME": "Multi Instance type",
+            "CARDINALITY_NAME": "Cardinality (Multi-instance)",
+            "MESSAGE_EXPRESSION_INVALID": "It should be a number or expression",
             "TIMERS": {
                 "TIMER_TYPE": "Timer type",
                 "TIMER_DEFINITION": "Timer definition",

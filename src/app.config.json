@@ -64,6 +64,20 @@
                 "key": "timeDate",
                 "label": "PROCESS_EDITOR.TIMER_TYPES.DATE"
             }
+        ],
+        "multi-instance-types":  [
+            {
+                "key": "none",
+                "label": "PROCESS_EDITOR.MULTI_INSTANCE_TYPES.NONE"
+            },
+            {
+                "key": "parallel",
+                "label": "PROCESS_EDITOR.MULTI_INSTANCE_TYPES.PARALLEL"
+            },
+            {
+                "key": "sequence",
+                "label": "PROCESS_EDITOR.MULTI_INSTANCE_TYPES.SEQUENCE"
+            }
         ]
     },
     "navigation": {
