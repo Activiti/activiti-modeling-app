@@ -30,6 +30,7 @@ import {
     ProcessModelerService
 } from 'ama-sdk';
 import { ProcessEntitiesState } from '../../store/process-entities.state';
+import { SelectedProcessElement } from '../../store/process-editor.state';
 
 @Component({
     selector: 'ama-process-properties',
@@ -75,7 +76,7 @@ export class ProcessPropertiesComponent implements OnInit, OnDestroy, AfterViewI
         }
     }
 
-    private getPropertiesForShape(shape) {
+    private getPropertiesForShape(shape: SelectedProcessElement): CardViewItem[] {
         if (shape === null) {
             return [];
         }
@@ -86,6 +87,7 @@ export class ProcessPropertiesComponent implements OnInit, OnDestroy, AfterViewI
         } catch {
             /*tslint:disable-next-line*/
             console.warn(`Element with id ${shape.id} not found in process editor`);
+            return [];
         }
     }
 
