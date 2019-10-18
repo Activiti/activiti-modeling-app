@@ -26,7 +26,7 @@ describe('signalScopeHandler', () => {
 
     beforeEach(() => {
         handler = handlers[property];
-        mockElement = getDiagramElementMock({ eventDefinitions: [{ signalRef: { $attrs: { 'activiti:scope': 'processInstance' } } }] });
+        mockElement = getDiagramElementMock({ eventDefinitions: [{ signalRef:  { 'scope': 'processInstance' } } ] });
         mockElementWithoutScope = getDiagramElementMock({ eventDefinitions: [{ signalRef: { $attrs: {} } }] });
         modeling = getModelingMock();
     });

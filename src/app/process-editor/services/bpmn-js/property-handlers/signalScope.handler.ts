@@ -15,16 +15,13 @@
  * limitations under the License.
  */
 
-const propertyKey = 'activiti:scope';
-
-const get = element => element.businessObject.eventDefinitions[0].signalRef.$attrs[propertyKey] || 'global';
+const get = element => element.businessObject.eventDefinitions[0].signalRef.scope || 'global';
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
     const signalRef = element.businessObject.eventDefinitions[0].signalRef;
+    element.businessObject.eventDefinitions[0].signalRef.scope = value;
     if (value === 'global') {
-        delete signalRef.$attrs['activiti:scope'];
-    } else {
-        signalRef.$attrs['activiti:scope'] = value;
+        delete signalRef.scope;
     }
     modeling.updateProperties(element, {});
 };
