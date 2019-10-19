@@ -20,10 +20,10 @@ export class EntityProperty {
     id: string;
     name: string;
     type: string;
-    value: string;
+    value: any;
     required: boolean;
 
-    constructor(name: string, type: string, value: string, required: boolean) {
+    constructor(name: string, type: string, value: any, required: boolean) {
         this.id = uuidv4();
         this.name = name;
         this.type = type;

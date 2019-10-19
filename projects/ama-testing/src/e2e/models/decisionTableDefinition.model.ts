@@ -44,4 +44,16 @@ export class DecisionTableDefinitionModel {
     setDecisionTableName(name) {
         this['definitions']['_attributes']['name'] = name;
     }
+
+    setInputLabel(label: string) {
+        this['definitions']['decision']['decisionTable']['input']['_attributes']['label'] = label;
+    }
+
+    setOutputLabel(label: string) {
+        this['definitions']['decision']['decisionTable']['output']['_attributes']['label'] = label;
+    }
+
+    setOutputTypeRef(type: string) {
+        this['definitions']['decision']['decisionTable']['output']['_attributes']['typeRef'] = type;
+    }
 }

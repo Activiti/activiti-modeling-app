@@ -15,22 +15,18 @@
  * limitations under the License.
  */
 
-import { DecisionTableInputModel } from './decisionTableInput.model';
-import { DecisionTableOutputModel } from './decisionTableOutput.model';
-
-export class DecisionTableModel {
+export class DecisionTableInputModel {
     '_attributes' = {
-        id: ''
+        id: '',
+        label: ''
     };
 
-    'input' = new DecisionTableInputModel();
-    'output' = new DecisionTableOutputModel();
+    'inputExpression' = {};
 
     constructor(details?: any) {
         if (details) {
             Object.assign(this['_attributes'], details['_attributes']);
-            this['input'] = details['input'] ? new DecisionTableInputModel(details['input']) : null;
-            this['output'] = details['output'] ? new DecisionTableOutputModel(details['output']) : null;
+            Object.assign(this['inputExpression'], details['inputExpression']);
         }
     }
 
