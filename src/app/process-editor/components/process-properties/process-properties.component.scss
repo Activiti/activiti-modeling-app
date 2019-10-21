@@ -10,6 +10,7 @@
         flex-direction: column;
 
         &-card {
+            width: 360px;
             flex: 1 0 auto;
             min-height: calc(100% - 48px);
         }
