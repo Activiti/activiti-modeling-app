@@ -33,9 +33,11 @@ const isInsideSubProcess = (element: Bpmn.DiagramElement) => {
     return element.businessObject.$parent.$type === BpmnElement.SubProcess;
 };
 const haveSignalRef = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions[0].signalRef;
+const haveConditionExpression = (element: Bpmn.DiagramElement) => !!element.businessObject.conditionExpression;
 const isDecisionTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === DECISION_TASK_IMPLEMENTATION;
 const isExclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type ===  BpmnElement.ExclusiveGateway;
 const isInclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type ===  BpmnElement.InclusiveGateway;
+const isConditionalFlow = (element: Bpmn.DiagramElement) => element.businessObject.$type ===  BpmnElement.SequenceFlow && haveConditionExpression(element);
 
 export const elementsProperties = {
     [BpmnElement.Process]: [
@@ -93,6 +95,7 @@ export const elementsProperties = {
         BpmnProperty.name,
         BpmnProperty.documentation,
         ...(isExclusiveGateway(element) ? [ BpmnProperty.conditionExpression ] : []),
+        ...(isConditionalFlow(element) ? [ BpmnProperty.conditionExpression ] : []),
         ...(isInclusiveGateway(element) ? [ BpmnProperty.conditionExpression ] : [])
     ],
     [BpmnElement.ExclusiveGateway]: [
