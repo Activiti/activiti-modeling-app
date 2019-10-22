@@ -140,5 +140,10 @@ export const elementsProperties = {
         BpmnProperty.name,
         BpmnProperty.documentation,
         BpmnProperty.multiInstanceType
+    ],
+    [BpmnElement.Participant]: [
+        BpmnProperty.id,
+        BpmnProperty.name,
+        BpmnProperty.documentation
     ]
 };

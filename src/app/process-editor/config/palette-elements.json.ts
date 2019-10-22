@@ -109,7 +109,6 @@ export const paletteElements: PaletteElement[] = [
         clickable: true,
         draggable: true
     },
-
     {
         group: 'element',
         type: 'bpmn:SubProcess',
@@ -120,5 +119,14 @@ export const paletteElements: PaletteElement[] = [
         options: {
             isExpanded: true
         }
+    },
+    { group: 'separator' },
+    {
+        group: 'element',
+        type: 'bpmn:Participant',
+        icon: 'bpmn-icon-participant',
+        title: 'APP.PROCESS_EDITOR.PALETTE.PARTICIPANT',
+        clickable: true,
+        draggable: true
     }
 ];
