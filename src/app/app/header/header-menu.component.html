@@ -1,0 +1,22 @@
+
+<button mat-icon-button [matMenuTriggerFor]="userMenu" data-automation-id="user-menu"
+[title]="'APP.MORE_ACTIONS' | translate">
+    <mat-icon>more_vert</mat-icon>
+</button>
+
+<mat-menu #userMenu="matMenu" [overlapTrigger]="false" class="ama-header-menu">
+    <button mat-menu-item (click)="onAbout()" data-automation-id="user-about">
+        <mat-icon>info_outline</mat-icon>
+        <span>{{ 'APP.HEADER.ABOUT' | translate }}</span>
+    </button>
+
+    <button mat-menu-item (click)="onOpenSettings()" data-automation-id="user-settings">
+        <mat-icon>settings</mat-icon>
+        <span>{{ 'APP.HEADER.SETTINGS' | translate }}</span>
+    </button>
+
+    <button mat-menu-item (click)="onLogout()" data-automation-id="user-logout">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>{{ 'APP.HEADER.SIGN_OUT' | translate }}</span>
+    </button>
+</mat-menu>

@@ -1,7 +1,7 @@
 @import "./app/app-layout/app-layout.component";
 @import "./app/app-layout/app-layout-global.component";
 @import "./app/app-login/app-login.component";
-@import "./app/header/current-user/current-user.component";
+@import "./app/header/header-menu.component";
 @import "./app/settings/settings-dialog.component";
 @import "./dashboard/dashboard.module";
 @import "./process-editor/process-editor.module";
@@ -14,7 +14,7 @@
     @include ama-layout-global-theme($theme);
     @include ama-app-login($theme);
     @include ama-layout-theme($theme);
-    @include ama-current-user($theme);
+    @include ama-header-menu($theme);
     @include adf-dialog-theme($theme);
     @include ama-dashboard-module($theme);
     @include ama-process-editor-module($theme);

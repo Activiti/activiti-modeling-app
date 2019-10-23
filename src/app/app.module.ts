@@ -28,7 +28,7 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './app/about/about.component';
 import { AppLoginComponent } from './app/app-login/app-login.component';
 import { AppLayoutComponent } from './app/app-layout/app-layout.component';
-import { CurrentUserComponent } from './app/header/current-user/current-user.component';
+import { HeaderMenuComponent } from './app/header/header-menu.component';
 import { SettingsDialogComponent } from './app/settings/settings-dialog.component';
 import { HostSettingsComponent } from './app/host-settings/host-settings.component';
 
@@ -107,7 +107,7 @@ registerLocaleData(localeJa);
         AppLoginComponent,
         AppLayoutComponent,
         ErrorContentComponent,
-        CurrentUserComponent,
+        HeaderMenuComponent,
         SettingsDialogComponent,
         HostSettingsComponent,
         LogHistoryComponent,

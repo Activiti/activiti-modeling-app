@@ -1,9 +1,9 @@
-@mixin ama-current-user($theme) {
+@mixin ama-header-menu($theme) {
     $am-avatar-size: 40px;
     $am-avatar-light-bg: rgba(white, 0.15);
     $am-avatar-dark-bg: rgba(black, 0.15);
 
-    .ama-current-user-menu {
+    .ama-header-menu {
         button.mat-menu-item {
             padding: 0 24px 0 16px;
         }

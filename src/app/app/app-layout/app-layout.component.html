@@ -17,11 +17,13 @@
 
                 <adf-notification-history *ngIf="showNotificationHistory" menuPositionX="before" menuPositionY="above"></adf-notification-history>
 
-                <ama-current-user
+                <adf-userinfo></adf-userinfo>
+
+                <ama-header-menu
                     (logout)="onLogout()"
                     (openSettings)="onOpenSettings()"
                     (openAbout)="onOpenAbout()">
-                </ama-current-user>
+                </ama-header-menu>
             </adf-layout-header>
         </ng-template>
     </adf-sidenav-layout-header>

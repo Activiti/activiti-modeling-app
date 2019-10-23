@@ -18,10 +18,10 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
-    selector: 'ama-current-user',
-    templateUrl: './current-user.component.html'
+    selector: 'ama-header-menu',
+    templateUrl: './header-menu.component.html'
 })
-export class CurrentUserComponent {
+export class HeaderMenuComponent {
 
     @Output() logout = new EventEmitter<void>();
     @Output() openSettings = new EventEmitter<void>();
