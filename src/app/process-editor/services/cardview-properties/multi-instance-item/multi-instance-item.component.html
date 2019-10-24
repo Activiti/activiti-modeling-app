@@ -20,4 +20,14 @@
             {{ cardinality.getError('message') | translate }}
         </mat-error>
     </mat-form-field>
+
+    <mat-form-field *ngIf="selectedType !== 'none'">
+        <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.COMPLETION_CONDITION' | translate }} </div>
+        <input  [formControl]="completionCondition" (change)="onCompletionConditionChange($event.target.value)"
+                data-automation-id="completionCondition-field"
+                matInput/>
+        <mat-error *ngIf="completionCondition.hasError('pattern')">
+            {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_EXPRESSION' | translate }}
+        </mat-error>
+    </mat-form-field>
 </div>

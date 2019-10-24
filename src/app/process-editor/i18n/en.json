@@ -84,7 +84,8 @@
             "MESSAGE_EXPRESSION_REQUIRED": "Message expression required",
             "MULTI_INSTANCE_TYPE_NAME": "Multi Instance type",
             "CARDINALITY_NAME": "Cardinality (Multi-instance)",
-            "MESSAGE_EXPRESSION_INVALID": "It should be a number or expression",
+            "COMPLETION_CONDITION": "Completion condition (Multi-instance)",
+            "INVALID_CARDINALITY": "It should be a number or expression",
             "TIMERS": {
                 "TIMER_TYPE": "Timer type",
                 "TIMER_DEFINITION": "Timer definition",

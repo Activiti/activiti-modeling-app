@@ -15,75 +15,91 @@
  * limitations under the License.
  */
 
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { AppConfigService, CardViewSelectItemOption } from '@alfresco/adf-core';
 import { MultiInstanceItemModel } from './multi-instance.item.model';
-import { BpmnElement, BpmnProperty, ProcessModelerService, ProcessModelerServiceToken } from 'ama-sdk';
 import { getMultiInstanceType, MultiInstanceProps, MultiInstanceType } from '../../bpmn-js/property-handlers/multi-instance.handler';
-import { FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { _isNumberValue } from '@angular/cdk/coercion';
+import { CardViewMultiInstanceItemService } from './multi-instance-item.service';
 
 @Component({
     selector: 'ama-multi-instance-item',
     templateUrl: './multi-instance-item.component.html',
-    styleUrls: ['./multi-instance-item.component.scss']
+    styleUrls: ['./multi-instance-item.component.scss'],
+    providers: [ CardViewMultiInstanceItemService ]
 })
 export class CardViewMultiInstanceItemComponent implements OnInit {
     @Input() property: MultiInstanceItemModel;
 
     options$: Observable<CardViewSelectItemOption<string>[]>;
     selectedType: MultiInstanceType;
-    cardinality: FormControl;
+    form: FormGroup;
 
     constructor(
         private appConfigService: AppConfigService,
-        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService
-    ) {
+        private multiInstanceItemService: CardViewMultiInstanceItemService,
+        private formBuilder: FormBuilder) {
         this.options$ = of(this.appConfigService.get('process-modeler.multi-instance-types'));
     }
 
-    get element(): any {
+    get element(): Bpmn.BusinessObject {
         return this.property.data.element.businessObject;
     }
 
-    private get bpmnFactory() {
-        return this.processModelerService.getFromModeler('bpmnFactory');
+    get cardinality(): AbstractControl {
+        return this.form.get('cardinality');
+    }
+
+    get completionCondition(): AbstractControl {
+        return this.form.get('completionCondition');
     }
 
     ngOnInit() {
         this.selectedType = getMultiInstanceType(this.element[MultiInstanceProps.loopCharacteristics]);
-        this.cardinality = new FormControl(this.parseCardinality(), [ Validators.required, this.validateExpression ]);
+        this.form = this.formBuilder.group({
+            cardinality: [ this.parseCardinality(), [ Validators.required, this.validateExpression ] ],
+            completionCondition: [ this.parseCompletionCondition(), [ Validators.pattern(/{([^}]+)}/) ] ],
+        });
+        this.multiInstanceItemService.element = this.element;
     }
 
     onTypeChange(selection: MultiInstanceType) {
         switch (selection) {
             case MultiInstanceType.parallel:
             case MultiInstanceType.sequence:
-                this.modifyMultiInstanceElement(selection);
+                this.multiInstanceItemService.createOrUpdateMultiInstanceElement(selection);
                 break;
             case MultiInstanceType.none:
                 delete this.element[MultiInstanceProps.loopCharacteristics];
-                this.cardinality.reset();
+                this.form.reset();
                 break;
         }
-        this.processModelerService.updateElementProperty(this.element.id, BpmnProperty.multiInstanceType, this.element);
+        this.multiInstanceItemService.updateEditor();
     }
 
-    onCardinalityChange(expression) {
-        if (!this.hasCardinalityElement()) {
-            this.createCardinalityElement(expression);
-        } else {
-            this.element.loopCharacteristics[MultiInstanceProps.loopCardinality].set('body', expression);
-        }
-        this.processModelerService.updateElementProperty(this.element.id, BpmnProperty.multiInstanceType, this.element);
+    onCardinalityChange(expression: string) {
+        this.multiInstanceItemService.createOrUpdateCardinality(expression);
+    }
+
+    onCompletionConditionChange(expression: string) {
+        this.multiInstanceItemService.createOrUpdateCompleteCondition(expression);
     }
 
     parseCardinality(): string {
+        return this.parseMultiInstanceProperty(MultiInstanceProps.loopCardinality);
+    }
+
+    parseCompletionCondition(): string {
+        return this.parseMultiInstanceProperty(MultiInstanceProps.completionCondition);
+    }
+
+    private parseMultiInstanceProperty(props: MultiInstanceProps) {
         return (
             this.element[MultiInstanceProps.loopCharacteristics] &&
-            this.element[MultiInstanceProps.loopCharacteristics][MultiInstanceProps.loopCardinality] &&
-            this.element[MultiInstanceProps.loopCharacteristics][MultiInstanceProps.loopCardinality]['body']
+            this.element[MultiInstanceProps.loopCharacteristics][props] &&
+            this.element[MultiInstanceProps.loopCharacteristics][props]['body']
         );
     }
 
@@ -92,33 +108,8 @@ export class CardViewMultiInstanceItemComponent implements OnInit {
         const isValid: boolean = expression.test(value) || _isNumberValue(value);
 
         return (isValid) ? null : {
-            message: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_EXPRESSION_INVALID'
+            message: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_CARDINALITY'
         };
     }
 
-    private modifyMultiInstanceElement(selectedType: MultiInstanceType) {
-        const isSequence = selectedType === MultiInstanceType.sequence;
-        if (!this.hasMultiInstanceElement()) {
-            this.createMultiInstanceElement();
-        }
-        this.element[MultiInstanceProps.loopCharacteristics].set(MultiInstanceProps.isSequential, isSequence);
-    }
-
-    private createMultiInstanceElement() {
-        const multiInstanceElement = this.bpmnFactory.create(BpmnElement.MultiInstanceLoopCharacteristics);
-        this.element.set(MultiInstanceProps.loopCharacteristics, multiInstanceElement);
-    }
-
-    private createCardinalityElement(expression: string) {
-        const loopCardinality = this.bpmnFactory.create(BpmnElement.Expression, {'body': expression});
-        this.element.loopCharacteristics.set(MultiInstanceProps.loopCardinality, loopCardinality);
-    }
-
-    private hasMultiInstanceElement(): boolean {
-        return !!this.element[MultiInstanceProps.loopCharacteristics];
-    }
-
-    private hasCardinalityElement(): boolean {
-        return !!this.element.loopCharacteristics[MultiInstanceProps.loopCardinality];
-    }
 }

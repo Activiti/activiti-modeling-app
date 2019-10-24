@@ -31,15 +31,15 @@ export const elementMock = {
     },
 };
 
-export const cardinalityMock = {
-    'loopCardinality': {
+export const loopCharacteristicsMock: any = {
+    'loopCharacteristics': {
         '$type': 'bpmn:Expression',
         'body': '${expression}'
     }
 };
 
 
-export const propertyMock =    new MultiInstanceItemModel({
+export const propertyMock = new MultiInstanceItemModel({
     label: '',
     value: '',
     key: '',

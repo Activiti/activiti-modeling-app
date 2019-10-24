@@ -28,7 +28,7 @@ import { CodeEditorWidget } from 'ama-testing/e2e';
 import { ProcessDefinitionModel } from 'ama-testing/e2e';
 import { SnackBar } from 'ama-testing/e2e';
 
-describe('Validate process - update process using XML editor', async () => {
+xdescribe('Validate process - update process using XML editor', async () => {
     const adminUser = {
         user: testConfig.ama.user,
         password: testConfig.ama.password

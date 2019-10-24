@@ -21,7 +21,7 @@ import { AppConfigService, AppConfigServiceMock, setupTestBed } from '@alfresco/
 import { ProcessModelerServiceImplementation } from '../../process-modeler.service';
 import { BpmnFactoryMock } from '../../bpmn-js/bpmn-js.mock';
 import { BpmnFactoryToken, ProcessModelerService, ProcessModelerServiceToken } from 'ama-sdk';
-import { appConfigMock, cardinalityMock, propertyMock } from './multi-instance.mock';
+import { appConfigMock, loopCharacteristicsMock, propertyMock } from './multi-instance.mock';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
@@ -31,6 +31,7 @@ import { CommonModule } from '@angular/common';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { MultiInstanceProps, MultiInstanceType } from '../../bpmn-js/property-handlers/multi-instance.handler';
+import { CardViewMultiInstanceItemService } from './multi-instance-item.service';
 
 describe('CardViewMultiInstanceItemComponent', () => {
     let component: CardViewMultiInstanceItemComponent;
@@ -43,7 +44,8 @@ describe('CardViewMultiInstanceItemComponent', () => {
         providers: [
             {provide: AppConfigService, useClass: AppConfigServiceMock},
             {provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation},
-            {provide: BpmnFactoryToken, useClass: BpmnFactoryMock}
+            {provide: BpmnFactoryToken, useClass: BpmnFactoryMock},
+            CardViewMultiInstanceItemService
         ],
         imports: [
             MatFormFieldModule,
@@ -68,7 +70,7 @@ describe('CardViewMultiInstanceItemComponent', () => {
 
         spyOn(processModelerService, 'getFromModeler').and.returnValue({
             create: () => {
-                return cardinalityMock;
+                return loopCharacteristicsMock;
             }
         });
 
@@ -116,23 +118,56 @@ describe('CardViewMultiInstanceItemComponent', () => {
         expect(component.cardinality.hasError('message')).toBeFalsy();
     });
 
-    it('should remove cardinality when none type selected', () => {
-        component.selectedType = MultiInstanceType.none;
+    it('should show error when wrong completionCondition found', () => {
         fixture.detectChanges();
-        const cardinalityElement = fixture.debugElement.query(By.css('[data-automation-id="cardinality-field"]'));
-        expect(cardinalityElement).toBeFalsy();
+        const completionConditionElement = fixture.debugElement.query(By.css('[data-automation-id="completionCondition-field"]'));
+        completionConditionElement.nativeElement.value = 'a';
+        completionConditionElement.nativeElement.dispatchEvent(new Event('input'));
+        expect(component.completionCondition.hasError('pattern')).toBeTruthy();
+
+        completionConditionElement.nativeElement.value = '5';
+        completionConditionElement.nativeElement.dispatchEvent(new Event('input'));
+        expect(component.completionCondition.hasError('pattern')).toBeTruthy();
+
+        completionConditionElement.nativeElement.value = '${}';
+        completionConditionElement.nativeElement.dispatchEvent(new Event('input'));
+        expect(component.completionCondition.hasError('pattern')).toBeTruthy();
+
+        completionConditionElement.nativeElement.value = '${expression}';
+        completionConditionElement.nativeElement.dispatchEvent(new Event('input'));
+        expect(component.completionCondition.hasError('pattern')).toBeFalsy();
     });
 
-    it('should change update xml  when multi instance type changes', () => {
-        component.onTypeChange(MultiInstanceType.sequence);
-        expect(processModelerService.updateElementProperty).toHaveBeenCalledTimes(1);
+    describe('multiInstance type', () => {
+
+        it('should remove cardinality when none type selected', () => {
+            let cardinalityElement = fixture.debugElement.query(By.css('[data-automation-id="cardinality-field"]'));
+            let completionConditionElement = fixture.debugElement.query(By.css('[data-automation-id="completionCondition-field"]'));
+            expect(cardinalityElement).toBeTruthy();
+            expect(completionConditionElement).toBeTruthy();
+
+            component.selectedType = MultiInstanceType.none;
+            fixture.detectChanges();
+
+            cardinalityElement = fixture.debugElement.query(By.css('[data-automation-id="cardinality-field"]'));
+            completionConditionElement = fixture.debugElement.query(By.css('[data-automation-id="completionCondition-field"]'));
+            expect(cardinalityElement).toBeFalsy();
+            expect(completionConditionElement).toBeFalsy();
+        });
+
+        it('should update xml  when multi instance type changes', () => {
+            component.onTypeChange(MultiInstanceType.sequence);
+            expect(processModelerService.updateElementProperty).toHaveBeenCalledTimes(1);
+        });
+
+        it('should delete multiInstance when none type selected', () => {
+            expect(component.element[MultiInstanceProps.loopCharacteristics]).toBeTruthy();
+            component.onTypeChange(MultiInstanceType.none);
+            expect(component.element).toEqual({'$type': 'bpmn:SubProcess', 'id': 'SubProcess_17k'});
+            expect(component.cardinality.value).toBeFalsy();
+            expect(processModelerService.updateElementProperty).toHaveBeenCalledTimes(1);
+        });
+
     });
 
-    it('should delete multiInstance when none type selected', () => {
-        expect(component.element[MultiInstanceProps.loopCharacteristics]).toBeTruthy();
-        component.onTypeChange(MultiInstanceType.none);
-        expect(component.element).toEqual({'$type': 'bpmn:SubProcess', 'id': 'SubProcess_17k'});
-        expect(component.cardinality.value).toBeFalsy();
-        expect(processModelerService.updateElementProperty).toHaveBeenCalledTimes(1);
-    });
 });

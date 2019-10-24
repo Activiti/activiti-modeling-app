@@ -24,7 +24,8 @@ export enum MultiInstanceType {
 export enum MultiInstanceProps {
     loopCharacteristics = 'loopCharacteristics',
     loopCardinality = 'loopCardinality',
-    isSequential = 'isSequential'
+    isSequential = 'isSequential',
+    completionCondition = 'completionCondition'
 }
 
 export function getMultiInstanceType(element): MultiInstanceType {
