@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-import { CardViewDateItemModel } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty } from 'ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
 import { displayDate } from '../bpmn-js/property-handlers/dueDate.handler';
+import { CardViewDatetimeItemModel } from '@alfresco/adf-core';
 
 const propertyName = BpmnProperty.dueDate;
 
 export function createDueDateProperty({ element }: FactoryProps) {
-    return new CardViewDateItemModel({
+    return new CardViewDatetimeItemModel({
         label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.DUE_DATE',
         value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,
