@@ -28,75 +28,75 @@ export class ProjectContentPage extends GenericPage {
         super(testConfig);
     }
 
-    async navigateTo() {
+    async navigateTo(): Promise<void> {
         await super.navigateTo(`projects/${this.projectId}`);
     }
 
-    async isModelInList(modelType: string, modelName: string) {
-        return await this.isItemInList(modelType, modelName);
+    async isModelInList(modelType: string, modelName: string): Promise<boolean> {
+        return this.isItemInList(modelType, modelName);
     }
 
-    async isModelNotInList(modelType: string, modelId: string) {
+    async isModelNotInList(modelType: string, modelId: string): Promise<boolean> {
         const modelRow = element(by.css(`[data-automation-id="${modelType}-${modelId}"]`));
-        return await BrowserVisibility.waitUntilElementIsNotVisible(modelRow);
+        return BrowserVisibility.waitUntilElementIsNotVisible(modelRow);
     }
 
-    async clickOnModel(modelType: string, modelId: string) {
+    async clickOnModel(modelType: string, modelId: string): Promise<void> {
         const modelRow = element(by.css(`[data-automation-id="${modelType}-${modelId}"]`));
         await BrowserActions.click(modelRow);
     }
 
     async clickOnModelByName(modelType: string, modelName: string) {
         const containerSelector = `[data-automation-id="project-filter-${modelType}-container"] a`,
-        model = element(by.cssContainingText(containerSelector, modelName));
+            model = element(by.cssContainingText(containerSelector, modelName));
         await BrowserActions.click(model);
     }
 
-    async openFilter(modelType: string) {
+    async openFilter(modelType: string): Promise<void> {
         const filterCss = `[data-automation-id="project-filter-${modelType}"]`;
         const spinner = element(by.css(`${filterCss} mat-spinner`));
         await BrowserVisibility.waitUntilElementIsNotVisible(spinner);
         await BrowserActions.click(element(by.css(filterCss)));
     }
 
-    async importModel(modelType: string, filePath: string) {
+    async importModel(modelType: string, filePath: string): Promise<void> {
         const importModelInput = element(by.css(`[data-automation-id="upload-${modelType}"] input`));
         await super.sendKeysIfPresent(importModelInput, filePath);
     }
 
-    async createModel(modelType: string) {
+    async createModel(modelType: string): Promise<void> {
         const addButton = element(by.css(`[data-automation-id="project-filter-${modelType}"] button`));
         await BrowserActions.click(addButton);
     }
 
-    async createProcess() {
+    async createProcess(): Promise<void> {
         await this.createModel('process');
     }
 
-    async createConnector() {
+    async createConnector(): Promise<void> {
         await this.createModel('connector');
     }
 
-    async createForm() {
+    async createForm(): Promise<void> {
         await this.createModel('form');
     }
 
-    async createData() {
+    async createData(): Promise<void> {
         await this.createModel('data');
     }
 
-    async createDecisionTable() {
+    async createDecisionTable(): Promise<void> {
         await this.createModel('decision');
     }
 
-    async createUI() {
+    async createUI(): Promise<void> {
         await this.createModel('ui');
     }
 
-    private async isItemInList(modelType: string, searchedItem: string) {
+    private async isItemInList(modelType: string, searchedItem: string): Promise<boolean> {
         const containerSelector = `[data-automation-id="project-filter-${modelType}-container"]`,
-        model = element(by.cssContainingText(containerSelector, searchedItem));
+            model = element(by.cssContainingText(containerSelector, searchedItem));
 
-        return await BrowserVisibility.waitUntilElementIsVisible(model);
+        return BrowserVisibility.waitUntilElementIsVisible(model);
     }
 }

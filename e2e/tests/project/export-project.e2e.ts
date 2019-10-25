@@ -67,9 +67,9 @@ describe('Export project', () => {
         await toolBar.downloadFile();
 
         const confirmationDialog = new ConfirmationDialog('Validation errors found in project\'s models');
-        expect(await confirmationDialog.getSubTitleText()).toBe('Validation errors:');
-        expect(await confirmationDialog.getMessageText(1)).toBe('Project must contain at least one process');
-        expect(await confirmationDialog.getTotalMessageCount()).toBe(1);
+        await expect(await confirmationDialog.getSubTitleText()).toBe('Validation errors:');
+        await expect(await confirmationDialog.getMessageText(1)).toBe('Project must contain at least one process');
+        await expect(await confirmationDialog.getTotalMessageCount()).toBe(1);
     });
 
     it('[C286635] Export project with process', async () => {
@@ -78,7 +78,7 @@ describe('Export project', () => {
         await dashboardPage.navigateToProject(projectId);
         await toolBar.downloadFile();
         const downloadedApp = path.join(downloadDir, `${project.entry.name}.zip`);
-        expect(await UtilFile.fileExists(downloadedApp)).toBe(true);
+        await expect(await UtilFile.fileExists(downloadedApp)).toBe(true);
     });
 
     afterEach(async () => {

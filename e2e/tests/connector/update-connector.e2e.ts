@@ -81,12 +81,12 @@ describe('Update connector', async () => {
         await browser.sleep(1000);
         await connectorContentPage.save();
 
-        expect(await snackBar.isUpdatedSuccessfully('connector')).toBe(true, 'Update snackbar was not displayed properly.');
-        expect(await projectContentPage.isModelNotInList('connector', connector.entry.name)).toBe(true, 'Connector with old name should not be in the left sidebar');
-        expect(await projectContentPage.isModelInList('connector', newModel.name)).toBe(true, 'Connector with new name was not found in the left sidebar');
+        await expect(await snackBar.isUpdatedSuccessfully('connector')).toBe(true, 'Update snackbar was not displayed properly.');
+        await expect(await projectContentPage.isModelNotInList('connector', connector.entry.name)).toBe(true, 'Connector with old name should not be in the left sidebar');
+        await expect(await projectContentPage.isModelInList('connector', newModel.name)).toBe(true, 'Connector with new name was not found in the left sidebar');
 
         updatedContent = JSON.parse(await backend.connector.getContent(connector.entry.id));
-        expect(updatedContent).toEqual(newModel, 'Connector update was not performed properly.');
+        await expect(updatedContent).toEqual(newModel, 'Connector update was not performed properly.');
     });
 
     afterAll(async () => {

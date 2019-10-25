@@ -72,7 +72,7 @@ describe('Update process', async () => {
         await processPropertiesCard.isLoaded();
     });
 
-    xit('[C280676] Update process', async () => {
+    it('[C280676] Update process', async () => {
         const updatedProcess = {
             name: process.entry.name + '-updated',
             documentation: process.entry.name + ' documentation updated'
@@ -82,45 +82,45 @@ describe('Update process', async () => {
         await processPropertiesCard.editProcessDocumentation(updatedProcess.documentation);
         await processContentPage.save();
 
-        expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Update snackbar was not displayed properly.');
-        expect(await projectContentPage.isModelNotInList('process', process.entry.name)).toBe(true, 'Process with old name should not be in the left sidebar');
-        expect(await projectContentPage.isModelInList('process', updatedProcess.name)).toBe(true, 'Process with new name was not found in the left sidebar');
+        await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Update snackbar was not displayed properly.');
+        await expect(await projectContentPage.isModelNotInList('process', process.entry.name)).toBe(true, 'Process with old name should not be in the left sidebar');
+        await expect(await projectContentPage.isModelInList('process', updatedProcess.name)).toBe(true, 'Process with new name was not found in the left sidebar');
 
         const xml = await backend.process.getContent(process.entry.id);
         const xmlContent = JSON.parse(await UtilFile.parseXML(xml, false));
 
         const bpmnProcessDetails = xmlContent[`bpmn2:definitions`][`bpmn2:process`][`_attributes`];
-        expect(UtilFile.getJSONItemValueByKey(bpmnProcessDetails, `name`)).toEqual(updatedProcess.name);
+        await expect(UtilFile.getJSONItemValueByKey(bpmnProcessDetails, `name`)).toEqual(updatedProcess.name);
 
         const bpmnProcessDocumentation = xmlContent[`bpmn2:definitions`][`bpmn2:process`][`bpmn2:documentation`];
-        expect(UtilFile.getJSONItemValueByKey(bpmnProcessDocumentation, `_text`)).toEqual(updatedProcess.documentation);
+        await expect(UtilFile.getJSONItemValueByKey(bpmnProcessDocumentation, `_text`)).toEqual(updatedProcess.documentation);
     });
 
     it('[C286410] Update process - Dirty state with confirmation of navigating away', async () => {
         await processPropertiesCard.editProcessName(process.entry.name + '-updated');
         /* cspell: disable-next-line */
-        expect(await toolbar.isElementInDirtyState(process.entry.name)).toBe(true, 'AZZZZ');
+        await expect(await toolbar.isElementInDirtyState(process.entry.name)).toBe(true, 'AZZZZ');
         /* cspell: disable-next-line */
-        expect(await processContentPage.isPageInDirtyState()).toBe(true, 'BZZZZ');
+        await expect(await processContentPage.isPageInDirtyState()).toBe(true, 'BZZZZ');
 
         await toolbar.navigateToBreadcrumbItem(project.entry.name);
         await leavePageDialog.checkDialogAndConfirm('process');
 
         await processContentPage.navigateTo();
-        expect(await toolbar.isElementNotInDirtyState(process.entry.name)).toBe(true, 'ZZZZZ');
-        expect(await processContentPage.isPageInDirtyState()).toBe(false, 'AAAAA');
+        await expect(await toolbar.isElementNotInDirtyState(process.entry.name)).toBe(true, 'ZZZZZ');
+        await expect(await processContentPage.isPageInDirtyState()).toBe(false, 'AAAAA');
     });
 
     it('[C286431] Update process - Dirty state without confirmation of navigating away', async () => {
         await processPropertiesCard.editProcessName(process.entry.name + '-updated');
-        expect(await toolbar.isElementInDirtyState(process.entry.name)).toBe(true);
-        expect(await authenticatedPage.isPageInDirtyState()).toBe(true);
+        await expect(await toolbar.isElementInDirtyState(process.entry.name)).toBe(true);
+        await expect(await authenticatedPage.isPageInDirtyState()).toBe(true);
 
         await toolbar.navigateToBreadcrumbItem(project.entry.name);
         await leavePageDialog.checkDialogAndReject('process');
 
-        expect(await toolbar.isElementInDirtyState(process.entry.name)).toBe(true);
-        expect(await processContentPage.isPageInDirtyState()).toBe(true);
+        await expect(await toolbar.isElementInDirtyState(process.entry.name)).toBe(true);
+        await expect(await processContentPage.isPageInDirtyState()).toBe(true);
     });
 
     afterAll(async () => {

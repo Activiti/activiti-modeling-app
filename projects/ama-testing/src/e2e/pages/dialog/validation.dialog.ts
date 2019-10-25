@@ -32,27 +32,29 @@ export class ValidationDialog extends GenericDialog {
         super(title ? title : 'Are you sure you want to save this process?');
     }
 
-    async isTitleDisplayed() {
+    async isTitleDisplayed(): Promise<boolean> {
         try {
             await BrowserVisibility.waitUntilElementIsVisible(this.titleElement);
-        } catch (error) { return false; }
-        return await this.titleElement.getText() === this.title;
+        } catch (error) {
+            return false;
+        }
+        return ((await this.titleElement.getText()) === this.title);
     }
 
-    async isDialogDismissed() {
+    async isDialogDismissed(): Promise<void> {
         await BrowserVisibility.waitUntilElementIsNotVisible(this.validationDialog);
     }
 
-    async confirm() {
+    async confirm(): Promise<void> {
         await BrowserActions.click(this.confirmButton);
     }
 
-    async reject() {
+    async reject(): Promise<void> {
         await BrowserActions.click(this.closeButton);
     }
 
-    async getErrorMessage() {
+    async getErrorMessage(): Promise<string> {
         await BrowserVisibility.waitUntilElementIsVisible(this.validationError);
-        return await this.validationError.getText();
+        return this.validationError.getText();
     }
 }

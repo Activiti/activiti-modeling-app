@@ -24,15 +24,15 @@ export class Calendar extends GenericPage {
     readonly datePicker = element(by.css(`.mat-calendar`));
     readonly today = element(by.css(`.mat-calendar-body-today`));
 
-    async isDisplayed() {
-        return await BrowserVisibility.waitUntilElementIsVisible(this.datePicker);
+    async isDisplayed(): Promise<boolean> {
+        return BrowserVisibility.waitUntilElementIsVisible(this.datePicker);
     }
 
-    async isDismissed() {
-        return await BrowserVisibility.waitUntilElementIsNotVisible(this.datePicker);
+    async isDismissed(): Promise<boolean> {
+        return BrowserVisibility.waitUntilElementIsNotVisible(this.datePicker);
     }
 
-    async setToday() {
+    async setToday(): Promise<void> {
         await BrowserActions.click(this.today);
         await this.isDismissed();
     }

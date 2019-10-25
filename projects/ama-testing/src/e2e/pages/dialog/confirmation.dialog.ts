@@ -34,41 +34,41 @@ export class ConfirmationDialog extends GenericDialog {
         this.title = title;
     }
 
-    async isTitleDisplayed(itemType) {
+    async isTitleDisplayed(itemType): Promise<boolean> {
         await BrowserVisibility.waitUntilElementIsVisible(this.titleElement);
-        return await this.titleElement.getText() === this.title.replace('ITEM', itemType);
+        return (await this.titleElement.getText()) === this.title.replace('ITEM', itemType);
     }
 
-    async getSubTitleText() {
+    async getSubTitleText(): Promise<string> {
         await BrowserVisibility.waitUntilElementIsVisible(this.subTitle);
         return this.subTitle.getText();
     }
 
-    async getMessageText(messageIndex: number) {
+    async getMessageText(messageIndex: number): Promise<string> {
         await BrowserVisibility.waitUntilElementIsVisible(this.titleElement);
         return element(by.xpath(`//mat-dialog-content/ul/li[${messageIndex}]`)).getText();
     }
 
-    async getTotalMessageCount() {
+    async getTotalMessageCount(): Promise<number> {
         await BrowserVisibility.waitUntilElementIsVisible(this.titleElement);
         return this.messageCount.count();
     }
 
-    async confirm() {
+    async confirm(): Promise<void> {
         await BrowserActions.click(this.confirmButton);
     }
 
-    async reject() {
+    async reject(): Promise<void> {
         await BrowserActions.click(this.closeButton);
     }
 
-    async checkDialogAndConfirm(itemType) {
+    async checkDialogAndConfirm(itemType): Promise<void> {
         await this.isTitleDisplayed(itemType);
         await this.confirm();
         await this.isDialogDismissed();
     }
 
-    async checkDialogAndReject(itemType) {
+    async checkDialogAndReject(itemType): Promise<void> {
         await this.isTitleDisplayed(itemType);
         await this.reject();
         await this.isDialogDismissed();

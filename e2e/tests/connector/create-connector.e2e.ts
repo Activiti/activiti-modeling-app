@@ -63,18 +63,18 @@ describe('Create connector', async () => {
         await sidebarActionMenu.createConnector();
         /* cspell: disable-next-line */
         const connector = await createEntityDialog.setEntityDetails('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
-        expect(await snackBar.isCreatedSuccessfully('connector')).toBe(true, 'Connector creation snackbar should be displayed');
-        expect(await projectContentPage.isModelInList('connector', connector.name)).toBe(true, 'Connector should be in the left sidebar');
-        expect(await toolbar.isItemDisplayed(connector.name)).toBe(true, 'Connector name should be displayed in the breadcrumb');
+        await expect(await snackBar.isCreatedSuccessfully('connector')).toBe(true, 'Connector creation snackbar should be displayed');
+        await expect(await projectContentPage.isModelInList('connector', connector.name)).toBe(true, 'Connector should be in the left sidebar');
+        await expect(await toolbar.isItemDisplayed(connector.name)).toBe(true, 'Connector name should be displayed in the breadcrumb');
     });
 
     it('[C291964] Create connector using + button', async () => {
         await projectContentPage.createConnector();
         /* cspell: disable-next-line */
         const connector = await createEntityDialog.setEntityDetails('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
-        expect(await snackBar.isCreatedSuccessfully('connector')).toBe(true, 'Connector creation snackbar should be displayed');
-        expect(await projectContentPage.isModelInList('connector', connector.name)).toBe(true, 'Connector should be in the left sidebar');
-        expect(await toolbar.isItemDisplayed(connector.name)).toBe(true, 'Connector name should be displayed in the breadcrumb');
+        await expect(await snackBar.isCreatedSuccessfully('connector')).toBe(true, 'Connector creation snackbar should be displayed');
+        await expect(await projectContentPage.isModelInList('connector', connector.name)).toBe(true, 'Connector should be in the left sidebar');
+        await expect(await toolbar.isItemDisplayed(connector.name)).toBe(true, 'Connector name should be displayed in the breadcrumb');
     });
 
     afterAll(async () => {

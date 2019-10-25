@@ -29,17 +29,17 @@ export class GenericPage extends GenericWebElement {
         this.testConfig = testConfig;
     }
 
-    async navigateTo(url: string) {
+    async navigateTo(url: string): Promise<void> {
         await browser.get(`/#/${url}`);
         await browser.refresh();
     }
 
-    async isPageInDirtyState() {
+    async isPageInDirtyState(): Promise<boolean> {
         const pageTitle = await browser.getTitle();
         return pageTitle.includes('*');
     }
 
-    async getModelId() {
+    async getModelId(): Promise<string> {
         const url = await browser.getCurrentUrl();
         return url.substring(url.lastIndexOf('/') + 1);
     }

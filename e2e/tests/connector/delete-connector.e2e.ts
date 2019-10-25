@@ -66,7 +66,7 @@ describe('Delete connector', () => {
     });
 
     beforeEach(async () => {
-        expect(await projectContentPage.isModelInList('connector', connector.entry.name)).toBe(true, 'Connector should be in the left sidebar');
+        await expect(await projectContentPage.isModelInList('connector', connector.entry.name)).toBe(true, 'Connector should be in the left sidebar');
 
         await projectContentPage.clickOnModel('connector', connector.entry.id);
 
@@ -76,14 +76,14 @@ describe('Delete connector', () => {
 
     it('[C280483] Delete connector with confirmation', async () => {
         await deleteEntityDialog.checkDialogAndConfirm('connector');
-        expect(await snackBar.isDeletedSuccessfully('connector')).toBe(true, 'Connector deletion snackbar message was not displayed properly.');
-        expect(await projectContentPage.isModelNotInList('connector', connector.entry.id)).toBe(true, 'Connector was not removed from the left sidebar.');
-        expect(await connectorContentPage.isUnloaded()).toBe(true, 'After connector deletion, the connector editor should be unloaded');
+        await expect(await snackBar.isDeletedSuccessfully('connector')).toBe(true, 'Connector deletion snackbar message was not displayed properly.');
+        await expect(await projectContentPage.isModelNotInList('connector', connector.entry.id)).toBe(true, 'Connector was not removed from the left sidebar.');
+        await expect(await connectorContentPage.isUnloaded()).toBe(true, 'After connector deletion, the connector editor should be unloaded');
     });
 
     it('[C280488] Delete connector without confirmation', async () => {
         await deleteEntityDialog.checkDialogAndReject('connector');
-        expect(await projectContentPage.isModelInList('connector', connector.entry.name)).toBe(true, 'Connector should be in the left sidebar');
+        await expect(await projectContentPage.isModelInList('connector', connector.entry.name)).toBe(true, 'Connector should be in the left sidebar');
     });
 
     afterAll(async () => {

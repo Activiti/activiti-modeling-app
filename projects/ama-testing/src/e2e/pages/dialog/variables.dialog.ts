@@ -36,74 +36,69 @@ export class VariablesDialog extends GenericDialog {
 
     readonly calendar = new Calendar();
 
-    async isLoaded() {
+    async isLoaded(): Promise<boolean> {
         await BrowserVisibility.waitUntilElementIsVisible(this.variablesDialog);
         return true;
     }
 
-    async isTitleIconDisplayed() {
+    async isTitleIconDisplayed(): Promise<boolean> {
         await BrowserVisibility.waitUntilElementIsVisible(this.variablesDialogTitleIcon);
         return true;
     }
 
-    async addVariable() {
+    async addVariable(): Promise<void> {
         await BrowserActions.click(this.add);
     }
 
-    async deleteVariable() {
+    async deleteVariable(): Promise<void> {
         await BrowserActions.click(this.delete);
     }
 
-    async setVariableName(name: string) {
+    async setVariableName(name: string): Promise<void> {
         await this.name.clear();
         await this.name.sendKeys(name);
     }
 
-    async setVariableType(type: string) {
+    async setVariableType(type: string): Promise<void> {
         await BrowserActions.click(this.type);
         const varTypeOption = element(by.cssContainingText('.mat-option-text', type));
         await BrowserActions.click(varTypeOption);
     }
 
-    async setBooleanVariableValue(value: string) {
+    async setBooleanVariableValue(value: string): Promise<void> {
         await BrowserActions.click(this.value);
         const varValueOption = element(by.cssContainingText('.mat-option-text', value));
         await BrowserActions.click(varValueOption);
     }
 
-    async setDateVariableValue() {
+    async setDateVariableValue(): Promise<void> {
         await BrowserActions.click(this.datePicker);
         await this.calendar.isDisplayed();
         await this.calendar.setToday();
     }
 
-    async setVariableValue(value: string) {
+    async setVariableValue(value: string): Promise<void> {
         await BrowserActions.clearSendKeys(this.value, value);
     }
 
-    async setRequired(required: boolean = false) {
-        if ( required ) {
-            await BrowserActions.click(this.required);
-        }
-    }
-    async setVariable(name: string = 'name', type: string = 'string', value: string  = '') {
+    async setVariable(name: string = 'name', type: string = 'string', value: string = ''): Promise<void> {
         await this.setVariableName(name);
         await this.setVariableType(type);
 
-        if ( type === 'boolean' ) {
+        if (type === 'boolean') {
             await this.setBooleanVariableValue(value);
-        } else if ( type === 'date' ) {
+        } else if (type === 'date') {
             await this.setDateVariableValue();
         } else {
             await this.setVariableValue(value);
         }
     }
 
-    async getVariableValue() {
-        return await this.value.getText();
+    async getVariableValue(): Promise<string> {
+        return this.value.getText();
     }
 
-    async isFormVariableDisplayed(rowIndex: number, name: string = 'name', type: string = 'string', value: string = '', required?: string) {
+    async isFormVariableDisplayed(rowIndex: number, name: string = 'name', type: string = 'string', value: string = '', required?: string): Promise<boolean> {
         let valueCell;
         const variableRow = `[data-automation-id*="variable-row-${rowIndex}"]`;
 
@@ -118,7 +113,7 @@ export class VariablesDialog extends GenericDialog {
             await BrowserVisibility.waitUntilElementIsVisible(requiredCell);
         }
 
-        if ( type !== 'string' && value === '' ) {
+        if (type !== 'string' && value === '') {
             valueCell = element(by.css(`${variableRow}>[data-automation-id="variable-value-cell-undefined"]`));
         } else {
             valueCell = element(by.css(`${variableRow}>[data-automation-id="variable-value-cell-${value}"]`));
@@ -128,11 +123,11 @@ export class VariablesDialog extends GenericDialog {
         return true;
     }
 
-    async isVariableDisplayed(rowIndex: number, name: string = 'name', type: string = 'string', value: string = '', required: string = 'false') {
-        return await this.isFormVariableDisplayed(rowIndex, name, type, value, required);
+    async isVariableDisplayed(rowIndex: number, name: string = 'name', type: string = 'string', value: string = '', required: string = 'false'): Promise<boolean> {
+        return this.isFormVariableDisplayed(rowIndex, name, type, value, required);
     }
 
-    async getVariableIdByRow(rowIndex: number) {
+    async getVariableIdByRow(rowIndex: number): Promise<string> {
         const rowLocator = `variable-row-${rowIndex}`;
         const variableRow = element(by.css(`[data-automation-id*="${rowLocator}"]`));
         const attr = await variableRow.getAttribute('data-automation-id');
@@ -140,11 +135,11 @@ export class VariablesDialog extends GenericDialog {
         return attr.substring(rowLocator.length + 1);
     }
 
-    async update() {
+    async update(): Promise<void> {
         await BrowserActions.click(this.updateButton);
     }
 
-    async close() {
+    async close(): Promise<void> {
         await BrowserActions.click(this.closeButton);
         await super.isDialogDismissed();
     }

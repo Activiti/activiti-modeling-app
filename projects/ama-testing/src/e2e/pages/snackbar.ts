@@ -28,45 +28,45 @@ export class SnackBar extends GenericWebElement {
     readonly releaseItemMessage = `The project was successfully released`;
     readonly releaseItemError = `Unknown error happened while releasing the project.`;
 
-    private getMessage(operationMessage: string, itemType?: string) {
+    private getMessage(operationMessage: string, itemType?: string): string {
         return itemType ? operationMessage.replace('ITEM', itemType) : operationMessage;
     }
 
-    async isOperationSuccessful(operationMessage: string, itemType?: string) {
+    async isOperationSuccessful(operationMessage: string, itemType?: string): Promise<boolean> {
         const successMessage = element(by.cssContainingText(`simple-snack-bar>span`, this.getMessage(operationMessage, itemType)));
-        return await BrowserVisibility.waitUntilElementIsVisible(successMessage);
+        return BrowserVisibility.waitUntilElementIsVisible(successMessage);
     }
 
-    async isOperationUnsuccessful(operationMessage: string, itemType?: string) {
+    async isOperationUnsuccessful(operationMessage: string, itemType?: string): Promise<boolean> {
         const failureMessage = element(by.cssContainingText(`simple-snack-bar>span`, this.getMessage(operationMessage, itemType)));
-        return await BrowserVisibility.waitUntilElementIsVisible(failureMessage);
+        return BrowserVisibility.waitUntilElementIsVisible(failureMessage);
     }
 
-    async isCreatedSuccessfully(itemType: string) {
-        return await this.isOperationSuccessful(this.createItemMessage, itemType);
+    async isCreatedSuccessfully(itemType: string): Promise<boolean> {
+        return this.isOperationSuccessful(this.createItemMessage, itemType);
     }
 
-    async isUpdatedSuccessfully(itemType: string) {
-        return await this.isOperationSuccessful(this.updateItemMessage, itemType);
+    async isUpdatedSuccessfully(itemType: string): Promise<boolean> {
+        return this.isOperationSuccessful(this.updateItemMessage, itemType);
     }
 
-    async isUploadedSuccessfully(itemType: string) {
-        return await this.isOperationSuccessful(this.uploadItemMessage, itemType);
+    async isUploadedSuccessfully(itemType: string): Promise<boolean> {
+        return this.isOperationSuccessful(this.uploadItemMessage, itemType);
     }
 
-    async isDeletedSuccessfully(itemType: string) {
-        return await this.isOperationSuccessful(this.deleteItemMessage, itemType);
+    async isDeletedSuccessfully(itemType: string): Promise<boolean> {
+        return this.isOperationSuccessful(this.deleteItemMessage, itemType);
     }
 
-    async isReleasedSuccessfully() {
-        return await this.isOperationSuccessful(this.releaseItemMessage);
+    async isReleasedSuccessfully(): Promise<boolean> {
+        return this.isOperationSuccessful(this.releaseItemMessage);
     }
 
-    async isNotReleased() {
-        return await this.isOperationUnsuccessful(this.releaseItemError);
+    async isNotReleased(): Promise<boolean> {
+        return this.isOperationUnsuccessful(this.releaseItemError);
     }
 
-    async isSnackBarNotDisplayed() {
-        return await BrowserVisibility.waitUntilElementIsNotVisible(element(by.css(`simple-snack-bar`)));
+    async isSnackBarNotDisplayed(): Promise<boolean> {
+        return BrowserVisibility.waitUntilElementIsNotVisible(element(by.css(`simple-snack-bar`)));
     }
 }

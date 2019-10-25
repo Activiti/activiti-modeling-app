@@ -23,7 +23,7 @@ export class DownloadEntityDialog extends ConfirmationDialog {
         super('Are you sure you want to download this ITEM?');
     }
 
-    async confirmDownload() {
+    async confirmDownload(): Promise<void> {
         await super.isDialogDisplayed();
         await super.confirm();
         await super.isDialogDismissed();

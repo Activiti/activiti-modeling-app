@@ -103,7 +103,7 @@ export abstract class ACMCrud implements ModelCrud {
 
     async searchModels(projectId: string, modelType: string) {
         Logger.info(`[${this.displayName}] Waiting created model to be ready for listing.`);
-        return await this.requestApiHelper.get<ResultSetPaging>(this.endPoint(projectId), { queryParams: { 'type': modelType } });
+        return this.requestApiHelper.get<ResultSetPaging>(this.endPoint(projectId), { queryParams: { 'type': modelType } });
     }
 
     async retrySearchModels(projectId: string, modelId: string, modelType: string): Promise<{}> {
@@ -116,7 +116,7 @@ export abstract class ACMCrud implements ModelCrud {
         };
         const apiCall = async () => await this.searchModels(projectId, modelType);
 
-        return await UtilApi.waitForApi(apiCall, predicate);
+        return UtilApi.waitForApi(apiCall, predicate);
     }
 
     async updateModelContent(id: string, content: string, modelName = this.getRandomName()) {

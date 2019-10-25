@@ -23,11 +23,11 @@ export class SaveEntityDialog extends ConfirmationDialog {
         super(`Are you sure you want to save this ITEM?`);
     }
 
-    async verifySaveDialog(itemType) {
+    async verifySaveDialog(itemType): Promise<void> {
         await this.isTitleDisplayed(itemType);
     }
 
-    async confirmSave() {
+    async confirmSave(): Promise<void> {
         await super.isDialogDisplayed();
         await super.confirm();
         await super.isDialogDismissed();

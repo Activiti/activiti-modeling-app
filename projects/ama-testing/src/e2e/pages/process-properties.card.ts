@@ -54,7 +54,7 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async getProcessId() {
-        return await this.id.getText();
+        return this.id.getText();
     }
 
     async editProcessName(newName: string) {
@@ -64,7 +64,7 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async getProcessName() {
-        return await this.nameValue.getText();
+        return this.nameValue.getText();
     }
 
     async editProcessDocumentation(newDocumentation: string) {
@@ -152,7 +152,7 @@ export class ProcessPropertiesCard extends GenericPage {
 
     async getProcessVariablesList(connectorId: string) {
         await this.openProcessVariablesList(connectorId);
-        return await element.all((by.css('.mat-option-text'))).getText();
+        return element.all((by.css('.mat-option-text'))).getText();
     }
 
     async isInputMappingHeaderDisplayed() {
@@ -180,7 +180,7 @@ export class ProcessPropertiesCard extends GenericPage {
     async getConnectorParam(connectorId: string) {
         const connectorParam = element(by.css(`[data-automation-id="param-id-${connectorId}"]>span`));
         await BrowserVisibility.waitUntilElementIsVisible(connectorParam);
-        return await connectorParam.getText();
+        return connectorParam.getText();
     }
 
     async isToggleEnabled(connectorId: string) {
@@ -208,7 +208,7 @@ export class ProcessPropertiesCard extends GenericPage {
     async getValue(connectorId: string) {
         const valueInput = element(by.css(`[data-automation-id="value-input-${connectorId}"]`));
         await BrowserVisibility.waitUntilElementIsVisible(valueInput);
-        return await valueInput.getAttribute('value');
+        return valueInput.getAttribute('value');
     }
 
     async isValueInputVisible(connectorId: string) {
@@ -226,7 +226,7 @@ export class ProcessPropertiesCard extends GenericPage {
     async getProcessVariable(connectorId: string) {
         const variable = element(by.css(`[data-automation-id="variable-selector-${connectorId}"] span span`));
         await BrowserVisibility.waitUntilElementIsVisible(variable);
-        return await variable.getText();
+        return variable.getText();
     }
 
     async isEditVariablesButtonIconDisplayed() {
@@ -236,6 +236,6 @@ export class ProcessPropertiesCard extends GenericPage {
 
     async getErrorMessage() {
         await BrowserVisibility.waitUntilElementIsVisible(this.processNameError);
-        return await this.processNameError.getText();
+        return this.processNameError.getText();
     }
 }

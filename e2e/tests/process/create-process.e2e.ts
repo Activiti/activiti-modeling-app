@@ -82,9 +82,9 @@ describe('Create process', async () => {
         await sidebarActionMenu.createProcess();
         /* cspell: disable-next-line */
         const processUI = await createEntityDialog.setEntityDetails('ama-qa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
-        expect(await snackBar.isCreatedSuccessfully('process')).toBe(true, 'Process creation snackbar should be displayed');
-        expect(await projectContentPage.isModelInList('process', processUI.name)).toBe(true, 'Process should be in the left sidebar');
-        expect(await toolbar.isItemDisplayed(processUI.name)).toBe(true, 'Process name should be displayed in the breadcrumb');
+        await expect(await snackBar.isCreatedSuccessfully('process')).toBe(true, 'Process creation snackbar should be displayed');
+        await expect(await projectContentPage.isModelInList('process', processUI.name)).toBe(true, 'Process should be in the left sidebar');
+        await expect(await toolbar.isItemDisplayed(processUI.name)).toBe(true, 'Process name should be displayed in the breadcrumb');
     });
 
     it('[C291962] Create process using + button', async () => {
@@ -93,12 +93,12 @@ describe('Create process', async () => {
         await projectContentPage.createProcess();
         /* cspell: disable-next-line */
         const processUI = await createEntityDialog.setEntityDetails('ama-qa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
-        expect(await snackBar.isCreatedSuccessfully('process')).toBe(true, 'Process creation snackbar should be displayed');
-        expect(await projectContentPage.isModelInList('process', processUI.name)).toBe(true, 'Process should be in the left sidebar');
-        expect(await toolbar.isItemDisplayed(processUI.name)).toBe(true, 'Process name should be displayed in the breadcrumb');
+        await expect(await snackBar.isCreatedSuccessfully('process')).toBe(true, 'Process creation snackbar should be displayed');
+        await expect(await projectContentPage.isModelInList('process', processUI.name)).toBe(true, 'Process should be in the left sidebar');
+        await expect(await toolbar.isItemDisplayed(processUI.name)).toBe(true, 'Process name should be displayed in the breadcrumb');
     });
 
-    xit('[C289324] Create process with CallActivity', async () => {
+    it('[C289324] Create process with CallActivity', async () => {
         process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
         callActivityProcess = await backend.process.createAndWaitUntilAvailable(project.entry.id);
 
@@ -108,18 +108,18 @@ describe('Create process', async () => {
         await processModelerComponent.addCallActivity();
         await processProperties.setActivity(callActivityProcess.entry.name);
         await processContentPage.save();
-        expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+        await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
 
         await processContentPage.downloadProcess();
         const downloadedProcess = path.join(downloadDir, `${process.entry.name}.bpmn20.xml`);
-        expect(await UtilFile.fileExists(downloadedProcess)).toBe(true);
+        await expect(await UtilFile.fileExists(downloadedProcess)).toBe(true);
 
         const fileContent = JSON.parse(await UtilFile.parseXML(downloadedProcess));
         const bpmnCallActivity = fileContent[`bpmn2:definitions`][`bpmn2:process`][`bpmn2:callActivity`];
 
         const callActivityAttributes = UtilFile.getJSONItemValueByKey(bpmnCallActivity, `_attributes`);
 
-        expect(UtilFile.getJSONItemValueByKey(callActivityAttributes, `calledElement`)).toEqual(`process-${callActivityProcess.entry.id}`);
+        await expect(UtilFile.getJSONItemValueByKey(callActivityAttributes, `calledElement`)).toEqual(`process-${callActivityProcess.entry.id}`);
     });
 
     it('[C311460] Create a process with User Task with the assignee', async () => {
@@ -130,16 +130,16 @@ describe('Create process', async () => {
         await processModelerComponent.addUserTask();
 
         await processContentPage.save();
-        expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
+        await expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
         await processValidation.confirm();
-        expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
-        expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
+        await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+        await expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
         await processValidation.isDialogDismissed();
         await processModelerComponent.selectUserTask();
         await taskProperties.setAssignee('userAssignee');
 
         await processContentPage.save();
-        expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+        await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
 
     });
 
@@ -151,18 +151,18 @@ describe('Create process', async () => {
         await processContentPage.navigateTo();
         await processModelerComponent.addUserTask();
         await processContentPage.save();
-        expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
+        await expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
         await processValidation.confirm();
 
-        expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
-        expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
+        await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+        await expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
         await processValidation.isDialogDismissed();
 
         await processModelerComponent.selectUserTask();
         await taskProperties.setCandidateUser('candidateUser');
 
         await processContentPage.save();
-        expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+        await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
 
     });
 
@@ -173,17 +173,17 @@ describe('Create process', async () => {
         await processContentPage.navigateTo();
         await processModelerComponent.addUserTask();
         await processContentPage.save();
-        expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
+        await expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
         await processValidation.confirm();
 
-        expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
-        expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
+        await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+        await expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
         await processValidation.isDialogDismissed();
         await processModelerComponent.selectUserTask();
         await taskProperties.setCandidateGroup('CandidateGroup');
 
         await processContentPage.save();
-        expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+        await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
 
     });
 

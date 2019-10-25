@@ -28,7 +28,7 @@ import { CodeEditorWidget } from 'ama-testing/e2e';
 import { ProcessDefinitionModel } from 'ama-testing/e2e';
 import { SnackBar } from 'ama-testing/e2e';
 
-xdescribe('Validate process - update process using XML editor', async () => {
+describe('Validate process - update process using XML editor', async () => {
     const adminUser = {
         user: testConfig.ama.user,
         password: testConfig.ama.password
@@ -67,12 +67,18 @@ xdescribe('Validate process - update process using XML editor', async () => {
         await processPropertiesCard.isLoaded();
     });
 
+    afterAll(async () => {
+        await backend.project.delete(project.entry.id);
+        await backend.tearDown();
+        await authenticatedPage.logout();
+    });
+
     it('[C313386] Project is valid when updating process name with valid value', async () => {
         const xml = await backend.process.getContent(process.entry.id);
         const xmlContent = JSON.parse(await UtilFile.parseXML(xml, false));
 
         const processDefinitionModel = new ProcessDefinitionModel(xmlContent);
-        expect(await processDefinitionModel.getProcessName()).toEqual(process.entry.name);
+        await expect(await processDefinitionModel.getProcessName()).toEqual(process.entry.name);
 
         await processDefinitionModel.setProcessName('valid-new-name');
         const updatedXML = await UtilFile.parseJSONToXML(processDefinitionModel);
@@ -83,15 +89,10 @@ xdescribe('Validate process - update process using XML editor', async () => {
         await codeEditorWidget.updateCodeEditorContent(updatedXML);
 
         await processContentPage.save();
-        expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+        await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
 
         await processContentPage.selectModelerEditorTab();
-        expect(await processPropertiesCard.getProcessName()).toEqual('valid-new-name');
+        await expect(await processPropertiesCard.getProcessName()).toEqual('valid-new-name');
     });
 
-    afterAll(async () => {
-        await backend.project.delete(project.entry.id);
-        await backend.tearDown();
-        await authenticatedPage.logout();
-    });
 });

@@ -56,16 +56,16 @@ describe('Boundary Timer - Non-Interrupting', async () => {
 
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, cycleProcess.entry.id);
         await processContentPage.navigateTo();
-        expect(await processModelerComponent.isLoaded()).toBe(true, 'Process Modeler should be loaded');
+        await expect(await processModelerComponent.isLoaded()).toBe(true, 'Process Modeler should be loaded');
 
         await processModelerComponent.selectBoundaryEvent();
-        expect(await timerProperties.isLoaded()).toBe(true, 'Timer properties should be displayed');
+        await expect(await timerProperties.isLoaded()).toBe(true, 'Timer properties should be displayed');
 
-        expect(await timerProperties.getTimerType()).toBe('Cycle', 'Timer Type should be Cycle');
+        await expect(await timerProperties.getTimerType()).toBe('Cycle', 'Timer Type should be Cycle');
 
-        expect(await timerProperties.cyclePropertiesAreDisplayed()).toBe(true, 'Cycle properties should be displayed');
-        expect(await timerProperties.datePropertiesAreDisplayed()).toBe(true, 'Date property should be displayed');
-        expect(await timerProperties.durationPropertiesAreDisplayed()).toBe(true, 'Duration properties should be displayed');
+        await expect(await timerProperties.cyclePropertiesAreDisplayed()).toBe(true, 'Cycle properties should be displayed');
+        await expect(await timerProperties.datePropertiesAreDisplayed()).toBe(true, 'Date property should be displayed');
+        await expect(await timerProperties.durationPropertiesAreDisplayed()).toBe(true, 'Duration properties should be displayed');
     });
 
     it('[C311478] Create process with Boundary Timer (Non-Interrupting) - Date', async () => {
@@ -74,14 +74,14 @@ describe('Boundary Timer - Non-Interrupting', async () => {
 
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, dateProcess.entry.id);
         await processContentPage.navigateTo();
-        expect(await processModelerComponent.isLoaded()).toBe(true, 'Process Modeler should be loaded');
+        await expect(await processModelerComponent.isLoaded()).toBe(true, 'Process Modeler should be loaded');
 
         await processModelerComponent.selectBoundaryEvent();
-        expect(await timerProperties.isLoaded()).toBe(true, 'Timer properties should be displayed');
+        await expect(await timerProperties.isLoaded()).toBe(true, 'Timer properties should be displayed');
 
-        expect(await timerProperties.getTimerType()).toBe('Date', 'Timer Type should be Date');
+        await expect(await timerProperties.getTimerType()).toBe('Date', 'Timer Type should be Date');
 
-        expect(await timerProperties.datePropertiesAreDisplayed()).toBe(true, 'Date properties should be displayed');
+        await expect(await timerProperties.datePropertiesAreDisplayed()).toBe(true, 'Date properties should be displayed');
     });
 
     it('[C311479] Create process with Boundary Timer (Non-Interrupting) - Duration', async () => {
@@ -90,14 +90,14 @@ describe('Boundary Timer - Non-Interrupting', async () => {
 
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, durationProcess.entry.id);
         await processContentPage.navigateTo();
-        expect(await processModelerComponent.isLoaded()).toBe(true, 'Process Modeler should be loaded');
+        await expect(await processModelerComponent.isLoaded()).toBe(true, 'Process Modeler should be loaded');
 
         await processModelerComponent.selectBoundaryEvent();
-        expect(await timerProperties.isLoaded()).toBe(true, 'Timer properties should be displayed');
+        await expect(await timerProperties.isLoaded()).toBe(true, 'Timer properties should be displayed');
 
-        expect(await timerProperties.getTimerType()).toBe('Duration', 'Timer Type should be Duration');
+        await expect(await timerProperties.getTimerType()).toBe('Duration', 'Timer Type should be Duration');
 
-        expect(await timerProperties.durationPropertiesAreDisplayed()).toBe(true, 'Duration properties should be displayed');
+        await expect(await timerProperties.durationPropertiesAreDisplayed()).toBe(true, 'Duration properties should be displayed');
     });
 
     afterAll(async () => {

@@ -26,47 +26,47 @@ export class DashboardPage extends GenericPage {
     readonly releaseList = element(by.tagName(`ama-release-list`));
     private pagination = new Pagination();
 
-    async isDashboardListDisplayed() {
+    async isDashboardListDisplayed(): Promise<void> {
         await BrowserVisibility.waitUntilElementIsVisible(this.dashboardList);
     }
 
-    async isProjectNameInList(projectName: string) {
+    async isProjectNameInList(projectName: string): Promise<boolean | void> {
         const projectItem = element(by.cssContainingText(`mat-cell.mat-column-name`, projectName));
-        return await this.isProjectInListWithPageNavigation(projectItem);
+        return this.isProjectInListWithPageNavigation(projectItem);
     }
 
-    async getIdForProjectByItsName(projectName: string) {
+    async getIdForProjectByItsName(projectName: string): Promise<string> {
         const projectItemColumn = element(by.css(`mat-cell.mat-column-name[data-project-name="${projectName}"]`));
         await this.isProjectInListWithPageNavigation(projectItemColumn);
-        return await projectItemColumn.getAttribute('data-project-id');
+        return projectItemColumn.getAttribute('data-project-id');
     }
 
-    async isProjectInList(projectId: string) {
+    async isProjectInList(projectId: string): Promise<boolean | void> {
         const project = this.getProject(`project-${projectId}`);
-        return await this.isProjectInListWithPageNavigation(project);
+        return this.isProjectInListWithPageNavigation(project);
     }
 
-    async isProjectNotInList(projectId: string) {
+    async isProjectNotInList(projectId: string): Promise<boolean | void> {
         const project = this.getProject(`project-${projectId}`);
-        return await this.isProjectNotInListWithPageNavigation(project);
+        return this.isProjectNotInListWithPageNavigation(project);
     }
 
-    async isProjectVersionUpdated(projectId: string, version: number) {
+    async isProjectVersionUpdated(projectId: string, version: number): Promise<boolean> {
         const projectVersion = element(by.cssContainingText(`[data-automation-id="project-version-${projectId}"]`, version.toString()));
-        return await BrowserVisibility.waitUntilElementIsVisible(projectVersion);
+        return BrowserVisibility.waitUntilElementIsVisible(projectVersion);
     }
 
-    async isProjectReleaseVisible(releaseId: string) {
+    async isProjectReleaseVisible(releaseId: string): Promise<boolean> {
         const projectRelease = element(by.css(`[data-automation-id="project-release-id-${releaseId}"]`));
-        return await BrowserVisibility.waitUntilElementIsVisible(projectRelease);
+        return BrowserVisibility.waitUntilElementIsVisible(projectRelease);
     }
 
-    async isProjectReleaseEmpty() {
+    async isProjectReleaseEmpty(): Promise<boolean> {
         const emptyList = element(by.css(`[data-automation-id="project-releases-empty"]`));
-        return await BrowserVisibility.waitUntilElementIsVisible(emptyList);
+        return BrowserVisibility.waitUntilElementIsVisible(emptyList);
     }
 
-    async navigateToProject(projectId: string) {
+    async navigateToProject(projectId: string): Promise<void> {
         const project = this.getProject(`project-${projectId}`);
         try {
             if (await this.isProjectInListWithPageNavigation(project)) {
@@ -79,31 +79,29 @@ export class DashboardPage extends GenericPage {
         }
     }
 
-    async isProjectInListWithPageNavigation(project: ElementFinder) {
+    async isProjectInListWithPageNavigation(project: ElementFinder): Promise<void | boolean> {
         try {
             if (!(await project.isPresent()) && (await this.pagination.isOnLastPage() == null)) {
                 await this.pagination.set1000ItemsPerPage();
             }
-            return await BrowserVisibility.waitUntilElementIsPresent(project);
+            return BrowserVisibility.waitUntilElementIsPresent(project);
         } catch (error) {
             throw new Error(`Project '${project.locator()}' not found.\n ${error}`);
-            return false;
         }
     }
 
-    async isProjectNotInListWithPageNavigation(project: ElementFinder) {
+    async isProjectNotInListWithPageNavigation(project: ElementFinder): Promise<void | boolean> {
         try {
             if (!(await project.isPresent()) && (await this.pagination.isOnLastPage() == null)) {
                 await this.pagination.set1000ItemsPerPage();
             }
-            return await BrowserVisibility.waitUntilElementIsNotPresent(project);
+            return BrowserVisibility.waitUntilElementIsNotPresent(project);
         } catch (error) {
             throw new Error(`Project '${project.locator()}' not found.\n ${error}`);
-            return false;
         }
     }
 
-    async editProject(projectId: string) {
+    async editProject(projectId: string): Promise<void> {
         try {
             await this.openContextMenuFor(projectId);
             await this.clickOnEditContextItemFor(projectId);
@@ -112,7 +110,7 @@ export class DashboardPage extends GenericPage {
         }
     }
 
-    async deleteProject(projectId: string) {
+    async deleteProject(projectId: string): Promise<void> {
         try {
             await this.openContextMenuFor(projectId);
             await this.clickOnDeleteContextItemFor(projectId);
@@ -121,13 +119,13 @@ export class DashboardPage extends GenericPage {
         }
     }
 
-    async releaseProject(projectId: string) {
+    async releaseProject(projectId: string): Promise<void> {
         await this.openContextMenuFor(projectId);
         const projectReleaseButton = this.getProject(`project-release-${projectId}`);
         await BrowserActions.click(projectReleaseButton);
     }
 
-    async navigateToReleaseView(projectId: string) {
+    async navigateToReleaseView(projectId: string): Promise<void> {
         await this.openContextMenuFor(projectId);
         const projectReleasesButton = this.getProject(`project-releases-${projectId}`);
         await BrowserActions.click(projectReleasesButton);
@@ -138,7 +136,7 @@ export class DashboardPage extends GenericPage {
         return element(by.css(`[data-automation-id="${dataAutomationId}"]`));
     }
 
-    private async openContextMenuFor(projectId: string) {
+    private async openContextMenuFor(projectId: string): Promise<void> {
         const project = this.getProject(`project-${projectId}`);
         try {
             if (await this.isProjectInListWithPageNavigation(project)) {
@@ -152,17 +150,17 @@ export class DashboardPage extends GenericPage {
         }
     }
 
-    private async clickOnEditContextItemFor(projectId: string) {
+    private async clickOnEditContextItemFor(projectId: string): Promise<void> {
         const projectEditButton = this.getProject(`project-edit-${projectId}`);
         await BrowserActions.click(projectEditButton);
     }
 
-    private async clickOnDeleteContextItemFor(projectId: string) {
+    private async clickOnDeleteContextItemFor(projectId: string): Promise<void> {
         const projectDeleteButton = this.getProject(`project-delete-${projectId}`);
         await BrowserActions.click(projectDeleteButton);
     }
 
-    async navigateTo() {
+    async navigateTo(): Promise<void> {
         await super.navigateTo(`dashboard/projects`);
     }
 }

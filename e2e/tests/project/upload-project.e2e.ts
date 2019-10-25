@@ -25,6 +25,7 @@ import { getBackend } from 'ama-testing/e2e';
 import { testConfig } from '../../test.config';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { Logger } from 'ama-testing/e2e';
+ import { StringUtil } from '@alfresco/adf-testing';
 
 const path = require('path');
 
@@ -73,13 +74,13 @@ describe('Upload project', () => {
         await sidebarActionMenu.uploadProject(absoluteFilePath);
         await sidebarActionMenu.isOptionsMenuDismissed();
 
-        expect(await snackBar.isUploadedSuccessfully('project')).toBe(true);
-        expect(await dashboardPage.isProjectNameInList(projectDetails.name)).toBe(true, `Item '${projectDetails.name}' was not found in the list.`);
+        await expect(await snackBar.isUploadedSuccessfully('project')).toBe(true);
+        await expect(await dashboardPage.isProjectNameInList(projectDetails.name)).toBe(true, `Item '${projectDetails.name}' was not found in the list.`);
     });
 
     it('[C311378] Upload project using the REST API', async () => {
-        const project = await backend.project.import(absoluteFilePath);
-        expect(await dashboardPage.isProjectNameInList(project.entry.name)).toBe(true, `Item '${project.entry.name}' was not found in the list.`);
+        const project = await backend.project.import(absoluteFilePath, (projectDetails.name + StringUtil.generateRandomString()));
+        await expect(await dashboardPage.isProjectNameInList(project.entry.name)).toBe(true, `Item '${project.entry.name}' was not found in the list.`);
     });
 
     afterEach(async () => {

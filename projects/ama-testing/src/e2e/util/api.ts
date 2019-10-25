@@ -29,7 +29,7 @@ export class UtilApi {
             }
         };
 
-        return await UtilApi._retryCall(apiCallWithPredicateChecking);
+        return UtilApi._retryCall(apiCallWithPredicateChecking);
     }
 
     static _retryCall(fn: () => Promise<any>, retry: number = 30, delay: number = 1000): Promise<any> {

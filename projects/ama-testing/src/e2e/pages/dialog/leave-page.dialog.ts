@@ -29,8 +29,8 @@ export class LeavePageDialog extends ConfirmationDialog {
         this.itemName = itemName;
     }
 
-    async isTitleDisplayed() {
+    async isTitleDisplayed(): Promise<boolean> {
         await BrowserVisibility.waitUntilElementIsVisible(this.titleElement);
-        return await this.titleElement.getText() === this.title.replace('ITEM', this.itemType).replace('NAME', this.itemName);
+        return (await this.titleElement.getText()) === this.title.replace('ITEM', this.itemType).replace('NAME', this.itemName);
     }
 }

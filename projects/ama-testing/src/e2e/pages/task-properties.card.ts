@@ -60,7 +60,7 @@ export class TaskPropertiesCardPage extends GenericPage {
     async getMappingTypeValue(): Promise<string> {
         const selectorElement = element(by.css(`[data-automation-id="mapping-type"] .mat-select`));
         await BrowserVisibility.waitUntilElementIsVisible(selectorElement);
-        return await selectorElement.getText();
+        return selectorElement.getText();
     }
 
     async setMappingTypeValue(value: string) {
@@ -74,7 +74,7 @@ export class TaskPropertiesCardPage extends GenericPage {
     async getSelectedFormName() {
         const selectedFormNameElement = element(by.css(`mat-select[data-automation-id="form-selector"] div span span`));
         await BrowserVisibility.waitUntilElementIsVisible(selectedFormNameElement);
-        return await selectedFormNameElement.getText();
+        return selectedFormNameElement.getText();
     }
 
 }

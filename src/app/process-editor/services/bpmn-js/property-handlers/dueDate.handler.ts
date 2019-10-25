@@ -23,7 +23,7 @@ const propertyKey = BpmnProperty.dueDate;
 
 /* cspell: disable-next-line */
 export const exportDate = 'YYYY-MM-DDTHH:mm:ss';
-export const displayDate = 'yyyy-MM-ddTHH:mm:ss';
+export const displayDate = 'MMM d, y, H:mm';
 
 const get = element => {
     const property = element.businessObject.get(propertyKey);

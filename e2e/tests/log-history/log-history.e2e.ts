@@ -75,11 +75,11 @@ describe('Log history', () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await logHistoryPage.clickMessageIndicatorInactive();
-        expect(await logHistoryPage.isLogSectionDisplayed()).toBe(true, 'Log section is not displayed');
+        await expect(await logHistoryPage.isLogSectionDisplayed()).toBe(true, 'Log section is not displayed');
         await processContentPage.save();
-        expect(await logHistoryPage.getInitiator()).toEqual(initiator);
-        expect(await logHistoryPage.getLevel()).toEqual(errorLevel.info);
-        expect(await logHistoryPage.getMessage()).toEqual(errorMessage.successfully);
+        await expect(await logHistoryPage.getInitiator()).toEqual(initiator);
+        await expect(await logHistoryPage.getLevel()).toEqual(errorLevel.info);
+        await expect(await logHistoryPage.getMessage()).toEqual(errorMessage.successfully);
     });
 
     it('[C311464] Error message', async () => {
@@ -90,9 +90,9 @@ describe('Log history', () => {
         await codeEditorWidget.updateCodeEditorContent('');
         await logHistoryPage.clickMessageIndicator();
         await processContentPage.save();
-        expect(await logHistoryPage.getInitiator()).toEqual(initiator);
-        expect(await logHistoryPage.getLevel()).toEqual(errorLevel.error);
-        expect(await logHistoryPage.getMessage()).toEqual('\Error: unparsable content detected line: 0 column: 0 nested error: missing start tag');
+        await expect(await logHistoryPage.getInitiator()).toEqual(initiator);
+        await expect(await logHistoryPage.getLevel()).toEqual(errorLevel.error);
+        await expect(await logHistoryPage.getMessage()).toEqual('\Error: unparsable content detected line: 0 column: 0 nested error: missing start tag');
     });
 
     it('[C311465] Warning message', async () => {
@@ -104,34 +104,34 @@ describe('Log history', () => {
         const newXml = oldXml.replace('name', 'test');
         await codeEditorWidget.updateCodeEditorContent(newXml.replace('\n', ''));
         await logHistoryPage.clickMessageIndicator();
-        expect(await logHistoryPage.getInitiator()).toEqual(initiator);
-        expect(await logHistoryPage.getLevel()).toEqual(errorLevel.warning);
-        expect(await logHistoryPage.getMessage()).toEqual('unknown attribute <test>');
+        await expect(await logHistoryPage.getInitiator()).toEqual(initiator);
+        await expect(await logHistoryPage.getLevel()).toEqual(errorLevel.warning);
+        await expect(await logHistoryPage.getMessage()).toEqual('unknown attribute <test>');
     });
 
     it('[C311466] Clear logs', async () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await logHistoryPage.clickMessageIndicatorInactive();
-        expect(await logHistoryPage.isLogSectionDisplayed()).toBe(true, 'Log section is not displayed');
+        await expect(await logHistoryPage.isLogSectionDisplayed()).toBe(true, 'Log section is not displayed');
         await processContentPage.save();
-        expect(await logHistoryPage.getInitiator()).toEqual(initiator);
-        expect(await logHistoryPage.isLogHistoryNotEmpty()).toBe(true, 'Log history is empty');
+        await expect(await logHistoryPage.getInitiator()).toEqual(initiator);
+        await expect(await logHistoryPage.isLogHistoryNotEmpty()).toBe(true, 'Log history is empty');
         await logHistoryPage.deleteLogs();
-        expect(await logHistoryPage.isLogHistoryEmpty()).toBe(true, 'Log history is not empty');
+        await expect(await logHistoryPage.isLogHistoryEmpty()).toBe(true, 'Log history is not empty');
     });
 
     it('[C311471] Expand and collapse log history', async () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await logHistoryPage.clickMessageIndicatorInactive();
-        expect(await logHistoryPage.isLogSectionDisplayed()).toBe(true, 'Log section is not displayed');
+        await expect(await logHistoryPage.isLogSectionDisplayed()).toBe(true, 'Log section is not displayed');
         await logHistoryPage.clickMessageIndicatorInactive();
-        expect(await logHistoryPage.isLogSectionNotDisplayed()).toBe(true, 'Log section is displayed');
+        await expect(await logHistoryPage.isLogSectionNotDisplayed()).toBe(true, 'Log section is displayed');
         await logHistoryPage.clickMessageIndicatorInactive();
-        expect(await logHistoryPage.isLogSectionDisplayed()).toBe(true, 'Log section is not displayed');
+        await expect(await logHistoryPage.isLogSectionDisplayed()).toBe(true, 'Log section is not displayed');
         await logHistoryPage.clickCollapseArrow();
-        expect(await logHistoryPage.isLogSectionNotDisplayed()).toBe(true, 'Log section is displayed');
+        await expect(await logHistoryPage.isLogSectionNotDisplayed()).toBe(true, 'Log section is displayed');
     });
 
     afterAll(async () => {

@@ -36,15 +36,15 @@ export class CreateEntityDialog extends GenericDialog {
         super('Create new ITEM');
     }
 
-    async submit() {
+    async submit(): Promise<void> {
         await BrowserActions.click(this.submitButton);
     }
 
-    async setEntityName(entityName) {
+    async setEntityName(entityName): Promise<void> {
         await BrowserActions.clearSendKeys(this.nameField, entityName);
     }
 
-    async setEntityDescription(entityDescription) {
+    async setEntityDescription(entityDescription): Promise<void> {
         await BrowserActions.clearSendKeys(this.descriptionField, entityDescription);
     }
 
@@ -63,8 +63,8 @@ export class CreateEntityDialog extends GenericDialog {
         };
     }
 
-    async getErrorMessage() {
+    async getErrorMessage(): Promise<string> {
         await BrowserVisibility.waitUntilElementIsVisible(this.error);
-        return await this.error.getText();
+        return this.error.getText();
     }
 }

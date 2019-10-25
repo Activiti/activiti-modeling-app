@@ -36,50 +36,50 @@ export class ProcessContentPage extends GenericPage {
         super(testConfig);
     }
 
-    async navigateTo() {
+    async navigateTo(): Promise<void> {
         await super.navigateTo(`projects/${this.appId}/process/${this.processId}`);
     }
 
-    async isLoaded() {
+    async isLoaded(): Promise<boolean> {
         await BrowserVisibility.waitUntilElementIsVisible(this.processEditorModeling);
         return true;
     }
 
-    async isUnloaded() {
+    async isUnloaded(): Promise<boolean> {
         await BrowserVisibility.waitUntilElementIsNotVisible(this.processEditorModeling);
         return true;
     }
 
-    async deleteProcess() {
+    async deleteProcess(): Promise<void> {
         await BrowserActions.click(this.processEditorContextMenu);
         await BrowserActions.click(this.processEditorDeleteButton);
     }
 
-    async downloadProcess() {
+    async downloadProcess(): Promise<void> {
         await BrowserActions.click(this.processEditorDownloadButton);
     }
 
-    async selectProcessEditorModeler() {
+    async selectProcessEditorModeler(): Promise<void> {
         await BrowserActions.click(this.processEditorModeling);
     }
 
-    async save() {
+    async save(): Promise<void> {
         await BrowserActions.click(this.processEditorSaveButton);
     }
 
-    async selectCodeEditor() {
+    async selectCodeEditor(): Promise<void> {
         await BrowserActions.click(this.codeEditorTabButton);
     }
 
-    async selectExtensionsEditor() {
+    async selectExtensionsEditor(): Promise<void> {
         await BrowserActions.click(this.extensionsEditorTabButton);
     }
 
-    async selectModelerEditorTab() {
+    async selectModelerEditorTab(): Promise<void> {
         await BrowserActions.click(this.modelerEditorTabButton);
     }
 
-    async selectTask(taskId: string) {
+    async selectTask(taskId: string): Promise<void> {
         const taskElement = element(by.css(`[data-element-id="${taskId}"]`));
         await BrowserActions.click(taskElement);
     }

@@ -27,6 +27,7 @@ import { getBackend } from 'ama-testing/e2e';
 import { testConfig } from '../../../test.config';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { Resources } from '../../../../../../e2e/resources/resources';
+ import { StringUtil } from '@alfresco/adf-testing';
 
 const path = require('path');
 
@@ -52,7 +53,7 @@ describe('Message Events', () => {
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        project = await backend.project.import(absoluteFilePath);
+        project = await backend.project.import(absoluteFilePath, (projectDetails.name + StringUtil.generateRandomString()));
         loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
@@ -69,9 +70,9 @@ describe('Message Events', () => {
         fileContentJson = JSON.parse(await UtilFile.parseXML(fileContent, false));
         const interruptingBoundaryMessage = fileContentJson.definitions.process.boundaryEvent.messageEventDefinition;
         const interruptingBoundaryMessageAttributes = UtilFile.getJSONItemValueByKey(interruptingBoundaryMessage, `_attributes`);
-        expect(await UtilFile.getJSONItemValueByKey(interruptingBoundaryMessageAttributes, `activiti:correlationKey`))
+        await expect(await UtilFile.getJSONItemValueByKey(interruptingBoundaryMessageAttributes, `activiti:correlationKey`))
             .toEqual('${int-boundary-var}');
-        expect(await UtilFile.getJSONItemValueByKey(interruptingBoundaryMessageAttributes, `activiti:messageExpression`))
+        await expect(await UtilFile.getJSONItemValueByKey(interruptingBoundaryMessageAttributes, `activiti:messageExpression`))
             .toEqual('interrupting-boundary-message-event');
     });
 
@@ -85,9 +86,9 @@ describe('Message Events', () => {
         fileContentJson = JSON.parse(await UtilFile.parseXML(fileContent, false));
         const intermediateMessage = fileContentJson.definitions.process.intermediateCatchEvent.messageEventDefinition;
         const intermediateMessageAttributes = UtilFile.getJSONItemValueByKey(intermediateMessage, `_attributes`);
-        expect(await UtilFile.getJSONItemValueByKey(intermediateMessageAttributes, `activiti:correlationKey`))
+        await expect(await UtilFile.getJSONItemValueByKey(intermediateMessageAttributes, `activiti:correlationKey`))
             .toEqual('${intermediate-var}');
-        expect(await UtilFile.getJSONItemValueByKey(intermediateMessageAttributes, `activiti:messageExpression`))
+        await expect(await UtilFile.getJSONItemValueByKey(intermediateMessageAttributes, `activiti:messageExpression`))
             .toEqual('intermediate catch message-${inter-message-var}');
     });
 
@@ -101,9 +102,9 @@ describe('Message Events', () => {
         fileContentJson = JSON.parse(await UtilFile.parseXML(fileContent, false));
         const noninterruptingBoundaryMessage = fileContentJson.definitions.process.boundaryEvent.messageEventDefinition;
         const noninterruptingBoundaryMessageAttributes = UtilFile.getJSONItemValueByKey(noninterruptingBoundaryMessage, `_attributes`);
-        expect(await UtilFile.getJSONItemValueByKey(noninterruptingBoundaryMessageAttributes, `activiti:correlationKey`))
+        await expect(await UtilFile.getJSONItemValueByKey(noninterruptingBoundaryMessageAttributes, `activiti:correlationKey`))
             .toEqual('${nonint-boundary-var}');
-        expect(await UtilFile.getJSONItemValueByKey(noninterruptingBoundaryMessageAttributes, `activiti:messageExpression`))
+        await expect(await UtilFile.getJSONItemValueByKey(noninterruptingBoundaryMessageAttributes, `activiti:messageExpression`))
             .toEqual('noninterrupting-boundary-message-${nonint-bound-var}');
     });
 
@@ -117,7 +118,7 @@ describe('Message Events', () => {
         fileContentJson = JSON.parse(await UtilFile.parseXML(fileContent, false));
         const startMessage = fileContentJson.definitions.process.startEvent.messageEventDefinition;
         const startMessageAttributes = UtilFile.getJSONItemValueByKey(startMessage, `_attributes`);
-        expect(await UtilFile.getJSONItemValueByKey(startMessageAttributes, `messageRef`)).toEqual('Message_0hq81h3');
+        await expect(await UtilFile.getJSONItemValueByKey(startMessageAttributes, `messageRef`)).toEqual('Message_0hq81h3');
 
     });
 

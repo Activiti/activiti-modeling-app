@@ -32,20 +32,20 @@ export class GenericDialog extends GenericWebElement {
         this.title = title;
     }
 
-    async isDialogDisplayed() {
+    async isDialogDisplayed(): Promise<void> {
         await BrowserVisibility.waitUntilElementIsVisible(this.dialog);
     }
 
-    async isDialogDismissed() {
+    async isDialogDismissed(): Promise<void> {
         await BrowserVisibility.waitUntilElementIsNotVisible(this.dialog);
     }
 
-    async isTitleDisplayed(itemType?: string) {
+    async isTitleDisplayed(itemType?: string): Promise<boolean> {
         await BrowserVisibility.waitUntilElementIsVisible(this.titleElement);
-        return await this.titleElement.getText() === this.title.replace('ITEM', itemType);
+        return ((await this.titleElement.getText()) === this.title.replace('ITEM', itemType));
     }
 
-    async cancel() {
+    async cancel(): Promise<void> {
         await BrowserActions.click(this.cancelButton);
     }
 }

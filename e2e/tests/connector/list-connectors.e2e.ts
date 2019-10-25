@@ -69,13 +69,13 @@ describe('List connectors', async () => {
     it('[C290149] List of connectors is not empty when navigate to Dashboard - item is available', async () => {
         await dashboardPage.navigateToProject(project1.entry.id);
         await projectContentPage.openFilter('connector');
-        expect(await projectContentPage.isModelInList('connector', connector1.entry.name)).toBe(true, 'Connector is not displayed in the left sidebar');
+        await expect(await projectContentPage.isModelInList('connector', connector1.entry.name)).toBe(true, 'Connector is not displayed in the left sidebar');
 
         await toolbar.goToHome();
 
         await dashboardPage.navigateToProject(project1.entry.id);
         await projectContentPage.openFilter('connector');
-        expect(await projectContentPage.isModelInList('connector', connector1.entry.name)).toBe(true, 'Connector is not displayed in the left sidebar');
+        await expect(await projectContentPage.isModelInList('connector', connector1.entry.name)).toBe(true, 'Connector is not displayed in the left sidebar');
     });
 
     it('[C290140] List of connectors is not empty when navigate to Dashboard', async () => {
@@ -84,25 +84,27 @@ describe('List connectors', async () => {
         await sidebarActionMenu.createConnector();
         /* cspell: disable-next-line */
         const connectorItem = await createEntityDialog.setEntityDetails('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
-        expect(await projectContentPage.isModelInList('connector', connectorItem.name)).toBe(true, 'Connector is not displayed in the left sidebar');
+        await expect(await projectContentPage.isModelInList('connector', connectorItem.name)).toBe(true, 'Connector is not displayed in the left sidebar');
 
         await dashboardPage.navigateTo();
 
         await dashboardPage.navigateToProject(project1.entry.id);
         await projectContentPage.openFilter('connector');
-        expect(await projectContentPage.isModelInList('connector', connectorItem.name)).toBe(true, 'Connector is not displayed in the left sidebar');
+        await expect(await projectContentPage.isModelInList('connector', connectorItem.name)).toBe(true, 'Connector is not displayed in the left sidebar');
     });
 
     it('[C291775] List of connectors is not empty when navigate to Dashboard - switch between projects', async () => {
         await dashboardPage.navigateTo();
         await dashboardPage.navigateToProject(project1.entry.id);
         await projectContentPage.openFilter('connector');
-        expect(await projectContentPage.isModelInList('connector', connector1.entry.name)).toBe(true, 'Connector is not displayed in the left sidebar');
+        await expect(await projectContentPage.isModelInList('connector', connector1.entry.name)).toBe(true, 'Connector is not displayed in the left sidebar');
         await toolbar.goToHome();
         await dashboardPage.navigateToProject(project2.entry.id);
         await projectContentPage.openFilter('connector');
-        expect(await projectContentPage.isModelInList('connector', connector2.entry.name)).toBe(true, 'Connector is not displayed in the left sidebar');
-        expect(await projectContentPage.isModelNotInList('connector', connector1.entry.name)).toBe(true, `Connector from a different project is displayed in the left sidebar`);
+        await expect(await projectContentPage
+            .isModelInList('connector', connector2.entry.name)).toBe(true, 'Connector is not displayed in the left sidebar');
+        await expect(await projectContentPage
+            .isModelNotInList('connector', connector1.entry.name)).toBe(true, `Connector from a different project is displayed in the left sidebar`);
     });
 
     afterAll(async () => {

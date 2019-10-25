@@ -64,9 +64,9 @@ describe('Create process variable', async () => {
     });
 
     it('[C299156] Verify icon from the button and the modal title', async () => {
-        expect(await processPropertiesCard.isEditVariablesButtonIconDisplayed()).toBe(true, 'Icon is not displayed on the Edit Variables button.');
+        await expect(await processPropertiesCard.isEditVariablesButtonIconDisplayed()).toBe(true, 'Icon is not displayed on the Edit Variables button.');
         await processPropertiesCard.editProcessVariables();
-        expect(await processVariablesDialog.isTitleIconDisplayed()).toBe(true, 'Title icon is not displayed on the Edit Variables modal.');
+        await expect(await processVariablesDialog.isTitleIconDisplayed()).toBe(true, 'Title icon is not displayed on the Edit Variables modal.');
     });
 
     describe('Add process variable', async () => {
@@ -78,7 +78,7 @@ describe('Create process variable', async () => {
         });
 
         it('[C282018] Add process variable', async () => {
-            expect(await processVariablesDialog.isVariableDisplayed(0)).toBe(true, 'Variable added is not displayed in the list.');
+            await expect(await processVariablesDialog.isVariableDisplayed(0)).toBe(true, 'Variable added is not displayed in the list.');
 
             const variableId = await processVariablesDialog.getVariableIdByRow(0);
             const expectedVariable = {};
@@ -93,47 +93,47 @@ describe('Create process variable', async () => {
             await processVariablesDialog.update();
 
             await processPropertiesCard.editProcessVariables();
-            expect(await processVariablesDialog.isVariableDisplayed(0)).toBe(true, 'Variable added is not displayed in the list.');
+            await expect(await processVariablesDialog.isVariableDisplayed(0)).toBe(true, 'Variable added is not displayed in the list.');
         });
 
         it('[C307117] Add integer process variable with invalid value', async () => {
             await processVariablesDialog.setVariable('intVar', 'integer', `@$#&* {}[],=-().+;'/`);
-            expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
-            expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer')).toBe(true, 'Variable added is not displayed in the list.');
+            await expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
+            await expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer')).toBe(true, 'Variable added is not displayed in the list.');
 
             await processVariablesDialog.setVariableValue('Automation');
-            expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
-            expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer')).toBe(true, 'Variable added is not displayed in the list.');
+            await expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
+            await expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer')).toBe(true, 'Variable added is not displayed in the list.');
 
             /* cspell: disable-next-line */
             await processVariablesDialog.setVariableValue('1Auto2mation3');
-            expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
-            expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer', '123')).toBe(true, 'Variable added is not displayed in the list.');
+            await expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
+            await expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer', '123')).toBe(true, 'Variable added is not displayed in the list.');
 
             await processVariablesDialog.update();
 
             await processPropertiesCard.editProcessVariables();
-            expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer', '123')).toBe(true, 'Variable added is not displayed in the list.');
+            await expect(await processVariablesDialog.isVariableDisplayed(0, 'intVar', 'integer', '123')).toBe(true, 'Variable added is not displayed in the list.');
         });
 
         it('[C307118] Add date process variable', async () => {
             const currentDate = UtilDate.getCurrentDate();
             await processVariablesDialog.setVariable('dateVar', 'date');
-            expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
-            expect(await processVariablesDialog.isVariableDisplayed(0, 'dateVar', 'date', currentDate)).toBe(true, 'Variable added is not displayed in the list.');
+            await expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
+            await expect(await processVariablesDialog.isVariableDisplayed(0, 'dateVar', 'date', currentDate)).toBe(true, 'Variable added is not displayed in the list.');
 
             await processVariablesDialog.update();
 
             await processPropertiesCard.editProcessVariables();
-            expect(await processVariablesDialog.isVariableDisplayed(0, 'dateVar', 'date', currentDate)).toBe(true, 'Variable added is not displayed in the list.');
+            await expect(await processVariablesDialog.isVariableDisplayed(0, 'dateVar', 'date', currentDate)).toBe(true, 'Variable added is not displayed in the list.');
         });
 
         it('[C307119] Switch process variable type', async () => {
             await processVariablesDialog.setVariableValue('Automation');
             await processVariablesDialog.setVariableType('integer');
 
-            expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Variable value was not set to empty when switching the type.');
-            expect(await processVariablesDialog.isVariableDisplayed(0, 'name', 'integer')).toBe(true, 'Variable added is not displayed in the list.');
+            await expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Variable value was not set to empty when switching the type.');
+            await expect(await processVariablesDialog.isVariableDisplayed(0, 'name', 'integer')).toBe(true, 'Variable added is not displayed in the list.');
         });
     });
 

@@ -28,7 +28,7 @@ export class CodeEditorWidget extends GenericWebElement {
         await BrowserVisibility.waitUntilElementIsVisible(this.codeEditorTextArea);
     }
 
-    async updateCodeEditorContent(content: string) {
+    async updateCodeEditorContent(content: string): Promise<void> {
         try {
             await browser.sleep(200);
             await browser.executeScript(`this.monaco.editor.getModels()[0].setValue('');`);
@@ -55,10 +55,10 @@ export class CodeEditorWidget extends GenericWebElement {
             `;
         }
 
-        return await browser.executeScript<string>(script);
+        return browser.executeScript<string>(script);
     }
 
-    async enterBulkConfiguration(text) {
+    async enterBulkConfiguration(text): Promise<void> {
         await super.clear(this.codeEditorTextArea);
         const script = `
                 var models = this.monaco.editor.getModels();

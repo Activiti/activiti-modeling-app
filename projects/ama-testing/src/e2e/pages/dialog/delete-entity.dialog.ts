@@ -23,7 +23,7 @@ export class DeleteEntityDialog extends ConfirmationDialog {
         super('Are you sure you want to delete this ITEM?');
     }
 
-    async verifyDeleteDialog(itemType) {
+    async verifyDeleteDialog(itemType): Promise<void> {
         await this.isTitleDisplayed(itemType);
     }
 }

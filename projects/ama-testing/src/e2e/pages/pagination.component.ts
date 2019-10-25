@@ -36,6 +36,6 @@ export class Pagination extends GenericPage {
 
     async isOnLastPage() {
         await BrowserVisibility.waitUntilElementIsPresent(this.nextPage);
-        return await this.nextPage.getAttribute('disabled');
+        return this.nextPage.getAttribute('disabled');
     }
 }

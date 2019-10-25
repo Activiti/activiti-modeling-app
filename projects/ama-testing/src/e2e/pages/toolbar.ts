@@ -25,31 +25,31 @@ export class Toolbar extends GenericWebElement {
     readonly downloadButton = element(by.css(`[data-automation-id='project-download-button']`));
     readonly breadcrumbCss = `[data-automation-id='breadcrumb']`;
 
-    async isItemDisplayed(itemName: string) {
+    async isItemDisplayed(itemName: string): Promise<boolean> {
         const item = element(by.cssContainingText(`.ama-breadcrumb-item-current`, itemName));
-        return await BrowserVisibility.waitUntilElementIsVisible(item);
+        return BrowserVisibility.waitUntilElementIsVisible(item);
     }
 
-    async goToHome() {
+    async goToHome(): Promise<void> {
         await BrowserActions.click(this.home);
     }
 
-    async downloadFile() {
+    async downloadFile(): Promise<void> {
         await BrowserActions.click(this.downloadButton);
     }
 
-    async navigateToBreadcrumbItem(itemName: string) {
+    async navigateToBreadcrumbItem(itemName: string): Promise<void> {
         const item = element(by.cssContainingText(`${this.breadcrumbCss}>div>a`, itemName));
         await BrowserActions.click(item);
     }
 
-    async isElementInDirtyState(itemName: string) {
+    async isElementInDirtyState(itemName: string): Promise<boolean> {
         const item = element(by.cssContainingText(`${this.breadcrumbCss}>[class='ama-breadcrumb-item active ng-star-inserted dirty']>div`, itemName));
-        return await BrowserVisibility.waitUntilElementIsVisible(item);
+        return BrowserVisibility.waitUntilElementIsVisible(item);
     }
 
-    async isElementNotInDirtyState(itemName: string) {
+    async isElementNotInDirtyState(itemName: string): Promise<boolean> {
         const item = element(by.cssContainingText(`${this.breadcrumbCss}>[class='ama-breadcrumb-item active ng-star-inserted']>div`, itemName));
-        return await BrowserVisibility.waitUntilElementIsVisible(item);
+        return BrowserVisibility.waitUntilElementIsVisible(item);
     }
 }

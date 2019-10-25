@@ -27,8 +27,8 @@ const unzipper = require('unzipper');
 export class UtilFile {
 
     static async fileExists(filePath, waitTimeout: number = 10000) {
-        return await browser.wait(async () => {
-                    return await fs.existsSync(filePath);
+        return browser.wait(async () => {
+                    return fs.existsSync(filePath);
         }, waitTimeout, `File ${filePath} not found in ${waitTimeout} msec.`);
     }
 

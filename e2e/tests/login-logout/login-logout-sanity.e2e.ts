@@ -20,7 +20,7 @@ import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { Logger } from 'ama-testing/e2e';
 
-xdescribe('Application sanity check with Login and Logout', () => {
+describe('Application sanity check with Login and Logout', () => {
 
     const authenticatedPage = new AuthenticatedPage(testConfig);
 
@@ -39,7 +39,7 @@ xdescribe('Application sanity check with Login and Logout', () => {
     it('[C310139] Login/Logout sanity check', async () => {
         for (let i = 0; i < 20; i++) {
             await loginPage.login(testConfig.ama.user, testConfig.ama.password);
-            expect(await authenticatedPage.isLoggedIn()).toBe(true);
+            await expect(await authenticatedPage.isLoggedIn()).toBe(true);
             await authenticatedPage.logout();
             Logger.info('Login/logout - interaction ', i);
         }

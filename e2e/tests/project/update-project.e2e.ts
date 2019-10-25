@@ -58,12 +58,12 @@ describe('Update project', () => {
         await dashboardPage.editProject(appId);
         await createEntityDialog.setEntityDetails(updatedAppName, app.entry.name + ' description');
 
-        expect(await snackBar.isUpdatedSuccessfully('project')).toBe(true);
-        expect(await dashboardPage.isProjectInList(appId)).toBe(true);
-        expect(await dashboardPage.isProjectNameInList(updatedAppName)).toBe(true);
+        await expect(await snackBar.isUpdatedSuccessfully('project')).toBe(true);
+        await expect(await dashboardPage.isProjectInList(appId)).toBe(true);
+        await expect(await dashboardPage.isProjectNameInList(updatedAppName)).toBe(true);
 
         const appResponse = await backend.project.get(appId);
-        expect(appResponse[`entry`][`name`]).toEqual(updatedAppName);
+        await expect(appResponse[`entry`][`name`]).toEqual(updatedAppName);
     });
 
     afterAll(async () => {

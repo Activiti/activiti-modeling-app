@@ -16,7 +16,7 @@
  */
 
 import { element, by } from 'protractor';
- import {ProcessPropertiesCard} from './process-properties.card';
+import { ProcessPropertiesCard } from './process-properties.card';
 import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class TimerPropertiesCard extends ProcessPropertiesCard {
@@ -26,19 +26,19 @@ export class TimerPropertiesCard extends ProcessPropertiesCard {
     readonly timerDate = element.all(by.css('div[class*="timer-date"]')).first();
     readonly timerDuration = element.all(by.css('div[class*="timer-duration"]')).first();
 
-    getTimerType() {
+    async getTimerType(): Promise<string> {
         return this.timerType.getText();
     }
 
-    async cyclePropertiesAreDisplayed() {
+    async cyclePropertiesAreDisplayed(): Promise<boolean> {
         return BrowserVisibility.waitUntilElementIsVisible(this.timerCycle);
     }
 
-    async datePropertiesAreDisplayed() {
+    async datePropertiesAreDisplayed(): Promise<boolean> {
         return BrowserVisibility.waitUntilElementIsVisible(this.timerDate);
     }
 
-    async durationPropertiesAreDisplayed() {
+    async durationPropertiesAreDisplayed(): Promise<boolean> {
         return BrowserVisibility.waitUntilElementIsVisible(this.timerDuration);
     }
 

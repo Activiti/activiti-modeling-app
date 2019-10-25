@@ -56,11 +56,11 @@ describe('Create project', () => {
 
         /* cspell: disable-next-line */
         project = await createEntityDialog.setEntityDetails('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
-        expect(await snackBar.isCreatedSuccessfully('project')).toBe(true);
+        await expect(await snackBar.isCreatedSuccessfully('project')).toBe(true);
         projectDetails = await backend.project.getProjectByName(project.name);
-        expect(await browser.getCurrentUrl()).toContain(projectDetails.entry.id);
+        await expect(await browser.getCurrentUrl()).toContain(projectDetails.entry.id);
         await browser.navigate().back();
-        expect(await dashboardPage.isProjectNameInList(project.name)).toBe(true);
+        await expect(await dashboardPage.isProjectNameInList(project.name)).toBe(true);
 
     });
 

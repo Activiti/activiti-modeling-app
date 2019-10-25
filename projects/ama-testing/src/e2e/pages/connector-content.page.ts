@@ -34,40 +34,40 @@ export class ConnectorContentPage extends GenericPage {
         super(testConfig);
     }
 
-    async navigateTo() {
+    async navigateTo(): Promise<void> {
         await super.navigateTo(`projects/${this.appId}/connector/${this.connectorId}`);
     }
 
-    async isLoaded() {
+    async isLoaded(): Promise<boolean> {
         await BrowserVisibility.waitUntilElementIsVisible(this.connectorEditorModeling);
         return true;
     }
 
-    async isUnloaded() {
+    async isUnloaded(): Promise<boolean> {
         await BrowserVisibility.waitUntilElementIsNotVisible(this.connectorEditorModeling);
         return true;
     }
 
-    async deleteConnector() {
+    async deleteConnector(): Promise<void> {
         await BrowserActions.click(this.connectorEditorContextMenu);
         await BrowserActions.click(this.connectorEditorDeleteButton);
     }
 
-    async selectCodeEditor() {
+    async selectCodeEditor(): Promise<void> {
         await BrowserActions.click(this.codeEditorTabButton);
     }
 
-    async save() {
+    async save(): Promise<void> {
         await BrowserVisibility.waitUntilElementIsNotVisible(this.disabledSaveButton);
         browser.actions().mouseMove(this.connectorEditorSaveButton).perform();
         await BrowserActions.click(this.connectorEditorSaveButton);
     }
 
-    async saveConnector() {
+    async saveConnector(): Promise<void> {
         await BrowserActions.click(this.connectorEditorSaveButton);
     }
 
-    async download() {
+    async download(): Promise<void> {
         await BrowserActions.click(this.connectorEditorDownloadButton);
     }
 }

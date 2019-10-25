@@ -27,7 +27,7 @@ import { ConnectorContentPage } from 'ama-testing/e2e';
 
 const path = require('path');
 
-xdescribe('Export connector', () => {
+describe('Export connector', () => {
     const adminUser = {
         user: testConfig.ama.user,
         password: testConfig.ama.password
@@ -65,11 +65,11 @@ xdescribe('Export connector', () => {
         await connectorContentPage.download();
 
         const downloadedConnector = path.join(downloadDir, `${connector.entry.name}.json`);
-        expect(await UtilFile.fileExists(downloadedConnector)).toBe(true);
+        await expect(await UtilFile.fileExists(downloadedConnector)).toBe(true);
 
         const fileContent = await UtilFile.readFile(downloadedConnector);
         const connectorJson = JSON.parse(`${fileContent}`);
-        expect(connectorJson.name).toEqual(connector.entry.name);
+        await expect(connectorJson.name).toEqual(connector.entry.name);
     });
 
     afterAll(async () => {

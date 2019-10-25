@@ -30,17 +30,17 @@ export class AuthenticatedPage extends GenericPage {
         super(testConfig);
     }
 
-    async isLoggedIn() {
-        return await BrowserVisibility.waitUntilElementIsVisible(this.userLoggedIn);
+    async isLoggedIn(): Promise<boolean> {
+        return BrowserVisibility.waitUntilElementIsVisible(this.userLoggedIn);
     }
 
-    async logout() {
+    async logout(): Promise<void> {
         await BrowserActions.click(this.userMenu);
         await BrowserActions.click(this.userLogout);
     }
 
-    async navigateTo() {
+    async navigateTo(): Promise<void> {
         const loginURL = `dashboard/projects`;
-        return await super.navigateTo(loginURL);
+        super.navigateTo(loginURL);
     }
 }

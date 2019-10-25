@@ -15,14 +15,13 @@
  * limitations under the License.
  */
 
-import { ProjectApi } from '../api.interfaces';
 import { NodeEntry } from 'alfresco-js-api-node';
 import { UtilRandom, Logger } from '../../util';
 import { ACMBackend } from './acm-backend';
 import { E2eRequestApiHelper, E2eRequestApiHelperOptions } from './e2e-request-api.helper';
 import * as fs from 'fs';
 
-export class ACMProject implements ProjectApi {
+export class ACMProject {
 
     requestApiHelper: E2eRequestApiHelper;
     tmpFilePath: string;
@@ -34,9 +33,9 @@ export class ACMProject implements ProjectApi {
         this.tmpFilePath = backend.config.main.paths.tmp;
     }
 
-    async create(modelName: string = this.getRandomName()) {
-        const project =  await this.requestApiHelper
-            .post<NodeEntry>(this.endPoint, { bodyParam: {name: modelName } });
+    async create(modelName: string = this.getRandomName()): Promise<any> {
+        const project = await this.requestApiHelper
+            .post<NodeEntry>(this.endPoint, { bodyParam: { name: modelName } });
 
         Logger.info(`[Project] Project created with name: ${project.entry.name} and id: ${project.entry.id}.`);
         return project;
@@ -53,7 +52,7 @@ export class ACMProject implements ProjectApi {
     }
 
     async get(projectId: string) {
-        return await this.requestApiHelper.get(`/modeling-service/v1/projects/${projectId}`);
+        return this.requestApiHelper.get(`/modeling-service/v1/projects/${projectId}`);
     }
 
     async getDecisionTableId(projectId: string, decisionTableName: string): Promise<string> {
@@ -67,25 +66,30 @@ export class ACMProject implements ProjectApi {
         for (const entry of projectDetailsObject.list.entries) {
             map.set(entry.entry.name, entry.entry.id);
         }
-        return await map.get(decisionTableName);
+        return map.get(decisionTableName);
     }
 
-    async delete(projectId: string) {
+    async delete(projectId: string): Promise<any> {
         await this.requestApiHelper.delete(`/modeling-service/v1/projects/${projectId}`);
     }
 
-    async release(projectId: string) {
-        return await this.requestApiHelper.post(`/modeling-service/v1/projects/${projectId}/releases`);
+    async release(projectId: string): Promise<any> {
+        return this.requestApiHelper.post(`/modeling-service/v1/projects/${projectId}/releases`);
     }
 
-    async import(projectFilePath: string) {
+    async import(projectFilePath: string, name?: string) {
         const fileContent = await fs.createReadStream(projectFilePath);
         const requestOptions: E2eRequestApiHelperOptions = {
-            formParams:  { file: fileContent },
-            contentTypes: [ 'multipart/form-data' ]
+            formParams: { file: fileContent },
+            contentTypes: ['multipart/form-data']
         };
+
+        if (name) {
+            requestOptions.formParams.name = name;
+        }
+
         try {
-            const project =  await this.requestApiHelper
+            const project = await this.requestApiHelper
                 .post<NodeEntry>(`/modeling-service/v1/projects/import`, requestOptions);
             Logger.info(`[Project] Project imported with name '${project.entry.name}' and id '${project.entry.id}'.`);
             return project;
@@ -111,7 +115,7 @@ export class ACMProject implements ProjectApi {
         for (const entry of projectDetailsObject.list.entries) {
             map.set(entry.entry.name, entry.entry.id);
         }
-        return await map.get(modelName);
+        return map.get(modelName);
     }
 
     async getProjectByName(projectName: string): Promise<any> {

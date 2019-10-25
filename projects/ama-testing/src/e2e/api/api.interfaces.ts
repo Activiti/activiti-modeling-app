@@ -17,6 +17,7 @@
 
 import * as AlfrescoApi from 'alfresco-js-api-node';
 import { NodeEntry } from 'alfresco-js-api-node';
+import { ACMProject } from './acm/project';
 
 export interface ModelCrud {
     create(projectId: string, name?: string): Promise<NodeEntry>;
@@ -28,21 +29,9 @@ export interface ModelCrud {
     import(processXmlFile: string, projectId: string): Promise<AlfrescoApi.NodeEntry>;
 }
 
-export interface ProjectApi {
-    create(projectName?: string): Promise<AlfrescoApi.NodeEntry>;
-    createAndWaitUntilAvailable(projectName?: string): Promise<AlfrescoApi.NodeEntry>;
-    delete(projectId?: string): Promise<void>;
-    release(projectId?: string): Promise<AlfrescoApi.NodeEntry>;
-    get(projectId?: string): Promise<AlfrescoApi.NodeEntry>;
-    getDecisionTableId(projectId: string, decisionTableName: string): Promise<string>;
-    import(projectZipFile: string): Promise<AlfrescoApi.NodeEntry>;
-    getModelId(projectId: string, modelType: string, modelName: string): Promise<string>;
-    getProjectByName(projectName: string): Promise<any>;
-}
-
 export interface Backend {
     api: AlfrescoApi;
-    project: ProjectApi;
+    project: ACMProject;
     process: ModelCrud;
     connector: ModelCrud;
     ui: ModelCrud;

@@ -55,8 +55,8 @@ describe('Delete project', () => {
         const projectId = project.entry.id;
         await dashboardPage.deleteProject(projectId);
         await deleteEntityDialog.checkDialogAndConfirm('project');
-        expect(await snackBar.isDeletedSuccessfully('project')).toBe(true);
-        expect(await dashboardPage.isProjectNotInList(projectId)).toBe(true);
+        await expect(await snackBar.isDeletedSuccessfully('project')).toBe(true);
+        await expect(await dashboardPage.isProjectNotInList(projectId)).toBe(true);
     });
 
     afterAll(async () => {

@@ -28,7 +28,7 @@ export class ErrorsPage extends GenericPage {
         super(testConfig);
     }
 
-    async isUnauthorised() {
-        return await BrowserVisibility.waitUntilElementIsVisible(this.amaUnauthorisedPage);
+    async isUnauthorised(): Promise<boolean> {
+        return BrowserVisibility.waitUntilElementIsVisible(this.amaUnauthorisedPage);
     }
 }

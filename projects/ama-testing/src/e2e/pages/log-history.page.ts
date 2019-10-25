@@ -42,7 +42,7 @@ export class LogHistoryPage extends GenericPage {
     readonly logEntry = element(by.css(`ama-log-history-entry`));
     readonly deleteIcon = element(by.css(`[data-automation-id='deleteLogs']`));
     readonly collapseArrow = element(by.css(`[data-automation-id='collapse']`));
-    readonly filtersDropdown =  element(by.css(`.log-history-filters`));
+    readonly filtersDropdown = element(by.css(`.log-history-filters`));
     readonly filtersDropdownText = element.all(by.css('.mat-option-text'));
     readonly allLogContent = element.all(by.css(`div[class='log-content'] div`));
 
@@ -50,89 +50,89 @@ export class LogHistoryPage extends GenericPage {
         super();
     }
 
-    async isLogSectionDisplayed() {
+    async isLogSectionDisplayed(): Promise<boolean> {
         try {
-            return await BrowserVisibility.waitUntilElementIsVisible(this.logSection);
+            return BrowserVisibility.waitUntilElementIsVisible(this.logSection);
         } catch (error) {
             return false;
         }
     }
 
-    async isLogSectionNotDisplayed() {
+    async isLogSectionNotDisplayed(): Promise<boolean> {
         try {
-            return await BrowserVisibility.waitUntilElementIsNotVisible(this.logSection);
+            return BrowserVisibility.waitUntilElementIsNotVisible(this.logSection);
         } catch (error) {
             return false;
         }
     }
 
-    async clickMessageIndicatorInactive() {
+    async clickMessageIndicatorInactive(): Promise<void> {
         await BrowserActions.click(this.messageIndicatorInactive);
     }
 
-    async clickMessageIndicator() {
+    async clickMessageIndicator(): Promise<void> {
         await BrowserActions.click(this.messageIndicator);
         await BrowserVisibility.waitUntilElementIsVisible(this.logSection);
     }
 
-    async getInitiator() {
+    async getInitiator(): Promise<string> {
         await BrowserVisibility.waitUntilElementIsVisible(this.logInitiator);
-        return await this.logInitiator.getText();
+        return this.logInitiator.getText();
     }
 
-    async getDateTime() {
-        return await this.logDateTime.getText();
+    async getDateTime(): Promise<string> {
+        return this.logDateTime.getText();
     }
 
-    async getLevel() {
-        return await this.logLevel.getText();
+    async getLevel(): Promise<string> {
+        return this.logLevel.getText();
     }
 
-    async getMessage() {
-        return await this.logContent.getText();
+    async getMessage(): Promise<string> {
+        return this.logContent.getText();
     }
 
-    async isLogHistoryEmpty() {
+    async isLogHistoryEmpty(): Promise<boolean> {
         try {
-            return await BrowserVisibility.waitUntilElementIsNotVisible(this.logEntry);
+            return BrowserVisibility.waitUntilElementIsNotVisible(this.logEntry);
         } catch (error) {
             return false;
         }
     }
 
-    async isLogHistoryNotEmpty() {
+    async isLogHistoryNotEmpty(): Promise<boolean> {
         try {
-            return await BrowserVisibility.waitUntilElementIsVisible(this.logEntry);
+            return BrowserVisibility.waitUntilElementIsVisible(this.logEntry);
         } catch (error) {
             return false;
         }
     }
 
-    async deleteLogs() {
+    async deleteLogs(): Promise<void> {
         await BrowserActions.click(this.deleteIcon);
     }
 
-    async clickCollapseArrow() {
-        return await BrowserActions.click(this.collapseArrow);
+    async clickCollapseArrow(): Promise<void> {
+        return BrowserActions.click(this.collapseArrow);
     }
 
-    async selectFilter(filter: string) {
+    async selectFilter(filter: string): Promise<void> {
         await BrowserActions.click(this.filtersDropdown);
         const field = element(by.cssContainingText('.mat-option-text', filter));
         await BrowserActions.click(field);
     }
 
-    async getFiltersValue() {
+    async getFiltersValue(): Promise<string> {
         await BrowserActions.click(this.filtersDropdown);
-        return await this.filtersDropdownText.getText();
+        return this.filtersDropdownText.getText();
     }
 
-    async getDefaultValue() {
-        return await this.filtersDropdown.getText();
+    async getDefaultValue(): Promise<string> {
+        return this.filtersDropdown.getText();
     }
 
-    async getNumberOfMessages() {
-        return await this.allLogContent.count();
+    async getNumberOfMessages(): Promise<number> {
+        return this.allLogContent.count();
     }
 
 }
