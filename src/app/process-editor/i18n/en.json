@@ -85,7 +85,10 @@
             "MULTI_INSTANCE_TYPE_NAME": "Multi Instance type",
             "CARDINALITY_NAME": "Cardinality (Multi-instance)",
             "COMPLETION_CONDITION": "Completion condition (Multi-instance)",
+            "COLLECTION": "Collection (Multi-instance)",
+            "ELEMENT_VARIABLE": "Element variable (Multi-instance)",
             "INVALID_CARDINALITY": "It should be a number or expression",
+            "INVALID_ELEMENT_VARIABLE": "It should be a string",
             "TIMERS": {
                 "TIMER_TYPE": "Timer type",
                 "TIMER_DEFINITION": "Timer definition",

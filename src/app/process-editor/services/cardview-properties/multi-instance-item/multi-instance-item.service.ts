@@ -40,7 +40,7 @@ export class CardViewMultiInstanceItemService {
     }
 
     createOrUpdateCompleteCondition(expression: string) {
-        if (!this.hasCompleteConditionElement()) {
+        if (!this.element.loopCharacteristics[MultiInstanceProps.completionCondition]) {
             this.createLoopCharacteristics(MultiInstanceProps.completionCondition, expression);
         } else {
             this.element.loopCharacteristics[MultiInstanceProps.completionCondition].set('body', expression);
@@ -49,7 +49,7 @@ export class CardViewMultiInstanceItemService {
     }
 
     createOrUpdateCardinality(expression: string) {
-        if (!this.hasCardinalityElement()) {
+        if (!this.element.loopCharacteristics[MultiInstanceProps.loopCardinality]) {
             this.createLoopCharacteristics(MultiInstanceProps.loopCardinality, expression);
         } else {
             this.element.loopCharacteristics[MultiInstanceProps.loopCardinality].set('body', expression);
@@ -59,10 +59,20 @@ export class CardViewMultiInstanceItemService {
 
     createOrUpdateMultiInstanceElement(selectedType: MultiInstanceType) {
         const isSequence = selectedType === MultiInstanceType.sequence;
-        if (!this.hasMultiInstanceElement()) {
+        if (!this.element[MultiInstanceProps.loopCharacteristics]) {
             this.createMultiInstanceElement();
         }
         this.element[MultiInstanceProps.loopCharacteristics].set(MultiInstanceProps.isSequential, isSequence);
+    }
+
+    createOrUpdateCollectionExpression(expression: string) {
+        this.element[MultiInstanceProps.loopCharacteristics].set(MultiInstanceProps.collection, expression);
+        this.updateEditor();
+    }
+
+    createOrUpdateElementVariable(expression: string) {
+        this.element[MultiInstanceProps.loopCharacteristics].set(MultiInstanceProps.elementVariable, expression);
+        this.updateEditor();
     }
 
     updateEditor() {
@@ -77,18 +87,6 @@ export class CardViewMultiInstanceItemService {
     private createMultiInstanceElement() {
         const multiInstanceElement = this.bpmnFactory.create(BpmnElement.MultiInstanceLoopCharacteristics);
         this.element.set(MultiInstanceProps.loopCharacteristics, multiInstanceElement);
-    }
-
-    private hasMultiInstanceElement(): boolean {
-        return !!this.element[MultiInstanceProps.loopCharacteristics];
-    }
-
-    private hasCardinalityElement(): boolean {
-        return !!this.element.loopCharacteristics[MultiInstanceProps.loopCardinality];
-    }
-
-    private hasCompleteConditionElement(): boolean {
-        return !!this.element.loopCharacteristics[MultiInstanceProps.completionCondition];
     }
 
 }

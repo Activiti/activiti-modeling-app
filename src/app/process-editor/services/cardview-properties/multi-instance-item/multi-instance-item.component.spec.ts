@@ -38,6 +38,7 @@ describe('CardViewMultiInstanceItemComponent', () => {
     let fixture: ComponentFixture<CardViewMultiInstanceItemComponent>;
     let processModelerService: ProcessModelerService;
     let appConfig: AppConfigService;
+    let service: CardViewMultiInstanceItemService;
 
     setupTestBed({
         declarations: [CardViewMultiInstanceItemComponent],
@@ -65,6 +66,7 @@ describe('CardViewMultiInstanceItemComponent', () => {
         fixture = TestBed.createComponent(CardViewMultiInstanceItemComponent);
         component = fixture.componentInstance;
         processModelerService = TestBed.get(ProcessModelerServiceToken);
+        service = fixture.debugElement.injector.get(CardViewMultiInstanceItemService);
         appConfig = TestBed.get(AppConfigService);
         appConfig.config = Object.assign(appConfig.config, appConfigMock);
 
@@ -137,6 +139,57 @@ describe('CardViewMultiInstanceItemComponent', () => {
         completionConditionElement.nativeElement.dispatchEvent(new Event('input'));
         expect(component.completionCondition.hasError('pattern')).toBeFalsy();
     });
+
+    describe('Collection Element', () => {
+        it('should show error when wrong collection expression found', () => {
+            fixture.detectChanges();
+            const collectionElement = fixture.debugElement.query(By.css('[data-automation-id="collection-field"]'));
+            collectionElement.nativeElement.value = 'a';
+            collectionElement.nativeElement.dispatchEvent(new Event('input'));
+            expect(component.collectionExpression.hasError('pattern')).toBeTruthy();
+
+            collectionElement.nativeElement.value = '${expression}';
+            collectionElement.nativeElement.dispatchEvent(new Event('input'));
+            expect(component.collectionExpression.hasError('pattern')).toBeFalsy();
+        });
+
+        it('should update the xml when expression changes', () => {
+            fixture.detectChanges();
+            spyOn(service, 'updateEditor').and.callThrough();
+            spyOn(service, 'createOrUpdateCollectionExpression').and.callThrough();
+            const collectionElement = fixture.debugElement.query(By.css('[data-automation-id="collection-field"]'));
+            collectionElement.nativeElement.value = '${expression}';
+            collectionElement.nativeElement.dispatchEvent(new Event('change'));
+            expect(service.createOrUpdateCollectionExpression).toHaveBeenCalledTimes(1);
+            expect(service.updateEditor).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe('ElementVariable', () => {
+        it('should show error when wrong ElementVariable found', () => {
+            fixture.detectChanges();
+            const elementVarField = fixture.debugElement.query(By.css('[data-automation-id="element-variable-field"]'));
+            elementVarField.nativeElement.value = '5';
+            elementVarField.nativeElement.dispatchEvent(new Event('input'));
+            expect(component.elementVariable.hasError('message')).toBeTruthy();
+
+            elementVarField.nativeElement.value = 'assignee';
+            elementVarField.nativeElement.dispatchEvent(new Event('input'));
+            expect(component.elementVariable.hasError('message')).toBeFalsy();
+        });
+
+        it('should update the xml when ElementVariable changes', () => {
+            fixture.detectChanges();
+            spyOn(service, 'updateEditor').and.callThrough();
+            spyOn(service, 'createOrUpdateElementVariable').and.callThrough();
+            const elementVarField = fixture.debugElement.query(By.css('[data-automation-id="element-variable-field"]'));
+            elementVarField.nativeElement.value = 'assignee';
+            elementVarField.nativeElement.dispatchEvent(new Event('change'));
+            expect(service.createOrUpdateElementVariable).toHaveBeenCalledTimes(1);
+            expect(service.updateEditor).toHaveBeenCalledTimes(1);
+        });
+    });
+
 
     describe('multiInstance type', () => {
 

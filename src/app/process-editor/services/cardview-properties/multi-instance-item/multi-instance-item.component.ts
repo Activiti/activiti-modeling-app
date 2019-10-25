@@ -20,7 +20,7 @@ import { Observable, of } from 'rxjs';
 import { AppConfigService, CardViewSelectItemOption } from '@alfresco/adf-core';
 import { MultiInstanceItemModel } from './multi-instance.item.model';
 import { getMultiInstanceType, MultiInstanceProps, MultiInstanceType } from '../../bpmn-js/property-handlers/multi-instance.handler';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { _isNumberValue } from '@angular/cdk/coercion';
 import { CardViewMultiInstanceItemService } from './multi-instance-item.service';
 
@@ -56,12 +56,22 @@ export class CardViewMultiInstanceItemComponent implements OnInit {
         return this.form.get('completionCondition');
     }
 
+    get collectionExpression(): AbstractControl {
+        return this.form.get('collectionExpression');
+    }
+
+    get elementVariable(): AbstractControl {
+        return this.form.get('elementVariable');
+    }
+
     ngOnInit() {
         this.selectedType = getMultiInstanceType(this.element[MultiInstanceProps.loopCharacteristics]);
         this.form = this.formBuilder.group({
-            cardinality: [ this.parseCardinality(), [ Validators.required, this.validateExpression ] ],
-            completionCondition: [ this.parseCompletionCondition(), [ Validators.pattern(/{([^}]+)}/) ] ],
-        });
+            cardinality: [ this.parseMultiInstanceProperty(MultiInstanceProps.loopCardinality) ],
+            collectionExpression: [ this.parseMultiInstance(MultiInstanceProps.collection), [ Validators.pattern(/{([^}]+)}/) ] ],
+            elementVariable: [ this.parseMultiInstance(MultiInstanceProps.elementVariable) ],
+            completionCondition: [ this.parseMultiInstanceProperty(MultiInstanceProps.completionCondition), [ Validators.pattern(/{([^}]+)}/) ] ],
+        },   { validators: this.validateExpression });
         this.multiInstanceItemService.element = this.element;
     }
 
@@ -87,12 +97,19 @@ export class CardViewMultiInstanceItemComponent implements OnInit {
         this.multiInstanceItemService.createOrUpdateCompleteCondition(expression);
     }
 
-    parseCardinality(): string {
-        return this.parseMultiInstanceProperty(MultiInstanceProps.loopCardinality);
+    onCollectionExpressionChange(expression: string) {
+        this.multiInstanceItemService.createOrUpdateCollectionExpression(expression);
     }
 
-    parseCompletionCondition(): string {
-        return this.parseMultiInstanceProperty(MultiInstanceProps.completionCondition);
+    onElementVariableChange(iterationVariable: string) {
+        this.multiInstanceItemService.createOrUpdateElementVariable(iterationVariable);
+    }
+
+    private parseMultiInstance(props: MultiInstanceProps) {
+        return (
+            this.element[MultiInstanceProps.loopCharacteristics] &&
+            this.element[MultiInstanceProps.loopCharacteristics][props]
+        );
     }
 
     private parseMultiInstanceProperty(props: MultiInstanceProps) {
@@ -103,13 +120,17 @@ export class CardViewMultiInstanceItemComponent implements OnInit {
         );
     }
 
-    validateExpression({ value }: FormControl) {
+    validateExpression(formGroup: FormGroup) {
+        const cardinalityControl = formGroup.controls['cardinality'], elementControl =  formGroup.controls['elementVariable'];
         const expression: RegExp = /{([^}]+)}/;
-        const isValid: boolean = expression.test(value) || _isNumberValue(value);
-
-        return (isValid) ? null : {
+        const isValidCardinality: boolean = expression.test(cardinalityControl.value) || _isNumberValue(cardinalityControl.value);
+        cardinalityControl.setErrors(isValidCardinality ? null : {
             message: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_CARDINALITY'
-        };
+        });
+        const isValidElementVariable: boolean = !_isNumberValue(elementControl.value);
+        elementControl.setErrors(isValidElementVariable ? null : {
+            message: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_ELEMENT_VARIABLE'
+        });
     }
 
 }
