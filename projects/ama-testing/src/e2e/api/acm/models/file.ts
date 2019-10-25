@@ -15,22 +15,20 @@
  * limitations under the License.
  */
 
-import { connectorSchema } from './connector.schema';
-import { dataSchema } from './data.schema';
-import { decisionTableSchema } from './decision-table.schema';
-import { uiSchema } from './ui.schema';
-import { propertiesSchema } from './properties.schema';
-import { formSchema } from './form.schema';
-import { extensionsSchema } from './extensions.schema';
-import { fileSchema } from './file.schema';
+import { ACMCrud } from '../acm-crud';
 
-export {
-    connectorSchema,
-    dataSchema,
-    decisionTableSchema,
-    uiSchema,
-    propertiesSchema,
-    formSchema,
-    extensionsSchema,
-    fileSchema
-};
+export class ACMFile extends ACMCrud {
+
+    displayName = 'File';
+    namePrefix = 'qa-file-';
+    type = 'FILE';
+    contentType = 'application/octet-stream';
+    contentExtension = 'bin';
+
+    getDefaultContent(entityName: string, entityId: string): string {
+        return JSON.stringify({
+            id: this.type.toLowerCase() + '-' + entityId,
+            name: entityName
+        });
+    }
+}

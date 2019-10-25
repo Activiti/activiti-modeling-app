@@ -43,7 +43,7 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
     error = false;
     isSelected = false;
     required?: boolean;
-    value: string;
+    value: any;
     id: string;
     selection = new SelectionModel<EntityProperty>();
     @Input() properties = '';

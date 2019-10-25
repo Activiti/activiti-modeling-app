@@ -26,6 +26,7 @@ export const FORMS_ENTITY_KEY = 'forms';
 export const UIS_ENTITY_KEY = 'uis';
 export const DECISION_TABLES_ENTITY_KEY = 'decisionTables';
 export const DATA_ENTITY_KEY = 'data';
+export const FILES_ENTITY_KEY = 'files';
 
 export interface ModelEntitiesState extends EntityState<Model>  {
     loading: boolean;

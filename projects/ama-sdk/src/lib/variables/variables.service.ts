@@ -18,7 +18,9 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { EntityProperties, EntityProperty } from '../../lib/api/types';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+  })
 export class VariablesService {
     @Output() variablesData: EventEmitter<any> = new EventEmitter<any>();
     constructor() {}

@@ -15,18 +15,51 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
+import { FileService } from '../file.service';
+import { Observable } from 'rxjs';
+import { ActivitiFile } from '../../../api/types';
+import { Store } from '@ngrx/store';
+import { AmaState } from '../../../store/app.state';
+import { selectProject } from '../../../store/project.selectors';
+import { take, filter } from 'rxjs/operators';
+
 @Component({
-    template: ``
+    template: `
+    <mat-form-field>
+        <mat-select (selectionChange)="onChange()" [compareWith]="compareObjects"
+        [(ngModel)]="value" data-automation-id="variable-value">
+            <mat-option *ngFor="let file of files | async" [value]="file.extensions">
+                {{file.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    `
 })
 
-export class PropertiesViewerFileInputComponent {
+export class PropertiesViewerFileInputComponent implements OnInit {
 
     @Output() change = new EventEmitter();
-    @Input() value: string;
+    @Input() value: ActivitiFile;
 
+    projectId: string;
+    files: Observable<ActivitiFile[]>;
+
+    constructor(private store: Store<AmaState>, private fileService: FileService) { }
+
+    ngOnInit() {
+        this.store.select(selectProject).pipe(
+            filter(valueProject => valueProject !== null),
+            take(1)).
+            subscribe(project =>
+                this.files = this.fileService.getList(project.id)
+            );
+    }
     onChange() {
-        this.change.emit(this.value.length ? this.value : null);
+        this.change.emit(this.value);
     }
 
+    compareObjects(o1: any, o2: any): boolean {
+        return o1.uri === o2.uri;
+    }
 }

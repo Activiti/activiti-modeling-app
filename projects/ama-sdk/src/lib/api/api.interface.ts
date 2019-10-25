@@ -30,7 +30,9 @@ import {
     DecisionTable,
     DecisionTableContent,
     Data,
-    DataContent
+    DataContent,
+    ActivitiFile,
+    ActivitiFileContent
 } from './types';
 
 export const PROCESS_API_TOKEN = new InjectionToken<ModelApiInterface<Process, ProcessContent>>('connector-api');
@@ -39,6 +41,7 @@ export const FORM_API_TOKEN = new InjectionToken<ModelApiInterface<Form, FormCon
 export const UI_API_TOKEN = new InjectionToken<ModelApiInterface<Ui, UiContent>>('ui-api');
 export const DECISION_TABLE_API_TOKEN = new InjectionToken<ModelApiInterface<DecisionTable, DecisionTableContent>>('connector-api');
 export const DATA_API_TOKEN = new InjectionToken<ModelApiInterface<Data, DataContent>>('data-api');
+export const FILE_API_TOKEN = new InjectionToken<ModelApiInterface<ActivitiFile, ActivitiFileContent>>('file-api');
 
 @Injectable()
 export abstract class AmaApi {
@@ -49,4 +52,5 @@ export abstract class AmaApi {
     public Ui: ModelApiInterface<Ui, UiContent>;
     public Data: ModelApiInterface<Data, DataContent>;
     public DecisionTable: ModelApiInterface<DecisionTable, DecisionTableContent>;
+    public File: ModelApiInterface<ActivitiFile, ActivitiFileContent>;
 }

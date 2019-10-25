@@ -24,6 +24,7 @@ import { PropertiesViewerComponent } from './properties-viewer.component';
 import { of } from 'rxjs';
 import { VariablesService } from '../variables.service';
 import { UuidService } from './../../services/uuid.service';
+import { VariableValuePipe } from './variable-value.pipe';
 
 describe('PropertiesViewerComponent', () => {
     let fixture: ComponentFixture<PropertiesViewerComponent>;
@@ -42,7 +43,7 @@ describe('PropertiesViewerComponent', () => {
                 { provide: Store, useValue: { dispatch: jest.fn(), select: jest.fn().mockReturnValue(of()) }},
                 { provide: UuidService, useValue: { generate() { return 'generated-uuid'; } } }
             ],
-            declarations: [PropertiesViewerComponent],
+            declarations: [PropertiesViewerComponent, VariableValuePipe],
             imports: [ MatTableModule, TranslateModule.forRoot()],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();

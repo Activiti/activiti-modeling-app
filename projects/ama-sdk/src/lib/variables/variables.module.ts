@@ -21,7 +21,6 @@ import { CodeEditorModule } from './../code-editor/code-editor.module';
 import { CoreModule } from '@alfresco/adf-core';
 import { VariablesComponent } from './variables.component';
 import { PropertiesViewerComponent } from './properties-viewer/properties-viewer.component';
-import { VariablesService } from './variables.service';
 import { ValueTypeInputComponent } from './properties-viewer/value-type-input.component';
 import { PropertiesViewerStringInputComponent } from './properties-viewer/value-type-inputs/string-input.component';
 import { PropertiesViewerIntegerInputComponent } from './properties-viewer/value-type-inputs/integer-input.component';
@@ -30,6 +29,7 @@ import { PropertiesViewerDateInputComponent } from './properties-viewer/value-ty
 import { PropertiesViewerJsonInputComponent } from './properties-viewer/value-type-inputs/json-input.component';
 import { PropertiesViewerFileInputComponent } from './properties-viewer/value-type-inputs/file-input.component';
 import { SharedModule } from '../helpers/public_api';
+import { VariableValuePipe } from './properties-viewer/variable-value.pipe';
 
 @NgModule({
     imports: [
@@ -47,7 +47,8 @@ import { SharedModule } from '../helpers/public_api';
         PropertiesViewerBooleanInputComponent,
         PropertiesViewerDateInputComponent,
         PropertiesViewerJsonInputComponent,
-        PropertiesViewerFileInputComponent
+        PropertiesViewerFileInputComponent,
+        VariableValuePipe
     ],
     entryComponents: [
         VariablesComponent,
@@ -59,7 +60,6 @@ import { SharedModule } from '../helpers/public_api';
         PropertiesViewerFileInputComponent
     ],
     providers: [
-        VariablesService
     ]
 })
 export class VariablesModule {}

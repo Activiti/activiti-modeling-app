@@ -48,7 +48,8 @@
                     "UI": "ui",
                     "CONNECTOR": "connector",
                     "FORM": "form",
-                    "PROCESS": "process"
+                    "PROCESS": "process",
+                    "FILE": "file"
                 },
                 "DELETE": {
                     "PROJECT": "Are you sure you want to delete this project?",
@@ -57,7 +58,8 @@
                     "UI": "Are you sure you want to delete this ui?",
                     "DATA": "Are you sure you want to delete this data object?",
                     "DECISION_TABLE": "Are you sure you want to delete this decision table?",
-                    "CONNECTOR": "Are you sure you want to delete this connector?"
+                    "CONNECTOR": "Are you sure you want to delete this connector?",
+                    "FILE": "Are you sure you want to delete this file?"
                 },
                 "SAVE": {
                     "PROCESS": "Are you sure you want to save this process?",
@@ -65,7 +67,8 @@
                     "UI": "Are you sure you want to save this ui?",
                     "DATA": "Are you sure you want to save this data object?",
                     "DECISION_TABLE": "Are you sure you want to save this decision table?",
-                    "CONNECTOR": "Are you sure you want to save this connector?"
+                    "CONNECTOR": "Are you sure you want to save this connector?",
+                    "FILE": "Are you sure you want to save this file?"
                 },
                 "DOWNLOAD": {
                     "PROCESS": "Are you sure you want to download this process?",
@@ -73,7 +76,8 @@
                     "UI": "Are you sure you want to download this ui?",
                     "DATA": "Are you sure you want to download this data object?",
                     "DECISION_TABLE": "Are you sure you want to download this decision table?",
-                    "CONNECTOR": "Are you sure you want to download this connector?"
+                    "CONNECTOR": "Are you sure you want to download this connector?",
+                    "FILE": "Are you sure you want to download this file?"
                 }
             }
         },
@@ -168,7 +172,8 @@
                     "CREATE_FORM": "Form",
                     "CREATE_UI": "UI",
                     "CREATE_DATA": "Data object",
-                    "CREATE_DECISION_TABLE": "Decision table"
+                    "CREATE_DECISION_TABLE": "Decision table",
+                    "CREATE_FILE": "File"
                 }
             },
             "TREE": {
@@ -177,7 +182,8 @@
                 "CONNECTORS": "Connectors",
                 "DATA": "Data",
                 "DECISION_TABLES": "Decision tables",
-                "UIS": "UI"
+                "UIS": "UI",
+                "FILES": "Files"
             },
             "PROCESS_DIALOG": {
                 "TITLE_CREATE": "Create new process",
@@ -234,6 +240,16 @@
                 "DECISION_TABLE_DELETED": "The decision table was successfully deleted",
                 "DECISION_TABLE_UPDATED": "The decision table was successfully updated"
             },
+            "FILE_DIALOG": {
+                "TITLE_CREATE": "Create new File",
+                "TITLE_UPDATE": "Update File",
+                "FILE_NAME": "File name:",
+                "FILE_DESC": "FIle description:",
+                "FILE_CREATED": "The File was successfully created",
+                "FILE_DELETED": "The File was successfully deleted",
+                "FILE_UPDATED": "The File was successfully updated"
+            },
+            
             "ACTION_DIALOG": {
                 "ACTION_DETAILS": "Action details",
                 "ACTION_NAME": "Action name",
@@ -309,7 +325,15 @@
                     "DUPLICATION": "Project with the same name already exists",
                     "GENERAL": "Unknown error happened during the upload of the project."
                 },
-                "GET_PROJECT": "Unknown error happened during the loading of project."
+                "GET_PROJECT": "Unknown error happened during the loading of project.",
+                "CREATE_FILE": {
+                    "DUPLICATION": "File with the same name already exists",
+                    "GENERAL": "Unknown error happened during the creating a new file."
+                },
+                "UPDATE_FILE": {
+                    "DUPLICATION": "File with the same name already exists",
+                    "GENERAL": "Unknown error happened during the updating the file."
+                }
             }
         },
         "PROCESS_EDITOR": {
@@ -562,6 +586,23 @@
             "ERRORS": {
                 "GET_DECISION_TABLE": "Unknown error happened during loading of the decision table, please try again.",
                 "DELETE_DECISION_TABLE": "Unknown error happened during deleting the decision table, please try again."
+            }
+        },
+        "FILE_EDITOR": {
+            "UPLOAD_SUCCESS": "The file was successfully uploaded",
+            "TABS": {
+                "FILE_EDITOR": "File editor",
+                "JSON_EDITOR": "Text editor"
+            },
+            "EDITOR": {
+                "DETAILS": "File details",
+                "DESCRIPTION": "Description",
+                "NAME": "Name",
+                "TEMPLATE": "Template"
+            },
+            "ERRORS": {
+                "GET_FILE": "Unknown error happened during loading of the file, please try again.",
+                "DELETE_FILE": "Unknown error happened during deleting the file, please try again."
             }
         },
         "GENERAL": {

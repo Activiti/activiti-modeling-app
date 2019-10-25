@@ -21,5 +21,6 @@ export const ContentType = {
     Data: 'DATA',
     DecisionTable: 'DECISION',
     Form: 'FORM',
-    Ui: 'UI'
+    Ui: 'UI',
+    File: 'FILE',
 };

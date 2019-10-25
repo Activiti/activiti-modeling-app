@@ -15,22 +15,19 @@
  * limitations under the License.
  */
 
-import { connectorSchema } from './connector.schema';
-import { dataSchema } from './data.schema';
-import { decisionTableSchema } from './decision-table.schema';
-import { uiSchema } from './ui.schema';
-import { propertiesSchema } from './properties.schema';
-import { formSchema } from './form.schema';
-import { extensionsSchema } from './extensions.schema';
-import { fileSchema } from './file.schema';
+import { Injectable } from '@angular/core';
+import { AmaApi } from '../../../lib/api/api.interface';
+import { Observable } from 'rxjs';
+import { ActivitiFile } from '../../api/types';
 
-export {
-    connectorSchema,
-    dataSchema,
-    decisionTableSchema,
-    uiSchema,
-    propertiesSchema,
-    formSchema,
-    extensionsSchema,
-    fileSchema
-};
+@Injectable({
+    providedIn: 'root',
+  })
+export class FileService {
+
+    constructor(private amaApi: AmaApi) {}
+
+    getList(projectId: string): Observable<ActivitiFile[]> {
+        return this.amaApi.File.getList(projectId);
+    }
+}

@@ -21,6 +21,7 @@ export const FORM_FILE_FORMAT = '.json';
 export const UI_FILE_FORMAT = '.json';
 export const DATA_FILE_FORMAT = '.json';
 export const DECISION_TABLE_FILE_FORMAT = '.dmn';
+export const FILE_FILE_FORMAT = '.bin';
 export const MODEL_NAME_CHARACTERS = 'a-z0-9-';
 export const MODELER_NAME_REGEX = /^[a-z]([-a-z0-9]{0,24}[a-z0-9])?$/;
 

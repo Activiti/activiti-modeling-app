@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { RequestApiHelper, RequestApiHelperOptions } from './request-api.helper';
-import { map, concatMap } from 'rxjs/operators';
+import { map, concatMap, flatMap } from 'rxjs/operators';
 import { ModelApiInterface } from '../../api/generalmodel-api.interface';
 import { Model, MinimalModelSummary } from '../../api/types';
 
@@ -155,5 +155,22 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
             // Patch: BE does not return empty or not yet defined properties at all, like extensions
             ...(this.modelVariation.patchModel(entity) as object)
         } as T;
+    }
+
+    updateContentFile(modelId: string, file: File): Observable<[T, S]> {
+        const requestOptions: RequestApiHelperOptions = {
+            formParams: { file },
+            queryParams: { type: this.modelVariation.contentType },
+            contentTypes: ['multipart/form-data']
+        };
+
+        return this.requestApiHelper
+            .put<void>(`/modeling-service/v1/models/${modelId}/content`, requestOptions).pipe(
+                flatMap(() => {
+                    const content$ = this.export(modelId),
+                    model$ = this.retrieve(modelId, modelId);
+                    return forkJoin(model$, content$);
+                })
+            );
     }
 }

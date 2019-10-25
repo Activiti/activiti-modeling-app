@@ -29,4 +29,6 @@ export interface ModelApiInterface<ModelMetadata, ModelContent> {
 
     import(file: File, containerId?: string): Observable<ModelMetadata>;
     export(modelId: string): Observable<ModelContent>;
+
+    updateContentFile(modelId: string, file: File): Observable<[ModelMetadata, ModelContent]>;
 }
