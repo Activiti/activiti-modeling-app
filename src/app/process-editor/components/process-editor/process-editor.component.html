@@ -21,7 +21,6 @@
 
                             <mat-sidenav-content>
                                 <ama-process-modeler
-                                    [@.disabled]="true"
                                     (onChange)="onBpmnEditorChange($event)"
                                     [source]="bpmnContent$ | async"
                                     class="process-editor-modeling-area-modeler"

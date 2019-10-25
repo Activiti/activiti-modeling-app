@@ -88,6 +88,7 @@ import { ProcessMessagesEffects } from './store/process-messages.effects';
 import { MessagesDialogComponent } from 'ama-sdk/src/lib/messages/messages-dialog.component';
 import { MessagesService } from 'ama-sdk/src/lib/messages/messages.service';
 import { CardViewMultiInstanceItemComponent } from './services/cardview-properties/multi-instance-item/multi-instance-item.component';
+import { ClipboardService } from './services/clipboard/clipboard.service';
 
 @NgModule({
     imports: [
@@ -152,6 +153,7 @@ import { CardViewMultiInstanceItemComponent } from './services/cardview-properti
         { provide: BpmnFactoryToken, useClass: BpmnFactoryService },
         { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
         ProcessModelerPaletteService,
+        ClipboardService,
         CardViewPropertiesFactory,
         AmaTitleService,
         MessagesService,

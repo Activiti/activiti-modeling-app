@@ -23,18 +23,28 @@ import { BpmnFactory } from 'ama-sdk';
     Modify this import with care, double-checking the process editor works in --prod mode.
 */
 import BpmnModeler from 'bpmn-js/dist/bpmn-modeler.production.min';
+
+import { ClipboardService } from './clipboard/clipboard.service';
+
 import { emptyPaletteModule } from './palette/dummy-bpmn-palette.provider';
 import { DecisionTableRenderModule } from './bpmn-js/renderers/decision-table.renderer';
+
 const activitiModdleDescriptor = require('./activiti.json');
 
 @Injectable()
 export class BpmnFactoryService implements BpmnFactory {
+
+    constructor(private clipboardService: ClipboardService) {
+    }
+
     create(): Bpmn.Modeler {
+
         return new BpmnModeler({
             keyboard: { bindTo: document },
             additionalModules: [
                 emptyPaletteModule,
                 DecisionTableRenderModule,
+                { clipboard: ['value', this.clipboardService] },
                 ...this.getBpmnPropertiesPanelConfig()
             ],
             moddleExtensions: { activiti: activitiModdleDescriptor }
