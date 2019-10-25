@@ -94,9 +94,7 @@ export const elementsProperties = {
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
-        ...(isExclusiveGateway(element) ? [ BpmnProperty.conditionExpression ] : []),
-        ...(isConditionalFlow(element) ? [ BpmnProperty.conditionExpression ] : []),
-        ...(isInclusiveGateway(element) ? [ BpmnProperty.conditionExpression ] : [])
+        ...(isExclusiveGateway(element) || isConditionalFlow(element) || isInclusiveGateway(element) ? [ BpmnProperty.conditionExpression ] : []),
     ],
     [BpmnElement.ExclusiveGateway]: [
         BpmnProperty.id,
