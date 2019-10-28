@@ -81,16 +81,31 @@ export class VariablesDialog extends GenericDialog {
         await BrowserActions.clearSendKeys(this.value, value);
     }
 
-    async setVariable(name: string = 'name', type: string = 'string', value: string = ''): Promise<void> {
+    async setRequired(required: boolean = false) {
+        if ( required ) {
+            await BrowserActions.click(this.required);
+        }
+    }
+
+    async setVariable(name: string = 'name', type: string = 'string', value: string  = '') {
         await this.setVariableName(name);
         await this.setVariableType(type);
 
-        if (type === 'boolean') {
-            await this.setBooleanVariableValue(value);
-        } else if (type === 'date') {
-            await this.setDateVariableValue();
-        } else {
-            await this.setVariableValue(value);
+        switch (type) {
+            case 'boolean':
+                await this.setBooleanVariableValue(value);
+                break;
+
+            case 'date':
+                await this.setDateVariableValue();
+                break;
+
+            case 'file':
+            case 'json':
+                break;
+
+            default:
+                await this.setVariableValue(value);
         }
     }
 
