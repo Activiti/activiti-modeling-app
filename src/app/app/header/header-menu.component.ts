@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
     selector: 'ama-header-menu',
@@ -23,6 +23,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderMenuComponent {
 
+    @Input() showLanguagePicker = false;
     @Output() logout = new EventEmitter<void>();
     @Output() openSettings = new EventEmitter<void>();
     @Output() openAbout = new EventEmitter<void>();

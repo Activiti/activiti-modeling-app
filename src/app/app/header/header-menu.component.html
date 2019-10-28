@@ -5,6 +5,16 @@
 </button>
 
 <mat-menu #userMenu="matMenu" [overlapTrigger]="false" class="ama-header-menu">
+
+    <button *ngIf="showLanguagePicker" mat-menu-item [matMenuTriggerFor]="langMenu" data-automation-id="user-language-menu">
+        <mat-icon>language</mat-icon>
+        <span>{{ 'APP.HEADER.LANGUAGE' | translate }}</span>
+    </button>
+
+    <mat-menu #langMenu="matMenu">
+        <adf-language-menu></adf-language-menu>
+    </mat-menu>
+
     <button mat-menu-item (click)="onAbout()" data-automation-id="user-about">
         <mat-icon>info_outline</mat-icon>
         <span>{{ 'APP.HEADER.ABOUT' | translate }}</span>
