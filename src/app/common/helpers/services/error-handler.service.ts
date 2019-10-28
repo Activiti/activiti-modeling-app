@@ -1,4 +1,4 @@
- /*!
+/*!
  * @license
  * Copyright 2019 Alfresco, Inc. and/or its affiliates.
  *
