@@ -576,6 +576,11 @@
             }
         },
         "DECISION_TABLE_EDITOR": {
+            "ELEMENT_PROPERTIES": {
+                "PROPERTIES": "Properties",
+                "NAME": "Name",
+                "SIMULATOR": "Simulator"
+            },
             "UPLOAD_SUCCESS": "The decision table was successfully uploaded",
             "TABS": {
                 "DECISION_TABLE_EDITOR": "Decision table editor",
@@ -585,7 +590,8 @@
             },
             "ERRORS": {
                 "GET_DECISION_TABLE": "Unknown error happened during loading of the decision table, please try again.",
-                "DELETE_DECISION_TABLE": "Unknown error happened during deleting the decision table, please try again."
+                "DELETE_DECISION_TABLE": "Unknown error happened during deleting the decision table, please try again.",
+                "INVALID_DECISION_TABLE_NAME": "Invalid decision table name"
             }
         },
         "FILE_EDITOR": {
