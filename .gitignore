@@ -39,6 +39,7 @@ npm-debug.log
 testem.log
 /typings
 .protractor-fail-fast
+.protractor-smartrunner
 .env
 
 # e2e

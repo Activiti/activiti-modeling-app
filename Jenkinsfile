@@ -29,6 +29,7 @@
             sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
 
             sh "npm config set unsafe-perm true&& npm install"
+            sh "export NODE_OPTIONS=\"--max_old_space_size=30000\""
           }
         }
       }
@@ -41,7 +42,7 @@
                   steps {
                     container('nodejs'){
                       echo "Run E2E Tests"
-                      sh "npm run e2e:ci"
+                      sh "npm run e2e"
                     }
                   }
                 }
@@ -49,7 +50,7 @@
                   steps {
                       container('nodejs'){
                         echo "Run Unit Tests && Build"
-                        sh "npm run test:cijenkins && npm run build:prod"
+                        sh "npm run test && npm run build prod"
                       }
                   }
                 }
@@ -72,7 +73,7 @@
             sh "npm install"
             sh "npm install @alfresco/adf-cli@alpha"
             sh "./node_modules/@alfresco/adf-cli/bin/adf-cli update-commit-sha --pointer \"HEAD\" --pathPackage \"\$(pwd)\""
-            sh "npm run build:prod"
+            sh "npm run build prod"
 
             dir("./charts/$APP_NAME") {
               retry(5) {

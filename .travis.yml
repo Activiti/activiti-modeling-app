@@ -23,7 +23,7 @@ env:
 jobs:
     include:
         - stage: Community build and Enterprise update
-          script: npm run lint && npm run package:sdk
+          script: npm run lint
           name: Lint & Package SDK
 
 # Send coverage data to codecov

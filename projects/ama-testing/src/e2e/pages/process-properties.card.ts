@@ -74,6 +74,7 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async editProcessVariables() {
+        await BrowserVisibility.waitUntilElementIsClickable(this.editVariables);
         await BrowserActions.click(this.editVariables);
     }
 
@@ -118,7 +119,19 @@ export class ProcessPropertiesCard extends GenericPage {
     async setForm(formName: string) {
         await BrowserActions.click(this.formSelector);
         const formOption = element(by.cssContainingText('.mat-option-text', formName));
-        await BrowserActions.click(formOption);
+        // Workaround:
+        // Click on Form selectbox until the list of forms is populated.
+        let i = 0;
+        try {
+            while (await BrowserVisibility.waitUntilElementIsNotVisible(formOption, 500) && i < 5) {
+                Logger.info('Select form try #', ++i);
+                await BrowserActions.click(this.formSelector);
+                await BrowserActions.click(this.formSelector);
+            }
+        } catch (error) {
+            Logger.info('Form list is loaded. Item can be selected.');
+            await BrowserActions.click(formOption);
+        }
     }
 
     async setActivity(activityName: string) {

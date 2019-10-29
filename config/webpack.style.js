@@ -2,7 +2,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const path = require('path');
 
 const extractScss = new ExtractTextPlugin('../lib/core/prebuilt-themes/[name].css');
-const libDir = '../alfresco-ng2-components/lib';
+const libDir = '../../../alfresco-ng2-components/lib';
 
 module.exports = {
 

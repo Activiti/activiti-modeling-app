@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-cd "$DIR/../"
+WORKING_DIR=`pwd`
+PROJECT_DIR=$WORKING_DIR
 BROWSER_RUN=false
 DEVELOPMENT=false
 EXECLINT=false
@@ -18,9 +19,11 @@ show_help() {
     echo "-p or --password"
     echo "-identity_admin_email"
     echo "-identity_admin_password"
+    echo "-project or --project set directory of project, to test (where package.json is)"
     echo "-e or --email"
     echo "-b or --browser run the test in the browser (No headless mode)"
     echo "-s or --specs run a single test file"
+    echo "-su or --suite run a protractor suite"
     echo "-f or --folder run a single folder test"
     echo "--seleniumServer configure a selenium server to use to run the e2e test"
     echo "-proxy or --proxy proxy Back end URL to use only possible to use with -dev option"
@@ -82,6 +85,15 @@ set_host_identity(){
 set_specs(){
     LIST_SPECS=$1
     export LIST_SPECS=$LIST_SPECS
+}
+
+set_suite(){
+    SUITE="--suite=$1"
+    export SUITE=$SUITE
+}
+
+set_project(){
+    PROJECT_DIR=$1
 }
 
 set_browser(){
@@ -155,6 +167,7 @@ while [[ $1 == -* ]]; do
       -h|--help|-\?) show_help; exit 0;;
       -u|--username)  set_username $2; shift 2;;
       -p|--password)  set_password $2; shift 2;;
+      -project|--project)  set_project $2; shift 2;;
       -identity_admin_email)  set_identity_admin_email $2; shift 2;;
       -identity_admin_password)  set_identity_admin_password $2; shift 2;;
       -f|--folder)  set_test_folder $2; shift 2;;
@@ -163,6 +176,7 @@ while [[ $1 == -* ]]; do
       -env|--env)   set_env $2; shift 2;;
       -dev|--dev)  set_development; shift;;
       -s|--specs)  set_specs $2; shift 2;;
+      -su|--suite)  set_suite $2; shift 2;;
       -db|--debug) debug; shift;;
       -ud|--use-dist)  lite_server; shift;;
       -save)   set_save_screenshot; shift;;
@@ -180,6 +194,8 @@ while [[ $1 == -* ]]; do
     esac
 done
 
+PATH="$PROJECT_DIR/node_modules/.bin:$WORKING_DIR/node_modules/.bin:$PATH"
+cd "$PROJECT_DIR"
 rm -rf ./e2e-output/downloads/
 rm -rf ./e2e-output/screenshots/
 rm -rf ./tmp/
@@ -192,29 +208,26 @@ if $EXEC_VERSION_JSAPI == true; then
 fi
 
 if [[  $EXECLINT == "true" ]]; then
-    npm run lint-e2e || exit 1
+    tsc -p ./e2e/tsconfig.e2e.json && tslint -p ./e2e/tsconfig.e2e.json -c ./e2e/tslint.json || exit 1
 fi
-
-echo "====== Update webdriver-manager ====="
-./node_modules/protractor/bin/webdriver-manager update --gecko=false
 
 if [[  $DEVELOPMENT == "true" ]]; then
     echo "====== Run against local development  ====="
-    npm run e2e || exit 1
+    ng e2e $SUITE || exit 1
 else
     if [[  $LITESERVER == "true" ]]; then
         echo "====== Run dist in lite-server ====="
+        ls "./dist/app" || exit 1
 
-        ls dist/app || exit 1
+        node "$DIR/app-config-replace.js"
 
-        npm run postbuild:ci
-
-        ./node_modules/lite-server/bin/lite-server --baseDir='./dist/app' -c ./e2e/lite-server-proxy.js >/dev/null & ./node_modules/protractor/bin/protractor e2e/protractor.conf.ts || exit 1
+        lite-server --baseDir='./dist/app' -c ./e2e/lite-server-proxy.js > /dev/null &\
+        protractor e2e/protractor.conf.ts $SUITE || exit 1
      else
         if [[  $DEBUG == "true" ]]; then
-            node --inspect-brk ./node_modules/protractor/bin/protractor  e2e/pprotractor.conf.ts || exit 1
+            node --inspect-brk protractor e2e/protractor.conf.ts $SUITE || exit 1
         else
-            ./node_modules/protractor/bin/protractor  e2e/protractor.conf.ts || exit 1
+            protractor e2e/protractor.conf.ts $SUITE || exit 1
         fi
     fi
 fi

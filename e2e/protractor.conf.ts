@@ -59,8 +59,16 @@ exports.config = {
     specs: arraySpecs,
 
     suites: {
-        test: [
-            './tests/connector/export-connector.e2e.ts'
+        'connector+log-history': [
+            './tests/connector/**/*.e2e.ts',
+            './tests/log-history/**/*.e2e.ts'
+        ],
+        'process': [
+            './tests/process/**/*.e2e.ts'
+        ],
+        'project+login-logout': [
+            './tests/project/**/*.e2e.ts',
+            './tests/login-logout/**/*.e2e.ts'
         ]
     },
 

@@ -44,7 +44,7 @@ Run the script above for the development server. Navigate to `http://localhost:4
 ### Development server with local ADF components
 
 ```bash
-$ npm run start:adfdev
+$ npm run start adfdev
 ```
 
 Run the script above for the development server using the local ADF components. For this to work properly you must have to chek out the [Alfresco Application Development Framework (ADF)](https://github.com/Alfresco/alfresco-ng2-components) to the same parent directory which contains this repository too. Like this:
@@ -58,7 +58,7 @@ After starting the dev server, navigate to `http://localhost:4100/` (opens by de
 ### Production server
 
 ```bash
-$ npm run start:prod
+$ npm run start prod
 ```
 
 Run the script above for the production server. This command is only intended to be used when running on the target environment.
@@ -78,13 +78,13 @@ $ npm run build
 ### Development build with local ADF components
 
 ```bash
-$ npm run build:adfdev
+$ npm run build adfdev
 ```
 
 ### Production build
 
 ```bash
-$ npm run build:prod
+$ npm run build prod
 ```
 
 ### Running in Docker

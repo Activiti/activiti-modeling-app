@@ -5,13 +5,17 @@ const fs = require('fs-extra');
 const config = require('../config');
 const retry = require('protractor-retry').retry;
 const configTs = require(__dirname + '/../../tsconfig.e2e.json');
-const failFast = require('../utils/fail-fast');
+const SmartRunner = require('protractor-smartrunner');
 
 function onPrepare() {
 
-    retry.onPrepare();
-
-    jasmine.getEnv().addReporter(failFast.init());
+    if (process.env.CI) {
+        retry.onPrepare();
+        SmartRunner.apply({
+            outputDirectory: process.env.COMMUNITY_SMARTRUNNER_DIR || './.protractor-smartrunner',
+            repoHash: process.env.GIT_HASH
+        });
+    }
 
     require('ts-node').register({ project: './e2e/tsconfig.e2e.json' });
     require('tsconfig-paths').register({baseUrl: './e2e', paths: configTs.compilerOptions.paths});

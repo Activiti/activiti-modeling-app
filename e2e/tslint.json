@@ -1,6 +1,6 @@
 {
   "extends": "../tslint.json",
   "rules": {
-     "no-floating-promises": true
+    "no-floating-promises": true
   }
 }

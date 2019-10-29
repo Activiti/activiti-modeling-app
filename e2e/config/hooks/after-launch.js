@@ -24,7 +24,9 @@ async function afterLaunch(statusCode) {
         console.log(`Status code is ${statusCode}, no need to save screenshots.`);
     }
 
-    return retry.afterLaunch(4);
+    if (process.env.CI) {
+        return retry.afterLaunch(4);
+    }
 }
 
 module.exports = afterLaunch;
