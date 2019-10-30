@@ -56,7 +56,7 @@ describe('Log history', () => {
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        project = await backend.project.createAndWaitUntilAvailable();
+        project = await backend.project.create();
     });
 
     beforeAll(async () => {

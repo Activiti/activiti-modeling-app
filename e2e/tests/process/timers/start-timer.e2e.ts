@@ -42,7 +42,7 @@ describe('Boundary Timer - Non-Interrupting', async () => {
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        project = await backend.project.createAndWaitUntilAvailable();
+        project = await backend.project.create();
 
         loginPage = LoginPage.get();
         await loginPage.navigateTo();

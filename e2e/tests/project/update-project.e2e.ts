@@ -42,7 +42,7 @@ describe('Update project', () => {
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        app = await backend.project.createAndWaitUntilAvailable();
+        app = await backend.project.create();
     });
 
     beforeAll(async () => {

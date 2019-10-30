@@ -47,7 +47,7 @@ describe('Update connector', async () => {
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        project = await backend.project.createAndWaitUntilAvailable();
+        project = await backend.project.create();
     });
 
     beforeAll(async () => {
@@ -59,7 +59,7 @@ describe('Update connector', async () => {
 
     beforeEach(async () => {
         /* cspell: disable-next-line */
-        connector = await backend.connector.createAndWaitUntilAvailable(project.entry.id, 'qaconnector');
+        connector = await backend.connector.create(project.entry.id, 'qaconnector');
     });
 
     beforeEach(async () => {

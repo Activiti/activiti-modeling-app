@@ -48,11 +48,11 @@ describe('List processes', async () => {
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
 
-        project1 = await backend.project.createAndWaitUntilAvailable();
-        process1 = await backend.process.createAndWaitUntilAvailable(project1.entry.id);
+        project1 = await backend.project.create();
+        process1 = await backend.process.create(project1.entry.id);
 
-        project2 = await backend.project.createAndWaitUntilAvailable();
-        process2 = await backend.process.createAndWaitUntilAvailable(project2.entry.id);
+        project2 = await backend.project.create();
+        process2 = await backend.process.create(project2.entry.id);
     });
 
     beforeAll(async () => {

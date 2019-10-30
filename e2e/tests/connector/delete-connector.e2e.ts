@@ -45,7 +45,7 @@ describe('Delete connector', () => {
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        app = await backend.project.createAndWaitUntilAvailable();
+        app = await backend.project.create();
     });
 
     beforeAll(async () => {
@@ -56,7 +56,7 @@ describe('Delete connector', () => {
 
     beforeEach( async() => {
         /* cspell: disable-next-line */
-        connector = await backend.connector.createAndWaitUntilAvailable(app.entry.id, 'qaconnector');
+        connector = await backend.connector.create(app.entry.id, 'qaconnector');
     });
 
     beforeEach(async () => {

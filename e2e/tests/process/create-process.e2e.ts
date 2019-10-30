@@ -62,7 +62,7 @@ describe('Create process', async () => {
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        project = await backend.project.createAndWaitUntilAvailable();
+        project = await backend.project.create();
     });
 
     beforeAll(async () => {
@@ -99,8 +99,8 @@ describe('Create process', async () => {
     });
 
     it('[C289324] Create process with CallActivity', async () => {
-        process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
-        callActivityProcess = await backend.process.createAndWaitUntilAvailable(project.entry.id);
+        process = await backend.process.create(project.entry.id);
+        callActivityProcess = await backend.process.create(project.entry.id);
 
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
@@ -123,7 +123,7 @@ describe('Create process', async () => {
     });
 
     it('[C311460] Create a process with User Task with the assignee', async () => {
-        process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
+        process = await backend.process.create(project.entry.id);
 
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
@@ -145,7 +145,7 @@ describe('Create process', async () => {
 
 
     it('[C311461] Create a process with User Task with the candidate user', async () => {
-        process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
+        process = await backend.process.create(project.entry.id);
 
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
@@ -167,7 +167,7 @@ describe('Create process', async () => {
     });
 
     it('[C311462] Create a process with User Task with the candidate group', async () => {
-        process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
+        process = await backend.process.create(project.entry.id);
 
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();

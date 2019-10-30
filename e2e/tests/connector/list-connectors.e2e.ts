@@ -47,10 +47,10 @@ describe('List connectors', async () => {
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        project1 = await backend.project.createAndWaitUntilAvailable();
+        project1 = await backend.project.create();
         /* cspell: disable-next-line */
         connector1 = await backend.connector.create(project1.entry.id, 'qaconnector1');
-        project2 = await backend.project.createAndWaitUntilAvailable();
+        project2 = await backend.project.create();
         /* cspell: disable-next-line */
         connector2 = await backend.connector.create(project2.entry.id, 'qaconnector2');
     });

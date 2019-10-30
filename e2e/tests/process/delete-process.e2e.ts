@@ -45,7 +45,7 @@ describe('Delete process', () => {
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        project = await backend.project.createAndWaitUntilAvailable();
+        project = await backend.project.create();
     });
 
     beforeAll(async () => {
@@ -55,7 +55,7 @@ describe('Delete process', () => {
     });
 
     beforeEach(async () => {
-        process = await backend.process.createAndWaitUntilAvailable(project.entry.id);
+        process = await backend.process.create(project.entry.id);
         projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         await projectContentPage.navigateTo();
         await expect(await projectContentPage.isModelInList('process', process.entry.name)).toBe(true, 'Process should be in the left sidebar');

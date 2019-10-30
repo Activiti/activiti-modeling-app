@@ -47,7 +47,7 @@ describe('Export project', () => {
 
     beforeEach(async () => {
         backend = await getBackend(testConfig).setUp();
-        project = await backend.project.createAndWaitUntilAvailable();
+        project = await backend.project.create();
     });
 
     beforeEach(async () => {
