@@ -51,3 +51,11 @@ export const mockProcess: Process = deepFreeze({
         mappings
     }
 });
+
+export const validateError: any = JSON.stringify({
+    error: 'Bad Request',
+    message: 'Parse Error',
+    path: '/modeling-service/v1/models/3fcbcd81-7d83-4fa6-b31d-1db580b116ea/validate',
+    status: 400,
+    timestamp: '2019-09-18T12:37:30.055+0000'
+});

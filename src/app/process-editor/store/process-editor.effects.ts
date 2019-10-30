@@ -86,6 +86,7 @@ import { Process, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
 import { selectSelectedProjectId, AmaState, selectSelectedProcess, createProcessName } from 'ama-sdk';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
 import { logError, logInfo } from 'ama-sdk';
+import { ProcessValidationResponse, ProcessError } from './process-editor.state';
 
 @Injectable()
 export class ProcessEditorEffects extends BaseEffects {
@@ -234,7 +235,7 @@ export class ProcessEditorEffects extends BaseEffects {
         return this.processEditorService.validate(payload.processId, payload.content, payload.extensions).pipe(
             switchMap(() => [new LoadApplicationAction(true), payload.action, new LoadApplicationAction(false)]),
             catchError(response => {
-                const errors = JSON.parse(response.message).errors ? JSON.parse(response.message).errors.map(error => error.description) : [JSON.parse(response.message).message];
+                const errors = this.handleProcessValidationError(JSON.parse(response.message));
                 return [
                     new OpenConfirmDialogAction({
                         dialogData: {
@@ -367,5 +368,12 @@ export class ProcessEditorEffects extends BaseEffects {
         }
 
         return of(new SnackbarErrorAction(errorMessage));
+    }
+
+    private handleProcessValidationError(response: ProcessValidationResponse): string[] {
+        if (response.errors) {
+            return response.errors.map( (error: ProcessError) => error.description);
+        }
+        return [response.message];
     }
 }

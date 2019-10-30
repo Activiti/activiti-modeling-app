@@ -36,10 +36,11 @@ import {
     GET_PROCESSES_ATTEMPT,
     CreateProcessSuccessAction,
     UploadProcessAttemptAction,
-    UpdateProcessFailedAction
+    UpdateProcessFailedAction,
+    ValidateProcessAttemptAction
 } from './process-editor.actions';
 import { throwError, of, Observable } from 'rxjs';
-import { mockProcess } from './process.mock';
+import { mockProcess, validateError } from './process.mock';
 import {
     AmaApi,
     AmaAuthenticationService,
@@ -55,7 +56,10 @@ import {
     ProcessModelerServiceToken,
     selectSelectedProjectId,
     logInfo,
-    LoadApplicationAction
+    LoadApplicationAction,
+    ProcessExtensionsContent,
+    OpenConfirmDialogAction,
+    logError
 } from 'ama-sdk';
 import { ProcessEntitiesState } from './process-entities.state';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
@@ -188,6 +192,14 @@ describe('ProcessEditorEffects', () => {
             metadata: { name: mockProcess.name, description: mockProcess.description }
         };
 
+        const mockValidatePayload = {
+            title: 'mock title',
+            processId: mockProcess.id,
+            content: 'diagramData',
+            extensions: <ProcessExtensionsContent> {},
+            action: new UpdateProcessAttemptAction(mockActionPayload)
+        };
+
         beforeEach(() => {
             process = <Process>mockProcess;
         });
@@ -226,6 +238,27 @@ describe('ProcessEditorEffects', () => {
             });
 
             expect(effects.updateProcessEffect).toBeObservable(expected);
+        });
+
+        it('should handle general general string error message', () => {
+            processEditorService.validate = jest.fn().mockReturnValue(throwError(new Error(validateError)));
+            actions$ = hot('a', { a: new ValidateProcessAttemptAction(mockValidatePayload) });
+            const expectedLogAction = logError(getProcessLogInitiator(), ['Parse Error']);
+            expectedLogAction.log.datetime = (<any>expect).any(Date);
+
+            const expected = cold('(bc)', {
+                b: new OpenConfirmDialogAction({
+                    dialogData: {
+                        title: mockValidatePayload.title,
+                        subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
+                        errors: ['Parse Error']
+                    },
+                    action: mockValidatePayload.action
+                }),
+                c: expectedLogAction
+            });
+
+            expect(effects.validateProcessEffect).toBeObservable(expected);
         });
 
         it('should trigger the right action on unsuccessful update', () => {

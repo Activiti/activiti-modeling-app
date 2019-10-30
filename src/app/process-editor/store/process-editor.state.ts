@@ -45,6 +45,24 @@ export interface ProcessEditorState {
     toolbar: ToolbarState;
 }
 
+
+export interface ProcessValidationResponse {
+    error: string;
+    errors: ProcessError[];
+    message: string;
+    path: string;
+    status: number;
+    timestamp: string;
+}
+
+export interface ProcessError {
+    description: string;
+    errorCode: string;
+    problem: string;
+    validatorSetName?: string;
+    warning?: boolean;
+}
+
 export const processAdapter = createEntityAdapter<Process>();
 
 export function getInitialProcessEditorState(): ProcessEditorState {
