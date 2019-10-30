@@ -70,9 +70,9 @@
     "jest.config.js"
   ],
   "dependencies": {
-    "@alfresco/adf-core": "3.5.0",
-    "@alfresco/adf-extensions": "3.5.0",
-    "@alfresco/js-api": "3.6.0-30c45018502e789b5f32210201829125b285bcce",
+    "@alfresco/adf-core": "3.6.0-beta4",
+    "@alfresco/adf-extensions": "3.6.0-beta4",
+    "@alfresco/js-api": "3.6.0-beta3",
     "@angular/animations": "^7.2.15",
     "@angular/cdk": "7.3.7",
     "@angular/common": "^7.2.15",
@@ -127,8 +127,8 @@
     "zone.js": "0.8.29"
   },
   "devDependencies": {
-    "@alfresco/adf-cli": "3.5.0",
-    "@alfresco/adf-testing": "3.5.0",
+    "@alfresco/adf-cli": "3.6.0-beta4",
+    "@alfresco/adf-testing": "3.6.0-beta4",
     "@angular-builders/jest": "^7.4.4",
     "@angular-devkit/build-angular": "~0.13.0",
     "@angular-devkit/build-ng-packagr": "0.13.2",
