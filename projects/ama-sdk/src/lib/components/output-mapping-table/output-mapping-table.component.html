@@ -1,38 +1,39 @@
-<mat-table [dataSource]="dataSource" data-automation-id="output-mapping-table">
+<mat-table [dataSource]="dataSource"
+           data-automation-id="output-mapping-table">
     <ng-container matColumnDef="name">
-        <mat-header-cell data-automation-id="table-header-cell-name" *matHeaderCellDef>{{ 'SDK.VARIABLE_MAPPING.PARAMETER' | translate }}</mat-header-cell>
-        <mat-cell
-            *matCellDef="let parameter"
-            matTooltip="{{ parameter.description + ' (type: ' + parameter.type + ')' }}"
-            matTooltipPosition="before"
-            matTooltipShowDelay="1000"
-            [attr.data-automation-id]="'param-id-' + parameter.id">
+        <mat-header-cell data-automation-id="table-header-cell-name"
+                         *matHeaderCellDef>{{ 'SDK.VARIABLE_MAPPING.PARAMETER' | translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let parameter"
+                  matTooltip="{{ parameter.description + ' (type: ' + parameter.type + ')' }}"
+                  matTooltipPosition="before"
+                  matTooltipShowDelay="1000"
+                  [attr.data-automation-id]="'param-id-' + parameter.id">
             <span>{{ parameter.label || parameter.name }}</span>
         </mat-cell>
     </ng-container>
     <ng-container matColumnDef="process-variable">
-        <mat-header-cell data-automation-id="table-header-cell-process-variables" *matHeaderCellDef>
+        <mat-header-cell data-automation-id="table-header-cell-process-variables"
+                         *matHeaderCellDef>
             {{ 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE' | translate }}
         </mat-header-cell>
         <mat-cell *matCellDef="let parameter">
-            <mat-select
-                *ngIf="optionsForParams[parameter.name]?.length; else noProcessPropertiesTmpl"
-                placeholder="{{ 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE' | translate }}"
-                (selectionChange)="changeSelection($event, parameter)"
-                [value]="paramName2VariableName[parameter.name]"
-                matTooltipPosition="before"
-                [attr.data-automation-id]="'variable-selector-' + parameter.id">
-                <mat-option *ngFor="let property of optionsForParams[parameter.name]" [value]="property.name">
+            <mat-select *ngIf="optionsForParams[parameter.name]?.length; else noProcessPropertiesTmpl"
+                        placeholder="{{ 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE' | translate }}"
+                        (selectionChange)="changeSelection($event, parameter)"
+                        [value]="paramName2VariableName[parameter.name]"
+                        matTooltipPosition="before"
+                        [attr.data-automation-id]="'variable-selector-' + parameter.id">
+                <mat-option *ngFor="let property of optionsForParams[parameter.name]"
+                            [value]="property.name">
                     {{ property.name }}
                 </mat-option>
             </mat-select>
-            <mat-icon
-                [attr.data-automation-id]="'clear-icon-' + parameter.id"
-                matTooltip="{{ 'SDK.VARIABLE_MAPPING.CLEAR_ASSIGNMENT' | translate }}"
-                matTooltipPosition="before"
-                matTooltipShowDelay="1000"
-                (click)="clearSelection(parameter.name)"
-                class="amasdk-input-mapping-table__mapping-icon">clear
+            <mat-icon [attr.data-automation-id]="'clear-icon-' + parameter.id"
+                      matTooltip="{{ 'SDK.VARIABLE_MAPPING.CLEAR_ASSIGNMENT' | translate }}"
+                      matTooltipPosition="before"
+                      matTooltipShowDelay="1000"
+                      (click)="clearSelection(parameter.name)"
+                      class="amasdk-input-mapping-table__mapping-icon">clear
             </mat-icon>
         </mat-cell>
     </ng-container>
