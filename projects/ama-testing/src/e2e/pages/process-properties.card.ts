@@ -38,7 +38,7 @@ export class ProcessPropertiesCard extends GenericPage {
     readonly connectorSelector = element(by.css(`[data-automation-id="connector-selector"]`));
     readonly connectorActionSelector = element(by.css(`[data-automation-id="connector-action-selector"]`));
     readonly formSelector = element(by.css(`[data-automation-id="form-selector"]`));
-    readonly activitySelector = element(by.css(`.mat-select`));
+    readonly activitySelector = element(by.css(`.called-element-block .mat-select`));
     readonly decisionTableSelector = element(by.css(`[data-automation-id="decision-table-selector"]`));
     readonly inputMappingHeader = element(by.cssContainingText(`[data-automation-id="input-mapping-header"]`, `Input mapping:`));
     readonly outputMappingHeader = element(by.cssContainingText(`[data-automation-id="output-mapping-header"]`, `Output mapping:`));

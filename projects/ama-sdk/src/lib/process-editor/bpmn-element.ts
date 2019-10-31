@@ -40,6 +40,7 @@ export enum BpmnElement {
     UserTask = 'bpmn:UserTask',
     CallActivity = 'bpmn:CallActivity',
     SubProcess= 'bpmn:SubProcess',
-    MultiInstanceLoopCharacteristics= 'bpmn:MultiInstanceLoopCharacteristics',
-    Expression= 'bpmn:Expression',
+    MultiInstanceLoopCharacteristics = 'bpmn:MultiInstanceLoopCharacteristics',
+    Expression = 'bpmn:Expression',
+    Task = 'bpmn:Task'
 }

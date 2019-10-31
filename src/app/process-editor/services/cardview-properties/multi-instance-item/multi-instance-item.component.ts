@@ -123,10 +123,12 @@ export class CardViewMultiInstanceItemComponent implements OnInit {
     validateExpression(formGroup: FormGroup) {
         const cardinalityControl = formGroup.controls['cardinality'], elementControl =  formGroup.controls['elementVariable'];
         const expression: RegExp = /{([^}]+)}/;
-        const isValidCardinality: boolean = expression.test(cardinalityControl.value) || _isNumberValue(cardinalityControl.value);
-        cardinalityControl.setErrors(isValidCardinality ? null : {
-            message: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_CARDINALITY'
-        });
+        if (cardinalityControl.value) {
+            const isValidCardinality: boolean = expression.test(cardinalityControl.value) || _isNumberValue(cardinalityControl.value);
+            cardinalityControl.setErrors(isValidCardinality ? null : {
+                message: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_CARDINALITY'
+            });
+        }
         const isValidElementVariable: boolean = !_isNumberValue(elementControl.value);
         elementControl.setErrors(isValidElementVariable ? null : {
             message: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_ELEMENT_VARIABLE'

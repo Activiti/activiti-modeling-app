@@ -117,12 +117,14 @@ export const elementsProperties = {
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
+        BpmnProperty.multiInstanceType,
         ...(isDecisionTask(element) ? [ BpmnProperty.decisionTask ] : [BpmnProperty.implementation])
     ],
     [BpmnElement.CallActivity]: [
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
+        BpmnProperty.multiInstanceType,
         BpmnProperty.calledElement
     ],
     [BpmnElement.UserTask]: [
@@ -133,6 +135,7 @@ export const elementsProperties = {
         BpmnProperty.candidateUsers,
         BpmnProperty.candidateGroups,
         BpmnProperty.dueDate,
+        BpmnProperty.multiInstanceType,
         BpmnProperty.priority,
         BpmnProperty.formKey
     ],
@@ -146,5 +149,11 @@ export const elementsProperties = {
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation
+    ],
+    [BpmnElement.Task]: [
+        BpmnProperty.id,
+        BpmnProperty.name,
+        BpmnProperty.documentation,
+        BpmnProperty.multiInstanceType
     ]
 };
