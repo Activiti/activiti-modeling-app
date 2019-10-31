@@ -138,6 +138,11 @@ export class VariablesDialog extends GenericDialog {
         return true;
     }
 
+    async checkNoRowIsDisplayed(): Promise<void> {
+        const row = element(by.css('.mat-row'));
+        await BrowserVisibility.waitUntilElementIsNotVisible(row);
+    }
+
     async isVariableDisplayed(rowIndex: number, name: string = 'name', type: string = 'string', value: string = '', required: string = 'false'): Promise<boolean> {
         return this.isFormVariableDisplayed(rowIndex, name, type, value, required);
     }
@@ -154,6 +159,19 @@ export class VariablesDialog extends GenericDialog {
         await BrowserActions.click(this.updateButton);
     }
 
+    async isUpdateButtonEnabled(): Promise<boolean> {
+        return this.updateButton.isEnabled();
+    }
+
+    async isAddButtonEnabled(): Promise<boolean> {
+        return this.add.isEnabled();
+    }
+
+    async isValidationErrorDisplayed(errorMessage: string): Promise<boolean> {
+        const validationError = element(by.cssContainingText('.mat-error', errorMessage));
+        await BrowserVisibility.waitUntilElementIsVisible(validationError);
+        return true;
+    }
     async close(): Promise<void> {
         await BrowserActions.click(this.closeButton);
         await super.isDialogDismissed();
