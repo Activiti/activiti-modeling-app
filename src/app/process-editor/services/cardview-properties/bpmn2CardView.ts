@@ -42,6 +42,7 @@ import { createMessageProperty } from './message-cardview-property';
 import { createCorrelationKeyProperty } from './correlationKey-cardview-property';
 import { createProcessMessagesProperty } from './process-messages-item-property';
 import { createMultiInstanceProperty } from './multi-instance-cardview-property';
+import { createMessagePayloadProperty } from './messagePayload-cardview-property';
 
 export const bpmn2cardView = {
     [BpmnProperty.id]: createIdProperty,
@@ -69,5 +70,6 @@ export const bpmn2cardView = {
     [BpmnProperty.messageRef]: createMessageProperty,
     [BpmnProperty.messages]: createProcessMessagesProperty,
     [BpmnProperty.correlationKey]: createCorrelationKeyProperty,
-    [BpmnProperty.multiInstanceType]: createMultiInstanceProperty
+    [BpmnProperty.multiInstanceType]: createMultiInstanceProperty,
+    [BpmnProperty.messagePayload]: createMessagePayloadProperty
 };

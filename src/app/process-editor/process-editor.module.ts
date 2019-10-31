@@ -90,6 +90,8 @@ import { MessagesDialogComponent } from 'ama-sdk/src/lib/messages/messages-dialo
 import { MessagesService } from 'ama-sdk/src/lib/messages/messages.service';
 import { CardViewMultiInstanceItemComponent } from './services/cardview-properties/multi-instance-item/multi-instance-item.component';
 import { ClipboardService } from './services/clipboard/clipboard.service';
+import { CardViewMessagePayloadItemComponent } from './services/cardview-properties/message-payload-item/message-payload-item.component';
+import { CardViewMessageVariableMappingComponent } from './services/cardview-properties/message-variable-mapping/message-variable-mapping.component';
 
 @NgModule({
     imports: [
@@ -129,8 +131,9 @@ import { ClipboardService } from './services/clipboard/clipboard.service';
         CardViewErrorRefItemComponent,
         CardViewTimerDefinitionItemComponent,
         CardViewMessageItemComponent,
+        CardViewMessageVariableMappingComponent,
         CardViewProcessMessagesItemComponent,
-        CardViewMessageItemComponent,
+        CardViewMessagePayloadItemComponent,
         CardViewMultiInstanceItemComponent
     ],
     entryComponents: [
@@ -143,10 +146,12 @@ import { ClipboardService } from './services/clipboard/clipboard.service';
         CardViewCalledItemItemComponent,
         CardViewTimerDefinitionItemComponent,
         CardViewMessageItemComponent,
+        CardViewMessageVariableMappingComponent,
         CardViewProcessMessagesItemComponent,
         ProcessEditorComponent,
         MessagesDialogComponent,
-        CardViewMultiInstanceItemComponent
+        CardViewMultiInstanceItemComponent,
+        CardViewMessagePayloadItemComponent
     ],
     exports: [ProcessEditorRoutingModule],
     providers: [
@@ -176,6 +181,7 @@ import { ClipboardService } from './services/clipboard/clipboard.service';
         providePropertyHandler(BpmnProperty.messageRef, CardViewMessageItemComponent),
         providePropertyHandler(BpmnProperty.messages, CardViewProcessMessagesItemComponent),
         providePropertyHandler(BpmnProperty.multiInstanceType, CardViewMultiInstanceItemComponent),
+        providePropertyHandler(BpmnProperty.messagePayload, CardViewMessagePayloadItemComponent),
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider(),
@@ -183,9 +189,7 @@ import { ClipboardService } from './services/clipboard/clipboard.service';
     ]
 })
 export class ProcessEditorModule {
-    constructor(
-        codeEditorService: CodeEditorService
-    ) {
+    constructor(codeEditorService: CodeEditorService) {
         codeEditorService.addSchema('processExtensionSchema', getFileUriPattern(PROCESS, 'json'), extensionsSchema);
         codeEditorService.addSchema('processVariableSchema', getFileUriPattern(PROCESS_VARIABLES, 'json'), propertiesSchema);
     }

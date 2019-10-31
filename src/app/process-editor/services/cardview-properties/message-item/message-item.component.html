@@ -18,4 +18,10 @@
         <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_NAME' | translate }}</div>
         <input matInput (change)="onMessageChange()" [(ngModel)]="selectedMessage.name" />
     </mat-form-field>
+
+    <ama-message-variable-mapping
+        *ngIf="selectedMessage && isCatchEvent()"
+        [message]="selectedMessage"
+        [property]="property">
+    </ama-message-variable-mapping>
 </div>

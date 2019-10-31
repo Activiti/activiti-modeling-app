@@ -1,0 +1,102 @@
+<div class="message-payload-block">
+    <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.TITLE' | translate }}</div>
+    <mat-list *ngIf="payloadProperties.length; else noPropertiesTemplate">
+        <mat-list-item *ngFor="let property of payloadProperties; let i = index;" class="message-list-item">
+            <div class="message-list-item-properties">
+                <span class="message-list-item-label"> {{property.name}} </span>
+                <div class="message-item-cell">
+                    <span class="message-list-item-type">
+                        {{property.type}}: </span> {{ property.value}}
+                </div>
+            </div>
+            <mat-icon class="messages-payload-remove-button" (click)="deleteProperty(i)">remove_circle</mat-icon>
+        </mat-list-item>
+    </mat-list>
+
+    <div class="messages-payload-add-button" *ngIf="!showPropertyForm">
+        <button mat-button color="primary" class="messages-payload-add-button-label" (click)="addNewProperty()">
+            {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.CREATE_PROPERTY' | translate }}
+        </button>
+    </div>
+
+    <div *ngIf="showPropertyForm" id="show-property-form">
+        <mat-form-field>
+            <div class="adf-property-label">
+                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.FORM.NAME' | translate }}
+            </div>
+            <input matInput [(ngModel)]="propertyName" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <div class="adf-property-label">
+                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.FORM.TYPE' | translate }}
+            </div>
+            <mat-select (selectionChange)="onTypeChanged($event)">
+                <mat-option></mat-option>
+                <mat-option *ngFor="let type of typeOptions" [value]="type">
+                    {{type}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="selectedType" [ngSwitch]="selectedType">
+            <mat-form-field *ngSwitchCase="'string'">
+                <div class="adf-property-label">
+                    {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.FORM.VALUE' | translate }}
+                </div>
+                <input matInput [(ngModel)]="propertyValue" />
+            </mat-form-field>
+
+            <mat-form-field *ngSwitchCase="'integer'">
+                <div class="adf-property-label">
+                    {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.FORM.VALUE' | translate }}
+                </div>
+                <input matInput type="number" [(ngModel)]="propertyValue" />
+            </mat-form-field>
+
+            <mat-form-field *ngSwitchCase="'date'">
+                <div class="adf-property-label">
+                    {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.FORM.VALUE' | translate }}
+                </div>
+                <input matInput [matDatepicker]="picker" data-automation-id='valueField'
+                    (dateChange)="onDateChanged($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field *ngSwitchCase="'boolean'">
+                <div class="adf-property-label">
+                    {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.FORM.VALUE' | translate }}
+                </div>
+                <mat-select [(ngModel)]="propertyValue">
+                    <mat-option></mat-option>
+                    <mat-option *ngFor="let booleanOption of booleanOptions" [value]="booleanOption">
+                        {{booleanOption}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field *ngSwitchCase="'variable'">
+                <div class="adf-property-label">
+                    {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.FORM.PROCESS_VARIABLE' | translate }}
+                </div>
+                <mat-select [(ngModel)]="selectedProcessVariable">
+                    <mat-option></mat-option>
+                    <mat-option *ngFor="let processVariable of processVariables" [value]="processVariable.name">
+                        {{processVariable.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="messages-payload-add-button">
+            <button mat-button color="primary" (click)="saveProperty()" [disabled]="!isSaveButtonEnabled()">
+                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.ADD' | translate }}
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<ng-template #noPropertiesTemplate>
+    <p>{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.NO_PROPERTIES' | translate}}</p>
+</ng-template>

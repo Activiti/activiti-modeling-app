@@ -61,7 +61,12 @@ export const elementsProperties = {
         BpmnProperty.name,
         BpmnProperty.documentation,
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : []),
-        ...(isSignalEvent(element) && haveSignalRef(element) ? [ BpmnProperty.signalScope ] : [])
+        ...(isSignalEvent(element) && haveSignalRef(element) ? [ BpmnProperty.signalScope ] : []),
+        ...(isMessageEvent(element) ? [
+        BpmnProperty.messageRef,
+        BpmnProperty.correlationKey,
+        BpmnProperty.messagePayload
+        ] : [])
     ],
     [BpmnElement.StartEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
@@ -88,7 +93,12 @@ export const elementsProperties = {
         BpmnProperty.name,
         BpmnProperty.documentation,
         ...(isSignalEvent(element) ? [ BpmnProperty.signalRef ] : []),
-        ...(isErrorEvent(element) ? [ BpmnProperty.errorRef ] : [])
+        ...(isErrorEvent(element) ? [ BpmnProperty.errorRef ] : []),
+        ...(isMessageEvent(element) ? [
+        BpmnProperty.messageRef,
+        BpmnProperty.correlationKey,
+        BpmnProperty.messagePayload
+        ] : [])
     ],
     [BpmnElement.SequenceFlow]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,

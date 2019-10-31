@@ -1,0 +1,65 @@
+@mixin ama-message-payload-item($theme) {
+    $foreground: map-get($theme, foreground);
+    $error: map-get($theme, warn);
+
+    .message-payload-block {
+        .mat-form-field {
+            width: 100%;
+        }
+
+        .messages-payload-add-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+
+            &-label {
+                margin-left: 2px;
+            }
+        }
+
+        .message-list-item.mat-list-item {
+            font-size: 13px;
+            height: 35px !important;
+
+            .mat-list-item-content {
+                justify-content: space-between;
+            }
+
+            .mat-list-item-content {
+                padding: 0 !important;
+            }
+        }
+
+        .message-list-item-properties{
+            display: flex;
+
+            .message-list-item {
+                &-type {
+                    color: mat-color($foreground, text, 0.5);
+                }
+
+                &-label {
+                    width: 80px;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    padding-right: 5px;
+                }
+            }
+
+            .message-item-cell {
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                max-width: 180px;
+            }
+        }
+
+        .messages-payload-remove-button {
+            color: mat-color($error);
+            border-radius: 50%;
+            font-size: 17px;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+    }
+}

@@ -27,7 +27,8 @@
             "PROCESS_VARIABLE": "Process variable",
             "SWITCH_VAR_VAL": "Switch variable/value",
             "NO_PROCESS_PROPERTIES": "No process properties",
-            "CLEAR_ASSIGNMENT": "Clear assignment"
+            "CLEAR_ASSIGNMENT": "Clear assignment",
+            "NONE": "None"
         },
         "MESSAGES_EDITOR": {
             "TITLE": "Process messages",

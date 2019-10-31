@@ -42,8 +42,10 @@ export enum BpmnProperty {
     errorRef = 'errorRef',
     messageRef = 'messageRef',
     correlationKey = 'correlationKey',
-    messages = 'messages',
     multiInstanceType = 'multiInstanceType',
+    messageExpression = 'messageExpression',
+    messages = 'messages',
+    messagePayload = 'messagePayload'
 }
 
 export const PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS = new InjectionToken<ProcessEditorCustomProperty[]>('process-editor-custom-property-handlers');

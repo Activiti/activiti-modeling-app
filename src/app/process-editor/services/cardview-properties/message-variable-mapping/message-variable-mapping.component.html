@@ -1,0 +1,44 @@
+<div *ngIf="hasPayload(); else noProcessPropertiesTmpl">
+    <mat-table [dataSource]="dataSource"
+               data-automation-id="message-payload-mapping-table">
+        <ng-container matColumnDef="name">
+            <mat-header-cell data-automation-id="table-header-cell-name"
+                             *matHeaderCellDef>
+                {{ 'SDK.VARIABLE_MAPPING.PARAMETER' | translate }}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let payloadProperty"
+                      [attr.data-automation-id]="'payload-property-' + payloadProperty.name">
+                <span>
+                    {{ payloadProperty.name }}
+                </span>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="process-variable">
+            <mat-header-cell data-automation-id="table-header-cell-process-variables"
+                             *matHeaderCellDef>
+                {{ 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE' | translate }}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let payloadProperty">
+                <mat-select placeholder="{{ 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE' | translate }}"
+                            (selectionChange)="selectVariable($event.value, payloadProperty)"
+                            [(ngModel)]="paramName2VariableName[payloadProperty.name]"
+                            [value]="paramName2VariableName[payloadProperty.name]"
+                            [attr.data-automation-id]="'process-variable-selector-' + payloadProperty.name">
+                    <mat-option>{{ 'SDK.VARIABLE_MAPPING.NONE' | translate }}</mat-option>
+                    <mat-option *ngFor="let processVariable of optionsForParams[payloadProperty.name]"
+                                [value]="processVariable.name">
+                        {{ processVariable.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></mat-row>
+    </mat-table>
+</div>
+
+<ng-template #noProcessPropertiesTmpl>
+    <span class="no-process-properties-msg">{{ 'SDK.VARIABLE_MAPPING.NO_PROCESS_PROPERTIES' | translate }}</span>
+</ng-template>

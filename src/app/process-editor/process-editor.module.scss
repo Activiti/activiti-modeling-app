@@ -5,6 +5,7 @@
 @import "./services/cardview-properties/implementation-item/implementation-item.component";
 @import "./services/cardview-properties/decision-task-item/decision-task-item.component";
 @import "./services/cardview-properties/signal-ref-item/signal-ref-item.component";
+@import "./services/cardview-properties/message-payload-item/message-payload-item.component";
 @import "./services/cardview-properties/error-ref-item/error-ref-item.component";
 @import "./services/cardview-properties/timer-definition-item/timer-definition-item.component";
 @import "./services/cardview-properties/message-item/message-item.component";
@@ -22,6 +23,7 @@
     @include ama-error-ref-item($theme);
     @include ama-timer-definition-item($theme);
     @include ama-message-item($theme);
+    @include ama-message-payload-item($theme);
     @include ama-default-sequence-flow-item($theme);
     @include ama-process-editor($theme);
     @include ama-process-modeler($theme);

@@ -76,6 +76,7 @@
             "MESSAGE": "Message",
             "MESSAGE_NAME": "Message name",
             "CREATE_NEW_MESSAGE": "Create new message",
+            "MAP_MESSAGE": "Map message to process variables",
             "CORRELATION_KEY": "Correlation key",
             "CLASS": "Class",
             "DELEGATE_EXPRESSION": "Delegate expression",
@@ -89,6 +90,19 @@
             "ELEMENT_VARIABLE": "Element variable (Multi-instance)",
             "INVALID_CARDINALITY": "It should be a number or expression",
             "INVALID_ELEMENT_VARIABLE": "It should be a string",
+            "MESSAGE_EXPRESSION_INVALID": "It should be a number or expression",
+            "MESSAGE_PAYLOAD": {
+                "TITLE":"Message Payload",
+                "ADD": "Add",
+                "CREATE_PROPERTY": "Create new property",
+                "NO_PROPERTIES": "No properties in payload.",
+                "FORM":{
+                    "NAME": "Name",
+                    "TYPE": "Type",
+                    "PROCESS_VARIABLE": "Process variable",
+                    "VALUE": "Value"
+                }
+            },
             "TIMERS": {
                 "TIMER_TYPE": "Timer type",
                 "TIMER_DEFINITION": "Timer definition",

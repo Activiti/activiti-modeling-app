@@ -313,3 +313,9 @@ export interface FileExtensionsContent {
     encoding?: string;
 }
 
+export interface MessagePayload {
+    type: string;
+    value: string | number | null;
+    name: string;
+}
+
