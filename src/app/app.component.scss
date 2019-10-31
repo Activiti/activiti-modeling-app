@@ -22,4 +22,5 @@
     @include ama-connector-editor-module($theme);
     @include ama-log-history($theme);
     @include ama-editor-footer($theme);
+    @include ama-editor-footer($theme);
 }

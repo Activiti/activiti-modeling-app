@@ -1,39 +1,35 @@
-<div class="bpmn-controls bpmn-actions-controls">
-    <button
-        [title]="'PROCESS_EDITOR.ACTIONS.UNDO' | translate"
-        data-automation-class="undo-button"
-        (click)="undo()">
-        <mat-icon>undo</mat-icon>
-    </button>
-    <hr>
-    <button
-        [title]="'PROCESS_EDITOR.ACTIONS.REDO' | translate"
-        data-automation-class="redo-button"
-        (click)="redo()">
-        <mat-icon>redo</mat-icon>
-    </button>
-</div>
+<div #canvas class="canvas-editor">
+        <div class="bpmn-controls bpmn-actions-controls">
+            <button
+                [title]="'PROCESS_EDITOR.ACTIONS.UNDO' | translate"
+                data-automation-class="undo-button"
+                (click)="undo()">
+                <mat-icon>undo</mat-icon>
+            </button>
+            <hr>
+            <button
+                [title]="'PROCESS_EDITOR.ACTIONS.REDO' | translate"
+                data-automation-class="redo-button"
+                (click)="redo()">
+                <mat-icon>redo</mat-icon>
+            </button>
+        </div>
 
-<div class="bpmn-controls bpmn-middle-controls" >
-    <ng-content select="button"></ng-content>
+        <div class="bpmn-controls bpmn-zoom-controls">
+            <button
+                [title]="'PROCESS_EDITOR.ACTIONS.ZOOM_IN' | translate"
+                data-automation-class="zoom-in-button"
+                (click)="zoomIn()">
+                <mat-icon>add</mat-icon>
+            </button>
+            <hr>
+            <button
+                [title]="'PROCESS_EDITOR.ACTIONS.ZOOM_OUT' | translate" w
+                data-automation-class="zoom-out-button"
+                (click)="zoomOut()">
+                <mat-icon>remove</mat-icon>
+            </button>
+        </div>
 </div>
-
-<div class="bpmn-controls bpmn-zoom-controls">
-    <button
-        [title]="'PROCESS_EDITOR.ACTIONS.ZOOM_IN' | translate"
-        data-automation-class="zoom-in-button"
-        (click)="zoomIn()">
-        <mat-icon>add</mat-icon>
-    </button>
-    <hr>
-    <button
-        [title]="'PROCESS_EDITOR.ACTIONS.ZOOM_OUT' | translate"
-        data-automation-class="zoom-out-button"
-        (click)="zoomOut()">
-        <mat-icon>remove</mat-icon>
-    </button>
-</div>
-
-<div #canvas class="canvas-editor"></div>
 
 <ama-process-palette class="process-palette"></ama-process-palette>

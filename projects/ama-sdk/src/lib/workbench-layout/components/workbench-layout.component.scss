@@ -1,0 +1,34 @@
+@mixin workbench-layout-component($theme) {
+
+    amasdk-workbench-layout {
+        height: 100%;
+        width: 100%;
+
+        mat-sidenav {
+            width: 400px;
+            overflow: visible !important;
+        }
+    }
+
+    amasdk-workbench-layout-content {
+        padding-right: 15px;
+        height: 100%;
+    }
+
+    .amasdk-workbench-layout {
+        &-content {
+            flex: 1 1 auto;
+            position: relative;
+        }
+
+        &_button {
+            transform: rotate(90deg) translateX(-50%) translateY(-100%);
+            top: 50%;
+            touch-action: none;
+            position: absolute;
+            right: 390px;
+            visibility: visible !important;
+        }
+    }
+}
+

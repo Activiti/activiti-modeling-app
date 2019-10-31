@@ -53,7 +53,8 @@ import {
     providePropertyHandler,
     provideTranslations,
     SharedModule,
-    VariablesModule
+    VariablesModule,
+    WorkbenchLayoutModule
 } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { ProcessDiagramLoaderService } from './services/process-diagram-loader.service';
@@ -102,6 +103,7 @@ import { ClipboardService } from './services/clipboard/clipboard.service';
         }),
         StoreModule.forFeature(PROCESS_EDITOR_STATE_NAME, processEditorReducer),
         SharedModule,
+        WorkbenchLayoutModule,
         VariablesModule,
         MatTooltipModule,
         MatChipsModule,

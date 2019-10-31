@@ -6,6 +6,7 @@
     $isDark: map-get($theme, is-dark);
 
     .bjs-container {
+
         .djs-palette {
             display: none;
             background: mat-color($background, app-bar);
@@ -26,7 +27,7 @@
         }
 
         .djs-overlay-container {
-            position: relative!important;
+            position: relative !important;
         }
 
         .djs-overlay-context-pad {

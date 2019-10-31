@@ -53,15 +53,11 @@
                 max-height: 100%;
                 max-width: 100%;
 
-                &-modeler {
-                    flex: 1 1 auto;
-                    position: relative;
-                }
-
                 &-properties {
                     width: 360px;
                     box-sizing: border-box;
                 }
+
             }
         }
 
