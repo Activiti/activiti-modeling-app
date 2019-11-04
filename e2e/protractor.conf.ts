@@ -19,6 +19,9 @@ const config = require('./config/config');
 const onPrepare = require('./config/hooks/on-prepare');
 const afterLaunch = require('./config/hooks/after-launch');
 const onCleanUp = require('./config/hooks/on-cleanup');
+const SmartRunner = require('protractor-smartrunner');
+const resolve = require('path').resolve;
+
 
 let arraySpecs = [];
 
@@ -72,13 +75,6 @@ exports.config = {
         ]
     },
 
-    exclude: [
-        './tests/process/validate-process.e2e*ts', // Possible bug test don't pass
-        './tests/log-history/log-history.e2e*ts', // Parse error change,
-        './tests/connector/export-connector.e2e*ts',
-        './tests/login-logout/login-logout-sanity.e2e*ts'
-    ],
-
     capabilities: {
 
         loggingPrefs: {
@@ -124,8 +120,10 @@ exports.config = {
         showColors: true,
         defaultTimeoutInterval: 60000,
         includeStackTrace: true,
-        print: () => {
-        }
+        print: () => {},
+        ...SmartRunner.withOptionalExclusions(
+            resolve(__dirname, 'protractor.excludes.json')
+        )
     },
     stackTrace: true,
 

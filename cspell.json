@@ -45,6 +45,7 @@
         "CLIENDID",
         "MAXINSTANCES",
         "nonint",
-        "noninterrupting"
+        "noninterrupting",
+        "smartrunner"
     ]
 }

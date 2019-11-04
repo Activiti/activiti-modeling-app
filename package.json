@@ -166,7 +166,7 @@
     "protractor": "5.4.2",
     "protractor-html-reporter-2": "1.0.4",
     "protractor-retry": "^1.2.0",
-    "protractor-smartrunner": "0.0.7",
+    "protractor-smartrunner": "0.1.1",
     "puppeteer": "1.20.0",
     "rimraf": "2.6.3",
     "rxjs-tslint-rules": "4.4.4",
