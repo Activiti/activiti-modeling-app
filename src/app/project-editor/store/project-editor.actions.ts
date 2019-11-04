@@ -51,8 +51,3 @@ export class ExportProjectAction implements Action {
     constructor(public payload: ExportProjectPayload) {}
 }
 
-export const OPEN_PROJECT_SETTINGS_DIALOG = '[Project] Open settings dialog';
-export class OpenProjectSettingsDialog implements Action {
-    readonly type = OPEN_PROJECT_SETTINGS_DIALOG;
-    constructor(public payload: Project) {}
-}

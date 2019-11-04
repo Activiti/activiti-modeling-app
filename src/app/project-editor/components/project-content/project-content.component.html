@@ -24,13 +24,6 @@
 
         <button
             mat-icon-button
-            [title]="'APP.PROJECT.SETTINGS.PROJECT_SETTINGS' | translate"
-            (click)="openSettingsDialog(project)">
-            <mat-icon>settings</mat-icon>
-        </button>
-
-        <button
-            mat-icon-button
             [matMenuTriggerFor]="menu"
             [attr.data-automation-id]="'project-context-' + project.id"
             [title]="'APP.MORE_ACTIONS' | translate">

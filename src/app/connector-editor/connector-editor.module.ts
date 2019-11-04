@@ -18,7 +18,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '@alfresco/adf-core';
-import { ExtensionsModule, ComponentRegisterService } from '@alfresco/adf-extensions';
+import { ExtensionsModule } from '@alfresco/adf-extensions';
 
 import { ConnectorEditorComponent } from './components/connector-editor/connector-editor.component';
 import { ConnectorEditorRoutingModule } from './router/connector-editor-routing.module';
@@ -29,7 +29,6 @@ import {
     provideTranslations,
     CONNECTORS_ENTITY_KEY,
     AmaStoreModule,
-    ProjectSettingsConnectorTabKey,
     CodeEditorService,
     getFileUriPattern,
     CONNECTOR,
@@ -46,7 +45,6 @@ import { connectorEntitiesReducer } from './store/connector-entities.reducer';
 import { getConnectorsFilterProvider } from './extension/connectors-filter.extension';
 import { getConnectorCreatorProvider } from './extension/connector-creator.extension';
 import { getConnectorUploaderProvider } from './extension/connector-uploader.extension';
-import { ConnectorSettingsDialogComponent } from './components/connector-header/settings-dialog/connector-settings.dialog.component';
 import { getConnectorLogInitiator } from './services/connector-editor.constants';
 
 @NgModule({
@@ -67,9 +65,7 @@ import { getConnectorLogInitiator } from './services/connector-editor.constants'
     declarations: [
         ConnectorEditorComponent,
         ConnectorHeaderComponent,
-        ConnectorSettingsDialogComponent
     ],
-    entryComponents: [ConnectorSettingsDialogComponent],
     exports: [ ConnectorEditorRoutingModule ],
     providers: [
         ConnectorEditorService,
@@ -82,13 +78,8 @@ import { getConnectorLogInitiator } from './services/connector-editor.constants'
 })
 export class ConnectorEditorModule {
     constructor(
-        componentRegister: ComponentRegisterService,
         codeEditorService: CodeEditorService
     ) {
-        componentRegister.setComponents({
-            [ProjectSettingsConnectorTabKey]: ConnectorSettingsDialogComponent
-        });
-
         codeEditorService.addSchema('connectorSchema', getFileUriPattern(CONNECTOR, 'json'), connectorSchema);
     }
 }

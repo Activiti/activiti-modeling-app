@@ -40,7 +40,6 @@ import {
     UploadConnectorAttemptAction,
     ValidateConnectorPayload,
     ValidateConnectorAttemptAction,
-    OpenConnectorSettingsDialog,
     ChangedConnectorSettingsAction
 } from './connector-editor.actions';
 import { hot, cold, getTestScheduler } from 'jasmine-marbles';
@@ -71,7 +70,6 @@ import { throwError } from 'rxjs';
 import { Update } from '@ngrx/entity';
 import { selectConnectorsLoaded, selectSelectedConnector } from './connector-editor.selectors';
 import { MatDialogRef, MatDialogModule } from '@angular/material';
-import { ConnectorSettingsDialogComponent } from '../components/connector-header/settings-dialog/connector-settings.dialog.component';
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 
 describe('ConnectorEditorEffects', () => {
@@ -81,7 +79,6 @@ describe('ConnectorEditorEffects', () => {
     let metadata: EffectsMetadata<ConnectorEditorEffects>;
     let connectorEditorService: ConnectorEditorService;
     let store: Store<AmaState>;
-    let dialogService: DialogService;
     let storageService: StorageService;
 
     const connector: Connector = {
@@ -175,7 +172,6 @@ describe('ConnectorEditorEffects', () => {
         metadata = getEffectsMetadata(effects);
         store = TestBed.get(Store);
         actions$ = null;
-        dialogService = TestBed.get(DialogService);
         storageService = TestBed.get(StorageService);
     });
 
@@ -498,42 +494,6 @@ describe('ConnectorEditorEffects', () => {
             });
 
             expect(effects.validateConnectorEffect).toBeObservable(expected);
-        });
-    });
-
-    describe('openConnectorSettingsDialogEffect', () => {
-        it('openConnectorSettingsDialogEffect should not dispatch an action', () => {
-            expect(metadata.openConnectorSettingsDialogEffect).toEqual({ dispatch: false });
-        });
-
-        it('openConnectorSettingsDialogEffect should call the openDialog method of dialog service', () => {
-            spyOn(dialogService, 'openDialog');
-            actions$ = hot('a', { a: new OpenConnectorSettingsDialog() });
-            effects.openConnectorSettingsDialogEffect.subscribe(() => {});
-            getTestScheduler().flush();
-            expect(dialogService.openDialog).toHaveBeenCalledWith(ConnectorSettingsDialogComponent, {
-                disableClose: true,
-                height: '200px',
-                width: '500px'
-            });
-        });
-    });
-
-    describe('openConnectorSettingsDialogEffect', () => {
-        it('openConnectorSettingsDialogEffect should not dispatch an action', () => {
-            expect(metadata.openConnectorSettingsDialogEffect).toEqual({ dispatch: false });
-        });
-
-        it('openConnectorSettingsDialogEffect should call the openDialog method of dialog service', () => {
-            spyOn(dialogService, 'openDialog');
-            actions$ = hot('a', { a: new OpenConnectorSettingsDialog() });
-            effects.openConnectorSettingsDialogEffect.subscribe(() => {});
-            getTestScheduler().flush();
-            expect(dialogService.openDialog).toHaveBeenCalledWith(ConnectorSettingsDialogComponent, {
-                disableClose: true,
-                height: '200px',
-                width: '500px'
-            });
         });
     });
 

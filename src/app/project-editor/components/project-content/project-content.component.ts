@@ -19,7 +19,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProjectEditorState, Project, selectProject, OpenConfirmDialogAction } from 'ama-sdk';
 import { Observable, Subscription } from 'rxjs';
-import { ExportProjectAction, OpenProjectSettingsDialog } from '../../store/project-editor.actions';
+import { ExportProjectAction } from '../../store/project-editor.actions';
 import { ReleaseProjectAttemptAction } from '../../../dashboard/store/actions/projects';
 import { Router } from '@angular/router';
 
@@ -43,10 +43,6 @@ export class ProjectContentComponent implements OnInit {
         };
 
         this.store.dispatch(new ExportProjectAction(payload));
-    }
-
-    openSettingsDialog(project: Project) {
-        this.store.dispatch(new OpenProjectSettingsDialog(project));
     }
 
     releaseProject(projectId: string): void {

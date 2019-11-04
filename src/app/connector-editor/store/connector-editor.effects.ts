@@ -41,8 +41,6 @@ import {
     ValidateConnectorAttemptAction,
     VALIDATE_CONNECTOR_ATTEMPT,
     ValidateConnectorPayload,
-    OpenConnectorSettingsDialog,
-    OPEN_SETTINGS_DIALOG,
     ChangedConnectorSettingsAction,
     CHANGE_CONNECTOR_SETTINGS
 } from './connector-editor.actions';
@@ -60,7 +58,6 @@ import {
     SetAppDirtyStateAction,
     CreateConnectorSuccessAction,
     CREATE_CONNECTOR_SUCCESS,
-    DialogService,
     LoadApplicationAction
 } from 'ama-sdk';
 import { ConnectorEditorService } from '../services/connector-editor.service';
@@ -72,7 +69,6 @@ import { AmaState, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
 import { CHANGE_CONNECTOR_CONTENT, ChangeConnectorContent } from './connector-editor.actions';
 import { selectConnectorsLoaded, selectSelectedConnectorContent, selectSelectedConnector } from './connector-editor.selectors';
 import { UploadFileAttemptPayload, changeFileName, ConnectorContent, Connector, selectSelectedProjectId, BaseEffects } from 'ama-sdk';
-import { ConnectorSettingsDialogComponent } from '../components/connector-header/settings-dialog/connector-settings.dialog.component';
 import { logError, logInfo } from 'ama-sdk';
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 
@@ -82,7 +78,6 @@ export class ConnectorEditorEffects extends BaseEffects {
         private store: Store<AmaState>,
         private actions$: Actions,
         private connectorEditorService: ConnectorEditorService,
-        private dialogService: DialogService,
         private storageService: StorageService,
         private translation: TranslationService,
         logService: LogService,
@@ -201,12 +196,6 @@ export class ConnectorEditorEffects extends BaseEffects {
         ofType<DownloadConnectorAction>(DOWNLOAD_CONNECTOR),
         switchMap(() => this.downloadConnector())
     );
-
-    @Effect({ dispatch: false })
-    openConnectorSettingsDialogEffect = this.actions$.pipe(
-        ofType<OpenConnectorSettingsDialog>(OPEN_SETTINGS_DIALOG),
-        tap(() => this.openSettingsDialog()
-    ));
 
     @Effect({ dispatch: false })
     changedConnectorSettingsEffect = this.actions$.pipe(
@@ -339,13 +328,5 @@ export class ConnectorEditorEffects extends BaseEffects {
            map(() => new LoadApplicationAction(false)),
            take(1)
        );
-    }
-
-    private openSettingsDialog() {
-        this.dialogService.openDialog(ConnectorSettingsDialogComponent, {
-            disableClose: true,
-            height: '200px',
-            width: '500px'
-        });
     }
 }

@@ -29,8 +29,7 @@ import {
     DeleteConnectorAttemptAction,
     ValidateConnectorAttemptAction,
     DownloadConnectorAction,
-    UpdateConnectorContentAttemptAction,
-    OpenConnectorSettingsDialog
+    UpdateConnectorContentAttemptAction
 } from '../../store/connector-editor.actions';
 
 @Component({
@@ -85,9 +84,5 @@ export class ConnectorHeaderComponent {
             connectorContent: JSON.parse(this.content),
             action: new DownloadConnectorAction()
         }));
-    }
-
-    openSettingsDialog() {
-        this.store.dispatch(new OpenConnectorSettingsDialog());
     }
 }

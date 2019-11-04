@@ -35,7 +35,6 @@ import { ProjectEditorService } from './services/project-editor.service';
 import { ProjectTreeHelper } from './components/project-tree/project-tree.helper';
 import { ProjectTreeIconsComponent } from './components/project-tree/project-tree-icons/project-tree-icons.component';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { ProjectSettingsComponent } from './components/project-settings/project-settings.component';
 import { ExtensionsModule } from '@alfresco/adf-extensions';
 import { getProjectEditorLogInitiator } from './services/project-editor.constants';
 import { provideLogFilter } from 'ama-sdk';
@@ -58,10 +57,8 @@ import { provideLogFilter } from 'ama-sdk';
         ProjectTreeFilterComponent,
         UploadFileButtonComponent,
         ProjectTreeIconsComponent,
-        ProjectSettingsComponent,
     ],
     exports: [ProjectEditorRoutingModule],
-    entryComponents: [ ProjectSettingsComponent ],
     providers: [
         ProjectEditorService,
         ProjectTreeHelper,

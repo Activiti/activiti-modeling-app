@@ -16,13 +16,11 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Observable, zip, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Connector, CONNECTOR, FilterDataAdapter, AmaState, selectProjectConnectorsArray } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { selectConnectorsLoading } from '../store/connector-editor.selectors';
 import { ShowConnectorsAction } from '../store/connector-editor.actions';
-import { selectConnectorsSettings } from './../../store/selectors/settings.selectors';
-import { map, mergeMap } from 'rxjs/operators';
 
 @Injectable()
 export class ConnectorsFilterDataAdapter implements FilterDataAdapter {
@@ -35,16 +33,7 @@ export class ConnectorsFilterDataAdapter implements FilterDataAdapter {
     }
 
     get contents(): Observable<Connector[]> {
-        return this.store.select(selectProjectConnectorsArray).pipe(
-            mergeMap((connectors) => zip(of(connectors), this.store.select(selectConnectorsSettings))),
-            map(([connectors, showWithTemplate]) => {
-                if (!showWithTemplate) {
-                    return  connectors.filter(connector => !connector.template);
-                } else {
-                    return connectors;
-                }
-            }
-        ));
+        return this.store.select(selectProjectConnectorsArray);
     }
 
     get loading(): Observable<boolean> {

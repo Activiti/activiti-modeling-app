@@ -16,11 +16,11 @@
  */
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { map, switchMap, catchError, tap, filter, mergeMap } from 'rxjs/operators';
+import { map, switchMap, catchError, filter, mergeMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LogService, TranslationService } from '@alfresco/adf-core';
-import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, Project, DialogService, logInfo, logError, LogAction,
+import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, logInfo, logError, LogAction,
     LeaveProjectAction } from 'ama-sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import {
@@ -28,11 +28,8 @@ import {
     GET_PROJECT_ATTEMPT,
     GetProjectSuccessAction,
     ExportProjectAction,
-    EXPORT_PROJECT,
-    OpenProjectSettingsDialog,
-    OPEN_PROJECT_SETTINGS_DIALOG,
+    EXPORT_PROJECT
 } from '../project-editor.actions';
-import { ProjectSettingsComponent } from '../../components/project-settings/project-settings.component';
 import { getProjectEditorLogInitiator } from '../../services/project-editor.constants';
  import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 
@@ -44,7 +41,6 @@ export class ProjectEffects extends BaseEffects {
         protected logService: LogService,
         protected router: Router,
         protected downloadService: DownloadResourceService,
-        private dialogService: DialogService,
         private translation: TranslationService,
         protected blobService: BlobService
     ) {
@@ -65,26 +61,12 @@ export class ProjectEffects extends BaseEffects {
         switchMap(payload => this.exportProject(payload.projectId, payload.projectName))
     );
 
-    @Effect({ dispatch: false })
-    openSettingsDialog = this.actions$.pipe(
-        ofType<OpenProjectSettingsDialog>(OPEN_PROJECT_SETTINGS_DIALOG),
-        tap(action => this.openProjectSettingsDialog(action.payload))
-    );
-
     @Effect()
     leaveProjectEffect = this.actions$.pipe(
         ofType<RouterNavigatedAction>(ROUTER_NAVIGATED),
         filter(() => !this.router.url.startsWith('/projects')),
         mergeMap(() => of(new LeaveProjectAction()))
     );
-
-    private openProjectSettingsDialog(project: Project) {
-        this.dialogService.openDialog(ProjectSettingsComponent, {
-            disableClose: true,
-            height: '400px',
-            width: '50%'
-        });
-    }
 
     private getProject(projectId: string) {
         return this.projectEditorService.fetchProject(projectId).pipe(

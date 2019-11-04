@@ -1,8 +1,0 @@
-<div class="project-settings-dialog">
-    <h2 class="mat-dialog-title">{{ 'APP.PROJECT.SETTINGS.PROJECT_SETTINGS' | translate }}</h2>
-    <mat-tab-group>
-        <mat-tab *ngFor="let tab of tabs" label="{{ tab.label | translate }}">
-            <adf-dynamic-component [id]="tab.key"></adf-dynamic-component>
-        </mat-tab>
-    </mat-tab-group>
-</div>
