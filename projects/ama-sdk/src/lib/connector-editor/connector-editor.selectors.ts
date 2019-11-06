@@ -15,17 +15,19 @@
  * limitations under the License.
  */
 
-import { createSelector } from '@ngrx/store';
+import { createSelector, MemoizedSelector } from '@ngrx/store';
 import { ConnectorEntitiesState } from './connector-entities.state';
 import { selectSelectedProjectId } from '../store/app.selectors';
 import { Connector } from '../api/types';
 import { getEntitiesState } from '../store/entity.selectors';
+import { InjectionToken } from '@angular/core';
 
 export interface EntitiesWithConnectors { connectors: ConnectorEntitiesState; }
 export const selectConnectorsEntityContainer = createSelector(getEntitiesState, (state: any) => <ConnectorEntitiesState>state.connectors);
 export const selectConnectorEntities = createSelector(selectConnectorsEntityContainer, state => state.entities);
 export const selectConnectorEntityContents = createSelector(selectConnectorsEntityContainer, state => state.entityContents);
 
+export const CONNECTOR_SELECTORS_TOKEN = new InjectionToken<MemoizedSelector<object, Connector[]>>('connector-selectors');
 export const selectProjectConnectorsArray = createSelector(
     selectConnectorEntities,
     selectSelectedProjectId,

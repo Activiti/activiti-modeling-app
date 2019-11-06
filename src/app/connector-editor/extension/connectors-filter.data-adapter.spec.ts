@@ -21,7 +21,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { ConnectorsFilterDataAdapter } from './connectors-filter.data-adapter';
-import { CONNECTOR, selectProjectConnectorsArray } from 'ama-sdk';
+import { CONNECTOR, selectProjectConnectorsArray, CONNECTOR_SELECTORS_TOKEN } from 'ama-sdk';
 import { cold } from 'jasmine-marbles';
 import { AmaState } from 'ama-sdk';
 import { selectConnectorsLoading, selectSelectedConnectorId } from '../store/connector-editor.selectors';
@@ -60,7 +60,8 @@ describe('ConnectorsFilterDataAdapter ', () => {
                         }),
                         dispatch: jest.fn()
                     }
-                }
+                },
+                { provide: CONNECTOR_SELECTORS_TOKEN, useValue: selectProjectConnectorsArray }
             ]
         }).compileComponents();
     }));

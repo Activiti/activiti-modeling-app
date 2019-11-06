@@ -19,7 +19,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
-import { selectSelectedProjectId, MODEL_TYPE, ModelFilter, OpenFilterAction, FilterType, AmaState } from 'ama-sdk';
+import { selectSelectedProjectId, MODEL_TYPE, ModelFilter, OpenFilterAction, Filter, AmaState } from 'ama-sdk';
 import { ProjectTreeHelper } from './project-tree.helper';
 import { CloseFilterAction } from '../../store/project-editor.actions';
 import { selectOpenedFilters } from '../../store/selectors/project-tree.selectors';
@@ -51,7 +51,7 @@ export class ProjectTreeComponent implements OnInit {
         return this.openedFilters$.pipe(map(expandedPredicate));
     }
 
-    getFilteredContents(filterType: string): Observable<Partial<FilterType>[]> {
+    getFilteredContents(filterType: string): Observable<Partial<Filter>[]> {
         return this.projectTreeHelper.getDataAdapter(filterType).contents;
     }
 

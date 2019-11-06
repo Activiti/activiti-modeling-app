@@ -16,12 +16,12 @@
  */
 
 import { Observable } from 'rxjs';
-import { FilterType, MODEL_TYPE } from '../api/types';
+import { Filter, MODEL_TYPE } from '../api/types';
 import { InjectionToken } from '@angular/core';
 
 export interface FilterDataAdapter {
     expandedPredicate: (filters) => boolean;
-    contents: Observable<Partial<FilterType>[]>;
+    contents: Observable<Partial<Filter>[]>;
     loading: Observable<boolean>;
     load(projectId: string): void;
 }

@@ -15,25 +15,33 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Connector, CONNECTOR, FilterDataAdapter, AmaState, selectProjectConnectorsArray } from 'ama-sdk';
-import { Store } from '@ngrx/store';
+import {
+    Connector,
+    CONNECTOR,
+    FilterDataAdapter,
+    AmaState,
+    CONNECTOR_SELECTORS_TOKEN,
+    Filter
+} from 'ama-sdk';
+import { Store, MemoizedSelector } from '@ngrx/store';
 import { selectConnectorsLoading } from '../store/connector-editor.selectors';
 import { ShowConnectorsAction } from '../store/connector-editor.actions';
 
 @Injectable()
 export class ConnectorsFilterDataAdapter implements FilterDataAdapter {
-    connectorSettings$: Observable<boolean>;
-
-    constructor(private store: Store<AmaState>) {}
+    constructor(
+        private store: Store<AmaState>,
+        @Inject(CONNECTOR_SELECTORS_TOKEN) private selectProjectConnectorsArray: MemoizedSelector<object, Connector[]>
+    ) {}
 
     get expandedPredicate() {
         return (filters) => filters.indexOf(CONNECTOR) !== -1;
     }
 
-    get contents(): Observable<Connector[]> {
-        return this.store.select(selectProjectConnectorsArray);
+    get contents(): Observable<Filter[]> {
+        return this.store.select(this.selectProjectConnectorsArray);
     }
 
     get loading(): Observable<boolean> {

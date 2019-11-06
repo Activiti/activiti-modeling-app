@@ -34,7 +34,6 @@ export const DATA: DATA_TYPE = 'data';
 export const DECISION_TABLE: DECISION_TABLE_TYPE = 'decision';
 export const UI: UI_TYPE = 'ui';
 export const FILE: FILE_TYPE = 'file';
-export type FilterType = Process | Connector | Form | Data | DecisionTable | Ui | ActivitiFile;
 
 export const PROCESS_VARIABLES = 'process-variables';
 export const PROCESS_MESSAGES = 'process-messages';
@@ -85,9 +84,12 @@ export interface Model extends MinimalModelSummary {
     lastModifiedBy: string;
 }
 
+export interface Filter extends Model {
+    icon?: string;
+}
+
 export interface Process extends Model {
     type: PROCESS_TYPE;
-    parentId?: string;
     extensions?: ProcessExtensionsContent;
 }
 

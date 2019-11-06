@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Process, PROCESS, FilterDataAdapter, AmaState } from 'ama-sdk';
+import { PROCESS, FilterDataAdapter, AmaState, Filter } from 'ama-sdk';
 import { selectProcessesArray, selectProcessesLoading } from '../store/process-editor.selectors';
 import { ShowProcessesAction } from '../store/process-editor.actions';
 
@@ -30,7 +30,7 @@ export class ProcessesFilterDataAdapter implements FilterDataAdapter {
         return (filters) => filters.indexOf(PROCESS) !== -1;
     }
 
-    get contents(): Observable<Partial<Process>[]> {
+    get contents(): Observable<Partial<Filter>[]> {
         return this.store.select(selectProcessesArray);
     }
 
