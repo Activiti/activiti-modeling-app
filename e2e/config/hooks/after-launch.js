@@ -15,10 +15,11 @@ async function afterLaunch(statusCode) {
         }
 
         try {
+            console.log('Retry number: ', retryCount);
             await uploadOutput(FOLDER, retryCount);
             console.log('Screenshots saved successfully.');
         } catch (e) {
-            console.log('Error happened while trying to upload screenshots and test reports.');
+            console.log('Error happened while trying to upload screenshots and test reports: ', e);
         }
     } else {
         console.log(`Status code is ${statusCode}, no need to save screenshots.`);

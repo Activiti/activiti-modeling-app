@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { element, by } from 'protractor';
+import { element, by, browser } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config';
 import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
@@ -77,6 +77,7 @@ export class ProcessContentPage extends GenericPage {
 
     async selectModelerEditorTab(): Promise<void> {
         await BrowserActions.click(this.modelerEditorTabButton);
+        await browser.sleep(300);
     }
 
     async selectTask(taskId: string): Promise<void> {
