@@ -24,24 +24,36 @@ export class ProcessModel {
 
     'bpmn2:documentation' = {};
     'bpmn2:startEvent' = {};
+    'bpmn2:sequenceFlow' = [];
+    'bpmn2:endEvent' = {};
+    'bpmn2:userTask' = {};
+
 
     constructor(details?: any) {
         if (details) {
             Object.assign(this['_attributes'], details['_attributes']);
             Object.assign(this['bpmn2:documentation'], details['bpmn2:documentation']);
             Object.assign(this['bpmn2:startEvent'], details['bpmn2:startEvent']);
+            Object.assign(this['bpmn2:endEvent'], details['bpmn2:endEvent']);
+            Object.assign(this['bpmn2:userTask'], details['bpmn2:userTask']);
+            Object.assign(this['bpmn2:sequenceFlow'], details['bpmn2:sequenceFlow']);
         }
     }
 
-    getId() {
+    getId(): string {
         return this['_attributes'].id;
     }
 
-    getName() {
+    getName(): string {
         return this['_attributes'].name;
     }
 
-    setName(name) {
+    setName(name: string) {
         this['_attributes'].name = name;
     }
+
+    setId(id: string) {
+        this['_attributes'].id = id;
+    }
+
 }

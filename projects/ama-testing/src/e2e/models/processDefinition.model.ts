@@ -40,11 +40,21 @@ export class ProcessDefinitionModel {
         Object.assign(this['bpmn2:definitions']['bpmndi:BPMNDiagram'], details[`bpmn2:definitions`][`bpmndi:BPMNDiagram`]);
     }
 
-    getProcessName() {
+    getProcessName(): string  {
         return this['bpmn2:definitions']['bpmn2:process'].getName();
     }
 
-    setProcessName(name) {
+    setProcessName(name: string) {
         this['bpmn2:definitions']['bpmn2:process'].setName(name);
     }
+
+    getProcessId(): string {
+        return this['bpmn2:definitions']['bpmn2:process'].getId();
+    }
+
+    setProcessId(id: string) {
+        this['bpmn2:definitions']['bpmn2:process'].setId(id);
+        this['bpmn2:definitions']['bpmndi:BPMNDiagram']['bpmndi:BPMNPlane']['_attributes']['bpmnElement'] = id;
+    }
+
 }

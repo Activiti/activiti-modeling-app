@@ -40,6 +40,7 @@ export class Toolbar extends GenericWebElement {
 
     async navigateToBreadcrumbItem(itemName: string): Promise<void> {
         const item = element(by.cssContainingText(`${this.breadcrumbCss}>div>a`, itemName));
+        await BrowserVisibility.waitUntilElementIsVisible(item);
         await BrowserActions.click(item);
     }
 
