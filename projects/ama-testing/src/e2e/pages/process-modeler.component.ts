@@ -34,6 +34,8 @@ export class ProcessModelerComponent extends GenericPage {
     readonly processStep = element(by.css(`[data-element-id*="ServiceTask"]`));
     readonly typeReplacePopup = element(by.css('.djs-popup.bpmn-replace'));
     readonly typeReplaceButton = element(by.css('[data-action="replace"]'));
+    readonly appendTaskButton = element(by.css('[data-action="append.append-task"]'));
+    readonly appendEndEventButton = element(by.css('[data-action="append.end-event"]'));
 
     async isLoaded() {
         await BrowserVisibility.waitUntilElementIsVisible(this.processEditorModeler);
@@ -77,6 +79,14 @@ export class ProcessModelerComponent extends GenericPage {
         await super.dragAndDrop(this.decisionTask, this.canvas);
     }
 
+    async appendTask() {
+        await BrowserActions.click(this.appendTaskButton);
+    }
+
+    async appendEndEvent() {
+        await BrowserActions.click(this.appendEndEventButton);
+    }
+
     async selectServiceTask() {
         await BrowserActions.click(element(by.css(`[data-element-id*="ServiceTask"]`)));
     }
@@ -85,8 +95,8 @@ export class ProcessModelerComponent extends GenericPage {
         await BrowserActions.click(element(by.css(`[data-element-id*="StartEvent"]`)));
     }
 
-    async selectUserTask() {
-        await BrowserActions.click(element(by.css(`[data-element-id*="UserTask"]`)));
+    async selectUserTask(id: string = 'UserTask') {
+        await BrowserActions.click(element(by.css(`[data-element-id*="${id}"]`)));
     }
 
     async selectBoundaryEvent() {

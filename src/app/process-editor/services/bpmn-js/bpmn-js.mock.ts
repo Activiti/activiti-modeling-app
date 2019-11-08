@@ -24,6 +24,7 @@ export class BpmnFactoryMock implements BpmnFactory {
     create(): Bpmn.Modeler {
         const eventBus = new EventBus();
         const canvasObject = { zoom: () => {} };
+        const modelingObject: Bpmn.Modeling = { updateProperties: () => {} };
 
         this.modeler = {
             createDiagram() {},
@@ -35,6 +36,8 @@ export class BpmnFactoryMock implements BpmnFactory {
                     return canvasObject;
                 } else if (subject === 'eventBus') {
                     return eventBus;
+                } else if (subject === 'modeling') {
+                    return modelingObject;
                 }
             },
             destroy() {

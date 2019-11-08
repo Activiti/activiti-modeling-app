@@ -124,11 +124,30 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
         this.modeler.destroy();
     }
 
+    private updateElementId(event: any): void {
+        const id = event.element.id;
+        const type = event.element.type;
+
+        if (type === 'label') {
+            return;
+        }
+
+        const newID = type.substring(type.indexOf(':') + 1) + '_' + id.substring(id.indexOf('_') + 1);
+
+        if (id === newID) {
+            return;
+        }
+
+        const modeling: Bpmn.Modeling = this.modeler.get('modeling');
+        modeling.updateProperties(event.element, { id: newID });
+    }
+
     private listenToEventHandlers() {
         this.modeler.on('element.click', this.modelerInitOptions.clickHandler);
         this.modeler.on('element.changed', this.modelerInitOptions.changeHandler);
         this.modeler.on('shape.remove', this.modelerInitOptions.removeHandler);
         this.modeler.on('selection.changed', this.modelerInitOptions.selectHandler);
+        this.modeler.on('shape.changed', this.updateElementId.bind(this));
     }
 
     private muteEventHandlers() {
@@ -136,5 +155,6 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
         this.modeler.off('element.changed', this.modelerInitOptions.changeHandler);
         this.modeler.off('shape.remove', this.modelerInitOptions.removeHandler);
         this.modeler.off('selection.changed', this.modelerInitOptions.selectHandler);
+        this.modeler.off('shape.changed', this.updateElementId.bind(this));
     }
 }

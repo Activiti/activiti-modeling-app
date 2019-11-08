@@ -19,7 +19,6 @@ import { TestBed, async } from '@angular/core/testing';
 import { ProcessModelerServiceImplementation } from './process-modeler.service';
 import { BpmnFactoryToken, ModelerInitOptions, MESSAGE, XmlParsingProblem } from 'ama-sdk';
 import { BpmnFactoryMock } from './bpmn-js/bpmn-js.mock';
-import { of } from 'rxjs';
 
 describe('ProcessModelerServiceImplementation', () => {
 
@@ -52,6 +51,17 @@ describe('ProcessModelerServiceImplementation', () => {
 
     afterEach(() => {
         TestBed.resetTestingModule();
+    });
+
+    it('should test updateElementId method', () => {
+        const modeler = bpmnFactoryMock.modeler;
+        const modeling = modeler.get('modeling');
+        spyOn(modeling, 'updateProperties');
+
+        const mockEvent = { element: { id: 'ServiceTask_1ny0i0c', type: 'bpmn:UserTask' } };
+
+        modeler.get('eventBus').fire('shape.changed', mockEvent);
+        expect(modeling.updateProperties).toHaveBeenCalledWith(mockEvent.element, { id: 'UserTask_1ny0i0c' });
     });
 
     describe('loadXml', () => {
