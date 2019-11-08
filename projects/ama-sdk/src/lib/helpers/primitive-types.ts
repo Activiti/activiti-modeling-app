@@ -20,6 +20,7 @@ export const primitive_types: string[] = [
     'integer',
     'boolean',
     'date',
+    'datetime',
     'file',
     'json'
 ];

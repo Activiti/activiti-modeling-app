@@ -19,14 +19,16 @@ import { PropertiesViewerIntegerInputComponent } from './integer-input.component
 import { PropertiesViewerStringInputComponent } from './string-input.component';
 import { PropertiesViewerBooleanInputComponent } from './boolean-input.component';
 import { PropertiesViewerDateInputComponent } from './date-input.component';
-import {PropertiesViewerJsonInputComponent} from './json-input.component';
- import {PropertiesViewerFileInputComponent} from './file-input.component';
+import { PropertiesViewerJsonInputComponent } from './json-input.component';
+import { PropertiesViewerFileInputComponent } from './file-input.component';
+import { PropertiesViewerDateTimeInputComponent } from './date-time-input.component';
 
 export const valueTypeInputsMapping = {
     'string': PropertiesViewerStringInputComponent,
     'integer': PropertiesViewerIntegerInputComponent,
     'boolean': PropertiesViewerBooleanInputComponent,
     'date': PropertiesViewerDateInputComponent,
+    'datetime': PropertiesViewerDateTimeInputComponent,
     'json': PropertiesViewerJsonInputComponent,
     'file': PropertiesViewerFileInputComponent
 };

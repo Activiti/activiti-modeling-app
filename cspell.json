@@ -46,6 +46,8 @@
         "MAXINSTANCES",
         "nonint",
         "noninterrupting",
-        "smartrunner"
+        "smartrunner",
+        "Datetimepicker",
+        "datetimepicker"
     ]
 }
