@@ -57,7 +57,6 @@ describe('Message Events', () => {
         loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
-
     });
 
     it('[C316246] Should implement interrupting boundary message event set in the process model', async () => {
@@ -68,7 +67,7 @@ describe('Message Events', () => {
         await codeEditorWidget.isTextEditorPresent();
         fileContent = await codeEditorWidget.getCodeEditorValue(`process://xml:${processId}`);
         fileContentJson = JSON.parse(await UtilFile.parseXML(fileContent, false));
-        const interruptingBoundaryMessage = fileContentJson.definitions.process.boundaryEvent.messageEventDefinition;
+        const interruptingBoundaryMessage = fileContentJson['bpmn2:definitions']['bpmn2:process']['bpmn2:boundaryEvent']['messageEventDefinition'];
         const interruptingBoundaryMessageAttributes = UtilFile.getJSONItemValueByKey(interruptingBoundaryMessage, `_attributes`);
         await expect(await UtilFile.getJSONItemValueByKey(interruptingBoundaryMessageAttributes, `activiti:correlationKey`))
             .toEqual('${int-boundary-var}');
@@ -84,7 +83,7 @@ describe('Message Events', () => {
         await codeEditorWidget.isTextEditorPresent();
         fileContent = await codeEditorWidget.getCodeEditorValue(`process://xml:${processId}`);
         fileContentJson = JSON.parse(await UtilFile.parseXML(fileContent, false));
-        const intermediateMessage = fileContentJson.definitions.process.intermediateCatchEvent.messageEventDefinition;
+        const intermediateMessage = fileContentJson['bpmn2:definitions']['bpmn2:process']['bpmn2:intermediateCatchEvent']['messageEventDefinition'];
         const intermediateMessageAttributes = UtilFile.getJSONItemValueByKey(intermediateMessage, `_attributes`);
         await expect(await UtilFile.getJSONItemValueByKey(intermediateMessageAttributes, `activiti:correlationKey`))
             .toEqual('${intermediate-var}');
@@ -100,7 +99,7 @@ describe('Message Events', () => {
         await codeEditorWidget.isTextEditorPresent();
         fileContent = await codeEditorWidget.getCodeEditorValue(`process://xml:${processId}`);
         fileContentJson = JSON.parse(await UtilFile.parseXML(fileContent, false));
-        const noninterruptingBoundaryMessage = fileContentJson.definitions.process.boundaryEvent.messageEventDefinition;
+        const noninterruptingBoundaryMessage = fileContentJson['bpmn2:definitions']['bpmn2:process']['bpmn2:boundaryEvent']['messageEventDefinition'];
         const noninterruptingBoundaryMessageAttributes = UtilFile.getJSONItemValueByKey(noninterruptingBoundaryMessage, `_attributes`);
         await expect(await UtilFile.getJSONItemValueByKey(noninterruptingBoundaryMessageAttributes, `activiti:correlationKey`))
             .toEqual('${nonint-boundary-var}');
@@ -116,7 +115,7 @@ describe('Message Events', () => {
         await codeEditorWidget.isTextEditorPresent();
         fileContent = await codeEditorWidget.getCodeEditorValue(`process://xml:${processId}`);
         fileContentJson = JSON.parse(await UtilFile.parseXML(fileContent, false));
-        const startMessage = fileContentJson.definitions.process.startEvent.messageEventDefinition;
+        const startMessage = fileContentJson['bpmn2:definitions']['bpmn2:process']['bpmn2:startEvent']['messageEventDefinition'];
         const startMessageAttributes = UtilFile.getJSONItemValueByKey(startMessage, `_attributes`);
         await expect(await UtilFile.getJSONItemValueByKey(startMessageAttributes, `messageRef`)).toEqual('Message_0hq81h3');
 
