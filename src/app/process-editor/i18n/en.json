@@ -121,7 +121,8 @@
                 "USE_CRON_EXPRESSION": "Use cron expression",
                 "CRON_EXPRESSION": "Cron expression",
                 "INVALID_CRON_EXPRESSION": "Invalid cron expression"
-            }
+            },
+            "TEXT_ANNOTATION": "Text annotation"
         },
         "PROPERTIES_BUTTON": "Properties",
         "UPLOAD_SUCCESS": "The process was successfully uploaded",

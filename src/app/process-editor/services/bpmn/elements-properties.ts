@@ -165,5 +165,10 @@ export const elementsProperties = {
         BpmnProperty.name,
         BpmnProperty.documentation,
         BpmnProperty.multiInstanceType
+    ],
+    [BpmnElement.textAnnotation]: [
+        BpmnProperty.id,
+        BpmnProperty.documentation,
+        BpmnProperty.textAnnotation
     ]
 };
