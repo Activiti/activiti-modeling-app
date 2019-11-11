@@ -23,6 +23,8 @@ import { takeUntil } from 'rxjs/operators';
 import { selectSelectedTheme } from 'ama-sdk';
 import { AmaState } from 'ama-sdk';
 import { PluginRoutesManagerService } from './common/services/plugin-routes-manager.service';
+import { AlfrescoApiService, AuthenticationService } from '@alfresco/adf-core';
+import { MatDialog } from '@angular/material';
 
 @Component({
     selector: 'ama-root',
@@ -35,13 +37,23 @@ export class AppComponent implements OnInit, OnDestroy {
         private store: Store<AmaState>,
         private renderer: Renderer2,
         private pluginRoutesManager: PluginRoutesManagerService,
-        private router: Router
-    ) {
+        private router: Router,
+        private alfrescoApiService: AlfrescoApiService,
+        private authenticationService: AuthenticationService,
+        private dialogRef: MatDialog) {
         this.pluginRoutesManager.patchRoutes();
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
     ngOnInit() {
+        this.alfrescoApiService.getInstance().on('error', (error) => {
+            if (error.status === 401) {
+                if (!this.authenticationService.isLoggedIn()) {
+                    this.dialogRef.closeAll();
+                    this.router.navigate(['/login']);
+                }
+            }
+        });
         this.store
             .select(selectSelectedTheme)
             .pipe(takeUntil(this.onDestroy$))
