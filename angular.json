@@ -358,6 +358,12 @@
                         "exclude": ["**/node_modules/**"],
                         "format": "stylish"
                     }
+                },
+                "test": {
+                    "builder": "@angular-builders/jest:run",
+                    "options": {
+                        "configPath": "../jest.config.js"
+                    }
                 }
             }
         },

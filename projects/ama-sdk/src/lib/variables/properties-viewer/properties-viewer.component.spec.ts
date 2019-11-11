@@ -56,7 +56,7 @@ describe('PropertiesViewerComponent', () => {
         fixture.detectChanges();
     });
 
-    it('clicking on delete should call sendData of VariableDialogService', () => {
+    it('should call sendData of VariableDialogService when clicking on delete ', () => {
         component.requiredCheckbox = true;
         const data = {
             '123' : {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': ''},
@@ -81,7 +81,7 @@ describe('PropertiesViewerComponent', () => {
         expect(component.data).toEqual(data2);
     });
 
-    it('table should have the same number of rows as properties', () => {
+    it('should have the same number of rows as properties in table', () => {
         component.requiredCheckbox = true;
         const data = {
           '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': ''},
@@ -97,7 +97,7 @@ describe('PropertiesViewerComponent', () => {
         expect(rows.length).toEqual(3);
     });
 
-    it('if row was not clicked', () => {
+    it('should show no properties if row was not clicked', () => {
         component.requiredCheckbox = true;
         const data = {
           '123' :  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': ''},
@@ -116,7 +116,7 @@ describe('PropertiesViewerComponent', () => {
         expect(message.innerHTML).toEqual('SDK.VARIABLES_EDITOR.TABLE.NO_PROPERTIES');
     });
 
-    it('if row was clicked, the edit form should be shown', () => {
+    it('should show edit form if row was clicked', () => {
         component.requiredCheckbox = true;
         const data = {
             '123' : {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': ''},
@@ -139,7 +139,7 @@ describe('PropertiesViewerComponent', () => {
         expect(message === null).toBeTruthy();
     });
 
-    it('if a property was edited and saved sendData of VariablesDialogService was called and property was changed', () => {
+    it('should call sendData of VariablesDialogService and change property if a property was edited and saved', () => {
         component.requiredCheckbox = true;
         const data = {
            '123' : {'id': '123', 'name': 'var1', 'type': 'string', 'value': '', 'required': false },
@@ -176,7 +176,54 @@ describe('PropertiesViewerComponent', () => {
 
     });
 
-    it('clicking on add button should call sendData of VariablesDialog ', () => {
+    it('should show error if name is invalid', () => {
+        const data = {
+           '123' : {'id': '123', 'name': 'var1', 'type': 'string', 'value': '', 'required': false }
+        };
+
+        spyOn(service, 'sendData');
+
+        component.dataSource = new MatTableDataSource(Object.values(data));
+        component.data = data;
+        fixture.detectChanges();
+        const editRow = fixture.nativeElement.querySelector('.mat-row');
+
+        editRow.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+
+        const template = fixture.nativeElement.querySelector('.properties-form');
+        const input = template.querySelector('input');
+        component.name = 'a2_#';
+        input.dispatchEvent(new Event('keyup'));
+
+        fixture.detectChanges();
+
+        const data2 = {
+            '123' : {'id': '123', 'name': 'a2_#', 'type': 'string', 'value': '', 'required': false}
+        };
+
+        expect(component.name).toEqual('a2_#');
+        expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data2, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME');
+        const infoIconWhenError = fixture.nativeElement.querySelector('.variable-name-info-icon');
+        expect (infoIconWhenError === null).toBeFalsy();
+
+        component.name = 'a2_';
+        input.dispatchEvent(new Event('keyup'));
+
+        fixture.detectChanges();
+
+        const data3 = {
+            '123' : {'id': '123', 'name': 'a2_', 'type': 'string', 'value': '', 'required': false}
+        };
+
+        expect(component.name).toEqual('a2_');
+        expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data3, null, 2), null);
+        const infoIcon = fixture.nativeElement.querySelector('.variable-name-info-icon');
+        expect (infoIcon === null).toBeTruthy();
+
+    });
+
+    it('should call sendData of VariablesDialog when clicking on add button', () => {
         component.requiredCheckbox = true;
         const data = {
             'generated-uuid': {

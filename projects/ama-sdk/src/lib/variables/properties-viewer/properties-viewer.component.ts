@@ -23,6 +23,7 @@ import { VariablesService } from '../variables.service';
 import { UuidService } from './../../services/uuid.service';
 import { primitive_types } from '../../helpers/primitive-types';
 import { EntityProperty, EntityProperties } from './../../api/types';
+import { FIELD_VARIABLE_NAME_REGEX } from '../../helpers/utils/create-entries-names';
 
 @Component({
     templateUrl: './properties-viewer.component.html',
@@ -153,6 +154,11 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
         if (this.isNotEmpty(this.data)) {
             this.variablesService.sendData(JSON.stringify(this.data, null, 2), null);
             this.error = false;
+
+            if (!this.isValid(this.name)) {
+                this.variablesService.sendData(JSON.stringify(this.data, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME');
+                this.error = true;
+            }
         } else {
             this.variablesService.sendData(JSON.stringify(this.data, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME');
             this.error = true;
@@ -162,6 +168,10 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
 
     isNotEmpty(data: EntityProperties) {
         return Object.values(data).every(item => !!item.name.trim().length);
+    }
+
+    isValid(name: string): boolean {
+        return FIELD_VARIABLE_NAME_REGEX.test(name);
     }
 
     addRow() {

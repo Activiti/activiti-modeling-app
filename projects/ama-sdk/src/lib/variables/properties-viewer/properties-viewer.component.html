@@ -57,6 +57,9 @@
             <input matInput placeholder="Name" [(ngModel)]="name" (keyup)="saveChanges()"
                 data-automation-id="variable-name">
             <p class="mat-error" *ngIf="!name.length">{{ 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME' | translate }}</p>
+            <p class="mat-error" *ngIf="name.length && !isValid(name)">{{ 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME' | translate }}
+                <mat-icon class="variable-name-info-icon" color="danger" [matTooltip]="'SDK.VARIABLES_EDITOR.ERRORS.VARIABLE_NAME_TOOLTIP' | translate">info</mat-icon>
+            </p>
         </mat-form-field>
         <mat-form-field floatLabel="never">
             <mat-select placeholder="Type" [(ngModel)]="selectedType" (selectionChange)="onTypeChange()"

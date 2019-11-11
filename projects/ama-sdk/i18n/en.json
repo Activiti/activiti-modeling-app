@@ -7,6 +7,8 @@
         "VARIABLES_EDITOR": {
             "ERRORS": {
                 "EMPTY_NAME": "Name field cannot be empty",
+                "INVALID_NAME": "Variable name is not valid.",
+                "VARIABLE_NAME_TOOLTIP": "The name can start only with a letter, followed by any alphanumeric characters, digits and underscore.",
                 "NAME_ALREADY_EXISTS": "Variables name must be unique"
             },
             "TABS": {
