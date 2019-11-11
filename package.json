@@ -7,14 +7,14 @@
   "scripts": {
     "postinstall": "./scripts/npm/_postinstall.sh",
     "precommit": "lint-staged",
-    "start": "./scripts/npm/start.sh",
-    "build": "./scripts/npm/build.sh",
+    "start": "./scripts/npm/compile.sh start",
+    "build": "./scripts/npm/compile.sh build",
     "test": "./scripts/npm/test.sh",
     "e2e": "./scripts/npm/e2e.sh",
     "spellcheck": "cspell '{src,e2e,projects}/**/*.ts'",
     "lint": "tsc -p ./e2e/tsconfig.e2e.json && ng lint && npm run spellcheck",
     "reinstall": "npm run clean && npm install",
-    "clean": "rimraf dist lib .tmp e2e-output reports node_modules package-lock.json",
+    "clean": "rimraf dist lib e2e-output reports node_modules package-lock.json .tmp .protractor-smartrunner out-tsc protractorFailuresReport",
     "update-package-version": "./scripts/update-package-version.sh"
   },
   "config": {
@@ -120,6 +120,7 @@
     "pdfjs-dist": "2.0.943",
     "reflect-metadata": "0.1.13",
     "rxjs": "6.4.0",
+    "scss-bundle": "3.0.1",
     "unzipper": "0.9.11",
     "uuid": "3.3.2",
     "web-animations-js": "2.3.1",

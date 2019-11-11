@@ -5,13 +5,13 @@
 /lib/
 /tmp
 /.tmp
-/.ee_repo
 /out-tsc
 /e2e-output
 /reports
 
 # dependencies
 /node_modules
+**/node_modules
 
 # IDEs and editors
 /.idea
@@ -38,17 +38,20 @@
 npm-debug.log
 testem.log
 /typings
-.protractor-fail-fast
-.protractor-smartrunner
+/envs/
 .env
+**/versions.json
 
 # e2e
 /e2e/*.map
 /e2e/*.env
+.protractor-fail-fast
+.protractor-smartrunner
+/protractorFailuresReport
 
 # System Files
 .DS_Store
 Thumbs.db
 
-.env
-/protractorFailuresReport/
+# Project specific
+src/tsconfig.adfdev.json

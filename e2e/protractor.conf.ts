@@ -88,7 +88,7 @@ exports.config = {
         shardTestFiles: true,
 
         chromeOptions: {
-            binary: require('puppeteer').executablePath(),
+            ...(process.env.CI ? { binary: require('puppeteer').executablePath() } : {}),
             prefs: {
                 'credentials_enable_service': false,
                 'download': {

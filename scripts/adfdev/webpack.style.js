@@ -1,8 +1,9 @@
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const path = require('path');
+require('dotenv').config();
 
 const extractScss = new ExtractTextPlugin('../lib/core/prebuilt-themes/[name].css');
-const libDir = '../../../alfresco-ng2-components/lib';
+const libDir = `${process.env.ADF_PATH}/lib`;
 
 module.exports = {
 
@@ -20,7 +21,7 @@ module.exports = {
 
     resolve: {
         extensions: ['.ts', '.js'],
-        modules: [path.resolve(__dirname, '../node_modules')]
+        modules: [path.resolve(process.cwd(), 'node_modules')]
     },
 
     output: {

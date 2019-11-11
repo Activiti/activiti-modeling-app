@@ -14,78 +14,128 @@ The Activiti Modeling Application (AMA) is an application built using
 
 ---
 
-## Running the application
-
-### Prerequisites
-
-#### Installing dependencies
+## Installing dependencies
 
 ```bash
 $ npm install
 ```
 
-#### Setting up environment variables
+---
 
-To be able to run the local dev server, we need to set some environment variable. Simply crete a `.env` file (this is gitignored) in the root of the repository with filling in the following data:
+## Prerequisites
+
+To be able to run the local dev server, you need to set some environment variable. Simply crete a `.env` file (this is gitignored) in the root of the repository with filling in the following data:
 
 ```bash
-API_HOST="http://my-acm.implementation.com/whatever"
+ADF_PATH="<path to local alfresco-ng2-components repository>"
+API_HOST="http://my-acm.implementation.com"
 OAUTH_HOST="http://my-acm.implementation.com/auth/realms/whatever"
+E2E_HOST="http://localhost:4200"
+E2E_USERNAME=""
+E2E_PASSWORD=""
+E2E_UNAUTHORIZED_USER=""
+E2E_UNAUTHORIZED_USER_PASSWORD=""
+BROWSER_RUN="true"
+SAVE_SCREENSHOT="true"
+SCREENSHOT_URL=""
+SCREENSHOT_USERNAME=""
+SCREENSHOT_PASSWORD=""
+LOG=true
 ```
 
-### Development server
+---
+
+
+## Running the application
+
 
 ```bash
+# Development server
 $ npm start
 ```
 
-Run the script above for the development server. Navigate to `http://localhost:4200/` (opens by default).
-
-### Development server with local ADF components
-
 ```bash
-$ npm run start adfdev
-```
-
-Run the script above for the development server using the local ADF components. For this to work properly you must have to chek out the [Alfresco Application Development Framework (ADF)](https://github.com/Alfresco/alfresco-ng2-components) to the same parent directory which contains this repository too. Like this:
-
--   parent-folder
-    -   *activiti-modeler-application*
-    -   **alfresco-adf-components**
-
-After starting the dev server, navigate to `http://localhost:4200/` (opens by default).
-
-### Production server
-
-```bash
+# Production server
 $ npm run start prod
 ```
 
-Run the script above for the production server. This command is only intended to be used when running on the target environment.
+```bash
+# Development server with local ADF components
+$ npm run start adfdev
+```
 
-After starting the production server, navigate to `http://localhost:4200/`.
+Run the script above for the development server using the local ADF components. For this to work properly you must have to chek out the [Alfresco Application Development Framework (ADF)](https://github.com/Alfresco/alfresco-ng2-components) and set the `ADF_PATH` as an environment variable or in your .env file.
 
 ---
 
 ## Building the application
 
-### Development build
-
 ```bash
+# Development build
 $ npm run build
 ```
 
-### Development build with local ADF components
+```bash
+# Production build
+$ npm run build prod
+```
 
 ```bash
+# Development build with local ADF components
 $ npm run build adfdev
 ```
 
-### Production build
+---
+
+## Running unit tests
 
 ```bash
-$ npm run build prod
+# Test runner command in CI
+$ npm run test
 ```
+
+
+```bash
+# Test runner command with desktop notifications
+$ npm run test dev
+```
+
+
+```bash
+# Test runner command in watch mode with desktop notifications
+$ npm run test watch
+```
+
+Run the script above to execute the unit tests via [Jest](https://jestjs.io/).
+
+---
+
+## Running E2E tests
+
+For this to run properly, please see the prerequisites section above.
+
+```bash
+# run all tests:
+npm run e2e
+
+# run single spec file:
+npm run e2e -- --specs="./tests/project/delete-project.e2e.ts"
+
+# run suite of specs:
+npm run e2e -- --suite=“test”
+
+Note: The suite content (e.g.: test) is defined in protractor.conf.js file.
+```
+
+### E2E VSCode launchers
+
+There are two runners:
+- E2E - allows single test execution
+- E2Es - allows test suite execution
+
+To run a single test suite is necesary to have the test file opened in a tab.
+
+---
 
 ### Running in Docker
 
@@ -98,16 +148,6 @@ Start with below (substituting with values for your deployment):
 `docker run -it -e APP_CONFIG_OAUTH2_HOST="http://KEYCLOAKHOST/auth/realms/activiti" -e APP_CONFIG_OAUTH2_CLIENTID="activiti" -e APP_CONFIG_BPM_HOST="http://GATEWAYHOST" -p 8080:80 alfresco/alfresco-modeling-app:latest`
 
 If any substitutions don't work then check that the placeholders in `docker-entrypoint.sh` match `src/app.config.json`
-
----
-
-## Running unit tests
-
-```bash
-$ npm test
-```
-
-Run the script above to execute the unit tests via [Jest](https://jestjs.io/).
 
 ---
 
