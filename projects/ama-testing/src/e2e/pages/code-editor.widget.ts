@@ -18,7 +18,7 @@
 import { element, by, browser, protractor } from 'protractor';
 import { Logger } from '../util/logger';
 import { GenericWebElement } from './common/generic.webelement';
-import { BrowserVisibility } from '@alfresco/adf-testing';
+import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class CodeEditorWidget extends GenericWebElement {
 
@@ -59,12 +59,12 @@ export class CodeEditorWidget extends GenericWebElement {
     }
 
     async enterBulkConfiguration(text): Promise<void> {
-        await super.clear(this.codeEditorTextArea);
+        await BrowserActions.clearSendKeys(this.codeEditorTextArea, protractor.Key.HOME);
         const script = `
                 var models = this.monaco.editor.getModels();
                 return models[models.length-1].setValue('` + JSON.stringify(text) + `')
             `;
-        browser.executeScript<string>(script);
+        await browser.executeScript<string>(script);
         await this.codeEditorTextArea.click();
         await this.codeEditorTextArea.sendKeys(protractor.Key.HOME, protractor.Key.ENTER);
     }

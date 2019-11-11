@@ -23,7 +23,7 @@ export class GenericDialog extends GenericWebElement {
 
     readonly dialog = element.all(by.css(`.mat-dialog-container`)).first();
     readonly titleElement = element(by.css(`.mat-dialog-title`));
-    readonly cancelButton = element(by.css(`[data-automation-id="dialog-close"]`));
+    readonly cancelButton = element(by.css(`button.cancel-btn`));
 
     title: string;
 

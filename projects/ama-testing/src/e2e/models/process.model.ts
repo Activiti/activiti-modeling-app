@@ -26,8 +26,8 @@ export class ProcessModel {
     'bpmn2:startEvent' = {};
     'bpmn2:sequenceFlow' = [];
     'bpmn2:endEvent' = {};
-    'bpmn2:userTask' = {};
-
+    'bpmn2:userTask';
+    'bpmn2:serviceTask';
 
     constructor(details?: any) {
         if (details) {
@@ -35,8 +35,20 @@ export class ProcessModel {
             Object.assign(this['bpmn2:documentation'], details['bpmn2:documentation']);
             Object.assign(this['bpmn2:startEvent'], details['bpmn2:startEvent']);
             Object.assign(this['bpmn2:endEvent'], details['bpmn2:endEvent']);
-            Object.assign(this['bpmn2:userTask'], details['bpmn2:userTask']);
-            Object.assign(this['bpmn2:sequenceFlow'], details['bpmn2:sequenceFlow']);
+
+            if (typeof details['bpmn2:userTask'] !== 'undefined' && details['bpmn2:userTask']) {
+                this['bpmn2:userTask'] = {};
+                Object.assign(this['bpmn2:userTask'], details['bpmn2:userTask']);
+            }
+
+            if (typeof details['bpmn2:sequenceFlow'] !== 'undefined' && details['bpmn2:sequenceFlow']) {
+                Object.assign(this['bpmn2:sequenceFlow'], details['bpmn2:sequenceFlow']);
+            }
+
+            if (typeof details['bpmn2:serviceTask'] !== 'undefined' && details['bpmn2:serviceTask']) {
+                this['bpmn2:serviceTask'] = {};
+                Object.assign(this['bpmn2:serviceTask'], details['bpmn2:serviceTask']);
+            }
         }
     }
 

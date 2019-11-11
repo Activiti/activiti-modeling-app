@@ -59,47 +59,11 @@ describe('List processes', async () => {
         loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
-
     });
 
     beforeEach(async() => {
         projectContentPage = new ProjectContentPage(testConfig, project1.entry.id);
-    });
-
-    it('[C290148] List of processes is not empty when navigate to Dashboard - item is available', async () => {
-        await dashboardPage.navigateToProject(project1.entry.id);
-        await expect(await projectContentPage.isModelInList('process', process1.entry.name)).toBe(true, 'Process is not displayed in the left sidebar');
-
-        await toolbar.goToHome();
-
-        await dashboardPage.navigateToProject(project1.entry.id);
-        await expect(await projectContentPage.isModelInList('process', process1.entry.name)).toBe(true, 'Process is not displayed in the left sidebar');
-    });
-
-    it('[C287799] List of processes is not empty when navigate to Dashboard', async () => {
-        await dashboardPage.navigateTo();
-        await dashboardPage.navigateToProject(project1.entry.id);
-        await sidebarActionMenu.createProcess();
-        /* cspell: disable-next-line */
-        const processItem = await createEntityDialog.setEntityDetails('ama-qa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
-        await expect(await projectContentPage.isModelInList('process', processItem.name)).toBe(true, 'Process is not displayed in the left sidebar');
-
-        await dashboardPage.navigateTo();
-
-        await dashboardPage.navigateToProject(project1.entry.id);
-        await expect(await projectContentPage.isModelInList('process', processItem.name)).toBe(true, 'Process is not displayed in the left sidebar');
-    });
-
-    it('[C291773] List of processes is not empty when navigate to Dashboard - switch between projects', async () => {
-        await dashboardPage.navigateTo();
-        await dashboardPage.navigateToProject(project1.entry.id);
-        await expect(await projectContentPage.isModelInList('process', process1.entry.name)).toBe(true, 'Process is not displayed in the left sidebar');
-
-        await toolbar.goToHome();
-
-        await dashboardPage.navigateToProject(project2.entry.id);
-        await expect(await projectContentPage.isModelInList('process', process2.entry.name)).toBe(true, 'Process is not displayed in the left sidebar');
-        await expect(await projectContentPage.isModelNotInList('process', process1.entry.name)).toBe(true, `Process from a different project is displayed in the left sidebar`);
+        await projectContentPage.navigateTo();
     });
 
     afterAll(async () => {
@@ -107,5 +71,37 @@ describe('List processes', async () => {
         await backend.project.delete(project2.entry.id);
         await backend.tearDown();
         await authenticatedPage.logout();
+    });
+
+    it('[C290148] List of processes is not empty when navigate to Dashboard - item is available', async () => {
+        await expect(await projectContentPage.isModelInList('process', process1.entry.name)).toBe(true, 'Process is not displayed in the left sidebar');
+
+        await toolbar.goToHome();
+
+        await projectContentPage.navigateTo();
+        await expect(await projectContentPage.isModelInList('process', process1.entry.name)).toBe(true, 'Process is not displayed in the left sidebar');
+    });
+
+    it('[C287799] List of processes is not empty when navigate to Dashboard', async () => {
+        await sidebarActionMenu.createProcess();
+        /* cspell: disable-next-line */
+        const processItem = await createEntityDialog.setEntityDetails('ama-qa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
+        await expect(await projectContentPage.isModelInList('process', processItem.name)).toBe(true, 'Process is not displayed in the left sidebar');
+
+        await dashboardPage.navigateTo();
+
+        await projectContentPage.navigateTo();
+        await expect(await projectContentPage.isModelInList('process', processItem.name)).toBe(true, 'Process is not displayed in the left sidebar');
+    });
+
+    it('[C291773] List of processes is not empty when navigate to Dashboard - switch between projects', async () => {
+        await expect(await projectContentPage.isModelInList('process', process1.entry.name)).toBe(true, 'Process is not displayed in the left sidebar');
+
+        await toolbar.goToHome();
+
+        projectContentPage = new ProjectContentPage(testConfig, project2.entry.id);
+        await projectContentPage.navigateTo();
+        await expect(await projectContentPage.isModelInList('process', process2.entry.name)).toBe(true, 'Process is not displayed in the left sidebar');
+        await expect(await projectContentPage.isModelNotInList('process', process1.entry.name)).toBe(true, `Process from a different project is displayed in the left sidebar`);
     });
 });

@@ -70,10 +70,12 @@ export class ACMProject {
     }
 
     async delete(projectId: string): Promise<any> {
+        Logger.info(`[Project] Delete project ${projectId}`);
         await this.requestApiHelper.delete(`/modeling-service/v1/projects/${projectId}`);
     }
 
     async release(projectId: string): Promise<any> {
+        Logger.info(`[Project] Release project ${projectId}`);
         return this.requestApiHelper.post(`/modeling-service/v1/projects/${projectId}/releases`);
     }
 

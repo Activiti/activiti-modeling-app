@@ -48,7 +48,11 @@ describe('Delete project', () => {
     beforeAll(async () => {
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
+    });
 
+    afterAll(async () => {
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     it('[C286407] Delete project with confirmation', async () => {
@@ -57,10 +61,5 @@ describe('Delete project', () => {
         await deleteEntityDialog.checkDialogAndConfirm('project');
         await expect(await snackBar.isDeletedSuccessfully('project')).toBe(true);
         await expect(await dashboardPage.isProjectNotInList(projectId)).toBe(true);
-    });
-
-    afterAll(async () => {
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

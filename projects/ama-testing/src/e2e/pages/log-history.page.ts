@@ -90,6 +90,7 @@ export class LogHistoryPage extends GenericPage {
     }
 
     async getMessage(): Promise<string> {
+        await BrowserVisibility.waitUntilElementIsVisible(this.logContent);
         return this.logContent.getText();
     }
 

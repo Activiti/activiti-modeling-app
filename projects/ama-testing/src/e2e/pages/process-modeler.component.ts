@@ -114,4 +114,34 @@ export class ProcessModelerComponent extends GenericPage {
         await BrowserActions.click(element(by.css(selector)));
         await BrowserVisibility.waitUntilElementIsNotVisible(this.typeReplacePopup);
     }
+
+    async isElementSelected(editorElement: string): Promise<boolean> {
+        const elementSelectedLocator = element(by.css(`[data-element-id*='${editorElement}'][class*='selected']`));
+        try {
+            return await BrowserVisibility.waitUntilElementIsVisible(elementSelectedLocator);
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async isElementNotSelected(editorElement: string): Promise<boolean> {
+        const elementSelectedLocator = element(by.css(`[data-element-id*='${editorElement}'][class*='selected']`));
+        try {
+            return await BrowserVisibility.waitUntilElementIsNotVisible(elementSelectedLocator);
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async isServiceTaskSelected(): Promise<boolean> {
+        return this.isElementSelected('ServiceTask');
+    }
+
+    async isServiceTaskNotSelected(): Promise<boolean> {
+        return this.isElementNotSelected('ServiceTask');
+    }
+
+    async selectModelingCanvas(): Promise<void> {
+        await BrowserActions.click(this.canvas);
+    }
 }

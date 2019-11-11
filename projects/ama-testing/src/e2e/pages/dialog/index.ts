@@ -19,6 +19,7 @@
  export * from './create-entity.dialog';
  export * from './delete-entity.dialog';
  export * from './download-entity.dialog';
+ export * from './edit-entity.dialog';
  export * from './leave-page.dialog';
  export * from './process-variables.dialog';
  export * from './save-entity.dialog';
