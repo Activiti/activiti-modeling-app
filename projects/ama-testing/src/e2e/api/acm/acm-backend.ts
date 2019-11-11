@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import * as AlfrescoApi from 'alfresco-js-api-node';
+import { AlfrescoApi } from '@alfresco/js-api';
 import { Backend, ModelCrud } from '../api.interfaces';
 import { TestConfig} from '../../config/test.config.interface';
 import { ACMProject } from './project';
@@ -41,6 +41,7 @@ export class ACMBackend implements Backend {
 
     constructor(public config: TestConfig) {
         this.api = new AlfrescoApi({
+            provider: 'BPMN',
             authType: config.ama.backendConfig.authType,
             oauth2: config.ama.backendConfig.oauth2
         });

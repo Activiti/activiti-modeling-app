@@ -16,7 +16,6 @@
  */
 
 export * from './api';
-export * from './date';
 export * from './fakeBlob.helper';
 export * from './file';
 export * from './flush-last-browser-logs';

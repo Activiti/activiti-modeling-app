@@ -141,7 +141,6 @@
     "@types/jasminewd2": "2.0.2",
     "@types/node": "11.9.4",
     "ajv-cli": "3.0.0",
-    "alfresco-js-api-node": "4.0.0-beta1",
     "babel-preset-env": "1.7.0",
     "codelyzer": "4.4.4",
     "concurrently": "4.1.0",

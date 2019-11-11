@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { NodeEntry } from 'alfresco-js-api-node';
+import { NodeEntry } from '@alfresco/js-api';
 import { UtilRandom, Logger } from '../../util';
 import { ACMBackend } from './acm-backend';
 import { E2eRequestApiHelper, E2eRequestApiHelperOptions } from './e2e-request-api.helper';
@@ -33,15 +33,18 @@ export class ACMProject {
         this.tmpFilePath = backend.config.main.paths.tmp;
     }
 
-    async create(modelName: string = this.getRandomName()): Promise<any> {
-        const project = await this.requestApiHelper
-            .post<NodeEntry>(this.endPoint, { bodyParam: { name: modelName } });
-
-        Logger.info(`[Project] Project created with name: ${project.entry.name} and id: ${project.entry.id}.`);
-        return project;
+    async create(modelName: string = this.getRandomName()): Promise<NodeEntry> {
+        try {
+            const project = await this.requestApiHelper.post<NodeEntry>(this.endPoint, { bodyParam: { name: modelName } });
+            Logger.info(`[Project] Project created with name: ${project.entry.name} and id: ${project.entry.id}.`);
+            return project;
+        } catch (error) {
+            Logger.error(`[Project] Create and wait for project to be available failed!` + JSON.stringify(error));
+            throw error;
+        }
     }
 
-    async createAndWaitUntilAvailable(modelName: string = this.getRandomName()) {
+    async createAndWaitUntilAvailable(modelName: string = this.getRandomName()): Promise<NodeEntry> {
         try {
             const project = await this.create(modelName);
             return project;
@@ -51,22 +54,33 @@ export class ACMProject {
         }
     }
 
-    async get(projectId: string) {
-        return this.requestApiHelper.get(`/modeling-service/v1/projects/${projectId}`);
+    async get(projectId: string): Promise<NodeEntry> {
+        try {
+            return await this.requestApiHelper.get<NodeEntry>(`/modeling-service/v1/projects/${projectId}`);
+        } catch (error) {
+            Logger.error(`get project failed! ${error.message}`);
+            throw error;
+        }
     }
 
     async getDecisionTableId(projectId: string, decisionTableName: string): Promise<string> {
-        const requestOptions: E2eRequestApiHelperOptions = {
-            queryParams: { type: 'DECISION' }
-        };
-        const projectDetails = await this.requestApiHelper.get(`/modeling-service/v1/projects/${projectId}/models`, requestOptions);
-        const projectDetailsObject = JSON.parse(JSON.stringify(projectDetails));
-        const map = new Map<string, string>();
+        try {
 
-        for (const entry of projectDetailsObject.list.entries) {
-            map.set(entry.entry.name, entry.entry.id);
+            const requestOptions: E2eRequestApiHelperOptions = {
+                queryParams: { type: 'DECISION' }
+            };
+            const projectDetails = await this.requestApiHelper.get(`/modeling-service/v1/projects/${projectId}/models`, requestOptions);
+            const projectDetailsObject = JSON.parse(JSON.stringify(projectDetails));
+            const map = new Map<string, string>();
+
+            for (const entry of projectDetailsObject.list.entries) {
+                map.set(entry.entry.name, entry.entry.id);
+            }
+            return map.get(decisionTableName);
+        } catch (error) {
+            Logger.error(`getDecisionTableId failed! ${error.message}`);
+            throw error;
         }
-        return map.get(decisionTableName);
     }
 
     async delete(projectId: string): Promise<any> {
@@ -74,13 +88,13 @@ export class ACMProject {
         await this.requestApiHelper.delete(`/modeling-service/v1/projects/${projectId}`);
     }
 
-    async release(projectId: string): Promise<any> {
+    async release(projectId: string): Promise<NodeEntry> {
         Logger.info(`[Project] Release project ${projectId}`);
         return this.requestApiHelper.post(`/modeling-service/v1/projects/${projectId}/releases`);
     }
 
-    async import(projectFilePath: string, name?: string) {
-        const fileContent = await fs.createReadStream(projectFilePath);
+    async import(projectFilePath: string, name: string): Promise<NodeEntry> {
+        const fileContent = fs.createReadStream(projectFilePath);
         const requestOptions: E2eRequestApiHelperOptions = {
             formParams: { file: fileContent },
             contentTypes: ['multipart/form-data']
@@ -130,10 +144,12 @@ export class ACMProject {
     }
 
     async getProjects(): Promise<any> {
-        return this.requestApiHelper.get(
-            `/modeling-service/v1/projects`,
-            { queryParams: { 'maxItems': 1000 } }
-        );
+        try {
+            return this.requestApiHelper.get(`/modeling-service/v1/projects`, { queryParams: { 'maxItems': 1000 } });
+        } catch (error) {
+            Logger.error(`getProjects failed! ${error.message}`);
+            throw error;
+        }
     }
 
 }

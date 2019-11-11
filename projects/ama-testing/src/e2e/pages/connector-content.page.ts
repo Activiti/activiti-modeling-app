@@ -35,7 +35,8 @@ export class ConnectorContentPage extends GenericPage {
     }
 
     async navigateTo(): Promise<void> {
-        await super.navigateTo(`projects/${this.appId}/connector/${this.connectorId}`);
+        await BrowserActions.getUrl(`${browser.baseUrl}/#/projects/${this.appId}/connector/${this.connectorId}`);
+        await browser.refresh();
     }
 
     async isLoaded(): Promise<boolean> {

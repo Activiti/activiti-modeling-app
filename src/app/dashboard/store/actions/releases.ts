@@ -17,7 +17,7 @@
 
 import { Action } from '@ngrx/store';
 import { PaginatedEntries, ReleaseEntry } from 'ama-sdk';
-import { Pagination } from 'alfresco-js-api-node';
+import { Pagination } from '@alfresco/js-api';
 
 export const GET_PROJECT_RELEASES_ATTEMPT = 'GET_PROJECT_RELEASES_ATTEMPT';
 export class GetProjectReleasesAttemptAction implements Action {

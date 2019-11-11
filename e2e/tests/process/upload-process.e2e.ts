@@ -20,7 +20,7 @@ import { Resources } from '../../resources/resources';
 import { SnackBar } from 'ama-testing/e2e';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
-import { NodeEntry } from 'alfresco-js-api-node';
+import { NodeEntry } from '@alfresco/js-api';
 import { testConfig } from '../../test.config';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { ProjectContentPage } from 'ama-testing/e2e';

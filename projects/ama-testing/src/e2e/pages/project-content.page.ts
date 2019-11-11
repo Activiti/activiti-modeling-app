@@ -15,21 +15,20 @@
  * limitations under the License.
  */
 
-import { element, by } from 'protractor';
+import { element, by, browser } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config';
 import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class ProjectContentPage extends GenericPage {
 
-    readonly itemsListExpanded = element(by.css(`div.mat-expanded`));
-
     constructor(testConfig: TestConfig, public projectId: string) {
         super(testConfig);
     }
 
     async navigateTo(): Promise<void> {
-        await super.navigateTo(`projects/${this.projectId}`);
+        await BrowserActions.getUrl(`${browser.baseUrl}/#/projects/${this.projectId}`);
+        await browser.refresh();
     }
 
     async isModelInList(modelType: string, modelName: string): Promise<boolean> {

@@ -15,8 +15,7 @@
  * limitations under the License.
  */
 
-import * as AlfrescoApi from 'alfresco-js-api-node';
-import { NodeEntry } from 'alfresco-js-api-node';
+import { AlfrescoApi, NodeEntry } from '@alfresco/js-api';
 import { ACMProject } from './acm/project';
 
 export interface ModelCrud {
@@ -26,7 +25,7 @@ export interface ModelCrud {
     updateModelContent(modelId: string, content: string, modelName?: string): Promise<void>;
     updateModelMetadata(modelId: string, content: any): Promise<void>;
     delete(modelId?: string): Promise<void>;
-    import(processXmlFile: string, projectId: string): Promise<AlfrescoApi.NodeEntry>;
+    import(processXmlFile: string, projectId: string): Promise<NodeEntry>;
 }
 
 export interface Backend {

@@ -17,14 +17,14 @@
 
 import { testConfig } from '../../../test.config';
 import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
-import { NodeEntry } from 'alfresco-js-api-node';
+import { NodeEntry } from '@alfresco/js-api';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { ProcessContentPage } from 'ama-testing/e2e';
 import { ProcessPropertiesCard } from 'ama-testing/e2e';
 import { ProcessVariablesDialog } from 'ama-testing/e2e';
-import { UtilDate } from 'ama-testing/e2e';
+import * as moment from 'moment';
 
 describe('Create process variable', async () => {
     const adminUser = {
@@ -117,7 +117,7 @@ describe('Create process variable', async () => {
         });
 
         it('[C307118] Add date process variable', async () => {
-            const currentDate = UtilDate.getCurrentDate();
+            const currentDate = moment().format('YYYY-MM-DD');
             await processVariablesDialog.setVariable('dateVar', 'date');
             await expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Invalid characters accepted for integer variable value.');
             await expect(await processVariablesDialog.isVariableDisplayed(0, 'dateVar', 'date', currentDate)).toBe(true, 'Variable added is not displayed in the list.');

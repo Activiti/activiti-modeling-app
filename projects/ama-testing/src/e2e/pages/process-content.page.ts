@@ -37,7 +37,8 @@ export class ProcessContentPage extends GenericPage {
     }
 
     async navigateTo(): Promise<void> {
-        await super.navigateTo(`projects/${this.appId}/process/${this.processId}`);
+        await BrowserActions.getUrl(`${browser.baseUrl}/#/projects/${this.appId}/process/${this.processId}`);
+        await browser.refresh();
     }
 
     async isLoaded(): Promise<boolean> {

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { element, by, ElementFinder } from 'protractor';
+import { element, by, ElementFinder, browser } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { Pagination } from './pagination.component';
 import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
@@ -161,6 +161,6 @@ export class DashboardPage extends GenericPage {
     }
 
     async navigateTo(): Promise<void> {
-        await super.navigateTo(`dashboard/projects`);
+        await BrowserActions.getUrl(`${browser.baseUrl}/#/dashboard/projects`);
     }
 }

@@ -16,6 +16,7 @@
  */
 
 import { LoginSSOPage, BrowserActions } from '@alfresco/adf-testing';
+import { browser } from 'protractor';
 
 export class LoginAPSPage {
 
@@ -26,6 +27,6 @@ export class LoginAPSPage {
     }
 
     async navigateTo(): Promise<void> {
-        await BrowserActions.getUrl(`/#/login`);
+        await BrowserActions.getUrl(`${browser.baseUrl}/#/login`);
     }
 }

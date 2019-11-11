@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { element, by } from 'protractor';
+import { element, by, browser } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config';
 import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
@@ -41,6 +41,6 @@ export class AuthenticatedPage extends GenericPage {
 
     async navigateTo(): Promise<void> {
         const loginURL = `dashboard/projects`;
-        super.navigateTo(loginURL);
+        await BrowserActions.getUrl(`${browser.baseUrl}/#/${loginURL}`);
     }
 }

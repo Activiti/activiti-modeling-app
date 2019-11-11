@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { NodeEntry, ResultSetPaging } from 'alfresco-js-api-node';
+import { NodeEntry, ResultSetPaging } from '@alfresco/js-api';
 import { UtilRandom, Logger, UtilApi } from '../../util';
 import { ACMBackend } from './acm-backend';
 import { ModelCrud } from '../api.interfaces';
@@ -61,7 +61,12 @@ export abstract class ACMCrud implements ModelCrud {
     }
 
     getContent(entityId: string) {
-        return this.requestApiHelper.get(`/modeling-service/v1/models/${entityId}/content`, { returnType: 'Binary' });
+        try {
+            return this.requestApiHelper.get(`/modeling-service/v1/models/${entityId}/content`, { responseType: 'blob' });
+        } catch (error) {
+            Logger.error(`[${this.displayName}] getContent failed! ${error.message}`);
+            throw error;
+        }
     }
 
     async create(
@@ -103,7 +108,13 @@ export abstract class ACMCrud implements ModelCrud {
 
     async searchModels(projectId: string, modelType: string) {
         Logger.info(`[${this.displayName}] Waiting created model to be ready for listing.`);
-        return this.requestApiHelper.get<ResultSetPaging>(this.endPoint(projectId), { queryParams: { 'type': modelType } });
+
+        try {
+            return this.requestApiHelper.get<ResultSetPaging>(this.endPoint(projectId), { queryParams: { 'type': modelType } });
+        } catch (error) {
+            Logger.error(`[${this.displayName}] searchModels failed! ${error.message}`);
+            throw error;
+        }
     }
 
     async retrySearchModels(projectId: string, modelId: string, modelType: string): Promise<{}> {
@@ -125,15 +136,30 @@ export abstract class ACMCrud implements ModelCrud {
             contentTypes: ['multipart/form-data']
         };
 
-        await this.requestApiHelper.put(`/modeling-service/v1/models/${id}/content`, requestOptions);
+        try {
+            await this.requestApiHelper.put(`/modeling-service/v1/models/${id}/content`, requestOptions);
+        } catch (error) {
+            Logger.error(`[${this.displayName}] updateModelContent failed! ${error.message}`);
+            throw error;
+        }
     }
 
     async updateModelMetadata(id: string, content: object) {
-        await this.requestApiHelper.put(`/modeling-service/v1/models/${id}`, { bodyParam: content });
+        try {
+            await this.requestApiHelper.put(`/modeling-service/v1/models/${id}`, { bodyParam: content });
+        } catch (error) {
+            Logger.error(`[${this.displayName}] updateModelMetadata failed! ${error.message}`);
+            throw error;
+        }
     }
 
     async delete(id: string) {
-        await this.requestApiHelper.delete(`/modeling-service/v1/models/${id}`);
+        try {
+            await this.requestApiHelper.delete(`/modeling-service/v1/models/${id}`);
+        } catch (error) {
+            Logger.error(`[${this.displayName}] delete failed! ${error.message}`);
+            throw error;
+        }
     }
 
     private getRandomName(): string {

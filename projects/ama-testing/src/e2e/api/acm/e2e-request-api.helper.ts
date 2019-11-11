@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
-import * as AlfrescoApi from 'alfresco-js-api-node';
 import { ACMBackend } from './acm-backend';
+import { Oauth2Auth } from '@alfresco/js-api';
 
 export interface E2eRequestApiHelperOptions {
     pathParams?: { [key: string]: any} ;
@@ -24,7 +24,6 @@ export interface E2eRequestApiHelperOptions {
     headerParams?: { [key: string]: any} ;
     formParams?: { [key: string]: any} ;
     bodyParam?: { [key: string]: any} ;
-    authNames?: string[];
     contentTypes?: string[];
     accepts?: string[];
     returnType?: any;
@@ -39,16 +38,15 @@ function getDefaultOptions(): E2eRequestApiHelperOptions {
         headerParams: {},
         formParams: {},
         bodyParam: {},
-        authNames: [],
         contentTypes: ['application/json'],
         accepts: ['application/json'],
-        returnType: {'String': 'String'}
+        returnType: undefined
     };
 }
 
 export class E2eRequestApiHelper {
 
-    api: AlfrescoApi.OauthApi;
+    api: Oauth2Auth;
 
     constructor(private backend: ACMBackend) {
         this.api = backend.api.oauth2Auth;
@@ -62,24 +60,23 @@ export class E2eRequestApiHelper {
         return `${host}${path}`;
     }
 
-    public get<T>(endPoint: string, overriddenOptions?: E2eRequestApiHelperOptions) {
+    public get<T>(endPoint: string, overriddenOptions?: E2eRequestApiHelperOptions): PromiseLike<T> {
         return this.request<T>('GET', endPoint, overriddenOptions);
     }
 
-    public post<T>(endPoint: string, overriddenOptions?: E2eRequestApiHelperOptions) {
+    public post<T>(endPoint: string, overriddenOptions?: E2eRequestApiHelperOptions): PromiseLike<T> {
         return this.request<T>('POST', endPoint, overriddenOptions);
     }
 
-    public put<T>(endPoint: string, overriddenOptions?: E2eRequestApiHelperOptions) {
+    public put<T>(endPoint: string, overriddenOptions?: E2eRequestApiHelperOptions): PromiseLike<T> {
         return this.request<T>('PUT', endPoint, overriddenOptions);
     }
 
-    public delete<T>(endPoint: string, overriddenOptions?: E2eRequestApiHelperOptions) {
+    public delete<T>(endPoint: string, overriddenOptions?: E2eRequestApiHelperOptions): PromiseLike<T> {
         return this.request<T>('DELETE', endPoint, overriddenOptions);
     }
 
     private request<T>(httpMethod: string, endPoint: string, overriddenOptions?: E2eRequestApiHelperOptions): PromiseLike<T> {
-
         const options = {
             ...getDefaultOptions(),
             ...overriddenOptions
@@ -91,7 +88,6 @@ export class E2eRequestApiHelper {
             headerParams,
             formParams,
             bodyParam,
-            authNames,
             contentTypes,
             accepts,
             returnType,
@@ -107,7 +103,6 @@ export class E2eRequestApiHelper {
             headerParams,
             formParams,
             bodyParam,
-            authNames,
             contentTypes,
             accepts,
             returnType,

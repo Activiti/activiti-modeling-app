@@ -18,7 +18,7 @@
 import { testConfig } from '../../test.config';
 import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
 import { SnackBar } from 'ama-testing/e2e';
-import { NodeEntry } from 'alfresco-js-api-node';
+import { NodeEntry } from '@alfresco/js-api';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';

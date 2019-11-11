@@ -20,7 +20,7 @@ import { LoginPage, LoginPageImplementation, AuthenticatedPage, SidebarActionMen
 import { CreateEntityDialog } from 'ama-testing/e2e';
 import { ProjectContentPage } from 'ama-testing/e2e';
 import { SnackBar } from 'ama-testing/e2e';
-import { NodeEntry } from 'alfresco-js-api-node';
+import { NodeEntry } from '@alfresco/js-api';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { Toolbar } from 'ama-testing/e2e';
