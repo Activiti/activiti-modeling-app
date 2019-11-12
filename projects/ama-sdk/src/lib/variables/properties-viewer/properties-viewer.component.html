@@ -64,7 +64,7 @@
         <mat-form-field floatLabel="never">
             <mat-select placeholder="Type" [(ngModel)]="selectedType" (selectionChange)="onTypeChange()"
                 data-automation-id="variable-type">
-                <mat-option *ngFor="let type of types" [value]="type">
+                <mat-option *ngFor="let type of types" [value]="type" [attr.data-automation-id]="'variable-type-' + type">
                     {{type}}
                 </mat-option>
             </mat-select>

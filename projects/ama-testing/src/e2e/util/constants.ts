@@ -17,7 +17,8 @@
 
 export const NO_PROCESS_VARIABLES_ERROR = 'no-process-variables-error';
 export const NO_SUBPROCESS_VARIABLES_ERROR = 'no-subprocess-variables-error';
-export const NO_FORM_FIELDS_ERROR = 'no-form-fields-error';
+export const NO_FORM_FIELDS_FOR_INPUT_ERROR = 'no-form-fields-for-input-error';
+export const NO_FORM_FIELDS_FOR_OUTPUT_ERROR = 'no-form-fields-for-output-error';
 
 export const SEND_ALL_VARIABLES_OPTION = 'Send all variables';
 export const SEND_NO_VARIABLES_OPTION = 'Send no variables';

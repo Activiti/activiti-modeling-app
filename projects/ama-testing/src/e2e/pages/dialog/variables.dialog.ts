@@ -55,13 +55,12 @@ export class VariablesDialog extends GenericDialog {
     }
 
     async setVariableName(name: string): Promise<void> {
-        await this.name.clear();
-        await this.name.sendKeys(name);
+        await BrowserActions.clearSendKeys(this.name, name);
     }
 
     async setVariableType(type: string): Promise<void> {
         await BrowserActions.click(this.type);
-        const varTypeOption = element(by.cssContainingText('.mat-option-text', type));
+        const varTypeOption = element(by.css(`[data-automation-id='variable-type-${type}']`));
         await BrowserActions.click(varTypeOption);
     }
 

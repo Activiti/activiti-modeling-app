@@ -22,8 +22,8 @@ import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 export class TaskPropertiesCardPage extends GenericPage {
 
     readonly assignee = element(by.css('input[data-automation-id="card-textitem-editinput-assignee"]'));
-    readonly assigneeSaveButton = element(by.css('[data-automation-id="card-textitem-update-assignee"]'));
-    readonly assigneeEditButton = element(by.css('[data-automation-id="card-textitem-edit-icon-assignee"]'));
+    readonly assigneeSaveButton = element(by.css('button[data-automation-id="card-textitem-update-assignee"]'));
+    readonly assigneeEditButton = element(by.css(' button[data-automation-id="card-textitem-edit-icon-assignee"]'));
 
     readonly candidateUser = element(by.css('input[data-automation-id="card-textitem-editinput-candidateUsers"]'));
     readonly candidateUserSaveButton = element(by.css('[data-automation-id="card-textitem-update-candidateUsers"]'));

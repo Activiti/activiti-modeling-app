@@ -117,11 +117,17 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async setForm(formName: string) {
-        await browser.actions().mouseMove(this.formSelector).perform();
-        await BrowserActions.click(this.formSelector);
         const formOption = element(by.cssContainingText('.mat-option-text', formName));
-        await browser.actions().mouseMove(formOption).perform();
-        await BrowserActions.click(formOption);
+        let i = 0;
+        try {
+            do {
+                Logger.info('Click ', ++i, ' on form selectbox.');
+                await BrowserActions.click(this.formSelector);
+            } while (await BrowserVisibility.waitUntilElementIsNotVisible(formOption, 500) && i < 10);
+        } catch (error) {
+            Logger.info('Form list is loaded. Item can be selected.');
+            await BrowserActions.click(formOption);
+        }
     }
 
     async setActivity(activityName: string) {
@@ -142,7 +148,7 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async selectVariable(variableName: string) {
-        const processVariable = element(by.cssContainingText('.mat-option-text', variableName));
+        const processVariable = element.all(by.cssContainingText('.mat-option-text', variableName)).first();
 
         await BrowserVisibility.waitUntilElementIsVisible(processVariable);
         await BrowserActions.click(processVariable);
@@ -221,7 +227,7 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async isVariableSelectorVisible(connectorId: string) {
-        const valueInput = element(by.css(`[data-automation-id="variable-selector-${connectorId}"]`));
+        const valueInput = element.all(by.css(`[data-automation-id="variable-selector-${connectorId}"]`)).first();
         await BrowserVisibility.waitUntilElementIsVisible(valueInput);
         return true;
     }
