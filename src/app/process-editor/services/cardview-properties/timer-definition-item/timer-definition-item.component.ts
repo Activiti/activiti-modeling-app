@@ -18,9 +18,11 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, AppConfigService } from '@alfresco/adf-core';
 import { FormBuilder, Validators, FormControl, FormGroup, AbstractControl } from '@angular/forms';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import { debounceTime, takeUntil, filter, take } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import moment from 'moment-es6';
+import { AmaState, EntityProperty, selectSelectedProcess } from 'ama-sdk';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'ama-process-timer-definition',
@@ -41,20 +43,45 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     timerDefinitionForm: FormGroup;
     today = new Date();
     eventType: string;
+    optionsForParams: {
+        [paramName: string]: { id: string; name: string }[];
+    } = {};
 
     onDestroy$: Subject<void> = new Subject<void>();
 
     constructor(
         private cardViewUpdateService: CardViewUpdateService,
         private appConfigService: AppConfigService,
-        private formBuilder: FormBuilder
-    ) { }
+        private formBuilder: FormBuilder,
+        private store: Store<AmaState>) {
+    }
 
     ngOnInit() {
         this.timers = this.appConfigService.get('process-modeler.timer-types');
 
+        this.initProcessVariables();
         this.buildForm();
         this.setTimerFromXML();
+    }
+
+    initProcessVariables() {
+        this.store.select(selectSelectedProcess).pipe(
+            filter((process) => !!process),
+            take(1)
+        ).subscribe((process) => {
+            const processVariables = <EntityProperty[]> Object.values(process.extensions.properties);
+            this.setOptionForAParam(processVariables);
+        });
+    }
+
+    private setOptionForAParam(processVariables: EntityProperty[]) {
+        this.optionsForParams['timeDuration'] = this.extractProcessVariablesByType(processVariables, 'string');
+        this.optionsForParams['timeCycle'] = this.extractProcessVariablesByType(processVariables, 'string');
+        this.optionsForParams['timeDate'] = this.extractProcessVariablesByType(processVariables, 'datetime');
+    }
+
+    private extractProcessVariablesByType(processVariables: EntityProperty[], type: string): EntityProperty[] {
+        return [ ...processVariables.filter(variable => variable.type === type)];
     }
 
     buildForm() {
@@ -98,17 +125,17 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     updateTimerDefinition() {
         const timerDefinition = this.getTimerDefinitionFromForm();
 
-            this.cardViewUpdateService.update(this.property, {
-                type: this.timerType.value,
-                definition: timerDefinition
-            });
+        this.cardViewUpdateService.update(this.property, {
+            type: this.timerType.value,
+            definition: timerDefinition
+        });
     }
 
     getTimerDefinitionFromForm(): string {
         let definition = '';
 
         if (this.useProcessVariable.value) {
-            return '${' + this.processVariable.value + '}';
+            return this.processVariable.value ? '${' + this.processVariable.value + '}' : undefined;
         }
 
         if (this.useCronExpression.value) {

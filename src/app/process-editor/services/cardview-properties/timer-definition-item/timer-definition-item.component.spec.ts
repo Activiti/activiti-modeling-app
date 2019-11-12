@@ -21,11 +21,15 @@ import { CardItemTypeService, CardViewUpdateService, AppConfigService } from '@a
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AmaState } from 'ama-sdk';
+import { of } from 'rxjs';
 
 describe('CardViewTimerDefinitionItemComponent', () => {
     let fixture: ComponentFixture<CardViewTimerDefinitionItemComponent>;
     let component: CardViewTimerDefinitionItemComponent;
     let cardViewUpdateService: CardViewUpdateService;
+    let store: Store<AmaState>;
 
     const timerOptionsMock = [
         {
@@ -52,12 +56,46 @@ describe('CardViewTimerDefinitionItemComponent', () => {
         }
     };
 
+    const processMock = {
+        extensions: {
+            properties: {
+                foo: {
+                    id: 'processVariable1',
+                    name: 'foo',
+                    type: 'string',
+                    value: 'cat',
+                    required: false
+                },
+                bar: {
+                    id: 'processVariable2',
+                    name: 'bar',
+                    type: 'number',
+                    value: 3,
+                    required: false
+                },
+                foobar: {
+                    id: 'processVariable3',
+                    name: 'bar',
+                    type: 'datetime',
+                    value: '2019-11-01T00:00:00+00:00',
+                    required: false
+                }
+            }
+        }
+    };
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             providers: [
                 CardItemTypeService,
                 CardViewUpdateService,
                 FormBuilder,
+                {
+                    provide: Store,
+                    useValue: {
+                        select: jest.fn()
+                    }
+                },
                 {
                     provide: AppConfigService, useValue: {
                         get: jest.fn('process-modeler.timer-types').mockReturnValue(timerOptionsMock)
@@ -72,9 +110,11 @@ describe('CardViewTimerDefinitionItemComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(CardViewTimerDefinitionItemComponent);
+        store = TestBed.get(Store);
         component = fixture.componentInstance;
         component.property = propertyMock;
 
+        spyOn(store, 'select').and.returnValue(of(processMock));
         cardViewUpdateService = TestBed.get(CardViewUpdateService);
         fixture.detectChanges();
     });
@@ -218,5 +258,15 @@ describe('CardViewTimerDefinitionItemComponent', () => {
         fixture.detectChanges();
         processVariableContainer = fixture.nativeElement.querySelector('div[class="timer-variable"]');
         expect(processVariableContainer).not.toBeNull();
+    });
+
+    it('should set process variables when process is retrieved based on type', () => {
+        expect(component.optionsForParams['timeDuration'].length).toBe(1);
+        expect(component.optionsForParams['timeCycle'].length).toBe(1);
+        expect(component.optionsForParams['timeDate'].length).toBe(1);
+
+        expect(component.optionsForParams['timeDuration'][0]).toBe(processMock.extensions.properties.foo);
+        expect(component.optionsForParams['timeCycle'][0]).toBe(processMock.extensions.properties.foo);
+        expect(component.optionsForParams['timeDate'][0]).toBe(processMock.extensions.properties.foobar);
     });
 });

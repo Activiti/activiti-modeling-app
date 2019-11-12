@@ -18,12 +18,19 @@
             <mat-checkbox [formControl]="useProcessVariable">
                 {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.USE_PROCESS_VARIABLE' | translate}}
             </mat-checkbox>
-            <mat-form-field *ngIf="useProcessVariable.value">
+            <ng-container *ngIf="useProcessVariable.value">
                 <div class="adf-property-label">
                     {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.PROCESS_VARIABLE' | translate}}
                 </div>
-                <input matInput [formControl]="processVariable" />
-            </mat-form-field>
+                <mat-form-field >
+                    <mat-select [formControl]="processVariable">
+                        <mat-option></mat-option>
+                        <mat-option *ngFor="let processVariable of optionsForParams[timerType.value]" [value]="processVariable.name">
+                            {{processVariable.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ng-container>
         </div>
 
         <div *ngIf="isCycleTimer()" class="timer-cycle">
