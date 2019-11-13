@@ -18,7 +18,8 @@
             "SIGN_OUT": "Sign out",
             "SETTINGS": "Settings",
             "ABOUT": "About",
-            "LANGUAGE": "Language"
+            "LANGUAGE": "Language",
+            "SEARCH": "Search"
         },
         "DIALOGS": {
             "CANCEL": "Cancel",
@@ -157,6 +158,7 @@
             },
             "IMPORT": "Import",
             "CREATE_NEW": "Create new",
+            "SEARCH": "Search",
             "UPLOAD_FILE_SUCCESS": "The file was successfully uploaded",
             "NO_CONTENT": "<empty>",
             "NO_SELECTION": "Please choose a model to edit from the left sidebar",
@@ -248,7 +250,7 @@
                 "FILE_DELETED": "The File was successfully deleted",
                 "FILE_UPDATED": "The File was successfully updated"
             },
-            
+
             "ACTION_DIALOG": {
                 "ACTION_DETAILS": "Action details",
                 "ACTION_NAME": "Action name",

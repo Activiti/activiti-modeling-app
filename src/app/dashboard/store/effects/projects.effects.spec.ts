@@ -55,7 +55,9 @@ import {
     DownloadResourceService,
     logInfo,
     logError,
-    Pagination
+    Pagination,
+    ServerSideSorting,
+    SearchQuery
 } from 'ama-sdk';
 import { GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
 import { getProjectEditorLogInitiator } from 'src/app/project-editor/services/project-editor.constants';
@@ -72,6 +74,16 @@ describe('ProjectsEffects', () => {
     const updatedPagination = {
         maxItems: paginationMock.maxItems,
         skipCount: paginationMock.skipCount - paginationMock.maxItems
+    };
+
+    const search: SearchQuery = {
+        key: 'name',
+        value: ''
+    };
+
+    const sorting: ServerSideSorting = {
+        key: 'name',
+        direction: 'asc'
     };
 
     beforeEach(() => {
@@ -294,12 +306,12 @@ describe('ProjectsEffects', () => {
 
         it('should trigger the right action on successful delete', () => {
             dashboardService.deleteProject = jest.fn().mockReturnValue(of(mockProject));
-            actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id) });
+            actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id, sorting, search) });
 
             const expected = cold('(bce)', {
                 b: new DeleteProjectSuccessAction(mockProject.id),
                 c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
-                e: new GetProjectsAttemptAction(updatedPagination)
+                e: new GetProjectsAttemptAction(updatedPagination, sorting, search)
             });
 
             expect(effects.deleteProjectAttemptEffect).toBeObservable(expected);
@@ -307,12 +319,12 @@ describe('ProjectsEffects', () => {
 
         it('should modify pagination when the skipCount is equal with totalItems', () => {
             dashboardService.deleteProject = jest.fn().mockReturnValue(of(mockProject));
-            actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id) });
+            actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id, sorting, search)});
 
             const expected = cold('(bce)', {
                 b:  new DeleteProjectSuccessAction(mockProject.id),
                 c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
-                e: new GetProjectsAttemptAction(updatedPagination)
+                e: new GetProjectsAttemptAction(updatedPagination, sorting, search)
 
             });
 
@@ -332,12 +344,12 @@ describe('ProjectsEffects', () => {
 
         it('should refresh projects on successful delete', () => {
             dashboardService.deleteProject = jest.fn().mockReturnValue(of(mockProject));
-            actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id) });
+            actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id, sorting, search) });
 
             const expected = cold('(bce)', {
                 b:  new DeleteProjectSuccessAction(mockProject.id),
                 c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
-                e: new GetProjectsAttemptAction(updatedPagination)
+                e: new GetProjectsAttemptAction(updatedPagination, sorting, search)
 
             });
 

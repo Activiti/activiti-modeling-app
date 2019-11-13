@@ -23,7 +23,7 @@ import { of } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { tap, switchMap, catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { BaseEffects, Pagination, logInfo, logError, LogAction, FetchQueries, ServerSideSorting, ErrorResponse } from 'ama-sdk';
+import { BaseEffects, Pagination, logInfo, logError, LogAction, FetchQueries, ServerSideSorting, ErrorResponse, SearchQuery } from 'ama-sdk';
 import {
     GetProjectsAttemptAction,
     GET_PROJECTS_ATTEMPT,
@@ -97,15 +97,15 @@ export class ProjectsEffects extends BaseEffects {
     @Effect()
     deleteProjectAttemptEffect = this.actions$.pipe(
         ofType<DeleteProjectAttemptAction>(DELETE_PROJECT_ATTEMPT),
-        map(action => action.payload),
+        map(action => action),
         withLatestFrom(this.store.select(selectPagination)),
-        mergeMap(([projectId, pagination]) => this.deleteProject(projectId, pagination))
+        mergeMap(([action, pagination]) => this.deleteProject(action.projectId, action.sorting, action.search, pagination))
     );
 
     @Effect()
     getProjectsAttemptEffect = this.actions$.pipe(
         ofType<GetProjectsAttemptAction>(GET_PROJECTS_ATTEMPT),
-        switchMap(action => this.getProjectsAttempt(<FetchQueries> action.pagination, action.sorting))
+        switchMap(action => this.getProjectsAttempt(<FetchQueries> action.pagination, action.sorting, action.search))
     );
 
     @Effect()
@@ -126,7 +126,7 @@ export class ProjectsEffects extends BaseEffects {
         tap((action) => this.router.navigate([ '/projects', action.payload.id]))
     );
 
-    private deleteProject(projectId: string, pagination: Pagination) {
+    private deleteProject(projectId: string, sorting: ServerSideSorting, search: SearchQuery, pagination: Pagination) {
         return this.dashboardService.deleteProject(projectId).pipe(
             switchMap(() => [
                 new DeleteProjectSuccessAction(projectId),
@@ -134,7 +134,9 @@ export class ProjectsEffects extends BaseEffects {
                 new GetProjectsAttemptAction({
                     skipCount: pagination.skipCount < (pagination.totalItems - 1) ? pagination.skipCount : pagination.skipCount - pagination.maxItems,
                     maxItems: pagination.maxItems
-                })
+                }, {
+                    key: sorting.key,
+                    direction: sorting.direction}, search)
             ]),
             catchError(e =>
                 this.genericErrorHandler(
@@ -180,8 +182,8 @@ export class ProjectsEffects extends BaseEffects {
         );
     }
 
-    private getProjectsAttempt(pagination: FetchQueries, sorting: ServerSideSorting) {
-        return this.dashboardService.fetchProjects(pagination, sorting).pipe(
+    private getProjectsAttempt(pagination: FetchQueries, sorting: ServerSideSorting, search: SearchQuery) {
+        return this.dashboardService.fetchProjects(pagination, sorting, search).pipe(
             switchMap(projects => [new GetProjectsSuccessAction(projects)]),
             catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'APP.HOME.ERROR.LOAD_PROJECTS'), e))
         );

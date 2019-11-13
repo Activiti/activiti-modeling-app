@@ -283,6 +283,11 @@ export interface ServerSideSorting {
     direction: string;
 }
 
+export interface SearchQuery {
+    key: string;
+    value: string;
+}
+
 export interface ErrorResponse {
     status: number;
     message: string;

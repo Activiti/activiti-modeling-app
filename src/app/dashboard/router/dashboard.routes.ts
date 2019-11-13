@@ -20,6 +20,7 @@ import { DashboardNavigationComponent } from '../components/dashboard-navigation
 import { ProjectsListComponent } from '../components/projects-list/projects-list.component';
 import { ReleaseListComponent } from '../components/releases-list/releases-list.component';
 import { ProjectReleasesLoaderGuard } from './guards/project-releases-loader.guard';
+import { SearchHeaderComponent } from '../../app/app-layout/search-header/search-header.component';
 
 export const dashboardRoutes: Routes = [
     {
@@ -30,6 +31,11 @@ export const dashboardRoutes: Routes = [
         path: '',
         component: DashboardNavigationComponent,
         outlet: 'navigation'
+    },
+    {
+        path: '',
+        component: SearchHeaderComponent,
+        outlet: 'search'
     },
     { path: 'projects/:projectId/releases',
       component: ReleaseListComponent,

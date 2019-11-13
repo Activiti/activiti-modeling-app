@@ -4,75 +4,89 @@
         <ng-container *ngIf="dataSource$ | async; let dataSource">
             <ng-container *ngIf="dataSource.data.length; else noDataTemplate">
                 <div class="dashboard-list">
-                    <mat-table
-                        [dataSource]="dataSource"
-                        matSort
-                        [matSortActive]="sorting.key"
-                        [matSortDirection]="sorting.direction"
-                        [matSortDisableClear]="true"
-                        (matSortChange)="onSortChange($event)">
-                        <ng-container matColumnDef="thumbnail">
-                            <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                            <mat-cell *matCellDef="let element" (click)="rowSelected(element)">
-                                <mat-icon class="thumbnail" color="primary">assessment</mat-icon>
-                            </mat-cell>
-                        </ng-container>
+                    <div class="dashboard-list-container">
+                            <mat-table
+                            [dataSource]="dataSource"
+                            matSort
+                            [matSortActive]="sorting.key"
+                            [matSortDirection]="sorting.direction"
+                            [matSortDisableClear]="true"
+                            (matSortChange)="onSortChange($event)">
+                            <ng-container matColumnDef="thumbnail">
+                                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                                <mat-cell *matCellDef="let element" (click)="rowSelected(element)">
+                                    <mat-icon class="thumbnail" color="primary">assessment</mat-icon>
+                                </mat-cell>
+                            </ng-container>
 
-                        <ng-container matColumnDef="name">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_NAME' | translate }}</mat-header-cell>
-                            <mat-cell
-                                *matCellDef="let element"
-                                (click)="rowSelected(element)"
-                                [attr.data-automation-id]="'project-' + element.id"
-                                [attr.data-project-id]="element.id"
-                                [attr.data-project-name]="element.name">
-                                <span> {{element.name}} </span>
-                            </mat-cell>
-                        </ng-container>
+                            <ng-container matColumnDef="name">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_NAME' | translate }}</mat-header-cell>
+                                <mat-cell
+                                    *matCellDef="let element"
+                                    (click)="rowSelected(element)"
+                                    [attr.data-automation-id]="'project-' + element.id"
+                                    [attr.data-project-id]="element.id"
+                                    [attr.data-project-name]="element.name">
+                                    <span> {{element.name}} </span>
+                                </mat-cell>
+                            </ng-container>
 
-                        <ng-container matColumnDef="creationDate">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_CREATED' | translate }}</mat-header-cell>
-                            <mat-cell *matCellDef="let element" (click)="rowSelected(element)"> {{ element.creationDate | amTimeAgo }} </mat-cell>
-                        </ng-container>
+                            <ng-container matColumnDef="creationDate">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_CREATED' | translate }}</mat-header-cell>
+                                <mat-cell *matCellDef="let element" (click)="rowSelected(element)"> {{ element.creationDate | amTimeAgo }} </mat-cell>
+                            </ng-container>
 
-                        <ng-container matColumnDef="createdBy">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_CREATED_BY' | translate }}</mat-header-cell>
-                            <mat-cell *matCellDef="let element" (click)="rowSelected(element)"> {{ element.createdBy }} </mat-cell>
-                        </ng-container>
+                            <ng-container matColumnDef="createdBy">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_CREATED_BY' | translate }}</mat-header-cell>
+                                <mat-cell *matCellDef="let element" (click)="rowSelected(element)"> {{ element.createdBy }} </mat-cell>
+                            </ng-container>
 
-                        <ng-container matColumnDef="version">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_VERSION' | translate }}</mat-header-cell>
-                            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'project-version-' + element.id" (click)="rowSelected(element)"> {{ element.version }} </mat-cell>
-                        </ng-container>
+                            <ng-container matColumnDef="version">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_VERSION' | translate }}</mat-header-cell>
+                                <mat-cell *matCellDef="let element" [attr.data-automation-id]="'project-version-' + element.id" (click)="rowSelected(element)"> {{ element.version }} </mat-cell>
+                            </ng-container>
 
-                        <ng-container matColumnDef="menu">
-                            <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_OPTIONS' | translate }}</mat-header-cell>
-                            <mat-cell *matCellDef="let element">
-                                <button mat-icon-button [matMenuTriggerFor]="menu" [attr.data-automation-id]="'project-context-' + element.id"
-                                    [title]="'APP.MORE_ACTIONS' | translate">
-                                    <mat-icon>more_vert</mat-icon>
-                                </button>
-                                <mat-menu #menu="matMenu">
-                                    <button mat-menu-item (click)="editRow(element)" [attr.data-automation-id]="'project-edit-' + element.id">
-                                        <mat-icon>create</mat-icon> <span>{{ 'APP.MENU.EDIT' | translate }}</span>
+                            <ng-container matColumnDef="menu">
+                                <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_OPTIONS' | translate }}</mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" [attr.data-automation-id]="'project-context-' + element.id"
+                                        [title]="'APP.MORE_ACTIONS' | translate">
+                                        <mat-icon>more_vert</mat-icon>
                                     </button>
-                                    <button mat-menu-item (click)="deleteRow(element)" [attr.data-automation-id]="'project-delete-' + element.id">
-                                        <mat-icon>delete</mat-icon> <span>{{ 'APP.MENU.DELETE' | translate }}</span>
-                                    </button>
-                                    <button mat-menu-item (click)="releaseProject(element.id)" class="project-release-button" [attr.data-automation-id]="'project-release-' + element.id">
-                                        <mat-icon>new_releases</mat-icon> <span>{{ 'APP.MENU.RELEASE' | translate }}</span>
-                                    </button>
-                                    <button mat-menu-item (click)="seeReleasesForProject(element.id)" class="project-releases-button" [attr.data-automation-id]="'project-releases-' + element.id">
-                                        <mat-icon>remove_red_eye</mat-icon> <span>{{ 'APP.MENU.SEE_RELEASES' | translate }}</span>
-                                    </button>
-                                </mat-menu>
-                            </mat-cell>
-                        </ng-container>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item (click)="editRow(element)" [attr.data-automation-id]="'project-edit-' + element.id">
+                                            <mat-icon>create</mat-icon> <span>{{ 'APP.MENU.EDIT' | translate }}</span>
+                                        </button>
+                                        <button mat-menu-item (click)="deleteRow(element)" [attr.data-automation-id]="'project-delete-' + element.id">
+                                            <mat-icon>delete</mat-icon> <span>{{ 'APP.MENU.DELETE' | translate }}</span>
+                                        </button>
+                                        <button mat-menu-item (click)="releaseProject(element.id)" class="project-release-button" [attr.data-automation-id]="'project-release-' + element.id">
+                                            <mat-icon>new_releases</mat-icon> <span>{{ 'APP.MENU.RELEASE' | translate }}</span>
+                                        </button>
+                                        <button mat-menu-item (click)="seeReleasesForProject(element.id)" class="project-releases-button" [attr.data-automation-id]="'project-releases-' + element.id">
+                                            <mat-icon>remove_red_eye</mat-icon> <span>{{ 'APP.MENU.SEE_RELEASES' | translate }}</span>
+                                        </button>
+                                    </mat-menu>
+                                </mat-cell>
+                            </ng-container>
 
-                        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-                        <mat-row *matRowDef="let row; columns: displayedColumns;">
-                        </mat-row>
-                    </mat-table>
+                            <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;">
+                            </mat-row>
+                        </mat-table>
+                    </div>
+
+                    <div *ngIf="(dataSource$ | async).data.length" class="paginator-block">
+                        <mat-paginator
+                            *ngIf="pagination$ | async; let pagination"
+                            (page)="onPageChange($event, pagination)"
+                            [pageIndex]="pagination.skipCount / pagination.maxItems"
+                            [length]="pagination.totalItems"
+                            [pageSize]="pagination.maxItems"
+                            [pageSizeOptions]="pageSizeOptions">
+                        </mat-paginator>
+                    </div>
+
                 </div>
             </ng-container>
 
@@ -86,16 +100,6 @@
         </ng-container>
     </ng-container>
 
-    <div *ngIf="(dataSource$ | async).data.length" class="paginator-block">
-        <mat-paginator
-            *ngIf="pagination$ | async; let pagination"
-            (page)="onPageChange($event, pagination)"
-            [pageIndex]="pagination.skipCount / pagination.maxItems"
-            [length]="pagination.totalItems"
-            [pageSize]="pagination.maxItems"
-            [pageSizeOptions]="pageSizeOptions">
-        </mat-paginator>
-    </div>
 
     <ng-template #loadingTemplate>
         <div class="dashboard-list">

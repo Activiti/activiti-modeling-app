@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Project, Release, Pagination, PaginatedEntries, ServerSideSorting, FetchQueries } from 'ama-sdk';
+import { Project, Release, Pagination, PaginatedEntries, ServerSideSorting, FetchQueries, SearchQuery } from 'ama-sdk';
 import { EntityDialogForm } from 'ama-sdk';
 
 
@@ -58,7 +58,7 @@ export class UpdateProjectSuccessAction implements Action {
 export const DELETE_PROJECT_ATTEMPT = 'DELETE_PROJECT_ATTEMPT';
 export class DeleteProjectAttemptAction implements Action {
     readonly type = DELETE_PROJECT_ATTEMPT;
-    constructor(public payload: string) {}
+    constructor(public projectId: string, public sorting?, public search?: SearchQuery) {}
 }
 
 export const DELETE_PROJECT_SUCCESS = 'DELETE_PROJECT_SUCCESS';
@@ -70,7 +70,7 @@ export class DeleteProjectSuccessAction implements Action {
 export const GET_PROJECTS_ATTEMPT = 'GET_PROJECTS_ATTEMPT';
 export class GetProjectsAttemptAction implements Action {
     readonly type = GET_PROJECTS_ATTEMPT;
-    constructor(public pagination?: FetchQueries, public sorting?: ServerSideSorting) {}
+    constructor(public pagination?: FetchQueries, public sorting?: ServerSideSorting, public search?: SearchQuery) {}
 }
 
 export const GET_PROJECTS_SUCCESS = 'GET_PROJECTS_SUCCESS';

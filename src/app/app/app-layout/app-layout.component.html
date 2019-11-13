@@ -6,6 +6,8 @@
             <adf-layout-header title="{{'APP.HEADER.APP_NAME' | translate }}" (clicked)="toggleMenu()">
                 <div class="adf-app-layout-menu-spacer" fxFlex="1 1 auto"></div>
 
+                <router-outlet name="search"></router-outlet>
+
                 <adf-notification-history *ngIf="showNotificationHistory" menuPositionX="before" menuPositionY="above"></adf-notification-history>
 
                 <adf-userinfo></adf-userinfo>

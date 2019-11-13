@@ -36,6 +36,7 @@ import { SharedModule } from 'ama-sdk';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReleaseListComponent } from './components/releases-list/releases-list.component';
 import { MatSortModule } from '@angular/material/sort';
+import { SearchHeaderComponent } from '../app/app-layout/search-header/search-header.component';
 
 @NgModule({
     imports: [
@@ -52,7 +53,8 @@ import { MatSortModule } from '@angular/material/sort';
     declarations: [
         DashboardNavigationComponent,
         ProjectsListComponent,
-        ReleaseListComponent
+        ReleaseListComponent,
+        SearchHeaderComponent
     ],
     exports: [DashboardRoutingModule],
     providers: [DashboardService]

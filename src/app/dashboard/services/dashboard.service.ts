@@ -17,14 +17,14 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project, AmaApi, EntityDialogForm, Pagination, PaginatedEntries, ReleaseEntry, Release, ServerSideSorting, FetchQueries } from 'ama-sdk';
+import { Project, AmaApi, EntityDialogForm, Pagination, PaginatedEntries, ReleaseEntry, Release, ServerSideSorting, FetchQueries, SearchQuery } from 'ama-sdk';
 
 @Injectable()
 export class DashboardService {
     constructor(private amaApi: AmaApi) {}
 
-    fetchProjects(pagination?: FetchQueries, sorting?: ServerSideSorting): Observable<PaginatedEntries<Project>> {
-        return this.amaApi.Project.getAll(pagination, sorting);
+    fetchProjects(pagination?: FetchQueries, sorting?: ServerSideSorting, search?: SearchQuery): Observable<PaginatedEntries<Project>> {
+        return this.amaApi.Project.getAll(pagination, sorting, search);
     }
 
     createProject(form: Partial<EntityDialogForm>): Observable<Partial<Project>> {

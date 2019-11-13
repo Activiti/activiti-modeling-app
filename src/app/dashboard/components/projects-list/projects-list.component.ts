@@ -22,7 +22,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import { selectProjectSummaries, selectLoading, selectPagination } from '../../store/selectors/dashboard.selectors';
-import { AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting } from 'ama-sdk';
+import { AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting, SearchQuery } from 'ama-sdk';
 import { OpenEntityDialogAction } from '../../../store/actions/dialog';
 import {
     DeleteProjectAttemptAction,
@@ -51,6 +51,11 @@ export class ProjectsListComponent implements OnInit {
 
     @Input() customDataSource$: Observable<Partial<Project>[]>;
 
+    search: SearchQuery = {
+        key: 'name',
+        value: null
+    };
+
     private maxItems = 25;
     private skipCount = 0;
 
@@ -64,6 +69,7 @@ export class ProjectsListComponent implements OnInit {
         this.maxItems = +this.route.snapshot.queryParamMap.get('maxItems') || 25;
         this.skipCount = +this.route.snapshot.queryParamMap.get('skipCount') || 0;
         this.sorting = this.parseSorting(this.route.snapshot.queryParamMap.get('sort'));
+        this.search.value = this.route.snapshot.queryParamMap.get(this.search.key);
 
         this.loadProjects();
 
@@ -89,10 +95,10 @@ export class ProjectsListComponent implements OnInit {
     }
 
     private loadProjects() {
-        const { maxItems, skipCount, sorting } = this;
+        const { maxItems, skipCount, sorting, search } = this;
 
         this.store.dispatch(
-            new GetProjectsAttemptAction({ maxItems, skipCount }, sorting)
+            new GetProjectsAttemptAction({ maxItems, skipCount }, sorting, search)
         );
     }
 
@@ -109,11 +115,29 @@ export class ProjectsListComponent implements OnInit {
         );
     }
 
+    onSearchChanged(value: string) {
+
+        this.router.navigate(
+            ['dashboard', 'projects'],
+            {
+                queryParams: {
+                    sort: `${this.sorting.key},${this.sorting.direction}`,
+                    [this.search.key]: value,
+                    skipCount: 0
+                },
+                queryParamsHandling: 'merge'
+            }
+        );
+    }
+
     onSortChange(sort: Sort) {
         this.router.navigate(
             ['dashboard', 'projects'],
             {
-                queryParams: { sort: `${sort.active},${sort.direction}` },
+                queryParams: {
+                    sort: `${sort.active},${sort.direction}`,
+                    [this.search.key]: this.search.value
+                },
                 queryParamsHandling: 'merge'
             }
         );
@@ -141,7 +165,7 @@ export class ProjectsListComponent implements OnInit {
     deleteRow(item: Partial<Project>): void {
         this.store.dispatch(new OpenConfirmDialogAction({
             dialogData: { title: 'APP.DIALOGS.CONFIRM.DELETE.PROJECT' },
-            action: new DeleteProjectAttemptAction(item.id)
+            action: new DeleteProjectAttemptAction(item.id, this.sorting, this.search)
         }));
     }
 
