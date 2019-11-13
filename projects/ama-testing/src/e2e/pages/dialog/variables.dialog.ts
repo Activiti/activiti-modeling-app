@@ -166,10 +166,27 @@ export class VariablesDialog extends GenericDialog {
         return this.add.isEnabled();
     }
 
-    async isValidationErrorDisplayed(errorMessage: string): Promise<boolean> {
-        const validationError = element(by.cssContainingText('.mat-error', errorMessage));
-        await BrowserVisibility.waitUntilElementIsVisible(validationError);
-        return true;
+    async waitValidationErrorDisplayed(errorMessage: string): Promise<boolean> {
+        try {
+            const validationError = element(by.cssContainingText('.mat-error', errorMessage));
+            await BrowserVisibility.waitUntilElementIsVisible(validationError);
+            return true;
+        } catch {
+            return false;
+        }
+    }
+    async waitValidationErrorNotDisplayed(errorMessage: string): Promise<boolean> {
+        try {
+            const validationError = element(by.cssContainingText('.mat-error', errorMessage));
+            await BrowserVisibility.waitUntilElementIsNotVisible(validationError);
+            return true;
+        } catch {
+            return false;
+        }
+    }
+    async isInvalidErrorInfoIconDisplayed(): Promise<boolean> {
+        const infoIcon = element(by.css(`[data-automation-id="variable-name-info-icon"]`));
+        return BrowserVisibility.waitUntilElementIsVisible(infoIcon);
     }
     async close(): Promise<void> {
         await BrowserActions.click(this.closeButton);

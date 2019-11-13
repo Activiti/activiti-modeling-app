@@ -135,6 +135,45 @@ describe('Create process variable', async () => {
             await expect(await processVariablesDialog.getVariableValue()).toEqual('', 'Variable value was not set to empty when switching the type.');
             await expect(await processVariablesDialog.isVariableDisplayed(0, 'name', 'integer')).toBe(true, 'Variable added is not displayed in the list.');
         });
+
+        it('[C319687] Process variable name validation', async () => {
+            await processVariablesDialog.setVariable('1a_', 'string', 'testStringVariable' );
+            await expect(await processVariablesDialog.waitValidationErrorDisplayed('Variable name is not valid.')).toBe(true);
+            await processVariablesDialog.setVariable('_a1', 'string', 'testStringVariable' );
+            await expect(await processVariablesDialog.waitValidationErrorDisplayed('Variable name is not valid.')).toBe(true);
+
+            await expect(await processVariablesDialog.isInvalidErrorInfoIconDisplayed()).toBe(true);
+
+            await processVariablesDialog.setVariable('a1_', 'string', 'testStringVariable' );
+            await expect(await processVariablesDialog.waitValidationErrorNotDisplayed('Variable name is not valid.')).toBe(true);
+            await processVariablesDialog.setVariable('a_1', 'string', 'testStringVariable' );
+            await expect(await processVariablesDialog.waitValidationErrorNotDisplayed('Variable name is not valid.')).toBe(true);
+
+            await processVariablesDialog.setVariable('A1_', 'string', 'testStringVariable' );
+            await expect(await processVariablesDialog.waitValidationErrorNotDisplayed('Variable name is not valid.')).toBe(true);
+            await processVariablesDialog.setVariable('A_1', 'string', 'testStringVariable' );
+            await expect(await processVariablesDialog.waitValidationErrorNotDisplayed('Variable name is not valid.')).toBe(true);
+
+            await processVariablesDialog.setVariable('aAa', 'string', 'testStringVariable' );
+            await expect(await processVariablesDialog.waitValidationErrorNotDisplayed('Variable name is not valid.')).toBe(true);
+
+            await processVariablesDialog.setVariable('a!', 'string', 'testStringVariable' );
+            await expect(await processVariablesDialog.waitValidationErrorDisplayed('Variable name is not valid.')).toBe(true);
+            await processVariablesDialog.setVariable('a@', 'string', 'testStringVariable' );
+            await expect(await processVariablesDialog.waitValidationErrorDisplayed('Variable name is not valid.')).toBe(true);
+            await processVariablesDialog.setVariable('a#', 'string', 'testStringVariable' );
+            await expect(await processVariablesDialog.waitValidationErrorDisplayed('Variable name is not valid.')).toBe(true);
+            await processVariablesDialog.setVariable('a$', 'string', 'testStringVariable' );
+            await expect(await processVariablesDialog.waitValidationErrorDisplayed('Variable name is not valid.')).toBe(true);
+            await processVariablesDialog.setVariable('a%', 'string', 'testStringVariable' );
+            await expect(await processVariablesDialog.waitValidationErrorDisplayed('Variable name is not valid.')).toBe(true);
+            await processVariablesDialog.setVariable('a^', 'string', 'testStringVariable' );
+            await expect(await processVariablesDialog.waitValidationErrorDisplayed('Variable name is not valid.')).toBe(true);
+            await processVariablesDialog.setVariable('a&', 'string', 'testStringVariable' );
+            await expect(await processVariablesDialog.waitValidationErrorDisplayed('Variable name is not valid.')).toBe(true);
+            await processVariablesDialog.setVariable('a*', 'string', 'testStringVariable' );
+            await expect(await processVariablesDialog.waitValidationErrorDisplayed('Variable name is not valid.')).toBe(true);
+        });
     });
 
     afterAll(async () => {
