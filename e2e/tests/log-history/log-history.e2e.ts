@@ -89,10 +89,9 @@ describe('Log history', () => {
         await codeEditorWidget.isTextEditorPresent();
         await codeEditorWidget.updateCodeEditorContent('');
         await logHistoryPage.clickMessageIndicator();
-        await processContentPage.save();
         await expect(await logHistoryPage.getInitiator()).toEqual(initiator);
         await expect(await logHistoryPage.getLevel()).toEqual(errorLevel.error);
-        await expect(await logHistoryPage.getMessage()).toEqual('\Error: unparsable content detected line: 0 column: 0 nested error: missing start tag');
+        await expect(await logHistoryPage.getMessage()).toEqual('Error: unparsable content detected line: 0 column: 0 nested error: missing start tag');
     });
 
     it('[C311465] Warning message', async () => {
