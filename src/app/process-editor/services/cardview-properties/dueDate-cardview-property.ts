@@ -18,18 +18,18 @@
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty } from 'ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
-import { displayDate } from '../bpmn-js/property-handlers/dueDate.handler';
-import { CardViewDatetimeItemModel } from '@alfresco/adf-core';
+import { DueDateItemModel } from './due-date-item/due-date-item.model';
 
 const propertyName = BpmnProperty.dueDate;
 
 export function createDueDateProperty({ element }: FactoryProps) {
-    return new CardViewDatetimeItemModel({
+    return new DueDateItemModel({
         label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.DUE_DATE',
         value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,
         editable: true,
-        format: displayDate,
         data: { id: element.id }
     });
+
+
 }

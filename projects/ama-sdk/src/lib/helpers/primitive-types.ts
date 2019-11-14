@@ -24,3 +24,25 @@ export const primitive_types: string[] = [
     'file',
     'json'
 ];
+
+export const AMA_DATETIME_FORMATS = {
+    parse: {
+        dateInput: 'L',
+        monthInput: 'MMMM',
+        timeInput: 'HH:mm:ss',
+        datetimeInput: 'YYYY-MM-DD HH:mm:ss'
+    },
+    display: {
+        dateInput: 'L',
+        monthInput: 'MMMM',
+        datetimeInput: 'YYYY-MM-DD HH:mm:ss',
+        timeInput: 'LTS',
+        monthYearLabel: 'MMM YYYY',
+        dateA11yLabel: 'HH:mm:ss',
+        monthYearA11yLabel: 'MMMM YYYY',
+        popupHeaderDateLabel: 'ddd, DD MMM'
+    }
+};
+
+/* cspell: disable-next-line */
+export const DATETIME_FORMAT = 'YYYY-MM-DDTHH:mm:ss';

@@ -22,6 +22,7 @@ import { FormControl } from '@angular/forms';
 import { MAT_DATETIME_FORMATS, DatetimeAdapter } from '@mat-datetimepicker/core';
 import { MomentDatetimeAdapter } from '@mat-datetimepicker/moment';
 import { MomentDateAdapter } from '@alfresco/adf-core';
+import { AMA_DATETIME_FORMATS, DATETIME_FORMAT } from '../../../helpers/primitive-types';
 
 @Component({
     template: `
@@ -32,29 +33,9 @@ import { MomentDateAdapter } from '@alfresco/adf-core';
         </mat-form-field>
     `,
     providers: [
-        { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+        { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
         { provide: DatetimeAdapter, useClass: MomentDatetimeAdapter },
-        {
-            provide: MAT_DATETIME_FORMATS,
-            useValue: {
-                parse: {
-                    dateInput: 'L',
-                    monthInput: 'MMMM',
-                    timeInput: 'HH:mm:ss',
-                    datetimeInput: 'YYYY-MM-DD HH:mm:ss'
-                },
-                display: {
-                    dateInput: 'L',
-                    monthInput: 'MMMM',
-                    datetimeInput: 'YYYY-MM-DD HH:mm:ss',
-                    timeInput: 'LTS',
-                    monthYearLabel: 'MMM YYYY',
-                    dateA11yLabel: 'HH:mm:ss',
-                    monthYearA11yLabel: 'MMMM YYYY',
-                    popupHeaderDateLabel: 'ddd, DD MMM'
-                }
-            }
-        }
+        { provide: MAT_DATETIME_FORMATS, useValue: AMA_DATETIME_FORMATS }
     ]
 })
 
@@ -64,14 +45,12 @@ export class PropertiesViewerDateTimeInputComponent {
     @Input() value: string;
 
     today = new Date();
-    /* cspell: disable-next-line */
-    format = 'YYYY-MM-DDTHH:mm:ssZ';
 
     get pickerDate(): FormControl {
-        return new FormControl(this.value ? moment(this.value, this.format) : '');
+        return new FormControl(this.value ? moment(this.value, DATETIME_FORMAT) : '');
     }
 
     onChange(event: MatDatepickerInputEvent<Date>) {
-        this.change.emit(moment(event.value).format(this.format));
+        this.change.emit(moment(event.value).format(DATETIME_FORMAT));
     }
 }

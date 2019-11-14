@@ -13,7 +13,8 @@
 @import "./services/cardview-properties/process-variable-item/process-variable-item.component";
 @import "./services/cardview-properties/process-messages-item/process-messages-item.component";
 @import "./components/process-modeler/palette/palette.component.scss";
-@import "./services//cardview-properties/called-element-item/called-element-item.component";
+@import "./services/cardview-properties/called-element-item/called-element-item.component";
+@import "./services/cardview-properties/due-date-item/due-date-item.component";
 
 @mixin ama-process-editor-module($theme) {
     @include ama-called-element-item($theme);
@@ -31,5 +32,6 @@
     @include ama-process-modeler-bpmnjs($theme);
     @include ama-process-variable-item($theme);
     @include ama-process-messages-item($theme);
+    @include ama-due-date-item($theme);
     @include ama-palette($theme);
 }

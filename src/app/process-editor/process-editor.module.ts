@@ -92,6 +92,7 @@ import { CardViewMultiInstanceItemComponent } from './services/cardview-properti
 import { ClipboardService } from './services/clipboard/clipboard.service';
 import { CardViewMessagePayloadItemComponent } from './services/cardview-properties/message-payload-item/message-payload-item.component';
 import { CardViewMessageVariableMappingComponent } from './services/cardview-properties/message-variable-mapping/message-variable-mapping.component';
+import { CardViewDueDateItemComponent } from './services/cardview-properties/due-date-item/due-date-item.component';
 
 @NgModule({
     imports: [
@@ -134,7 +135,8 @@ import { CardViewMessageVariableMappingComponent } from './services/cardview-pro
         CardViewMessageVariableMappingComponent,
         CardViewProcessMessagesItemComponent,
         CardViewMessagePayloadItemComponent,
-        CardViewMultiInstanceItemComponent
+        CardViewMultiInstanceItemComponent,
+        CardViewDueDateItemComponent
     ],
     entryComponents: [
         CardViewProcessVariablesItemComponent,
@@ -151,7 +153,8 @@ import { CardViewMessageVariableMappingComponent } from './services/cardview-pro
         ProcessEditorComponent,
         MessagesDialogComponent,
         CardViewMultiInstanceItemComponent,
-        CardViewMessagePayloadItemComponent
+        CardViewMessagePayloadItemComponent,
+        CardViewDueDateItemComponent
     ],
     exports: [ProcessEditorRoutingModule],
     providers: [
@@ -182,6 +185,7 @@ import { CardViewMessageVariableMappingComponent } from './services/cardview-pro
         providePropertyHandler(BpmnProperty.messages, CardViewProcessMessagesItemComponent),
         providePropertyHandler(BpmnProperty.multiInstanceType, CardViewMultiInstanceItemComponent),
         providePropertyHandler(BpmnProperty.messagePayload, CardViewMessagePayloadItemComponent),
+        providePropertyHandler(BpmnProperty.dueDate, CardViewDueDateItemComponent),
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider(),

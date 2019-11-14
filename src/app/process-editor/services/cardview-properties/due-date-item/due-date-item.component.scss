@@ -1,0 +1,19 @@
+@mixin ama-due-date-item($theme) {
+
+    .due-date-block {
+
+        .mat-form-field {
+            width: 100%;
+        }
+
+        .mat-input-element {
+            margin-top: 7px;
+        }
+
+        .date-time-variable {
+            padding-top: 22px;
+        }
+    }
+}
+
+

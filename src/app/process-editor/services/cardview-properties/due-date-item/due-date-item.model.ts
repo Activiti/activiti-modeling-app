@@ -15,19 +15,13 @@
  * limitations under the License.
  */
 
+import { CardViewBaseItemModel, CardViewItem, DynamicComponentModel } from '@alfresco/adf-core';
 import { BpmnProperty } from 'ama-sdk';
-import { updateShapeProperty } from './update-shape-property.handler';
 
-const propertyKey = BpmnProperty.dueDate;
+export class DueDateItemModel extends CardViewBaseItemModel implements CardViewItem, DynamicComponentModel {
+    type = BpmnProperty.dueDate;
 
-const get = element => {
-    const property = element.businessObject.get(propertyKey);
-    return property ? property : '';
-};
-
-const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    updateShapeProperty(element, propertyKey, value);
-    modeling.updateProperties(element, {});
-};
-
-export const dueDateHandler = { get, set };
+    get displayValue() {
+        return this.default;
+    }
+}

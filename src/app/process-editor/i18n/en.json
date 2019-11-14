@@ -65,6 +65,7 @@
             "PRIORITY": "Priority",
             "ACTIVITY_NAME": "Activity name",
             "PROCESS_VARIABLE": "Process variable",
+            "USE_PROCESS_VARIABLE": "Use process variable",
             "PROCESS_VARIABLES": "Process variables",
             "EXPRESSION": "Condition Expression",
             "FORM_SELECTOR": "Form selector",
