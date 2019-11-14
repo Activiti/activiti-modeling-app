@@ -1,5 +1,5 @@
 <adf-search-text-input  [searchTerm]= "value"
                         [defaultState]="searchInputState"
-                        [debounceTime]="1000"
+                        [collapseOnSubmit]="false"
                         (reset)="onReset()"
-                        (searchChange)="onSearchChanged($event)"></adf-search-text-input>
+                        (submit)="onSearchSubmit($event)"></adf-search-text-input>

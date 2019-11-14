@@ -51,8 +51,12 @@ export class SearchHeaderComponent implements OnInit {
     this.searchInputState = this.value ? 'expanded' : 'collapsed';
   }
 
+  onSearchSubmit(event: KeyboardEvent) {
+    const value = (event.target as HTMLInputElement).value;
+    this.searchProjects(value);
+  }
 
-  onSearchChanged(value: string) {
+  searchProjects(value: string) {
     this.router.navigate(
       ['dashboard', 'projects'],
       {
@@ -66,6 +70,6 @@ export class SearchHeaderComponent implements OnInit {
   }
 
   onReset() {
-    this.onSearchChanged('');
+    this.searchProjects('');
   }
 }
