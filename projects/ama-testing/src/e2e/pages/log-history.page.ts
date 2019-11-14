@@ -38,7 +38,7 @@ export class LogHistoryPage extends GenericPage {
     readonly logInitiator = element.all(by.css(`div[class='log-meta'] span[class='log-initiator']`)).first();
     readonly logDateTime = element(by.css(`div[class='log-meta'] span[class='log-datetime']`));
     readonly logLevel = element.all(by.css(`div[class='log-meta'] span[class='log-level']`)).first();
-    readonly logContent = element(by.css(`div[class='log-content'] div`));
+    readonly logContent = element.all(by.css(`div[class='log-content'] div`)).first();
     readonly logSection = element(by.css(`ama-log-history section`));
     readonly logEntry = element(by.css(`ama-log-history-entry`));
     readonly deleteIcon = element(by.css(`[data-automation-id='deleteLogs']`));
