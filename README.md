@@ -119,7 +119,7 @@ For this to run properly, please see the prerequisites section above.
 npm run e2e
 
 # run single spec file:
-npm run e2e -- --specs="./tests/project/delete-project.e2e.ts"
+npm run e2e -- --specs "./tests/project/delete-project.e2e.ts"
 
 # run suite of specs:
 npm run e2e -- --suite=“test”
