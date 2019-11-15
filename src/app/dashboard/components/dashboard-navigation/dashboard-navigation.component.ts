@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterContentInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppConfigService } from '@alfresco/adf-core';
@@ -27,17 +27,19 @@ import { OpenEntityDialogAction } from '../../../store/actions/dialog';
 @Component({
     templateUrl: './dashboard-navigation.component.html'
 })
-export class DashboardNavigationComponent implements OnInit {
+export class DashboardNavigationComponent implements OnInit, AfterContentInit {
     expanded$: Observable<boolean>;
     navigation: any[];
     @ViewChild('fileInput') fileInput: ElementRef;
 
-    constructor(private store: Store<AmaState>, private appConfig: AppConfigService) {
-        this.expanded$ = this.store.select(selectMenuOpened);
-    }
+    constructor(private store: Store<AmaState>, private appConfig: AppConfigService) {}
 
     ngOnInit() {
         this.navigation = this.buildMenu();
+    }
+
+    ngAfterContentInit() {
+        this.expanded$ = this.store.select(selectMenuOpened);
     }
 
     onClick(event): void {

@@ -57,6 +57,7 @@ describe('Delete project', () => {
 
     it('[C286407] Delete project with confirmation', async () => {
         const projectId = project.entry.id;
+        await expect(await dashboardPage.isDashboardListDisplayed()).toBe(true);
         await dashboardPage.deleteProject(projectId);
         await deleteEntityDialog.checkDialogAndConfirm('project');
         await expect(await snackBar.isDeletedSuccessfully('project')).toBe(true);

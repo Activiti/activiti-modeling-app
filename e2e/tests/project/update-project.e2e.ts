@@ -55,6 +55,7 @@ describe('Update project', () => {
         const appId = app.entry.id;
         const updatedAppName = app.entry.name + '-updated';
 
+        await expect(await dashboardPage.isDashboardListDisplayed()).toBe(true);
         await dashboardPage.editProject(appId);
         await createEntityDialog.setEntityDetails(updatedAppName, app.entry.name + ' description');
 

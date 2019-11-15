@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, AfterContentInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
@@ -26,7 +26,7 @@ const orderBy = require('lodash/orderBy');
 @Component({
     templateUrl: './project-navigation.component.html'
 })
-export class ProjectNavigationComponent {
+export class ProjectNavigationComponent implements AfterContentInit {
     expanded$: Observable<boolean>;
     selectedProjectId$: Observable<string>;
     public creators:  ModelCreator[];
@@ -35,12 +35,15 @@ export class ProjectNavigationComponent {
         private store: Store<AmaState>,
         @Inject(MODEL_CREATORS) modelCreators: ModelCreator[]
     ) {
-        this.expanded$ = this.store.select(selectMenuOpened);
-        this.selectedProjectId$ = this.store.select(selectSelectedProjectId);
         this.creators = orderBy(modelCreators, ['order'], ['asc']);
     }
 
     openModelCreationDialog(dialogParams: ModelCreatorDialogParams): void {
         this.store.dispatch(new OpenEntityDialogAction(dialogParams));
+    }
+
+    ngAfterContentInit() {
+        this.expanded$ = this.store.select(selectMenuOpened);
+        this.selectedProjectId$ = this.store.select(selectSelectedProjectId);
     }
 }

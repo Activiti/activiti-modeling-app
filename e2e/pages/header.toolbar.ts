@@ -20,7 +20,6 @@ import { browser, element, by, protractor } from 'protractor';
 import { testConfig } from '../test.config';
 import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
-
 export class HeaderToolbar extends GenericWebElement {
 
     readonly appTitle = element(by.cssContainingText('.adf-app-title', testConfig.ama.appTitle));
