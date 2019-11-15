@@ -57,16 +57,18 @@ export class SearchHeaderComponent implements OnInit {
   }
 
   searchProjects(value: string) {
-    this.router.navigate(
-      ['dashboard', 'projects'],
-      {
-          queryParams: {
-            maxItems, skipCount ,
-            sort: `${this.sorting.key},${this.sorting.direction}`,
-            [SEARCH_KEY]: value
-          },
-          queryParamsHandling: 'merge'
-      });
+    if (value !== this.value) {
+      this.router.navigate(
+        ['dashboard', 'projects'],
+        {
+            queryParams: {
+              maxItems, skipCount ,
+              sort: `${this.sorting.key},${this.sorting.direction}`,
+              [SEARCH_KEY]: value
+            },
+            queryParamsHandling: 'merge'
+        });
+    }
   }
 
   onReset() {

@@ -16,7 +16,7 @@
  */
 
 import { GenericWebElement } from 'ama-testing/e2e';
-import { browser, element, by } from 'protractor';
+import { browser, element, by, protractor } from 'protractor';
 import { testConfig } from '../test.config';
 import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
@@ -24,6 +24,11 @@ import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 export class HeaderToolbar extends GenericWebElement {
 
     readonly appTitle = element(by.cssContainingText('.adf-app-title', testConfig.ama.appTitle));
+    readonly appIcon = element(by.css('.adf-app-logo'));
+    readonly searchIcon = element(by.css('.adf-search-button'));
+    readonly searchBarExpanded = element(by.css(`.adf-search-container[state='active']`));
+    readonly searchBarCollapsed = element(by.css(`.adf-search-container[state='inactive']`));
+    readonly searchTextInput = element(by.css('#adf-control-input'));
     readonly userAvatar = element(by.css('div.current-user__avatar'));
     readonly userMenu = element(by.css(`div.mat-menu-content`));
     readonly settings = element(by.cssContainingText(`button.mat-menu-item>span`, 'Settings'));
@@ -37,6 +42,10 @@ export class HeaderToolbar extends GenericWebElement {
         await browser.refresh();
     }
 
+    async clickOnAppIcon() {
+        await BrowserActions.click(this.appIcon);
+    }
+
     async clickOnUserAvatar() {
         await BrowserActions.click(this.userAvatar);
         await BrowserVisibility.waitUntilElementIsVisible(this.userMenu);
@@ -44,5 +53,33 @@ export class HeaderToolbar extends GenericWebElement {
 
     async goToSettings() {
         await BrowserActions.click(this.settings);
+    }
+
+    async toggleSearch() {
+        await BrowserActions.click(this.searchIcon);
+    }
+
+    async writeSearchQuery(text: string): Promise<void> {
+        await this.isSearchBarExpanded();
+        await BrowserVisibility.waitUntilElementIsVisible(this.searchTextInput);
+        await this.searchTextInput.clear();
+        await this.searchTextInput.sendKeys(text);
+        await this.searchTextInput.sendKeys(protractor.Key.ENTER);
+    }
+
+    async isSearchBarExpanded(): Promise<boolean> {
+        try {
+            await BrowserVisibility.waitUntilElementIsVisible(this.searchBarExpanded);
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    async isSearchBarCollapsed(): Promise<boolean> {
+        try {
+            await BrowserVisibility.waitUntilElementIsVisible(this.searchBarCollapsed);
+            return true;
+        } catch { return false; }
     }
 }

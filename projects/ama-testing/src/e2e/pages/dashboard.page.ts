@@ -22,12 +22,33 @@ import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class DashboardPage extends GenericPage {
 
-    readonly dashboardList = element(by.css(`mat-table.dashboard-list`));
+    readonly dashboardList = element(by.css(`.dashboard-list mat-table`));
     readonly releaseList = element(by.tagName(`ama-release-list`));
+    /* cspell: disable-next-line */
+    readonly dashboardEmptyList = element(by.css('.dashboard-emptylist'));
     private pagination = new Pagination();
 
-    async isDashboardListDisplayed(): Promise<void> {
-        await BrowserVisibility.waitUntilElementIsVisible(this.dashboardList);
+    async isDashboardListDisplayed(): Promise<boolean> {
+        try {
+            await BrowserVisibility.waitUntilElementIsVisible(this.dashboardList);
+            return true;
+        } catch { return false; }
+    }
+
+    async isDashboardListHidden(): Promise<boolean> {
+        try {
+            await BrowserVisibility.waitUntilElementIsNotVisible(this.dashboardList);
+            return true;
+        } catch { return false; }
+    }
+
+    async isDashboardListEmpty(): Promise<boolean> {
+        try {
+            await BrowserVisibility.waitUntilElementIsVisible(this.dashboardEmptyList);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
     async isProjectNameInList(projectName: string): Promise<boolean | void> {
@@ -44,6 +65,11 @@ export class DashboardPage extends GenericPage {
     async isProjectInList(projectId: string): Promise<boolean | void> {
         const project = this.getProject(`project-${projectId}`);
         return this.isProjectInListWithPageNavigation(project);
+    }
+
+    async isProjectInPaginatedList(projectId: string): Promise<boolean | void> {
+        const project = this.getProject(`project-${projectId}`);
+        return this.isProjectInListWithoutPageNavigation(project);
     }
 
     async isProjectNotInList(projectId: string): Promise<boolean | void> {
@@ -66,6 +92,12 @@ export class DashboardPage extends GenericPage {
         return BrowserVisibility.waitUntilElementIsVisible(emptyList);
     }
 
+    async getProjectsCount(): Promise<number> {
+        await this.isDashboardListDisplayed();
+        const projectsList = element.all(by.css(`.mat-column-name[data-automation-id^="project-"]`));
+        return projectsList.count();
+    }
+
     async navigateToProject(projectId: string): Promise<void> {
         const project = this.getProject(`project-${projectId}`);
         try {
@@ -76,6 +108,14 @@ export class DashboardPage extends GenericPage {
             }
         } catch (error) {
             throw new Error(`Unable to navigate to project '${projectId}'.\n ${error}`);
+        }
+    }
+
+    async isProjectInListWithoutPageNavigation(project: ElementFinder): Promise<void | boolean> {
+        try {
+            return BrowserVisibility.waitUntilElementIsPresent(project);
+        } catch (error) {
+            throw new Error(`Project '${project.locator()}' not found.\n ${error}`);
         }
     }
 
