@@ -48,23 +48,14 @@ describe('Validate process - update process using XML editor', async () => {
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
         project = await backend.project.create();
-    });
+        process = await backend.process.create(project.entry.id);
 
-    beforeAll(async () => {
         loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
 
-    });
-
-    beforeEach(async() => {
-        process = await backend.process.create(project.entry.id);
-    });
-
-    beforeEach(async () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
-        await processPropertiesCard.isLoaded();
     });
 
     afterAll(async () => {
@@ -94,5 +85,4 @@ describe('Validate process - update process using XML editor', async () => {
         await processContentPage.selectModelerEditorTab();
         await expect(await processPropertiesCard.getProcessName()).toEqual('valid-new-name');
     });
-
 });
