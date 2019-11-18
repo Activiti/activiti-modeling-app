@@ -28,14 +28,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { selectSelectedConnector, selectSelectedConnectorContent } from '../../store/connector-editor.selectors';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
-import { AmaTitleService, CONNECTOR, CodeValidatorService, AjvInjectionToken, SharedModule } from 'ama-sdk';
+import { AmaTitleService, CONNECTOR, CodeValidatorService, SharedModule } from 'ama-sdk';
 import { ExtensionsModule, ComponentRegisterService } from '@alfresco/adf-extensions';
 
 describe('ConnectorEditorComponent', () => {
     let fixture: ComponentFixture<ConnectorEditorComponent>;
     let component: ConnectorEditorComponent;
 
-    const ajv = { validate: jest.fn() };
     const mockConnector = {
         type: CONNECTOR,
         id: 'mock-id',
@@ -65,7 +64,6 @@ describe('ConnectorEditorComponent', () => {
                 AmaTitleService,
                 CodeValidatorService,
                 { provide: TranslationService, useClass: TranslationMock },
-                { provide: AjvInjectionToken, useValue: ajv },
                 {
                     provide: Store,
                     useValue: {

@@ -20,14 +20,12 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/materia
 import { Subject, Subscription, Observable } from 'rxjs';
 import { VariablesService } from './variables.service';
 import { CodeValidatorService } from './../code-editor/services/code-validator.service';
-import { propertiesSchema } from './../schemas/properties.schema';
 import { EntityProperties } from '../../lib/api/types';
 
 const Ajv = require('ajv');
 
 export interface VariableDialogData extends MatDialogConfig {
     properties: EntityProperties;
-    fileUri: string;
     columns: string[];
     title: string;
     required: boolean;
@@ -47,7 +45,6 @@ export class VariablesComponent implements OnInit, OnDestroy {
     serviceSubscription: Subscription;
     vsTheme$: Observable<string>;
     title: string;
-    fileUri: string;
     requiredCheckbox: boolean;
     columns: string[];
     validVariables = true;
@@ -61,7 +58,6 @@ export class VariablesComponent implements OnInit, OnDestroy {
     ) {
         this.vsTheme$ = data.theme$;
         this.title = data.title;
-        this.fileUri = data.fileUri;
         this.requiredCheckbox = data.required;
         this.columns = data.columns;
     }
@@ -103,7 +99,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
     }
 
     validate(properties: string) {
-        return this.codeValidatorService.validateJson(properties, propertiesSchema);
+        return this.codeValidatorService.validateJson(properties);
     }
 
     validateDuplicateVariable(variables: EntityProperties): boolean {

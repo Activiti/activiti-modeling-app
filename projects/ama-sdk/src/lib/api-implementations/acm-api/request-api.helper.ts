@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { from, Observable } from 'rxjs';
+import { from, Observable, defer } from 'rxjs';
 import { AppConfigService, AlfrescoApiService, StorageService } from '@alfresco/adf-core';
 
 export interface RequestApiHelperOptions {
@@ -108,7 +108,7 @@ export class RequestApiHelper {
             responseType
         } = options;
 
-        return from(this.api.callCustomApi(
+        return defer(() => from(this.api.callCustomApi(
             this.buildUrl(endPoint),
             httpMethod,
             pathParams,
@@ -121,6 +121,6 @@ export class RequestApiHelper {
             returnType,
             contextRoot,
             responseType
-        ));
+        )));
     }
 }

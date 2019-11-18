@@ -27,7 +27,8 @@ import {
     FORM_API_TOKEN,
     DECISION_TABLE_API_TOKEN,
     DATA_API_TOKEN,
-    FILE_API_TOKEN
+    FILE_API_TOKEN,
+    SCHEMA_API_TOKEN
 } from '../../api/api.interface';
 import { UiApiVariation } from './model-variations/ui-api-variation';
 import { DecisionTableApiVariation } from './model-variations/decision-table-api-variations';
@@ -39,6 +40,7 @@ import { ProcessApiVariation } from './model-variations/process-api-variation';
 import { DataApiVariation } from './model-variations/data-api-variation';
 import { ProcessAcmApi } from './process-api';
 import { FileApiVariation } from './model-variations/file-api-variation';
+import { ModelSchemaAcmApi } from './model-schema-api';
 
 export function modelApiFactory (modelVariation: ModelApiVariation<any, any>, requestApiHelper: RequestApiHelper) {
     return new ModelApi(modelVariation, requestApiHelper);
@@ -79,7 +81,9 @@ export class ACMApiModule {
                 { provide: DATA_API_TOKEN, useFactory: modelApiFactory, deps: [DataApiVariation, RequestApiHelper] },
 
                 FileApiVariation,
-                { provide: FILE_API_TOKEN, useFactory: modelApiFactory, deps: [FileApiVariation, RequestApiHelper] }
+                { provide: FILE_API_TOKEN, useFactory: modelApiFactory, deps: [FileApiVariation, RequestApiHelper] },
+
+                { provide: SCHEMA_API_TOKEN, useClass: ModelSchemaAcmApi }
             ]
         };
     }

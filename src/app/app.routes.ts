@@ -26,6 +26,7 @@ import { AmaRoleGuard } from './ama-role-guard.service';
 import { ErrorContentComponent } from './app/error/error-content.component';
 import { AboutComponent } from './app/about/about.component';
 import { dashboardRoutes } from './dashboard/router/dashboard.routes';
+import { AmaModelSchemaLoaderGuard } from './common/services/ama-model-schema-loader-guard.service';
 
 export const appRoutes: Routes = [
     { path: 'login', component: AppLoginComponent },
@@ -33,7 +34,11 @@ export const appRoutes: Routes = [
     {
         path: '',
         component: AppLayoutComponent,
-        canActivate: [ AuthGuard, AmaLocalStorageMergeGuard ],
+        canActivate: [
+            AuthGuard,
+            AmaLocalStorageMergeGuard,
+            AmaModelSchemaLoaderGuard
+        ],
         children: [
             { path: 'error/:id', component: ErrorContentComponent },
             {

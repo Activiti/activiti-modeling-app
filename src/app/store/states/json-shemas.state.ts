@@ -15,8 +15,12 @@
  * limitations under the License.
  */
 
-export * from './api.interface';
-export * from './project-api.interface';
-export * from './generalmodel-api.interface';
-export * from './model-schema-api.interface';
-export * from './types';
+import { EntityState, createEntityAdapter } from '@ngrx/entity';
+
+export interface JsonSchemaEntitiesState extends EntityState<any> {}
+
+export const jsonSchemasAdapter = createEntityAdapter<any>();
+
+export const initialJsonSchemaEntitiesState = jsonSchemasAdapter.getInitialState<JsonSchemaEntitiesState>({
+    ...jsonSchemasAdapter.getInitialState()
+});

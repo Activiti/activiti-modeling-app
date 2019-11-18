@@ -33,7 +33,6 @@ import {
     ProcessModelerServiceToken,
     CodeValidatorService,
     ProcessExtensions,
-    extensionsSchema,
     PROCESS,
     getFileUri,
     CodeEditorPosition
@@ -122,7 +121,7 @@ export class ProcessEditorComponent implements OnInit {
     }
 
     onExtensionsChangeAttempt(extensionsString: string, processId: string): void {
-        const validation = this.codeValidatorService.validateJson<ProcessExtensions>(extensionsString, extensionsSchema);
+        const validation = this.codeValidatorService.validateJson<ProcessExtensions>(extensionsString);
 
         this.disableSave = !validation.valid;
 

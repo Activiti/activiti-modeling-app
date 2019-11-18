@@ -24,7 +24,6 @@ import { Observable, of } from 'rxjs';
 import { ChangeConnectorContent } from '../../store/connector-editor.actions';
 import {
     AmaState,
-    connectorSchema,
     selectSelectedTheme,
     ConnectorContent,
     CodeValidatorService,
@@ -113,7 +112,7 @@ export class ConnectorEditorComponent {
     }
 
     private validate(connectorContentString: string): ValidationResponse<ConnectorContent> {
-        return this.codeValidatorService.validateJson<ConnectorContent>(connectorContentString, connectorSchema);
+        return this.codeValidatorService.validateJson<ConnectorContent>(connectorContentString);
     }
 
     private getVsTheme(): Observable<string> {

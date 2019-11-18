@@ -34,6 +34,7 @@ import {
     ActivitiFile,
     ActivitiFileContent
 } from './types';
+import { ModelSchemaApi } from './model-schema-api.interface';
 
 export const PROCESS_API_TOKEN = new InjectionToken<ModelApiInterface<Process, ProcessContent>>('connector-api');
 export const CONNECTOR_API_TOKEN = new InjectionToken<ModelApiInterface<Connector, ConnectorContent>>('connector-api');
@@ -42,6 +43,7 @@ export const UI_API_TOKEN = new InjectionToken<ModelApiInterface<Ui, UiContent>>
 export const DECISION_TABLE_API_TOKEN = new InjectionToken<ModelApiInterface<DecisionTable, DecisionTableContent>>('connector-api');
 export const DATA_API_TOKEN = new InjectionToken<ModelApiInterface<Data, DataContent>>('data-api');
 export const FILE_API_TOKEN = new InjectionToken<ModelApiInterface<ActivitiFile, ActivitiFileContent>>('file-api');
+export const SCHEMA_API_TOKEN = new InjectionToken<ModelSchemaApi>('schema-api');
 
 @Injectable()
 export abstract class AmaApi {

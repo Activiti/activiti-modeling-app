@@ -15,8 +15,22 @@
  * limitations under the License.
  */
 
-export * from './api.interface';
-export * from './project-api.interface';
-export * from './generalmodel-api.interface';
-export * from './model-schema-api.interface';
-export * from './types';
+
+import { InjectionToken, ValueProvider } from '@angular/core';
+import { MODEL_TYPE } from '../api/types';
+import { MODEL_SCHEMA_TYPE } from '../api/model-schema-api.interface';
+
+export interface SchemaModelMap {
+    modelType: MODEL_TYPE;
+    schemaKey: MODEL_SCHEMA_TYPE;
+}
+
+export const MODEL_SCHEMAS_TO_LOAD = new InjectionToken<SchemaModelMap[]>('model-schemas-to-load');
+
+export function provideLoadableModelSchema(schemaModelMap: SchemaModelMap): ValueProvider {
+    return  {
+        provide: MODEL_SCHEMAS_TO_LOAD,
+        multi: true,
+        useValue: schemaModelMap
+    };
+}

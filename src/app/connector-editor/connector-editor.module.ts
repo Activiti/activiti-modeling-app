@@ -29,13 +29,12 @@ import {
     provideTranslations,
     CONNECTORS_ENTITY_KEY,
     AmaStoreModule,
-    CodeEditorService,
-    getFileUriPattern,
-    CONNECTOR,
-    connectorSchema,
     provideLogFilter,
     selectProjectConnectorsArray,
-    CONNECTOR_SELECTORS_TOKEN
+    CONNECTOR_SELECTORS_TOKEN,
+    provideLoadableModelSchema,
+    CONNECTOR,
+    MODEL_SCHEMA_TYPE
 } from 'ama-sdk';
 import { EffectsModule } from '@ngrx/effects';
 import { ConnectorEditorEffects } from './store/connector-editor.effects';
@@ -76,13 +75,11 @@ import { getConnectorLogInitiator } from './services/connector-editor.constants'
         ...getConnectorCreatorProvider(),
         ...getConnectorUploaderProvider(),
         provideLogFilter(getConnectorLogInitiator()),
+        provideLoadableModelSchema({
+            modelType: CONNECTOR,
+            schemaKey: MODEL_SCHEMA_TYPE.CONNECTOR
+        }),
         { provide: CONNECTOR_SELECTORS_TOKEN, useValue: selectProjectConnectorsArray }
     ]
 })
-export class ConnectorEditorModule {
-    constructor(
-        codeEditorService: CodeEditorService
-    ) {
-        codeEditorService.addSchema('connectorSchema', getFileUriPattern(CONNECTOR, 'json'), connectorSchema);
-    }
-}
+export class ConnectorEditorModule {}

@@ -23,8 +23,8 @@ export { CodeEditorModule } from './code-editor.module';
 export { CodeEditorPosition } from './components/code-editor/code-editor.component';
 export {
     CodeValidatorService,
-    AjvInjectionToken,
     ValidationResponse
 } from './services/code-validator.service';
 export * from './services/code-editor-service.service';
 export * from './helpers/file-uri';
+export * from './code-editor.extensions';

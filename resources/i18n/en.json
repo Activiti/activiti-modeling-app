@@ -1,5 +1,7 @@
 {
     "APP": {
+        "APPLICATION": "Application",
+        "BACKEND_SERVICE": "Backend service",
         "MORE_ACTIONS": "More actions",
         "DOWNLOAD_PROJECT": "Download project",
         "DOWNLOAD_PROCESS": "Download process",

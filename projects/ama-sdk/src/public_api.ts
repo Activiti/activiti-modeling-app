@@ -34,14 +34,14 @@ export * from './lib/helpers/public_api';
 export * from './lib/i18n/public_api';
 export * from './lib/interfaces/public_api';
 export * from './lib/process-editor/public_api';
-export * from './lib/schemas/public_api';
 export * from './lib/services/public_api';
 export * from './lib/store/public_api';
 export * from './lib/variables/public_api';
 export * from './lib/workbench-layout/public_api';
 
-// TODO: Remove it ===================================================
 export * from './lib/api-implementations/acm-api/acm-api.module';
+
+// TODO: Remove it ===================================================
 export * from './lib/api-implementations/acm-api/content-types';
 export * from './lib/api-implementations/acm-api/form-definition';
 // TODO: =============================================================

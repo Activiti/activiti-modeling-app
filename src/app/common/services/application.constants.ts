@@ -15,22 +15,23 @@
  * limitations under the License.
  */
 
-import { connectorSchema } from './connector.schema';
-import { dataSchema } from './data.schema';
-import { decisionTableSchema } from './decision-table.schema';
-import { uiSchema } from './ui.schema';
-import { propertiesSchema } from './properties.schema';
-import { formSchema } from './form.schema';
-import { extensionsSchema } from './extensions.schema';
-import { fileSchema } from './file.schema';
+import { LogMessageInitiator } from 'ama-sdk';
 
-export {
-    connectorSchema,
-    dataSchema,
-    decisionTableSchema,
-    uiSchema,
-    propertiesSchema,
-    formSchema,
-    extensionsSchema,
-    fileSchema
-};
+export const APPLICATION_LOGS = 'Application';
+export const BE_LOGS = 'Backend';
+
+export function getBackendLogInitiator(extra?: any): LogMessageInitiator {
+    return {
+        key: BE_LOGS,
+        displayName: 'APP.BACKEND_SERVICE',
+        extra
+    };
+}
+
+export function getAppLogInitiator(extra?: any): LogMessageInitiator {
+    return {
+        key: APPLICATION_LOGS,
+        displayName: 'APP.APPLICATION',
+        extra
+    };
+}

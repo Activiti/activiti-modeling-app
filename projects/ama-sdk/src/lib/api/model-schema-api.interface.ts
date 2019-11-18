@@ -15,8 +15,22 @@
  * limitations under the License.
  */
 
-export * from './api.interface';
-export * from './project-api.interface';
-export * from './generalmodel-api.interface';
-export * from './model-schema-api.interface';
-export * from './types';
+
+import { Observable } from 'rxjs';
+
+export enum MODEL_SCHEMA_TYPE {
+    PROCESS_EXTENSION = 'PROCESS-EXTENSION',
+    CONNECTOR = 'CONNECTOR',
+    FORM = 'FORM',
+    UI = 'UI',
+    FILE = 'FILE'
+}
+
+export interface JsonArray extends Array<string|number|boolean|Date|Json|JsonArray> { }
+export interface Json {
+    [key: string]: string|number|boolean|Date|Json|JsonArray;
+}
+
+export interface ModelSchemaApi {
+    retrieve(modelType: MODEL_SCHEMA_TYPE): Observable<Json>;
+}

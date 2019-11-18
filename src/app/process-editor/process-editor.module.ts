@@ -37,16 +37,10 @@ import {
     BpmnFactoryToken,
     BpmnProperty,
     CodeEditorModule,
-    CodeEditorService,
-    extensionsSchema,
-    getFileUriPattern,
     InputMappingTableModule,
     OutputMappingTableModule,
-    PROCESS,
-    PROCESS_VARIABLES,
     PROCESSES_ENTITY_KEY,
     ProcessModelerServiceToken,
-    propertiesSchema,
     provideLogFilter,
     providePaletteElements,
     providePaletteHandler,
@@ -54,7 +48,10 @@ import {
     provideTranslations,
     SharedModule,
     VariablesModule,
-    WorkbenchLayoutModule
+    WorkbenchLayoutModule,
+    provideLoadableModelSchema,
+    PROCESS,
+    MODEL_SCHEMA_TYPE
 } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { ProcessDiagramLoaderService } from './services/process-diagram-loader.service';
@@ -189,12 +186,11 @@ import { CardViewDueDateItemComponent } from './services/cardview-properties/due
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider(),
-        provideLogFilter(getProcessLogInitiator())
+        provideLogFilter(getProcessLogInitiator()),
+        provideLoadableModelSchema({
+            modelType: PROCESS,
+            schemaKey: MODEL_SCHEMA_TYPE.PROCESS_EXTENSION
+        })
     ]
 })
-export class ProcessEditorModule {
-    constructor(codeEditorService: CodeEditorService) {
-        codeEditorService.addSchema('processExtensionSchema', getFileUriPattern(PROCESS, 'json'), extensionsSchema);
-        codeEditorService.addSchema('processVariableSchema', getFileUriPattern(PROCESS_VARIABLES, 'json'), propertiesSchema);
-    }
-}
+export class ProcessEditorModule {}

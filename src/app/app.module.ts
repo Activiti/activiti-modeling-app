@@ -66,6 +66,8 @@ import { EDITOR_FOOTER_SERVICE_TOKEN } from './app/app-layout/editor-footer/edit
 import localeJa from '@angular/common/locales/ja';
 import { registerLocaleData } from '@angular/common';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { AmaModelSchemaLoaderGuard } from './common/services/ama-model-schema-loader-guard.service';
+import { getBackendLogInitiator } from './common/services/application.constants';
 
 registerLocaleData(localeJa);
 
@@ -120,10 +122,12 @@ registerLocaleData(localeJa);
         { provide: ErrorHandler, useClass: GlobalErrorHandler },
         AmaLocalStorageMergeGuard,
         AmaRoleGuard,
+        AmaModelSchemaLoaderGuard,
         AuthTokenProcessorService,
         AmaAuthenticationService,
         ModelStorageService,
         { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: AppFooterService },
+        provideLogFilter(getBackendLogInitiator()),
         provideLogFilter(allLogFilter)
     ],
     bootstrap: [AppComponent]

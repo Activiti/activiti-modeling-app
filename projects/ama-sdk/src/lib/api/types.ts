@@ -35,10 +35,6 @@ export const DECISION_TABLE: DECISION_TABLE_TYPE = 'decision';
 export const UI: UI_TYPE = 'ui';
 export const FILE: FILE_TYPE = 'file';
 
-export const PROCESS_VARIABLES = 'process-variables';
-export const PROCESS_MESSAGES = 'process-messages';
-export const FORM_VARIABLES = 'form-variables';
-
 export interface Project {
     type: PROJECT_TYPE;
     id: string;

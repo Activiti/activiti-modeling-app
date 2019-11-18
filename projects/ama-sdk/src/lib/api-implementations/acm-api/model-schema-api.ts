@@ -15,8 +15,15 @@
  * limitations under the License.
  */
 
-export * from './api.interface';
-export * from './project-api.interface';
-export * from './generalmodel-api.interface';
-export * from './model-schema-api.interface';
-export * from './types';
+import { ModelSchemaApi, MODEL_SCHEMA_TYPE, Json } from '../../api/model-schema-api.interface';
+import { RequestApiHelper } from './request-api.helper';
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class ModelSchemaAcmApi implements ModelSchemaApi {
+    constructor(private requestApiHelper: RequestApiHelper) {}
+
+    retrieve(modelType: MODEL_SCHEMA_TYPE) {
+        return this.requestApiHelper.get<Json>(`/modeling-service/v1/schemas/${modelType}`);
+    }
+}

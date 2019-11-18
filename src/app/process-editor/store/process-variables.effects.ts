@@ -30,9 +30,7 @@ import {
     selectSelectedTheme,
     ProcessModelerServiceToken,
     ProcessModelerService,
-    BpmnProperty,
-    PROCESS_VARIABLES,
-    getFileUri
+    BpmnProperty
 } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { Subject, of } from 'rxjs';
@@ -73,7 +71,6 @@ export class ProcessVariablesEffects extends BaseEffects {
     private openVariablesDialog(processId: string, properties: EntityProperties) {
         const propertiesUpdate$ = new Subject<EntityProperties>();
         const title = 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS_VARIABLES';
-        const fileUri = getFileUri(PROCESS_VARIABLES, 'json', processId);
         const required = true;
         const columns = [ 'name', 'type', 'required', 'value', 'delete' ];
 
@@ -85,7 +82,7 @@ export class ProcessVariablesEffects extends BaseEffects {
             disableClose: true,
             height: '530px',
             width: '1000px',
-            data: { properties, title, fileUri, columns, required, propertiesUpdate$, theme$ },
+            data: { properties, title, columns, required, propertiesUpdate$, theme$ },
         });
 
         propertiesUpdate$.subscribe(data => {
