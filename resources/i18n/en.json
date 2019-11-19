@@ -401,8 +401,7 @@
                 "SERVICE_TASK": "Service Task",
                 "CALL_ACTIVITY": "Call Activity",
                 "CONTAINER": "Dedicated services",
-                "SUB_PROCESS": "Create SubProcess expanded",
-                "PARTICIPANT": "Pool"
+                "SUB_PROCESS": "Create SubProcess expanded"
             },
             "UPLOAD_SUCCESS": "The process was successfully uploaded",
             "PROCESS_UPDATED": "The process was successfully updated",
