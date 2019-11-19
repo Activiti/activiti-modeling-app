@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Directive, ElementRef, TemplateRef, AfterViewInit, Input, HostListener, ViewContainerRef } from '@angular/core';
+import { Directive, ElementRef, TemplateRef, AfterViewInit, Input, HostListener, ViewContainerRef, OnDestroy } from '@angular/core';
 import { OverlayRef, PositionStrategy, Overlay } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 
@@ -23,7 +23,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
      selector: '[ama-palette-overlay]'
  })
 
- export class PaletteOverlayDirective implements AfterViewInit {
+ export class PaletteOverlayDirective implements AfterViewInit, OnDestroy {
     overlayPosition: PositionStrategy;
     templatePortal: TemplatePortal;
     @Input() templatePortalContent: TemplateRef<any>;
@@ -55,7 +55,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
         return this.overlayPosition;
     }
 
-    @HostListener('window:click', ['$event']) onWindowClick($event) {
+    @HostListener('window:click', ['$event']) onWindowClick($event: Event) {
         if ($event.target === this.submenuBtnRef.nativeElement) {
             this.templatePortal = new TemplatePortal(this.templatePortalContent, this.amaPaletteContainerRef);
             this.templatePortal.context = {$implicit: this.amaPaletteItem};
@@ -63,6 +63,12 @@ import { TemplatePortal } from '@angular/cdk/portal';
                 this.amaPaletteOverlayRef.attach(this.templatePortal);
             }
         } else if (this.amaPaletteOverlayRef.hasAttached()) {
+            this.amaPaletteOverlayRef.detach();
+        }
+    }
+
+    ngOnDestroy() {
+        if (this.amaPaletteOverlayRef.hasAttached()) {
             this.amaPaletteOverlayRef.detach();
         }
     }
