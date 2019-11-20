@@ -13,8 +13,8 @@
         "rxjs": "6.4.0",
         "@types/lodash": "4.14.112",
         "ajv": "6.9.1",
-        "@alfresco/adf-core": "3.6.0-beta4",
-        "@alfresco/js-api": "3.6.0-beta3"
+        "@alfresco/adf-core": "3.6.0-9814e2802790389cea32a9e31e760dc93ca48f3a",
+        "@alfresco/js-api": "3.6.0-ad56c378cf3d695ad3e74a71f189316fabb96900"
     },
     "main": "src/public_api.ts"
 }
