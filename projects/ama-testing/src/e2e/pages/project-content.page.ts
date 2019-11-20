@@ -15,12 +15,26 @@
  * limitations under the License.
  */
 
-import { element, by, browser } from 'protractor';
+import { element, by, browser, ElementFinder } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config';
 import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class ProjectContentPage extends GenericPage {
+
+    readonly textractConnectorIcon = `alfresco-oob-icon-textract`;
+    readonly rekognitionConnectorIcon = `alfresco-oob-icon-rekognition`;
+    readonly comprehendConnectorIcon = `alfresco-oob-icon-comprehend`;
+    readonly lambdaConnectorIcon = `alfresco-oob-icon-lambda`;
+    readonly twilioConnectorIcon = `alfresco-oob-icon-twilio`;
+    readonly slackConnectorIcon = `alfresco-oob-icon-slack`;
+    readonly salesforceConnectorIcon = `alfresco-oob-icon-salesforce`;
+    readonly emailConnectorIcon = `alfresco-oob-icon-email`;
+    readonly restConnectorIcon = `alfresco-oob-icon-rest`;
+    readonly camelConnectorIcon = `alfresco-oob-icon-camel`;
+    readonly dbpConnectorIcon = `alfresco-oob-icon-dbp`;
+    readonly docusignConnectorIcon = `alfresco-oob-icon-docusign`;
+    readonly docgenConnectorIcon = `alfresco-oob-icon-docgen`;
 
     constructor(testConfig: TestConfig, public projectId: string) {
         super(testConfig);
@@ -97,5 +111,85 @@ export class ProjectContentPage extends GenericPage {
             model = element(by.cssContainingText(containerSelector, searchedItem));
 
         return BrowserVisibility.waitUntilElementIsVisible(model);
+    }
+
+    async getConnectorWithIcon(iconClass: string, connectorName: string): Promise<ElementFinder> {
+        const containerSelector = `span.${iconClass}+span.project-tree-filter__name`;
+        const connectorWithIcon = element(by.cssContainingText(containerSelector, connectorName));
+        return connectorWithIcon;
+    }
+
+    async isConnectorWithIconInList(connectorWithIcon: ElementFinder): Promise<boolean> {
+        try {
+            return await BrowserVisibility.waitUntilElementIsVisible(connectorWithIcon);
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async isTextractConnectorDisplayed(connectorName: string): Promise<boolean> {
+        const connector = await this.getConnectorWithIcon(this.textractConnectorIcon, connectorName);
+        return this.isConnectorWithIconInList(connector);
+    }
+
+    async isRekognitionConnectorDisplayed(connectorName: string): Promise<boolean> {
+        const connectorIcon = await this.getConnectorWithIcon(this.rekognitionConnectorIcon, connectorName);
+        return this.isConnectorWithIconInList(connectorIcon);
+    }
+
+    async isComprehendConnectorDisplayed(connectorName: string): Promise<boolean> {
+        const connectorIcon = await this.getConnectorWithIcon(this.comprehendConnectorIcon, connectorName);
+        return this.isConnectorWithIconInList(connectorIcon);
+    }
+
+    async isLambdaConnectorDisplayed(connectorName: string): Promise<boolean> {
+        const connectorIcon = await this.getConnectorWithIcon(this.lambdaConnectorIcon, connectorName);
+        return this.isConnectorWithIconInList(connectorIcon);
+    }
+
+    async isTwilioConnectorDisplayed(connectorName: string): Promise<boolean> {
+        const connectorIcon = await this.getConnectorWithIcon(this.twilioConnectorIcon, connectorName);
+        return this.isConnectorWithIconInList(connectorIcon);
+    }
+
+    async isSlackConnectorDisplayed(connectorName: string): Promise<boolean> {
+        const connectorIcon = await this.getConnectorWithIcon(this.slackConnectorIcon, connectorName);
+        return this.isConnectorWithIconInList(connectorIcon);
+    }
+
+    async isSalesForceConnectorDisplayed(connectorName: string): Promise<boolean> {
+        const connectorIcon = await this.getConnectorWithIcon(this.salesforceConnectorIcon, connectorName);
+        return this.isConnectorWithIconInList(connectorIcon);
+    }
+
+    async isEmailConnectorDisplayed(connectorName: string): Promise<boolean> {
+        const connectorIcon = await this.getConnectorWithIcon(this.emailConnectorIcon, connectorName);
+        return this.isConnectorWithIconInList(connectorIcon);
+    }
+
+    async isRestConnectorDisplayed(connectorName: string): Promise<boolean> {
+        const connectorIcon = await this.getConnectorWithIcon(this.restConnectorIcon, connectorName);
+        return this.isConnectorWithIconInList(connectorIcon);
+    }
+
+    async isCamelConnectorDisplayed(connectorName: string): Promise<boolean> {
+        const connectorIcon = await this.getConnectorWithIcon(this.camelConnectorIcon, connectorName);
+        return this.isConnectorWithIconInList(connectorIcon);
+    }
+
+    async isDbpConnectorDisplayed(connectorName: string): Promise<boolean> {
+        const connectorIcon = await this.getConnectorWithIcon(this.dbpConnectorIcon, connectorName);
+        return this.isConnectorWithIconInList(connectorIcon);
+    }
+
+    /* cspell: disable-next-line */
+    async isDocuSignConnectorDisplayed(connectorName: string): Promise<boolean> {
+        const connectorIcon = await this.getConnectorWithIcon(this.docusignConnectorIcon, connectorName);
+        return this.isConnectorWithIconInList(connectorIcon);
+    }
+
+    async isDocGenConnectorDisplayed(connectorName: string): Promise<boolean> {
+        const connectorIcon = await this.getConnectorWithIcon(this.docgenConnectorIcon, connectorName);
+        return this.isConnectorWithIconInList(connectorIcon);
     }
 }

@@ -47,7 +47,11 @@
         "nonint",
         "noninterrupting",
         "smartrunner",
-        "Datetimepicker",
-        "datetimepicker"
+        "datetimepicker",
+        "textract",
+        "rekognition",
+        "twilio",
+        "docusign",
+        "docgen"
     ]
 }
