@@ -36,6 +36,10 @@ export class ProcessModel {
             Object.assign(this['bpmn2:startEvent'], details['bpmn2:startEvent']);
             Object.assign(this['bpmn2:endEvent'], details['bpmn2:endEvent']);
 
+            if (details['bpmn2:callActivity']) {
+                this['bpmn2:callActivity'] = details['bpmn2:callActivity'];
+            }
+
             if (typeof details['bpmn2:userTask'] !== 'undefined' && details['bpmn2:userTask']) {
                 this['bpmn2:userTask'] = {};
                 Object.assign(this['bpmn2:userTask'], details['bpmn2:userTask']);

@@ -57,4 +57,16 @@ export class ProcessDefinitionModel {
         this['bpmn2:definitions']['bpmndi:BPMNDiagram']['bpmndi:BPMNPlane']['_attributes']['bpmnElement'] = id;
     }
 
+    setCallActivityCallElement(callElement: string) {
+        this['bpmn2:definitions']['bpmn2:process']['bpmn2:callActivity']['_attributes'][`calledElement`] = callElement;
+    }
+
+    getCallActivityCallElement() {
+        return this['bpmn2:definitions']['bpmn2:process']['bpmn2:callActivity']['_attributes'][`calledElement`];
+    }
+
+    getCallActivityId() {
+        return this['bpmn2:definitions']['bpmn2:process']['bpmn2:callActivity'][`_attributes`][`id`];
+    }
+
 }

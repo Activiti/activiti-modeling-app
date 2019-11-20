@@ -91,6 +91,10 @@ export class ProcessModelerComponent extends GenericPage {
         await BrowserActions.click(element(by.css(`[data-element-id*="ServiceTask"]`)));
     }
 
+    async selectCallActivityTask() {
+        await BrowserActions.click(element(by.css(`g[data-element-id*="Task"]`)));
+    }
+
     async selectStartEvent() {
         await BrowserActions.click(element(by.css(`[data-element-id*="StartEvent"]`)));
     }
