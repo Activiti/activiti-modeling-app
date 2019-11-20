@@ -19,17 +19,6 @@ import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core
 import { MatTableDataSource } from '@angular/material';
 import { ConnectorParameter, EntityProperty, MappingType, ServiceOutputParameterMapping, ServiceParameterMappings } from '../../api/types';
 
-
-export const VALUE_MAPPING_ID_REGEX = /{.*?\.id}/;
-export const VALUE_MAPPING_LABEL_REGEX = /{.*?\.label}/;
-export function sanitizeLabelIdValue(value: string): string {
-    if (VALUE_MAPPING_ID_REGEX.test(value) || VALUE_MAPPING_LABEL_REGEX.test(value)) {
-        value = value.substring(2, value.length - 1);
-    }
-
-    return value;
-}
-
 @Component({
     selector: 'amasdk-output-mapping-table',
     templateUrl: 'output-mapping-table.component.html',
@@ -76,7 +65,7 @@ export class OutputMappingTableComponent implements OnChanges {
 
         this.data[variableName] = {
             type: MappingType.variable,
-            value: this.getMappableKey(parameter)
+            value: parameter.name
         };
         this.update.emit(this.data);
     }
@@ -91,41 +80,26 @@ export class OutputMappingTableComponent implements OnChanges {
         this.parameters.forEach(this.setOptionForAParam.bind(this));
     }
 
+    private setOptionForAParam(param) {
+        this.optionsForParams[param.name] = [
+            ...(param.required === false ? [{ id: null, name: 'None' }] : []),
+            ...this.processProperties
+                .filter(variable => variable.type === param.type)
+                .filter(
+                    variable =>
+                        !this.mapping[variable.name] ||
+                        this.mapping[variable.name].value === param.name
+                )
+        ];
+    }
+
     initMapping() {
         const variableNames = Object.keys(this.mapping);
 
         for (const variableName of variableNames) {
             this.paramName2VariableName[
-                sanitizeLabelIdValue(this.mapping[variableName].value)
+                this.mapping[variableName].value
             ] = variableName;
         }
-    }
-
-    private setOptionForAParam(parameter: ConnectorParameter) {
-        this.optionsForParams[parameter.name] = [
-            ...(parameter.required === false ? [{ id: null, name: 'None' }] : []),
-            ...this.processProperties
-                .filter(variable => {
-                    return variable.type === parameter.type || this.isMappableToString(variable, parameter);
-                })
-                .filter(
-                    variable =>
-                        !this.mapping[variable.name] ||
-                        sanitizeLabelIdValue(this.mapping[variable.name].value) === parameter.name
-                )
-        ];
-    }
-
-    isMappableToString(variable: EntityProperty, parameter: ConnectorParameter): boolean {
-        return variable.type === 'string' && (parameter.type === 'id' || parameter.type === 'label');
-    }
-
-    getMappableKey(parameter: ConnectorParameter): string {
-        let parameterKey = parameter.name;
-        if (parameter.type === 'id' || parameter.type === 'label') {
-            parameterKey = '${' + parameter.name + '}';
-        }
-
-        return parameterKey;
     }
 }
