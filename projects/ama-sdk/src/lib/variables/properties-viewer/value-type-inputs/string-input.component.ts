@@ -30,7 +30,7 @@ export class PropertiesViewerStringInputComponent {
     @Input() value: string;
 
     onChange() {
-        this.change.emit(this.value.length ? this.value : null);
+        this.change.emit( (this.value && this.value.length) ? this.value : null);
     }
 
 }

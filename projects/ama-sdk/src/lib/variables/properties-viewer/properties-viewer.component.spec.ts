@@ -160,8 +160,8 @@ describe('PropertiesViewerComponent', () => {
         const template = fixture.nativeElement.querySelector('.properties-form');
         const input = template.querySelector('input');
         component.name = 'changed';
-        input.dispatchEvent(new Event('keyup'));
 
+        input.dispatchEvent(new Event('keyup'));
         fixture.detectChanges();
 
         const data2 = {
@@ -172,7 +172,6 @@ describe('PropertiesViewerComponent', () => {
 
        expect(component.name).toEqual('changed');
        expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data2, null, 2), null);
-
 
     });
 

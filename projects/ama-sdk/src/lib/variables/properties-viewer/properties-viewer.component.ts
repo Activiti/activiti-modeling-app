@@ -88,7 +88,6 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
                         this.name = item.name;
                         this.selectedType = item.type;
                         this.required = item.required;
-                        this.value = item.value;
                         this.id = item.id;
                     }
                 });
@@ -127,26 +126,25 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
         this.name = element.name;
         this.selectedType = element.type;
         this.required = element.required;
-        this.value = element.value;
+        this.value = this.form.value = element.value;
         this.position = index;
         this.id = element.id;
     }
 
     onTypeChange() {
-        this.value = null;
+        delete this.form.value;
         this.saveChanges();
     }
 
-    saveChanges() {
+    saveChanges(value?: string) {
+
         this.form.name = this.name;
         this.form.type = this.selectedType;
         this.form.required = this.required;
         this.form.id = this.id;
 
-        if (this.value === null) {
-            delete this.form.value;
-        } else {
-            this.form.value = this.value;
+        if (value !== undefined && value !== null) {
+            this.form.value = value;
         }
 
         this.data[this.id] = this.form;

@@ -27,7 +27,8 @@ import {
     OnDestroy,
     ComponentFactoryResolver,
     OnChanges,
-    forwardRef
+    forwardRef,
+    SimpleChanges
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { valueTypeInputsMapping } from './value-type-inputs/value-type-inputs.mapping';
@@ -45,7 +46,7 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
 
     @Input() value = null;
     @Input() index: number;
-    @Output() change = new EventEmitter();
+    @Output() onChange = new EventEmitter();
     @Input() type: string;
 
     @ViewChild('valueTypeInput', { read: ViewContainerRef }) valueTypeInput;
@@ -59,11 +60,12 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
         this.value = value;
         this.valueTypeInputRef.instance.value = this.value;
         this._onChange(value);
-        this.change.emit(this.value);
+        this.onChange.emit(this.value);
     }
 
-    ngOnChanges(changes) {
-        if (changes.type && changes.type.previousValue !== changes.type.currentValue) {
+    ngOnChanges(changes: SimpleChanges) {
+
+        if (!changes.value && changes.type && changes.type.previousValue !== changes.type.currentValue) {
             this.value = null;
         }
 
