@@ -22,3 +22,5 @@ export const NO_FORM_FIELDS_FOR_OUTPUT_ERROR = 'no-form-fields-for-output-error'
 
 export const SEND_ALL_VARIABLES_OPTION = 'Send all variables';
 export const SEND_NO_VARIABLES_OPTION = 'Send no variables';
+
+export const MODEL_NAME_REGEXP = '^[a-z]([-a-z0-9]{0,24}[a-z0-9])?$';
