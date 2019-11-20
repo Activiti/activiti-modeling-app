@@ -15,48 +15,6 @@
       E2E_FAIL_FAST = "true"
     }
     stages {
-      stage('Prepare to run tests') {
-        when {
-          branch 'PR-*'
-        }
-        steps {
-          container('nodejs') {
-            sh "node --version"
-            sh "npm --version"
-
-            sh "Xvfb :99 &"
-            sh "chown root /opt/google/chrome/chrome-sandbox"
-            sh "chmod 4755 /opt/google/chrome/chrome-sandbox"
-
-            sh "npm config set unsafe-perm true&& npm install"
-            sh "export NODE_OPTIONS=\"--max_old_space_size=30000\""
-          }
-        }
-      }
-      stage ('Tests') {
-        when {
-          branch 'PR-*'
-        }
-        parallel {
-               stage('E2E Tests') {
-                  steps {
-                    container('nodejs'){
-                      echo "Run E2E Tests"
-                      sh "npm run e2e"
-                    }
-                  }
-                }
-                stage('Unit Tests && Build') {
-                  steps {
-                      container('nodejs'){
-                        echo "Run Unit Tests && Build"
-                        sh "npm run test && npm run build prod"
-                      }
-                  }
-                }
-
-        }
-      }
       stage('Build Release') {
         when {
           branch 'master'
@@ -71,6 +29,8 @@
             // so we can retrieve the version in later steps
             sh "echo \$(jx-release-version) > VERSION"
             sh "npm install"
+            // For some reason Jenkins are not able to run postinstall as part of the install??
+            sh "npm run postinstall"
             sh "npm install @alfresco/adf-cli@alpha"
             sh "./node_modules/@alfresco/adf-cli/bin/adf-cli update-commit-sha --pointer \"HEAD\" --pathPackage \"\$(pwd)\""
             sh "npm run build prod"
