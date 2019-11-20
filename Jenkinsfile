@@ -100,6 +100,13 @@
       }
     }
     post {
+        failure {
+           slackSend(
+             channel: "#activiti-community-builds",
+             color: "danger",
+             message: "activiti-modeling-app branch=$BRANCH_NAME is failed http://jenkins.jx.35.228.195.195.nip.io/job/Activiti/job/activiti-modeling-app/"
+           )
+        } 
         always {
             cleanWs()
         }
