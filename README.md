@@ -9,22 +9,20 @@
 
 ## Introduction
 
-The Activiti Modeling Application (AMA) is an application built using
-[Alfresco Application Development Framework (ADF)](https://github.com/Alfresco/alfresco-ng2-components) components and was generated with [Angular CLI](https://github.com/angular/angular-cli).
-
----
+The Alfresco Modeling Application is an extended version of the [Activiti Modeling application  (AMA)](https://github.com/Activiti/activiti-modeling-app), built using
+[Alfresco Application Development Framework (ADF)](https://github.com/Alfresco/alfresco-ng2-components) components.
 
 ## Installing dependencies
 
+Run the following command to install all third-party dependencies:
+
 ```bash
-$ npm install
+npm install
 ```
 
----
+## Setting up environment variables
 
-## Prerequisites
-
-To be able to run the local dev server, you need to set some environment variable. Simply crete a `.env` file (this is gitignored) in the root of the repository with filling in the following data:
+We need to set some environment variable to be able to run the local dev server. in In the project root folder, create an `.env` file (this is gitignored) with the following data:
 
 ```bash
 ADF_PATH="<path to local alfresco-ng2-components repository>"
@@ -43,74 +41,56 @@ SCREENSHOT_PASSWORD=""
 LOG=true
 ```
 
----
+## Enterprise version
 
+### Running the application
 
-## Running the application
-
+Use one of the following commands to run the application:
 
 ```bash
 # Development server
-$ npm start
-```
+npm run start
 
-```bash
 # Production server
-$ npm run start prod
-```
+npm run start prod
 
-```bash
 # Development server with local ADF components
-$ npm run start adfdev
+npm run start adfdev
 ```
 
-Run the script above for the development server using the local ADF components. For this to work properly you must have to chek out the [Alfresco Application Development Framework (ADF)](https://github.com/Alfresco/alfresco-ng2-components) and set the `ADF_PATH` as an environment variable or in your .env file.
+Run the script above for the development server using the local ADF components. For this to work properly you must have to check out the [Alfresco Application Development Framework (ADF)](https://github.com/Alfresco/alfresco-ng2-components) and set the `ADF_PATH` as an environment variable or in your .env file.
 
----
+### Building the application
 
-## Building the application
+Use one of the following commands to build the application:
 
 ```bash
 # Development build
-$ npm run build
-```
+npm run build
 
-```bash
 # Production build
-$ npm run build prod
-```
+npm run build prod
 
-```bash
 # Development build with local ADF components
-$ npm run build adfdev
+npm run build adfdev
 ```
 
----
+### Running unit tests
 
-## Running unit tests
+Use one of the following commands to run the unit tests:
 
 ```bash
 # Test runner command in CI
-$ npm run test
-```
+npm run test
 
-
-```bash
 # Test runner command with desktop notifications
-$ npm run test dev
-```
+npm run test dev
 
-
-```bash
 # Test runner command in watch mode with desktop notifications
-$ npm run test watch
+npm run test watch
 ```
 
-Run the script above to execute the unit tests via [Jest](https://jestjs.io/).
-
----
-
-## Running E2E tests
+### Running e2e tests
 
 For this to run properly, please see the prerequisites section above.
 
@@ -127,17 +107,30 @@ npm run e2e -- --suite=“test”
 Note: The suite content (e.g.: test) is defined in protractor.conf.js file.
 ```
 
-### E2E VSCode launchers
+#### E2E VSCode launchers
 
 There are two runners:
 - E2E - allows single test execution
 - E2Es - allows test suite execution
 
-To run a single test suite is necesary to have the test file opened in a tab.
+It is necessary to have the test file opened in a tab to run a single test suite.
 
----
+## Community version
 
-### Running in Docker
+To build / start / test the community application, you need to enter into the `apps/modeling-community` directory and follow the same steps as for the Enterprise version:
+
+```bash
+cd apps/modeling-community
+npm install
+# Have the .env file in the apps/modeling-community directory as well
+```
+
+Every command is the same after these initialisation steps. 
+You need to invoke them from the `apps/modeling-community` directory.
+
+For more information, please see the [documentation of the Community version](./apps/modeling-community/README.md).
+
+## Running in Docker
 
 First build the application as above.
 
@@ -149,8 +142,6 @@ Start with below (substituting with values for your deployment):
 
 If any substitutions don't work then check that the placeholders in `docker-entrypoint.sh` match `src/app.config.json`
 
----
-
 ## Browser Support
 
 The application is supported in the following browsers:
@@ -159,5 +150,5 @@ The application is supported in the following browsers:
 | ------------- | ----------- |
 | Chrome        | Latest      |
 | Safari (OS X) | 9.x         |
-| Firefox\*     | Latest      |
+| Firefox       | Latest      |
 | Edge          | 13, 14      |
