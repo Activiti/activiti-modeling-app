@@ -149,6 +149,7 @@ export class ProjectsListComponent implements OnInit {
 
     editRow(item: Partial<Project>): void {
         const { id, name, description } = item;
+
         this.store.dispatch(new OpenEntityDialogAction({
             title: 'APP.HOME.NEW_MENU.EDIT_PROJECT_TITLE',
             nameField: 'APP.HOME.DIALOGS.PROJECT_NAME',

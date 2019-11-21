@@ -25,6 +25,7 @@ import { RequestApiHelper } from './request-api.helper';
 export interface BackendProject {
     id: string;
     name: string;
+    description: string;
     creationDate: Date;
     createdBy: string;
     lastModifiedDate: Date;
@@ -109,13 +110,11 @@ export class ACMProjectApi implements ProjectApi {
     }
 
     private createProject(backendProject: BackendProject): Project {
-        const type = PROJECT,
-            description = '';
+        const type = PROJECT;
 
         return {
             type,
-            ...backendProject,
-            description
+            ...backendProject
         };
     }
 
