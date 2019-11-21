@@ -4,7 +4,8 @@
         <mat-checkbox [formControl]="useProcessVariable">
             {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.USE_PROCESS_VARIABLE' | translate}}
         </mat-checkbox>
-        <div *ngIf="useProcessVariable.value" class="date-time-variable">
+        <div *ngIf="useProcessVariable.value"
+             class="date-time-variable">
             <mat-form-field>
                 <mat-select [formControl]="processVariable">
                     <mat-option></mat-option>
@@ -18,11 +19,10 @@
 
         <div *ngIf="!useProcessVariable.value"
              class="due-date-input">
-                <adf-card-view-dateitem
-                    [property]="property"
-                    [editable]="editable"
-                    [displayEmpty]="displayEmpty">
-                </adf-card-view-dateitem>
+            <adf-card-view [properties]="properties"
+                           [editable]="true"
+                           [displayClearAction]="true">
+            </adf-card-view>
         </div>
 
     </form>

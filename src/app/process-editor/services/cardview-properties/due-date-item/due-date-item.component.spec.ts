@@ -110,17 +110,6 @@ describe('CardViewDueDateItemComponent', () => {
         expect(dateTimeVariableInput).toBeDefined();
     });
 
-    it('should update due date property when due date input is filled', () => {
-        const mockDate = '2020-03-11T00:00:00';
-        spyOn(cardViewUpdateService, 'update');
-        component.date.setValue(mockDate);
-
-        component.updateDueDate();
-        fixture.detectChanges();
-
-        expect(cardViewUpdateService.update).toHaveBeenCalledWith(component.property, mockDate);
-    });
-
     it('should update due date property when process variable is selected', () => {
         spyOn(cardViewUpdateService, 'update');
         component.useProcessVariable.setValue(true);

@@ -16,9 +16,9 @@
  */
 
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { CardItemTypeService, CardViewUpdateService, MomentDateAdapter } from '@alfresco/adf-core';
+import { CardItemTypeService, CardViewUpdateService, MomentDateAdapter, CardViewDatetimeItemModel, CardViewBaseItemModel } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
-import { AmaState, selectSelectedProcess, AMA_DATETIME_FORMATS, DATETIME_FORMAT, EntityProperty } from 'ama-sdk';
+import { AmaState, selectSelectedProcess, AMA_DATETIME_FORMATS, MOMENT_DATETIME_FORMAT, EntityProperty, ANGULAR_DATETIME_DISPLAY_FORMAT } from 'ama-sdk';
 import { filter, take, debounceTime, takeUntil } from 'rxjs/operators';
 import { FormBuilder, FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -44,12 +44,14 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
     processVariables: EntityProperty[] = [];
     dueDateForm: FormGroup;
     today = new Date();
+    properties: CardViewBaseItemModel[] = [];
 
     onDestroy$: Subject<void> = new Subject<void>();
 
     constructor(private cardViewUpdateService: CardViewUpdateService,
-        private store: Store<AmaState>,
-        private formBuilder: FormBuilder) { }
+                private store: Store<AmaState>,
+                private formBuilder: FormBuilder) {
+    }
 
     ngOnInit() {
         this.initProcessVariables();
@@ -69,7 +71,6 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
 
     buildForm() {
         this.dueDateForm = this.formBuilder.group({
-            date: new FormControl(undefined, []),
             processVariable: new FormControl(undefined, []),
             useProcessVariable: new FormControl(false, []),
         });
@@ -89,19 +90,28 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
 
         if (this.useProcessVariable.value) {
             dueDateValue = this.processVariable.value ? '${' + this.processVariable.value + '}' : undefined;
-        } else if (this.date.value) {
-            dueDateValue = moment(this.date.value).format(DATETIME_FORMAT);
         }
 
         this.cardViewUpdateService.update(this.property, dueDateValue);
     }
 
     extractDate(dateDefinitionValue: string) {
+        this.properties = [
+            new CardViewDatetimeItemModel({
+                label: '',
+                value: '',
+                key: this.property.key,
+                format: ANGULAR_DATETIME_DISPLAY_FORMAT,
+                editable: true,
+                default: '',
+                data: this.property.data
+            })
+        ];
         if (dateDefinitionValue) {
             if (dateDefinitionValue.includes('$')) {
                 this.extractProcessVariable(dateDefinitionValue);
             } else {
-                this.date.setValue(moment(dateDefinitionValue, DATETIME_FORMAT));
+                this.properties[0].value = moment(dateDefinitionValue, MOMENT_DATETIME_FORMAT).toDate();
             }
         }
     }
@@ -115,10 +125,6 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.onDestroy$.next();
         this.onDestroy$.complete();
-    }
-
-    get date(): AbstractControl {
-        return this.dueDateForm.get('date');
     }
 
     get processVariable(): AbstractControl {

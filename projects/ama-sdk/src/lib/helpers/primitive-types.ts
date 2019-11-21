@@ -45,4 +45,5 @@ export const AMA_DATETIME_FORMATS = {
 };
 
 /* cspell: disable-next-line */
-export const DATETIME_FORMAT = 'YYYY-MM-DDTHH:mm:ss';
+export const MOMENT_DATETIME_FORMAT = 'YYYY-MM-DDTHH:mm:ss';
+export const ANGULAR_DATETIME_DISPLAY_FORMAT = 'yyyy-MM-dd h:mm:ss';

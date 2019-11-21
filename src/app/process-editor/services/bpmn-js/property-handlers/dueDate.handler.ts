@@ -15,8 +15,9 @@
  * limitations under the License.
  */
 
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty, MOMENT_DATETIME_FORMAT } from 'ama-sdk';
 import { updateShapeProperty } from './update-shape-property.handler';
+import moment from 'moment';
 
 const propertyKey = BpmnProperty.dueDate;
 
@@ -26,6 +27,9 @@ const get = element => {
 };
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
+    if (value && typeof value === 'object') {
+        value = moment(value).format(MOMENT_DATETIME_FORMAT);
+    }
     updateShapeProperty(element, propertyKey, value);
     modeling.updateProperties(element, {});
 };

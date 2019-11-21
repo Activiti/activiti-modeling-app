@@ -22,7 +22,7 @@ import { FormControl } from '@angular/forms';
 import { MAT_DATETIME_FORMATS, DatetimeAdapter } from '@mat-datetimepicker/core';
 import { MomentDatetimeAdapter } from '@mat-datetimepicker/moment';
 import { MomentDateAdapter } from '@alfresco/adf-core';
-import { AMA_DATETIME_FORMATS, DATETIME_FORMAT } from '../../../helpers/primitive-types';
+import { AMA_DATETIME_FORMATS, MOMENT_DATETIME_FORMAT } from '../../../helpers/primitive-types';
 
 @Component({
     template: `
@@ -47,10 +47,10 @@ export class PropertiesViewerDateTimeInputComponent {
     today = new Date();
 
     get pickerDate(): FormControl {
-        return new FormControl(this.value ? moment(this.value, DATETIME_FORMAT) : '');
+        return new FormControl(this.value ? moment(this.value, MOMENT_DATETIME_FORMAT) : '');
     }
 
     onChange(event: MatDatepickerInputEvent<Date>) {
-        this.change.emit(moment(event.value).format(DATETIME_FORMAT));
+        this.change.emit(moment(event.value).format(MOMENT_DATETIME_FORMAT));
     }
 }
