@@ -69,6 +69,10 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
             this.value = null;
         }
 
+        if (changes.index && !changes.value) {
+            this.value = null;
+        }
+
         this.valueTypeInput.clear();
         const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(valueTypeInputsMapping[this.type]);
 
