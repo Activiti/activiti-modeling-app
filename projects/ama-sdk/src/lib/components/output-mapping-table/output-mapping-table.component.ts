@@ -48,7 +48,8 @@ export class OutputMappingTableComponent implements OnChanges {
     ngOnChanges() {
         this.initOptionsForParams();
         this.initMapping();
-        this.dataSource = new MatTableDataSource(this.parameters);
+        const filteredParameters = this.parameters.filter((param) => !param.name.includes('variables.'));
+        this.dataSource = new MatTableDataSource(filteredParameters);
         this.data = { ...this.mapping };
     }
 

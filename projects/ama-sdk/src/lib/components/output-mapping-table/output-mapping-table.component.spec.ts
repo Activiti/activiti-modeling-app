@@ -56,6 +56,11 @@ describe('OutputMappingTableComponent', () => {
             name: 'name',
             description: 'desc',
             type: 'string'
+        }, {
+            id: 'idToFilter',
+            name: 'variables.filterMe',
+            description: 'this is the parameter that needs to be filtered',
+            type: 'string'
         }];
         component.processProperties = [
             {
@@ -137,6 +142,14 @@ describe('OutputMappingTableComponent', () => {
 
         const options = fixture.debugElement.queryAll(By.css('.mat-option'));
         expect(options.length).toBe(2, 'Two options are expected from type: string');
+    });
+
+    it('should filter the form variables labeled as variables. in the name', () => {
+        const select = fixture.debugElement.queryAll(By.css('mat-table .mat-row'));
+        const spanLabel = fixture.debugElement.query(By.css('mat-table .mat-row .mat-column-name > span'));
+        expect(select).not.toBeNull();
+        expect(select.length).toBe(1);
+        expect(spanLabel.nativeElement.textContent).toBe('name');
     });
 
     it('should display a message if no process property', () => {
