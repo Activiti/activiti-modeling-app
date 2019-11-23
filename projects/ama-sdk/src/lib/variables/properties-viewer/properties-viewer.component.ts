@@ -49,7 +49,7 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
     selection = new SelectionModel<EntityProperty>();
     @Input() properties = '';
     @Input() requiredCheckbox = true;
-    @Input() displayedColumns = [ 'name', 'type', 'required', 'value', 'delete' ];
+    @Input() displayedColumns = ['name', 'type', 'required', 'value', 'delete'];
     @Output() propertyChanged: EventEmitter<boolean> = new EventEmitter();
 
     constructor(private variablesService: VariablesService, private uuidService: UuidService) {
@@ -143,7 +143,9 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
         this.form.required = this.required;
         this.form.id = this.id;
 
-        if (value !== undefined && value !== null) {
+        if (value === null || value === undefined || value === '') {
+            delete this.form.value;
+        } else {
             this.form.value = value;
         }
 

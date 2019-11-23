@@ -26,7 +26,7 @@
         <ng-container matColumnDef="value">
             <mat-header-cell *matHeaderCellDef>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_VALUE' | translate }}
             </mat-header-cell>
-            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'variable-value-cell-' + element.value | variablevalue" class="ellipsis-cell">
+            <mat-cell *matCellDef="let element; index as i" [attr.data-automation-id]="'variable-value-cell-' + i" class="ellipsis-cell">
                 {{element.value | variablevalue}}
             </mat-cell>
         </ng-container>

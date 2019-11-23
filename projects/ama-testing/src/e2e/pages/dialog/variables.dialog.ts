@@ -127,11 +127,8 @@ export class VariablesDialog extends GenericDialog {
             await BrowserVisibility.waitUntilElementIsVisible(requiredCell);
         }
 
-        if (type !== 'string' && value === '') {
-            valueCell = element(by.css(`${variableRow}>[data-automation-id="variable-value-cell-undefined"]`));
-        } else {
-            valueCell = element(by.css(`${variableRow}>[data-automation-id="variable-value-cell-${value}"]`));
-        }
+        valueCell = element(by.css(`${variableRow}>[data-automation-id="variable-value-cell-${rowIndex}"]`));
+
         await BrowserVisibility.waitUntilElementIsVisible(valueCell);
 
         return true;
