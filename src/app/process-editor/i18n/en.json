@@ -25,6 +25,7 @@
             "ZOOM_IN": "Zoom in",
             "ZOOM_OUT": "Zoom out",
             "UNDO": "Undo",
+            "FIT_VIEW_PORT": "Fit view port",
             "REDO": "Redo"
         },
         "ELEMENT_PROPERTIES": {

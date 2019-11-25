@@ -40,8 +40,12 @@
         padding: 5px 5px 0 5px;
         margin: 0;
 
-        &.bpmn-actions-controls {
+        &.bpmn-fit-to-view {
             top: 8px;
+        }
+
+        &.bpmn-actions-controls {
+            top: 55px;
         }
 
         &.bpmn-zoom-controls {

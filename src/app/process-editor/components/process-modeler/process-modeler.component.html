@@ -1,4 +1,13 @@
 <div #canvas class="canvas-editor">
+        <div class="bpmn-controls bpmn-fit-to-view">
+            <button
+                [title]="'PROCESS_EDITOR.ACTIONS.FIT_VIEW_PORT' | translate"
+                data-automation-class="fit-view-port-button"
+                (click)="fitViewPort()">
+                <mat-icon>control_camera</mat-icon>
+            </button>
+        </div>
+
         <div class="bpmn-controls bpmn-actions-controls">
             <button
                 [title]="'PROCESS_EDITOR.ACTIONS.UNDO' | translate"

@@ -135,6 +135,7 @@ describe('Create process', async () => {
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
         await expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
         await processValidation.isDialogDismissed();
+        await processModelerComponent.selectStartEvent();
         await processModelerComponent.selectUserTask();
         await taskProperties.setAssignee('userAssignee');
 
@@ -158,6 +159,7 @@ describe('Create process', async () => {
         await expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
         await processValidation.isDialogDismissed();
 
+        await processModelerComponent.selectStartEvent();
         await processModelerComponent.selectUserTask();
         await taskProperties.setCandidateUser('candidateUser');
 
@@ -179,6 +181,8 @@ describe('Create process', async () => {
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
         await expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
         await processValidation.isDialogDismissed();
+
+        await processModelerComponent.selectStartEvent();
         await processModelerComponent.selectUserTask();
         await taskProperties.setCandidateGroup('CandidateGroup');
 

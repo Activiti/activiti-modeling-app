@@ -17,7 +17,7 @@
 
 import { Component, ViewChild, ElementRef, Input, OnDestroy, AfterViewInit, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { takeUntil, switchMap, filter } from 'rxjs/operators';
+import { filter, switchMap, takeUntil } from 'rxjs/operators';
 import { ProcessContent, SnackbarErrorAction, ProcessModelerServiceToken, ProcessModelerService } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import {
@@ -87,7 +87,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
                 takeUntil(this.onDestroy$)
             )
             .subscribe(
-                () => this.processModelerService.fitViewPort(),
+                () => {},
                 (e) => this.store.dispatch(new SnackbarErrorAction('PROCESS_EDITOR.ERRORS.LOAD_DIAGRAM'))
             );
     }
@@ -96,6 +96,10 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
         this.onDestroy$.next();
         this.onDestroy$.complete();
         this.processModelerService.destroy();
+    }
+
+    fitViewPort() {
+        this.processModelerService.fitViewPort();
     }
 
     zoomIn() {

@@ -95,6 +95,10 @@ export class ProcessModelerComponent extends GenericPage {
         await BrowserActions.click(element(by.css(`g[data-element-id*="Task"]`)));
     }
 
+    async fitToScreen() {
+        await BrowserActions.click(element(by.css(`[data-automation-class="fit-view-port-button"]`)));
+    }
+
     async selectStartEvent() {
         await BrowserActions.click(element(by.css(`[data-element-id*="StartEvent"]`)));
     }

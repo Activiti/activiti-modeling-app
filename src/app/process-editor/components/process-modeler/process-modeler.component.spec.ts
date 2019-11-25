@@ -104,6 +104,16 @@ describe('ProcessModelerComponent', () => {
         expect(processModelerService.init).toHaveBeenCalled();
     });
 
+    it('should test fit view port button', () => {
+        spyOn(processModelerService, 'fitViewPort');
+
+        const button = fixture.debugElement.query(By.css('[data-automation-class="fit-view-port-button"]'));
+        expect(button).not.toBe(null);
+
+        button.triggerEventHandler('click', null);
+        expect(processModelerService.fitViewPort).toHaveBeenCalled();
+    });
+
     it('should test undo button', () => {
         spyOn(processModelerService, 'undo');
 
