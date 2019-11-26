@@ -37,7 +37,9 @@ import {
     CreateProcessSuccessAction,
     UploadProcessAttemptAction,
     UpdateProcessFailedAction,
-    ValidateProcessAttemptAction
+    ValidateProcessAttemptAction,
+    RemoveDiagramElementAction,
+    RemoveElementMappingAction
 } from './process-editor.actions';
 import { throwError, of, Observable } from 'rxjs';
 import { mockProcess, validateError } from './process.mock';
@@ -59,7 +61,9 @@ import {
     LoadApplicationAction,
     ProcessExtensionsContent,
     OpenConfirmDialogAction,
-    logError
+    logError,
+    selectOpenedModel,
+    BpmnElement
 } from 'ama-sdk';
 import { ProcessEntitiesState } from './process-entities.state';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
@@ -320,6 +324,73 @@ describe('ProcessEditorEffects', () => {
 
             const expected = cold('');
             expect(effects.changedElementEffect).toBeObservable(expected);
+        });
+    });
+
+    describe('removeDiagramElementEffect', () => {
+
+        beforeEach(() => {
+            process = <Process>mockProcess;
+        });
+
+        it('should dispatch an action if serviceTask element is removed', () => {
+            const mockElement = {
+                id: 'mock-element-id',
+                type: BpmnElement.ServiceTask,
+                name: 'mock-element-name'
+            };
+
+            actions$ = hot('a', { a: new RemoveDiagramElementAction(mockElement) });
+            store.select = jest.fn(selectOpenedModel).mockReturnValue(of(process));
+
+
+            const expected = cold('b', { b: new RemoveElementMappingAction('mock-element-id', process.id) });
+            expect(effects.removeDiagramElementEffect).toBeObservable(expected);
+        });
+
+        it('should dispatch an action if CallActivity element is removed', () => {
+            const mockElement = {
+                id: 'mock-element-id',
+                type: BpmnElement.CallActivity,
+                name: 'mock-element-name'
+            };
+
+            actions$ = hot('a', { a: new RemoveDiagramElementAction(mockElement) });
+            store.select = jest.fn(selectOpenedModel).mockReturnValue(of(process));
+
+
+            const expected = cold('b', { b: new RemoveElementMappingAction('mock-element-id', process.id) });
+            expect(effects.removeDiagramElementEffect).toBeObservable(expected);
+        });
+
+        it('should dispatch an action if UserTask element is removed', () => {
+            const mockElement = {
+                id: 'mock-element-id',
+                type: BpmnElement.UserTask,
+                name: 'mock-element-name'
+            };
+
+            actions$ = hot('a', { a: new RemoveDiagramElementAction(mockElement) });
+            store.select = jest.fn(selectOpenedModel).mockReturnValue(of(process));
+
+
+            const expected = cold('b', { b: new RemoveElementMappingAction('mock-element-id', process.id) });
+            expect(effects.removeDiagramElementEffect).toBeObservable(expected);
+        });
+
+        it('should not dispatch an action if Task element is removed', () => {
+            const mockElement = {
+                id: 'mock-element-id',
+                type: BpmnElement.Task,
+                name: 'mock-element-name'
+            };
+
+            actions$ = hot('a', { a: new RemoveDiagramElementAction(mockElement) });
+            store.select = jest.fn(selectOpenedModel).mockReturnValue(of(process));
+
+
+            const expected = cold('');
+            expect(effects.removeDiagramElementEffect).toBeObservable(expected);
         });
     });
 
