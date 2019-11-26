@@ -25,7 +25,7 @@ export class VariablesDialog extends GenericDialog {
     readonly variablesDialog = element(by.css(`[data-automation-id="variables-dialog"]`));
     readonly variablesDialogTitleIcon = element(by.cssContainingText(`.mat-dialog-title mat-icon`, 'layers'));
     readonly add = element(by.css(`[data-automation-id="add-variable"]`));
-    readonly delete = element(by.css(`[data-automation-id="delete-variable"]`));
+    readonly delete = element.all(by.css(`[data-automation-id="delete-variable"]`));
     readonly name = element(by.css(`[data-automation-id="variable-name"]`));
     readonly type = element(by.css(`[data-automation-id="variable-type"]`));
     readonly value = element(by.css(`[data-automation-id="variable-value"]`));
@@ -50,8 +50,8 @@ export class VariablesDialog extends GenericDialog {
         await BrowserActions.click(this.add);
     }
 
-    async deleteVariable(): Promise<void> {
-        await BrowserActions.click(this.delete);
+    async deleteVariable(rowIndex: number = 0): Promise<void> {
+        await BrowserActions.click(this.delete.get(rowIndex));
     }
 
     async setVariableName(name: string): Promise<void> {

@@ -39,7 +39,7 @@ export class LogHistoryPage extends GenericPage {
     readonly logInitiator = element.all(by.css(`div[class='log-meta'] span[class='log-initiator']`)).first();
     readonly logDateTime = element(by.css(`div[class='log-meta'] span[class='log-datetime']`));
     readonly logLevel = element.all(by.css(`div[class='log-meta'] span[class='log-level']`)).first();
-    readonly logContent = element.all(by.css(`div[class='log-content'] div`)).first();
+    readonly logContent = element.all(by.css(`div[class='log-content'] div`));
     readonly logSection = element(by.css(`ama-log-history section`));
     readonly logEntry = element(by.css(`ama-log-history-entry`));
     readonly deleteIcon = element(by.css(`[data-automation-id='deleteLogs']`));
@@ -90,9 +90,9 @@ export class LogHistoryPage extends GenericPage {
         return this.logLevel.getText();
     }
 
-    async getMessage(): Promise<string> {
-        await BrowserVisibility.waitUntilElementIsVisible(this.logContent);
-        return this.logContent.getText();
+    async getMessage(messageIndex: number = 0): Promise<string> {
+        await BrowserVisibility.waitUntilElementIsVisible(this.logContent.get(messageIndex));
+        return this.logContent.get(messageIndex).getText();
     }
 
     async isLogHistoryEmpty(): Promise<boolean> {
