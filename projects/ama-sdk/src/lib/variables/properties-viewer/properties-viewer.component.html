@@ -3,7 +3,7 @@
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_NAME' | translate }}
             </mat-header-cell>
-            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'variable-name-cell-' + element.name">
+            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'variable-name-cell-' + element.name" class="ellipsis-cell">
                 {{element.name}}</mat-cell>
         </ng-container>
 

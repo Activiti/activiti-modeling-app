@@ -26,6 +26,12 @@
             min-height: initial;
             display: flex;
             justify-content: space-between;
+
+            span {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
         }
 
         .mat-header-cell {
