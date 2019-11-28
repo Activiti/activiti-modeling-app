@@ -43,7 +43,6 @@ export const elementsProperties = {
     [BpmnElement.Process]: [
         BpmnProperty.id,
         BpmnProperty.processName,
-        BpmnProperty.version,
         BpmnProperty.documentation,
         BpmnProperty.properties,
         BpmnProperty.messages

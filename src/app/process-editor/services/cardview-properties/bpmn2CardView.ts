@@ -20,7 +20,6 @@ import { createIdProperty } from './id-cardview-property';
 import { createNameProperty } from './name-cardview-property';
 import { createImplementationProperty } from './implementation-cardview-property';
 import { createDecisionTaskProperty } from './decisionTask-cardview-property';
-import { createVersionProperty } from './version-cardview-property';
 import { createDocumentationProperty } from './documentation-cardview-property';
 import { createVariablesProperty } from './variables-cardview-property';
 import { createAssigneeProperty } from './assignee-cardview-property';
@@ -48,7 +47,6 @@ import { createTextAnnotationProperty } from './text-annotation-cardview-propert
 export const bpmn2cardView = {
     [BpmnProperty.id]: createIdProperty,
     [BpmnProperty.name]: createNameProperty,
-    [BpmnProperty.version]: createVersionProperty,
     [BpmnProperty.documentation]: createDocumentationProperty,
     [BpmnProperty.implementation]: createImplementationProperty,
     [BpmnProperty.decisionTask]: createDecisionTaskProperty,
