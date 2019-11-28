@@ -19,6 +19,7 @@ import { CardViewTextItemModel } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty } from 'ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
+import { NamePropertyValidator } from './validators/name-property.validator';
 
 const propertyName = BpmnProperty.name;
 
@@ -30,6 +31,7 @@ export function createNameProperty({ element }: FactoryProps) {
         default: '',
         multiline: false,
         editable: true,
-        data: { id: element.id }
+        data: { id: element.id },
+        validators: [new NamePropertyValidator()]
     });
 }

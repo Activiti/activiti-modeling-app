@@ -38,6 +38,18 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
         this.modeler = this.bpmnFactoryService.create();
         this.modelerInitOptions = modelerInitOptions;
         this.listenToEventHandlers();
+
+        document.addEventListener('keypress', this.limitModelerEditableElementLength, false);
+    }
+
+    limitModelerEditableElementLength(event: Event): void {
+        const { classList, innerHTML } = <Element>event.target;
+        const isModelerEditableElement = Array.from(classList).includes('djs-direct-editing-content');
+        const isElementNameValid = innerHTML.length <= 40;
+
+        if (isModelerEditableElement && !isElementNameValid) {
+            event.preventDefault();
+        }
     }
 
     render(container): void {
@@ -122,6 +134,7 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
 
     destroy() {
         this.modeler.destroy();
+        document.removeEventListener('keypress', this.limitModelerEditableElementLength, false);
     }
 
     private updateElementId(event: any): void {
