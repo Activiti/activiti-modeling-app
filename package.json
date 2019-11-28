@@ -144,6 +144,7 @@
     "ajv-cli": "3.0.0",
     "babel-preset-env": "1.7.0",
     "codelyzer": "4.4.4",
+    "commander": "^4.0.1",
     "concurrently": "4.1.0",
     "cpx": "1.5.0",
     "cspell": "^4.0.23",

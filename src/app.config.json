@@ -5,7 +5,7 @@
     "providers": "BPM",
     "bpmHost": "http://localhost:4200",
     "oauth2": {
-        "host": "http://localhost:4200/auth",
+        "host": "${OAUTH_HOST}",
         "authPath": "/protocol/openid-connect/token/",
         "clientId": "activiti",
         "scope": "openid",

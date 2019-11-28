@@ -41,7 +41,10 @@
                             "src/styles.scss",
                             "projects/ama-sdk/src/lib/ama-sdk.module.scss"
                         ],
-                        "scripts": []
+                        "scripts": [],
+                        "fileReplacements": [
+                            { "replace": "./src/app.config.json", "with": "./src/.app.config.json" }
+                        ]
                     },
                     "configurations": {
                         "adfdev": {
@@ -49,7 +52,7 @@
                         },
                         "e2e": {
                             "fileReplacements": [
-                                { "replace": "./src/app.config.json", "with": "./e2e/app.config.json" }
+                                { "replace": "./src/app.config.json", "with": "./e2e/.app.config.json" }
                             ]
                         },
                         "production": {
@@ -63,7 +66,8 @@
                             "vendorChunk": false,
                             "buildOptimizer": true,
                             "fileReplacements": [
-                                { "replace": "src/environments/environment.ts", "with": "src/environments/environment.prod.ts" }
+                                { "replace": "src/environments/environment.ts", "with": "src/environments/environment.prod.ts" },
+                                { "replace": "./src/app.config.json", "with": "./src/.app.config.json" }
                             ]
                         }
                     }

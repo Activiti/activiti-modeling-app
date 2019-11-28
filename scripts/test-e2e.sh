@@ -219,7 +219,7 @@ else
         echo "====== Run dist in lite-server ====="
         ls "./dist/app" || exit 1
 
-        node "$DIR/app-config-replace.js"
+        node "$DIR/app-config-replace.js" --config="./dist/app/app.config.json" -onai
 
         lite-server --baseDir='./dist/app' -c ./e2e/lite-server-proxy.js > /dev/null &\
         protractor e2e/protractor.conf.ts $SUITE || exit 1
