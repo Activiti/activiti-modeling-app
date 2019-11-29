@@ -52,7 +52,7 @@ export class SearchHeaderComponent implements OnInit {
   }
 
   onSearchSubmit(event: KeyboardEvent) {
-    const value = (event.target as HTMLInputElement).value;
+    const value = (event.target as HTMLInputElement).value.toLowerCase();
     this.searchProjects(value);
   }
 
