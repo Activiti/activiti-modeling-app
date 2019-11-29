@@ -57,11 +57,10 @@ import {
     BpmnFactoryToken,
     ProcessModelerServiceToken,
     selectSelectedProjectId,
-    logInfo,
+    LogFactoryService,
     LoadApplicationAction,
     ProcessExtensionsContent,
     OpenConfirmDialogAction,
-    logError,
     selectOpenedModel,
     BpmnElement
 } from 'ama-sdk';
@@ -76,6 +75,7 @@ describe('ProcessEditorEffects', () => {
     let process: Process;
     let processEditorService: ProcessEditorService;
     let router: Router;
+    let logFactory: LogFactoryService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -137,6 +137,7 @@ describe('ProcessEditorEffects', () => {
             ]
         });
 
+        logFactory = TestBed.get(LogFactoryService);
         effects = TestBed.get(ProcessEditorEffects);
         metadata = getEffectsMetadata(effects);
         store = TestBed.get(Store);
@@ -230,7 +231,7 @@ describe('ProcessEditorEffects', () => {
         it('should trigger the right action on successful update', () => {
             processEditorService.update = jest.fn().mockReturnValue(of(process));
             actions$ = hot('a', { a: new UpdateProcessAttemptAction(mockActionPayload) });
-            const expectedLogAction = logInfo(getProcessLogInitiator(), 'PROCESS_EDITOR.PROCESS_UPDATED');
+            const expectedLogAction = logFactory.logInfo(getProcessLogInitiator(), 'PROCESS_EDITOR.PROCESS_UPDATED');
             expectedLogAction.log.datetime = (<any>expect).any(Date);
 
             const expected = cold('(bcdef)', {
@@ -247,7 +248,7 @@ describe('ProcessEditorEffects', () => {
         it('should handle general general string error message', () => {
             processEditorService.validate = jest.fn().mockReturnValue(throwError(new Error(validateError)));
             actions$ = hot('a', { a: new ValidateProcessAttemptAction(mockValidatePayload) });
-            const expectedLogAction = logError(getProcessLogInitiator(), ['Parse Error']);
+            const expectedLogAction = logFactory.logError(getProcessLogInitiator(), ['Parse Error']);
             expectedLogAction.log.datetime = (<any>expect).any(Date);
 
             const expected = cold('(bc)', {

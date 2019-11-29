@@ -32,13 +32,14 @@ import { BpmnFactoryMock } from './bpmn-js/bpmn-js.mock';
 import { of, throwError } from 'rxjs';
 import { getProcessLogInitiator } from './process-editor.constants';
 import { SelectModelerElementAction } from '../store/process-editor.actions';
-import { logError, logWarning } from 'ama-sdk';
+import { LogFactoryService } from 'ama-sdk';
 
 describe('ProcessDiagramLoaderService', () => {
 
-    let service: ProcessDiagramLoaderService,
-        modelerService: ProcessModelerService,
-        store: Store<any>;
+    let service: ProcessDiagramLoaderService;
+    let modelerService: ProcessModelerService;
+    let store: Store<any>;
+    let logFactory: LogFactoryService;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -58,6 +59,7 @@ describe('ProcessDiagramLoaderService', () => {
     }));
 
     beforeEach(() => {
+        logFactory = TestBed.get(LogFactoryService);
         service = TestBed.get(ProcessDiagramLoaderService);
         modelerService = TestBed.get(ProcessModelerServiceToken);
         store = TestBed.get(Store);
@@ -83,7 +85,7 @@ describe('ProcessDiagramLoaderService', () => {
         spyOn(modelerService, 'loadXml').and.returnValue(throwError(thrownError));
 
         service.load('<xml />').subscribe({complete: () => {
-            const expectedLogAction = logWarning(getProcessLogInitiator(), [ 'BIG ORANGE WARNING' ]);
+            const expectedLogAction = logFactory.logWarning(getProcessLogInitiator(), [ 'BIG ORANGE WARNING' ]);
             expectedLogAction.log.datetime = (<any>expect).any(Date);
 
             expect(store.dispatch).toHaveBeenCalledTimes(2);
@@ -98,7 +100,7 @@ describe('ProcessDiagramLoaderService', () => {
         spyOn(modelerService, 'loadXml').and.returnValue(throwError(thrownError));
 
         service.load('<xml />').subscribe({complete: () => {
-            const expectedLogAction = logError(getProcessLogInitiator(), [ 'BIG RED ERROR' ]);
+            const expectedLogAction = logFactory.logError(getProcessLogInitiator(), [ 'BIG RED ERROR' ]);
             expectedLogAction.log.datetime = (<any>expect).any(Date);
 
             expect(store.dispatch).toHaveBeenCalledTimes(2);

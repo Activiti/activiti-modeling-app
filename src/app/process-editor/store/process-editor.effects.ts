@@ -20,7 +20,7 @@ import { Injectable, Inject } from '@angular/core';
 import { catchError, switchMap, map, filter, withLatestFrom, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
-import { LogService, TranslationService } from '@alfresco/adf-core';
+import { LogService } from '@alfresco/adf-core';
 import { Observable } from 'rxjs';
 
 import {
@@ -85,7 +85,7 @@ import { mergeMap } from 'rxjs/operators';
 import { Process, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
 import { selectSelectedProjectId, AmaState, selectSelectedProcess, createProcessName } from 'ama-sdk';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
-import { logError, logInfo } from 'ama-sdk';
+import { LogFactoryService } from 'ama-sdk';
 import { ProcessValidationResponse, ProcessError } from './process-editor.state';
 
 @Injectable()
@@ -94,7 +94,7 @@ export class ProcessEditorEffects extends BaseEffects {
         private store: Store<AmaState>,
         private actions$: Actions,
         private processEditorService: ProcessEditorService,
-        private translation: TranslationService,
+        private logFactory: LogFactoryService,
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
         logService: LogService,
         router: Router
@@ -245,7 +245,7 @@ export class ProcessEditorEffects extends BaseEffects {
                         },
                         action: payload.action
                     }),
-                    logError(getProcessLogInitiator(), errors)
+                    this.logFactory.logError(getProcessLogInitiator(), errors)
                 ];
             })
         );
@@ -262,7 +262,7 @@ export class ProcessEditorEffects extends BaseEffects {
                 new LoadApplicationAction(true),
                 new UpdateProcessSuccessAction({ id: payload.processId, changes: payload.metadata }, payload.content),
                 new SetAppDirtyStateAction(false),
-                logInfo(getProcessLogInitiator(), this.translation.instant('PROCESS_EDITOR.PROCESS_UPDATED')),
+                this.logFactory.logInfo(getProcessLogInitiator(), 'PROCESS_EDITOR.PROCESS_UPDATED'),
                 new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_UPDATED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleProcessUpdatingError.bind(this), e))

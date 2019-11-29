@@ -31,12 +31,13 @@ import { getProcessLogInitiator } from './process-editor.constants';
 import { of, Observable } from 'rxjs';
 import { createSelectedElement } from '../store/process-editor.state';
 import { SelectModelerElementAction } from '../store/process-editor.actions';
-import { logError, logWarning } from 'ama-sdk';
+import { LogFactoryService } from 'ama-sdk';
 
 @Injectable()
 export class ProcessDiagramLoaderService {
     constructor(
         private store: Store<ProcessEntitiesState>,
+        private logFactory: LogFactoryService,
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService
     ) {}
 
@@ -55,12 +56,12 @@ export class ProcessDiagramLoaderService {
 
         if (problem.type === MESSAGE.ERROR) {
             actions = [
-                logError(getProcessLogInitiator(), problem.messages),
+                this.logFactory.logError(getProcessLogInitiator(), problem.messages),
                 new SnackbarErrorAction('PROCESS_EDITOR.ERRORS.PARSE_BPMN')
             ];
         } else if (problem.type === MESSAGE.WARN) {
             actions = [
-                logWarning(getProcessLogInitiator(), problem.messages),
+                this.logFactory.logWarning(getProcessLogInitiator(), problem.messages),
                 new SnackbarWarningAction('PROCESS_EDITOR.ERRORS.PARSE_BPMN')
             ];
         }

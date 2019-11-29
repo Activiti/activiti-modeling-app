@@ -25,7 +25,7 @@ import {
     getFileUriPattern,
     SchemaModelMap,
     Json,
-    logError,
+    LogFactoryService,
     AmaState,
     MODEL_SCHEMAS_TO_LOAD
 } from 'ama-sdk';
@@ -39,7 +39,8 @@ export class AmaModelSchemaLoaderGuard implements CanActivate {
         @Inject(SCHEMA_API_TOKEN) private modelSchemaApi: ModelSchemaApi,
         @Inject(MODEL_SCHEMAS_TO_LOAD) private schemas: SchemaModelMap[],
         private codeEditorService: CodeEditorService,
-        private store: Store<AmaState>
+        private store: Store<AmaState>,
+        private logFactory: LogFactoryService
     ) {}
 
     canActivate():  Observable<boolean> {
@@ -47,7 +48,7 @@ export class AmaModelSchemaLoaderGuard implements CanActivate {
         return zip(...schemaLoaders).pipe(
             map(() => true),
             catchError(error => {
-                this.store.dispatch(logError(getBackendLogInitiator(), error.message));
+                this.store.dispatch(this.logFactory.logError(getBackendLogInitiator(), error.message));
                 return of(true);
             })
         );

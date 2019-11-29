@@ -53,8 +53,7 @@ import {
     AmaAuthenticationService,
     EntityDialogForm,
     DownloadResourceService,
-    logInfo,
-    logError,
+    LogFactoryService,
     Pagination,
     ServerSideSorting,
     SearchQuery
@@ -70,6 +69,7 @@ describe('ProjectsEffects', () => {
     const projectsLoaded$ = new BehaviorSubject<boolean>(false);
     const paginationLoaded$ = new BehaviorSubject<Pagination>(paginationMock);
     let router: Router;
+    let logFactory: LogFactoryService;
 
     const updatedPagination = {
         maxItems: paginationMock.maxItems,
@@ -132,6 +132,7 @@ describe('ProjectsEffects', () => {
             ]
         });
 
+        logFactory = TestBed.get(LogFactoryService);
         effects = TestBed.get(ProjectsEffects);
         router = TestBed.get(Router);
         metadata = getEffectsMetadata(effects);
@@ -425,7 +426,7 @@ describe('ProjectsEffects', () => {
         it('should trigger the right action on successful release', () => {
             dashboardService.releaseProject = jest.fn().mockReturnValue(of(mockProject));
             actions$ = hot('a', { a: new ReleaseProjectAttemptAction(mockProject.id) });
-            const expectedLogAction = logInfo(getProjectEditorLogInitiator(), 'APP.HOME.NEW_MENU.PROJECT_RELEASED');
+            const expectedLogAction = logFactory.logInfo(getProjectEditorLogInitiator(), 'APP.HOME.NEW_MENU.PROJECT_RELEASED');
             expectedLogAction.log.datetime = (<any>expect).any(Date);
             const expected = cold('(bcd)', {
                 b: new ReleaseProjectSuccessAction(mockProject, mockProject.id),
@@ -443,7 +444,7 @@ describe('ProjectsEffects', () => {
         dashboardService.releaseProject = jest.fn().mockReturnValue(throwError(error));
 
         actions$ = hot('a', { a: new ReleaseProjectAttemptAction(mockProject.id) });
-        const expectedLogAction = logError(getProjectEditorLogInitiator(), 'test');
+        const expectedLogAction = logFactory.logError(getProjectEditorLogInitiator(), 'test');
         expectedLogAction.log.datetime = (<any>expect).any(Date);
         const expected = cold('(bc)', {
             b: new SnackbarErrorAction('APP.PROJECT.ERROR.RELEASE_PROJECT'),

@@ -26,3 +26,4 @@ export * from './ama-authentication.service';
 export * from './ama-services.module';
 export * from './auth.service';
 export * from './blob.service';
+export * from './log-factory.service';

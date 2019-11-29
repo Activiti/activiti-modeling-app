@@ -86,7 +86,7 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
                 if (error) {
                     subscriber.error({
                         type: MESSAGE.ERROR,
-                        messages: [error]
+                        messages: [`Error: ${error.message}`]
                     });
                 } else if (warnings.length) {
                     subscriber.error({

@@ -20,7 +20,7 @@ import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { Observable, throwError, of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
-import { ACMApiModule, OpenConfirmDialogAction, DownloadResourceService, BlobService, DialogService, logError } from 'ama-sdk';
+import { ACMApiModule, OpenConfirmDialogAction, DownloadResourceService, BlobService, DialogService, LogFactoryService } from 'ama-sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { LogService, AlfrescoApiService, AlfrescoApiServiceMock, TranslationService, TranslationMock } from '@alfresco/adf-core';
@@ -36,6 +36,7 @@ describe('Project Effects', () => {
     let actions$: Observable<any>;
     let service: ProjectEditorService;
     let downloadService: DownloadResourceService;
+    let logFactory: LogFactoryService;
 
     const mockDialog = {
         close: jest.fn()
@@ -84,6 +85,7 @@ describe('Project Effects', () => {
             ]
         });
 
+        logFactory = TestBed.get(LogFactoryService);
         effects = TestBed.get(ProjectEffects);
         metadata = getEffectsMetadata(effects);
         service = TestBed.get(ProjectEditorService);
@@ -121,7 +123,7 @@ describe('Project Effects', () => {
         exportProject.mockReturnValue(throwError(error));
 
         actions$ = hot('a', { a: new ExportProjectAction({ projectId: '', projectName: '' }) });
-        const expectedLogAction = logError(getProjectEditorLogInitiator(), ['d1', 'd2', 'd3']);
+        const expectedLogAction = logFactory.logError(getProjectEditorLogInitiator(), ['d1', 'd2', 'd3']);
         expectedLogAction.log.datetime = (<any>expect).any(Date);
         const expected = cold('(bc)', {
             b: new OpenConfirmDialogAction({ dialogData: {

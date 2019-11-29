@@ -17,13 +17,13 @@
 
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { LogService, TranslationService } from '@alfresco/adf-core';
+import { LogService } from '@alfresco/adf-core';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { tap, switchMap, catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { BaseEffects, Pagination, logInfo, logError, LogAction, FetchQueries, ServerSideSorting, ErrorResponse, SearchQuery } from 'ama-sdk';
+import { BaseEffects, Pagination, LogFactoryService, LogAction, FetchQueries, ServerSideSorting, ErrorResponse, SearchQuery } from 'ama-sdk';
 import {
     GetProjectsAttemptAction,
     GET_PROJECTS_ATTEMPT,
@@ -60,7 +60,7 @@ export class ProjectsEffects extends BaseEffects {
         private dashboardService: DashboardService,
         private store: Store<AmaState>,
         logService: LogService,
-        private translation: TranslationService,
+        private logFactory: LogFactoryService,
         router: Router,
     ) {
         super(router, logService);
@@ -163,7 +163,7 @@ export class ProjectsEffects extends BaseEffects {
         return this.dashboardService.releaseProject(projectId).pipe(
             switchMap(release => [
                 new ReleaseProjectSuccessAction(release, projectId),
-                logInfo(getProjectEditorLogInitiator(), this.translation.instant('APP.HOME.NEW_MENU.PROJECT_RELEASED')),
+                this.logFactory.logInfo(getProjectEditorLogInitiator(), 'APP.HOME.NEW_MENU.PROJECT_RELEASED'),
                 new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_RELEASED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleProjectReleaseError.bind(this, e), e))
@@ -250,7 +250,7 @@ export class ProjectsEffects extends BaseEffects {
 
         return of(
             new SnackbarErrorAction(errorMessage),
-            logError(getProjectEditorLogInitiator(), errorLog)
+            this.logFactory.logError(getProjectEditorLogInitiator(), errorLog)
         );
     }
 

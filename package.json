@@ -39,20 +39,6 @@
     "url": "https://github.com/Activiti/activiti-modeling-app/issues"
   },
   "license": "See license in LICENSE file.",
-  "contributors": [
-    {
-      "name": "Eugenio Romano",
-      "email": "eugenio.romano@alfresco.com"
-    },
-    {
-      "name": "Mario Romano",
-      "email": "mario.romano83@gmail.com"
-    },
-    {
-      "name": "Andras Popovics",
-      "email": "popovics@ndras.hu"
-    }
-  ],
   "keywords": [
     "ng2",
     "angular",
@@ -140,6 +126,7 @@
     "@ngrx/schematics": "7.2.0",
     "@types/jasmine": "3.3.9",
     "@types/jasminewd2": "2.0.2",
+    "@types/jest": "^24.0.23",
     "@types/node": "11.9.4",
     "ajv-cli": "3.0.0",
     "babel-preset-env": "1.7.0",

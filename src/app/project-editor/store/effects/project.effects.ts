@@ -19,8 +19,8 @@ import { Injectable } from '@angular/core';
 import { map, switchMap, catchError, filter, mergeMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { LogService, TranslationService } from '@alfresco/adf-core';
-import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, logInfo, logError, LogAction,
+import { LogService } from '@alfresco/adf-core';
+import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, LogFactoryService, LogAction,
     LeaveProjectAction } from 'ama-sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import {
@@ -41,7 +41,7 @@ export class ProjectEffects extends BaseEffects {
         protected logService: LogService,
         protected router: Router,
         protected downloadService: DownloadResourceService,
-        private translation: TranslationService,
+        private logFactory: LogFactoryService,
         protected blobService: BlobService
     ) {
         super(router, logService);
@@ -82,7 +82,7 @@ export class ProjectEffects extends BaseEffects {
             switchMap(response => {
                 this.downloadService.downloadResource(name, response, '.zip');
                 return [
-                    logInfo(getProjectEditorLogInitiator(), this.translation.instant('APP.PROJECT.EXPORT_SUCCESS'))
+                    this.logFactory.logInfo(getProjectEditorLogInitiator(), 'APP.PROJECT.EXPORT_SUCCESS')
                 ];
             }),
             catchError(response => this.genericErrorHandler(this.handleValidationError.bind(this, response), response)
@@ -94,17 +94,18 @@ export class ProjectEffects extends BaseEffects {
             switchMap(body => {
                 const errors = body.errors.map(error => error.description);
 
-                return [new OpenConfirmDialogAction({
-                    dialogData: {
-                        title: body.message,
-                        subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
-                        errors: errors
-                    }
-                }),
-                logError(getProjectEditorLogInitiator(), errors)
+                return [
+                    new OpenConfirmDialogAction({
+                        dialogData: {
+                            title: body.message,
+                            subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
+                            errors: errors
+                        }
+                    }),
+                    this.logFactory.logError(getProjectEditorLogInitiator(), errors)
                 ];
             }
-            ));
+        ));
     }
 
     private handleError(userMessage: string) {

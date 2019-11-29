@@ -61,9 +61,8 @@ import {
     GetConnectorAttemptAction,
     CreateConnectorSuccessAction,
     DialogService,
-    logInfo,
-    logError,
-    LoadApplicationAction
+    LoadApplicationAction,
+    LogFactoryService
 } from 'ama-sdk';
 import { of } from 'rxjs';
 import { throwError } from 'rxjs';
@@ -80,6 +79,7 @@ describe('ConnectorEditorEffects', () => {
     let connectorEditorService: ConnectorEditorService;
     let store: Store<AmaState>;
     let storageService: StorageService;
+    let logFactory: LogFactoryService;
 
     const connector: Connector = {
         type: CONNECTOR,
@@ -166,6 +166,7 @@ describe('ConnectorEditorEffects', () => {
             ]
         });
 
+        logFactory = TestBed.get(LogFactoryService);
         effects = TestBed.get(ConnectorEditorEffects);
         connectorEditorService = TestBed.get(ConnectorEditorService);
         router = TestBed.get(Router);
@@ -207,7 +208,7 @@ describe('ConnectorEditorEffects', () => {
             updateConnector.mockReturnValue(of(connector));
 
             actions$ = hot('a', { a: new UpdateConnectorContentAttemptAction(mockPayload) });
-            const expectedLogAction = logInfo(getConnectorLogInitiator(), 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED');
+            const expectedLogAction = logFactory.logInfo(getConnectorLogInitiator(), 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED');
             expectedLogAction.log.datetime = (<any>expect).any(Date);
             const expected = cold('(bcdf)', {
                 b: new LoadApplicationAction(true),
@@ -486,7 +487,7 @@ describe('ConnectorEditorEffects', () => {
                 },
                 action: payload.action
             };
-            const expectedLogAction = logError(getConnectorLogInitiator(), 'test');
+            const expectedLogAction = logFactory.logError(getConnectorLogInitiator(), 'test');
             expectedLogAction.log.datetime = (<any>expect).any(Date);
             const expected = cold('(bc)', {
                 b: new OpenConfirmDialogAction(expectedPayload),
