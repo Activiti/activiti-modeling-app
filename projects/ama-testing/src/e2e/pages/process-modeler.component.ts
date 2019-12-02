@@ -67,8 +67,8 @@ export class ProcessModelerComponent extends GenericPage {
         await super.dragAndDrop(this.endEvent, this.canvas);
     }
 
-    async addBoundaryEvent(containerSelector: string) {
-        await super.dragAndDrop(this.intermediateThrowEvent, element(by.css(containerSelector)), { x: 10, y: 10 });
+    async addBoundaryEvent(containerSelector: string = '.canvas-editor', position = { x: 10, y: 10 }) {
+        await super.dragAndDrop(this.intermediateThrowEvent, element(by.css(containerSelector)), position);
     }
 
     async addSubProcess() {

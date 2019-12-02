@@ -46,7 +46,9 @@ export class ProcessPropertiesCard extends GenericPage {
     readonly mappingHeaderCellProcessVariable = element(by.css(`[data-automation-id="table-header-cell-process-variables"]`));
     readonly processVariableSelector = element(by.css(`[data-automation-id="process-variable-selector"]`));
     readonly newErrorButton = element(by.css(`[data-automation-id="new-error-button"]`));
+    readonly newSignalButton = element(by.css(`[data-automation-id="new-signal-button"]`));
     readonly processNameError = element(by.css(`[data-automation-id="card-textitem-error-processName"]>ul>li`));
+    readonly scopeSelector = element(by.css(`[data-automation-class="select-box"]`));
 
     async isLoaded() {
         await BrowserVisibility.waitUntilElementIsVisible(this.editorProperties);
@@ -55,6 +57,12 @@ export class ProcessPropertiesCard extends GenericPage {
 
     async getProcessId() {
         return this.id.getText();
+    }
+
+    async changeElementScope(scope: string) {
+        await BrowserActions.click(this.scopeSelector);
+        const scopeName = element(by.cssContainingText('.mat-option-text', scope));
+        await BrowserActions.click(scopeName);
     }
 
     async editProcessName(newName: string) {
@@ -80,6 +88,10 @@ export class ProcessPropertiesCard extends GenericPage {
 
     async createNewError() {
         await BrowserActions.click(this.newErrorButton);
+    }
+
+    async createNewSignal() {
+        await BrowserActions.click(this.newSignalButton);
     }
 
     async setConnector(connectorName: string) {
