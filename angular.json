@@ -66,6 +66,20 @@
                             "vendorChunk": false,
                             "buildOptimizer": true,
                             "fileReplacements": [
+                                { "replace": "src/environments/environment.ts", "with": "src/environments/environment.prod.ts" }
+                            ]
+                        },
+                        "local-production": {
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "fileReplacements": [
                                 { "replace": "src/environments/environment.ts", "with": "src/environments/environment.prod.ts" },
                                 { "replace": "./src/app.config.json", "with": "./src/.app.config.json" }
                             ]
@@ -86,7 +100,7 @@
                             "browserTarget": "modeling-app:build:adfdev"
                         },
                         "production": {
-                            "browserTarget": "modeling-app:build:production",
+                            "browserTarget": "modeling-app:build:local-production",
                             "disableHostCheck": false
                         }
                     }
