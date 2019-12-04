@@ -76,5 +76,17 @@
                 }
             }
         ]
-    }
+    },
+    "create": [
+        {
+            "title": "APP.HOME.NEW_MENU.MENU_ITEMS.CREATE_PROJECT",
+            "icon": "create_new_folder",
+            "handler": "CREATE_PROJECT_DIALOG"
+        },
+        {
+            "title": "APP.HOME.NEW_MENU.MENU_ITEMS.UPLOAD_PROJECT",
+            "icon": "file_upload",
+            "handler": "IMPORT_PROJECT_DIALOG"
+        }
+    ]
 }

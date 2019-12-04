@@ -33,11 +33,20 @@ export class OpenDialogAction<T> implements Action {
 export const CLOSE_ALL_DIALOGS = 'CLOSE_ALL_DIALOGS';
 export class CloseAllDialogsAction implements Action {
     readonly type = CLOSE_ALL_DIALOGS;
-    constructor() {}
 }
 
 export const OPEN_ENTITY_DIALOG = 'OPEN_ENTITY_DIALOG';
 export class OpenEntityDialogAction implements Action {
     readonly type = OPEN_ENTITY_DIALOG;
     constructor(public payload: EntityDialogPayload) {}
+}
+
+export const CREATE_PROJECT_DIALOG = 'CREATE_PROJECT_DIALOG';
+export class CreateProjectDialogAction implements Action {
+    readonly type = CREATE_PROJECT_DIALOG;
+}
+
+export const IMPORT_PROJECT_DIALOG = 'IMPORT_PROJECT_DIALOG';
+export class ImportProjectDialogAction implements Action {
+    readonly type = IMPORT_PROJECT_DIALOG;
 }

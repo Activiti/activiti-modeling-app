@@ -24,7 +24,7 @@ export class SidebarActionMenu extends GenericWebElement {
     readonly actionMenu = element(by.css(`div.adf-sidebar-action-menu`));
     readonly createButton = element(by.css(`button[data-automation-id='create-button']`));
     readonly menuOptions = element(by.css(`div.mat-menu-content`));
-    readonly fileUploadInput = element(by.css(`input.ama-upload-button`));
+    readonly fileUploadInput = element(by.css(`input.app-import-project`));
     readonly uploadAppButton = element(by.css(`button.app-upload-btn`));
     readonly backDrop = element(by.css(`.cdk-overlay-container > .cdk-overlay-backdrop:first-child`));
 

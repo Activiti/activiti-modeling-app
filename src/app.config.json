@@ -1,7 +1,7 @@
 {
     "$schema": "../node_modules/@alfresco/adf-core/app.config.schema.json",
     "authType": "OAUTH",
-    "showNotificationHistory" : true,
+    "showNotificationHistory": true,
     "providers": "BPM",
     "bpmHost": "http://localhost:4200",
     "oauth2": {
@@ -22,10 +22,8 @@
         "name": "Activiti Modeling Application"
     },
     "languagePicker": true,
-    "roles": [
-        "ACTIVITI_MODELER"
-    ],
-    "locale" : "en",
+    "roles": ["ACTIVITI_MODELER"],
+    "locale": "en",
     "languages": [
         {
             "key": "en",
@@ -65,7 +63,7 @@
                 "label": "PROCESS_EDITOR.TIMER_TYPES.DATE"
             }
         ],
-        "multi-instance-types":  [
+        "multi-instance-types": [
             {
                 "key": "none",
                 "label": "PROCESS_EDITOR.MULTI_INSTANCE_TYPES.NONE"
@@ -92,5 +90,17 @@
                 }
             }
         ]
-    }
+    },
+    "create": [
+        {
+            "title": "APP.HOME.NEW_MENU.MENU_ITEMS.CREATE_PROJECT",
+            "icon": "create_new_folder",
+            "handler": "CREATE_PROJECT_DIALOG"
+        },
+        {
+            "title": "APP.HOME.NEW_MENU.MENU_ITEMS.UPLOAD_PROJECT",
+            "icon": "file_upload",
+            "handler": "IMPORT_PROJECT_DIALOG"
+        }
+    ]
 }

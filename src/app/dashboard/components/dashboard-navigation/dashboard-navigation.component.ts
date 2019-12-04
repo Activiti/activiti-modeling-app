@@ -15,14 +15,18 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, ViewChild, ElementRef, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { AppConfigService } from '@alfresco/adf-core';
-import { UploadProjectAttemptAction } from '../../store/actions/projects';
-import { AmaState, CreateProjectAttemptAction, MODELER_NAME_REGEX } from 'ama-sdk';
+import { AmaState } from 'ama-sdk';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
-import { OpenEntityDialogAction } from '../../../store/actions/dialog';
+
+export interface CreateAction {
+    title: string;
+    icon: string;
+    handler: string;
+}
 
 @Component({
     templateUrl: './dashboard-navigation.component.html'
@@ -30,25 +34,21 @@ import { OpenEntityDialogAction } from '../../../store/actions/dialog';
 export class DashboardNavigationComponent implements OnInit, AfterContentInit {
     expanded$: Observable<boolean>;
     navigation: any[];
-    @ViewChild('fileInput') fileInput: ElementRef;
 
-    constructor(private store: Store<AmaState>, private appConfig: AppConfigService) {}
+    actions$ = new BehaviorSubject<CreateAction[]>([]);
+
+    constructor(
+        private store: Store<AmaState>,
+        private appConfig: AppConfigService
+    ) {}
 
     ngOnInit() {
+        this.actions$.next(this.appConfig.get<CreateAction[]>('create', []));
         this.navigation = this.buildMenu();
     }
 
     ngAfterContentInit() {
         this.expanded$ = this.store.select(selectMenuOpened);
-    }
-
-    onClick(event): void {
-        this.fileInput.nativeElement.click();
-    }
-
-    onUpload(files: File[]): void {
-        this.store.dispatch(new UploadProjectAttemptAction(files[0]));
-        this.fileInput.nativeElement.value = null;
     }
 
     private buildMenu() {
@@ -58,16 +58,7 @@ export class DashboardNavigationComponent implements OnInit, AfterContentInit {
         return Object.keys(data).map(key => data[key]);
     }
 
-    public openProjectDialog() {
-        this.store.dispatch(new OpenEntityDialogAction({
-            title: 'APP.HOME.NEW_MENU.CREATE_PROJECT_TITLE',
-            nameField: 'APP.HOME.DIALOGS.PROJECT_NAME',
-            descriptionField: 'APP.HOME.DIALOGS.PROJECT_DESC',
-            action: CreateProjectAttemptAction,
-            allowedCharacters: {
-                regex: MODELER_NAME_REGEX,
-                error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
-            },
-        }));
+    runAction(type: string) {
+        this.store.dispatch({ type });
     }
 }

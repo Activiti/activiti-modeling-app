@@ -2,10 +2,6 @@
     $foreground: map-get($theme, foreground);
     $accent: map-get($theme, accent);
 
-    .adf-sidebar-action-menu-options input.ama-upload-button{
-        display: none;
-    }
-
     .dashboard-navigation {
         display: flex;
         flex: 1;
