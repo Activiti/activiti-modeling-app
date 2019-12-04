@@ -129,10 +129,12 @@ export class ACMProjectApi implements ProjectApi {
     public getProjectReleases(
         projectId: string,
         pagination: Partial<Pagination> = {},
-        sorting: ServerSideSorting = { key: 'version', direction: 'desc' }
+        sorting: ServerSideSorting = { key: 'version', direction: 'desc' },
+        showAllVersions: boolean = true
     ): Observable<PaginatedEntries<ReleaseEntry>> {
 
         const queryParams = {
+            showAllVersions: showAllVersions,
             ...pagination,
             sort: `${sorting.key},${sorting.direction}`
         };
