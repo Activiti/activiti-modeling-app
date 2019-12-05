@@ -79,7 +79,7 @@ describe('Upload project', () => {
     });
 
     it('[C311378] Upload project using the REST API', async () => {
-        const project = await backend.project.import(absoluteFilePath, (projectDetails.name + StringUtil.generateRandomString()));
+        const project = await backend.project.import(absoluteFilePath, (projectDetails.name + StringUtil.generateRandomString().toLowerCase()));
         await expect(await dashboardPage.isProjectNameInList(project.entry.name)).toBe(true, `Item '${project.entry.name}' was not found in the list.`);
     });
 

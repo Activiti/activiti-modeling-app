@@ -41,7 +41,16 @@ describe('Create project', () => {
 
     let backend: Backend;
     let loginPage: LoginPageImplementation;
-    let project, projectDetails;
+    let project;
+
+    async function cleanupProject(projectName: string) {
+        try {
+            const createdProjectId = await dashboardPage.getIdForProjectByItsName(projectName);
+            await backend.project.delete(createdProjectId);
+        } catch (e) {
+            Logger.warn(`${projectName} is not there, no need to delete (?)...`);
+        }
+    }
 
     beforeEach(async () => {
         backend = await getBackend(testConfig).setUp();
@@ -57,21 +66,13 @@ describe('Create project', () => {
         /* cspell: disable-next-line */
         project = await createEntityDialog.setEntityDetails('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
         await expect(await snackBar.isCreatedSuccessfully('project')).toBe(true);
-        projectDetails = await backend.project.getProjectByName(project.name);
-        await expect(await browser.getCurrentUrl()).toContain(projectDetails.entry.id);
         await browser.navigate().back();
         await expect(await dashboardPage.isProjectNameInList(project.name)).toBe(true);
 
     });
 
     afterEach(async () => {
-        try {
-            const createdAppId = await dashboardPage.getIdForProjectByItsName(project.name);
-            await backend.project.delete(createdAppId);
-        } catch (e) {
-            Logger.error(`Cleaning up created project failed: ${project.name}`);
-            throw e;
-        }
+        await cleanupProject(project.name);
         await backend.tearDown();
         await authenticatedPage.logout();
     });

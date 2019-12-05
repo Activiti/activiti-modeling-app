@@ -145,7 +145,7 @@ export class ACMProject {
 
     async getProjects(): Promise<any> {
         try {
-            return this.requestApiHelper.get(`/modeling-service/v1/projects`, { queryParams: { 'maxItems': 1000 } });
+            return this.requestApiHelper.get(`/modeling-service/v1/projects`, { queryParams: { 'maxItems': 2000 } });
         } catch (error) {
             Logger.error(`getProjects failed! ${error.message}`);
             throw error;
