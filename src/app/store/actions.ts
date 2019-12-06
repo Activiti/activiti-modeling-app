@@ -17,4 +17,3 @@
 
 export * from './actions/ui';
 export * from './actions/settings';
-export * from './actions/dialog';

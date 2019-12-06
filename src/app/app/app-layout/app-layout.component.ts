@@ -18,14 +18,14 @@
 import { Component, ViewChild, ViewEncapsulation, AfterViewInit, OnDestroy } from '@angular/core';
 import { SidenavLayoutComponent, AppConfigService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
-import { SetMenuAction, OpenDialogAction } from '../../store/actions';
+import { SetMenuAction } from '../../store/actions';
 import { Observable } from 'rxjs';
 import { selectMenuOpened } from '../../store/selectors/app.selectors';
 import { first, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { SettingsDialogComponent } from '../settings/settings-dialog.component';
 import { LogoutAction } from '../../store/actions/app.actions';
-import { AmaState } from 'ama-sdk';
+import { AmaState, OpenDialogAction } from 'ama-sdk';
  import { Router } from '@angular/router';
 
 @Component({

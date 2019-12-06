@@ -16,9 +16,8 @@
  */
 
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, Inject } from '@angular/core';
-import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS } from 'ama-sdk';
+import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction } from 'ama-sdk';
 import { Store } from '@ngrx/store';
-import { OpenEntityDialogAction } from '../../../../store/actions';
 
 @Component({
     selector: 'ama-project-tree-filter',

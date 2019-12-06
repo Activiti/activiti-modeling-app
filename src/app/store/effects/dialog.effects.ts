@@ -19,12 +19,6 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable, RendererFactory2 } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
 import {
-    OPEN_DIALOG,
-    OpenDialogAction,
-    CLOSE_ALL_DIALOGS,
-    CloseAllDialogsAction
-} from '../actions';
-import {
     OPEN_CONFIRM_DIALOG,
     OpenConfirmDialogAction,
     DialogService,
@@ -32,17 +26,19 @@ import {
     EntityDialogComponent,
     LoadApplicationAction,
     MODELER_NAME_REGEX,
-    CreateProjectAttemptAction
-} from 'ama-sdk';
-import { Action, Store } from '@ngrx/store';
-import {
+    CreateProjectAttemptAction,
+    OPEN_DIALOG,
+    OpenDialogAction,
+    CLOSE_ALL_DIALOGS,
+    CloseAllDialogsAction,
     OpenEntityDialogAction,
     OPEN_ENTITY_DIALOG,
     CreateProjectDialogAction,
     CREATE_PROJECT_DIALOG,
     IMPORT_PROJECT_DIALOG,
     ImportProjectDialogAction
-} from '../actions/dialog';
+} from 'ama-sdk';
+import { Action, Store } from '@ngrx/store';
 import { UploadProjectAttemptAction } from '../../dashboard/store/actions/projects';
 
 @Injectable()

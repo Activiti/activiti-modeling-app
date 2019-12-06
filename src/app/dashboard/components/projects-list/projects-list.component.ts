@@ -22,8 +22,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import { selectProjectSummaries, selectLoading, selectPagination } from '../../store/selectors/dashboard.selectors';
-import { AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting, SearchQuery } from 'ama-sdk';
-import { OpenEntityDialogAction } from '../../../store/actions/dialog';
+import { AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting, SearchQuery, OpenEntityDialogAction } from 'ama-sdk';
 import {
     DeleteProjectAttemptAction,
     UpdateProjectAttemptAction,

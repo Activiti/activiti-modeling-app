@@ -19,8 +19,7 @@ import { Component, Inject, AfterContentInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
-import { OpenEntityDialogAction } from '../../../store/actions/dialog';
-import { AmaState, selectSelectedProjectId, ModelCreatorDialogParams, MODEL_CREATORS, ModelCreator } from 'ama-sdk';
+import { AmaState, selectSelectedProjectId, ModelCreatorDialogParams, MODEL_CREATORS, ModelCreator, OpenEntityDialogAction } from 'ama-sdk';
 const orderBy = require('lodash/orderBy');
 
 @Component({

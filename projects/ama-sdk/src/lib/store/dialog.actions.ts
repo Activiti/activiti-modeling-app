@@ -19,7 +19,7 @@ import { Action } from '@ngrx/store';
 import { TemplateRef } from '@angular/core';
 import { MatDialogConfig } from '@angular/material';
 import { ComponentType } from '@angular/cdk/portal';
-import { EntityDialogPayload } from 'ama-sdk';
+import { EntityDialogPayload } from '../helpers/common';
 
 export const OPEN_DIALOG = 'OPEN_DIALOG';
 export class OpenDialogAction<T> implements Action {
