@@ -41,8 +41,6 @@ SCREENSHOT_PASSWORD=""
 LOG=true
 ```
 
-## Enterprise version
-
 ### Running the application
 
 Use one of the following commands to run the application:
@@ -109,26 +107,10 @@ Note: The suite content (e.g.: test) is defined in protractor.conf.js file.
 
 #### E2E VSCode launchers
 
-There are two runners:
-- E2E - allows single test execution
-- E2Es - allows test suite execution
+- `e2e` runner - allows single test execution
 
 It is necessary to have the test file opened in a tab to run a single test suite.
-
-## Community version
-
-To build / start / test the community application, you need to enter into the `apps/modeling-community` directory and follow the same steps as for the Enterprise version:
-
-```bash
-cd apps/modeling-community
-npm install
-# Have the .env file in the apps/modeling-community directory as well
-```
-
-Every command is the same after these initialisation steps. 
-You need to invoke them from the `apps/modeling-community` directory.
-
-For more information, please see the [documentation of the Community version](./apps/modeling-community/README.md).
+It is also necessary for the VSCode launcher to have the application server up and running, since the VSCode launcher only runs the e2e tests, **it doesn't compile and start the application**! (so the best to have the application started in another terminal `npm start`)
 
 ## Running in Docker
 

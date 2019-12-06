@@ -21,11 +21,18 @@ const afterLaunch = require('./config/hooks/after-launch');
 const onCleanUp = require('./config/hooks/on-cleanup');
 const SmartRunner = require('protractor-smartrunner');
 const resolve = require('path').resolve;
-
+const os = require('os');
 
 let arraySpecs = [];
 
 require('dotenv').config({ path: process.env.ENV_FILE });
+
+let PREFIX = 'e2e-app-';
+if (!!process.env.PREFIX) {
+  PREFIX = `${PREFIX}${process.env.PREFIX}-`;
+} else {
+  PREFIX = `${PREFIX}${os.userInfo().username}-`;
+}
 
  let specs = function () {
      let LIST_SPECS;
@@ -49,8 +56,8 @@ require('dotenv').config({ path: process.env.ENV_FILE });
 
 specs();
 
-const E2E_HOST = process.env.E2E_HOST || 'localhost',
-    E2E_PORT = process.env.E2E_PORT,
+const E2E_HOST = process.env.E2E_HOST || 'http://localhost',
+    E2E_PORT = process.env.E2E_PORT || 4200,
     BROWSER_RUN = process.env.BROWSER_RUN,
     MAXINSTANCES = process.env.MAXINSTANCES || 1;
 
@@ -105,8 +112,8 @@ exports.config = {
             args: [
                 '--disable-web-security',
                 '--incognito',
-                `--window-size=${config.browserWidth},${config.browserHeight}`,
-                ...(BROWSER_RUN === 'true' ? [] : ['--headless'])
+                ...(BROWSER_RUN === 'true' ? [] : ['--headless']),
+                `--window-size=${config.browserWidth},${config.browserHeight}`
             ],
         }
     },
@@ -139,7 +146,9 @@ exports.config = {
     ],
 
     params: {
-        downloadDir: config.paths.download
+        downloadDir: config.paths.download,
+        config: { log: true },
+        namePrefix: PREFIX
     },
 
     onPrepare,

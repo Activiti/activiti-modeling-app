@@ -28,6 +28,7 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/vscode-e2e-launcher.sh
 .history
 
 # misc
