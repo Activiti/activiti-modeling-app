@@ -17,10 +17,9 @@
 
 import { CardViewTextItemModel } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty, CardViewModelNameValidator } from 'ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
 import { sanitizeString } from 'ama-sdk';
-import { CardViewProcessNameValidator } from './validators/card-view-process-name.validator';
 
 const propertyName = BpmnProperty.processName;
 
@@ -33,6 +32,6 @@ export function createProcessNameProperty({ element }: FactoryProps) {
         multiline: false,
         editable: true,
         data: { id: element.id },
-        validators: [new CardViewProcessNameValidator()]
+        validators: [new CardViewModelNameValidator('PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_PROCESS_NAME')]
     });
 }

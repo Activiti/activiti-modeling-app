@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { ContentType } from '../content-types';
-import { formatUuid } from '../../../helpers/utils/create-entries-names';
+import { formatUuid, FORM_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { ModelApiVariation } from '../model-api';
 import { Form, FormContent } from '../../../api/types';
 import { createEmptyForm } from '../form-definition';
@@ -25,7 +25,7 @@ import { createEmptyForm } from '../form-definition';
 @Injectable()
 export class FormApiVariation<M extends Form, C extends FormContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Form;
-    readonly fileType = 'application/json';
+    readonly retrieveModelAfterUpdate = true;
 
     public serialize(content: C): string {
         return JSON.stringify(content);
@@ -35,7 +35,7 @@ export class FormApiVariation<M extends Form, C extends FormContent> implements 
         return <C>createEmptyForm(formatUuid(ContentType.Form, model.id), model.name, model.description);
     }
 
-    public createSummaryPatch(model: Partial<M>, {formRepresentation}: C) {
+    public createSummaryPatch(model: Partial<M>, { formRepresentation }: C) {
         const { name, description } = formRepresentation;
         return {
             name,
@@ -46,5 +46,13 @@ export class FormApiVariation<M extends Form, C extends FormContent> implements 
 
     public patchModel(model: Partial<M>): M {
         return <M>model;
+    }
+
+    public getModelMimeType(model: Partial<M>): string {
+        return 'application/json';
+    }
+
+    public getModelFileName(model: Partial<M>): string {
+        return model.name + FORM_FILE_FORMAT;
     }
 }

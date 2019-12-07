@@ -29,6 +29,7 @@ export class LogHistoryPage extends GenericPage {
         uiEditor: 'UI Editor',
         decisionTableEditor: 'Decision Table Editor',
         fileEditor: 'File Editor',
+        scriptEditor: 'Script Editor',
         backendService: 'Backend service',
         all: 'All'
     };

@@ -19,12 +19,13 @@ import { Injectable } from '@angular/core';
 import { DecisionTableContent, DecisionTable } from '../../../api/types';
 import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
-import { getEmptyDecisionTable } from '../../../helpers/public_api';
+import { DECISION_TABLE_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
+import { getEmptyDecisionTable } from '../../../helpers/utils/empty-decision-table';
 
 @Injectable()
 export class DecisionTableApiVariation<M extends DecisionTable, C extends DecisionTableContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.DecisionTable;
-    readonly fileType = 'text/plain';
+    readonly retrieveModelAfterUpdate = false;
 
     public serialize(content: C): string {
         return content;
@@ -45,5 +46,13 @@ export class DecisionTableApiVariation<M extends DecisionTable, C extends Decisi
 
     public patchModel(model: Partial<M>): M {
         return <M>model;
+    }
+
+    public getModelMimeType(model: Partial<M>): string {
+        return 'text/plain';
+    }
+
+    public getModelFileName(model: Partial<M>): string {
+        return model.name + DECISION_TABLE_FILE_FORMAT;
     }
 }

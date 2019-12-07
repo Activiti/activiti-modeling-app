@@ -28,12 +28,12 @@ export class CodeEditorWidget extends GenericWebElement {
         await BrowserVisibility.waitUntilElementIsVisible(this.codeEditorTextArea);
     }
 
-    async updateCodeEditorContent(content: string): Promise<void> {
+    async updateCodeEditorContent(content: string, index = 0): Promise<void> {
         try {
             await browser.sleep(200);
-            await browser.executeScript(`this.monaco.editor.getModels()[0].setValue('');`);
+            await browser.executeScript(`this.monaco.editor.getModels()[${index}].setValue('');`);
             await browser.sleep(200);
-            await browser.executeScript('this.monaco.editor.getModels()[0].setValue(`' + content + '`);');
+            await browser.executeScript('this.monaco.editor.getModels()[' + index + '].setValue(`' + content + '`);');
             await this.codeEditorTextArea.click();
             await this.codeEditorTextArea.sendKeys(protractor.Key.HOME);
         } catch (e) {

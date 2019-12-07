@@ -36,6 +36,7 @@ export * from './lib/interfaces/public_api';
 export * from './lib/process-editor/public_api';
 export * from './lib/services/public_api';
 export * from './lib/store/public_api';
+export * from './lib/validators/public_api';
 export * from './lib/variables/public_api';
 export * from './lib/workbench-layout/public_api';
 

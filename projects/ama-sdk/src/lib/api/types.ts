@@ -23,7 +23,8 @@ export type DATA_TYPE = 'data';
 export type DECISION_TABLE_TYPE = 'decision';
 export type UI_TYPE = 'ui';
 export type FILE_TYPE = 'file';
-export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DATA_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE;
+export type SCRIPT_TYPE = 'script';
+export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DATA_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE;
 
 
 export const PROJECT: PROJECT_TYPE = 'project';
@@ -34,6 +35,7 @@ export const DATA: DATA_TYPE = 'data';
 export const DECISION_TABLE: DECISION_TABLE_TYPE = 'decision';
 export const UI: UI_TYPE = 'ui';
 export const FILE: FILE_TYPE = 'file';
+export const SCRIPT: SCRIPT_TYPE = 'script';
 
 export interface Project {
     type: PROJECT_TYPE;
@@ -310,6 +312,35 @@ export interface FileExtensions {
 }
 
 export interface FileExtensionsContent {
+    mimeType?: string;
+    mimeTypeName?: string;
+    sizeInBytes?: number;
+    encoding?: string;
+}
+
+export interface ScriptModel {
+    content: ActivitiScriptContent;
+    model: ActivitiScript;
+}
+
+export type ActivitiScriptContent = string;
+
+export interface ActivitiScript extends Model {
+    type: SCRIPT_TYPE;
+    extensions: ScriptExtensions;
+}
+
+export interface ScriptExtensions {
+    uri: string;
+    name?: string;
+    content?: ScriptExtensionsContent;
+    createdAt?: Date;
+    language: string;
+    variables?: EntityProperty[];
+
+}
+
+export interface ScriptExtensionsContent {
     mimeType?: string;
     mimeTypeName?: string;
     sizeInBytes?: number;

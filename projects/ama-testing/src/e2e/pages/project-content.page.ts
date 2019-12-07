@@ -106,6 +106,10 @@ export class ProjectContentPage extends GenericPage {
         await this.createModel('ui');
     }
 
+    async createScript(): Promise<void> {
+        await this.createModel('script');
+    }
+
     private async isItemInList(modelType: string, searchedItem: string): Promise<boolean> {
         const containerSelector = `[data-automation-id="project-filter-${modelType}-container"]`,
             model = element(by.cssContainingText(containerSelector, searchedItem));

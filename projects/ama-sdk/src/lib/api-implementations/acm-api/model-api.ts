@@ -15,11 +15,12 @@
  * limitations under the License.
  */
 
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, forkJoin, from, OperatorFunction } from 'rxjs';
 import { RequestApiHelper, RequestApiHelperOptions } from './request-api.helper';
 import { map, concatMap, flatMap } from 'rxjs/operators';
 import { ModelApiInterface } from '../../api/generalmodel-api.interface';
 import { Model, MinimalModelSummary } from '../../api/types';
+import { createJsonBlob } from '../../helpers/utils/createJsonBlob';
 
 export interface ModelResponse<T extends Model> {
     entry: T;
@@ -33,11 +34,13 @@ export interface ModelsResponse<T extends Model> {
 
 export interface ModelApiVariation<M extends MinimalModelSummary, C> {
     readonly contentType: string;
-    readonly fileType: string;
+    readonly retrieveModelAfterUpdate: boolean;
     serialize(content: Partial<C>): string;
     createInitialContent(model: M): C;
     createSummaryPatch(model: Partial<M>, content: Partial<C>): MinimalModelSummary;
     patchModel(model: Partial<M>): M;
+    getModelMimeType(model: Partial<M>): string;
+    getModelFileName(model: Partial<M>): string;
 }
 
 export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
@@ -85,7 +88,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
                 {queryParams: queryParams})
             .pipe(
                 map(response => this.createEntity(response.entry, containerId))
-        );
+            );
     }
 
     public update(modelId: string, model: Partial<T>, content: S, containerId: string): Observable<T> {
@@ -101,7 +104,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
     }
 
     private updateContent(model: T, content: Partial<S>): Observable<T> {
-        const file = new Blob([this.modelVariation.serialize(content)], {type: this.modelVariation.fileType});
+        const file = createJsonBlob(this.modelVariation.serialize(content), this.modelVariation.getModelFileName(model), this.modelVariation.getModelMimeType(model));
         const requestOptions: RequestApiHelperOptions = {
             formParams: { file },
             queryParams: { type: this.modelVariation.contentType },
@@ -110,9 +113,16 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
 
         return this.requestApiHelper
             .put<void>(`/modeling-service/v1/models/${model.id}/content`, requestOptions)
-            .pipe(map(() => model));
+            .pipe(this.getUpdateOperator(model));
     }
 
+    private getUpdateOperator(model: T): OperatorFunction<void, T> {
+        if (this.modelVariation.retrieveModelAfterUpdate) {
+            return flatMap(() => this.retrieve(model.id, model.id));
+        } else {
+            return map(() => model);
+        }
+    }
 
     public delete(modelId: string): Observable<void> {
         return this.requestApiHelper
@@ -124,9 +134,27 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
             formParams: { file: new Blob([this.modelVariation.serialize(content)], { type: 'text/plain' }) },
             contentTypes: [ 'multipart/form-data' ]
         };
+        if (modelExtensions) {
+            return this.requestApiHelper
+                .post(`/modeling-service/v1/models/${modelId}/validate`, requestOptions).pipe(
+                    concatMap(() => this.validateModelExtensions(modelId, modelExtensions))
+                );
+        } else {
+            return this.requestApiHelper
+                .post(`/modeling-service/v1/models/${modelId}/validate`, requestOptions);
+        }
+    }
 
-        return this.requestApiHelper
-            .post(`/modeling-service/v1/models/${modelId}/validate`, requestOptions);
+    private validateModelExtensions(modelId: string, modelExtensions: string) {
+        const requestOptions: RequestApiHelperOptions = {
+            formParams: {
+                file: createJsonBlob(modelExtensions, `${modelId}-extensions.json`)
+            },
+            contentTypes: ['multipart/form-data']
+        };
+
+        return from(this.requestApiHelper
+            .post(`/modeling-service/v1/models/${modelId}/validate/extensions`, requestOptions));
     }
 
     public import(file: File, containerId: string): Observable<T> {
@@ -168,7 +196,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
             .put<void>(`/modeling-service/v1/models/${modelId}/content`, requestOptions).pipe(
                 flatMap(() => {
                     const content$ = this.export(modelId),
-                    model$ = this.retrieve(modelId, modelId);
+                        model$ = this.retrieve(modelId, modelId);
                     return forkJoin(model$, content$);
                 })
             );

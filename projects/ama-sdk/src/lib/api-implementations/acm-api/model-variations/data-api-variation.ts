@@ -19,12 +19,12 @@ import { Injectable } from '@angular/core';
 import { DataContent, Data } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
-import { formatUuid } from '../../../helpers/utils/create-entries-names';
+import { formatUuid, DATA_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 
 @Injectable()
 export class DataApiVariation<M extends Data, C extends DataContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Data;
-    readonly fileType = 'application/json';
+    readonly retrieveModelAfterUpdate = false;
 
     public serialize(content: C): string {
         return JSON.stringify(content);
@@ -49,5 +49,13 @@ export class DataApiVariation<M extends Data, C extends DataContent> implements 
 
     public patchModel(model: Partial<M>): M {
         return <M>model;
+    }
+
+    public getModelMimeType(model: Partial<M>): string {
+        return 'application/json';
+    }
+
+    public getModelFileName(model: Partial<M>): string {
+        return model.name + DATA_FILE_FORMAT;
     }
 }

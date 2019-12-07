@@ -20,11 +20,12 @@ import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
 import { Process, ProcessContent } from '../../../api/types';
 import { getEmptyDiagram } from '../../../helpers/utils/empty-diagram';
+import { PROCESS_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 
 @Injectable()
 export class ProcessApiVariation<M extends Process, C extends ProcessContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Process;
-    readonly fileType = 'text/plain';
+    readonly retrieveModelAfterUpdate = false;
 
     public serialize(content: C): string {
         return content;
@@ -51,5 +52,13 @@ export class ProcessApiVariation<M extends Process, C extends ProcessContent> im
                 ...model.extensions
             }
         };
+    }
+
+    public getModelMimeType(model: Partial<M>): string {
+        return 'text/plain';
+    }
+
+    public getModelFileName(model: Partial<M>): string {
+        return model.name + PROCESS_FILE_FORMAT;
     }
 }

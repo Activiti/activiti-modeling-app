@@ -93,6 +93,11 @@ export class SidebarActionMenu extends GenericWebElement {
         await this.createItem('data');
     }
 
+    async createScript() {
+        await this.clickOnCreateButton();
+        await this.createItem('script');
+    }
+
     async importItem(itemType: string, filePath: string) {
         const menuImport = element(by.css('[data-automation-id="app-navigation-upload"]'));
         await BrowserActions.click(menuImport);
@@ -129,5 +134,10 @@ export class SidebarActionMenu extends GenericWebElement {
     async importData(filePath: string) {
         await this.clickOnCreateButton();
         await this.importItem('data', filePath);
+    }
+
+    async importScript(filePath: string) {
+        await this.clickOnCreateButton();
+        await this.importItem('script', filePath);
     }
 }

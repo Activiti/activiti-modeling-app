@@ -22,6 +22,7 @@ export interface ModelCrud {
     create(projectId: string, name?: string): Promise<NodeEntry>;
     createAndWaitUntilAvailable(projectId: string, name?: string): Promise<NodeEntry>;
     getContent(modelId: string): PromiseLike<any>;
+    getMetadata(modelId: string): PromiseLike<any>;
     updateModelContent(modelId: string, content: string, modelName?: string): Promise<void>;
     updateModelMetadata(modelId: string, content: any): Promise<void>;
     delete(modelId?: string): Promise<void>;
@@ -37,6 +38,7 @@ export interface Backend {
     decisionTable: ModelCrud;
     form: ModelCrud;
     dataObject: ModelCrud;
+    script: ModelCrud;
     setUp(): Promise<Backend>;
     tearDown(): Promise<Backend>;
 }

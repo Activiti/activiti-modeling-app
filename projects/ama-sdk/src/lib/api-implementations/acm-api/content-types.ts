@@ -23,4 +23,5 @@ export const ContentType = {
     Form: 'FORM',
     Ui: 'UI',
     File: 'FILE',
+    Script: 'SCRIPT'
 };

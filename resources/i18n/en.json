@@ -233,7 +233,6 @@
                 "DATA_DELETED": "The data object was successfully deleted",
                 "DATA_UPDATED": "The data object was successfully updated"
             },
-
             "DECISION_TABLE_DIALOG": {
                 "TITLE_CREATE": "Create new decision table",
                 "TITLE_UPDATE": "Update table",
@@ -252,7 +251,6 @@
                 "FILE_DELETED": "The File was successfully deleted",
                 "FILE_UPDATED": "The File was successfully updated"
             },
-
             "ACTION_DIALOG": {
                 "ACTION_DETAILS": "Action details",
                 "ACTION_NAME": "Action name",

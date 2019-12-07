@@ -15,10 +15,17 @@
  * limitations under the License.
  */
 
-export function createJsonBlob(fileContent: string, fileName: string, type = 'application/json') {
-    const formData = new FormData(),
-        file = new Blob([fileContent], { type: type });
-    formData.append('file', file, fileName);
+import { ACMCrud } from '../acm-crud';
 
-    return formData.get('file');
+export class ACMScript extends ACMCrud {
+
+    displayName = 'Script';
+    namePrefix = 'qa-script-';
+    type = 'SCRIPT';
+    contentType = 'application/octet-stream';
+    contentExtension = 'bin';
+
+    getDefaultContent(entityName: string, entityId: string): string {
+        return `/** Example code snippet for the script ${entityName} **/`;
+    }
 }

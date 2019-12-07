@@ -19,11 +19,12 @@ import { Injectable } from '@angular/core';
 import { Connector, ConnectorContent } from '../../../api/types';
 import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
+import { CONNECTOR_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 
 @Injectable()
 export class ConnectorApiVariation<M extends Connector, C extends ConnectorContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Connector;
-    readonly fileType = 'application/json';
+    readonly retrieveModelAfterUpdate = false;
 
     public serialize(content: C): string {
         return JSON.stringify(content);
@@ -47,5 +48,13 @@ export class ConnectorApiVariation<M extends Connector, C extends ConnectorConte
 
     public patchModel(model: Partial<M>): M {
         return <M>model;
+    }
+
+    public getModelMimeType(model: Partial<M>): string {
+        return 'application/json';
+    }
+
+    public getModelFileName(model: Partial<M>): string {
+        return model.name + CONNECTOR_FILE_FORMAT;
     }
 }

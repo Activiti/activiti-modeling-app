@@ -24,7 +24,8 @@ import {
     FORM_API_TOKEN,
     DECISION_TABLE_API_TOKEN,
     DATA_API_TOKEN,
-    FILE_API_TOKEN
+    FILE_API_TOKEN,
+    SCRIPT_API_TOKEN
 } from '../../api/api.interface';
 import { ACMProjectApi } from './project-api';
 import { ModelApiInterface } from '../../api/generalmodel-api.interface';
@@ -41,8 +42,10 @@ import {
     Data as DataType,
     DataContent,
     FormContent,
-    ActivitiFile as FileType,
-    ActivitiFileContent
+    ActivitiFile,
+    ActivitiFileContent,
+    ActivitiScript,
+    ActivitiScriptContent
 } from '../../api/types';
 
 @Injectable()
@@ -55,6 +58,7 @@ export class ACMApi implements AmaApi {
         @Inject(DECISION_TABLE_API_TOKEN) public DecisionTable: ModelApiInterface<DecisionTableType, DecisionTableContent>,
         @Inject(UI_API_TOKEN) public Ui: ModelApiInterface<UiType, UiContent>,
         @Inject(DATA_API_TOKEN) public Data: ModelApiInterface<DataType, DataContent>,
-        @Inject(FILE_API_TOKEN) public File: ModelApiInterface<FileType, ActivitiFileContent>
+        @Inject(FILE_API_TOKEN) public File: ModelApiInterface<ActivitiFile, ActivitiFileContent>,
+        @Inject(SCRIPT_API_TOKEN) public script: ModelApiInterface<ActivitiScript, ActivitiScriptContent>
     ) {}
 }

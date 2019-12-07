@@ -69,6 +69,15 @@ export abstract class ACMCrud implements ModelCrud {
         }
     }
 
+    getMetadata(entityId: string) {
+        try {
+            return this.requestApiHelper.get(`/modeling-service/v1/models/${entityId}`, { responseType: 'blob' });
+        } catch (error) {
+            Logger.error(`[${this.displayName}] getMetadata failed! ${error.message}`);
+            throw error;
+        }
+    }
+
     async create(
         projectId: string,
         modelName: string = this.getRandomName()

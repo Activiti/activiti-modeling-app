@@ -16,14 +16,14 @@
  */
 
 import { Injectable } from '@angular/core';
-import { ActivitiFileContent, ActivitiFile } from '../../../api/types';
+import { ActivitiScriptContent, ActivitiScript } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
-import { FILE_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
+import { SCRIPT_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 
 @Injectable()
-export class FileApiVariation<M extends ActivitiFile, C extends ActivitiFileContent> implements ModelApiVariation<M, C> {
-    readonly contentType = ContentType.File;
+export class ScriptApiVariation<M extends ActivitiScript, C extends ActivitiScriptContent> implements ModelApiVariation<M, C> {
+    readonly contentType = ContentType.Script;
     readonly retrieveModelAfterUpdate = true;
 
     public serialize(content: C): string {
@@ -31,20 +31,26 @@ export class FileApiVariation<M extends ActivitiFile, C extends ActivitiFileCont
     }
 
     public createInitialContent(model: M): C {
-        return <C>'';
+        return <C>'/* Example Snippet Here */';
     }
 
     public createSummaryPatch(model: Partial<M>, modelContent: C) {
-        const { name, description } = model;
+        const { name, description, extensions } = model;
         return {
             name,
             description,
+            extensions,
             type: this.contentType
         };
     }
 
     public patchModel(model: Partial<M>): M {
-        return <M>model;
+        return {
+            ...<M>model,
+            extensions: {
+                ...model.extensions
+            }
+        };
     }
 
     public getModelMimeType(model: Partial<M>): string {
@@ -56,11 +62,10 @@ export class FileApiVariation<M extends ActivitiFile, C extends ActivitiFileCont
     }
 
     public getModelFileName(model: Partial<M>): string {
-        let filename = model.name + FILE_FILE_FORMAT;
+        let filename = model.name + SCRIPT_FILE_FORMAT;
         if (model.extensions && model.extensions.name) {
             filename = model.extensions.name;
         }
         return filename;
     }
 }
-

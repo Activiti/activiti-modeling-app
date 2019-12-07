@@ -25,6 +25,7 @@ import { ACMDecisionTable } from './models/decision-table';
 import { ACMForm } from './models/form';
 import { ACMUi } from './models/ui';
 import { ACMData } from './models/data';
+import { ACMScript } from './models/script';
 import { Logger } from '../../util/logger';
 
 
@@ -38,6 +39,7 @@ export class ACMBackend implements Backend {
     public decisionTable: ModelCrud;
     public ui: ModelCrud;
     public dataObject: ModelCrud;
+    public script: ModelCrud;
 
     constructor(public config: TestConfig) {
         this.api = new AlfrescoApi({
@@ -57,6 +59,7 @@ export class ACMBackend implements Backend {
         this.form = new ACMForm(this);
         this.ui = new ACMUi(this);
         this.dataObject = new ACMData(this);
+        this.script = new ACMScript(this);
 
         return this;
     }

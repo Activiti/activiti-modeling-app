@@ -19,12 +19,12 @@ import { Injectable } from '@angular/core';
 import { Ui, UiContent } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
-import { formatUuid } from '../../../helpers/utils/create-entries-names';
+import { formatUuid, UI_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 
 @Injectable()
 export class UiApiVariation<M extends Ui, C extends UiContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Ui;
-    readonly fileType = 'application/json';
+    readonly retrieveModelAfterUpdate = false;
 
     public serialize(content: C): string {
         return JSON.stringify(content);
@@ -51,5 +51,13 @@ export class UiApiVariation<M extends Ui, C extends UiContent> implements ModelA
 
     public patchModel(model: Partial<M>): M {
         return <M>model;
+    }
+
+    public getModelMimeType(model: Partial<M>): string {
+        return 'application/json';
+    }
+
+    public getModelFileName(model: Partial<M>): string {
+        return model.name + UI_FILE_FORMAT;
     }
 }

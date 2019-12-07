@@ -15,10 +15,14 @@
  * limitations under the License.
  */
 
-export function createJsonBlob(fileContent: string, fileName: string, type = 'application/json') {
-    const formData = new FormData(),
-        file = new Blob([fileContent], { type: type });
-    formData.append('file', file, fileName);
+import { CardViewItemValidator } from '@alfresco/adf-core';
+import { MODELER_NAME_REGEX } from '../helpers/utils/create-entries-names';
 
-    return formData.get('file');
+export class CardViewModelNameValidator implements CardViewItemValidator {
+
+    constructor(public message: string) {}
+
+    isValid(value: string): boolean {
+        return value.length > 0 && MODELER_NAME_REGEX.test(value);
+    }
 }
