@@ -7,8 +7,9 @@
   "scripts": {
     "postinstall": "./scripts/npm/_postinstall.sh",
     "precommit": "lint-staged",
-    "start": "./scripts/npm/compile.sh start",
     "build": "./scripts/npm/compile.sh build",
+    "start": "./scripts/npm/compile.sh start",
+    "inspect": "./scripts/npm/compile.sh inspect",
     "test": "./scripts/npm/test.sh",
     "e2e": "./scripts/npm/e2e.sh",
     "spellcheck": "cspell '{src,e2e,projects}/**/*.ts'",
@@ -165,6 +166,7 @@
     "tslib": "1.9.0",
     "tslint": "5.12.1",
     "typescript": "3.2.4",
+    "webpack-bundle-analyzer": "3.6.0",
     "webpack-cli": "3.1.0"
   }
 }

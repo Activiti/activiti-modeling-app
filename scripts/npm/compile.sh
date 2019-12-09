@@ -11,7 +11,10 @@ if [ -f "./.env" ]; then
 fi
 
 if [ "$ACTION" == "build" ]; then
-    $DIR/_build.sh $TARGET
+    $DIR/_build.sh "${@:2}"
 elif [ "$ACTION" == "start" ]; then
     $DIR/_start.sh $TARGET
+elif [ "$ACTION" == "inspect" ]; then
+    $DIR/_build.sh $TARGET --stats-json
+    webpack-bundle-analyzer dist/app/stats.json
 fi

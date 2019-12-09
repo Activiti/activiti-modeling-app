@@ -47,13 +47,13 @@ Use one of the following commands to run the application:
 
 ```bash
 # Development server
-npm run start
+npm start
 
 # Production server
-npm run start prod
+npm start prod
 
 # Development server with local ADF components
-npm run start adfdev
+npm start adfdev
 ```
 
 Run the script above for the development server using the local ADF components. For this to work properly you must have to check out the [Alfresco Application Development Framework (ADF)](https://github.com/Alfresco/alfresco-ng2-components) and set the `ADF_PATH` as an environment variable or in your .env file.
@@ -111,6 +111,21 @@ Note: The suite content (e.g.: test) is defined in protractor.conf.js file.
 
 It is necessary to have the test file opened in a tab to run a single test suite.
 It is also necessary for the VSCode launcher to have the application server up and running, since the VSCode launcher only runs the e2e tests, **it doesn't compile and start the application**! (so the best to have the application started in another terminal `npm start`)
+
+### Inspecting bundlesize
+
+Use one of the following commands to inspect the bundle size of the application:
+
+```bash
+# Development build's bundlesize
+npm run inspect
+
+# Production build's bundlesize
+npm run inspect prod
+
+# Development build with local ADF components' bundle size
+npm run inspect adfdev
+```
 
 ## Running in Docker
 

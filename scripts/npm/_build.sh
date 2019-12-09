@@ -10,9 +10,9 @@ node "$DIR/../app-config-replace.js" --config="./src/.app.config.json" -o
 
 if [ "$TARGET" == "prod" ]; then
     NODE_OPTIONS=${NODE_OPTIONS:-" --max_old_space_size=30000 "}
-    node ${NODE_OPTIONS} ./node_modules/@angular/cli/bin/ng build --prod
+    node ${NODE_OPTIONS} ./node_modules/@angular/cli/bin/ng build --prod "${@:2}"
 elif [ "$TARGET" == "adfdev" ]; then
-    $DIR/../adfdev/_adfdev-build.sh
+    $DIR/../adfdev/_adfdev-build.sh "${@:2}"
 else
-    ng build
+    ng build "$@"
 fi
