@@ -368,6 +368,7 @@
             "extends": [
                 "bpmn:ServiceTask",
                 "bpmn:BusinessRuleTask",
+                "bpmn:ScriptTask",
                 "bpmn:SendTask",
                 "bpmn:MessageEventDefinition"
             ],
@@ -542,6 +543,7 @@
                 "allowedIn": [
                     "bpmn:ServiceTask",
                     "bpmn:BusinessRuleTask",
+                    "bpmn:ScriptTask",
                     "bpmn:SendTask"
                 ]
             },
@@ -731,6 +733,7 @@
                 "allowedIn": [
                     "bpmn:ServiceTask",
                     "bpmn:BusinessRuleTask",
+                    "bpmn:ScriptTask",
                     "bpmn:SendTask"
                 ]
             },

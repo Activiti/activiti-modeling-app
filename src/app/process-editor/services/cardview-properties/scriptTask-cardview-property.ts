@@ -15,16 +15,19 @@
  * limitations under the License.
  */
 
+import { ElementHelper } from '../bpmn-js/element.helper';
+import { BpmnProperty, ScriptTaskItemModel } from 'ama-sdk';
+import { FactoryProps } from './cardview-properties.factory';
 
+const property = BpmnProperty.implementation;
 
-export * from './cardview-properties/implementation-item.model';
-export * from './cardview-properties/decision-task-item.model';
-export * from './cardview-properties/script-task-item.model';
-export * from './cardview-properties/form-key.model';
-export * from './cardview-properties/default-sequence-flow-item.model';
-export * from './bpmn-element';
-export * from './bpmn-modeler';
-export * from './palette';
-export * from './process-editor.actions';
-export * from './process-editor.selectors';
-export * from './properties';
+export function createScriptTaskProperty({ element }: FactoryProps) {
+    return new ScriptTaskItemModel({
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SCRIPT_TASK',
+        value: ElementHelper.getProperty(element, property),
+        key: property,
+        default: '',
+        editable: true,
+        data: { id: element.id }
+    });
+}

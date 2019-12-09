@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty, BpmnElement, DECISION_TASK_IMPLEMENTATION } from 'ama-sdk';
+import { BpmnProperty, BpmnElement, DECISION_TASK_IMPLEMENTATION, SCRIPT_TASK_IMPLEMENTATION } from 'ama-sdk';
 
 const isSignalEvent = (element: Bpmn.DiagramElement) => {
     return !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.SignalEventDefinition;
@@ -35,6 +35,7 @@ const isInsideSubProcess = (element: Bpmn.DiagramElement) => {
 const haveSignalRef = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions[0].signalRef;
 const haveConditionExpression = (element: Bpmn.DiagramElement) => !!element.businessObject.conditionExpression;
 const isDecisionTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === DECISION_TASK_IMPLEMENTATION;
+const isScriptTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === SCRIPT_TASK_IMPLEMENTATION;
 const isExclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type ===  BpmnElement.ExclusiveGateway;
 const isInclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type ===  BpmnElement.InclusiveGateway;
 const isConditionalFlow = (element: Bpmn.DiagramElement) => element.businessObject.$type ===  BpmnElement.SequenceFlow && haveConditionExpression(element);
@@ -127,7 +128,7 @@ export const elementsProperties = {
         BpmnProperty.name,
         BpmnProperty.documentation,
         BpmnProperty.multiInstanceType,
-        ...(isDecisionTask(element) ? [ BpmnProperty.decisionTask ] : [BpmnProperty.implementation])
+        ...(isDecisionTask(element) ? [ BpmnProperty.decisionTask ] : [isScriptTask(element) ? [ BpmnProperty.scriptTask ] : [BpmnProperty.implementation]])
     ],
     [BpmnElement.CallActivity]: [
         BpmnProperty.id,

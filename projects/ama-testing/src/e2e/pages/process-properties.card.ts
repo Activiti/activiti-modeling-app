@@ -49,6 +49,7 @@ export class ProcessPropertiesCard extends GenericPage {
     readonly newSignalButton = element(by.css(`[data-automation-id="new-signal-button"]`));
     readonly processNameError = element(by.css(`[data-automation-id="card-textitem-error-processName"]>ul>li`));
     readonly scopeSelector = element(by.css(`[data-automation-class="select-box"]`));
+    readonly scriptSelector = element(by.css(`[data-automation-id="script-selector"]`));
 
     async isLoaded() {
         await BrowserVisibility.waitUntilElementIsVisible(this.editorProperties);
@@ -125,6 +126,23 @@ export class ProcessPropertiesCard extends GenericPage {
         } catch (error) {
             Logger.info('Decision table list is loaded. Item can be selected.');
             await BrowserActions.click(dtOption);
+        }
+    }
+
+    async setScript(scriptName: string) {
+        const scriptOption = element(by.cssContainingText('.mat-option-text', scriptName));
+        await BrowserActions.click(this.scriptSelector);
+        // Workaround:
+        // Click on script selectbox until the list of decision tables is populated.
+        let i = 0;
+        try {
+            while (await BrowserVisibility.waitUntilElementIsNotVisible(scriptOption, 500) && i < 10) {
+                Logger.info('Click ', ++i, ' on script selectbox.');
+                await BrowserActions.click(this.scriptSelector);
+            }
+        } catch (error) {
+            Logger.info('Script list is loaded. Item can be selected.');
+            await BrowserActions.click(scriptOption);
         }
     }
 

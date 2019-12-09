@@ -58,6 +58,7 @@ import { ProcessDiagramLoaderService } from './services/process-diagram-loader.s
 import { CardViewProcessVariablesItemComponent } from './services/cardview-properties/process-variable-item/process-variable-item.component';
 import { CardViewImplementationItemComponent } from './services/cardview-properties/implementation-item/implementation-item.component';
 import { CardViewDecisionTaskItemComponent } from './services/cardview-properties/decision-task-item/decision-task-item.component';
+import { CardViewScriptTaskItemComponent } from './services/cardview-properties/script-task-item/script-task-item.component';
 import { ProcessPropertiesComponent } from './components/process-properties/process-properties.component';
 import { MatChipsModule, MatTooltipModule } from '@angular/material';
 import { getProcessesFilterProvider } from './extension/processes-filter.extension';
@@ -123,6 +124,7 @@ import { CardViewDueDateItemComponent } from './services/cardview-properties/due
         CardViewProcessVariablesItemComponent,
         CardViewImplementationItemComponent,
         CardViewDecisionTaskItemComponent,
+        CardViewScriptTaskItemComponent,
         CardViewDefaultSequenceFlowItemComponent,
         CardViewCalledItemItemComponent,
         CardViewSignalRefItemComponent,
@@ -139,6 +141,7 @@ import { CardViewDueDateItemComponent } from './services/cardview-properties/due
         CardViewProcessVariablesItemComponent,
         CardViewImplementationItemComponent,
         CardViewDecisionTaskItemComponent,
+        CardViewScriptTaskItemComponent,
         CardViewDefaultSequenceFlowItemComponent,
         CardViewSignalRefItemComponent,
         CardViewErrorRefItemComponent,
@@ -172,6 +175,7 @@ import { CardViewDueDateItemComponent } from './services/cardview-properties/due
         providePropertyHandler(BpmnProperty.properties, CardViewProcessVariablesItemComponent),
         providePropertyHandler(BpmnProperty.implementation, CardViewImplementationItemComponent),
         providePropertyHandler(BpmnProperty.decisionTask, CardViewDecisionTaskItemComponent),
+        providePropertyHandler(BpmnProperty.scriptTask, CardViewScriptTaskItemComponent),
         providePropertyHandler(BpmnProperty.formKey, CardViewTextItemComponent),
         providePropertyHandler(BpmnProperty.defaultSequenceFlow, CardViewDefaultSequenceFlowItemComponent),
         providePropertyHandler(BpmnProperty.signalRef, CardViewSignalRefItemComponent),

@@ -28,6 +28,7 @@ import { ClipboardService } from './clipboard/clipboard.service';
 
 import { emptyPaletteModule } from './palette/dummy-bpmn-palette.provider';
 import { DecisionTableRenderModule } from './bpmn-js/renderers/decision-table.renderer';
+import { ScriptRenderModule } from './bpmn-js/renderers/script.renderer';
 
 const activitiModdleDescriptor = require('./activiti.json');
 
@@ -44,6 +45,7 @@ export class BpmnFactoryService implements BpmnFactory {
             additionalModules: [
                 emptyPaletteModule,
                 DecisionTableRenderModule,
+                ScriptRenderModule,
                 { clipboard: ['value', this.clipboardService] },
                 ...this.getBpmnPropertiesPanelConfig()
             ],

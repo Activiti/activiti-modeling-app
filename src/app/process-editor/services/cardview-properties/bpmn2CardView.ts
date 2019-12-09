@@ -20,6 +20,7 @@ import { createIdProperty } from './id-cardview-property';
 import { createNameProperty } from './name-cardview-property';
 import { createImplementationProperty } from './implementation-cardview-property';
 import { createDecisionTaskProperty } from './decisionTask-cardview-property';
+import { createScriptTaskProperty } from './scriptTask-cardview-property';
 import { createDocumentationProperty } from './documentation-cardview-property';
 import { createVariablesProperty } from './variables-cardview-property';
 import { createAssigneeProperty } from './assignee-cardview-property';
@@ -50,6 +51,7 @@ export const bpmn2cardView = {
     [BpmnProperty.documentation]: createDocumentationProperty,
     [BpmnProperty.implementation]: createImplementationProperty,
     [BpmnProperty.decisionTask]: createDecisionTaskProperty,
+    [BpmnProperty.scriptTask]: createScriptTaskProperty,
     [BpmnProperty.variables]: createVariablesProperty,
     [BpmnProperty.assignee]: createAssigneeProperty,
     [BpmnProperty.candidateGroups]: createCandidateGroupsProperty,

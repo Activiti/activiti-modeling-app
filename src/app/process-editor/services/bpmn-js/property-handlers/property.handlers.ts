@@ -21,6 +21,7 @@ import { nameHandler } from './name.handler';
 import { documentationHandler } from './documentation.handler';
 import { implementationHandler } from './implementation.handler';
 import { decisionTaskHandler } from './decisionTask.handler';
+import { scriptTaskHandler } from './scriptTask.handler';
 import { assigneeHandler } from './assignee.handler';
 import { candidateGroupsHandler } from './candidateGroups.handler';
 import { candidateUsersHandler } from './candidateUsers.handler';
@@ -49,6 +50,7 @@ export const handlers = {
     [BpmnProperty.documentation]: documentationHandler,
     [BpmnProperty.implementation]: implementationHandler,
     [BpmnProperty.decisionTask]: decisionTaskHandler,
+    [BpmnProperty.scriptTask]: scriptTaskHandler,
     [BpmnProperty.assignee]: assigneeHandler,
     [BpmnProperty.candidateGroups]: candidateGroupsHandler,
     [BpmnProperty.candidateUsers]: candidateUsersHandler,

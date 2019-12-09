@@ -16,7 +16,9 @@
  */
 
 export const DECISION_TASK_IMPLEMENTATION = 'dmn-connector.EXECUTE_TABLE';
+export const SCRIPT_TASK_IMPLEMENTATION = 'script.EXECUTE';
 export const DECISION_TABLE_INPUT_PARAM_NAME = '_activiti_dmn_table_';
+export const SCRIPT_INPUT_PARAM_NAME = '_activiti_script_';
 
 export enum BpmnElement {
     Process = 'bpmn:Process',

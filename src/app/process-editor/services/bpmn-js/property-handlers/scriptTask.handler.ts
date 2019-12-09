@@ -15,16 +15,15 @@
  * limitations under the License.
  */
 
+import { BpmnProperty } from 'ama-sdk';
 
+const propertyKey = BpmnProperty.implementation;
 
-export * from './cardview-properties/implementation-item.model';
-export * from './cardview-properties/decision-task-item.model';
-export * from './cardview-properties/script-task-item.model';
-export * from './cardview-properties/form-key.model';
-export * from './cardview-properties/default-sequence-flow-item.model';
-export * from './bpmn-element';
-export * from './bpmn-modeler';
-export * from './palette';
-export * from './process-editor.actions';
-export * from './process-editor.selectors';
-export * from './properties';
+const get = element => element.businessObject[propertyKey];
+const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
+    modeling.updateProperties(element, {
+        [propertyKey]: value
+    });
+};
+
+export const scriptTaskHandler = { get, set };
