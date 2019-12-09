@@ -2,9 +2,9 @@
     "$schema": "../node_modules/@alfresco/adf-core/app.config.schema.json",
     "authType": "OAUTH",
     "providers": "BPM",
-    "bpmHost": "http://localhost:4100/api",
+    "bpmHost": "http://localhost:4200/api",
     "oauth2": {
-        "host": "http://localhost:4100/auth",
+        "host": "http://localhost:4200/auth",
         "authPath": "/protocol/openid-connect/token/",
         "clientId": "activiti",
         "scope": "openid",

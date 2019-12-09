@@ -20,4 +20,4 @@ sed \
 scss-bundle --project "$DIR" -e $ADF_PATH/lib/core/styles/_index.scss --rootDir $ADF_PATH || exit 1;
 webpack --config "$DIR/webpack.style.js" --progress --profile --bail || exit 1;
 
-ng build --configuration=adfdev
+ng build --configuration=adfdev "$@"
