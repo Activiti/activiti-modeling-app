@@ -128,6 +128,14 @@ describe('Create process variable', async () => {
             await expect(await processVariablesDialog.isVariableDisplayed(0, 'dateVar', 'date', currentDate)).toBe(true, 'Variable added is not displayed in the list.');
         });
 
+        it('[C321541] Should be able to use the DateTime functionality in process variables', async () => {
+            const currentDate = moment().format('YYYY-MM-DD HH:mm:ss');
+            await processVariablesDialog.setVariable('dateTimeVariable', 'datetime');
+            await processVariablesDialog.update();
+            await processPropertiesCard.editProcessVariables();
+            await expect(await processVariablesDialog.isVariableDisplayed(0, 'dateTimeVariable', 'datetime', currentDate)).toBe(true);
+        });
+
         it('[C307119] Switch process variable type', async () => {
             await processVariablesDialog.setVariableValue('Automation');
             await processVariablesDialog.setVariableType('integer');

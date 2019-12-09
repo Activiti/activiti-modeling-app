@@ -19,6 +19,7 @@ import { element, by } from 'protractor';
 import { GenericDialog } from '../common/generic.dialog';
 import { Calendar } from '../calendar';
 import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
+import { DateTime } from 'ama-testing/e2e/pages/date-time';
 
 export class VariablesDialog extends GenericDialog {
 
@@ -33,8 +34,11 @@ export class VariablesDialog extends GenericDialog {
     readonly required = element(by.css(`[data-automation-id="variable-required"]`));
     readonly updateButton = element(by.css(`[data-automation-id="update-button"]`));
     readonly closeButton = element(by.css(`[data-automation-id="close-button"]`));
+    readonly dateTimePicker = element(by.css('.mat-datetimepicker-toggle'));
+
 
     readonly calendar = new Calendar();
+    readonly dateTime = new DateTime();
 
     async isLoaded(): Promise<boolean> {
         await BrowserVisibility.waitUntilElementIsVisible(this.variablesDialog);
@@ -76,6 +80,13 @@ export class VariablesDialog extends GenericDialog {
         await this.calendar.setToday();
     }
 
+    async setDateTimeVariableValue(): Promise<void> {
+        await BrowserActions.click(this.dateTimePicker);
+        await this.dateTime.waitTillDateDisplayed();
+        await this.dateTime.setToday();
+        await this.dateTime.setTime();
+    }
+
     async setVariableValue(value: string): Promise<void> {
         await BrowserActions.clearSendKeys(this.value, value);
     }
@@ -94,11 +105,12 @@ export class VariablesDialog extends GenericDialog {
             case 'boolean':
                 await this.setBooleanVariableValue(value);
                 break;
-
             case 'date':
                 await this.setDateVariableValue();
                 break;
-
+            case 'datetime':
+                await this.setDateTimeVariableValue();
+                break;
             case 'file':
             case 'json':
                 break;
