@@ -16,6 +16,7 @@
  */
 
 export type PROJECT_TYPE = 'project';
+export type CUSTOM_MODEL_TYPE = 'model';
 export type PROCESS_TYPE = 'process';
 export type FORM_TYPE = 'form';
 export type CONNECTOR_TYPE = 'connector';
@@ -28,6 +29,7 @@ export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DATA_TYPE |
 
 
 export const PROJECT: PROJECT_TYPE = 'project';
+export const CUSTOM_MODEL: CUSTOM_MODEL_TYPE = 'model';
 export const PROCESS: PROCESS_TYPE = 'process';
 export const FORM: FORM_TYPE = 'form';
 export const CONNECTOR: CONNECTOR_TYPE = 'connector';
@@ -47,6 +49,18 @@ export interface Project {
     lastModifiedBy: string;
     description: string;
     version: string;
+}
+
+export type CustomModelStatus = 'ACTIVE' | 'INACTIVE';
+
+export interface CustomModel {
+    type: CUSTOM_MODEL_TYPE;
+    name: string;
+    namespacePrefix: string;
+    description: string;
+    author: string;
+    namespaceUri: string;
+    status: CustomModelStatus;
 }
 
 export interface ReleaseEntry {

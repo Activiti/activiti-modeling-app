@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage } from 'ama-testing/e2e';
 import { Resources } from '../../resources/resources';
 import { SidebarActionMenu } from 'ama-testing/e2e';
 import { DashboardPage } from 'ama-testing/e2e';
@@ -25,11 +25,10 @@ import { getBackend } from 'ama-testing/e2e';
 import { testConfig } from '../../test.config';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { Logger } from 'ama-testing/e2e';
- import { StringUtil } from '@alfresco/adf-testing';
 
 const path = require('path');
 
-describe('Upload project', () => {
+xdescribe('Upload project', () => {
     const adminUser = {
         user: testConfig.ama.user,
         password: testConfig.ama.password
@@ -41,7 +40,6 @@ describe('Upload project', () => {
     const snackBar = new SnackBar();
 
     let backend: Backend;
-    let loginPage: LoginPageImplementation;
 
     const projectDetails = {
         path: Resources.SIMPLE_PROJECT.file_location,
@@ -60,27 +58,10 @@ describe('Upload project', () => {
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-    });
 
-    beforeAll(async () => {
-        loginPage = LoginPage.get();
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
-
-    });
-
-    it('[C286559] Upload project', async () => {
-        await sidebarActionMenu.clickOnCreateButton();
-        await sidebarActionMenu.uploadProject(absoluteFilePath);
-        await sidebarActionMenu.isOptionsMenuDismissed();
-
-        await expect(await snackBar.isUploadedSuccessfully('project')).toBe(true);
-        await expect(await dashboardPage.isProjectNameInList(projectDetails.name)).toBe(true, `Item '${projectDetails.name}' was not found in the list.`);
-    });
-
-    it('[C311378] Upload project using the REST API', async () => {
-        const project = await backend.project.import(absoluteFilePath, (projectDetails.name + StringUtil.generateRandomString().toLowerCase()));
-        await expect(await dashboardPage.isProjectNameInList(project.entry.name)).toBe(true, `Item '${project.entry.name}' was not found in the list.`);
     });
 
     afterEach(async () => {
@@ -90,5 +71,14 @@ describe('Upload project', () => {
     afterAll(async () => {
         await backend.tearDown();
         await authenticatedPage.logout();
+    });
+
+    it('[C286559] should upload project', async () => {
+        await sidebarActionMenu.clickOnCreateButton();
+        await sidebarActionMenu.uploadProject(absoluteFilePath);
+        await sidebarActionMenu.isOptionsMenuDismissed();
+
+        await expect(await snackBar.isUploadedSuccessfully('project')).toBe(true);
+        await expect(await dashboardPage.isProjectNameInList(projectDetails.name)).toBe(true, `Item '${projectDetails.name}' was not found in the list.`);
     });
 });

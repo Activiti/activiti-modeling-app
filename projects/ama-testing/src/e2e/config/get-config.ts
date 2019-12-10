@@ -29,8 +29,8 @@ export function getConfig(rootPath: string = __dirname): TestConfig {
             default_timeout: parseInt(env.DEFAULT_TIMEOUT, 10) || 20000,
             presence_timeout: parseInt(env.PRESENCE_TIMEOUT, 10) || 60000,
             rootPath: rootPath,
-            browserWidth: 1600,
-            browserHeight: 1000,
+            browserWidth: 1920,
+            browserHeight: 1080,
             paths: {
                 tmp: path.join(outputDir, '/tmp'),
                 screenShots: path.join(outputDir, '/screenshots'),

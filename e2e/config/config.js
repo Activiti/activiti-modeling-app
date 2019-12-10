@@ -2,8 +2,8 @@ const path = require('path');
 const outputDir = path.join(__dirname, '/../../e2e-output');
 
 module.exports = {
-    browserWidth: 1600,
-    browserHeight: 1000,
+    browserWidth: 1920,
+    browserHeight: 1080,
 
     paths: {
         tmp: path.join(outputDir, '/tmp'),

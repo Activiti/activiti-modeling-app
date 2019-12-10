@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage, LoginPageImplementation, xml2js } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
@@ -39,7 +39,8 @@ describe('Export process', () => {
     const authenticatedPage = new AuthenticatedPage(testConfig);
 
     let backend: Backend;
-    let project, process: NodeEntry;
+    let project: NodeEntry;
+    let process: NodeEntry;
     let projectContentPage: ProjectContentPage;
     let processContentPage: ProcessContentPage;
 
@@ -70,14 +71,15 @@ describe('Export process', () => {
         const downloadedProcess = path.join(downloadDir, `${process.entry.name}.bpmn20.xml`);
         await expect(await UtilFile.fileExists(downloadedProcess)).toBe(true);
 
-        const fileContent = JSON.parse(await UtilFile.parseXML(downloadedProcess));
+        const fileContent = xml2js(await UtilFile.readFile(downloadedProcess));
         const bpmnProcessDetails = fileContent[`bpmn2:definitions`][`bpmn2:process`][`_attributes`];
         const uiProcessId = await new ProcessPropertiesCard().getProcessId();
         const expectedProcessId = `process-${process.entry.id}`;
+
         await expect(uiProcessId).toEqual(expectedProcessId);
-        await expect(UtilFile.getJSONItemValueByKey(bpmnProcessDetails, `id`)).toEqual(expectedProcessId);
-        await expect(UtilFile.getJSONItemValueByKey(bpmnProcessDetails, `name`)).toEqual(process.entry.name);
-        await expect(UtilFile.getJSONItemValueByKey(bpmnProcessDetails, `isExecutable`)).toEqual(`true`);
+        await expect(bpmnProcessDetails.id).toEqual(expectedProcessId);
+        await expect(bpmnProcessDetails.name).toEqual(process.entry.name);
+        await expect(bpmnProcessDetails.isExecutable).toEqual(`true`);
     });
 
     afterAll(async () => {

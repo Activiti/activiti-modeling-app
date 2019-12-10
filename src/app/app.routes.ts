@@ -27,12 +27,14 @@ import { ErrorContentComponent } from './app/error/error-content.component';
 import { AboutComponent } from './app/about/about.component';
 import { dashboardRoutes } from './dashboard/router/dashboard.routes';
 import { AmaModelSchemaLoaderGuard } from './common/services/ama-model-schema-loader-guard.service';
+import { DASHBOARD_ROUTES } from 'ama-sdk';
 
 export const appRoutes: Routes = [
     { path: 'login', component: AppLoginComponent },
     { path: 'settings', component: HostSettingsComponent },
     {
         path: '',
+
         component: AppLayoutComponent,
         canActivate: [
             AuthGuard,
@@ -44,7 +46,8 @@ export const appRoutes: Routes = [
             {
                 path: 'dashboard',
                 canActivate: [AmaRoleGuard],
-                children: dashboardRoutes
+                children: dashboardRoutes,
+                data: { hostFor: DASHBOARD_ROUTES }
             },
             // Impossible to lazily load ADF modules, that is why the hack
             {

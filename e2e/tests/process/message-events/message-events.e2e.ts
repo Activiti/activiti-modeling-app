@@ -18,9 +18,8 @@
 import {
     CodeEditorWidget,
     LoginPage,
-    LoginPageImplementation,
     ProcessContentPage,
-    UtilFile
+    xml2js
 } from 'ama-testing/e2e';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
@@ -28,6 +27,7 @@ import { testConfig } from '../../../test.config';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { Resources } from '../../../../../../e2e/resources/resources';
  import { StringUtil } from '@alfresco/adf-testing';
+import { NodeEntry } from '@alfresco/js-api';
 
 const path = require('path');
 
@@ -40,9 +40,8 @@ describe('Message Events', () => {
     const authenticatedPage = new AuthenticatedPage(testConfig);
 
     let backend: Backend;
-    let loginPage: LoginPageImplementation;
     let processContentPage: ProcessContentPage;
-    let project, processId, fileContent, fileContentJson;
+    let project: NodeEntry;
 
     const projectDetails = {
         path: Resources.MESSAGE_EVENTS_PROJECTS.file_location,
@@ -54,71 +53,73 @@ describe('Message Events', () => {
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
         project = await backend.project.import(absoluteFilePath, (projectDetails.name + StringUtil.generateRandomString()));
-        loginPage = LoginPage.get();
+
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
     });
 
     it('[C316246] Should implement interrupting boundary message event set in the process model', async () => {
-        processId = await backend.project.getModelId(project.entry.id, 'PROCESS', 'int-boundary-event');
+        const processId = await backend.project.getModelId(project.entry.id, 'PROCESS', 'int-boundary-event');
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, processId);
+
         await processContentPage.navigateTo();
         await processContentPage.selectCodeEditor();
         await codeEditorWidget.isTextEditorPresent();
-        fileContent = await codeEditorWidget.getCodeEditorValue(`process://xml:${processId}`);
-        fileContentJson = JSON.parse(await UtilFile.parseXML(fileContent, false));
-        const interruptingBoundaryMessage = fileContentJson['bpmn2:definitions']['bpmn2:process']['bpmn2:boundaryEvent']['messageEventDefinition'];
-        const interruptingBoundaryMessageAttributes = UtilFile.getJSONItemValueByKey(interruptingBoundaryMessage, `_attributes`);
-        await expect(await UtilFile.getJSONItemValueByKey(interruptingBoundaryMessageAttributes, `activiti:correlationKey`))
-            .toEqual('${int-boundary-var}');
-        await expect(await UtilFile.getJSONItemValueByKey(interruptingBoundaryMessageAttributes, `activiti:messageExpression`))
-            .toEqual('interrupting-boundary-message-event');
+
+        const fileContent = await codeEditorWidget.getCodeEditorValue(`process://xml:${processId}`);
+        const fileContentJson = xml2js(fileContent);
+        const message = fileContentJson['bpmn2:definitions']['bpmn2:process']['bpmn2:boundaryEvent']['messageEventDefinition'];
+
+        await expect(message._attributes[`activiti:correlationKey`]).toEqual('${int-boundary-var}');
+        await expect(message._attributes[`activiti:messageExpression`]).toEqual('interrupting-boundary-message-event');
     });
 
     it('[C316247] Should implement intermediate message event set in the process model', async () => {
-        processId = await backend.project.getModelId(project.entry.id, 'PROCESS', 'intermediate-message-event');
+        const processId = await backend.project.getModelId(project.entry.id, 'PROCESS', 'intermediate-message-event');
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, processId);
+
         await processContentPage.navigateTo();
         await processContentPage.selectCodeEditor();
         await codeEditorWidget.isTextEditorPresent();
-        fileContent = await codeEditorWidget.getCodeEditorValue(`process://xml:${processId}`);
-        fileContentJson = JSON.parse(await UtilFile.parseXML(fileContent, false));
-        const intermediateMessage = fileContentJson['bpmn2:definitions']['bpmn2:process']['bpmn2:intermediateCatchEvent']['messageEventDefinition'];
-        const intermediateMessageAttributes = UtilFile.getJSONItemValueByKey(intermediateMessage, `_attributes`);
-        await expect(await UtilFile.getJSONItemValueByKey(intermediateMessageAttributes, `activiti:correlationKey`))
-            .toEqual('${intermediate-var}');
-        await expect(await UtilFile.getJSONItemValueByKey(intermediateMessageAttributes, `activiti:messageExpression`))
-            .toEqual('intermediate catch message-${inter-message-var}');
+
+        const fileContent = await codeEditorWidget.getCodeEditorValue(`process://xml:${processId}`);
+        const fileContentJson = xml2js(fileContent);
+        const message = fileContentJson['bpmn2:definitions']['bpmn2:process']['bpmn2:intermediateCatchEvent']['messageEventDefinition'];
+
+        await expect(message._attributes[`activiti:correlationKey`]).toEqual('${intermediate-var}');
+        await expect(message._attributes[`activiti:messageExpression`]).toEqual('intermediate catch message-${inter-message-var}');
     });
 
     it('[C316248] Should implement non-interrupting boundary message event set in the process model', async () => {
-        processId = await backend.project.getModelId(project.entry.id, 'PROCESS', 'nonint-boundary-event');
+        const processId = await backend.project.getModelId(project.entry.id, 'PROCESS', 'nonint-boundary-event');
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, processId);
+
         await processContentPage.navigateTo();
         await processContentPage.selectCodeEditor();
         await codeEditorWidget.isTextEditorPresent();
-        fileContent = await codeEditorWidget.getCodeEditorValue(`process://xml:${processId}`);
-        fileContentJson = JSON.parse(await UtilFile.parseXML(fileContent, false));
-        const noninterruptingBoundaryMessage = fileContentJson['bpmn2:definitions']['bpmn2:process']['bpmn2:boundaryEvent']['messageEventDefinition'];
-        const noninterruptingBoundaryMessageAttributes = UtilFile.getJSONItemValueByKey(noninterruptingBoundaryMessage, `_attributes`);
-        await expect(await UtilFile.getJSONItemValueByKey(noninterruptingBoundaryMessageAttributes, `activiti:correlationKey`))
-            .toEqual('${nonint-boundary-var}');
-        await expect(await UtilFile.getJSONItemValueByKey(noninterruptingBoundaryMessageAttributes, `activiti:messageExpression`))
-            .toEqual('noninterrupting-boundary-message-${nonint-bound-var}');
+
+        const fileContent = await codeEditorWidget.getCodeEditorValue(`process://xml:${processId}`);
+        const fileContentJson = xml2js(fileContent);
+        const message = fileContentJson['bpmn2:definitions']['bpmn2:process']['bpmn2:boundaryEvent']['messageEventDefinition'];
+
+        await expect(message._attributes[`activiti:correlationKey`]).toEqual('${nonint-boundary-var}');
+        await expect(message._attributes[`activiti:messageExpression`]).toEqual('noninterrupting-boundary-message-${nonint-bound-var}');
     });
 
     it('[C316249] Should implement start message event set in the process model', async () => {
-        processId = await backend.project.getModelId(project.entry.id, 'PROCESS', 'start-message-event');
+        const processId = await backend.project.getModelId(project.entry.id, 'PROCESS', 'start-message-event');
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, processId);
+
         await processContentPage.navigateTo();
         await processContentPage.selectCodeEditor();
         await codeEditorWidget.isTextEditorPresent();
-        fileContent = await codeEditorWidget.getCodeEditorValue(`process://xml:${processId}`);
-        fileContentJson = JSON.parse(await UtilFile.parseXML(fileContent, false));
-        const startMessage = fileContentJson['bpmn2:definitions']['bpmn2:process']['bpmn2:startEvent']['messageEventDefinition'];
-        const startMessageAttributes = UtilFile.getJSONItemValueByKey(startMessage, `_attributes`);
-        await expect(await UtilFile.getJSONItemValueByKey(startMessageAttributes, `messageRef`)).toEqual('Message_0hq81h3');
 
+        const fileContent = await codeEditorWidget.getCodeEditorValue(`process://xml:${processId}`);
+        const fileContentJson = xml2js(fileContent);
+        const message = fileContentJson['bpmn2:definitions']['bpmn2:process']['bpmn2:startEvent']['messageEventDefinition'];
+
+        await expect(message._attributes.messageRef).toEqual('Message_0hq81h3');
     });
 
     afterAll(async () => {

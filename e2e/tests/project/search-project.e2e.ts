@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation, UtilRandom, getBackend, DashboardPage, LogHistoryPage, Logger } from 'ama-testing/e2e';
+import { LoginPage, UtilRandom, getBackend, DashboardPage, LogHistoryPage, Logger } from 'ama-testing/e2e';
 import { Backend } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { HeaderToolbar } from '../../pages/header.toolbar';
@@ -38,10 +38,9 @@ describe('Search project', () => {
 
     let project: NodeEntry;
     let backend: Backend;
-    let loginPage: LoginPageImplementation;
 
     beforeAll(async () => {
-        loginPage = LoginPage.get();
+        const loginPage = LoginPage.get();
         backend = await getBackend(testConfig).setUp();
         await loginPage.navigateTo();
 

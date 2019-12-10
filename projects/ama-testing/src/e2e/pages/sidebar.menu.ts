@@ -40,8 +40,8 @@ export class SidebarActionMenu extends GenericWebElement {
         await BrowserActions.click(this.createButton);
     }
 
-    async clickOnBackdrop() {
-        await this.backDrop.click();
+    async clickOnBackdrop(): Promise<void> {
+        await BrowserActions.click(this.backDrop);
     }
 
     async createItem(itemType: string) {

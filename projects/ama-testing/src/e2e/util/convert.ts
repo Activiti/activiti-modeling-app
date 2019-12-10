@@ -15,14 +15,26 @@
  * limitations under the License.
  */
 
-export * from './api';
-export * from './fakeBlob.helper';
-export * from './file';
-export * from './flush-last-browser-logs';
-export * from './logger';
-export * from './messages';
-export * from './random';
-export * from './take-screenshot';
-export * from './types';
-export * from './constants';
-export * from './convert';
+const convert = require('xml-js');
+const options = { compact: true, spaces: 4 };
+
+/**
+ * Converts XML text to the JavaScript object
+ */
+export const xml2js = (xml: string): any => {
+    return convert.xml2js(xml, options);
+};
+
+/**
+ * Converts XML text to the JSON text
+ */
+export const xml2json = (xml: string): string => {
+    return convert.xml2json(xml, options);
+};
+
+/**
+ * Converts JSON object to XML text
+ */
+export const js2xml = (obj: any): string => {
+    return convert.js2xml(obj, options);
+};

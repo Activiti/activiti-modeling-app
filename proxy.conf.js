@@ -20,5 +20,13 @@ module.exports = {
             "^/dmn-service/dmn-service": ""
         },
         "logLevel": "silent"
-    }
+    },
+    "/alfresco": {
+        "target": API_HOST,
+        "secure": false,
+        "pathRewrite": {
+            "^/alfresco/alfresco": ""
+        },
+        "changeOrigin": true
+    },
 };

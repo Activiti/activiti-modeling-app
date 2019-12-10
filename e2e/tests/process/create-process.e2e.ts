@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation, UtilRandom } from 'ama-testing/e2e';
+import { LoginPage, UtilRandom, xml2js } from 'ama-testing/e2e';
 import { SidebarActionMenu } from 'ama-testing/e2e';
 import { CreateEntityDialog } from 'ama-testing/e2e';
 import { ProjectContentPage } from 'ama-testing/e2e';
@@ -53,8 +53,8 @@ describe('Create process', async () => {
     const toolbar = new Toolbar();
 
     let backend: Backend;
-    let loginPage: LoginPageImplementation;
-    let project, process, callActivityProcess: NodeEntry;
+    let project: NodeEntry;
+    let process: NodeEntry;
     let projectContentPage: ProjectContentPage;
     let processContentPage: ProcessContentPage;
 
@@ -63,13 +63,16 @@ describe('Create process', async () => {
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
         project = await backend.project.create();
-    });
 
-    beforeAll(async () => {
-        loginPage = LoginPage.get();
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
+    });
 
+    afterAll(async () => {
+        await backend.project.delete(project.entry.id);
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     beforeEach(async () => {
@@ -100,7 +103,7 @@ describe('Create process', async () => {
 
     it('[C289324] Create process with CallActivity', async () => {
         process = await backend.process.create(project.entry.id);
-        callActivityProcess = await backend.process.create(project.entry.id);
+        const callActivityProcess = await backend.process.create(project.entry.id);
 
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
@@ -114,12 +117,10 @@ describe('Create process', async () => {
         const downloadedProcess = path.join(downloadDir, `${process.entry.name}.bpmn20.xml`);
         await expect(await UtilFile.fileExists(downloadedProcess)).toBe(true);
 
-        const fileContent = JSON.parse(await UtilFile.parseXML(downloadedProcess));
+        const fileContent = xml2js(await UtilFile.readFile(downloadedProcess));
         const bpmnCallActivity = fileContent[`bpmn2:definitions`][`bpmn2:process`][`bpmn2:callActivity`];
 
-        const callActivityAttributes = UtilFile.getJSONItemValueByKey(bpmnCallActivity, `_attributes`);
-
-        await expect(UtilFile.getJSONItemValueByKey(callActivityAttributes, `calledElement`)).toEqual(`process-${callActivityProcess.entry.id}`);
+        await expect(bpmnCallActivity._attributes.calledElement).toEqual(`process-${callActivityProcess.entry.id}`);
     });
 
     it('[C311460] Create a process with User Task with the assignee', async () => {
@@ -189,11 +190,5 @@ describe('Create process', async () => {
         await processContentPage.save();
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
 
-    });
-
-    afterAll(async () => {
-        await backend.project.delete(project.entry.id);
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

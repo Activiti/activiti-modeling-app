@@ -20,53 +20,58 @@ import { element, by } from 'protractor';
 import { BrowserVisibility } from '@alfresco/adf-testing';
 
 export class SnackBar extends GenericWebElement {
-
-    readonly createItemMessage = `The ITEM was successfully created`;
-    readonly updateItemMessage = `The ITEM was successfully updated`;
-    readonly uploadItemMessage = `The ITEM was successfully uploaded`;
-    readonly deleteItemMessage = `The ITEM was successfully deleted`;
-    readonly releaseItemMessage = `The project was successfully released`;
-    readonly releaseItemError = `Unknown error happened while releasing the project.`;
-
-    private getMessage(operationMessage: string, itemType?: string): string {
-        return itemType ? operationMessage.replace('ITEM', itemType) : operationMessage;
-    }
-
-    async isOperationSuccessful(operationMessage: string, itemType?: string): Promise<boolean> {
-        const successMessage = element(by.cssContainingText(`simple-snack-bar>span`, this.getMessage(operationMessage, itemType)));
-        return BrowserVisibility.waitUntilElementIsVisible(successMessage);
-    }
-
-    async isOperationUnsuccessful(operationMessage: string, itemType?: string): Promise<boolean> {
-        const failureMessage = element(by.cssContainingText(`simple-snack-bar>span`, this.getMessage(operationMessage, itemType)));
-        return BrowserVisibility.waitUntilElementIsVisible(failureMessage);
+    async waitForMessage(message: string): Promise<boolean> {
+        const snackbar = element.all(by.cssContainingText(`simple-snack-bar`, message)).first();
+        try {
+            await BrowserVisibility.waitUntilElementIsVisible(snackbar);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
     async isCreatedSuccessfully(itemType: string): Promise<boolean> {
-        return this.isOperationSuccessful(this.createItemMessage, itemType);
+        return this.waitForMessage(
+            `The ${itemType} was successfully created`
+        );
     }
 
     async isUpdatedSuccessfully(itemType: string): Promise<boolean> {
-        return this.isOperationSuccessful(this.updateItemMessage, itemType);
+        return this.waitForMessage(
+            `The ${itemType} was successfully updated`
+        );
     }
 
     async isUploadedSuccessfully(itemType: string): Promise<boolean> {
-        return this.isOperationSuccessful(this.uploadItemMessage, itemType);
+        return this.waitForMessage(
+            `The ${itemType} was successfully uploaded`
+        );
     }
 
     async isDeletedSuccessfully(itemType: string): Promise<boolean> {
-        return this.isOperationSuccessful(this.deleteItemMessage, itemType);
+        return this.waitForMessage(
+            `The ${itemType} was successfully deleted`
+        );
     }
 
     async isReleasedSuccessfully(): Promise<boolean> {
-        return this.isOperationSuccessful(this.releaseItemMessage);
+        return this.waitForMessage(
+            `The project was successfully released`
+        );
     }
 
     async isNotReleased(): Promise<boolean> {
-        return this.isOperationUnsuccessful(this.releaseItemError);
+        return this.waitForMessage(
+            `Unknown error happened while releasing the project.`
+        );
     }
 
     async isSnackBarNotDisplayed(): Promise<boolean> {
-        return BrowserVisibility.waitUntilElementIsNotVisible(element(by.css(`simple-snack-bar`)));
+        try {
+            await BrowserVisibility.waitUntilElementIsNotVisible(element(by.css(`simple-snack-bar`)));
+            return true;
+        } catch {
+            return false;
+        }
     }
 }

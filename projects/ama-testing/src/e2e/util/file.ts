@@ -20,7 +20,6 @@ import { browser } from 'protractor';
 
 const fs = require('fs');
 const path = require('path');
-const convert = require('xml-js');
 const unzipper = require('unzipper');
 
 // @dynamic
@@ -58,7 +57,7 @@ export class UtilFile {
         });
     }
 
-    static async readFile(filePath: string) {
+    static async readFile(filePath: string): Promise<string> {
         return new Promise((resolve, reject) => {
           fs.readFile(filePath, 'utf8', (err, data) => {
             if (err) {
@@ -68,27 +67,6 @@ export class UtilFile {
             }
           });
         });
-    }
-
-    static async parseXML(xml, isFile: boolean = true) {
-        let xmlContent;
-        if ( isFile ) {
-            xmlContent = await UtilFile.readFile(xml);
-        } else {
-            xmlContent = xml;
-        }
-        const result = convert.xml2json(xmlContent, {compact: true, spaces: 4});
-        return result;
-    }
-
-    static async parseJSONToXML(json) {
-        const result = convert.json2xml(json, {compact: true, spaces: 4});
-        return result;
-    }
-
-    static getJSONItemValueByKey(json: Object, searchedKey: string) {
-        const entriesMap = new Map(Object.entries(json));
-        return entriesMap.get(searchedKey);
     }
 
     static unzip(zipFilePath: string, destinationPath: string) {

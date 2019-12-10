@@ -16,14 +16,13 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage, LoginPageImplementation, js2xml, xml2js } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { ProcessContentPage } from 'ama-testing/e2e';
 import { ProcessPropertiesCard } from 'ama-testing/e2e';
-import { UtilFile } from 'ama-testing/e2e';
 import { CodeEditorWidget } from 'ama-testing/e2e';
 import { ProcessDefinitionModel } from 'ama-testing/e2e';
 import { SnackBar } from 'ama-testing/e2e';
@@ -66,13 +65,13 @@ describe('Validate process - update process using XML editor', async () => {
 
     it('[C313386] Project is valid when updating process name with valid value', async () => {
         const xml = await backend.process.getContent(process.entry.id);
-        const xmlContent = JSON.parse(await UtilFile.parseXML(xml, false));
+        const xmlContent = xml2js(xml);
 
         const processDefinitionModel = new ProcessDefinitionModel(xmlContent);
         await expect(await processDefinitionModel.getProcessName()).toEqual(process.entry.name);
 
         await processDefinitionModel.setProcessName('valid-new-name');
-        const updatedXML = await UtilFile.parseJSONToXML(processDefinitionModel);
+        const updatedXML = js2xml(processDefinitionModel);
 
         await processContentPage.selectCodeEditor();
         await codeEditorWidget.isTextEditorPresent();

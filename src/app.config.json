@@ -2,7 +2,8 @@
     "$schema": "../node_modules/@alfresco/adf-core/app.config.schema.json",
     "authType": "OAUTH",
     "showNotificationHistory": true,
-    "providers": "BPM",
+    "providers": "ALL",
+    "ecmHost": "http://localhost:4200",
     "bpmHost": "http://localhost:4200",
     "oauth2": {
         "host": "${OAUTH_HOST}",
