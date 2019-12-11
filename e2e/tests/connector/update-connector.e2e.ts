@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage } from 'ama-testing/e2e';
 import { SnackBar } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
 import { Backend } from 'ama-testing/e2e';
@@ -38,31 +38,30 @@ describe('Update connector', async () => {
     const snackBar = new SnackBar();
 
     let backend: Backend;
-    let loginPage: LoginPageImplementation;
     let project: NodeEntry;
     let connector: NodeEntry;
     let connectorContentPage: ConnectorContentPage;
     let projectContentPage: ProjectContentPage;
-    let updatedContent;
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
         project = await backend.project.create();
-    });
 
-    beforeAll(async () => {
-        loginPage = LoginPage.get();
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
+    });
 
+    afterAll(async () => {
+        await backend.project.delete(project.entry.id);
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     beforeEach(async () => {
         /* cspell: disable-next-line */
         connector = await backend.connector.create(project.entry.id, 'qaconnector');
-    });
 
-    beforeEach(async () => {
         projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         connectorContentPage = new ConnectorContentPage(testConfig, project.entry.id, connector.entry.id);
         await connectorContentPage.navigateTo();
@@ -85,13 +84,7 @@ describe('Update connector', async () => {
         await expect(await projectContentPage.isModelNotInList('connector', connector.entry.name)).toBe(true, 'Connector with old name should not be in the left sidebar');
         await expect(await projectContentPage.isModelInList('connector', newModel.name)).toBe(true, 'Connector with new name was not found in the left sidebar');
 
-        updatedContent = JSON.parse(await backend.connector.getContent(connector.entry.id));
+        const updatedContent = JSON.parse(await backend.connector.getContent(connector.entry.id));
         await expect(updatedContent).toEqual(newModel, 'Connector update was not performed properly.');
-    });
-
-    afterAll(async () => {
-        await backend.project.delete(project.entry.id);
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

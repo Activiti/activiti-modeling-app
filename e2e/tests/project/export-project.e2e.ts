@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage } from 'ama-testing/e2e';
 import { DashboardPage } from 'ama-testing/e2e';
 import { Toolbar } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
@@ -35,7 +35,6 @@ describe('Export project', () => {
         password: testConfig.ama.password
     };
 
-    const loginPage: LoginPageImplementation = LoginPage.get();
     const authenticatedPage = new AuthenticatedPage(testConfig);
     const dashboardPage = new DashboardPage();
     const toolBar = new Toolbar();
@@ -48,17 +47,13 @@ describe('Export project', () => {
     beforeEach(async () => {
         backend = await getBackend(testConfig).setUp();
         project = await backend.project.create();
-    });
 
-    beforeEach(async () => {
         // clean-up files from download directory
         UtilFile.deleteFilesByPattern(downloadDir, project.entry.name);
-    });
 
-    beforeEach(async () => {
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
-
     });
 
     it('[C286593] Export project without process', async () => {

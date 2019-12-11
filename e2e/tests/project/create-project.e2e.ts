@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation, UtilRandom } from 'ama-testing/e2e';
+import { LoginPage, UtilRandom, CreatedEntity } from 'ama-testing/e2e';
 import { SidebarActionMenu } from 'ama-testing/e2e';
 import { CreateEntityDialog } from 'ama-testing/e2e';
 import { DashboardPage } from 'ama-testing/e2e';
@@ -40,8 +40,7 @@ describe('Create project', () => {
     const snackBar = new SnackBar();
 
     let backend: Backend;
-    let loginPage: LoginPageImplementation;
-    let project;
+    let project: CreatedEntity;
 
     async function cleanupProject(projectName: string) {
         try {
@@ -54,7 +53,8 @@ describe('Create project', () => {
 
     beforeEach(async () => {
         backend = await getBackend(testConfig).setUp();
-        loginPage = LoginPage.get();
+
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
 

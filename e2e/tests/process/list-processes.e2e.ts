@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation, UtilRandom } from 'ama-testing/e2e';
+import { LoginPage, UtilRandom } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
@@ -40,9 +40,10 @@ describe('List processes', async () => {
     const createEntityDialog = new CreateEntityDialog();
 
     let backend: Backend;
-    let loginPage: LoginPageImplementation;
-    let project1, project2: NodeEntry;
-    let process1, process2: NodeEntry;
+    let project1: NodeEntry;
+    let project2: NodeEntry;
+    let process1: NodeEntry;
+    let process2: NodeEntry;
     let projectContentPage: ProjectContentPage;
 
     beforeAll(async () => {
@@ -53,10 +54,8 @@ describe('List processes', async () => {
 
         project2 = await backend.project.create();
         process2 = await backend.process.create(project2.entry.id);
-    });
 
-    beforeAll(async () => {
-        loginPage = LoginPage.get();
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
     });

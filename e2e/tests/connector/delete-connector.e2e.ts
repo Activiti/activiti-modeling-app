@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage } from 'ama-testing/e2e';
 import { DeleteEntityDialog } from 'ama-testing/e2e';
 import { SnackBar } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
@@ -32,7 +32,6 @@ describe('Delete connector', () => {
         password: testConfig.ama.password
     };
 
-    const loginPage: LoginPageImplementation = LoginPage.get();
     const authenticatedPage = new AuthenticatedPage(testConfig);
     const snackBar = new SnackBar();
     const deleteEntityDialog = new DeleteEntityDialog();
@@ -46,28 +45,27 @@ describe('Delete connector', () => {
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
         app = await backend.project.create();
-    });
 
-    beforeAll(async () => {
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
+    });
 
+    afterAll(async () => {
+        await backend.project.delete(app.entry.id);
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     beforeEach( async() => {
         /* cspell: disable-next-line */
         connector = await backend.connector.create(app.entry.id, 'qaconnector');
-    });
 
-    beforeEach(async () => {
         projectContentPage = new ProjectContentPage(testConfig, app.entry.id);
         connectorContentPage = new ConnectorContentPage(testConfig, app.entry.id, connector.entry.id);
         await connectorContentPage.navigateTo();
-    });
 
-    beforeEach(async () => {
         await expect(await projectContentPage.isModelInList('connector', connector.entry.name)).toBe(true, 'Connector should be in the left sidebar');
-
         await projectContentPage.clickOnModel('connector', connector.entry.id);
 
         await connectorContentPage.isLoaded();
@@ -84,11 +82,5 @@ describe('Delete connector', () => {
     it('[C280488] Delete connector without confirmation', async () => {
         await deleteEntityDialog.checkDialogAndReject('connector');
         await expect(await projectContentPage.isModelInList('connector', connector.entry.name)).toBe(true, 'Connector should be in the left sidebar');
-    });
-
-    afterAll(async () => {
-        await backend.project.delete(app.entry.id);
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

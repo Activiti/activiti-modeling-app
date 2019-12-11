@@ -16,7 +16,7 @@
  */
 
  import {testConfig} from '../../../test.config';
- import {LoginPage, LoginPageImplementation} from 'ama-testing/e2e';
+ import { LoginPage } from 'ama-testing/e2e';
  import {NodeEntry} from '@alfresco/js-api';
  import {Backend} from 'ama-testing/e2e';
  import {getBackend} from 'ama-testing/e2e';
@@ -36,7 +36,6 @@
      const timerProperties = new TimerPropertiesCard();
 
      let backend: Backend;
-     let loginPage: LoginPageImplementation;
      let project: NodeEntry;
      let processContentPage: ProcessContentPage;
 
@@ -44,7 +43,7 @@
          backend = await getBackend(testConfig).setUp();
          project = await backend.project.create();
 
-         loginPage = LoginPage.get();
+         const loginPage = LoginPage.get();
          await loginPage.navigateTo();
          await loginPage.login(adminUser.user, adminUser.password);
 

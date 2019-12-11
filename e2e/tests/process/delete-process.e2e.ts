@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage } from 'ama-testing/e2e';
 import { DeleteEntityDialog } from 'ama-testing/e2e';
 import { SnackBar } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
@@ -32,7 +32,6 @@ describe('Delete process', () => {
         password: testConfig.ama.password
     };
 
-    const loginPage: LoginPageImplementation = LoginPage.get();
     const authenticatedPage = new AuthenticatedPage(testConfig);
     const snackBar = new SnackBar();
     const deleteEntityDialog = new DeleteEntityDialog();
@@ -46,12 +45,16 @@ describe('Delete process', () => {
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
         project = await backend.project.create();
-    });
 
-    beforeAll(async () => {
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
+    });
 
+    afterAll(async () => {
+        await backend.project.delete(project.entry.id);
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     beforeEach(async () => {
@@ -59,9 +62,7 @@ describe('Delete process', () => {
         projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         await projectContentPage.navigateTo();
         await expect(await projectContentPage.isModelInList('process', process.entry.name)).toBe(true, 'Process should be in the left sidebar');
-    });
 
-    beforeEach(async () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await processContentPage.isLoaded();
@@ -78,11 +79,5 @@ describe('Delete process', () => {
     it('[C286409] Prevent deletion of process if confirmation is rejected', async () => {
         await deleteEntityDialog.checkDialogAndReject('process');
         await expect(await projectContentPage.isModelInList('process', process.entry.name)).toBe(true, 'Process should be in the left sidebar');
-    });
-
-    afterAll(async () => {
-        await backend.project.delete(project.entry.id);
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

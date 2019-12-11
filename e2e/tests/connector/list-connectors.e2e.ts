@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation, UtilRandom } from 'ama-testing/e2e';
+import { LoginPage, UtilRandom } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
@@ -40,9 +40,10 @@ describe('List connectors', async () => {
     const createEntityDialog = new CreateEntityDialog();
 
     let backend: Backend;
-    let loginPage: LoginPageImplementation;
-    let project1, project2: NodeEntry;
-    let connector1, connector2: NodeEntry;
+    let project1: NodeEntry;
+    let project2: NodeEntry;
+    let connector1: NodeEntry;
+    let connector2: NodeEntry;
     let projectContentPage: ProjectContentPage;
 
     beforeAll(async () => {
@@ -53,13 +54,17 @@ describe('List connectors', async () => {
         project2 = await backend.project.create();
         /* cspell: disable-next-line */
         connector2 = await backend.connector.create(project2.entry.id, 'qaconnector2');
-    });
 
-    beforeAll(async () => {
-        loginPage = LoginPage.get();
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
+    });
 
+    afterAll(async () => {
+        await backend.project.delete(project1.entry.id);
+        await backend.project.delete(project2.entry.id);
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     beforeEach(async() => {
@@ -105,12 +110,5 @@ describe('List connectors', async () => {
             .isModelInList('connector', connector2.entry.name)).toBe(true, 'Connector is not displayed in the left sidebar');
         await expect(await projectContentPage
             .isModelNotInList('connector', connector1.entry.name)).toBe(true, `Connector from a different project is displayed in the left sidebar`);
-    });
-
-    afterAll(async () => {
-        await backend.project.delete(project1.entry.id);
-        await backend.project.delete(project2.entry.id);
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

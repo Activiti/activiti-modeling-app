@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation, xml2js } from 'ama-testing/e2e';
+import { LoginPage, xml2js } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
@@ -35,7 +35,6 @@ describe('Export process', () => {
         password: testConfig.ama.password
     };
 
-    const loginPage: LoginPageImplementation = LoginPage.get();
     const authenticatedPage = new AuthenticatedPage(testConfig);
 
     let backend: Backend;
@@ -49,14 +48,19 @@ describe('Export process', () => {
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
         project = await backend.project.create();
-    });
 
-    beforeAll(async () => {
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
 
         projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         await projectContentPage.navigateTo();
+    });
+
+    afterAll(async () => {
+        await backend.project.delete(project.entry.id);
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     beforeEach( async() => {
@@ -80,11 +84,5 @@ describe('Export process', () => {
         await expect(bpmnProcessDetails.id).toEqual(expectedProcessId);
         await expect(bpmnProcessDetails.name).toEqual(process.entry.name);
         await expect(bpmnProcessDetails.isExecutable).toEqual(`true`);
-    });
-
-    afterAll(async () => {
-        await backend.project.delete(project.entry.id);
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

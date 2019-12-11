@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage } from 'ama-testing/e2e';
 import { Resources } from '../../resources/resources';
 import { SnackBar } from 'ama-testing/e2e';
 import { Backend } from 'ama-testing/e2e';
@@ -46,24 +46,30 @@ describe('Upload process', () => {
 
     let backend: Backend;
     let project: NodeEntry;
-    let loginPage: LoginPageImplementation;
     let projectContentPage: ProjectContentPage;
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
         project = await backend.project.create();
-    });
 
-    beforeAll(async () => {
-        loginPage = LoginPage.get();
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
+    });
 
+    afterAll(async () => {
+        await backend.project.delete(project.entry.id);
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     beforeEach(async () => {
         projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         await projectContentPage.navigateTo();
+    });
+
+    afterEach(async () => {
+        await backend.process.delete(await projectContentPage.getModelId());
     });
 
     it('[C286536] Upload/Import process using New dropdown', async () => {
@@ -76,15 +82,5 @@ describe('Upload process', () => {
         await projectContentPage.importModel('process', absoluteFilePath);
         await expect(await snackBar.isUploadedSuccessfully('process')).toBe(true, 'Process upload snackbar should be displayed');
         await expect(await projectContentPage.isModelInList('process', processDetails.name)).toBe(true, `Item '${processDetails.name}' was not found in the list.`);
-    });
-
-    afterEach(async () => {
-        await backend.process.delete(await projectContentPage.getModelId());
-    });
-
-    afterAll(async () => {
-        await backend.project.delete(project.entry.id);
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

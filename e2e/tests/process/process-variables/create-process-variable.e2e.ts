@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
@@ -33,7 +33,6 @@ describe('Create process variable', async () => {
     };
 
     let backend: Backend;
-    let loginPage: LoginPageImplementation;
     let project: NodeEntry;
     let process: NodeEntry;
     let processContentPage: ProcessContentPage;
@@ -44,20 +43,20 @@ describe('Create process variable', async () => {
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
         project = await backend.project.create();
-    });
 
-    beforeAll(async () => {
-        loginPage = LoginPage.get();
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
+    });
 
+    afterAll(async () => {
+        await backend.project.delete(project.entry.id);
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     beforeEach(async () => {
         process = await backend.process.create(project.entry.id);
-    });
-
-    beforeEach(async () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await processPropertiesCard.isLoaded();
@@ -182,11 +181,5 @@ describe('Create process variable', async () => {
             await processVariablesDialog.setVariable('a*', 'string', 'testStringVariable' );
             await expect(await processVariablesDialog.waitValidationErrorDisplayed('Variable name is not valid.')).toBe(true);
         });
-    });
-
-    afterAll(async () => {
-        await backend.project.delete(project.entry.id);
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

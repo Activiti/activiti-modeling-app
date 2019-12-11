@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation, AuthenticatedPage, SidebarActionMenu, UtilRandom } from 'ama-testing/e2e';
+import { LoginPage, AuthenticatedPage, SidebarActionMenu, UtilRandom } from 'ama-testing/e2e';
 import { CreateEntityDialog } from 'ama-testing/e2e';
 import { ProjectContentPage } from 'ama-testing/e2e';
 import { SnackBar } from 'ama-testing/e2e';
@@ -38,25 +38,25 @@ describe('Create connector', async () => {
     const toolbar = new Toolbar();
 
     let backend: Backend;
-    let loginPage: LoginPageImplementation;
     let project: NodeEntry;
     let projectContentPage: ProjectContentPage;
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
         project = await backend.project.create();
-    });
 
-    beforeAll(async () => {
-        loginPage = LoginPage.get();
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
 
-    });
-
-    beforeAll(async () => {
         projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         await projectContentPage.navigateTo();
+    });
+
+    afterAll(async () => {
+        await backend.project.delete(project.entry.id);
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     it('[C280408] Create connector using New dropdown', async () => {
@@ -75,11 +75,5 @@ describe('Create connector', async () => {
         await expect(await snackBar.isCreatedSuccessfully('connector')).toBe(true, 'Connector creation snackbar should be displayed');
         await expect(await projectContentPage.isModelInList('connector', connector.name)).toBe(true, 'Connector should be in the left sidebar');
         await expect(await toolbar.isItemDisplayed(connector.name)).toBe(true, 'Connector name should be displayed in the breadcrumb');
-    });
-
-    afterAll(async () => {
-        await backend.project.delete(project.entry.id);
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

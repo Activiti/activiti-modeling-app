@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage } from 'ama-testing/e2e';
 import { DashboardPage } from 'ama-testing/e2e';
 import { CreateEntityDialog } from 'ama-testing/e2e';
 import { SnackBar } from 'ama-testing/e2e';
@@ -31,7 +31,6 @@ describe('Update project', () => {
         password: testConfig.ama.password
     };
 
-    const loginPage: LoginPageImplementation = LoginPage.get();
     const authenticatedPage = new AuthenticatedPage(testConfig);
     const dashboardPage = new DashboardPage();
     const snackBar = new SnackBar();
@@ -43,12 +42,16 @@ describe('Update project', () => {
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
         app = await backend.project.create();
-    });
 
-    beforeAll(async () => {
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
+    });
 
+    afterAll(async () => {
+        await backend.project.delete(app.entry.id);
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     it('[C289977] Update project name and description', async () => {
@@ -65,11 +68,5 @@ describe('Update project', () => {
 
         const appResponse = await backend.project.get(appId);
         await expect(appResponse[`entry`][`name`]).toEqual(updatedAppName);
-    });
-
-    afterAll(async () => {
-        await backend.project.delete(app.entry.id);
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

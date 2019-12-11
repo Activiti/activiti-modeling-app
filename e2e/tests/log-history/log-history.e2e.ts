@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
+import { LoginPage } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
@@ -44,7 +44,6 @@ describe('Log history', () => {
         successfully: 'The process was successfully updated',
     };
 
-    const loginPage: LoginPageImplementation = LoginPage.get();
     const authenticatedPage = new AuthenticatedPage(testConfig);
     const logHistoryPage = new LogHistoryPage();
     const codeEditorWidget = new CodeEditorWidget();
@@ -57,14 +56,19 @@ describe('Log history', () => {
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
         project = await backend.project.create();
-    });
 
-    beforeAll(async () => {
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
 
         projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         await projectContentPage.navigateTo();
+    });
+
+    afterAll(async () => {
+        await backend.project.delete(project.entry.id);
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     beforeEach( async() => {
@@ -131,11 +135,5 @@ describe('Log history', () => {
         await expect(await logHistoryPage.isLogSectionDisplayed()).toBe(true, 'Log section is not displayed');
         await logHistoryPage.clickCollapseArrow();
         await expect(await logHistoryPage.isLogSectionNotDisplayed()).toBe(true, 'Log section is displayed');
-    });
-
-    afterAll(async () => {
-        await backend.project.delete(project.entry.id);
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

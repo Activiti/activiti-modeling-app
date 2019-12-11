@@ -16,7 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation, js2xml, xml2js } from 'ama-testing/e2e';
+import { LoginPage, js2xml, xml2js } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
@@ -37,7 +37,6 @@ describe('Validate process - update process using XML editor', async () => {
     const codeEditorWidget = new CodeEditorWidget();
 
     let backend: Backend;
-    let loginPage: LoginPageImplementation;
     let project: NodeEntry;
     let process: NodeEntry;
     let processContentPage: ProcessContentPage;
@@ -49,7 +48,7 @@ describe('Validate process - update process using XML editor', async () => {
         project = await backend.project.create();
         process = await backend.process.create(project.entry.id);
 
-        loginPage = LoginPage.get();
+        const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
 
