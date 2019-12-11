@@ -56,6 +56,14 @@ then
     -i ./app.config.json
 fi
 
+if [[ -n "${APP_CONFIG_ECM_HOST}" ]]
+then
+  replace="\/"
+  encoded=${APP_CONFIG_ECM_HOST//\//$replace}
+  sed -e "s/\"ecmHost\": \".*\"/\"ecmHost\": \"${encoded}\"/g" \
+    -i ./app.config.json
+fi
+
 if [[ -n "${BASE_PATH}" ]]
 then
   sed s%href=\"/\"%href=\""${BASE_PATH}"\"%g \

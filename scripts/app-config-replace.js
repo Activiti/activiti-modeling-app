@@ -16,6 +16,7 @@ const options = {
         set: appConfig => {
             appConfig.apiHost = API_HOST;
             appConfig.bpmHost = API_HOST;
+            appConfig.ecmHost = API_HOST;
         }
     },
     'indentityHost': {
