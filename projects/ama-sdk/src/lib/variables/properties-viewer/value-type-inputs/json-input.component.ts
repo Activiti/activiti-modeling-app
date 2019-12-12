@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { NgxEditorModel } from 'ngx-monaco-editor';
+import { Component, Output, EventEmitter, Input, ViewChild } from '@angular/core';
+import { EditorComponent } from 'ngx-monaco-editor';
 
 @Component({
     template: `
-             <ngx-monaco-editor class="monaco-editor"
+             <ngx-monaco-editor #editor class="monaco-editor"
                 data-automation-id="variable-value"
                 (keyup)="onChange()"
                 [options]="editorOptions"
-                [model]="model"
-                [(ngModel)]="value">
+                [(ngModel)]="value"
+                (onInit)="onInit($event)">
             </ngx-monaco-editor>
     `
 })
@@ -34,15 +34,29 @@ export class PropertiesViewerJsonInputComponent {
 
     @Output() change = new EventEmitter();
     @Input() value;
-    editorOptions;
+    @Input() disabled: boolean;
 
-    model: NgxEditorModel = {
-        value: '',
-        language: 'json'
+    @ViewChild('editor') editor: EditorComponent;
+
+    editorOptions = {
+        language: 'json',
+        readOnly: this.disabled
     };
 
+    onInit(editor) {
+        this.editor.registerOnChange((changes) => {
+            if (!this.editor.options.readOnly || this.editor.options.readOnly !== this.disabled) {
+                editor.updateOptions({
+                    language: 'json',
+                    readOnly: this.disabled
+                });
+            }
+            this.value = changes;
+        });
+    }
+
     onChange() {
-        if (this.value.trim()) {
+        if (this.value && this.value.trim()) {
             try {
                 JSON.parse(this.value);
             } catch (e) {

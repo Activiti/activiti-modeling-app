@@ -28,7 +28,7 @@ import { take, filter } from 'rxjs/operators';
     template: `
     <mat-form-field>
         <mat-select (selectionChange)="onChange()" [compareWith]="compareObjects"
-        [(ngModel)]="value" data-automation-id="variable-value">
+        [(ngModel)]="value" data-automation-id="variable-value" [disabled]="disabled">
             <mat-option *ngFor="let file of files | async" [value]="file.extensions">
                 {{file.name}}
             </mat-option>
@@ -41,6 +41,7 @@ export class PropertiesViewerFileInputComponent implements OnInit {
 
     @Output() change = new EventEmitter();
     @Input() value: ActivitiFile;
+    @Input() disabled: boolean;
 
     projectId: string;
     files: Observable<ActivitiFile[]>;
@@ -60,6 +61,10 @@ export class PropertiesViewerFileInputComponent implements OnInit {
     }
 
     compareObjects(o1: any, o2: any): boolean {
-        return o1.uri === o2.uri;
+        if (!o1 || !o2) {
+            return false;
+        } else {
+            return o1.uri === o2.uri;
+        }
     }
 }

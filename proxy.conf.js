@@ -29,4 +29,13 @@ module.exports = {
         },
         "changeOrigin": true
     },
+    "/script-service": {
+        "target": API_HOST,
+        "secure": false,
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/script-service/script-service": ""
+        },
+        "logLevel": "silent"
+    }
 };

@@ -63,6 +63,9 @@ import { PropertiesViewerDateTimeInputComponent } from './properties-viewer/valu
         PropertiesViewerFileInputComponent
     ],
     providers: [
+    ],
+    exports: [
+        ValueTypeInputComponent
     ]
 })
 export class VariablesModule {}

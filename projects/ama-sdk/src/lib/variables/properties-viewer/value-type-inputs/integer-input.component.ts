@@ -19,7 +19,8 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 @Component({
     template: `
         <mat-form-field floatLabel="never">
-            <input matInput (keyup)="onChange()" [(ngModel)]="value" placeholder="Value" [amasdk-allowed-characters]="regexInput" data-automation-id="variable-value">
+            <input matInput (keyup)="onChange()" [(ngModel)]="value" placeholder="Value"
+            [amasdk-allowed-characters]="regexInput" data-automation-id="variable-value" [disabled]="disabled">
         </mat-form-field>
     `
 })
@@ -28,6 +29,7 @@ export class PropertiesViewerIntegerInputComponent {
 
     @Output() change = new EventEmitter();
     @Input() value: string;
+    @Input() disabled: boolean;
     regexInput = /^[0-9]*$/;
 
     onChange() {

@@ -48,6 +48,7 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
     @Input() index: number;
     @Output() onChange = new EventEmitter();
     @Input() type: string;
+    @Input() disabled = false;
 
     @ViewChild('valueTypeInput', { read: ViewContainerRef }) valueTypeInput;
     valueTypeInputRef: ComponentRef<any>;
@@ -77,7 +78,8 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
         const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(valueTypeInputsMapping[this.type]);
 
         this.valueTypeInputRef = this.valueTypeInput.createComponent(factory);
-        this.valueTypeInputRef.instance.value = this.value;
+        this.writeValue(this.value);
+        this.valueTypeInputRef.instance.disabled = this.disabled;
         this.valueTypeInputRef.instance.change.subscribe(inputValue => this.setInputValue(inputValue));
     }
 

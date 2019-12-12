@@ -30,7 +30,7 @@ import { FormControl } from '@angular/forms';
         </mat-form-field>
     `,
     providers: [
-        {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+        { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
         {
             provide: MAT_DATE_FORMATS,
             useValue: {
@@ -52,11 +52,12 @@ export class PropertiesViewerDateInputComponent {
 
     @Output() change = new EventEmitter();
     @Input() value: string;
+    @Input() disabled: boolean;
 
     format = 'YYYY-MM-DD';
 
     get pickerDate() {
-        return new FormControl(this.value ? moment(this.value, this.format) : '');
+        return new FormControl({ value: this.value ? moment(this.value, this.format) : '', disabled: this.disabled });
     }
 
     onChange(event: MatDatepickerInputEvent<Date>) {

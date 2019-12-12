@@ -43,11 +43,12 @@ export class PropertiesViewerDateTimeInputComponent {
 
     @Output() change = new EventEmitter();
     @Input() value: string;
+    @Input() disabled: boolean;
 
     today = new Date();
 
     get pickerDate(): FormControl {
-        return new FormControl(this.value ? moment(this.value, MOMENT_DATETIME_FORMAT) : '');
+        return new FormControl({ value: this.value ? moment(this.value, MOMENT_DATETIME_FORMAT) : '', disabled: this.disabled });
     }
 
     onChange(event: MatDatepickerInputEvent<Date>) {
