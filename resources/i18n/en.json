@@ -106,7 +106,8 @@
                 "PROJECT_DELETED": "The project was successfully deleted",
                 "MENU_ITEMS": {
                     "CREATE_PROJECT": "Project",
-                    "UPLOAD_PROJECT": "Upload project"
+                    "UPLOAD_PROJECT": "Upload project",
+                    "CREATE_MODEL": "Model"
                 }
             },
             "DIALOGS": {

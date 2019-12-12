@@ -21,19 +21,19 @@ import { MODEL_TYPE } from '../api/types';
 export const SNACKBAR_ERROR = 'SNACKBAR_ERROR';
 export class SnackbarErrorAction implements Action {
     readonly type = SNACKBAR_ERROR;
-    constructor(public payload: string) {}
+    constructor(public message: string, public params?: any) {}
 }
 
 export const SNACKBAR_INFO = 'SNACKBAR_INFO';
 export class SnackbarInfoAction implements Action {
     readonly type = SNACKBAR_INFO;
-    constructor(public payload: string) {}
+    constructor(public message: string, public params?: any) {}
 }
 
 export const SNACKBAR_WARNING = 'SNACKBAR_WARNING';
 export class SnackbarWarningAction implements Action {
     readonly type = SNACKBAR_WARNING;
-    constructor(public payload: string) {}
+    constructor(public message: string, public params?: any) {}
 }
 
 export const SET_APP_DIRTY_STATE = '[App] Set dirty state';

@@ -51,7 +51,7 @@ export interface Project {
     version: string;
 }
 
-export type CustomModelStatus = 'ACTIVE' | 'INACTIVE';
+export type CustomModelStatus = 'ACTIVE' | 'INACTIVE' | 'DRAFT';
 
 export interface CustomModel {
     type: CUSTOM_MODEL_TYPE;
@@ -61,6 +61,19 @@ export interface CustomModel {
     author: string;
     namespaceUri: string;
     status: CustomModelStatus;
+}
+
+export interface ApiError {
+    errorKey?: string;
+    statusCode: number;
+    briefSummary: string;
+    stackTrace: string;
+    descriptionURL: string;
+    logId?: string;
+}
+
+export interface ApiErrorResponse {
+    error: ApiError;
 }
 
 export interface ReleaseEntry {

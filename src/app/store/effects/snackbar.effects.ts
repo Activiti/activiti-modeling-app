@@ -36,22 +36,22 @@ export class SnackbarEffects {
 
     @Effect({ dispatch: false }) infoEffect = this.actions$.pipe(
         ofType<SnackbarInfoAction>(SNACKBAR_INFO),
-        map((action: SnackbarInfoAction) => {
-            this.notificationService.showInfo(action.payload);
+        map(({ message, params }) => {
+            this.notificationService.showInfo(message, null, params);
         })
     );
 
     @Effect({ dispatch: false }) warningEffect = this.actions$.pipe(
         ofType<SnackbarWarningAction>(SNACKBAR_WARNING),
-        map((action: SnackbarWarningAction) => {
-            this.notificationService.showWarning(action.payload);
+        map(({ message, params }) => {
+            this.notificationService.showWarning(message, null, params);
         })
     );
 
     @Effect({ dispatch: false }) errorEffect = this.actions$.pipe(
         ofType<SnackbarErrorAction>(SNACKBAR_ERROR),
-        map((action: SnackbarErrorAction) => {
-            this.notificationService.showError(action.payload);
+        map(({ message, params }) => {
+            this.notificationService.showError(message, null, params);
         })
     );
 }
