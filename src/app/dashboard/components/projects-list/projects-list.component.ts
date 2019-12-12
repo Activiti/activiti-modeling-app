@@ -23,6 +23,7 @@ import { map } from 'rxjs/operators';
 import { MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import { selectProjectSummaries, selectLoading, selectPagination } from '../../store/selectors/dashboard.selectors';
 import { AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting, SearchQuery, OpenEntityDialogAction } from 'ama-sdk';
+import { ExportProjectAction } from '../../../project-editor/store/project-editor.actions';
 import {
     DeleteProjectAttemptAction,
     UpdateProjectAttemptAction,
@@ -174,6 +175,16 @@ export class ProjectsListComponent implements OnInit {
             dialogData: { title: 'APP.DIALOGS.CONFIRM.RELEASE' },
             action: new ReleaseProjectAttemptAction(projectId)
         }));
+    }
+
+    downloadProject(project: Project) {
+        if (project) {
+            const payload = {
+                projectId: project.id,
+                projectName: project.name
+            };
+            this.store.dispatch(new ExportProjectAction(payload));
+        }
     }
 
     seeReleasesForProject(projectId: string): void {
