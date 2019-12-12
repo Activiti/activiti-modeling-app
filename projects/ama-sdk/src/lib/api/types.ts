@@ -51,7 +51,9 @@ export interface Project {
     version: string;
 }
 
-export type CustomModelStatus = 'ACTIVE' | 'INACTIVE' | 'DRAFT';
+export type CustomModelStatus = 'ACTIVE' | 'DRAFT';
+export const ACTIVE_STATUS: CustomModelStatus = 'ACTIVE';
+export const INACTIVE_STATUS: CustomModelStatus = 'DRAFT';
 
 export interface CustomModel {
     type: CUSTOM_MODEL_TYPE;
