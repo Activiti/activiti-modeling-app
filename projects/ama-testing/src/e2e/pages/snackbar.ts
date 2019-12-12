@@ -62,7 +62,7 @@ export class SnackBar extends GenericWebElement {
 
     async isNotReleased(): Promise<boolean> {
         return this.waitForMessage(
-            `Unknown error happened while releasing the project.`
+            `Error happened while releasing the project.`
         );
     }
 

@@ -52,6 +52,7 @@ import { selectProjectsLoaded, selectPagination } from '../selectors/dashboard.s
 import { EntityDialogForm } from 'ama-sdk';
 import { GET_PROJECT_RELEASES_ATTEMPT, GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
 import { getProjectEditorLogInitiator } from '../../../project-editor/services/project-editor.constants';
+import { SetLogHistoryVisibilityAction } from '../../../store/actions/app.actions';
 
 @Injectable()
 export class ProjectsEffects extends BaseEffects {
@@ -242,15 +243,15 @@ export class ProjectsEffects extends BaseEffects {
         return of(new SnackbarErrorAction(errorMessage));
     }
 
-    private handleProjectReleaseError(error: ErrorResponse): Observable<SnackbarErrorAction | LogAction> {
-        let errorMessage: string;
+    private handleProjectReleaseError(error: ErrorResponse): Observable<SnackbarErrorAction | SetLogHistoryVisibilityAction | LogAction> {
 
-        errorMessage = 'APP.PROJECT.ERROR.RELEASE_PROJECT';
+        const errorMessage = 'APP.PROJECT.ERROR.RELEASE_PROJECT';
         const errorLog = JSON.parse(error.message).errors.map((e: any) => e.description);
 
         return of(
             new SnackbarErrorAction(errorMessage),
-            this.logFactory.logError(getProjectEditorLogInitiator(), errorLog)
+            this.logFactory.logError(getProjectEditorLogInitiator(), errorLog),
+            new SetLogHistoryVisibilityAction(true)
         );
     }
 

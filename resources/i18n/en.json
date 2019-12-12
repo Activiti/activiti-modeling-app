@@ -266,7 +266,7 @@
                 "CHANGE_FAVORITE": "Unknown error happened during the changing favorite state of the project.",
                 "DELETE_PROCESS": "Unknown error happened during the deleting the process.",
                 "LOAD_MODELS": "Unknown error happened while loading the models.",
-                "RELEASE_PROJECT": "Unknown error happened while releasing the project.",
+                "RELEASE_PROJECT": "Error happened while releasing the project.",
                 "CREATE_PROCESS": {
                     "DUPLICATION": "Process with the same name already exists",
                     "GENERAL": "Unknown error happened during the creating a new process."

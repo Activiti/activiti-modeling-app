@@ -60,6 +60,7 @@ import {
 } from 'ama-sdk';
 import { GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
 import { getProjectEditorLogInitiator } from 'src/app/project-editor/services/project-editor.constants';
+import { SetLogHistoryVisibilityAction } from '../../../store/actions/app.actions';
 
 describe('ProjectsEffects', () => {
     let effects: ProjectsEffects;
@@ -438,20 +439,21 @@ describe('ProjectsEffects', () => {
         });
 
 
-    it('should trigger the right action on error', () => {
-        const error: any = new Error();
-        error.message = JSON.stringify({ errors: [ { description: 'test' } ]});
-        dashboardService.releaseProject = jest.fn().mockReturnValue(throwError(error));
+        it('should trigger the right action on error', () => {
+            const error: any = new Error();
+            error.message = JSON.stringify({ errors: [ { description: 'test' } ]});
+            dashboardService.releaseProject = jest.fn().mockReturnValue(throwError(error));
 
-        actions$ = hot('a', { a: new ReleaseProjectAttemptAction(mockProject.id) });
-        const expectedLogAction = logFactory.logError(getProjectEditorLogInitiator(), 'test');
-        expectedLogAction.log.datetime = (<any>expect).any(Date);
-        const expected = cold('(bc)', {
-            b: new SnackbarErrorAction('APP.PROJECT.ERROR.RELEASE_PROJECT'),
-            c: expectedLogAction
+            actions$ = hot('a', { a: new ReleaseProjectAttemptAction(mockProject.id) });
+            const expectedLogAction = logFactory.logError(getProjectEditorLogInitiator(), 'test');
+            expectedLogAction.log.datetime = (<any>expect).any(Date);
+            const expected = cold('(bcd)', {
+                b: new SnackbarErrorAction('APP.PROJECT.ERROR.RELEASE_PROJECT'),
+                c: expectedLogAction,
+                d: new SetLogHistoryVisibilityAction(true)
+            });
+
+            expect(effects.releaseProjectAttemptEffect).toBeObservable(expected);
         });
-
-        expect(effects.releaseProjectAttemptEffect).toBeObservable(expected);
-    });
     });
 });
