@@ -76,7 +76,6 @@ xdescribe('Upload project', () => {
     it('[C286559] should upload project', async () => {
         await sidebarActionMenu.clickOnCreateButton();
         await sidebarActionMenu.uploadProject(absoluteFilePath);
-        await sidebarActionMenu.isOptionsMenuDismissed();
 
         await expect(await snackBar.isUploadedSuccessfully('project')).toBe(true);
         await expect(await dashboardPage.isProjectNameInList(projectDetails.name)).toBe(true, `Item '${projectDetails.name}' was not found in the list.`);

@@ -60,7 +60,6 @@ export class SidebarActionMenu extends GenericWebElement {
 
     async uploadProject(filePath: string) {
         await super.sendKeysIfPresent(this.fileUploadInput, filePath);
-        await this.clickOnBackdrop();
     }
 
     async createProcess() {
