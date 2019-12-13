@@ -42,7 +42,7 @@
                             </ng-container>
 
                             <ng-container matColumnDef="version">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_VERSION' | translate }}</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_VERSION' | translate }}</mat-header-cell>
                                 <mat-cell *matCellDef="let element" [attr.data-automation-id]="'project-version-' + element.id" (click)="rowSelected(element)"> {{ element.version }} </mat-cell>
                             </ng-container>
 
