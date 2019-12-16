@@ -83,7 +83,6 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async editProcessVariables() {
-        await BrowserVisibility.waitUntilElementIsClickable(this.editVariables);
         await BrowserActions.click(this.editVariables);
     }
 
@@ -180,7 +179,6 @@ export class ProcessPropertiesCard extends GenericPage {
     async selectVariable(variableName: string) {
         const processVariable = element.all(by.cssContainingText('.mat-option-text', variableName)).first();
 
-        await BrowserVisibility.waitUntilElementIsVisible(processVariable);
         await BrowserActions.click(processVariable);
     }
 
