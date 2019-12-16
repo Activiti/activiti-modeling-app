@@ -60,7 +60,7 @@ export class ConnectorContentPage extends GenericPage {
 
     async save(): Promise<void> {
         await BrowserVisibility.waitUntilElementIsNotVisible(this.disabledSaveButton);
-        browser.actions().mouseMove(this.connectorEditorSaveButton).perform();
+        await browser.actions().mouseMove(this.connectorEditorSaveButton).perform();
         await BrowserActions.click(this.connectorEditorSaveButton);
     }
 
