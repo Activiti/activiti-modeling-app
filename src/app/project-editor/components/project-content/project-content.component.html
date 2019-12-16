@@ -16,6 +16,14 @@
 
         <button
             mat-icon-button
+            data-automation-id="project-validate-button"
+            [title]="'APP.VALIDATE_PROJECT' | translate"
+            (click)="validateApp(project.id)">
+            <mat-icon>done</mat-icon>
+        </button>
+
+        <button
+            mat-icon-button
             data-automation-id="project-download-button"
             [title]="'APP.DOWNLOAD_PROJECT' | translate"
             (click)="downloadApp(project)">

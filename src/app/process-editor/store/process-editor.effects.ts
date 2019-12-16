@@ -74,6 +74,7 @@ import {
     selectOpenedModel,
     BpmnElement,
     LoadApplicationAction,
+    GeneralError,
 } from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { SetAppDirtyStateAction } from 'ama-sdk';
@@ -86,7 +87,7 @@ import { Process, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
 import { selectSelectedProjectId, AmaState, selectSelectedProcess, createProcessName } from 'ama-sdk';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
 import { LogFactoryService } from 'ama-sdk';
-import { ProcessValidationResponse, ProcessError } from './process-editor.state';
+import { ProcessValidationResponse } from './process-editor.state';
 
 @Injectable()
 export class ProcessEditorEffects extends BaseEffects {
@@ -372,7 +373,7 @@ export class ProcessEditorEffects extends BaseEffects {
 
     private handleProcessValidationError(response: ProcessValidationResponse): string[] {
         if (response.errors) {
-            return response.errors.map( (error: ProcessError) => error.description);
+            return response.errors.map( (error: GeneralError) => error.description);
         }
         return [response.message];
     }

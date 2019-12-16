@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+export * from './validation-errors.interface';
 export * from './model-filter.interface';
 export * from './model-creator.interface';
 export * from './model-uploader.interface';

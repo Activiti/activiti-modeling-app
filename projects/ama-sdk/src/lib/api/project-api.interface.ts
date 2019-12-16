@@ -19,6 +19,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Project, Release, Pagination, PaginatedEntries, ReleaseEntry, ServerSideSorting, SearchQuery } from './types';
+import { ValidationErrors } from '../interfaces/validation-errors.interface';
 
 @Injectable()
 export abstract class ProjectApi {
@@ -26,6 +27,7 @@ export abstract class ProjectApi {
     public abstract get(projectId: string): Observable<Project>;
     public abstract update(projectId: string, project: Partial<Project>): Observable<Project>;
     public abstract delete(projectId: string): Observable<void>;
+    public abstract validate(projectId: string): Observable<void | ValidationErrors>;
 
     public abstract import(file: File):  Observable<any>;
     public abstract export(projectId: string): Observable<Blob>;

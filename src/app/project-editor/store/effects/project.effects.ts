@@ -21,14 +21,17 @@ import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
 import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, LogFactoryService, LogAction,
-    LeaveProjectAction } from 'ama-sdk';
+    LeaveProjectAction,
+    SnackbarInfoAction} from 'ama-sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import {
     GetProjectAttemptAction,
     GET_PROJECT_ATTEMPT,
     GetProjectSuccessAction,
     ExportProjectAction,
-    EXPORT_PROJECT
+    EXPORT_PROJECT,
+    ValidateProjectAttemptAction,
+    VALIDATE_PROJECT_ATTEMPT
 } from '../project-editor.actions';
 import { getProjectEditorLogInitiator } from '../../services/project-editor.constants';
  import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
@@ -68,6 +71,12 @@ export class ProjectEffects extends BaseEffects {
         mergeMap(() => of(new LeaveProjectAction()))
     );
 
+    @Effect()
+    validateProjectAttemptEffect$ = this.actions$.pipe(
+        ofType<ValidateProjectAttemptAction>(VALIDATE_PROJECT_ATTEMPT),
+        switchMap(action => this.validateProject(action.projectId))
+    );
+
     private getProject(projectId: string) {
         return this.projectEditorService.fetchProject(projectId).pipe(
             switchMap(project => of(new GetProjectSuccessAction(project))),
@@ -87,6 +96,17 @@ export class ProjectEffects extends BaseEffects {
             }),
             catchError(response => this.genericErrorHandler(this.handleValidationError.bind(this, response), response)
             ));
+    }
+
+
+    private validateProject(projectId: string) {
+        return this.projectEditorService.validateProject(projectId).pipe(
+            switchMap(() => [
+                new SnackbarInfoAction('APP.PROJECT.PROJECT_VALID'),
+                this.logFactory.logInfo(getProjectEditorLogInitiator(), 'APP.PROJECT.PROJECT_VALID')
+            ]),
+            catchError(response => this.genericErrorHandler(this.handleValidationError.bind(this, response), response)
+        ));
     }
 
     private handleValidationError(response: any): Observable<OpenConfirmDialogAction | LogAction> {

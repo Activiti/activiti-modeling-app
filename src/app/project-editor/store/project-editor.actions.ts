@@ -51,3 +51,8 @@ export class ExportProjectAction implements Action {
     constructor(public payload: ExportProjectPayload) {}
 }
 
+export const VALIDATE_PROJECT_ATTEMPT = 'VALIDATE_PROJECT_ATTEMPT';
+export class ValidateProjectAttemptAction implements Action {
+    readonly type = VALIDATE_PROJECT_ATTEMPT;
+    constructor(public projectId: string) {}
+}

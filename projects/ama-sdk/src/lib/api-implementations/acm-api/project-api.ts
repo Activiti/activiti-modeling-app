@@ -21,6 +21,7 @@ import { Observable } from 'rxjs';
 import { Project, PROJECT, Release, Pagination, PaginatedEntries, ReleaseEntry, ServerSideSorting, SearchQuery } from '../../api/types';
 import { map } from 'rxjs/operators';
 import { RequestApiHelper } from './request-api.helper';
+import { ValidationErrors } from '../../interfaces/validation-errors.interface';
 
 export interface BackendProject {
     id: string;
@@ -46,6 +47,10 @@ export class ACMProjectApi implements ProjectApi {
                     map((response: any) => response.entry),
                     map(this.createProject.bind(this))
                 );
+    }
+
+    public validate(projectId: string): Observable<void | ValidationErrors> {
+        return this.requestApiHelper.get(`/modeling-service/v1/projects/${projectId}/validate`, { responseType: 'blob' });
     }
 
     public create(project: Partial<Project>): Observable<Project> {

@@ -15,23 +15,19 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
-import { Project, AmaApi, ValidationErrors } from 'ama-sdk';
-import { Observable } from 'rxjs';
+export interface GeneralError {
+    description: string;
+    errorCode: string;
+    problem: string;
+    validatorSetName?: string;
+    warning?: boolean;
+}
 
-@Injectable()
-export class ProjectEditorService {
-    constructor(private amaApi: AmaApi) {}
-
-    fetchProject(projectId: string): Observable<Partial<Project>> {
-        return this.amaApi.Project.get(projectId);
-    }
-
-    exportProject(projectId: string): Observable<Blob> {
-        return this.amaApi.Project.export(projectId);
-    }
-
-    validateProject(projectId: string): Observable<void | ValidationErrors> {
-        return this.amaApi.Project.validate(projectId);
-    }
+export interface ValidationErrors {
+    timestamp: string;
+    status: number;
+    error: string;
+    message: string;
+    path?: string;
+    errors: GeneralError[];
 }

@@ -19,7 +19,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProjectEditorState, Project, selectProject, OpenConfirmDialogAction } from 'ama-sdk';
 import { Observable, Subscription } from 'rxjs';
-import { ExportProjectAction } from '../../store/project-editor.actions';
+import { ExportProjectAction, ValidateProjectAttemptAction } from '../../store/project-editor.actions';
 import { ReleaseProjectAttemptAction } from '../../../dashboard/store/actions/projects';
 import { Router } from '@angular/router';
 
@@ -50,6 +50,10 @@ export class ProjectContentComponent implements OnInit {
             dialogData: { title: 'APP.DIALOGS.CONFIRM.RELEASE' },
             action: new ReleaseProjectAttemptAction(projectId)
         }));
+    }
+
+    validateApp(projectId: string): void {
+        this.store.dispatch(new ValidateProjectAttemptAction(projectId));
     }
 
     seeReleasesForProject(projectId: string): void {

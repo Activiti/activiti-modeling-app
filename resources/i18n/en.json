@@ -3,6 +3,7 @@
         "APPLICATION": "Application",
         "BACKEND_SERVICE": "Backend service",
         "MORE_ACTIONS": "More actions",
+        "VALIDATE_PROJECT": "Validate project",
         "DOWNLOAD_PROJECT": "Download project",
         "DOWNLOAD_PROCESS": "Download process",
         "DOWNLOAD_FORM": "Download form",
@@ -155,6 +156,7 @@
             "NAME": "Project Editor",
             "UPLOAD_FILE": "Upload file",
             "DOWNLOAD_PROJECT": "Download project",
+            "PROJECT_VALID": "Project contains no validation errors",
             "EXPORT_SUCCESS": "Project exported succesfully",
             "SETTINGS": {
                 "PROJECT_SETTINGS": "Project editor settings",
