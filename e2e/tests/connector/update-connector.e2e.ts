@@ -25,7 +25,6 @@ import { AuthenticatedPage } from 'ama-testing/e2e';
 import { CodeEditorWidget } from 'ama-testing/e2e';
 import { ProjectContentPage } from 'ama-testing/e2e';
 import { ConnectorContentPage } from 'ama-testing/e2e';
-import { browser } from 'protractor';
 
 describe('Update connector', async () => {
     const adminUser = {
@@ -77,7 +76,6 @@ describe('Update connector', async () => {
         await codeEditorWidget.isTextEditorPresent();
 
         await codeEditorWidget.updateCodeEditorContent(JSON.stringify(newModel));
-        await browser.sleep(1000);
         await connectorContentPage.save();
 
         await expect(await snackBar.isUpdatedSuccessfully('connector')).toBe(true, 'Update snackbar was not displayed properly.');

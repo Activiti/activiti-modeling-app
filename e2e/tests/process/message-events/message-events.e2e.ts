@@ -26,7 +26,7 @@ import { getBackend } from 'ama-testing/e2e';
 import { testConfig } from '../../../test.config';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { Resources } from '../../../../../../e2e/resources/resources';
- import { StringUtil } from '@alfresco/adf-testing';
+import { StringUtil } from '@alfresco/adf-testing';
 import { NodeEntry } from '@alfresco/js-api';
 
 const path = require('path');
@@ -52,11 +52,17 @@ describe('Message Events', () => {
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        project = await backend.project.import(absoluteFilePath, (projectDetails.name + StringUtil.generateRandomString()));
+        project = await backend.project.import(absoluteFilePath, `${projectDetails.name}-${StringUtil.generateRandomString(5)}`);
 
         const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
+    });
+
+    afterAll(async () => {
+        await backend.project.delete(project.entry.id);
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     it('[C316246] Should implement interrupting boundary message event set in the process model', async () => {
@@ -120,11 +126,5 @@ describe('Message Events', () => {
         const message = fileContentJson['bpmn2:definitions']['bpmn2:process']['bpmn2:startEvent']['messageEventDefinition'];
 
         await expect(message._attributes.messageRef).toEqual('Message_0hq81h3');
-    });
-
-    afterAll(async () => {
-        await backend.project.delete(project.entry.id);
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

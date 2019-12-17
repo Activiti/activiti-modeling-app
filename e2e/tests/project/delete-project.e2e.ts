@@ -24,6 +24,7 @@ import { NodeEntry } from '@alfresco/js-api';
 import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';
+import { Logger } from 'ama-testing/e2e';
 
 describe('Delete project', () => {
     const adminUser = {
@@ -49,6 +50,11 @@ describe('Delete project', () => {
     });
 
     afterAll(async () => {
+        try {
+            await backend.project.delete(project.entry.id);
+        } catch (e) {
+            Logger.warn(`${project.entry.name} is not there, no need to delete (?)...\nError: ${e}`);
+        }
         await backend.tearDown();
         await authenticatedPage.logout();
     });

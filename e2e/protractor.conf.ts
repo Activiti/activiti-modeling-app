@@ -27,11 +27,11 @@ let arraySpecs = [];
 
 require('dotenv').config({ path: process.env.ENV_FILE });
 
-let PREFIX = 'e2e-app-';
-if (!!process.env.PREFIX) {
-  PREFIX = `${PREFIX}${process.env.PREFIX}-`;
+let E2E_PREFIX = 'e2e-';
+if (!!process.env.E2E_PREFIX) {
+    E2E_PREFIX = `${E2E_PREFIX}${process.env.E2E_PREFIX}-`;
 } else {
-  PREFIX = `${PREFIX}${os.userInfo().username}-`;
+    E2E_PREFIX = `${E2E_PREFIX}${os.userInfo().username}-`;
 }
 
  let specs = function () {
@@ -148,7 +148,7 @@ exports.config = {
     params: {
         downloadDir: config.paths.download,
         config: { log: true },
-        namePrefix: PREFIX
+        namePrefix: E2E_PREFIX
     },
 
     onPrepare,

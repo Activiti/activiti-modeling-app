@@ -45,7 +45,7 @@ describe('Search project', () => {
         await loginPage.navigateTo();
 
         /* cspell: disable-next-line */
-        project = await backend.project.create('amaqa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
+        project = await backend.project.create(`${browser.params.namePrefix}${UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz')}`);
         await backend.process.create(project.entry.id);
         await loginPage.login(adminUser.user, adminUser.password);
     });

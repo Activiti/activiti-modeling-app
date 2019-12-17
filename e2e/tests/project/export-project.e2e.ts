@@ -50,10 +50,21 @@ describe('Export project', () => {
 
         // clean-up files from download directory
         UtilFile.deleteFilesByPattern(downloadDir, project.entry.name);
+    });
 
+    beforeAll(async () => {
         const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
+    });
+
+    afterEach(async () => {
+        await backend.project.delete(project.entry.id);
+    });
+
+    afterAll(async () => {
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     it('[C286593] Export project without process', async () => {
@@ -74,11 +85,5 @@ describe('Export project', () => {
         await toolBar.downloadFile();
         const downloadedApp = path.join(downloadDir, `${project.entry.name}.zip`);
         await expect(await UtilFile.fileExists(downloadedApp)).toBe(true);
-    });
-
-    afterEach(async () => {
-        await backend.project.delete(project.entry.id);
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

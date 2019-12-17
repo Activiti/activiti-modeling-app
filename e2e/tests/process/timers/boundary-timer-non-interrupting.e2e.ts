@@ -46,7 +46,12 @@ describe('Boundary Timer - Non-Interrupting', async () => {
         const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
+    });
 
+    afterAll(async () => {
+        await backend.project.delete(project.entry.id);
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     it('[C311477] Create process with Boundary Timer (Non-Interrupting) - Cycle', async () => {
@@ -97,11 +102,5 @@ describe('Boundary Timer - Non-Interrupting', async () => {
         await expect(await timerProperties.getTimerType()).toBe('Duration', 'Timer Type should be Duration');
 
         await expect(await timerProperties.durationPropertiesAreDisplayed()).toBe(true, 'Duration properties should be displayed');
-    });
-
-    afterAll(async () => {
-        await backend.project.delete(project.entry.id);
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

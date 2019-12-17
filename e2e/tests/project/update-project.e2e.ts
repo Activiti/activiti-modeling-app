@@ -37,11 +37,11 @@ describe('Update project', () => {
     const createEntityDialog = new CreateEntityDialog();
 
     let backend: Backend;
-    let app: NodeEntry;
+    let project: NodeEntry;
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        app = await backend.project.create();
+        project = await backend.project.create();
 
         const loginPage = LoginPage.get();
         await loginPage.navigateTo();
@@ -49,24 +49,24 @@ describe('Update project', () => {
     });
 
     afterAll(async () => {
-        await backend.project.delete(app.entry.id);
+        await backend.project.delete(project.entry.id);
         await backend.tearDown();
         await authenticatedPage.logout();
     });
 
     it('[C289977] Update project name and description', async () => {
-        const appId = app.entry.id;
-        const updatedAppName = app.entry.name + '-updated';
+        const projectId = project.entry.id;
+        const updatedProjectName = `${project.entry.name}-updated`;
 
         await expect(await dashboardPage.isDashboardListDisplayed()).toBe(true);
-        await dashboardPage.editProject(appId);
-        await createEntityDialog.setEntityDetails(updatedAppName, app.entry.name + ' description');
+        await dashboardPage.editProject(projectId);
+        await createEntityDialog.setEntityDetails(updatedProjectName, project.entry.name + ' description');
 
         await expect(await snackBar.isUpdatedSuccessfully('project')).toBe(true);
-        await expect(await dashboardPage.isProjectInList(appId)).toBe(true);
-        await expect(await dashboardPage.isProjectNameInList(updatedAppName)).toBe(true);
+        await expect(await dashboardPage.isProjectInList(projectId)).toBe(true);
+        await expect(await dashboardPage.isProjectNameInList(updatedProjectName)).toBe(true);
 
-        const appResponse = await backend.project.get(appId);
-        await expect(appResponse[`entry`][`name`]).toEqual(updatedAppName);
+        const updatedProject = await backend.project.get(projectId);
+        await expect(updatedProject[`entry`][`name`]).toEqual(updatedProjectName);
     });
 });

@@ -28,7 +28,7 @@ import { Logger } from 'ama-testing/e2e';
 
 const path = require('path');
 
-xdescribe('Upload project', () => {
+describe('Upload project', () => {
     const adminUser = {
         user: testConfig.ama.user,
         password: testConfig.ama.password
@@ -52,7 +52,7 @@ xdescribe('Upload project', () => {
             const createdProjectId = await dashboardPage.getIdForProjectByItsName(projectName);
             await backend.project.delete(createdProjectId);
         } catch (e) {
-            Logger.warn(`${projectName} is not there, no need to delete (?)...`);
+            Logger.warn(`${projectName} is not there, no need to delete (?)...\nError: ${e}`);
         }
     }
 
@@ -64,11 +64,8 @@ xdescribe('Upload project', () => {
         await loginPage.login(adminUser.user, adminUser.password);
     });
 
-    afterEach(async () => {
-        await cleanupProject(projectDetails.name);
-    });
-
     afterAll(async () => {
+        await cleanupProject(projectDetails.name);
         await backend.tearDown();
         await authenticatedPage.logout();
     });

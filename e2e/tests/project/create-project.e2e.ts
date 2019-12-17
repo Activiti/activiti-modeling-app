@@ -25,7 +25,7 @@ import { Backend } from 'ama-testing/e2e';
 import { getBackend } from 'ama-testing/e2e';
 import { AuthenticatedPage } from 'ama-testing/e2e';
 import { Logger } from 'ama-testing/e2e';
- import { browser } from 'protractor';
+import { browser } from 'protractor';
 
 describe('Create project', () => {
     const adminUser = {
@@ -47,17 +47,22 @@ describe('Create project', () => {
             const createdProjectId = await dashboardPage.getIdForProjectByItsName(projectName);
             await backend.project.delete(createdProjectId);
         } catch (e) {
-            Logger.warn(`${projectName} is not there, no need to delete (?)...`);
+            Logger.warn(`${projectName} is not there, no need to delete (?)...\nError: ${e}`);
         }
     }
 
-    beforeEach(async () => {
+    beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
 
         const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
+    });
 
+    afterAll(async () => {
+        await cleanupProject(project.name);
+        await backend.tearDown();
+        await authenticatedPage.logout();
     });
 
     it('[C284637] Create new project', async () => {
@@ -68,12 +73,5 @@ describe('Create project', () => {
         await expect(await snackBar.isCreatedSuccessfully('project')).toBe(true);
         await browser.navigate().back();
         await expect(await dashboardPage.isProjectNameInList(project.name)).toBe(true);
-
-    });
-
-    afterEach(async () => {
-        await cleanupProject(project.name);
-        await backend.tearDown();
-        await authenticatedPage.logout();
     });
 });

@@ -32,16 +32,17 @@ describe('User Authorization', () => {
         await loginPage.navigateTo();
     });
 
+    afterEach(async () => {
+        await authenticatedPage.logout();
+    });
+
     it('[C289335] Login with user with "ACTIVITI_MODELER" role', async () => {
         await loginPage.login(testConfig.ama.user, testConfig.ama.password);
         await expect(await authenticatedPage.isLoggedIn()).toBe(true);
-        await authenticatedPage.logout();
     });
 
     it('[C289854] Login with user without "ACTIVITI_MODELER" role ', async () => {
         await loginPage.login(testConfig.ama.unauthorized_user, testConfig.ama.unauthorized_user_password);
         await expect(await errorsPage.isUnauthorised()).toBe(true);
-
-        await authenticatedPage.logout();
     });
 });

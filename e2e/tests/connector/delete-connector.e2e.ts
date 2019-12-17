@@ -39,12 +39,12 @@ describe('Delete connector', () => {
     let projectContentPage: ProjectContentPage;
 
     let backend: Backend;
-    let app: NodeEntry;
+    let project: NodeEntry;
     let connector: NodeEntry;
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        app = await backend.project.create();
+        project = await backend.project.create();
 
         const loginPage = LoginPage.get();
         await loginPage.navigateTo();
@@ -52,22 +52,18 @@ describe('Delete connector', () => {
     });
 
     afterAll(async () => {
-        await backend.project.delete(app.entry.id);
+        await backend.project.delete(project.entry.id);
         await backend.tearDown();
         await authenticatedPage.logout();
     });
 
     beforeEach( async() => {
         /* cspell: disable-next-line */
-        connector = await backend.connector.create(app.entry.id, 'qaconnector');
+        connector = await backend.connector.create(project.entry.id, 'qaconnector');
 
-        projectContentPage = new ProjectContentPage(testConfig, app.entry.id);
-        connectorContentPage = new ConnectorContentPage(testConfig, app.entry.id, connector.entry.id);
+        projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
+        connectorContentPage = new ConnectorContentPage(testConfig, project.entry.id, connector.entry.id);
         await connectorContentPage.navigateTo();
-
-        await expect(await projectContentPage.isModelInList('connector', connector.entry.name)).toBe(true, 'Connector should be in the left sidebar');
-        await projectContentPage.clickOnModel('connector', connector.entry.id);
-
         await connectorContentPage.isLoaded();
         await connectorContentPage.deleteConnector();
     });

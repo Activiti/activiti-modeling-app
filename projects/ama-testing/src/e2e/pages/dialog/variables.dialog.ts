@@ -19,7 +19,7 @@ import { element, by } from 'protractor';
 import { GenericDialog } from '../common/generic.dialog';
 import { Calendar } from '../calendar';
 import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
-import { DateTime } from 'ama-testing/e2e/pages/date-time';
+import { DateTime } from '../date-time';
 
 export class VariablesDialog extends GenericDialog {
 

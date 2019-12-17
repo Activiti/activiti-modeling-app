@@ -142,9 +142,7 @@ describe('Create process', async () => {
 
         await processContentPage.save();
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
-
     });
-
 
     it('[C311461] Create a process with User Task with the candidate user', async () => {
         process = await backend.process.create(project.entry.id);
@@ -166,7 +164,6 @@ describe('Create process', async () => {
 
         await processContentPage.save();
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
-
     });
 
     it('[C311462] Create a process with User Task with the candidate group', async () => {
@@ -189,6 +186,5 @@ describe('Create process', async () => {
 
         await processContentPage.save();
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
-
     });
 });

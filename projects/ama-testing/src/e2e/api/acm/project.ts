@@ -20,13 +20,14 @@ import { UtilRandom, Logger } from '../../util';
 import { ACMBackend } from './acm-backend';
 import { E2eRequestApiHelper, E2eRequestApiHelperOptions } from './e2e-request-api.helper';
 import * as fs from 'fs';
+import { browser } from 'protractor';
 
 export class ACMProject {
 
     requestApiHelper: E2eRequestApiHelper;
     tmpFilePath: string;
     endPoint = '/modeling-service/v1/projects/';
-    namePrefix = 'aps-app-';
+    namePrefix = browser.params.namePrefix;
 
     constructor(backend: ACMBackend) {
         this.requestApiHelper = new E2eRequestApiHelper(backend);
@@ -35,7 +36,7 @@ export class ACMProject {
 
     async create(modelName: string = this.getRandomName()): Promise<NodeEntry> {
         try {
-            const project = await this.requestApiHelper.post<NodeEntry>(this.endPoint, { bodyParam: { name: modelName } });
+            const project = await this.requestApiHelper.post<NodeEntry>(this.endPoint, { bodyParam: { name: this.namePrefix + modelName } });
             Logger.info(`[Project] Project created with name: ${project.entry.name} and id: ${project.entry.id}.`);
             return project;
         } catch (error) {
@@ -85,7 +86,11 @@ export class ACMProject {
 
     async delete(projectId: string): Promise<any> {
         Logger.info(`[Project] Delete project ${projectId}`);
-        await this.requestApiHelper.delete(`/modeling-service/v1/projects/${projectId}`);
+        try {
+            await this.requestApiHelper.delete(`/modeling-service/v1/projects/${projectId}`);
+        } catch (error) {
+            throw new Error(`Delete project ${projectId} failed: ${error}`);
+        }
     }
 
     async release(projectId: string): Promise<NodeEntry> {
@@ -101,7 +106,7 @@ export class ACMProject {
         };
 
         if (name) {
-            requestOptions.formParams.name = name;
+            requestOptions.formParams.name = `${browser.params.namePrefix}${name}`;
         }
 
         try {
@@ -117,7 +122,7 @@ export class ACMProject {
 
     private getRandomName(): string {
         /* cspell: disable-next-line */
-        return this.namePrefix + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz');
+        return UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz');
     }
 
     async getModelId(projectId: string, modelType: string, modelName: string): Promise<string> {
