@@ -21,8 +21,13 @@ export const NO_FORM_FIELDS_FOR_INPUT_ERROR = 'no-form-fields-for-input-error';
 export const NO_FORM_FIELDS_FOR_OUTPUT_ERROR = 'no-form-fields-for-output-error';
 
 export const SEND_ALL_VARIABLES_OPTION = 'Send all variables';
-export const SEND_NO_VARIABLES_OPTION = 'Send no variables';
+export const SEND_NO_VARIABLES_OPTION = `Don't send variables`;
 
 export const MODEL_NAME_REGEXP = '^[a-z]([-a-z0-9]{0,24}[a-z0-9])?$';
 
-export const NO_MATCHING_TYPE_VARIABLES = 'There are no variables with the matching type';
+export const NO_MATCHING_TYPE_VARIABLES = 'Create a form variable of the same data type to compare against';
+export const NO_MATCHING_TYPE_FIELDS = 'Create a field of the same data type to compare against';
+export const INVALID_NAME_ERROR = `The name must be in lowercase and between 1 and 26 characters in length. ` +
+`Alphanumeric characters and hyphens are allowed, however the name must begin with a letter and end alphanumerically.`;
+export const DMN_SIMULATION_SUCCESS = `Decision table simulation successful`;
+export const DMN_SIMULATION_NO_RESULT = `Decision table simulation had no results`;

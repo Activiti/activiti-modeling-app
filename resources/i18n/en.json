@@ -15,10 +15,10 @@
         "SAVE_CONNECTOR": "Save connector",
         "SAVE_DECISION_TABLE": "Save decision table",
         "SAVE_UI": "Save UI",
-        "ADD_ACTION": "Add new Action",
+        "ADD_ACTION": "Add new action",
         "HEADER": {
             "APP_NAME": "Modeling Application",
-            "SIGN_OUT": "Sign out",
+            "SIGN_OUT": "Sign Out",
             "SETTINGS": "Settings",
             "ABOUT": "About",
             "LANGUAGE": "Language",
@@ -31,25 +31,25 @@
             "UPDATE": "Update",
             "CLOSE": "Close",
             "EDIT_PROPERTIES": "Edit Process Variables",
-            "EDIT_PROCESS_MESSAGES": "Edit Process Messages",
+            "EDIT_PROCESS_MESSAGES": "Edit Messages",
             "EDIT_FORM_PROPERTIES": "Edit Form Variables",
             "EDIT_VISIBILITY_CONDITIONS": "Edit Visibility Conditions",
             "ERROR": {
                 "TITLE": "Do you want to save it any way?",
                 "SUBTITLE": "Validation errors:",
                 "NAME_DOESNT_MATCH_PATTERN": "The name doesn't match the following pattern",
-                "GENERAL_NAME_VALIDATION": "The name can contain only lowercase letters, numbers and dashes and must not start and end with a dash. It must be at least one character, at most 26 characters long."
+                "GENERAL_NAME_VALIDATION": "The name must be in lowercase and between 1 and 26 characters in length. Alphanumeric characters and hyphens are allowed, however the name must begin with a letter and end alphanumerically."
             },
             "CONFIRM": {
                 "TITLE": "Are you sure?",
                 "SUBTITLE": "Are you sure that you want to do this action?",
                 "BUTTON": "Confirm",
                 "UNSAVED_PAGE": "Are you sure you want to leave without saving",
-                "RELEASE": "Are you sure you want to release and create a new version of this project?",
+                "RELEASE": "Are you sure you want to release a new version of this project?",
                 "TYPES": {
                     "DECISION": "decision table",
                     "DATA": "data",
-                    "UI": "ui",
+                    "UI": "UI",
                     "CONNECTOR": "connector",
                     "FORM": "form",
                     "PROCESS": "process",
@@ -59,7 +59,7 @@
                     "PROJECT": "Are you sure you want to delete this project?",
                     "PROCESS": "Are you sure you want to delete this process?",
                     "FORM": "Are you sure you want to delete this form?",
-                    "UI": "Are you sure you want to delete this ui?",
+                    "UI": "Are you sure you want to delete this UI?",
                     "DATA": "Are you sure you want to delete this data object?",
                     "DECISION_TABLE": "Are you sure you want to delete this decision table?",
                     "CONNECTOR": "Are you sure you want to delete this connector?",
@@ -68,7 +68,7 @@
                 "SAVE": {
                     "PROCESS": "Are you sure you want to save this process?",
                     "FORM": "Are you sure you want to save this form?",
-                    "UI": "Are you sure you want to save this ui?",
+                    "UI": "Are you sure you want to save this UI?",
                     "DATA": "Are you sure you want to save this data object?",
                     "DECISION_TABLE": "Are you sure you want to save this decision table?",
                     "CONNECTOR": "Are you sure you want to save this connector?",
@@ -77,7 +77,7 @@
                 "DOWNLOAD": {
                     "PROCESS": "Are you sure you want to download this process?",
                     "FORM": "Are you sure you want to download this form?",
-                    "UI": "Are you sure you want to download this ui?",
+                    "UI": "Are you sure you want to download this UI?",
                     "DATA": "Are you sure you want to download this data object?",
                     "DECISION_TABLE": "Are you sure you want to download this decision table?",
                     "CONNECTOR": "Are you sure you want to download this connector?",
@@ -89,7 +89,7 @@
             "EDIT": "Edit",
             "DELETE": "Delete",
             "RELEASE": "Release",
-            "SEE_RELEASES": "See releases",
+            "SEE_RELEASES": "View Releases",
             "DOWNLOAD": "Download"
         },
         "SETTINGS": {
@@ -98,27 +98,27 @@
         "HOME": {
             "NEW_MENU": {
                 "LABEL": "NEW",
-                "CREATE_PROJECT_TITLE": "Create new project",
-                "EDIT_PROJECT_TITLE": "Edit project",
-                "PROJECT_CREATED": "The project was successfully created",
-                "PROJECT_UPLOADED": "The project was successfully uploaded",
-                "PROJECT_UPDATED": "The project was successfully updated",
-                "PROJECT_RELEASED": "The project was successfully released",
-                "PROJECT_DELETED": "The project was successfully deleted",
+                "CREATE_PROJECT_TITLE": "Create Project",
+                "EDIT_PROJECT_TITLE": "Edit Project",
+                "PROJECT_CREATED": "Project created",
+                "PROJECT_UPLOADED": "Project uploaded",
+                "PROJECT_UPDATED": "Project saved",
+                "PROJECT_RELEASED": "Project released",
+                "PROJECT_DELETED": "Project deleted",
                 "MENU_ITEMS": {
-                    "CREATE_PROJECT": "Project",
-                    "UPLOAD_PROJECT": "Upload project",
-                    "CREATE_MODEL": "Model"
+                "CREATE_PROJECT": "Create Project",
+                "UPLOAD_PROJECT": "Upload Project",
+                "CREATE_MODEL": "Model"
                 }
             },
             "DIALOGS": {
-                "PROJECT_NAME": "Project name",
-                "PROJECT_DESC": "Project description"
+                "PROJECT_NAME": "Project name:",
+                "PROJECT_DESC": "Project description:"
             },
             "NAVIGATION": {
                 "PROJECTS": {
                     "LABEL": "Projects",
-                    "TOOLTIP": "Published projects"
+                    "TOOLTIP": "Published Projects"
                 },
                 "RELEASES": {
                     "LABEL": "Releases",
@@ -126,7 +126,7 @@
                 },
                 "PROCESSES": {
                     "LABEL": "Processes",
-                    "TOOLTIP": "Published processes"
+                    "TOOLTIP": "Published Processes"
                 },
                 "FAVORITES": {
                     "LABEL": "Favorites",
@@ -139,25 +139,25 @@
                 "COLUMN_CREATED": "Created",
                 "COLUMN_CREATED_BY": "Created By",
                 "COLUMN_OPTIONS": "Options",
-                "NO_ITEMS": "You don't have any items in this list yet.",
-                "NO_FAV_PROCESSES": "You don't have any favourited process yet",
-                "NO_FAV_PROJECTS": "You don't have any favourited project yet",
-                "RELEASE_ID": "Release id",
-                "PROJECT_NAME": "Project name"
+                "NO_ITEMS": "Create a project to make it available here.",
+                "NO_FAV_PROCESSES": "Favorite a process to make it available here.",
+                "NO_FAV_PROJECTS": "Favorite a project to make it available here.",
+                "RELEASE_ID": "Release ID",
+                "PROJECT_NAME": "Project Name"
             },
             "ERROR": {
-                "LOAD_PROJECTS": "Unknown error happened during the loading of projects.",
-                "LOAD_RELEASES": "Unknown error happened during the loading of releases",
-                "LOAD_PROCESSES": "Unknown error happened during the loading of processes."
+                "LOAD_PROJECTS": "We hit a problem loading the projects. Try refreshing the page.",
+                "LOAD_RELEASES": "We hit a problem loading the releases. Try refreshing the page",
+                "LOAD_PROCESSES": "We hit a problem loading the processes. Try refreshing the page"
             }
         },
         "PROJECT": {
-            "BACK_TO": "Back to Projects",
+            "BACK_TO": "Back to projects",
             "NAME": "Project Editor",
             "UPLOAD_FILE": "Upload file",
             "DOWNLOAD_PROJECT": "Download project",
             "PROJECT_VALID": "Project contains no validation errors",
-            "EXPORT_SUCCESS": "Project exported succesfully",
+            "EXPORT_SUCCESS": "Project exported",
             "SETTINGS": {
                 "PROJECT_SETTINGS": "Project editor settings",
                 "CONNECTORS_TAB_LABEL": "Connectors"
@@ -165,21 +165,21 @@
             "IMPORT": "Import",
             "CREATE_NEW": "Create new",
             "SEARCH": "Search",
-            "UPLOAD_FILE_SUCCESS": "The file was successfully uploaded",
+            "UPLOAD_FILE_SUCCESS": "File uploaded",
             "NO_CONTENT": "<empty>",
-            "NO_SELECTION": "Please choose a model to edit from the left sidebar",
+            "NO_SELECTION": "Create a new model or edit an existing one using the sidebar",
             "NEW_MENU": {
                 "LABEL": "NEW",
                 "CREATE": "Create",
                 "IMPORT": "Import",
-                "CREATE_PROCESS_TITLE": "Create new process",
+                "CREATE_PROCESS_TITLE": "Create Process",
                 "MENU_ITEMS": {
                     "CREATE_PROCESS": "Process",
                     "CREATE_CONNECTOR": "Connector",
                     "CREATE_FORM": "Form",
                     "CREATE_UI": "UI",
                     "CREATE_DATA": "Data object",
-                    "CREATE_DECISION_TABLE": "Decision table",
+                    "CREATE_DECISION_TABLE": "Decision Table",
                     "CREATE_FILE": "File"
                 }
             },
@@ -188,164 +188,164 @@
                 "FORMS": "Forms",
                 "CONNECTORS": "Connectors",
                 "DATA": "Data",
-                "DECISION_TABLES": "Decision tables",
+                "DECISION_TABLES": "Decision Tables",
                 "UIS": "UI",
                 "FILES": "Files"
             },
             "PROCESS_DIALOG": {
-                "TITLE_CREATE": "Create new process",
-                "TITLE_UPDATE": "Update process",
+                "TITLE_CREATE": "Create Process",
+                "TITLE_UPDATE": "Update Process",
                 "PROCESS_NAME": "Process name:",
                 "PROCESS_DESC": "Process documentation:",
-                "PROCESS_CREATED": "The process was successfully created",
-                "PROCESS_DELETED": "The process was successfully deleted",
-                "PROCESS_UPDATED": "The process was successfully updated"
+                "PROCESS_CREATED": "Process created",
+                "PROCESS_DELETED": "Process deleted",
+                "PROCESS_UPDATED": "Process saved"
             },
             "CONNECTOR_DIALOG": {
-                "TITLE_CREATE": "Create new connector",
-                "TITLE_UPDATE": "Update connector",
+                "TITLE_CREATE": "Create Connector",
+                "TITLE_UPDATE": "Update Connector",
                 "CONNECTOR_NAME": "Connector name:",
                 "CONNECTOR_DESC": "Connector description:",
-                "CONNECTOR_CREATED": "The connector was successfully created",
-                "CONNECTOR_DELETED": "The connector was successfully deleted",
-                "CONNECTOR_UPDATED": "The connector was successfully updated"
+                "CONNECTOR_CREATED": "Connector created",
+                "CONNECTOR_DELETED": "Connector deleted",
+                "CONNECTOR_UPDATED": "Connector saved"
             },
             "FORM_DIALOG": {
-                "TITLE_CREATE": "Create new form",
-                "TITLE_UPDATE": "Update form",
+                "TITLE_CREATE": "Create Form",
+                "TITLE_UPDATE": "Update Form",
                 "FORM_NAME": "Form name:",
                 "FORM_DESC": "Form description:",
-                "FORM_CREATED": "The form was successfully created",
-                "FORM_DELETED": "The form was successfully deleted",
-                "FORM_UPDATED": "The form was successfully updated"
+                "FORM_CREATED": "Form created",
+                "FORM_DELETED": "Form deleted",
+                "FORM_UPDATED": "Form saved"
             },
             "UI_DIALOG": {
-                "TITLE_CREATE": "Create new UI",
+                "TITLE_CREATE": "Create UI",
                 "TITLE_UPDATE": "Update UI",
                 "UI_NAME": "UI name:",
                 "UI_DESC": "UI description:",
-                "UI_CREATED": "The UI was successfully created",
-                "UI_DELETED": "The UI was successfully deleted",
-                "UI_UPDATED": "The UI was successfully updated"
+                "UI_CREATED": "UI created",
+                "UI_DELETED": "UI deleted",
+                "UI_UPDATED": "UI saved"
             },
             "DATA_DIALOG": {
-                "TITLE_CREATE": "Create new data object",
-                "TITLE_UPDATE": "Update data object",
+                "TITLE_CREATE": "Create Data Object",
+                "TITLE_UPDATE": "Update Data Object",
                 "DATA_NAME": "Data object name:",
                 "DATA_DESC": "Data object description:",
-                "DATA_CREATED": "The data object was successfully created",
-                "DATA_DELETED": "The data object was successfully deleted",
-                "DATA_UPDATED": "The data object was successfully updated"
+                "DATA_CREATED": "Data object created",
+                "DATA_DELETED": "Data object deleted",
+                "DATA_UPDATED": "Data object saved"
             },
             "DECISION_TABLE_DIALOG": {
-                "TITLE_CREATE": "Create new decision table",
-                "TITLE_UPDATE": "Update table",
+                "TITLE_CREATE": "Create Decision Table",
+                "TITLE_UPDATE": "Update Decision Table",
                 "DECISION_TABLE_NAME": "Decision table name:",
                 "DECISION_TABLE_DESC": "Decision table description:",
-                "DECISION_TABLE_CREATED": "The decision table was successfully created",
-                "DECISION_TABLE_DELETED": "The decision table was successfully deleted",
-                "DECISION_TABLE_UPDATED": "The decision table was successfully updated"
+                "DECISION_TABLE_CREATED": "Decision table created",
+                "DECISION_TABLE_DELETED": "Decision table deleted",
+                "DECISION_TABLE_UPDATED": "Decision table saved"
             },
             "FILE_DIALOG": {
-                "TITLE_CREATE": "Create new File",
+                "TITLE_CREATE": "Create File",
                 "TITLE_UPDATE": "Update File",
                 "FILE_NAME": "File name:",
                 "FILE_DESC": "FIle description:",
-                "FILE_CREATED": "The File was successfully created",
-                "FILE_DELETED": "The File was successfully deleted",
-                "FILE_UPDATED": "The File was successfully updated"
+                "FILE_CREATED": "File created",
+                "FILE_DELETED": "File deleted",
+                "FILE_UPDATED": "File saved"
             },
             "ACTION_DIALOG": {
                 "ACTION_DETAILS": "Action details",
                 "ACTION_NAME": "Action name",
                 "ACTION_DESC": "Action description",
-                "ADD_ACTION": "Add new Action",
-                "DEL_ACTION": "Delete Action"
+                "ADD_ACTION": "Add action",
+                "DEL_ACTION": "Delete action"
             },
             "ERROR": {
-                "UPLOAD_FILE": "Upload error.",
-                "DELETE_PROJECT": "Unknown error happened during the deleting the project.",
-                "CHANGE_FAVORITE": "Unknown error happened during the changing favorite state of the project.",
-                "DELETE_PROCESS": "Unknown error happened during the deleting the process.",
-                "LOAD_MODELS": "Unknown error happened while loading the models.",
-                "RELEASE_PROJECT": "Error happened while releasing the project.",
+                "UPLOAD_FILE": "We hit a problem uploading the file. Try uploading it again.",
+                "DELETE_PROJECT": "We hit a problem deleting the project. Try deleting it again.",
+                "CHANGE_FAVORITE": "We hit a problem favoriting that project. Try favoriting it again.",
+                "DELETE_PROCESS": "We hit a problem deleting the process. Try deleting it again.",
+                "LOAD_MODELS": "We hit a problem loading the models. Try refreshing the page.",
+                "RELEASE_PROJECT": "We hit a problem releasing the project. Try releasing it again.",
                 "CREATE_PROCESS": {
-                    "DUPLICATION": "Process with the same name already exists",
-                    "GENERAL": "Unknown error happened during the creating a new process."
+                    "DUPLICATION": "A process with that name already exists",
+                    "GENERAL": "We hit a problem creating the process. Try creating it again."
                 },
                 "UPDATE_PROCESS": {
-                    "DUPLICATION": "Process with the same name already exists",
-                    "GENERAL": "Unknown error happened during the updating the process.",
-                    "EMPTY_NAME": "The model name cannot be empty"
+                    "DUPLICATION": "A process with that name already exists",
+                    "GENERAL": "We hit a problem saving the process. Try saving it again.",
+                    "EMPTY_NAME": "Name cannot be empty"
                 },
                 "CREATE_CONNECTOR": {
-                    "DUPLICATION": "Connector with the same name already exists",
-                    "GENERAL": "Unknown error happened during the creating a new connector."
+                    "DUPLICATION": "A connector with that name already exists",
+                    "GENERAL": "We hit a problem creating the connector. Try creating it again."
                 },
                 "UPDATE_CONNECTOR": {
-                    "DUPLICATION": "Connector with the same name already exists",
-                    "GENERAL": "Unknown error happened during the updating the connector."
+                    "DUPLICATION": "A connector with that name already exists",
+                    "GENERAL": "We hit a problem saving the connector. Try saving it again."
                 },
                 "CREATE_FORM": {
-                    "DUPLICATION": "Form with the same name already exists",
-                    "GENERAL": "Unknown error happened during the creating a new form."
+                    "DUPLICATION": "A form with that name already exists",
+                    "GENERAL": "We hit a problem creating the form. Try creating it again."
                 },
                 "UPDATE_FORM": {
-                    "DUPLICATION": "Form with the same name already exists",
-                    "GENERAL": "Unknown error happened during the updating the form."
+                    "DUPLICATION": "A form with that name already exists",
+                    "GENERAL": "We hit a problem saving the form. Try saving it again."
                 },
                 "CREATE_UI": {
-                    "DUPLICATION": "UI with the same name already exists",
-                    "GENERAL": "Unknown error happened during the creating a new ui."
+                    "DUPLICATION": "A UI with that name already exists",
+                    "GENERAL": "We hit a problem creating the UI. Try creating it again."
                 },
                 "UPDATE_UI": {
-                    "DUPLICATION": "UI with the same name already exists",
-                    "GENERAL": "Unknown error happened during the updating the ui."
+                    "DUPLICATION": "A UI with that name already exists",
+                    "GENERAL": "We hit a problem saving the UI. Try saving it again."
                 },
                 "CREATE_DECISION_TABLE": {
-                    "DUPLICATION": "Decision table with the same name already exists",
-                    "GENERAL": "Unknown error happened during the creating a new decision table."
+                    "DUPLICATION": "A decision table with that name already exists",
+                    "GENERAL": "We hit a problem creating the decision table. Try creating it again."
                 },
                 "UPDATE_DECISION_TABLE": {
-                    "DUPLICATION": "Decision table with the same name already exists",
-                    "GENERAL": "Unknown error happened during the updating the decision table."
+                    "DUPLICATION": "A decision table with that name already exists",
+                    "GENERAL": "We hit a problem saving the decision table. Try saving it again."
                 },
                 "CREATE_DATA": {
-                    "DUPLICATION": "Data object with the same name already exists",
-                    "GENERAL": "Unknown error happened during the creating a new data object."
+                    "DUPLICATION": "A data object with that name already exists",
+                    "GENERAL": "We hit a problem creating the data object. Try creating it again."
                 },
                 "UPDATE_DATA": {
-                    "DUPLICATION": "Data object with the same name already exists",
-                    "GENERAL": "Unknown error happened during the updating the data object."
+                    "DUPLICATION": "A data object with that name already exists",
+                    "GENERAL": "We hit a problem saving the data object. Try saving it again."
                 },
                 "CREATE_PROJECT": {
-                    "DUPLICATION": "Project with the same name already exists",
-                    "GENERAL": "Unknown error happened during the creating a new project."
+                    "DUPLICATION": "A project with that name already exists",
+                    "GENERAL": "We hit a problem creating the project. Try creating it again."
                 },
                 "UPDATE_PROJECT": {
-                    "DUPLICATION": "Project with the same name already exists",
-                    "GENERAL": "Unknown error happened during the updating the project."
+                    "DUPLICATION": "A project with that name already exists",
+                    "GENERAL": "We hit a problem saving the project. Try saving it again."
                 },
                 "UPLOAD_PROJECT": {
-                    "DUPLICATION": "Project with the same name already exists",
-                    "GENERAL": "Unknown error happened during the upload of the project."
+                    "DUPLICATION": "A project with that name already exists",
+                    "GENERAL": "We hit a problem uploading the project. Try uploading it again."
                 },
-                "GET_PROJECT": "Unknown error happened during the loading of project.",
+                "GET_PROJECT": "We hit a problem loading the project. Try refreshing the page.",
                 "CREATE_FILE": {
-                    "DUPLICATION": "File with the same name already exists",
-                    "GENERAL": "Unknown error happened during the creating a new file."
+                    "DUPLICATION": "A file with that name already exists",
+                    "GENERAL": "We hit a problem creating the file. Try creating it again."
                 },
                 "UPDATE_FILE": {
-                    "DUPLICATION": "File with the same name already exists",
-                    "GENERAL": "Unknown error happened during the updating the file."
+                    "DUPLICATION": "A file with that name already exists",
+                    "GENERAL": "We hit a problem saving the file. Try saving it again."
                 }
             }
         },
         "PROCESS_EDITOR": {
             "TABS": {
-                "PROCESS_EDITOR": "Process editor",
-                "JSON_EDITOR": "XML editor",
-                "EXTENSIONS_EDITOR": "Extensions editor"
+                "PROCESS_EDITOR": "Process Editor",
+                "JSON_EDITOR": "XML Editor",
+                "EXTENSIONS_EDITOR": "Extensions Editor"
             },
             "PRIORITIES": {
                 "LOW": "0",
@@ -353,15 +353,15 @@
                 "HIGH": "2"
             },
             "ACTIONS": {
-                "ZOOM_IN": "Zoom in",
-                "ZOOM_OUT": "Zoom out",
+                "ZOOM_IN": "Zoom In",
+                "ZOOM_OUT": "Zoom Out",
                 "UNDO": "Undo",
                 "REDO": "Redo",
-                "LASSO_TOOL": "Activate the lasso tool"
+                "LASSO_TOOL": "Lasso tool"
             },
             "ELEMENT_PROPERTIES": {
                 "PROPERTIES": "Properties",
-                "ID": "id",
+                "ID": "ID",
                 "NAME": "Name",
                 "VERSION": "Version",
                 "VARIABLES": "Variables",
@@ -383,31 +383,31 @@
                 "ACTIVITY_NAME": "Activity name",
                 "PROCESS_VARIABLE": "Process variable",
                 "PROCESS_VARIABLES": "Process variables",
-                "EXPRESSION": "Condition Expression",
+                "EXPRESSION": "Condition expression",
                 "FORM_SELECTOR": "Form selector",
                 "DEFAULT_SEQUENCE_FLOW": "Default sequence flow"
             },
             "PALETTE": {
-                "HAND_TOOL": "Activate the hand tool",
-                "CONNECT_TOOL": "Activate the global connect tool",
-                "SPACE_TOOL": "Activate the create/remove space tool",
-                "LASSO_TOOL": "Activate the lasso tool",
-                "START_EVENT": "Create Start Event",
-                "END_EVENT": "Create End Event",
-                "INTERMEDIATE_THROW_EVENT": "Create Intermediate Throw Event",
+                "HAND_TOOL": "Hand tool",
+                "CONNECT_TOOL": "Global connect tool",
+                "SPACE_TOOL": "Create/remove space tool",
+                "LASSO_TOOL": "Lasso tool",
+                "START_EVENT": "Create start event",
+                "END_EVENT": "Create end event",
+                "INTERMEDIATE_THROW_EVENT": "Create intermediate throw event",
                 "START_EVENT_SIGNAL": "Create Start Event Signal",
                 "INTERMEDIATE_CATCH_EVENT_SIGNAL": "Create Intermediate Catch Event Signal",
                 "INTERMEDIATE_THROW_EVENT_SIGNAL": "Create Intermediate Throw Event Signal",
-                "GATEWAY": "Create Gateway",
-                "USER_TASK": "User Task",
-                "SERVICE_TASK": "Service Task",
-                "CALL_ACTIVITY": "Call Activity",
+                "GATEWAY": "Create gateway",
+                "USER_TASK": "Create user task",
+                "SERVICE_TASK": "Create service task",
+                "CALL_ACTIVITY": "Create call activity",
                 "CONTAINER": "Dedicated services",
-                "SUB_PROCESS": "Create SubProcess expanded",
-                "PARTICIPANT": "Pool"
+                "SUB_PROCESS": "Create sub-process",
+                "PARTICIPANT": "Create pool"
             },
-            "UPLOAD_SUCCESS": "The process was successfully uploaded",
-            "PROCESS_UPDATED": "The process was successfully updated",
+            "UPLOAD_SUCCESS": "Process uploaded",
+            "PROCESS_UPDATED": "Process saved",
             "SELECT_PROCESS_VARIABLE": "Select process variable",
             "ERRORS": {
                 "NO_PROCESS_PROPERTIES": "No process properties.",
@@ -419,32 +419,32 @@
             },
             "PROPERTIES": {
                 "TABS": {
-                    "VIEWER": "Properties viewer",
-                    "JSON_EDITOR": "JSON editor"
+                    "VIEWER": "Properties Viewer",
+                    "JSON_EDITOR": "JSON Editor"
                 },
                 "TABLE": {
                     "COLUMN_NAME": "Name",
                     "COLUMN_TYPE": "Type",
                     "COLUMN_REQUIRED": "Required",
                     "COLUMN_VALUE": "Value",
-                    "NO_PROPERTIES": "You don't have any property selected"
+                    "NO_PROPERTIES": "Create or select a process variable to edit its details"
                 },
                 "ERRORS": {
-                    "EMPTY_NAME": "Name field cannot be empty"
+                    "EMPTY_NAME": "A name is required"
                 }
             }
         },
         "CONNECTOR_EDITOR": {
-            "UPLOAD_SUCCESS": "The connector was successfully uploaded",
+            "UPLOAD_SUCCESS": "Connector uploaded",
             "NAME": "Connector Editor",
             "TABS": {
-                "CONNECTOR_EDITOR": "Connector editor",
-                "JSON_EDITOR": "JSON editor"
+                "CONNECTOR_EDITOR": "Connector Editor",
+                "JSON_EDITOR": "JSON Editor"
             },
             "EDITOR": {
-                "CONNECTOR_DETAILS": "Connector details",
-                "INPUTS": "Input parameters",
-                "OUTPUTS": "Output parameters",
+                "CONNECTOR_DETAILS": "Connector Details",
+                "INPUTS": "Input Parameters",
+                "OUTPUTS": "Output Parameters",
                 "ACTIONS": "Actions",
                 "ADD_NEW_PARAMETER": "Add new parameter",
                 "NAME": "Name",
@@ -456,28 +456,28 @@
                 "REQUIRED": "Required"
             },
             "ERRORS": {
-                "GET_CONNECTOR": "Unknown error happened during loading of the connector, please try again."
+                "GET_CONNECTOR": "We hit a problem loading the connector. Try refreshing the page."
             }
         },
         "FORM_EDITOR": {
-            "UPLOAD_SUCCESS": "The form was successfully uploaded",
+            "UPLOAD_SUCCESS": "Form uploaded",
             "TABS": {
-                "FORM_EDITOR": "Form editor",
-                "JSON_EDITOR": "JSON editor"
+                "FORM_EDITOR": "Form Editor",
+                "JSON_EDITOR": "JSON Editor"
             },
-            "FORM_VARIABLES": "Form variables",
+            "FORM_VARIABLES": "Form Variables",
             "VISIBLITY_CONDITIONS": {
                 "DEPENDS": "Depends on",
                 "OPERATOR": "If it's",
                 "VALUE": "Value",
-                "NEXT_CONDITION": "Next condition operator",
-                "NO_PROPERTY": "No property selected",
+                "NEXT_CONDITION": "Condition Operator",
+                "NO_PROPERTY": "Create or select a visibility condition to edit its details",
                 "FIELDS": "Fields",
                 "VARIABLE": "Variable",
                 "SELECT_FIELD": "Select a field",
                 "SELECT_VARIABLE": "Select a variable",
-                "FORM_FIELD": "Form field",
-                "NEXT_OPERATOR": "Next condition operator"
+                "FORM_FIELD": "Form Field",
+                "NEXT_OPERATOR": "Condition operator"
 
             },
             "FIELD_PROPERTIES": {
@@ -485,8 +485,8 @@
                 "NAME": "Name",
                 "COLUMNS": "Number of columns",
                 "REQUIRED": "Required",
-                "MULTIPLE_UPLOAD": "Allow multiple files to be attached",
-                "LINK_FILE": "Just link to files, do not copy files to Alfresco Process Services (this also means files cannot be uploaded from one of a user's devices)",
+                "MULTIPLE_UPLOAD": "Allow multiple file attachments",
+                "LINK_FILE": "Only link to files, do not upload them",
                 "FILE_SOURCE": "File source",
                 "ALL_SOURCES": "All file sources",
                 "LOCAL_FILE": "Local file",
@@ -494,9 +494,9 @@
                 "COLSPAN": "Colspan",
                 "LABEL": "Label",
                 "ID": "ID",
-                "OVERRIDE_ID": "Override ID?",
+                "OVERRIDE_ID": "Override ID",
                 "VALUE": "Text to display",
-                "DISPLAY_TEXT": "Display text",
+                "DISPLAY_TEXT": "Text to display",
                 "MIN_LENGTH": "Min length",
                 "MAX_LENGTH": "Max length",
                 "MIN_VALUE": "Min value",
@@ -508,15 +508,15 @@
                 "MIN_DATE": "Min Date",
                 "MAX_DATE": "Max Date",
                 "DATE_DISPLAY_FORMAT": "Date display format",
-                "DATE_FORMAT_PREVIEW": "Current date using custom format",
+                "DATE_FORMAT_PREVIEW": "Today's date",
                 "CURRENCY": "Currency",
-                "DECIMALS": "Enable decimals",
+                "DECIMALS": "Allow decimals",
                 "HYPERLINK_URL": "Hyperlink URL",
                 "ALLOW_COLLAPSE": "Allow collapse",
                 "COLLAPSE_BY_DEFAULT": "Collapse by default",
                 "REST_SERVICE": {
                     "DIALOG_TITLE": "URL test",
-                    "REST_URL": "Rest URL",
+                    "REST_URL": "REST URL",
                     "TEST_BUTTON": "Test",
                     "RESPONSE_PATH": "Path to array in JSON response",
                     "ID_PROP": "ID property",
@@ -527,17 +527,17 @@
                     "ADD_OPTION": "Add a new option",
                     "LABEL": "Label",
                     "ID": "ID",
-                    "INFO": "This is the 'empty value' option. Selecting this at runtime is taken to mean 'no value' or 'empty'. This is allowed for optional fields, but not for required fields.",
-                    "CLEAR_SELECTION": "Clear selection",
+                    "INFO": "This is the 'empty value' option. Selecting this at runtime equals 'no value' or 'empty'. This can only be selected if the field isn't mandatory.",
+                    "CLEAR_SELECTION": "Remove default",
                     "OPTIONS": "Options"
                 },
                 "ADVANCED_RADIO_BUTTON": {
                     "MANUAL": "Manual",
-                    "REST_SERVICE": "Rest Service"
+                    "REST_SERVICE": "REST Service"
                 }
             },
             "EDITOR": {
-                "ADD_NEW_TAB": "Add new tab",
+                "ADD_NEW_TAB": "Add tab",
                 "DELETE_TAB": "Delete tab",
                 "ADD_NEW_OUTCOME": "Add outcome",
                 "DELETE_OUTCOME": "Delete outcome",
@@ -546,39 +546,39 @@
                 "MOVE": "Move"
             },
             "ERRORS": {
-                "GET_FORM": "Unknown error happened during loading of the form, please try again.",
-                "DELETE_FORM": "Unknown error happened during deleting the form, please try again."
+                "GET_FORM": "We hit a problem loading the form. Try refreshing the page.",
+                "DELETE_FORM": "We hit a problem deleting the form. Try deleting it again."
             }
         },
         "UI_EDITOR": {
-            "UPLOAD_SUCCESS": "The UI was successfully uploaded",
+            "UPLOAD_SUCCESS": "UI uploaded",
             "TABS": {
-                "UI_EDITOR": "UI editor",
-                "JSON_EDITOR": "JSON editor"
+                "UI_EDITOR": "UI Editor",
+                "JSON_EDITOR": "JSON Editor"
             },
             "EDITOR": {
-                "DETAILS": "UI details",
+                "DETAILS": "UI Details",
                 "DESCRIPTION": "Description",
                 "NAME": "Name",
                 "TEMPLATE": "Template"
             },
             "ERRORS": {
-                "GET_UI": "Unknown error happened during loading of the ui, please try again.",
-                "DELETE_UI": "Unknown error happened during deleting the ui, please try again."
+                "GET_UI": "We hit a problem loading the UI. Try refreshing the page.",
+                "DELETE_UI": "We hit a problem deleting the UI. Try deleting it again."
             }
         },
         "DATA_EDITOR": {
-            "UPLOAD_SUCCESS": "The data object was successfully uploaded",
+            "UPLOAD_SUCCESS": "Data object uploaded",
             "TABS": {
-                "DATA_EDITOR": "Data object editor",
-                "JSON_EDITOR": "JSON editor"
+                "DATA_EDITOR": "Data Object Editor",
+                "JSON_EDITOR": "JSON Editor"
             },
 
             "EDITOR": {
             },
             "ERRORS": {
-                "GET_DATA": "Unknown error happened during loading of the data object, please try again.",
-                "DELETE_DATA": "Unknown error happened during deleting the data object, please try again."
+                "GET_DATA": "We hit a problem loading the data object. Try refreshing the page.",
+                "DELETE_DATA": "We hit a problem deleting the data object. Try deleting it again."
             }
         },
         "DECISION_TABLE_EDITOR": {
@@ -587,41 +587,41 @@
                 "NAME": "Name",
                 "SIMULATOR": "Simulator"
             },
-            "UPLOAD_SUCCESS": "The decision table was successfully uploaded",
+            "UPLOAD_SUCCESS": "Decision table uploaded",
             "TABS": {
-                "DECISION_TABLE_EDITOR": "Decision table editor",
-                "JSON_EDITOR": "JSON editor"
+                "DECISION_TABLE_EDITOR": "Decision Table Editor",
+                "JSON_EDITOR": "JSON Editor"
             },
             "EDITOR": {
             },
             "ERRORS": {
-                "GET_DECISION_TABLE": "Unknown error happened during loading of the decision table, please try again.",
-                "DELETE_DECISION_TABLE": "Unknown error happened during deleting the decision table, please try again.",
+                "GET_DECISION_TABLE": "We hit a problem loading the decision table. Try refreshing the page.",
+                "DELETE_DECISION_TABLE": "We hit a problem deleting the decision table. Try deleting it again.",
                 "INVALID_DECISION_TABLE_NAME": "Invalid decision table name"
             }
         },
         "FILE_EDITOR": {
-            "UPLOAD_SUCCESS": "The file was successfully uploaded",
+            "UPLOAD_SUCCESS": "File uploaded",
             "TABS": {
-                "FILE_EDITOR": "File editor",
-                "JSON_EDITOR": "Text editor"
+                "FILE_EDITOR": "File Editor",
+                "JSON_EDITOR": "Text Editor"
             },
             "EDITOR": {
-                "DETAILS": "File details",
+                "DETAILS": "File Details",
                 "DESCRIPTION": "Description",
                 "NAME": "Name",
                 "TEMPLATE": "Template"
             },
             "ERRORS": {
-                "GET_FILE": "Unknown error happened during loading of the file, please try again.",
-                "DELETE_FILE": "Unknown error happened during deleting the file, please try again."
+                "GET_FILE": "We hit a problem loading the file. Try refreshing the page.",
+                "DELETE_FILE": "We hit a problem deleting the file. Try deleting it again."
             }
         },
         "GENERAL": {
             "ERRORS": {
                 "CHANGE_USER": "Change user",
-                "NOT_VALID_JSON": "Not valid JSON object.",
-                "NOT_VALID_SCHEMA": "The JSON object does not match to schema."
+                "NOT_VALID_JSON": "Invalid JSON object",
+                "NOT_VALID_SCHEMA": "The JSON object does not match the schema"
             }
         }
     },
@@ -629,7 +629,7 @@
     "ABOUT" : {
         "TITLE": "Plugins",
         "TABLE_HEADERS": {
-            "ID": "Id",
+            "ID": "ID",
             "NAME": "Name",
             "VERSION": "Version",
             "VENDOR": "Vendor",

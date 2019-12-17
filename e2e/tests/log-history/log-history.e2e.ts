@@ -41,7 +41,7 @@ describe('Log history', () => {
     const initiator = 'Process Editor';
 
     const errorMessage = {
-        successfully: 'The process was successfully updated',
+        successfully: 'Process saved',
     };
 
     const authenticatedPage = new AuthenticatedPage(testConfig);

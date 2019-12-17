@@ -1,16 +1,16 @@
 {
     "CONNECTOR_EDITOR": {
-        "UPLOAD_SUCCESS": "The connector was successfully uploaded",
+        "UPLOAD_SUCCESS": "Connector uploaded",
         "TABS": {
-            "CONNECTOR_EDITOR": "Connector editor",
-            "JSON_EDITOR": "JSON editor"
+            "CONNECTOR_EDITOR": "Connector Editor",
+            "JSON_EDITOR": "JSON Editor"
         },
         "ERRORS": {
-            "GET_CONNECTOR": "Unknown error happened during loading of the connector, please try again."
+            "GET_CONNECTOR": "We hit a problem loading the connector. Try uploading it again."
         },
         "DIALOG": {
-            "TITLE": "Connector editor's settings",
-            "SHOW": "Show connectors with parent template on the left sidebar",
+            "TITLE": "Connector Editor Settings",
+            "SHOW": "Show connectors with templates on the left sidebar",
             "CANCEL": "Cancel",
             "APPLY": "Apply"
         }

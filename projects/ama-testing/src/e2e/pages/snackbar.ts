@@ -32,37 +32,37 @@ export class SnackBar extends GenericWebElement {
 
     async isCreatedSuccessfully(itemType: string): Promise<boolean> {
         return this.waitForMessage(
-            `The ${itemType} was successfully created`
+            `${this.firstUpperCase(itemType)} created`
         );
     }
 
     async isUpdatedSuccessfully(itemType: string): Promise<boolean> {
         return this.waitForMessage(
-            `The ${itemType} was successfully updated`
+            `${this.firstUpperCase(itemType)} saved`
         );
     }
 
     async isUploadedSuccessfully(itemType: string): Promise<boolean> {
         return this.waitForMessage(
-            `The ${itemType} was successfully uploaded`
+            `${this.firstUpperCase(itemType)} uploaded`
         );
     }
 
     async isDeletedSuccessfully(itemType: string): Promise<boolean> {
         return this.waitForMessage(
-            `The ${itemType} was successfully deleted`
+            `${this.firstUpperCase(itemType)} deleted`
         );
     }
 
     async isReleasedSuccessfully(): Promise<boolean> {
         return this.waitForMessage(
-            `The project was successfully released`
+            `Project released`
         );
     }
 
     async isNotReleased(): Promise<boolean> {
         return this.waitForMessage(
-            `Error happened while releasing the project.`
+            `We hit a problem releasing the project. Try releasing it again.`
         );
     }
 
@@ -73,5 +73,9 @@ export class SnackBar extends GenericWebElement {
         } catch {
             return false;
         }
+    }
+
+    firstUpperCase(string): string {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 }

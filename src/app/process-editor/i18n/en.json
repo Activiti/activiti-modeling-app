@@ -17,9 +17,9 @@
             "SEQUENCE": "Sequence"
         },
         "TABS": {
-            "DIAGRAM_EDITOR": "Diagram editor",
-            "RAW_EDITOR": "XML editor",
-            "EXTENSIONS_EDITOR": "Extensions editor"
+            "DIAGRAM_EDITOR": "Diagram Editor",
+            "RAW_EDITOR": "XML Editor",
+            "EXTENSIONS_EDITOR": "Extensions Editor"
         },
         "ACTIONS": {
             "ZOOM_IN": "Zoom in",
@@ -35,7 +35,7 @@
             "ERROR": "Error",
             "MAPPING_TYPE": "Mapping type",
             "SEND_ALL_VARIABLES": "Send all variables",
-            "SEND_NO_VARIABLES": "Send no variables",
+            "SEND_NO_VARIABLES": "Don't send variables",
             "SIGNAL_NAME": "Signal name",
             "ERROR_NAME": "Error name",
             "ERROR_CODE": "Error code",
@@ -128,8 +128,8 @@
             "TEXT_ANNOTATION": "Text annotation"
         },
         "PROPERTIES_BUTTON": "Properties",
-        "UPLOAD_SUCCESS": "The process was successfully uploaded",
-        "PROCESS_UPDATED": "The process was successfully updated",
+        "UPLOAD_SUCCESS": "Process uploaded",
+        "PROCESS_UPDATED": "Process saved",
         "ERRORS": {
             "NO_PROCESS_VARIABLES": "No process variables.",
             "NO_SUB_PROCESS_VARIABLES": "No subprocess variables.",
