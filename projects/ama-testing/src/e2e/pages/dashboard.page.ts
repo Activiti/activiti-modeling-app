@@ -165,6 +165,12 @@ export class DashboardPage extends GenericPage {
         await BrowserActions.click(projectReleaseButton);
     }
 
+    async downloadProject(projectId: string): Promise<void> {
+        await this.openContextMenuFor(projectId);
+        const projectDownloadButton = this.getProject(`project-download-${projectId}`);
+        await BrowserActions.click(projectDownloadButton);
+    }
+
     async navigateToReleaseView(projectId: string): Promise<void> {
         await this.openContextMenuFor(projectId);
         const projectReleasesButton = this.getProject(`project-releases-${projectId}`);

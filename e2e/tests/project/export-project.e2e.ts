@@ -41,15 +41,19 @@ describe('Export project', () => {
 
     let backend: Backend;
     let project: NodeEntry;
+    let projectId: string;
+    let downloadedApp: string;
 
     const downloadDir = browser.params.downloadDir;
 
     beforeEach(async () => {
         backend = await getBackend(testConfig).setUp();
         project = await backend.project.create();
+        projectId = project.entry.id;
 
         // clean-up files from download directory
         UtilFile.deleteFilesByPattern(downloadDir, project.entry.name);
+        downloadedApp = path.join(downloadDir, `${project.entry.name}.zip`);
     });
 
     beforeAll(async () => {
@@ -68,7 +72,6 @@ describe('Export project', () => {
     });
 
     it('[C286593] Export project without process', async () => {
-        const projectId = project.entry.id;
         await dashboardPage.navigateToProject(projectId);
         await toolBar.downloadFile();
 
@@ -76,14 +79,21 @@ describe('Export project', () => {
         await expect(await confirmationDialog.getSubTitleText()).toBe('Validation errors:');
         await expect(await confirmationDialog.getMessageText(1)).toBe('Project must contain at least one process');
         await expect(await confirmationDialog.getTotalMessageCount()).toBe(1);
+        await confirmationDialog.reject();
     });
 
     it('[C286635] Export project with process', async () => {
-        const projectId = project.entry.id;
         await backend.process.create(project.entry.id);
+        await toolBar.goToHome();
         await dashboardPage.navigateToProject(projectId);
         await toolBar.downloadFile();
-        const downloadedApp = path.join(downloadDir, `${project.entry.name}.zip`);
+        await expect(await UtilFile.fileExists(downloadedApp)).toBe(true);
+    });
+
+    it('[C325000] Export project from Dashboard', async () => {
+        await backend.process.create(project.entry.id);
+        await toolBar.goToHome();
+        await dashboardPage.downloadProject(projectId);
         await expect(await UtilFile.fileExists(downloadedApp)).toBe(true);
     });
 });
