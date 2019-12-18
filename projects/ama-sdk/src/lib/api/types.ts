@@ -305,6 +305,13 @@ export interface PaginatedEntries<T> {
     pagination: Pagination;
 }
 
+export interface PaginatedList<T> {
+    list: {
+        entries: Array<{ entry: T }>;
+        pagination: Pagination;
+    };
+}
+
 export interface ServerSideSorting {
     key: string;
     direction: string;
