@@ -25,7 +25,8 @@ import { EditorComponent } from 'ngx-monaco-editor';
                 (keyup)="onChange()"
                 [options]="editorOptions"
                 [(ngModel)]="value"
-                (onInit)="onInit($event)">
+                (onInit)="onInit($event)"
+                (onDidChangeConfiguration)="onConfigurationChange($event)">
             </ngx-monaco-editor>
     `
 })
@@ -38,21 +39,28 @@ export class PropertiesViewerJsonInputComponent {
 
     @ViewChild('editor') editor: EditorComponent;
 
+    monacoEditor: any;
+
     editorOptions = {
         language: 'json',
         readOnly: this.disabled
     };
 
     onInit(editor) {
-        this.editor.registerOnChange((changes) => {
-            if (!this.editor.options.readOnly || this.editor.options.readOnly !== this.disabled) {
-                editor.updateOptions({
-                    language: 'json',
-                    readOnly: this.disabled
-                });
-            }
-            this.value = changes;
+        this.monacoEditor = editor;
+        this.monacoEditor.updateOptions({
+            language: 'json',
+            readOnly: this.disabled
         });
+    }
+
+    onConfigurationChange(configuration) {
+        if (configuration.readOnly === undefined || configuration.readOnly !== this.disabled) {
+            this.monacoEditor.updateOptions({
+                language: 'json',
+                readOnly: this.disabled
+            });
+        }
     }
 
     onChange() {
