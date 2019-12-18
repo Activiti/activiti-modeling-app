@@ -201,19 +201,19 @@ export interface ConnectorParameter {
     type: string;
     required?: boolean;
 }
-
 export interface ConnectorContent {
     name: string;
     description?: string;
-    actions?: ConnectorActionData;
+    actions?: ConnectorFeatureData;
+    events?: ConnectorFeatureData;
     template?: string;
 }
 
-export interface ConnectorActionData {
-    [actionId: string]: ConnectorAction;
+export interface ConnectorFeatureData {
+    [actionId: string]: ConnectorFeature;
 }
 
-export interface ConnectorAction {
+export interface ConnectorFeature {
     id: string;
     name: string;
     description?: string;

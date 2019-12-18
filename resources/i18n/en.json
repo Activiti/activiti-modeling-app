@@ -16,6 +16,7 @@
         "SAVE_DECISION_TABLE": "Save decision table",
         "SAVE_UI": "Save UI",
         "ADD_ACTION": "Add new action",
+        "ADD_EVENT": "Add new event",
         "HEADER": {
             "APP_NAME": "Modeling Application",
             "SIGN_OUT": "Sign Out",
@@ -261,6 +262,13 @@
                 "ACTION_DESC": "Action description",
                 "ADD_ACTION": "Add action",
                 "DEL_ACTION": "Delete action"
+            },
+            "EVENT_DIALOG": {
+                "EVENT_DETAILS": "Event details",
+                "EVENT_NAME": "Event name",
+                "EVENT_DESC": "Event description",
+                "ADD_EVENT": "Add event",
+                "DEL_EVENT": "Delete event"
             },
             "ERROR": {
                 "UPLOAD_FILE": "We hit a problem uploading the file. Try uploading it again.",

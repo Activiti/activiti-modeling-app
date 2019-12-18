@@ -50,7 +50,7 @@ export class ConnectorParameter {
     }
 }
 
-export class ConnectorAction {
+export class ConnectorFeature {
     id: string;
     name: string;
     description?: string;
