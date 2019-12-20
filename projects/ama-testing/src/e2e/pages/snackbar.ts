@@ -60,6 +60,12 @@ export class SnackBar extends GenericWebElement {
         );
     }
 
+    async isValidatedSuccessfully(): Promise<boolean> {
+        return this.waitForMessage(
+            `Project contains no validation errors`
+        );
+    }
+
     async isNotReleased(): Promise<boolean> {
         return this.waitForMessage(
             `We hit a problem releasing the project. Try releasing it again.`

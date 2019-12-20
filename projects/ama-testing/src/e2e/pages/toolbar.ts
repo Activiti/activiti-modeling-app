@@ -23,6 +23,7 @@ export class Toolbar extends GenericWebElement {
 
     readonly home = element(by.css(`[data-automation-id='project-navigate-home']`));
     readonly downloadButton = element(by.css(`[data-automation-id='project-download-button']`));
+    readonly validateButton = element(by.css(`[data-automation-id='project-validate-button']`));
     readonly breadcrumbCss = `[data-automation-id='breadcrumb']`;
 
     async isItemDisplayed(itemName: string): Promise<boolean> {
@@ -36,6 +37,10 @@ export class Toolbar extends GenericWebElement {
 
     async downloadFile(): Promise<void> {
         await BrowserActions.click(this.downloadButton);
+    }
+
+    async validateProject(): Promise<void> {
+        await BrowserActions.click(this.validateButton);
     }
 
     async navigateToBreadcrumbItem(itemName: string): Promise<void> {
