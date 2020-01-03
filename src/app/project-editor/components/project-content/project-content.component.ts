@@ -19,7 +19,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProjectEditorState, Project, selectProject, OpenConfirmDialogAction } from 'ama-sdk';
 import { Observable, Subscription } from 'rxjs';
-import { ExportProjectAction, ValidateProjectAttemptAction } from '../../store/project-editor.actions';
+import { ExportProjectAction, ValidateProjectAttemptAction, ExportProjectAttemptAction, ExportProjectAttemptPayload } from '../../store/project-editor.actions';
 import { ReleaseProjectAttemptAction } from '../../../dashboard/store/actions/projects';
 import { Router } from '@angular/router';
 
@@ -37,12 +37,12 @@ export class ProjectContentComponent implements OnInit {
     }
 
     downloadApp(project: Project) {
-        const payload = {
+        const payload: ExportProjectAttemptPayload = {
             projectId: project.id,
-            projectName: project.name
+            projectName: project.name,
+            action: new ExportProjectAction({ projectId: project.id, projectName: project.name})
         };
-
-        this.store.dispatch(new ExportProjectAction(payload));
+        this.store.dispatch(new ExportProjectAttemptAction(payload));
     }
 
     releaseProject(projectId: string): void {

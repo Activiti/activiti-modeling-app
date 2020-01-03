@@ -22,7 +22,7 @@ import { MatIconModule, MatButtonModule, MatMenuModule } from '@angular/material
 import { ToolbarModule } from '@alfresco/adf-core';
 import { ProjectEditorState } from 'ama-sdk';
 import { of } from 'rxjs';
-import { ExportProjectAction } from '../../store/project-editor.actions';
+import { ExportProjectAction, ExportProjectAttemptAction } from '../../store/project-editor.actions';
 import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -61,16 +61,23 @@ describe('ProjectContentComponent', () => {
         expect(button === null).toBeFalsy();
     });
 
-    it('clicking on download button should dispatch an ExportProjectAction', () => {
+    it('clicking on download button should dispatch an ExportProjectAttemptAction', () => {
         spyOn(store, 'dispatch');
         const button = fixture.debugElement.query(By.css('[data-automation-id="project-download-button"]'));
         button.triggerEventHandler('click', {});
         fixture.detectChanges();
-        const exportAction: ExportProjectAction = store.dispatch.calls.argsFor(0)[0];
 
+        const exportActionAttempt: ExportProjectAttemptAction = store.dispatch.calls.argsFor(0)[0];
+        const payload = {
+            projectId: undefined,
+            projectName: undefined
+        };
 
-        expect(exportAction.type).toBe('EXPORT_PROJECT');
-        expect(exportAction.payload).toEqual({});
+        expect(exportActionAttempt.type).toBe('EXPORT_PROJECT_ATTEMPT');
+        expect(exportActionAttempt.payload).toEqual({
+            action: new ExportProjectAction(payload),
+            ...payload
+        });
     }
 
     );

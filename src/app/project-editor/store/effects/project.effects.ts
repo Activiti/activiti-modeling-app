@@ -22,7 +22,8 @@ import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
 import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, LogFactoryService, LogAction,
     LeaveProjectAction,
-    SnackbarInfoAction} from 'ama-sdk';
+    SnackbarInfoAction,
+    ConfirmDialogData} from 'ama-sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import {
     GetProjectAttemptAction,
@@ -31,10 +32,14 @@ import {
     ExportProjectAction,
     EXPORT_PROJECT,
     ValidateProjectAttemptAction,
-    VALIDATE_PROJECT_ATTEMPT
+    VALIDATE_PROJECT_ATTEMPT,
+    ExportProjectAttemptAction,
+    EXPORT_PROJECT_ATTEMPT,
+    ExportProjectAttemptPayload
 } from '../project-editor.actions';
 import { getProjectEditorLogInitiator } from '../../services/project-editor.constants';
  import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
+import { Action } from '@ngrx/store';
 
 @Injectable()
 export class ProjectEffects extends BaseEffects {
@@ -58,6 +63,19 @@ export class ProjectEffects extends BaseEffects {
     );
 
     @Effect()
+       validateProjectAttemptEffect$ = this.actions$.pipe(
+        ofType<ValidateProjectAttemptAction>(VALIDATE_PROJECT_ATTEMPT),
+        switchMap(action => this.validateProject(action.projectId))
+    );
+
+    @Effect()
+    exportApplicationAttemptEffect = this.actions$.pipe(
+        ofType<ExportProjectAttemptAction>(EXPORT_PROJECT_ATTEMPT),
+        map((action: ExportProjectAttemptAction) => action.payload),
+        switchMap(payload => this.exportProjectAttempt(payload))
+    );
+
+    @Effect()
     exportApplicationEffect = this.actions$.pipe(
         ofType<ExportProjectAction>(EXPORT_PROJECT),
         map((action: ExportProjectAction) => action.payload),
@@ -69,12 +87,6 @@ export class ProjectEffects extends BaseEffects {
         ofType<RouterNavigatedAction>(ROUTER_NAVIGATED),
         filter(() => !this.router.url.startsWith('/projects')),
         mergeMap(() => of(new LeaveProjectAction()))
-    );
-
-    @Effect()
-    validateProjectAttemptEffect$ = this.actions$.pipe(
-        ofType<ValidateProjectAttemptAction>(VALIDATE_PROJECT_ATTEMPT),
-        switchMap(action => this.validateProject(action.projectId))
     );
 
     private getProject(projectId: string) {
@@ -94,10 +106,15 @@ export class ProjectEffects extends BaseEffects {
                     this.logFactory.logInfo(getProjectEditorLogInitiator(), 'APP.PROJECT.EXPORT_SUCCESS')
                 ];
             }),
-            catchError(response => this.genericErrorHandler(this.handleValidationError.bind(this, response), response)
-            ));
+            catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.EXPORT_PROJECT'), e)));
     }
 
+    private exportProjectAttempt(payload: ExportProjectAttemptPayload) {
+        return this.projectEditorService.validateProject(payload.projectId).pipe(
+            switchMap(() => this.exportProject(payload.projectId, payload.projectName)),
+            catchError(response => this.genericErrorHandler(this.handleValidationError
+                .bind(this, response, payload.action), response)));
+    }
 
     private validateProject(projectId: string) {
         return this.projectEditorService.validateProject(projectId).pipe(
@@ -105,25 +122,29 @@ export class ProjectEffects extends BaseEffects {
                 new SnackbarInfoAction('APP.PROJECT.PROJECT_VALID'),
                 this.logFactory.logInfo(getProjectEditorLogInitiator(), 'APP.PROJECT.PROJECT_VALID')
             ]),
-            catchError(response => this.genericErrorHandler(this.handleValidationError.bind(this, response), response)
-        ));
+            catchError(response => this.genericErrorHandler(this.handleValidationError.bind(this, response, null), response)));
     }
 
-    private handleValidationError(response: any): Observable<OpenConfirmDialogAction | LogAction> {
+    private openConfirmDialog(data: ConfirmDialogData, action: Action) {
+        return [
+            new OpenConfirmDialogAction({
+                dialogData: data,
+                action: action || null
+            }),
+            this.logFactory.logError(getProjectEditorLogInitiator(), data.errors)
+        ];
+    }
+
+    private handleValidationError(response: any, action: Action | null): Observable<OpenConfirmDialogAction | LogAction> {
         return this.blobService.convert2Json(response.error.response.body).pipe(
             switchMap(body => {
                 const errors = body.errors.map(error => error.description);
-
-                return [
-                    new OpenConfirmDialogAction({
-                        dialogData: {
-                            title: body.message,
-                            subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
-                            errors: errors
-                        }
-                    }),
-                    this.logFactory.logError(getProjectEditorLogInitiator(), errors)
-                ];
+                this.logFactory.logError(getProjectEditorLogInitiator(), errors);
+                return this.openConfirmDialog({
+                    title: body.message,
+                    subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
+                    errors: errors
+                }, action );
             }
         ));
     }

@@ -339,6 +339,7 @@
                     "GENERAL": "We hit a problem uploading the project. Try uploading it again."
                 },
                 "GET_PROJECT": "We hit a problem loading the project. Try refreshing the page.",
+                "EXPORT_PROJECT": "Unknown error happened during the project export",
                 "CREATE_FILE": {
                     "DUPLICATION": "A file with that name already exists",
                     "GENERAL": "We hit a problem creating the file. Try creating it again."

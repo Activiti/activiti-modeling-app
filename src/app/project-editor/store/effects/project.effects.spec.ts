@@ -129,8 +129,8 @@ describe('Project Effects', () => {
             b: new OpenConfirmDialogAction({ dialogData: {
                 title: 'test',
                 subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
-                errors: ['d1', 'd2', 'd3']
-            }}),
+                errors: ['d1', 'd2', 'd3'],
+            }, action: null }),
             c: expectedLogAction
         });
 
