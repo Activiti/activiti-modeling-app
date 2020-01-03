@@ -17,7 +17,7 @@
 
 import { BpmnProperty, MOMENT_DATETIME_FORMAT } from 'ama-sdk';
 import { updateShapeProperty } from './update-shape-property.handler';
-import moment from 'moment';
+import * as moment from 'moment';
 
 const propertyKey = BpmnProperty.dueDate;
 

@@ -30,6 +30,7 @@ import {
 import { Store } from '@ngrx/store';
 import { BpmnFactoryMock } from './bpmn-js/bpmn-js.mock';
 import { of, throwError } from 'rxjs';
+import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { getProcessLogInitiator } from './process-editor.constants';
 import { SelectModelerElementAction } from '../store/process-editor.actions';
 import { LogFactoryService } from 'ama-sdk';
@@ -45,6 +46,7 @@ describe('ProcessDiagramLoaderService', () => {
         TestBed.configureTestingModule({
             imports: [],
             providers: [
+                { provide: TranslationService, useClass: TranslationMock },
                 ProcessDiagramLoaderService,
                 { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
                 { provide: BpmnFactoryToken, useClass: BpmnFactoryMock },

@@ -119,12 +119,12 @@ describe('ProcessModelerServiceImplementation', () => {
 
         it('should have error when an error happens during importXml', (complete) => {
             spyOn(bpmnFactoryMock.modeler, 'importXML')
-                .and.callFake((xml, callback) => callback('expected error', []));
+                .and.callFake((xml, callback) => callback(new Error('expected error'), []));
 
             service.loadXml('<xml />').subscribe({
                 error: (error: XmlParsingProblem) => {
                     expect(error.type).toBe(MESSAGE.ERROR);
-                    expect(error.messages).toEqual(['expected error']);
+                    expect(error.messages).toEqual(['Error: expected error']);
                     complete();
                 }
             });

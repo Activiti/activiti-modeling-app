@@ -165,7 +165,7 @@ describe('PropertiesViewerComponent', () => {
         fixture.detectChanges();
 
         const data2 = {
-            '123' : {'id': '123', 'name': 'changed', 'type': 'string', 'value': '', 'required': false},
+            '123' : {'id': '123', 'name': 'changed', 'type': 'string', 'required': false},
             '245' : {'id': '245', 'name': 'var2', 'type': 'string', 'value': '', 'required': false},
             '345' : {'id': '345', 'name': 'var3', 'type': 'string', 'value': '', 'required': false}
         };
@@ -198,28 +198,46 @@ describe('PropertiesViewerComponent', () => {
         fixture.detectChanges();
 
         const data2 = {
-            '123' : {'id': '123', 'name': 'a2_#', 'type': 'string', 'value': '', 'required': false}
+            '123' : {'id': '123', 'name': 'a2_#', 'type': 'string', 'required': false}
         };
 
         expect(component.name).toEqual('a2_#');
         expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data2, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME');
         const infoIconWhenError = fixture.nativeElement.querySelector('.variable-name-info-icon');
         expect (infoIconWhenError === null).toBeFalsy();
+    });
 
+    it('should call sendData with valid property name', () => {
+
+        const data = {
+            '123' : {'id': '123', 'name': 'var1', 'type': 'string', 'value': '', 'required': false }
+         };
+
+        spyOn(service, 'sendData');
+
+        component.dataSource = new MatTableDataSource(Object.values(data));
+        component.data = data;
+        fixture.detectChanges();
+        const editRow = fixture.nativeElement.querySelector('.mat-row');
+
+        editRow.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+
+        const template = fixture.nativeElement.querySelector('.properties-form');
+        const input = template.querySelector('input');
         component.name = 'a2_';
         input.dispatchEvent(new Event('keyup'));
 
         fixture.detectChanges();
 
         const data3 = {
-            '123' : {'id': '123', 'name': 'a2_', 'type': 'string', 'value': '', 'required': false}
+            '123' : {'id': '123', 'name': 'a2_', 'type': 'string', 'required': false}
         };
 
         expect(component.name).toEqual('a2_');
         expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data3, null, 2), null);
         const infoIcon = fixture.nativeElement.querySelector('.variable-name-info-icon');
         expect (infoIcon === null).toBeTruthy();
-
     });
 
     it('should call sendData of VariablesDialog when clicking on add button', () => {

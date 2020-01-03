@@ -92,7 +92,6 @@ describe('Create process', async () => {
 
     it('[C291962] Create process using + button', async () => {
         await projectContentPage.navigateTo();
-
         await projectContentPage.createProcess();
         /* cspell: disable-next-line */
         const processUI = await createEntityDialog.setEntityDetails('ama-qa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
@@ -151,13 +150,13 @@ describe('Create process', async () => {
         await processContentPage.navigateTo();
         await processModelerComponent.addUserTask();
         await processContentPage.save();
+        await processValidation.isDialogDisplayed();
         await expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
         await processValidation.confirm();
+        await processValidation.isDialogDismissed();
 
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
         await expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
-        await processValidation.isDialogDismissed();
-
         await processModelerComponent.selectStartEvent();
         await processModelerComponent.selectUserTask();
         await taskProperties.setCandidateUser('candidateUser');
@@ -173,13 +172,13 @@ describe('Create process', async () => {
         await processContentPage.navigateTo();
         await processModelerComponent.addUserTask();
         await processContentPage.save();
+        await processValidation.isDialogDisplayed();
         await expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
         await processValidation.confirm();
+        await processValidation.isDialogDismissed();
 
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
         await expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
-        await processValidation.isDialogDismissed();
-
         await processModelerComponent.selectStartEvent();
         await processModelerComponent.selectUserTask();
         await taskProperties.setCandidateGroup('CandidateGroup');

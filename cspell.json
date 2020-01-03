@@ -52,6 +52,7 @@
         "rekognition",
         "twilio",
         "docusign",
-        "docgen"
+        "docgen",
+        "transpiled"
     ]
 }

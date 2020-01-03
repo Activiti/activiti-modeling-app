@@ -18,7 +18,10 @@
 import { handlers } from './property.handlers';
 import { BpmnProperty } from 'ama-sdk';
 import { getDiagramElementMock, getModelingMock } from '../bpmn-js.mock';
-import BpmnModdle from 'bpmn-moddle';
+
+// Bpmn-moddle transpiled this way... Good luck using typescript imports (check unit tests and working app as well!!!)
+const BpmnModdle = require('bpmn-moddle');
+const createBpmnModdle = BpmnModdle.default || BpmnModdle;
 
 describe('conditionExpressionHandler', () => {
     const property = BpmnProperty.conditionExpression;
@@ -26,7 +29,7 @@ describe('conditionExpressionHandler', () => {
     let handler, mockElement, modeling;
 
     beforeEach(() => {
-        const moddle = new BpmnModdle();
+        const moddle = createBpmnModdle();
         handler = handlers[property];
         mockElement = getDiagramElementMock({
             [property]: moddle.create('bpmn:FormalExpression', { body: 'conditionExpression' })

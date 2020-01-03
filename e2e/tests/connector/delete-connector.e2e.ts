@@ -16,15 +16,18 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage } from 'ama-testing/e2e';
-import { DeleteEntityDialog } from 'ama-testing/e2e';
-import { SnackBar } from 'ama-testing/e2e';
+import {
+    LoginPage,
+    DeleteEntityDialog,
+    SnackBar,
+    Backend,
+    getBackend,
+    AuthenticatedPage,
+    ProjectContentPage,
+    ConnectorContentPage,
+    UtilRandom
+} from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
-import { Backend } from 'ama-testing/e2e';
-import { getBackend } from 'ama-testing/e2e';
-import { AuthenticatedPage } from 'ama-testing/e2e';
-import { ProjectContentPage } from 'ama-testing/e2e';
-import { ConnectorContentPage } from 'ama-testing/e2e';
 
 describe('Delete connector', () => {
     const adminUser = {
@@ -59,7 +62,7 @@ describe('Delete connector', () => {
 
     beforeEach( async() => {
         /* cspell: disable-next-line */
-        connector = await backend.connector.create(project.entry.id, 'qaconnector');
+        connector = await backend.connector.create(project.entry.id, 'qaconnector' + UtilRandom.generateString(5).toLowerCase());
 
         projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         connectorContentPage = new ConnectorContentPage(testConfig, project.entry.id, connector.entry.id);

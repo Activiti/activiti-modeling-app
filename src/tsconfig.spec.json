@@ -11,11 +11,12 @@
             "rxjs/*": ["../node_modules/rxjs/*"],
             "@angular/*": ["../node_modules/@angular/*"],
             "@alfresco/adf-core": ["../../alfresco-ng2-components/lib/core"],
-            "@alfresco/adf-extensions": ["../../alfresco-ng2-components/lib/extensions"]
+            "@alfresco/adf-extensions": ["../../alfresco-ng2-components/lib/extensions"],
+            "ama-sdk": ["../projects/ama-sdk"],
+            "ama-sdk/*": ["../projects/ama-sdk/*"]
         },
         "allowJs": true
     },
-    "files": ["test.ts"],
     "include": ["**/*.spec.ts", "**/*.d.ts"],
     "angularCompilerOptions": {
         "skipTemplateCodegen": false

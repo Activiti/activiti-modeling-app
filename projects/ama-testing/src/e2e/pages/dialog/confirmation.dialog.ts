@@ -63,6 +63,7 @@ export class ConfirmationDialog extends GenericDialog {
     }
 
     async checkDialogAndConfirm(itemType): Promise<void> {
+        await this.isDialogDisplayed();
         await this.isTitleDisplayed(itemType);
         await this.confirm();
         await this.isDialogDismissed();

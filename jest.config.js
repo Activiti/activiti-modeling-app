@@ -32,14 +32,6 @@ module.exports = {
         '__TRANSFORM_HTML__': true
     },
     moduleNameMapper: {
-        '^moddle$': '<rootDir>/node_modules/moddle-transpiled',
-        '^moddle/(.*)$': '<rootDir>/node_modules/moddle-transpiled/$1',
-        '^moddle-xml$': '<rootDir>/node_modules/moddle-xml-transpiled',
-        '^moddle-xml/(.*)$': '<rootDir>/node_modules/moddle-xml-transpiled/$1',
-        '^bpmn-moddle$': '<rootDir>/node_modules/bpmn-moddle-transpiled',
-        '^bpmn-moddle/(.*)$': '<rootDir>/node_modules/bpmn-moddle-transpiled/$1',
-        '^bpmn-js$': '<rootDir>/node_modules/bpmn-js-transpiled',
-        '^bpmn-js/(.*)$': '<rootDir>/node_modules/bpmn-js-transpiled/$1',
         '^diagram-js$': '<rootDir>/node_modules/diagram-js-transpiled',
         '^diagram-js/(.*)$': '<rootDir>/node_modules/diagram-js-transpiled/$1'
     }

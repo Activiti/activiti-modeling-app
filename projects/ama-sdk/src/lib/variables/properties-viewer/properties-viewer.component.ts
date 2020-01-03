@@ -152,13 +152,15 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
         this.data[this.id] = this.form;
 
         if (this.isNotEmpty(this.data)) {
-            this.variablesService.sendData(JSON.stringify(this.data, null, 2), null);
-            this.error = false;
 
             if (!this.isValid(this.name)) {
                 this.variablesService.sendData(JSON.stringify(this.data, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME');
                 this.error = true;
+            } else {
+                this.variablesService.sendData(JSON.stringify(this.data, null, 2), null);
+                this.error = false;
             }
+
         } else {
             this.variablesService.sendData(JSON.stringify(this.data, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME');
             this.error = true;

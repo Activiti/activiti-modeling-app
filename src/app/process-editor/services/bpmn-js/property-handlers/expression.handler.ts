@@ -15,9 +15,13 @@
  * limitations under the License.
  */
 
-import BpmnModdle from 'bpmn-moddle';
 import { BpmnProperty } from 'ama-sdk';
-const moddle = new BpmnModdle();
+
+// Bpmn-moddle transpiled this way... Good luck using typescript imports (check unit tests and working app as well!!!)
+const BpmnModdle = require('bpmn-moddle');
+const createBpmnModdle = BpmnModdle.default || BpmnModdle;
+
+const moddle = createBpmnModdle();
 
 const propertyKey = BpmnProperty.conditionExpression;
 
