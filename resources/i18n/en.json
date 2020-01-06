@@ -107,9 +107,9 @@
                 "PROJECT_RELEASED": "Project released",
                 "PROJECT_DELETED": "Project deleted",
                 "MENU_ITEMS": {
-                "CREATE_PROJECT": "Create Project",
-                "UPLOAD_PROJECT": "Upload Project",
-                "CREATE_MODEL": "Model"
+                    "CREATE_PROJECT": "Create Project",
+                    "UPLOAD_PROJECT": "Upload Project",
+                    "CREATE_MODEL": "Model"
                 }
             },
             "DIALOGS": {

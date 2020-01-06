@@ -65,6 +65,13 @@ export interface CustomModel {
     status: CustomModelStatus;
 }
 
+export interface CustomType {
+    name: string;
+    parentName: string;
+    title: string;
+    description?: string;
+}
+
 export interface ApiError {
     errorKey?: string;
     statusCode: number;
