@@ -22,7 +22,6 @@ import { Observable, of } from 'rxjs';
 import { SelectProjectAction } from '../../store/project-editor.actions';
 import { AmaState } from 'ama-sdk';
 
-
 @Injectable()
 export class SelectedProjectSetterGuard implements CanActivate {
 

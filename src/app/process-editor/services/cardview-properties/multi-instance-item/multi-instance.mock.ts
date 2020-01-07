@@ -38,7 +38,6 @@ export const loopCharacteristicsMock: any = {
     }
 };
 
-
 export const propertyMock = new MultiInstanceItemModel({
     label: '',
     value: '',
@@ -49,7 +48,6 @@ export const propertyMock = new MultiInstanceItemModel({
         }
     }
 });
-
 
 export const appConfigMock = {
     'process-modeler.multi-instance-types': [

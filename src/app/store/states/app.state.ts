@@ -31,7 +31,6 @@ export const INITIAL_APP_STATE: AppState = {
     },
     logs: []
 
-
 };
 
 export const INITIAL_STATE: AmaState = {

@@ -26,7 +26,6 @@ import { ProcessModelerServiceToken, BpmnFactoryToken } from 'ama-sdk/src/public
 import { ProcessModelerServiceImplementation } from 'src/app/process-editor/services/process-modeler.service';
 import { BpmnFactoryMock } from 'src/app/process-editor/services/bpmn-js/bpmn-js.mock';
 
-
 describe('MessageDialogComponent', () => {
     let fixture: ComponentFixture<MessagesDialogComponent>;
     let component: MessagesDialogComponent;

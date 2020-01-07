@@ -73,5 +73,3 @@ export class UtilFile {
         return fs.createReadStream(zipFilePath).pipe(unzipper.Extract({ path: destinationPath }));
     }
 }
-
-

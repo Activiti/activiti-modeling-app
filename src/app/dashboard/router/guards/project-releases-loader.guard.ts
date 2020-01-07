@@ -21,7 +21,6 @@ import { Store } from '@ngrx/store';
 import { ProjectEditorState } from 'ama-sdk';
 import { GetProjectAttemptAction } from '../../../project-editor/store/project-editor.actions';
 
-
 @Injectable()
 export class ProjectReleasesLoaderGuard implements CanActivate {
    constructor(private store: Store<ProjectEditorState>) {}

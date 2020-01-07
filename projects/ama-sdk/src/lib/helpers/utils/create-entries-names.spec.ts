@@ -59,4 +59,3 @@ describe('Create entries names', () => {
     });
 
 });
-

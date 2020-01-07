@@ -185,7 +185,6 @@ export class ProcessEditorEffects extends BaseEffects {
         mergeMap(() => of(new LoadApplicationAction(false)))
     );
 
-
     @Effect()
     validateProcessEffect = this.actions$.pipe(
         ofType<ValidateProcessAttemptAction>(VALIDATE_PROCESS_ATTEMPT),

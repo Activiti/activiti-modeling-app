@@ -49,7 +49,6 @@ export class VariablesComponent implements OnInit, OnDestroy {
     columns: string[];
     validVariables = true;
 
-
     constructor(
         public dialog: MatDialogRef<VariablesComponent>,
         @Inject(MAT_DIALOG_DATA) public data: VariableDialogData,

@@ -57,7 +57,6 @@ export class ProcessVariablesEffects extends BaseEffects {
         tap((process) => this.openVariablesDialog(process.id, process.extensions.properties)
     ));
 
-
     @Effect()
     updateProcessVariablesEffect = this.actions$.pipe(
         ofType<UpdateProcessVariablesAction>(UPDATE_PROCESS_VARIABLES),

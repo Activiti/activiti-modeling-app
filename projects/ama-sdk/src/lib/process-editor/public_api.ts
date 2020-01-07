@@ -15,8 +15,6 @@
  * limitations under the License.
  */
 
-
-
 export * from './cardview-properties/implementation-item.model';
 export * from './cardview-properties/decision-task-item.model';
 export * from './cardview-properties/script-task-item.model';

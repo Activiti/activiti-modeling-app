@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, BehaviorSubject } from 'rxjs';

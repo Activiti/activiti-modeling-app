@@ -33,7 +33,6 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { valueTypeInputsMapping } from './value-type-inputs/value-type-inputs.mapping';
 
-
 @Component({
     template: '<template #valueTypeInput></template>',
     selector: 'amasdk-value-type-input',

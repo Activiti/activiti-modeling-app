@@ -28,7 +28,6 @@ import { EntityDialogPayload } from '../../common';
 import { CreateProjectAttemptAction } from '../../../store/project.actions';
 import { By } from '@angular/platform-browser';
 
-
 describe('EntityDialogComponent', () => {
     let component: EntityDialogComponent;
     let fixture: ComponentFixture<EntityDialogComponent>;

@@ -30,10 +30,8 @@ export class LoadConnectorAttemptAction implements Action {
     constructor(public connectorId: string) {}
 }
 
-
 export const CREATE_CONNECTOR_SUCCESS = '[Connector] Create success';
 export class CreateConnectorSuccessAction implements Action {
     readonly type = CREATE_CONNECTOR_SUCCESS;
     constructor(public connector: Connector, public navigateTo = false) {}
 }
-

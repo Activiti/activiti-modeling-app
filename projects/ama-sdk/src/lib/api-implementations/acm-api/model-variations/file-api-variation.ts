@@ -63,4 +63,3 @@ export class FileApiVariation<M extends ActivitiFile, C extends ActivitiFileCont
         return filename;
     }
 }
-

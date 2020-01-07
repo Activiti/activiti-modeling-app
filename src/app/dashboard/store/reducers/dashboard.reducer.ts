@@ -40,7 +40,6 @@ import {
 } from '../actions/projects';
 import { GET_PROJECT_RELEASES_SUCCESS, GetProjectReleasesSuccessAction, GET_PROJECT_RELEASES_ATTEMPT, GetProjectReleasesAttemptAction } from '../actions/releases';
 
-
 export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE, action: Action): DashboardState {
     let newState: DashboardState;
 
@@ -168,4 +167,3 @@ function getProjectReleasesAttempt(state: DashboardState, action: GetProjectRele
     newState.loadingReleases = true;
     return newState;
 }
-

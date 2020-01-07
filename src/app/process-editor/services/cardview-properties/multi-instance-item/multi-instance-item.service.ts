@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-
 import { Inject, Injectable } from '@angular/core';
 import { ProcessModelerService, ProcessModelerServiceToken, BpmnProperty, BpmnElement } from 'ama-sdk';
 import { MultiInstanceProps, MultiInstanceType } from '../../bpmn-js/property-handlers/multi-instance.handler';

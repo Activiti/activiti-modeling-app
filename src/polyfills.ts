@@ -75,4 +75,3 @@ import 'intl/locale-data/jsonp/en';
  * */
 
 import 'custom-event-polyfill/polyfill'; // Run `npm install --save custom-event-polyfill`.
-

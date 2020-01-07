@@ -417,7 +417,6 @@ describe('ProjectsEffects', () => {
         });
     });
 
-
     describe('ReleaseProjectAttemptEffect', () => {
 
         it('should dispatch an action', () => {
@@ -437,7 +436,6 @@ describe('ProjectsEffects', () => {
 
             expect(effects.releaseProjectAttemptEffect).toBeObservable(expected);
         });
-
 
         it('should trigger the right action on error', () => {
             const error: any = new Error();

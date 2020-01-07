@@ -17,8 +17,6 @@
 
 import { CardViewBaseItemModel, CardViewItem, DynamicComponentModel } from '@alfresco/adf-core';
 import { BpmnProperty } from 'ama-sdk';
-
-
 export class CardViewProcessVariableItemModel extends CardViewBaseItemModel implements CardViewItem, DynamicComponentModel {
     type = BpmnProperty.properties;
 

@@ -344,7 +344,6 @@ describe('ProcessEditorEffects', () => {
             actions$ = hot('a', { a: new RemoveDiagramElementAction(mockElement) });
             store.select = jest.fn(selectOpenedModel).mockReturnValue(of(process));
 
-
             const expected = cold('b', { b: new RemoveElementMappingAction('mock-element-id', process.id) });
             expect(effects.removeDiagramElementEffect).toBeObservable(expected);
         });
@@ -358,7 +357,6 @@ describe('ProcessEditorEffects', () => {
 
             actions$ = hot('a', { a: new RemoveDiagramElementAction(mockElement) });
             store.select = jest.fn(selectOpenedModel).mockReturnValue(of(process));
-
 
             const expected = cold('b', { b: new RemoveElementMappingAction('mock-element-id', process.id) });
             expect(effects.removeDiagramElementEffect).toBeObservable(expected);
@@ -374,7 +372,6 @@ describe('ProcessEditorEffects', () => {
             actions$ = hot('a', { a: new RemoveDiagramElementAction(mockElement) });
             store.select = jest.fn(selectOpenedModel).mockReturnValue(of(process));
 
-
             const expected = cold('b', { b: new RemoveElementMappingAction('mock-element-id', process.id) });
             expect(effects.removeDiagramElementEffect).toBeObservable(expected);
         });
@@ -388,7 +385,6 @@ describe('ProcessEditorEffects', () => {
 
             actions$ = hot('a', { a: new RemoveDiagramElementAction(mockElement) });
             store.select = jest.fn(selectOpenedModel).mockReturnValue(of(process));
-
 
             const expected = cold('');
             expect(effects.removeDiagramElementEffect).toBeObservable(expected);

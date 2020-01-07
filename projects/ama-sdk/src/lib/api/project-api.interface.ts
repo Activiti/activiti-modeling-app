@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Project, Release, Pagination, PaginatedEntries, ReleaseEntry, ServerSideSorting, SearchQuery } from './types';

@@ -19,7 +19,6 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 const indexOf = require('lodash/indexOf');
 
-
 @Injectable()
 export class AuthTokenProcessorService {
   private helper;

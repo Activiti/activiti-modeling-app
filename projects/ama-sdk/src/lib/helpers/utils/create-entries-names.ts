@@ -42,7 +42,6 @@ export const createDecisionTableName = (name) => {
     return sanitizeString(name.replace(DECISION_TABLE_FILE_FORMAT, ''));
 };
 
-
 export const changeFileName = (file: File, newName: string): File => {
     const blob = file.slice(0, file.size, file.type);
     return new File([blob], newName, { type: file.type });

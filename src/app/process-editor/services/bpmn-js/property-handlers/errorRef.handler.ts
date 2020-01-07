@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-
 const get = element => element.businessObject.eventDefinitions[0].errorRef;
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {

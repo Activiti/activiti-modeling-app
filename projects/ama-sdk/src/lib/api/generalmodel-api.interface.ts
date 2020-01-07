@@ -15,9 +15,7 @@
  * limitations under the License.
  */
 
-
 import { Observable } from 'rxjs';
-
 export interface ModelApiInterface<ModelMetadata, ModelContent> {
     getList(containerId: string): Observable<ModelMetadata[]>;
     create(model: Partial<ModelMetadata>, containerId?: string): Observable<ModelMetadata>;

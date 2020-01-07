@@ -22,8 +22,6 @@ import { ModelCrud } from '../api.interfaces';
 import { E2eRequestApiHelper, E2eRequestApiHelperOptions } from './e2e-request-api.helper';
 import { getBlob } from '../../util/fakeBlob.helper';
 import * as fs from 'fs';
-
-
 export abstract class ACMCrud implements ModelCrud {
 
     abstract displayName: string;

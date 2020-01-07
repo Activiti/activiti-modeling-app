@@ -36,4 +36,3 @@ export class VariableValuePipe implements PipeTransform {
         return uri.slice('file:/'.length).split('.').slice(0, -1).join('.');
     }
 }
-

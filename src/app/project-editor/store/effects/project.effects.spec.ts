@@ -92,7 +92,6 @@ describe('Project Effects', () => {
 
     });
 
-
     it('ExportProject effect should dispatch an action', () =>
         expect(metadata.exportApplicationEffect).toEqual({ dispatch: true })
     );
@@ -130,4 +129,3 @@ describe('Project Effects', () => {
         expect(effects.exportApplicationEffect).toBeObservable(expected);
     });
 });
-

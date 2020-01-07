@@ -54,5 +54,4 @@ export class MessageVariableMappingService {
         return type;
     }
 
-
 }

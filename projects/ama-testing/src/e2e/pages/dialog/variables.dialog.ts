@@ -36,7 +36,6 @@ export class VariablesDialog extends GenericDialog {
     readonly closeButton = element(by.css(`[data-automation-id="close-button"]`));
     readonly dateTimePicker = element(by.css('.mat-datetimepicker-toggle'));
 
-
     readonly calendar = new Calendar();
     readonly dateTime = new DateTime();
 

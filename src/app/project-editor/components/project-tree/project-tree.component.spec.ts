@@ -78,7 +78,6 @@ describe('ProjectTreeFilterComponent ', () => {
         helper = TestBed.get(ProjectTreeHelper);
     });
 
-
     it ('should create', () => {
         expect(component).toBeTruthy();
     });

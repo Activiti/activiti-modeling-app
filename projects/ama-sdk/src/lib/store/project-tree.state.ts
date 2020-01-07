@@ -17,7 +17,6 @@
 
 import { MODEL_TYPE } from '../api/types';
 
-
 export interface ProjectTreeState {
     openedFilters: MODEL_TYPE[];
 }

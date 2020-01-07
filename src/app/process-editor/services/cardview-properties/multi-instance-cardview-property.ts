@@ -31,4 +31,3 @@ export function createMultiInstanceProperty({ element }: FactoryProps) {
         data: { id: element.id, element }
     });
 }
-

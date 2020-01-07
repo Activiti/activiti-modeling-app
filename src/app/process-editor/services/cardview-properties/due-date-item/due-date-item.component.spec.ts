@@ -25,7 +25,6 @@ import { Store } from '@ngrx/store';
 import { AmaState } from 'ama-sdk';
 import { of } from 'rxjs';
 
-
 describe('CardViewDueDateItemComponent', () => {
     let fixture: ComponentFixture<CardViewDueDateItemComponent>;
     let component: CardViewDueDateItemComponent;

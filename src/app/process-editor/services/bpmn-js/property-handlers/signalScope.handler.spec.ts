@@ -35,7 +35,6 @@ describe('signalScopeHandler', () => {
         expect(handler).not.toBe(undefined, `Bpmn property: ${property}, should have a handler defined.`);
     });
 
-
     describe('get', () => {
         it('should return the value from the element', () => {
             const get = handler.get;

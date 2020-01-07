@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-
 import { InjectionToken, ValueProvider } from '@angular/core';
 import { MODEL_TYPE } from '../api/types';
 import { MODEL_SCHEMA_TYPE } from '../api/model-schema-api.interface';

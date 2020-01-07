@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import {

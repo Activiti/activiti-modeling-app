@@ -177,5 +177,4 @@ describe('ProcessModelerComponent', () => {
         });
     });
 
-
 });

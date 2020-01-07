@@ -34,4 +34,3 @@ export const selectLogsByInitiator = initiator => createSelector(
         return logs.filter(log => log.initiator.key === initiator.key);
     }
 );
-

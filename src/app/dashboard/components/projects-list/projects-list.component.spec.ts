@@ -103,7 +103,6 @@ describe ('Projects List Component', () => {
         fixture.detectChanges();
         const exportAction: ExportProjectAction = store.dispatch.calls.argsFor(0)[0];
 
-
         expect(exportAction.type).toBe('EXPORT_PROJECT');
         expect(exportAction.payload).toEqual({
             projectId: 'mock-project-id',

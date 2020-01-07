@@ -46,7 +46,6 @@ describe('Update process', async () => {
     let processContentPage: ProcessContentPage;
     const processPropertiesCard: ProcessPropertiesCard = new ProcessPropertiesCard();
 
-
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
         project = await backend.project.create();

@@ -22,7 +22,6 @@ import { MonacoEditorModule, NGX_MONACO_EDITOR_CONFIG } from 'ngx-monaco-editor'
 import { CodeEditorComponent } from './components/code-editor/code-editor.component';
 import { CodeEditorService } from './services/code-editor-service.service';
 
-
 export function monacoEditorConfigFactory(codeEditorService: CodeEditorService) {
     return codeEditorService.getConfig();
 }

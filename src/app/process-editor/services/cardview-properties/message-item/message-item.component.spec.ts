@@ -143,5 +143,4 @@ describe('CardViewMessageItemComponent', () => {
         expect(component.onMessageChange).toHaveBeenCalled();
     });
 
-
 });

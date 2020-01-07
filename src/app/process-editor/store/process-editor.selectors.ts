@@ -67,5 +67,3 @@ export const selectProcessCrumb = createSelector(
     selectSelectedProcess,
     process => process ? { name: `${createProcessName(process.name)} (${process.version})` } : null
 );
-
-

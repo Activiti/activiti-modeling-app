@@ -67,7 +67,6 @@ describe('CardViewMessageItemComponent', () => {
         }
     };
 
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             providers: [

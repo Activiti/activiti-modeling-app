@@ -190,7 +190,6 @@ describe('CardViewMultiInstanceItemComponent', () => {
         });
     });
 
-
     describe('multiInstance type', () => {
 
         it('should remove cardinality when none type selected', () => {

@@ -31,5 +31,4 @@ export function createDueDateProperty({ element }: FactoryProps) {
         data: { id: element.id }
     });
 
-
 }

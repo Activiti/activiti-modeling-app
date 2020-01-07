@@ -15,12 +15,10 @@
  * limitations under the License.
  */
 
-
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatTableDataSource, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material';
 import { MessagesService } from './messages.service';
 import { Subject } from 'rxjs';
-
 export interface MessageDialogData extends MatDialogConfig {
     columns: string[];
     propertiesUpdate$: Subject<Bpmn.BusinessObject[]>;

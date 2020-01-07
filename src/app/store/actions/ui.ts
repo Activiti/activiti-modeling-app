@@ -22,4 +22,3 @@ export class SetMenuAction implements Action {
     readonly type = SET_MENU;
     constructor(public payload: boolean) {}
 }
-

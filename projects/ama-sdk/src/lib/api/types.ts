@@ -27,7 +27,6 @@ export type FILE_TYPE = 'file';
 export type SCRIPT_TYPE = 'script';
 export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DATA_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE;
 
-
 export const PROJECT: PROJECT_TYPE = 'project';
 export const CUSTOM_MODEL: CUSTOM_MODEL_TYPE = 'model';
 export const PROCESS: PROCESS_TYPE = 'process';
@@ -192,7 +191,6 @@ export interface EntityProperty {
 export interface EntityProperties {
     [propertiesId: string]: EntityProperty;
 }
-
 
 export type ProcessContent = string;
 
@@ -389,10 +387,8 @@ export interface ScriptExtensionsContent {
     sizeInBytes?: number;
     encoding?: string;
 }
-
 export interface MessagePayload {
     type: string;
     value: string | number | null;
     name: string;
 }
-

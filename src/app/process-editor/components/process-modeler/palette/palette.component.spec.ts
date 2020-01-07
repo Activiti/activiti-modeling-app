@@ -27,7 +27,6 @@ import { ProcessModelerPaletteService } from 'src/app/process-editor/services/pa
 import { PaletteOverlayDirective } from './palette-overlay.directive';
 import { PaletteElementsToken } from 'ama-sdk';
 
-
 describe('Palette component', () => {
     let fixture: ComponentFixture<PaletteComponent>;
     let component: PaletteComponent;
@@ -63,7 +62,6 @@ describe('Palette component', () => {
             ]
         }
     ];
-
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({

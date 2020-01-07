@@ -59,4 +59,3 @@ export interface LogMessageInitiator {
     displayName: string;
     extra?: any;
 }
-

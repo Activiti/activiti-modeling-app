@@ -36,8 +36,6 @@ export const selectProjectsLoaded = createSelector(getDashboardFeatureState, sel
 export const selectProjectSummaries = createSelector(getDashboardFeatureState, selectProjectSummariesFromState);
 export const selectProjectsArray = createSelector(selectProjectSummaries, project => Object.values(project));
 
-
 export const selectReleaseSummaries = createSelector(getDashboardFeatureState, selectReleaseSummariesFromState);
 export const selectReleasesPagination = createSelector(getDashboardFeatureState, selectReleasesPaginationFromState);
 export const selectLoadedProjectReleases = createSelector(getDashboardFeatureState, selectProjectReleaseLoadedFromState);
-

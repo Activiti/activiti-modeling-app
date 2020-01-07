@@ -46,7 +46,6 @@ export class AuthEffects {
         switchMap(this.setupFromStorage.bind(this))
     );
 
-
     private setupFromStorage() {
         const menuOpened = JSON.parse(this.storageService.getItem('menuOpened')),
             preservedTheme = this.storageService.getItem('selectedTheme') || 'light-theme',

@@ -75,7 +75,6 @@ export const connectorContentById = id => createSelector(
     }
 );
 
-
 export const connectorActions = id => createSelector(
     selectConnectorEntityContents,
     (entities) => {

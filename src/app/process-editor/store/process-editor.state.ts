@@ -45,7 +45,6 @@ export interface ProcessEditorState {
     toolbar: ToolbarState;
 }
 
-
 export interface ProcessValidationResponse {
     error: string;
     errors: GeneralError[];

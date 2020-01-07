@@ -27,8 +27,6 @@ import { ACMUi } from './models/ui';
 import { ACMData } from './models/data';
 import { ACMScript } from './models/script';
 import { Logger } from '../../util/logger';
-
-
 export class ACMBackend implements Backend {
 
     public api: AlfrescoApi;

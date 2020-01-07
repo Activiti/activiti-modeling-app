@@ -184,6 +184,7 @@
                 }
             ],
             "severity": "error"
-        }
+        },
+        "no-consecutive-blank-lines": true
     }
 }

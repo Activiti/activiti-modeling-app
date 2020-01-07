@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-
 import { Observable } from 'rxjs';
 
 export enum MODEL_SCHEMA_TYPE {

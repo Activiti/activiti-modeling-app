@@ -16,8 +16,6 @@
  */
 
 import { CardViewItemValidator } from '@alfresco/adf-core';
-
-
 export class CardViewExpressionValidator implements CardViewItemValidator {
 
     message = 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_EXPRESSION';

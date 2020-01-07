@@ -25,7 +25,6 @@ import { LogService } from '@alfresco/adf-core';
 import { HttpClientModule } from '@angular/common/http';
 import { UploadProcessAttemptAction, UPLOAD_PROCESS_ATTEMPT } from '../../../process-editor/store/process-editor.actions';
 
-
 describe('UploadFileButtonComponent', () => {
     let component: UploadFileButtonComponent;
     let fixture: ComponentFixture<UploadFileButtonComponent>;
