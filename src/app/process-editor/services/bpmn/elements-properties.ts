@@ -39,6 +39,7 @@ const isScriptTask = (element: Bpmn.DiagramElement) => element.businessObject.im
 const isExclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type ===  BpmnElement.ExclusiveGateway;
 const isInclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type ===  BpmnElement.InclusiveGateway;
 const isConditionalFlow = (element: Bpmn.DiagramElement) => element.businessObject.$type ===  BpmnElement.SequenceFlow && haveConditionExpression(element);
+const hasProcessInside = (element: Bpmn.DiagramElement) => !!element.businessObject.processRef;
 
 export const elementsProperties = {
     [BpmnElement.Process]: [
@@ -48,6 +49,11 @@ export const elementsProperties = {
         BpmnProperty.documentation,
         BpmnProperty.properties,
         BpmnProperty.messages
+    ],
+    [BpmnElement.Collaboration]: [
+        BpmnProperty.modelName,
+        BpmnProperty.id,
+        BpmnProperty.documentation
     ],
     [BpmnElement.IntermediateCatchEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
@@ -156,10 +162,15 @@ export const elementsProperties = {
         BpmnProperty.documentation,
         BpmnProperty.multiInstanceType
     ],
-    [BpmnElement.Participant]: [
+    [BpmnElement.Participant]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
         BpmnProperty.name,
-        BpmnProperty.documentation
+        BpmnProperty.documentation,
+        ...(hasProcessInside(element) ? [
+            BpmnProperty.processName,
+            BpmnProperty.properties,
+            BpmnProperty.messages
+        ] : []),
     ],
     [BpmnElement.Task]: [
         BpmnProperty.id,
