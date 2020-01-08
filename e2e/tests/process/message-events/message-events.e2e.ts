@@ -24,7 +24,7 @@ import {
     getBackend,
     AuthenticatedPage } from 'ama-testing/e2e';
 import { testConfig } from '../../../test.config';
-import { Resources } from '../../../../../../e2e/resources/resources';
+import { Resources } from '../../../resources/resources';
 import { StringUtil } from '@alfresco/adf-testing';
 import { NodeEntry } from '@alfresco/js-api';
 

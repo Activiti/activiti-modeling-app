@@ -35,6 +35,11 @@ export const Resources = {
         outputParam_id: `84deeffa-82da-46fa-871c-d5b48ec7a60f`
     },
 
+    MESSAGE_EVENTS_PROJECTS: {
+        file_location: `/resources/project/test-message-events.zip`,
+        project_name: `test-message-events`
+    },
+
     SIMPLE_FORM: {
         file_location: `/resources/form/ama-qa-uploaded-form.json`,
         form_name: `ama-qa-uploaded-form`
