@@ -23,11 +23,10 @@ import { MatDialogRef, MatDialogModule, MAT_DIALOG_DATA } from '@angular/materia
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { of } from 'rxjs';
+import { Subject, of } from 'rxjs';
 import { VariablesComponent } from './variables.component';
 import { VariablesService } from './variables.service';
 import { CodeValidatorService } from './../code-editor/services/code-validator.service';
-import { Subject } from 'rxjs';
 
 describe('VariablesComponent', () => {
     let fixture: ComponentFixture<VariablesComponent>;

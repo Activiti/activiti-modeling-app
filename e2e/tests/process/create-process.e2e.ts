@@ -16,23 +16,24 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, UtilRandom, xml2js } from 'ama-testing/e2e';
-import { SidebarActionMenu } from 'ama-testing/e2e';
-import { CreateEntityDialog } from 'ama-testing/e2e';
-import { ProjectContentPage } from 'ama-testing/e2e';
-import { SnackBar } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
-import { Backend } from 'ama-testing/e2e';
-import { getBackend } from 'ama-testing/e2e';
-import { AuthenticatedPage } from 'ama-testing/e2e';
-import { ProcessContentPage } from 'ama-testing/e2e';
-import { ProcessModelerComponent } from 'ama-testing/e2e';
-import { ProcessPropertiesCard } from 'ama-testing/e2e';
-import { Toolbar } from 'ama-testing/e2e';
-import { TaskPropertiesCardPage } from 'ama-testing/e2e';
-import { ValidationDialog } from 'ama-testing/e2e';
+import {
+    LoginPage, UtilRandom, xml2js,
+    SidebarActionMenu,
+    CreateEntityDialog,
+    ProjectContentPage,
+    SnackBar,
+    Backend,
+    getBackend,
+    AuthenticatedPage,
+    ProcessContentPage,
+    ProcessModelerComponent,
+    ProcessPropertiesCard,
+    Toolbar,
+    TaskPropertiesCardPage,
+    UtilFile,
+    ValidationDialog } from 'ama-testing/e2e';
 import { browser } from 'protractor';
-import { UtilFile } from 'ama-testing/e2e';
 
 const path = require('path');
 

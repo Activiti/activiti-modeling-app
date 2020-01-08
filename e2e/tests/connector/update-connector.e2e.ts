@@ -16,15 +16,16 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage } from 'ama-testing/e2e';
-import { SnackBar } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
-import { Backend } from 'ama-testing/e2e';
-import { getBackend } from 'ama-testing/e2e';
-import { AuthenticatedPage } from 'ama-testing/e2e';
-import { CodeEditorWidget } from 'ama-testing/e2e';
-import { ProjectContentPage } from 'ama-testing/e2e';
-import { ConnectorContentPage } from 'ama-testing/e2e';
+import {
+    LoginPage,
+    SnackBar,
+    Backend,
+    getBackend,
+    AuthenticatedPage,
+    CodeEditorWidget,
+    ProjectContentPage,
+    ConnectorContentPage } from 'ama-testing/e2e';
 
 describe('Update connector', async () => {
     const adminUser = {

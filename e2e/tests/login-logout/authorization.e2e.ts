@@ -16,8 +16,7 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, LoginPageImplementation } from 'ama-testing/e2e';
-import { AuthenticatedPage, ErrorsPage } from 'ama-testing/e2e';
+import { LoginPage, LoginPageImplementation, AuthenticatedPage, ErrorsPage } from 'ama-testing/e2e';
 
 describe('User Authorization', () => {
 

@@ -39,8 +39,9 @@ import {
     ToolbarMessageAction,
     LOADED_APPLICATION,
     LoadApplicationAction,
+    LOG_ACTION,
+    LogAction
 } from 'ama-sdk';
-import { LOG_ACTION, LogAction } from 'ama-sdk';
 
 export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action): AppState {
     let newState: AppState;

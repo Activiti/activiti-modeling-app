@@ -79,6 +79,7 @@
         "no-trailing-whitespace": true,
         "no-unused-expression": true,
         "no-var-keyword": true,
+        "no-duplicate-imports": true,
         "object-literal-sort-keys": false,
         "one-line": [
             true,

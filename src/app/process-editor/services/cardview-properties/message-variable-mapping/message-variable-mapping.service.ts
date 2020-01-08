@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { AmaState, ServiceParameterMappings, UpdateServiceParametersAction, selectSelectedProcess } from 'ama-sdk/src/public_api';
+import { AmaState, ServiceParameterMappings, UpdateServiceParametersAction, selectSelectedProcess } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { filter, take } from 'rxjs/operators';
 import moment from 'moment-es6';

@@ -19,9 +19,8 @@ import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { StorageService } from '@alfresco/adf-core';
 import { SetMenuAction, SET_MENU } from '../actions/ui';
-import { SetAppDirtyStateAction, SET_APP_DIRTY_STATE } from 'ama-sdk';
+import { SetAppDirtyStateAction, SET_APP_DIRTY_STATE, AmaTitleService } from 'ama-sdk';
 import { tap } from 'rxjs/operators';
-import { AmaTitleService } from 'ama-sdk';
 
 @Injectable()
 export class UiEffects {

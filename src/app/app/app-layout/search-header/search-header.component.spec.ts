@@ -16,12 +16,11 @@
  */
 
 import { SearchHeaderComponent } from './search-header.component';
-import { SearchTextInputComponent } from '@alfresco/adf-core';
+import { SearchTextInputComponent, AppConfigService } from '@alfresco/adf-core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatTooltipModule, MatIconModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { AppConfigService } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';

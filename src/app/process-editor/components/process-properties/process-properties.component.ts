@@ -20,8 +20,7 @@ import { CardViewItem, CardViewUpdateService, UpdateNotification, CardItemTypeSe
 import { Store } from '@ngrx/store';
 import { selectSelectedElement } from '../../store/process-editor.selectors';
 import { map, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { Observable } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { CardViewPropertiesFactory } from '../../services/cardview-properties/cardview-properties.factory';
 import {
     PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS,

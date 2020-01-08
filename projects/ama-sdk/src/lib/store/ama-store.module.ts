@@ -16,8 +16,7 @@
  */
 
 import { NgModule, ModuleWithProviders, InjectionToken } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
-import { ActionReducerMap } from '@ngrx/store';
+import { StoreModule, ActionReducerMap } from '@ngrx/store';
 
 export const ENTITIES_REDUCER_TOKEN = new InjectionToken<ActionReducerMap<any>>('entities-reducer');
 export const ENTITY_REDUCERS_TOKEN = new InjectionToken<ActionReducerMap<any>>('entity-reducer');

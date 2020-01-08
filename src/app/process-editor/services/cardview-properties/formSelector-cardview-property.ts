@@ -16,9 +16,8 @@
  */
 
 import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty, CardViewFormKeyModel } from 'ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
-import { CardViewFormKeyModel } from 'ama-sdk';
 
 const property = BpmnProperty.formKey;
 

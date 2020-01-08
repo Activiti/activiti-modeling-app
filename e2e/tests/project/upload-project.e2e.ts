@@ -14,17 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { LoginPage } from 'ama-testing/e2e';
 import { Resources } from '../../resources/resources';
-import { SidebarActionMenu } from 'ama-testing/e2e';
-import { DashboardPage } from 'ama-testing/e2e';
-import { SnackBar } from 'ama-testing/e2e';
-import { Backend } from 'ama-testing/e2e';
-import { getBackend } from 'ama-testing/e2e';
+import {
+    LoginPage,
+    SidebarActionMenu,
+    DashboardPage,
+    SnackBar,
+    Backend,
+    AuthenticatedPage,
+    Logger,
+    getBackend } from 'ama-testing/e2e';
 import { testConfig } from '../../test.config';
-import { AuthenticatedPage } from 'ama-testing/e2e';
-import { Logger } from 'ama-testing/e2e';
 
 const path = require('path');
 

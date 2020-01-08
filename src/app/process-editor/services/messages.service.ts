@@ -16,7 +16,12 @@
  */
 
 import { Injectable, Inject } from '@angular/core';
-import { ProcessModelerServiceToken, ProcessModelerService, BpmnElement, BpmnProperty } from 'ama-sdk/src/public_api';
+import {
+    ProcessModelerServiceToken,
+    ProcessModelerService,
+    BpmnElement,
+    BpmnProperty
+} from 'ama-sdk';
 
 @Injectable({
     providedIn: 'root'

@@ -17,7 +17,7 @@
 
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { ConnectorEditorEffects } from './connector-editor.effects';
 import { Store } from '@ngrx/store';
 import { ConnectorEditorService } from '../services/connector-editor.service';
@@ -64,8 +64,6 @@ import {
     LoadApplicationAction,
     LogFactoryService
 } from 'ama-sdk';
-import { of } from 'rxjs';
-import { throwError } from 'rxjs';
 import { Update } from '@ngrx/entity';
 import { selectConnectorsLoaded, selectSelectedConnector } from './connector-editor.selectors';
 import { MatDialogRef, MatDialogModule } from '@angular/material';

@@ -17,10 +17,8 @@
 
 import { CardViewTextItemModel } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty, sanitizeString, CardViewModelNameValidator } from 'ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
-import { sanitizeString } from 'ama-sdk';
-import { CardViewModelNameValidator } from 'ama-sdk/src/lib/validators/public_api';
 
 const propertyName = BpmnProperty.modelName;
 

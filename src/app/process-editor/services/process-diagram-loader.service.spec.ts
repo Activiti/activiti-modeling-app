@@ -25,7 +25,8 @@ import {
     XmlParsingProblem,
     MESSAGE,
     SnackbarWarningAction,
-    SnackbarErrorAction
+    SnackbarErrorAction,
+    LogFactoryService
 } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { BpmnFactoryMock } from './bpmn-js/bpmn-js.mock';
@@ -33,7 +34,6 @@ import { of, throwError } from 'rxjs';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { getProcessLogInitiator } from './process-editor.constants';
 import { SelectModelerElementAction } from '../store/process-editor.actions';
-import { LogFactoryService } from 'ama-sdk';
 import { processXmlUpdater } from './process-xml-updater';
 
 describe('ProcessDiagramLoaderService', () => {

@@ -16,16 +16,19 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, js2xml, xml2js } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
-import { Backend } from 'ama-testing/e2e';
-import { getBackend } from 'ama-testing/e2e';
-import { AuthenticatedPage } from 'ama-testing/e2e';
-import { ProcessContentPage } from 'ama-testing/e2e';
-import { ProcessPropertiesCard } from 'ama-testing/e2e';
-import { CodeEditorWidget } from 'ama-testing/e2e';
-import { ProcessDefinitionModel } from 'ama-testing/e2e';
-import { SnackBar } from 'ama-testing/e2e';
+import {
+    LoginPage,
+    js2xml,
+    xml2js,
+    Backend,
+    getBackend,
+    AuthenticatedPage,
+    ProcessContentPage,
+    ProcessPropertiesCard,
+    CodeEditorWidget,
+    ProcessDefinitionModel,
+    SnackBar } from 'ama-testing/e2e';
 
 describe('Validate process - update process using XML editor', async () => {
     const adminUser = {

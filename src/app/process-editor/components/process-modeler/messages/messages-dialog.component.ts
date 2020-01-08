@@ -17,8 +17,9 @@
 
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatTableDataSource, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material';
-import { MessagesService } from './messages.service';
+import { MessagesService } from '../../../services/messages.service';
 import { Subject } from 'rxjs';
+
 export interface MessageDialogData extends MatDialogConfig {
     columns: string[];
     propertiesUpdate$: Subject<Bpmn.BusinessObject[]>;
@@ -26,7 +27,7 @@ export interface MessageDialogData extends MatDialogConfig {
 
 @Component({
     templateUrl: './messages-dialog.component.html',
-    selector: 'amasdk-messages-dialog'
+    selector: 'ama-messages-dialog'
 })
 
 export class MessagesDialogComponent implements OnInit {

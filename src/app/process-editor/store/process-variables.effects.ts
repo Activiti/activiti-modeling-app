@@ -30,11 +30,12 @@ import {
     selectSelectedTheme,
     ProcessModelerServiceToken,
     ProcessModelerService,
-    BpmnProperty
+    BpmnProperty,
+    VariablesComponent,
+    selectSelectedProcess
 } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { Subject, of } from 'rxjs';
-import { VariablesComponent, selectSelectedProcess } from 'ama-sdk';
 
 @Injectable()
 export class ProcessVariablesEffects extends BaseEffects {

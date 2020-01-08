@@ -24,14 +24,14 @@ import {
     SnackbarErrorAction,
     SnackbarWarningAction,
     XmlParsingProblem,
-    MESSAGE
+    MESSAGE,
+    LogFactoryService
 } from 'ama-sdk';
 import { ProcessEntitiesState } from '../store/process-entities.state';
 import { getProcessLogInitiator } from './process-editor.constants';
 import { of, Observable } from 'rxjs';
 import { createSelectedElement } from '../store/process-editor.state';
 import { SelectModelerElementAction } from '../store/process-editor.actions';
-import { LogFactoryService } from 'ama-sdk';
 import { processXmlUpdater } from './process-xml-updater';
 
 @Injectable()

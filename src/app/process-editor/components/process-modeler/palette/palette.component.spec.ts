@@ -23,7 +23,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule, MatCardModule, MatIconModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
-import { ProcessModelerPaletteService } from 'src/app/process-editor/services/palette/process-modeler-palette.service';
+import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
 import { PaletteOverlayDirective } from './palette-overlay.directive';
 import { PaletteElementsToken } from 'ama-sdk';
 

@@ -16,9 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Process, ProcessContent, UpdateServiceParametersAction, ProcessExtensionsContent } from 'ama-sdk';
-import { EntityDialogForm } from 'ama-sdk';
-import { UploadFileAttemptPayload } from 'ama-sdk';
+import { Process, ProcessContent, UpdateServiceParametersAction, ProcessExtensionsContent, EntityDialogForm, UploadFileAttemptPayload } from 'ama-sdk';
 import { SelectedProcessElement } from './process-editor.state';
 import { Update } from '@ngrx/entity';
 

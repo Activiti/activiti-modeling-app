@@ -16,13 +16,9 @@
  */
 
 import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import { BreadcrumbItem } from 'ama-sdk';
-import { combineLatest } from 'rxjs';
+import { Observable, combineLatest, of } from 'rxjs';
+import { BreadcrumbItem, AmaState, OpenConfirmDialogAction, selectProjectCrumb } from 'ama-sdk';
 import { Store } from '@ngrx/store';
-import { AmaState, OpenConfirmDialogAction } from 'ama-sdk';
-import { of } from 'rxjs';
-import { selectProjectCrumb } from 'ama-sdk';
 import { filter } from 'rxjs/operators';
 import { selectConnectorCrumb } from '../../store/connector-editor.selectors';
 import {

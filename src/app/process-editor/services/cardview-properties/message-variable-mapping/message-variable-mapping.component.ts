@@ -21,7 +21,7 @@ import { Store } from '@ngrx/store';
 import {
     AmaState, EntityProperty, MessagePayload, selectSelectedProcess, ConnectorParameter,
     ParametersSelectOptions, MappingType, Process, ServiceOutputParameterMapping
-} from 'ama-sdk/src/public_api';
+} from 'ama-sdk';
 import { MatTableDataSource } from '@angular/material';
 import { filter, take } from 'rxjs/operators';
 import { MessageVariableMappingService } from './message-variable-mapping.service';

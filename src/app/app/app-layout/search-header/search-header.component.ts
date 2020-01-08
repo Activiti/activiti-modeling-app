@@ -17,7 +17,7 @@
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ServerSideSorting } from 'ama-sdk/src/public_api';
+import { ServerSideSorting } from 'ama-sdk';
 
 const DEFAULT_SORT_KEY = 'name';
 const DEFAULT_SORT_DIRECTION = 'asc';

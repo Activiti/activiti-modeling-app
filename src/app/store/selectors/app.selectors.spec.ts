@@ -15,11 +15,10 @@
  * limitations under the License.
  */
 
-import { selectLogsByInitiator, selectToolbarLogs } from './app.selectors';
-import { allLogFilter } from 'ama-sdk';
-import { MESSAGE } from 'ama-sdk';
+import { selectLogsByInitiator } from './app.selectors';
+import { allLogFilter, MESSAGE } from 'ama-sdk';
 import { INITIAL_STATE } from '../states/app.state';
-import { getConnectorLogInitiator } from 'src/app/connector-editor/services/connector-editor.constants';
+import { getConnectorLogInitiator } from '../../connector-editor/services/connector-editor.constants';
 
 describe('App selectors', () => {
 

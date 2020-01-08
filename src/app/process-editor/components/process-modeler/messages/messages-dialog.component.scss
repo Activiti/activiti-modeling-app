@@ -1,4 +1,4 @@
-@mixin amasdk-messages-dialog($theme) {
+@mixin ama-messages-dialog($theme) {
     $foreground: map-get($theme, foreground);
     $background: map-get($theme, background);
 

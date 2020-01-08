@@ -16,15 +16,16 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
-import { Backend } from 'ama-testing/e2e';
-import { getBackend } from 'ama-testing/e2e';
-import { AuthenticatedPage } from 'ama-testing/e2e';
-import { ProjectContentPage } from 'ama-testing/e2e';
-import { ProcessContentPage } from 'ama-testing/e2e';
-import { LogHistoryPage } from 'ama-testing/e2e';
-import { CodeEditorWidget } from 'ama-testing/e2e';
+import {
+    LoginPage,
+    Backend,
+    getBackend,
+    AuthenticatedPage,
+    ProjectContentPage,
+    ProcessContentPage,
+    LogHistoryPage,
+    CodeEditorWidget } from 'ama-testing/e2e';
 
 describe('Log history', () => {
     const adminUser = {

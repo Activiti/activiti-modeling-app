@@ -16,14 +16,15 @@
  */
 
  import {testConfig} from '../../../test.config';
- import { LoginPage } from 'ama-testing/e2e';
  import {NodeEntry} from '@alfresco/js-api';
- import {Backend} from 'ama-testing/e2e';
- import {getBackend} from 'ama-testing/e2e';
- import {AuthenticatedPage} from 'ama-testing/e2e';
- import {ProcessContentPage} from 'ama-testing/e2e';
- import {ProcessModelerComponent} from 'ama-testing/e2e';
- import {TimerPropertiesCard} from 'ama-testing/e2e';
+ import {
+    LoginPage,
+    Backend,
+    getBackend,
+    AuthenticatedPage,
+    ProcessContentPage,
+    ProcessModelerComponent,
+    TimerPropertiesCard} from 'ama-testing/e2e';
 
  describe('Boundary Timer - Interrupting', async () => {
     const adminUser = {

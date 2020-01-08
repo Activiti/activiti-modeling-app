@@ -24,11 +24,11 @@ import {
     ContentType,
     selectProcessEntityContainer,
     selectSelectedProcess,
-    Process
+    Process,
+    selectSelectedProjectId
 } from 'ama-sdk';
 import { ProcessEditorState } from './process-editor.state';
 import { ProcessEntitiesState } from './process-entities.state';
-import { selectSelectedProjectId } from 'ama-sdk';
 
 export const PROCESS_EDITOR_STATE_NAME = 'process-editor';
 export const getProcessEditorFeatureState = createFeatureSelector(PROCESS_EDITOR_STATE_NAME);

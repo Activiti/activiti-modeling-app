@@ -16,8 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Project, Release, Pagination, PaginatedEntries, ServerSideSorting, FetchQueries, SearchQuery } from 'ama-sdk';
-import { EntityDialogForm } from 'ama-sdk';
+import { Project, Release, Pagination, PaginatedEntries, ServerSideSorting, FetchQueries, SearchQuery, EntityDialogForm } from 'ama-sdk';
 export interface EditProjectPayload {
     id: string;
     form: Partial<EntityDialogForm>;

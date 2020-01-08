@@ -35,12 +35,12 @@ import {
     ProcessExtensions,
     PROCESS,
     getFileUri,
-    CodeEditorPosition
+    CodeEditorPosition,
+    ToolbarMessageAction
 } from 'ama-sdk';
 import { UpdateProcessExtensionsAction } from '../../store/process-editor.actions';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
 import { MatTabChangeEvent } from '@angular/material';
-import { ToolbarMessageAction } from 'ama-sdk';
 
 @Component({
     templateUrl: './process-editor.component.html',

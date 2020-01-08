@@ -59,8 +59,8 @@ import {
     SearchQuery
 } from 'ama-sdk';
 import { GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
-import { getProjectEditorLogInitiator } from 'src/app/project-editor/services/project-editor.constants';
 import { SetLogHistoryVisibilityAction } from '../../../store/actions/app.actions';
+import { getProjectEditorLogInitiator } from '../../../project-editor/services/project-editor.constants';
 
 describe('ProjectsEffects', () => {
     let effects: ProjectsEffects;

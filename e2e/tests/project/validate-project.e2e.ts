@@ -16,18 +16,18 @@
  */
 
 import { NodeEntry } from '@alfresco/js-api';
-import { Backend } from 'ama-testing/e2e';
-import { AuthenticatedPage } from 'ama-testing/e2e';
-import { getBackend } from 'ama-testing/e2e';
-import { LoginPage } from 'ama-testing/e2e';
-import { TaskPropertiesCardPage } from 'ama-testing/e2e';
-import { ProcessModelerComponent } from 'ama-testing/e2e';
-import { ProcessContentPage } from 'ama-testing/e2e';
-import { ProjectContentPage } from 'ama-testing/e2e';
-import { Toolbar } from 'ama-testing/e2e';
-import { SnackBar } from 'ama-testing/e2e';
-import { ValidationDialog } from 'ama-testing/e2e';
-import { LogHistoryPage } from 'ama-testing/e2e';
+import { Backend,
+    AuthenticatedPage,
+    getBackend,
+    LoginPage,
+    TaskPropertiesCardPage,
+    ProcessModelerComponent,
+    ProcessContentPage,
+    ProjectContentPage,
+    Toolbar,
+    SnackBar,
+    ValidationDialog,
+LogHistoryPage } from 'ama-testing/e2e';
 import { testConfig } from '../../test.config';
 
 describe('Validate project', () => {

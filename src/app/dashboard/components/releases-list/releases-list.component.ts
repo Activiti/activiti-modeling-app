@@ -16,16 +16,14 @@
  */
 
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription, of } from 'rxjs';
+import { Observable, Subscription, of, combineLatest } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { map, filter } from 'rxjs/operators';
 import { MatTableDataSource, PageEvent } from '@angular/material';
-import { AmaState, Pagination, BreadcrumbItem, selectProjectCrumb } from 'ama-sdk';
-import { Release } from 'ama-sdk';
+import { AmaState, Pagination, BreadcrumbItem, selectProjectCrumb, Release } from 'ama-sdk';
 import { GetProjectReleasesAttemptAction } from '../../store/actions/releases';
 import { ActivatedRoute } from '@angular/router';
 import { selectLoadedProjectReleases, selectReleasesPagination, selectReleaseSummaries } from '../../store/selectors/dashboard.selectors';
-import { combineLatest } from 'rxjs';
 
 @Component({
     selector: 'ama-release-list',

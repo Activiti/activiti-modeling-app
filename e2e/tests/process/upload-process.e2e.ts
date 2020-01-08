@@ -15,16 +15,17 @@
  * limitations under the License.
  */
 
-import { LoginPage } from 'ama-testing/e2e';
 import { Resources } from '../../resources/resources';
-import { SnackBar } from 'ama-testing/e2e';
-import { Backend } from 'ama-testing/e2e';
-import { getBackend } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
 import { testConfig } from '../../test.config';
-import { AuthenticatedPage } from 'ama-testing/e2e';
-import { ProjectContentPage } from 'ama-testing/e2e';
-import { SidebarActionMenu } from 'ama-testing/e2e';
+import {
+    LoginPage,
+    SnackBar,
+    Backend,
+    getBackend,
+    AuthenticatedPage,
+    ProjectContentPage,
+    SidebarActionMenu } from 'ama-testing/e2e';
 
 const path = require('path');
 

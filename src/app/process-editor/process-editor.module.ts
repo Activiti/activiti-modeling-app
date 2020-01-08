@@ -84,13 +84,13 @@ import { CardViewErrorRefItemComponent } from './services/cardview-properties/er
 import { CardViewMessageItemComponent } from './services/cardview-properties/message-item/message-item.component';
 import { CardViewProcessMessagesItemComponent } from './services/cardview-properties/process-messages-item/process-messages-item.component';
 import { ProcessMessagesEffects } from './store/process-messages.effects';
-import { MessagesDialogComponent } from 'ama-sdk/src/lib/messages/messages-dialog.component';
-import { MessagesService } from 'ama-sdk/src/lib/messages/messages.service';
 import { CardViewMultiInstanceItemComponent } from './services/cardview-properties/multi-instance-item/multi-instance-item.component';
 import { ClipboardService } from './services/clipboard/clipboard.service';
 import { CardViewMessagePayloadItemComponent } from './services/cardview-properties/message-payload-item/message-payload-item.component';
 import { CardViewMessageVariableMappingComponent } from './services/cardview-properties/message-variable-mapping/message-variable-mapping.component';
 import { CardViewDueDateItemComponent } from './services/cardview-properties/due-date-item/due-date-item.component';
+import { MessagesDialogComponent } from './components/process-modeler/messages/messages-dialog.component';
+import { MessagesService } from './services/messages.service';
 
 @NgModule({
     imports: [

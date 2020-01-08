@@ -16,14 +16,15 @@
  */
 
 import { testConfig } from '../../../test.config';
-import { LoginPage } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
-import { Backend } from 'ama-testing/e2e';
-import { getBackend } from 'ama-testing/e2e';
-import { AuthenticatedPage } from 'ama-testing/e2e';
-import { ProcessContentPage } from 'ama-testing/e2e';
-import { ProcessPropertiesCard } from 'ama-testing/e2e';
-import { ProcessVariablesDialog } from 'ama-testing/e2e';
+import {
+    LoginPage,
+    Backend,
+    getBackend,
+    AuthenticatedPage,
+    ProcessContentPage,
+    ProcessPropertiesCard,
+    ProcessVariablesDialog } from 'ama-testing/e2e';
 import * as moment from 'moment';
 
 describe('Create process variable', async () => {

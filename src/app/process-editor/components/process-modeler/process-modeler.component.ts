@@ -18,7 +18,7 @@
 import { Component, ViewChild, ElementRef, Input, OnDestroy, AfterViewInit, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, switchMap, takeUntil } from 'rxjs/operators';
-import { ProcessContent, SnackbarErrorAction, ProcessModelerServiceToken, ProcessModelerService } from 'ama-sdk';
+import { ProcessContent, SnackbarErrorAction, ProcessModelerServiceToken, ProcessModelerService, ToolbarMessageAction } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import {
     SelectModelerElementAction,
@@ -28,7 +28,6 @@ import {
 import { ProcessEntitiesState } from '../../store/process-entities.state';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
 import { createSelectedElement } from '../../store/process-editor.state';
-import { ToolbarMessageAction } from 'ama-sdk';
 
 @Component({
     selector: 'ama-process-modeler',

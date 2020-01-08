@@ -16,15 +16,16 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage } from 'ama-testing/e2e';
-import { DeleteEntityDialog } from 'ama-testing/e2e';
-import { SnackBar } from 'ama-testing/e2e';
 import { NodeEntry } from '@alfresco/js-api';
-import { Backend } from 'ama-testing/e2e';
-import { getBackend } from 'ama-testing/e2e';
-import { AuthenticatedPage } from 'ama-testing/e2e';
-import { ProjectContentPage } from 'ama-testing/e2e';
-import { ProcessContentPage } from 'ama-testing/e2e';
+import {
+    LoginPage,
+    DeleteEntityDialog,
+    SnackBar,
+    Backend,
+    getBackend,
+    AuthenticatedPage,
+    ProjectContentPage,
+    ProcessContentPage } from 'ama-testing/e2e';
 
 describe('Delete process', () => {
     const adminUser = {

@@ -18,8 +18,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ProjectEditorState, LoadConnectorAttemptAction, SetAppDirtyStateAction } from 'ama-sdk';
 

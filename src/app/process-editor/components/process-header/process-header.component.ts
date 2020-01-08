@@ -23,9 +23,9 @@ import {
     ProcessContent,
     EntityDialogForm,
     ProcessModelerServiceToken,
-    ProcessModelerService
+    ProcessModelerService,
+    BreadcrumbItem
 } from 'ama-sdk';
-import { BreadcrumbItem } from 'ama-sdk';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { DeleteProcessAttemptAction, ValidateProcessAttemptAction, DownloadProcessAction, UpdateProcessAttemptAction } from '../../store/process-editor.actions';

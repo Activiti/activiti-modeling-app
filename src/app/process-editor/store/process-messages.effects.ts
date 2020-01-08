@@ -24,13 +24,13 @@ import {
     AmaState,
     DialogService,
     BaseEffects,
-    SetAppDirtyStateAction
+    SetAppDirtyStateAction,
+    selectSelectedProcess
 } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
-import { selectSelectedProcess } from 'ama-sdk';
 import { OpenProcessMessagesDialogAction, OPEN_PROCESS_MESSAGES_DIALOG } from './process-messages.actions';
-import { MessagesDialogComponent } from 'ama-sdk/src/lib/messages/messages-dialog.component';
+import { MessagesDialogComponent } from '../components/process-modeler/messages/messages-dialog.component';
 
 @Injectable()
 export class ProcessMessagesEffects extends BaseEffects {

@@ -42,7 +42,9 @@ import {
     VALIDATE_CONNECTOR_ATTEMPT,
     ValidateConnectorPayload,
     ChangedConnectorSettingsAction,
-    CHANGE_CONNECTOR_SETTINGS
+    CHANGE_CONNECTOR_SETTINGS,
+    CHANGE_CONNECTOR_CONTENT,
+    ChangeConnectorContent
 } from './connector-editor.actions';
 import { map, switchMap, catchError, mergeMap, take, withLatestFrom, tap } from 'rxjs/operators';
 import {
@@ -59,17 +61,23 @@ import {
     CreateConnectorSuccessAction,
     CREATE_CONNECTOR_SUCCESS,
     LoadApplicationAction,
-    LogFactoryService
+    LogFactoryService,
+    AmaState,
+    SnackbarErrorAction,
+    SnackbarInfoAction,
+    UploadFileAttemptPayload,
+    changeFileName,
+    ConnectorContent,
+    Connector,
+    selectSelectedProjectId,
+    BaseEffects
 } from 'ama-sdk';
 import { ConnectorEditorService } from '../services/connector-editor.service';
 import { of, zip, forkJoin, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LogService, StorageService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
-import { AmaState, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
-import { CHANGE_CONNECTOR_CONTENT, ChangeConnectorContent } from './connector-editor.actions';
 import { selectConnectorsLoaded, selectSelectedConnectorContent, selectSelectedConnector } from './connector-editor.selectors';
-import { UploadFileAttemptPayload, changeFileName, ConnectorContent, Connector, selectSelectedProjectId, BaseEffects } from 'ama-sdk';
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 
 @Injectable()

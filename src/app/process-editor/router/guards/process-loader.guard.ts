@@ -18,8 +18,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { GetProcessAttemptAction } from '../../store/process-editor.actions';
 import { ProcessEntitiesState } from '../../store/process-entities.state';

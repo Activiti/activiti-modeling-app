@@ -16,9 +16,9 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, UtilRandom, getBackend, DashboardPage, LogHistoryPage, Logger } from 'ama-testing/e2e';
-import { Backend } from 'ama-testing/e2e';
-import { AuthenticatedPage } from 'ama-testing/e2e';
+import { LoginPage, UtilRandom, getBackend,
+    DashboardPage, LogHistoryPage, Logger,
+    Backend, AuthenticatedPage } from 'ama-testing/e2e';
 import { HeaderToolbar } from '../../pages/header.toolbar';
 import { browser } from 'protractor';
 import { Pagination } from 'ama-testing/e2e/pages/pagination.component';

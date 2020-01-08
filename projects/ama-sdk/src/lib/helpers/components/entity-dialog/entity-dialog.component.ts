@@ -19,8 +19,7 @@ import { Component, OnInit, Optional, Inject, HostListener, ViewChild, ElementRe
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { AmaState } from '../../../store/app.state';
-import { EntityDialogPayload, AllowedCharacters } from '../../common';
-import { EntityDialogForm } from '../../common';
+import { EntityDialogPayload, AllowedCharacters, EntityDialogForm } from '../../common';
 import { MODELER_NAME_REGEX } from '../../utils/create-entries-names';
 @Component({
     templateUrl: './entity-dialog.component.html'

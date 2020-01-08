@@ -16,15 +16,18 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage, UtilRandom, CreatedEntity } from 'ama-testing/e2e';
-import { SidebarActionMenu } from 'ama-testing/e2e';
-import { CreateEntityDialog } from 'ama-testing/e2e';
-import { DashboardPage } from 'ama-testing/e2e';
-import { SnackBar } from 'ama-testing/e2e';
-import { Backend } from 'ama-testing/e2e';
-import { getBackend } from 'ama-testing/e2e';
-import { AuthenticatedPage } from 'ama-testing/e2e';
-import { Logger } from 'ama-testing/e2e';
+import {
+    LoginPage,
+    UtilRandom,
+    CreatedEntity,
+    SidebarActionMenu,
+    CreateEntityDialog,
+    DashboardPage,
+    SnackBar,
+    Backend,
+    getBackend,
+    AuthenticatedPage,
+    Logger } from 'ama-testing/e2e';
 import { browser } from 'protractor';
 
 describe('Create project', () => {

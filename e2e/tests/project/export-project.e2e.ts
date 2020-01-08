@@ -16,16 +16,17 @@
  */
 
 import { testConfig } from '../../test.config';
-import { LoginPage } from 'ama-testing/e2e';
-import { DashboardPage } from 'ama-testing/e2e';
-import { Toolbar } from 'ama-testing/e2e';
-import { NodeEntry } from '@alfresco/js-api';
-import { Backend } from 'ama-testing/e2e';
-import { getBackend } from 'ama-testing/e2e';
-import { UtilFile } from 'ama-testing/e2e';
 import { browser } from 'protractor';
-import { AuthenticatedPage } from 'ama-testing/e2e';
-import { ConfirmationDialog } from 'ama-testing/e2e';
+import {
+    LoginPage,
+    DashboardPage,
+    Toolbar,
+    Backend,
+    getBackend,
+    UtilFile,
+    AuthenticatedPage,
+    ConfirmationDialog } from 'ama-testing/e2e';
+import { NodeEntry } from '@alfresco/js-api';
 
 const path = require('path');
 

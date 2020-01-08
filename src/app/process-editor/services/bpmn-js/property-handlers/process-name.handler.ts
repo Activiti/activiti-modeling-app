@@ -15,8 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty, BpmnElement } from 'ama-sdk';
-import { sanitizeString } from 'ama-sdk';
+import { BpmnProperty, BpmnElement, sanitizeString } from 'ama-sdk';
 
 const propertyKey = BpmnProperty.name;
 

@@ -20,8 +20,7 @@ import { ProcessesFilterDataAdapter } from './processes-filter.data-adapter';
 import { TestBed, async } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { cold } from 'jasmine-marbles';
-import { PROCESS } from 'ama-sdk';
-import { AmaState } from 'ama-sdk';
+import { PROCESS, AmaState } from 'ama-sdk';
 import { selectProcessesLoading } from '../store/process-editor.selectors';
 
 describe('ProcessesFilterDataAdapter ', () => {

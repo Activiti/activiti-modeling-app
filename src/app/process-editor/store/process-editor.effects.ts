@@ -17,11 +17,10 @@
 
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable, Inject } from '@angular/core';
-import { catchError, switchMap, map, filter, withLatestFrom, tap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { catchError, switchMap, map, filter, withLatestFrom, tap, mergeMap } from 'rxjs/operators';
+import { of, Observable, forkJoin, zip } from 'rxjs';
 import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
-import { Observable } from 'rxjs';
 
 import {
     GetProcessSuccessAction,
@@ -75,18 +74,20 @@ import {
     BpmnElement,
     LoadApplicationAction,
     GeneralError,
+    SetAppDirtyStateAction,
+    Process,
+    SnackbarErrorAction,
+    SnackbarInfoAction,
+    selectSelectedProjectId,
+    AmaState,
+    selectSelectedProcess,
+    createModelName,
+    LogFactoryService
 } from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
-import { SetAppDirtyStateAction } from 'ama-sdk';
-import { forkJoin } from 'rxjs';
 import { selectSelectedElement, selectProcessesLoaded } from './process-editor.selectors';
 import { Store } from '@ngrx/store';
-import { zip } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
-import { Process, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
-import { selectSelectedProjectId, AmaState, selectSelectedProcess, createModelName } from 'ama-sdk';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
-import { LogFactoryService } from 'ama-sdk';
 import { ProcessValidationResponse } from './process-editor.state';
 
 @Injectable()

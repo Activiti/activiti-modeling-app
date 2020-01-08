@@ -18,12 +18,10 @@
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { LogService } from '@alfresco/adf-core';
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { tap, switchMap, catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { BaseEffects, Pagination, LogFactoryService, LogAction, FetchQueries, ServerSideSorting, ErrorResponse, SearchQuery } from 'ama-sdk';
 import {
     GetProjectsAttemptAction,
     GET_PROJECTS_ATTEMPT,
@@ -46,10 +44,22 @@ import {
     CREATE_PROJECT_SUCCESS
 } from '../actions/projects';
 import { Store } from '@ngrx/store';
-import { AmaState, CreateProjectAttemptAction, CREATE_PROJECT_ATTEMPT, } from 'ama-sdk';
-import { SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
+import {
+    AmaState,
+    CreateProjectAttemptAction,
+    CREATE_PROJECT_ATTEMPT,
+    EntityDialogForm,
+    SnackbarErrorAction,
+    SnackbarInfoAction,
+    BaseEffects,
+    Pagination,
+    LogFactoryService,
+    LogAction,
+    FetchQueries,
+    ServerSideSorting,
+    ErrorResponse,
+    SearchQuery } from 'ama-sdk';
 import { selectProjectsLoaded, selectPagination } from '../selectors/dashboard.selectors';
-import { EntityDialogForm } from 'ama-sdk';
 import { GET_PROJECT_RELEASES_ATTEMPT, GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
 import { getProjectEditorLogInitiator } from '../../../project-editor/services/project-editor.constants';
 import { SetLogHistoryVisibilityAction } from '../../../store/actions/app.actions';

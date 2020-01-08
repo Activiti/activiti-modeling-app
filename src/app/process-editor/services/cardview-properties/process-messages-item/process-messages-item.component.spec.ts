@@ -23,7 +23,10 @@ import { CardItemTypeService } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CardViewProcessMessagesItemComponent } from './process-messages-item.component';
-import { OPEN_PROCESS_MESSAGES_DIALOG, OpenProcessMessagesDialogAction } from 'src/app/process-editor/store/process-messages.actions';
+import {
+    OPEN_PROCESS_MESSAGES_DIALOG,
+    OpenProcessMessagesDialogAction
+} from '../../../store/process-messages.actions';
 
 describe('ProcessVariableItemComponent', () => {
     let fixture: ComponentFixture<CardViewProcessMessagesItemComponent>;
