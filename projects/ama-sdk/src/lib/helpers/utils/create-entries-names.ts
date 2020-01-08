@@ -34,7 +34,7 @@ export const sanitizeString = (text: string) => {
     return sanitizedValue;
 };
 
-export const createProcessName = (name) => {
+export const createModelName = (name) => {
     return sanitizeString(name.replace(PROCESS_FILE_FORMAT, ''));
 };
 

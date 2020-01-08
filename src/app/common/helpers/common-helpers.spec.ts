@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-import { createProcessName, PROCESS_FILE_FORMAT } from 'ama-sdk';
+import { createModelName, PROCESS_FILE_FORMAT } from 'ama-sdk';
 
 describe('Common Helpers', () => {
-    it('should test createProcessName function', () => {
+    it('should test createModelName function', () => {
         const testName = 'test-name-123';
-        expect(createProcessName(testName + PROCESS_FILE_FORMAT)).toBe(testName);
+        expect(createModelName(testName + PROCESS_FILE_FORMAT)).toBe(testName);
     });
 });

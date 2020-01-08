@@ -17,7 +17,7 @@
 
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import {
-    createProcessName,
+    createModelName,
     PROCESS,
     selectSelectedModelIdFor,
     formatUuid,
@@ -59,11 +59,11 @@ export const selectProcessesKeyLabelArray = createSelector(
     selectProcesses,
     processes => Object.values(processes).map((process: Process) => ({
         key: formatUuid(ContentType.Process, process.id),
-        label: createProcessName(process.name)
+        label: createModelName(process.name)
     }))
 );
 
 export const selectProcessCrumb = createSelector(
     selectSelectedProcess,
-    process => process ? { name: `${createProcessName(process.name)} (${process.version})` } : null
+    process => process ? { name: `${createModelName(process.name)} (${process.version})` } : null
 );

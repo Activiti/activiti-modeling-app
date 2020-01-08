@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { sanitizeString, createProcessName, formatUuid, MODELER_NAME_REGEX } from './create-entries-names';
+import { sanitizeString, createModelName, formatUuid, MODELER_NAME_REGEX } from './create-entries-names';
 
 describe('Create entries names', () => {
     it ('test sanitizeString function', () => {
@@ -23,9 +23,9 @@ describe('Create entries names', () => {
         expect(sanitizeString(text)).toEqual('abc-01023');
     });
 
-    it('test createProcessName function', () => {
+    it('test createModelName function', () => {
         const name = 'process.bpmn20.xml';
-        expect(createProcessName(name)).toEqual('process');
+        expect(createModelName(name)).toEqual('process');
     });
 
     it('test formatUid', () => {

@@ -84,7 +84,7 @@ import { Store } from '@ngrx/store';
 import { zip } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { Process, SnackbarErrorAction, SnackbarInfoAction } from 'ama-sdk';
-import { selectSelectedProjectId, AmaState, selectSelectedProcess, createProcessName } from 'ama-sdk';
+import { selectSelectedProjectId, AmaState, selectSelectedProcess, createModelName } from 'ama-sdk';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
 import { LogFactoryService } from 'ama-sdk';
 import { ProcessValidationResponse } from './process-editor.state';
@@ -270,7 +270,7 @@ export class ProcessEditorEffects extends BaseEffects {
     }
 
     private downloadProcessDiagram(processId: string, processName: string) {
-        const name = createProcessName(processName);
+        const name = createModelName(processName);
         return this.processModelerService
             .export()
             .then(data => this.processEditorService.downloadDiagram(name, data))
