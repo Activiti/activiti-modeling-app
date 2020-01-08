@@ -43,6 +43,7 @@ import { processMessagesHandler } from './process-messages.handler';
 import { multiInstanceHandler } from './multi-instance.handler';
 import { textAnnotationHandler } from './textAnnotation.handler';
 import { modelNameHandler } from './model-name.handler';
+import { isExecutableHandler } from './isExecutable.handler';
 
 export const handlers = {
     [BpmnProperty.id]: idHandler,
@@ -71,5 +72,6 @@ export const handlers = {
     [BpmnProperty.correlationKey]: correlationKeyHandler,
     [BpmnProperty.messages]: processMessagesHandler,
     [BpmnProperty.multiInstanceType]: multiInstanceHandler,
-    [BpmnProperty.textAnnotation]: textAnnotationHandler
+    [BpmnProperty.textAnnotation]: textAnnotationHandler,
+    [BpmnProperty.isExecutable]: isExecutableHandler
 };

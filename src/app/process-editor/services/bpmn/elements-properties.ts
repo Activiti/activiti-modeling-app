@@ -46,6 +46,7 @@ export const elementsProperties = {
         BpmnProperty.id,
         BpmnProperty.modelName,
         BpmnProperty.processName,
+        BpmnProperty.isExecutable,
         BpmnProperty.documentation,
         BpmnProperty.properties,
         BpmnProperty.messages
