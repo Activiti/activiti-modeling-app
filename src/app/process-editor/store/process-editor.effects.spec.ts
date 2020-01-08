@@ -231,7 +231,7 @@ describe('ProcessEditorEffects', () => {
         it('should trigger the right action on successful update', () => {
             processEditorService.update = jest.fn().mockReturnValue(of(process));
             actions$ = hot('a', { a: new UpdateProcessAttemptAction(mockActionPayload) });
-            const expectedLogAction = logFactory.logInfo(getProcessLogInitiator(), 'PROCESS_EDITOR.PROCESS_UPDATED');
+            const expectedLogAction = logFactory.logInfo(getProcessLogInitiator(), 'PROCESS_EDITOR.PROCESS_SAVED');
             expectedLogAction.log.datetime = (<any>expect).any(Date);
 
             const expected = cold('(bcdef)', {
@@ -239,7 +239,7 @@ describe('ProcessEditorEffects', () => {
                 c: new UpdateProcessSuccessAction({id: mockProcess.id, changes: mockActionPayload.metadata}, mockActionPayload.content),
                 d: new SetAppDirtyStateAction(false),
                 e: expectedLogAction,
-                f: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_UPDATED')
+                f: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_SAVED')
             });
 
             expect(effects.updateProcessEffect).toBeObservable(expected);

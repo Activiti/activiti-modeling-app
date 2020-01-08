@@ -30,7 +30,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { DeleteProcessAttemptAction, ValidateProcessAttemptAction, DownloadProcessAction, UpdateProcessAttemptAction } from '../../store/process-editor.actions';
 import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
-import { processNameHandler } from '../../services/bpmn-js/property-handlers/process-name.handler';
+import { modelNameHandler } from '../../services/bpmn-js/property-handlers/model-name.handler';
 
 @Component({
     selector: 'ama-process-header',
@@ -50,7 +50,7 @@ export class ProcessHeaderComponent {
     onSaveClick(): void {
         const element = this.processModeler.getRootProcessElement();
         const metadata: Partial<EntityDialogForm> = {
-            name: processNameHandler.get(element),
+            name: modelNameHandler.get(element),
             description: documentationHandler.get(element),
         };
 

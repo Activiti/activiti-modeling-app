@@ -17,15 +17,16 @@
 
 import { CardViewTextItemModel } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty, CardViewModelNameValidator } from 'ama-sdk';
+import { BpmnProperty } from 'ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
 import { sanitizeString } from 'ama-sdk';
+import { CardViewModelNameValidator } from 'ama-sdk/src/lib/validators/public_api';
 
-const propertyName = BpmnProperty.processName;
+const propertyName = BpmnProperty.modelName;
 
-export function createProcessNameProperty({ element }: FactoryProps) {
+export function createModelNameProperty({ element }: FactoryProps) {
     return new CardViewTextItemModel({
-        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS_NAME',
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MODEL_NAME',
         value: sanitizeString(ElementHelper.getProperty(element, propertyName)),
         key: propertyName,
         default: '',

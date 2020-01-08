@@ -416,7 +416,8 @@
                 "PARTICIPANT": "Create pool"
             },
             "UPLOAD_SUCCESS": "Process uploaded",
-            "PROCESS_UPDATED": "Process saved",
+            "PROCESS_SAVED": "Process saved",
+            "PROCESS_UPDATED": "Process updated",
             "SELECT_PROCESS_VARIABLE": "Select process variable",
             "ERRORS": {
                 "NO_PROCESS_PROPERTIES": "No process properties.",

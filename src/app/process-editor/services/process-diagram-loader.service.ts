@@ -32,6 +32,7 @@ import { of, Observable } from 'rxjs';
 import { createSelectedElement } from '../store/process-editor.state';
 import { SelectModelerElementAction } from '../store/process-editor.actions';
 import { LogFactoryService } from 'ama-sdk';
+import { processXmlUpdater } from './process-xml-updater';
 
 @Injectable()
 export class ProcessDiagramLoaderService {
@@ -44,6 +45,8 @@ export class ProcessDiagramLoaderService {
     load(xmlContent: string): Observable<string> {
         return this.processModelerService.loadXml(xmlContent).pipe(
             tap(() => {
+                /** @deprecated: Remove ProcessParserService before stable release */
+                processXmlUpdater.updateProcessXML(this.store, this.processModelerService);
                 const element = createSelectedElement(this.processModelerService.getRootProcessElement());
                 this.store.dispatch(new SelectModelerElementAction(element));
             }),

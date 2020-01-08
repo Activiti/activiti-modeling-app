@@ -34,6 +34,7 @@ import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { getProcessLogInitiator } from './process-editor.constants';
 import { SelectModelerElementAction } from '../store/process-editor.actions';
 import { LogFactoryService } from 'ama-sdk';
+import { processXmlUpdater } from './process-xml-updater';
 
 describe('ProcessDiagramLoaderService', () => {
 
@@ -76,39 +77,48 @@ describe('ProcessDiagramLoaderService', () => {
         const expectedElement = { id: '', type: '', name: '' };
         spyOn(modelerService, 'getRootProcessElement').and.returnValue(expectedElement);
 
-        service.load('<xml />').subscribe({complete: () => {
-            expect(store.dispatch).toHaveBeenCalledWith(new SelectModelerElementAction(expectedElement));
-            done();
-        }});
+        const updateProcessXMLMock = () => {};
+        processXmlUpdater.updateProcessXML = updateProcessXMLMock;
+
+        service.load('<xml />').subscribe({
+            complete: () => {
+                expect(store.dispatch).toHaveBeenCalledWith(new SelectModelerElementAction(expectedElement));
+                done();
+            }
+        });
     });
 
     it('should dispatch warnings in case of warnings', (done) => {
-        const thrownError: XmlParsingProblem = { type: MESSAGE.WARN, messages: [ 'BIG ORANGE WARNING' ] };
+        const thrownError: XmlParsingProblem = { type: MESSAGE.WARN, messages: ['BIG ORANGE WARNING'] };
         spyOn(modelerService, 'loadXml').and.returnValue(throwError(thrownError));
 
-        service.load('<xml />').subscribe({complete: () => {
-            const expectedLogAction = logFactory.logWarning(getProcessLogInitiator(), [ 'BIG ORANGE WARNING' ]);
-            expectedLogAction.log.datetime = (<any>expect).any(Date);
+        service.load('<xml />').subscribe({
+            complete: () => {
+                const expectedLogAction = logFactory.logWarning(getProcessLogInitiator(), ['BIG ORANGE WARNING']);
+                expectedLogAction.log.datetime = (<any>expect).any(Date);
 
-            expect(store.dispatch).toHaveBeenCalledTimes(2);
-            expect(store.dispatch).toHaveBeenCalledWith(expectedLogAction);
-            expect(store.dispatch).toHaveBeenCalledWith(new SnackbarWarningAction('PROCESS_EDITOR.ERRORS.PARSE_BPMN'));
-            done();
-        }});
+                expect(store.dispatch).toHaveBeenCalledTimes(2);
+                expect(store.dispatch).toHaveBeenCalledWith(expectedLogAction);
+                expect(store.dispatch).toHaveBeenCalledWith(new SnackbarWarningAction('PROCESS_EDITOR.ERRORS.PARSE_BPMN'));
+                done();
+            }
+        });
     });
 
     it('should dispatch errors in case of errors', (done) => {
-        const thrownError: XmlParsingProblem = { type: MESSAGE.ERROR, messages: [ 'BIG RED ERROR' ] };
+        const thrownError: XmlParsingProblem = { type: MESSAGE.ERROR, messages: ['BIG RED ERROR'] };
         spyOn(modelerService, 'loadXml').and.returnValue(throwError(thrownError));
 
-        service.load('<xml />').subscribe({complete: () => {
-            const expectedLogAction = logFactory.logError(getProcessLogInitiator(), [ 'BIG RED ERROR' ]);
-            expectedLogAction.log.datetime = (<any>expect).any(Date);
+        service.load('<xml />').subscribe({
+            complete: () => {
+                const expectedLogAction = logFactory.logError(getProcessLogInitiator(), ['BIG RED ERROR']);
+                expectedLogAction.log.datetime = (<any>expect).any(Date);
 
-            expect(store.dispatch).toHaveBeenCalledTimes(2);
-            expect(store.dispatch).toHaveBeenCalledWith(expectedLogAction);
-            expect(store.dispatch).toHaveBeenCalledWith(new SnackbarErrorAction('PROCESS_EDITOR.ERRORS.PARSE_BPMN'));
-            done();
-        }});
+                expect(store.dispatch).toHaveBeenCalledTimes(2);
+                expect(store.dispatch).toHaveBeenCalledWith(expectedLogAction);
+                expect(store.dispatch).toHaveBeenCalledWith(new SnackbarErrorAction('PROCESS_EDITOR.ERRORS.PARSE_BPMN'));
+                done();
+            }
+        });
     });
 });

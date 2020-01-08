@@ -20,6 +20,7 @@ import { Type, InjectionToken } from '@angular/core';
 export enum BpmnProperty {
     id = 'id',
     name = 'name',
+    modelName = 'modelName',
     documentation = 'documentation',
     implementation = 'implementation',
     decisionTask = 'decisionTask',

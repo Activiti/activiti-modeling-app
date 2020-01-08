@@ -38,7 +38,8 @@ export class ACMProcess extends ACMCrud {
             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
-            id="sample-diagram"
+            id="model-${entityId}"
+            name="${entityName}"
             targetNamespace="http://bpmn.io/schema/bpmn">
           <bpmn2:process id="${entityUuid}" isExecutable="true" name="${entityName}">
             <bpmn2:documentation>Lorem ipsum dolor sit amet...</bpmn2:documentation>

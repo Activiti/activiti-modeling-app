@@ -23,15 +23,18 @@ import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 export class ProcessPropertiesCard extends GenericPage {
 
     readonly editorProperties = element(by.css(`[data-automation-id="process-editor-properties"]`));
+    readonly editModelNameField = element(by.css(`[data-automation-id="card-textitem-edit-icon-modelName"]`));
     readonly editName = element(by.css(`[data-automation-id="card-textitem-edit-icon-processName"]`));
     readonly editDocumentation = element(by.css(`[data-automation-id="card-textitem-edit-icon-documentation"]`));
     readonly id = element(by.css(`[data-automation-id="card-textitem-value-id"]`));
     readonly nameValue = element(by.css(`[data-automation-id="card-textitem-value-processName"]`));
     /* cspell: disable-next-line */
     readonly name = element(by.css(`[data-automation-id="card-textitem-editinput-processName"]`));
+    readonly modelName = element(by.css(`[data-automation-id="card-textitem-editinput-modelName"]`));
     /* cspell: disable-next-line */
     readonly documentation = element(by.css(`[data-automation-id="card-textitem-edittextarea-documentation"]`));
     readonly updateName = element(by.css(`[data-automation-id="card-textitem-update-processName"]`));
+    readonly updateModelName = element(by.css(`[data-automation-id="card-textitem-update-modelName"]`));
     readonly updateDocumentation = element(by.css(`[data-automation-id="card-textitem-update-documentation"]`));
     readonly editVariablesIcon = element(by.cssContainingText('[data-automation-id="edit-process-variables"] mat-icon', 'layers'));
     readonly editVariables = element(by.css(`[data-automation-id="edit-process-variables"]`));
@@ -70,6 +73,12 @@ export class ProcessPropertiesCard extends GenericPage {
         await BrowserActions.click(this.editName);
         await BrowserActions.clearSendKeys(this.name, newName);
         await BrowserActions.click(this.updateName);
+    }
+
+    async editModelName(newName: string) {
+        await BrowserActions.click(this.editModelNameField);
+        await BrowserActions.clearSendKeys(this.modelName, newName);
+        await BrowserActions.click(this.updateModelName);
     }
 
     async getProcessName() {

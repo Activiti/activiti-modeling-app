@@ -59,15 +59,19 @@ describe('ProcessHeaderComponent', () => {
                     provide: ProcessModelerServiceToken,
                     useValue: {
                         getRootProcessElement: jest.fn().mockReturnValue({
-                            businessObject: { name: mockProcess.name, get: (param) => {
-                                const data = { documentation: mockProcess.description };
-                                return data[param];
-                            }}
+                            businessObject: {
+                                $parent: { name: mockProcess.name },
+                                name: mockProcess.name,
+                                get: (param) => {
+                                    const data = { documentation: mockProcess.description };
+                                    return data[param];
+                                }
+                            }
                         })
                     }
                 }
             ],
-            declarations: [ ProcessHeaderComponent ]
+            declarations: [ProcessHeaderComponent]
         }).compileComponents();
     }));
 

@@ -42,10 +42,12 @@ import { correlationKeyHandler } from './correlation-key.handler';
 import { processMessagesHandler } from './process-messages.handler';
 import { multiInstanceHandler } from './multi-instance.handler';
 import { textAnnotationHandler } from './textAnnotation.handler';
+import { modelNameHandler } from './model-name.handler';
 
 export const handlers = {
     [BpmnProperty.id]: idHandler,
     [BpmnProperty.processName]: processNameHandler,
+    [BpmnProperty.modelName]: modelNameHandler,
     [BpmnProperty.name]: nameHandler,
     [BpmnProperty.documentation]: documentationHandler,
     [BpmnProperty.implementation]: implementationHandler,

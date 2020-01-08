@@ -44,6 +44,7 @@ import { createProcessMessagesProperty } from './process-messages-item-property'
 import { createMultiInstanceProperty } from './multi-instance-cardview-property';
 import { createMessagePayloadProperty } from './messagePayload-cardview-property';
 import { createTextAnnotationProperty } from './text-annotation-cardview-property';
+import { createModelNameProperty } from './model-name-cardview-property';
 
 export const bpmn2cardView = {
     [BpmnProperty.id]: createIdProperty,
@@ -63,6 +64,7 @@ export const bpmn2cardView = {
     [BpmnProperty.conditionExpression]: createExpressionProperty,
     [BpmnProperty.formKey]: createFormKeyProperty,
     [BpmnProperty.processName]: createProcessNameProperty,
+    [BpmnProperty.modelName]: createModelNameProperty,
     [BpmnProperty.defaultSequenceFlow]: createDefaultSequenceFlowProperty,
     [BpmnProperty.signalRef]: createSignalRefProperty,
     [BpmnProperty.errorRef]: createErrorRefProperty,

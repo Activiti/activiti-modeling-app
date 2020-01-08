@@ -15,17 +15,33 @@
  * limitations under the License.
  */
 
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty, BpmnElement } from 'ama-sdk';
 import { sanitizeString } from 'ama-sdk';
 
 const propertyKey = BpmnProperty.name;
 
-const get = element => element.businessObject[propertyKey];
+const get = (element) => {
+    let processName: string;
+    if (element.type === BpmnElement.Process) {
+        processName = element.businessObject[propertyKey];
+    } else if (element.type === BpmnElement.Participant) {
+        processName = element.businessObject.processRef.name;
+    }
+
+    return processName || '';
+};
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
     value = sanitizeString(value);
-    modeling.updateProperties(element, {
-        [propertyKey]: value
-    });
+
+    if (element.type === BpmnElement.Participant) {
+        element.businessObject.processRef.name = value;
+        modeling.updateProperties(element, {});
+    } else {
+        modeling.updateProperties(element, {
+            [propertyKey]: value
+        });
+    }
+
 };
 
 export const processNameHandler = { get, set };

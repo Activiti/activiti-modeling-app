@@ -43,6 +43,7 @@ const isConditionalFlow = (element: Bpmn.DiagramElement) => element.businessObje
 export const elementsProperties = {
     [BpmnElement.Process]: [
         BpmnProperty.id,
+        BpmnProperty.modelName,
         BpmnProperty.processName,
         BpmnProperty.documentation,
         BpmnProperty.properties,

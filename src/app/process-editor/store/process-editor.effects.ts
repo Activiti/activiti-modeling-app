@@ -262,8 +262,8 @@ export class ProcessEditorEffects extends BaseEffects {
                 new LoadApplicationAction(true),
                 new UpdateProcessSuccessAction({ id: payload.processId, changes: payload.metadata }, payload.content),
                 new SetAppDirtyStateAction(false),
-                this.logFactory.logInfo(getProcessLogInitiator(), 'PROCESS_EDITOR.PROCESS_UPDATED'),
-                new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_UPDATED')
+                this.logFactory.logInfo(getProcessLogInitiator(), 'PROCESS_EDITOR.PROCESS_SAVED'),
+                new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_SAVED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleProcessUpdatingError.bind(this), e))
         );

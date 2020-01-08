@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-export const ContentType = {
-    Model: 'MODEL',
-    Process: 'PROCESS',
-    Connector: 'CONNECTOR',
-    Data: 'DATA',
-    DecisionTable: 'DECISION',
-    Form: 'FORM',
-    Ui: 'UI',
-    File: 'FILE',
-    Script: 'SCRIPT'
+import { sanitizeString } from 'ama-sdk';
+
+const get = (element) => element.businessObject.$parent.name || '';
+
+const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
+    value = sanitizeString(value);
+    element.businessObject.$parent.name = value;
+    modeling.updateProperties(element, {});
 };
+
+export const modelNameHandler = { get, set };

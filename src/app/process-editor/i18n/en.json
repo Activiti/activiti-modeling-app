@@ -31,6 +31,8 @@
         "ELEMENT_PROPERTIES": {
             "ID": "id",
             "NAME": "Name",
+            "PROCESS_NAME": "Process name",
+            "MODEL_NAME": "Model name",
             "SIGNAL": "Signal",
             "ERROR": "Error",
             "MAPPING_TYPE": "Mapping type",
@@ -129,7 +131,8 @@
         },
         "PROPERTIES_BUTTON": "Properties",
         "UPLOAD_SUCCESS": "Process uploaded",
-        "PROCESS_UPDATED": "Process saved",
+        "PROCESS_SAVED": "Process saved",
+        "PROCESS_UPDATED": "Process updated",
         "ERRORS": {
             "NO_PROCESS_VARIABLES": "No process variables.",
             "NO_SUB_PROCESS_VARIABLES": "No subprocess variables.",

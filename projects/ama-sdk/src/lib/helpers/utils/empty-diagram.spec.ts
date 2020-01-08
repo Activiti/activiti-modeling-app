@@ -29,35 +29,36 @@ describe('Empty diagram', () => {
     it('process\' id should be prefixed with process-', () => {
         const mockProcess = {
             id: 'id1',
-            name: 'process1'
+            name: 'model1'
         };
 
         const diagram = buildXML(mockProcess);
         const documentation = diagram.getElementsByTagName('bpmn2:documentation');
-        const id = diagram.getElementsByTagName('bpmn2:process')[0].getAttribute('id');
+        const id = diagram.getElementsByTagName('bpmn2:definitions')[0].getAttribute('id');
         const idReference = diagram.getElementsByTagName('bpmndi:BPMNPlane')[0].getAttribute('bpmnElement');
-        const name = diagram.getElementsByTagName('bpmn2:process')[0].getAttribute('name');
+        const processId = diagram.getElementsByTagName('bpmn2:process')[0].getAttribute('id');
+        const name = diagram.getElementsByTagName('bpmn2:definitions')[0].getAttribute('name');
 
         expect(documentation[0].textContent).toBe('');
-        expect(id).toBe('process-id1');
-        expect(idReference).toBe('process-id1');
-        expect(name).toBe('process1');
+        expect(id).toBe('model-id1');
+        expect(idReference).toBe(processId);
+        expect(name).toBe('model1');
     });
 
     it('description should be in the xml properly', () => {
         const mockProcess = {
             id: 'id1',
-            name: 'process1',
+            name: 'model1',
             description: 'desc'
         };
 
         const diagram = buildXML(mockProcess);
         const documentation = diagram.getElementsByTagName('bpmn2:documentation');
-        const id = diagram.getElementsByTagName('bpmn2:process')[0].getAttribute('id');
-        const name = diagram.getElementsByTagName('bpmn2:process')[0].getAttribute('name');
+        const id = diagram.getElementsByTagName('bpmn2:definitions')[0].getAttribute('id');
+        const name = diagram.getElementsByTagName('bpmn2:definitions')[0].getAttribute('name');
 
         expect(documentation[0].textContent).toBe('desc');
-        expect(id).toBe('process-id1');
-        expect(name).toBe('process1');
+        expect(id).toBe('model-id1');
+        expect(name).toBe('model1');
     });
 });
