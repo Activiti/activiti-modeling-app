@@ -71,6 +71,13 @@ export interface CustomType {
     description?: string;
 }
 
+export interface CustomAspect {
+    name: string;
+    parentName: string;
+    title: string;
+    description?: string;
+}
+
 export interface ApiError {
     errorKey?: string;
     statusCode: number;
