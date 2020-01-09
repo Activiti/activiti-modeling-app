@@ -28,3 +28,8 @@ export class UpdateServiceParametersAction implements Action {
         public constants?: ServicesParameterConstants
     ) {}
 }
+
+export const AUTO_SAVE_PROCESS = '[ProcessEditor] Auto save process';
+export class AutoSaveProcessAction implements Action {
+    readonly type = AUTO_SAVE_PROCESS;
+}

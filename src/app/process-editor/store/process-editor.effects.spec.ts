@@ -25,7 +25,7 @@ import { LogService, CoreModule, TranslationService, TranslationMock } from '@al
 import { provideMockActions } from '@ngrx/effects/testing';
 import { ProcessModelerServiceImplementation } from '../services/process-modeler.service';
 import { ProcessEditorService } from '../services/process-editor.service';
-import { selectSelectedElement, selectProcessesLoaded } from './process-editor.selectors';
+import { selectSelectedElement, selectProcessesLoaded, selectSelectedProcessId, selectSelectedProcessDiagram } from './process-editor.selectors';
 import { BpmnFactoryMock } from '../services/bpmn-js/bpmn-js.mock';
 import {
     ChangedProcessAction,
@@ -62,7 +62,9 @@ import {
     ProcessExtensionsContent,
     OpenConfirmDialogAction,
     selectOpenedModel,
-    BpmnElement
+    BpmnElement,
+    AutoSaveProcessAction,
+    ProcessModelerService
 } from 'ama-sdk';
 import { ProcessEntitiesState } from './process-entities.state';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
@@ -76,6 +78,7 @@ describe('ProcessEditorEffects', () => {
     let processEditorService: ProcessEditorService;
     let router: Router;
     let logFactory: LogFactoryService;
+    let processModelerService: ProcessModelerService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -143,6 +146,7 @@ describe('ProcessEditorEffects', () => {
         store = TestBed.get(Store);
         router = TestBed.get(Router);
         processEditorService = TestBed.get(ProcessEditorService);
+        processModelerService = TestBed.get(ProcessModelerServiceToken);
     });
 
     describe('updateProcessEffect', () => {
@@ -410,4 +414,43 @@ describe('ProcessEditorEffects', () => {
             expect(router.navigate).not.toHaveBeenCalled();
         });
     });
+
+    it('autoSaveProcessSEffect Effect should dispatch `updateProcess` action', () => {
+        let dirty = true;
+        spyOn(processModelerService, 'getRootProcessElement').and.returnValue({
+            type: 'bpmn:Process',
+            businessObject: {
+                name: 'fake-name',
+                get: () => [{ text: 'fake-description' }]
+            }
+        });
+
+        actions$ = hot('a', { a: new AutoSaveProcessAction() });
+
+        store.select = jest.fn().mockImplementation(selector => {
+            if (selector === selectSelectedProcessId) {
+                return of('fake-id');
+            } else if (selector === selectSelectedProcessDiagram) {
+                return of('<sample>sample content</sample>');
+            }
+            return of(dirty);
+        });
+
+        let expected = cold('a', {
+            a: new UpdateProcessAttemptAction({
+                processId: 'fake-id',
+                content: '<sample>sample content</sample>',
+                metadata: {
+                    name: 'fake-name',
+                    description: 'fake-description'
+                }
+            })
+        });
+        expect(effects.autoSaveProcessSEffect).toBeObservable(expected);
+
+        dirty = false;
+        expected = cold('');
+        expect(effects.autoSaveProcessSEffect).toBeObservable(expected);
+    });
+
 });

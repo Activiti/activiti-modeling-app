@@ -15,80 +15,86 @@
  * limitations under the License.
  */
 
-import { Effect, Actions, ofType } from '@ngrx/effects';
-import { Injectable, Inject } from '@angular/core';
-import { catchError, switchMap, map, filter, withLatestFrom, tap, mergeMap } from 'rxjs/operators';
-import { of, Observable, forkJoin, zip } from 'rxjs';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Inject, Injectable } from '@angular/core';
+import { catchError, filter, map, mergeMap, switchMap, take, tap, withLatestFrom } from 'rxjs/operators';
+import { forkJoin, Observable, of, zip } from 'rxjs';
 import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
 
 import {
-    GetProcessSuccessAction,
-    UPDATE_PROCESS_ATTEMPT,
-    UpdateProcessAttemptAction,
-    UpdateProcessSuccessAction,
-    GET_PROCESS_ATTEMPT,
-    GetProcessAttemptAction,
-    DownloadProcessAction,
-    DOWNLOAD_PROCESS_DIAGRAM,
     CHANGED_PROCESS_DIAGRAM,
-    SelectModelerElementAction,
     ChangedProcessAction,
-    UpdateProcessPayload,
-    ValidateProcessAttemptAction,
-    VALIDATE_PROCESS_ATTEMPT,
-    ValidateProcessPayload,
-    ShowProcessesAction,
-    SHOW_PROCESSES,
-    GetProcessesAttemptAction,
-    GET_PROCESSES_ATTEMPT,
     CREATE_PROCESS_ATTEMPT,
-    CreateProcessAttemptAction,
-    UploadProcessAttemptAction,
-    UPLOAD_PROCESS_ATTEMPT,
-    DELETE_PROCESS_ATTEMPT,
-    DeleteProcessAttemptAction,
-    DELETE_PROCESS_SUCCESS,
-    DeleteProcessSuccessAction,
-    CreateProcessSuccessAction,
-    GetProcessesSuccessAction,
     CREATE_PROCESS_SUCCESS,
-    RemoveDiagramElementAction,
+    CreateProcessAttemptAction,
+    CreateProcessSuccessAction,
+    DELETE_PROCESS_ATTEMPT,
+    DELETE_PROCESS_SUCCESS,
+    DeleteProcessAttemptAction,
+    DeleteProcessSuccessAction,
+    DOWNLOAD_PROCESS_DIAGRAM,
+    DownloadProcessAction,
+    GET_PROCESS_ATTEMPT,
+    GET_PROCESSES_ATTEMPT,
+    GetProcessAttemptAction,
+    GetProcessesAttemptAction,
+    GetProcessesSuccessAction,
+    GetProcessSuccessAction,
     REMOVE_DIAGRAM_ELEMENT,
+    RemoveDiagramElementAction,
     RemoveElementMappingAction,
-    UpdateProcessFailedAction,
+    SelectModelerElementAction,
+    SHOW_PROCESSES,
+    ShowProcessesAction,
+    UPDATE_PROCESS_ATTEMPT,
+    UPDATE_PROCESS_FAILED,
     UPDATE_PROCESS_SUCCESS,
-    UPDATE_PROCESS_FAILED
+    UpdateProcessAttemptAction,
+    UpdateProcessFailedAction,
+    UpdateProcessPayload,
+    UpdateProcessSuccessAction,
+    UPLOAD_PROCESS_ATTEMPT,
+    UploadProcessAttemptAction,
+    VALIDATE_PROCESS_ATTEMPT,
+    ValidateProcessAttemptAction,
+    ValidateProcessPayload
 } from './process-editor.actions';
 import {
+    AmaState,
+    AUTO_SAVE_PROCESS,
+    AutoSaveProcessAction,
     BaseEffects,
-    OpenConfirmDialogAction,
-    ModelOpenedAction,
-    UploadFileAttemptPayload,
-    ModelClosedAction,
-    PROCESS, EntityDialogForm,
-    UPDATE_SERVICE_PARAMETERS,
-    ProcessModelerServiceToken,
-    ProcessModelerService,
-    selectOpenedModel,
     BpmnElement,
-    LoadApplicationAction,
+    createModelName,
+    EntityDialogForm,
     GeneralError,
-    SetAppDirtyStateAction,
+    LoadApplicationAction,
+    LogFactoryService,
+    ModelClosedAction,
+    ModelOpenedAction,
+    OpenConfirmDialogAction,
+    PROCESS,
     Process,
+    ProcessModelerService,
+    ProcessModelerServiceToken,
+    selectAppDirtyState,
+    selectOpenedModel,
+    selectSelectedProcess,
+    selectSelectedProjectId,
+    SetAppDirtyStateAction,
     SnackbarErrorAction,
     SnackbarInfoAction,
-    selectSelectedProjectId,
-    AmaState,
-    selectSelectedProcess,
-    createModelName,
-    LogFactoryService
+    UPDATE_SERVICE_PARAMETERS,
+    UploadFileAttemptPayload
 } from 'ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
-import { selectSelectedElement, selectProcessesLoaded } from './process-editor.selectors';
+import { selectProcessesLoaded, selectSelectedElement, selectSelectedProcessDiagram, selectSelectedProcessId } from './process-editor.selectors';
 import { Store } from '@ngrx/store';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
 import { ProcessValidationResponse } from './process-editor.state';
+import { processNameHandler } from '../services/bpmn-js/property-handlers/process-name.handler';
+import { documentationHandler } from '../services/bpmn-js/property-handlers/documentation.handler';
 
 @Injectable()
 export class ProcessEditorEffects extends BaseEffects {
@@ -231,6 +237,29 @@ export class ProcessEditorEffects extends BaseEffects {
         }),
         mergeMap(([element, selected]) => of(new SelectModelerElementAction(element)))
     );
+
+    @Effect()
+    autoSaveProcessSEffect = this.actions$.pipe(
+        ofType<AutoSaveProcessAction>(AUTO_SAVE_PROCESS),
+        mergeMap(() => this.store.select(selectAppDirtyState).pipe(take(1))),
+        filter(Boolean),
+        mergeMap(() =>
+            zip(
+                this.store.select(selectSelectedProcessId).pipe(take(1)),
+                this.store.select(selectSelectedProcessDiagram).pipe(take(1))
+            )
+        ),
+        mergeMap(([processId, content]) => of(new UpdateProcessAttemptAction(this.getCurrentProcess(processId, content))))
+    );
+
+    private getCurrentProcess(processId, content): UpdateProcessPayload {
+        const element = this.processModelerService.getRootProcessElement();
+        const metadata: Partial<EntityDialogForm> = {
+            name: processNameHandler.get(element),
+            description: documentationHandler.get(element),
+        };
+        return { processId, content, metadata };
+    }
 
     private validateProcess(payload: ValidateProcessPayload) {
         return this.processEditorService.validate(payload.processId, payload.content, payload.extensions).pipe(
