@@ -138,12 +138,18 @@ export class ProjectsEffects extends BaseEffects {
     );
 
     private deleteProject(projectId: string, sorting: ServerSideSorting, search: SearchQuery, pagination: Pagination) {
+        let skipCount;
+        if (pagination.count === 1) {
+            skipCount = 0;
+        } else {
+            skipCount = pagination.skipCount < (pagination.totalItems - 1) ? pagination.skipCount : pagination.skipCount - pagination.maxItems;
+        }
         return this.dashboardService.deleteProject(projectId).pipe(
             switchMap(() => [
                 new DeleteProjectSuccessAction(projectId),
                 new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
                 new GetProjectsAttemptAction({
-                    skipCount: pagination.skipCount < (pagination.totalItems - 1) ? pagination.skipCount : pagination.skipCount - pagination.maxItems,
+                    skipCount,
                     maxItems: pagination.maxItems
                 }, {
                     key: sorting.key,

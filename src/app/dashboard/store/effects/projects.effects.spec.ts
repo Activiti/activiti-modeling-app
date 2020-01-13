@@ -26,7 +26,7 @@ import { Router } from '@angular/router';
 import { LogService, CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { selectProjectsLoaded, selectPagination } from '../selectors/dashboard.selectors';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { mockProject, mockReleaseEntry, paginationMock } from './project.mock';
+import { mockProject, mockReleaseEntry, paginationMock, paginationCountMock } from './project.mock';
 import {
     ShowProjectsAction,
     GET_PROJECTS_ATTEMPT,
@@ -331,6 +331,26 @@ describe('ProjectsEffects', () => {
             });
 
             expect(effects.deleteProjectAttemptEffect).toBeObservable(expected);
+        });
+
+        it('should modify pagination when the last project in the list is deleted', () => {
+            paginationLoaded$.next(paginationCountMock);
+            dashboardService.deleteProject = jest.fn().mockReturnValue(of(mockProject));
+            actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id, sorting, search)});
+
+            const updatedCountPagination = {
+                skipCount: 0,
+                maxItems: 10
+            };
+
+            const expected = cold('(bce)', {
+                b:  new DeleteProjectSuccessAction(mockProject.id),
+                c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
+                e: new GetProjectsAttemptAction(updatedCountPagination, sorting, search)
+            });
+
+            expect(effects.deleteProjectAttemptEffect).toBeObservable(expected);
+            paginationLoaded$.next(paginationMock);
         });
 
         it('should trigger the right action on unsuccessful delete', () => {
