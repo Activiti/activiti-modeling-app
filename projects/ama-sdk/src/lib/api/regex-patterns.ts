@@ -15,9 +15,5 @@
  * limitations under the License.
  */
 
-export * from './api.interface';
-export * from './project-api.interface';
-export * from './generalmodel-api.interface';
-export * from './model-schema-api.interface';
-export * from './types';
-export * from './regex-patterns';
+export const NAME_REGEXP = /^([A-Za-z0-9\-\_]+)?$/;
+export const URL_REGEXP = /^[A-Za-z][A-Za-z\d.+-]*:\/*(?:\w+(?::\w+)?@)?[^\s/]+(?::\d+)?(?:\/[\w#!:.?+=&%@\-/]*)?$/;
