@@ -179,9 +179,14 @@ export const elementsProperties = {
         BpmnProperty.documentation,
         BpmnProperty.multiInstanceType
     ],
-    [BpmnElement.textAnnotation]: [
+    [BpmnElement.TextAnnotation]: [
         BpmnProperty.id,
         BpmnProperty.documentation,
         BpmnProperty.textAnnotation
+    ],
+    [BpmnElement.Lane]: [
+        BpmnProperty.id,
+        BpmnProperty.name,
+        BpmnProperty.documentation,
     ]
 };

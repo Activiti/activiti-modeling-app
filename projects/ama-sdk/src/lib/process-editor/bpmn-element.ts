@@ -45,6 +45,7 @@ export enum BpmnElement {
     MultiInstanceLoopCharacteristics = 'bpmn:MultiInstanceLoopCharacteristics',
     Expression = 'bpmn:Expression',
     Task = 'bpmn:Task',
-    textAnnotation= 'bpmn:TextAnnotation',
-    Collaboration = 'bpmn:Collaboration'
+    TextAnnotation= 'bpmn:TextAnnotation',
+    Collaboration = 'bpmn:Collaboration',
+    Lane = 'bpmn:Lane'
 }
