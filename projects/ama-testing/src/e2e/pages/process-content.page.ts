@@ -31,6 +31,7 @@ export class ProcessContentPage extends GenericPage {
     readonly extensionsEditorTabButton = element(by.cssContainingText('.mat-tab-label-content', 'Extensions Editor'));
     readonly codeEditorTabButton = element(by.cssContainingText('.mat-tab-label-content', 'XML Editor'));
     readonly modelerEditorTabButton = element(by.cssContainingText('.mat-tab-label-content', 'Diagram Editor'));
+    readonly createFormByFormSelectorButton = element(by.css('.quick-form-button'));
 
     constructor(testConfig: TestConfig, public appId?: string, public processId?: string) {
         super(testConfig);
@@ -84,6 +85,14 @@ export class ProcessContentPage extends GenericPage {
     async selectTask(taskId: string): Promise<void> {
         const taskElement = element(by.css(`[data-element-id="${taskId}"]`));
         await BrowserActions.click(taskElement);
+    }
+
+    async selectProcessEditorProperties(): Promise<void> {
+        await BrowserActions.click(this.processEditorProperties);
+    }
+
+    async createFormPlusButtonByFormSelector(): Promise<void> {
+        await BrowserActions.click(this.createFormByFormSelectorButton);
     }
 
 }
