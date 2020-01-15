@@ -54,16 +54,6 @@ export type CustomModelStatus = 'ACTIVE' | 'DRAFT';
 export const ACTIVE_STATUS: CustomModelStatus = 'ACTIVE';
 export const INACTIVE_STATUS: CustomModelStatus = 'DRAFT';
 
-export interface CustomModel {
-    type: CUSTOM_MODEL_TYPE;
-    name: string;
-    namespacePrefix: string;
-    description: string;
-    author: string;
-    namespaceUri: string;
-    status: CustomModelStatus;
-}
-
 export interface CustomType {
     name: string;
     parentName: string;
@@ -310,18 +300,6 @@ export interface Pagination {
     maxItems: number;
     skipCount: number;
     totalItems: number;
-}
-
-export interface PaginatedEntries<T> {
-    entries: T[];
-    pagination: Pagination;
-}
-
-export interface PaginatedList<T> {
-    list: {
-        entries: Array<{ entry: T }>;
-        pagination: Pagination;
-    };
 }
 
 export interface ServerSideSorting {

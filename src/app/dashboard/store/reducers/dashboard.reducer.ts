@@ -39,6 +39,7 @@ import {
 
 } from '../actions/projects';
 import { GET_PROJECT_RELEASES_SUCCESS, GetProjectReleasesSuccessAction, GET_PROJECT_RELEASES_ATTEMPT, GetProjectReleasesAttemptAction } from '../actions/releases';
+import { Pagination } from 'ama-sdk';
 
 export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE, action: Action): DashboardState {
     let newState: DashboardState;
@@ -93,7 +94,7 @@ function setProjects(state: DashboardState, action: GetProjectsSuccessAction): D
     const newState = Object.assign({}, state);
     newState.projectsLoaded = true;
     newState.loading = false;
-    newState.pagination = action.payload.pagination;
+    newState.pagination = (action.payload.pagination as Pagination);
     newState.projects = action.payload.entries.reduce<ProjectSummaryEntities>((projects, project) => {
         return { ...projects, [project.id]: project };
     }, {});
@@ -154,7 +155,7 @@ function releaseProject(state: DashboardState, action: ReleaseProjectSuccessActi
 function setReleases(state: DashboardState, action: GetProjectReleasesSuccessAction): DashboardState {
     const newState = Object.assign({}, state);
     newState.loadingReleases = false;
-    newState.releasesPagination = action.payload.pagination;
+    newState.releasesPagination = (action.payload.pagination as Pagination);
     newState.releases = action.payload.entries.reduce<ReleasesSummaryEntities>((releases, release) => {
         return { ...releases, [release.entry.id]: release.entry };
     }, {});

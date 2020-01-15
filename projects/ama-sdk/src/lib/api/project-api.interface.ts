@@ -17,8 +17,9 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project, Release, Pagination, PaginatedEntries, ReleaseEntry, ServerSideSorting, SearchQuery } from './types';
+import { Project, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery } from './types';
 import { ValidationErrors } from '../interfaces/validation-errors.interface';
+import { PaginatedEntries } from '@alfresco/js-api';
 
 @Injectable()
 export abstract class ProjectApi {

@@ -18,10 +18,11 @@
 import { Injectable } from '@angular/core';
 import { ProjectApi, FetchQueries } from '../../api/project-api.interface';
 import { Observable } from 'rxjs';
-import { Project, PROJECT, Release, Pagination, PaginatedEntries, ReleaseEntry, ServerSideSorting, SearchQuery } from '../../api/types';
+import { Project, PROJECT, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery } from '../../api/types';
 import { map } from 'rxjs/operators';
 import { RequestApiHelper } from './request-api.helper';
 import { ValidationErrors } from '../../interfaces/validation-errors.interface';
+import { PaginatedEntries } from '@alfresco/js-api';
 
 export interface BackendProject {
     id: string;
