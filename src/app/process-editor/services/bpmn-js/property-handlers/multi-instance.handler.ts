@@ -28,6 +28,8 @@ export enum MultiInstanceProps {
     completionCondition = 'completionCondition',
     collection = 'collection',
     elementVariable = 'elementVariable',
+    outputDataItem = 'outputDataItem',
+    loopDataOutputRef = 'loopDataOutputRef'
 }
 
 export function getMultiInstanceType(element): MultiInstanceType {

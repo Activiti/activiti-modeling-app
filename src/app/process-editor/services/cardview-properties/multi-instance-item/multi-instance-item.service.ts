@@ -56,6 +56,24 @@ export class CardViewMultiInstanceItemService {
         this.updateEditor();
     }
 
+    createOrUpdateLoopDataOutputRef(expression: string) {
+        if (!this.element.loopCharacteristics[MultiInstanceProps.loopDataOutputRef]) {
+            this.element.loopCharacteristics.set('loopDataOutputRef',  { id: expression });
+        } else {
+            this.element.loopCharacteristics[MultiInstanceProps.loopDataOutputRef].set('id', expression);
+        }
+        this.updateEditor();
+    }
+
+    createOrUpdateOutputDataItem(expression: string) {
+        if (!this.element.loopCharacteristics[MultiInstanceProps.outputDataItem]) {
+            this.createLoopCharacteristics(MultiInstanceProps.outputDataItem, expression);
+        } else {
+            this.element.loopCharacteristics[MultiInstanceProps.outputDataItem].set('body', expression);
+        }
+        this.updateEditor();
+    }
+
     createOrUpdateMultiInstanceElement(selectedType: MultiInstanceType) {
         const isSequence = selectedType === MultiInstanceType.sequence;
         if (!this.element[MultiInstanceProps.loopCharacteristics]) {
@@ -64,13 +82,13 @@ export class CardViewMultiInstanceItemService {
         this.element[MultiInstanceProps.loopCharacteristics].set(MultiInstanceProps.isSequential, isSequence);
     }
 
-    createOrUpdateCollectionExpression(expression: string) {
-        this.element[MultiInstanceProps.loopCharacteristics].set(MultiInstanceProps.collection, expression);
+    createOrUpdateCollectionExpression(collection: string) {
+        this.element[MultiInstanceProps.loopCharacteristics].set(MultiInstanceProps.collection, collection);
         this.updateEditor();
     }
 
-    createOrUpdateElementVariable(expression: string) {
-        this.element[MultiInstanceProps.loopCharacteristics].set(MultiInstanceProps.elementVariable, expression);
+    createOrUpdateElementVariable(elementVariable: string) {
+        this.element[MultiInstanceProps.loopCharacteristics].set(MultiInstanceProps.elementVariable, elementVariable);
         this.updateEditor();
     }
 

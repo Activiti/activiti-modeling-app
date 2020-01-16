@@ -1,6 +1,6 @@
 <div class="multi-instance-block">
     <mat-form-field>
-        <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MULTI_INSTANCE_TYPE_NAME' | translate }}</div>
+        <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MULTI_INSTANCE.MULTI_INSTANCE_TYPE_NAME' | translate }}</div>
         <mat-select (selectionChange)="onTypeChange($event.value)"
                     [(ngModel)]="selectedType"
                     data-automation-id="multi-instance-field">
@@ -13,7 +13,7 @@
     <ng-container [formGroup]="form" *ngIf=" form && selectedType !== 'none'">
         <mat-form-field>
             <div class="adf-property-label">
-                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.CARDINALITY_NAME' | translate }}
+                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MULTI_INSTANCE.CARDINALITY_NAME' | translate }}
             </div>
             <input (change)="onCardinalityChange($event.target.value)"
                    formControlName="cardinality"
@@ -26,7 +26,7 @@
 
         <mat-form-field>
             <div class="adf-property-label">
-                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.COLLECTION' | translate }}
+                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MULTI_INSTANCE.COLLECTION' | translate }}
             </div>
             <input (change)="onCollectionExpressionChange($event.target.value)"
                    formControlName="collectionExpression"
@@ -52,7 +52,7 @@
 
         <mat-form-field>
             <div class="adf-property-label">
-                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.COMPLETION_CONDITION' | translate }}
+                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MULTI_INSTANCE.COMPLETION_CONDITION' | translate }}
             </div>
             <input (change)="onCompletionConditionChange($event.target.value)"
                    formControlName="completionCondition"
@@ -62,5 +62,32 @@
                 {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_EXPRESSION' | translate }}
             </mat-error>
         </mat-form-field>
+
+        <mat-form-field>
+            <div class="adf-property-label">
+                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MULTI_INSTANCE.RESULT_COLLECTION' | translate }}
+            </div>
+            <input (change)="onLoopDataOutputRefChange($event.target.value)"
+                   formControlName="loopDataOutputRef"
+                   data-automation-id="loopDataOutputRef-field"
+                   matInput/>
+            <mat-error *ngIf="loopDataOutputRef.hasError('pattern')">
+                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_EXPRESSION' | translate }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <div class="adf-property-label">
+                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MULTI_INSTANCE.RESULT_ELEMENT_VARIABLE' | translate }}
+            </div>
+            <input (change)="onOutputDataItemChange($event.target.value)"
+                   formControlName="outputDataItem"
+                   data-automation-id="outputDataItem-field"
+                   matInput/>
+            <mat-error *ngIf="outputDataItem.hasError('pattern')">
+                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_EXPRESSION' | translate }}
+            </mat-error>
+        </mat-form-field>
+
     </ng-container>
 </div>

@@ -64,12 +64,22 @@ export class CardViewMultiInstanceItemComponent implements OnInit {
         return this.form.get('elementVariable');
     }
 
+    get loopDataOutputRef(): AbstractControl {
+        return this.form.get('loopDataOutputRef');
+    }
+
+    get outputDataItem(): AbstractControl {
+        return this.form.get('outputDataItem');
+    }
+
     ngOnInit() {
         this.selectedType = getMultiInstanceType(this.element[MultiInstanceProps.loopCharacteristics]);
         this.form = this.formBuilder.group({
             cardinality: [ this.parseMultiInstanceProperty(MultiInstanceProps.loopCardinality) ],
             collectionExpression: [ this.parseMultiInstance(MultiInstanceProps.collection), [ Validators.pattern(/{([^}]+)}/) ] ],
             elementVariable: [ this.parseMultiInstance(MultiInstanceProps.elementVariable) ],
+            outputDataItem: [ this.parseMultiInstanceProperty(MultiInstanceProps.outputDataItem) ],
+            loopDataOutputRef: [ this.parseMultiInstanceProperty(MultiInstanceProps.loopDataOutputRef) ],
             completionCondition: [ this.parseMultiInstanceProperty(MultiInstanceProps.completionCondition), [ Validators.pattern(/{([^}]+)}/) ] ],
         },   { validators: this.validateExpression });
         this.multiInstanceItemService.element = this.element;
@@ -103,6 +113,14 @@ export class CardViewMultiInstanceItemComponent implements OnInit {
 
     onElementVariableChange(iterationVariable: string) {
         this.multiInstanceItemService.createOrUpdateElementVariable(iterationVariable);
+    }
+
+    onLoopDataOutputRefChange(loopDataOutputRef: string) {
+        this.multiInstanceItemService.createOrUpdateLoopDataOutputRef(loopDataOutputRef);
+    }
+
+    onOutputDataItemChange(iterationVariable: string) {
+        this.multiInstanceItemService.createOrUpdateOutputDataItem(iterationVariable);
     }
 
     private parseMultiInstance(props: MultiInstanceProps) {

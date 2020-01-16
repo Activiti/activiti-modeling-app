@@ -88,10 +88,14 @@
             "MESSAGE_EXPRESSION": "Message expression",
             "USE_MESSAGE_EXPRESSION": "Use message expression",
             "MESSAGE_EXPRESSION_REQUIRED": "Message expression required",
-            "MULTI_INSTANCE_TYPE_NAME": "Multi Instance type",
-            "CARDINALITY_NAME": "Cardinality (Multi-instance)",
-            "COMPLETION_CONDITION": "Completion condition (Multi-instance)",
-            "COLLECTION": "Collection (Multi-instance)",
+            "MULTI_INSTANCE": {
+                "CARDINALITY_NAME": "Cardinality (Multi-instance)",
+                "COMPLETION_CONDITION": "Completion condition (Multi-instance)",
+                "COLLECTION": "Collection (Multi-instance)",
+                "MULTI_INSTANCE_TYPE_NAME": "Multi Instance type (Multi-instance)",
+                "RESULT_COLLECTION": "Result Collection (Multi-instance)",
+                "RESULT_ELEMENT_VARIABLE": "Result Element Variable (Multi-instance)"
+            },
             "ELEMENT_VARIABLE": "Element variable (Multi-instance)",
             "INVALID_CARDINALITY": "It should be a number or expression",
             "INVALID_ELEMENT_VARIABLE": "It should be a string",
