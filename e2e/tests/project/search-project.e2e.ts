@@ -18,7 +18,7 @@
 import { testConfig } from '../../test.config';
 import { LoginPage, UtilRandom, getBackend,
     DashboardPage, LogHistoryPage, Logger,
-    Backend, AuthenticatedPage } from 'ama-testing/e2e';
+    Backend, AuthenticatedPage, DeleteEntityDialog, SnackBar } from 'ama-testing/e2e';
 import { HeaderToolbar } from '../../pages/header.toolbar';
 import { browser } from 'protractor';
 import { Pagination } from 'ama-testing/e2e/pages/pagination.component';
@@ -35,9 +35,12 @@ describe('Search project', () => {
     const dashboardPage = new DashboardPage();
     const pagination = new Pagination();
     const logHistory = new LogHistoryPage();
+    const deleteEntityDialog = new DeleteEntityDialog();
+    const snackBar = new SnackBar();
 
     let project: NodeEntry;
     let backend: Backend;
+    let project2: NodeEntry;
 
     beforeAll(async () => {
         const loginPage = LoginPage.get();
@@ -45,7 +48,7 @@ describe('Search project', () => {
         await loginPage.navigateTo();
 
         /* cspell: disable-next-line */
-        project = await backend.project.create(`${browser.params.namePrefix}${UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz')}`);
+        project = await backend.project.create(UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
         await backend.process.create(project.entry.id);
         await loginPage.login(adminUser.user, adminUser.password);
     });
@@ -149,5 +152,24 @@ describe('Search project', () => {
         const numberOfProjects = await dashboardPage.getProjectsCount();
         await expect(numberOfProjects).toEqual(1);
         await expect(await pagination.getPaginationRange()).toEqual('1 - 1 of 1');
+    });
+
+    it('[C325115] Delete Searched project', async () => {
+        /* cspell: disable-next-line */
+        project2 = await backend.project.create(UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
+        await expect(await headerToolbar.isSearchBarCollapsed()).toBe(true);
+        await headerToolbar.toggleSearch();
+        await headerToolbar.writeSearchQuery(project2.entry.name);
+        await expect(await dashboardPage.isDashboardListDisplayed()).toBe(true);
+
+        const numberOfProjects = await dashboardPage.getProjectsCount();
+        await expect(numberOfProjects).toEqual(1);
+        await expect(await pagination.getPaginationRange()).toEqual('1 - 1 of 1');
+
+        await dashboardPage.deleteProject(project2.entry.id);
+        await deleteEntityDialog.checkDialogAndConfirm('project');
+        await expect(await snackBar.isDeletedSuccessfully('project')).toBe(true);
+        await expect(await dashboardPage.isDashboardListEmpty()).toBe(true, 'Projects list is not empty');
+
     });
 });
