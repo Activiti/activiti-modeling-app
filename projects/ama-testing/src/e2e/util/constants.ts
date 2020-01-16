@@ -31,3 +31,5 @@ export const INVALID_NAME_ERROR = `The name must be in lowercase and between 1 a
 `Alphanumeric characters and hyphens are allowed, however the name must begin with a letter and end alphanumerically.`;
 export const DMN_SIMULATION_SUCCESS = `Decision table simulation successful`;
 export const DMN_SIMULATION_NO_RESULT = `Decision table simulation had no results`;
+export const MULTIPLE_MATCHING_RULES_UNIQUE_HIT_POLICY = `UNIQUE hit policy decision tables can only have one matching rule. ` +
+    `Multiple matches found for decision table 'Decision_decision-dennis'. Matched rules: [1, 2, 3] ERROR`;
