@@ -20,6 +20,7 @@ import { ActivitiScriptContent, ActivitiScript } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { SCRIPT_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
+import { getEmptyScript } from '../../../helpers/utils/empty-script';
 
 @Injectable()
 export class ScriptApiVariation<M extends ActivitiScript, C extends ActivitiScriptContent> implements ModelApiVariation<M, C> {
@@ -31,7 +32,7 @@ export class ScriptApiVariation<M extends ActivitiScript, C extends ActivitiScri
     }
 
     public createInitialContent(model: M): C {
-        return <C>'/* Example Snippet Here */';
+        return <C>getEmptyScript(model);
     }
 
     public createSummaryPatch(model: Partial<M>, modelContent: C) {
