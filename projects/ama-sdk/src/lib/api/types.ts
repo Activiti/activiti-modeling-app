@@ -54,14 +54,14 @@ export type CustomModelStatus = 'ACTIVE' | 'DRAFT';
 export const ACTIVE_STATUS: CustomModelStatus = 'ACTIVE';
 export const INACTIVE_STATUS: CustomModelStatus = 'DRAFT';
 
-export interface CustomType {
+export interface CustomTypePayload {
     name: string;
     parentName: string;
     title: string;
     description?: string;
 }
 
-export interface CustomAspect {
+export interface CustomAspectPayload {
     name: string;
     parentName: string;
     title: string;
