@@ -51,6 +51,8 @@ export interface TestConfig {
         password: string;
         unauthorized_user: string,
         unauthorized_user_password: string,
+        secondUser: string,
+        secondPassword: string,
         appTitle: string;
     };
 }

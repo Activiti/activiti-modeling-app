@@ -58,6 +58,8 @@ export function getConfig(rootPath: string = __dirname): TestConfig {
             password: env.E2E_PASSWORD,
             unauthorized_user: env.E2E_UNAUTHORIZED_USER,
             unauthorized_user_password: env.E2E_UNAUTHORIZED_USER_PASSWORD,
+            secondUser: env.E2E_MODELER_QA_USER,
+            secondPassword: env.E2E_MODELER_QA_PASSWORD,
             appTitle: 'AMA'
         }
     };
