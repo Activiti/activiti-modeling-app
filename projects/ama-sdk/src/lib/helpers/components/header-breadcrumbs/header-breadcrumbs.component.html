@@ -9,12 +9,12 @@
         <a *ngSwitchDefault
             [routerLink]="[item.url]"
             class="ama-breadcrumb-item-anchor">
-            {{ item.name }}
+            {{ item.name | translate }}
         </a>
 
         <div *ngSwitchCase="true"
             class="ama-breadcrumb-item-current">
-            {{ item.name }}
+            {{ item.name | translate }}
         </div>
 
         <mat-icon class="ama-breadcrumb-item-chevron"

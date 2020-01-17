@@ -109,7 +109,7 @@
                 "MENU_ITEMS": {
                     "CREATE_PROJECT": "Create Project",
                     "UPLOAD_PROJECT": "Upload Project",
-                    "CREATE_MODEL": "Model"
+                    "CREATE_MODEL": "Content Model"
                 }
             },
             "DIALOGS": {
