@@ -2,7 +2,7 @@
            data-automation-id="input-mapping-table">
     <ng-container matColumnDef="name">
         <mat-header-cell data-automation-id="table-header-cell-name"
-                         *matHeaderCellDef>{{ 'SDK.VARIABLE_MAPPING.PARAMETER' | translate }}</mat-header-cell>
+                         *matHeaderCellDef>{{ parameterColumnHeader | translate }}</mat-header-cell>
         <mat-cell *matCellDef="let parameter"
                   matTooltip="{{ parameter.description + ' (type: ' + parameter.type + ')' }}"
                   matTooltipPosition="before"
@@ -18,11 +18,11 @@
     <ng-container matColumnDef="process-variable">
         <mat-header-cell data-automation-id="table-header-cell-process-variables"
                          *matHeaderCellDef>
-            {{ 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE' | translate }} /
+            {{ variableColumnHeader | translate }} /
             {{ 'SDK.VARIABLE_MAPPING.VALUE' | translate }}
         </mat-header-cell>
         <mat-cell *matCellDef="let parameter">
-            <div *ngIf="mappingTypes[parameter.name] === VALUE_TYPE">
+            <div *ngIf="mappingTypes[parameter.name] === VALUE_TYPE" class="amasdk-input-mapping-table-mapped-value-div">
                 <input matInput
                        class="amasdk-input-mapping-table__mapped-value"
                        [(ngModel)]="values[parameter.name]"
@@ -31,7 +31,7 @@
             </div>
             <ng-container *ngIf="mappingTypes[parameter.name] === VARIABLE_TYPE">
                 <mat-select *ngIf="isThereOptionForParam(parameter); else noProcessPropertiesTmpl"
-                            placeholder="{{ 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE' | translate }}"
+                            placeholder="{{ variableColumnHeader | translate }}"
                             (selectionChange)="selectVariable($event.value, parameter)"
                             [compareWith]="compareWith"
                             [(ngModel)]="paramName2VariableName[parameter.name]"

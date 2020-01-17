@@ -23,7 +23,8 @@ export enum MODEL_SCHEMA_TYPE {
     FORM = 'FORM',
     UI = 'UI',
     FILE = 'FILE',
-    SCRIPT = 'SCRIPT'
+    SCRIPT = 'SCRIPT',
+    TRIGGER = 'TRIGGER'
 }
 
 export interface JsonArray extends Array<string|number|boolean|Date|Json|JsonArray> { }

@@ -38,7 +38,7 @@ import { valueTypeInputsMapping } from './value-type-inputs/value-type-inputs.ma
     selector: 'amasdk-value-type-input',
     providers: [
         { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ValueTypeInputComponent), multi: true }
-      ]
+     ]
 })
 
 export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlValueAccessor {

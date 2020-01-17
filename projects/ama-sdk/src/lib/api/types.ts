@@ -25,7 +25,8 @@ export type DECISION_TABLE_TYPE = 'decision';
 export type UI_TYPE = 'ui';
 export type FILE_TYPE = 'file';
 export type SCRIPT_TYPE = 'script';
-export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DATA_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE;
+export type TRIGGER_TYPE = 'trigger';
+export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DATA_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE | TRIGGER_TYPE;
 
 export const PROJECT: PROJECT_TYPE = 'project';
 export const CUSTOM_MODEL: CUSTOM_MODEL_TYPE = 'model';
@@ -37,6 +38,7 @@ export const DECISION_TABLE: DECISION_TABLE_TYPE = 'decision';
 export const UI: UI_TYPE = 'ui';
 export const FILE: FILE_TYPE = 'file';
 export const SCRIPT: SCRIPT_TYPE = 'script';
+export const TRIGGER: TRIGGER_TYPE = 'trigger';
 
 export interface Project {
     type: PROJECT_TYPE;
@@ -376,4 +378,26 @@ export interface MessagePayload {
     type: string;
     value: string | number | null;
     name: string;
+}
+
+export interface TriggerEvent {
+    source: string;
+    inputs: any;
+}
+
+export interface TriggerAction {
+    source: string;
+    payload: any;
+}
+
+export interface TriggerContent {
+    id: string;
+    name: string;
+    description?: string;
+    event?: TriggerEvent;
+    action?: TriggerAction;
+}
+
+export interface Trigger extends Model {
+    type: TRIGGER_TYPE;
 }

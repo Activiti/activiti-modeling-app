@@ -43,6 +43,12 @@ export class InputMappingTableComponent implements OnChanges {
     @Input()
     mapping: ServiceInputParameterMapping;
 
+    @Input()
+    parameterColumnHeader = 'SDK.VARIABLE_MAPPING.PARAMETER';
+
+    @Input()
+    variableColumnHeader = 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE';
+
     @Output()
     update = new EventEmitter<ServiceParameterMappings>();
 

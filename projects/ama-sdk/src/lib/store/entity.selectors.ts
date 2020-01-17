@@ -28,6 +28,7 @@ export const DECISION_TABLES_ENTITY_KEY = 'decisionTables';
 export const DATA_ENTITY_KEY = 'data';
 export const FILES_ENTITY_KEY = 'files';
 export const SCRIPTS_ENTITY_KEY = 'scripts';
+export const TRIGGERS_ENTITY_KEY = 'triggers';
 
 export interface ModelEntitiesState extends EntityState<Model>  {
     loading: boolean;

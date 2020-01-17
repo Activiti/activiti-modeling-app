@@ -30,6 +30,7 @@ export class LogHistoryPage extends GenericPage {
         decisionTableEditor: 'Decision Table Editor',
         fileEditor: 'File Editor',
         scriptEditor: 'Script Editor',
+        triggerEditor: 'Trigger Editor',
         backendService: 'Backend service',
         all: 'All'
     };
