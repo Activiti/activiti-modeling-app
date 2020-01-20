@@ -22,7 +22,8 @@ import { MultiInstanceProps, MultiInstanceType } from '../../bpmn-js/property-ha
 @Injectable()
 export class CardViewMultiInstanceItemService {
 
-    constructor(@Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService) {}
+    constructor(@Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService) {
+    }
 
     private _element: Bpmn.BusinessObject;
 
@@ -57,11 +58,8 @@ export class CardViewMultiInstanceItemService {
     }
 
     createOrUpdateLoopDataOutputRef(expression: string) {
-        if (!this.element.loopCharacteristics[MultiInstanceProps.loopDataOutputRef]) {
-            this.element.loopCharacteristics.set('loopDataOutputRef',  { id: expression });
-        } else {
-            this.element.loopCharacteristics[MultiInstanceProps.loopDataOutputRef].set('id', expression);
-        }
+        this.element.loopCharacteristics.set(MultiInstanceProps.loopDataOutputRef, { id: expression });
+
         this.updateEditor();
     }
 
