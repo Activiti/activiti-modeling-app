@@ -36,7 +36,10 @@ import {
     CreateProjectDialogAction,
     CREATE_PROJECT_DIALOG,
     IMPORT_PROJECT_DIALOG,
-    ImportProjectDialogAction
+    ImportProjectDialogAction,
+    OVERRIDE_PROJECT_NAME_DIALOG,
+    OverrideProjectNameDialogAction,
+    OverrideProjectAttemptAction
 } from 'ama-sdk';
 import { Action, Store } from '@ngrx/store';
 import { UploadProjectAttemptAction } from '../../dashboard/store/actions/projects';
@@ -115,6 +118,27 @@ export class DialogEffects {
                     nameField: 'APP.HOME.DIALOGS.PROJECT_NAME',
                     descriptionField: 'APP.HOME.DIALOGS.PROJECT_DESC',
                     action: CreateProjectAttemptAction,
+                    allowedCharacters: {
+                        regex: MODELER_NAME_REGEX,
+                        error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
+                    }
+                })
+        )
+    );
+
+    @Effect()
+    overrideNameProject$ = this.actions$.pipe(
+        ofType<OverrideProjectNameDialogAction>(OVERRIDE_PROJECT_NAME_DIALOG),
+        map(
+            (action) =>
+                new OpenEntityDialogAction({
+                    title: 'APP.HOME.NEW_MENU.OVERRIDE_PROJECT_TITLE',
+                    nameField: 'APP.HOME.DIALOGS.PROJECT_NAME',
+                    descriptionField: 'APP.HOME.DIALOGS.PROJECT_DESC',
+                    submitData: {
+                        file: action.file
+                    },
+                    action: OverrideProjectAttemptAction,
                     allowedCharacters: {
                         regex: MODELER_NAME_REGEX,
                         error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'

@@ -46,6 +46,12 @@ export class CreateProjectDialogAction implements Action {
     readonly type = CREATE_PROJECT_DIALOG;
 }
 
+export const OVERRIDE_PROJECT_NAME_DIALOG = 'OVERRIDE_PROJECT_NAME_DIALOG';
+export class OverrideProjectNameDialogAction implements Action {
+    readonly type = OVERRIDE_PROJECT_NAME_DIALOG;
+    constructor(public file: File, public name: string) {}
+}
+
 export const IMPORT_PROJECT_DIALOG = 'IMPORT_PROJECT_DIALOG';
 export class ImportProjectDialogAction implements Action {
     readonly type = IMPORT_PROJECT_DIALOG;

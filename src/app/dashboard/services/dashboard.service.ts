@@ -40,8 +40,8 @@ export class DashboardService {
         return this.amaApi.Project.delete(projectId);
     }
 
-    importProject(file: File): Observable<Partial<Project>> {
-        return this.amaApi.Project.import(file);
+    importProject(file: File, name?: string): Observable<Partial<Project>> {
+        return this.amaApi.Project.import(file, name);
     }
 
     releaseProject(projectId: string): Observable<Release> {

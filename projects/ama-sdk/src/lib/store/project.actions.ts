@@ -24,6 +24,12 @@ export class CreateProjectAttemptAction implements Action {
     constructor(public payload: Partial<EntityDialogForm>) {}
 }
 
+export const OVERRIDE_PROJECT_ATTEMPT = 'OVERRIDE_PROJECT_ATTEMPT';
+export class OverrideProjectAttemptAction implements Action {
+    readonly type = OVERRIDE_PROJECT_ATTEMPT;
+    constructor(public payload: Partial<EntityDialogForm>) {}
+}
+
 export interface ModelIdentifier {
     type: string;
     id: string;

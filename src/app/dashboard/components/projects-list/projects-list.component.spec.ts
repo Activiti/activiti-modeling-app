@@ -17,12 +17,12 @@
 
 import { ProjectsListComponent } from './projects-list.component';
 import { ExportProjectAction } from '../../../project-editor/store/project-editor.actions';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationMock, TranslationService, AppConfigService } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 import { Store } from '@ngrx/store';
-import { AmaState, AmaApi, ProjectApi } from 'ama-sdk';
+import { AmaState, AmaApi } from 'ama-sdk';
 import { By } from '@angular/platform-browser';
 import { of, BehaviorSubject } from 'rxjs';
 import { MatMenuModule, MatTableModule } from '@angular/material';
@@ -58,7 +58,6 @@ describe ('Projects List Component', () => {
             ],
             providers: [
                 AmaApi,
-                ProjectApi,
                 DashboardService,
                 {
                     provide: Store,

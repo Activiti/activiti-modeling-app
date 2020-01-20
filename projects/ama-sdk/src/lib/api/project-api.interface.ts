@@ -29,7 +29,7 @@ export abstract class ProjectApi {
     public abstract delete(projectId: string): Observable<void>;
     public abstract validate(projectId: string): Observable<void | ValidationErrors>;
 
-    public abstract import(file: File):  Observable<any>;
+    public abstract import(file: File, name?: string):  Observable<any>;
     public abstract export(projectId: string): Observable<Blob>;
     public abstract getAll(fetchQueries?: FetchQueries, sorting?: ServerSideSorting, search?: SearchQuery): Observable<PaginatedEntries<Project>>;
     public abstract release(projectId: string): Observable<Release>;

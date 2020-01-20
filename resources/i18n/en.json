@@ -100,6 +100,7 @@
             "NEW_MENU": {
                 "LABEL": "NEW",
                 "CREATE_PROJECT_TITLE": "Create Project",
+                "OVERRIDE_PROJECT_TITLE": "A project with the same name already exist, please insert a new name",
                 "EDIT_PROJECT_TITLE": "Edit Project",
                 "PROJECT_CREATED": "Project created",
                 "PROJECT_UPLOADED": "Project uploaded",

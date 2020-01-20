@@ -43,4 +43,5 @@ export interface EntityDialogPayload {
     values?: EntityDialogForm;
     allowedCharacters?: AllowedCharacters;
     action: any;
+    submitData?: any;
 }

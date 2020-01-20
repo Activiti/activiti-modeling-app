@@ -44,10 +44,10 @@ export class ACMProjectApi implements ProjectApi {
     public get(projectId: string): Observable<Project> {
         return this.requestApiHelper
             .get(`/modeling-service/v1/projects/${projectId}`)
-                .pipe(
-                    map((response: any) => response.entry),
-                    map(this.createProject.bind(this))
-                );
+            .pipe(
+                map((response: any) => response.entry),
+                map(this.createProject.bind(this))
+            );
     }
 
     public validate(projectId: string): Observable<void | ValidationErrors> {
@@ -56,7 +56,7 @@ export class ACMProjectApi implements ProjectApi {
 
     public create(project: Partial<Project>): Observable<Project> {
         return this.requestApiHelper
-        .post('/modeling-service/v1/projects/', {bodyParam: project})
+            .post('/modeling-service/v1/projects/', { bodyParam: project })
             .pipe(
                 map((response: any) => response.entry),
                 map(this.createProject.bind(this))
@@ -65,7 +65,7 @@ export class ACMProjectApi implements ProjectApi {
 
     public update(projectId: string, project: Partial<Project>): Observable<Project> {
         return this.requestApiHelper
-        .put(`/modeling-service/v1/projects/${projectId}`, {bodyParam: project})
+            .put(`/modeling-service/v1/projects/${projectId}`, { bodyParam: project })
             .pipe(
                 map((response: any) => response.entry),
                 map(this.createProject.bind(this))
@@ -76,16 +76,22 @@ export class ACMProjectApi implements ProjectApi {
         return this.requestApiHelper.delete(`/modeling-service/v1/projects/${projectId}`);
     }
 
-    public import(file: File ): Observable<Partial<Project>> {
+    public import(file: File, name?: string): Observable<Partial<Project>> {
+        const postData: any = { formParams: { 'file': file }, contentTypes: ['multipart/form-data'] };
+
+        if (name) {
+            postData.formParams.name = name;
+        }
+
         return this.requestApiHelper
-            .post(`/modeling-service/v1/projects/import`, {formParams: {'file': file}, contentTypes: ['multipart/form-data']})
-                .pipe(
-                    map((response: any) => response.entry),
-                    map(this.createProject.bind(this))
-                );
+            .post(`/modeling-service/v1/projects/import`, postData)
+            .pipe(
+                map((response: any) => response.entry),
+                map(this.createProject.bind(this))
+            );
     }
 
-    public export(projectId: string): Observable<Blob>  {
+    public export(projectId: string): Observable<Blob> {
         return this.requestApiHelper.get(
             `/modeling-service/v1/projects/${projectId}/export`,
             { queryParams: { 'attachment': false }, responseType: 'blob' }
@@ -95,7 +101,7 @@ export class ACMProjectApi implements ProjectApi {
     public getAll(
         fetchQueries: FetchQueries = {},
         sorting: ServerSideSorting = { key: 'name', direction: 'asc' },
-        search: SearchQuery = { key: 'name', value: ''}
+        search: SearchQuery = { key: 'name', value: '' }
     ): Observable<PaginatedEntries<Project>> {
         const queryParams = {
             ...fetchQueries,
@@ -126,7 +132,7 @@ export class ACMProjectApi implements ProjectApi {
 
     public release(projectId: string): Observable<Release> {
         return this.requestApiHelper
-        .post(`/modeling-service/v1/projects/${projectId}/releases`)
+            .post(`/modeling-service/v1/projects/${projectId}/releases`)
             .pipe(
                 map((response: any) => response.entry)
             );
@@ -146,14 +152,14 @@ export class ACMProjectApi implements ProjectApi {
         };
 
         return this.requestApiHelper
-        .get(`/modeling-service/v1/projects/${projectId}/releases`, { queryParams: queryParams })
-        .pipe(
-            map((nodePaging: any) => {
-                return {
-                    pagination: nodePaging.list.pagination,
-                    entries: nodePaging.list.entries
-                };
-            })
-        );
+            .get(`/modeling-service/v1/projects/${projectId}/releases`, { queryParams: queryParams })
+            .pipe(
+                map((nodePaging: any) => {
+                    return {
+                        pagination: nodePaging.list.pagination,
+                        entries: nodePaging.list.entries
+                    };
+                })
+            );
     }
 }

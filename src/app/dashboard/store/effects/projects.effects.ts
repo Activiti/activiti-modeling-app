@@ -41,11 +41,13 @@ import {
     ReleaseProjectAttemptAction,
     RELEASE_PROJECT_ATTEMPT,
     ReleaseProjectSuccessAction,
-    CREATE_PROJECT_SUCCESS
+    CREATE_PROJECT_SUCCESS, OverrideProjectAttemptAction
 } from '../actions/projects';
 import { Store } from '@ngrx/store';
 import {
     AmaState,
+    OVERRIDE_PROJECT_ATTEMPT,
+    OverrideProjectNameDialogAction,
     CreateProjectAttemptAction,
     CREATE_PROJECT_ATTEMPT,
     EntityDialogForm,
@@ -58,9 +60,14 @@ import {
     FetchQueries,
     ServerSideSorting,
     ErrorResponse,
-    SearchQuery } from 'ama-sdk';
+    SearchQuery
+} from 'ama-sdk';
 import { selectProjectsLoaded, selectPagination } from '../selectors/dashboard.selectors';
-import { GET_PROJECT_RELEASES_ATTEMPT, GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
+import {
+    GET_PROJECT_RELEASES_ATTEMPT,
+    GetProjectReleasesAttemptAction,
+    GetProjectReleasesSuccessAction
+} from '../actions/releases';
 import { getProjectEditorLogInitiator } from '../../../project-editor/services/project-editor.constants';
 import { SetLogHistoryVisibilityAction } from '../../../store/actions/app.actions';
 
@@ -87,8 +94,7 @@ export class ProjectsEffects extends BaseEffects {
     @Effect()
     uploadProjectAttemptEffect = this.actions$.pipe(
         ofType<UploadProjectAttemptAction>(UPLOAD_PROJECT_ATTEMPT),
-        map(action => action.file),
-        switchMap(file => this.uploadProject(file))
+        switchMap((action) => this.uploadProject(action.file, action.name))
     );
 
     @Effect()
@@ -96,6 +102,12 @@ export class ProjectsEffects extends BaseEffects {
         ofType<CreateProjectAttemptAction>(CREATE_PROJECT_ATTEMPT),
         map(action => action.payload),
         mergeMap(payload => this.createProject(payload))
+    );
+
+    @Effect()
+    overrideProjectAttemptEffect = this.actions$.pipe(
+        ofType<OverrideProjectAttemptAction>(OVERRIDE_PROJECT_ATTEMPT),
+        switchMap(action => this.overrideProject(action.payload.submitData.file, action.payload.name))
     );
 
     @Effect()
@@ -134,7 +146,7 @@ export class ProjectsEffects extends BaseEffects {
     @Effect({ dispatch: false })
     createProjectSuccessEffect$ = this.actions$.pipe(
         ofType<CreateProjectSuccessAction>(CREATE_PROJECT_SUCCESS),
-        tap((action) => this.router.navigate([ '/projects', action.payload.id]))
+        tap((action) => this.router.navigate(['/projects', action.payload.id]))
     );
 
     private deleteProject(projectId: string, sorting: ServerSideSorting, search: SearchQuery, pagination: Pagination) {
@@ -153,7 +165,8 @@ export class ProjectsEffects extends BaseEffects {
                     maxItems: pagination.maxItems
                 }, {
                     key: sorting.key,
-                    direction: sorting.direction}, search)
+                    direction: sorting.direction
+                }, search)
             ]),
             catchError(e =>
                 this.genericErrorHandler(
@@ -199,6 +212,18 @@ export class ProjectsEffects extends BaseEffects {
         );
     }
 
+    private overrideProject(file: File, name?: string) {
+        return this.dashboardService.importProject(file, name).pipe(
+            switchMap(project => [
+                new CreateProjectSuccessAction(project),
+                new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_CREATED')
+            ]),
+            catchError(e =>
+                this.genericErrorHandler(this.handleProjectUploadError.bind(this, e, file, name), e)
+            )
+        );
+    }
+
     private getProjectsAttempt(pagination: FetchQueries, sorting: ServerSideSorting, search: SearchQuery) {
         return this.dashboardService.fetchProjects(pagination, sorting, search).pipe(
             switchMap(projects => [new GetProjectsSuccessAction(projects)]),
@@ -207,19 +232,19 @@ export class ProjectsEffects extends BaseEffects {
     }
 
     private getProjectReleasesAttempt(projectId: string, pagination: Partial<Pagination>) {
-        return  this.dashboardService.fetchProjectReleases(projectId, pagination).pipe(
+        return this.dashboardService.fetchProjectReleases(projectId, pagination).pipe(
             switchMap(releases => [new GetProjectReleasesSuccessAction(releases)]),
             catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'APP.HOME.ERROR.LOAD_RELEASES'), e))
         );
     }
 
-    private uploadProject(file: File) {
-        return this.dashboardService.importProject(file).pipe(
+    private uploadProject(file: File, name?: string) {
+        return this.dashboardService.importProject(file, name).pipe(
             switchMap(project => [
                 new UploadProjectSuccessAction(project),
                 new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_UPLOADED')
             ]),
-            catchError(e => this.genericErrorHandler(this.handleProjectUploadError.bind(this, e), e))
+            catchError(e => this.genericErrorHandler(this.handleProjectUploadError.bind(this, e, file, name), e))
         );
     }
 
@@ -247,11 +272,14 @@ export class ProjectsEffects extends BaseEffects {
         return of(new SnackbarErrorAction(errorMessage));
     }
 
-    private handleProjectUploadError(error: ErrorResponse): Observable<SnackbarErrorAction> {
+    private handleProjectUploadError(error: ErrorResponse, file: File, name: string): Observable<SnackbarErrorAction> {
         let errorMessage: string;
 
         if (error.status === 409) {
             errorMessage = 'APP.PROJECT.ERROR.UPLOAD_PROJECT.DUPLICATION';
+
+            this.store.dispatch(new OverrideProjectNameDialogAction(file, name));
+
         } else {
             errorMessage = 'APP.PROJECT.ERROR.UPLOAD_PROJECT.GENERAL';
         }

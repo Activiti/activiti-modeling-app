@@ -32,7 +32,13 @@ export class CreateProjectSuccessAction implements Action {
 export const UPLOAD_PROJECT_ATTEMPT = 'UPLOAD_PROJECT_ATTEMPT';
 export class UploadProjectAttemptAction implements Action {
     readonly type = UPLOAD_PROJECT_ATTEMPT;
-    constructor(public file: File) {}
+    constructor(public file: File, public name?: string) {}
+}
+
+export const OVERRIDE_PROJECT_ATTEMPT = 'UPLOAD_PROJECT_ATTEMPT';
+export class OverrideProjectAttemptAction implements Action {
+    readonly type = OVERRIDE_PROJECT_ATTEMPT;
+    constructor(public payload: any) {}
 }
 
 export const UPDATE_PROJECT_ATTEMPT = 'UPDATE_PROJECT_ATTEMPT';
