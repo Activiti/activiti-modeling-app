@@ -60,7 +60,7 @@
     "@angular/http": "7.2.5",
     "@angular/material": "7.3.2",
     "@angular/material-moment-adapter": "7.3.2",
-    "@angular/platform-browser": "7.2.5",
+    "@angular/platform-browser": "7.2.16",
     "@angular/platform-browser-dynamic": "7.2.5",
     "@angular/router": "7.2.5",
     "@auth0/angular-jwt": "2.0.0",
