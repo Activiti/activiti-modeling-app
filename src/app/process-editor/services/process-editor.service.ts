@@ -30,6 +30,7 @@ import {
     formatUuid,
     ContentType
 } from 'ama-sdk';
+import { PROCESS_SVG_IMAGE } from './process-editor.constants';
 
 @Injectable()
 export class ProcessEditorService {
@@ -77,5 +78,10 @@ export class ProcessEditorService {
     downloadDiagram(processName: string, processData: string) {
         const blob = new Blob([processData], { type: 'octet/stream' });
         this.downloadService.downloadResource(processName, blob, PROCESS_FILE_FORMAT);
+    }
+
+    downloadSVGImage(processName: string, processData: string) {
+        const blob = new Blob([processData], { type: 'octet/stream' });
+        this.downloadService.downloadResource(processName, blob, PROCESS_SVG_IMAGE);
     }
 }

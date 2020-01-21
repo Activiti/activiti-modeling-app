@@ -6,6 +6,13 @@
     <div class="adf-toolbar--spacer"></div>
 
     <button mat-icon-button
+        data-automation-id="process-editor-download-svg-button"
+        [title]="'APP.SAVE_PROCESS_IMAGE' | translate"
+        (click)="onSaveProcessImage(process)">
+        <mat-icon>image</mat-icon>
+    </button>
+
+    <button mat-icon-button
         data-automation-id="process-editor-download-button"
         [title]="'APP.DOWNLOAD_PROCESS' | translate"
         (click)="onDownload(process)">

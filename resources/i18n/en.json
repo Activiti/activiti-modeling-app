@@ -6,6 +6,7 @@
         "VALIDATE_PROJECT": "Validate project",
         "DOWNLOAD_PROJECT": "Download project",
         "DOWNLOAD_PROCESS": "Download process",
+        "SAVE_PROCESS_IMAGE": "Save process svg image",
         "DOWNLOAD_FORM": "Download form",
         "DOWNLOAD_CONNECTOR": "Download connector",
         "DOWNLOAD_DECISION_TABLE": "Download decision table",
@@ -77,6 +78,7 @@
                 },
                 "DOWNLOAD": {
                     "PROCESS": "Are you sure you want to download this process?",
+                    "IMAGE": "Are you sure you want to download the svg image of this process?",
                     "FORM": "Are you sure you want to download this form?",
                     "UI": "Are you sure you want to download this UI?",
                     "DATA": "Are you sure you want to download this data object?",
@@ -426,6 +428,7 @@
                 "LOAD_DIAGRAM": "Could not load the diagram.",
                 "SAVE_DIAGRAM": "Could not save the diagram.",
                 "DOWNLOAD_DIAGRAM": "Could not download the diagram",
+                "DOWNLOAD_SVG_IMAGE": "Could not download the image",
                 "CHANGE_FAVORITE": "Unknown error happened during the changing favorite state of the process."
             },
             "PROPERTIES": {

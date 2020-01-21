@@ -28,7 +28,7 @@ import {
 } from 'ama-sdk';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { DeleteProcessAttemptAction, ValidateProcessAttemptAction, DownloadProcessAction, UpdateProcessAttemptAction } from '../../store/process-editor.actions';
+import { DeleteProcessAttemptAction, ValidateProcessAttemptAction, DownloadProcessAction, UpdateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
 import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
 import { modelNameHandler } from '../../services/bpmn-js/property-handlers/model-name.handler';
 
@@ -41,6 +41,7 @@ export class ProcessHeaderComponent {
     @Input() content: ProcessContent;
     @Input() breadcrumbs$: Observable<BreadcrumbItem[]>;
     @Input() disableSave = false;
+    public modeler: Bpmn.Modeler;
 
     constructor(
         private store: Store<AmaState>,
@@ -80,5 +81,15 @@ export class ProcessHeaderComponent {
                 action: new DeleteProcessAttemptAction(this.process.id)
             })
         );
+    }
+
+    onSaveProcessImage(process): void {
+        this.store.dispatch(new ValidateProcessAttemptAction({
+            title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.IMAGE',
+            processId: process.id,
+            content: this.content,
+            extensions: this.process.extensions,
+            action: new DownloadProcessSVGImageAction(process)
+        }));
     }
 }

@@ -17,6 +17,7 @@
 
 import { Injectable, Inject } from '@angular/core';
 import { ElementHelper } from './bpmn-js/element.helper';
+import { PROCESS_SVG_IMAGE } from './process-editor.constants';
 import {
     BpmnFactoryToken,
     BpmnFactory,
@@ -101,15 +102,21 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
         });
     }
 
-    export(): Promise<string> {
-        return new Promise((resolve, reject) =>
-            this.modeler.saveXML({ format: true }, (err, diagramData) => {
+    export(type = null): Promise<string> {
+        return new Promise((resolve, reject) => {
+            const options = { format: true };
+            const exportCallBack = (err, diagramData) => {
                 if (err) {
                     return reject(err);
                 }
                 resolve(diagramData);
-            })
-        );
+            };
+            if (type === PROCESS_SVG_IMAGE) {
+                this.modeler.saveSVG(options, exportCallBack);
+            } else {
+                this.modeler.saveXML(options, exportCallBack);
+            }
+        });
     }
 
     zoomIn(): void {

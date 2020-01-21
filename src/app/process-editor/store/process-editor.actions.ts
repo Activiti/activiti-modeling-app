@@ -149,6 +149,12 @@ export class DownloadProcessAction implements Action {
     constructor(public process: DownloadProcessPayload) {}
 }
 
+export const DOWNLOAD_PROCESS_SVG_IMAGE = 'DOWNLOAD_PROCESS_SVG_IMAGE';
+export class DownloadProcessSVGImageAction implements Action {
+    readonly type = DOWNLOAD_PROCESS_SVG_IMAGE;
+    constructor(public process: DownloadProcessPayload) {}
+}
+
 export const CHANGED_PROCESS_DIAGRAM = 'CHANGED_PROCESS_DIAGRAM';
 export class ChangedProcessAction implements Action {
     readonly type = CHANGED_PROCESS_DIAGRAM;

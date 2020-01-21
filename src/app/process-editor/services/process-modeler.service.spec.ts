@@ -19,6 +19,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { ProcessModelerServiceImplementation } from './process-modeler.service';
 import { BpmnFactoryToken, ModelerInitOptions, MESSAGE, XmlParsingProblem } from 'ama-sdk';
 import { BpmnFactoryMock } from './bpmn-js/bpmn-js.mock';
+import { PROCESS_SVG_IMAGE } from './process-editor.constants';
 
 describe('ProcessModelerServiceImplementation', () => {
 
@@ -143,6 +144,23 @@ describe('ProcessModelerServiceImplementation', () => {
                     expect(error.messages).toEqual(['warning1', 'warning2']);
                     complete();
                 }
+            });
+        });
+    });
+
+    describe('export', () => {
+
+        it('should call saveXML() by default', () => {
+            spyOn(bpmnFactoryMock.modeler, 'saveXML');
+            service.export().then(() => {
+                expect(bpmnFactoryMock.modeler.saveXML).toHaveBeenCalled();
+            });
+        });
+
+        it('should call saveSVG() for SVG type export', () => {
+            spyOn(bpmnFactoryMock.modeler, 'saveSVG');
+            service.export(PROCESS_SVG_IMAGE).then(() => {
+                expect(bpmnFactoryMock.modeler.saveSVG).toHaveBeenCalled();
             });
         });
     });

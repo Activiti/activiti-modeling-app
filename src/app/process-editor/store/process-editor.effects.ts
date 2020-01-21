@@ -35,6 +35,8 @@ import {
     DeleteProcessSuccessAction,
     DOWNLOAD_PROCESS_DIAGRAM,
     DownloadProcessAction,
+    DOWNLOAD_PROCESS_SVG_IMAGE,
+    DownloadProcessSVGImageAction,
     GET_PROCESS_ATTEMPT,
     GET_PROCESSES_ATTEMPT,
     GetProcessAttemptAction,
@@ -91,7 +93,7 @@ import {
 import { ProcessEditorService } from '../services/process-editor.service';
 import { selectProcessesLoaded, selectSelectedElement, selectSelectedProcessDiagram, selectSelectedProcessId } from './process-editor.selectors';
 import { Store } from '@ngrx/store';
-import { getProcessLogInitiator } from '../services/process-editor.constants';
+import { getProcessLogInitiator, PROCESS_SVG_IMAGE } from '../services/process-editor.constants';
 import { ProcessValidationResponse } from './process-editor.state';
 import { processNameHandler } from '../services/bpmn-js/property-handlers/process-name.handler';
 import { documentationHandler } from '../services/bpmn-js/property-handlers/documentation.handler';
@@ -211,6 +213,12 @@ export class ProcessEditorEffects extends BaseEffects {
         map(({ process }) => this.downloadProcessDiagram(process.id, process.name))
     );
 
+    @Effect({ dispatch: false })
+    downloadProcessSVGImageEffect = this.actions$.pipe(
+        ofType<DownloadProcessSVGImageAction>(DOWNLOAD_PROCESS_SVG_IMAGE),
+        map(({ process }) => this.downloadProcessSVGImage(process.name))
+    );
+
     @Effect()
     changedProcessDiagramEffect = this.actions$.pipe(
         ofType(CHANGED_PROCESS_DIAGRAM),
@@ -306,6 +314,16 @@ export class ProcessEditorEffects extends BaseEffects {
             .then(data => this.processEditorService.downloadDiagram(name, data))
             .catch(err => {
                 this.genericErrorHandler(this.handleError.bind(this, 'APP.PROCESSES.ERRORS.DOWNLOAD_DIAGRAM'), err);
+            });
+    }
+
+    private downloadProcessSVGImage(processName: string) {
+        const name = createModelName(processName);
+        return this.processModelerService
+            .export(PROCESS_SVG_IMAGE)
+            .then(data => this.processEditorService.downloadSVGImage(name, data))
+            .catch(err => {
+                this.genericErrorHandler(this.handleError.bind(this, 'APP.PROCESSES.ERRORS.DOWNLOAD_SVG_IMAGE'), err);
             });
     }
 

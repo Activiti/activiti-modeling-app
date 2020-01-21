@@ -18,6 +18,7 @@
 import { LogMessageInitiator } from 'ama-sdk';
 
 export const PROCESS_EDITOR_LOGS = 'Process Editor';
+export const PROCESS_SVG_IMAGE = 'SVG';
 
 export function getProcessLogInitiator(extra?: any): LogMessageInitiator {
     return {

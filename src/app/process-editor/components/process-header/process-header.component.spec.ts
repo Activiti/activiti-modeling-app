@@ -27,7 +27,7 @@ import { mockProcess } from '../../store/process.mock';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { DeleteProcessAttemptAction, DownloadProcessAction, ValidateProcessAttemptAction, UpdateProcessAttemptAction } from '../../store/process-editor.actions';
+import { DeleteProcessAttemptAction, DownloadProcessAction, ValidateProcessAttemptAction, UpdateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
 
 describe('ProcessHeaderComponent', () => {
     let fixture: ComponentFixture<ProcessHeaderComponent>;
@@ -148,6 +148,24 @@ describe('ProcessHeaderComponent', () => {
                 title: 'APP.DIALOGS.CONFIRM.DELETE.PROCESS'
             },
             action: new DeleteProcessAttemptAction(mockProcess.id)
+        });
+
+        expect(store.dispatch).toHaveBeenCalledWith(payload);
+    });
+
+    it('should download process image as svg', async () => {
+        spyOn(store, 'dispatch');
+
+        const button = fixture.debugElement.query(By.css('[data-automation-id="process-editor-download-svg-button"]'));
+        button.triggerEventHandler('click', {});
+        fixture.detectChanges();
+
+        const payload = new ValidateProcessAttemptAction({
+            title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.IMAGE',
+            processId: mockProcess.id,
+            content: component.content,
+            extensions: mockProcess.extensions,
+            action: new DownloadProcessSVGImageAction(mockProcess)
         });
 
         expect(store.dispatch).toHaveBeenCalledWith(payload);
