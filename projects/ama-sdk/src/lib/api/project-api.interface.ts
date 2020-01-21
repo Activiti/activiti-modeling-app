@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery } from './types';
+import { Project, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery, CollaboratorEntry } from './types';
 import { ValidationErrors } from '../interfaces/validation-errors.interface';
 import { PaginatedEntries } from '@alfresco/js-api';
 
@@ -34,6 +34,7 @@ export abstract class ProjectApi {
     public abstract getAll(fetchQueries?: FetchQueries, sorting?: ServerSideSorting, search?: SearchQuery): Observable<PaginatedEntries<Project>>;
     public abstract release(projectId: string): Observable<Release>;
     public abstract getProjectReleases(projectId: string, pagination?: Partial<Pagination>): Observable<PaginatedEntries<ReleaseEntry>>;
+    public abstract getCollaborators(projectId: string): Observable<PaginatedEntries<CollaboratorEntry>>;
 }
 
 export interface FetchQueries {

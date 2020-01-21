@@ -15,10 +15,9 @@
  * limitations under the License.
  */
 
-import { ProjectDataState, INITIAL_PROJECT_DATA_STATE, Project } from 'ama-sdk';
+import { ProjectDataState, INITIAL_PROJECT_DATA_STATE, Project, ReleaseProjectSuccessAction } from 'ama-sdk';
 import { projectDataReducer } from './project-data.reducer';
 import { SELECT_PROJECT, GetProjectSuccessAction } from '../project-editor.actions';
-import { ReleaseProjectSuccessAction } from '../../../dashboard/store/actions/projects';
 
 describe('Project data reducer', () => {
     let initState: ProjectDataState;

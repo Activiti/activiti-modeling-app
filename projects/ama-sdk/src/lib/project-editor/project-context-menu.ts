@@ -16,18 +16,26 @@
  */
 
 import { Action } from '@ngrx/store';
-import { ReleaseEntry } from 'ama-sdk';
-import { Pagination, PaginatedEntries } from '@alfresco/js-api';
+import { InjectionToken } from '@angular/core';
 
-export const GET_PROJECT_RELEASES_ATTEMPT = 'GET_PROJECT_RELEASES_ATTEMPT';
-export class GetProjectReleasesAttemptAction implements Action {
-    readonly type = GET_PROJECT_RELEASES_ATTEMPT;
-    constructor(public projectId: string, public pagination?: Partial<Pagination>) {
-    }
+export interface ProjectContextMenuAction extends Action {
+    projectId: string;
 }
 
-export const GET_PROJECT_RELEASES_SUCCESS =  'GET_PROJECT_RELEASES_SUCCESS';
-export class GetProjectReleasesSuccessAction implements Action {
-    readonly type = GET_PROJECT_RELEASES_SUCCESS;
-    constructor(public payload: PaginatedEntries<ReleaseEntry>) {}
+export interface ProjectContextMenuDialog {
+    title: string;
 }
+
+export interface ProjectContextMenuOption {
+    title: string;
+    actionClass: ProjectContextMenuActionClass;
+    automationId: string;
+    icon: string;
+}
+
+export interface ProjectContextMenuActionClass  {
+    // tslint:disable-next-line
+    new(projectId: string): ProjectContextMenuAction;
+}
+
+export const PROJECT_CONTEXT_MENU_OPTIONS = new InjectionToken<ProjectContextMenuOption[]>('project-context-menu-options');

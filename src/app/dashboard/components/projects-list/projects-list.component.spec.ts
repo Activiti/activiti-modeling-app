@@ -22,7 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TranslationMock, TranslationService, AppConfigService } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 import { Store } from '@ngrx/store';
-import { AmaState, AmaApi } from 'ama-sdk';
+import { AmaState, AmaApi, ProjectApi, PROJECT_CONTEXT_MENU_OPTIONS } from 'ama-sdk';
 import { By } from '@angular/platform-browser';
 import { of, BehaviorSubject } from 'rxjs';
 import { MatMenuModule, MatTableModule } from '@angular/material';
@@ -76,6 +76,7 @@ describe ('Projects List Component', () => {
                         })
                     }
                 },
+                { provide: PROJECT_CONTEXT_MENU_OPTIONS, useValue: []},
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: AppConfigService, useValue: {get: jest.fn('navigation').mockRejectedValue('{}')} }
             ],

@@ -38,38 +38,27 @@ import {
     UploadProjectAttemptAction,
     UPLOAD_PROJECT_ATTEMPT,
     UploadProjectSuccessAction,
-    ReleaseProjectAttemptAction,
-    RELEASE_PROJECT_ATTEMPT,
-    ReleaseProjectSuccessAction,
-    CREATE_PROJECT_SUCCESS, OverrideProjectAttemptAction
+    CREATE_PROJECT_SUCCESS,
+    OverrideProjectAttemptAction,
+    OVERRIDE_PROJECT_ATTEMPT
 } from '../actions/projects';
 import { Store } from '@ngrx/store';
 import {
     AmaState,
-    OVERRIDE_PROJECT_ATTEMPT,
-    OverrideProjectNameDialogAction,
     CreateProjectAttemptAction,
+    OverrideProjectNameDialogAction,
     CREATE_PROJECT_ATTEMPT,
-    EntityDialogForm,
     SnackbarErrorAction,
     SnackbarInfoAction,
     BaseEffects,
     Pagination,
-    LogFactoryService,
-    LogAction,
     FetchQueries,
     ServerSideSorting,
     ErrorResponse,
-    SearchQuery
+    SearchQuery,
+    EntityDialogForm
 } from 'ama-sdk';
 import { selectProjectsLoaded, selectPagination } from '../selectors/dashboard.selectors';
-import {
-    GET_PROJECT_RELEASES_ATTEMPT,
-    GetProjectReleasesAttemptAction,
-    GetProjectReleasesSuccessAction
-} from '../actions/releases';
-import { getProjectEditorLogInitiator } from '../../../project-editor/services/project-editor.constants';
-import { SetLogHistoryVisibilityAction } from '../../../store/actions/app.actions';
 
 @Injectable()
 export class ProjectsEffects extends BaseEffects {
@@ -78,7 +67,6 @@ export class ProjectsEffects extends BaseEffects {
         private dashboardService: DashboardService,
         private store: Store<AmaState>,
         logService: LogService,
-        private logFactory: LogFactoryService,
         router: Router,
     ) {
         super(router, logService);
@@ -131,18 +119,6 @@ export class ProjectsEffects extends BaseEffects {
         switchMap(action => this.getProjectsAttempt(<FetchQueries> action.pagination, action.sorting, action.search))
     );
 
-    @Effect()
-    getProjectReleasesAttemptEffect = this.actions$.pipe(
-        ofType<GetProjectReleasesAttemptAction>(GET_PROJECT_RELEASES_ATTEMPT),
-        switchMap(action => this.getProjectReleasesAttempt(action.projectId, action.pagination))
-    );
-
-    @Effect()
-    releaseProjectAttemptEffect = this.actions$.pipe(
-        ofType<ReleaseProjectAttemptAction>(RELEASE_PROJECT_ATTEMPT),
-        mergeMap(action => this.releaseProject(action.projectId))
-    );
-
     @Effect({ dispatch: false })
     createProjectSuccessEffect$ = this.actions$.pipe(
         ofType<CreateProjectSuccessAction>(CREATE_PROJECT_SUCCESS),
@@ -189,17 +165,6 @@ export class ProjectsEffects extends BaseEffects {
         );
     }
 
-    private releaseProject(projectId: string) {
-        return this.dashboardService.releaseProject(projectId).pipe(
-            switchMap(release => [
-                new ReleaseProjectSuccessAction(release, projectId),
-                this.logFactory.logInfo(getProjectEditorLogInitiator(), 'APP.HOME.NEW_MENU.PROJECT_RELEASED'),
-                new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_RELEASED')
-            ]),
-            catchError(e => this.genericErrorHandler(this.handleProjectReleaseError.bind(this, e), e))
-        );
-    }
-
     private createProject(form: Partial<EntityDialogForm>) {
         return this.dashboardService.createProject(form).pipe(
             switchMap(project => [
@@ -228,13 +193,6 @@ export class ProjectsEffects extends BaseEffects {
         return this.dashboardService.fetchProjects(pagination, sorting, search).pipe(
             switchMap(projects => [new GetProjectsSuccessAction(projects)]),
             catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'APP.HOME.ERROR.LOAD_PROJECTS'), e))
-        );
-    }
-
-    private getProjectReleasesAttempt(projectId: string, pagination: Partial<Pagination>) {
-        return this.dashboardService.fetchProjectReleases(projectId, pagination).pipe(
-            switchMap(releases => [new GetProjectReleasesSuccessAction(releases)]),
-            catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'APP.HOME.ERROR.LOAD_RELEASES'), e))
         );
     }
 
@@ -277,7 +235,6 @@ export class ProjectsEffects extends BaseEffects {
 
         if (error.status === 409) {
             errorMessage = 'APP.PROJECT.ERROR.UPLOAD_PROJECT.DUPLICATION';
-
             this.store.dispatch(new OverrideProjectNameDialogAction(file, name));
 
         } else {
@@ -285,18 +242,6 @@ export class ProjectsEffects extends BaseEffects {
         }
 
         return of(new SnackbarErrorAction(errorMessage));
-    }
-
-    private handleProjectReleaseError(error: ErrorResponse): Observable<SnackbarErrorAction | SetLogHistoryVisibilityAction | LogAction> {
-
-        const errorMessage = 'APP.PROJECT.ERROR.RELEASE_PROJECT';
-        const errorLog = JSON.parse(error.message).errors.map((e: any) => e.description);
-
-        return of(
-            new SnackbarErrorAction(errorMessage),
-            this.logFactory.logError(getProjectEditorLogInitiator(), errorLog),
-            new SetLogHistoryVisibilityAction(true)
-        );
     }
 
     private handleError(userMessage: string) {

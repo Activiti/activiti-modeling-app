@@ -35,3 +35,4 @@
  export * from './task-properties.card';
  export * from './log-history.page';
  export * from './timer-properties.card';
+ export * from './header.toolbar';

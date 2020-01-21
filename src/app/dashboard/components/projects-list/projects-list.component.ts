@@ -15,19 +15,22 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Inject, Optional } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import { selectProjectSummaries, selectLoading, selectPagination } from '../../store/selectors/dashboard.selectors';
-import { AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting, SearchQuery, OpenEntityDialogAction } from 'ama-sdk';
+import {
+    AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting,
+    SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption, PROJECT_CONTEXT_MENU_OPTIONS, ProjectContextMenuActionClass
+} from 'ama-sdk';
+
 import { ExportProjectAction } from '../../../project-editor/store/project-editor.actions';
 import {
     DeleteProjectAttemptAction,
     UpdateProjectAttemptAction,
-    ReleaseProjectAttemptAction,
     GetProjectsAttemptAction
 } from '../../store/actions/projects';
 
@@ -60,6 +63,8 @@ export class ProjectsListComponent implements OnInit {
     private skipCount = 0;
 
     constructor(
+        @Inject(PROJECT_CONTEXT_MENU_OPTIONS)
+        @Optional() public buttons: ProjectContextMenuOption[],
         private store: Store<AmaState>,
         private router: Router,
         private route: ActivatedRoute) {
@@ -170,13 +175,6 @@ export class ProjectsListComponent implements OnInit {
         }));
     }
 
-    releaseProject(projectId: string): void {
-        this.store.dispatch(new OpenConfirmDialogAction({
-            dialogData: { title: 'APP.DIALOGS.CONFIRM.RELEASE' },
-            action: new ReleaseProjectAttemptAction(projectId)
-        }));
-    }
-
     downloadProject(project: Project) {
         if (project) {
             const payload = {
@@ -187,7 +185,7 @@ export class ProjectsListComponent implements OnInit {
         }
     }
 
-    seeReleasesForProject(projectId: string): void {
-        this.router.navigate(['dashboard', 'projects', projectId, 'releases']);
+    handleClick(actionClass: ProjectContextMenuActionClass, projectId: string) {
+        this.store.dispatch(new actionClass(projectId));
     }
 }

@@ -1,10 +1,8 @@
 @import './components/projects-list/projects-list.component';
 @import './components/dashboard-navigation/dashboard-navigation.component';
-@import './components//releases-list//releases-list.component.scss';
 
 @mixin ama-dashboard-module($theme) {
     @include ama-projects-list($theme);
-    @include ama-releases-list($theme);
     @include ama-dashboard-navigation($theme);
 }
 

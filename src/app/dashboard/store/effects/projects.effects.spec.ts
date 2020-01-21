@@ -26,7 +26,7 @@ import { Router } from '@angular/router';
 import { LogService, CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { selectProjectsLoaded, selectPagination } from '../selectors/dashboard.selectors';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { mockProject, mockReleaseEntry, paginationMock, paginationCountMock } from './project.mock';
+import { mockProject, paginationMock, paginationCountMock } from './project.mock';
 import {
     ShowProjectsAction,
     GET_PROJECTS_ATTEMPT,
@@ -40,8 +40,6 @@ import {
     DeleteProjectSuccessAction,
     GetProjectsAttemptAction,
     GetProjectsSuccessAction,
-    ReleaseProjectAttemptAction,
-    ReleaseProjectSuccessAction
 } from '../actions/projects';
 import {
     DialogService,
@@ -53,14 +51,10 @@ import {
     AmaAuthenticationService,
     EntityDialogForm,
     DownloadResourceService,
-    LogFactoryService,
     Pagination,
     ServerSideSorting,
     SearchQuery
 } from 'ama-sdk';
-import { GetProjectReleasesAttemptAction, GetProjectReleasesSuccessAction } from '../actions/releases';
-import { SetLogHistoryVisibilityAction } from '../../../store/actions/app.actions';
-import { getProjectEditorLogInitiator } from '../../../project-editor/services/project-editor.constants';
 
 describe('ProjectsEffects', () => {
     let effects: ProjectsEffects;
@@ -70,7 +64,6 @@ describe('ProjectsEffects', () => {
     const projectsLoaded$ = new BehaviorSubject<boolean>(false);
     const paginationLoaded$ = new BehaviorSubject<Pagination>(paginationMock);
     let router: Router;
-    let logFactory: LogFactoryService;
 
     const updatedPagination = {
         maxItems: paginationMock.maxItems,
@@ -133,7 +126,6 @@ describe('ProjectsEffects', () => {
             ]
         });
 
-        logFactory = TestBed.get(LogFactoryService);
         effects = TestBed.get(ProjectsEffects);
         router = TestBed.get(Router);
         metadata = getEffectsMetadata(effects);
@@ -406,24 +398,6 @@ describe('ProjectsEffects', () => {
 
             expect(effects.getProjectsAttemptEffect).toBeObservable(expected);
         });
-    });
-
-    describe('GetProjectReleasesAttemptEffect', () => {
-
-        it('should dispatch an action', () => {
-            expect(metadata.getProjectReleasesAttemptEffect).toEqual({ dispatch: true });
-        });
-
-        it('should trigger the right action on successful get', () => {
-            dashboardService.fetchProjectReleases = jest.fn().mockReturnValue(of({ entries: [ mockReleaseEntry] , pagination: null }));
-            actions$ = hot('a', { a: new GetProjectReleasesAttemptAction('app-id', null) });
-
-            const expected = cold('b', {
-                b: new GetProjectReleasesSuccessAction({entries: [ mockReleaseEntry ], pagination: null})
-            });
-
-            expect(effects.getProjectReleasesAttemptEffect).toBeObservable(expected);
-        });
 
         it('should trigger the right action on unsuccessful get', () => {
             dashboardService.fetchProjects = jest.fn().mockReturnValue(throwError(new Error()));
@@ -434,44 +408,6 @@ describe('ProjectsEffects', () => {
             });
 
             expect(effects.getProjectsAttemptEffect).toBeObservable(expected);
-        });
-    });
-
-    describe('ReleaseProjectAttemptEffect', () => {
-
-        it('should dispatch an action', () => {
-            expect(metadata.releaseProjectAttemptEffect).toEqual({ dispatch: true });
-        });
-
-        it('should trigger the right action on successful release', () => {
-            dashboardService.releaseProject = jest.fn().mockReturnValue(of(mockProject));
-            actions$ = hot('a', { a: new ReleaseProjectAttemptAction(mockProject.id) });
-            const expectedLogAction = logFactory.logInfo(getProjectEditorLogInitiator(), 'APP.HOME.NEW_MENU.PROJECT_RELEASED');
-            expectedLogAction.log.datetime = (<any>expect).any(Date);
-            const expected = cold('(bcd)', {
-                b: new ReleaseProjectSuccessAction(mockProject, mockProject.id),
-                c: expectedLogAction,
-                d: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_RELEASED')
-            });
-
-            expect(effects.releaseProjectAttemptEffect).toBeObservable(expected);
-        });
-
-        it('should trigger the right action on error', () => {
-            const error: any = new Error();
-            error.message = JSON.stringify({ errors: [ { description: 'test' } ]});
-            dashboardService.releaseProject = jest.fn().mockReturnValue(throwError(error));
-
-            actions$ = hot('a', { a: new ReleaseProjectAttemptAction(mockProject.id) });
-            const expectedLogAction = logFactory.logError(getProjectEditorLogInitiator(), 'test');
-            expectedLogAction.log.datetime = (<any>expect).any(Date);
-            const expected = cold('(bcd)', {
-                b: new SnackbarErrorAction('APP.PROJECT.ERROR.RELEASE_PROJECT'),
-                c: expectedLogAction,
-                d: new SetLogHistoryVisibilityAction(true)
-            });
-
-            expect(effects.releaseProjectAttemptEffect).toBeObservable(expected);
         });
     });
 });

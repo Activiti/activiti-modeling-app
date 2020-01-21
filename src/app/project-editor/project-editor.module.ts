@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { CoreModule } from '@alfresco/adf-core';
-import { SharedModule, PROJECT_EDITOR_STATE_NAME, provideLogFilter } from 'ama-sdk';
+import { SharedModule, getProjectEditorLogInitiator, PROJECT_EDITOR_STATE_NAME, provideLogFilter } from 'ama-sdk';
 import { ProjectEditorRoutingModule } from './router/project-editor-routing.module';
 import { ProjectEffects } from './store/effects/project.effects';
 import { projectDataReducer as project } from './store/reducers/project-data.reducer';
@@ -35,7 +35,6 @@ import { ProjectTreeHelper } from './components/project-tree/project-tree.helper
 import { ProjectTreeIconsComponent } from './components/project-tree/project-tree-icons/project-tree-icons.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ExtensionsModule } from '@alfresco/adf-extensions';
-import { getProjectEditorLogInitiator } from './services/project-editor.constants';
 
 @NgModule({
     imports: [

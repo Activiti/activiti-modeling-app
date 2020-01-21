@@ -19,8 +19,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { GetProjectAttemptAction } from '../../store/project-editor.actions';
-import { ProjectEditorState } from 'ama-sdk';
+import { ProjectEditorState, GetProjectAttemptAction } from 'ama-sdk';
 import { ShowProcessesAction } from '../../../process-editor/store/process-editor.actions';
 import { ShowConnectorsAction } from '../../../connector-editor/store/connector-editor.actions';
 

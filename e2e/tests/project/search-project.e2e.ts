@@ -18,8 +18,7 @@
 import { testConfig } from '../../test.config';
 import { LoginPage, UtilRandom, getBackend,
     DashboardPage, LogHistoryPage, Logger,
-    Backend, AuthenticatedPage, DeleteEntityDialog, SnackBar } from 'ama-testing/e2e';
-import { HeaderToolbar } from '../../pages/header.toolbar';
+    Backend, AuthenticatedPage, DeleteEntityDialog, SnackBar, HeaderToolbar } from 'ama-testing/e2e';
 import { browser } from 'protractor';
 import { Pagination } from 'ama-testing/e2e/pages/pagination.component';
 import { NodeEntry } from '@alfresco/js-api';
@@ -31,7 +30,7 @@ describe('Search project', () => {
     };
 
     const authenticatedPage = new AuthenticatedPage(testConfig);
-    const headerToolbar = new HeaderToolbar();
+    const headerToolbar = new HeaderToolbar(testConfig);
     const dashboardPage = new DashboardPage();
     const pagination = new Pagination();
     const logHistory = new LogHistoryPage();
@@ -66,23 +65,6 @@ describe('Search project', () => {
             Logger.error(`Cleaning up created project failed`);
             throw e;
         }
-    });
-
-    it('[C319173] Search results list should be reset when returning from the Releases list', async () => {
-        const numberOfProjects = await dashboardPage.getProjectsCount();
-
-        await expect(await headerToolbar.isSearchBarCollapsed()).toBe(true);
-        await headerToolbar.toggleSearch();
-        await headerToolbar.writeSearchQuery(project.entry.name);
-        await expect(await dashboardPage.isDashboardListDisplayed()).toBe(true);
-        await expect( await dashboardPage.isProjectInPaginatedList(project.entry.id)).toBe(true);
-
-        await dashboardPage.navigateToReleaseView(project.entry.id);
-        await expect( await dashboardPage.isProjectReleaseEmpty()).toBe(true);
-
-        await headerToolbar.clickOnAppIcon();
-        const projects = await dashboardPage.getProjectsCount();
-        await expect(projects).toEqual(numberOfProjects);
     });
 
     it('[C319172] Search results list should be reset when returning from Content Project page', async () => {

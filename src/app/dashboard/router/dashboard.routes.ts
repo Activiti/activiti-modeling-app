@@ -18,8 +18,6 @@
 import { Routes } from '@angular/router';
 import { DashboardNavigationComponent } from '../components/dashboard-navigation/dashboard-navigation.component';
 import { ProjectsListComponent } from '../components/projects-list/projects-list.component';
-import { ReleaseListComponent } from '../components/releases-list/releases-list.component';
-import { ProjectReleasesLoaderGuard } from './guards/project-releases-loader.guard';
 import { SearchHeaderComponent } from '../../app/app-layout/search-header/search-header.component';
 
 export const dashboardRoutes: Routes = [
@@ -36,12 +34,6 @@ export const dashboardRoutes: Routes = [
         path: '',
         component: SearchHeaderComponent,
         outlet: 'search'
-    },
-    { path: 'projects/:projectId/releases',
-      component: ReleaseListComponent,
-      canActivate: [
-          ProjectReleasesLoaderGuard
-      ]
     },
     { path: '', redirectTo: '/dashboard/projects?maxItems=25&skipCount=0&sort=name,asc', pathMatch: 'full' }
 ];

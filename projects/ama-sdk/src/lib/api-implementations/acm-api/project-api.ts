@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { ProjectApi, FetchQueries } from '../../api/project-api.interface';
 import { Observable } from 'rxjs';
-import { Project, PROJECT, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery } from '../../api/types';
+import { Project, PROJECT, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery, CollaboratorEntry } from '../../api/types';
 import { map } from 'rxjs/operators';
 import { RequestApiHelper } from './request-api.helper';
 import { ValidationErrors } from '../../interfaces/validation-errors.interface';
@@ -144,13 +144,11 @@ export class ACMProjectApi implements ProjectApi {
         sorting: ServerSideSorting = { key: 'creationDate', direction: 'desc' },
         showAllVersions: boolean = true
     ): Observable<PaginatedEntries<ReleaseEntry>> {
-
         const queryParams = {
             showAllVersions: showAllVersions,
             ...pagination,
             sort: `${sorting.key},${sorting.direction}`
         };
-
         return this.requestApiHelper
             .get(`/modeling-service/v1/projects/${projectId}/releases`, { queryParams: queryParams })
             .pipe(
@@ -161,5 +159,18 @@ export class ACMProjectApi implements ProjectApi {
                     };
                 })
             );
+    }
+
+    public getCollaborators(projectId: string): Observable<PaginatedEntries<CollaboratorEntry>> {
+        return this.requestApiHelper
+        .get(`/modeling-service/v1/projects/${projectId}/collaborators`)
+        .pipe(
+            map((nodePaging: any) => {
+                return {
+                    pagination: nodePaging.list.pagination,
+                    entries: nodePaging.list.entries
+                };
+            })
+        );
     }
 }

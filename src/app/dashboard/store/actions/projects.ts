@@ -16,8 +16,9 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Project, Release, Pagination, ServerSideSorting, FetchQueries, SearchQuery, EntityDialogForm } from 'ama-sdk';
+import { Project, Pagination, ServerSideSorting, FetchQueries, SearchQuery, EntityDialogForm } from 'ama-sdk';
 import { PaginatedEntries } from '@alfresco/js-api';
+
 export interface EditProjectPayload {
     id: string;
     form: Partial<EntityDialogForm>;
@@ -35,7 +36,7 @@ export class UploadProjectAttemptAction implements Action {
     constructor(public file: File, public name?: string) {}
 }
 
-export const OVERRIDE_PROJECT_ATTEMPT = 'UPLOAD_PROJECT_ATTEMPT';
+export const OVERRIDE_PROJECT_ATTEMPT = 'OVERRIDE_PROJECT_ATTEMPT';
 export class OverrideProjectAttemptAction implements Action {
     readonly type = OVERRIDE_PROJECT_ATTEMPT;
     constructor(public payload: any) {}
@@ -87,16 +88,4 @@ export const SHOW_PROJECTS = 'SHOW_PROJECTS';
 export class ShowProjectsAction implements Action {
     readonly type = SHOW_PROJECTS;
     constructor(public pagination?: Partial<Pagination>) {}
-}
-
-export const RELEASE_PROJECT_ATTEMPT = 'RELEASE_PROJECT_ATTEMPT';
-export class ReleaseProjectAttemptAction implements Action {
-    readonly type = RELEASE_PROJECT_ATTEMPT;
-    constructor(public projectId: string) {}
-}
-
-export const RELEASE_PROJECT_SUCCESS = 'RELEASE_PROJECT_SUCCESS';
-export class ReleaseProjectSuccessAction implements Action {
-    readonly type = RELEASE_PROJECT_SUCCESS;
-    constructor(public release: Partial<Release>, public projectId: string) {}
 }

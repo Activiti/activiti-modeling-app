@@ -87,6 +87,10 @@ export interface ReleaseEntry {
     entry: Release;
 }
 
+export interface CollaboratorEntry {
+    entry: Collaborators;
+}
+
 export interface Release {
     id: string;
     name: string;
@@ -96,6 +100,13 @@ export interface Release {
     lastModifiedBy: string;
     version?: string;
     projectName?: string;
+}
+
+export interface Collaborators {
+    createdBy: string;
+    id: string;
+    projectId: string;
+    username: string;
 }
 
 export interface MinimalModelSummary {

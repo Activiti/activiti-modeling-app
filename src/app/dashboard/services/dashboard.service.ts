@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project, AmaApi, EntityDialogForm, Pagination, ReleaseEntry, Release, ServerSideSorting, FetchQueries, SearchQuery } from 'ama-sdk';
+import { Project, AmaApi, EntityDialogForm, ServerSideSorting, FetchQueries, SearchQuery } from 'ama-sdk';
 import { PaginatedEntries } from '@alfresco/js-api';
 
 @Injectable()
@@ -42,13 +42,5 @@ export class DashboardService {
 
     importProject(file: File, name?: string): Observable<Partial<Project>> {
         return this.amaApi.Project.import(file, name);
-    }
-
-    releaseProject(projectId: string): Observable<Release> {
-        return this.amaApi.Project.release(projectId);
-    }
-
-    fetchProjectReleases(projectId: string, pagination?: Partial<Pagination>): Observable<PaginatedEntries<ReleaseEntry>> {
-        return this.amaApi.Project.getProjectReleases(projectId, pagination);
     }
 }

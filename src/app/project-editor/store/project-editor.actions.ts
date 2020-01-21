@@ -30,12 +30,6 @@ export class CloseFilterAction implements Action {
     constructor(public filterType: MODEL_TYPE) {}
 }
 
-export const GET_PROJECT_ATTEMPT = 'GET_PROJECT_ATTEMPT';
-export class GetProjectAttemptAction implements Action {
-    readonly type = GET_PROJECT_ATTEMPT;
-    constructor(public payload: string) {}
-}
-
 export const GET_PROJECT_SUCCESS = 'GET_PROJECT_SUCCESS';
 export class GetProjectSuccessAction implements Action {
     readonly type = GET_PROJECT_SUCCESS;

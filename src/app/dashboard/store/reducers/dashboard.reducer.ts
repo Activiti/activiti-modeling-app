@@ -18,9 +18,7 @@
 import { Action } from '@ngrx/store';
 import {
     DashboardState,
-    INITIAL_DASHBOARD_STATE,
-    ProjectSummaryEntities,
-    ReleasesSummaryEntities
+    INITIAL_DASHBOARD_STATE
 } from '../state/dashboard.state';
 import {
     GET_PROJECTS_SUCCESS,
@@ -33,13 +31,10 @@ import {
     DeleteProjectSuccessAction,
     UploadProjectSuccessAction,
     UPLOAD_PROJECT_SUCCESS,
-    RELEASE_PROJECT_SUCCESS,
-    ReleaseProjectSuccessAction,
     GET_PROJECTS_ATTEMPT
 
 } from '../actions/projects';
-import { GET_PROJECT_RELEASES_SUCCESS, GetProjectReleasesSuccessAction, GET_PROJECT_RELEASES_ATTEMPT, GetProjectReleasesAttemptAction } from '../actions/releases';
-import { Pagination } from 'ama-sdk';
+import { ProjectSummaryEntities, ReleaseProjectSuccessAction, RELEASE_PROJECT_SUCCESS, Pagination } from 'ama-sdk';
 
 export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE, action: Action): DashboardState {
     let newState: DashboardState;
@@ -64,10 +59,6 @@ export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE
             newState = updateProject(state, <UpdateProjectSuccessAction>action);
             break;
 
-        case RELEASE_PROJECT_SUCCESS:
-            newState = releaseProject(state, <ReleaseProjectSuccessAction> action);
-            break;
-
         case DELETE_PROJECT_SUCCESS:
             newState = deleteProject(state, <DeleteProjectSuccessAction>action);
             break;
@@ -75,12 +66,9 @@ export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE
         case UPLOAD_PROJECT_SUCCESS:
             newState = uploadProject(state, <UploadProjectSuccessAction> action);
             break;
-        case GET_PROJECT_RELEASES_SUCCESS:
-            newState = setReleases(state, <GetProjectReleasesSuccessAction> action);
-            break;
 
-        case GET_PROJECT_RELEASES_ATTEMPT:
-            newState = getProjectReleasesAttempt(state, <GetProjectReleasesAttemptAction> action);
+        case RELEASE_PROJECT_SUCCESS:
+            newState = releaseProject(state, <ReleaseProjectSuccessAction> action);
             break;
 
         default:
@@ -149,22 +137,5 @@ function releaseProject(state: DashboardState, action: ReleaseProjectSuccessActi
         [action.projectId]: { ...newState.projects[action.projectId], version: release.version }
     };
 
-    return newState;
-}
-
-function setReleases(state: DashboardState, action: GetProjectReleasesSuccessAction): DashboardState {
-    const newState = Object.assign({}, state);
-    newState.loadingReleases = false;
-    newState.releasesPagination = (action.payload.pagination as Pagination);
-    newState.releases = action.payload.entries.reduce<ReleasesSummaryEntities>((releases, release) => {
-        return { ...releases, [release.entry.id]: release.entry };
-    }, {});
-
-    return newState;
-}
-
-function getProjectReleasesAttempt(state: DashboardState, action: GetProjectReleasesAttemptAction): DashboardState {
-    const newState = Object.assign({}, state);
-    newState.loadingReleases = true;
     return newState;
 }

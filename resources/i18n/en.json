@@ -92,6 +92,7 @@
             "EDIT": "Edit",
             "DELETE": "Delete",
             "RELEASE": "Release",
+            "COLLABORATORS": "Collaborators",
             "SEE_RELEASES": "View Releases",
             "DOWNLOAD": "Download"
         },
@@ -272,6 +273,13 @@
                 "EVENT_DESC": "Event description",
                 "ADD_EVENT": "Add event",
                 "DEL_EVENT": "Delete event"
+            },
+            "COLLABORATORS": {
+                "DIALOG": {
+                    "CANCEL": "Cancel",
+                    "USERNAME": "Username",
+                    "NO_ITEMS": "Add a collaborator to make it available here."
+                }
             },
             "ERROR": {
                 "UPLOAD_FILE": "We hit a problem uploading the file. Try uploading it again.",

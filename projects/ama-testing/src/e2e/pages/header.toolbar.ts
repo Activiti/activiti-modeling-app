@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-import { GenericWebElement } from 'ama-testing/e2e';
-import { browser, element, by, protractor } from 'protractor';
-import { testConfig } from '../test.config';
+import { browser, element, by, protractor, ElementFinder } from 'protractor';
 import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
+import { GenericWebElement } from './common/generic.webelement';
+import { TestConfig } from '../config';
 
 export class HeaderToolbar extends GenericWebElement {
 
-    readonly appTitle = element(by.cssContainingText('.adf-app-title', testConfig.ama.appTitle));
+    appTitle: ElementFinder;
     readonly appIcon = element(by.css('.adf-app-logo'));
     readonly searchIcon = element(by.css('.adf-search-button'));
     readonly searchBarExpanded = element(by.css(`.adf-search-container[state='active']`));
@@ -32,8 +32,9 @@ export class HeaderToolbar extends GenericWebElement {
     readonly userMenu = element(by.css(`div.mat-menu-content`));
     readonly settings = element(by.cssContainingText(`button.mat-menu-item>span`, 'Settings'));
 
-    constructor() {
+    constructor(private testConfig: TestConfig) {
         super();
+        this.appTitle = element(by.cssContainingText('.adf-app-title', this.testConfig.ama.appTitle));
     }
 
     async isAppTitleDisplayed() {

@@ -39,6 +39,7 @@ export * from './lib/store/public_api';
 export * from './lib/validators/public_api';
 export * from './lib/variables/public_api';
 export * from './lib/workbench-layout/public_api';
+export * from './lib/project-editor/public_api';
 
 export * from './lib/api-implementations/acm-api/acm-api.module';
 

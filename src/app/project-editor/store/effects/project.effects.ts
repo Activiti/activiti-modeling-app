@@ -23,11 +23,12 @@ import { LogService } from '@alfresco/adf-core';
 import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, LogFactoryService, LogAction,
     LeaveProjectAction,
     SnackbarInfoAction,
-    ConfirmDialogData} from 'ama-sdk';
+    ConfirmDialogData,
+    getProjectEditorLogInitiator,
+    GetProjectAttemptAction,
+    GET_PROJECT_ATTEMPT} from 'ama-sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import {
-    GetProjectAttemptAction,
-    GET_PROJECT_ATTEMPT,
     GetProjectSuccessAction,
     ExportProjectAction,
     EXPORT_PROJECT,
@@ -37,7 +38,6 @@ import {
     EXPORT_PROJECT_ATTEMPT,
     ExportProjectAttemptPayload
 } from '../project-editor.actions';
-import { getProjectEditorLogInitiator } from '../../services/project-editor.constants';
  import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 import { Action } from '@ngrx/store';
 

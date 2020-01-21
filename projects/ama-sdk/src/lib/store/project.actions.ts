@@ -17,6 +17,7 @@
 
 import { EntityDialogForm } from '../helpers/common';
 import { Action } from '@ngrx/store';
+import { Release } from '../api/types';
 
 export const CREATE_PROJECT_ATTEMPT = 'CREATE_PROJECT_ATTEMPT';
 export class CreateProjectAttemptAction implements Action {
@@ -45,4 +46,22 @@ export const MODEL_CLOSED = 'MODEL_CLOSED';
 export class ModelClosedAction implements Action {
     readonly type = MODEL_CLOSED;
     constructor(public model: ModelIdentifier) {}
+}
+
+export const GET_PROJECT_ATTEMPT = 'GET_PROJECT_ATTEMPT';
+export class GetProjectAttemptAction implements Action {
+    readonly type = GET_PROJECT_ATTEMPT;
+    constructor(public payload: string) {}
+}
+
+export const RELEASE_PROJECT_ATTEMPT = 'RELEASE_PROJECT_ATTEMPT';
+export class ReleaseProjectAttemptAction implements Action {
+    readonly type = RELEASE_PROJECT_ATTEMPT;
+    constructor(public projectId: string) {}
+}
+
+export const RELEASE_PROJECT_SUCCESS = 'RELEASE_PROJECT_SUCCESS';
+export class ReleaseProjectSuccessAction implements Action {
+    readonly type = RELEASE_PROJECT_SUCCESS;
+    constructor(public release: Partial<Release>, public projectId: string) {}
 }

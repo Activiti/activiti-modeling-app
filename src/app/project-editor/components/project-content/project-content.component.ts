@@ -15,13 +15,18 @@
  * limitations under the License.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ProjectEditorState, Project, selectProject, OpenConfirmDialogAction } from 'ama-sdk';
+import {
+    ProjectEditorState,
+    Project,
+    selectProject,
+    PROJECT_CONTEXT_MENU_OPTIONS,
+    ProjectContextMenuOption,
+    ProjectContextMenuActionClass
+} from 'ama-sdk';
 import { Observable, Subscription } from 'rxjs';
 import { ExportProjectAction, ValidateProjectAttemptAction, ExportProjectAttemptAction, ExportProjectAttemptPayload } from '../../store/project-editor.actions';
-import { ReleaseProjectAttemptAction } from '../../../dashboard/store/actions/projects';
-import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './project-content.component.html'
@@ -30,7 +35,10 @@ export class ProjectContentComponent implements OnInit {
     project$: Observable<Partial<Project>>;
     openedFilters$: Subscription;
 
-    constructor(private store: Store<ProjectEditorState>, private router: Router) {}
+    constructor(
+        @Inject(PROJECT_CONTEXT_MENU_OPTIONS)
+        @Optional() public buttons: ProjectContextMenuOption[],
+        private store: Store<ProjectEditorState>) {}
 
     ngOnInit() {
         this.project$ = this.store.select(selectProject);
@@ -45,18 +53,11 @@ export class ProjectContentComponent implements OnInit {
         this.store.dispatch(new ExportProjectAttemptAction(payload));
     }
 
-    releaseProject(projectId: string): void {
-        this.store.dispatch(new OpenConfirmDialogAction({
-            dialogData: { title: 'APP.DIALOGS.CONFIRM.RELEASE' },
-            action: new ReleaseProjectAttemptAction(projectId)
-        }));
-    }
-
     validateApp(projectId: string): void {
         this.store.dispatch(new ValidateProjectAttemptAction(projectId));
     }
 
-    seeReleasesForProject(projectId: string): void {
-        this.router.navigate(['dashboard', 'projects', projectId, 'releases']);
+    handleClick(actionClass: ProjectContextMenuActionClass, projectId: string) {
+        this.store.dispatch(new actionClass(projectId));
     }
 }

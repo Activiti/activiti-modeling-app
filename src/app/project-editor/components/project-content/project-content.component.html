@@ -31,6 +31,7 @@
         </button>
 
         <button
+            *ngIf="buttons"
             mat-icon-button
             [matMenuTriggerFor]="menu"
             [attr.data-automation-id]="'project-context-' + project.id"
@@ -38,11 +39,8 @@
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="releaseProject(project.id)" class="project-release-button" [attr.data-automation-id]="'project-release-' + project.id">
-                <mat-icon>new_releases</mat-icon> <span>{{ 'APP.MENU.RELEASE' | translate }}</span>
-            </button>
-            <button mat-menu-item (click)="seeReleasesForProject(project.id)" class="project-releases-button" [attr.data-automation-id]="'project-releases-' + project.id">
-                <mat-icon>remove_red_eye</mat-icon> <span>{{ 'APP.MENU.SEE_RELEASES' | translate }}</span>
+            <button *ngFor="let button of buttons" mat-menu-item (click)="handleClick(button.actionClass, project.id)" [attr.data-automation-id]="'project-' + button.automationId + '-' + project.id">
+                <mat-icon>{{ button.icon }}</mat-icon> <span>{{ button.title | translate }}</span>
             </button>
         </mat-menu>
     </ng-container>

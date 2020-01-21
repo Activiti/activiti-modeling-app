@@ -82,3 +82,9 @@ export class LoadApplicationAction implements Action {
     readonly type = LOADED_APPLICATION;
     constructor(public loading: boolean) {}
 }
+
+export const SET_LOG_HISTORY_VISIBILITY = '[App] SET_LOG_HISTORY_VISIBILITY';
+export class SetLogHistoryVisibilityAction implements Action {
+    readonly type = SET_LOG_HISTORY_VISIBILITY;
+    constructor(public visible: boolean) {}
+}

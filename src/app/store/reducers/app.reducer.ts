@@ -23,9 +23,7 @@ import { appThemes } from '../../app/themes';
 import {
     AppActionTypes,
     AsyncInitAction,
-    CLEAR_LOG_HISTORY,
-    SET_LOG_HISTORY_VISIBILITY,
-    SetLogHistoryVisibilityAction
+    CLEAR_LOG_HISTORY
 } from '../actions/app.actions';
 import {
     AppState,
@@ -39,8 +37,10 @@ import {
     ToolbarMessageAction,
     LOADED_APPLICATION,
     LoadApplicationAction,
+    SET_LOG_HISTORY_VISIBILITY,
+    SetLogHistoryVisibilityAction,
+    LogAction,
     LOG_ACTION,
-    LogAction
 } from 'ama-sdk';
 
 export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action): AppState {

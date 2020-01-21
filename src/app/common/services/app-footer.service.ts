@@ -18,9 +18,9 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
-import { LogMessage, MESSAGE, AmaState } from 'ama-sdk';
+import { LogMessage, MESSAGE, SetLogHistoryVisibilityAction, AmaState } from 'ama-sdk';
 import { map, tap } from 'rxjs/operators';
-import { ClearLogHistoryAction, SetLogHistoryVisibilityAction } from '../../../app/store/actions/app.actions';
+import { ClearLogHistoryAction } from '../../../app/store/actions/app.actions';
 import { selectToolbarUserMessage, selectToolbarInProgress, selectToolbarLogs, selectToolbarLogsVisibility } from '../../../app/store/selectors/app.selectors';
 import { EditorFooterService } from '../../app/app-layout/editor-footer/editor-footer.service.interface';
 
