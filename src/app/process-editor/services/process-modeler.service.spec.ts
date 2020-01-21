@@ -59,10 +59,10 @@ describe('ProcessModelerServiceImplementation', () => {
         const modeling = modeler.get('modeling');
         spyOn(modeling, 'updateProperties');
 
-        const mockEvent = { element: { id: 'ServiceTask_1ny0i0c', type: 'bpmn:UserTask' } };
+        const mockEvent = { context: { shape: { id: 'ServiceTask_1ny0i0c', type: 'bpmn:UserTask' } } };
 
-        modeler.get('eventBus').fire('shape.changed', mockEvent);
-        expect(modeling.updateProperties).toHaveBeenCalledWith(mockEvent.element, { id: 'UserTask_1ny0i0c' });
+        modeler.get('eventBus').fire('commandStack.shape.create.postExecute', mockEvent);
+        expect(modeling.updateProperties).toHaveBeenCalledWith(mockEvent.context.shape, { id: 'Task_1ny0i0c' });
     });
 
     describe('loadXml', () => {

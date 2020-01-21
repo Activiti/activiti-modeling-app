@@ -63,7 +63,8 @@ describe('Boundary Timer - Non-Interrupting', async () => {
         await processContentPage.navigateTo();
         await expect(await processModelerComponent.isLoaded()).toBe(true, 'Process Modeler should be loaded');
 
-        await processModelerComponent.selectIntermediateEvent();
+        /* cspell: disable-next-line */
+        await processModelerComponent.selectIntermediateEvent('Event_1r6ak6m');
         await expect(await timerProperties.isLoaded()).toBe(true, 'Timer properties should be displayed');
 
         await expect(await timerProperties.getTimerType()).toBe('Cycle', 'Timer Type should be Cycle');
@@ -81,7 +82,8 @@ describe('Boundary Timer - Non-Interrupting', async () => {
         await processContentPage.navigateTo();
         await expect(await processModelerComponent.isLoaded()).toBe(true, 'Process Modeler should be loaded');
 
-        await processModelerComponent.selectIntermediateEvent();
+        /* cspell: disable-next-line */
+        await processModelerComponent.selectIntermediateEvent('Event_1syloel');
         await expect(await timerProperties.isLoaded()).toBe(true, 'Timer properties should be displayed');
 
         await expect(await timerProperties.getTimerType()).toBe('Date', 'Timer Type should be Date');
@@ -97,7 +99,8 @@ describe('Boundary Timer - Non-Interrupting', async () => {
         await processContentPage.navigateTo();
         await expect(await processModelerComponent.isLoaded()).toBe(true, 'Process Modeler should be loaded');
 
-        await processModelerComponent.selectIntermediateEvent();
+        /* cspell: disable-next-line */
+        await processModelerComponent.selectIntermediateEvent('Event_0ch6yj2');
         await expect(await timerProperties.isLoaded()).toBe(true, 'Timer properties should be displayed');
 
         await expect(await timerProperties.getTimerType()).toBe('Duration', 'Timer Type should be Duration');

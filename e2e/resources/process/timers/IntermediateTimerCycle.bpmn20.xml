@@ -5,15 +5,15 @@
     <bpmn2:startEvent id="StartEvent_1">
       <bpmn2:outgoing>SequenceFlow_0r0wt4d</bpmn2:outgoing>
     </bpmn2:startEvent>
-    <bpmn2:sequenceFlow id="SequenceFlow_0r0wt4d" sourceRef="StartEvent_1" targetRef="IntermediateThrowEvent_1r6ak6m" />
-    <bpmn2:intermediateCatchEvent id="IntermediateThrowEvent_1r6ak6m" name="IntermediateTimerCycle">
+    <bpmn2:sequenceFlow id="SequenceFlow_0r0wt4d" sourceRef="StartEvent_1" targetRef="Event_1r6ak6m" />
+    <bpmn2:intermediateCatchEvent id="Event_1r6ak6m" name="IntermediateTimerCycle">
       <bpmn2:incoming>SequenceFlow_0r0wt4d</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_0oxjbjl</bpmn2:outgoing>
       <bpmn2:timerEventDefinition>
         <bpmn2:timeCycle xsi:type="bpmn2:tFormalExpression">R2/PT30S</bpmn2:timeCycle>
       </bpmn2:timerEventDefinition>
     </bpmn2:intermediateCatchEvent>
-    <bpmn2:sequenceFlow id="SequenceFlow_0oxjbjl" sourceRef="IntermediateThrowEvent_1r6ak6m" targetRef="Task_1edt6n7" />
+    <bpmn2:sequenceFlow id="SequenceFlow_0oxjbjl" sourceRef="Event_1r6ak6m" targetRef="Task_1edt6n7" />
     <bpmn2:userTask id="Task_1edt6n7" name="Intermediate Timer Cycle" activiti:assignee="hruser">
       <bpmn2:incoming>SequenceFlow_0oxjbjl</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_16amexh</bpmn2:outgoing>
@@ -32,7 +32,7 @@
         <di:waypoint x="448" y="258" />
         <di:waypoint x="509" y="258" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="IntermediateCatchEvent_162bzed_di" bpmnElement="IntermediateThrowEvent_1r6ak6m">
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_162bzed_di" bpmnElement="Event_1r6ak6m">
         <dc:Bounds x="509" y="240" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="484" y="283" width="86" height="27" />

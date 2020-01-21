@@ -93,7 +93,7 @@ export class ProcessModelerComponent extends GenericPage {
     }
 
     async selectServiceTask() {
-        await BrowserActions.click(element(by.css(`[data-element-id*="ServiceTask"]`)));
+        await BrowserActions.click(element(by.css(`[data-element-id*="Task"]`)));
     }
 
     async selectCallActivityTask() {
@@ -105,10 +105,10 @@ export class ProcessModelerComponent extends GenericPage {
     }
 
     async selectStartEvent() {
-        await BrowserActions.click(element(by.css(`[data-element-id*="StartEvent"]`)));
+        await BrowserActions.click(element(by.css(`[data-element-id*="Event"]`)));
     }
 
-    async selectUserTask(id: string = 'UserTask') {
+    async selectUserTask(id: string = 'Task') {
         await BrowserActions.click(element(by.css(`[data-element-id*="${id}"]`)));
     }
 
@@ -116,8 +116,8 @@ export class ProcessModelerComponent extends GenericPage {
         await BrowserActions.click(element.all(by.css(`[data-element-id*="BoundaryEvent"]`)).first());
     }
 
-    async selectIntermediateEvent() {
-        await BrowserActions.click(element.all(by.css(`[data-element-id*="IntermediateThrowEvent"]`)).first());
+    async selectIntermediateEvent(id: string = 'Event') {
+        await BrowserActions.click(element.all(by.css(`[data-element-id*="${id}"]`)).first());
     }
 
     async changeElementType(type: string) {
@@ -147,11 +147,11 @@ export class ProcessModelerComponent extends GenericPage {
     }
 
     async isServiceTaskSelected(): Promise<boolean> {
-        return this.isElementSelected('ServiceTask');
+        return this.isElementSelected('Task');
     }
 
     async isServiceTaskNotSelected(): Promise<boolean> {
-        return this.isElementNotSelected('ServiceTask');
+        return this.isElementNotSelected('Task');
     }
 
     async selectModelingCanvas(): Promise<void> {
