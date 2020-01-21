@@ -56,7 +56,7 @@
     "@angular/compiler": "7.2.5",
     "@angular/core": "7.2.5",
     "@angular/flex-layout": "7.0.0-beta.23",
-    "@angular/forms": "7.2.5",
+    "@angular/forms": "7.2.16",
     "@angular/http": "7.2.5",
     "@angular/material": "7.3.2",
     "@angular/material-moment-adapter": "7.3.2",
