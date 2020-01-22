@@ -58,17 +58,15 @@ export class CardViewMultiInstanceItemService {
     }
 
     createOrUpdateLoopDataOutputRef(expression: string) {
-        this.element.loopCharacteristics.set(MultiInstanceProps.loopDataOutputRef, { id: expression });
+        this.element.loopCharacteristics.set(MultiInstanceProps.loopDataOutputRef, expression);
 
         this.updateEditor();
     }
 
     createOrUpdateOutputDataItem(expression: string) {
-        if (!this.element.loopCharacteristics[MultiInstanceProps.outputDataItem]) {
-            this.createLoopCharacteristics(MultiInstanceProps.outputDataItem, expression);
-        } else {
-            this.element.loopCharacteristics[MultiInstanceProps.outputDataItem].set('body', expression);
-        }
+        const characterElement = this.bpmnFactory.create(BpmnElement.Expression, { name: expression });
+        this.element.loopCharacteristics.set(MultiInstanceProps.outputDataItem, characterElement);
+
         this.updateEditor();
     }
 

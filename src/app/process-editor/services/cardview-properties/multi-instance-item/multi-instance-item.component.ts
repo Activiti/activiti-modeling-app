@@ -78,7 +78,7 @@ export class CardViewMultiInstanceItemComponent implements OnInit {
             cardinality: [ this.parseMultiInstanceProperty(MultiInstanceProps.loopCardinality) ],
             collectionExpression: [ this.parseMultiInstance(MultiInstanceProps.collection), [ Validators.pattern(/{([^}]+)}/) ] ],
             elementVariable: [ this.parseMultiInstance(MultiInstanceProps.elementVariable) ],
-            outputDataItem: [ this.parseMultiInstanceProperty(MultiInstanceProps.outputDataItem) ],
+            outputDataItem: [ this.parseMultiInstanceOutputDataItem() ],
             loopDataOutputRef: [ this.parseMultiInstanceLoopDataOutputRef() ],
             completionCondition: [ this.parseMultiInstanceProperty(MultiInstanceProps.completionCondition), [ Validators.pattern(/{([^}]+)}/) ] ],
         },   { validators: this.validateExpression });
@@ -142,7 +142,15 @@ export class CardViewMultiInstanceItemComponent implements OnInit {
         return (
             this.element[MultiInstanceProps.loopCharacteristics] &&
             this.element[MultiInstanceProps.loopCharacteristics][MultiInstanceProps.loopDataOutputRef] &&
-            this.element[MultiInstanceProps.loopCharacteristics][MultiInstanceProps.loopDataOutputRef]['id']
+            this.element[MultiInstanceProps.loopCharacteristics][MultiInstanceProps.loopDataOutputRef]
+        );
+    }
+
+    private parseMultiInstanceOutputDataItem() {
+        return (
+            this.element[MultiInstanceProps.loopCharacteristics] &&
+            this.element[MultiInstanceProps.loopCharacteristics][MultiInstanceProps.outputDataItem] &&
+            this.element[MultiInstanceProps.loopCharacteristics][MultiInstanceProps.outputDataItem]['name']
         );
     }
 
