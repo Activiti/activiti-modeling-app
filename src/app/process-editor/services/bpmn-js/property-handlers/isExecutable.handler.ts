@@ -27,7 +27,7 @@ const get = (element) => {
         value = element.businessObject.processRef[propertyKey];
     }
 
-    return value || false;
+    return value === undefined ? true : value;
 };
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
