@@ -275,13 +275,6 @@
                 "ADD_EVENT": "Add event",
                 "DEL_EVENT": "Delete event"
             },
-            "COLLABORATORS": {
-                "DIALOG": {
-                    "CANCEL": "Cancel",
-                    "USERNAME": "Username",
-                    "NO_ITEMS": "Add a collaborator to make it available here."
-                }
-            },
             "ERROR": {
                 "UPLOAD_FILE": "We hit a problem uploading the file. Try uploading it again.",
                 "DELETE_PROJECT": "We hit a problem deleting the project. Try deleting it again.",

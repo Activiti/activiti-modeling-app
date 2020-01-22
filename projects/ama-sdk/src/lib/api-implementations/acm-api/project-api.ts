@@ -23,6 +23,7 @@ import { map } from 'rxjs/operators';
 import { RequestApiHelper } from './request-api.helper';
 import { ValidationErrors } from '../../interfaces/validation-errors.interface';
 import { PaginatedEntries } from '@alfresco/js-api';
+import { IdentityUserModel } from '@alfresco/adf-core';
 
 export interface BackendProject {
     id: string;
@@ -172,5 +173,10 @@ export class ACMProjectApi implements ProjectApi {
                 };
             })
         );
+    }
+
+    public addCollaborator(projectId: string, collaborator: IdentityUserModel): Observable<CollaboratorEntry> {
+        return this.requestApiHelper
+        .put(`/modeling-service/v1/projects/${projectId}/collaborators/${collaborator.username}`);
     }
 }

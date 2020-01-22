@@ -15,6 +15,8 @@ fi
 sed \
     -e "s%../node_modules/@alfresco/adf-core%$ADF_PATH/lib/core%"\
     -e "s%../node_modules/@alfresco/adf-extensions%$ADF_PATH/lib/extensions%"\
+    -e "s%../node_modules/@alfresco/adf-content-services%$ADF_PATH/lib/content-services%"\
+    -e "s%../node_modules/@alfresco/adf-process-services-cloud%$ADF_PATH/lib/process-services-cloud%"\
     ./src/tsconfig.app.json > ./src/tsconfig.adfdev.json
 
 scss-bundle --project "$DIR" -e $ADF_PATH/lib/core/styles/_index.scss --rootDir $ADF_PATH || exit 1;

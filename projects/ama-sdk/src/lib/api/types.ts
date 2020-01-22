@@ -88,7 +88,7 @@ export interface ReleaseEntry {
 }
 
 export interface CollaboratorEntry {
-    entry: Collaborators;
+    entry: Collaborator;
 }
 
 export interface Release {
@@ -102,7 +102,7 @@ export interface Release {
     projectName?: string;
 }
 
-export interface Collaborators {
+export interface Collaborator {
     createdBy: string;
     id: string;
     projectId: string;

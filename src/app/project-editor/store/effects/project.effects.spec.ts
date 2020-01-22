@@ -35,7 +35,6 @@ describe('Project Effects', () => {
     let actions$: Observable<any>;
     let service: ProjectEditorService;
     let downloadService: DownloadResourceService;
-    let logFactory: LogFactoryService;
 
     const mockDialog = {
         close: jest.fn()
@@ -84,7 +83,6 @@ describe('Project Effects', () => {
             ]
         });
 
-        logFactory = TestBed.get(LogFactoryService);
         effects = TestBed.get(ProjectEffects);
         metadata = getEffectsMetadata(effects);
         service = TestBed.get(ProjectEditorService);

@@ -37,10 +37,10 @@ import {
     ToolbarMessageAction,
     LOADED_APPLICATION,
     LoadApplicationAction,
-    SET_LOG_HISTORY_VISIBILITY,
-    SetLogHistoryVisibilityAction,
     LogAction,
     LOG_ACTION,
+    SET_LOG_HISTORY_VISIBILITY,
+    SetLogHistoryVisibilityAction,
 } from 'ama-sdk';
 
 export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action): AppState {

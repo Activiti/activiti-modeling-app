@@ -42,6 +42,7 @@ export function getConfig(rootPath: string = __dirname): TestConfig {
         ama: {
             backendConfig: {
                 authType: 'OAUTH',
+                identityHost: process.env.IDENTITY_HOST,
                 oauth2: {
                     host: process.env.OAUTH_HOST,
                     clientId: process.env.OAUTH_CLIENDID || 'alfresco',

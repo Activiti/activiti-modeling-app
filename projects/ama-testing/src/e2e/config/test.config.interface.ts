@@ -17,6 +17,7 @@
 
 export interface APSBackendConfig {
     authType: 'OAUTH';
+    identityHost: string;
     oauth2: {
         host: string;
         clientId: string;

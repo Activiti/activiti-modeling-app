@@ -17,8 +17,8 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project, AmaApi, EntityDialogForm, ServerSideSorting, FetchQueries, SearchQuery } from 'ama-sdk';
 import { PaginatedEntries } from '@alfresco/js-api';
+import { Project, AmaApi, EntityDialogForm, ServerSideSorting, FetchQueries, SearchQuery } from 'ama-sdk';
 
 @Injectable()
 export class DashboardService {

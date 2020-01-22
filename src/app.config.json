@@ -5,6 +5,7 @@
     "providers": "ALL",
     "ecmHost": "http://localhost:4200",
     "bpmHost": "http://localhost:4200",
+    "identityHost": "${IDENTITY_HOST}",
     "oauth2": {
         "host": "${OAUTH_HOST}",
         "authPath": "/protocol/openid-connect/token/",

@@ -34,6 +34,7 @@
                             { "input": "projects/ama-sdk/i18n", "output": "/assets/ama-sdk/i18n", "glob": "**/*" },
                             { "input": "node_modules/@alfresco/adf-core/prebuilt-themes", "output": "/assets/prebuilt-themes", "glob": "**/*" },
                             { "input": "node_modules/@alfresco/adf-core/bundles/assets", "output": "/assets", "glob": "**/*" },
+                            { "input": "node_modules/@alfresco/adf-process-services-cloud/bundles/assets", "output": "/assets", "glob": "**/*" },
                             { "input": "node_modules/ngx-monaco-editor/assets/monaco", "output": "/assets/monaco", "glob": "**/*" }
                         ],
                         "styles": [

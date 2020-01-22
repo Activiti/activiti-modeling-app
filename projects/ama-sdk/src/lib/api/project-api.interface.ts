@@ -20,6 +20,7 @@ import { Observable } from 'rxjs';
 import { Project, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery, CollaboratorEntry } from './types';
 import { ValidationErrors } from '../interfaces/validation-errors.interface';
 import { PaginatedEntries } from '@alfresco/js-api';
+import { IdentityUserModel } from '@alfresco/adf-core';
 
 @Injectable()
 export abstract class ProjectApi {
@@ -35,6 +36,7 @@ export abstract class ProjectApi {
     public abstract release(projectId: string): Observable<Release>;
     public abstract getProjectReleases(projectId: string, pagination?: Partial<Pagination>): Observable<PaginatedEntries<ReleaseEntry>>;
     public abstract getCollaborators(projectId: string): Observable<PaginatedEntries<CollaboratorEntry>>;
+    public abstract addCollaborator(projectId: string, collaborator: IdentityUserModel): Observable<CollaboratorEntry>;
 }
 
 export interface FetchQueries {
