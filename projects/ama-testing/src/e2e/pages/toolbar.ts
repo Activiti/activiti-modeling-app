@@ -25,10 +25,15 @@ export class Toolbar extends GenericWebElement {
     readonly downloadButton = element(by.css(`[data-automation-id='project-download-button']`));
     readonly validateButton = element(by.css(`[data-automation-id='project-validate-button']`));
     readonly breadcrumbCss = `[data-automation-id='breadcrumb']`;
+    readonly projectName = element(by.css(`.project-name`));
 
     async isItemDisplayed(itemName: string): Promise<boolean> {
         const item = element(by.cssContainingText(`.ama-breadcrumb-item-current`, itemName));
         return BrowserVisibility.waitUntilElementIsVisible(item);
+    }
+
+    async getProjectName(): Promise<string> {
+        return BrowserActions.getText(this.projectName);
     }
 
     async goToHome(): Promise<void> {
