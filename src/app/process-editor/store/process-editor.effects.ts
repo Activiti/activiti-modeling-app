@@ -274,6 +274,12 @@ export class ProcessEditorEffects extends BaseEffects {
             switchMap(() => [new LoadApplicationAction(true), payload.action, new LoadApplicationAction(false)]),
             catchError(response => {
                 const errors = this.handleProcessValidationError(JSON.parse(response.message));
+                if (payload.errorAction) {
+                    return [
+                        payload.errorAction,
+                        this.logFactory.logError(getProcessLogInitiator(), errors)
+                    ];
+                }
                 return [
                     new OpenConfirmDialogAction({
                         dialogData: {

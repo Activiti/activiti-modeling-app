@@ -113,6 +113,7 @@ export interface ValidateProcessPayload {
     content: ProcessContent;
     extensions: ProcessExtensionsContent;
     action: Action;
+    errorAction?: Action;
 }
 
 export const VALIDATE_PROCESS_ATTEMPT = '[Process] Validate attempt';

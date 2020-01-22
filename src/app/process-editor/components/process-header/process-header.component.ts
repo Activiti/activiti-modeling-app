@@ -24,7 +24,9 @@ import {
     EntityDialogForm,
     ProcessModelerServiceToken,
     ProcessModelerService,
-    BreadcrumbItem
+    BreadcrumbItem,
+    SnackbarInfoAction,
+    SnackbarErrorAction
 } from 'ama-sdk';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -83,13 +85,24 @@ export class ProcessHeaderComponent {
         );
     }
 
-    onSaveProcessImage(process): void {
+    onSaveProcessImage(process: Process): void {
         this.store.dispatch(new ValidateProcessAttemptAction({
             title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.IMAGE',
             processId: process.id,
             content: this.content,
             extensions: this.process.extensions,
             action: new DownloadProcessSVGImageAction(process)
+        }));
+    }
+
+    onValidateProcess(process: Process): void {
+        this.store.dispatch(new ValidateProcessAttemptAction({
+            title: 'APP.DIALOGS.ERROR.SUBTITLE',
+            processId: process.id,
+            content: this.content,
+            extensions: this.process.extensions,
+            action: new SnackbarInfoAction('APP.PROCESS_EDITOR.PROCESS_VALID'),
+            errorAction: new SnackbarErrorAction('APP.PROCESS_EDITOR.PROCESS_INVALID')
         }));
     }
 }

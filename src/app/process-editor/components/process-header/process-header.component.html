@@ -20,6 +20,13 @@
     </button>
 
     <button mat-icon-button
+        data-automation-id="process-editor-validate-button"
+        [title]="'APP.VALIDATE_PROCESS' | translate"
+        (click)="onValidateProcess(process)">
+        <mat-icon>done</mat-icon>
+    </button>
+
+    <button mat-icon-button
         data-automation-id="process-editor-save-button"
         [disabled]="disableSave"
         [title]="'APP.SAVE_PROCESS' | translate"
