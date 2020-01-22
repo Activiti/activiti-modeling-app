@@ -16,6 +16,7 @@
  */
 
 export const PROCESS_FILE_FORMAT = '.bpmn20.xml';
+export const PROCESS_SVG_FILE_FORMAT = '.svg';
 export const CONNECTOR_FILE_FORMAT = '.json';
 export const FORM_FILE_FORMAT = '.json';
 export const UI_FILE_FORMAT = '.json';

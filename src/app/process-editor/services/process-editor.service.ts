@@ -19,6 +19,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
     PROCESS_FILE_FORMAT,
+    PROCESS_SVG_FILE_FORMAT,
     DownloadResourceService,
     Process,
     ProcessContent,
@@ -30,7 +31,6 @@ import {
     formatUuid,
     ContentType
 } from 'ama-sdk';
-import { PROCESS_SVG_IMAGE } from './process-editor.constants';
 
 @Injectable()
 export class ProcessEditorService {
@@ -82,6 +82,6 @@ export class ProcessEditorService {
 
     downloadSVGImage(processName: string, processData: string) {
         const blob = new Blob([processData], { type: 'octet/stream' });
-        this.downloadService.downloadResource(processName, blob, PROCESS_SVG_IMAGE);
+        this.downloadService.downloadResource(processName, blob, PROCESS_SVG_FILE_FORMAT);
     }
 }
