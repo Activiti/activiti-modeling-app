@@ -47,10 +47,11 @@ export class UnsavedPageGuard
             switchMap(dirty => zip(of(dirty), this.store.select(selectSelectedModel))),
             switchMap(([dirty, model]) => {
                 if (dirty && model) {
-                    const subtitle = this.translationService.instant('APP.DIALOGS.CONFIRM.UNSAVED_PAGE');
                     const modelType = this.translationService.instant(`APP.DIALOGS.CONFIRM.TYPES.${model.type}`);
+                    const subtitle = this.translationService.instant('APP.DIALOGS.CONFIRM.UNSAVED_PAGE', [modelType]);
+
                     const dialogData: ConfirmDialogData = {
-                        subtitle: `${subtitle} ${modelType}: "${model.name || ''}" ?`
+                        subtitle: `${subtitle}: "${model.name || ''}" ?`
                     };
 
                     return this.dialogService.confirm(dialogData, <any>true).pipe(

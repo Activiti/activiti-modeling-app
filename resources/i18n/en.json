@@ -47,7 +47,7 @@
                 "TITLE": "Are you sure?",
                 "SUBTITLE": "Are you sure that you want to do this action?",
                 "BUTTON": "Confirm",
-                "UNSAVED_PAGE": "Are you sure you want to leave without saving",
+                "UNSAVED_PAGE": "Are you sure you want to leave without saving {{ types }}",
                 "RELEASE": "Are you sure you want to release a new version of this project?",
                 "TYPES": {
                     "DECISION": "decision table",
