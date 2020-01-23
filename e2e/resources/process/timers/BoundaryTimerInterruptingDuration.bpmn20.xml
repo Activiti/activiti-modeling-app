@@ -2,10 +2,10 @@
 <bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:activiti="http://activiti.org/bpmn" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
   <bpmn2:process id="process-4fc7fcde-e078-41ff-b171-b0c350cccd99" name="BoundaryTimerInterruptingDuration" isExecutable="true">
     <bpmn2:documentation />
-    <bpmn2:startEvent id="StartEvent_1">
+    <bpmn2:startEvent id="Event_1">
       <bpmn2:outgoing>SequenceFlow_1qorbat</bpmn2:outgoing>
     </bpmn2:startEvent>
-    <bpmn2:sequenceFlow id="SequenceFlow_1qorbat" sourceRef="StartEvent_1" targetRef="Task_06z104s" />
+    <bpmn2:sequenceFlow id="SequenceFlow_1qorbat" sourceRef="Event_1" targetRef="Task_06z104s" />
     <bpmn2:userTask id="Task_06z104s" name="Interrupting Duration" activiti:assignee="hruser">
       <bpmn2:incoming>SequenceFlow_1qorbat</bpmn2:incoming>
     </bpmn2:userTask>
@@ -27,7 +27,7 @@
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="process-4fc7fcde-e078-41ff-b171-b0c350cccd99">
-      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+      <bpmndi:BPMNShape id="_BPMNShape_Event_2" bpmnElement="Event_1">
         <dc:Bounds x="91" y="114" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1qorbat_di" bpmnElement="SequenceFlow_1qorbat">

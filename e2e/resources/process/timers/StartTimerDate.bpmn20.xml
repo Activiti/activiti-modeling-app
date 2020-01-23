@@ -2,13 +2,13 @@
 <bpmn2:definitions xmlns:activiti="http://activiti.org/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
   <bpmn2:process id="process-18da4acb-219a-4b42-b194-ece2f090ebb9" name="StartTimerDate" isExecutable="true">
     <bpmn2:documentation />
-    <bpmn2:startEvent id="StartEvent_1" name="StartTimerDate">
+    <bpmn2:startEvent id="Event_1" name="StartTimerDate">
       <bpmn2:outgoing>SequenceFlow_0zz11pq</bpmn2:outgoing>
       <bpmn2:timerEventDefinition>
         <bpmn2:timeDate xsi:type="bpmn2:tFormalExpression">2019-07-26T11:00:00.000Z</bpmn2:timeDate>
       </bpmn2:timerEventDefinition>
     </bpmn2:startEvent>
-    <bpmn2:sequenceFlow id="SequenceFlow_0zz11pq" sourceRef="StartEvent_1" targetRef="Task_1x6tx34" />
+    <bpmn2:sequenceFlow id="SequenceFlow_0zz11pq" sourceRef="Event_1" targetRef="Task_1x6tx34" />
     <bpmn2:userTask id="Task_1x6tx34" name="Start Timer Date" activiti:assignee="hruser">
       <bpmn2:incoming>SequenceFlow_0zz11pq</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_074hd2x</bpmn2:outgoing>
@@ -20,7 +20,7 @@
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="process-18da4acb-219a-4b42-b194-ece2f090ebb9">
-      <bpmndi:BPMNShape id="StartEvent_0549pb9_di" bpmnElement="StartEvent_1">
+      <bpmndi:BPMNShape id="Event_0549pb9_di" bpmnElement="Event_1">
         <dc:Bounds x="412" y="240" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="393" y="283" width="75" height="14" />

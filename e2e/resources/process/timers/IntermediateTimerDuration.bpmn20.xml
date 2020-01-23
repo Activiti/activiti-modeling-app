@@ -2,10 +2,10 @@
 <bpmn2:definitions xmlns:activiti="http://activiti.org/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
   <bpmn2:process id="process-211c9796-593a-4e03-ac31-27d04565f200" name="IntermediateTimerDuration" isExecutable="true">
     <bpmn2:documentation />
-    <bpmn2:startEvent id="StartEvent_1">
+    <bpmn2:startEvent id="Event_1">
       <bpmn2:outgoing>SequenceFlow_1fymw36</bpmn2:outgoing>
     </bpmn2:startEvent>
-    <bpmn2:sequenceFlow id="SequenceFlow_1fymw36" sourceRef="StartEvent_1" targetRef="Event_0ch6yj2" />
+    <bpmn2:sequenceFlow id="SequenceFlow_1fymw36" sourceRef="Event_1" targetRef="Event_0ch6yj2" />
     <bpmn2:sequenceFlow id="SequenceFlow_11tohpg" sourceRef="Event_0ch6yj2" targetRef="Task_0cd9y3t" />
     <bpmn2:userTask id="Task_0cd9y3t" name=" Intermediate Timer Duration" activiti:assignee="hruser">
       <bpmn2:incoming>SequenceFlow_11tohpg</bpmn2:incoming>
@@ -25,7 +25,7 @@
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="process-211c9796-593a-4e03-ac31-27d04565f200">
-      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+      <bpmndi:BPMNShape id="_BPMNShape_Event_2" bpmnElement="Event_1">
         <dc:Bounds x="412" y="240" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1fymw36_di" bpmnElement="SequenceFlow_1fymw36">

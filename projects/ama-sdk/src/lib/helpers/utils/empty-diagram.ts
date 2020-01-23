@@ -28,11 +28,11 @@ export const getEmptyDiagram = (model) => {
     <bpmn2:definitions name="${createModelName(model.name)}" id="${modelId}" xmlns:activiti="http://activiti.org/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" targetNamespace="http://bpmn.io/schema/bpmn">
         <bpmn2:process id="${processId}" isExecutable="true" name="process-sample-name">
             <bpmn2:documentation>${model.description ? model.description : ''}</bpmn2:documentation>
-            <bpmn2:startEvent id="StartEvent_1" />
+            <bpmn2:startEvent id="Event_1" />
         </bpmn2:process>
         <bpmndi:BPMNDiagram id="BPMNDiagram_1">
             <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="${processId}">
-                <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+                <bpmndi:BPMNShape id="_BPMNShape_Event_2" bpmnElement="Event_1">
                     <dc:Bounds height="36.0" width="36.0" x="412.0" y="240.0" />
                 </bpmndi:BPMNShape>
             </bpmndi:BPMNPlane>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
   <process id="process-65fe0798-7202-4cf5-9c93-c6589627c3b0" name="BoundaryTimerNonInterruptingCycle" isExecutable="true">
-    <startEvent id="StartEvent_1" />
-    <sequenceFlow id="SequenceFlow_0s3oomd" sourceRef="StartEvent_1" targetRef="Task_1yjmw99" />
+    <startEvent id="Event_1" />
+    <sequenceFlow id="SequenceFlow_0s3oomd" sourceRef="Event_1" targetRef="Task_1yjmw99" />
     <userTask id="Task_1yjmw99" name="Non Interrupting Cycle" activiti:assignee="hruser" />
     <userTask id="Task_17nxd7u" name="Boundary Timer Non Interrupting Cycle" activiti:assignee="hruser" />
     <endEvent id="EndEvent_1x09kag" />
@@ -17,7 +17,7 @@
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_process-65fe0798-7202-4cf5-9c93-c6589627c3b0">
     <bpmndi:BPMNPlane id="BPMNPlane_process-65fe0798-7202-4cf5-9c93-c6589627c3b0" bpmnElement="process-65fe0798-7202-4cf5-9c93-c6589627c3b0">
-      <bpmndi:BPMNShape id="BPMNShape_StartEvent_1" bpmnElement="StartEvent_1">
+      <bpmndi:BPMNShape id="BPMNShape_Event_1" bpmnElement="Event_1">
         <omgdc:Bounds x="412" y="240" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_Task_1yjmw99" bpmnElement="Task_1yjmw99">
