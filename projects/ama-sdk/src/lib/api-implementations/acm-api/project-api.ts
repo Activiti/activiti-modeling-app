@@ -38,6 +38,7 @@ export interface BackendProject {
 
 @Injectable()
 export class ACMProjectApi implements ProjectApi {
+
     constructor(
         private requestApiHelper: RequestApiHelper
     ) {}
@@ -178,5 +179,10 @@ export class ACMProjectApi implements ProjectApi {
     public addCollaborator(projectId: string, collaborator: IdentityUserModel): Observable<CollaboratorEntry> {
         return this.requestApiHelper
         .put(`/modeling-service/v1/projects/${projectId}/collaborators/${collaborator.username}`);
+    }
+
+    public removeCollaborator(projectId: string, collaborator: IdentityUserModel): Observable<void> {
+        return this.requestApiHelper
+        .delete(`/modeling-service/v1/projects/${projectId}/collaborators/${collaborator.username}`);
     }
 }

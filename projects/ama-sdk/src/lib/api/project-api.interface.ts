@@ -37,6 +37,7 @@ export abstract class ProjectApi {
     public abstract getProjectReleases(projectId: string, pagination?: Partial<Pagination>): Observable<PaginatedEntries<ReleaseEntry>>;
     public abstract getCollaborators(projectId: string): Observable<PaginatedEntries<CollaboratorEntry>>;
     public abstract addCollaborator(projectId: string, collaborator: IdentityUserModel): Observable<CollaboratorEntry>;
+    public abstract removeCollaborator(projectId: string, collaborator: IdentityUserModel): Observable<void>;
 }
 
 export interface FetchQueries {
