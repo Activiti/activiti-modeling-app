@@ -1,13 +1,13 @@
 <div class="due-date-block">
     <form [formGroup]="dueDateForm">
         <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.DUE_DATE' | translate}}</div>
-        <mat-checkbox [formControl]="useProcessVariable">
+        <mat-checkbox formControlName="useProcessVariable">
             {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.USE_PROCESS_VARIABLE' | translate}}
         </mat-checkbox>
         <div *ngIf="useProcessVariable.value"
              class="date-time-variable">
             <mat-form-field>
-                <mat-select [formControl]="processVariable">
+                <mat-select formControlName="processVariable">
                     <mat-option></mat-option>
                     <mat-option *ngFor="let processVariable of processVariables"
                                 [value]="processVariable.name">

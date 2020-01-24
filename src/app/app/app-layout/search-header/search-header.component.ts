@@ -18,6 +18,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ServerSideSorting } from 'ama-sdk';
+import {SearchTextStateEnum} from '@alfresco/adf-core';
 
 const DEFAULT_SORT_KEY = 'name';
 const DEFAULT_SORT_DIRECTION = 'asc';
@@ -35,7 +36,7 @@ export class SearchHeaderComponent implements OnInit {
 
   value: string;
   expandable: boolean;
-  searchInputState = 'collapsed';
+  searchInputState = SearchTextStateEnum.collapsed;
 
   sorting: ServerSideSorting = {
     key: DEFAULT_SORT_KEY,
@@ -48,7 +49,7 @@ export class SearchHeaderComponent implements OnInit {
 
   ngOnInit() {
     this.value = this.route.snapshot.queryParamMap.get(SEARCH_KEY);
-    this.searchInputState = this.value ? 'expanded' : 'collapsed';
+    this.searchInputState = this.value ? SearchTextStateEnum.expanded : SearchTextStateEnum.collapsed;
   }
 
   onSearchSubmit(event: KeyboardEvent) {

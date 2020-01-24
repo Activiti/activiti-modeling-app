@@ -20,7 +20,7 @@
 
                             <amasdk-workbench-layout-content>
                                 <ama-process-modeler
-                                    (onChange)="onBpmnEditorChange($event)"
+                                    (onChange)="onBpmnEditorChange()"
                                     [source]="bpmnContent$ | async"
                                     [attr.data-automation-id]="'process-editor-modeler'">
                                 </ama-process-modeler>

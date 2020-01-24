@@ -16,7 +16,7 @@
  */
 
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { CardItemTypeService, CardViewUpdateService, MomentDateAdapter, CardViewDatetimeItemModel, CardViewBaseItemModel } from '@alfresco/adf-core';
+import { CardItemTypeService, CardViewUpdateService, MomentDateAdapter, CardViewDatetimeItemModel, CardViewItem } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { AmaState, selectSelectedProcess, AMA_DATETIME_FORMATS, MOMENT_DATETIME_FORMAT, EntityProperty, ANGULAR_DATETIME_DISPLAY_FORMAT } from 'ama-sdk';
 import { filter, take, debounceTime, takeUntil } from 'rxjs/operators';
@@ -44,7 +44,7 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
     processVariables: EntityProperty[] = [];
     dueDateForm: FormGroup;
     today = new Date();
-    properties: CardViewBaseItemModel[] = [];
+    properties: CardViewItem[] = [];
 
     onDestroy$: Subject<void> = new Subject<void>();
 

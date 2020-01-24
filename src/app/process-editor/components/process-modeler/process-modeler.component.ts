@@ -42,7 +42,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
     @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
 
     @Input()
-    set source(diagramData: string) {
+    set source(diagramData: ProcessContent) {
         this.diagramData$.next(diagramData);
     }
 
@@ -55,7 +55,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
     ngOnInit() {
         this.processModelerService.init({
             clickHandler: event => {
-                this.store.dispatch(new SelectModelerElementAction(createSelectedElement(event.element))),
+                this.store.dispatch(new SelectModelerElementAction(createSelectedElement(event.element)));
                 this.store.dispatch(new ToolbarMessageAction(event.element.type));
             },
             changeHandler: event => {
@@ -87,7 +87,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
             )
             .subscribe(
                 () => {},
-                (e) => this.store.dispatch(new SnackbarErrorAction('PROCESS_EDITOR.ERRORS.LOAD_DIAGRAM'))
+                () => this.store.dispatch(new SnackbarErrorAction('PROCESS_EDITOR.ERRORS.LOAD_DIAGRAM'))
             );
     }
 
