@@ -1,5 +1,9 @@
 {
     "PROCESS_EDITOR": {
+        "DOWNLOAD_PROCESS": "Download process",
+        "SAVE_PROCESS_IMAGE": "Save process svg image",
+        "VALIDATE_PROCESS": "Validate process",
+        "SAVE_PROCESS": "Save process",
         "PRIORITIES": {
             "LOW": "0",
             "MEDIUM": "1",
@@ -137,6 +141,8 @@
         "UPLOAD_SUCCESS": "Process uploaded",
         "PROCESS_SAVED": "Process saved",
         "PROCESS_UPDATED": "Process updated",
+        "PROCESS_VALID": "Process is valid",
+        "PROCESS_INVALID": "Process contains validation error(s).",
         "ERRORS": {
             "NO_PROCESS_VARIABLES": "No process variables.",
             "NO_SUB_PROCESS_VARIABLES": "No subprocess variables.",

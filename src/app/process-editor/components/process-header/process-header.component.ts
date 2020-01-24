@@ -101,8 +101,8 @@ export class ProcessHeaderComponent {
             processId: process.id,
             content: this.content,
             extensions: this.process.extensions,
-            action: new SnackbarInfoAction('APP.PROCESS_EDITOR.PROCESS_VALID'),
-            errorAction: new SnackbarErrorAction('APP.PROCESS_EDITOR.PROCESS_INVALID')
+            action: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_VALID'),
+            errorAction: new SnackbarErrorAction('PROCESS_EDITOR.PROCESS_INVALID')
         }));
     }
 }

@@ -7,14 +7,21 @@
     <div class="adf-toolbar--spacer"></div>
 
     <button mat-icon-button
-        [title]="'APP.DOWNLOAD_CONNECTOR' | translate"
+        [title]="'CONNECTOR_EDITOR.DOWNLOAD_CONNECTOR' | translate"
         (click)="onDownload()"
         data-automation-id="connector-editor-download-button">
         <mat-icon>file_download</mat-icon>
     </button>
 
     <button mat-icon-button
-        [title]="'APP.SAVE_CONNECTOR' | translate"
+        [title]="'CONNECTOR_EDITOR.VALIDATE_CONNECTOR' | translate"
+        (click)="onValidate()"
+        data-automation-id="connector-editor-validate-button">
+        <mat-icon>done</mat-icon>
+    </button>
+
+    <button mat-icon-button
+        [title]="'CONNECTOR_EDITOR.SAVE_CONNECTOR' | translate"
         data-automation-id="connector-editor-save-button"
         [disabled]="disableSave"
         (click)="onSave()">

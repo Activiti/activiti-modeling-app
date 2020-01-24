@@ -211,11 +211,17 @@ export class ConnectorEditorEffects extends BaseEffects {
         tap(action => this.storageService.setItem('showConnectorsWithTemplate', action.isChecked.toString())
     ));
 
-    private validateConnector({ connectorId, connectorContent, action, title }: ValidateConnectorPayload) {
+    private validateConnector({ connectorId, connectorContent, action, title, errorAction }: ValidateConnectorPayload) {
         return this.connectorEditorService.validate(connectorId, connectorContent).pipe(
             switchMap(() => [new LoadApplicationAction(true), action, new LoadApplicationAction(false)]),
             catchError(response => {
                 const errors = JSON.parse(response.message).errors.map(error => error.description);
+                if (errorAction) {
+                    return [
+                        errorAction,
+                        this.logFactory.logError(getConnectorLogInitiator(), errors)
+                    ];
+                }
                 return [
                     new OpenConfirmDialogAction({
                         action,

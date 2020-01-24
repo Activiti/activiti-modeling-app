@@ -17,7 +17,7 @@
 
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Observable, combineLatest, of } from 'rxjs';
-import { BreadcrumbItem, AmaState, OpenConfirmDialogAction, selectProjectCrumb } from 'ama-sdk';
+import { BreadcrumbItem, AmaState, OpenConfirmDialogAction, selectProjectCrumb, SnackbarInfoAction, SnackbarErrorAction } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 import { selectConnectorCrumb } from '../../store/connector-editor.selectors';
@@ -79,6 +79,16 @@ export class ConnectorHeaderComponent {
             connectorId: this.connectorId,
             connectorContent: JSON.parse(this.content),
             action: new DownloadConnectorAction()
+        }));
+    }
+
+    onValidate() {
+        this.store.dispatch(new ValidateConnectorAttemptAction({
+            title: null,
+            connectorId: this.connectorId,
+            connectorContent: JSON.parse(this.content),
+            action: new SnackbarInfoAction('CONNECTOR_EDITOR.CONNECTOR_VALID'),
+            errorAction: new SnackbarErrorAction('CONNECTOR_EDITOR.CONNECTOR_INVALID')
         }));
     }
 }
