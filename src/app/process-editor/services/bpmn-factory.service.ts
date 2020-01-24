@@ -31,6 +31,7 @@ import { DecisionTableRenderModule } from './bpmn-js/renderers/decision-table.re
 import { ScriptRenderModule } from './bpmn-js/renderers/script.renderer';
 
 const activitiModdleDescriptor = require('./activiti.json');
+const redefineModdleDescriptor = require('./redefine-bpmn.json');
 
 @Injectable()
 export class BpmnFactoryService implements BpmnFactory {
@@ -49,7 +50,7 @@ export class BpmnFactoryService implements BpmnFactory {
                 { clipboard: ['value', this.clipboardService] },
                 ...this.getBpmnPropertiesPanelConfig()
             ],
-            moddleExtensions: { activiti: activitiModdleDescriptor }
+            moddleExtensions: { activiti: activitiModdleDescriptor, bpmn: redefineModdleDescriptor }
         });
     }
 

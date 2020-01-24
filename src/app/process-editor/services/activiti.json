@@ -1109,19 +1109,6 @@
                     "type": "String"
                 }
             ]
-        },
-        {
-            "name": "MultiInstanceLoopCharacteristics",
-            "extends": [
-                "bpmn:MultiInstanceLoopCharacteristics"
-            ],
-            "properties": [
-                {
-                    "name": "loopDataOutputRef",
-                    "type": "String",
-                    "redefines": "bpmn:MultiInstanceLoopCharacteristics#loopDataOutputRef"
-                }
-            ]
         }
     ],
     "emumerations": []
