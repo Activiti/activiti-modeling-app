@@ -64,7 +64,7 @@ export const getEmptyScript = (model) => {
     *            let siteMembershipBodyRequestUpdate = siteMembershipBody.requestUpdate();
     * 
     *  4 - Runtime Commands (ProcessPayloadBuilder and CommandProducer) Example:
-    *          let startProcessInstanceCmd = ProcessPayloadBuilder.start().withProcessDefinitionKey("1af40357-b122-4de1-a031-a71630cbdf33").build();
+    *          let startProcessInstanceCmd = processPayloadBuilder.start().withProcessDefinitionKey("1af40357-b122-4de1-a031-a71630cbdf33").build();
     *          commandProducer.send(startProcessInstanceCmd);
     */`;
 }
