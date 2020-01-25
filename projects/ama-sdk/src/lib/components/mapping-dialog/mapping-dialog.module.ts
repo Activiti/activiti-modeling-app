@@ -18,10 +18,13 @@
 import { CoreModule } from '@alfresco/adf-core';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatIconModule, MatInputModule, MatSelectModule, MatTableModule, MatTooltipModule } from '@angular/material';
-import { OutputMappingTableComponent } from './output-mapping-table.component';
-import { MappingDialogModule } from '../mapping-dialog/public_api';
-import { VariablesModule } from '../../variables/public_api';
+import { MatIconModule, MatInputModule, MatSelectModule, MatTableModule, MatTooltipModule, MatDialogModule } from '@angular/material';
+import { MappingDialogComponent } from './mapping-dialog.component';
+import { DialogService } from '../../confirmation-dialog/services/dialog.service';
+import { VariablesModule } from '../../variables/variables.module';
+import { CodeEditorModule } from '../../code-editor/public_api';
+import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
+import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
 
 @NgModule({
     imports: [
@@ -31,11 +34,14 @@ import { VariablesModule } from '../../variables/public_api';
         MatTooltipModule,
         MatSelectModule,
         MatInputModule,
-        MappingDialogModule,
+        MatDialogModule,
         VariablesModule,
+        CodeEditorModule,
         CoreModule.forChild()
     ],
-    declarations: [OutputMappingTableComponent],
-    exports: [OutputMappingTableComponent]
+    providers: [DialogService, InputMappingDialogService, OutputMappingDialogService],
+    declarations: [MappingDialogComponent],
+    exports: [MappingDialogComponent],
+    entryComponents: [MappingDialogComponent]
 })
-export class OutputMappingTableModule {}
+export class MappingDialogModule { }

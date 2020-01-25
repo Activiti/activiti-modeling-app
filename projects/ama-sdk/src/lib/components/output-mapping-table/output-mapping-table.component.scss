@@ -33,6 +33,10 @@
             }
         }
 
+        .variable-value-type-value {
+            font-style: italic;
+        }
+
         .mat-header-cell {
             padding-left: 0;
             padding-right: 0;
@@ -47,8 +51,10 @@
         &__mapping-icon.mat-icon {
             vertical-align: middle;
             margin-left: 5px;
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            padding: 4px 0;
             &:hover {
                 cursor: pointer;
             }

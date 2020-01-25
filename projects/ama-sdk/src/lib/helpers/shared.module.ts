@@ -23,16 +23,12 @@ import { MatIconModule } from '@angular/material';
 import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
 import { CoreModule } from '@alfresco/adf-core';
 import { AllowedCharactersDirective } from './directives/allowed-characters.directive';
-import { InputMappingTableModule } from '../components/input-mapping-table/input-mapping-table.module';
-import { OutputMappingTableModule } from '../components/output-mapping-table/output-mapping-table.module';
 
 @NgModule({
     imports: [
         CommonModule,
         MatIconModule,
         RouterModule,
-        InputMappingTableModule,
-        OutputMappingTableModule,
         CoreModule.forChild(),
     ],
     declarations: [
@@ -40,13 +36,11 @@ import { OutputMappingTableModule } from '../components/output-mapping-table/out
         EntityDialogComponent,
         AllowedCharactersDirective
     ],
-    entryComponents: [ EntityDialogComponent ],
+    entryComponents: [EntityDialogComponent],
     exports: [
         HeaderBreadcrumbsComponent,
         EntityDialogComponent,
-        AllowedCharactersDirective,
-        InputMappingTableModule,
-        OutputMappingTableModule
+        AllowedCharactersDirective
     ]
 })
-export class SharedModule {}
+export class SharedModule { }

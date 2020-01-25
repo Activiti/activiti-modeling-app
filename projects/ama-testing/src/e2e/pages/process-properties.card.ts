@@ -229,32 +229,50 @@ export class ProcessPropertiesCard extends GenericPage {
         return connectorParam.getText();
     }
 
-    async isToggleEnabled(connectorId: string) {
-        const toggleIcon = element(by.cssContainingText(`[data-automation-id="toggle-icon-${connectorId}"]`, `layers`));
-        await BrowserVisibility.waitUntilElementIsVisible(toggleIcon);
-        return true;
+    async openMappingDialogForParameter(parameterId: string) {
+        const editButton = element(by.css(`[data-automation-id="edit-value-mapping-${parameterId}"]`));
+        await BrowserActions.click(editButton);
+        const mappingDialog = element(by.css(`[data-automation-id="mapping-dialog"]`));
+        await BrowserVisibility.waitUntilElementIsVisible(mappingDialog);
     }
 
-    async isToggleDisabled(connectorId: string) {
-        const toggleIcon = element(by.cssContainingText(`[data-automation-id="toggle-icon-${connectorId}"]`, `layers_clear`));
-        await BrowserVisibility.waitUntilElementIsVisible(toggleIcon);
-        return true;
+    async selectParameterTab() {
+        const mappingValueBlock = element(by.css(`.mapping-value`));
+        await BrowserVisibility.waitUntilElementIsVisible(mappingValueBlock);
+        const expressionTab = element(by.css(`.mapping-value .mat-tab-label:nth-last-child(3)`));
+        await BrowserActions.click(expressionTab);
     }
 
-    async switchToggle(connectorId: string) {
-        const toggleIcon = element(by.css(`[data-automation-id="toggle-icon-${connectorId}"]`));
-        await BrowserActions.click(toggleIcon);
+    async selectValueMappingTab() {
+        const mappingValueBlock = element(by.css(`.mapping-value`));
+        await BrowserVisibility.waitUntilElementIsVisible(mappingValueBlock);
+        const valueTab = element(by.css(`.mapping-value .mat-tab-label:nth-last-child(2)`));
+        await BrowserActions.click(valueTab);
+        const valueInput = element(by.css(`.mapping-value amasdk-value-type-input input`));
+        await BrowserVisibility.waitUntilElementIsVisible(valueInput);
     }
 
-    async setValue(connectorId: string, value: string) {
-        const valueInput = element(by.css(`[data-automation-id="value-input-${connectorId}"]`));
+    async selectExpressionMappingTab() {
+        const mappingValueBlock = element(by.css(`.mapping-value`));
+        await BrowserVisibility.waitUntilElementIsVisible(mappingValueBlock);
+        const expressionTab = element(by.css(`.mapping-value .mat-tab-label:nth-last-child(1)`));
+        await BrowserActions.click(expressionTab);
+    }
+
+    async setValueMapping(value: string) {
+        const valueInput = element(by.css(`.mapping-value amasdk-value-type-input input`));
         await BrowserActions.clearSendKeys(valueInput, value);
+    }
+
+    async updateAndCloseMappingDialog() {
+        const updateButton = element(by.css(`[data-automation-id="mapping-update-button"]`));
+        await BrowserActions.click(updateButton);
     }
 
     async getValue(connectorId: string) {
         const valueInput = element(by.css(`[data-automation-id="value-input-${connectorId}"]`));
         await BrowserVisibility.waitUntilElementIsVisible(valueInput);
-        return valueInput.getAttribute('value');
+        return valueInput.getText();
     }
 
     async isValueInputVisible(connectorId: string) {

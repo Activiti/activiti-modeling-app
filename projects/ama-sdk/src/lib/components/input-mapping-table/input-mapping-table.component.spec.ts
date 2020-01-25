@@ -24,6 +24,11 @@ import { MappingType } from '../../api/types';
 import { InputMappingTableComponent, NoneValue } from './input-mapping-table.component';
 import { InputMappingTableModule } from './input-mapping-table.module';
 import { CoreModule } from '@alfresco/adf-core';
+import { Store } from '@ngrx/store';
+import { selectSelectedTheme } from '../../store/app.selectors';
+import { of } from 'rxjs';
+import { MatDialog } from '@angular/material';
+import { DialogService } from '../../confirmation-dialog/services/dialog.service';
 
 describe('InputMappingTableComponent', () => {
     let fixture: ComponentFixture<InputMappingTableComponent>;
@@ -36,6 +41,23 @@ describe('InputMappingTableComponent', () => {
                 InputMappingTableModule,
                 NoopAnimationsModule,
                 FormsModule
+            ],
+            providers: [
+                {
+                    provide: Store,
+                    useValue: {
+                        select: jest.fn().mockImplementation(selector => {
+                            if (selector === selectSelectedTheme) {
+                                return of('vs-light');
+                            }
+
+                            return of({});
+                        }),
+                        dispatch: jest.fn()
+                    }
+                },
+                DialogService,
+                MatDialog
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });
@@ -91,10 +113,12 @@ describe('InputMappingTableComponent', () => {
         options[1].nativeElement.click();
         fixture.detectChanges();
 
-        const data = { ...component.data, [component.parameters[0].name]: {
-            type: MappingType.variable,
-            value: component.processProperties[0].name
-        }};
+        const data = {
+            ...component.data, [component.parameters[0].name]: {
+                type: MappingType.variable,
+                value: component.processProperties[0].name
+            }
+        };
         expect(component.update.emit).toHaveBeenCalledWith(data);
     });
 
@@ -102,7 +126,7 @@ describe('InputMappingTableComponent', () => {
         spyOn(component.update, 'emit');
         component.parameters[0].required = true;
         component.mapping = {
-            'name' : {
+            'name': {
                 type: MappingType.variable,
                 value: 'var1'
             }
@@ -119,7 +143,7 @@ describe('InputMappingTableComponent', () => {
         fixture.detectChanges();
 
         const data = {
-            'name' : {
+            'name': {
                 type: MappingType.variable,
                 value: null
             }
@@ -131,7 +155,7 @@ describe('InputMappingTableComponent', () => {
         spyOn(component.update, 'emit');
         component.parameters[0].required = false;
         component.mapping = {
-            'name' : {
+            'name': {
                 type: MappingType.variable,
                 value: 'var1'
             }
@@ -184,7 +208,7 @@ describe('InputMappingTableComponent', () => {
 
         expect(select).not.toBeNull();
         expect(noPropMsg).toBeNull();
-        expect(component.optionsForParams['name'][0]).toEqual({id: NoneValue, name: 'None'});
+        expect(component.optionsForParams['name'][0]).toEqual({ id: NoneValue, name: 'None' });
     });
 
     it('should display a selectbox with "None" as first option in case of non-required parameter', () => {
@@ -193,33 +217,6 @@ describe('InputMappingTableComponent', () => {
         component.ngOnChanges();
         fixture.detectChanges();
 
-        expect(component.optionsForParams['name'][0]).toEqual({id: NoneValue, name: 'None'});
+        expect(component.optionsForParams['name'][0]).toEqual({ id: NoneValue, name: 'None' });
     });
-
-    it('clicking on the icon should toggle it', () => {
-        component.mappingTypes['name'] = MappingType.variable;
-        fixture.detectChanges();
-        const icon = fixture.debugElement.query(By.css('.amasdk-input-mapping-table__mapping-icon'));
-        icon.nativeElement.click();
-        fixture.detectChanges();
-
-        expect(component.mappingTypes['name']).toBe(MappingType.value);
-    });
-
-    it('when layers icon is visible process variables select box is visible', () => {
-        component.mappingTypes['name'] = MappingType.variable;
-        fixture.detectChanges();
-        const selectBox = fixture.debugElement.query(By.css('.mat-select'));
-
-        expect(selectBox).not.toBeNull();
-    });
-
-    it('when layers_clear icon is visible process value input box is visible', () => {
-        component.mappingTypes['name'] = MappingType.value;
-        fixture.detectChanges();
-        const inputBox = fixture.debugElement.query(By.css('.amasdk-input-mapping-table__mapped-value'));
-
-        expect(inputBox).not.toBeNull();
-    });
-
 });

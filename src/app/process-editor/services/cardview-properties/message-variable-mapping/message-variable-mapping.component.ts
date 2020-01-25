@@ -20,7 +20,7 @@ import { CardItemTypeService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import {
     AmaState, EntityProperty, MessagePayload, selectSelectedProcess, ConnectorParameter,
-    ParametersSelectOptions, MappingType, Process, ServiceOutputParameterMapping
+    ParametersSelectOptions, MappingType, Process, ServiceParameterMapping
 } from 'ama-sdk';
 import { MatTableDataSource } from '@angular/material';
 import { filter, take } from 'rxjs/operators';
@@ -43,7 +43,7 @@ export class CardViewMessageVariableMappingComponent implements OnInit {
 
     processVariables: EntityProperty[];
     payloadProperties: MessagePayload[] = [];
-    mapping: ServiceOutputParameterMapping = {};
+    mapping: ServiceParameterMapping = {};
     optionsForParams: ParametersSelectOptions = {};
     paramName2VariableName: { [paramName: string]: string } = {};
 
@@ -117,7 +117,7 @@ export class CardViewMessageVariableMappingComponent implements OnInit {
         });
     }
 
-    getMappingFromProcess(process: Process): ServiceOutputParameterMapping {
+    getMappingFromProcess(process: Process): ServiceParameterMapping {
         return process.extensions.mappings[this.elementId] && process.extensions.mappings[this.elementId].outputs
             ? { ...process.extensions.mappings[this.elementId].outputs } : {};
     }

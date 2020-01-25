@@ -16,14 +16,18 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatTableModule, MatTooltipModule, MatSelectModule, MatFormFieldModule } from '@angular/material';
-import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MappingType } from '../../api/types';
 import { OutputMappingTableComponent } from './output-mapping-table.component';
+import { DialogService } from '../../confirmation-dialog/services/dialog.service';
+import { OutputMappingTableModule } from './output-mapping-table.module';
+import { MatDialog } from '@angular/material';
+import { CoreModule } from '@alfresco/adf-core';
+import { Store } from '@ngrx/store';
+import { selectSelectedTheme } from '../../store/app.selectors';
 
 describe('OutputMappingTableComponent', () => {
     let fixture: ComponentFixture<OutputMappingTableComponent>;
@@ -32,19 +36,28 @@ describe('OutputMappingTableComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                MatTableModule,
-                TranslateModule.forRoot(),
-                MatTooltipModule,
-                MatSelectModule,
-                MatFormFieldModule,
+                CoreModule.forRoot(),
+                OutputMappingTableModule,
                 NoopAnimationsModule,
                 FormsModule
             ],
-            declarations: [
-                OutputMappingTableComponent
-            ],
-            providers: [],
-            schemas: [NO_ERRORS_SCHEMA]
+            providers: [
+                {
+                    provide: Store,
+                    useValue: {
+                        select: jest.fn().mockImplementation(selector => {
+                            if (selector === selectSelectedTheme) {
+                                return of('vs-light');
+                            }
+
+                            return of({});
+                        }),
+                        dispatch: jest.fn()
+                    }
+                },
+                DialogService,
+                MatDialog
+            ], schemas: [NO_ERRORS_SCHEMA]
         });
     });
 
@@ -105,32 +118,41 @@ describe('OutputMappingTableComponent', () => {
         options[0].nativeElement.click();
         fixture.detectChanges();
 
-        const data = { [component.processProperties[0].name]: {
-            type: MappingType.variable,
-            value: component.parameters[0].name
-        }};
+        const data = {
+            [component.processProperties[0].name]: {
+                type: MappingType.variable,
+                value: component.parameters[0].name
+            }
+        };
         expect(component.update.emit).toHaveBeenCalledWith(data);
     });
 
     it('should emit the correct data when a property value is reset', () => {
-        spyOn(component.update, 'emit');
-        component.mapping = { [component.processProperties[0].name]: {
-            type: MappingType.variable,
-            value: component.parameters[0].name
-        }};
+        component.mapping = {
+            [component.processProperties[0].name]: {
+                type: MappingType.variable,
+                value: component.parameters[0].name
+            }
+        };
         component.ngOnChanges();
+        fixture.detectChanges();
+
+        spyOn(component.update, 'emit');
 
         const select = fixture.debugElement.query(By.css('.mat-select-trigger'));
         select.nativeElement.click();
         fixture.detectChanges();
+
         const options = fixture.debugElement.queryAll(By.css('.mat-option'));
         options[1].nativeElement.click();
         fixture.detectChanges();
 
-        const data = { [component.processProperties[2].name]: {
-            type: MappingType.variable,
-            value: component.parameters[0].name
-        }};
+        const data = {
+            [component.processProperties[2].name]: {
+                type: MappingType.variable,
+                value: component.parameters[0].name
+            }
+        };
 
         expect(component.update.emit).toHaveBeenCalledWith(data);
     });
@@ -165,23 +187,23 @@ describe('OutputMappingTableComponent', () => {
     });
 
     it('if a parameter is marked non-required then None value will appear first in the properties list to choose from', () => {
-        component.parameters.push({id: 'id2', name: 'name2', type: 'string', required: false});
+        component.parameters.push({ id: 'id2', name: 'name2', type: 'string', required: false });
         component.ngOnChanges();
         fixture.detectChanges();
 
-        expect(component.optionsForParams['name2'][0]).toEqual({id: null, name: 'None'});
+        expect(component.optionsForParams[1][0]).toEqual({ id: null, name: 'None' });
     });
 
     it('if a parameter is marked required or not marked at all then None value will appear first in the properties list to choose from', () => {
-        component.parameters.push({id: 'id3', name: 'name3', type: 'string', required: true});
+        component.parameters.push({ id: 'id3', name: 'name3', type: 'string', required: true });
         component.ngOnChanges();
         fixture.detectChanges();
 
-        expect(component.optionsForParams['name']).toEqual([
+        expect(component.optionsForParams[0]).toEqual([
             component.processProperties[0],
             component.processProperties[2]
         ]);
-        expect(component.optionsForParams['name3']).toEqual([
+        expect(component.optionsForParams[1]).toEqual([
             component.processProperties[0],
             component.processProperties[2]
         ]);

@@ -30,8 +30,7 @@ import {
     selectProcessMappingsFor,
     UpdateServiceParametersAction,
     selectSelectedProcess,
-    ServiceInputParameterMapping,
-    ServiceOutputParameterMapping
+    ServiceParameterMapping
 } from 'ama-sdk';
 import { MatSelectChange } from '@angular/material';
 
@@ -93,7 +92,7 @@ export class CardViewCalledItemItemComponent implements OnInit, OnDestroy {
         this.loadVariables();
     }
 
-    changeMapping(mapping: ServiceInputParameterMapping | ServiceOutputParameterMapping, type: string): void {
+    changeMapping(mapping: ServiceParameterMapping, type: string): void {
         this.mapping = { ...this.mapping, [type]: mapping };
         this.updateMapping();
     }

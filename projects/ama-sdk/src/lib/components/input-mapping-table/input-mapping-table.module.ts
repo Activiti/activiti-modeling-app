@@ -26,6 +26,8 @@ import {
 } from '@angular/material';
 import { InputMappingTableComponent } from './input-mapping-table.component';
 import { CoreModule } from '@alfresco/adf-core';
+import { MappingDialogModule } from '../mapping-dialog/public_api';
+import { VariablesModule } from '../../variables/variables.module';
 
 @NgModule({
     imports: [
@@ -35,6 +37,8 @@ import { CoreModule } from '@alfresco/adf-core';
         MatTooltipModule,
         MatSelectModule,
         MatInputModule,
+        MappingDialogModule,
+        VariablesModule,
         CoreModule.forChild()
     ],
     declarations: [InputMappingTableComponent],

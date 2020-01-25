@@ -27,7 +27,7 @@ import {
     selectOpenedModel,
     AmaState,
     SCRIPT_INPUT_PARAM_NAME,
-    ServiceInputParameterMapping,
+    ServiceParameterMapping,
     MappingType
 } from 'ama-sdk';
 
@@ -64,7 +64,7 @@ export class CardViewScriptTaskItemComponent implements OnInit, OnDestroy {
 
     changeScript(): void {
         try {
-            const inputs: ServiceInputParameterMapping = {
+            const inputs: ServiceParameterMapping = {
                 [SCRIPT_INPUT_PARAM_NAME]: {
                     type: MappingType.static,
                     value: this.script

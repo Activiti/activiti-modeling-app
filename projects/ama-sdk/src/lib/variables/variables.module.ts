@@ -65,7 +65,8 @@ import { PropertiesViewerDateTimeInputComponent } from './properties-viewer/valu
     providers: [
     ],
     exports: [
-        ValueTypeInputComponent
+        ValueTypeInputComponent,
+        VariableValuePipe
     ]
 })
 export class VariablesModule {}

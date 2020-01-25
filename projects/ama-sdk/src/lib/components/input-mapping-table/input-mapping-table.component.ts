@@ -17,7 +17,15 @@
 
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { ConnectorParameter, EntityProperty, MappingType, ServiceInputParameterMapping, ServiceParameterMappings } from '../../api/types';
+import { ConnectorParameter, EntityProperty, MappingType, ServiceParameterMapping, ServiceParameterMappings } from '../../api/types';
+import { Store } from '@ngrx/store';
+import { map } from 'rxjs/operators';
+import { selectSelectedTheme } from '../../store/app.selectors';
+import { DialogService } from '../../confirmation-dialog/services/dialog.service';
+import { AmaState } from '../../store/app.state';
+import { MappingDialogData, MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
+import { Subject } from 'rxjs';
+import { VariableMappingType } from '../../services/mapping-dialog.service';
 
 export interface ParameterSelectOption {
     id: string | Symbol;
@@ -41,7 +49,7 @@ export class InputMappingTableComponent implements OnChanges {
     processProperties: EntityProperty[];
 
     @Input()
-    mapping: ServiceInputParameterMapping;
+    mapping: ServiceParameterMapping;
 
     @Input()
     parameterColumnHeader = 'SDK.VARIABLE_MAPPING.PARAMETER';
@@ -52,7 +60,7 @@ export class InputMappingTableComponent implements OnChanges {
     @Output()
     update = new EventEmitter<ServiceParameterMappings>();
 
-    data: ServiceInputParameterMapping = {};
+    data: ServiceParameterMapping = {};
 
     VALUE_TYPE = MappingType.value;
     VARIABLE_TYPE = MappingType.variable;
@@ -64,6 +72,11 @@ export class InputMappingTableComponent implements OnChanges {
     mappingTypes: { [paramName: string]: MappingType } = {};
     values: { [paramName: string]: string } = {};
     paramName2VariableName: { [paramName: string]: string } = {};
+
+    constructor(
+        private dialogService: DialogService,
+        private store: Store<AmaState>
+    ) { }
 
     ngOnChanges() {
         this.initOptionsForParams();
@@ -153,5 +166,35 @@ export class InputMappingTableComponent implements OnChanges {
             this.mappingTypes[paramName] === MappingType.variable
                 ? MappingType.value
                 : MappingType.variable;
+    }
+
+    edit(parameterRow: number) {
+        const inputMappingUpdate$ = new Subject<ServiceParameterMapping>();
+
+        const theme$ = this.store.select(selectSelectedTheme).pipe(
+            map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light'))
+        );
+
+        const dialogData: MappingDialogData = {
+            inputMapping: this.mapping,
+            inputParameters: this.parameters,
+            mappingType: VariableMappingType.input,
+            processProperties: this.processProperties,
+            selectedRow: parameterRow,
+            theme$: theme$,
+            inputMappingUpdate$: inputMappingUpdate$
+        };
+
+        this.dialogService.openDialog(MappingDialogComponent, {
+            disableClose: true,
+            height: '530px',
+            width: '1000px',
+            data: dialogData,
+        });
+
+        inputMappingUpdate$.subscribe(data => {
+            this.data = data;
+            this.update.emit(data);
+        });
     }
 }

@@ -143,26 +143,17 @@ export enum MappingType {
     value = 'value',
     static = 'static_value'
 }
-export type ConnectorActionInputParameter = string;
-export type ConnectorActionOutputParameterName = string;
 
-export interface ServiceInputParameterMapping {
-    [parameterName: string]: {
+export interface ServiceParameterMapping {
+    [name: string]: {
         type: MappingType,
-        value: ConnectorActionInputParameter;
-    };
-}
-
-export interface ServiceOutputParameterMapping {
-    [variableName: string]: {
-        type: MappingType.variable,
-        value: ConnectorActionOutputParameterName;
+        value: any;
     };
 }
 
 export interface ServiceParameterMappings {
-    inputs?: ServiceInputParameterMapping;
-    outputs?: ServiceOutputParameterMapping;
+    inputs?: ServiceParameterMapping;
+    outputs?: ServiceParameterMapping;
 }
 
 export interface ServicesParameterMappings {

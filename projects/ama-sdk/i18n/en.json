@@ -43,6 +43,19 @@
                 "COLUMN_ID": "ID",
                 "NO_MESSAGES": "You haven't selected any message"
             }
+        },
+        "MAPPING_DIALOG": {
+            "TITLE": "Edit variable mapping",
+            "SELECTOR_TITLE": "Select the variable mapping type to edit",
+            "INPUT_MAPPING": "Input mapping",
+            "OUTPUT_MAPPING": "Output mapping",
+            "PROCESS_VARIABLE": "Process variable",
+            "INPUT_PARAMETER": "Input parameter",
+            "OUTPUT_PARAMETER": "Output parameter",
+            "VALUE_MAPPING": "Value",
+            "EXPRESSION_MAPPING": "Expression",
+            "NONE": "None",
+            "TYPE": "type"
         }
     }
 }
