@@ -39,41 +39,29 @@ export class CardViewMultiInstanceItemService {
         return this.processModelerService.getFromModeler('bpmnFactory');
     }
 
-    createOrUpdateCompleteCondition(expression: string) {
-        if (!this.element.loopCharacteristics[MultiInstanceProps.completionCondition]) {
-            this.createLoopCharacteristics(MultiInstanceProps.completionCondition, expression);
-        } else {
-            this.element.loopCharacteristics[MultiInstanceProps.completionCondition].set('body', expression);
-        }
-        this.updateEditor();
-    }
-
-    createOrUpdateCardinality(expression: string) {
-        if (!this.element.loopCharacteristics[MultiInstanceProps.loopCardinality]) {
-            this.createLoopCharacteristics(MultiInstanceProps.loopCardinality, expression);
-        } else {
-            this.element.loopCharacteristics[MultiInstanceProps.loopCardinality].set('body', expression);
-        }
+    createOrUpdateExpression(prop: MultiInstanceProps, expression: string) {
+        const characterElement = this.bpmnFactory.create(BpmnElement.Expression);
+        this.element.loopCharacteristics.set(prop, characterElement);
+        this.element.loopCharacteristics[prop].set('body', expression);
         this.updateEditor();
     }
 
     createOrUpdateLoopDataOutputRef(expression: string) {
         this.element.loopCharacteristics.set(MultiInstanceProps.loopDataOutputRef, expression);
-
         this.updateEditor();
     }
 
     createOrUpdateOutputDataItem(expression: string) {
-        const characterElement = this.bpmnFactory.create(BpmnElement.Expression, { name: expression });
+        const characterElement = this.bpmnFactory.create(BpmnElement.DataOutput, { name: expression });
         this.element.loopCharacteristics.set(MultiInstanceProps.outputDataItem, characterElement);
-
         this.updateEditor();
     }
 
     createOrUpdateMultiInstanceElement(selectedType: MultiInstanceType) {
         const isSequence = selectedType === MultiInstanceType.sequence;
         if (!this.element[MultiInstanceProps.loopCharacteristics]) {
-            this.createMultiInstanceElement();
+            const multiInstanceElement = this.bpmnFactory.create(BpmnElement.MultiInstanceLoopCharacteristics);
+            this.element.set(MultiInstanceProps.loopCharacteristics, multiInstanceElement);
         }
         this.element[MultiInstanceProps.loopCharacteristics].set(MultiInstanceProps.isSequential, isSequence);
     }
@@ -90,16 +78,6 @@ export class CardViewMultiInstanceItemService {
 
     updateEditor() {
         this.processModelerService.updateElementProperty(this.element.id, BpmnProperty.multiInstanceType, this.element);
-    }
-
-    private createLoopCharacteristics(character: MultiInstanceProps, expression) {
-        const characterElement = this.bpmnFactory.create(BpmnElement.Expression, { 'body': expression });
-        this.element.loopCharacteristics.set(character, characterElement);
-    }
-
-    private createMultiInstanceElement() {
-        const multiInstanceElement = this.bpmnFactory.create(BpmnElement.MultiInstanceLoopCharacteristics);
-        this.element.set(MultiInstanceProps.loopCharacteristics, multiInstanceElement);
     }
 
 }

@@ -44,6 +44,7 @@ export enum BpmnElement {
     SubProcess= 'bpmn:SubProcess',
     MultiInstanceLoopCharacteristics = 'bpmn:MultiInstanceLoopCharacteristics',
     Expression = 'bpmn:Expression',
+    DataOutput = 'bpmn:DataOutput',
     Task = 'bpmn:Task',
     TextAnnotation= 'bpmn:TextAnnotation',
     Collaboration = 'bpmn:Collaboration',

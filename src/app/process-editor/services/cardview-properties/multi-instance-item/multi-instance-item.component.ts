@@ -78,9 +78,9 @@ export class CardViewMultiInstanceItemComponent implements OnInit {
             cardinality: [ this.parseMultiInstanceProperty(MultiInstanceProps.loopCardinality) ],
             collectionExpression: [ this.parseMultiInstance(MultiInstanceProps.collection), [ Validators.pattern(/{([^}]+)}/) ] ],
             elementVariable: [ this.parseMultiInstance(MultiInstanceProps.elementVariable) ],
-            outputDataItem: [ this.parseMultiInstanceOutputDataItem() ],
-            loopDataOutputRef: [ this.parseMultiInstanceLoopDataOutputRef() ],
             completionCondition: [ this.parseMultiInstanceProperty(MultiInstanceProps.completionCondition), [ Validators.pattern(/{([^}]+)}/) ] ],
+            loopDataOutputRef: [ this.parseMultiInstanceLoopDataOutputRef() ],
+            outputDataItem: [ this.parseMultiInstanceOutputDataItem() ],
         },   { validators: this.validateExpression });
         this.multiInstanceItemService.element = this.element;
     }
@@ -100,11 +100,11 @@ export class CardViewMultiInstanceItemComponent implements OnInit {
     }
 
     onCardinalityChange(expression: string) {
-        this.multiInstanceItemService.createOrUpdateCardinality(expression);
+        this.multiInstanceItemService.createOrUpdateExpression(MultiInstanceProps.loopCardinality, expression);
     }
 
     onCompletionConditionChange(expression: string) {
-        this.multiInstanceItemService.createOrUpdateCompleteCondition(expression);
+        this.multiInstanceItemService.createOrUpdateExpression(MultiInstanceProps.completionCondition, expression);
     }
 
     onCollectionExpressionChange(expression: string) {
