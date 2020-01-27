@@ -19,7 +19,13 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'ama-error-content',
-    templateUrl: './error-content.component.html'
+    templateUrl: './error-content.component.html',
+    styles: [
+        ` :host(.ama-error-content) {
+            flex: 1;
+        }`
+    ],
+    host: {'class': 'ama-error-content'}
 })
 export class ErrorContentComponent {
     constructor() {}
