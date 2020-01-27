@@ -42,7 +42,7 @@ import {
     RemoveElementMappingAction
 } from './process-editor.actions';
 import { throwError, of, Observable } from 'rxjs';
-import { mockProcess, validateError } from './process.mock';
+import { mockProcessModel, validateError } from './process.mock';
 import {
     AmaApi,
     AmaAuthenticationService,
@@ -127,14 +127,14 @@ describe('ProcessEditorEffects', () => {
                 {
                     provide: ProcessEditorService,
                     useValue: {
-                        update: jest.fn().mockReturnValue(of(mockProcess)),
-                        delete: jest.fn().mockReturnValue(of(mockProcess.id)),
+                        update: jest.fn().mockReturnValue(of(mockProcessModel)),
+                        delete: jest.fn().mockReturnValue(of(mockProcessModel.id)),
                         getDetails: jest.fn(),
                         getContent: jest.fn(),
-                        create: jest.fn().mockReturnValue(of(mockProcess)),
-                        upload: jest.fn().mockReturnValue(of(mockProcess)),
-                        fetchAll: jest.fn().mockReturnValue(of([mockProcess])),
-                        validate: jest.fn().mockReturnValue(of([mockProcess]))
+                        create: jest.fn().mockReturnValue(of(mockProcessModel)),
+                        upload: jest.fn().mockReturnValue(of(mockProcessModel)),
+                        fetchAll: jest.fn().mockReturnValue(of([mockProcessModel])),
+                        validate: jest.fn().mockReturnValue(of([mockProcessModel]))
                     }
                 }
             ]
@@ -151,7 +151,7 @@ describe('ProcessEditorEffects', () => {
 
     describe('updateProcessEffect', () => {
         beforeEach(() => {
-            process = <Process>mockProcess;
+            process = <Process>mockProcessModel;
         });
 
         it('ShowProcesses effect should dispatch an action', () => {
@@ -175,7 +175,7 @@ describe('ProcessEditorEffects', () => {
 
     describe('uploadProcessEffect', () => {
         beforeEach(() => {
-            process = <Process>mockProcess;
+            process = <Process>mockProcessModel;
         });
 
         it('uploadProcessEffect should dispatch an action', () => {
@@ -196,21 +196,21 @@ describe('ProcessEditorEffects', () => {
     describe('updateProcessEffect', () => {
 
         const mockActionPayload = {
-            processId: mockProcess.id,
+            processId: mockProcessModel.id,
             content: 'diagramData',
-            metadata: { name: mockProcess.name, description: mockProcess.description }
+            metadata: { name: mockProcessModel.name, description: mockProcessModel.description }
         };
 
         const mockValidatePayload = {
             title: 'mock title',
-            processId: mockProcess.id,
+            processId: mockProcessModel.id,
             content: 'diagramData',
             extensions: <ProcessExtensionsContent> {},
             action: new UpdateProcessAttemptAction(mockActionPayload)
         };
 
         beforeEach(() => {
-            process = <Process>mockProcess;
+            process = <Process>mockProcessModel;
         });
 
         it('updateProcessEffect should dispatch an action', () => {
@@ -226,7 +226,7 @@ describe('ProcessEditorEffects', () => {
 
             expect(processEditorService.update).toHaveBeenCalledWith(
                 mockActionPayload.processId,
-                { ...mockProcess, ...mockActionPayload.metadata },
+                { ...mockProcessModel, ...mockActionPayload.metadata },
                 mockActionPayload.content,
                 'test1'
             );
@@ -240,7 +240,7 @@ describe('ProcessEditorEffects', () => {
 
             const expected = cold('(bcdef)', {
                 b: new LoadApplicationAction(true),
-                c: new UpdateProcessSuccessAction({id: mockProcess.id, changes: mockActionPayload.metadata}, mockActionPayload.content),
+                c: new UpdateProcessSuccessAction({id: mockProcessModel.id, changes: mockActionPayload.metadata}, mockActionPayload.content),
                 d: new SetAppDirtyStateAction(false),
                 e: expectedLogAction,
                 f: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_SAVED')
@@ -291,7 +291,7 @@ describe('ProcessEditorEffects', () => {
         };
 
         beforeEach(() => {
-            process = <Process>mockProcess;
+            process = <Process>mockProcessModel;
         });
 
         it('should dispatch an action', () => {
@@ -335,7 +335,7 @@ describe('ProcessEditorEffects', () => {
     describe('removeDiagramElementEffect', () => {
 
         beforeEach(() => {
-            process = <Process>mockProcess;
+            process = <Process>mockProcessModel;
         });
 
         it('should dispatch an action if serviceTask element is removed', () => {

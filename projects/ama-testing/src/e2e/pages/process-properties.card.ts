@@ -27,6 +27,7 @@ export class ProcessPropertiesCard extends GenericPage {
     readonly editName = element(by.css(`[data-automation-id="card-textitem-edit-icon-processName"]`));
     readonly editDocumentation = element(by.css(`[data-automation-id="card-textitem-edit-icon-documentation"]`));
     readonly id = element(by.css(`[data-automation-id="card-textitem-value-id"]`));
+    readonly processId = element(by.css(`[data-automation-id="card-textitem-value-processId"]`));
     readonly nameValue = element(by.css(`[data-automation-id="card-textitem-value-processName"]`));
     /* cspell: disable-next-line */
     readonly name = element(by.css(`[data-automation-id="card-textitem-editinput-processName"]`));
@@ -60,6 +61,10 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async getProcessId() {
+        return this.processId.getText();
+    }
+
+    async getElementId() {
         return this.id.getText();
     }
 

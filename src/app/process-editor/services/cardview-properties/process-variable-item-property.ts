@@ -17,14 +17,15 @@
 
 import { FactoryProps } from './cardview-properties.factory';
 import { CardViewProcessVariableItemModel } from './process-variable-item/process-variable-item.model';
+import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty } from 'ama-sdk';
 
-const propertyName = BpmnProperty.properties;
+const propertyName = BpmnProperty.processId;
 
 export function createProcessVariablesProperty({ element }: FactoryProps) {
     return new CardViewProcessVariableItemModel({
         label: '',
-        value: '',
+        value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,
         default: '',
         editable: false

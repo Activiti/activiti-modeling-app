@@ -25,12 +25,12 @@ import { filter, take, takeUntil, switchMap, map } from 'rxjs/operators';
 import {
     AmaState,
     Process,
-    selectProcessPropertiesArray,
     selectProcessPropertiesArrayFor,
     selectProcessMappingsFor,
     UpdateServiceParametersAction,
     selectSelectedProcess,
-    ServiceParameterMapping
+    ServiceParameterMapping,
+    selectExternalProcessPropertiesArrayFor
 } from 'ama-sdk';
 import { MatSelectChange } from '@angular/material';
 
@@ -52,8 +52,7 @@ export class CardViewCalledItemItemComponent implements OnInit, OnDestroy {
 
     constructor(
         private cardViewUpdateService: CardViewUpdateService,
-        private store: Store<AmaState>
-    ) {}
+        private store: Store<AmaState>) { }
 
     ngOnInit() {
         this.processes$ = this.store.select(selectProcessesArray).pipe(
@@ -63,7 +62,7 @@ export class CardViewCalledItemItemComponent implements OnInit, OnDestroy {
         this.processId = this.property.value;
         this.loadVariables();
 
-        this.store.select(selectProcessMappingsFor(this.property.data.id))
+        this.store.select(selectProcessMappingsFor(this.property.data.processId, this.property.data.id))
             .pipe(takeUntil(this.onDestroy$))
             .subscribe((mapping) => {
                 this.mapping = mapping;
@@ -80,10 +79,10 @@ export class CardViewCalledItemItemComponent implements OnInit, OnDestroy {
     }
 
     loadVariables() {
-        this.processVariables$ = this.store.select(selectProcessPropertiesArray);
+        this.processVariables$ = this.store.select(selectProcessPropertiesArrayFor(this.property.data.processId));
 
         if (this.processId) {
-            this.subProcessVariables$ = this.store.select(selectProcessPropertiesArrayFor(this.processId.replace('process-', '')));
+            this.subProcessVariables$ = this.store.select(selectExternalProcessPropertiesArrayFor(this.processId.replace('process-', '')));
         }
     }
 
@@ -101,7 +100,9 @@ export class CardViewCalledItemItemComponent implements OnInit, OnDestroy {
         this.store.select(selectSelectedProcess).pipe(
             filter(process => !!process),
             take(1)
-        ).subscribe(process => this.store.dispatch(new UpdateServiceParametersAction(process.id, this.property.data.id, this.mapping)));
+        ).subscribe(process => this.store.dispatch(
+            new UpdateServiceParametersAction(process.id, this.property.data.processId, this.property.data.id, this.mapping)
+        ));
     }
 
     ngOnDestroy() {

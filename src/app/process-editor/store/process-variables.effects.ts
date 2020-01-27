@@ -35,7 +35,7 @@ import {
     selectSelectedProcess
 } from 'ama-sdk';
 import { Store } from '@ngrx/store';
-import { Subject, of } from 'rxjs';
+import { Subject, of, zip } from 'rxjs';
 
 @Injectable()
 export class ProcessVariablesEffects extends BaseEffects {
@@ -54,9 +54,12 @@ export class ProcessVariablesEffects extends BaseEffects {
     @Effect({ dispatch: false })
     openProcessVariablesDialogEffect = this.actions$.pipe(
         ofType<OpenProcessVariablesDialogAction>(OPEN_PROCESS_VARIABLES_DIALOG),
-        switchMap(() => this.store.select(selectSelectedProcess).pipe(take(1))),
-        tap((process) => this.openVariablesDialog(process.id, process.extensions.properties)
-    ));
+        switchMap((action) => zip(of(action), this.store.select(selectSelectedProcess).pipe(take(1)))),
+        tap(([action, model]) => {
+            const processExtension = model.extensions[action.processId];
+            return this.openVariablesDialog(model.id, action.processId, processExtension ? processExtension.properties : {});
+        })
+    );
 
     @Effect()
     updateProcessVariablesEffect = this.actions$.pipe(
@@ -68,7 +71,7 @@ export class ProcessVariablesEffects extends BaseEffects {
         mergeMap(() => of(new SetAppDirtyStateAction(true)))
     );
 
-    private openVariablesDialog(processId: string, properties: EntityProperties) {
+    private openVariablesDialog(modelId: string, processId: string, properties: EntityProperties) {
         const propertiesUpdate$ = new Subject<EntityProperties>();
         const title = 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS_VARIABLES';
         const required = true;
@@ -86,7 +89,7 @@ export class ProcessVariablesEffects extends BaseEffects {
         });
 
         propertiesUpdate$.subscribe(data => {
-            this.store.dispatch(new UpdateProcessVariablesAction({ processId, properties: data }));
+            this.store.dispatch(new UpdateProcessVariablesAction({ modelId, processId, properties: data }));
         });
     }
 }

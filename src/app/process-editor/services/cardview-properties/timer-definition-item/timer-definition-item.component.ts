@@ -21,8 +21,9 @@ import { FormBuilder, Validators, FormControl, FormGroup, AbstractControl } from
 import { debounceTime, takeUntil, filter, take } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import moment from 'moment-es6';
-import { AmaState, EntityProperty, selectSelectedProcess } from 'ama-sdk';
+import { AmaState, EntityProperty, selectSelectedProcess, ProcessExtensionsModel } from 'ama-sdk';
 import { Store } from '@ngrx/store';
+import { TimerDefinitionItemModel } from './timer-definition-item.model';
 
 @Component({
     selector: 'ama-process-timer-definition',
@@ -34,7 +35,7 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     CRON_REGEX = '((\\*|\\?|\\d+((\\/|\\-){0,1}(\\d+))*)\\s*){6}';
     MIN_TIME_VALUE = 0;
 
-    @Input() property;
+    @Input() property: TimerDefinitionItemModel;
 
     timers = [];
     selectedTimer: Bpmn.DiagramElement;
@@ -69,7 +70,7 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
             filter((process) => !!process),
             take(1)
         ).subscribe((process) => {
-            const processVariables = <EntityProperty[]> Object.values(process.extensions.properties);
+            const processVariables = Object.values(new ProcessExtensionsModel(process.extensions).getProperties(this.property.data.processId));
             this.setOptionForAParam(processVariables);
         });
     }

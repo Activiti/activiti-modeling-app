@@ -18,7 +18,8 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, MomentDateAdapter, CardViewDatetimeItemModel, CardViewItem } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
-import { AmaState, selectSelectedProcess, AMA_DATETIME_FORMATS, MOMENT_DATETIME_FORMAT, EntityProperty, ANGULAR_DATETIME_DISPLAY_FORMAT } from 'ama-sdk';
+import { AmaState, selectSelectedProcess, AMA_DATETIME_FORMATS, MOMENT_DATETIME_FORMAT,
+    EntityProperty, ANGULAR_DATETIME_DISPLAY_FORMAT, ProcessExtensionsModel } from 'ama-sdk';
 import { filter, take, debounceTime, takeUntil } from 'rxjs/operators';
 import { FormBuilder, FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -26,6 +27,7 @@ import moment from 'moment-es6';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
 import { DatetimeAdapter, MAT_DATETIME_FORMATS } from '@mat-datetimepicker/core';
 import { MomentDatetimeAdapter } from '@mat-datetimepicker/moment';
+import { DueDateItemModel } from './due-date-item.model';
 
 @Component({
     selector: 'ama-process-due-date',
@@ -39,7 +41,7 @@ import { MomentDatetimeAdapter } from '@mat-datetimepicker/moment';
 })
 export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
 
-    @Input() property;
+    @Input() property: DueDateItemModel;
 
     processVariables: EntityProperty[] = [];
     dueDateForm: FormGroup;
@@ -64,8 +66,8 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
             filter((process) => !!process),
             take(1)
         ).subscribe((process) => {
-            this.processVariables = <EntityProperty[]>Object.values(process.extensions.properties).filter(
-                (processVariable: EntityProperty) => processVariable.type === 'datetime');
+            this.processVariables = <EntityProperty[]>Object.values(new ProcessExtensionsModel(process.extensions).getProperties(this.property.data.processId))
+                .filter((processVariable: EntityProperty) => processVariable.type === 'datetime');
         });
     }
 

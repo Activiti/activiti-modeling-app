@@ -22,10 +22,11 @@ export const OPEN_PROCESS_VARIABLES_DIALOG = 'Open process variables dialog';
 
 export class OpenProcessVariablesDialogAction implements Action {
     readonly type = OPEN_PROCESS_VARIABLES_DIALOG;
-    constructor() {}
+    constructor(public processId: string) {}
 }
 
 export interface UpdateProcessVariablesPayload {
+    modelId: string;
     processId: string;
     properties: EntityProperties;
 }

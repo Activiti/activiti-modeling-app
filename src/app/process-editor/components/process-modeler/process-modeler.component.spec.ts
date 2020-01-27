@@ -26,7 +26,7 @@ import { ProcessModelerServiceImplementation } from '../../services/process-mode
 import { BpmnFactoryMock, getDiagramElementMock } from '../../services/bpmn-js/bpmn-js.mock';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
-import { mockProcess } from '../../store/process.mock';
+import { mockProcessModel } from '../../store/process.mock';
 import { processEntitiesReducer } from '../../store/process-entities.reducer';
 import { Component } from '@angular/core';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
@@ -68,7 +68,7 @@ describe('ProcessModelerComponent', () => {
                     useValue: {
                         select: jest.fn().mockImplementation((selector) => {
                             if (selector === selectSelectedProcess) {
-                                return of(mockProcess);
+                                return of(mockProcessModel);
                             }
 
                             return of({});

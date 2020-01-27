@@ -23,7 +23,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule, AmaState, OpenConfirmDialogAction, ProcessModelerServiceToken, AmaTitleService } from 'ama-sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { By } from '@angular/platform-browser';
-import { mockProcess } from '../../store/process.mock';
+import { mockProcessModel } from '../../store/process.mock';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -59,10 +59,10 @@ describe('ProcessHeaderComponent', () => {
                     useValue: {
                         getRootProcessElement: jest.fn().mockReturnValue({
                             businessObject: {
-                                $parent: { name: mockProcess.name },
-                                name: mockProcess.name,
+                                $parent: { name: mockProcessModel.name },
+                                name: mockProcessModel.name,
                                 get: (param) => {
-                                    const data = { documentation: mockProcess.description };
+                                    const data = { documentation: mockProcessModel.description };
                                     return data[param];
                                 }
                             }
@@ -78,7 +78,7 @@ describe('ProcessHeaderComponent', () => {
         fixture = TestBed.createComponent(ProcessHeaderComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
-        component.process = mockProcess;
+        component.process = mockProcessModel;
         component.content = 'mockProcessContent';
         store = TestBed.get(Store);
     });
@@ -101,10 +101,10 @@ describe('ProcessHeaderComponent', () => {
 
         const payload = new ValidateProcessAttemptAction({
             title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.PROCESS',
-            processId: mockProcess.id,
+            processId: mockProcessModel.id,
             content: component.content,
-            extensions: mockProcess.extensions,
-            action: new DownloadProcessAction(mockProcess)
+            extensions: mockProcessModel.extensions,
+            action: new DownloadProcessAction(mockProcessModel)
         });
 
         expect(store.dispatch).toHaveBeenCalledWith(payload);
@@ -119,13 +119,13 @@ describe('ProcessHeaderComponent', () => {
 
         const payload = new ValidateProcessAttemptAction({
             title: 'APP.DIALOGS.CONFIRM.SAVE.PROCESS',
-            processId: mockProcess.id,
+            processId: mockProcessModel.id,
             content: component.content,
-            extensions: mockProcess.extensions,
+            extensions: mockProcessModel.extensions,
             action: new UpdateProcessAttemptAction({
-                processId: mockProcess.id,
+                processId: mockProcessModel.id,
                 content: component.content,
-                metadata: { name: mockProcess.name, description: mockProcess.description }
+                metadata: { name: mockProcessModel.name, description: mockProcessModel.description }
             })
         });
 
@@ -147,7 +147,7 @@ describe('ProcessHeaderComponent', () => {
             dialogData: {
                 title: 'APP.DIALOGS.CONFIRM.DELETE.PROCESS'
             },
-            action: new DeleteProcessAttemptAction(mockProcess.id)
+            action: new DeleteProcessAttemptAction(mockProcessModel.id)
         });
 
         expect(store.dispatch).toHaveBeenCalledWith(payload);
@@ -162,10 +162,10 @@ describe('ProcessHeaderComponent', () => {
 
         const payload = new ValidateProcessAttemptAction({
             title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.IMAGE',
-            processId: mockProcess.id,
+            processId: mockProcessModel.id,
             content: component.content,
-            extensions: mockProcess.extensions,
-            action: new DownloadProcessSVGImageAction(mockProcess)
+            extensions: mockProcessModel.extensions,
+            action: new DownloadProcessSVGImageAction(mockProcessModel)
         });
 
         expect(store.dispatch).toHaveBeenCalledWith(payload);

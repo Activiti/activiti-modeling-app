@@ -133,7 +133,7 @@ export interface Filter extends Model {
 
 export interface Process extends Model {
     type: PROCESS_TYPE;
-    extensions?: ProcessExtensionsContent;
+    extensions?: ModelExtensions;
 }
 
 export type ProcessVariableId = string;
@@ -179,6 +179,10 @@ export interface ProcessExtensionsContent {
 export interface ProcessExtensions {
     id: string;
     extensions: ProcessExtensionsContent;
+}
+
+export interface ModelExtensions {
+    [processID: string]: ProcessExtensionsContent;
 }
 
 export interface EntityProperty {

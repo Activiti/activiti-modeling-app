@@ -24,6 +24,7 @@ import { FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AmaState } from 'ama-sdk';
 import { of } from 'rxjs';
+import { DueDateItemModel } from './due-date-item.model';
 
 describe('CardViewDueDateItemComponent', () => {
     let fixture: ComponentFixture<CardViewDueDateItemComponent>;
@@ -37,26 +38,29 @@ describe('CardViewDueDateItemComponent', () => {
                 businessObject: {
                     eventDefinitions: [{}]
                 }
-            }
+            },
+            processId: 'Process_12345678'
         }
     };
 
     const processMock = {
         extensions: {
-            properties: {
-                foo: {
-                    id: 'processVariable1',
-                    name: 'foo',
-                    type: 'string',
-                    value: 'cat',
-                    required: false
-                },
-                bar: {
-                    id: 'processVariable2',
-                    name: 'bar',
-                    type: 'datetime',
-                    value: '2020-03-11T00:00:00',
-                    required: false
+            'Process_12345678': {
+                properties: {
+                    foo: {
+                        id: 'processVariable1',
+                        name: 'foo',
+                        type: 'string',
+                        value: 'cat',
+                        required: false
+                    },
+                    bar: {
+                        id: 'processVariable2',
+                        name: 'bar',
+                        type: 'datetime',
+                        value: '2020-03-11T00:00:00',
+                        required: false
+                    }
                 }
             }
         }
@@ -85,7 +89,7 @@ describe('CardViewDueDateItemComponent', () => {
         fixture = TestBed.createComponent(CardViewDueDateItemComponent);
         store = TestBed.get(Store);
         component = fixture.componentInstance;
-        component.property = propertyMock;
+        component.property = <DueDateItemModel>propertyMock;
 
         cardViewUpdateService = TestBed.get(CardViewUpdateService);
         spyOn(store, 'select').and.returnValue(of(processMock));
@@ -112,7 +116,7 @@ describe('CardViewDueDateItemComponent', () => {
     it('should update due date property when process variable is selected', () => {
         spyOn(cardViewUpdateService, 'update');
         component.useProcessVariable.setValue(true);
-        component.processVariable.setValue(processMock.extensions.properties.foo.name);
+        component.processVariable.setValue('foo');
 
         component.updateDueDate();
         fixture.detectChanges();
@@ -122,6 +126,6 @@ describe('CardViewDueDateItemComponent', () => {
 
     it('should set only datetime process variables when process is retrieved', () => {
         expect(component.processVariables.length).toBe(1);
-        expect(component.processVariables[0]).toBe(processMock.extensions.properties.bar);
+        expect(component.processVariables[0].name).toBe('bar');
     });
 });

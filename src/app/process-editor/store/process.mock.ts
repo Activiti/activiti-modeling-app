@@ -30,7 +30,7 @@ export const mappings: ServicesParameterMappings = {
     }
 };
 
-export const mockProcess: Process = deepFreeze({
+export const mockProcessModel: Process = deepFreeze({
     type: PROCESS,
     id: 'id1',
     name: 'Process 1',
@@ -47,10 +47,14 @@ export const mockProcess: Process = deepFreeze({
     description: '',
     version: '',
     extensions: {
-        properties: [{name: '', type: '', required: false, value: ''}],
-        mappings
+        'Process_12345678': {
+            properties: [{name: '', type: '', required: false, value: ''}],
+            mappings
+        }
     }
 });
+
+export const mockProcessId = 'Process-12345678';
 
 export const validateError: any = JSON.stringify({
     error: 'Bad Request',

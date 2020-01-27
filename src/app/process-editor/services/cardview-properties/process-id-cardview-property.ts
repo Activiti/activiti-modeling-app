@@ -15,16 +15,20 @@
  * limitations under the License.
  */
 
-export * from './cardview-properties/implementation-item.model';
-export * from './cardview-properties/decision-task-item.model';
-export * from './cardview-properties/script-task-item.model';
-export * from './cardview-properties/form-key.model';
-export * from './cardview-properties/default-sequence-flow-item.model';
-export * from './project-editor.constants';
-export * from './bpmn-element';
-export * from './bpmn-modeler';
-export * from './palette';
-export * from './process-editor.actions';
-export * from './process-editor.selectors';
-export * from './process-extensions.model';
-export * from './properties';
+import { CardViewTextItemModel } from '@alfresco/adf-core';
+import { ElementHelper } from '../bpmn-js/element.helper';
+import { BpmnProperty } from 'ama-sdk';
+import { FactoryProps } from './cardview-properties.factory';
+
+const propertyName = BpmnProperty.processId;
+
+export function createProcessIdProperty({ element }: FactoryProps) {
+    return new CardViewTextItemModel({
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS_ID',
+        value: ElementHelper.getProperty(element, propertyName),
+        key: propertyName,
+        default: '',
+        multiline: false,
+        editable: false
+    });
+}

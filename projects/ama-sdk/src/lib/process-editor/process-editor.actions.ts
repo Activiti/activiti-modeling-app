@@ -22,6 +22,7 @@ export const UPDATE_SERVICE_PARAMETERS = '[ProcessEditor] Update Service Paramet
 export class UpdateServiceParametersAction implements Action {
     readonly type = UPDATE_SERVICE_PARAMETERS;
     constructor(
+        public modelId: string,
         public processId: string,
         public serviceId: string,
         public serviceParameterMappings: ServiceParameterMappings,

@@ -35,7 +35,7 @@ import {
 } from './process-editor.actions';
 import { UPDATE_PROCESS_VARIABLES, UpdateProcessVariablesAction } from './process-variables.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState, processAdapter } from './process-entities.state';
-import { UPDATE_SERVICE_PARAMETERS, UpdateServiceParametersAction, LEAVE_PROJECT } from 'ama-sdk';
+import { UPDATE_SERVICE_PARAMETERS, UpdateServiceParametersAction, LEAVE_PROJECT, ProcessExtensionsModel } from 'ama-sdk';
 
 const cloneDeep = require('lodash/cloneDeep');
 
@@ -112,32 +112,34 @@ function updateExtensions(state: ProcessEntitiesState, action: UpdateProcessExte
 }
 
 function updateProcessVariables(state: ProcessEntitiesState, action: UpdateProcessVariablesAction): ProcessEntitiesState {
-    const extensions = { ...state.entities[action.payload.processId].extensions };
-    extensions.properties = action.payload.properties;
+    const oldExtensions = cloneDeep(state.entities[action.payload.modelId].extensions);
+    const newExtensions = new ProcessExtensionsModel(oldExtensions).setProperties(action.payload.processId, action.payload.properties);
 
     return {
         ...state,
-        entities: { ...state.entities, [action.payload.processId]: {
-            ...state.entities[action.payload.processId],
-            extensions
+        entities: { ...state.entities, [action.payload.modelId]: {
+            ...state.entities[action.payload.modelId],
+            extensions: newExtensions
         } }
     };
 }
 
 function updateProcessVariablesMapping(state: ProcessEntitiesState, action: UpdateServiceParametersAction): ProcessEntitiesState {
-    const newState = cloneDeep(state);
-    newState.entities[action.processId].extensions = { constants: {}, mappings: {}, ...newState.entities[action.processId].extensions };
-    newState.entities[action.processId].extensions.mappings[action.serviceId] = { ...action.serviceParameterMappings };
-
-    if (!Object.values(newState.entities[action.processId].extensions.mappings[action.serviceId]).length) {
-        delete newState.entities[action.processId].extensions.mappings[action.serviceId];
-    }
+    const oldExtensions = cloneDeep(state.entities[action.modelId].extensions);
+    const processExtensionsModel = new ProcessExtensionsModel(oldExtensions);
+    let newExtensions = processExtensionsModel.setMappings(action.processId, action.serviceId, action.serviceParameterMappings);
 
     if (action.constants) {
-        newState.entities[action.processId].extensions.constants[action.serviceId] = { ...action.constants };
+        newExtensions = processExtensionsModel.setConstants(action.processId, action.serviceId, action.constants);
     }
 
-    return newState;
+    return {
+        ...state,
+        entities: { ...state.entities, [action.modelId]: {
+            ...state.entities[action.modelId],
+            extensions: newExtensions
+        } }
+    };
 }
 
 function createProcess(state: ProcessEntitiesState, action: CreateProcessSuccessAction): ProcessEntitiesState {

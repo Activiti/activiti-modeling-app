@@ -39,27 +39,30 @@ describe('CardViewMessageItemComponent', () => {
         value: '',
         key: '',
         data: {
-            id: 'elementId'
+            id: 'elementId',
+            processId: 'Process_12345678'
         }
     });
 
     const processMock = {
         extensions: {
-            properties: {
-                processVariable1: {
-                    id: 'processVariable1',
-                    name: 'animalPV',
-                    type: 'string',
-                    value: '',
-                    required: false
-                }
-            },
-            mappings: {
-                elementId: {
-                    inputs: {
-                        car: {
-                            type: 'value',
-                            value: 'ferrari'
+            'Process_12345678': {
+                properties: {
+                    processVariable1: {
+                        id: 'processVariable1',
+                        name: 'animalPV',
+                        type: 'string',
+                        value: '',
+                        required: false
+                    }
+                },
+                mappings: {
+                    elementId: {
+                        inputs: {
+                            car: {
+                                type: 'value',
+                                value: 'ferrari'
+                            }
                         }
                     }
                 }
@@ -104,7 +107,7 @@ describe('CardViewMessageItemComponent', () => {
 
     it('should set process variables when process is retrieved', () => {
         expect(component.processVariables.length).toBe(1);
-        expect(component.processVariables[0]).toBe(processMock.extensions.properties.processVariable1);
+        expect(component.processVariables[0].id).toBe('processVariable1');
     });
 
     it('should set payload properties when process is retrieved', () => {

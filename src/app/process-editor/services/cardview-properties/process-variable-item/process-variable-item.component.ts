@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { OpenProcessVariablesDialogAction } from './../../../store/process-variables.actions';
 import { Store } from '@ngrx/store';
 import { CardItemTypeService } from '@alfresco/adf-core';
@@ -29,10 +29,12 @@ import { ProcessEntitiesState } from '../../../store/process-entities.state';
 })
 
 export class CardViewProcessVariablesItemComponent {
-    constructor(private store: Store<ProcessEntitiesState>) {
-    }
+
+    @Input() property;
+
+    constructor(private store: Store<ProcessEntitiesState>) { }
 
     openProcessVariablesDialog(): void {
-        this.store.dispatch(new OpenProcessVariablesDialogAction());
+        this.store.dispatch(new OpenProcessVariablesDialogAction(this.property.value));
     }
 }

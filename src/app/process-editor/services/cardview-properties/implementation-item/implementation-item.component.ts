@@ -39,11 +39,11 @@ export class CardViewImplementationItemComponent implements OnInit, OnDestroy {
         private cardViewUpdateService: CardViewUpdateService,
         private store: Store<AmaState>,
         private logService: LogService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.implementation = this.property.value;
-        this.store.select(selectProcessMappingsFor(this.elementId)).pipe(
+        this.store.select(selectProcessMappingsFor(this.property.data.processId, this.elementId)).pipe(
             takeUntil(this.onDestroy$)
         ).subscribe(mappings => {
             this.inputs = JSON.stringify(mappings.inputs);
@@ -77,7 +77,9 @@ export class CardViewImplementationItemComponent implements OnInit, OnDestroy {
             }
 
             this.store.select(selectOpenedModel).pipe(takeUntil(this.onDestroy$)).subscribe(openedModel => {
-                this.store.dispatch(new UpdateServiceParametersAction(openedModel.id, this.elementId, { inputs, outputs }));
+                this.store.dispatch(
+                    new UpdateServiceParametersAction(openedModel.id, this.property.data.processId, this.elementId, { inputs, outputs })
+                );
             });
         } catch (error) {
             this.logService.error(error);

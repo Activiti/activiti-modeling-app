@@ -101,7 +101,7 @@ describe('Create process', async () => {
         await expect(await toolbar.isItemDisplayed(processUI.name)).toBe(true, 'Process name should be displayed in the breadcrumb');
     });
 
-    it('[C289324] Create process with CallActivity', async () => {
+    xit('[C289324] Create process with CallActivity', async () => {
         process = await backend.process.create(project.entry.id);
         const callActivityProcess = await backend.process.create(project.entry.id);
 

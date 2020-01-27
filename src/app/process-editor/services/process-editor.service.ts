@@ -27,9 +27,9 @@ import {
     UploadFileAttemptPayload,
     PROCESS_API_TOKEN,
     ModelApiInterface,
-    ProcessExtensionsContent,
     formatUuid,
-    ContentType
+    ContentType,
+    ModelExtensions
 } from 'ama-sdk';
 
 @Injectable()
@@ -58,7 +58,7 @@ export class ProcessEditorService {
         return this.processApi.update(processId, process, processData, projectId);
     }
 
-    validate(processId: string, diagramData: ProcessContent, extensionsContent: ProcessExtensionsContent): Observable<Partial<Process>> {
+    validate(processId: string, diagramData: ProcessContent, extensionsContent: ModelExtensions): Observable<Partial<Process>> {
         const extensions = {
             id: formatUuid(ContentType.Process, processId),
             extensions: extensionsContent

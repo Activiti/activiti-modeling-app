@@ -28,7 +28,7 @@ import { Observable, of } from 'rxjs';
 import { SetAppDirtyStateAction, DialogService, BpmnFactoryToken, ProcessModelerServiceToken } from 'ama-sdk';
 import { UpdateProcessVariablesAction } from './process-variables.actions';
 import { hot, cold } from 'jasmine-marbles';
-import { mockProcess } from './process.mock';
+import { mockProcessModel, mockProcessId } from './process.mock';
 
 describe('Process variables effects', () => {
     let effects: ProcessVariablesEffects;
@@ -83,7 +83,8 @@ describe('Process variables effects', () => {
 
         it('updateProcessVariablesEffect should dispatch SetAppDirtyStateAction', () => {
             actions$ = hot('a', { a: new UpdateProcessVariablesAction({
-                processId: mockProcess.id,
+                modelId: mockProcessModel.id,
+                processId: mockProcessId,
                 properties: {
                     'id': { id: 'dsd', name: 'name', value: 'test', type: 'string', required: true}
                 }

@@ -44,10 +44,12 @@ import { multiInstanceHandler } from './multi-instance.handler';
 import { textAnnotationHandler } from './textAnnotation.handler';
 import { modelNameHandler } from './model-name.handler';
 import { isExecutableHandler } from './isExecutable.handler';
+import { processIdHandler } from './process-id.handler';
 
 export const handlers = {
     [BpmnProperty.id]: idHandler,
     [BpmnProperty.processName]: processNameHandler,
+    [BpmnProperty.processId]: processIdHandler,
     [BpmnProperty.modelName]: modelNameHandler,
     [BpmnProperty.name]: nameHandler,
     [BpmnProperty.documentation]: documentationHandler,

@@ -18,6 +18,7 @@
 import { BpmnProperty } from 'ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
 import { MessagePayloadItemModel } from './message-payload-item/message-payload-item.model';
+import { ElementHelper } from '../bpmn-js/element.helper';
 
 const propertyName = BpmnProperty.messagePayload;
 
@@ -27,6 +28,6 @@ export function createMessagePayloadProperty({ element }: FactoryProps) {
         value: '',
         key: propertyName,
         editable: true,
-        data: { id: element.id, element }
+        data: { id: element.id, element, processId: ElementHelper.getProperty(element, BpmnProperty.processId)  }
     });
 }

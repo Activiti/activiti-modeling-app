@@ -28,7 +28,7 @@ export function createDueDateProperty({ element }: FactoryProps) {
         value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,
         editable: true,
-        data: { id: element.id }
+        data: { id: element.id, processId: ElementHelper.getProperty(element, BpmnProperty.processId) },
     });
 
 }

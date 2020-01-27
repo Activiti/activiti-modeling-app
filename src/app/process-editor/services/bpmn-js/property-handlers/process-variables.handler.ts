@@ -15,14 +15,8 @@
  * limitations under the License.
  */
 
-import { BpmnProperty } from 'ama-sdk';
-
-const propertyKey = BpmnProperty.properties;
-
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {
-        [propertyKey]: value
-    });
+    modeling.updateProperties(element, {});
 };
 
 export const processPropertyHandler = { set };

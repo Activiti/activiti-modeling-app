@@ -20,12 +20,13 @@ import { ProcessModel } from './process.model';
 export class ProcessDefinitionModel {
     '_declaration' = {};
     'bpmn2:definitions' = {
-        '_attributes' : {
+        '_attributes': {
             'xmlns:xsi': '',
             'xmlns:bpmn2': '',
             'xmlns:bpmndi': '',
             'xmlns:dc': '',
             id: '',
+            name: '',
             targetNamespace: '',
             'xsi:schemaLocation': ''
         },
@@ -40,12 +41,16 @@ export class ProcessDefinitionModel {
         Object.assign(this['bpmn2:definitions']['bpmndi:BPMNDiagram'], details[`bpmn2:definitions`][`bpmndi:BPMNDiagram`]);
     }
 
-    getProcessName(): string  {
+    getProcessName(): string {
         return this['bpmn2:definitions']['bpmn2:process'].getName();
     }
 
     setProcessName(name: string) {
         this['bpmn2:definitions']['bpmn2:process'].setName(name);
+    }
+
+    setModelName(name: string) {
+        this['bpmn2:definitions']['_attributes']['name'] = name;
     }
 
     getProcessId(): string {

@@ -19,7 +19,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CardItemTypeService, MomentDateAdapter, LocalizedDatePipe } from '@alfresco/adf-core';
 import { MatSelectChange, DateAdapter, MAT_DATE_FORMATS, MatDatepickerInputEvent } from '@angular/material';
 import { Moment } from 'moment';
-import { AmaState, selectSelectedProcess, MessagePayload, EntityProperty } from 'ama-sdk';
+import { AmaState, selectSelectedProcess, MessagePayload, EntityProperty, ProcessExtensionsModel, ServiceParameterMappings } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { filter, take } from 'rxjs/operators';
 import { MessageVariableMappingService } from '../message-variable-mapping/message-variable-mapping.service';
@@ -60,7 +60,7 @@ export class CardViewMessagePayloadItemComponent implements OnInit {
 
     showPropertyForm: boolean;
     propertyName: string;
-    propertyValue: string;
+    propertyValue: any;
     selectedType: string;
     selectedProcessVariable: string;
 
@@ -78,8 +78,9 @@ export class CardViewMessagePayloadItemComponent implements OnInit {
             filter((process) => !!process),
             take(1)
         ).subscribe((process) => {
-            this.processVariables = Object.values(process.extensions.properties);
-            this.payloadProperties = this.parseMessagePayload(process.extensions.mappings);
+            const processExtensionsModel = new ProcessExtensionsModel(process.extensions);
+            this.processVariables = Object.values(processExtensionsModel.getProperties(this.property.data.processId));
+            this.payloadProperties = this.parseMessagePayload(processExtensionsModel.getMappings(this.property.data.processId));
         });
         this.resetForm();
     }
@@ -115,7 +116,7 @@ export class CardViewMessagePayloadItemComponent implements OnInit {
     }
 
     isSaveButtonEnabled(): boolean {
-        return !!this.propertyName && !!this.selectedType && (!!this.propertyValue || !!this.selectedProcessVariable);
+        return !!this.propertyName && !!this.selectedType && (!!this.propertyValue || this.propertyValue === false || !!this.selectedProcessVariable);
     }
 
     deleteProperty(propertyIndex: number) {
@@ -131,7 +132,11 @@ export class CardViewMessagePayloadItemComponent implements OnInit {
     }
 
     updateMessagePayloadMapping() {
-        this.messageVariableMappingService.updateMessagePayloadMapping(this.elementId, { inputs: this.getMessagePayload() });
+        this.messageVariableMappingService.updateMessagePayloadMapping(
+            this.property.data.processId,
+            this.elementId,
+            <ServiceParameterMappings>{ inputs: this.getMessagePayload() }
+        );
     }
 
     getMessagePayload(): Object {

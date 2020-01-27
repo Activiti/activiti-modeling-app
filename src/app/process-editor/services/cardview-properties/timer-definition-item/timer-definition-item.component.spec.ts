@@ -52,33 +52,36 @@ describe('CardViewTimerDefinitionItemComponent', () => {
                 businessObject: {
                     eventDefinitions: [{}]
                 }
-            }
+            },
+            processId: 'Process_12345678'
         }
     };
 
     const processMock = {
         extensions: {
-            properties: {
-                foo: {
-                    id: 'processVariable1',
-                    name: 'foo',
-                    type: 'string',
-                    value: 'cat',
-                    required: false
-                },
-                bar: {
-                    id: 'processVariable2',
-                    name: 'bar',
-                    type: 'number',
-                    value: 3,
-                    required: false
-                },
-                foobar: {
-                    id: 'processVariable3',
-                    name: 'bar',
-                    type: 'datetime',
-                    value: '2019-11-01T00:00:00+00:00',
-                    required: false
+            'Process_12345678': {
+                properties: {
+                    foo: {
+                        id: 'processVariable1',
+                        name: 'foo',
+                        type: 'string',
+                        value: 'cat',
+                        required: false
+                    },
+                    bar: {
+                        id: 'processVariable2',
+                        name: 'bar',
+                        type: 'number',
+                        value: 3,
+                        required: false
+                    },
+                    foobar: {
+                        id: 'processVariable3',
+                        name: 'foobar',
+                        type: 'datetime',
+                        value: '2019-11-01T00:00:00+00:00',
+                        required: false
+                    }
                 }
             }
         }
@@ -265,8 +268,8 @@ describe('CardViewTimerDefinitionItemComponent', () => {
         expect(component.optionsForParams['timeCycle'].length).toBe(1);
         expect(component.optionsForParams['timeDate'].length).toBe(1);
 
-        expect(component.optionsForParams['timeDuration'][0]).toBe(processMock.extensions.properties.foo);
-        expect(component.optionsForParams['timeCycle'][0]).toBe(processMock.extensions.properties.foo);
-        expect(component.optionsForParams['timeDate'][0]).toBe(processMock.extensions.properties.foobar);
+        expect(component.optionsForParams['timeDuration'][0].name).toBe('foo');
+        expect(component.optionsForParams['timeCycle'][0].name).toBe('foo');
+        expect(component.optionsForParams['timeDate'][0].name).toBe('foobar');
     });
 });

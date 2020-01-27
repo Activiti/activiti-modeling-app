@@ -19,6 +19,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ServiceParameterMappings, EntityProperty } from '../api/types';
 import { getEntitiesState } from '../store/entity.selectors';
 import { selectOpenedModel } from '../store/app.selectors';
+import { ProcessExtensionsModel } from './process-extensions.model';
 
 export const PROCESS_EDITOR_STATE_NAME = 'process-editor';
 export const getProcessEditorFeatureState = createFeatureSelector(PROCESS_EDITOR_STATE_NAME);
@@ -28,26 +29,14 @@ export const selectProcessEntityContainer = createSelector(getEntitiesState, (st
 export const selectSelectedProcess = createSelector(
     selectOpenedModel,
     selectProcessEntityContainer,
-    (openedModel, state) =>  openedModel ? state.entities[openedModel.id] : null);
-
-export const selectProcessPropertiesArray = createSelector(
-    selectSelectedProcess,
-    (process): EntityProperty[] => {
-        if (process && process.extensions && process.extensions.properties) {
-            return Object.values(process.extensions.properties);
-        } else {
-            return [];
-        }
-    }
-);
+    (openedModel, state) => openedModel ? state.entities[openedModel.id] : null);
 
 export const selectProcessPropertiesArrayFor = (processId: string) => {
     return createSelector(
-        selectProcessEntityContainer,
-        (processes): EntityProperty[] => {
-            const process = processes.entities[processId];
-            if (process && process.extensions && process.extensions.properties) {
-                return Object.values(process.extensions.properties);
+        selectSelectedProcess,
+        (process): EntityProperty[] => {
+            if (process && process.extensions) {
+                return Object.values(new ProcessExtensionsModel(process.extensions).getProperties(processId));
             } else {
                 return [];
             }
@@ -55,15 +44,29 @@ export const selectProcessPropertiesArrayFor = (processId: string) => {
     );
 };
 
-export const selectProcessMappingsFor = (serviceId: string) => {
+export const selectExternalProcessPropertiesArrayFor = (modelId: string) => {
+    return createSelector(
+        selectProcessEntityContainer,
+        (processes): EntityProperty[] => {
+            const process = processes.entities[modelId];
+            if (process && process.extensions) {
+                return Object.values(new ProcessExtensionsModel(process.extensions).getAllProperties());
+            } else {
+                return [];
+            }
+        }
+    );
+};
+
+export const selectProcessMappingsFor = (processId: string, elementId: string) => {
     return createSelector(
         selectSelectedProcess,
         (process): ServiceParameterMappings => {
-            if (!process || !process.extensions) {
-                return {};
+            let mapping = {};
+            if (process && process.extensions) {
+                mapping = new ProcessExtensionsModel(process.extensions).getMappings(processId);
             }
-            const mapping = process.extensions.mappings;
-            return mapping && mapping[serviceId] ? mapping[serviceId] : {};
+            return mapping && mapping[elementId] ? mapping[elementId] : {};
         }
     );
 };

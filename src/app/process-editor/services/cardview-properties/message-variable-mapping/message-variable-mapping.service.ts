@@ -28,12 +28,12 @@ export class MessageVariableMappingService {
 
     constructor(private store: Store<AmaState>) { }
 
-    updateMessagePayloadMapping(elementId, mapping) {
-        const parameterMapping = <ServiceParameterMappings>mapping;
+    updateMessagePayloadMapping(processId: string, elementId: string, mapping: ServiceParameterMappings) {
+        const parameterMapping = mapping;
         this.store.select(selectSelectedProcess).pipe(
-            filter((process) => !!process),
+            filter((model) => !!model),
             take(1)
-        ).subscribe((process) => this.store.dispatch(new UpdateServiceParametersAction(process.id, elementId, parameterMapping)));
+        ).subscribe((model) => this.store.dispatch(new UpdateServiceParametersAction(model.id, processId, elementId, parameterMapping)));
     }
 
     getPropertyType(property: any): string {

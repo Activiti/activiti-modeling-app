@@ -20,7 +20,8 @@ import { CardItemTypeService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import {
     AmaState, EntityProperty, MessagePayload, selectSelectedProcess, ConnectorParameter,
-    ParametersSelectOptions, MappingType, Process, ServiceParameterMapping
+    ParametersSelectOptions, MappingType, Process, ServiceParameterMapping, ProcessExtensionsModel,
+    BpmnElement, ServiceParameterMappings
 } from 'ama-sdk';
 import { MatTableDataSource } from '@angular/material';
 import { filter, take } from 'rxjs/operators';
@@ -48,7 +49,11 @@ export class CardViewMessageVariableMappingComponent implements OnInit {
     paramName2VariableName: { [paramName: string]: string } = {};
 
     private get processEvents(): Bpmn.BusinessObject[] {
-        return this.property.data.element.parent.businessObject.flowElements;
+        if (this.property.data.element.parent.type === BpmnElement.Process) {
+            return this.property.data.element.parent.businessObject.flowElements;
+        } else {
+            return this.property.data.element.parent.businessObject.processRef.flowElements;
+        }
     }
 
     private get elementId(): string {
@@ -65,9 +70,10 @@ export class CardViewMessageVariableMappingComponent implements OnInit {
                 filter((process: Process) => !!process),
                 take(1))
             .subscribe((process: Process) => {
-                this.mapping = this.getMappingFromProcess(process);
-                this.processVariables = Object.values(process.extensions.properties);
-                this.payloadProperties = this.parseMessagePayload(process.extensions.mappings);
+                const processExtensionsModel = new ProcessExtensionsModel(process.extensions);
+                this.mapping = this.getMappingFromProcess(processExtensionsModel.getMappings(this.property.data.processId));
+                this.processVariables = Object.values(processExtensionsModel.getProperties(this.property.data.processId));
+                this.payloadProperties = this.parseMessagePayload(processExtensionsModel.getMappings(this.property.data.processId));
                 this.dataSource = new MatTableDataSource(this.payloadProperties);
                 this.initMapping();
             });
@@ -117,9 +123,9 @@ export class CardViewMessageVariableMappingComponent implements OnInit {
         });
     }
 
-    getMappingFromProcess(process: Process): ServiceParameterMapping {
-        return process.extensions.mappings[this.elementId] && process.extensions.mappings[this.elementId].outputs
-            ? { ...process.extensions.mappings[this.elementId].outputs } : {};
+    getMappingFromProcess(mappings: ServiceParameterMappings): ServiceParameterMapping {
+        return mappings[this.elementId] && mappings[this.elementId].outputs
+            ? { ...mappings[this.elementId].outputs } : {};
     }
 
     selectVariable(selection: string, param: ConnectorParameter) {
@@ -139,7 +145,7 @@ export class CardViewMessageVariableMappingComponent implements OnInit {
             };
         }
 
-        this.messageVariableMappingService.updateMessagePayloadMapping(this.elementId, { outputs: this.mapping });
+        this.messageVariableMappingService.updateMessagePayloadMapping(this.property.data.processId, this.elementId, { outputs: this.mapping });
     }
 
     hasPayload(): boolean {

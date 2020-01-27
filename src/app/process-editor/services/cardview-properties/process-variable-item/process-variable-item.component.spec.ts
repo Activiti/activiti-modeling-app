@@ -23,6 +23,7 @@ import { CardItemTypeService } from '@alfresco/adf-core';
 import { OpenProcessVariablesDialogAction, OPEN_PROCESS_VARIABLES_DIALOG } from '../../../store/process-variables.actions';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { mockProcessId } from 'src/app/process-editor/store/process.mock';
 
 describe('ProcessVariableItemComponent', () => {
     let fixture: ComponentFixture<CardViewProcessVariablesItemComponent>;
@@ -52,6 +53,7 @@ describe('ProcessVariableItemComponent', () => {
     });
 
     it('clicking on edit button should dispatch a OPEN_VARIABLES_DIALOG action', () => {
+        component.property = { value: mockProcessId };
         spyOn(store, 'dispatch');
         const button = fixture.nativeElement.querySelector('button');
         button.dispatchEvent(new Event('click'));
@@ -60,5 +62,6 @@ describe('ProcessVariableItemComponent', () => {
         const action: OpenProcessVariablesDialogAction = store.dispatch.calls.argsFor(0)[0];
         expect(store.dispatch).toHaveBeenCalled();
         expect(action.type).toBe(OPEN_PROCESS_VARIABLES_DIALOG);
+        expect(action.processId).toBe(mockProcessId);
     });
 });

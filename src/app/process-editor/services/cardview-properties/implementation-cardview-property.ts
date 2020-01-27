@@ -28,6 +28,6 @@ export function createImplementationProperty({ element }: FactoryProps) {
         key: property,
         default: '',
         editable: true,
-        data: { id: element.id }
+        data: { id: element.id, processId: ElementHelper.getProperty(element, BpmnProperty.processId) },
     });
 }

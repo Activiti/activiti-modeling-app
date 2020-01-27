@@ -35,7 +35,7 @@ import { ProcessEntitiesState, initialProcessEntitiesState } from './process-ent
 import { PROCESS, Process, ProcessContent, ServiceParameterMappings,
     UpdateServiceParametersAction, EntityProperty, EntityProperties, MappingType, UPDATE_SERVICE_PARAMETERS } from 'ama-sdk';
 import { processEntitiesReducer } from './process-entities.reducer';
-import { mockProcess, mappings } from './process.mock';
+import { mockProcessModel, mappings, mockProcessId } from './process.mock';
 import * as processVariablesActions from './process-variables.actions';
 
 const deepFreeze = require('deep-freeze-strict');
@@ -51,6 +51,8 @@ describe('ProcessEntitiesReducer', () => {
         description: 'mock-description',
         projectId: 'mock-app-id'
     };
+
+    const processId = 'Process_12345678';
 
     beforeEach(() => {
         initialState = deepFreeze({ ...initialProcessEntitiesState });
@@ -136,27 +138,30 @@ describe('ProcessEntitiesReducer', () => {
         const processes = [{ ...process, extensions: {
             mappings: {},
             id: 'mock-id',
-            properties: {}
+            properties: {},
+            constants: {}
         } }];
         let newState = processEntitiesReducer(initialState, <GetProcessesSuccessAction>{ type: GET_PROCESSES_SUCCESS, processes });
 
         newState = processEntitiesReducer(newState, <UpdateServiceParametersAction>{
             type: UPDATE_SERVICE_PARAMETERS,
-            processId: process.id,
+            modelId: process.id,
+            processId: processId,
             serviceId: elementId,
             serviceParameterMappings: mockMapping,
             constants: mockConstants
         });
-        expect(newState.entities[process.id].extensions.mappings).toEqual({
+        expect(newState.entities[process.id].extensions[processId].mappings).toEqual({
             [elementId]: mockMapping
         });
-        expect(newState.entities[process.id].extensions.constants).toEqual({
+        expect(newState.entities[process.id].extensions[processId].constants).toEqual({
             [elementId]: mockConstants
         });
 
         newState = processEntitiesReducer(newState, <UpdateServiceParametersAction>{
             type: UPDATE_SERVICE_PARAMETERS,
-            processId: process.id,
+            modelId: process.id,
+            processId: processId,
             serviceId: elementId,
             serviceParameterMappings: {}
         });
@@ -244,13 +249,13 @@ describe('ProcessEntitiesReducer', () => {
         };
         initialState = {
             ...initialProcessEntitiesState,
-            entities: { [mockProcess.id]: mockProcess },
-            ids: [mockProcess.id]
+            entities: { [mockProcessModel.id]: mockProcessModel },
+            ids: [mockProcessModel.id]
         };
 
-        const newState = processEntitiesReducer(initialState, new UpdateServiceParametersAction(mockProcess.id, serviceTaskId, serviceParameterMappings));
+        const newState = processEntitiesReducer(initialState, new UpdateServiceParametersAction(mockProcessModel.id, processId, serviceTaskId, serviceParameterMappings));
 
-        expect(newState.entities[mockProcess.id].extensions.mappings).toEqual({
+        expect(newState.entities[mockProcessModel.id].extensions[processId].mappings).toEqual({
             ...mappings,
             'serviceTaskId': serviceParameterMappings
         });
@@ -259,19 +264,20 @@ describe('ProcessEntitiesReducer', () => {
     it('should handle UPDATE_PROCESS_VARIABLES', () => {
         initialState = {
             ...initialProcessEntitiesState,
-            entities: { [mockProcess.id]: mockProcess },
-            ids: [mockProcess.id]
+            entities: { [mockProcessModel.id]: mockProcessModel },
+            ids: [mockProcessModel.id]
         };
 
         /* cspell: disable-next-line */
         const mockProperty: EntityProperty = { 'id': 'id', 'name': 'appa', 'type': 'string', 'required': false, 'value': '' };
         const mockProperties: EntityProperties = { [mockProperty.id]: mockProperty };
         const newState = processEntitiesReducer(initialState, new processVariablesActions.UpdateProcessVariablesAction({
-            processId: mockProcess.id,
+            modelId: mockProcessModel.id,
+            processId: mockProcessId,
             properties: mockProperties
         }));
 
-        expect(newState.entities[mockProcess.id].extensions.properties).toEqual(mockProperties);
-        expect(newState.entities[mockProcess.id].extensions.mappings).toEqual(mockProcess.extensions.mappings);
+        expect(newState.entities[mockProcessModel.id].extensions[mockProcessId].properties).toEqual(mockProperties);
+        expect(newState.entities[mockProcessModel.id].extensions.mappings).toEqual(mockProcessModel.extensions.mappings);
     });
 });

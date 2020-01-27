@@ -17,6 +17,7 @@
 
 import { ACMCrud } from '../acm-crud';
 import { ServiceInputParameterMapping, MappingType, ServiceOutputParameterMapping } from '../../../util/types';
+const shortid = require('shortid');
 
 export class ACMProcess extends ACMCrud {
 
@@ -28,7 +29,7 @@ export class ACMProcess extends ACMCrud {
 
     /* cSpell:disable */
     getDefaultContent(entityName: string, entityId: string) {
-        const entityUuid = `${this.type.toLowerCase()}-${entityId}`;
+        const entityUuid = `Process_${shortid()}`;
         return `<?xml version="1.0" encoding="UTF-8"?>
         <bpmn2:definitions
             xmlns:activiti="http://activiti.org/bpmn"

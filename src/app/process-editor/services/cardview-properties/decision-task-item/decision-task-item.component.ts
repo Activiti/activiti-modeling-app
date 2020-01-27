@@ -46,7 +46,7 @@ export class CardViewDecisionTaskItemComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.store
-            .select(selectProcessMappingsFor(this.elementId))
+            .select(selectProcessMappingsFor(this.property.data.processId, this.elementId))
             .pipe(takeUntil(this.onDestroy$))
             .subscribe(mappings => {
                 try {
@@ -76,7 +76,7 @@ export class CardViewDecisionTaskItemComponent implements OnInit, OnDestroy {
                 .pipe(takeUntil(this.onDestroy$))
                 .subscribe(openedModel => {
                     this.store.dispatch(
-                        new UpdateServiceParametersAction(openedModel.id, this.elementId, { inputs })
+                        new UpdateServiceParametersAction(openedModel.id, this.property.data.processId, this.elementId, { inputs })
                     );
                 });
         } catch (error) {

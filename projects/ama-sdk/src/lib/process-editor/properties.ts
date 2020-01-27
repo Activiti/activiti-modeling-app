@@ -36,6 +36,7 @@ export enum BpmnProperty {
     properties = 'properties',
     conditionExpression = 'conditionExpression',
     processName = 'processName',
+    processId = 'processId',
     defaultSequenceFlow = 'default',
     signalRef = 'signalRef',
     signalScope = 'signalScope',

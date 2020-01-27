@@ -36,6 +36,7 @@
             "ID": "id",
             "NAME": "Name",
             "PROCESS_NAME": "Process name",
+            "PROCESS_ID": "Process id",
             "MODEL_NAME": "Model name",
             "SIGNAL": "Signal",
             "ERROR": "Error",
