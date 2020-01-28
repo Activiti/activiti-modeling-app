@@ -1,9 +1,18 @@
 <div class="called-element-block">
     <mat-form-field>
         <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ACTIVITY_NAME' | translate }}</div>
-        <mat-select (selectionChange)="changeProcess()" [(ngModel)]="processId">
-            <mat-option *ngFor="let process of processes$ | async" [value]="'process-' + process.id">
-                {{ process.name }}
+        <mat-select (selectionChange)="onProcessDefinitionSelected()" [(ngModel)]="processDefinition">
+            <mat-option *ngFor="let processDefinition of processDefinitions" [value]="processDefinition">
+                {{ processDefinition.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="processDefinition">
+        <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS' | translate }}</div>
+        <mat-select (selectionChange)="onProcessSelected()" [(ngModel)]="processId">
+            <mat-option *ngFor="let process of processes" [value]="process">
+                {{ process }}
             </mat-option>
         </mat-select>
     </mat-form-field>
@@ -19,10 +28,10 @@
 
         <div *ngIf="!sendNoVariables">
             <div *ngIf="(processVariables$ | async).length; else noProcessVariables">
-                <div *ngIf="(subProcessVariables$ | async).length; else noSubProcessVariables">
+                <div *ngIf="subProcessVariables.length; else noSubProcessVariables">
                     <h5 data-automation-id="input-mapping-header">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INPUT_MAPPING' | translate }}:</h5>
                     <amasdk-input-mapping-table
-                        [parameters]="subProcessVariables$ | async"
+                        [parameters]="subProcessVariables"
                         [processProperties]="processVariables$ | async"
                         [mapping]="mapping.inputs || {}"
                         (update)="changeMapping($event, 'inputs')">
@@ -30,7 +39,7 @@
 
                     <h5 data-automation-id="output-mapping-header">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.OUTPUT_MAPPING' | translate }}:</h5>
                     <amasdk-output-mapping-table
-                        [parameters]="subProcessVariables$ | async"
+                        [parameters]="subProcessVariables"
                         [processProperties]="processVariables$ | async"
                         [mapping]="mapping.outputs || {}"
                         (update)="changeMapping($event, 'outputs')">

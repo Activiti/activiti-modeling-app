@@ -72,6 +72,7 @@
             "DUE_DATE": "Due date",
             "PRIORITY": "Priority",
             "ACTIVITY_NAME": "Activity name",
+            "PROCESS": "Process",
             "PROCESS_VARIABLE": "Process variable",
             "USE_PROCESS_VARIABLE": "Use process variable",
             "PROCESS_VARIABLES": "Process variables",

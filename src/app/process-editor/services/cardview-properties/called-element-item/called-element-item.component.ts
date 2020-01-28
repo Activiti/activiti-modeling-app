@@ -20,7 +20,7 @@ import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { CalledElementItemModel } from './called-element-item.model';
 import { selectProcessesArray } from '../../../store/process-editor.selectors';
-import { Observable, Subject, of, zip } from 'rxjs';
+import { Subject, of, zip } from 'rxjs';
 import { filter, take, takeUntil, switchMap, map } from 'rxjs/operators';
 import {
     AmaState,
@@ -30,7 +30,8 @@ import {
     UpdateServiceParametersAction,
     selectSelectedProcess,
     ServiceParameterMapping,
-    selectExternalProcessPropertiesArrayFor
+    ProcessExtensionsModel,
+    EntityProperty
 } from 'ama-sdk';
 import { MatSelectChange } from '@angular/material';
 
@@ -43,11 +44,13 @@ export class CardViewCalledItemItemComponent implements OnInit, OnDestroy {
     @Input() property: CalledElementItemModel;
 
     onDestroy$: Subject<void> = new Subject<void>();
-    processes$: Observable<Process[]>;
+    processDefinitions: Process[];
+    processes: string[];
+    processDefinition: Process;
     processId: string;
     sendNoVariables: boolean;
     processVariables$;
-    subProcessVariables$;
+    subProcessVariables: EntityProperty[] = [];
     mapping = {};
 
     constructor(
@@ -55,12 +58,15 @@ export class CardViewCalledItemItemComponent implements OnInit, OnDestroy {
         private store: Store<AmaState>) { }
 
     ngOnInit() {
-        this.processes$ = this.store.select(selectProcessesArray).pipe(
+        this.processId = this.property.value;
+
+        this.store.select(selectProcessesArray).pipe(
             switchMap(processes => zip(of(processes), this.store.select(selectSelectedProcess))),
             map(([processes, selectedProcess]) => processes.filter(process => process.id !== selectedProcess.id))
-        );
-        this.processId = this.property.value;
-        this.loadVariables();
+        ).subscribe((processDefinitions) => {
+            this.processDefinitions = processDefinitions;
+            this.loadActivity();
+        });
 
         this.store.select(selectProcessMappingsFor(this.property.data.processId, this.property.data.id))
             .pipe(takeUntil(this.onDestroy$))
@@ -82,11 +88,26 @@ export class CardViewCalledItemItemComponent implements OnInit, OnDestroy {
         this.processVariables$ = this.store.select(selectProcessPropertiesArrayFor(this.property.data.processId));
 
         if (this.processId) {
-            this.subProcessVariables$ = this.store.select(selectExternalProcessPropertiesArrayFor(this.processId.replace('process-', '')));
+            this.subProcessVariables = Object.values(new ProcessExtensionsModel(this.processDefinition.extensions).getProperties(this.processId));
         }
     }
 
-    changeProcess() {
+    loadActivity() {
+        this.processDefinition = this.processDefinitions.find((processDefinition) => !!processDefinition.extensions[this.processId]);
+        if (this.processDefinition) {
+            this.onProcessDefinitionSelected();
+            this.loadVariables();
+        }
+    }
+
+    onProcessDefinitionSelected() {
+        this.processes = Object.keys(this.processDefinition.extensions);
+        if (!this.processes.includes(this.processId)) {
+            this.processId = undefined;
+        }
+    }
+
+    onProcessSelected() {
         this.cardViewUpdateService.update(this.property, this.processId);
         this.loadVariables();
     }
