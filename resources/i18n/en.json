@@ -26,7 +26,7 @@
             "EDIT_FORM_PROPERTIES": "Edit Form Variables",
             "EDIT_VISIBILITY_CONDITIONS": "Edit Visibility Conditions",
             "ERROR": {
-                "TITLE": "Do you want to save it any way?",
+                "TITLE": "Do you want to save it anyway?",
                 "SUBTITLE": "Validation errors:",
                 "NAME_DOESNT_MATCH_PATTERN": "The name doesn't match the following pattern",
                 "GENERAL_NAME_VALIDATION": "The name must be in lowercase and between 1 and 26 characters in length. Alphanumeric characters and hyphens are allowed, however the name must begin with a letter and end alphanumerically."
@@ -92,7 +92,7 @@
             "NEW_MENU": {
                 "LABEL": "NEW",
                 "CREATE_PROJECT_TITLE": "Create Project",
-                "OVERRIDE_PROJECT_TITLE": "A project with the same name already exist, please insert a new name",
+                "OVERRIDE_PROJECT_TITLE": "A project with that name already exists.",
                 "EDIT_PROJECT_TITLE": "Edit Project",
                 "PROJECT_CREATED": "Project created",
                 "PROJECT_UPLOADED": "Project uploaded",
@@ -133,7 +133,7 @@
                 "COLUMN_CREATED": "Created",
                 "COLUMN_CREATED_BY": "Created By",
                 "COLUMN_OPTIONS": "Options",
-                "NO_ITEMS": "Create a project to make it available here.",
+                "NO_ITEMS": "Create or import a project to view it in the list.",
                 "NO_FAV_PROCESSES": "Favorite a process to make it available here.",
                 "NO_FAV_PROJECTS": "Favorite a project to make it available here.",
                 "RELEASE_ID": "Release ID",
@@ -277,7 +277,7 @@
                 "UPDATE_PROCESS": {
                     "DUPLICATION": "A process with that name already exists",
                     "GENERAL": "We hit a problem saving the process. Try saving it again.",
-                    "EMPTY_NAME": "Name cannot be empty"
+                    "EMPTY_NAME": "A name is required"
                 },
                 "CREATE_CONNECTOR": {
                     "DUPLICATION": "A connector with that name already exists",
@@ -386,7 +386,7 @@
                 "PROCESS_VARIABLE": "Process variable",
                 "PROCESS_VARIABLES": "Process variables",
                 "EXPRESSION": "Condition expression",
-                "FORM_SELECTOR": "Form selector",
+                "FORM_SELECTOR": "Form name",
                 "DEFAULT_SEQUENCE_FLOW": "Default sequence flow"
             },
             "PALETTE": {
@@ -397,9 +397,9 @@
                 "START_EVENT": "Create start event",
                 "END_EVENT": "Create end event",
                 "INTERMEDIATE_THROW_EVENT": "Create intermediate throw event",
-                "START_EVENT_SIGNAL": "Create Start Event Signal",
-                "INTERMEDIATE_CATCH_EVENT_SIGNAL": "Create Intermediate Catch Event Signal",
-                "INTERMEDIATE_THROW_EVENT_SIGNAL": "Create Intermediate Throw Event Signal",
+                "START_EVENT_SIGNAL": "Create signal start event",
+                "INTERMEDIATE_CATCH_EVENT_SIGNAL": "Create signal intermediate catch event",
+                "INTERMEDIATE_THROW_EVENT_SIGNAL": "Create signal intermediate throw event",
                 "GATEWAY": "Create gateway",
                 "USER_TASK": "Create user task",
                 "SERVICE_TASK": "Create service task",
@@ -414,12 +414,12 @@
             "SELECT_PROCESS_VARIABLE": "Select process variable",
             "ERRORS": {
                 "NO_PROCESS_PROPERTIES": "No process properties.",
-                "NO_CONNECTOR_ACTIONS": "No connector actions.",
-                "LOAD_DIAGRAM": "Could not load the diagram.",
-                "SAVE_DIAGRAM": "Could not save the diagram.",
-                "DOWNLOAD_DIAGRAM": "Could not download the diagram",
-                "DOWNLOAD_SVG_IMAGE": "Could not download the image",
-                "CHANGE_FAVORITE": "Unknown error happened during the changing favorite state of the process."
+                "NO_CONNECTOR_ACTIONS": "Create an action for the connector to use",
+                "LOAD_DIAGRAM": "We hit a problem loading the diagram. Try refreshing the page.",
+                "SAVE_DIAGRAM": "We hit a problem saving the diagram. Try saving it again.",
+                "DOWNLOAD_DIAGRAM": "We hit a problem downloading the diagram. Try downloading it again.",
+                "DOWNLOAD_SVG_IMAGE": "We hit a problem downloading the diagram image. Try downloading it again.",
+                "CHANGE_FAVORITE": "We hit a problem changing the favorite state of the process"
             },
             "PROPERTIES": {
                 "TABS": {

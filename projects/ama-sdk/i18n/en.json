@@ -1,48 +1,48 @@
 {
     "SDK": {
         "SNACKBAR": {
-            "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Pasted value needs to follow this pattern"
+            "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Pasted values must follow this pattern"
         },
         "ALL": "All",
         "VARIABLES_EDITOR": {
             "ERRORS": {
-                "EMPTY_NAME": "Name field cannot be empty",
-                "INVALID_NAME": "Variable name is not valid.",
-                "VARIABLE_NAME_TOOLTIP": "The name can start only with a letter, followed by any alphanumeric characters, digits and underscore.",
-                "NAME_ALREADY_EXISTS": "Variables name must be unique"
+                "EMPTY_NAME": "A name is required",
+                "INVALID_NAME": "Invalid variable name",
+                "VARIABLE_NAME_TOOLTIP": "The name can must start with a letter and can only contain alphanumeric characters and underscores",
+                "NAME_ALREADY_EXISTS": "Variable names must be unique"
             },
             "TABS": {
-                "VIEWER": "Properties viewer",
-                "JSON_EDITOR": "JSON editor"
+                "VIEWER": "Properties Viewer",
+                "JSON_EDITOR": "JSON Editor"
             },
             "TABLE": {
                 "COLUMN_NAME": "Name",
                 "COLUMN_TYPE": "Type",
                 "COLUMN_REQUIRED": "Required",
                 "COLUMN_VALUE": "Value",
-                "NO_PROPERTIES": "You don't have any property selected"
+                "NO_PROPERTIES": "Select or create a variable to view its properties"
             }
         },
         "VARIABLE_MAPPING": {
             "PARAMETER": "Parameter",
             "VALUE": "Value",
             "PROCESS_VARIABLE": "Process variable",
-            "SWITCH_VAR_VAL": "Switch variable/value",
+            "SWITCH_VAR_VAL": "Toggle variable/value",
             "NO_PROCESS_PROPERTIES": "No process properties",
             "NO_PAYLOAD": "Message has no payload. Add a payload in the message throw event.",
             "CLEAR_ASSIGNMENT": "Clear assignment",
             "NONE": "None"
         },
         "MESSAGES_EDITOR": {
-            "TITLE": "Process messages",
+            "TITLE": "Process Messages",
             "ERRORS": {
-                "EMPTY_NAME": "Name field cannot be empty",
-                "NAME_ALREADY_EXISTS": "Message name must be unique"
+                "EMPTY_NAME": "A name is required",
+                "NAME_ALREADY_EXISTS": "Message names must be unique"
             },
             "TABLE": {
                 "COLUMN_NAME": "Name",
                 "COLUMN_ID": "ID",
-                "NO_MESSAGES": "You haven't selected any message"
+                "NO_MESSAGES": "Select or create a message to view its properties"
             }
         },
         "MAPPING_DIALOG": {
@@ -56,7 +56,7 @@
             "VALUE_MAPPING": "Value",
             "EXPRESSION_MAPPING": "Expression",
             "NONE": "None",
-            "TYPE": "type"
+            "TYPE": "Type"
         }
     }
 }
