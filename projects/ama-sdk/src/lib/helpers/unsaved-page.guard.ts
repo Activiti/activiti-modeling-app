@@ -40,15 +40,16 @@ export class UnsavedPageGuard
         private dialogService: DialogService,
         private titleService: AmaTitleService,
         private translationService: TranslationService
-    ) {}
+    ) {
+    }
 
     canDeactivate(component: CanComponentDeactivate): Observable<boolean> {
         return this.store.select(selectAppDirtyState).pipe(
             switchMap(dirty => zip(of(dirty), this.store.select(selectSelectedModel))),
             switchMap(([dirty, model]) => {
                 if (dirty && model) {
-                    const modelType = this.translationService.instant(`APP.DIALOGS.CONFIRM.TYPES.${model.type}`);
-                    const subtitle = this.translationService.instant('APP.DIALOGS.CONFIRM.UNSAVED_PAGE', [modelType]);
+                    const types = this.translationService.instant(`APP.DIALOGS.CONFIRM.TYPES.${model.type}`);
+                    const subtitle = this.translationService.instant('APP.DIALOGS.CONFIRM.UNSAVED_PAGE', { types });
 
                     const dialogData: ConfirmDialogData = {
                         subtitle: `${subtitle}: "${model.name || ''}" ?`
