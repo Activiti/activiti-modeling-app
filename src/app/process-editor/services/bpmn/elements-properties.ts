@@ -54,7 +54,8 @@ export const elementsProperties = {
     [BpmnElement.Collaboration]: [
         BpmnProperty.modelName,
         BpmnProperty.id,
-        BpmnProperty.documentation
+        BpmnProperty.documentation,
+        BpmnProperty.messages
     ],
     [BpmnElement.IntermediateCatchEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,

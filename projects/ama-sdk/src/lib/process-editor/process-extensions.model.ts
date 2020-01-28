@@ -41,7 +41,7 @@ export class ProcessExtensionsModel {
 
         Object.keys(this.extensions).map((extensionPropertyKey: string) => {
             if (extensionPropertyKey !== 'constants' && extensionPropertyKey !== 'mappings' && extensionPropertyKey !== 'properties') {
-                properties = {...this.extensions[extensionPropertyKey].properties};
+                properties = { ...this.extensions[extensionPropertyKey].properties };
             }
         });
 
@@ -61,6 +61,18 @@ export class ProcessExtensionsModel {
 
     getMappings(processId: string): ServiceParameterMappings {
         return this.extensions[processId] ? this.extensions[processId].mappings : {};
+    }
+
+    getAllMappings(): ServiceParameterMappings {
+        let mappings = {};
+
+        Object.keys(this.extensions).map((extensionPropertyKey: string) => {
+            if (extensionPropertyKey !== 'constants' && extensionPropertyKey !== 'mappings' && extensionPropertyKey !== 'properties') {
+                mappings = { ...mappings, ...this.extensions[extensionPropertyKey].mappings };
+            }
+        });
+
+        return mappings;
     }
 
     setConstants(processId: string, elementId: string, constants: ServicesParameterConstants): ModelExtensions {

@@ -29,6 +29,7 @@
             "PROCESS_VARIABLE": "Process variable",
             "SWITCH_VAR_VAL": "Switch variable/value",
             "NO_PROCESS_PROPERTIES": "No process properties",
+            "NO_PAYLOAD": "Message has no payload. Add a payload in the message throw event.",
             "CLEAR_ASSIGNMENT": "Clear assignment",
             "NONE": "None"
         },

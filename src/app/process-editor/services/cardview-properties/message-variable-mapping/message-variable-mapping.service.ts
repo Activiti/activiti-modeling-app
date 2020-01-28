@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { AmaState, ServiceParameterMappings, UpdateServiceParametersAction, selectSelectedProcess } from 'ama-sdk';
+import { AmaState, ServiceParameterMappings, UpdateServiceParametersAction, selectSelectedProcess, MessagePayload, BpmnElement } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { filter, take } from 'rxjs/operators';
 import moment from 'moment-es6';
@@ -52,6 +52,35 @@ export class MessageVariableMappingService {
         }
 
         return type;
+    }
+
+    parseMessagePayload(payloadMessageEvent: Bpmn.BusinessObject, messageMappings: ServiceParameterMappings): MessagePayload[] {
+        const messagePayload = [];
+        if (!!payloadMessageEvent) {
+            const messagePayloadMappings = messageMappings[payloadMessageEvent.id] && messageMappings[payloadMessageEvent.id].inputs
+                ? messageMappings[payloadMessageEvent.id].inputs : {};
+
+            Object.keys(messagePayloadMappings).forEach((property) => {
+                messagePayload.push({
+                    ...messagePayloadMappings[property],
+                    name: property,
+                    type: this.getPropertyType(messagePayloadMappings[property])
+                });
+            });
+        }
+
+        return messagePayload;
+    }
+
+    getPayloadMessageEventByMessageId(modelEvents: Bpmn.BusinessObject[], messageId: string, messageEventId: string): Bpmn.BusinessObject {
+        return modelEvents.find((processEvent) => {
+            return processEvent
+                && processEvent.id !== messageEventId
+                && processEvent.eventDefinitions
+                && processEvent.eventDefinitions[0].$type === BpmnElement.MessageEventDefinition
+                && processEvent.eventDefinitions[0].messageRef
+                && processEvent.eventDefinitions[0].messageRef.id === messageId;
+        });
     }
 
 }

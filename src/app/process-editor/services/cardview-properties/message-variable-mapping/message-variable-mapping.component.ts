@@ -48,11 +48,14 @@ export class CardViewMessageVariableMappingComponent implements OnInit {
     optionsForParams: ParametersSelectOptions = {};
     paramName2VariableName: { [paramName: string]: string } = {};
 
-    private get processEvents(): Bpmn.BusinessObject[] {
+    private get modelEvents(): Bpmn.BusinessObject[] {
         if (this.property.data.element.parent.type === BpmnElement.Process) {
             return this.property.data.element.parent.businessObject.flowElements;
         } else {
-            return this.property.data.element.parent.businessObject.processRef.flowElements;
+            let flowElements = [];
+            this.property.data.element.parent.businessObject.$parent.participants.map(
+                (participant) => flowElements = flowElements.concat(participant.processRef.flowElements));
+            return flowElements;
         }
     }
 
@@ -60,9 +63,8 @@ export class CardViewMessageVariableMappingComponent implements OnInit {
         return this.property.data.id;
     }
 
-    constructor(
-        private store: Store<AmaState>,
-        private messageVariableMappingService: MessageVariableMappingService) { }
+    constructor(private store: Store<AmaState>,
+                private messageVariableMappingService: MessageVariableMappingService) { }
 
     ngOnInit() {
         this.store.select(selectSelectedProcess)
@@ -73,7 +75,7 @@ export class CardViewMessageVariableMappingComponent implements OnInit {
                 const processExtensionsModel = new ProcessExtensionsModel(process.extensions);
                 this.mapping = this.getMappingFromProcess(processExtensionsModel.getMappings(this.property.data.processId));
                 this.processVariables = Object.values(processExtensionsModel.getProperties(this.property.data.processId));
-                this.payloadProperties = this.parseMessagePayload(processExtensionsModel.getMappings(this.property.data.processId));
+                this.payloadProperties = this.parseMessagePayload(processExtensionsModel.getAllMappings());
                 this.dataSource = new MatTableDataSource(this.payloadProperties);
                 this.initMapping();
             });
@@ -93,34 +95,9 @@ export class CardViewMessageVariableMappingComponent implements OnInit {
         });
     }
 
-    parseMessagePayload(messageMappings): MessagePayload[] {
-        const messagePayload = [];
-        const payloadMessageEvent = this.getPayloadByMessageId(this.message.id);
-
-        if (!!payloadMessageEvent) {
-            const messagePayloadMappings = messageMappings[payloadMessageEvent.id] && messageMappings[payloadMessageEvent.id].inputs
-                ? messageMappings[payloadMessageEvent.id].inputs : {};
-
-            Object.keys(messagePayloadMappings).forEach((property) => {
-                messagePayload.push({
-                    ...messagePayloadMappings[property],
-                    name: property,
-                    type: this.messageVariableMappingService.getPropertyType(messagePayloadMappings[property])
-                });
-            });
-        }
-
-        return messagePayload;
-    }
-
-    getPayloadByMessageId(messageId: string): Bpmn.BusinessObject {
-        return this.processEvents.find((processEvent) => {
-            return processEvent
-                && processEvent.eventDefinitions
-                && processEvent.eventDefinitions[0].$type === 'bpmn:MessageEventDefinition'
-                && processEvent.eventDefinitions[0].messageRef
-                && processEvent.eventDefinitions[0].messageRef.id === messageId;
-        });
+    parseMessagePayload(messageMappings: ServiceParameterMappings): MessagePayload[] {
+        const payloadMessageEvent = this.messageVariableMappingService.getPayloadMessageEventByMessageId(this.modelEvents, this.message.id, this.elementId);
+        return this.messageVariableMappingService.parseMessagePayload(payloadMessageEvent, messageMappings);
     }
 
     getMappingFromProcess(mappings: ServiceParameterMappings): ServiceParameterMapping {
@@ -129,7 +106,6 @@ export class CardViewMessageVariableMappingComponent implements OnInit {
     }
 
     selectVariable(selection: string, param: ConnectorParameter) {
-
         this.mapping = { ...this.mapping };
 
         if (!selection) {
