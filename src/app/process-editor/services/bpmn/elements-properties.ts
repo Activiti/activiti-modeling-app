@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty, BpmnElement, DECISION_TASK_IMPLEMENTATION, SCRIPT_TASK_IMPLEMENTATION } from 'ama-sdk';
+import { BpmnProperty, BpmnElement, DECISION_TASK_IMPLEMENTATION, SCRIPT_TASK_IMPLEMENTATION, BpmnCompositeProperty } from 'ama-sdk';
 
 const isSignalEvent = (element: Bpmn.DiagramElement) => {
     return !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.SignalEventDefinition;
@@ -48,14 +48,14 @@ export const elementsProperties = {
         BpmnProperty.processName,
         BpmnProperty.isExecutable,
         BpmnProperty.documentation,
-        BpmnProperty.properties,
-        BpmnProperty.messages
+        BpmnCompositeProperty.properties,
+        BpmnCompositeProperty.messages
     ],
     [BpmnElement.Collaboration]: [
         BpmnProperty.modelName,
         BpmnProperty.id,
         BpmnProperty.documentation,
-        BpmnProperty.messages
+        BpmnCompositeProperty.messages
     ],
     [BpmnElement.IntermediateCatchEvent]: (element: Bpmn.DiagramElement) => [
         BpmnProperty.id,
@@ -149,10 +149,8 @@ export const elementsProperties = {
     [BpmnElement.UserTask]: [
         BpmnProperty.id,
         BpmnProperty.name,
+        BpmnCompositeProperty.assignment,
         BpmnProperty.documentation,
-        BpmnProperty.assignee,
-        BpmnProperty.candidateUsers,
-        BpmnProperty.candidateGroups,
         BpmnProperty.dueDate,
         BpmnProperty.multiInstanceType,
         BpmnProperty.priority,
@@ -171,9 +169,8 @@ export const elementsProperties = {
         ...(hasProcessInside(element) ? [
             BpmnProperty.processId,
             BpmnProperty.processName,
-            BpmnProperty.isExecutable,
-            BpmnProperty.properties,
-            BpmnProperty.messages
+            BpmnCompositeProperty.properties,
+            BpmnCompositeProperty.messages
         ] : []),
     ],
     [BpmnElement.Task]: [

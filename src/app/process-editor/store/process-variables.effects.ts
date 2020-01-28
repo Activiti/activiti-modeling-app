@@ -30,9 +30,9 @@ import {
     selectSelectedTheme,
     ProcessModelerServiceToken,
     ProcessModelerService,
-    BpmnProperty,
     VariablesComponent,
-    selectSelectedProcess
+    selectSelectedProcess,
+    BpmnCompositeProperty
 } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { Subject, of, zip } from 'rxjs';
@@ -66,7 +66,7 @@ export class ProcessVariablesEffects extends BaseEffects {
         ofType<UpdateProcessVariablesAction>(UPDATE_PROCESS_VARIABLES),
         map(action => {
             const shapeId = this.modelerService.getRootProcessElement().id;
-            this.modelerService.updateElementProperty(shapeId, BpmnProperty.properties, action.payload.properties);
+            this.modelerService.updateElementProperty(shapeId, BpmnCompositeProperty.properties, action.payload.properties);
         }),
         mergeMap(() => of(new SetAppDirtyStateAction(true)))
     );

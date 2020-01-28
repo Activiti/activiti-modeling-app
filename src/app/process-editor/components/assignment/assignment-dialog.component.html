@@ -1,0 +1,169 @@
+<h2 mat-dialog-title>{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.TITLE' | translate }}</h2>
+<form [formGroup]="assignmentForm">
+<mat-dialog-content>
+<mat-card class="ama-assignment-container assignment-dialog-content" data-automation-id="assignment-dialog">
+    <mat-card-content>
+        <div class="ama-assignment-selector-container">
+            <span class="ama-assignment-selector-title">
+                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.SUB_TITLE' | translate }}
+            </span>
+            <mat-form-field class="ama-assignment-selector">
+                <mat-select [value]="selectedMode" (selectionChange)="onSelect($event)">
+                    <mat-option
+                        *ngFor="let assignment of assignmentTypes"
+                        [attr.data-automation-id]="'ama-assignment-option-' + assignment.key"
+                        [value]=assignment.key>
+                        {{ assignment.label | translate }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <mat-tab-group mat-stretch-tabs [selectedIndex]="currentActiveTab" (selectedTabChange)="onTabChange($event)">
+            <mat-tab label="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.STATIC' | translate }}">
+                <ng-container *ngIf="isTabActive(0)">
+                    <ng-container [ngSwitch]="selectedMode">
+                        <mat-form-field *ngSwitchCase="'assignee'" class="ama-assignment-widget">
+                            <mat-chip-list #assigneeChipList>
+                                <mat-chip *ngIf="staticAssignee"
+                                [selectable]="true"
+                                [removable]="true"
+                                (removed)="onStaticAssigneeRemove()"
+                                data-automation-id="ama-assignee-chip">
+                                {{staticAssignee}}
+                                <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+                                </mat-chip>
+                                <input
+                                matInput
+                                [formControl]="assigneeStaticControl"
+                                placeholder="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.ASSIGNEE' | translate }}"
+                                data-automation-id="ama-assignment-static-single-user-input"
+                                [matChipInputFor]="assigneeChipList"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                [matChipInputAddOnBlur]="true"
+                                (matChipInputTokenEnd)="onStaticAssigneeChange($event)">
+                            </mat-chip-list>
+                        </mat-form-field>
+
+                    <ng-container *ngSwitchCase="'candidates'">
+                        <mat-form-field fxFlex class="ama-assignment-widget">
+                            <mat-chip-list #candidateUsersChipList >
+                                <mat-chip
+                                *ngFor="let staticCandidateUser of staticCandidateUsers"
+                                [selectable]="true"
+                                [removable]="true"
+                                (removed)="onStaticCandidateUsersRemove(staticCandidateUser)"
+                                [attr.data-automation-id]="'ama-candidate-user-chip-' + staticCandidateUser">
+                                {{staticCandidateUser}}
+                                <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+                                </mat-chip>
+                                <input
+                                matInput
+                                [formControl]="candidateUsersStaticControl"
+                                placeholder="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.CANDIDATE_USERS' | translate }}"
+                                data-automation-id="ama-assignment-static-candidate-users-input"
+                                [matChipInputFor]="candidateUsersChipList"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                [matChipInputAddOnBlur]="true"
+                                (matChipInputTokenEnd)="onStaticCandidateUsersChange($event)">
+                            </mat-chip-list>
+                            </mat-form-field>
+                            <mat-form-field fxFlex class="ama-assignment-widget">
+                            <mat-chip-list #candidateGroupsChipList>
+                                <mat-chip
+                                *ngFor="let staticCandidateGroup of staticCandidateGroups"
+                                [selectable]="true"
+                                [removable]="true"
+                                (removed)="onStaticCandidateGroupsRemove(staticCandidateGroup)"
+                                [attr.data-automation-id]="'ama-candidate-group-chip-' + staticCandidateGroup">
+                                {{staticCandidateGroup}}
+                                <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+                                </mat-chip>
+                                <input
+                                matInput
+                                [formControl]="candidateGroupsStaticControl"
+                                placeholder="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.CANDIDATE_GROUPS' | translate }}"
+                                data-automation-id="ama-assignment-static-candidate-groups-input"
+                                [matChipInputFor]="candidateGroupsChipList"
+                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                [matChipInputAddOnBlur]="true"
+                                (matChipInputTokenEnd)="onStaticCandidateGroupsChange($event)">
+                            </mat-chip-list>
+                            </mat-form-field>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </mat-tab>
+            <mat-tab label="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.IDENTITY' | translate }}">
+                <ng-container *ngIf="isTabActive(1)">
+                    <ng-container [ngSwitch]="selectedMode">
+                        <adf-cloud-people *ngSwitchCase="'assignee'"
+                            [preSelectUsers]="identityAssignee"
+                            [searchUserCtrl]="assigneeIdentityControl"
+                            [roles]="roles"
+                            [validate]="false"
+                            [title]="'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.ASSIGNEE'"
+                            (changedUsers)="onIdentityAssigneeChange($event)"
+                            [mode]="'single'">
+                        </adf-cloud-people>
+                        <ng-container *ngSwitchCase="'candidates'">
+                            <adf-cloud-people
+                                [preSelectUsers]="identityCandidateUsers"
+                                [searchUserCtrl]="candidateUsersIdentityControl"
+                                [roles]="roles"
+                                [validate]="false"
+                                [title]="'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.CANDIDATE_USERS'"
+                                (changedUsers)="onIdentityCandidateUsersChange($event)"
+                                [mode]="'multiple'">
+                            </adf-cloud-people>
+                            <adf-cloud-group
+                                [preSelectGroups]="identityCandidateGroups"
+                                [searchGroupsControl]="candidateGroupsIdentityControl"
+                                [roles]="roles"
+                                [title]="'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.CANDIDATE_GROUPS'"
+                                [mode]="'multiple'"
+                                (changedGroups)="onIdentityCandidateGroupsChange($event)">
+                            </adf-cloud-group>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </mat-tab>
+            <mat-tab label="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.EXPRESSION.TITLE' | translate }}">
+                <ng-container *ngIf="(processVariables$ | async)?.length; else noProcessVariables">
+                    <amasdk-code-editor
+                        [vsTheme]="vsTheme$ | async"
+                        [content]="expressionContent"
+                        [fileUri]="processFileUri$ | async"
+                        [language]="languageType"
+                        (changed)="onExpressionChange($event)">
+                    </amasdk-code-editor>
+                </ng-container>
+
+                <ng-template #noProcessVariables>
+                    <h5 data-automation-id="no-process-variables-error">
+                        {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.EXPRESSION.NO_PROCESS_VARIABLES' | translate }}
+                    </h5>
+                </ng-template>
+
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button
+        mat-button
+        id="ama-close-button"
+        (click)="onClose()">
+        {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.CLOSE' | translate }}
+    </button>
+    <button
+        mat-button
+        color="primary"
+        id="ama-assign-button"
+        [disabled]="!assignmentFormEnabled"
+        (click)="onAssign()">
+        {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.ASSIGN' | translate }}
+    </button>
+</mat-dialog-actions>
+</form>

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ModelExtensions, EntityProperties, ServiceParameterMappings, ServicesParameterConstants, ServicesConstants } from 'ama-sdk';
+import { ModelExtensions, EntityProperties, ServiceParameterMappings, ServicesParameterConstants, ServicesConstants, TaskAssignment, TaskAssignmentContent } from 'ama-sdk';
 
 export class ProcessExtensionsModel {
 
@@ -75,6 +75,25 @@ export class ProcessExtensionsModel {
         return mappings;
     }
 
+    setAssignments(processId: string, serviceId: string, assignment: TaskAssignment): ModelExtensions {
+        const processExtensions = this.extensions[processId] ? this.extensions[processId] : this.createExtensionsObject();
+        if (processExtensions.assignments === undefined) {
+            processExtensions.assignments = {};
+        }
+
+        if (Object.values(assignment).length) {
+            processExtensions.assignments[serviceId] = assignment;
+        } else {
+            delete processExtensions.assignments[serviceId];
+        }
+        this.extensions[processId] = processExtensions;
+        return this.extensions;
+    }
+
+    getAssignments(processId: string): TaskAssignmentContent {
+        return this.extensions[processId] ? this.extensions[processId].assignments : {};
+    }
+
     setConstants(processId: string, elementId: string, constants: ServicesParameterConstants): ModelExtensions {
         const processExtensions = this.extensions[processId] ? this.extensions[processId] : this.createExtensionsObject();
         if (Object.values(constants).length) {
@@ -94,7 +113,8 @@ export class ProcessExtensionsModel {
         return {
             constants: {},
             mappings: {},
-            properties: {}
+            properties: {},
+            assignments: {}
         };
     }
 }

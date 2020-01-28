@@ -1,0 +1,54 @@
+@mixin ama-assignment-dialog($theme) {
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    ama-assignment-dialog {
+        .mat-card {
+            box-shadow: none !important;
+        }
+
+        mat-dialog-container {
+            overflow: hidden;
+        }
+
+        .code-editor {
+            min-height: 180px;
+        }
+    }
+
+    .ama-assignment-container {
+        &.assignment-dialog-content {
+            .mat-tab-body.mat-tab-body-active {
+                min-height: 210px;
+            }
+            .mat-tab-body-content  {
+                overflow: hidden;
+            }
+        }
+
+        .ama-assignment-selector-container {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+
+            .ama-assignment-selector-title {
+                line-height: 33px;
+                font-size: 18px;
+            }
+
+            .ama-assignment-selector {
+                width: 300px;
+            }
+        }
+
+        .ama-assignment-placeholder {
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+
+        .ama-assignment-widget {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

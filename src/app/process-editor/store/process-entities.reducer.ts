@@ -35,7 +35,14 @@ import {
 } from './process-editor.actions';
 import { UPDATE_PROCESS_VARIABLES, UpdateProcessVariablesAction } from './process-variables.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState, processAdapter } from './process-entities.state';
-import { UPDATE_SERVICE_PARAMETERS, UpdateServiceParametersAction, LEAVE_PROJECT, ProcessExtensionsModel } from 'ama-sdk';
+import {
+    UPDATE_SERVICE_PARAMETERS,
+    UpdateServiceParametersAction,
+    LEAVE_PROJECT,
+    ProcessExtensionsModel,
+    UPDATE_TASK_ASSIGNMENTS,
+    UpdateServiceAssignmentAction
+} from 'ama-sdk';
 
 const cloneDeep = require('lodash/cloneDeep');
 
@@ -51,10 +58,10 @@ export function processEntitiesReducer(
             return { ...state, loading: true };
 
         case GET_PROCESSES_SUCCESS:
-            return getProcessesSuccess(state, <GetProcessesSuccessAction> action);
+            return getProcessesSuccess(state, <GetProcessesSuccessAction>action);
 
         case DELETE_PROCESS_SUCCESS:
-            return removeProcess(state, <DeleteProcessSuccessAction> action);
+            return removeProcess(state, <DeleteProcessSuccessAction>action);
 
         case UPDATE_PROCESS_SUCCESS:
             return updateProcess(state, <UpdateProcessSuccessAction>action);
@@ -63,16 +70,19 @@ export function processEntitiesReducer(
             return getProcessSuccess(state, <GetProcessSuccessAction>action);
 
         case UPDATE_PROCESS_VARIABLES:
-            return updateProcessVariables(state, <UpdateProcessVariablesAction> action);
+            return updateProcessVariables(state, <UpdateProcessVariablesAction>action);
 
         case UPDATE_SERVICE_PARAMETERS:
-            return updateProcessVariablesMapping(state, <UpdateServiceParametersAction> action);
+            return updateProcessVariablesMapping(state, <UpdateServiceParametersAction>action);
+
+        case UPDATE_TASK_ASSIGNMENTS:
+            return updateProcessTaskAssignments(state, <UpdateServiceAssignmentAction>action);
 
         case UPDATE_PROCESS_EXTENSIONS:
-            return updateExtensions(state, <UpdateProcessExtensionsAction> action);
+            return updateExtensions(state, <UpdateProcessExtensionsAction>action);
 
         case REMOVE_ELEMENT_MAPPING:
-            return removeElementMapping(state, <RemoveElementMappingAction> action);
+            return removeElementMapping(state, <RemoveElementMappingAction>action);
 
         case LEAVE_PROJECT:
             return {
@@ -104,10 +114,12 @@ function removeElementMapping(state: ProcessEntitiesState, action: RemoveElement
 function updateExtensions(state: ProcessEntitiesState, action: UpdateProcessExtensionsAction): ProcessEntitiesState {
     return {
         ...state,
-        entities: { ...state.entities, [action.payload.processId]: {
-            ...state.entities[action.payload.processId],
-            extensions: action.payload.extensions
-        }}
+        entities: {
+            ...state.entities, [action.payload.processId]: {
+                ...state.entities[action.payload.processId],
+                extensions: action.payload.extensions
+            }
+        }
     };
 }
 
@@ -117,10 +129,12 @@ function updateProcessVariables(state: ProcessEntitiesState, action: UpdateProce
 
     return {
         ...state,
-        entities: { ...state.entities, [action.payload.modelId]: {
-            ...state.entities[action.payload.modelId],
-            extensions: newExtensions
-        } }
+        entities: {
+            ...state.entities, [action.payload.modelId]: {
+                ...state.entities[action.payload.modelId],
+                extensions: newExtensions
+            }
+        }
     };
 }
 
@@ -135,10 +149,27 @@ function updateProcessVariablesMapping(state: ProcessEntitiesState, action: Upda
 
     return {
         ...state,
-        entities: { ...state.entities, [action.modelId]: {
-            ...state.entities[action.modelId],
-            extensions: newExtensions
-        } }
+        entities: {
+            ...state.entities, [action.modelId]: {
+                ...state.entities[action.modelId],
+                extensions: newExtensions
+            }
+        }
+    };
+}
+
+function updateProcessTaskAssignments(state: ProcessEntitiesState, action: UpdateServiceAssignmentAction): ProcessEntitiesState {
+    const oldExtensions = cloneDeep(state.entities[action.modelId].extensions);
+    const newExtensions = new ProcessExtensionsModel(oldExtensions).setAssignments(action.processId, action.serviceId, action.taskAssignment);
+
+    return {
+        ...state,
+        entities: {
+            ...state.entities, [action.modelId]: {
+                ...state.entities[action.modelId],
+                extensions: newExtensions
+            }
+        }
     };
 }
 

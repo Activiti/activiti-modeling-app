@@ -1,0 +1,28 @@
+{
+    "$schema":"http://json-schema.org/schema#",
+    "title":"example schema",
+    "type":"object",
+    "properties":{
+       "candidateGroups":{
+          "type":"string",
+          "pattern":"\\${([^}]+)}"
+       },
+       "candidateUsers":{
+          "type":"string",
+          "pattern":"\\${([^}]+)}"
+       }
+    },
+    "additionalProperties":false,
+    "anyOf":[
+       {
+          "required":[
+             "candidateUsers"
+          ]
+       },
+       {
+          "required":[
+             "candidateGroups"
+          ]
+       }
+    ]
+ }

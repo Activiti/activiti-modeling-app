@@ -20,6 +20,8 @@ import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { CardViewTextItemComponent, CoreModule } from '@alfresco/adf-core';
+import { ProcessServicesCloudModule } from '@alfresco/adf-process-services-cloud';
+
 import { EffectsModule } from '@ngrx/effects';
 import { ProcessEditorComponent } from './components/process-editor/process-editor.component';
 import { ProcessModelerComponent } from './components/process-modeler/process-modeler.component';
@@ -51,7 +53,8 @@ import {
     WorkbenchLayoutModule,
     provideLoadableModelSchema,
     PROCESS,
-    MODEL_SCHEMA_TYPE
+    MODEL_SCHEMA_TYPE,
+    BpmnCompositeProperty
 } from 'ama-sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { ProcessDiagramLoaderService } from './services/process-diagram-loader.service';
@@ -60,7 +63,7 @@ import { CardViewImplementationItemComponent } from './services/cardview-propert
 import { CardViewDecisionTaskItemComponent } from './services/cardview-properties/decision-task-item/decision-task-item.component';
 import { CardViewScriptTaskItemComponent } from './services/cardview-properties/script-task-item/script-task-item.component';
 import { ProcessPropertiesComponent } from './components/process-properties/process-properties.component';
-import { MatChipsModule, MatTooltipModule } from '@angular/material';
+import { MatChipsModule, MatTooltipModule, MatCardModule, MatDialogModule } from '@angular/material';
 import { getProcessesFilterProvider } from './extension/processes-filter.extension';
 import { getProcessCreatorProvider } from './extension/process-creator.extension';
 import { getProcessUploaderProvider } from './extension/process-uploader.extension';
@@ -91,13 +94,18 @@ import { CardViewMessageVariableMappingComponent } from './services/cardview-pro
 import { CardViewDueDateItemComponent } from './services/cardview-properties/due-date-item/due-date-item.component';
 import { MessagesDialogComponent } from './components/process-modeler/messages/messages-dialog.component';
 import { MessagesService } from './services/messages.service';
+import { AssignmentDialogComponent } from './components/assignment/assignment-dialog.component';
+import { ProcessTaskAssignmentEffects } from './store/process-task-assignment.effects';
+import { CardViewTaskAssignmentItemComponent } from './services/cardview-properties/task-assignment-item/task-assignment-item.component';
+import { TaskAssignmentService } from './services/cardview-properties/task-assignment-item/task-assignment.service';
 
 @NgModule({
     imports: [
         CommonModule,
         CoreModule.forChild(),
+        ProcessServicesCloudModule,
         ProcessEditorRoutingModule,
-        EffectsModule.forFeature([ProcessEditorEffects, ProcessVariablesEffects, ProcessMessagesEffects]),
+        EffectsModule.forFeature([ProcessEditorEffects, ProcessVariablesEffects, ProcessMessagesEffects, ProcessTaskAssignmentEffects]),
         AmaStoreModule.registerEntity({
             key: PROCESSES_ENTITY_KEY,
             reducer: processEntitiesReducer
@@ -108,6 +116,8 @@ import { MessagesService } from './services/messages.service';
         VariablesModule,
         MatTooltipModule,
         MatChipsModule,
+        MatCardModule,
+        MatDialogModule,
         CodeEditorModule,
         DragDropModule,
         InputMappingTableModule,
@@ -135,10 +145,13 @@ import { MessagesService } from './services/messages.service';
         CardViewProcessMessagesItemComponent,
         CardViewMessagePayloadItemComponent,
         CardViewMultiInstanceItemComponent,
-        CardViewDueDateItemComponent
+        CardViewDueDateItemComponent,
+        AssignmentDialogComponent,
+        CardViewTaskAssignmentItemComponent
     ],
     entryComponents: [
         CardViewProcessVariablesItemComponent,
+        CardViewTaskAssignmentItemComponent,
         CardViewImplementationItemComponent,
         CardViewDecisionTaskItemComponent,
         CardViewScriptTaskItemComponent,
@@ -154,7 +167,8 @@ import { MessagesService } from './services/messages.service';
         MessagesDialogComponent,
         CardViewMultiInstanceItemComponent,
         CardViewMessagePayloadItemComponent,
-        CardViewDueDateItemComponent
+        CardViewDueDateItemComponent,
+        AssignmentDialogComponent
     ],
     exports: [ProcessEditorRoutingModule],
     providers: [
@@ -167,12 +181,14 @@ import { MessagesService } from './services/messages.service';
         CardViewPropertiesFactory,
         AmaTitleService,
         MessagesService,
+        TaskAssignmentService,
         Title,
         provideTranslations('process-editor'),
         ...providePaletteHandler('tool', ToolsHandler),
         ...providePaletteHandler('element', ElementCreationHandler),
         providePaletteElements(paletteElements),
-        providePropertyHandler(BpmnProperty.properties, CardViewProcessVariablesItemComponent),
+        providePropertyHandler(BpmnCompositeProperty.properties, CardViewProcessVariablesItemComponent),
+        providePropertyHandler(BpmnCompositeProperty.assignment, CardViewTaskAssignmentItemComponent),
         providePropertyHandler(BpmnProperty.implementation, CardViewImplementationItemComponent),
         providePropertyHandler(BpmnProperty.decisionTask, CardViewDecisionTaskItemComponent),
         providePropertyHandler(BpmnProperty.scriptTask, CardViewScriptTaskItemComponent),
@@ -183,7 +199,7 @@ import { MessagesService } from './services/messages.service';
         providePropertyHandler(BpmnProperty.calledElement, CardViewCalledItemItemComponent),
         providePropertyHandler(BpmnProperty.timerEventDefinition, CardViewTimerDefinitionItemComponent),
         providePropertyHandler(BpmnProperty.messageRef, CardViewMessageItemComponent),
-        providePropertyHandler(BpmnProperty.messages, CardViewProcessMessagesItemComponent),
+        providePropertyHandler(BpmnCompositeProperty.messages, CardViewProcessMessagesItemComponent),
         providePropertyHandler(BpmnProperty.multiInstanceType, CardViewMultiInstanceItemComponent),
         providePropertyHandler(BpmnProperty.messagePayload, CardViewMessagePayloadItemComponent),
         providePropertyHandler(BpmnProperty.dueDate, CardViewDueDateItemComponent),

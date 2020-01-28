@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { ServiceParameterMappings, ServicesParameterConstants } from '../api/types';
+import { ServiceParameterMappings, ServicesParameterConstants, TaskAssignment } from '../api/types';
 
 export const UPDATE_SERVICE_PARAMETERS = '[ProcessEditor] Update Service Parameters';
 export class UpdateServiceParametersAction implements Action {
@@ -33,4 +33,15 @@ export class UpdateServiceParametersAction implements Action {
 export const AUTO_SAVE_PROCESS = '[ProcessEditor] Auto save process';
 export class AutoSaveProcessAction implements Action {
     readonly type = AUTO_SAVE_PROCESS;
+}
+
+export const UPDATE_TASK_ASSIGNMENTS = '[ProcessEditor] Update Task Assignments';
+export class UpdateServiceAssignmentAction implements Action {
+    readonly type = UPDATE_TASK_ASSIGNMENTS;
+    constructor(
+        public modelId: string,
+        public processId: string,
+        public serviceId: string,
+        public taskAssignment: TaskAssignment,
+    ) {}
 }

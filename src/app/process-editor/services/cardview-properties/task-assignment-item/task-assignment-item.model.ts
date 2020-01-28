@@ -15,14 +15,13 @@
  * limitations under the License.
  */
 
- export * from './confirmation.dialog';
- export * from './create-entity.dialog';
- export * from './delete-entity.dialog';
- export * from './download-entity.dialog';
- export * from './edit-entity.dialog';
- export * from './leave-page.dialog';
- export * from './process-variables.dialog';
- export * from './save-entity.dialog';
- export * from './variables.dialog';
- export * from './validation.dialog';
- export * from './task-assignment.dialog';
+import { CardViewBaseItemModel, CardViewItem, DynamicComponentModel } from '@alfresco/adf-core';
+import { BpmnCompositeProperty } from 'ama-sdk';
+
+export class CardViewTaskAssignmentItemModel extends CardViewBaseItemModel implements CardViewItem, DynamicComponentModel {
+    type = BpmnCompositeProperty.assignment;
+
+    get displayValue() {
+        return this.default;
+    }
+}

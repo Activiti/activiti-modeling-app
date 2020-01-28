@@ -18,7 +18,7 @@
 import { Observable } from 'rxjs';
 import { InjectionToken } from '@angular/core';
 import { MESSAGE } from './../store/app.state';
-import { BpmnProperty } from './properties';
+import { BpmnProperty, BpmnCompositeProperty } from './properties';
 
 export interface ModelerInitOptions {
     clickHandler: (event) => any | void;
@@ -38,7 +38,7 @@ export interface ProcessModelerService {
     getFromModeler(token: Bpmn.NamedDiagramService): any;
     getElement(shapeId: string): Bpmn.DiagramElement;
     getRootProcessElement(): Bpmn.DiagramElement;
-    updateElementProperty(shapeId: string, propertyName: BpmnProperty, value: any): void;
+    updateElementProperty(shapeId: string, propertyName: BpmnProperty | BpmnCompositeProperty, value: any): void;
     loadXml(xml: string): Observable<void>;
     export(type?: string): Promise<any>;
     zoomIn(): void;

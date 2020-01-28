@@ -21,6 +21,7 @@ import { Backend,
     getBackend,
     LoginPage,
     TaskPropertiesCardPage,
+    TaskAssignmentDialog,
     ProcessModelerComponent,
     ProcessContentPage,
     ProjectContentPage,
@@ -41,6 +42,7 @@ describe('Validate project', () => {
     const logHistoryPage = new LogHistoryPage();
     const validationDialog = new ValidationDialog();
     const taskPropertiesCard = new TaskPropertiesCardPage();
+    const taskAssignmentDialog = new TaskAssignmentDialog();
     const processModelerComponent = new ProcessModelerComponent();
     const toolbar = new Toolbar();
     let processContentPage: ProcessContentPage;
@@ -80,7 +82,10 @@ describe('Validate project', () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await processModelerComponent.addUserTask();
-        await taskPropertiesCard.setAssignee('test');
+        await taskPropertiesCard.openAssignmentDialog();
+        await taskAssignmentDialog.isLoaded();
+        await taskAssignmentDialog.setAssignee('userAssignee');
+        await taskAssignmentDialog.assign();
         await processContentPage.save();
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
 

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty, BpmnCompositeProperty } from 'ama-sdk';
 import { idHandler } from './id.handler';
 import { nameHandler } from './name.handler';
 import { documentationHandler } from './documentation.handler';
@@ -64,7 +64,7 @@ export const handlers = {
     [BpmnProperty.calledElement]: calledElementHandler,
     [BpmnProperty.conditionExpression]: expressionHandler,
     [BpmnProperty.formKey]: formSelectorHandler,
-    [BpmnProperty.properties]: processPropertyHandler,
+    [BpmnCompositeProperty.properties]: processPropertyHandler,
     [BpmnProperty.defaultSequenceFlow]: defaultSequenceFlowHandler,
     [BpmnProperty.signalRef]: signalRefHandler,
     [BpmnProperty.signalScope]: signalScopeHandler,
@@ -72,7 +72,7 @@ export const handlers = {
     [BpmnProperty.errorRef]: errorRefHandler,
     [BpmnProperty.messageRef]: messageHandler,
     [BpmnProperty.correlationKey]: correlationKeyHandler,
-    [BpmnProperty.messages]: processMessagesHandler,
+    [BpmnCompositeProperty.messages]: processMessagesHandler,
     [BpmnProperty.multiInstanceType]: multiInstanceHandler,
     [BpmnProperty.textAnnotation]: textAnnotationHandler,
     [BpmnProperty.isExecutable]: isExecutableHandler

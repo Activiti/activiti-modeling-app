@@ -16,7 +16,7 @@
  */
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ServiceParameterMappings, EntityProperty } from '../api/types';
+import { ServiceParameterMappings, EntityProperty, TaskAssignmentContent } from '../api/types';
 import { getEntitiesState } from '../store/entity.selectors';
 import { selectOpenedModel } from '../store/app.selectors';
 import { ProcessExtensionsModel } from './process-extensions.model';
@@ -67,6 +67,19 @@ export const selectProcessMappingsFor = (processId: string, elementId: string) =
                 mapping = new ProcessExtensionsModel(process.extensions).getMappings(processId);
             }
             return mapping && mapping[elementId] ? mapping[elementId] : {};
+        }
+    );
+};
+
+export const selectProcessTaskAssignmentFor = (processId: string, serviceId: string) => {
+    return createSelector(
+        selectSelectedProcess,
+        (process) => {
+            if (!process || !process.extensions) {
+                return {};
+            }
+            const assignments = <TaskAssignmentContent> new ProcessExtensionsModel(process.extensions).getAssignments(processId);
+            return assignments && assignments[serviceId] ? assignments[serviceId] : {};
         }
     );
 };

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty, BpmnCompositeProperty } from 'ama-sdk';
 import { createIdProperty } from './id-cardview-property';
 import { createNameProperty } from './name-cardview-property';
 import { createImplementationProperty } from './implementation-cardview-property';
@@ -46,6 +46,7 @@ import { createMessagePayloadProperty } from './messagePayload-cardview-property
 import { createTextAnnotationProperty } from './text-annotation-cardview-property';
 import { createModelNameProperty } from './model-name-cardview-property';
 import { createIsExecutableProperty } from './isExecutable-cardview-property';
+import { createAssignmentProperty } from './assignment-cardview-property';
 import { createProcessIdProperty } from './process-id-cardview-property';
 
 export const bpmn2cardView = {
@@ -57,12 +58,13 @@ export const bpmn2cardView = {
     [BpmnProperty.scriptTask]: createScriptTaskProperty,
     [BpmnProperty.variables]: createVariablesProperty,
     [BpmnProperty.assignee]: createAssigneeProperty,
+    [BpmnCompositeProperty.assignment]: createAssignmentProperty,
     [BpmnProperty.candidateGroups]: createCandidateGroupsProperty,
     [BpmnProperty.candidateUsers]: createCandidateUsersProperty,
     [BpmnProperty.dueDate]: createDueDateProperty,
     [BpmnProperty.priority]: createPriorityProperty,
     [BpmnProperty.calledElement]: createCalledElementProperty,
-    [BpmnProperty.properties]: createProcessVariablesProperty,
+    [BpmnCompositeProperty.properties]: createProcessVariablesProperty,
     [BpmnProperty.conditionExpression]: createExpressionProperty,
     [BpmnProperty.formKey]: createFormKeyProperty,
     [BpmnProperty.processName]: createProcessNameProperty,
@@ -74,7 +76,7 @@ export const bpmn2cardView = {
     [BpmnProperty.signalScope]: createSignalScopeProperty,
     [BpmnProperty.timerEventDefinition]: createTimerDefinitionProperty,
     [BpmnProperty.messageRef]: createMessageProperty,
-    [BpmnProperty.messages]: createProcessMessagesProperty,
+    [BpmnCompositeProperty.messages]: createProcessMessagesProperty,
     [BpmnProperty.correlationKey]: createCorrelationKeyProperty,
     [BpmnProperty.multiInstanceType]: createMultiInstanceProperty,
     [BpmnProperty.messagePayload]: createMessagePayloadProperty,

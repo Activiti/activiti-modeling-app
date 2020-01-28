@@ -16,10 +16,10 @@
  */
 
 import { FactoryProps } from './cardview-properties.factory';
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnCompositeProperty } from 'ama-sdk';
 import { CardViewProcessMessagesItemModel } from './process-messages-item/process-messages-item.model';
 
-const propertyName = BpmnProperty.messages;
+const propertyName = BpmnCompositeProperty.messages;
 
 export function createProcessMessagesProperty({ element }: FactoryProps) {
     return new CardViewProcessMessagesItemModel({

@@ -27,11 +27,19 @@ import {
     Json,
     LogFactoryService,
     AmaState,
-    MODEL_SCHEMAS_TO_LOAD
+    MODEL_SCHEMAS_TO_LOAD,
+    AssignmentMode
 } from 'ama-sdk';
 import { tap, map, catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { getBackendLogInitiator } from './application.constants';
+import assigneeSchema from './../../../../resources/schema/assignee-schema.json';
+import candidateSchema from './../../../../resources/schema/candidates-schema.json';
+
+export enum TaskAssignmentSchema {
+    assigneeURI = 'TASK-ASSIGNEE-EXTENSION',
+    candidatesURI = 'TASK-CANDIDATE-EXTENSION'
+}
 
 @Injectable()
 export class AmaModelSchemaLoaderGuard implements CanActivate {
@@ -44,6 +52,7 @@ export class AmaModelSchemaLoaderGuard implements CanActivate {
     ) {}
 
     canActivate():  Observable<boolean> {
+        this.registerTemporaryTaskAssignmentSchema();
         const schemaLoaders = this.schemas.map<Observable<Json>>(this.registerMonacoJsonSchema.bind(this));
         return zip(...schemaLoaders).pipe(
             map(() => true),
@@ -63,5 +72,10 @@ export class AmaModelSchemaLoaderGuard implements CanActivate {
                 this.codeEditorService.addSchema(schemaKey, getFileUriPattern(modelType, 'json'), schema);
             })
         );
+    }
+
+    private registerTemporaryTaskAssignmentSchema() {
+        this.codeEditorService.addSchema(TaskAssignmentSchema.assigneeURI, getFileUriPattern(AssignmentMode.assignee, 'json'), assigneeSchema);
+        this.codeEditorService.addSchema(TaskAssignmentSchema.candidatesURI, getFileUriPattern(AssignmentMode.candidates, 'json'), candidateSchema);
     }
 }

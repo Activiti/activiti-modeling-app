@@ -170,10 +170,32 @@ export interface ServicesParameterConstants {
     };
 }
 
+export enum AssignmentMode {
+    candidates = 'candidates',
+    assignee = 'assignee'
+}
+
+export enum AssignmentType {
+    static = 'static',
+    identity = 'identity',
+    expression = 'expression'
+}
+
+export interface TaskAssignment {
+    id: string;
+    type: AssignmentType;
+    assignment: AssignmentMode;
+}
+
+export interface TaskAssignmentContent {
+    [serviceTaskId: string]: TaskAssignment;
+}
+
 export interface ProcessExtensionsContent {
     properties: EntityProperties;
     mappings: ServicesParameterMappings;
     constants: ServicesConstants;
+    assignments?: TaskAssignmentContent;
 }
 
 export interface ProcessExtensions {

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter, Input, OnDestroy, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnDestroy, ChangeDetectionStrategy, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { NgxEditorModel, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 const memoize = require('lodash/memoize');
 
@@ -47,7 +47,7 @@ const DEFAULT_OPTIONS = {
     templateUrl: './code-editor.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CodeEditorComponent implements OnDestroy, OnInit {
+export class CodeEditorComponent implements OnDestroy, OnInit, OnChanges {
     @Input() vsTheme = 'vs-light';
     @Input() options: EditorOptions;
     @Input() fileUri: string;
@@ -69,6 +69,12 @@ export class CodeEditorComponent implements OnDestroy, OnInit {
             language: this.language,
             uri: this.fileUri
         };
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.fileUri && changes.fileUri.currentValue) {
+            this.editorModel = Object.assign({}, this.editorModel, { uri: changes.fileUri.currentValue });
+        }
     }
 
     get editorOptions(): EditorOptions {

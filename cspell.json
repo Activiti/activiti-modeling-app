@@ -35,6 +35,7 @@
         "datepicker",
         "amalogin",
         "arrayize",
+        "arrayitem",
         "minlength",
         "generalmodel",
         "moddle",
@@ -53,6 +54,7 @@
         "twilio",
         "docusign",
         "docgen",
-        "transpiled"
+        "transpiled",
+        "keycodes"
     ]
 }

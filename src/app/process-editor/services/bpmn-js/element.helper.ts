@@ -16,14 +16,14 @@
  */
 
 import { handlers } from './property-handlers/property.handlers';
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty, BpmnCompositeProperty } from 'ama-sdk';
 
 export const ElementHelper = {
     getType(element: Bpmn.DiagramElement): string {
         return element.businessObject.$type;
     },
 
-    getProperty(element: Bpmn.DiagramElement, propertyName: BpmnProperty): any {
+    getProperty(element: Bpmn.DiagramElement, propertyName: BpmnProperty | BpmnCompositeProperty): any {
         try {
             const handler = getHandler(propertyName);
             const get = handler.get;

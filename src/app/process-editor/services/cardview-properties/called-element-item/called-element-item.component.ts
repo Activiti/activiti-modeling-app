@@ -62,10 +62,11 @@ export class CardViewCalledItemItemComponent implements OnInit, OnDestroy {
 
         this.store.select(selectProcessesArray).pipe(
             switchMap(processes => zip(of(processes), this.store.select(selectSelectedProcess))),
-            map(([processes, selectedProcess]) => processes.filter(process => process.id !== selectedProcess.id))
+            map(([processes, selectedProcess]) => processes.filter(process => process.id !== selectedProcess.id)),
+            takeUntil(this.onDestroy$)
         ).subscribe((processDefinitions) => {
             this.processDefinitions = processDefinitions;
-            this.loadActivity();
+            this.loadCallActivity();
         });
 
         this.store.select(selectProcessMappingsFor(this.property.data.processId, this.property.data.id))
@@ -92,7 +93,7 @@ export class CardViewCalledItemItemComponent implements OnInit, OnDestroy {
         }
     }
 
-    loadActivity() {
+    loadCallActivity() {
         this.processDefinition = this.processDefinitions.find((processDefinition) => !!processDefinition.extensions[this.processId]);
         if (this.processDefinition) {
             this.onProcessDefinitionSelected();

@@ -20,7 +20,7 @@ import {
     ProcessModelerServiceToken,
     ProcessModelerService,
     BpmnElement,
-    BpmnProperty
+    BpmnCompositeProperty
 } from 'ama-sdk';
 
 @Injectable({
@@ -60,6 +60,6 @@ export class MessagesService {
     saveMessages(messages: Bpmn.BusinessObject[]) {
         this.rootElements = this.rootElements.filter((element) => element.$type !== BpmnElement.Message);
         messages.forEach((message) => this.rootElements.push(message));
-        this.processModelerService.updateElementProperty(this.rootProcessElement.id, BpmnProperty.messages, messages);
+        this.processModelerService.updateElementProperty(this.rootProcessElement.id, BpmnCompositeProperty.messages, messages);
     }
 }

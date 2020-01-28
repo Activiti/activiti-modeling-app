@@ -19,8 +19,8 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit, Inj
 import { CardViewItem, CardViewUpdateService, UpdateNotification, CardItemTypeService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { selectSelectedElement } from '../../store/process-editor.selectors';
-import { map, takeUntil } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { CardViewPropertiesFactory } from '../../services/cardview-properties/cardview-properties.factory';
 import {
     PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS,

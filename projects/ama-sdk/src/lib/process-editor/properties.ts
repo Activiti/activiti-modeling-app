@@ -33,7 +33,6 @@ export enum BpmnProperty {
     dueDate = 'dueDate',
     priority = 'priority',
     calledElement = 'calledElement',
-    properties = 'properties',
     conditionExpression = 'conditionExpression',
     processName = 'processName',
     processId = 'processId',
@@ -46,10 +45,15 @@ export enum BpmnProperty {
     correlationKey = 'correlationKey',
     multiInstanceType = 'multiInstanceType',
     messageExpression = 'messageExpression',
-    messages = 'messages',
     messagePayload = 'messagePayload',
     textAnnotation = 'textAnnotation',
     isExecutable = 'isExecutable'
+}
+
+export enum BpmnCompositeProperty {
+    assignment = 'assignment',
+    properties = 'properties',
+    messages = 'messages'
 }
 
 export const PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS = new InjectionToken<ProcessEditorCustomProperty[]>('process-editor-custom-property-handlers');
@@ -59,7 +63,7 @@ export interface ProcessEditorCustomProperty {
     implementationClass: Type<{}>;
 }
 
-export function providePropertyHandler(type: BpmnProperty, implementationClass: Type<{}>) {
+export function providePropertyHandler(type: BpmnProperty | BpmnCompositeProperty, implementationClass: Type<{}>) {
     return {
         provide: PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS,
         useValue: { type, implementationClass: implementationClass },

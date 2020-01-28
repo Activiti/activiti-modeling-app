@@ -15,14 +15,18 @@
  * limitations under the License.
  */
 
- export * from './confirmation.dialog';
- export * from './create-entity.dialog';
- export * from './delete-entity.dialog';
- export * from './download-entity.dialog';
- export * from './edit-entity.dialog';
- export * from './leave-page.dialog';
- export * from './process-variables.dialog';
- export * from './save-entity.dialog';
- export * from './variables.dialog';
- export * from './validation.dialog';
- export * from './task-assignment.dialog';
+import { FactoryProps } from './cardview-properties.factory';
+import { BpmnCompositeProperty } from 'ama-sdk';
+import { CardViewTaskAssignmentItemModel } from './task-assignment-item/task-assignment-item.model';
+
+const propertyName = BpmnCompositeProperty.assignment;
+
+export function createAssignmentProperty({ element }: FactoryProps) {
+    return new CardViewTaskAssignmentItemModel({
+        label: '',
+        value: '',
+        key: propertyName,
+        default: '',
+        editable: false
+    });
+}

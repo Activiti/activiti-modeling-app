@@ -16,10 +16,10 @@
  */
 
 import { CardViewBaseItemModel, CardViewItem, DynamicComponentModel } from '@alfresco/adf-core';
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnCompositeProperty } from 'ama-sdk';
 
 export class CardViewProcessMessagesItemModel extends CardViewBaseItemModel implements CardViewItem, DynamicComponentModel {
-    type = BpmnProperty.messages;
+    type = BpmnCompositeProperty.messages;
 
     get displayValue(): string {
         return this.default;

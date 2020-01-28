@@ -31,6 +31,7 @@ import {
     ProcessPropertiesCard,
     Toolbar,
     TaskPropertiesCardPage,
+    TaskAssignmentDialog,
     UtilFile,
     ValidationDialog } from 'ama-testing/e2e';
 import { browser } from 'protractor';
@@ -49,6 +50,7 @@ describe('Create process', async () => {
     const snackBar = new SnackBar();
     const processModelerComponent = new ProcessModelerComponent(testConfig);
     const processProperties = new ProcessPropertiesCard();
+    const taskAssignmentDialog = new TaskAssignmentDialog();
     const taskProperties = new TaskPropertiesCardPage();
     const processValidation = new ValidationDialog();
     const toolbar = new Toolbar();
@@ -137,8 +139,12 @@ describe('Create process', async () => {
         await expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
         await processValidation.isDialogDismissed();
         await processModelerComponent.selectStartEvent();
+
         await processModelerComponent.selectUserTask();
-        await taskProperties.setAssignee('userAssignee');
+        await taskProperties.openAssignmentDialog();
+        await taskAssignmentDialog.isLoaded();
+        await taskAssignmentDialog.setAssignee('userAssignee');
+        await taskAssignmentDialog.assign();
 
         await processContentPage.save();
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
@@ -160,7 +166,12 @@ describe('Create process', async () => {
         await expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
         await processModelerComponent.selectStartEvent();
         await processModelerComponent.selectUserTask();
-        await taskProperties.setCandidateUser('candidateUser');
+
+        await taskProperties.openAssignmentDialog();
+        await taskAssignmentDialog.isLoaded();
+        await taskAssignmentDialog.selectAssignToCandidatesOption();
+        await taskAssignmentDialog.setCandidateUsers('candidateUser');
+        await taskAssignmentDialog.assign();
 
         await processContentPage.save();
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
@@ -182,7 +193,12 @@ describe('Create process', async () => {
         await expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
         await processModelerComponent.selectStartEvent();
         await processModelerComponent.selectUserTask();
-        await taskProperties.setCandidateGroup('CandidateGroup');
+
+        await taskProperties.openAssignmentDialog();
+        await taskAssignmentDialog.isLoaded();
+        await taskAssignmentDialog.selectAssignToCandidatesOption();
+        await taskAssignmentDialog.setCandidateUsers('CandidateGroup');
+        await taskAssignmentDialog.assign();
 
         await processContentPage.save();
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');

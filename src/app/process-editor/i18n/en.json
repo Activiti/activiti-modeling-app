@@ -66,6 +66,8 @@
             "OUTPUTS": "Outputs",
             "INPUT": "Input",
             "OUTPUT": "Output",
+            "ASSIGNMENT": "Assignment",
+            "NO_ASSIGNEE": "No Assignee",
             "ASSIGNEE": "Assignee",
             "CANDIDATE_GROUPS": "Candidate groups",
             "CANDIDATE_USERS": "Candidate users",
@@ -137,7 +139,32 @@
                 "CRON_EXPRESSION": "Cron expression",
                 "INVALID_CRON_EXPRESSION": "Invalid cron expression"
             },
-            "TEXT_ANNOTATION": "Text annotation"
+            "TEXT_ANNOTATION": "Text annotation",
+            "TASK_ASSIGNMENT": {
+                "TITLE": "Task Assignment",
+                "SUB_TITLE": "Select assignment option",
+                "SINGLE_USER": "Assign task to a single user",
+                "CANDIDATES": "Assign task to candidates",
+                "STATIC": "Static",
+                "IDENTITY": "Identity",
+                "ASSIGNEE": "Assignee",
+                "CANDIDATE_USERS": "Candidate Users",
+                "CANDIDATE_GROUPS": "Candidate Groups",
+                "USER": "{{count}} User",
+                "USERS": "{{count}} Users",
+                "GROUP": "{{count}} Group",
+                "GROUPS": "{{count}} Groups",
+                "ASSIGN": "Assign",
+                "CLOSE": "Close",
+                "EXPRESSION": {
+                    "TITLE": "Expression",
+                    "NO_PROCESS_VARIABLES": "Create a process variable to add expression assignment",
+                    "CANDIDATE_EMPTY": "Candidates can't be empty, provide either candidateUsers or candidateGroups",
+                    "ASSIGNEE_EMPTY": "Assignee can't be empty",
+                    "ASSIGNEE_INVALID_ERROR": "Invalid expression e.g { assignee:${var1} }",
+                    "CANDIDATE_INVALID_ERROR": "Invalid expression e.g { candidateUsers: ${var1}, candidateGroups: ${var2} }"
+                }
+            }
         },
         "PROPERTIES_BUTTON": "Properties",
         "UPLOAD_SUCCESS": "Process uploaded",

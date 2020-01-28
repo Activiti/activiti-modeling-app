@@ -21,18 +21,7 @@ import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
 
 export class TaskPropertiesCardPage extends GenericPage {
 
-    readonly assignee = element(by.css('input[data-automation-id="card-textitem-editinput-assignee"]'));
-    readonly assigneeSaveButton = element(by.css('button[data-automation-id="card-textitem-update-assignee"]'));
-    readonly assigneeEditButton = element(by.css(' button[data-automation-id="card-textitem-edit-icon-assignee"]'));
-
-    readonly candidateUser = element(by.css('input[data-automation-id="card-textitem-editinput-candidateUsers"]'));
-    readonly candidateUserSaveButton = element(by.css('[data-automation-id="card-textitem-update-candidateUsers"]'));
-    readonly candidateUserEditButton = element(by.css('[data-automation-id="card-textitem-edit-icon-candidateUsers"]'));
-
-    readonly candidateGroup = element(by.css('input[data-automation-id="card-textitem-editinput-candidateGroups"]'));
-    readonly candidateGroupSaveButton = element(by.css('[data-automation-id="card-textitem-update-candidateGroups"]'));
-    readonly candidateGroupEditButton = element(by.css('[data-automation-id="card-textitem-edit-icon-candidateGroups"]'));
-
+    readonly assignmentBtn = element(by.css('button[data-automation-id="card-array-item-clickable-icon-assignment"]'));
     /* cspell: disable-next-line */
     readonly dueDatePickerBtn = element(by.css('[data-automation-id="datepickertoggle-dueDate"]'));
     /* cspell: disable-next-line */
@@ -67,22 +56,15 @@ export class TaskPropertiesCardPage extends GenericPage {
         await BrowserActions.click(this.dueDateCurrentDateMinute);
     }
 
-    async setAssignee(assigneeName: string): Promise<void> {
-        await BrowserActions.click(this.assigneeEditButton);
-        await BrowserActions.clearSendKeys(this.assignee, assigneeName);
-        await BrowserActions.click(this.assigneeSaveButton);
+    async getAssignment(): Promise<string>  {
+        /* cspell: disable-next-line */
+        const property = element(by.css(`[data-automation-id="card-arrayitem-chip-1 User"] span`));
+        return await property.getText();
     }
 
-    async setCandidateUser(candidateUserName: string): Promise<void> {
-        await BrowserActions.click(this.candidateUserEditButton);
-        await BrowserActions.clearSendKeys(this.candidateUser, candidateUserName);
-        await BrowserActions.click(this.candidateUserSaveButton);
-    }
-
-    async setCandidateGroup(candidateGroupName: string): Promise<void> {
-        await BrowserActions.click(this.candidateGroupEditButton);
-        await BrowserActions.clearSendKeys(this.candidateGroup, candidateGroupName);
-        await BrowserActions.click(this.candidateGroupSaveButton);
+    async openAssignmentDialog(): Promise<void> {
+        await BrowserVisibility.waitUntilElementIsClickable(this.assignmentBtn);
+        await BrowserActions.click(this.assignmentBtn);
     }
 
     async errorMessageIsDisplayed(errorId: string): Promise<boolean> {

@@ -1,5 +1,6 @@
 @import "ama-theming.scss";
 @import "@alfresco/adf-core/theming";
+@import "@alfresco/adf-process-services-cloud/theming";
 @import "~@angular/material/theming";
 @import "./app/app.component";
 
@@ -21,11 +22,13 @@ body {
 body {
     @include angular-material-theme($theme);
     @include adf-core-theme($theme);
+    @include adf-process-services-cloud-theme($theme);
     @include ama-theme($theme);
 }
 
 body.dark-theme {
     @include angular-material-theme($dark-theme);
     @include adf-core-theme($dark-theme);
+    @include adf-process-services-cloud-theme($theme);
     @include ama-theme($dark-theme);
 }

@@ -16,6 +16,7 @@
 @import "./components/process-modeler/messages/messages-dialog.component.scss";
 @import "./services/cardview-properties/called-element-item/called-element-item.component";
 @import "./services/cardview-properties/due-date-item/due-date-item.component";
+@import "./components/assignment/assignment-dialog.component";
 
 @mixin ama-process-editor-module($theme) {
     @include ama-called-element-item($theme);
@@ -36,4 +37,5 @@
     @include ama-due-date-item($theme);
     @include ama-palette($theme);
     @include ama-messages-dialog($theme);
+    @include ama-assignment-dialog($theme);
 }
