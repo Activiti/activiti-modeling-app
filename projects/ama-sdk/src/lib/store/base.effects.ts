@@ -30,7 +30,10 @@ export abstract class BaseEffects {
             this.router.navigate(['login']);
             return of();
         }
-
+        if (error.status === 403) {
+            this.router.navigate(['error/403']);
+            return of();
+        }
         return specificErrorHandler(error, ...args);
     }
 }
