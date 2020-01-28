@@ -28,20 +28,23 @@ import {
     ComponentFactoryResolver,
     OnChanges,
     forwardRef,
-    SimpleChanges
+    SimpleChanges,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { valueTypeInputsMapping } from './value-type-inputs/value-type-inputs.mapping';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
     template: '<template #valueTypeInput></template>',
     selector: 'amasdk-value-type-input',
     providers: [
         { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ValueTypeInputComponent), multi: true }
-     ]
+    ]
 })
 
 export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlValueAccessor {
+    onDestroy$: Subject<void> = new Subject<void>();
 
     @Input() value = null;
     @Input() index: number;
@@ -52,9 +55,9 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
     @ViewChild('valueTypeInput', { read: ViewContainerRef }) valueTypeInput;
     valueTypeInputRef: ComponentRef<any>;
 
-    _onChange: any = () => {};
+    _onChange: any = () => { };
 
-    constructor(private resolver: ComponentFactoryResolver) {}
+    constructor(private resolver: ComponentFactoryResolver) { }
 
     setInputValue(value) {
         this.value = value;
@@ -79,12 +82,12 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
         this.valueTypeInputRef = this.valueTypeInput.createComponent(factory);
         this.writeValue(this.value);
         this.valueTypeInputRef.instance.disabled = this.disabled;
-        this.valueTypeInputRef.instance.change.subscribe(inputValue => this.setInputValue(inputValue));
+        this.valueTypeInputRef.instance.change.pipe(takeUntil(this.onDestroy$)).subscribe(inputValue => this.setInputValue(inputValue));
     }
 
     writeValue(value) {
         if (value !== undefined && value !== null) {
-            if (this.type === 'json' && typeof(value) === 'object') {
+            if (this.type === 'json' && typeof (value) === 'object') {
                 value = JSON.stringify(value);
             }
             this.valueTypeInputRef.instance.value = value;
@@ -95,9 +98,10 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
         this._onChange = fn;
     }
 
-    registerOnTouched() {}
+    registerOnTouched() { }
 
     ngOnDestroy() {
+        this.onDestroy$.next();
         this.valueTypeInputRef.destroy();
     }
 
