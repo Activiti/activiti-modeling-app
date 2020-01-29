@@ -98,6 +98,7 @@ import { AssignmentDialogComponent } from './components/assignment/assignment-di
 import { ProcessTaskAssignmentEffects } from './store/process-task-assignment.effects';
 import { CardViewTaskAssignmentItemComponent } from './services/cardview-properties/task-assignment-item/task-assignment-item.component';
 import { TaskAssignmentService } from './services/cardview-properties/task-assignment-item/task-assignment.service';
+import { transformJsonSchema } from './services/transformJsonSchema';
 
 @NgModule({
     imports: [
@@ -209,7 +210,8 @@ import { TaskAssignmentService } from './services/cardview-properties/task-assig
         provideLogFilter(getProcessLogInitiator()),
         provideLoadableModelSchema({
             modelType: PROCESS,
-            schemaKey: MODEL_SCHEMA_TYPE.PROCESS_EXTENSION
+            schemaKey: MODEL_SCHEMA_TYPE.PROCESS_EXTENSION,
+            transform: transformJsonSchema
         })
     ]
 })

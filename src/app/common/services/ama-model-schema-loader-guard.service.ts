@@ -63,13 +63,14 @@ export class AmaModelSchemaLoaderGuard implements CanActivate {
         );
     }
 
-    private registerMonacoJsonSchema({ schemaKey, modelType }: SchemaModelMap) {
+    private registerMonacoJsonSchema({ schemaKey, modelType, transform }: SchemaModelMap) {
         return this.modelSchemaApi.retrieve(schemaKey).pipe(
             catchError(() => {
                 throw new Error(`${schemaKey} could not be loaded for model type: ${modelType}`);
             }),
             tap((schema) => {
-                this.codeEditorService.addSchema(schemaKey, getFileUriPattern(modelType, 'json'), schema);
+                const monacoSchema = transform ? transform(schema) : schema;
+                this.codeEditorService.addSchema(schemaKey, getFileUriPattern(modelType, 'json'), monacoSchema);
             })
         );
     }
