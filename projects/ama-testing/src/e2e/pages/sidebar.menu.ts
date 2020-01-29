@@ -54,7 +54,7 @@ export class SidebarActionMenu extends GenericWebElement {
 
     async createProject() {
         await this.clickOnCreateButton();
-        const project = element(by.cssContainingText(`.mat-menu-item>span`, 'Project'));
+        const project = element.all(by.cssContainingText(`.mat-menu-item>span`, 'Project')).first();
         await BrowserActions.click(project);
     }
 
