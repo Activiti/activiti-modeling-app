@@ -490,7 +490,6 @@
                 "COLUMNS": "Number of columns",
                 "REQUIRED": "Required",
                 "MULTIPLE_UPLOAD": "Allow multiple file attachments",
-                "LINK_FILE": "Only link to files, do not upload them",
                 "FILE_SOURCE": "File source",
                 "ALL_SOURCES": "All file sources",
                 "LOCAL_FILE": "Local file",
