@@ -169,6 +169,7 @@ export const elementsProperties = {
         ...(hasProcessInside(element) ? [
             BpmnProperty.processId,
             BpmnProperty.processName,
+            BpmnProperty.isExecutable,
             BpmnCompositeProperty.properties,
             BpmnCompositeProperty.messages
         ] : []),
