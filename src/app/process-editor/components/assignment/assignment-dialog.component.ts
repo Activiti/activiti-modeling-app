@@ -32,14 +32,14 @@ import {
     ValidationResponse,
     Process,
     CodeValidatorService,
-    selectProcessPropertiesArrayFor
+    selectProcessPropertiesArrayFor,
+    CodeEditorComponent
 } from 'ama-sdk';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { IdentityUserModel, IdentityGroupModel } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { filter, take, takeUntil, map } from 'rxjs/operators';
 import { AbstractControl, FormGroup, FormBuilder } from '@angular/forms';
-import { CodeEditorComponent } from 'ama-sdk/src/lib/code-editor/components/code-editor/code-editor.component';
 
 export interface AssignmentSettings {
     assignee: string[];

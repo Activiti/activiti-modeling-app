@@ -23,7 +23,7 @@ import { CardItemTypeService } from '@alfresco/adf-core';
 import { OpenProcessVariablesDialogAction, OPEN_PROCESS_VARIABLES_DIALOG } from '../../../store/process-variables.actions';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { mockProcessId } from 'src/app/process-editor/store/process.mock';
+import { mockProcessId } from '../../../store/process.mock';
 
 describe('ProcessVariableItemComponent', () => {
     let fixture: ComponentFixture<CardViewProcessVariablesItemComponent>;
