@@ -165,7 +165,7 @@ describe('PropertiesViewerComponent', () => {
         fixture.detectChanges();
 
         const data2 = {
-            '123' : {'id': '123', 'name': 'changed', 'type': 'string', 'required': false},
+            '123' : {'id': '123', 'name': 'changed', 'type': 'string', 'value': '', 'required': false},
             '245' : {'id': '245', 'name': 'var2', 'type': 'string', 'value': '', 'required': false},
             '345' : {'id': '345', 'name': 'var3', 'type': 'string', 'value': '', 'required': false}
         };
@@ -198,7 +198,7 @@ describe('PropertiesViewerComponent', () => {
         fixture.detectChanges();
 
         const data2 = {
-            '123' : {'id': '123', 'name': 'a2_#', 'type': 'string', 'required': false}
+            '123' : {'id': '123', 'name': 'a2_#', 'type': 'string', 'value': '', 'required': false}
         };
 
         expect(component.name).toEqual('a2_#');
@@ -231,7 +231,7 @@ describe('PropertiesViewerComponent', () => {
         fixture.detectChanges();
 
         const data3 = {
-            '123' : {'id': '123', 'name': 'a2_', 'type': 'string', 'required': false}
+            '123' : {'id': '123', 'name': 'a2_', 'type': 'string', 'value': '', 'required': false}
         };
 
         expect(component.name).toEqual('a2_');

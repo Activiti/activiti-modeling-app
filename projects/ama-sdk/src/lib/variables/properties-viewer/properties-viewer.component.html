@@ -70,7 +70,7 @@
             </mat-select>
         </mat-form-field>
 
-        <amasdk-value-type-input [value]="value" [index]="position" [type]="selectedType" (onChange)="saveChanges($event)">
+        <amasdk-value-type-input [value]="value" [index]="position" [type]="selectedType" (onChange)="updateVariableValue($event)">
         </amasdk-value-type-input>
 
         <mat-checkbox *ngIf="requiredCheckbox" [(ngModel)]="required" (change)="saveChanges()" color="primary"

@@ -136,18 +136,11 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
         this.saveChanges();
     }
 
-    saveChanges(value?: string) {
-
+    saveChanges() {
         this.form.name = this.name;
         this.form.type = this.selectedType;
         this.form.required = this.required;
         this.form.id = this.id;
-
-        if (value === null || value === undefined || value === '') {
-            delete this.form.value;
-        } else {
-            this.form.value = value;
-        }
 
         this.data[this.id] = this.form;
 
@@ -166,6 +159,16 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
             this.error = true;
         }
         this.propertyChanged.emit(true);
+    }
+
+    updateVariableValue(value?: string) {
+        if (value) {
+            this.form.value = value;
+        } else {
+            delete this.form.value;
+        }
+
+        this.saveChanges();
     }
 
     isNotEmpty(data: EntityProperties) {
