@@ -17,7 +17,8 @@
 
 import { EntityDialogForm } from '../helpers/common';
 import { Action } from '@ngrx/store';
-import { Release } from '../api/types';
+import { Release, ServerSideSorting, SearchQuery } from '../api/types';
+import { FetchQueries } from '../api/project-api.interface';
 
 export const CREATE_PROJECT_ATTEMPT = 'CREATE_PROJECT_ATTEMPT';
 export class CreateProjectAttemptAction implements Action {
@@ -46,6 +47,12 @@ export const MODEL_CLOSED = 'MODEL_CLOSED';
 export class ModelClosedAction implements Action {
     readonly type = MODEL_CLOSED;
     constructor(public model: ModelIdentifier) {}
+}
+
+export const GET_PROJECTS_ATTEMPT = 'GET_PROJECTS_ATTEMPT';
+export class GetProjectsAttemptAction implements Action {
+    readonly type = GET_PROJECTS_ATTEMPT;
+    constructor(public pagination?: FetchQueries, public sorting?: ServerSideSorting, public search?: SearchQuery) {}
 }
 
 export const GET_PROJECT_ATTEMPT = 'GET_PROJECT_ATTEMPT';

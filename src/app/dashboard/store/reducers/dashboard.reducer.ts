@@ -30,11 +30,10 @@ import {
     DELETE_PROJECT_SUCCESS,
     DeleteProjectSuccessAction,
     UploadProjectSuccessAction,
-    UPLOAD_PROJECT_SUCCESS,
-    GET_PROJECTS_ATTEMPT
+    UPLOAD_PROJECT_SUCCESS
 
 } from '../actions/projects';
-import { ProjectSummaryEntities, ReleaseProjectSuccessAction, RELEASE_PROJECT_SUCCESS, Pagination } from 'ama-sdk';
+import { ProjectSummaryEntities, ReleaseProjectSuccessAction, RELEASE_PROJECT_SUCCESS, Pagination, GET_PROJECTS_ATTEMPT } from 'ama-sdk';
 
 export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE, action: Action): DashboardState {
     let newState: DashboardState;

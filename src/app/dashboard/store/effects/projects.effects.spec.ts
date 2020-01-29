@@ -29,7 +29,6 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { mockProject, paginationMock, paginationCountMock } from './project.mock';
 import {
     ShowProjectsAction,
-    GET_PROJECTS_ATTEMPT,
     UploadProjectAttemptAction,
     UploadProjectSuccessAction,
     CreateProjectSuccessAction,
@@ -38,7 +37,6 @@ import {
     UpdateProjectSuccessAction,
     DeleteProjectAttemptAction,
     DeleteProjectSuccessAction,
-    GetProjectsAttemptAction,
     GetProjectsSuccessAction,
 } from '../actions/projects';
 import {
@@ -53,7 +51,9 @@ import {
     DownloadResourceService,
     Pagination,
     ServerSideSorting,
-    SearchQuery
+    SearchQuery,
+    GET_PROJECTS_ATTEMPT,
+    GetProjectsAttemptAction
 } from 'ama-sdk';
 
 describe('ProjectsEffects', () => {

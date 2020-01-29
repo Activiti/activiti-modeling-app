@@ -23,8 +23,6 @@ import { DashboardService } from '../../services/dashboard.service';
 import { tap, switchMap, catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import {
-    GetProjectsAttemptAction,
-    GET_PROJECTS_ATTEMPT,
     GetProjectsSuccessAction,
     CreateProjectSuccessAction,
     UpdateProjectAttemptAction,
@@ -56,7 +54,9 @@ import {
     ServerSideSorting,
     ErrorResponse,
     SearchQuery,
-    EntityDialogForm
+    EntityDialogForm,
+    GetProjectsAttemptAction,
+    GET_PROJECTS_ATTEMPT
 } from 'ama-sdk';
 import { selectProjectsLoaded, selectPagination } from '../selectors/dashboard.selectors';
 

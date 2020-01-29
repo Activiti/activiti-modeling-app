@@ -24,13 +24,12 @@ import { MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import { selectProjectSummaries, selectLoading, selectPagination } from '../../store/selectors/dashboard.selectors';
 import {
     AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting,
-    SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption, PROJECT_CONTEXT_MENU_OPTIONS, ProjectContextMenuActionClass
+    SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption, PROJECT_CONTEXT_MENU_OPTIONS, ProjectContextMenuActionClass, GetProjectsAttemptAction
 } from 'ama-sdk';
 import { ExportProjectAction } from '../../../project-editor/store/project-editor.actions';
 import {
     DeleteProjectAttemptAction,
-    UpdateProjectAttemptAction,
-    GetProjectsAttemptAction
+    UpdateProjectAttemptAction
 } from '../../store/actions/projects';
 
 const DEFAULT_SORT_KEY = 'name';

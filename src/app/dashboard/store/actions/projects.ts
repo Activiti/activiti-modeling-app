@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Project, Pagination, ServerSideSorting, FetchQueries, SearchQuery, EntityDialogForm } from 'ama-sdk';
+import { Project, Pagination, SearchQuery, EntityDialogForm } from 'ama-sdk';
 import { PaginatedEntries } from '@alfresco/js-api';
 
 export interface EditProjectPayload {
@@ -70,12 +70,6 @@ export const DELETE_PROJECT_SUCCESS = 'DELETE_PROJECT_SUCCESS';
 export class DeleteProjectSuccessAction implements Action {
     readonly type = DELETE_PROJECT_SUCCESS;
     constructor(public payload: string) {}
-}
-
-export const GET_PROJECTS_ATTEMPT = 'GET_PROJECTS_ATTEMPT';
-export class GetProjectsAttemptAction implements Action {
-    readonly type = GET_PROJECTS_ATTEMPT;
-    constructor(public pagination?: FetchQueries, public sorting?: ServerSideSorting, public search?: SearchQuery) {}
 }
 
 export const GET_PROJECTS_SUCCESS = 'GET_PROJECTS_SUCCESS';
