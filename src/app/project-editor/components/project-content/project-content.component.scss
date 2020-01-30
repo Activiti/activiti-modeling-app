@@ -16,4 +16,8 @@
         height: calc(100% - 114px);
         color: mat-color($foreground, text, 0.5);
     }
+
+    .project-context-menu button:first-child  {
+        display: none;
+    }
 }

@@ -21,10 +21,11 @@ import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { MatTableDataSource, PageEvent, Sort } from '@angular/material';
-import { selectProjectSummaries, selectLoading, selectPagination } from '../../store/selectors/dashboard.selectors';
 import {
     AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting,
-    SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption, PROJECT_CONTEXT_MENU_OPTIONS, ProjectContextMenuActionClass, GetProjectsAttemptAction
+    SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption,
+    PROJECT_CONTEXT_MENU_OPTIONS, ProjectContextMenuActionClass,
+    selectLoading, selectPagination, selectProjectSummaries, GetProjectsAttemptAction
 } from 'ama-sdk';
 import { ExportProjectAction } from '../../../project-editor/store/project-editor.actions';
 import {

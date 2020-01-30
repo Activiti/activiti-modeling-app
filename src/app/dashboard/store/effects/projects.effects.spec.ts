@@ -24,7 +24,6 @@ import { Store } from '@ngrx/store';
 import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { Router } from '@angular/router';
 import { LogService, CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
-import { selectProjectsLoaded, selectPagination } from '../selectors/dashboard.selectors';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { mockProject, paginationMock, paginationCountMock } from './project.mock';
 import {
@@ -53,7 +52,9 @@ import {
     ServerSideSorting,
     SearchQuery,
     GET_PROJECTS_ATTEMPT,
-    GetProjectsAttemptAction
+    GetProjectsAttemptAction,
+    selectProjectsLoaded,
+    selectPagination
 } from 'ama-sdk';
 
 describe('ProjectsEffects', () => {

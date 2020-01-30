@@ -38,7 +38,7 @@
             [title]="'APP.MORE_ACTIONS' | translate">
             <mat-icon>more_vert</mat-icon>
         </button>
-        <mat-menu #menu="matMenu">
+        <mat-menu #menu="matMenu" class="project-context-menu">
             <button *ngFor="let button of buttons" mat-menu-item (click)="handleClick(button.actionClass, project.id)" [attr.data-automation-id]="'project-' + button.automationId + '-' + project.id">
                 <mat-icon>{{ button.icon }}</mat-icon> <span>{{ button.title | translate }}</span>
             </button>

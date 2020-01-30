@@ -17,10 +17,6 @@
 
 import { Action } from '@ngrx/store';
 import {
-    DashboardState,
-    INITIAL_DASHBOARD_STATE
-} from '../state/dashboard.state';
-import {
     GET_PROJECTS_SUCCESS,
     GetProjectsSuccessAction,
     CreateProjectSuccessAction,
@@ -33,7 +29,11 @@ import {
     UPLOAD_PROJECT_SUCCESS
 
 } from '../actions/projects';
-import { ProjectSummaryEntities, ReleaseProjectSuccessAction, RELEASE_PROJECT_SUCCESS, Pagination, GET_PROJECTS_ATTEMPT } from 'ama-sdk';
+import {
+    ProjectSummaryEntities, ReleaseProjectSuccessAction,
+    RELEASE_PROJECT_SUCCESS, Pagination, DashboardState,
+    INITIAL_DASHBOARD_STATE, GET_PROJECTS_ATTEMPT
+} from 'ama-sdk';
 
 export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE, action: Action): DashboardState {
     let newState: DashboardState;

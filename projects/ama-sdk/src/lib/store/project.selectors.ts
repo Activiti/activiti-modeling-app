@@ -17,9 +17,11 @@
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ProjectEditorState } from './project.state';
+import { DashboardState } from './dashboard.state';
 
 export const PROJECT_EDITOR_STATE_NAME = 'project-editor';
 export const getProjectEditorFeatureState = createFeatureSelector<ProjectEditorState>(PROJECT_EDITOR_STATE_NAME);
+export const getProjectByIdSelector = createFeatureSelector<DashboardState>(PROJECT_EDITOR_STATE_NAME);
 
 export const selectProject = createSelector(
     getProjectEditorFeatureState,

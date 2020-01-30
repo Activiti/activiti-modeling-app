@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
-import { DashboardState } from '../state/dashboard.state';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { DashboardState } from './dashboard.state';
 
 export const DASHBOARD_STATE_NAME = 'dashboard';
 
@@ -32,3 +32,10 @@ export const selectPagination = createSelector(getDashboardFeatureState, selectP
 export const selectProjectsLoaded = createSelector(getDashboardFeatureState, selectProjectsLoadedFromState);
 export const selectProjectSummaries = createSelector(getDashboardFeatureState, selectProjectSummariesFromState);
 export const selectProjectsArray = createSelector(selectProjectSummaries, project => Object.values(project));
+
+export const selectProjectById = (projectId: string) => createSelector(
+    selectProjectSummaries,
+    (projects) => {
+        return projects[projectId];
+    }
+);

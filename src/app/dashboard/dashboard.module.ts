@@ -29,10 +29,9 @@ import { ProjectsListComponent } from './components/projects-list/projects-list.
 import { DashboardService } from './services/dashboard.service';
 import { StoreModule } from '@ngrx/store';
 import { dashboardReducer } from './store/reducers/dashboard.reducer';
-import { DASHBOARD_STATE_NAME } from './store/selectors/dashboard.selectors';
 import { EffectsModule } from '@ngrx/effects';
 import { ProjectsEffects } from './store/effects/projects.effects';
-import { SharedModule } from 'ama-sdk';
+import { SharedModule, DASHBOARD_STATE_NAME } from 'ama-sdk';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { SearchHeaderComponent } from '../app/app-layout/search-header/search-header.component';

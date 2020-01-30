@@ -56,9 +56,10 @@ import {
     SearchQuery,
     EntityDialogForm,
     GetProjectsAttemptAction,
-    GET_PROJECTS_ATTEMPT
+    GET_PROJECTS_ATTEMPT,
+    selectPagination,
+    selectProjectsLoaded
 } from 'ama-sdk';
-import { selectProjectsLoaded, selectPagination } from '../selectors/dashboard.selectors';
 
 @Injectable()
 export class ProjectsEffects extends BaseEffects {
