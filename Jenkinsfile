@@ -1,6 +1,9 @@
-     //  sh "updatebot push-regex -r "\s+tag: (.*)" -v \$(cat VERSION) --previous-line "\s+repository: activiti/activiti-model" **/values.yaml) --merge false"
- pipeline {
-    agent {
+pipeline {
+    options {
+        disableConcurrentBuilds()
+        quietPeriod(45)
+    }
+     agent {
         label "jenkins-nodejs"
     }
     environment {
