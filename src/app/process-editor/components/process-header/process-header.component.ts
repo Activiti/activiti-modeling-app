@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, Inject } from '@angular/core';
+import { Component, Input, Inject, OnInit, OnDestroy } from '@angular/core';
 import {
     Process,
     AmaState,
@@ -26,19 +26,25 @@ import {
     ProcessModelerService,
     BreadcrumbItem,
     SnackbarInfoAction,
-    SnackbarErrorAction
+    SnackbarErrorAction,
+    AUTO_SAVE_PROCESS,
+    AutoSaveProcessAction
 } from 'ama-sdk';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { DeleteProcessAttemptAction, ValidateProcessAttemptAction, DownloadProcessAction, UpdateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
 import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
 import { modelNameHandler } from '../../services/bpmn-js/property-handlers/model-name.handler';
+import { Actions, ofType } from '@ngrx/effects';
+import { takeUntil, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'ama-process-header',
     templateUrl: './process-header.component.html'
 })
-export class ProcessHeaderComponent {
+export class ProcessHeaderComponent implements  OnInit, OnDestroy {
+    private destroy$ = new Subject<boolean>();
+
     @Input() process: Process;
     @Input() content: ProcessContent;
     @Input() breadcrumbs$: Observable<BreadcrumbItem[]>;
@@ -47,22 +53,39 @@ export class ProcessHeaderComponent {
 
     constructor(
         private store: Store<AmaState>,
-        @Inject(ProcessModelerServiceToken) private processModeler: ProcessModelerService
+        @Inject(ProcessModelerServiceToken) private processModeler: ProcessModelerService,
+        private actions$: Actions
     ) {}
 
-    onSaveClick(): void {
+    ngOnInit(): void {
+        this.actions$.pipe(
+            ofType<AutoSaveProcessAction>(AUTO_SAVE_PROCESS),
+            tap(() => this.store.dispatch(this.saveAction())),
+            takeUntil(this.destroy$)
+        ).subscribe(null);
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next(true);
+        this.destroy$.complete();
+    }
+
+    private saveAction(): UpdateProcessAttemptAction {
         const element = this.processModeler.getRootProcessElement();
         const metadata: Partial<EntityDialogForm> = {
             name: modelNameHandler.get(element),
             description: documentationHandler.get(element),
         };
+        return new UpdateProcessAttemptAction({ processId: this.process.id, content: this.content, metadata });
+    }
 
+    onSaveClick(): void {
         this.store.dispatch(new ValidateProcessAttemptAction({
             title: 'APP.DIALOGS.CONFIRM.SAVE.PROCESS',
             processId: this.process.id,
             content: this.content,
             extensions: this.process.extensions,
-            action: new UpdateProcessAttemptAction({ processId: this.process.id, content: this.content, metadata })
+            action: this.saveAction()
         }));
     }
 

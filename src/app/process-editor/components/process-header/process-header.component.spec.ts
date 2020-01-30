@@ -20,19 +20,21 @@ import { ProcessHeaderComponent } from './process-header.component';
 import { MatIconModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule, AmaState, OpenConfirmDialogAction, ProcessModelerServiceToken, AmaTitleService } from 'ama-sdk';
+import { SharedModule, AmaState, OpenConfirmDialogAction, ProcessModelerServiceToken, AmaTitleService, AutoSaveProcessAction } from 'ama-sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { By } from '@angular/platform-browser';
 import { mockProcessModel } from '../../store/process.mock';
 import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DeleteProcessAttemptAction, DownloadProcessAction, ValidateProcessAttemptAction, UpdateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
+import { Actions } from '@ngrx/effects';
 
 describe('ProcessHeaderComponent', () => {
     let fixture: ComponentFixture<ProcessHeaderComponent>;
     let component: ProcessHeaderComponent;
     let store: Store<AmaState>;
+    const mockAction = new Subject();
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -68,6 +70,10 @@ describe('ProcessHeaderComponent', () => {
                             }
                         })
                     }
+                },
+                {
+                    provide: Actions,
+                    useValue: mockAction
                 }
             ],
             declarations: [ProcessHeaderComponent]
@@ -107,6 +113,17 @@ describe('ProcessHeaderComponent', () => {
             action: new DownloadProcessAction(mockProcessModel)
         });
 
+        expect(store.dispatch).toHaveBeenCalledWith(payload);
+    });
+
+    it('should test auto save button', () => {
+        spyOn(store, 'dispatch');
+        mockAction.next(new AutoSaveProcessAction());
+        const payload = new UpdateProcessAttemptAction({
+            processId: mockProcessModel.id,
+            content: component.content,
+            metadata: { name: mockProcessModel.name, description: mockProcessModel.description }
+        });
         expect(store.dispatch).toHaveBeenCalledWith(payload);
     });
 
