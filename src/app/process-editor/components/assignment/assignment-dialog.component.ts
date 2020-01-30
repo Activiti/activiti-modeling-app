@@ -312,7 +312,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         this.assignmentForm.reset();
         this.resetProperties();
         this.assignmentPayload = undefined;
-        if (this.selectedType === this.assignmentXML.type) {
+        if (this.isOriginalSelection()) {
             this.restoreFromXML();
         }
         this.currentActiveTab = currentTab.index;
@@ -327,9 +327,13 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         this.resetFormByMode();
         this.resetProperties();
         this.assignmentPayload = undefined;
-        if (this.selectedMode === this.assignmentXML.assignment) {
+        if (this.isOriginalSelection()) {
             this.restoreFromXML();
         }
+    }
+
+    isOriginalSelection() {
+        return this.selectedMode === this.assignmentXML.assignment && this.selectedType === this.assignmentXML.type;
     }
 
     onStaticAssigneeRemove() {
