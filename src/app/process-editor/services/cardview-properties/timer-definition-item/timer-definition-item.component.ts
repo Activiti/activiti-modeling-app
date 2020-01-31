@@ -16,19 +16,27 @@
  */
 
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { CardItemTypeService, CardViewUpdateService, AppConfigService } from '@alfresco/adf-core';
+import { CardItemTypeService, CardViewUpdateService, AppConfigService, MomentDateAdapter } from '@alfresco/adf-core';
 import { FormBuilder, Validators, FormControl, FormGroup, AbstractControl } from '@angular/forms';
 import { debounceTime, takeUntil, filter, take } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import moment from 'moment-es6';
-import { AmaState, EntityProperty, selectSelectedProcess, ProcessExtensionsModel } from 'ama-sdk';
+import { AmaState, EntityProperty, selectSelectedProcess, ProcessExtensionsModel, AMA_DATETIME_FORMATS } from 'ama-sdk';
 import { Store } from '@ngrx/store';
 import { TimerDefinitionItemModel } from './timer-definition-item.model';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
+import { DatetimeAdapter, MAT_DATETIME_FORMATS } from '@mat-datetimepicker/core';
+import { MomentDatetimeAdapter } from '@mat-datetimepicker/moment';
 
 @Component({
     selector: 'ama-process-timer-definition',
     templateUrl: './timer-definition-item.component.html',
-    providers: [CardItemTypeService]
+    providers: [
+        CardItemTypeService,
+        { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+        { provide: DatetimeAdapter, useClass: MomentDatetimeAdapter },
+        { provide: MAT_DATETIME_FORMATS, useValue: AMA_DATETIME_FORMATS }
+    ]
 })
 export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
 
@@ -42,7 +50,7 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     defaultTimerDefinition = '';
     defaultTimerType = '';
     timerDefinitionForm: FormGroup;
-    today = new Date();
+    today = moment();
     eventType: string;
     optionsForParams: {
         [paramName: string]: { id: string; name: string }[];
@@ -82,7 +90,7 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     }
 
     private extractProcessVariablesByType(processVariables: EntityProperty[], type: string): EntityProperty[] {
-        return [ ...processVariables.filter(variable => variable.type === type)];
+        return [...processVariables.filter(variable => variable.type === type)];
     }
 
     buildForm() {
@@ -114,7 +122,7 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     }
 
     updateForm(formChanges) {
-        if (formChanges.timerType === 'timeDuration' || formChanges.timerType === 'timeDate') {
+        if ((formChanges.timerType === 'timeDuration' || formChanges.timerType === 'timeDate') && this.useCronExpression.value) {
             this.useCronExpression.setValue(false);
         }
 
@@ -216,7 +224,7 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
             if (dateDefinitionValue.includes('$')) {
                 this.extractProcessVariableFromXML(dateDefinitionValue);
             } else {
-                this.date.setValue(new Date(dateDefinitionValue));
+                this.date.setValue(moment(dateDefinitionValue));
             }
         }
     }

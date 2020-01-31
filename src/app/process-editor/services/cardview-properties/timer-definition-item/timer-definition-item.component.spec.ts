@@ -24,6 +24,7 @@ import { FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AmaState } from 'ama-sdk';
 import { of } from 'rxjs';
+import moment from 'moment-es6';
 
 describe('CardViewTimerDefinitionItemComponent', () => {
     let fixture: ComponentFixture<CardViewTimerDefinitionItemComponent>;
@@ -193,7 +194,7 @@ describe('CardViewTimerDefinitionItemComponent', () => {
     it('should update timer definition when the date inputs are filled', () => {
         spyOn(cardViewUpdateService, 'update');
         component.timerType.setValue('timeDate');
-        component.date.setValue(new Date('2020-03-11'));
+        component.date.setValue(moment('2020-03-11'));
 
         component.updateTimerDefinition();
         fixture.detectChanges();
@@ -207,7 +208,7 @@ describe('CardViewTimerDefinitionItemComponent', () => {
     it('should update timer definition when the cycle inputs are filled', () => {
         spyOn(cardViewUpdateService, 'update');
         component.timerType.setValue('timeCycle');
-        component.date.setValue(new Date('2020-03-11'));
+        component.date.setValue(moment('2020-03-11'));
         component.repetitions.setValue(3);
         component.years.setValue(1);
 
