@@ -18,6 +18,9 @@ Object.defineProperty(window, 'getComputedStyle', {
 Object.defineProperty(window, 'matchMedia', { value: () => ({ matches: true }) });
 Object.defineProperty(window, 'CSS', { value: '' });
 
+// fix https://github.com/Alfresco/alfresco-ng2-components/blob/development/lib/core/services/alfresco-api.service.ts#L124
+Object.defineProperty(window, 'location', { value: { origin: ''} });
+
 /**
  * JSDOM missing transform property when using Angular Material, there is a workaround for it
  * https://github.com/thymikee/jest-preset-angular#the-animation-trigger-transformmenu-has-failed
