@@ -1,6 +1,6 @@
 <mat-table [dataSource]="dataSource" data-automation-id="input-mapping-table">
     <ng-container matColumnDef="name">
-        <mat-header-cell data-automation-id="table-header-cell-name" *matHeaderCellDef>
+        <mat-header-cell data-automation-id="table-header-cell-name" *matHeaderCellDef [ngClass]="'input-mapping'">
             {{ parameterColumnHeader | translate }}</mat-header-cell>
         <mat-cell *matCellDef="let parameter"
             matTooltip="{{ parameter.description + ' (type: ' + parameter.type + ')' }}" matTooltipPosition="before"
@@ -12,7 +12,7 @@
         </mat-cell>
     </ng-container>
     <ng-container matColumnDef="process-variable">
-        <mat-header-cell data-automation-id="table-header-cell-process-variables" *matHeaderCellDef>
+        <mat-header-cell data-automation-id="table-header-cell-process-variables" *matHeaderCellDef [ngClass]="'input-mapping'">
             {{ variableColumnHeader | translate }} /
             {{ 'SDK.VARIABLE_MAPPING.VALUE' | translate }}
         </mat-header-cell>
@@ -28,7 +28,7 @@
                     (selectionChange)="selectVariable($event.value, parameter)" [compareWith]="compareWith"
                     [(ngModel)]="paramName2VariableName[parameter.name]"
                     [value]="paramName2VariableName[parameter.name]"
-                    [attr.data-automation-id]="'variable-selector-' + parameter.id">
+                    [attr.data-automation-id]="'variable-selector-' + parameter.id" [ngClass]="'input-mapping'">
                     <mat-option *ngFor="let property of optionsForParams[parameter.name]" [value]="property">
                         {{ property.name }}
                     </mat-option>

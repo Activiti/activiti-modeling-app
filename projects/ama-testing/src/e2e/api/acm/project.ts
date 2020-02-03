@@ -89,7 +89,7 @@ export class ACMProject {
         try {
             await this.requestApiHelper.delete(`/modeling-service/v1/projects/${projectId}`);
         } catch (error) {
-            throw new Error(`Delete project ${projectId} failed: ${error}`);
+            throw new Error(`Delete project ${projectId} failed: ${JSON.stringify(error)}`);
         }
     }
 

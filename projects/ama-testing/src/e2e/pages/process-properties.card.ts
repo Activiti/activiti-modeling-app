@@ -48,6 +48,10 @@ export class ProcessPropertiesCard extends GenericPage {
     readonly outputMappingHeader = element(by.cssContainingText(`[data-automation-id="output-mapping-header"]`, `Output mapping:`));
     readonly mappingHeaderCellName = element(by.css(`[data-automation-id="table-header-cell-name"]`));
     readonly mappingHeaderCellProcessVariable = element(by.css(`[data-automation-id="table-header-cell-process-variables"]`));
+    readonly inputMappingHeaderCellName = element(by.css(`[data-automation-id="table-header-cell-name"].input-mapping`));
+    readonly inputMappingHeaderCellProcessVariable = element(by.css(`[data-automation-id="table-header-cell-process-variables"].input-mapping`));
+    readonly outputMappingHeaderCellName = element(by.css(`[data-automation-id="table-header-cell-name"].output-mapping`));
+    readonly outputMappingHeaderCellProcessVariable = element(by.css(`[data-automation-id="table-header-cell-process-variables"].output-mapping`));
     readonly processVariableSelector = element(by.css(`[data-automation-id="process-variable-selector"]`));
     readonly newErrorButton = element(by.css(`[data-automation-id="new-error-button"]`));
     readonly newSignalButton = element(by.css(`[data-automation-id="new-signal-button"]`));
@@ -217,6 +221,18 @@ export class ProcessPropertiesCard extends GenericPage {
         return true;
     }
 
+    async isInputMappingTableHeaderDisplayed() {
+        await BrowserVisibility.waitUntilElementIsVisible(this.inputMappingHeaderCellName);
+        await BrowserVisibility.waitUntilElementIsVisible(this.inputMappingHeaderCellProcessVariable);
+        return true;
+    }
+
+    async isOutputMappingTableHeaderDisplayed() {
+        await BrowserVisibility.waitUntilElementIsVisible(this.outputMappingHeaderCellName);
+        await BrowserVisibility.waitUntilElementIsVisible(this.outputMappingHeaderCellProcessVariable);
+        return true;
+    }
+
     async isOutputMappingHeaderDisplayed() {
         await BrowserVisibility.waitUntilElementIsVisible(this.outputMappingHeader);
         return true;
@@ -234,44 +250,15 @@ export class ProcessPropertiesCard extends GenericPage {
         return connectorParam.getText();
     }
 
-    async openMappingDialogForParameter(parameterId: string) {
-        const editButton = element(by.css(`[data-automation-id="edit-value-mapping-${parameterId}"]`));
-        await BrowserActions.click(editButton);
-        const mappingDialog = element(by.css(`[data-automation-id="mapping-dialog"]`));
-        await BrowserVisibility.waitUntilElementIsVisible(mappingDialog);
+    async getOutputConnectorParam(index: number) {
+        const connectorParam = element(by.css(`[data-automation-id="output-param-id-${index}"]>span`));
+        await BrowserVisibility.waitUntilElementIsVisible(connectorParam);
+        return connectorParam.getText();
     }
 
-    async selectParameterTab() {
-        const mappingValueBlock = element(by.css(`.mapping-value`));
-        await BrowserVisibility.waitUntilElementIsVisible(mappingValueBlock);
-        const expressionTab = element(by.css(`.mapping-value .mat-tab-label:nth-last-child(3)`));
-        await BrowserActions.click(expressionTab);
-    }
-
-    async selectValueMappingTab() {
-        const mappingValueBlock = element(by.css(`.mapping-value`));
-        await BrowserVisibility.waitUntilElementIsVisible(mappingValueBlock);
-        const valueTab = element(by.css(`.mapping-value .mat-tab-label:nth-last-child(2)`));
-        await BrowserActions.click(valueTab);
-        const valueInput = element(by.css(`.mapping-value amasdk-value-type-input input`));
-        await BrowserVisibility.waitUntilElementIsVisible(valueInput);
-    }
-
-    async selectExpressionMappingTab() {
-        const mappingValueBlock = element(by.css(`.mapping-value`));
-        await BrowserVisibility.waitUntilElementIsVisible(mappingValueBlock);
-        const expressionTab = element(by.css(`.mapping-value .mat-tab-label:nth-last-child(1)`));
-        await BrowserActions.click(expressionTab);
-    }
-
-    async setValueMapping(value: string) {
-        const valueInput = element(by.css(`.mapping-value amasdk-value-type-input input`));
-        await BrowserActions.clearSendKeys(valueInput, value);
-    }
-
-    async updateAndCloseMappingDialog() {
-        const updateButton = element(by.css(`[data-automation-id="mapping-update-button"]`));
-        await BrowserActions.click(updateButton);
+    async countOutputConnectorParams() {
+        const outputMappingTableRows = element.all(by.css(`mat-table.output-mapping mat-row`));
+        return (await outputMappingTableRows).length;
     }
 
     async getValue(connectorId: string) {
@@ -298,6 +285,18 @@ export class ProcessPropertiesCard extends GenericPage {
         return variable.getText();
     }
 
+    async getOutputMappingProcessVariable(index: number) {
+        const variable = element(by.css(`[data-automation-id="variable-selector-${index}"].output-mapping span span`));
+        await BrowserVisibility.waitUntilElementIsVisible(variable);
+        return variable.getText();
+    }
+
+    async isOutputMappingProcessVariableEmpty(index: number) {
+        const variable = element(by.css(`[data-automation-id="variable-selector-${index}"].output-mapping span.mat-select-placeholder`));
+        await BrowserVisibility.waitUntilElementIsVisible(variable);
+        return true;
+    }
+
     async isEditVariablesButtonIconDisplayed() {
         await BrowserVisibility.waitUntilElementIsVisible(this.editVariablesIcon);
         return true;
@@ -306,5 +305,32 @@ export class ProcessPropertiesCard extends GenericPage {
     async getErrorMessage() {
         await BrowserVisibility.waitUntilElementIsVisible(this.processNameError);
         return this.processNameError.getText();
+    }
+
+    async getValueInputMappingTable(inputParameterId: string) {
+        const value = element(by.css(`[data-automation-id="value-input-${inputParameterId}"]`));
+        await BrowserVisibility.waitUntilElementIsVisible(value);
+        return value.getText();
+    }
+
+    async getOutputTableProcessVariablesList(index: number) {
+        await this.openOutputTableProcessVariablesList(index);
+        return element.all((by.css('.mat-option-text'))).getText();
+    }
+
+    async openOutputTableProcessVariablesList(index: number) {
+        const selector = `[data-automation-id="variable-selector-${index}"].output-mapping`;
+        await BrowserActions.click(element(by.css(selector)));
+    }
+
+    async isNoOutputTableProcessPropertiesMsg(index: number) {
+        const noPropertiesMsg = element(by.css(`[data-automation-id="output-param-id-${index}"]+mat-cell>.no-process-properties-msg`));
+        await BrowserVisibility.waitUntilElementIsVisible(noPropertiesMsg);
+        return true;
+    }
+
+    async setOutputTableProcessVariable(index: number, variableName: string) {
+        await this.openOutputTableProcessVariablesList(index);
+        await this.selectVariable(variableName);
     }
 }

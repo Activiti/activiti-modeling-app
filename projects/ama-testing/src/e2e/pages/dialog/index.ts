@@ -26,3 +26,4 @@
  export * from './variables.dialog';
  export * from './validation.dialog';
  export * from './task-assignment.dialog';
+ export * from './mapping.dialog';

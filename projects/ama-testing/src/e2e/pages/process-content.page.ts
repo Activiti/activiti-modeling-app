@@ -42,6 +42,11 @@ export class ProcessContentPage extends GenericPage {
         await browser.refresh();
     }
 
+    async linkTo(): Promise<void> {
+        const processLink = element(by.css(`[data-automation-id="process-${this.processId}"]`));
+        await BrowserActions.click(processLink);
+    }
+
     async isLoaded(): Promise<boolean> {
         await BrowserVisibility.waitUntilElementIsVisible(this.processEditorModeling);
         return true;

@@ -90,4 +90,14 @@ export class ParameterMapping {
 
         return mapping;
     }
+
+    static getOutputParameterMapping(parameterName: string, processVariable: string, variableType: MappingType): ServiceOutputParameterMapping {
+        const mapping = {};
+        mapping[processVariable] = {
+          type: variableType,
+          value: parameterName
+        };
+
+        return mapping;
+    }
 }

@@ -27,7 +27,7 @@ export interface ServiceInputParameterMapping {
 
 export interface ServiceOutputParameterMapping {
     [variableName: string]: {
-        type: MappingType.variable,
+        type: MappingType,
         value: ConnectorActionOutputParameterName;
     };
 }

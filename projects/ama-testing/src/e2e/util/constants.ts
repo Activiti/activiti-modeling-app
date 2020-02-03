@@ -33,3 +33,5 @@ export const DMN_SIMULATION_SUCCESS = `Decision table simulation successful`;
 export const DMN_SIMULATION_NO_RESULT = `Decision table simulation had no results`;
 export const MULTIPLE_MATCHING_RULES_UNIQUE_HIT_POLICY = `UNIQUE hit policy decision tables can only have one matching rule. ` +
     `Multiple matches found for decision table 'Decision_decision-dennis'. Matched rules: [1, 2, 3] ERROR`;
+
+export const MAPPING_DIALOG_TITLE = 'Edit variable mapping';
