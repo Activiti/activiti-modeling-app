@@ -1,0 +1,19 @@
++ make tag
+sed -i -e "s/version:.*/version: 0.0.280/" Chart.yaml
+sed -i -e "s|repository: .*|repository: docker.io\/activiti\/activiti-modeling-app|" values.yaml
+sed -i -e "s/tag: .*/tag: 0.0.280/" values.yaml
+npm run update-package-version -- "0.0.280"
+
+> activiti-modeling-app@0.2.0 update-package-version /home/jenkins/agent/workspace/iti_activiti-modeling-app_master
+> ./scripts/update-package-version.sh "0.0.280"
+
+====== UPDATE PACKAGE VERSION of /home/jenkins/agent/workspace/iti_activiti-modeling-app_master to 0.0.280 ======
+npm WARN using --force I sure hope you know what you are doing.
+v0.0.280
+====== UPDATE PACKAGE VERSION of /home/jenkins/agent/workspace/iti_activiti-modeling-app_master/projects/ama-sdk to 0.0.280 ======
+npm WARN using --force I sure hope you know what you are doing.
+v0.0.280
+====== UPDATE PACKAGE VERSION of /home/jenkins/agent/workspace/iti_activiti-modeling-app_master/projects/ama-testing to 0.0.280 ======
+npm WARN using --force I sure hope you know what you are doing.
+v0.0.280
+git add --all
