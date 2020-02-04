@@ -13,10 +13,10 @@
         "rxjs": "6.4.0",
         "@types/lodash": "4.14.112",
         "ajv": "6.9.1",
-        "@alfresco/adf-core": "3.7.0-3767ecb91c7dfd1a6b6922cd14fcd1c282a67641",
-        "@alfresco/js-api": "3.7.0-ea98d9e6f1c7110805b9f4a4cb2d05821a0bd5e6",
-        "@alfresco/adf-process-services-cloud": "3.7.0-3767ecb91c7dfd1a6b6922cd14fcd1c282a67641",
-        "@alfresco/adf-content-services": "3.7.0-3767ecb91c7dfd1a6b6922cd14fcd1c282a67641"
+        "@alfresco/adf-core": "3.7.0-beta10",
+        "@alfresco/js-api": "3.7.0-beta10",
+        "@alfresco/adf-process-services-cloud": "3.7.0-beta10",
+        "@alfresco/adf-content-services": "3.7.0-beta10"
     },
     "main": "src/public_api.ts"
 }
