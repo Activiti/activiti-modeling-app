@@ -50,6 +50,8 @@ export class LogHistoryPage extends GenericPage {
     readonly filtersDropdownText = element.all(by.css('.mat-option-text'));
     readonly allLogContent = element.all(by.css(`div[class='log-content'] div`));
 
+    readonly patternErrorMessage = `does not match pattern ^[a-z]([-a-z0-9]{0,24}[a-z0-9])?$`;
+
     constructor() {
         super();
     }

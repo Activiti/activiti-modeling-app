@@ -109,7 +109,7 @@ export class ProcessModelerComponent extends GenericPage {
     }
 
     async selectUserTask(id: string = 'Task') {
-        await BrowserActions.click(element(by.css(`[data-element-id*="${id}"]`)));
+        await BrowserActions.click(element.all(by.css(`[data-element-id*="${id}"]`)).first());
     }
 
     async selectBoundaryEvent() {

@@ -92,7 +92,7 @@ describe('Validate project', () => {
         projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
         await projectContentPage.navigateTo();
         await toolbar.validateProject();
-        await expect(await snackBar.isValidatedSuccessfully()).toBe(true, 'Validate project snackbar was not displayed');
+        await expect(await snackBar.isProjectValidatedSuccessfully()).toBe(true, 'Validate project snackbar was not displayed');
     });
 
     it('[C325001] Validation project errors should be displayed when clicking on the "Validate Project" button', async () => {

@@ -97,6 +97,16 @@ export class SidebarActionMenu extends GenericWebElement {
         await this.createItem('script');
     }
 
+    async createFile() {
+        await this.clickOnCreateButton();
+        await this.createItem('file');
+    }
+
+    async createTrigger() {
+        await this.clickOnCreateButton();
+        await this.createItem('trigger');
+    }
+
     async importItem(itemType: string, filePath: string) {
         const menuImport = element(by.css('[data-automation-id="app-navigation-upload"]'));
         await BrowserActions.click(menuImport);

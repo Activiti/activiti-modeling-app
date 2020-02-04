@@ -19,6 +19,7 @@ import { element, by, browser } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { TestConfig } from '../config/test.config.interface';
 import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
+import { SnackBar } from './snackbar';
 
 export class ConnectorContentPage extends GenericPage {
 
@@ -26,9 +27,11 @@ export class ConnectorContentPage extends GenericPage {
     readonly connectorEditorContextMenu = element(by.css(`[data-automation-id="connector-editor-menu-button"]`));
     readonly connectorEditorDeleteButton = element(by.css(`[data-automation-id="connector-editor-delete-button"]`));
     readonly connectorEditorSaveButton = element(by.css(`[data-automation-id="connector-editor-save-button"]`));
+    readonly connectorValidateSaveButton = element(by.css(`[data-automation-id="connector-editor-validate-button"]`));
     readonly disabledSaveButton = element(by.css(`[data-automation-id="connector-editor-save-button"]:disabled`));
     readonly connectorEditorDownloadButton = element(by.css(`[data-automation-id="connector-editor-download-button"]`));
     readonly codeEditorTabButton = element.all(by.css(`div.mat-tab-label`)).get(1);
+    readonly snackbar = new SnackBar();
 
     constructor(public testConfig: TestConfig, public appId?: string, public connectorId?: string) {
         super(testConfig);
@@ -62,6 +65,10 @@ export class ConnectorContentPage extends GenericPage {
         await BrowserVisibility.waitUntilElementIsNotVisible(this.disabledSaveButton);
         await browser.actions().mouseMove(this.connectorEditorSaveButton).perform();
         await BrowserActions.click(this.connectorEditorSaveButton);
+    }
+
+    async validate(): Promise<void> {
+        await BrowserActions.click(this.connectorValidateSaveButton);
     }
 
     async saveConnector(): Promise<void> {

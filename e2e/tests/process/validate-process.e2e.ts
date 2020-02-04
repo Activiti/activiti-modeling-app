@@ -28,7 +28,13 @@ import {
     ProcessPropertiesCard,
     CodeEditorWidget,
     ProcessDefinitionModel,
-    SnackBar } from 'ama-testing/e2e';
+    SnackBar,
+    ProcessModelerComponent,
+    TaskAssignmentDialog,
+    TaskPropertiesCardPage,
+    ValidationDialog,
+    LogHistoryPage
+} from 'ama-testing/e2e';
 
 describe('Validate process - update process using XML editor', async () => {
     const adminUser = {
@@ -38,6 +44,11 @@ describe('Validate process - update process using XML editor', async () => {
 
     const authenticatedPage = new AuthenticatedPage(testConfig);
     const codeEditorWidget = new CodeEditorWidget();
+    const processModelerComponent = new ProcessModelerComponent(testConfig);
+    const taskAssignmentDialog = new TaskAssignmentDialog();
+    const taskProperties = new TaskPropertiesCardPage();
+    const processValidation = new ValidationDialog();
+    const logHistory = new LogHistoryPage();
 
     let backend: Backend;
     let project: NodeEntry;
@@ -54,7 +65,10 @@ describe('Validate process - update process using XML editor', async () => {
         const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
+    });
 
+    beforeEach( async () => {
+        process = await backend.process.create(project.entry.id);
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
     });
@@ -85,5 +99,48 @@ describe('Validate process - update process using XML editor', async () => {
 
         await processContentPage.selectModelerEditorTab();
         await expect(await processPropertiesCard.getProcessName()).toEqual('valid-new-name');
+    });
+
+    it('[C325194] Correct validation message should be displayed for Process without any errors', async () => {
+        await processModelerComponent.addUserTask();
+        await processContentPage.save();
+        await processValidation.isDialogDisplayed();
+        await expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
+        await processValidation.confirm();
+        await processValidation.isDialogDismissed();
+
+        await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+        await expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
+        await processModelerComponent.selectStartEvent();
+        await processModelerComponent.selectUserTask();
+
+        await taskProperties.openAssignmentDialog();
+        await taskAssignmentDialog.isLoaded();
+        await taskAssignmentDialog.setAssignee('userAssignee');
+        await taskAssignmentDialog.assign();
+
+        await processContentPage.validate();
+        await expect(await snackBar.isValidatedSuccessfully('process')).toBe(true, 'Process validation snackbar was not displayed');
+
+    });
+
+    it('[C325195] Validation Process errors should be displayed when clicking on the Validate Process button', async () => {
+        await processModelerComponent.addUserTask();
+        await processContentPage.save();
+        await processValidation.isDialogDisplayed();
+        await expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
+        await processValidation.confirm();
+        await processValidation.isDialogDismissed();
+
+        await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
+        await expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
+        await processModelerComponent.selectStartEvent();
+        await processModelerComponent.selectUserTask();
+
+        await processContentPage.validate();
+        await expect(await snackBar.isValidatedUnsuccessfully('process')).toBe(true, 'Process validation snackbar was not displayed');
+        await logHistory.clickMessageIndicator();
+        await expect(await logHistory.getMessage()).toBe(`One of the attributes 'assignee','candidateUsers' or 'candidateGroups' are mandatory on user task`);
+
     });
 });

@@ -36,6 +36,18 @@ export class SnackBar extends GenericWebElement {
         );
     }
 
+    async isValidatedSuccessfully(itemType: string): Promise<boolean> {
+        return this.waitForMessage(
+            `${this.firstUpperCase(itemType)} is valid`
+        );
+    }
+
+    async isValidatedUnsuccessfully(itemType: string): Promise<boolean> {
+        return this.waitForMessage(
+            `${this.firstUpperCase(itemType)} contains validation error(s)`
+        );
+    }
+
     async isUpdatedSuccessfully(itemType: string): Promise<boolean> {
         return this.waitForMessage(
             `${this.firstUpperCase(itemType)} saved`
@@ -60,7 +72,7 @@ export class SnackBar extends GenericWebElement {
         );
     }
 
-    async isValidatedSuccessfully(): Promise<boolean> {
+    async isProjectValidatedSuccessfully(): Promise<boolean> {
         return this.waitForMessage(
             `Project contains no validation errors`
         );
@@ -74,7 +86,7 @@ export class SnackBar extends GenericWebElement {
 
     async isSnackBarNotDisplayed(): Promise<boolean> {
         try {
-            await BrowserVisibility.waitUntilElementIsNotVisible(element(by.css(`simple-snack-bar`)));
+            await BrowserVisibility.waitUntilElementIsNotVisible(element.all(by.css(`simple-snack-bar`)).first());
             return true;
         } catch {
             return false;
