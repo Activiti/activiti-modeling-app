@@ -161,8 +161,8 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
         this.propertyChanged.emit(true);
     }
 
-    updateVariableValue(value?: string) {
-        if (value) {
+    updateVariableValue(value?: any) {
+        if (value !== '' || value !== undefined || value !== null) {
             this.form.value = value;
         } else {
             delete this.form.value;
