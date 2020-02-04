@@ -1,0 +1,62 @@
+{
+  "SDK": {
+    "SNACKBAR": {
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Liitettyjen arvojen on noudatettava tätä kaavaa"
+    },
+    "ALL": "Kaikki",
+    "VARIABLES_EDITOR": {
+      "ERRORS": {
+        "EMPTY_NAME": "Nimi on pakollinen",
+        "INVALID_NAME": "Muuttujan nimi ei kelpaa",
+        "VARIABLE_NAME_TOOLTIP": "Nimen on alettava kirjaimella, ja se voi sisältää ainoastaan aakkosnumeerisia merkkejä ja alaviivoja",
+        "NAME_ALREADY_EXISTS": "Muuttujien nimien on oltava uniikkeja"
+      },
+      "TABS": {
+        "VIEWER": "Ominaisuuksien tarkastelu",
+        "JSON_EDITOR": "JSON-editori"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nimi",
+        "COLUMN_TYPE": "Tyyppi",
+        "COLUMN_REQUIRED": "Pakollinen",
+        "COLUMN_VALUE": "Arvo",
+        "NO_PROPERTIES": "Valitse tai luo muuttuja tarkastellaksesi sen ominaisuuksia"
+      }
+    },
+    "VARIABLE_MAPPING": {
+      "PARAMETER": "Parametri",
+      "VALUE": "Arvo",
+      "PROCESS_VARIABLE": "Prosessimuuttuja",
+      "SWITCH_VAR_VAL": "Vaihtele muuttujaa/arvoa",
+      "NO_PROCESS_PROPERTIES": "Ei prosessiominaisuuksia",
+      "NO_PAYLOAD": "Viestissä ei ole tietosisältöä. Lisää tietosisältö välitapahtumaviestiin.",
+      "CLEAR_ASSIGNMENT": "Tyhjennä tehtävä",
+      "NONE": "Ei mitään"
+    },
+    "MESSAGES_EDITOR": {
+      "TITLE": "Prosessiviestit",
+      "ERRORS": {
+        "EMPTY_NAME": "Nimi on pakollinen",
+        "NAME_ALREADY_EXISTS": "Viestien nimien on oltava uniikkeja"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nimi",
+        "COLUMN_ID": "Tunnus",
+        "NO_MESSAGES": "Valitse tai luo viesti tarkastellaksesi sen ominaisuuksia"
+      }
+    },
+    "MAPPING_DIALOG": {
+      "TITLE": "Muokkaa muuttujakartoitusta",
+      "SELECTOR_TITLE": "Valitse muokattava muuttujan yhdistämistyyppi",
+      "INPUT_MAPPING": "Syötteen yhdistäminen",
+      "OUTPUT_MAPPING": "Tuotoksen yhdistäminen",
+      "PROCESS_VARIABLE": "Prosessimuuttuja",
+      "INPUT_PARAMETER": "Sisääntuloparametri",
+      "OUTPUT_PARAMETER": "Ulostuloparametri",
+      "VALUE_MAPPING": "Arvo",
+      "EXPRESSION_MAPPING": "Lauseke",
+      "NONE": "Ei mitään",
+      "TYPE": "Tyyppi"
+    }
+  }
+}

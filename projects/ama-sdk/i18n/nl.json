@@ -1,0 +1,62 @@
+{
+  "SDK": {
+    "SNACKBAR": {
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Geplakte waarden moeten dit patroon volgen"
+    },
+    "ALL": "Alle",
+    "VARIABLES_EDITOR": {
+      "ERRORS": {
+        "EMPTY_NAME": "Een naam is vereist",
+        "INVALID_NAME": "Ongeldige variabelenaam",
+        "VARIABLE_NAME_TOOLTIP": "De naam moet beginnen met een letter en mag alleen alfanumerieke tekens en onderstrepingstekens bevatten",
+        "NAME_ALREADY_EXISTS": "Variabelenamen moeten uniek zijn"
+      },
+      "TABS": {
+        "VIEWER": "Eigenschappenviewer",
+        "JSON_EDITOR": "JSON-editor"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Naam",
+        "COLUMN_TYPE": "Type",
+        "COLUMN_REQUIRED": "Vereist",
+        "COLUMN_VALUE": "Waarde",
+        "NO_PROPERTIES": "Selecteer of maak een variabele om de eigenschappen ervan weer te geven"
+      }
+    },
+    "VARIABLE_MAPPING": {
+      "PARAMETER": "Parameter",
+      "VALUE": "Waarde",
+      "PROCESS_VARIABLE": "Procesvariabele",
+      "SWITCH_VAR_VAL": "Schakelen tussen variabele/waarde",
+      "NO_PROCESS_PROPERTIES": "Geen proceseigenschappen",
+      "NO_PAYLOAD": "Bericht heeft geen nettolading. Voeg een nettolading toe aan de activerende gebeurtenis voor het bericht.",
+      "CLEAR_ASSIGNMENT": "Toewijzing wissen",
+      "NONE": "Geen"
+    },
+    "MESSAGES_EDITOR": {
+      "TITLE": "Procesberichten",
+      "ERRORS": {
+        "EMPTY_NAME": "Een naam is vereist",
+        "NAME_ALREADY_EXISTS": "Berichtnamen moeten uniek zijn"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Naam",
+        "COLUMN_ID": "ID",
+        "NO_MESSAGES": "Selecteer of maak een bericht om de eigenschappen ervan weer te geven"
+      }
+    },
+    "MAPPING_DIALOG": {
+      "TITLE": "Variabeletoewijzing bewerken",
+      "SELECTOR_TITLE": "Selecteer het type variabeletoewijzing dat u wilt bewerken",
+      "INPUT_MAPPING": "Invoertoewijzing",
+      "OUTPUT_MAPPING": "Uitvoertoewijzing",
+      "PROCESS_VARIABLE": "Procesvariabele",
+      "INPUT_PARAMETER": "Invoerparameter",
+      "OUTPUT_PARAMETER": "Uitvoerparameter",
+      "VALUE_MAPPING": "Waarde",
+      "EXPRESSION_MAPPING": "Expressie",
+      "NONE": "Geen",
+      "TYPE": "Type"
+    }
+  }
+}

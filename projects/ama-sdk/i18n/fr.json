@@ -1,0 +1,62 @@
+{
+  "SDK": {
+    "SNACKBAR": {
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Les valeurs collées doivent correspondre à ce modèle"
+    },
+    "ALL": "Tout",
+    "VARIABLES_EDITOR": {
+      "ERRORS": {
+        "EMPTY_NAME": "Vous devez spécifier un nom",
+        "INVALID_NAME": "Nom de variable non valide",
+        "VARIABLE_NAME_TOOLTIP": "Le nom doit commencer par une lettre et contenir uniquement des caractères alphanumériques et des traits de soulignement",
+        "NAME_ALREADY_EXISTS": "Les noms de variables doivent être uniques"
+      },
+      "TABS": {
+        "VIEWER": "Afficheur de propriétés",
+        "JSON_EDITOR": "Editeur JSON"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nom",
+        "COLUMN_TYPE": "Type",
+        "COLUMN_REQUIRED": "Requis",
+        "COLUMN_VALUE": "Valeur",
+        "NO_PROPERTIES": "Sélectionnez ou créez une variable pour afficher ses propriétés"
+      }
+    },
+    "VARIABLE_MAPPING": {
+      "PARAMETER": "Paramètre",
+      "VALUE": "Valeur",
+      "PROCESS_VARIABLE": "Variable de processus",
+      "SWITCH_VAR_VAL": "Basculer entre variable et valeur",
+      "NO_PROCESS_PROPERTIES": "Aucune propriété de processus",
+      "NO_PAYLOAD": "Le message n'a pas de charge utile. Ajoutez une charge utile dans l'événement d'envoi de message.",
+      "CLEAR_ASSIGNMENT": "Effacer l'affectation",
+      "NONE": "Aucun(e)"
+    },
+    "MESSAGES_EDITOR": {
+      "TITLE": "Traiter les messages",
+      "ERRORS": {
+        "EMPTY_NAME": "Vous devez spécifier un nom",
+        "NAME_ALREADY_EXISTS": "Les noms de messages doivent être uniques"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nom",
+        "COLUMN_ID": "ID",
+        "NO_MESSAGES": "Sélectionnez ou créez un message pour afficher ses propriétés"
+      }
+    },
+    "MAPPING_DIALOG": {
+      "TITLE": "Modifier le mappage des variables",
+      "SELECTOR_TITLE": "Sélectionnez le type de mappage de variable à modifier",
+      "INPUT_MAPPING": "Mappage d'entrée",
+      "OUTPUT_MAPPING": "Mappage de sortie",
+      "PROCESS_VARIABLE": "Variable de processus",
+      "INPUT_PARAMETER": "Paramètre d'entrée",
+      "OUTPUT_PARAMETER": "Paramètre de sortie",
+      "VALUE_MAPPING": "Valeur",
+      "EXPRESSION_MAPPING": "Expression",
+      "NONE": "Aucun(e)",
+      "TYPE": "Type"
+    }
+  }
+}

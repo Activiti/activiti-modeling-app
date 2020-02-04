@@ -1,0 +1,640 @@
+{
+  "APP": {
+    "APPLICATION": "应用程序",
+    "BACKEND_SERVICE": "后端服务",
+    "MORE_ACTIONS": "更多操作",
+    "VALIDATE_PROJECT": "验证项目",
+    "DOWNLOAD_PROJECT": "下载项目",
+    "ADD_ACTION": "添加新操作",
+    "ADD_EVENT": "添加新事件",
+    "HEADER": {
+      "APP_NAME": "建模应用程序",
+      "SIGN_OUT": "退出",
+      "SETTINGS": "设置",
+      "ABOUT": "关于",
+      "LANGUAGE": "语言",
+      "SEARCH": "搜索"
+    },
+    "DIALOGS": {
+      "CANCEL": "取消",
+      "SAVE": "保存",
+      "CREATE": "创建",
+      "UPDATE": "更新",
+      "CLOSE": "关闭",
+      "EDIT_PROPERTIES": "编辑流程变量",
+      "EDIT_PROCESS_MESSAGES": "编辑消息",
+      "EDIT_FORM_PROPERTIES": "编辑表单变量",
+      "EDIT_VISIBILITY_CONDITIONS": "编辑可见性条件",
+      "ERROR": {
+        "TITLE": "仍然要保存它吗?",
+        "SUBTITLE": "验证错误：",
+        "NAME_DOESNT_MATCH_PATTERN": "名称与以下模式不匹配",
+        "GENERAL_NAME_VALIDATION": "名称必须为小写，且字符长度在 1 和 26 之间。允许使用字母数字字符和连字符，但名称必须以字母开头并以字母数字结尾。"
+      },
+      "CONFIRM": {
+        "TITLE": "您确定吗？",
+        "SUBTITLE": "确定要执行此操作吗？",
+        "BUTTON": "确认",
+        "UNSAVED_PAGE": "确认要不保存就离开吗 {{ types }}",
+        "RELEASE": "确定要发布新版本的此项目吗？",
+        "TYPES": {
+          "DECISION": "决策表",
+          "DATA": "数据",
+          "UI": "UI",
+          "CONNECTOR": "连接器",
+          "FORM": "表单",
+          "PROCESS": "流程",
+          "FILE": "文件"
+        },
+        "DELETE": {
+          "PROJECT": "确定要删除此项目吗？",
+          "PROCESS": "确定要删除此流程吗？",
+          "FORM": "确定要删除此表单吗？",
+          "UI": "确定要删除此 UI 吗？",
+          "DATA": "确定要删除此数据对象吗？",
+          "DECISION_TABLE": "确定要删除此决策表吗？",
+          "CONNECTOR": "确定要删除此连接器吗？",
+          "FILE": "确定要删除此文件吗？"
+        },
+        "SAVE": {
+          "PROCESS": "确定要保存此流程吗？",
+          "FORM": "确定要保存此表单吗？",
+          "UI": "确定要保存此 UI 吗？",
+          "DATA": "确定要保存此数据对象吗？",
+          "DECISION_TABLE": "确定要保存此决策表吗？",
+          "CONNECTOR": "确定要保存此连接器吗？",
+          "FILE": "确定要保存此文件吗？"
+        },
+        "DOWNLOAD": {
+          "PROCESS": "确定要下载此流程吗？",
+          "IMAGE": "确定要下载此流程的 SVG 图像吗?",
+          "FORM": "确定要下载此表单吗？",
+          "UI": "确定要下载此 UI 吗？",
+          "DATA": "确定要下载此数据对象吗？",
+          "DECISION_TABLE": "确定要下载此决策表吗？",
+          "CONNECTOR": "确定要下载此连接器吗？",
+          "FILE": "确定要下载此文件吗？"
+        }
+      }
+    },
+    "MENU": {
+      "EDIT": "编辑",
+      "DELETE": "删除",
+      "RELEASE": "发布",
+      "COLLABORATORS": "协作者",
+      "SEE_RELEASES": "查看发布",
+      "DOWNLOAD": "下载"
+    },
+    "SETTINGS": {
+      "HEADER": "App 设置"
+    },
+    "HOME": {
+      "NEW_MENU": {
+        "LABEL": "新建",
+        "CREATE_PROJECT_TITLE": "创建项目",
+        "OVERRIDE_PROJECT_TITLE": "具有此名称的项目已存在。",
+        "EDIT_PROJECT_TITLE": "编辑项目",
+        "PROJECT_CREATED": "项目已创建",
+        "PROJECT_UPLOADED": "项目已上传",
+        "PROJECT_UPDATED": "项目已保存",
+        "PROJECT_RELEASED": "项目已发布",
+        "PROJECT_DELETED": "项目已删除",
+        "MENU_ITEMS": {
+          "CREATE_PROJECT": "创建项目",
+          "UPLOAD_PROJECT": "上传项目",
+          "CREATE_MODEL": "内容模型"
+        }
+      },
+      "DIALOGS": {
+        "PROJECT_NAME": "项目名称：",
+        "PROJECT_DESC": "项目描述:"
+      },
+      "NAVIGATION": {
+        "PROJECTS": {
+          "LABEL": "项目",
+          "TOOLTIP": "已发布的项目"
+        },
+        "RELEASES": {
+          "LABEL": "发布",
+          "TOOLTIP": "发布"
+        },
+        "PROCESSES": {
+          "LABEL": "流程",
+          "TOOLTIP": "已发布的流程"
+        },
+        "FAVORITES": {
+          "LABEL": "收藏夹",
+          "TOOLTIP": "收藏夹"
+        }
+      },
+      "TABLE": {
+        "COLUMN_NAME": "名称",
+        "COLUMN_VERSION": "版本",
+        "COLUMN_CREATED": "已创建",
+        "COLUMN_CREATED_BY": "创建者",
+        "COLUMN_OPTIONS": "选项",
+        "NO_ITEMS": "创建或导入项目以在列表中查看它。",
+        "NO_FAV_PROCESSES": "收藏流程以使其在此处可用。",
+        "NO_FAV_PROJECTS": "收藏项目以使其在此处可用。",
+        "RELEASE_ID": "发布 ID",
+        "PROJECT_NAME": "项目名称"
+      },
+      "ERROR": {
+        "LOAD_PROJECTS": "加载项目时遇到问题。尝试刷新页面。",
+        "LOAD_RELEASES": "加载发布时遇到问题。尝试刷新页面",
+        "LOAD_PROCESSES": "加载流程时遇到问题。尝试刷新页面"
+      }
+    },
+    "PROJECT": {
+      "BACK_TO": "返回项目",
+      "NAME": "项目编辑器",
+      "UPLOAD_FILE": "上传文件",
+      "DOWNLOAD_PROJECT": "下载项目",
+      "PROJECT_VALID": "验证错误",
+      "EXPORT_SUCCESS": "项目已导出",
+      "SETTINGS": {
+        "PROJECT_SETTINGS": "项目编辑器设置",
+        "CONNECTORS_TAB_LABEL": "连接器"
+      },
+      "IMPORT": "导入",
+      "CREATE_NEW": "新建",
+      "SEARCH": "搜索",
+      "UPLOAD_FILE_SUCCESS": "文件已上传",
+      "NO_CONTENT": "<空>",
+      "NO_SELECTION": "使用侧边栏新建模型或编辑现有模型",
+      "NEW_MENU": {
+        "LABEL": "新建",
+        "CREATE": "创建",
+        "IMPORT": "导入",
+        "CREATE_PROCESS_TITLE": "创建流程",
+        "MENU_ITEMS": {
+          "CREATE_PROCESS": "流程",
+          "CREATE_CONNECTOR": "连接器",
+          "CREATE_FORM": "表单",
+          "CREATE_UI": "UI",
+          "CREATE_DATA": "数据对象",
+          "CREATE_DECISION_TABLE": "决策表",
+          "CREATE_FILE": "文件"
+        }
+      },
+      "TREE": {
+        "PROCESSES": "流程",
+        "FORMS": "表单",
+        "CONNECTORS": "连接器",
+        "DATA": "数据",
+        "DECISION_TABLES": "决策表",
+        "UIS": "UI",
+        "FILES": "文件"
+      },
+      "PROCESS_DIALOG": {
+        "TITLE_CREATE": "创建流程",
+        "TITLE_UPDATE": "更新流程",
+        "PROCESS_NAME": "流程名称：",
+        "PROCESS_DESC": "流程文档：",
+        "PROCESS_CREATED": "流程已创建",
+        "PROCESS_DELETED": "流程已删除",
+        "PROCESS_UPDATED": "流程已保存"
+      },
+      "CONNECTOR_DIALOG": {
+        "TITLE_CREATE": "创建连接器",
+        "TITLE_UPDATE": "更新连接器",
+        "CONNECTOR_NAME": "连接器名称:",
+        "CONNECTOR_DESC": "连接器描述：",
+        "CONNECTOR_CREATED": "连接器已创建",
+        "CONNECTOR_DELETED": "连接器已删除",
+        "CONNECTOR_UPDATED": "连接器已保存"
+      },
+      "FORM_DIALOG": {
+        "TITLE_CREATE": "创建表单",
+        "TITLE_UPDATE": "更新表单",
+        "FORM_NAME": "表单名称：",
+        "FORM_DESC": "表单描述：",
+        "FORM_CREATED": "表单已创建",
+        "FORM_DELETED": "表单已删除",
+        "FORM_UPDATED": "表单已保存"
+      },
+      "UI_DIALOG": {
+        "TITLE_CREATE": "创建 UI",
+        "TITLE_UPDATE": "更新 UI",
+        "UI_NAME": "UI 名称：",
+        "UI_DESC": "UI 描述：",
+        "UI_CREATED": "UI 已创建",
+        "UI_DELETED": "UI 已删除",
+        "UI_UPDATED": "UI 已保存"
+      },
+      "DATA_DIALOG": {
+        "TITLE_CREATE": "创建数据对象",
+        "TITLE_UPDATE": "更新数据对象",
+        "DATA_NAME": "数据对象名称：",
+        "DATA_DESC": "数据对象描述：",
+        "DATA_CREATED": "数据对象已创建",
+        "DATA_DELETED": "数据对象已删除",
+        "DATA_UPDATED": "数据对象已保存"
+      },
+      "DECISION_TABLE_DIALOG": {
+        "TITLE_CREATE": "创建决策表",
+        "TITLE_UPDATE": "更新决策表",
+        "DECISION_TABLE_NAME": "决策表名称：",
+        "DECISION_TABLE_DESC": "决策表描述：",
+        "DECISION_TABLE_CREATED": "决策表已创建",
+        "DECISION_TABLE_DELETED": "决策表已删除",
+        "DECISION_TABLE_UPDATED": "决策表已保存"
+      },
+      "FILE_DIALOG": {
+        "TITLE_CREATE": "创建文件",
+        "TITLE_UPDATE": "更新文件",
+        "FILE_NAME": "文件名称：",
+        "FILE_DESC": "文件描述：",
+        "FILE_CREATED": "文件已创建",
+        "FILE_DELETED": "文件已删除",
+        "FILE_UPDATED": "文件已保存"
+      },
+      "ACTION_DIALOG": {
+        "ACTION_DETAILS": "操作详细信息",
+        "ACTION_NAME": "操作名称",
+        "ACTION_DESC": "操作描述",
+        "ADD_ACTION": "添加操作",
+        "DEL_ACTION": "删除操作"
+      },
+      "EVENT_DIALOG": {
+        "EVENT_DETAILS": "事件详细信息",
+        "EVENT_NAME": "事件名称",
+        "EVENT_DESC": "事件描述",
+        "ADD_EVENT": "添加事件",
+        "DEL_EVENT": "删除事件"
+      },
+      "ERROR": {
+        "UPLOAD_FILE": "上传文件时遇到问题。尝试重新上传。",
+        "DELETE_PROJECT": "删除项目时遇到问题。尝试重新删除。",
+        "CHANGE_FAVORITE": "收藏该项目时遇到问题。尝试重新收藏。",
+        "DELETE_PROCESS": "删除流程时遇到问题。尝试重新删除。",
+        "LOAD_MODELS": "加载模型时遇到问题。尝试重新更新。",
+        "RELEASE_PROJECT": "发行项目时遇到问题。尝试重新发行。",
+        "CREATE_PROCESS": {
+          "DUPLICATION": "具有此名称的值已存在",
+          "GENERAL": "创建流程时遇到问题。尝试重新创建。"
+        },
+        "UPDATE_PROCESS": {
+          "DUPLICATION": "具有此名称的值已存在",
+          "GENERAL": "保存流程时遇到问题。尝试重新保存。",
+          "EMPTY_NAME": "需要名称"
+        },
+        "CREATE_CONNECTOR": {
+          "DUPLICATION": "具有此名称的连接器已存在",
+          "GENERAL": "创建连接器时遇到问题。尝试重新创建。"
+        },
+        "UPDATE_CONNECTOR": {
+          "DUPLICATION": "具有此名称的连接器已存在",
+          "GENERAL": "保存连接器时遇到问题。尝试重新保存。"
+        },
+        "CREATE_FORM": {
+          "DUPLICATION": "具有此名称的表单已存在",
+          "GENERAL": "创建表单时遇到问题。尝试重新创建。"
+        },
+        "UPDATE_FORM": {
+          "DUPLICATION": "具有此名称的表单已存在",
+          "GENERAL": "保存表单时遇到问题。尝试重新保存。"
+        },
+        "CREATE_UI": {
+          "DUPLICATION": "具有此名称的 UI 已存在",
+          "GENERAL": "创建 UI 时遇到问题。尝试重新创建。"
+        },
+        "UPDATE_UI": {
+          "DUPLICATION": "具有此名称的 UI 已存在",
+          "GENERAL": "保存 UI 时遇到问题。尝试重新保存。"
+        },
+        "CREATE_DECISION_TABLE": {
+          "DUPLICATION": "具有此名称的决策表已存在",
+          "GENERAL": "创建决策表时遇到问题。尝试重新创建。"
+        },
+        "UPDATE_DECISION_TABLE": {
+          "DUPLICATION": "具有此名称的决策表已存在",
+          "GENERAL": "保存决策表时遇到问题。尝试重新保存。"
+        },
+        "CREATE_DATA": {
+          "DUPLICATION": "具有此名称的数据对象已存在",
+          "GENERAL": "创建数据对象时遇到问题。尝试重新创建。"
+        },
+        "UPDATE_DATA": {
+          "DUPLICATION": "具有此名称的数据对象已存在",
+          "GENERAL": "保存数据对象时遇到问题。尝试重新保存。"
+        },
+        "CREATE_PROJECT": {
+          "DUPLICATION": "具有此名称的项目已存在",
+          "GENERAL": "创建项目时遇到问题。尝试重新创建。"
+        },
+        "UPDATE_PROJECT": {
+          "DUPLICATION": "具有此名称的项目已存在",
+          "GENERAL": "保存项目时遇到问题。尝试重新保存。"
+        },
+        "UPLOAD_PROJECT": {
+          "DUPLICATION": "具有此名称的项目已存在",
+          "GENERAL": "上传项目时遇到问题。尝试重新上传。"
+        },
+        "GET_PROJECT": "加载项目时遇到问题。尝试刷新页面。",
+        "EXPORT_PROJECT": "项目导出期间出现未知错误",
+        "CREATE_FILE": {
+          "DUPLICATION": "具有此名称的文件已存在",
+          "GENERAL": "创建文件时遇到问题。尝试重新创建。"
+        },
+        "UPDATE_FILE": {
+          "DUPLICATION": "具有此名称的文件已存在",
+          "GENERAL": "保存文件时遇到问题。尝试重新保存。"
+        }
+      }
+    },
+    "PROCESS_EDITOR": {
+      "TABS": {
+        "PROCESS_EDITOR": "流程编辑器",
+        "JSON_EDITOR": "XML 编辑器",
+        "EXTENSIONS_EDITOR": "扩展编辑器"
+      },
+      "PRIORITIES": {
+        "LOW": "0",
+        "MEDIUM": "1",
+        "HIGH": "2"
+      },
+      "ACTIONS": {
+        "ZOOM_IN": "放大",
+        "ZOOM_OUT": "缩小",
+        "UNDO": "撤消",
+        "REDO": "恢复",
+        "LASSO_TOOL": "套索工具"
+      },
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "属性",
+        "ID": "ID",
+        "NAME": "名称",
+        "VERSION": "版本",
+        "VARIABLES": "变量",
+        "DOCUMENTATION": "文档",
+        "EXECUTABLE": "可执行",
+        "IMPLEMENTATION": "实现",
+        "INPUTS": "输入",
+        "OUTPUTS": "输出",
+        "ACTION": "操作",
+        "INPUT": "输入",
+        "INPUT_MAPPING": "输入映射",
+        "OUTPUT": "输出",
+        "OUTPUT_MAPPING": "输出映射",
+        "ASSIGNEE": "被指派者",
+        "CANDIDATE_GROUPS": "候选组",
+        "CANDIDATE_USERS": "候选用户",
+        "DUE_DATE": "截止日期",
+        "PRIORITY": "优先级",
+        "ACTIVITY_NAME": "活动名称",
+        "PROCESS_VARIABLE": "单个流程变量",
+        "PROCESS_VARIABLES": "多个流程变量",
+        "EXPRESSION": "条件表达式",
+        "FORM_SELECTOR": "表单名称",
+        "DEFAULT_SEQUENCE_FLOW": "默认序列流"
+      },
+      "PALETTE": {
+        "HAND_TOOL": "手形工具",
+        "CONNECT_TOOL": "全局连接工具",
+        "SPACE_TOOL": "创建/删除空间工具",
+        "LASSO_TOOL": "套索工具",
+        "START_EVENT": "创建开始事件",
+        "END_EVENT": "创建结束事件",
+        "INTERMEDIATE_THROW_EVENT": "创建中间抛出事件",
+        "START_EVENT_SIGNAL": "创建信号启动事件",
+        "INTERMEDIATE_CATCH_EVENT_SIGNAL": "创建中间捕获信号事件",
+        "INTERMEDIATE_THROW_EVENT_SIGNAL": "创建中间抛出信号事件",
+        "GATEWAY": "创建分支",
+        "USER_TASK": "创建用户任务",
+        "SERVICE_TASK": "创建服务任务",
+        "CALL_ACTIVITY": "创建待命活动",
+        "CONTAINER": "专用服务",
+        "SUB_PROCESS": "创建子流程",
+        "PARTICIPANT": "创建池"
+      },
+      "UPLOAD_SUCCESS": "流程已上传",
+      "PROCESS_SAVED": "流程已保存",
+      "PROCESS_UPDATED": "流程已更新",
+      "SELECT_PROCESS_VARIABLE": "选择流程变量",
+      "ERRORS": {
+        "NO_PROCESS_PROPERTIES": "没有流程属性。",
+        "NO_CONNECTOR_ACTIONS": "创建供连接器使用的操作",
+        "LOAD_DIAGRAM": "加载图表时遇到问题。尝试刷新页面。",
+        "SAVE_DIAGRAM": "保存图表时遇到问题。尝试重新保存。",
+        "DOWNLOAD_DIAGRAM": "下载图表时遇到问题。尝试重新下载。",
+        "DOWNLOAD_SVG_IMAGE": "下载图表图像时遇到问题。尝试重新下载。",
+        "CHANGE_FAVORITE": "更改流程收藏状态时遇到问题。"
+      },
+      "PROPERTIES": {
+        "TABS": {
+          "VIEWER": "属性查看器",
+          "JSON_EDITOR": "JSON 编辑器"
+        },
+        "TABLE": {
+          "COLUMN_NAME": "名称",
+          "COLUMN_TYPE": "类型",
+          "COLUMN_REQUIRED": "必需",
+          "COLUMN_VALUE": "值",
+          "NO_PROPERTIES": "创建或选择流程变量以编辑其详细信息"
+        },
+        "ERRORS": {
+          "EMPTY_NAME": "需要名称"
+        }
+      }
+    },
+    "CONNECTOR_EDITOR": {
+      "UPLOAD_SUCCESS": "连接器已上传",
+      "NAME": "连接器编辑器",
+      "TABS": {
+        "CONNECTOR_EDITOR": "连接器编辑器",
+        "JSON_EDITOR": "JSON 编辑器"
+      },
+      "EDITOR": {
+        "CONNECTOR_DETAILS": "连接器详细信息",
+        "INPUTS": "输入参数",
+        "OUTPUTS": "输出参数",
+        "ACTIONS": "操作",
+        "ADD_NEW_PARAMETER": "添加新参数",
+        "NAME": "名称",
+        "DESCRIPTION": "说明",
+        "TYPE": "类型",
+        "BUTTONS": {
+          "SAVE": "保存"
+        },
+        "REQUIRED": "必需"
+      },
+      "ERRORS": {
+        "GET_CONNECTOR": "加载连接器时遇到问题。尝试刷新页面。"
+      }
+    },
+    "FORM_EDITOR": {
+      "UPLOAD_SUCCESS": "表单已上传",
+      "TABS": {
+        "FORM_EDITOR": "表单编辑器",
+        "JSON_EDITOR": "JSON 编辑器"
+      },
+      "FORM_VARIABLES": "表单变量",
+      "VISIBLITY_CONDITIONS": {
+        "DEPENDS": "依赖于",
+        "OPERATOR": "如果它是",
+        "VALUE": "值",
+        "NEXT_CONDITION": "条件运算符",
+        "NO_PROPERTY": "创建或选择可见性条件以编辑其详细信息",
+        "FIELDS": "字段",
+        "VARIABLE": "变量",
+        "SELECT_FIELD": "选择字段",
+        "SELECT_VARIABLE": "选择变量",
+        "FORM_FIELD": "表单字段",
+        "NEXT_OPERATOR": "条件运算符"
+      },
+      "FIELD_PROPERTIES": {
+        "DESCRIPTION": "说明",
+        "NAME": "名称",
+        "COLUMNS": "列数",
+        "REQUIRED": "必需",
+        "MULTIPLE_UPLOAD": "允许多个文件附件",
+        "LINK_FILE": "仅链接到文件而不上传文件",
+        "FILE_SOURCE": "文件源",
+        "ALL_SOURCES": "所有文件源",
+        "LOCAL_FILE": "本地文件",
+        "PLACEHOLDER": "占位符",
+        "COLSPAN": "Colspan",
+        "LABEL": "标签",
+        "ID": "ID",
+        "OVERRIDE_ID": "替代 ID",
+        "VALUE": "要显示的文本",
+        "DISPLAY_TEXT": "要显示的文本",
+        "MIN_LENGTH": "最小长度",
+        "MAX_LENGTH": "最大长度",
+        "MIN_VALUE": "最小值",
+        "MAX_VALUE": "最大值",
+        "REGEX": "Regex 模式",
+        "INPUT_MASK": "输入掩码",
+        "INPUT_MASK_PLACEHOLDER": "输入掩码占位符",
+        "INPUT_MASK_RESERVED": "倒序",
+        "MIN_DATE": "最小日期",
+        "MAX_DATE": "最大日期",
+        "DATE_DISPLAY_FORMAT": "日期显示格式",
+        "DATE_FORMAT_PREVIEW": "今天日期",
+        "CURRENCY": "货币",
+        "DECIMALS": "允许十进制",
+        "HYPERLINK_URL": "超链接 URL",
+        "ALLOW_COLLAPSE": "允许折叠",
+        "COLLAPSE_BY_DEFAULT": "默认折叠",
+        "REST_SERVICE": {
+          "DIALOG_TITLE": "URL 测试",
+          "REST_URL": "REST URL",
+          "TEST_BUTTON": "测试",
+          "RESPONSE_PATH": "JSON 响应中的阵列路径",
+          "ID_PROP": "ID 属性",
+          "LABEL_PROP": "标签属性"
+        },
+        "KEY_VALUE_PROPERTY": {
+          "ADD": "添加",
+          "ADD_OPTION": "添加新选项",
+          "LABEL": "标签",
+          "ID": "ID",
+          "INFO": "此为“空值”选项。在运行时选择此选项则等于“无值”或“空”。仅当该字段不是必填字段时才能选择。.",
+          "CLEAR_SELECTION": "删除默认值",
+          "OPTIONS": "选项"
+        },
+        "ADVANCED_RADIO_BUTTON": {
+          "MANUAL": "手动",
+          "REST_SERVICE": "REST 服务"
+        }
+      },
+      "EDITOR": {
+        "ADD_NEW_TAB": "添加选项卡",
+        "DELETE_TAB": "删除选项卡",
+        "ADD_NEW_OUTCOME": "添加结果",
+        "DELETE_OUTCOME": "删除结果",
+        "EDIT": "编辑",
+        "DELETE": "删除",
+        "MOVE": "移动"
+      },
+      "ERRORS": {
+        "GET_FORM": "加载表单时遇到问题。尝试刷新页面。",
+        "DELETE_FORM": "删除表单时遇到问题。尝试重新删除。"
+      }
+    },
+    "UI_EDITOR": {
+      "UPLOAD_SUCCESS": "UI 已上传",
+      "TABS": {
+        "UI_EDITOR": "UI 编辑器",
+        "JSON_EDITOR": "JSON 编辑器"
+      },
+      "EDITOR": {
+        "DETAILS": "UI 详细信息",
+        "DESCRIPTION": "说明",
+        "NAME": "名称",
+        "TEMPLATE": "模板"
+      },
+      "ERRORS": {
+        "GET_UI": "加载 UI 时遇到问题。尝试刷新页面。",
+        "DELETE_UI": "删除 UI 时遇到问题。尝试重新删除。"
+      }
+    },
+    "DATA_EDITOR": {
+      "UPLOAD_SUCCESS": "数据编辑器已上传",
+      "TABS": {
+        "DATA_EDITOR": "数据对象编辑器",
+        "JSON_EDITOR": "JSON 编辑器"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DATA": "加载数据对象时遇到问题。尝试刷新页面。",
+        "DELETE_DATA": "删除数据对象时遇到问题。尝试重新删除。"
+      }
+    },
+    "DECISION_TABLE_EDITOR": {
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "属性",
+        "NAME": "名称",
+        "SIMULATOR": "模拟器"
+      },
+      "UPLOAD_SUCCESS": "决策表已上传",
+      "TABS": {
+        "DECISION_TABLE_EDITOR": "决策表编辑器",
+        "JSON_EDITOR": "JSON 编辑器"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DECISION_TABLE": "加载决策表时遇到问题。尝试刷新页面。",
+        "DELETE_DECISION_TABLE": "删除决策表时遇到问题。尝试重新删除。",
+        "INVALID_DECISION_TABLE_NAME": "无效的决策表名称"
+      }
+    },
+    "FILE_EDITOR": {
+      "UPLOAD_SUCCESS": "文件已上传",
+      "TABS": {
+        "FILE_EDITOR": "文件编辑器",
+        "JSON_EDITOR": "文本编辑器"
+      },
+      "EDITOR": {
+        "DETAILS": "文件详细信息",
+        "DESCRIPTION": "说明",
+        "NAME": "名称",
+        "TEMPLATE": "模板"
+      },
+      "ERRORS": {
+        "GET_FILE": "加载文件时遇到问题。尝试刷新页面。",
+        "DELETE_FILE": "删除文件时遇到问题。尝试重新删除。"
+      }
+    },
+    "GENERAL": {
+      "ERRORS": {
+        "CHANGE_USER": "更改用户",
+        "NOT_VALID_JSON": "无效的 JSON 对象",
+        "NOT_VALID_SCHEMA": "JSON 对象与架构不匹配"
+      }
+    }
+  },
+  "ABOUT": {
+    "TITLE": "插件",
+    "TABLE_HEADERS": {
+      "ID": "ID",
+      "NAME": "名称",
+      "VERSION": "版本",
+      "VENDOR": "供应商",
+      "LICENSE": "许可证",
+      "RUNTIME": "运行时",
+      "DESCRIPTION": "说明"
+    }
+  }
+}

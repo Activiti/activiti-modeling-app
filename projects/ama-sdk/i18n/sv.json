@@ -1,0 +1,62 @@
+{
+  "SDK": {
+    "SNACKBAR": {
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Inklistrade värden måste följa detta mönster"
+    },
+    "ALL": "Alla",
+    "VARIABLES_EDITOR": {
+      "ERRORS": {
+        "EMPTY_NAME": "Ett namn krävs",
+        "INVALID_NAME": "Ogiltigt variabelnamn",
+        "VARIABLE_NAME_TOOLTIP": "Namnet måste börja med en bokstav och får bara innehålla alfanumeriska tecken och understreck",
+        "NAME_ALREADY_EXISTS": "Variabelnamn måste vara unika"
+      },
+      "TABS": {
+        "VIEWER": "Egenskaper visare",
+        "JSON_EDITOR": "JSON-editor"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Namn",
+        "COLUMN_TYPE": "Typ",
+        "COLUMN_REQUIRED": "Obligatorisk",
+        "COLUMN_VALUE": "Värde",
+        "NO_PROPERTIES": "Välj eller skapa en variabel för att visa dess egenskaper"
+      }
+    },
+    "VARIABLE_MAPPING": {
+      "PARAMETER": "Parameter",
+      "VALUE": "Värde",
+      "PROCESS_VARIABLE": "Processvariabel",
+      "SWITCH_VAR_VAL": "Växla variabel/värde",
+      "NO_PROCESS_PROPERTIES": "Inga processegenskaper",
+      "NO_PAYLOAD": "Meddelandet har ingen nyttolast. Lägg till en nyttolast i meddelandets kasthändelse.",
+      "CLEAR_ASSIGNMENT": "Rensa tilldelning",
+      "NONE": "Ingen"
+    },
+    "MESSAGES_EDITOR": {
+      "TITLE": "Processmeddelanden",
+      "ERRORS": {
+        "EMPTY_NAME": "Ett namn krävs",
+        "NAME_ALREADY_EXISTS": "Meddelandets namn måste vara unikt"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Namn",
+        "COLUMN_ID": "ID",
+        "NO_MESSAGES": "Välj eller skapa ett meddelande för att visa dess egenskaper"
+      }
+    },
+    "MAPPING_DIALOG": {
+      "TITLE": "Redigera variabelmappning",
+      "SELECTOR_TITLE": "Välj varibelmappningstyp som ska redigeras",
+      "INPUT_MAPPING": "Inmatningsmappning",
+      "OUTPUT_MAPPING": "Utmatningsmappning",
+      "PROCESS_VARIABLE": "Processvariabel",
+      "INPUT_PARAMETER": "Inmatningsparameter",
+      "OUTPUT_PARAMETER": "Utmatningsparameter",
+      "VALUE_MAPPING": "Värde",
+      "EXPRESSION_MAPPING": "Uttryck",
+      "NONE": "Ingen",
+      "TYPE": "Typ"
+    }
+  }
+}

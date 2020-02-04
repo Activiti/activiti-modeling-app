@@ -1,0 +1,23 @@
+{
+  "CONNECTOR_EDITOR": {
+    "DOWNLOAD_CONNECTOR": "Last ned kobling",
+    "VALIDATE_CONNECTOR": "Valider kobling",
+    "SAVE_CONNECTOR": "Lagre kobling",
+    "CONNECTOR_VALID": "Koblingen er gyldig",
+    "CONNECTOR_INVALID": "Koblingen inneholder valideringsfeil.",
+    "UPLOAD_SUCCESS": "Kobling lastet opp",
+    "TABS": {
+      "CONNECTOR_EDITOR": "Koblingsredigering",
+      "JSON_EDITOR": "JSON-redigering"
+    },
+    "ERRORS": {
+      "GET_CONNECTOR": "Vi støtte på et problem med å laste opp koblingen. Prøv å laste den opp på nytt."
+    },
+    "DIALOG": {
+      "TITLE": "Innstillinger for koblingsredigering",
+      "SHOW": "Vis koblinger med maler i venstre sidepanel",
+      "CANCEL": "Avbryt",
+      "APPLY": "Bruk"
+    }
+  }
+}

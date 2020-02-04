@@ -1,0 +1,640 @@
+{
+  "APP": {
+    "APPLICATION": "Applicazione",
+    "BACKEND_SERVICE": "Servizio di back-end",
+    "MORE_ACTIONS": "Altre azioni",
+    "VALIDATE_PROJECT": "Convalida progetto",
+    "DOWNLOAD_PROJECT": "Scarica progetto",
+    "ADD_ACTION": "Aggiungi nuova azione",
+    "ADD_EVENT": "Aggiungi nuovo evento",
+    "HEADER": {
+      "APP_NAME": "Applicazione di modellazione",
+      "SIGN_OUT": "Disconnetti",
+      "SETTINGS": "Impostazioni",
+      "ABOUT": "Informazioni su",
+      "LANGUAGE": "Lingua",
+      "SEARCH": "Cerca"
+    },
+    "DIALOGS": {
+      "CANCEL": "Annulla",
+      "SAVE": "Salva",
+      "CREATE": "Crea",
+      "UPDATE": "Aggiorna",
+      "CLOSE": "Chiudi",
+      "EDIT_PROPERTIES": "Modifica variabili del processo",
+      "EDIT_PROCESS_MESSAGES": "Modifica messaggi",
+      "EDIT_FORM_PROPERTIES": "Modifica variabili del modulo",
+      "EDIT_VISIBILITY_CONDITIONS": "Modifica condizioni di visibilità",
+      "ERROR": {
+        "TITLE": "Salvare comunque?",
+        "SUBTITLE": "Errori di convalida:",
+        "NAME_DOESNT_MATCH_PATTERN": "Il nome non coincide con il seguente modello",
+        "GENERAL_NAME_VALIDATION": "Il nome deve essere minuscolo e di lunghezza compresa fra 1 e 26 caratteri. Sono ammessi caratteri alfanumerici e trattini, tuttavia il nome deve cominciare con una lettera e terminare con una lettera o un numero."
+      },
+      "CONFIRM": {
+        "TITLE": "Procedere?",
+        "SUBTITLE": "Eseguire questa azione?",
+        "BUTTON": "Conferma",
+        "UNSAVED_PAGE": "Uscire senza salvare {{ types }}?",
+        "RELEASE": "Rilasciare una nuova versione di questo progetto?",
+        "TYPES": {
+          "DECISION": "tabella decisioni",
+          "DATA": "dati",
+          "UI": "IU",
+          "CONNECTOR": "connettore",
+          "FORM": "Modulo",
+          "PROCESS": "Processo",
+          "FILE": "file"
+        },
+        "DELETE": {
+          "PROJECT": "Eliminare questo progetto?",
+          "PROCESS": "Eliminare questo processo?",
+          "FORM": "Eliminare questo modulo?",
+          "UI": "Eliminare questa IU?",
+          "DATA": "Eliminare questo oggetto dati?",
+          "DECISION_TABLE": "Eliminare questa tabella decisioni?",
+          "CONNECTOR": "Eliminare questo connettore?",
+          "FILE": "Eliminare questo file?"
+        },
+        "SAVE": {
+          "PROCESS": "Salvare questo processo?",
+          "FORM": "Salvare questo modulo?",
+          "UI": "Salvare questa IU?",
+          "DATA": "Salvare questo oggetto dati?",
+          "DECISION_TABLE": "Salvare questa tabella decisioni?",
+          "CONNECTOR": "Salvare questo connettore?",
+          "FILE": "Salvare questo file?"
+        },
+        "DOWNLOAD": {
+          "PROCESS": "Salvare questo processo?",
+          "IMAGE": "Scaricare l'immagine svg di questo processo?",
+          "FORM": "Scaricare questo modulo?",
+          "UI": "Scaricare questa IU?",
+          "DATA": "Scaricare questo oggetto dati?",
+          "DECISION_TABLE": "Scaricare questa tabella decisioni?",
+          "CONNECTOR": "Scaricare questo connettore?",
+          "FILE": "Scaricare questo file?"
+        }
+      }
+    },
+    "MENU": {
+      "EDIT": "Modifica",
+      "DELETE": "Elimina",
+      "RELEASE": "Restituisci",
+      "COLLABORATORS": "Collaboratori",
+      "SEE_RELEASES": "Visualizza rilasci",
+      "DOWNLOAD": "Scarica"
+    },
+    "SETTINGS": {
+      "HEADER": "Impostazioni applicazione"
+    },
+    "HOME": {
+      "NEW_MENU": {
+        "LABEL": "Nuovo",
+        "CREATE_PROJECT_TITLE": "Crea progetto",
+        "OVERRIDE_PROJECT_TITLE": "Esiste già un progetto con il nome specificato.",
+        "EDIT_PROJECT_TITLE": "Modifica progetto",
+        "PROJECT_CREATED": "Progetto creato",
+        "PROJECT_UPLOADED": "Progetto caricato",
+        "PROJECT_UPDATED": "Progetto salvato",
+        "PROJECT_RELEASED": "Progetto rilasciato",
+        "PROJECT_DELETED": "Progetto eliminato",
+        "MENU_ITEMS": {
+          "CREATE_PROJECT": "Crea progetto",
+          "UPLOAD_PROJECT": "Carica progetto",
+          "CREATE_MODEL": "Modello di contenuto"
+        }
+      },
+      "DIALOGS": {
+        "PROJECT_NAME": "Nome progetto:",
+        "PROJECT_DESC": "Descrizione progetto:"
+      },
+      "NAVIGATION": {
+        "PROJECTS": {
+          "LABEL": "Progetti",
+          "TOOLTIP": "Progetti pubblicati"
+        },
+        "RELEASES": {
+          "LABEL": "Rilasci",
+          "TOOLTIP": "Rilasci"
+        },
+        "PROCESSES": {
+          "LABEL": "Processi",
+          "TOOLTIP": "Processi pubblicati"
+        },
+        "FAVORITES": {
+          "LABEL": "Preferiti",
+          "TOOLTIP": "Preferiti"
+        }
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nome",
+        "COLUMN_VERSION": "Versione",
+        "COLUMN_CREATED": "Creato",
+        "COLUMN_CREATED_BY": "Creato da",
+        "COLUMN_OPTIONS": "Opzioni",
+        "NO_ITEMS": "Creare o importare un progetto per visualizzarlo nell'elenco.",
+        "NO_FAV_PROCESSES": "Scegliere un processo preferito da rendere disponibile qui.",
+        "NO_FAV_PROJECTS": "Scegliere un progetto preferito da rendere disponibile qui.",
+        "RELEASE_ID": "ID rilascio",
+        "PROJECT_NAME": "Nome progetto"
+      },
+      "ERROR": {
+        "LOAD_PROJECTS": "Si è verificato un problema durante il caricamento dei progetti. Aggiornare la pagina.",
+        "LOAD_RELEASES": "Si è verificato un problema durante il caricamento dei rilasci. Aggiornare la pagina.",
+        "LOAD_PROCESSES": "Si è verificato un problema durante il caricamento dei processi. Aggiornare la pagina."
+      }
+    },
+    "PROJECT": {
+      "BACK_TO": "Torna ai progetti",
+      "NAME": "Editor progetto",
+      "UPLOAD_FILE": "Carica file",
+      "DOWNLOAD_PROJECT": "Scarica progetto",
+      "PROJECT_VALID": "Il progetto non contiene errori di convalida",
+      "EXPORT_SUCCESS": "Progetto esportato",
+      "SETTINGS": {
+        "PROJECT_SETTINGS": "Impostazioni editor progetto",
+        "CONNECTORS_TAB_LABEL": "Connettori"
+      },
+      "IMPORT": "Importa",
+      "CREATE_NEW": "Crea nuovo progetto",
+      "SEARCH": "Cerca",
+      "UPLOAD_FILE_SUCCESS": "File caricato",
+      "NO_CONTENT": "<vuoto>",
+      "NO_SELECTION": "Creare un nuovo modello o modificarne uno esistente usando la barra laterale",
+      "NEW_MENU": {
+        "LABEL": "Nuovo",
+        "CREATE": "Crea",
+        "IMPORT": "Importa",
+        "CREATE_PROCESS_TITLE": "Crea processo",
+        "MENU_ITEMS": {
+          "CREATE_PROCESS": "Processo",
+          "CREATE_CONNECTOR": "Connettore",
+          "CREATE_FORM": "Modulo",
+          "CREATE_UI": "IU",
+          "CREATE_DATA": "Oggetto dati",
+          "CREATE_DECISION_TABLE": "Tabella decisioni",
+          "CREATE_FILE": "File"
+        }
+      },
+      "TREE": {
+        "PROCESSES": "Processi",
+        "FORMS": "Moduli",
+        "CONNECTORS": "Connettori",
+        "DATA": "Dati",
+        "DECISION_TABLES": "Tabelle decisioni",
+        "UIS": "IU",
+        "FILES": "File"
+      },
+      "PROCESS_DIALOG": {
+        "TITLE_CREATE": "Crea processo",
+        "TITLE_UPDATE": "Aggiornamento processo",
+        "PROCESS_NAME": "Nome processo:",
+        "PROCESS_DESC": "Documentazione del processo:",
+        "PROCESS_CREATED": "Processo creato",
+        "PROCESS_DELETED": "Processo eliminato",
+        "PROCESS_UPDATED": "Processo salvato"
+      },
+      "CONNECTOR_DIALOG": {
+        "TITLE_CREATE": "Crea connettore",
+        "TITLE_UPDATE": "Aggiorna connettore",
+        "CONNECTOR_NAME": "Nome connettore:",
+        "CONNECTOR_DESC": "Descrizione connettore:",
+        "CONNECTOR_CREATED": "Connettore creato",
+        "CONNECTOR_DELETED": "Connettore eliminato",
+        "CONNECTOR_UPDATED": "Connettore salvato"
+      },
+      "FORM_DIALOG": {
+        "TITLE_CREATE": "Crea modulo",
+        "TITLE_UPDATE": "Aggiornamento modulo",
+        "FORM_NAME": "Nome modulo:",
+        "FORM_DESC": "Descrizione modulo:",
+        "FORM_CREATED": "Modulo creato",
+        "FORM_DELETED": "Modulo eliminato",
+        "FORM_UPDATED": "Modulo salvato"
+      },
+      "UI_DIALOG": {
+        "TITLE_CREATE": "Creazione​ IU",
+        "TITLE_UPDATE": "Aggiornamento IU",
+        "UI_NAME": "Nome IU:",
+        "UI_DESC": "Descrizione IU:",
+        "UI_CREATED": "IU creata",
+        "UI_DELETED": "IU eliminata",
+        "UI_UPDATED": "IU salvata"
+      },
+      "DATA_DIALOG": {
+        "TITLE_CREATE": "Creazione oggetto dati",
+        "TITLE_UPDATE": "Aggiornamento oggetto dati",
+        "DATA_NAME": "Nome oggetto dati:",
+        "DATA_DESC": "Descrizione oggetto dati:",
+        "DATA_CREATED": "Oggetto dati creato",
+        "DATA_DELETED": "Oggetto dati eliminato",
+        "DATA_UPDATED": "Oggetto dati salvato"
+      },
+      "DECISION_TABLE_DIALOG": {
+        "TITLE_CREATE": "Creazione tabella decisioni",
+        "TITLE_UPDATE": "Aggiornamento tabella decisioni",
+        "DECISION_TABLE_NAME": "Nome tabella decisioni:",
+        "DECISION_TABLE_DESC": "Descrizione tabella decisioni:",
+        "DECISION_TABLE_CREATED": "Tabella decisioni creata",
+        "DECISION_TABLE_DELETED": "Tabella decisioni eliminata",
+        "DECISION_TABLE_UPDATED": "Tabella decisioni salvata"
+      },
+      "FILE_DIALOG": {
+        "TITLE_CREATE": "Creazione file",
+        "TITLE_UPDATE": "Aggiornamento file",
+        "FILE_NAME": "Nome file:",
+        "FILE_DESC": "Descrizione file:",
+        "FILE_CREATED": "File creato",
+        "FILE_DELETED": "File eliminato",
+        "FILE_UPDATED": "File salvato"
+      },
+      "ACTION_DIALOG": {
+        "ACTION_DETAILS": "Dettagli azione",
+        "ACTION_NAME": "Nome azione",
+        "ACTION_DESC": "Descrizione azione",
+        "ADD_ACTION": "Aggiunta azione",
+        "DEL_ACTION": "Eliminazione azione"
+      },
+      "EVENT_DIALOG": {
+        "EVENT_DETAILS": "Dettagli evento",
+        "EVENT_NAME": "Nome evento",
+        "EVENT_DESC": "Descrizione evento",
+        "ADD_EVENT": "Aggiungi evento",
+        "DEL_EVENT": "Elimina evento"
+      },
+      "ERROR": {
+        "UPLOAD_FILE": "Si è verificato un problema durante il caricamento del file. Riprovare.",
+        "DELETE_PROJECT": "Si è verificato un problema durante l'eliminazione del progetto. Riprovare.",
+        "CHANGE_FAVORITE": "Si è verificato un problema durante la scelta del progetto come preferito. Riprovare.",
+        "DELETE_PROCESS": "Si è verificato un problema durante l'eliminazione del processo. Riprovare.",
+        "LOAD_MODELS": "Si è verificato un problema durante il caricamento dei modelli. Aggiornare la pagina.",
+        "RELEASE_PROJECT": "Si è verificato un problema durante il rilascio del progetto. Riprovare.",
+        "CREATE_PROCESS": {
+          "DUPLICATION": "Esiste già un processo con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante la creazione del processo. Riprovare."
+        },
+        "UPDATE_PROCESS": {
+          "DUPLICATION": "Esiste già un processo con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante il salvataggio del processo. Riprovare.",
+          "EMPTY_NAME": "È obbligatorio specificare un nome"
+        },
+        "CREATE_CONNECTOR": {
+          "DUPLICATION": "Esiste già un connettore con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante la creazione del connettore. Riprovare."
+        },
+        "UPDATE_CONNECTOR": {
+          "DUPLICATION": "Esiste già un connettore con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante il salvataggio del connettore. Riprovare."
+        },
+        "CREATE_FORM": {
+          "DUPLICATION": "Esiste già un modulo con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante la creazione del modulo. Riprovare."
+        },
+        "UPDATE_FORM": {
+          "DUPLICATION": "Esiste già un modulo con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante il salvataggio del modulo. Riprovare."
+        },
+        "CREATE_UI": {
+          "DUPLICATION": "Esiste già una IU con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante la creazione della IU. Riprovare."
+        },
+        "UPDATE_UI": {
+          "DUPLICATION": "Esiste già una IU con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante il salvataggio della IU. Riprovare."
+        },
+        "CREATE_DECISION_TABLE": {
+          "DUPLICATION": "Esiste già una tabella decisioni con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante la creazione della tabella decisioni. Riprovare."
+        },
+        "UPDATE_DECISION_TABLE": {
+          "DUPLICATION": "Esiste già una tabella decisioni con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante il salvataggio della tabella decisioni. Riprovare."
+        },
+        "CREATE_DATA": {
+          "DUPLICATION": "Esiste già un oggetto dati con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante la creazione dell'oggetto dati. Riprovare."
+        },
+        "UPDATE_DATA": {
+          "DUPLICATION": "Esiste già un oggetto dati con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante il salvataggio dell'oggetto dati. Riprovare."
+        },
+        "CREATE_PROJECT": {
+          "DUPLICATION": "Esiste già un progetto con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante la creazione del progetto. Riprovare."
+        },
+        "UPDATE_PROJECT": {
+          "DUPLICATION": "Esiste già un progetto con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante il salvataggio del progetto. Riprovare."
+        },
+        "UPLOAD_PROJECT": {
+          "DUPLICATION": "Esiste già un progetto con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante il caricamento del progetto. Riprovare."
+        },
+        "GET_PROJECT": "Si è verificato un problema durante il caricamento del progetto. Aggiornare la pagina.",
+        "EXPORT_PROJECT": "Errore sconosciuto durante l'esportazione del progetto",
+        "CREATE_FILE": {
+          "DUPLICATION": "Esiste già un file con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante la creazione del file. Riprovare."
+        },
+        "UPDATE_FILE": {
+          "DUPLICATION": "Esiste già un file con il nome specificato",
+          "GENERAL": "Si è verificato un problema durante il salvataggio del file. Riprovare."
+        }
+      }
+    },
+    "PROCESS_EDITOR": {
+      "TABS": {
+        "PROCESS_EDITOR": "Editor processo",
+        "JSON_EDITOR": "Editor XML",
+        "EXTENSIONS_EDITOR": "Editor estensioni"
+      },
+      "PRIORITIES": {
+        "LOW": "0",
+        "MEDIUM": "1",
+        "HIGH": "2"
+      },
+      "ACTIONS": {
+        "ZOOM_IN": "Zoom avanti",
+        "ZOOM_OUT": "Zoom indietro",
+        "UNDO": "Annulla",
+        "REDO": "Ripeti",
+        "LASSO_TOOL": "Strumento Lazo"
+      },
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "Proprietà",
+        "ID": "ID",
+        "NAME": "Nome",
+        "VERSION": "Versione",
+        "VARIABLES": "Variabili",
+        "DOCUMENTATION": "Documentazione",
+        "EXECUTABLE": "Eseguibile",
+        "IMPLEMENTATION": "Implementazione",
+        "INPUTS": "Immissioni",
+        "OUTPUTS": "Risultati",
+        "ACTION": "Azione",
+        "INPUT": "Immissione",
+        "INPUT_MAPPING": "Associazione immissione",
+        "OUTPUT": "Risultato",
+        "OUTPUT_MAPPING": "Associazione risultato",
+        "ASSIGNEE": "Assegnatario",
+        "CANDIDATE_GROUPS": "Gruppi candidati",
+        "CANDIDATE_USERS": "Utenti candidati",
+        "DUE_DATE": "Scadenza",
+        "PRIORITY": "Priorità",
+        "ACTIVITY_NAME": "Nome attività",
+        "PROCESS_VARIABLE": "Variabile del processo",
+        "PROCESS_VARIABLES": "Variabili del processo",
+        "EXPRESSION": "Espressione della condizione",
+        "FORM_SELECTOR": "Nome modulo",
+        "DEFAULT_SEQUENCE_FLOW": "Flusso sequenza predefinita"
+      },
+      "PALETTE": {
+        "HAND_TOOL": "Strumento Mano",
+        "CONNECT_TOOL": "Strumento Connessioni globali",
+        "SPACE_TOOL": "Crea/Rimuovi strumento Spazio",
+        "LASSO_TOOL": "Strumento Lazo",
+        "START_EVENT": "Crea evento di avvio",
+        "END_EVENT": "Crea evento di fine",
+        "INTERMEDIATE_THROW_EVENT": "Crea evento di generazione intermedio",
+        "START_EVENT_SIGNAL": "Crea segnale evento di avvio",
+        "INTERMEDIATE_CATCH_EVENT_SIGNAL": "Crea segnale evento di ricezione intermedio",
+        "INTERMEDIATE_THROW_EVENT_SIGNAL": "Crea segnale evento di generazione intermedio",
+        "GATEWAY": "Crea gateway",
+        "USER_TASK": "Crea compito utente",
+        "SERVICE_TASK": "Crea compito di servizio",
+        "CALL_ACTIVITY": "Crea attività di chiamata",
+        "CONTAINER": "Servizi dedicati",
+        "SUB_PROCESS": "Crea sottoprocesso",
+        "PARTICIPANT": "Crea un pool"
+      },
+      "UPLOAD_SUCCESS": "Processo caricato",
+      "PROCESS_SAVED": "Processo salvato",
+      "PROCESS_UPDATED": "Processo aggiornato",
+      "SELECT_PROCESS_VARIABLE": "Seleziona variabile del processo",
+      "ERRORS": {
+        "NO_PROCESS_PROPERTIES": "Nessuna proprietà del processo.",
+        "NO_CONNECTOR_ACTIONS": "Creare un'azione utilizzabile dal connettore",
+        "LOAD_DIAGRAM": "Si è verificato un problema durante il caricamento del diagramma. Aggiornare la pagina.",
+        "SAVE_DIAGRAM": "Si è verificato un problema durante il salvataggio del diagramma. Riprovare.",
+        "DOWNLOAD_DIAGRAM": "Si è verificato un problema durante lo scaricamento del diagramma. Riprovare.",
+        "DOWNLOAD_SVG_IMAGE": "Si è verificato un problema durante lo scaricamento dell'immagine del diagramma. Riprovare.",
+        "CHANGE_FAVORITE": "Si è verificato un problema durante il cambiamento dello stato preferito del processo"
+      },
+      "PROPERTIES": {
+        "TABS": {
+          "VIEWER": "Visualizzatore proprietà",
+          "JSON_EDITOR": "Editor JSON"
+        },
+        "TABLE": {
+          "COLUMN_NAME": "Nome",
+          "COLUMN_TYPE": "Tipo",
+          "COLUMN_REQUIRED": "Obbligatorio",
+          "COLUMN_VALUE": "Valore",
+          "NO_PROPERTIES": "Creare o selezionare una variabile del processo per modificarne i dettagli"
+        },
+        "ERRORS": {
+          "EMPTY_NAME": "È obbligatorio specificare un nome"
+        }
+      }
+    },
+    "CONNECTOR_EDITOR": {
+      "UPLOAD_SUCCESS": "Connettore caricato",
+      "NAME": "Editor connettore",
+      "TABS": {
+        "CONNECTOR_EDITOR": "Editor connettore",
+        "JSON_EDITOR": "Editor JSON"
+      },
+      "EDITOR": {
+        "CONNECTOR_DETAILS": "Dettagli connettore",
+        "INPUTS": "Parametri di immissione",
+        "OUTPUTS": "Parametri dei risultati",
+        "ACTIONS": "Azioni",
+        "ADD_NEW_PARAMETER": "Aggiungi nuovo parametro",
+        "NAME": "Nome",
+        "DESCRIPTION": "Descrizione",
+        "TYPE": "Tipo",
+        "BUTTONS": {
+          "SAVE": "Salva"
+        },
+        "REQUIRED": "Obbligatorio"
+      },
+      "ERRORS": {
+        "GET_CONNECTOR": "Si è verificato un problema durante il caricamento del connettore. Aggiornare la pagina."
+      }
+    },
+    "FORM_EDITOR": {
+      "UPLOAD_SUCCESS": "Modulo caricato",
+      "TABS": {
+        "FORM_EDITOR": "Editor modulo",
+        "JSON_EDITOR": "Editor JSON"
+      },
+      "FORM_VARIABLES": "Variabili modulo",
+      "VISIBLITY_CONDITIONS": {
+        "DEPENDS": "Dipende da",
+        "OPERATOR": "Se è",
+        "VALUE": "Valore",
+        "NEXT_CONDITION": "Operatore condizione",
+        "NO_PROPERTY": "Creare o selezionare una condizione di visibilità per modificarne i dettagli",
+        "FIELDS": "Campi",
+        "VARIABLE": "Variabile",
+        "SELECT_FIELD": "Selezionare un campo",
+        "SELECT_VARIABLE": "Selezionare una variabile",
+        "FORM_FIELD": "Campo modulo",
+        "NEXT_OPERATOR": "Operatore condizione"
+      },
+      "FIELD_PROPERTIES": {
+        "DESCRIPTION": "Descrizione",
+        "NAME": "Nome",
+        "COLUMNS": "Numero di colonne",
+        "REQUIRED": "Obbligatorio",
+        "MULTIPLE_UPLOAD": "Consenti più allegati file",
+        "LINK_FILE": "Crea solo collegamenti ai file, non caricarli",
+        "FILE_SOURCE": "Origine file",
+        "ALL_SOURCES": "Tutte le sorgenti dei file",
+        "LOCAL_FILE": "File locale",
+        "PLACEHOLDER": "Segnaposto",
+        "COLSPAN": "Colspan",
+        "LABEL": "Etichetta",
+        "ID": "ID",
+        "OVERRIDE_ID": "Ignora ID",
+        "VALUE": "Testo da visualizzare",
+        "DISPLAY_TEXT": "Testo da visualizzare",
+        "MIN_LENGTH": "Lunghezza min",
+        "MAX_LENGTH": "Lunghezza max",
+        "MIN_VALUE": "Valore min",
+        "MAX_VALUE": "Valore max",
+        "REGEX": "Modello regex",
+        "INPUT_MASK": "Maschera di immissione",
+        "INPUT_MASK_PLACEHOLDER": "Segnaposto maschera di immissione",
+        "INPUT_MASK_RESERVED": "In ordine inverso",
+        "MIN_DATE": "Data min",
+        "MAX_DATE": "Data max",
+        "DATE_DISPLAY_FORMAT": "Formato visualizzazione ora",
+        "DATE_FORMAT_PREVIEW": "Data odierna",
+        "CURRENCY": "Valuta",
+        "DECIMALS": "Consenti decimali",
+        "HYPERLINK_URL": "URL collegamento ipertestuale",
+        "ALLOW_COLLAPSE": "Consenti compressione",
+        "COLLAPSE_BY_DEFAULT": "Comprimi per impostazione predefinita",
+        "REST_SERVICE": {
+          "DIALOG_TITLE": "Prova URL",
+          "REST_URL": "URL REST",
+          "TEST_BUTTON": "Prova",
+          "RESPONSE_PATH": "Percorso per la matrice nella risposta JSON",
+          "ID_PROP": "Proprietà ID",
+          "LABEL_PROP": "Proprietà etichetta"
+        },
+        "KEY_VALUE_PROPERTY": {
+          "ADD": "Aggiungi",
+          "ADD_OPTION": "Aggiungi nuova opzione",
+          "LABEL": "Etichetta",
+          "ID": "ID",
+          "INFO": "Questa è l'opzione \"valore vuoto\". La sua selezione durante l'esecuzione è uguale a \"nessun valore\" o a \"vuoto\". È selezionabile solo se il campo non è obbligatorio.",
+          "CLEAR_SELECTION": "Rimuovi predefinita",
+          "OPTIONS": "Opzioni"
+        },
+        "ADVANCED_RADIO_BUTTON": {
+          "MANUAL": "Manuale",
+          "REST_SERVICE": "Servizio REST"
+        }
+      },
+      "EDITOR": {
+        "ADD_NEW_TAB": "Aggiungi scheda",
+        "DELETE_TAB": "Elimina scheda",
+        "ADD_NEW_OUTCOME": "Aggiungi risultato",
+        "DELETE_OUTCOME": "Elimina risultato",
+        "EDIT": "Modifica",
+        "DELETE": "Elimina",
+        "MOVE": "Sposta"
+      },
+      "ERRORS": {
+        "GET_FORM": "Si è verificato un problema durante il caricamento del modulo. Aggiornare la pagina.",
+        "DELETE_FORM": "Si è verificato un problema durante l'eliminazione del modulo. Riprovare."
+      }
+    },
+    "UI_EDITOR": {
+      "UPLOAD_SUCCESS": "IU caricata",
+      "TABS": {
+        "UI_EDITOR": "Editor IU",
+        "JSON_EDITOR": "Editor JSON"
+      },
+      "EDITOR": {
+        "DETAILS": "Dettagli IU",
+        "DESCRIPTION": "Descrizione",
+        "NAME": "Nome",
+        "TEMPLATE": "Modello"
+      },
+      "ERRORS": {
+        "GET_UI": "Si è verificato un problema durante il caricamento dell'IU. Aggiornare la pagina.",
+        "DELETE_UI": "Si è verificato un problema durante l'eliminazione dell'IU. Riprovare."
+      }
+    },
+    "DATA_EDITOR": {
+      "UPLOAD_SUCCESS": "Oggetto dati caricato",
+      "TABS": {
+        "DATA_EDITOR": "Editor oggetto dati",
+        "JSON_EDITOR": "Editor JSON"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DATA": "Si è verificato un problema durante il caricamento dell'oggetto dati. Aggiornare la pagina.",
+        "DELETE_DATA": "Si è verificato un problema durante l'eliminazione dell'oggetto dati. Riprovare."
+      }
+    },
+    "DECISION_TABLE_EDITOR": {
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "Proprietà",
+        "NAME": "Nome",
+        "SIMULATOR": "Simulatore"
+      },
+      "UPLOAD_SUCCESS": "Tabella decisioni caricata",
+      "TABS": {
+        "DECISION_TABLE_EDITOR": "Editor tabella decisioni",
+        "JSON_EDITOR": "Editor JSON"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DECISION_TABLE": "Si è verificato un problema durante il caricamento della tabella decisioni. Aggiornare la pagina.",
+        "DELETE_DECISION_TABLE": "Si è verificato un problema durante l'eliminazione della tabella decisioni. Riprovare.",
+        "INVALID_DECISION_TABLE_NAME": "Nome tabella decisioni non valido"
+      }
+    },
+    "FILE_EDITOR": {
+      "UPLOAD_SUCCESS": "File caricato",
+      "TABS": {
+        "FILE_EDITOR": "Editor file",
+        "JSON_EDITOR": "Editor testo"
+      },
+      "EDITOR": {
+        "DETAILS": "Dettagli file",
+        "DESCRIPTION": "Descrizione",
+        "NAME": "Nome",
+        "TEMPLATE": "Modello"
+      },
+      "ERRORS": {
+        "GET_FILE": "Si è verificato un problema durante il caricamento del file. Aggiornare la pagina.",
+        "DELETE_FILE": "Si è verificato un problema durante l'eliminazione del file. Riprovare."
+      }
+    },
+    "GENERAL": {
+      "ERRORS": {
+        "CHANGE_USER": "Cambiare utente",
+        "NOT_VALID_JSON": "Oggetto JSON non valido",
+        "NOT_VALID_SCHEMA": "L'oggetto JSON non coincide con lo schema"
+      }
+    }
+  },
+  "ABOUT": {
+    "TITLE": "Plug-in",
+    "TABLE_HEADERS": {
+      "ID": "ID",
+      "NAME": "Nome",
+      "VERSION": "Versione",
+      "VENDOR": "Fornitore",
+      "LICENSE": "Licenza",
+      "RUNTIME": "Runtime",
+      "DESCRIPTION": "Descrizione"
+    }
+  }
+}

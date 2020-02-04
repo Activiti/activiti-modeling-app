@@ -1,0 +1,62 @@
+{
+  "SDK": {
+    "SNACKBAR": {
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "De indsatte værdier skal følge dette mønster"
+    },
+    "ALL": "Alle",
+    "VARIABLES_EDITOR": {
+      "ERRORS": {
+        "EMPTY_NAME": "Der skal angives et navn",
+        "INVALID_NAME": "Ugyldigt navn på variabel",
+        "VARIABLE_NAME_TOOLTIP": "Navnet skal begynde med et bogstav og må kun indeholde alfanumeriske tegn og understregningstegn",
+        "NAME_ALREADY_EXISTS": "Navne på variabler skal være entydige"
+      },
+      "TABS": {
+        "VIEWER": "Fremviser til egenskaber",
+        "JSON_EDITOR": "JSON-editor"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Navn",
+        "COLUMN_TYPE": "Type",
+        "COLUMN_REQUIRED": "Påkrævet",
+        "COLUMN_VALUE": "Værdi",
+        "NO_PROPERTIES": "Vælg eller opret en variabel for at få vist dens egenskaber"
+      }
+    },
+    "VARIABLE_MAPPING": {
+      "PARAMETER": "Parameter",
+      "VALUE": "Værdi",
+      "PROCESS_VARIABLE": "Procesvariabel",
+      "SWITCH_VAR_VAL": "Slå variabel/værdi til/fra",
+      "NO_PROCESS_PROPERTIES": "Ingen procesegenskaber",
+      "NO_PAYLOAD": "Beskeden har ingen nyttedata. Tilføj nyttedata i beskedens kastehændelse.",
+      "CLEAR_ASSIGNMENT": "Ryd tildeling",
+      "NONE": "Ingen"
+    },
+    "MESSAGES_EDITOR": {
+      "TITLE": "Procesbeskeder",
+      "ERRORS": {
+        "EMPTY_NAME": "Der skal angives et navn",
+        "NAME_ALREADY_EXISTS": "Navne på beskeder skal være entydige"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Navn",
+        "COLUMN_ID": "Id",
+        "NO_MESSAGES": "Vælg eller opret en besked for at få vist dens egenskaber"
+      }
+    },
+    "MAPPING_DIALOG": {
+      "TITLE": "Redigér tilknytning af variabel",
+      "SELECTOR_TITLE": "Vælg den tilknytningstype af variabel, der skal redigeres",
+      "INPUT_MAPPING": "Tilknytning af input",
+      "OUTPUT_MAPPING": "Tilknytning af output",
+      "PROCESS_VARIABLE": "Procesvariabel",
+      "INPUT_PARAMETER": "Inputparameter",
+      "OUTPUT_PARAMETER": "Outputparameter",
+      "VALUE_MAPPING": "Værdi",
+      "EXPRESSION_MAPPING": "Udtryk",
+      "NONE": "Ingen",
+      "TYPE": "Type"
+    }
+  }
+}

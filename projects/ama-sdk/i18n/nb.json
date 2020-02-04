@@ -1,0 +1,62 @@
+{
+  "SDK": {
+    "SNACKBAR": {
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Innlimte verdier må følge dette mønsteret"
+    },
+    "ALL": "Alle",
+    "VARIABLES_EDITOR": {
+      "ERRORS": {
+        "EMPTY_NAME": "Et navn er påkrevd",
+        "INVALID_NAME": "Ugyldig variabelnavn",
+        "VARIABLE_NAME_TOOLTIP": "Navnet må begynne med en bokstav og kan kun inneholde alfanumeriske tegn og understrekingstegn",
+        "NAME_ALREADY_EXISTS": "Variabelnavn må være unike"
+      },
+      "TABS": {
+        "VIEWER": "Egenskapsvisning",
+        "JSON_EDITOR": "JSON-redigering"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Navn",
+        "COLUMN_TYPE": "Type",
+        "COLUMN_REQUIRED": "Påkrevd",
+        "COLUMN_VALUE": "Verdi",
+        "NO_PROPERTIES": "Velg eller opprett en variabel for å vise egenskapene dens"
+      }
+    },
+    "VARIABLE_MAPPING": {
+      "PARAMETER": "Parameter",
+      "VALUE": "Verdi",
+      "PROCESS_VARIABLE": "Prosessvariabel",
+      "SWITCH_VAR_VAL": "Aktiver/deaktiver variabel/verdi",
+      "NO_PROCESS_PROPERTIES": "Ingen prosessegenskaper",
+      "NO_PAYLOAD": "Meldingen har ingen nyttelast. Legg til en nyttelast i meldingens kasthendelse.",
+      "CLEAR_ASSIGNMENT": "Fjern oppgave",
+      "NONE": "Ingen"
+    },
+    "MESSAGES_EDITOR": {
+      "TITLE": "Behandle meldinger",
+      "ERRORS": {
+        "EMPTY_NAME": "Et navn er påkrevd",
+        "NAME_ALREADY_EXISTS": "Meldingsnavnet må være unikt"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Navn",
+        "COLUMN_ID": "ID",
+        "NO_MESSAGES": "Velg eller opprett en melding for å vise egenskapene dens"
+      }
+    },
+    "MAPPING_DIALOG": {
+      "TITLE": "Rediger tilordning av variabler",
+      "SELECTOR_TITLE": "Velg type variabeltilordning for å redigere",
+      "INPUT_MAPPING": "Tilordning av inndata",
+      "OUTPUT_MAPPING": "Tilordning av utdata",
+      "PROCESS_VARIABLE": "Prosessvariabel",
+      "INPUT_PARAMETER": "Inndataparameter",
+      "OUTPUT_PARAMETER": "Utdataparameter",
+      "VALUE_MAPPING": "Verdi",
+      "EXPRESSION_MAPPING": "Uttrykk",
+      "NONE": "Ingen",
+      "TYPE": "Type"
+    }
+  }
+}

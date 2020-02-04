@@ -1,0 +1,640 @@
+{
+  "APP": {
+    "APPLICATION": "التطبيق",
+    "BACKEND_SERVICE": "Backend service",
+    "MORE_ACTIONS": "إجراءات أكثر",
+    "VALIDATE_PROJECT": "التحقق من صحة المشروع",
+    "DOWNLOAD_PROJECT": "تنزيل المشروع",
+    "ADD_ACTION": "إضافة إجراء جديد",
+    "ADD_EVENT": "إضافة حدث جديد",
+    "HEADER": {
+      "APP_NAME": "تطبيق التصميم",
+      "SIGN_OUT": "تسجيل الخروج",
+      "SETTINGS": "إعدادات",
+      "ABOUT": "حول",
+      "LANGUAGE": "اللغة",
+      "SEARCH": "بحث"
+    },
+    "DIALOGS": {
+      "CANCEL": "إلغاء",
+      "SAVE": "حفظ",
+      "CREATE": "إنشاء",
+      "UPDATE": "تحديث",
+      "CLOSE": "إغلاق",
+      "EDIT_PROPERTIES": "تحرير متغيرات العملية",
+      "EDIT_PROCESS_MESSAGES": "تحرير الرسائل",
+      "EDIT_FORM_PROPERTIES": "تحرير متغيرات النموذج",
+      "EDIT_VISIBILITY_CONDITIONS": "تحرير شروط الرؤية",
+      "ERROR": {
+        "TITLE": "هل تريد حفظه بأي حال؟",
+        "SUBTITLE": "أخطاء التحقق من الصحة:",
+        "NAME_DOESNT_MATCH_PATTERN": "الاسم لا يطابق النمط التالي",
+        "GENERAL_NAME_VALIDATION": "يجب أن يكون الاسم بأحرف صغيرة وبين 1 و26 طولاً. يُسمح بالأحرف الأبجدية الرقمية والشرطات، لكن يجب أن يبدأ الاسم بحرف وينتهي بحرف أبجدي رقمي."
+      },
+      "CONFIRM": {
+        "TITLE": "هل أنت متأكد؟",
+        "SUBTITLE": "هل أنت متأكد أنك تريد تنفيذ هذا الإجراء؟",
+        "BUTTON": "تأكيد",
+        "UNSAVED_PAGE": "هل تريد بالتأكيد المغادرة دون حفظ {{ types }}",
+        "RELEASE": "هل أنت متأكد أنك تريد تحرير إصدار جديد من هذا المشروع؟",
+        "TYPES": {
+          "DECISION": "جدول القرارات",
+          "DATA": "البيانات",
+          "UI": "UI",
+          "CONNECTOR": "الموصل",
+          "FORM": "نموذج",
+          "PROCESS": "العملية",
+          "FILE": "الملف"
+        },
+        "DELETE": {
+          "PROJECT": "هل أنت متأكد أنك تريد حذف هذا المشروع؟",
+          "PROCESS": "هل أنت متأكد إنك تريد حذف هذه العملية؟",
+          "FORM": "هل أنت متأكد أنك تريد حذف هذا النموذج؟",
+          "UI": "هل أنت متأكد أنك تريد حذف UI هذه؟",
+          "DATA": "هل أنت متأكد أنك تريد حذف كائن البيانات هذا؟",
+          "DECISION_TABLE": "هل أنت متأكد أنك تريد حذف جدول القرارات هذا؟",
+          "CONNECTOR": "هل أنت متأكد أنك تريد حذف هذا الموصل؟",
+          "FILE": "هل أنت متأكد أنك تريد حذف هذا الملف؟"
+        },
+        "SAVE": {
+          "PROCESS": "هل أنت متأكد أنك تريد حفظ هذه العملية؟",
+          "FORM": "هل أنت متأكد أنك تريد حفظ هذا النموذج؟",
+          "UI": "هل أنت متأكد أنك تريد حفظ UI هذه؟",
+          "DATA": "هل أنت متأكد أنك تريد حفظ كائن البيانات هذا؟",
+          "DECISION_TABLE": "هل أنت متأكد أنك تريد حفظ جدول القرارات هذا؟",
+          "CONNECTOR": "هل أنت متأكد أنك تريد حفظ هذا الموصل؟",
+          "FILE": "هل أنت متأكد أنك تريد حفظ هذا الملف؟"
+        },
+        "DOWNLOAD": {
+          "PROCESS": "هل أنت متأكد أنك تريد حفظ هذه العملية؟",
+          "IMAGE": "هل تريد بالتأكيد تنزيل صورة svg لهذه العملية؟",
+          "FORM": "هل أنت متأكد أنك تريد حفظ هذا النموذج؟",
+          "UI": "هل أنت متأكد أنك تريد حفظ UI هذا؟",
+          "DATA": "هل أنت متأكد أنك تريد حفظ كائن البيانات هذا؟",
+          "DECISION_TABLE": "هل أنت متأكد أنك تريد حفظ جدول القرارات هذا؟",
+          "CONNECTOR": "هل أنت متأكد أنك تريد تنزيل هذا الموصل؟",
+          "FILE": "هل أنت متأكد أنك تريد تنزيل هذا الملف؟"
+        }
+      }
+    },
+    "MENU": {
+      "EDIT": "تحرير",
+      "DELETE": "حذف",
+      "RELEASE": "تحرير",
+      "COLLABORATORS": "المتعاونون",
+      "SEE_RELEASES": "عرض الإصدارات",
+      "DOWNLOAD": "تنزيل"
+    },
+    "SETTINGS": {
+      "HEADER": "إعدادات التطبيق"
+    },
+    "HOME": {
+      "NEW_MENU": {
+        "LABEL": "جديد",
+        "CREATE_PROJECT_TITLE": "إنشاء مشروع",
+        "OVERRIDE_PROJECT_TITLE": "مشروع بهذا الاسم موجود بالفعل.",
+        "EDIT_PROJECT_TITLE": "تحرير المشروع",
+        "PROJECT_CREATED": "تم إنشاء المشروع",
+        "PROJECT_UPLOADED": "تم تحميل المشروع",
+        "PROJECT_UPDATED": "تم حفظ المشروع",
+        "PROJECT_RELEASED": "تم إصدار المشروع",
+        "PROJECT_DELETED": "تم حذف المشروع",
+        "MENU_ITEMS": {
+          "CREATE_PROJECT": "إنشاء مشروع",
+          "UPLOAD_PROJECT": "تحميل مشروع",
+          "CREATE_MODEL": "نموذج المحتوى"
+        }
+      },
+      "DIALOGS": {
+        "PROJECT_NAME": "اسم المشروع:",
+        "PROJECT_DESC": "وصف المشروع"
+      },
+      "NAVIGATION": {
+        "PROJECTS": {
+          "LABEL": "المشروعات",
+          "TOOLTIP": "المشروعات المنشورة"
+        },
+        "RELEASES": {
+          "LABEL": "الإصدارات",
+          "TOOLTIP": "الإصدارات"
+        },
+        "PROCESSES": {
+          "LABEL": "عمليات",
+          "TOOLTIP": "العمليات المنشورة"
+        },
+        "FAVORITES": {
+          "LABEL": "مفضلات",
+          "TOOLTIP": "مفضلات"
+        }
+      },
+      "TABLE": {
+        "COLUMN_NAME": "الاسم",
+        "COLUMN_VERSION": "الإصدار",
+        "COLUMN_CREATED": "تم الإنشاء",
+        "COLUMN_CREATED_BY": "تم الإنشاء بواسطة",
+        "COLUMN_OPTIONS": "خيارات",
+        "NO_ITEMS": "إنشاؤ مشروع أو استيراده لعرضه في القائمة.",
+        "NO_FAV_PROCESSES": "تفضيل عملية لجعلها متاحة هنا.",
+        "NO_FAV_PROJECTS": "تفضيل مشروع لجعله متاحًا هنا.",
+        "RELEASE_ID": "معرف الإصدار",
+        "PROJECT_NAME": "اسم المشروع"
+      },
+      "ERROR": {
+        "LOAD_PROJECTS": "نواجه مشكلة في تحميل المشروعات. حاول تحديث الصفحة.",
+        "LOAD_RELEASES": "نواجه مشكلة في تحميل الإصدارات. حاول تحديث الصفحة",
+        "LOAD_PROCESSES": "نواجه مشكلة في تحميل العمليات. حاول تحديث الصفحة"
+      }
+    },
+    "PROJECT": {
+      "BACK_TO": "عودة إلى المشروعات",
+      "NAME": "محرر المشروعات",
+      "UPLOAD_FILE": "تحميل ملف",
+      "DOWNLOAD_PROJECT": "تنزيل المشروع",
+      "PROJECT_VALID": "المشروع لا يحتوي على أخطاء تحقق من الصحة",
+      "EXPORT_SUCCESS": "تم تصدير المشروع",
+      "SETTINGS": {
+        "PROJECT_SETTINGS": "إعدادات محرر المشروع",
+        "CONNECTORS_TAB_LABEL": "موصلات"
+      },
+      "IMPORT": "استيراد",
+      "CREATE_NEW": "إنشاء جديد",
+      "SEARCH": "بحث",
+      "UPLOAD_FILE_SUCCESS": "تم تحميل الملف",
+      "NO_CONTENT": "<فارغ>",
+      "NO_SELECTION": "إنشاء نموذج جديد أو تحرير نموذج قائم باستخدام الشريط الجانبي",
+      "NEW_MENU": {
+        "LABEL": "جديد",
+        "CREATE": "إنشاء",
+        "IMPORT": "استيراد",
+        "CREATE_PROCESS_TITLE": "إنشاء عملية",
+        "MENU_ITEMS": {
+          "CREATE_PROCESS": "العملية",
+          "CREATE_CONNECTOR": "الموصل",
+          "CREATE_FORM": "نموذج",
+          "CREATE_UI": "UI",
+          "CREATE_DATA": "كائن البيانات",
+          "CREATE_DECISION_TABLE": "جدول القرارات",
+          "CREATE_FILE": "ملف"
+        }
+      },
+      "TREE": {
+        "PROCESSES": "عمليات",
+        "FORMS": "النماذج",
+        "CONNECTORS": "موصلات",
+        "DATA": "البيانات",
+        "DECISION_TABLES": "جداول القرارات",
+        "UIS": "UI",
+        "FILES": "ملفات"
+      },
+      "PROCESS_DIALOG": {
+        "TITLE_CREATE": "إنشاء عملية",
+        "TITLE_UPDATE": "تحديث العملية",
+        "PROCESS_NAME": "اسم العملية:",
+        "PROCESS_DESC": "وثائق العملية:",
+        "PROCESS_CREATED": "تم إنشاء العملية",
+        "PROCESS_DELETED": "تم حذف العملية",
+        "PROCESS_UPDATED": "تم حفظ العملية"
+      },
+      "CONNECTOR_DIALOG": {
+        "TITLE_CREATE": "إنشاء موصل",
+        "TITLE_UPDATE": "تحديث الموصل",
+        "CONNECTOR_NAME": "اسم الموصل:",
+        "CONNECTOR_DESC": "وصف الموصل:",
+        "CONNECTOR_CREATED": "تم إنشاء الموصل",
+        "CONNECTOR_DELETED": "تم حذف الموصل",
+        "CONNECTOR_UPDATED": "تم حفظ الموصل"
+      },
+      "FORM_DIALOG": {
+        "TITLE_CREATE": "إنشاء نموذج",
+        "TITLE_UPDATE": "تحديث النموذج",
+        "FORM_NAME": "اسم النموذج:",
+        "FORM_DESC": "وصف النموذج:",
+        "FORM_CREATED": "تم إنشاء النموذج",
+        "FORM_DELETED": "تم حذف النموذج",
+        "FORM_UPDATED": "تم حفظ النموذج"
+      },
+      "UI_DIALOG": {
+        "TITLE_CREATE": "إنشاء UI",
+        "TITLE_UPDATE": "تحديث UI",
+        "UI_NAME": "اسم UI:",
+        "UI_DESC": "وصف UI:",
+        "UI_CREATED": "تم إنشاء UI",
+        "UI_DELETED": "تم حذف UI",
+        "UI_UPDATED": "تم حفظ UI"
+      },
+      "DATA_DIALOG": {
+        "TITLE_CREATE": "إنشاء كائن بيانات",
+        "TITLE_UPDATE": "تحديث كائن البيانات",
+        "DATA_NAME": "اسم كائن البيانات:",
+        "DATA_DESC": "وصف كائن البيانات:",
+        "DATA_CREATED": "تم إنشاء كائن البيانات",
+        "DATA_DELETED": "تم حذف كائن البيانات",
+        "DATA_UPDATED": "تم حفظ كائن البيانات"
+      },
+      "DECISION_TABLE_DIALOG": {
+        "TITLE_CREATE": "إنشاء جدول قرارات",
+        "TITLE_UPDATE": "تحديث جدول القرارات",
+        "DECISION_TABLE_NAME": "اسم جدول القرارات:",
+        "DECISION_TABLE_DESC": "وصف جدول القرارات:",
+        "DECISION_TABLE_CREATED": "تم إنشاء جدول القرارات",
+        "DECISION_TABLE_DELETED": "تم حذف جدول القرارات",
+        "DECISION_TABLE_UPDATED": "تم حفظ جدول القرارات"
+      },
+      "FILE_DIALOG": {
+        "TITLE_CREATE": "إنشاء ملف",
+        "TITLE_UPDATE": "تحديث الملف",
+        "FILE_NAME": "اسم الملف:",
+        "FILE_DESC": "وصف الملف:",
+        "FILE_CREATED": "تم إنشاء الملف",
+        "FILE_DELETED": "تم حذف الملف",
+        "FILE_UPDATED": "تم حفظ الملف"
+      },
+      "ACTION_DIALOG": {
+        "ACTION_DETAILS": "تفاصيل الإجراء",
+        "ACTION_NAME": "اسم الإجراء",
+        "ACTION_DESC": "وصف الإجراء",
+        "ADD_ACTION": "إضافة إجراء",
+        "DEL_ACTION": "حذف الإجراء"
+      },
+      "EVENT_DIALOG": {
+        "EVENT_DETAILS": "تفاصيل الحدث",
+        "EVENT_NAME": "اسم الحدث",
+        "EVENT_DESC": "وصف الحدث",
+        "ADD_EVENT": "إضافة الحدث",
+        "DEL_EVENT": "حذف الحدث"
+      },
+      "ERROR": {
+        "UPLOAD_FILE": "نواجه مشكلة في تحميل الملف. حاول تحميله مرة أخرى.",
+        "DELETE_PROJECT": "نواجه مشكلة في حذف المشروع. حاول حذفه مرة أخرى.",
+        "CHANGE_FAVORITE": "نواجه مشكلة في تفضيل هذا المشروع. حاول تفضيله مرة أخرى.",
+        "DELETE_PROCESS": "نواجه مشكلة في حذف العملية. حاول حذفها مرة اخرى.",
+        "LOAD_MODELS": "نواجه مشكلة في تحميل النماذج. حاول تحديث الصفحة.",
+        "RELEASE_PROJECT": "نواجه مشكلة في تحرير المشروع. حاول تحريره مرة اخرى.",
+        "CREATE_PROCESS": {
+          "DUPLICATION": "عملية بنفس الاسم موجودة بالفعل",
+          "GENERAL": "نواجه مشكلة في إنشاء العملية. حاول إنشاءها مرة أخرى."
+        },
+        "UPDATE_PROCESS": {
+          "DUPLICATION": "عملية بنفس الاسم موجودة بالفعل",
+          "GENERAL": "نواجه مشكلة في حفظ العملية. حاول حفظها مرة أخرى.",
+          "EMPTY_NAME": "مطلوب اسم"
+        },
+        "CREATE_CONNECTOR": {
+          "DUPLICATION": "موصل بهذا الاسم موجود بالفعل",
+          "GENERAL": "نواجه مشكلة في إنشاء الموصل. حاول إنشاءه مرة اخرى."
+        },
+        "UPDATE_CONNECTOR": {
+          "DUPLICATION": "موصل بهذا الاسم موجود بالفعل",
+          "GENERAL": "نواجه مشكلة في حفظ الموصل. حاول حفظه مرة أخرى."
+        },
+        "CREATE_FORM": {
+          "DUPLICATION": "نموذج بهذا الاسم موجود بالفعل",
+          "GENERAL": "نواجه مشكلة في إنشاء النموذج. حاول إنشاءه مرة اخرى."
+        },
+        "UPDATE_FORM": {
+          "DUPLICATION": "نموذج بهذا الاسم موجود بالفعل",
+          "GENERAL": "نواجه مشكلة في حفظ النموذج. حاول حفظه مرة أخرى."
+        },
+        "CREATE_UI": {
+          "DUPLICATION": "واجهة UI بهذا الاسم موجودة بالفعل",
+          "GENERAL": "نواجه مشكلة في إنشاء UI. حاول إنشاءها مرة أخرى."
+        },
+        "UPDATE_UI": {
+          "DUPLICATION": "واجهة UI بهذا الاسم موجودة بالفعل",
+          "GENERAL": "نواجه مشكلة في حفظ UI. حاول حفظها مرة أخرى."
+        },
+        "CREATE_DECISION_TABLE": {
+          "DUPLICATION": "جدول قرارات بهذا الاسم موجود بالفعل",
+          "GENERAL": "نواجه مشكلة في إنشاء جدول القرارات. حاول إنشاءه مرة أخرى."
+        },
+        "UPDATE_DECISION_TABLE": {
+          "DUPLICATION": "جدول قرارات بهذا الاسم موجود بالفعل",
+          "GENERAL": "نواجه مشكلة في حفظ جدول القرارات. حاول حفظه مرة أخرى."
+        },
+        "CREATE_DATA": {
+          "DUPLICATION": "كائن بيانات بهذا الاسم موجود بالفعل",
+          "GENERAL": "نواجه مشكلة في إنشاء كائن البيانات. حاول إنشاءه مرة أخرى."
+        },
+        "UPDATE_DATA": {
+          "DUPLICATION": "كائن بيانات بهذا الاسم موجود بالفعل",
+          "GENERAL": "نواجه مشكلة في حفظ كائن البيانات. حاول حفظه مرة أخرى."
+        },
+        "CREATE_PROJECT": {
+          "DUPLICATION": "مشروع بهذا الاسم موجود بالفعل",
+          "GENERAL": "نواجه مشكلة في إنشاء المشروع. حاول إنشاءه مرة اخرى."
+        },
+        "UPDATE_PROJECT": {
+          "DUPLICATION": "مشروع بهذا الاسم موجود بالفعل",
+          "GENERAL": "نواجه مشكلة في حفظ المشروع. حاول حفظه مرة أخرى."
+        },
+        "UPLOAD_PROJECT": {
+          "DUPLICATION": "مشروع بهذا الاسم موجود بالفعل",
+          "GENERAL": "نواجه مشكلة في تحميل المشروع. حاول تحميله مرة أخرى."
+        },
+        "GET_PROJECT": "نواجه مشكلة في تحميل المشروع. حاول تحديث الصفحة.",
+        "EXPORT_PROJECT": "حدث خطأ غير معروف أثناء تصدير المشروع",
+        "CREATE_FILE": {
+          "DUPLICATION": "ملف بهذا الاسم موجود بالفعل",
+          "GENERAL": "نواجه مشكلة في إنشاء الملف. حاول إنشاءه مرة أخرى."
+        },
+        "UPDATE_FILE": {
+          "DUPLICATION": "ملف بهذا الاسم موجود بالفعل",
+          "GENERAL": "نواجه مشكلة في حفظ الملف. حاول حفظه مرة أخرى."
+        }
+      }
+    },
+    "PROCESS_EDITOR": {
+      "TABS": {
+        "PROCESS_EDITOR": "محرر العملية",
+        "JSON_EDITOR": "محرر XML",
+        "EXTENSIONS_EDITOR": "محرر الامتدادات"
+      },
+      "PRIORITIES": {
+        "LOW": "0",
+        "MEDIUM": "1",
+        "HIGH": "2"
+      },
+      "ACTIONS": {
+        "ZOOM_IN": "تكبير",
+        "ZOOM_OUT": "تصغير",
+        "UNDO": "تراجع",
+        "REDO": "إعادة",
+        "LASSO_TOOL": "أداة التحرير"
+      },
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "الخصائص",
+        "ID": "المعرف",
+        "NAME": "الاسم",
+        "VERSION": "الإصدار",
+        "VARIABLES": "متغيرات",
+        "DOCUMENTATION": "الوثائق",
+        "EXECUTABLE": "قابل للتنفيذ",
+        "IMPLEMENTATION": "التطبيق",
+        "INPUTS": "المدخلات",
+        "OUTPUTS": "المخرجات",
+        "ACTION": "إجراء",
+        "INPUT": "المدخلات",
+        "INPUT_MAPPING": "تخطيط المدخلات",
+        "OUTPUT": "المخرجات",
+        "OUTPUT_MAPPING": "تخطيط المخرجات",
+        "ASSIGNEE": "معين له",
+        "CANDIDATE_GROUPS": "المجموعات المرشحة",
+        "CANDIDATE_USERS": "المستخدمون المرشحون",
+        "DUE_DATE": "تاريخ الاستحقاق",
+        "PRIORITY": "أولوية",
+        "ACTIVITY_NAME": "اسم النشاط",
+        "PROCESS_VARIABLE": "متغير العملية",
+        "PROCESS_VARIABLES": "متغيرات العملية",
+        "EXPRESSION": "تعبير الشرط",
+        "FORM_SELECTOR": "اسم النموذج",
+        "DEFAULT_SEQUENCE_FLOW": "تدفق التسلسل الافتراضي"
+      },
+      "PALETTE": {
+        "HAND_TOOL": "أداة اليد",
+        "CONNECT_TOOL": "أداة التوصيل العامة",
+        "SPACE_TOOL": "أاة إنشاء/إزالة المسافات",
+        "LASSO_TOOL": "أداة التحرير",
+        "START_EVENT": "إنشاء حدث بدء",
+        "END_EVENT": "إنشاء حدث انتهاء",
+        "INTERMEDIATE_THROW_EVENT": "إنشاء حدث تحويلة وسيط",
+        "START_EVENT_SIGNAL": "إنشاء حدث بدء إشارة",
+        "INTERMEDIATE_CATCH_EVENT_SIGNAL": "إنشاء حدث التقاط متوسط للإشارة",
+        "INTERMEDIATE_THROW_EVENT_SIGNAL": "إنشاء حدث رمي متوسط للإشارة",
+        "GATEWAY": "إنشاء بوابة",
+        "USER_TASK": "إنشاء مهمة مستخدم",
+        "SERVICE_TASK": "إنشاء مهمة خدمة",
+        "CALL_ACTIVITY": "إنشاء نشاط اتصال",
+        "CONTAINER": "الخدمات المخصصة",
+        "SUB_PROCESS": "إنشاء عملية فرعية",
+        "PARTICIPANT": "إنشاء مجموعة"
+      },
+      "UPLOAD_SUCCESS": "تم تحميل العملية",
+      "PROCESS_SAVED": "تم حفظ العملية",
+      "PROCESS_UPDATED": "تم تحديث العملية",
+      "SELECT_PROCESS_VARIABLE": "تحديد متغير العملية",
+      "ERRORS": {
+        "NO_PROCESS_PROPERTIES": "لا خصائص للعملية.",
+        "NO_CONNECTOR_ACTIONS": "إنشاء إجراء ليستخدمه الموصل",
+        "LOAD_DIAGRAM": "نواجه مشكلة في تحميل المخطط. حاول تحديث الصفحة.",
+        "SAVE_DIAGRAM": "نواجه مشكلة في حفظ المخطط. حاول حفظه مرة أخرى.",
+        "DOWNLOAD_DIAGRAM": "نواجه مشكلة في تنزيل المخطط. حاول تنزيله مرة أخرى.",
+        "DOWNLOAD_SVG_IMAGE": "نواجه مشكلة في تنزيل صورة المخطط. حاول تنزيله مرة أخرى.",
+        "CHANGE_FAVORITE": "نواجه مشكلة في تغيير حالة التفضيل للعملية"
+      },
+      "PROPERTIES": {
+        "TABS": {
+          "VIEWER": "عارض الخصائص",
+          "JSON_EDITOR": "محرر JSON"
+        },
+        "TABLE": {
+          "COLUMN_NAME": "الاسم",
+          "COLUMN_TYPE": "النوع",
+          "COLUMN_REQUIRED": "مطلوب",
+          "COLUMN_VALUE": "القيمة",
+          "NO_PROPERTIES": "إنشاء متغير عملية أو تحديده لتحرير تفاصيله"
+        },
+        "ERRORS": {
+          "EMPTY_NAME": "مطلوب اسم"
+        }
+      }
+    },
+    "CONNECTOR_EDITOR": {
+      "UPLOAD_SUCCESS": "تم تحميل الموصل",
+      "NAME": "محرر الموصل",
+      "TABS": {
+        "CONNECTOR_EDITOR": "محرر الموصل",
+        "JSON_EDITOR": "محرر JSON"
+      },
+      "EDITOR": {
+        "CONNECTOR_DETAILS": "تفاصيل الموصل",
+        "INPUTS": "معاملات المدخلات",
+        "OUTPUTS": "معاملات المخرجات",
+        "ACTIONS": "إجراءات",
+        "ADD_NEW_PARAMETER": "إضافة معامل جديد",
+        "NAME": "الاسم",
+        "DESCRIPTION": "الوصف",
+        "TYPE": "النوع",
+        "BUTTONS": {
+          "SAVE": "حفظ"
+        },
+        "REQUIRED": "مطلوب"
+      },
+      "ERRORS": {
+        "GET_CONNECTOR": "نواجه مشكلة في تحميل الموصل. حاول تحديث الصفحة."
+      }
+    },
+    "FORM_EDITOR": {
+      "UPLOAD_SUCCESS": "تم تحميل النموذج",
+      "TABS": {
+        "FORM_EDITOR": "محرر النموذج",
+        "JSON_EDITOR": "محرر JSON"
+      },
+      "FORM_VARIABLES": "متغيرات النموذج",
+      "VISIBLITY_CONDITIONS": {
+        "DEPENDS": "تعتمد على",
+        "OPERATOR": "إذا",
+        "VALUE": "القيمة",
+        "NEXT_CONDITION": "عامل الشرط",
+        "NO_PROPERTY": "إنشاء شرط رؤية أو تحديده لتحرير تفاصيله",
+        "FIELDS": "الحقول",
+        "VARIABLE": "المتغير",
+        "SELECT_FIELD": "تحديد حقل",
+        "SELECT_VARIABLE": "تحديد متغير",
+        "FORM_FIELD": "حقل النموذج",
+        "NEXT_OPERATOR": "عامل الشرط"
+      },
+      "FIELD_PROPERTIES": {
+        "DESCRIPTION": "الوصف",
+        "NAME": "الاسم",
+        "COLUMNS": "عدد الأعمدة",
+        "REQUIRED": "مطلوب",
+        "MULTIPLE_UPLOAD": "السماح بمرفقات ملف متعددة",
+        "LINK_FILE": "الربط بالملفات فقط، دون تحميلها",
+        "FILE_SOURCE": "مصدر الملف",
+        "ALL_SOURCES": "كل مصادر الملفات",
+        "LOCAL_FILE": "ملف محلي",
+        "PLACEHOLDER": "عنصر نائب",
+        "COLSPAN": "Colspan",
+        "LABEL": "التسمية",
+        "ID": "المعرف",
+        "OVERRIDE_ID": "تجاوز المعرف",
+        "VALUE": "النص الذي سيعرض",
+        "DISPLAY_TEXT": "النص الذي سيعرض",
+        "MIN_LENGTH": "الحد الأدنى للطول",
+        "MAX_LENGTH": "الحد الأقصى للطول",
+        "MIN_VALUE": "الحد الأدنى للقيمة",
+        "MAX_VALUE": "الحد الأقصى للقيمة",
+        "REGEX": "نمط Regex",
+        "INPUT_MASK": "قناع الإدخال",
+        "INPUT_MASK_PLACEHOLDER": "عنصر نائب قناع الإدخال",
+        "INPUT_MASK_RESERVED": "محجوز",
+        "MIN_DATE": "الحد الأدنى للتاريخ",
+        "MAX_DATE": "الحد الأقصى للتاريخ",
+        "DATE_DISPLAY_FORMAT": "تنسيق عرض التاريخ",
+        "DATE_FORMAT_PREVIEW": "تاريخ اليوم",
+        "CURRENCY": "العملة",
+        "DECIMALS": "السماح بالأرقام العشرية",
+        "HYPERLINK_URL": "عنوان URL للارتباط التشعبي",
+        "ALLOW_COLLAPSE": "السماح بالطي",
+        "COLLAPSE_BY_DEFAULT": "طي حسب الافتراضي",
+        "REST_SERVICE": {
+          "DIALOG_TITLE": "إجراء اختبار URL",
+          "REST_URL": "عنوان URL لـ REST",
+          "TEST_BUTTON": "اختبار",
+          "RESPONSE_PATH": "المسار إلى المصفوفة في استجابة JSON",
+          "ID_PROP": "خاصية المعرف",
+          "LABEL_PROP": "خاصية التسمية"
+        },
+        "KEY_VALUE_PROPERTY": {
+          "ADD": "إضافة",
+          "ADD_OPTION": "إضافة خيار جديد",
+          "LABEL": "التسمية",
+          "ID": "المعرف",
+          "INFO": "هذا هو خيار 'قيمة فارغة'. إن تحديد هذا الخيار في وقت التشغيل يساوي 'لا قيمة' أو 'فارغ'. لا يمكن تحديد هذا الخيار إلا إذا لم يكن الحقل إلزاميًا.",
+          "CLEAR_SELECTION": "إزالة الافتراضي",
+          "OPTIONS": "خيارات"
+        },
+        "ADVANCED_RADIO_BUTTON": {
+          "MANUAL": "يدوي",
+          "REST_SERVICE": "REST Service"
+        }
+      },
+      "EDITOR": {
+        "ADD_NEW_TAB": "إضافة علامة تبويب",
+        "DELETE_TAB": "حذف علامة تبويب",
+        "ADD_NEW_OUTCOME": "إضافة ناتج",
+        "DELETE_OUTCOME": "حذف ناتج",
+        "EDIT": "تحرير",
+        "DELETE": "حذف",
+        "MOVE": "نقل"
+      },
+      "ERRORS": {
+        "GET_FORM": "نواجه مشكلة في تحرير النموذج. حاول تحديث الصفحة.",
+        "DELETE_FORM": "نواجه مشكلة في حذف النموذج. حاول حذفه مرة أخرى."
+      }
+    },
+    "UI_EDITOR": {
+      "UPLOAD_SUCCESS": "تم تحميل UI",
+      "TABS": {
+        "UI_EDITOR": "محرر UI",
+        "JSON_EDITOR": "محرر JSON"
+      },
+      "EDITOR": {
+        "DETAILS": "تفاصيل UI",
+        "DESCRIPTION": "الوصف",
+        "NAME": "الاسم",
+        "TEMPLATE": "قالب"
+      },
+      "ERRORS": {
+        "GET_UI": "نواجه مشكلة في تحميل UI. حاول تحديث الصفحة.",
+        "DELETE_UI": "نواجه مشكلة في حذف UI. حاول حذفها مرة أخرى."
+      }
+    },
+    "DATA_EDITOR": {
+      "UPLOAD_SUCCESS": "تم تحميل كائن البيانات",
+      "TABS": {
+        "DATA_EDITOR": "محرر كائن البيانات",
+        "JSON_EDITOR": "محرر JSON"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DATA": "نواجه مشكلة في تحميل كائن البيانات. حاول تحديث الصفحة.",
+        "DELETE_DATA": "نواجه مشكلة في حذف كائن البيانات. حاول حذفه مرة أخرى."
+      }
+    },
+    "DECISION_TABLE_EDITOR": {
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "الخصائص",
+        "NAME": "الاسم",
+        "SIMULATOR": "المحاكي"
+      },
+      "UPLOAD_SUCCESS": "تم تحميل جدول القرارات",
+      "TABS": {
+        "DECISION_TABLE_EDITOR": "محرر جدول القرارات",
+        "JSON_EDITOR": "محرر JSON"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DECISION_TABLE": "نواجه مشكلة في تحميل جدول القرارات. حاول تحديث الصفحة.",
+        "DELETE_DECISION_TABLE": "نواجه مشكلة في حذف جدول القرارات. حاول حذفه مرة أخرى.",
+        "INVALID_DECISION_TABLE_NAME": "اسم جدول القرارات غير صحيح"
+      }
+    },
+    "FILE_EDITOR": {
+      "UPLOAD_SUCCESS": "تم تحميل الملف",
+      "TABS": {
+        "FILE_EDITOR": "محرر الملف",
+        "JSON_EDITOR": "محرر النصوص"
+      },
+      "EDITOR": {
+        "DETAILS": "تفاصيل الملف",
+        "DESCRIPTION": "الوصف",
+        "NAME": "الاسم",
+        "TEMPLATE": "قالب"
+      },
+      "ERRORS": {
+        "GET_FILE": "نواجه مشكلة في تحميل الملف. حاول تحديث الصفحة.",
+        "DELETE_FILE": "نواجه مشكلة في حذف الملف. حاول حذفه مرة أخرى."
+      }
+    },
+    "GENERAL": {
+      "ERRORS": {
+        "CHANGE_USER": "تغيير المستخدم",
+        "NOT_VALID_JSON": "كائن JSON غير صحيح",
+        "NOT_VALID_SCHEMA": "كائن JSON لا يطابق المخطط"
+      }
+    }
+  },
+  "ABOUT": {
+    "TITLE": "مكونات إضافية",
+    "TABLE_HEADERS": {
+      "ID": "المعرف",
+      "NAME": "الاسم",
+      "VERSION": "الإصدار",
+      "VENDOR": "المورد",
+      "LICENSE": "الترخيص",
+      "RUNTIME": "وقت التشغيل",
+      "DESCRIPTION": "الوصف"
+    }
+  }
+}

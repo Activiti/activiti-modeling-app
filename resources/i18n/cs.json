@@ -1,0 +1,640 @@
+{
+  "APP": {
+    "APPLICATION": "Aplikace",
+    "BACKEND_SERVICE": "Back-endová služba",
+    "MORE_ACTIONS": "Další akce",
+    "VALIDATE_PROJECT": "Ověřit projekt",
+    "DOWNLOAD_PROJECT": "Stáhnout projekt",
+    "ADD_ACTION": "Přidat novou akci",
+    "ADD_EVENT": "Přidat novou událost",
+    "HEADER": {
+      "APP_NAME": "Aplikace Modeling",
+      "SIGN_OUT": "Odhlásit se",
+      "SETTINGS": "Nastavení",
+      "ABOUT": "O aplikaci",
+      "LANGUAGE": "Jazyk",
+      "SEARCH": "Hledat"
+    },
+    "DIALOGS": {
+      "CANCEL": "Zrušit",
+      "SAVE": "Uložit",
+      "CREATE": "Vytvořit",
+      "UPDATE": "Aktualizovat",
+      "CLOSE": "Zavřít",
+      "EDIT_PROPERTIES": "Upravit proměnné procesu",
+      "EDIT_PROCESS_MESSAGES": "Upravit zprávy",
+      "EDIT_FORM_PROPERTIES": "Upravit proměnné formuláře",
+      "EDIT_VISIBILITY_CONDITIONS": "Upravit podmínky viditelnosti",
+      "ERROR": {
+        "TITLE": "Chcete přesto provést uložení?",
+        "SUBTITLE": "Chyby ověřování:",
+        "NAME_DOESNT_MATCH_PATTERN": "Název neodpovídá následujícímu vzoru",
+        "GENERAL_NAME_VALIDATION": "Název se musí psát malými písmeny a musí mít délku 1 až 26 znaků. Jsou povoleny alfanumerické znaky a pomlčky, avšak název musí začínat písmenem a končit alfanumerickým znakem."
+      },
+      "CONFIRM": {
+        "TITLE": "Jste si jistí?",
+        "SUBTITLE": "Opravdu chcete tuto akci provést?",
+        "BUTTON": "Potvrdit",
+        "UNSAVED_PAGE": "Opravdu chcete odejít a neuložit {{ types }}",
+        "RELEASE": "Opravdu chcete vydat novou verzi tohoto projektu?",
+        "TYPES": {
+          "DECISION": "Rozhodovací tabulka",
+          "DATA": "Data",
+          "UI": "Uživatelské rozhraní",
+          "CONNECTOR": "Konektor",
+          "FORM": "Formulář",
+          "PROCESS": "Proces",
+          "FILE": "Soubor"
+        },
+        "DELETE": {
+          "PROJECT": "Opravdu chcete tento projekt odstranit?",
+          "PROCESS": "Opravdu chcete tento proces odstranit?",
+          "FORM": "Opravdu chcete tento formulář odstranit?",
+          "UI": "Opravdu chcete toto uživatelské rozhraní odstranit?",
+          "DATA": "Opravdu chcete tento datový objekt odstranit?",
+          "DECISION_TABLE": "Opravdu chcete tuto rozhodovací tabulku odstranit?",
+          "CONNECTOR": "Opravdu chcete tento konektor odstranit?",
+          "FILE": "Opravdu chcete tento soubor odstranit?"
+        },
+        "SAVE": {
+          "PROCESS": "Opravdu chcete tento proces uložit?",
+          "FORM": "Opravdu chcete tento formulář uložit?",
+          "UI": "Opravdu chcete toto uživatelské rozhraní uložit?",
+          "DATA": "Opravdu chcete tento datový objekt uložit?",
+          "DECISION_TABLE": "Opravdu chcete tuto rozhodovací tabulku uložit?",
+          "CONNECTOR": "Opravdu chcete tento konektor uložit?",
+          "FILE": "Opravdu chcete tento soubor uložit?"
+        },
+        "DOWNLOAD": {
+          "PROCESS": "Opravdu chcete tento proces stáhnout?",
+          "IMAGE": "Opravdu chcete stáhnout obraz SVG tohoto procesu?",
+          "FORM": "Opravdu chcete tento formulář stáhnout?",
+          "UI": "Opravdu chcete toto uživatelské rozhraní stáhnout?",
+          "DATA": "Opravdu chcete tento datový objekt stáhnout?",
+          "DECISION_TABLE": "Opravdu chcete tuto rozhodovací tabulku stáhnout?",
+          "CONNECTOR": "Opravdu chcete tento konektor stáhnout?",
+          "FILE": "Opravdu chcete tento soubor stáhnout?"
+        }
+      }
+    },
+    "MENU": {
+      "EDIT": "Upravit",
+      "DELETE": "Odstranit",
+      "RELEASE": "Vzdát se",
+      "COLLABORATORS": "Spolupracovníci",
+      "SEE_RELEASES": "Zobrazit verze",
+      "DOWNLOAD": "Stáhnout"
+    },
+    "SETTINGS": {
+      "HEADER": "Nastavení aplikace"
+    },
+    "HOME": {
+      "NEW_MENU": {
+        "LABEL": "Nový",
+        "CREATE_PROJECT_TITLE": "Vytvoření projektu",
+        "OVERRIDE_PROJECT_TITLE": "Projekt s tímto názvem již existuje.",
+        "EDIT_PROJECT_TITLE": "Úprava projektu",
+        "PROJECT_CREATED": "Projekt byl vytvořen",
+        "PROJECT_UPLOADED": "Projekt byl odeslán",
+        "PROJECT_UPDATED": "Projekt byl uložen",
+        "PROJECT_RELEASED": "Projekt byl vydán",
+        "PROJECT_DELETED": "Projekt byl odstraněn",
+        "MENU_ITEMS": {
+          "CREATE_PROJECT": "Vytvoření projektu",
+          "UPLOAD_PROJECT": "Odeslat projekt",
+          "CREATE_MODEL": "Model obsahu"
+        }
+      },
+      "DIALOGS": {
+        "PROJECT_NAME": "Název projektu:",
+        "PROJECT_DESC": "Popis projektu:"
+      },
+      "NAVIGATION": {
+        "PROJECTS": {
+          "LABEL": "Projekty",
+          "TOOLTIP": "Publikované projekty"
+        },
+        "RELEASES": {
+          "LABEL": "Verze",
+          "TOOLTIP": "Verze"
+        },
+        "PROCESSES": {
+          "LABEL": "Procesy",
+          "TOOLTIP": "Publikované procesy"
+        },
+        "FAVORITES": {
+          "LABEL": "Oblíbené",
+          "TOOLTIP": "Oblíbené"
+        }
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Název",
+        "COLUMN_VERSION": "Verze",
+        "COLUMN_CREATED": "Vytvořeno",
+        "COLUMN_CREATED_BY": "Vytvořil(a)",
+        "COLUMN_OPTIONS": "Možnosti",
+        "NO_ITEMS": "Vytvořte nebo naimportujte projekt, který chcete zobrazit v seznamu.",
+        "NO_FAV_PROCESSES": "Označte proces jako oblíbený, aby byl k dispozici zde.",
+        "NO_FAV_PROJECTS": "Označte projekt jako oblíbený, aby byl k dispozici zde.",
+        "RELEASE_ID": "ID verze",
+        "PROJECT_NAME": "Název projektu"
+      },
+      "ERROR": {
+        "LOAD_PROJECTS": "Došlo k problému při načítání projektů. Zkuste obnovit stránku.",
+        "LOAD_RELEASES": "Došlo k problému při načítání verzí. Zkuste obnovit stránku.",
+        "LOAD_PROCESSES": "Došlo k problému při načítání procesů. Zkuste obnovit stránku."
+      }
+    },
+    "PROJECT": {
+      "BACK_TO": "Zpět k projektům",
+      "NAME": "Editor projektů",
+      "UPLOAD_FILE": "Odeslat soubor",
+      "DOWNLOAD_PROJECT": "Stáhnout projekt",
+      "PROJECT_VALID": "Projekt neobsahuje žádné chyby ověřování.",
+      "EXPORT_SUCCESS": "Projekt byl exportován",
+      "SETTINGS": {
+        "PROJECT_SETTINGS": "Nastavení editoru projektů",
+        "CONNECTORS_TAB_LABEL": "Konektory"
+      },
+      "IMPORT": "Importovat",
+      "CREATE_NEW": "Vytvořit nový",
+      "SEARCH": "Hledat",
+      "UPLOAD_FILE_SUCCESS": "Soubor byl odeslán",
+      "NO_CONTENT": "<prázdný>",
+      "NO_SELECTION": "Vytvořte nový model nebo upravte existující pomocí bočního panelu.",
+      "NEW_MENU": {
+        "LABEL": "Nový",
+        "CREATE": "Vytvořit",
+        "IMPORT": "Importovat",
+        "CREATE_PROCESS_TITLE": "Vytvořit proces",
+        "MENU_ITEMS": {
+          "CREATE_PROCESS": "Proces",
+          "CREATE_CONNECTOR": "Konektor",
+          "CREATE_FORM": "Formulář",
+          "CREATE_UI": "Uživatelské rozhraní",
+          "CREATE_DATA": "Datový objekt",
+          "CREATE_DECISION_TABLE": "Rozhodovací tabulka",
+          "CREATE_FILE": "Soubor"
+        }
+      },
+      "TREE": {
+        "PROCESSES": "Procesy",
+        "FORMS": "Formuláře",
+        "CONNECTORS": "Konektory",
+        "DATA": "Data",
+        "DECISION_TABLES": "Rozhodovací tabulky",
+        "UIS": "Uživatelské rozhraní",
+        "FILES": "Soubory"
+      },
+      "PROCESS_DIALOG": {
+        "TITLE_CREATE": "Vytvořit proces",
+        "TITLE_UPDATE": "Aktualizovat proces",
+        "PROCESS_NAME": "Název procesu:",
+        "PROCESS_DESC": "Procesní dokumentace:",
+        "PROCESS_CREATED": "Proces byl vytvořen",
+        "PROCESS_DELETED": "Proces byl odstraněn",
+        "PROCESS_UPDATED": "Proces byl uložen"
+      },
+      "CONNECTOR_DIALOG": {
+        "TITLE_CREATE": "Vytvořit konektor",
+        "TITLE_UPDATE": "Aktualizovat konektor",
+        "CONNECTOR_NAME": "Název konektoru:",
+        "CONNECTOR_DESC": "Popis konektoru:",
+        "CONNECTOR_CREATED": "Konektor byl vytvořen",
+        "CONNECTOR_DELETED": "Konektor byl odstraněn",
+        "CONNECTOR_UPDATED": "Konektor byl uložen"
+      },
+      "FORM_DIALOG": {
+        "TITLE_CREATE": "Vytvořit formulář",
+        "TITLE_UPDATE": "Aktualizovat formulář",
+        "FORM_NAME": "Název formuláře:",
+        "FORM_DESC": "Popis formuláře:",
+        "FORM_CREATED": "Formulář byl vytvořen",
+        "FORM_DELETED": "Formulář byl odstraněn",
+        "FORM_UPDATED": "Formulář byl uložen"
+      },
+      "UI_DIALOG": {
+        "TITLE_CREATE": "Vytvořit uživatelské rozhraní",
+        "TITLE_UPDATE": "Aktualizovat uživatelské rozhraní",
+        "UI_NAME": "Název uživatelského rozhraní:",
+        "UI_DESC": "Popis uživatelského rozhraní:",
+        "UI_CREATED": "Uživatelské rozhraní bylo vytvořeno",
+        "UI_DELETED": "Uživatelské rozhraní bylo odstraněno",
+        "UI_UPDATED": "Uživatelské rozhraní bylo uloženo"
+      },
+      "DATA_DIALOG": {
+        "TITLE_CREATE": "Vytvořit datový objekt",
+        "TITLE_UPDATE": "Aktualizovat datový objekt",
+        "DATA_NAME": "Název datového objektu:",
+        "DATA_DESC": "Popis datového objektu:",
+        "DATA_CREATED": "Datový objekt byl vytvořen",
+        "DATA_DELETED": "Datový objekt byl odstraněn",
+        "DATA_UPDATED": "Datový objekt byl uložen"
+      },
+      "DECISION_TABLE_DIALOG": {
+        "TITLE_CREATE": "Vytvořit rozhodovací tabulku",
+        "TITLE_UPDATE": "Aktualizovat rozhodovací tabulku",
+        "DECISION_TABLE_NAME": "Název rozhodovací tabulky:",
+        "DECISION_TABLE_DESC": "Popis rozhodovací tabulky:",
+        "DECISION_TABLE_CREATED": "Rozhodovací tabulka byla vytvořena",
+        "DECISION_TABLE_DELETED": "Rozhodovací tabulka byla odstraněna",
+        "DECISION_TABLE_UPDATED": "Rozhodovací tabulka byla uložena"
+      },
+      "FILE_DIALOG": {
+        "TITLE_CREATE": "Vytvořit soubor",
+        "TITLE_UPDATE": "Aktualizovat soubor",
+        "FILE_NAME": "Název souboru:",
+        "FILE_DESC": "Popis souboru:",
+        "FILE_CREATED": "Soubor byl vytvořen",
+        "FILE_DELETED": "Soubor byl odstraněn",
+        "FILE_UPDATED": "Soubor byl uložen"
+      },
+      "ACTION_DIALOG": {
+        "ACTION_DETAILS": "Podrobnosti akce",
+        "ACTION_NAME": "Název akce",
+        "ACTION_DESC": "Popis akce",
+        "ADD_ACTION": "Přidat akci",
+        "DEL_ACTION": "Odstranit akci"
+      },
+      "EVENT_DIALOG": {
+        "EVENT_DETAILS": "Podrobnosti události",
+        "EVENT_NAME": "Název události",
+        "EVENT_DESC": "Popis události",
+        "ADD_EVENT": "Přidat událost",
+        "DEL_EVENT": "Odstranit událost"
+      },
+      "ERROR": {
+        "UPLOAD_FILE": "Došlo k problému při odesílání souboru. Zkuste ho odeslat znovu.",
+        "DELETE_PROJECT": "Došlo k problému při odstraňování projektu. Zkuste ho odstranit znovu.",
+        "CHANGE_FAVORITE": "Došlo k problému při přidávání projektu do oblíbených. Zkuste ho přidat do oblíbených znovu.",
+        "DELETE_PROCESS": "Došlo k problému při odstraňování procesu. Zkuste ho odstranit znovu.",
+        "LOAD_MODELS": "Došlo k problému při načítání modelů. Zkuste obnovit stránku.",
+        "RELEASE_PROJECT": "Došlo k problému při odstraňování projektu. Zkuste ho odstranit znovu.",
+        "CREATE_PROCESS": {
+          "DUPLICATION": "Proces s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při vytváření procesu. Zkuste ho vytvořit znovu."
+        },
+        "UPDATE_PROCESS": {
+          "DUPLICATION": "Proces s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při ukládání procesu. Zkuste ho uložit znovu.",
+          "EMPTY_NAME": "Název je povinný."
+        },
+        "CREATE_CONNECTOR": {
+          "DUPLICATION": "Konektor s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při vytváření konektoru. Zkuste ho vytvořit znovu."
+        },
+        "UPDATE_CONNECTOR": {
+          "DUPLICATION": "Konektor s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při ukládání konektoru. Zkuste ho uložit znovu."
+        },
+        "CREATE_FORM": {
+          "DUPLICATION": "Formulář s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při vytváření formuláře. Zkuste ho vytvořit znovu."
+        },
+        "UPDATE_FORM": {
+          "DUPLICATION": "Formulář s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při ukládání formuláře. Zkuste ho uložit znovu."
+        },
+        "CREATE_UI": {
+          "DUPLICATION": "Uživatelské rozhraní s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při vytváření uživatelského rozhraní. Zkuste ho vytvořit znovu."
+        },
+        "UPDATE_UI": {
+          "DUPLICATION": "Uživatelské rozhraní s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při ukládání uživatelského rozhraní. Zkuste ho uložit znovu."
+        },
+        "CREATE_DECISION_TABLE": {
+          "DUPLICATION": "Rozhodovací tabulka s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při vytváření rozhodovací tabulky. Zkuste ji vytvořit znovu."
+        },
+        "UPDATE_DECISION_TABLE": {
+          "DUPLICATION": "Rozhodovací tabulka s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při vytváření rozhodovací tabulky. Zkuste ji vytvořit znovu."
+        },
+        "CREATE_DATA": {
+          "DUPLICATION": "Datový objekt s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při vytváření datového objektu. Zkuste ho vytvořit znovu."
+        },
+        "UPDATE_DATA": {
+          "DUPLICATION": "Datový objekt s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při ukládání datového objektu. Zkuste ho uložit znovu."
+        },
+        "CREATE_PROJECT": {
+          "DUPLICATION": "Projekt s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při vytváření projektu. Zkuste ho vytvořit znovu."
+        },
+        "UPDATE_PROJECT": {
+          "DUPLICATION": "Projekt s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při ukládání projektu. Zkuste ho uložit znovu."
+        },
+        "UPLOAD_PROJECT": {
+          "DUPLICATION": "Projekt s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při odesílání projektu. Zkuste ho odeslat znovu."
+        },
+        "GET_PROJECT": "Došlo k problému při načítání projektu. Zkuste obnovit stránku.",
+        "EXPORT_PROJECT": "Během exportu projektu došlo k neznámé chybě",
+        "CREATE_FILE": {
+          "DUPLICATION": "Soubor s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při vytváření souboru. Zkuste ho vytvořit znovu."
+        },
+        "UPDATE_FILE": {
+          "DUPLICATION": "Soubor s tímto názvem již existuje",
+          "GENERAL": "Došlo k problému při ukládání souboru. Zkuste ho uložit znovu."
+        }
+      }
+    },
+    "PROCESS_EDITOR": {
+      "TABS": {
+        "PROCESS_EDITOR": "Editor procesů",
+        "JSON_EDITOR": "Editor XML",
+        "EXTENSIONS_EDITOR": "Editor rozšíření"
+      },
+      "PRIORITIES": {
+        "LOW": "0",
+        "MEDIUM": "1",
+        "HIGH": "2"
+      },
+      "ACTIONS": {
+        "ZOOM_IN": "Přiblížit",
+        "ZOOM_OUT": "Oddálit",
+        "UNDO": "Zpět",
+        "REDO": "Znovu",
+        "LASSO_TOOL": "Nástroj Laso"
+      },
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "Vlastnosti",
+        "ID": "ID",
+        "NAME": "Název",
+        "VERSION": "Verze",
+        "VARIABLES": "Proměnné",
+        "DOCUMENTATION": "Dokumentace",
+        "EXECUTABLE": "Spustitelný soubor",
+        "IMPLEMENTATION": "Implementace",
+        "INPUTS": "Vstupy",
+        "OUTPUTS": "Výstupy",
+        "ACTION": "Akce",
+        "INPUT": "Vstup",
+        "INPUT_MAPPING": "Mapování vstupů",
+        "OUTPUT": "Výstup",
+        "OUTPUT_MAPPING": "Mapování výstupů",
+        "ASSIGNEE": "Pověřená osoba",
+        "CANDIDATE_GROUPS": "Skupiny kandidátů",
+        "CANDIDATE_USERS": "Uživatelé kandidáti",
+        "DUE_DATE": "Termín",
+        "PRIORITY": "Priorita",
+        "ACTIVITY_NAME": "Název aktivity",
+        "PROCESS_VARIABLE": "Proměnná procesu",
+        "PROCESS_VARIABLES": "Proměnné procesu",
+        "EXPRESSION": "Výraz podmínky",
+        "FORM_SELECTOR": "Název formuláře",
+        "DEFAULT_SEQUENCE_FLOW": "Výchozí tok sekvence"
+      },
+      "PALETTE": {
+        "HAND_TOOL": "Nástroj Od ruky",
+        "CONNECT_TOOL": "Nástroj pro globální připojování",
+        "SPACE_TOOL": "Nástroj pro vytváření/odebírání prostorů",
+        "LASSO_TOOL": "Nástroj Laso",
+        "START_EVENT": "Vytvořit počáteční událost",
+        "END_EVENT": "Vytvořit koncovou událost",
+        "INTERMEDIATE_THROW_EVENT": "Vytvořit průběžnou událost aktivace",
+        "START_EVENT_SIGNAL": "Vytvořit událost spuštění signálu",
+        "INTERMEDIATE_CATCH_EVENT_SIGNAL": "Vytvořit průběžnou událost zachycení signálu",
+        "INTERMEDIATE_THROW_EVENT_SIGNAL": "Vytvořit průběžnou událost aktivace signálu",
+        "GATEWAY": "Vytvořit bránu",
+        "USER_TASK": "Vytvořit uživatelský úkol",
+        "SERVICE_TASK": "Vytvořit úkol služby",
+        "CALL_ACTIVITY": "Vytvořit aktivitu volání",
+        "CONTAINER": "Vyhrazené služby",
+        "SUB_PROCESS": "Vytvořit podproces",
+        "PARTICIPANT": "Vytvořit fond"
+      },
+      "UPLOAD_SUCCESS": "Proces byl odeslán",
+      "PROCESS_SAVED": "Proces byl uložen",
+      "PROCESS_UPDATED": "Proces byl aktualizován",
+      "SELECT_PROCESS_VARIABLE": "Vybrat proměnnou procesu",
+      "ERRORS": {
+        "NO_PROCESS_PROPERTIES": "Žádné vlastnosti procesu.",
+        "NO_CONNECTOR_ACTIONS": "Vytvořte akci, kterou použije konektor",
+        "LOAD_DIAGRAM": "Došlo k problému při načítání diagramu. Zkuste obnovit stránku.",
+        "SAVE_DIAGRAM": "Při ukládání diagramu došlo k problému. Zkuste ho uložit znovu.",
+        "DOWNLOAD_DIAGRAM": "Při stahování diagramu došlo k problému. Zkuste ho stáhnout znovu.",
+        "DOWNLOAD_SVG_IMAGE": "Při stahování obrazu diagramu došlo k problému. Zkuste ho stáhnout znovu.",
+        "CHANGE_FAVORITE": "Došlo k problému při změně stavu Oblíbený procesu"
+      },
+      "PROPERTIES": {
+        "TABS": {
+          "VIEWER": "Prohlížeč vlastností",
+          "JSON_EDITOR": "Editor JSON"
+        },
+        "TABLE": {
+          "COLUMN_NAME": "Název",
+          "COLUMN_TYPE": "Typ",
+          "COLUMN_REQUIRED": "Požadováno",
+          "COLUMN_VALUE": "Hodnota",
+          "NO_PROPERTIES": "Vytvořte nebo vyberte proměnnou procesu a upravte její podrobnosti."
+        },
+        "ERRORS": {
+          "EMPTY_NAME": "Název je povinný."
+        }
+      }
+    },
+    "CONNECTOR_EDITOR": {
+      "UPLOAD_SUCCESS": "Konektor byl stažen",
+      "NAME": "Editor konektorů",
+      "TABS": {
+        "CONNECTOR_EDITOR": "Editor konektorů",
+        "JSON_EDITOR": "Editor JSON"
+      },
+      "EDITOR": {
+        "CONNECTOR_DETAILS": "Podrobnosti konektoru",
+        "INPUTS": "Vstupní parametry",
+        "OUTPUTS": "Výstupní parametry",
+        "ACTIONS": "Akce",
+        "ADD_NEW_PARAMETER": "Přidat nový parametr",
+        "NAME": "Název",
+        "DESCRIPTION": "Popis",
+        "TYPE": "Typ",
+        "BUTTONS": {
+          "SAVE": "Uložit"
+        },
+        "REQUIRED": "Požadováno"
+      },
+      "ERRORS": {
+        "GET_CONNECTOR": "Došlo k problému při načítání konektoru. Zkuste obnovit stránku."
+      }
+    },
+    "FORM_EDITOR": {
+      "UPLOAD_SUCCESS": "Formulář byl odeslán",
+      "TABS": {
+        "FORM_EDITOR": "Editor formulářů",
+        "JSON_EDITOR": "Editor JSON"
+      },
+      "FORM_VARIABLES": "Proměnné formuláře",
+      "VISIBLITY_CONDITIONS": {
+        "DEPENDS": "Závisí na",
+        "OPERATOR": "Pokud je",
+        "VALUE": "Hodnota",
+        "NEXT_CONDITION": "Podmínkový operátor",
+        "NO_PROPERTY": "Vytvořte nebo vyberte podmínku viditelnosti a upravte její podrobnosti",
+        "FIELDS": "Pole",
+        "VARIABLE": "Proměnná",
+        "SELECT_FIELD": "Vyberte pole",
+        "SELECT_VARIABLE": "Vyberte proměnnou",
+        "FORM_FIELD": "Pole formuláře",
+        "NEXT_OPERATOR": "Podmínkový operátor"
+      },
+      "FIELD_PROPERTIES": {
+        "DESCRIPTION": "Popis",
+        "NAME": "Název",
+        "COLUMNS": "Počet sloupců",
+        "REQUIRED": "Požadováno",
+        "MULTIPLE_UPLOAD": "Povolit více přiložených souborů",
+        "LINK_FILE": "Pouze odkazovat na soubory, neodesílat je",
+        "FILE_SOURCE": "Zdroj souboru",
+        "ALL_SOURCES": "Všechny zdroje souborů",
+        "LOCAL_FILE": "Místní soubor",
+        "PLACEHOLDER": "Zástupný symbol",
+        "COLSPAN": "Colspan",
+        "LABEL": "Label",
+        "ID": "ID",
+        "OVERRIDE_ID": "Potlačit ID",
+        "VALUE": "Text k zobrazení",
+        "DISPLAY_TEXT": "Text k zobrazení",
+        "MIN_LENGTH": "Min. délka",
+        "MAX_LENGTH": "Max. délka",
+        "MIN_VALUE": "Min. hodnota",
+        "MAX_VALUE": "Max. hodnota",
+        "REGEX": "Vzor regulárního výrazu",
+        "INPUT_MASK": "Vstupní maska",
+        "INPUT_MASK_PLACEHOLDER": "Zástupný symbol vstupní masky",
+        "INPUT_MASK_RESERVED": "Obráceně",
+        "MIN_DATE": "Min. datum",
+        "MAX_DATE": "Max. datum",
+        "DATE_DISPLAY_FORMAT": "Formát zobrazení data",
+        "DATE_FORMAT_PREVIEW": "Dnešní datum",
+        "CURRENCY": "Měna",
+        "DECIMALS": "Povolit desetinná místa",
+        "HYPERLINK_URL": "Adresa URL hypertextového odkazu",
+        "ALLOW_COLLAPSE": "Povolit sbalení",
+        "COLLAPSE_BY_DEFAULT": "Sbalit ve výchozím nastavení",
+        "REST_SERVICE": {
+          "DIALOG_TITLE": "Test adresy URL",
+          "REST_URL": "Adresa URL REST",
+          "TEST_BUTTON": "Otestovat",
+          "RESPONSE_PATH": "Cesta k poli v odpovědi JSON",
+          "ID_PROP": "Vlastnost ID",
+          "LABEL_PROP": "Vlastnost Label"
+        },
+        "KEY_VALUE_PROPERTY": {
+          "ADD": "Přidat",
+          "ADD_OPTION": "Přidat novou možnost",
+          "LABEL": "Label",
+          "ID": "ID",
+          "INFO": "Toto je možnost „prázdná hodnota“. Její výběr při běhu programu se rovná možnosti „žádná hodnota“ nebo „prázdné“. Lze ji vybrat, pouze pokud pole není povinné.",
+          "CLEAR_SELECTION": "Odebrat výchozí",
+          "OPTIONS": "Možnosti"
+        },
+        "ADVANCED_RADIO_BUTTON": {
+          "MANUAL": "Ručně",
+          "REST_SERVICE": "Služba REST"
+        }
+      },
+      "EDITOR": {
+        "ADD_NEW_TAB": "Přidat kartu",
+        "DELETE_TAB": "Odstranit kartu",
+        "ADD_NEW_OUTCOME": "Přidat výsledek",
+        "DELETE_OUTCOME": "Odstranit výsledek",
+        "EDIT": "Upravit",
+        "DELETE": "Odstranit",
+        "MOVE": "Přesunout"
+      },
+      "ERRORS": {
+        "GET_FORM": "Došlo k problému při načítání formuláře. Zkuste obnovit stránku.",
+        "DELETE_FORM": "Došlo k problému při odstraňování formuláře. Zkuste ho odstranit znovu."
+      }
+    },
+    "UI_EDITOR": {
+      "UPLOAD_SUCCESS": "Uživatelské rozhraní bylo odesláno",
+      "TABS": {
+        "UI_EDITOR": "Editor uživatelského rozhraní",
+        "JSON_EDITOR": "Editor JSON"
+      },
+      "EDITOR": {
+        "DETAILS": "Podrobnosti uživatelského rozhraní",
+        "DESCRIPTION": "Popis",
+        "NAME": "Název",
+        "TEMPLATE": "Šablona"
+      },
+      "ERRORS": {
+        "GET_UI": "Došlo k problému při načítání uživatelského rozhraní. Zkuste obnovit stránku.",
+        "DELETE_UI": "Došlo k problému při odstraňování uživatelského rozhraní. Zkuste ho odstranit znovu."
+      }
+    },
+    "DATA_EDITOR": {
+      "UPLOAD_SUCCESS": "Datový objekt byl odeslán",
+      "TABS": {
+        "DATA_EDITOR": "Editor datových objektů",
+        "JSON_EDITOR": "Editor JSON"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DATA": "Došlo k problému při načítání datového objektu. Zkuste obnovit stránku.",
+        "DELETE_DATA": "Došlo k problému při odstraňování datového objektu. Zkuste ho odstranit znovu."
+      }
+    },
+    "DECISION_TABLE_EDITOR": {
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "Vlastnosti",
+        "NAME": "Název",
+        "SIMULATOR": "Simulátor"
+      },
+      "UPLOAD_SUCCESS": "Rozhodovací tabulka byla odeslána",
+      "TABS": {
+        "DECISION_TABLE_EDITOR": "Editor rozhodovacích tabulek",
+        "JSON_EDITOR": "Editor JSON"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DECISION_TABLE": "Došlo k problému při načítání rozhodovací tabulky. Zkuste obnovit stránku.",
+        "DELETE_DECISION_TABLE": "Došlo k problému při odstraňování rozhodovací tabulky. Zkuste ji odstranit znovu.",
+        "INVALID_DECISION_TABLE_NAME": "Neplatný název rozhodovací tabulky"
+      }
+    },
+    "FILE_EDITOR": {
+      "UPLOAD_SUCCESS": "Soubor byl odeslán",
+      "TABS": {
+        "FILE_EDITOR": "Editor souborů",
+        "JSON_EDITOR": "Textový editor"
+      },
+      "EDITOR": {
+        "DETAILS": "Podrobnosti souboru",
+        "DESCRIPTION": "Popis",
+        "NAME": "Název",
+        "TEMPLATE": "Šablona"
+      },
+      "ERRORS": {
+        "GET_FILE": "Došlo k problému při načítání souboru. Zkuste obnovit stránku.",
+        "DELETE_FILE": "Došlo k problému při odstraňování souboru. Zkuste ho odstranit znovu."
+      }
+    },
+    "GENERAL": {
+      "ERRORS": {
+        "CHANGE_USER": "Změnit uživatele",
+        "NOT_VALID_JSON": "Neplatný objekt JSON",
+        "NOT_VALID_SCHEMA": "Objekt JSON neodpovídá schématu."
+      }
+    }
+  },
+  "ABOUT": {
+    "TITLE": "Doplňky",
+    "TABLE_HEADERS": {
+      "ID": "ID",
+      "NAME": "Název",
+      "VERSION": "Verze",
+      "VENDOR": "Dodavatel",
+      "LICENSE": "Licence",
+      "RUNTIME": "Délka",
+      "DESCRIPTION": "Popis"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "CONNECTOR_EDITOR": {
+    "DOWNLOAD_CONNECTOR": "Stáhnout konektor",
+    "VALIDATE_CONNECTOR": "Ověřit konektor",
+    "SAVE_CONNECTOR": "Uložit konektor",
+    "CONNECTOR_VALID": "Konektor je platný",
+    "CONNECTOR_INVALID": "Konektor obsahuje chyby ověřování.",
+    "UPLOAD_SUCCESS": "Konektor byl stažen",
+    "TABS": {
+      "CONNECTOR_EDITOR": "Editor konektorů",
+      "JSON_EDITOR": "Editor JSON"
+    },
+    "ERRORS": {
+      "GET_CONNECTOR": "Došlo k problému při odesílání konektoru. Zkuste ho odeslat znovu."
+    },
+    "DIALOG": {
+      "TITLE": "Nastavení editoru konektorů",
+      "SHOW": "Zobrazit konektory s šablonami na levém bočním panelu",
+      "CANCEL": "Zrušit",
+      "APPLY": "Použít"
+    }
+  }
+}

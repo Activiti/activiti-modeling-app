@@ -1,0 +1,62 @@
+{
+  "SDK": {
+    "SNACKBAR": {
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "粘贴的值必须采用此模式"
+    },
+    "ALL": "全部",
+    "VARIABLES_EDITOR": {
+      "ERRORS": {
+        "EMPTY_NAME": "需要名称",
+        "INVALID_NAME": "变量名称无效",
+        "VARIABLE_NAME_TOOLTIP": "名称必须以字母开头，且只能包含字母数字字符和下划线",
+        "NAME_ALREADY_EXISTS": "变量名称必须唯一"
+      },
+      "TABS": {
+        "VIEWER": "属性查看器",
+        "JSON_EDITOR": "JSON 编辑器"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "名称",
+        "COLUMN_TYPE": "类型",
+        "COLUMN_REQUIRED": "必需",
+        "COLUMN_VALUE": "值",
+        "NO_PROPERTIES": "选择或创建变量以查看其属性"
+      }
+    },
+    "VARIABLE_MAPPING": {
+      "PARAMETER": "参数",
+      "VALUE": "值",
+      "PROCESS_VARIABLE": "单个流程变量",
+      "SWITCH_VAR_VAL": "切换变量/值",
+      "NO_PROCESS_PROPERTIES": "没有流程变量",
+      "NO_PAYLOAD": "消息没有有效负载。在消息抛出事件中添加有效负载。",
+      "CLEAR_ASSIGNMENT": "清除赋值",
+      "NONE": "无"
+    },
+    "MESSAGES_EDITOR": {
+      "TITLE": "流程消息",
+      "ERRORS": {
+        "EMPTY_NAME": "需要名称",
+        "NAME_ALREADY_EXISTS": "消息名称必须唯一"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "名称",
+        "COLUMN_ID": "ID",
+        "NO_MESSAGES": "选择或创建要查看属性的消息"
+      }
+    },
+    "MAPPING_DIALOG": {
+      "TITLE": "编辑变量映射",
+      "SELECTOR_TITLE": "选择要编辑的变量映射类型",
+      "INPUT_MAPPING": "输入映射",
+      "OUTPUT_MAPPING": "输出映射",
+      "PROCESS_VARIABLE": "单个流程变量",
+      "INPUT_PARAMETER": "输入参数",
+      "OUTPUT_PARAMETER": "输出参数",
+      "VALUE_MAPPING": "值",
+      "EXPRESSION_MAPPING": "表达式",
+      "NONE": "无",
+      "TYPE": "类型"
+    }
+  }
+}

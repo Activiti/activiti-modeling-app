@@ -1,0 +1,23 @@
+{
+  "CONNECTOR_EDITOR": {
+    "DOWNLOAD_CONNECTOR": "Connector downloaden",
+    "VALIDATE_CONNECTOR": "Connector valideren",
+    "SAVE_CONNECTOR": "Connector opslaan",
+    "CONNECTOR_VALID": "Connector is geldig",
+    "CONNECTOR_INVALID": "Connector bevat validatiefout(en).",
+    "UPLOAD_SUCCESS": "Connector geüpload",
+    "TABS": {
+      "CONNECTOR_EDITOR": "Connectoreditor",
+      "JSON_EDITOR": "JSON-editor"
+    },
+    "ERRORS": {
+      "GET_CONNECTOR": "Er is een probleem opgetreden bij het uploaden van de connector. Probeer de connector opnieuw te uploaden."
+    },
+    "DIALOG": {
+      "TITLE": "Instellingen connectoreditor",
+      "SHOW": "Connectors weergeven met sjablonen op de linkerzijbalk",
+      "CANCEL": "Annuleren",
+      "APPLY": "Toepassen"
+    }
+  }
+}

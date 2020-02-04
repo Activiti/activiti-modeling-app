@@ -1,0 +1,640 @@
+{
+  "APP": {
+    "APPLICATION": "Program",
+    "BACKEND_SERVICE": "Serverdelservice",
+    "MORE_ACTIONS": "Fler åtgärder",
+    "VALIDATE_PROJECT": "Validera projekt",
+    "DOWNLOAD_PROJECT": "Ladda ner projekt",
+    "ADD_ACTION": "Lägg till ny åtgärd",
+    "ADD_EVENT": "Lägg till ny händelse",
+    "HEADER": {
+      "APP_NAME": "Modellera program",
+      "SIGN_OUT": "Logga ut",
+      "SETTINGS": "Inställningar",
+      "ABOUT": "Om",
+      "LANGUAGE": "Språk",
+      "SEARCH": "Sök"
+    },
+    "DIALOGS": {
+      "CANCEL": "Avbryt",
+      "SAVE": "Spara",
+      "CREATE": "Skapa",
+      "UPDATE": "Uppdatera",
+      "CLOSE": "Stäng",
+      "EDIT_PROPERTIES": "Redigera processvariabler",
+      "EDIT_PROCESS_MESSAGES": "Redigera meddelanden",
+      "EDIT_FORM_PROPERTIES": "Redigera formulärvariabler",
+      "EDIT_VISIBILITY_CONDITIONS": "Redigera synlighetsvillkor",
+      "ERROR": {
+        "TITLE": "Vill du ändå spara den?",
+        "SUBTITLE": "Valideringsfel",
+        "NAME_DOESNT_MATCH_PATTERN": "Namnet motsvarar inte följande mönster",
+        "GENERAL_NAME_VALIDATION": "Namnet måste vara i gemener och mellan 1 och 26 tecken långt. Alfanumeriska tecken och bindestreck är tillåtna, men namnet måste börja med en bokstav och sluta alfanumeriskt."
+      },
+      "CONFIRM": {
+        "TITLE": "Är du säker?",
+        "SUBTITLE": "Är du säker på att du vill genomföra denna åtgärd?",
+        "BUTTON": "Bekräfta",
+        "UNSAVED_PAGE": "Är du säker på att du vill lämna utan att spara {{ types }}",
+        "RELEASE": "Är du säker på att du vill avsäga en ny version av det här projektet?",
+        "TYPES": {
+          "DECISION": "beslutstabell",
+          "DATA": "data",
+          "UI": "Gränssnitt",
+          "CONNECTOR": "konnektor",
+          "FORM": "Formulär",
+          "PROCESS": "Process",
+          "FILE": "fil"
+        },
+        "DELETE": {
+          "PROJECT": "Är du säker på att du vill radera det här projektet?",
+          "PROCESS": "Är du säker på att du vill radera den här processen?",
+          "FORM": "Är du säker på att du vill radera det här formuläret?",
+          "UI": "Är du säker på att du vill radera det här gränssnittet?",
+          "DATA": "Är du säker på att du vill radera det här dataobjektet?",
+          "DECISION_TABLE": "Är du säker på att du vill radera den här beslutstabellen?",
+          "CONNECTOR": "Är du säker på att du vill radera den här konnektorn?",
+          "FILE": "Är du säker på att du vill radera den här filen?"
+        },
+        "SAVE": {
+          "PROCESS": "Är du säker på att du vill spara den här processen?",
+          "FORM": "Är du säker på att du vill spara det här formuläret?",
+          "UI": "Är du säker på att du vill spara det här gränssnittet?",
+          "DATA": "Är du säker på att du vill spara det här dataobjektet?",
+          "DECISION_TABLE": "Är du säker på att du vill spara den här beslutstabellen?",
+          "CONNECTOR": "Är du säker på att du vill spara den här konnektorn?",
+          "FILE": "Är du säker på att du vill spara den här filen?"
+        },
+        "DOWNLOAD": {
+          "PROCESS": "Är du säker på att du vill ladda ner den här processen?",
+          "IMAGE": "Är du säker på att du vill ladda ner svg-bilden av denna process?",
+          "FORM": "Är du säker på att du vill ladda ner det här formuläret?",
+          "UI": "Är du säker på att du vill ladda ner det här gränssnittet?",
+          "DATA": "Är du säker på att du vill ladda ner det här dataobjeketet?",
+          "DECISION_TABLE": "Är du säker på att du vill ladda ner den här beslutstabellen?",
+          "CONNECTOR": "Är du säker på att du vill ladda ner den här konnektorn?",
+          "FILE": "Är du säker på att du vill ladda ner den här filen?"
+        }
+      }
+    },
+    "MENU": {
+      "EDIT": "Redigera",
+      "DELETE": "Radera",
+      "RELEASE": "Avsäga",
+      "COLLABORATORS": "Medarbetare",
+      "SEE_RELEASES": "Visa versioner",
+      "DOWNLOAD": "Ladda ner"
+    },
+    "SETTINGS": {
+      "HEADER": "Programinställningar"
+    },
+    "HOME": {
+      "NEW_MENU": {
+        "LABEL": "Ny",
+        "CREATE_PROJECT_TITLE": "Skapa projekt",
+        "OVERRIDE_PROJECT_TITLE": "Det finns redan ett projekt med det namnet.",
+        "EDIT_PROJECT_TITLE": "Redigera projekt",
+        "PROJECT_CREATED": "Projekt skapat",
+        "PROJECT_UPLOADED": "Projekt uppladdat",
+        "PROJECT_UPDATED": "Projekt sparat",
+        "PROJECT_RELEASED": "Projekt avsagt",
+        "PROJECT_DELETED": "Projekt raderat",
+        "MENU_ITEMS": {
+          "CREATE_PROJECT": "Skapa projekt",
+          "UPLOAD_PROJECT": "Ladda upp projekt",
+          "CREATE_MODEL": "Innehållsmodell"
+        }
+      },
+      "DIALOGS": {
+        "PROJECT_NAME": "Projektnamn:",
+        "PROJECT_DESC": "Projektbeskrivning"
+      },
+      "NAVIGATION": {
+        "PROJECTS": {
+          "LABEL": "Projekt",
+          "TOOLTIP": "Publicerade projekt"
+        },
+        "RELEASES": {
+          "LABEL": "Versioner",
+          "TOOLTIP": "Versioner"
+        },
+        "PROCESSES": {
+          "LABEL": "Processer",
+          "TOOLTIP": "Publicerade processer"
+        },
+        "FAVORITES": {
+          "LABEL": "Favoriter",
+          "TOOLTIP": "Favoriter"
+        }
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Namn",
+        "COLUMN_VERSION": "Version",
+        "COLUMN_CREATED": "Skapad",
+        "COLUMN_CREATED_BY": "Skapad av",
+        "COLUMN_OPTIONS": "Alternativ",
+        "NO_ITEMS": "Skapa eller importera ett projekt som ska visas i listan.",
+        "NO_FAV_PROCESSES": "Favoritmärk en process för att göra den tillgänglig här.",
+        "NO_FAV_PROJECTS": "Favoritmarkera ett projekt för att göra det tillgängligt här.",
+        "RELEASE_ID": "Versions-ID",
+        "PROJECT_NAME": "Projektnamn"
+      },
+      "ERROR": {
+        "LOAD_PROJECTS": "Vi stötte på ett problem med att läsa in projekten. Prova att uppdatera sidan.",
+        "LOAD_RELEASES": "Vi stötte på ett problem med att läsa in avsägningarna. Prova att uppdatera sidan.",
+        "LOAD_PROCESSES": "Vi stötte på ett problem med att läsa in processerna. Prova att uppdatera sidan."
+      }
+    },
+    "PROJECT": {
+      "BACK_TO": "Tillbaka till projekt",
+      "NAME": "Projekteditor",
+      "UPLOAD_FILE": "Ladda upp fil",
+      "DOWNLOAD_PROJECT": "Ladda ner projekt",
+      "PROJECT_VALID": "Projektet innehåller inga valideringsfel",
+      "EXPORT_SUCCESS": "Projektet exporterat",
+      "SETTINGS": {
+        "PROJECT_SETTINGS": "Projekteditorinställningar",
+        "CONNECTORS_TAB_LABEL": "Konnektorer"
+      },
+      "IMPORT": "Importera",
+      "CREATE_NEW": "Skapa ny",
+      "SEARCH": "Sök",
+      "UPLOAD_FILE_SUCCESS": "Fil uppladdad",
+      "NO_CONTENT": "<empty>",
+      "NO_SELECTION": "Skapa en ny modell eller redigera en befintlig med sidoraden",
+      "NEW_MENU": {
+        "LABEL": "Ny",
+        "CREATE": "Skapa",
+        "IMPORT": "Importera",
+        "CREATE_PROCESS_TITLE": "Skapa process",
+        "MENU_ITEMS": {
+          "CREATE_PROCESS": "Process",
+          "CREATE_CONNECTOR": "Konnektor",
+          "CREATE_FORM": "Formulär",
+          "CREATE_UI": "Gränssnitt",
+          "CREATE_DATA": "Dataobjekt",
+          "CREATE_DECISION_TABLE": "Beslutstabell",
+          "CREATE_FILE": "Fil"
+        }
+      },
+      "TREE": {
+        "PROCESSES": "Processer",
+        "FORMS": "Formulär",
+        "CONNECTORS": "Konnektorer",
+        "DATA": "Data",
+        "DECISION_TABLES": "Beslutstabeller",
+        "UIS": "Gränssnitt",
+        "FILES": "Filer"
+      },
+      "PROCESS_DIALOG": {
+        "TITLE_CREATE": "Skapa process",
+        "TITLE_UPDATE": "Uppdatera process",
+        "PROCESS_NAME": "Processnamn",
+        "PROCESS_DESC": "Processdokumentation",
+        "PROCESS_CREATED": "Process skapad",
+        "PROCESS_DELETED": "Process raderad",
+        "PROCESS_UPDATED": "Process sparad"
+      },
+      "CONNECTOR_DIALOG": {
+        "TITLE_CREATE": "Skapa konnektor",
+        "TITLE_UPDATE": "Uppdatera konnektor",
+        "CONNECTOR_NAME": "Konnektor namn:",
+        "CONNECTOR_DESC": "Konnektor beskrivning:",
+        "CONNECTOR_CREATED": "Konnektor skapad",
+        "CONNECTOR_DELETED": "Konnektor raderad",
+        "CONNECTOR_UPDATED": "Konnektor sparad"
+      },
+      "FORM_DIALOG": {
+        "TITLE_CREATE": "Skapa formulär",
+        "TITLE_UPDATE": "Uppdatera formulär",
+        "FORM_NAME": "Formulär namn",
+        "FORM_DESC": "Formulär beskrivning",
+        "FORM_CREATED": "Formulär skapat",
+        "FORM_DELETED": "Formulär raderat",
+        "FORM_UPDATED": "Formulär sparat"
+      },
+      "UI_DIALOG": {
+        "TITLE_CREATE": "Skapa gränssnitt",
+        "TITLE_UPDATE": "Uppdatera gränsnitt",
+        "UI_NAME": "Gränssnitt namn:",
+        "UI_DESC": "Beskrivning av gränssnitt",
+        "UI_CREATED": "Gränssnitt skapat",
+        "UI_DELETED": "Gränssnitt raderat",
+        "UI_UPDATED": "Gränssnitt sparat"
+      },
+      "DATA_DIALOG": {
+        "TITLE_CREATE": "Skapa dataobjekt",
+        "TITLE_UPDATE": "Uppdatera dataobjekt",
+        "DATA_NAME": "Dataobjektsnamn:",
+        "DATA_DESC": "Dataobjektsbeskrivning:",
+        "DATA_CREATED": "Dataobjekt skapat",
+        "DATA_DELETED": "Dataobjekt raderat",
+        "DATA_UPDATED": "Dataobjekt sparat"
+      },
+      "DECISION_TABLE_DIALOG": {
+        "TITLE_CREATE": "Skapa beslutstabell",
+        "TITLE_UPDATE": "Uppdatera beslutstabell",
+        "DECISION_TABLE_NAME": "Beslutstabellsnamn:",
+        "DECISION_TABLE_DESC": "Beslutstabell beskrivning:",
+        "DECISION_TABLE_CREATED": "Beslutstabell skapad",
+        "DECISION_TABLE_DELETED": "Beslutstabell raderad",
+        "DECISION_TABLE_UPDATED": "Beslutstabell sparad"
+      },
+      "FILE_DIALOG": {
+        "TITLE_CREATE": "Skapa fil",
+        "TITLE_UPDATE": "Uppdatera fil",
+        "FILE_NAME": "Filnamn:",
+        "FILE_DESC": "Filbeskrivning:",
+        "FILE_CREATED": "Fil skapad",
+        "FILE_DELETED": "Fil raderad",
+        "FILE_UPDATED": "Fil sparad"
+      },
+      "ACTION_DIALOG": {
+        "ACTION_DETAILS": "Åtgärdsinformation",
+        "ACTION_NAME": "Åtgärdsnamn",
+        "ACTION_DESC": "Åtgärdsbeskrivning",
+        "ADD_ACTION": "Lägg till åtgärd",
+        "DEL_ACTION": "Radera åtgärd"
+      },
+      "EVENT_DIALOG": {
+        "EVENT_DETAILS": "Information om händelse",
+        "EVENT_NAME": "Händelsenamn",
+        "EVENT_DESC": "Händelsebeskrivning",
+        "ADD_EVENT": "Lägg till händelse",
+        "DEL_EVENT": "Radera händelse"
+      },
+      "ERROR": {
+        "UPLOAD_FILE": "Vi stötte på ett problem när filen laddades upp. Försök att ladda upp den igen.",
+        "DELETE_PROJECT": "Vi stötte på ett problem när filen raderades. Försök att radera den igen.",
+        "CHANGE_FAVORITE": "Vi stötte på ett problem när filen skulle favoritmarkeras. Försök att favoritmarkera den igen.",
+        "DELETE_PROCESS": "Vi stötte på ett problem när processen skulle raderas Försök att radera den igen.",
+        "LOAD_MODELS": "Vi stötte på ett problem med att läsa in modellerna. Prova att uppdatera sidan.",
+        "RELEASE_PROJECT": "Vi stötte på ett problem när projektet skulle friges. Försök att frige det igen.",
+        "CREATE_PROCESS": {
+          "DUPLICATION": "En process med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem med att skapa processen. Försök att skapa den igen."
+        },
+        "UPDATE_PROCESS": {
+          "DUPLICATION": "En process med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem när processen skulle sparas. Försök att spara den igen.",
+          "EMPTY_NAME": "Ett namn krävs"
+        },
+        "CREATE_CONNECTOR": {
+          "DUPLICATION": "En konnektor med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem när konnektorn skulle skapas. Försök att skapa den igen."
+        },
+        "UPDATE_CONNECTOR": {
+          "DUPLICATION": "En konnektor med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem när konnektorn skulle sparas. Försök att spara den igen."
+        },
+        "CREATE_FORM": {
+          "DUPLICATION": "Ett formulär med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem när formuläret skulle skapas. Försök att skapa det igen."
+        },
+        "UPDATE_FORM": {
+          "DUPLICATION": "Ett formulär med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem när formuläret skulle sparas. Försök att spara det igen."
+        },
+        "CREATE_UI": {
+          "DUPLICATION": "Ett gränssnitt med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem med att skapa gränssnittet. Försök att skapa det igen."
+        },
+        "UPDATE_UI": {
+          "DUPLICATION": "Ett gränssnitt med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem när gränssnittet skulle sparas. Försök att spara det igen."
+        },
+        "CREATE_DECISION_TABLE": {
+          "DUPLICATION": "En beslutstabell med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem när beslutstabellen skulle skapas. Försök att skapa den igen."
+        },
+        "UPDATE_DECISION_TABLE": {
+          "DUPLICATION": "En beslutstabell med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem när beslutstabellen skulle sparas. Försök att spara den igen."
+        },
+        "CREATE_DATA": {
+          "DUPLICATION": "Ett datobjekt med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem när dataobjektet skulle skapas. Försök att skapa det igen."
+        },
+        "UPDATE_DATA": {
+          "DUPLICATION": "Ett datobjekt med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem när dataobjektet skulle sparas. Försök att spara det igen."
+        },
+        "CREATE_PROJECT": {
+          "DUPLICATION": "Ett projekt med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem när projektet skulle skapas. Försök att skapa det igen."
+        },
+        "UPDATE_PROJECT": {
+          "DUPLICATION": "Ett projekt med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem med att spara projektet. Prova att spara det igen."
+        },
+        "UPLOAD_PROJECT": {
+          "DUPLICATION": "Ett projekt med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem med att ladda upp projektet. Prova att ladda upp det igen."
+        },
+        "GET_PROJECT": "Vi stötte på ett problem med att ladda upp projektet. Prova att uppdatera sidan.",
+        "EXPORT_PROJECT": "Ett okänt fel inträffade under projektexporten",
+        "CREATE_FILE": {
+          "DUPLICATION": "En fil med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem när filen skulle skapas. Försök att skapa den igen."
+        },
+        "UPDATE_FILE": {
+          "DUPLICATION": "En fil med det namnet finns redan",
+          "GENERAL": "Vi stötte på ett problem när filen skulle sparas. Försök att spara den igen."
+        }
+      }
+    },
+    "PROCESS_EDITOR": {
+      "TABS": {
+        "PROCESS_EDITOR": "Processeditor",
+        "JSON_EDITOR": "XML-editor",
+        "EXTENSIONS_EDITOR": "Tilläggseditor"
+      },
+      "PRIORITIES": {
+        "LOW": "0",
+        "MEDIUM": "1",
+        "HIGH": "2"
+      },
+      "ACTIONS": {
+        "ZOOM_IN": "Zooma in",
+        "ZOOM_OUT": "Zooma ut",
+        "UNDO": "Ångra",
+        "REDO": "Gör om",
+        "LASSO_TOOL": "Lassoverktyg"
+      },
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "Egenskaper",
+        "ID": "ID",
+        "NAME": "Namn",
+        "VERSION": "Version",
+        "VARIABLES": "Variabler",
+        "DOCUMENTATION": "Dokumentation",
+        "EXECUTABLE": "Utförbar",
+        "IMPLEMENTATION": "Implementering",
+        "INPUTS": "Inmatningar",
+        "OUTPUTS": "Utmatningar",
+        "ACTION": "Åtgärd",
+        "INPUT": "Inmatning",
+        "INPUT_MAPPING": "Inmatningsmappning",
+        "OUTPUT": "Utmatning",
+        "OUTPUT_MAPPING": "Utmatningsmappning",
+        "ASSIGNEE": "Tilldelad användare",
+        "CANDIDATE_GROUPS": "Kandidatgrupper",
+        "CANDIDATE_USERS": "Kandidatanvändare",
+        "DUE_DATE": "Förfallodatum",
+        "PRIORITY": "Prioritet",
+        "ACTIVITY_NAME": "Aktivitetsnamn",
+        "PROCESS_VARIABLE": "Processvariabel",
+        "PROCESS_VARIABLES": "Processvariabler",
+        "EXPRESSION": "Villkorsuttryck",
+        "FORM_SELECTOR": "Formulärnamn",
+        "DEFAULT_SEQUENCE_FLOW": "Standardsekvensflöde"
+      },
+      "PALETTE": {
+        "HAND_TOOL": "Handverktyg",
+        "CONNECT_TOOL": "Globalt anslutningsverktyg",
+        "SPACE_TOOL": "Skapa/ta bort utrymmesverktyg",
+        "LASSO_TOOL": "Lassoverktyg",
+        "START_EVENT": "Skapa starthändelse",
+        "END_EVENT": "Skapa sluthändelse",
+        "INTERMEDIATE_THROW_EVENT": "Skapa mellanliggande kasthändelse",
+        "START_EVENT_SIGNAL": "Skapa signal för starthändelse",
+        "INTERMEDIATE_CATCH_EVENT_SIGNAL": "Skapa signal för mellanliggande fångsthändelse",
+        "INTERMEDIATE_THROW_EVENT_SIGNAL": "Skapa signal för mellanliggande kasthändelse",
+        "GATEWAY": "Skapa gateway",
+        "USER_TASK": "Skapa användaruppgift",
+        "SERVICE_TASK": "Skapa serviceuppgift",
+        "CALL_ACTIVITY": "Skapa anropsaktivitet",
+        "CONTAINER": "Dedikerade tjänster",
+        "SUB_PROCESS": "Skapa delprocess",
+        "PARTICIPANT": "Skapa pool"
+      },
+      "UPLOAD_SUCCESS": "Process uppladdad",
+      "PROCESS_SAVED": "Process sparad",
+      "PROCESS_UPDATED": "Process uppdaterad",
+      "SELECT_PROCESS_VARIABLE": "Välj processvariabel",
+      "ERRORS": {
+        "NO_PROCESS_PROPERTIES": "Inga processegenskaper",
+        "NO_CONNECTOR_ACTIONS": "Skapa en åtgärd för konnektorn att använda",
+        "LOAD_DIAGRAM": "Vi stötte på ett problem med att läsa in diagrammet. Prova att uppdatera sidan.",
+        "SAVE_DIAGRAM": "Vi stötte på ett problem med att spara diagrammet. Försök att spara det igen.",
+        "DOWNLOAD_DIAGRAM": "Vi stötte på ett problem med att ladda ner diagrammet. Försök att ladda ner det igen.",
+        "DOWNLOAD_SVG_IMAGE": "Vi stötte på ett problem med att ladda ner diagrambilden. Försök ladda ner den igen.",
+        "CHANGE_FAVORITE": "Vi stötte på ett problem med att ändra det favoritmarkerade tillståndet för processen"
+      },
+      "PROPERTIES": {
+        "TABS": {
+          "VIEWER": "Egenskaper visare",
+          "JSON_EDITOR": "JSON-editor"
+        },
+        "TABLE": {
+          "COLUMN_NAME": "Namn",
+          "COLUMN_TYPE": "Typ",
+          "COLUMN_REQUIRED": "Obligatorisk",
+          "COLUMN_VALUE": "Värde",
+          "NO_PROPERTIES": "Skapa eller välj en processvariabel för att redigera dess detaljer"
+        },
+        "ERRORS": {
+          "EMPTY_NAME": "Ett namn krävs"
+        }
+      }
+    },
+    "CONNECTOR_EDITOR": {
+      "UPLOAD_SUCCESS": "Konnektor uppladdad",
+      "NAME": "Konnektorseditor",
+      "TABS": {
+        "CONNECTOR_EDITOR": "Konnektorseditor",
+        "JSON_EDITOR": "JSON-editor"
+      },
+      "EDITOR": {
+        "CONNECTOR_DETAILS": "Konnektorinformation",
+        "INPUTS": "Inmatningsparametrar",
+        "OUTPUTS": "Utmatningsparametrar",
+        "ACTIONS": "Åtgärder",
+        "ADD_NEW_PARAMETER": "Lägg till ny parameter",
+        "NAME": "Namn",
+        "DESCRIPTION": "Beskrivning",
+        "TYPE": "Typ",
+        "BUTTONS": {
+          "SAVE": "Spara"
+        },
+        "REQUIRED": "Obligatorisk"
+      },
+      "ERRORS": {
+        "GET_CONNECTOR": "Vi stötte på ett problem med att läsa in konnektorn. Prova att uppdatera sidan."
+      }
+    },
+    "FORM_EDITOR": {
+      "UPLOAD_SUCCESS": "Formulär uppladdat",
+      "TABS": {
+        "FORM_EDITOR": "Formulärseditor",
+        "JSON_EDITOR": "JSON-editor"
+      },
+      "FORM_VARIABLES": "Formulärsvariabler",
+      "VISIBLITY_CONDITIONS": {
+        "DEPENDS": "Beror på",
+        "OPERATOR": "Om det är",
+        "VALUE": "Värde",
+        "NEXT_CONDITION": "Villkorsoperatör",
+        "NO_PROPERTY": "Skapa eller välj ett synlighetsvillkor för att redigera informationen",
+        "FIELDS": "Fält",
+        "VARIABLE": "Variabel",
+        "SELECT_FIELD": "Välj ett fält",
+        "SELECT_VARIABLE": "Välj en variabel",
+        "FORM_FIELD": "Formulärsfält",
+        "NEXT_OPERATOR": "Villkorsoperatör"
+      },
+      "FIELD_PROPERTIES": {
+        "DESCRIPTION": "Beskrivning",
+        "NAME": "Namn",
+        "COLUMNS": "Antal kolumner",
+        "REQUIRED": "Obligatorisk",
+        "MULTIPLE_UPLOAD": "Tillåt flera filbilagor",
+        "LINK_FILE": "Länka bara till filer, ladda inte upp dem",
+        "FILE_SOURCE": "Filkälla",
+        "ALL_SOURCES": "Alla filkällor",
+        "LOCAL_FILE": "Lokal fil",
+        "PLACEHOLDER": "Platshållare",
+        "COLSPAN": "Colspan",
+        "LABEL": "Märkning",
+        "ID": "ID",
+        "OVERRIDE_ID": "Åsidosätt ID",
+        "VALUE": "Text att visa",
+        "DISPLAY_TEXT": "Text att visa",
+        "MIN_LENGTH": "Min längd",
+        "MAX_LENGTH": "Max längd",
+        "MIN_VALUE": "Min värde",
+        "MAX_VALUE": "Max värde",
+        "REGEX": "Regexmönster",
+        "INPUT_MASK": "Inmatningsmask",
+        "INPUT_MASK_PLACEHOLDER": "Platshållare för inmatningsmask",
+        "INPUT_MASK_RESERVED": "Omvänd",
+        "MIN_DATE": "Min datum",
+        "MAX_DATE": "Max datum",
+        "DATE_DISPLAY_FORMAT": "Visningsformat för datum",
+        "DATE_FORMAT_PREVIEW": "Dagens datum",
+        "CURRENCY": "Valuta",
+        "DECIMALS": "Tillåt decimaler",
+        "HYPERLINK_URL": "URL för hyperlänk",
+        "ALLOW_COLLAPSE": "Tillåt minimering",
+        "COLLAPSE_BY_DEFAULT": "Minimera som standard",
+        "REST_SERVICE": {
+          "DIALOG_TITLE": "URL för test",
+          "REST_URL": "REST URL",
+          "TEST_BUTTON": "Test",
+          "RESPONSE_PATH": "Sökväg till matris i JSON-svar",
+          "ID_PROP": "ID-egenskap",
+          "LABEL_PROP": "Märkningsegenskap"
+        },
+        "KEY_VALUE_PROPERTY": {
+          "ADD": "Lägg till",
+          "ADD_OPTION": "Lägg till ett nytt alternativ",
+          "LABEL": "Märkning",
+          "ID": "ID",
+          "INFO": "Detta är alternativet \"tomt värde\". Att välja detta vid runtime motsvarar \"inget värde\" eller \"tomt\". Detta kan bara väljas om fältet inte är obligatoriskt.",
+          "CLEAR_SELECTION": "Ta bort standard",
+          "OPTIONS": "Alternativ"
+        },
+        "ADVANCED_RADIO_BUTTON": {
+          "MANUAL": "Manuell",
+          "REST_SERVICE": "REST-tjänst"
+        }
+      },
+      "EDITOR": {
+        "ADD_NEW_TAB": "Lägg till flik",
+        "DELETE_TAB": "Radera flik",
+        "ADD_NEW_OUTCOME": "Lägg till resultat",
+        "DELETE_OUTCOME": "Radera resultat",
+        "EDIT": "Redigera",
+        "DELETE": "Radera",
+        "MOVE": "Flytta"
+      },
+      "ERRORS": {
+        "GET_FORM": "Vi stötte på ett problem med att läsa in formuläret. Prova att uppdatera sidan.",
+        "DELETE_FORM": "Vi stötte på ett problem med att radera formuläret. Prova att radera det igen."
+      }
+    },
+    "UI_EDITOR": {
+      "UPLOAD_SUCCESS": "Gränssnitt uppladdat",
+      "TABS": {
+        "UI_EDITOR": "Gränssnittseditor",
+        "JSON_EDITOR": "JSON-editor"
+      },
+      "EDITOR": {
+        "DETAILS": "Gränssnittsinformation",
+        "DESCRIPTION": "Beskrivning",
+        "NAME": "Namn",
+        "TEMPLATE": "Mall"
+      },
+      "ERRORS": {
+        "GET_UI": "Vi stötte på ett problem med att läsa in gränssnittet. Prova att uppdatera sidan.",
+        "DELETE_UI": "Vi stötte på ett problem med att radera gränssnittet. Prova att radera det igen."
+      }
+    },
+    "DATA_EDITOR": {
+      "UPLOAD_SUCCESS": "Dataobjekt uppladdat",
+      "TABS": {
+        "DATA_EDITOR": "Dataobjekteditor",
+        "JSON_EDITOR": "JSON-editor"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DATA": "Vi stötte på ett problem när vi läste in dataobjektet. Prova att uppdatera sidan.",
+        "DELETE_DATA": "Vi stötte på ett problem med att radera dataobjektet. Prova att radera det igen."
+      }
+    },
+    "DECISION_TABLE_EDITOR": {
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "Egenskaper",
+        "NAME": "Namn",
+        "SIMULATOR": "Simulator"
+      },
+      "UPLOAD_SUCCESS": "Beslutstabell uppladdad",
+      "TABS": {
+        "DECISION_TABLE_EDITOR": "Beslutstabelleditor",
+        "JSON_EDITOR": "JSON-editor"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DECISION_TABLE": "Vi stötte på ett problem med att läsa in beslutstabellen. Prova att uppdatera sidan.",
+        "DELETE_DECISION_TABLE": "Vi stötte på ett problem med att radera beslutstabellen. Försök radera den igen.",
+        "INVALID_DECISION_TABLE_NAME": "Ogiltigt namn på beslutstabell"
+      }
+    },
+    "FILE_EDITOR": {
+      "UPLOAD_SUCCESS": "Fil uppladdad",
+      "TABS": {
+        "FILE_EDITOR": "Fileditor",
+        "JSON_EDITOR": "Texteditor"
+      },
+      "EDITOR": {
+        "DETAILS": "Fildetaljer",
+        "DESCRIPTION": "Beskrivning",
+        "NAME": "Namn",
+        "TEMPLATE": "Mall"
+      },
+      "ERRORS": {
+        "GET_FILE": "Vi stötte på ett problem med att läsa in filen. Prova att uppdatera sidan.",
+        "DELETE_FILE": "Vi stötte på ett problem med att radera filen. Prova att radera den igen."
+      }
+    },
+    "GENERAL": {
+      "ERRORS": {
+        "CHANGE_USER": "Ändra användare",
+        "NOT_VALID_JSON": "Ogiltigt JSON-objekt",
+        "NOT_VALID_SCHEMA": "JSON-objektet matchar inte schemat"
+      }
+    }
+  },
+  "ABOUT": {
+    "TITLE": "Plugins",
+    "TABLE_HEADERS": {
+      "ID": "ID",
+      "NAME": "Namn",
+      "VERSION": "Version",
+      "VENDOR": "Tillverkare",
+      "LICENSE": "Licens",
+      "RUNTIME": "Runtime",
+      "DESCRIPTION": "Beskrivning"
+    }
+  }
+}

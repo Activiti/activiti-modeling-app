@@ -1,0 +1,62 @@
+{
+  "SDK": {
+    "SNACKBAR": {
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "I valori incollati devono seguire questo schema"
+    },
+    "ALL": "Tutti",
+    "VARIABLES_EDITOR": {
+      "ERRORS": {
+        "EMPTY_NAME": "È obbligatorio specificare un nome",
+        "INVALID_NAME": "Nome della variabile non valido",
+        "VARIABLE_NAME_TOOLTIP": "Il nome deve cominciare con una lettera. Può contenere solo caratteri alfanumerici e di sottolineatura",
+        "NAME_ALREADY_EXISTS": "I nomi delle variabili devono essere univoci"
+      },
+      "TABS": {
+        "VIEWER": "Visualizzatore proprietà",
+        "JSON_EDITOR": "Editor JSON"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nome",
+        "COLUMN_TYPE": "Tipo",
+        "COLUMN_REQUIRED": "Obbligatorio",
+        "COLUMN_VALUE": "Valore",
+        "NO_PROPERTIES": "Selezionare o creare una variabile per visualizzarne le proprietà"
+      }
+    },
+    "VARIABLE_MAPPING": {
+      "PARAMETER": "Parametro",
+      "VALUE": "Valore",
+      "PROCESS_VARIABLE": "Variabile del processo",
+      "SWITCH_VAR_VAL": "Alterna variabile/valore",
+      "NO_PROCESS_PROPERTIES": "Nessuna proprietà del processo",
+      "NO_PAYLOAD": "Il messaggio non ha payload. Aggiungere un payload nell'evento di generazione del messaggio.",
+      "CLEAR_ASSIGNMENT": "Cancella assegnazione",
+      "NONE": "Nessuno"
+    },
+    "MESSAGES_EDITOR": {
+      "TITLE": "Messaggi del processo",
+      "ERRORS": {
+        "EMPTY_NAME": "È obbligatorio specificare un nome",
+        "NAME_ALREADY_EXISTS": "I nomi dei messaggi devono essere univoci"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nome",
+        "COLUMN_ID": "ID",
+        "NO_MESSAGES": "Selezionare o creare un messaggio per visualizzarne le proprietà"
+      }
+    },
+    "MAPPING_DIALOG": {
+      "TITLE": "Modifica associazione variabili",
+      "SELECTOR_TITLE": "Selezionare il tipo di associazione variabili da modificare",
+      "INPUT_MAPPING": "Associazione immissione",
+      "OUTPUT_MAPPING": "Associazione risultato",
+      "PROCESS_VARIABLE": "Variabile del processo",
+      "INPUT_PARAMETER": "Parametro di immissione",
+      "OUTPUT_PARAMETER": "Parametro dei risultati",
+      "VALUE_MAPPING": "Valore",
+      "EXPRESSION_MAPPING": "Espressione",
+      "NONE": "Nessuno",
+      "TYPE": "Tipo"
+    }
+  }
+}

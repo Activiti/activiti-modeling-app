@@ -1,0 +1,640 @@
+{
+  "APP": {
+    "APPLICATION": "Sovellus",
+    "BACKEND_SERVICE": "Taustapalvelu",
+    "MORE_ACTIONS": "Lisää toimintoja",
+    "VALIDATE_PROJECT": "Validoi projekti",
+    "DOWNLOAD_PROJECT": "Lataa projekti",
+    "ADD_ACTION": "Lisää uusi toiminto",
+    "ADD_EVENT": "Lisää uusi tapahtuma",
+    "HEADER": {
+      "APP_NAME": "Mallinnussovellus",
+      "SIGN_OUT": "Kirjaudu ulos",
+      "SETTINGS": "Asetukset",
+      "ABOUT": "Tietoja",
+      "LANGUAGE": "Kieli",
+      "SEARCH": "Hae"
+    },
+    "DIALOGS": {
+      "CANCEL": "Peruuta",
+      "SAVE": "Tallenna",
+      "CREATE": "Luo",
+      "UPDATE": "Päivitä",
+      "CLOSE": "Sulje",
+      "EDIT_PROPERTIES": "Muokkaa prosessimuuttujia",
+      "EDIT_PROCESS_MESSAGES": "Muokkaa viestejä",
+      "EDIT_FORM_PROPERTIES": "Muokkaa lomakkeen muuttujia",
+      "EDIT_VISIBILITY_CONDITIONS": "Muokkaa näkyvyysehtoja",
+      "ERROR": {
+        "TITLE": "Haluatko silti tallentaa?",
+        "SUBTITLE": "Virheitä validoinnissa:",
+        "NAME_DOESNT_MATCH_PATTERN": "Nimi ei vastaa seuraavaa kaavaa",
+        "GENERAL_NAME_VALIDATION": "Nimi on kirjoitettava pienin kirjaimin, ja sen on oltava 1-26 merkin pituinen. Alfanumeeriset merkit ja viivamerkit ovat sallittuja, mutta nimen on alettava kirjaimella ja päätyttävä alfanumeeriseen merkkiin."
+      },
+      "CONFIRM": {
+        "TITLE": "Oletko varma?",
+        "SUBTITLE": "Haluatko varmasti suorittaa tämän toiminnon?",
+        "BUTTON": "Vahvista",
+        "UNSAVED_PAGE": "Haluatko varmasti poistua ja jättää {{ types }} tallentamatta",
+        "RELEASE": "Haluatko varmasti vapauttaa uuden version tästä projektista?",
+        "TYPES": {
+          "DECISION": "päätöstaulukko",
+          "DATA": "data",
+          "UI": "käyttöliittymä",
+          "CONNECTOR": "liitin",
+          "FORM": "Lomake",
+          "PROCESS": "prosessi",
+          "FILE": "tiedosto"
+        },
+        "DELETE": {
+          "PROJECT": "Haluatko varmasti poistaa tämän projektin?",
+          "PROCESS": "Haluatko varmasti poistaa tämän prosessin?",
+          "FORM": "Haluatko varmasti poistaa tämän lomakkeen?",
+          "UI": "Haluatko varmasti poistaa tämän käyttöliittymän?",
+          "DATA": "Haluatko varmasti poistaa tämän dataobjektin?",
+          "DECISION_TABLE": "Haluatko varmasti poistaa tämän päätöstaulukon?",
+          "CONNECTOR": "Haluatko varmasti poistaa tämän liittimen?",
+          "FILE": "Haluatko varmasti poistaa tämän tiedoston?"
+        },
+        "SAVE": {
+          "PROCESS": "Haluatko varmasti tallentaa tämän prosessin?",
+          "FORM": "Haluatko varmasti tallentaa tämän lomakkeen?",
+          "UI": "Haluatko varmasti tallentaa tämän käyttöliittymän?",
+          "DATA": "Haluatko varmasti tallentaa tämän dataobjektin?",
+          "DECISION_TABLE": "Haluatko varmasti tallentaa tämän päätöstaulukon?",
+          "CONNECTOR": "Haluatko varmasti tallentaa tämän liittimen?",
+          "FILE": "Haluatko varmasti tallentaa tämän tiedoston?"
+        },
+        "DOWNLOAD": {
+          "PROCESS": "Haluatko varmasti ladata tämän prosessin?",
+          "IMAGE": "Haluatko varmasti ladata tämän prosessin svg-kuvan?",
+          "FORM": "Haluatko varmasti ladata tämän lomakkeen?",
+          "UI": "Haluatko varmasti ladata tämän käyttöliittymän?",
+          "DATA": "Haluatko varmasti ladata tämän dataobjektin?",
+          "DECISION_TABLE": "Haluatko varmasti ladata tämän päätöstaulukon?",
+          "CONNECTOR": "Haluatko varmasti ladata tämän liittimen?",
+          "FILE": "Haluatko varmasti ladata tämän tiedoston?"
+        }
+      }
+    },
+    "MENU": {
+      "EDIT": "Muokkaa",
+      "DELETE": "Poista",
+      "RELEASE": "Vapauta",
+      "COLLABORATORS": "Yhteistyökumppanit",
+      "SEE_RELEASES": "Näytä painokset",
+      "DOWNLOAD": "Lataa"
+    },
+    "SETTINGS": {
+      "HEADER": "Sovellusasetukset"
+    },
+    "HOME": {
+      "NEW_MENU": {
+        "LABEL": "Uusi",
+        "CREATE_PROJECT_TITLE": "Luo projekti",
+        "OVERRIDE_PROJECT_TITLE": "Samanniminen projekti on jo olemassa.",
+        "EDIT_PROJECT_TITLE": "Muokkaa projektia",
+        "PROJECT_CREATED": "Projekti luotu",
+        "PROJECT_UPLOADED": "Projekti ladattu",
+        "PROJECT_UPDATED": "Projekti tallennettu",
+        "PROJECT_RELEASED": "Projekti vapautettu",
+        "PROJECT_DELETED": "Projekti poistettu",
+        "MENU_ITEMS": {
+          "CREATE_PROJECT": "Luo projekti",
+          "UPLOAD_PROJECT": "Lataa projekti palvelimelle",
+          "CREATE_MODEL": "Sisältömalli"
+        }
+      },
+      "DIALOGS": {
+        "PROJECT_NAME": "Projektin nimi:",
+        "PROJECT_DESC": "Projektin kuvaus:"
+      },
+      "NAVIGATION": {
+        "PROJECTS": {
+          "LABEL": "Projektit",
+          "TOOLTIP": "Julkaistut projektit"
+        },
+        "RELEASES": {
+          "LABEL": "Painokset",
+          "TOOLTIP": "Painokset"
+        },
+        "PROCESSES": {
+          "LABEL": "Prosessit",
+          "TOOLTIP": "Julkaistut prosessit"
+        },
+        "FAVORITES": {
+          "LABEL": "Suosikit",
+          "TOOLTIP": "Suosikit"
+        }
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nimi",
+        "COLUMN_VERSION": "Versio",
+        "COLUMN_CREATED": "Luotu",
+        "COLUMN_CREATED_BY": "Tekijä:",
+        "COLUMN_OPTIONS": "Valinnat",
+        "NO_ITEMS": "Luo tai tuo projekti, niin voit tarkastella sitä luettelossa.",
+        "NO_FAV_PROCESSES": "Lisää prosessi suosikkeihin saattaaksesi sen käytettäväksi täällä.",
+        "NO_FAV_PROJECTS": "Lisää projekti suosikkeihin saattaaksesi sen käytettäväksi täällä.",
+        "RELEASE_ID": "Painoksen tunnus",
+        "PROJECT_NAME": "Projektin nimi"
+      },
+      "ERROR": {
+        "LOAD_PROJECTS": "Projektien lataamisessa ilmeni ongelma. Kokeile sivun päivittämistä.",
+        "LOAD_RELEASES": "Painosten lataamisessa ilmeni ongelma. Kokeile sivun päivittämistä.",
+        "LOAD_PROCESSES": "Prosessien lataamisessa ilmeni ongelma. Kokeile sivun päivittämistä."
+      }
+    },
+    "PROJECT": {
+      "BACK_TO": "Takaisin projekteihin",
+      "NAME": "Projektieditori",
+      "UPLOAD_FILE": "Lataa tiedosto",
+      "DOWNLOAD_PROJECT": "Lataa projekti",
+      "PROJECT_VALID": "Projektissa ei ole validointivirheitä.",
+      "EXPORT_SUCCESS": "Projekti viety",
+      "SETTINGS": {
+        "PROJECT_SETTINGS": "Projektieditorin asetukset",
+        "CONNECTORS_TAB_LABEL": "Yhdistäjät"
+      },
+      "IMPORT": "Tuo",
+      "CREATE_NEW": "Luo uusi",
+      "SEARCH": "Hae",
+      "UPLOAD_FILE_SUCCESS": "Tiedosto ladattu palvelimelle",
+      "NO_CONTENT": "<tyhjä>",
+      "NO_SELECTION": "Luo uusi malli tai käytä jo olemassa olevaa mallia sivupalkista",
+      "NEW_MENU": {
+        "LABEL": "Uusi",
+        "CREATE": "Luo",
+        "IMPORT": "Tuo",
+        "CREATE_PROCESS_TITLE": "Luo prosessi",
+        "MENU_ITEMS": {
+          "CREATE_PROCESS": "Prosessi",
+          "CREATE_CONNECTOR": "Liitin",
+          "CREATE_FORM": "Lomake",
+          "CREATE_UI": "käyttöliittymä",
+          "CREATE_DATA": "Dataobjekti",
+          "CREATE_DECISION_TABLE": "Päätöstaulukko",
+          "CREATE_FILE": "Tiedosto"
+        }
+      },
+      "TREE": {
+        "PROCESSES": "Prosessit",
+        "FORMS": "Lomakkeet",
+        "CONNECTORS": "Yhdistäjät",
+        "DATA": "Data",
+        "DECISION_TABLES": "Päätöstaulukot",
+        "UIS": "käyttöliittymä",
+        "FILES": "Tiedostot"
+      },
+      "PROCESS_DIALOG": {
+        "TITLE_CREATE": "Luo prosessi",
+        "TITLE_UPDATE": "Päivitä prosessi",
+        "PROCESS_NAME": "Prosessin nimi:",
+        "PROCESS_DESC": "Prosessin dokumentaatio:",
+        "PROCESS_CREATED": "Prosessi luotu",
+        "PROCESS_DELETED": "Prosessi poistettu",
+        "PROCESS_UPDATED": "Prosessi tallennettu"
+      },
+      "CONNECTOR_DIALOG": {
+        "TITLE_CREATE": "Luo liitin",
+        "TITLE_UPDATE": "Päivitä liitin",
+        "CONNECTOR_NAME": "Liittimen nimi:",
+        "CONNECTOR_DESC": "Liittimen kuvaus:",
+        "CONNECTOR_CREATED": "Liitin luotu:",
+        "CONNECTOR_DELETED": "Liitin poistettu",
+        "CONNECTOR_UPDATED": "Liitin tallennettu"
+      },
+      "FORM_DIALOG": {
+        "TITLE_CREATE": "Luo lomake",
+        "TITLE_UPDATE": "Päivitä lomake",
+        "FORM_NAME": "Lomakkeen nimi:",
+        "FORM_DESC": "Lomakkeen kuvaus:",
+        "FORM_CREATED": "Lomake luotu",
+        "FORM_DELETED": "Lomake poistettu",
+        "FORM_UPDATED": "Lomake tallennettu"
+      },
+      "UI_DIALOG": {
+        "TITLE_CREATE": "Luo käyttöliittymä",
+        "TITLE_UPDATE": "Päivitä käyttöliittymä",
+        "UI_NAME": "Käyttöliittymän nimi:",
+        "UI_DESC": "Käyttöliittymän kuvaus:",
+        "UI_CREATED": "Käyttöliittymä luotu",
+        "UI_DELETED": "Käyttöliittymä poistettu",
+        "UI_UPDATED": "Käyttöliittymä tallennettu"
+      },
+      "DATA_DIALOG": {
+        "TITLE_CREATE": "Luo dataobjekti",
+        "TITLE_UPDATE": "Päivitä dataobjekti",
+        "DATA_NAME": "Dataobjektin nimi:",
+        "DATA_DESC": "Dataobjektin kuvaus:",
+        "DATA_CREATED": "Dataobjekti luotu",
+        "DATA_DELETED": "Dataobjekti poistettu",
+        "DATA_UPDATED": "Dataobjekti tallennettu"
+      },
+      "DECISION_TABLE_DIALOG": {
+        "TITLE_CREATE": "Luo päätöstaulukko",
+        "TITLE_UPDATE": "Päivitä päätöstaulukko",
+        "DECISION_TABLE_NAME": "Päätöstaulukon nimi:",
+        "DECISION_TABLE_DESC": "Päätöstaulukon kuvaus:",
+        "DECISION_TABLE_CREATED": "Päätöstaulukko luotu",
+        "DECISION_TABLE_DELETED": "Päätöstaulukko poistettu",
+        "DECISION_TABLE_UPDATED": "Päätöstaulukko tallennettu"
+      },
+      "FILE_DIALOG": {
+        "TITLE_CREATE": "Luo tiedosto",
+        "TITLE_UPDATE": "Päivitä tiedosto",
+        "FILE_NAME": "Tiedoston nimi:",
+        "FILE_DESC": "Tiedoston kuvaus:",
+        "FILE_CREATED": "Tiedosto luotu",
+        "FILE_DELETED": "Tiedosto poistettu",
+        "FILE_UPDATED": "Tiedosto tallennettu"
+      },
+      "ACTION_DIALOG": {
+        "ACTION_DETAILS": "Toiminnon tiedot",
+        "ACTION_NAME": "Toiminnon nimi",
+        "ACTION_DESC": "Toiminnon kuvaus",
+        "ADD_ACTION": "Lisää toiminto",
+        "DEL_ACTION": "Poista toiminto"
+      },
+      "EVENT_DIALOG": {
+        "EVENT_DETAILS": "Tapahtuman tiedot",
+        "EVENT_NAME": "Tapahtuman nimi",
+        "EVENT_DESC": "Tapahtuman kuvaus",
+        "ADD_EVENT": "Lisää tapahtuma",
+        "DEL_EVENT": "Poista tapahtuma"
+      },
+      "ERROR": {
+        "UPLOAD_FILE": "Tiedoston lataamisessa palvelimelle ilmeni ongelma. Kokeile ladata se uudelleen.",
+        "DELETE_PROJECT": "Projektin poistamisessa ilmeni ongelma. Kokeile poistaa se uudelleen.",
+        "CHANGE_FAVORITE": "Projektin lisäämisessä suosikkeihin ilmeni ongelma. Kokeile lisätä se uudelleen.",
+        "DELETE_PROCESS": "Prosessin poistamisessa ilmeni ongelma. Kokeile poistaa se uudelleen.",
+        "LOAD_MODELS": "Mallien lataamisessa ilmeni ongelma. Kokeile päivittää sivu.",
+        "RELEASE_PROJECT": "Projektin julkaisussa ilmeni ongelma. Kokeile julkaista se uudelleen.",
+        "CREATE_PROCESS": {
+          "DUPLICATION": "Samanniminen projekti on jo olemassa",
+          "GENERAL": "Prosessin luomisessa ilmeni ongelma. Kokeile luoda se uudelleen."
+        },
+        "UPDATE_PROCESS": {
+          "DUPLICATION": "Samanniminen projekti on jo olemassa",
+          "GENERAL": "Prosessin tallentamisessa ilmeni ongelma. Kokeile tallentaa se uudelleen.",
+          "EMPTY_NAME": "Nimi on pakollinen"
+        },
+        "CREATE_CONNECTOR": {
+          "DUPLICATION": "Samanniminen liitin on jo olemassa",
+          "GENERAL": "Liittimen luomisessa ilmeni ongelma. Kokeile luoda se uudelleen."
+        },
+        "UPDATE_CONNECTOR": {
+          "DUPLICATION": "Samanniminen liitin on jo olemassa",
+          "GENERAL": "Liittimen tallentamisessa ilmeni ongelma. Kokeile tallentaa se uudelleen."
+        },
+        "CREATE_FORM": {
+          "DUPLICATION": "Samanniminen lomake on jo olemassa",
+          "GENERAL": "Lomakkeen luomisessa ilmeni ongelma. Kokeile luoda se uudelleen."
+        },
+        "UPDATE_FORM": {
+          "DUPLICATION": "Samanniminen lomake on jo olemassa",
+          "GENERAL": "Lomakkeen tallentamisessa ilmeni ongelma. Kokeile tallentaa se uudelleen."
+        },
+        "CREATE_UI": {
+          "DUPLICATION": "Samanniminen käyttöliittymä on jo olemassa",
+          "GENERAL": "Käyttöliittymän luomisessa ilmeni ongelma. Kokeile luoda se uudelleen."
+        },
+        "UPDATE_UI": {
+          "DUPLICATION": "Samanniminen käyttöliittymä on jo olemassa",
+          "GENERAL": "Käyttöliittymän tallentamisessa ilmeni ongelma. Kokeile tallentaa se uudelleen."
+        },
+        "CREATE_DECISION_TABLE": {
+          "DUPLICATION": "Samanniminen päätöstaulukko on jo olemassa",
+          "GENERAL": "Päätöstaulukon luomisessa ilmeni ongelma. Kokeile luoda se uudelleen."
+        },
+        "UPDATE_DECISION_TABLE": {
+          "DUPLICATION": "Samanniminen päätöstaulukko on jo olemassa",
+          "GENERAL": "Päätöstaulukon tallentamisessa ilmeni ongelma. Kokeile tallentaa se uudelleen."
+        },
+        "CREATE_DATA": {
+          "DUPLICATION": "Samanniminen dataobjekti on jo olemassa",
+          "GENERAL": "Dataobjektin luomisessa ilmeni ongelma. Kokeile luoda se uudelleen."
+        },
+        "UPDATE_DATA": {
+          "DUPLICATION": "Samanniminen dataobjekti on jo olemassa",
+          "GENERAL": "Dataobjektin tallentamisessa ilmeni ongelma. Kokeile tallentaa se uudelleen."
+        },
+        "CREATE_PROJECT": {
+          "DUPLICATION": "Samanniminen projekti on jo olemassa",
+          "GENERAL": "Projektin luomisessa ilmeni ongelma. Kokeile luoda se uudelleen."
+        },
+        "UPDATE_PROJECT": {
+          "DUPLICATION": "Samanniminen projekti on jo olemassa",
+          "GENERAL": "Projektin tallentamisessa ilmeni ongelma. Kokeile tallentaa se uudelleen."
+        },
+        "UPLOAD_PROJECT": {
+          "DUPLICATION": "Samanniminen projekti on jo olemassa",
+          "GENERAL": "Projektin lataamisessa palvelimelle ilmeni ongelma. Kokeile ladata se uudelleen."
+        },
+        "GET_PROJECT": "Projektin lataamisessa ilmeni ongelma. Kokeile päivittää sivu.",
+        "EXPORT_PROJECT": "Projektiraportin aikana tapahtui tuntematon virhe",
+        "CREATE_FILE": {
+          "DUPLICATION": "Samanniminen tiedosto on jo olemassa",
+          "GENERAL": "Tiedoston luomisessa ilmeni ongelma. Kokeile luoda se uudelleen."
+        },
+        "UPDATE_FILE": {
+          "DUPLICATION": "Samanniminen tiedosto on jo olemassa",
+          "GENERAL": "Tiedoston tallentamisessa ilmeni ongelma. Kokeile tallentaa se uudelleen."
+        }
+      }
+    },
+    "PROCESS_EDITOR": {
+      "TABS": {
+        "PROCESS_EDITOR": "Prosessieditori",
+        "JSON_EDITOR": "XML-editori",
+        "EXTENSIONS_EDITOR": "Lisäosaeditori"
+      },
+      "PRIORITIES": {
+        "LOW": "0",
+        "MEDIUM": "1",
+        "HIGH": "2"
+      },
+      "ACTIONS": {
+        "ZOOM_IN": "Lähennä",
+        "ZOOM_OUT": "Loitonna",
+        "UNDO": "Kumoa",
+        "REDO": "Tee uudelleen",
+        "LASSO_TOOL": "Lassotyökalu"
+      },
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "Ominaisuudet",
+        "ID": "Tunnus",
+        "NAME": "Nimi",
+        "VERSION": "Versio",
+        "VARIABLES": "Muuttujat",
+        "DOCUMENTATION": "Dokumentaatio",
+        "EXECUTABLE": "Ajotiedosto",
+        "IMPLEMENTATION": "Soveltaminen",
+        "INPUTS": "Syötteet",
+        "OUTPUTS": "Tuotokset",
+        "ACTION": "Toiminto",
+        "INPUT": "Syöte",
+        "INPUT_MAPPING": "Syötteen yhdistäminen",
+        "OUTPUT": "Tuotos",
+        "OUTPUT_MAPPING": "Tuotoksen yhdistäminen",
+        "ASSIGNEE": "Vastuuhenkilö",
+        "CANDIDATE_GROUPS": "Potentiaaliset ryhmät",
+        "CANDIDATE_USERS": "Potentiaaliset käyttäjät",
+        "DUE_DATE": "Määräpäivä",
+        "PRIORITY": "Prioriteetti",
+        "ACTIVITY_NAME": "Toiminnon nimi",
+        "PROCESS_VARIABLE": "Prosessimuuttuja",
+        "PROCESS_VARIABLES": "Prosessimuuttujat",
+        "EXPRESSION": "Ehdon ilmaisu",
+        "FORM_SELECTOR": "Lomakkeen nimi",
+        "DEFAULT_SEQUENCE_FLOW": "Tapahtuman oletusjärjestys"
+      },
+      "PALETTE": {
+        "HAND_TOOL": "Käsi-työkalu",
+        "CONNECT_TOOL": "Globaali yhteys -työkalu",
+        "SPACE_TOOL": "Luo/poista välilyönti -työkalu",
+        "LASSO_TOOL": "Lassotyökalu",
+        "START_EVENT": "Luo aloitustapahtuma",
+        "END_EVENT": "Luo lopputapahtuma",
+        "INTERMEDIATE_THROW_EVENT": "Luo lähetettävä välitapahtuma",
+        "START_EVENT_SIGNAL": "Luo tapahtuman aloitussignaali",
+        "INTERMEDIATE_CATCH_EVENT_SIGNAL": "Luo signaalin välipysähdystapahtuma",
+        "INTERMEDIATE_THROW_EVENT_SIGNAL": "Luo signaalin välitapahtuma",
+        "GATEWAY": "Luo yhdyskäytävä",
+        "USER_TASK": "Luo käyttäjän tehtävä",
+        "SERVICE_TASK": "Luo palvelutehtävä",
+        "CALL_ACTIVITY": "Luo kutsutoiminto",
+        "CONTAINER": "Erityispalvelut",
+        "SUB_PROCESS": "Luo aliprosessi",
+        "PARTICIPANT": "Luo pooli"
+      },
+      "UPLOAD_SUCCESS": "Prosessi ladattu palvelimelle",
+      "PROCESS_SAVED": "Prosessi tallennettu",
+      "PROCESS_UPDATED": "Prosessi päivitetty",
+      "SELECT_PROCESS_VARIABLE": "Valitse prosessimuuttuja",
+      "ERRORS": {
+        "NO_PROCESS_PROPERTIES": "Ei prosessiominaisuuksia.",
+        "NO_CONNECTOR_ACTIONS": "Luo toiminto liittimen käytettäväksi",
+        "LOAD_DIAGRAM": "Diagrammin lataamisessa ilmeni ongelma. Kokeile sivun päivittämistä.",
+        "SAVE_DIAGRAM": "Kohtasimme ongelman diagrammin tallennuksessa. Kokeile tallentaa se uudelleen.",
+        "DOWNLOAD_DIAGRAM": "Kohtasimme ongelman diagrammin lataamisessa. Kokeile ladata se uudelleen.",
+        "DOWNLOAD_SVG_IMAGE": "Kohtasimme ongelman diagrammin kuvan lataamisessa. Kokeile ladata se uudelleen.",
+        "CHANGE_FAVORITE": "Kohtasimme ongelman prosessin suosikkitilan muuttamisessa"
+      },
+      "PROPERTIES": {
+        "TABS": {
+          "VIEWER": "Ominaisuuksien tarkastelu",
+          "JSON_EDITOR": "JSON-editori"
+        },
+        "TABLE": {
+          "COLUMN_NAME": "Nimi",
+          "COLUMN_TYPE": "Tyyppi",
+          "COLUMN_REQUIRED": "Pakollinen",
+          "COLUMN_VALUE": "Arvo",
+          "NO_PROPERTIES": "Luo tai valitse prosessin muuttuja muokataksesi sen yksityiskohtia"
+        },
+        "ERRORS": {
+          "EMPTY_NAME": "Nimi on pakollinen"
+        }
+      }
+    },
+    "CONNECTOR_EDITOR": {
+      "UPLOAD_SUCCESS": "Liitin ladattu palvelimelle",
+      "NAME": "Liitineditori",
+      "TABS": {
+        "CONNECTOR_EDITOR": "Liitineditori",
+        "JSON_EDITOR": "JSON-editori"
+      },
+      "EDITOR": {
+        "CONNECTOR_DETAILS": "Liittimen tiedot",
+        "INPUTS": "Syötteen parametrit",
+        "OUTPUTS": "Tuotoksen parametrit",
+        "ACTIONS": "Toiminnot",
+        "ADD_NEW_PARAMETER": "Lisää uusi parametri",
+        "NAME": "Nimi",
+        "DESCRIPTION": "Kuvaus",
+        "TYPE": "Tyyppi",
+        "BUTTONS": {
+          "SAVE": "Tallenna"
+        },
+        "REQUIRED": "Pakollinen"
+      },
+      "ERRORS": {
+        "GET_CONNECTOR": "Liittimen lataamisessa ilmeni ongelma. Kokeile sivun päivittämistä."
+      }
+    },
+    "FORM_EDITOR": {
+      "UPLOAD_SUCCESS": "Lomake ladattu pavelimelle",
+      "TABS": {
+        "FORM_EDITOR": "Lomake-editori",
+        "JSON_EDITOR": "JSON-editori"
+      },
+      "FORM_VARIABLES": "Lomakkeen muuttujat",
+      "VISIBLITY_CONDITIONS": {
+        "DEPENDS": "Riippuvainen tästä",
+        "OPERATOR": "Jos se on",
+        "VALUE": "Arvo",
+        "NEXT_CONDITION": "Ehto-operaattori",
+        "NO_PROPERTY": "Luo tai valitse näkyvyysehto muokataksesi sen yksityiskohtia",
+        "FIELDS": "Kentät",
+        "VARIABLE": "Muuttuja",
+        "SELECT_FIELD": "Valitse kenttä",
+        "SELECT_VARIABLE": "Valitse muuttuja",
+        "FORM_FIELD": "Lomakekenttä",
+        "NEXT_OPERATOR": "Ehto-operaattori"
+      },
+      "FIELD_PROPERTIES": {
+        "DESCRIPTION": "Kuvaus",
+        "NAME": "Nimi",
+        "COLUMNS": "Sarakkeiden määrä",
+        "REQUIRED": "Pakollinen",
+        "MULTIPLE_UPLOAD": "Salli useat tiedostoliitteet",
+        "LINK_FILE": "Älä lataa tiedostoja palvelimelle, vaan ainoastaan linkitä niihin",
+        "FILE_SOURCE": "Tiedoston lähde",
+        "ALL_SOURCES": "Kaikki tiedostolähteet",
+        "LOCAL_FILE": "Paikallinen tiedosto",
+        "PLACEHOLDER": "Paikkamerkki",
+        "COLSPAN": "Colspan",
+        "LABEL": "Tunniste",
+        "ID": "Tunnus",
+        "OVERRIDE_ID": "Korvaa tunnus",
+        "VALUE": "Näytettävä teksti",
+        "DISPLAY_TEXT": "Näytettävä teksti",
+        "MIN_LENGTH": "Vähimmäispituus",
+        "MAX_LENGTH": "Enimmäispituus",
+        "MIN_VALUE": "Vähimmäisarvo",
+        "MAX_VALUE": "Enimmäisarvo",
+        "REGEX": "Säännöllinen lausekekaava",
+        "INPUT_MASK": "Syöttömaski",
+        "INPUT_MASK_PLACEHOLDER": "Syöttömaskin paikkamerkki",
+        "INPUT_MASK_RESERVED": "Käänteinen",
+        "MIN_DATE": "Pvm vähintään",
+        "MAX_DATE": "Pvm enintään",
+        "DATE_DISPLAY_FORMAT": "Päivämäärän näyttömuoto",
+        "DATE_FORMAT_PREVIEW": "Tämä päivä",
+        "CURRENCY": "Valuutta",
+        "DECIMALS": "Salli desimaalit",
+        "HYPERLINK_URL": "Hyperlinkin URL",
+        "ALLOW_COLLAPSE": "Salli näkymän pienennys",
+        "COLLAPSE_BY_DEFAULT": "Pienennä oletuksena",
+        "REST_SERVICE": {
+          "DIALOG_TITLE": "URL-testi",
+          "REST_URL": "REST URL",
+          "TEST_BUTTON": "Testi",
+          "RESPONSE_PATH": "Taulukoinnin polku JSON-vastauksessa",
+          "ID_PROP": "Tunnuksen ominaisuus",
+          "LABEL_PROP": "Tunnisteen ominaisuus"
+        },
+        "KEY_VALUE_PROPERTY": {
+          "ADD": "Lisää",
+          "ADD_OPTION": "Lisää uusi vaihtoehto",
+          "LABEL": "Tunniste",
+          "ID": "Tunnus",
+          "INFO": "Tämä on \"tyhjä arvo\" -vaihtoehto. Tämän valitseminen suoritusaikana tarkoittaa \"ei arvoa\" tai \"tyhjä\". Tämä voidaan valita vain, jos kenttä ei ole pakollinen.",
+          "CLEAR_SELECTION": "Poista oletus",
+          "OPTIONS": "Valinnat"
+        },
+        "ADVANCED_RADIO_BUTTON": {
+          "MANUAL": "Manuaalinen",
+          "REST_SERVICE": "REST-palvelu"
+        }
+      },
+      "EDITOR": {
+        "ADD_NEW_TAB": "Lisää välilehti",
+        "DELETE_TAB": "Poista välilehti",
+        "ADD_NEW_OUTCOME": "Lisää tulos",
+        "DELETE_OUTCOME": "Poista tulos",
+        "EDIT": "Muokkaa",
+        "DELETE": "Poista",
+        "MOVE": "Siirrä"
+      },
+      "ERRORS": {
+        "GET_FORM": "Lomakkeen lataamisessa ilmeni ongelma. Kokeile sivun päivittämistä.",
+        "DELETE_FORM": "Lomakkeen poistamisessa ilmeni ongelma. Kokeile poistaa se uudelleen."
+      }
+    },
+    "UI_EDITOR": {
+      "UPLOAD_SUCCESS": "Käyttöliittymä ladattu palvelimelle",
+      "TABS": {
+        "UI_EDITOR": "Käyttöliittymäeditori",
+        "JSON_EDITOR": "JSON-editori"
+      },
+      "EDITOR": {
+        "DETAILS": "Käyttöliittymän tiedot",
+        "DESCRIPTION": "Kuvaus",
+        "NAME": "Nimi",
+        "TEMPLATE": "Malli"
+      },
+      "ERRORS": {
+        "GET_UI": "Käyttöliittymän latauksessa ilmeni ongelma. Kokeile sivun päivittämistä.",
+        "DELETE_UI": "Käyttöliittymän poistamisessa ilmeni ongelma. Kokeile poistaa se uudelleen."
+      }
+    },
+    "DATA_EDITOR": {
+      "UPLOAD_SUCCESS": "Dataobjekti ladattu palvelimelle",
+      "TABS": {
+        "DATA_EDITOR": "Dataobjektieditori",
+        "JSON_EDITOR": "JSON-editori"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DATA": "Dataobjektin lataamisessa ilmeni ongelma. Kokeile sivun päivittämistä.",
+        "DELETE_DATA": "Dataobjektin poistamisessa ilmeni ongelma. Kokeile poistaa se uudelleen."
+      }
+    },
+    "DECISION_TABLE_EDITOR": {
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "Ominaisuudet",
+        "NAME": "Nimi",
+        "SIMULATOR": "Simulaattori"
+      },
+      "UPLOAD_SUCCESS": "Päätöstaulukko ladattu palvelimelle",
+      "TABS": {
+        "DECISION_TABLE_EDITOR": "Päätöstaulukkoeditori",
+        "JSON_EDITOR": "JSON-editori"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DECISION_TABLE": "Päätöstaulukon lataamisessa ilmeni ongelma. Kokeile sivun päivittämistä.",
+        "DELETE_DECISION_TABLE": "Päätöstaulukon poistamisessa ilmeni ongelma. Kokeile poistaa se uudelleen.",
+        "INVALID_DECISION_TABLE_NAME": "Päätöstaulukon nimi ei kelpaa"
+      }
+    },
+    "FILE_EDITOR": {
+      "UPLOAD_SUCCESS": "Tiedosto ladattu palvelimelle",
+      "TABS": {
+        "FILE_EDITOR": "Tiedostoeditori",
+        "JSON_EDITOR": "Tekstieditori"
+      },
+      "EDITOR": {
+        "DETAILS": "Tiedoston tiedot",
+        "DESCRIPTION": "Kuvaus",
+        "NAME": "Nimi",
+        "TEMPLATE": "Malli"
+      },
+      "ERRORS": {
+        "GET_FILE": "Tiedoston lataamisessa ilmeni ongelma. Kokeile sivun päivittämistä.",
+        "DELETE_FILE": "Tiedoston poistamisessa ilmeni ongelma. Kokeile poistaa se uudelleen."
+      }
+    },
+    "GENERAL": {
+      "ERRORS": {
+        "CHANGE_USER": "Vaihda käyttäjää",
+        "NOT_VALID_JSON": "JSON-objekti ei kelpaa",
+        "NOT_VALID_SCHEMA": "JSON-objekti ei vastaa rakennetta"
+      }
+    }
+  },
+  "ABOUT": {
+    "TITLE": "Lisäosat",
+    "TABLE_HEADERS": {
+      "ID": "Tunnus",
+      "NAME": "Nimi",
+      "VERSION": "Versio",
+      "VENDOR": "Toimittaja",
+      "LICENSE": "Käyttöoikeus",
+      "RUNTIME": "Suorituspalvelu",
+      "DESCRIPTION": "Kuvaus"
+    }
+  }
+}

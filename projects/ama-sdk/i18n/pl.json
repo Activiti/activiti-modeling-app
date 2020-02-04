@@ -1,0 +1,62 @@
+{
+  "SDK": {
+    "SNACKBAR": {
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Wklejane wartości muszą być zgodne z tym wzorem"
+    },
+    "ALL": "Wszystkie",
+    "VARIABLES_EDITOR": {
+      "ERRORS": {
+        "EMPTY_NAME": "Nazwa jest wymagana",
+        "INVALID_NAME": "Nieprawidłowa nazwa zmiennej",
+        "VARIABLE_NAME_TOOLTIP": "Nazwa powinna rozpoczynać się od litery i może zawierać wyłącznie znaki alfanumeryczne i podkreślenia",
+        "NAME_ALREADY_EXISTS": "Nazwy zmiennych muszą być unikatowe"
+      },
+      "TABS": {
+        "VIEWER": "Przeglądarka właściwości",
+        "JSON_EDITOR": "Edytor JSON"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nazwa",
+        "COLUMN_TYPE": "Typ",
+        "COLUMN_REQUIRED": "Wymagane",
+        "COLUMN_VALUE": "Wartość",
+        "NO_PROPERTIES": "Wybierz lub utwórz zmienną, aby wyświetlić jej właściwości"
+      }
+    },
+    "VARIABLE_MAPPING": {
+      "PARAMETER": "Parametr",
+      "VALUE": "Wartość",
+      "PROCESS_VARIABLE": "Zmienna procesu",
+      "SWITCH_VAR_VAL": "Przełącz zmienną/wartość",
+      "NO_PROCESS_PROPERTIES": "Brak właściwości procesu",
+      "NO_PAYLOAD": "Komunikat nie ma ładunku. Dodaj ładunek do zdarzenia wyrzucania komunikatu.",
+      "CLEAR_ASSIGNMENT": "Wyczyść przypisanie",
+      "NONE": "Brak"
+    },
+    "MESSAGES_EDITOR": {
+      "TITLE": "Komunikaty procesu",
+      "ERRORS": {
+        "EMPTY_NAME": "Nazwa jest wymagana",
+        "NAME_ALREADY_EXISTS": "Nazwy komunikatów muszą być unikatowe"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nazwa",
+        "COLUMN_ID": "Identyfikator",
+        "NO_MESSAGES": "Wybierz lub utwórz komunikat, aby wyświetlić jego właściwości"
+      }
+    },
+    "MAPPING_DIALOG": {
+      "TITLE": "Edytuj odwzorowanie zmiennej",
+      "SELECTOR_TITLE": "Wybierz typ odwzorowania zmiennej do edycji",
+      "INPUT_MAPPING": "Odwzorowanie danych wejściowych",
+      "OUTPUT_MAPPING": "Odwzorowanie danych wyjściowych",
+      "PROCESS_VARIABLE": "Zmienna procesu",
+      "INPUT_PARAMETER": "Parametr wejściowy",
+      "OUTPUT_PARAMETER": "Parametr wyjściowy",
+      "VALUE_MAPPING": "Wartość",
+      "EXPRESSION_MAPPING": "Wyrażenie",
+      "NONE": "Brak",
+      "TYPE": "Typ"
+    }
+  }
+}

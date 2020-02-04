@@ -1,0 +1,23 @@
+{
+  "CONNECTOR_EDITOR": {
+    "DOWNLOAD_CONNECTOR": "Ladda ner konnektor",
+    "VALIDATE_CONNECTOR": "Validera konnektor",
+    "SAVE_CONNECTOR": "Spara konnektor",
+    "CONNECTOR_VALID": "Konnektorn är giltig",
+    "CONNECTOR_INVALID": "Konnektorn innehåller valideringsfel.",
+    "UPLOAD_SUCCESS": "Konnektor uppladdad",
+    "TABS": {
+      "CONNECTOR_EDITOR": "Konnektorseditor",
+      "JSON_EDITOR": "JSON-editor"
+    },
+    "ERRORS": {
+      "GET_CONNECTOR": "Vi stötte på ett problem med att läsa in konnektorn. Prova att läsa in den igen."
+    },
+    "DIALOG": {
+      "TITLE": "Inställningar för konnektorseditor",
+      "SHOW": "Visa konnektorer med mallar i vänster sidofält",
+      "CANCEL": "Avbryt",
+      "APPLY": "Tillämpa"
+    }
+  }
+}

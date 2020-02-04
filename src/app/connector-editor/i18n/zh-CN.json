@@ -1,0 +1,23 @@
+{
+  "CONNECTOR_EDITOR": {
+    "DOWNLOAD_CONNECTOR": "下载连接器",
+    "VALIDATE_CONNECTOR": "验证连接器",
+    "SAVE_CONNECTOR": "保存连接器",
+    "CONNECTOR_VALID": "连接器有效",
+    "CONNECTOR_INVALID": "连接器包含验证错误。",
+    "UPLOAD_SUCCESS": "连接器已上传",
+    "TABS": {
+      "CONNECTOR_EDITOR": "连接器编辑器",
+      "JSON_EDITOR": "JSON 编辑器"
+    },
+    "ERRORS": {
+      "GET_CONNECTOR": "加载连接器时遇到问题。尝试重新上传。"
+    },
+    "DIALOG": {
+      "TITLE": "连接器编辑器设置",
+      "SHOW": "使用左侧边栏上的模板显示连接器",
+      "CANCEL": "取消",
+      "APPLY": "应用"
+    }
+  }
+}

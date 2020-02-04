@@ -1,0 +1,640 @@
+{
+  "APP": {
+    "APPLICATION": "Anwendung",
+    "BACKEND_SERVICE": "Backend-Service",
+    "MORE_ACTIONS": "Weitere Aktionen",
+    "VALIDATE_PROJECT": "Projekt validieren",
+    "DOWNLOAD_PROJECT": "Projekt herunterladen",
+    "ADD_ACTION": "Neue Aktion hinzufügen",
+    "ADD_EVENT": "Neues Ereignis hinzufügen",
+    "HEADER": {
+      "APP_NAME": "Modellieranwendung",
+      "SIGN_OUT": "Abmelden",
+      "SETTINGS": "Einstellungen",
+      "ABOUT": "Info",
+      "LANGUAGE": "Sprache",
+      "SEARCH": "Suchen"
+    },
+    "DIALOGS": {
+      "CANCEL": "Abbrechen",
+      "SAVE": "Speichern",
+      "CREATE": "Erstellen",
+      "UPDATE": "Aktualisieren",
+      "CLOSE": "Schließen",
+      "EDIT_PROPERTIES": "Prozessvariablen bearbeiten",
+      "EDIT_PROCESS_MESSAGES": "Mitteilungen bearbeiten",
+      "EDIT_FORM_PROPERTIES": "Formularvariablen bearbeiten",
+      "EDIT_VISIBILITY_CONDITIONS": "Sichtbarkeitsbedingungen bearbeiten",
+      "ERROR": {
+        "TITLE": "Trotzdem speichern?",
+        "SUBTITLE": "Validierungsfehler:",
+        "NAME_DOESNT_MATCH_PATTERN": "Der Name entspricht nicht dem folgenden Muster",
+        "GENERAL_NAME_VALIDATION": "Der Name darf nur Kleinbuchstaben enthalten und muss zwischen 1 und 26 Zeichen lang sein. Alphanumerische Zeichen und Bindestriche sind erlaubt, aber der Name muss mit einem Buchstaben beginnen und das letzte Zeichen muss ein alphanumerisches Zeichen sein."
+      },
+      "CONFIRM": {
+        "TITLE": "Sind Sie sicher?",
+        "SUBTITLE": "Möchten Sie dies wirklich tun?",
+        "BUTTON": "Bestätigen",
+        "UNSAVED_PAGE": "Möchten Sie wirklich beenden, ohne {{ types }} zu speichern",
+        "RELEASE": "Sind Sie sicher, dass Sie eine neue Version dieses Projekts freigeben möchten?",
+        "TYPES": {
+          "DECISION": "Entscheidungstabelle",
+          "DATA": "Daten",
+          "UI": "UI",
+          "CONNECTOR": "Connector",
+          "FORM": "Formular",
+          "PROCESS": "Prozess",
+          "FILE": "Datei"
+        },
+        "DELETE": {
+          "PROJECT": "Möchten Sie dieses Projekt wirklich löschen?",
+          "PROCESS": "Möchten Sie diesen Prozess wirklich löschen?",
+          "FORM": "Möchten Sie dieses Formular wirklich löschen?",
+          "UI": "Möchten Sie diese UI wirklich löschen?",
+          "DATA": "Möchten Sie dieses Datenobjekt wirklich löschen?",
+          "DECISION_TABLE": "Möchten Sie diese Entscheidungstabelle wirklich löschen?",
+          "CONNECTOR": "Möchten Sie diesen Connector wirklich löschen?",
+          "FILE": "Möchten Sie diese Datei wirklich löschen?"
+        },
+        "SAVE": {
+          "PROCESS": "Möchten Sie diesen Prozess wirklich löschen?",
+          "FORM": "Möchten Sie dieses Formular wirklich speichern?",
+          "UI": "Möchten Sie diese UI wirklich speichern?",
+          "DATA": "Möchten Sie dieses Datenobjekt wirklich speichern?",
+          "DECISION_TABLE": "Möchten Sie diese Entscheidungstabelle wirklich speichern?",
+          "CONNECTOR": "Möchten Sie diesen Connector wirklich speichern?",
+          "FILE": "Möchten Sie diese Datei wirklich speichern?"
+        },
+        "DOWNLOAD": {
+          "PROCESS": "Möchten Sie diesen Prozess wirklich herunterladen?",
+          "IMAGE": "Möchten Sie das SVG-Bild dieses Prozesses wirklich herunterladen?",
+          "FORM": "Möchten Sie dieses Formular wirklich herunterladen?",
+          "UI": "Möchten Sie diese UI wirklich herunterladen?",
+          "DATA": "Möchten Sie dieses Datenobjekt wirklich herunterladen?",
+          "DECISION_TABLE": "Möchten Sie diese Entscheidungstabelle wirklich herunterladen?",
+          "CONNECTOR": "Möchten Sie diesen Connector wirklich herunterladen?",
+          "FILE": "Möchten Sie diese Datei wirklich herunterladen?"
+        }
+      }
+    },
+    "MENU": {
+      "EDIT": "Bearbeiten",
+      "DELETE": "Löschen",
+      "RELEASE": "Anspruch aufheben",
+      "COLLABORATORS": "Mitarbeiter",
+      "SEE_RELEASES": "Versionen anzeigen",
+      "DOWNLOAD": "Herunterladen"
+    },
+    "SETTINGS": {
+      "HEADER": "Anwendungseinstellungen"
+    },
+    "HOME": {
+      "NEW_MENU": {
+        "LABEL": "Neu",
+        "CREATE_PROJECT_TITLE": "Projekt erstellt",
+        "OVERRIDE_PROJECT_TITLE": "Es gibt bereits ein Projekt mit diesem Namen.",
+        "EDIT_PROJECT_TITLE": "Projekt bearbeiten",
+        "PROJECT_CREATED": "Projekt erstellt",
+        "PROJECT_UPLOADED": "Projekt hochgeladen",
+        "PROJECT_UPDATED": "Projekt gespeichert",
+        "PROJECT_RELEASED": "Projekt freigegeben",
+        "PROJECT_DELETED": "Projekt gelöscht",
+        "MENU_ITEMS": {
+          "CREATE_PROJECT": "Projekt erstellt",
+          "UPLOAD_PROJECT": "Projekt hochladen",
+          "CREATE_MODEL": "Content-Modell"
+        }
+      },
+      "DIALOGS": {
+        "PROJECT_NAME": "Projektname:",
+        "PROJECT_DESC": "Projektbeschreibung:"
+      },
+      "NAVIGATION": {
+        "PROJECTS": {
+          "LABEL": "Projekte",
+          "TOOLTIP": "Veröffentlichte Projekte"
+        },
+        "RELEASES": {
+          "LABEL": "Versionen",
+          "TOOLTIP": "Versionen"
+        },
+        "PROCESSES": {
+          "LABEL": "Prozesse",
+          "TOOLTIP": "Veröffentlichte Prozesse"
+        },
+        "FAVORITES": {
+          "LABEL": "Favoriten",
+          "TOOLTIP": "Favoriten"
+        }
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Name",
+        "COLUMN_VERSION": "Version",
+        "COLUMN_CREATED": "Erstellt",
+        "COLUMN_CREATED_BY": "Erstellt von",
+        "COLUMN_OPTIONS": "Optionen",
+        "NO_ITEMS": "Erstellen oder importieren Sie ein Projekt, um es in der Liste anzuzeigen.",
+        "NO_FAV_PROCESSES": "Markieren Sie einen Prozess als Favorit und machen Sie ihn hier verfügbar.",
+        "NO_FAV_PROJECTS": "Markieren Sie ein Projekt als Favorit und machen Sie es hier verfügbar.",
+        "RELEASE_ID": "Versions-ID",
+        "PROJECT_NAME": "Projektname"
+      },
+      "ERROR": {
+        "LOAD_PROJECTS": "Beim Laden der Projekte ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren.",
+        "LOAD_RELEASES": "Beim Laden der Versionen ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren.",
+        "LOAD_PROCESSES": "Beim Laden der Prozesse ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren."
+      }
+    },
+    "PROJECT": {
+      "BACK_TO": "Zurück zu Projekten",
+      "NAME": "Projekt-Editor",
+      "UPLOAD_FILE": "Datei hochladen",
+      "DOWNLOAD_PROJECT": "Projekt herunterladen",
+      "PROJECT_VALID": "Projekt enthält keine Validierungsfehler",
+      "EXPORT_SUCCESS": "Projekt exportiert",
+      "SETTINGS": {
+        "PROJECT_SETTINGS": "Projekt-Editor-Einstellungen",
+        "CONNECTORS_TAB_LABEL": "Connectors"
+      },
+      "IMPORT": "Importieren",
+      "CREATE_NEW": "Neu erstellen",
+      "SEARCH": "Suchen",
+      "UPLOAD_FILE_SUCCESS": "Datei hochgeladen",
+      "NO_CONTENT": "<leer>",
+      "NO_SELECTION": "Erstellen Sie ein neues Modell oder bearbeiten Sie ein bestehendes Modell über die Seitenleiste",
+      "NEW_MENU": {
+        "LABEL": "Neu",
+        "CREATE": "Erstellen",
+        "IMPORT": "Importieren",
+        "CREATE_PROCESS_TITLE": "Prozess erstellen",
+        "MENU_ITEMS": {
+          "CREATE_PROCESS": "Prozess",
+          "CREATE_CONNECTOR": "Connector",
+          "CREATE_FORM": "Formular",
+          "CREATE_UI": "UI",
+          "CREATE_DATA": "Datenobjekt",
+          "CREATE_DECISION_TABLE": "Entscheidungstabelle",
+          "CREATE_FILE": "Datei"
+        }
+      },
+      "TREE": {
+        "PROCESSES": "Prozesse",
+        "FORMS": "Formulare",
+        "CONNECTORS": "Connectors",
+        "DATA": "Daten",
+        "DECISION_TABLES": "Entscheidungstabellen",
+        "UIS": "UI",
+        "FILES": "Dateien"
+      },
+      "PROCESS_DIALOG": {
+        "TITLE_CREATE": "Prozess erstellen",
+        "TITLE_UPDATE": "Prozess aktualisieren",
+        "PROCESS_NAME": "Prozessname:",
+        "PROCESS_DESC": "Prozessdokumentation:",
+        "PROCESS_CREATED": "Prozess erstellt",
+        "PROCESS_DELETED": "Prozess gelöscht",
+        "PROCESS_UPDATED": "Prozess gespeichert"
+      },
+      "CONNECTOR_DIALOG": {
+        "TITLE_CREATE": "Connector erstellen",
+        "TITLE_UPDATE": "Connector aktualisieren",
+        "CONNECTOR_NAME": "Connector-Name:",
+        "CONNECTOR_DESC": "Connector-Beschreibung:",
+        "CONNECTOR_CREATED": "Connector erstellt",
+        "CONNECTOR_DELETED": "Connector gelöscht",
+        "CONNECTOR_UPDATED": "Connector gespeichert"
+      },
+      "FORM_DIALOG": {
+        "TITLE_CREATE": "Formular erstellen",
+        "TITLE_UPDATE": "Formular aktualisieren",
+        "FORM_NAME": "Formularname:",
+        "FORM_DESC": "Formularbeschreibung:",
+        "FORM_CREATED": "Formular erstellt",
+        "FORM_DELETED": "Formular gelöscht",
+        "FORM_UPDATED": "Formular gespeichert"
+      },
+      "UI_DIALOG": {
+        "TITLE_CREATE": "UI erstellen",
+        "TITLE_UPDATE": "UI aktualisieren",
+        "UI_NAME": "UI-Name:",
+        "UI_DESC": "UI-Beschreibung:",
+        "UI_CREATED": "UI erstellt",
+        "UI_DELETED": "UI gelöscht",
+        "UI_UPDATED": "UI gespeichert"
+      },
+      "DATA_DIALOG": {
+        "TITLE_CREATE": "Datenobjekt erstellen",
+        "TITLE_UPDATE": "Datenobjekt aktualisieren",
+        "DATA_NAME": "Datenobjekt-Name:",
+        "DATA_DESC": "Datenobjekt-Beschreibung",
+        "DATA_CREATED": "Datenobjekt erstellt",
+        "DATA_DELETED": "Datenobjekt gelöscht",
+        "DATA_UPDATED": "Datenobjekt gespeichert"
+      },
+      "DECISION_TABLE_DIALOG": {
+        "TITLE_CREATE": "Entscheidungstabelle erstellen",
+        "TITLE_UPDATE": "Entscheidungstabelle aktualisieren",
+        "DECISION_TABLE_NAME": "Name der Entscheidungstabelle:",
+        "DECISION_TABLE_DESC": "Beschreibung der Entscheidungstabelle:",
+        "DECISION_TABLE_CREATED": "Entscheidungstabelle erstellt",
+        "DECISION_TABLE_DELETED": "Entscheidungstabelle gelöscht",
+        "DECISION_TABLE_UPDATED": "Entscheidungstabelle gespeichert"
+      },
+      "FILE_DIALOG": {
+        "TITLE_CREATE": "Datei erstellen",
+        "TITLE_UPDATE": "Datei aktualisieren",
+        "FILE_NAME": "Dateiname:",
+        "FILE_DESC": "Dateibeschreibung:",
+        "FILE_CREATED": "Datei erstellt",
+        "FILE_DELETED": "Datei gelöscht",
+        "FILE_UPDATED": "Datei gespeichert"
+      },
+      "ACTION_DIALOG": {
+        "ACTION_DETAILS": "Aktionsdetails",
+        "ACTION_NAME": "Aktionsname",
+        "ACTION_DESC": "Aktionsbeschreibung",
+        "ADD_ACTION": "Aktion hinzufügen",
+        "DEL_ACTION": "Aktion löschen"
+      },
+      "EVENT_DIALOG": {
+        "EVENT_DETAILS": "Ereignis-Details",
+        "EVENT_NAME": "Ereignisname",
+        "EVENT_DESC": "Ereignisbeschreibung",
+        "ADD_EVENT": "Ereignis hinzugefügt",
+        "DEL_EVENT": "Ereignis löschen"
+      },
+      "ERROR": {
+        "UPLOAD_FILE": "Beim Hochladen der Datei ist ein Problem aufgetreten. Versuchen Sie noch einmal, sie hochzuladen.",
+        "DELETE_PROJECT": "Beim Löschen des Projekts ist ein Problem aufgetreten. Versuchen Sie noch einmal, es zu löschen.",
+        "CHANGE_FAVORITE": "Beim Markieren des Projekts als Favorit ist ein Problem aufgetreten. Versuchen Sie noch einmal, es als Favorit zu markieren.",
+        "DELETE_PROCESS": "Beim Löschen des Prozesses ist ein Problem aufgetreten. Versuchen Sie noch einmal, es zu löschen.",
+        "LOAD_MODELS": "Beim Laden der Modelle ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren.",
+        "RELEASE_PROJECT": "Beim Freigeben des Projekts ist ein Problem aufgetreten. Versuchen Sie noch einmal, es freizugeben.",
+        "CREATE_PROCESS": {
+          "DUPLICATION": "Es gibt bereits einen Prozess mit diesem Namen",
+          "GENERAL": "Beim Erstellen des Prozesses ist ein Problem aufgetreten. Versuchen Sie noch einmal, ihn zu erstellen."
+        },
+        "UPDATE_PROCESS": {
+          "DUPLICATION": "Es gibt bereits einen Prozess mit diesem Namen",
+          "GENERAL": "Beim Speichern des Prozesses ist ein Problem aufgetreten. Versuchen Sie noch einmal, ihn zu speichern.",
+          "EMPTY_NAME": "Ein Name ist erforderlich"
+        },
+        "CREATE_CONNECTOR": {
+          "DUPLICATION": "Es gibt bereits einen Connector mit diesem Namen",
+          "GENERAL": "Beim Erstellen des Connectors ist ein Problem aufgetreten. Versuchen Sie noch einmal, ihn zu erstellen."
+        },
+        "UPDATE_CONNECTOR": {
+          "DUPLICATION": "Es gibt bereits einen Connector mit diesem Namen",
+          "GENERAL": "Beim Speichern des Connectors ist ein Problem aufgetreten. Versuchen Sie noch einmal, ihn zu speichern."
+        },
+        "CREATE_FORM": {
+          "DUPLICATION": "Es gibt bereits ein Formular mit diesem Namen",
+          "GENERAL": "Beim Erstellen des Formulars ist ein Problem aufgetreten. Versuchen Sie noch einmal, es zu erstellen."
+        },
+        "UPDATE_FORM": {
+          "DUPLICATION": "Es gibt bereits ein Formular mit diesem Namen",
+          "GENERAL": "Beim Speichern des Formulars ist ein Problem aufgetreten. Versuchen Sie noch einmal, es zu speichern."
+        },
+        "CREATE_UI": {
+          "DUPLICATION": "Es gibt bereits eine UI mit diesem Namen",
+          "GENERAL": "Beim Erstellen der UI ist ein Problem aufgetreten. Versuchen Sie noch einmal, sie zu erstellen."
+        },
+        "UPDATE_UI": {
+          "DUPLICATION": "Es gibt bereits eine UI mit diesem Namen",
+          "GENERAL": "Beim Speichern der UI ist ein Problem aufgetreten. Versuchen Sie noch einmal, sie zu speichern."
+        },
+        "CREATE_DECISION_TABLE": {
+          "DUPLICATION": "Es gibt bereits eine Entscheidungstabelle mit diesem Namen",
+          "GENERAL": "Beim Erstellen der Entscheidungstabelle ist ein Problem aufgetreten. Versuchen Sie noch einmal, sie zu erstellen."
+        },
+        "UPDATE_DECISION_TABLE": {
+          "DUPLICATION": "Es gibt bereits eine Entscheidungstabelle mit diesem Namen",
+          "GENERAL": "Beim Speichern der Entscheidungstabelle ist ein Problem aufgetreten. Versuchen Sie noch einmal, sie zu speichern."
+        },
+        "CREATE_DATA": {
+          "DUPLICATION": "Es gibt bereits ein Datenobjekt mit diesem Namen",
+          "GENERAL": "Beim Erstellen des Datenobjekts ist ein Problem aufgetreten. Versuchen Sie noch einmal, es zu erstellen."
+        },
+        "UPDATE_DATA": {
+          "DUPLICATION": "Es gibt bereits ein Datenobjekt mit diesem Namen",
+          "GENERAL": "Beim Speichern des Datenobjekts ist ein Problem aufgetreten. Versuchen Sie noch einmal, es zu speichern."
+        },
+        "CREATE_PROJECT": {
+          "DUPLICATION": "Es gibt bereits ein Projekt mit diesem Namen",
+          "GENERAL": "Beim Erstellen der Projekts ist ein Problem aufgetreten. Versuchen Sie noch einmal, es zu erstellen."
+        },
+        "UPDATE_PROJECT": {
+          "DUPLICATION": "Es gibt bereits ein Projekt mit diesem Namen",
+          "GENERAL": "Beim Speichern des Projekts ist ein Problem aufgetreten. Versuchen Sie noch einmal, es zu speichern."
+        },
+        "UPLOAD_PROJECT": {
+          "DUPLICATION": "Es gibt bereits ein Projekt mit diesem Namen",
+          "GENERAL": "Beim Hochladen des Projekts ist ein Problem aufgetreten. Versuchen Sie noch einmal, es hochzuladen."
+        },
+        "GET_PROJECT": "Beim Laden des Projekts ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren.",
+        "EXPORT_PROJECT": "Beim Exportieren des Projekts ist ein unbekannter Fehler aufgetreten",
+        "CREATE_FILE": {
+          "DUPLICATION": "Es gibt bereits eine Datei mit diesem Namen",
+          "GENERAL": "Beim Erstellen der Datei ist ein Problem aufgetreten. Versuchen Sie noch einmal, sie zu erstellen."
+        },
+        "UPDATE_FILE": {
+          "DUPLICATION": "Es gibt bereits eine Datei mit diesem Namen",
+          "GENERAL": "Beim Speichern der Datei ist ein Problem aufgetreten. Versuchen Sie noch einmal, sie zu speichern."
+        }
+      }
+    },
+    "PROCESS_EDITOR": {
+      "TABS": {
+        "PROCESS_EDITOR": "Prozess-Editor",
+        "JSON_EDITOR": "XML-Editor",
+        "EXTENSIONS_EDITOR": "Erweiterungs-Editor"
+      },
+      "PRIORITIES": {
+        "LOW": "0",
+        "MEDIUM": "1",
+        "HIGH": "2"
+      },
+      "ACTIONS": {
+        "ZOOM_IN": "Vergrößern",
+        "ZOOM_OUT": "Verkleinern",
+        "UNDO": "Rückgängig machen",
+        "REDO": "Wiederherstellen",
+        "LASSO_TOOL": "Lasso-Tool"
+      },
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "Eigenschaften",
+        "ID": "ID",
+        "NAME": "Name",
+        "VERSION": "Version",
+        "VARIABLES": "Variablen",
+        "DOCUMENTATION": "Dokumentation",
+        "EXECUTABLE": "Programmdatei",
+        "IMPLEMENTATION": "Implementierung",
+        "INPUTS": "Eingaben",
+        "OUTPUTS": "Ausgaben",
+        "ACTION": "Aktion",
+        "INPUT": "Eingabe",
+        "INPUT_MAPPING": "Eingabe-Zuordnungen",
+        "OUTPUT": "Ausgabe",
+        "OUTPUT_MAPPING": "Ausgabezuweisung",
+        "ASSIGNEE": "Zugewiesener Benutzer",
+        "CANDIDATE_GROUPS": "Kandidatengruppen",
+        "CANDIDATE_USERS": "Kandidatenbenutzer",
+        "DUE_DATE": "Fälligkeitsdatum",
+        "PRIORITY": "Priorität",
+        "ACTIVITY_NAME": "Aktivitätsname",
+        "PROCESS_VARIABLE": "Prozessvariable",
+        "PROCESS_VARIABLES": "Prozessvariablen",
+        "EXPRESSION": "Bedingungsausdruck",
+        "FORM_SELECTOR": "Formularname",
+        "DEFAULT_SEQUENCE_FLOW": "Standard-Sequenzfluss"
+      },
+      "PALETTE": {
+        "HAND_TOOL": "Hand-Tool",
+        "CONNECT_TOOL": "Verknüpfungstool",
+        "SPACE_TOOL": "Tool zum Erstellen/Entfernen von Platz",
+        "LASSO_TOOL": "Lasso-Tool",
+        "START_EVENT": "Startereignis erstellen",
+        "END_EVENT": "Endereignis erstellen",
+        "INTERMEDIATE_THROW_EVENT": "Zwischen-Auslösereignis erstellen",
+        "START_EVENT_SIGNAL": "Signalstart-Ereignis erstellen",
+        "INTERMEDIATE_CATCH_EVENT_SIGNAL": "Signal für Zwischen-Auffangereignis erstellen",
+        "INTERMEDIATE_THROW_EVENT_SIGNAL": "Signal für Zwischen-Auslöserereignis bearbeiten",
+        "GATEWAY": "Gateway erstellen",
+        "USER_TASK": "Nutzeraufgabe erstellen",
+        "SERVICE_TASK": "Service-Aufgabe erstellen",
+        "CALL_ACTIVITY": "Anrufaktivität erstellen",
+        "CONTAINER": "Fest zugeordnete Services",
+        "SUB_PROCESS": "Unterprozess erstellen",
+        "PARTICIPANT": "Pool erstellen"
+      },
+      "UPLOAD_SUCCESS": "Prozess hochgeladen",
+      "PROCESS_SAVED": "Prozess gespeichert",
+      "PROCESS_UPDATED": "Prozess aktualisiert",
+      "SELECT_PROCESS_VARIABLE": "Prozessvariable auswählen",
+      "ERRORS": {
+        "NO_PROCESS_PROPERTIES": "Keine Prozesseigenschaften.",
+        "NO_CONNECTOR_ACTIONS": "Aktion für den Connector erstellen",
+        "LOAD_DIAGRAM": "Beim Laden des Diagramms ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren.",
+        "SAVE_DIAGRAM": "Beim Speichern des Diagramms ist ein Problem aufgetreten. Versuchen Sie es noch einmal.",
+        "DOWNLOAD_DIAGRAM": "Beim Herunterladen des Diagramms ist ein Problem aufgetreten. Versuchen Sie es noch einmal.",
+        "DOWNLOAD_SVG_IMAGE": "Beim Speichern des Diagrammbilds ist ein Problem aufgetreten. Versuchen Sie es noch einmal.",
+        "CHANGE_FAVORITE": "Beim Ändern das Favoritenzustands des Prozesses ist ein Problem aufgetreten"
+      },
+      "PROPERTIES": {
+        "TABS": {
+          "VIEWER": "Eigenschaften-Viewer",
+          "JSON_EDITOR": "JSON-Editor"
+        },
+        "TABLE": {
+          "COLUMN_NAME": "Name",
+          "COLUMN_TYPE": "Typ",
+          "COLUMN_REQUIRED": "Erforderlich",
+          "COLUMN_VALUE": "Wert",
+          "NO_PROPERTIES": "Erstellen oder wählen Sie eine Prozessvariable, um ihre Details zu bearbeiten"
+        },
+        "ERRORS": {
+          "EMPTY_NAME": "Ein Name ist erforderlich"
+        }
+      }
+    },
+    "CONNECTOR_EDITOR": {
+      "UPLOAD_SUCCESS": "Connector hochgeladen",
+      "NAME": "Connector-Editor",
+      "TABS": {
+        "CONNECTOR_EDITOR": "Connector-Editor",
+        "JSON_EDITOR": "JSON-Editor"
+      },
+      "EDITOR": {
+        "CONNECTOR_DETAILS": "Connector-Details",
+        "INPUTS": "Eingabeparameter",
+        "OUTPUTS": "Ausgabeparameter",
+        "ACTIONS": "Aktionen",
+        "ADD_NEW_PARAMETER": "Neuen Parameter hinzufügen",
+        "NAME": "Name",
+        "DESCRIPTION": "Beschreibung",
+        "TYPE": "Typ",
+        "BUTTONS": {
+          "SAVE": "Speichern"
+        },
+        "REQUIRED": "Erforderlich"
+      },
+      "ERRORS": {
+        "GET_CONNECTOR": "Beim Laden des Connectors ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren."
+      }
+    },
+    "FORM_EDITOR": {
+      "UPLOAD_SUCCESS": "Formular hochgeladen",
+      "TABS": {
+        "FORM_EDITOR": "Formular-Editor",
+        "JSON_EDITOR": "JSON-Editor"
+      },
+      "FORM_VARIABLES": "Formularvariablen",
+      "VISIBLITY_CONDITIONS": {
+        "DEPENDS": "Abhängig von",
+        "OPERATOR": "Wenn",
+        "VALUE": "Wert",
+        "NEXT_CONDITION": "Bedingungs-Operator",
+        "NO_PROPERTY": "Erstellen Sie",
+        "FIELDS": "Felder",
+        "VARIABLE": "Variable",
+        "SELECT_FIELD": "Wählen Sie ein Feld aus",
+        "SELECT_VARIABLE": "Wählen Sie eine Variable aus",
+        "FORM_FIELD": "Formularfeld",
+        "NEXT_OPERATOR": "Bedingungs-Operator"
+      },
+      "FIELD_PROPERTIES": {
+        "DESCRIPTION": "Beschreibung",
+        "NAME": "Name",
+        "COLUMNS": "Spaltenzahl",
+        "REQUIRED": "Erforderlich",
+        "MULTIPLE_UPLOAD": "Mehrere Dateianhänge zulassen",
+        "LINK_FILE": "Dateien nur verlinken, nicht hochladen",
+        "FILE_SOURCE": "Dateiquelle",
+        "ALL_SOURCES": "Alle Dateiquellen",
+        "LOCAL_FILE": "Lokale Datei",
+        "PLACEHOLDER": "Platzhalter",
+        "COLSPAN": "Colspan",
+        "LABEL": "Beschriftung",
+        "ID": "ID",
+        "OVERRIDE_ID": "ID überschreiben",
+        "VALUE": "Anzuzeigender Text",
+        "DISPLAY_TEXT": "Anzuzeigender Text",
+        "MIN_LENGTH": "Mindestlänge",
+        "MAX_LENGTH": "Höchstlänge",
+        "MIN_VALUE": "Mindestwert",
+        "MAX_VALUE": "Höchstwert",
+        "REGEX": "Regex-Muster",
+        "INPUT_MASK": "Eingabemaske",
+        "INPUT_MASK_PLACEHOLDER": "Eingabemaske-Platzhalter",
+        "INPUT_MASK_RESERVED": "Umgekehrt",
+        "MIN_DATE": "Mindestdatum",
+        "MAX_DATE": "Höchstdatum",
+        "DATE_DISPLAY_FORMAT": "Datumsanzeigeformat",
+        "DATE_FORMAT_PREVIEW": "Heutiges Datum",
+        "CURRENCY": "Währung",
+        "DECIMALS": "Dezimalstellen zulassen",
+        "HYPERLINK_URL": "Hyperlink-URL",
+        "ALLOW_COLLAPSE": "Reduzieren zulassen",
+        "COLLAPSE_BY_DEFAULT": "Standardmäßig reduzieren",
+        "REST_SERVICE": {
+          "DIALOG_TITLE": "URL-Test",
+          "REST_URL": "REST-URL",
+          "TEST_BUTTON": "Test",
+          "RESPONSE_PATH": "Pfad zu Array in JSON-Antwort",
+          "ID_PROP": "ID-Eigenschaft",
+          "LABEL_PROP": "Beschriftungseigenschaft"
+        },
+        "KEY_VALUE_PROPERTY": {
+          "ADD": "Hinzufügen",
+          "ADD_OPTION": "Eine neue Option hinzufügen",
+          "LABEL": "Beschriftung",
+          "ID": "ID",
+          "INFO": "Das ist die Option 'leerer Wert'. Wird diese Option zur Laufzeit ausgewählt, entspricht dies der Option 'kein Wert' oder 'leer'. Diese Option kann nur ausgewählt werden, wenn dieses Feld eine Angabe nicht unbedingt erfordert.",
+          "CLEAR_SELECTION": "Standard entfernen",
+          "OPTIONS": "Optionen"
+        },
+        "ADVANCED_RADIO_BUTTON": {
+          "MANUAL": "Manuell",
+          "REST_SERVICE": "REST-Service"
+        }
+      },
+      "EDITOR": {
+        "ADD_NEW_TAB": "Registerkarte hinzufügen",
+        "DELETE_TAB": "Registerkarte löschen",
+        "ADD_NEW_OUTCOME": "Ergebnis hinzufügen",
+        "DELETE_OUTCOME": "Ergebnis löschen",
+        "EDIT": "Bearbeiten",
+        "DELETE": "Löschen",
+        "MOVE": "Verschieben"
+      },
+      "ERRORS": {
+        "GET_FORM": "Beim Laden des Formulars ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren.",
+        "DELETE_FORM": "Beim Löschen des Formulars ist ein Problem aufgetreten. Versuchen Sie noch einmal, es zu löschen."
+      }
+    },
+    "UI_EDITOR": {
+      "UPLOAD_SUCCESS": "UI hochgeladen",
+      "TABS": {
+        "UI_EDITOR": "UI-Editor",
+        "JSON_EDITOR": "JSON-Editor"
+      },
+      "EDITOR": {
+        "DETAILS": "UI-Details",
+        "DESCRIPTION": "Beschreibung",
+        "NAME": "Name",
+        "TEMPLATE": "Mustervorlage"
+      },
+      "ERRORS": {
+        "GET_UI": "Beim Laden der UI ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren.",
+        "DELETE_UI": "Beim Löschen der UI ist ein Problem aufgetreten. Versuchen Sie noch einmal, sie zu löschen."
+      }
+    },
+    "DATA_EDITOR": {
+      "UPLOAD_SUCCESS": "Datenobjekt hochgeladen",
+      "TABS": {
+        "DATA_EDITOR": "Datenobjekt-Editor",
+        "JSON_EDITOR": "JSON-Editor"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DATA": "Beim Laden des Datenobjekts ist ein Fehler aufgetreten. Versuchen Sie, die Seite zu aktualisieren.",
+        "DELETE_DATA": "Beim Löschen des Datenobjekts ist ein Problem aufgetreten. Versuchen Sie noch einmal, es zu löschen."
+      }
+    },
+    "DECISION_TABLE_EDITOR": {
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "Eigenschaften",
+        "NAME": "Name",
+        "SIMULATOR": "Simulator"
+      },
+      "UPLOAD_SUCCESS": "Entscheidungstabelle hochgeladen",
+      "TABS": {
+        "DECISION_TABLE_EDITOR": "Entscheidungstabellen-Editor",
+        "JSON_EDITOR": "JSON-Editor"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DECISION_TABLE": "Beim Laden der Entscheidungstabelle ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren.",
+        "DELETE_DECISION_TABLE": "Beim Löschen der Entscheidungstabelle ist ein Problem aufgetreten. Versuchen Sie noch einmal, sie zu löschen.",
+        "INVALID_DECISION_TABLE_NAME": "Unzlässiger Name für Entscheidungstabelle"
+      }
+    },
+    "FILE_EDITOR": {
+      "UPLOAD_SUCCESS": "Datei hochgeladen",
+      "TABS": {
+        "FILE_EDITOR": "Datei-Editor",
+        "JSON_EDITOR": "Text-Editor"
+      },
+      "EDITOR": {
+        "DETAILS": "Datei-Details",
+        "DESCRIPTION": "Beschreibung",
+        "NAME": "Name",
+        "TEMPLATE": "Mustervorlage"
+      },
+      "ERRORS": {
+        "GET_FILE": "Beim Laden der Datei ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren.",
+        "DELETE_FILE": "Beim Löschen der Datei ist ein Problem aufgetreten. Versuchen Sie noch einmal, sie zu löschen."
+      }
+    },
+    "GENERAL": {
+      "ERRORS": {
+        "CHANGE_USER": "Benutzer ändern",
+        "NOT_VALID_JSON": "Unzulässiges JSON-Objekt",
+        "NOT_VALID_SCHEMA": "Das JSON-Objekt stimmt nicht mit dem Schema überein"
+      }
+    }
+  },
+  "ABOUT": {
+    "TITLE": "Plugins",
+    "TABLE_HEADERS": {
+      "ID": "ID",
+      "NAME": "Name",
+      "VERSION": "Version",
+      "VENDOR": "Hersteller",
+      "LICENSE": "Lizenz",
+      "RUNTIME": "Laufzeit",
+      "DESCRIPTION": "Beschreibung"
+    }
+  }
+}

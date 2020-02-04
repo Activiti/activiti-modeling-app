@@ -1,0 +1,62 @@
+{
+  "SDK": {
+    "SNACKBAR": {
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Os valores colados devem seguir este padrão"
+    },
+    "ALL": "Todos",
+    "VARIABLES_EDITOR": {
+      "ERRORS": {
+        "EMPTY_NAME": "O nome é obrigatório",
+        "INVALID_NAME": "Nome de variável inválido",
+        "VARIABLE_NAME_TOOLTIP": "O nome deve começar com uma letra e só pode ter caracteres alfanuméricos e sublinhados",
+        "NAME_ALREADY_EXISTS": "Nomes de variáveis devem ser exclusivos"
+      },
+      "TABS": {
+        "VIEWER": "Visualizador de Propriedades",
+        "JSON_EDITOR": "Editor JSON"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nome",
+        "COLUMN_TYPE": "Tipo",
+        "COLUMN_REQUIRED": "Obrigatório",
+        "COLUMN_VALUE": "Valor",
+        "NO_PROPERTIES": "Selecione ou crie uma variável para exibir suas propriedades"
+      }
+    },
+    "VARIABLE_MAPPING": {
+      "PARAMETER": "Parâmetro",
+      "VALUE": "Valor",
+      "PROCESS_VARIABLE": "Variável do processo",
+      "SWITCH_VAR_VAL": "Alternar variável/valor",
+      "NO_PROCESS_PROPERTIES": "Sem propriedades de processo",
+      "NO_PAYLOAD": "A mensagem não tem carga. Adicione uma carga ao evento de throw de mensagem.",
+      "CLEAR_ASSIGNMENT": "Limpar atribuição",
+      "NONE": "Nenhum"
+    },
+    "MESSAGES_EDITOR": {
+      "TITLE": "Processar mensagens",
+      "ERRORS": {
+        "EMPTY_NAME": "O nome é obrigatório",
+        "NAME_ALREADY_EXISTS": "Nomes de mensagens devem ser exclusivos"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nome",
+        "COLUMN_ID": "ID",
+        "NO_MESSAGES": "Selecione ou crie uma mensagem para exibir suas propriedades"
+      }
+    },
+    "MAPPING_DIALOG": {
+      "TITLE": "Editar mapeamento de variável",
+      "SELECTOR_TITLE": "Selecione o tipo de mapeamento de variável para editar",
+      "INPUT_MAPPING": "Mapeamento de entrada",
+      "OUTPUT_MAPPING": "Mapeamento de saída",
+      "PROCESS_VARIABLE": "Variável do processo",
+      "INPUT_PARAMETER": "Parâmetro de entrada",
+      "OUTPUT_PARAMETER": "Parâmetro de saída",
+      "VALUE_MAPPING": "Valor",
+      "EXPRESSION_MAPPING": "Expressão",
+      "NONE": "Nenhum",
+      "TYPE": "Tipo"
+    }
+  }
+}

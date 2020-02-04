@@ -1,0 +1,640 @@
+{
+  "APP": {
+    "APPLICATION": "Toepassing",
+    "BACKEND_SERVICE": "Back-endservice",
+    "MORE_ACTIONS": "Meer acties",
+    "VALIDATE_PROJECT": "Project valideren",
+    "DOWNLOAD_PROJECT": "Project downloaden",
+    "ADD_ACTION": "Nieuwe actie toevoegen",
+    "ADD_EVENT": "Nieuwe gebeurtenis toevoegen",
+    "HEADER": {
+      "APP_NAME": "Modeling Application",
+      "SIGN_OUT": "Afmelden",
+      "SETTINGS": "Instellingen",
+      "ABOUT": "Info",
+      "LANGUAGE": "Taal",
+      "SEARCH": "Zoeken"
+    },
+    "DIALOGS": {
+      "CANCEL": "Annuleren",
+      "SAVE": "Opslaan",
+      "CREATE": "Maken",
+      "UPDATE": "Bijwerken",
+      "CLOSE": "Sluiten",
+      "EDIT_PROPERTIES": "Procesvariabelen bewerken",
+      "EDIT_PROCESS_MESSAGES": "Berichten bewerken",
+      "EDIT_FORM_PROPERTIES": "Formuliervariabelen bewerken",
+      "EDIT_VISIBILITY_CONDITIONS": "Zichtbaarheidsvoorwaarden bewerken",
+      "ERROR": {
+        "TITLE": "Wilt u toch opslaan?",
+        "SUBTITLE": "Validatiefouten:",
+        "NAME_DOESNT_MATCH_PATTERN": "De naam komt niet overeen met het volgende patroon",
+        "GENERAL_NAME_VALIDATION": "De naam moet uit kleine letters bestaan en mag minimaal 1 en maximaal 26 tekens lang zijn. Alfanumerieke tekens en afbreekstreepjes zijn toegestaan, maar de naam moet beginnen met een letter en eindigen met een cijfer."
+      },
+      "CONFIRM": {
+        "TITLE": "Weet u het zeker?",
+        "SUBTITLE": "Weet u zeker dat u deze actie wilt uitvoeren?",
+        "BUTTON": "Bevestigen",
+        "UNSAVED_PAGE": "Weet u zeker dat u wilt afsluiten zonder {{ types }} op te slaan",
+        "RELEASE": "Weet u zeker dat u een nieuwe versie van dit project wilt vrijgeven?",
+        "TYPES": {
+          "DECISION": "beslissingstabel",
+          "DATA": "gegevens",
+          "UI": "UI",
+          "CONNECTOR": "connector",
+          "FORM": "Formulier",
+          "PROCESS": "Proces",
+          "FILE": "bestand"
+        },
+        "DELETE": {
+          "PROJECT": "Weet u zeker dat u dit project wilt verwijderen?",
+          "PROCESS": "Weet u zeker dat u dit proces wilt verwijderen?",
+          "FORM": "Weet u zeker dat u dit formulier wilt verwijderen?",
+          "UI": "Weet u zeker dat u deze UI wilt verwijderen?",
+          "DATA": "Weet u zeker dat u dit gegevensobject wilt verwijderen?",
+          "DECISION_TABLE": "Weet u zeker dat u deze beslissingstabel wilt verwijderen?",
+          "CONNECTOR": "Weet u zeker dat u deze connector wilt verwijderen?",
+          "FILE": "Weet u zeker dat u dit bestand wilt verwijderen?"
+        },
+        "SAVE": {
+          "PROCESS": "Weet u zeker dat u dit proces wilt opslaan?",
+          "FORM": "Weet u zeker dat u dit formulier wilt opslaan?",
+          "UI": "Weet u zeker dat u deze UI wilt opslaan?",
+          "DATA": "Weet u zeker dat u dit gegevensobject wilt opslaan?",
+          "DECISION_TABLE": "Weet u zeker dat u deze beslissingstabel wilt opslaan?",
+          "CONNECTOR": "Weet u zeker dat u deze connector wilt opslaan?",
+          "FILE": "Weet u zeker dat u dit bestand wilt opslaan?"
+        },
+        "DOWNLOAD": {
+          "PROCESS": "Weet u zeker dat u dit proces wilt downloaden?",
+          "IMAGE": "Weet u zeker dat u de svg-afbeelding van dit proces wilt downloaden?",
+          "FORM": "Weet u zeker dat u dit formulier wilt downloaden?",
+          "UI": "Weet u zeker dat u deze UI wilt downloaden?",
+          "DATA": "Weet u zeker dat u dit gegevensobject wilt downloaden?",
+          "DECISION_TABLE": "Weet u zeker dat u deze beslissingstabel wilt downloaden?",
+          "CONNECTOR": "Weet u zeker dat u deze connector wilt downloaden?",
+          "FILE": "Weet u zeker dat u dit bestand wilt downloaden?"
+        }
+      }
+    },
+    "MENU": {
+      "EDIT": "Bewerken",
+      "DELETE": "Verwijderen",
+      "RELEASE": "Vrijgeven",
+      "COLLABORATORS": "Samenwerkers",
+      "SEE_RELEASES": "Releases weergeven",
+      "DOWNLOAD": "Downloaden"
+    },
+    "SETTINGS": {
+      "HEADER": "App-instellingen"
+    },
+    "HOME": {
+      "NEW_MENU": {
+        "LABEL": "Nieuw",
+        "CREATE_PROJECT_TITLE": "Project maken",
+        "OVERRIDE_PROJECT_TITLE": "Er bestaat al een project met die naam.",
+        "EDIT_PROJECT_TITLE": "Project bewerken",
+        "PROJECT_CREATED": "Project gemaakt",
+        "PROJECT_UPLOADED": "Project geüpload",
+        "PROJECT_UPDATED": "Project opgeslagen",
+        "PROJECT_RELEASED": "Project vrijgegeven",
+        "PROJECT_DELETED": "Project verwijderd",
+        "MENU_ITEMS": {
+          "CREATE_PROJECT": "Project maken",
+          "UPLOAD_PROJECT": "Project uploaden",
+          "CREATE_MODEL": "Contentmodel"
+        }
+      },
+      "DIALOGS": {
+        "PROJECT_NAME": "Projectnaam:",
+        "PROJECT_DESC": "Projectbeschrijving:"
+      },
+      "NAVIGATION": {
+        "PROJECTS": {
+          "LABEL": "Projecten",
+          "TOOLTIP": "Gepubliceerde projecten"
+        },
+        "RELEASES": {
+          "LABEL": "Releases",
+          "TOOLTIP": "Releases"
+        },
+        "PROCESSES": {
+          "LABEL": "Processen",
+          "TOOLTIP": "Gepubliceerde processen"
+        },
+        "FAVORITES": {
+          "LABEL": "Favorieten",
+          "TOOLTIP": "Favorieten"
+        }
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Naam",
+        "COLUMN_VERSION": "Versie",
+        "COLUMN_CREATED": "Gemaakt",
+        "COLUMN_CREATED_BY": "Gemaakt door",
+        "COLUMN_OPTIONS": "Opties",
+        "NO_ITEMS": "Maak of importeer een project om het in de lijst weer te geven.",
+        "NO_FAV_PROCESSES": "Stel een proces in als favoriet om het hier beschikbaar te stellen.",
+        "NO_FAV_PROJECTS": "Stel een project in als favoriet om het hier beschikbaar te stellen.",
+        "RELEASE_ID": "Release-ID",
+        "PROJECT_NAME": "Projectnaam"
+      },
+      "ERROR": {
+        "LOAD_PROJECTS": "Er is een probleem opgetreden bij het laden van de projecten. Vernieuw de pagina.",
+        "LOAD_RELEASES": "Er is een probleem opgetreden bij het laden van de releases. Vernieuw de pagina",
+        "LOAD_PROCESSES": "Er is een probleem opgetreden bij het laden van de processen. Vernieuw de pagina"
+      }
+    },
+    "PROJECT": {
+      "BACK_TO": "Terug naar projecten",
+      "NAME": "Projecteditor",
+      "UPLOAD_FILE": "Bestand uploaden",
+      "DOWNLOAD_PROJECT": "Project downloaden",
+      "PROJECT_VALID": "Project bevat geen validatiefouten",
+      "EXPORT_SUCCESS": "Project geëxporteerd",
+      "SETTINGS": {
+        "PROJECT_SETTINGS": "Instellingen projecteditor",
+        "CONNECTORS_TAB_LABEL": "Connectors"
+      },
+      "IMPORT": "Importeren",
+      "CREATE_NEW": "Nieuw maken",
+      "SEARCH": "Zoeken",
+      "UPLOAD_FILE_SUCCESS": "Bestand geüpload",
+      "NO_CONTENT": "<leeg>",
+      "NO_SELECTION": "Maak een nieuw model of bewerk een bestaand model met de zijbalk",
+      "NEW_MENU": {
+        "LABEL": "Nieuw",
+        "CREATE": "Maken",
+        "IMPORT": "Importeren",
+        "CREATE_PROCESS_TITLE": "Proces maken",
+        "MENU_ITEMS": {
+          "CREATE_PROCESS": "Proces",
+          "CREATE_CONNECTOR": "Connector",
+          "CREATE_FORM": "Formulier",
+          "CREATE_UI": "UI",
+          "CREATE_DATA": "Gegevensobject",
+          "CREATE_DECISION_TABLE": "Beslissingstabel",
+          "CREATE_FILE": "Bestand"
+        }
+      },
+      "TREE": {
+        "PROCESSES": "Processen",
+        "FORMS": "Formulieren",
+        "CONNECTORS": "Connectors",
+        "DATA": "Gegevens",
+        "DECISION_TABLES": "Beslissingstabellen",
+        "UIS": "UI",
+        "FILES": "Bestanden"
+      },
+      "PROCESS_DIALOG": {
+        "TITLE_CREATE": "Proces maken",
+        "TITLE_UPDATE": "Proces bijwerken",
+        "PROCESS_NAME": "Procesnaam:",
+        "PROCESS_DESC": "Procesdocumentatie:",
+        "PROCESS_CREATED": "Proces gemaakt",
+        "PROCESS_DELETED": "Proces verwijderd",
+        "PROCESS_UPDATED": "Proces opgeslagen"
+      },
+      "CONNECTOR_DIALOG": {
+        "TITLE_CREATE": "Connector maken",
+        "TITLE_UPDATE": "Connector bijwerken",
+        "CONNECTOR_NAME": "Connectornaam:",
+        "CONNECTOR_DESC": "Connectorbeschrijving:",
+        "CONNECTOR_CREATED": "Connector gemaakt",
+        "CONNECTOR_DELETED": "Connector verwijderd",
+        "CONNECTOR_UPDATED": "Connector opgeslagen"
+      },
+      "FORM_DIALOG": {
+        "TITLE_CREATE": "Formulier maken",
+        "TITLE_UPDATE": "Formulier bijwerken",
+        "FORM_NAME": "Formuliernaam:",
+        "FORM_DESC": "Formulierbeschrijving:",
+        "FORM_CREATED": "Formulier gemaakt",
+        "FORM_DELETED": "Formulier verwijderd",
+        "FORM_UPDATED": "Formulier opgeslagen"
+      },
+      "UI_DIALOG": {
+        "TITLE_CREATE": "UI maken",
+        "TITLE_UPDATE": "UI bijwerken",
+        "UI_NAME": "UI-naam:",
+        "UI_DESC": "UI-beschrijving:",
+        "UI_CREATED": "UI gemaakt",
+        "UI_DELETED": "UI verwijderd",
+        "UI_UPDATED": "UI opgeslagen"
+      },
+      "DATA_DIALOG": {
+        "TITLE_CREATE": "Gegevensobject maken",
+        "TITLE_UPDATE": "Gegevensobject bijwerken",
+        "DATA_NAME": "Gegevensobjectnaam:",
+        "DATA_DESC": "Gegevensobjectbeschrijving:",
+        "DATA_CREATED": "Gegevensobject gemaakt",
+        "DATA_DELETED": "Gegevensobject verwijderd",
+        "DATA_UPDATED": "Gegevensobject opgeslagen"
+      },
+      "DECISION_TABLE_DIALOG": {
+        "TITLE_CREATE": "Beslissingstabel maken",
+        "TITLE_UPDATE": "Beslissingstabel bijwerken",
+        "DECISION_TABLE_NAME": "Beslissingstabelnaam:",
+        "DECISION_TABLE_DESC": "Beslissingstabelbeschrijving:",
+        "DECISION_TABLE_CREATED": "Beslissingstabel gemaakt",
+        "DECISION_TABLE_DELETED": "Beslissingstabel verwijderd",
+        "DECISION_TABLE_UPDATED": "Beslissingstabel opgeslagen"
+      },
+      "FILE_DIALOG": {
+        "TITLE_CREATE": "Bestand maken",
+        "TITLE_UPDATE": "Bestand bijwerken",
+        "FILE_NAME": "Bestandsnaam:",
+        "FILE_DESC": "Bestandsbeschrijving:",
+        "FILE_CREATED": "Bestand gemaakt",
+        "FILE_DELETED": "Bestand verwijderd",
+        "FILE_UPDATED": "Bestand opgeslagen"
+      },
+      "ACTION_DIALOG": {
+        "ACTION_DETAILS": "Actiegegevens",
+        "ACTION_NAME": "Actienaam",
+        "ACTION_DESC": "Actiebeschrijving",
+        "ADD_ACTION": "Actie toevoegen",
+        "DEL_ACTION": "Actie verwijderen"
+      },
+      "EVENT_DIALOG": {
+        "EVENT_DETAILS": "Gebeurtenisgegevens",
+        "EVENT_NAME": "Gebeurtenisnaam",
+        "EVENT_DESC": "Gebeurtenisbeschrijving",
+        "ADD_EVENT": "Gebeurtenis toevoegen",
+        "DEL_EVENT": "Gebeurtenis verwijderen"
+      },
+      "ERROR": {
+        "UPLOAD_FILE": "Er is een probleem opgetreden bij het uploaden van het bestand. Probeer het opnieuw te uploaden.",
+        "DELETE_PROJECT": "Er is een probleem opgetreden bij het verwijderen van het project. Probeer het opnieuw te verwijderen.",
+        "CHANGE_FAVORITE": "Er is een probleem opgetreden bij het instellen van dat project als favoriet. Probeer het opnieuw in te stellen als favoriet.",
+        "DELETE_PROCESS": "Er is een probleem opgetreden bij het verwijderen van het proces. Probeer het opnieuw te verwijderen.",
+        "LOAD_MODELS": "Er is een probleem opgetreden bij laden van de modellen. Vernieuw de pagina.",
+        "RELEASE_PROJECT": "Er is een probleem opgetreden bij het vrijgeven van het project. Probeer het opnieuw vrij te geven.",
+        "CREATE_PROCESS": {
+          "DUPLICATION": "Er bestaat al een proces met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het maken van het proces. Probeer het opnieuw te maken."
+        },
+        "UPDATE_PROCESS": {
+          "DUPLICATION": "Er bestaat al een proces met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het opslaan van het proces. Probeer het opnieuw op te slaan.",
+          "EMPTY_NAME": "Een naam is vereist"
+        },
+        "CREATE_CONNECTOR": {
+          "DUPLICATION": "Er bestaat al een connector met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het maken van de connector. Probeer de connector opnieuw te maken."
+        },
+        "UPDATE_CONNECTOR": {
+          "DUPLICATION": "Er bestaat al een connector met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het opslaan van de connector. Probeer de connector opnieuw op te slaan."
+        },
+        "CREATE_FORM": {
+          "DUPLICATION": "Er bestaat al een formulier met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het maken van het formulier. Probeer het opnieuw te maken."
+        },
+        "UPDATE_FORM": {
+          "DUPLICATION": "Er bestaat al een formulier met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het opslaan van het formulier. Probeer het opnieuw op te slaan."
+        },
+        "CREATE_UI": {
+          "DUPLICATION": "Er bestaat al een UI met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het maken van de UI. Probeer de UI opnieuw te maken."
+        },
+        "UPDATE_UI": {
+          "DUPLICATION": "Er bestaat al een UI met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het opslaan van de UI. Probeer de UI opnieuw op te slaan."
+        },
+        "CREATE_DECISION_TABLE": {
+          "DUPLICATION": "Er bestaat al een beslissingstabel met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het maken van de beslissingstabel. Probeer de beslissingstabel opnieuw te maken."
+        },
+        "UPDATE_DECISION_TABLE": {
+          "DUPLICATION": "Er bestaat al een beslissingstabel met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het opslaan van de beslissingstabel. Probeer de beslissingstabel opnieuw op te slaan."
+        },
+        "CREATE_DATA": {
+          "DUPLICATION": "Er bestaat al een gegevensobject met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het maken van het gegevensobject. Probeer het opnieuw te maken."
+        },
+        "UPDATE_DATA": {
+          "DUPLICATION": "Er bestaat al een gegevensobject met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het opslaan van het gegevensobject. Probeer het opnieuw op te slaan."
+        },
+        "CREATE_PROJECT": {
+          "DUPLICATION": "Er bestaat al een project met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het maken van het project. Probeer het opnieuw te maken."
+        },
+        "UPDATE_PROJECT": {
+          "DUPLICATION": "Er bestaat al een project met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het opslaan van het project. Probeer het opnieuw op te slaan."
+        },
+        "UPLOAD_PROJECT": {
+          "DUPLICATION": "Er bestaat al een project met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het uploaden van het project. Probeer het opnieuw te uploaden."
+        },
+        "GET_PROJECT": "Er is een probleem opgetreden bij het laden van het project. Vernieuw de pagina.",
+        "EXPORT_PROJECT": "Er is een onbekende fout opgetreden bij het exporteren van het project",
+        "CREATE_FILE": {
+          "DUPLICATION": "Er bestaat al een bestand met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het maken van het bestand. Probeer het opnieuw te maken."
+        },
+        "UPDATE_FILE": {
+          "DUPLICATION": "Er bestaat al een bestand met die naam",
+          "GENERAL": "Er is een probleem opgetreden bij het opslaan van het bestand. Probeer het opnieuw op te slaan."
+        }
+      }
+    },
+    "PROCESS_EDITOR": {
+      "TABS": {
+        "PROCESS_EDITOR": "Proceseditor",
+        "JSON_EDITOR": "XML-editor",
+        "EXTENSIONS_EDITOR": "Uitbreidingeneditor"
+      },
+      "PRIORITIES": {
+        "LOW": "0",
+        "MEDIUM": "1",
+        "HIGH": "2"
+      },
+      "ACTIONS": {
+        "ZOOM_IN": "Inzoomen",
+        "ZOOM_OUT": "Uitzoomen",
+        "UNDO": "Ongedaan maken",
+        "REDO": "Opnieuw",
+        "LASSO_TOOL": "Lasso"
+      },
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "Eigenschappen",
+        "ID": "ID",
+        "NAME": "Naam",
+        "VERSION": "Versie",
+        "VARIABLES": "Variabelen",
+        "DOCUMENTATION": "Documentatie",
+        "EXECUTABLE": "Uitvoerbaar",
+        "IMPLEMENTATION": "Implementatie",
+        "INPUTS": "Invoer",
+        "OUTPUTS": "Uitvoer",
+        "ACTION": "Actie",
+        "INPUT": "Invoer",
+        "INPUT_MAPPING": "Invoertoewijzing",
+        "OUTPUT": "Uitvoer",
+        "OUTPUT_MAPPING": "Uitvoertoewijzing",
+        "ASSIGNEE": "Toegewezen persoon",
+        "CANDIDATE_GROUPS": "Kandidaatgroepen",
+        "CANDIDATE_USERS": "Kandidaatgebruikers",
+        "DUE_DATE": "Vervaldatum",
+        "PRIORITY": "Prioriteit",
+        "ACTIVITY_NAME": "Activiteitsnaam",
+        "PROCESS_VARIABLE": "Procesvariabele",
+        "PROCESS_VARIABLES": "Procesvariabelen",
+        "EXPRESSION": "Voorwaarde-expressie",
+        "FORM_SELECTOR": "Formuliernaam",
+        "DEFAULT_SEQUENCE_FLOW": "Standaardsequentiestroom"
+      },
+      "PALETTE": {
+        "HAND_TOOL": "Hand",
+        "CONNECT_TOOL": "Globale verbinding",
+        "SPACE_TOOL": "Ruimte maken/verwijderen",
+        "LASSO_TOOL": "Lasso",
+        "START_EVENT": "Begingebeurtenis maken",
+        "END_EVENT": "Eindgebeurtenis maken",
+        "INTERMEDIATE_THROW_EVENT": "Tussenliggende activerende gebeurtenis maken",
+        "START_EVENT_SIGNAL": "Signaal begingebeurtenis maken",
+        "INTERMEDIATE_CATCH_EVENT_SIGNAL": "Signaal tussenliggende ontvangstgebeurtenis maken",
+        "INTERMEDIATE_THROW_EVENT_SIGNAL": "Signaal tussenliggende activerende gebeurtenis maken",
+        "GATEWAY": "Gateway maken",
+        "USER_TASK": "Gebruikerstaak maken",
+        "SERVICE_TASK": "Servicetaak maken",
+        "CALL_ACTIVITY": "Aanroepactiviteit  maken",
+        "CONTAINER": "Toegewezen services",
+        "SUB_PROCESS": "Subproces maken",
+        "PARTICIPANT": "Groep maken"
+      },
+      "UPLOAD_SUCCESS": "Proces geüpload",
+      "PROCESS_SAVED": "Proces opgeslagen",
+      "PROCESS_UPDATED": "Proces bijgewerkt",
+      "SELECT_PROCESS_VARIABLE": "Procesvariabele selecteren",
+      "ERRORS": {
+        "NO_PROCESS_PROPERTIES": "Geen proceseigenschappen.",
+        "NO_CONNECTOR_ACTIONS": "Een actie maken voor gebruik door de connector",
+        "LOAD_DIAGRAM": "Er is een probleem opgetreden bij het laden van het diagram. Vernieuw de pagina.",
+        "SAVE_DIAGRAM": "Er is een probleem opgetreden bij opslaan van het diagram. Probeer het opnieuw op te slaan.",
+        "DOWNLOAD_DIAGRAM": "Er is een probleem opgetreden bij het downloaden van het diagram. Probeer het opnieuw te downloaden.",
+        "DOWNLOAD_SVG_IMAGE": "Er is een probleem opgetreden bij het downloaden van de diagramafbeelding. Probeer de afbeelding opnieuw te downloaden.",
+        "CHANGE_FAVORITE": "Er is een probleem opgetreden bij het wijzigen van de favorietstatus van het proces"
+      },
+      "PROPERTIES": {
+        "TABS": {
+          "VIEWER": "Eigenschappenviewer",
+          "JSON_EDITOR": "JSON-editor"
+        },
+        "TABLE": {
+          "COLUMN_NAME": "Naam",
+          "COLUMN_TYPE": "Type",
+          "COLUMN_REQUIRED": "Vereist",
+          "COLUMN_VALUE": "Waarde",
+          "NO_PROPERTIES": "Maak of selecteer een procesvariabele om de gegevens ervan te bewerken"
+        },
+        "ERRORS": {
+          "EMPTY_NAME": "Een naam is vereist"
+        }
+      }
+    },
+    "CONNECTOR_EDITOR": {
+      "UPLOAD_SUCCESS": "Connector geüpload",
+      "NAME": "Connectoreditor",
+      "TABS": {
+        "CONNECTOR_EDITOR": "Connectoreditor",
+        "JSON_EDITOR": "JSON-editor"
+      },
+      "EDITOR": {
+        "CONNECTOR_DETAILS": "Connectorgegevens",
+        "INPUTS": "Invoerparameters",
+        "OUTPUTS": "Uitvoerparameters",
+        "ACTIONS": "Acties",
+        "ADD_NEW_PARAMETER": "Nieuwe parameter toevoegen",
+        "NAME": "Naam",
+        "DESCRIPTION": "Beschrijving",
+        "TYPE": "Type",
+        "BUTTONS": {
+          "SAVE": "Opslaan"
+        },
+        "REQUIRED": "Vereist"
+      },
+      "ERRORS": {
+        "GET_CONNECTOR": "Er is een probleem opgetreden bij het laden van de connector. Vernieuw de pagina."
+      }
+    },
+    "FORM_EDITOR": {
+      "UPLOAD_SUCCESS": "Formulier geüpload",
+      "TABS": {
+        "FORM_EDITOR": "Formuliereditor",
+        "JSON_EDITOR": "JSON-editor"
+      },
+      "FORM_VARIABLES": "Formuliervariabelen",
+      "VISIBLITY_CONDITIONS": {
+        "DEPENDS": "Afhankelijk van",
+        "OPERATOR": "Als dit het volgende is",
+        "VALUE": "Waarde",
+        "NEXT_CONDITION": "Voorwaardeoperator",
+        "NO_PROPERTY": "Maak of selecteer een zichtbaarheidsvoorwaarde om de gegevens ervan te bewerken",
+        "FIELDS": "Velden",
+        "VARIABLE": "Variabele",
+        "SELECT_FIELD": "Selecteer een veld",
+        "SELECT_VARIABLE": "Selecteer een variabele",
+        "FORM_FIELD": "Formulierveld",
+        "NEXT_OPERATOR": "Voorwaardeoperator"
+      },
+      "FIELD_PROPERTIES": {
+        "DESCRIPTION": "Beschrijving",
+        "NAME": "Naam",
+        "COLUMNS": "Aantal kolommen",
+        "REQUIRED": "Vereist",
+        "MULTIPLE_UPLOAD": "Meerdere bestandsbijlagen toestaan",
+        "LINK_FILE": "Alleen koppeling naar bestanden maken, deze niet uploaden",
+        "FILE_SOURCE": "Bestandsbron",
+        "ALL_SOURCES": "Alle bestandsbronnen",
+        "LOCAL_FILE": "Lokaal bestand",
+        "PLACEHOLDER": "Tijdelijke aanduiding",
+        "COLSPAN": "Kolombereik",
+        "LABEL": "Label",
+        "ID": "ID",
+        "OVERRIDE_ID": "ID overschrijven",
+        "VALUE": "Weer te geven tekst",
+        "DISPLAY_TEXT": "Weer te geven tekst",
+        "MIN_LENGTH": "Min. lengte",
+        "MAX_LENGTH": "Max. lengte",
+        "MIN_VALUE": "Min. waarde",
+        "MAX_VALUE": "Max. waarde",
+        "REGEX": "Regex-patroon",
+        "INPUT_MASK": "Invoermasker",
+        "INPUT_MASK_PLACEHOLDER": "Tijdelijke aanduiding invoermasker",
+        "INPUT_MASK_RESERVED": "Omgekeerd",
+        "MIN_DATE": "Min. datum",
+        "MAX_DATE": "Max. datum",
+        "DATE_DISPLAY_FORMAT": "Datumnotatie",
+        "DATE_FORMAT_PREVIEW": "Datum van vandaag",
+        "CURRENCY": "Valuta",
+        "DECIMALS": "Decimalen toestaan",
+        "HYPERLINK_URL": "Hyperlink-URL",
+        "ALLOW_COLLAPSE": "Samenvouwen toestaan",
+        "COLLAPSE_BY_DEFAULT": "Standaard samenvouwen",
+        "REST_SERVICE": {
+          "DIALOG_TITLE": "URL-test",
+          "REST_URL": "REST-URL",
+          "TEST_BUTTON": "Test",
+          "RESPONSE_PATH": "Pad naar matrix in JSON-antwoord",
+          "ID_PROP": "ID-eigenschap",
+          "LABEL_PROP": "Labeleigenschap"
+        },
+        "KEY_VALUE_PROPERTY": {
+          "ADD": "Toevoegen",
+          "ADD_OPTION": "Een nieuwe optie toevoegen",
+          "LABEL": "Label",
+          "ID": "ID",
+          "INFO": "Dit is de 'lege waarde'-optie. Het selecteren hiervan tijdens runtime is gelijk aan 'geen' of 'leeg'. Dit kan alleen worden geselecteerd als het veld geen verplicht veld is.",
+          "CLEAR_SELECTION": "Standaard verwijderen",
+          "OPTIONS": "Opties"
+        },
+        "ADVANCED_RADIO_BUTTON": {
+          "MANUAL": "Handmatig",
+          "REST_SERVICE": "REST-service"
+        }
+      },
+      "EDITOR": {
+        "ADD_NEW_TAB": "Tabblad toevoegen",
+        "DELETE_TAB": "Tabblad verwijderen",
+        "ADD_NEW_OUTCOME": "Resultaat toevoegen",
+        "DELETE_OUTCOME": "Resultaat verwijderen",
+        "EDIT": "Bewerken",
+        "DELETE": "Verwijderen",
+        "MOVE": "Verplaatsen"
+      },
+      "ERRORS": {
+        "GET_FORM": "Er is een probleem opgetreden bij het laden van het formulier. Vernieuw de pagina.",
+        "DELETE_FORM": "Er is een probleem opgetreden bij het verwijderen van het formulier. Probeer het opnieuw te verwijderen."
+      }
+    },
+    "UI_EDITOR": {
+      "UPLOAD_SUCCESS": "UI geüpload",
+      "TABS": {
+        "UI_EDITOR": "UI-editor",
+        "JSON_EDITOR": "JSON-editor"
+      },
+      "EDITOR": {
+        "DETAILS": "UI-gegevens",
+        "DESCRIPTION": "Beschrijving",
+        "NAME": "Naam",
+        "TEMPLATE": "Sjabloon"
+      },
+      "ERRORS": {
+        "GET_UI": "Er is een probleem opgetreden bij het laden van de UI. Vernieuw de pagina.",
+        "DELETE_UI": "Er is een probleem opgetreden bij het verwijderen van de UI. Probeer de UI opnieuw te verwijderen."
+      }
+    },
+    "DATA_EDITOR": {
+      "UPLOAD_SUCCESS": "Gegevensobject geüpload",
+      "TABS": {
+        "DATA_EDITOR": "Gegevensobjecteditor",
+        "JSON_EDITOR": "JSON-editor"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DATA": "Er is een probleem opgetreden bij het laden van het gegevensobject. Vernieuw de pagina.",
+        "DELETE_DATA": "Er is een probleem opgetreden bij het verwijderen van het gegevensobject. Probeer het opnieuw te verwijderen."
+      }
+    },
+    "DECISION_TABLE_EDITOR": {
+      "ELEMENT_PROPERTIES": {
+        "PROPERTIES": "Eigenschappen",
+        "NAME": "Naam",
+        "SIMULATOR": "Simulator"
+      },
+      "UPLOAD_SUCCESS": "Beslissingstabel geüpload",
+      "TABS": {
+        "DECISION_TABLE_EDITOR": "Beslissingstabeleditor",
+        "JSON_EDITOR": "JSON-editor"
+      },
+      "EDITOR": {},
+      "ERRORS": {
+        "GET_DECISION_TABLE": "Er is een probleem opgetreden bij het laden van de beslissingstabel. Vernieuw de pagina.",
+        "DELETE_DECISION_TABLE": "Er is een probleem opgetreden bij het verwijderen van de beslissingstabel. Probeer de tabel opnieuw te verwijderen.",
+        "INVALID_DECISION_TABLE_NAME": "Ongeldige beslissingstabelnaam"
+      }
+    },
+    "FILE_EDITOR": {
+      "UPLOAD_SUCCESS": "Bestand geüpload",
+      "TABS": {
+        "FILE_EDITOR": "Bestandseditor",
+        "JSON_EDITOR": "Teksteditor"
+      },
+      "EDITOR": {
+        "DETAILS": "Bestandsgegevens",
+        "DESCRIPTION": "Beschrijving",
+        "NAME": "Naam",
+        "TEMPLATE": "Sjabloon"
+      },
+      "ERRORS": {
+        "GET_FILE": "Er is een probleem opgetreden bij het laden van het bestand. Vernieuw de pagina.",
+        "DELETE_FILE": "Er is een probleem opgetreden bij het verwijderen van het bestand. Probeer het opnieuw te verwijderen."
+      }
+    },
+    "GENERAL": {
+      "ERRORS": {
+        "CHANGE_USER": "Gebruiker wijzigen",
+        "NOT_VALID_JSON": "Ongeldig JSON-object",
+        "NOT_VALID_SCHEMA": "Het JSON-object komt niet overeen met het schema"
+      }
+    }
+  },
+  "ABOUT": {
+    "TITLE": "Plug-ins",
+    "TABLE_HEADERS": {
+      "ID": "ID",
+      "NAME": "Naam",
+      "VERSION": "Versie",
+      "VENDOR": "Leverancier",
+      "LICENSE": "Licentie",
+      "RUNTIME": "Runtime",
+      "DESCRIPTION": "Beschrijving"
+    }
+  }
+}

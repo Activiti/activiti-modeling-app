@@ -1,0 +1,62 @@
+{
+  "SDK": {
+    "SNACKBAR": {
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Eingefügte Werte müssen diesem Muster entsprechen"
+    },
+    "ALL": "Alle",
+    "VARIABLES_EDITOR": {
+      "ERRORS": {
+        "EMPTY_NAME": "Ein Name ist erforderlich",
+        "INVALID_NAME": "Unzulässiger Variablenname",
+        "VARIABLE_NAME_TOOLTIP": "Der Name muss mit einem Buchstaben beginnen und darf nur alphanumerische Zeichen und Unterstriche enthalten",
+        "NAME_ALREADY_EXISTS": "Variablennamen müssen eindeutig sein"
+      },
+      "TABS": {
+        "VIEWER": "Eigenschaften-Viewer",
+        "JSON_EDITOR": "JSON-Editor"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Name",
+        "COLUMN_TYPE": "Typ",
+        "COLUMN_REQUIRED": "Erforderlich",
+        "COLUMN_VALUE": "Wert",
+        "NO_PROPERTIES": "Wählen Sie eine Variable aus oder erstellen Sie eine, um ihre Eigenschaften anzusehen"
+      }
+    },
+    "VARIABLE_MAPPING": {
+      "PARAMETER": "Parameter",
+      "VALUE": "Wert",
+      "PROCESS_VARIABLE": "Prozessvariable",
+      "SWITCH_VAR_VAL": "Zwischen Variable und Wert wechseln",
+      "NO_PROCESS_PROPERTIES": "Keine Prozesseigenschaften",
+      "NO_PAYLOAD": "Mitteilung hat keine Nutzlast. Fügen Sie im Ereignis zum Auslösen der Mitteilung eine Nutzlast hinzu.",
+      "CLEAR_ASSIGNMENT": "Zuweisung löschen",
+      "NONE": "Keine"
+    },
+    "MESSAGES_EDITOR": {
+      "TITLE": "Prozessmitteilungen",
+      "ERRORS": {
+        "EMPTY_NAME": "Ein Name ist erforderlich",
+        "NAME_ALREADY_EXISTS": "Mitteilungen müssen eindeutige Namen haben"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Name",
+        "COLUMN_ID": "ID",
+        "NO_MESSAGES": "Wählen Sie eine Nachricht aus oder erstellen Sie eine, um ihre Eigenschaften anzuzeigen"
+      }
+    },
+    "MAPPING_DIALOG": {
+      "TITLE": "Variablenzuweisung bearbeiten",
+      "SELECTOR_TITLE": "Wählen Sie den zu bearbeitenden Typ der Variablenzuweisung aus",
+      "INPUT_MAPPING": "Eingabe-Zuordnungen",
+      "OUTPUT_MAPPING": "Ausgabezuweisung",
+      "PROCESS_VARIABLE": "Prozessvariable",
+      "INPUT_PARAMETER": "Eingabeparameter",
+      "OUTPUT_PARAMETER": "Ausgabeparameter",
+      "VALUE_MAPPING": "Wert",
+      "EXPRESSION_MAPPING": "Ausdruck",
+      "NONE": "Keine",
+      "TYPE": "Typ"
+    }
+  }
+}

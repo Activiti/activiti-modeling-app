@@ -1,0 +1,62 @@
+{
+  "SDK": {
+    "SNACKBAR": {
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "يجب أن تتبع القيم الملصقة هذا النمط"
+    },
+    "ALL": "الكل",
+    "VARIABLES_EDITOR": {
+      "ERRORS": {
+        "EMPTY_NAME": "مطلوب اسم",
+        "INVALID_NAME": "اسم متغير غير صحيح",
+        "VARIABLE_NAME_TOOLTIP": "يجب أن يبدأ الاسم بحرف على أن يتضمن أحرفًا أبجدية رقمية وشرطات سفلية فقط",
+        "NAME_ALREADY_EXISTS": "يجب أن تكون أسماء المتغيرات فريدة"
+      },
+      "TABS": {
+        "VIEWER": "عارض الخصائص",
+        "JSON_EDITOR": "محرر JSON"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "الاسم",
+        "COLUMN_TYPE": "النوع",
+        "COLUMN_REQUIRED": "مطلوب",
+        "COLUMN_VALUE": "القيمة",
+        "NO_PROPERTIES": "حدد متغيرًا أو أنشئه لعرض خصائصه"
+      }
+    },
+    "VARIABLE_MAPPING": {
+      "PARAMETER": "المعامل",
+      "VALUE": "القيمة",
+      "PROCESS_VARIABLE": "متغير العملية",
+      "SWITCH_VAR_VAL": "تبديل المتغير/القيمة",
+      "NO_PROCESS_PROPERTIES": "لا خصائص عملية",
+      "NO_PAYLOAD": "الرسالة لا تملك حمولة. أضف حمولة في حدث طرح الرسالة.",
+      "CLEAR_ASSIGNMENT": "مسح المهمة",
+      "NONE": "بلا"
+    },
+    "MESSAGES_EDITOR": {
+      "TITLE": "رسائل العملية",
+      "ERRORS": {
+        "EMPTY_NAME": "مطلوب اسم",
+        "NAME_ALREADY_EXISTS": "يجب أن تكون أسماء الرسائل فريدة"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "الاسم",
+        "COLUMN_ID": "المعرف",
+        "NO_MESSAGES": "حدد رسالة أو أنشئها لعرض خصائصها"
+      }
+    },
+    "MAPPING_DIALOG": {
+      "TITLE": "تحرير تخطيط المتغير",
+      "SELECTOR_TITLE": "حدد نوع تخطيط المتغير لتحريره",
+      "INPUT_MAPPING": "تخطيط المدخلات",
+      "OUTPUT_MAPPING": "تخطيط المخرجات",
+      "PROCESS_VARIABLE": "متغير العملية",
+      "INPUT_PARAMETER": "معامل الإدخال",
+      "OUTPUT_PARAMETER": "معامل الإخراج",
+      "VALUE_MAPPING": "القيمة",
+      "EXPRESSION_MAPPING": "التعبير",
+      "NONE": "بلا",
+      "TYPE": "النوع"
+    }
+  }
+}

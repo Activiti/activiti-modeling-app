@@ -1,0 +1,23 @@
+{
+  "CONNECTOR_EDITOR": {
+    "DOWNLOAD_CONNECTOR": "Download forbindelse",
+    "VALIDATE_CONNECTOR": "Validér forbindelse",
+    "SAVE_CONNECTOR": "Gem forbindelse",
+    "CONNECTOR_VALID": "Forbindelse er gyldig",
+    "CONNECTOR_INVALID": "Forbindelse indeholder valideringsfejl.",
+    "UPLOAD_SUCCESS": "Forbindelse blev uploadet",
+    "TABS": {
+      "CONNECTOR_EDITOR": "Forbindelseseditor",
+      "JSON_EDITOR": "JSON-editor"
+    },
+    "ERRORS": {
+      "GET_CONNECTOR": "Der opstod et problem under indlæsning af forbindelsen. Prøv at uploade den igen."
+    },
+    "DIALOG": {
+      "TITLE": "Indstillinger for forbindelseseditor",
+      "SHOW": "Vis forbindelser med skabeloner på vestre sidepanel",
+      "CANCEL": "Annuller",
+      "APPLY": "Anvend"
+    }
+  }
+}

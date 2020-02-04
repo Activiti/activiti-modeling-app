@@ -1,0 +1,23 @@
+{
+  "CONNECTOR_EDITOR": {
+    "DOWNLOAD_CONNECTOR": "Scarica connettore",
+    "VALIDATE_CONNECTOR": "Convalida connettore",
+    "SAVE_CONNECTOR": "Salva connettore",
+    "CONNECTOR_VALID": "Il connettore è valido",
+    "CONNECTOR_INVALID": "Il connettore contiene uno o più errori di convalida.",
+    "UPLOAD_SUCCESS": "Connettore caricato",
+    "TABS": {
+      "CONNECTOR_EDITOR": "Editor connettore",
+      "JSON_EDITOR": "Editor JSON"
+    },
+    "ERRORS": {
+      "GET_CONNECTOR": "Si è verificato un problema durante il caricamento del connettore. Riprovare."
+    },
+    "DIALOG": {
+      "TITLE": "Impostazioni editor connettore",
+      "SHOW": "Mostra i connettori con i modelli sulla barra laterale sinistra",
+      "CANCEL": "Annulla",
+      "APPLY": "Applica"
+    }
+  }
+}

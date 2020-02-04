@@ -1,0 +1,62 @@
+{
+  "SDK": {
+    "SNACKBAR": {
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Vkládané hodnoty musí vyhovovat tomuto vzoru"
+    },
+    "ALL": "Vše",
+    "VARIABLES_EDITOR": {
+      "ERRORS": {
+        "EMPTY_NAME": "Název je povinný.",
+        "INVALID_NAME": "Neplatný název proměnné",
+        "VARIABLE_NAME_TOOLTIP": "Název musí začínat písmenem a může obsahovat pouze alfanumerické znaky a podtržítka",
+        "NAME_ALREADY_EXISTS": "Názvy proměnných musí být jedinečné"
+      },
+      "TABS": {
+        "VIEWER": "Prohlížeč vlastností",
+        "JSON_EDITOR": "Editor JSON"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Název",
+        "COLUMN_TYPE": "Typ",
+        "COLUMN_REQUIRED": "Požadováno",
+        "COLUMN_VALUE": "Hodnota",
+        "NO_PROPERTIES": "Vyberte nebo vytvořte proměnnou, jejíž vlastnosti chcete zobrazit"
+      }
+    },
+    "VARIABLE_MAPPING": {
+      "PARAMETER": "Parametr",
+      "VALUE": "Hodnota",
+      "PROCESS_VARIABLE": "Proměnná procesu",
+      "SWITCH_VAR_VAL": "Přepnout proměnnou/hodnotu",
+      "NO_PROCESS_PROPERTIES": "Žádné vlastnosti procesu",
+      "NO_PAYLOAD": "Zpráva nemá žádnou datovou část. Přidejte datovou část do události aktivace zprávy.",
+      "CLEAR_ASSIGNMENT": "Vymazat přiřazení",
+      "NONE": "Žádné"
+    },
+    "MESSAGES_EDITOR": {
+      "TITLE": "Zpracování zpráv",
+      "ERRORS": {
+        "EMPTY_NAME": "Název je povinný.",
+        "NAME_ALREADY_EXISTS": "Názvy zpráv musí být jedinečné"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Název",
+        "COLUMN_ID": "ID",
+        "NO_MESSAGES": "Vyberte nebo vytvořte zprávu, jejíž vlastnosti chcete zobrazit"
+      }
+    },
+    "MAPPING_DIALOG": {
+      "TITLE": "Upravit mapování proměnných",
+      "SELECTOR_TITLE": "Vyberte typ mapování proměnných, který chcete upravit",
+      "INPUT_MAPPING": "Mapování vstupů",
+      "OUTPUT_MAPPING": "Mapování výstupů",
+      "PROCESS_VARIABLE": "Proměnná procesu",
+      "INPUT_PARAMETER": "Vstupní parametr",
+      "OUTPUT_PARAMETER": "Výstupní parametr",
+      "VALUE_MAPPING": "Hodnota",
+      "EXPRESSION_MAPPING": "Výraz",
+      "NONE": "Žádné",
+      "TYPE": "Typ"
+    }
+  }
+}

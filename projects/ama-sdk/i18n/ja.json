@@ -1,20 +1,62 @@
 {
-    "SDK": {
-        "VARIABLES_EDITOR": {
-            "ERRORS": {
-                "EMPTY_NAME": "名前フィールドは、入力必須です。"
-            },
-            "TABS": {
-                "VIEWER": "プロパティビューア",
-                "JSON_EDITOR": "JSONエディタ"
-            },
-            "TABLE": {
-                "COLUMN_NAME": "名前",
-                "COLUMN_TYPE": "種別",
-                "COLUMN_REQUIRED": "必須",
-                "COLUMN_VALUE": "値",
-                "NO_PROPERTIES": "プロパティが選択されていません。"
-            }
-        }
+  "SDK": {
+    "SNACKBAR": {
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "貼り付ける値は、このパターンに従っている必要があります"
+    },
+    "ALL": "すべて",
+    "VARIABLES_EDITOR": {
+      "ERRORS": {
+        "EMPTY_NAME": "名前を指定してください",
+        "INVALID_NAME": "変数名が無効です",
+        "VARIABLE_NAME_TOOLTIP": "名前に使用できる文字は英数字とアンダースコアのみで、先頭の文字は英字にする必要があります",
+        "NAME_ALREADY_EXISTS": "他と重複しない変数名を指定してください"
+      },
+      "TABS": {
+        "VIEWER": "プロパティビューア",
+        "JSON_EDITOR": "JSON エディタ"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "名前",
+        "COLUMN_TYPE": "種類",
+        "COLUMN_REQUIRED": "必須",
+        "COLUMN_VALUE": "値",
+        "NO_PROPERTIES": "プロパティを表示する変数を選択するか作成してください"
+      }
+    },
+    "VARIABLE_MAPPING": {
+      "PARAMETER": "パラメータ",
+      "VALUE": "値",
+      "PROCESS_VARIABLE": "プロセス変数",
+      "SWITCH_VAR_VAL": "変数/値の切り換え",
+      "NO_PROCESS_PROPERTIES": "プロセスのプロパティがありません",
+      "NO_PAYLOAD": "メッセージにペイロードがありません。メッセージのスローイベントにペイロードを追加してください。",
+      "CLEAR_ASSIGNMENT": "割り当ての解除",
+      "NONE": "なし"
+    },
+    "MESSAGES_EDITOR": {
+      "TITLE": "プロセスのメッセージ",
+      "ERRORS": {
+        "EMPTY_NAME": "名前を指定してください",
+        "NAME_ALREADY_EXISTS": "他と重複しないメッセージ名を指定してください"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "名前",
+        "COLUMN_ID": "ID",
+        "NO_MESSAGES": "プロパティを表示するメッセージを選択するか作成してください"
+      }
+    },
+    "MAPPING_DIALOG": {
+      "TITLE": "変数マッピングの編集",
+      "SELECTOR_TITLE": "編集する変数マッピングタイプを選択してください",
+      "INPUT_MAPPING": "入力マッピング",
+      "OUTPUT_MAPPING": "出力マッピング",
+      "PROCESS_VARIABLE": "プロセス変数",
+      "INPUT_PARAMETER": "入力パラメータ",
+      "OUTPUT_PARAMETER": "出力パラメータ",
+      "VALUE_MAPPING": "値",
+      "EXPRESSION_MAPPING": "式",
+      "NONE": "なし",
+      "TYPE": "種類"
     }
+  }
 }

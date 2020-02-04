@@ -1,0 +1,23 @@
+{
+  "CONNECTOR_EDITOR": {
+    "DOWNLOAD_CONNECTOR": "Connector herunterladen",
+    "VALIDATE_CONNECTOR": "Connector validieren",
+    "SAVE_CONNECTOR": "Connector speichern",
+    "CONNECTOR_VALID": "Connector ist zulässig",
+    "CONNECTOR_INVALID": "Connector enthält Validierungsfehler.",
+    "UPLOAD_SUCCESS": "Connector hochgeladen",
+    "TABS": {
+      "CONNECTOR_EDITOR": "Connector-Editor",
+      "JSON_EDITOR": "JSON-Editor"
+    },
+    "ERRORS": {
+      "GET_CONNECTOR": "Beim Hochladen des Connectors ist ein Fehler aufgetreten. Versuchen Sie noch einmal, ihn hochzuladen."
+    },
+    "DIALOG": {
+      "TITLE": "Connector-Editor-Einstellungen",
+      "SHOW": "Connector mit Vorlagen in der linken Seitenleiste anzeigen",
+      "CANCEL": "Abbrechen",
+      "APPLY": "Anwenden"
+    }
+  }
+}
