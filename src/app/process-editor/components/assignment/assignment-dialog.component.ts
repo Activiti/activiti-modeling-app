@@ -291,12 +291,12 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
                     candidateUsers:
                         this.settings.candidateUsers &&
                         this.settings.candidateUsers.length > 0
-                            ? this.settings.candidateUsers[0]
+                            ? this.settings.candidateUsers.toString()
                             : '${}',
                     candidateGroups:
                         this.settings.candidateGroups &&
                         this.settings.candidateGroups.length > 0
-                            ? this.settings.candidateGroups[0]
+                            ? this.settings.candidateGroups.toString()
                             : '${}'
                 }, null, '\t');
             } else {
