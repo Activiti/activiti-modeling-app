@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Ui, UiContent } from '../../../api/types';
+import { Ui, UiContent, MinimalModelSummary } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { formatUuid, UI_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
@@ -28,6 +28,10 @@ export class UiApiVariation<M extends Ui, C extends UiContent> implements ModelA
 
     public serialize(content: C): string {
         return JSON.stringify(content);
+    }
+
+    createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {
+        return model as Partial<M>;
     }
 
     public createInitialContent(model: M): C {

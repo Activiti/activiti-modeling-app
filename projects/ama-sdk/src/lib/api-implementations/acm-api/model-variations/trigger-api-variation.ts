@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Trigger, TriggerContent } from '../../../api/types';
+import { Trigger, TriggerContent, MinimalModelSummary } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { formatUuid, TRIGGER_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
@@ -28,6 +28,10 @@ export class TriggerApiVariation<M extends Trigger, C extends TriggerContent> im
 
     public serialize(content: C): string {
         return JSON.stringify(content);
+    }
+
+    createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {
+        return model as Partial<M>;
     }
 
     public createInitialContent(model: M): C {

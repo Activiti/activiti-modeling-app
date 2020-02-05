@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { DataContent, Data } from '../../../api/types';
+import { DataContent, Data, MinimalModelSummary } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { formatUuid, DATA_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
@@ -28,6 +28,10 @@ export class DataApiVariation<M extends Data, C extends DataContent> implements 
 
     public serialize(content: C): string {
         return JSON.stringify(content);
+    }
+
+    createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {
+        return model as Partial<M>;
     }
 
     public createInitialContent(model: M): C {

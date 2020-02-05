@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Connector, ConnectorContent } from '../../../api/types';
+import { Connector, ConnectorContent, MinimalModelSummary } from '../../../api/types';
 import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
 import { CONNECTOR_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
@@ -28,6 +28,10 @@ export class ConnectorApiVariation<M extends Connector, C extends ConnectorConte
 
     public serialize(content: C): string {
         return JSON.stringify(content);
+    }
+
+    createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {
+        return model as Partial<M>;
     }
 
     public createInitialContent(model: M): C {

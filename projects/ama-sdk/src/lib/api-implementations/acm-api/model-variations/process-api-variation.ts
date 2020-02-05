@@ -18,9 +18,10 @@
 import { Injectable } from '@angular/core';
 import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
-import { Process, ProcessContent } from '../../../api/types';
+import { Process, ProcessContent, MinimalModelSummary } from '../../../api/types';
 import { getEmptyDiagram } from '../../../helpers/utils/empty-diagram';
 import { PROCESS_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
+const shortid = require('shortid');
 
 @Injectable()
 export class ProcessApiVariation<M extends Process, C extends ProcessContent> implements ModelApiVariation<M, C> {
@@ -31,8 +32,24 @@ export class ProcessApiVariation<M extends Process, C extends ProcessContent> im
         return content;
     }
 
+    public createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {
+        const processId = 'Process_' + shortid();
+
+        return {
+            ...model,
+            extensions: {
+                [processId]: {
+                    constants: {},
+                    mappings: {},
+                    properties: {},
+                    assignments: {}
+                }
+            }
+        } as Partial<M>;
+    }
+
     public createInitialContent(model: M): C {
-        return <C>getEmptyDiagram(model);
+        return <C>getEmptyDiagram(model, Object.keys(model.extensions)[0]);
     }
 
     public createSummaryPatch(model: Partial<M>, modelContent: C) {

@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { ActivitiFileContent, ActivitiFile } from '../../../api/types';
+import { ActivitiFileContent, ActivitiFile, MinimalModelSummary } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { FILE_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
@@ -28,6 +28,10 @@ export class FileApiVariation<M extends ActivitiFile, C extends ActivitiFileCont
 
     public serialize(content: C): string {
         return content;
+    }
+
+    createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {
+        return model as Partial<M>;
     }
 
     public createInitialContent(model: M): C {

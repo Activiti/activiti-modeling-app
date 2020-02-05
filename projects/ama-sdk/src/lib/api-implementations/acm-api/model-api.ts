@@ -36,6 +36,7 @@ export interface ModelApiVariation<M extends MinimalModelSummary, C> {
     readonly contentType: string;
     readonly retrieveModelAfterUpdate: boolean;
     serialize(content: Partial<C>): string;
+    createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M>;
     createInitialContent(model: M): C;
     createSummaryPatch(model: Partial<M>, content: Partial<C>): MinimalModelSummary;
     patchModel(model: Partial<M>): M;
@@ -65,7 +66,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
         return this.requestApiHelper
             .post<ModelResponse<T>>(
                 `/modeling-service/v1/projects/${containerId}/models`,
-                { bodyParam: { ...model, type: this.modelVariation.contentType }})
+                { bodyParam: { ...this.modelVariation.createInitialMetadata(model), type: this.modelVariation.contentType }})
             .pipe(
                 map(response => response.entry),
                 concatMap(createdEntity => {

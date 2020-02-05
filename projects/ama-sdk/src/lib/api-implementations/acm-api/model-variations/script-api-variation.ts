@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { ActivitiScriptContent, ActivitiScript } from '../../../api/types';
+import { ActivitiScriptContent, ActivitiScript, MinimalModelSummary } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { SCRIPT_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
@@ -29,6 +29,10 @@ export class ScriptApiVariation<M extends ActivitiScript, C extends ActivitiScri
 
     public serialize(content: C): string {
         return content;
+    }
+
+    createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {
+        return model as Partial<M>;
     }
 
     public createInitialContent(model: M): C {

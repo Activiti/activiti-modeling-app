@@ -19,7 +19,7 @@ import { Injectable } from '@angular/core';
 import { ContentType } from '../content-types';
 import { formatUuid, FORM_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { ModelApiVariation } from '../model-api';
-import { Form, FormContent } from '../../../api/types';
+import { Form, FormContent, MinimalModelSummary } from '../../../api/types';
 import { createEmptyForm } from '../form-definition';
 
 @Injectable()
@@ -29,6 +29,10 @@ export class FormApiVariation<M extends Form, C extends FormContent> implements 
 
     public serialize(content: C): string {
         return JSON.stringify(content);
+    }
+
+    createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {
+        return model as Partial<M>;
     }
 
     public createInitialContent(model: M): C {

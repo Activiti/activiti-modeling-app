@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { DecisionTableContent, DecisionTable } from '../../../api/types';
+import { DecisionTableContent, DecisionTable, MinimalModelSummary } from '../../../api/types';
 import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
 import { DECISION_TABLE_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
@@ -29,6 +29,10 @@ export class DecisionTableApiVariation<M extends DecisionTable, C extends Decisi
 
     public serialize(content: C): string {
         return content;
+    }
+
+    createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {
+        return model as Partial<M>;
     }
 
     public createInitialContent(model: M): C {
