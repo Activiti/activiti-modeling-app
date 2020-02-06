@@ -54,17 +54,6 @@ describe('ProcessModelerServiceImplementation', () => {
         TestBed.resetTestingModule();
     });
 
-    it('should test updateElementId method', () => {
-        const modeler = bpmnFactoryMock.modeler;
-        const modeling = modeler.get('modeling');
-        spyOn(modeling, 'updateProperties');
-
-        const mockEvent = { context: { shape: { id: 'ServiceTask_1ny0i0c', type: 'bpmn:UserTask' } } };
-
-        modeler.get('eventBus').fire('commandStack.shape.create.postExecute', mockEvent);
-        expect(modeling.updateProperties).toHaveBeenCalledWith(mockEvent.context.shape, { id: 'Task_1ny0i0c' });
-    });
-
     describe('loadXml', () => {
 
         function expectEventHandlersCalledTimes(times: number) {

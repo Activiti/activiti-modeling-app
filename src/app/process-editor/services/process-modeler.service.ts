@@ -144,46 +144,11 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
         document.removeEventListener('keypress', this.limitModelerEditableElementLength, false);
     }
 
-    private updateElementId(event: any): void {
-        const id = event.context.shape.id;
-        const type = event.context.shape.type;
-
-        if (type === 'label') {
-            return;
-        }
-
-        const ids = {
-            'SubProcess': [ 'SubProcess' ],
-            'CallActivity': [ 'CallActivity' ],
-            'Task': [ 'ServiceTask', 'UserTask' ],
-            'Gateway': [ 'ExclusiveGateway', 'InclusiveGateway', 'ParallelGateway' ],
-            'Event': [ 'StartEvent', 'EndEvent', 'IntermediateThrowEvent', 'IntermediateCatchEvent' ]
-        };
-
-        const oldType = type.substring(type.indexOf(':') + 1);
-        const idsValues = Object.values(ids);
-        const idsKeys = Object.keys(ids);
-        let newType = oldType;
-
-        for (let i = 0; i < idsValues.length; i++) {
-            if (idsValues[i].includes(oldType)) {
-                newType = idsKeys[i];
-                break;
-            }
-        }
-
-        const newID = newType + '_' + id.substring(id.indexOf('_') + 1);
-
-        const modeling: Bpmn.Modeling = this.modeler.get('modeling');
-        modeling.updateProperties(event.context.shape, { id: newID });
-    }
-
     private listenToEventHandlers() {
         this.modeler.on('element.click', this.modelerInitOptions.clickHandler);
         this.modeler.on('element.changed', this.modelerInitOptions.changeHandler);
         this.modeler.on('shape.remove', this.modelerInitOptions.removeHandler);
         this.modeler.on('selection.changed', this.modelerInitOptions.selectHandler);
-        this.modeler.on('commandStack.shape.create.postExecute', this.updateElementId.bind(this));
     }
 
     private muteEventHandlers() {
@@ -191,6 +156,5 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
         this.modeler.off('element.changed', this.modelerInitOptions.changeHandler);
         this.modeler.off('shape.remove', this.modelerInitOptions.removeHandler);
         this.modeler.off('selection.changed', this.modelerInitOptions.selectHandler);
-        this.modeler.off('commandStack.shape.create.postExecute', this.updateElementId.bind(this));
     }
 }
