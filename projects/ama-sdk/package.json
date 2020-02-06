@@ -13,10 +13,10 @@
         "rxjs": "6.4.0",
         "@types/lodash": "4.14.112",
         "ajv": "6.9.1",
-        "@alfresco/adf-core": "3.7.0-beta10",
-        "@alfresco/js-api": "3.7.0-beta10",
-        "@alfresco/adf-process-services-cloud": "3.7.0-beta10",
-        "@alfresco/adf-content-services": "3.7.0-beta10"
+        "@alfresco/adf-core": "3.7.0",
+        "@alfresco/js-api": "3.7.0",
+        "@alfresco/adf-process-services-cloud": "3.7.0",
+        "@alfresco/adf-content-services": "3.7.0"
     },
     "main": "src/public_api.ts"
 }
