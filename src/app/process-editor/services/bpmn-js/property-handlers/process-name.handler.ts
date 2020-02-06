@@ -34,6 +34,7 @@ const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) 
 
     if (element.type === BpmnElement.Participant) {
         element.businessObject.processRef.name = value;
+        element.businessObject.name = value;
         modeling.updateProperties(element, {});
     } else {
         modeling.updateProperties(element, {

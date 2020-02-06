@@ -99,6 +99,7 @@ import { ProcessTaskAssignmentEffects } from './store/process-task-assignment.ef
 import { CardViewTaskAssignmentItemComponent } from './services/cardview-properties/task-assignment-item/task-assignment-item.component';
 import { TaskAssignmentService } from './services/cardview-properties/task-assignment-item/task-assignment.service';
 import { transformJsonSchema } from './services/transformJsonSchema';
+import { CardViewProcessNameItemComponent } from './services/cardview-properties/process-name-item/process-name-item.component';
 
 @NgModule({
     imports: [
@@ -148,7 +149,8 @@ import { transformJsonSchema } from './services/transformJsonSchema';
         CardViewMultiInstanceItemComponent,
         CardViewDueDateItemComponent,
         AssignmentDialogComponent,
-        CardViewTaskAssignmentItemComponent
+        CardViewTaskAssignmentItemComponent,
+        CardViewProcessNameItemComponent
     ],
     entryComponents: [
         CardViewProcessVariablesItemComponent,
@@ -169,7 +171,8 @@ import { transformJsonSchema } from './services/transformJsonSchema';
         CardViewMultiInstanceItemComponent,
         CardViewMessagePayloadItemComponent,
         CardViewDueDateItemComponent,
-        AssignmentDialogComponent
+        AssignmentDialogComponent,
+        CardViewProcessNameItemComponent
     ],
     exports: [ProcessEditorRoutingModule],
     providers: [
@@ -204,6 +207,7 @@ import { transformJsonSchema } from './services/transformJsonSchema';
         providePropertyHandler(BpmnProperty.multiInstanceType, CardViewMultiInstanceItemComponent),
         providePropertyHandler(BpmnProperty.messagePayload, CardViewMessagePayloadItemComponent),
         providePropertyHandler(BpmnProperty.dueDate, CardViewDueDateItemComponent),
+        providePropertyHandler(BpmnProperty.processName, CardViewProcessNameItemComponent),
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider(),

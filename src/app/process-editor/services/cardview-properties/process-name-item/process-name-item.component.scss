@@ -1,0 +1,12 @@
+@mixin ama-process-name-item($theme) {
+
+    ama-process-name {
+        .process-name-block {
+            position: relative;
+
+            .mat-form-field {
+                width: 100%;
+            }
+        }
+    }
+}

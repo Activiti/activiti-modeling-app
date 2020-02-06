@@ -18,6 +18,7 @@
 import { element, by } from 'protractor';
 import { GenericPage } from './common/generic.page';
 import { BrowserVisibility, BrowserActions } from '@alfresco/adf-testing';
+import { SEND_NO_VARIABLES_OPTION, SEND_ALL_VARIABLES_OPTION } from '../util/constants';
 
 export class TaskPropertiesCardPage extends GenericPage {
 
@@ -30,6 +31,8 @@ export class TaskPropertiesCardPage extends GenericPage {
     readonly dueDateCurrentDateHour = element(by.css('.mat-datetimepicker-clock-cell.mat-datetimepicker-clock-cell-selected.ng-star-inserted'));
     /* cspell: disable-next-line */
     readonly dueDateCurrentDateMinute = element(by.css('.mat-datetimepicker-clock-minutes .mat-datetimepicker-clock-cell:first-child'));
+    /* cspell: disable-next-line */
+    readonly mappingTypeSelector = element(by.css(`[data-automation-id="mapping-type"] .mat-select`));
 
     async setProperty(propertyName: string, value: string): Promise<void> {
         await BrowserActions.click(element(by.css(`[data-automation-id="card-textitem-edit-icon-${propertyName}"]`)));
@@ -37,7 +40,7 @@ export class TaskPropertiesCardPage extends GenericPage {
         await BrowserActions.click(element(by.css(`[data-automation-id="card-textitem-update-${propertyName}"]`)));
     }
 
-    async getProperty(propertyName: string): Promise<string>  {
+    async getProperty(propertyName: string): Promise<string> {
         const property = element(by.css(`[data-automation-id="card-textitem-value-${propertyName}"]`));
         return await property.getText();
     }
@@ -56,7 +59,7 @@ export class TaskPropertiesCardPage extends GenericPage {
         await BrowserActions.click(this.dueDateCurrentDateMinute);
     }
 
-    async getAssignment(): Promise<string>  {
+    async getAssignment(): Promise<string> {
         /* cspell: disable-next-line */
         const property = element(by.css(`[data-automation-id="card-arrayitem-chip-1 User"] span`));
         return await property.getText();
@@ -87,6 +90,21 @@ export class TaskPropertiesCardPage extends GenericPage {
         await BrowserActions.click(option);
     }
 
+    async resetMapping(): Promise<void> {
+        await BrowserVisibility.waitUntilElementIsVisible(this.mappingTypeSelector);
+        await BrowserActions.click(this.mappingTypeSelector);
+        const noVariablesOption = element(by.cssContainingText('.mat-option-text', SEND_NO_VARIABLES_OPTION));
+        await BrowserActions.click(this.mappingTypeSelector);
+        await BrowserVisibility.waitUntilElementIsVisible(this.mappingTypeSelector);
+        await BrowserActions.click(noVariablesOption);
+        await BrowserVisibility.waitUntilElementIsVisible(this.mappingTypeSelector);
+        await BrowserActions.click(this.mappingTypeSelector);
+        const allVariablesOption = element(by.cssContainingText('.mat-option-text', SEND_ALL_VARIABLES_OPTION));
+        await BrowserActions.click(this.mappingTypeSelector);
+        await BrowserVisibility.waitUntilElementIsVisible(this.mappingTypeSelector);
+        await BrowserActions.click(allVariablesOption);
+    }
+
     async setPriorityValue(value: string): Promise<void> {
         await BrowserActions.click(element(by.css(`[data-automation-id="header-priority"] .mat-select`)));
 
@@ -94,13 +112,13 @@ export class TaskPropertiesCardPage extends GenericPage {
         await BrowserActions.click(option);
     }
 
-    async getSelectedFormName(): Promise<string>  {
+    async getSelectedFormName(): Promise<string> {
         const selectedFormNameElement = element(by.css(`mat-select[data-automation-id="form-selector"] div span span`));
         await BrowserVisibility.waitUntilElementIsVisible(selectedFormNameElement);
         return selectedFormNameElement.getText();
     }
 
-    async getSelectedPriority(): Promise<string>  {
+    async getSelectedPriority(): Promise<string> {
         const selectedFormNameElement = element(by.css(`[data-automation-id="header-priority"] .mat-select div span span`));
         await BrowserVisibility.waitUntilElementIsVisible(selectedFormNameElement);
         return await selectedFormNameElement.getText();

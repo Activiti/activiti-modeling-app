@@ -163,9 +163,6 @@ export const elementsProperties = {
         BpmnProperty.multiInstanceType
     ],
     [BpmnElement.Participant]: (element: Bpmn.DiagramElement) => [
-        BpmnProperty.id,
-        BpmnProperty.name,
-        BpmnProperty.documentation,
         ...(hasProcessInside(element) ? [
             BpmnProperty.processId,
             BpmnProperty.processName,
@@ -173,6 +170,8 @@ export const elementsProperties = {
             BpmnCompositeProperty.properties,
             BpmnCompositeProperty.messages
         ] : []),
+        BpmnProperty.id,
+        BpmnProperty.documentation
     ],
     [BpmnElement.Task]: [
         BpmnProperty.id,

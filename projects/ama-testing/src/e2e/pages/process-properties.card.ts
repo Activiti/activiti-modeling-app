@@ -24,7 +24,7 @@ export class ProcessPropertiesCard extends GenericPage {
 
     readonly editorProperties = element(by.css(`[data-automation-id="process-editor-properties"]`));
     readonly editModelNameField = element(by.css(`[data-automation-id="card-textitem-edit-icon-modelName"]`));
-    readonly editName = element(by.css(`[data-automation-id="card-textitem-edit-icon-processName"]`));
+    readonly processNameField = element(by.css(`[data-automation-id="process-name"]`));
     readonly editDocumentation = element(by.css(`[data-automation-id="card-textitem-edit-icon-documentation"]`));
     readonly id = element(by.css(`[data-automation-id="card-textitem-value-id"]`));
     readonly processId = element(by.css(`[data-automation-id="card-textitem-value-processId"]`));
@@ -34,7 +34,6 @@ export class ProcessPropertiesCard extends GenericPage {
     readonly modelName = element(by.css(`[data-automation-id="card-textitem-editinput-modelName"]`));
     /* cspell: disable-next-line */
     readonly documentation = element(by.css(`[data-automation-id="card-textitem-edittextarea-documentation"]`));
-    readonly updateName = element(by.css(`[data-automation-id="card-textitem-update-processName"]`));
     readonly updateModelName = element(by.css(`[data-automation-id="card-textitem-update-modelName"]`));
     readonly updateDocumentation = element(by.css(`[data-automation-id="card-textitem-update-documentation"]`));
     readonly editVariablesIcon = element(by.cssContainingText('[data-automation-id="edit-process-variables"] mat-icon', 'layers'));
@@ -55,7 +54,7 @@ export class ProcessPropertiesCard extends GenericPage {
     readonly processVariableSelector = element(by.css(`[data-automation-id="process-variable-selector"]`));
     readonly newErrorButton = element(by.css(`[data-automation-id="new-error-button"]`));
     readonly newSignalButton = element(by.css(`[data-automation-id="new-signal-button"]`));
-    readonly processNameError = element(by.css(`[data-automation-id="card-textitem-error-processName"]>ul>li`));
+    readonly processNameError = element(by.css(`[data-automation-id="process-name-error"]`));
     readonly scopeSelector = element(by.css(`[data-automation-class="select-box"]`));
     readonly scriptSelector = element(by.css(`[data-automation-id="script-selector"]`));
 
@@ -79,9 +78,7 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async editProcessName(newName: string) {
-        await BrowserActions.click(this.editName);
-        await BrowserActions.clearSendKeys(this.name, newName);
-        await BrowserActions.click(this.updateName);
+        await BrowserActions.clearSendKeys(this.processNameField, newName);
     }
 
     async editModelName(newName: string) {
@@ -91,7 +88,7 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async getProcessName() {
-        return this.nameValue.getText();
+        return this.processNameField.getAttribute('value');
     }
 
     async editProcessDocumentation(newDocumentation: string) {

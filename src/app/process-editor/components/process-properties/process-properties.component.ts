@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { CardViewItem, CardViewUpdateService, UpdateNotification, CardItemTypeService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { selectSelectedElement } from '../../store/process-editor.selectors';
@@ -35,7 +35,8 @@ import { SelectedProcessElement } from '../../store/process-editor.state';
     selector: 'ama-process-properties',
     templateUrl: './process-properties.component.html',
     styleUrls: ['./process-properties.component.scss'],
-    providers: [CardViewUpdateService, CardItemTypeService]
+    providers: [CardViewUpdateService, CardItemTypeService],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProcessPropertiesComponent implements OnInit, OnDestroy, AfterViewInit {
     /** @deprecated: bpmnjs-properties */

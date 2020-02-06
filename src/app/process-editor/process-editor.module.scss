@@ -12,6 +12,7 @@
 @import "./services/cardview-properties/default-sequence-flow/default-sequence-flow-item.component";
 @import "./services/cardview-properties/process-variable-item/process-variable-item.component";
 @import "./services/cardview-properties/process-messages-item/process-messages-item.component";
+@import "./services/cardview-properties/process-name-item/process-name-item.component";
 @import "./components/process-modeler/palette/palette.component.scss";
 @import "./components/process-modeler/messages/messages-dialog.component.scss";
 @import "./services/cardview-properties/called-element-item/called-element-item.component";
@@ -30,6 +31,7 @@
     @include ama-default-sequence-flow-item($theme);
     @include ama-process-editor($theme);
     @include ama-process-modeler($theme);
+    @include ama-process-name-item($theme);
     @include ama-process-properties-panel($theme);
     @include ama-process-modeler-bpmnjs($theme);
     @include ama-process-variable-item($theme);
