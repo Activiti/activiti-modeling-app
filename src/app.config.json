@@ -2,8 +2,7 @@
     "$schema": "../node_modules/@alfresco/adf-core/app.config.schema.json",
     "authType": "OAUTH",
     "showNotificationHistory": true,
-    "providers": "ALL",
-    "ecmHost": "http://localhost:4200",
+    "providers": "BPMN",
     "bpmHost": "http://localhost:4200",
     "identityHost": "${IDENTITY_HOST}",
     "oauth2": {
