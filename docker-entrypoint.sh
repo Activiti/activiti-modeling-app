@@ -5,6 +5,13 @@ if [ -n "${APP_CONFIG_AUTH_TYPE}" ];then
     -i ./app.config.json
 fi
 
+if [ -n "${APP_CONFIG_IDENTITY_HOST}" ]; then
+  replace="\/"
+  encodedIdentity=${APP_CONFIG_IDENTITY_HOST//\//$replace}
+  sed -e "s/\"identityHost\": \".*\"/\"identityHost\": \"$encodedIdentity\"/g" \
+    -i ./app.config.json
+fi
+
 if [ -n "${APP_CONFIG_OAUTH2_HOST}" ];then
   replace="\/"
   encoded=${APP_CONFIG_OAUTH2_HOST//\//$replace}
@@ -69,5 +76,6 @@ then
   sed s%href=\"/\"%href=\""${BASE_PATH}"\"%g \
     -i ./index.html
 fi
+
 
 nginx -g "daemon off;"
