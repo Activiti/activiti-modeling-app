@@ -26,10 +26,10 @@ export class ACMProcess extends ACMCrud {
     type = 'PROCESS';
     contentType = 'text/plain';
     contentExtension = 'xml';
+    entityUUID = `Process_${shortid()}`;
 
     /* cSpell:disable */
     getDefaultContent(entityName: string, entityId: string) {
-        const entityUuid = `Process_${shortid()}`;
         return `<?xml version="1.0" encoding="UTF-8"?>
         <bpmn2:definitions
             xmlns:activiti="http://activiti.org/bpmn"
@@ -42,18 +42,29 @@ export class ACMProcess extends ACMCrud {
             id="model-${entityId}"
             name="${entityName}"
             targetNamespace="http://bpmn.io/schema/bpmn">
-          <bpmn2:process id="${entityUuid}" isExecutable="true" name="${entityName}">
+          <bpmn2:process id="${this.entityUUID}" isExecutable="true" name="${entityName}">
             <bpmn2:documentation>Lorem ipsum dolor sit amet...</bpmn2:documentation>
             <bpmn2:startEvent id="Event_1"/>
           </bpmn2:process>
           <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-            <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="${entityUuid}">
+            <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="${this.entityUUID}">
               <bpmndi:BPMNShape id="_BPMNShape_Event_2" bpmnElement="Event_1">
                 <dc:Bounds height="36.0" width="36.0" x="412.0" y="240.0"/>
               </bpmndi:BPMNShape>
             </bpmndi:BPMNPlane>
           </bpmndi:BPMNDiagram>
         </bpmn2:definitions>`;
+    }
+
+    getDefaultExtensionsContent() {
+      return {
+        [this.entityUUID]: {
+            constants: {},
+            mappings: {},
+            properties: {},
+            assignments: {}
+        }
+      };
     }
     /* cSpell:enable */
 }

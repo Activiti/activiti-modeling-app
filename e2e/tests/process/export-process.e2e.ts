@@ -68,7 +68,7 @@ describe('Export process', () => {
         process = await backend.process.create(project.entry.id);
     });
 
-    xit('[C286624] Export process', async () => {
+    it('[C286624] Export process', async () => {
         processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
         await processContentPage.navigateTo();
         await processContentPage.downloadProcess();
@@ -77,13 +77,16 @@ describe('Export process', () => {
         await expect(await UtilFile.fileExists(downloadedProcess)).toBe(true);
 
         const fileContent = xml2js(await UtilFile.readFile(downloadedProcess));
-        const bpmnProcessDetails = fileContent[`bpmn2:definitions`][`bpmn2:process`][`_attributes`];
-        const uiProcessId = await new ProcessPropertiesCard().getProcessId();
-        const expectedProcessId = `process-${process.entry.id}`;
+        const bpmnModelDetails = fileContent[`bpmn2:definitions`];
+        const expectedModelId = `model-${process.entry.id}`;
+        await expect(bpmnModelDetails._attributes[`id`]).toEqual(expectedModelId);
+        await expect(bpmnModelDetails._attributes[`name`]).toEqual(process.entry.name);
 
-        await expect(uiProcessId).toEqual(expectedProcessId);
-        await expect(bpmnProcessDetails.id).toEqual(expectedProcessId);
-        await expect(bpmnProcessDetails.name).toEqual(process.entry.name);
-        await expect(bpmnProcessDetails.isExecutable).toEqual(`true`);
+        const bpmnProcessDetails = fileContent[`bpmn2:definitions`][`bpmn2:process`];
+        const uiProcessId = await new ProcessPropertiesCard().getProcessId();
+
+        await expect(bpmnProcessDetails._attributes[`id`]).toEqual(uiProcessId);
+        await expect(bpmnProcessDetails._attributes[`name`]).toEqual(process.entry.name);
+        await expect(bpmnProcessDetails._attributes[`isExecutable`]).toEqual(`true`);
     });
 });

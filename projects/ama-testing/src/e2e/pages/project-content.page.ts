@@ -40,9 +40,11 @@ export class ProjectContentPage extends GenericPage {
         super(testConfig);
     }
 
-    async navigateTo(): Promise<void> {
+    async navigateTo(skipRefresh?: boolean): Promise<void> {
         await BrowserActions.getUrl(`${browser.baseUrl}/#/projects/${this.projectId}`);
-        await browser.refresh();
+        if (!skipRefresh) {
+            await browser.refresh();
+        }
     }
 
     async isModelInList(modelType: string, modelName: string): Promise<boolean> {

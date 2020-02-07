@@ -31,7 +31,7 @@ export class ACMBackend implements Backend {
 
     public api: AlfrescoApi;
     public project: ACMProject;
-    public process: ModelCrud;
+    public process: ACMProcess;
     public connector: ModelCrud;
     public form: ModelCrud;
     public decisionTable: ModelCrud;

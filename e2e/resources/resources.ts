@@ -17,8 +17,9 @@
 
 export const Resources = {
     SIMPLE_PROJECT: {
-        file_location: `/resources/project/qa-uploaded-project.zip`,
-        project_name: `qa-uploaded-project`
+        file_location: `project/uploaded-project.zip`,
+        project_name: `uploaded-project`,
+        process_name: `process-with-user-task`
     },
 
     SIMPLE_PROCESS: {

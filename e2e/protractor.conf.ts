@@ -147,6 +147,7 @@ exports.config = {
 
     params: {
         downloadDir: config.paths.download,
+        resourcesDir: resolve(__dirname, 'resources'),
         config: { log: true },
         namePrefix: E2E_PREFIX
     },

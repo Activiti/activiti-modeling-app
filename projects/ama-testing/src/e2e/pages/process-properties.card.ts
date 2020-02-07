@@ -41,7 +41,8 @@ export class ProcessPropertiesCard extends GenericPage {
     readonly connectorSelector = element(by.css(`[data-automation-id="connector-selector"]`));
     readonly connectorActionSelector = element(by.css(`[data-automation-id="connector-feature-selector"]`));
     readonly formSelector = element(by.css(`[data-automation-id="form-selector"]`));
-    readonly activitySelector = element(by.css(`.called-element-block .mat-select`));
+    readonly activitySelector = element(by.css(`[data-automation-id='activity-name']`));
+    readonly processSelector = element(by.css(`[data-automation-id='process-name']`));
     readonly decisionTableSelector = element(by.css(`[data-automation-id="decision-table-selector"]`));
     readonly inputMappingHeader = element(by.cssContainingText(`[data-automation-id="input-mapping-header"]`, `Input mapping:`));
     readonly outputMappingHeader = element(by.cssContainingText(`[data-automation-id="output-mapping-header"]`, `Output mapping:`));
@@ -64,6 +65,7 @@ export class ProcessPropertiesCard extends GenericPage {
     }
 
     async getProcessId() {
+        await BrowserVisibility.waitUntilElementIsVisible(this.processId);
         return this.processId.getText();
     }
 
@@ -178,6 +180,12 @@ export class ProcessPropertiesCard extends GenericPage {
         await BrowserActions.click(this.activitySelector);
         const activityOption = element(by.cssContainingText('.mat-option-text', activityName));
         await BrowserActions.click(activityOption);
+    }
+
+    async setProcess(processId: string) {
+        await BrowserActions.click(this.processSelector);
+        const processOption = element(by.cssContainingText('.mat-option-text', processId));
+        await BrowserActions.click(processOption);
     }
 
     async openProcessVariablesList(connectorId: string, table?: string) {

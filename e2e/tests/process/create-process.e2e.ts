@@ -35,6 +35,8 @@ import {
     UtilFile,
     ValidationDialog } from 'ama-testing/e2e';
 import { browser } from 'protractor';
+import { Resources } from '../../resources/resources';
+import { StringUtil } from '@alfresco/adf-testing';
 
 const path = require('path');
 
@@ -59,17 +61,27 @@ describe('Create process', async () => {
     let project: NodeEntry;
     let process: NodeEntry;
     let projectContentPage: ProjectContentPage;
-    let processContentPage: ProcessContentPage;
+    const processContentPage = new ProcessContentPage(testConfig);
 
     const downloadDir = browser.params.downloadDir;
+    const resourcesDir = browser.params.resourcesDir;
+
+    const projectDetails = {
+        filePath: Resources.SIMPLE_PROJECT.file_location,
+        name: Resources.SIMPLE_PROJECT.project_name,
+        processName: Resources.SIMPLE_PROJECT.process_name
+    };
 
     beforeAll(async () => {
         backend = await getBackend(testConfig).setUp();
-        project = await backend.project.create();
+        const absoluteFilePath = path.join(resourcesDir, projectDetails.filePath);
+        project = await backend.project.import(absoluteFilePath, `${projectDetails.name}-${StringUtil.generateRandomString(5)}`);
 
         const loginPage = LoginPage.get();
         await loginPage.navigateTo();
         await loginPage.login(adminUser.user, adminUser.password);
+        projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
+        await projectContentPage.navigateTo();
     });
 
     afterAll(async () => {
@@ -78,13 +90,7 @@ describe('Create process', async () => {
         await authenticatedPage.logout();
     });
 
-    beforeEach(async () => {
-        projectContentPage = new ProjectContentPage(testConfig, project.entry.id);
-    });
-
     it('[C289346] Create process using New dropdown', async () => {
-        await projectContentPage.navigateTo();
-
         await sidebarActionMenu.createProcess();
         /* cspell: disable-next-line */
         const processUI = await createEntityDialog.setEntityDetails('ama-qa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
@@ -94,7 +100,6 @@ describe('Create process', async () => {
     });
 
     it('[C291962] Create process using + button', async () => {
-        await projectContentPage.navigateTo();
         await projectContentPage.createProcess();
         /* cspell: disable-next-line */
         const processUI = await createEntityDialog.setEntityDetails('ama-qa' + UtilRandom.generateString(5, '1234567890abcdfghjklmnpqrstvwxyz'));
@@ -103,35 +108,37 @@ describe('Create process', async () => {
         await expect(await toolbar.isItemDisplayed(processUI.name)).toBe(true, 'Process name should be displayed in the breadcrumb');
     });
 
-    xit('[C289324] Create process with CallActivity', async () => {
-        process = await backend.process.create(project.entry.id);
+    it('[C289324] Create process with CallActivity', async () => {
         const callActivityProcess = await backend.process.create(project.entry.id);
 
-        processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
-        await processContentPage.navigateTo();
+        await browser.refresh();
 
+        await projectContentPage.clickOnModelByName('process', projectDetails.processName);
+        const uiProcessId = await new ProcessPropertiesCard().getProcessId();
+
+        await projectContentPage.clickOnModelByName('process', callActivityProcess.entry.name);
         await processModelerComponent.addCallActivity();
-        await processProperties.setActivity(callActivityProcess.entry.name);
+        await processProperties.setActivity(projectDetails.processName);
+        await processProperties.setProcess(uiProcessId);
         await processContentPage.save();
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
 
         await processContentPage.downloadProcess();
-        const downloadedProcess = path.join(downloadDir, `${process.entry.name}.bpmn20.xml`);
+        const downloadedProcess = path.join(downloadDir, `${callActivityProcess.entry.name}.bpmn20.xml`);
         await expect(await UtilFile.fileExists(downloadedProcess)).toBe(true);
 
         const fileContent = xml2js(await UtilFile.readFile(downloadedProcess));
         const bpmnCallActivity = fileContent[`bpmn2:definitions`][`bpmn2:process`][`bpmn2:callActivity`];
-
-        await expect(bpmnCallActivity._attributes.calledElement).toEqual(`process-${callActivityProcess.entry.id}`);
+        await expect(bpmnCallActivity._attributes.calledElement).toEqual(uiProcessId);
     });
 
     it('[C311460] Create a process with User Task with the assignee', async () => {
         process = await backend.process.create(project.entry.id);
 
-        processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
-        await processContentPage.navigateTo();
-        await processModelerComponent.addUserTask();
+        await browser.refresh();
 
+        await projectContentPage.clickOnModelByName('process', process.entry.name);
+        await processModelerComponent.addUserTask();
         await processContentPage.save();
         await expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
         await processValidation.confirm();
@@ -145,7 +152,6 @@ describe('Create process', async () => {
         await taskAssignmentDialog.isLoaded();
         await taskAssignmentDialog.setAssignee('userAssignee');
         await taskAssignmentDialog.assign();
-
         await processContentPage.save();
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
     });
@@ -153,26 +159,25 @@ describe('Create process', async () => {
     it('[C311461] Create a process with User Task with the candidate user', async () => {
         process = await backend.process.create(project.entry.id);
 
-        processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
-        await processContentPage.navigateTo();
+        await browser.refresh();
+
+        await projectContentPage.clickOnModelByName('process', process.entry.name);
         await processModelerComponent.addUserTask();
         await processContentPage.save();
         await processValidation.isDialogDisplayed();
         await expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
         await processValidation.confirm();
         await processValidation.isDialogDismissed();
-
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
         await expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
+
         await processModelerComponent.selectStartEvent();
         await processModelerComponent.selectUserTask();
-
         await taskProperties.openAssignmentDialog();
         await taskAssignmentDialog.isLoaded();
         await taskAssignmentDialog.selectAssignToCandidatesOption();
         await taskAssignmentDialog.setCandidateUsers('candidateUser');
         await taskAssignmentDialog.assign();
-
         await processContentPage.save();
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
     });
@@ -180,26 +185,25 @@ describe('Create process', async () => {
     it('[C311462] Create a process with User Task with the candidate group', async () => {
         process = await backend.process.create(project.entry.id);
 
-        processContentPage = new ProcessContentPage(testConfig, project.entry.id, process.entry.id);
-        await processContentPage.navigateTo();
+        await browser.refresh();
+
+        await projectContentPage.clickOnModelByName('process', process.entry.name);
         await processModelerComponent.addUserTask();
         await processContentPage.save();
         await processValidation.isDialogDisplayed();
         await expect(await processValidation.isTitleDisplayed()).toBe(true, 'Incorrect title is displayed');
         await processValidation.confirm();
         await processValidation.isDialogDismissed();
-
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
         await expect(await snackBar.isSnackBarNotDisplayed()).toBe(true, 'Snackbar was displayed');
+
         await processModelerComponent.selectStartEvent();
         await processModelerComponent.selectUserTask();
-
         await taskProperties.openAssignmentDialog();
         await taskAssignmentDialog.isLoaded();
         await taskAssignmentDialog.selectAssignToCandidatesOption();
         await taskAssignmentDialog.setCandidateUsers('CandidateGroup');
         await taskAssignmentDialog.assign();
-
         await processContentPage.save();
         await expect(await snackBar.isUpdatedSuccessfully('process')).toBe(true, 'Process update snackbar was not displayed');
     });

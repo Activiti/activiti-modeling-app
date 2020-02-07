@@ -25,6 +25,7 @@ import {
     Logger,
     getBackend } from 'ama-testing/e2e';
 import { testConfig } from '../../test.config';
+import { browser } from 'protractor';
 
 const path = require('path');
 
@@ -45,7 +46,9 @@ describe('Upload project', () => {
         path: Resources.SIMPLE_PROJECT.file_location,
         name: Resources.SIMPLE_PROJECT.project_name
     };
-    const absoluteFilePath = path.resolve(testConfig.main.rootPath + projectDetails.path);
+
+    const resourcesDir = browser.params.resourcesDir;
+    const absoluteFilePath = path.join(resourcesDir, projectDetails.path);
 
     async function cleanupProject(projectName: string) {
         try {

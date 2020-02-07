@@ -17,6 +17,7 @@
 
 import { AlfrescoApi, NodeEntry } from '@alfresco/js-api';
 import { ACMProject } from './acm/project';
+import { ACMProcess } from './acm';
 
 export interface ModelCrud {
     create(projectId: string, name?: string): Promise<NodeEntry>;
@@ -32,7 +33,7 @@ export interface ModelCrud {
 export interface Backend {
     api: AlfrescoApi;
     project: ACMProject;
-    process: ModelCrud;
+    process: ACMProcess;
     connector: ModelCrud;
     ui: ModelCrud;
     decisionTable: ModelCrud;

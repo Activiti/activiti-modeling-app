@@ -35,6 +35,10 @@ export abstract class ACMCrud implements ModelCrud {
 
     abstract getDefaultContent(entityName: string, entityId: string): string;
 
+    getDefaultExtensionsContent() {
+        return {};
+    }
+
     constructor(backend: ACMBackend) {
         this.requestApiHelper = new E2eRequestApiHelper(backend);
         this.tmpFilePath = backend.config.main.paths.tmp;
@@ -58,7 +62,7 @@ export abstract class ACMCrud implements ModelCrud {
         }
     }
 
-    getContent(entityId: string) {
+    getContent(entityId: string): PromiseLike<any> {
         try {
             return this.requestApiHelper.get(`/modeling-service/v1/models/${entityId}/content`, { responseType: 'blob' });
         } catch (error) {
@@ -85,7 +89,8 @@ export abstract class ACMCrud implements ModelCrud {
                 .post<NodeEntry>(this.endPoint(projectId), {
                     bodyParam: {
                         name: modelName,
-                        type: this.type
+                        type: this.type,
+                        extensions: this.getDefaultExtensionsContent()
                     }
                 });
             Logger.info(`[${this.displayName}] New model has been created with name: ${model.entry.name} and id: ${model.entry.id}.`);
@@ -151,7 +156,7 @@ export abstract class ACMCrud implements ModelCrud {
         }
     }
 
-    async updateModelMetadata(id: string, content: object) {
+    async updateModelMetadata(id: string, content: any) {
         try {
             await this.requestApiHelper.put(`/modeling-service/v1/models/${id}`, { bodyParam: content });
         } catch (error) {

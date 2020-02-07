@@ -1,7 +1,7 @@
 <div class="called-element-block">
     <mat-form-field>
         <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ACTIVITY_NAME' | translate }}</div>
-        <mat-select (selectionChange)="onProcessDefinitionSelected()" [(ngModel)]="processDefinition">
+        <mat-select (selectionChange)="onProcessDefinitionSelected()" [(ngModel)]="processDefinition" data-automation-id="activity-name">
             <mat-option *ngFor="let processDefinition of processDefinitions" [value]="processDefinition">
                 {{ processDefinition.name }}
             </mat-option>
@@ -10,7 +10,7 @@
 
     <mat-form-field *ngIf="processDefinition">
         <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS' | translate }}</div>
-        <mat-select (selectionChange)="onProcessSelected()" [(ngModel)]="processId">
+        <mat-select (selectionChange)="onProcessSelected()" [(ngModel)]="processId" data-automation-id="process-name">
             <mat-option *ngFor="let process of processes" [value]="process">
                 {{ process }}
             </mat-option>
@@ -27,7 +27,7 @@
         </mat-form-field>
 
         <div *ngIf="!sendNoVariables">
-            <div *ngIf="(processVariables$ | async).length; else noProcessVariables">
+            <div *ngIf="(processVariables$ | async)?.length; else noProcessVariables">
                 <div *ngIf="subProcessVariables.length; else noSubProcessVariables">
                     <h5 data-automation-id="input-mapping-header">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INPUT_MAPPING' | translate }}:</h5>
                     <amasdk-input-mapping-table
