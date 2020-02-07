@@ -16,13 +16,13 @@
  */
 
 import { BpmnFactory } from 'ama-sdk';
-import EventBus from 'diagram-js/lib/core/EventBus';
+import EventBusMock from './EventBusMock';
 
 export class BpmnFactoryMock implements BpmnFactory {
     public modeler: Bpmn.Modeler;
 
     create(): Bpmn.Modeler {
-        const eventBus = new EventBus();
+        const eventBus = new EventBusMock();
         const canvasObject = { zoom: () => {} };
         const modelingObject: Bpmn.Modeling = { updateProperties: () => {} };
 

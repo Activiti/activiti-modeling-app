@@ -3,7 +3,7 @@
     "authType": "OAUTH",
     "showNotificationHistory": true,
     "providers": "BPM",
-    "bpmHost": "http://localhost:4200",
+    "bpmHost": "http://localhost:4201",
     "identityHost": "${IDENTITY_HOST}",
     "oauth2": {
         "host": "${OAUTH_HOST}",

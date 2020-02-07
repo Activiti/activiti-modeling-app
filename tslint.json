@@ -7,7 +7,7 @@
         "rxjs-tslint-rules"
     ],
     "rules": {
-        "adf-license-banner": [true, "**/*.ts", "./license-header.txt"],
+        "adf-license-banner": [true, "**/*.ts", "./license-header-community.txt"],
         "ban": [
             true,
             "eval",
@@ -68,6 +68,7 @@
         "no-empty": false,
         "no-empty-interface": true,
         "no-eval": true,
+
         "no-inferrable-types": [
             true,
             "ignore-params"
@@ -81,6 +82,7 @@
         "no-var-keyword": true,
         "no-duplicate-imports": true,
         "object-literal-sort-keys": false,
+        "no-consecutive-blank-lines": true,
         "one-line": [
             true,
             "check-open-brace",
@@ -185,7 +187,6 @@
                 }
             ],
             "severity": "error"
-        },
-        "no-consecutive-blank-lines": true
+        }
     }
 }

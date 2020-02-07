@@ -23,7 +23,7 @@ import { MessagesDialogComponent } from './messages-dialog.component';
 import { Subject } from 'rxjs';
 import { MessagesService } from '../../../services/messages.service';
 import { ProcessModelerServiceToken, BpmnFactoryToken } from 'ama-sdk';
-import { ProcessModelerServiceImplementation } from 'src/app/process-editor/services/process-modeler.service';
+import { ProcessModelerServiceImplementation } from '../../../services/process-modeler.service';
 import { BpmnFactoryMock } from '../../../services/bpmn-js/bpmn-js.mock';
 
 describe('MessageDialogComponent', () => {

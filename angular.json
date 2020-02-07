@@ -5,16 +5,16 @@
     "projects": {
         "modeling-app": {
             "root": "",
-            "sourceRoot": "src",
+            "sourceRoot": "",
             "projectType": "application",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/app",
+                        "outputPath": "dist/modeling-community",
                         "index": "src/index.html",
                         "main": "src/main.ts",
-                        "tsConfig": "src/tsconfig.app.json",
+                        "tsConfig": "tsconfig.app.json",
                         "polyfills": "src/polyfills.ts",
                         "stylePreprocessorOptions": {
                             "includePaths": [
@@ -42,20 +42,9 @@
                             "src/styles.scss",
                             "projects/ama-sdk/src/lib/ama-sdk.module.scss"
                         ],
-                        "scripts": [],
-                        "fileReplacements": [
-                            { "replace": "./src/app.config.json", "with": "./src/.app.config.json" }
-                        ]
+                        "scripts": []
                     },
                     "configurations": {
-                        "adfdev": {
-                            "tsConfig": "src/tsconfig.adfdev.json"
-                        },
-                        "e2e": {
-                            "fileReplacements": [
-                                { "replace": "./src/app.config.json", "with": "./e2e/.app.config.json" }
-                            ]
-                        },
                         "production": {
                             "optimization": true,
                             "outputHashing": "all",
@@ -69,21 +58,6 @@
                             "fileReplacements": [
                                 { "replace": "src/environments/environment.ts", "with": "src/environments/environment.prod.ts" }
                             ]
-                        },
-                        "local-production": {
-                            "optimization": true,
-                            "outputHashing": "all",
-                            "sourceMap": false,
-                            "extractCss": true,
-                            "namedChunks": false,
-                            "aot": true,
-                            "extractLicenses": true,
-                            "vendorChunk": false,
-                            "buildOptimizer": true,
-                            "fileReplacements": [
-                                { "replace": "src/environments/environment.ts", "with": "src/environments/environment.prod.ts" },
-                                { "replace": "./src/app.config.json", "with": "./src/.app.config.json" }
-                            ]
                         }
                     }
                 },
@@ -91,17 +65,15 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
                         "browserTarget": "modeling-app:build",
-                        "port": 4200,
+                        "port": 4201,
                         "host": "0.0.0.0",
                         "disableHostCheck": true,
+                        "open": true,
                         "proxyConfig": "./proxy.conf.js"
                     },
                     "configurations": {
-                        "adfdev": {
-                            "browserTarget": "modeling-app:build:adfdev"
-                        },
                         "production": {
-                            "browserTarget": "modeling-app:build:local-production",
+                            "browserTarget": "modeling-app:build:production",
                             "disableHostCheck": false
                         }
                     }
@@ -109,7 +81,7 @@
                 "test": {
                     "builder": "@angular-builders/jest:run",
                     "options": {
-                        "configPath": "../jest.config.js"
+                        "configPath": "jest.config.js"
                     }
                 },
                 "extract-i18n": {
@@ -122,34 +94,12 @@
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
                         "tsConfig": [
-                            "src/tsconfig.app.json",
-                            "src/tsconfig.spec.json"
+                            "tsconfig.app.json",
+                            "tsconfig.spec.json"
                         ],
                         "exclude": [
                             "**/node_modules/**"
                         ],
-                        "format": "stylish"
-                    }
-                }
-            }
-        },
-        "e2e": {
-            "root": "e2e",
-            "sourceRoot": "src",
-            "projectType": "application",
-            "architect": {
-                "e2e": {
-                    "builder": "@angular-devkit/build-angular:protractor",
-                    "options": {
-                        "protractorConfig": "./e2e/protractor.conf.ts",
-                        "devServerTarget": "modeling-app:serve"
-                    }
-                },
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": ["e2e/tsconfig.e2e.json"],
-                        "exclude": ["**/node_modules/**"],
                         "format": "stylish"
                     }
                 }
@@ -172,7 +122,7 @@
                 "test": {
                     "builder": "@angular-builders/jest:run",
                     "options": {
-                        "configPath": "../jest.config.js"
+                        "configPath": "../../jest.config.js"
                     }
                 }
             }

@@ -33,7 +33,7 @@
             sh "npm run postinstall"
             sh "npm install @alfresco/adf-cli@alpha"
             sh "./node_modules/@alfresco/adf-cli/bin/adf-cli update-commit-sha --pointer \"HEAD\" --pathPackage \"\$(pwd)\""
-            sh "npm run build prod"
+            sh "npm run build -- --prod"
 
             dir("./charts/$APP_NAME") {
               retry(5) {

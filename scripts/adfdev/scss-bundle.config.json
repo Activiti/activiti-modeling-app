@@ -1,6 +1,0 @@
-{
-    "bundlerOptions": {
-        "outFile": "./lib/@alfresco/adf-core/_theming.scss",
-        "logLevel": "debug"
-    }
-}

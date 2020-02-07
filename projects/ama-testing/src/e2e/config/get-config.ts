@@ -20,24 +20,16 @@ import { TestConfig } from './test.config.interface';
 require('dotenv').config({ path: process.env.ENV_FILE });
 
 const env = process.env;
-const path = require('path');
 
-export function getConfig(rootPath: string = __dirname): TestConfig {
-    const outputDir = path.join(rootPath, '/../e2e-output');
+export function getConfig(rootPath: string = __dirname, config: any): TestConfig {
     return {
         main: {
             default_timeout: parseInt(env.DEFAULT_TIMEOUT, 10) || 20000,
             presence_timeout: parseInt(env.PRESENCE_TIMEOUT, 10) || 60000,
             rootPath: rootPath,
-            browserWidth: 1920,
-            browserHeight: 1080,
-            paths: {
-                tmp: path.join(outputDir, '/tmp'),
-                screenShots: path.join(outputDir, '/screenshots'),
-                junitReport: path.join(outputDir, '/junit-report'),
-                reports: path.join(outputDir, '/reports/'),
-                download: path.join(outputDir, '/downloads')
-            }
+            browserWidth: config.browserWidth,
+            browserHeight: config.browserHeight,
+            paths: config.paths
         },
         ama: {
             backendConfig: {
