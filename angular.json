@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "modeling-app": {
+        "modeling-ce": {
             "root": "",
             "sourceRoot": "",
             "projectType": "application",
@@ -11,7 +11,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/modeling-community",
+                        "outputPath": "dist/modeling-ce",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "tsConfig": "tsconfig.app.json",
@@ -64,7 +64,7 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "modeling-app:build",
+                        "browserTarget": "modeling-ce:build",
                         "port": 4201,
                         "host": "0.0.0.0",
                         "disableHostCheck": true,
@@ -73,7 +73,7 @@
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "modeling-app:build:production",
+                            "browserTarget": "modeling-ce:build:production",
                             "disableHostCheck": false
                         }
                     }
@@ -87,7 +87,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "modeling-app:build"
+                        "browserTarget": "modeling-ce:build"
                     }
                 },
                 "lint": {
@@ -143,7 +143,7 @@
             }
         }
     },
-    "defaultProject": "modeling-app",
+    "defaultProject": "modeling-ce",
     "schematics": {
         "@ngrx/schematics:component": {
             "prefix": "app",

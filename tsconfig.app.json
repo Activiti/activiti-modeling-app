@@ -1,7 +1,7 @@
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
-        "outDir": "./out-tsc/modeling-community",
+        "outDir": "./out-tsc/modeling-ce",
         "module": "es2015",
         "baseUrl": "",
         "types": ["node"],
