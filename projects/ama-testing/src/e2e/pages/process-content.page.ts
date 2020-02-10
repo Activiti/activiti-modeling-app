@@ -27,6 +27,7 @@ export class ProcessContentPage extends GenericPage {
     readonly processEditorContextMenu = element(by.css(`[data-automation-id="process-editor-menu-button"]`));
     readonly processEditorDeleteButton = element(by.css(`[data-automation-id="process-editor-delete-button"]`));
     readonly processEditorDownloadButton = element(by.css(`[data-automation-id="process-editor-download-button"]`));
+    readonly processEditorDownloadSvgButton = element(by.css(`[data-automation-id="process-editor-download-svg-button"]`));
     readonly processEditorSaveButton = element(by.css(`[data-automation-id="process-editor-save-button"]`));
     readonly processEditorValidateButton = element(by.css(`[data-automation-id="process-editor-validate-button"]`));
     readonly extensionsEditorTabButton = element(by.cssContainingText('.mat-tab-label-content', 'Extensions Editor'));
@@ -65,6 +66,10 @@ export class ProcessContentPage extends GenericPage {
 
     async downloadProcess(): Promise<void> {
         await BrowserActions.click(this.processEditorDownloadButton);
+    }
+
+    async downloadSvg(): Promise<void> {
+        await BrowserActions.click(this.processEditorDownloadSvgButton);
     }
 
     async selectProcessEditorModeler(): Promise<void> {
