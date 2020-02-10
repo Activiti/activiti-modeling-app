@@ -226,6 +226,13 @@ export interface Connector extends Model {
     template?: string;
 }
 
+export interface ConnectorConfigParameter {
+    name: string;
+    description?: string;
+    required?: boolean;
+    value: string;
+}
+
 export interface ConnectorParameter {
     id: string;
     name: string;
@@ -238,6 +245,7 @@ export interface ConnectorContent {
     description?: string;
     actions?: ConnectorFeatureData;
     events?: ConnectorFeatureData;
+    config?: ConnectorConfigParameter[];
     template?: string;
 }
 
