@@ -56,9 +56,11 @@ describe('Empty diagram', () => {
         const documentation = diagram.getElementsByTagName('bpmn2:documentation');
         const id = diagram.getElementsByTagName('bpmn2:definitions')[0].getAttribute('id');
         const name = diagram.getElementsByTagName('bpmn2:definitions')[0].getAttribute('name');
+        const namespace = diagram.getElementsByTagName('bpmn2:definitions')[0].getAttribute('xmlns:activiti');
 
         expect(documentation[0].textContent).toBe('desc');
         expect(id).toBe('model-id1');
         expect(name).toBe('model1');
+        expect(namespace).toBe('http://activiti.org/bpmn');
     });
 });
