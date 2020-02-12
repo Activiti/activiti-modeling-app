@@ -24,6 +24,7 @@ export class DashboardPage extends GenericPage {
 
     readonly dashboardList = element(by.css(`.dashboard-list mat-table`));
     readonly releaseList = element(by.tagName(`ama-release-list`));
+    readonly releaseListRow = element.all(by.tagName(`ama-release-list mat-row`));
     /* cspell: disable-next-line */
     readonly dashboardEmptyList = element(by.css('.dashboard-emptylist'));
     private pagination = new Pagination();
@@ -90,6 +91,10 @@ export class DashboardPage extends GenericPage {
     async isProjectReleaseEmpty(): Promise<boolean> {
         const emptyList = element(by.css(`[data-automation-id="project-releases-empty"]`));
         return BrowserVisibility.waitUntilElementIsVisible(emptyList);
+    }
+
+    async isProjectReleasesNotEmpty(): Promise<boolean> {
+        return BrowserVisibility.waitUntilElementIsVisible(this.releaseListRow.get(1));
     }
 
     async getProjectsCount(): Promise<number> {

@@ -84,6 +84,12 @@ export class SnackBar extends GenericWebElement {
         );
     }
 
+    async isNameDuplicated(): Promise<boolean> {
+        return this.waitForMessage(
+            `with that name already exists`
+        );
+    }
+
     async isSnackBarNotDisplayed(): Promise<boolean> {
         try {
             await BrowserVisibility.waitUntilElementIsNotVisible(element.all(by.css(`simple-snack-bar`)).first());

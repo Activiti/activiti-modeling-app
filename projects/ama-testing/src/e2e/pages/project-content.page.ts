@@ -35,6 +35,8 @@ export class ProjectContentPage extends GenericPage {
     readonly dbpConnectorIcon = `alfresco-oob-icon-dbp`;
     readonly docusignConnectorIcon = `alfresco-oob-icon-docusign`;
     readonly docgenConnectorIcon = `alfresco-oob-icon-docgen`;
+    readonly projectContextMenu = 'project-context';
+    readonly projectContextReleaseAction = 'project-release';
 
     constructor(testConfig: TestConfig, public projectId: string) {
         super(testConfig);
@@ -110,6 +112,16 @@ export class ProjectContentPage extends GenericPage {
 
     async createScript(): Promise<void> {
         await this.createModel('script');
+    }
+
+    async release(id: string): Promise<void> {
+        const contextMenu = element(by.css(`[data-automation-id="${[this.projectContextMenu]}-${id}"]`));
+        const releaseAction = element(by.css(`[data-automation-id="${[this.projectContextReleaseAction]}-${id}"]`));
+        await BrowserVisibility.waitUntilElementIsVisible(contextMenu);
+        await BrowserActions.click(contextMenu);
+
+        await BrowserVisibility.waitUntilElementIsVisible(releaseAction);
+        await BrowserActions.click(releaseAction);
     }
 
     private async isItemInList(modelType: string, searchedItem: string): Promise<boolean> {
