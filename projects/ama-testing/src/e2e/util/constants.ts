@@ -35,3 +35,6 @@ export const MULTIPLE_MATCHING_RULES_UNIQUE_HIT_POLICY = `UNIQUE hit policy deci
     `Multiple matches found for decision table 'Decision_decision-dennis'. Matched rules: [1, 2, 3] ERROR`;
 
 export const MAPPING_DIALOG_TITLE = 'Edit variable mapping';
+
+export const COLLABORATOR_ADDED = `Collaborator added`;
+export const COLLABORATOR_DUPLICATED = `The selected collaborator is already in the list`;

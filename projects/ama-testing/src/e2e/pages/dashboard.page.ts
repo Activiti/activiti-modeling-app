@@ -214,4 +214,14 @@ export class DashboardPage extends GenericPage {
     async navigateTo(): Promise<void> {
         await BrowserActions.getUrl(`${browser.baseUrl}/#/dashboard/projects`);
     }
+
+    async openCollaboratorsDialog(projectId: string): Promise<void> {
+        await this.openContextMenuFor(projectId);
+        await this.clickOnCollaboratorsContextItemFor(projectId);
+    }
+
+    private async clickOnCollaboratorsContextItemFor(projectId: string): Promise<void> {
+        const projectCollaboratorsButton = this.getProject(`project-collaborators-${projectId}`);
+        await BrowserActions.click(projectCollaboratorsButton);
+    }
 }

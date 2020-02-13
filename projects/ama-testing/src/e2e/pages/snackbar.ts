@@ -18,6 +18,7 @@
 import { GenericWebElement } from './common/generic.webelement';
 import { element, by } from 'protractor';
 import { BrowserVisibility } from '@alfresco/adf-testing';
+import { COLLABORATOR_ADDED, COLLABORATOR_DUPLICATED } from '../util/constants';
 
 export class SnackBar extends GenericWebElement {
     async waitForMessage(message: string): Promise<boolean> {
@@ -101,5 +102,13 @@ export class SnackBar extends GenericWebElement {
 
     firstUpperCase(string): string {
         return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    async isCollaboratorDuplicated(): Promise<boolean> {
+        return this.waitForMessage(COLLABORATOR_DUPLICATED);
+    }
+
+    async isCollaboratorAddedSuccessfully(): Promise<boolean> {
+        return this.waitForMessage(COLLABORATOR_ADDED);
     }
 }

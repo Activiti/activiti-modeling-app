@@ -27,3 +27,4 @@
  export * from './validation.dialog';
  export * from './task-assignment.dialog';
  export * from './mapping.dialog';
+ export * from './collaborators.dialog';
