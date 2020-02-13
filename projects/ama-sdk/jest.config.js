@@ -5,12 +5,11 @@ module.exports = {
     rootDir: path.resolve(__dirname),
     verbose: true,
     testURL: 'http://localhost',
-    setupTestFrameworkScriptFile: path.resolve(__dirname, 'jest/jest-setup.ts'),
-    coverageDirectory: '<rootDir>/../../coverage/modeling-ce/app',
+    setupTestFrameworkScriptFile: path.resolve(__dirname, '..', '..', 'jest/jest-setup.ts'),
+    coverageDirectory: '<rootDir>/../../../../coverage/modeling-ce/ama-sdk',
     collectCoverage: true,
     collectCoverageFrom: [
         '<rootDir>/src/**/*.ts',
-        '!<rootDir>/jest',
         '!<rootDir>/src/*.ts',
         '!<rootDir>/src/**/*.d.ts',
         '!<rootDir>/src/**/index.ts'
@@ -35,8 +34,5 @@ module.exports = {
           "tsConfigFile": "<rootDir>/tsconfig.spec.json"
         },
         "__TRANSFORM_HTML__": true
-    },
-    moduleNameMapper: {
-        '^ama-sdk$': '<rootDir>/projects/ama-sdk'
     }
 };

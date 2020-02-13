@@ -114,15 +114,15 @@
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
-                        "tsConfig": ["projects/ama-sdk/tsconfig.lib.json"],
-                        "exclude": ["**/node_modules/**"],
+                        "tsConfig": [ "projects/ama-sdk/tsconfig.lib.json" ],
+                        "exclude": [ "**/node_modules/**" ],
                         "format": "stylish"
                     }
                 },
                 "test": {
                     "builder": "@angular-builders/jest:run",
                     "options": {
-                        "configPath": "../../jest.config.js"
+                        "configPath": "jest.config.js"
                     }
                 }
             }
