@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { element, by } from 'protractor';
+import { element, by, protractor } from 'protractor';
 import { GenericDialog } from '../common/generic.dialog';
 import { BrowserActions, BrowserVisibility } from '@alfresco/adf-testing';
 
@@ -48,14 +48,17 @@ export class TaskAssignmentDialog extends GenericDialog {
 
     async setAssignee(assigneeName: string): Promise<void> {
         await BrowserActions.clearSendKeys(this.assigneeInput, assigneeName);
+        await this.assigneeInput.sendKeys(protractor.Key.ENTER);
     }
 
     async setCandidateUsers(candidateUsers: string): Promise<void> {
         await BrowserActions.clearSendKeys(this.candidateUsersInput, candidateUsers);
+        await this.candidateUsersInput.sendKeys(protractor.Key.ENTER);
     }
 
     async setCandidateGroups(candidateGroups: string): Promise<void> {
         await BrowserActions.clearSendKeys(this.candidateGroupsInput, candidateGroups);
+        await this.candidateGroupsInput.sendKeys(protractor.Key.ENTER);
     }
 
     async selectAssignToSingleUserOption(): Promise<void> {

@@ -153,10 +153,11 @@ describe('AssignmentDialogComponent', () => {
             fixture.whenStable().then(() => {
                 const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
                 const nameInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-assignment-static-single-user-input"]`));
-                nameInput.nativeElement.value = 'mock assignee';
+                nameInput.nativeElement.value = 'add mock static assignee';
                 nameInput.nativeElement.dispatchEvent(new Event('input'));
-                expect(component.assigneeStaticControl.value).toBe('mock assignee');
+                nameInput.nativeElement.dispatchEvent(new Event('blur'));
                 fixture.detectChanges();
+                expect(component.assigneeStaticControl.value).toBe('add mock static assignee');
                 expect(assignButton.nativeElement['disabled']).toBeFalsy();
                 openSelect();
                 const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
@@ -393,7 +394,8 @@ describe('AssignmentDialogComponent', () => {
                 expect(component.assigneeStaticControl.value).toBe('mock assignee');
 
                 component.onTabChange({index: 1, tab: null});
-                expect(component.assigneeStaticControl.value).toBeNull();
+                fixture.detectChanges();
+                expect(component.assigneeStaticControl).toBeNull();
             });
         }));
 
@@ -418,9 +420,8 @@ describe('AssignmentDialogComponent', () => {
                 expect(component.candidateGroupsIdentityControl.value).toBe('Candidate group');
 
                 component.onTabChange({index: AssignmentTabs.STATIC, tab: null});
-
-                expect(component.candidateUsersIdentityControl.value).toBeNull();
-                expect(component.candidateGroupsIdentityControl.value).toBeNull();
+                fixture.detectChanges();
+                expect(component.candidatesIdentityFormGroup).toBeNull();
             });
         }));
 

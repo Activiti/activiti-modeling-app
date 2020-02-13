@@ -39,7 +39,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { IdentityUserModel, IdentityGroupModel } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { filter, take, takeUntil, map } from 'rxjs/operators';
-import { AbstractControl, FormGroup, FormBuilder } from '@angular/forms';
+import { AbstractControl, FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 
 export interface AssignmentSettings {
     assignee: string[];
@@ -70,6 +70,24 @@ export enum AssigneeExpressionErrorMessages {
     candidatePattern = 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.EXPRESSION.CANDIDATE_INVALID_ERROR',
     candidateEmpty = 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.EXPRESSION.CANDIDATE_EMPTY'
 }
+
+export const identityCandidateValidator: ValidatorFn = (candidateFormGroup: FormGroup): ValidationErrors | null => {
+    const isCandidateFormGroupDirtyTouched = candidateFormGroup.dirty && candidateFormGroup.touched;
+
+    const candidateUserFormGroup = candidateFormGroup.get('candidateUserFormGroup');
+    const candidateUsersChips = candidateUserFormGroup.get('candidateUsersChips');
+
+    const candidateGroupsFormGroup = candidateFormGroup.get('candidateGroupFormGroup');
+    const candidateGroupsChips = candidateGroupsFormGroup.get('candidateGroupsChips');
+
+    const isCandidateUserChipsEmpty = isCandidateFormGroupDirtyTouched && candidateUsersChips ?
+    candidateUsersChips.value === null || candidateUsersChips.value === '' : false;
+    const isCandidateGroupChipsEmpty = isCandidateFormGroupDirtyTouched && candidateGroupsChips ?
+    candidateGroupsChips.value === null || candidateGroupsChips.value === '' : false;
+
+    const hasValidationError = isCandidateUserChipsEmpty && isCandidateGroupChipsEmpty;
+    return hasValidationError ? { 'custom': true } : null;
+};
 
 @Component({
     selector: 'ama-assignment-dialog',
@@ -117,6 +135,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     identityCandidateUsers: IdentityUserModel[] = [];
     identityCandidateGroups: IdentityGroupModel[] = [];
 
+    loadingForm = true;
     expressionAssignee: string;
     expressionCandidateUsers: string;
     expressionCandidateGroups: string;
@@ -155,7 +174,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         this.process$ = this.store.select(selectSelectedProcess);
         this.processVariables$ = this.store.select(selectProcessPropertiesArrayFor(this.settings.processId));
         this.deductConfigFromXML();
-        this.createForm();
+        this.createAssignmentForm();
         this.processFileUri$ = this.process$.pipe(
             filter(process => !!process),
             map(process => getFileUri(this.selectedMode, this.languageType, process.id))
@@ -168,36 +187,17 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
             .pipe(map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light')));
     }
 
-    resetFormByMode() {
-        this.assignmentForm.reset();
-    }
-
-    resetFormByType() {
-        if (!this.isStaticType()) {
-            this.staticForm.reset();
-        } else if (!this.isIdentityType()) {
-            this.identityForm.reset();
-        }
-    }
-
-    createForm() {
+    createAssignmentForm() {
         this.assignmentForm = this.formBuilder.group({
             staticForm: this.formBuilder.group({
-                assignee: [''],
-                candidateUsers: [''],
-                candidateGroups: ['']
             }),
             identityForm: this.formBuilder.group({
-                assignee: [''],
-                candidateUsers: [''],
-                candidateGroups: ['']
             }),
             expressionForm: this.formBuilder.group({
-                assignee: [''],
-                candidateUsers: [''],
-                candidateGroups: ['']
             })
         });
+        this.createChildrenFormControls();
+        this.loadingForm = false;
     }
 
     private deductConfigFromXML() {
@@ -221,12 +221,79 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         }
     }
 
+    private createChildrenFormControls () {
+        this.assignmentFormClean();
+        if (this.isIdentityType()) {
+            this.createIdentityForm();
+        } else if (this.isStaticType()) {
+            this.createStaticForm();
+        } else {
+            this.createExpressionForm();
+        }
+        this.assignmentForm.updateValueAndValidity();
+    }
+
+    private createStaticForm() {
+        this.createAssigneeCandidateForm(this.staticForm, this.staticAssignee);
+    }
+
+    private createIdentityForm() {
+        this.createAssigneeCandidateForm(this.identityForm);
+    }
+
+    private createExpressionForm(): void {
+        if (this.isAssigneeMode()) {
+            this.expressionForm.addControl('assignee', new FormControl({ value: '' }));
+        } else {
+            this.expressionForm.addControl('candidateUsers', new FormControl({ value: '' }));
+            this.expressionForm.addControl('candidateGroups', new FormControl({ value: '' }));
+        }
+        this.expressionForm.updateValueAndValidity();
+    }
+
+    private createAssigneeCandidateForm(formGroup: FormGroup, assigneeValue?: string): void {
+        if (this.isAssigneeMode()) {
+            const assignee = new FormControl({ value: '', disabled: false });
+            const assigneeChipsFormControl = new FormControl({ value: assigneeValue, disabled: false }, [Validators.required]);
+            formGroup.addControl('assignee', assignee);
+            formGroup.addControl('assigneeChips', assigneeChipsFormControl);
+        } else {
+            const candidatesFormGroup = this.createCandidatesFormGroup();
+            formGroup.addControl('candidatesFormGroup', candidatesFormGroup);
+        }
+        formGroup.updateValueAndValidity();
+    }
+
+    private createCandidatesFormGroup(): FormGroup {
+        const candidateUserFormGroup = this.createCandidateUserFormGroup();
+        const candidateGroupFormGroup = this.createCandidateGroupFormGroup();
+        return this.formBuilder.group(
+            {
+                'candidateUserFormGroup': candidateUserFormGroup,
+                'candidateGroupFormGroup': candidateGroupFormGroup
+            }, { validator: identityCandidateValidator });
+    }
+
+    private createCandidateUserFormGroup(): FormGroup {
+        return this.formBuilder.group(
+            {
+                'candidateUsers': '',
+                'candidateUsersChips': ''
+            });
+    }
+
+    private createCandidateGroupFormGroup(): FormGroup {
+        return this.formBuilder.group(
+            {
+                'candidateGroups': '',
+                'candidateGroupsChips': ''
+            });
+    }
+
     private setStaticAssignments() {
         if (this.isXMLSingleMode()) {
             if (this.settings.assignee) {
-                this.staticAssignee = this.settings.assignee
-                    ? this.settings.assignee[0]
-                    : undefined;
+                this.staticAssignee = this.settings.assignee ? this.settings.assignee[0] : '';
             }
         } else {
             if (this.settings.candidateUsers) {
@@ -308,28 +375,27 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
 
     onTabChange(currentTab: MatTabChangeEvent) {
         this.selectedType = AssignmentDialogComponent.TABS[currentTab.index];
-        this.resetFormByType();
-        this.assignmentForm.reset();
         this.resetProperties();
         this.assignmentPayload = undefined;
         if (this.isOriginalSelection()) {
             this.restoreFromXML();
         }
+        this.createChildrenFormControls();
         this.currentActiveTab = currentTab.index;
     }
 
     onSelect(selectedType: MatSelectChange) {
         this.selectedMode = selectedType.value;
+        this.resetProperties();
         this.processFileUri$ = this.process$.pipe(
             filter(process => !!process),
             map(process => getFileUri(this.selectedMode, this.languageType, process.id))
         );
-        this.resetFormByMode();
-        this.resetProperties();
         this.assignmentPayload = undefined;
         if (this.isOriginalSelection()) {
             this.restoreFromXML();
         }
+        this.createChildrenFormControls();
     }
 
     isOriginalSelection() {
@@ -339,7 +405,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     onStaticAssigneeRemove() {
         this.staticAssignee = undefined;
         this.updatePayloadWithStaticValues();
-        this.markStaticControlAsDirty();
+        this.assigneeChipsStaticCtrlValue('');
     }
 
     onStaticCandidateUsersRemove(username: string) {
@@ -347,7 +413,11 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
             user => user !== username
         );
         this.updatePayloadWithStaticValues();
-        this.markStaticControlAsDirty();
+        if (this.staticCandidateUsers.length === 0) {
+            this.candidateUserChipsStaticCtrlValue('');
+        } else {
+            this.candidateUserChipsStaticCtrlValue(this.staticCandidateUsers[0]);
+        }
     }
 
     onStaticCandidateGroupsRemove(groupName: string) {
@@ -355,7 +425,11 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
             group => group !== groupName
         );
         this.updatePayloadWithStaticValues();
-        this.markStaticControlAsDirty();
+        if (this.staticCandidateGroups.length === 0) {
+            this.candidateGroupChipsStaticCtrlValue('');
+        } else {
+            this.candidateGroupChipsStaticCtrlValue(this.staticCandidateGroups[0]);
+        }
     }
 
     onStaticAssigneeChange(event: any) {
@@ -364,7 +438,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
             this.staticAssignee = input.value;
             input.value = '';
             this.updatePayloadWithStaticValues();
-            this.markStaticControlAsDirty();
+            this.assigneeChipsStaticCtrlValue(this.staticAssignee);
         }
     }
 
@@ -372,11 +446,9 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         const input = event.input;
         if (input.value && !this.isStaticCandidateUserExists(input.value)) {
             this.staticCandidateUsers.push(input.value);
+            this.candidateUserChipsStaticCtrlValue(input.value);
             input.value = '';
             this.updatePayloadWithStaticValues();
-            this.markStaticControlAsDirty();
-        } else {
-            input.value = '';
         }
     }
 
@@ -384,11 +456,9 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         const input = event.input;
         if (input.value && !this.isStaticCandidateGroupExists(input.value)) {
             this.staticCandidateGroups.push(input.value);
+            this.candidateGroupChipsStaticCtrlValue(input.value);
             input.value = '';
             this.updatePayloadWithStaticValues();
-            this.markStaticControlAsDirty();
-        } else {
-            input.value = '';
         }
     }
 
@@ -415,10 +485,6 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         this.updatePayloadWithIdentityValues();
     }
 
-    markStaticControlAsDirty() {
-        this.staticForm.markAsDirty();
-    }
-
     private validate(contentString: string): boolean {
         const validateResponse: ValidationResponse<any> = this.codeValidatorService.validateJson<any>(contentString);
         return validateResponse.valid;
@@ -429,9 +495,8 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
             if (this.isAssigneeMode()) {
                 const assignee = JSON.parse(contentString);
                 if (this.isAssigneeValid(assignee) && this.isExpressionValid(assignee.assignee)) {
-                    this.expressionForm.reset();
                     this.expressionAssignee = this.isExpressionValid(assignee.assignee) ? assignee.assignee : undefined;
-                    this.expressionForm.markAsDirty();
+                    this.assigneeExpressionCtrlValue(this.expressionAssignee);
                 } else {
                     if (assignee.assignee === '') {
                         this.expressionErrorMessage = AssigneeExpressionErrorMessages.assigneeEmpty;
@@ -443,12 +508,11 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
                 }
             } else {
                 const candidates = JSON.parse(contentString);
-                const isValid = this.isCandidatesPresentAndExpressionValid(candidates);
-                if (isValid) {
-                    this.expressionForm.reset();
+                if (this.isCandidatesPresentAndExpressionValid(candidates)) {
                     this.expressionCandidateUsers = this.isExpressionValid(candidates.candidateUsers) ? candidates.candidateUsers : undefined;
                     this.expressionCandidateGroups = this.isExpressionValid(candidates.candidateGroups) ? candidates.candidateGroups : undefined;
-                    this.expressionForm.markAsDirty();
+                    this.candidateUserExpressionCtrlValue(this.expressionCandidateUsers);
+                    this.candidateGroupExpressionCtrlValue(this.expressionCandidateGroups);
                 } else {
                     this.expressionForm.setErrors({ pattern: 'true' });
                 }
@@ -496,6 +560,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
                 filter(model => !!model),
                 take(1)
             )
+            .pipe(takeUntil(this.onDestroy$))
             .subscribe(model =>
                 this.store.dispatch(
                     new UpdateServiceAssignmentAction(
@@ -642,8 +707,9 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     }
 
     isCandidateValid(candidates): boolean {
-        let result = true;
-        if (Object.keys(candidates).length === 2) {
+        let result = false;
+        if (Object.keys(candidates).length <= 2) {
+            result = true;
             Object.keys(candidates).forEach((key: string) => {
                 if (key !== 'candidateUsers' && key !== 'candidateGroups') {
                     result = false;
@@ -654,8 +720,9 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     }
 
     isAssigneeValid(assignee): boolean {
-        let result = true;
+        let result = false;
         if (Object.keys(assignee).length === 1) {
+            result = true;
             Object.keys(assignee).forEach((key: string) => {
                 if (key !== 'assignee') {
                     result = false;
@@ -769,40 +836,130 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         this.onDestroy$.complete();
     }
 
-    get staticForm(): any {
-        return this.assignmentForm.get('staticForm');
+    get staticForm(): FormGroup {
+        return <FormGroup> this.assignmentForm.get('staticForm');
     }
 
     get assigneeStaticControl(): AbstractControl {
         return this.staticForm.get('assignee');
     }
 
+    get assigneeChipsStaticControl(): AbstractControl {
+        return this.staticForm.get('assigneeChips');
+    }
+
+    private assigneeChipsStaticCtrlValue(value: string) {
+        this.assigneeChipsStaticControl.setValue(value);
+        this.assigneeChipsStaticControl.markAsDirty();
+        this.assigneeChipsStaticControl.markAsTouched();
+        this.assigneeChipsStaticControl.updateValueAndValidity();
+    }
+
+    private assigneeExpressionCtrlValue(value: string) {
+        this.assigneeExpressionControl.setValue(value);
+        this.assigneeExpressionControl.markAsDirty();
+        this.assigneeExpressionControl.markAsTouched();
+        this.assigneeExpressionControl.updateValueAndValidity();
+    }
+
+    private candidateUserExpressionCtrlValue(value: string) {
+        this.candidateUsersExpressionControl.setValue(value);
+        this.candidateUsersExpressionControl.markAsDirty();
+        this.candidateUsersExpressionControl.markAsTouched();
+        this.candidateUsersExpressionControl.updateValueAndValidity();
+    }
+
+    private candidateGroupExpressionCtrlValue(value: string) {
+        this.candidateGroupsExpressionControl.setValue(value);
+        this.candidateGroupsExpressionControl.markAsDirty();
+        this.candidateGroupsExpressionControl.markAsTouched();
+        this.candidateGroupsExpressionControl.updateValueAndValidity();
+    }
+
+    private candidateUserChipsStaticCtrlValue(value: string) {
+        this.candidateUsersChipsStaticControl.setValue(value);
+        this.candidateUsersChipsStaticControl.markAsDirty();
+        this.candidateUsersChipsStaticControl.markAsTouched();
+        this.candidateUsersChipsStaticControl.updateValueAndValidity();
+    }
+
+    private candidateGroupChipsStaticCtrlValue(value: string) {
+        this.candidateGroupsChipsStaticControl.setValue(value);
+        this.candidateGroupsChipsStaticControl.markAsDirty();
+        this.candidateGroupsChipsStaticControl.markAsTouched();
+        this.candidateGroupsChipsStaticControl.updateValueAndValidity();
+    }
+
+    get candidatesStaticFormGroup(): FormGroup {
+        return <FormGroup> this.staticForm.get('candidatesFormGroup');
+    }
+
+    get candidateUserStaticFormGroup(): FormGroup {
+        return <FormGroup> this.candidatesStaticFormGroup.get('candidateUserFormGroup');
+    }
+
     get candidateUsersStaticControl(): AbstractControl {
-        return this.staticForm.get('candidateUsers');
+        return this.candidateUserStaticFormGroup.get('candidateUsers');
+    }
+
+    get candidateUsersChipsStaticControl(): AbstractControl {
+        return this.candidateUserStaticFormGroup.get('candidateUsersChips');
+    }
+
+    get candidateGroupStaticFormGroup(): FormGroup {
+        return <FormGroup> this.candidatesStaticFormGroup.get('candidateGroupFormGroup');
     }
 
     get candidateGroupsStaticControl(): AbstractControl {
-        return this.staticForm.get('candidateGroups');
+        return this.candidateGroupStaticFormGroup.get('candidateGroups');
     }
 
-    get identityForm(): any {
-        return this.assignmentForm.get('identityForm');
+    get candidateGroupsChipsStaticControl(): AbstractControl {
+        return this.candidateGroupStaticFormGroup.get('candidateGroupsChips');
+    }
+
+    get identityForm(): FormGroup {
+        return <FormGroup> this.assignmentForm.get('identityForm');
     }
 
     get assigneeIdentityControl(): AbstractControl {
         return this.identityForm.get('assignee');
     }
 
+    get assigneeChipsIdentityControl(): AbstractControl {
+        return this.identityForm.get('assigneeChips');
+    }
+
+    get candidatesIdentityFormGroup(): FormGroup {
+        return <FormGroup> this.identityForm.get('candidatesFormGroup');
+    }
+
+    get candidateUserIdentityFormGroup(): FormGroup {
+        return <FormGroup> this.candidatesIdentityFormGroup.get('candidateUserFormGroup');
+    }
+
     get candidateUsersIdentityControl(): AbstractControl {
-        return this.identityForm.get('candidateUsers');
+        return this.candidateUserIdentityFormGroup.get('candidateUsers');
+    }
+
+    get candidateUsersChipsIdentityControl(): AbstractControl {
+        return this.candidateUserIdentityFormGroup.get('candidateUsersChips');
+    }
+
+    get candidateGroupIdentityFormGroup(): FormGroup {
+        return <FormGroup> this.candidatesIdentityFormGroup.get('candidateGroupFormGroup');
+    }
+
+    get candidateGroupsChipsIdentityControl(): AbstractControl {
+        return this.candidateGroupIdentityFormGroup.get('candidateGroupsChips');
     }
 
     get candidateGroupsIdentityControl(): AbstractControl {
-        return this.identityForm.get('candidateGroups');
+        return this.candidateGroupIdentityFormGroup.get('candidateGroups');
     }
 
-    get expressionForm(): any {
-        return this.assignmentForm.get('expressionForm');
+    get expressionForm(): FormGroup {
+        return <FormGroup> this.assignmentForm.get('expressionForm');
     }
 
     get assigneeExpressionControl(): AbstractControl {
@@ -817,10 +974,14 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         return this.expressionForm.get('candidateGroups');
     }
 
+    private assignmentFormClean() {
+        this.staticForm.controls = {};
+        this.identityForm.controls = {};
+        this.expressionForm.controls = {};
+        this.assignmentForm.reset();
+    }
+
     get assignmentFormEnabled() {
-        return (
-            this.assignmentForm.valid &&
-            (this.assignmentForm.dirty || this.assignmentForm.touched)
-        );
+        return !this.loadingForm && this.assignmentForm.valid && this.assignmentForm.dirty && this.assignmentForm.touched;
     }
 }

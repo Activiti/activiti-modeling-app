@@ -148,6 +148,7 @@
                 "STATIC": "Static",
                 "IDENTITY": "Identity",
                 "ASSIGNEE": "Assignee",
+                "CANDIDATE_WARNING": "One field between candidateUsers or candidateGroups is mandatory",
                 "CANDIDATE_USERS": "Candidate Users",
                 "CANDIDATE_GROUPS": "Candidate Groups",
                 "USER": "{{count}} User",
