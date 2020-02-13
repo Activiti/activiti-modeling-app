@@ -72,4 +72,13 @@ export class UtilFile {
     static unzip(zipFilePath: string, destinationPath: string) {
         return fs.createReadStream(zipFilePath).pipe(unzipper.Extract({ path: destinationPath }));
     }
+
+    static async fileNotExist(filePath, waitTimeout: number = 500): Promise<boolean> {
+        try {
+            await this.fileExists(filePath, waitTimeout);
+            return false;
+        } catch (error) {
+            return true;
+        }
+    }
 }

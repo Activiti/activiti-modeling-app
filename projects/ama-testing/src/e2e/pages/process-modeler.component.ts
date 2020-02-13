@@ -32,6 +32,7 @@ export class ProcessModelerComponent extends GenericPage {
     readonly decisionTask = element(by.css(`[data-automation-id="decision-task::decision-task"]`));
     readonly scriptTask = element(by.css(`[data-automation-id="script-task::script-task"]`));
     readonly subProcess = element(by.css(`[data-automation-id="element::bpmn:SubProcess"]`));
+    readonly gateway = element(by.css(`[data-automation-id="element::bpmn:Gateway"]`));
     readonly processStep = element(by.css(`[data-element-id*="ServiceTask"]`));
     readonly typeReplacePopup = element(by.css('.djs-popup.bpmn-replace'));
     readonly typeReplaceButton = element(by.css('[data-action="replace"]'));
@@ -84,6 +85,16 @@ export class ProcessModelerComponent extends GenericPage {
         await super.dragAndDrop(this.scriptTask, this.canvas);
     }
 
+    async addGateway() {
+        await super.dragAndDrop(this.gateway, this.canvas);
+    }
+
+    async addExclusiveGateway() {
+        await this.addGateway();
+        // await this.selectGateway();
+        await this.changeElementType('replace-with-exclusive-gateway');
+    }
+
     async appendTask() {
         await BrowserActions.click(this.appendTaskButton);
     }
@@ -117,6 +128,10 @@ export class ProcessModelerComponent extends GenericPage {
     }
 
     async selectIntermediateEvent(id: string = 'Event') {
+        await BrowserActions.click(element.all(by.css(`[data-element-id*="${id}"]`)).first());
+    }
+
+    async selectGateway(id: string = 'Gateway') {
         await BrowserActions.click(element.all(by.css(`[data-element-id*="${id}"]`)).first());
     }
 
