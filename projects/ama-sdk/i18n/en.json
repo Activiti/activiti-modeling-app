@@ -4,6 +4,7 @@
             "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Pasted values must follow this pattern"
         },
         "ALL": "All",
+        "VALUE": "Value",
         "VARIABLES_EDITOR": {
             "ERRORS": {
                 "EMPTY_NAME": "A name is required",
