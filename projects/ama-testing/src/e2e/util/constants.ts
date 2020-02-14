@@ -38,3 +38,4 @@ export const MAPPING_DIALOG_TITLE = 'Edit variable mapping';
 
 export const COLLABORATOR_ADDED = `Collaborator added`;
 export const COLLABORATOR_DUPLICATED = `The selected collaborator is already in the list`;
+export const PROJECT_EXIST = `A project with that name already exists`;

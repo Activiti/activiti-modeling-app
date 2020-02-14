@@ -60,4 +60,14 @@ export class CollaboratorsDialog extends GenericDialog {
     async addCollaborator(): Promise<void> {
         await BrowserActions.click(this.addButton);
     }
+
+    async deleteCollaborator(username: string): Promise<void> {
+       const deleteButton = element(by.css(`[data-automation-id="project-collaborator-delete-id-${username}"]`));
+       await BrowserActions.click(deleteButton);
+    }
+
+    async isDeleteButtonIsNotVisible(username: string): Promise<boolean> {
+       const deleteButton = element(by.css(`[data-automation-id="project-collaborator-delete-id-${username}"]`));
+       return  BrowserVisibility.waitUntilElementIsNotVisible(deleteButton);
+    }
 }
