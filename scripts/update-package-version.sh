@@ -5,8 +5,6 @@ VERSION=$1
 
 eval packages=(
     "$PACKAGE_DIR"
-    "$PACKAGE_DIR/projects/ama-sdk"
-    "$PACKAGE_DIR/projects/ama-testing"
 )
 packagesLength=${#packages[@]}
 

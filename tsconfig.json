@@ -20,9 +20,8 @@
         "types": ["jasmine"],
         "baseUrl": "./",
         "paths": {
-            "ama-sdk": ["projects/ama-sdk"],
-            "ama-sdk/*": ["projects/ama-sdk/*"],
-            "ama-testing": ["projects/ama-testing"],
+            "ama-sdk": ["projects/ama-sdk/src/public_api.ts"],
+            "ama-testing": ["projects/ama-testing/src/public_api.ts"],
             "ama-testing/*": ["projects/ama-testing/src/*"]
         }
     },

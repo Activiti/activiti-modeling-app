@@ -1,9 +1,0 @@
-{
-  "name": "ama-testing",
-  "version": "0.0.1",
-  "peerDependencies": {
-    "@angular/common": "^7.2.15",
-    "@angular/core": "^7.2.15"
-  },
-  "main": "src/public_api.ts"
-}

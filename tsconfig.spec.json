@@ -12,8 +12,7 @@
             "@angular/*": ["./node_modules/@angular/*"],
             "@alfresco/adf-core": ["././alfresco-ng2-components/lib/core"],
             "@alfresco/adf-extensions": ["../alfresco-ng2-components/lib/extensions"],
-            "ama-sdk": ["./projects/ama-sdk"],
-            "ama-sdk/*": ["./projects/ama-sdk/*"]
+            "ama-sdk": ["./projects/ama-sdk/src/public_api.ts"]
         },
         "allowJs": true,
         "allowSyntheticDefaultImports": true

@@ -19,8 +19,7 @@
             "@ngx-translate": ["./node_modules/@ngx-translate"],
             "@ngx-translate/*": ["./node_modules/@ngx-translate/*"],
             "@angular/*": ["./node_modules/@angular/*"],
-            "ama-sdk": ["./projects/ama-sdk"],
-            "ama-sdk/*": ["./projects/ama-sdk/*"]
+            "ama-sdk": ["./projects/ama-sdk/src/public_api.ts"]
         }
     },
     "exclude": [

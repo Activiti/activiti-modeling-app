@@ -1,5 +1,6 @@
 {
     "rulesDirectory": [
+        "../../node_modules/@nrwl/workspace/src/tslint",
         "codelyzer",
         "adf-tslint-rules"
     ],
@@ -187,6 +188,18 @@
                 }
             ],
             "severity": "error"
-        }
+        },
+        "nx-enforce-module-boundaries": [
+            true,
+            {
+                "allow": [],
+                "depConstraints": [
+                    {
+                        "sourceTag": "scope:ama-sdk",
+                        "onlyDependOnLibsWithTags": ["scope:ama-sdk"]
+                    }
+                ]
+            }
+        ]
     }
 }
