@@ -162,6 +162,19 @@ export class VariablesDialog extends GenericDialog {
         return attr.substring(rowLocator.length + 1);
     }
 
+    async addAllProcessVariableTypes() {
+        await this.addVariable();
+        await this.setVariable('string', 'string', 'string');
+        await this.addVariable();
+        await this.setVariable('integer', 'integer', 'int');
+        await this.addVariable();
+        await this.setVariable('date', 'date');
+        await this.addVariable();
+        await this.setVariable('datetime', 'datetime');
+        await this.addVariable();
+        await this.setVariable('boolean', 'boolean');
+    }
+
     async update(): Promise<void> {
         await BrowserActions.click(this.updateButton);
     }

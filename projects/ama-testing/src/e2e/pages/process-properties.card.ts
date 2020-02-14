@@ -59,12 +59,16 @@ export class ProcessPropertiesCard extends GenericPage {
     readonly scopeSelector = element(by.css(`[data-automation-class="select-box"]`));
     readonly scriptSelector = element(by.css(`[data-automation-id="script-selector"]`));
 
-    async isLoaded() {
-        await BrowserVisibility.waitUntilElementIsVisible(this.editorProperties);
-        return true;
+    async isLoaded(): Promise<boolean> {
+        try {
+            await BrowserVisibility.waitUntilElementIsVisible(this.editorProperties);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
-    async getProcessId() {
+    async getProcessId(): Promise<string> {
         await BrowserVisibility.waitUntilElementIsVisible(this.processId);
         return this.processId.getText();
     }
@@ -73,62 +77,62 @@ export class ProcessPropertiesCard extends GenericPage {
         return this.id.getText();
     }
 
-    async changeElementScope(scope: string) {
+    async changeElementScope(scope: string): Promise<void> {
         await BrowserActions.click(this.scopeSelector);
         const scopeName = element(by.cssContainingText('.mat-option-text', scope));
         await BrowserActions.click(scopeName);
     }
 
-    async editProcessName(newName: string) {
+    async editProcessName(newName: string): Promise<void> {
         await BrowserActions.clearSendKeys(this.processNameField, newName);
     }
 
-    async editModelName(newName: string) {
+    async editModelName(newName: string): Promise<void> {
         await BrowserActions.click(this.editModelNameField);
         await BrowserActions.clearSendKeys(this.modelName, newName);
         await BrowserActions.click(this.updateModelName);
     }
 
-    async getProcessName() {
+    async getProcessName(): Promise<string> {
         return this.processNameField.getAttribute('value');
     }
 
-    async editProcessDocumentation(newDocumentation: string) {
+    async editProcessDocumentation(newDocumentation: string): Promise<void> {
         await BrowserActions.click(this.editDocumentation);
         await BrowserActions.clearSendKeys(this.documentation, newDocumentation);
         await BrowserActions.click(this.updateDocumentation);
     }
 
-    async editProcessVariables() {
+    async editProcessVariables(): Promise<void> {
         await BrowserActions.click(this.editVariables);
     }
 
-    async createNewError() {
+    async createNewError(): Promise<void> {
         await BrowserActions.click(this.newErrorButton);
     }
 
-    async createNewSignal() {
+    async createNewSignal(): Promise<void> {
         await BrowserActions.click(this.newSignalButton);
     }
 
-    async setConnector(connectorName: string) {
+    async setConnector(connectorName: string): Promise<void> {
         await BrowserActions.click(this.connectorSelector);
         const connectorOption = element(by.cssContainingText('.mat-option-text', connectorName));
         await BrowserActions.click(connectorOption);
     }
 
-    async setConnectorAction(actionName: string) {
+    async setConnectorAction(actionName: string): Promise<void> {
         await BrowserActions.click(this.connectorActionSelector);
         const connectorActionOption = element(by.cssContainingText('.mat-option-text', actionName));
         await BrowserActions.click(connectorActionOption);
     }
 
-    async scrollToBottom() {
-        const cardViewScrollBottomScript = 'document.getElementsByClassName("process-properties-card mat-card")[0].scrollIntoView()';
+    async scrollToBottom(): Promise<void> {
+        const cardViewScrollBottomScript = 'document.getElementsByClassName("process-properties")[0].scrollTop = document.getElementsByClassName("process-properties")[0].scrollHeight';
         await browser.executeScript(cardViewScrollBottomScript);
     }
 
-    async setDecisionTable(dtName: string) {
+    async setDecisionTable(dtName: string): Promise<void> {
         const dtOption = element(by.cssContainingText('.mat-option-text', dtName));
         await BrowserActions.click(this.decisionTableSelector);
         // Workaround:
@@ -145,7 +149,7 @@ export class ProcessPropertiesCard extends GenericPage {
         }
     }
 
-    async setScript(scriptName: string) {
+    async setScript(scriptName: string): Promise<void> {
         const scriptOption = element(by.cssContainingText('.mat-option-text', scriptName));
         await BrowserActions.click(this.scriptSelector);
         // Workaround:
@@ -162,7 +166,7 @@ export class ProcessPropertiesCard extends GenericPage {
         }
     }
 
-    async setForm(formName: string) {
+    async setForm(formName: string): Promise<void> {
         const formOption = element(by.cssContainingText('.mat-option-text', formName));
         let i = 0;
         try {
@@ -176,13 +180,13 @@ export class ProcessPropertiesCard extends GenericPage {
         }
     }
 
-    async setActivity(activityName: string) {
+    async setActivity(activityName: string): Promise<void> {
         await BrowserActions.click(this.activitySelector);
         const activityOption = element(by.cssContainingText('.mat-option-text', activityName));
         await BrowserActions.click(activityOption);
     }
 
-    async setProcess(processId: string) {
+    async setProcess(processId: string): Promise<void> {
         await BrowserActions.click(this.processSelector);
         const processOption = element(by.cssContainingText('.mat-option-text', processId));
         await BrowserActions.click(processOption);
@@ -199,142 +203,217 @@ export class ProcessPropertiesCard extends GenericPage {
         await BrowserActions.click(element(by.css(selector)));
     }
 
-    async selectVariable(variableName: string) {
+    async selectVariable(variableName: string): Promise<void> {
         const processVariable = element.all(by.cssContainingText('.mat-option-text', variableName)).first();
 
         await BrowserActions.click(processVariable);
     }
 
-    async setProcessVariable(connectorId: string, variableName: string, table?: string) {
+    async setProcessVariable(connectorId: string, variableName: string, table?: string): Promise<void> {
         await this.openProcessVariablesList(connectorId, table);
         await this.selectVariable(variableName);
     }
 
-    async getProcessVariablesList(connectorId: string) {
+    async getProcessVariablesList(connectorId: string): Promise<string> {
         await this.openProcessVariablesList(connectorId);
         return element.all((by.css('.mat-option-text'))).getText();
     }
 
-    async isInputMappingHeaderDisplayed() {
-        await BrowserVisibility.waitUntilElementIsVisible(this.inputMappingHeader);
-        return true;
+    async isInputMappingHeaderDisplayed(): Promise<boolean> {
+        try {
+            await BrowserVisibility.waitUntilElementIsVisible(this.inputMappingHeader);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
-    async isMappingTableHeaderDisplayed() {
-        await BrowserVisibility.waitUntilElementIsVisible(this.mappingHeaderCellName);
-        await BrowserVisibility.waitUntilElementIsVisible(this.mappingHeaderCellProcessVariable);
-        return true;
+    async isInputMappingHeaderNotDisplayed(): Promise<boolean> {
+        try {
+            await BrowserVisibility.waitUntilElementIsNotVisible(this.inputMappingHeader);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
-    async isInputMappingTableHeaderDisplayed() {
-        await BrowserVisibility.waitUntilElementIsVisible(this.inputMappingHeaderCellName);
-        await BrowserVisibility.waitUntilElementIsVisible(this.inputMappingHeaderCellProcessVariable);
-        return true;
+    async isMappingTableHeaderDisplayed(): Promise<boolean> {
+        try {
+            await BrowserVisibility.waitUntilElementIsVisible(this.mappingHeaderCellName);
+            await BrowserVisibility.waitUntilElementIsVisible(this.mappingHeaderCellProcessVariable);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
-    async isOutputMappingTableHeaderDisplayed() {
-        await BrowserVisibility.waitUntilElementIsVisible(this.outputMappingHeaderCellName);
-        await BrowserVisibility.waitUntilElementIsVisible(this.outputMappingHeaderCellProcessVariable);
-        return true;
+    async isInputMappingTableHeaderDisplayed(): Promise<boolean> {
+        try {
+            await BrowserVisibility.waitUntilElementIsVisible(this.inputMappingHeaderCellName);
+            await BrowserVisibility.waitUntilElementIsVisible(this.inputMappingHeaderCellProcessVariable);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
-    async isOutputMappingHeaderDisplayed() {
-        await BrowserVisibility.waitUntilElementIsVisible(this.outputMappingHeader);
-        return true;
+    async isOutputMappingTableHeaderDisplayed(): Promise<boolean> {
+        try {
+            await BrowserVisibility.waitUntilElementIsVisible(this.outputMappingHeaderCellName);
+            await BrowserVisibility.waitUntilElementIsVisible(this.outputMappingHeaderCellProcessVariable);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
-    async isNoProcessPropertiesMsg(connectorId: string) {
-        const noPropertiesMsg = element(by.css(`[data-automation-id="param-id-${connectorId}"]+mat-cell>.no-process-properties-msg`));
-        await BrowserVisibility.waitUntilElementIsVisible(noPropertiesMsg);
-        return true;
+    async isOutputMappingHeaderDisplayed(): Promise<boolean> {
+        try {
+            await BrowserVisibility.waitUntilElementIsVisible(this.outputMappingHeader);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
-    async getConnectorParam(connectorId: string) {
+    async isOptionInOutputMappingList(name: string, index: string): Promise<boolean> {
+        try {
+            await this.openProcessVariablesList(index, 'output');
+            const option = element(by.cssContainingText('.mat-option-text', name));
+            await BrowserVisibility.waitUntilElementIsVisible(option);
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    async isOptionNotInOutputMappingList(name: string, index: string): Promise<boolean> {
+        try {
+            await this.openProcessVariablesList(index, 'output');
+            const option = element(by.cssContainingText('.mat-option-text', name));
+            await BrowserVisibility.waitUntilElementIsNotVisible(option);
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    async isNoProcessPropertiesMsg(connectorId: string): Promise<boolean> {
+        try {
+            const noPropertiesMsg = element(by.css(`[data-automation-id="param-id-${connectorId}"]+mat-cell>.no-process-properties-msg`));
+            await BrowserVisibility.waitUntilElementIsVisible(noPropertiesMsg);
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    async getConnectorParam(connectorId: string): Promise<string> {
         const connectorParam = element(by.css(`[data-automation-id="param-id-${connectorId}"]>span`));
         await BrowserVisibility.waitUntilElementIsVisible(connectorParam);
         return connectorParam.getText();
     }
 
-    async getOutputConnectorParam(index: number) {
+    async getOutputConnectorParam(index: number): Promise<string> {
         const connectorParam = element(by.css(`[data-automation-id="output-param-id-${index}"]>span`));
         await BrowserVisibility.waitUntilElementIsVisible(connectorParam);
         return connectorParam.getText();
     }
 
-    async countOutputConnectorParams() {
+    async countOutputConnectorParams(): Promise<number> {
         const outputMappingTableRows = element.all(by.css(`mat-table.output-mapping mat-row`));
         return (await outputMappingTableRows).length;
     }
 
-    async getValue(connectorId: string) {
+    async getValue(connectorId: string): Promise<string> {
         const valueInput = element(by.css(`[data-automation-id="value-input-${connectorId}"]`));
         await BrowserVisibility.waitUntilElementIsVisible(valueInput);
         return valueInput.getText();
     }
 
-    async isValueInputVisible(connectorId: string) {
-        const valueInput = element(by.css(`[data-automation-id="value-input-${connectorId}"]`));
-        await BrowserVisibility.waitUntilElementIsVisible(valueInput);
-        return true;
+    async isValueInputVisible(connectorId: string): Promise<boolean> {
+        try {
+            const valueInput = element(by.css(`[data-automation-id="value-input-${connectorId}"]`));
+            await BrowserVisibility.waitUntilElementIsVisible(valueInput);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
-    async isVariableSelectorVisible(connectorId: string) {
-        const valueInput = element.all(by.css(`[data-automation-id="variable-selector-${connectorId}"]`)).first();
-        await BrowserVisibility.waitUntilElementIsVisible(valueInput);
-        return true;
+    async isVariableSelectorVisible(connectorId: string): Promise<boolean> {
+        try {
+            const valueInput = element.all(by.css(`[data-automation-id="variable-selector-${connectorId}"]`)).first();
+            await BrowserVisibility.waitUntilElementIsVisible(valueInput);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
-    async getProcessVariable(connectorId: string) {
+    async getProcessVariable(connectorId: string): Promise<string> {
         const variable = element(by.css(`[data-automation-id="variable-selector-${connectorId}"] span span`));
         await BrowserVisibility.waitUntilElementIsVisible(variable);
         return variable.getText();
     }
 
-    async getOutputMappingProcessVariable(index: number) {
+    async getOutputMappingProcessVariable(index: number): Promise<string> {
         const variable = element(by.css(`[data-automation-id="variable-selector-${index}"].output-mapping span span`));
         await BrowserVisibility.waitUntilElementIsVisible(variable);
         return variable.getText();
     }
 
-    async isOutputMappingProcessVariableEmpty(index: number) {
-        const variable = element(by.css(`[data-automation-id="variable-selector-${index}"].output-mapping span.mat-select-placeholder`));
-        await BrowserVisibility.waitUntilElementIsVisible(variable);
-        return true;
+    async isOutputMappingProcessVariableEmpty(index: number): Promise<boolean> {
+        try {
+            const variable = element(by.css(`[data-automation-id="variable-selector-${index}"].output-mapping span.mat-select-placeholder`));
+            await BrowserVisibility.waitUntilElementIsVisible(variable);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
-    async isEditVariablesButtonIconDisplayed() {
-        await BrowserVisibility.waitUntilElementIsVisible(this.editVariablesIcon);
-        return true;
+    async isEditVariablesButtonIconDisplayed(): Promise<boolean> {
+        try {
+            await BrowserVisibility.waitUntilElementIsVisible(this.editVariablesIcon);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
-    async getErrorMessage() {
+    async getErrorMessage(): Promise<string> {
         await BrowserVisibility.waitUntilElementIsVisible(this.processNameError);
         return this.processNameError.getText();
     }
 
-    async getValueInputMappingTable(inputParameterId: string) {
+    async getValueInputMappingTable(inputParameterId: string): Promise<string> {
         const value = element(by.css(`[data-automation-id="value-input-${inputParameterId}"]`));
         await BrowserVisibility.waitUntilElementIsVisible(value);
         return value.getText();
     }
 
-    async getOutputTableProcessVariablesList(index: number) {
+    async getOutputTableProcessVariablesList(index: number): Promise<string> {
         await this.openOutputTableProcessVariablesList(index);
         return element.all((by.css('.mat-option-text'))).getText();
     }
 
-    async openOutputTableProcessVariablesList(index: number) {
+    async openOutputTableProcessVariablesList(index: number): Promise<void> {
         const selector = `[data-automation-id="variable-selector-${index}"].output-mapping`;
         await BrowserActions.click(element(by.css(selector)));
     }
 
     async isNoOutputTableProcessPropertiesMsg(index: number) {
-        const noPropertiesMsg = element(by.css(`[data-automation-id="output-param-id-${index}"]+mat-cell>.no-process-properties-msg`));
-        await BrowserVisibility.waitUntilElementIsVisible(noPropertiesMsg);
-        return true;
+        try {
+            const noPropertiesMsg = element(by.css(`[data-automation-id="output-param-id-${index}"]+mat-cell>.no-process-properties-msg`));
+            await BrowserVisibility.waitUntilElementIsVisible(noPropertiesMsg);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
-    async setOutputTableProcessVariable(index: number, variableName: string) {
+    async setOutputTableProcessVariable(index: number, variableName: string): Promise<void> {
         await this.openOutputTableProcessVariablesList(index);
         await this.selectVariable(variableName);
     }

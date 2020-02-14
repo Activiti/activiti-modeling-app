@@ -94,7 +94,12 @@ export class DashboardPage extends GenericPage {
     }
 
     async isProjectReleasesNotEmpty(): Promise<boolean> {
-        return BrowserVisibility.waitUntilElementIsVisible(this.releaseListRow.get(1));
+        try {
+            await BrowserVisibility.waitUntilElementIsVisible(this.releaseListRow.get(1));
+            return true;
+        } catch ( error ) {
+            return false;
+        }
     }
 
     async getProjectsCount(): Promise<number> {
