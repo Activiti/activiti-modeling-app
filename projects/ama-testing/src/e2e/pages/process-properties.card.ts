@@ -85,6 +85,7 @@ export class ProcessPropertiesCard extends GenericPage {
 
     async editProcessName(newName: string): Promise<void> {
         await BrowserActions.clearSendKeys(this.processNameField, newName);
+        await browser.sleep(500);
     }
 
     async editModelName(newName: string): Promise<void> {
@@ -95,6 +96,10 @@ export class ProcessPropertiesCard extends GenericPage {
 
     async getProcessName(): Promise<string> {
         return this.processNameField.getAttribute('value');
+    }
+
+    async getModelName(): Promise<string> {
+        return this.editModelNameField.getAttribute('value');
     }
 
     async editProcessDocumentation(newDocumentation: string): Promise<void> {

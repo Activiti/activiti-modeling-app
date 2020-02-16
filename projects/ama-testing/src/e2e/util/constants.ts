@@ -39,3 +39,7 @@ export const MAPPING_DIALOG_TITLE = 'Edit variable mapping';
 export const COLLABORATOR_ADDED = `Collaborator added`;
 export const COLLABORATOR_DUPLICATED = `The selected collaborator is already in the list`;
 export const PROJECT_EXIST = `A project with that name already exists`;
+
+export const CONFIRM_DOWNLOAD_PROCESS_DIALOG_TITLE = 'Are you sure you want to download this process?';
+export const VALIDATION_ERRORS = 'Validation errors:';
+export const SERVICE_TASK_VALIDATION_ERROR = `One of the attributes 'implementation', 'class', 'delegateExpression', 'type', 'operation', or 'expression' is mandatory on serviceTask.`;
