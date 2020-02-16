@@ -38,8 +38,13 @@ export const MAPPING_DIALOG_TITLE = 'Edit variable mapping';
 
 export const COLLABORATOR_ADDED = `Collaborator added`;
 export const COLLABORATOR_DUPLICATED = `The selected collaborator is already in the list`;
+
 export const PROJECT_EXIST = `A project with that name already exists`;
 
 export const CONFIRM_DOWNLOAD_PROCESS_DIALOG_TITLE = 'Are you sure you want to download this process?';
 export const VALIDATION_ERRORS = 'Validation errors:';
 export const SERVICE_TASK_VALIDATION_ERROR = `One of the attributes 'implementation', 'class', 'delegateExpression', 'type', 'operation', or 'expression' is mandatory on serviceTask.`;
+
+export const CONFIRM_DOWNLOAD_CONNECTOR_DIALOG_TITLE = 'Are you sure you want to download this connector?';
+export const NAME_LENGTH_VALIDATION = '#/name: expected minLength: 1, actual: 0';
+export const NAME_PATTERN_VALIDATION = `#/name: string [] does not match pattern ${MODEL_NAME_REGEXP}`;
