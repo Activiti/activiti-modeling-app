@@ -21,8 +21,7 @@
         "baseUrl": "./",
         "paths": {
             "ama-sdk": ["projects/ama-sdk/src/public_api.ts"],
-            "ama-testing": ["projects/ama-testing/src/public_api.ts"],
-            "ama-testing/*": ["projects/ama-testing/src/*"]
+            "ama-testing/*": ["projects/ama-testing/src/e2e"]
         }
     },
     "exclude": ["node_modules", ],

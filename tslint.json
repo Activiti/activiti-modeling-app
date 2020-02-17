@@ -197,6 +197,13 @@
                     {
                         "sourceTag": "scope:ama-sdk",
                         "onlyDependOnLibsWithTags": ["scope:ama-sdk"]
+                    },
+                    {
+                        "sourceTag": "scope:modeling-ce-e2e",
+                        "onlyDependOnLibsWithTags": [
+                            "scope:modeling-ce-e2e",
+                            "scope:ama-testing"
+                        ]
                     }
                 ]
             }
