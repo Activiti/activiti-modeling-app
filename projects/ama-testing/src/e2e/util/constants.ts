@@ -48,3 +48,5 @@ export const SERVICE_TASK_VALIDATION_ERROR = `One of the attributes 'implementat
 export const CONFIRM_DOWNLOAD_CONNECTOR_DIALOG_TITLE = 'Are you sure you want to download this connector?';
 export const NAME_LENGTH_VALIDATION = '#/name: expected minLength: 1, actual: 0';
 export const NAME_PATTERN_VALIDATION = `#/name: string [] does not match pattern ${MODEL_NAME_REGEXP}`;
+
+export const CONFIRM_DOWNLOAD_UI_DIALOG_TITLE = 'Are you sure you want to download this UI?';
