@@ -140,14 +140,22 @@ export class VariablesDialog extends GenericDialog {
 
         valueCell = element(by.css(`${variableRow}>[data-automation-id="variable-value-cell-${rowIndex}"]`));
 
-        await BrowserVisibility.waitUntilElementIsVisible(valueCell);
-
-        return true;
+        try {
+            await BrowserVisibility.waitUntilElementIsVisible(valueCell);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
-    async checkNoRowIsDisplayed(): Promise<void> {
+    async checkNoRowIsDisplayed(): Promise<boolean> {
         const row = element(by.css('.mat-row'));
-        await BrowserVisibility.waitUntilElementIsNotVisible(row);
+        try {
+            await BrowserVisibility.waitUntilElementIsNotVisible(row);
+            return true;
+        } catch {
+            return false;
+        }
     }
 
     async isVariableDisplayed(rowIndex: number, name: string = 'name', type: string = 'string', value: string = '', required: string = 'false'): Promise<boolean> {
