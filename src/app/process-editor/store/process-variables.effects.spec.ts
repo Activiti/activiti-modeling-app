@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable, of } from 'rxjs';
-import { SetAppDirtyStateAction, DialogService, BpmnFactoryToken, ProcessModelerServiceToken } from '@alfresco-dbp/modeling/ama-sdk';
+import { SetAppDirtyStateAction, DialogService, BpmnFactoryToken, ProcessModelerServiceToken } from '@alfresco-dbp/modeling-shared/sdk';
 import { UpdateProcessVariablesAction } from './process-variables.actions';
 import { hot, cold } from 'jasmine-marbles';
 import { mockProcessModel, mockProcessId } from './process.mock';

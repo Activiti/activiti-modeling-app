@@ -18,7 +18,7 @@
 import { Component, Input, ElementRef, ViewChild, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { LogService } from '@alfresco/adf-core';
-import { ModelUploader, AmaState, MODEL_UPLOADERS } from '@alfresco-dbp/modeling/ama-sdk';
+import { ModelUploader, AmaState, MODEL_UPLOADERS } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Component({
     selector: 'ama-upload-file-button',

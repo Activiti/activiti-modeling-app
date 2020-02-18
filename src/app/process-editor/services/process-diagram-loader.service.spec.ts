@@ -27,7 +27,7 @@ import {
     SnackbarWarningAction,
     SnackbarErrorAction,
     LogFactoryService
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { BpmnFactoryMock } from './bpmn-js/bpmn-js.mock';
 import { of, throwError } from 'rxjs';

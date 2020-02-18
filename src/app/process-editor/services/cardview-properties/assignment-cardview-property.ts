@@ -16,7 +16,7 @@
  */
 
 import { FactoryProps } from './cardview-properties.factory';
-import { BpmnCompositeProperty } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnCompositeProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { CardViewTaskAssignmentItemModel } from './task-assignment-item/task-assignment-item.model';
 
 const propertyName = BpmnCompositeProperty.assignment;

@@ -34,7 +34,7 @@ import {
     CodeValidatorService,
     selectProcessPropertiesArrayFor,
     CodeEditorComponent
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { IdentityUserModel, IdentityGroupModel } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';

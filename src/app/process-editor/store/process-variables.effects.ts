@@ -33,7 +33,7 @@ import {
     VariablesComponent,
     selectSelectedProcess,
     BpmnCompositeProperty
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { Subject, of, zip } from 'rxjs';
 

@@ -16,7 +16,7 @@
  */
 
 import { selectLogsByInitiator } from './app.selectors';
-import { allLogFilter, MESSAGE } from '@alfresco-dbp/modeling/ama-sdk';
+import { allLogFilter, MESSAGE } from '@alfresco-dbp/modeling-shared/sdk';
 import { INITIAL_STATE } from '../states/app.state';
 import { getConnectorLogInitiator } from '../../connector-editor/services/connector-editor.constants';
 

@@ -18,7 +18,7 @@
 import { Component, Inject } from '@angular/core';
 import { EDITOR_FOOTER_SERVICE_TOKEN, EditorFooterService } from './editor-footer.service.interface';
 import { Store } from '@ngrx/store';
-import { AmaState, LogMessage,  LOG_FILTER_ITEM_TOKEN, LogMessageInitiator  } from '@alfresco-dbp/modeling/ama-sdk';
+import { AmaState, LogMessage,  LOG_FILTER_ITEM_TOKEN, LogMessageInitiator  } from '@alfresco-dbp/modeling-shared/sdk';
 import { selectToolbarLogsVisibility, selectLogsByInitiator } from '../../../../app/store/selectors/app.selectors';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty, BpmnCompositeProperty } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnProperty, BpmnCompositeProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { idHandler } from './id.handler';
 import { nameHandler } from './name.handler';
 import { documentationHandler } from './documentation.handler';

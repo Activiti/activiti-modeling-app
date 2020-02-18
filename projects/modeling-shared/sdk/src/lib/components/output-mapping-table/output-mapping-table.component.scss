@@ -1,0 +1,63 @@
+@mixin modelingsdk-output-mapping-table($theme) {
+    $foreground: map-get($theme, foreground);
+    $error: map-get($theme, warn);
+
+    .modelingsdk-output-mapping-table {
+        .mat-table {
+            border: 1px solid mat-color($foreground, text, 0.07);
+        }
+
+        .mat-header-cell:first-of-type {
+            padding-left: 0;
+        }
+
+        .mat-header-cell:last-of-type {
+            padding-right: 0;
+        }
+
+        .required-parameter {
+            color: mat-color($error);
+        }
+
+        .mat-cell {
+            margin: 0;
+            padding: 0;
+            min-height: initial;
+            display: flex;
+            justify-content: space-between;
+
+            span {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        }
+
+        .variable-value-type-value {
+            font-style: italic;
+        }
+
+        .mat-header-cell {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 0;
+        }
+
+        &__mapped-value {
+            border: 1px solid mat-color($foreground, text, 0.07);
+            margin-top: 0;
+        }
+
+        &__mapping-icon.mat-icon {
+            vertical-align: middle;
+            margin-left: 5px;
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            padding: 4px 0;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

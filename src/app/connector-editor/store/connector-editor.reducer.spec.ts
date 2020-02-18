@@ -21,7 +21,7 @@ import {
     UPDATE_CONNECTOR_SUCCESS,
     GET_CONNECTOR_SUCCESS
 } from './connector-editor.actions';
-import { GET_CONNECTOR_ATTEMPT } from '@alfresco-dbp/modeling/ama-sdk';
+import { GET_CONNECTOR_ATTEMPT } from '@alfresco-dbp/modeling-shared/sdk';
 
 describe('ConnectorEditorReducer', () => {
     let initialState: ConnectorEditorState;

@@ -16,7 +16,7 @@
  */
 
 import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { FactoryProps } from './cardview-properties.factory';
 import { DueDateItemModel } from './due-date-item/due-date-item.model';
 

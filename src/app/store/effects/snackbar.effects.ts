@@ -24,7 +24,7 @@ import {
     SnackbarInfoAction,
     SnackbarWarningAction,
     SNACKBAR_WARNING
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { NotificationService } from '@alfresco/adf-core';
 import { map } from 'rxjs/operators';
 

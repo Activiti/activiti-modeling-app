@@ -26,7 +26,7 @@ import {
     CONNECTOR_FILE_FORMAT,
     CONNECTOR_API_TOKEN,
     ModelApiInterface
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 
 @Injectable()
 export class ConnectorEditorService {

@@ -1,0 +1,16 @@
+<mat-sidenav-container autosize>
+    <mat-sidenav #sidenavProperties [opened]="true" mode="side" position="end" disableClose>
+        <ng-content select="modelingsdk-workbench-layout-sidenav"></ng-content>
+        <button (click)="sidenavProperties.toggle()"
+                [matTooltip]="'PROCESS_EDITOR.PROPERTIES_BUTTON' | translate"
+                data-automation-class="modelingsdk-workbench-layout-button"
+                matTooltipPosition="before"
+                class="modelingsdk-workbench-layout_button">
+            {{ 'PROCESS_EDITOR.PROPERTIES_BUTTON' | translate }}
+        </button>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <ng-content select="modelingsdk-workbench-layout-content"></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>

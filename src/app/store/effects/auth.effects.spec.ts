@@ -25,7 +25,7 @@ import { AsyncInitAction, LoggedInAction } from '../actions/app.actions';
 import { appThemes } from '../../app/themes';
 import { AuthEffects } from './auth.effects';
 import { HttpClientModule } from '@angular/common/http';
-import { AmaAuthenticationService } from '@alfresco-dbp/modeling/ama-sdk';
+import { AmaAuthenticationService } from '@alfresco-dbp/modeling-shared/sdk';
 
 describe('AuthEffects', () => {
     let effects: AuthEffects;

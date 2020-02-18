@@ -20,7 +20,7 @@
         "types": ["jasmine"],
         "baseUrl": "./",
         "paths": {
-            "@alfresco-dbp/modeling/ama-sdk": ["projects/ama-sdk/src/public_api.ts"]
+            "@alfresco-dbp/modeling-shared/sdk": ["projects/modeling-shared/sdk/src/public_api.ts"]
         }
     },
     "exclude": ["node_modules", ],

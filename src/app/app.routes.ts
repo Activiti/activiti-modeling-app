@@ -27,7 +27,7 @@ import { ErrorContentComponent } from './app/error/error-content.component';
 import { AboutComponent } from './app/about/about.component';
 import { dashboardRoutes } from './dashboard/router/dashboard.routes';
 import { AmaModelSchemaLoaderGuard } from './common/services/ama-model-schema-loader-guard.service';
-import { DASHBOARD_ROUTES } from '@alfresco-dbp/modeling/ama-sdk';
+import { DASHBOARD_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const appRoutes: Routes = [
     { path: 'login', component: AppLoginComponent },

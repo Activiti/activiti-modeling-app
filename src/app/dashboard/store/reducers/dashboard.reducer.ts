@@ -33,7 +33,7 @@ import {
     ProjectSummaryEntities, ReleaseProjectSuccessAction,
     RELEASE_PROJECT_SUCCESS, Pagination, DashboardState,
     INITIAL_DASHBOARD_STATE, GET_PROJECTS_ATTEMPT
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 
 export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE, action: Action): DashboardState {
     let newState: DashboardState;

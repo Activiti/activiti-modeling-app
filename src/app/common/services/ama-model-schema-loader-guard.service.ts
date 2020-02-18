@@ -29,7 +29,7 @@ import {
     AmaState,
     MODEL_SCHEMAS_TO_LOAD,
     AssignmentMode
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { tap, map, catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { getBackendLogInitiator } from './application.constants';

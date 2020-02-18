@@ -16,7 +16,7 @@
  */
 
 import { Injectable, Inject } from '@angular/core';
-import { TriggerHandler, ToolTrigger, ProcessModelerServiceToken, ProcessModelerService } from '@alfresco-dbp/modeling/ama-sdk';
+import { TriggerHandler, ToolTrigger, ProcessModelerServiceToken, ProcessModelerService } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Injectable()
 export class ToolsHandler implements TriggerHandler {

@@ -37,6 +37,6 @@ module.exports = {
         "__TRANSFORM_HTML__": true
     },
     moduleNameMapper: {
-        '@alfresco-dbp/modeling/ama-sdk': '<rootDir>/projects/ama-sdk/src/public_api.ts'
+        '@alfresco-dbp/modeling-shared/sdk': '<rootDir>/projects/modeling-shared/sdk/src/public_api.ts'
     }
 };

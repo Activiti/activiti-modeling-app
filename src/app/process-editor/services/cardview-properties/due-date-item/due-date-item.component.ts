@@ -19,7 +19,7 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, MomentDateAdapter, CardViewDatetimeItemModel, CardViewItem } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { AmaState, selectSelectedProcess, AMA_DATETIME_FORMATS, MOMENT_DATETIME_FORMAT,
-    EntityProperty, ANGULAR_DATETIME_DISPLAY_FORMAT, ProcessExtensionsModel } from '@alfresco-dbp/modeling/ama-sdk';
+    EntityProperty, ANGULAR_DATETIME_DISPLAY_FORMAT, ProcessExtensionsModel } from '@alfresco-dbp/modeling-shared/sdk';
 import { filter, take, debounceTime, takeUntil } from 'rxjs/operators';
 import { FormBuilder, FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { Subject } from 'rxjs';

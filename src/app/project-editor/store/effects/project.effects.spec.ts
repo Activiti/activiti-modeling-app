@@ -20,7 +20,7 @@ import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { Observable, throwError, of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
-import { ACMApiModule, DownloadResourceService, BlobService, DialogService, LogFactoryService, SnackbarErrorAction } from '@alfresco-dbp/modeling/ama-sdk';
+import { ACMApiModule, DownloadResourceService, BlobService, DialogService, LogFactoryService, SnackbarErrorAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { LogService, AlfrescoApiService, AlfrescoApiServiceMock, TranslationService, TranslationMock } from '@alfresco/adf-core';

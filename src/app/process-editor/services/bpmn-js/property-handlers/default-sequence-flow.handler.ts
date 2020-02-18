@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
 
 const propertyKey = BpmnProperty.defaultSequenceFlow;
 

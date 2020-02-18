@@ -18,7 +18,7 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { ConnectorLoaderGuard } from './guards/connector-loader.guard';
-import { UnsavedPageGuard } from '@alfresco-dbp/modeling/ama-sdk';
+import { UnsavedPageGuard } from '@alfresco-dbp/modeling-shared/sdk';
 import { connectorEditorRoutes } from './connector-editor.routes';
 import { ConnectorsLoaderGuard } from './guards/connectors-loader.guard';
 

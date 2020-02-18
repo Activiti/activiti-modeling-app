@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty, BpmnCompositeProperty } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnProperty, BpmnCompositeProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { createIdProperty } from './id-cardview-property';
 import { createNameProperty } from './name-cardview-property';
 import { createImplementationProperty } from './implementation-cardview-property';

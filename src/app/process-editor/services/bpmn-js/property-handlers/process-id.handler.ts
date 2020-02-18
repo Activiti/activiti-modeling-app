@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnElement } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnElement } from '@alfresco-dbp/modeling-shared/sdk';
 
 const get = (element) => {
     switch (element.type) {

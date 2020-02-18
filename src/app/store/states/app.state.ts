@@ -16,7 +16,7 @@
  */
 
 import { appThemes } from '../../app/themes';
-import { AppState, AmaState } from '@alfresco-dbp/modeling/ama-sdk';
+import { AppState, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const INITIAL_APP_STATE: AppState = {
     selectedProjectId: null,

@@ -21,7 +21,7 @@
                                 "./lib",
                                 "./node_modules/@alfresco",
                                 "node_modules",
-                                "./projects/ama-sdk/src/lib/theming"
+                                "./projects/modeling-shared/sdk/src/lib/theming"
                             ]
                         },
                         "assets": [
@@ -31,7 +31,7 @@
                             { "input": "resources", "output": "/resources", "glob": "**/*" },
                             { "input": "src/app/process-editor/i18n", "output": "/assets/process-editor/i18n", "glob": "**/*" },
                             { "input": "src/app/connector-editor/i18n", "output": "/assets/connector-editor/i18n", "glob": "**/*" },
-                            { "input": "projects/ama-sdk/i18n", "output": "/assets/ama-sdk/i18n", "glob": "**/*" },
+                            { "input": "projects/modeling-shared/sdk/i18n", "output": "/assets/modeling-sdk/i18n", "glob": "**/*" },
                             { "input": "node_modules/@alfresco/adf-core/prebuilt-themes", "output": "/assets/prebuilt-themes", "glob": "**/*" },
                             { "input": "node_modules/@alfresco/adf-core/bundles/assets", "output": "/assets", "glob": "**/*" },
                             { "input": "node_modules/@alfresco/adf-process-services-cloud/bundles/assets", "output": "/assets", "glob": "**/*" },
@@ -40,7 +40,7 @@
                         "styles": [
                             ".tmp/bpmn-properties.css",
                             "src/styles.scss",
-                            "projects/ama-sdk/src/lib/ama-sdk.module.scss"
+                            "projects/modeling-shared/sdk/src/lib/modeling-sdk.module.scss"
                         ],
                         "scripts": []
                     },
@@ -105,16 +105,16 @@
                 }
             }
         },
-        "ama-sdk": {
-            "root": "projects/ama-sdk",
-            "sourceRoot": "projects/ama-sdk/src",
+        "modeling-sdk": {
+            "root": "projects/modeling-shared/sdk",
+            "sourceRoot": "projects/modeling-shared/sdk/src",
             "projectType": "library",
-            "prefix": "amasdk",
+            "prefix": "modelingsdk",
             "architect": {
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
-                        "tsConfig": [ "projects/ama-sdk/tsconfig.lib.json" ],
+                        "tsConfig": [ "projects/modeling-shared/sdk/tsconfig.lib.json" ],
                         "exclude": [ "**/node_modules/**" ],
                         "format": "stylish"
                     }

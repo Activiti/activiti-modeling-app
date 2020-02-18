@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { AppTheme } from '@alfresco-dbp/modeling/ama-sdk';
+import { AppTheme } from '@alfresco-dbp/modeling-shared/sdk';
 
 export enum AppActionTypes {
     AsyncInit = '[App] AsyncInit',

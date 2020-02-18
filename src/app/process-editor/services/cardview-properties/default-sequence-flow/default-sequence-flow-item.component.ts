@@ -17,7 +17,7 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
-import { DefaultSequenceFlowItemModel } from '@alfresco-dbp/modeling/ama-sdk';
+import { DefaultSequenceFlowItemModel } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Component({
     selector: 'ama-process-default-sequence-flow',

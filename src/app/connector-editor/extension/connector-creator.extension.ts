@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { MODEL_CREATORS, ModelCreator, CONNECTOR, MODELER_NAME_REGEX } from '@alfresco-dbp/modeling/ama-sdk';
+import { MODEL_CREATORS, ModelCreator, CONNECTOR, MODELER_NAME_REGEX } from '@alfresco-dbp/modeling-shared/sdk';
 import { CreateConnectorAttemptAction } from '../store/connector-editor.actions';
 import { CONNECTOR_ICON } from './connectors-filter.extension';
 

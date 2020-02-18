@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { LogMessageInitiator } from '@alfresco-dbp/modeling/ama-sdk';
+import { LogMessageInitiator } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const APPLICATION_LOGS = 'Application';
 export const BE_LOGS = 'Backend';

@@ -1,0 +1,7 @@
+{
+    "extends": "../../../tslint.json",
+    "rules": {
+        "directive-selector": [true, "attribute", "modelingsdk", "kebab-case"],
+        "component-selector": [true, "element", "modelingsdk", "kebab-case"]
+    }
+}

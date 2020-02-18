@@ -19,7 +19,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AmaState, OpenFilterAction, CONNECTOR } from '@alfresco-dbp/modeling/ama-sdk';
+import { AmaState, OpenFilterAction, CONNECTOR } from '@alfresco-dbp/modeling-shared/sdk';
 import { ShowConnectorsAction } from '../../store/connector-editor.actions';
 
 @Injectable()

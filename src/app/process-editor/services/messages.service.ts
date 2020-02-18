@@ -21,7 +21,7 @@ import {
     ProcessModelerService,
     BpmnElement,
     BpmnCompositeProperty
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 
 @Injectable({
     providedIn: 'root'

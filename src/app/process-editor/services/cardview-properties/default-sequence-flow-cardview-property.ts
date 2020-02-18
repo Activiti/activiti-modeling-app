@@ -16,7 +16,7 @@
  */
 
 import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty, DefaultSequenceFlowItemModel } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnProperty, DefaultSequenceFlowItemModel } from '@alfresco-dbp/modeling-shared/sdk';
 import { FactoryProps } from './cardview-properties.factory';
 
 const property = BpmnProperty.defaultSequenceFlow;

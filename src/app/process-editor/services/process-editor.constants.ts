@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { LogMessageInitiator } from '@alfresco-dbp/modeling/ama-sdk';
+import { LogMessageInitiator } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const PROCESS_EDITOR_LOGS = 'Process Editor';
 export const PROCESS_SVG_IMAGE = 'SVG';

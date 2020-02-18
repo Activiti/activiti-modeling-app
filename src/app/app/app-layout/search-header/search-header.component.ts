@@ -17,7 +17,7 @@
 
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ServerSideSorting } from '@alfresco-dbp/modeling/ama-sdk';
+import { ServerSideSorting } from '@alfresco-dbp/modeling-shared/sdk';
 import {SearchTextStateEnum} from '@alfresco/adf-core';
 
 const DEFAULT_SORT_KEY = 'name';

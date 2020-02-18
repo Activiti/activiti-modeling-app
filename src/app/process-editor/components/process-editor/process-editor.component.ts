@@ -37,7 +37,7 @@ import {
     getFileUri,
     CodeEditorPosition,
     ToolbarMessageAction
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { UpdateProcessExtensionsAction } from '../../store/process-editor.actions';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
 import { MatTabChangeEvent } from '@angular/material';

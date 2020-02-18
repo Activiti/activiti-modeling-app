@@ -22,7 +22,7 @@ import { UpdateSettingsAction } from '../../store/actions';
 import { appThemes } from '../themes';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AppTheme, AmaState } from '@alfresco-dbp/modeling/ama-sdk';
+import { AppTheme, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Component({
     templateUrl: './settings-dialog.component.html'

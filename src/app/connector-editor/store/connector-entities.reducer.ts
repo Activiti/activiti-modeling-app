@@ -34,7 +34,7 @@ import {
     LEAVE_PROJECT,
     CreateConnectorSuccessAction,
     CREATE_CONNECTOR_SUCCESS
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { Action } from '@ngrx/store';
 
 export function connectorEntitiesReducer(

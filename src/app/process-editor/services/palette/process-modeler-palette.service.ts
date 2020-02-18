@@ -16,7 +16,7 @@
  */
 
 import { Injectable, Injector, Inject } from '@angular/core';
-import { BpmnTrigger, PaletteElementHandler, PaletteElementsHandlersToken } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnTrigger, PaletteElementHandler, PaletteElementsHandlersToken } from '@alfresco-dbp/modeling-shared/sdk';
 import { LogService } from '@alfresco/adf-core';
 
 @Injectable()

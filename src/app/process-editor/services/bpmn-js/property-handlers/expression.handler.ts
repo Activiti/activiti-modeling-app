@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
 
 // Bpmn-moddle transpiled this way... Good luck using typescript imports (check unit tests and working app as well!!!)
 const BpmnModdle = require('bpmn-moddle');

@@ -1,5 +1,0 @@
-@import "./components/workbench-layout.component";
-
-@mixin amasdk-workbench-layout($theme) {
-    @include workbench-layout-component($theme);
-}

@@ -27,7 +27,7 @@ import {
     ProcessEditorCustomProperty,
     ProcessModelerServiceToken,
     ProcessModelerService
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessEntitiesState } from '../../store/process-entities.state';
 import { SelectedProcessElement } from '../../store/process-editor.state';
 

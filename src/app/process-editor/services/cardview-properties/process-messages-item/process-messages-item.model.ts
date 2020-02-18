@@ -16,7 +16,7 @@
  */
 
 import { CardViewBaseItemModel, CardViewItem, DynamicComponentModel } from '@alfresco/adf-core';
-import { BpmnCompositeProperty } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnCompositeProperty } from '@alfresco-dbp/modeling-shared/sdk';
 
 export class CardViewProcessMessagesItemModel extends CardViewBaseItemModel implements CardViewItem, DynamicComponentModel {
     type = BpmnCompositeProperty.messages;

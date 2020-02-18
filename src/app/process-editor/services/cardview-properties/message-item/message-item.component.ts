@@ -17,7 +17,7 @@
 
 import { Component, Input, OnInit, Inject } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
-import { ProcessModelerServiceToken, ProcessModelerService, AmaState, BpmnElement } from '@alfresco-dbp/modeling/ama-sdk';
+import { ProcessModelerServiceToken, ProcessModelerService, AmaState, BpmnElement } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { SelectModelerElementAction } from '../../../store/process-editor.actions';
 import { MessageItemModel } from './message-item.model';

@@ -53,7 +53,7 @@ import {
     AuthTokenProcessorService,
     allLogFilter,
     provideLogFilter
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { AmaRoleGuard } from './ama-role-guard.service';
 import { AppExtensionsModule } from './extensions.module';
 import { ModelStorageService } from './common/services/model-storage.service';

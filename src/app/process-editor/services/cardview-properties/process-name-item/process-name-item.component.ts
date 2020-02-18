@@ -16,7 +16,7 @@
  */
 
 import { Component, Input, OnInit, Inject, OnDestroy } from '@angular/core';
-import { ProcessModelerServiceToken, ProcessModelerService, BpmnProperty, MODELER_NAME_REGEX, BpmnElement } from '@alfresco-dbp/modeling/ama-sdk';
+import { ProcessModelerServiceToken, ProcessModelerService, BpmnProperty, MODELER_NAME_REGEX, BpmnElement } from '@alfresco-dbp/modeling-shared/sdk';
 import { CardViewProcessNameItemModel } from './process-name-item.model';
 import { FormControl, ValidatorFn, AbstractControl, FormGroup } from '@angular/forms';
 import { debounceTime, takeUntil } from 'rxjs/operators';

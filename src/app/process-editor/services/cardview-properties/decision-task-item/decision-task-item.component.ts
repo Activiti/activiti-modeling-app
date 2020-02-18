@@ -29,7 +29,7 @@ import {
     DECISION_TABLE_INPUT_PARAM_NAME,
     ServiceParameterMapping,
     MappingType
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 
 @Component({
     selector: 'ama-process-decision-task',

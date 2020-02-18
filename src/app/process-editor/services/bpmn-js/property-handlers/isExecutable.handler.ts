@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty, BpmnElement } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnProperty, BpmnElement } from '@alfresco-dbp/modeling-shared/sdk';
 
 const propertyKey = BpmnProperty.isExecutable;
 

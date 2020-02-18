@@ -128,13 +128,13 @@
         "directive-selector": [
             true,
             "attribute",
-            ["ama", "amasdk"],
+            ["ama", "modelingsdk"],
             "kebab-case"
         ],
         "component-selector": [
             true,
             "element",
-            ["ama", "amasdk" ],
+            ["ama", "modelingsdk" ],
             "kebab-case"
         ],
         "use-input-property-decorator": true,
@@ -195,21 +195,21 @@
                 "allow": [],
                 "depConstraints": [
                     {
-                        "sourceTag": "scope:ama-sdk",
-                        "onlyDependOnLibsWithTags": ["scope:ama-sdk"]
+                        "sourceTag": "scope:modeling-sdk",
+                        "onlyDependOnLibsWithTags": ["scope:modeling-sdk"]
                     },
                     {
                         "sourceTag": "scope:modeling-ce",
                         "onlyDependOnLibsWithTags": [
                             "scope:modeling-ce",
-                            "scope:ama-sdk"
+                            "scope:modeling-sdk"
                         ]
                     },
                     {
                         "sourceTag": "scope:modeling-ce-e2e",
                         "onlyDependOnLibsWithTags": [
                             "scope:modeling-ce-e2e",
-                            "scope:ama-sdk",
+                            "scope:modeling-sdk",
                             "scope:modeling-testing"
                         ]
                     }

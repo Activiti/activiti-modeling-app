@@ -20,7 +20,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatTooltipModule, MatIconModule } from '@angular/material';
 import { Store } from '@ngrx/store';
-import { AmaState, MODEL_UPLOADERS, PROCESS } from '@alfresco-dbp/modeling/ama-sdk';
+import { AmaState, MODEL_UPLOADERS, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
 import { LogService } from '@alfresco/adf-core';
 import { HttpClientModule } from '@angular/common/http';
 import { UploadProcessAttemptAction, UPLOAD_PROCESS_ATTEMPT } from '../../../process-editor/store/process-editor.actions';

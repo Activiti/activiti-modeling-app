@@ -1,0 +1,5 @@
+@import "./components/code-editor/code-editor.component";
+
+@mixin modelingsdk-code-editor-module($theme) {
+    @include modelingsdk-code-editor($theme);
+}

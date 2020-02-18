@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty, BpmnElement, DECISION_TASK_IMPLEMENTATION, SCRIPT_TASK_IMPLEMENTATION, BpmnCompositeProperty } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnProperty, BpmnElement, DECISION_TASK_IMPLEMENTATION, SCRIPT_TASK_IMPLEMENTATION, BpmnCompositeProperty } from '@alfresco-dbp/modeling-shared/sdk';
 
 const isSignalEvent = (element: Bpmn.DiagramElement) => {
     return !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.SignalEventDefinition;

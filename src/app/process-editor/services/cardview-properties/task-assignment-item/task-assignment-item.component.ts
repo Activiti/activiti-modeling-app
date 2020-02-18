@@ -28,7 +28,7 @@ import {
     AmaState,
     ProcessModelerServiceToken,
     ProcessModelerService
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { selectSelectedElement } from '../../../store/process-editor.selectors';
 import { take, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { TaskAssignmentService } from './task-assignment.service';

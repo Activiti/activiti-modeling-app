@@ -16,7 +16,7 @@
  */
 
 import { Inject, Injectable } from '@angular/core';
-import { ProcessModelerService, ProcessModelerServiceToken, BpmnProperty, BpmnElement } from '@alfresco-dbp/modeling/ama-sdk';
+import { ProcessModelerService, ProcessModelerServiceToken, BpmnProperty, BpmnElement } from '@alfresco-dbp/modeling-shared/sdk';
 import { MultiInstanceProps, MultiInstanceType } from '../../bpmn-js/property-handlers/multi-instance.handler';
 
 @Injectable()

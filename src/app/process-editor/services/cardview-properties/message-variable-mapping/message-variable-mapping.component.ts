@@ -22,7 +22,7 @@ import {
     AmaState, EntityProperty, MessagePayload, selectSelectedProcess, ConnectorParameter,
     ParametersSelectOptions, MappingType, Process, ServiceParameterMapping, ProcessExtensionsModel,
     BpmnElement, ServiceParameterMappings
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTableDataSource } from '@angular/material';
 import { filter, take } from 'rxjs/operators';
 import { MessageVariableMappingService } from './message-variable-mapping.service';

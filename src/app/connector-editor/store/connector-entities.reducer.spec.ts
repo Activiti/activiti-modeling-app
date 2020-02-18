@@ -35,7 +35,7 @@ import {
     initialConnectorEntitiesState,
     CREATE_CONNECTOR_SUCCESS,
     CreateConnectorSuccessAction
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 const deepFreeze = require('deep-freeze-strict');
 
 describe('ConnectorEntitiesReducer', () => {

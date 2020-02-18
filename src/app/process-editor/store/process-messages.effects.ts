@@ -26,7 +26,7 @@ import {
     BaseEffects,
     SetAppDirtyStateAction,
     selectSelectedProcess
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { OpenProcessMessagesDialogAction, OPEN_PROCESS_MESSAGES_DIALOG } from './process-messages.actions';

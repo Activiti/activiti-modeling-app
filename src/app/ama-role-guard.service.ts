@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { AppConfigService } from '@alfresco/adf-core';
-import { AuthTokenProcessorService } from '@alfresco-dbp/modeling/ama-sdk';
+import { AuthTokenProcessorService } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Injectable()
 export class AmaRoleGuard implements CanActivate {

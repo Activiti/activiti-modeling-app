@@ -71,7 +71,7 @@ import {
     Connector,
     selectSelectedProjectId,
     BaseEffects
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { ConnectorEditorService } from '../services/connector-editor.service';
 import { of, zip, forkJoin, Observable } from 'rxjs';
 import { Router } from '@angular/router';

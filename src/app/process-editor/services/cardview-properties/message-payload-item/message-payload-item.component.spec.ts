@@ -22,7 +22,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CardViewMessagePayloadItemComponent } from './message-payload-item.component';
 import { MessagePayloadItemModel } from './message-payload-item.model';
 import { Store } from '@ngrx/store';
-import { AmaState } from '@alfresco-dbp/modeling/ama-sdk';
+import { AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 import { of } from 'rxjs';
 import { MessageVariableMappingService } from '../message-variable-mapping/message-variable-mapping.service';
 import { HttpClientModule } from '@angular/common/http';

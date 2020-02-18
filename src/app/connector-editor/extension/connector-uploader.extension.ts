@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ModelUploader, MODEL_UPLOADERS, CONNECTOR, CONNECTOR_FILE_FORMAT } from '@alfresco-dbp/modeling/ama-sdk';
+import { ModelUploader, MODEL_UPLOADERS, CONNECTOR, CONNECTOR_FILE_FORMAT } from '@alfresco-dbp/modeling-shared/sdk';
 import { UploadConnectorAttemptAction } from '../store/connector-editor.actions';
 
 export function createConnectorUploader(): ModelUploader {

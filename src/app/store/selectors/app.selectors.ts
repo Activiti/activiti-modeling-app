@@ -16,7 +16,7 @@
  */
 
 import { createSelector } from '@ngrx/store';
-import { AppState, selectApp, allLogFilter } from '@alfresco-dbp/modeling/ama-sdk';
+import { AppState, selectApp, allLogFilter } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const selectMenuOpened = createSelector(selectApp, (state: AppState) => state.menuOpened);
 

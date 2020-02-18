@@ -23,7 +23,7 @@ import {
     ProcessModelerService,
     AmaState,
     SetAppDirtyStateAction
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { LogService } from '@alfresco/adf-core';
 import { Router } from '@angular/router';
 import { Effect, ofType, Actions } from '@ngrx/effects';

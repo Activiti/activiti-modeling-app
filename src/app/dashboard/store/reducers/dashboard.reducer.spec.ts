@@ -27,7 +27,7 @@ import {
     Project, Release,
     ReleaseProjectSuccessAction, INITIAL_DASHBOARD_STATE,
     DashboardState, GetProjectsAttemptAction
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { mockProject } from '../effects/project.mock';
 
 describe('dashboardReducer', () => {

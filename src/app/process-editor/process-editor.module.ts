@@ -55,7 +55,7 @@ import {
     PROCESS,
     MODEL_SCHEMA_TYPE,
     BpmnCompositeProperty
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { ProcessDiagramLoaderService } from './services/process-diagram-loader.service';
 import { CardViewProcessVariablesItemComponent } from './services/cardview-properties/process-variable-item/process-variable-item.component';

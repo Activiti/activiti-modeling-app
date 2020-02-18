@@ -31,7 +31,7 @@ import {
     ShowModelsAction,
     AmaState,
     selectModelsLoaded
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { LogService } from '@alfresco/adf-core';
 import { ModelStorageService } from '../../common/services/model-storage.service';
 import { Store } from '@ngrx/store';

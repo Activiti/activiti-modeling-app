@@ -16,7 +16,7 @@
  */
 
 import { FactoryProps } from './cardview-properties.factory';
-import { BpmnCompositeProperty } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnCompositeProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { CardViewProcessMessagesItemModel } from './process-messages-item/process-messages-item.model';
 
 const propertyName = BpmnCompositeProperty.messages;

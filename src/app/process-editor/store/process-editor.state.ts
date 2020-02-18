@@ -16,7 +16,7 @@
  */
 
 import { createEntityAdapter } from '@ngrx/entity';
-import { Process, LogMessage, GeneralError } from '@alfresco-dbp/modeling/ama-sdk';
+import { Process, LogMessage, GeneralError } from '@alfresco-dbp/modeling-shared/sdk';
 
 export function createSelectedElement(element): SelectedProcessElement {
     return {

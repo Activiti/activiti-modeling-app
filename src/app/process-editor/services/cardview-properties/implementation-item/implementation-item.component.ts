@@ -20,7 +20,7 @@ import { CardItemTypeService, CardViewUpdateService, LogService } from '@alfresc
 import { Store } from '@ngrx/store';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { selectProcessMappingsFor, UpdateServiceParametersAction, ImplementationItemModel, selectOpenedModel, AmaState } from '@alfresco-dbp/modeling/ama-sdk';
+import { selectProcessMappingsFor, UpdateServiceParametersAction, ImplementationItemModel, selectOpenedModel, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Component({
     selector: 'ama-process-implementation',

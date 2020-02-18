@@ -22,10 +22,10 @@ import {
     selectConnectorsEntityContainer,
     selectConnectorEntities,
     selectConnectorEntityContents
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { ConnectorEditorState } from './connector-editor.state';
 
-// TODO: Move these selectors to the ama-sdk as well
+// TODO: Move these selectors to the modeling-sdk as well
 // =================================================================================================
 export const selectConnectorsIds = createSelector(selectConnectorsEntityContainer, state => state.ids);
 export const selectConnectorsLoading = createSelector(selectConnectorsEntityContainer, state => state.loading);

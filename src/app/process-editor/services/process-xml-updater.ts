@@ -16,7 +16,7 @@
  */
 
 import { Store } from '@ngrx/store';
-import { ProcessModelerService, BpmnProperty, SnackbarInfoAction } from '@alfresco-dbp/modeling/ama-sdk';
+import { ProcessModelerService, BpmnProperty, SnackbarInfoAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessEntitiesState } from '../store/process-entities.state';
 import { modelNameHandler } from './bpmn-js/property-handlers/model-name.handler';
 import { processNameHandler } from './bpmn-js/property-handlers/process-name.handler';

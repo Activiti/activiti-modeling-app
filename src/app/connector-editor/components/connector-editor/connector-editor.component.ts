@@ -34,7 +34,7 @@ import {
     getFileUri,
     ToolbarMessageAction,
     CodeEditorPosition
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTabChangeEvent } from '@angular/material';
 const memoize = require('lodash/memoize');
 

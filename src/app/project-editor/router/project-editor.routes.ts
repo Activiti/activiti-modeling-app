@@ -20,7 +20,7 @@ import { ProjectLoaderGuard } from './guards/project-loader.guard';
 import { SelectedProjectSetterGuard } from './guards/selected-project-setter.guard';
 import { ProjectContentComponent } from '../components/project-content/project-content.component';
 import { ProjectNavigationComponent } from '../components/project-navigation/project-navigation.component';
-import { MODULE_EDITOR_ROUTES } from '@alfresco-dbp/modeling/ama-sdk';
+import { MODULE_EDITOR_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const projectEditorRoutes: Routes = [
     {

@@ -18,7 +18,7 @@
 import { Component, ViewChild, ElementRef, Input, OnDestroy, AfterViewInit, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, switchMap, takeUntil } from 'rxjs/operators';
-import { ProcessContent, SnackbarErrorAction, ProcessModelerServiceToken, ProcessModelerService, ToolbarMessageAction } from '@alfresco-dbp/modeling/ama-sdk';
+import { ProcessContent, SnackbarErrorAction, ProcessModelerServiceToken, ProcessModelerService, ToolbarMessageAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import {
     SelectModelerElementAction,

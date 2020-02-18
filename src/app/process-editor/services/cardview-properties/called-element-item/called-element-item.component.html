@@ -30,20 +30,20 @@
             <div *ngIf="(processVariables$ | async)?.length; else noProcessVariables">
                 <div *ngIf="subProcessVariables.length; else noSubProcessVariables">
                     <h5 data-automation-id="input-mapping-header">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INPUT_MAPPING' | translate }}:</h5>
-                    <amasdk-input-mapping-table
+                    <modelingsdk-input-mapping-table
                         [parameters]="subProcessVariables"
                         [processProperties]="processVariables$ | async"
                         [mapping]="mapping.inputs || {}"
                         (update)="changeMapping($event, 'inputs')">
-                    </amasdk-input-mapping-table>
+                    </modelingsdk-input-mapping-table>
 
                     <h5 data-automation-id="output-mapping-header">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.OUTPUT_MAPPING' | translate }}:</h5>
-                    <amasdk-output-mapping-table
+                    <modelingsdk-output-mapping-table
                         [parameters]="subProcessVariables"
                         [processProperties]="processVariables$ | async"
                         [mapping]="mapping.outputs || {}"
                         (update)="changeMapping($event, 'outputs')">
-                    </amasdk-output-mapping-table>
+                    </modelingsdk-output-mapping-table>
                 </div>
             </div>
         </div>

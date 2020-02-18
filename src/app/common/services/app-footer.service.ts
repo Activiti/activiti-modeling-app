@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
-import { LogMessage, MESSAGE, SetLogHistoryVisibilityAction, AmaState } from '@alfresco-dbp/modeling/ama-sdk';
+import { LogMessage, MESSAGE, SetLogHistoryVisibilityAction, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 import { map, tap } from 'rxjs/operators';
 import { ClearLogHistoryAction } from '../../../app/store/actions/app.actions';
 import { selectToolbarUserMessage, selectToolbarInProgress, selectToolbarLogs, selectToolbarLogsVisibility } from '../../../app/store/selectors/app.selectors';

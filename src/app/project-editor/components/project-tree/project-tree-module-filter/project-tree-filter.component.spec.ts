@@ -20,7 +20,7 @@ import { ProjectTreeFilterComponent } from './project-tree-filter.component';
 import { MatExpansionModule, MatIconModule, MatProgressSpinnerModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { SharedModule, PROCESS, MODEL_CREATORS } from '@alfresco-dbp/modeling/ama-sdk';
+import { SharedModule, PROCESS, MODEL_CREATORS } from '@alfresco-dbp/modeling-shared/sdk';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';

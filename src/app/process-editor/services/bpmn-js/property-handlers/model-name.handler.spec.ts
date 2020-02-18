@@ -16,7 +16,7 @@
  */
 
 import { handlers } from './property.handlers';
-import { BpmnProperty } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { getDiagramElementMock, getModelingMock } from '../bpmn-js.mock';
 
 describe('modelNameHandler', () => {

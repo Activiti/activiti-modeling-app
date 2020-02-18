@@ -22,7 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TranslationMock, TranslationService, AppConfigService } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 import { Store } from '@ngrx/store';
-import { AmaState, AmaApi, PROJECT_CONTEXT_MENU_OPTIONS, selectLoading, selectPagination, selectProjectSummaries } from '@alfresco-dbp/modeling/ama-sdk';
+import { AmaState, AmaApi, PROJECT_CONTEXT_MENU_OPTIONS, selectLoading, selectPagination, selectProjectSummaries } from '@alfresco-dbp/modeling-shared/sdk';
 import { By } from '@angular/platform-browser';
 import { of, BehaviorSubject } from 'rxjs';
 import { MatMenuModule, MatTableModule } from '@angular/material';

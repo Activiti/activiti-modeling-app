@@ -1,0 +1,19 @@
+@import "ama-theming";
+@import "./code-editor/code-editor.module";
+@import "./helpers/shared.module";
+@import "./variables/variables.module";
+@import "./workbench-layout/workbench-layout.module";
+
+body {
+    @include modelingsdk-workbench-layout($theme);
+    @include modelingsdk-code-editor-module($theme);
+    @include modelingsdk-shared-module($theme);
+    @include ama-variables-module($theme);
+}
+
+body.dark-theme {
+    @include modelingsdk-workbench-layout($dark-theme);
+    @include modelingsdk-code-editor-module($dark-theme);
+    @include modelingsdk-shared-module($dark-theme);
+    @include ama-variables-module($dark-theme);
+}

@@ -16,7 +16,7 @@
  */
 
 import { handlers } from './property.handlers';
-import { BpmnProperty } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { getModelingMock, getDiagramElementMock } from '../bpmn-js.mock';
 
 describe('textAnnotationHandler', () => {

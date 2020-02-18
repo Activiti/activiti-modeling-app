@@ -20,7 +20,7 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AmaState, selectSelectedTheme } from '@alfresco-dbp/modeling/ama-sdk';
+import { AmaState, selectSelectedTheme } from '@alfresco-dbp/modeling-shared/sdk';
 import { PluginRoutesManagerService } from './common/services/plugin-routes-manager.service';
 import { AlfrescoApiService, AuthenticationService } from '@alfresco/adf-core';
 import { MatDialog } from '@angular/material';

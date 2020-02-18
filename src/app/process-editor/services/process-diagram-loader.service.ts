@@ -26,7 +26,7 @@ import {
     XmlParsingProblem,
     MESSAGE,
     LogFactoryService
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessEntitiesState } from '../store/process-entities.state';
 import { getProcessLogInitiator } from './process-editor.constants';
 import { of, Observable } from 'rxjs';

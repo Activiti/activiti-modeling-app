@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ProjectDataState, INITIAL_PROJECT_DATA_STATE, Project, ReleaseProjectSuccessAction } from '@alfresco-dbp/modeling/ama-sdk';
+import { ProjectDataState, INITIAL_PROJECT_DATA_STATE, Project, ReleaseProjectSuccessAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { projectDataReducer } from './project-data.reducer';
 import { SELECT_PROJECT, GetProjectSuccessAction } from '../project-editor.actions';
 

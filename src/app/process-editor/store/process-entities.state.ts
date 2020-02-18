@@ -16,7 +16,7 @@
  */
 
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
-import { Process, ProcessContent } from '@alfresco-dbp/modeling/ama-sdk';
+import { Process, ProcessContent } from '@alfresco-dbp/modeling-shared/sdk';
 
 export interface ProcessEntitiesState extends EntityState<Process> {
     loading: boolean;

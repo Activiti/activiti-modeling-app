@@ -24,7 +24,7 @@ import {
     BpmnTrigger,
     PaletteGroupElement,
     PaletteSeparatorElement
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { OverlayRef } from '@angular/cdk/overlay';
 
 @Component({

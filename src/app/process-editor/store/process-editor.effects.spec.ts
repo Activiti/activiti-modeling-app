@@ -64,7 +64,7 @@ import {
     selectOpenedModel,
     BpmnElement,
     ProcessModelerService
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessEntitiesState } from './process-entities.state';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
 

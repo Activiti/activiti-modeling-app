@@ -23,7 +23,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProjectTreeHelper } from '../project-tree.helper';
 import { MatIconModule } from '@angular/material';
-import { PROCESS, CONNECTOR, MODEL_TYPE, ModelFilter, OpenFilterAction, OPEN_FILTER, AmaState } from '@alfresco-dbp/modeling/ama-sdk';
+import { PROCESS, CONNECTOR, MODEL_TYPE, ModelFilter, OpenFilterAction, OPEN_FILTER, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 import { SetMenuAction, SET_MENU } from '../../../../store/actions';
 
 class ProjectTreeHelperMock {

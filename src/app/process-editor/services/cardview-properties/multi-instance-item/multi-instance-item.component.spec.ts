@@ -20,7 +20,7 @@ import { CardViewMultiInstanceItemComponent } from './multi-instance-item.compon
 import { AppConfigService, AppConfigServiceMock, setupTestBed } from '@alfresco/adf-core';
 import { ProcessModelerServiceImplementation } from '../../process-modeler.service';
 import { BpmnFactoryMock } from '../../bpmn-js/bpmn-js.mock';
-import { BpmnFactoryToken, ProcessModelerService, ProcessModelerServiceToken } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnFactoryToken, ProcessModelerService, ProcessModelerServiceToken } from '@alfresco-dbp/modeling-shared/sdk';
 import { appConfigMock, loopCharacteristicsMock, propertyMock } from './multi-instance.mock';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';

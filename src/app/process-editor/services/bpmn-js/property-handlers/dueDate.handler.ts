@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty, MOMENT_DATETIME_FORMAT } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnProperty, MOMENT_DATETIME_FORMAT } from '@alfresco-dbp/modeling-shared/sdk';
 import { updateShapeProperty } from './update-shape-property.handler';
 import * as moment from 'moment';
 

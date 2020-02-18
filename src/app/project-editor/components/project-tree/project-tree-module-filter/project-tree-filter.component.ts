@@ -16,7 +16,7 @@
  */
 
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, Inject } from '@angular/core';
-import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction } from '@alfresco-dbp/modeling/ama-sdk';
+import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 
 @Component({

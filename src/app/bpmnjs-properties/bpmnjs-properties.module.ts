@@ -16,7 +16,7 @@
  */
 
 import { NgModule } from '@angular/core';
-import { BpmnFactoryToken } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnFactoryToken } from '@alfresco-dbp/modeling-shared/sdk';
 import { BpmnFactoryWithPropertiesService } from './bpmn-factory-with-properties.service';
 
 /** @deprecated: bpmnjs-properties */

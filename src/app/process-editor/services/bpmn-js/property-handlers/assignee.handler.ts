@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { updateShapeProperty } from './update-shape-property.handler';
 
 const propertyKey = BpmnProperty.assignee;

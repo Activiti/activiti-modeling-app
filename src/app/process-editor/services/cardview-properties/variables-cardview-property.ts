@@ -17,7 +17,7 @@
 
 import { CardViewKeyValuePairsItemModel } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty } from '@alfresco-dbp/modeling/ama-sdk';
+import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { FactoryProps } from './cardview-properties.factory';
 
 const propertyName = BpmnProperty.variables;

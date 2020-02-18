@@ -16,7 +16,7 @@
         "bpmndi",
         "activiti",
         "submenu",
-        "amasdk",
+        "modelingsdk",
         "Memoized",
         "upsert",
         "paginator",

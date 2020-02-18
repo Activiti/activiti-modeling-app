@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Project, PROJECT, Pagination } from '@alfresco-dbp/modeling/ama-sdk';
+import { Project, PROJECT, Pagination } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const mockProject: Project = {
     id: 'app-id',

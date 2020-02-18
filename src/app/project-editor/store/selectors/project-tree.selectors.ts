@@ -16,7 +16,7 @@
  */
 
 import { createSelector } from '@ngrx/store';
-import { selectProjectTree, ProjectTreeState, PROCESS } from '@alfresco-dbp/modeling/ama-sdk';
+import { selectProjectTree, ProjectTreeState, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const selectOpenedFilters = createSelector(selectProjectTree,
     (state: ProjectTreeState) => {

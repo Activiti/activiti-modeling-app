@@ -42,7 +42,7 @@ import {
     ProcessExtensionsModel,
     UPDATE_TASK_ASSIGNMENTS,
     UpdateServiceAssignmentAction
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 
 const cloneDeep = require('lodash/cloneDeep');
 

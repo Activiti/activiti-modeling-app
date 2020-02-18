@@ -1,5 +1,0 @@
-@import "./components/code-editor/code-editor.component";
-
-@mixin amasdk-code-editor-module($theme) {
-    @include amasdk-code-editor($theme);
-}

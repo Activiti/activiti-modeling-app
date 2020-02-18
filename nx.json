@@ -11,8 +11,8 @@
         "modeling-ce": {
             "tags": [ "scope:modeling-ce", "type:app" ]
         },
-        "ama-sdk": {
-            "tags": [ "scope:ama-sdk" ]
+        "modeling-sdk": {
+            "tags": [ "scope:modeling-sdk" ]
         }
     }
 }

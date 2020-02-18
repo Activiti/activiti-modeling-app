@@ -16,7 +16,7 @@
  */
 
 import { Injectable, Inject } from '@angular/core';
-import { FilterDataAdapter, MODEL_FILTERS, ModelFilter } from '@alfresco-dbp/modeling/ama-sdk';
+import { FilterDataAdapter, MODEL_FILTERS, ModelFilter } from '@alfresco-dbp/modeling-shared/sdk';
 const orderBy = require('lodash/orderBy');
 
 @Injectable()

@@ -16,7 +16,7 @@
  */
 
 import { selectOpenedFilters } from './project-tree.selectors';
-import { PROCESS, FORM, UI } from '@alfresco-dbp/modeling/ama-sdk';
+import { PROCESS, FORM, UI } from '@alfresco-dbp/modeling-shared/sdk';
 
 describe('Project tree selectors', () => {
 

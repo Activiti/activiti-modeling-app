@@ -23,7 +23,7 @@
 //     EntitiesState,
 //     connectorEntityAdapter,
 //     Model
-// } from '@alfresco-dbp/modeling/ama-sdk';
+// } from '@alfresco-dbp/modeling-shared/sdk';
 // import { Action } from '@ngrx/store';
 // import { createEntityAdapter } from '@ngrx/entity';
 

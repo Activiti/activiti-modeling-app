@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { EntityProperties } from '@alfresco-dbp/modeling/ama-sdk';
+import { EntityProperties } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const OPEN_PROCESS_VARIABLES_DIALOG = 'Open process variables dialog';
 

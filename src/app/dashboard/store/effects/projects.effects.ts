@@ -59,7 +59,7 @@ import {
     GET_PROJECTS_ATTEMPT,
     selectPagination,
     selectProjectsLoaded
-} from '@alfresco-dbp/modeling/ama-sdk';
+} from '@alfresco-dbp/modeling-shared/sdk';
 
 @Injectable()
 export class ProjectsEffects extends BaseEffects {

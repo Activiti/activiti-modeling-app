@@ -12,26 +12,26 @@
                 <mat-tab label="{{ 'PROCESS_EDITOR.TABS.DIAGRAM_EDITOR' | translate }}">
                     <div class="process-editor-modeling-area" style="flex-direction: column">
 
-                        <amasdk-workbench-layout>
-                            <amasdk-workbench-layout-sidenav>
+                        <modelingsdk-workbench-layout>
+                            <modelingsdk-workbench-layout-sidenav>
                                 <ama-process-properties [attr.data-automation-id]="'process-editor-properties'">
                                 </ama-process-properties>
-                            </amasdk-workbench-layout-sidenav>
+                            </modelingsdk-workbench-layout-sidenav>
 
-                            <amasdk-workbench-layout-content>
+                            <modelingsdk-workbench-layout-content>
                                 <ama-process-modeler
                                     (onChange)="onBpmnEditorChange()"
                                     [source]="bpmnContent$ | async"
                                     [attr.data-automation-id]="'process-editor-modeler'">
                                 </ama-process-modeler>
-                            </amasdk-workbench-layout-content>
-                        </amasdk-workbench-layout>
+                            </modelingsdk-workbench-layout-content>
+                        </modelingsdk-workbench-layout>
 
                     </div>
                 </mat-tab>
                 <mat-tab label="{{ 'PROCESS_EDITOR.TABS.RAW_EDITOR' | translate }}">
                     <div class="ama-process-code-editor" data-automation-id="process-basic-tab">
-                        <amasdk-code-editor
+                        <modelingsdk-code-editor
                             (changed)="onXmlChangeAttempt($event)"
                             (positionChanged)="codeEditorPositionChanged($event)"
                             [vsTheme]="vsTheme$ | async"
@@ -39,19 +39,19 @@
                             [content]="content$ | async"
                             [fileUri]="processFileUri$ | async"
                             [language]="processesLanguageType">
-                        </amasdk-code-editor>
+                        </modelingsdk-code-editor>
                     </div>
                 </mat-tab>
                 <mat-tab label="{{ 'PROCESS_EDITOR.TABS.EXTENSIONS_EDITOR' | translate }}">
                     <div class="ama-process-code-editor" data-automation-id="extensions-tab">
-                        <amasdk-code-editor
+                        <modelingsdk-code-editor
                             (changed)="onExtensionsChangeAttempt($event, process.id)"
                             (positionChanged)="codeEditorPositionChanged($event)"
                             [vsTheme]="vsTheme$ | async"
                             [content]="extensions$ | async"
                             [fileUri]="extensionFileUri$ | async"
                             [language]="extensionsLanguageType">
-                        </amasdk-code-editor>
+                        </modelingsdk-code-editor>
                     </div>
                 </mat-tab>
             </mat-tab-group>

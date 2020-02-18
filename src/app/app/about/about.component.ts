@@ -16,7 +16,7 @@
  */
 
 import { Component, Inject } from '@angular/core';
-import { APP_GITHUB_COMMIT, APP_VERSION, APP_DEPS } from '@alfresco-dbp/modeling/ama-sdk';
+import { APP_GITHUB_COMMIT, APP_VERSION, APP_DEPS } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Component({
     selector: 'ama-about',

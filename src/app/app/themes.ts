@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { AppTheme } from '@alfresco-dbp/modeling/ama-sdk';
+import { AppTheme } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const appThemes: AppTheme[] = [
     { name: 'Light theme', className: 'light-theme' },
