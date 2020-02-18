@@ -40,6 +40,8 @@ export const COLLABORATOR_ADDED = `Collaborator added`;
 export const COLLABORATOR_DUPLICATED = `The selected collaborator is already in the list`;
 
 export const PROJECT_EXIST = `A project with that name already exists`;
+export const FORM_EXIST = `A form with that name already exists`;
+export const UPLOAD_ERROR = `We hit a problem uploading the file. Try uploading it again.`;
 
 export const CONFIRM_DOWNLOAD_PROCESS_DIALOG_TITLE = 'Are you sure you want to download this process?';
 export const VALIDATION_ERRORS = 'Validation errors:';
