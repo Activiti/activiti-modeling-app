@@ -210,7 +210,7 @@
                         "onlyDependOnLibsWithTags": [
                             "scope:modeling-ce-e2e",
                             "scope:ama-sdk",
-                            "scope:ama-testing"
+                            "scope:modeling-testing"
                         ]
                     }
                 ]

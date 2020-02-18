@@ -126,21 +126,6 @@
                     }
                 }
             }
-        },
-        "ama-testing": {
-            "root": "projects/ama-testing",
-            "sourceRoot": "projects/ama-testing/src",
-            "projectType": "library",
-            "prefix": "amatesting",
-            "architect": {
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tsConfig": ["projects/ama-testing/tsconfig.lib.json"],
-                        "exclude": ["**/node_modules/**"]
-                    }
-                }
-            }
         }
     },
     "defaultProject": "modeling-ce",

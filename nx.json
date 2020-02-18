@@ -13,9 +13,6 @@
         },
         "ama-sdk": {
             "tags": [ "scope:ama-sdk" ]
-        },
-        "ama-testing": {
-            "tags": ["scope:ama-testing", "type:e2e"]
         }
     }
 }
