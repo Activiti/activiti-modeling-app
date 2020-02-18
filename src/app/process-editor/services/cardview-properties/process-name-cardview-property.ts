@@ -16,7 +16,7 @@
  */
 
 import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty, CardViewModelNameValidator, sanitizeString } from 'ama-sdk';
+import { BpmnProperty, CardViewModelNameValidator, sanitizeString } from '@alfresco-dbp/modeling/ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
 import { CardViewProcessNameItemModel } from './process-name-item/process-name-item.model';
 

@@ -30,7 +30,7 @@ import {
     formatUuid,
     ContentType,
     ModelExtensions
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 
 @Injectable()
 export class ProcessEditorService {

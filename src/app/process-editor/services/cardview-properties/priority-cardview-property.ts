@@ -17,7 +17,7 @@
 
 import { CardViewSelectItemModel } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty } from '@alfresco-dbp/modeling/ama-sdk';
 import { of } from 'rxjs';
 import { FactoryProps } from './cardview-properties.factory';
 

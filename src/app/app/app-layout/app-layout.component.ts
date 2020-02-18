@@ -24,7 +24,7 @@ import { selectMenuOpened } from '../../store/selectors/app.selectors';
 import { first, takeUntil } from 'rxjs/operators';
 import { SettingsDialogComponent } from '../settings/settings-dialog.component';
 import { LogoutAction } from '../../store/actions/app.actions';
-import { AmaState, OpenDialogAction } from 'ama-sdk';
+import { AmaState, OpenDialogAction } from '@alfresco-dbp/modeling/ama-sdk';
  import { Router } from '@angular/router';
 
 @Component({

@@ -33,7 +33,7 @@ import {
 } from './process-editor.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState } from './process-entities.state';
 import { PROCESS, Process, ProcessContent, ServiceParameterMappings,
-    UpdateServiceParametersAction, EntityProperty, EntityProperties, MappingType, UPDATE_SERVICE_PARAMETERS } from 'ama-sdk';
+    UpdateServiceParametersAction, EntityProperty, EntityProperties, MappingType, UPDATE_SERVICE_PARAMETERS } from '@alfresco-dbp/modeling/ama-sdk';
 import { processEntitiesReducer } from './process-entities.reducer';
 import { mockProcessModel, mappings, mockProcessId } from './process.mock';
 import * as processVariablesActions from './process-variables.actions';

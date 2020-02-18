@@ -55,7 +55,7 @@ import {
     GetProjectsAttemptAction,
     selectProjectsLoaded,
     selectPagination
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 
 describe('ProjectsEffects', () => {
     let effects: ProjectsEffects;

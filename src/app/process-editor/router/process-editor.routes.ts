@@ -18,7 +18,7 @@
 import { Routes } from '@angular/router';
 import { ProcessEditorComponent } from '../components/process-editor/process-editor.component';
 import { ProcessLoaderGuard } from './guards/process-loader.guard';
-import { UnsavedPageGuard, PROCESS, MODULE_EDITOR_ROUTES } from 'ama-sdk';
+import { UnsavedPageGuard, PROCESS, MODULE_EDITOR_ROUTES } from '@alfresco-dbp/modeling/ama-sdk';
 import { ProcessDeactivateGuard } from './guards/process-deactivate.guard';
 import { ProcessesLoaderGuard } from './guards/processes-loader.guard';
 

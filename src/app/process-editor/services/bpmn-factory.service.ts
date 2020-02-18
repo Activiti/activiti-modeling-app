@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import * as bpmnPropertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/bpmn';
-import { BpmnFactory } from 'ama-sdk';
+import { BpmnFactory } from '@alfresco-dbp/modeling/ama-sdk';
 /*
     Angular 6 --prod mode doesn't seem to work with the normal way of importing the bpmnjs library.
     Modify this import with care, double-checking the process editor works in --prod mode.

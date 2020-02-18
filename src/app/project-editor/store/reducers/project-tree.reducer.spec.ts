@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ProjectTreeState, INITIAL_PROJECT_TREE_STATE, OpenFilterAction, CONNECTOR, PROCESS } from 'ama-sdk';
+import { ProjectTreeState, INITIAL_PROJECT_TREE_STATE, OpenFilterAction, CONNECTOR, PROCESS } from '@alfresco-dbp/modeling/ama-sdk';
 import { projectTreeReducer } from './project-tree.reducer';
 import { SELECT_PROJECT, CloseFilterAction } from '../project-editor.actions';
 

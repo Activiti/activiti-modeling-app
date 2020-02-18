@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { LogMessageInitiator } from 'ama-sdk';
+import { LogMessageInitiator } from '../store/app.state';
 
 export const PROJECT_EDITOR_LOGS = 'Project Editor';
 

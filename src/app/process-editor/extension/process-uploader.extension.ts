@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ModelUploader, MODEL_UPLOADERS, PROCESS } from 'ama-sdk';
+import { ModelUploader, MODEL_UPLOADERS, PROCESS } from '@alfresco-dbp/modeling/ama-sdk';
 import { UploadProcessAttemptAction } from '../store/process-editor.actions';
 
 export function createProcessUploader(): ModelUploader {

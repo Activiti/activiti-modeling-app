@@ -19,7 +19,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CardItemTypeService, MomentDateAdapter, LocalizedDatePipe } from '@alfresco/adf-core';
 import { MatSelectChange, DateAdapter, MAT_DATE_FORMATS, MatDatepickerInputEvent } from '@angular/material';
 import { Moment } from 'moment';
-import { AmaState, selectSelectedProcess, MessagePayload, EntityProperty, ProcessExtensionsModel, ServiceParameterMappings } from 'ama-sdk';
+import { AmaState, selectSelectedProcess, MessagePayload, EntityProperty, ProcessExtensionsModel, ServiceParameterMappings } from '@alfresco-dbp/modeling/ama-sdk';
 import { Store } from '@ngrx/store';
 import { filter, take } from 'rxjs/operators';
 import { MessageVariableMappingService } from '../message-variable-mapping/message-variable-mapping.service';

@@ -31,7 +31,7 @@ import { StoreModule } from '@ngrx/store';
 import { dashboardReducer } from './store/reducers/dashboard.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ProjectsEffects } from './store/effects/projects.effects';
-import { SharedModule, DASHBOARD_STATE_NAME } from 'ama-sdk';
+import { SharedModule, DASHBOARD_STATE_NAME } from '@alfresco-dbp/modeling/ama-sdk';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { SearchHeaderComponent } from '../app/app-layout/search-header/search-header.component';

@@ -17,7 +17,7 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { ProcessModelerServiceImplementation } from './process-modeler.service';
-import { BpmnFactoryToken, ModelerInitOptions, MESSAGE, XmlParsingProblem } from 'ama-sdk';
+import { BpmnFactoryToken, ModelerInitOptions, MESSAGE, XmlParsingProblem } from '@alfresco-dbp/modeling/ama-sdk';
 import { BpmnFactoryMock } from './bpmn-js/bpmn-js.mock';
 import { PROCESS_SVG_IMAGE } from './process-editor.constants';
 

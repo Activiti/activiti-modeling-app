@@ -24,7 +24,7 @@ import {
     AmaState,
     CONNECTOR_SELECTORS_TOKEN,
     Filter
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 import { Store, MemoizedSelector } from '@ngrx/store';
 import { selectConnectorsLoading } from '../store/connector-editor.selectors';
 import { ShowConnectorsAction } from '../store/connector-editor.actions';

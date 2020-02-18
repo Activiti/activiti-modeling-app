@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty, BpmnElement, sanitizeString } from 'ama-sdk';
+import { BpmnProperty, BpmnElement, sanitizeString } from '@alfresco-dbp/modeling/ama-sdk';
 
 const propertyKey = BpmnProperty.name;
 

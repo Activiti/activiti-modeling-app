@@ -12,7 +12,8 @@
     "lint": "ng lint",
     "reinstall": "npm run clean && npm install",
     "clean": "rimraf dist node_modules package-lock.json .tmp out-tsc",
-    "update-package-version": "./scripts/update-package-version.sh"
+    "update-package-version": "./scripts/update-package-version.sh",
+    "dep-graph": "nx dep-graph"
   },
   "husky": {
     "hooks": {
@@ -67,6 +68,8 @@
     "@ngrx/store": "7.2.0",
     "@ngrx/store-devtools": "7.2.0",
     "@ngx-translate/core": "11.0.1",
+    "@nrwl/angular": "^9.0.0",
+    "@nrwl/workspace": "^9.0.0",
     "ajv": "^6.10.2",
     "bpmn-js": "6.0.4",
     "bpmn-js-properties-panel": "0.33.0",

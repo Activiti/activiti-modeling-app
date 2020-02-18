@@ -16,7 +16,7 @@
  */
 
 import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty } from '@alfresco-dbp/modeling/ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
 import { MultiInstanceItemModel } from './multi-instance-item/multi-instance.item.model';
 

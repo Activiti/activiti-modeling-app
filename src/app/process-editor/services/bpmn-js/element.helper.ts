@@ -16,7 +16,7 @@
  */
 
 import { handlers } from './property-handlers/property.handlers';
-import { BpmnProperty, BpmnCompositeProperty } from 'ama-sdk';
+import { BpmnProperty, BpmnCompositeProperty } from '@alfresco-dbp/modeling/ama-sdk';
 
 export const ElementHelper = {
     getType(element: Bpmn.DiagramElement): string {

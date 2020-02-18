@@ -21,7 +21,7 @@ import { Store, StoreModule } from '@ngrx/store';
 import { MatTooltipModule, MatIconModule, MatCardModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
-import { AmaState, PROCESS_EDITOR_STATE_NAME, selectSelectedProcess, BpmnFactoryToken, ProcessModelerService, ProcessModelerServiceToken } from 'ama-sdk';
+import { AmaState, PROCESS_EDITOR_STATE_NAME, selectSelectedProcess, BpmnFactoryToken, ProcessModelerService, ProcessModelerServiceToken } from '@alfresco-dbp/modeling/ama-sdk';
 import { ProcessModelerServiceImplementation } from '../../services/process-modeler.service';
 import { BpmnFactoryMock, getDiagramElementMock } from '../../services/bpmn-js/bpmn-js.mock';
 import { By } from '@angular/platform-browser';

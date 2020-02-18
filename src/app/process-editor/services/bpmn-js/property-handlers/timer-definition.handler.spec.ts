@@ -16,7 +16,7 @@
  */
 
 import { handlers } from './property.handlers';
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty } from '@alfresco-dbp/modeling/ama-sdk';
 import { getDiagramElementMock, getModelingMock, getModdleMock } from '../bpmn-js.mock';
 
 describe('timerDefinitionHandler', () => {

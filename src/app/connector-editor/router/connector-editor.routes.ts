@@ -18,7 +18,7 @@
 import { Routes } from '@angular/router';
 import { ConnectorLoaderGuard } from './guards/connector-loader.guard';
 import { ConnectorEditorComponent } from '../components/connector-editor/connector-editor.component';
-import { UnsavedPageGuard, CONNECTOR, MODULE_EDITOR_ROUTES } from 'ama-sdk';
+import { UnsavedPageGuard, CONNECTOR, MODULE_EDITOR_ROUTES } from '@alfresco-dbp/modeling/ama-sdk';
 import { ConnectorsLoaderGuard } from './guards/connectors-loader.guard';
 
 export const connectorEditorRoutes: Routes = [

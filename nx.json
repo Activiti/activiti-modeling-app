@@ -1,0 +1,21 @@
+{
+    "npmScope": "activiti-modeling-app",
+    "implicitDependencies": {
+        "angular.json": "*",
+        "package.json": "*",
+        "tsconfig.json": "*",
+        "tslint.json": "*",
+        "nx.json": "*"
+    },
+    "projects": {
+        "modeling-ce": {
+            "tags": [ "scope:modeling-ce", "type:app" ]
+        },
+        "ama-sdk": {
+            "tags": [ "scope:ama-sdk" ]
+        },
+        "ama-testing": {
+            "tags": ["scope:ama-testing", "type:e2e"]
+        }
+    }
+}

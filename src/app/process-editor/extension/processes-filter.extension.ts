@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { MODEL_FILTERS, PROCESS, ModelFilter } from 'ama-sdk';
+import { MODEL_FILTERS, PROCESS, ModelFilter } from '@alfresco-dbp/modeling/ama-sdk';
 import { ProcessesFilterDataAdapter } from './processes-filter.data-adapter';
 
 export const PROCESS_ICON = 'device_hub';

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty } from '@alfresco-dbp/modeling/ama-sdk';
 
 const propertyKey = BpmnProperty.formKey;
 

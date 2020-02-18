@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { of } from 'rxjs';
-import { DialogService, BpmnFactoryToken, ProcessModelerServiceToken } from 'ama-sdk';
+import { DialogService, BpmnFactoryToken, ProcessModelerServiceToken } from '@alfresco-dbp/modeling/ama-sdk';
 import { ProcessMessagesEffects } from './process-messages.effects';
 
 describe('Process messages effects', () => {

@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { TranslationService, CardViewArrayItem } from '@alfresco/adf-core';
 import { ElementHelper } from '../../bpmn-js/element.helper';
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty } from '@alfresco-dbp/modeling/ama-sdk';
 import { Subject } from 'rxjs';
 import { AssignmentModel, AssignmentSettings } from '../../../components/assignment/assignment-dialog.component';
 

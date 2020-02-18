@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { PROCESS, FilterDataAdapter, AmaState, Filter } from 'ama-sdk';
+import { PROCESS, FilterDataAdapter, AmaState, Filter } from '@alfresco-dbp/modeling/ama-sdk';
 import { selectProcessesArray, selectProcessesLoading } from '../store/process-editor.selectors';
 import { ShowProcessesAction } from '../store/process-editor.actions';
 

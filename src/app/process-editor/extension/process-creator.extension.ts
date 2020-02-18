@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { MODEL_CREATORS, ModelCreator, PROCESS } from 'ama-sdk';
+import { MODEL_CREATORS, ModelCreator, PROCESS } from '@alfresco-dbp/modeling/ama-sdk';
 import { PROCESS_ICON } from './processes-filter.extension';
 import { CreateProcessAttemptAction } from '../store/process-editor.actions';
 

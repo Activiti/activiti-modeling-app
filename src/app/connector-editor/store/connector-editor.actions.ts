@@ -23,7 +23,7 @@ import {
     UploadFileAttemptPayload,
     Connector,
     ConnectorContent
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 
 export interface ValidateConnectorPayload {
     title: string;

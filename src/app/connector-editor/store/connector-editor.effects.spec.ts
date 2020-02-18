@@ -63,7 +63,7 @@ import {
     DialogService,
     LoadApplicationAction,
     LogFactoryService
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 import { Update } from '@ngrx/entity';
 import { selectConnectorsLoaded, selectSelectedConnector } from './connector-editor.selectors';
 import { MatDialogRef, MatDialogModule } from '@angular/material';

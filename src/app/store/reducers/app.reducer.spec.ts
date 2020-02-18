@@ -16,7 +16,7 @@
  */
 
 import { appReducer } from './app.reducer';
-import { PROCESS, ModelOpenedAction, MODEL_OPENED, ModelClosedAction, MODEL_CLOSED, LoadApplicationAction, LOADED_APPLICATION } from 'ama-sdk';
+import { PROCESS, ModelOpenedAction, MODEL_OPENED, ModelClosedAction, MODEL_CLOSED, LoadApplicationAction, LOADED_APPLICATION } from '@alfresco-dbp/modeling/ama-sdk';
 import { SelectProjectAction } from '../../project-editor/store/project-editor.actions';
 
 describe('appReducer', () => {

@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { CoreModule } from '@alfresco/adf-core';
-import { SharedModule, getProjectEditorLogInitiator, PROJECT_EDITOR_STATE_NAME, provideLogFilter } from 'ama-sdk';
+import { SharedModule, getProjectEditorLogInitiator, PROJECT_EDITOR_STATE_NAME, provideLogFilter } from '@alfresco-dbp/modeling/ama-sdk';
 import { ProjectEditorRoutingModule } from './router/project-editor-routing.module';
 import { ProjectEffects } from './store/effects/project.effects';
 import { projectDataReducer as project } from './store/reducers/project-data.reducer';

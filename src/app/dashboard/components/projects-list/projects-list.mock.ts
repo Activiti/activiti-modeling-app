@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Project, PROJECT, Pagination } from 'ama-sdk';
+import { Project, PROJECT, Pagination } from '@alfresco-dbp/modeling/ama-sdk';
 
 export const paginationMock: Pagination = {
     count: 1,

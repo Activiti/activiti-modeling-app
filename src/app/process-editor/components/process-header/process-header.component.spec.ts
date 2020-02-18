@@ -20,7 +20,7 @@ import { ProcessHeaderComponent } from './process-header.component';
 import { MatIconModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule, AmaState, OpenConfirmDialogAction, ProcessModelerServiceToken, AmaTitleService, AutoSaveProcessAction } from 'ama-sdk';
+import { SharedModule, AmaState, OpenConfirmDialogAction, ProcessModelerServiceToken, AmaTitleService, AutoSaveProcessAction } from '@alfresco-dbp/modeling/ama-sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { By } from '@angular/platform-browser';
 import { mockProcessModel } from '../../store/process.mock';

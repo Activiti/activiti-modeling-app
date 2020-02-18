@@ -22,7 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MessagesDialogComponent } from './messages-dialog.component';
 import { Subject } from 'rxjs';
 import { MessagesService } from '../../../services/messages.service';
-import { ProcessModelerServiceToken, BpmnFactoryToken } from 'ama-sdk';
+import { ProcessModelerServiceToken, BpmnFactoryToken } from '@alfresco-dbp/modeling/ama-sdk';
 import { ProcessModelerServiceImplementation } from '../../../services/process-modeler.service';
 import { BpmnFactoryMock } from '../../../services/bpmn-js/bpmn-js.mock';
 

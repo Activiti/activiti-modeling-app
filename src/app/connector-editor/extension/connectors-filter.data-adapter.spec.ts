@@ -21,7 +21,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { ConnectorsFilterDataAdapter } from './connectors-filter.data-adapter';
-import { CONNECTOR, selectProjectConnectorsArray, CONNECTOR_SELECTORS_TOKEN, AmaState } from 'ama-sdk';
+import { CONNECTOR, selectProjectConnectorsArray, CONNECTOR_SELECTORS_TOKEN, AmaState } from '@alfresco-dbp/modeling/ama-sdk';
 import { cold } from 'jasmine-marbles';
 import { selectConnectorsLoading, selectSelectedConnectorId } from '../store/connector-editor.selectors';
 

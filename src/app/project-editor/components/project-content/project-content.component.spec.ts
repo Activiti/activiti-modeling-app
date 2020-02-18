@@ -20,7 +20,7 @@ import { ProjectContentComponent } from './project-content.component';
 import { Store } from '@ngrx/store';
 import { MatIconModule, MatButtonModule, MatMenuModule } from '@angular/material';
 import { ToolbarModule } from '@alfresco/adf-core';
-import { ProjectEditorState, PROJECT_CONTEXT_MENU_OPTIONS } from 'ama-sdk';
+import { ProjectEditorState, PROJECT_CONTEXT_MENU_OPTIONS } from '@alfresco-dbp/modeling/ama-sdk';
 import { of } from 'rxjs';
 import { ExportProjectAction, ExportProjectAttemptAction } from '../../store/project-editor.actions';
 import { By } from '@angular/platform-browser';

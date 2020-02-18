@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { LogMessageInitiator } from 'ama-sdk';
+import { LogMessageInitiator } from '@alfresco-dbp/modeling/ama-sdk';
 
 export const PROJECT_EDITOR_LOGS = 'Project Editor';
 

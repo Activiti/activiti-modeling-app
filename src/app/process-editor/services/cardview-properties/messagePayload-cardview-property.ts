@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty } from 'ama-sdk';
+import { BpmnProperty } from '@alfresco-dbp/modeling/ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
 import { MessagePayloadItemModel } from './message-payload-item/message-payload-item.model';
 import { ElementHelper } from '../bpmn-js/element.helper';

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { PaletteElement } from 'ama-sdk';
+import { PaletteElement } from '@alfresco-dbp/modeling/ama-sdk';
 
 export const paletteElements: PaletteElement[] = [
     {

@@ -16,7 +16,7 @@
  */
 
 import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty, DecisionTaskItemModel } from 'ama-sdk';
+import { BpmnProperty, DecisionTaskItemModel } from '@alfresco-dbp/modeling/ama-sdk';
 import { FactoryProps } from './cardview-properties.factory';
 
 const property = BpmnProperty.implementation;

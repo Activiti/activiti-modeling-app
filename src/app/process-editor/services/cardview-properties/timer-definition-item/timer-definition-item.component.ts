@@ -21,7 +21,7 @@ import { FormBuilder, Validators, FormControl, FormGroup, AbstractControl } from
 import { debounceTime, takeUntil, filter, take } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import moment from 'moment-es6';
-import { AmaState, EntityProperty, selectSelectedProcess, ProcessExtensionsModel, AMA_DATETIME_FORMATS } from 'ama-sdk';
+import { AmaState, EntityProperty, selectSelectedProcess, ProcessExtensionsModel, AMA_DATETIME_FORMATS } from '@alfresco-dbp/modeling/ama-sdk';
 import { Store } from '@ngrx/store';
 import { TimerDefinitionItemModel } from './timer-definition-item.model';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';

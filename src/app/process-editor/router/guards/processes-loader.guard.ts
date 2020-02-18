@@ -19,7 +19,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AmaState, OpenFilterAction, PROCESS } from 'ama-sdk';
+import { AmaState, OpenFilterAction, PROCESS } from '@alfresco-dbp/modeling/ama-sdk';
 import { ShowProcessesAction } from '../../store/process-editor.actions';
 
 @Injectable()

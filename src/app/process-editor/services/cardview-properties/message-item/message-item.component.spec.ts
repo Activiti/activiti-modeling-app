@@ -22,7 +22,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CardViewMessageItemComponent } from './message-item.component';
 import { MessageItemModel } from './message-item.model';
 import { Store } from '@ngrx/store';
-import { ProcessModelerServiceToken, ProcessModelerService, BpmnFactoryToken, AmaState } from 'ama-sdk';
+import { ProcessModelerServiceToken, ProcessModelerService, BpmnFactoryToken, AmaState } from '@alfresco-dbp/modeling/ama-sdk';
 import { ProcessModelerServiceImplementation } from '../../process-modeler.service';
 import { BpmnFactoryMock } from '../../bpmn-js/bpmn-js.mock';
 

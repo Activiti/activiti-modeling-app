@@ -16,7 +16,7 @@
  */
 
 import { handlers } from './property.handlers';
-import { BpmnProperty, MOMENT_DATETIME_FORMAT } from 'ama-sdk';
+import { BpmnProperty, MOMENT_DATETIME_FORMAT } from '@alfresco-dbp/modeling/ama-sdk';
 import { getDiagramElementMock, getModelingMock } from '../bpmn-js.mock';
 import * as moment from 'moment';
 

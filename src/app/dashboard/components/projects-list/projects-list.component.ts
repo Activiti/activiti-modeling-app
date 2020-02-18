@@ -26,7 +26,7 @@ import {
     SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption,
     PROJECT_CONTEXT_MENU_OPTIONS, ProjectContextMenuActionClass,
     selectLoading, selectPagination, selectProjectSummaries, GetProjectsAttemptAction
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 import { ExportProjectAction } from '../../../project-editor/store/project-editor.actions';
 import {
     DeleteProjectAttemptAction,

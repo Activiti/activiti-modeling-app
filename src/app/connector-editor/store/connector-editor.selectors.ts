@@ -22,7 +22,7 @@ import {
     selectConnectorsEntityContainer,
     selectConnectorEntities,
     selectConnectorEntityContents
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 import { ConnectorEditorState } from './connector-editor.state';
 
 // TODO: Move these selectors to the ama-sdk as well

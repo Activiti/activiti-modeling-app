@@ -20,7 +20,7 @@ import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 
 import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { ProjectEditorState, LoadConnectorAttemptAction, SetAppDirtyStateAction } from 'ama-sdk';
+import { ProjectEditorState, LoadConnectorAttemptAction, SetAppDirtyStateAction } from '@alfresco-dbp/modeling/ama-sdk';
 
 @Injectable()
 export class ConnectorLoaderGuard implements CanActivate {

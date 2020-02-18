@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Project, AmaApi, ValidationErrors } from 'ama-sdk';
+import { Project, AmaApi, ValidationErrors } from '@alfresco-dbp/modeling/ama-sdk';
 import { Observable } from 'rxjs';
 
 @Injectable()

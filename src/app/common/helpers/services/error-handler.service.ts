@@ -19,7 +19,7 @@ import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorService } from './error.service';
 import { Store } from '@ngrx/store';
-import { SnackbarErrorAction } from 'ama-sdk';
+import { SnackbarErrorAction } from '@alfresco-dbp/modeling/ama-sdk';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {

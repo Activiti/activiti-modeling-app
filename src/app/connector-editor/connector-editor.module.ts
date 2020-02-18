@@ -35,7 +35,7 @@ import {
     provideLoadableModelSchema,
     CONNECTOR,
     MODEL_SCHEMA_TYPE
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 import { EffectsModule } from '@ngrx/effects';
 import { ConnectorEditorEffects } from './store/connector-editor.effects';
 import { ConnectorEditorService } from './services/connector-editor.service';

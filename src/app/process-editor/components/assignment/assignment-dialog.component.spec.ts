@@ -19,7 +19,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { MatIconModule, MatDialogRef, MAT_DIALOG_DATA, MatCardModule, MatTooltipModule, MatChipsModule, MatDialogModule, MatSelectModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { AmaTitleService, CodeEditorModule, AssignmentMode, AssignmentType } from 'ama-sdk';
+import { AmaTitleService, CodeEditorModule, AssignmentMode, AssignmentType } from '@alfresco-dbp/modeling/ama-sdk';
 import { CoreModule, TranslationService, TranslationMock, IdentityGroupService, IdentityUserService, AlfrescoApiService } from '@alfresco/adf-core';
 import { By } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';

@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { ProjectTreeState, INITIAL_PROJECT_TREE_STATE as init, OPEN_FILTER, OpenFilterAction } from 'ama-sdk';
+import { ProjectTreeState, INITIAL_PROJECT_TREE_STATE as init, OPEN_FILTER, OpenFilterAction } from '@alfresco-dbp/modeling/ama-sdk';
 import { SELECT_PROJECT, CLOSE_FILTER, CloseFilterAction } from '../project-editor.actions';
 
 export function projectTreeReducer(state: ProjectTreeState = init, action: Action): ProjectTreeState {

@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Project, Pagination, SearchQuery, EntityDialogForm } from 'ama-sdk';
+import { Project, Pagination, SearchQuery, EntityDialogForm } from '@alfresco-dbp/modeling/ama-sdk';
 import { PaginatedEntries } from '@alfresco/js-api';
 
 export interface EditProjectPayload {

@@ -19,7 +19,7 @@ import { Component, Inject, AfterContentInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
-import { AmaState, selectSelectedProjectId, ModelCreatorDialogParams, MODEL_CREATORS, ModelCreator, OpenEntityDialogAction } from 'ama-sdk';
+import { AmaState, selectSelectedProjectId, ModelCreatorDialogParams, MODEL_CREATORS, ModelCreator, OpenEntityDialogAction } from '@alfresco-dbp/modeling/ama-sdk';
 const orderBy = require('lodash/orderBy');
 
 @Component({

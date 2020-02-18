@@ -17,7 +17,7 @@
 
 import { Component, Input, OnInit, Inject } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
-import { ProcessModelerServiceToken, ProcessModelerService, AmaState } from 'ama-sdk';
+import { ProcessModelerServiceToken, ProcessModelerService, AmaState } from '@alfresco-dbp/modeling/ama-sdk';
 import { SignalRefItemModel } from './signal-ref-item.model';
 import { Store } from '@ngrx/store';
 import { SelectModelerElementAction } from '../../../store/process-editor.actions';

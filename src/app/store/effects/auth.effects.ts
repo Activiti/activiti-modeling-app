@@ -19,7 +19,7 @@ import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { tap, switchMap } from 'rxjs/operators';
 import { LogoutAction, AppActionTypes, AsyncInitAction, LoggedInAction } from '../actions/app.actions';
-import { AmaAuthenticationService } from 'ama-sdk';
+import { AmaAuthenticationService } from '@alfresco-dbp/modeling/ama-sdk';
 import { StorageService } from '@alfresco/adf-core';
 import { appThemes } from '../../app/themes';
 import { of } from 'rxjs';

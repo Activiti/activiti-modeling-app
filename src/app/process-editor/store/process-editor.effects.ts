@@ -86,7 +86,7 @@ import {
     SnackbarInfoAction,
     UPDATE_SERVICE_PARAMETERS,
     UploadFileAttemptPayload
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { selectProcessesLoaded, selectSelectedElement } from './process-editor.selectors';
 import { Store } from '@ngrx/store';

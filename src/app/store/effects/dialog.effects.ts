@@ -40,7 +40,7 @@ import {
     OVERRIDE_PROJECT_NAME_DIALOG,
     OverrideProjectNameDialogAction,
     OverrideProjectAttemptAction
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 import { Action, Store } from '@ngrx/store';
 import { UploadProjectAttemptAction } from '../../dashboard/store/actions/projects';
 

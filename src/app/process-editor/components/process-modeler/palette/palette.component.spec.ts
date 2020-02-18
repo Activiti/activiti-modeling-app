@@ -25,7 +25,7 @@ import { By } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
 import { PaletteOverlayDirective } from './palette-overlay.directive';
-import { PaletteElementsToken } from 'ama-sdk';
+import { PaletteElementsToken } from '@alfresco-dbp/modeling/ama-sdk';
 
 describe('Palette component', () => {
     let fixture: ComponentFixture<PaletteComponent>;

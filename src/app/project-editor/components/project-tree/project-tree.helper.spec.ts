@@ -20,7 +20,7 @@ import { ProjectTreeHelper } from './project-tree.helper';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
-import { PROCESS, MODEL_FILTERS } from 'ama-sdk';
+import { PROCESS, MODEL_FILTERS } from '@alfresco-dbp/modeling/ama-sdk';
 
 describe('ProjectTreeHelper ', () => {
     let service: ProjectTreeHelper;

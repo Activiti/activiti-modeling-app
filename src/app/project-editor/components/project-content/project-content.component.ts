@@ -24,7 +24,7 @@ import {
     PROJECT_CONTEXT_MENU_OPTIONS,
     ProjectContextMenuOption,
     ProjectContextMenuActionClass
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 import { Observable, Subscription } from 'rxjs';
 import { ExportProjectAction, ValidateProjectAttemptAction, ExportProjectAttemptAction, ExportProjectAttemptPayload } from '../../store/project-editor.actions';
 

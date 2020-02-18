@@ -20,7 +20,7 @@ import { CardViewProcessNameItemComponent } from './process-name-item.component'
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CardViewProcessNameItemModel } from './process-name-item.model';
-import { ProcessModelerServiceToken, ProcessModelerService, BpmnFactoryToken } from 'ama-sdk';
+import { ProcessModelerServiceToken, ProcessModelerService, BpmnFactoryToken } from '@alfresco-dbp/modeling/ama-sdk';
 import { ProcessModelerServiceImplementation } from '../../process-modeler.service';
 import { BpmnFactoryMock } from '../../bpmn-js/bpmn-js.mock';
 import { By } from '@angular/platform-browser';

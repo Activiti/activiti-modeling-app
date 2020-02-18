@@ -20,7 +20,7 @@ import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { SelectProjectAction } from '../../store/project-editor.actions';
-import { AmaState } from 'ama-sdk';
+import { AmaState } from '@alfresco-dbp/modeling/ama-sdk';
 
 @Injectable()
 export class SelectedProjectSetterGuard implements CanActivate {

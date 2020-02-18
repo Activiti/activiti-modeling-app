@@ -21,7 +21,7 @@ import { Store } from '@ngrx/store';
 import { MatIconModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
-import { AmaState, OpenConfirmDialogAction, SharedModule } from 'ama-sdk';
+import { AmaState, OpenConfirmDialogAction, SharedModule } from '@alfresco-dbp/modeling/ama-sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { CommonModule } from '@angular/common';
 import { of } from 'rxjs';

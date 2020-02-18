@@ -22,7 +22,7 @@ import {
     Model,
     REGISTERED_MODELS_TOKEN,
     ModelRegistration
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 
 @Injectable()
 export class ModelStorageService {

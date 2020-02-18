@@ -41,7 +41,7 @@ import {
     LOG_ACTION,
     SET_LOG_HISTORY_VISIBILITY,
     SetLogHistoryVisibilityAction,
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 
 export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action): AppState {
     let newState: AppState;

@@ -26,7 +26,7 @@ import {
     selectSelectedProcess,
     Process,
     selectSelectedProjectId
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 import { ProcessEditorState } from './process-editor.state';
 import { ProcessEntitiesState } from './process-entities.state';
 

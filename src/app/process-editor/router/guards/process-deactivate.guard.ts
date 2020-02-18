@@ -19,7 +19,7 @@ import { Injectable } from '@angular/core';
 import { CanDeactivate } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AmaState } from 'ama-sdk';
+import { AmaState } from '@alfresco-dbp/modeling/ama-sdk';
 import { SelectModelerElementAction } from '../../store/process-editor.actions';
 
 export interface CanComponentDeactivate {

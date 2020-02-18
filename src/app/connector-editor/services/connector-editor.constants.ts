@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { LogMessageInitiator } from 'ama-sdk';
+import { LogMessageInitiator } from '@alfresco-dbp/modeling/ama-sdk';
 
 export const CONNECTOR_EDITOR_LOGS = 'Connector Editor';
 

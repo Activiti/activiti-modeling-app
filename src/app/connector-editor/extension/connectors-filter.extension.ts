@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { MODEL_FILTERS, CONNECTOR, ModelFilter } from 'ama-sdk';
+import { MODEL_FILTERS, CONNECTOR, ModelFilter } from '@alfresco-dbp/modeling/ama-sdk';
 import { ConnectorsFilterDataAdapter } from './connectors-filter.data-adapter';
 
 export const CONNECTOR_ICON = 'wrap_text';

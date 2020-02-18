@@ -15,7 +15,8 @@
  * limitations under the License.
  */
 
-import { Pagination, ProjectSummaryEntities } from 'ama-sdk';
+import { Pagination } from '../api/types';
+import { ProjectSummaryEntities } from '../project-editor/project-summary-entities';
 
 export interface DashboardState {
     projects: ProjectSummaryEntities;

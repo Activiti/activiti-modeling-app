@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Process, ProcessContent, UpdateServiceParametersAction, ModelExtensions, EntityDialogForm, UploadFileAttemptPayload } from 'ama-sdk';
+import { Process, ProcessContent, UpdateServiceParametersAction, ModelExtensions, EntityDialogForm, UploadFileAttemptPayload } from '@alfresco-dbp/modeling/ama-sdk';
 import { SelectedProcessElement } from './process-editor.state';
 import { Update } from '@ngrx/entity';
 

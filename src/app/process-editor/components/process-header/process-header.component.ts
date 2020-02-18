@@ -29,7 +29,7 @@ import {
     SnackbarErrorAction,
     AUTO_SAVE_PROCESS,
     AutoSaveProcessAction
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { DeleteProcessAttemptAction, ValidateProcessAttemptAction, DownloadProcessAction, UpdateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { createModelName, PROCESS_FILE_FORMAT } from 'ama-sdk';
+import { createModelName, PROCESS_FILE_FORMAT } from '@alfresco-dbp/modeling/ama-sdk';
 
 describe('Common Helpers', () => {
     it('should test createModelName function', () => {

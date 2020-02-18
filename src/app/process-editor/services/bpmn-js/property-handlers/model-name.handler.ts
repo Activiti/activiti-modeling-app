@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { sanitizeString } from 'ama-sdk';
+import { sanitizeString } from '@alfresco-dbp/modeling/ama-sdk';
 
 const get = (element) => element.businessObject.$parent.name || '';
 

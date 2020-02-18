@@ -17,7 +17,7 @@
 
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Observable, combineLatest, of } from 'rxjs';
-import { BreadcrumbItem, AmaState, OpenConfirmDialogAction, selectProjectCrumb, SnackbarInfoAction, SnackbarErrorAction } from 'ama-sdk';
+import { BreadcrumbItem, AmaState, OpenConfirmDialogAction, selectProjectCrumb, SnackbarInfoAction, SnackbarErrorAction } from '@alfresco-dbp/modeling/ama-sdk';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 import { selectConnectorCrumb } from '../../store/connector-editor.selectors';

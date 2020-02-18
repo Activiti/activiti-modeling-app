@@ -32,7 +32,7 @@ import {
     ServiceParameterMapping,
     ProcessExtensionsModel,
     EntityProperty
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 import { MatSelectChange } from '@angular/material';
 
 @Component({

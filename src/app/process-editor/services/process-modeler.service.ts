@@ -25,7 +25,7 @@ import {
     ProcessModelerService,
     BpmnProperty,
     MESSAGE
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 import { Observable } from 'rxjs';
 
 @Injectable()

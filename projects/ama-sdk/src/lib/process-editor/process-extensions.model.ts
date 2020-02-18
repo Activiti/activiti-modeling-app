@@ -15,7 +15,15 @@
  * limitations under the License.
  */
 
-import { ModelExtensions, EntityProperties, ServiceParameterMappings, ServicesParameterConstants, ServicesConstants, TaskAssignment, TaskAssignmentContent } from 'ama-sdk';
+import {
+    ModelExtensions,
+    EntityProperties,
+    ServiceParameterMappings,
+    TaskAssignmentContent,
+    ServicesParameterConstants,
+    TaskAssignment,
+    ServicesConstants
+} from '../api/types';
 
 export class ProcessExtensionsModel {
 

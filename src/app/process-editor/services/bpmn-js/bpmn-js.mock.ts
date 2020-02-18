@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnFactory } from 'ama-sdk';
+import { BpmnFactory } from '@alfresco-dbp/modeling/ama-sdk';
 import EventBusMock from './EventBusMock';
 
 export class BpmnFactoryMock implements BpmnFactory {

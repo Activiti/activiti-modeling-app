@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Process, ServicesParameterMappings, PROCESS } from 'ama-sdk';
+import { Process, ServicesParameterMappings, PROCESS } from '@alfresco-dbp/modeling/ama-sdk';
 
 const deepFreeze = require('deep-freeze-strict');
 

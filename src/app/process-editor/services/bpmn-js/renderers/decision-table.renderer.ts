@@ -18,7 +18,7 @@
 import inherits from 'inherits';
 import BaseRenderer from 'diagram-js/lib/draw/BaseRenderer';
 import { is } from 'bpmn-js/lib/util/ModelUtil';
-import { DECISION_TASK_IMPLEMENTATION } from 'ama-sdk';
+import { DECISION_TASK_IMPLEMENTATION } from '@alfresco-dbp/modeling/ama-sdk';
 
 export function DecisionTableRender(eventBus, bpmnRenderer) {
   BaseRenderer.call(this, eventBus, 1500);

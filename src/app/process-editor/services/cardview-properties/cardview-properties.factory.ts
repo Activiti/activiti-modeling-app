@@ -19,7 +19,7 @@ import { Injectable } from '@angular/core';
 import { LogService, CardViewItem, AppConfigService } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { elementsProperties } from '../bpmn/elements-properties';
-import { BpmnProperty, AmaState } from 'ama-sdk';
+import { BpmnProperty, AmaState } from '@alfresco-dbp/modeling/ama-sdk';
 import { bpmn2cardView } from './bpmn2CardView';
 import { Store } from '@ngrx/store';
 

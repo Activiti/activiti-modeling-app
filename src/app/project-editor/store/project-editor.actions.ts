@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Project, MODEL_TYPE } from 'ama-sdk';
+import { Project, MODEL_TYPE } from '@alfresco-dbp/modeling/ama-sdk';
 
 export const SELECT_PROJECT = 'SELECT_PROJECT';
 export class SelectProjectAction implements Action {

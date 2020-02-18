@@ -17,7 +17,7 @@
 
 import { Action } from '@ngrx/store';
 import { GET_PROJECT_SUCCESS, GetProjectSuccessAction, SELECT_PROJECT } from '../project-editor.actions';
-import { INITIAL_PROJECT_DATA_STATE as init, ProjectDataState, RELEASE_PROJECT_SUCCESS, ReleaseProjectSuccessAction } from 'ama-sdk';
+import { INITIAL_PROJECT_DATA_STATE as init, ProjectDataState, RELEASE_PROJECT_SUCCESS, ReleaseProjectSuccessAction } from '@alfresco-dbp/modeling/ama-sdk';
 
 export function projectDataReducer(state: ProjectDataState = init, action: Action): ProjectDataState {
     let newState: ProjectDataState;

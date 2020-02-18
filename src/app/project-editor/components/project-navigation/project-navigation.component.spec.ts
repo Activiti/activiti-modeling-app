@@ -26,7 +26,7 @@ import { Store } from '@ngrx/store';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
-import { AmaState, MODEL_CREATORS, ModelCreator, ModelCreatorDialogParams, OpenEntityDialogAction, OPEN_ENTITY_DIALOG } from 'ama-sdk';
+import { AmaState, MODEL_CREATORS, ModelCreator, ModelCreatorDialogParams, OpenEntityDialogAction, OPEN_ENTITY_DIALOG } from '@alfresco-dbp/modeling/ama-sdk';
 
 describe('ProjectNavigationComponent', () => {
     let fixture: ComponentFixture<ProjectNavigationComponent>;

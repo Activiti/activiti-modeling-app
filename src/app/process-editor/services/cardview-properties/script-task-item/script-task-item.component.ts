@@ -29,7 +29,7 @@ import {
     SCRIPT_INPUT_PARAM_NAME,
     ServiceParameterMapping,
     MappingType
-} from 'ama-sdk';
+} from '@alfresco-dbp/modeling/ama-sdk';
 
 @Component({
     selector: 'ama-process-script-task',

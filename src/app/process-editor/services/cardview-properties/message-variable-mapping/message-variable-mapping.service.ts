@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { AmaState, ServiceParameterMappings, UpdateServiceParametersAction, selectSelectedProcess, MessagePayload, BpmnElement } from 'ama-sdk';
+import { AmaState, ServiceParameterMappings, UpdateServiceParametersAction, selectSelectedProcess, MessagePayload, BpmnElement } from '@alfresco-dbp/modeling/ama-sdk';
 import { Store } from '@ngrx/store';
 import { filter, take } from 'rxjs/operators';
 import moment from 'moment-es6';

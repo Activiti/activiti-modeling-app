@@ -4,8 +4,8 @@
     "newProjectRoot": "projects",
     "projects": {
         "modeling-ce": {
-            "root": "",
-            "sourceRoot": "",
+            "root": "src",
+            "sourceRoot": "src",
             "projectType": "application",
             "architect": {
                 "build": {
@@ -81,7 +81,7 @@
                 "test": {
                     "builder": "@angular-builders/jest:run",
                     "options": {
-                        "configPath": "jest.config.js"
+                        "configPath": "../jest.config.js"
                     }
                 },
                 "extract-i18n": {

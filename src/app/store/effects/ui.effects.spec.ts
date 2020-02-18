@@ -23,7 +23,7 @@ import { StorageService, CoreModule } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { UiEffects } from './ui.effects';
 import { SetMenuAction } from '../actions/ui';
-import { AmaTitleService } from 'ama-sdk';
+import { AmaTitleService } from '@alfresco-dbp/modeling/ama-sdk';
 
 describe('UiEffects', () => {
     let effects: UiEffects;

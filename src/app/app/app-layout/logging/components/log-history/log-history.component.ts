@@ -16,7 +16,7 @@
  */
 
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { LogMessage } from 'ama-sdk';
+import { LogMessage } from '@alfresco-dbp/modeling/ama-sdk';
 
 @Component({
     selector: 'ama-log-history',
