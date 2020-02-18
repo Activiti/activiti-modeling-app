@@ -50,3 +50,7 @@ export const NAME_LENGTH_VALIDATION = '#/name: expected minLength: 1, actual: 0'
 export const NAME_PATTERN_VALIDATION = `#/name: string [] does not match pattern ${MODEL_NAME_REGEXP}`;
 
 export const CONFIRM_DOWNLOAD_UI_DIALOG_TITLE = 'Are you sure you want to download this UI?';
+
+export const CONFIRM_DOWNLOAD_FORM_DIALOG_TITLE = 'Are you sure you want to download this form?';
+export const FORM_NAME_LENGTH_VALIDATION = '#/formRepresentation/name: expected minLength: 1, actual: 0';
+export const FORM_NAME_PATTERN_VALIDATION = `#/formRepresentation/name: string [] does not match pattern ${MODEL_NAME_REGEXP}`;
