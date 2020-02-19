@@ -38,6 +38,8 @@
             (click)="onClick(item, $event)"
             (dragstart)="onDrag(item, $event)">
         </button>
+        <span class="drawer-item-tag" *ngIf="item.tag" [title]="item.title | translate" draggable="true"
+        (click)="onClick(item, $event)" (dragstart)="onDrag(item, $event)">{{item.tag | translate}}</span>
     </div>
 </ng-template>
 

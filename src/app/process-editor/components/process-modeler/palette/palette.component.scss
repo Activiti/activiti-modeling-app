@@ -2,11 +2,6 @@
     $foreground: map-get($theme, foreground);
     $primary: map-get($theme, primary);
 
-    .palette-drawer-container {
-        top: 287px;
-        height: 370px;
-    }
-
     ama-process-palette .mat-card {
         width: 37px;
         border: 1px solid mat-color($foreground, text, 0.07);
@@ -85,7 +80,6 @@
         font-size: 25px;
         padding: 0;
         margin-left: 38px;
-        margin-bottom: -37px;
 
         .palette-body {
             padding: 6px;
@@ -93,7 +87,6 @@
         }
 
         .entry {
-
             button {
                 cursor: pointer;
                 position: absolute;
@@ -120,5 +113,18 @@
             }
         }
 
+        .drawer-item-tag {
+            font-size: 12px;
+            display: inline-block;
+            position: relative;
+            bottom: 2px;
+            margin-left: 4px;
+            width: 80px;
+            text-align: left;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
 }
