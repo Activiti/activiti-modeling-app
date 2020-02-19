@@ -34,7 +34,7 @@ export const getEmptyScript = (model) => {
     *          let nodeBodyCreate = nodeBody.create();
     *          nodeBodyCreate.name("test");
     *          nodeBodyCreate.nodeType("cm:folder");
-    *          (nodesApi.createNode(parentNodeId, nodeBodyCreate, true, null, null)).execute();  
+    *          nodesApi.createNode(parentNodeId, nodeBodyCreate, true, null, null);  
     * 
     *      The syntax to create the needed @Body for the differents APIs are:
     *      3.1 - nodesApi:
