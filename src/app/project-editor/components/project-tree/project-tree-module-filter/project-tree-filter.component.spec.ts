@@ -83,8 +83,8 @@ describe('ProjectTreeFilterComponent ', () => {
         };
 
         component.contents = [];
-
-        const filter = fixture.nativeElement.querySelector('.project-tree-filter');
+        fixture.detectChanges();
+        const filter = fixture.nativeElement.querySelector('.project-tree-filter.process');
         filter.dispatchEvent(new Event('opened'));
         fixture.detectChanges();
 
@@ -109,7 +109,8 @@ describe('ProjectTreeFilterComponent ', () => {
 
         component.contents = [];
 
-        const filter = fixture.nativeElement.querySelector('.project-tree-filter');
+        fixture.detectChanges();
+        const filter = fixture.nativeElement.querySelector('.project-tree-filter.process');
         filter.dispatchEvent(new Event('closed'));
         fixture.detectChanges();
 

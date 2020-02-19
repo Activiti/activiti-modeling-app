@@ -1,4 +1,4 @@
-<mat-expansion-panel class="project-tree-filter"
+<mat-expansion-panel class="{{ 'project-tree-filter ' + filter.type }}"
     [expanded]="expanded"
     [hideToggle]="true"
     (opened)="filterOpened(filter.type)"
@@ -29,7 +29,7 @@
                 <span *ngIf="item.icon" class="project-tree-filter__item_icon {{item.icon}}"></span>
                 <mat-icon *ngIf="!item.icon" class="project-tree-filter__icon">{{ filter.icon }}</mat-icon>
 
-                <span class="project-tree-filter__name">{{ item.name }}</span>
+                <span class="{{ 'project-tree-filter__name ' +  filter.type }}">{{ item.name }}</span>
             </a>
             <div class="project-tree-filter__no-content" *ngIf="contentsAreEmpty()">
                 {{ 'APP.PROJECT.NO_CONTENT' | translate }}
