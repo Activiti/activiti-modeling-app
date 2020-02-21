@@ -20,8 +20,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatIconModule, MatInputModule, MatSelectModule, MatTableModule, MatTooltipModule } from '@angular/material';
 import { OutputMappingTableComponent } from './output-mapping-table.component';
-import { MappingDialogModule } from '../mapping-dialog/public_api';
-import { VariablesModule } from '../../variables/public_api';
+import { MappingDialogModule } from '../mapping-dialog/public-api';
+import { VariablesModule } from '../../variables/public-api';
 
 @NgModule({
     imports: [

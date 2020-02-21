@@ -22,7 +22,7 @@ import { MatIconModule, MatInputModule, MatSelectModule, MatTableModule, MatTool
 import { MappingDialogComponent } from './mapping-dialog.component';
 import { DialogService } from '../../confirmation-dialog/services/dialog.service';
 import { VariablesModule } from '../../variables/variables.module';
-import { CodeEditorModule } from '../../code-editor/public_api';
+import { CodeEditorModule } from '../../code-editor/public-api';
 import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
 import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
 

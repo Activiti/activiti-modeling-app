@@ -28,7 +28,7 @@ import { PropertiesViewerBooleanInputComponent } from './properties-viewer/value
 import { PropertiesViewerDateInputComponent } from './properties-viewer/value-type-inputs/date-input.component';
 import { PropertiesViewerJsonInputComponent } from './properties-viewer/value-type-inputs/json-input.component';
 import { PropertiesViewerFileInputComponent } from './properties-viewer/value-type-inputs/file-input.component';
-import { SharedModule } from '../helpers/public_api';
+import { SharedModule } from '../helpers/public-api';
 import { VariableValuePipe } from './properties-viewer/variable-value.pipe';
 import { PropertiesViewerDateTimeInputComponent } from './properties-viewer/value-type-inputs/date-time-input.component';
 

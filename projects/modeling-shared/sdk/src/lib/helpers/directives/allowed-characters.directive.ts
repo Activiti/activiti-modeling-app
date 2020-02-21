@@ -19,7 +19,7 @@ import { Directive, HostListener, ElementRef, Input, Renderer2 } from '@angular/
 import { MODELER_NAME_REGEX } from './../utils/create-entries-names';
 import { Store } from '@ngrx/store';
 import { AmaState } from '../../store/app.state';
-import { SnackbarErrorAction } from '../../store/public_api';
+import { SnackbarErrorAction } from '../../store/public-api';
 import { TranslationService } from '@alfresco/adf-core';
 
 @Directive({

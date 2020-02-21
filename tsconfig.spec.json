@@ -12,7 +12,7 @@
             "@angular/*": ["./node_modules/@angular/*"],
             "@alfresco/adf-core": ["././alfresco-ng2-components/lib/core"],
             "@alfresco/adf-extensions": ["../alfresco-ng2-components/lib/extensions"],
-            "@alfresco-dbp/modeling-shared/sdk": ["./projects/modeling-shared/sdk/src/public_api.ts"]
+            "@alfresco-dbp/modeling-shared/sdk": ["./projects/modeling-shared/sdk/src/public-api.ts"]
         },
         "allowJs": true,
         "allowSyntheticDefaultImports": true
