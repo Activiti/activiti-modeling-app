@@ -261,4 +261,36 @@ describe('PropertiesViewerComponent', () => {
         expect(component.error).toBe(true);
         expect(component.data).toEqual(data);
     });
+
+    it('should create process variable with no name', () => {
+        fixture.detectChanges();
+        const addButton = fixture.nativeElement.querySelector('[data-automation-id="add-variable"]');
+        addButton.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+
+        const invalidName: HTMLElement = fixture.nativeElement.querySelector('.mat-error');
+        expect(invalidName.textContent).toEqual('SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME');
+
+        const template = fixture.nativeElement.querySelector('.properties-form');
+        const input = template.querySelector('input');
+        component.name = 'a2_';
+        input.dispatchEvent(new Event('keyup'));
+
+        fixture.detectChanges();
+        expect(component.error).toBe(false);
+    });
+
+    it('should elete process variable without a name', () => {
+        fixture.detectChanges();
+        const addButton: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="add-variable"]');
+        addButton.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+        expect(addButton.getAttribute('disabled')).toBe('');
+
+        const deleteButton: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="delete-variable"]');
+        deleteButton.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+
+        expect(addButton.getAttribute('disabled')).toBe(null);
+    });
 });
