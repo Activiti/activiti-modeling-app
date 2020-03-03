@@ -1,8 +1,8 @@
 {
   "name": "activiti-modeling-app",
   "description": "Activiti Modeling Application",
-  "commit": "",
-  "version": "0.2.0",
+  "commit": "414c21e6c111f410dd71f9341d1aff68dea46a53",
+  "version": "0.0.313",
   "author": "Alfresco Software, Ltd.",
   "scripts": {
     "postinstall": "lessc ./node_modules/bpmn-js-properties-panel/styles/properties.less .tmp/bpmn-properties.css",
@@ -101,10 +101,8 @@
     "zone.js": "0.8.29"
   },
   "devDependencies": {
-    "@alfresco/adf-cli": "3.8.0-5d408025b04fd8d2ff237dee576141ecc1bfa9b5",
+    "@alfresco/adf-cli": "^3.8.0-24c728a8f5609ad7e35d1cdd2fd59078f6c2237e",
     "@alfresco/adf-testing": "3.8.0-5d408025b04fd8d2ff237dee576141ecc1bfa9b5",
-    "@nrwl/angular": "9.0.0",
-    "@nrwl/workspace": "9.0.0",
     "@angular-builders/jest": "7.3.1",
     "@angular-devkit/build-angular": "~0.13.0",
     "@angular-devkit/build-ng-packagr": "0.13.2",
@@ -113,6 +111,8 @@
     "@angular/compiler-cli": "7.2.5",
     "@angular/language-service": "7.2.5",
     "@ngrx/schematics": "7.2.0",
+    "@nrwl/angular": "9.0.0",
+    "@nrwl/workspace": "9.0.0",
     "@types/jasmine": "3.3.9",
     "@types/jasminewd2": "2.0.2",
     "@types/jest": "^24.0.23",
