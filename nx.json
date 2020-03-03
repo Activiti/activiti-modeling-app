@@ -5,14 +5,22 @@
         "package.json": "*",
         "tsconfig.json": "*",
         "tslint.json": "*",
-        "nx.json": "*"
+        "nx.json": "*",
+        "travis.yml": "*"
     },
     "projects": {
         "modeling-ce": {
-            "tags": [ "scope:modeling-ce", "type:app" ]
+            "tags": [
+                "scope:modeling-ce",
+                "type:app",
+                "category:modeling-ce"
+            ]
         },
         "modeling-sdk": {
-            "tags": [ "scope:modeling-sdk" ]
+            "tags": [
+                "scope:modeling-sdk",
+                "category:modeling-ce"
+            ]
         }
     }
 }
