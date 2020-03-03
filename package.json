@@ -1,8 +1,8 @@
 {
   "name": "activiti-modeling-app",
   "description": "Activiti Modeling Application",
-  "commit": "",
-  "version": "0.2.0",
+  "commit": "101d440b92d5a540e8de85904a634a98d0b1d3f1",
+  "version": "0.0.312",
   "author": "Alfresco Software, Ltd.",
   "scripts": {
     "postinstall": "lessc ./node_modules/bpmn-js-properties-panel/styles/properties.less .tmp/bpmn-properties.css",
@@ -96,7 +96,7 @@
     "zone.js": "0.8.29"
   },
   "devDependencies": {
-    "@alfresco/adf-cli": "3.8.0-133140d69b7e7ca0b3a187718c2075c5c521c9c1",
+    "@alfresco/adf-cli": "^3.8.0-351aadd5181c8500c1f28ccd161c37c51e4c0c3d",
     "@alfresco/adf-testing": "3.8.0-133140d69b7e7ca0b3a187718c2075c5c521c9c1",
     "@angular-builders/jest": "7.3.1",
     "@angular-devkit/build-angular": "~0.13.0",
