@@ -11,7 +11,7 @@
             data-automation-id="name-field"
             [(ngModel)]="form.name" />
     </mat-form-field>
-    <mat-error *ngIf="form.name && !validate()">{{ allowedCharacters.error | translate }}</mat-error>
+    <mat-error data-automation-id="error-validation" *ngIf="form.name && !validate()">{{ allowedCharacters.error | translate }}</mat-error>
     <br />
     <mat-form-field class="adf-full-width">
         <textarea matInput placeholder="{{ data.descriptionField | translate }}"
