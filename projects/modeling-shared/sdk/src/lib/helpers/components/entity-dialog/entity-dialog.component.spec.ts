@@ -140,5 +140,4 @@ describe('EntityDialogComponent', () => {
 
         expect(store.dispatch).toHaveBeenCalledWith(new mockDialogData.action({ id: mockValues.id, form: component.form }));
     });
-
 });
