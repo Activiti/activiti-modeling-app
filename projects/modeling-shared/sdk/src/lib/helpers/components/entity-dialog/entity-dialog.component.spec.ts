@@ -140,4 +140,43 @@ describe('EntityDialogComponent', () => {
 
         expect(store.dispatch).toHaveBeenCalledWith(new mockDialogData.action({ id: mockValues.id, form: component.form }));
     });
+
+    it('should validate name field value', () => {
+        component.form.name = '@$#&* {}[],=-().+;\'/';
+        fixture.detectChanges();
+        const errorMessage = fixture.debugElement.query(By.css('[data-automation-id="error-validation"]'));
+        expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
+        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
+        expect(submitBtn.nativeElement.disabled).toBeTruthy();
+
+        component.form.name = 'Testautomation';
+        fixture.detectChanges();
+        expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
+        expect(submitBtn.nativeElement.disabled).toBeTruthy();
+
+        component.form.name = 'testAutomation';
+        fixture.detectChanges();
+        expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
+        expect(submitBtn.nativeElement.disabled).toBeTruthy();
+
+        component.form.name = 'test-automation';
+        fixture.detectChanges();
+        expect(errorMessage.nativeElement).not.toBeNull();
+        expect(submitBtn.nativeElement.disabled).toBeFalsy();
+
+        component.form.name = 'test1automation';
+        fixture.detectChanges();
+        expect(errorMessage.nativeElement).not.toBeNull();
+        expect(submitBtn.nativeElement.disabled).toBeFalsy();
+
+        component.form.name = 'test_automation';
+        fixture.detectChanges();
+        expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
+        expect(submitBtn.nativeElement.disabled).toBeTruthy();
+
+        component.form.name = 'testautomationlengthmorethan26';
+        fixture.detectChanges();
+        expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
+        expect(submitBtn.nativeElement.disabled).toBeTruthy();
+    });
 });
