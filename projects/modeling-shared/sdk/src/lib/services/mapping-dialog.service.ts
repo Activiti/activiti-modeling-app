@@ -16,6 +16,22 @@
  */
 
 import { ServiceParameterMapping, ConnectorParameter, MappingType, EntityProperty } from '../api/types';
+import { Subject, Observable } from 'rxjs';
+
+export interface MappingDialogData {
+    inputMapping?: ServiceParameterMapping;
+    inputParameters?: ConnectorParameter[];
+    outputMapping?: ServiceParameterMapping;
+    outputParameters?: ConnectorParameter[];
+    processProperties: EntityProperty[];
+    mappingType: VariableMappingType;
+    selectedRow?: number;
+    selectedProcessVariable?: string;
+    selectedOutputParameter?: string;
+    theme$: Observable<string>;
+    inputMappingUpdate$?: Subject<ServiceParameterMapping>;
+    outputMappingUpdate$?: Subject<ServiceParameterMapping>;
+}
 
 export enum VariableMappingType {
     input = 'input',
@@ -43,6 +59,48 @@ export abstract class MappingDialogService {
     abstract setDataSourceValue(dataSource: MappingRowModel[], i: number, value: any);
     abstract dataSourceInit(mapping: ServiceParameterMapping, parameters: ConnectorParameter[], properties: EntityProperty[]): MappingRowModel[];
     abstract createMappingFromDataSource(dataSource: MappingRowModel[]): ServiceParameterMapping;
+
+    getFilteredProcessVariables(dataSource: MappingRowModel[], processProperties: EntityProperty[], i: number): EntityProperty[] {
+        let filteredProcessVariables = processProperties.filter(() => true);
+        const element = dataSource[i];
+        if (element.type) {
+            filteredProcessVariables = processProperties.filter(variable => variable.type === element.type);
+        }
+        dataSource.forEach(mapping => {
+            if (mapping.value && mapping.value !== element.value) {
+                const index = filteredProcessVariables.findIndex(variable => variable.name === mapping.value);
+                if (index >= 0) {
+                    filteredProcessVariables.splice(index, 1);
+                }
+            }
+        });
+
+        return filteredProcessVariables;
+    }
+
+    initMappingValue(dataSource: MappingRowModel[], i: number): { variableValue: string, valueValue: any, expressionValue: string } {
+        let expressionValue = '';
+        let variableValue = undefined;
+        let valueValue = undefined;
+
+        switch (dataSource[i].mappingValueType) {
+            case MappingValueType.variable:
+                variableValue = this.getDataSourceValue(dataSource, i);
+                break;
+            case MappingValueType.value:
+                valueValue = this.getDataSourceValue(dataSource, i);
+                break;
+            case MappingValueType.expression:
+                if (typeof this.getDataSourceValue(dataSource, i) === 'string') {
+                    expressionValue = this.getDataSourceValue(dataSource, i);
+                } else {
+                    expressionValue = JSON.stringify(this.getDataSourceValue(dataSource, i), null, 4);
+                }
+                break;
+        }
+
+        return { variableValue, valueValue, expressionValue };
+    }
 
     getMappingValueTypeFromMappingType(type: MappingType, value: any): MappingValueType {
         switch (type) {
@@ -91,7 +149,7 @@ export abstract class MappingDialogService {
                 case 'vs-dark':
                     baseTheme = 'vs-dark';
                     break;
-               default:
+                default:
                     baseTheme = 'vs';
                     break;
             }

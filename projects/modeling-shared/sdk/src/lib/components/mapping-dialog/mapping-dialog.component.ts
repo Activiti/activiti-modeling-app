@@ -15,30 +15,14 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSelectChange } from '@angular/material';
-import { Subject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ConnectorParameter, EntityProperty, ServiceParameterMapping } from '../../api/types';
-import { CodeEditorComponent } from '../../code-editor/components/code-editor/code-editor.component';
 import { UuidService } from '../../services/uuid.service';
-import { VariableMappingType, MappingRowModel, MappingValueType, MappingDialogService } from '../../services/mapping-dialog.service';
+import { VariableMappingType, MappingRowModel, MappingValueType, MappingDialogService, MappingDialogData } from '../../services/mapping-dialog.service';
 import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
 import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
-
-export interface MappingDialogData {
-    inputMapping?: ServiceParameterMapping;
-    inputParameters?: ConnectorParameter[];
-    outputMapping?: ServiceParameterMapping;
-    outputParameters?: ConnectorParameter[];
-    processProperties: EntityProperty[];
-    mappingType: VariableMappingType;
-    selectedRow?: number;
-    selectedProcessVariable?: string;
-    selectedOutputParameter?: string;
-    theme$: Observable<string>;
-    inputMappingUpdate$?: Subject<ServiceParameterMapping>;
-    outputMappingUpdate$?: Subject<ServiceParameterMapping>;
-}
 
 @Component({
     templateUrl: './mapping-dialog.component.html',
@@ -75,12 +59,6 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
 
     language = 'expressions';
 
-    editorOptions = {
-        language: this.language
-    };
-
-    @ViewChild('expressionInput') editor: CodeEditorComponent;
-
     constructor(
         public dialog: MatDialogRef<MappingDialogComponent>,
         private uuidService: UuidService,
@@ -107,11 +85,12 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
         this.initSelectedRow();
         if (this.mappingType === VariableMappingType.output) {
             this.displayedColumns.push('delete');
-            this.getFilteredProcessVariables(this.selectedRow);
+            this.filteredProcessVariables = this.service.getFilteredProcessVariables(this.dataSource, this.processProperties, this.selectedRow);
         }
-        this.setSelectedDestination(this.selectedRow);
+        this.selectedDestination = this.service.getDataSourceName(this.dataSource, this.selectedRow);
         this.initSelectedTab(this.selectedRow, true);
-        this.initMappingValue(this.selectedRow);
+        const values = this.service.initMappingValue(this.dataSource, this.selectedRow);
+        Object.assign(this, { variableValue: values.variableValue, expressionValue: values.expressionValue, valueValue: values.valueValue });
     }
 
     ngOnDestroy() {
@@ -146,28 +125,6 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
         }
     }
 
-    private getFilteredProcessVariables(i: number) {
-        let filteredProcessVariables = this.processProperties.filter(() => true);
-        const element = this.dataSource[i];
-        if (element.type) {
-            filteredProcessVariables = this.processProperties.filter(variable => variable.type === element.type);
-        }
-        this.dataSource.forEach(mapping => {
-            if (mapping.value && mapping.value !== element.value) {
-                const index = filteredProcessVariables.findIndex(variable => variable.name === mapping.value);
-                if (index >= 0) {
-                    filteredProcessVariables.splice(index, 1);
-                }
-            }
-        });
-
-        this.filteredProcessVariables = filteredProcessVariables;
-    }
-
-    private setSelectedDestination(i: number) {
-        this.selectedDestination = this.service.getDataSourceName(this.dataSource, i);
-    }
-
     private initSelectedTab(i: number, isInit?: boolean) {
         switch (this.dataSource[i].mappingValueType) {
             case MappingValueType.variable:
@@ -186,30 +143,6 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
 
         if (isInit) {
             this.tabCheck = this.selectedTab;
-        }
-    }
-
-    private initMappingValue(i: number) {
-        switch (this.dataSource[i].mappingValueType) {
-            case MappingValueType.variable:
-                this.variableValue = this.service.getDataSourceValue(this.dataSource, i);
-                this.valueValue = undefined;
-                this.expressionValue = '';
-                break;
-            case MappingValueType.value:
-                this.variableValue = undefined;
-                this.valueValue = this.service.getDataSourceValue(this.dataSource, i);
-                this.expressionValue = '';
-                break;
-            case MappingValueType.expression:
-                this.variableValue = undefined;
-                this.valueValue = undefined;
-                if (typeof this.service.getDataSourceValue(this.dataSource, i) === 'string') {
-                    this.expressionValue = this.service.getDataSourceValue(this.dataSource, i);
-                } else {
-                    this.expressionValue = JSON.stringify(this.service.getDataSourceValue(this.dataSource, i), null, 4);
-                }
-                break;
         }
     }
 
@@ -253,11 +186,11 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
     editRow(i: number) {
         if (i !== undefined && i < this.dataSource.length) {
             this.selectedRow = i;
-            this.setSelectedDestination(i);
-            this.initMappingValue(i);
+            this.selectedDestination = this.service.getDataSourceName(this.dataSource, i);
+            this.service.initMappingValue(this.dataSource, i);
             this.initSelectedTab(i);
             if (this.mappingType === VariableMappingType.output) {
-                this.getFilteredProcessVariables(i);
+                this.service.getFilteredProcessVariables(this.dataSource, this.processProperties, i);
             }
         }
 

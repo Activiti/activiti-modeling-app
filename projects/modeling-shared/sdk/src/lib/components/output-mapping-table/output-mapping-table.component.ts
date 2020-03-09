@@ -23,9 +23,9 @@ import { map } from 'rxjs/operators';
 import { selectSelectedTheme } from '../../store/app.selectors';
 import { DialogService } from '../../confirmation-dialog/services/dialog.service';
 import { AmaState } from '../../store/app.state';
-import { MappingDialogData, MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
+import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
 import { Subject } from 'rxjs';
-import { VariableMappingType } from '../../services/mapping-dialog.service';
+import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
 
 @Component({
     selector: 'modelingsdk-output-mapping-table',
