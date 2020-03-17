@@ -26,6 +26,7 @@ import { AmaState } from '../../store/app.state';
 import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
 import { Subject } from 'rxjs';
 import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
+import { sanitizeLabelIdValue } from '../../helpers/utils/mapping';
 
 @Component({
     selector: 'modelingsdk-output-mapping-table',
@@ -83,7 +84,9 @@ export class OutputMappingTableComponent implements OnChanges {
                     description: ''
                 });
             } else {
-                const index = this.filteredParameters.findIndex(parameter => parameter.name === this.mapping[processVariable].value && !parameter['processVariable']);
+                const index = this.filteredParameters.findIndex((parameter) => {
+                    return parameter.name === sanitizeLabelIdValue(this.mapping[processVariable].value) && !parameter['processVariable'];
+                });
                 if (index >= 0) {
                     this.filteredParameters[index]['processVariable'] = processVariable;
                 } else {
@@ -117,7 +120,7 @@ export class OutputMappingTableComponent implements OnChanges {
         if (variableName !== null) {
             this.data[variableName] = {
                 type: MappingType.variable,
-                value: parameter.name
+                value: this.getMappableKey(parameter)
             };
         }
         this.update.emit(this.data);
@@ -131,7 +134,7 @@ export class OutputMappingTableComponent implements OnChanges {
         this.optionsForParams[index] = [
             ...(param.required === false ? [{ id: null, name: 'None' }] : []),
             ...this.processProperties
-                .filter(variable => variable.type === param.type)
+                .filter(variable => variable.type === param.type || this.isMappableToString(variable, param))
                 .filter(
                     variable =>
                         !this.mapping[variable.name] ||
@@ -186,5 +189,17 @@ export class OutputMappingTableComponent implements OnChanges {
 
     getProcessVariable(i: number): string {
         return this.tableParameters[i]['processVariable'];
+    }
+
+    private isMappableToString(variable: EntityProperty, parameter: ConnectorParameter): boolean {
+        return variable.type === 'string' && (parameter.type === 'id' || parameter.type === 'label');
+    }
+
+    private getMappableKey(parameter: ConnectorParameter): string {
+        return this.isDropDownOrRadioButtonField(parameter) ? '${' + parameter.name + '}' : parameter.name;
+    }
+
+    private isDropDownOrRadioButtonField(parameter: ConnectorParameter): boolean {
+        return parameter.type === 'id' || parameter.type === 'label';
     }
 }

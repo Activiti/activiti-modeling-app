@@ -15,17 +15,13 @@
  * limitations under the License.
  */
 
-export * from './common';
-export * from './unsaved-page.guard';
-export * from './utils/create-entries-names';
-export * from './shared.module';
-export * from './utils/empty-diagram';
-export * from './utils/empty-decision-table';
-export * from './primitive-types';
-export * from './utils/createJsonBlob';
-export * from './utils/about-provider';
-export * from './utils/arrayize';
-export { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
-export { AllowedCharactersDirective } from './directives/allowed-characters.directive';
-export * from './utils/log-filters';
-export * from './utils/mapping';
+export const VALUE_MAPPING_ID_REGEX = /{.*?\.id}/;
+export const VALUE_MAPPING_LABEL_REGEX = /{.*?\.label}/;
+
+export function sanitizeLabelIdValue(value: string): string {
+    if (VALUE_MAPPING_ID_REGEX.test(value) || VALUE_MAPPING_LABEL_REGEX.test(value)) {
+        value = value.substring(2, value.length - 1);
+    }
+
+    return value;
+}

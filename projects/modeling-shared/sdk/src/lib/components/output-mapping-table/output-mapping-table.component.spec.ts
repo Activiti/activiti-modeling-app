@@ -208,4 +208,24 @@ describe('OutputMappingTableComponent', () => {
             component.processProperties[2]
         ]);
     });
+
+    it('should be able to map label and id type parameters to strings', () => {
+        component.parameters.push({
+            id: 'id2',
+            name: 'dropdown.label',
+            description: 'desc',
+            type: 'label'
+        });
+        component.ngOnChanges();
+        fixture.detectChanges();
+
+        expect(component.optionsForParams[0]).toEqual([
+            component.processProperties[0],
+            component.processProperties[2]
+        ]);
+        expect(component.optionsForParams[1]).toEqual([
+            component.processProperties[0],
+            component.processProperties[2]
+        ]);
+    });
 });
