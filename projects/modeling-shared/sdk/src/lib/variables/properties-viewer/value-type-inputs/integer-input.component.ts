@@ -27,6 +27,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 export class PropertiesViewerIntegerInputComponent {
 
+    // tslint:disable-next-line
     @Output() change = new EventEmitter();
     @Input() value: string;
     @Input() disabled: boolean;

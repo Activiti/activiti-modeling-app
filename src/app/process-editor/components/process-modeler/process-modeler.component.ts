@@ -39,7 +39,9 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
     diagramData$: BehaviorSubject<ProcessContent> = new BehaviorSubject<ProcessContent>(null);
     onDestroy$: Subject<void> = new Subject<void>();
 
-    @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
+    // tslint:disable-next-line
+    @Output()
+    onChange: EventEmitter<any> = new EventEmitter<any>();
 
     @Input()
     set source(diagramData: ProcessContent) {

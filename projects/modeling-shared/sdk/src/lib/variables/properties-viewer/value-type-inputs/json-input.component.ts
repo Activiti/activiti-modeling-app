@@ -33,6 +33,7 @@ import { EditorComponent } from 'ngx-monaco-editor';
 
 export class PropertiesViewerJsonInputComponent {
 
+    // tslint:disable-next-line
     @Output() change = new EventEmitter();
     @Input() value;
     @Input() disabled: boolean;

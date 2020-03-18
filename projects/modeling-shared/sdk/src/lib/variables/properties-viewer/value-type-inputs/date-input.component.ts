@@ -50,6 +50,7 @@ import { FormControl } from '@angular/forms';
 
 export class PropertiesViewerDateInputComponent {
 
+    // tslint:disable-next-line
     @Output() change = new EventEmitter();
     @Input() value: string;
     @Input() disabled: boolean;

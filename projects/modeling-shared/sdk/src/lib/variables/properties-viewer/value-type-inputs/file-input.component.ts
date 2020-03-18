@@ -39,6 +39,7 @@ import { take, filter } from 'rxjs/operators';
 
 export class PropertiesViewerFileInputComponent implements OnInit {
 
+    // tslint:disable-next-line
     @Output() change = new EventEmitter();
     @Input() value: ActivitiFile;
     @Input() disabled: boolean;

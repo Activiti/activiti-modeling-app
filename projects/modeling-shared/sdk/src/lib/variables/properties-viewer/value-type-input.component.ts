@@ -48,6 +48,7 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
 
     @Input() value = null;
     @Input() index: number;
+    // tslint:disable-next-line
     @Output() onChange = new EventEmitter();
     @Input() type: string;
     @Input() disabled = false;

@@ -41,6 +41,7 @@ import { AMA_DATETIME_FORMATS, MOMENT_DATETIME_FORMAT } from '../../../helpers/p
 
 export class PropertiesViewerDateTimeInputComponent {
 
+    // tslint:disable-next-line
     @Output() change = new EventEmitter();
     @Input() value: string;
     @Input() disabled: boolean;
