@@ -32,7 +32,7 @@ import {
 import {
     ProjectSummaryEntities, ReleaseProjectSuccessAction,
     RELEASE_PROJECT_SUCCESS, Pagination, DashboardState,
-    INITIAL_DASHBOARD_STATE, GET_PROJECTS_ATTEMPT
+    INITIAL_DASHBOARD_STATE, GET_PROJECTS_ATTEMPT, GET_PROJECT_SUCCESS, GetProjectSuccessAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE, action: Action): DashboardState {
@@ -68,6 +68,10 @@ export function dashboardReducer(state: DashboardState = INITIAL_DASHBOARD_STATE
 
         case RELEASE_PROJECT_SUCCESS:
             newState = releaseProject(state, <ReleaseProjectSuccessAction> action);
+            break;
+
+        case GET_PROJECT_SUCCESS:
+            newState = setProject(state, <GetProjectSuccessAction>action);
             break;
 
         default:
@@ -136,5 +140,13 @@ function releaseProject(state: DashboardState, action: ReleaseProjectSuccessActi
         [action.projectId]: { ...newState.projects[action.projectId], version: release.version }
     };
 
+    return newState;
+}
+
+function setProject(state: DashboardState, action: GetProjectSuccessAction): DashboardState {
+    const newState = Object.assign({}, state);
+    newState.projects = {
+        [action.payload.id]: action.payload
+    };
     return newState;
 }

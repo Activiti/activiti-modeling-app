@@ -26,10 +26,10 @@ import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction,
     ConfirmDialogData,
     getProjectEditorLogInitiator,
     GetProjectAttemptAction,
-    GET_PROJECT_ATTEMPT} from '@alfresco-dbp/modeling-shared/sdk';
+    GET_PROJECT_ATTEMPT,
+    GetProjectSuccessAction} from '@alfresco-dbp/modeling-shared/sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import {
-    GetProjectSuccessAction,
     ExportProjectAction,
     EXPORT_PROJECT,
     ValidateProjectAttemptAction,

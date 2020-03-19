@@ -17,7 +17,6 @@
 
 import { createSelector } from '@ngrx/store';
 import { AmaState, AppState } from './app.state';
-import { selectProject } from './project.selectors';
 import { getEntitiesState } from './entity.selectors';
 
 export const selectApp = (state: AmaState) => state.app;
@@ -34,10 +33,6 @@ export const selectSelectedModel = createSelector(getEntitiesState, selectApp, (
             return entities[key].entities[app.openedModel.id];
         }
     }
-});
-
-export const selectProjectCrumb = createSelector(selectProject, project => {
-    return project ? { url: `/projects/${project.id}`, name: project.name } : null;
 });
 
 export const selectSelectedModelIdFor = function(modelType: string) {

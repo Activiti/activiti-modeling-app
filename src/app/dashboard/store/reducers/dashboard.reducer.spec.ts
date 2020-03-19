@@ -26,7 +26,7 @@ import {
 import {
     Project, Release,
     ReleaseProjectSuccessAction, INITIAL_DASHBOARD_STATE,
-    DashboardState, GetProjectsAttemptAction
+    DashboardState, GetProjectsAttemptAction, GetProjectSuccessAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { mockProject } from '../effects/project.mock';
 
@@ -69,6 +69,20 @@ describe('dashboardReducer', () => {
             expect(newState.loading).toBe(false);
             expect(newState.projects).toEqual({ [mockProject.id]: mockProject });
             expect(newState.pagination).toEqual(mockPagination);
+        });
+
+        it ('should handle GET_PROJECT_SUCCESS', () => {
+            const project: Partial<Project> = {
+                type: 'project',
+                /* cspell: disable-next-line */
+                id: 'appid',
+                /* cspell: disable-next-line */
+                name: 'appname'
+            };
+            const initState = {...initialState};
+            const newState = dashboardReducer(initState, new GetProjectSuccessAction(project));
+
+            expect(newState.projects[project.id]).toEqual(project);
         });
     });
 

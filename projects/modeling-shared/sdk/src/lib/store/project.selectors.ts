@@ -18,14 +18,16 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ProjectEditorState } from './project.state';
 import { DashboardState } from './dashboard.state';
+import { selectSelectedProjectId } from './app.selectors';
+import { DASHBOARD_STATE_NAME } from './dashboard.selectors';
 
 export const PROJECT_EDITOR_STATE_NAME = 'project-editor';
 export const getProjectEditorFeatureState = createFeatureSelector<ProjectEditorState>(PROJECT_EDITOR_STATE_NAME);
-export const getProjectByIdSelector = createFeatureSelector<DashboardState>(PROJECT_EDITOR_STATE_NAME);
+export const getProjectByIdSelector = createFeatureSelector<DashboardState>(DASHBOARD_STATE_NAME);
 
 export const selectProject = createSelector(
-    getProjectEditorFeatureState,
-    (state: ProjectEditorState) => state.project.project
+    getProjectByIdSelector, selectSelectedProjectId,
+    (state: DashboardState, projectId) => state.projects[projectId]
 );
 
 export const selectProjectLoading = createSelector(
@@ -37,3 +39,7 @@ export const selectProjectTree = createSelector(
     getProjectEditorFeatureState,
     (state: ProjectEditorState) => state.tree
 );
+
+export const selectProjectCrumb = createSelector(selectProject, project => {
+    return project ? { url: `/projects/${project.id}`, name: project.name } : null;
+});

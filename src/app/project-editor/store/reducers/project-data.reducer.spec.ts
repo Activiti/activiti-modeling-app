@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-import { ProjectDataState, INITIAL_PROJECT_DATA_STATE, Project, ReleaseProjectSuccessAction } from '@alfresco-dbp/modeling-shared/sdk';
+import { ProjectDataState, INITIAL_PROJECT_DATA_STATE, ReleaseProjectSuccessAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { projectDataReducer } from './project-data.reducer';
-import { SELECT_PROJECT, GetProjectSuccessAction } from '../project-editor.actions';
+import { SELECT_PROJECT } from '../project-editor.actions';
 
 describe('Project data reducer', () => {
     let initState: ProjectDataState;
@@ -27,20 +27,6 @@ describe('Project data reducer', () => {
         const newState = projectDataReducer(initState, {type: SELECT_PROJECT});
 
         expect(newState).toEqual(initState);
-    });
-
-    it ('should handle GET_PROJECT_SUCCESS', () => {
-        const project: Partial<Project> = {
-            type: 'project',
-            /* cspell: disable-next-line */
-            id: 'appid',
-            /* cspell: disable-next-line */
-            name: 'appname'
-        };
-        initState = {...INITIAL_PROJECT_DATA_STATE};
-        const newState = projectDataReducer(initState, new GetProjectSuccessAction(project));
-
-        expect(newState.project).toEqual(project);
     });
 
     it ('should handle RELEASE_PROJECT_SUCCESS', () => {

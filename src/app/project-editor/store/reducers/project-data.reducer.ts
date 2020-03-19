@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { GET_PROJECT_SUCCESS, GetProjectSuccessAction, SELECT_PROJECT } from '../project-editor.actions';
+import { SELECT_PROJECT } from '../project-editor.actions';
 import { INITIAL_PROJECT_DATA_STATE as init, ProjectDataState, RELEASE_PROJECT_SUCCESS, ReleaseProjectSuccessAction } from '@alfresco-dbp/modeling-shared/sdk';
 
 export function projectDataReducer(state: ProjectDataState = init, action: Action): ProjectDataState {
@@ -25,10 +25,6 @@ export function projectDataReducer(state: ProjectDataState = init, action: Actio
     switch (action.type) {
         case SELECT_PROJECT:
             newState = initProject(state);
-            break;
-
-        case GET_PROJECT_SUCCESS:
-            newState = setProject(state, <GetProjectSuccessAction>action);
             break;
 
         case RELEASE_PROJECT_SUCCESS:
@@ -44,12 +40,6 @@ export function projectDataReducer(state: ProjectDataState = init, action: Actio
 
 function initProject(state: ProjectDataState): ProjectDataState {
     return { ...init };
-}
-
-function setProject(state: ProjectDataState, action: GetProjectSuccessAction): ProjectDataState {
-    const newState = Object.assign({}, state);
-    newState.project = action.payload;
-    return newState;
 }
 
 function updateRelease(state: ProjectDataState, action: ReleaseProjectSuccessAction): ProjectDataState {

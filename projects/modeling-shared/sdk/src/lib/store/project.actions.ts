@@ -17,7 +17,7 @@
 
 import { EntityDialogForm } from '../helpers/common';
 import { Action } from '@ngrx/store';
-import { Release, ServerSideSorting, SearchQuery } from '../api/types';
+import { Release, ServerSideSorting, SearchQuery, Project } from '../api/types';
 import { FetchQueries } from '../api/project-api.interface';
 
 export const CREATE_PROJECT_ATTEMPT = 'CREATE_PROJECT_ATTEMPT';
@@ -71,4 +71,10 @@ export const RELEASE_PROJECT_SUCCESS = 'RELEASE_PROJECT_SUCCESS';
 export class ReleaseProjectSuccessAction implements Action {
     readonly type = RELEASE_PROJECT_SUCCESS;
     constructor(public release: Partial<Release>, public projectId: string) {}
+}
+
+export const GET_PROJECT_SUCCESS = 'GET_PROJECT_SUCCESS';
+export class GetProjectSuccessAction implements Action {
+    readonly type = GET_PROJECT_SUCCESS;
+    constructor(public payload: Partial<Project>) {}
 }

@@ -21,8 +21,7 @@ import { Observable } from 'rxjs';
 import { ActivitiFile } from '../../../api/types';
 import { Store } from '@ngrx/store';
 import { AmaState } from '../../../store/app.state';
-import { selectProject } from '../../../store/project.selectors';
-import { take, filter } from 'rxjs/operators';
+import { selectSelectedProjectId } from '../../../store/app.selectors';
 
 @Component({
     template: `
@@ -50,12 +49,8 @@ export class PropertiesViewerFileInputComponent implements OnInit {
     constructor(private store: Store<AmaState>, private fileService: FileService) { }
 
     ngOnInit() {
-        this.store.select(selectProject).pipe(
-            filter(valueProject => valueProject !== null),
-            take(1)).
-            subscribe(project =>
-                this.files = this.fileService.getList(project.id)
-            );
+        this.store.select(selectSelectedProjectId)
+            .subscribe( projectId => this.fileService.getList(projectId));
     }
     onChange() {
         this.change.emit(this.value);

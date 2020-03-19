@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Project, MODEL_TYPE } from '@alfresco-dbp/modeling-shared/sdk';
+import { MODEL_TYPE } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const SELECT_PROJECT = 'SELECT_PROJECT';
 export class SelectProjectAction implements Action {
@@ -30,11 +30,6 @@ export class CloseFilterAction implements Action {
     constructor(public filterType: MODEL_TYPE) {}
 }
 
-export const GET_PROJECT_SUCCESS = 'GET_PROJECT_SUCCESS';
-export class GetProjectSuccessAction implements Action {
-    readonly type = GET_PROJECT_SUCCESS;
-    constructor(public payload: Partial<Project>) {}
-}
 export interface ExportProjectAttemptPayload {
     projectId: string;
     projectName: string;
