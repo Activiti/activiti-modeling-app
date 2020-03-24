@@ -91,33 +91,35 @@ describe('ProcessEntitiesReducer', () => {
     it('should handle REMOVE_ELEMENT_MAPPING', () => {
         const elementId = 'UserTask_0o7efx6';
         const processes = [{ ...process, extensions: {
-            mappings: {
-                [elementId]: {
-                    inputs: {
-                        'e441111c-5a3d-4f78-a571-f57e67ce85bf': {
-                            type: MappingType.value,
-                            value: 'test'
+            [processId]: {
+                mappings: {
+                    [elementId]: {
+                        inputs: {
+                            'e441111c-5a3d-4f78-a571-f57e67ce85bf': {
+                                type: MappingType.value,
+                                value: 'test'
+                            }
                         }
                     }
-                }
-            },
-            constants: {
-                [elementId]: {
-                    '_activiti_dmn_table_"': {
-                        'value': 'dt'
+                },
+                constants: {
+                    [elementId]: {
+                        '_activiti_dmn_table_"': {
+                            'value': 'dt'
+                        }
                     }
-                }
-            },
-            properties: {}
+                },
+                properties: {}
+            }
         } }];
         action = <GetProcessesSuccessAction>{ type: GET_PROCESSES_SUCCESS, processes };
         let newState = processEntitiesReducer(initialState, action);
 
-        action = <RemoveElementMappingAction>{ type: REMOVE_ELEMENT_MAPPING, processId: process.id, elementId };
+        action = <RemoveElementMappingAction>{ type: REMOVE_ELEMENT_MAPPING, processModelId: process.id, elementId, bpmnProcessElementId: processId };
         newState = processEntitiesReducer(newState, action);
 
-        expect(newState.entities[process.id].extensions.mappings).toEqual({});
-        expect(newState.entities[process.id].extensions.constants).toEqual({});
+        expect(newState.entities[process.id].extensions[processId].mappings).toEqual({});
+        expect(newState.entities[process.id].extensions[processId].constants).toEqual({});
     });
 
     it('should handle UPDATE_SERVICE_PARAMETERS', () => {

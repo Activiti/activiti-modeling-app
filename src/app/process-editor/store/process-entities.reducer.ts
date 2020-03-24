@@ -97,15 +97,15 @@ export function processEntitiesReducer(
 
 function removeElementMapping(state: ProcessEntitiesState, action: RemoveElementMappingAction): ProcessEntitiesState {
     const newState = cloneDeep(state);
-    const mappings = newState.entities[action.processId].extensions.mappings;
-    const constants = newState.entities[action.processId].extensions.constants;
+    const mappings = newState.entities[action.processModelId].extensions[action.bpmnProcessElementId].mappings;
+    const constants = newState.entities[action.processModelId].extensions[action.bpmnProcessElementId].constants;
 
     if (mappings && mappings[action.elementId]) {
-        delete newState.entities[action.processId].extensions.mappings[action.elementId];
+        delete newState.entities[action.processModelId].extensions[action.bpmnProcessElementId].mappings[action.elementId];
     }
 
     if (constants && constants[action.elementId]) {
-        delete newState.entities[action.processId].extensions.constants[action.elementId];
+        delete newState.entities[action.processModelId].extensions[action.bpmnProcessElementId].constants[action.elementId];
     }
 
     return newState;

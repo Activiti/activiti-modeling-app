@@ -16,13 +16,21 @@
  */
 
 import { createEntityAdapter } from '@ngrx/entity';
-import { Process, LogMessage, GeneralError } from '@alfresco-dbp/modeling-shared/sdk';
+import { Process, LogMessage, GeneralError, BpmnElement } from '@alfresco-dbp/modeling-shared/sdk';
 
 export function createSelectedElement(element): SelectedProcessElement {
     return {
         id: element.id,
         type: element.type,
-        name: element.businessObject && element.businessObject.name || ''
+        name: element.businessObject && element.businessObject.name || '',
+        get processId() {
+            let id = '';
+            if (element.businessObject && element.businessObject.$parent) {
+                id = (element.businessObject.$parent.$type === BpmnElement.SubProcess) ?
+                    element.businessObject.$parent.$parent.id : element.businessObject.$parent.id;
+            }
+            return id;
+        }
     };
 }
 
@@ -30,6 +38,7 @@ export interface SelectedProcessElement {
     id: string;
     type: string;
     name?: string;
+    processId?: string;
 }
 
 export interface ToolbarState {

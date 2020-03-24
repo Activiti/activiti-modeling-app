@@ -47,6 +47,7 @@ export class OutputMappingTableComponent implements OnChanges {
     update = new EventEmitter<ServiceParameterMappings>();
     data: ServiceParameterMapping = {};
 
+    noneValue = 'None';
     displayedColumns: string[] = ['name', 'process-variable'];
     dataSource: MatTableDataSource<ConnectorParameter>;
     optionsForParams: {
@@ -117,7 +118,7 @@ export class OutputMappingTableComponent implements OnChanges {
         if (oldVariable) {
             delete this.data[oldVariable];
         }
-        if (variableName !== null) {
+        if (variableName !== this.noneValue) {
             this.data[variableName] = {
                 type: MappingType.variable,
                 value: this.getMappableKey(parameter)
