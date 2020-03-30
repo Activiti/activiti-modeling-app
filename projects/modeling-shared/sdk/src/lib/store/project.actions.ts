@@ -29,7 +29,7 @@ export class CreateProjectAttemptAction implements Action {
 export const OVERRIDE_PROJECT_ATTEMPT = 'OVERRIDE_PROJECT_ATTEMPT';
 export class OverrideProjectAttemptAction implements Action {
     readonly type = OVERRIDE_PROJECT_ATTEMPT;
-    constructor(public payload: Partial<EntityDialogForm>) {}
+    constructor(public payload: any) {}
 }
 
 export interface ModelIdentifier {
@@ -77,4 +77,10 @@ export const GET_PROJECT_SUCCESS = 'GET_PROJECT_SUCCESS';
 export class GetProjectSuccessAction implements Action {
     readonly type = GET_PROJECT_SUCCESS;
     constructor(public payload: Partial<Project>) {}
+}
+
+export const UPLOAD_PROJECT_ATTEMPT = 'UPLOAD_PROJECT_ATTEMPT';
+export class UploadProjectAttemptAction implements Action {
+    readonly type = UPLOAD_PROJECT_ATTEMPT;
+    constructor(public file: File, public name?: string) {}
 }

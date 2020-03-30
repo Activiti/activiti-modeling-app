@@ -39,10 +39,10 @@ import {
     ImportProjectDialogAction,
     OVERRIDE_PROJECT_NAME_DIALOG,
     OverrideProjectNameDialogAction,
-    OverrideProjectAttemptAction
+    OverrideProjectAttemptAction,
+    UploadProjectAttemptAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Action, Store } from '@ngrx/store';
-import { UploadProjectAttemptAction } from '../../dashboard/store/actions/projects';
 
 @Injectable()
 export class DialogEffects {

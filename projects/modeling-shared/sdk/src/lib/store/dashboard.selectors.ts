@@ -15,17 +15,16 @@
  * limitations under the License.
  */
 
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { DashboardState } from './dashboard.state';
+import { createSelector } from '@ngrx/store';
+import { getEntitiesState } from './entity.selectors';
+import { ProjectEntitiesState } from './project-entities.state';
 
-export const DASHBOARD_STATE_NAME = 'dashboard';
+export const getDashboardFeatureState = createSelector(getEntitiesState, (state: any) => <ProjectEntitiesState> state.projects);
 
-const getDashboardFeatureState = createFeatureSelector<DashboardState>(DASHBOARD_STATE_NAME);
-
-const selectLoadingFromState = (state: DashboardState) => state.loading;
-const selectProjectsLoadedFromState = (state: DashboardState) => state.projectsLoaded;
-const selectProjectSummariesFromState = (state: DashboardState) => state.projects;
-const selectPaginationFromState = (state: DashboardState) => state.pagination;
+const selectLoadingFromState = (state: ProjectEntitiesState) => state.loading;
+const selectProjectsLoadedFromState = (state: ProjectEntitiesState) => state.loaded;
+const selectProjectSummariesFromState = (state: ProjectEntitiesState) => state.entities;
+const selectPaginationFromState = (state: ProjectEntitiesState) => state.pagination;
 
 export const selectLoading = createSelector(getDashboardFeatureState, selectLoadingFromState);
 export const selectPagination = createSelector(getDashboardFeatureState, selectPaginationFromState);

@@ -28,10 +28,7 @@ import {
     selectLoading, selectPagination, selectProjectSummaries, GetProjectsAttemptAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ExportProjectAction } from '../../../project-editor/store/project-editor.actions';
-import {
-    DeleteProjectAttemptAction,
-    UpdateProjectAttemptAction
-} from '../../store/actions/projects';
+import { UpdateProjectAttemptAction, DeleteProjectAttemptAction } from '../../store/actions/projects';
 
 const DEFAULT_SORT_KEY = 'name';
 const DEFAULT_SORT_DIRECTION = 'asc';

@@ -23,7 +23,6 @@ import { CoreModule } from '@alfresco/adf-core';
 import { SharedModule, getProjectEditorLogInitiator, PROJECT_EDITOR_STATE_NAME, provideLogFilter } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProjectEditorRoutingModule } from './router/project-editor-routing.module';
 import { ProjectEffects } from './store/effects/project.effects';
-import { projectDataReducer as project } from './store/reducers/project-data.reducer';
 import { projectTreeReducer as tree } from './store/reducers/project-tree.reducer';
 import { ProjectContentComponent } from './components/project-content/project-content.component';
 import { ProjectNavigationComponent } from './components/project-navigation/project-navigation.component';
@@ -43,7 +42,7 @@ import { ExtensionsModule } from '@alfresco/adf-extensions';
         CoreModule.forChild(),
         SharedModule,
         OverlayModule,
-        StoreModule.forFeature(PROJECT_EDITOR_STATE_NAME, { project, tree }),
+        StoreModule.forFeature(PROJECT_EDITOR_STATE_NAME, { tree }),
         EffectsModule.forFeature([ProjectEffects]),
         ExtensionsModule
     ],

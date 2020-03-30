@@ -17,22 +17,20 @@
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ProjectEditorState } from './project.state';
-import { DashboardState } from './dashboard.state';
 import { selectSelectedProjectId } from './app.selectors';
-import { DASHBOARD_STATE_NAME } from './dashboard.selectors';
+import { getDashboardFeatureState } from './dashboard.selectors';
 
 export const PROJECT_EDITOR_STATE_NAME = 'project-editor';
 export const getProjectEditorFeatureState = createFeatureSelector<ProjectEditorState>(PROJECT_EDITOR_STATE_NAME);
-export const getProjectByIdSelector = createFeatureSelector<DashboardState>(DASHBOARD_STATE_NAME);
 
 export const selectProject = createSelector(
-    getProjectByIdSelector, selectSelectedProjectId,
-    (state: DashboardState, projectId) => state.projects[projectId]
+    getDashboardFeatureState, selectSelectedProjectId,
+    (state, projectId) => state.entities[projectId]
 );
 
 export const selectProjectLoading = createSelector(
     getProjectEditorFeatureState,
-    (state: ProjectEditorState) => state.project.loading
+    (state: ProjectEditorState) => state.loading
 );
 
 export const selectProjectTree = createSelector(

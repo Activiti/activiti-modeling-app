@@ -22,24 +22,6 @@ import { Observable, of } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { tap, switchMap, catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import {
-    GetProjectsSuccessAction,
-    CreateProjectSuccessAction,
-    UpdateProjectAttemptAction,
-    UPDATE_PROJECT_ATTEMPT,
-    UpdateProjectSuccessAction,
-    DeleteProjectAttemptAction,
-    DELETE_PROJECT_ATTEMPT,
-    DeleteProjectSuccessAction,
-    ShowProjectsAction,
-    SHOW_PROJECTS,
-    UploadProjectAttemptAction,
-    UPLOAD_PROJECT_ATTEMPT,
-    UploadProjectSuccessAction,
-    CREATE_PROJECT_SUCCESS,
-    OverrideProjectAttemptAction,
-    OVERRIDE_PROJECT_ATTEMPT
-} from '../actions/projects';
 import { Store } from '@ngrx/store';
 import {
     AmaState,
@@ -58,8 +40,26 @@ import {
     GetProjectsAttemptAction,
     GET_PROJECTS_ATTEMPT,
     selectPagination,
-    selectProjectsLoaded
+    selectProjectsLoaded,
+    OverrideProjectAttemptAction,
+    OVERRIDE_PROJECT_ATTEMPT,
+    UploadProjectAttemptAction,
+    UPLOAD_PROJECT_ATTEMPT,
 } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    ShowProjectsAction,
+    SHOW_PROJECTS,
+    UpdateProjectAttemptAction,
+    UPDATE_PROJECT_ATTEMPT,
+    DeleteProjectAttemptAction,
+    DELETE_PROJECT_ATTEMPT,
+    CreateProjectSuccessAction,
+    CREATE_PROJECT_SUCCESS,
+    DeleteProjectSuccessAction,
+    UpdateProjectSuccessAction,
+    GetProjectsSuccessAction,
+    UploadProjectSuccessAction
+} from '../actions/projects';
 
 @Injectable()
 export class ProjectsEffects extends BaseEffects {
@@ -157,7 +157,7 @@ export class ProjectsEffects extends BaseEffects {
     private updateProject(projectId: string, form: Partial<EntityDialogForm>) {
         return this.dashboardService.updateProject(projectId, form).pipe(
             switchMap(project => [
-                new UpdateProjectSuccessAction(project),
+                new UpdateProjectSuccessAction({ id: project.id, changes: project }),
                 new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_UPDATED')
             ]),
             catchError(e =>
@@ -192,7 +192,7 @@ export class ProjectsEffects extends BaseEffects {
 
     private getProjectsAttempt(pagination: FetchQueries, sorting: ServerSideSorting, search: SearchQuery) {
         return this.dashboardService.fetchProjects(pagination, sorting, search).pipe(
-            switchMap(projects => [new GetProjectsSuccessAction(projects)]),
+            switchMap(data => [new GetProjectsSuccessAction(data.entries, data.pagination)]),
             catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'APP.HOME.ERROR.LOAD_PROJECTS'), e))
         );
     }

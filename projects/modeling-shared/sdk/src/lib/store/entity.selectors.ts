@@ -20,6 +20,7 @@ import { Model } from '../api/types';
 import { EntityState, EntityMap } from '@ngrx/entity';
 
 export const ENTITIES_KEY = 'entities';
+export const PROJECT_ENTITY_KEY = 'projects';
 export const PROCESSES_ENTITY_KEY = 'processes';
 export const CONNECTORS_ENTITY_KEY = 'connectors';
 export const FORMS_ENTITY_KEY = 'forms';

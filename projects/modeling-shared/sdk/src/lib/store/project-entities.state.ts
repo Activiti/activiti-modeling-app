@@ -15,15 +15,22 @@
  * limitations under the License.
  */
 
-import { Project } from '../api/types';
+import { createEntityAdapter, EntityState } from '@ngrx/entity';
+import { Project, Pagination } from '../api/types';
 
-export interface ProjectDataState {
-    project: Partial<Project>;
+export interface ProjectEntitiesState extends EntityState<Partial<Project>>  {
     loading: boolean;
-    error?: any;
+    loaded: boolean;
+    entityContents: {[key: string]: Partial<Project>};
+    pagination: Pagination;
 }
 
-export const INITIAL_PROJECT_DATA_STATE: ProjectDataState = {
-    project: null,
-    loading: false
-};
+export const projectAdapter = createEntityAdapter<Partial<Project>>();
+
+export const initialProjectEntitiesState = projectAdapter.getInitialState<ProjectEntitiesState>({
+    ...projectAdapter.getInitialState(),
+    loading: false,
+    loaded: false,
+    entityContents: {},
+    pagination: null
+});

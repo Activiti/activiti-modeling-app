@@ -28,7 +28,6 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { mockProject, paginationMock, paginationCountMock } from './project.mock';
 import {
     ShowProjectsAction,
-    UploadProjectAttemptAction,
     UploadProjectSuccessAction,
     CreateProjectSuccessAction,
     UpdateProjectAttemptAction,
@@ -54,7 +53,8 @@ import {
     GET_PROJECTS_ATTEMPT,
     GetProjectsAttemptAction,
     selectProjectsLoaded,
-    selectPagination
+    selectPagination,
+    UploadProjectAttemptAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 describe('ProjectsEffects', () => {
@@ -261,7 +261,7 @@ describe('ProjectsEffects', () => {
             actions$ = hot('a', { a: new UpdateProjectAttemptAction(payload) });
 
             const expected = cold('(bc)', {
-                b: new UpdateProjectSuccessAction(mockProject),
+                b: new UpdateProjectSuccessAction({ id: mockProject.id, changes: mockProject }),
                 c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_UPDATED')
             });
 
@@ -379,11 +379,11 @@ describe('ProjectsEffects', () => {
         });
 
         it('should trigger the right action on successful get', () => {
-            dashboardService.fetchProjects = jest.fn().mockReturnValue(of([ mockProject ]));
+            dashboardService.fetchProjects = jest.fn().mockReturnValue(of( { entries: [ mockProject ], pagination: null }));
             actions$ = hot('a', { a: new GetProjectsAttemptAction() });
 
             const expected = cold('b', {
-                b: new GetProjectsSuccessAction([ mockProject ])
+                b: new GetProjectsSuccessAction([ mockProject ], null)
             });
 
             expect(effects.getProjectsAttemptEffect).toBeObservable(expected);

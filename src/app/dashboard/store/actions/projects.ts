@@ -16,8 +16,9 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Project, Pagination, SearchQuery, EntityDialogForm } from '@alfresco-dbp/modeling-shared/sdk';
-import { PaginatedEntries } from '@alfresco/js-api';
+import { Project, SearchQuery, EntityDialogForm } from '@alfresco-dbp/modeling-shared/sdk';
+import { Pagination } from '@alfresco/js-api';
+import { Update } from '@ngrx/entity';
 
 export interface EditProjectPayload {
     id: string;
@@ -28,18 +29,6 @@ export const CREATE_PROJECT_SUCCESS = 'CREATE_PROJECT_SUCCESS';
 export class CreateProjectSuccessAction implements Action {
     readonly type = CREATE_PROJECT_SUCCESS;
     constructor(public payload: Partial<Project>) {}
-}
-
-export const UPLOAD_PROJECT_ATTEMPT = 'UPLOAD_PROJECT_ATTEMPT';
-export class UploadProjectAttemptAction implements Action {
-    readonly type = UPLOAD_PROJECT_ATTEMPT;
-    constructor(public file: File, public name?: string) {}
-}
-
-export const OVERRIDE_PROJECT_ATTEMPT = 'OVERRIDE_PROJECT_ATTEMPT';
-export class OverrideProjectAttemptAction implements Action {
-    readonly type = OVERRIDE_PROJECT_ATTEMPT;
-    constructor(public payload: any) {}
 }
 
 export const UPDATE_PROJECT_ATTEMPT = 'UPDATE_PROJECT_ATTEMPT';
@@ -57,7 +46,7 @@ export class UploadProjectSuccessAction implements Action {
 export const UPDATE_PROJECT_SUCCESS = 'UPDATE_PROJECT_SUCCESS';
 export class UpdateProjectSuccessAction implements Action {
     readonly type = UPDATE_PROJECT_SUCCESS;
-    constructor(public payload: Partial<Project>) {}
+    constructor(public payload: Update<Partial<Project>>) {}
 }
 
 export const DELETE_PROJECT_ATTEMPT = 'DELETE_PROJECT_ATTEMPT';
@@ -75,7 +64,7 @@ export class DeleteProjectSuccessAction implements Action {
 export const GET_PROJECTS_SUCCESS = 'GET_PROJECTS_SUCCESS';
 export class GetProjectsSuccessAction implements Action {
     readonly type = GET_PROJECTS_SUCCESS;
-    constructor(public payload: PaginatedEntries<Project>) {}
+    constructor(public payload: Project[], public pagination: Pagination) {}
 }
 
 export const SHOW_PROJECTS = 'SHOW_PROJECTS';

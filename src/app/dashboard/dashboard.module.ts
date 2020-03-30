@@ -27,14 +27,13 @@ import { DashboardNavigationComponent } from './components/dashboard-navigation/
 import { ProjectsListComponent } from './components/projects-list/projects-list.component';
 
 import { DashboardService } from './services/dashboard.service';
-import { StoreModule } from '@ngrx/store';
-import { dashboardReducer } from './store/reducers/dashboard.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ProjectsEffects } from './store/effects/projects.effects';
-import { SharedModule, DASHBOARD_STATE_NAME } from '@alfresco-dbp/modeling-shared/sdk';
+import { SharedModule, PROJECT_ENTITY_KEY, AmaStoreModule } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { SearchHeaderComponent } from '../app/app-layout/search-header/search-header.component';
+import { projectEntitiesReducer } from './store/reducers/project-entities.reducer';
 
 @NgModule({
     imports: [
@@ -45,7 +44,10 @@ import { SearchHeaderComponent } from '../app/app-layout/search-header/search-he
         MatSortModule,
         CoreModule.forChild(),
         SharedModule,
-        StoreModule.forFeature(DASHBOARD_STATE_NAME, dashboardReducer),
+        AmaStoreModule.registerEntity({
+            key: PROJECT_ENTITY_KEY,
+            reducer: projectEntitiesReducer
+        }),
         EffectsModule.forFeature([ProjectsEffects])
     ],
     declarations: [

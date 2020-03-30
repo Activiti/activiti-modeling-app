@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-import { dashboardReducer } from './dashboard.reducer';
 import {
     DeleteProjectSuccessAction,
     UploadProjectSuccessAction,
@@ -25,18 +24,19 @@ import {
 } from '../actions/projects';
 import {
     Project, Release,
-    ReleaseProjectSuccessAction, INITIAL_DASHBOARD_STATE,
-    DashboardState, GetProjectsAttemptAction, GetProjectSuccessAction
+    ReleaseProjectSuccessAction,
+    GetProjectsAttemptAction, GetProjectSuccessAction, initialProjectEntitiesState, ProjectEntitiesState
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { mockProject } from '../effects/project.mock';
+import { projectEntitiesReducer } from './project-entities.reducer';
 
-describe('dashboardReducer', () => {
+describe('projectEntitiesReducer', () => {
 
-    let initialState: DashboardState;
+    let initialState: ProjectEntitiesState;
 
     beforeEach(() => {
-        initialState = { ...INITIAL_DASHBOARD_STATE };
-        initialState.projects = {
+        initialState = initialProjectEntitiesState;
+        initialState.entities = {
             '1': { id: '1' },
             '2': { id: '2' },
             '3': { id: '3' }
@@ -47,7 +47,7 @@ describe('dashboardReducer', () => {
         const action = new GetProjectsAttemptAction();
 
         it('loading should be true', () => {
-            const newState = dashboardReducer(initialState, action);
+            const newState = projectEntitiesReducer(initialState, action);
             expect(newState.loading).toBe(true);
         });
     });
@@ -60,14 +60,14 @@ describe('dashboardReducer', () => {
             skipCount: 0,
             totalItems: 1
         };
-        const action = new GetProjectsSuccessAction(<any>{entries: [mockProject], pagination: mockPagination });
+        const action = new GetProjectsSuccessAction([mockProject], mockPagination);
 
         it('should load the projects', () => {
-            const newState = dashboardReducer(initialState, action);
+            const newState = projectEntitiesReducer(initialState, action);
 
-            expect(newState.projectsLoaded).toBe(true);
+            expect(newState.loaded).toBe(true);
             expect(newState.loading).toBe(false);
-            expect(newState.projects).toEqual({ [mockProject.id]: mockProject });
+            expect(newState.entities).toEqual({ [mockProject.id]: mockProject });
             expect(newState.pagination).toEqual(mockPagination);
         });
 
@@ -80,9 +80,9 @@ describe('dashboardReducer', () => {
                 name: 'appname'
             };
             const initState = {...initialState};
-            const newState = dashboardReducer(initState, new GetProjectSuccessAction(project));
+            const newState = projectEntitiesReducer(initState, new GetProjectSuccessAction(project));
 
-            expect(newState.projects[project.id]).toEqual(project);
+            expect(newState.entities[project.id]).toEqual(project);
         });
     });
 
@@ -90,20 +90,24 @@ describe('dashboardReducer', () => {
         const action = new CreateProjectSuccessAction(<Partial<Project>>mockProject);
 
         it('should append the project to the list', () => {
-            const newState = dashboardReducer(initialState, action);
+            const newState = projectEntitiesReducer(initialState, action);
 
-            expect(newState.projects).toEqual({ ...newState.projects, [mockProject.id]: mockProject });
+            expect(newState.entities).toEqual({ ...newState.entities, [mockProject.id]: mockProject });
         });
     });
 
     describe('UPDATE_PROJECT_SUCCESS', () => {
-        const newProject = { ...mockProject, name: 'new-name', description: 'new-description' };
-        const action = new UpdateProjectSuccessAction(<Partial<Project>>newProject);
-
+        const newProject = {
+            id: '1',
+            changes: {
+                name: mockProject.name
+            }
+        };
+        const action = new UpdateProjectSuccessAction(newProject);
         it('should update the project in the list', () => {
-            const newState = dashboardReducer(initialState, action);
+            const newState = projectEntitiesReducer(initialState, action);
 
-            expect(newState.projects).toEqual({ ...newState.projects, [newProject.id]: newProject });
+            expect(newState.entities).toEqual({ ...newState.entities, [newProject.id] : { id: newProject.id, name: mockProject.name }});
         });
     });
 
@@ -111,11 +115,11 @@ describe('dashboardReducer', () => {
         const action = new DeleteProjectSuccessAction('2');
 
         it('should delete the project', () => {
-            const newState = dashboardReducer(initialState, action);
+            const newState = projectEntitiesReducer(initialState, action);
 
-            expect(newState.projects['1']).not.toBe(undefined);
-            expect(newState.projects['2']).toBe(undefined);
-            expect(newState.projects['3']).not.toBe(undefined);
+            expect(newState.entities['1']).not.toBe(undefined);
+            expect(newState.entities['2']).toBe(undefined);
+            expect(newState.entities['3']).not.toBe(undefined);
         });
     });
 
@@ -128,19 +132,19 @@ describe('dashboardReducer', () => {
         const action = new UploadProjectSuccessAction(project);
 
         it('should add a new project to the state', () => {
-            const newState = dashboardReducer(initialState, action);
-            expect(newState.projects['4']).not.toBe(undefined);
+            const newState = projectEntitiesReducer(initialState, action);
+            expect(newState.entities['4']).not.toBe(undefined);
         });
     });
 
     describe('RELEASE_PROJECT_SUCCESS', () => {
         const newRelease = { ...mockProject, name: 'new-name', description: 'new-description', version: '2' };
-        const action = new ReleaseProjectSuccessAction(<Release>newRelease, mockProject.id);
+        const action = new ReleaseProjectSuccessAction(<Release>newRelease, '2');
 
         it('should update the version of the project', () => {
-            const newState = dashboardReducer(initialState, action);
+            const newState = projectEntitiesReducer(initialState, action);
 
-            expect(newState.projects[mockProject.id].version).toEqual('2');
+            expect(newState.entities['2'].version).toEqual('2');
         });
     });
 });
