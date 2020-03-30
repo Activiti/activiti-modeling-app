@@ -110,6 +110,9 @@ describe('CardViewProcessNameItemComponent', () => {
         const processNameInput = fixture.debugElement.query(By.css('input[data-automation-id="process-name"]'));
         processNameInput.nativeElement.value = 'new-process-name';
         processNameInput.nativeElement.dispatchEvent(new Event('input'));
+
+        processNameInput.nativeElement.value = 'new-process-name';
+        processNameInput.nativeElement.dispatchEvent(new Event('focusout'));
         fixture.detectChanges();
 
         tick(1000);

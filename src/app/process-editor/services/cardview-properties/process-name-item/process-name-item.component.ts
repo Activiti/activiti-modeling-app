@@ -15,18 +15,17 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, Inject, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, Inject } from '@angular/core';
 import { ProcessModelerServiceToken, ProcessModelerService, BpmnProperty, MODELER_NAME_REGEX, BpmnElement } from '@alfresco-dbp/modeling-shared/sdk';
 import { CardViewProcessNameItemModel } from './process-name-item.model';
 import { FormControl, ValidatorFn, AbstractControl, FormGroup } from '@angular/forms';
-import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 @Component({
     selector: 'ama-process-name',
     templateUrl: './process-name-item.component.html'
 })
-export class CardViewProcessNameItemComponent implements OnInit, OnDestroy {
+export class CardViewProcessNameItemComponent implements OnInit {
 
     @Input() property: CardViewProcessNameItemModel;
 
@@ -40,18 +39,15 @@ export class CardViewProcessNameItemComponent implements OnInit, OnDestroy {
         this.processNameForm = new FormGroup({
             'processName': new FormControl(this.property.value, this.validateProcessName(MODELER_NAME_REGEX))
         });
-        this.processName.valueChanges
-            .pipe(
-                debounceTime(500),
-                takeUntil(this.onDestroy$))
-            .subscribe(() => {
-                if (this.processNameForm.valid) {
-                    this.updateProcessName(this.processName.value);
-                }
-            });
     }
 
-    updateProcessName(processName: string) {
+    updateProcessName() {
+        if (this.processNameForm.valid) {
+            this.updateProcessNameProperty(this.processName.value);
+        }
+    }
+
+    updateProcessNameProperty(processName: string) {
         this.processModelerService.updateElementProperty(this.property.data.element.id, BpmnProperty.processName, processName);
     }
 
@@ -60,7 +56,7 @@ export class CardViewProcessNameItemComponent implements OnInit, OnDestroy {
             if (!this.property.value) {
                 this.property.value = this.generatePoolName();
             }
-            this.updateProcessName(this.property.value);
+            this.updateProcessNameProperty(this.property.value);
         }
     }
 
@@ -79,11 +75,6 @@ export class CardViewProcessNameItemComponent implements OnInit, OnDestroy {
             const isProcessNameValid = processNameRegEx.test(control.value) && control.value.length > 0;
             return !isProcessNameValid ? { 'invalidProcessName': { value: control.value } } : null;
         };
-    }
-
-    ngOnDestroy() {
-        this.onDestroy$.next();
-        this.onDestroy$.complete();
     }
 
     get processName() { return this.processNameForm.get('processName'); }

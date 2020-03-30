@@ -4,8 +4,10 @@
         <mat-form-field>
             <input matInput
                    [formControl]="processName"
+                   (focusout)="updateProcessName()"
+                   (keyup.enter)="updateProcessName()"
                    data-automation-id="process-name">
-            <mat-error *ngIf="processName.hasError('invalidProcessName')" data-automation-id="process-name-error">
+            <mat-error data-automation-id="process-name-error">
                 {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_PROCESS_NAME' | translate }}
             </mat-error>
         </mat-form-field>
