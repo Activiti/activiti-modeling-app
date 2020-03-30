@@ -26,7 +26,8 @@ import { AMA_DATETIME_FORMATS, MOMENT_DATETIME_FORMAT } from '../../../helpers/p
 
 @Component({
     template: `
-        <mat-form-field>
+        <mat-form-field class="advanced-datetime-picker">
+            <mat-label>{{placeholder}}</mat-label>
             <input (dateChange)="onChange($event)" [formControl]="pickerDate" [matDatetimepicker]="datetimePicker" matInput>
             <mat-datetimepicker-toggle [for]="datetimePicker" matSuffix></mat-datetimepicker-toggle>
             <mat-datetimepicker #datetimePicker openOnFocus="true" timeInterval="5" type="datetime"></mat-datetimepicker>
@@ -45,6 +46,7 @@ export class PropertiesViewerDateTimeInputComponent {
     @Output() change = new EventEmitter();
     @Input() value: string;
     @Input() disabled: boolean;
+    @Input() placeholder: '';
 
     today = new Date();
 
