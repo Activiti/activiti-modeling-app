@@ -32,10 +32,10 @@ import {
     REMOVE_ELEMENT_MAPPING
 } from './process-editor.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState } from './process-entities.state';
-import { PROCESS, Process, ProcessContent, ServiceParameterMappings,
+import { PROCESS, Process, ProcessContent, ServicesParameterMappings,
     UpdateServiceParametersAction, EntityProperty, EntityProperties, MappingType, UPDATE_SERVICE_PARAMETERS } from '@alfresco-dbp/modeling-shared/sdk';
 import { processEntitiesReducer } from './process-entities.reducer';
-import { mockProcessModel, mappings, mockProcessId } from './process.mock';
+import { mockProcessModel, mappings } from './process.mock';
 import * as processVariablesActions from './process-variables.actions';
 
 const deepFreeze = require('deep-freeze-strict');
@@ -46,10 +46,7 @@ describe('ProcessEntitiesReducer', () => {
 
     const process = <Partial<Process>>{
         type: PROCESS,
-        id: 'mock-id',
-        name: 'mock-name',
-        description: 'mock-description',
-        projectId: 'mock-app-id'
+        id: 'mock-id'
     };
 
     const processId = 'Process_12345678';
@@ -211,7 +208,7 @@ describe('ProcessEntitiesReducer', () => {
         });
     });
 
-    describe('GET_PROCESS_SUCCESS', () => {
+   describe('GET_PROCESS_SUCCESS', () => {
         let diagram: ProcessContent;
 
         beforeEach(() => {
@@ -245,9 +242,11 @@ describe('ProcessEntitiesReducer', () => {
 
     it('should handle UPDATE_SERVICE_PARAMETERS', () => {
         const serviceTaskId = 'serviceTaskId';
-        const serviceParameterMappings: ServiceParameterMappings = {
-            inputs: { 'param1': 'variable1'},
-            outputs: { 'param2': 'variable'}
+        const serviceParameterMappings: ServicesParameterMappings = {
+            'taskId': {
+                inputs: { 'param1': { type: MappingType.variable, value: 'variable1'}},
+                outputs: { 'param2': { type: MappingType.variable, value: 'variable'}}
+            }
         };
         initialState = {
             ...initialProcessEntitiesState,
@@ -275,11 +274,60 @@ describe('ProcessEntitiesReducer', () => {
         const mockProperties: EntityProperties = { [mockProperty.id]: mockProperty };
         const newState = processEntitiesReducer(initialState, new processVariablesActions.UpdateProcessVariablesAction({
             modelId: mockProcessModel.id,
-            processId: mockProcessId,
+            processId,
             properties: mockProperties
         }));
 
-        expect(newState.entities[mockProcessModel.id].extensions[mockProcessId].properties).toEqual(mockProperties);
+        expect(newState.entities[mockProcessModel.id].extensions[processId].properties).toEqual(mockProperties);
         expect(newState.entities[mockProcessModel.id].extensions.mappings).toEqual(mockProcessModel.extensions.mappings);
+    });
+
+    it('should remove mappings if process variable is renamed', () => {
+        initialState = {
+            ...initialProcessEntitiesState,
+            entities: { [mockProcessModel.id]: mockProcessModel },
+            ids: [mockProcessModel.id]
+        };
+
+        /* cspell: disable-next-line */
+        const mockProperties: EntityProperties = {
+            /* cspell: disable-next-line */
+            'mockprop': { 'id': 'mockprop', 'name': 'mock-variable', 'type': 'string', 'required': false, 'value': '' },
+            /* cspell: disable-next-line */
+            'mockprop2': { 'id': 'mockprop2', 'name': 'beautiful-variable-updated', 'type': 'string', 'required': false, 'value': '' },
+            /* cspell: disable-next-line */
+            'mockprop3': { 'id': 'mockprop3', 'name': 'terrifying-variable-type-changed', 'type': 'boolean', 'required': false, 'value': '' }
+        };
+        const newState = processEntitiesReducer(initialState, new processVariablesActions.UpdateProcessVariablesAction({
+            modelId: mockProcessModel.id,
+            processId,
+            properties: mockProperties
+        }));
+
+        const updatedMappings: ServicesParameterMappings = {'taskId': { inputs: {'input-param-2': {'type': MappingType.variable, 'value': 'mock-variable'}}}};
+        expect(newState.entities[mockProcessModel.id].extensions[processId].mappings).toEqual(updatedMappings);
+    });
+
+    it('should remove mappings if process variable is deleted', () => {
+        initialState = {
+            ...initialProcessEntitiesState,
+            entities: { [mockProcessModel.id]: mockProcessModel },
+            ids: [mockProcessModel.id]
+        };
+
+        /* cspell: disable-next-line */
+        const mockProperties: EntityProperties = {
+            /* cspell: disable-next-line */
+            'mockprop2': { 'id': 'mockprop2', 'name': 'beautiful-variable-updated', 'type': 'string', 'required': false, 'value': '' },
+            /* cspell: disable-next-line */
+            'mockprop3': { 'id': 'mockprop3', 'name': 'terrifying-variable-type-changed', 'type': 'boolean', 'required': false, 'value': '' }
+        };
+        const newState = processEntitiesReducer(initialState, new processVariablesActions.UpdateProcessVariablesAction({
+            modelId: mockProcessModel.id,
+            processId,
+            properties: mockProperties
+        }));
+
+        expect(newState.entities[mockProcessModel.id].extensions[processId].mappings).toEqual({});
     });
 });

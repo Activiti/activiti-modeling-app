@@ -15,17 +15,31 @@
  * limitations under the License.
  */
 
-import { Process, ServicesParameterMappings, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
+import { Process, ServicesParameterMappings, PROCESS, MappingType } from '@alfresco-dbp/modeling-shared/sdk';
 
 const deepFreeze = require('deep-freeze-strict');
 
 export const mappings: ServicesParameterMappings = {
     'taskId': {
         inputs: {
-            'input-param': 'terrifying-variable'
+            'input-param': {
+                'type': MappingType.variable,
+                'value': 'terrifying-variable'
+            },
+            'input-param-2': {
+                'type': MappingType.variable,
+                'value': 'mock-variable'
+            }
         },
         outputs: {
-            'output-param': 'beautiful-variable'
+            'beautiful-variable': {
+                'type': MappingType.variable,
+                'value': 'output-param'
+            },
+            'terrifying-variable': {
+                'type': MappingType.variable,
+                'value': 'output-param-2'
+            }
         }
     }
 };
@@ -48,7 +62,14 @@ export const mockProcessModel: Process = deepFreeze({
     version: '',
     extensions: {
         'Process_12345678': {
-            properties: [{name: '', type: '', required: false, value: ''}],
+            properties: {
+                /* cspell: disable-next-line */
+                'mockprop': { 'id': 'mockprop', 'name': 'mock-variable', 'type': 'string', 'required': false, 'value': '' },
+                /* cspell: disable-next-line */
+                'mockprop2': { 'id': 'mockprop2', 'name': 'beautiful-variable', 'type': 'string', 'required': false, 'value': '' },
+                /* cspell: disable-next-line */
+                'mockprop3': { 'id': 'mockprop3', 'name': 'terrifying-variable', 'type': 'string', 'required': false, 'value': '' }
+            },
             mappings
         }
     }

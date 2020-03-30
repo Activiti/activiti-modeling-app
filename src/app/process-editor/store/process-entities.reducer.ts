@@ -41,7 +41,10 @@ import {
     LEAVE_PROJECT,
     ProcessExtensionsModel,
     UPDATE_TASK_ASSIGNMENTS,
-    UpdateServiceAssignmentAction
+    UpdateServiceAssignmentAction,
+    EntityProperty,
+    EntityProperties,
+    ProcessExtensionsContent
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 const cloneDeep = require('lodash/cloneDeep');
@@ -125,7 +128,13 @@ function updateExtensions(state: ProcessEntitiesState, action: UpdateProcessExte
 
 function updateProcessVariables(state: ProcessEntitiesState, action: UpdateProcessVariablesAction): ProcessEntitiesState {
     const oldExtensions = cloneDeep(state.entities[action.payload.modelId].extensions);
-    const newExtensions = new ProcessExtensionsModel(oldExtensions).setProperties(action.payload.processId, action.payload.properties);
+    const oldProcessModel = new ProcessExtensionsModel(oldExtensions);
+    const oldProperties = oldExtensions[action.payload.processId].properties;
+    const newExtensions = oldProcessModel.setProperties(action.payload.processId, action.payload.properties);
+    const newProcessExtensions = newExtensions[action.payload.processId];
+
+    removeUpdatedPropertyMappings(newProcessExtensions, oldProperties);
+    removeDeletedPropertyMapping(newProcessExtensions, oldProperties);
 
     return {
         ...state,
@@ -136,6 +145,64 @@ function updateProcessVariables(state: ProcessEntitiesState, action: UpdateProce
             }
         }
     };
+}
+
+function removeUpdatedPropertyMappings(newProcessExtensions: ProcessExtensionsContent, oldProperties: EntityProperties) {
+    Object.values(newProcessExtensions.properties).forEach((property: EntityProperty) => {
+        if (oldProperties[property.id] && (oldProperties[property.id].name !== property.name || oldProperties[property.id].type !== property.type)) {
+            Object.keys(newProcessExtensions.mappings).forEach((elementId) => {
+                removeElementMappings(newProcessExtensions.mappings, elementId, oldProperties[property.id].name);
+            });
+        }
+    });
+}
+
+function removeDeletedPropertyMapping(newProcessExtensions: ProcessExtensionsContent, oldProperties: EntityProperties) {
+    const deletedProperties = Object.keys(oldProperties).filter((oldProperty) => {
+        return Object.keys(newProcessExtensions.properties).findIndex(newProperty => newProperty === oldProperty) === -1;
+    });
+    Object.values(deletedProperties).forEach((oldPropertyId) => {
+        Object.keys(newProcessExtensions.mappings).forEach((elementId) => {
+            removeElementMappings(newProcessExtensions.mappings, elementId, oldProperties[oldPropertyId].name);
+            removeEmptyMapping(newProcessExtensions.mappings, elementId);
+        });
+    });
+}
+
+function removeElementMappings(mappings, elementId, propertyName) {
+    removeOutputMappings(mappings[elementId], propertyName);
+    removeInputMappings(mappings[elementId], propertyName);
+
+    removeEmptyElementMapping(mappings[elementId], 'inputs');
+    removeEmptyElementMapping(mappings[elementId], 'outputs');
+}
+
+function removeOutputMappings(elementMappings, propertyName) {
+    if (elementMappings.outputs && elementMappings.outputs[propertyName]) {
+        delete elementMappings.outputs[propertyName];
+    }
+}
+
+function removeInputMappings(elementMappings, propertyName) {
+    if (elementMappings.inputs) {
+        Object.keys(elementMappings.inputs).forEach((fieldId) => {
+            if (elementMappings.inputs[fieldId].type === 'variable' && elementMappings.inputs[fieldId].value === propertyName) {
+                delete elementMappings.inputs[fieldId];
+            }
+        });
+    }
+}
+
+function removeEmptyElementMapping(elementMappings, key) {
+    if (!!elementMappings[key] && !Object.keys(elementMappings[key]).length) {
+        delete elementMappings[key];
+    }
+}
+
+function removeEmptyMapping(mappings, elementId) {
+    if (!Object.keys(mappings[elementId]).length) {
+        delete mappings[elementId];
+    }
 }
 
 function updateProcessVariablesMapping(state: ProcessEntitiesState, action: UpdateServiceParametersAction): ProcessEntitiesState {
