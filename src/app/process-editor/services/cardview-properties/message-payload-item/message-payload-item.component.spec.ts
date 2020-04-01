@@ -16,7 +16,7 @@
  */
 
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { CardItemTypeService, CardViewUpdateService, LocalizedDatePipe } from '@alfresco/adf-core';
+import { CardItemTypeService, CardViewUpdateService, LocalizedDatePipe, setupTestBed } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CardViewMessagePayloadItemComponent } from './message-payload-item.component';
@@ -27,6 +27,7 @@ import { of } from 'rxjs';
 import { MessageVariableMappingService } from '../message-variable-mapping/message-variable-mapping.service';
 import { HttpClientModule } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 describe('CardViewMessageItemComponent', () => {
     let fixture: ComponentFixture<CardViewMessagePayloadItemComponent>;
@@ -70,27 +71,26 @@ describe('CardViewMessageItemComponent', () => {
         }
     };
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            providers: [
-                CardItemTypeService,
-                CardViewUpdateService,
-                {
-                    provide: Store,
-                    useValue: {
-                        select: jest.fn()
-                    }
-                },
-                LocalizedDatePipe
-            ],
-            declarations: [CardViewMessagePayloadItemComponent],
-            imports: [
-                TranslateModule.forRoot(),
-                HttpClientModule
-            ],
-            schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+    setupTestBed({
+        providers: [
+            CardItemTypeService,
+            CardViewUpdateService,
+            {
+                provide: Store,
+                useValue: {
+                    select: jest.fn()
+                }
+            },
+            LocalizedDatePipe
+        ],
+        declarations: [CardViewMessagePayloadItemComponent],
+        imports: [
+            FormsModule,
+            TranslateModule.forRoot(),
+            HttpClientModule
+        ],
+        schemas: [NO_ERRORS_SCHEMA]
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(CardViewMessagePayloadItemComponent);
@@ -136,5 +136,23 @@ describe('CardViewMessageItemComponent', () => {
         fixture.detectChanges();
 
         expect(component.payloadProperties.length).toBe(2);
+    });
+
+    it('should not allow the special characters in message payload name', () => {
+        component.showPropertyForm = true;
+
+        component.propertyValue = 'new-property';
+        component.selectedType = 'string';
+        fixture.detectChanges();
+
+        const payloadName = fixture.debugElement.query(By.css('[id="payload-name-field"] input'));
+        spyOn(payloadName.nativeElement, 'checkValidity').and.returnValue(false);
+
+        fixture.detectChanges();
+        const error = fixture.debugElement.query(By.css('[id="payload-name-field"] mat-error'));
+        expect(error.nativeElement.textContent.trim()).toEqual('PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.INVALID_PAYLOAD_NAME');
+
+        const saveButton = fixture.debugElement.query(By.css('.messages-payload-add-button button'));
+        expect(saveButton.nativeElement.disabled).toBe(true);
     });
 });

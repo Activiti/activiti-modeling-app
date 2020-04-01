@@ -20,11 +20,14 @@
     </div>
 
     <div *ngIf="showPropertyForm" id="show-property-form">
-        <mat-form-field>
+        <mat-form-field id="payload-name-field">
             <div class="adf-property-label">
                 {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.FORM.NAME' | translate }}
             </div>
-            <input matInput [(ngModel)]="propertyName" />
+            <input matInput #nameElement [(ngModel)]="propertyName" pattern="[a-z]([a-zA-Z0-9]+)?"/>
+            <mat-error *ngIf="!nameElement.checkValidity()">
+                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.INVALID_PAYLOAD_NAME' | translate }}
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field>
@@ -89,7 +92,7 @@
             </mat-form-field>
         </div>
         <div class="messages-payload-add-button">
-            <button mat-button color="primary" (click)="saveProperty()" [disabled]="!isSaveButtonEnabled()">
+            <button mat-button color="primary" (click)="saveProperty()" [disabled]="!isSaveButtonEnabled() || !nameElement.checkValidity()">
                 {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.ADD' | translate }}
             </button>
         </div>

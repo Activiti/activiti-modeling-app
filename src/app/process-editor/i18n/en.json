@@ -118,7 +118,8 @@
                     "TYPE": "Type",
                     "PROCESS_VARIABLE": "Process variable",
                     "VALUE": "Value"
-                }
+                },
+                "INVALID_PAYLOAD_NAME": "Invalid payload name"
             },
             "TIMERS": {
                 "TIMER_TYPE": "Timer type",
