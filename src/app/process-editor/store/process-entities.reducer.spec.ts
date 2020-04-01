@@ -318,10 +318,52 @@ describe('ProcessEntitiesReducer', () => {
         /* cspell: disable-next-line */
         const mockProperties: EntityProperties = {
             /* cspell: disable-next-line */
+            'mockprop': { 'id': 'mockprop', 'name': 'mock-variable', 'type': 'string', 'required': false, 'value': '' }
+        };
+        const newState = processEntitiesReducer(initialState, new processVariablesActions.UpdateProcessVariablesAction({
+            modelId: mockProcessModel.id,
+            processId,
+            properties: mockProperties
+        }));
+
+        const updatedMappings: ServicesParameterMappings = {'taskId': { inputs: {'input-param-2': {'type': MappingType.variable, 'value': 'mock-variable'}}}};
+        expect(newState.entities[mockProcessModel.id].extensions[processId].mappings).toEqual(updatedMappings);
+    });
+
+    it('should remove empty element mappings if process variable is renamed', () => {
+        initialState = {
+            ...initialProcessEntitiesState,
+            entities: { [mockProcessModel.id]: mockProcessModel },
+            ids: [mockProcessModel.id]
+        };
+
+        /* cspell: disable-next-line */
+        const mockProperties: EntityProperties = {
+            /* cspell: disable-next-line */
+            'mockprop': { 'id': 'mockprop', 'name': 'mock-variable-updated', 'type': 'string', 'required': false, 'value': '' },
+            /* cspell: disable-next-line */
             'mockprop2': { 'id': 'mockprop2', 'name': 'beautiful-variable-updated', 'type': 'string', 'required': false, 'value': '' },
             /* cspell: disable-next-line */
             'mockprop3': { 'id': 'mockprop3', 'name': 'terrifying-variable-type-changed', 'type': 'boolean', 'required': false, 'value': '' }
         };
+        const newState = processEntitiesReducer(initialState, new processVariablesActions.UpdateProcessVariablesAction({
+            modelId: mockProcessModel.id,
+            processId,
+            properties: mockProperties
+        }));
+
+        expect(newState.entities[mockProcessModel.id].extensions[processId].mappings).toEqual({});
+    });
+
+    it('should remove empty element mappings if process variable is renamed', () => {
+        initialState = {
+            ...initialProcessEntitiesState,
+            entities: { [mockProcessModel.id]: mockProcessModel },
+            ids: [mockProcessModel.id]
+        };
+
+        /* cspell: disable-next-line */
+        const mockProperties: EntityProperties = {};
         const newState = processEntitiesReducer(initialState, new processVariablesActions.UpdateProcessVariablesAction({
             modelId: mockProcessModel.id,
             processId,

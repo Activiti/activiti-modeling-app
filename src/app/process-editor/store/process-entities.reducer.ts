@@ -152,6 +152,7 @@ function removeUpdatedPropertyMappings(newProcessExtensions: ProcessExtensionsCo
         if (oldProperties[property.id] && (oldProperties[property.id].name !== property.name || oldProperties[property.id].type !== property.type)) {
             Object.keys(newProcessExtensions.mappings).forEach((elementId) => {
                 removeElementMappings(newProcessExtensions.mappings, elementId, oldProperties[property.id].name);
+                removeEmptyMapping(newProcessExtensions.mappings, elementId);
             });
         }
     });
