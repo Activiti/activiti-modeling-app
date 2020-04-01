@@ -31,6 +31,7 @@ import { PropertiesViewerFileInputComponent } from './properties-viewer/value-ty
 import { SharedModule } from '../helpers/public-api';
 import { VariableValuePipe } from './properties-viewer/variable-value.pipe';
 import { PropertiesViewerDateTimeInputComponent } from './properties-viewer/value-type-inputs/date-time-input.component';
+import { provideInputTypeItemHandler } from './properties-viewer/value-type-inputs/value-type-inputs';
 
 @NgModule({
     imports: [
@@ -63,10 +64,17 @@ import { PropertiesViewerDateTimeInputComponent } from './properties-viewer/valu
         PropertiesViewerFileInputComponent
     ],
     providers: [
+        provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
+        provideInputTypeItemHandler('integer', PropertiesViewerIntegerInputComponent),
+        provideInputTypeItemHandler('boolean', PropertiesViewerBooleanInputComponent),
+        provideInputTypeItemHandler('date', PropertiesViewerDateInputComponent),
+        provideInputTypeItemHandler('datetime', PropertiesViewerDateTimeInputComponent),
+        provideInputTypeItemHandler('json', PropertiesViewerJsonInputComponent),
+        provideInputTypeItemHandler('file', PropertiesViewerFileInputComponent)
     ],
     exports: [
         ValueTypeInputComponent,
         VariableValuePipe
     ]
 })
-export class VariablesModule {}
+export class VariablesModule { }

@@ -27,6 +27,7 @@ import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.compone
 import { Subject } from 'rxjs';
 import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
 import { sanitizeLabelIdValue } from '../../helpers/utils/mapping';
+import { getPrimitiveType } from '../../helpers/public-api';
 
 @Component({
     selector: 'modelingsdk-output-mapping-table',
@@ -135,7 +136,7 @@ export class OutputMappingTableComponent implements OnChanges {
         this.optionsForParams[index] = [
             ...(param.required === false ? [{ id: null, name: 'None' }] : []),
             ...this.processProperties
-                .filter(variable => variable.type === param.type || this.isMappableToString(variable, param))
+                .filter(variable => getPrimitiveType(variable.type) === getPrimitiveType(param.type) || this.isMappableToString(variable, param))
                 .filter(
                     variable =>
                         !this.mapping[variable.name] ||

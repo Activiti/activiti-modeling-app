@@ -40,7 +40,8 @@
 
                     <ng-container matColumnDef="icon">
                         <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                        <mat-cell *matCellDef="let element;index as i" [attr.data-automation-id]="'variable-icon-cell-' + i">
+                        <mat-cell *matCellDef="let element;index as i"
+                            [attr.data-automation-id]="'variable-icon-cell-' + i">
                             <mat-icon *ngIf="mappingType === 'input'">arrow_backward</mat-icon>
                             <mat-icon *ngIf="mappingType === 'output'">arrow_forward</mat-icon>
                         </mat-cell>
@@ -61,9 +62,10 @@
 
                     <ng-container matColumnDef="delete">
                         <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                        <mat-cell *matCellDef="let element, let i = index" [attr.data-automation-id]="'variable-delete-cell-' + i">
-                            <mat-icon color="primary" class="delete-btn"
-                                (click)="deleteRow(i)" [attr.data-automation-id]="'delete-row-button-' + i">
+                        <mat-cell *matCellDef="let element, let i = index"
+                            [attr.data-automation-id]="'variable-delete-cell-' + i">
+                            <mat-icon color="primary" class="delete-btn" (click)="deleteRow(i)"
+                                [attr.data-automation-id]="'delete-row-button-' + i">
                                 delete
                             </mat-icon>
                         </mat-cell>
@@ -83,7 +85,8 @@
                     <ng-container *ngIf="mappingType === 'input'">
                         <mat-label value="selectedDestination">{{'SDK.MAPPING_DIALOG.INPUT_PARAMETER' | translate}}
                         </mat-label>
-                        <mat-select [disabled]="true" [value]="selectedDestination" data-automation-id="input-parameter-destination-select">
+                        <mat-select [disabled]="true" [value]="selectedDestination"
+                            data-automation-id="input-parameter-destination-select">
                             <mat-option *ngFor="let property of inputParameters" [value]="property.name">
                                 {{ property.name }}
                             </mat-option>
@@ -92,9 +95,11 @@
                     <ng-container *ngIf="mappingType === 'output'">
                         <mat-label value="selectedDestination">{{'SDK.MAPPING_DIALOG.PROCESS_VARIABLE' | translate}}
                         </mat-label>
-                        <mat-select [value]="selectedDestination" data-automation-id="process-variable-destination-select"
+                        <mat-select [value]="selectedDestination"
+                            data-automation-id="process-variable-destination-select"
                             (selectionChange)="outputMappingDestinationChange($event)">
-                            <mat-option *ngFor="let property of filteredProcessVariables" [value]="property.name" [ngClass]="'process-variable-destination-option'">
+                            <mat-option *ngFor="let property of filteredProcessVariables" [value]="property.name"
+                                [ngClass]="'process-variable-destination-option'">
                                 {{ property.name }}
                             </mat-option>
                         </mat-select>
@@ -120,7 +125,8 @@
                             [disabled]="mappingType === 'output' && !dataSource[selectedRow].type"
                             label="{{'SDK.MAPPING_DIALOG.OUTPUT_PARAMETER'| translate}}">
                             <ng-container *ngIf="selectedTab===0 && tabCheck === selectedTab">
-                                <mat-select [value]="dataSource[selectedRow].name" data-automation-id="output-parameter-select"
+                                <mat-select [value]="dataSource[selectedRow].name"
+                                    data-automation-id="output-parameter-select"
                                     (selectionChange)="variableMappingValueChange($event,selectedRow)">
                                     <mat-option [value]="null">{{'SDK.MAPPING_DIALOG.NONE'| translate}}</mat-option>
                                     <mat-option
@@ -131,20 +137,25 @@
                                 </mat-select>
                             </ng-container>
                         </mat-tab>
-                        <mat-tab label="{{'SDK.MAPPING_DIALOG.VALUE_MAPPING'| translate}}" data-automation-id="value-mapping-tab"
+                        <mat-tab label="{{'SDK.MAPPING_DIALOG.VALUE_MAPPING'| translate}}"
+                            data-automation-id="value-mapping-tab"
                             [disabled]="mappingType === 'output' && !dataSource[selectedRow].type">
                             <ng-container *ngIf="selectedTab===1 && tabCheck === selectedTab">
                                 <modelingsdk-value-type-input #valueInput data-automation-id="value-mapping-input"
                                     (onChange)="valueMappingValueChange($event,selectedRow)" [(ngModel)]="valueValue"
-                                    [index]="selectedRow" [type]="dataSource[selectedRow].type">
+                                    [index]="selectedRow" [type]="dataSource[selectedRow].type"
+                                    [extendedProperties]="extendedProperties">
                                 </modelingsdk-value-type-input>
                             </ng-container>
                         </mat-tab>
-                        <mat-tab label="{{'SDK.MAPPING_DIALOG.EXPRESSION_MAPPING'| translate}}" data-automation-id="expression-mapping-tab">
+                        <mat-tab label="{{'SDK.MAPPING_DIALOG.EXPRESSION_MAPPING'| translate}}"
+                            data-automation-id="expression-mapping-tab">
                             <ng-container *ngIf="selectedTab===2 && tabCheck === selectedTab">
-                                <modelingsdk-code-editor #expressionInput class="monaco-editor mapping-dialog-expression-editor"
+                                <modelingsdk-code-editor #expressionInput
+                                    class="monaco-editor mapping-dialog-expression-editor"
                                     (changed)="valueMappingExpressionChange($event,selectedRow)"
-                                    content="{{expressionValue}}" language="{{language}}" vsTheme="{{vsTheme$ | async}}">
+                                    content="{{expressionValue}}" language="{{language}}"
+                                    vsTheme="{{vsTheme$ | async}}">
                                 </modelingsdk-code-editor>
                             </ng-container>
                         </mat-tab>

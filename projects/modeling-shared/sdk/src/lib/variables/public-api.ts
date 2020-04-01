@@ -18,6 +18,7 @@
 export { VariablesModule } from './variables.module';
 export { VariablesComponent } from './variables.component';
 export { VariableValuePipe } from './properties-viewer/variable-value.pipe';
+export * from './properties-viewer/value-type-inputs/value-type-inputs';
 export { PropertiesViewerIntegerInputComponent } from './properties-viewer/value-type-inputs/integer-input.component';
 export { PropertiesViewerStringInputComponent } from './properties-viewer/value-type-inputs/string-input.component';
 export { PropertiesViewerBooleanInputComponent } from './properties-viewer/value-type-inputs/boolean-input.component';

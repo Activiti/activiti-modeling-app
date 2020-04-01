@@ -239,6 +239,7 @@ export interface ConnectorParameter {
     description?: string;
     type: string;
     required?: boolean;
+    readOnly?: boolean;
 }
 export interface ConnectorContent {
     name: string;
@@ -353,9 +354,9 @@ export interface SearchQuery {
 export interface ErrorResponse {
     status: number;
     message: string;
- }
+}
 
- export interface FileModel {
+export interface FileModel {
     content: ActivitiFileContent;
     model: ActivitiFile;
 }

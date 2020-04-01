@@ -102,7 +102,7 @@ export abstract class MappingDialogService {
         return { variableValue, valueValue, expressionValue };
     }
 
-    getMappingValueTypeFromMappingType(type: MappingType, value: any): MappingValueType {
+    getMappingValueTypeFromMappingType(type: MappingType, value: any, parameterType: string): MappingValueType {
         switch (type) {
             case MappingType.variable:
                 return MappingValueType.variable;
@@ -110,7 +110,7 @@ export abstract class MappingDialogService {
                 return MappingValueType.value;
             case MappingType.value:
             default:
-                if (JSON.stringify(value).includes('${')) {
+                if (JSON.stringify(value).includes('${') && parameterType !== 'json') {
                     return MappingValueType.expression;
                 } else {
                     return MappingValueType.value;

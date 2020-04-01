@@ -172,6 +172,13 @@
                             }
                         }
                     }
+
+                    modelingsdk-input-mapping-table {
+                        .mat-row,
+                        .mat-header-row {
+                            padding: 0px 8px;
+                        }
+                    }
                 }
             }
         }

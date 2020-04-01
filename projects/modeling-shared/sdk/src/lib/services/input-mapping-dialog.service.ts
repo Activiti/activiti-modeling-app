@@ -18,6 +18,7 @@
 import { Injectable } from '@angular/core';
 import { MappingDialogService, MappingRowModel, MappingValueType } from './mapping-dialog.service';
 import { ServiceParameterMapping, ConnectorParameter, MappingType, EntityProperty } from '../api/types';
+import { getPrimitiveType } from '../helpers/public-api';
 
 @Injectable({
     providedIn: 'root'
@@ -44,7 +45,7 @@ export class InputMappingDialogService extends MappingDialogService {
             let value = null;
             let mappingValueType = MappingValueType.variable;
             if (mapping[parameter.name]) {
-                mappingValueType = this.getMappingValueTypeFromMappingType(mapping[parameter.name].type, mapping[parameter.name].value);
+                mappingValueType = this.getMappingValueTypeFromMappingType(mapping[parameter.name].type, mapping[parameter.name].value, getPrimitiveType(parameter.type));
                 value = mapping[parameter.name].value;
             }
             dataSource.push({

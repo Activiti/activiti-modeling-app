@@ -26,6 +26,7 @@ import { AmaState } from '../../store/app.state';
 import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
 import { Subject } from 'rxjs';
 import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
+import { getPrimitiveType } from '../../helpers/public-api';
 
 export interface ParameterSelectOption {
     id: string | Symbol;
@@ -119,7 +120,7 @@ export class InputMappingTableComponent implements OnChanges {
             this.optionsForParams[param.name] = [
                 { id: NoneValue, name: 'None' },
                 ...this.processProperties.filter(
-                    prop => prop.type === param.type
+                    prop => getPrimitiveType(prop.type) === getPrimitiveType(param.type)
                 )
             ];
         });

@@ -29,11 +29,14 @@ import {
     OnChanges,
     forwardRef,
     SimpleChanges,
+    Inject,
+    Type
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { valueTypeInputsMapping } from './value-type-inputs/value-type-inputs.mapping';
+import { INPUT_TYPE_ITEM_HANDLER, InputTypeItem } from './value-type-inputs/value-type-inputs';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { PropertiesViewerJsonInputComponent } from './value-type-inputs/json-input.component';
 
 @Component({
     template: '<template #valueTypeInput></template>',
@@ -52,13 +55,17 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
     @Output() onChange = new EventEmitter();
     @Input() type: string;
     @Input() disabled = false;
+    @Input() extendedProperties = null;
+    @Input() required = false;
+    @Input() placeholder: string;
 
     @ViewChild('valueTypeInput', { read: ViewContainerRef }) valueTypeInput;
     valueTypeInputRef: ComponentRef<any>;
 
     _onChange: any = () => { };
 
-    constructor(private resolver: ComponentFactoryResolver) { }
+    constructor(private resolver: ComponentFactoryResolver,
+        @Inject(INPUT_TYPE_ITEM_HANDLER) private inputTypeItemHandler: InputTypeItem[]) { }
 
     setInputValue(value) {
         this.value = value;
@@ -75,15 +82,28 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
 
         if (changes.index && !changes.value) {
             this.value = null;
+        } else if (!changes.value && this.valueTypeInputRef.instance.value) {
+            this.value = this.valueTypeInputRef.instance.value;
         }
 
         this.valueTypeInput.clear();
-        const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(valueTypeInputsMapping[this.type]);
+        const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(this.getInputItemImplementationClass(this.type));
 
         this.valueTypeInputRef = this.valueTypeInput.createComponent(factory);
-        this.writeValue(this.value);
         this.valueTypeInputRef.instance.disabled = this.disabled;
+        this.valueTypeInputRef.instance.placeholder = this.placeholder;
+        this.valueTypeInputRef.instance.extendedProperties = this.extendedProperties;
+        this.writeValue(this.value);
         this.valueTypeInputRef.instance.change.pipe(takeUntil(this.onDestroy$)).subscribe(inputValue => this.setInputValue(inputValue));
+    }
+
+    private getInputItemImplementationClass(type: string): Type<{}> {
+        for (const handler of this.inputTypeItemHandler) {
+            if (handler.type === type) {
+                return handler.implementationClass;
+            }
+        }
+        return PropertiesViewerJsonInputComponent;
     }
 
     writeValue(value) {

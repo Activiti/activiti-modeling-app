@@ -23,6 +23,7 @@ import { UuidService } from '../../services/uuid.service';
 import { VariableMappingType, MappingRowModel, MappingValueType, MappingDialogService, MappingDialogData } from '../../services/mapping-dialog.service';
 import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
 import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
+import { getPrimitiveType } from '../../helpers/public-api';
 
 @Component({
     templateUrl: './mapping-dialog.component.html',
@@ -59,6 +60,8 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
 
     language = 'expressions';
 
+    extendedProperties = {};
+
     constructor(
         public dialog: MatDialogRef<MappingDialogComponent>,
         private uuidService: UuidService,
@@ -91,6 +94,7 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
         this.initSelectedTab(this.selectedRow, true);
         const values = this.service.initMappingValue(this.dataSource, this.selectedRow);
         Object.assign(this, { variableValue: values.variableValue, expressionValue: values.expressionValue, valueValue: values.valueValue });
+        this.extendedProperties = { processProperties: this.processProperties };
     }
 
     ngOnDestroy() {
@@ -187,7 +191,8 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
         if (i !== undefined && i < this.dataSource.length) {
             this.selectedRow = i;
             this.selectedDestination = this.service.getDataSourceName(this.dataSource, i);
-            this.service.initMappingValue(this.dataSource, i);
+            const values = this.service.initMappingValue(this.dataSource, i);
+            Object.assign(this, { variableValue: values.variableValue, expressionValue: values.expressionValue, valueValue: values.valueValue });
             this.initSelectedTab(i);
             if (this.mappingType === VariableMappingType.output) {
                 this.service.getFilteredProcessVariables(this.dataSource, this.processProperties, i);
@@ -200,11 +205,11 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
     }
 
     getFilteredProcessProperties(type: string): EntityProperty[] {
-        return this.processProperties.filter(prop => prop.type === type);
+        return this.processProperties.filter(prop => getPrimitiveType(prop.type) === getPrimitiveType(type));
     }
 
     getFilteredOutputParameters(type: string): ConnectorParameter[] {
-        return this.outputParameters.filter(prop => prop.type === type);
+        return this.outputParameters.filter(prop => getPrimitiveType(prop.type) === getPrimitiveType(type));
     }
 
     variableMappingValueChange($event: MatSelectChange, i: number) {

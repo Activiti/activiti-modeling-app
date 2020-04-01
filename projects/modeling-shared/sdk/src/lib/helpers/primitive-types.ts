@@ -25,6 +25,11 @@ export const primitive_types: string[] = [
     'json'
 ];
 
+export function getPrimitiveType(type: string): string {
+    const foundType = primitive_types.find(primitiveType => primitiveType === type);
+    return foundType ? foundType : 'json';
+}
+
 export const AMA_DATETIME_FORMATS = {
     parse: {
         dateInput: 'L',
