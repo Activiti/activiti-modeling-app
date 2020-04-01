@@ -27,17 +27,6 @@ import { LogService, CoreModule, TranslationService, TranslationMock } from '@al
 import { provideMockActions } from '@ngrx/effects/testing';
 import { mockProject, paginationMock, paginationCountMock } from './project.mock';
 import {
-    ShowProjectsAction,
-    UploadProjectSuccessAction,
-    CreateProjectSuccessAction,
-    UpdateProjectAttemptAction,
-    EditProjectPayload,
-    UpdateProjectSuccessAction,
-    DeleteProjectAttemptAction,
-    DeleteProjectSuccessAction,
-    GetProjectsSuccessAction,
-} from '../actions/projects';
-import {
     DialogService,
     AmaApi,
     CreateProjectAttemptAction,
@@ -54,7 +43,16 @@ import {
     GetProjectsAttemptAction,
     selectProjectsLoaded,
     selectPagination,
-    UploadProjectAttemptAction
+    UploadProjectAttemptAction,
+    ShowProjectsAction,
+    UploadProjectSuccessAction,
+    CreateProjectSuccessAction,
+    EditProjectPayload,
+    UpdateProjectAttemptAction,
+    UpdateProjectSuccessAction,
+    DeleteProjectAttemptAction,
+    DeleteProjectSuccessAction,
+    GetProjectsSuccessAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 describe('ProjectsEffects', () => {

@@ -45,11 +45,9 @@ import {
     OVERRIDE_PROJECT_ATTEMPT,
     UploadProjectAttemptAction,
     UPLOAD_PROJECT_ATTEMPT,
-} from '@alfresco-dbp/modeling-shared/sdk';
-import {
+    UpdateProjectAttemptAction,
     ShowProjectsAction,
     SHOW_PROJECTS,
-    UpdateProjectAttemptAction,
     UPDATE_PROJECT_ATTEMPT,
     DeleteProjectAttemptAction,
     DELETE_PROJECT_ATTEMPT,
@@ -58,8 +56,8 @@ import {
     DeleteProjectSuccessAction,
     UpdateProjectSuccessAction,
     GetProjectsSuccessAction,
-    UploadProjectSuccessAction
-} from '../actions/projects';
+    UploadProjectSuccessAction,
+} from '@alfresco-dbp/modeling-shared/sdk';
 
 @Injectable()
 export class ProjectsEffects extends BaseEffects {

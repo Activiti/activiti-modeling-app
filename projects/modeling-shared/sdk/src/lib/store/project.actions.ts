@@ -19,6 +19,8 @@ import { EntityDialogForm } from '../helpers/common';
 import { Action } from '@ngrx/store';
 import { Release, ServerSideSorting, SearchQuery, Project } from '../api/types';
 import { FetchQueries } from '../api/project-api.interface';
+import { Update } from '@ngrx/entity';
+import { Pagination } from '@alfresco/js-api';
 
 export const CREATE_PROJECT_ATTEMPT = 'CREATE_PROJECT_ATTEMPT';
 export class CreateProjectAttemptAction implements Action {
@@ -83,4 +85,57 @@ export const UPLOAD_PROJECT_ATTEMPT = 'UPLOAD_PROJECT_ATTEMPT';
 export class UploadProjectAttemptAction implements Action {
     readonly type = UPLOAD_PROJECT_ATTEMPT;
     constructor(public file: File, public name?: string) {}
+}
+
+export interface EditProjectPayload {
+    id: string;
+    form: Partial<EntityDialogForm>;
+}
+
+export const CREATE_PROJECT_SUCCESS = 'CREATE_PROJECT_SUCCESS';
+export class CreateProjectSuccessAction implements Action {
+    readonly type = CREATE_PROJECT_SUCCESS;
+    constructor(public payload: Partial<Project>) {}
+}
+
+export const UPDATE_PROJECT_ATTEMPT = 'UPDATE_PROJECT_ATTEMPT';
+export class UpdateProjectAttemptAction implements Action {
+    readonly type = UPDATE_PROJECT_ATTEMPT;
+    constructor(public payload: EditProjectPayload) {}
+}
+
+export const UPLOAD_PROJECT_SUCCESS = 'UPLOAD_PROJECT_SUCCESS';
+export class UploadProjectSuccessAction implements Action {
+    readonly type = UPLOAD_PROJECT_SUCCESS;
+    constructor(public payload: Partial<Project>) {}
+}
+
+export const UPDATE_PROJECT_SUCCESS = 'UPDATE_PROJECT_SUCCESS';
+export class UpdateProjectSuccessAction implements Action {
+    readonly type = UPDATE_PROJECT_SUCCESS;
+    constructor(public payload: Update<Partial<Project>>) {}
+}
+
+export const DELETE_PROJECT_ATTEMPT = 'DELETE_PROJECT_ATTEMPT';
+export class DeleteProjectAttemptAction implements Action {
+    readonly type = DELETE_PROJECT_ATTEMPT;
+    constructor(public projectId: string, public sorting?, public search?: SearchQuery) {}
+}
+
+export const DELETE_PROJECT_SUCCESS = 'DELETE_PROJECT_SUCCESS';
+export class DeleteProjectSuccessAction implements Action {
+    readonly type = DELETE_PROJECT_SUCCESS;
+    constructor(public payload: string) {}
+}
+
+export const GET_PROJECTS_SUCCESS = 'GET_PROJECTS_SUCCESS';
+export class GetProjectsSuccessAction implements Action {
+    readonly type = GET_PROJECTS_SUCCESS;
+    constructor(public payload: Project[], public pagination: Pagination) {}
+}
+
+export const SHOW_PROJECTS = 'SHOW_PROJECTS';
+export class ShowProjectsAction implements Action {
+    readonly type = SHOW_PROJECTS;
+    constructor(public pagination?: Partial<Pagination>) {}
 }

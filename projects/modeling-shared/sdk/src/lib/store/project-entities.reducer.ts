@@ -16,16 +16,23 @@
  */
 
 import { Action } from '@ngrx/store';
+import { ProjectEntitiesState, initialProjectEntitiesState, projectAdapter } from './project-entities.state';
 import {
+    GET_PROJECTS_ATTEMPT,
+    GET_PROJECT_SUCCESS,
+    GetProjectSuccessAction,
     GET_PROJECTS_SUCCESS,
-    GetProjectsSuccessAction, CREATE_PROJECT_SUCCESS, CreateProjectSuccessAction,
-    UPDATE_PROJECT_SUCCESS, UpdateProjectSuccessAction, DELETE_PROJECT_SUCCESS,
-    DeleteProjectSuccessAction, UPLOAD_PROJECT_SUCCESS, UploadProjectSuccessAction
-} from '../actions/projects';
-import {
-    RELEASE_PROJECT_SUCCESS, GET_PROJECTS_ATTEMPT, ReleaseProjectSuccessAction,
-    GET_PROJECT_SUCCESS, GetProjectSuccessAction, Pagination, ProjectEntitiesState, initialProjectEntitiesState, projectAdapter,
-} from '@alfresco-dbp/modeling-shared/sdk';
+    GetProjectsSuccessAction,
+    CREATE_PROJECT_SUCCESS,
+    CreateProjectSuccessAction,
+    UPDATE_PROJECT_SUCCESS,
+    UpdateProjectSuccessAction,
+    DELETE_PROJECT_SUCCESS,
+    DeleteProjectSuccessAction,
+    UPLOAD_PROJECT_SUCCESS,
+    UploadProjectSuccessAction
+} from './project.actions';
+import { Pagination } from '../api/types';
 
 export function projectEntitiesReducer(state: ProjectEntitiesState = initialProjectEntitiesState, action: Action): ProjectEntitiesState {
     let newState: ProjectEntitiesState;
@@ -56,10 +63,6 @@ export function projectEntitiesReducer(state: ProjectEntitiesState = initialProj
 
         case UPLOAD_PROJECT_SUCCESS:
             newState = uploadProject(state, <UploadProjectSuccessAction> action);
-            break;
-
-        case RELEASE_PROJECT_SUCCESS:
-            newState = releaseProject(state, <ReleaseProjectSuccessAction> action);
             break;
 
         case GET_PROJECT_SUCCESS:
@@ -100,10 +103,6 @@ function deleteProject(state: ProjectEntitiesState, action: DeleteProjectSuccess
 
 function uploadProject(state: ProjectEntitiesState, action: UploadProjectSuccessAction): ProjectEntitiesState {
     return projectAdapter.addOne(action.payload, state);
-}
-
-function releaseProject(state: ProjectEntitiesState, action: ReleaseProjectSuccessAction): ProjectEntitiesState {
-    return projectAdapter.updateOne({ id: action.projectId, changes: { version: action.release.version } }, state);
 }
 
 function setProject(state: ProjectEntitiesState, action: GetProjectSuccessAction): ProjectEntitiesState {

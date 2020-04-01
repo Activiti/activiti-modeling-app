@@ -15,22 +15,32 @@
  * limitations under the License.
  */
 
+import { projectEntitiesReducer } from './project-entities.reducer';
 import {
-    DeleteProjectSuccessAction,
-    UploadProjectSuccessAction,
     GetProjectsSuccessAction,
+    GetProjectsAttemptAction,
+    GetProjectSuccessAction,
     CreateProjectSuccessAction,
     UpdateProjectSuccessAction,
-} from '../actions/projects';
-import {
-    Project, Release,
-    ReleaseProjectSuccessAction,
-    GetProjectsAttemptAction, GetProjectSuccessAction, initialProjectEntitiesState, ProjectEntitiesState
-} from '@alfresco-dbp/modeling-shared/sdk';
-import { mockProject } from '../effects/project.mock';
-import { projectEntitiesReducer } from './project-entities.reducer';
+    DeleteProjectSuccessAction,
+    UploadProjectSuccessAction
+} from './project.actions';
+import { Project, PROJECT } from '../api/types';
+import { ProjectEntitiesState, initialProjectEntitiesState } from './public-api';
 
 describe('projectEntitiesReducer', () => {
+
+    const mockProject: Project = {
+        id: 'app-id',
+        name: 'app-name',
+        description: 'description',
+        version: '0.0.1',
+        type: PROJECT,
+        createdBy: 'user',
+        creationDate: new Date(),
+        lastModifiedBy: 'user',
+        lastModifiedDate: new Date()
+    };
 
     let initialState: ProjectEntitiesState;
 
@@ -134,17 +144,6 @@ describe('projectEntitiesReducer', () => {
         it('should add a new project to the state', () => {
             const newState = projectEntitiesReducer(initialState, action);
             expect(newState.entities['4']).not.toBe(undefined);
-        });
-    });
-
-    describe('RELEASE_PROJECT_SUCCESS', () => {
-        const newRelease = { ...mockProject, name: 'new-name', description: 'new-description', version: '2' };
-        const action = new ReleaseProjectSuccessAction(<Release>newRelease, '2');
-
-        it('should update the version of the project', () => {
-            const newState = projectEntitiesReducer(initialState, action);
-
-            expect(newState.entities['2'].version).toEqual('2');
         });
     });
 });

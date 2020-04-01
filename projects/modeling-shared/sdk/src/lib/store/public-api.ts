@@ -26,6 +26,7 @@ export * from './base.effects';
 export * from './project.state';
 export * from './project.selectors';
 export * from './project-entities.state';
+export * from './project-entities.reducer';
 export * from './project-tree.state';
 export * from './project.actions';
 export * from './logging.actions';
