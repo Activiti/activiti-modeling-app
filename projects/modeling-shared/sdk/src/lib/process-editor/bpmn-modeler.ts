@@ -55,3 +55,4 @@ export interface BpmnFactory {
 
 export const BpmnFactoryToken = new InjectionToken('bpmn-factory-token');
 export const ProcessModelerServiceToken = new InjectionToken<ProcessModelerService>('process-modeler-service');
+export const ALFRESCO_BPMN_RENDERERS = new InjectionToken<Diagram.BaseRenderer[]>('alfresco-bpmn-renderers');

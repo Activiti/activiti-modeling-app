@@ -27,4 +27,5 @@ export * from './palette';
 export * from './process-editor.actions';
 export * from './process-editor.selectors';
 export * from './process-extensions.model';
+export * from './bpmn-renderer.provider';
 export * from './properties';

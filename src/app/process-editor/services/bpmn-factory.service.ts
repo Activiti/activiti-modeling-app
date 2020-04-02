@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, Injector, Optional } from '@angular/core';
 import * as bpmnPropertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/bpmn';
-import { BpmnFactory } from '@alfresco-dbp/modeling-shared/sdk';
+import { BpmnFactory, ALFRESCO_BPMN_RENDERERS } from '@alfresco-dbp/modeling-shared/sdk';
 /*
     Angular 6 --prod mode doesn't seem to work with the normal way of importing the bpmnjs library.
     Modify this import with care, double-checking the process editor works in --prod mode.
@@ -36,7 +36,11 @@ const redefineModdleDescriptor = require('./redefine-bpmn.json');
 @Injectable()
 export class BpmnFactoryService implements BpmnFactory {
 
-    constructor(private clipboardService: ClipboardService) {
+    constructor(
+        private clipboardService: ClipboardService,
+        @Optional()
+        @Inject(ALFRESCO_BPMN_RENDERERS) private bpmnRenderers: Diagram.BaseRenderer[],
+        private injector: Injector) {
     }
 
     create(): Bpmn.Modeler {
@@ -44,14 +48,27 @@ export class BpmnFactoryService implements BpmnFactory {
         return new BpmnModeler({
             keyboard: { bindTo: document },
             additionalModules: [
+                this.angularInjector,
                 emptyPaletteModule,
                 DecisionTableRenderModule,
                 ScriptRenderModule,
+                ...this.getBpmnRenderers(),
                 { clipboard: ['value', this.clipboardService] },
                 ...this.getBpmnPropertiesPanelConfig()
             ],
             moddleExtensions: { activiti: activitiModdleDescriptor, bpmn: redefineModdleDescriptor }
         });
+    }
+
+    private get angularInjector() {
+        return {
+            __init__: [ 'angularInjector' ],
+            angularInjector: [ 'value', this.injector ]
+          };
+    }
+
+    private getBpmnRenderers() {
+        return this.bpmnRenderers || [];
     }
 
     protected getBpmnPropertiesPanelConfig() {
