@@ -46,7 +46,7 @@
                             </mat-form-field>
                             <mat-error *ngIf="assigneeChipsStaticControl.hasError('required')">
                                 <mat-icon class="">warning</mat-icon>
-                                Required field
+                                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.USER_WARNING' | translate }}
                             </mat-error>
                         </ng-container>
                         <ng-container *ngSwitchCase="'candidates'">
@@ -94,7 +94,7 @@
                                     (matChipInputTokenEnd)="onStaticCandidateGroupsChange($event)">
                                 </mat-chip-list>
                             </mat-form-field>
-                            <mat-error *ngIf="candidatesStaticFormGroup.hasError('custom')">
+                            <mat-error data-automation-id="candidate-warning" *ngIf="candidatesStaticFormGroup.hasError('custom')">
                                 <mat-icon class="">warning</mat-icon>
                                 {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.CANDIDATE_WARNING' | translate }}
                             </mat-error>

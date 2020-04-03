@@ -260,8 +260,17 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         } else {
             const candidatesFormGroup = this.createCandidatesFormGroup();
             formGroup.addControl('candidatesFormGroup', candidatesFormGroup);
+            this.setCandidateGroupWarning();
         }
         formGroup.updateValueAndValidity();
+    }
+
+    private setCandidateGroupWarning() {
+        if (this.isCandidateGroupAssigned || this.isCandidateUserAssigned) {
+            this.candidateGroupsChipsStaticControl.setErrors({ 'custom': null });
+        } else if (this.candidatesStaticFormGroup) {
+            this.candidateGroupChipsStaticCtrlValue('');
+        }
     }
 
     private createCandidatesFormGroup(): FormGroup {
@@ -972,6 +981,14 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
 
     get candidateGroupsExpressionControl(): AbstractControl {
         return this.expressionForm.get('candidateGroups');
+    }
+
+    get isCandidateUserAssigned(): boolean {
+        return this.staticCandidateUsers && this.staticCandidateUsers.length > 0;
+    }
+
+    get isCandidateGroupAssigned(): boolean {
+        return this.staticCandidateGroups && this.staticCandidateGroups.length > 0;
     }
 
     private assignmentFormClean() {

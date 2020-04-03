@@ -167,6 +167,47 @@ describe('AssignmentDialogComponent', () => {
             });
         }));
 
+        it('Should show warning message on static candidate assignment if the values are not set', async(() => {
+            fixture.detectChanges();
+            fixture.whenStable().then(() => {
+
+                openSelect();
+                const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
+                candidateOption.nativeElement.click();
+                fixture.detectChanges();
+
+                const nameInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-assignment-static-candidate-groups-input"]`));
+                nameInput.nativeElement.value = '';
+                nameInput.nativeElement.dispatchEvent(new Event('input'));
+                nameInput.nativeElement.dispatchEvent(new Event('blur'));
+                fixture.detectChanges();
+                expect(component.candidateGroupsStaticControl.value).toBe('');
+
+                const warningMessage = fixture.debugElement.query(By.css(`[data-automation-id="candidate-warning"]`));
+                expect(warningMessage.nativeElement).toBeDefined();
+            });
+        }));
+
+        it('Should not show warning message on static candidate assignment if one value are set', async(() => {
+            fixture.detectChanges();
+            fixture.whenStable().then(() => {
+
+                openSelect();
+                const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
+                candidateOption.nativeElement.click();
+                fixture.detectChanges();
+
+                const nameInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-assignment-static-candidate-groups-input"]`));
+                nameInput.nativeElement.value = 'add mock static group assignee';
+                nameInput.nativeElement.dispatchEvent(new Event('input'));
+                nameInput.nativeElement.dispatchEvent(new Event('blur'));
+                fixture.detectChanges();
+                expect(component.candidateGroupsStaticControl.value).toBe('add mock static group assignee');
+                const warningMessage = fixture.debugElement.query(By.css(`[data-automation-id="candidate-warning"]`));
+                expect(warningMessage).toBeNull();
+            });
+        }));
+
         it('Should disable assign button if mode type changed candidates to single', async(() => {
             mockStreams.assignments.next({
                 type: AssignmentType.identity,
