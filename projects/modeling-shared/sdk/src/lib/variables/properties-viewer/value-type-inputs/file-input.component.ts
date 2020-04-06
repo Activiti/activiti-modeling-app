@@ -50,7 +50,7 @@ export class PropertiesViewerFileInputComponent implements OnInit {
 
     ngOnInit() {
         this.store.select(selectSelectedProjectId)
-            .subscribe( projectId => this.fileService.getList(projectId));
+            .subscribe(projectId => this.files = this.fileService.getList(projectId));
     }
     onChange() {
         this.change.emit(this.value);
