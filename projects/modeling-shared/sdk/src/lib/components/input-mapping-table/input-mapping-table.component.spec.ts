@@ -29,6 +29,7 @@ import { selectSelectedTheme } from '../../store/app.selectors';
 import { of } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { DialogService } from '../../confirmation-dialog/services/dialog.service';
+import { PropertiesViewerStringInputComponent, INPUT_TYPE_ITEM_HANDLER } from '../../variables/public-api';
 
 describe('InputMappingTableComponent', () => {
     let fixture: ComponentFixture<InputMappingTableComponent>;
@@ -57,7 +58,8 @@ describe('InputMappingTableComponent', () => {
                     }
                 },
                 DialogService,
-                MatDialog
+                MatDialog,
+                { provide: INPUT_TYPE_ITEM_HANDLER, useValue: { type: 'string', implementationClass: PropertiesViewerStringInputComponent }, multi: true }
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });

@@ -240,6 +240,7 @@ export interface ConnectorParameter {
     type: string;
     required?: boolean;
     readOnly?: boolean;
+    value?: any;
 }
 export interface ConnectorContent {
     name: string;

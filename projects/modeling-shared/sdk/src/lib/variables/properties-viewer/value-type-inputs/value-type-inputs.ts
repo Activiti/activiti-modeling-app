@@ -21,13 +21,14 @@ export const INPUT_TYPE_ITEM_HANDLER = new InjectionToken<InputTypeItem[]>('inpu
 
 export interface InputTypeItem {
     type: string;
+    primitiveType: string;
     implementationClass: Type<{}>;
 }
 
-export function provideInputTypeItemHandler(type: string, implementationClass: Type<{}>) {
+export function provideInputTypeItemHandler(type: string, implementationClass: Type<{}>, primitiveType?: string) {
     return {
         provide: INPUT_TYPE_ITEM_HANDLER,
-        useValue: { type, implementationClass: implementationClass },
+        useValue: { type, primitiveType: primitiveType ? primitiveType : type, implementationClass: implementationClass },
         multi: true
     };
 }

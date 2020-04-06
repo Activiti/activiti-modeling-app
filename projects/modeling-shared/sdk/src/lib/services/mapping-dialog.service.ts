@@ -17,6 +17,8 @@
 
 import { ServiceParameterMapping, ConnectorParameter, MappingType, EntityProperty } from '../api/types';
 import { Subject, Observable } from 'rxjs';
+import { InputTypeItem, INPUT_TYPE_ITEM_HANDLER } from '../variables/public-api';
+import { Inject } from '@angular/core';
 
 export interface MappingDialogData {
     inputMapping?: ServiceParameterMapping;
@@ -31,6 +33,7 @@ export interface MappingDialogData {
     theme$: Observable<string>;
     inputMappingUpdate$?: Subject<ServiceParameterMapping>;
     outputMappingUpdate$?: Subject<ServiceParameterMapping>;
+    extensionObject?: any;
 }
 
 export enum VariableMappingType {
@@ -44,6 +47,7 @@ export interface MappingRowModel {
     value: any;
     required?: boolean;
     type?: string;
+    readOnly?: boolean;
     mappingValueType: MappingValueType;
 }
 
@@ -54,11 +58,22 @@ export enum MappingValueType {
 }
 
 export abstract class MappingDialogService {
+    constructor(@Inject(INPUT_TYPE_ITEM_HANDLER) private inputTypeItemHandler: InputTypeItem[]) { }
+
     abstract getDataSourceValue(dataSource: MappingRowModel[], i: number): any;
     abstract getDataSourceName(dataSource: MappingRowModel[], i: number): any;
     abstract setDataSourceValue(dataSource: MappingRowModel[], i: number, value: any);
     abstract dataSourceInit(mapping: ServiceParameterMapping, parameters: ConnectorParameter[], properties: EntityProperty[]): MappingRowModel[];
     abstract createMappingFromDataSource(dataSource: MappingRowModel[]): ServiceParameterMapping;
+
+    getPrimitiveType(type: string) {
+        for (const handler of this.inputTypeItemHandler) {
+            if (handler.type === type) {
+                return handler.primitiveType;
+            }
+        }
+        return 'json';
+    }
 
     getFilteredProcessVariables(dataSource: MappingRowModel[], processProperties: EntityProperty[], i: number): EntityProperty[] {
         let filteredProcessVariables = processProperties.filter(() => true);
@@ -83,18 +98,30 @@ export abstract class MappingDialogService {
         let variableValue = undefined;
         let valueValue = undefined;
 
+        const value = this.getDataSourceValue(dataSource, i);
+
         switch (dataSource[i].mappingValueType) {
             case MappingValueType.variable:
-                variableValue = this.getDataSourceValue(dataSource, i);
+                variableValue = value;
                 break;
             case MappingValueType.value:
-                valueValue = this.getDataSourceValue(dataSource, i);
+                valueValue = value;
+                if (this.getPrimitiveType(dataSource[i].type) === 'json') {
+                    expressionValue = JSON.stringify(value, null, 4);
+                }
                 break;
             case MappingValueType.expression:
-                if (typeof this.getDataSourceValue(dataSource, i) === 'string') {
-                    expressionValue = this.getDataSourceValue(dataSource, i);
+                if (typeof value === 'string') {
+                    expressionValue = value;
                 } else {
-                    expressionValue = JSON.stringify(this.getDataSourceValue(dataSource, i), null, 4);
+                    expressionValue = JSON.stringify(value, null, 4);
+                }
+                if (this.getPrimitiveType(dataSource[i].type) === 'json') {
+                    if (value) {
+                        valueValue = JSON.parse(expressionValue);
+                    } else {
+                        valueValue = value;
+                    }
                 }
                 break;
         }

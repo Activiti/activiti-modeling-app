@@ -26,7 +26,7 @@ import { AmaState } from '../../store/app.state';
 import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
 import { Subject } from 'rxjs';
 import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
-import { getPrimitiveType } from '../../helpers/public-api';
+import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
 
 export interface ParameterSelectOption {
     id: string | Symbol;
@@ -58,6 +58,9 @@ export class InputMappingTableComponent implements OnChanges {
     @Input()
     variableColumnHeader = 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE';
 
+    @Input()
+    extensionObject: any;
+
     @Output()
     update = new EventEmitter<ServiceParameterMappings>();
 
@@ -76,13 +79,16 @@ export class InputMappingTableComponent implements OnChanges {
 
     constructor(
         private dialogService: DialogService,
-        private store: Store<AmaState>
+        private store: Store<AmaState>,
+        private inputMappingDataSourceService: InputMappingDialogService
     ) { }
 
     ngOnChanges() {
-        this.initOptionsForParams();
-        this.initMapping();
-        this.dataSource = new MatTableDataSource(this.parameters);
+        if (this.parameters) {
+            this.initOptionsForParams();
+            this.initMapping();
+            this.dataSource = new MatTableDataSource(this.parameters);
+        }
         this.data = { ...this.mapping };
     }
 
@@ -94,11 +100,13 @@ export class InputMappingTableComponent implements OnChanges {
 
         if (noneSelected && !param.required) {
             delete this.data[param.name];
+            this.paramName2VariableName[param.name] = null;
         } else {
             this.data[param.name] = {
                 type: MappingType.variable,
                 value: noneSelected ? null : selection.name
             };
+            this.paramName2VariableName[param.name] = this.data[param.name].value;
         }
         this.update.emit(this.data);
     }
@@ -120,7 +128,7 @@ export class InputMappingTableComponent implements OnChanges {
             this.optionsForParams[param.name] = [
                 { id: NoneValue, name: 'None' },
                 ...this.processProperties.filter(
-                    prop => getPrimitiveType(prop.type) === getPrimitiveType(param.type)
+                    prop => this.inputMappingDataSourceService.getPrimitiveType(prop.type) === this.inputMappingDataSourceService.getPrimitiveType(param.type)
                 )
             ];
         });
@@ -183,7 +191,8 @@ export class InputMappingTableComponent implements OnChanges {
             processProperties: this.processProperties,
             selectedRow: parameterRow,
             theme$: theme$,
-            inputMappingUpdate$: inputMappingUpdate$
+            inputMappingUpdate$: inputMappingUpdate$,
+            extensionObject: this.extensionObject
         };
 
         this.dialogService.openDialog(MappingDialogComponent, {

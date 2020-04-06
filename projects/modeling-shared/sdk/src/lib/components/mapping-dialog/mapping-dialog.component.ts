@@ -23,7 +23,6 @@ import { UuidService } from '../../services/uuid.service';
 import { VariableMappingType, MappingRowModel, MappingValueType, MappingDialogService, MappingDialogData } from '../../services/mapping-dialog.service';
 import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
 import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
-import { getPrimitiveType } from '../../helpers/public-api';
 
 @Component({
     templateUrl: './mapping-dialog.component.html',
@@ -43,6 +42,7 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
     selectedOutputParameter: string;
     vsTheme$: Observable<string>;
     selectedDestination: string;
+    extensionObject: any;
 
     service: MappingDialogService;
 
@@ -79,11 +79,15 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
         this.selectedProcessVariable = data.selectedProcessVariable;
         this.selectedOutputParameter = data.selectedOutputParameter;
         this.vsTheme$ = data.theme$;
+        this.extensionObject = data.extensionObject;
     }
 
     ngOnInit() {
         this.language = this.language + '-' + this.uuidService.generate();
         this.dataSourceInit(this.mappingType);
+        if (this.selectedRow) {
+            this.extendedProperties = this.getExtendedProperties(this.dataSource[this.selectedRow].type);
+        }
         this.service.initExpressionEditor(this.language, this.mappingType === VariableMappingType.output ? this.outputParameters : this.processProperties);
         this.initSelectedRow();
         if (this.mappingType === VariableMappingType.output) {
@@ -94,7 +98,6 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
         this.initSelectedTab(this.selectedRow, true);
         const values = this.service.initMappingValue(this.dataSource, this.selectedRow);
         Object.assign(this, { variableValue: values.variableValue, expressionValue: values.expressionValue, valueValue: values.valueValue });
-        this.extendedProperties = { processProperties: this.processProperties };
     }
 
     ngOnDestroy() {
@@ -125,6 +128,7 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
                 this.addOutputMapping(this.selectedOutputParameter);
             } else {
                 this.selectedRow = index;
+                this.extendedProperties = this.getExtendedProperties(this.dataSource[this.selectedRow].type);
             }
         }
     }
@@ -167,11 +171,19 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
                 break;
             case 1:
                 this.dataSource[this.selectedRow].mappingValueType = MappingValueType.value;
-                this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.valueValue);
+                if (this.variableValue && this.service.getPrimitiveType(this.dataSource[this.selectedRow].type) === 'json' && this.valueValue) {
+                    this.service.setDataSourceValue(this.dataSource, this.selectedRow, JSON.parse(this.valueValue));
+                } else {
+                    this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.valueValue);
+                }
                 break;
             case 2:
                 this.dataSource[this.selectedRow].mappingValueType = MappingValueType.expression;
-                this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.expressionValue);
+                if (this.expressionValue && this.service.getPrimitiveType(this.dataSource[this.selectedRow].type) === 'json' && this.expressionValue) {
+                    this.service.setDataSourceValue(this.dataSource, this.selectedRow, JSON.parse(this.expressionValue));
+                } else {
+                    this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.expressionValue);
+                }
         }
         this.tabCheck = this.selectedTab;
     }
@@ -188,28 +200,31 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
     }
 
     editRow(i: number) {
-        if (i !== undefined && i < this.dataSource.length) {
-            this.selectedRow = i;
-            this.selectedDestination = this.service.getDataSourceName(this.dataSource, i);
-            const values = this.service.initMappingValue(this.dataSource, i);
-            Object.assign(this, { variableValue: values.variableValue, expressionValue: values.expressionValue, valueValue: values.valueValue });
-            this.initSelectedTab(i);
-            if (this.mappingType === VariableMappingType.output) {
-                this.service.getFilteredProcessVariables(this.dataSource, this.processProperties, i);
+        if (!this.dataSource[i].readOnly) {
+            if (i !== undefined && i < this.dataSource.length) {
+                this.selectedRow = i;
+                this.extendedProperties = this.getExtendedProperties(this.dataSource[this.selectedRow].type);
+                this.selectedDestination = this.service.getDataSourceName(this.dataSource, i);
+                const values = this.service.initMappingValue(this.dataSource, i);
+                Object.assign(this, { variableValue: values.variableValue, expressionValue: values.expressionValue, valueValue: values.valueValue });
+                this.initSelectedTab(i);
+                if (this.mappingType === VariableMappingType.output) {
+                    this.service.getFilteredProcessVariables(this.dataSource, this.processProperties, i);
+                }
             }
-        }
 
-        if (this.selectedTab !== this.tabCheck) {
-            this.selectedTabChange();
+            if (this.selectedTab !== this.tabCheck) {
+                this.selectedTabChange();
+            }
         }
     }
 
     getFilteredProcessProperties(type: string): EntityProperty[] {
-        return this.processProperties.filter(prop => getPrimitiveType(prop.type) === getPrimitiveType(type));
+        return this.processProperties.filter(prop => this.service.getPrimitiveType(prop.type) === this.service.getPrimitiveType(type));
     }
 
     getFilteredOutputParameters(type: string): ConnectorParameter[] {
-        return this.outputParameters.filter(prop => getPrimitiveType(prop.type) === getPrimitiveType(type));
+        return this.outputParameters.filter(prop => this.service.getPrimitiveType(prop.type) === this.service.getPrimitiveType(type));
     }
 
     variableMappingValueChange($event: MatSelectChange, i: number) {
@@ -220,16 +235,23 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
 
     valueMappingValueChange($event: any, i: number) {
         this.dataSource[i].mappingValueType = MappingValueType.value;
-        this.valueValue = $event;
-        this.service.setDataSourceValue(this.dataSource, i, $event);
+        let value = $event;
+        if (typeof $event === 'string' && this.service.getPrimitiveType(this.dataSource[i].type) === 'json') {
+            value = JSON.parse($event);
+            this.expressionValue = $event;
+        } else if (this.service.getPrimitiveType(this.dataSource[i].type) === 'json') {
+            this.expressionValue = JSON.stringify($event);
+        }
+        this.service.setDataSourceValue(this.dataSource, i, value);
     }
 
     valueMappingExpressionChange($event: string, i: number) {
-        this.expressionValue = $event;
         this.dataSource[i].mappingValueType = MappingValueType.expression;
-        try {
-            this.service.setDataSourceValue(this.dataSource, i, JSON.parse(this.expressionValue));
-        } catch (error) {
+        this.expressionValue = $event;
+        if (this.service.getPrimitiveType(this.dataSource[i].type) === 'json') {
+            this.valueValue = JSON.parse($event);
+            this.service.setDataSourceValue(this.dataSource, i, this.valueValue);
+        } else {
             this.service.setDataSourceValue(this.dataSource, i, this.expressionValue);
         }
     }
@@ -262,6 +284,7 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
         this.dataSource.splice(i, 1);
         this.dataSource = this.dataSource.filter(() => true);
         this.selectedRow = undefined;
+        this.extendedProperties = null;
         this.selectedTab = 0;
         this.tabCheck = 0;
     }
@@ -291,5 +314,20 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
 
     trackBy(index: number) {
         return index;
+    }
+
+    private getExtendedProperties(inputType: string): any {
+        let extendedProperties;
+        switch (inputType) {
+            case 'content-metadata':
+                extendedProperties = { processProperties: this.processProperties };
+                break;
+            case 'expression-mapping':
+                extendedProperties = this.extensionObject;
+                break;
+            default:
+                extendedProperties = null;
+        }
+        return extendedProperties;
     }
 }

@@ -32,7 +32,8 @@
                         <mat-cell *matCellDef="let element; index as i"
                             matTooltip="{{ element.description}} ({{'SDK.MAPPING_DIALOG.TYPE' | translate}}: {{element.type}})"
                             matTooltipPosition="before" matTooltipShowDelay="1000"
-                            [attr.data-automation-id]="'variable-name-cell-' + i" class="ellipsis-cell"
+                            [attr.data-automation-id]="'variable-name-cell-' + i"
+                            class="ellipsis-cell {{element.readOnly ? 'mat-select-placeholder input-disabled' : ''}}"
                             [ngClass]="(mappingType === 'output' && element.mappingValueType !== 'variable') ? 'non-variable-mapping': 'variable-mapping'">
                             {{element.name  | variablevalue}}<span *ngIf="element.required && mappingType === 'input'"
                                 class="required-indicator">&nbsp;*</span></mat-cell>
@@ -41,6 +42,7 @@
                     <ng-container matColumnDef="icon">
                         <mat-header-cell *matHeaderCellDef></mat-header-cell>
                         <mat-cell *matCellDef="let element;index as i"
+                            class="{{element.readOnly ? 'mat-select-placeholder input-disabled' : ''}}"
                             [attr.data-automation-id]="'variable-icon-cell-' + i">
                             <mat-icon *ngIf="mappingType === 'input'">arrow_backward</mat-icon>
                             <mat-icon *ngIf="mappingType === 'output'">arrow_forward</mat-icon>
@@ -54,7 +56,8 @@
                                 *ngIf="mappingType === 'output'">{{ 'SDK.MAPPING_DIALOG.PROCESS_VARIABLE' | translate }}</span>
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element; index as i"
-                            [attr.data-automation-id]="'variable-value-cell-' + i" class="ellipsis-cell">
+                            [attr.data-automation-id]="'variable-value-cell-' + i"
+                            class="ellipsis-cell {{element.readOnly ? 'mat-select-placeholder input-disabled' : ''}}">
                             <span
                                 [ngClass]="(mappingType === 'input' && element.mappingValueType !== 'variable') ? 'non-variable-mapping': 'variable-mapping'">{{element.value | variablevalue}}</span>
                         </mat-cell>
@@ -143,7 +146,7 @@
                             <ng-container *ngIf="selectedTab===1 && tabCheck === selectedTab">
                                 <modelingsdk-value-type-input #valueInput data-automation-id="value-mapping-input"
                                     (onChange)="valueMappingValueChange($event,selectedRow)" [(ngModel)]="valueValue"
-                                    [index]="selectedRow" [type]="dataSource[selectedRow].type"
+                                    [index]="selectedRow+1" [type]="dataSource[selectedRow].type"
                                     [extendedProperties]="extendedProperties">
                                 </modelingsdk-value-type-input>
                             </ng-container>
