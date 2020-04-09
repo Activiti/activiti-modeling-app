@@ -238,6 +238,7 @@ export interface ConnectorParameter {
     name: string;
     description?: string;
     type: string;
+    mappingValueType?: string;
     required?: boolean;
     readOnly?: boolean;
     value?: any;

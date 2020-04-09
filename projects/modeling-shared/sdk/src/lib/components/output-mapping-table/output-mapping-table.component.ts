@@ -17,7 +17,7 @@
 
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { ConnectorParameter, EntityProperty, MappingType, ServiceParameterMappings, ServiceParameterMapping } from '../../api/types';
+import { ConnectorParameter, EntityProperty, MappingType, ServiceParameterMapping, ServiceParameterMappings } from '../../api/types';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { selectSelectedTheme } from '../../store/app.selectors';
@@ -26,8 +26,8 @@ import { AmaState } from '../../store/app.state';
 import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
 import { Subject } from 'rxjs';
 import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
-import { sanitizeLabelIdValue } from '../../helpers/utils/mapping';
 import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
+import { EXPRESSION } from '../../helpers/primitive-types';
 
 @Component({
     selector: 'modelingsdk-output-mapping-table',
@@ -76,20 +76,15 @@ export class OutputMappingTableComponent implements OnChanges {
 
     private initParametersFromMapping() {
         this.mappingParameters = [];
+        const filtered = this.parameters.filter((param) => param.mappingValueType && param.mappingValueType === EXPRESSION);
+        filtered.forEach(params => this.mappingParameters.push({ ...params }));
+
         const processVariables = Object.keys(this.mapping);
         processVariables.forEach(processVariable => {
             if (this.mapping[processVariable].type !== MappingType.variable) {
-                this.mappingParameters.push({
-                    id: processVariable,
-                    processVariable: processVariable,
-                    name: this.mapping[processVariable].value,
-                    type: this.processProperties.find(variable => variable.name === processVariable).type,
-                    description: ''
-                });
+                this.createOrUpdateMapping(processVariable);
             } else {
-                const index = this.filteredParameters.findIndex((parameter) => {
-                    return parameter.name === sanitizeLabelIdValue(this.mapping[processVariable].value) && !parameter['processVariable'];
-                });
+                const index = this.filteredParameters.findIndex(parameter => parameter.name === this.mapping[processVariable].value && !parameter['processVariable']);
                 if (index >= 0) {
                     this.filteredParameters[index]['processVariable'] = processVariable;
                 } else {
@@ -105,9 +100,25 @@ export class OutputMappingTableComponent implements OnChanges {
         });
     }
 
+    createOrUpdateMapping(processVariable) {
+        const parameter = this.mappingParameters.find(param => param.name === this.mapping[processVariable].value);
+        if (parameter) {
+            parameter.processVariable = processVariable;
+            parameter.type = this.processProperties.find(variable => variable.name === processVariable).type;
+        } else {
+            this.mappingParameters.push({
+                id: processVariable,
+                processVariable: processVariable,
+                name: this.mapping[processVariable].value,
+                type: this.processProperties.find(variable => variable.name === processVariable).type,
+                description: ''
+            });
+        }
+    }
+
     private initFilteredParameters() {
         this.filteredParameters = [];
-        const filtered = this.parameters.filter((param) => !param.name.includes('variables.'));
+        const filtered = this.parameters.filter((param) => !param.name.includes('variables.') && param.mappingValueType !== EXPRESSION);
         filtered.forEach(filteredParam => this.filteredParameters.push({ ...filteredParam, processVariable: undefined }));
     }
 
@@ -120,10 +131,16 @@ export class OutputMappingTableComponent implements OnChanges {
         if (oldVariable) {
             delete this.data[oldVariable];
         }
-        if (variableName !== this.noneValue) {
+
+        if (this.isExpression(parameter)) {
+            this.data[variableName] = {
+                type: MappingType.value,
+                value: parameter.name
+            };
+        } else if (variableName !== this.noneValue) {
             this.data[variableName] = {
                 type: MappingType.variable,
-                value: this.getMappableKey(parameter)
+                value: parameter.name
             };
         }
         this.update.emit(this.data);
@@ -137,8 +154,7 @@ export class OutputMappingTableComponent implements OnChanges {
         this.optionsForParams[index] = [
             ...(param.required === false ? [{ id: null, name: 'None' }] : []),
             ...this.processProperties
-                .filter(variable => this.outputMappingDataSourceService.getPrimitiveType(variable.type) === this.outputMappingDataSourceService.getPrimitiveType(param.type)
-                    || this.isMappableToString(variable, param))
+                .filter(variable => this.outputMappingDataSourceService.getPrimitiveType(variable.type) === this.outputMappingDataSourceService.getPrimitiveType(param.type))
                 .filter(
                     variable =>
                         !this.mapping[variable.name] ||
@@ -195,15 +211,7 @@ export class OutputMappingTableComponent implements OnChanges {
         return this.tableParameters[i]['processVariable'];
     }
 
-    private isMappableToString(variable: EntityProperty, parameter: ConnectorParameter): boolean {
-        return variable.type === 'string' && (parameter.type === 'id' || parameter.type === 'label');
-    }
-
-    private getMappableKey(parameter: ConnectorParameter): string {
-        return this.isDropDownOrRadioButtonField(parameter) ? '${' + parameter.name + '}' : parameter.name;
-    }
-
-    private isDropDownOrRadioButtonField(parameter: ConnectorParameter): boolean {
-        return parameter.type === 'id' || parameter.type === 'label';
+    private isExpression(parameter: ConnectorParameter): boolean {
+        return parameter.mappingValueType && parameter.mappingValueType === EXPRESSION;
     }
 }

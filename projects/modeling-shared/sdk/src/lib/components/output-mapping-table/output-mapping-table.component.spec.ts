@@ -28,6 +28,7 @@ import { MatDialog } from '@angular/material';
 import { CoreModule } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { selectSelectedTheme } from '../../store/app.selectors';
+import { mockDropDownFields, mockDropDownProcessVariable, mockValueMapping } from './output-mapping-table.component.mock';
 
 describe('OutputMappingTableComponent', () => {
     let fixture: ComponentFixture<OutputMappingTableComponent>;
@@ -209,23 +210,32 @@ describe('OutputMappingTableComponent', () => {
         ]);
     });
 
-    it('should be able to map label and id type parameters to strings', () => {
-        component.parameters.push({
-            id: 'id2',
-            name: 'dropdown.label',
-            description: 'desc',
-            type: 'label'
-        });
+    it('should update the value if mapping type is expression', () => {
+        component.parameters.concat(mockDropDownFields);
+        component.processProperties = mockDropDownProcessVariable;
+        component.mapping = <any> mockValueMapping;
+
         component.ngOnChanges();
         fixture.detectChanges();
+        expect(component.data).toEqual(mockValueMapping);
 
-        expect(component.optionsForParams[0]).toEqual([
-            component.processProperties[0],
-            component.processProperties[2]
-        ]);
-        expect(component.optionsForParams[1]).toEqual([
-            component.processProperties[0],
-            component.processProperties[2]
-        ]);
+        component.changeSelection({ value: 'dId' }, 0, mockDropDownFields[0]);
+        let updatedMapping = {
+            ...mockValueMapping,
+            'dId': {
+                type: 'value',
+                value: '${Dropdown009gay.id}'
+            }
+        };
+
+        component.changeSelection({ value: 'text' }, 0, mockDropDownFields[4]);
+        updatedMapping = <any> {
+            ...updatedMapping,
+            'text': {
+                type: 'variable',
+                value: 'Text0yru6p'
+            }
+        };
+        expect(component.data).toEqual(updatedMapping);
     });
 });
