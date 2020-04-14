@@ -28,6 +28,7 @@ export interface ModelCreatorDialogParams {
     descriptionField: string;
     allowedCharacters?: AllowedCharacters;
     action: ActionConstructor;
+    callback: Function;
 }
 
 export interface ModelCreator {

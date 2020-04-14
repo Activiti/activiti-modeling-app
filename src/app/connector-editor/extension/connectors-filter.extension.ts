@@ -15,10 +15,8 @@
  * limitations under the License.
  */
 
-import { MODEL_FILTERS, CONNECTOR, ModelFilter } from '@alfresco-dbp/modeling-shared/sdk';
+import { MODEL_FILTERS, CONNECTOR, ModelFilter, CONNECTOR_ICON } from '@alfresco-dbp/modeling-shared/sdk';
 import { ConnectorsFilterDataAdapter } from './connectors-filter.data-adapter';
-
-export const CONNECTOR_ICON = 'wrap_text';
 
 export function createConnectorsFilter(connectorsFilterDataAdapter: ConnectorsFilterDataAdapter): ModelFilter {
     return {

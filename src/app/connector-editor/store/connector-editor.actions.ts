@@ -22,7 +22,8 @@ import {
     GetConnectorAttemptAction,
     UploadFileAttemptPayload,
     Connector,
-    ConnectorContent
+    ConnectorContent,
+    CreateConnectorAttemptAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 export interface ValidateConnectorPayload {
@@ -78,12 +79,6 @@ export const GET_CONNECTOR_SUCCESS = '[Connector] Get success';
 export class GetConnectorSuccessAction implements Action {
     readonly type = GET_CONNECTOR_SUCCESS;
     constructor(public connector: Connector, public connectorContent: ConnectorContent) {}
-}
-
-export const CREATE_CONNECTOR_ATTEMPT = '[Connector] Create attempt';
-export class CreateConnectorAttemptAction implements Action {
-    readonly type = CREATE_CONNECTOR_ATTEMPT;
-    constructor(public payload: Partial<EntityDialogForm>, public navigateTo = false) {}
 }
 
 export const UPDATE_CONNECTOR_CONTENT_ATTEMPT = '[Connector] Update content attempt';

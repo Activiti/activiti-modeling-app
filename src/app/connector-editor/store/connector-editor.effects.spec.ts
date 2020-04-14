@@ -32,7 +32,6 @@ import {
     DeleteConnectorSuccessAction,
     DELETE_CONNECTOR_SUCCESS,
     ChangeConnectorContent,
-    CreateConnectorAttemptAction,
     ShowConnectorsAction,
     GET_CONNECTORS_ATTEMPT,
     GetConnectorsAttemptAction,
@@ -62,7 +61,8 @@ import {
     CreateConnectorSuccessAction,
     DialogService,
     LoadApplicationAction,
-    LogFactoryService
+    LogFactoryService,
+    CreateConnectorAttemptAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Update } from '@ngrx/entity';
 import { selectConnectorsLoaded, selectSelectedConnector } from './connector-editor.selectors';

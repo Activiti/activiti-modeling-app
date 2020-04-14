@@ -68,4 +68,30 @@
             justify-content: center;
         }
     }
+
+    .quick {
+
+        &-form-button, &-implementation-button, &-script-button, &-dmn-button, &-navigation-button {
+            position: absolute;
+            top: 0;
+            padding: 0;
+            margin: 0;
+            min-width: 20px;
+            height: 20px;
+            z-index: 10;
+
+            .mat-icon {
+                font-size: 15px;
+                line-height: 6px;
+            }
+        }
+
+        &-form-button, &-implementation-button, &-dmn-button, &-script-button {
+            right: 0;
+        }
+
+        &-navigation-button {
+            right: 30px;
+        }
+    }
 }

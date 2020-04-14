@@ -32,8 +32,6 @@ import {
     GetConnectorsAttemptAction,
     ShowConnectorsAction,
     SHOW_CONNECTORS,
-    CREATE_CONNECTOR_ATTEMPT,
-    CreateConnectorAttemptAction,
     UploadConnectorAttemptAction,
     UPLOAD_CONNECTOR_ATTEMPT,
     DownloadConnectorAction,
@@ -70,7 +68,9 @@ import {
     ConnectorContent,
     Connector,
     selectSelectedProjectId,
-    BaseEffects
+    BaseEffects,
+    CreateConnectorAttemptAction,
+    CREATE_CONNECTOR_ATTEMPT
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ConnectorEditorService } from '../services/connector-editor.service';
 import { of, zip, forkJoin, Observable } from 'rxjs';
@@ -169,7 +169,7 @@ export class ConnectorEditorEffects extends BaseEffects {
         ofType<CreateConnectorAttemptAction>(CREATE_CONNECTOR_ATTEMPT),
         mergeMap(action => zip(of(action), this.store.select(selectSelectedProjectId))),
         mergeMap(([action, projectId]) => {
-            return this.createConnector(action.payload, action.navigateTo, projectId);
+            return this.createConnector(action.payload, action.navigateTo, projectId, action.callback);
         })
     );
 
@@ -259,8 +259,10 @@ export class ConnectorEditorEffects extends BaseEffects {
         );
     }
 
-    private createConnector(form: Partial<EntityDialogForm>, navigateTo: boolean, projectId: string): Observable<{} | SnackbarInfoAction | CreateConnectorSuccessAction> {
+    private createConnector(form: Partial<EntityDialogForm>, navigateTo: boolean,
+        projectId: string, callback: Function): Observable<{} | SnackbarInfoAction | CreateConnectorSuccessAction> {
         return this.connectorEditorService.create(form, projectId).pipe(
+            tap((connector) => callback && callback(connector)),
             mergeMap((connector) => [
                 new CreateConnectorSuccessAction(connector, navigateTo),
                 new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_CREATED')

@@ -72,7 +72,8 @@ export class EntityDialogComponent implements OnInit {
             payload.submitData = this.data.submitData;
         }
 
-        this.store.dispatch(new this.data.action(payload, true));
+        const navigateTo = this.data.navigateTo !== undefined ? this.data.navigateTo : true;
+        this.store.dispatch(new this.data.action(payload, navigateTo, this.data.callback));
         this.dialog.close();
     }
 

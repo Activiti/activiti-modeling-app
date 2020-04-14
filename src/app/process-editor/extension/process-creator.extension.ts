@@ -19,7 +19,7 @@ import { MODEL_CREATORS, ModelCreator, PROCESS } from '@alfresco-dbp/modeling-sh
 import { PROCESS_ICON } from './processes-filter.extension';
 import { CreateProcessAttemptAction } from '../store/process-editor.actions';
 
-export function createProcessCreator(): ModelCreator {
+export function createProcessCreator(callback = () => {}): ModelCreator {
     return {
         name: 'APP.PROJECT.NEW_MENU.MENU_ITEMS.CREATE_PROCESS',
         icon: PROCESS_ICON,
@@ -29,13 +29,18 @@ export function createProcessCreator(): ModelCreator {
             title: 'APP.PROJECT.PROCESS_DIALOG.TITLE_CREATE',
             nameField: 'APP.PROJECT.PROCESS_DIALOG.PROCESS_NAME',
             descriptionField: 'APP.PROJECT.PROCESS_DIALOG.PROCESS_DESC',
-            action: CreateProcessAttemptAction
+            action: CreateProcessAttemptAction,
+            callback: callback
         }
     };
 }
 
+export function createProcess() {
+    return createProcessCreator();
+}
+
 export function getProcessCreatorProvider() {
     return [
-        { provide: MODEL_CREATORS, useFactory: createProcessCreator, multi: true }
+        { provide: MODEL_CREATORS, useFactory: createProcess, multi: true }
     ];
 }

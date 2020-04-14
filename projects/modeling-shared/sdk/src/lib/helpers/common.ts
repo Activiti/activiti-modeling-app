@@ -44,4 +44,6 @@ export interface EntityDialogPayload {
     allowedCharacters?: AllowedCharacters;
     action: any;
     submitData?: any;
+    navigateTo?: boolean;
+    callback?: Function;
 }

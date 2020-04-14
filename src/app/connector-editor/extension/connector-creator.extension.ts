@@ -15,31 +15,14 @@
  * limitations under the License.
  */
 
-import { MODEL_CREATORS, ModelCreator, CONNECTOR, MODELER_NAME_REGEX } from '@alfresco-dbp/modeling-shared/sdk';
-import { CreateConnectorAttemptAction } from '../store/connector-editor.actions';
-import { CONNECTOR_ICON } from './connectors-filter.extension';
+import { MODEL_CREATORS, createConnectorCreator } from '@alfresco-dbp/modeling-shared/sdk';
 
-export function createConnectorCreator(): ModelCreator {
-    return {
-        name: 'APP.PROJECT.NEW_MENU.MENU_ITEMS.CREATE_CONNECTOR',
-        icon: CONNECTOR_ICON,
-        order: 1,
-        type: CONNECTOR,
-        dialog: {
-            title: 'APP.PROJECT.CONNECTOR_DIALOG.TITLE_CREATE',
-            nameField: 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_NAME',
-            descriptionField: 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_DESC',
-            allowedCharacters: {
-                regex: MODELER_NAME_REGEX,
-                error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'
-            },
-            action: CreateConnectorAttemptAction
-        }
-    };
+export function createConnector() {
+    return createConnectorCreator();
 }
 
 export function getConnectorCreatorProvider() {
     return [
-        { provide: MODEL_CREATORS, useFactory: createConnectorCreator, multi: true }
+        { provide: MODEL_CREATORS, useFactory: createConnector, multi: true }
     ];
 }
