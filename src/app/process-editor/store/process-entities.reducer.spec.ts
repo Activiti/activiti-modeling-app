@@ -106,6 +106,13 @@ describe('ProcessEntitiesReducer', () => {
                         }
                     }
                 },
+                assignments: {
+                    [elementId]: {
+                        'type': 'identity',
+                        'assignment': 'assignee',
+                        'id': elementId
+                    }
+                },
                 properties: {}
             }
         } }];
@@ -117,6 +124,7 @@ describe('ProcessEntitiesReducer', () => {
 
         expect(newState.entities[process.id].extensions[processId].mappings).toEqual({});
         expect(newState.entities[process.id].extensions[processId].constants).toEqual({});
+        expect(newState.entities[process.id].extensions[processId].assignments).toEqual({});
     });
 
     it('should handle UPDATE_SERVICE_PARAMETERS', () => {
@@ -355,7 +363,7 @@ describe('ProcessEntitiesReducer', () => {
         expect(newState.entities[mockProcessModel.id].extensions[processId].mappings).toEqual({});
     });
 
-    it('should remove empty element mappings if process variable is renamed', () => {
+    it('should remove empty element mappings if process variable is deleted', () => {
         initialState = {
             ...initialProcessEntitiesState,
             entities: { [mockProcessModel.id]: mockProcessModel },

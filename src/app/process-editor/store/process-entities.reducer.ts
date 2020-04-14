@@ -102,6 +102,7 @@ function removeElementMapping(state: ProcessEntitiesState, action: RemoveElement
     const newState = cloneDeep(state);
     const mappings = newState.entities[action.processModelId].extensions[action.bpmnProcessElementId].mappings;
     const constants = newState.entities[action.processModelId].extensions[action.bpmnProcessElementId].constants;
+    const assignments = newState.entities[action.processModelId].extensions[action.bpmnProcessElementId].assignments;
 
     if (mappings && mappings[action.elementId]) {
         delete newState.entities[action.processModelId].extensions[action.bpmnProcessElementId].mappings[action.elementId];
@@ -109,6 +110,10 @@ function removeElementMapping(state: ProcessEntitiesState, action: RemoveElement
 
     if (constants && constants[action.elementId]) {
         delete newState.entities[action.processModelId].extensions[action.bpmnProcessElementId].constants[action.elementId];
+    }
+
+    if (assignments && assignments[action.elementId]) {
+        delete newState.entities[action.processModelId].extensions[action.bpmnProcessElementId].assignments[action.elementId];
     }
 
     return newState;
@@ -151,7 +156,7 @@ function removeUpdatedPropertyMappings(newProcessExtensions: ProcessExtensionsCo
     Object.values(newProcessExtensions.properties).forEach((property: EntityProperty) => {
         if (oldProperties[property.id] && (oldProperties[property.id].name !== property.name || oldProperties[property.id].type !== property.type)) {
             Object.keys(newProcessExtensions.mappings).forEach((elementId) => {
-                removeElementMappings(newProcessExtensions.mappings, elementId, oldProperties[property.id].name);
+                removeParamMappings(newProcessExtensions.mappings, elementId, oldProperties[property.id].name);
                 removeEmptyMapping(newProcessExtensions.mappings, elementId);
             });
         }
@@ -164,13 +169,13 @@ function removeDeletedPropertyMapping(newProcessExtensions: ProcessExtensionsCon
     });
     Object.values(deletedProperties).forEach((oldPropertyId) => {
         Object.keys(newProcessExtensions.mappings).forEach((elementId) => {
-            removeElementMappings(newProcessExtensions.mappings, elementId, oldProperties[oldPropertyId].name);
+            removeParamMappings(newProcessExtensions.mappings, elementId, oldProperties[oldPropertyId].name);
             removeEmptyMapping(newProcessExtensions.mappings, elementId);
         });
     });
 }
 
-function removeElementMappings(mappings, elementId, propertyName) {
+function removeParamMappings(mappings, elementId, propertyName) {
     removeOutputMappings(mappings[elementId], propertyName);
     removeInputMappings(mappings[elementId], propertyName);
 
