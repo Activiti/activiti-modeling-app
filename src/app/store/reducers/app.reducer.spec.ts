@@ -67,4 +67,11 @@ describe('appReducer', () => {
         const newState = appReducer(initialState, action);
         expect (newState.toolbar.inProgress).toBe(true);
     });
+
+    it('should handle LOADED_APPLICATION with false as parameter', () => {
+        const action = <LoadApplicationAction>{ type: LOADED_APPLICATION, loading: false };
+        const initialState = appReducer(undefined, action);
+        const newState = appReducer(initialState, action);
+        expect (newState.toolbar.inProgress).toBe(false);
+    });
 });

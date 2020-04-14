@@ -187,5 +187,4 @@ describe('ProcessHeaderComponent', () => {
 
         expect(store.dispatch).toHaveBeenCalledWith(payload);
     });
-
 });
