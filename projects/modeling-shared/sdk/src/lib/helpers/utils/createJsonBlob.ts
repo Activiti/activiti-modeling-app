@@ -15,7 +15,13 @@
  * limitations under the License.
  */
 
-export function createJsonBlob(fileContent: string, fileName: string, type = 'application/json') {
+export function createBlobFormData(file: Blob, fileName: string) {
+    const formData = new FormData();
+    formData.append('file', file, fileName);
+    return formData.get('file');
+}
+
+export function createBlobFormDataFromStringContent(fileContent: string, fileName: string, type = 'application/json') {
     const formData = new FormData(),
         file = new Blob([fileContent], { type: type });
     formData.append('file', file, fileName);

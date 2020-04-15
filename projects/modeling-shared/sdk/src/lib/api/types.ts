@@ -363,7 +363,7 @@ export interface FileModel {
     model: ActivitiFile;
 }
 
-export type ActivitiFileContent = string;
+export type ActivitiFileContent = File;
 
 export interface ActivitiFile extends Model {
     type: FILE_TYPE;

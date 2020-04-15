@@ -21,7 +21,7 @@ import { ModelApi } from './model-api';
 import { ModelApiInterface } from '../../api/generalmodel-api.interface';
 import { RequestApiHelperOptions } from './request-api.helper';
 import { concatMap } from 'rxjs/operators';
-import { createJsonBlob } from '../../helpers/utils/createJsonBlob';
+import { createBlobFormDataFromStringContent } from '../../helpers/utils/createJsonBlob';
 
 export class ProcessAcmApi<T extends Process, S extends ProcessContent> extends ModelApi<T, S> implements ModelApiInterface<T, S> {
     public validate(modelId: string, content: S, modelExtensions: any): Observable<any> {
@@ -33,7 +33,7 @@ export class ProcessAcmApi<T extends Process, S extends ProcessContent> extends 
     private validateExtensions(modelId: string, modelExtensions: string) {
         const requestOptions: RequestApiHelperOptions = {
             formParams: {
-                file: createJsonBlob(modelExtensions, `process-${modelId}.extensions.json`)
+                file: createBlobFormDataFromStringContent(modelExtensions, `process-${modelId}.extensions.json`)
             },
             contentTypes: [ 'multipart/form-data' ]
         };

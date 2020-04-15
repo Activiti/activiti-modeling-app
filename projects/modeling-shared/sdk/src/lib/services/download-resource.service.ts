@@ -32,6 +32,19 @@ export class DownloadResourceService {
         window.URL.revokeObjectURL(url);
     }
 
+    downloadResourceWithFilename(filename: string, data: Blob) {
+        const link = document.createElement('a');
+        link.style.display = 'none';
+        link.download = filename;
+        document.body.appendChild(link);
+
+        const url = window.URL.createObjectURL(data);
+
+        link.href = url;
+        link.click();
+        window.URL.revokeObjectURL(url);
+    }
+
     downloadUrl(url: string, fileName?: string) {
         if (url) {
             const link = document.createElement('a');

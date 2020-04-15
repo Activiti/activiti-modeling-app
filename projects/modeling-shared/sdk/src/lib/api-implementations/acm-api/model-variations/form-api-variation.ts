@@ -59,4 +59,8 @@ export class FormApiVariation<M extends Form, C extends FormContent> implements 
     public getModelFileName(model: Partial<M>): string {
         return model.name + FORM_FILE_FORMAT;
     }
+
+    public getFileToUpload(model: Partial<M>, content: C): Blob {
+        return new Blob([this.serialize(content)], { type: this.getModelMimeType(model) });
+    }
 }

@@ -59,4 +59,8 @@ export class DecisionTableApiVariation<M extends DecisionTable, C extends Decisi
     public getModelFileName(model: Partial<M>): string {
         return model.name + DECISION_TABLE_FILE_FORMAT;
     }
+
+    public getFileToUpload(model: Partial<M>, content: C): Blob {
+        return new Blob([this.serialize(content)], { type: this.getModelMimeType(model) });
+    }
 }

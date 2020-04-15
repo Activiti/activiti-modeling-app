@@ -17,7 +17,7 @@
 
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { createJsonBlob } from '../helpers/utils/createJsonBlob';
+import { createBlobFormDataFromStringContent } from '../helpers/utils/createJsonBlob';
 
 @Injectable()
 export class BlobService {
@@ -35,6 +35,6 @@ export class BlobService {
     }
 
     createJsonBlob(fileContent: string, fileName: string) {
-        return createJsonBlob(fileContent, fileName);
+        return createBlobFormDataFromStringContent(fileContent, fileName);
     }
 }

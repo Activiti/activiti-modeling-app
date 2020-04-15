@@ -62,4 +62,8 @@ export class DataApiVariation<M extends Data, C extends DataContent> implements 
     public getModelFileName(model: Partial<M>): string {
         return model.name + DATA_FILE_FORMAT;
     }
+
+    public getFileToUpload(model: Partial<M>, content: C): Blob {
+        return new Blob([this.serialize(content)], { type: this.getModelMimeType(model) });
+    }
 }

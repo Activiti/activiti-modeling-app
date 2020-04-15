@@ -20,13 +20,13 @@ export interface ModelApiInterface<ModelMetadata, ModelContent> {
     getList(containerId: string): Observable<ModelMetadata[]>;
     create(model: Partial<ModelMetadata>, containerId?: string): Observable<ModelMetadata>;
     retrieve(modelId: string, containerId?: string): Observable<ModelMetadata>;
-    update(modelId: string, model: Partial<ModelMetadata>, modelContent: ModelContent, containerId?: string): Observable<ModelMetadata>;
+    update(modelId: string, model: Partial<ModelMetadata>, modelContent: ModelContent, containerId?: string, ignoreContent?: boolean): Observable<ModelMetadata>;
     delete(modelId: string): Observable<void>;
 
     validate(modelId: string, modelContent: ModelContent, modelExtensions?: any): Observable<ModelMetadata>;
 
     import(file: File, containerId?: string): Observable<ModelMetadata>;
-    export(modelId: string): Observable<ModelContent>;
+    export(modelId: string, responseType?: 'arraybuffer' | 'blob' | 'document' | 'json' | 'text'): Observable<ModelContent>;
 
-    updateContentFile(modelId: string, file: File): Observable<[ModelMetadata, ModelContent]>;
+    updateContentFile(modelId: string, file: File,  responseType?: 'arraybuffer' | 'blob' | 'document' | 'json' | 'text'): Observable<[ModelMetadata, ModelContent]>;
 }

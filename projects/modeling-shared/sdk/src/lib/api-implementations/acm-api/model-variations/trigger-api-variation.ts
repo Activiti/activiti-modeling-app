@@ -62,4 +62,8 @@ export class TriggerApiVariation<M extends Trigger, C extends TriggerContent> im
     public getModelFileName(model: Partial<M>): string {
         return model.name + TRIGGER_FILE_FORMAT;
     }
+
+    public getFileToUpload(model: Partial<M>, content: C): Blob {
+        return new Blob([this.serialize(content)], { type: this.getModelMimeType(model) });
+    }
 }

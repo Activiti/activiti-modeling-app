@@ -61,4 +61,8 @@ export class ConnectorApiVariation<M extends Connector, C extends ConnectorConte
     public getModelFileName(model: Partial<M>): string {
         return model.name + CONNECTOR_FILE_FORMAT;
     }
+
+    public getFileToUpload(model: Partial<M>, content: C): Blob {
+        return new Blob([this.serialize(content)], { type: this.getModelMimeType(model) });
+    }
 }

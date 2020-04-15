@@ -27,7 +27,7 @@ export class FileApiVariation<M extends ActivitiFile, C extends ActivitiFileCont
     readonly retrieveModelAfterUpdate = true;
 
     public serialize(content: C): string {
-        return content;
+        return '';
     }
 
     createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {
@@ -35,7 +35,7 @@ export class FileApiVariation<M extends ActivitiFile, C extends ActivitiFileCont
     }
 
     public createInitialContent(model: M): C {
-        return <C>'';
+        return <C>new File([], this.getModelFileName(model));
     }
 
     public createSummaryPatch(model: Partial<M>, modelContent: C) {
@@ -48,7 +48,12 @@ export class FileApiVariation<M extends ActivitiFile, C extends ActivitiFileCont
     }
 
     public patchModel(model: Partial<M>): M {
-        return <M>model;
+        return {
+            ...<M>model,
+            extensions: {
+                ...model.extensions
+            }
+        };
     }
 
     public getModelMimeType(model: Partial<M>): string {
@@ -65,5 +70,9 @@ export class FileApiVariation<M extends ActivitiFile, C extends ActivitiFileCont
             filename = model.extensions.name;
         }
         return filename;
+    }
+
+    public getFileToUpload(model: Partial<M>, content: C): Blob {
+        return content;
     }
 }

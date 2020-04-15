@@ -73,4 +73,8 @@ export class ScriptApiVariation<M extends ActivitiScript, C extends ActivitiScri
         }
         return filename;
     }
+
+    public getFileToUpload(model: Partial<M>, content: C): Blob {
+        return new Blob([this.serialize(content)], { type: this.getModelMimeType(model) });
+    }
 }

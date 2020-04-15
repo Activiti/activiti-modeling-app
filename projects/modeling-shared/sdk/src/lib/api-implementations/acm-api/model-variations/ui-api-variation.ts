@@ -64,4 +64,8 @@ export class UiApiVariation<M extends Ui, C extends UiContent> implements ModelA
     public getModelFileName(model: Partial<M>): string {
         return model.name + UI_FILE_FORMAT;
     }
+
+    public getFileToUpload(model: Partial<M>, content: C): Blob {
+        return new Blob([this.serialize(content)], { type: this.getModelMimeType(model) });
+    }
 }
