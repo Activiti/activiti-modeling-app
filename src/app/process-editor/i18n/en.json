@@ -41,6 +41,7 @@
             "SIGNAL": "Signal",
             "ERROR": "Error",
             "MAPPING_TYPE": "Mapping type",
+            "MAP_VARIABLES": "Map variables",
             "SEND_ALL_VARIABLES": "Send all variables",
             "SEND_NO_VARIABLES": "Don't send variables",
             "SIGNAL_NAME": "Signal name",

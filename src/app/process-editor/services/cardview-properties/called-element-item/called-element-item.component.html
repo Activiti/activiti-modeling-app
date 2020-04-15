@@ -21,7 +21,8 @@
         <mat-form-field data-automation-id="mapping-type">
             <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MAPPING_TYPE' | translate }}</div>
             <mat-select [(ngModel)]="sendNoVariables" (selectionChange)="changeMappingType($event)">
-                <mat-option [value]="false">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SEND_ALL_VARIABLES' | translate }}</mat-option>
+                <mat-option [value]="false">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MAP_VARIABLES' | translate }}</mat-option>
+                <mat-option [value]="true">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SEND_ALL_VARIABLES' | translate }}</mat-option>
                 <mat-option [value]="true">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SEND_NO_VARIABLES' | translate }}</mat-option>
             </mat-select>
         </mat-form-field>
