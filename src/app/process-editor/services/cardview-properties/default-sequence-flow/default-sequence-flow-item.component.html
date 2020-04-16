@@ -1,7 +1,7 @@
 <div class="default-sequence-flow-block">
     <mat-form-field>
         <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.DEFAULT_SEQUENCE_FLOW' | translate }}</div>
-        <mat-select [placeholder]="'None'" [(value)]="default" (selectionChange)="onChange()">
+        <mat-select [placeholder]="'None'" [(value)]="default" (selectionChange)="onChange()" data-automation-id="default-sequence-flow">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let item of list" [value]="item">
                 {{ item.name || '<' + item.id + '>' }}
