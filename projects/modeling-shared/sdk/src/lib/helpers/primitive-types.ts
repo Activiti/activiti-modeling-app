@@ -22,7 +22,8 @@ export const primitive_types: string[] = [
     'date',
     'datetime',
     'file',
-    'json'
+    'json',
+    'folder'
 ];
 
 export const AMA_DATETIME_FORMATS = {

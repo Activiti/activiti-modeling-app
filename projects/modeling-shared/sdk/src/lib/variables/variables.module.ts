@@ -70,7 +70,8 @@ import { provideInputTypeItemHandler } from './properties-viewer/value-type-inpu
         provideInputTypeItemHandler('date', PropertiesViewerDateInputComponent),
         provideInputTypeItemHandler('datetime', PropertiesViewerDateTimeInputComponent),
         provideInputTypeItemHandler('json', PropertiesViewerJsonInputComponent),
-        provideInputTypeItemHandler('file', PropertiesViewerFileInputComponent)
+        provideInputTypeItemHandler('file', PropertiesViewerFileInputComponent),
+        provideInputTypeItemHandler('folder', PropertiesViewerJsonInputComponent)
     ],
     exports: [
         ValueTypeInputComponent,

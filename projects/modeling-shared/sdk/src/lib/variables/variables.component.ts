@@ -116,7 +116,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
 
     private convertJsonStringVariablesToJsonObjects(data) {
         for (const key  in data) {
-            if (data[key].type === 'json' && data[key].value && typeof(data[key].value) !== 'object') {
+            if ((data[key].type === 'json' || data[key].type === 'folder') && data[key].value && typeof(data[key].value) !== 'object') {
                 data[key].value = JSON.parse(data[key].value);
             }
         }

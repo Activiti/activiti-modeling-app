@@ -99,7 +99,7 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
 
     private convertJsonObjectsToJsonStringVariables(properties) {
         for (const key  in properties) {
-            if (properties[key].type === 'json' && typeof(properties[key].value) === 'object') {
+            if ( (properties[key].type === 'json' || properties[key].type === 'folder' ) && typeof(properties[key].value) === 'object') {
                 properties[key].value = JSON.stringify(properties[key].value);
             }
         }
