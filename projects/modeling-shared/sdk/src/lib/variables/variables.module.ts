@@ -32,6 +32,7 @@ import { SharedModule } from '../helpers/public-api';
 import { VariableValuePipe } from './properties-viewer/variable-value.pipe';
 import { PropertiesViewerDateTimeInputComponent } from './properties-viewer/value-type-inputs/date-time-input.component';
 import { provideInputTypeItemHandler } from './properties-viewer/value-type-inputs/value-type-inputs';
+import { PropertiesViewerArrayInputComponent } from './properties-viewer/value-type-inputs/array-input.component';
 
 @NgModule({
     imports: [
@@ -51,7 +52,8 @@ import { provideInputTypeItemHandler } from './properties-viewer/value-type-inpu
         PropertiesViewerDateTimeInputComponent,
         PropertiesViewerJsonInputComponent,
         PropertiesViewerFileInputComponent,
-        VariableValuePipe
+        VariableValuePipe,
+        PropertiesViewerArrayInputComponent
     ],
     entryComponents: [
         VariablesComponent,
@@ -61,7 +63,8 @@ import { provideInputTypeItemHandler } from './properties-viewer/value-type-inpu
         PropertiesViewerDateInputComponent,
         PropertiesViewerDateTimeInputComponent,
         PropertiesViewerJsonInputComponent,
-        PropertiesViewerFileInputComponent
+        PropertiesViewerFileInputComponent,
+        PropertiesViewerArrayInputComponent
     ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
@@ -71,7 +74,8 @@ import { provideInputTypeItemHandler } from './properties-viewer/value-type-inpu
         provideInputTypeItemHandler('datetime', PropertiesViewerDateTimeInputComponent),
         provideInputTypeItemHandler('json', PropertiesViewerJsonInputComponent),
         provideInputTypeItemHandler('file', PropertiesViewerFileInputComponent),
-        provideInputTypeItemHandler('folder', PropertiesViewerJsonInputComponent)
+        provideInputTypeItemHandler('folder', PropertiesViewerJsonInputComponent),
+        provideInputTypeItemHandler('array', PropertiesViewerArrayInputComponent)
     ],
     exports: [
         ValueTypeInputComponent,

@@ -26,3 +26,4 @@ export { PropertiesViewerDateInputComponent } from './properties-viewer/value-ty
 export { PropertiesViewerJsonInputComponent } from './properties-viewer/value-type-inputs/json-input.component';
 export { PropertiesViewerFileInputComponent } from './properties-viewer/value-type-inputs/file-input.component';
 export { PropertiesViewerDateTimeInputComponent } from './properties-viewer/value-type-inputs/date-time-input.component';
+export { PropertiesViewerArrayInputComponent } from './properties-viewer/value-type-inputs/array-input.component';
