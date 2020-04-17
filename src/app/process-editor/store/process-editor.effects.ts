@@ -69,7 +69,7 @@ import {
     createModelName,
     EntityDialogForm,
     GeneralError,
-    LoadApplicationAction,
+    SetApplicationLoadingStateAction,
     LogFactoryService,
     ModelClosedAction,
     ModelOpenedAction,
@@ -180,13 +180,13 @@ export class ProcessEditorEffects extends BaseEffects {
     @Effect()
     updateProcessSuccessEffect = this.actions$.pipe(
         ofType<UpdateProcessSuccessAction>(UPDATE_PROCESS_SUCCESS),
-        mergeMap(() => of(new LoadApplicationAction(false)))
+        mergeMap(() => of(new SetApplicationLoadingStateAction(false)))
     );
 
     @Effect()
     updateProcessFailedEffect = this.actions$.pipe(
         ofType<UpdateProcessFailedAction>(UPDATE_PROCESS_FAILED),
-        mergeMap(() => of(new LoadApplicationAction(false)))
+        mergeMap(() => of(new SetApplicationLoadingStateAction(false)))
     );
 
     @Effect()
@@ -243,7 +243,7 @@ export class ProcessEditorEffects extends BaseEffects {
 
     private validateProcess(payload: ValidateProcessPayload) {
         return this.processEditorService.validate(payload.processId, payload.content, payload.extensions).pipe(
-            switchMap(() => [new LoadApplicationAction(true), payload.action, new LoadApplicationAction(false)]),
+            switchMap(() => [new SetApplicationLoadingStateAction(true), payload.action, new SetApplicationLoadingStateAction(false)]),
             catchError(response => {
                 const errors = this.handleProcessValidationError(JSON.parse(response.message));
                 if (payload.errorAction) {
@@ -275,7 +275,7 @@ export class ProcessEditorEffects extends BaseEffects {
             projectId
         ).pipe(
             switchMap(() => [
-                new LoadApplicationAction(true),
+                new SetApplicationLoadingStateAction(true),
                 new UpdateProcessSuccessAction({ id: payload.processId, changes: payload.metadata }, payload.content),
                 new SetAppDirtyStateAction(false),
                 this.logFactory.logInfo(getProcessLogInitiator(), 'PROCESS_EDITOR.PROCESS_SAVED'),

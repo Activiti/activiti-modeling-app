@@ -58,7 +58,7 @@ import {
     ProcessModelerServiceToken,
     selectSelectedProjectId,
     LogFactoryService,
-    LoadApplicationAction,
+    SetApplicationLoadingStateAction,
     ProcessExtensionsContent,
     OpenConfirmDialogAction,
     selectOpenedModel,
@@ -238,7 +238,7 @@ describe('ProcessEditorEffects', () => {
             expectedLogAction.log.datetime = (<any>expect).any(Date);
 
             const expected = cold('(bcdef)', {
-                b: new LoadApplicationAction(true),
+                b: new SetApplicationLoadingStateAction(true),
                 c: new UpdateProcessSuccessAction({id: mockProcessModel.id, changes: mockActionPayload.metadata}, mockActionPayload.content),
                 d: new SetAppDirtyStateAction(false),
                 e: expectedLogAction,

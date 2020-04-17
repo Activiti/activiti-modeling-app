@@ -78,7 +78,7 @@ export class ToolbarMessageAction implements Action {
 }
 
 export const LOADED_APPLICATION = '[App] APPLICATION_LOADED';
-export class LoadApplicationAction implements Action {
+export class SetApplicationLoadingStateAction implements Action {
     readonly type = LOADED_APPLICATION;
     constructor(public loading: boolean) {}
 }

@@ -58,7 +58,7 @@ import {
     SetAppDirtyStateAction,
     CreateConnectorSuccessAction,
     CREATE_CONNECTOR_SUCCESS,
-    LoadApplicationAction,
+    SetApplicationLoadingStateAction,
     LogFactoryService,
     AmaState,
     SnackbarErrorAction,
@@ -159,7 +159,7 @@ export class ConnectorEditorEffects extends BaseEffects {
     updateConnectorSuccessEffect = this.actions$.pipe(
         ofType<UpdateConnectorSuccessAction>(UPDATE_CONNECTOR_SUCCESS),
         mergeMap(() => [
-            new LoadApplicationAction(false),
+            new SetApplicationLoadingStateAction(false),
             new SetAppDirtyStateAction(false)
         ])
     );
@@ -213,7 +213,7 @@ export class ConnectorEditorEffects extends BaseEffects {
 
     private validateConnector({ connectorId, connectorContent, action, title, errorAction }: ValidateConnectorPayload) {
         return this.connectorEditorService.validate(connectorId, connectorContent).pipe(
-            switchMap(() => [new LoadApplicationAction(true), action, new LoadApplicationAction(false)]),
+            switchMap(() => [new SetApplicationLoadingStateAction(true), action, new SetApplicationLoadingStateAction(false)]),
             catchError(response => {
                 const errors = JSON.parse(response.message).errors.map(error => error.description);
                 if (errorAction) {
@@ -286,7 +286,7 @@ export class ConnectorEditorEffects extends BaseEffects {
     private updateConnector(connector: Connector, content: ConnectorContent, projectId: string): Observable<{} | SnackbarInfoAction | UpdateConnectorSuccessAction> {
         return this.connectorEditorService.update(connector.id, connector, content, projectId).pipe(
             switchMap(() => [
-                new LoadApplicationAction(true),
+                new SetApplicationLoadingStateAction(true),
                 new UpdateConnectorSuccessAction({ id: connector.id, changes: content }),
                 this.logFactory.logInfo(getConnectorLogInitiator(), 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED'),
                 new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
@@ -341,7 +341,7 @@ export class ConnectorEditorEffects extends BaseEffects {
     private downloadConnector() {
        return this.store.select(selectSelectedConnectorContent).pipe(
            map(content => this.connectorEditorService.download(content.name, JSON.stringify(content))),
-           map(() => new LoadApplicationAction(false)),
+           map(() => new SetApplicationLoadingStateAction(false)),
            take(1)
        );
     }

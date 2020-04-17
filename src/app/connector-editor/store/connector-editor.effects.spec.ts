@@ -60,9 +60,9 @@ import {
     GetConnectorAttemptAction,
     CreateConnectorSuccessAction,
     DialogService,
-    LoadApplicationAction,
     LogFactoryService,
-    CreateConnectorAttemptAction
+    CreateConnectorAttemptAction,
+    SetApplicationLoadingStateAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Update } from '@ngrx/entity';
 import { selectConnectorsLoaded, selectSelectedConnector } from './connector-editor.selectors';
@@ -209,7 +209,7 @@ describe('ConnectorEditorEffects', () => {
             const expectedLogAction = logFactory.logInfo(getConnectorLogInitiator(), 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED');
             expectedLogAction.log.datetime = (<any>expect).any(Date);
             const expected = cold('(bcdf)', {
-                b: new LoadApplicationAction(true),
+                b: new SetApplicationLoadingStateAction(true),
                 c: new UpdateConnectorSuccessAction({ id: connector.id, changes: mockPayload }),
                 d: expectedLogAction,
                 f: new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
@@ -316,7 +316,7 @@ describe('ConnectorEditorEffects', () => {
         it('updateConnectorSuccessEffect should dispatch SetAppDirtyStateAction', () => {
             actions$ = hot('a', { a: new UpdateConnectorSuccessAction(<Update<Partial<Connector>>>{}) });
             const expected = cold('(bc)', {
-                b: new LoadApplicationAction(false),
+                b: new SetApplicationLoadingStateAction(false),
                 c: new SetAppDirtyStateAction(false)
             });
 
@@ -463,9 +463,9 @@ describe('ConnectorEditorEffects', () => {
             actions$ = hot('a', { a: new ValidateConnectorAttemptAction(payload) });
 
             const expected = cold('(bcd)', {
-                b: new LoadApplicationAction(true),
+                b: new SetApplicationLoadingStateAction(true),
                 c: payload.action,
-                d: new LoadApplicationAction(false)
+                d: new SetApplicationLoadingStateAction(false)
             });
 
             expect(effects.validateConnectorEffect).toBeObservable(expected);

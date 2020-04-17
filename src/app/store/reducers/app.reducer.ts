@@ -36,7 +36,7 @@ import {
     TOOLBAR_MESSAGE,
     ToolbarMessageAction,
     LOADED_APPLICATION,
-    LoadApplicationAction,
+    SetApplicationLoadingStateAction,
     LogAction,
     LOG_ACTION,
     SET_LOG_HISTORY_VISIBILITY,
@@ -84,7 +84,7 @@ export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action):
                 };
 
         case LOADED_APPLICATION:
-            return setLoadedAppState(state, <LoadApplicationAction> action);
+            return setLoadedAppState(state, <SetApplicationLoadingStateAction> action);
             break;
 
         case LOG_ACTION:
@@ -170,7 +170,7 @@ function storeLog(state: AppState, action: LogAction): AppState {
     };
 }
 
-function setLoadedAppState(state: AppState, action: LoadApplicationAction): AppState {
+function setLoadedAppState(state: AppState, action: SetApplicationLoadingStateAction): AppState {
     return {
         ...state,
         toolbar: {

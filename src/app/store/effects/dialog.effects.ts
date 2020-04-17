@@ -24,7 +24,7 @@ import {
     DialogService,
     ConfirmDialogData,
     EntityDialogComponent,
-    LoadApplicationAction,
+    SetApplicationLoadingStateAction,
     MODELER_NAME_REGEX,
     CreateProjectAttemptAction,
     OPEN_DIALOG,
@@ -159,8 +159,8 @@ export class DialogEffects {
             .pipe(
                 switchMap(confirmation =>
                     confirmation
-                        ? [new LoadApplicationAction(false), action]
-                        : [new LoadApplicationAction(false)]
+                        ? [new SetApplicationLoadingStateAction(false), action]
+                        : [new SetApplicationLoadingStateAction(false)]
                 )
             );
     }

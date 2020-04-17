@@ -16,7 +16,7 @@
  */
 
 import { appReducer } from './app.reducer';
-import { PROCESS, ModelOpenedAction, MODEL_OPENED, ModelClosedAction, MODEL_CLOSED, LoadApplicationAction, LOADED_APPLICATION } from '@alfresco-dbp/modeling-shared/sdk';
+import { PROCESS, ModelOpenedAction, MODEL_OPENED, ModelClosedAction, MODEL_CLOSED, SetApplicationLoadingStateAction, LOADED_APPLICATION } from '@alfresco-dbp/modeling-shared/sdk';
 import { SelectProjectAction } from '../../project-editor/store/project-editor.actions';
 
 describe('appReducer', () => {
@@ -62,14 +62,14 @@ describe('appReducer', () => {
     });
 
     it('should handle LOADED_APPLICATION with true as parameter', () => {
-        const action = <LoadApplicationAction>{ type: LOADED_APPLICATION, loading: true };
+        const action = <SetApplicationLoadingStateAction>{ type: LOADED_APPLICATION, loading: true };
         const initialState = appReducer(undefined, action);
         const newState = appReducer(initialState, action);
         expect (newState.toolbar.inProgress).toBe(true);
     });
 
     it('should handle LOADED_APPLICATION with false as parameter', () => {
-        const action = <LoadApplicationAction>{ type: LOADED_APPLICATION, loading: false };
+        const action = <SetApplicationLoadingStateAction>{ type: LOADED_APPLICATION, loading: false };
         const initialState = appReducer(undefined, action);
         const newState = appReducer(initialState, action);
         expect (newState.toolbar.inProgress).toBe(false);
