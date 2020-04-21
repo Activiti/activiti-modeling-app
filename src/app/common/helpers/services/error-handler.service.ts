@@ -37,9 +37,19 @@ export class GlobalErrorHandler implements ErrorHandler {
             message = errorService.getServerMessage(error);
             store.dispatch(new SnackbarErrorAction(message));
         } else {
-            message = errorService.getClientMessage(error);
-            store.dispatch(new SnackbarErrorAction(message));
+            if (!this.isFailedECMLogin(error)) {
+                message = errorService.getClientMessage(error);
+                store.dispatch(new SnackbarErrorAction(message));
+            }
         }
         console.error(error);
+    }
+
+    private isFailedECMLogin(error: any): boolean {
+        let isFailedECMLoginError = false;
+        if ( error.rejection && error.rejection.error && error.rejection.error.url) {
+            isFailedECMLoginError = error.rejection.error.url.includes('authentication/versions/1/tickets/-me-');
+        }
+        return isFailedECMLoginError;
     }
 }
