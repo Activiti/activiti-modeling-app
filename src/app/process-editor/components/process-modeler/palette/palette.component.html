@@ -27,17 +27,26 @@
 </ng-template>
 
 <ng-template #clickableElement let-item>
-    <div
-        class="entry {{item.icon}}"
-        [class.selected]="item === selectedTool">
-        <button
-            [title]="item.title | translate"
+    <div class="entry-parent">
+        <div class="entry svg" *ngIf="paletteIconSvg[item?.svg]" 
             [attr.data-automation-id]="item.group + '::' + item.type"
-            *ngIf="!hasChildren(item)"
+            [innerHTML]="paletteIconSvg[item?.svg]"
             draggable="true"
             (click)="onClick(item, $event)"
             (dragstart)="onDrag(item, $event)">
-        </button>
+        </div>
+        <div *ngIf="!paletteElementIcons[item?.svg]"
+            class="entry {{item.icon}}"
+            [class.selected]="item === selectedTool">
+            <button
+                [title]="item.title | translate"
+                [attr.data-automation-id]="item.group + '::' + item.type"
+                *ngIf="!hasChildren(item)"
+                draggable="true"
+                (click)="onClick(item, $event)"
+                (dragstart)="onDrag(item, $event)">
+            </button>
+        </div>
         <span class="drawer-item-tag" *ngIf="item.tag" [title]="item.title | translate" draggable="true"
         (click)="onClick(item, $event)" (dragstart)="onDrag(item, $event)">{{item.tag | translate}}</span>
     </div>

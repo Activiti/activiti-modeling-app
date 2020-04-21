@@ -15,7 +15,8 @@
  * limitations under the License.
  */
 
-import { Component, Inject, Optional, HostListener, ViewChild, TemplateRef } from '@angular/core';
+import { Component, Inject, Optional, HostListener, ViewChild, TemplateRef, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
 import {
     PaletteElement,
@@ -23,7 +24,8 @@ import {
     ToolTrigger,
     BpmnTrigger,
     PaletteGroupElement,
-    PaletteSeparatorElement
+    PaletteSeparatorElement,
+    PaletteElementIconsToken
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { OverlayRef } from '@angular/cdk/overlay';
 
@@ -31,10 +33,12 @@ import { OverlayRef } from '@angular/cdk/overlay';
     templateUrl: './palette.component.html',
     selector: 'ama-process-palette'
 })
-export class PaletteComponent {
+export class PaletteComponent implements OnInit {
 
     public selectedTool: ToolTrigger;
     public paletteElements: PaletteElement[];
+    public paletteElementIcons;
+    public paletteIconSvg = {};
     public opened = true;
     public detach = false;
     overlayRef: OverlayRef;
@@ -47,9 +51,22 @@ export class PaletteComponent {
 
     constructor(
         private processModelerPaletteService: ProcessModelerPaletteService,
-        @Optional() @Inject(PaletteElementsToken) paletteElements: PaletteElement[]
+        private sanitizer: DomSanitizer,
+        @Optional() @Inject(PaletteElementsToken) paletteElements: PaletteElement[],
+        @Optional() @Inject(PaletteElementIconsToken) paletteElementIcons
     ) {
         this.paletteElements = (<any>paletteElements).flatten(1) || [];
+        this.paletteElementIcons = paletteElementIcons || {};
+    }
+
+    ngOnInit() {
+        this.buildPaletteIcons();
+    }
+
+    private buildPaletteIcons() {
+        Object.keys(this.paletteElementIcons).forEach((type) => {
+            this.paletteIconSvg[type] = this.sanitizer.bypassSecurityTrustHtml(this.paletteElementIcons[type]);
+        });
     }
 
     public isSeparator(element: PaletteSeparatorElement) {

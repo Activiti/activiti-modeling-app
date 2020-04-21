@@ -87,12 +87,27 @@
         }
 
         .entry {
+
+            &.svg {
+                width: 20px;
+                height: 20px;
+            }
             button {
                 cursor: pointer;
                 position: absolute;
                 height: 25px;
                 width: 25px;
                 margin-left: -30px;
+                background: transparent;
+                border: none;
+                outline: none;
+            }
+            svg {
+                cursor: pointer;
+                position: absolute;
+                height: 20px;
+                width: 20px;
+                margin-left: -10px;
                 background: transparent;
                 border: none;
                 outline: none;
@@ -104,12 +119,9 @@
             }
         }
 
-        .entry:not(:first-child) {
-            margin-top: 5px;
-            margin-bottom: 5px;
-
-            &:last-child {
-                margin-bottom: 0;
+        .entry-parent {
+            &:not(:last-child) {
+                margin-bottom: 5px;
             }
         }
 

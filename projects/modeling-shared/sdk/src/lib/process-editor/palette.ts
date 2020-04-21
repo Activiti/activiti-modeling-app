@@ -24,6 +24,7 @@ export interface GeneralTrigger {
     title: string;
     clickable: boolean;
     draggable: boolean;
+    svg?: string;
 }
 export interface ToolTrigger extends GeneralTrigger {
     group: 'tool';
@@ -60,7 +61,7 @@ export interface PaletteElementHandler {
 
 export const PaletteElementsToken = new InjectionToken<PaletteElement>('palette-elements');
 export const PaletteElementsHandlersToken = new InjectionToken<PaletteElementHandler[]>('palette-element-handlers');
-
+export const PaletteElementIconsToken = new InjectionToken('palette-element-icons');
 export function providePaletteHandler(key: string, handler: Type<TriggerHandler>) {
     return [
         handler,
