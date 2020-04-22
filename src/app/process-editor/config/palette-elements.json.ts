@@ -22,7 +22,7 @@ export const paletteElements: PaletteElement[] = [
         group: 'tool',
         type: 'hand-tool',
         icon: 'bpmn-icon-hand-tool',
-        title: 'APP.PROCESS_EDITOR.PALETTE.HAND_TOOL',
+        title: 'PROCESS_EDITOR.PALETTE.HAND_TOOL',
         clickable: true,
         draggable: false
     },
@@ -30,7 +30,7 @@ export const paletteElements: PaletteElement[] = [
         group: 'tool',
         type: 'connect-tool',
         icon: 'bpmn-icon-connection-multi',
-        title: 'APP.PROCESS_EDITOR.PALETTE.CONNECT_TOOL',
+        title: 'PROCESS_EDITOR.PALETTE.CONNECT_TOOL',
         clickable: true,
         draggable: false
     },
@@ -38,7 +38,7 @@ export const paletteElements: PaletteElement[] = [
         group: 'tool',
         type: 'space-tool',
         icon: 'bpmn-icon-space-tool',
-        title: 'APP.PROCESS_EDITOR.PALETTE.SPACE_TOOL',
+        title: 'PROCESS_EDITOR.PALETTE.SPACE_TOOL',
         clickable: true,
         draggable: false
     },
@@ -46,7 +46,7 @@ export const paletteElements: PaletteElement[] = [
         group: 'tool',
         type: 'lasso-tool',
         icon: 'bpmn-icon-lasso-tool',
-        title: 'APP.PROCESS_EDITOR.PALETTE.LASSO_TOOL',
+        title: 'PROCESS_EDITOR.PALETTE.LASSO_TOOL',
         clickable: true,
         draggable: false
     },
@@ -55,7 +55,7 @@ export const paletteElements: PaletteElement[] = [
         group: 'element',
         type: 'bpmn:StartEvent',
         icon: 'bpmn-icon-start-event-none',
-        title: 'APP.PROCESS_EDITOR.PALETTE.START_EVENT',
+        title: 'PROCESS_EDITOR.PALETTE.START_EVENT',
         clickable: true,
         draggable: true
     },
@@ -63,7 +63,7 @@ export const paletteElements: PaletteElement[] = [
         group: 'element',
         type: 'bpmn:EndEvent',
         icon: 'bpmn-icon-end-event-none',
-        title: 'APP.PROCESS_EDITOR.PALETTE.END_EVENT',
+        title: 'PROCESS_EDITOR.PALETTE.END_EVENT',
         clickable: true,
         draggable: true
     },
@@ -71,7 +71,7 @@ export const paletteElements: PaletteElement[] = [
         group: 'element',
         type: 'bpmn:IntermediateThrowEvent',
         icon: 'bpmn-icon-intermediate-event-none',
-        title: 'APP.PROCESS_EDITOR.PALETTE.INTERMEDIATE_THROW_EVENT',
+        title: 'PROCESS_EDITOR.PALETTE.INTERMEDIATE_THROW_EVENT',
         clickable: true,
         draggable: true
     },
@@ -80,7 +80,7 @@ export const paletteElements: PaletteElement[] = [
         group: 'element',
         type: 'bpmn:Gateway',
         icon: 'bpmn-icon-gateway-none',
-        title: 'APP.PROCESS_EDITOR.PALETTE.GATEWAY',
+        title: 'PROCESS_EDITOR.PALETTE.GATEWAY',
         clickable: true,
         draggable: true
     },
@@ -89,7 +89,7 @@ export const paletteElements: PaletteElement[] = [
         group: 'element',
         type: 'bpmn:UserTask',
         icon: 'bpmn-icon-user-task',
-        title: 'APP.PROCESS_EDITOR.PALETTE.USER_TASK',
+        title: 'PROCESS_EDITOR.PALETTE.USER_TASK',
         clickable: true,
         draggable: true
     },
@@ -97,7 +97,7 @@ export const paletteElements: PaletteElement[] = [
         group: 'element',
         type: 'bpmn:ServiceTask',
         icon: 'bpmn-icon-service-task',
-        title: 'APP.PROCESS_EDITOR.PALETTE.SERVICE_TASK',
+        title: 'PROCESS_EDITOR.PALETTE.SERVICE_TASK',
         clickable: true,
         draggable: true
     },
@@ -105,7 +105,7 @@ export const paletteElements: PaletteElement[] = [
         group: 'element',
         type: 'bpmn:CallActivity',
         icon: 'bpmn-icon-call-activity',
-        title: 'APP.PROCESS_EDITOR.PALETTE.CALL_ACTIVITY',
+        title: 'PROCESS_EDITOR.PALETTE.CALL_ACTIVITY',
         clickable: true,
         draggable: true
     },
@@ -113,7 +113,7 @@ export const paletteElements: PaletteElement[] = [
         group: 'element',
         type: 'bpmn:SubProcess',
         icon: 'bpmn-icon-subprocess-expanded',
-        title: 'APP.PROCESS_EDITOR.PALETTE.SUB_PROCESS',
+        title: 'PROCESS_EDITOR.PALETTE.SUB_PROCESS',
         clickable: true,
         draggable: true,
         options: {
@@ -125,7 +125,7 @@ export const paletteElements: PaletteElement[] = [
         group: 'element',
         type: 'bpmn:Participant',
         icon: 'bpmn-icon-participant',
-        title: 'APP.PROCESS_EDITOR.PALETTE.PARTICIPANT',
+        title: 'PROCESS_EDITOR.PALETTE.PARTICIPANT',
         clickable: true,
         draggable: true
     }
