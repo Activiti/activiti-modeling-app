@@ -418,23 +418,6 @@
                 "INVALID_DECISION_TABLE_NAME": "Invalid decision table name"
             }
         },
-        "FILE_EDITOR": {
-            "UPLOAD_SUCCESS": "File uploaded",
-            "TABS": {
-                "FILE_EDITOR": "File Editor",
-                "JSON_EDITOR": "Text Editor"
-            },
-            "EDITOR": {
-                "DETAILS": "File Details",
-                "DESCRIPTION": "Description",
-                "NAME": "Name",
-                "TEMPLATE": "Template"
-            },
-            "ERRORS": {
-                "GET_FILE": "We hit a problem loading the file. Try refreshing the page.",
-                "DELETE_FILE": "We hit a problem deleting the file. Try deleting it again."
-            }
-        },
         "GENERAL": {
             "ERRORS": {
                 "CHANGE_USER": "Change user",
