@@ -1,0 +1,59 @@
+{
+    "DASHBOARD": {
+        "NEW_MENU": {
+            "LABEL": "NEW",
+            "CREATE_PROJECT_TITLE": "Create Project",
+            "OVERRIDE_PROJECT_TITLE": "A project with that name already exists.",
+            "EDIT_PROJECT_TITLE": "Edit Project",
+            "PROJECT_CREATED": "Project created",
+            "PROJECT_UPLOADED": "Project uploaded",
+            "PROJECT_UPDATED": "Project saved",
+            "PROJECT_RELEASED": "Project released",
+            "PROJECT_DELETED": "Project deleted",
+            "MENU_ITEMS": {
+                "CREATE_PROJECT": "Create Project",
+                "UPLOAD_PROJECT": "Upload Project",
+                "CREATE_MODEL": "Content Model"
+            }
+        },
+        "DIALOGS": {
+            "PROJECT_NAME": "Project name:",
+            "PROJECT_DESC": "Project description:"
+        },
+        "NAVIGATION": {
+            "PROJECTS": {
+                "LABEL": "Projects",
+                "TOOLTIP": "Published Projects"
+            },
+            "RELEASES": {
+                "LABEL": "Releases",
+                "TOOLTIP": "Releases"
+            },
+            "PROCESSES": {
+                "LABEL": "Processes",
+                "TOOLTIP": "Published Processes"
+            },
+            "FAVORITES": {
+                "LABEL": "Favorites",
+                "TOOLTIP": "Favorites"
+            }
+        },
+        "TABLE": {
+            "COLUMN_NAME": "Name",
+            "COLUMN_VERSION": "Version",
+            "COLUMN_CREATED": "Created",
+            "COLUMN_CREATED_BY": "Created By",
+            "COLUMN_OPTIONS": "Options",
+            "NO_ITEMS": "Create or import a project to view it in the list.",
+            "NO_FAV_PROCESSES": "Favorite a process to make it available here.",
+            "NO_FAV_PROJECTS": "Favorite a project to make it available here.",
+            "RELEASE_ID": "Release ID",
+            "PROJECT_NAME": "Project Name"
+        },
+        "ERROR": {
+            "LOAD_PROJECTS": "We hit a problem loading the projects. Try refreshing the page.",
+            "LOAD_RELEASES": "We hit a problem loading the releases. Try refreshing the page",
+            "LOAD_PROCESSES": "We hit a problem loading the processes. Try refreshing the page"
+        }
+    }
+}

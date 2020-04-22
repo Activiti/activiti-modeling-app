@@ -163,7 +163,7 @@ describe('ProjectsEffects', () => {
 
             const expected = cold('(bc)', {
                 b: new UploadProjectSuccessAction(mockProject),
-                c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_UPLOADED')
+                c: new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_UPLOADED')
             });
 
             expect(effects.uploadProjectAttemptEffect).toBeObservable(expected);
@@ -207,7 +207,7 @@ describe('ProjectsEffects', () => {
 
             const expected = cold('(bc)', {
                 b: new CreateProjectSuccessAction(mockProject),
-                c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_CREATED')
+                c: new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_CREATED')
             });
 
             expect(effects.createProjectAttemptEffect).toBeObservable(expected);
@@ -260,7 +260,7 @@ describe('ProjectsEffects', () => {
 
             const expected = cold('(bc)', {
                 b: new UpdateProjectSuccessAction({ id: mockProject.id, changes: mockProject }),
-                c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_UPDATED')
+                c: new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_UPDATED')
             });
 
             expect(effects.updateProjectAttemptEffect).toBeObservable(expected);
@@ -303,7 +303,7 @@ describe('ProjectsEffects', () => {
 
             const expected = cold('(bce)', {
                 b: new DeleteProjectSuccessAction(mockProject.id),
-                c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
+                c: new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_DELETED'),
                 e: new GetProjectsAttemptAction(updatedPagination, sorting, search)
             });
 
@@ -316,7 +316,7 @@ describe('ProjectsEffects', () => {
 
             const expected = cold('(bce)', {
                 b:  new DeleteProjectSuccessAction(mockProject.id),
-                c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
+                c: new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_DELETED'),
                 e: new GetProjectsAttemptAction(updatedPagination, sorting, search)
 
             });
@@ -336,7 +336,7 @@ describe('ProjectsEffects', () => {
 
             const expected = cold('(bce)', {
                 b:  new DeleteProjectSuccessAction(mockProject.id),
-                c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
+                c: new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_DELETED'),
                 e: new GetProjectsAttemptAction(updatedCountPagination, sorting, search)
             });
 
@@ -361,7 +361,7 @@ describe('ProjectsEffects', () => {
 
             const expected = cold('(bce)', {
                 b:  new DeleteProjectSuccessAction(mockProject.id),
-                c: new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
+                c: new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_DELETED'),
                 e: new GetProjectsAttemptAction(updatedPagination, sorting, search)
 
             });
@@ -392,7 +392,7 @@ describe('ProjectsEffects', () => {
             actions$ = hot('a', { a: new GetProjectsAttemptAction() });
 
             const expected = cold('b', {
-                b: new SnackbarErrorAction('APP.HOME.ERROR.LOAD_PROJECTS')
+                b: new SnackbarErrorAction('DASHBOARD.ERROR.LOAD_PROJECTS')
             });
 
             expect(effects.getProjectsAttemptEffect).toBeObservable(expected);
@@ -403,7 +403,7 @@ describe('ProjectsEffects', () => {
             actions$ = hot('a', { a: new GetProjectsAttemptAction() });
 
             const expected = cold('b', {
-                b: new SnackbarErrorAction('APP.HOME.ERROR.LOAD_PROJECTS')
+                b: new SnackbarErrorAction('DASHBOARD.ERROR.LOAD_PROJECTS')
             });
 
             expect(effects.getProjectsAttemptEffect).toBeObservable(expected);

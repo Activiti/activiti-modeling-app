@@ -29,6 +29,7 @@
                             "src/favicon.ico",
                             "src/assets",
                             { "input": "resources", "output": "/resources", "glob": "**/*" },
+                            { "input": "src/app/dashboard/i18n", "output": "/assets/dashboard/i18n", "glob": "**/*" },
                             { "input": "src/app/process-editor/i18n", "output": "/assets/process-editor/i18n", "glob": "**/*" },
                             { "input": "src/app/connector-editor/i18n", "output": "/assets/connector-editor/i18n", "glob": "**/*" },
                             { "input": "projects/modeling-shared/sdk/i18n", "output": "/assets/modeling-sdk/i18n", "glob": "**/*" },

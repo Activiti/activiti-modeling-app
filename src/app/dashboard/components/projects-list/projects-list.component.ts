@@ -151,9 +151,9 @@ export class ProjectsListComponent implements OnInit {
         const { id, name, description } = item;
 
         this.store.dispatch(new OpenEntityDialogAction({
-            title: 'APP.HOME.NEW_MENU.EDIT_PROJECT_TITLE',
-            nameField: 'APP.HOME.DIALOGS.PROJECT_NAME',
-            descriptionField: 'APP.HOME.DIALOGS.PROJECT_DESC',
+            title: 'DASHBOARD.NEW_MENU.EDIT_PROJECT_TITLE',
+            nameField: 'DASHBOARD.DIALOGS.PROJECT_NAME',
+            descriptionField: 'DASHBOARD.DIALOGS.PROJECT_DESC',
             values: { id, name, description },
             action: UpdateProjectAttemptAction,
             allowedCharacters: {

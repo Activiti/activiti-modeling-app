@@ -29,7 +29,7 @@ import { ProjectsListComponent } from './components/projects-list/projects-list.
 import { DashboardService } from './services/dashboard.service';
 import { EffectsModule } from '@ngrx/effects';
 import { ProjectsEffects } from './store/effects/projects.effects';
-import { SharedModule, PROJECT_ENTITY_KEY, AmaStoreModule, projectEntitiesReducer } from '@alfresco-dbp/modeling-shared/sdk';
+import { SharedModule, PROJECT_ENTITY_KEY, AmaStoreModule, projectEntitiesReducer, provideTranslations } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { SearchHeaderComponent } from '../app/app-layout/search-header/search-header.component';
@@ -55,6 +55,9 @@ import { SearchHeaderComponent } from '../app/app-layout/search-header/search-he
         SearchHeaderComponent
     ],
     exports: [DashboardRoutingModule],
-    providers: [DashboardService]
+    providers: [
+        DashboardService,
+        provideTranslations('dashboard')
+    ]
 })
 export class DashboardModule {}

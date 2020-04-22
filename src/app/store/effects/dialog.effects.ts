@@ -114,9 +114,9 @@ export class DialogEffects {
         map(
             () =>
                 new OpenEntityDialogAction({
-                    title: 'APP.HOME.NEW_MENU.CREATE_PROJECT_TITLE',
-                    nameField: 'APP.HOME.DIALOGS.PROJECT_NAME',
-                    descriptionField: 'APP.HOME.DIALOGS.PROJECT_DESC',
+                    title: 'DASHBOARD.NEW_MENU.CREATE_PROJECT_TITLE',
+                    nameField: 'DASHBOARD.DIALOGS.PROJECT_NAME',
+                    descriptionField: 'DASHBOARD.DIALOGS.PROJECT_DESC',
                     action: CreateProjectAttemptAction,
                     allowedCharacters: {
                         regex: MODELER_NAME_REGEX,
@@ -132,9 +132,9 @@ export class DialogEffects {
         map(
             (action) =>
                 new OpenEntityDialogAction({
-                    title: 'APP.HOME.NEW_MENU.OVERRIDE_PROJECT_TITLE',
-                    nameField: 'APP.HOME.DIALOGS.PROJECT_NAME',
-                    descriptionField: 'APP.HOME.DIALOGS.PROJECT_DESC',
+                    title: 'DASHBOARD.NEW_MENU.OVERRIDE_PROJECT_TITLE',
+                    nameField: 'DASHBOARD.DIALOGS.PROJECT_NAME',
+                    descriptionField: 'DASHBOARD.DIALOGS.PROJECT_DESC',
                     submitData: {
                         file: action.file
                     },

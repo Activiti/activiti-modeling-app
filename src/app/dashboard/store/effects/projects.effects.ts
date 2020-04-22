@@ -134,7 +134,7 @@ export class ProjectsEffects extends BaseEffects {
         return this.dashboardService.deleteProject(projectId).pipe(
             switchMap(() => [
                 new DeleteProjectSuccessAction(projectId),
-                new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_DELETED'),
+                new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_DELETED'),
                 new GetProjectsAttemptAction({
                     skipCount,
                     maxItems: pagination.maxItems
@@ -156,7 +156,7 @@ export class ProjectsEffects extends BaseEffects {
         return this.dashboardService.updateProject(projectId, form).pipe(
             switchMap(project => [
                 new UpdateProjectSuccessAction({ id: project.id, changes: project }),
-                new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_UPDATED')
+                new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_UPDATED')
             ]),
             catchError(e =>
                 this.genericErrorHandler(this.handleProjectUpdateError.bind(this, e), e)
@@ -168,7 +168,7 @@ export class ProjectsEffects extends BaseEffects {
         return this.dashboardService.createProject(form).pipe(
             switchMap(project => [
                 new CreateProjectSuccessAction(project),
-                new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_CREATED')
+                new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_CREATED')
             ]),
             catchError(e =>
                 this.genericErrorHandler(this.handleProjectCreateError.bind(this, e), e)
@@ -180,7 +180,7 @@ export class ProjectsEffects extends BaseEffects {
         return this.dashboardService.importProject(file, name).pipe(
             switchMap(project => [
                 new CreateProjectSuccessAction(project),
-                new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_CREATED')
+                new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_CREATED')
             ]),
             catchError(e =>
                 this.genericErrorHandler(this.handleProjectUploadError.bind(this, e, file, name), e)
@@ -191,7 +191,7 @@ export class ProjectsEffects extends BaseEffects {
     private getProjectsAttempt(pagination: FetchQueries, sorting: ServerSideSorting, search: SearchQuery) {
         return this.dashboardService.fetchProjects(pagination, sorting, search).pipe(
             switchMap(data => [new GetProjectsSuccessAction(data.entries, data.pagination)]),
-            catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'APP.HOME.ERROR.LOAD_PROJECTS'), e))
+            catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'DASHBOARD.ERROR.LOAD_PROJECTS'), e))
         );
     }
 
@@ -199,7 +199,7 @@ export class ProjectsEffects extends BaseEffects {
         return this.dashboardService.importProject(file, name).pipe(
             switchMap(project => [
                 new UploadProjectSuccessAction(project),
-                new SnackbarInfoAction('APP.HOME.NEW_MENU.PROJECT_UPLOADED')
+                new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_UPLOADED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleProjectUploadError.bind(this, e, file, name), e))
         );

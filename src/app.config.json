@@ -83,8 +83,8 @@
         "main": [
             {
                 "icon": "apps",
-                "label": "APP.HOME.NAVIGATION.PROJECTS.LABEL",
-                "title": "APP.HOME.NAVIGATION.PROJECTS.TOOLTIP",
+                "label": "DASHBOARD.NAVIGATION.PROJECTS.LABEL",
+                "title": "DASHBOARD.NAVIGATION.PROJECTS.TOOLTIP",
                 "disabled": false,
                 "route": {
                     "url": "/dashboard/projects"
@@ -94,12 +94,12 @@
     },
     "create": [
         {
-            "title": "APP.HOME.NEW_MENU.MENU_ITEMS.CREATE_PROJECT",
+            "title": "DASHBOARD.NEW_MENU.MENU_ITEMS.CREATE_PROJECT",
             "icon": "create_new_folder",
             "handler": "CREATE_PROJECT_DIALOG"
         },
         {
-            "title": "APP.HOME.NEW_MENU.MENU_ITEMS.UPLOAD_PROJECT",
+            "title": "DASHBOARD.NEW_MENU.MENU_ITEMS.UPLOAD_PROJECT",
             "icon": "file_upload",
             "handler": "IMPORT_PROJECT_DIALOG"
         }

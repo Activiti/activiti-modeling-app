@@ -20,7 +20,7 @@
                             </ng-container>
 
                             <ng-container matColumnDef="name">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_NAME' | translate }}</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'DASHBOARD.TABLE.COLUMN_NAME' | translate }}</mat-header-cell>
                                 <mat-cell
                                     *matCellDef="let element"
                                     (click)="rowSelected(element)"
@@ -32,22 +32,22 @@
                             </ng-container>
 
                             <ng-container matColumnDef="creationDate">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_CREATED' | translate }}</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'DASHBOARD.TABLE.COLUMN_CREATED' | translate }}</mat-header-cell>
                                 <mat-cell *matCellDef="let element" (click)="rowSelected(element)"> {{ element.creationDate | amTimeAgo }} </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="createdBy">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'APP.HOME.TABLE.COLUMN_CREATED_BY' | translate }}</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'DASHBOARD.TABLE.COLUMN_CREATED_BY' | translate }}</mat-header-cell>
                                 <mat-cell *matCellDef="let element" (click)="rowSelected(element)"> {{ element.createdBy }} </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="version">
-                                <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_VERSION' | translate }}</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef>{{ 'DASHBOARD.TABLE.COLUMN_VERSION' | translate }}</mat-header-cell>
                                 <mat-cell *matCellDef="let element" [attr.data-automation-id]="'project-version-' + element.id" (click)="rowSelected(element)"> {{ element.version }} </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="menu">
-                                <mat-header-cell *matHeaderCellDef>{{ 'APP.HOME.TABLE.COLUMN_OPTIONS' | translate }}</mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef>{{ 'DASHBOARD.TABLE.COLUMN_OPTIONS' | translate }}</mat-header-cell>
                                 <mat-cell *matCellDef="let element">
                                     <button mat-icon-button [matMenuTriggerFor]="menu" [attr.data-automation-id]="'project-context-' + element.id"
                                         [title]="'APP.MORE_ACTIONS' | translate">
@@ -96,7 +96,7 @@
                 <adf-empty-content
                     icon="apps"
                     class="dashboard-emptylist"
-                    title="APP.HOME.TABLE.NO_ITEMS">
+                    title="DASHBOARD.TABLE.NO_ITEMS">
                 </adf-empty-content>
             </ng-template>
         </ng-container>

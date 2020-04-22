@@ -1,7 +1,7 @@
 <div class="dashboard-navigation">
     <adf-sidebar-action-menu
         *ngIf="actions$ | async as actions"
-        [title]="'APP.HOME.NEW_MENU.LABEL' | translate"
+        [title]="'DASHBOARD.NEW_MENU.LABEL' | translate"
         [expanded]="expanded$ | async"
         class="dashboard-navigation__section dashboard-navigation__section--new"
         [ngClass]="{ 'section--new--mini': !(expanded$ | async) }"
