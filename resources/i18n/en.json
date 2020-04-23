@@ -303,25 +303,6 @@
                 "DELETE_UI": "We hit a problem deleting the UI. Try deleting it again."
             }
         },
-        "DECISION_TABLE_EDITOR": {
-            "ELEMENT_PROPERTIES": {
-                "PROPERTIES": "Properties",
-                "NAME": "Name",
-                "SIMULATOR": "Simulator"
-            },
-            "UPLOAD_SUCCESS": "Decision table uploaded",
-            "TABS": {
-                "DECISION_TABLE_EDITOR": "Decision Table Editor",
-                "JSON_EDITOR": "JSON Editor"
-            },
-            "EDITOR": {
-            },
-            "ERRORS": {
-                "GET_DECISION_TABLE": "We hit a problem loading the decision table. Try refreshing the page.",
-                "DELETE_DECISION_TABLE": "We hit a problem deleting the decision table. Try deleting it again.",
-                "INVALID_DECISION_TABLE_NAME": "Invalid decision table name"
-            }
-        },
         "GENERAL": {
             "ERRORS": {
                 "CHANGE_USER": "Change user",
