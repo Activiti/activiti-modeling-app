@@ -25,6 +25,15 @@ import {
     ServicesConstants
 } from '../api/types';
 
+export function createExtensionsObject() {
+    return {
+        constants: {},
+        mappings: {},
+        properties: {},
+        assignments: {}
+    };
+}
+
 export class ProcessExtensionsModel {
 
     extensions: ModelExtensions;
@@ -34,7 +43,7 @@ export class ProcessExtensionsModel {
     }
 
     setProperties(processId: string, properties: EntityProperties): ModelExtensions {
-        const processExtensions = this.extensions[processId] ? this.extensions[processId] : this.createExtensionsObject();
+        const processExtensions = this.extensions[processId] ? this.extensions[processId] : createExtensionsObject();
         processExtensions.properties = properties;
         this.extensions[processId] = processExtensions;
         return this.extensions;
@@ -57,7 +66,7 @@ export class ProcessExtensionsModel {
     }
 
     setMappings(processId: string, elementId: string, mappings: ServiceParameterMappings): ModelExtensions {
-        const processExtensions = this.extensions[processId] ? this.extensions[processId] : this.createExtensionsObject();
+        const processExtensions = this.extensions[processId] ? this.extensions[processId] : createExtensionsObject();
         if (Object.values(mappings).length) {
             processExtensions.mappings[elementId] = mappings;
         } else {
@@ -84,7 +93,7 @@ export class ProcessExtensionsModel {
     }
 
     setAssignments(processId: string, serviceId: string, assignment: TaskAssignment): ModelExtensions {
-        const processExtensions = this.extensions[processId] ? this.extensions[processId] : this.createExtensionsObject();
+        const processExtensions = this.extensions[processId] ? this.extensions[processId] : createExtensionsObject();
         if (processExtensions.assignments === undefined) {
             processExtensions.assignments = {};
         }
@@ -103,7 +112,7 @@ export class ProcessExtensionsModel {
     }
 
     setConstants(processId: string, elementId: string, constants: ServicesParameterConstants): ModelExtensions {
-        const processExtensions = this.extensions[processId] ? this.extensions[processId] : this.createExtensionsObject();
+        const processExtensions = this.extensions[processId] ? this.extensions[processId] : createExtensionsObject();
         if (Object.values(constants).length) {
             processExtensions.constants[elementId] = constants;
         } else {
@@ -115,14 +124,5 @@ export class ProcessExtensionsModel {
 
     getConstants(processId: string): ServicesConstants {
         return this.extensions[processId] ? this.extensions[processId].constants : {};
-    }
-
-    private createExtensionsObject() {
-        return {
-            constants: {},
-            mappings: {},
-            properties: {},
-            assignments: {}
-        };
     }
 }

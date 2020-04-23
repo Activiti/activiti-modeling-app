@@ -44,7 +44,8 @@ import {
     UpdateServiceAssignmentAction,
     EntityProperty,
     EntityProperties,
-    ProcessExtensionsContent
+    ProcessExtensionsContent,
+    createExtensionsObject
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 const cloneDeep = require('lodash/cloneDeep');
@@ -134,6 +135,9 @@ function updateExtensions(state: ProcessEntitiesState, action: UpdateProcessExte
 function updateProcessVariables(state: ProcessEntitiesState, action: UpdateProcessVariablesAction): ProcessEntitiesState {
     const oldExtensions = cloneDeep(state.entities[action.payload.modelId].extensions);
     const oldProcessModel = new ProcessExtensionsModel(oldExtensions);
+    if (!oldExtensions[action.payload.processId]) {
+        oldExtensions[action.payload.processId] = createExtensionsObject();
+    }
     const oldProperties = oldExtensions[action.payload.processId].properties;
     const newExtensions = oldProcessModel.setProperties(action.payload.processId, action.payload.properties);
     const newProcessExtensions = newExtensions[action.payload.processId];

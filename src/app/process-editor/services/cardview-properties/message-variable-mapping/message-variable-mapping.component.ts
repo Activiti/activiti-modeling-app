@@ -52,10 +52,11 @@ export class CardViewMessageVariableMappingComponent implements OnInit {
         if (this.property.data.element.parent.type === BpmnElement.Process) {
             return this.property.data.element.parent.businessObject.flowElements;
         } else {
-            let flowElements = [];
-            this.property.data.element.parent.businessObject.$parent.participants.map(
-                (participant) => flowElements = flowElements.concat(participant.processRef.flowElements));
-            return flowElements;
+            const process = this.property.data.element.parent.businessObject.$parent.$parent.rootElements.filter((element) => element.$type === BpmnElement.Process);
+            return process.reduce((allElements, currentElement) => {
+                const flows  = currentElement.flowElements.filter(childElement => childElement.flowElements).map(element => element.flowElements);
+                return  [ ...allElements, ...currentElement.flowElements, ...flows  ];
+            } , []);
         }
     }
 
