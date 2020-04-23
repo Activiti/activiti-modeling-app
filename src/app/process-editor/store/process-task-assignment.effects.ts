@@ -70,7 +70,8 @@ export class ProcessTaskAssignmentEffects extends BaseEffects {
     );
 
     private openTaskAssignmentDialog(element: Bpmn.DiagramElement) {
-        const processId = element.businessObject.$parent.id;
+        const processId = element.businessObject.$parent.$type === 'bpmn:SubProcess' ? this.findParentProcess(element.businessObject.$parent).id :
+            element.businessObject.$parent.id;
         const assignmentUpdate$ = new Subject<AssignmentModel> ();
         const shapeId = element.id;
         this.dialogService.openDialog(AssignmentDialogComponent, {
@@ -84,5 +85,16 @@ export class ProcessTaskAssignmentEffects extends BaseEffects {
             this.store.dispatch(new UpdateTaskAssignmentAction({ id: shapeId, data: assignments }));
             this.taskAssignmentService.assignmentSubject.next(assignments);
         });
+    }
+
+    private findParentProcess(element) {
+        if (element.$type === 'bpmn:Process') { return element; }
+        for (const i in element) {
+            if (element.hasOwnProperty(i)) {
+                const parentProcess = this.findParentProcess(element.$parent);
+                if (parentProcess) { return parentProcess; }
+            }
+        }
+        return null;
     }
 }
