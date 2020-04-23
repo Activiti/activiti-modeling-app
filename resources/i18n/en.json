@@ -286,23 +286,6 @@
                 }
             }
         },
-        "UI_EDITOR": {
-            "UPLOAD_SUCCESS": "UI uploaded",
-            "TABS": {
-                "UI_EDITOR": "UI Editor",
-                "JSON_EDITOR": "JSON Editor"
-            },
-            "EDITOR": {
-                "DETAILS": "UI Details",
-                "DESCRIPTION": "Description",
-                "NAME": "Name",
-                "TEMPLATE": "Template"
-            },
-            "ERRORS": {
-                "GET_UI": "We hit a problem loading the UI. Try refreshing the page.",
-                "DELETE_UI": "We hit a problem deleting the UI. Try deleting it again."
-            }
-        },
         "GENERAL": {
             "ERRORS": {
                 "CHANGE_USER": "Change user",
