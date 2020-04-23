@@ -286,31 +286,6 @@
                 }
             }
         },
-        "CONNECTOR_EDITOR": {
-            "UPLOAD_SUCCESS": "Connector uploaded",
-            "NAME": "Connector Editor",
-            "TABS": {
-                "CONNECTOR_EDITOR": "Connector Editor",
-                "JSON_EDITOR": "JSON Editor"
-            },
-            "EDITOR": {
-                "CONNECTOR_DETAILS": "Connector Details",
-                "INPUTS": "Input Parameters",
-                "OUTPUTS": "Output Parameters",
-                "ACTIONS": "Actions",
-                "ADD_NEW_PARAMETER": "Add new parameter",
-                "NAME": "Name",
-                "DESCRIPTION": "Description",
-                "TYPE": "Type",
-                "BUTTONS": {
-                    "SAVE": "Save"
-                },
-                "REQUIRED": "Required"
-            },
-            "ERRORS": {
-                "GET_CONNECTOR": "We hit a problem loading the connector. Try refreshing the page."
-            }
-        },
         "UI_EDITOR": {
             "UPLOAD_SUCCESS": "UI uploaded",
             "TABS": {

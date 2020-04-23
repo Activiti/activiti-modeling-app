@@ -18,6 +18,7 @@
             "SHOW": "Show connectors with templates on the left sidebar",
             "CANCEL": "Cancel",
             "APPLY": "Apply"
-        }
+        },
+        "NAME": "Connector Editor"
     }
 }
