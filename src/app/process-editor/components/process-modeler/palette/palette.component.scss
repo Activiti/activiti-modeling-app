@@ -87,7 +87,6 @@
         }
 
         .entry {
-
             &.svg {
                 width: 20px;
                 height: 20px;
@@ -129,14 +128,18 @@
             font-size: 12px;
             display: inline-block;
             position: relative;
-            bottom: 2px;
-            margin-left: 4px;
+            top: 4px;
+            margin-left: 6px;
             width: 120px;
             text-align: left;
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+
+        .bpmn-alfresco-icon-content-task {
+            float: left;
         }
     }
 }
