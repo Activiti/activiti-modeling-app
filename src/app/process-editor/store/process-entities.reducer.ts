@@ -240,6 +240,16 @@ function updateProcessVariablesMapping(state: ProcessEntitiesState, action: Upda
     const processExtensionsModel = new ProcessExtensionsModel(oldExtensions);
     let newExtensions = processExtensionsModel.setMappings(action.processId, action.serviceId, action.serviceParameterMappings);
 
+    const newProcessExtensions = newExtensions[action.processId];
+
+    if (newProcessExtensions.mappings[action.serviceId]) {
+        if (Object.keys(newProcessExtensions.mappings[action.serviceId]).length) {
+            removeEmptyElementMapping(newProcessExtensions.mappings[action.serviceId], 'inputs');
+            removeEmptyElementMapping(newProcessExtensions.mappings[action.serviceId], 'outputs');
+        }
+        removeEmptyMapping(newProcessExtensions.mappings, action.serviceId);
+    }
+
     if (action.constants) {
         newExtensions = processExtensionsModel.setConstants(action.processId, action.serviceId, action.constants);
     }

@@ -33,7 +33,7 @@ import {
     DeleteProcessExtensionAction
 } from './process-editor.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState } from './process-entities.state';
-import { PROCESS, Process, ProcessContent, ServicesParameterMappings,
+import { PROCESS, Process, ProcessContent, ServicesParameterMappings, ServiceParameterMappings,
     UpdateServiceParametersAction, EntityProperty, EntityProperties, MappingType, UPDATE_SERVICE_PARAMETERS } from '@alfresco-dbp/modeling-shared/sdk';
 import { processEntitiesReducer } from './process-entities.reducer';
 import { mockProcessModel, mappings } from './process.mock';
@@ -136,6 +136,12 @@ describe('ProcessEntitiesReducer', () => {
                     type: MappingType.value,
                     value: 'test'
                 }
+            },
+            outputs: {
+                'test': {
+                    type: MappingType.variable,
+                    value: 'e441111c-5a3d-4f78-a571-f57e67ce85bf'
+                }
             }
         };
         const mockConstants = {
@@ -173,7 +179,38 @@ describe('ProcessEntitiesReducer', () => {
             serviceId: elementId,
             serviceParameterMappings: {}
         });
-        expect(newState.entities[process.id].extensions.mappings).toEqual({});
+        expect(newState.entities[process.id].extensions[processId].mappings).toEqual({});
+
+        newState = processEntitiesReducer(newState, <UpdateServiceParametersAction>{
+            type: UPDATE_SERVICE_PARAMETERS,
+            modelId: process.id,
+            processId: processId,
+            serviceId: elementId,
+            serviceParameterMappings: { inputs: {...mockMapping.inputs }, outputs: {}}
+        });
+        expect(newState.entities[process.id].extensions[processId].mappings).toEqual({
+            [elementId]: { inputs: {...mockMapping.inputs }}
+        });
+
+        newState = processEntitiesReducer(newState, <UpdateServiceParametersAction>{
+            type: UPDATE_SERVICE_PARAMETERS,
+            modelId: process.id,
+            processId: processId,
+            serviceId: elementId,
+            serviceParameterMappings: { inputs: {}, outputs: {...mockMapping.outputs}}
+        });
+        expect(newState.entities[process.id].extensions[processId].mappings).toEqual({
+            [elementId]: { outputs: {...mockMapping.outputs}}
+        });
+
+        newState = processEntitiesReducer(newState, <UpdateServiceParametersAction>{
+            type: UPDATE_SERVICE_PARAMETERS,
+            modelId: process.id,
+            processId: processId,
+            serviceId: elementId,
+            serviceParameterMappings: { inputs: {}, outputs: {}}
+        });
+        expect(newState.entities[process.id].extensions[processId].mappings).toEqual({});
     });
 
     it('should handle DELETE_PROCESS_SUCCESS', () => {
@@ -251,11 +288,9 @@ describe('ProcessEntitiesReducer', () => {
 
     it('should handle UPDATE_SERVICE_PARAMETERS', () => {
         const serviceTaskId = 'serviceTaskId';
-        const serviceParameterMappings: ServicesParameterMappings = {
-            'taskId': {
+        const serviceParameterMappings: ServiceParameterMappings = {
                 inputs: { 'param1': { type: MappingType.variable, value: 'variable1'}},
                 outputs: { 'param2': { type: MappingType.variable, value: 'variable'}}
-            }
         };
         initialState = {
             ...initialProcessEntitiesState,
