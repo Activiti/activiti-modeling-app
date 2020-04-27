@@ -74,7 +74,7 @@ describe('ProcessDiagramLoaderService', () => {
 
     it('should dispatch the right actions if no parsing error', (done) => {
         spyOn(modelerService, 'loadXml').and.returnValue(of(''));
-        const expectedElement = { id: '', type: '', name: '', processId: ''};
+        const expectedElement = { id: '', type: '', name: '' };
         spyOn(modelerService, 'getRootProcessElement').and.returnValue(expectedElement);
 
         const updateProcessXMLMock = () => {};

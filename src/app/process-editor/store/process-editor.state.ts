@@ -24,12 +24,14 @@ export function createSelectedElement(element): SelectedProcessElement {
         type: element.type,
         name: element.businessObject && element.businessObject.name || '',
         get processId() {
-            let id = '';
             if (element.businessObject && element.businessObject.$parent) {
-                id = (element.businessObject.$parent.$type === BpmnElement.SubProcess) ?
-                    element.businessObject.$parent.$parent.id : element.businessObject.$parent.id;
+                if (element.businessObject.$parent.$type === BpmnElement.SubProcess) {
+                    return element.businessObject.$parent.$parent.id;
+                } else if (element.type === BpmnElement.Participant) {
+                    return element.businessObject.processRef.id;
+                }
+                return element.businessObject.$parent.id;
             }
-            return id;
         }
     };
 }

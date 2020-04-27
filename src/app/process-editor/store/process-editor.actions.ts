@@ -31,6 +31,12 @@ export class UpdateProcessExtensionsAction implements Action {
     constructor(public payload: UpdateProcessExtensionsPayload) {}
 }
 
+export const DELETE_PROCESS_EXTENSION = '[Process] Delete extension';
+export class DeleteProcessExtensionAction implements Action {
+    readonly type = DELETE_PROCESS_EXTENSION;
+    constructor(public processId: string, public bpmnProcessId: string) {}
+}
+
 export const SHOW_PROCESSES = '[App Tree] Show Processes';
 export class ShowProcessesAction implements Action {
     readonly type = SHOW_PROCESSES;
@@ -186,6 +192,7 @@ export type ProcessActions =
     | UpdateProcessAttemptAction
     | UpdateProcessSuccessAction
     | DeleteProcessAttemptAction
+    | DeleteProcessExtensionAction
     | DeleteProcessSuccessAction
     | RemoveElementMappingAction
     | UpdateServiceParametersAction;

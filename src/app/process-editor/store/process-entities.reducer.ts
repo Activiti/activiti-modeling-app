@@ -31,7 +31,9 @@ import {
     UPDATE_PROCESS_EXTENSIONS,
     UpdateProcessExtensionsAction,
     REMOVE_ELEMENT_MAPPING,
-    RemoveElementMappingAction
+    RemoveElementMappingAction,
+    DELETE_PROCESS_EXTENSION,
+    DeleteProcessExtensionAction
 } from './process-editor.actions';
 import { UPDATE_PROCESS_VARIABLES, UpdateProcessVariablesAction } from './process-variables.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState, processAdapter } from './process-entities.state';
@@ -85,6 +87,9 @@ export function processEntitiesReducer(
         case UPDATE_PROCESS_EXTENSIONS:
             return updateExtensions(state, <UpdateProcessExtensionsAction>action);
 
+        case DELETE_PROCESS_EXTENSION:
+            return deleteExtensions(state, <DeleteProcessExtensionAction> action);
+
         case REMOVE_ELEMENT_MAPPING:
             return removeElementMapping(state, <RemoveElementMappingAction>action);
 
@@ -132,6 +137,20 @@ function updateExtensions(state: ProcessEntitiesState, action: UpdateProcessExte
     };
 }
 
+function deleteExtensions(state: ProcessEntitiesState, action: DeleteProcessExtensionAction): ProcessEntitiesState {
+    const entity = cloneDeep(state.entities[action.processId]);
+    delete entity.extensions[action.bpmnProcessId];
+    return {
+        ...state,
+        entities: {
+            ...state.entities,
+            [action.processId]: {
+                ...entity
+            }
+        }
+    };
+}
+
 function updateProcessVariables(state: ProcessEntitiesState, action: UpdateProcessVariablesAction): ProcessEntitiesState {
     const oldExtensions = cloneDeep(state.entities[action.payload.modelId].extensions);
     const oldProcessModel = new ProcessExtensionsModel(oldExtensions);
@@ -148,7 +167,8 @@ function updateProcessVariables(state: ProcessEntitiesState, action: UpdateProce
     return {
         ...state,
         entities: {
-            ...state.entities, [action.payload.modelId]: {
+            ...state.entities,
+            [action.payload.modelId]: {
                 ...state.entities[action.payload.modelId],
                 extensions: newExtensions
             }

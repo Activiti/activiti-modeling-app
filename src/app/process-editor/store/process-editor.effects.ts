@@ -60,7 +60,8 @@ import {
     UploadProcessAttemptAction,
     VALIDATE_PROCESS_ATTEMPT,
     ValidateProcessAttemptAction,
-    ValidateProcessPayload
+    ValidateProcessPayload,
+    DeleteProcessExtensionAction
 } from './process-editor.actions';
 import {
     AmaState,
@@ -124,9 +125,12 @@ export class ProcessEditorEffects extends BaseEffects {
     @Effect()
     removeDiagramElementEffect = this.actions$.pipe(
         ofType<RemoveDiagramElementAction>(REMOVE_DIAGRAM_ELEMENT),
-        filter(action => [BpmnElement.ServiceTask, BpmnElement.UserTask, BpmnElement.CallActivity].includes(<BpmnElement>action.element.type)),
+        filter(action => [BpmnElement.ServiceTask, BpmnElement.UserTask, BpmnElement.CallActivity, BpmnElement.Participant].includes(<BpmnElement>action.element.type)),
         mergeMap(action => zip(of(action), this.store.select(selectOpenedModel))),
-        mergeMap(([action, process]) => of(new RemoveElementMappingAction(action.element.id, process.id, action.element.processId)))
+        mergeMap(([action, process]) => action.element.type === BpmnElement.Participant ?
+            of(new DeleteProcessExtensionAction(process.id, action.element.processId)) :
+            of(new RemoveElementMappingAction(action.element.id, process.id, action.element.processId))
+        )
     );
 
     @Effect()
