@@ -63,7 +63,7 @@ import { CardViewImplementationItemComponent } from './services/cardview-propert
 import { CardViewDecisionTaskItemComponent } from './services/cardview-properties/decision-task-item/decision-task-item.component';
 import { CardViewScriptTaskItemComponent } from './services/cardview-properties/script-task-item/script-task-item.component';
 import { ProcessPropertiesComponent } from './components/process-properties/process-properties.component';
-import { MatChipsModule, MatTooltipModule, MatCardModule, MatDialogModule } from '@angular/material';
+import { MatChipsModule, MatTooltipModule, MatCardModule, MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { getProcessesFilterProvider } from './extension/processes-filter.extension';
 import { getProcessCreatorProvider } from './extension/process-creator.extension';
 import { getProcessUploaderProvider } from './extension/process-uploader.extension';
@@ -120,6 +120,7 @@ import { CardViewProcessNameItemComponent } from './services/cardview-properties
         MatChipsModule,
         MatCardModule,
         MatDialogModule,
+        MatSnackBarModule,
         CodeEditorModule,
         DragDropModule,
         InputMappingTableModule,
