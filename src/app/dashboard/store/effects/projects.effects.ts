@@ -145,7 +145,7 @@ export class ProjectsEffects extends BaseEffects {
             ]),
             catchError(e =>
                 this.genericErrorHandler(
-                    () => of(new SnackbarErrorAction('APP.PROJECT.ERROR.DELETE_PROJECT')),
+                    () => of(new SnackbarErrorAction('PROJECT_EDITOR.ERROR.DELETE_PROJECT')),
                     e
                 )
             )
@@ -209,9 +209,9 @@ export class ProjectsEffects extends BaseEffects {
         let errorMessage: string;
 
         if (error.status === 409) {
-            errorMessage = 'APP.PROJECT.ERROR.CREATE_PROJECT.DUPLICATION';
+            errorMessage = 'PROJECT_EDITOR.ERROR.CREATE_PROJECT.DUPLICATION';
         } else {
-            errorMessage = 'APP.PROJECT.ERROR.CREATE_PROJECT.GENERAL';
+            errorMessage = 'PROJECT_EDITOR.ERROR.CREATE_PROJECT.GENERAL';
         }
 
         return of(new SnackbarErrorAction(errorMessage));
@@ -221,9 +221,9 @@ export class ProjectsEffects extends BaseEffects {
         let errorMessage: string;
 
         if (error.status === 409) {
-            errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROJECT.DUPLICATION';
+            errorMessage = 'PROJECT_EDITOR.ERROR.UPDATE_PROJECT.DUPLICATION';
         } else {
-            errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROJECT.GENERAL';
+            errorMessage = 'PROJECT_EDITOR.ERROR.UPDATE_PROJECT.GENERAL';
         }
 
         return of(new SnackbarErrorAction(errorMessage));
@@ -233,11 +233,11 @@ export class ProjectsEffects extends BaseEffects {
         let errorMessage: string;
 
         if (error.status === 409) {
-            errorMessage = 'APP.PROJECT.ERROR.UPLOAD_PROJECT.DUPLICATION';
+            errorMessage = 'PROJECT_EDITOR.ERROR.UPLOAD_PROJECT.DUPLICATION';
             this.store.dispatch(new OverrideProjectNameDialogAction(file, name));
 
         } else {
-            errorMessage = 'APP.PROJECT.ERROR.UPLOAD_PROJECT.GENERAL';
+            errorMessage = 'PROJECT_EDITOR.ERROR.UPLOAD_PROJECT.GENERAL';
         }
 
         return of(new SnackbarErrorAction(errorMessage));

@@ -206,13 +206,13 @@ describe('ConnectorEditorEffects', () => {
             updateConnector.mockReturnValue(of(connector));
 
             actions$ = hot('a', { a: new UpdateConnectorContentAttemptAction(mockPayload) });
-            const expectedLogAction = logFactory.logInfo(getConnectorLogInitiator(), 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED');
+            const expectedLogAction = logFactory.logInfo(getConnectorLogInitiator(), 'PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_UPDATED');
             expectedLogAction.log.datetime = (<any>expect).any(Date);
             const expected = cold('(bcdf)', {
                 b: new SetApplicationLoadingStateAction(true),
                 c: new UpdateConnectorSuccessAction({ id: connector.id, changes: mockPayload }),
                 d: expectedLogAction,
-                f: new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
+                f: new SnackbarInfoAction('PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
             });
 
             expect(effects.updateConnectorContentEffect).toBeObservable(expected);
@@ -226,7 +226,7 @@ describe('ConnectorEditorEffects', () => {
 
             actions$ = hot('a', { a: new UpdateConnectorContentAttemptAction(mockPayload) });
             const expected = cold('b', {
-                b: new SnackbarErrorAction('APP.PROJECT.ERROR.UPDATE_CONNECTOR.DUPLICATION')
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.UPDATE_CONNECTOR.DUPLICATION')
             });
 
             expect(effects.updateConnectorContentEffect).toBeObservable(expected);
@@ -239,7 +239,7 @@ describe('ConnectorEditorEffects', () => {
 
             actions$ = hot('a', { a: new UpdateConnectorContentAttemptAction(mockPayload) });
             const expected = cold('b', {
-                b: new SnackbarErrorAction('APP.PROJECT.ERROR.UPDATE_CONNECTOR.GENERAL')
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.UPDATE_CONNECTOR.GENERAL')
             });
 
             expect(effects.updateConnectorContentEffect).toBeObservable(expected);
@@ -343,7 +343,7 @@ describe('ConnectorEditorEffects', () => {
                 b: new DeleteConnectorSuccessAction(connector.id),
                 c: new ModelClosedAction({id: connector.id, type: CONNECTOR}),
                 d: new SetAppDirtyStateAction(false),
-                e: new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_DELETED')
+                e: new SnackbarInfoAction('PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_DELETED')
             });
 
             expect(effects.deleteConnectorAttemptEffect).toBeObservable(expected);
@@ -355,7 +355,7 @@ describe('ConnectorEditorEffects', () => {
 
             actions$ = hot('a', { a: new DeleteConnectorAttemptAction(connector.id) });
             const expected = cold('b', {
-                b: new SnackbarErrorAction('APP.PROJECT.ERROR.UPDATE_CONNECTOR.GENERAL')
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.UPDATE_CONNECTOR.GENERAL')
             });
 
             expect(effects.deleteConnectorAttemptEffect).toBeObservable(expected);
@@ -385,7 +385,7 @@ describe('ConnectorEditorEffects', () => {
             actions$ = hot('a', { a: new CreateConnectorAttemptAction(mockPayload) });
             const expected = cold('(bc)', {
                 b: new CreateConnectorSuccessAction(<Connector>connector),
-                c: new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_CREATED')
+                c: new SnackbarInfoAction('PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_CREATED')
             });
             expect(effects.createConnectorEffect).toBeObservable(expected);
         });

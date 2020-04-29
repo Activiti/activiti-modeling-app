@@ -275,7 +275,7 @@ describe('ProcessEditorEffects', () => {
             actions$ = hot('a', { a: new UpdateProcessAttemptAction(mockActionPayload) });
 
             const expected = cold('(bc)', {
-                b: new SnackbarErrorAction('APP.PROJECT.ERROR.UPDATE_PROCESS.GENERAL'),
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.UPDATE_PROCESS.GENERAL'),
                 c: new UpdateProcessFailedAction()
             });
 

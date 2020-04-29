@@ -21,7 +21,7 @@ import { ConnectorsFilterDataAdapter } from './connectors-filter.data-adapter';
 export function createConnectorsFilter(connectorsFilterDataAdapter: ConnectorsFilterDataAdapter): ModelFilter {
     return {
         type: CONNECTOR,
-        name: 'APP.PROJECT.TREE.CONNECTORS',
+        name: 'PROJECT_EDITOR.TREE.CONNECTORS',
         icon: CONNECTOR_ICON,
         adapter: connectorsFilterDataAdapter,
         order: 2

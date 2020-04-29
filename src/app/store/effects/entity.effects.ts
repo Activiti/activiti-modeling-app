@@ -74,7 +74,7 @@ export class EntityEffects extends BaseEffects {
         return this.modelStorageService.fetchAll(projectId, modelType).pipe(
             mergeMap(models => of(new GetModelsSuccessAction(models, modelType))),
             catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.LOAD_MODELS'), e)
+                this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.LOAD_MODELS'), e)
             )
         );
     }

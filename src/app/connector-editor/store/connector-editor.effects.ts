@@ -245,7 +245,7 @@ export class ConnectorEditorEffects extends BaseEffects {
                 new SnackbarInfoAction('CONNECTOR_EDITOR.UPLOAD_SUCCESS')
             ]),
             catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.UPLOAD_FILE'), e)
+                this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.UPLOAD_FILE'), e)
             )
         );
     }
@@ -254,7 +254,7 @@ export class ConnectorEditorEffects extends BaseEffects {
         return this.connectorEditorService.fetchAll(projectId).pipe(
             mergeMap(connectors => of(new GetConnectorsSuccessAction(connectors))),
             catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.LOAD_MODELS'), e)
+                this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.LOAD_MODELS'), e)
             )
         );
     }
@@ -265,7 +265,7 @@ export class ConnectorEditorEffects extends BaseEffects {
             tap((connector) => callback && callback(connector)),
             mergeMap((connector) => [
                 new CreateConnectorSuccessAction(connector, navigateTo),
-                new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_CREATED')
+                new SnackbarInfoAction('PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_CREATED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleConnectorCreationError.bind(this), e))
         );
@@ -277,7 +277,7 @@ export class ConnectorEditorEffects extends BaseEffects {
                 new DeleteConnectorSuccessAction(connectorId),
                 new ModelClosedAction({id: connectorId, type: CONNECTOR}),
                 new SetAppDirtyStateAction(false),
-                new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_DELETED')
+                new SnackbarInfoAction('PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_DELETED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleConnectorUpdatingError.bind(this), e))
         );
@@ -288,8 +288,8 @@ export class ConnectorEditorEffects extends BaseEffects {
             switchMap(() => [
                 new SetApplicationLoadingStateAction(true),
                 new UpdateConnectorSuccessAction({ id: connector.id, changes: content }),
-                this.logFactory.logInfo(getConnectorLogInitiator(), 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED'),
-                new SnackbarInfoAction('APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
+                this.logFactory.logInfo(getConnectorLogInitiator(), 'PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_UPDATED'),
+                new SnackbarInfoAction('PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleConnectorUpdatingError.bind(this), e))
         );
@@ -314,9 +314,9 @@ export class ConnectorEditorEffects extends BaseEffects {
         let errorMessage;
 
         if (error.status === 409) {
-            errorMessage = 'APP.PROJECT.ERROR.UPDATE_CONNECTOR.DUPLICATION';
+            errorMessage = 'PROJECT_EDITOR.ERROR.UPDATE_CONNECTOR.DUPLICATION';
         } else {
-            errorMessage = 'APP.PROJECT.ERROR.UPDATE_CONNECTOR.GENERAL';
+            errorMessage = 'PROJECT_EDITOR.ERROR.UPDATE_CONNECTOR.GENERAL';
         }
 
         return of(new SnackbarErrorAction(errorMessage));
@@ -326,9 +326,9 @@ export class ConnectorEditorEffects extends BaseEffects {
         let errorMessage;
 
         if (error.status === 409) {
-            errorMessage = 'APP.PROJECT.ERROR.CREATE_CONNECTOR.DUPLICATION';
+            errorMessage = 'PROJECT_EDITOR.ERROR.CREATE_CONNECTOR.DUPLICATION';
         } else {
-            errorMessage = 'APP.PROJECT.ERROR.CREATE_CONNECTOR.GENERAL';
+            errorMessage = 'PROJECT_EDITOR.ERROR.CREATE_CONNECTOR.GENERAL';
         }
 
         return of(new SnackbarErrorAction(errorMessage));

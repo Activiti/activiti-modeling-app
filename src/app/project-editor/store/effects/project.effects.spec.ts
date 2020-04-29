@@ -119,7 +119,7 @@ describe('Project Effects', () => {
         exportProject.mockReturnValue(throwError(error));
 
         actions$ = hot('a', { a: new ExportProjectAction({ projectId: '', projectName: '' }) });
-        const expectedSnackBarAction = new SnackbarErrorAction('APP.PROJECT.ERROR.EXPORT_PROJECT');
+        const expectedSnackBarAction = new SnackbarErrorAction('PROJECT_EDITOR.ERROR.EXPORT_PROJECT');
         const expected = cold('b', {
             b: expectedSnackBarAction
         });

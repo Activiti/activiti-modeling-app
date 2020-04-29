@@ -174,7 +174,7 @@ describe('ProjectsEffects', () => {
             actions$ = hot('a', { a: new UploadProjectAttemptAction(mockFile) });
 
             const expected = cold('b', {
-                b: new SnackbarErrorAction('APP.PROJECT.ERROR.UPLOAD_PROJECT.GENERAL')
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.UPLOAD_PROJECT.GENERAL')
             });
 
             expect(effects.uploadProjectAttemptEffect).toBeObservable(expected);
@@ -187,7 +187,7 @@ describe('ProjectsEffects', () => {
             actions$ = hot('a', { a: new UploadProjectAttemptAction(mockFile) });
 
             const expected = cold('b', {
-                b: new SnackbarErrorAction('APP.PROJECT.ERROR.UPLOAD_PROJECT.DUPLICATION')
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.UPLOAD_PROJECT.DUPLICATION')
             });
 
             expect(effects.uploadProjectAttemptEffect).toBeObservable(expected);
@@ -218,7 +218,7 @@ describe('ProjectsEffects', () => {
             actions$ = hot('a', { a: new CreateProjectAttemptAction(appForm) });
 
             const expected = cold('b', {
-                b: new SnackbarErrorAction('APP.PROJECT.ERROR.CREATE_PROJECT.GENERAL')
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.CREATE_PROJECT.GENERAL')
             });
 
             expect(effects.createProjectAttemptEffect).toBeObservable(expected);
@@ -231,7 +231,7 @@ describe('ProjectsEffects', () => {
             actions$ = hot('a', { a: new CreateProjectAttemptAction(appForm) });
 
             const expected = cold('b', {
-                b: new SnackbarErrorAction('APP.PROJECT.ERROR.CREATE_PROJECT.DUPLICATION')
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.CREATE_PROJECT.DUPLICATION')
             });
 
             expect(effects.createProjectAttemptEffect).toBeObservable(expected);
@@ -271,7 +271,7 @@ describe('ProjectsEffects', () => {
             actions$ = hot('a', { a: new UpdateProjectAttemptAction(payload) });
 
             const expected = cold('b', {
-                b: new SnackbarErrorAction('APP.PROJECT.ERROR.UPDATE_PROJECT.GENERAL')
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.UPDATE_PROJECT.GENERAL')
             });
 
             expect(effects.updateProjectAttemptEffect).toBeObservable(expected);
@@ -284,7 +284,7 @@ describe('ProjectsEffects', () => {
             actions$ = hot('a', { a: new UpdateProjectAttemptAction(payload) });
 
             const expected = cold('b', {
-                b: new SnackbarErrorAction('APP.PROJECT.ERROR.UPDATE_PROJECT.DUPLICATION')
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.UPDATE_PROJECT.DUPLICATION')
             });
 
             expect(effects.updateProjectAttemptEffect).toBeObservable(expected);
@@ -349,7 +349,7 @@ describe('ProjectsEffects', () => {
             actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id) });
 
             const expected = cold('b', {
-                b: new SnackbarErrorAction('APP.PROJECT.ERROR.DELETE_PROJECT')
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.DELETE_PROJECT')
             });
 
             expect(effects.deleteProjectAttemptEffect).toBeObservable(expected);

@@ -44,7 +44,9 @@
                     "CONNECTOR": "connector",
                     "FORM": "form",
                     "PROCESS": "process",
-                    "FILE": "file"
+                    "FILE": "file",
+                    "SCRIPT": "script",
+                    "TRIGGER": "Trigger"
                 },
                 "DELETE": {
                     "PROJECT": "Are you sure you want to delete this project?",
@@ -54,7 +56,9 @@
                     "DATA": "Are you sure you want to delete this data object?",
                     "DECISION_TABLE": "Are you sure you want to delete this decision table?",
                     "CONNECTOR": "Are you sure you want to delete this connector?",
-                    "FILE": "Are you sure you want to delete this file?"
+                    "FILE": "Are you sure you want to delete this file?",
+                    "SCRIPT": "Are you sure you want to delete this script?",
+                    "TRIGGER": "Are you sure you want to delete this Trigger?"
                 },
                 "SAVE": {
                     "PROCESS": "Are you sure you want to save this process?",
@@ -63,7 +67,9 @@
                     "DATA": "Are you sure you want to save this data object?",
                     "DECISION_TABLE": "Are you sure you want to save this decision table?",
                     "CONNECTOR": "Are you sure you want to save this connector?",
-                    "FILE": "Are you sure you want to save this file?"
+                    "FILE": "Are you sure you want to save this file?",
+                    "SCRIPT": "Are you sure you want to save this script?",
+                    "TRIGGER": "Are you sure you want to save this Trigger?"
                 },
                 "DOWNLOAD": {
                     "PROCESS": "Are you sure you want to download this process?",
@@ -73,7 +79,9 @@
                     "DATA": "Are you sure you want to download this data object?",
                     "DECISION_TABLE": "Are you sure you want to download this decision table?",
                     "CONNECTOR": "Are you sure you want to download this connector?",
-                    "FILE": "Are you sure you want to download this file?"
+                    "FILE": "Are you sure you want to download this file?",
+                    "SCRIPT": "Are you sure you want to download this script?",
+                    "TRIGGER": "Are you sure you want to download this Trigger?"
                 }
             }
         },
@@ -87,204 +95,6 @@
         },
         "SETTINGS": {
             "HEADER": "App settings"
-        },
-        "PROJECT": {
-            "BACK_TO": "Back to projects",
-            "NAME": "Project Editor",
-            "UPLOAD_FILE": "Upload file",
-            "DOWNLOAD_PROJECT": "Download project",
-            "PROJECT_VALID": "Project contains no validation errors",
-            "EXPORT_SUCCESS": "Project exported",
-            "SETTINGS": {
-                "PROJECT_SETTINGS": "Project editor settings",
-                "CONNECTORS_TAB_LABEL": "Connectors"
-            },
-            "IMPORT": "Import",
-            "CREATE_NEW": "Create new",
-            "SEARCH": "Search",
-            "UPLOAD_FILE_SUCCESS": "File uploaded",
-            "NO_CONTENT": "<empty>",
-            "NO_SELECTION": "Create a new model or edit an existing one using the sidebar",
-            "NEW_MENU": {
-                "LABEL": "NEW",
-                "CREATE": "Create",
-                "IMPORT": "Import",
-                "CREATE_PROCESS_TITLE": "Create Process",
-                "MENU_ITEMS": {
-                    "CREATE_PROCESS": "Process",
-                    "CREATE_CONNECTOR": "Connector",
-                    "CREATE_FORM": "Form",
-                    "CREATE_UI": "UI",
-                    "CREATE_DATA": "Data object",
-                    "CREATE_DECISION_TABLE": "Decision Table",
-                    "CREATE_FILE": "File"
-                }
-            },
-            "TREE": {
-                "PROCESSES": "Processes",
-                "FORMS": "Forms",
-                "CONNECTORS": "Connectors",
-                "DATA": "Data",
-                "DECISION_TABLES": "Decision Tables",
-                "UIS": "UI",
-                "FILES": "Files"
-            },
-            "PROCESS_DIALOG": {
-                "TITLE_CREATE": "Create Process",
-                "TITLE_UPDATE": "Update Process",
-                "PROCESS_NAME": "Process name:",
-                "PROCESS_DESC": "Process documentation:",
-                "PROCESS_CREATED": "Process created",
-                "PROCESS_DELETED": "Process deleted",
-                "PROCESS_UPDATED": "Process saved"
-            },
-            "CONNECTOR_DIALOG": {
-                "TITLE_CREATE": "Create Connector",
-                "TITLE_UPDATE": "Update Connector",
-                "CONNECTOR_NAME": "Connector name:",
-                "CONNECTOR_DESC": "Connector description:",
-                "CONNECTOR_CREATED": "Connector created",
-                "CONNECTOR_DELETED": "Connector deleted",
-                "CONNECTOR_UPDATED": "Connector saved"
-            },
-            "FORM_DIALOG": {
-                "TITLE_CREATE": "Create Form",
-                "TITLE_UPDATE": "Update Form",
-                "FORM_NAME": "Form name:",
-                "FORM_DESC": "Form description:",
-                "FORM_CREATED": "Form created",
-                "FORM_DELETED": "Form deleted",
-                "FORM_UPDATED": "Form saved"
-            },
-            "UI_DIALOG": {
-                "TITLE_CREATE": "Create UI",
-                "TITLE_UPDATE": "Update UI",
-                "UI_NAME": "UI name:",
-                "UI_DESC": "UI description:",
-                "UI_CREATED": "UI created",
-                "UI_DELETED": "UI deleted",
-                "UI_UPDATED": "UI saved"
-            },
-            "DATA_DIALOG": {
-                "TITLE_CREATE": "Create Data Object",
-                "TITLE_UPDATE": "Update Data Object",
-                "DATA_NAME": "Data object name:",
-                "DATA_DESC": "Data object description:",
-                "DATA_CREATED": "Data object created",
-                "DATA_DELETED": "Data object deleted",
-                "DATA_UPDATED": "Data object saved"
-            },
-            "DECISION_TABLE_DIALOG": {
-                "TITLE_CREATE": "Create Decision Table",
-                "TITLE_UPDATE": "Update Decision Table",
-                "DECISION_TABLE_NAME": "Decision table name:",
-                "DECISION_TABLE_DESC": "Decision table description:",
-                "DECISION_TABLE_CREATED": "Decision table created",
-                "DECISION_TABLE_DELETED": "Decision table deleted",
-                "DECISION_TABLE_UPDATED": "Decision table saved"
-            },
-            "FILE_DIALOG": {
-                "TITLE_CREATE": "Create File",
-                "TITLE_UPDATE": "Update File",
-                "FILE_NAME": "File name:",
-                "FILE_DESC": "FIle description:",
-                "FILE_CREATED": "File created",
-                "FILE_DELETED": "File deleted",
-                "FILE_UPDATED": "File saved"
-            },
-            "ACTION_DIALOG": {
-                "ACTION_DETAILS": "Action details",
-                "ACTION_NAME": "Action name",
-                "ACTION_DESC": "Action description",
-                "ADD_ACTION": "Add action",
-                "DEL_ACTION": "Delete action"
-            },
-            "EVENT_DIALOG": {
-                "EVENT_DETAILS": "Event details",
-                "EVENT_NAME": "Event name",
-                "EVENT_DESC": "Event description",
-                "ADD_EVENT": "Add event",
-                "DEL_EVENT": "Delete event"
-            },
-            "ERROR": {
-                "UPLOAD_FILE": "We hit a problem uploading the file. Try uploading it again.",
-                "DELETE_PROJECT": "We hit a problem deleting the project. Try deleting it again.",
-                "CHANGE_FAVORITE": "We hit a problem favoriting that project. Try favoriting it again.",
-                "DELETE_PROCESS": "We hit a problem deleting the process. Try deleting it again.",
-                "LOAD_MODELS": "We hit a problem loading the models. Try refreshing the page.",
-                "RELEASE_PROJECT": "We hit a problem releasing the project. Try releasing it again.",
-                "CREATE_PROCESS": {
-                    "DUPLICATION": "A process with that name already exists",
-                    "GENERAL": "We hit a problem creating the process. Try creating it again."
-                },
-                "UPDATE_PROCESS": {
-                    "DUPLICATION": "A process with that name already exists",
-                    "GENERAL": "We hit a problem saving the process. Try saving it again.",
-                    "EMPTY_NAME": "A name is required"
-                },
-                "CREATE_CONNECTOR": {
-                    "DUPLICATION": "A connector with that name already exists",
-                    "GENERAL": "We hit a problem creating the connector. Try creating it again."
-                },
-                "UPDATE_CONNECTOR": {
-                    "DUPLICATION": "A connector with that name already exists",
-                    "GENERAL": "We hit a problem saving the connector. Try saving it again."
-                },
-                "CREATE_FORM": {
-                    "DUPLICATION": "A form with that name already exists",
-                    "GENERAL": "We hit a problem creating the form. Try creating it again."
-                },
-                "UPDATE_FORM": {
-                    "DUPLICATION": "A form with that name already exists",
-                    "GENERAL": "We hit a problem saving the form. Try saving it again."
-                },
-                "CREATE_UI": {
-                    "DUPLICATION": "A UI with that name already exists",
-                    "GENERAL": "We hit a problem creating the UI. Try creating it again."
-                },
-                "UPDATE_UI": {
-                    "DUPLICATION": "A UI with that name already exists",
-                    "GENERAL": "We hit a problem saving the UI. Try saving it again."
-                },
-                "CREATE_DECISION_TABLE": {
-                    "DUPLICATION": "A decision table with that name already exists",
-                    "GENERAL": "We hit a problem creating the decision table. Try creating it again."
-                },
-                "UPDATE_DECISION_TABLE": {
-                    "DUPLICATION": "A decision table with that name already exists",
-                    "GENERAL": "We hit a problem saving the decision table. Try saving it again."
-                },
-                "CREATE_DATA": {
-                    "DUPLICATION": "A data object with that name already exists",
-                    "GENERAL": "We hit a problem creating the data object. Try creating it again."
-                },
-                "UPDATE_DATA": {
-                    "DUPLICATION": "A data object with that name already exists",
-                    "GENERAL": "We hit a problem saving the data object. Try saving it again."
-                },
-                "CREATE_PROJECT": {
-                    "DUPLICATION": "A project with that name already exists",
-                    "GENERAL": "We hit a problem creating the project. Try creating it again."
-                },
-                "UPDATE_PROJECT": {
-                    "DUPLICATION": "A project with that name already exists",
-                    "GENERAL": "We hit a problem saving the project. Try saving it again."
-                },
-                "UPLOAD_PROJECT": {
-                    "DUPLICATION": "A project with that name already exists",
-                    "GENERAL": "We hit a problem uploading the project. Try uploading it again."
-                },
-                "GET_PROJECT": "We hit a problem loading the project. Try refreshing the page.",
-                "EXPORT_PROJECT": "Unknown error happened during the project export",
-                "CREATE_FILE": {
-                    "DUPLICATION": "A file with that name already exists",
-                    "GENERAL": "We hit a problem creating the file. Try creating it again."
-                },
-                "UPDATE_FILE": {
-                    "DUPLICATION": "A file with that name already exists",
-                    "GENERAL": "We hit a problem saving the file. Try saving it again."
-                }
-            }
         },
         "GENERAL": {
             "ERRORS": {

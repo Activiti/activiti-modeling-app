@@ -24,14 +24,14 @@ export const CONNECTOR_ICON = 'wrap_text';
 
 export function createConnectorCreator(callback = (param) => {}): ModelCreator {
     return {
-        name: 'APP.PROJECT.NEW_MENU.MENU_ITEMS.CREATE_CONNECTOR',
+        name: 'PROJECT_EDITOR.NEW_MENU.MENU_ITEMS.CREATE_CONNECTOR',
         icon: CONNECTOR_ICON,
         order: 1,
         type: CONNECTOR,
         dialog: {
-            title: 'APP.PROJECT.CONNECTOR_DIALOG.TITLE_CREATE',
-            nameField: 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_NAME',
-            descriptionField: 'APP.PROJECT.CONNECTOR_DIALOG.CONNECTOR_DESC',
+            title: 'PROJECT_EDITOR.CONNECTOR_DIALOG.TITLE_CREATE',
+            nameField: 'PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_NAME',
+            descriptionField: 'PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_DESC',
             allowedCharacters: {
                 regex: MODELER_NAME_REGEX,
                 error: 'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION'

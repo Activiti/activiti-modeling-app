@@ -332,7 +332,7 @@ export class ProcessEditorEffects extends BaseEffects {
                 new SnackbarInfoAction('PROCESS_EDITOR.UPLOAD_SUCCESS')
             ]),
             catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.UPLOAD_FILE'), e)
+                this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.UPLOAD_FILE'), e)
             )
         );
     }
@@ -341,7 +341,7 @@ export class ProcessEditorEffects extends BaseEffects {
         return this.processEditorService.getAll(projectId).pipe(
             switchMap(processes => of(new GetProcessesSuccessAction(processes))),
             catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.LOAD_MODELS'), e)
+                this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.LOAD_MODELS'), e)
             )
         );
     }
@@ -352,10 +352,10 @@ export class ProcessEditorEffects extends BaseEffects {
                 new DeleteProcessSuccessAction(processId),
                 new SetAppDirtyStateAction(false),
                 new ModelClosedAction({ id: processId, type: PROCESS }),
-                new SnackbarInfoAction('APP.PROJECT.PROCESS_DIALOG.PROCESS_DELETED')
+                new SnackbarInfoAction('PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_DELETED')
             ]),
             catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.DELETE_PROCESS'), e)
+                this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.DELETE_PROCESS'), e)
             )
         );
     }
@@ -364,7 +364,7 @@ export class ProcessEditorEffects extends BaseEffects {
         return this.processEditorService.create(form, projectId).pipe(
             switchMap((process) => [
                 new CreateProcessSuccessAction(process, navigateTo),
-                new SnackbarInfoAction('APP.PROJECT.PROCESS_DIALOG.PROCESS_CREATED')
+                new SnackbarInfoAction('PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_CREATED')
             ]),
             catchError(e => this.genericErrorHandler(this.handleProcessCreationError.bind(this), e))
         );
@@ -379,11 +379,11 @@ export class ProcessEditorEffects extends BaseEffects {
         const message = error.message ? JSON.parse(error.message) : {};
 
         if (error.status === 409) {
-            errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROCESS.DUPLICATION';
+            errorMessage = 'PROJECT_EDITOR.ERROR.UPDATE_PROCESS.DUPLICATION';
         } else if (message.errors && (message.errors[0].code === 'model.invalid.name.empty')) {
-            errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROCESS.EMPTY_NAME';
+            errorMessage = 'PROJECT_EDITOR.ERROR.UPDATE_PROCESS.EMPTY_NAME';
         } else {
-            errorMessage = 'APP.PROJECT.ERROR.UPDATE_PROCESS.GENERAL';
+            errorMessage = 'PROJECT_EDITOR.ERROR.UPDATE_PROCESS.GENERAL';
         }
         return of(new SnackbarErrorAction(errorMessage), new UpdateProcessFailedAction());
     }
@@ -392,9 +392,9 @@ export class ProcessEditorEffects extends BaseEffects {
         let errorMessage;
 
         if (error.status === 409) {
-            errorMessage = 'APP.PROJECT.ERROR.CREATE_PROCESS.DUPLICATION';
+            errorMessage = 'PROJECT_EDITOR.ERROR.CREATE_PROCESS.DUPLICATION';
         } else {
-            errorMessage = 'APP.PROJECT.ERROR.CREATE_PROCESS.GENERAL';
+            errorMessage = 'PROJECT_EDITOR.ERROR.CREATE_PROCESS.GENERAL';
         }
 
         return of(new SnackbarErrorAction(errorMessage));

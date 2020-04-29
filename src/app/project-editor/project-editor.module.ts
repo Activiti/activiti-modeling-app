@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { CoreModule } from '@alfresco/adf-core';
-import { SharedModule, getProjectEditorLogInitiator, PROJECT_EDITOR_STATE_NAME, provideLogFilter } from '@alfresco-dbp/modeling-shared/sdk';
+import { SharedModule, getProjectEditorLogInitiator, PROJECT_EDITOR_STATE_NAME, provideLogFilter, provideTranslations } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProjectEditorRoutingModule } from './router/project-editor-routing.module';
 import { ProjectEffects } from './store/effects/project.effects';
 import { projectTreeReducer as tree } from './store/reducers/project-tree.reducer';
@@ -58,6 +58,7 @@ import { ExtensionsModule } from '@alfresco/adf-extensions';
     providers: [
         ProjectEditorService,
         ProjectTreeHelper,
+        provideTranslations('project-editor'),
         provideLogFilter(getProjectEditorLogInitiator())
     ]
 })

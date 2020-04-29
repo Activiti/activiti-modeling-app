@@ -11,7 +11,7 @@
         <span class="project-tree-filter__title">{{ filter.name | translate }}</span>
         <button mat-icon-button
             (click)="openModelCreationModal($event)"
-            [title]="'APP.PROJECT.CREATE_NEW' | translate">
+            [title]="'PROJECT_EDITOR.CREATE_NEW' | translate">
             <mat-icon>add</mat-icon>
         </button>
     </mat-expansion-panel-header>
@@ -32,7 +32,7 @@
                 <span class="{{ 'project-tree-filter__name ' +  filter.type }}">{{ item.name }}</span>
             </a>
             <div class="project-tree-filter__no-content" *ngIf="contentsAreEmpty()">
-                {{ 'APP.PROJECT.NO_CONTENT' | translate }}
+                {{ 'PROJECT_EDITOR.NO_CONTENT' | translate }}
             </div>
         </ng-container>
         <ama-upload-file-button

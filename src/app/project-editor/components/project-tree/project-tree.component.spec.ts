@@ -30,8 +30,8 @@ describe('ProjectTreeFilterComponent ', () => {
     let component: ProjectTreeComponent;
     let helper: ProjectTreeHelper;
     const mockFilters = [
-        { type: PROCESS, name: 'APP.PROJECT.TREE.PROCESSES', icon: 'device_hub' },
-        { type: FORM, name: 'APP.PROJECT.TREE.FORMS', icon: 'subject' },
+        { type: PROCESS, name: 'PROJECT_EDITOR.TREE.PROCESSES', icon: 'device_hub' },
+        { type: FORM, name: 'PROJECT_EDITOR.TREE.FORMS', icon: 'subject' },
     ];
 
     const projectId = 'projectId';

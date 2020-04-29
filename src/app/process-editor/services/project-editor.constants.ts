@@ -22,7 +22,7 @@ export const PROJECT_EDITOR_LOGS = 'Project Editor';
 export function getProjectLogInitiator(extra?: any): LogMessageInitiator {
     return {
         key: PROJECT_EDITOR_LOGS,
-        displayName: 'APP.PROJECT.NAME',
+        displayName: 'PROJECT_EDITOR.NAME',
         extra
     };
 }

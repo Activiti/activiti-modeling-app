@@ -6,7 +6,7 @@
             [matMenuTriggerFor]="menu"
             data-automation-id="create-button"
             class="adf-sidebar-action-menu-button mat-raised-button">
-            <span class="adf-sidebar-action-menu-text">{{ 'APP.PROJECT.NEW_MENU.LABEL' | translate }}</span>
+            <span class="adf-sidebar-action-menu-text">{{ 'PROJECT_EDITOR.NEW_MENU.LABEL' | translate }}</span>
             <mat-icon>arrow_drop_down</mat-icon>
         </button>
 
@@ -17,11 +17,11 @@
         <mat-menu #menu="matMenu" class="app-navigation-options">
             <button mat-menu-item [matMenuTriggerFor]="create" data-automation-id="app-navigation-create">
                 <mat-icon>add</mat-icon>
-                <span>{{ 'APP.PROJECT.NEW_MENU.CREATE' | translate }}</span>
+                <span>{{ 'PROJECT_EDITOR.NEW_MENU.CREATE' | translate }}</span>
             </button>
             <button mat-menu-item [matMenuTriggerFor]="upload" data-automation-id="app-navigation-upload">
                 <mat-icon>file_upload</mat-icon>
-                <span>{{ 'APP.PROJECT.NEW_MENU.IMPORT' | translate }}</span>
+                <span>{{ 'PROJECT_EDITOR.NEW_MENU.IMPORT' | translate }}</span>
             </button>
         </mat-menu>
 

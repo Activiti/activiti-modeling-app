@@ -93,7 +93,7 @@ export class ProjectEffects extends BaseEffects {
         return this.projectEditorService.fetchProject(projectId).pipe(
             switchMap(project => of(new GetProjectSuccessAction(project))),
             catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.GET_PROJECT'), e)
+                this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.GET_PROJECT'), e)
             )
         );
     }
@@ -103,10 +103,10 @@ export class ProjectEffects extends BaseEffects {
             switchMap(response => {
                 this.downloadService.downloadResource(name, response, '.zip');
                 return [
-                    this.logFactory.logInfo(getProjectEditorLogInitiator(), 'APP.PROJECT.EXPORT_SUCCESS')
+                    this.logFactory.logInfo(getProjectEditorLogInitiator(), 'PROJECT_EDITOR.EXPORT_SUCCESS')
                 ];
             }),
-            catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'APP.PROJECT.ERROR.EXPORT_PROJECT'), e)));
+            catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.EXPORT_PROJECT'), e)));
     }
 
     private exportProjectAttempt(payload: ExportProjectAttemptPayload) {
@@ -119,8 +119,8 @@ export class ProjectEffects extends BaseEffects {
     private validateProject(projectId: string) {
         return this.projectEditorService.validateProject(projectId).pipe(
             switchMap(() => [
-                new SnackbarInfoAction('APP.PROJECT.PROJECT_VALID'),
-                this.logFactory.logInfo(getProjectEditorLogInitiator(), 'APP.PROJECT.PROJECT_VALID')
+                new SnackbarInfoAction('PROJECT_EDITOR.PROJECT_VALID'),
+                this.logFactory.logInfo(getProjectEditorLogInitiator(), 'PROJECT_EDITOR.PROJECT_VALID')
             ]),
             catchError(response => this.genericErrorHandler(this.handleValidationError.bind(this, response, null), response)));
     }

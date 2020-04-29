@@ -23,7 +23,7 @@ export const PROCESS_ICON = 'device_hub';
 export function createProcessesFilter(processesFilterDataAdapter: ProcessesFilterDataAdapter): ModelFilter {
     return {
         type: PROCESS,
-        name: 'APP.PROJECT.TREE.PROCESSES',
+        name: 'PROJECT_EDITOR.TREE.PROCESSES',
         icon: PROCESS_ICON,
         adapter: processesFilterDataAdapter,
         order: 0
