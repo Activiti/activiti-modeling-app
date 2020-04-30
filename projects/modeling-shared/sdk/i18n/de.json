@@ -4,6 +4,7 @@
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Eingefügte Werte müssen diesem Muster entsprechen"
     },
     "ALL": "Alle",
+    "VALUE": "Wert",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Ein Name ist erforderlich",

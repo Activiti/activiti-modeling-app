@@ -18,6 +18,7 @@
       "SHOW": "Visa konnektorer med mallar i vänster sidofält",
       "CANCEL": "Avbryt",
       "APPLY": "Tillämpa"
-    }
+    },
+    "NAME": "Konnektorseditor"
   }
 }

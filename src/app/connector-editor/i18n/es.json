@@ -18,6 +18,7 @@
       "SHOW": "Mostrar conectores con plantillas en la barra lateral izquierda",
       "CANCEL": "Cancelar",
       "APPLY": "Aplicar"
-    }
+    },
+    "NAME": "Editor de conectores"
   }
 }

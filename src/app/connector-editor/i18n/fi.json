@@ -18,6 +18,7 @@
       "SHOW": "Näytä liittimet mallinnusten vieressä vasemmassa sivupalkissa",
       "CANCEL": "Peruuta",
       "APPLY": "Käytä"
-    }
+    },
+    "NAME": "Liitineditori"
   }
 }

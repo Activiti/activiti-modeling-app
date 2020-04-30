@@ -4,6 +4,7 @@
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Innlimte verdier må følge dette mønsteret"
     },
     "ALL": "Alle",
+    "VALUE": "Verdi",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Et navn er påkrevd",

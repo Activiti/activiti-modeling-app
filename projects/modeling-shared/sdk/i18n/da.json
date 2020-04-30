@@ -4,6 +4,7 @@
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "De indsatte værdier skal følge dette mønster"
     },
     "ALL": "Alle",
+    "VALUE": "Værdi",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Der skal angives et navn",

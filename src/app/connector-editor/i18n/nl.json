@@ -18,6 +18,7 @@
       "SHOW": "Connectors weergeven met sjablonen op de linkerzijbalk",
       "CANCEL": "Annuleren",
       "APPLY": "Toepassen"
-    }
+    },
+    "NAME": "Connectoreditor"
   }
 }

@@ -4,6 +4,7 @@
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Geplakte waarden moeten dit patroon volgen"
     },
     "ALL": "Alle",
+    "VALUE": "Waarde",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Een naam is vereist",

@@ -1,6 +1,6 @@
 {
   "CONNECTOR_EDITOR": {
-    "DOWNLOAD_CONNECTOR": "Download forbindelse",
+    "DOWNLOAD_CONNECTOR": "Downloade forbindelse",
     "VALIDATE_CONNECTOR": "Validér forbindelse",
     "SAVE_CONNECTOR": "Gem forbindelse",
     "CONNECTOR_VALID": "Forbindelse er gyldig",
@@ -18,6 +18,7 @@
       "SHOW": "Vis forbindelser med skabeloner på vestre sidepanel",
       "CANCEL": "Annuller",
       "APPLY": "Anvend"
-    }
+    },
+    "NAME": "Forbindelseseditor"
   }
 }

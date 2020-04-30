@@ -4,6 +4,7 @@
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Les valeurs collées doivent correspondre à ce modèle"
     },
     "ALL": "Tout",
+    "VALUE": "Valeur",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Vous devez spécifier un nom",
@@ -31,7 +32,7 @@
       "NO_PROCESS_PROPERTIES": "Aucune propriété de processus",
       "NO_PAYLOAD": "Le message n'a pas de charge utile. Ajoutez une charge utile dans l'événement d'envoi de message.",
       "CLEAR_ASSIGNMENT": "Effacer l'affectation",
-      "NONE": "Aucun(e)"
+      "NONE": "Aucune"
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Traiter les messages",
@@ -55,7 +56,7 @@
       "OUTPUT_PARAMETER": "Paramètre de sortie",
       "VALUE_MAPPING": "Valeur",
       "EXPRESSION_MAPPING": "Expression",
-      "NONE": "Aucun(e)",
+      "NONE": "Aucune",
       "TYPE": "Type"
     }
   }

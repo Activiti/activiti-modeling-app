@@ -4,6 +4,7 @@
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Os valores colados devem seguir este padrão"
     },
     "ALL": "Todos",
+    "VALUE": "Valor",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "O nome é obrigatório",

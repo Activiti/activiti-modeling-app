@@ -18,6 +18,7 @@
       "SHOW": "Afficher les connecteurs avec modèles dans la barre latérale de gauche",
       "CANCEL": "Annuler",
       "APPLY": "Appliquer"
-    }
+    },
+    "NAME": "Editeur de connecteurs"
   }
 }

@@ -4,6 +4,7 @@
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Liitettyjen arvojen on noudatettava tätä kaavaa"
     },
     "ALL": "Kaikki",
+    "VALUE": "Arvo",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Nimi on pakollinen",

@@ -4,6 +4,7 @@
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Vkládané hodnoty musí vyhovovat tomuto vzoru"
     },
     "ALL": "Vše",
+    "VALUE": "Hodnota",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Název je povinný.",
@@ -31,7 +32,7 @@
       "NO_PROCESS_PROPERTIES": "Žádné vlastnosti procesu",
       "NO_PAYLOAD": "Zpráva nemá žádnou datovou část. Přidejte datovou část do události aktivace zprávy.",
       "CLEAR_ASSIGNMENT": "Vymazat přiřazení",
-      "NONE": "Žádné"
+      "NONE": "Žádný"
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Zpracování zpráv",
@@ -55,7 +56,7 @@
       "OUTPUT_PARAMETER": "Výstupní parametr",
       "VALUE_MAPPING": "Hodnota",
       "EXPRESSION_MAPPING": "Výraz",
-      "NONE": "Žádné",
+      "NONE": "Žádný",
       "TYPE": "Typ"
     }
   }

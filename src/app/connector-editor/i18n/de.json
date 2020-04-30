@@ -18,6 +18,7 @@
       "SHOW": "Connector mit Vorlagen in der linken Seitenleiste anzeigen",
       "CANCEL": "Abbrechen",
       "APPLY": "Anwenden"
-    }
+    },
+    "NAME": "Connector-Editor"
   }
 }

@@ -4,6 +4,7 @@
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Вставляемые значения должны соответствовать данному шаблону"
     },
     "ALL": "Все",
+    "VALUE": "Значение",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Необходимо указать имя",

@@ -4,6 +4,7 @@
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Inklistrade värden måste följa detta mönster"
     },
     "ALL": "Alla",
+    "VALUE": "Värde",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Ett namn krävs",

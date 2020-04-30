@@ -4,6 +4,7 @@
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "I valori incollati devono seguire questo schema"
     },
     "ALL": "Tutti",
+    "VALUE": "Valore",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "È obbligatorio specificare un nome",
@@ -18,7 +19,7 @@
       "TABLE": {
         "COLUMN_NAME": "Nome",
         "COLUMN_TYPE": "Tipo",
-        "COLUMN_REQUIRED": "Obbligatorio",
+        "COLUMN_REQUIRED": "Campo obbligatorio",
         "COLUMN_VALUE": "Valore",
         "NO_PROPERTIES": "Selezionare o creare una variabile per visualizzarne le proprietà"
       }

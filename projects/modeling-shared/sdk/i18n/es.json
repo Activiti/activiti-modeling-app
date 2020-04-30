@@ -4,6 +4,7 @@
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Los valores pegados deben seguir este patrón"
     },
     "ALL": "Todos",
+    "VALUE": "Valor",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Se requiere un nombre",
@@ -18,7 +19,7 @@
       "TABLE": {
         "COLUMN_NAME": "Nombre",
         "COLUMN_TYPE": "Tipo",
-        "COLUMN_REQUIRED": "Obligatorio",
+        "COLUMN_REQUIRED": "Requerido",
         "COLUMN_VALUE": "Valor",
         "NO_PROPERTIES": "Seleccione o cree una variable para ver sus propiedades"
       }
@@ -31,7 +32,7 @@
       "NO_PROCESS_PROPERTIES": "Sin propiedades de proceso",
       "NO_PAYLOAD": "El mensaje no tiene carga. Añada una carga en el evento de lanzamiento del mensaje.",
       "CLEAR_ASSIGNMENT": "Eliminar asignación",
-      "NONE": "Ninguna"
+      "NONE": "Ninguno"
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Procesar mensajes",
@@ -55,7 +56,7 @@
       "OUTPUT_PARAMETER": "Parámetro de salida",
       "VALUE_MAPPING": "Valor",
       "EXPRESSION_MAPPING": "Expresión",
-      "NONE": "Ninguna",
+      "NONE": "Ninguno",
       "TYPE": "Tipo"
     }
   }

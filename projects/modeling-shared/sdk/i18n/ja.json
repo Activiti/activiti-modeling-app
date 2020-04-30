@@ -4,6 +4,7 @@
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "貼り付ける値は、このパターンに従っている必要があります"
     },
     "ALL": "すべて",
+    "VALUE": "値",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "名前を指定してください",

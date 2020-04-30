@@ -4,6 +4,7 @@
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "粘贴的值必须采用此模式"
     },
     "ALL": "全部",
+    "VALUE": "值",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "需要名称",
