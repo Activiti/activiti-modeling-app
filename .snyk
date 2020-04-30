@@ -1,0 +1,26 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - lodash:
+        patched: '2020-04-30T23:53:44.656Z'
+    - bpmn-js-properties-panel > lodash:
+        patched: '2020-04-30T23:53:44.656Z'
+    - protractor-retry-angular-cli > lodash:
+        patched: '2020-04-30T23:53:44.656Z'
+    - save > async > lodash:
+        patched: '2020-04-30T23:53:44.656Z'
+    - dmn-js > dmn-js-shared > inferno > opencollective > inquirer > lodash:
+        patched: '2020-04-30T23:53:44.656Z'
+    - dmn-js > dmn-js-decision-table > inferno > opencollective > inquirer > lodash:
+        patched: '2020-04-30T23:53:44.656Z'
+    - dmn-js > dmn-js-literal-expression > inferno > opencollective > inquirer > lodash:
+        patched: '2020-04-30T23:53:44.656Z'
+    - dmn-js > dmn-js-decision-table > dmn-js-shared > inferno > opencollective > inquirer > lodash:
+        patched: '2020-04-30T23:53:44.656Z'
+    - dmn-js > dmn-js-drd > dmn-js-shared > inferno > opencollective > inquirer > lodash:
+        patched: '2020-04-30T23:53:44.656Z'
+    - dmn-js > dmn-js-literal-expression > dmn-js-shared > inferno > opencollective > inquirer > lodash:
+        patched: '2020-04-30T23:53:44.656Z'
