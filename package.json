@@ -13,7 +13,9 @@
     "reinstall": "npm run clean && npm install",
     "clean": "rimraf dist node_modules package-lock.json .tmp out-tsc",
     "update-package-version": "./scripts/update-package-version.sh",
-    "dep-graph": "nx dep-graph"
+    "dep-graph": "nx dep-graph",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "husky": {
     "hooks": {
@@ -98,7 +100,8 @@
     "uuid": "3.3.2",
     "web-animations-js": "2.3.1",
     "xml-js": "1.6.8",
-    "zone.js": "0.8.29"
+    "zone.js": "0.8.29",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@alfresco/adf-cli": "3.8.0-f76e6a3516da6e5b0fbc831b8d6fe56756713849",
@@ -174,5 +177,6 @@
     "webpack-bundle-analyzer": "3.6.0",
     "webpack-cli": "3.1.0",
     "yargs": "^13.2.4"
-  }
+  },
+  "snyk": true
 }
