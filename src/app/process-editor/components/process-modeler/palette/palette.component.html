@@ -28,12 +28,15 @@
 
 <ng-template #clickableElement let-item>
     <div class="entry-parent">
-        <div class="entry svg" *ngIf="paletteIconSvg[item?.svg]" 
-            [attr.data-automation-id]="item.group + '::' + item.type"
-            [innerHTML]="paletteIconSvg[item?.svg]"
-            draggable="true"
-            (click)="onClick(item, $event)"
-            (dragstart)="onDrag(item, $event)">
+        <div class="entry svg" *ngIf="paletteIconSvg[item?.svg]">
+            <button
+                [title]="item.title | translate"
+                [attr.data-automation-id]="item.group + '::' + item.type"
+                [innerHTML]="paletteIconSvg[item?.svg]"
+                draggable="true"
+                (click)="onClick(item, $event)"
+                (dragstart)="onDrag(item, $event)">
+            </button>
         </div>
         <div *ngIf="!paletteElementIcons[item?.svg]"
             class="entry {{item.icon}}"

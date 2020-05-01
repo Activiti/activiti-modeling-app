@@ -90,6 +90,11 @@
             &.svg {
                 width: 20px;
                 height: 20px;
+
+                button {
+                    margin-left: -13px;
+                    height: 3px;
+                }
             }
             button {
                 cursor: pointer;

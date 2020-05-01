@@ -36,13 +36,13 @@ describe('Palette component', () => {
         {   group: 'tool',
             type: 'test',
             icon: 'test',
-            title: '',
+            title: 'test-title',
             clickable: true,
             draggable: true
         },
         {   group: 'container',
-            type: 'test',
-            icon: 'test1',
+            type: 'container',
+            icon: 'container',
             title: '',
             children: [
                 {   group: 'tool',
@@ -58,6 +58,15 @@ describe('Palette component', () => {
                     title: '',
                     clickable: true,
                     draggable: true
+                },
+                {
+                    group: 'svg',
+                    type: 'svg',
+                    icon: 'svg',
+                    title: 'svg-title',
+                    clickable: true,
+                    draggable: true,
+                    svg: 'svg'
                 }
             ]
         }
@@ -108,10 +117,10 @@ describe('Palette component', () => {
 
     it('test onDrag method', () => {
         const btn = fixture.debugElement.query(By.css('.test button'));
+
         const event = new CustomEvent('dragstart');
         spyOn(event, 'preventDefault').and.stub();
         btn.nativeElement.dispatchEvent(event);
         expect(processModelerPaletteService.delegateEvent).toHaveBeenCalledWith(component.paletteElements[0], event);
-
     });
 });
