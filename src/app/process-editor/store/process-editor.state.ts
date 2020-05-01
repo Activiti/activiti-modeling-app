@@ -28,12 +28,16 @@ export function createSelectedElement(element): SelectedProcessElement {
                 if (element.businessObject.$parent.$type === BpmnElement.SubProcess) {
                     return element.businessObject.$parent.$parent.id;
                 } else if (element.type === BpmnElement.Participant) {
-                    return element.businessObject.processRef.id;
+                    return getProcessRefId(element);
                 }
                 return element.businessObject.$parent.id;
             }
         }
     };
+}
+
+export function getProcessRefId(element: any) {
+    return element.businessObject.processRef ? element.businessObject.processRef.id : null;
 }
 
 export interface SelectedProcessElement {
