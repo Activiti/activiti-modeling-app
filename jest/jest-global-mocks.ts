@@ -35,7 +35,7 @@ Object.defineProperty(window, 'getComputedStyle', {
 Object.defineProperty(window, 'matchMedia', { value: () => ({ matches: true }) });
 Object.defineProperty(window, 'CSS', { value: '' });
 
-// fix https://github.com/Alfresco/alfresco-ng2-components/blob/development/lib/core/services/alfresco-api.service.ts#L124
+// fix https://github.com/Alfresco/alfresco-ng2-components/blob/develop/lib/core/services/alfresco-api.service.ts#L124
 Object.defineProperty(window, 'location', { value: { origin: ''} });
 
 /**

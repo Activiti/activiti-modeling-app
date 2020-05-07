@@ -25,7 +25,7 @@ npm install
 Use one of the following commands to run the application:
 
 ```bash
-# Development server
+# develop server
 npm start
 
 # Production server
@@ -37,7 +37,7 @@ npm start -- --prod
 Use one of the following commands to build the application:
 
 ```bash
-# Development build
+# develop build
 npm run build
 
 # Production build
