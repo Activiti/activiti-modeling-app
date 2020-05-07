@@ -54,7 +54,7 @@ npm test
 
 First build the application as above.
 
-Then `docker build . -t alfresco/alfresco-modeler-app:latest` to build the image
+Then `docker build . -t alfresco/alfresco-apps:latest` to build the image
 
 Start with below (substituting with values for your deployment):
 
