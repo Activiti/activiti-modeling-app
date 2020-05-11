@@ -172,7 +172,9 @@ describe('ProcessHeaderComponent', () => {
 
     it('should download process image as svg', async () => {
         spyOn(store, 'dispatch');
+        spyOn(component, 'isDiagramTabSelected').and.returnValue(true);
 
+        fixture.detectChanges();
         const button = fixture.debugElement.query(By.css('[data-automation-id="process-editor-download-svg-button"]'));
         button.triggerEventHandler('click', {});
         fixture.detectChanges();
@@ -186,5 +188,17 @@ describe('ProcessHeaderComponent', () => {
         });
 
         expect(store.dispatch).toHaveBeenCalledWith(payload);
+    });
+
+    it('should hide download image as svg if is not on diagram tab', () => {
+        const isDiagramTabSelectSpy = spyOn(component, 'isDiagramTabSelected').and.returnValue(true);
+        fixture.detectChanges();
+        let button = fixture.debugElement.query(By.css('[data-automation-id="process-editor-download-svg-button"]'));
+        expect(button).toBeDefined();
+
+        isDiagramTabSelectSpy.and.returnValue(false);
+        fixture.detectChanges();
+        button = fixture.debugElement.query(By.css('[data-automation-id="process-editor-download-svg-button"]'));
+        expect(button).toBeNull();
     });
 });

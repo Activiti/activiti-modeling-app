@@ -58,6 +58,7 @@ export interface ProcessEditorState {
     loading: boolean;
     selectedElement: SelectedProcessElement;
     toolbar: ToolbarState;
+    modelContext: ProcessModelContext;
 }
 
 export interface ProcessValidationResponse {
@@ -67,6 +68,12 @@ export interface ProcessValidationResponse {
     path: string;
     status: number;
     timestamp: string;
+}
+
+export enum ProcessModelContext {
+    diagram = 'model-diagram',
+    bpmn = 'model-bpmn',
+    extension = 'model-extension'
 }
 
 export const processAdapter = createEntityAdapter<Process>();
@@ -80,6 +87,7 @@ export function getInitialProcessEditorState(): ProcessEditorState {
             userMessage: '',
             logHistoryVisible: false,
             logs: []
-        }
+        },
+        modelContext: ProcessModelContext.diagram
     };
 }

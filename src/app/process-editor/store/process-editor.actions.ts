@@ -17,7 +17,7 @@
 
 import { Action } from '@ngrx/store';
 import { Process, ProcessContent, UpdateServiceParametersAction, ModelExtensions, EntityDialogForm, UploadFileAttemptPayload } from '@alfresco-dbp/modeling-shared/sdk';
-import { SelectedProcessElement } from './process-editor.state';
+import { SelectedProcessElement, ProcessModelContext } from './process-editor.state';
 import { Update } from '@ngrx/entity';
 
 export interface UpdateProcessExtensionsPayload {
@@ -178,6 +178,12 @@ export const REMOVE_ELEMENT_MAPPING = '[Process] Remove element mapping';
 export class RemoveElementMappingAction implements Action {
     readonly type = REMOVE_ELEMENT_MAPPING;
     constructor(public elementId: string, public processModelId: string, public bpmnProcessElementId: string) {}
+}
+
+export const CHANGE_PROCESS_MODEL_ACTION = '[Process] Process tab changed';
+export class ChangeProcessModelContextAction implements Action {
+    readonly type = CHANGE_PROCESS_MODEL_ACTION;
+    constructor(public name: ProcessModelContext) {}
 }
 
 export type ProcessActions =

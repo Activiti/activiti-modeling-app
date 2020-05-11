@@ -23,7 +23,9 @@ import {
     RemoveDiagramElementAction,
     REMOVE_DIAGRAM_ELEMENT,
     GET_PROCESS_ATTEMPT,
-    GET_PROCESS_SUCCESS
+    GET_PROCESS_SUCCESS,
+    ChangeProcessModelContextAction,
+    CHANGE_PROCESS_MODEL_ACTION
 } from './process-editor.actions';
 
 export function processEditorReducer(
@@ -47,6 +49,9 @@ export function processEditorReducer(
 
         case REMOVE_DIAGRAM_ELEMENT:
             return removeElement(state, <RemoveDiagramElementAction> action);
+
+        case CHANGE_PROCESS_MODEL_ACTION:
+            return setSelectedTab(state, <ChangeProcessModelContextAction> action);
 
         default:
             newState = Object.assign({}, state);
@@ -75,4 +80,11 @@ function removeElement(state: ProcessEditorState, action: RemoveDiagramElementAc
     }
 
     return { ...state };
+}
+
+function setSelectedTab(state: ProcessEditorState, action: ChangeProcessModelContextAction): ProcessEditorState {
+    return {
+        ...state,
+        modelContext: action.name
+    };
 }

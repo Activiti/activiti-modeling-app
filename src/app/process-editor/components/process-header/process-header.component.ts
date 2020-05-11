@@ -37,6 +37,8 @@ import { documentationHandler } from '../../services/bpmn-js/property-handlers/d
 import { modelNameHandler } from '../../services/bpmn-js/property-handlers/model-name.handler';
 import { Actions, ofType } from '@ngrx/effects';
 import { takeUntil, tap } from 'rxjs/operators';
+import { selectProcessModelContext } from '../../store/process-editor.selectors';
+import { ProcessModelContext } from '../../store/process-editor.state';
 
 @Component({
     selector: 'ama-process-header',
@@ -50,6 +52,7 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
     @Input() breadcrumbs$: Observable<BreadcrumbItem[]>;
     @Input() disableSave = false;
     public modeler: Bpmn.Modeler;
+    private modelContext: ProcessModelContext;
 
     constructor(
         private store: Store<AmaState>,
@@ -63,6 +66,10 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
             tap(() => this.store.dispatch(this.saveAction())),
             takeUntil(this.destroy$)
         ).subscribe(null);
+
+        this.store.select(selectProcessModelContext).pipe(
+            takeUntil(this.destroy$))
+            .subscribe(context => this.modelContext = context);
     }
 
     ngOnDestroy(): void {
@@ -77,6 +84,10 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
             description: documentationHandler.get(element),
         };
         return new UpdateProcessAttemptAction({ processId: this.process.id, content: this.content, metadata });
+    }
+
+    isDiagramTabSelected(): boolean {
+        return this.modelContext === ProcessModelContext.diagram;
     }
 
     onSaveClick(): void {

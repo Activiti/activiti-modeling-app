@@ -5,7 +5,7 @@
 
     <div class="adf-toolbar--spacer"></div>
 
-    <button mat-icon-button
+    <button mat-icon-button *ngIf="isDiagramTabSelected()"
         data-automation-id="process-editor-download-svg-button"
         [title]="'PROCESS_EDITOR.SAVE_PROCESS_IMAGE' | translate"
         (click)="onSaveProcessImage(process)">

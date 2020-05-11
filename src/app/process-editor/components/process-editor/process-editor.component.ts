@@ -38,9 +38,10 @@ import {
     CodeEditorPosition,
     ToolbarMessageAction
 } from '@alfresco-dbp/modeling-shared/sdk';
-import { UpdateProcessExtensionsAction } from '../../store/process-editor.actions';
+import { UpdateProcessExtensionsAction, ChangeProcessModelContextAction } from '../../store/process-editor.actions';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
 import { MatTabChangeEvent } from '@angular/material';
+import { ProcessModelContext } from '../../store/process-editor.state';
 
 @Component({
     templateUrl: './process-editor.component.html',
@@ -59,6 +60,11 @@ export class ProcessEditorComponent implements OnInit {
         'PROCESS_EDITOR.TABS.DIAGRAM_EDITOR',
         'PROCESS_EDITOR.TABS.RAW_EDITOR',
         'PROCESS_EDITOR.TABS.EXTENSIONS_EDITOR'
+    ];
+    modelContext = [
+        ProcessModelContext.diagram,
+        ProcessModelContext.bpmn,
+        ProcessModelContext.extension
     ];
     selectedTabIndex = 0;
     extensionFileUri$: Observable<string>;
@@ -134,6 +140,7 @@ export class ProcessEditorComponent implements OnInit {
     selectedTabChange(event: MatTabChangeEvent) {
         this.selectedTabIndex = event.index;
         this.store.dispatch(new ToolbarMessageAction(this.tabNames[this.selectedTabIndex]));
+        this.store.dispatch(new ChangeProcessModelContextAction(this.modelContext[this.selectedTabIndex]));
     }
 
     codeEditorPositionChanged(position: CodeEditorPosition) {
