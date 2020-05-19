@@ -43,6 +43,7 @@ export enum VariableMappingType {
 
 export interface MappingRowModel {
     name: string;
+    label?: string;
     description?: string;
     value: any;
     required?: boolean;

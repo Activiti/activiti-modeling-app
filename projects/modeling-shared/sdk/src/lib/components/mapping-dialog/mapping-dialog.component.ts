@@ -268,15 +268,17 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
 
     addOutputMapping(defaultOutputParameter: string) {
         let type = undefined;
+        let label = undefined;
         let mappingValueType = MappingValueType.expression;
         if (defaultOutputParameter) {
             const outputParameter = this.outputParameters.find(parameter => parameter.name === defaultOutputParameter);
             if (outputParameter) {
+                label = outputParameter.label;
                 type = outputParameter.type;
                 mappingValueType = MappingValueType.variable;
             }
         }
-        this.dataSource = this.dataSource.concat({ name: defaultOutputParameter, value: undefined, type: type, mappingValueType: mappingValueType });
+        this.dataSource = this.dataSource.concat({ name: defaultOutputParameter, label, value: undefined, type, mappingValueType });
         this.editRow(this.dataSource.length - 1);
     }
 

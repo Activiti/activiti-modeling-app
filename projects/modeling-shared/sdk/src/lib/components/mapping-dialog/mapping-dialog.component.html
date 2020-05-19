@@ -35,7 +35,7 @@
                             [attr.data-automation-id]="'variable-name-cell-' + i"
                             class="ellipsis-cell {{element.readOnly ? 'mat-select-placeholder input-disabled' : ''}}"
                             [ngClass]="(mappingType === 'output' && element.mappingValueType !== 'variable') ? 'non-variable-mapping': 'variable-mapping'">
-                            {{element.name  | variablevalue}}<span *ngIf="element.required && mappingType === 'input'"
+                            {{element.label || element.name  | variablevalue}}<span *ngIf="element.required && mappingType === 'input'"
                                 class="required-indicator">&nbsp;*</span></mat-cell>
                     </ng-container>
 
@@ -91,7 +91,7 @@
                         <mat-select [disabled]="true" [value]="selectedDestination"
                             data-automation-id="input-parameter-destination-select">
                             <mat-option *ngFor="let property of inputParameters" [value]="property.name">
-                                {{ property.name }}
+                                {{ property.label || property.name }}
                             </mat-option>
                         </mat-select>
                     </ng-container>
@@ -103,7 +103,7 @@
                             (selectionChange)="outputMappingDestinationChange($event)">
                             <mat-option *ngFor="let property of filteredProcessVariables" [value]="property.name"
                                 [ngClass]="'process-variable-destination-option'">
-                                {{ property.name }}
+                                {{ property.label || property.name }}
                             </mat-option>
                         </mat-select>
                     </ng-container>
@@ -119,7 +119,7 @@
                                     <mat-option
                                         *ngFor="let property of getFilteredProcessProperties(dataSource[selectedRow].type)"
                                         [value]="property.name">
-                                        {{ property.name }}
+                                        {{ property.label || property.name }}
                                     </mat-option>
                                 </mat-select>
                             </ng-container>
@@ -135,7 +135,7 @@
                                     <mat-option
                                         *ngFor="let property of getFilteredOutputParameters(dataSource[selectedRow].type)"
                                         [value]="property.name">
-                                        {{ property.name }}
+                                        {{ property.label || property.name }}
                                     </mat-option>
                                 </mat-select>
                             </ng-container>

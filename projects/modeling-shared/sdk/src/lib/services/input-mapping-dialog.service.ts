@@ -49,6 +49,7 @@ export class InputMappingDialogService extends MappingDialogService {
             }
             dataSource.push({
                 name: parameter.name,
+                label: parameter.label,
                 description: parameter.description,
                 value: value,
                 type: parameter.type,

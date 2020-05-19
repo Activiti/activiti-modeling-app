@@ -210,6 +210,7 @@ export interface ModelExtensions {
 export interface EntityProperty {
     id: string;
     name: string;
+    label?: string;
     type: string;
     required?: boolean;
     value: string;
@@ -236,6 +237,7 @@ export interface ConnectorConfigParameter {
 export interface ConnectorParameter {
     id: string;
     name: string;
+    label?: string;
     description?: string;
     type: string;
     mappingValueType?: string;

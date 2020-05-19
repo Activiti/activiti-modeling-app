@@ -36,7 +36,7 @@ export class OutputMappingDialogService extends MappingDialogService {
     }
 
     dataSourceInit(mapping: ServiceParameterMapping, parameters: ConnectorParameter[], properties: EntityProperty[]): MappingRowModel[] {
-        const dataSource = [];
+        const dataSource: MappingRowModel[] = [];
 
         if (mapping === undefined || mapping === null) {
             mapping = {};
@@ -55,6 +55,7 @@ export class OutputMappingDialogService extends MappingDialogService {
 
             dataSource.push({
                 name: mapping[key].value,
+                label: outputParameter != null ? outputParameter.label : null,
                 description: outputParameter != null ? outputParameter.description : null,
                 value: key,
                 type: processVariable.type,
