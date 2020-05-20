@@ -221,4 +221,26 @@ describe('InputMappingTableComponent', () => {
 
         expect(component.optionsForParams['name'][0]).toEqual({ id: NoneValue, name: 'None' });
     });
+
+    it('should display the process selector if parameter\'s type is process and is value mapping', () => {
+        component.parameters[0].type = 'process';
+        component.parameters[0].required = false;
+        component.mappingTypes[component.parameters[0].name] = MappingType.value;
+        component.ngOnChanges();
+        fixture.detectChanges();
+
+        const processSelector = fixture.debugElement.query(By.css('.selector-process-input-mapping'));
+        expect(processSelector).not.toBeNull();
+    });
+
+    it('should display the process selector if parameter\'s type is process and is variable mapping', () => {
+        component.parameters[0].type = 'process';
+        component.parameters[0].required = false;
+        component.mappingTypes[component.parameters[0].name] = MappingType.variable;
+        component.ngOnChanges();
+        fixture.detectChanges();
+
+        const processValue = fixture.debugElement.query(By.css('.value-process-input-mapping'));
+        expect(processValue).not.toBeNull();
+    });
 });

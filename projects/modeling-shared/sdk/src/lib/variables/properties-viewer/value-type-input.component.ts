@@ -86,15 +86,17 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
             this.value = this.valueTypeInputRef.instance.value;
         }
 
-        this.valueTypeInput.clear();
-        const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(this.getInputItemImplementationClass(this.type));
+        if (changes.type) {
+            this.valueTypeInput.clear();
+            const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(this.getInputItemImplementationClass(this.type));
+            this.valueTypeInputRef = this.valueTypeInput.createComponent(factory);
+            this.valueTypeInputRef.instance.change.pipe(takeUntil(this.onDestroy$)).subscribe(inputValue => this.setInputValue(inputValue));
+        }
 
-        this.valueTypeInputRef = this.valueTypeInput.createComponent(factory);
         this.valueTypeInputRef.instance.disabled = this.disabled;
         this.valueTypeInputRef.instance.placeholder = this.placeholder;
         this.valueTypeInputRef.instance.extendedProperties = this.extendedProperties;
         this.writeValue(this.value);
-        this.valueTypeInputRef.instance.change.pipe(takeUntil(this.onDestroy$)).subscribe(inputValue => this.setInputValue(inputValue));
     }
 
     private getInputItemImplementationClass(type: string): Type<{}> {
