@@ -46,7 +46,8 @@
                     "PROCESS": "process",
                     "FILE": "file",
                     "SCRIPT": "script",
-                    "TRIGGER": "Trigger"
+                    "TRIGGER": "Trigger",
+                    "MODEL": "Content Model"
                 },
                 "DELETE": {
                     "PROJECT": "Are you sure you want to delete this project?",
@@ -58,7 +59,8 @@
                     "CONNECTOR": "Are you sure you want to delete this connector?",
                     "FILE": "Are you sure you want to delete this file?",
                     "SCRIPT": "Are you sure you want to delete this script?",
-                    "TRIGGER": "Are you sure you want to delete this Trigger?"
+                    "TRIGGER": "Are you sure you want to delete this Trigger?",
+                    "MODEL": "Are you sure you want to delete this Content Model?"
                 },
                 "SAVE": {
                     "PROCESS": "Are you sure you want to save this process?",
@@ -69,7 +71,8 @@
                     "CONNECTOR": "Are you sure you want to save this connector?",
                     "FILE": "Are you sure you want to save this file?",
                     "SCRIPT": "Are you sure you want to save this script?",
-                    "TRIGGER": "Are you sure you want to save this Trigger?"
+                    "TRIGGER": "Are you sure you want to save this Trigger?",
+                    "MODEL": "Are you sure you want to save this Content Model?"
                 },
                 "DOWNLOAD": {
                     "PROCESS": "Are you sure you want to download this process?",
@@ -81,7 +84,8 @@
                     "CONNECTOR": "Are you sure you want to download this connector?",
                     "FILE": "Are you sure you want to download this file?",
                     "SCRIPT": "Are you sure you want to download this script?",
-                    "TRIGGER": "Are you sure you want to download this Trigger?"
+                    "TRIGGER": "Are you sure you want to download this Trigger?",
+                    "MODEL": "Are you sure you want to download this Content Model?"
                 }
             }
         },
