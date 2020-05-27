@@ -26,7 +26,8 @@ import {
     DATA_API_TOKEN,
     FILE_API_TOKEN,
     SCRIPT_API_TOKEN,
-    TRIGGER_API_TOKEN
+    TRIGGER_API_TOKEN,
+    CONTENT_MODEL_API_TOKEN
 } from '../../api/api.interface';
 import { ACMProjectApi } from './project-api';
 import { ModelApiInterface } from '../../api/generalmodel-api.interface';
@@ -48,7 +49,9 @@ import {
     ActivitiScript,
     ActivitiScriptContent,
     Trigger,
-    TriggerContent
+    TriggerContent,
+    ContentModel,
+    ContentModelXML
 } from '../../api/types';
 
 @Injectable()
@@ -63,6 +66,7 @@ export class ACMApi implements AmaApi {
         @Inject(DATA_API_TOKEN) public Data: ModelApiInterface<DataType, DataContent>,
         @Inject(FILE_API_TOKEN) public File: ModelApiInterface<ActivitiFile, ActivitiFileContent>,
         @Inject(SCRIPT_API_TOKEN) public script: ModelApiInterface<ActivitiScript, ActivitiScriptContent>,
-        @Inject(TRIGGER_API_TOKEN) public trigger: ModelApiInterface<Trigger, TriggerContent>
+        @Inject(TRIGGER_API_TOKEN) public trigger: ModelApiInterface<Trigger, TriggerContent>,
+        @Inject(CONTENT_MODEL_API_TOKEN) public contentModel: ModelApiInterface<ContentModel, ContentModelXML>
     ) {}
 }

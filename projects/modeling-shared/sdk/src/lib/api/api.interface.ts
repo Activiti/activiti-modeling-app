@@ -36,7 +36,9 @@ import {
     ActivitiScript,
     ActivitiScriptContent,
     Trigger,
-    TriggerContent
+    TriggerContent,
+    ContentModel,
+    ContentModelXML
 } from './types';
 import { ModelSchemaApi } from './model-schema-api.interface';
 
@@ -50,7 +52,7 @@ export const FILE_API_TOKEN = new InjectionToken<ModelApiInterface<ActivitiFile,
 export const SCHEMA_API_TOKEN = new InjectionToken<ModelSchemaApi>('schema-api');
 export const SCRIPT_API_TOKEN = new InjectionToken<ModelApiInterface<ActivitiScript, ActivitiScriptContent>>('script-api');
 export const TRIGGER_API_TOKEN = new InjectionToken<ModelApiInterface<Trigger, TriggerContent>>('trigger-api');
-
+export const CONTENT_MODEL_API_TOKEN = new InjectionToken<ModelApiInterface<ContentModel, ContentModelXML>>('content-model-api');
 @Injectable()
 export abstract class AmaApi {
     public Project: ProjectApi;
@@ -63,4 +65,5 @@ export abstract class AmaApi {
     public File: ModelApiInterface<ActivitiFile, ActivitiFileContent>;
     public script: ModelApiInterface<ActivitiScript, ActivitiScriptContent>;
     public trigger: ModelApiInterface<Trigger, TriggerContent>;
+    public contentModel: ModelApiInterface<ContentModel, ContentModelXML>;
 }

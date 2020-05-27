@@ -30,6 +30,7 @@ export const DATA_ENTITY_KEY = 'data';
 export const FILES_ENTITY_KEY = 'files';
 export const SCRIPTS_ENTITY_KEY = 'scripts';
 export const TRIGGERS_ENTITY_KEY = 'triggers';
+export const CONTENT_MODELS_ENTITY_KEY = 'projectModels';
 
 export interface ModelEntitiesState extends EntityState<Model>  {
     loading: boolean;

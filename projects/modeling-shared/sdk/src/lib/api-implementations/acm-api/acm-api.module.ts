@@ -30,7 +30,8 @@ import {
     FILE_API_TOKEN,
     SCHEMA_API_TOKEN,
     SCRIPT_API_TOKEN,
-    TRIGGER_API_TOKEN
+    TRIGGER_API_TOKEN,
+    CONTENT_MODEL_API_TOKEN
 } from '../../api/api.interface';
 import { UiApiVariation } from './model-variations/ui-api-variation';
 import { DecisionTableApiVariation } from './model-variations/decision-table-api-variations';
@@ -45,6 +46,7 @@ import { FileApiVariation } from './model-variations/file-api-variation';
 import { ModelSchemaAcmApi } from './model-schema-api';
 import { ScriptApiVariation } from './model-variations/script-api-variation';
 import { TriggerApiVariation } from './model-variations/trigger-api-variation';
+import { ModelContentApiVariation } from './model-variations/content-api-variation';
 
 export function modelApiFactory (modelVariation: ModelApiVariation<any, any>, requestApiHelper: RequestApiHelper) {
     return new ModelApi(modelVariation, requestApiHelper);
@@ -93,7 +95,10 @@ export class ACMApiModule {
                 { provide: SCRIPT_API_TOKEN, useFactory: modelApiFactory, deps: [ScriptApiVariation, RequestApiHelper] },
 
                 TriggerApiVariation,
-                { provide: TRIGGER_API_TOKEN, useFactory: modelApiFactory, deps: [TriggerApiVariation, RequestApiHelper] }
+                { provide: TRIGGER_API_TOKEN, useFactory: modelApiFactory, deps: [TriggerApiVariation, RequestApiHelper] },
+
+                ModelContentApiVariation,
+                { provide: CONTENT_MODEL_API_TOKEN, useFactory: modelApiFactory, deps: [ModelContentApiVariation, RequestApiHelper] }
             ]
         };
     }

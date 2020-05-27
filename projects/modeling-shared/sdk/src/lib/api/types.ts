@@ -26,7 +26,7 @@ export type UI_TYPE = 'ui';
 export type FILE_TYPE = 'file';
 export type SCRIPT_TYPE = 'script';
 export type TRIGGER_TYPE = 'trigger';
-export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DATA_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE | TRIGGER_TYPE;
+export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DATA_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE | TRIGGER_TYPE | CUSTOM_MODEL_TYPE;
 
 export const PROJECT: PROJECT_TYPE = 'project';
 export const CUSTOM_MODEL: CUSTOM_MODEL_TYPE = 'model';
@@ -442,3 +442,9 @@ export interface TriggerContent {
 export interface Trigger extends Model {
     type: TRIGGER_TYPE;
 }
+
+export interface ContentModel extends Model {
+    type: CUSTOM_MODEL_TYPE;
+}
+
+export type ContentModelXML = string;
