@@ -548,12 +548,11 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         let isValid = false;
         if (this.isCandidateValid(candidates)) {
             if (candidates.candidateUsers !== undefined && candidates.candidateGroups !== undefined) {
-                if (this.isExpressionValid(candidates.candidateUsers) && this.isExpressionValid(candidates.candidateGroups)) {
+                if (this.isExpressionValid(candidates.candidateUsers) || this.isExpressionValid(candidates.candidateGroups)) {
                     isValid = true;
-            } else {
-                this.expressionForm.setErrors({ pattern: 'true' });
-            }
-
+                } else {
+                    this.expressionForm.setErrors({ pattern: 'true' });
+                }
             } else if ((candidates.candidateUsers && this.isExpressionValid(candidates.candidateUsers))
             || (candidates.candidateGroups && this.isExpressionValid(candidates.candidateGroups))) {
                 isValid = true;

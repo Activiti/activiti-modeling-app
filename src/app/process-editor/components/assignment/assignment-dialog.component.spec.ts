@@ -56,6 +56,7 @@ describe('AssignmentDialogComponent', () => {
 
     const mockCandidates =  { candidateUsers: '${var1}', candidateGroups: '${var2}' };
     const mockEmptyCandidates =  AssignmentDialogComponent.CANDIDATES_CONTENT;
+    const mockOneValidCandidate = JSON.stringify({ candidateUsers: '${var1}', candidateGroups: '${}' });
 
     const mockStreams = {
         processVariables: new BehaviorSubject(mockProcessVariable),
@@ -278,7 +279,7 @@ describe('AssignmentDialogComponent', () => {
             });
         }));
 
-        it('Should disable assign button if one of the candidates expression empty', async(() => {
+        it('Should disable assign button if both candidate expressions are empty', async(() => {
             mockStreams.assignments.next({
                 type: AssignmentType.expression,
                 assignment: AssignmentMode.candidates,
@@ -302,13 +303,13 @@ describe('AssignmentDialogComponent', () => {
                 const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
                 expect(editor).not.toBeNull();
                 expect(assignButton.nativeElement['disabled']).toBeTruthy();
-                component.onExpressionChange(JSON.stringify({ candidateUsers: '', candidateGroups: '${}' }));
+                component.onExpressionChange(mockEmptyCandidates);
                 fixture.detectChanges();
                 expect(assignButton.nativeElement['disabled']).toBeTruthy();
             });
         }));
 
-        it('Should be disable assign button if one of the candidates expression invalid', async(() => {
+        it('Should enable assign button if one of the two candidates expression is valid', async(() => {
             mockStreams.assignments.next({
                 type: AssignmentType.expression,
                 assignment: AssignmentMode.candidates,
@@ -332,13 +333,13 @@ describe('AssignmentDialogComponent', () => {
                 const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
                 expect(editor).not.toBeNull();
                 expect(assignButton.nativeElement['disabled']).toBeTruthy();
-                component.onExpressionChange(JSON.stringify(mockEmptyCandidates));
+                component.onExpressionChange(mockOneValidCandidate);
                 fixture.detectChanges();
-                expect(assignButton.nativeElement['disabled']).toBeTruthy();
+                expect(assignButton.nativeElement['disabled']).toBeFalsy();
             });
         }));
 
-        it('Should be disable assign button if assignee expression is invalid', async(() => {
+        it('Should disable assign button if assignee expression is invalid', async(() => {
             mockStreams.assignments.next({
                 type: AssignmentType.expression,
                 assignment: AssignmentMode.assignee,
@@ -361,7 +362,7 @@ describe('AssignmentDialogComponent', () => {
                 const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
                 expect(editor).not.toBeNull();
                 expect(assignButton.nativeElement['disabled']).toBeTruthy();
-                component.onExpressionChange(JSON.stringify(AssignmentDialogComponent.ASSIGNEE_CONTENT));
+                component.onExpressionChange(AssignmentDialogComponent.ASSIGNEE_CONTENT);
                 fixture.detectChanges();
                 expect(assignButton.nativeElement['disabled']).toBeTruthy();
             });
