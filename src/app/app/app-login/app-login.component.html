@@ -7,11 +7,10 @@
     <mat-icon>settings</mat-icon>
 </a>
 
-<adf-login #amalogin
+<adf-login
     [showLoginActions]="false"
-    [fieldsValidation]="customValidation"
     [showRememberMe]="false"
-    copyrightText="© 2017 - 2019 Alfresco Software, Inc. All rights reserved."
-    (success)="onLogin($event)"
+    [copyrightText]="'application.copyright' | adfAppConfig | translate"
+    (success)="onLogin()"
     (error)="onError($event)">
 </adf-login>

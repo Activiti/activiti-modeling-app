@@ -15,46 +15,22 @@
  * limitations under the License.
  */
 
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
-import { Validators } from '@angular/forms';
 
 @Component({
     templateUrl: './app-login.component.html'
 })
-export class AppLoginComponent implements OnInit {
-    @ViewChild('amalogin') amalogin: any;
-
-    customValidation: any;
-    customMinLength = 2;
-    form: any;
-
+export class AppLoginComponent {
     constructor(private router: Router, private logService: LogService) {
-        this.customValidation = {
-            username: ['', Validators.compose([Validators.required, Validators.minLength(this.customMinLength)])],
-            password: ['', Validators.required]
-        };
-
-        this.form = {
-            username: '',
-            password: ''
-        };
     }
 
-    ngOnInit() {
-        this.amalogin.addCustomValidationError('username', 'required', 'LOGIN.MESSAGES.USERNAME-REQUIRED');
-        this.amalogin.addCustomValidationError('username', 'minlength', 'LOGIN.MESSAGES.USERNAME-MIN', {
-            minLength: this.customMinLength
-        });
-        this.amalogin.addCustomValidationError('password', 'required', 'LOGIN.MESSAGES.PASSWORD-REQUIRED');
-    }
-
-    onLogin($event) {
+    onLogin() {
         this.router.navigate(['/home']);
     }
 
-    onError($event) {
-        this.logService.error($event);
+    onError(err: any) {
+        this.logService.error(err);
     }
 }
