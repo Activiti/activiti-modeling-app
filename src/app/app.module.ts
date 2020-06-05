@@ -68,6 +68,8 @@ import { registerLocaleData } from '@angular/common';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AmaModelSchemaLoaderGuard } from './common/services/ama-model-schema-loader-guard.service';
 import { getBackendLogInitiator } from './common/services/application.constants';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateLoaderService } from '@alfresco/adf-core';
 
 registerLocaleData(localeJa);
 
@@ -80,7 +82,12 @@ registerLocaleData(localeJa);
         MaterialModule,
         FlexLayoutModule,
         HttpClientModule,
-
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useClass: TranslateLoaderService
+            }
+        }),
         AdfModule,
         AppStoreModule,
 
