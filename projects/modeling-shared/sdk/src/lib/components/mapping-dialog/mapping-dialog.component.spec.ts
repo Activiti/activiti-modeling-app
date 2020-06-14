@@ -36,11 +36,10 @@ import {
     PropertiesViewerDateTimeInputComponent,
     PropertiesViewerIntegerInputComponent,
     PropertiesViewerBooleanInputComponent,
-    InputTypeItem,
-    INPUT_TYPE_ITEM_HANDLER
+    InputTypeItem
 } from '../../variables/public-api';
 import { By } from '@angular/platform-browser';
-import { variable } from '@angular/compiler/src/output/output_ast';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('MappingDialogComponent', () => {
     let fixture: ComponentFixture<MappingDialogComponent>;
@@ -148,6 +147,7 @@ describe('MappingDialogComponent', () => {
             imports: [
                 CoreModule.forRoot(),
                 MonacoEditorModule.forRoot(),
+                TranslateModule.forRoot(),
                 MappingDialogModule,
                 NoopAnimationsModule,
                 FormsModule
@@ -158,7 +158,7 @@ describe('MappingDialogComponent', () => {
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: UuidService, useValue: { generate() { return 'generated-uuid'; } } },
                 { provide: InputMappingDialogService, useValue: inputMappingDialogService },
-                { provide: OutputMappingDialogService, useValue: outputMappingDialogService }
+                { provide: OutputMappingDialogService, useValue: outputMappingDialogService },
             ],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();

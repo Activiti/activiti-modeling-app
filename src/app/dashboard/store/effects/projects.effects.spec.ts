@@ -54,6 +54,7 @@ import {
     DeleteProjectSuccessAction,
     GetProjectsSuccessAction
 } from '@alfresco-dbp/modeling-shared/sdk';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('ProjectsEffects', () => {
     let effects: ProjectsEffects;
@@ -81,7 +82,9 @@ describe('ProjectsEffects', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [CoreModule.forRoot()],
+            imports: [
+                CoreModule.forRoot(),
+                TranslateModule.forRoot()],
             providers: [
                 ProjectsEffects,
                 AmaAuthenticationService,
@@ -312,10 +315,10 @@ describe('ProjectsEffects', () => {
 
         it('should modify pagination when the skipCount is equal with totalItems', () => {
             dashboardService.deleteProject = jest.fn().mockReturnValue(of(mockProject));
-            actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id, sorting, search)});
+            actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id, sorting, search) });
 
             const expected = cold('(bce)', {
-                b:  new DeleteProjectSuccessAction(mockProject.id),
+                b: new DeleteProjectSuccessAction(mockProject.id),
                 c: new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_DELETED'),
                 e: new GetProjectsAttemptAction(updatedPagination, sorting, search)
 
@@ -327,7 +330,7 @@ describe('ProjectsEffects', () => {
         it('should modify pagination when the last project in the list is deleted', () => {
             paginationLoaded$.next(paginationCountMock);
             dashboardService.deleteProject = jest.fn().mockReturnValue(of(mockProject));
-            actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id, sorting, search)});
+            actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id, sorting, search) });
 
             const updatedCountPagination = {
                 skipCount: 0,
@@ -335,7 +338,7 @@ describe('ProjectsEffects', () => {
             };
 
             const expected = cold('(bce)', {
-                b:  new DeleteProjectSuccessAction(mockProject.id),
+                b: new DeleteProjectSuccessAction(mockProject.id),
                 c: new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_DELETED'),
                 e: new GetProjectsAttemptAction(updatedCountPagination, sorting, search)
             });
@@ -360,7 +363,7 @@ describe('ProjectsEffects', () => {
             actions$ = hot('a', { a: new DeleteProjectAttemptAction(mockProject.id, sorting, search) });
 
             const expected = cold('(bce)', {
-                b:  new DeleteProjectSuccessAction(mockProject.id),
+                b: new DeleteProjectSuccessAction(mockProject.id),
                 c: new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_DELETED'),
                 e: new GetProjectsAttemptAction(updatedPagination, sorting, search)
 
@@ -377,11 +380,14 @@ describe('ProjectsEffects', () => {
         });
 
         it('should trigger the right action on successful get', () => {
-            dashboardService.fetchProjects = jest.fn().mockReturnValue(of( { entries: [ mockProject ], pagination: null }));
+            dashboardService.fetchProjects = jest.fn().mockReturnValue(of({
+                entries: [mockProject],
+                pagination: null
+            }));
             actions$ = hot('a', { a: new GetProjectsAttemptAction() });
 
             const expected = cold('b', {
-                b: new GetProjectsSuccessAction([ mockProject ], null)
+                b: new GetProjectsSuccessAction([mockProject], null)
             });
 
             expect(effects.getProjectsAttemptEffect).toBeObservable(expected);

@@ -19,11 +19,12 @@ import { TestBed } from '@angular/core/testing';
 import { Observable } from 'rxjs';
 import { hot, getTestScheduler } from 'jasmine-marbles';
 import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
-import { StorageService, CoreModule } from '@alfresco/adf-core';
+import { StorageService, CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { UiEffects } from './ui.effects';
 import { SetMenuAction } from '../actions/ui';
 import { AmaTitleService } from '@alfresco-dbp/modeling-shared/sdk';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('UiEffects', () => {
     let effects: UiEffects;
@@ -34,13 +35,17 @@ describe('UiEffects', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                CoreModule.forRoot()
-            ],
+                CoreModule.forRoot(),
+                TranslateModule.forRoot()],
             providers: [
                 UiEffects,
                 StorageService,
                 AmaTitleService,
-                provideMockActions(() => actions$)
+                provideMockActions(() => actions$),
+                {
+                    provide: TranslationService,
+                    useClass: TranslationMock
+                }
             ]
         });
 
@@ -61,7 +66,8 @@ describe('UiEffects', () => {
         const setMenuAction = new SetMenuAction(false);
         actions$ = hot('a', { a: setMenuAction });
 
-        effects.setMenu.subscribe(() => {});
+        effects.setMenu.subscribe(() => {
+        });
         getTestScheduler().flush();
 
         expect(storageService.getItem('menuOpened')).toBe('false');

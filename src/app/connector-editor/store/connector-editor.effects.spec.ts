@@ -68,6 +68,7 @@ import { Update } from '@ngrx/entity';
 import { selectConnectorsLoaded, selectSelectedConnector } from './connector-editor.selectors';
 import { MatDialogRef, MatDialogModule } from '@angular/material';
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('ConnectorEditorEffects', () => {
     let actions$: Observable<any>;
@@ -84,8 +85,8 @@ describe('ConnectorEditorEffects', () => {
         id: 'mock-id',
         name: 'mock-name',
         creationDate: new Date(),
-        createdBy:  '',
-        lastModifiedDate:  new Date(),
+        createdBy: '',
+        lastModifiedDate: new Date(),
         lastModifiedBy: '',
         description: 'mock-description',
         projectId: 'mock-app-id',
@@ -106,8 +107,8 @@ describe('ConnectorEditorEffects', () => {
         TestBed.configureTestingModule({
             imports: [
                 MatDialogModule,
-                CoreModule.forRoot()
-            ],
+                CoreModule.forRoot(),
+                TranslateModule.forRoot()],
             providers: [
                 ConnectorEditorEffects,
                 AmaApi,
@@ -180,7 +181,7 @@ describe('ConnectorEditorEffects', () => {
         });
 
         it('uploadConnectorEffect should dispatch the CreateConnectorSuccessAction', () => {
-            actions$ = hot('a', { a: new UploadConnectorAttemptAction(<UploadFileAttemptPayload>{file: new File([''], 'filename')}) });
+            actions$ = hot('a', { a: new UploadConnectorAttemptAction(<UploadFileAttemptPayload>{ file: new File([''], 'filename') }) });
             const expected = cold('(bc)', {
                 b: new CreateConnectorSuccessAction(connector, true),
                 c: new SnackbarInfoAction('CONNECTOR_EDITOR.UPLOAD_SUCCESS'),
@@ -261,7 +262,8 @@ describe('ConnectorEditorEffects', () => {
         it('should trigger the load of connector and connector content', () => {
             actions$ = hot('a', { a: new GetConnectorAttemptAction('connector-id') });
 
-            effects.getConnectorEffect.subscribe(() => {});
+            effects.getConnectorEffect.subscribe(() => {
+            });
             getTestScheduler().flush();
 
             expect(getConnectorDetails).toHaveBeenCalledWith('connector-id', 'mock-app-id');
@@ -341,7 +343,7 @@ describe('ConnectorEditorEffects', () => {
 
             const expected = cold('(bcde)', {
                 b: new DeleteConnectorSuccessAction(connector.id),
-                c: new ModelClosedAction({id: connector.id, type: CONNECTOR}),
+                c: new ModelClosedAction({ id: connector.id, type: CONNECTOR }),
                 d: new SetAppDirtyStateAction(false),
                 e: new SnackbarInfoAction('PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_DELETED')
             });
@@ -369,7 +371,7 @@ describe('ConnectorEditorEffects', () => {
 
         it('should call the router.navigate method', () => {
             actions$ = cold('a', { a: { type: DELETE_CONNECTOR_SUCCESS } });
-            effects.deleteConnectorSuccessEffect.subscribe( () => {
+            effects.deleteConnectorSuccessEffect.subscribe(() => {
                 expect(router.navigate).toHaveBeenCalledWith(['/projects', connector.projectId]);
             });
         });
@@ -393,19 +395,21 @@ describe('ConnectorEditorEffects', () => {
 
     describe('createConnectorSuccessEffect Effect', () => {
         it('createConnectorSuccessEffect should  not dispatch an action', () => {
-            expect(metadata.createConnectorSuccessEffect).toEqual({ dispatch: false});
+            expect(metadata.createConnectorSuccessEffect).toEqual({ dispatch: false });
         });
 
         it('should redirect to the new connector page if the payload received is true', () => {
             actions$ = hot('a', { a: new CreateConnectorSuccessAction(connector, true) });
-            effects.createConnectorSuccessEffect.subscribe(() => {});
+            effects.createConnectorSuccessEffect.subscribe(() => {
+            });
             getTestScheduler().flush();
             expect(router.navigate).toHaveBeenCalledWith(['/projects', connector.projectId, 'connector', connector.id]);
         });
 
         it('should not redirect to the new connector page if the payload received is false', () => {
             actions$ = hot('a', { a: new CreateConnectorSuccessAction(connector, false) });
-            effects.createConnectorSuccessEffect.subscribe(() => {});
+            effects.createConnectorSuccessEffect.subscribe(() => {
+            });
             getTestScheduler().flush();
             expect(router.navigate).not.toHaveBeenCalled();
         });
@@ -473,7 +477,7 @@ describe('ConnectorEditorEffects', () => {
 
         it('should dispatch the OpenConfirmDialogAction if connector is not valid', () => {
             const error: any = new Error();
-            error.message = JSON.stringify({ errors: [ { description: 'test' } ]});
+            error.message = JSON.stringify({ errors: [{ description: 'test' }] });
             validateConnector.mockReturnValue(throwError(error));
 
             actions$ = hot('a', { a: new ValidateConnectorAttemptAction(payload) });
@@ -504,7 +508,8 @@ describe('ConnectorEditorEffects', () => {
         it('should call the setItem method of StorageService', () => {
             spyOn(storageService, 'setItem');
             actions$ = hot('a', { a: new ChangedConnectorSettingsAction(true) });
-            effects.changedConnectorSettingsEffect.subscribe(() => {});
+            effects.changedConnectorSettingsEffect.subscribe(() => {
+            });
             getTestScheduler().flush();
             expect(storageService.setItem).toHaveBeenCalledWith('showConnectorsWithTemplate', 'true');
         });

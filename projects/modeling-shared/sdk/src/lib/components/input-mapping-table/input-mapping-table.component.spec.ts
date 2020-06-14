@@ -23,13 +23,14 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MappingType } from '../../api/types';
 import { InputMappingTableComponent, NoneValue } from './input-mapping-table.component';
 import { InputMappingTableModule } from './input-mapping-table.module';
-import { CoreModule } from '@alfresco/adf-core';
+import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { selectSelectedTheme } from '../../store/app.selectors';
 import { of } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { DialogService } from '../../confirmation-dialog/services/dialog.service';
 import { PropertiesViewerStringInputComponent, INPUT_TYPE_ITEM_HANDLER } from '../../variables/public-api';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('InputMappingTableComponent', () => {
     let fixture: ComponentFixture<InputMappingTableComponent>;
@@ -41,7 +42,8 @@ describe('InputMappingTableComponent', () => {
                 CoreModule.forRoot(),
                 InputMappingTableModule,
                 NoopAnimationsModule,
-                FormsModule
+                FormsModule,
+                TranslateModule.forRoot()
             ],
             providers: [
                 {
@@ -56,6 +58,10 @@ describe('InputMappingTableComponent', () => {
                         }),
                         dispatch: jest.fn()
                     }
+                },
+                {
+                    provide: TranslationService,
+                    useClass: TranslationMock
                 },
                 DialogService,
                 MatDialog,

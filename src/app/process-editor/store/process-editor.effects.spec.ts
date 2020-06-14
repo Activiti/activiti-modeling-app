@@ -68,6 +68,7 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessEntitiesState } from './process-entities.state';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('ProcessEditorEffects', () => {
     let effects: ProcessEditorEffects;
@@ -82,7 +83,9 @@ describe('ProcessEditorEffects', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [CoreModule.forRoot()],
+            imports: [
+                CoreModule.forRoot(),
+                TranslateModule.forRoot()],
             providers: [
                 ProcessEditorEffects,
                 { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
@@ -183,7 +186,7 @@ describe('ProcessEditorEffects', () => {
         });
 
         it('uploadProcessEffect should dispatch the CreateConnectorSuccessAction', () => {
-            actions$ = hot('a', { a: new UploadProcessAttemptAction(<UploadFileAttemptPayload>{file: new File([''], 'filename')}) });
+            actions$ = hot('a', { a: new UploadProcessAttemptAction(<UploadFileAttemptPayload>{ file: new File([''], 'filename') }) });
             const expected = cold('(bc)', {
                 b: new CreateProcessSuccessAction(process, true),
                 c: new SnackbarInfoAction('PROCESS_EDITOR.UPLOAD_SUCCESS'),
@@ -205,7 +208,7 @@ describe('ProcessEditorEffects', () => {
             title: 'mock title',
             processId: mockProcessModel.id,
             content: 'diagramData',
-            extensions: <ProcessExtensionsContent> {},
+            extensions: <ProcessExtensionsContent>{},
             action: new UpdateProcessAttemptAction(mockActionPayload)
         };
 
@@ -221,7 +224,8 @@ describe('ProcessEditorEffects', () => {
             processEditorService.update = jest.fn().mockReturnValue(of(process));
             actions$ = hot('a', { a: new UpdateProcessAttemptAction(mockActionPayload) });
 
-            effects.updateProcessEffect.subscribe(() => {});
+            effects.updateProcessEffect.subscribe(() => {
+            });
             getTestScheduler().flush();
 
             expect(processEditorService.update).toHaveBeenCalledWith(
@@ -240,7 +244,10 @@ describe('ProcessEditorEffects', () => {
 
             const expected = cold('(bcdef)', {
                 b: new SetApplicationLoadingStateAction(true),
-                c: new UpdateProcessSuccessAction({id: mockProcessModel.id, changes: mockActionPayload.metadata}, mockActionPayload.content),
+                c: new UpdateProcessSuccessAction({
+                    id: mockProcessModel.id,
+                    changes: mockActionPayload.metadata
+                }, mockActionPayload.content),
                 d: new SetAppDirtyStateAction(false),
                 e: expectedLogAction,
                 f: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_SAVED')
@@ -415,19 +422,21 @@ describe('ProcessEditorEffects', () => {
 
     describe('createProcessSuccessEffect Effect', () => {
         it('createProcessSuccessEffect should  not dispatch an action', () => {
-            expect(metadata.createProcessSuccessEffect).toEqual({ dispatch: false});
+            expect(metadata.createProcessSuccessEffect).toEqual({ dispatch: false });
         });
 
         it('should redirect to the new process page if the payload received is true', () => {
             actions$ = hot('a', { a: new CreateProcessSuccessAction(process, true) });
-            effects.createProcessSuccessEffect.subscribe(() => {});
+            effects.createProcessSuccessEffect.subscribe(() => {
+            });
             getTestScheduler().flush();
             expect(router.navigate).toHaveBeenCalledWith(['/projects', 'test1', 'process', process.id]);
         });
 
         it('should not redirect to the new process page if the payload received is false', () => {
             actions$ = hot('a', { a: new CreateProcessSuccessAction(process, false) });
-            effects.createProcessSuccessEffect.subscribe(() => {});
+            effects.createProcessSuccessEffect.subscribe(() => {
+            });
             getTestScheduler().flush();
             expect(router.navigate).not.toHaveBeenCalled();
         });

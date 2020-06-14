@@ -25,10 +25,11 @@ import { OutputMappingTableComponent } from './output-mapping-table.component';
 import { DialogService } from '../../confirmation-dialog/services/dialog.service';
 import { OutputMappingTableModule } from './output-mapping-table.module';
 import { MatDialog } from '@angular/material';
-import { CoreModule } from '@alfresco/adf-core';
+import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { selectSelectedTheme } from '../../store/app.selectors';
 import { mockDropDownFields, mockDropDownProcessVariable, mockValueMapping } from './output-mapping-table.component.mock';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('OutputMappingTableComponent', () => {
     let fixture: ComponentFixture<OutputMappingTableComponent>;
@@ -40,7 +41,8 @@ describe('OutputMappingTableComponent', () => {
                 CoreModule.forRoot(),
                 OutputMappingTableModule,
                 NoopAnimationsModule,
-                FormsModule
+                FormsModule,
+                TranslateModule.forRoot()
             ],
             providers: [
                 {
@@ -55,6 +57,10 @@ describe('OutputMappingTableComponent', () => {
                         }),
                         dispatch: jest.fn()
                     }
+                },
+                {
+                    provide: TranslationService,
+                    useClass: TranslationMock
                 },
                 DialogService,
                 MatDialog
