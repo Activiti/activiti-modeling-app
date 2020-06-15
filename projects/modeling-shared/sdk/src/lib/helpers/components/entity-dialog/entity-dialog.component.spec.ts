@@ -149,6 +149,7 @@ describe('EntityDialogComponent', () => {
         const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
         expect(submitBtn.nativeElement.disabled).toBeTruthy();
 
+        /* cspell: disable-next-line */
         component.form.name = 'Testautomation';
         fixture.detectChanges();
         expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
@@ -174,6 +175,7 @@ describe('EntityDialogComponent', () => {
         expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
         expect(submitBtn.nativeElement.disabled).toBeTruthy();
 
+        /* cSpell:disable */
         component.form.name = 'testautomationlengthmorethan26';
         fixture.detectChanges();
         expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);

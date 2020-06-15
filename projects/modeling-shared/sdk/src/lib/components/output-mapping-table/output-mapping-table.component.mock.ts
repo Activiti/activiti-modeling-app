@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+/* cSpell:disable */
 export const mockValueMapping  = {
     'dName': {
         'type': 'value',
@@ -101,3 +102,4 @@ export const mockDropDownProcessVariable = [
         'required': false
     }
 ];
+/* cSpell:enable */

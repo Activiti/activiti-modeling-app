@@ -280,7 +280,7 @@ describe('PropertiesViewerComponent', () => {
         expect(component.error).toBe(false);
     });
 
-    it('should elete process variable without a name', () => {
+    it('should delete process variable without a name', () => {
         fixture.detectChanges();
         const addButton: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="add-variable"]');
         addButton.dispatchEvent(new Event('click'));

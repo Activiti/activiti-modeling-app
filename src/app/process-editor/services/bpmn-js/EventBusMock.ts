@@ -133,7 +133,7 @@ EventBusMock.prototype.fire = function (type, data) {
     // events here. We wrap them only once, though
     if (data instanceof InternalEvent) {
 
-        // we are fine, we alread have an event
+        // we are fine, we already have an event
         event = data;
     } else {
         event = this.createEvent(data);

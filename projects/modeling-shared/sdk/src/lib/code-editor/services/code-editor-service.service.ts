@@ -16,7 +16,6 @@
  */
 
 import { Injectable } from '@angular/core';
-import { arrayize } from '../../helpers/utils/arrayize';
 
 @Injectable({
     providedIn: 'root'
@@ -28,7 +27,7 @@ export class CodeEditorService {
     addSchema(uri: string, fileMatch: string | string[], schema: string | Object) {
         this.schemas.push({
             uri,
-            fileMatch: arrayize(fileMatch),
+            fileMatch: Array.isArray(fileMatch) ? fileMatch : [ fileMatch ],
             schema
         });
     }
