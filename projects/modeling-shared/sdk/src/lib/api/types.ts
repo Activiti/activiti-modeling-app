@@ -234,6 +234,12 @@ export interface ConnectorConfigParameter {
     value: string;
 }
 
+export interface ConnectorError {
+    name: string;
+    description?: string;
+    code?: string;
+}
+
 export interface ConnectorParameter {
     id: string;
     name: string;
@@ -251,6 +257,7 @@ export interface ConnectorContent {
     actions?: ConnectorFeatureData;
     events?: ConnectorFeatureData;
     config?: ConnectorConfigParameter[];
+    errors?: ConnectorError[];
     template?: string;
 }
 
