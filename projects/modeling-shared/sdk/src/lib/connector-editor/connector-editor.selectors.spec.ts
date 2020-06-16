@@ -58,9 +58,9 @@ describe('Connector selectors', () => {
 
         it('should return the connector if it exists', () => {
             state = createState({
-                '1': <Connector>{ type: 'connector', id: '1', name: 'connector-1', projectsId: ['project-1'] },
-                '2': <Connector>{ type: 'connector', id: '2', name: 'connector-2', projectsId: ['project-1'] },
-                '3': <Connector>{ type: 'connector', id: '3', name: 'connector-2', projectsId: ['project-2'] },
+                '1': <Connector>{ type: 'connector', id: '1', name: 'connector-1', projectId: 'project-1' },
+                '2': <Connector>{ type: 'connector', id: '2', name: 'connector-2', projectId: 'project-1' },
+                '3': <Connector>{ type: 'connector', id: '3', name: 'connector-2', projectId: 'project-2' },
             });
             const actionsSelector = projectConnectorByName('project-2', 'connector-2');
 
@@ -71,8 +71,8 @@ describe('Connector selectors', () => {
 
         it('should return null if it doesn\'t exist in the right project', () => {
             state = createState({
-                '1': <Connector>{ type: 'connector', id: '1', name: 'connector-a', projectsId: ['project-1'] },
-                '2': <Connector>{ type: 'connector', id: '2', name: 'connector-a', projectsId: ['project-2'] }
+                '1': <Connector>{ type: 'connector', id: '1', name: 'connector-a', projectId: 'project-1' },
+                '2': <Connector>{ type: 'connector', id: '2', name: 'connector-a', projectId: 'project-2' }
             });
             const actionsSelector = projectConnectorByName('project-3', 'connector-a');
 

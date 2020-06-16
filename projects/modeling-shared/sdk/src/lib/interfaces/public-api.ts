@@ -20,4 +20,3 @@ export * from './model-filter.interface';
 export * from './model-creator.interface';
 export * from './model-uploader.interface';
 export * from './model-editor-routes';
-export * from './model-importer.interface';

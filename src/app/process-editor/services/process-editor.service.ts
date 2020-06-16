@@ -58,13 +58,13 @@ export class ProcessEditorService {
         return this.processApi.update(processId, process, processData, projectId);
     }
 
-    validate(processId: string, diagramData: ProcessContent, projectId: string, extensionsContent: ModelExtensions): Observable<Partial<Process>> {
+    validate(processId: string, diagramData: ProcessContent, extensionsContent: ModelExtensions): Observable<Partial<Process>> {
         const extensions = {
             id: formatUuid(ContentType.Process, processId),
             extensions: extensionsContent
         };
 
-        return this.processApi.validate(processId, diagramData, projectId, extensions);
+        return this.processApi.validate(processId, diagramData, extensions);
     }
 
     getDetails(processId: string, projectId: string) {

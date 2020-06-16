@@ -97,8 +97,7 @@ export class ConnectorEditorEffects extends BaseEffects {
     @Effect()
     validateConnectorEffect = this.actions$.pipe(
         ofType<ValidateConnectorAttemptAction>(VALIDATE_CONNECTOR_ATTEMPT),
-        withLatestFrom(this.store.select(selectSelectedProjectId)),
-        mergeMap(([action, projectId]) => this.validateConnector({...action.payload, projectId}))
+        mergeMap(action => this.validateConnector(action.payload))
     );
 
     @Effect()
@@ -212,8 +211,8 @@ export class ConnectorEditorEffects extends BaseEffects {
         tap(action => this.storageService.setItem('showConnectorsWithTemplate', action.isChecked.toString())
     ));
 
-    private validateConnector({ connectorId, connectorContent, action, title, errorAction, projectId }: ValidateConnectorPayload) {
-        return this.connectorEditorService.validate(connectorId, connectorContent, projectId).pipe(
+    private validateConnector({ connectorId, connectorContent, action, title, errorAction }: ValidateConnectorPayload) {
+        return this.connectorEditorService.validate(connectorId, connectorContent).pipe(
             switchMap(() => [new SetApplicationLoadingStateAction(true), action, new SetApplicationLoadingStateAction(false)]),
             catchError(response => {
                 const errors = JSON.parse(response.message).errors.map(error => error.description);

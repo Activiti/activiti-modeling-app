@@ -68,7 +68,7 @@ export class ConnectorEditorService {
         this.downloadService.downloadResource(connectorName, blob, CONNECTOR_FILE_FORMAT);
     }
 
-    validate(id: string, content: ConnectorContent, projectId: string) {
-        return this.connectorApi.validate(id, content, projectId);
+    validate(id: string, content: ConnectorContent) {
+        return this.connectorApi.validate(id, content);
     }
 }

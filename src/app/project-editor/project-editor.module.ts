@@ -34,7 +34,6 @@ import { ProjectTreeHelper } from './components/project-tree/project-tree.helper
 import { ProjectTreeIconsComponent } from './components/project-tree/project-tree-icons/project-tree-icons.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ExtensionsModule } from '@alfresco/adf-extensions';
-import { ProjectImportMenuComponent } from './components/project-import-menu/project-import-menu.component';
 
 @NgModule({
     imports: [
@@ -54,7 +53,6 @@ import { ProjectImportMenuComponent } from './components/project-import-menu/pro
         ProjectTreeFilterComponent,
         UploadFileButtonComponent,
         ProjectTreeIconsComponent,
-        ProjectImportMenuComponent
     ],
     exports: [ProjectEditorRoutingModule],
     providers: [

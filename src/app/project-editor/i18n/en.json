@@ -10,7 +10,6 @@
             "PROJECT_SETTINGS": "Project editor settings",
             "CONNECTORS_TAB_LABEL": "Connectors"
         },
-        "UPLOAD": "Upload",
         "IMPORT": "Import",
         "CREATE_NEW": "Create new",
         "SEARCH": "Search",
@@ -20,7 +19,6 @@
         "NEW_MENU": {
             "LABEL": "NEW",
             "CREATE": "Create",
-            "UPLOAD": "Upload",
             "IMPORT": "Import",
             "CREATE_PROCESS_TITLE": "Create Process",
             "MENU_ITEMS": {
@@ -32,8 +30,7 @@
                 "CREATE_DECISION_TABLE": "Decision Table",
                 "CREATE_FILE": "File",
                 "CREATE_SCRIPT": "Script",
-                "CREATE_TRIGGER": "Trigger",
-                "CREATE_PROJECT_MODEL": "Content Model"
+                "CREATE_TRIGGER": "Trigger"
             }
         },
         "TREE": {
@@ -141,15 +138,6 @@
             "EVENT_DESC": "Event description",
             "ADD_EVENT": "Add event",
             "DEL_EVENT": "Delete event"
-        },
-        "PROJECT_MODEL_DIALOG": {
-            "TITLE_CREATE": "Create Content Model",
-            "TITLE_UPDATE": "Update Content Model",
-            "PROJECT_MODEL_NAME": "Content Model name:",
-            "PROJECT_MODEL_DESC": "Content Model description:",
-            "PROJECT_MODEL_CREATED": "Content Model created",
-            "PROJECT_MODEL_DELETED": "Content Model deleted",
-            "PROJECT_MODEL_UPDATED": "Content Model saved"
         },
         "ERROR": {
             "UPLOAD_FILE": "We hit a problem uploading the file. Try uploading it again.",

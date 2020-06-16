@@ -31,10 +31,7 @@ export const CONNECTOR_SELECTORS_TOKEN = new InjectionToken<MemoizedSelector<obj
 export const selectProjectConnectorsArray = createSelector(
     selectConnectorEntities,
     selectSelectedProjectId,
-    (connectors, selectedProjectId) => Object.values(connectors).filter((connector: Connector) =>
-    selectedProjectId ?
-        (connector.projectsId && connector.projectsId.indexOf(selectedProjectId) >= 0) :
-        connector.scope === 'GLOBAL')
+    (connectors, selectedProjectId) => Object.values(connectors).filter((connector: Connector) => connector.projectId === selectedProjectId)
 );
 
 export const connectorByName = name => createSelector(
@@ -61,7 +58,7 @@ export const projectConnectorByName = (projectId: string, name: string) => creat
 
         const wantedConnector = Object.keys(entities)
             .map(connectorId => entities[connectorId])
-            .filter(connector => connector.name === name && connector.projectsId.indexOf(projectId) >= 0);
+            .filter(connector => connector.name === name && connector.projectId === projectId);
 
         return wantedConnector[0] || null;
     }
