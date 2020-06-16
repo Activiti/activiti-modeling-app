@@ -205,6 +205,7 @@ describe('ProcessEditorEffects', () => {
         };
 
         const mockValidatePayload = {
+            projectId: 'test',
             title: 'mock title',
             processId: mockProcessModel.id,
             content: 'diagramData',

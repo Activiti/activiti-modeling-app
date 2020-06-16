@@ -47,7 +47,10 @@ export const selectProcessLoading = createSelector(getProcessEditorFeatureState,
 export const selectProcessesArray = createSelector(
     selectProcessEntities,
     selectSelectedProjectId,
-    (processes, selectedProjectId) => <Process[]>Object.values(processes).filter((process: Process) => process.projectId === selectedProjectId)
+    (processes, selectedProjectId) => <Process[]>Object.values(processes).filter((process: Process) =>
+    selectedProjectId ?
+        (process.projectsId && process.projectsId.indexOf(selectedProjectId) >= 0) :
+        process.scope === 'GLOBAL')
 );
 
 export const selectSelectedProcessDiagram = createSelector(

@@ -24,14 +24,15 @@ import { concatMap } from 'rxjs/operators';
 import { createBlobFormDataFromStringContent } from '../../helpers/utils/createJsonBlob';
 
 export class ProcessAcmApi<T extends Process, S extends ProcessContent> extends ModelApi<T, S> implements ModelApiInterface<T, S> {
-    public validate(modelId: string, content: S, modelExtensions: any): Observable<any> {
-        return super.validate(modelId, content).pipe(
-            concatMap(() => this.validateExtensions(modelId, JSON.stringify(modelExtensions)))
+    public validate(modelId: string, content: S, containerId: string, modelExtensions: any): Observable<any> {
+        return super.validate(modelId, content, containerId).pipe(
+            concatMap(() => this.validateExtensions(modelId, JSON.stringify(modelExtensions), containerId))
         );
     }
 
-    private validateExtensions(modelId: string, modelExtensions: string) {
+    private validateExtensions(modelId: string, modelExtensions: string, containerId: string) {
         const requestOptions: RequestApiHelperOptions = {
+            queryParams: { projectId: containerId },
             formParams: {
                 file: createBlobFormDataFromStringContent(modelExtensions, `process-${modelId}.extensions.json`)
             },

@@ -30,6 +30,10 @@
             .project-tree-filter__button.active {
                 background: mat-color($foreground, text, 0.3);
             }
+
+            .project-tree-filter-global-item mat-icon{
+                color: mat-color($accent);
+            }
         }
 
         &__content {

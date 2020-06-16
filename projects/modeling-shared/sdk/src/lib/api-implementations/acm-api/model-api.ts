@@ -131,15 +131,16 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
             .delete(`/modeling-service/v1/models/${modelId}`);
     }
 
-    public validate(modelId: string, content: S, modelExtensions?: any): Observable<any> {
+    public validate(modelId: string, content: S, containerId?: string, modelExtensions?: any): Observable<any> {
         const requestOptions: RequestApiHelperOptions = {
+            queryParams: { projectId: containerId },
             formParams: { file: new Blob([this.modelVariation.serialize(content)], { type: 'text/plain' }) },
             contentTypes: ['multipart/form-data']
         };
         if (modelExtensions) {
             return this.requestApiHelper
                 .post(`/modeling-service/v1/models/${modelId}/validate`, requestOptions).pipe(
-                    concatMap(() => this.validateModelExtensions(modelId, modelExtensions))
+                    concatMap(() => this.validateModelExtensions(modelId, modelExtensions, containerId))
                 );
         } else {
             return this.requestApiHelper
@@ -147,8 +148,9 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
         }
     }
 
-    private validateModelExtensions(modelId: string, modelExtensions: string) {
+    private validateModelExtensions(modelId: string, modelExtensions: string, containerId?: string) {
         const requestOptions: RequestApiHelperOptions = {
+            queryParams: { projectId: containerId },
             formParams: {
                 file: createBlobFormDataFromStringContent(modelExtensions, `${modelId}-extensions.json`)
             },
@@ -204,6 +206,39 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
                     const content$ = this.export(modelId, responseType),
                         model$ = this.retrieve(modelId, modelId);
                     return forkJoin(model$, content$);
+                })
+            );
+    }
+
+    addProjectModelRelationship(containerId: string, modelId: string, scope?: 'PROJECT' | 'GLOBAL', force?: boolean): Observable<T> {
+        return this.requestApiHelper
+            .put<ModelResponse<T>>(
+                `/modeling-service/v1/projects/${containerId}/models/${modelId}`,
+                { queryParams: { scope, force } })
+            .pipe(
+                map(response => this.createEntity(response.entry, containerId))
+            );
+    }
+
+    deleteProjectModelRelationship(containerId: string, modelId: string): Observable<T> {
+        return this.requestApiHelper
+            .delete<ModelResponse<T>>(
+                `/modeling-service/v1/projects/${containerId}/models/${modelId}`)
+            .pipe(
+                map(response => this.createEntity(response.entry, containerId))
+            );
+    }
+
+    public getGlobalModels(includeOrphans?: boolean): Observable<T[]> {
+        return this.requestApiHelper
+            .get<ModelsResponse<T>>(
+                `/modeling-service/v1/models`,
+                { queryParams: { type: this.modelVariation.contentType, maxItems: 1000, includeOrphans } })
+            .pipe(
+                map((nodePaging) => {
+                    return nodePaging.list.entries
+                        .map(entry => entry.entry)
+                        .map((entry) => this.createEntity(entry, null));
                 })
             );
     }

@@ -196,7 +196,8 @@ export class ProcessEditorEffects extends BaseEffects {
     @Effect()
     validateProcessEffect = this.actions$.pipe(
         ofType<ValidateProcessAttemptAction>(VALIDATE_PROCESS_ATTEMPT),
-        mergeMap(action => this.validateProcess(action.payload))
+        withLatestFrom(this.store.select(selectSelectedProjectId)),
+        mergeMap(([action, projectId]) => this.validateProcess({...action.payload, projectId}))
     );
 
     @Effect()
@@ -246,7 +247,7 @@ export class ProcessEditorEffects extends BaseEffects {
     );
 
     private validateProcess(payload: ValidateProcessPayload) {
-        return this.processEditorService.validate(payload.processId, payload.content, payload.extensions).pipe(
+        return this.processEditorService.validate(payload.processId, payload.content, payload.projectId, payload.extensions).pipe(
             switchMap(() => [new SetApplicationLoadingStateAction(true), payload.action, new SetApplicationLoadingStateAction(false)]),
             catchError(response => {
                 const errors = this.handleProcessValidationError(JSON.parse(response.message));
@@ -402,7 +403,7 @@ export class ProcessEditorEffects extends BaseEffects {
 
     private handleProcessValidationError(response: ProcessValidationResponse): string[] {
         if (response.errors) {
-            return response.errors.map( (error: GeneralError) => error.description);
+            return response.errors.map((error: GeneralError) => error.description);
         }
         return [response.message];
     }

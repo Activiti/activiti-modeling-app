@@ -24,6 +24,7 @@ import { SharedModule, PROCESS, MODEL_CREATORS } from '@alfresco-dbp/modeling-sh
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
+import { By } from '@angular/platform-browser';
 
 describe('ProjectTreeFilterComponent ', () => {
     let fixture: ComponentFixture<ProjectTreeFilterComponent>;
@@ -66,11 +67,11 @@ describe('ProjectTreeFilterComponent ', () => {
         component = fixture.componentInstance;
     });
 
-    it ('should create', () => {
+    it('should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it ('when tree filter is extended the correct data should be emitted', () => {
+    it('when tree filter is extended the correct data should be emitted', () => {
         spyOn(component.opened, 'emit');
 
         component.expanded = false;
@@ -95,7 +96,7 @@ describe('ProjectTreeFilterComponent ', () => {
         });
     });
 
-    it ('when tree filter is closed the correct data should be emitted', () => {
+    it('when tree filter is closed the correct data should be emitted', () => {
         spyOn(component.closed, 'emit');
 
         component.expanded = false;
@@ -115,5 +116,38 @@ describe('ProjectTreeFilterComponent ', () => {
         fixture.detectChanges();
 
         expect(component.closed.emit).toHaveBeenCalledWith({ type: PROCESS });
+    });
+
+    it('when the model is GLOBAL the global class is included', () => {
+        component.expanded = true;
+        component.projectId = 'projectIdTest';
+        component.filter = <any>{
+            icon: '',
+            name: 'Processes',
+            type: PROCESS
+        };
+
+        component.contents = [
+            {
+                'id': 'local-process-id',
+                'type': 'PROCESS',
+                'name': 'local-process',
+                'scope': 'Project',
+            },
+            {
+                'id': 'global-process-id',
+                'type': 'PROCESS',
+                'name': 'global-process',
+                'scope': 'GLOBAL',
+            }
+        ];
+
+        fixture.detectChanges();
+
+        const localProcess = fixture.debugElement.query(By.css('[data-automation-id="process-local-process-id"]'));
+        const globalProcess = fixture.debugElement.query(By.css('[data-automation-id="process-global-process-id"]'));
+
+        expect(localProcess.classes['project-tree-filter-global-item']).toBeFalsy();
+        expect(globalProcess.classes['project-tree-filter-global-item']).toBeTruthy();
     });
 });

@@ -24,6 +24,7 @@
                 *ngFor="let item of contents"
                 [routerLink]="[filter.type, item.id]"
                 [routerLinkActive]="['active']"
+                [class.project-tree-filter-global-item]="item.scope === 'GLOBAL'"
                 [title]="item.name">
 
                 <span *ngIf="item.icon" class="project-tree-filter__item_icon {{item.icon}}"></span>
