@@ -15,28 +15,42 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, Inject } from '@angular/core';
+import { Component, Input, OnInit, Inject, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
-import { ProcessModelerServiceToken, ProcessModelerService, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
+import { ProcessModelerServiceToken, ProcessModelerService, AmaState, ConnectorError, Connector,
+         selectProjectConnectorsArray } from '@alfresco-dbp/modeling-shared/sdk';
 import { ErrorRefItemModel } from './error-ref-item.model';
 import { Store } from '@ngrx/store';
 import { SelectModelerElementAction } from '../../../store/process-editor.actions';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil, map } from 'rxjs/operators';
+import { ProcessConnectorService } from '../../process-connector-service';
 
 @Component({
     selector: 'ama-process-error-ref',
     templateUrl: './error-ref-item.component.html',
     providers: [CardItemTypeService]
 })
-export class CardViewErrorRefItemComponent implements OnInit {
+export class CardViewErrorRefItemComponent implements OnInit, OnDestroy {
     @Input() property: ErrorRefItemModel;
 
+    private unsubscribe$ = new Subject<void>();
+    private connector: Connector;
+
     errors: Bpmn.DiagramElement[] = [];
+    diagramErrors: Bpmn.DiagramElement[] = [];
     selectedError: Bpmn.DiagramElement;
+    attachedIsNotConnector = false;
+
+    loading = false;
+    parentIsConnector = false;
 
     constructor(
         private cardViewUpdateService: CardViewUpdateService,
         private store: Store<AmaState>,
-        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService
+        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
+        private processConnectorService: ProcessConnectorService,
+        private cdRef: ChangeDetectorRef
     ) {}
 
     get rootElements() {
@@ -48,8 +62,32 @@ export class CardViewErrorRefItemComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.selectedError = this.property.data.element.businessObject.eventDefinitions[0].errorRef;
-        this.errors = this.rootElements.filter(element => element.$type === 'bpmn:Error');
+        const attached = this.property.data.element.businessObject.attachedToRef;
+        this.diagramErrors = this.rootElements.filter(element => element.$type === 'bpmn:Error');
+        if (attached && attached.$type === 'bpmn:ServiceTask' && attached.implementation) {
+            this.parentIsConnector = true;
+            this.loading = true;
+            this.attachedIsNotConnector = true;
+            this.getConnector(attached);
+            this.getConnectorErrors(this.connector.id).pipe(takeUntil(this.unsubscribe$)).subscribe(errors => {
+                this.handleConnectorErrors(errors);
+                this.loading = false;
+                this.selectedError = this.initSelectedError(true);
+                this.cdRef.detectChanges();
+            });
+        } else {
+            this.selectedError = this.initSelectedError();
+            this.errors = this.diagramErrors;
+        }
+    }
+
+    initSelectedError(isConnector?: boolean) {
+        const errorDef = this.property.data.element.businessObject.eventDefinitions[0].errorRef;
+        if (isConnector && errorDef) {
+                return this.errors.find(error => errorDef.id === error.id);
+        } else {
+            return errorDef;
+        }
     }
 
     createNewError() {
@@ -58,14 +96,53 @@ export class CardViewErrorRefItemComponent implements OnInit {
         errorElement.errorCode = errorElement.id;
         this.rootElements.push(errorElement);
 
-        this.errors.push(errorElement);
+        this.diagramErrors.push(errorElement);
         this.selectedError = errorElement;
         this.changeErrorRef();
     }
 
     changeErrorRef() {
+        if (this.selectedError) {
+            if (this.diagramErrors.filter(element => element.id === this.selectedError['id']).length === 0) {
+                this.rootElements.push(this.selectedError);
+            }
+        }
         this.cardViewUpdateService.update(this.property, this.selectedError);
         const { id, type, name } = this.property.data.element;
         this.store.dispatch(new SelectModelerElementAction({ id, type, name }));
     }
+
+    getConnector(attached: any) {
+        this.store.select(selectProjectConnectorsArray).pipe(
+            map(connectors =>
+                connectors.filter((connector: Connector) =>
+                    connector.name === attached.implementation.split('.')[0]))
+        ).pipe(takeUntil(this.unsubscribe$)).subscribe( (res) => {
+            this.connector = res[0];
+        });
+    }
+
+    getConnectorErrors(connectorId: string): Observable<ConnectorError[]> {
+        return this.processConnectorService.getContent(connectorId).pipe(map(connector => connector.errors));
+    }
+
+    handleConnectorErrors(connectorErrors: ConnectorError[])  {
+        if (connectorErrors) {
+            connectorErrors.forEach(connectorError => this.errors.push(this.getErrorAsBpmnElement(connectorError)));
+        }
+    }
+
+    getErrorAsBpmnElement(error: any): Bpmn.DiagramElement {
+        const errorElement = this.bpmnFactory.create('bpmn:Error');
+        errorElement.id = error.code;
+        errorElement.name = error.name;
+        errorElement.errorCode = error.code;
+        return errorElement;
+    }
+
+    ngOnDestroy() {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
+    }
+
 }

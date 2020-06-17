@@ -100,6 +100,7 @@ import { CardViewTaskAssignmentItemComponent } from './services/cardview-propert
 import { TaskAssignmentService } from './services/cardview-properties/task-assignment-item/task-assignment.service';
 import { transformJsonSchema } from './services/transformJsonSchema';
 import { CardViewProcessNameItemComponent } from './services/cardview-properties/process-name-item/process-name-item.component';
+import { ProcessConnectorService } from './services/process-connector-service';
 
 @NgModule({
     imports: [
@@ -217,7 +218,8 @@ import { CardViewProcessNameItemComponent } from './services/cardview-properties
             modelType: PROCESS,
             schemaKey: MODEL_SCHEMA_TYPE.PROCESS_EXTENSION,
             transform: transformJsonSchema
-        })
+        }),
+        ProcessConnectorService
     ]
 })
 export class ProcessEditorModule {}

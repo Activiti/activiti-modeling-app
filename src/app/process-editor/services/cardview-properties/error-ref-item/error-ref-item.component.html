@@ -1,31 +1,36 @@
 <div class="error-ref-block">
-    <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ERROR' | translate }}</div>
-    <button mat-stroked-button
-            data-automation-id="new-error-button"
-            class="add-error-button"
-            (click)="createNewError()"
-            matTooltip="{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.CREATE_NEW_ERROR' | translate }}"
-            [matTooltipPosition]="'before'">
-        <mat-icon>add</mat-icon>
-    </button>
-    <mat-form-field>
-        <mat-select (selectionChange)="changeErrorRef()" [(ngModel)]="selectedError">
-            <mat-option></mat-option>
-            <mat-option *ngFor="let error of errors" [value]="error">
-                {{ error.name }}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
 
-    <div *ngIf="selectedError">
-        <mat-form-field>
-            <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ERROR_NAME' | translate }}</div>
-            <input matInput (change)="changeErrorRef()" [(ngModel)]="selectedError.name" />
-        </mat-form-field>
+
+        <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ERROR' | translate }}</div>
+        <button mat-stroked-button
+                data-automation-id="new-error-button"
+                class="add-error-button"
+                (click)="createNewError()"
+                matTooltip="{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.CREATE_NEW_ERROR' | translate }}"
+                [matTooltipPosition]="'before'"
+                *ngIf="!attachedIsNotConnector">
+            <mat-icon>add</mat-icon>
+        </button>
 
         <mat-form-field>
-            <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ERROR_CODE' | translate }}</div>
-            <input matInput (change)="changeErrorRef()" [(ngModel)]="selectedError.errorCode" />
+            <mat-select (selectionChange)="changeErrorRef()" [(ngModel)]="selectedError">
+                <mat-option></mat-option>
+                <mat-option *ngFor="let error of errors" [value]="error">
+                    {{ error.name }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
-    </div>
+
+        <div *ngIf="selectedError">
+            <mat-form-field>
+                <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ERROR_NAME' | translate }}</div>
+                <input matInput (change)="changeErrorRef()" [(ngModel)]="selectedError.name" [disabled]="parentIsConnector"/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ERROR_CODE' | translate }}</div>
+                <input matInput (change)="changeErrorRef()" [(ngModel)]="selectedError.errorCode" [disabled]="parentIsConnector" />
+            </mat-form-field>
+        </div>
+
 </div>
