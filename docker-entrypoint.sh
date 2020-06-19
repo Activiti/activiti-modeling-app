@@ -77,5 +77,10 @@ then
     -i ./index.html
 fi
 
+if [ -n "${APP_CONFIG_APPS_DEPLOYED}" ];then
+  sed -e "s/\"alfresco-deployed-apps\": \[.*\]/\"alfresco-deployed-apps\": ${APP_CONFIG_APPS_DEPLOYED}/g" \
+    -i ./app.config.json
+fi
+
 
 nginx -g "daemon off;"
