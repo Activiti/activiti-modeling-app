@@ -120,6 +120,7 @@ export interface ValidateProcessPayload {
     extensions: ModelExtensions;
     action: Action;
     errorAction?: Action;
+    projectId?: string;
 }
 
 export const VALIDATE_PROCESS_ATTEMPT = '[Process] Validate attempt';

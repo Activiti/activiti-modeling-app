@@ -119,12 +119,18 @@ export interface Model extends MinimalModelSummary {
     description: string;
     version: string;
     applicationId?: string; // To remove, since BE finally returns it
-    projectId: string;
     type: string;
     creationDate: Date;
     createdBy: string;
     lastModifiedDate: Date;
     lastModifiedBy: string;
+    projectIds: string[];
+    scope: ModelScope;
+}
+
+export enum ModelScope {
+    PROJECT = 'PROJECT',
+    GLOBAL = 'GLOBAL'
 }
 
 export interface Filter extends Model {

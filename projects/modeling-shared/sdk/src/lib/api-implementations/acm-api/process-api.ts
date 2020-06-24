@@ -24,8 +24,8 @@ import { concatMap } from 'rxjs/operators';
 import { createBlobFormDataFromStringContent } from '../../helpers/utils/createJsonBlob';
 
 export class ProcessAcmApi<T extends Process, S extends ProcessContent> extends ModelApi<T, S> implements ModelApiInterface<T, S> {
-    public validate(modelId: string, content: S, modelExtensions: any): Observable<any> {
-        return super.validate(modelId, content).pipe(
+    public validate(modelId: string, content: S, containerId: string, modelExtensions: any): Observable<any> {
+        return super.validate(modelId, content, containerId).pipe(
             concatMap(() => this.validateExtensions(modelId, JSON.stringify(modelExtensions)))
         );
     }

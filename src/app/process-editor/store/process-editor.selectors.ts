@@ -25,7 +25,8 @@ import {
     selectProcessEntityContainer,
     selectSelectedProcess,
     Process,
-    selectSelectedProjectId
+    selectSelectedProjectId,
+    ModelScope
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessEditorState } from './process-editor.state';
 import { ProcessEntitiesState } from './process-entities.state';
@@ -47,7 +48,10 @@ export const selectProcessLoading = createSelector(getProcessEditorFeatureState,
 export const selectProcessesArray = createSelector(
     selectProcessEntities,
     selectSelectedProjectId,
-    (processes, selectedProjectId) => <Process[]>Object.values(processes).filter((process: Process) => process.projectId === selectedProjectId)
+    (processes, selectedProjectId) => <Process[]>Object.values(processes).filter((process: Process) =>
+    selectedProjectId ?
+        (process.projectIds && process.projectIds.indexOf(selectedProjectId) >= 0) :
+        process.scope === ModelScope.GLOBAL)
 );
 
 export const selectSelectedProcessDiagram = createSelector(

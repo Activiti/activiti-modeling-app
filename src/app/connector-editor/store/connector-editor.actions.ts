@@ -32,6 +32,7 @@ export interface ValidateConnectorPayload {
     connectorContent: ConnectorContent;
     action: Action;
     errorAction?: Action;
+    projectId?: string;
 }
 
 export const VALIDATE_CONNECTOR_ATTEMPT = '[Connector] Validate attempt';

@@ -19,7 +19,7 @@ import { Observable, forkJoin, from, OperatorFunction, of } from 'rxjs';
 import { RequestApiHelper, RequestApiHelperOptions } from './request-api.helper';
 import { map, concatMap, flatMap } from 'rxjs/operators';
 import { ModelApiInterface } from '../../api/generalmodel-api.interface';
-import { Model, MinimalModelSummary } from '../../api/types';
+import { Model, MinimalModelSummary, ModelScope } from '../../api/types';
 import { createBlobFormDataFromStringContent, createBlobFormData } from '../../helpers/utils/createJsonBlob';
 
 export interface ModelResponse<T extends Model> {
@@ -131,8 +131,9 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
             .delete(`/modeling-service/v1/models/${modelId}`);
     }
 
-    public validate(modelId: string, content: S, modelExtensions?: any): Observable<any> {
+    public validate(modelId: string, content: S, containerId: string, modelExtensions?: any): Observable<any> {
         const requestOptions: RequestApiHelperOptions = {
+            queryParams: { projectId: containerId },
             formParams: { file: new Blob([this.modelVariation.serialize(content)], { type: 'text/plain' }) },
             contentTypes: ['multipart/form-data']
         };
@@ -185,7 +186,6 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
         return {
             description: '',
             version: '0.0.1',
-            projectId: entity.projectId,
             // Patch: BE does not return empty or not yet defined properties at all, like extensions
             ...(this.modelVariation.patchModel(entity) as object)
         } as T;
@@ -204,6 +204,39 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
                     const content$ = this.export(modelId, responseType),
                         model$ = this.retrieve(modelId, modelId);
                     return forkJoin(model$, content$);
+                })
+            );
+    }
+
+    addProjectModelRelationship(containerId: string, modelId: string, scope?: ModelScope, force?: boolean): Observable<T> {
+        return this.requestApiHelper
+            .put<ModelResponse<T>>(
+                `/modeling-service/v1/projects/${containerId}/models/${modelId}`,
+                { queryParams: { scope, force } })
+            .pipe(
+                map(response => this.createEntity(response.entry, containerId))
+            );
+    }
+
+    deleteProjectModelRelationship(containerId: string, modelId: string): Observable<T> {
+        return this.requestApiHelper
+            .put<ModelResponse<T>>(
+                `/modeling-service/v1/projects/${containerId}/models/${modelId}`)
+            .pipe(
+                map(response => this.createEntity(response.entry, containerId))
+            );
+    }
+
+    public getGlobalModels(includeOrphans?: boolean): Observable<T[]> {
+        return this.requestApiHelper
+            .get<ModelsResponse<T>>(
+                `/modeling-service/v1/models`,
+                { queryParams: { type: this.modelVariation.contentType, maxItems: 1000, includeOrphans } })
+            .pipe(
+                map((nodePaging) => {
+                    return nodePaging.list.entries
+                        .map(entry => entry.entry)
+                        .map((entry) => this.createEntity(entry, null));
                 })
             );
     }

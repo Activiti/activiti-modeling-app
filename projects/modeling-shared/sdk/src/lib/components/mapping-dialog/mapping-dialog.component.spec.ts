@@ -19,7 +19,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatTableModule } from '@angular/material';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { MappingDialogComponent } from './mapping-dialog.component';
 import { MappingDialogModule } from './mapping-dialog.module';
@@ -27,7 +27,6 @@ import { MappingDialogData, VariableMappingType } from '../../services/mapping-d
 import { of } from 'rxjs';
 import { MappingType } from '../../api/types';
 import { UuidService } from '../../services/public-api';
-import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
 import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
 import {
@@ -36,14 +35,14 @@ import {
     PropertiesViewerDateTimeInputComponent,
     PropertiesViewerIntegerInputComponent,
     PropertiesViewerBooleanInputComponent,
-    InputTypeItem
+    InputTypeItem,
+    VariableValuePipe
 } from '../../variables/public-api';
 import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 
 describe('MappingDialogComponent', () => {
     let fixture: ComponentFixture<MappingDialogComponent>;
-    let component: MappingDialogComponent;
     let element: DebugElement;
 
     const inputTypes: InputTypeItem[] = [
@@ -55,23 +54,13 @@ describe('MappingDialogComponent', () => {
     ];
 
     const inputMappingDialogService: InputMappingDialogService = new InputMappingDialogService(inputTypes);
-    inputMappingDialogService.initExpressionEditor = function (language: string, parameters: any[]) { };
-    inputMappingDialogService.updateEditorLanguageSettings = function (
-        language: string,
-        languagesDef?: monaco.languages.IMonarchLanguage,
-        themeNames?: string[],
-        themes?: monaco.editor.IStandaloneThemeData[],
-        suggestions?: monaco.languages.CompletionItem[]) { };
-    inputMappingDialogService.removeEditorLanguageSettings = function (language: string) { };
+    inputMappingDialogService.initExpressionEditor = () => { };
+    inputMappingDialogService.updateEditorLanguageSettings = () => { };
+    inputMappingDialogService.removeEditorLanguageSettings = () => { };
     const outputMappingDialogService: OutputMappingDialogService = new OutputMappingDialogService(inputTypes);
-    outputMappingDialogService.initExpressionEditor = function (language: string, parameters: any[]) { };
-    outputMappingDialogService.updateEditorLanguageSettings = function (
-        language: string,
-        languagesDef?: monaco.languages.IMonarchLanguage,
-        themeNames?: string[],
-        themes?: monaco.editor.IStandaloneThemeData[],
-        suggestions?: monaco.languages.CompletionItem[]) { };
-    inputMappingDialogService.removeEditorLanguageSettings = function (language: string) { };
+    outputMappingDialogService.initExpressionEditor = () => { };
+    outputMappingDialogService.updateEditorLanguageSettings = () => { };
+    inputMappingDialogService.removeEditorLanguageSettings = () => { };
 
     const mockDialogDataInputMapping: MappingDialogData = {
         theme$: of(''),
@@ -145,13 +134,10 @@ describe('MappingDialogComponent', () => {
     function setUpTestBed(customMockDialogData) {
         TestBed.configureTestingModule({
             imports: [
-                CoreModule.forRoot(),
-                MonacoEditorModule.forRoot(),
                 TranslateModule.forRoot(),
-                MappingDialogModule,
-                NoopAnimationsModule,
-                FormsModule
+                MatTableModule
             ],
+            declarations: [MappingDialogComponent, VariableValuePipe],
             providers: [
                 { provide: MatDialogRef, useValue: mockDialog },
                 { provide: MAT_DIALOG_DATA, useValue: customMockDialogData },
@@ -161,9 +147,8 @@ describe('MappingDialogComponent', () => {
                 { provide: OutputMappingDialogService, useValue: outputMappingDialogService },
             ],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
+        });
         fixture = TestBed.createComponent(MappingDialogComponent);
-        component = fixture.componentInstance;
         element = fixture.debugElement;
         fixture.detectChanges();
     }
@@ -173,7 +158,7 @@ describe('MappingDialogComponent', () => {
             setUpTestBed(mockDialogDataInputMapping);
         }));
 
-        it('should render mapping table correctly', () => {
+        it('should render input mapping table correctly', () => {
             const parameters = Object.values(mockDialogDataInputMapping.inputParameters);
 
             const rows = element.queryAll(By.css('div.mapping-table-viewer mat-row'));
@@ -208,7 +193,7 @@ describe('MappingDialogComponent', () => {
             setUpTestBed(mockDialogDataOutputMapping);
         }));
 
-        it('should render mapping table correctly', () => {
+        it('should render output mapping table correctly', () => {
             const outputMapping = Object.keys(mockDialogDataOutputMapping.outputMapping);
 
             const rows = element.queryAll(By.css('div.mapping-table-viewer mat-row'));

@@ -16,7 +16,7 @@
  */
 
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, Inject } from '@angular/core';
-import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction } from '@alfresco-dbp/modeling-shared/sdk';
+import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction, ModelScope, Model } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -72,5 +72,9 @@ export class ProjectTreeFilterComponent implements OnInit {
         event.stopPropagation();
         const modelCreator = this.creators.find(creator => creator.type === this.filter.type);
         this.store.dispatch(new OpenEntityDialogAction(modelCreator.dialog));
+    }
+
+    isScopeGlobal(content: Model): boolean {
+        return content.scope === ModelScope.GLOBAL;
     }
 }
