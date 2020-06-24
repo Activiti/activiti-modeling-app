@@ -59,10 +59,6 @@ describe ('Search Header Component', () => {
         component.ngOnInit();
     });
 
-    it('should render component', () => {
-        expect(component).not.toBeNull();
-    });
-
     it('should open the input box on click on the search button', () => {
         fixture.detectChanges();
 

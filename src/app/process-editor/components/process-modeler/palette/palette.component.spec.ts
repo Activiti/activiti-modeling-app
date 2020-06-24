@@ -98,10 +98,6 @@ describe('Palette component', () => {
         fixture.detectChanges();
     });
 
-    it('should render component', () => {
-        expect(component).not.toBeNull();
-    });
-
     it('test hasChildren method', () => {
         expect(component.hasChildren(component.paletteElements[0])).toBeFalsy();
         expect(component.hasChildren(component.paletteElements[1])).toBeTruthy();

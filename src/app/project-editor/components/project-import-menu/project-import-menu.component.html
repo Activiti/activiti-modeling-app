@@ -1,0 +1,13 @@
+<button [matMenuTriggerFor]="globalModels" *ngIf="importer" mat-menu-item
+    [attr.data-automation-id]="'app-navigation-import-' + importer.type">
+    <mat-icon>{{ importer.icon }}</mat-icon>
+    <span>{{ importer.name | translate }}</span>
+</button>
+<mat-menu #globalModels="matMenu" [overlapTrigger]="false" yPosition="below" xPosition="after">
+    <button *ngFor="let item of items" mat-menu-item (click)="onImport(item.id)" matTooltip="{{item.description}}"
+        matTooltipPosition="below" matTooltipShowDelay="1000"
+        [attr.data-automation-id]="'item-' + getDataAutomationFromDisplayName(item.displayName)">
+        <mat-icon color="accent">{{item.iconName}}</mat-icon>
+        <span>{{item.displayName}}</span>
+    </button>
+</mat-menu>

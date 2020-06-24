@@ -89,10 +89,6 @@ describe('ProcessHeaderComponent', () => {
         store = TestBed.get(Store);
     });
 
-    it('should render component', () => {
-        expect(component).not.toBeNull();
-    });
-
     it('should render breadcrumbs', () => {
         const breadcrumbs = fixture.debugElement.query(By.css('modelingsdk-header-breadcrumbs'));
         expect(breadcrumbs).not.toBeNull();

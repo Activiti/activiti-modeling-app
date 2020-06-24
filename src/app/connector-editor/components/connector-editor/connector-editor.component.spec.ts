@@ -90,10 +90,6 @@ describe('ConnectorEditorComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should render component', () => {
-        expect(component).not.toBeNull();
-    });
-
     it('should render spinner if loading state is true', () => {
         component.loadingState$ = of(true);
         const spinner = fixture.debugElement.query(By.css('.ama-connector-editor-spinner'));

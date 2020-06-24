@@ -15,9 +15,17 @@
  * limitations under the License.
  */
 
-export * from './validation-errors.interface';
-export * from './model-filter.interface';
-export * from './model-creator.interface';
-export * from './model-uploader.interface';
-export * from './model-editor-routes';
-export * from './model-importer.interface';
+import { InjectionToken } from '@angular/core';
+import { MODEL_TYPE, Model } from '../api/types';
+import { ActionConstructor } from './model-creator.interface';
+import { Observable } from 'rxjs';
+
+export interface ModelImporter {
+    type: MODEL_TYPE;
+    icon: string;
+    name: string;
+    action: ActionConstructor;
+    getGlobalModels(): Observable<Model[]>;
+}
+
+export const MODEL_IMPORTERS = new InjectionToken<ModelImporter[]>('model-importers');

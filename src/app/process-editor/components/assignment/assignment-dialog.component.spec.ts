@@ -143,10 +143,6 @@ describe('AssignmentDialogComponent', () => {
         TestBed.resetTestingModule();
     });
 
-    it('should render component', () => {
-        expect(component).not.toBeNull();
-    });
-
     describe('Form Disable', () => {
 
         it('Should disable assign button if mode type changed single to candidates)', async(() => {

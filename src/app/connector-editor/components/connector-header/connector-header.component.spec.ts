@@ -76,10 +76,6 @@ describe('ConnectorHeaderComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should render component', () => {
-        expect(component).not.toBeNull();
-    });
-
     it('should emit new event on save button click', () => {
         spyOn(store, 'dispatch');
 

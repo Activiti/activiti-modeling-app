@@ -89,10 +89,6 @@ describe('ProcessModelerComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should render component', () => {
-        expect(component).not.toBeNull();
-    });
-
     it('should render canvas element', () => {
         expect(component.canvas.nativeElement).not.toBeNull();
     });

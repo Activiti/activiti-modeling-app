@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-import { Component, Inject, AfterContentInit } from '@angular/core';
+import { Component, Inject, AfterContentInit, Optional } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
-import { AmaState, selectSelectedProjectId, ModelCreatorDialogParams, MODEL_CREATORS, ModelCreator, OpenEntityDialogAction } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaState, selectSelectedProjectId, ModelCreatorDialogParams, MODEL_CREATORS, ModelCreator, OpenEntityDialogAction, MODEL_IMPORTERS, ModelImporter } from '@alfresco-dbp/modeling-shared/sdk';
 const orderBy = require('lodash/orderBy');
 
 @Component({
@@ -28,13 +28,18 @@ const orderBy = require('lodash/orderBy');
 export class ProjectNavigationComponent implements AfterContentInit {
     expanded$: Observable<boolean>;
     selectedProjectId$: Observable<string>;
-    public creators:  ModelCreator[];
+    public creators: ModelCreator[];
 
     constructor(
         private store: Store<AmaState>,
-        @Inject(MODEL_CREATORS) modelCreators: ModelCreator[]
+        @Inject(MODEL_CREATORS) modelCreators: ModelCreator[],
+        @Optional() @Inject(MODEL_IMPORTERS) private importers: ModelImporter[]
     ) {
         this.creators = orderBy(modelCreators, ['order'], ['asc']);
+    }
+
+    isImportEnabled() {
+        return this.importers !== null ? this.importers.length > 0 : false;
     }
 
     openModelCreationDialog(dialogParams: ModelCreatorDialogParams): void {

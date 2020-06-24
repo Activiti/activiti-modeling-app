@@ -111,10 +111,6 @@ describe('OutputMappingTableComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should render component', () => {
-        expect(component).not.toBeNull();
-    });
-
     it('should emit the correct data when a property value is set', () => {
         spyOn(component.update, 'emit');
         const select = fixture.debugElement.query(By.css('.mat-select-trigger'));
