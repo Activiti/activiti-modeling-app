@@ -159,7 +159,7 @@ export class OutputMappingTableComponent implements OnChanges {
                     variable =>
                         !this.mapping[variable.name] ||
                         variable.name === this.getProcessVariable(index)
-                )
+                ).sort((a, b) => (a.name > b.name) ? 1 : -1)
         ];
     }
 

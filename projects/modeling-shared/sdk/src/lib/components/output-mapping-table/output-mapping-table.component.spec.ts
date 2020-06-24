@@ -122,7 +122,7 @@ describe('OutputMappingTableComponent', () => {
         fixture.detectChanges();
 
         const data = {
-            [component.processProperties[0].name]: {
+            [component.processProperties.sort((a, b) => (a.name > b.name) ? 1 : -1)[0].name]: {
                 type: MappingType.variable,
                 value: component.parameters[0].name
             }
@@ -147,7 +147,7 @@ describe('OutputMappingTableComponent', () => {
         fixture.detectChanges();
 
         const options = fixture.debugElement.queryAll(By.css('.mat-option'));
-        options[1].nativeElement.click();
+        options[0].nativeElement.click();
         fixture.detectChanges();
 
         const data = {
@@ -203,12 +203,12 @@ describe('OutputMappingTableComponent', () => {
         fixture.detectChanges();
 
         expect(component.optionsForParams[0]).toEqual([
-            component.processProperties[0],
-            component.processProperties[2]
+            component.processProperties[2],
+            component.processProperties[0]
         ]);
         expect(component.optionsForParams[1]).toEqual([
-            component.processProperties[0],
-            component.processProperties[2]
+            component.processProperties[2],
+            component.processProperties[0]
         ]);
     });
 

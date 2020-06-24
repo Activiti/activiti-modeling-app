@@ -70,16 +70,24 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
         @Inject(MAT_DIALOG_DATA) public data: MappingDialogData
     ) {
         this.inputMapping = data.inputMapping;
-        this.inputParameters = data.inputParameters;
+        this.inputParameters = this.getSortedCopy(data.inputParameters);
         this.outputMapping = data.outputMapping;
-        this.outputParameters = data.outputParameters;
-        this.processProperties = data.processProperties;
+        this.outputParameters = this.getSortedCopy(data.outputParameters);
+        this.processProperties = this.getSortedCopy(data.processProperties);
         this.mappingType = data.mappingType;
         this.selectedRow = data.selectedRow;
         this.selectedProcessVariable = data.selectedProcessVariable;
         this.selectedOutputParameter = data.selectedOutputParameter;
         this.vsTheme$ = data.theme$;
         this.extensionObject = data.extensionObject;
+    }
+
+    private getSortedCopy(array: any[]): any[] {
+        return array ? [...array].sort(this.sortByName) : [];
+    }
+
+    sortByName(a: { name: string }, b: { name: string }): number {
+        return (a.name > b.name) ? 1 : -1;
     }
 
     ngOnInit() {
@@ -157,9 +165,9 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
     isMappingSelectorEnabled(): boolean {
         switch (this.mappingType) {
             case VariableMappingType.output:
-                return this.inputParameters !== undefined && this.inputParameters !== null;
+                return this.inputParameters !== undefined && this.inputParameters !== null && this.inputParameters.length > 0;
             default:
-                return this.outputParameters !== undefined && this.outputParameters !== null;
+                return this.outputParameters !== undefined && this.outputParameters !== null && this.outputParameters.length > 0;
         }
     }
 
@@ -220,11 +228,15 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
     }
 
     getFilteredProcessProperties(type: string): EntityProperty[] {
-        return this.processProperties.filter(prop => this.service.getPrimitiveType(prop.type) === this.service.getPrimitiveType(type));
+        return this.getSortedArrayFilteredByType(this.processProperties, type);
     }
 
     getFilteredOutputParameters(type: string): ConnectorParameter[] {
-        return this.outputParameters.filter(prop => this.service.getPrimitiveType(prop.type) === this.service.getPrimitiveType(type));
+        return this.getSortedArrayFilteredByType(this.outputParameters, type);
+    }
+
+    private getSortedArrayFilteredByType(array: any[], type: string): any[] {
+        return array.filter(prop => this.service.getPrimitiveType(prop.type) === this.service.getPrimitiveType(type)).sort(this.sortByName);
     }
 
     variableMappingValueChange($event: MatSelectChange, i: number) {

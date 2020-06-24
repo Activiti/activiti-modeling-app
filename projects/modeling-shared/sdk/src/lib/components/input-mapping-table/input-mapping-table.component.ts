@@ -129,7 +129,7 @@ export class InputMappingTableComponent implements OnChanges {
                 { id: NoneValue, name: 'None' },
                 ...this.processProperties.filter(
                     prop => this.inputMappingDataSourceService.getPrimitiveType(prop.type) === this.inputMappingDataSourceService.getPrimitiveType(param.type)
-                )
+                ).sort((a, b) => (a.name > b.name) ? 1 : -1)
             ];
         });
     }

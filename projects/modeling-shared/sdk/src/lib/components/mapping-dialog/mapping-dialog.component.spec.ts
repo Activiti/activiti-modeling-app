@@ -16,13 +16,10 @@
  */
 
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
 import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatTableModule } from '@angular/material';
-import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
+import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { MappingDialogComponent } from './mapping-dialog.component';
-import { MappingDialogModule } from './mapping-dialog.module';
 import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
 import { of } from 'rxjs';
 import { MappingType } from '../../api/types';
@@ -159,7 +156,7 @@ describe('MappingDialogComponent', () => {
         }));
 
         it('should render input mapping table correctly', () => {
-            const parameters = Object.values(mockDialogDataInputMapping.inputParameters);
+            const parameters = Object.values(mockDialogDataInputMapping.inputParameters).sort(fixture.componentInstance.sortByName);
 
             const rows = element.queryAll(By.css('div.mapping-table-viewer mat-row'));
             expect(rows.length).toBe(parameters.length);
