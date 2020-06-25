@@ -368,6 +368,11 @@ export interface SearchQuery {
     value: string;
 }
 
+export interface FetchQueries {
+    skipCount?: number;
+    maxItems?: number;
+}
+
 export interface ErrorResponse {
     status: number;
     message: string;

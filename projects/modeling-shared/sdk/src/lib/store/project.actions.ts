@@ -17,8 +17,7 @@
 
 import { EntityDialogForm } from '../helpers/common';
 import { Action } from '@ngrx/store';
-import { Release, ServerSideSorting, SearchQuery, Project } from '../api/types';
-import { FetchQueries } from '../api/project-api.interface';
+import { Release, ServerSideSorting, SearchQuery, Project, FetchQueries } from '../api/types';
 import { Update } from '@ngrx/entity';
 import { Pagination } from '@alfresco/js-api';
 

@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery, CollaboratorEntry } from './types';
+import { Project, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery, CollaboratorEntry, FetchQueries } from './types';
 import { ValidationErrors } from '../interfaces/validation-errors.interface';
 import { PaginatedEntries } from '@alfresco/js-api';
 import { IdentityUserModel } from '@alfresco/adf-core';
@@ -38,9 +38,4 @@ export abstract class ProjectApi {
     public abstract getCollaborators(projectId: string): Observable<PaginatedEntries<CollaboratorEntry>>;
     public abstract addCollaborator(projectId: string, collaborator: IdentityUserModel): Observable<CollaboratorEntry>;
     public abstract removeCollaborator(projectId: string, collaborator: IdentityUserModel): Observable<void>;
-}
-
-export interface FetchQueries {
-    skipCount?: number;
-    maxItems?: number;
 }

@@ -50,7 +50,8 @@ export class ModelContentApiVariation<M extends ContentModel, C extends ContentM
         return {
             name: this.getNameFromXML(xmlDoc),
             description: this.getDescriptionFromXML(xmlDoc),
-            type: this.contentType
+            type: this.contentType,
+            scope: model.scope
         };
     }
 

@@ -16,7 +16,8 @@
  */
 
 import { Observable } from 'rxjs';
-import { ModelScope } from './types';
+import { ModelScope, ServerSideSorting, FetchQueries } from './types';
+import { PaginatedEntries } from '@alfresco/js-api';
 export interface ModelApiInterface<ModelMetadata, ModelContent> {
     getList(containerId: string): Observable<ModelMetadata[]>;
     create(model: Partial<ModelMetadata>, containerId?: string): Observable<ModelMetadata>;
@@ -34,5 +35,7 @@ export interface ModelApiInterface<ModelMetadata, ModelContent> {
     addProjectModelRelationship(containerId: string, modelId: string, scope?: ModelScope, force?: boolean): Observable<ModelMetadata>;
     deleteProjectModelRelationship(containerId: string, modelId: string): Observable<ModelMetadata>;
 
-    getGlobalModels(includeOrphans?: boolean): Observable<ModelMetadata[]>;
+    getGlobalModels(includeOrphans?: boolean, fetchQueries?: FetchQueries, sorting?: ServerSideSorting): Observable<PaginatedEntries<ModelMetadata>>;
+
+    createGlobalModel(model: Partial<ModelMetadata>): Observable<ModelMetadata>;
 }
