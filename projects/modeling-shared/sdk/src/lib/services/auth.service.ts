@@ -17,7 +17,6 @@
 
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-const indexOf = require('lodash/indexOf');
 
 @Injectable()
 export class AuthTokenProcessorService {
@@ -41,7 +40,7 @@ export class AuthTokenProcessorService {
     let hasRole = false;
     if (this.hasToken()) {
       const roles = this.getRoles();
-      hasRole = indexOf(roles, role) >= 0;
+      hasRole = roles.includes(role);
     }
     return hasRole;
   }
@@ -53,7 +52,7 @@ export class AuthTokenProcessorService {
         hasRole = true;
         return;
       }
-      });
+    });
     return hasRole;
   }
 
