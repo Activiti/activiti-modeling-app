@@ -87,7 +87,7 @@ export class InputMappingTableComponent implements OnChanges {
         if (this.parameters) {
             this.initOptionsForParams();
             this.initMapping();
-            this.dataSource = new MatTableDataSource(this.parameters);
+            this.dataSource = new MatTableDataSource(this.getSortedCopy(this.parameters));
         }
         this.data = { ...this.mapping };
     }
@@ -127,9 +127,9 @@ export class InputMappingTableComponent implements OnChanges {
         this.parameters.forEach(param => {
             this.optionsForParams[param.name] = [
                 { id: NoneValue, name: 'None' },
-                ...this.processProperties.filter(
+                ...this.getSortedCopy(this.processProperties.filter(
                     prop => this.inputMappingDataSourceService.getPrimitiveType(prop.type) === this.inputMappingDataSourceService.getPrimitiveType(param.type)
-                ).sort((a, b) => (a.name > b.name) ? 1 : -1)
+                ))
             ];
         });
     }
@@ -206,5 +206,13 @@ export class InputMappingTableComponent implements OnChanges {
             this.data = data;
             this.update.emit(data);
         });
+    }
+
+    private getSortedCopy(array: any[]): any[] {
+        return array ? [...array].sort(this.sortByName) : [];
+    }
+
+    sortByName(a: { name: string }, b: { name: string }): number {
+        return (a.name > b.name) ? 1 : -1;
     }
 }
