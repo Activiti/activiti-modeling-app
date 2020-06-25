@@ -220,7 +220,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
 
     deleteProjectModelRelationship(containerId: string, modelId: string): Observable<T> {
         return this.requestApiHelper
-            .put<ModelResponse<T>>(
+            .delete<ModelResponse<T>>(
                 `/modeling-service/v1/projects/${containerId}/models/${modelId}`)
             .pipe(
                 map(response => this.createEntity(response.entry, containerId))
