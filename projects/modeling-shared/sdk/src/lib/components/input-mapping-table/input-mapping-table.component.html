@@ -40,7 +40,7 @@
             </ng-container>
             <ng-container *ngIf="parameter.type === 'process'">
                 <div *ngIf="(mappingTypes[parameter.name] === VALUE_TYPE && values[parameter.name] && values[parameter.name].startsWith('${'))
-                           || mappingTypes[parameter.name] === VARIABLE_TYPE; else elseBlock"
+                           || (mappingTypes[parameter.name] === VARIABLE_TYPE && values[parameter.name] && values[parameter.name].length >0) ; else elseBlock"
                     class="modelingsdk-input-mapping-table-mapped-value-div ellipsis-cell">
                     <span [attr.data-automation-id]="'value-input-' + parameter.id"
                         *ngIf="mappingTypes[parameter.name] === VALUE_TYPE"
