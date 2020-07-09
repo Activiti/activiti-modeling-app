@@ -80,7 +80,7 @@
     "dmn-moddle": "^6.0.0",
     "hammerjs": "2.0.8",
     "intl": "1.2.5",
-    "lodash": "4.17.15",
+    "lodash": "4.17.16",
     "minimatch": "3.0.4",
     "minimatch-browser": "1.0.0",
     "moment": "2.24.0",
