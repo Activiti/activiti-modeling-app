@@ -69,7 +69,7 @@
     "@ngrx/store": "7.2.0",
     "@ngrx/store-devtools": "7.2.0",
     "@ngx-translate/core": "11.0.1",
-    "ajv": "^6.10.2",
+    "ajv": "^6.12.3",
     "bpmn-js": "6.0.4",
     "bpmn-js-properties-panel": "0.33.0",
     "camunda-bpmn-moddle": "4.3.0",
