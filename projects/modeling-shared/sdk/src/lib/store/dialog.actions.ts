@@ -17,7 +17,7 @@
 
 import { Action } from '@ngrx/store';
 import { TemplateRef } from '@angular/core';
-import { MatDialogConfig } from '@angular/material';
+import { MatDialogConfig } from '@angular/material/dialog';
 import { ComponentType } from '@angular/cdk/portal';
 import { EntityDialogPayload } from '../helpers/common';
 

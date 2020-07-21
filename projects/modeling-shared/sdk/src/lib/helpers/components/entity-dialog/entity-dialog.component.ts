@@ -16,7 +16,7 @@
  */
 
 import { Component, OnInit, Optional, Inject, HostListener, ViewChild, ElementRef } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { AmaState } from '../../../store/app.state';
 import { EntityDialogPayload, AllowedCharacters, EntityDialogForm } from '../../common';
@@ -32,10 +32,10 @@ export class EntityDialogComponent implements OnInit {
     form: Partial<EntityDialogForm>;
     ENTER_KEY = 13;
 
-    @ViewChild('entityName')
+    @ViewChild('entityName', { static: true })
     private entityNameField: ElementRef<HTMLElement>;
 
-    @ViewChild('buttonSubmit')
+    @ViewChild('buttonSubmit', { static: true })
     private submitButtonField: ElementRef<HTMLElement>;
 
     constructor(

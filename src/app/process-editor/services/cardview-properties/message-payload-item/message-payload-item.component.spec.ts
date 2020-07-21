@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CardItemTypeService, CardViewUpdateService, LocalizedDatePipe, setupTestBed } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -95,8 +95,8 @@ describe('CardViewMessageItemComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(CardViewMessagePayloadItemComponent);
         component = fixture.componentInstance;
-        store = TestBed.get(Store);
-        messageVariableMappingService = TestBed.get(MessageVariableMappingService);
+        store = TestBed.inject(Store);
+        messageVariableMappingService = TestBed.inject(MessageVariableMappingService);
 
         spyOn(store, 'select').and.returnValue(of(processMock));
         spyOn(messageVariableMappingService, 'updateMessagePayloadMapping');

@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-export { VariablesModule } from './variables.module';
-export { VariablesComponent } from './variables.component';
-export { VariableValuePipe } from './properties-viewer/variable-value.pipe';
+export * from './variables.module';
+export * from './variables.component';
+export * from './properties-viewer/variable-value.pipe';
 export * from './properties-viewer/value-type-inputs/value-type-inputs';
-export { PropertiesViewerIntegerInputComponent } from './properties-viewer/value-type-inputs/integer-input.component';
-export { PropertiesViewerStringInputComponent } from './properties-viewer/value-type-inputs/string-input.component';
-export { PropertiesViewerBooleanInputComponent } from './properties-viewer/value-type-inputs/boolean-input.component';
-export { PropertiesViewerDateInputComponent } from './properties-viewer/value-type-inputs/date-input.component';
-export { PropertiesViewerJsonInputComponent } from './properties-viewer/value-type-inputs/json-input.component';
-export { PropertiesViewerFileInputComponent } from './properties-viewer/value-type-inputs/file-input.component';
-export { PropertiesViewerDateTimeInputComponent } from './properties-viewer/value-type-inputs/date-time-input.component';
-export { PropertiesViewerArrayInputComponent } from './properties-viewer/value-type-inputs/array-input.component';
+export * from './properties-viewer/value-type-inputs/integer-input.component';
+export * from './properties-viewer/value-type-inputs/string-input.component';
+export * from './properties-viewer/value-type-inputs/boolean-input.component';
+export * from './properties-viewer/value-type-inputs/date-input.component';
+export * from './properties-viewer/value-type-inputs/json-input.component';
+export * from './properties-viewer/value-type-inputs/file-input.component';
+export * from './properties-viewer/value-type-inputs/date-time-input.component';
+export * from './properties-viewer/value-type-inputs/array-input.component';

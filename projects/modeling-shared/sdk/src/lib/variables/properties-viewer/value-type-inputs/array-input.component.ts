@@ -69,8 +69,8 @@ export class PropertiesViewerArrayInputComponent implements OnInit, OnChanges {
     filteredItems: Observable<any[]>;
     regexInput = /.*/;
     readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-    @ViewChild('arrayInput') arrayInput: ElementRef<HTMLInputElement>;
-    @ViewChild('auto') matAutocomplete: MatAutocomplete;
+    @ViewChild('arrayInput', { static: true }) arrayInput: ElementRef<HTMLInputElement>;
+    @ViewChild('auto', { static: true }) matAutocomplete: MatAutocomplete;
 
     data: any[] = [];
 

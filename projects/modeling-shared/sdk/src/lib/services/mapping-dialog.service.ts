@@ -18,7 +18,7 @@
 import { ServiceParameterMapping, ConnectorParameter, MappingType, EntityProperty } from '../api/types';
 import { Subject, Observable } from 'rxjs';
 import { InputTypeItem, INPUT_TYPE_ITEM_HANDLER } from '../variables/public-api';
-import { Inject } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
 export interface MappingDialogData {
     inputMapping?: ServiceParameterMapping;
@@ -58,6 +58,7 @@ export enum MappingValueType {
     expression = 'expression'
 }
 
+@Injectable()
 export abstract class MappingDialogService {
     constructor(@Inject(INPUT_TYPE_ITEM_HANDLER) private inputTypeItemHandler: InputTypeItem[]) { }
 

@@ -15,18 +15,19 @@
  * limitations under the License.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectNavigationComponent } from './project-navigation.component';
-import { MatIconModule, MatMenuModule, MatToolbarModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslationService, TranslationMock } from '@alfresco/adf-core';
+import { TranslationService, TranslationMock, CoreModule } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
-import { selectMenuOpened } from '../../../store/selectors/app.selectors';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { AmaState, MODEL_CREATORS, ModelCreator, ModelCreatorDialogParams, OpenEntityDialogAction, OPEN_ENTITY_DIALOG } from '@alfresco-dbp/modeling-shared/sdk';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 describe('ProjectNavigationComponent', () => {
     let fixture: ComponentFixture<ProjectNavigationComponent>;
@@ -34,7 +35,7 @@ describe('ProjectNavigationComponent', () => {
     let element: DebugElement;
 
     describe('For tests when extended is false', () => {
-        beforeEach(async(() => {
+        beforeEach(() => {
 
             const processCreator: ModelCreator = {
                 icon: 'device_hub',
@@ -47,6 +48,7 @@ describe('ProjectNavigationComponent', () => {
             TestBed.configureTestingModule({
                 imports: [
                     TranslateModule.forRoot(),
+                    CoreModule.forRoot(),
                     NoopAnimationsModule,
                     MatIconModule,
                     MatMenuModule,
@@ -58,24 +60,24 @@ describe('ProjectNavigationComponent', () => {
                     {
                         provide: Store,
                         useValue: {
-                            select: jest.fn(selectMenuOpened).mockReturnValue(of()), dispatch: jest.fn()
+                            select() { return of(); }, dispatch: jest.fn()
                         }
                     }
             ],
                 schemas: [NO_ERRORS_SCHEMA],
                 declarations: [ProjectNavigationComponent]
-            }).compileComponents();
-        }));
+            });
+        });
 
         beforeEach(() => {
             fixture = TestBed.createComponent(ProjectNavigationComponent);
             element = fixture.debugElement;
             fixture.detectChanges();
-            store = TestBed.get(Store);
+            store = TestBed.inject(Store);
         });
 
         it('click on menu button should open a entity dialog', () => {
-            spyOn(store, 'dispatch');
+            const dispatchSpy = spyOn(store, 'dispatch');
             const button = element.query(By.css('.adf-sidebar-action-menu-icon .mat-icon'));
             button.triggerEventHandler('click', { stopPropagation: jest.fn() });
 
@@ -85,7 +87,7 @@ describe('ProjectNavigationComponent', () => {
             const button3 = element.query(By.css('[data-automation-id="app-navigation-create-process"]'));
             button3.triggerEventHandler('click', { stopPropagation: jest.fn() });
 
-            const action: OpenEntityDialogAction =  store.dispatch.calls.argsFor(0)[0];
+            const action: OpenEntityDialogAction =  dispatchSpy.calls.argsFor(0)[0];
 
             expect(store.dispatch).toHaveBeenCalled();
             expect(action.type).toBe(OPEN_ENTITY_DIALOG);
@@ -100,7 +102,7 @@ describe('ProjectNavigationComponent', () => {
     });
 
     describe('For tests when expanded is true', () => {
-        beforeEach(async(() => {
+        beforeEach(() => {
             TestBed.configureTestingModule({
                 imports: [TranslateModule.forRoot(), NoopAnimationsModule, MatIconModule, MatMenuModule, MatToolbarModule],
                 providers: [
@@ -117,20 +119,17 @@ describe('ProjectNavigationComponent', () => {
                     },
                     {
                         provide: Store,
-                        useValue: { select: jest.fn(selectMenuOpened).mockReturnValue(of(true)), dispatch: jest.fn()}
+                        useValue: { select() { return of(true); }, dispatch: jest.fn()}
                     }
             ],
                 schemas: [NO_ERRORS_SCHEMA],
                 declarations: [ProjectNavigationComponent]
-            }).compileComponents();
-        }));
+            });
 
-        beforeEach(() => {
             fixture = TestBed.createComponent(ProjectNavigationComponent);
             element = fixture.debugElement;
             fixture.detectChanges();
-            store = TestBed.get(Store);
-
+            store = TestBed.inject(Store);
         });
 
         it('if expanded is false, should load the  collapsedProjectTree template', () => {

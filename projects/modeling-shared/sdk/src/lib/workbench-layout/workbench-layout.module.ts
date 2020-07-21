@@ -34,7 +34,6 @@ import { CoreModule } from '@alfresco/adf-core';
         WorkbenchLayoutComponent,
         WorkbenchLayoutContentComponent,
         WorkbenchLayoutSidenavComponent
-    ],
-    entryComponents: [  ]
+    ]
 })
 export class WorkbenchLayoutModule {}

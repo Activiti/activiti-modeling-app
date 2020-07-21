@@ -20,13 +20,14 @@ import { CardViewProcessNameItemComponent } from './process-name-item.component'
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CardViewProcessNameItemModel } from './process-name-item.model';
-import { ProcessModelerServiceToken, ProcessModelerService, BpmnFactoryToken } from '@alfresco-dbp/modeling-shared/sdk';
+import { ProcessModelerServiceToken, ProcessModelerService, BpmnFactoryToken, BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessModelerServiceImplementation } from '../../process-modeler.service';
 import { BpmnFactoryMock } from '../../bpmn-js/bpmn-js.mock';
 import { By } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 describe('CardViewProcessNameItemComponent', () => {
     let fixture: ComponentFixture<CardViewProcessNameItemComponent>;
@@ -76,7 +77,7 @@ describe('CardViewProcessNameItemComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(CardViewProcessNameItemComponent);
         component = fixture.componentInstance;
-        processModelerService = TestBed.get(ProcessModelerServiceToken);
+        processModelerService = TestBed.inject(ProcessModelerServiceToken);
         spyOn(processModelerService, 'updateElementProperty');
     });
 
@@ -89,7 +90,7 @@ describe('CardViewProcessNameItemComponent', () => {
         component.property = propertyMock;
         fixture.detectChanges();
         expect(processModelerService.updateElementProperty).toHaveBeenCalledTimes(1);
-        expect(processModelerService.updateElementProperty).toHaveBeenCalledWith(propertyMock.data.element.id, 'processName', propertyMock.value);
+        expect(processModelerService.updateElementProperty).toHaveBeenCalledWith(propertyMock.data.element.id, BpmnProperty.processName, propertyMock.value);
     });
 
     it('should generate pool name when pool name and process name are not defined', () => {
@@ -98,7 +99,7 @@ describe('CardViewProcessNameItemComponent', () => {
         component.property = propertyMock;
         fixture.detectChanges();
         expect(processModelerService.updateElementProperty).toHaveBeenCalledTimes(1);
-        expect(processModelerService.updateElementProperty).toHaveBeenCalledWith(propertyMock.data.element.id, 'processName', 'model-name-1');
+        expect(processModelerService.updateElementProperty).toHaveBeenCalledWith(propertyMock.data.element.id, BpmnProperty.processName, 'model-name-1');
     });
 
     it('should update pool name when name is changed', fakeAsync(() => {
@@ -117,7 +118,7 @@ describe('CardViewProcessNameItemComponent', () => {
 
         tick(1000);
         expect(processModelerService.updateElementProperty).toHaveBeenCalledTimes(1);
-        expect(processModelerService.updateElementProperty).toHaveBeenCalledWith(propertyMock.data.element.id, 'processName', 'new-process-name');
+        expect(processModelerService.updateElementProperty).toHaveBeenCalledWith(propertyMock.data.element.id, BpmnProperty.processName, 'new-process-name');
     }));
 
     it('should throw error when process name does not meet criteria', async(() => {

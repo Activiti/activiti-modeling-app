@@ -48,7 +48,7 @@ export class AllowedCharactersDirective {
         return this.validate(newValue);
     }
 
-    @HostListener('paste', ['$event']) onPaste(event: ClipboardEvent) {
+    @HostListener('paste', ['$event']) onPaste(event: Event) {
         setTimeout(() => {
             const isValid = this.validate(this.el.nativeElement.value);
 

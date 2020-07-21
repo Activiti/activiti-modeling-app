@@ -18,7 +18,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationDialogComponent } from './confirmation-dialog.component';
-import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { DebugElement } from '@angular/core';
@@ -83,10 +83,6 @@ describe('ConfirmationDialog Component', () => {
             component = fixture.componentInstance;
             element = fixture.debugElement;
             fixture.detectChanges();
-        });
-
-        it('should create', () => {
-            expect(component).toBeTruthy();
         });
 
         it('should have subtitle, title and errors', () => {

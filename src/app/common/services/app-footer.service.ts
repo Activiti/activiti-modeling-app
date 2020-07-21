@@ -24,7 +24,7 @@ import { ClearLogHistoryAction } from '../../../app/store/actions/app.actions';
 import { selectToolbarUserMessage, selectToolbarInProgress, selectToolbarLogs, selectToolbarLogsVisibility } from '../../../app/store/selectors/app.selectors';
 import { EditorFooterService } from '../../app/app-layout/editor-footer/editor-footer.service.interface';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AppFooterService implements EditorFooterService  {
     userMessage$: Observable<string>;
     inProgress$: Observable<boolean>;

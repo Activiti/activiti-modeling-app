@@ -17,12 +17,13 @@
 
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import moment from 'moment-es6';
-import { MatDatepickerInputEvent, DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { MAT_DATETIME_FORMATS, DatetimeAdapter } from '@mat-datetimepicker/core';
 import { MomentDatetimeAdapter } from '@mat-datetimepicker/moment';
 import { MomentDateAdapter } from '@alfresco/adf-core';
 import { AMA_DATETIME_FORMATS, MOMENT_DATETIME_FORMAT } from '../../../helpers/primitive-types';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
     template: `

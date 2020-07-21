@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, ElementRef, ViewChild, Inject } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, Inject, Optional } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { LogService } from '@alfresco/adf-core';
 import { ModelUploader, AmaState, MODEL_UPLOADERS } from '@alfresco-dbp/modeling-shared/sdk';
@@ -27,7 +27,7 @@ import { ModelUploader, AmaState, MODEL_UPLOADERS } from '@alfresco-dbp/modeling
 export class UploadFileButtonComponent {
     @Input() type: string;
     @Input() projectId: string;
-    @ViewChild('fileInput') fileInput: ElementRef;
+    @ViewChild('fileInput', { static: true }) fileInput: ElementRef;
 
     get acceptedFileTypes(): string {
         if (this.uploader) {
@@ -37,26 +37,35 @@ export class UploadFileButtonComponent {
         }
     }
 
-    private get uploader() {
-        return this.uploaders.filter(uploader => uploader.type === this.type)[0];
+    private get uploader(): ModelUploader | null {
+        if (this.uploaders && this.uploaders.length > 0) {
+            return this.uploaders.filter(uploader => uploader.type === this.type)[0];
+        }
+        return null;
     }
 
     constructor(
         private store: Store<AmaState>,
         private logger: LogService,
-        @Inject(MODEL_UPLOADERS) private uploaders: ModelUploader[]) {}
+        @Optional()
+        @Inject(MODEL_UPLOADERS)
+        private uploaders: ModelUploader[]) {}
 
-    onClick(event): void {
+    onClick(event: Event): void {
         event.stopPropagation();
         this.fileInput.nativeElement.click();
     }
 
     onUpload(files: File[]): void {
         try {
-            const ActionClass = this.uploader.action;
+            const uploader = this.uploader;
 
-            this.store.dispatch(new ActionClass({ file: files[0], projectId: this.projectId }));
-            this.fileInput.nativeElement.value = null;
+            if (uploader) {
+                const ActionClass = this.uploader.action;
+
+                this.store.dispatch(new ActionClass({ file: files[0], projectId: this.projectId }));
+                this.fileInput.nativeElement.value = null;
+            }
         } catch (error) {
             this.logger.error('Problem occurred while trying to upload model.');
             this.logger.error(error);

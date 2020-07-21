@@ -17,7 +17,8 @@
 
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatTableModule } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { MappingDialogComponent } from './mapping-dialog.component';
 import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
@@ -166,7 +167,6 @@ describe('MappingDialogComponent', () => {
                 const mapping = mockDialogDataInputMapping.inputMapping[parameter.id];
 
                 const parameterContainer = element.query(By.css(`[data-automation-id=variable-name-cell-${index}]`));
-                const rowContainer = element.query(By.css(`[data-automation-id=mapping-row-${index}]`));
                 const iconContainer = element.query(By.css(`[data-automation-id=variable-icon-cell-${index}] mat-icon`));
                 const variableValueContainer = element.query(By.css(`[data-automation-id=variable-value-cell-${index}] span`));
                 const deleteButtonContainer = element.query(By.css(`[data-automation-id=delete-row-button-${index}]`));
@@ -178,7 +178,7 @@ describe('MappingDialogComponent', () => {
                 } else {
                     expect(variableValueContainer.nativeElement.className).toBe('non-variable-mapping');
                 }
-                expect(rowContainer.classes['active']).toBe(mockDialogDataInputMapping.selectedRow === index);
+
                 expect(iconContainer.nativeElement.textContent.trim()).toBe('arrow_backward');
                 expect(deleteButtonContainer).toBeNull();
             }
@@ -201,7 +201,6 @@ describe('MappingDialogComponent', () => {
                 const mapping = mockDialogDataOutputMapping.outputMapping[mappingKey];
 
                 const parameterContainer = element.query(By.css(`[data-automation-id=variable-name-cell-${index}]`));
-                const rowContainer = element.query(By.css(`[data-automation-id=mapping-row-${index}]`));
                 const iconContainer = element.query(By.css(`[data-automation-id=variable-icon-cell-${index}] mat-icon`));
                 const variableValueContainer = element.query(By.css(`[data-automation-id=variable-value-cell-${index}] span`));
                 const deleteButtonContainer = element.query(By.css(`[data-automation-id=delete-row-button-${index}]`));
@@ -219,7 +218,6 @@ describe('MappingDialogComponent', () => {
                 expect(parameterContainer.nativeElement.textContent.trim()).toBe(parameter);
                 expect(variableValueContainer.nativeElement.textContent.trim()).toBe(mappingKey);
                 expect(variableValueContainer.nativeElement.className).toBe('variable-mapping');
-                expect(rowContainer.classes['active']).toBe(mockDialogDataOutputMapping.selectedRow === index);
                 expect(iconContainer.nativeElement.textContent.trim()).toBe('arrow_forward');
                 expect(deleteButtonContainer).toBeDefined();
             }

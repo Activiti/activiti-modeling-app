@@ -23,7 +23,6 @@ import { BpmnFactoryMock } from '../../bpmn-js/bpmn-js.mock';
 import { BpmnFactoryToken, ProcessModelerService, ProcessModelerServiceToken } from '@alfresco-dbp/modeling-shared/sdk';
 import { appConfigMock, loopCharacteristicsMock, propertyMock } from './multi-instance.mock';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -32,6 +31,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { MultiInstanceProps, MultiInstanceType } from '../../bpmn-js/property-handlers/multi-instance.handler';
 import { CardViewMultiInstanceItemService } from './multi-instance-item.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 describe('CardViewMultiInstanceItemComponent', () => {
     let component: CardViewMultiInstanceItemComponent;
@@ -65,9 +67,9 @@ describe('CardViewMultiInstanceItemComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(CardViewMultiInstanceItemComponent);
         component = fixture.componentInstance;
-        processModelerService = TestBed.get(ProcessModelerServiceToken);
+        processModelerService = TestBed.inject(ProcessModelerServiceToken);
         service = fixture.debugElement.injector.get(CardViewMultiInstanceItemService);
-        appConfig = TestBed.get(AppConfigService);
+        appConfig = TestBed.inject(AppConfigService);
         appConfig.config = Object.assign(appConfig.config, appConfigMock);
 
         spyOn(processModelerService, 'getFromModeler').and.returnValue({
@@ -83,7 +85,6 @@ describe('CardViewMultiInstanceItemComponent', () => {
     });
 
     it('should create and set default values', () => {
-        expect(component).toBeTruthy();
         expect(component.selectedType).toEqual('parallel');
         expect(component.cardinality.value).toEqual('${expression}');
     });

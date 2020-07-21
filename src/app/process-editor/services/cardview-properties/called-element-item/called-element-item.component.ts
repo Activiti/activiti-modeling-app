@@ -33,7 +33,7 @@ import {
     ProcessExtensionsModel,
     EntityProperty
 } from '@alfresco-dbp/modeling-shared/sdk';
-import { MatSelectChange } from '@angular/material';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
     selector: 'ama-process-called-element',

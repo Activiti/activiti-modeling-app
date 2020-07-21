@@ -19,19 +19,22 @@ import { ProjectsListComponent } from './projects-list.component';
 import { ExportProjectAction } from '../../../project-editor/store/project-editor.actions';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslationMock, TranslationService, AppConfigService } from '@alfresco/adf-core';
+import { TranslationMock, TranslationService, AppConfigService, CoreModule } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 import { Store } from '@ngrx/store';
 import { AmaState, AmaApi, PROJECT_CONTEXT_MENU_OPTIONS, selectLoading, selectPagination, selectProjectSummaries } from '@alfresco-dbp/modeling-shared/sdk';
 import { By } from '@angular/platform-browser';
 import { of, BehaviorSubject } from 'rxjs';
-import { MatMenuModule, MatTableModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 import { MomentModule } from 'ngx-moment';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Pagination } from '@alfresco/js-api';
 import { mockProject, paginationMock } from './projects-list.mock';
 import { DashboardService } from '../../services/dashboard.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 describe ('Projects List Component', () => {
     let component: ProjectsListComponent;
@@ -46,8 +49,11 @@ describe ('Projects List Component', () => {
         TestBed.configureTestingModule({
             imports: [
                 TranslateModule.forRoot(),
+                CoreModule.forRoot(),
                 MatMenuModule,
                 MatTableModule,
+                MatSortModule,
+                MatPaginatorModule,
                 MomentModule,
                 RouterTestingModule,
                 NoopAnimationsModule
@@ -77,14 +83,14 @@ describe ('Projects List Component', () => {
                 },
                 { provide: PROJECT_CONTEXT_MENU_OPTIONS, useValue: []},
                 { provide: TranslationService, useClass: TranslationMock },
-                { provide: AppConfigService, useValue: {get: jest.fn('navigation').mockRejectedValue('{}')} }
+                { provide: AppConfigService, useValue: { get() { return {}; } } }
             ],
             schemas: [NO_ERRORS_SCHEMA],
-        }).compileComponents();
+        });
 
-        dashboardService = TestBed.get(DashboardService);
+        dashboardService = TestBed.inject(DashboardService);
         fixture = TestBed.createComponent(ProjectsListComponent);
-        store = TestBed.get(Store);
+        store = TestBed.inject(Store);
         component = fixture.componentInstance;
         component.ngOnInit();
         fixture.detectChanges();
@@ -93,14 +99,14 @@ describe ('Projects List Component', () => {
     it('clicking on download button should dispatch an ExportProjectAction', () => {
         dashboardService.fetchProjects = jest.fn().mockReturnValue(of([ mockProject ]));
 
-        spyOn(store, 'dispatch');
+        const dispatchSpy = spyOn(store, 'dispatch');
         const menu = fixture.debugElement.query(By.css('[data-automation-id="project-context-mock-project-id"]'));
         menu.triggerEventHandler('click', {});
         fixture.detectChanges();
         const button = fixture.debugElement.query(By.css('[data-automation-id="project-download-mock-project-id"]'));
         button.triggerEventHandler('click', {});
         fixture.detectChanges();
-        const exportAction: ExportProjectAction = store.dispatch.calls.argsFor(0)[0];
+        const exportAction: ExportProjectAction = dispatchSpy.calls.argsFor(0)[0];
 
         expect(exportAction.type).toBe('EXPORT_PROJECT');
         expect(exportAction.payload).toEqual({

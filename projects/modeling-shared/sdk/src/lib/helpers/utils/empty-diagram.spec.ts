@@ -18,8 +18,8 @@
 import { getEmptyDiagram } from './empty-diagram';
 
 describe('Empty diagram', () => {
-    const buildXML = process => {
-        const generatedDiagram = getEmptyDiagram(process);
+    const buildXML = (process: any) => {
+        const generatedDiagram = getEmptyDiagram(process, 'process-id');
         const parser = new DOMParser();
         const diagram = parser.parseFromString(generatedDiagram, 'text/xml');
 

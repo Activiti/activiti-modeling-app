@@ -27,7 +27,7 @@ import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-c
 import { Store } from '@ngrx/store';
 import { selectSelectedTheme } from '../../store/app.selectors';
 import { of } from 'rxjs';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogService } from '../../confirmation-dialog/services/dialog.service';
 import { PropertiesViewerStringInputComponent, INPUT_TYPE_ITEM_HANDLER } from '../../variables/public-api';
 import { TranslateModule } from '@ngx-translate/core';

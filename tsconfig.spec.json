@@ -5,7 +5,6 @@
         "baseUrl": "./",
         "module": "commonjs",
         "target": "es5",
-        "types": ["jasmine", "node", "jest"],
         "paths": {
             "@alfresco/js-api": ["./node_modules/@alfresco/js-api"],
             "rxjs/*": ["./node_modules/rxjs/*"],
@@ -14,8 +13,7 @@
             "@alfresco/adf-extensions": ["../alfresco-ng2-components/lib/extensions"],
             "@alfresco-dbp/modeling-shared/sdk": ["./projects/modeling-shared/sdk/src/public-api.ts"]
         },
-        "allowJs": true,
-        "allowSyntheticDefaultImports": true
+        "allowJs": true
     },
     "include": ["**/*.spec.ts", "**/*.d.ts"],
     "angularCompilerOptions": {

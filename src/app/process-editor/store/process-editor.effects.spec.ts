@@ -25,7 +25,7 @@ import { LogService, CoreModule, TranslationService, TranslationMock } from '@al
 import { provideMockActions } from '@ngrx/effects/testing';
 import { ProcessModelerServiceImplementation } from '../services/process-modeler.service';
 import { ProcessEditorService } from '../services/process-editor.service';
-import { selectSelectedElement, selectProcessesLoaded } from './process-editor.selectors';
+import { selectSelectedElement } from './process-editor.selectors';
 import { BpmnFactoryMock } from '../services/bpmn-js/bpmn-js.mock';
 import {
     ChangedProcessAction,
@@ -40,7 +40,8 @@ import {
     ValidateProcessAttemptAction,
     RemoveDiagramElementAction,
     RemoveElementMappingAction,
-    DeleteProcessExtensionAction
+    DeleteProcessExtensionAction,
+    ValidateProcessPayload
 } from './process-editor.actions';
 import { throwError, of, Observable } from 'rxjs';
 import { mockProcessModel, validateError } from './process.mock';
@@ -60,15 +61,13 @@ import {
     selectSelectedProjectId,
     LogFactoryService,
     SetApplicationLoadingStateAction,
-    ProcessExtensionsContent,
     OpenConfirmDialogAction,
-    selectOpenedModel,
-    BpmnElement,
-    ProcessModelerService
+    BpmnElement
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessEntitiesState } from './process-entities.state';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
 import { TranslateModule } from '@ngx-translate/core';
+import { SelectedProcessElement } from './process-editor.state';
 
 describe('ProcessEditorEffects', () => {
     let effects: ProcessEditorEffects;
@@ -79,7 +78,6 @@ describe('ProcessEditorEffects', () => {
     let processEditorService: ProcessEditorService;
     let router: Router;
     let logFactory: LogFactoryService;
-    let processModelerService: ProcessModelerService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -143,13 +141,12 @@ describe('ProcessEditorEffects', () => {
             ]
         });
 
-        logFactory = TestBed.get(LogFactoryService);
-        effects = TestBed.get(ProcessEditorEffects);
+        logFactory = TestBed.inject(LogFactoryService);
+        effects = TestBed.inject(ProcessEditorEffects);
         metadata = getEffectsMetadata(effects);
-        store = TestBed.get(Store);
-        router = TestBed.get(Router);
-        processEditorService = TestBed.get(ProcessEditorService);
-        processModelerService = TestBed.get(ProcessModelerServiceToken);
+        store = TestBed.inject(Store);
+        router = TestBed.inject(Router);
+        processEditorService = TestBed.inject(ProcessEditorService);
     });
 
     describe('updateProcessEffect', () => {
@@ -158,12 +155,12 @@ describe('ProcessEditorEffects', () => {
         });
 
         it('ShowProcesses effect should dispatch an action', () => {
-            expect(metadata.showProcessesEffect).toEqual({ dispatch: true });
+            expect(metadata.showProcessesEffect.dispatch).toBeTruthy();
         });
 
         it('ShowProcesses effect should dispatch a GetProcessesAttemptAction if there are no processes loaded', () => {
             actions$ = hot('a', { a: new ShowProcessesAction('test') });
-            store.select = jest.fn(selectProcessesLoaded).mockReturnValue(of(false));
+            spyOn(store, 'select').and.returnValue(of(false));
             const expected = cold('b', { b: { projectId: 'test', type: GET_PROCESSES_ATTEMPT } });
             expect(effects.showProcessesEffect).toBeObservable(expected);
         });
@@ -171,7 +168,7 @@ describe('ProcessEditorEffects', () => {
         it('ShowProcesses effect should not dispatch a new GetProjectAttemptAction if there are apps loaded', () => {
             actions$ = hot('a', { a: new ShowProcessesAction('test') });
             const expected = cold('');
-            store.select = jest.fn(selectProcessesLoaded).mockReturnValue(of(true));
+            spyOn(store, 'select').and.returnValue(of(true));
             expect(effects.showProcessesEffect).toBeObservable(expected);
         });
     });
@@ -182,7 +179,7 @@ describe('ProcessEditorEffects', () => {
         });
 
         it('uploadProcessEffect should dispatch an action', () => {
-            expect(metadata.uploadProcessEffect).toEqual({ dispatch: true });
+            expect(metadata.uploadProcessEffect.dispatch).toBeTruthy();
         });
 
         it('uploadProcessEffect should dispatch the CreateConnectorSuccessAction', () => {
@@ -204,12 +201,12 @@ describe('ProcessEditorEffects', () => {
             metadata: { name: mockProcessModel.name, description: mockProcessModel.description }
         };
 
-        const mockValidatePayload = {
+        const mockValidatePayload: ValidateProcessPayload = {
             projectId: 'test',
             title: 'mock title',
             processId: mockProcessModel.id,
             content: 'diagramData',
-            extensions: <ProcessExtensionsContent>{},
+            extensions: {},
             action: new UpdateProcessAttemptAction(mockActionPayload)
         };
 
@@ -218,7 +215,7 @@ describe('ProcessEditorEffects', () => {
         });
 
         it('updateProcessEffect should dispatch an action', () => {
-            expect(metadata.updateProcessEffect).toEqual({ dispatch: true });
+            expect(metadata.updateProcessEffect.dispatch).toBeTruthy();
         });
 
         it('should call the update process endpoint with the proper parameters', () => {
@@ -292,7 +289,7 @@ describe('ProcessEditorEffects', () => {
     });
 
     describe('changedElementEffect', () => {
-        const mockElement = {
+        const mockElement: SelectedProcessElement = {
             id: 'mock-element-id',
             type: 'mock-element-type',
             name: 'mock-element-name'
@@ -303,19 +300,19 @@ describe('ProcessEditorEffects', () => {
         });
 
         it('should dispatch an action', () => {
-            expect(metadata.changedElementEffect).toEqual({ dispatch: true });
+            expect(metadata.changedElementEffect.dispatch).toBeTruthy();
         });
 
         it('should dispatch an action if element is different', () => {
             actions$ = hot('a', { a: new ChangedProcessAction(mockElement) });
 
-            const mockElement2 = {
+            const mockElement2: SelectedProcessElement = {
                 id: 'mock-element-id',
                 type: 'mock-element-type2',
                 name: 'mock-element-name'
             };
 
-            store.select = jest.fn(selectSelectedElement).mockReturnValue(of(mockElement2));
+            spyOn(store, 'select').and.returnValue(of(mockElement2));
 
             const expected = cold('b', { b: new SelectModelerElementAction(mockElement) });
             expect(effects.changedElementEffect).toBeObservable(expected);
@@ -324,7 +321,7 @@ describe('ProcessEditorEffects', () => {
         it('should not dispatch an action if element is the same', () => {
             actions$ = hot('a', { a: new ChangedProcessAction(mockElement) });
 
-            store.select = jest.fn(selectSelectedElement).mockReturnValue(of(mockElement));
+            spyOn(store, 'select').and.returnValue(of(mockElement));
 
             const expected = cold('');
             expect(effects.changedElementEffect).toBeObservable(expected);
@@ -333,7 +330,7 @@ describe('ProcessEditorEffects', () => {
         it('should not dispatch an action if selected element is null', () => {
             actions$ = hot('a', { a: new ChangedProcessAction(mockElement) });
 
-            store.select = jest.fn(selectSelectedElement).mockReturnValue(of(null));
+            spyOn(store, 'select').and.returnValue(of(null));
 
             const expected = cold('');
             expect(effects.changedElementEffect).toBeObservable(expected);
@@ -355,7 +352,7 @@ describe('ProcessEditorEffects', () => {
             };
 
             actions$ = hot('a', { a: new RemoveDiagramElementAction(mockElement) });
-            store.select = jest.fn(selectOpenedModel).mockReturnValue(of(process));
+            spyOn(store, 'select').and.returnValue(of(process));
 
             const expected = cold('b', { b: new RemoveElementMappingAction(mockElement.id, process.id, mockElement.processId) });
             expect(effects.removeDiagramElementEffect).toBeObservable(expected);
@@ -370,7 +367,7 @@ describe('ProcessEditorEffects', () => {
             };
 
             actions$ = hot('a', { a: new RemoveDiagramElementAction(mockElement) });
-            store.select = jest.fn(selectOpenedModel).mockReturnValue(of(process));
+            spyOn(store, 'select').and.returnValue(of(process));
 
             const expected = cold('b', { b: new RemoveElementMappingAction(mockElement.id, process.id, mockElement.processId) });
             expect(effects.removeDiagramElementEffect).toBeObservable(expected);
@@ -385,7 +382,7 @@ describe('ProcessEditorEffects', () => {
             };
 
             actions$ = hot('a', { a: new RemoveDiagramElementAction(mockElement) });
-            store.select = jest.fn(selectOpenedModel).mockReturnValue(of(process));
+            spyOn(store, 'select').and.returnValue(of(process));
 
             const expected = cold('b', { b: new RemoveElementMappingAction(mockElement.id, process.id, mockElement.processId) });
             expect(effects.removeDiagramElementEffect).toBeObservable(expected);
@@ -400,7 +397,7 @@ describe('ProcessEditorEffects', () => {
             };
 
             actions$ = hot('a', { a: new RemoveDiagramElementAction(mockElement) });
-            store.select = jest.fn(selectOpenedModel).mockReturnValue(of(process));
+            spyOn(store, 'select').and.returnValue(of(process));
 
             const expected = cold('b', { b: new DeleteProcessExtensionAction(process.id, 'Process_fake_name') });
             expect(effects.removeDiagramElementEffect).toBeObservable(expected);
@@ -414,7 +411,7 @@ describe('ProcessEditorEffects', () => {
             };
 
             actions$ = hot('a', { a: new RemoveDiagramElementAction(mockElement) });
-            store.select = jest.fn(selectOpenedModel).mockReturnValue(of(process));
+            spyOn(store, 'select').and.returnValue(of(process));
 
             const expected = cold('');
             expect(effects.removeDiagramElementEffect).toBeObservable(expected);
@@ -423,7 +420,7 @@ describe('ProcessEditorEffects', () => {
 
     describe('createProcessSuccessEffect Effect', () => {
         it('createProcessSuccessEffect should  not dispatch an action', () => {
-            expect(metadata.createProcessSuccessEffect).toEqual({ dispatch: false });
+            expect(metadata.createProcessSuccessEffect.dispatch).toBeFalsy();
         });
 
         it('should redirect to the new process page if the payload received is true', () => {

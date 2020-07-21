@@ -39,13 +39,11 @@ import { processEntitiesReducer } from './process-entities.reducer';
 import { mockProcessModel, mappings } from './process.mock';
 import * as processVariablesActions from './process-variables.actions';
 
-const deepFreeze = require('deep-freeze-strict');
-
 describe('ProcessEntitiesReducer', () => {
     let initialState: ProcessEntitiesState;
     let action: ProcessActions;
 
-    const process = <Partial<Process>>{
+    const process: any = {
         type: PROCESS,
         id: 'mock-id'
     };
@@ -53,7 +51,7 @@ describe('ProcessEntitiesReducer', () => {
     const processId = 'Process_12345678';
 
     beforeEach(() => {
-        initialState = deepFreeze({ ...initialProcessEntitiesState });
+        initialState = { ...initialProcessEntitiesState };
     });
 
     it('should handle CREATE_PROCESS_SUCCESS', () => {

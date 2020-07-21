@@ -59,7 +59,7 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
     @Input() required = false;
     @Input() placeholder: string;
 
-    @ViewChild('valueTypeInput', { read: ViewContainerRef }) valueTypeInput;
+    @ViewChild('valueTypeInput', { read: ViewContainerRef, static: true }) valueTypeInput;
     valueTypeInputRef: ComponentRef<any>;
 
     _onChange: any = () => { };

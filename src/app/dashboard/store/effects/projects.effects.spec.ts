@@ -128,15 +128,15 @@ describe('ProjectsEffects', () => {
             ]
         });
 
-        effects = TestBed.get(ProjectsEffects);
-        router = TestBed.get(Router);
+        effects = TestBed.inject(ProjectsEffects);
+        router = TestBed.inject(Router);
         metadata = getEffectsMetadata(effects);
-        dashboardService = TestBed.get(DashboardService);
+        dashboardService = TestBed.inject(DashboardService);
     });
 
     describe('ShowProject', () => {
         it('should dispatch an action', () => {
-            expect(metadata.showProjectsEffect).toEqual({ dispatch: true });
+            expect(metadata.showProjectsEffect.dispatch).toBeTruthy();
         });
 
         it('should dispatch a GetProjectAttemptAction if there are no projects loaded', () => {
@@ -157,7 +157,7 @@ describe('ProjectsEffects', () => {
         const mockFile = new File([''], 'filename');
 
         it('should dispatch an action', () => {
-            expect(metadata.uploadProjectAttemptEffect).toEqual({ dispatch: true });
+            expect(metadata.uploadProjectAttemptEffect.dispatch).toBeTruthy();
         });
 
         it('should trigger the right action on successful upload', () => {
@@ -201,7 +201,7 @@ describe('ProjectsEffects', () => {
         const appForm: Partial<EntityDialogForm> = { name: 'testName' };
 
         it('should dispatch an action', () => {
-            expect(metadata.createProjectAttemptEffect).toEqual({ dispatch: true });
+            expect(metadata.createProjectAttemptEffect.dispatch).toBeTruthy();
         });
 
         it('should trigger the right action on successful upload', () => {
@@ -254,7 +254,7 @@ describe('ProjectsEffects', () => {
         const payload: EditProjectPayload = { id: 'id', form: { name: 'testName' } };
 
         it('should dispatch an action', () => {
-            expect(metadata.updateProjectAttemptEffect).toEqual({ dispatch: true });
+            expect(metadata.updateProjectAttemptEffect.dispatch).toBeTruthy();
         });
 
         it('should trigger the right action on successful upload', () => {
@@ -297,7 +297,7 @@ describe('ProjectsEffects', () => {
     describe('DeleteProjectAttemptEffect', () => {
 
         it('should dispatch an action', () => {
-            expect(metadata.deleteProjectAttemptEffect).toEqual({ dispatch: true });
+            expect(metadata.deleteProjectAttemptEffect.dispatch).toBeTruthy();
         });
 
         it('should trigger the right action on successful delete', () => {
@@ -376,7 +376,7 @@ describe('ProjectsEffects', () => {
     describe('GetProjectsAttemptEffect', () => {
 
         it('should dispatch an action', () => {
-            expect(metadata.getProjectsAttemptEffect).toEqual({ dispatch: true });
+            expect(metadata.getProjectsAttemptEffect.dispatch).toBeTruthy();
         });
 
         it('should trigger the right action on successful get', () => {

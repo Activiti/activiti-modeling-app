@@ -299,7 +299,7 @@ export interface FormRepresentation {
 export interface FormTab {
     id: string;
     title: string;
-    visibilityCondition: string | null;
+    visibilityCondition: any;
 }
 
 export interface FormOutcome {

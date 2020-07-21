@@ -16,9 +16,10 @@
  */
 
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatTableDataSource, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material';
 import { MessagesService } from '../../../services/messages.service';
 import { Subject } from 'rxjs';
+import { MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 
 export interface MessageDialogData extends MatDialogConfig {
     columns: string[];

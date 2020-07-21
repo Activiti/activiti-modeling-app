@@ -18,7 +18,8 @@
 import { ConnectorEditorComponent } from './connector-editor.component';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
-import { MatIconModule, MatTabsModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { ConnectorHeaderComponent } from '../connector-header/connector-header.component';

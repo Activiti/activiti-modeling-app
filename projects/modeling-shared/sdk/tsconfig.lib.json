@@ -4,18 +4,13 @@
         "outDir": "../../../out-tsc/modeling-sdk",
         "target": "es2015",
         "module": "es2015",
-        "moduleResolution": "node",
         "declaration": false,
-        "sourceMap": true,
         "inlineSources": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "importHelpers": true,
-        "types": ["node"],
-        "lib": ["dom", "es2017"]
+        "lib": ["dom", "es2018"]
     },
     "angularCompilerOptions": {
-        "annotateForClosureCompiler": true,
         "skipTemplateCodegen": true,
         "strictMetadataEmit": true,
         "fullTemplateTypeCheck": true,

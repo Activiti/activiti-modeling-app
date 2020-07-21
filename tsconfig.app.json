@@ -2,9 +2,7 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "./out-tsc/modeling-ce",
-        "module": "es2015",
         "baseUrl": "",
-        "types": ["node"],
         "paths": {
             "@alfresco/js-api": ["./node_modules/@alfresco/js-api"],
             "@alfresco/adf-core": ["./node_modules/@alfresco/adf-core"],
@@ -22,11 +20,11 @@
             "@alfresco-dbp/modeling-shared/sdk": ["./projects/modeling-shared/sdk/src/public-api.ts"]
         }
     },
-    "exclude": [
-        "test.ts",
-        "**/*.spec.ts",
-        "**/*.mock.ts",
-        "**/*.e2e.ts",
-        "e2e/*"
-    ]
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "apps/modeling-ce/src/**/*.d.ts"
+  ]
 }

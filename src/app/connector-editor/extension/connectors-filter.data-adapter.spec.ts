@@ -16,7 +16,7 @@
  */
 
 import { TestBed, async } from '@angular/core/testing';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
@@ -66,8 +66,8 @@ describe('ConnectorsFilterDataAdapter ', () => {
     }));
 
     beforeEach(() => {
-        store = TestBed.get(Store);
-        connectorsFilterDataAdapter = TestBed.get(ConnectorsFilterDataAdapter);
+        store = TestBed.inject(Store);
+        connectorsFilterDataAdapter = TestBed.inject(ConnectorsFilterDataAdapter);
     });
 
     it('should test expanded getter', () => {

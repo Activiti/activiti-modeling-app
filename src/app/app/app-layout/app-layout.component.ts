@@ -33,7 +33,7 @@ import { AmaState, OpenDialogAction } from '@alfresco-dbp/modeling-shared/sdk';
     encapsulation: ViewEncapsulation.None
 })
 export class AppLayoutComponent implements AfterViewInit, OnDestroy {
-    @ViewChild('sidenavLayout') sidenavLayout: SidenavLayoutComponent;
+    @ViewChild('sidenavLayout', { static: true }) sidenavLayout: SidenavLayoutComponent;
 
     menuOpened$: Observable<boolean>;
     onDestroy$ = new Subject<void>();

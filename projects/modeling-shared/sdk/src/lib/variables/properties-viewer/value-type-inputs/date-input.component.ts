@@ -17,9 +17,10 @@
 
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import moment from 'moment-es6';
-import { MatDatepickerInputEvent, MAT_DATE_FORMATS, DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
 import { MomentDateAdapter } from '@alfresco/adf-core';
 import { FormControl } from '@angular/forms';
+import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
     template: `

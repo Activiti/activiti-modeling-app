@@ -17,7 +17,6 @@
 
 import { connectorEntitiesReducer } from './connector-entities.reducer';
 import {
-    ConnectorActions,
     GetConnectorsSuccessAction,
     GET_CONNECTORS_SUCCESS,
     UpdateConnectorSuccessAction,
@@ -36,11 +35,9 @@ import {
     CREATE_CONNECTOR_SUCCESS,
     CreateConnectorSuccessAction
 } from '@alfresco-dbp/modeling-shared/sdk';
-const deepFreeze = require('deep-freeze-strict');
 
 describe('ConnectorEntitiesReducer', () => {
     let initialState: ConnectorEntitiesState;
-    let action: ConnectorActions;
 
     const connector = <any>{
         type: CONNECTOR,
@@ -51,11 +48,11 @@ describe('ConnectorEntitiesReducer', () => {
     };
 
     beforeEach(() => {
-        initialState = deepFreeze({ ...initialConnectorEntitiesState });
+        initialState = { ...initialConnectorEntitiesState };
     });
 
     it('should handle CREATE_CONNECTOR_SUCCESS', () => {
-        action = <CreateConnectorSuccessAction>{ type: CREATE_CONNECTOR_SUCCESS, connector: connector };
+        const action = <CreateConnectorSuccessAction>{ type: CREATE_CONNECTOR_SUCCESS, connector: connector };
 
         const newState = connectorEntitiesReducer(initialState, action);
         expect(newState.ids).toEqual([connector.id]);
@@ -63,7 +60,7 @@ describe('ConnectorEntitiesReducer', () => {
     });
 
     it('should handle GET_CONNECTORS_ATTEMPT', () => {
-        action = <GetConnectorsAttemptAction>{ type: GET_CONNECTORS_ATTEMPT, projectId: 'app-id' };
+        const action = <GetConnectorsAttemptAction>{ type: GET_CONNECTORS_ATTEMPT, projectId: 'app-id' };
 
         const newState = connectorEntitiesReducer(initialState, action);
 
@@ -72,7 +69,7 @@ describe('ConnectorEntitiesReducer', () => {
 
     it('should handle GET_CONNECTORS_SUCCESS', () => {
         const connectors = [connector, { ...connector, id: 'mock-id2' }];
-        action = <GetConnectorsSuccessAction>{ type: GET_CONNECTORS_SUCCESS, connectors: connectors };
+        const action = <GetConnectorsSuccessAction>{ type: GET_CONNECTORS_SUCCESS, connectors: connectors };
 
         const newState = connectorEntitiesReducer(initialState, action);
         expect(newState.ids).toEqual(connectors.map(conn => conn.id));
@@ -86,7 +83,7 @@ describe('ConnectorEntitiesReducer', () => {
 
     it('should handle DELETE_CONNECTOR_SUCCESS', () => {
         const connectors = [connector, { ...connector, id: 'mock-id2' }];
-        action = <GetConnectorsSuccessAction>{ type: GET_CONNECTORS_SUCCESS, connectors: connectors };
+        let action: any = <GetConnectorsSuccessAction>{ type: GET_CONNECTORS_SUCCESS, connectors: connectors };
         let newState = connectorEntitiesReducer(initialState, action);
 
         action = <DeleteConnectorSuccessAction>{ type: DELETE_CONNECTOR_SUCCESS, connectorId: 'mock-id2' };
@@ -100,7 +97,7 @@ describe('ConnectorEntitiesReducer', () => {
 
     it('should handle UPDATE_CONNECTOR_SUCCESS', () => {
         const connectors = [connector, { ...connector, id: 'mock-id2' }];
-        action = <GetConnectorsSuccessAction>{ type: GET_CONNECTORS_SUCCESS, connectors: connectors };
+        let action: any = <GetConnectorsSuccessAction>{ type: GET_CONNECTORS_SUCCESS, connectors: connectors };
 
         const stateWithAddedConnectors = connectorEntitiesReducer(initialState, action);
         const changes = {
@@ -133,7 +130,7 @@ describe('ConnectorEntitiesReducer', () => {
         });
 
         it('should update the connector in the state', () => {
-            action = new GetConnectorSuccessAction(connector, connectorContent);
+            const action = new GetConnectorSuccessAction(connector, connectorContent);
 
             const newState = connectorEntitiesReducer(initialState, action);
 
@@ -141,7 +138,7 @@ describe('ConnectorEntitiesReducer', () => {
         });
 
         it('should update the content of a connector in the state', () => {
-            action = new GetConnectorSuccessAction(connector, connectorContent);
+            const action = new GetConnectorSuccessAction(connector, connectorContent);
 
             const newState = connectorEntitiesReducer(initialState, action);
 
@@ -149,7 +146,7 @@ describe('ConnectorEntitiesReducer', () => {
         });
 
         it('should update the content with default values if no content from backend. The id must be prefixed with connector-', () => {
-            action = new GetConnectorSuccessAction(connector, <ConnectorContent>{});
+            const action = new GetConnectorSuccessAction(connector, <ConnectorContent>{});
 
             const newState = connectorEntitiesReducer(initialState, action);
 

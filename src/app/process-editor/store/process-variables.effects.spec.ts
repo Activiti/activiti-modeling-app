@@ -19,7 +19,8 @@ import { ProcessVariablesEffects } from './process-variables.effects';
 import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { TestBed } from '@angular/core/testing';
-import { MatDialogModule, MatMenuModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
@@ -68,17 +69,17 @@ describe('Process variables effects', () => {
             ]
         });
 
-        effects = TestBed.get(ProcessVariablesEffects);
+        effects = TestBed.inject(ProcessVariablesEffects);
         metadata = getEffectsMetadata(effects);
     });
 
     it('openVariablesDialog effect should not dispatch an action', () => {
-        expect(metadata.openProcessVariablesDialogEffect).toEqual({ dispatch: false });
+        expect(metadata.openProcessVariablesDialogEffect.dispatch).toBeFalsy();
     });
 
     describe('updateProcessVariablesEffect', () => {
         it('updateProcessVariablesEffect effect should dispatch an action', () => {
-            expect(metadata.updateProcessVariablesEffect).toEqual({ dispatch: true });
+            expect(metadata.updateProcessVariablesEffect.dispatch).toBeTruthy();
         });
 
         it('updateProcessVariablesEffect should dispatch SetAppDirtyStateAction', () => {

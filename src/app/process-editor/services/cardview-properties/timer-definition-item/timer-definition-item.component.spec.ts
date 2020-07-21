@@ -47,7 +47,7 @@ describe('CardViewTimerDefinitionItemComponent', () => {
         }
     ];
 
-    const propertyMock = {
+    const propertyMock: any = {
         data: {
             element: {
                 businessObject: {
@@ -102,7 +102,12 @@ describe('CardViewTimerDefinitionItemComponent', () => {
                 },
                 {
                     provide: AppConfigService, useValue: {
-                        get: jest.fn('process-modeler.timer-types').mockReturnValue(timerOptionsMock)
+                        get(key: string) {
+                            if (key === 'process-modeler.timer-types') {
+                                return timerOptionsMock;
+                            }
+                            return null;
+                        }
                     }
                 }
             ],
@@ -114,12 +119,12 @@ describe('CardViewTimerDefinitionItemComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(CardViewTimerDefinitionItemComponent);
-        store = TestBed.get(Store);
+        store = TestBed.inject(Store);
         component = fixture.componentInstance;
         component.property = propertyMock;
 
         spyOn(store, 'select').and.returnValue(of(processMock));
-        cardViewUpdateService = TestBed.get(CardViewUpdateService);
+        cardViewUpdateService = TestBed.inject(CardViewUpdateService);
         fixture.detectChanges();
     });
 

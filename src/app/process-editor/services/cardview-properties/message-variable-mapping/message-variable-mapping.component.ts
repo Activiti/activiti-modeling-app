@@ -23,7 +23,7 @@ import {
     ParametersSelectOptions, MappingType, Process, ServiceParameterMapping, ProcessExtensionsModel,
     BpmnElement, ServiceParameterMappings
 } from '@alfresco-dbp/modeling-shared/sdk';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import { filter, take } from 'rxjs/operators';
 import { MessageVariableMappingService } from './message-variable-mapping.service';
 import { MessageItemModel } from '../message-item/message-item.model';

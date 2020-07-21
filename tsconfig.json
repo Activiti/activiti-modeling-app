@@ -13,17 +13,18 @@
         "noUnusedLocals": true,
         "noImplicitReturns": true,
         "target": "es5",
+        "allowJs": true,
         "allowSyntheticDefaultImports": true,
-        "typeRoots": ["node_modules/@types"],
-        "lib": ["esnext.array", "es2017", "dom"],
+        "typeRoots": ["node_modules/@types", "../../node_modules/@types"],
+        "lib": ["es2018", "dom"],
         "module": "es2015",
-        "types": ["jasmine"],
+        "types": ["jasmine", "jest", "node"],
         "baseUrl": "./",
         "paths": {
             "@alfresco-dbp/modeling-shared/sdk": ["projects/modeling-shared/sdk/src/public-api.ts"]
         }
     },
-    "exclude": ["node_modules", ],
+    "exclude": ["node_modules"],
     "angularCompilerOptions": {
         "preserveWhitespaces": false
     }

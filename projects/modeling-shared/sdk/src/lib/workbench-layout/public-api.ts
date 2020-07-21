@@ -15,4 +15,4 @@
  * limitations under the License.
  */
 
-export { WorkbenchLayoutModule } from './workbench-layout.module';
+export * from './workbench-layout.module';

@@ -29,10 +29,10 @@ import { MODELER_NAME_REGEX } from '../utils/create-entries-names';
     template: `<input #input type="text" [modelingsdk-allowed-characters]="regex" />`
 })
 class TestComponent {
-    @ViewChild(AllowedCharactersDirective)
+    @ViewChild(AllowedCharactersDirective, { static: true })
     public directive: AllowedCharactersDirective;
 
-    @ViewChild('input')
+    @ViewChild('input', { static: true })
     public input: ElementRef;
 
     regex = MODELER_NAME_REGEX;
@@ -62,7 +62,7 @@ describe('AllowedCharactersDirective', () => {
         fixture = TestBed.createComponent(TestComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
-        store = TestBed.get(Store);
+        store = TestBed.inject(Store);
     });
 
     afterEach(() => {

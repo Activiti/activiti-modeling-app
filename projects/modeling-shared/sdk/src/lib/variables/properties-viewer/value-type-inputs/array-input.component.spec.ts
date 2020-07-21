@@ -18,7 +18,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TranslateModule } from '@ngx-translate/core';
-import { MatChipsModule, MatAutocompleteModule } from '@angular/material';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -55,10 +56,6 @@ describe('PropertiesViewerArrayInputComponent', () => {
         component.value = [].concat(currentValue);
         component.ngOnInit();
         fixture.detectChanges();
-    });
-
-    it('should create', () => {
-        expect(component).toBeTruthy();
     });
 
     it('should display the cancel button if is disabled', () => {

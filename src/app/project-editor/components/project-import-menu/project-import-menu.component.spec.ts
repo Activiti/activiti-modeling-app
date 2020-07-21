@@ -16,7 +16,8 @@
  */
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIconModule, MatMenuModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -93,7 +94,7 @@ describe('ProjectImportMenuComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ProjectImportMenuComponent);
-        store = TestBed.get(Store);
+        store = TestBed.inject(Store);
         component = fixture.componentInstance;
         component.type = 'process';
         component.projectId = 'project-id-1';
@@ -107,11 +108,11 @@ describe('ProjectImportMenuComponent', () => {
     });
 
     it('should dispatch action when item selected', () => {
-        spyOn(store, 'dispatch');
+        const dispatchSpy = spyOn(store, 'dispatch');
 
         component.onImport('global-model-2-id');
 
-        const importAction: ImportModelAttemptAction = store.dispatch.calls.argsFor(0)[0];
+        const importAction: ImportModelAttemptAction = dispatchSpy.calls.argsFor(0)[0];
         expect(importAction.type).toBe('ImportGlobalModel');
         expect(importAction.modelId).toBe('global-model-2-id');
         expect(importAction.projectId).toBe('project-id-1');

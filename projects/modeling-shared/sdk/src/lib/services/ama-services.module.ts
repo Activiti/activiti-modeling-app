@@ -24,7 +24,7 @@ import { BlobService } from './blob.service';
 
 @NgModule()
 export class AmaServicesModule {
-    static forApplication(): ModuleWithProviders {
+    static forApplication(): ModuleWithProviders<AmaServicesModule> {
         return {
             ngModule: AmaServicesModule,
             providers: [

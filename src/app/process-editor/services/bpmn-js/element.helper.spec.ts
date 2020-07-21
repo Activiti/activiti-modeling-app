@@ -71,7 +71,7 @@ describe('ElementHelper', () => {
             /* cspell: disable-next-line */
             const expectedPropertyValue = 'Yasunori Mitsuda';
 
-            ElementHelper.setProperty(modeling, element, BpmnProperty.name, expectedPropertyValue);
+            ElementHelper.setProperty(modeling, element, BpmnProperty.name, expectedPropertyValue, null);
             const modifiedPropertyValue = ElementHelper.getProperty(element, BpmnProperty.name);
 
             expect(modifiedPropertyValue).toBe(expectedPropertyValue);
@@ -80,7 +80,7 @@ describe('ElementHelper', () => {
         it(`should NOT set the given property if it doesn't have a handler defined`, () => {
             const setter = () => {
                 /* cspell: disable-next-line */
-                ElementHelper.setProperty(modeling, element, propertyWithoutHandler, 'Chrono Trigger');
+                ElementHelper.setProperty(modeling, element, propertyWithoutHandler, 'Chrono Trigger', null);
             };
             expect(setter).not.toThrow();
 

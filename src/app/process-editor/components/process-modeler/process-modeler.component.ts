@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, ViewChild, ElementRef, Input, OnDestroy, AfterViewInit, OnInit, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, switchMap, takeUntil } from 'rxjs/operators';
 import { ProcessContent, SnackbarErrorAction, ProcessModelerServiceToken, ProcessModelerService, ToolbarMessageAction } from '@alfresco-dbp/modeling-shared/sdk';
@@ -31,17 +31,16 @@ import { createSelectedElement } from '../../store/process-editor.state';
 
 @Component({
     selector: 'ama-process-modeler',
-    templateUrl: './process-modeler.component.html'
+    templateUrl: './process-modeler.component.html',
+    host: { class: 'ama-process-modeler canvas-editor' }
 })
-export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit {
-    @ViewChild('canvas') canvas: ElementRef;
-
-    diagramData$: BehaviorSubject<ProcessContent> = new BehaviorSubject<ProcessContent>(null);
-    onDestroy$: Subject<void> = new Subject<void>();
+export class ProcessModelerComponent implements OnInit, OnDestroy {
+    diagramData$ = new BehaviorSubject<ProcessContent>(null);
+    onDestroy$ = new Subject<void>();
 
     // tslint:disable-next-line
     @Output()
-    onChange: EventEmitter<any> = new EventEmitter<any>();
+    onChange = new EventEmitter<any>();
 
     @Input()
     set source(diagramData: ProcessContent) {
@@ -51,7 +50,8 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
     constructor(
         private store: Store<ProcessEntitiesState>,
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
-        private processLoaderService: ProcessDiagramLoaderService
+        private processLoaderService: ProcessDiagramLoaderService,
+        private canvas: ElementRef
     ) {}
 
     ngOnInit() {
@@ -76,9 +76,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy, AfterViewInit
                 }
             }
         });
-    }
 
-    ngAfterViewInit() {
         this.processModelerService.render(this.canvas.nativeElement);
 
         this.diagramData$

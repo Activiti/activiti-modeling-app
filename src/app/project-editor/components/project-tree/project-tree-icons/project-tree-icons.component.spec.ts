@@ -15,20 +15,26 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectTreeIconsComponent } from './project-tree-icons.component';
 import { By } from '@angular/platform-browser';
 import { Store, StoreModule } from '@ngrx/store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProjectTreeHelper } from '../project-tree.helper';
-import { MatIconModule } from '@angular/material';
-import { PROCESS, CONNECTOR, MODEL_TYPE, ModelFilter, OpenFilterAction, OPEN_FILTER, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
+import { MatIconModule } from '@angular/material/icon';
+import { PROCESS, CONNECTOR, MODEL_TYPE, ModelFilter, OpenFilterAction, OPEN_FILTER, AmaState, MODEL_FILTERS } from '@alfresco-dbp/modeling-shared/sdk';
 import { SetMenuAction, SET_MENU } from '../../../../store/actions';
+import { Injectable } from '@angular/core';
 
-class ProjectTreeHelperMock {
+@Injectable()
+class ProjectTreeHelperMock extends ProjectTreeHelper {
     public calledWithType: MODEL_TYPE;
     public loadMock = jest.fn();
+
+    constructor() {
+        super([]);
+    }
 
     getFilters(): ModelFilter[] {
         return [
@@ -41,7 +47,7 @@ class ProjectTreeHelperMock {
         this.calledWithType = filterType;
         return {
             load: this.loadMock
-        };
+        } as any;
     }
 }
 
@@ -49,21 +55,29 @@ describe('ProjectTreeIconsComponent', () => {
     let fixture: ComponentFixture<ProjectTreeIconsComponent>,
         component: ProjectTreeIconsComponent,
         store: Store<AmaState>,
-        projectTreeHelper: ProjectTreeHelperMock;
+        projectTreeHelper: ProjectTreeHelper;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [StoreModule.forRoot({}), TranslateModule.forRoot(), NoopAnimationsModule, MatIconModule],
+            imports: [
+                StoreModule.forRoot({}),
+                TranslateModule.forRoot(),
+                NoopAnimationsModule,
+                MatIconModule
+            ],
             declarations: [ProjectTreeIconsComponent],
-            providers: [{ provide: ProjectTreeHelper, useClass: ProjectTreeHelperMock }]
-        }).compileComponents();
-    }));
+            providers: [
+                { provide: MODEL_FILTERS, useValue: [] },
+                { provide: ProjectTreeHelper, useClass: ProjectTreeHelperMock }
+            ]
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ProjectTreeIconsComponent);
         component = fixture.componentInstance;
-        store = TestBed.get(Store);
-        projectTreeHelper = TestBed.get(ProjectTreeHelper);
+        store = TestBed.inject(Store);
+        projectTreeHelper = TestBed.inject(ProjectTreeHelper);
 
         fixture.detectChanges();
     });
@@ -75,16 +89,16 @@ describe('ProjectTreeIconsComponent', () => {
     });
 
     it('should dispatch the right actions on the icon click', () => {
-        spyOn(store, 'dispatch');
+        const dispatchSpy = spyOn(store, 'dispatch');
 
         const processIcon = fixture.debugElement.query(By.css('[data-automation-class="project-tree-icon"]'));
         processIcon.triggerEventHandler('click', {});
 
-        const setMenuAction: SetMenuAction = store.dispatch.calls.argsFor(0)[0];
+        const setMenuAction: SetMenuAction = dispatchSpy.calls.argsFor(0)[0];
         expect(setMenuAction.type).toBe(SET_MENU);
         expect(setMenuAction.payload).toBe(true);
 
-        const openFilterAction: OpenFilterAction = store.dispatch.calls.argsFor(1)[0];
+        const openFilterAction: OpenFilterAction = dispatchSpy.calls.argsFor(1)[0];
         expect(openFilterAction.type).toBe(OPEN_FILTER);
         expect(openFilterAction.filterType).toBe(PROCESS);
     });
@@ -97,7 +111,7 @@ describe('ProjectTreeIconsComponent', () => {
 
         connectorIcon.triggerEventHandler('click', {});
 
-        expect(projectTreeHelper.calledWithType).toBe(CONNECTOR);
-        expect(projectTreeHelper.loadMock).toHaveBeenCalledWith('app-id');
+        expect((projectTreeHelper as ProjectTreeHelperMock).calledWithType).toBe(CONNECTOR);
+        expect((projectTreeHelper as ProjectTreeHelperMock).loadMock).toHaveBeenCalledWith('app-id');
     });
 });

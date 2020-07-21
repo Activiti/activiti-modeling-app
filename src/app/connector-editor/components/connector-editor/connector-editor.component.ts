@@ -35,7 +35,7 @@ import {
     ToolbarMessageAction,
     CodeEditorPosition
 } from '@alfresco-dbp/modeling-shared/sdk';
-import { MatTabChangeEvent } from '@angular/material';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 const memoize = require('lodash/memoize');
 
 @Component({

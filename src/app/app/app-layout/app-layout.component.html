@@ -3,7 +3,7 @@
 
     <adf-sidenav-layout-header>
         <ng-template let-toggleMenu="toggleMenu">
-            <adf-layout-header title="{{'APP.HEADER.APP_NAME' | translate }}" (clicked)="toggleMenu()">
+            <adf-layout-header id="adf-header" title="{{'APP.HEADER.APP_NAME' | translate }}" (clicked)="toggleMenu()">
                 <div class="adf-app-layout-menu-spacer" fxFlex="1 1 auto"></div>
 
                 <router-outlet name="search"></router-outlet>

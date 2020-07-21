@@ -15,12 +15,9 @@
  * limitations under the License.
  */
 
-export { CodeEditorModule } from './code-editor.module';
-export { CodeEditorPosition, CodeEditorComponent } from './components/code-editor/code-editor.component';
-export {
-    CodeValidatorService,
-    ValidationResponse
-} from './services/code-validator.service';
+export * from './code-editor.module';
+export * from './components/code-editor/code-editor.component';
+export * from './services/code-validator.service';
 export * from './services/code-editor-service.service';
 export * from './helpers/file-uri';
 export * from './code-editor.extensions';

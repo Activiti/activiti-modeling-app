@@ -15,15 +15,17 @@
  * limitations under the License.
  */
 
+import { ServiceParameterMapping, MappingType } from '../../api/types';
+
 /* cSpell:disable */
-export const mockValueMapping  = {
+export const mockValueMapping: ServiceParameterMapping  = {
     'dName': {
-        'type': 'value',
-        'value': '${Dropdown009gay.name}'
+        type: MappingType.value,
+        value: '${Dropdown009gay.name}'
     },
     'rName': {
-        'type': 'value',
-        'value': '${Radiobuttons0wuhxs.name}'
+        type: MappingType.value,
+        value: '${Radiobuttons0wuhxs.name}'
     }
 };
 

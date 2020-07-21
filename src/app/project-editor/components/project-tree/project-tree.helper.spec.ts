@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { ProjectTreeHelper } from './project-tree.helper';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -25,10 +25,8 @@ import { PROCESS, MODEL_FILTERS } from '@alfresco-dbp/modeling-shared/sdk';
 describe('ProjectTreeHelper ', () => {
     let service: ProjectTreeHelper;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [],
-            declarations: [],
             providers: [
                 ProjectTreeHelper,
                 {
@@ -50,11 +48,11 @@ describe('ProjectTreeHelper ', () => {
                 }
             ],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
-        service = TestBed.get(ProjectTreeHelper);
+        service = TestBed.inject(ProjectTreeHelper);
     });
 
     it ('getDataAdapter should return a filterData adapter',  () => {

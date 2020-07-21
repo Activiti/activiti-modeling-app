@@ -62,11 +62,12 @@ import {
     DialogService,
     LogFactoryService,
     CreateConnectorAttemptAction,
-    SetApplicationLoadingStateAction
+    SetApplicationLoadingStateAction,
+    ModelScope
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Update } from '@ngrx/entity';
 import { selectConnectorsLoaded, selectSelectedConnector } from './connector-editor.selectors';
-import { MatDialogRef, MatDialogModule } from '@angular/material';
+import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -89,13 +90,13 @@ describe('ConnectorEditorEffects', () => {
         lastModifiedDate: new Date(),
         lastModifiedBy: '',
         description: 'mock-description',
-        projectId: 'mock-app-id',
-        version: '1.1.1'
+        projectIds: ['mock-app-id'],
+        version: '1.1.1',
+        scope: ModelScope.GLOBAL
     };
 
     const connectorContent: ConnectorContent = {
-        id: 'mock-id',
-        name: '',
+        name: 'mock-name',
         description: ''
     };
 
@@ -142,7 +143,7 @@ describe('ConnectorEditorEffects', () => {
                             }
 
                             if (selector === selectSelectedProjectId) {
-                                return of(connector.projectId);
+                                return of(connector.projectIds[0]);
                             }
 
                             return of({});
@@ -165,19 +166,19 @@ describe('ConnectorEditorEffects', () => {
             ]
         });
 
-        logFactory = TestBed.get(LogFactoryService);
-        effects = TestBed.get(ConnectorEditorEffects);
-        connectorEditorService = TestBed.get(ConnectorEditorService);
-        router = TestBed.get(Router);
+        logFactory = TestBed.inject(LogFactoryService);
+        effects = TestBed.inject(ConnectorEditorEffects);
+        connectorEditorService = TestBed.inject(ConnectorEditorService);
+        router = TestBed.inject(Router);
         metadata = getEffectsMetadata(effects);
-        store = TestBed.get(Store);
+        store = TestBed.inject(Store);
         actions$ = null;
-        storageService = TestBed.get(StorageService);
+        storageService = TestBed.inject(StorageService);
     });
 
     describe('uploadConnectorEffect', () => {
         it('uploadConnectorEffect should dispatch an action', () => {
-            expect(metadata.uploadConnectorEffect).toEqual({ dispatch: true });
+            expect(metadata.uploadConnectorEffect.dispatch).toBeTruthy();
         });
 
         it('uploadConnectorEffect should dispatch the CreateConnectorSuccessAction', () => {
@@ -199,7 +200,7 @@ describe('ConnectorEditorEffects', () => {
         });
 
         it('updateConnectorContentEffect should dispatch an action', () => {
-            expect(metadata.updateConnectorContentEffect).toEqual({ dispatch: true });
+            expect(metadata.updateConnectorContentEffect.dispatch).toBeTruthy();
         });
 
         it('updateConnectorContentEffect should dispatch the UpdateConnectorSuccessAction and SnackbarInfoAction actions', () => {
@@ -256,7 +257,7 @@ describe('ConnectorEditorEffects', () => {
         });
 
         it('updateConnectorContentEffect should dispatch an action', () => {
-            expect(metadata.getConnectorEffect).toEqual({ dispatch: true });
+            expect(metadata.getConnectorEffect.dispatch).toBeTruthy();
         });
 
         it('should trigger the load of connector and connector content', () => {
@@ -297,7 +298,7 @@ describe('ConnectorEditorEffects', () => {
 
     describe('changeConnectorContentEffect', () => {
         it('changeConnectorContentEffect should dispatch an action', () => {
-            expect(metadata.changeConnectorContentEffect).toEqual({ dispatch: true });
+            expect(metadata.changeConnectorContentEffect.dispatch).toBeTruthy();
         });
 
         it('changeConnectorContentEffect should dispatch the SetAppDirtyStateAction', () => {
@@ -312,7 +313,7 @@ describe('ConnectorEditorEffects', () => {
 
     describe('updateConnectorSuccessEffect', () => {
         it('updateConnectorSuccessEffect should dispatch an action', () => {
-            expect(metadata.updateConnectorSuccessEffect).toEqual({ dispatch: true });
+            expect(metadata.updateConnectorSuccessEffect.dispatch).toBeTruthy();
         });
 
         it('updateConnectorSuccessEffect should dispatch SetAppDirtyStateAction', () => {
@@ -335,7 +336,7 @@ describe('ConnectorEditorEffects', () => {
         });
 
         it('deleteConnectorAttemptEffect should dispatch an action', () => {
-            expect(metadata.deleteConnectorAttemptEffect).toEqual({ dispatch: true });
+            expect(metadata.deleteConnectorAttemptEffect.dispatch).toBeTruthy();
         });
 
         it('deleteConnectorAttemptEffect should dispatch the DeleteConnectorSuccessAction and SnackbarInfoAction actions', () => {
@@ -366,20 +367,20 @@ describe('ConnectorEditorEffects', () => {
 
     describe('deleteConnectorSuccessEffect', () => {
         it('deleteConnectorSuccessEffect should not dispatch an action', () => {
-            expect(metadata.deleteConnectorSuccessEffect).toEqual({ dispatch: false });
+            expect(metadata.deleteConnectorSuccessEffect.dispatch).toBeFalsy();
         });
 
         it('should call the router.navigate method', () => {
             actions$ = cold('a', { a: { type: DELETE_CONNECTOR_SUCCESS } });
             effects.deleteConnectorSuccessEffect.subscribe(() => {
-                expect(router.navigate).toHaveBeenCalledWith(['/projects', connector.projectId]);
+                expect(router.navigate).toHaveBeenCalledWith(['/projects', connector.projectIds[0]]);
             });
         });
     });
 
     describe('CreateConnector Effect', () => {
         it('createConnector should dispatch an action', () => {
-            expect(metadata.createConnectorEffect).toEqual({ dispatch: true });
+            expect(metadata.createConnectorEffect.dispatch).toBeTruthy();
         });
 
         it('createConnector should dispatch the CreateConnectorSuccessAction and SnackbarInfoAction actions and update the connector content', () => {
@@ -395,7 +396,7 @@ describe('ConnectorEditorEffects', () => {
 
     describe('createConnectorSuccessEffect Effect', () => {
         it('createConnectorSuccessEffect should  not dispatch an action', () => {
-            expect(metadata.createConnectorSuccessEffect).toEqual({ dispatch: false });
+            expect(metadata.createConnectorSuccessEffect.dispatch).toBeFalsy();
         });
 
         it('should redirect to the new connector page if the payload received is true', () => {
@@ -403,7 +404,7 @@ describe('ConnectorEditorEffects', () => {
             effects.createConnectorSuccessEffect.subscribe(() => {
             });
             getTestScheduler().flush();
-            expect(router.navigate).toHaveBeenCalledWith(['/projects', connector.projectId, 'connector', connector.id]);
+            expect(router.navigate).toHaveBeenCalledWith(['/projects', connector.projectIds[0], 'connector', connector.id]);
         });
 
         it('should not redirect to the new connector page if the payload received is false', () => {
@@ -417,7 +418,7 @@ describe('ConnectorEditorEffects', () => {
 
     describe('ShowConnectors Effect', () => {
         it('showConnectorsEffect should dispatch an action', () => {
-            expect(metadata.showConnectorsEffect).toEqual({ dispatch: true });
+            expect(metadata.showConnectorsEffect.dispatch).toBeTruthy();
         });
 
         it('showConnectorsEffect should dispatch the GetConnectorsAttemptAction if there are no connectors loaded', () => {
@@ -429,14 +430,14 @@ describe('ConnectorEditorEffects', () => {
         it('showConnectorsEffect should not dispatch the GetConnectorsAttemptAction if there are connectors loaded', () => {
             actions$ = hot('a', { a: new ShowConnectorsAction('test') });
             const expected = cold('');
-            store.select = jest.fn(selectConnectorsLoaded).mockReturnValue(of(true));
+            spyOn(store, 'select').and.returnValue(of(true));
             expect(effects.showConnectorsEffect).toBeObservable(expected);
         });
     });
 
     describe('getConnectorsEffect', () => {
         it('getProcessesEffect should dispatch an action', () => {
-            expect(metadata.getConnectorsEffect).toEqual({ dispatch: true });
+            expect(metadata.getConnectorsEffect.dispatch).toBeTruthy();
         });
 
         it('getProcessesEffect should dispatch the GetConnectorsSuccessAction', () => {
@@ -450,6 +451,7 @@ describe('ConnectorEditorEffects', () => {
 
         let validateConnector: jest.Mock;
         const payload: ValidateConnectorPayload = {
+            title: 'APP.DIALOGS.CONFIRM.TITLE',
             connectorId: connector.id,
             connectorContent,
             action: new UpdateConnectorContentAttemptAction(connectorContent)
@@ -460,7 +462,7 @@ describe('ConnectorEditorEffects', () => {
         });
 
         it('validateConnectorEffect should dispatch an action', () => {
-            expect(metadata.validateConnectorEffect).toEqual({ dispatch: true });
+            expect(metadata.validateConnectorEffect.dispatch).toBeTruthy();
         });
 
         it('validateConnectorEffect should dispatch the action from payload if connector is valid', () => {
@@ -502,7 +504,7 @@ describe('ConnectorEditorEffects', () => {
 
     describe('changedConnectorSettingsEffect', () => {
         it('changedConnectorSettingsEffect should not dispatch an action', () => {
-            expect(metadata.changedConnectorSettingsEffect).toEqual({ dispatch: false });
+            expect(metadata.changedConnectorSettingsEffect.dispatch).toBeFalsy();
         });
 
         it('should call the setItem method of StorageService', () => {

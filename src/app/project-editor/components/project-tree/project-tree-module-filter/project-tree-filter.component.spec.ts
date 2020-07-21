@@ -17,7 +17,6 @@
 
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { ProjectTreeFilterComponent } from './project-tree-filter.component';
-import { MatExpansionModule, MatIconModule, MatProgressSpinnerModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SharedModule, PROCESS, MODEL_CREATORS, ModelScope } from '@alfresco-dbp/modeling-shared/sdk';
@@ -25,6 +24,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { By } from '@angular/platform-browser';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 describe('ProjectTreeFilterComponent ', () => {
     let fixture: ComponentFixture<ProjectTreeFilterComponent>;

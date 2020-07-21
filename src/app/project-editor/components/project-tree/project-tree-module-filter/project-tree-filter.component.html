@@ -17,7 +17,7 @@
     </mat-expansion-panel-header>
 
     <div class="project-tree-filter__content" [attr.data-automation-id]="'project-filter-' + filter.type + '-container'">
-        <ng-container *ngIf="contentHasBeenLoaded();">
+        <ng-container *ngIf="!loading">
             <a mat-button
                 [attr.data-automation-id]="filter.type + '-' + item.id"
                 class="project-tree-filter__button"

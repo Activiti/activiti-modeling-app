@@ -18,7 +18,7 @@
 import { ConnectorHeaderComponent } from './connector-header.component';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { AmaState, OpenConfirmDialogAction, SharedModule } from '@alfresco-dbp/modeling-shared/sdk';
@@ -72,7 +72,7 @@ describe('ConnectorHeaderComponent', () => {
             name: 'mock-name',
             description: 'mock-description'
         });
-        store = TestBed.get(Store);
+        store = TestBed.inject(Store);
         fixture.detectChanges();
     });
 

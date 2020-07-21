@@ -17,6 +17,7 @@
 
 import { Params, RouterStateSnapshot } from '@angular/router';
 import { RouterReducerState, RouterStateSerializer } from '@ngrx/router-store';
+import { Injectable } from '@angular/core';
 
 export interface RouterStateUrl {
     override: 'AmaRouterStateSerializer';
@@ -29,6 +30,7 @@ export interface State {
     router: RouterReducerState<RouterStateUrl>;
 }
 
+@Injectable()
 export class AmaRouterStateSerializer implements RouterStateSerializer<RouterStateUrl> {
     serialize(routerState: RouterStateSnapshot): RouterStateUrl {
         let route = routerState.root;

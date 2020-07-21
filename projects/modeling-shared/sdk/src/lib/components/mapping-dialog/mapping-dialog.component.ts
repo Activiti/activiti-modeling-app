@@ -16,13 +16,14 @@
  */
 
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatSelectChange } from '@angular/material';
 import { Observable } from 'rxjs';
 import { ConnectorParameter, EntityProperty, ServiceParameterMapping } from '../../api/types';
 import { UuidService } from '../../services/uuid.service';
 import { VariableMappingType, MappingRowModel, MappingValueType, MappingDialogService, MappingDialogData } from '../../services/mapping-dialog.service';
 import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
 import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
     templateUrl: './mapping-dialog.component.html',

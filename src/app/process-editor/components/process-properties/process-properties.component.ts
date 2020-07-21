@@ -40,7 +40,7 @@ import { SelectedProcessElement } from '../../store/process-editor.state';
 })
 export class ProcessPropertiesComponent implements OnInit, OnDestroy, AfterViewInit {
     /** @deprecated: bpmnjs-properties */
-    @ViewChild('bpmnPropertiesPanel') bpmnPropertiesPanel: ElementRef;
+    @ViewChild('bpmnPropertiesPanel', { static: true }) bpmnPropertiesPanel: ElementRef;
     onDestroy$: Subject<void> = new Subject<void>();
     properties$: Observable<CardViewItem[]>;
 

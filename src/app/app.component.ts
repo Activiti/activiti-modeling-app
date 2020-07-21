@@ -23,7 +23,7 @@ import { takeUntil } from 'rxjs/operators';
 import { AmaState, selectSelectedTheme } from '@alfresco-dbp/modeling-shared/sdk';
 import { PluginRoutesManagerService } from './common/services/plugin-routes-manager.service';
 import { AlfrescoApiService, AuthenticationService } from '@alfresco/adf-core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'ama-root',

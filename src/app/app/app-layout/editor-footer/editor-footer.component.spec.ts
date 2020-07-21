@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EditorFooterComponent } from './editor-footer.component';
 import { Store } from '@ngrx/store';
 import { SharedModule, provideLogFilter } from '@alfresco-dbp/modeling-shared/sdk';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { EDITOR_FOOTER_SERVICE_TOKEN } from './editor-footer.service.interface';
@@ -39,15 +39,15 @@ import { of } from 'rxjs';
 
     let progress = true;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule,
                 SharedModule,
-                CoreModule,
+                TranslateModule.forRoot(),
+                CoreModule.forRoot(),
                 CommonModule,
                 MatIconModule,
-                TranslateModule.forRoot(),
                 NoopAnimationsModule
             ],
             declarations: [
@@ -76,10 +76,8 @@ import { of } from 'rxjs';
                     displayName: 'SDK.ALL'
             })
             ]
-        }).compileComponents();
-    }));
+        });
 
-    beforeEach(() => {
         fixture = TestBed.createComponent(EditorFooterComponent);
         fixture.detectChanges();
     });

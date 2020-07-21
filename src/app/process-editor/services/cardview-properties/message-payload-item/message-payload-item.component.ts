@@ -17,13 +17,15 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import { CardItemTypeService, MomentDateAdapter, LocalizedDatePipe } from '@alfresco/adf-core';
-import { MatSelectChange, DateAdapter, MAT_DATE_FORMATS, MatDatepickerInputEvent } from '@angular/material';
 import { Moment } from 'moment';
 import { AmaState, selectSelectedProcess, MessagePayload, EntityProperty, ProcessExtensionsModel, ServiceParameterMappings } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { filter, take } from 'rxjs/operators';
 import { MessageVariableMappingService } from '../message-variable-mapping/message-variable-mapping.service';
 import { MessageItemModel } from '../message-item/message-item.model';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MatSelectChange } from '@angular/material/select';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 export const TYPE_OPTIONS = ['string', 'integer', 'boolean', 'date', 'variable'];
 export const BOOLEAN_OPTIONS = [true, false];

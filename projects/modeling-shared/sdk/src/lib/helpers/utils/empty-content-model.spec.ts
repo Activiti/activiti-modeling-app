@@ -16,21 +16,22 @@
  */
 
  import { getEmptyContentModel } from './empty-content-model';
-import { ContentModel } from '../../api/types';
+import { ContentModel, ModelScope } from '../../api/types';
 
 describe('Empty content model', () => {
 
     const mockModel: ContentModel = {
         id: 'mock-content-model',
         name: 'mock',
-        projectId: 'mock-project-id',
+        projectIds: ['mock-project-id'],
         description: 'This is the mock description',
         type: 'model',
         version: '0',
         createdBy: null,
         creationDate: null,
         lastModifiedBy: null,
-        lastModifiedDate: null
+        lastModifiedDate: null,
+        scope: ModelScope.GLOBAL
     };
 
     const userName = 'testUser';

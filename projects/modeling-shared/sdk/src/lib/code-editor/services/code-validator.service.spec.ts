@@ -26,7 +26,7 @@ describe('CodeValidatorService', () => {
             providers: [CodeValidatorService]
         });
 
-        service = TestBed.get(CodeValidatorService);
+        service = TestBed.inject(CodeValidatorService);
     });
 
     it('should return proper erratic validation response when SYNTACTICALLY WRONG json is present', () => {

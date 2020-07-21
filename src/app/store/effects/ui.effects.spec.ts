@@ -49,15 +49,15 @@ describe('UiEffects', () => {
             ]
         });
 
-        effects = TestBed.get(UiEffects);
+        effects = TestBed.inject(UiEffects);
         metadata = getEffectsMetadata(effects);
 
-        storageService = TestBed.get(StorageService);
+        storageService = TestBed.inject(StorageService);
     });
 
     describe('setMenu', () => {
         it('setMenu effect should NOT dispatch an action', () => {
-            expect(metadata.setMenu).toEqual({ dispatch: false });
+            expect(metadata.setMenu.dispatch).toBeFalsy();
         });
     });
 

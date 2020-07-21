@@ -15,5 +15,5 @@
  * limitations under the License.
  */
 
-export { ConfirmationDialogModule } from './confirmation-dialog.module';
-export { DialogService } from './services/dialog.service';
+export * from './confirmation-dialog.module';
+export * from './services/dialog.service';

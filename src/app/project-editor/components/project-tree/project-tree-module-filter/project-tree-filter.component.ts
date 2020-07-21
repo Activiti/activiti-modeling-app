@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, Inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, Inject, Optional } from '@angular/core';
 import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction, ModelScope, Model } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 
@@ -33,15 +33,14 @@ export class ProjectTreeFilterComponent implements OnInit {
     @Output() opened = new EventEmitter<{ projectId: string; type: string, loadData: boolean }>();
     @Output() closed = new EventEmitter<{ type: string }>();
 
-    public ignoreOpenEmit: boolean;
-    public creators:  ModelCreator[];
+    ignoreOpenEmit: boolean;
 
     constructor(
         private store: Store<AmaState>,
-        @Inject(MODEL_CREATORS) modelCreators: ModelCreator[]
-    ) {
-        this.creators = modelCreators;
-    }
+        @Optional()
+        @Inject(MODEL_CREATORS)
+        private creators: ModelCreator[]
+    ) {}
 
     ngOnInit() {
         if (this.expanded) {
@@ -49,11 +48,7 @@ export class ProjectTreeFilterComponent implements OnInit {
         }
     }
 
-    contentHasBeenLoaded() {
-        return !this.loading;
-    }
-
-    contentsAreEmpty() {
+    contentsAreEmpty(): boolean {
         return !(this.contents && this.contents.length);
     }
 
@@ -63,15 +58,22 @@ export class ProjectTreeFilterComponent implements OnInit {
 
     filterOpened(type: MODEL_TYPE): void {
         this.opened.emit({ projectId: this.projectId, type, loadData: !this.ignoreOpenEmit });
+
         if (!this.ignoreOpenEmit) {
             this.ignoreOpenEmit = false;
         }
     }
 
-    openModelCreationModal(event: MouseEvent): void {
+    openModelCreationModal(event: Event): void {
         event.stopPropagation();
-        const modelCreator = this.creators.find(creator => creator.type === this.filter.type);
-        this.store.dispatch(new OpenEntityDialogAction(modelCreator.dialog));
+
+        if (this.creators && this.creators.length > 0) {
+            const modelCreator = this.creators.find(creator => creator.type === this.filter.type);
+
+            if (modelCreator) {
+                this.store.dispatch(new OpenEntityDialogAction(modelCreator.dialog));
+            }
+        }
     }
 
     isScopeGlobal(content: Model): boolean {

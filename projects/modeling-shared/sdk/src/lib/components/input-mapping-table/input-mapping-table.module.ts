@@ -17,17 +17,15 @@
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import {
-    MatTableModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatSelectModule,
-    MatInputModule
-} from '@angular/material';
 import { InputMappingTableComponent } from './input-mapping-table.component';
 import { CoreModule } from '@alfresco/adf-core';
 import { MappingDialogModule } from '../mapping-dialog/public-api';
 import { VariablesModule } from '../../variables/variables.module';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     imports: [

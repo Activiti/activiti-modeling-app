@@ -15,20 +15,28 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectTreeComponent } from './project-tree.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProjectTreeHelper } from './project-tree.helper';
 import { of } from 'rxjs';
 import { PROCESS, FORM, selectSelectedProjectId } from '@alfresco-dbp/modeling-shared/sdk';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ProjectTreeFilterComponent } from './project-tree-module-filter/project-tree-filter.component';
+import { TranslationService, TranslationMock } from '@alfresco/adf-core';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { UploadFileButtonComponent } from '../upload-file-button/upload-file-button.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('ProjectTreeFilterComponent ', () => {
     let fixture: ComponentFixture<ProjectTreeComponent>;
-    let component: ProjectTreeComponent;
     let helper: ProjectTreeHelper;
+
     const mockFilters = [
         { type: PROCESS, name: 'PROJECT_EDITOR.TREE.PROCESSES', icon: 'device_hub' },
         { type: FORM, name: 'PROJECT_EDITOR.TREE.FORMS', icon: 'subject' },
@@ -36,11 +44,24 @@ describe('ProjectTreeFilterComponent ', () => {
 
     const projectId = 'projectId';
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [NoopAnimationsModule],
-            declarations: [ProjectTreeComponent],
+            imports: [
+                NoopAnimationsModule,
+                CdkAccordionModule,
+                MatExpansionModule,
+                TranslateModule.forRoot(),
+                MatProgressSpinnerModule,
+                HttpClientTestingModule,
+                MatIconModule
+            ],
+            declarations: [
+                ProjectTreeComponent,
+                ProjectTreeFilterComponent,
+                UploadFileButtonComponent
+            ],
             providers: [
+                { provide: TranslationService, useClass: TranslationMock },
                 ProjectTreeHelper,
                 {
                     provide: Store, useValue: {
@@ -67,19 +88,13 @@ describe('ProjectTreeFilterComponent ', () => {
                             })
                         }
                 }
-            ],
-            schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+            ]
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ProjectTreeComponent);
-        component = fixture.componentInstance;
-        helper = TestBed.get(ProjectTreeHelper);
-    });
-
-    it ('should create', () => {
-        expect(component).toBeTruthy();
+        helper = TestBed.inject(ProjectTreeHelper);
     });
 
     it ('project tree should contain all the expected filters', () => {

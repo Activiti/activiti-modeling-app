@@ -16,7 +16,6 @@
  */
 
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { MatDialogRef, MatTableModule, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MessagesDialogComponent } from './messages-dialog.component';
@@ -25,6 +24,8 @@ import { MessagesService } from '../../../services/messages.service';
 import { ProcessModelerServiceToken, BpmnFactoryToken } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessModelerServiceImplementation } from '../../../services/process-modeler.service';
 import { BpmnFactoryMock } from '../../../services/bpmn-js/bpmn-js.mock';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
 
 describe('MessageDialogComponent', () => {
     let fixture: ComponentFixture<MessagesDialogComponent>;
@@ -62,7 +63,7 @@ describe('MessageDialogComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(MessagesDialogComponent);
-        service = TestBed.get(MessagesService);
+        service = TestBed.inject(MessagesService);
         component = fixture.componentInstance;
 
         spyOn(service, 'getUpdatedMessages').and.returnValue(messages);

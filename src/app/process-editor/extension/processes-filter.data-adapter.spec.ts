@@ -51,8 +51,8 @@ describe('ProcessesFilterDataAdapter ', () => {
     }));
 
     beforeEach(() => {
-        store = TestBed.get(Store);
-        processFilterDataAdapter = TestBed.get(ProcessesFilterDataAdapter);
+        store = TestBed.inject(Store);
+        processFilterDataAdapter = TestBed.inject(ProcessesFilterDataAdapter);
     });
 
     it('should test expanded getter', () => {

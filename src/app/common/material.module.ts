@@ -16,43 +16,54 @@
  */
 
 import { NgModule } from '@angular/core';
-import {
-    MatDialogModule,
-    MatInputModule,
-    MatProgressBarModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSlideToggleModule,
-    MatCardModule,
-    MatListModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatSnackBarModule,
-    MatExpansionModule,
-    MatTableModule,
-    MatBadgeModule
-} from '@angular/material';
-
-const MATERIAL_MODULES = [
-    MatSlideToggleModule,
-    MatInputModule,
-    MatSelectModule,
-    MatDialogModule,
-    MatSidenavModule,
-    MatProgressBarModule,
-    MatCardModule,
-    MatListModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatSnackBarModule,
-    MatExpansionModule,
-    MatTableModule,
-    MatBadgeModule
-];
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
-    imports: MATERIAL_MODULES,
-    exports: MATERIAL_MODULES
+    imports: [
+        MatSlideToggleModule,
+        MatInputModule,
+        MatSelectModule,
+        MatDialogModule,
+        MatSidenavModule,
+        MatProgressBarModule,
+        MatCardModule,
+        MatListModule,
+        MatMenuModule,
+        MatToolbarModule,
+        MatSnackBarModule,
+        MatExpansionModule,
+        MatTableModule,
+        MatBadgeModule
+    ],
+    exports: [
+        MatSlideToggleModule,
+        MatInputModule,
+        MatSelectModule,
+        MatDialogModule,
+        MatSidenavModule,
+        MatProgressBarModule,
+        MatCardModule,
+        MatListModule,
+        MatMenuModule,
+        MatToolbarModule,
+        MatSnackBarModule,
+        MatExpansionModule,
+        MatTableModule,
+        MatBadgeModule
+    ]
 })
 export class MaterialModule {
 }

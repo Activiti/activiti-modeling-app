@@ -18,7 +18,8 @@
 import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { TestBed } from '@angular/core/testing';
-import { MatDialogModule, MatMenuModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
@@ -64,11 +65,11 @@ describe('Process messages effects', () => {
             ]
         });
 
-        effects = TestBed.get(ProcessMessagesEffects);
+        effects = TestBed.inject(ProcessMessagesEffects);
         metadata = getEffectsMetadata(effects);
     });
 
     it('openMessagesDialog effect should not dispatch an action', () => {
-        expect(metadata.openProcessMessagesDialogEffect).toEqual({ dispatch: false });
+        expect(metadata.openProcessMessagesDialogEffect.dispatch).toBeFalsy();
     });
 });

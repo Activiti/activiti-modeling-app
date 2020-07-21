@@ -60,7 +60,7 @@ export function processApiFactory (modelVariation: ModelApiVariation<any, any>, 
     imports: [CommonModule]
 })
 export class ACMApiModule {
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders<ACMApiModule> {
         return {
             ngModule: ACMApiModule,
             providers: [

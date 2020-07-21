@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Store } from '@ngrx/store';
 import { ProcessEditorState } from '../../../store/process-editor.state';
@@ -30,32 +30,28 @@ import {
 
 describe('ProcessVariableItemComponent', () => {
     let fixture: ComponentFixture<CardViewProcessMessagesItemComponent>;
-    let component: CardViewProcessMessagesItemComponent;
     let store: Store<ProcessEditorState>;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [CardItemTypeService, {provide: Store, useValue: { dispatch: jest.fn()}}],
             declarations: [CardViewProcessMessagesItemComponent],
             imports: [TranslateModule.forRoot()],
             schemas: [ NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
 
-    beforeEach(() => {
         fixture = TestBed.createComponent(CardViewProcessMessagesItemComponent);
-        component = fixture.componentInstance;
-        store = TestBed.get(Store);
+        store = TestBed.inject(Store);
         fixture.detectChanges();
     });
 
     it('clicking on process messages button should dispatch a OPEN_MESSAGES_DIALOG action', () => {
-        spyOn(store, 'dispatch');
+        const dispatchSpy = spyOn(store, 'dispatch');
         const button = fixture.nativeElement.querySelector('button');
         button.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        const action: OpenProcessMessagesDialogAction = store.dispatch.calls.argsFor(0)[0];
+        const action: OpenProcessMessagesDialogAction = dispatchSpy.calls.argsFor(0)[0];
         expect(store.dispatch).toHaveBeenCalled();
         expect(action.type).toBe(OPEN_PROCESS_MESSAGES_DIALOG);
     });

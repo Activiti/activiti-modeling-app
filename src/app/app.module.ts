@@ -41,9 +41,7 @@ import { appRoutes } from './app.routes';
 import { ConnectorEditorModule } from './connector-editor/connector-editor.module';
 import { AmaLocalStorageMergeGuard } from './common/services/ama-localstorage-merge-guard.service';
 import { ErrorContentComponent } from './app/error/error-content.component';
-import { BpmnjsPropertiesModule } from './bpmnjs-properties/bpmnjs-properties.module';
-import { environment } from '../environments/environment';
-import { MatInputModule } from '@angular/material';
+import { MatInputModule } from '@angular/material/input';
 
 import {
     ACMApiModule,
@@ -63,15 +61,11 @@ import { LogHistoryEntryComponent } from './app/app-layout/logging/components/lo
 import { EditorFooterComponent } from './app/app-layout/editor-footer/editor-footer.component';
 import { AppFooterService } from './common/services/app-footer.service';
 import { EDITOR_FOOTER_SERVICE_TOKEN } from './app/app-layout/editor-footer/editor-footer.service.interface';
-import localeJa from '@angular/common/locales/ja';
-import { registerLocaleData } from '@angular/common';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AmaModelSchemaLoaderGuard } from './common/services/ama-model-schema-loader-guard.service';
 import { getBackendLogInitiator } from './common/services/application.constants';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateLoaderService } from '@alfresco/adf-core';
-
-registerLocaleData(localeJa);
 
 @NgModule({
     imports: [
@@ -106,9 +100,6 @@ registerLocaleData(localeJa);
         ConfirmationDialogModule,
 
         AppExtensionsModule,
-
-        /** @deprecated: bpmnjs-properties */
-        !environment.production ? BpmnjsPropertiesModule : []
     ],
     declarations: [
         AppComponent,
@@ -124,7 +115,6 @@ registerLocaleData(localeJa);
         EditorFooterComponent,
         AboutComponent
     ],
-    entryComponents: [SettingsDialogComponent],
     providers: [
         { provide: ErrorHandler, useClass: GlobalErrorHandler },
         AmaLocalStorageMergeGuard,

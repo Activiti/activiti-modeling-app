@@ -17,7 +17,7 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { EntityDialogComponent } from './entity-dialog.component';
-import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -62,7 +62,7 @@ describe('EntityDialogComponent', () => {
         fixture = TestBed.createComponent(EntityDialogComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
-        store = TestBed.get(Store);
+        store = TestBed.inject(Store);
     });
 
     it('should render input placeholders', () => {

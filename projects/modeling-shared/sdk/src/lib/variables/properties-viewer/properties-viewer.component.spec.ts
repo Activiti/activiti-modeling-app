@@ -16,7 +16,6 @@
  */
 
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { MatDialogRef,  MatTableModule, MatTableDataSource } from '@angular/material';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
@@ -25,6 +24,8 @@ import { of } from 'rxjs';
 import { VariablesService } from '../variables.service';
 import { UuidService } from './../../services/uuid.service';
 import { VariableValuePipe } from './variable-value.pipe';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 
 describe('PropertiesViewerComponent', () => {
     let fixture: ComponentFixture<PropertiesViewerComponent>;
@@ -51,7 +52,7 @@ describe('PropertiesViewerComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(PropertiesViewerComponent);
-        service = TestBed.get(VariablesService);
+        service = TestBed.inject(VariablesService);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

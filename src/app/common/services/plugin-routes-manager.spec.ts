@@ -17,26 +17,30 @@
 
 import { PluginRoutesManagerService } from './plugin-routes-manager.service';
 import { TestBed, async } from '@angular/core/testing';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule, Router, Route } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
+import { MatButtonModule, MatButton } from '@angular/material/button';
 
 describe('PluginRoutesManagerService', () => {
 
     const INJECTION_POINT = 'INJECTION_POINT',
         ANOTHER_INJECTION_POINT = 'ANOTHER_INJECTION_POINT';
 
-    let projectsPath,
-        dashboardPath,
-        processesPath,
-        connectorsPath,
-        kittensPath;
+    let projectsPath: Route;
+    let dashboardPath: Route;
+    let processesPath: Route;
+    let connectorsPath: Route;
+    let kittensPath: Route;
 
-    let service: PluginRoutesManagerService,
-        router: Router;
+    let service: PluginRoutesManagerService;
+    let router: Router;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [ RouterModule.forRoot([]) ],
+            imports: [
+                RouterModule.forRoot([]),
+                MatButtonModule
+            ],
             providers: [
                 PluginRoutesManagerService,
                 { provide: APP_BASE_HREF, useValue: '/' }
@@ -45,14 +49,14 @@ describe('PluginRoutesManagerService', () => {
     }));
 
     beforeEach(() => {
-        service = TestBed.get(PluginRoutesManagerService);
-        router = TestBed.get(Router);
+        service = TestBed.inject(PluginRoutesManagerService);
+        router = TestBed.inject(Router);
 
-        projectsPath = { path: 'projects', data: {}, loadChildren: 'somewhere#projectsModule' },
-        dashboardPath = { path: 'dashboard', loadChildren: 'dashboard#processModule' },
-        processesPath = { path: 'processes', data: { injectTo: INJECTION_POINT }, loadChildren: 'somewhere#processModule' };
-        connectorsPath = { path: 'connectors', data: { injectTo: INJECTION_POINT }, loadChildren: 'somewhere#connectorModule' };
-        kittensPath = { path: 'kittens', data: { injectTo: ANOTHER_INJECTION_POINT }, loadChildren: 'somewhere#kittensModule' };
+        projectsPath = { path: 'projects', data: {}, component: MatButton },
+        dashboardPath = { path: 'dashboard', component: MatButton },
+        processesPath = { path: 'processes', data: { injectTo: INJECTION_POINT }, component: MatButton };
+        connectorsPath = { path: 'connectors', data: { injectTo: INJECTION_POINT }, component: MatButton };
+        kittensPath = { path: 'kittens', data: { injectTo: ANOTHER_INJECTION_POINT }, component: MatButton };
     });
 
     afterEach(() => {
@@ -81,7 +85,10 @@ describe('PluginRoutesManagerService', () => {
                 path: 'project-editor',
                 data: { hostFor: INJECTION_POINT },
                 children: [
-                    { path: 'one-path', loadChildren: 'somewhere#onePath' }
+                    {
+                        path: 'one-path',
+                        component: MatButton
+                    }
                 ]
             },
             dashboardPath
@@ -92,7 +99,7 @@ describe('PluginRoutesManagerService', () => {
         expect(router.config.length).toBe(2);
         expect(router.config[1]).toEqual(dashboardPath);
         expect(router.config[0].children.length).toBe(2);
-        expect(router.config[0].children[0]).toEqual({ path: 'one-path', loadChildren: 'somewhere#onePath' });
+        expect(router.config[0].children[0].path).toEqual('one-path');
         expect(router.config[0].children[1]).toEqual(processesPath);
     });
 
@@ -103,7 +110,10 @@ describe('PluginRoutesManagerService', () => {
                 path: 'project-editor',
                 data: { hostFor: INJECTION_POINT },
                 children: [
-                    { path: 'one-path', loadChildren: 'somewhere#onePath' }
+                    {
+                        path: 'one-path',
+                        component: MatButton
+                    }
                 ]
             },
             dashboardPath,
@@ -116,7 +126,7 @@ describe('PluginRoutesManagerService', () => {
         expect(router.config.length).toBe(2);
         expect(router.config[1]).toEqual(dashboardPath);
         expect(router.config[0].children.length).toBe(3);
-        expect(router.config[0].children[0]).toEqual({ path: 'one-path', loadChildren: 'somewhere#onePath' });
+        expect(router.config[0].children[0].path).toEqual('one-path');
         expect(router.config[0].children[1]).toEqual(processesPath);
         expect(router.config[0].children[2]).toEqual(connectorsPath);
     });
@@ -128,7 +138,10 @@ describe('PluginRoutesManagerService', () => {
                 path: 'project-editor',
                 data: { hostFor: INJECTION_POINT },
                 children: [
-                    { path: 'one-path', loadChildren: 'somewhere#onePath' }
+                    {
+                        path: 'one-path',
+                        component: MatButton
+                    }
                 ]
             },
             {
@@ -144,7 +157,7 @@ describe('PluginRoutesManagerService', () => {
 
         expect(router.config.length).toBe(2);
         expect(router.config[0].children.length).toBe(3);
-        expect(router.config[0].children[0]).toEqual({ path: 'one-path', loadChildren: 'somewhere#onePath' });
+        expect(router.config[0].children[0].path).toEqual('one-path');
         expect(router.config[0].children[1]).toEqual(processesPath);
         expect(router.config[0].children[2]).toEqual(connectorsPath);
         expect(router.config[1].children.length).toBe(1);
@@ -162,13 +175,16 @@ describe('PluginRoutesManagerService', () => {
                         children: [
                             {
                                 path: 'not-host-route',
-                                loadChildren: 'somewhere#whateverModule'
+                                component: MatButton
                             },
                             {
                                 path: 'and-yet-another-level',
                                 data: { hostFor: INJECTION_POINT },
                                 children: [
-                                    { path: 'one-path', loadChildren: 'somewhere#onePath' }
+                                    {
+                                        path: 'one-path',
+                                        component: MatButton
+                                    }
                                 ]
                             }
                         ]
@@ -183,7 +199,7 @@ describe('PluginRoutesManagerService', () => {
         const lowestLevelChildren = router.config[0].children[0].children[1].children;
 
         expect(lowestLevelChildren.length).toBe(2);
-        expect(lowestLevelChildren[0]).toEqual({ path: 'one-path', loadChildren: 'somewhere#onePath' });
+        expect(lowestLevelChildren[0].path).toEqual('one-path');
         expect(lowestLevelChildren[1]).toEqual(processesPath);
     });
 });

@@ -20,14 +20,14 @@ import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { Observable, throwError, of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
-import { ACMApiModule, DownloadResourceService, BlobService, DialogService, LogFactoryService, SnackbarErrorAction } from '@alfresco-dbp/modeling-shared/sdk';
+import { ACMApiModule, DownloadResourceService, BlobService, DialogService, SnackbarErrorAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { LogService, AlfrescoApiService, AlfrescoApiServiceMock, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { Router } from '@angular/router';
 import { ExportProjectAction } from '../project-editor.actions';
 import { hot, getTestScheduler, cold } from 'jasmine-marbles';
-import { MatDialogRef, MatDialogModule } from '@angular/material';
+import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 
 describe('Project Effects', () => {
     let effects: ProjectEffects;
@@ -83,19 +83,19 @@ describe('Project Effects', () => {
             ]
         });
 
-        effects = TestBed.get(ProjectEffects);
+        effects = TestBed.inject(ProjectEffects);
         metadata = getEffectsMetadata(effects);
-        service = TestBed.get(ProjectEditorService);
-        downloadService = TestBed.get(DownloadResourceService);
+        service = TestBed.inject(ProjectEditorService);
+        downloadService = TestBed.inject(DownloadResourceService);
 
     });
 
-    it('ExportProject effect should dispatch an action', () =>
-        expect(metadata.exportApplicationEffect).toEqual({ dispatch: true })
-    );
+    it('ExportProject effect should dispatch an action', () => {
+        expect(metadata.exportApplicationEffect.dispatch).toBeTruthy();
+    });
 
     it('ExportProject effect should call downloadResource', () => {
-        const mockPayload = {
+        const mockPayload: any = {
             projectId: 'id1',
             projectName: 'Project 1'
         };

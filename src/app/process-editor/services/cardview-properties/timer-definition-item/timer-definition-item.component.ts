@@ -24,7 +24,7 @@ import moment from 'moment-es6';
 import { AmaState, EntityProperty, selectSelectedProcess, ProcessExtensionsModel, AMA_DATETIME_FORMATS } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { TimerDefinitionItemModel } from './timer-definition-item.model';
-import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { DatetimeAdapter, MAT_DATETIME_FORMATS } from '@mat-datetimepicker/core';
 import { MomentDatetimeAdapter } from '@mat-datetimepicker/moment';
 

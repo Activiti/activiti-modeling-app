@@ -16,7 +16,7 @@
  */
 
 import { ModelContentApiVariation } from './content-api-variation';
-import { ContentModelXML, ContentModel } from '../../../api/types';
+import { ContentModelXML, ContentModel, ModelScope } from '../../../api/types';
 import { AuthenticationService, setupTestBed } from '@alfresco/adf-core';
 import { TestBed } from '@angular/core/testing';
 import { ContentType } from '../content-types';
@@ -26,14 +26,15 @@ describe('ModelContentApiVariation', () => {
     const mockModel: ContentModel = {
         id: 'mock-content-model',
         name: 'initial-mock-name',
-        projectId: 'mock-project-id',
+        projectIds: ['mock-project-id'],
         description: 'Initial mock description',
         type: 'model',
         version: '0',
         createdBy: null,
         creationDate: null,
         lastModifiedBy: null,
-        lastModifiedDate: null
+        lastModifiedDate: null,
+        scope: ModelScope.GLOBAL
     };
 
     const mockXMLContent = `<?xml version="1.0" encoding="UTF-8"?>
@@ -83,7 +84,7 @@ describe('ModelContentApiVariation', () => {
     });
 
     beforeAll(() => {
-        authenticationService = TestBed.get(AuthenticationService);
+        authenticationService = TestBed.inject(AuthenticationService);
         variation = new ModelContentApiVariation(authenticationService);
     });
 
@@ -91,7 +92,8 @@ describe('ModelContentApiVariation', () => {
         expect(variation.createSummaryPatch(mockModel, mockXMLContent)).toEqual({
             name: 'mock',
             description: 'This is the mock description',
-            type: ContentType.Model
+            type: ContentType.Model,
+            scope: ModelScope.GLOBAL
         });
     });
 

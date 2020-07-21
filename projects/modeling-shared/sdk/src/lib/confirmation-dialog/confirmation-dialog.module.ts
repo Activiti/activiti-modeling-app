@@ -21,7 +21,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '@alfresco/adf-core';
 import { RouterModule } from '@angular/router';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
     imports: [
@@ -34,7 +34,6 @@ import { MatIconModule } from '@angular/material';
     declarations: [
         ConfirmationDialogComponent
     ],
-    entryComponents: [ ConfirmationDialogComponent ],
     exports: [
         CommonModule,
         MatIconModule,

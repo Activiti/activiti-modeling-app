@@ -16,7 +16,6 @@
  */
 
 /** Source: https://www.xfive.co/blog/testing-angular-faster-jest/  */
-import 'hammerjs/hammer';
 import './jest-global-mocks';
 import 'jest-preset-angular';
 

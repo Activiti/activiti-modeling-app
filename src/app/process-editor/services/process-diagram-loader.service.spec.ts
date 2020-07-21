@@ -62,10 +62,10 @@ describe('ProcessDiagramLoaderService', () => {
     }));
 
     beforeEach(() => {
-        logFactory = TestBed.get(LogFactoryService);
-        service = TestBed.get(ProcessDiagramLoaderService);
-        modelerService = TestBed.get(ProcessModelerServiceToken);
-        store = TestBed.get(Store);
+        logFactory = TestBed.inject(LogFactoryService);
+        service = TestBed.inject(ProcessDiagramLoaderService);
+        modelerService = TestBed.inject(ProcessModelerServiceToken);
+        store = TestBed.inject(Store);
     });
 
     afterEach(() => {

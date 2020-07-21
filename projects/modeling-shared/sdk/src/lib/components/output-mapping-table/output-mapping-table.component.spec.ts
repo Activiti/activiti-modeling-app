@@ -20,16 +20,17 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MappingType } from '../../api/types';
+import { MappingType, ServiceParameterMapping } from '../../api/types';
 import { OutputMappingTableComponent } from './output-mapping-table.component';
 import { DialogService } from '../../confirmation-dialog/services/dialog.service';
 import { OutputMappingTableModule } from './output-mapping-table.module';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { selectSelectedTheme } from '../../store/app.selectors';
 import { mockDropDownFields, mockDropDownProcessVariable, mockValueMapping } from './output-mapping-table.component.mock';
 import { TranslateModule } from '@ngx-translate/core';
+import { of } from 'rxjs';
 
 describe('OutputMappingTableComponent', () => {
     let fixture: ComponentFixture<OutputMappingTableComponent>;
@@ -215,26 +216,26 @@ describe('OutputMappingTableComponent', () => {
     it('should update the value if mapping type is expression', () => {
         component.parameters.concat(mockDropDownFields);
         component.processProperties = mockDropDownProcessVariable;
-        component.mapping = <any> mockValueMapping;
+        component.mapping = mockValueMapping;
 
         component.ngOnChanges();
         fixture.detectChanges();
         expect(component.data).toEqual(mockValueMapping);
 
         component.changeSelection({ value: 'dId' }, 0, mockDropDownFields[0]);
-        let updatedMapping = {
+        let updatedMapping: ServiceParameterMapping = {
             ...mockValueMapping,
             'dId': {
-                type: 'value',
+                type: MappingType.value,
                 value: '${Dropdown009gay.id}'
             }
         };
 
         component.changeSelection({ value: 'text' }, 0, mockDropDownFields[4]);
-        updatedMapping = <any> {
+        updatedMapping = {
             ...updatedMapping,
             'text': {
-                type: 'variable',
+                type: MappingType.variable,
                 value: 'Text0yru6p'
             }
         };

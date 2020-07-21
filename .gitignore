@@ -54,6 +54,5 @@ testem.log
 Thumbs.db
 
 # Project specific
-src/tsconfig.adfdev.json
 /e2e/.app.config.json
 /src/.app.config.json

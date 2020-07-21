@@ -15,9 +15,7 @@
  * limitations under the License.
  */
 
-import { Process, ServicesParameterMappings, PROCESS, MappingType } from '@alfresco-dbp/modeling-shared/sdk';
-
-const deepFreeze = require('deep-freeze-strict');
+import { Process, ServicesParameterMappings, PROCESS, MappingType, ModelScope } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const mappings: ServicesParameterMappings = {
     'taskId': {
@@ -44,22 +42,18 @@ export const mappings: ServicesParameterMappings = {
     }
 };
 
-export const mockProcessModel: Process = deepFreeze({
+export const mockProcessModel: Process = {
     type: PROCESS,
     id: 'id1',
     name: 'Process 1',
-    createdAt: new Date(),
-    createdByUser: {
-        id: 'idd',
-        displayName: 'Test'
-    },
-    modifiedAt: new Date(),
-    modifiedByUser: {
-        id: 'idd',
-        displayName: 'Test'
-    },
+    creationDate: new Date(),
+    createdBy: 'test',
+    lastModifiedDate: new Date(),
+    lastModifiedBy: 'test',
     description: '',
     version: '',
+    scope: ModelScope.GLOBAL,
+    projectIds: [],
     extensions: {
         'Process_12345678': {
             properties: {
@@ -70,10 +64,11 @@ export const mockProcessModel: Process = deepFreeze({
                 /* cspell: disable-next-line */
                 'mockprop3': { 'id': 'mockprop3', 'name': 'terrifying-variable', 'type': 'string', 'required': false, 'value': '' }
             },
-            mappings
+            mappings,
+            constants: {},
         }
     }
-});
+};
 
 export const mockProcessId = 'Process-12345678';
 

@@ -16,12 +16,12 @@
  */
 
 import { HeaderBreadcrumbsComponent } from './header-breadcrumbs.component';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedModule } from '../../shared.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
@@ -37,7 +37,7 @@ describe('HeaderBreadcrumbsComponent', () => {
         { name: 'Process' }
     ];
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 SharedModule,
@@ -55,8 +55,8 @@ describe('HeaderBreadcrumbsComponent', () => {
                     }
                 }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(HeaderBreadcrumbsComponent);

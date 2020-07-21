@@ -16,8 +16,8 @@
  */
 
 import { DialogService } from './dialog.service';
-import { TestBed, async } from '@angular/core/testing';
-import { MatDialogModule, MatDialog } from '@angular/material';
+import { TestBed } from '@angular/core/testing';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
 import { ConfirmDialogData } from '../../store/app.actions';
@@ -25,28 +25,21 @@ import { ConfirmDialogData } from '../../store/app.actions';
 describe('DialogService ', () => {
     let service: DialogService;
     let dialog: MatDialog;
+    let dialogOpenSpy: jasmine.Spy;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [MatDialogModule, NoopAnimationsModule],
             declarations: [],
             providers: [DialogService]
-        }).compileComponents();
-    }));
-
-    beforeEach(() => {
-        service = TestBed.get(DialogService);
-        dialog = TestBed.get(MatDialog);
-        spyOn(dialog, 'open').and.callFake(() => {});
-        spyOn(dialog, 'closeAll').and.callFake(() => {});
+        });
     });
 
-    it('the confirm method should return an Observable but not a Subject', () => {
-        const observable = service.confirm();
-
-        expect(observable).toBeDefined();
-        expect(observable.subscribe).toBeDefined();
-        expect(observable.next).toBeUndefined();
+    beforeEach(() => {
+        service = TestBed.inject(DialogService);
+        dialog = TestBed.inject(MatDialog);
+        dialogOpenSpy = spyOn(dialog, 'open').and.callFake(() => {});
+        spyOn(dialog, 'closeAll').and.callFake(() => {});
     });
 
     it('the confirm return should open a dialog', () => {
@@ -62,7 +55,7 @@ describe('DialogService ', () => {
 
     it('check if the subject was passed down', () => {
         service.confirm();
-        const args = dialog.open.calls.argsFor(0);
+        const args = dialogOpenSpy.calls.argsFor(0);
         const subject = args[1].data.subject;
 
         expect(subject).toBeDefined();
@@ -76,7 +69,7 @@ describe('DialogService ', () => {
         };
 
         service.confirm(dialogData);
-        const args = dialog.open.calls.argsFor(0);
+        const args = dialogOpenSpy.calls.argsFor(0);
         const data = args[1].data;
 
         expect(data.title).toBe(dialogData.title);
@@ -85,7 +78,7 @@ describe('DialogService ', () => {
 
     it('check if the returned observable is related to the subject', done => {
         const observable = service.confirm();
-        const args = dialog.open.calls.argsFor(0);
+        const args = dialogOpenSpy.calls.argsFor(0);
         const subject = args[1].data.subject;
 
         observable.subscribe(value => {

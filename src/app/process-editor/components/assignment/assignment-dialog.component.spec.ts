@@ -16,7 +16,6 @@
  */
 
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { MatIconModule, MatDialogRef, MAT_DIALOG_DATA, MatCardModule, MatTooltipModule, MatChipsModule, MatDialogModule, MatSelectModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AmaTitleService, CodeEditorModule, AssignmentMode, AssignmentType } from '@alfresco-dbp/modeling-shared/sdk';
@@ -28,6 +27,12 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AssignmentDialogComponent, AssignmentModel, AssignmentTabs } from './assignment-dialog.component';
 import { ProcessServicesCloudModule } from '@alfresco/adf-process-services-cloud';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 describe('AssignmentDialogComponent', () => {
     let fixture: ComponentFixture<AssignmentDialogComponent>;
@@ -82,12 +87,12 @@ describe('AssignmentDialogComponent', () => {
     };
 
       function openSelect() {
-        const dropdown = fixture.debugElement.query(By.css('[class="mat-select-trigger"]'));
+        const dropdown = fixture.debugElement.query(By.css('.mat-select-trigger'));
         dropdown.triggerEventHandler('click', null);
         fixture.detectChanges();
     }
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 CoreModule.forRoot(),
@@ -123,13 +128,11 @@ describe('AssignmentDialogComponent', () => {
                 }
             ],
             declarations: [AssignmentDialogComponent]
-        }).compileComponents();
-    }));
+        });
 
-    beforeEach(() => {
         fixture = TestBed.createComponent(AssignmentDialogComponent);
         component = fixture.componentInstance;
-        alfrescoApiService = TestBed.get(AlfrescoApiService);
+        alfrescoApiService = TestBed.inject(AlfrescoApiService);
         component.settings = mockDialogData;
         spyOn(alfrescoApiService, 'getInstance').and.returnValue(mockOauthApi);
     });

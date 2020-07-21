@@ -16,12 +16,11 @@
  */
 
 import { ProcessModelerComponent } from './process-modeler.component';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store, StoreModule } from '@ngrx/store';
-import { MatTooltipModule, MatIconModule, MatCardModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
-import { AmaState, PROCESS_EDITOR_STATE_NAME, selectSelectedProcess, BpmnFactoryToken, ProcessModelerService, ProcessModelerServiceToken } from '@alfresco-dbp/modeling-shared/sdk';
+import { PROCESS_EDITOR_STATE_NAME, selectSelectedProcess, BpmnFactoryToken, ProcessModelerService, ProcessModelerServiceToken } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessModelerServiceImplementation } from '../../services/process-modeler.service';
 import { BpmnFactoryMock, getDiagramElementMock } from '../../services/bpmn-js/bpmn-js.mock';
 import { By } from '@angular/platform-browser';
@@ -32,6 +31,9 @@ import { Component } from '@angular/core';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { createSelectedElement } from '../../store/process-editor.state';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
     selector: 'ama-process-palette',
@@ -43,10 +45,9 @@ import { createSelectedElement } from '../../store/process-editor.state';
 describe('ProcessModelerComponent', () => {
     let fixture: ComponentFixture<ProcessModelerComponent>;
     let component: ProcessModelerComponent;
-    let store: Store<AmaState>;
     let processModelerService: ProcessModelerService;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 MatTooltipModule,
@@ -78,19 +79,12 @@ describe('ProcessModelerComponent', () => {
                 }
             ],
             declarations: [ProcessModelerComponent, MockPaletteComponent]
-        }).compileComponents();
-    }));
+        });
 
-    beforeEach(() => {
         fixture = TestBed.createComponent(ProcessModelerComponent);
         component = fixture.componentInstance;
-        store = TestBed.get(Store);
-        processModelerService = TestBed.get(ProcessModelerServiceToken);
+        processModelerService = TestBed.inject(ProcessModelerServiceToken);
         fixture.detectChanges();
-    });
-
-    it('should render canvas element', () => {
-        expect(component.canvas.nativeElement).not.toBeNull();
     });
 
     it('should init BPMN service', () => {
@@ -150,11 +144,11 @@ describe('ProcessModelerComponent', () => {
         expect(processModelerService.zoomOut).toHaveBeenCalled();
     });
 
-    it('should load diagram after view init', () => {
+    it('should load diagram after init', () => {
         spyOn(processModelerService, 'render');
         spyOn(processModelerService, 'loadXml').and.returnValue(of('diagram'));
 
-        component.ngAfterViewInit();
+        component.ngOnInit();
         fixture.detectChanges();
 
         component.source = 'diagram';

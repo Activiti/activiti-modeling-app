@@ -63,7 +63,6 @@ import { CardViewImplementationItemComponent } from './services/cardview-propert
 import { CardViewDecisionTaskItemComponent } from './services/cardview-properties/decision-task-item/decision-task-item.component';
 import { CardViewScriptTaskItemComponent } from './services/cardview-properties/script-task-item/script-task-item.component';
 import { ProcessPropertiesComponent } from './components/process-properties/process-properties.component';
-import { MatChipsModule, MatTooltipModule, MatCardModule, MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { getProcessesFilterProvider } from './extension/processes-filter.extension';
 import { getProcessCreatorProvider } from './extension/process-creator.extension';
 import { getProcessUploaderProvider } from './extension/process-uploader.extension';
@@ -101,6 +100,11 @@ import { TaskAssignmentService } from './services/cardview-properties/task-assig
 import { transformJsonSchema } from './services/transformJsonSchema';
 import { CardViewProcessNameItemComponent } from './services/cardview-properties/process-name-item/process-name-item.component';
 import { ProcessConnectorService } from './services/process-connector-service';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     imports: [
@@ -152,28 +156,6 @@ import { ProcessConnectorService } from './services/process-connector-service';
         CardViewDueDateItemComponent,
         AssignmentDialogComponent,
         CardViewTaskAssignmentItemComponent,
-        CardViewProcessNameItemComponent
-    ],
-    entryComponents: [
-        CardViewProcessVariablesItemComponent,
-        CardViewTaskAssignmentItemComponent,
-        CardViewImplementationItemComponent,
-        CardViewDecisionTaskItemComponent,
-        CardViewScriptTaskItemComponent,
-        CardViewDefaultSequenceFlowItemComponent,
-        CardViewSignalRefItemComponent,
-        CardViewErrorRefItemComponent,
-        CardViewCalledItemItemComponent,
-        CardViewTimerDefinitionItemComponent,
-        CardViewMessageItemComponent,
-        CardViewMessageVariableMappingComponent,
-        CardViewProcessMessagesItemComponent,
-        ProcessEditorComponent,
-        MessagesDialogComponent,
-        CardViewMultiInstanceItemComponent,
-        CardViewMessagePayloadItemComponent,
-        CardViewDueDateItemComponent,
-        AssignmentDialogComponent,
         CardViewProcessNameItemComponent
     ],
     exports: [ProcessEditorRoutingModule],

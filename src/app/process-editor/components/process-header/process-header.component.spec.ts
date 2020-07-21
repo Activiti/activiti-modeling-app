@@ -17,7 +17,7 @@
 
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { ProcessHeaderComponent } from './process-header.component';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule, AmaState, OpenConfirmDialogAction, ProcessModelerServiceToken, AmaTitleService, AutoSaveProcessAction } from '@alfresco-dbp/modeling-shared/sdk';
@@ -86,7 +86,7 @@ describe('ProcessHeaderComponent', () => {
         fixture.detectChanges();
         component.process = mockProcessModel;
         component.content = 'mockProcessContent';
-        store = TestBed.get(Store);
+        store = TestBed.inject(Store);
     });
 
     it('should render breadcrumbs', () => {

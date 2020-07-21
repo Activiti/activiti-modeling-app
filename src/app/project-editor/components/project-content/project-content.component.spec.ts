@@ -18,7 +18,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectContentComponent } from './project-content.component';
 import { Store } from '@ngrx/store';
-import { MatIconModule, MatButtonModule, MatMenuModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 import { ToolbarModule } from '@alfresco/adf-core';
 import { ProjectEditorState, PROJECT_CONTEXT_MENU_OPTIONS } from '@alfresco-dbp/modeling-shared/sdk';
 import { of } from 'rxjs';
@@ -53,7 +55,7 @@ describe('ProjectContentComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ProjectContentComponent);
-        store = TestBed.get(Store);
+        store = TestBed.inject(Store);
         fixture.detectChanges();
     });
 
@@ -63,12 +65,12 @@ describe('ProjectContentComponent', () => {
     });
 
     it('clicking on download button should dispatch an ExportProjectAttemptAction', () => {
-        spyOn(store, 'dispatch');
+        const dispatchSpy = spyOn(store, 'dispatch');
         const button = fixture.debugElement.query(By.css('[data-automation-id="project-download-button"]'));
         button.triggerEventHandler('click', {});
         fixture.detectChanges();
 
-        const exportActionAttempt: ExportProjectAttemptAction = store.dispatch.calls.argsFor(0)[0];
+        const exportActionAttempt: ExportProjectAttemptAction = dispatchSpy.calls.argsFor(0)[0];
         const payload = {
             projectId: undefined,
             projectName: undefined

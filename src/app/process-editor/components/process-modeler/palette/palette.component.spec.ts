@@ -16,16 +16,18 @@
  */
 
 import { PaletteComponent } from './palette.component';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatMenuModule, MatCardModule, MatIconModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
 import { PaletteOverlayDirective } from './palette-overlay.directive';
-import { PaletteElementsToken } from '@alfresco-dbp/modeling-shared/sdk';
+import { PaletteElementsToken, PaletteGroupElement, BpmnTrigger } from '@alfresco-dbp/modeling-shared/sdk';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('Palette component', () => {
     let fixture: ComponentFixture<PaletteComponent>;
@@ -72,7 +74,7 @@ describe('Palette component', () => {
         }
     ];
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 TranslateModule.forRoot(),
@@ -88,26 +90,24 @@ describe('Palette component', () => {
             ],
             declarations: [PaletteComponent, PaletteOverlayDirective],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
 
-    beforeEach(() => {
         fixture = TestBed.createComponent(PaletteComponent);
         component = fixture.componentInstance;
-        processModelerPaletteService = TestBed.get(ProcessModelerPaletteService);
+        processModelerPaletteService = TestBed.inject(ProcessModelerPaletteService);
         fixture.detectChanges();
     });
 
     it('test hasChildren method', () => {
-        expect(component.hasChildren(component.paletteElements[0])).toBeFalsy();
-        expect(component.hasChildren(component.paletteElements[1])).toBeTruthy();
+        expect(component.hasChildren(component.paletteElements[0] as PaletteGroupElement)).toBeFalsy();
+        expect(component.hasChildren(component.paletteElements[1] as PaletteGroupElement)).toBeTruthy();
     });
 
     it('test onClick method', () => {
         const btn = fixture.debugElement.query(By.css('.test button'));
         const event =  new MouseEvent('click');
         btn.nativeElement.dispatchEvent(event);
-        expect(processModelerPaletteService.delegateEvent).toHaveBeenCalledWith(component.paletteElements[0], event);
+        expect(processModelerPaletteService.delegateEvent).toHaveBeenCalledWith(component.paletteElements[0] as BpmnTrigger, event);
 
     });
 
@@ -117,6 +117,6 @@ describe('Palette component', () => {
         const event = new CustomEvent('dragstart');
         spyOn(event, 'preventDefault').and.stub();
         btn.nativeElement.dispatchEvent(event);
-        expect(processModelerPaletteService.delegateEvent).toHaveBeenCalledWith(component.paletteElements[0], event);
+        expect(processModelerPaletteService.delegateEvent).toHaveBeenCalledWith(component.paletteElements[0] as BpmnTrigger, event);
     });
 });

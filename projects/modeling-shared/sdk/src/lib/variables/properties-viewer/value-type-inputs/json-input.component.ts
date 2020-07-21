@@ -38,7 +38,7 @@ export class PropertiesViewerJsonInputComponent {
     @Input() value;
     @Input() disabled: boolean;
 
-    @ViewChild('editor') editor: EditorComponent;
+    @ViewChild('editor', { static: true }) editor: EditorComponent;
 
     monacoEditor: any;
 

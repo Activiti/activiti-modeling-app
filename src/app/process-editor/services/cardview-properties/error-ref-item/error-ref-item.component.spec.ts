@@ -147,7 +147,7 @@ describe('CardViewErrorRefItemComponent', () => {
         spyOn(component, 'getErrorAsBpmnElement').and.callFake((error) => {
             return { id: error.id, name: error.name, errorCode: error };
         });
-        const processModelerService = TestBed.get(ProcessModelerServiceToken);
+        const processModelerService = TestBed.inject(ProcessModelerServiceToken);
         spyOn(processModelerService, 'getRootProcessElement').and.returnValue(rootElementsMock);
         const getConnectorErrorsSpy = spyOn(component, 'getConnectorErrors').and.returnValue(of(connectorErrorMock));
         fixture.detectChanges();
@@ -160,7 +160,7 @@ describe('CardViewErrorRefItemComponent', () => {
         // setup
         propertyMock.data.element.businessObject.attachedToRef.implementation = null;
         propertyMock.data.element.businessObject.eventDefinitions[0].errorRef = null;
-        const processModelerService = TestBed.get(ProcessModelerServiceToken);
+        const processModelerService = TestBed.inject(ProcessModelerServiceToken);
         const processModelerServiceSpy = spyOn(processModelerService, 'getRootProcessElement').and.returnValue(rootElementsMock);
         fixture.detectChanges();
         // verify
@@ -172,7 +172,7 @@ describe('CardViewErrorRefItemComponent', () => {
         // setup
         propertyMock.data.element.businessObject.attachedToRef = null;
         propertyMock.data.element.businessObject.eventDefinitions[0].errorRef = null;
-        const processModelerService = TestBed.get(ProcessModelerServiceToken);
+        const processModelerService = TestBed.inject(ProcessModelerServiceToken);
         const processModelerServiceSpy = spyOn(processModelerService, 'getRootProcessElement').and.returnValue(rootElementsMock);
         fixture.detectChanges();
         // verify

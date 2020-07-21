@@ -42,7 +42,7 @@ export class PaletteComponent implements OnInit {
     public opened = true;
     public detach = false;
     overlayRef: OverlayRef;
-    @ViewChild('drawer') templateContent: TemplateRef<any>;
+    @ViewChild('drawer', { static: true }) templateContent: TemplateRef<any>;
 
     @HostListener('mousedown', ['$event'])
     onMouseDown(event) {
@@ -55,7 +55,7 @@ export class PaletteComponent implements OnInit {
         @Optional() @Inject(PaletteElementsToken) paletteElements: PaletteElement[],
         @Optional() @Inject(PaletteElementIconsToken) paletteElementIcons
     ) {
-        this.paletteElements = (<any>paletteElements).flatten(1) || [];
+        this.paletteElements = [].concat(...paletteElements) || [];
         this.paletteElementIcons = paletteElementIcons || {};
     }
 

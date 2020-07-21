@@ -18,7 +18,8 @@
 import { UploadFileButtonComponent } from './upload-file-button.component';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
-import { MatTooltipModule, MatIconModule } from '@angular/material';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import { AmaState, MODEL_UPLOADERS, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
 import { LogService } from '@alfresco/adf-core';
@@ -62,7 +63,7 @@ describe('UploadFileButtonComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(UploadFileButtonComponent);
-        store = TestBed.get(Store);
+        store = TestBed.inject(Store);
         component = fixture.componentInstance;
         component.projectId = 'projectId';
     });
@@ -88,13 +89,13 @@ describe('UploadFileButtonComponent', () => {
     });
 
     it('onUpload method should dispatch a UploadProcessAttemptAction if type is defined', () => {
-        spyOn(store, 'dispatch');
+        const dispatchSpy = spyOn(store, 'dispatch');
 
         component.type = 'process';
         const inputField = fixture.nativeElement.querySelector('input');
         inputField.dispatchEvent(new Event('change'));
 
-        const uploadAction: UploadProcessAttemptAction = store.dispatch.calls.argsFor(0)[0];
+        const uploadAction: UploadProcessAttemptAction = dispatchSpy.calls.argsFor(0)[0];
         expect(uploadAction.type).toBe(UPLOAD_PROCESS_ATTEMPT);
         expect(store.dispatch).toHaveBeenCalledWith(uploadAction);
         expect(inputField.value).toBe('');

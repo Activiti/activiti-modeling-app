@@ -18,10 +18,14 @@
 import { CoreModule } from '@alfresco/adf-core';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatIconModule, MatInputModule, MatSelectModule, MatTableModule, MatTooltipModule } from '@angular/material';
 import { OutputMappingTableComponent } from './output-mapping-table.component';
 import { MappingDialogModule } from '../mapping-dialog/public-api';
 import { VariablesModule } from '../../variables/public-api';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     imports: [

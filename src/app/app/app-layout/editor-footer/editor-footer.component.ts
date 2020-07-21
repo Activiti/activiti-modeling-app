@@ -40,7 +40,7 @@ export class EditorFooterComponent {
         ) {
          this.showConsole$ = this.store.select(selectToolbarLogsVisibility);
          this.logs$ = this.editorFooterService.logs$;
-         this.filters = (<any>logFilters).flatten(1) || [];
+         this.filters = [].concat(...logFilters) || [];
     }
 
     toggleConsole() {

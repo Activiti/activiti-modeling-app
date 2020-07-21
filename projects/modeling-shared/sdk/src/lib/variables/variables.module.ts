@@ -55,17 +55,6 @@ import { PropertiesViewerArrayInputComponent } from './properties-viewer/value-t
         VariableValuePipe,
         PropertiesViewerArrayInputComponent
     ],
-    entryComponents: [
-        VariablesComponent,
-        PropertiesViewerIntegerInputComponent,
-        PropertiesViewerStringInputComponent,
-        PropertiesViewerBooleanInputComponent,
-        PropertiesViewerDateInputComponent,
-        PropertiesViewerDateTimeInputComponent,
-        PropertiesViewerJsonInputComponent,
-        PropertiesViewerFileInputComponent,
-        PropertiesViewerArrayInputComponent
-    ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
         provideInputTypeItemHandler('integer', PropertiesViewerIntegerInputComponent),

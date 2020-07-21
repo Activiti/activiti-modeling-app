@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -76,7 +76,7 @@ describe('CardViewMessageItemComponent', () => {
         name: 'Message_678'
     };
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 CardItemTypeService,
@@ -93,15 +93,15 @@ describe('CardViewMessageItemComponent', () => {
             declarations: [CardViewMessageItemComponent],
             imports: [TranslateModule.forRoot()],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(CardViewMessageItemComponent);
         component = fixture.componentInstance;
-        cardViewUpdateService = TestBed.get(CardViewUpdateService);
-        processModelerService = TestBed.get(ProcessModelerServiceToken);
-        store = TestBed.get(Store);
+        cardViewUpdateService = TestBed.inject(CardViewUpdateService);
+        processModelerService = TestBed.inject(ProcessModelerServiceToken);
+        store = TestBed.inject(Store);
 
         spyOn(processModelerService, 'getRootProcessElement').and.returnValue(processMock);
         spyOn(processModelerService, 'getFromModeler').and.returnValue({create: () => {

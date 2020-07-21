@@ -16,8 +16,8 @@
  */
 
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
-import { ConnectorParameter, EntityProperty, MappingType, ServiceParameterMapping, ServiceParameterMappings } from '../../api/types';
+import { MatTableDataSource } from '@angular/material/table';
+import { ConnectorParameter, EntityProperty, MappingType, ServiceParameterMapping } from '../../api/types';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { selectSelectedTheme } from '../../store/app.selectors';
@@ -62,7 +62,7 @@ export class InputMappingTableComponent implements OnChanges {
     extensionObject: any;
 
     @Output()
-    update = new EventEmitter<ServiceParameterMappings>();
+    update = new EventEmitter<ServiceParameterMapping>();
 
     data: ServiceParameterMapping = {};
 

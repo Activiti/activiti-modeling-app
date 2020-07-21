@@ -20,7 +20,6 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import {
     AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting,
     SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption,
@@ -28,6 +27,9 @@ import {
     selectLoading, selectPagination, selectProjectSummaries, GetProjectsAttemptAction, DeleteProjectAttemptAction, UpdateProjectAttemptAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ExportProjectAction } from '../../../project-editor/store/project-editor.actions';
+import { MatTableDataSource } from '@angular/material/table';
+import { PageEvent } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
 
 const DEFAULT_SORT_KEY = 'name';
 const DEFAULT_SORT_DIRECTION = 'asc';

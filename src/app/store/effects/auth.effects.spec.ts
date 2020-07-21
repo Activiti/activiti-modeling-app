@@ -45,15 +45,15 @@ describe('AuthEffects', () => {
             ]
         });
 
-        effects = TestBed.get(AuthEffects);
+        effects = TestBed.inject(AuthEffects);
         metadata = getEffectsMetadata(effects);
 
-        storageService = TestBed.get(StorageService);
+        storageService = TestBed.inject(StorageService);
     });
 
     describe('loggedInEffect$', () => {
         it('should dispatch an action', () => {
-            expect(metadata.loggedInEffect$).toEqual({ dispatch: true });
+            expect(metadata.loggedInEffect$.dispatch).toBeTruthy();
         });
 
         it('should initialise with the default values for theme and menuOpened if nothing is set in the storageService', () => {

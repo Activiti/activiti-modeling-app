@@ -42,7 +42,7 @@ describe('ProcessVariableItemComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(CardViewProcessVariablesItemComponent);
         component = fixture.componentInstance;
-        store = TestBed.get(Store);
+        store = TestBed.inject(Store);
         fixture.detectChanges();
     });
 
@@ -54,12 +54,12 @@ describe('ProcessVariableItemComponent', () => {
 
     it('clicking on edit button should dispatch a OPEN_VARIABLES_DIALOG action', () => {
         component.property = { value: mockProcessId };
-        spyOn(store, 'dispatch');
+        const dispatchSpy = spyOn(store, 'dispatch');
         const button = fixture.nativeElement.querySelector('button');
         button.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        const action: OpenProcessVariablesDialogAction = store.dispatch.calls.argsFor(0)[0];
+        const action: OpenProcessVariablesDialogAction = dispatchSpy.calls.argsFor(0)[0];
         expect(store.dispatch).toHaveBeenCalled();
         expect(action.type).toBe(OPEN_PROCESS_VARIABLES_DIALOG);
         expect(action.processId).toBe(mockProcessId);

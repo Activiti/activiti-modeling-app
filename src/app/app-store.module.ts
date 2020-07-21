@@ -35,7 +35,14 @@ import { metaReducers } from './store/reducers/meta.reducers';
 
 @NgModule({
     imports: [
-        StoreModule.forRoot(rootReducers, { initialState: INITIAL_STATE, metaReducers: metaReducers }),
+        StoreModule.forRoot(rootReducers, {
+            initialState: INITIAL_STATE,
+            metaReducers: metaReducers,
+            runtimeChecks: {
+                strictStateImmutability: false,
+                strictActionImmutability: false
+            }
+        }),
         EffectsModule.forRoot([
             AuthEffects,
             SnackbarEffects,

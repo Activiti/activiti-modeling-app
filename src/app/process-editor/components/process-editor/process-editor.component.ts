@@ -40,7 +40,7 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { UpdateProcessExtensionsAction, ChangeProcessModelContextAction } from '../../store/process-editor.actions';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
-import { MatTabChangeEvent } from '@angular/material';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ProcessModelContext } from '../../store/process-editor.state';
 
 @Component({
@@ -101,11 +101,11 @@ export class ProcessEditorComponent implements OnInit {
             map(process => JSON.stringify(process.extensions, undefined, 4).trim())
         );
 
-        this.breadcrumbs$ = combineLatest(
+        this.breadcrumbs$ = combineLatest([
             of({ url: '/home', name: 'Dashboard' }),
             this.store.select(selectProjectCrumb).pipe(filter(value => value !== null)),
             this.store.select(selectProcessCrumb).pipe(filter(value => value !== null))
-        );
+        ]);
     }
 
     private getVsTheme(): Observable<string> {

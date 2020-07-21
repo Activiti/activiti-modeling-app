@@ -16,25 +16,25 @@
  */
 
 import { SearchHeaderComponent } from './search-header.component';
-import { SearchTextInputComponent, AppConfigService } from '@alfresco/adf-core';
+import { SearchTextInputComponent, AppConfigService, CoreModule } from '@alfresco/adf-core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
-import { MatTooltipModule, MatIconModule } from '@angular/material';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
 describe ('Search Header Component', () => {
     let component: SearchHeaderComponent;
     let fixture: ComponentFixture<SearchHeaderComponent>;
-    let element, debugElement;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 TranslateModule.forRoot(),
+                CoreModule.forRoot(),
                 MatTooltipModule,
                 MatIconModule,
                 NoopAnimationsModule,
@@ -45,16 +45,14 @@ describe ('Search Header Component', () => {
                 SearchTextInputComponent
             ],
             providers: [
-                { provide: AppConfigService, useValue: {get: jest.fn('navigation').mockRejectedValue('{}')} },
+                { provide: AppConfigService, useValue: { get() { return {}; } } },
             ],
             schemas: [NO_ERRORS_SCHEMA],
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SearchHeaderComponent);
-        element = fixture.nativeElement;
-        debugElement = fixture.debugElement;
         component = fixture.componentInstance;
         component.ngOnInit();
     });
@@ -62,23 +60,23 @@ describe ('Search Header Component', () => {
     it('should open the input box on click on the search button', () => {
         fixture.detectChanges();
 
-        const searchButton: DebugElement = debugElement.query(By.css('#adf-search-button'));
+        const searchButton = fixture.debugElement.query(By.css('#adf-search-button'));
         searchButton.triggerEventHandler('click', null);
 
         fixture.detectChanges();
 
-        expect(element.querySelector('#adf-control-input')).not.toBeNull();
+        expect(fixture.nativeElement.querySelector('#adf-control-input')).not.toBeNull();
     });
 
     it('should call onSearchSubmit on enter from search input', async(() => {
         const onSearchSubmitSpy = spyOn(component, 'onSearchSubmit');
         fixture.detectChanges();
 
-        const searchButton: DebugElement = debugElement.query(By.css('#adf-search-button'));
+        const searchButton = fixture.debugElement.query(By.css('#adf-search-button'));
         searchButton.triggerEventHandler('click', null);
         fixture.detectChanges();
 
-        const input = debugElement.query(By.css('#adf-control-input'));
+        const input = fixture.debugElement.query(By.css('#adf-control-input'));
         input.triggerEventHandler('keyup.enter', { target: { value: 'MOCK-SEARCH'}});
         fixture.detectChanges();
 
@@ -89,11 +87,11 @@ describe ('Search Header Component', () => {
         const searchProjectSpy = spyOn(component, 'searchProjects');
         fixture.detectChanges();
 
-        const searchButton: DebugElement = debugElement.query(By.css('#adf-search-button'));
+        const searchButton = fixture.debugElement.query(By.css('#adf-search-button'));
         searchButton.triggerEventHandler('click', null);
         fixture.detectChanges();
 
-        const input = debugElement.query(By.css('#adf-control-input'));
+        const input = fixture.debugElement.query(By.css('#adf-control-input'));
         input.triggerEventHandler('keyup.enter', { target: { value: 'MOCK-SEARCH'}});
         fixture.detectChanges();
 

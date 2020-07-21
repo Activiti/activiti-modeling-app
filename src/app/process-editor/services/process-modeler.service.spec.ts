@@ -23,9 +23,9 @@ import { PROCESS_SVG_IMAGE } from './process-editor.constants';
 
 describe('ProcessModelerServiceImplementation', () => {
 
-    let service: ProcessModelerServiceImplementation,
-        bpmnFactoryMock: BpmnFactoryMock,
-        initConfig: ModelerInitOptions;
+    let service: ProcessModelerServiceImplementation;
+    let bpmnFactoryMock: BpmnFactoryMock;
+    let initConfig: ModelerInitOptions;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -38,8 +38,8 @@ describe('ProcessModelerServiceImplementation', () => {
     }));
 
     beforeEach(() => {
-        service = TestBed.get(ProcessModelerServiceImplementation);
-        bpmnFactoryMock = TestBed.get(BpmnFactoryToken);
+        service = TestBed.inject(ProcessModelerServiceImplementation);
+        bpmnFactoryMock = TestBed.inject<BpmnFactoryMock>(BpmnFactoryToken);
 
         initConfig = {
             clickHandler: jest.fn(),

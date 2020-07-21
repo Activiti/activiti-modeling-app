@@ -87,11 +87,11 @@ describe('CardViewDueDateItemComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(CardViewDueDateItemComponent);
-        store = TestBed.get(Store);
+        store = TestBed.inject(Store);
         component = fixture.componentInstance;
         component.property = <DueDateItemModel>propertyMock;
 
-        cardViewUpdateService = TestBed.get(CardViewUpdateService);
+        cardViewUpdateService = TestBed.inject(CardViewUpdateService);
         spyOn(store, 'select').and.returnValue(of(processMock));
         fixture.detectChanges();
     });
