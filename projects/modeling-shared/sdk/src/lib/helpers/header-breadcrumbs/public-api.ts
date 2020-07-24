@@ -15,19 +15,4 @@
  * limitations under the License.
  */
 
-import { Pagination } from '../api/types';
-import { ProjectSummaryEntities } from '../project-editor/project-summary-entities';
-
-export interface DashboardState {
-    projects: ProjectSummaryEntities;
-    loading: boolean;
-    projectsLoaded: boolean;
-    pagination: Pagination;
-}
-
-export const INITIAL_DASHBOARD_STATE: DashboardState = {
-    projects: {},
-    pagination: null,
-    loading: false,
-    projectsLoaded: false
-};
+export * from './breadcrumb-helper.service';

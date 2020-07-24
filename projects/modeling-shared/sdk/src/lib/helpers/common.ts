@@ -21,11 +21,6 @@ export interface EntityDialogForm {
     projectId?: string;
 }
 
-export interface BreadcrumbItem {
-    name?: string;
-    url?: string;
-}
-
 export interface UploadFileAttemptPayload {
     file: File;
     projectId: string;

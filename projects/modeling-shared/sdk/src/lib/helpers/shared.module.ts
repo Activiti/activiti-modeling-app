@@ -16,13 +16,13 @@
  */
 
 import { NgModule } from '@angular/core';
-import { HeaderBreadcrumbsComponent } from './components/header-breadcrumbs/header-breadcrumbs.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
 import { CoreModule } from '@alfresco/adf-core';
 import { AllowedCharactersDirective } from './directives/allowed-characters.directive';
+import { HeaderBreadcrumbsComponent } from './header-breadcrumbs/header-breadcrumbs.component';
 
 @NgModule({
     imports: [

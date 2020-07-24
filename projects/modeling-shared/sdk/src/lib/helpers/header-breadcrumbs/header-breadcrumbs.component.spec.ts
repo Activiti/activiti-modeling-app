@@ -17,7 +17,6 @@
 
 import { HeaderBreadcrumbsComponent } from './header-breadcrumbs.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SharedModule } from '../../shared.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
@@ -26,6 +25,7 @@ import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
+import { SharedModule } from '../shared.module';
 
 describe('HeaderBreadcrumbsComponent', () => {
     let fixture: ComponentFixture<HeaderBreadcrumbsComponent>;

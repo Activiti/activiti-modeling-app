@@ -31,5 +31,4 @@ export * from './project-tree.state';
 export * from './project.actions';
 export * from './logging.actions';
 export * from './dialog.actions';
-export * from './dashboard.state';
 export * from './dashboard.selectors';

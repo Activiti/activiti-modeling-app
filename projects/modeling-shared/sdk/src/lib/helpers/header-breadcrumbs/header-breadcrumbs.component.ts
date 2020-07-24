@@ -18,9 +18,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { BreadcrumbItem } from '../../common';
-import { AmaState } from '../../../store/app.state';
-import { selectAppDirtyState } from '../../../store/app.selectors';
+import { AmaState } from '../../store/app.state';
+import { selectAppDirtyState } from '../../store/app.selectors';
+import { BreadcrumbItem } from './breadcrumb-helper.service';
 
 @Component({
     selector: 'modelingsdk-header-breadcrumbs',

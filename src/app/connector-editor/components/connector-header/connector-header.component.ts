@@ -16,10 +16,9 @@
  */
 
 import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { Observable, of, forkJoin } from 'rxjs';
-import { BreadcrumbItem, AmaState, OpenConfirmDialogAction, selectProjectCrumb, SnackbarInfoAction, SnackbarErrorAction } from '@alfresco-dbp/modeling-shared/sdk';
+import { Observable } from 'rxjs';
+import { BreadcrumbItem, AmaState, OpenConfirmDialogAction, SnackbarInfoAction, SnackbarErrorAction, BreadCrumbHelperService } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
-import { filter, take } from 'rxjs/operators';
 import { selectConnectorCrumb } from '../../store/connector-editor.selectors';
 import {
     DeleteConnectorAttemptAction,
@@ -47,12 +46,8 @@ export class ConnectorHeaderComponent {
     download = new EventEmitter<void>();
     breadcrumbs$: Observable<BreadcrumbItem[]>;
 
-    constructor(private store: Store<AmaState>) {
-        this.breadcrumbs$ = forkJoin([
-            of({ url: '/home', name: 'Dashboard' }),
-            this.store.select(selectProjectCrumb).pipe(take(1)).pipe(filter(value => value !== null)),
-            this.store.select(selectConnectorCrumb).pipe(take(1)).pipe(filter(value => value !== null))
-        ]);
+    constructor(private store: Store<AmaState>, breadCrumbHelperService: BreadCrumbHelperService) {
+        this.breadcrumbs$ = breadCrumbHelperService.getModelCrumbs(selectConnectorCrumb);
     }
 
     onSave() {
