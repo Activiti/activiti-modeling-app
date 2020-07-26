@@ -86,7 +86,10 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
     private setOptionForAParam(processVariables: EntityProperty[]) {
         this.optionsForParams['timeDuration'] = this.extractProcessVariablesByType(processVariables, 'string');
         this.optionsForParams['timeCycle'] = this.extractProcessVariablesByType(processVariables, 'string');
-        this.optionsForParams['timeDate'] = this.extractProcessVariablesByType(processVariables, 'datetime');
+        this.optionsForParams['timeDate'] = [
+            ...this.extractProcessVariablesByType(processVariables, 'datetime'),
+            ...this.extractProcessVariablesByType(processVariables, 'date'),
+        ];
     }
 
     private extractProcessVariablesByType(processVariables: EntityProperty[], type: string): EntityProperty[] {

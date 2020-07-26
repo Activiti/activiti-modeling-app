@@ -82,6 +82,13 @@ describe('CardViewTimerDefinitionItemComponent', () => {
                         type: 'datetime',
                         value: '2019-11-01T00:00:00+00:00',
                         required: false
+                    },
+                    foobar1: {
+                        id: 'processVariable4',
+                        name: 'foobar1',
+                        type: 'date',
+                        value: '2019-11-01',
+                        required: false
                     }
                 }
             }
@@ -272,10 +279,11 @@ describe('CardViewTimerDefinitionItemComponent', () => {
     it('should set process variables when process is retrieved based on type', () => {
         expect(component.optionsForParams['timeDuration'].length).toBe(1);
         expect(component.optionsForParams['timeCycle'].length).toBe(1);
-        expect(component.optionsForParams['timeDate'].length).toBe(1);
+        expect(component.optionsForParams['timeDate'].length).toBe(2);
 
         expect(component.optionsForParams['timeDuration'][0].name).toBe('foo');
         expect(component.optionsForParams['timeCycle'][0].name).toBe('foo');
         expect(component.optionsForParams['timeDate'][0].name).toBe('foobar');
+        expect(component.optionsForParams['timeDate'][1].name).toBe('foobar1');
     });
 });
