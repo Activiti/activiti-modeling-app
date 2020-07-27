@@ -41,4 +41,5 @@ export interface EntityDialogPayload {
     submitData?: any;
     navigateTo?: boolean;
     callback?: Function;
+    dialog?: any;
 }

@@ -104,7 +104,7 @@ export class DialogEffects {
         ofType<OpenEntityDialogAction>(OPEN_ENTITY_DIALOG),
         map(action => action.payload),
         map(data =>
-            this.dialogService.openDialog(EntityDialogComponent, { data })
+            this.dialogService.openDialog(data.dialog ? data.dialog : EntityDialogComponent, { data })
         )
     );
 
