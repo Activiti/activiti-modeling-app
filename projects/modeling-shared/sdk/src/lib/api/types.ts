@@ -294,6 +294,7 @@ export interface FormRepresentation {
     version?: number;
     formDefinition?: FormDefinition;
     standAlone?: boolean;
+    contentForm?: boolean;
 }
 
 export interface FormTab {
