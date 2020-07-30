@@ -41,9 +41,9 @@
             "NAME": "Name",
             "ACTION": "Action",
             "PROPERTIES": "Properties",
-            "PROCESS_NAME": "Process name",
+            "PROCESS_NAME": "Process definition name",
             "PROCESS_ID": "Process ID",
-            "MODEL_NAME": "Process definition name",
+            "DIAGRAM_NAME": "Diagram name",
             "SIGNAL": "Signal",
             "ERROR": "Error",
             "MAPPING_TYPE": "Mapping type",
@@ -80,10 +80,11 @@
             "CANDIDATE_USERS": "Candidate users",
             "DUE_DATE": "Due date",
             "PRIORITY": "Priority",
-            "ACTIVITY_NAME": "Activity name",
+            "ACTIVITY_NAME": "Called element",
             "PROCESS": "Process",
             "PROCESS_VARIABLE": "Process variable",
             "USE_PROCESS_VARIABLE": "Use process variable",
+            "USE_EXPRESSION": "Use expression",
             "PROCESS_VARIABLES": "Process variables",
             "EXPRESSION": "Condition expression",
             "FORM_SELECTOR": "Form name",
@@ -127,6 +128,13 @@
                     "VALUE": "Value"
                 },
                 "INVALID_PAYLOAD_NAME": "Invalid payload name"
+            },
+            "CALLED_ELEMENT": {
+                "DIALOG": {
+                    "TITLE": "Called element",
+                    "STATIC": "Static",
+                    "EXPRESSION": "Expression"
+                }
             },
             "TIMERS": {
                 "TIMER_TYPE": "Timer type",

@@ -16,11 +16,13 @@
 @import "./components/process-modeler/palette/palette.component.scss";
 @import "./components/process-modeler/messages/messages-dialog.component.scss";
 @import "./services/cardview-properties/called-element-item/called-element-item.component";
+@import "./services/cardview-properties/called-element-item/called-element-dialog/called-element-dialog.component";
 @import "./services/cardview-properties/due-date-item/due-date-item.component";
 @import "./components/assignment/assignment-dialog.component";
 
 @mixin ama-process-editor-module($theme) {
     @include ama-called-element-item($theme);
+    @include ama-called-element-dialog($theme);
     @include ama-implementation-item($theme);
     @include ama-decision-task-item($theme);
     @include ama-signal-ref-item($theme);

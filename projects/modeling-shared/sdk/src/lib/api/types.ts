@@ -466,3 +466,13 @@ export interface ContentModel extends Model {
 }
 
 export type ContentModelXML = string;
+
+export interface ProcessDropdownStructure {
+    [processName: string]: ProcessInfo[];
+}
+
+export interface ProcessInfo {
+    processName: string;
+    processDefinitionId: string;
+    processProperties: EntityProperty[];
+}

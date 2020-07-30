@@ -24,7 +24,7 @@ const propertyName = BpmnProperty.modelName;
 
 export function createModelNameProperty({ element }: FactoryProps) {
     return new CardViewTextItemModel({
-        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MODEL_NAME',
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.DIAGRAM_NAME',
         value: sanitizeString(ElementHelper.getProperty(element, propertyName)),
         key: propertyName,
         default: '',

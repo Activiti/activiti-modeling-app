@@ -24,6 +24,7 @@ import { InputMappingDialogService } from '../../services/input-mapping-dialog.s
 import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSelectChange } from '@angular/material/select';
+import { ExpressionsEditorService } from '../../code-editor/services/expressions-editor.service';
 
 @Component({
     templateUrl: './mapping-dialog.component.html',
@@ -68,6 +69,7 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
         private uuidService: UuidService,
         private inputMappingDataSourceService: InputMappingDialogService,
         private outputMappingDataSourceService: OutputMappingDialogService,
+        private expressionsEditorService: ExpressionsEditorService,
         @Inject(MAT_DIALOG_DATA) public data: MappingDialogData
     ) {
         this.inputMapping = data.inputMapping;
@@ -97,7 +99,7 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
         if (this.selectedRow) {
             this.extendedProperties = this.getExtendedProperties(this.dataSource[this.selectedRow].type);
         }
-        this.service.initExpressionEditor(this.language, this.mappingType === VariableMappingType.output ? this.outputParameters : this.processProperties);
+        this.expressionsEditorService.initExpressionEditor(this.language, this.mappingType === VariableMappingType.output ? this.outputParameters : this.processProperties);
         this.initSelectedRow();
         if (this.mappingType === VariableMappingType.output) {
             this.displayedColumns.push('delete');
@@ -110,7 +112,7 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.service.removeEditorLanguageSettings(this.language);
+        this.expressionsEditorService.removeEditorLanguageSettings(this.language);
     }
 
     private dataSourceInit(type: VariableMappingType): void {

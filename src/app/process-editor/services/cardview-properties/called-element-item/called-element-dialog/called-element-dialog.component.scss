@@ -1,0 +1,17 @@
+@mixin ama-called-element-dialog($theme) {
+    $error: map-get($theme, warn);
+
+    .called-element-dialog-content {
+        height: 160px;
+        .mat-tab-header {
+            margin-bottom: 30px;
+        }
+    }
+
+    .called-element-dialog-expression-input {
+        width: 100%;
+        .mat-form-field-infix {
+            border-top: 0;
+        }
+    }
+}

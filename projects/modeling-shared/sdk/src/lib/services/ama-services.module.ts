@@ -21,6 +21,7 @@ import { AmaTitleService } from './title.service';
 import { DownloadResourceService } from './download-resource.service';
 import { provideTranslations } from '../i18n/provide-translations';
 import { BlobService } from './blob.service';
+import { ProcessService } from './process.service';
 
 @NgModule()
 export class AmaServicesModule {
@@ -32,7 +33,8 @@ export class AmaServicesModule {
                 BlobService,
                 UuidService,
                 AmaTitleService,
-                DownloadResourceService
+                DownloadResourceService,
+                ProcessService
             ]
         };
     }

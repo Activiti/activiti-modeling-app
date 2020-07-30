@@ -1,61 +1,52 @@
-<div class="called-element-block">
-    <mat-form-field>
-        <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ACTIVITY_NAME' | translate }}</div>
-        <mat-select (selectionChange)="onProcessDefinitionSelected()" [(ngModel)]="processDefinition" data-automation-id="activity-name">
-            <mat-option *ngFor="let processDefinition of processDefinitions" [value]="processDefinition">
-                {{ processDefinition.name }}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+<div class="called-element-block" *ngIf="!loading">
+    <adf-card-view-arrayitem [property]="cardViewArrayItem" class="called-element-input"
+        data-automation-id='activity-name'>
+    </adf-card-view-arrayitem>
 
-    <mat-form-field *ngIf="processDefinition">
-        <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS' | translate }}</div>
-        <mat-select (selectionChange)="onProcessSelected()" [(ngModel)]="processId" data-automation-id="process-name">
-            <mat-option *ngFor="let process of processes" [value]="process">
-                {{ process }}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-
-    <div *ngIf="processId">
+    <div *ngIf="calledElement">
         <mat-form-field data-automation-id="mapping-type">
             <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MAPPING_TYPE' | translate }}</div>
             <mat-select [(ngModel)]="sendNoVariables" (selectionChange)="changeMappingType($event)">
-                <mat-option [value]="false">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MAP_VARIABLES' | translate }}</mat-option>
-                <mat-option [value]="true">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SEND_ALL_VARIABLES' | translate }}</mat-option>
-                <mat-option [value]="true">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SEND_NO_VARIABLES' | translate }}</mat-option>
+                <mat-option *ngIf="isStaticCalledElement()" [value]="false">
+                    {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MAP_VARIABLES' | translate }}
+                </mat-option>
+                <mat-option [value]="true">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SEND_ALL_VARIABLES' | translate }}
+                </mat-option>
+                <mat-option [value]="true">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SEND_NO_VARIABLES' | translate }}
+                </mat-option>
             </mat-select>
         </mat-form-field>
 
-        <div *ngIf="!sendNoVariables">
-            <div *ngIf="(processVariables$ | async)?.length; else noProcessVariables">
+        <div *ngIf="canMapVariables()">
+            <div *ngIf="processVariables.length; else noProcessVariables">
                 <div *ngIf="subProcessVariables.length; else noSubProcessVariables">
-                    <h5 data-automation-id="input-mapping-header">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INPUT_MAPPING' | translate }}:</h5>
-                    <modelingsdk-input-mapping-table
-                        [parameters]="subProcessVariables"
-                        [processProperties]="processVariables$ | async"
-                        [mapping]="mapping.inputs || {}"
+                    <h5 data-automation-id="input-mapping-header">
+                        {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INPUT_MAPPING' | translate }}:</h5>
+                    <modelingsdk-input-mapping-table [parameters]="subProcessVariables"
+                        [processProperties]="processVariables" [mapping]="mapping.inputs || {}"
                         (update)="changeMapping($event, 'inputs')">
                     </modelingsdk-input-mapping-table>
 
-                    <h5 data-automation-id="output-mapping-header">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.OUTPUT_MAPPING' | translate }}:</h5>
-                    <modelingsdk-output-mapping-table
-                        [parameters]="subProcessVariables"
-                        [processProperties]="processVariables$ | async"
-                        [mapping]="mapping.outputs || {}"
+                    <h5 data-automation-id="output-mapping-header">
+                        {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.OUTPUT_MAPPING' | translate }}:</h5>
+                    <modelingsdk-output-mapping-table [parameters]="subProcessVariables"
+                        [processProperties]="processVariables" [mapping]="mapping.outputs || {}"
                         (update)="changeMapping($event, 'outputs')">
                     </modelingsdk-output-mapping-table>
                 </div>
             </div>
         </div>
     </div>
+
+    <ng-template #noProcessVariables>
+        <h5 data-automation-id="no-process-variables-error">
+            {{ 'PROCESS_EDITOR.ERRORS.NO_PROCESS_VARIABLES' | translate }}
+        </h5>
+    </ng-template>
+
+    <ng-template #noSubProcessVariables>
+        <h5 data-automation-id="no-subprocess-variables-error">
+            {{ 'PROCESS_EDITOR.ERRORS.NO_SUB_PROCESS_VARIABLES' | translate }}
+        </h5>
+    </ng-template>
 </div>
-
-
-<ng-template #noProcessVariables>
-    <h5 data-automation-id="no-process-variables-error">{{ 'PROCESS_EDITOR.ERRORS.NO_PROCESS_VARIABLES' | translate }}</h5>
-</ng-template>
-
-<ng-template #noSubProcessVariables>
-    <h5 data-automation-id="no-subprocess-variables-error">{{ 'PROCESS_EDITOR.ERRORS.NO_SUB_PROCESS_VARIABLES' | translate }}</h5>
-</ng-template>

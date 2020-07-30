@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>
+    {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.CALLED_ELEMENT.DIALOG.TITLE' | translate }}
+</h2>
+
+<mat-dialog-content data-automation-id="called-element-dialog">
+    <mat-tab-group mat-stretch-tabs class="called-element-dialog-content" [selectedIndex]="currentActiveTab"
+        (selectedTabChange)="onTabChange($event)">
+        <mat-tab label="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.CALLED_ELEMENT.DIALOG.STATIC' | translate}}">
+            <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS_NAME' | translate }}</div>
+            <modelingsdk-value-type-input [value]="processId" [extendedProperties]="extendedProperties"
+                [type]="'process'" (onChange)="onProcessChange($event)">
+            </modelingsdk-value-type-input>
+        </mat-tab>
+
+        <mat-tab label="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.CALLED_ELEMENT.DIALOG.EXPRESSION' | translate }}">
+            <ng-container *ngIf="processVariables.length; else noProcessVariables">
+                <modelingsdk-code-editor (changed)="expressionChanged($event)" [content]="expression"
+                    [language]="language" [vsTheme]="vsTheme$ | async">
+                </modelingsdk-code-editor>
+            </ng-container>
+            <ng-template #noProcessVariables>
+                <h5 data-automation-id="no-process-variables-error">
+                    {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.EXPRESSION.NO_PROCESS_VARIABLES' | translate }}
+                </h5>
+            </ng-template>
+        </mat-tab>
+    </mat-tab-group>
+</mat-dialog-content>
+
+<mat-dialog-actions class="adf-dialog-buttons" align="end">
+    <span class="adf-fill-remaining-space"></span>
+
+    <button mat-button mat-dialog-close data-automation-id="cancel-called-element">
+        {{ 'APP.DIALOGS.CANCEL' | translate }}
+    </button>
+
+    <button class="adf-dialog-action-button" data-automation-id="save-called-element" mat-button (click)="save()"
+        [disabled]="!isCalledElementValid">
+        {{ 'APP.DIALOGS.SAVE' | translate }}
+    </button>
+</mat-dialog-actions>

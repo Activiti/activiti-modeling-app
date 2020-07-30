@@ -15,10 +15,14 @@
  * limitations under the License.
  */
 
-export * from './code-editor.module';
-export * from './components/code-editor/code-editor.component';
-export * from './services/code-validator.service';
-export * from './services/code-editor-service.service';
-export * from './services/expressions-editor.service';
-export * from './helpers/file-uri';
-export * from './code-editor.extensions';
+import { Action } from '@ngrx/store';
+
+export interface UpdateCalledElementPayload {
+    calledElement: string;
+}
+
+export const UPDATE_CALLED_ELEMENT = 'UPDATE_CALLED_ELEMENT';
+export class UpdateCalledElementAction implements Action {
+    readonly type = UPDATE_CALLED_ELEMENT;
+    constructor(public payload: UpdateCalledElementPayload) {}
+}

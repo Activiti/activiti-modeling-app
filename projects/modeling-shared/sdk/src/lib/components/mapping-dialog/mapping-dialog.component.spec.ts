@@ -38,6 +38,7 @@ import {
 } from '../../variables/public-api';
 import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
+import { ExpressionsEditorService } from '../../code-editor/services/expressions-editor.service';
 
 describe('MappingDialogComponent', () => {
     let fixture: ComponentFixture<MappingDialogComponent>;
@@ -52,13 +53,10 @@ describe('MappingDialogComponent', () => {
     ];
 
     const inputMappingDialogService: InputMappingDialogService = new InputMappingDialogService(inputTypes);
-    inputMappingDialogService.initExpressionEditor = () => { };
-    inputMappingDialogService.updateEditorLanguageSettings = () => { };
-    inputMappingDialogService.removeEditorLanguageSettings = () => { };
     const outputMappingDialogService: OutputMappingDialogService = new OutputMappingDialogService(inputTypes);
-    outputMappingDialogService.initExpressionEditor = () => { };
-    outputMappingDialogService.updateEditorLanguageSettings = () => { };
-    inputMappingDialogService.removeEditorLanguageSettings = () => { };
+    const expressionsEditorService: ExpressionsEditorService = new ExpressionsEditorService();
+    expressionsEditorService.initExpressionEditor = () => { };
+    expressionsEditorService.removeEditorLanguageSettings = () => { };
 
     const mockDialogDataInputMapping: MappingDialogData = {
         theme$: of(''),
@@ -143,6 +141,7 @@ describe('MappingDialogComponent', () => {
                 { provide: UuidService, useValue: { generate() { return 'generated-uuid'; } } },
                 { provide: InputMappingDialogService, useValue: inputMappingDialogService },
                 { provide: OutputMappingDialogService, useValue: outputMappingDialogService },
+                { provide: ExpressionsEditorService, useValue: expressionsEditorService },
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });

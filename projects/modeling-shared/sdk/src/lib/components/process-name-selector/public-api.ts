@@ -15,10 +15,4 @@
  * limitations under the License.
  */
 
-export * from './code-editor.module';
-export * from './components/code-editor/code-editor.component';
-export * from './services/code-validator.service';
-export * from './services/code-editor-service.service';
-export * from './services/expressions-editor.service';
-export * from './helpers/file-uri';
-export * from './code-editor.extensions';
+export * from './process-name-selector.module';

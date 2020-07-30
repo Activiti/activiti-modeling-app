@@ -54,7 +54,8 @@ import {
     provideLoadableModelSchema,
     PROCESS,
     MODEL_SCHEMA_TYPE,
-    BpmnCompositeProperty
+    BpmnCompositeProperty,
+    ProcessNameSelectorModule
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { ProcessDiagramLoaderService } from './services/process-diagram-loader.service';
@@ -79,7 +80,7 @@ import { PaletteOverlayDirective } from './components/process-modeler/palette/pa
 // Angular can't bundle json data into prod build, that is why the file is .json.ts
 import { paletteElements } from './config/palette-elements.json';
 import { CardViewSignalRefItemComponent } from './services/cardview-properties/signal-ref-item/signal-ref-item.component';
-import { CardViewCalledItemItemComponent } from './services/cardview-properties/called-element-item/called-element-item.component';
+import { CalledElementComponent } from './services/cardview-properties/called-element-item/called-element-item.component';
 import { CardViewTimerDefinitionItemComponent } from './services/cardview-properties/timer-definition-item/timer-definition-item.component';
 import { getProcessLogInitiator } from './services/process-editor.constants';
 import { CardViewErrorRefItemComponent } from './services/cardview-properties/error-ref-item/error-ref-item.component';
@@ -105,6 +106,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CalledElementDialogComponent } from './services/cardview-properties/called-element-item/called-element-dialog/called-element-dialog.component';
 
 @NgModule({
     imports: [
@@ -129,7 +131,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         CodeEditorModule,
         DragDropModule,
         InputMappingTableModule,
-        OutputMappingTableModule
+        OutputMappingTableModule,
+        ProcessNameSelectorModule,
     ],
     declarations: [
         ProcessEditorComponent,
@@ -144,7 +147,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         CardViewDecisionTaskItemComponent,
         CardViewScriptTaskItemComponent,
         CardViewDefaultSequenceFlowItemComponent,
-        CardViewCalledItemItemComponent,
+        CalledElementComponent,
         CardViewSignalRefItemComponent,
         CardViewErrorRefItemComponent,
         CardViewTimerDefinitionItemComponent,
@@ -156,7 +159,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         CardViewDueDateItemComponent,
         AssignmentDialogComponent,
         CardViewTaskAssignmentItemComponent,
-        CardViewProcessNameItemComponent
+        CardViewProcessNameItemComponent,
+        CalledElementDialogComponent
     ],
     exports: [ProcessEditorRoutingModule],
     providers: [
@@ -184,7 +188,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         providePropertyHandler(BpmnProperty.defaultSequenceFlow, CardViewDefaultSequenceFlowItemComponent),
         providePropertyHandler(BpmnProperty.signalRef, CardViewSignalRefItemComponent),
         providePropertyHandler(BpmnProperty.errorRef, CardViewErrorRefItemComponent),
-        providePropertyHandler(BpmnProperty.calledElement, CardViewCalledItemItemComponent),
+        providePropertyHandler(BpmnProperty.calledElement, CalledElementComponent),
         providePropertyHandler(BpmnProperty.timerEventDefinition, CardViewTimerDefinitionItemComponent),
         providePropertyHandler(BpmnProperty.messageRef, CardViewMessageItemComponent),
         providePropertyHandler(BpmnCompositeProperty.messages, CardViewProcessMessagesItemComponent),
