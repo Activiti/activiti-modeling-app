@@ -72,7 +72,8 @@
             "FORM_DESC": "Form description:",
             "FORM_CREATED": "Form created",
             "FORM_DELETED": "Form deleted",
-            "FORM_UPDATED": "Form saved"
+            "FORM_UPDATED": "Form saved",
+            "FORM_CONTENT_CREATED": "Initial form content from content model created"
         },
         "UI_DIALOG": {
             "TITLE_CREATE": "Create UI",

@@ -119,7 +119,7 @@ describe('OutputMappingTableComponent', () => {
         fixture.detectChanges();
 
         const options = fixture.debugElement.queryAll(By.css('.mat-option'));
-        options[0].nativeElement.click();
+        options[1].nativeElement.click();
         fixture.detectChanges();
 
         const data = {
@@ -148,7 +148,7 @@ describe('OutputMappingTableComponent', () => {
         fixture.detectChanges();
 
         const options = fixture.debugElement.queryAll(By.css('.mat-option'));
-        options[0].nativeElement.click();
+        options[1].nativeElement.click();
         fixture.detectChanges();
 
         const data = {
@@ -167,7 +167,7 @@ describe('OutputMappingTableComponent', () => {
         fixture.detectChanges();
 
         const options = fixture.debugElement.queryAll(By.css('.mat-option'));
-        expect(options.length).toBe(2, 'Two options are expected from type: string');
+        expect(options.length).toBe(3, 'Two options are expected from type: string');
     });
 
     it('should filter the form variables labeled as variables. in the name', () => {
@@ -204,6 +204,7 @@ describe('OutputMappingTableComponent', () => {
         fixture.detectChanges();
 
         expect(component.optionsForParams[0]).toEqual([
+            { id: null, name: 'None' },
             component.processProperties[2],
             component.processProperties[0]
         ]);

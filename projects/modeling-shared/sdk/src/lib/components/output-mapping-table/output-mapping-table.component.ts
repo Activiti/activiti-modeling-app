@@ -132,16 +132,18 @@ export class OutputMappingTableComponent implements OnChanges {
             delete this.data[oldVariable];
         }
 
-        if (this.isExpression(parameter)) {
-            this.data[variableName] = {
-                type: MappingType.value,
-                value: parameter.name
-            };
-        } else if (variableName !== this.noneValue) {
-            this.data[variableName] = {
-                type: MappingType.variable,
-                value: parameter.name
-            };
+        if (variableName !== this.noneValue) {
+            if (this.isExpression(parameter)) {
+                this.data[variableName] = {
+                    type: MappingType.value,
+                    value: parameter.name
+                };
+            } else {
+                this.data[variableName] = {
+                    type: MappingType.variable,
+                    value: parameter.name
+                };
+            }
         }
         this.update.emit(this.data);
     }
@@ -152,7 +154,6 @@ export class OutputMappingTableComponent implements OnChanges {
 
     private setOptionForAParam(param, index) {
         this.optionsForParams[index] = [
-            ...(param.required === false ? [{ id: null, name: 'None' }] : []),
             ...this.processProperties
                 .filter(variable => this.outputMappingDataSourceService.getPrimitiveType(variable.type) === this.outputMappingDataSourceService.getPrimitiveType(param.type))
                 .filter(
@@ -161,6 +162,9 @@ export class OutputMappingTableComponent implements OnChanges {
                         variable.name === this.getProcessVariable(index)
                 ).sort((a, b) => (a.name > b.name) ? 1 : -1)
         ];
+        if (this.optionsForParams[index].length > 0 && !param.required) {
+            this.optionsForParams[index].unshift({ id: null, name: this.noneValue });
+        }
     }
 
     edit(parameterRow: number) {
