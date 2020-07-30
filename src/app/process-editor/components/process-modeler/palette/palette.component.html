@@ -14,15 +14,17 @@
 </mat-card>
 
 <ng-template #containerElement let-item>
-    <div class="entry {{item.icon}}">
-        <button
-            [title]="item.title | translate"
-            [attr.data-automation-id]="item.group + '::' + item.type"
-            ama-palette-overlay
-            [templatePortalContent]="templateContent"
-            [amaPaletteItem]="item"
-            [amaPaletteOverlayRef]="overlayRef">
-        </button>
+    <div class="entry-parent">
+        <div class="entry {{item.icon}}">
+            <button
+                [title]="item.title | translate"
+                [attr.data-automation-id]="item.group + '::' + item.type"
+                ama-palette-overlay
+                [templatePortalContent]="templateContent"
+                [amaPaletteItem]="item"
+                [amaPaletteOverlayRef]="overlayRef">
+            </button>
+        </div>
     </div>
 </ng-template>
 

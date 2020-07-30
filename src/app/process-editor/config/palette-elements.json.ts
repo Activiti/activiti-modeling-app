@@ -75,7 +75,6 @@ export const paletteElements: PaletteElement[] = [
         clickable: true,
         draggable: true
     },
-    { group: 'separator' },
     {
         group: 'element',
         type: 'bpmn:Gateway',
@@ -84,7 +83,6 @@ export const paletteElements: PaletteElement[] = [
         clickable: true,
         draggable: true
     },
-    { group: 'separator' },
     {
         group: 'element',
         type: 'bpmn:UserTask',
@@ -120,7 +118,6 @@ export const paletteElements: PaletteElement[] = [
             isExpanded: true
         }
     },
-    { group: 'separator' },
     {
         group: 'element',
         type: 'bpmn:Participant',
@@ -128,5 +125,6 @@ export const paletteElements: PaletteElement[] = [
         title: 'PROCESS_EDITOR.PALETTE.PARTICIPANT',
         clickable: true,
         draggable: true
-    }
+    },
+    { group: 'separator' }
 ];
