@@ -87,9 +87,7 @@ export class CalledElementComponent implements OnInit, OnDestroy {
                 this.setCalledElement(action.payload.calledElement);
                 this.cardViewArrayItem = this.calledElementService.createCardViewArrayItem(this.calledElement);
                 this.cardViewUpdateService.update(this.property, this.calledElement);
-                if (this.calledElement && this.isStaticCalledElement()) {
-                    this.loadCallActivity();
-                }
+                this.loadCallActivity();
                 this.loading = false;
             });
     }
@@ -110,9 +108,7 @@ export class CalledElementComponent implements OnInit, OnDestroy {
             takeUntil(this.onDestroy$)
         ).subscribe((processes) => {
             this.externalProcesses = processes;
-            if (this.calledElement) {
-                this.loadCallActivity();
-            }
+            this.loadCallActivity();
             this.loadVariables();
         });
 
@@ -148,8 +144,10 @@ export class CalledElementComponent implements OnInit, OnDestroy {
     }
 
     loadCallActivity() {
-        this.selectedExternalProcess = this.externalProcesses.find((process) => !!process.extensions[this.calledElement]);
-        this.loadCalledElementVariables();
+        if (this.calledElement && this.isStaticCalledElement()) {
+            this.selectedExternalProcess = this.externalProcesses.find((process) => !!process.extensions[this.calledElement]);
+            this.loadCalledElementVariables();
+        }
     }
 
     loadVariables() {

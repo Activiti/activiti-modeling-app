@@ -70,6 +70,90 @@ export const mockProcessModel: Process = {
     }
 };
 
+export const mockProcessArray: Process[] = [
+    {
+        type: PROCESS,
+        id: 'id1',
+        name: 'Process 1',
+        creationDate: new Date(),
+        createdBy: 'test',
+        lastModifiedDate: new Date(),
+        lastModifiedBy: 'test',
+        description: '',
+        version: '',
+        scope: ModelScope.GLOBAL,
+        projectIds: [],
+        extensions: {
+            'id1': {
+                properties: {
+                    /* cspell: disable-next-line */
+                    'mockprop': { 'id': 'mockprop', 'name': 'mock-variable', 'type': 'string', 'required': false, 'value': '' },
+                    /* cspell: disable-next-line */
+                    'mockprop2': { 'id': 'mockprop2', 'name': 'beautiful-variable', 'type': 'string', 'required': false, 'value': '' },
+                    /* cspell: disable-next-line */
+                    'mockprop3': { 'id': 'mockprop3', 'name': 'terrifying-variable', 'type': 'string', 'required': false, 'value': '' }
+                },
+                mappings,
+                constants: {},
+            }
+        }
+    },
+    {
+        type: PROCESS,
+        id: 'id2',
+        name: 'Process 2',
+        creationDate: new Date(),
+        createdBy: 'test',
+        lastModifiedDate: new Date(),
+        lastModifiedBy: 'test',
+        description: '',
+        version: '',
+        scope: ModelScope.GLOBAL,
+        projectIds: [],
+        extensions: {
+            'id2': {
+                properties: {
+                    /* cspell: disable-next-line */
+                    'mockprop': { 'id': 'mockprop', 'name': 'mock-variable', 'type': 'string', 'required': false, 'value': '' },
+                    /* cspell: disable-next-line */
+                    'mockprop2': { 'id': 'mockprop2', 'name': 'beautiful-variable', 'type': 'string', 'required': false, 'value': '' },
+                    /* cspell: disable-next-line */
+                    'mockprop3': { 'id': 'mockprop3', 'name': 'terrifying-variable', 'type': 'string', 'required': false, 'value': '' }
+                },
+                mappings,
+                constants: {},
+            }
+        }
+    },
+    {
+        type: PROCESS,
+        id: 'id3',
+        name: 'Process 3',
+        creationDate: new Date(),
+        createdBy: 'test',
+        lastModifiedDate: new Date(),
+        lastModifiedBy: 'test',
+        description: '',
+        version: '',
+        scope: ModelScope.GLOBAL,
+        projectIds: [],
+        extensions: {
+            'id3': {
+                properties: {
+                    /* cspell: disable-next-line */
+                    'mockprop': { 'id': 'mockprop', 'name': 'mock-variable', 'type': 'string', 'required': false, 'value': '' },
+                    /* cspell: disable-next-line */
+                    'mockprop2': { 'id': 'mockprop2', 'name': 'beautiful-variable', 'type': 'string', 'required': false, 'value': '' },
+                    /* cspell: disable-next-line */
+                    'mockprop3': { 'id': 'mockprop3', 'name': 'terrifying-variable', 'type': 'string', 'required': false, 'value': '' }
+                },
+                mappings,
+                constants: {},
+            }
+        }
+    }
+];
+
 export const mockProcessId = 'Process-12345678';
 
 export const validateError: any = JSON.stringify({
