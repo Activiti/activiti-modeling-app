@@ -296,6 +296,7 @@ export interface FormRepresentation {
     standAlone?: boolean;
     contentForm?: boolean;
     contentType?: string;
+    updateMetadataOnSubmit?: boolean;
 }
 
 export interface FormTab {
