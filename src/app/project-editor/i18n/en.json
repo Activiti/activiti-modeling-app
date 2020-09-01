@@ -33,7 +33,8 @@
                 "CREATE_FILE": "File",
                 "CREATE_SCRIPT": "Script",
                 "CREATE_TRIGGER": "Trigger",
-                "CREATE_PROJECT_MODEL": "Content Model"
+                "CREATE_PROJECT_MODEL": "Content Model",
+                "CREATE_FORM_WIDGET": "Form Widget"
             }
         },
         "TREE": {
@@ -152,6 +153,15 @@
             "PROJECT_MODEL_DELETED": "Content Model deleted",
             "PROJECT_MODEL_UPDATED": "Content Model saved"
         },
+        "FORM_WIDGET_DIALOG": {
+            "TITLE_CREATE": "Create Form Widget",
+            "TITLE_UPDATE": "Update Form Widget",
+            "FORM_WIDGET_NAME": "Widget name:",
+            "FORM_WIDGET_DESC": "Widget description:",
+            "FORM_WIDGET_CREATED": "Widget created",
+            "FORM_WIDGET_DELETED": "Widget deleted",
+            "FORM_WIDGET_UPDATED": "Widget saved"
+        },
         "ERROR": {
             "UPLOAD_FILE": "We hit a problem uploading the file. Try uploading it again.",
             "DELETE_PROJECT": "We hit a problem deleting the project. Try deleting it again.",
@@ -245,6 +255,14 @@
             "UPDATE_TRIGGER": {
                 "DUPLICATION": "A Trigger with that name already exists",
                 "GENERAL": "We hit a problem saving the Trigger. Try saving it again."
+            },
+            "CREATE_FORM_WIDGET": {
+                "DUPLICATION": "A form with that name already exists",
+                "GENERAL": "We hit a problem creating the form. Try creating it again."
+            },
+            "UPDATE_FORM_WIDGET": {
+                "DUPLICATION": "A widget with that name already exists",
+                "GENERAL": "We hit a problem saving the with. Try saving it again."
             }
         }
     }

@@ -31,7 +31,8 @@ import {
     SCHEMA_API_TOKEN,
     SCRIPT_API_TOKEN,
     TRIGGER_API_TOKEN,
-    CONTENT_MODEL_API_TOKEN
+    CONTENT_MODEL_API_TOKEN,
+    FORM_WIDGET_API_TOKEN
 } from '../../api/api.interface';
 import { UiApiVariation } from './model-variations/ui-api-variation';
 import { DecisionTableApiVariation } from './model-variations/decision-table-api-variations';
@@ -47,6 +48,7 @@ import { ModelSchemaAcmApi } from './model-schema-api';
 import { ScriptApiVariation } from './model-variations/script-api-variation';
 import { TriggerApiVariation } from './model-variations/trigger-api-variation';
 import { ModelContentApiVariation } from './model-variations/content-api-variation';
+import { FormWidgetApiVariation } from './model-variations/form-widget-api-variation';
 
 export function modelApiFactory (modelVariation: ModelApiVariation<any, any>, requestApiHelper: RequestApiHelper) {
     return new ModelApi(modelVariation, requestApiHelper);
@@ -98,7 +100,10 @@ export class ACMApiModule {
                 { provide: TRIGGER_API_TOKEN, useFactory: modelApiFactory, deps: [TriggerApiVariation, RequestApiHelper] },
 
                 ModelContentApiVariation,
-                { provide: CONTENT_MODEL_API_TOKEN, useFactory: modelApiFactory, deps: [ModelContentApiVariation, RequestApiHelper] }
+                { provide: CONTENT_MODEL_API_TOKEN, useFactory: modelApiFactory, deps: [ModelContentApiVariation, RequestApiHelper] },
+
+                FormWidgetApiVariation,
+                { provide: FORM_WIDGET_API_TOKEN, useFactory: modelApiFactory, deps: [FormWidgetApiVariation, RequestApiHelper] }
             ]
         };
     }

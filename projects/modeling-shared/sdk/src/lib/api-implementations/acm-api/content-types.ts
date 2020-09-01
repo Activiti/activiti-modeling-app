@@ -25,5 +25,6 @@ export const ContentType = {
     Ui: 'UI',
     File: 'FILE',
     Script: 'SCRIPT',
-    Trigger: 'TRIGGER'
+    Trigger: 'TRIGGER',
+    CustomFormWidget: 'CUSTOM-FORM-WIDGET'
 };

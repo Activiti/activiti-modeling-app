@@ -26,5 +26,6 @@ export * from './utils/createJsonBlob';
 export * from './utils/about-provider';
 export * from './components/entity-dialog/entity-dialog.component';
 export * from './directives/allowed-characters.directive';
+export * from './directives/palette-overlay.directive';
 export * from './utils/log-filters';
 export * from './header-breadcrumbs/public-api';

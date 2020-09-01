@@ -47,7 +47,8 @@
                     "FILE": "file",
                     "SCRIPT": "script",
                     "TRIGGER": "Trigger",
-                    "MODEL": "Content Model"
+                    "MODEL": "Content Model",
+                    "CUSTOM-FORM-WIDGET": "Form Widget"
                 },
                 "DELETE": {
                     "PROJECT": "Are you sure you want to delete this project?",
@@ -60,7 +61,8 @@
                     "FILE": "Are you sure you want to delete this file?",
                     "SCRIPT": "Are you sure you want to delete this script?",
                     "TRIGGER": "Are you sure you want to delete this Trigger?",
-                    "MODEL": "Are you sure you want to delete this Content Model?"
+                    "MODEL": "Are you sure you want to delete this Content Model?",
+                    "FORM_WIDGET": "Are you sure you want to delete this form widget?"
                 },
                 "SAVE": {
                     "PROCESS": "Are you sure you want to save this process?",
@@ -72,7 +74,8 @@
                     "FILE": "Are you sure you want to save this file?",
                     "SCRIPT": "Are you sure you want to save this script?",
                     "TRIGGER": "Are you sure you want to save this Trigger?",
-                    "MODEL": "Are you sure you want to save this Content Model?"
+                    "MODEL": "Are you sure you want to save this Content Model?",
+                    "FORM_WIDGET": "Are you sure you want to save this Form Widget?"
                 },
                 "DOWNLOAD": {
                     "PROCESS": "Are you sure you want to download this process?",
@@ -85,7 +88,8 @@
                     "FILE": "Are you sure you want to download this file?",
                     "SCRIPT": "Are you sure you want to download this script?",
                     "TRIGGER": "Are you sure you want to download this Trigger?",
-                    "MODEL": "Are you sure you want to download this Content Model?"
+                    "MODEL": "Are you sure you want to download this Content Model?",
+                    "FORM_WIDGET": "Are you sure you want to download this Form Widget?"
                 }
             }
         },
@@ -106,6 +110,10 @@
                 "NOT_VALID_JSON": "Invalid JSON object",
                 "NOT_VALID_SCHEMA": "The JSON object does not match the schema"
             }
+        },
+        "EDITOR": {
+            "NAME": "Name",
+            "DESCRIPTION": "Description"
         }
     }
 }

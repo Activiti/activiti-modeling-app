@@ -26,7 +26,9 @@ export type UI_TYPE = 'ui';
 export type FILE_TYPE = 'file';
 export type SCRIPT_TYPE = 'script';
 export type TRIGGER_TYPE = 'trigger';
-export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DATA_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE | TRIGGER_TYPE | CUSTOM_MODEL_TYPE;
+export type FORM_WIDGET_TYPE = 'custom-form-widget';
+export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DATA_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE | TRIGGER_TYPE | CUSTOM_MODEL_TYPE
+    | FORM_WIDGET_TYPE;
 
 export const PROJECT: PROJECT_TYPE = 'project';
 export const CUSTOM_MODEL: CUSTOM_MODEL_TYPE = 'model';
@@ -39,6 +41,7 @@ export const UI: UI_TYPE = 'ui';
 export const FILE: FILE_TYPE = 'file';
 export const SCRIPT: SCRIPT_TYPE = 'script';
 export const TRIGGER: TRIGGER_TYPE = 'trigger';
+export const FORM_WIDGET: FORM_WIDGET_TYPE = 'custom-form-widget';
 
 export interface Project {
     type: PROJECT_TYPE;
@@ -478,4 +481,35 @@ export interface ProcessInfo {
     processName: string;
     processDefinitionId: string;
     processProperties: EntityProperty[];
+}
+
+export interface WidgetContent {
+    id?: string;
+    name: string;
+    description: string;
+    type: string;
+    isCustomType: boolean;
+    valueType: string;
+    className: string;
+    template?: string;
+    runtime?: string;
+    icon?: string;
+    tabs?: WidgetPropertyTab[];
+}
+
+export interface WidgetPropertyTab {
+    name: string;
+    properties: WidgetProperty[];
+}
+
+export interface WidgetProperty {
+    name: string;
+    type: string;
+    value: string;
+    isCustomProperty: boolean;
+}
+
+export interface Widget extends Model {
+    type: FORM_WIDGET_TYPE;
+    extensions: WidgetContent;
 }

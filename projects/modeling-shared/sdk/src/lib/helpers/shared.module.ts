@@ -23,6 +23,7 @@ import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.
 import { CoreModule } from '@alfresco/adf-core';
 import { AllowedCharactersDirective } from './directives/allowed-characters.directive';
 import { HeaderBreadcrumbsComponent } from './header-breadcrumbs/header-breadcrumbs.component';
+import { PaletteOverlayDirective } from './directives/palette-overlay.directive';
 
 @NgModule({
     imports: [
@@ -34,12 +35,14 @@ import { HeaderBreadcrumbsComponent } from './header-breadcrumbs/header-breadcru
     declarations: [
         HeaderBreadcrumbsComponent,
         EntityDialogComponent,
-        AllowedCharactersDirective
+        AllowedCharactersDirective,
+        PaletteOverlayDirective
     ],
     exports: [
         HeaderBreadcrumbsComponent,
         EntityDialogComponent,
-        AllowedCharactersDirective
+        AllowedCharactersDirective,
+        PaletteOverlayDirective
     ]
 })
 export class SharedModule { }

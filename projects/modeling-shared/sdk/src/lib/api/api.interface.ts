@@ -19,26 +19,28 @@ import { Injectable, InjectionToken } from '@angular/core';
 import { ProjectApi } from './project-api.interface';
 import { ModelApiInterface } from './generalmodel-api.interface';
 import {
-    Process,
-    ProcessContent,
-    Connector,
-    ConnectorContent,
-    Form,
-    FormContent,
-    Ui,
-    UiContent,
-    DecisionTable,
-    DecisionTableContent,
-    Data,
-    DataContent,
     ActivitiFile,
     ActivitiFileContent,
     ActivitiScript,
     ActivitiScriptContent,
+    Connector,
+    ConnectorContent,
+    ContentModel,
+    ContentModelXML,
+    Data,
+    DataContent,
+    DecisionTable,
+    DecisionTableContent,
+    Form,
+    FormContent,
+    Process,
+    ProcessContent,
     Trigger,
     TriggerContent,
-    ContentModel,
-    ContentModelXML
+    Ui,
+    UiContent,
+    Widget,
+    WidgetContent
 } from './types';
 import { ModelSchemaApi } from './model-schema-api.interface';
 
@@ -53,6 +55,7 @@ export const SCHEMA_API_TOKEN = new InjectionToken<ModelSchemaApi>('schema-api')
 export const SCRIPT_API_TOKEN = new InjectionToken<ModelApiInterface<ActivitiScript, ActivitiScriptContent>>('script-api');
 export const TRIGGER_API_TOKEN = new InjectionToken<ModelApiInterface<Trigger, TriggerContent>>('trigger-api');
 export const CONTENT_MODEL_API_TOKEN = new InjectionToken<ModelApiInterface<ContentModel, ContentModelXML>>('content-model-api');
+export const FORM_WIDGET_API_TOKEN = new InjectionToken<ModelApiInterface<Widget, WidgetContent>>('form-widget-api');
 @Injectable()
 export abstract class AmaApi {
     public Project: ProjectApi;
@@ -66,4 +69,5 @@ export abstract class AmaApi {
     public script: ModelApiInterface<ActivitiScript, ActivitiScriptContent>;
     public trigger: ModelApiInterface<Trigger, TriggerContent>;
     public contentModel: ModelApiInterface<ContentModel, ContentModelXML>;
+    public formWidget: ModelApiInterface<Widget, WidgetContent>;
 }

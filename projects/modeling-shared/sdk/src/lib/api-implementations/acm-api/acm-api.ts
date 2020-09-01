@@ -15,43 +15,46 @@
  * limitations under the License.
  */
 
-import { Injectable, Inject } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import {
     AmaApi,
     CONNECTOR_API_TOKEN,
-    UI_API_TOKEN,
-    PROCESS_API_TOKEN,
-    FORM_API_TOKEN,
-    DECISION_TABLE_API_TOKEN,
+    CONTENT_MODEL_API_TOKEN,
     DATA_API_TOKEN,
+    DECISION_TABLE_API_TOKEN,
     FILE_API_TOKEN,
+    FORM_API_TOKEN,
+    FORM_WIDGET_API_TOKEN,
+    PROCESS_API_TOKEN,
     SCRIPT_API_TOKEN,
     TRIGGER_API_TOKEN,
-    CONTENT_MODEL_API_TOKEN
+    UI_API_TOKEN
 } from '../../api/api.interface';
 import { ACMProjectApi } from './project-api';
 import { ModelApiInterface } from '../../api/generalmodel-api.interface';
 import {
-    Connector as ConnectorType,
-    ConnectorContent,
-    Form as FormType,
-    Ui as UiType,
-    Process as ProcessType,
-    ProcessContent,
-    DecisionTable as DecisionTableType,
-    DecisionTableContent,
-    UiContent,
-    Data as DataType,
-    DataContent,
-    FormContent,
     ActivitiFile,
     ActivitiFileContent,
     ActivitiScript,
     ActivitiScriptContent,
+    Connector as ConnectorType,
+    ConnectorContent,
+    ContentModel,
+    ContentModelXML,
+    Data as DataType,
+    DataContent,
+    DecisionTable as DecisionTableType,
+    DecisionTableContent,
+    Form as FormType,
+    FormContent,
+    Process as ProcessType,
+    ProcessContent,
     Trigger,
     TriggerContent,
-    ContentModel,
-    ContentModelXML
+    Ui as UiType,
+    UiContent,
+    Widget,
+    WidgetContent
 } from '../../api/types';
 
 @Injectable()
@@ -67,6 +70,7 @@ export class ACMApi implements AmaApi {
         @Inject(FILE_API_TOKEN) public File: ModelApiInterface<ActivitiFile, ActivitiFileContent>,
         @Inject(SCRIPT_API_TOKEN) public script: ModelApiInterface<ActivitiScript, ActivitiScriptContent>,
         @Inject(TRIGGER_API_TOKEN) public trigger: ModelApiInterface<Trigger, TriggerContent>,
-        @Inject(CONTENT_MODEL_API_TOKEN) public contentModel: ModelApiInterface<ContentModel, ContentModelXML>
+        @Inject(CONTENT_MODEL_API_TOKEN) public contentModel: ModelApiInterface<ContentModel, ContentModelXML>,
+        @Inject(FORM_WIDGET_API_TOKEN) public  formWidget: ModelApiInterface<Widget, WidgetContent>,
     ) {}
 }

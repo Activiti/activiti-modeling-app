@@ -76,7 +76,6 @@ import { PaletteComponent } from './components/process-modeler/palette/palette.c
 import { ProcessModelerPaletteService } from './services/palette/process-modeler-palette.service';
 import { ElementCreationHandler } from './services/palette/handlers/element-creation';
 import { ToolsHandler } from './services/palette/handlers/tools';
-import { PaletteOverlayDirective } from './components/process-modeler/palette/palette-overlay.directive';
 // Angular can't bundle json data into prod build, that is why the file is .json.ts
 import { paletteElements } from './config/palette-elements.json';
 import { CardViewSignalRefItemComponent } from './services/cardview-properties/signal-ref-item/signal-ref-item.component';
@@ -138,7 +137,6 @@ import { CalledElementDialogComponent } from './services/cardview-properties/cal
         ProcessEditorComponent,
         ProcessHeaderComponent,
         PaletteComponent,
-        PaletteOverlayDirective,
         ProcessModelerComponent,
         ProcessPropertiesComponent,
         MessagesDialogComponent,
