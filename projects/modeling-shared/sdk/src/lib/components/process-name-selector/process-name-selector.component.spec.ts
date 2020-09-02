@@ -27,6 +27,7 @@ import { of } from 'rxjs';
 import { ProcessNameSelectorComponent } from './process-name-selector.component';
 import { ProcessService } from '../../services/process.service';
 import { AmaApi } from '../../api/api.interface';
+import { By } from '@angular/platform-browser';
 
 describe('ProcessNameSelectorComponent', () => {
     let component: ProcessNameSelectorComponent;
@@ -81,6 +82,7 @@ describe('ProcessNameSelectorComponent', () => {
         fixture = TestBed.createComponent(ProcessNameSelectorComponent);
         component = fixture.componentInstance;
         component.value = 'testProcessDefinitionId';
+        component.required = true;
         processService = TestBed.inject(ProcessService);
         fixture.detectChanges();
     });
@@ -108,5 +110,38 @@ describe('ProcessNameSelectorComponent', () => {
             done();
         });
         component.ngOnInit();
+    });
+
+    describe('empty option', () => {
+
+        it('should display the empty option when input is not required', () => {
+            component.required = false;
+            const processSelect = fixture.debugElement.query(By.css('[data-automation-id="process-name-selector"]'));
+            processSelect.nativeElement.click();
+            fixture.detectChanges();
+            const processSelectOptions = fixture.debugElement.queryAll(By.css('.mat-option-text'));
+            const expectedFormSelectOptions = [undefined, 'testProcessName', 'testProcessName1'];
+            expect(processSelectOptions.length).toBe(expectedFormSelectOptions.length);
+            expectedFormSelectOptions.forEach((value, index) => {
+                if (processSelectOptions[index].nativeElement.textContent) {
+                    expect(processSelectOptions[index].nativeElement.textContent.trim()).toBe(value);
+                } else {
+                    expect(processSelectOptions[index].nativeElement.textContent).toBe('');
+                }
+            });
+        });
+
+        it('should not display the empty option when input is required', () => {
+            component.required = true;
+            const processSelect = fixture.debugElement.query(By.css('[data-automation-id="process-name-selector"]'));
+            processSelect.nativeElement.click();
+            fixture.detectChanges();
+            const processSelectOptions = fixture.debugElement.queryAll(By.css('.mat-option-text'));
+            const expectedFormSelectOptions = ['testProcessName', 'testProcessName1'];
+            expect(processSelectOptions.length).toBe(expectedFormSelectOptions.length);
+            expectedFormSelectOptions.forEach((value, index) => {
+                expect(processSelectOptions[index].nativeElement.textContent.trim()).toBe(value);
+            });
+        });
     });
 });

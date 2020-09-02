@@ -1,5 +1,6 @@
 <mat-select *ngIf="extendedProperties && extendedProperties.plain; else matFormField" (selectionChange)="onChange()"
     [compareWith]="compareObjects" [(ngModel)]="value" data-automation-id="process-name-selector" [disabled]="disabled">
+    <mat-option *ngIf="!required"></mat-option>
     <mat-optgroup *ngFor="let processModel of processes | async | keyvalue" [label]="processModel.key">
         <mat-option *ngFor="let processInfo of processModel.value" [value]="processInfo.processDefinitionId">
             {{processInfo.processName}}
@@ -10,6 +11,7 @@
     <mat-form-field>
         <mat-select (selectionChange)="onChange()" [compareWith]="compareObjects" [(ngModel)]="value"
             data-automation-id="process-name-selector" [disabled]="disabled">
+            <mat-option *ngIf="!required"></mat-option>
             <mat-optgroup *ngFor="let processModel of processes | async | keyvalue" [label]="processModel.key">
                 <mat-option *ngFor="let processInfo of processModel.value" [value]="processInfo.processDefinitionId">
                     {{processInfo.processName}}

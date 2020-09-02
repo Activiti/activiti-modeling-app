@@ -55,7 +55,7 @@
                 </div>
                 <ng-template #elseBlock>
                     <modelingsdk-value-type-input [disabled]="parameter.readOnly" [type]="'process'"
-                        [extendedProperties]="{plain:true}" [value]="values[parameter.name]"
+                        [extendedProperties]="{plain:true}" [value]="values[parameter.name]" [required]="parameter.required"
                         [attr.data-automation-id]="'process-selector-' + parameter.id" [ngClass]="'selector-process-input-mapping'"
                         (onChange)="setParamWithValue($event, parameter)">
                     </modelingsdk-value-type-input>

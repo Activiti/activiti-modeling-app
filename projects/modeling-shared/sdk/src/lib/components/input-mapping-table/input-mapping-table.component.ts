@@ -112,7 +112,7 @@ export class InputMappingTableComponent implements OnChanges {
     }
 
     setParamWithValue(value: string, param: ConnectorParameter): void {
-        if (!value.length && !param.required) {
+        if (!value?.length && !param.required) {
             delete this.data[param.name];
         } else {
             this.data[param.name] = {

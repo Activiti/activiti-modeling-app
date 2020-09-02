@@ -146,7 +146,7 @@
                             <ng-container *ngIf="selectedTab===1 && tabCheck === selectedTab">
                                 <modelingsdk-value-type-input #valueInput data-automation-id="value-mapping-input"
                                     (onChange)="valueMappingValueChange($event,selectedRow)" [(ngModel)]="valueValue"
-                                    [index]="selectedRow+1" [type]="dataSource[selectedRow].type"
+                                    [index]="selectedRow+1" [type]="dataSource[selectedRow].type" [required]="dataSource[selectedRow].required"
                                     [extendedProperties]="extendedProperties">
                                 </modelingsdk-value-type-input>
                             </ng-container>
