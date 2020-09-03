@@ -1,0 +1,11 @@
+{
+    "extends": ["../../stylelint-config.json"],
+    "rules": {
+        "selector-class-pattern": [
+            "^_?(quick|quick|quick-|bpp-|monaco-editor|dark-theme|djs-|bjs-|bpmn-|modelingsdk|ama|ama-|adf|adf-|cdk-|example-|demo-|mat-|material-|textLayer|canvasWrapper|page|entry|dialog|dirty|active)",
+            {
+                "resolveNestedSelectors": true
+            }
+        ]
+    }
+}
