@@ -28,10 +28,11 @@ import { SelectModelerElementAction } from '../../../store/process-editor.action
 import { Observable, Subject, forkJoin } from 'rxjs';
 import { takeUntil, map, mergeMap } from 'rxjs/operators';
 import { ProcessConnectorService } from '../../process-connector-service';
+import { ProcessErrorsService } from '../../process-errors.service';
 
 export interface ConnectorErrorGroups {
     name: string;
-    errors: Bpmn.DiagramElement[];
+    errors: Bpmn.BusinessObject[];
 }
 
 @Component({
@@ -45,9 +46,9 @@ export class CardViewErrorRefItemComponent implements OnInit, OnDestroy {
     private unsubscribe$ = new Subject<void>();
     private connector: Connector;
 
-    errors: Bpmn.DiagramElement[] = [];
-    diagramErrors: Bpmn.DiagramElement[] = [];
-    selectedError: Bpmn.DiagramElement;
+    errors: Bpmn.BusinessObject[] = [];
+    diagramErrors: Bpmn.BusinessObject[] = [];
+    selectedError: Bpmn.BusinessObject;
     attachedIsNotConnector = false;
 
     loading = false;
@@ -60,6 +61,7 @@ export class CardViewErrorRefItemComponent implements OnInit, OnDestroy {
         private store: Store<AmaState>,
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
         private processConnectorService: ProcessConnectorService,
+        private processErrorsService: ProcessErrorsService,
         private cdRef: ChangeDetectorRef
     ) { }
 
@@ -111,9 +113,7 @@ export class CardViewErrorRefItemComponent implements OnInit, OnDestroy {
     }
 
     createNewError() {
-        const errorElement = this.bpmnFactory.create('bpmn:Error');
-        errorElement.name = errorElement.id;
-        errorElement.errorCode = errorElement.id;
+        const errorElement = this.processErrorsService.createProcessError();
         this.rootElements.push(errorElement);
 
         this.diagramErrors.push(errorElement);
@@ -171,15 +171,15 @@ export class CardViewErrorRefItemComponent implements OnInit, OnDestroy {
         );
     }
 
-    private transformConnectorErrorsToBpmnElements(connectorName: string, connectorErrors: ConnectorError[]): Bpmn.DiagramElement[] {
-        const bpmnErrors: Bpmn.DiagramElement[] = [];
+    private transformConnectorErrorsToBpmnElements(connectorName: string, connectorErrors: ConnectorError[]): Bpmn.BusinessObject[] {
+        const bpmnErrors: Bpmn.BusinessObject[] = [];
         if (connectorErrors) {
             connectorErrors.forEach(connectorError => bpmnErrors.push(this.getErrorAsBpmnElement(connectorName, connectorError)));
         }
         return bpmnErrors;
     }
 
-    getErrorAsBpmnElement(connectorName: string, error: ConnectorError): Bpmn.DiagramElement {
+    getErrorAsBpmnElement(connectorName: string, error: ConnectorError): Bpmn.BusinessObject {
         const errorElement = this.bpmnFactory.create('bpmn:Error');
         errorElement.id = `connector.${connectorName}_${error.code}`;
         errorElement.name = error.name;

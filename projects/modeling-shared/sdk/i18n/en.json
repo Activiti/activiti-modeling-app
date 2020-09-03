@@ -46,6 +46,19 @@
                 "NO_MESSAGES": "Select or create a message to view its properties"
             }
         },
+        "ERRORS_EDITOR": {
+            "TITLE": "Process Errors",
+            "ERRORS": {
+                "EMPTY_NAME": "A name is required",
+                "NAME_ALREADY_EXISTS": "Process error names must be unique"
+            },
+            "TABLE": {
+                "COLUMN_NAME": "Error name",
+                "COLUMN_CODE": "Error code",
+                "COLUMN_ID": "Error Id",
+                "NO_PROCESS_ERRORS": "Select or create a process error to view its properties"
+            }
+        },
         "MAPPING_DIALOG": {
             "TITLE": "Edit variable mapping",
             "SELECTOR_TITLE": "Select the variable mapping type to edit",

@@ -48,5 +48,6 @@ export enum BpmnElement {
     Task = 'bpmn:Task',
     TextAnnotation= 'bpmn:TextAnnotation',
     Collaboration = 'bpmn:Collaboration',
-    Lane = 'bpmn:Lane'
+    Lane = 'bpmn:Lane',
+    Error = 'bpmn:Error',
 }

@@ -106,6 +106,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CalledElementDialogComponent } from './services/cardview-properties/called-element-item/called-element-dialog/called-element-dialog.component';
+import { ProcessErrorsEffects } from './store/process-errors.effects';
+import { ProcessErrorsDialogComponent } from './components/process-modeler/process-errors/process-errors-dialog.component';
+import { CardViewProcessErrorsItemComponent } from './services/cardview-properties/process-errors-item/process-errors-item.component';
 
 @NgModule({
     imports: [
@@ -113,7 +116,13 @@ import { CalledElementDialogComponent } from './services/cardview-properties/cal
         CoreModule.forChild(),
         ProcessServicesCloudModule,
         ProcessEditorRoutingModule,
-        EffectsModule.forFeature([ProcessEditorEffects, ProcessVariablesEffects, ProcessMessagesEffects, ProcessTaskAssignmentEffects]),
+        EffectsModule.forFeature([
+            ProcessEditorEffects,
+            ProcessVariablesEffects,
+            ProcessMessagesEffects,
+            ProcessTaskAssignmentEffects,
+            ProcessErrorsEffects
+        ]),
         AmaStoreModule.registerEntity({
             key: PROCESSES_ENTITY_KEY,
             reducer: processEntitiesReducer
@@ -140,6 +149,7 @@ import { CalledElementDialogComponent } from './services/cardview-properties/cal
         ProcessModelerComponent,
         ProcessPropertiesComponent,
         MessagesDialogComponent,
+        ProcessErrorsDialogComponent,
         CardViewProcessVariablesItemComponent,
         CardViewImplementationItemComponent,
         CardViewDecisionTaskItemComponent,
@@ -158,7 +168,8 @@ import { CalledElementDialogComponent } from './services/cardview-properties/cal
         AssignmentDialogComponent,
         CardViewTaskAssignmentItemComponent,
         CardViewProcessNameItemComponent,
-        CalledElementDialogComponent
+        CalledElementDialogComponent,
+        CardViewProcessErrorsItemComponent
     ],
     exports: [ProcessEditorRoutingModule],
     providers: [
@@ -190,6 +201,7 @@ import { CalledElementDialogComponent } from './services/cardview-properties/cal
         providePropertyHandler(BpmnProperty.timerEventDefinition, CardViewTimerDefinitionItemComponent),
         providePropertyHandler(BpmnProperty.messageRef, CardViewMessageItemComponent),
         providePropertyHandler(BpmnCompositeProperty.messages, CardViewProcessMessagesItemComponent),
+        providePropertyHandler(BpmnCompositeProperty.errors, CardViewProcessErrorsItemComponent),
         providePropertyHandler(BpmnProperty.multiInstanceType, CardViewMultiInstanceItemComponent),
         providePropertyHandler(BpmnProperty.messagePayload, CardViewMessagePayloadItemComponent),
         providePropertyHandler(BpmnProperty.dueDate, CardViewDueDateItemComponent),

@@ -53,7 +53,8 @@ export enum BpmnProperty {
 export enum BpmnCompositeProperty {
     assignment = 'assignment',
     properties = 'properties',
-    messages = 'messages'
+    messages = 'messages',
+    errors = 'errors'
 }
 
 export const PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS = new InjectionToken<ProcessEditorCustomProperty[]>('process-editor-custom-property-handlers');

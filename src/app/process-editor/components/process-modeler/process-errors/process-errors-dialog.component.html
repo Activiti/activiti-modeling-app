@@ -1,0 +1,89 @@
+<h2 mat-dialog-title>
+    <mat-icon class="variables-icon">error</mat-icon>{{ 'SDK.ERRORS_EDITOR.TITLE' | translate}}
+</h2>
+
+<mat-dialog-content class="properties-content variables-dialog-content" data-automation-id="variables-dialog">
+    <div class="process-error-dialog">
+        <div class=process-error-table>
+            <mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef>{{ 'SDK.ERRORS_EDITOR.TABLE.COLUMN_ID' | translate }}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element" [attr.data-automation-id]="'process-error-id-cell-' + element.id">
+                        {{element.id}}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef>{{ 'SDK.ERRORS_EDITOR.TABLE.COLUMN_NAME' | translate }}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element" [attr.data-automation-id]="'process-error-name-cell-' + element.name">
+                        {{element.name}}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="errorCode">
+                    <mat-header-cell *matHeaderCellDef>{{ 'SDK.ERRORS_EDITOR.TABLE.COLUMN_CODE' | translate }}
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let element" [attr.data-automation-id]="'process-error-code-cell-' + element.errorCode">
+                        {{element.errorCode}}
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="delete">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <mat-icon (click)="deleteProcessError(element)" color="primary" class="delete-btn"
+                            data-automation-id="delete-process-error">
+                            delete
+                        </mat-icon>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" (click)="editProcessError(row, i)"
+                    [class.active]="i == position" [attr.data-automation-id]="'process-error-row-' + i + '-' + row.id">
+                </mat-row>
+            </mat-table>
+            <button mat-raised-button class="add-btn" color="primary" (click)="createProcessError()"
+                data-automation-id="create-new-process-error">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+
+        <ng-container *ngIf="showForm; else noProcessErrorsTemplate">
+            <div class="process-error-form">
+                <mat-form-field>
+                    <div class="adf-process-errors-form-label">{{'SDK.ERRORS_EDITOR.TABLE.COLUMN_ID' | translate}}</div>
+                    <input matInput [(ngModel)]="selectedProcessError.id" data-automation-id="process-error-id" disabled>
+                </mat-form-field>
+                <mat-form-field>
+                    <div class="adf-property-label">{{'SDK.ERRORS_EDITOR.TABLE.COLUMN_NAME' | translate}}</div>
+                    <input matInput [(ngModel)]="selectedProcessError.name" data-automation-id="process-error-name" (keyup)="onProcessErrorChanged()">
+                </mat-form-field>
+                <mat-form-field>
+                    <div class="adf-property-label">{{'SDK.ERRORS_EDITOR.TABLE.COLUMN_CODE' | translate}}</div>
+                    <input matInput [(ngModel)]="selectedProcessError.errorCode" data-automation-id="process-error-code" (keyup)="onProcessErrorChanged()">
+                </mat-form-field>
+                <div class="mat-error error-process-error" *ngIf="!selectedProcessError.name.length">
+                    {{ 'SDK.ERRORS_EDITOR.ERRORS.EMPTY_NAME' | translate }}</div>
+            </div>
+        </ng-container>
+
+        <ng-template #noProcessErrorsTemplate>
+            <p class="no-process-errors">{{'SDK.ERRORS_EDITOR.TABLE.NO_PROCESS_ERRORS' | translate}}</p>
+        </ng-template>
+    </div>
+</mat-dialog-content>
+
+
+<mat-dialog-actions class="adf-dialog-buttons">
+    <button mat-button (click)="onClose()" data-automation-id="close-button">
+        {{ 'APP.DIALOGS.CANCEL' | translate }}
+    </button>
+
+    <button class="adf-dialog-action-button save-btn" color="primary" mat-button [disabled]="!processErrorsChanged"
+        (click)="onSave()" data-automation-id="update-button">
+        {{ 'APP.DIALOGS.SAVE' | translate }}
+    </button>
+</mat-dialog-actions>

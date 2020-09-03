@@ -1,0 +1,89 @@
+@mixin ama-process-errors-dialog($theme) {
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+    .process-error-dialog {
+        display: flex;
+
+        .process-error-table {
+            min-height: 90px;
+            margin-top: 10px;
+            width: 600px;
+
+            .mat-table {
+                border: 1px solid mat-color($foreground, text, 0.07);
+                height: 300px;
+                overflow: scroll;
+            }
+
+            .mat-header-row {
+                top: 0;
+                position: sticky;
+                background-color: mat-color($background, card);
+            }
+
+            .mat-row {
+                cursor: pointer;
+
+                &.active {
+                    background-color: mat-color($foreground, text, 0.07);
+
+                    .mat-cell {
+                        color: mat-color($foreground, text);
+                    }
+                }
+
+                &:last-of-type {
+                    border-bottom: 0;
+                }
+            }
+
+            .add-btn {
+                float: right;
+                padding: 0 10px;
+                min-width: 30px;
+                margin-top: 10px;
+            }
+
+            .mat-column-delete {
+                max-width: 30px;
+            }
+
+            .mat-column-id {
+                max-width: 150px;
+            }
+        }
+
+        .process-error-form {
+            text-align: left;
+            width: 300px;
+            margin-left: 40px;
+
+            .adf-process-errors-form-label {
+                margin-bottom: 5px;
+            }
+
+            .mat-form-field {
+                display: block;
+            }
+        }
+
+        .no-process-errors {
+            color:  mat-color($foreground, text, 0.54);
+            width: 300px;
+            font-size: 16px;
+            margin-left: 40px;
+            text-align: center;
+        }
+
+        .error-process-error.mat-error {
+            font-size: 12px;
+            margin-left: 0;
+            margin-top: -18px;
+        }
+    }
+
+    .adf-dialog-buttons {
+        justify-content: flex-end;
+    }
+}

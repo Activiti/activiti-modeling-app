@@ -48,6 +48,7 @@ import { createModelNameProperty } from './model-name-cardview-property';
 import { createIsExecutableProperty } from './isExecutable-cardview-property';
 import { createAssignmentProperty } from './assignment-cardview-property';
 import { createProcessIdProperty } from './process-id-cardview-property';
+import { createProcessErrorsProperty } from './process-errors-item-property';
 
 export const bpmn2cardView = {
     [BpmnProperty.id]: createIdProperty,
@@ -81,5 +82,7 @@ export const bpmn2cardView = {
     [BpmnProperty.multiInstanceType]: createMultiInstanceProperty,
     [BpmnProperty.messagePayload]: createMessagePayloadProperty,
     [BpmnProperty.textAnnotation]: createTextAnnotationProperty,
-    [BpmnProperty.isExecutable]: createIsExecutableProperty
+    [BpmnProperty.isExecutable]: createIsExecutableProperty,
+    [BpmnCompositeProperty.errors]: createProcessErrorsProperty
+
 };

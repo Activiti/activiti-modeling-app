@@ -12,9 +12,11 @@
 @import "./services/cardview-properties/default-sequence-flow/default-sequence-flow-item.component";
 @import "./services/cardview-properties/process-variable-item/process-variable-item.component";
 @import "./services/cardview-properties/process-messages-item/process-messages-item.component";
+@import "./services/cardview-properties/process-errors-item/process-errors-item.component";
 @import "./services/cardview-properties/process-name-item/process-name-item.component";
 @import "./components/process-modeler/palette/palette.component.scss";
 @import "./components/process-modeler/messages/messages-dialog.component.scss";
+@import "./components/process-modeler/process-errors/process-errors-dialog.component.scss";
 @import "./services/cardview-properties/called-element-item/called-element-item.component";
 @import "./services/cardview-properties/called-element-item/called-element-dialog/called-element-dialog.component";
 @import "./services/cardview-properties/due-date-item/due-date-item.component";
@@ -38,8 +40,10 @@
     @include ama-process-modeler-bpmnjs($theme);
     @include ama-process-variable-item($theme);
     @include ama-process-messages-item($theme);
+    @include ama-process-errors-item($theme);
     @include ama-due-date-item($theme);
     @include ama-palette($theme);
     @include ama-messages-dialog($theme);
+    @include ama-process-errors-dialog($theme);
     @include ama-assignment-dialog($theme);
 }

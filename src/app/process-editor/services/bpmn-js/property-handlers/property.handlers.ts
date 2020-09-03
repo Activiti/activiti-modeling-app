@@ -45,6 +45,7 @@ import { textAnnotationHandler } from './textAnnotation.handler';
 import { modelNameHandler } from './model-name.handler';
 import { isExecutableHandler } from './isExecutable.handler';
 import { processIdHandler } from './process-id.handler';
+import { processErrorsHandler } from './process-errors.handler';
 
 export const handlers = {
     [BpmnProperty.id]: idHandler,
@@ -75,5 +76,6 @@ export const handlers = {
     [BpmnCompositeProperty.messages]: processMessagesHandler,
     [BpmnProperty.multiInstanceType]: multiInstanceHandler,
     [BpmnProperty.textAnnotation]: textAnnotationHandler,
-    [BpmnProperty.isExecutable]: isExecutableHandler
+    [BpmnProperty.isExecutable]: isExecutableHandler,
+    [BpmnCompositeProperty.errors]: processErrorsHandler
 };
