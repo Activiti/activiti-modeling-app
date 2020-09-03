@@ -39,10 +39,13 @@ import {
 import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 import { ExpressionsEditorService } from '../../code-editor/services/expressions-editor.service';
+import { MatSelectModule } from '@angular/material/select';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('MappingDialogComponent', () => {
     let fixture: ComponentFixture<MappingDialogComponent>;
     let element: DebugElement;
+    let component: MappingDialogComponent;
 
     const inputTypes: InputTypeItem[] = [
         { type: 'string', implementationClass: PropertiesViewerStringInputComponent, primitiveType: 'string' },
@@ -117,7 +120,12 @@ describe('MappingDialogComponent', () => {
             { id: '7d073289-abd9-40d8-9124-e7b10cdd218f', name: 'dateVar', type: 'date', required: false, value: undefined },
             { id: 'a3ec58eb-d30b-4764-8034-92f422e1de6c', name: 'booleanVar', type: 'boolean', required: false, value: undefined },
             { id: '97cba7e6-53af-409e-821b-5fe9697f77a9', name: 'stringValue', type: 'string', required: false, value: undefined },
-            { id: '52e54d3e-1fbd-4440-b023-aff935a18aab', name: 'stringExpression', type: 'string', required: false, value: undefined }
+            { id: '52e54d3e-1fbd-4440-b023-aff935a18aab', name: 'stringExpression', type: 'string', required: false, value: undefined },
+            { id: '52e54d3e-1fbd-4440-b023-aff935a18aac', name: 'notMappedProcessVariable1', type: 'string', required: false, value: undefined },
+            { id: '52e54d3e-1fbd-4440-b023-aff935a18aad', name: 'notMappedProcessVariable2', type: 'datetime', required: false, value: undefined },
+            { id: '52e54d3e-1fbd-4440-b023-aff935a18aae', name: 'notMappedProcessVariable3', type: 'integer', required: false, value: undefined },
+            { id: '52e54d3e-1fbd-4440-b023-aff935a18aaf', name: 'notMappedProcessVariable4', type: 'date', required: false, value: undefined },
+            { id: '52e54d3e-1fbd-4440-b023-aff935a18aag', name: 'notMappedProcessVariable5', type: 'boolean', required: false, value: undefined }
         ],
         selectedRow: 1,
         selectedProcessVariable: 'booleanVar'
@@ -131,7 +139,9 @@ describe('MappingDialogComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 TranslateModule.forRoot(),
-                MatTableModule
+                MatTableModule,
+                MatSelectModule,
+                NoopAnimationsModule
             ],
             declarations: [MappingDialogComponent, VariableValuePipe],
             providers: [
@@ -146,7 +156,9 @@ describe('MappingDialogComponent', () => {
             schemas: [NO_ERRORS_SCHEMA]
         });
         fixture = TestBed.createComponent(MappingDialogComponent);
+        component = fixture.componentInstance;
         element = fixture.debugElement;
+        component.ngOnInit();
         fixture.detectChanges();
     }
 
@@ -220,6 +232,36 @@ describe('MappingDialogComponent', () => {
                 expect(iconContainer.nativeElement.textContent.trim()).toBe('arrow_forward');
                 expect(deleteButtonContainer).toBeDefined();
             }
+        });
+
+        it('should display all the process variable except those  when creating a new entry', async() => {
+            let processVariableSelector = element.query(By.css(`[data-automation-id="process-variable-destination-select"]>div`));
+            processVariableSelector.nativeElement.click();
+            fixture.detectChanges();
+            let processVariablesAvailable = element.queryAll(By.css('.mat-option-text'));
+            expect(processVariablesAvailable.length).toBe(2);
+            expect(processVariablesAvailable[0].nativeElement.textContent.trim()).toBe('booleanVar');
+            expect(processVariablesAvailable[1].nativeElement.textContent.trim()).toBe('notMappedProcessVariable5');
+            const addButton = element.query(By.css(`[data-automation-id="add-variable-button"]`));
+            addButton.nativeElement.click();
+            fixture.detectChanges();
+            processVariableSelector = element.query(By.css(`[data-automation-id="process-variable-destination-select"]`));
+            processVariableSelector.nativeElement.click();
+            fixture.detectChanges();
+            processVariablesAvailable = element.queryAll(By.css('.mat-option-text'));
+            const expectedProcessVariableSelectOptions = [
+                'notMappedProcessVariable1',
+                'notMappedProcessVariable2',
+                'notMappedProcessVariable3',
+                'notMappedProcessVariable4',
+                'notMappedProcessVariable5',
+                'stringExpression',
+                'stringValue'
+            ];
+            expect(processVariablesAvailable.length).toBe(expectedProcessVariableSelectOptions.length);
+            expectedProcessVariableSelectOptions.forEach((value, index) => {
+                expect(processVariablesAvailable[index].nativeElement.textContent.trim()).toBe(value);
+            });
         });
     });
 

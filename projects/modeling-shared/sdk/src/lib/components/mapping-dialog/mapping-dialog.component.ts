@@ -220,7 +220,7 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
                 Object.assign(this, { variableValue: values.variableValue, expressionValue: values.expressionValue, valueValue: values.valueValue });
                 this.initSelectedTab(i);
                 if (this.mappingType === VariableMappingType.output) {
-                    this.service.getFilteredProcessVariables(this.dataSource, this.processProperties, i);
+                    this.filteredProcessVariables = this.service.getFilteredProcessVariables(this.dataSource, this.processProperties, i);
                 }
             }
 
