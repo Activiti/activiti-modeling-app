@@ -252,6 +252,35 @@ describe('ProcessEntitiesReducer', () => {
         });
     });
 
+    it('should update to next version on UPDATE_PROCESS_SUCCESS', () => {
+        const processes = [process, { ...process, id: 'mock-id2' }];
+        action = <GetProcessesSuccessAction>{ type: GET_PROCESSES_SUCCESS, processes: processes };
+
+        const stateWithAddedProcesses = processEntitiesReducer(initialState, action);
+        const changes = {
+            id: process.id,
+            changes: {
+                ...process,
+                name: 'name2',
+                description: 'desc2',
+                version: '0.0.5'
+            }
+        };
+        action = <UpdateProcessSuccessAction>{
+            type: UPDATE_PROCESS_SUCCESS,
+            payload: changes,
+            content: ''
+        };
+
+        const newState = processEntitiesReducer(stateWithAddedProcesses, action);
+        expect(newState.entities[process.id]).toEqual({
+            ...process,
+            name: 'name2',
+            description: 'desc2',
+            version: '0.0.5'
+        });
+    });
+
    describe('GET_PROCESS_SUCCESS', () => {
         let diagram: ProcessContent;
 

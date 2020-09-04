@@ -279,9 +279,15 @@ export class ProcessEditorEffects extends BaseEffects {
             payload.content,
             projectId
         ).pipe(
-            switchMap(() => [
+            switchMap((updateResponse) => [
                 new SetApplicationLoadingStateAction(true),
-                new UpdateProcessSuccessAction({ id: payload.processId, changes: payload.metadata }, payload.content),
+                new UpdateProcessSuccessAction({
+                    id: payload.processId,
+                    changes: {
+                        ...payload.metadata,
+                        version: updateResponse.version
+                    }
+                }, payload.content),
                 new SetAppDirtyStateAction(false),
                 this.logFactory.logInfo(getProcessLogInitiator(), 'PROCESS_EDITOR.PROCESS_SAVED'),
                 new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_SAVED')

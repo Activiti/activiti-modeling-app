@@ -311,6 +311,13 @@ function getProcessesSuccess(state: ProcessEntitiesState, action: GetProcessesSu
 function updateProcess(state: ProcessEntitiesState, action: UpdateProcessSuccessAction): ProcessEntitiesState {
     const newState = {
         ...state,
+        entities: {
+            ...state.entities,
+            [action.payload.id]: {
+                ...state.entities[action.payload.id],
+                version: action.payload.changes.version
+            }
+        },
         entityContents: {
             ...state.entityContents,
             [action.payload.id]: action.content

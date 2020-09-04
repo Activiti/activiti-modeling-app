@@ -198,7 +198,7 @@ describe('ProcessEditorEffects', () => {
         const mockActionPayload = {
             processId: mockProcessModel.id,
             content: 'diagramData',
-            metadata: { name: mockProcessModel.name, description: mockProcessModel.description }
+            metadata: { name: mockProcessModel.name, description: mockProcessModel.description, version: mockProcessModel.version }
         };
 
         const mockValidatePayload: ValidateProcessPayload = {
