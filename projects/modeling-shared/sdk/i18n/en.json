@@ -50,6 +50,7 @@
             "TITLE": "Process Errors",
             "ERRORS": {
                 "EMPTY_NAME": "A name is required",
+                "EMPTY_CODE": "An error code is required",
                 "NAME_ALREADY_EXISTS": "Process error names must be unique"
             },
             "TABLE": {

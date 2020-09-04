@@ -42,9 +42,9 @@ describe('ProcessErrorsDialogComponent', () => {
     };
 
     const processErrors = [
-        { 'id': '123', 'name': 'error1', 'type': 'bpmn:error' },
-        { 'id': '234', 'name': 'error2', 'type': 'bpmn:error' },
-        { 'id': '345', 'name': 'error3', 'type': 'bpmn:error' }
+        { 'id': '123', 'name': 'error1', 'errorCode': 'error1',  'type': 'bpmn:error' },
+        { 'id': '234', 'name': 'error2', 'errorCode': 'error2', 'type': 'bpmn:error' },
+        { 'id': '345', 'name': 'error3', 'errorCode': 'error3', 'type': 'bpmn:error' }
     ];
 
     beforeEach(async(() => {
@@ -130,6 +130,86 @@ describe('ProcessErrorsDialogComponent', () => {
         saveButton = fixture.nativeElement.querySelector('button[data-automation-id="update-button"]');
         expect(saveButton.changedProcessError).toBeFalsy();
         expect(component.processErrors[0].name).toEqual('changedProcessError');
+    });
+
+    it('should update process error when the error code is changed in the form', () => {
+        fixture.detectChanges();
+        let saveButton = fixture.nativeElement.querySelector('button[data-automation-id="update-button"]');
+        expect(saveButton.disabled).toBeTruthy();
+
+        const editRow = fixture.nativeElement.querySelector('.mat-row');
+        editRow.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+
+        const template = fixture.nativeElement.querySelector('.process-error-form');
+        const input = template.querySelector('input');
+        component.selectedProcessError.errorCode = 'changedProcessErrorCode';
+        input.dispatchEvent(new Event('keyup'));
+        fixture.detectChanges();
+
+        saveButton = fixture.nativeElement.querySelector('button[data-automation-id="update-button"]');
+        expect(saveButton.changedProcessError).toBeFalsy();
+        expect(component.processErrors[0].errorCode).toEqual('changedProcessErrorCode');
+    });
+
+    it('should disable save button if name is empty', async() => {
+        fixture.detectChanges();
+        let saveButton = fixture.nativeElement.querySelector('button[data-automation-id="update-button"]');
+        expect(saveButton.disabled).toBeTruthy();
+
+        const editRow = fixture.nativeElement.querySelector('.mat-row');
+        editRow.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+
+        const template = fixture.nativeElement.querySelector('.process-error-form');
+        const input = template.querySelector('input[data-automation-id="process-error-name"]');
+        component.selectedProcessError.name = '';
+        input.dispatchEvent(new Event('keyup'));
+        fixture.detectChanges();
+        await fixture.whenStable();
+        fixture.detectChanges();
+
+        saveButton = fixture.nativeElement.querySelector('button[data-automation-id="update-button"]');
+        expect(saveButton.disabled).toBeTruthy();
+
+        component.selectedProcessError.name = 'changedName';
+        input.dispatchEvent(new Event('keyup'));
+        fixture.detectChanges();
+        await fixture.whenStable();
+        fixture.detectChanges();
+
+        saveButton = fixture.nativeElement.querySelector('button[data-automation-id="update-button"]');
+        expect(saveButton.disabled).toBeFalsy();
+    });
+
+    it('should disable save button if code is empty', async() => {
+        fixture.detectChanges();
+        let saveButton = fixture.nativeElement.querySelector('button[data-automation-id="update-button"]');
+        expect(saveButton.disabled).toBeTruthy();
+
+        const editRow = fixture.nativeElement.querySelector('.mat-row');
+        editRow.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+
+        const template = fixture.nativeElement.querySelector('.process-error-form');
+        const input = template.querySelector('input[data-automation-id="process-error-code"]');
+        component.selectedProcessError.errorCode = '';
+        input.dispatchEvent(new Event('keyup'));
+        fixture.detectChanges();
+        await fixture.whenStable();
+        fixture.detectChanges();
+
+        saveButton = fixture.nativeElement.querySelector('button[data-automation-id="update-button"]');
+        expect(saveButton.disabled).toBeTruthy();
+
+        component.selectedProcessError.errorCode = 'changedCode';
+        input.dispatchEvent(new Event('keyup'));
+        fixture.detectChanges();
+        await fixture.whenStable();
+        fixture.detectChanges();
+
+        saveButton = fixture.nativeElement.querySelector('button[data-automation-id="update-button"]');
+        expect(saveButton.disabled).toBeFalsy();
     });
 
     it('should create new error when add process error button is clicked', () => {

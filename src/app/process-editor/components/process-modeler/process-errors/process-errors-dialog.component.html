@@ -57,16 +57,20 @@
                     <div class="adf-process-errors-form-label">{{'SDK.ERRORS_EDITOR.TABLE.COLUMN_ID' | translate}}</div>
                     <input matInput [(ngModel)]="selectedProcessError.id" data-automation-id="process-error-id" disabled>
                 </mat-form-field>
+
                 <mat-form-field>
                     <div class="adf-property-label">{{'SDK.ERRORS_EDITOR.TABLE.COLUMN_NAME' | translate}}</div>
                     <input matInput [(ngModel)]="selectedProcessError.name" data-automation-id="process-error-name" (keyup)="onProcessErrorChanged()">
                 </mat-form-field>
+                <div class="mat-error error-process-error" *ngIf="!selectedProcessError.name.length">
+                    {{ 'SDK.ERRORS_EDITOR.ERRORS.EMPTY_NAME' | translate }}</div>
+
                 <mat-form-field>
                     <div class="adf-property-label">{{'SDK.ERRORS_EDITOR.TABLE.COLUMN_CODE' | translate}}</div>
                     <input matInput [(ngModel)]="selectedProcessError.errorCode" data-automation-id="process-error-code" (keyup)="onProcessErrorChanged()">
                 </mat-form-field>
-                <div class="mat-error error-process-error" *ngIf="!selectedProcessError.name.length">
-                    {{ 'SDK.ERRORS_EDITOR.ERRORS.EMPTY_NAME' | translate }}</div>
+                <div class="mat-error error-process-error" *ngIf="!selectedProcessError.errorCode.length">
+                    {{ 'SDK.ERRORS_EDITOR.ERRORS.EMPTY_CODE' | translate }}</div>
             </div>
         </ng-container>
 

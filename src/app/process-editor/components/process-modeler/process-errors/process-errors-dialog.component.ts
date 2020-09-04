@@ -80,7 +80,7 @@ export class ProcessErrorsDialogComponent implements OnInit {
     }
 
     onProcessErrorChanged() {
-        this.processErrorsChanged = true;
+        this.processErrorsChanged = this.selectedProcessError.name && this.selectedProcessError.errorCode;
     }
 
     onSave() {
