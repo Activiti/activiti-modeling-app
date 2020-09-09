@@ -45,7 +45,7 @@
     "@alfresco/adf-core": "4.1.0-f17270621b46e9e6546c6e7501c6ecdf4030f2fb",
     "@alfresco/adf-extensions": "4.1.0-f17270621b46e9e6546c6e7501c6ecdf4030f2fb",
     "@alfresco/adf-process-services-cloud": "4.1.0-f17270621b46e9e6546c6e7501c6ecdf4030f2fb",
-    "@alfresco/js-api": "4.1.0-0fd3731c22b182f8f6e14329d3b1e98f405ac576",
+    "@alfresco/js-api": "4.1.0-671ae9c9dc877d98142808e32497253ff548ecff",
     "@angular-custom-builders/lite-serve": "0.0.2",
     "@angular/animations": "10.0.2",
     "@angular/cdk": "^10.0.1",

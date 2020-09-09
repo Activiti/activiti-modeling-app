@@ -56,8 +56,8 @@ describe('DialogEffects', () => {
             ]
         });
 
-        effects = TestBed.get(DialogEffects);
-        dialogService = TestBed.get(DialogService);
+        effects = TestBed.inject(DialogEffects);
+        dialogService = TestBed.inject(DialogService);
     });
 
     it('should open EntityDialogComponent when OpenEntityDialogAction is dispatched and dialog data is not set', () => {

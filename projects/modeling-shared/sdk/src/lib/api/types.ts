@@ -240,6 +240,7 @@ export interface ConnectorConfigParameter {
     name: string;
     description?: string;
     required?: boolean;
+    secure?: boolean;
     value: string;
 }
 
