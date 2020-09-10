@@ -23,7 +23,7 @@
             "CLOSE": "Close",
             "EDIT_PROPERTIES": "Edit Process Variables",
             "EDIT_PROCESS_MESSAGES": "Edit Messages",
-            "EDIT_PROCESS_ERRORS": "Edit Process Errors",
+            "EDIT_PROCESS_ERRORS": "Edit Errors",
             "EDIT_FORM_PROPERTIES": "Edit Form Variables",
             "EDIT_VISIBILITY_CONDITIONS": "Edit Visibility Conditions",
             "ERROR": {
