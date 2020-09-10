@@ -3,7 +3,7 @@
     $primary: map-get($theme, primary);
 
     ama-process-palette .mat-card {
-        width: 130px;
+        width: 90px;
         border: 1px solid mat-color($foreground, text, 0.07);
         border-radius: 0px;
         box-sizing: content-box;
@@ -39,11 +39,6 @@
         .entry-parent {
             display: inline-block;
             padding: 7px;
-
-            .bpmn-icon-business-rule {
-                position: absolute;
-                margin-top: -17px;
-            }
         }
 
         .entry {
