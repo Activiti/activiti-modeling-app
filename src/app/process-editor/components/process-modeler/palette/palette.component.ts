@@ -45,17 +45,17 @@ export class PaletteComponent implements OnInit {
     @ViewChild('drawer', { static: true }) templateContent: TemplateRef<any>;
 
     @HostListener('mousedown', ['$event'])
-    onMouseDown(event) {
+    onMouseDown(event: Event) {
         event.stopPropagation();
     }
 
     constructor(
         private processModelerPaletteService: ProcessModelerPaletteService,
         private sanitizer: DomSanitizer,
-        @Optional() @Inject(PaletteElementsToken) paletteElements: PaletteElement[],
-        @Optional() @Inject(PaletteElementIconsToken) paletteElementIcons
+        @Optional() @Inject(PaletteElementsToken) paletteElements: PaletteElement[][],
+        @Optional() @Inject(PaletteElementIconsToken) paletteElementIcons: any
     ) {
-        this.paletteElements = [].concat(...paletteElements) || [];
+        this.paletteElements = (paletteElements || []).flat(1) || [];
         this.paletteElementIcons = paletteElementIcons || {};
     }
 
@@ -69,12 +69,12 @@ export class PaletteComponent implements OnInit {
         });
     }
 
-    public isSeparator(element: PaletteSeparatorElement) {
+    public isSeparator(element: PaletteSeparatorElement): boolean {
         return element.group === 'separator';
     }
 
-    public hasChildren(element: PaletteGroupElement) {
-        return element.group === 'container' && element.children && element.children.length;
+    public hasChildren(element: PaletteGroupElement): boolean {
+        return element.group === 'container' && element.children && element.children.length > 0;
     }
 
     public toggleOpen() {

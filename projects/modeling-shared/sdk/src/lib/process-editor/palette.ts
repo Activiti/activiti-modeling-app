@@ -59,7 +59,7 @@ export interface PaletteElementHandler {
     handler: TriggerHandler;
 }
 
-export const PaletteElementsToken = new InjectionToken<PaletteElement>('palette-elements');
+export const PaletteElementsToken = new InjectionToken<PaletteElement[][]>('palette-elements');
 export const PaletteElementsHandlersToken = new InjectionToken<PaletteElementHandler[]>('palette-element-handlers');
 export const PaletteElementIconsToken = new InjectionToken('palette-element-icons');
 export function providePaletteHandler(key: string, handler: Type<TriggerHandler>) {
