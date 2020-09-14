@@ -132,9 +132,9 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
             .delete(`/modeling-service/v1/models/${modelId}`);
     }
 
-    public validate(modelId: string, content: S, containerId: string, modelExtensions?: any): Observable<any> {
+    public validate(modelId: string, content: S, containerId: string, modelExtensions?: any, validateUsage?: boolean): Observable<any> {
         const requestOptions: RequestApiHelperOptions = {
-            queryParams: { projectId: containerId },
+            queryParams: { projectId: containerId, validateUsage },
             formParams: { file: new Blob([this.modelVariation.serialize(content)], { type: 'text/plain' }) },
             contentTypes: ['multipart/form-data']
         };

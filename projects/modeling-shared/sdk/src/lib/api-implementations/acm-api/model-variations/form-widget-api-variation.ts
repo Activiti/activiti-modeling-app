@@ -33,25 +33,12 @@ export class FormWidgetApiVariation<M extends Widget, C extends WidgetContent> i
     createInitialMetadata(model: Partial<M>): Partial<M> {
         return {
             ...model,
-            extensions: {
-                name: model.name,
-                description: model.description,
-                type:  model.extensions?.type || model.name,
-                isCustomType: true,
-                valueType: 'string',
-                icon: model.extensions?.icon,
-                className: ''
-            }
+            extensions: this.getInitialContent(model)
         } as Partial<M>;
     }
 
     public createInitialContent(model: M): C {
-        return <C> {
-                name: model.name,
-                description: model.description,
-                type: model.type,
-                isCustomType: true
-        };
+        return <C> this.getInitialContent(model);
     }
 
     public createSummaryPatch(model: Partial<M>, modelContent: C) {
@@ -77,5 +64,17 @@ export class FormWidgetApiVariation<M extends Widget, C extends WidgetContent> i
 
     public getFileToUpload(model: Partial<M>, content: C): Blob {
         return new Blob([this.serialize(content)], { type: this.getModelMimeType(model) });
+    }
+
+    private getInitialContent(model: Partial<M>) {
+        return {
+            name: model.name,
+            description: model.description,
+            type:  model.extensions?.type || model.name,
+            isCustomType: true,
+            valueType: 'string',
+            icon: model.extensions?.icon,
+            className: ''
+        };
     }
 }

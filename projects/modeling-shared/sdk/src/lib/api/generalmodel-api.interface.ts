@@ -25,7 +25,7 @@ export interface ModelApiInterface<ModelMetadata, ModelContent> {
     update(modelId: string, model: Partial<ModelMetadata>, modelContent: ModelContent, containerId?: string, ignoreContent?: boolean): Observable<ModelMetadata>;
     delete(modelId: string): Observable<void>;
 
-    validate(modelId: string, modelContent: ModelContent, containerId: string, modelExtensions?: any): Observable<ModelMetadata>;
+    validate(modelId: string, modelContent: ModelContent, containerId: string, modelExtensions?: any, validateUsage?: boolean): Observable<ModelMetadata>;
 
     import(file: File, containerId?: string): Observable<ModelMetadata>;
     export(modelId: string, responseType?: 'arraybuffer' | 'blob' | 'document' | 'json' | 'text'): Observable<ModelContent>;

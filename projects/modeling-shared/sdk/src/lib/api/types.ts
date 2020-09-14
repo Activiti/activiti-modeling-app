@@ -492,22 +492,7 @@ export interface WidgetContent {
     isCustomType: boolean;
     valueType: string;
     className: string;
-    template?: string;
-    runtime?: string;
     icon?: string;
-    tabs?: WidgetPropertyTab[];
-}
-
-export interface WidgetPropertyTab {
-    name: string;
-    properties: WidgetProperty[];
-}
-
-export interface WidgetProperty {
-    name: string;
-    type: string;
-    value: string;
-    isCustomProperty: boolean;
 }
 
 export interface Widget extends Model {
