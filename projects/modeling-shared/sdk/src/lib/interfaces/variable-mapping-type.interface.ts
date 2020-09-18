@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-export * from './validation-errors.interface';
-export * from './model-filter.interface';
-export * from './model-creator.interface';
-export * from './model-uploader.interface';
-export * from './model-editor-routes';
-export * from './model-importer.interface';
-export * from './variable-mapping-type.interface';
+export enum VariableMappingBehavior {
+    MAP_VARIABLE = 'MAP_VARIABLE',
+    MAP_NO_VARIABLE = 'MAP_NO_VARIABLE',
+    MAP_ALL = 'MAP_ALL',
+    MAP_ALL_INPUTS = 'MAP_ALL_INPUTS',
+    MAP_ALL_OUTPUTS = 'MAP_ALL_OUTPUTS'
+}

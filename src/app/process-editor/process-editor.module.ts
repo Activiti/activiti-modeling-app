@@ -55,7 +55,8 @@ import {
     PROCESS,
     MODEL_SCHEMA_TYPE,
     BpmnCompositeProperty,
-    ProcessNameSelectorModule
+    ProcessNameSelectorModule,
+    VariableMappingTypeModule
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { ProcessDiagramLoaderService } from './services/process-diagram-loader.service';
@@ -141,6 +142,7 @@ import { CardViewProcessErrorsItemComponent } from './services/cardview-properti
         InputMappingTableModule,
         OutputMappingTableModule,
         ProcessNameSelectorModule,
+        VariableMappingTypeModule
     ],
     declarations: [
         ProcessEditorComponent,

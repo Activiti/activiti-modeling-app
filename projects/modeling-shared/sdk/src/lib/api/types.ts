@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+import { VariableMappingBehavior } from '../interfaces/variable-mapping-type.interface';
+
 export type PROJECT_TYPE = 'project';
 export type CUSTOM_MODEL_TYPE = 'model';
 export type PROCESS_TYPE = 'process';
@@ -163,6 +165,7 @@ export interface ServiceParameterMapping {
 export interface ServiceParameterMappings {
     inputs?: ServiceParameterMapping;
     outputs?: ServiceParameterMapping;
+    mappingType?: VariableMappingBehavior;
 }
 
 export interface ServicesParameterMappings {

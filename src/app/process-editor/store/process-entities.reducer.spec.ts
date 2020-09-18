@@ -177,7 +177,9 @@ describe('ProcessEntitiesReducer', () => {
             serviceId: elementId,
             serviceParameterMappings: {}
         });
-        expect(newState.entities[process.id].extensions[processId].mappings).toEqual({});
+        expect(newState.entities[process.id].extensions[processId].mappings).toEqual({
+            [elementId]: {}
+        });
 
         newState = processEntitiesReducer(newState, <UpdateServiceParametersAction>{
             type: UPDATE_SERVICE_PARAMETERS,

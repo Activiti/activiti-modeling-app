@@ -4,33 +4,25 @@
     </adf-card-view-arrayitem>
 
     <div *ngIf="calledElement">
-        <mat-form-field data-automation-id="mapping-type">
-            <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MAPPING_TYPE' | translate }}</div>
-            <mat-select [(ngModel)]="sendNoVariables" (selectionChange)="changeMappingType($event)">
-                <mat-option *ngIf="isStaticCalledElement()" [value]="false">
-                    {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MAP_VARIABLES' | translate }}
-                </mat-option>
-                <mat-option [value]="true">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SEND_ALL_VARIABLES' | translate }}
-                </mat-option>
-                <mat-option [value]="true">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.SEND_NO_VARIABLES' | translate }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+        <modelingsdk-variable-mapping-type
+                [mappingBehavior]="mappingBehavior$ | async"
+                [canShowMapVariableOption]="isStaticCalledElement()"
+                (mappingBehaviorChange)="onChangeMappingBehavior($event)"></modelingsdk-variable-mapping-type>
 
-        <div *ngIf="canMapVariables()">
+        <div *ngIf="isStaticCalledElement() && (canMapVariable$ | async)">
             <div *ngIf="processVariables.length; else noProcessVariables">
                 <div *ngIf="subProcessVariables.length; else noSubProcessVariables">
                     <h5 data-automation-id="input-mapping-header">
                         {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INPUT_MAPPING' | translate }}:</h5>
                     <modelingsdk-input-mapping-table [parameters]="subProcessVariables"
-                        [processProperties]="processVariables" [mapping]="mapping.inputs || {}"
+                        [processProperties]="processVariables" [mapping]="(mappings$ | async).inputs || {}"
                         (update)="changeMapping($event, 'inputs')">
                     </modelingsdk-input-mapping-table>
 
                     <h5 data-automation-id="output-mapping-header">
                         {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.OUTPUT_MAPPING' | translate }}:</h5>
                     <modelingsdk-output-mapping-table [parameters]="subProcessVariables"
-                        [processProperties]="processVariables" [mapping]="mapping.outputs || {}"
+                        [processProperties]="processVariables" [mapping]="(mappings$ | async).outputs || {}"
                         (update)="changeMapping($event, 'outputs')">
                     </modelingsdk-output-mapping-table>
                 </div>

@@ -67,11 +67,7 @@ export class ProcessExtensionsModel {
 
     setMappings(processId: string, elementId: string, mappings: ServiceParameterMappings): ModelExtensions {
         const processExtensions = this.extensions[processId] ? this.extensions[processId] : createExtensionsObject();
-        if (Object.values(mappings).length) {
-            processExtensions.mappings[elementId] = mappings;
-        } else {
-            delete processExtensions.mappings[elementId];
-        }
+        processExtensions.mappings[elementId] = mappings;
         this.extensions[processId] = processExtensions;
         return this.extensions;
     }

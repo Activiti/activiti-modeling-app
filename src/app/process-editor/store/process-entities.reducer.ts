@@ -230,16 +230,21 @@ function removeEmptyElementMapping(elementMappings, key) {
 }
 
 function removeEmptyMapping(mappings, elementId) {
-    if (!Object.keys(mappings[elementId]).length) {
+    if (!Object.keys(mappings[elementId]).length && !mappings[elementId].mappingType) {
         delete mappings[elementId];
     }
 }
 
+function isInputAndOutputsEmpty(mappings) {
+    return !!mappings.inputs && !!mappings.outputs
+        && !Object.keys(mappings.inputs).length && !Object.keys(mappings.outputs).length;
+}
+
 function updateProcessVariablesMapping(state: ProcessEntitiesState, action: UpdateServiceParametersAction): ProcessEntitiesState {
+    const actionMappings = cloneDeep(action.serviceParameterMappings);
     const oldExtensions = cloneDeep(state.entities[action.modelId].extensions);
     const processExtensionsModel = new ProcessExtensionsModel(oldExtensions);
     let newExtensions = processExtensionsModel.setMappings(action.processId, action.serviceId, action.serviceParameterMappings);
-
     const newProcessExtensions = newExtensions[action.processId];
 
     if (newProcessExtensions.mappings[action.serviceId]) {
@@ -247,7 +252,10 @@ function updateProcessVariablesMapping(state: ProcessEntitiesState, action: Upda
             removeEmptyElementMapping(newProcessExtensions.mappings[action.serviceId], 'inputs');
             removeEmptyElementMapping(newProcessExtensions.mappings[action.serviceId], 'outputs');
         }
-        removeEmptyMapping(newProcessExtensions.mappings, action.serviceId);
+    }
+
+    if (isInputAndOutputsEmpty(actionMappings)) {
+        delete newProcessExtensions.mappings[action.serviceId];
     }
 
     if (action.constants) {

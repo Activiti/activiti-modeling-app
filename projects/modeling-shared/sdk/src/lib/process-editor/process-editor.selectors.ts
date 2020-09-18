@@ -66,7 +66,7 @@ export const selectProcessMappingsFor = (processId: string, elementId: string) =
             if (process && process.extensions) {
                 mapping = new ProcessExtensionsModel(process.extensions).getMappings(processId);
             }
-            return mapping && mapping[elementId] ? mapping[elementId] : {};
+            return mapping && mapping[elementId] ? mapping[elementId] : null;
         }
     );
 };

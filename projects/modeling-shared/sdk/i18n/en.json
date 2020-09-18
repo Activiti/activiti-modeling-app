@@ -32,6 +32,12 @@
             "NO_PROCESS_PROPERTIES": "No process properties",
             "NO_PAYLOAD": "Message has no payload. Add a payload in the message throw event.",
             "CLEAR_ASSIGNMENT": "Clear assignment",
+            "MAPPING_TYPE": "Mapping type",
+            "MAP_VARIABLES": "Map variables",
+            "MAP_NO_VARIABLE": "Don't map variables",
+            "MAP_ALL": "Map all inputs/outputs variables",
+            "MAP_ALL_INPUTS": "Map all inputs variables",
+            "MAP_ALL_OUTPUTS": "Map all outputs variables",
             "NONE": "None"
         },
         "MESSAGES_EDITOR": {

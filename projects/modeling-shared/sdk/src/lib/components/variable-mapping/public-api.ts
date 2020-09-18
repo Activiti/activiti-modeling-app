@@ -15,10 +15,5 @@
  * limitations under the License.
  */
 
-export * from './validation-errors.interface';
-export * from './model-filter.interface';
-export * from './model-creator.interface';
-export * from './model-uploader.interface';
-export * from './model-editor-routes';
-export * from './model-importer.interface';
-export * from './variable-mapping-type.interface';
+export * from './variable-mapping.component';
+export * from './variable-mapping.module';

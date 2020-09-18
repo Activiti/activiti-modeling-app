@@ -19,8 +19,8 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, CardViewArrayItemModel } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { CalledElementItemModel } from './called-element-item.model';
-import { Subject } from 'rxjs';
-import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
+import { Subject, Observable } from 'rxjs';
+import { takeUntil, distinctUntilChanged, tap, map } from 'rxjs/operators';
 import { selectProcessesArray } from './../../../store/process-editor.selectors';
 import {
     AmaState,
@@ -32,13 +32,15 @@ import {
     ServiceParameterMapping,
     ProcessExtensionsModel,
     EntityProperty,
-    OpenDialogAction
+    OpenDialogAction,
+    ServiceParameterMappings,
+    VariableMappingBehavior,
+    VariableMappingTypeService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { UpdateCalledElementAction, UPDATE_CALLED_ELEMENT } from '../../../store/called-element.actions';
 import { CalledElementDialogComponent, CalledElementModel } from './called-element-dialog/called-element-dialog.component';
 import { ofType, Actions } from '@ngrx/effects';
 import { CalledElementService, CalledElementTypes } from './called-element.service';
-import { MatSelectChange } from '@angular/material/select';
 
 @Component({
     selector: 'ama-process-called-element',
@@ -58,7 +60,10 @@ export class CalledElementComponent implements OnInit, OnDestroy {
     sendNoVariables: boolean;
     processVariables: EntityProperty[] = [];
     subProcessVariables: EntityProperty[] = [];
-    mapping = {};
+    mappings$: Observable<ServiceParameterMappings>;
+    mappingBehavior$: Observable<VariableMappingBehavior>;
+    canMapVariable$: Observable<boolean>;
+    parameterMappings: ServiceParameterMappings = {};
     loading = false;
 
     constructor(
@@ -89,18 +94,17 @@ export class CalledElementComponent implements OnInit, OnDestroy {
                 this.cardViewUpdateService.update(this.property, this.calledElement);
                 this.loadCallActivity();
                 this.loading = false;
+                this.parameterMappings = {};
+                this.updateMapping();
             });
     }
 
     initMapping() {
-        this.store.select(selectProcessMappingsFor(this.property.data.processId, this.property.data.id))
-            .pipe(takeUntil(this.onDestroy$))
-            .subscribe((mapping) => {
-                this.mapping = mapping;
-                this.sendNoVariables = !!mapping.inputs && !!mapping.outputs
-                    && !Object.values(mapping.inputs).length
-                    && !Object.values(mapping.outputs).length;
-            });
+        this.mappings$ = this.store.select(selectProcessMappingsFor(this.property.data.processId, this.property.data.id));
+        this.mappingBehavior$ = this.mappings$.pipe(
+            tap(mappings => this.parameterMappings = mappings),
+            map(mappings => VariableMappingTypeService.getDefaultMappingBehavior(mappings)));
+        this.canMapVariable$ = this.mappingBehavior$.pipe(map(mapBehavior => mapBehavior === VariableMappingBehavior.MAP_VARIABLE));
     }
 
     initCallActivity() {
@@ -137,9 +141,8 @@ export class CalledElementComponent implements OnInit, OnDestroy {
         }));
     }
 
-    changeMappingType(event: MatSelectChange): void {
-        this.sendNoVariables = event.value;
-        this.mapping = this.sendNoVariables ? { inputs: {}, outputs: {} } : {};
+    onChangeMappingBehavior(mappingBehavior: VariableMappingBehavior): void {
+        this.parameterMappings = VariableMappingTypeService.getMappingValue(mappingBehavior);
         this.updateMapping();
     }
 
@@ -157,11 +160,13 @@ export class CalledElementComponent implements OnInit, OnDestroy {
     }
 
     loadCalledElementVariables() {
-        this.subProcessVariables = Object.values(new ProcessExtensionsModel(this.selectedExternalProcess.extensions).getProperties(this.calledElement));
+        if (this.selectedExternalProcess) {
+            this.subProcessVariables = Object.values(new ProcessExtensionsModel(this.selectedExternalProcess.extensions).getProperties(this.calledElement));
+        }
     }
 
     changeMapping(mapping: ServiceParameterMapping, type: string): void {
-        this.mapping = { ...this.mapping, [type]: mapping };
+        this.parameterMappings = { ...this.parameterMappings, [type]: mapping };
         this.updateMapping();
     }
 
@@ -171,12 +176,8 @@ export class CalledElementComponent implements OnInit, OnDestroy {
                 this.selectedProcess.id,
                 this.property.data.processId,
                 this.property.data.id,
-                this.mapping
+                this.parameterMappings
             ));
-    }
-
-    canMapVariables(): boolean {
-        return this.isStaticCalledElement() && !this.sendNoVariables;
     }
 
     isStaticCalledElement(): boolean {
