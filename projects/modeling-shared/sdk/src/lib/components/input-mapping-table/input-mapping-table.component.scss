@@ -69,4 +69,16 @@
             }
         }
     }
+
+    .help-icon {
+        line-height: 10px;
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+        position: relative;
+        top: 4px;
+        padding-left: 4px;
+        opacity: 0.8;
+        cursor: pointer;
+    }
 }

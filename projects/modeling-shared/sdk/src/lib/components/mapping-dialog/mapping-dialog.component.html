@@ -30,13 +30,19 @@
                                 *ngIf="mappingType === 'output'">{{ 'SDK.MAPPING_DIALOG.OUTPUT_PARAMETER' | translate }}/{{ 'SDK.MAPPING_DIALOG.VALUE_MAPPING' | translate }}</span>
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element; index as i"
-                            matTooltip="{{ element.description}} ({{'SDK.MAPPING_DIALOG.TYPE' | translate}}: {{element.type}})"
-                            matTooltipPosition="before" matTooltipShowDelay="1000"
                             [attr.data-automation-id]="'variable-name-cell-' + i"
                             class="ellipsis-cell {{element.readOnly ? 'mat-select-placeholder input-disabled' : ''}}"
                             [ngClass]="(mappingType === 'output' && element.mappingValueType !== 'variable') ? 'non-variable-mapping': 'variable-mapping'">
-                            {{element.label || element.name  | variablevalue}}<span *ngIf="element.required && mappingType === 'input'"
-                                class="required-indicator">&nbsp;*</span></mat-cell>
+                            <span>
+                                <span>
+                                    {{element.label || element.name  | variablevalue}}<span *ngIf="element.required && mappingType === 'input'" class="required-indicator">&nbsp;*</span>
+                                </span>
+                                <mat-icon
+                                    matTooltip="{{ element.description}} ({{'SDK.MAPPING_DIALOG.TYPE' | translate}}: {{element.type}})"
+                                    matTooltipPosition="below" class="help-icon">help
+                                </mat-icon>
+                            </span>
+                        </mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="icon">
@@ -146,7 +152,8 @@
                             <ng-container *ngIf="selectedTab===1 && tabCheck === selectedTab">
                                 <modelingsdk-value-type-input #valueInput data-automation-id="value-mapping-input"
                                     (onChange)="valueMappingValueChange($event,selectedRow)" [(ngModel)]="valueValue"
-                                    [index]="selectedRow+1" [type]="dataSource[selectedRow].type" [required]="dataSource[selectedRow].required"
+                                    [index]="selectedRow+1" [type]="dataSource[selectedRow].type"
+                                    [required]="dataSource[selectedRow].required"
                                     [extendedProperties]="extendedProperties">
                                 </modelingsdk-value-type-input>
                             </ng-container>

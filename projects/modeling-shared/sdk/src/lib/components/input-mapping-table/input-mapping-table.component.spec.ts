@@ -258,4 +258,12 @@ describe('InputMappingTableComponent', () => {
         const processSelector = fixture.debugElement.query(By.css('.selector-process-input-mapping'));
         expect(processSelector).not.toBeNull();
     });
+
+    it('should display an icon help for each parameter', () => {
+        component.ngOnChanges();
+        fixture.detectChanges();
+        const icon = fixture.debugElement.query(By.css('.help-icon'));
+        expect(icon).toBeDefined();
+        expect(icon.nativeElement).toBeDefined();
+    });
 });

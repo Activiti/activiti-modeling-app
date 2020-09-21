@@ -61,6 +61,8 @@ describe('MappingDialogComponent', () => {
     expressionsEditorService.initExpressionEditor = () => { };
     expressionsEditorService.removeEditorLanguageSettings = () => { };
 
+    const helpIconText = 'help';
+
     const mockDialogDataInputMapping: MappingDialogData = {
         theme$: of(''),
         mappingType: VariableMappingType.input,
@@ -181,8 +183,11 @@ describe('MappingDialogComponent', () => {
                 const iconContainer = element.query(By.css(`[data-automation-id=variable-icon-cell-${index}] mat-icon`));
                 const variableValueContainer = element.query(By.css(`[data-automation-id=variable-value-cell-${index}] span`));
                 const deleteButtonContainer = element.query(By.css(`[data-automation-id=delete-row-button-${index}]`));
+                const iconHelp = fixture.debugElement.query(By.css('.help-icon'));
 
-                expect(parameterContainer.nativeElement.textContent.trim()).toBe(parameter.label && parameter.label !== '' ? parameter.label : parameter.name);
+                expect(parameterContainer.nativeElement.textContent.replace(helpIconText, '').trim())
+                    .toBe(parameter.label && parameter.label !== '' ? parameter.label : parameter.name);
+
                 expect(variableValueContainer.nativeElement.textContent.trim()).toBe(mapping.value);
                 if (mapping.type === MappingType.variable) {
                     expect(variableValueContainer.nativeElement.className).toBe('variable-mapping');
@@ -190,6 +195,7 @@ describe('MappingDialogComponent', () => {
                     expect(variableValueContainer.nativeElement.className).toBe('non-variable-mapping');
                 }
 
+                expect(iconHelp.nativeElement).toBeDefined();
                 expect(iconContainer.nativeElement.textContent.trim()).toBe('arrow_backward');
                 expect(deleteButtonContainer).toBeNull();
             }
@@ -215,6 +221,7 @@ describe('MappingDialogComponent', () => {
                 const iconContainer = element.query(By.css(`[data-automation-id=variable-icon-cell-${index}] mat-icon`));
                 const variableValueContainer = element.query(By.css(`[data-automation-id=variable-value-cell-${index}] span`));
                 const deleteButtonContainer = element.query(By.css(`[data-automation-id=delete-row-button-${index}]`));
+                const iconHelp = fixture.debugElement.query(By.css('.help-icon'));
 
                 let parameter = '';
                 if (mapping.type === MappingType.variable) {
@@ -226,7 +233,8 @@ describe('MappingDialogComponent', () => {
                     expect(parameterContainer.classes['non-variable-mapping']).toBe(true);
                 }
 
-                expect(parameterContainer.nativeElement.textContent.trim()).toBe(parameter);
+                expect(iconHelp.nativeElement).toBeDefined();
+                expect(parameterContainer.nativeElement.textContent.replace(helpIconText, '').trim()).toBe(parameter);
                 expect(variableValueContainer.nativeElement.textContent.trim()).toBe(mappingKey);
                 expect(variableValueContainer.nativeElement.className).toBe('variable-mapping');
                 expect(iconContainer.nativeElement.textContent.trim()).toBe('arrow_forward');

@@ -2,12 +2,14 @@
     <ng-container matColumnDef="name">
         <mat-header-cell data-automation-id="table-header-cell-name" *matHeaderCellDef [ngClass]="'input-mapping'">
             {{ parameterColumnHeader | translate }}</mat-header-cell>
-        <mat-cell *matCellDef="let parameter"
-            matTooltip="{{ parameter.description + ' (type: ' + parameter.type + ')' }}" matTooltipPosition="before"
-            matTooltipShowDelay="1000" [attr.data-automation-id]="'param-id-' + parameter.id">
-            <span class="{{parameter.readOnly ? 'mat-select-placeholder' : ''}}">
-                {{ parameter.label || parameter.name }}
-                <span class="required-parameter" *ngIf="parameter.required">*</span>
+        <mat-cell *matCellDef="let parameter" [attr.data-automation-id]="'param-id-' + parameter.id">
+            <span>
+                <span class="{{parameter.readOnly ? 'mat-select-placeholder' : ''}}">
+                    {{ parameter.label || parameter.name }}
+                    <span class="required-parameter" *ngIf="parameter.required">*</span>
+                </span>
+                <mat-icon matTooltip="{{ parameter.description + ' (type: ' + parameter.type + ')' }}"
+                    matTooltipPosition="below" class="help-icon">help</mat-icon>
             </span>
         </mat-cell>
     </ng-container>
@@ -55,9 +57,9 @@
                 </div>
                 <ng-template #elseBlock>
                     <modelingsdk-value-type-input [disabled]="parameter.readOnly" [type]="'process'"
-                        [extendedProperties]="{plain:true}" [value]="values[parameter.name]" [required]="parameter.required"
-                        [attr.data-automation-id]="'process-selector-' + parameter.id" [ngClass]="'selector-process-input-mapping'"
-                        (onChange)="setParamWithValue($event, parameter)">
+                        [extendedProperties]="{plain:true}" [value]="values[parameter.name]"
+                        [required]="parameter.required" [attr.data-automation-id]="'process-selector-' + parameter.id"
+                        [ngClass]="'selector-process-input-mapping'" (onChange)="setParamWithValue($event, parameter)">
                     </modelingsdk-value-type-input>
                 </ng-template>
             </ng-container>

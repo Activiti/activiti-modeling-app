@@ -172,10 +172,10 @@ describe('OutputMappingTableComponent', () => {
 
     it('should filter the form variables labeled as variables. in the name', () => {
         const select = fixture.debugElement.queryAll(By.css('mat-table .mat-row'));
-        const spanLabel = fixture.debugElement.query(By.css('mat-table .mat-row .mat-column-name > span'));
+        const spanLabel = fixture.debugElement.query(By.css('mat-table .mat-row .mat-column-name > span > span'));
         expect(select).not.toBeNull();
         expect(select.length).toBe(1);
-        expect(spanLabel.nativeElement.textContent).toBe('name');
+        expect(spanLabel.nativeElement.textContent.trim()).toBe('name');
     });
 
     it('should display a message if no process property', () => {
@@ -241,5 +241,13 @@ describe('OutputMappingTableComponent', () => {
             }
         };
         expect(component.data).toEqual(updatedMapping);
+    });
+
+    it('should display an icon help for each parameter', () => {
+        component.ngOnChanges();
+        fixture.detectChanges();
+        const icon = fixture.debugElement.query(By.css('.help-icon'));
+        expect(icon).toBeDefined();
+        expect(icon.nativeElement).toBeDefined();
     });
 });
