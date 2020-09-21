@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { LogService, CardViewItem, AppConfigService } from '@alfresco/adf-core';
+import { CardViewItem, AppConfigService } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { elementsProperties } from '../bpmn/elements-properties';
 import { BpmnProperty, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
@@ -32,7 +32,6 @@ export interface FactoryProps {
 @Injectable()
 export class CardViewPropertiesFactory {
     constructor(
-        private logService: LogService,
         private appConfigService: AppConfigService,
         private store: Store<AmaState>
     ) {}
@@ -42,7 +41,6 @@ export class CardViewPropertiesFactory {
         const bpmnPropertiesForElement = elementsProperties[type];
 
         if (!bpmnPropertiesForElement) {
-            this.logService.debug(element);
             return [];
         }
 

@@ -75,7 +75,7 @@ import {
 import { ConnectorEditorService } from '../services/connector-editor.service';
 import { of, zip, forkJoin, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { LogService, StorageService } from '@alfresco/adf-core';
+import { StorageService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { selectConnectorsLoaded, selectSelectedConnectorContent, selectSelectedConnector } from './connector-editor.selectors';
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
@@ -88,10 +88,9 @@ export class ConnectorEditorEffects extends BaseEffects {
         private connectorEditorService: ConnectorEditorService,
         private storageService: StorageService,
         private logFactory: LogFactoryService,
-        logService: LogService,
         router: Router
     ) {
-        super(router, logService);
+        super(router);
     }
 
     @Effect()

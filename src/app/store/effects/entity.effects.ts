@@ -32,7 +32,6 @@ import {
     AmaState,
     selectModelsLoaded
 } from '@alfresco-dbp/modeling-shared/sdk';
-import { LogService } from '@alfresco/adf-core';
 import { ModelStorageService } from '../../common/services/model-storage.service';
 import { Store } from '@ngrx/store';
 
@@ -42,10 +41,9 @@ export class EntityEffects extends BaseEffects {
         private actions$: Actions,
         private modelStorageService: ModelStorageService,
         private store: Store<AmaState>,
-        logService: LogService,
         router: Router
     ) {
-        super(router, logService);
+        super(router);
     }
 
     @Effect()

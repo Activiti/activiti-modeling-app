@@ -17,20 +17,15 @@
 
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LogService } from '@alfresco/adf-core';
 
 @Component({
     templateUrl: './app-login.component.html'
 })
 export class AppLoginComponent {
-    constructor(private router: Router, private logService: LogService) {
+    constructor(private router: Router) {
     }
 
     onLogin() {
         this.router.navigate(['/home']);
-    }
-
-    onError(err: any) {
-        this.logService.error(err);
     }
 }

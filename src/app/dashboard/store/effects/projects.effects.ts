@@ -17,7 +17,6 @@
 
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { LogService } from '@alfresco/adf-core';
 import { Observable, of } from 'rxjs';
 import { DashboardService } from '../../services/dashboard.service';
 import { tap, switchMap, catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
@@ -65,10 +64,9 @@ export class ProjectsEffects extends BaseEffects {
         private actions$: Actions,
         private dashboardService: DashboardService,
         private store: Store<AmaState>,
-        logService: LogService,
         router: Router,
     ) {
-        super(router, logService);
+        super(router);
     }
 
     @Effect()

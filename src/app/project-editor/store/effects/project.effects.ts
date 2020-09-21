@@ -19,7 +19,6 @@ import { Injectable } from '@angular/core';
 import { map, switchMap, catchError, filter, mergeMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { LogService } from '@alfresco/adf-core';
 import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, LogFactoryService, LogAction,
     LeaveProjectAction,
     SnackbarInfoAction,
@@ -46,13 +45,12 @@ export class ProjectEffects extends BaseEffects {
     constructor(
         private actions$: Actions,
         private projectEditorService: ProjectEditorService,
-        protected logService: LogService,
         protected router: Router,
         protected downloadService: DownloadResourceService,
         private logFactory: LogFactoryService,
         protected blobService: BlobService
     ) {
-        super(router, logService);
+        super(router);
     }
 
     @Effect()

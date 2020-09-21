@@ -24,7 +24,6 @@ import {
     AmaState,
     SetAppDirtyStateAction
 } from '@alfresco-dbp/modeling-shared/sdk';
-import { LogService } from '@alfresco/adf-core';
 import { Router } from '@angular/router';
 import { Effect, ofType, Actions } from '@ngrx/effects';
 import { OpenTaskAssignmentDialogAction, OPEN_TASK_ASSIGNMENT_DIALOG, UpdateTaskAssignmentAction, UPDATE_TASK_ASSIGNMENT_VARIABLES } from './process-task-assignment.actions';
@@ -39,7 +38,6 @@ import { TaskAssignmentService } from '../services/cardview-properties/task-assi
 export class ProcessTaskAssignmentEffects extends BaseEffects {
 
     constructor(
-        protected logService: LogService,
         protected router: Router,
         private actions$: Actions,
         private dialogService: DialogService,
@@ -47,7 +45,7 @@ export class ProcessTaskAssignmentEffects extends BaseEffects {
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
         private store: Store<AmaState>
     ) {
-        super(router, logService);
+        super(router);
     }
 
     @Effect({ dispatch: false })

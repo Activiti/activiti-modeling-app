@@ -20,7 +20,6 @@ import { Inject, Injectable } from '@angular/core';
 import { catchError, filter, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { forkJoin, Observable, of, zip } from 'rxjs';
 import { Router } from '@angular/router';
-import { LogService } from '@alfresco/adf-core';
 
 import {
     CHANGED_PROCESS_DIAGRAM,
@@ -102,10 +101,9 @@ export class ProcessEditorEffects extends BaseEffects {
         private processEditorService: ProcessEditorService,
         private logFactory: LogFactoryService,
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
-        logService: LogService,
         router: Router
     ) {
-        super(router, logService);
+        super(router);
     }
 
     @Effect()

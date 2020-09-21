@@ -16,7 +16,7 @@
  */
 
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { CardItemTypeService, LogService } from '@alfresco/adf-core';
+import { CardItemTypeService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -42,7 +42,7 @@ export class CardViewDecisionTaskItemComponent implements OnInit, OnDestroy {
     decisionTable: string;
     onDestroy$: Subject<void> = new Subject();
 
-    constructor(private store: Store<AmaState>, private logService: LogService) {}
+    constructor(private store: Store<AmaState>) {}
 
     ngOnInit() {
         this.store
@@ -63,28 +63,24 @@ export class CardViewDecisionTaskItemComponent implements OnInit, OnDestroy {
     }
 
     changeDecisionTable(): void {
-        try {
-            const inputs: ServiceParameterMapping = {
-                [DECISION_TABLE_INPUT_PARAM_NAME]: {
-                    type: MappingType.static,
-                    value: this.decisionTable
-                }
-            };
+        const inputs: ServiceParameterMapping = {
+            [DECISION_TABLE_INPUT_PARAM_NAME]: {
+                type: MappingType.static,
+                value: this.decisionTable
+            }
+        };
 
-            this.store
-                .select(selectOpenedModel)
-                .pipe(takeUntil(this.onDestroy$))
-                .subscribe(openedModel => {
-                    this.store.dispatch(
-                        new UpdateServiceParametersAction(openedModel.id, this.property.data.processId, this.elementId, { inputs })
-                    );
-                });
-        } catch (error) {
-            this.logService.error(error);
-        }
+        this.store
+            .select(selectOpenedModel)
+            .pipe(takeUntil(this.onDestroy$))
+            .subscribe(openedModel => {
+                this.store.dispatch(
+                    new UpdateServiceParametersAction(openedModel.id, this.property.data.processId, this.elementId, { inputs })
+                );
+            });
     }
 
-    private get elementId() {
+    private get elementId(): string {
         return this.property.data.id;
     }
 }

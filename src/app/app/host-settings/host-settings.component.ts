@@ -16,7 +16,6 @@
  */
 
 import { Component } from '@angular/core';
-import { LogService } from '@alfresco/adf-core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -25,11 +24,7 @@ import { Router } from '@angular/router';
 })
 export class HostSettingsComponent {
 
-    constructor(private router: Router, public logService: LogService) {}
-
-    onError(error: string) {
-        this.logService.log(error);
-    }
+    constructor(private router: Router) {}
 
     onCancel() {
         this.router.navigate(['/login']);

@@ -18,7 +18,6 @@
 import { ofType, Actions, Effect } from '@ngrx/effects';
 import { switchMap, tap, take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { LogService } from '@alfresco/adf-core';
 import { Router } from '@angular/router';
 import {
     AmaState,
@@ -37,11 +36,10 @@ export class ProcessErrorsEffects extends BaseEffects {
 
     constructor(
         private actions$: Actions,
-        protected logService: LogService,
         protected router: Router,
         private dialogService: DialogService,
         private store: Store<AmaState>) {
-        super(router, logService);
+        super(router);
     }
 
     @Effect({ dispatch: false })

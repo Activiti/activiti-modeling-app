@@ -16,7 +16,7 @@
  */
 
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { CardItemTypeService, CardViewUpdateService, LogService } from '@alfresco/adf-core';
+import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -37,8 +37,7 @@ export class CardViewImplementationItemComponent implements OnInit, OnDestroy {
 
     constructor(
         private cardViewUpdateService: CardViewUpdateService,
-        private store: Store<AmaState>,
-        private logService: LogService
+        private store: Store<AmaState>
     ) { }
 
     ngOnInit() {
@@ -61,29 +60,27 @@ export class CardViewImplementationItemComponent implements OnInit, OnDestroy {
     }
 
     changeVariablesMapping(): void {
+        let inputs: any;
+        let outputs: any;
+
         try {
-            let inputs, outputs;
-
-            try {
-                inputs = JSON.parse(this.inputs);
-            } catch {
-                inputs = {};
-            }
-
-            try {
-                outputs = JSON.parse(this.outputs);
-            } catch {
-                outputs = {};
-            }
-
-            this.store.select(selectOpenedModel).pipe(takeUntil(this.onDestroy$)).subscribe(openedModel => {
-                this.store.dispatch(
-                    new UpdateServiceParametersAction(openedModel.id, this.property.data.processId, this.elementId, { inputs, outputs })
-                );
-            });
-        } catch (error) {
-            this.logService.error(error);
+            inputs = JSON.parse(this.inputs);
+        } catch {
+            inputs = {};
         }
+
+        try {
+            outputs = JSON.parse(this.outputs);
+        } catch {
+            outputs = {};
+        }
+
+        this.store.select(selectOpenedModel).pipe(takeUntil(this.onDestroy$)).subscribe(openedModel => {
+            this.store.dispatch(
+                new UpdateServiceParametersAction(openedModel.id, this.property.data.processId, this.elementId, { inputs, outputs })
+            );
+        });
+
     }
 
     private get elementId() {
