@@ -38,7 +38,7 @@ export class FormWidgetApiVariation<M extends Widget, C extends WidgetContent> i
     }
 
     public createInitialContent(model: M): C {
-        return <C> this.getInitialContent(model);
+        return <C> { id: model.id, ...this.getInitialContent(model) };
     }
 
     public createSummaryPatch(model: Partial<M>, modelContent: C) {
