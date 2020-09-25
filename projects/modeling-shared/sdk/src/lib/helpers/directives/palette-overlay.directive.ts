@@ -16,7 +16,7 @@
  */
 
 import { Directive, ElementRef, TemplateRef, AfterViewInit, Input, HostListener, ViewContainerRef, OnDestroy } from '@angular/core';
-import { OverlayRef, PositionStrategy, Overlay } from '@angular/cdk/overlay';
+import { OverlayRef, PositionStrategy, Overlay, ConnectionPositionPair } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 // tslint:disable:directive-selector
 
@@ -40,21 +40,19 @@ import { TemplatePortal } from '@angular/cdk/portal';
 
      ngAfterViewInit() {
         this.amaPaletteOverlayRef = this.overlay.create({
-          positionStrategy: this.getOverlayPosition(),
-          panelClass: 'palette-drawer-container'
+            positionStrategy: this.getOverlayPosition(),
+            scrollStrategy: this.overlay.scrollStrategies.reposition()
         });
     }
 
-    getOverlayPosition(): PositionStrategy {
-        this.overlayPosition = this.overlay.position()
-          .connectedTo(
-            this.submenuBtnRef,
-            {originX: 'start', originY: 'bottom'},
-            {overlayX: 'start', overlayY: 'bottom'}
-          );
+     getOverlayPosition(): PositionStrategy {
+         this.overlayPosition = this.overlay
+             .position()
+             .flexibleConnectedTo(this.submenuBtnRef)
+             .withPositions([new ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'bottom' })]);
 
-        return this.overlayPosition;
-    }
+         return this.overlayPosition;
+     }
 
     @HostListener('window:click', ['$event']) onWindowClick($event: Event) {
         if ($event.target === this.submenuBtnRef.nativeElement) {

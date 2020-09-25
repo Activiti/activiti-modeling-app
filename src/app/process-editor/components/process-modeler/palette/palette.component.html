@@ -20,9 +20,9 @@
                 [title]="item.title | translate"
                 [attr.data-automation-id]="item.group + '::' + item.type"
                 ama-palette-overlay
-                [templatePortalContent]="templateContent"
+                [templatePortalContent]="drawer"
                 [amaPaletteItem]="item"
-                [amaPaletteOverlayRef]="overlayRef">
+                amaPaletteOverlayRef>
             </button>
         </div>
     </div>

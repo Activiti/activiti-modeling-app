@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Inject, Optional, HostListener, ViewChild, TemplateRef, OnInit } from '@angular/core';
+import { Component, Inject, Optional, HostListener, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
 import {
@@ -27,7 +27,6 @@ import {
     PaletteSeparatorElement,
     PaletteElementIconsToken
 } from '@alfresco-dbp/modeling-shared/sdk';
-import { OverlayRef } from '@angular/cdk/overlay';
 
 @Component({
     templateUrl: './palette.component.html',
@@ -41,8 +40,6 @@ export class PaletteComponent implements OnInit {
     public paletteIconSvg = {};
     public opened = true;
     public detach = false;
-    overlayRef: OverlayRef;
-    @ViewChild('drawer', { static: true }) templateContent: TemplateRef<any>;
 
     @HostListener('mousedown', ['$event'])
     onMouseDown(event: Event) {
