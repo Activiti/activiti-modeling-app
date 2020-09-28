@@ -26,7 +26,8 @@ import {
     SNACKBAR_WARNING
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { NotificationService } from '@alfresco/adf-core';
-import { map } from 'rxjs/operators';
+import { of, zip } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 
 @Injectable()
 export class SnackbarEffects {
@@ -34,11 +35,12 @@ export class SnackbarEffects {
     constructor(private actions$: Actions, private notificationService: NotificationService) {
     }
 
-    @Effect({ dispatch: false }) infoEffect = this.actions$.pipe(
+    @Effect({ dispatch: true }) infoEffect = this.actions$.pipe(
         ofType<SnackbarInfoAction>(SNACKBAR_INFO),
-        map(({ message, params }) => {
-            this.notificationService.showInfo(message, null, params);
-        })
+        mergeMap(({ message, params, action }) => {
+           return zip(of(action), this.notificationService.showInfo(message, action?.name, params).onAction());
+        }),
+        mergeMap(([action]) => of(...action.actions))
     );
 
     @Effect({ dispatch: false }) warningEffect = this.actions$.pipe(
