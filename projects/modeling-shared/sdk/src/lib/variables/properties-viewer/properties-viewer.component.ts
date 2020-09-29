@@ -31,7 +31,6 @@ import { FIELD_VARIABLE_NAME_REGEX } from '../../helpers/utils/create-entries-na
 })
 
 export class PropertiesViewerComponent implements OnInit, OnDestroy {
-    types = primitive_types;
     subscription: Subscription;
     serviceSubscription: Subscription;
     dataSource: MatTableDataSource<EntityProperty>;
@@ -47,6 +46,7 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
     value: any;
     id: string;
     selection = new SelectionModel<EntityProperty>();
+    @Input() types: string[] = primitive_types;
     @Input() properties = '';
     @Input() requiredCheckbox = true;
     @Input() displayedColumns = ['name', 'type', 'required', 'value', 'delete'];
@@ -66,7 +66,6 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-
         if (this.properties) {
             let dataArray: EntityProperty[] = [];
             dataArray = Object.values(JSON.parse(this.properties));
@@ -75,6 +74,7 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
             this.dataSource = new MatTableDataSource(dataArray);
             this.data = JSON.parse(this.properties);
         }
+
         this.serviceSubscription = this.variablesService.variablesData.subscribe(dataObj => {
             if (!dataObj.error || dataObj.error === 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME') {
                 let dataArray: EntityProperty[] = [];
@@ -98,8 +98,8 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
     }
 
     private convertJsonObjectsToJsonStringVariables(properties) {
-        for (const key  in properties) {
-            if ( (properties[key].type === 'json' || properties[key].type === 'folder' ) && typeof(properties[key].value) === 'object') {
+        for (const key in properties) {
+            if ((properties[key].type === 'json' || properties[key].type === 'folder') && typeof (properties[key].value) === 'object') {
                 properties[key].value = JSON.stringify(properties[key].value);
             }
         }

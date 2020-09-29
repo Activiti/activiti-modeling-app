@@ -50,3 +50,20 @@ export const AMA_DATETIME_FORMATS = {
 export const MOMENT_DATETIME_FORMAT = 'YYYY-MM-DDTHH:mm:ss';
 export const ANGULAR_DATETIME_DISPLAY_FORMAT = 'yyyy-MM-ddTHH:mm:ss';
 export const EXPRESSION = 'expression';
+
+export const FORM_PRIMITIVE_TYPES: string[] = [
+    'string',
+    'integer',
+    'boolean',
+    'date',
+    'datetime',
+    'file',
+    'json'
+];
+
+export const FORM_DIALOG_COLUMNS: string[] = [
+    'name',
+    'type',
+    'value',
+    'delete'
+];

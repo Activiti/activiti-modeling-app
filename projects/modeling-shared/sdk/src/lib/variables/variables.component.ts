@@ -21,12 +21,14 @@ import { Subject, Subscription, Observable } from 'rxjs';
 import { VariablesService } from './variables.service';
 import { CodeValidatorService } from './../code-editor/services/code-validator.service';
 import { EntityProperties } from '../../lib/api/types';
+import { primitive_types } from '../helpers/primitive-types';
 
 const Ajv = require('ajv');
 
 export interface VariableDialogData extends MatDialogConfig {
     properties: EntityProperties;
     columns: string[];
+    types: string[];
     title: string;
     required: boolean;
     propertiesUpdate$: Subject<EntityProperties>;
@@ -47,6 +49,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
     title: string;
     requiredCheckbox: boolean;
     columns: string[];
+    types: string[];
     validVariables = true;
 
     constructor(
@@ -59,6 +62,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
         this.title = data.title;
         this.requiredCheckbox = data.required;
         this.columns = data.columns;
+        this.types = data.types || primitive_types;
     }
 
     ngOnInit() {
