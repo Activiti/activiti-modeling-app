@@ -16,4 +16,5 @@
  */
 
 export const NAME_REGEXP = /^([A-Za-z0-9\-\_]+)?$/;
+export const NAME_NO_HYPHENS_REGEXP = /^[a-z]([a-z0-9]{0,24}[a-z0-9])?$/;
 export const URL_REGEXP = /^[A-Za-z][A-Za-z\d.+-]*:\/*(?:\w+(?::\w+)?@)?[^\s/]+(?::\d+)?(?:\/[\w#!:.?+=&%@\-/]*)?$/;

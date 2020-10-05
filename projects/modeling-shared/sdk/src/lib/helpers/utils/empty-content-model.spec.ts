@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
- import { getEmptyContentModel } from './empty-content-model';
+import { getEmptyContentModel } from './empty-content-model';
 import { ContentModel, ModelScope } from '../../api/types';
 
 describe('Empty content model', () => {
@@ -34,6 +34,8 @@ describe('Empty content model', () => {
         scope: ModelScope.GLOBAL
     };
 
+    const mockModelWithDashes = { ...mockModel, name: 'm-o-c-k' };
+
     const userName = 'testUser';
 
     const mockXMLContent = `<?xml version="1.0" encoding="UTF-8"?>
@@ -50,7 +52,25 @@ describe('Empty content model', () => {
     </namespaces>
   </model>`;
 
+    const mockWithDashesXMLContent = `<?xml version="1.0" encoding="UTF-8"?>
+  <model name="mock:m-o-c-k" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+    <description><![CDATA[This is the mock description]]></description>
+    <author>testUser</author>
+    <version>1.0</version>
+    <imports>
+      <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+      <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+    </imports>
+    <namespaces>
+      <namespace uri="http://www.alfresco.org/model/m-o-c-k" prefix="mock"/>
+    </namespaces>
+  </model>`;
+
     it('should create initial content', () => {
         expect(getEmptyContentModel(mockModel, userName)).toEqual(mockXMLContent);
+    });
+
+    it('should remove dashes from prefix', () => {
+        expect(getEmptyContentModel(mockModelWithDashes, userName)).toEqual(mockWithDashesXMLContent);
     });
 });

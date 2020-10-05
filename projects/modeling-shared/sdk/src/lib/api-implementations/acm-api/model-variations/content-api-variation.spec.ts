@@ -21,6 +21,7 @@ import { AuthenticationService, setupTestBed } from '@alfresco/adf-core';
 import { TestBed } from '@angular/core/testing';
 import { ContentType } from '../content-types';
 
+/* spellchecker: disable */
 describe('ModelContentApiVariation', () => {
 
     const mockModel: ContentModel = {
@@ -52,7 +53,7 @@ describe('ModelContentApiVariation', () => {
   </model>`;
 
     const mockInitialXMLContent = `<?xml version="1.0" encoding="UTF-8"?>
-  <model name="initial-mock-name:initial-mock-name" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+  <model name="initialmockname:initial-mock-name" xmlns="http://www.alfresco.org/model/dictionary/1.0">
     <description><![CDATA[Initial mock description]]></description>
     <author>testUser</author>
     <version>1.0</version>
@@ -61,7 +62,7 @@ describe('ModelContentApiVariation', () => {
       <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
     </imports>
     <namespaces>
-      <namespace uri="http://www.alfresco.org/model/initial-mock-name" prefix="initial-mock-name"/>
+      <namespace uri="http://www.alfresco.org/model/initial-mock-name" prefix="initialmockname"/>
     </namespaces>
   </model>`;
 
