@@ -17,7 +17,7 @@
 
 import { PaletteComponent } from './palette.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslationService, TranslationMock } from '@alfresco/adf-core';
+import { TranslationService, TranslationMock, CoreModule, AppConfigService } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
@@ -32,6 +32,7 @@ describe('Palette component', () => {
     let fixture: ComponentFixture<PaletteComponent>;
     let component: PaletteComponent;
     let processModelerPaletteService: ProcessModelerPaletteService;
+    let appConfig: AppConfigService;
 
     const testPaletteElements = [
         {   group: 'tool',
@@ -70,6 +71,14 @@ describe('Palette component', () => {
                     svg: 'svg'
                 }
             ]
+        },
+        {
+            group: 'element',
+            type: 'bpmn:ServiceTask',
+            icon: 'bpmn-icon-service-task',
+            title: 'service-task',
+            clickable: true,
+            draggable: true
         }
     ];
 
@@ -77,6 +86,7 @@ describe('Palette component', () => {
         TestBed.configureTestingModule({
             imports: [
                 TranslateModule.forRoot(),
+                CoreModule.forRoot(),
                 NoopAnimationsModule,
                 MatMenuModule,
                 MatCardModule,
@@ -86,6 +96,7 @@ describe('Palette component', () => {
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: ProcessModelerPaletteService, useValue: {delegateEvent: jest.fn()}},
                 { provide: PaletteElementsToken, useValue: testPaletteElements},
+                AppConfigService
             ],
             declarations: [PaletteComponent, PaletteOverlayDirective],
             schemas: [NO_ERRORS_SCHEMA]
@@ -118,4 +129,35 @@ describe('Palette component', () => {
         btn.nativeElement.dispatchEvent(event);
         expect(processModelerPaletteService.delegateEvent).toHaveBeenCalledWith(component.paletteElements[0] as BpmnTrigger, event);
     });
+
+    it('should not display serviceTask when enableCustomConnectors is false', () => {
+        setUpComponentForEnableCustomConnectors(false);
+        const serviceTaskElement = getServiceTaskElement();
+        expect(serviceTaskElement).toBeNull();
+    });
+
+    it('should display serviceTask when enableCustomConnectors is true', () => {
+        setUpComponentForEnableCustomConnectors(true);
+        const serviceTaskElement = getServiceTaskElement();
+        expect(serviceTaskElement).not.toBeNull();
+    });
+
+    it('should display serviceTask when enableCustomConnectors is null', () => {
+        setUpComponentForEnableCustomConnectors(null);
+        const serviceTaskElement = getServiceTaskElement();
+        expect(serviceTaskElement).not.toBeNull();
+    });
+
+    function setUpComponentForEnableCustomConnectors(enable: boolean): void {
+        appConfig = TestBed.inject(AppConfigService);
+        appConfig.config.enableCustomConnectors = enable;
+        fixture = TestBed.createComponent(PaletteComponent);
+        component = fixture.componentInstance;
+        processModelerPaletteService = TestBed.inject(ProcessModelerPaletteService);
+        fixture.detectChanges();
+    }
+
+    function getServiceTaskElement(): Element {
+        return fixture.debugElement.nativeElement.querySelector('[data-automation-id="element::bpmn:ServiceTask"]');
+    }
 });

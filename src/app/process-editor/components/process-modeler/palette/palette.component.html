@@ -5,7 +5,7 @@
     <div class="palette-body" [class.opened]="opened">
         <ng-container *ngFor="let item of paletteElements">
             <ng-container
-                 *ngIf="!isSeparator(item); else separator">
+                 *ngIf="!isSeparator(item) && isAllowed(item); else separator">
                 <ng-container *ngTemplateOutlet="hasChildren(item) ? containerElement : clickableElement; context: { $implicit: item }">
                 </ng-container>
             </ng-container>

@@ -16,8 +16,9 @@
  */
 
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, Inject, Optional } from '@angular/core';
-import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction, ModelScope, Model } from '@alfresco-dbp/modeling-shared/sdk';
+import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction, ModelScope, Model, CONNECTOR } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
+import { AppConfigService } from '@alfresco/adf-core';
 
 @Component({
     selector: 'ama-project-tree-filter',
@@ -39,7 +40,8 @@ export class ProjectTreeFilterComponent implements OnInit {
         private store: Store<AmaState>,
         @Optional()
         @Inject(MODEL_CREATORS)
-        private creators: ModelCreator[]
+        private creators: ModelCreator[],
+        private appConfig: AppConfigService
     ) {}
 
     ngOnInit() {
@@ -79,4 +81,13 @@ export class ProjectTreeFilterComponent implements OnInit {
     isScopeGlobal(content: Model): boolean {
         return content.scope === ModelScope.GLOBAL;
     }
+
+    isAllowed(type: MODEL_TYPE): boolean {
+        return type !== CONNECTOR || this.isCustomConnectorsEnabled();
+    }
+
+    private isCustomConnectorsEnabled(): boolean {
+        return this.appConfig.get('enableCustomConnectors') === false ? false : true;
+    }
+
 }

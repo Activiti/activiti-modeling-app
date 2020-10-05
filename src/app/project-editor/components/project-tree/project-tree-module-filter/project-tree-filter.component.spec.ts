@@ -19,18 +19,20 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { ProjectTreeFilterComponent } from './project-tree-filter.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { SharedModule, PROCESS, MODEL_CREATORS, ModelScope } from '@alfresco-dbp/modeling-shared/sdk';
+import { SharedModule, PROCESS, MODEL_CREATORS, ModelScope, CONNECTOR } from '@alfresco-dbp/modeling-shared/sdk';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslationMock, TranslationService } from '@alfresco/adf-core';
+import { TranslationMock, TranslationService, AppConfigService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { By } from '@angular/platform-browser';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Element } from '@angular/compiler';
 
 describe('ProjectTreeFilterComponent ', () => {
     let fixture: ComponentFixture<ProjectTreeFilterComponent>;
     let component: ProjectTreeFilterComponent;
+    let appConfig: AppConfigService;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -58,7 +60,8 @@ describe('ProjectTreeFilterComponent ', () => {
                         dialog: {}
                     }
                 },
-                { provide: TranslationService, useClass: TranslationMock }
+                { provide: TranslationService, useClass: TranslationMock },
+                AppConfigService
             ],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
@@ -151,4 +154,59 @@ describe('ProjectTreeFilterComponent ', () => {
         expect(localProcess.classes['project-tree-filter-global-item']).toBeFalsy();
         expect(globalProcess.classes['project-tree-filter-global-item']).toBeTruthy();
     });
+
+    it('should not display connector add and upload options when enableCustomConnectors is false', () => {
+        setUpComponentForEnableCustomConnectors(false);
+        const connectorCreateButton = getAddConnectorButton();
+        const connectorUploadInput = getUploadConnectorInput();
+        expect(connectorCreateButton).toBeNull();
+        expect(connectorUploadInput).toBeNull();
+    });
+
+    it('should display connector add and upload options when enableCustomConnectors is true', () => {
+        setUpComponentForEnableCustomConnectors(true);
+        const connectorCreateButton = getAddConnectorButton();
+        const connectorUploadInput = getUploadConnectorInput();
+        expect(connectorCreateButton).toBeDefined();
+        expect(connectorUploadInput).toBeDefined();
+    });
+
+    it('should display connector add and upload options when enableCustomConnectors is null', () => {
+        setUpComponentForEnableCustomConnectors(null);
+        const connectorCreateButton = getAddConnectorButton();
+        const connectorUploadInput = getUploadConnectorInput();
+        expect(connectorCreateButton).not.toBeNull();
+        expect(connectorUploadInput).not.toBeNull();
+    });
+
+    function getAddConnectorButton(): Element {
+        return fixture.debugElement.nativeElement.querySelector('.add-new-connector');
+    }
+
+    function getUploadConnectorInput(): Element {
+        return fixture.debugElement.nativeElement.querySelector('[data-automation-id="upload-connector"]');
+    }
+
+    function setUpComponentForEnableCustomConnectors(enable: boolean): void {
+        appConfig = TestBed.inject(AppConfigService);
+        appConfig.config.enableCustomConnectors = enable;
+
+        fixture = TestBed.createComponent(ProjectTreeFilterComponent);
+        component = fixture.componentInstance;
+        component.loading = false;
+        component.expanded = false;
+
+        component.ignoreOpenEmit = false;
+        component.projectId = 'projectIdTest';
+        component.filter = <any>{
+            icon: '',
+            name: 'Connector',
+            type: CONNECTOR
+        };
+
+        component.contents = [];
+        fixture.detectChanges();
+        const connectorHeader = fixture.debugElement.nativeElement.querySelector('.project-tree-filter.connector > mat-expansion-panel-header');
+        connectorHeader.dispatchEvent(new Event('click'));
+    }
 });

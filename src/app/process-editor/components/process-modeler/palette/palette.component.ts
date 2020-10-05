@@ -25,8 +25,10 @@ import {
     BpmnTrigger,
     PaletteGroupElement,
     PaletteSeparatorElement,
-    PaletteElementIconsToken
+    PaletteElementIconsToken,
+    GeneralTrigger
 } from '@alfresco-dbp/modeling-shared/sdk';
+import { AppConfigService } from '@alfresco/adf-core';
 
 @Component({
     templateUrl: './palette.component.html',
@@ -40,6 +42,7 @@ export class PaletteComponent implements OnInit {
     public paletteIconSvg = {};
     public opened = true;
     public detach = false;
+    readonly serviceTask = 'bpmn:ServiceTask';
 
     @HostListener('mousedown', ['$event'])
     onMouseDown(event: Event) {
@@ -50,7 +53,8 @@ export class PaletteComponent implements OnInit {
         private processModelerPaletteService: ProcessModelerPaletteService,
         private sanitizer: DomSanitizer,
         @Optional() @Inject(PaletteElementsToken) paletteElements: PaletteElement[][],
-        @Optional() @Inject(PaletteElementIconsToken) paletteElementIcons: any
+        @Optional() @Inject(PaletteElementIconsToken) paletteElementIcons: any,
+        private appConfig: AppConfigService
     ) {
         this.paletteElements = (paletteElements || []).flat(1) || [];
         this.paletteElementIcons = paletteElementIcons || {};
@@ -98,7 +102,15 @@ export class PaletteComponent implements OnInit {
         this.delegateEvent(paletteItem, event);
     }
 
+    public isAllowed(item: GeneralTrigger): boolean {
+        return !item.type || !(item.type === this.serviceTask && !this.isCustomConnectorsEnabled());
+    }
+
     private delegateEvent(paletteItem: BpmnTrigger, event: any) {
         this.processModelerPaletteService.delegateEvent(paletteItem, event);
+    }
+
+    private isCustomConnectorsEnabled(): boolean {
+        return this.appConfig.get('enableCustomConnectors') === false ? false : true;
     }
 }

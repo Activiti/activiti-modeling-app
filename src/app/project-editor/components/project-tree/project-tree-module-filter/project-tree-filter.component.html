@@ -10,8 +10,10 @@
         </mat-icon>
         <span class="project-tree-filter__title">{{ filter.name | translate }}</span>
         <button mat-icon-button
+            *ngIf="isAllowed(filter.type)"
             (click)="openModelCreationModal($event)"
-            [title]="'PROJECT_EDITOR.CREATE_NEW' | translate">
+            [title]="'PROJECT_EDITOR.CREATE_NEW' | translate"
+            [class]="'add-new-' + filter.type">
             <mat-icon>add</mat-icon>
         </button>
     </mat-expansion-panel-header>
@@ -37,6 +39,7 @@
             </div>
         </ng-container>
         <ama-upload-file-button
+            *ngIf="isAllowed(filter.type)"
             [attr.data-automation-id]="'upload-' + filter.type"
             [projectId]="projectId" [type]="filter.type">
         </ama-upload-file-button>
