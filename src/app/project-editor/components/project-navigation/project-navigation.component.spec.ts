@@ -18,13 +18,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectNavigationComponent } from './project-navigation.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslationService, TranslationMock, CoreModule } from '@alfresco/adf-core';
+import { TranslationService, TranslationMock, CoreModule, AppConfigService } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
-import { AmaState, MODEL_CREATORS, ModelCreator, ModelCreatorDialogParams, OpenEntityDialogAction, OPEN_ENTITY_DIALOG } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaState, MODEL_CREATORS, ModelCreator, ModelCreatorDialogParams, OpenEntityDialogAction, OPEN_ENTITY_DIALOG, CONNECTOR } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -33,6 +33,7 @@ describe('ProjectNavigationComponent', () => {
     let fixture: ComponentFixture<ProjectNavigationComponent>;
     let store: Store<AmaState>;
     let element: DebugElement;
+    let appConfig: AppConfigService;
 
     describe('For tests when extended is false', () => {
         beforeEach(() => {
@@ -41,6 +42,14 @@ describe('ProjectNavigationComponent', () => {
                 icon: 'device_hub',
                 name: 'Processes',
                 type: 'process',
+                order: 1,
+                dialog: <ModelCreatorDialogParams>{}
+            };
+
+            const connectorCreator: ModelCreator = {
+                icon: 'device_hub',
+                name: 'Connector',
+                type: CONNECTOR,
                 order: 1,
                 dialog: <ModelCreatorDialogParams>{}
             };
@@ -56,13 +65,14 @@ describe('ProjectNavigationComponent', () => {
                 ],
                 providers: [
                     { provide: TranslationService, useClass: TranslationMock },
-                    { provide: MODEL_CREATORS, multi: true, useValue: processCreator },
+                    { provide: MODEL_CREATORS, useValue: [processCreator, connectorCreator ]},
                     {
                         provide: Store,
                         useValue: {
                             select() { return of(); }, dispatch: jest.fn()
                         }
-                    }
+                    },
+                    AppConfigService
             ],
                 schemas: [NO_ERRORS_SCHEMA],
                 declarations: [ProjectNavigationComponent]
@@ -99,12 +109,59 @@ describe('ProjectNavigationComponent', () => {
             expect(icons === null).toBeFalsy();
             expect(appTree === null).toBeTruthy();
         });
+
+        it('should not display connector creator options when enableCustomConnectors is false', () => {
+            setUpComponentForEnableCustomConnectors(false);
+            const component = fixture.componentInstance;
+            const buttonProcess = element.query(By.css('[data-automation-id="app-navigation-create-process"]'));
+            const buttonConnector = element.query(By.css('[data-automation-id="app-navigation-create-connector"]'));
+
+            expect(component.enableCustomConnectors).toBe(false);
+            expect(buttonProcess).not.toBeNull();
+            expect(buttonConnector).toBeNull();
+        });
+
+        it('should display connector creator options when enableCustomConnectors is true', () => {
+            setUpComponentForEnableCustomConnectors(true);
+            const component = fixture.componentInstance;
+            const buttonProcess = element.query(By.css('[data-automation-id="app-navigation-create-process"]'));
+            const buttonConnector = element.query(By.css('[data-automation-id="app-navigation-create-connector"]'));
+
+            expect(component.enableCustomConnectors).toBe(true);
+            expect(buttonProcess).not.toBeNull();
+            expect(buttonConnector).not.toBeNull();
+        });
+
+        it('should display connector creator options when enableCustomConnectors is null', () => {
+            setUpComponentForEnableCustomConnectors(null);
+            const component = fixture.componentInstance;
+            const buttonProcess = element.query(By.css('[data-automation-id="app-navigation-create-process"]'));
+            const buttonConnector = element.query(By.css('[data-automation-id="app-navigation-create-connector"]'));
+
+            expect(component.enableCustomConnectors).toBe(true);
+            expect(buttonProcess).not.toBeNull();
+            expect(buttonConnector).not.toBeNull();
+        });
+
+        function setUpComponentForEnableCustomConnectors(enable: boolean): void {
+            appConfig = TestBed.inject(AppConfigService);
+            appConfig.config.enableCustomConnectors = enable;
+            fixture = TestBed.createComponent(ProjectNavigationComponent);
+            element = fixture.debugElement;
+            fixture.detectChanges();
+
+            const button = element.query(By.css('.adf-sidebar-action-menu-icon .mat-icon'));
+            button.triggerEventHandler('click', { stopPropagation: jest.fn() });
+
+            const button2 = element.query(By.css('[data-automation-id="app-navigation-create"]'));
+            button2.triggerEventHandler('click', { stopPropagation: jest.fn() });
+        }
     });
 
     describe('For tests when expanded is true', () => {
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [TranslateModule.forRoot(), NoopAnimationsModule, MatIconModule, MatMenuModule, MatToolbarModule],
+                imports: [TranslateModule.forRoot(), CoreModule.forRoot(), NoopAnimationsModule, MatIconModule, MatMenuModule, MatToolbarModule],
                 providers: [
                     { provide: TranslationService, useClass: TranslationMock },
                     {

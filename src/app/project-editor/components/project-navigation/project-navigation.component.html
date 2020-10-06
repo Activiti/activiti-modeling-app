@@ -29,21 +29,25 @@
         </mat-menu>
 
         <mat-menu #create="matMenu" class="app-navigation-options">
-            <button mat-menu-item *ngFor="let creator of creators"
-                [attr.data-automation-id]="'app-navigation-create-' + creator.type"
-                (click)="openModelCreationDialog(creator.dialog)">
-                <mat-icon>{{ creator.icon }}</mat-icon>
-                <span>{{ creator.name | translate }}</span>
-            </button>
+            <ng-container *ngFor="let creator of creators">
+                <button mat-menu-item *ngIf="isAllowed(creator.type)"
+                    [attr.data-automation-id]="'app-navigation-create-' + creator.type"
+                    (click)="openModelCreationDialog(creator.dialog)">
+                    <mat-icon>{{ creator.icon }}</mat-icon>
+                    <span>{{ creator.name | translate }}</span>
+                </button>
+            </ng-container>
         </mat-menu>
 
         <mat-menu #upload="matMenu" class="app-navigation-options">
-            <ama-upload-file-button class="mat-menu-item" *ngFor="let creator of creators"
-                [attr.data-automation-id]="'app-navigation-upload-' + creator.type" [type]="creator.type"
-                [projectId]="selectedProjectId$ | async">
-                <mat-icon>{{ creator.icon }}</mat-icon>
-                <span>{{ creator.name | translate }}</span>
-            </ama-upload-file-button>
+            <ng-container *ngFor="let creator of creators">
+                <ama-upload-file-button class="mat-menu-item" *ngIf="isAllowed(creator.type)"
+                    [attr.data-automation-id]="'app-navigation-upload-' + creator.type" [type]="creator.type"
+                    [projectId]="selectedProjectId$ | async">
+                    <mat-icon>{{ creator.icon }}</mat-icon>
+                    <span>{{ creator.name | translate }}</span>
+                </ama-upload-file-button>
+            </ng-container>
         </mat-menu>
 
         <mat-menu #import="matMenu" class="app-navigation-options">

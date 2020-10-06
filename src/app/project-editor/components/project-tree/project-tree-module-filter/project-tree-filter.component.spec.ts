@@ -167,8 +167,8 @@ describe('ProjectTreeFilterComponent ', () => {
         setUpComponentForEnableCustomConnectors(true);
         const connectorCreateButton = getAddConnectorButton();
         const connectorUploadInput = getUploadConnectorInput();
-        expect(connectorCreateButton).toBeDefined();
-        expect(connectorUploadInput).toBeDefined();
+        expect(connectorCreateButton).not.toBeNull();
+        expect(connectorUploadInput).not.toBeNull();
     });
 
     it('should display connector add and upload options when enableCustomConnectors is null', () => {

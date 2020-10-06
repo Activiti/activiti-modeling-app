@@ -19,7 +19,13 @@ import { Component, Inject, AfterContentInit, Optional } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectMenuOpened } from '../../../store/selectors/app.selectors';
-import { AmaState, selectSelectedProjectId, ModelCreatorDialogParams, MODEL_CREATORS, ModelCreator, OpenEntityDialogAction, MODEL_IMPORTERS, ModelImporter } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    AmaState, selectSelectedProjectId, ModelCreatorDialogParams,
+    MODEL_CREATORS, ModelCreator, OpenEntityDialogAction, MODEL_IMPORTERS,
+    ModelImporter, CONNECTOR, MODEL_TYPE
+} from '@alfresco-dbp/modeling-shared/sdk';
+import { AppConfigService } from '@alfresco/adf-core';
+
 const orderBy = require('lodash/orderBy');
 
 @Component({
@@ -29,12 +35,15 @@ export class ProjectNavigationComponent implements AfterContentInit {
     expanded$: Observable<boolean>;
     selectedProjectId$: Observable<string>;
     public creators: ModelCreator[];
+    enableCustomConnectors: boolean;
 
     constructor(
         private store: Store<AmaState>,
         @Inject(MODEL_CREATORS) modelCreators: ModelCreator[],
-        @Optional() @Inject(MODEL_IMPORTERS) private importers: ModelImporter[]
+        @Optional() @Inject(MODEL_IMPORTERS) private importers: ModelImporter[],
+        private appConfig: AppConfigService
     ) {
+        this.enableCustomConnectors = this.isCustomConnectorsEnabled();
         this.creators = orderBy(modelCreators, ['order'], ['asc']);
     }
 
@@ -49,5 +58,13 @@ export class ProjectNavigationComponent implements AfterContentInit {
     ngAfterContentInit() {
         this.expanded$ = this.store.select(selectMenuOpened);
         this.selectedProjectId$ = this.store.select(selectSelectedProjectId);
+    }
+
+    public isAllowed(type: MODEL_TYPE): boolean {
+        return type !== CONNECTOR || this.isCustomConnectorsEnabled();
+    }
+
+    private isCustomConnectorsEnabled(): boolean {
+        return this.appConfig.get('enableCustomConnectors') === false ? false : true;
     }
 }
