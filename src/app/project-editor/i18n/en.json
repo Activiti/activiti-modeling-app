@@ -158,9 +158,9 @@
             "TITLE_UPDATE": "Update Form Widget",
             "FORM_WIDGET_NAME": "Widget name:",
             "FORM_WIDGET_DESC": "Widget description:",
-            "FORM_WIDGET_CREATED": "Widget created",
-            "FORM_WIDGET_DELETED": "Widget deleted",
-            "FORM_WIDGET_UPDATED": "Widget saved"
+            "FORM_WIDGET_CREATED": "Form Widget created",
+            "FORM_WIDGET_DELETED": "Form Widget deleted",
+            "FORM_WIDGET_UPDATED": "Form Widget saved"
         },
         "ERROR": {
             "UPLOAD_FILE": "We hit a problem uploading the file. Try uploading it again.",
@@ -257,11 +257,11 @@
                 "GENERAL": "We hit a problem saving the Trigger. Try saving it again."
             },
             "CREATE_FORM_WIDGET": {
-                "DUPLICATION": "A form with that name already exists",
-                "GENERAL": "We hit a problem creating the form. Try creating it again."
+                "DUPLICATION": "A form widget with that name already exists",
+                "GENERAL": "We hit a problem creating the form widget. Try creating it again."
             },
             "UPDATE_FORM_WIDGET": {
-                "DUPLICATION": "A widget with that name already exists",
+                "DUPLICATION": "A form widget with that name already exists",
                 "GENERAL": "We hit a problem saving the with. Try saving it again."
             }
         }
