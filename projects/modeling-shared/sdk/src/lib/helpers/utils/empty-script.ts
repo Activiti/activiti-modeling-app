@@ -19,52 +19,88 @@
 /* tslint:disable */
 /* cSpell:disable */
 export const getEmptyScript = (model) => {
-    
-    return `    
-        /*  What can be used? 
+
+    return `
+        /*  What can be used?
     *  1 - Input Variables Example:
-    *          let cost = variables.cost;
-    *          let taxes = variables.taxes[0];
-    * 
+    *          const cost = variables.cost;
+    *          const taxes = variables.taxes[0];
+    *
     *  2 - Output Variables Example:
     *          variables.totalCost = cost * (1 + taxes);
-    * 
+    *
     *  3 - Content APIs Example. The following APIs are currently supported: nodesApi, groupsApi, peopleApi and siteApi.
-    *          let parentNodeId = "daf40357-b177-4de1-a031-a71630cbdfb4";
-    *          let nodeBodyCreate = nodeBody.create();
-    *          nodeBodyCreate.name("test");
-    *          nodeBodyCreate.nodeType("cm:folder");
-    *          nodesApi.createNode(parentNodeId, nodeBodyCreate, true, null, null);  
-    * 
+    *
+    *   *** PLEASE NOTE: for some actions (like creating a person or a group) the script runtime client must belong to the ALFRESCO_ADMINISTRATORS group ***
+    *
+    *          const parentNodeId = 'daf40357-b177-4de1-a031-a71630cbdfb4';
+    *          const nodeBodyCreate = nodeBody.create();
+    *          nodeBodyCreate.name('test');
+    *          nodeBodyCreate.nodeType('cm:folder');
+    *          nodesApi.createNode(parentNodeId, nodeBodyCreate, true, null, null);
+    *
+    *          const groupBodyCreate = groupBody.create();
+    *          groupBodyCreate.id(variables.groupId);
+    *          groupBodyCreate.displayName(variables.groupName);
+    *          const response = groupsApi.createGroup(groupBodyCreate, null, null);
+    *          if (response.getStatusCode().is2xxSuccessful()) {
+    *              variables.groupId = response.getBody().getEntry().getId();
+    *          }
+    *
+    *          const personBodyCreate = personBody.create();
+    *          personBodyCreate.id(variables.personId);
+    *          personBodyCreate.email(variables.email);
+    *          personBodyCreate.firstName(variables.personFirstName);
+    *          personBodyCreate.lastName(variables.personFirstName);
+    *          personBodyCreate.enabled(true);
+    *          personBodyCreate.password('A1?2c3#4D');
+    *          const response = peopleApi.createPerson(personBodyCreate, null);
+    *          if (response.getStatusCode().is2xxSuccessful()) {
+    *              variables.personId = response.getBody().getEntry().getId();
+    *          }
+    *
+    *          const groupMembershipBodyCreate = groupMembershipBody.create();
+    *          groupMembershipBodyCreate.id(variables.personId);
+    *          groupMembershipBodyCreate.memberType(groupMembershipBody.memberTypePerson());
+    *          groupsApi.createGroupMembership(variables.groupId, groupMembershipBodyCreate, null);
+    *
+    *           const siteBodyCreate = sitesBody.create();
+    *           siteBodyCreate.setTitle(variables.siteName);
+    *           siteBodyCreate.visibility(sitesBody.siteCreateVisibilityPublic());
+    *           const response = sitesApi.createSite(siteBodyCreate, false, false, null);
+    *           if (response.getStatusCode().is2xxSuccessful()) {
+    *               variables.siteId = response.getBody().getEntry().getId();
+    *           }
+    *
     *      The syntax to create the needed @Body for the differents APIs are:
     *      3.1 - nodesApi:
-    *            let nodeBodyCreate = nodeBody.create();
-    *            let nodeBodyUpdate = nodeBody.update();
-    *            let nodeBodyLock = nodeBody.lock();
-    *            let nodeBodyMove = nodeBody.move();
-    * 
+    *            const nodeBodyCreate = nodeBody.create();
+    *            const nodeBodyUpdate = nodeBody.update();
+    *            const nodeBodyLock = nodeBody.lock();
+    *            const nodeBodyMove = nodeBody.move();
+    *
     *      3.2 - groupsApi:
-    *            let groupBodyCreate = groupBody.create();
-    *            let groupBodyUpdate = groupBody.update();
-    *            let groupMembershipBodyCreate = groupMembershipBody.create();
-    * 
+    *            const groupBodyCreate = groupBody.create();
+    *            const groupBodyUpdate = groupBody.update();
+    *            const groupMembershipBodyCreate = groupMembershipBody.create();
+    *
     *      3.3 - peopleApi:
-    *            let personBodyCreate = personBody.create();
-    *            let personBodyUpdate = personBody.update();
-    *            let passwordResetBody = passwordBody.reset();
-    * 
+    *            const personBodyCreate = personBody.create();
+    *            const personBodyUpdate = personBody.update();
+    *            const passwordResetBody = passwordBody.reset();
+    *
     *      3.4 - siteApi:
-    *            let siteBodyCreate = siteBody.create();
-    *            let siteBodyUpdate = siteBody.update();
-    *            let siteMembershipBodyCreate = siteMembershipBody.create();
-    *            let siteMembershipBodyUpdate = siteMembershipBody.update();
-    *            let siteMembershipBodyApproval = siteMembershipBody.approval();
-    *            let siteMembershipBodyRequestCreate = siteMembershipBody.requestCreate();
-    *            let siteMembershipBodyRejection = siteMembershipBody.rejection();
-    *            let siteMembershipBodyRequestUpdate = siteMembershipBody.requestUpdate();
-    * 
+    *            const siteBodyCreate = sitesBody.create();
+    *            const siteBodyUpdate = sitesBody.update();
+    *            const siteMembershipBodyCreate = siteMembershipBody.create();
+    *            const siteMembershipBodyUpdate = siteMembershipBody.update();
+    *            const siteMembershipBodyApproval = siteMembershipBody.approval();
+    *            const siteMembershipBodyRequestCreate = siteMembershipBody.requestCreate();
+    *            const siteMembershipBodyRejection = siteMembershipBody.rejection();
+    *            const siteMembershipBodyRequestUpdate = siteMembershipBody.requestUpdate();
+    *
     *  4 - Runtime Commands (ProcessPayloadBuilder and CommandProducer) Example:
-    *          let startProcessInstanceCmd = processPayloadBuilder.start().withProcessDefinitionKey("1af40357-b122-4de1-a031-a71630cbdf33").build();
+    *          const startProcessInstanceCmd = processPayloadBuilder.start().withProcessDefinitionKey('1af40357-b122-4de1-a031-a71630cbdf33').build();
     *          commandProducer.send(startProcessInstanceCmd);
     */`;
 }
