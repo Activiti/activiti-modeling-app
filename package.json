@@ -2,7 +2,7 @@
   "name": "activiti-modeling-app",
   "description": "Activiti Modeling Application",
   "commit": "",
-  "version": "0.2.0",
+  "version": "7.1.10",
   "author": "Alfresco Software, Ltd.",
   "scripts": {
     "postinstall": "ngcc && lessc ./node_modules/bpmn-js-properties-panel/styles/properties.less .tmp/bpmn-properties.css",

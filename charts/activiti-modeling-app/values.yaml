@@ -4,7 +4,7 @@
 replicaCount: 1
 image:
   repository: draft
-  tag: dev
+  tag: 7.1.10
   pullPolicy: IfNotPresent
 service:
   name: activiti-modeling-app
