@@ -226,6 +226,7 @@ export interface EntityProperty {
     type: string;
     required?: boolean;
     value: string;
+    description?: string;
 }
 
 export interface EntityProperties {
