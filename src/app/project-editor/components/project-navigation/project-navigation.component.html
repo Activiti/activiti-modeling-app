@@ -30,8 +30,8 @@
 
         <mat-menu #create="matMenu" class="app-navigation-options">
             <ng-container *ngFor="let creator of creators">
-                <button mat-menu-item *ngIf="isAllowed(creator.type)"
-                    [attr.data-automation-id]="'app-navigation-create-' + creator.type"
+                <button mat-menu-item *ngIf="isAllowed(creator, 'create')"
+                    [attr.data-automation-id]="'app-navigation-create-' + getKey(creator)"
                     (click)="openModelCreationDialog(creator.dialog)">
                     <mat-icon>{{ creator.icon }}</mat-icon>
                     <span>{{ creator.name | translate }}</span>
@@ -41,8 +41,8 @@
 
         <mat-menu #upload="matMenu" class="app-navigation-options">
             <ng-container *ngFor="let creator of creators">
-                <ama-upload-file-button class="mat-menu-item" *ngIf="isAllowed(creator.type)"
-                    [attr.data-automation-id]="'app-navigation-upload-' + creator.type" [type]="creator.type"
+                <ama-upload-file-button class="mat-menu-item" *ngIf="isAllowed(creator, 'upload')"
+                    [attr.data-automation-id]="'app-navigation-upload-' + getKey(creator)" [type]="getKey(creator)"
                     [projectId]="selectedProjectId$ | async">
                     <mat-icon>{{ creator.icon }}</mat-icon>
                     <span>{{ creator.name | translate }}</span>

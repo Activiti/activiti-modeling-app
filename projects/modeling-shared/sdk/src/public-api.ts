@@ -42,6 +42,7 @@ export * from './lib/workbench-layout/public-api';
 export * from './lib/project-editor/public-api';
 
 export * from './lib/api-implementations/acm-api/acm-api.module';
+export * from './lib/api-implementations/acm-api/request-api.helper';
 
 // TODO: Remove it ===================================================
 export * from './lib/api-implementations/acm-api/content-types';

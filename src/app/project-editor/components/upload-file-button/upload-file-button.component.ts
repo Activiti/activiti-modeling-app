@@ -39,7 +39,7 @@ export class UploadFileButtonComponent {
 
     private get uploader(): ModelUploader | null {
         if (this.uploaders && this.uploaders.length > 0) {
-            return this.uploaders.filter(uploader => uploader.type === this.type)[0];
+            return this.uploaders.filter(uploader => uploader.key ? uploader.key === this.type : uploader.type === this.type)[0];
         }
         return null;
     }

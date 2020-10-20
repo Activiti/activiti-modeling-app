@@ -22,7 +22,7 @@ import { selectMenuOpened } from '../../../store/selectors/app.selectors';
 import {
     AmaState, selectSelectedProjectId, ModelCreatorDialogParams,
     MODEL_CREATORS, ModelCreator, OpenEntityDialogAction, MODEL_IMPORTERS,
-    ModelImporter, CONNECTOR, MODEL_TYPE
+    ModelImporter, CONNECTOR
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { AppConfigService } from '@alfresco/adf-core';
 
@@ -60,8 +60,22 @@ export class ProjectNavigationComponent implements AfterContentInit {
         this.selectedProjectId$ = this.store.select(selectSelectedProjectId);
     }
 
-    public isAllowed(type: MODEL_TYPE): boolean {
-        return type !== CONNECTOR || this.isCustomConnectorsEnabled();
+    public isAllowed(creator: ModelCreator, action: 'create' | 'upload'): boolean {
+        let allow = true;
+        switch (action) {
+            case 'create':
+                allow = !creator.disableCreate;
+                break;
+            case 'upload':
+                allow = !creator.disableUpload;
+                break;
+        }
+
+        return allow && (creator.type !== CONNECTOR || this.isCustomConnectorsEnabled());
+    }
+
+    public getKey(creator: ModelCreator): string {
+        return creator.key || creator.type;
     }
 
     private isCustomConnectorsEnabled(): boolean {

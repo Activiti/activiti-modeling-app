@@ -38,6 +38,9 @@ export interface ModelCreator {
     icon: string;
     order: number;
     dialog: ModelCreatorDialogParams;
+    disableCreate?: boolean;
+    disableUpload?: boolean;
+    key?: string;
 }
 
 export const MODEL_CREATORS = new InjectionToken<ModelCreator[]>('model-creators');

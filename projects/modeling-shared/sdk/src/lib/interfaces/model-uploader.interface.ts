@@ -23,6 +23,7 @@ export interface ModelUploader {
     type: MODEL_TYPE;
     acceptedFileType: string;
     action: ActionConstructor;
+    key?: string;
 }
 
 export const MODEL_UPLOADERS = new InjectionToken<ModelUploader[]>('model-uploaders');
