@@ -14,15 +14,8 @@
     <button mat-button
         [attr.data-automation-id]="'dialog-close'"
         mat-dialog-close
-        (click)="choose(false)">
-        {{ 'APP.DIALOGS.CANCEL' | translate }}
+        (click)="close()">
+        {{ 'APP.DIALOGS.CLOSE' | translate }}
     </button>
 
-    <button class="adf-dialog-action-button"
-        [attr.data-automation-id]="'dialog-confirm'"
-        color="primary"
-        mat-button
-        (click)="choose(true)">
-        {{ 'APP.DIALOGS.CONFIRM.BUTTON' | translate }}
-    </button>
 </mat-dialog-actions>

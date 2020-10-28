@@ -19,14 +19,15 @@ import { Injectable } from '@angular/core';
 import { map, switchMap, catchError, filter, mergeMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, LogFactoryService, LogAction,
+import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, LogFactoryService,
     LeaveProjectAction,
     SnackbarInfoAction,
-    ConfirmDialogData,
+    DialogData,
     getProjectEditorLogInitiator,
     GetProjectAttemptAction,
     GET_PROJECT_ATTEMPT,
-    GetProjectSuccessAction} from '@alfresco-dbp/modeling-shared/sdk';
+    GetProjectSuccessAction,
+    OpenInfoDialogAction} from '@alfresco-dbp/modeling-shared/sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import {
     ExportProjectAction,
@@ -38,7 +39,6 @@ import {
     ExportProjectAttemptPayload
 } from '../project-editor.actions';
  import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
-import { Action } from '@ngrx/store';
 
 @Injectable()
 export class ProjectEffects extends BaseEffects {
@@ -110,8 +110,17 @@ export class ProjectEffects extends BaseEffects {
     private exportProjectAttempt(payload: ExportProjectAttemptPayload) {
         return this.projectEditorService.validateProject(payload.projectId).pipe(
             switchMap(() => this.exportProject(payload.projectId, payload.projectName)),
-            catchError(response => this.genericErrorHandler(this.handleValidationError
-                .bind(this, response, payload.action), response)));
+            catchError(response => this.getDialogData(response).pipe(
+                switchMap(dialogData => [
+                    this.genericErrorHandler(
+                        this.logFactory.logError.bind(this.logFactory, getProjectEditorLogInitiator(), dialogData.messages), response),
+                    new OpenConfirmDialogAction({
+                        dialogData: dialogData,
+                        action: payload.action
+                    })
+                ])
+            )
+        ));
     }
 
     private validateProject(projectId: string) {
@@ -120,29 +129,25 @@ export class ProjectEffects extends BaseEffects {
                 new SnackbarInfoAction('PROJECT_EDITOR.PROJECT_VALID'),
                 this.logFactory.logInfo(getProjectEditorLogInitiator(), 'PROJECT_EDITOR.PROJECT_VALID')
             ]),
-            catchError(response => this.genericErrorHandler(this.handleValidationError.bind(this, response, null), response)));
+            catchError(response => this.getDialogData(response).pipe(
+                switchMap(dialogData => [
+                    this.genericErrorHandler(
+                        this.logFactory.logError.bind(this.logFactory, getProjectEditorLogInitiator(), dialogData.messages), response),
+                    new OpenInfoDialogAction({dialogData})
+                ])
+            )
+        ));
     }
 
-    private openConfirmDialog(data: ConfirmDialogData, action: Action) {
-        return [
-            new OpenConfirmDialogAction({
-                dialogData: data,
-                action: action || null
-            }),
-            this.logFactory.logError(getProjectEditorLogInitiator(), data.errors)
-        ];
-    }
-
-    private handleValidationError(response: any, action: Action | null): Observable<OpenConfirmDialogAction | LogAction> {
+    private getDialogData(response: any): Observable<DialogData> {
         return this.blobService.convert2Json(response.error.response.body).pipe(
             switchMap(body => {
                 const errors = body.errors.map(error => error.description);
-                this.logFactory.logError(getProjectEditorLogInitiator(), errors);
-                return this.openConfirmDialog({
+                return of({
                     title: body.message,
                     subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
-                    errors: errors
-                }, action );
+                    messages: errors
+                });
             }
         ));
     }

@@ -487,7 +487,7 @@ describe('ConnectorEditorEffects', () => {
                 dialogData: {
                     title: 'APP.DIALOGS.CONFIRM.TITLE',
                     subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
-                    errors: ['test']
+                    messages: ['test']
                 },
                 action: payload.action
             };

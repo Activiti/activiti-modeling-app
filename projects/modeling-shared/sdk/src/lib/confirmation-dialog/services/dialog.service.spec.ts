@@ -20,7 +20,7 @@ import { TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
-import { ConfirmDialogData } from '../../store/app.actions';
+import { DialogData } from '../../store/app.actions';
 
 describe('DialogService ', () => {
     let service: DialogService;
@@ -63,7 +63,7 @@ describe('DialogService ', () => {
     });
 
     it('check if the dialog data was passed down', () => {
-        const dialogData: ConfirmDialogData = {
+        const dialogData: DialogData = {
             title: 'Berta',
             subtitle: 'Josef'
         };

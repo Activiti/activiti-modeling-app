@@ -228,7 +228,7 @@ export class ConnectorEditorEffects extends BaseEffects {
                         dialogData: {
                             title: title || 'APP.DIALOGS.CONFIRM.TITLE',
                             subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
-                            errors
+                            messages: errors
                         }
                     }),
                         this.logFactory.logError(getConnectorLogInitiator(), errors)

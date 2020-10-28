@@ -19,8 +19,8 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject, Observable } from 'rxjs';
 import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
-import { ConfirmDialogData } from '../../store/app.actions';
-import { Action } from '@ngrx/store';
+import { DialogData } from '../../store/app.actions';
+import { InfoDialogComponent } from '../components/info-dialog/info-dialog.component';
 
 @Injectable()
 export class DialogService {
@@ -37,19 +37,26 @@ export class DialogService {
         this.dialog.closeAll();
     }
 
-    confirm(dialogData?: ConfirmDialogData, action?: Action): Observable<boolean> {
-        const subjectConfirm = new Subject<boolean>();
+    info(dialogData?: DialogData): Observable<any> {
+        return this.openObservableDialog(InfoDialogComponent, { disableClose: true }, dialogData);
+    }
 
-        this.dialog.open(ConfirmationDialogComponent, {
+    confirm(dialogData?: DialogData): Observable<boolean> {
+      return this.openObservableDialog(ConfirmationDialogComponent, { disableClose: true }, dialogData);
+    }
+
+    private openObservableDialog(dialog, options = {}, data = {}): Observable<any> {
+        const dialogSubject = new Subject<any>();
+
+        this.dialog.open(dialog, {
             width: '600px',
-            disableClose: true,
+            ...options,
             data: {
-                ...dialogData,
-                ...({ confirmButton: !!action }),
-                subject: subjectConfirm
+                ...data,
+                subject: dialogSubject
             }
         });
 
-        return subjectConfirm.asObservable();
+        return dialogSubject.asObservable();
     }
 }

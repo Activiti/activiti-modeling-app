@@ -22,7 +22,7 @@ import {
     OPEN_CONFIRM_DIALOG,
     OpenConfirmDialogAction,
     DialogService,
-    ConfirmDialogData,
+    DialogData,
     EntityDialogComponent,
     SetApplicationLoadingStateAction,
     MODELER_NAME_REGEX,
@@ -40,7 +40,9 @@ import {
     OVERRIDE_PROJECT_NAME_DIALOG,
     OverrideProjectNameDialogAction,
     OverrideProjectAttemptAction,
-    UploadProjectAttemptAction
+    UploadProjectAttemptAction,
+    OPEN_INFO_DIALOG,
+    OpenInfoDialogAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Action, Store } from '@ngrx/store';
 
@@ -100,6 +102,12 @@ export class DialogEffects {
     );
 
     @Effect({ dispatch: false })
+    infoDialogEffect = this.actions$.pipe(
+        ofType<OpenInfoDialogAction>(OPEN_INFO_DIALOG),
+        map(action => this.dialogService.info(action.payload.dialogData))
+    );
+
+    @Effect({ dispatch: false })
     openEntityDialogEffect = this.actions$.pipe(
         ofType<OpenEntityDialogAction>(OPEN_ENTITY_DIALOG),
         map(action => action.payload),
@@ -153,9 +161,9 @@ export class DialogEffects {
         map(() => this.projectFileInput.click())
     );
 
-    private openConfirmDialog(action: Action, dialogData: ConfirmDialogData) {
+    private openConfirmDialog(action: Action, dialogData: DialogData) {
         return this.dialogService
-            .confirm(dialogData, action)
+            .confirm(dialogData)
             .pipe(
                 switchMap(confirmation =>
                     confirmation

@@ -260,7 +260,7 @@ export class ProcessEditorEffects extends BaseEffects {
                         dialogData: {
                             title: payload.title || 'APP.DIALOGS.CONFIRM.TITLE',
                             subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
-                            errors
+                            messages: errors
                         },
                         action: payload.action
                     }),

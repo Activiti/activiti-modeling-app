@@ -265,7 +265,7 @@ describe('ProcessEditorEffects', () => {
                     dialogData: {
                         title: mockValidatePayload.title,
                         subtitle: 'APP.DIALOGS.ERROR.SUBTITLE',
-                        errors: ['Parse Error']
+                        messages: ['Parse Error']
                     },
                     action: mockValidatePayload.action
                 }),

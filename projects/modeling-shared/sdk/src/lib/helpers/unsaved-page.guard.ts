@@ -25,7 +25,7 @@ import { AmaState } from '../store/app.state';
 import { DialogService } from '../confirmation-dialog/services/dialog.service';
 import { AmaTitleService } from '../services/title.service';
 import { selectAppDirtyState, selectSelectedModel } from '../store/app.selectors';
-import { ConfirmDialogData } from '../store/app.actions';
+import { DialogData } from '../store/app.actions';
 
 export interface CanComponentDeactivate {
     canDeactivate: () => Observable<boolean> | Promise<boolean> | boolean;
@@ -51,11 +51,11 @@ export class UnsavedPageGuard
                     const types = this.translationService.instant(`APP.DIALOGS.CONFIRM.TYPES.${model.type}`);
                     const subtitle = this.translationService.instant('APP.DIALOGS.CONFIRM.UNSAVED_PAGE', { types });
 
-                    const dialogData: ConfirmDialogData = {
+                    const dialogData: DialogData = {
                         subtitle: `${subtitle}: "${model.name || ''}" ?`
                     };
 
-                    return this.dialogService.confirm(dialogData, <any>true).pipe(
+                    return this.dialogService.confirm(dialogData).pipe(
                         tap(response => {
                             if (response) {
                                 this.titleService.setSavedTitle();

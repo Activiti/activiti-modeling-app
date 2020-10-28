@@ -42,21 +42,30 @@ export class SetAppDirtyStateAction implements Action {
     constructor(public payload: boolean) {}
 }
 
-export interface ConfirmDialogData {
+export interface DialogData {
     title?: string;
     subtitle?: string;
-    errors?: string[];
+    messages?: string[];
 }
 
-export interface OpenConfirmDialogActionPayload {
+export interface OpenInfoDialogActionPayload {
+    dialogData?: DialogData;
+}
+
+export interface OpenConfirmDialogActionPayload extends OpenInfoDialogActionPayload {
     action?: Action;
-    dialogData?: ConfirmDialogData;
 }
 
 export const OPEN_CONFIRM_DIALOG = 'OPEN_CONFIRM_DIALOG';
 export class OpenConfirmDialogAction implements Action {
     readonly type = OPEN_CONFIRM_DIALOG;
     constructor(public payload: OpenConfirmDialogActionPayload) {}
+}
+
+export const OPEN_INFO_DIALOG = 'OPEN_INFO_DIALOG';
+export class OpenInfoDialogAction implements Action {
+    readonly type = OPEN_INFO_DIALOG;
+    constructor(public payload: OpenInfoDialogActionPayload) {}
 }
 
 export const OPEN_FILTER = '[App Tree] Open filter';

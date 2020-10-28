@@ -22,6 +22,7 @@ import { CommonModule } from '@angular/common';
 import { CoreModule } from '@alfresco/adf-core';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { InfoDialogComponent } from './components/info-dialog/info-dialog.component';
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import { MatIconModule } from '@angular/material/icon';
     ],
     providers: [ DialogService ],
     declarations: [
-        ConfirmationDialogComponent
+        ConfirmationDialogComponent,
+        InfoDialogComponent
     ],
     exports: [
         CommonModule,

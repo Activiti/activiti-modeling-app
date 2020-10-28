@@ -19,7 +19,7 @@ import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 
-export interface ConfirmDialogPayload {
+export interface InfoDialogPayload {
     subject: Subject<boolean>;
     title?: string;
     subtitle?: string;
@@ -27,19 +27,19 @@ export interface ConfirmDialogPayload {
 }
 
 @Component({
-    templateUrl: './confirmation-dialog.component.html'
+    templateUrl: './info-dialog.component.html'
 })
-export class ConfirmationDialogComponent implements OnInit {
+export class InfoDialogComponent implements OnInit {
     title: string;
     subtitle: string;
     messages: string[];
     subject: Subject<boolean>;
 
     constructor(
-        public dialog: MatDialogRef<ConfirmationDialogComponent>,
+        public dialog: MatDialogRef<InfoDialogComponent>,
         @Optional()
         @Inject(MAT_DIALOG_DATA)
-        public data: ConfirmDialogPayload
+        public data: InfoDialogComponent
     ) {}
 
     ngOnInit() {
@@ -49,9 +49,8 @@ export class ConfirmationDialogComponent implements OnInit {
         this.messages = this.data.messages || [];
     }
 
-    choose(choice: boolean): void {
-        this.subject.next(choice);
+    close(): void {
         this.dialog.close();
-        this.subject.complete();
+        this.subject.next();
     }
 }
