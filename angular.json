@@ -40,7 +40,6 @@
                             { "input": "node_modules/ngx-monaco-editor/assets/monaco", "output": "/assets/monaco", "glob": "**/*" }
                         ],
                         "styles": [
-                            ".tmp/bpmn-properties.css",
                             "src/styles.scss",
                             "projects/modeling-shared/sdk/src/lib/modeling-sdk.module.scss"
                         ],

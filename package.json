@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "author": "Alfresco Software, Ltd.",
   "scripts": {
-    "postinstall": "ngcc && lessc ./node_modules/bpmn-js-properties-panel/styles/properties.less .tmp/bpmn-properties.css",
+    "postinstall": "ngcc",
     "build": "ng build",
     "start": "ng serve",
     "test": "ng test",
