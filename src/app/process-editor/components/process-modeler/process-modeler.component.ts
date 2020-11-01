@@ -18,12 +18,11 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, switchMap, takeUntil } from 'rxjs/operators';
-import { ProcessContent, SnackbarErrorAction, ProcessModelerServiceToken, ProcessModelerService, ToolbarMessageAction } from '@alfresco-dbp/modeling-shared/sdk';
+import { ProcessContent, SnackbarErrorAction, ProcessModelerServiceToken, ProcessModelerService, ToolbarMessageAction, SetAppDirtyStateAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import {
     SelectModelerElementAction,
-    ChangedProcessAction,
-    RemoveDiagramElementAction,
+    RemoveDiagramElementAction
 } from '../../store/process-editor.actions';
 import { ProcessEntitiesState } from '../../store/process-entities.state';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
@@ -61,7 +60,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
                 this.store.dispatch(new ToolbarMessageAction(event.element.type));
             },
             changeHandler: event => {
-                this.store.dispatch(new ChangedProcessAction(createSelectedElement(event.element)));
+                this.store.dispatch(new SetAppDirtyStateAction(true));
                 this.onChange.emit(event);
             },
             removeHandler: event =>
