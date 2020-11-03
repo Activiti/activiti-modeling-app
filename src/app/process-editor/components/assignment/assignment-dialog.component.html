@@ -146,7 +146,7 @@
                 </ng-container>
             </mat-tab>
             <mat-tab label="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.EXPRESSION.TITLE' | translate }}">
-                <ng-container *ngIf="(processVariables$ | async)?.length; else noProcessVariables">
+                <ng-container>
                     <modelingsdk-code-editor
                         [vsTheme]="vsTheme$ | async"
                         [content]="expressionContent"
@@ -155,11 +155,6 @@
                         (changed)="onExpressionChange($event)">
                     </modelingsdk-code-editor>
                 </ng-container>
-                <ng-template #noProcessVariables>
-                    <h5 data-automation-id="no-process-variables-error">
-                        {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.EXPRESSION.NO_PROCESS_VARIABLES' | translate }}
-                    </h5>
-                </ng-template>
             </mat-tab>
         </mat-tab-group>
     </mat-card-content>

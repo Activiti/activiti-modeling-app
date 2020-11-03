@@ -32,7 +32,8 @@ import {
     Process,
     CodeValidatorService,
     selectProcessPropertiesArrayFor,
-    CodeEditorComponent
+    CodeEditorComponent,
+    ExpressionsEditorService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { IdentityUserModel, IdentityGroupModel } from '@alfresco/adf-core';
@@ -155,11 +156,23 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     assignmentForm: FormGroup;
     expressionErrorMessage: string;
 
+    expressionSuggestions = [
+        {
+            name: 'initiator',
+            type: 'string'
+        },
+        {
+            name: 'assignee',
+            type: 'string'
+        }
+    ];
+
     constructor(
         private store: Store<AmaState>,
         private codeValidatorService: CodeValidatorService,
         public dialogRef: MatDialogRef<AssignmentDialogComponent>,
         private formBuilder: FormBuilder,
+        private expressionsEditorService: ExpressionsEditorService,
         @Inject(MAT_DIALOG_DATA) public settings: AssignmentSettings
     ) {
         this.vsTheme$ = this.getVsTheme();
@@ -181,6 +194,8 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
             filter(process => !!process),
             map(process => getFileUri(this.selectedMode, this.languageType, process.id))
         );
+
+        this.expressionsEditorService.initExpressionEditor(this.languageType, this.expressionSuggestions);
     }
 
     private getVsTheme(): Observable<string> {
@@ -844,6 +859,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.onDestroy$.next();
         this.onDestroy$.complete();
+        this.expressionsEditorService.removeEditorLanguageSettings(this.languageType);
     }
 
     get staticForm(): FormGroup {

@@ -18,7 +18,7 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { AmaTitleService, CodeEditorModule, AssignmentMode, AssignmentType } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaTitleService, CodeEditorModule, AssignmentMode, AssignmentType, ExpressionsEditorService } from '@alfresco-dbp/modeling-shared/sdk';
 import { CoreModule, TranslationService, TranslationMock, IdentityGroupService, IdentityUserService, AlfrescoApiService } from '@alfresco/adf-core';
 import { By } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
@@ -38,6 +38,10 @@ describe('AssignmentDialogComponent', () => {
     let fixture: ComponentFixture<AssignmentDialogComponent>;
     let component: AssignmentDialogComponent;
     let alfrescoApiService: AlfrescoApiService;
+
+    const expressionsEditorService: ExpressionsEditorService = new ExpressionsEditorService();
+    expressionsEditorService.initExpressionEditor = () => { };
+    expressionsEditorService.removeEditorLanguageSettings = () => { };
 
     const mockDialogRef = {
         close: jasmine.createSpy('close'),
@@ -107,7 +111,6 @@ describe('AssignmentDialogComponent', () => {
                 MatCardModule,
                 MatDialogModule,
                 CodeEditorModule,
-                MatIconModule,
                 MatSelectModule
             ],
             providers: [
@@ -115,6 +118,7 @@ describe('AssignmentDialogComponent', () => {
                 IdentityGroupService,
                 IdentityUserService,
                 { provide: TranslationService, useClass: TranslationMock },
+                { provide: ExpressionsEditorService, useValue: expressionsEditorService },
                 { provide: MatDialogRef, useValue: mockDialogRef },
                 { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
                 {
@@ -394,7 +398,7 @@ describe('AssignmentDialogComponent', () => {
             });
         }));
 
-        it('Should not show code-editor and show hint if process variables are not exists', async(() => {
+        it('Should show code-editor if process variables are not exists', async(() => {
             mockStreams.assignments.next({
                 type: AssignmentType.expression,
                 assignment: AssignmentMode.assignee,
@@ -411,9 +415,7 @@ describe('AssignmentDialogComponent', () => {
             fixture.detectChanges();
             fixture.whenStable().then(() => {
                 const editor = fixture.debugElement.query(By.css('.monaco-editor'));
-                const errorMessage = fixture.debugElement.query(By.css('[data-automation-id="no-process-variables-error"]'));
-                expect(editor).toBeNull();
-                expect(errorMessage.nativeElement.textContent).toBe(' PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.EXPRESSION.NO_PROCESS_VARIABLES ');
+                expect(editor).not.toBeNull();
             });
         }));
     });
