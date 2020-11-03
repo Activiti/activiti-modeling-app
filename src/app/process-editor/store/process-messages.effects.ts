@@ -18,11 +18,9 @@
 import { ofType, Actions, Effect } from '@ngrx/effects';
 import { switchMap, tap, take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import {
     AmaState,
     DialogService,
-    BaseEffects,
     SetAppDirtyStateAction,
     selectSelectedProcess
 } from '@alfresco-dbp/modeling-shared/sdk';
@@ -32,15 +30,12 @@ import { OpenProcessMessagesDialogAction, OPEN_PROCESS_MESSAGES_DIALOG } from '.
 import { MessagesDialogComponent } from '../components/process-modeler/messages/messages-dialog.component';
 
 @Injectable()
-export class ProcessMessagesEffects extends BaseEffects {
+export class ProcessMessagesEffects {
 
     constructor(
         private actions$: Actions,
-        protected router: Router,
         private dialogService: DialogService,
-        private store: Store<AmaState>) {
-        super(router);
-    }
+        private store: Store<AmaState>) {}
 
     @Effect({ dispatch: false })
     openProcessMessagesDialogEffect = this.actions$.pipe(

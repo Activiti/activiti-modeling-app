@@ -18,11 +18,9 @@
 import { ofType, Actions, Effect } from '@ngrx/effects';
 import { switchMap, tap, take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import {
     AmaState,
     DialogService,
-    BaseEffects,
     SetAppDirtyStateAction,
     selectSelectedProcess
 } from '@alfresco-dbp/modeling-shared/sdk';
@@ -32,15 +30,12 @@ import { OpenProcessErrorsDialogAction, OPEN_PROCESS_ERRORS_DIALOG } from './pro
 import { ProcessErrorsDialogComponent } from '../components/process-modeler/process-errors/process-errors-dialog.component';
 
 @Injectable()
-export class ProcessErrorsEffects extends BaseEffects {
+export class ProcessErrorsEffects {
 
     constructor(
         private actions$: Actions,
-        protected router: Router,
         private dialogService: DialogService,
-        private store: Store<AmaState>) {
-        super(router);
-    }
+        private store: Store<AmaState>) {}
 
     @Effect({ dispatch: false })
     openProcessErrorsDialogEffect = this.actions$.pipe(

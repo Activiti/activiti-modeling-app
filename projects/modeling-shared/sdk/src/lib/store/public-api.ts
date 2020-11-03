@@ -22,7 +22,6 @@ export * from './entity.actions';
 export * from './entity.selectors';
 export * from './ama-store.module';
 export * from './app.actions';
-export * from './base.effects';
 export * from './project.state';
 export * from './project.selectors';
 export * from './project-entities.state';

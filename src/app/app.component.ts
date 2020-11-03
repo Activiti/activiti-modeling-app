@@ -20,10 +20,9 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AmaState, selectSelectedTheme } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaState, ErrorResponse, selectSelectedTheme } from '@alfresco-dbp/modeling-shared/sdk';
 import { PluginRoutesManagerService } from './common/services/plugin-routes-manager.service';
-import { AlfrescoApiService, AuthenticationService } from '@alfresco/adf-core';
-import { MatDialog } from '@angular/material/dialog';
+import { AlfrescoApiService } from '@alfresco/adf-core';
 
 @Component({
     selector: 'ama-root',
@@ -37,22 +36,18 @@ export class AppComponent implements OnInit, OnDestroy {
         private renderer: Renderer2,
         private pluginRoutesManager: PluginRoutesManagerService,
         private router: Router,
-        private alfrescoApiService: AlfrescoApiService,
-        private authenticationService: AuthenticationService,
-        private dialogRef: MatDialog) {
+        private alfrescoApiService: AlfrescoApiService) {
         this.pluginRoutesManager.patchRoutes();
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
     ngOnInit() {
-        this.alfrescoApiService.getInstance().on('error', (error) => {
-            if (error.status === 401) {
-                if (!this.authenticationService.isLoggedIn()) {
-                    this.dialogRef.closeAll();
-                    this.router.navigate(['/login']);
-                }
+        this.alfrescoApiService.getInstance().oauth2Auth.on('error', (error: ErrorResponse) => {
+            if (error.status === 403 && this.router.url !== '/') {
+                this.router.navigate(['error', 403]);
             }
         });
+
         this.store
             .select(selectSelectedTheme)
             .pipe(takeUntil(this.onDestroy$))

@@ -19,11 +19,9 @@ import { OpenProcessVariablesDialogAction, OPEN_PROCESS_VARIABLES_DIALOG, Update
 import { ofType, Actions, Effect } from '@ngrx/effects';
 import { switchMap, tap, take, map, mergeMap } from 'rxjs/operators';
 import { Injectable, Inject } from '@angular/core';
-import { Router } from '@angular/router';
 import {
     AmaState,
     DialogService,
-    BaseEffects,
     SetAppDirtyStateAction,
     EntityProperties,
     selectSelectedTheme,
@@ -37,17 +35,14 @@ import { Store } from '@ngrx/store';
 import { Subject, of, zip } from 'rxjs';
 
 @Injectable()
-export class ProcessVariablesEffects extends BaseEffects {
+export class ProcessVariablesEffects {
 
     constructor(
         private actions$: Actions,
-        protected router: Router,
         private dialogService: DialogService,
-        @Inject(ProcessModelerServiceToken) private modelerService: ProcessModelerService,
-        private store: Store<AmaState>
-    ) {
-        super(router);
-    }
+        private store: Store<AmaState>,
+        @Inject(ProcessModelerServiceToken) private modelerService: ProcessModelerService
+    ) {}
 
     @Effect({ dispatch: false })
     openProcessVariablesDialogEffect = this.actions$.pipe(

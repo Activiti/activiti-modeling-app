@@ -19,7 +19,7 @@ import { Injectable } from '@angular/core';
 import { map, switchMap, catchError, filter, mergeMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { BaseEffects, OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, LogFactoryService,
+import { OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, LogFactoryService,
     LeaveProjectAction,
     SnackbarInfoAction,
     DialogData,
@@ -41,7 +41,7 @@ import {
  import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 
 @Injectable()
-export class ProjectEffects extends BaseEffects {
+export class ProjectEffects {
     constructor(
         private actions$: Actions,
         private projectEditorService: ProjectEditorService,
@@ -49,9 +49,7 @@ export class ProjectEffects extends BaseEffects {
         protected downloadService: DownloadResourceService,
         private logFactory: LogFactoryService,
         protected blobService: BlobService
-    ) {
-        super(router);
-    }
+    ) {}
 
     @Effect()
     getProjectEffect = this.actions$.pipe(
@@ -90,10 +88,7 @@ export class ProjectEffects extends BaseEffects {
     private getProject(projectId: string) {
         return this.projectEditorService.fetchProject(projectId).pipe(
             switchMap(project => of(new GetProjectSuccessAction(project))),
-            catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.GET_PROJECT'), e)
-            )
-        );
+            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.GET_PROJECT')));
     }
 
     private exportProject(projectId: string, name: string) {
@@ -104,7 +99,7 @@ export class ProjectEffects extends BaseEffects {
                     this.logFactory.logInfo(getProjectEditorLogInitiator(), 'PROJECT_EDITOR.EXPORT_SUCCESS')
                 ];
             }),
-            catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.EXPORT_PROJECT'), e)));
+            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.EXPORT_PROJECT')));
     }
 
     private exportProjectAttempt(payload: ExportProjectAttemptPayload) {
@@ -112,8 +107,7 @@ export class ProjectEffects extends BaseEffects {
             switchMap(() => this.exportProject(payload.projectId, payload.projectName)),
             catchError(response => this.getDialogData(response).pipe(
                 switchMap(dialogData => [
-                    this.genericErrorHandler(
-                        this.logFactory.logError.bind(this.logFactory, getProjectEditorLogInitiator(), dialogData.messages), response),
+                    this.logFactory.logError(getProjectEditorLogInitiator(), dialogData.messages),
                     new OpenConfirmDialogAction({
                         dialogData: dialogData,
                         action: payload.action
@@ -130,13 +124,14 @@ export class ProjectEffects extends BaseEffects {
                 this.logFactory.logInfo(getProjectEditorLogInitiator(), 'PROJECT_EDITOR.PROJECT_VALID')
             ]),
             catchError(response => this.getDialogData(response).pipe(
-                switchMap(dialogData => [
-                    this.genericErrorHandler(
-                        this.logFactory.logError.bind(this.logFactory, getProjectEditorLogInitiator(), dialogData.messages), response),
-                    new OpenInfoDialogAction({dialogData})
-                ])
-            )
-        ));
+                switchMap(dialogData => {
+                    return [
+                        this.logFactory.logError(getProjectEditorLogInitiator(), dialogData.messages),
+                        new OpenInfoDialogAction({dialogData})
+                    ];
+                })
+            ))
+        );
     }
 
     private getDialogData(response: any): Observable<DialogData> {
@@ -152,7 +147,7 @@ export class ProjectEffects extends BaseEffects {
         ));
     }
 
-    private handleError(userMessage: string) {
+    private handleError(userMessage: string): Observable<SnackbarErrorAction> {
         return of(new SnackbarErrorAction(userMessage));
     }
 }

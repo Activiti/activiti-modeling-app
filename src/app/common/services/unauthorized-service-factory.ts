@@ -15,23 +15,12 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { Router } from '@angular/router';
+import {AlfrescoApiService} from '@alfresco/adf-core';
+import {Store} from '@ngrx/store';
+import {filter} from 'rxjs/operators';
+import { LogoutAction } from '../../store/actions/app.actions';
 
-@Injectable()
-export abstract class BaseEffects {
-    constructor(protected router: Router) {}
-
-    protected genericErrorHandler(specificErrorHandler: Function, error: { status: number }, ...args: any[]) {
-        if (error.status === 401) {
-            this.router.navigate(['login']);
-            return of();
-        }
-        if (error.status === 403) {
-            this.router.navigate(['error/403']);
-            return of();
-        }
-        return specificErrorHandler(error, ...args);
-    }
+export function unauthorizedServiceFactory(alfrescoApiService: AlfrescoApiService, store: Store ): Function {
+    return () => alfrescoApiService.alfrescoApiInitialized.pipe(filter((isInitialized) => isInitialized))
+        .subscribe(() => alfrescoApiService.getInstance().oauth2Auth.on('unauthorized', () => store.dispatch(new LogoutAction())));
 }

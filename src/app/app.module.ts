@@ -16,7 +16,7 @@
  */
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -65,8 +65,9 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { AmaModelSchemaLoaderGuard } from './common/services/ama-model-schema-loader-guard.service';
 import { getBackendLogInitiator } from './common/services/application.constants';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateLoaderService } from '@alfresco/adf-core';
-
+import { AlfrescoApiService, TranslateLoaderService } from '@alfresco/adf-core';
+import { Store } from '@ngrx/store';
+import { unauthorizedServiceFactory } from './common/services/unauthorized-service-factory';
 @NgModule({
     imports: [
         BrowserAnimationsModule,
@@ -125,7 +126,16 @@ import { TranslateLoaderService } from '@alfresco/adf-core';
         ModelStorageService,
         { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: AppFooterService },
         provideLogFilter(getBackendLogInitiator()),
-        provideLogFilter(allLogFilter)
+        provideLogFilter(allLogFilter),
+        {
+            provide: APP_INITIALIZER,
+            useFactory: unauthorizedServiceFactory,
+            deps: [
+                AlfrescoApiService,
+                Store
+            ],
+            multi: true
+        },
     ],
     bootstrap: [AppComponent]
 })

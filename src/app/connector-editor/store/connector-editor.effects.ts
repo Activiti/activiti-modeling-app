@@ -68,9 +68,9 @@ import {
     ConnectorContent,
     Connector,
     selectSelectedProjectId,
-    BaseEffects,
     CreateConnectorAttemptAction,
-    CREATE_CONNECTOR_ATTEMPT
+    CREATE_CONNECTOR_ATTEMPT,
+    ErrorResponse
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ConnectorEditorService } from '../services/connector-editor.service';
 import { of, zip, forkJoin, Observable } from 'rxjs';
@@ -81,17 +81,15 @@ import { selectConnectorsLoaded, selectSelectedConnectorContent, selectSelectedC
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 
 @Injectable()
-export class ConnectorEditorEffects extends BaseEffects {
+export class ConnectorEditorEffects {
     constructor(
         private store: Store<AmaState>,
         private actions$: Actions,
         private connectorEditorService: ConnectorEditorService,
         private storageService: StorageService,
         private logFactory: LogFactoryService,
-        router: Router
-    ) {
-        super(router);
-    }
+        private router: Router
+    ) {}
 
     @Effect()
     validateConnectorEffect = this.actions$.pipe(
@@ -244,19 +242,13 @@ export class ConnectorEditorEffects extends BaseEffects {
                 new CreateConnectorSuccessAction(connector, true),
                 new SnackbarInfoAction('CONNECTOR_EDITOR.UPLOAD_SUCCESS')
             ]),
-            catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.UPLOAD_FILE'), e)
-            )
-        );
+            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.UPLOAD_FILE')));
     }
 
     private getConnectors(projectId: string): Observable<{} | GetConnectorsSuccessAction> {
         return this.connectorEditorService.fetchAll(projectId).pipe(
             mergeMap(connectors => of(new GetConnectorsSuccessAction(connectors))),
-            catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.LOAD_MODELS'), e)
-            )
-        );
+            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.LOAD_MODELS')));
     }
 
     private createConnector(form: Partial<EntityDialogForm>, navigateTo: boolean,
@@ -267,8 +259,7 @@ export class ConnectorEditorEffects extends BaseEffects {
                 new CreateConnectorSuccessAction(connector, navigateTo),
                 new SnackbarInfoAction('PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_CREATED')
             ]),
-            catchError(e => this.genericErrorHandler(this.handleConnectorCreationError.bind(this), e))
-        );
+            catchError(e => this.handleConnectorCreationError(e)));
     }
 
     private deleteConnector(connectorId: string): Observable<{} | SnackbarInfoAction | UpdateConnectorSuccessAction> {
@@ -279,8 +270,7 @@ export class ConnectorEditorEffects extends BaseEffects {
                 new SetAppDirtyStateAction(false),
                 new SnackbarInfoAction('PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_DELETED')
             ]),
-            catchError(e => this.genericErrorHandler(this.handleConnectorUpdatingError.bind(this), e))
-        );
+            catchError(e => this.handleConnectorUpdatingError(e)));
     }
 
     private updateConnector(connector: Connector, content: ConnectorContent, projectId: string): Observable<{} | SnackbarInfoAction | UpdateConnectorSuccessAction> {
@@ -291,8 +281,7 @@ export class ConnectorEditorEffects extends BaseEffects {
                 this.logFactory.logInfo(getConnectorLogInitiator(), 'PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_UPDATED'),
                 new SnackbarInfoAction('PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
             ]),
-            catchError(e => this.genericErrorHandler(this.handleConnectorUpdatingError.bind(this), e))
-        );
+            catchError(e => this.handleConnectorUpdatingError(e)));
     }
 
     private getConnector(connectorId: string, projectId: string, loadConnector?: boolean) {
@@ -304,13 +293,10 @@ export class ConnectorEditorEffects extends BaseEffects {
                 new GetConnectorSuccessAction(connector, connectorContent),
                 ...(loadConnector ? [new ModelOpenedAction({ id: connectorId, type: CONNECTOR })] : [])
             ]),
-            catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'CONNECTOR_EDITOR.ERRORS.GET_CONNECTOR'), e)
-            )
-        );
+            catchError(_ => this.handleError('CONNECTOR_EDITOR.ERRORS.GET_CONNECTOR')));
     }
 
-    private handleConnectorUpdatingError(error): Observable<SnackbarErrorAction> {
+    private handleConnectorUpdatingError(error: ErrorResponse): Observable<SnackbarErrorAction> {
         let errorMessage;
 
         if (error.status === 409) {
@@ -322,7 +308,7 @@ export class ConnectorEditorEffects extends BaseEffects {
         return of(new SnackbarErrorAction(errorMessage));
     }
 
-    private handleConnectorCreationError(error): Observable<SnackbarErrorAction> {
+    private handleConnectorCreationError(error: ErrorResponse): Observable<SnackbarErrorAction> {
         let errorMessage;
 
         if (error.status === 409) {

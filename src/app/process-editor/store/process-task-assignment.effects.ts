@@ -17,14 +17,12 @@
 
 import { Injectable, Inject } from '@angular/core';
 import {
-    BaseEffects,
     DialogService,
     ProcessModelerServiceToken,
     ProcessModelerService,
     AmaState,
     SetAppDirtyStateAction
 } from '@alfresco-dbp/modeling-shared/sdk';
-import { Router } from '@angular/router';
 import { Effect, ofType, Actions } from '@ngrx/effects';
 import { OpenTaskAssignmentDialogAction, OPEN_TASK_ASSIGNMENT_DIALOG, UpdateTaskAssignmentAction, UPDATE_TASK_ASSIGNMENT_VARIABLES } from './process-task-assignment.actions';
 import { switchMap, take, map, tap, mergeMap } from 'rxjs/operators';
@@ -35,18 +33,15 @@ import { selectSelectedElement } from './process-editor.selectors';
 import { TaskAssignmentService } from '../services/cardview-properties/task-assignment-item/task-assignment.service';
 
 @Injectable()
-export class ProcessTaskAssignmentEffects extends BaseEffects {
+export class ProcessTaskAssignmentEffects {
 
     constructor(
-        protected router: Router,
         private actions$: Actions,
         private dialogService: DialogService,
         private taskAssignmentService: TaskAssignmentService,
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
         private store: Store<AmaState>
-    ) {
-        super(router);
-    }
+    ) {}
 
     @Effect({ dispatch: false })
     openTaskAssignmentDialogEffect = this.actions$.pipe(

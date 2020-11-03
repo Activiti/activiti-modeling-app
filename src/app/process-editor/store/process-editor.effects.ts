@@ -18,7 +18,7 @@
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Inject, Injectable } from '@angular/core';
 import { catchError, filter, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators';
-import { forkJoin, Observable, of, zip } from 'rxjs';
+import { EMPTY, forkJoin, Observable, of, zip } from 'rxjs';
 import { Router } from '@angular/router';
 
 import {
@@ -64,7 +64,6 @@ import {
 } from './process-editor.actions';
 import {
     AmaState,
-    BaseEffects,
     BpmnElement,
     createModelName,
     EntityDialogForm,
@@ -85,7 +84,8 @@ import {
     SnackbarErrorAction,
     SnackbarInfoAction,
     UPDATE_SERVICE_PARAMETERS,
-    UploadFileAttemptPayload
+    UploadFileAttemptPayload,
+    ErrorResponse
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { selectProcessesLoaded, selectSelectedElement } from './process-editor.selectors';
@@ -94,17 +94,15 @@ import { getProcessLogInitiator, PROCESS_SVG_IMAGE } from '../services/process-e
 import { ProcessValidationResponse } from './process-editor.state';
 
 @Injectable()
-export class ProcessEditorEffects extends BaseEffects {
+export class ProcessEditorEffects {
     constructor(
         private store: Store<AmaState>,
         private actions$: Actions,
         private processEditorService: ProcessEditorService,
         private logFactory: LogFactoryService,
-        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
-        router: Router
-    ) {
-        super(router);
-    }
+        private router: Router,
+        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService
+    ) {}
 
     @Effect()
     showProcessesEffect = this.actions$.pipe(
@@ -247,8 +245,14 @@ export class ProcessEditorEffects extends BaseEffects {
     private validateProcess(payload: ValidateProcessPayload) {
         return this.processEditorService.validate(payload.processId, payload.content, payload.projectId, payload.extensions).pipe(
             switchMap(() => [new SetApplicationLoadingStateAction(true), payload.action, new SetApplicationLoadingStateAction(false)]),
-            catchError(response => {
-                const errors = this.handleProcessValidationError(JSON.parse(response.message));
+            catchError((response) => {
+                const parsedResponse = JSON.parse(response.message);
+
+                if (parsedResponse.status !== 400) {
+                    return EMPTY;
+                }
+
+                const errors = this.handleProcessValidationError(parsedResponse);
                 if (payload.errorAction) {
                     return [
                         payload.errorAction,
@@ -290,8 +294,7 @@ export class ProcessEditorEffects extends BaseEffects {
                 this.logFactory.logInfo(getProcessLogInitiator(), 'PROCESS_EDITOR.PROCESS_SAVED'),
                 new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_SAVED')
             ]),
-            catchError(e => this.genericErrorHandler(this.handleProcessUpdatingError.bind(this), e))
-        );
+            catchError(e => this.handleProcessUpdatingError(e)));
     }
 
     private downloadProcessDiagram(processId: string, processName: string) {
@@ -299,9 +302,7 @@ export class ProcessEditorEffects extends BaseEffects {
         return this.processModelerService
             .export()
             .then(data => this.processEditorService.downloadDiagram(name, data))
-            .catch(err => {
-                this.genericErrorHandler(this.handleError.bind(this, 'APP.PROCESSES.ERRORS.DOWNLOAD_DIAGRAM'), err);
-            });
+            .catch(_ => this.handleError('APP.PROCESSES.ERRORS.DOWNLOAD_DIAGRAM'));
     }
 
     private downloadProcessSVGImage(processName: string) {
@@ -309,9 +310,7 @@ export class ProcessEditorEffects extends BaseEffects {
         return this.processModelerService
             .export(PROCESS_SVG_IMAGE)
             .then(data => this.processEditorService.downloadSVGImage(name, data))
-            .catch(err => {
-                this.genericErrorHandler(this.handleError.bind(this, 'APP.PROCESSES.ERRORS.DOWNLOAD_SVG_IMAGE'), err);
-            });
+            .catch(_ => this.handleError('APP.PROCESSES.ERRORS.DOWNLOAD_SVG_IMAGE'));
     }
 
     private getProcess(processId: string, projectId: string) {
@@ -325,9 +324,7 @@ export class ProcessEditorEffects extends BaseEffects {
                 new SetAppDirtyStateAction(false)
             ]),
             catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'PROCESS_EDITOR.ERRORS.LOAD_DIAGRAM'), e)
-            )
-        );
+                this.handleError('PROCESS_EDITOR.ERRORS.LOAD_DIAGRAM')));
     }
 
     private uploadProcess(payload: UploadFileAttemptPayload): Observable<void | {} | SnackbarInfoAction | CreateProcessSuccessAction> {
@@ -336,19 +333,13 @@ export class ProcessEditorEffects extends BaseEffects {
                 new CreateProcessSuccessAction(process, true),
                 new SnackbarInfoAction('PROCESS_EDITOR.UPLOAD_SUCCESS')
             ]),
-            catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.UPLOAD_FILE'), e)
-            )
-        );
+            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.UPLOAD_FILE')));
     }
 
     private getProcesses(projectId: string): Observable<{} | GetProcessesSuccessAction> {
         return this.processEditorService.getAll(projectId).pipe(
             switchMap(processes => of(new GetProcessesSuccessAction(processes))),
-            catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.LOAD_MODELS'), e)
-            )
-        );
+            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.LOAD_MODELS')));
     }
 
     private deleteProcess(processId: string): Observable<{} | SnackbarInfoAction | DeleteProcessSuccessAction> {
@@ -359,10 +350,7 @@ export class ProcessEditorEffects extends BaseEffects {
                 new ModelClosedAction({ id: processId, type: PROCESS }),
                 new SnackbarInfoAction('PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_DELETED')
             ]),
-            catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.DELETE_PROCESS'), e)
-            )
-        );
+            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.DELETE_PROCESS')));
     }
 
     private createProcess(form: Partial<EntityDialogForm>, navigateTo: boolean, projectId: string): Observable<{} | SnackbarInfoAction | CreateProcessSuccessAction> {
@@ -371,15 +359,14 @@ export class ProcessEditorEffects extends BaseEffects {
                 new CreateProcessSuccessAction(process, navigateTo),
                 new SnackbarInfoAction('PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_CREATED')
             ]),
-            catchError(e => this.genericErrorHandler(this.handleProcessCreationError.bind(this), e))
-        );
+            catchError(e => this.handleProcessCreationError(e)));
     }
 
-    private handleError(userMessage): Observable<SnackbarErrorAction> {
+    private handleError(userMessage: string): Observable<SnackbarErrorAction> {
         return of(new SnackbarErrorAction(userMessage));
     }
 
-    private handleProcessUpdatingError(error): Observable<SnackbarErrorAction | {}> {
+    private handleProcessUpdatingError(error: ErrorResponse): Observable<SnackbarErrorAction | {}> {
         let errorMessage;
         const message = error.message ? JSON.parse(error.message) : {};
 
@@ -393,7 +380,7 @@ export class ProcessEditorEffects extends BaseEffects {
         return of(new SnackbarErrorAction(errorMessage), new UpdateProcessFailedAction());
     }
 
-    private handleProcessCreationError(error): Observable<SnackbarErrorAction> {
+    private handleProcessCreationError(error: ErrorResponse): Observable<SnackbarErrorAction> {
         let errorMessage;
 
         if (error.status === 409) {

@@ -29,7 +29,6 @@ import {
     CREATE_PROJECT_ATTEMPT,
     SnackbarErrorAction,
     SnackbarInfoAction,
-    BaseEffects,
     Pagination,
     FetchQueries,
     ServerSideSorting,
@@ -59,15 +58,13 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Injectable()
-export class ProjectsEffects extends BaseEffects {
+export class ProjectsEffects {
     constructor(
         private actions$: Actions,
         private dashboardService: DashboardService,
         private store: Store<AmaState>,
-        router: Router,
-    ) {
-        super(router);
-    }
+        private router: Router
+    ) {}
 
     @Effect()
     showProjectsEffect = this.actions$.pipe(
@@ -141,12 +138,7 @@ export class ProjectsEffects extends BaseEffects {
                     direction: sorting.direction
                 }, search)
             ]),
-            catchError(e =>
-                this.genericErrorHandler(
-                    () => of(new SnackbarErrorAction('PROJECT_EDITOR.ERROR.DELETE_PROJECT')),
-                    e
-                )
-            )
+            catchError(_ => of(new SnackbarErrorAction('PROJECT_EDITOR.ERROR.DELETE_PROJECT')))
         );
     }
 
@@ -156,9 +148,7 @@ export class ProjectsEffects extends BaseEffects {
                 new UpdateProjectSuccessAction({ id: project.id, changes: project }),
                 new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_UPDATED')
             ]),
-            catchError(e =>
-                this.genericErrorHandler(this.handleProjectUpdateError.bind(this, e), e)
-            )
+            catchError(e => this.handleProjectUpdateError(e))
         );
     }
 
@@ -168,9 +158,7 @@ export class ProjectsEffects extends BaseEffects {
                 new CreateProjectSuccessAction(project),
                 new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_CREATED')
             ]),
-            catchError(e =>
-                this.genericErrorHandler(this.handleProjectCreateError.bind(this, e), e)
-            )
+            catchError(e => this.handleProjectCreateError(e))
         );
     }
 
@@ -180,16 +168,14 @@ export class ProjectsEffects extends BaseEffects {
                 new CreateProjectSuccessAction(project),
                 new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_CREATED')
             ]),
-            catchError(e =>
-                this.genericErrorHandler(this.handleProjectUploadError.bind(this, e, file, name), e)
-            )
+            catchError(e => this.handleProjectUploadError(e, file, name))
         );
     }
 
     private getProjectsAttempt(pagination: FetchQueries, sorting: ServerSideSorting, search: SearchQuery) {
         return this.dashboardService.fetchProjects(pagination, sorting, search).pipe(
             switchMap(data => [new GetProjectsSuccessAction(data.entries, data.pagination)]),
-            catchError(e => this.genericErrorHandler(this.handleError.bind(this, 'DASHBOARD.ERROR.LOAD_PROJECTS'), e))
+            catchError(e => this.handleError('DASHBOARD.ERROR.LOAD_PROJECTS'))
         );
     }
 
@@ -199,7 +185,7 @@ export class ProjectsEffects extends BaseEffects {
                 new UploadProjectSuccessAction(project),
                 new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_UPLOADED')
             ]),
-            catchError(e => this.genericErrorHandler(this.handleProjectUploadError.bind(this, e, file, name), e))
+            catchError(e => this.handleProjectUploadError(e, file, name))
         );
     }
 
@@ -241,7 +227,7 @@ export class ProjectsEffects extends BaseEffects {
         return of(new SnackbarErrorAction(errorMessage));
     }
 
-    private handleError(userMessage: string) {
+    private handleError(userMessage: string): Observable<SnackbarErrorAction> {
         return of(new SnackbarErrorAction(userMessage));
     }
 }

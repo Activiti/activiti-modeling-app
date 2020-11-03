@@ -16,12 +16,10 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of, zip } from 'rxjs';
 import { mergeMap, catchError } from 'rxjs/operators';
 import {
-    BaseEffects,
     GetModelsAttemptAction,
     GET_MODELS_ATTEMPT,
     GetModelsSuccessAction,
@@ -36,15 +34,12 @@ import { ModelStorageService } from '../../common/services/model-storage.service
 import { Store } from '@ngrx/store';
 
 @Injectable()
-export class EntityEffects extends BaseEffects {
+export class EntityEffects {
     constructor(
         private actions$: Actions,
         private modelStorageService: ModelStorageService,
-        private store: Store<AmaState>,
-        router: Router
-    ) {
-        super(router);
-    }
+        private store: Store<AmaState>
+    ) {}
 
     @Effect()
     showModelsEffect = this.actions$.pipe(
@@ -71,13 +66,10 @@ export class EntityEffects extends BaseEffects {
     private getModels(projectId: string, modelType: MODEL_TYPE): Observable<{} | GetModelsSuccessAction> {
         return this.modelStorageService.fetchAll(projectId, modelType).pipe(
             mergeMap(models => of(new GetModelsSuccessAction(models, modelType))),
-            catchError(e =>
-                this.genericErrorHandler(this.handleError.bind(this, 'PROJECT_EDITOR.ERROR.LOAD_MODELS'), e)
-            )
-        );
+            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.LOAD_MODELS')));
     }
 
-    private handleError(userMessage): Observable<SnackbarErrorAction> {
+    private handleError(userMessage: string): Observable<SnackbarErrorAction> {
         return of(new SnackbarErrorAction(userMessage));
     }
 }
