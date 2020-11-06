@@ -59,3 +59,10 @@ export interface LogMessageInitiator {
     displayName: string;
     extra?: any;
 }
+
+export enum ModelEditorState {
+    INITIAL = 'initial',
+    SAVING = 'saving',
+    SAVED = 'saved',
+    FAILED = 'failed'
+}

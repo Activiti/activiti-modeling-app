@@ -15,10 +15,14 @@
  * limitations under the License.
  */
 
+import { ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
+
 export interface ConnectorEditorState {
     loading: boolean;
+    updateState: ModelEditorState;
 }
 
 export const INITIAL_CONNECTOR_EDITOR_STATE: ConnectorEditorState = {
-    loading: false
+    loading: false,
+    updateState: ModelEditorState.INITIAL
 };

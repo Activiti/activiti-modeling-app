@@ -42,7 +42,9 @@ import {
     ChangedConnectorSettingsAction,
     CHANGE_CONNECTOR_SETTINGS,
     CHANGE_CONNECTOR_CONTENT,
-    ChangeConnectorContent
+    ChangeConnectorContent,
+    UPDATE_CONNECTOR_FAILED,
+    UpdateConnectorFailedAction
 } from './connector-editor.actions';
 import { map, switchMap, catchError, mergeMap, take, withLatestFrom, tap } from 'rxjs/operators';
 import {
@@ -160,6 +162,12 @@ export class ConnectorEditorEffects {
             new SetApplicationLoadingStateAction(false),
             new SetAppDirtyStateAction(false)
         ])
+    );
+
+    @Effect()
+    updateConnectorFailedEffect = this.actions$.pipe(
+        ofType<UpdateConnectorFailedAction>(UPDATE_CONNECTOR_FAILED),
+        mergeMap(() => of(new SetApplicationLoadingStateAction(false)))
     );
 
     @Effect()
@@ -296,7 +304,7 @@ export class ConnectorEditorEffects {
             catchError(_ => this.handleError('CONNECTOR_EDITOR.ERRORS.GET_CONNECTOR')));
     }
 
-    private handleConnectorUpdatingError(error: ErrorResponse): Observable<SnackbarErrorAction> {
+    private handleConnectorUpdatingError(error: ErrorResponse): Observable<SnackbarErrorAction | {}> {
         let errorMessage;
 
         if (error.status === 409) {
@@ -305,7 +313,7 @@ export class ConnectorEditorEffects {
             errorMessage = 'PROJECT_EDITOR.ERROR.UPDATE_CONNECTOR.GENERAL';
         }
 
-        return of(new SnackbarErrorAction(errorMessage));
+        return of(new SnackbarErrorAction(errorMessage), new UpdateConnectorFailedAction());
     }
 
     private handleConnectorCreationError(error: ErrorResponse): Observable<SnackbarErrorAction> {

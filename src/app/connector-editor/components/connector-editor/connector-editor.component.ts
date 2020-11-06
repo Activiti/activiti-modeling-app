@@ -18,10 +18,10 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { ComponentRegisterService } from '@alfresco/adf-extensions';
 import { Store } from '@ngrx/store';
-import { selectSelectedConnectorContent, selectConnectorLoadingState, selectSelectedConnectorId } from '../../store/connector-editor.selectors';
-import { map, filter } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
-import { ChangeConnectorContent } from '../../store/connector-editor.actions';
+import { selectSelectedConnectorContent, selectConnectorLoadingState, selectSelectedConnectorId, selectConnectorEditorSaving } from '../../store/connector-editor.selectors';
+import { map, filter, take, tap, switchMap, catchError } from 'rxjs/operators';
+import { Observable, of, zip } from 'rxjs';
+import { ChangeConnectorContent, UpdateConnectorContentAttemptAction, ValidateConnectorAttemptAction } from '../../store/connector-editor.actions';
 import {
     AmaState,
     selectSelectedTheme,
@@ -33,7 +33,8 @@ import {
     CONNECTOR,
     getFileUri,
     ToolbarMessageAction,
-    CodeEditorPosition
+    CodeEditorPosition,
+    ModelEditorState
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 const memoize = require('lodash/memoize');
@@ -125,5 +126,34 @@ export class ConnectorEditorComponent {
         if (!this.isAdvancedEditorEmbedded() || this.selectedTabIndex > 0 ) {
             this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
         }
+    }
+
+    private saveAction(content): UpdateConnectorContentAttemptAction {
+        return new UpdateConnectorContentAttemptAction(JSON.parse(content));
+    }
+
+    onSave() {
+        zip(this.editorContent$, this.connectorId$)
+            .pipe(take(1)).subscribe(([content, connectorId]) => {
+                this.store.dispatch(new ValidateConnectorAttemptAction({
+                    title: 'APP.DIALOGS.CONFIRM.SAVE.CONNECTOR',
+                    connectorId: connectorId,
+                    connectorContent: JSON.parse(content),
+                    action: this.saveAction(content)
+                }));
+        });
+    }
+
+    canDeactivate(): Observable<boolean> {
+        return zip(this.editorContent$)
+            .pipe(
+                take(1),
+                tap((content) => this.store.dispatch(this.saveAction(content))),
+                switchMap(() => this.store.select(selectConnectorEditorSaving)),
+                filter(updateState => (updateState === ModelEditorState.SAVED) || (updateState === ModelEditorState.FAILED)),
+                take(1),
+                map(state => state === ModelEditorState.SAVED),
+                catchError(() => of(false))
+            );
     }
 }

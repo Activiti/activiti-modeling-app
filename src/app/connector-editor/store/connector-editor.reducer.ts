@@ -17,8 +17,8 @@
 
 import { Action } from '@ngrx/store';
 import { ConnectorEditorState, INITIAL_CONNECTOR_EDITOR_STATE } from './connector-editor.state';
-import { GET_CONNECTOR_SUCCESS, UPDATE_CONNECTOR_SUCCESS } from './connector-editor.actions';
-import { GET_CONNECTOR_ATTEMPT, LOAD_CONNECTOR_ATTEMPT } from '@alfresco-dbp/modeling-shared/sdk';
+import { GET_CONNECTOR_SUCCESS, UPDATE_CONNECTOR_CONTENT_ATTEMPT, UPDATE_CONNECTOR_FAILED, UPDATE_CONNECTOR_SUCCESS } from './connector-editor.actions';
+import { GET_CONNECTOR_ATTEMPT, LOAD_CONNECTOR_ATTEMPT, ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
 
 export function connectorEditorReducer(
     state: ConnectorEditorState = { ...INITIAL_CONNECTOR_EDITOR_STATE },
@@ -32,7 +32,8 @@ export function connectorEditorReducer(
         case UPDATE_CONNECTOR_SUCCESS:
             return {
                 ...state,
-                loading: false
+                loading: false,
+                updateState: ModelEditorState.SAVED
             };
 
         case LOAD_CONNECTOR_ATTEMPT:
@@ -42,9 +43,22 @@ export function connectorEditorReducer(
                 loading: true
             };
 
+        case UPDATE_CONNECTOR_CONTENT_ATTEMPT:
+            return setSavingState(state, ModelEditorState.SAVING);
+
+        case UPDATE_CONNECTOR_FAILED:
+            return setSavingState(state, ModelEditorState.FAILED);
+
         default:
             newState = { ...state };
     }
 
     return newState;
+}
+
+function setSavingState(state: ConnectorEditorState, updateState: ModelEditorState): ConnectorEditorState {
+    return {
+        ...state,
+        updateState
+    };
 }

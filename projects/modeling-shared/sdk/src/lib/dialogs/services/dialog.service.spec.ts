@@ -15,18 +15,34 @@
  * limitations under the License.
  */
 
-import { DialogService } from './dialog.service';
+import { DialogService, MultipleChoiceDialogReturnType } from './dialog.service';
 import { TestBed } from '@angular/core/testing';
-import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatDialogModule, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
-import { DialogData } from '../../store/app.actions';
+import { DialogData, MultipleChoiceDialogData } from '../../store/app.actions';
+import { MultipleChoiceDialogComponent } from '../components/multiple-choice-dialog/multiple-choice-dialog.component';
+import { Subject } from 'rxjs';
 
 describe('DialogService ', () => {
     let service: DialogService;
     let dialog: MatDialog;
     let dialogOpenSpy: jasmine.Spy;
-
+    const multipleChoiceDialogRef: MatDialogRef<MultipleChoiceDialogComponent<fakeType>> = null;
+    const subjectMultipleChoice: Subject<MultipleChoiceDialogReturnType<fakeType>> = null;
+    enum fakeType {
+        WITH_SAVE = 'WITH_SAVE',
+        WITHOUT_SAVE = 'WITHOUT_SAVE',
+        ABORT = 'ABORT'
+    }
+    const multipleChoiceDialogData: MultipleChoiceDialogData<fakeType> = {
+        choices: [
+            { title: 'Save', choice: fakeType.WITH_SAVE, spinnable: true}
+        ],
+        subtitle: 'Do you want to save changes?',
+        title: 'Are you sure?',
+        ...subjectMultipleChoice
+    };
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [MatDialogModule, NoopAnimationsModule],
@@ -100,5 +116,47 @@ describe('DialogService ', () => {
     it('should check the closeAll method', () => {
         service.closeAll();
         expect(dialog.closeAll).toHaveBeenCalled();
+    });
+
+    it('the openMultipleChoiceDialog return should open a dialog', () => {
+        service.openMultipleChoiceDialog(multipleChoiceDialogData);
+
+        expect(dialog.open).toHaveBeenCalled();
+        expect(dialog.open).toHaveBeenCalledWith(MultipleChoiceDialogComponent, {
+            width: '600px',
+            disableClose: true,
+            data: jasmine.any(Object)
+        });
+    });
+
+    it('check if the subject was passed down in openMultipleChoiceDialog', () => {
+        service.openMultipleChoiceDialog(multipleChoiceDialogData);
+        const args = dialogOpenSpy.calls.argsFor(0);
+        const subject = args[1].data.subject;
+
+        expect(subject).toBeDefined();
+        expect(subject.next).toBeDefined();
+    });
+
+    it('check if the MultipleChoiceDialog data was passed down', () => {
+        service.confirm(multipleChoiceDialogData);
+        const args = dialogOpenSpy.calls.argsFor(0);
+        const data = args[1].data;
+
+        expect(data.title).toBe(multipleChoiceDialogData.title);
+        expect(data.subtitle).toBe(multipleChoiceDialogData.subtitle);
+    });
+
+    it('check if the returned observable is related to the subject for MultipleChoiceDialog', done => {
+        const observable = service.openMultipleChoiceDialog(multipleChoiceDialogData);
+        const args = dialogOpenSpy.calls.argsFor(0);
+        const subject = args[1].data.subject;
+
+        observable.subscribe(value => {
+            expect(value.choice).toBe(fakeType.WITH_SAVE);
+            done();
+        });
+
+        subject.next({dialogRef: multipleChoiceDialogRef, choice: fakeType.WITH_SAVE});
     });
 });

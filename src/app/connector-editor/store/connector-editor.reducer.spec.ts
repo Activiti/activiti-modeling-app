@@ -19,9 +19,11 @@ import { ConnectorEditorState, INITIAL_CONNECTOR_EDITOR_STATE } from './connecto
 import { connectorEditorReducer } from './connector-editor.reducer';
 import {
     UPDATE_CONNECTOR_SUCCESS,
-    GET_CONNECTOR_SUCCESS
+    GET_CONNECTOR_SUCCESS,
+    UPDATE_CONNECTOR_CONTENT_ATTEMPT,
+    UPDATE_CONNECTOR_FAILED
 } from './connector-editor.actions';
-import { GET_CONNECTOR_ATTEMPT } from '@alfresco-dbp/modeling-shared/sdk';
+import { GET_CONNECTOR_ATTEMPT, ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
 
 describe('ConnectorEditorReducer', () => {
     let initialState: ConnectorEditorState;
@@ -40,5 +42,15 @@ describe('ConnectorEditorReducer', () => {
 
         newState = connectorEditorReducer(initialState, { type: UPDATE_CONNECTOR_SUCCESS } );
         expect(newState.loading).toEqual(false);
+        expect(newState.updateState).toEqual(ModelEditorState.SAVED);
+    });
+
+    it('should handle UPDATE_CONNECTOR_CONTENT_ATTEMPT and UPDATE_CONNECTOR_FAILED', () => {
+        initialState = { ...INITIAL_CONNECTOR_EDITOR_STATE };
+        newState = connectorEditorReducer(initialState, { type: UPDATE_CONNECTOR_CONTENT_ATTEMPT } );
+        expect(newState.updateState).toEqual(ModelEditorState.SAVING);
+
+        newState = connectorEditorReducer(initialState, { type: UPDATE_CONNECTOR_FAILED } );
+        expect(newState.updateState).toEqual(ModelEditorState.FAILED);
     });
 });

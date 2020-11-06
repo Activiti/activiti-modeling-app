@@ -5,7 +5,8 @@
             <ama-connector-header [disableSave]="disableSave"
                 [connectorId]="connectorId$ | async"
                 [content]="editorContent"
-                class="ama-connector-header">
+                class="ama-connector-header"
+                (save)="onSave()">
             </ama-connector-header>
 
             <ng-container *ngIf="isAdvancedEditorEmbedded()">

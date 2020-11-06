@@ -56,6 +56,17 @@ export interface OpenConfirmDialogActionPayload extends OpenInfoDialogActionPayl
     action?: Action;
 }
 
+export interface HumanReadableChoice<T> {
+    choice: T;
+    title?: string;
+    subtitle?: string;
+    color?: 'primary' | 'accent' | 'default';
+    spinnable?: boolean;
+}
+export interface MultipleChoiceDialogData<T> extends DialogData {
+    choices: HumanReadableChoice<T>[];
+}
+
 export const OPEN_CONFIRM_DIALOG = 'OPEN_CONFIRM_DIALOG';
 export class OpenConfirmDialogAction implements Action {
     readonly type = OPEN_CONFIRM_DIALOG;

@@ -16,7 +16,7 @@
  */
 
 import { createEntityAdapter } from '@ngrx/entity';
-import { Process, LogMessage, GeneralError, BpmnElement } from '@alfresco-dbp/modeling-shared/sdk';
+import { Process, LogMessage, GeneralError, BpmnElement, ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
 
 export function createSelectedElement(element): SelectedProcessElement {
     return {
@@ -56,6 +56,7 @@ export interface ToolbarState {
 
 export interface ProcessEditorState {
     loading: boolean;
+    updateState: ModelEditorState;
     selectedElement: SelectedProcessElement;
     toolbar: ToolbarState;
     modelContext: ProcessModelContext;
@@ -81,6 +82,7 @@ export const processAdapter = createEntityAdapter<Process>();
 export function getInitialProcessEditorState(): ProcessEditorState {
     return {
         loading: false,
+        updateState: ModelEditorState.INITIAL,
         selectedElement: null,
         toolbar: {
             inProgress: false,

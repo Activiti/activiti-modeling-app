@@ -65,3 +65,5 @@ export const selectConnectorCrumb = createSelector(
         return { name: selectedConnector.name };
     }
 );
+
+export const selectConnectorEditorSaving = createSelector(getConnectorFeatureState, state => state.updateState);

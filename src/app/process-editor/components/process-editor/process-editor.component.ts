@@ -17,9 +17,14 @@
 
 import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { filter, map } from 'rxjs/operators';
-import { Observable, combineLatest, of } from 'rxjs';
-import { selectProcessCrumb, selectProcessLoading, selectSelectedProcessDiagram } from '../../store/process-editor.selectors';
+import { filter, map, take, tap, switchMap, catchError } from 'rxjs/operators';
+import { Observable, combineLatest, of, zip } from 'rxjs';
+import {
+    selectProcessCrumb,
+    selectProcessLoading,
+    selectSelectedProcessDiagram,
+    selectProcessEditorSaving
+} from '../../store/process-editor.selectors';
 import {
     Process,
     BreadcrumbItem,
@@ -36,18 +41,28 @@ import {
     PROCESS,
     getFileUri,
     CodeEditorPosition,
-    ToolbarMessageAction
+    ToolbarMessageAction,
+    EntityDialogForm,
+    CanComponentDeactivate,
+    ModelEditorState
 } from '@alfresco-dbp/modeling-shared/sdk';
-import { UpdateProcessExtensionsAction, ChangeProcessModelContextAction } from '../../store/process-editor.actions';
+import {
+    UpdateProcessExtensionsAction,
+    ChangeProcessModelContextAction,
+    ValidateProcessAttemptAction,
+    UpdateProcessAttemptAction
+} from '../../store/process-editor.actions';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ProcessModelContext } from '../../store/process-editor.state';
+import { modelNameHandler } from '../../services/bpmn-js/property-handlers/model-name.handler';
+import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
 
 @Component({
     templateUrl: './process-editor.component.html',
     encapsulation: ViewEncapsulation.None,
 })
-export class ProcessEditorComponent implements OnInit {
+export class ProcessEditorComponent implements OnInit, CanComponentDeactivate {
     loading$: Observable<boolean>;
     breadcrumbs$: Observable<BreadcrumbItem[]>;
     content$: Observable<ProcessContent>;
@@ -137,6 +152,28 @@ export class ProcessEditorComponent implements OnInit {
         }
     }
 
+    private saveAction(processId: string, content): UpdateProcessAttemptAction {
+        const element = this.processModeler.getRootProcessElement();
+        const metadata: Partial<EntityDialogForm> = {
+            name: modelNameHandler.get(element),
+            description: documentationHandler.get(element),
+        };
+        return new UpdateProcessAttemptAction({ processId: processId, content: content, metadata });
+    }
+
+    onSave() {
+        zip(this.content$, this.process$)
+            .pipe(take(1)).subscribe(([content, process]) => {
+                this.store.dispatch(new ValidateProcessAttemptAction({
+                    title: 'APP.DIALOGS.CONFIRM.SAVE.PROCESS',
+                    processId: process.id,
+                    content: content,
+                    extensions: process.extensions,
+                    action: this.saveAction(process.id, content)
+                }));
+        });
+    }
+
     selectedTabChange(event: MatTabChangeEvent) {
         this.selectedTabIndex = event.index;
         this.store.dispatch(new ToolbarMessageAction(this.tabNames[this.selectedTabIndex]));
@@ -147,5 +184,19 @@ export class ProcessEditorComponent implements OnInit {
         if (this.selectedTabIndex > 0 ) {
             this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
         }
+    }
+
+    canDeactivate(): Observable<boolean> {
+        return zip(this.content$, this.process$)
+            .pipe(
+                take(1),
+                tap(([content, process]) => this.store.dispatch(this.saveAction(process.id, content)) ),
+                switchMap(() => this.store.select(selectProcessEditorSaving)),
+                filter(updateState => (updateState === ModelEditorState.SAVED) || (updateState === ModelEditorState.FAILED)),
+                take(1),
+                map(state => state === ModelEditorState.SAVED),
+                catchError(() => of(false))
+            );
+
     }
 }

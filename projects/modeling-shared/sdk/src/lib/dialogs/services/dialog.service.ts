@@ -16,12 +16,17 @@
  */
 
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subject, Observable } from 'rxjs';
 import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
-import { DialogData } from '../../store/app.actions';
+import { DialogData, MultipleChoiceDialogData } from '../../store/app.actions';
 import { InfoDialogComponent } from '../components/info-dialog/info-dialog.component';
+import { MultipleChoiceDialogComponent } from '../components/multiple-choice-dialog/multiple-choice-dialog.component';
 
+export interface MultipleChoiceDialogReturnType<T> {
+    dialogRef: MatDialogRef<MultipleChoiceDialogComponent<T>>;
+    choice: T;
+}
 @Injectable()
 export class DialogService {
     constructor(private dialog: MatDialog) {}
@@ -58,5 +63,20 @@ export class DialogService {
         });
 
         return dialogSubject.asObservable();
+    }
+
+    openMultipleChoiceDialog<T>(dialogData: MultipleChoiceDialogData<T>): Observable<MultipleChoiceDialogReturnType<T>> {
+        const subjectMultipleChoice = new Subject<MultipleChoiceDialogReturnType<T>>();
+
+        this.dialog.open(MultipleChoiceDialogComponent, {
+            width: '600px',
+            disableClose: true,
+            data: {
+                ...dialogData,
+                subject: subjectMultipleChoice
+            }
+        });
+
+        return subjectMultipleChoice.asObservable();
     }
 }

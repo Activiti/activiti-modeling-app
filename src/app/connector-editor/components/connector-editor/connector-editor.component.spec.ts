@@ -26,15 +26,17 @@ import { ConnectorHeaderComponent } from '../connector-header/connector-header.c
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { selectSelectedConnector, selectSelectedConnectorContent } from '../../store/connector-editor.selectors';
+import { selectConnectorEditorSaving, selectSelectedConnector } from '../../store/connector-editor.selectors';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
-import { AmaTitleService, CONNECTOR, CodeValidatorService, SharedModule } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaTitleService, CONNECTOR, CodeValidatorService, SharedModule, AmaState, ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
 import { ExtensionsModule, ComponentRegisterService } from '@alfresco/adf-extensions';
+import { UpdateConnectorContentAttemptAction, ValidateConnectorAttemptAction } from '../../store/connector-editor.actions';
 
 describe('ConnectorEditorComponent', () => {
     let fixture: ComponentFixture<ConnectorEditorComponent>;
     let component: ConnectorEditorComponent;
+    let store: Store<AmaState>;
 
     const mockConnector = {
         type: CONNECTOR,
@@ -43,6 +45,13 @@ describe('ConnectorEditorComponent', () => {
         description: 'mock-description',
         projectId: 'mock-app-id'
     };
+    const content = JSON.stringify({
+        id: 'mock-id',
+        name: 'mock-name',
+        description: 'mock-description'
+    });
+    const updateConnectorPayload = new UpdateConnectorContentAttemptAction(JSON.parse(content));
+    let connectorEditorState = ModelEditorState.SAVED;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -71,8 +80,8 @@ describe('ConnectorEditorComponent', () => {
                         select: jest.fn().mockImplementation((selector) => {
                             if (selector === selectSelectedConnector) {
                                 return of(mockConnector);
-                            } else if (selector === selectSelectedConnectorContent) {
-                                return of({});
+                            } else if (selector === selectConnectorEditorSaving) {
+                                return of(connectorEditorState);
                             }
 
                             return of({});
@@ -89,6 +98,9 @@ describe('ConnectorEditorComponent', () => {
         fixture = TestBed.createComponent(ConnectorEditorComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
+        store = TestBed.inject(Store);
+        component.editorContent$ = of(content);
+        component.connectorId$ = of(mockConnector.id);
     });
 
     it('should render spinner if loading state is true', () => {
@@ -96,5 +108,47 @@ describe('ConnectorEditorComponent', () => {
         const spinner = fixture.debugElement.query(By.css('.ama-connector-editor-spinner'));
 
         expect(spinner).not.toBeNull();
+    });
+
+    it('should test trigger of onSave() validates and updates connector', async() => {
+        spyOn(store, 'dispatch');
+        const payload = {
+            title: 'APP.DIALOGS.CONFIRM.SAVE.CONNECTOR',
+            connectorId: mockConnector.id,
+            connectorContent: JSON.parse(content),
+            action: updateConnectorPayload
+        };
+        component.onSave();
+        await expect(store.dispatch).toHaveBeenCalledWith(new ValidateConnectorAttemptAction(payload));
+    });
+
+    it('should test canDeactivate() response to be true when selectConnectorEditorSaving is in saved state', (done) => {
+        spyOn(store, 'dispatch');
+        component.canDeactivate().subscribe(canDeactivateResponse => {
+            expect(store.dispatch).toHaveBeenCalledWith(updateConnectorPayload);
+            expect(canDeactivateResponse).toBe(true);
+            done();
+        });
+    });
+
+    it('should test canDeactivate() response to be false when selectConnectorEditorSaving is in failed state', (done) => {
+        connectorEditorState = ModelEditorState.FAILED;
+        spyOn(store, 'dispatch');
+        component.canDeactivate().subscribe(canDeactivateResponse => {
+            expect(store.dispatch).toHaveBeenCalledWith(updateConnectorPayload);
+            expect(canDeactivateResponse).toBe(false);
+            done();
+        });
+    });
+
+    it('should test canDeactivate() response to be undefined when isConnectorEditorSaving is in saving state', async() => {
+        connectorEditorState = ModelEditorState.SAVING;
+        let canDeactivateResponse;
+        spyOn(store, 'dispatch');
+        component.canDeactivate().subscribe(response => {
+            canDeactivateResponse = response;
+        });
+        await expect(store.dispatch).toHaveBeenCalledWith(updateConnectorPayload);
+        await expect(canDeactivateResponse).toBe(undefined);
     });
 });

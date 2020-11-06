@@ -20,14 +20,14 @@ import { ProcessHeaderComponent } from './process-header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule, AmaState, OpenConfirmDialogAction, ProcessModelerServiceToken, AmaTitleService, AutoSaveProcessAction } from '@alfresco-dbp/modeling-shared/sdk';
+import { SharedModule, AmaState, OpenConfirmDialogAction, ProcessModelerServiceToken, AmaTitleService } from '@alfresco-dbp/modeling-shared/sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { By } from '@angular/platform-browser';
 import { mockProcessModel } from '../../store/process.mock';
 import { Store } from '@ngrx/store';
 import { of, Subject } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { DeleteProcessAttemptAction, DownloadProcessAction, ValidateProcessAttemptAction, UpdateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
+import { DeleteProcessAttemptAction, DownloadProcessAction, ValidateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
 import { Actions } from '@ngrx/effects';
 
 describe('ProcessHeaderComponent', () => {
@@ -112,39 +112,6 @@ describe('ProcessHeaderComponent', () => {
         expect(store.dispatch).toHaveBeenCalledWith(payload);
     });
 
-    it('should test auto save button', () => {
-        spyOn(store, 'dispatch');
-        mockAction.next(new AutoSaveProcessAction());
-        const payload = new UpdateProcessAttemptAction({
-            processId: mockProcessModel.id,
-            content: component.content,
-            metadata: { name: mockProcessModel.name, description: mockProcessModel.description }
-        });
-        expect(store.dispatch).toHaveBeenCalledWith(payload);
-    });
-
-    it('should test save button', () => {
-        spyOn(store, 'dispatch');
-
-        const button = fixture.debugElement.query(By.css('[data-automation-id="process-editor-save-button"]'));
-        button.triggerEventHandler('click', {});
-        fixture.detectChanges();
-
-        const payload = new ValidateProcessAttemptAction({
-            title: 'APP.DIALOGS.CONFIRM.SAVE.PROCESS',
-            processId: mockProcessModel.id,
-            content: component.content,
-            extensions: mockProcessModel.extensions,
-            action: new UpdateProcessAttemptAction({
-                processId: mockProcessModel.id,
-                content: component.content,
-                metadata: { name: mockProcessModel.name, description: mockProcessModel.description }
-            })
-        });
-
-        expect(store.dispatch).toHaveBeenCalledWith(payload);
-    });
-
     it('should test delete button', () => {
         spyOn(store, 'dispatch');
 
@@ -196,5 +163,13 @@ describe('ProcessHeaderComponent', () => {
         fixture.detectChanges();
         button = fixture.debugElement.query(By.css('[data-automation-id="process-editor-download-svg-button"]'));
         expect(button).toBeNull();
+    });
+
+    it('should emit save event emitter on click of save button ', () => {
+        const emitSpy = spyOn(component.save, 'emit');
+        fixture.detectChanges();
+        const saveButton = fixture.debugElement.query(By.css('[data-automation-id="process-editor-save-button"]'));
+        saveButton.triggerEventHandler('click', {});
+        expect(emitSpy).toHaveBeenCalled();
     });
 });

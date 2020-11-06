@@ -39,7 +39,8 @@ import {
     UploadConnectorAttemptAction,
     ValidateConnectorPayload,
     ValidateConnectorAttemptAction,
-    ChangedConnectorSettingsAction
+    ChangedConnectorSettingsAction,
+    UpdateConnectorFailedAction
 } from './connector-editor.actions';
 import { hot, cold, getTestScheduler } from 'jasmine-marbles';
 import {
@@ -227,8 +228,9 @@ describe('ConnectorEditorEffects', () => {
             updateConnector.mockReturnValue(throwError(error));
 
             actions$ = hot('a', { a: new UpdateConnectorContentAttemptAction(mockPayload) });
-            const expected = cold('b', {
-                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.UPDATE_CONNECTOR.DUPLICATION')
+            const expected = cold('(bc)', {
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.UPDATE_CONNECTOR.DUPLICATION'),
+                c: new UpdateConnectorFailedAction()
             });
 
             expect(effects.updateConnectorContentEffect).toBeObservable(expected);
@@ -240,8 +242,9 @@ describe('ConnectorEditorEffects', () => {
             updateConnector.mockReturnValue(throwError(error));
 
             actions$ = hot('a', { a: new UpdateConnectorContentAttemptAction(mockPayload) });
-            const expected = cold('b', {
-                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.UPDATE_CONNECTOR.GENERAL')
+            const expected = cold('(bc)', {
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.UPDATE_CONNECTOR.GENERAL'),
+                c: new UpdateConnectorFailedAction()
             });
 
             expect(effects.updateConnectorContentEffect).toBeObservable(expected);
@@ -327,6 +330,21 @@ describe('ConnectorEditorEffects', () => {
         });
     });
 
+    describe('updateConnectorFailedEffect', () => {
+        it('updateConnectorFailedEffect should dispatch an action', () => {
+            expect(metadata.updateConnectorFailedEffect.dispatch).toBeTruthy();
+        });
+
+        it('updateConnectorFailedEffect should dispatch SetAppDirtyStateAction', () => {
+            actions$ = hot('a', { a: new UpdateConnectorFailedAction() });
+            const expected = cold('b', {
+                b: new SetApplicationLoadingStateAction(false),
+            });
+
+            expect(effects.updateConnectorFailedEffect).toBeObservable(expected);
+        });
+    });
+
     describe('deleteConnectorAttemptEffect', () => {
 
         let deleteConnector: jest.Mock;
@@ -357,8 +375,9 @@ describe('ConnectorEditorEffects', () => {
             deleteConnector.mockReturnValue(throwError(error));
 
             actions$ = hot('a', { a: new DeleteConnectorAttemptAction(connector.id) });
-            const expected = cold('b', {
-                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.UPDATE_CONNECTOR.GENERAL')
+            const expected = cold('(bc)', {
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.UPDATE_CONNECTOR.GENERAL'),
+                c: new UpdateConnectorFailedAction()
             });
 
             expect(effects.deleteConnectorAttemptEffect).toBeObservable(expected);

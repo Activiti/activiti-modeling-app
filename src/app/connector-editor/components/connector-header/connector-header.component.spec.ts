@@ -28,7 +28,7 @@ import { of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { DeleteConnectorAttemptAction, ValidateConnectorAttemptAction, UpdateConnectorContentAttemptAction, DownloadConnectorAction } from '../../store/connector-editor.actions';
+import { DeleteConnectorAttemptAction, ValidateConnectorAttemptAction, DownloadConnectorAction } from '../../store/connector-editor.actions';
 
 describe('ConnectorHeaderComponent', () => {
     let fixture: ComponentFixture<ConnectorHeaderComponent>;
@@ -76,20 +76,12 @@ describe('ConnectorHeaderComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should emit new event on save button click', () => {
-        spyOn(store, 'dispatch');
-
+    it('should emit save event on save button click', () => {
+        const emitSpy = spyOn(component.save, 'emit');
         const button = fixture.debugElement.query(By.css('[data-automation-id="connector-editor-save-button"]'));
         button.triggerEventHandler('click', null);
         fixture.detectChanges();
-
-        const payload = {
-            title: 'APP.DIALOGS.CONFIRM.SAVE.CONNECTOR',
-            connectorId: component.connectorId,
-            connectorContent: JSON.parse(component.content),
-            action: new UpdateConnectorContentAttemptAction(JSON.parse(component.content))
-        };
-        expect(store.dispatch).toHaveBeenCalledWith(new ValidateConnectorAttemptAction(payload));
+        expect(emitSpy).toHaveBeenCalled();
     });
 
     it('should disable save button when "disableSave" input is true', () => {

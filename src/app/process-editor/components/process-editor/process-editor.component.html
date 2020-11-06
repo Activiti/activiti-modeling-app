@@ -5,7 +5,8 @@
                 [process]="process$ | async"
                 [disableSave]="disableSave"
                 [breadcrumbs$]="breadcrumbs$"
-                [content]="content$ | async">
+                [content]="content$ | async"
+                (save)="onSave()">
             </ama-process-header>
             <mat-tab-group class="ama-process-tab-group" *ngIf="process$ | async as process;"
                            (selectedTabChange)="selectedTabChange($event)">

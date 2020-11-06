@@ -23,8 +23,7 @@ import { selectConnectorCrumb } from '../../store/connector-editor.selectors';
 import {
     DeleteConnectorAttemptAction,
     ValidateConnectorAttemptAction,
-    DownloadConnectorAction,
-    UpdateConnectorContentAttemptAction
+    DownloadConnectorAction
 } from '../../store/connector-editor.actions';
 
 @Component({
@@ -46,17 +45,11 @@ export class ConnectorHeaderComponent {
     download = new EventEmitter<void>();
     breadcrumbs$: Observable<BreadcrumbItem[]>;
 
+    @Output()
+    save = new EventEmitter<void>();
+
     constructor(private store: Store<AmaState>, breadCrumbHelperService: BreadCrumbHelperService) {
         this.breadcrumbs$ = breadCrumbHelperService.getModelCrumbs(selectConnectorCrumb);
-    }
-
-    onSave() {
-        this.store.dispatch(new ValidateConnectorAttemptAction({
-            title: 'APP.DIALOGS.CONFIRM.SAVE.CONNECTOR',
-            connectorId: this.connectorId,
-            connectorContent: JSON.parse(this.content),
-            action: new UpdateConnectorContentAttemptAction(JSON.parse(this.content))
-        }));
     }
 
     onDelete() {
@@ -85,5 +78,9 @@ export class ConnectorHeaderComponent {
             action: new SnackbarInfoAction('CONNECTOR_EDITOR.CONNECTOR_VALID'),
             errorAction: new SnackbarErrorAction('CONNECTOR_EDITOR.CONNECTOR_INVALID')
         }));
+    }
+
+    onSave(): void {
+        this.save.emit();
     }
 }

@@ -94,6 +94,12 @@ export class UpdateConnectorSuccessAction implements Action {
     constructor(public connector: Update<Partial<Connector>>) {}
 }
 
+export const UPDATE_CONNECTOR_FAILED = '[Connector] Update failed';
+export class UpdateConnectorFailedAction implements Action {
+    readonly type = UPDATE_CONNECTOR_FAILED;
+    constructor() {}
+}
+
 export const DELETE_CONNECTOR_ATTEMPT = '[Connector] Delete attempt';
 export class DeleteConnectorAttemptAction implements Action {
     readonly type = DELETE_CONNECTOR_ATTEMPT;

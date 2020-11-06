@@ -15,28 +15,20 @@
  * limitations under the License.
  */
 
-import { Component, Input, Inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import {
     Process,
     AmaState,
     OpenConfirmDialogAction,
     ProcessContent,
-    EntityDialogForm,
-    ProcessModelerServiceToken,
-    ProcessModelerService,
     BreadcrumbItem,
     SnackbarInfoAction,
-    SnackbarErrorAction,
-    AUTO_SAVE_PROCESS,
-    AutoSaveProcessAction
+    SnackbarErrorAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { DeleteProcessAttemptAction, ValidateProcessAttemptAction, DownloadProcessAction, UpdateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
-import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
-import { modelNameHandler } from '../../services/bpmn-js/property-handlers/model-name.handler';
-import { Actions, ofType } from '@ngrx/effects';
-import { takeUntil, tap } from 'rxjs/operators';
+import { DeleteProcessAttemptAction, ValidateProcessAttemptAction, DownloadProcessAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
+import { takeUntil } from 'rxjs/operators';
 import { selectProcessModelContext } from '../../store/process-editor.selectors';
 import { ProcessModelContext } from '../../store/process-editor.state';
 
@@ -51,22 +43,16 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
     @Input() content: ProcessContent;
     @Input() breadcrumbs$: Observable<BreadcrumbItem[]>;
     @Input() disableSave = false;
+
+    @Output()
+    save = new EventEmitter<void>();
+
     public modeler: Bpmn.Modeler;
     private modelContext: ProcessModelContext;
 
-    constructor(
-        private store: Store<AmaState>,
-        @Inject(ProcessModelerServiceToken) private processModeler: ProcessModelerService,
-        private actions$: Actions
-    ) {}
+    constructor(private store: Store<AmaState>) {}
 
     ngOnInit(): void {
-        this.actions$.pipe(
-            ofType<AutoSaveProcessAction>(AUTO_SAVE_PROCESS),
-            tap(() => this.store.dispatch(this.saveAction())),
-            takeUntil(this.destroy$)
-        ).subscribe(null);
-
         this.store.select(selectProcessModelContext).pipe(
             takeUntil(this.destroy$))
             .subscribe(context => this.modelContext = context);
@@ -77,27 +63,12 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
         this.destroy$.complete();
     }
 
-    private saveAction(): UpdateProcessAttemptAction {
-        const element = this.processModeler.getRootProcessElement();
-        const metadata: Partial<EntityDialogForm> = {
-            name: modelNameHandler.get(element),
-            description: documentationHandler.get(element),
-        };
-        return new UpdateProcessAttemptAction({ processId: this.process.id, content: this.content, metadata });
-    }
-
     isDiagramTabSelected(): boolean {
         return this.modelContext === ProcessModelContext.diagram;
     }
 
     onSaveClick(): void {
-        this.store.dispatch(new ValidateProcessAttemptAction({
-            title: 'APP.DIALOGS.CONFIRM.SAVE.PROCESS',
-            processId: this.process.id,
-            content: this.content,
-            extensions: this.process.extensions,
-            action: this.saveAction()
-        }));
+        this.save.emit();
     }
 
     onDownload(process: Process): void {

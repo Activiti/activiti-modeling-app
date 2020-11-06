@@ -23,6 +23,7 @@ import { CoreModule } from '@alfresco/adf-core';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { InfoDialogComponent } from './components/info-dialog/info-dialog.component';
+import { MultipleChoiceDialogComponent } from './components/multiple-choice-dialog/multiple-choice-dialog.component';
 
 @NgModule({
     imports: [
@@ -34,7 +35,8 @@ import { InfoDialogComponent } from './components/info-dialog/info-dialog.compon
     providers: [ DialogService ],
     declarations: [
         ConfirmationDialogComponent,
-        InfoDialogComponent
+        InfoDialogComponent,
+        MultipleChoiceDialogComponent
     ],
     exports: [
         CommonModule,
@@ -42,4 +44,4 @@ import { InfoDialogComponent } from './components/info-dialog/info-dialog.compon
         RouterModule
     ]
 })
-export class ConfirmationDialogModule {}
+export class DialogsModule {}

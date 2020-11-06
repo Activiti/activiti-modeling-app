@@ -1,0 +1,21 @@
+<h2 mat-dialog-title *ngIf="title">{{ title | translate }}</h2>
+
+<mat-dialog-content>
+    <p *ngIf="subtitle">{{ subtitle | translate }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions class="adf-dialog-buttons">
+    <span class="adf-fill-remaining-space"></span>
+   
+    <button mat-button *ngFor="let choice of choices"
+        [attr.data-automation-id]="'dialog-button-' + choice.choice"
+        (click)="choose(choice.choice)"
+        [color]="choice.color ? choice.color : 'default'"
+        [disabled]="disableButtons">
+        {{ choice.title | translate }}
+        <mat-icon *ngIf="isSpinnerVisible(choice)">
+            <mat-spinner color="primary" diameter="20"></mat-spinner>
+        </mat-icon>
+    </button>
+
+</mat-dialog-actions>

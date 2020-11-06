@@ -21,7 +21,7 @@ import { ConnectorParameter, EntityProperty, MappingType, ServiceParameterMappin
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { selectSelectedTheme } from '../../store/app.selectors';
-import { DialogService } from '../../confirmation-dialog/services/dialog.service';
+import { DialogService } from '../../dialogs/services/dialog.service';
 import { AmaState } from '../../store/app.state';
 import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
 import { Subject } from 'rxjs';

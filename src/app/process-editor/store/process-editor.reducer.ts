@@ -25,8 +25,12 @@ import {
     GET_PROCESS_ATTEMPT,
     GET_PROCESS_SUCCESS,
     ChangeProcessModelContextAction,
-    CHANGE_PROCESS_MODEL_ACTION
+    CHANGE_PROCESS_MODEL_ACTION,
+    UPDATE_PROCESS_ATTEMPT,
+    UPDATE_PROCESS_FAILED,
+    UPDATE_PROCESS_SUCCESS
 } from './process-editor.actions';
+import { ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
 
 export function processEditorReducer(
     state: ProcessEditorState = getInitialProcessEditorState(),
@@ -52,6 +56,15 @@ export function processEditorReducer(
 
         case CHANGE_PROCESS_MODEL_ACTION:
             return setSelectedTab(state, <ChangeProcessModelContextAction> action);
+
+        case UPDATE_PROCESS_ATTEMPT:
+            return setSavingState(state, ModelEditorState.SAVING);
+
+        case UPDATE_PROCESS_SUCCESS:
+            return setSavingState(state, ModelEditorState.SAVED);
+
+        case UPDATE_PROCESS_FAILED:
+            return setSavingState(state, ModelEditorState.FAILED);
 
         default:
             newState = Object.assign({}, state);
@@ -86,5 +99,12 @@ function setSelectedTab(state: ProcessEditorState, action: ChangeProcessModelCon
     return {
         ...state,
         modelContext: action.name
+    };
+}
+
+function setSavingState(state: ProcessEditorState, updateState: ModelEditorState): ProcessEditorState {
+    return {
+        ...state,
+        updateState
     };
 }

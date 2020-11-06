@@ -32,7 +32,7 @@ import { ProcessEditorState } from './process-editor.state';
 import { ProcessEntitiesState } from './process-entities.state';
 
 export const PROCESS_EDITOR_STATE_NAME = 'process-editor';
-export const getProcessEditorFeatureState = createFeatureSelector(PROCESS_EDITOR_STATE_NAME);
+export const getProcessEditorFeatureState = createFeatureSelector<ProcessEditorState>(PROCESS_EDITOR_STATE_NAME);
 
 export const selectProcessIds = createSelector(selectProcessEntityContainer, state => state.ids);
 export const selectProcessEntities = createSelector(selectProcessEntityContainer, state => state.entities);
@@ -41,9 +41,10 @@ export const selectProcessesLoaded = createSelector(selectProcessEntityContainer
 export const selectEntityContents = createSelector(selectProcessEntityContainer, (state: ProcessEntitiesState) => state.entityContents);
 export const selectSelectedProcessId = selectSelectedModelIdFor(PROCESS);
 export const selectProcesses = createSelector(selectProcessEntityContainer, state => state.entities);
-export const selectSelectedElement = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.selectedElement);
-export const selectProcessModelContext = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.modelContext);
-export const selectProcessLoading = createSelector(getProcessEditorFeatureState, (state: ProcessEditorState) => state.loading);
+export const selectSelectedElement = createSelector(getProcessEditorFeatureState, state => state.selectedElement);
+export const selectProcessModelContext = createSelector(getProcessEditorFeatureState, state => state.modelContext);
+export const selectProcessLoading = createSelector(getProcessEditorFeatureState, state => state.loading);
+export const selectProcessEditorSaving = createSelector(getProcessEditorFeatureState, state => state.updateState);
 
 export const selectProcessesArray = createSelector(
     selectProcessEntities,

@@ -21,6 +21,8 @@
             "CREATE": "Create",
             "UPDATE": "Update",
             "CLOSE": "Close",
+            "DONT_SAVE": "Don't Save",
+            "UNSAVED_PAGE_TITLE": "Do you want to save the changes made to",
             "EDIT_PROPERTIES": "Edit Process Variables",
             "EDIT_PROCESS_MESSAGES": "Edit Messages",
             "EDIT_PROCESS_ERRORS": "Edit Errors",
@@ -36,7 +38,6 @@
                 "TITLE": "Are you sure?",
                 "SUBTITLE": "Are you sure that you want to do this action?",
                 "BUTTON": "Confirm",
-                "UNSAVED_PAGE": "Are you sure you want to leave without saving {{ types }}",
                 "RELEASE": "Are you sure you want to release a new version of this project?",
                 "TYPES": {
                     "DECISION": "decision table",

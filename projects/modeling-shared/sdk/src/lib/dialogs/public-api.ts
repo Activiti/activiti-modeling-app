@@ -15,5 +15,5 @@
  * limitations under the License.
  */
 
-export * from './confirmation-dialog.module';
+export * from './dialogs.module';
 export * from './services/dialog.service';

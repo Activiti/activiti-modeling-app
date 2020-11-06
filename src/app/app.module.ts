@@ -46,7 +46,7 @@ import { MatInputModule } from '@angular/material/input';
 import {
     ACMApiModule,
     AmaServicesModule,
-    ConfirmationDialogModule,
+    DialogsModule,
     AmaAuthenticationService,
     AuthTokenProcessorService,
     allLogFilter,
@@ -98,7 +98,7 @@ import { unauthorizedServiceFactory } from './common/services/unauthorized-servi
         ConnectorEditorModule,
 
         MatInputModule,
-        ConfirmationDialogModule,
+        DialogsModule,
 
         AppExtensionsModule,
     ],
