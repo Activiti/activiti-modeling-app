@@ -17,7 +17,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CardViewMultiInstanceItemComponent } from './multi-instance-item.component';
-import { AppConfigService, AppConfigServiceMock, setupTestBed } from '@alfresco/adf-core';
+import { AppConfigService, AppConfigServiceMock, CardViewBaseItemModel, CardViewUpdateService, setupTestBed } from '@alfresco/adf-core';
 import { ProcessModelerServiceImplementation } from '../../process-modeler.service';
 import { BpmnFactoryMock } from '../../bpmn-js/bpmn-js.mock';
 import { BpmnFactoryToken, ProcessModelerService, ProcessModelerServiceToken } from '@alfresco-dbp/modeling-shared/sdk';
@@ -39,6 +39,7 @@ describe('CardViewMultiInstanceItemComponent', () => {
     let component: CardViewMultiInstanceItemComponent;
     let fixture: ComponentFixture<CardViewMultiInstanceItemComponent>;
     let processModelerService: ProcessModelerService;
+    let cardViewUpdateService: CardViewUpdateService;
     let appConfig: AppConfigService;
     let service: CardViewMultiInstanceItemService;
 
@@ -68,6 +69,7 @@ describe('CardViewMultiInstanceItemComponent', () => {
         fixture = TestBed.createComponent(CardViewMultiInstanceItemComponent);
         component = fixture.componentInstance;
         processModelerService = TestBed.inject(ProcessModelerServiceToken);
+        cardViewUpdateService = TestBed.inject(CardViewUpdateService);
         service = fixture.debugElement.injector.get(CardViewMultiInstanceItemService);
         appConfig = TestBed.inject(AppConfigService);
         appConfig.config = Object.assign(appConfig.config, appConfigMock);
@@ -192,6 +194,27 @@ describe('CardViewMultiInstanceItemComponent', () => {
     });
 
     describe('multiInstance type', () => {
+
+        it('should update LoopDataOutputRef property when mapping is updated', async () => {
+            const validMapping =  { test: { type: '', value: '' } } ;
+            spyOn(component, 'onLoopDataOutputRefChange');
+            component.onTypeChange(MultiInstanceType.sequence);
+            cardViewUpdateService.update(<CardViewBaseItemModel> { key: 'loopDataOutputRef', data: {}}, validMapping);
+            fixture.detectChanges();
+            await fixture.whenStable();
+            expect(component.onLoopDataOutputRefChange).toHaveBeenCalledWith('test');
+            expect(processModelerService.updateElementProperty).toHaveBeenCalled();
+        });
+
+        it('should update LoopDataOutputRef property only when update element key is loopDataOutputRef', async () => {
+            const validMapping =  { test: { type: '', value: '' } } ;
+            spyOn(component, 'onLoopDataOutputRefChange');
+            component.onTypeChange(MultiInstanceType.sequence);
+            cardViewUpdateService.update(<CardViewBaseItemModel> { key: 'fake-test', data: {}}, validMapping);
+            fixture.detectChanges();
+            await fixture.whenStable();
+            expect(component.onLoopDataOutputRefChange).not.toHaveBeenCalled();
+        });
 
         it('should remove cardinality when none type selected', () => {
             let cardinalityElement = fixture.debugElement.query(By.css('[data-automation-id="cardinality-field"]'));

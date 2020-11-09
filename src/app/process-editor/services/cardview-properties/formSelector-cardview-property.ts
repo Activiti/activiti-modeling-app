@@ -28,6 +28,10 @@ export function createFormKeyProperty({ element }: FactoryProps) {
         key: property,
         default: '',
         editable: true,
-        data: { id: element.id, processId: ElementHelper.getProperty(element, BpmnProperty.processId) },
+        data: { id: element.id,
+                processId: ElementHelper.getProperty(element, BpmnProperty.processId),
+                isMultiInstance: !!ElementHelper.getProperty(element, BpmnProperty.loopCharacteristics),
+                loopDataOutputRef: ElementHelper.getProperty(element, BpmnProperty.loopDataOutputRef)
+              },
     });
 }

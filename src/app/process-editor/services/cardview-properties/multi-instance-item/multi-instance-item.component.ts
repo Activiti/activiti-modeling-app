@@ -15,14 +15,15 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { AppConfigService, CardViewSelectItemOption } from '@alfresco/adf-core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Observable, of, Subject } from 'rxjs';
+import { AppConfigService, CardViewSelectItemOption, CardViewUpdateService, UpdateNotification } from '@alfresco/adf-core';
 import { MultiInstanceItemModel } from './multi-instance.item.model';
 import { getMultiInstanceType, MultiInstanceProps, MultiInstanceType } from '../../bpmn-js/property-handlers/multi-instance.handler';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { _isNumberValue } from '@angular/cdk/coercion';
 import { CardViewMultiInstanceItemService } from './multi-instance-item.service';
+import { takeUntil, filter, map } from 'rxjs/operators';
 
 @Component({
     selector: 'ama-multi-instance-item',
@@ -30,18 +31,25 @@ import { CardViewMultiInstanceItemService } from './multi-instance-item.service'
     styleUrls: ['./multi-instance-item.component.scss'],
     providers: [ CardViewMultiInstanceItemService ]
 })
-export class CardViewMultiInstanceItemComponent implements OnInit {
+export class CardViewMultiInstanceItemComponent implements OnInit, OnDestroy {
     @Input() property: MultiInstanceItemModel;
 
     options$: Observable<CardViewSelectItemOption<string>[]>;
     selectedType: MultiInstanceType;
     form: FormGroup;
+    onDestroy$: Subject<void> = new Subject<void>();
 
     constructor(
         private appConfigService: AppConfigService,
         private multiInstanceItemService: CardViewMultiInstanceItemService,
-        private formBuilder: FormBuilder) {
+        private formBuilder: FormBuilder,
+        private cardViewUpdateService: CardViewUpdateService) {
         this.options$ = of(this.appConfigService.get('process-modeler.multi-instance-types'));
+    }
+
+    ngOnDestroy(): void {
+        this.onDestroy$.next();
+        this.onDestroy$.complete();
     }
 
     get element(): Bpmn.BusinessObject {
@@ -83,6 +91,14 @@ export class CardViewMultiInstanceItemComponent implements OnInit {
             outputDataItem: [ this.parseMultiInstanceOutputDataItem() ],
         },   { validators: this.validateExpression });
         this.multiInstanceItemService.element = this.element;
+        this.cardViewUpdateService.itemUpdated$
+            .pipe(
+                filter((element: UpdateNotification) => element?.target?.data?.id === this.property.data.id && this.isLoopRefProperty(element)),
+                map((mappedElement: UpdateNotification) => this.getLoopCharacteristicsValue(mappedElement)),
+                takeUntil(this.onDestroy$))
+            .subscribe((outputLoopRef: string) => {
+                this.onLoopDataOutputRefChange(outputLoopRef);
+            });
     }
 
     onTypeChange(selection: MultiInstanceType) {
@@ -90,9 +106,11 @@ export class CardViewMultiInstanceItemComponent implements OnInit {
             case MultiInstanceType.parallel:
             case MultiInstanceType.sequence:
                 this.multiInstanceItemService.createOrUpdateMultiInstanceElement(selection);
+                this.cardViewUpdateService.update(this.property, {value: true});
                 break;
             case MultiInstanceType.none:
                 delete this.element[MultiInstanceProps.loopCharacteristics];
+                this.cardViewUpdateService.update(this.property, {value: false});
                 this.form.reset();
                 break;
         }
@@ -121,6 +139,14 @@ export class CardViewMultiInstanceItemComponent implements OnInit {
 
     onOutputDataItemChange(iterationVariable: string) {
         this.multiInstanceItemService.createOrUpdateOutputDataItem(iterationVariable);
+    }
+
+    private isLoopRefProperty(element: UpdateNotification): boolean {
+        return element?.changed?.loopDataOutputRef ? this.getLoopCharacteristicsValue(element) !== null : false;
+    }
+
+    private getLoopCharacteristicsValue(element: UpdateNotification) {
+        return element?.changed?.loopDataOutputRef ? Object.keys(element?.changed?.loopDataOutputRef)[0] : '';
     }
 
     private parseMultiInstance(props: MultiInstanceProps) {

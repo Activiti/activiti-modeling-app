@@ -162,7 +162,8 @@ export const elementsProperties = {
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
-        BpmnProperty.multiInstanceType
+        BpmnProperty.multiInstanceType,
+        BpmnProperty.loopCharacteristics
     ],
     [BpmnElement.Participant]: (element: Bpmn.DiagramElement) => [
         ...(hasProcessInside(element) ? [

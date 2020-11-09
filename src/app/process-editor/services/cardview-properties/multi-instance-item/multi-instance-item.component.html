@@ -63,31 +63,5 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
-            <div class="adf-property-label">
-                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MULTI_INSTANCE.RESULT_COLLECTION' | translate }}
-            </div>
-            <input (change)="onLoopDataOutputRefChange($event.target.value)"
-                   formControlName="loopDataOutputRef"
-                   data-automation-id="loopDataOutputRef-field"
-                   matInput/>
-            <mat-error *ngIf="loopDataOutputRef.hasError('pattern')">
-                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_EXPRESSION' | translate }}
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-            <div class="adf-property-label">
-                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MULTI_INSTANCE.RESULT_ELEMENT_VARIABLE' | translate }}
-            </div>
-            <input (change)="onOutputDataItemChange($event.target.value)"
-                   formControlName="outputDataItem"
-                   data-automation-id="outputDataItem-field"
-                   matInput/>
-            <mat-error *ngIf="outputDataItem.hasError('pattern')">
-                {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_EXPRESSION' | translate }}
-            </mat-error>
-        </mat-form-field>
-
     </ng-container>
 </div>

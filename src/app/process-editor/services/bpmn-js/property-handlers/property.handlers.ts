@@ -46,6 +46,8 @@ import { modelNameHandler } from './model-name.handler';
 import { isExecutableHandler } from './isExecutable.handler';
 import { processIdHandler } from './process-id.handler';
 import { processErrorsHandler } from './process-errors.handler';
+import { loopCharacteristics } from './loopCharacteristics.handler';
+import { loopDataOutputRef } from './loopDataOutputRef.handler';
 
 export const handlers = {
     [BpmnProperty.id]: idHandler,
@@ -77,5 +79,7 @@ export const handlers = {
     [BpmnProperty.multiInstanceType]: multiInstanceHandler,
     [BpmnProperty.textAnnotation]: textAnnotationHandler,
     [BpmnProperty.isExecutable]: isExecutableHandler,
-    [BpmnCompositeProperty.errors]: processErrorsHandler
+    [BpmnCompositeProperty.errors]: processErrorsHandler,
+    [BpmnProperty.loopCharacteristics]: loopCharacteristics,
+    [BpmnProperty.loopDataOutputRef]: loopDataOutputRef
 };
