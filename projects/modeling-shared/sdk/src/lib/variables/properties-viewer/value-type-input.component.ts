@@ -82,7 +82,7 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
 
         if (changes.index && !changes.value) {
             this.value = null;
-        } else if (!changes.value && this.valueTypeInputRef.instance.value) {
+        } else if (!changes.value && this.valueTypeInputRef?.instance?.value) {
             this.value = this.valueTypeInputRef.instance.value;
         }
 
