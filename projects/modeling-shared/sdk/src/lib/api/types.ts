@@ -435,7 +435,7 @@ export interface ScriptExtensions {
     createdAt?: Date;
     language: string;
     variables?: EntityProperty[];
-
+    errors?: ScriptError[];
 }
 
 export interface ScriptExtensionsContent {
@@ -502,4 +502,9 @@ export interface WidgetContent {
 export interface Widget extends Model {
     type: FORM_WIDGET_TYPE;
     extensions: WidgetContent;
+}
+
+export interface ScriptError {
+    name: string;
+    code?: string;
 }
