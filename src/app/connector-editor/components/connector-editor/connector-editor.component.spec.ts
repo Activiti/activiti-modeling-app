@@ -141,7 +141,7 @@ describe('ConnectorEditorComponent', () => {
         });
     });
 
-    it('should test canDeactivate() response to be undefined when isConnectorEditorSaving is in saving state', async() => {
+    it('should test canDeactivate() response to be undefined when selectConnectorEditorSaving is in saving state', async() => {
         connectorEditorState = ModelEditorState.SAVING;
         let canDeactivateResponse;
         spyOn(store, 'dispatch');

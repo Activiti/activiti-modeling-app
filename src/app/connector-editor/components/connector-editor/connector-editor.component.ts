@@ -34,7 +34,8 @@ import {
     getFileUri,
     ToolbarMessageAction,
     CodeEditorPosition,
-    ModelEditorState
+    ModelEditorState,
+    CanComponentDeactivate
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 const memoize = require('lodash/memoize');
@@ -43,7 +44,7 @@ const memoize = require('lodash/memoize');
     templateUrl: './connector-editor.component.html'
 })
 
-export class ConnectorEditorComponent {
+export class ConnectorEditorComponent implements CanComponentDeactivate {
     disableSave = false;
 
     connectorId$: Observable<string>;
@@ -145,8 +146,7 @@ export class ConnectorEditorComponent {
     }
 
     canDeactivate(): Observable<boolean> {
-        return zip(this.editorContent$)
-            .pipe(
+        return this.editorContent$.pipe(
                 take(1),
                 tap((content) => this.store.dispatch(this.saveAction(content))),
                 switchMap(() => this.store.select(selectConnectorEditorSaving)),
