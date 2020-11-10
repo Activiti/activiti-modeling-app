@@ -22,7 +22,8 @@
                 ama-palette-overlay
                 [templatePortalContent]="drawer"
                 [amaPaletteItem]="item"
-                amaPaletteOverlayRef>
+                amaPaletteOverlayRef
+                [attr.nested]="item.nested ? item.nested : false">
             </button>
         </div>
     </div>

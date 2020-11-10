@@ -61,7 +61,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
             if (!this.amaPaletteOverlayRef.hasAttached()) {
                 this.amaPaletteOverlayRef.attach(this.templatePortal);
             }
-        } else if (this.amaPaletteOverlayRef.hasAttached()) {
+        } else if (this.amaPaletteOverlayRef.hasAttached() && !this.isNestedContainer($event.target)) {
             this.amaPaletteOverlayRef.detach();
         }
     }
@@ -71,4 +71,12 @@ import { TemplatePortal } from '@angular/cdk/portal';
             this.amaPaletteOverlayRef.detach();
         }
     }
+
+    private isNestedContainer(element: any): boolean {
+        if (element.attributes?.nested) {
+            return element.attributes.nested.value;
+        }
+        return false;
+    }
+
 }
