@@ -339,6 +339,79 @@ export interface UiContent {
     'adf-template': string;
     plugins: UiPlugin[];
     configs?: any;
+    extension?: UiContentExtension;
+}
+
+export interface UiContentExtension {
+    $id: string;
+    $name: string;
+    $version: string;
+    $vendor: string;
+    $license: string;
+    $description?: string;
+    actions?: UiAction[];
+    rules?: UiRule[];
+    features?: UiFeatures;
+}
+
+export interface UiFeatures {
+    userActions?: UiFeature[];
+    header?: UiFeature[];
+    create?: UiFeature[];
+    toolbar?: UiFeature[];
+    contextMenu?: UiFeature[];
+    viewer?: {
+        openWith?: UiFeature[];
+        toolbarActions?: UiFeature[];
+        shared?: {
+            toolbarActions?: UiFeature[];
+        };
+    };
+    sidebar?: {
+        toolbar: UiFeature[];
+    };
+}
+
+export interface UiFeature {
+    id: string;
+    order?: number;
+    disabled?: boolean;
+    type?: string;
+    title?: string;
+    description?: string;
+    icon?: string;
+    children?: Array<UiFeature>;
+    component?: string;
+    data?: any;
+    actions?: {
+        click?: string;
+        [key: string]: string;
+    };
+    rules?: {
+        enabled?: string;
+        visible?: string;
+        [key: string]: string;
+    };
+}
+
+export interface UiRule {
+    type: UiRuleType;
+    id?: string;
+    value?: string;
+    parameters?: Array<UiRule>;
+}
+
+export enum UiRuleType {
+    NOT = 'core.not',
+    EVERY = 'core.every',
+    SOME = 'core.some',
+    RULE = 'rule'
+}
+
+export interface UiAction {
+    id: string;
+    type: string;
+    payload: any;
 }
 
 export interface Ui extends Model {
