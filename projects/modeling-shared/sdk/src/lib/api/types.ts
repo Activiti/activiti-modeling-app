@@ -438,6 +438,10 @@ export interface ScriptExtensions {
     errors?: ScriptError[];
 }
 
+export interface ScriptError {
+    name: string;
+    code?: string;
+}
 export interface ScriptExtensionsContent {
     mimeType?: string;
     mimeTypeName?: string;
@@ -502,9 +506,4 @@ export interface WidgetContent {
 export interface Widget extends Model {
     type: FORM_WIDGET_TYPE;
     extensions: WidgetContent;
-}
-
-export interface ScriptError {
-    name: string;
-    code?: string;
 }

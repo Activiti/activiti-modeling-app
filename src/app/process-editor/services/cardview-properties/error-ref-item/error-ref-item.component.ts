@@ -15,22 +15,20 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, Inject, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnInit, Inject, OnDestroy, ChangeDetectorRef, Optional, Injector } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
 import {
-    ProcessModelerServiceToken, ProcessModelerService, AmaState, ConnectorError, Connector,
-    selectProjectConnectorsArray,
-    ConnectorContent
+    ProcessModelerServiceToken, ProcessModelerService, AmaState,
+    ErrorProvidersToken, ExtensionErrorProviderInterface, selectSelectedProjectId, ExtensionErrorGroup, ExtensionError
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ErrorRefItemModel } from './error-ref-item.model';
 import { Store } from '@ngrx/store';
 import { SelectModelerElementAction } from '../../../store/process-editor.actions';
-import { Observable, Subject, forkJoin } from 'rxjs';
-import { takeUntil, map, mergeMap } from 'rxjs/operators';
-import { ProcessConnectorService } from '../../process-connector-service';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil, map, delay } from 'rxjs/operators';
 import { ProcessErrorsService } from '../../process-errors.service';
 
-export interface ConnectorErrorGroups {
+export interface ErrorGroup {
     name: string;
     errors: Bpmn.BusinessObject[];
 }
@@ -41,10 +39,12 @@ export interface ConnectorErrorGroups {
     providers: [CardItemTypeService]
 })
 export class CardViewErrorRefItemComponent implements OnInit, OnDestroy {
+
     @Input() property: ErrorRefItemModel;
 
     private unsubscribe$ = new Subject<void>();
-    private connector: Connector;
+
+    private errorProvider: any;
 
     errors: Bpmn.BusinessObject[] = [];
     diagramErrors: Bpmn.BusinessObject[] = [];
@@ -52,17 +52,18 @@ export class CardViewErrorRefItemComponent implements OnInit, OnDestroy {
     attachedIsNotConnector = false;
 
     loading = false;
-
     isStartEvent = false;
-    connectorErrorGroups$: Observable<ConnectorErrorGroups[]>;
+    errorsGroups: ErrorGroup[] = [];
+    foundExactImplementation = false;
 
     constructor(
         private cardViewUpdateService: CardViewUpdateService,
         private store: Store<AmaState>,
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
-        private processConnectorService: ProcessConnectorService,
         private processErrorsService: ProcessErrorsService,
-        private cdRef: ChangeDetectorRef
+        private cdRef: ChangeDetectorRef,
+        private injector: Injector,
+        @Optional() @Inject(ErrorProvidersToken) private errorProviders?: ExtensionErrorProviderInterface[]
     ) { }
 
     get rootElements() {
@@ -74,39 +75,46 @@ export class CardViewErrorRefItemComponent implements OnInit, OnDestroy {
     }
 
     get parentIsConnector() {
-        return this.selectedError ? this.selectedError.id.startsWith('connector.') : false;
+        return this.selectedError ? this.selectedError.id?.startsWith('connector.') : false;
     }
 
     ngOnInit() {
+        this.loadErrorProvidersElements();
         const attached = this.property.data.element.businessObject.attachedToRef;
         this.diagramErrors = this.rootElements.filter(element => element.$type === 'bpmn:Error');
         if (attached) {
             if (attached.$type === 'bpmn:ServiceTask' && attached.implementation) {
                 this.loading = true;
                 this.attachedIsNotConnector = true;
-                this.getConnector(attached);
-                this.getConnectorErrors(this.connector.id).pipe(takeUntil(this.unsubscribe$)).subscribe(connectorErrors => {
-                    this.errors = this.errors.concat(this.transformConnectorErrorsToBpmnElements(this.connector.name, connectorErrors));
+                this.getAttachedErrorProvider(attached);
+                this.loadErrorsGroupFromProvider(this.errorProvider).pipe(takeUntil(this.unsubscribe$)).subscribe((providerErrors: ErrorGroup[]) => {
+                    this.foundExactImplementation = providerErrors.some(errorGroup => this.isGroupNameEqualsToAttached(errorGroup, attached));
+                    if (this.foundExactImplementation) {
+                        this.errors = this.errors.concat(providerErrors.find(errorGroup => this.isGroupNameEqualsToAttached(errorGroup, attached)).errors);
+                    } else {
+                        this.errorsGroups = providerErrors;
+                    }
                     this.loading = false;
-                    this.selectedError = this.initSelectedError(true);
+                    this.selectedError = this.initSelectedError();
                     this.cdRef.detectChanges();
                 });
             } else {
-                this.selectedError = this.initSelectedError();
                 this.errors = this.diagramErrors;
+                this.selectedError = this.initSelectedError();
             }
         } else {
             this.isStartEvent = true;
-            this.selectedError = this.initSelectedError();
             this.errors = this.diagramErrors;
-            this.connectorErrorGroups$ = this.getAllConnectorErrors();
+            this.selectedError = this.initSelectedError();
+            this.loadAllErrorsGroups();
         }
     }
 
-    initSelectedError(isConnector?: boolean) {
+    initSelectedError() {
         const errorDef = this.property.data.element.businessObject.eventDefinitions[0].errorRef;
-        if (isConnector && errorDef) {
-            return this.errors.find(error => errorDef.id === error.id);
+        if (errorDef) {
+            const error = this.errors.find(e => errorDef.id === e.id);
+            return error ? error : this.errorsGroups.map(group => group.errors.find(e => errorDef.id === e.id)).find(item => item != null);
         } else {
             return errorDef;
         }
@@ -132,64 +140,82 @@ export class CardViewErrorRefItemComponent implements OnInit, OnDestroy {
         this.store.dispatch(new SelectModelerElementAction({ id, type, name }));
     }
 
-    getConnector(attached: any) {
-        this.store.select(selectProjectConnectorsArray).pipe(
-            map(connectors =>
-                connectors.filter((connector: Connector) =>
-                    connector.name === attached.implementation.split('.')[0]))
-        ).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
-            this.connector = res[0];
-        });
+    getAttachedErrorProvider(attached: any) {
+        const attachedErrorProvider = this.getErrorProviderByName(attached.implementation.split('.')[0]);
+        if (!attachedErrorProvider) {
+            this.errorProvider = this.getErrorProviderByName('connector');
+        } else {
+            this.errorProvider = attachedErrorProvider;
+        }
     }
 
-    getConnectorErrors(connectorId: string): Observable<ConnectorError[]> {
-        return this.processConnectorService.getContent(connectorId).pipe(map(connector => connector.errors));
-    }
-
-    getAllConnectorErrors(): Observable<ConnectorErrorGroups[]> {
-        return this.store.select(selectProjectConnectorsArray).pipe(
-            mergeMap(connectors => {
-                const connectorContentObservables: Observable<ConnectorContent>[] = [];
-                connectors.forEach(connector => {
-                    connectorContentObservables.push(this.processConnectorService.getContent(connector.id));
-                });
-                return forkJoin(...connectorContentObservables).pipe(
-                    map((connectorDefinitions: ConnectorContent[]) => {
-                        const connectorErrorGroups: ConnectorErrorGroups[] = [];
-                        connectorDefinitions.forEach(connectorDefinition =>
-                            connectorErrorGroups.push(
-                                {
-                                    name: connectorDefinition.name,
-                                    errors: this.transformConnectorErrorsToBpmnElements(connectorDefinition.name, connectorDefinition.errors)
-                                }
-                            )
-                        );
-                        return connectorErrorGroups;
-                    })
-                );
-            })
-        );
-    }
-
-    private transformConnectorErrorsToBpmnElements(connectorName: string, connectorErrors: ConnectorError[]): Bpmn.BusinessObject[] {
+    private transformErrorsToBpmnElements(errorName: string, errors: ExtensionError[], type: string): Bpmn.BusinessObject[] {
         const bpmnErrors: Bpmn.BusinessObject[] = [];
-        if (connectorErrors) {
-            connectorErrors.forEach(connectorError => bpmnErrors.push(this.getErrorAsBpmnElement(connectorName, connectorError)));
+        if (errors) {
+            errors.forEach(errorItem => bpmnErrors.push(this.getErrorAsBpmnElement(errorName, errorItem, type)));
         }
         return bpmnErrors;
     }
 
-    getErrorAsBpmnElement(connectorName: string, error: ConnectorError): Bpmn.BusinessObject {
+    getErrorAsBpmnElement(errorName: string, error: ExtensionError, type: string): Bpmn.BusinessObject {
         const errorElement = this.bpmnFactory.create('bpmn:Error');
-        errorElement.id = `connector.${connectorName}_${error.code}`;
+        errorElement.id = `${type}.${errorName}_${error.code}`;
         errorElement.name = error.name;
         errorElement.errorCode = error.code;
         return errorElement;
+    }
+
+    loadErrorsGroupFromProvider(provider: any): Observable<ErrorGroup[]> {
+        return this.getErrorsFromProvider(provider);
+    }
+
+    loadAllErrorsGroups(): void {
+        this.errorProviders?.forEach(provider => this.getErrorsFromProvider(provider).subscribe(
+            res => this.errorsGroups = this.errorsGroups.concat(res)));
+    }
+
+    loadErrorProvidersElements() {
+        this.store.select(selectSelectedProjectId).pipe(
+            delay(0),
+            takeUntil(this.unsubscribe$)
+        ).subscribe(id => {
+            this.errorProviders.forEach(provider => this.loadElements(provider, id));
+        });
+    }
+
+    loadElements(provider: ExtensionErrorProviderInterface, projectId: string) {
+        const handler = this.getErrorProviderHandler(provider);
+        handler.prepareEntities(projectId);
+    }
+
+    getErrorProviderHandler(provider: ExtensionErrorProviderInterface) {
+        return this.injector.get(provider);
+    }
+
+    getErrorsFromProvider(provider: ExtensionErrorProviderInterface): Observable<ErrorGroup[]> {
+        return this.getErrorProviderHandler(provider).getErrors().pipe(
+            delay(0),
+            takeUntil(this.unsubscribe$),
+            map((groups: ExtensionErrorGroup[]) => {
+                return groups.map((group: ExtensionErrorGroup) => {
+                    return {
+                        name: group.name,
+                        errors: this.transformErrorsToBpmnElements(group.name, group.errors, group.type)
+                    };
+                });
+            }));
+    }
+
+    getErrorProviderByName(name: string) {
+        return this.errorProviders?.find((provider: any) => provider.name.toLowerCase().includes(name));
+    }
+
+    isGroupNameEqualsToAttached(group, attached): boolean {
+        return group.name === attached.implementation || group.name === attached.implementation.split('.')[0];
     }
 
     ngOnDestroy() {
         this.unsubscribe$.next();
         this.unsubscribe$.complete();
     }
-
 }

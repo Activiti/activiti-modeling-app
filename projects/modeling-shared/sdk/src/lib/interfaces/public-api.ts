@@ -22,3 +22,4 @@ export * from './model-uploader.interface';
 export * from './model-editor-routes';
 export * from './model-importer.interface';
 export * from './variable-mapping-type.interface';
+export * from './error-provider.interface';

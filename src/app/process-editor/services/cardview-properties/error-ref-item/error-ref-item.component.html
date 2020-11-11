@@ -1,6 +1,5 @@
 <div class="error-ref-block">
 
-
     <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ERROR' | translate }}</div>
     <button mat-stroked-button data-automation-id="new-error-button" class="add-error-button" (click)="createNewError()"
         matTooltip="{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.CREATE_NEW_ERROR' | translate }}"
@@ -10,17 +9,24 @@
 
     <mat-form-field>
         <mat-select (selectionChange)="changeErrorRef()" [(ngModel)]="selectedError">
-            <mat-option></mat-option>
-            <mat-option *ngFor="let error of errors" [value]="error">
-                {{ error.name }}
-            </mat-option>
-            <ng-container *ngIf="isStartEvent">
-                <mat-optgroup *ngFor="let group of connectorErrorGroups$ | async" [label]="group.name">
-                    <mat-option *ngFor="let error of group.errors" [value]="error">
-                        {{ error.name }}
-                    </mat-option>
-                </mat-optgroup>
+
+            <ng-container>
+                <mat-option></mat-option>
+                <mat-option *ngFor="let error of errors" [value]="error">
+                    {{ error.name }}
+                </mat-option>
             </ng-container>
+
+            <ng-container *ngIf="isStartEvent || !foundExactImplementation">
+                <ng-container *ngFor="let group of errorsGroups">
+                    <mat-optgroup *ngIf="group.errors?.length > 0" [label]="group.name" >
+                        <mat-option *ngFor="let error of group.errors" [value]="error">
+                            {{ error.name }}
+                        </mat-option>
+                    </mat-optgroup>
+                </ng-container>
+            </ng-container>
+
         </mat-select>
     </mat-form-field>
 

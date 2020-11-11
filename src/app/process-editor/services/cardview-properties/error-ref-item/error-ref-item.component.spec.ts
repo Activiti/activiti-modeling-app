@@ -18,14 +18,14 @@
 import { CardViewErrorRefItemComponent } from './error-ref-item.component';
 import { CardViewUpdateService, CardItemTypeService } from '@alfresco/adf-core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { ProcessModelerServiceToken, Connector } from '@alfresco-dbp/modeling-shared/sdk';
+import { ProcessModelerServiceToken, selectProjectConnectorsArray, selectSelectedProjectId, ErrorProvidersToken, SCRIPT } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ProcessConnectorService } from '../../process-connector-service';
 import { ErrorRefItemModel } from './error-ref-item.model';
 import { of } from 'rxjs';
-import { cold } from 'jasmine-marbles';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('CardViewErrorRefItemComponent', () => {
     let fixture: ComponentFixture<CardViewErrorRefItemComponent>;
@@ -58,13 +58,24 @@ describe('CardViewErrorRefItemComponent', () => {
         { name: 'mockConnector2.error_connector2', code: 'mockConnector2.error_connector2', description: 'mockConnector2.error_connector2' }
     ];
 
-    const connectorMock = {
+    const providersContentMock = [
+        {
+            name: 'connector',
+            errors: [...connectorErrorMock]
+        },
+        {
+            name: 'connector2',
+            errors: [...connector2ErrorMock]
+        }
+    ];
+
+    const providerMock = {
         id: '4421a40f-41e5-4a16-b74a-fc15ec54f381',
         type: 'CONNECTOR',
-        name: 'mockConnector'
+        name: 'connector'
     };
 
-    const connectorContentMock = { ...connectorMock, errors: connectorErrorMock };
+    const connectorContentMock = { ...providerMock, errors: connectorErrorMock };
 
     const connector2Mock = {
         id: '4421a40f-41e5-4a16-b74a-fc15ec54f382',
@@ -84,6 +95,34 @@ describe('CardViewErrorRefItemComponent', () => {
             }
         }
     };
+
+    const providerErrorMock = [{
+        'name': 'script1',
+        'errors': [{
+            '$type': 'bpmn:Error',
+            'id': 'script.script1_ERROR_1',
+            'name': 'ERROR_1',
+            'errorCode': 'ERROR_1'
+        }, {
+            '$type': 'bpmn:Error',
+            'id': 'script.script1_ERROR_3',
+            'name': 'ERROR_3',
+            'errorCode': 'ERROR_3'
+        }, {
+            '$type': 'bpmn:Error',
+            'id': 'script.script1_ERROR_2',
+            'name': 'ERROR_2',
+            'errorCode': 'ERROR_2'
+        }]
+    }, {
+        'name': 'script2',
+        'errors': [{
+            '$type': 'bpmn:Error',
+            'id': 'script.script2_SCRIPT_2_ERROR_1',
+            'name': 'SCRIPT_2_ERROR_1',
+            'errorCode': 'SCRIPT_2_ERROR_1'
+        }]
+    }];
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -121,12 +160,28 @@ describe('CardViewErrorRefItemComponent', () => {
                 {
                     provide: Store,
                     useValue: {
-                        select: jest.fn().mockReturnValue(of([connectorMock, connector2Mock]))
+                        select: jest.fn().mockImplementation((selector) => {
+                            if (selector === selectProjectConnectorsArray) {
+                                return of([providerMock, connector2Mock]);
+                            } else if (selector === selectSelectedProjectId) {
+                                return of('9505dc01-af29-47cf-9aca-09079200d4a2');
+                            }
+                            return of({});
+                        }),
                     }
                 },
+                {
+                    provide: ErrorProvidersToken,
+                    useValue: [
+                        {
+                            modelType: SCRIPT,
+                            getErrors: jest.fn().mockReturnValue({connectorErrorMock})
+                        }
+                    ]
+                }
             ],
             declarations: [CardViewErrorRefItemComponent],
-            imports: [TranslateModule.forRoot()],
+            imports: [TranslateModule.forRoot(), RouterTestingModule],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
     }));
@@ -143,13 +198,13 @@ describe('CardViewErrorRefItemComponent', () => {
 
     it('should load connector errors when serviceTask connector', () => {
         // setup
-        spyOn(component, 'getConnector').and.callFake(() => component['connector'] = <Connector>connectorMock);
+        spyOn(component, 'getAttachedErrorProvider').and.callFake(() => component['errorProvider'] = providerMock);
         spyOn(component, 'getErrorAsBpmnElement').and.callFake((error) => {
             return { id: error.id, name: error.name, errorCode: error };
         });
         const processModelerService = TestBed.inject(ProcessModelerServiceToken);
         spyOn(processModelerService, 'getRootProcessElement').and.returnValue(rootElementsMock);
-        const getConnectorErrorsSpy = spyOn(component, 'getConnectorErrors').and.returnValue(of(connectorErrorMock));
+        const getConnectorErrorsSpy = spyOn(component, 'loadErrorsGroupFromProvider').and.returnValue(of(providersContentMock));
         fixture.detectChanges();
         // verify
         expect(getConnectorErrorsSpy).toHaveBeenCalled();
@@ -168,68 +223,21 @@ describe('CardViewErrorRefItemComponent', () => {
         expect(component.errors.length).toBe(1);
     });
 
-    it('should load bpmn errors from diagram and from connectors when is a start event', () => {
+    it('should load bpmn errors from diagram and from providers when is a start event', () => {
         // setup
         propertyMock.data.element.businessObject.attachedToRef = null;
         propertyMock.data.element.businessObject.eventDefinitions[0].errorRef = null;
         const processModelerService = TestBed.inject(ProcessModelerServiceToken);
         const processModelerServiceSpy = spyOn(processModelerService, 'getRootProcessElement').and.returnValue(rootElementsMock);
+        const getErrorsFromProviderSpy =  spyOn(component, 'getErrorsFromProvider').and.callFake((error) => {
+            return of(providerErrorMock);
+        });
         fixture.detectChanges();
         // verify
+        expect(getErrorsFromProviderSpy).toHaveBeenCalled();
         expect(processModelerServiceSpy).toHaveBeenCalled();
         expect(component.errors.length).toBe(1);
-
-        const expected = cold('(x|)', {
-            x: [
-                {
-                    name: connectorMock.name,
-                    errors: [
-                        {
-                            businessObject: {},
-                            id: 'connector.mockConnector_error_connector1',
-                            name: 'error_connector1',
-                            errorCode: 'error_connector1',
-                            type: 'bpmn:Error'
-                        },
-                        {
-                            businessObject: {},
-                            id: 'connector.mockConnector_error_connector2',
-                            name: 'error_connector2',
-                            errorCode: 'error_connector2',
-                            type: 'bpmn:Error'
-                        },
-                        {
-                            businessObject: {},
-                            id: 'connector.mockConnector_error_connector3',
-                            name: 'error_connector3',
-                            errorCode: 'error_connector3',
-                            type: 'bpmn:Error'
-                        }
-                    ]
-                },
-                {
-                    name: connector2Mock.name,
-                    errors: [
-                        {
-                            businessObject: {},
-                            id: 'connector.mockConnector2_mockConnector2.error_connector1',
-                            name: 'mockConnector2.error_connector1',
-                            errorCode: 'mockConnector2.error_connector1',
-                            type: 'bpmn:Error'
-                        },
-                        {
-                            businessObject: {},
-                            id: 'connector.mockConnector2_mockConnector2.error_connector2',
-                            name: 'mockConnector2.error_connector2',
-                            errorCode: 'mockConnector2.error_connector2',
-                            type: 'bpmn:Error'
-                        }
-                    ]
-                }
-            ]
-        });
-
-        expect(component.connectorErrorGroups$).toBeObservable(expected);
+        expect(component.errorsGroups.length).toBe(2);
     });
 
 });
