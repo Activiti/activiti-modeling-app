@@ -141,12 +141,7 @@ export class CardViewErrorRefItemComponent implements OnInit, OnDestroy {
     }
 
     getAttachedErrorProvider(attached: any) {
-        const attachedErrorProvider = this.getErrorProviderByName(attached.implementation.split('.')[0]);
-        if (!attachedErrorProvider) {
-            this.errorProvider = this.getErrorProviderByName('connector');
-        } else {
-            this.errorProvider = attachedErrorProvider;
-        }
+        this.errorProvider = this.getErrorProviderByName(attached.implementation.split('.')[0]) || this.getErrorProviderByName('connector');
     }
 
     private transformErrorsToBpmnElements(errorName: string, errors: ExtensionError[], type: string): Bpmn.BusinessObject[] {
@@ -188,14 +183,13 @@ export class CardViewErrorRefItemComponent implements OnInit, OnDestroy {
         handler.prepareEntities(projectId);
     }
 
-    getErrorProviderHandler(provider: ExtensionErrorProviderInterface) {
+    getErrorProviderHandler(provider: ExtensionErrorProviderInterface): ExtensionErrorProviderInterface {
         return this.injector.get(provider);
     }
 
     getErrorsFromProvider(provider: ExtensionErrorProviderInterface): Observable<ErrorGroup[]> {
         return this.getErrorProviderHandler(provider).getErrors().pipe(
             delay(0),
-            takeUntil(this.unsubscribe$),
             map((groups: ExtensionErrorGroup[]) => {
                 return groups.map((group: ExtensionErrorGroup) => {
                     return {
@@ -203,11 +197,16 @@ export class CardViewErrorRefItemComponent implements OnInit, OnDestroy {
                         errors: this.transformErrorsToBpmnElements(group.name, group.errors, group.type)
                     };
                 });
-            }));
+            }),
+            takeUntil(this.unsubscribe$)
+        );
     }
 
     getErrorProviderByName(name: string) {
-        return this.errorProviders?.find((provider: any) => provider.name.toLowerCase().includes(name));
+        return this.errorProviders?.find((provider: any) => {
+            const handler = this.getErrorProviderHandler(provider);
+            return handler.modelType.toLowerCase().includes(name);
+        });
     }
 
     isGroupNameEqualsToAttached(group, attached): boolean {

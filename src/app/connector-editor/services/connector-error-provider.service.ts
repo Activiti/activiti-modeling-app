@@ -35,6 +35,8 @@ export class ConnectorErrorProviderService implements ExtensionErrorProviderInte
         private connectorEditorService: ConnectorEditorService,
     ) { }
 
+    modelType = CONNECTOR;
+
     prepareEntities(projectId: string): void {
     }
 

@@ -19,11 +19,6 @@ import { InjectionToken, Provider, Type } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MODEL_TYPE } from '../api/types';
 
-export interface ErrorProvider {
-    name: string;
-    code?: string;
-}
-
 export interface ExtensionError {
     name: string;
     code?: string;
@@ -40,11 +35,11 @@ export type ExtensionErrorPrepareEntities = (projectId: string) => void;
 
 export interface ExtensionErrorProviderInterface {
     modelType?: MODEL_TYPE;
-    getErrors: ExtensionErrorGroupsProvider;
-    prepareEntities: ExtensionErrorPrepareEntities;
+    getErrors(): Observable<ExtensionErrorGroup[]>;
+    prepareEntities(projectId: string): void;
 }
 
-export const ErrorProvidersToken = new InjectionToken<ErrorProvider[]>('error-providers');
+export const ErrorProvidersToken = new InjectionToken<ExtensionErrorProviderInterface[]>('error-providers');
 
 export function getExtensionErrorProvider(handler: Type<ExtensionErrorProviderInterface>): Provider[] {
     return [

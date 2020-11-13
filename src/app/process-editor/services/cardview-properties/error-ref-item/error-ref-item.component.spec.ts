@@ -18,7 +18,10 @@
 import { CardViewErrorRefItemComponent } from './error-ref-item.component';
 import { CardViewUpdateService, CardItemTypeService } from '@alfresco/adf-core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { ProcessModelerServiceToken, selectProjectConnectorsArray, selectSelectedProjectId, ErrorProvidersToken, SCRIPT } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    ProcessModelerServiceToken, selectProjectConnectorsArray,
+    selectSelectedProjectId, ErrorProvidersToken, SCRIPT, CONNECTOR
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -124,6 +127,18 @@ describe('CardViewErrorRefItemComponent', () => {
         }]
     }];
 
+    const scriptProvider = {
+        modelType: SCRIPT,
+        getErrors: jest.fn(),
+        prepareEntities: jest.fn()
+    };
+
+    const connectorProvider = {
+        modelType: CONNECTOR,
+        getErrors: jest.fn(),
+        prepareEntities: jest.fn()
+    };
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             providers: [
@@ -172,12 +187,7 @@ describe('CardViewErrorRefItemComponent', () => {
                 },
                 {
                     provide: ErrorProvidersToken,
-                    useValue: [
-                        {
-                            modelType: SCRIPT,
-                            getErrors: jest.fn().mockReturnValue({connectorErrorMock})
-                        }
-                    ]
+                    useValue: [scriptProvider]
                 }
             ],
             declarations: [CardViewErrorRefItemComponent],
@@ -238,6 +248,20 @@ describe('CardViewErrorRefItemComponent', () => {
         expect(processModelerServiceSpy).toHaveBeenCalled();
         expect(component.errors.length).toBe(1);
         expect(component.errorsGroups.length).toBe(2);
+    });
+
+    it('getErrorProviderByName should return an error provider by name when exists', () => {
+        const getErrorProviderHandlerSpy = spyOn(component, 'getErrorProviderHandler').and.returnValue(connectorProvider);
+        const result = component.getErrorProviderByName('connector');
+        expect(getErrorProviderHandlerSpy).toHaveBeenCalled();
+        expect(result).toBeDefined();
+    });
+
+    it('getErrorProviderByName should not fetch error provider by name when is not present', () => {
+        const getErrorProviderHandlerSpy = spyOn(component, 'getErrorProviderHandler').and.returnValue(scriptProvider);
+        const result = component.getErrorProviderByName('form');
+        expect(getErrorProviderHandlerSpy).toHaveBeenCalled();
+        expect(result).toBeUndefined();
     });
 
 });
