@@ -343,15 +343,35 @@ export interface UiContent {
 }
 
 export interface UiContentExtension {
-    $id: string;
-    $name: string;
-    $version: string;
-    $vendor: string;
-    $license: string;
-    $description?: string;
-    actions?: UiAction[];
-    rules?: UiRule[];
-    features?: UiFeatures;
+        $id: string;
+        $name: string;
+        $version: string;
+        $vendor: string;
+        $license: string;
+        $description?: string;
+        actions?: UiAction[];
+        rules?: UiRule[];
+        features?: UiFeatures;
+}
+
+export interface UiRule {
+    type: UiRuleType;
+    id?: string;
+    value?: string;
+    parameters?: Array<UiRule>;
+}
+
+export enum UiRuleType {
+    NOT = 'core.not',
+    EVERY = 'core.every',
+    SOME = 'core.some',
+    RULE = 'rule'
+}
+
+export interface UiAction {
+    id: string;
+    type: string;
+    payload: any;
 }
 
 export interface UiFeatures {
@@ -392,26 +412,6 @@ export interface UiFeature {
         visible?: string;
         [key: string]: string;
     };
-}
-
-export interface UiRule {
-    type: UiRuleType;
-    id?: string;
-    value?: string;
-    parameters?: Array<UiRule>;
-}
-
-export enum UiRuleType {
-    NOT = 'core.not',
-    EVERY = 'core.every',
-    SOME = 'core.some',
-    RULE = 'rule'
-}
-
-export interface UiAction {
-    id: string;
-    type: string;
-    payload: any;
 }
 
 export interface Ui extends Model {
