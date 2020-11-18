@@ -71,10 +71,4 @@ then
     -i ./app.config.json
 fi
 
-if [[ -n "${BASE_PATH}" ]]
-then
-  sed s%href=\"/\"%href=\""${BASE_PATH}"\"%g \
-    -i ./index.html
-fi
-
 nginx -g "daemon off;"
