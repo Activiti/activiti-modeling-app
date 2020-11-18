@@ -365,7 +365,10 @@ export enum UiRuleType {
     NOT = 'core.not',
     EVERY = 'core.every',
     SOME = 'core.some',
-    RULE = 'rule'
+    RULE = 'rule',
+    VALUE = 'value',
+    ARGUMENT = 'argument',
+    OPERATOR = 'operator'
 }
 
 export interface UiAction {
