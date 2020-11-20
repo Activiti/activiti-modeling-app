@@ -1,5 +1,6 @@
 <button [matMenuTriggerFor]="globalModels" *ngIf="importer" mat-menu-item
-    [attr.data-automation-id]="'app-navigation-import-' + importer.type">
+    [attr.data-automation-id]="'app-navigation-import-' + importer.type" #menuTrigger="matMenuTrigger"
+    (mouseover)="menuTrigger.openMenu()">
     <mat-icon>{{ importer.icon }}</mat-icon>
     <span>{{ importer.name | translate }}</span>
 </button>
