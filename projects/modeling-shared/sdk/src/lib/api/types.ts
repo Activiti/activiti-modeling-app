@@ -583,3 +583,23 @@ export interface Widget extends Model {
     type: FORM_WIDGET_TYPE;
     extensions: WidgetContent;
 }
+
+export interface TriggerFeature {
+    id: string;
+    name: string;
+    description?: string;
+    inputs?: TriggerParameter[];
+    outputs?: TriggerParameter[];
+}
+
+export interface TriggerParameter {
+    id?: string;
+    name: string;
+    label?: string;
+    description?: string;
+    type: string;
+    mappingValueType?: string;
+    required?: boolean;
+    readOnly?: boolean;
+    value?: any;
+}

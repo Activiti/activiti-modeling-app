@@ -60,6 +60,7 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
     @Input() extendedProperties = null;
     @Input() required = false;
     @Input() placeholder: string;
+    @Input() readonly = false;
 
     @ViewChild('valueTypeInput', { read: ViewContainerRef, static: true }) valueTypeInput;
     valueTypeInputRef: ComponentRef<any>;
@@ -97,6 +98,7 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
         }
 
         this.valueTypeInputRef.instance.disabled = this.disabled;
+        this.valueTypeInputRef.instance.readonly = this.readonly;
         this.valueTypeInputRef.instance.placeholder = this.placeholder;
         this.valueTypeInputRef.instance.extendedProperties = this.extendedProperties;
         this.writeValue(this.value);
