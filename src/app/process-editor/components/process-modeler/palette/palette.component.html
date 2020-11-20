@@ -31,27 +31,19 @@
 
 <ng-template #clickableElement let-item>
     <div class="entry-parent">
-        <div class="entry svg" *ngIf="paletteIconSvg[item?.svg]">
-            <button
-                [title]="item.title | translate"
-                [attr.data-automation-id]="item.group + '::' + item.type"
-                [innerHTML]="paletteIconSvg[item?.svg]"
-                draggable="true"
-                (click)="onClick(item, $event)"
-                (dragstart)="onDrag(item, $event)">
-            </button>
+        <div *ngIf="paletteIconSvg[item?.svg]" class="entry svg" draggable="true"
+            [attr.data-automation-id]="item.group + '::' + item.type"
+            [innerHTML]="paletteIconSvg[item?.svg]"
+            [title]="item.title | translate"
+            (dragstart)="onDrag(item, $event)"
+            (click)="onClick(item, $event)">
         </div>
-        <div *ngIf="!paletteElementIcons[item?.svg]"
-            class="entry {{item.icon}}"
-            [class.selected]="item === selectedTool">
-            <button
-                [title]="item.title | translate"
-                [attr.data-automation-id]="item.group + '::' + item.type"
-                *ngIf="!hasChildren(item)"
-                draggable="true"
-                (click)="onClick(item, $event)"
-                (dragstart)="onDrag(item, $event)">
-            </button>
+        <div *ngIf="!paletteElementIcons[item?.svg] && !hasChildren(item)" draggable="true" class="entry {{item.icon}}"
+            [title]="item.title | translate"
+            [class.selected]="item === selectedTool"
+            [attr.data-automation-id]="item.group + '::' + item.type"
+            (click)="onClick(item, $event)"
+            (dragstart)="onDrag(item, $event)">
         </div>
         <span class="drawer-item-tag" *ngIf="item.tag" [title]="item.title | translate" draggable="true"
         (click)="onClick(item, $event)" (dragstart)="onDrag(item, $event)">{{item.tag | translate}}</span>

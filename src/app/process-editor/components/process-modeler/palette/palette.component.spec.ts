@@ -114,7 +114,7 @@ describe('Palette component', () => {
     });
 
     it('test onClick method', () => {
-        const btn = fixture.debugElement.query(By.css('.test button'));
+        const btn = fixture.debugElement.query(By.css('div.test'));
         const event =  new MouseEvent('click');
         btn.nativeElement.dispatchEvent(event);
         expect(processModelerPaletteService.delegateEvent).toHaveBeenCalledWith(component.paletteElements[0] as BpmnTrigger, event);
@@ -122,7 +122,7 @@ describe('Palette component', () => {
     });
 
     it('test onDrag method', () => {
-        const btn = fixture.debugElement.query(By.css('.test button'));
+        const btn = fixture.debugElement.query(By.css('div.test'));
 
         const event = new CustomEvent('dragstart');
         spyOn(event, 'preventDefault').and.stub();
