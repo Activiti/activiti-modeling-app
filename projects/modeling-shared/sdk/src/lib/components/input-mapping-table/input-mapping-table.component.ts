@@ -141,13 +141,14 @@ export class InputMappingTableComponent implements OnChanges {
             }
 
             if (this.mapping[param.name]) {
-                this.mappingTypes[param.name] = this.mapping[param.name].type;
+                this.mappingTypes[param.name] = this.mapping[param.name].value ? this.mapping[param.name].type : MappingType.variable;
+
                 this.values[param.name] =
                     this.mapping[param.name].type === MappingType.value
                         ? this.mapping[param.name].value
                         : '';
                 this.paramName2VariableName[param.name] =
-                    this.mapping[param.name].type === MappingType.variable
+                    this.mapping[param.name].type === MappingType.variable && this.mapping[param.name].value
                         ? this.mapping[param.name].value
                         : '';
             }

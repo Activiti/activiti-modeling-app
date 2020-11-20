@@ -20,7 +20,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MappingType } from '../../api/types';
+import { ConnectorParameter, MappingType } from '../../api/types';
 import { InputMappingTableComponent, NoneValue } from './input-mapping-table.component';
 import { InputMappingTableModule } from './input-mapping-table.module';
 import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
@@ -265,5 +265,17 @@ describe('InputMappingTableComponent', () => {
         const icon = fixture.debugElement.query(By.css('.help-icon'));
         expect(icon).toBeDefined();
         expect(icon.nativeElement).toBeDefined();
+    });
+
+    it('should reset to default mapping `variable` type when no value', () => {
+        component.parameters = [{ name: 'test', type: 'string' }] as ConnectorParameter[];
+        component.mapping[component.parameters[0].name] = { type: MappingType.value , value: 'bogus' };
+
+        component.ngOnChanges();
+        expect(component.mappingTypes[component.parameters[0].name]).toBe(MappingType.value);
+
+        component.mapping[component.parameters[0].name].value = null;
+        component.ngOnChanges();
+        expect(component.mappingTypes[component.parameters[0].name]).toBe(MappingType.variable);
     });
 });
