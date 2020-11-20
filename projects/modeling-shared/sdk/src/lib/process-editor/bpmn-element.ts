@@ -50,4 +50,5 @@ export enum BpmnElement {
     Collaboration = 'bpmn:Collaboration',
     Lane = 'bpmn:Lane',
     Error = 'bpmn:Error',
+    Label = 'label',
 }

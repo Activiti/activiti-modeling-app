@@ -31,6 +31,7 @@ const get = (element) => {
         case BpmnElement.IntermediateCatchEvent:
         case BpmnElement.IntermediateThrowEvent:
         case BpmnElement.CallActivity:
+        case BpmnElement.Label:
             if (element.businessObject.$parent.$type === BpmnElement.SubProcess) {
                 return element.businessObject.$parent.$parent.id;
             } else {
