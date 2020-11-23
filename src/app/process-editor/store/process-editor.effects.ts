@@ -18,7 +18,7 @@
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Inject, Injectable } from '@angular/core';
 import { catchError, filter, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators';
-import { EMPTY, forkJoin, Observable, of, zip } from 'rxjs';
+import { forkJoin, Observable, of, zip } from 'rxjs';
 import { Router } from '@angular/router';
 
 import {
@@ -249,7 +249,7 @@ export class ProcessEditorEffects {
                 const parsedResponse = JSON.parse(response.message);
 
                 if (parsedResponse.status !== 400) {
-                    return EMPTY;
+                    return of(null);
                 }
 
                 const errors = this.handleProcessValidationError(parsedResponse);
