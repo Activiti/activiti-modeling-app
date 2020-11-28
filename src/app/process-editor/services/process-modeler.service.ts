@@ -148,6 +148,7 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
         this.modeler.on('element.click', this.modelerInitOptions.clickHandler);
         this.modeler.on('element.changed', this.modelerInitOptions.changeHandler);
         this.modeler.on('shape.remove', this.modelerInitOptions.removeHandler);
+        this.modeler.on('create.end', this.modelerInitOptions.createHandler);
         this.modeler.on('selection.changed', this.modelerInitOptions.selectHandler);
     }
 
@@ -155,6 +156,7 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
         this.modeler.off('element.click', this.modelerInitOptions.clickHandler);
         this.modeler.off('element.changed', this.modelerInitOptions.changeHandler);
         this.modeler.off('shape.remove', this.modelerInitOptions.removeHandler);
+        this.modeler.off('create.end', this.modelerInitOptions.createHandler);
         this.modeler.off('selection.changed', this.modelerInitOptions.selectHandler);
     }
 }

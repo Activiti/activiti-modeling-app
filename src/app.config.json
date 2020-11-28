@@ -39,14 +39,18 @@
         "priorities": [
             {
                 "key": 0,
-                "label": "PROCESS_EDITOR.PRIORITIES.LOW"
+                "label": "PROCESS_EDITOR.PRIORITIES.NOT_SET"
             },
             {
                 "key": 1,
-                "label": "PROCESS_EDITOR.PRIORITIES.MEDIUM"
+                "label": "PROCESS_EDITOR.PRIORITIES.LOW"
             },
             {
                 "key": 2,
+                "label": "PROCESS_EDITOR.PRIORITIES.MEDIUM"
+            },
+            {
+                "key": 3,
                 "label": "PROCESS_EDITOR.PRIORITIES.HIGH"
             }
         ],

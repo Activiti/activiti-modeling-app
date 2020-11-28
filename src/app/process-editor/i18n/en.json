@@ -6,9 +6,10 @@
         "SAVE_PROCESS": "Save process",
         "SELECT_PROCESS_VARIABLE": "Select process variable",
         "PRIORITIES": {
-            "LOW": "0",
-            "MEDIUM": "1",
-            "HIGH": "2"
+            "NOT_SET": "Not set",
+            "LOW": "Low",
+            "MEDIUM": "Normal",
+            "HIGH": "High"
         },
         "NAME": "Process Editor",
         "TIMER_TYPES": {

@@ -24,6 +24,7 @@ export interface ModelerInitOptions {
     clickHandler: (event) => any | void;
     changeHandler: (event) => any | void;
     removeHandler: (event) => any | void;
+    createHandler: (event) => any | void;
     selectHandler: (event) => any | void;
 }
 

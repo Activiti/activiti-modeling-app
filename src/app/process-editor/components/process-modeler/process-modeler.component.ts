@@ -18,7 +18,7 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, switchMap, takeUntil } from 'rxjs/operators';
-import { ProcessContent, SnackbarErrorAction, ProcessModelerServiceToken, ProcessModelerService, ToolbarMessageAction, SetAppDirtyStateAction } from '@alfresco-dbp/modeling-shared/sdk';
+import { ProcessContent, SnackbarErrorAction, ProcessModelerServiceToken, ProcessModelerService, ToolbarMessageAction, SetAppDirtyStateAction, BpmnElement, BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import {
     SelectModelerElementAction,
@@ -72,6 +72,12 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
                             createSelectedElement(event.newSelection[0])
                         )
                     );
+                }
+            },
+            createHandler: event => {
+                const element = createSelectedElement(event.elements[0]);
+                if (element.type === BpmnElement.UserTask) {
+                    this.processModelerService.updateElementProperty(element.id, BpmnProperty.priority, 0);
                 }
             }
         });

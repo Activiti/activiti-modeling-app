@@ -2,7 +2,7 @@
     <mat-card class="process-properties-card">
         <mat-card-title>{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROPERTIES' | translate }} </mat-card-title>
         <mat-card-content>
-            <adf-card-view [properties]="properties$ | async" [editable]="true">
+            <adf-card-view [properties]="properties$ | async" [displayNoneOption]="false" [editable]="true">
 
             </adf-card-view>
         </mat-card-content>

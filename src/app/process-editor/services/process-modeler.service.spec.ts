@@ -45,7 +45,8 @@ describe('ProcessModelerServiceImplementation', () => {
             clickHandler: jest.fn(),
             changeHandler: jest.fn(),
             removeHandler: jest.fn(),
-            selectHandler: jest.fn()
+            selectHandler: jest.fn(),
+            createHandler: jest.fn()
         };
         service.init(initConfig);
     });
@@ -64,7 +65,7 @@ describe('ProcessModelerServiceImplementation', () => {
         }
 
         function fireEventHandlers() {
-            const events = ['element.click', 'element.changed', 'shape.remove', 'selection.changed'];
+            const events = ['element.click', 'element.changed', 'shape.remove', 'selection.changed', 'create.end'];
             events.forEach(event => {
                 bpmnFactoryMock.modeler.get('eventBus').fire(event);
             });
