@@ -21,8 +21,11 @@
       "CREATE": "Maken",
       "UPDATE": "Bijwerken",
       "CLOSE": "Sluiten",
+      "DONT_SAVE": "Niet opslaan",
+      "UNSAVED_PAGE_TITLE": "Wilt u de wijzigingen opslaan die zijn gemaakt in",
       "EDIT_PROPERTIES": "Procesvariabelen bewerken",
       "EDIT_PROCESS_MESSAGES": "Berichten bewerken",
+      "EDIT_PROCESS_ERRORS": "Fouten bewerken",
       "EDIT_FORM_PROPERTIES": "Formuliervariabelen bewerken",
       "EDIT_VISIBILITY_CONDITIONS": "Zichtbaarheidsvoorwaarden bewerken",
       "ERROR": {
@@ -35,7 +38,6 @@
         "TITLE": "Weet u het zeker?",
         "SUBTITLE": "Weet u zeker dat u deze actie wilt uitvoeren?",
         "BUTTON": "Bevestigen",
-        "UNSAVED_PAGE": "Weet u zeker dat u wilt afsluiten zonder {{ types }} op te slaan",
         "RELEASE": "Weet u zeker dat u een nieuwe versie van dit project wilt vrijgeven?",
         "TYPES": {
           "DECISION": "beslissingstabel",
@@ -46,7 +48,9 @@
           "PROCESS": "Proces",
           "FILE": "bestand",
           "SCRIPT": "script",
-          "TRIGGER": "Trigger"
+          "TRIGGER": "Trigger",
+          "MODEL": "Contentmodel",
+          "CUSTOM-FORM-WIDGET": "Formulierwidget"
         },
         "DELETE": {
           "PROJECT": "Weet u zeker dat u dit project wilt verwijderen?",
@@ -58,7 +62,9 @@
           "CONNECTOR": "Weet u zeker dat u deze connector wilt verwijderen?",
           "FILE": "Weet u zeker dat u dit bestand wilt verwijderen?",
           "SCRIPT": "Weet u zeker dat u dit script wilt verwijderen?",
-          "TRIGGER": "Weet u zeker dat u deze trigger wilt verwijderen?"
+          "TRIGGER": "Weet u zeker dat u deze trigger wilt verwijderen?",
+          "MODEL": "Weet u zeker dat u dit contentmodel wilt verwijderen?",
+          "FORM_WIDGET": "Weet u zeker dat u deze formulierwidget wilt verwijderen?"
         },
         "SAVE": {
           "PROCESS": "Weet u zeker dat u dit proces wilt opslaan?",
@@ -69,7 +75,9 @@
           "CONNECTOR": "Weet u zeker dat u deze connector wilt opslaan?",
           "FILE": "Weet u zeker dat u dit bestand wilt opslaan?",
           "SCRIPT": "Weet u zeker dat u dit script wilt opslaan?",
-          "TRIGGER": "Weet u zeker dat u deze trigger wilt opslaan?"
+          "TRIGGER": "Weet u zeker dat u deze trigger wilt opslaan?",
+          "MODEL": "Weet u zeker dat u dit contentmodel wilt opslaan?",
+          "FORM_WIDGET": "Weet u zeker dat u deze formulierwidget wilt opslaan?"
         },
         "DOWNLOAD": {
           "PROCESS": "Weet u zeker dat u dit proces wilt downloaden?",
@@ -81,7 +89,9 @@
           "CONNECTOR": "Weet u zeker dat u deze connector wilt downloaden?",
           "FILE": "Weet u zeker dat u dit bestand wilt downloaden?",
           "SCRIPT": "Weet u zeker dat u dit script wilt downloaden?",
-          "TRIGGER": "Weet u zeker dat u deze trigger wilt downloaden?"
+          "TRIGGER": "Weet u zeker dat u deze trigger wilt downloaden?",
+          "MODEL": "Weet u zeker dat u dit contentmodel wilt downloaden?",
+          "FORM_WIDGET": "Weet u zeker dat u deze formulierwidget wilt downloaden?"
         }
       }
     },
@@ -102,6 +112,10 @@
         "NOT_VALID_JSON": "Ongeldig JSON-object",
         "NOT_VALID_SCHEMA": "Het JSON-object komt niet overeen met het schema"
       }
+    },
+    "EDITOR": {
+      "NAME": "Naam",
+      "DESCRIPTION": "Beschrijving"
     }
   }
 }

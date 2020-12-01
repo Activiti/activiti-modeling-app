@@ -21,8 +21,11 @@
       "CREATE": "Crea",
       "UPDATE": "Aggiorna",
       "CLOSE": "Chiudi",
+      "DONT_SAVE": "Non salvare",
+      "UNSAVED_PAGE_TITLE": "Si desidera salvare le modifiche apportate a",
       "EDIT_PROPERTIES": "Modifica variabili del processo",
       "EDIT_PROCESS_MESSAGES": "Modifica messaggi",
+      "EDIT_PROCESS_ERRORS": "Modifica errori",
       "EDIT_FORM_PROPERTIES": "Modifica variabili del modulo",
       "EDIT_VISIBILITY_CONDITIONS": "Modifica condizioni di visibilità",
       "ERROR": {
@@ -32,10 +35,9 @@
         "GENERAL_NAME_VALIDATION": "Il nome deve essere minuscolo e di lunghezza compresa fra 1 e 26 caratteri. Sono ammessi caratteri alfanumerici e trattini, tuttavia il nome deve cominciare con una lettera e terminare con una lettera o un numero."
       },
       "CONFIRM": {
-        "TITLE": "Procedere?",
+        "TITLE": "Continuare?",
         "SUBTITLE": "Eseguire questa azione?",
         "BUTTON": "Conferma",
-        "UNSAVED_PAGE": "Uscire senza salvare {{ types }}?",
         "RELEASE": "Rilasciare una nuova versione di questo progetto?",
         "TYPES": {
           "DECISION": "tabella decisioni",
@@ -46,7 +48,9 @@
           "PROCESS": "Processo",
           "FILE": "file",
           "SCRIPT": "script",
-          "TRIGGER": "Trigger"
+          "TRIGGER": "Trigger",
+          "MODEL": "Modello di contenuto",
+          "CUSTOM-FORM-WIDGET": "Widget modulo"
         },
         "DELETE": {
           "PROJECT": "Eliminare questo progetto?",
@@ -58,7 +62,9 @@
           "CONNECTOR": "Eliminare questo connettore?",
           "FILE": "Eliminare questo file?",
           "SCRIPT": "Eliminare questo script?",
-          "TRIGGER": "Eliminare questo trigger?"
+          "TRIGGER": "Eliminare questo trigger?",
+          "MODEL": "Eliminare questo modello di contenuto?",
+          "FORM_WIDGET": "Eliminare questo widget di modulo?"
         },
         "SAVE": {
           "PROCESS": "Salvare questo processo?",
@@ -69,7 +75,9 @@
           "CONNECTOR": "Salvare questo connettore?",
           "FILE": "Salvare questo file?",
           "SCRIPT": "Salvare questo script?",
-          "TRIGGER": "Salvare questo trigger?"
+          "TRIGGER": "Salvare questo trigger?",
+          "MODEL": "Salvare questo modello di contenuto?",
+          "FORM_WIDGET": "Salvare questo widget di modulo?"
         },
         "DOWNLOAD": {
           "PROCESS": "Salvare questo processo?",
@@ -81,7 +89,9 @@
           "CONNECTOR": "Scaricare questo connettore?",
           "FILE": "Scaricare questo file?",
           "SCRIPT": "Scaricare questo script?",
-          "TRIGGER": "Scaricare questo trigger?"
+          "TRIGGER": "Scaricare questo trigger?",
+          "MODEL": "Scaricare questo modello di contenuto?",
+          "FORM_WIDGET": "Scaricare questo widget di modulo?"
         }
       }
     },
@@ -91,7 +101,7 @@
       "RELEASE": "Restituisci",
       "COLLABORATORS": "Collaboratori",
       "SEE_RELEASES": "Visualizza rilasci",
-      "DOWNLOAD": "Download"
+      "DOWNLOAD": "Scarica"
     },
     "SETTINGS": {
       "HEADER": "Impostazioni applicazione"
@@ -102,6 +112,10 @@
         "NOT_VALID_JSON": "Oggetto JSON non valido",
         "NOT_VALID_SCHEMA": "L'oggetto JSON non coincide con lo schema"
       }
+    },
+    "EDITOR": {
+      "NAME": "Nome",
+      "DESCRIPTION": "Descrizione"
     }
   }
 }

@@ -21,8 +21,11 @@
       "CREATE": "作成",
       "UPDATE": "更新",
       "CLOSE": "閉じる",
+      "DONT_SAVE": "保存しない",
+      "UNSAVED_PAGE_TITLE": "加えた変更を保存しますか",
       "EDIT_PROPERTIES": "プロセス変数の編集",
       "EDIT_PROCESS_MESSAGES": "メッセージの編集",
+      "EDIT_PROCESS_ERRORS": "エラーの編集",
       "EDIT_FORM_PROPERTIES": "フォーム変数の編集",
       "EDIT_VISIBILITY_CONDITIONS": "表示条件の編集",
       "ERROR": {
@@ -35,7 +38,6 @@
         "TITLE": "実行しますか?",
         "SUBTITLE": "この処理を実行しますか?",
         "BUTTON": "確定",
-        "UNSAVED_PAGE": "{{ types }} を保存せずに移動しますか?",
         "RELEASE": "このプロジェクトの新しいバージョンをリリースしますか?",
         "TYPES": {
           "DECISION": "ディシジョンテーブル",
@@ -46,7 +48,9 @@
           "PROCESS": "プロセス",
           "FILE": "ファイル",
           "SCRIPT": "スクリプト",
-          "TRIGGER": "トリガー"
+          "TRIGGER": "トリガー",
+          "MODEL": "コンテンツモデル",
+          "CUSTOM-FORM-WIDGET": "フォームウィジェット"
         },
         "DELETE": {
           "PROJECT": "このプロジェクトを削除しますか?",
@@ -58,7 +62,9 @@
           "CONNECTOR": "このコネクタを削除しますか?",
           "FILE": "このファイルを削除しますか?",
           "SCRIPT": "このスクリプトを削除しますか?",
-          "TRIGGER": "このトリガーを削除しますか?"
+          "TRIGGER": "このトリガーを削除しますか?",
+          "MODEL": "このコンテンツモデルを削除しますか?",
+          "FORM_WIDGET": "このフォームウィジェットを削除しますか?"
         },
         "SAVE": {
           "PROCESS": "このプロセスを保存しますか?",
@@ -69,7 +75,9 @@
           "CONNECTOR": "このコネクタを保存しますか?",
           "FILE": "このファイルを保存しますか?",
           "SCRIPT": "このスクリプトを保存しますか?",
-          "TRIGGER": "このトリガーを保存しますか?"
+          "TRIGGER": "このトリガーを保存しますか?",
+          "MODEL": "このコンテンツモデルを保存しますか?",
+          "FORM_WIDGET": "このフォームウィジェットを保存しますか?"
         },
         "DOWNLOAD": {
           "PROCESS": "このプロセスをダウンロードしますか?",
@@ -81,7 +89,9 @@
           "CONNECTOR": "このコネクタをダウンロードしますか?",
           "FILE": "このファイルをダウンロードしますか?",
           "SCRIPT": "このスクリプトをダウンロードしますか?",
-          "TRIGGER": "このトリガーをダウンロードしますか?"
+          "TRIGGER": "このトリガーをダウンロードしますか?",
+          "MODEL": "このコンテンツモデルをダウンロードしますか?",
+          "FORM_WIDGET": "このフォームウィジェットをダウンロードしますか?"
         }
       }
     },
@@ -102,6 +112,10 @@
         "NOT_VALID_JSON": "JSON オブジェクトが無効です",
         "NOT_VALID_SCHEMA": "JSON オブジェクトがスキーマと一致しません"
       }
+    },
+    "EDITOR": {
+      "NAME": "名前",
+      "DESCRIPTION": "説明"
     }
   }
 }

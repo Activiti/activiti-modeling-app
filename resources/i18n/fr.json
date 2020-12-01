@@ -11,7 +11,7 @@
       "APP_NAME": "Application de modélisation",
       "SIGN_OUT": "Déconnexion",
       "SETTINGS": "Paramètres",
-      "ABOUT": "À propos de",
+      "ABOUT": "A propos de",
       "LANGUAGE": "Langue",
       "SEARCH": "Rechercher"
     },
@@ -19,10 +19,13 @@
       "CANCEL": "Annuler",
       "SAVE": "Enregistrer",
       "CREATE": "Créer",
-      "UPDATE": "Mis à jour",
+      "UPDATE": "Mettre à jour",
       "CLOSE": "Fermer",
+      "DONT_SAVE": "Ne pas enregistrer",
+      "UNSAVED_PAGE_TITLE": "Voulez-vous enregistrer les modifications apportées à",
       "EDIT_PROPERTIES": "Modifier les variables de processus",
       "EDIT_PROCESS_MESSAGES": "Modifier les messages",
+      "EDIT_PROCESS_ERRORS": "Modifier les erreurs",
       "EDIT_FORM_PROPERTIES": "Modifier les variables de formulaire",
       "EDIT_VISIBILITY_CONDITIONS": "Modifier les conditions de visibilité",
       "ERROR": {
@@ -32,10 +35,9 @@
         "GENERAL_NAME_VALIDATION": "Le nom doit être en minuscules et comporter entre 1 et 26 caractères. Les caractères alphanumériques et les traits d'union sont autorisés, toutefois le nom doit commencer par une lettre et se terminer par un caractère alphanumérique."
       },
       "CONFIRM": {
-        "TITLE": "Êtes-vous sûr(e) ?",
+        "TITLE": "Vous êtes sûr ?",
         "SUBTITLE": "Voulez-vous vraiment effectuer cette action ?",
         "BUTTON": "Confirmer",
-        "UNSAVED_PAGE": "Voulez-vous vraiment quitter sans enregistrer {{ types }}",
         "RELEASE": "Voulez-vous vraiment lancer une nouvelle version de ce projet ?",
         "TYPES": {
           "DECISION": "table de décision",
@@ -46,7 +48,9 @@
           "PROCESS": "Processus",
           "FILE": "fichier",
           "SCRIPT": "script",
-          "TRIGGER": "Déclencheur"
+          "TRIGGER": "Déclencheur",
+          "MODEL": "Modèle de contenu",
+          "CUSTOM-FORM-WIDGET": "Widget de formulaire"
         },
         "DELETE": {
           "PROJECT": "Voulez-vous vraiment supprimer ce projet ?",
@@ -58,7 +62,9 @@
           "CONNECTOR": "Voulez-vous vraiment supprimer ce connecteur ?",
           "FILE": "Voulez-vous vraiment supprimer ce fichier ?",
           "SCRIPT": "Voulez-vous vraiment supprimer ce script ?",
-          "TRIGGER": "Voulez-vous vraiment supprimer ce déclencheur ?"
+          "TRIGGER": "Voulez-vous vraiment supprimer ce déclencheur ?",
+          "MODEL": "Voulez-vous vraiment supprimer ce modèle de contenu ?",
+          "FORM_WIDGET": "Voulez-vous vraiment supprimer ce widget de formulaire ?"
         },
         "SAVE": {
           "PROCESS": "Voulez-vous vraiment enregistrer ce processus ?",
@@ -69,7 +75,9 @@
           "CONNECTOR": "Voulez-vous vraiment enregistrer ce connecteur ?",
           "FILE": "Voulez-vous vraiment enregistrer ce fichier ?",
           "SCRIPT": "Voulez-vous vraiment enregistrer ce script ?",
-          "TRIGGER": "Voulez-vous vraiment enregistrer ce déclencheur ?"
+          "TRIGGER": "Voulez-vous vraiment enregistrer ce déclencheur ?",
+          "MODEL": "Voulez-vous vraiment enregistrer ce modèle de contenu ?",
+          "FORM_WIDGET": "Voulez-vous vraiment enregistrer ce widget de formulaire ?"
         },
         "DOWNLOAD": {
           "PROCESS": "Voulez-vous vraiment télécharger ce processus ?",
@@ -81,7 +89,9 @@
           "CONNECTOR": "Voulez-vous vraiment télécharger ce connecteur ?",
           "FILE": "Voulez-vous vraiment télécharger ce fichier ?",
           "SCRIPT": "Voulez-vous vraiment télécharger ce script ?",
-          "TRIGGER": "Voulez-vous vraiment télécharger ce déclencheur ?"
+          "TRIGGER": "Voulez-vous vraiment télécharger ce déclencheur ?",
+          "MODEL": "Voulez-vous vraiment télécharger ce modèle de contenu ?",
+          "FORM_WIDGET": "Voulez-vous vraiment télécharger ce widget de formulaire ?"
         }
       }
     },
@@ -102,6 +112,10 @@
         "NOT_VALID_JSON": "Objet JSON non valide",
         "NOT_VALID_SCHEMA": "L'objet JSON ne correspond pas au schéma"
       }
+    },
+    "EDITOR": {
+      "NAME": "Nom",
+      "DESCRIPTION": "Description"
     }
   }
 }

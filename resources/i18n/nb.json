@@ -21,8 +21,11 @@
       "CREATE": "Opprett",
       "UPDATE": "Oppdater",
       "CLOSE": "Lukk",
+      "DONT_SAVE": "Ikke lagre",
+      "UNSAVED_PAGE_TITLE": "Vil du lagre endringene foretatt i",
       "EDIT_PROPERTIES": "Rediger prosessvariabler",
       "EDIT_PROCESS_MESSAGES": "Rediger meldinger",
+      "EDIT_PROCESS_ERRORS": "Rediger feil",
       "EDIT_FORM_PROPERTIES": "Rediger skjemavariabler",
       "EDIT_VISIBILITY_CONDITIONS": "Rediger synlighetsbetingelser",
       "ERROR": {
@@ -35,7 +38,6 @@
         "TITLE": "Er du sikker?",
         "SUBTITLE": "Er du sikker på at du vil utføre denne handlingen?",
         "BUTTON": "Bekreft",
-        "UNSAVED_PAGE": "Er du sikker på at du vil avslutte uten å lagre {{ types }}",
         "RELEASE": "Er du sikker på at du vil utgi en ny versjon av dette prosjektet?",
         "TYPES": {
           "DECISION": "beslutningstabell",
@@ -46,7 +48,9 @@
           "PROCESS": "Prosess",
           "FILE": "fil",
           "SCRIPT": "skript",
-          "TRIGGER": "Utløser"
+          "TRIGGER": "Utløser",
+          "MODEL": "Innholdsmodell",
+          "CUSTOM-FORM-WIDGET": "Skjema-widget"
         },
         "DELETE": {
           "PROJECT": "Er du sikker på at du vil slette dette prosjektet?",
@@ -58,7 +62,9 @@
           "CONNECTOR": "Er du sikker på at du vil slette denne koblingen?",
           "FILE": "Er du sikker på at du vil slette denne filen?",
           "SCRIPT": "Er du sikker på at du vil slette dette skriptet?",
-          "TRIGGER": "Er du sikker på at du vil slette denne utløseren?"
+          "TRIGGER": "Er du sikker på at du vil slette denne utløseren?",
+          "MODEL": "Er du sikker på at du vil slette denne innholdsmodellen?",
+          "FORM_WIDGET": "Er du sikker på at du vil slette denne skjema-widgeten?"
         },
         "SAVE": {
           "PROCESS": "Er du sikker på at du vil lagre denne prosessen?",
@@ -69,7 +75,9 @@
           "CONNECTOR": "Er du sikker på at du vil lagre denne koblingen?",
           "FILE": "Er du sikker på at du vil lagre denne filen?",
           "SCRIPT": "Er du sikker på at du vil lagre dette skriptet?",
-          "TRIGGER": "Er du sikker på at du vil lagre denne utløseren?"
+          "TRIGGER": "Er du sikker på at du vil lagre denne utløseren?",
+          "MODEL": "Er du sikker på at du vil lagre denne innholdsmodellen?",
+          "FORM_WIDGET": "Er du sikker på at du vil lagre denne skjema-widgeten?"
         },
         "DOWNLOAD": {
           "PROCESS": "Er du sikker på at du vil laste ned denne prosessen?",
@@ -81,7 +89,9 @@
           "CONNECTOR": "Er du sikker på at du vil laste ned denne koblingen?",
           "FILE": "Er du sikker på at du vil laste ned denne filen?",
           "SCRIPT": "Er du sikker på at du vil laste ned dette skriptet?",
-          "TRIGGER": "Er du sikker på at du vil laste ned denne utløseren?"
+          "TRIGGER": "Er du sikker på at du vil laste ned denne utløseren?",
+          "MODEL": "Er du sikker på at du vil laste ned denne innholdsmodellen?",
+          "FORM_WIDGET": "Er du sikker på at du vil laste ned denne skjema-widgeten?"
         }
       }
     },
@@ -102,6 +112,10 @@
         "NOT_VALID_JSON": "Ugyldig JSON-objekt",
         "NOT_VALID_SCHEMA": "JSON-objektet stemmer ikke overens med skjemaet"
       }
+    },
+    "EDITOR": {
+      "NAME": "Navn",
+      "DESCRIPTION": "Beskrivelse"
     }
   }
 }

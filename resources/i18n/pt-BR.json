@@ -21,8 +21,11 @@
       "CREATE": "Criar",
       "UPDATE": "Atualizar",
       "CLOSE": "Fechar",
+      "DONT_SAVE": "Não salvar",
+      "UNSAVED_PAGE_TITLE": "Deseja salvar as alterações feitas em",
       "EDIT_PROPERTIES": "Editar Variáveis de Processo",
       "EDIT_PROCESS_MESSAGES": "Editar Mensagens",
+      "EDIT_PROCESS_ERRORS": "Editar erros",
       "EDIT_FORM_PROPERTIES": "Editar Variáveis de Formulário",
       "EDIT_VISIBILITY_CONDITIONS": "Editar Condições de Visibilidade",
       "ERROR": {
@@ -35,7 +38,6 @@
         "TITLE": "Tem certeza?",
         "SUBTITLE": "Tem certeza de que deseja implementar esta ação?",
         "BUTTON": "Confirmar",
-        "UNSAVED_PAGE": "Tem certeza de que deseja sair sem salvar {{ types }}?",
         "RELEASE": "Tem certeza de que deseja liberar uma nova versão deste projeto?",
         "TYPES": {
           "DECISION": "tabela de decisão",
@@ -46,7 +48,9 @@
           "PROCESS": "Processo",
           "FILE": "arquivo",
           "SCRIPT": "script",
-          "TRIGGER": "Gatilho"
+          "TRIGGER": "Gatilho",
+          "MODEL": "Modelo de conteúdo",
+          "CUSTOM-FORM-WIDGET": "Widget de formulário"
         },
         "DELETE": {
           "PROJECT": "Tem certeza de que deseja excluir este projeto?",
@@ -58,7 +62,9 @@
           "CONNECTOR": "Tem certeza de que deseja excluir este conector?",
           "FILE": "Tem certeza de que deseja excluir este arquivo?",
           "SCRIPT": "Tem certeza de que deseja excluir este script?",
-          "TRIGGER": "Tem certeza de que deseja excluir este gatilho?"
+          "TRIGGER": "Tem certeza de que deseja excluir este gatilho?",
+          "MODEL": "Deseja excluir este Modelo de conteúdo classificado?",
+          "FORM_WIDGET": "Deseja excluir este widget de formulário?"
         },
         "SAVE": {
           "PROCESS": "Tem certeza de que deseja salvar este processo?",
@@ -69,7 +75,9 @@
           "CONNECTOR": "Tem certeza de que deseja salvar este conector?",
           "FILE": "Tem certeza de que deseja salvar este arquivo?",
           "SCRIPT": "Tem certeza de que deseja salvar este script?",
-          "TRIGGER": "Tem certeza de que deseja salvar este gatilho?"
+          "TRIGGER": "Tem certeza de que deseja salvar este gatilho?",
+          "MODEL": "Deseja salvar este Modelo de conteúdo classificado?",
+          "FORM_WIDGET": "Deseja salvar este widget de formulário?"
         },
         "DOWNLOAD": {
           "PROCESS": "Tem certeza de que deseja baixar este processo?",
@@ -81,7 +89,9 @@
           "CONNECTOR": "Tem certeza de que deseja baixar este conector?",
           "FILE": "Tem certeza de que deseja baixar este arquivo?",
           "SCRIPT": "Tem certeza de que deseja baixar este script?",
-          "TRIGGER": "Tem certeza de que deseja baixar este gatilho?"
+          "TRIGGER": "Tem certeza de que deseja baixar este gatilho?",
+          "MODEL": "Deseja fazer download deste Modelo de conteúdo classificado?",
+          "FORM_WIDGET": "Deseja fazer download deste widget de formulário?"
         }
       }
     },
@@ -102,6 +112,10 @@
         "NOT_VALID_JSON": "Objeto JSON inválido",
         "NOT_VALID_SCHEMA": "O objeto JSON não corresponde ao esquema"
       }
+    },
+    "EDITOR": {
+      "NAME": "Nome",
+      "DESCRIPTION": "Descrição"
     }
   }
 }

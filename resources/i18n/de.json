@@ -21,8 +21,11 @@
       "CREATE": "Erstellen",
       "UPDATE": "Aktualisieren",
       "CLOSE": "Schließen",
+      "DONT_SAVE": "Nicht speichern",
+      "UNSAVED_PAGE_TITLE": "Möchten Sie die Änderungen an Folgendem speichern? –",
       "EDIT_PROPERTIES": "Prozessvariablen bearbeiten",
       "EDIT_PROCESS_MESSAGES": "Mitteilungen bearbeiten",
+      "EDIT_PROCESS_ERRORS": "Fehler bearbeiten",
       "EDIT_FORM_PROPERTIES": "Formularvariablen bearbeiten",
       "EDIT_VISIBILITY_CONDITIONS": "Sichtbarkeitsbedingungen bearbeiten",
       "ERROR": {
@@ -35,7 +38,6 @@
         "TITLE": "Sind Sie sicher?",
         "SUBTITLE": "Möchten Sie dies wirklich tun?",
         "BUTTON": "Bestätigen",
-        "UNSAVED_PAGE": "Möchten Sie wirklich beenden, ohne {{ types }} zu speichern",
         "RELEASE": "Sind Sie sicher, dass Sie eine neue Version dieses Projekts freigeben möchten?",
         "TYPES": {
           "DECISION": "Entscheidungstabelle",
@@ -46,7 +48,9 @@
           "PROCESS": "Prozess",
           "FILE": "Datei",
           "SCRIPT": "Skript",
-          "TRIGGER": "Trigger"
+          "TRIGGER": "Trigger",
+          "MODEL": "Content-Modell",
+          "CUSTOM-FORM-WIDGET": "Formular-Widget"
         },
         "DELETE": {
           "PROJECT": "Möchten Sie dieses Projekt wirklich löschen?",
@@ -58,7 +62,9 @@
           "CONNECTOR": "Möchten Sie diesen Connector wirklich löschen?",
           "FILE": "Möchten Sie diese Datei wirklich löschen?",
           "SCRIPT": "Möchten Sie dieses Skript wirklich löschen?",
-          "TRIGGER": "Möchten Sie diesen Trigger wirklich löschen?"
+          "TRIGGER": "Möchten Sie diesen Trigger wirklich löschen?",
+          "MODEL": "Möchten Sie dieses Inhaltsmodell wirklich löschen?",
+          "FORM_WIDGET": "Möchten Sie dieses Formular-Widget wirklich löschen?"
         },
         "SAVE": {
           "PROCESS": "Möchten Sie diesen Prozess wirklich löschen?",
@@ -69,7 +75,9 @@
           "CONNECTOR": "Möchten Sie diesen Connector wirklich speichern?",
           "FILE": "Möchten Sie diese Datei wirklich speichern?",
           "SCRIPT": "Möchten Sie dieses Skript wirklich speichern?",
-          "TRIGGER": "Möchten Sie diesen Trigger wirklich speichern?"
+          "TRIGGER": "Möchten Sie diesen Trigger wirklich speichern?",
+          "MODEL": "Möchten Sie dieses Inhaltsmodell wirklich speichern?",
+          "FORM_WIDGET": "Möchten Sie dieses Formular-Widget wirklich speichern?"
         },
         "DOWNLOAD": {
           "PROCESS": "Möchten Sie diesen Prozess wirklich herunterladen?",
@@ -81,7 +89,9 @@
           "CONNECTOR": "Möchten Sie diesen Connector wirklich herunterladen?",
           "FILE": "Möchten Sie diese Datei wirklich herunterladen?",
           "SCRIPT": "Möchten Sie dieses Skript wirklich herunterladen?",
-          "TRIGGER": "Möchten Sie diesen Trigger wirklich herunterladen?"
+          "TRIGGER": "Möchten Sie diesen Trigger wirklich herunterladen?",
+          "MODEL": "Möchten Sie dieses Inhaltsmodell wirklich herunterladen?",
+          "FORM_WIDGET": "Möchten Sie dieses Formular-Widget wirklich herunterladen?"
         }
       }
     },
@@ -102,6 +112,10 @@
         "NOT_VALID_JSON": "Unzulässiges JSON-Objekt",
         "NOT_VALID_SCHEMA": "Das JSON-Objekt stimmt nicht mit dem Schema überein"
       }
+    },
+    "EDITOR": {
+      "NAME": "Name",
+      "DESCRIPTION": "Beschreibung"
     }
   }
 }

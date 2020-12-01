@@ -21,8 +21,11 @@
       "CREATE": "创建",
       "UPDATE": "更新",
       "CLOSE": "关闭",
+      "DONT_SAVE": "不保存",
+      "UNSAVED_PAGE_TITLE": "是否要保存对以下内容进行的更改",
       "EDIT_PROPERTIES": "编辑流程变量",
       "EDIT_PROCESS_MESSAGES": "编辑消息",
+      "EDIT_PROCESS_ERRORS": "编辑错误",
       "EDIT_FORM_PROPERTIES": "编辑表单变量",
       "EDIT_VISIBILITY_CONDITIONS": "编辑可见性条件",
       "ERROR": {
@@ -32,10 +35,9 @@
         "GENERAL_NAME_VALIDATION": "名称必须为小写，且字符长度在 1 和 26 之间。允许使用字母数字字符和连字符，但名称必须以字母开头并以字母数字结尾。"
       },
       "CONFIRM": {
-        "TITLE": "您确定吗？",
+        "TITLE": "确定吗？",
         "SUBTITLE": "确定要执行此操作吗？",
         "BUTTON": "确认",
-        "UNSAVED_PAGE": "确认要不保存就离开吗 {{ types }}",
         "RELEASE": "确定要发布新版本的此项目吗？",
         "TYPES": {
           "DECISION": "决策表",
@@ -46,7 +48,9 @@
           "PROCESS": "流程",
           "FILE": "文件",
           "SCRIPT": "脚本",
-          "TRIGGER": "触发器"
+          "TRIGGER": "触发器",
+          "MODEL": "内容模型",
+          "CUSTOM-FORM-WIDGET": "表单小组件"
         },
         "DELETE": {
           "PROJECT": "确定要删除此项目吗？",
@@ -58,7 +62,9 @@
           "CONNECTOR": "确定要删除此连接器吗？",
           "FILE": "确定要删除此文件吗？",
           "SCRIPT": "确定要删除此脚本吗?",
-          "TRIGGER": "确定要删除此触发器吗?"
+          "TRIGGER": "确定要删除此触发器吗?",
+          "MODEL": "确定要删除此内容模型吗？",
+          "FORM_WIDGET": "确定要删除此表单小组件吗？"
         },
         "SAVE": {
           "PROCESS": "确定要保存此流程吗？",
@@ -68,20 +74,24 @@
           "DECISION_TABLE": "确定要保存此决策表吗？",
           "CONNECTOR": "确定要保存此连接器吗？",
           "FILE": "确定要保存此文件吗？",
-          "SCRIPT": "确定要保存此脚本吗?",
-          "TRIGGER": "确定要保存此触发器吗?"
+          "SCRIPT": "确定要保存此脚本吗？",
+          "TRIGGER": "确定要保存此触发器吗?",
+          "MODEL": "确定要保存此内容模型吗？",
+          "FORM_WIDGET": "确定要保存此表单小组件吗？"
         },
         "DOWNLOAD": {
           "PROCESS": "确定要下载此流程吗？",
-          "IMAGE": "确定要下载此流程的 SVG 图像吗?",
+          "IMAGE": "确定要下载此流程的 SVG 图像吗？",
           "FORM": "确定要下载此表单吗？",
           "UI": "确定要下载此 UI 吗？",
           "DATA": "确定要下载此数据对象吗？",
           "DECISION_TABLE": "确定要下载此决策表吗？",
           "CONNECTOR": "确定要下载此连接器吗？",
           "FILE": "确定要下载此文件吗？",
-          "SCRIPT": "确定要下载此脚本吗?",
-          "TRIGGER": "确定要下载此触发器吗?"
+          "SCRIPT": "确定要下载此脚本吗？",
+          "TRIGGER": "确定要下载此触发器吗？",
+          "MODEL": "确定要下载此内容模型吗？",
+          "FORM_WIDGET": "确定要下载此表单小组件吗？"
         }
       }
     },
@@ -102,6 +112,10 @@
         "NOT_VALID_JSON": "无效的 JSON 对象",
         "NOT_VALID_SCHEMA": "JSON 对象与架构不匹配"
       }
+    },
+    "EDITOR": {
+      "NAME": "名称",
+      "DESCRIPTION": "说明"
     }
   }
 }

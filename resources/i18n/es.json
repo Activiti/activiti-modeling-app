@@ -21,8 +21,11 @@
       "CREATE": "Crear",
       "UPDATE": "Actualizar",
       "CLOSE": "Cerrar",
+      "DONT_SAVE": "No guardar",
+      "UNSAVED_PAGE_TITLE": "¿Quiere guardar los cambios realizados a",
       "EDIT_PROPERTIES": "Editar variables de proceso",
       "EDIT_PROCESS_MESSAGES": "Editar mensajes",
+      "EDIT_PROCESS_ERRORS": "Editar errores",
       "EDIT_FORM_PROPERTIES": "Editar variables de formulario",
       "EDIT_VISIBILITY_CONDITIONS": "Editar condiciones de visibilidad",
       "ERROR": {
@@ -35,7 +38,6 @@
         "TITLE": "¿Está seguro?",
         "SUBTITLE": "¿Está seguro de que desea realizar esta acción?",
         "BUTTON": "Confirmar",
-        "UNSAVED_PAGE": "¿Está seguro de que desea salir sin guardar {{ types }}",
         "RELEASE": "¿Está seguro de que desea lanzar una versión nueva de este proyecto?",
         "TYPES": {
           "DECISION": "tabla de decisión",
@@ -46,7 +48,9 @@
           "PROCESS": "Proceso",
           "FILE": "fichero",
           "SCRIPT": "script",
-          "TRIGGER": "Desencadenador"
+          "TRIGGER": "Desencadenador",
+          "MODEL": "Modelo de contenido",
+          "CUSTOM-FORM-WIDGET": "Widget de formulario"
         },
         "DELETE": {
           "PROJECT": "¿Está seguro de que desea eliminar este proyecto?",
@@ -58,7 +62,9 @@
           "CONNECTOR": "¿Está seguro de que desea eliminar este conector?",
           "FILE": "¿Está seguro de que desea eliminar este fichero?",
           "SCRIPT": "¿Está seguro de que desea eliminar este script?",
-          "TRIGGER": "¿Está seguro de que desea eliminar este desencadenador?"
+          "TRIGGER": "¿Está seguro de que desea eliminar este desencadenador?",
+          "MODEL": "¿Está seguro de que desea eliminar este modelo de contenido?",
+          "FORM_WIDGET": "¿Está seguro de que desea eliminar este widget de formulario?"
         },
         "SAVE": {
           "PROCESS": "¿Está seguro de que desea guardar este proceso?",
@@ -69,7 +75,9 @@
           "CONNECTOR": "¿Está seguro de que desea guardar este conector?",
           "FILE": "¿Está seguro de que desea guardar este fichero?",
           "SCRIPT": "¿Está seguro de que desea guardar este script?",
-          "TRIGGER": "¿Está seguro de que desea guardar este desencadenador?"
+          "TRIGGER": "¿Está seguro de que desea guardar este desencadenador?",
+          "MODEL": "¿Está seguro de que desea guardar este modelo de contenido?",
+          "FORM_WIDGET": "¿Está seguro de que desea guardar este widget de formulario?"
         },
         "DOWNLOAD": {
           "PROCESS": "¿Está seguro de que desea descargar este proceso?",
@@ -81,14 +89,16 @@
           "CONNECTOR": "¿Está seguro de que desea descargar este conector?",
           "FILE": "¿Está seguro de que desea descargar este fichero?",
           "SCRIPT": "¿Está seguro de que desea descargar este script?",
-          "TRIGGER": "¿Está seguro de que desea descargar este desencadenador?"
+          "TRIGGER": "¿Está seguro de que desea descargar este desencadenador?",
+          "MODEL": "¿Está seguro de que desea descargar este modelo de contenido?",
+          "FORM_WIDGET": "¿Está seguro de que desea descargar este widget de formulario?"
         }
       }
     },
     "MENU": {
       "EDIT": "Editar",
       "DELETE": "Eliminar",
-      "RELEASE": "Lanzar",
+      "RELEASE": "Liberar",
       "COLLABORATORS": "Colaboradores",
       "SEE_RELEASES": "Ver versiones",
       "DOWNLOAD": "Descargar"
@@ -102,6 +112,10 @@
         "NOT_VALID_JSON": "Objeto JSON no válido",
         "NOT_VALID_SCHEMA": "El objeto JSON no coincide con el esquema"
       }
+    },
+    "EDITOR": {
+      "NAME": "Nombre",
+      "DESCRIPTION": "Descripción"
     }
   }
 }

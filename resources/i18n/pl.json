@@ -21,8 +21,11 @@
       "CREATE": "Utwórz",
       "UPDATE": "Aktualizuj",
       "CLOSE": "Zamknij",
+      "DONT_SAVE": "Nie zapisuj",
+      "UNSAVED_PAGE_TITLE": "Czy chcesz zapisać zmiany wprowadzone do",
       "EDIT_PROPERTIES": "Edytuj zmienne procesu",
       "EDIT_PROCESS_MESSAGES": "Edytuj komunikaty",
+      "EDIT_PROCESS_ERRORS": "Edytuj błędy",
       "EDIT_FORM_PROPERTIES": "Edytuj zmienne formularza",
       "EDIT_VISIBILITY_CONDITIONS": "Edytuj warunki widoczności",
       "ERROR": {
@@ -35,18 +38,19 @@
         "TITLE": "Czy na pewno?",
         "SUBTITLE": "Czy na pewno chcesz wykonać tę czynność?",
         "BUTTON": "Potwierdź",
-        "UNSAVED_PAGE": "Czy na pewno chcesz zamknąć bez zapisywania {{ types }}",
         "RELEASE": "Czy na pewno chcesz zwolnić nowe wydanie tego projektu?",
         "TYPES": {
           "DECISION": "tabela decyzji",
           "DATA": "dane",
-          "UI": "interfejs użytkownika",
+          "UI": "Interfejs użytkownika",
           "CONNECTOR": "łącznik",
           "FORM": "Formularz",
           "PROCESS": "Proces",
           "FILE": "plik",
           "SCRIPT": "skrypt",
-          "TRIGGER": "Wyzwalacz"
+          "TRIGGER": "Wyzwalacz",
+          "MODEL": "Model treści",
+          "CUSTOM-FORM-WIDGET": "Widżet formularza"
         },
         "DELETE": {
           "PROJECT": "Czy na pewno chcesz usunąć ten projekt?",
@@ -58,7 +62,9 @@
           "CONNECTOR": "Czy na pewno chcesz usunąć ten łącznik?",
           "FILE": "Czy na pewno chcesz usunąć ten plik?",
           "SCRIPT": "Czy na pewno chcesz usunąć ten skrypt?",
-          "TRIGGER": "Czy na pewno chcesz usunąć ten wyzwalacz?"
+          "TRIGGER": "Czy na pewno chcesz usunąć ten wyzwalacz?",
+          "MODEL": "Czy na pewno chcesz usunąć ten model zawartości?",
+          "FORM_WIDGET": "Czy na pewno chcesz usunąć ten widżet formularza?"
         },
         "SAVE": {
           "PROCESS": "Czy na pewno chcesz zapisać ten proces?",
@@ -69,7 +75,9 @@
           "CONNECTOR": "Czy na pewno chcesz zapisać ten łącznik?",
           "FILE": "Czy na pewno chcesz zapisać ten plik?",
           "SCRIPT": "Czy na pewno chcesz zapisać ten skrypt?",
-          "TRIGGER": "Czy na pewno chcesz zapisać ten wyzwalacz?"
+          "TRIGGER": "Czy na pewno chcesz zapisać ten wyzwalacz?",
+          "MODEL": "Czy na pewno chcesz zapisać ten model zawartości?",
+          "FORM_WIDGET": "Czy na pewno chcesz zapisać ten widżet formularza?"
         },
         "DOWNLOAD": {
           "PROCESS": "Czy na pewno chcesz pobrać ten proces?",
@@ -81,7 +89,9 @@
           "CONNECTOR": "Czy na pewno chcesz pobrać ten łącznik?",
           "FILE": "Czy na pewno chcesz pobrać ten plik?",
           "SCRIPT": "Czy na pewno chcesz pobrać ten skrypt?",
-          "TRIGGER": "Czy na pewno chcesz pobrać ten wyzwalacz?"
+          "TRIGGER": "Czy na pewno chcesz pobrać ten wyzwalacz?",
+          "MODEL": "Czy na pewno chcesz pobrać ten model zawartości?",
+          "FORM_WIDGET": "Czy na pewno chcesz pobrać ten widżet formularza?"
         }
       }
     },
@@ -102,6 +112,10 @@
         "NOT_VALID_JSON": "Nieprawidłowy obiekt JSON",
         "NOT_VALID_SCHEMA": "Obiekt JSON nie jest zgodny ze schematem"
       }
+    },
+    "EDITOR": {
+      "NAME": "Nazwa",
+      "DESCRIPTION": "Opis"
     }
   }
 }
