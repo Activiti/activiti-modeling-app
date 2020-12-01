@@ -26,9 +26,9 @@ const get = (element) => {
 };
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    modeling.updateProperties(element, {[multiInstanceKey] : {
-        [propertyKey]: value
-    }});
+    if (element.businessObject[multiInstanceKey]) {
+        modeling.updateProperties(element.businessObject[multiInstanceKey], { [propertyKey]: value });
+    }
 };
 
 export const loopDataOutputRef = { get, set };
