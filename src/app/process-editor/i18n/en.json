@@ -6,7 +6,7 @@
         "SAVE_PROCESS": "Save process",
         "SELECT_PROCESS_VARIABLE": "Select process variable",
         "PRIORITIES": {
-            "NOT_SET": "Not set",
+            "NONE": "None",
             "LOW": "Low",
             "MEDIUM": "Normal",
             "HIGH": "High"
