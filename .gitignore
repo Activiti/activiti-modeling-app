@@ -5,6 +5,7 @@
 /lib/
 /tmp
 /.tmp
+/nxcache
 /out-tsc
 /e2e-output
 /reports
@@ -15,12 +16,15 @@
 
 # IDEs and editors
 /.idea
+*.iml
+*.tar
 .project
 .classpath
 .c9/
 *.launch
 .settings/
 *.sublime-workspace
+.history
 
 # IDE - VSCode
 .vscode/*
@@ -28,12 +32,14 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/closest-config-finder.sh
+!.vscode/vscode-e2e-launcher.sh
 .history
 
 # misc
 /.sass-cache
 /connect.lock
-/coverage
+**/coverage
 /libpeerconnection.log
 npm-debug.log
 testem.log
@@ -54,5 +60,7 @@ testem.log
 Thumbs.db
 
 # Project specific
-/e2e/.app.config.json
-/src/.app.config.json
+**/.app.config.json
+community.patch
+.os_repo
+!/licenses.txt

@@ -1,9 +1,0 @@
-apiVersion: skaffold/v1beta10
-kind: Config
-build:
-  tagPolicy:
-    envTemplate:
-      template: "activiti/activiti-modeling-app:{{.VERSION}}"
-  artifacts:
-  - image: activiti/activiti-modeling-app
-    context: .
