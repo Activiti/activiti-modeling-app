@@ -1,9 +1,16 @@
-FROM nginx:stable-alpine
+FROM nginxinc/nginx-unprivileged:1.19.3-alpine
 
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY docker-entrypoint.sh /
+ARG PROJECT_NAME
 
-WORKDIR /usr/share/nginx/html
-COPY dist/modeling-ce .
+COPY docker/default.conf.template /etc/nginx/templates/
+COPY docker/docker-entrypoint.d/* /docker-entrypoint.d/
 
-ENTRYPOINT [ "/docker-entrypoint.sh" ]
+COPY dist/$PROJECT_NAME /usr/share/nginx/html/
+COPY dist/$PROJECT_NAME/app.config.json /etc/nginx/templates/app.config.json.template
+
+USER root
+RUN chmod a+w -R /etc/nginx/conf.d
+USER 101
+
+ENV BASE_PATH=/
+ENV NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx/conf.d
