@@ -12,6 +12,6 @@ USER root
 RUN chmod a+w -R /etc/nginx/conf.d
 USER 101
 
-ENV SERVER_PORT 8080
+ENV SERVER_PORT=8080
 ENV BASE_PATH=/
 ENV NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx/conf.d
