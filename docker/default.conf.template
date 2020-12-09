@@ -1,5 +1,5 @@
 server {
-    listen       8080;
+    listen       ${SERVER_PORT};
     server_name  localhost;
 
     #charset koi8-r;
