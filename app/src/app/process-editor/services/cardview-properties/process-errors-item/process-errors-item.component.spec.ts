@@ -23,7 +23,7 @@ import { CardItemTypeService } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CardViewProcessErrorsItemComponent } from './process-errors-item.component';
-import { OPEN_PROCESS_ERRORS_DIALOG, OpenProcessErrorsDialogAction } from 'src/app/process-editor/store/process-errors.actions';
+import { OpenProcessErrorsDialogAction, OPEN_PROCESS_ERRORS_DIALOG } from '../../../store/process-errors.actions';
 
 describe('CardViewProcessErrorsItemComponent', () => {
     let fixture: ComponentFixture<CardViewProcessErrorsItemComponent>;

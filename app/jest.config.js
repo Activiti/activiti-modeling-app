@@ -5,12 +5,11 @@ module.exports = {
     rootDir: path.resolve(__dirname),
     verbose: true,
     testURL: 'http://localhost',
-    setupFilesAfterEnv: [ path.resolve(__dirname, 'jest/jest-setup.ts') ],
-    coverageDirectory: '<rootDir>/../../coverage/modeling-ce/app',
+    setupFilesAfterEnv: [ path.resolve(__dirname, '..', 'jest/jest-setup.ts') ],
+    coverageDirectory: '<rootDir>/../../../coverage/modeling-ce/app',
     collectCoverage: true,
     collectCoverageFrom: [
         '<rootDir>/src/**/*.ts',
-        '!<rootDir>/jest',
         '!<rootDir>/src/*.ts',
         '!<rootDir>/src/**/*.d.ts',
         '!<rootDir>/src/**/index.ts'
@@ -36,6 +35,6 @@ module.exports = {
         }
     },
     moduleNameMapper: {
-        '@alfresco-dbp/modeling-shared/sdk': '<rootDir>/projects/modeling-shared/sdk/src/public-api.ts'
+        '@alfresco-dbp/modeling-shared/sdk': '<rootDir>/../projects/modeling-shared/sdk/src/public-api.ts'
     }
 };

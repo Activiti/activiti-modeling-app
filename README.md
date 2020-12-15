@@ -4,7 +4,7 @@
 | - | - |
 
 <p align="center">
-    <img title="Activiti" width="250px" src="activiti.png" alt="Activiti">
+    <img title="Activiti" width="250px" src="./app/src/assets/activiti.png" alt="Activiti">
 </p>
 
 ## Introduction

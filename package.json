@@ -11,7 +11,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "reinstall": "npm run clean && npm install",
-    "clean": "rimraf dist node_modules package-lock.json .tmp out-tsc",
+    "clean": "rimraf dist node_modules .tmp out-tsc",
     "update-package-version": "./scripts/update-package-version.sh",
     "dep-graph": "nx dep-graph"
   },

@@ -17,7 +17,7 @@
 
 import { NgModule } from '@angular/core';
 import { APP_GITHUB_COMMIT, APP_VERSION, APP_DEPS } from '@alfresco-dbp/modeling-shared/sdk';
-import { repository, version, dependencies, commit } from '../../package.json';
+import { repository, version, dependencies, commit } from '../../../package.json';
 const latestCommitUrl = repository.url.replace('.git', '/commit/') + commit;
 
 @NgModule({
