@@ -30,13 +30,10 @@ import { EditorComponent } from 'ngx-monaco-editor';
             </ngx-monaco-editor>
     `
 })
-
 export class PropertiesViewerJsonInputComponent {
-
-    // tslint:disable-next-line
     @Output() change = new EventEmitter();
-    @Input() value;
-    @Input() disabled: boolean;
+    @Input() value: string;
+    @Input() disabled = false;
 
     @ViewChild('editor', { static: true }) editor: EditorComponent;
 

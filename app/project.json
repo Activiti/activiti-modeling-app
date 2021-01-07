@@ -1,0 +1,18 @@
+{
+    "scripts" : {
+        "prebuild": [{
+            "command": "./node_modules/.bin/ajv",
+            "args": [ "validate", "-s", "./node_modules/@alfresco/adf-core/app.config.schema.json", "-d", "$THIS_PROJECT_SOURCE_ROOT_PATH/app.config.json", "--errors=text", "--verbose" ]
+        }],
+        "prestart": [{
+            "command": "mkdir",
+            "args": [ "-p", ".tmp/$THIS_PROJECT" ]
+        },{
+            "command": "cp",
+            "args": [ "$THIS_PROJECT_SOURCE_ROOT_PATH/app.config.json", ".tmp/$THIS_PROJECT/app.config.json" ]
+        },{
+            "command": "node",
+            "args": [ "./scripts/app-config-replace.js", "--config=.tmp/$THIS_PROJECT/app.config.json", "-oie" ]
+        }]
+    }
+}
