@@ -1,14 +1,7 @@
 {
     "extends": "../../../tsconfig.json",
     "compilerOptions": {
-        "outDir": "../../../out-tsc/modeling-sdk",
-        "target": "es2015",
-        "module": "es2015",
-        "declaration": false,
-        "inlineSources": true,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "lib": ["dom", "es2018"]
+        "outDir": "../../../out-tsc/modeling-sdk"
     },
     "angularCompilerOptions": {
         "skipTemplateCodegen": true,

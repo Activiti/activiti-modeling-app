@@ -1,10 +1,7 @@
 {
     "extends": "../../../tsconfig.json",
     "compilerOptions": {
-        "outDir": "../../../out-tsc/modelig-sdk-spec",
-        "module": "commonjs",
-        "target": "es2015",
-        "inlineSources": true
+        "outDir": "../../../out-tsc/modelig-sdk-spec"
     },
     "angularCompilerOptions": {
         "skipTemplateCodegen": true,

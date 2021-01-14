@@ -21,7 +21,8 @@
         "types": ["jasmine", "jest", "node"],
         "baseUrl": "./",
         "paths": {
-            "@alfresco-dbp/modeling-shared/sdk": ["projects/modeling-shared/sdk/src/public-api.ts"]
+            "@alfresco-dbp/modeling-shared/sdk": ["projects/modeling-shared/sdk/src/public-api.ts"],
+            "package.json": ["./package.json"]
         }
     },
     "exclude": ["node_modules"],
