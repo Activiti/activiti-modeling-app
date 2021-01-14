@@ -124,7 +124,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     @ViewChild('editor') editor: CodeEditorComponent;
 
     roles = ['ACTIVITI_USER'];
-    languageType = 'json';
+    languageType = 'expression-json';
     selectedMode: string = AssignmentMode.assignee;
     selectedType: string = AssignmentType.static;
     currentActiveTab = AssignmentTabs.STATIC;
