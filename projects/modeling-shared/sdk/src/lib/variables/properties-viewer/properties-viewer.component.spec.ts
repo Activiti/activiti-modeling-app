@@ -35,7 +35,11 @@ describe('PropertiesViewerComponent', () => {
     const mockDialog = {
         close: jest.fn()
     };
-
+    const data = {
+        '123' : {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': ''},
+        '234' : {'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''},
+        '345' : {'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': ''}
+    };
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             providers: [
@@ -54,17 +58,12 @@ describe('PropertiesViewerComponent', () => {
         fixture = TestBed.createComponent(PropertiesViewerComponent);
         service = TestBed.inject(VariablesService);
         component = fixture.componentInstance;
+        component.dataSource = new MatTableDataSource(Object.values(data));
         fixture.detectChanges();
     });
 
     it('should call sendData of VariableDialogService when clicking on delete ', () => {
         component.requiredCheckbox = true;
-        const data = {
-            '123' : {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': ''},
-            '234' : {'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''},
-            '345' : {'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': ''}
-        };
-        component.dataSource = new MatTableDataSource(Object.values(data));
         component.data = data;
         fixture.detectChanges();
         spyOn(service, 'sendData');
@@ -84,14 +83,14 @@ describe('PropertiesViewerComponent', () => {
 
     it('should have the same number of rows as properties in table', () => {
         component.requiredCheckbox = true;
-        const data = {
+        const data1 = {
           '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': ''},
           '243':  {'id': '243', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''},
           '345': {'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': ''}
         };
 
-        component.dataSource = new MatTableDataSource(Object.values(data));
-        component.data = data;
+        component.dataSource = new MatTableDataSource(Object.values(data1));
+        component.data = data1;
         fixture.detectChanges();
 
         const rows = fixture.nativeElement.querySelectorAll('mat-row');
@@ -100,12 +99,6 @@ describe('PropertiesViewerComponent', () => {
 
     it('should show no properties if row was not clicked', () => {
         component.requiredCheckbox = true;
-        const data = {
-          '123' :  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': ''},
-          '243' :  {'id': '243', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''},
-          '345' :  {'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': ''}
-        };
-        component.dataSource = new MatTableDataSource(Object.values(data));
         component.data = data;
         fixture.detectChanges();
 
@@ -119,12 +112,6 @@ describe('PropertiesViewerComponent', () => {
 
     it('should show edit form if row was clicked', () => {
         component.requiredCheckbox = true;
-        const data = {
-            '123' : {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': ''},
-            '234' : {'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''},
-            '345' : {'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': ''}
-        };
-        component.dataSource = new MatTableDataSource(Object.values(data));
         component.data = data;
         fixture.detectChanges();
 
@@ -142,7 +129,7 @@ describe('PropertiesViewerComponent', () => {
 
     it('should call sendData of VariablesDialogService and change property if a property was edited and saved', () => {
         component.requiredCheckbox = true;
-        const data = {
+        const data1 = {
            '123' : {'id': '123', 'name': 'var1', 'type': 'string', 'value': '', 'required': false },
            '245' : {'id': '245', 'name': 'var2', 'type': 'string', 'value': '', 'required': false },
            '345' : {'id': '345', 'name': 'var3', 'type': 'string', 'value': '', 'required': false }
@@ -150,8 +137,8 @@ describe('PropertiesViewerComponent', () => {
 
         spyOn(service, 'sendData');
 
-        component.dataSource = new MatTableDataSource(Object.values(data));
-        component.data = data;
+        component.dataSource = new MatTableDataSource(Object.values(data1));
+        component.data = data1;
         fixture.detectChanges();
         const editRow = fixture.nativeElement.querySelector('.mat-row');
 
@@ -177,14 +164,14 @@ describe('PropertiesViewerComponent', () => {
     });
 
     it('should show error if name is invalid', () => {
-        const data = {
+        const data1 = {
            '123' : {'id': '123', 'name': 'var1', 'type': 'string', 'value': '', 'required': false }
         };
 
         spyOn(service, 'sendData');
 
-        component.dataSource = new MatTableDataSource(Object.values(data));
-        component.data = data;
+        component.dataSource = new MatTableDataSource(Object.values(data1));
+        component.data = data1;
         fixture.detectChanges();
         const editRow = fixture.nativeElement.querySelector('.mat-row');
 
@@ -210,14 +197,14 @@ describe('PropertiesViewerComponent', () => {
 
     it('should call sendData with valid property name', () => {
 
-        const data = {
+        const data1 = {
             '123' : {'id': '123', 'name': 'var1', 'type': 'string', 'value': '', 'required': false }
          };
 
         spyOn(service, 'sendData');
 
-        component.dataSource = new MatTableDataSource(Object.values(data));
-        component.data = data;
+        component.dataSource = new MatTableDataSource(Object.values(data1));
+        component.data = data1;
         fixture.detectChanges();
         const editRow = fixture.nativeElement.querySelector('.mat-row');
 
@@ -243,7 +230,7 @@ describe('PropertiesViewerComponent', () => {
 
     it('should call sendData of VariablesDialog when clicking on add button', () => {
         component.requiredCheckbox = true;
-        const data = {
+        const data1 = {
             'generated-uuid': {
                 'id': 'generated-uuid',
                 'name': '',
@@ -258,9 +245,9 @@ describe('PropertiesViewerComponent', () => {
         button.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME');
+        expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data1, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME');
         expect(component.error).toBe(true);
-        expect(component.data).toEqual(data);
+        expect(component.data).toEqual(data1);
     });
 
     it('should create process variable with no name', () => {

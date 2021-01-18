@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -24,13 +24,14 @@ import { UuidService } from './../../services/uuid.service';
 import { primitive_types } from '../../helpers/primitive-types';
 import { EntityProperty, EntityProperties } from './../../api/types';
 import { FIELD_VARIABLE_NAME_REGEX } from '../../helpers/utils/create-entries-names';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
     templateUrl: './properties-viewer.component.html',
     selector: 'modelingsdk-properties-viewer'
 })
 
-export class PropertiesViewerComponent implements OnInit, OnDestroy {
+export class PropertiesViewerComponent implements OnInit, OnDestroy, AfterViewInit {
     subscription: Subscription;
     serviceSubscription: Subscription;
     dataSource: MatTableDataSource<EntityProperty>;
@@ -51,8 +52,9 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
     @Input() requiredCheckbox = true;
     @Input() displayedColumns = ['name', 'type', 'required', 'value', 'delete'];
     @Output() propertyChanged: EventEmitter<boolean> = new EventEmitter();
+    @ViewChild(MatSort) sort: MatSort;
 
-    constructor(private variablesService: VariablesService, private uuidService: UuidService) {
+    constructor(private variablesService: VariablesService, private uuidService: UuidService, private changeDetectorRef: ChangeDetectorRef) {
         this.form = {
             id: '',
             name: '',
@@ -97,6 +99,11 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
         });
     }
 
+    ngAfterViewInit() {
+        this.dataSource.sort = this.sort;
+        this.changeDetectorRef.detectChanges();
+    }
+
     private convertJsonObjectsToJsonStringVariables(properties) {
         for (const key in properties) {
             if ((properties[key].type === 'json' || properties[key].type === 'folder') && typeof (properties[key].value) === 'object') {
@@ -119,6 +126,7 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
             this.error = false;
         }
         this.propertyChanged.emit(true);
+        this.dataSource.sort = this.sort;
     }
 
     editRow(element, index: number) {
@@ -197,5 +205,6 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy {
         const length = Object.keys(this.data).length;
         this.editRow(newVariable, length - 1);
         this.propertyChanged.emit(true);
+        this.dataSource.sort = this.sort;
     }
 }

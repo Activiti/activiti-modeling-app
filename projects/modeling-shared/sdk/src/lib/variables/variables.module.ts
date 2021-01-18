@@ -33,13 +33,15 @@ import { VariableValuePipe } from './properties-viewer/variable-value.pipe';
 import { PropertiesViewerDateTimeInputComponent } from './properties-viewer/value-type-inputs/date-time-input.component';
 import { provideInputTypeItemHandler } from './properties-viewer/value-type-inputs/value-type-inputs';
 import { PropertiesViewerArrayInputComponent } from './properties-viewer/value-type-inputs/array-input.component';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
     imports: [
         CommonModule,
         CoreModule.forChild(),
         CodeEditorModule,
-        SharedModule
+        SharedModule,
+        MatSortModule,
     ],
     declarations: [
         VariablesComponent,
