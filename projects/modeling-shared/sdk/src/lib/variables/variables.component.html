@@ -1,4 +1,4 @@
-<h2 mat-dialog-title><mat-icon class="variables-icon">layers</mat-icon>{{title | translate}}</h2>
+<h2 mat-dialog-title class="variables-dialog-title"><mat-icon class="variables-icon">layers</mat-icon>{{title | translate}}</h2>
 
 <mat-dialog-content class="properties-content variables-dialog-content" data-automation-id="variables-dialog">
     <modelingsdk-properties-viewer [properties]="editorContent" [types]="types" [requiredCheckbox]="requiredCheckbox" [displayedColumns]="columns" (propertyChanged)="onPropertyChanged()"></modelingsdk-properties-viewer>

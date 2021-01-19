@@ -26,6 +26,7 @@ import { UuidService } from './../../services/uuid.service';
 import { VariableValuePipe } from './variable-value.pipe';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+import { By } from '@angular/platform-browser';
 
 describe('PropertiesViewerComponent', () => {
     let fixture: ComponentFixture<PropertiesViewerComponent>;
@@ -281,4 +282,23 @@ describe('PropertiesViewerComponent', () => {
 
         expect(addButton.getAttribute('disabled')).toBe(null);
     });
+
+    it('should call applyFilter on keyup from filter input', async(() => {
+        const input = fixture.debugElement.query(By.css('[data-automation-id="variable-filter"]'));
+        input.triggerEventHandler('keyup', { target: { value: 'var2'}});
+        fixture.detectChanges();
+
+        expect(component.dataSource.filter).toBe('var2');
+        expect(component.dataSource.filteredData).toEqual([{'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''}]);
+    }));
+
+    it('should clear filter input on click of clearFilterInput button', async(() => {
+        component.filterValue = 'var1';
+        fixture.detectChanges();
+        const clearFilterButton: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="variable-clear-filter"]');
+        clearFilterButton.click();
+        fixture.detectChanges();
+
+        expect(component.filterValue).toEqual('');
+    }));
 });

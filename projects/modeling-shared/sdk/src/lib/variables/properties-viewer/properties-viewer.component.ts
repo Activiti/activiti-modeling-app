@@ -46,6 +46,7 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy, AfterViewIn
     required?: boolean;
     value: any;
     id: string;
+    filterValue = '';
     selection = new SelectionModel<EntityProperty>();
     @Input() types: string[] = primitive_types;
     @Input() properties = '';
@@ -102,6 +103,16 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy, AfterViewIn
     ngAfterViewInit() {
         this.dataSource.sort = this.sort;
         this.changeDetectorRef.detectChanges();
+    }
+
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+
+    clearFilterInput() {
+        this.filterValue = '';
+        this.dataSource.filter = '';
     }
 
     private convertJsonObjectsToJsonStringVariables(properties) {
