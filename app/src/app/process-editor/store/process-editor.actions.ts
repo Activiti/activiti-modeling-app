@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Process, ProcessContent, UpdateServiceParametersAction, ModelExtensions, EntityDialogForm, UploadFileAttemptPayload } from '@alfresco-dbp/modeling-shared/sdk';
+import { Process, ProcessContent, UpdateServiceParametersAction, ModelExtensions, EntityDialogForm, UploadFileAttemptPayload, SaveAsDialogPayload } from '@alfresco-dbp/modeling-shared/sdk';
 import { SelectedProcessElement, ProcessModelContext } from './process-editor.state';
 import { Update } from '@ngrx/entity';
 
@@ -185,6 +185,18 @@ export const CHANGE_PROCESS_MODEL_ACTION = '[Process] Process tab changed';
 export class ChangeProcessModelContextAction implements Action {
     readonly type = CHANGE_PROCESS_MODEL_ACTION;
     constructor(public name: ProcessModelContext) {}
+}
+
+export const OPEN_PROCESS_SAVE_AS_FORM = '[Process] Open save as process';
+export class OpenSaveAsProcessAction implements Action {
+    readonly type = OPEN_PROCESS_SAVE_AS_FORM;
+    constructor(public dialogData: SaveAsDialogPayload) {}
+}
+
+export const SAVE_AS_PROCESS_ATTEMPT = '[Process] Save as attempt';
+export class SaveAsProcessAttemptAction implements Action {
+    readonly type = SAVE_AS_PROCESS_ATTEMPT;
+    constructor(public payload: SaveAsDialogPayload, public navigateTo = false) {}
 }
 
 export type ProcessActions =

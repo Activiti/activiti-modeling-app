@@ -40,6 +40,7 @@ export * from './lib/validators/public-api';
 export * from './lib/variables/public-api';
 export * from './lib/workbench-layout/public-api';
 export * from './lib/project-editor/public-api';
+export * from './lib/components/save-as-dialog/public-api';
 
 export * from './lib/api-implementations/acm-api/acm-api.module';
 export * from './lib/api-implementations/acm-api/request-api.helper';

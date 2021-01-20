@@ -78,6 +78,13 @@
             "EXPRESSION_MAPPING": "Expression",
             "NONE": "None",
             "TYPE": "Type"
+        },
+        "SAVE_AS_DIALOG": {
+            "TITLE": "Save as",
+            "FIELD_PROPERTIES": {
+                "NAME": "Name",
+                "DESCRIPTION": "Description"
+            }
         }
     }
 }

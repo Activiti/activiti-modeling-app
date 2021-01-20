@@ -35,6 +35,14 @@
     </button>
 
     <button mat-icon-button
+        data-automation-id="process-editor-save-as-button"
+        [disabled]="disableSave"
+        [title]="'PROCESS_EDITOR.SAVE_PROCESS' | translate"
+        (click)="onSaveAs()">
+        <mat-icon>content_copy</mat-icon>
+    </button>
+
+    <button mat-icon-button
         data-automation-id="process-editor-menu-button"
         [title]="'APP.MORE_ACTIONS' | translate"
         [matMenuTriggerFor]="menu">

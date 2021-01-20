@@ -41,7 +41,9 @@ import {
     RemoveDiagramElementAction,
     RemoveElementMappingAction,
     DeleteProcessExtensionAction,
-    ValidateProcessPayload
+    ValidateProcessPayload,
+    OpenSaveAsProcessAction,
+    SaveAsProcessAttemptAction
 } from './process-editor.actions';
 import { throwError, of, Observable } from 'rxjs';
 import { mockProcessModel, validateError } from './process.mock';
@@ -62,7 +64,9 @@ import {
     LogFactoryService,
     SetApplicationLoadingStateAction,
     OpenConfirmDialogAction,
-    BpmnElement
+    BpmnElement,
+    DialogService,
+    SaveAsDialogPayload
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessEntitiesState } from './process-entities.state';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
@@ -78,6 +82,7 @@ describe('ProcessEditorEffects', () => {
     let processEditorService: ProcessEditorService;
     let router: Router;
     let logFactory: LogFactoryService;
+    let dialogService: DialogService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -91,6 +96,7 @@ describe('ProcessEditorEffects', () => {
                 DownloadResourceService,
                 AmaAuthenticationService,
                 AmaApi,
+                DialogService,
                 provideMockActions(() => actions$),
                 {
                     provide: BpmnFactoryToken,
@@ -143,6 +149,7 @@ describe('ProcessEditorEffects', () => {
 
         logFactory = TestBed.inject(LogFactoryService);
         effects = TestBed.inject(ProcessEditorEffects);
+        dialogService = TestBed.inject(DialogService);
         metadata = getEffectsMetadata(effects);
         store = TestBed.inject(Store);
         router = TestBed.inject(Router);
@@ -440,4 +447,99 @@ describe('ProcessEditorEffects', () => {
         });
     });
 
+    describe('saveAsProcessSuccessEffect', () => {
+        let openSaveAsDialogPayload: SaveAsDialogPayload;
+        let saveAsProcess: SaveAsDialogPayload;
+
+        const mockOpenSaveAsDialog: SaveAsDialogPayload = {
+            name: 'test-name',
+            description: 'test-description',
+            sourceContent: 'content'
+        };
+
+        // tslint:disable-next-line
+        // cSpell:disable
+        const mockXMLProcess = `<?xml version="1.0" encoding="UTF-8"?>
+        <bpmn2:definitions name="process-test" id="model-fd525131-8580-4b28-98fd-484bde7c3ff1" xmlns:activiti="http://activiti.org/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" targetNamespace="http://bpmn.io/schema/bpmn">
+            <bpmn2:process id="Process_YXLPKi8G8" isExecutable="true" name="process-test">
+                <bpmn2:documentation></bpmn2:documentation>
+                <bpmn2:startEvent id="Event_1" />
+            </bpmn2:process>
+            <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+                <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_YXLPKi8G8">
+                    <bpmndi:BPMNShape id="_BPMNShape_Event_2" bpmnElement="Event_1">
+                        <dc:Bounds height="36.0" width="36.0" x="412.0" y="240.0" />
+                    </bpmndi:BPMNShape>
+                </bpmndi:BPMNPlane>
+            </bpmndi:BPMNDiagram>
+        </bpmn2:definitions>`;
+        /* cSpell:enable */
+
+        const mockProcessSaveAsAttemptDialog: SaveAsDialogPayload = {
+            name: 'test-name',
+            description: 'test-description',
+            sourceContent: mockXMLProcess,
+            sourceExtensions: {
+                'Process_ruTEr0CHz': {
+                    'constants': {},
+                    'mappings': {},
+                    'properties': {},
+                    'assignments': {
+                        'UserTask_191ib1o': {
+                            'type': 'static',
+                            'assignment': 'assignee',
+                            'id': 'UserTask_191ib1o'
+                        }
+                    }
+                }
+            }
+        };
+
+        beforeEach(() => {
+            openSaveAsDialogPayload = <SaveAsDialogPayload>mockOpenSaveAsDialog;
+            process = <Process>mockProcessModel;
+            saveAsProcess = <SaveAsDialogPayload>mockProcessSaveAsAttemptDialog;
+        });
+
+        it('openSaveAsProcessEffect should not dispatch an action', () => {
+            expect(metadata.openSaveAsProcessEffect.dispatch).toBeFalsy();
+        });
+
+        it('openSaveAsProcessEffect should open save as dialog', () => {
+            spyOn(dialogService, 'openDialog');
+            actions$ = hot('a', { a: new OpenSaveAsProcessAction(openSaveAsDialogPayload) });
+            effects.openSaveAsProcessEffect.subscribe(() => {});
+            getTestScheduler().flush();
+            expect(dialogService.openDialog).toHaveBeenCalled();
+        });
+
+        it('saveAsProcessEffect should dispatch an action', () => {
+            expect(metadata.saveAsProcessEffect.dispatch).toBeTruthy();
+        });
+
+        it('should call the save as process with the proper parameters', () => {
+            processEditorService.create = jest.fn().mockReturnValue(of(process));
+            spyOn(processEditorService, 'update');
+            actions$ = hot('a', { a: new SaveAsProcessAttemptAction(saveAsProcess)});
+
+            effects.saveAsProcessEffect.subscribe(() => {});
+            getTestScheduler().flush();
+
+            const expectSaveAsPayload = {name: 'test-name', description: 'test-description'};
+
+            expect(processEditorService.create).toHaveBeenCalledWith(expectSaveAsPayload, 'test1');
+            expect(processEditorService.update).toHaveBeenCalledWith('id1', process, saveAsProcess.sourceContent, 'test1');
+        });
+
+        it('should trigger the right action on unsuccessful save as', () => {
+            processEditorService.update = jest.fn().mockReturnValue(throwError(new Error()));
+            actions$ = hot('a', { a: new SaveAsProcessAttemptAction(openSaveAsDialogPayload) });
+
+            const expected = cold('(b)', {
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.CREATE_PROCESS.GENERAL')
+            });
+
+            expect(effects.saveAsProcessEffect).toBeObservable(expected);
+        });
+    });
 });

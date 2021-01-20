@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Output, EventEmitter, Inject } from '@angular/core';
 import {
     Process,
     AmaState,
@@ -23,14 +23,17 @@ import {
     ProcessContent,
     BreadcrumbItem,
     SnackbarInfoAction,
-    SnackbarErrorAction
+    SnackbarErrorAction,
+    ProcessModelerService,
+    ProcessModelerServiceToken
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { DeleteProcessAttemptAction, ValidateProcessAttemptAction, DownloadProcessAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
+import { DeleteProcessAttemptAction, ValidateProcessAttemptAction, DownloadProcessAction, DownloadProcessSVGImageAction, OpenSaveAsProcessAction, SaveAsProcessAttemptAction } from '../../store/process-editor.actions';
 import { takeUntil } from 'rxjs/operators';
 import { selectProcessModelContext } from '../../store/process-editor.selectors';
 import { ProcessModelContext } from '../../store/process-editor.state';
+import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
 
 @Component({
     selector: 'ama-process-header',
@@ -50,7 +53,11 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
     public modeler: Bpmn.Modeler;
     private modelContext: ProcessModelContext;
 
-    constructor(private store: Store<AmaState>) {}
+    constructor(
+        private store: Store<AmaState>,
+        @Inject(ProcessModelerServiceToken)
+        private processModeler: ProcessModelerService
+        ) {}
 
     ngOnInit(): void {
         this.store.select(selectProcessModelContext).pipe(
@@ -108,6 +115,24 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
             extensions: this.process.extensions,
             action: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_VALID'),
             errorAction: new SnackbarErrorAction('PROCESS_EDITOR.PROCESS_INVALID')
+        }));
+    }
+
+    onSaveAs() {
+        const element = this.processModeler.getRootProcessElement();
+        this.store.dispatch(new ValidateProcessAttemptAction({
+            title: 'APP.DIALOGS.ERROR.SUBTITLE',
+            processId: this.process.id,
+            content: this.content,
+            extensions: this.process.extensions,
+            action: new OpenSaveAsProcessAction({
+                id: this.process.id,
+                name: this.process.name,
+                description: documentationHandler.get(element),
+                sourceContent: this.content,
+                sourceExtensions: this.process.extensions,
+                action: SaveAsProcessAttemptAction
+            })
         }));
     }
 }

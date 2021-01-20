@@ -4,6 +4,7 @@
         "SAVE_PROCESS_IMAGE": "Save process diagram as SVG",
         "VALIDATE_PROCESS": "Validate process",
         "SAVE_PROCESS": "Save process",
+        "SAVE_PROCESS_AS": "Save process as",
         "SELECT_PROCESS_VARIABLE": "Select process variable",
         "PRIORITIES": {
             "NONE": "None",

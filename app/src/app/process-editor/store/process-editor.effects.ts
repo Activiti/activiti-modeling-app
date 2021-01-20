@@ -60,7 +60,11 @@ import {
     VALIDATE_PROCESS_ATTEMPT,
     ValidateProcessAttemptAction,
     ValidateProcessPayload,
-    DeleteProcessExtensionAction
+    DeleteProcessExtensionAction,
+    OpenSaveAsProcessAction,
+    OPEN_PROCESS_SAVE_AS_FORM,
+    SAVE_AS_PROCESS_ATTEMPT,
+    SaveAsProcessAttemptAction
 } from './process-editor.actions';
 import {
     AmaState,
@@ -85,7 +89,11 @@ import {
     SnackbarInfoAction,
     UPDATE_SERVICE_PARAMETERS,
     UploadFileAttemptPayload,
-    ErrorResponse
+    ErrorResponse,
+    SaveAsDialogPayload,
+    SaveAsDialogComponent,
+    DialogService,
+    ModelExtensions
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { selectProcessesLoaded, selectSelectedElement } from './process-editor.selectors';
@@ -93,11 +101,21 @@ import { Store } from '@ngrx/store';
 import { getProcessLogInitiator, PROCESS_SVG_IMAGE } from '../services/process-editor.constants';
 import { ProcessValidationResponse } from './process-editor.state';
 
+export const PROCESS_CONTENT_TYPE = 'text/xml';
+export const XML_PROCESS_TAG = 'bpmn2:process';
+export const XML_DOCUMENTATION_TAG = 'bpmn2:documentation';
+export const XML_NAME_ATTRIBUTE = 'name';
+export const XML_BPMNDI_PLANE_TAG = 'bpmndi:BPMNPlane';
+export const XML_BPMNDI_PLANE_ELEMENT_ATTRIBUTE = 'bpmnElement';
+export const XML_DEFINITIONS_TAG = 'bpmn2:definitions';
+
 @Injectable()
 export class ProcessEditorEffects {
+
     constructor(
         private store: Store<AmaState>,
         private actions$: Actions,
+        private dialogService: DialogService,
         private processEditorService: ProcessEditorService,
         private logFactory: LogFactoryService,
         private router: Router,
@@ -240,6 +258,19 @@ export class ProcessEditorEffects {
             );
         }),
         mergeMap(([element, selected]) => of(new SelectModelerElementAction(element)))
+    );
+
+    @Effect({ dispatch: false })
+    openSaveAsProcessEffect = this.actions$.pipe(
+        ofType<OpenSaveAsProcessAction>(OPEN_PROCESS_SAVE_AS_FORM),
+        tap((action) => this.openSaveAsProcessDialog(action.dialogData))
+    );
+
+    @Effect()
+    saveAsProcessEffect = this.actions$.pipe(
+        ofType<SaveAsProcessAttemptAction>(SAVE_AS_PROCESS_ATTEMPT),
+        mergeMap((action) => zip(of(action), this.store.select(selectSelectedProjectId))),
+        mergeMap(([action, projectId]) => this.saveAsProcess(action.payload, action.navigateTo, projectId))
     );
 
     private validateProcess(payload: ValidateProcessPayload) {
@@ -397,5 +428,82 @@ export class ProcessEditorEffects {
             return response.errors.map((error: GeneralError) => error.description);
         }
         return [response.message];
+    }
+
+    private openSaveAsProcessDialog(data: SaveAsDialogPayload) {
+        this.dialogService.openDialog(SaveAsDialogComponent, { data });
+    }
+
+    private saveAsProcess(
+        processPayload: Partial<SaveAsDialogPayload>,
+        navigateTo: boolean,
+        projectId: string): Observable<{} | SnackbarInfoAction | CreateProcessSuccessAction> {
+        return this.processEditorService.create({ name: processPayload.name, description: processPayload.description }, projectId).pipe(
+            tap((process: Process) => this.updateProcessExtensionsOnSaveAs(processPayload, process)),
+            tap((process: Process) => processPayload.sourceContent = this.updateContentOnSaveAs(processPayload.sourceContent,
+                 this.getProcessKey(process.extensions), processPayload.name, processPayload.description)),
+            mergeMap((process: Process) => this.processEditorService.update(process.id, process, processPayload.sourceContent, projectId)),
+            switchMap((process: Process) => [
+                new CreateProcessSuccessAction(process, navigateTo),
+                new SnackbarInfoAction('PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_CREATED')
+            ]),
+            catchError(e => this.handleProcessCreationError(e)));
+    }
+
+    private getProcessKey(extensions: ModelExtensions): string {
+        return Object.keys(extensions)[0];
+    }
+
+    private updateProcessExtensionsOnSaveAs(processPayload: Partial<SaveAsDialogPayload>, process: Process) {
+        processPayload.sourceExtensions = {
+            [this.getProcessKey(process.extensions)]: {
+                ...processPayload.sourceExtensions[this.getProcessKey(processPayload.sourceExtensions)]
+            }
+        };
+        process.extensions = processPayload.sourceExtensions;
+    }
+
+    private updateContentOnSaveAs(sourceContent: string, processKeyId: string, name: string, documentation: string): string {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(sourceContent, PROCESS_CONTENT_TYPE);
+        this.updateProcessKeyId(xmlDoc, processKeyId);
+        this.updateProcessName(xmlDoc, name);
+        this.updateProcessDocumentation(xmlDoc, documentation);
+        return xmlDoc.documentElement.outerHTML;
+    }
+
+    private updateProcessKeyId(xmlDoc: Document, processKeyId: string) {
+        xmlDoc.getElementsByTagName(XML_PROCESS_TAG)[0].id = processKeyId;
+        xmlDoc.getElementsByTagName(XML_BPMNDI_PLANE_TAG)[0].setAttribute(XML_BPMNDI_PLANE_ELEMENT_ATTRIBUTE, processKeyId);
+    }
+
+    private updateProcessName(xmlDoc: Document, name: string) {
+        xmlDoc.getElementsByTagName(XML_PROCESS_TAG)[0].setAttribute(XML_NAME_ATTRIBUTE, name);
+        xmlDoc.getElementsByTagName(XML_DEFINITIONS_TAG)[0].setAttribute(XML_NAME_ATTRIBUTE, name);
+    }
+
+    private updateProcessDocumentation(xmlDoc: Document, documentation: string) {
+        const documentationTag = xmlDoc.getElementsByTagName(XML_DOCUMENTATION_TAG);
+        if (!documentation) {
+            if (documentationTag.length > 0) {
+                xmlDoc.getElementsByTagName(XML_DOCUMENTATION_TAG)[0].remove();
+            }
+        } else {
+            if (documentationTag.length > 0) {
+                xmlDoc.getElementsByTagName(XML_DOCUMENTATION_TAG)[0].textContent = documentation;
+            } else {
+                this.addDocumentationTagToContent(xmlDoc, documentation);
+            }
+        }
+    }
+
+    private addDocumentationTagToContent(xmlDoc: Document, documentation: string) {
+        const documentationElement = xmlDoc.createElement(XML_DOCUMENTATION_TAG);
+        documentationElement.innerText = documentation;
+        this.getProcessTag(xmlDoc).append(documentationElement);
+    }
+
+    private getProcessTag(xmlDoc: Document): Element {
+        return xmlDoc.getElementsByTagName(XML_PROCESS_TAG)[0];
     }
 }
