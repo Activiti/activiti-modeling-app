@@ -123,9 +123,10 @@
           }
         },
         "test": {
-          "builder": "@angular-builders/jest:run",
+          "builder": "@nrwl/jest:jest",
           "options": {
-            "configPath": "jest.config.js"
+            "jestConfig": "./app/jest.config.js",
+            "tsConfig": "app/tsconfig.spec.json"
           }
         },
         "lint": {
@@ -164,9 +165,10 @@
           }
         },
         "test": {
-          "builder": "@angular-builders/jest:run",
+          "builder": "@nrwl/jest:jest",
           "options": {
-            "configPath": "jest.config.js"
+            "jestConfig": "projects/modeling-shared/sdk/jest.config.js",
+            "tsConfig":"projects/modeling-shared/sdk/tsconfig.spec.json"
           }
         }
       }

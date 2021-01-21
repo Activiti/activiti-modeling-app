@@ -21,8 +21,7 @@ module.exports = {
         'node_modules/(?!@alfresco\\/js-api)'
     ],
     transform: {
-        '^.+\\.(ts|js|html)$': 'ts-jest',
-        '^.+\\.js$': 'babel-jest'
+        '^.+\\.(ts|js|html)$': 'ts-jest'
     },
     snapshotSerializers: [
         'jest-preset-angular/build/AngularSnapshotSerializer.js',
@@ -31,7 +30,7 @@ module.exports = {
     globals: {
         "ts-jest": {
             stringifyContentPathRegex: '\\.html?$',
-            tsConfig: "<rootDir>/tsconfig.spec.json"
+            tsconfig: "<rootDir>/tsconfig.spec.json"
         }
     }
 };
