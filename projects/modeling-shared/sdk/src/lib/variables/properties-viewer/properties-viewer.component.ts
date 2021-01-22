@@ -98,6 +98,7 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy, AfterViewIn
                 this.error = false;
             }
         });
+        this.dataSource.filterPredicate = (data, filter) => (data.name.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1);
     }
 
     ngAfterViewInit() {

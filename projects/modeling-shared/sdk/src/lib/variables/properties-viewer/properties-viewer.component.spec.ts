@@ -292,6 +292,14 @@ describe('PropertiesViewerComponent', () => {
         expect(component.dataSource.filteredData).toEqual([{'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''}]);
     }));
 
+    it('should filter only based on name column', async(() => {
+        const input = fixture.debugElement.query(By.css('[data-automation-id="variable-filter"]'));
+        input.triggerEventHandler('keyup', { target: { value: 'string'}});
+        fixture.detectChanges();
+
+        expect(component.dataSource.filteredData).toEqual([]);
+    }));
+
     it('should clear filter input on click of clearFilterInput button', async(() => {
         component.filterValue = 'var1';
         fixture.detectChanges();
