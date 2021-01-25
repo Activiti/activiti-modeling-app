@@ -79,6 +79,19 @@
                     "MODEL": "Are you sure you want to save this Content Model?",
                     "FORM_WIDGET": "Are you sure you want to save this Form Widget?"
                 },
+                "SAVE_AS": {
+                  "PROCESS": "Are you sure you want to copy this process?",
+                  "FORM": "Are you sure you want to copy this form?",
+                  "UI": "Are you sure you want to copy this UI?",
+                  "DATA": "Are you sure you want to copy this data object?",
+                  "DECISION_TABLE": "Are you sure you want to copy this decision table?",
+                  "CONNECTOR": "Are you sure you want to copy this connector?",
+                  "FILE": "Are you sure you want to copy this file?",
+                  "SCRIPT": "Are you sure you want to copy this script?",
+                  "TRIGGER": "Are you sure you want to copy this Trigger?",
+                  "MODEL": "Are you sure you want to copy this Content Model?",
+                  "FORM_WIDGET": "Are you sure you want to copy this Form Widget?"
+              },
                 "DOWNLOAD": {
                     "PROCESS": "Are you sure you want to download this process?",
                     "IMAGE": "Are you sure you want to download the svg image of this process?",

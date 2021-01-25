@@ -44,7 +44,11 @@ import {
     CHANGE_CONNECTOR_CONTENT,
     ChangeConnectorContent,
     UPDATE_CONNECTOR_FAILED,
-    UpdateConnectorFailedAction
+    UpdateConnectorFailedAction,
+    OpenSaveAsConnectorAction,
+    OPEN_CONNECTOR_SAVE_AS_FORM,
+    SaveAsConnectorAttemptAction,
+    SAVE_AS_CONNECTOR_ATTEMPT
 } from './connector-editor.actions';
 import { map, switchMap, catchError, mergeMap, take, withLatestFrom, tap } from 'rxjs/operators';
 import {
@@ -72,7 +76,10 @@ import {
     selectSelectedProjectId,
     CreateConnectorAttemptAction,
     CREATE_CONNECTOR_ATTEMPT,
-    ErrorResponse
+    ErrorResponse,
+    SaveAsDialogPayload,
+    SaveAsDialogComponent,
+    DialogService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ConnectorEditorService } from '../services/connector-editor.service';
 import { of, zip, forkJoin, Observable } from 'rxjs';
@@ -87,6 +94,7 @@ export class ConnectorEditorEffects {
     constructor(
         private store: Store<AmaState>,
         private actions$: Actions,
+        private dialogService: DialogService,
         private connectorEditorService: ConnectorEditorService,
         private storageService: StorageService,
         private logFactory: LogFactoryService,
@@ -217,6 +225,21 @@ export class ConnectorEditorEffects {
         tap(action => this.storageService.setItem('showConnectorsWithTemplate', action.isChecked.toString())
     ));
 
+    @Effect({ dispatch: false })
+    openSaveAsConnectorEffect = this.actions$.pipe(
+        ofType<OpenSaveAsConnectorAction>(OPEN_CONNECTOR_SAVE_AS_FORM),
+        tap((action) => this.openSaveAsConnectorDialog(action.dialogData))
+    );
+
+    @Effect()
+    saveAsConnectorEffect = this.actions$.pipe(
+        ofType<SaveAsConnectorAttemptAction>(SAVE_AS_CONNECTOR_ATTEMPT),
+        mergeMap(action => zip(of(action), this.store.select(selectSelectedProjectId))),
+        mergeMap(([action, projectId]) => {
+            return this.saveAsConnector(action.payload, action.navigateTo, projectId);
+        })
+    );
+
     private validateConnector({ connectorId, connectorContent, action, title, errorAction, projectId }: ValidateConnectorPayload) {
         return this.connectorEditorService.validate(connectorId, connectorContent, projectId).pipe(
             switchMap(() => [new SetApplicationLoadingStateAction(true), action, new SetApplicationLoadingStateAction(false)]),
@@ -339,4 +362,28 @@ export class ConnectorEditorEffects {
            take(1)
        );
     }
+
+    private openSaveAsConnectorDialog(data: SaveAsDialogPayload) {
+        this.dialogService.openDialog(SaveAsDialogComponent, { data });
+    }
+
+    private saveAsConnector(
+        connectorData: Partial<SaveAsDialogPayload>,
+        navigateTo: boolean,
+        projectId: string): Observable<{} | SnackbarInfoAction | CreateConnectorSuccessAction> {
+        return this.connectorEditorService.create(connectorData, projectId).pipe(
+            tap(() => this.updateContentOnSaveAs(connectorData)),
+            mergeMap((connector) => this.connectorEditorService.update(connector.id, connector, connectorData.sourceContent, projectId)),
+            mergeMap((connector) => [
+                new CreateConnectorSuccessAction(connector, navigateTo),
+                new SnackbarInfoAction('PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_CREATED')
+            ]),
+            catchError(e => this.handleConnectorCreationError(e)));
+    }
+
+    private updateContentOnSaveAs(data: Partial<SaveAsDialogPayload>): void {
+        data.sourceContent.name = data.name;
+        data.sourceContent.description = data.description;
+    }
+
 }

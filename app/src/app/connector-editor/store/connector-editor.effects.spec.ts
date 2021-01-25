@@ -40,7 +40,9 @@ import {
     ValidateConnectorPayload,
     ValidateConnectorAttemptAction,
     ChangedConnectorSettingsAction,
-    UpdateConnectorFailedAction
+    UpdateConnectorFailedAction,
+    SaveAsConnectorAttemptAction,
+    OpenSaveAsConnectorAction
 } from './connector-editor.actions';
 import { hot, cold, getTestScheduler } from 'jasmine-marbles';
 import {
@@ -64,7 +66,8 @@ import {
     LogFactoryService,
     CreateConnectorAttemptAction,
     SetApplicationLoadingStateAction,
-    ModelScope
+    ModelScope,
+    SaveAsDialogPayload
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Update } from '@ngrx/entity';
 import { selectConnectorsLoaded, selectSelectedConnector } from './connector-editor.selectors';
@@ -81,6 +84,7 @@ describe('ConnectorEditorEffects', () => {
     let store: Store<AmaState>;
     let storageService: StorageService;
     let logFactory: LogFactoryService;
+    let dialogService: DialogService;
 
     const connector: Connector = {
         type: CONNECTOR,
@@ -175,6 +179,7 @@ describe('ConnectorEditorEffects', () => {
         store = TestBed.inject(Store);
         actions$ = null;
         storageService = TestBed.inject(StorageService);
+        dialogService = TestBed.inject(DialogService);
     });
 
     describe('uploadConnectorEffect', () => {
@@ -535,4 +540,65 @@ describe('ConnectorEditorEffects', () => {
             expect(storageService.setItem).toHaveBeenCalledWith('showConnectorsWithTemplate', 'true');
         });
     });
+
+    describe('saveAsConnectorEffect', () => {
+
+        let createConnector: jest.Mock, updateConnector: jest.Mock;
+
+        beforeEach(() => {
+            createConnector = <jest.Mock>connectorEditorService.create;
+            updateConnector = <jest.Mock>connectorEditorService.update;
+        });
+
+        const mockOpenSaveAsDialog: SaveAsDialogPayload = {
+            id: 'connector-old-id',
+            name: 'test-name',
+            description: 'test-description',
+            sourceContent: {
+                'name': 'old-name',
+                'description': ''
+            }
+        };
+
+        it('openSaveAsConnectorEffect should not dispatch an action', () => {
+            expect(metadata.openSaveAsConnectorEffect.dispatch).toBeFalsy();
+        });
+
+        it('openSaveAsConnectorEffect should open save as dialog', () => {
+            spyOn(dialogService, 'openDialog');
+            actions$ = hot('a', { a: new OpenSaveAsConnectorAction(mockOpenSaveAsDialog) });
+            effects.openSaveAsConnectorEffect.subscribe(() => { });
+            getTestScheduler().flush();
+            expect(dialogService.openDialog).toHaveBeenCalled();
+        });
+
+        it('saveAsConnectorEffect should dispatch an action', () => {
+            expect(metadata.saveAsConnectorEffect.dispatch).toBeTruthy();
+        });
+
+        it('should call the save as connector with the proper parameters', () => {
+            createConnector.mockReturnValue(of(connector));
+            updateConnector.mockReturnValue(of(connector));
+
+            actions$ = hot('a', { a: new SaveAsConnectorAttemptAction(mockOpenSaveAsDialog) });
+
+            effects.saveAsConnectorEffect.subscribe(() => { });
+            getTestScheduler().flush();
+
+            expect(createConnector).toHaveBeenCalledWith(mockOpenSaveAsDialog, connector.projectIds[0]);
+            expect(updateConnector).toHaveBeenCalledWith(connector.id, connector, mockOpenSaveAsDialog.sourceContent, connector.projectIds[0]);
+        });
+
+        it('should trigger the right action on unsuccessful save as', () => {
+            connectorEditorService.update = jest.fn().mockReturnValue(throwError(new Error()));
+            actions$ = hot('a', { a: new SaveAsConnectorAttemptAction(mockOpenSaveAsDialog) });
+
+            const expected = cold('(b)', {
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.CREATE_CONNECTOR.GENERAL')
+            });
+
+            expect(effects.saveAsConnectorEffect).toBeObservable(expected);
+        });
+    });
+
 });

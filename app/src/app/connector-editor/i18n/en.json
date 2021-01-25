@@ -3,6 +3,7 @@
         "DOWNLOAD_CONNECTOR": "Download connector",
         "VALIDATE_CONNECTOR": "Validate connector",
         "SAVE_CONNECTOR": "Save connector",
+        "SAVE_CONNECTOR_AS": "Save connector as",
         "CONNECTOR_VALID": "Connector is valid",
         "CONNECTOR_INVALID": "Connector contains validation error(s).",
         "UPLOAD_SUCCESS": "Connector uploaded",

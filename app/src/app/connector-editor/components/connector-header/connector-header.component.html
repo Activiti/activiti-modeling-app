@@ -29,6 +29,14 @@
     </button>
 
     <button mat-icon-button
+        [title]="'CONNECTOR_EDITOR.SAVE_CONNECTOR' | translate"
+        data-automation-id="connector-editor-save-as-button"
+        [disabled]="disableSave"
+        (click)="onSaveAs()">
+        <mat-icon>content_copy</mat-icon>
+    </button>
+
+    <button mat-icon-button
         [title]="'APP.MORE_ACTIONS' | translate"
         data-automation-id="connector-editor-menu-button"
         [matMenuTriggerFor]="menu">

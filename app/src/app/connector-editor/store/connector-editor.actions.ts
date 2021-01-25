@@ -23,7 +23,8 @@ import {
     UploadFileAttemptPayload,
     Connector,
     ConnectorContent,
-    CreateConnectorAttemptAction
+    CreateConnectorAttemptAction,
+    SaveAsDialogPayload
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 export interface ValidateConnectorPayload {
@@ -128,6 +129,18 @@ export const CHANGE_CONNECTOR_SETTINGS = '[Connector] Changed connector settings
 export class ChangedConnectorSettingsAction implements Action {
     readonly type = CHANGE_CONNECTOR_SETTINGS;
     constructor(public isChecked: boolean) {}
+}
+
+export const OPEN_CONNECTOR_SAVE_AS_FORM = '[Connector] Open save as connector';
+export class OpenSaveAsConnectorAction implements Action {
+    readonly type = OPEN_CONNECTOR_SAVE_AS_FORM;
+    constructor(public dialogData: SaveAsDialogPayload) {}
+}
+
+export const SAVE_AS_CONNECTOR_ATTEMPT = '[Connector] Save as attempt';
+export class SaveAsConnectorAttemptAction implements Action {
+    readonly type = SAVE_AS_CONNECTOR_ATTEMPT;
+    constructor(public payload: SaveAsDialogPayload, public navigateTo = false) {}
 }
 
 export type ConnectorActions =

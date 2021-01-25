@@ -23,7 +23,9 @@ import { selectConnectorCrumb } from '../../store/connector-editor.selectors';
 import {
     DeleteConnectorAttemptAction,
     ValidateConnectorAttemptAction,
-    DownloadConnectorAction
+    DownloadConnectorAction,
+    OpenSaveAsConnectorAction,
+    SaveAsConnectorAttemptAction
 } from '../../store/connector-editor.actions';
 
 @Component({
@@ -83,4 +85,21 @@ export class ConnectorHeaderComponent {
     onSave(): void {
         this.save.emit();
     }
+
+    onSaveAs() {
+        const contentObj = JSON.parse(this.content);
+        this.store.dispatch(new ValidateConnectorAttemptAction({
+            title: 'APP.DIALOGS.CONFIRM.SAVE_AS.CONNECTOR',
+            connectorId: this.connectorId,
+            connectorContent: contentObj,
+            action: new OpenSaveAsConnectorAction({
+                id: contentObj.id,
+                name: contentObj.name,
+                description: contentObj.description,
+                sourceContent: contentObj,
+                action: SaveAsConnectorAttemptAction
+            })
+        }));
+    }
+
 }

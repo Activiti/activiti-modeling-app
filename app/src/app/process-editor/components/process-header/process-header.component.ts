@@ -121,7 +121,7 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
     onSaveAs() {
         const element = this.processModeler.getRootProcessElement();
         this.store.dispatch(new ValidateProcessAttemptAction({
-            title: 'APP.DIALOGS.ERROR.SUBTITLE',
+            title: 'APP.DIALOGS.CONFIRM.SAVE_AS.PROCESS',
             processId: this.process.id,
             content: this.content,
             extensions: this.process.extensions,
