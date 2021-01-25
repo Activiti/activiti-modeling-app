@@ -36,7 +36,6 @@ declare namespace Bpmn {
         | 'elementFactory'
         | 'handTool'
         | 'globalConnect'
-        | 'globalConnect'
         | 'lassoTool'
         | 'spaceTool'
         | 'eventBus'
