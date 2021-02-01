@@ -16,7 +16,7 @@
  */
 
 import { Routes } from '@angular/router';
-import { AuthGuard } from '@alfresco/adf-core';
+import { AuthGuard, BlankPageComponent } from '@alfresco/adf-core';
 import { AppLayoutComponent } from './app/app-layout/app-layout.component';
 import { AppLoginComponent } from './app/app-login/app-login.component';
 import { projectEditorRoutes } from './project-editor/router/project-editor.routes';
@@ -30,8 +30,18 @@ import { AmaModelSchemaLoaderGuard } from './common/services/ama-model-schema-lo
 import { DASHBOARD_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const appRoutes: Routes = [
-    { path: 'login', component: AppLoginComponent },
-    { path: 'settings', component: HostSettingsComponent },
+    {
+        path: 'blank',
+        component: BlankPageComponent
+    },
+    {
+        path: 'login',
+        component: AppLoginComponent
+    },
+    {
+        path: 'settings',
+        component: HostSettingsComponent
+    },
     {
         path: '',
 
