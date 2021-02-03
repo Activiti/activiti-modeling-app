@@ -30,10 +30,6 @@ export class HeaderMenuComponent {
 
     user: any = null;
 
-    onLogout(): void {
-        this.logout.next();
-    }
-
     onOpenSettings() {
         this.openSettings.next();
     }
