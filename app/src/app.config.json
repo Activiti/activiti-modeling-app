@@ -5,6 +5,7 @@
     "providers": "BPM",
     "bpmHost": "http://localhost:4201",
     "identityHost": "${IDENTITY_HOST}",
+    "loginRoute": "/login",
     "oauth2": {
         "host": "${OAUTH_HOST}",
         "authPath": "/protocol/openid-connect/token/",
@@ -15,7 +16,7 @@
         "silentLogin": true,
         "redirectSilentIframeUri": "",
         "redirectUri": "/",
-        "redirectUriLogout": "/#/login"
+        "redirectUriLogout": "/"
     },
     "notificationDefaultDuration": "4000",
     "logLevel": "trace",

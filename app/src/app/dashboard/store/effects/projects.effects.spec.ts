@@ -33,7 +33,6 @@ import {
     ProjectApi,
     SnackbarErrorAction,
     SnackbarInfoAction,
-    AmaAuthenticationService,
     EntityDialogForm,
     DownloadResourceService,
     Pagination,
@@ -87,7 +86,6 @@ describe('ProjectsEffects', () => {
                 TranslateModule.forRoot()],
             providers: [
                 ProjectsEffects,
-                AmaAuthenticationService,
                 AmaApi,
                 ProjectApi,
                 DashboardService,

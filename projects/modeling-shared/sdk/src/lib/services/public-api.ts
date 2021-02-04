@@ -18,7 +18,6 @@
 export * from './uuid.service';
 export * from './title.service';
 export * from './download-resource.service';
-export * from './ama-authentication.service';
 export * from './ama-services.module';
 export * from './auth.service';
 export * from './blob.service';

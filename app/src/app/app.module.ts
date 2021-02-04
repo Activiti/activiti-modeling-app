@@ -47,7 +47,6 @@ import {
     ACMApiModule,
     AmaServicesModule,
     DialogsModule,
-    AmaAuthenticationService,
     AuthTokenProcessorService,
     allLogFilter,
     provideLogFilter
@@ -122,7 +121,6 @@ import { unauthorizedServiceFactory } from './common/services/unauthorized-servi
         AmaRoleGuard,
         AmaModelSchemaLoaderGuard,
         AuthTokenProcessorService,
-        AmaAuthenticationService,
         ModelStorageService,
         { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: AppFooterService },
         provideLogFilter(getBackendLogInitiator()),

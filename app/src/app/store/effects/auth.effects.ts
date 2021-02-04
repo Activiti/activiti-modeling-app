@@ -17,10 +17,9 @@
 
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { tap, switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { LogoutAction, AppActionTypes, AsyncInitAction, LoggedInAction } from '../actions/app.actions';
-import { AmaAuthenticationService } from '@alfresco-dbp/modeling-shared/sdk';
-import { StorageService } from '@alfresco/adf-core';
+import { AuthenticationService, StorageService } from '@alfresco/adf-core';
 import { appThemes } from '../../app/themes';
 import { of } from 'rxjs';
 
@@ -29,15 +28,13 @@ export class AuthEffects {
     constructor(
         private actions$: Actions,
         private storageService: StorageService,
-        private amaAuthenticationService: AmaAuthenticationService
+        private authService: AuthenticationService
     ) {}
 
     @Effect({ dispatch: false })
     logoutEffect$ = this.actions$.pipe(
         ofType<LogoutAction>(AppActionTypes.Logout),
-        tap(() => {
-            this.amaAuthenticationService.logout();
-        })
+        map(() => this.authService.logout())
     );
 
     @Effect()
