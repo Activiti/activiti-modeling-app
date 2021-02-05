@@ -1,7 +1,7 @@
 <div fxLayout="column" fxLayoutAlign="center center">
     <adf-error-content [attr.data-automation-id]="'ama-error-page'">
       <div adf-error-content-actions>
-        <button mat-raised-button color="primary" adf-logout>
+        <button mat-raised-button color="primary" adf-logout [enableRedirect]="false" >
             {{ 'APP.GENERAL.ERRORS.CHANGE_USER' | translate | uppercase }}
         </button>
       </div>
