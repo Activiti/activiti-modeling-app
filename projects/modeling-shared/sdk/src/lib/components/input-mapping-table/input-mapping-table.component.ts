@@ -59,6 +59,12 @@ export class InputMappingTableComponent implements OnChanges {
     variableColumnHeader = 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE';
 
     @Input()
+    editDialogKeyHeader = 'SDK.VARIABLE_MAPPING.PARAMETER';
+
+    @Input()
+    editDialogValueHeader = 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE';
+
+    @Input()
     extensionObject: any;
 
     @Output()
@@ -193,7 +199,7 @@ export class InputMappingTableComponent implements OnChanges {
             selectedRow: parameterRow,
             theme$: theme$,
             inputMappingUpdate$: inputMappingUpdate$,
-            extensionObject: this.extensionObject
+            extensionObject: {...this.extensionObject, editDialogKeyHeader: this.editDialogKeyHeader, editDialogValueHeader: this.editDialogValueHeader},
         };
 
         this.dialogService.openDialog(MappingDialogComponent, {

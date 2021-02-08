@@ -25,7 +25,7 @@
                 <mat-table [dataSource]="dataSource" [trackBy]="trackBy">
                     <ng-container matColumnDef="name">
                         <mat-header-cell *matHeaderCellDef><span
-                                *ngIf="mappingType === 'input'">{{ 'SDK.MAPPING_DIALOG.INPUT_PARAMETER' | translate }}</span>
+                                *ngIf="mappingType === 'input'">{{ keyColumnHeader | translate }}</span>
                             <span
                                 *ngIf="mappingType === 'output'">{{ 'SDK.MAPPING_DIALOG.OUTPUT_PARAMETER' | translate }}/{{ 'SDK.MAPPING_DIALOG.VALUE_MAPPING' | translate }}</span>
                         </mat-header-cell>
@@ -57,7 +57,7 @@
 
                     <ng-container matColumnDef="value">
                         <mat-header-cell *matHeaderCellDef><span
-                                *ngIf="mappingType === 'input'">{{ 'SDK.MAPPING_DIALOG.PROCESS_VARIABLE' | translate }}/{{ 'SDK.MAPPING_DIALOG.VALUE_MAPPING' | translate }}</span>
+                                *ngIf="mappingType === 'input'">{{ valueColumnHeader | translate }}/{{ 'SDK.MAPPING_DIALOG.VALUE_MAPPING' | translate }}</span>
                             <span
                                 *ngIf="mappingType === 'output'">{{ 'SDK.MAPPING_DIALOG.PROCESS_VARIABLE' | translate }}</span>
                         </mat-header-cell>
@@ -92,7 +92,7 @@
             <div class="mapping-value-form" *ngIf="selectedRow !== undefined && selectedRow <= dataSource.length">
                 <div class="variable-selector">
                     <ng-container *ngIf="mappingType === 'input'">
-                        <mat-label value="selectedDestination">{{'SDK.MAPPING_DIALOG.INPUT_PARAMETER' | translate}}
+                        <mat-label value="selectedDestination">{{ keyColumnHeader | translate}}
                         </mat-label>
                         <mat-select [disabled]="true" [value]="selectedDestination"
                             data-automation-id="input-parameter-destination-select">
@@ -117,7 +117,7 @@
                 <div class="mapping-value">
                     <mat-tab-group [(selectedIndex)]="selectedTab" (selectedTabChange)="selectedTabChange()">
                         <mat-tab *ngIf="mappingType === 'input'" data-automation-id="process-variable-tab"
-                            label="{{'SDK.MAPPING_DIALOG.PROCESS_VARIABLE'| translate}}">
+                            label="{{ valueColumnHeader | translate}}">
                             <ng-container *ngIf="selectedTab===0 && tabCheck === selectedTab">
                                 <mat-select [value]="variableValue" data-automation-id="process-variable-select"
                                     (selectionChange)="variableMappingValueChange($event,selectedRow)">

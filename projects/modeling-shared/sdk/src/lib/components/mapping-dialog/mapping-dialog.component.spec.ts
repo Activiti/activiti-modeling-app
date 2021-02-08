@@ -96,6 +96,11 @@ describe('MappingDialogComponent', () => {
         selectedRow: 0
     };
 
+    const mockDialogDataInputMappingCustomHeaders: MappingDialogData = {
+        ...mockDialogDataInputMapping,
+        extensionObject: { editDialogKeyHeader: 'CUSTOM_KEY_HEADER', editDialogValueHeader: 'CUSTOM_VALUE_HEADER' }
+    };
+
     const mockDialogDataOutputMapping: MappingDialogData = {
         theme$: of(''),
         mappingType: VariableMappingType.output,
@@ -200,6 +205,31 @@ describe('MappingDialogComponent', () => {
                 expect(deleteButtonContainer).toBeNull();
             }
         });
+
+        it('should render input mapping table with default headers', () => {
+            const headers = element.queryAll(By.css('div.mapping-table-viewer mat-header-cell'));
+            expect(headers).not.toBeNull();
+            expect(headers.filter(header =>
+                header.nativeElement.textContent.trim() === 'SDK.MAPPING_DIALOG.INPUT_PARAMETER').length).toBe(1);
+            expect(headers.filter(header =>
+                header.nativeElement.textContent.trim() === 'SDK.MAPPING_DIALOG.PROCESS_VARIABLE/SDK.MAPPING_DIALOG.VALUE_MAPPING').length).toBe(1);
+        });
+    });
+
+    describe('Display custom table headers in input mapping', () => {
+
+        beforeEach(async(() => {
+            setUpTestBed(mockDialogDataInputMappingCustomHeaders);
+        }));
+
+        it('should render input mapping table with custom headers', () => {
+            const headers = element.queryAll(By.css('div.mapping-table-viewer mat-header-cell'));
+            expect(headers).not.toBeNull();
+            expect(headers.filter(header =>
+                header.nativeElement.textContent.trim() === 'CUSTOM_KEY_HEADER').length).toBe(1);
+            expect(headers.filter(header =>
+                header.nativeElement.textContent.trim() === 'CUSTOM_VALUE_HEADER/SDK.MAPPING_DIALOG.VALUE_MAPPING').length).toBe(1);
+        });
     });
 
     describe('Display existing output mapping', () => {
@@ -272,5 +302,4 @@ describe('MappingDialogComponent', () => {
             });
         });
     });
-
 });

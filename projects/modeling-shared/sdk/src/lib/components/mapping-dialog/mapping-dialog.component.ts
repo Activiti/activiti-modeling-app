@@ -45,7 +45,8 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
     vsTheme$: Observable<string>;
     selectedDestination: string;
     extensionObject: any;
-
+    keyColumnHeader = 'SDK.MAPPING_DIALOG.INPUT_PARAMETER';
+    valueColumnHeader = 'SDK.MAPPING_DIALOG.PROCESS_VARIABLE';
     service: MappingDialogService;
 
     dataSource: MappingRowModel[];
@@ -83,6 +84,7 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
         this.selectedOutputParameter = data.selectedOutputParameter;
         this.vsTheme$ = data.theme$;
         this.extensionObject = data.extensionObject;
+        this.configDialogLabels();
     }
 
     private getSortedCopy(array: any[]): any[] {
@@ -346,5 +348,12 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
                 extendedProperties = null;
         }
         return extendedProperties;
+    }
+
+    private configDialogLabels() {
+        if (this.extensionObject && this.extensionObject.editDialogKeyHeader && this.extensionObject.editDialogValueHeader) {
+            this.keyColumnHeader = this.extensionObject.editDialogKeyHeader;
+            this.valueColumnHeader = this.extensionObject.editDialogValueHeader;
+        }
     }
 }
