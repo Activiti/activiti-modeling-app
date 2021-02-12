@@ -67,6 +67,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AlfrescoApiService, TranslateLoaderService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { unauthorizedServiceFactory } from './common/services/unauthorized-service-factory';
+import { CustomIconsModule } from './common/custom-icons.module';
+
 @NgModule({
     imports: [
         BrowserAnimationsModule,
@@ -100,6 +102,7 @@ import { unauthorizedServiceFactory } from './common/services/unauthorized-servi
         DialogsModule,
 
         AppExtensionsModule,
+        CustomIconsModule
     ],
     declarations: [
         AppComponent,

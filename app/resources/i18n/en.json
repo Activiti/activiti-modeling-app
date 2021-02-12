@@ -114,7 +114,8 @@
             "RELEASE": "Release",
             "COLLABORATORS": "Collaborators",
             "SEE_RELEASES": "View Releases",
-            "DOWNLOAD": "Download"
+            "DOWNLOAD": "Download",
+            "SAVE_AS": "Save as"
         },
         "SETTINGS": {
             "HEADER": "App settings"

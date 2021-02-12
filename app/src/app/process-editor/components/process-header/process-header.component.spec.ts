@@ -172,4 +172,15 @@ describe('ProcessHeaderComponent', () => {
         saveButton.triggerEventHandler('click', {});
         expect(emitSpy).toHaveBeenCalled();
     });
+
+    it('should render save as button inside menu', () => {
+        const menuButton = fixture.debugElement.query(By.css('[data-automation-id="process-editor-menu-button"]'));
+        menuButton.triggerEventHandler('click', {});
+        fixture.detectChanges();
+
+        const saveAsButton = fixture.debugElement.query(By.css('[data-automation-id="process-editor-save-as-button"]'));
+
+        expect(saveAsButton).not.toBeNull();
+        expect(saveAsButton.nativeElement.textContent).toEqual('APP.MENU.SAVE_AS');
+    });
 });
