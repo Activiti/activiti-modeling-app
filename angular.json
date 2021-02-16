@@ -52,8 +52,13 @@
                 "input": "app/src/app/connector-editor/i18n",
                 "output": "/assets/connector-editor/i18n",
                 "glob": "**/*"
-              },
-              {
+            },
+            {
+                "input": "src/assets/svg/icons",
+                "output": "/assets/svg/icons",
+                "glob": "**/*"
+            },
+            {
                 "input": "projects/modeling-shared/sdk/i18n",
                 "output": "/assets/modeling-sdk/i18n",
                 "glob": "**/*"
