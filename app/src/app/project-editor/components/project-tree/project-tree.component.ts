@@ -23,7 +23,7 @@ import { selectSelectedProjectId, MODEL_TYPE, ModelFilter, OpenFilterAction, Fil
 import { ProjectTreeHelper } from './project-tree.helper';
 import { CloseFilterAction } from '../../store/project-editor.actions';
 import { selectOpenedFilters } from '../../store/selectors/project-tree.selectors';
-import { map } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 
 @Component({
     selector: 'ama-project-tree',
@@ -56,7 +56,7 @@ export class ProjectTreeComponent implements OnInit {
     }
 
     getFilteredContentLoading(filterType: string): Observable<boolean> {
-        return this.projectTreeHelper.getDataAdapter(filterType).loading;
+        return this.projectTreeHelper.getDataAdapter(filterType).loading.pipe(delay(0));
     }
 
     closeFilter({ type }) {
