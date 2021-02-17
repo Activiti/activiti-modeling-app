@@ -5,6 +5,7 @@
         "VALIDATE_PROCESS": "Validate process",
         "SAVE_PROCESS": "Save process",
         "SELECT_PROCESS_VARIABLE": "Select process variable",
+        "SCRIPT_NAME": "Script name",
         "PRIORITIES": {
             "NONE": "None",
             "LOW": "Low",
@@ -193,6 +194,7 @@
         "PROCESS_INVALID": "Process contains validation error(s).",
         "ERRORS": {
             "NO_PROCESS_VARIABLES": "No process variables",
+            "CREATE_PROCESS_VARIABLE": "Create a process variable to add expression assignment",
             "NO_SUB_PROCESS_VARIABLES": "No sub-process variables",
             "LOAD_DIAGRAM": "We hit a problem loading the diagram. Try refreshing the page.",
             "SAVE_DIAGRAM": "We hit a problem saving the diagram. Try saving it again.",
