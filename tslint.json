@@ -210,7 +210,8 @@
                         "onlyDependOnLibsWithTags": [
                             "scope:modeling-ce-e2e",
                             "scope:modeling-sdk",
-                            "scope:modeling-testing"
+                            "scope:modeling-testing",
+                            "scope:shared-testing"
                         ]
                     }
                 ]
