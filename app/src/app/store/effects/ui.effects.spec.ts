@@ -35,7 +35,7 @@ describe('UiEffects', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                CoreModule.forRoot(),
+                CoreModule.forChild(),
                 TranslateModule.forRoot()],
             providers: [
                 UiEffects,

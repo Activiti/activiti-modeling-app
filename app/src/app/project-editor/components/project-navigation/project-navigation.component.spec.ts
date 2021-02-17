@@ -57,7 +57,7 @@ describe('ProjectNavigationComponent', () => {
             TestBed.configureTestingModule({
                 imports: [
                     TranslateModule.forRoot(),
-                    CoreModule.forRoot(),
+                    CoreModule.forChild(),
                     NoopAnimationsModule,
                     MatIconModule,
                     MatMenuModule,
@@ -161,7 +161,7 @@ describe('ProjectNavigationComponent', () => {
     describe('For tests when expanded is true', () => {
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [TranslateModule.forRoot(), CoreModule.forRoot(), NoopAnimationsModule, MatIconModule, MatMenuModule, MatToolbarModule],
+                imports: [TranslateModule.forRoot(), CoreModule, NoopAnimationsModule, MatIconModule, MatMenuModule, MatToolbarModule],
                 providers: [
                     { provide: TranslationService, useClass: TranslationMock },
                     {

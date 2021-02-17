@@ -45,7 +45,7 @@ import { of } from 'rxjs';
                 RouterTestingModule,
                 SharedModule,
                 TranslateModule.forRoot(),
-                CoreModule.forRoot(),
+                CoreModule.forChild(),
                 CommonModule,
                 MatIconModule,
                 NoopAnimationsModule

@@ -86,7 +86,7 @@ describe('Palette component', () => {
         TestBed.configureTestingModule({
             imports: [
                 TranslateModule.forRoot(),
-                CoreModule.forRoot(),
+                CoreModule.forChild(),
                 NoopAnimationsModule,
                 MatMenuModule,
                 MatCardModule,

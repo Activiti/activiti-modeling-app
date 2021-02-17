@@ -113,7 +113,7 @@ describe('ConnectorEditorEffects', () => {
         TestBed.configureTestingModule({
             imports: [
                 MatDialogModule,
-                CoreModule.forRoot(),
+                CoreModule.forChild(),
                 TranslateModule.forRoot()],
             providers: [
                 ConnectorEditorEffects,

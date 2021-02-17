@@ -49,7 +49,7 @@ describe ('Projects List Component', () => {
         TestBed.configureTestingModule({
             imports: [
                 TranslateModule.forRoot(),
-                CoreModule.forRoot(),
+                CoreModule.forChild(),
                 MatMenuModule,
                 MatTableModule,
                 MatSortModule,

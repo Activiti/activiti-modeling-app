@@ -46,7 +46,7 @@ describe('ProcessEditorComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 SharedModule,
-                CoreModule.forRoot(),
+                CoreModule.forChild(),
                 MatIconModule,
                 TranslateModule.forRoot(),
                 NoopAnimationsModule,

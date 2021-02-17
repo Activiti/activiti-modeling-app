@@ -34,7 +34,7 @@ describe('DialogEffects', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                CoreModule.forRoot(),
+                CoreModule.forChild(),
                 TranslateModule.forRoot()
             ],
             providers: [

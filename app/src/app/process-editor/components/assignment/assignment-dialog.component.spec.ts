@@ -99,7 +99,7 @@ describe('AssignmentDialogComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                CoreModule.forRoot(),
+                CoreModule.forChild(),
                 ProcessServicesCloudModule,
                 MonacoEditorModule.forRoot(),
                 MatIconModule,

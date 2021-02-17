@@ -57,7 +57,7 @@ describe('ConnectorEditorComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 SharedModule,
-                CoreModule.forRoot(),
+                CoreModule.forChild(),
                 ExtensionsModule,
                 MatIconModule,
                 MatTabsModule,

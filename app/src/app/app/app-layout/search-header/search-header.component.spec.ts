@@ -16,9 +16,9 @@
  */
 
 import { SearchHeaderComponent } from './search-header.component';
-import { SearchTextInputComponent, AppConfigService, CoreModule } from '@alfresco/adf-core';
+import { SearchTextInputComponent, AppConfigService, CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,7 +34,7 @@ describe ('Search Header Component', () => {
         TestBed.configureTestingModule({
             imports: [
                 TranslateModule.forRoot(),
-                CoreModule.forRoot(),
+                CoreModule.forChild(),
                 MatTooltipModule,
                 MatIconModule,
                 NoopAnimationsModule,
@@ -45,6 +45,8 @@ describe ('Search Header Component', () => {
                 SearchTextInputComponent
             ],
             providers: [
+                TranslateService,
+                { provide: TranslationService, useClass: TranslationMock },
                 { provide: AppConfigService, useValue: { get() { return {}; } } },
             ],
             schemas: [NO_ERRORS_SCHEMA],

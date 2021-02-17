@@ -39,7 +39,7 @@ describe('InputMappingTableComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                CoreModule.forRoot(),
+                CoreModule.forChild(),
                 InputMappingTableModule,
                 NoopAnimationsModule,
                 FormsModule,
