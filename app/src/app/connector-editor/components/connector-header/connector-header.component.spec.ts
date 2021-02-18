@@ -18,7 +18,6 @@
 import { ConnectorHeaderComponent } from './connector-header.component';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
-import { MatIconModule } from '@angular/material/icon';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { AmaState, OpenConfirmDialogAction, SharedModule } from '@alfresco-dbp/modeling-shared/sdk';
@@ -29,6 +28,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DeleteConnectorAttemptAction, ValidateConnectorAttemptAction, DownloadConnectorAction } from '../../store/connector-editor.actions';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe('ConnectorHeaderComponent', () => {
     let fixture: ComponentFixture<ConnectorHeaderComponent>;
@@ -42,7 +42,7 @@ describe('ConnectorHeaderComponent', () => {
                 SharedModule,
                 CoreModule.forChild(),
                 CommonModule,
-                MatIconModule,
+                MatIconTestingModule,
                 TranslateModule.forRoot(),
                 NoopAnimationsModule,
                 HttpClientTestingModule

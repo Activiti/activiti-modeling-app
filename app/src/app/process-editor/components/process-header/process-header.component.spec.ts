@@ -29,6 +29,7 @@ import { of, Subject } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DeleteProcessAttemptAction, DownloadProcessAction, ValidateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
 import { Actions } from '@ngrx/effects';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe('ProcessHeaderComponent', () => {
     let fixture: ComponentFixture<ProcessHeaderComponent>;
@@ -42,6 +43,7 @@ describe('ProcessHeaderComponent', () => {
                 SharedModule,
                 CoreModule.forChild(),
                 MatIconModule,
+                MatIconTestingModule,
                 TranslateModule.forRoot(),
                 NoopAnimationsModule,
                 HttpClientTestingModule
