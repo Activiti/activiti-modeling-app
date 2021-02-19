@@ -34,7 +34,7 @@ export class IconService {
     ) { }
 
     public registerIcons(): void {
-        this.loadIcons(Object.values(ModelingIcons), '../../../../assets/svg/icons');
+        this.loadIcons(Object.values(ModelingIcons), './assets/svg/icons');
     }
 
     private loadIcons(iconKeys: string[], iconUrl: string): void {

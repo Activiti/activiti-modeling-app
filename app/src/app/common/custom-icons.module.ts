@@ -23,7 +23,7 @@ import { IconService } from './services/icon.service';
     ],
     declarations: [
     ],
-  })
-  export class CustomIconsModule {
-      constructor(iconService: IconService) { iconService.registerIcons(); }
-  }
+})
+export class CustomIconsModule {
+    constructor(iconService: IconService) { iconService.registerIcons(); }
+}
