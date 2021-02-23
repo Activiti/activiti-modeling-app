@@ -19,11 +19,12 @@ import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
     CardItemTypeService,
+    CardViewArrayItem,
     CardViewArrayItemModel,
     CardViewUpdateService
 } from '@alfresco/adf-core';
 import { OpenTaskAssignmentDialogAction } from '../../../store/process-task-assignment.actions';
-import { of, Subject } from 'rxjs';
+import { BehaviorSubject, of, Subject } from 'rxjs';
 import {
     AmaState,
     ProcessModelerServiceToken,
@@ -33,6 +34,7 @@ import { selectSelectedElement } from '../../../store/process-editor.selectors';
 import { take, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { TaskAssignmentService } from './task-assignment.service';
 import { AssignmentModel } from '../../../components/assignment/assignment-dialog.component';
+import { SelectedProcessElement } from '../../../store/process-editor.state';
 
 @Component({
     selector: 'ama-task-assignment-item',
@@ -40,8 +42,20 @@ import { AssignmentModel } from '../../../components/assignment/assignment-dialo
     providers: [CardItemTypeService]
 })
 export class CardViewTaskAssignmentItemComponent implements OnInit, OnDestroy {
+    static readonly DEFAULT_ITEM_MODEL = {
+        label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ASSIGNMENT',
+        key: 'assignment',
+        icon: 'edit',
+        default: '',
+        type: 'array',
+        clickable: true,
+        noOfItemsToDisplay: 2,
+        value: of([])
+    };
 
-    cardViewArrayItem: CardViewArrayItemModel;
+    cardViewArrayItem$: BehaviorSubject<CardViewArrayItemModel> = new BehaviorSubject<CardViewArrayItemModel>(
+        new CardViewArrayItemModel(CardViewTaskAssignmentItemComponent.DEFAULT_ITEM_MODEL)
+    );
 
     private onDestroy$: Subject<void> = new Subject<void>();
 
@@ -51,41 +65,38 @@ export class CardViewTaskAssignmentItemComponent implements OnInit, OnDestroy {
         @Inject(ProcessModelerServiceToken)
         private processModelerService: ProcessModelerService,
         private store: Store<AmaState>
-    ) {
+    ) {}
+
+    ngOnInit(): void {
         this.store
             .select(selectSelectedElement)
             .pipe(take(1))
-            .subscribe(selectedElement => {
+            .subscribe((selectedElement: SelectedProcessElement) => {
                 const element = this.processModelerService.getElement(selectedElement.id);
-                this.createCardViewArrayItem(this.taskAssignmentService.getDisplayValue(element));
+                const cardViewArrayItem = this.createCardViewArrayItem(this.taskAssignmentService.getDisplayValue(element));
+                this.cardViewArrayItem$.next(cardViewArrayItem);
             });
 
         this.taskAssignmentService.assignmentSubject
             .pipe(distinctUntilChanged(), takeUntil(this.onDestroy$))
             .subscribe((updatedAssignments: AssignmentModel) => {
-                this.createCardViewArrayItem(this.taskAssignmentService.updateDisplayValue(updatedAssignments));
+                const cardViewArrayItem = this.createCardViewArrayItem(this.taskAssignmentService.updateDisplayValue(updatedAssignments));
+                this.cardViewArrayItem$.next(cardViewArrayItem);
             });
-    }
 
-    ngOnInit(): void {
         this.cardViewUpdateService.itemClicked$
             .pipe(distinctUntilChanged(), takeUntil(this.onDestroy$))
             .subscribe(this.openTaskAssignmentDialog.bind(this));
     }
 
-    openTaskAssignmentDialog(): void {
+    private openTaskAssignmentDialog(): void {
         this.store.dispatch(new OpenTaskAssignmentDialogAction());
     }
 
-    createCardViewArrayItem(assignments: any) {
-        this.cardViewArrayItem  = new CardViewArrayItemModel({
-            label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ASSIGNMENT',
+    private createCardViewArrayItem(assignments: CardViewArrayItem[]): CardViewArrayItemModel {
+        return new CardViewArrayItemModel({
+            ...CardViewTaskAssignmentItemComponent.DEFAULT_ITEM_MODEL,
             value: of(assignments),
-            key: 'assignment',
-            icon: 'edit',
-            default: '',
-            clickable: true,
-            noOfItemsToDisplay: 2
         });
     }
 
