@@ -7,10 +7,10 @@
                 <span [ngClass]="{'variable-value-type-value': isValueMapping(parameter.name)}">
                     {{ parameter.label || parameter.name | variablevalue }}
                 </span>
-                <mat-icon
-                    matTooltip="{{ parameter.description }} ({{'SDK.MAPPING_DIALOG.TYPE' | translate}}: {{parameter.type}})"
-                    matTooltipPosition="below" class="help-icon">help</mat-icon>
             </span>
+            <mat-icon
+                matTooltip="{{ parameter.description }} ({{'SDK.MAPPING_DIALOG.TYPE' | translate}}: {{parameter.type}})"
+                matTooltipPosition="below" class="help-icon">help</mat-icon>
         </mat-cell>
     </ng-container>
     <ng-container matColumnDef="process-variable">

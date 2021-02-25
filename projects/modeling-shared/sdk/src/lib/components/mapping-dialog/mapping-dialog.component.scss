@@ -76,6 +76,11 @@
                     .input-disabled {
                         cursor: default;
                     }
+
+                    span {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
                 }
 
                 .mat-header-row {
@@ -100,7 +105,7 @@
                     }
 
                     .ellipsis-cell {
-                        display: block;
+                        display: flex;
                         overflow: hidden;
                         text-overflow: ellipsis;
                         white-space: nowrap;
@@ -195,7 +200,7 @@
         height: 16px;
         position: relative;
         top: 4px;
-        padding-left: 4px;
+        padding: 0 4px;
         opacity: 0.8;
         cursor: pointer;
     }

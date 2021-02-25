@@ -8,9 +8,9 @@
                     {{ parameter.label || parameter.name }}
                     <span class="required-parameter" *ngIf="parameter.required">*</span>
                 </span>
-                <mat-icon matTooltip="{{ parameter.description + ' (type: ' + parameter.type + ')' }}"
-                    matTooltipPosition="below" class="help-icon">help</mat-icon>
             </span>
+            <mat-icon matTooltip="{{ parameter.description + ' (type: ' + parameter.type + ')' }}"
+                      matTooltipPosition="below" class="help-icon">help</mat-icon>
         </mat-cell>
     </ng-container>
     <ng-container matColumnDef="process-variable">
