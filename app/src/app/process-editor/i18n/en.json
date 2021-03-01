@@ -85,6 +85,7 @@
             "ACTIVITY_NAME": "Called element",
             "PROCESS": "Process",
             "PROCESS_VARIABLE": "Process variable",
+            "FILTER_PROCESS_VARIABLE": "Filter Process variable",
             "USE_PROCESS_VARIABLE": "Use process variable",
             "USE_EXPRESSION": "Use expression",
             "PROCESS_VARIABLES": "Process variables",

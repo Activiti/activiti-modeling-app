@@ -1,11 +1,4 @@
 <div class="properties-viewer">
-    <mat-form-field class="variables-filter">
-        <mat-label>Filter Process Variables</mat-label>
-        <input [(ngModel)]="filterValue" matInput (keyup)="applyFilter($event)" placeholder="Filter Process Variables" autocomplete="false" data-automation-id="variable-filter">
-        <button mat-button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear" (click)="clearFilterInput()" data-automation-id="variable-clear-filter">
-            <mat-icon>close</mat-icon>
-        </button>
-    </mat-form-field>
     <button mat-raised-button class="add-btn" color="primary" (click)="addRow()" [disabled]="error"
         data-automation-id="add-variable">
         <mat-icon>add</mat-icon>

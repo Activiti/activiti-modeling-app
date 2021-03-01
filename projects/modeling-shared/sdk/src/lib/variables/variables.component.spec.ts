@@ -27,6 +27,7 @@ import { Subject, of } from 'rxjs';
 import { VariablesComponent } from './variables.component';
 import { VariablesService } from './variables.service';
 import { CodeValidatorService } from './../code-editor/services/code-validator.service';
+import { By } from '@angular/platform-browser';
 
 describe('VariablesComponent', () => {
     let fixture: ComponentFixture<VariablesComponent>;
@@ -129,5 +130,23 @@ describe('VariablesComponent', () => {
         fixture.detectChanges();
         const errorMessageLabel = fixture.nativeElement.querySelector('.error-message');
         expect(errorMessageLabel).toBeDefined();
+    });
+
+    it('should clear filter input on click of clearFilterInput button', async(() => {
+        component.filterValue = 'var1';
+        fixture.detectChanges();
+        const clearFilterButton: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="variable-clear-filter"]');
+        clearFilterButton.click();
+        fixture.detectChanges();
+
+        expect(component.filterValue).toEqual('');
+    }));
+
+    it('should set filterValue from input', () => {
+        const input = fixture.debugElement.query(By.css('[data-automation-id="variable-filter"]'));
+        input.triggerEventHandler('input', { target: { value: 'string'}});
+        fixture.detectChanges();
+
+        expect(component.filterValue).toEqual('string');
     });
 });

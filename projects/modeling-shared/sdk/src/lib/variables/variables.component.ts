@@ -30,6 +30,7 @@ export interface VariableDialogData extends MatDialogConfig {
     columns: string[];
     types: string[];
     title: string;
+    filterPlaceholder: string;
     required: boolean;
     propertiesUpdate$: Subject<EntityProperties>;
     theme$: Observable<string>;
@@ -43,10 +44,12 @@ export class VariablesComponent implements OnInit, OnDestroy {
     error: string;
     ajv = new Ajv();
     editorContent = '{}';
+    filterValue = '';
     subscription: Subscription;
     serviceSubscription: Subscription;
     vsTheme$: Observable<string>;
     title: string;
+    filterPlaceholder: string;
     requiredCheckbox: boolean;
     columns: string[];
     types: string[];
@@ -60,6 +63,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
     ) {
         this.vsTheme$ = data.theme$;
         this.title = data.title;
+        this.filterPlaceholder = data.filterPlaceholder;
         this.requiredCheckbox = data.required;
         this.columns = data.columns;
         this.types = data.types || primitive_types;

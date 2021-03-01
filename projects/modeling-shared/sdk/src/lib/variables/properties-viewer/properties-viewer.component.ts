@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -31,7 +31,7 @@ import { MatSort } from '@angular/material/sort';
     selector: 'modelingsdk-properties-viewer'
 })
 
-export class PropertiesViewerComponent implements OnInit, OnDestroy, AfterViewInit {
+export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
     subscription: Subscription;
     serviceSubscription: Subscription;
     dataSource: MatTableDataSource<EntityProperty>;
@@ -46,12 +46,12 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy, AfterViewIn
     required?: boolean;
     value: any;
     id: string;
-    filterValue = '';
     selection = new SelectionModel<EntityProperty>();
     @Input() types: string[] = primitive_types;
     @Input() properties = '';
     @Input() requiredCheckbox = true;
     @Input() displayedColumns = ['name', 'type', 'required', 'value', 'delete'];
+    @Input() filterValue = '';
     @Output() propertyChanged: EventEmitter<boolean> = new EventEmitter();
     @ViewChild(MatSort) sort: MatSort;
 
@@ -101,13 +101,18 @@ export class PropertiesViewerComponent implements OnInit, OnDestroy, AfterViewIn
         this.dataSource.filterPredicate = (data, filter) => (data.name.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1);
     }
 
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes.filterValue && !changes.filterValue.firstChange) {
+            this.applyFilter(changes.filterValue.currentValue);
+        }
+    }
+
     ngAfterViewInit() {
         this.dataSource.sort = this.sort;
         this.changeDetectorRef.detectChanges();
     }
 
-    applyFilter(event: Event) {
-        const filterValue = (event.target as HTMLInputElement).value;
+    applyFilter(filterValue: string) {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 

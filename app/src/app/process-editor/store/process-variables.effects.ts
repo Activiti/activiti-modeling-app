@@ -67,6 +67,7 @@ export class ProcessVariablesEffects {
     private openVariablesDialog(modelId: string, processId: string, properties: EntityProperties) {
         const propertiesUpdate$ = new Subject<EntityProperties>();
         const title = 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS_VARIABLES';
+        const filterPlaceholder = 'PROCESS_EDITOR.ELEMENT_PROPERTIES.FILTER_PROCESS_VARIABLE';
         const required = true;
         const columns = [ 'name', 'type', 'required', 'value', 'delete' ];
 
@@ -78,7 +79,7 @@ export class ProcessVariablesEffects {
             disableClose: true,
             height: '530px',
             width: '1000px',
-            data: { properties, title, columns, required, propertiesUpdate$, theme$ },
+            data: { properties, title, filterPlaceholder, columns, required, propertiesUpdate$, theme$ },
         });
 
         propertiesUpdate$.subscribe(data => {
