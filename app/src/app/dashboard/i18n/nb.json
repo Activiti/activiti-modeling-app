@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "Ny",
+      "CREATE_PROJECT_TITLE": "Opprett prosjekt",
+      "OVERRIDE_PROJECT_TITLE": "Et prosjekt med det navnet finnes alt.",
+      "EDIT_PROJECT_TITLE": "Rediger prosjekt",
+      "PROJECT_CREATED": "Prosjekt opprettet",
+      "PROJECT_UPLOADED": "Prosjekt opplastet",
+      "PROJECT_UPDATED": "Prosjekt lagret",
+      "PROJECT_RELEASED": "Prosjekt utgitt",
+      "PROJECT_DELETED": "Prosjekt slettet",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "Opprett prosjekt",
+        "UPLOAD_PROJECT": "Last opp prosjekt",
+        "CREATE_MODEL": "Innholdsmodell"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "Prosjektnavn:",
+      "PROJECT_DESC": "Prosjektbeskrivelse:"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "Prosjekter",
+        "TOOLTIP": "Publiserte prosjekter"
+      },
+      "RELEASES": {
+        "LABEL": "Utgivelser",
+        "TOOLTIP": "Utgivelser"
+      },
+      "PROCESSES": {
+        "LABEL": "Prosesser",
+        "TOOLTIP": "Publiserte prosesser"
+      },
+      "FAVORITES": {
+        "LABEL": "Favoritter",
+        "TOOLTIP": "Favoritter"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "Navn",
+      "COLUMN_VERSION": "Versjon",
+      "COLUMN_CREATED": "Opprettet",
+      "COLUMN_CREATED_BY": "Opprettet av",
+      "COLUMN_OPTIONS": "Alternativer",
+      "NO_ITEMS": "Opprett eller importer et prosjekt å vise i listen.",
+      "NO_FAV_PROCESSES": "Gjør en prosess til favoritt for å gjøre den tilgjengelig her.",
+      "NO_FAV_PROJECTS": "Gjør et prosjekt til favoritt for å gjøre det tilgjengelig her.",
+      "RELEASE_ID": "Utgivelses-ID",
+      "PROJECT_NAME": "Prosjektnavn"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "Vi støtte på et problem med å laste inn prosjektene. Prøv å oppdatere siden.",
+      "LOAD_RELEASES": "Vi støtte på et problem med å laste inn utgivelsene. Prøv å oppdatere siden.",
+      "LOAD_PROCESSES": "Vi støtte på et problem med å laste inn prosessene. Prøv å oppdatere siden"
+    }
+  }
+}

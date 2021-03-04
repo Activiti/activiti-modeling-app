@@ -1,0 +1,269 @@
+{
+  "PROJECT_EDITOR": {
+    "BACK_TO": "Tilbage til projekter",
+    "NAME": "Projekteditor",
+    "UPLOAD_FILE": "Upload fil",
+    "DOWNLOAD_PROJECT": "Downloade projekt",
+    "PROJECT_VALID": "Projekt har ingen valideringsfejl",
+    "EXPORT_SUCCESS": "Projekt blev eksporteret",
+    "SETTINGS": {
+      "PROJECT_SETTINGS": "Indstillinger for projekteditor",
+      "CONNECTORS_TAB_LABEL": "Forbindelser"
+    },
+    "UPLOAD": "Upload",
+    "IMPORT": "Importér",
+    "CREATE_NEW": "Opret ny",
+    "SEARCH": "Søg",
+    "UPLOAD_FILE_SUCCESS": "Fil blev uploadet",
+    "NO_CONTENT": "<tom>",
+    "NO_SELECTION": "Opret en ny model, eller redigér en eksisterende model ved hjælp af sidepanelet",
+    "NEW_MENU": {
+      "LABEL": "NY",
+      "CREATE": "Opret",
+      "UPLOAD": "Upload",
+      "IMPORT": "Importér",
+      "CREATE_PROCESS_TITLE": "Opret proces",
+      "MENU_ITEMS": {
+        "CREATE_PROCESS": "Proces",
+        "CREATE_CONNECTOR": "Forbindelse",
+        "CREATE_FORM": "Formular",
+        "CREATE_UI": "UI",
+        "CREATE_DATA": "Dataobjekt",
+        "CREATE_DECISION_TABLE": "Beslutningstabel",
+        "CREATE_FILE": "Fil",
+        "CREATE_SCRIPT": "Script",
+        "CREATE_TRIGGER": "Udløser",
+        "CREATE_PROJECT_MODEL": "Indholdsmodel",
+        "CREATE_FORM_WIDGET": "Formularwidget"
+      }
+    },
+    "TREE": {
+      "PROCESSES": "Processer",
+      "FORMS": "Formularer",
+      "CONNECTORS": "Forbindelser",
+      "DATA": "Data",
+      "DECISION_TABLES": "Beslutningstabeller",
+      "UIS": "UI",
+      "FILES": "Filer",
+      "SCRIPTS": "Scripts",
+      "TRIGGERS": "Udløsere"
+    },
+    "PROCESS_DIALOG": {
+      "TITLE_CREATE": "Opret proces",
+      "TITLE_UPDATE": "Opdatér proces",
+      "PROCESS_NAME": "Procesnavn:",
+      "PROCESS_DESC": "Procesdokumentation:",
+      "PROCESS_CREATED": "Proces blev oprettet",
+      "PROCESS_DELETED": "Proces blev slettet",
+      "PROCESS_UPDATED": "Proces blev gemt"
+    },
+    "CONNECTOR_DIALOG": {
+      "TITLE_CREATE": "Opret forbindelse",
+      "TITLE_UPDATE": "Opdatér forbindelse",
+      "CONNECTOR_NAME": "Forbindelsesnavn:",
+      "CONNECTOR_DESC": "Beskrivelse af forbindelse:",
+      "CONNECTOR_CREATED": "Forbindelse blev oprettet",
+      "CONNECTOR_DELETED": "Forbindelse blev slettet",
+      "CONNECTOR_UPDATED": "Forbindelse blev gemt"
+    },
+    "FORM_DIALOG": {
+      "TITLE_CREATE": "Opret formular",
+      "TITLE_UPDATE": "Opdatér formular",
+      "FORM_NAME": "Formularnavn:",
+      "FORM_DESC": "Beskrivelse af formular:",
+      "FORM_CREATED": "Formular blev oprettet",
+      "FORM_DELETED": "Formular blev slettet",
+      "FORM_UPDATED": "Formular blev gemt",
+      "FORM_CONTENT_CREATED": "Første formularindhold fra indholdsmodel oprettet"
+    },
+    "UI_DIALOG": {
+      "TITLE_CREATE": "Opret UI",
+      "TITLE_UPDATE": "Opdatér UI",
+      "UI_NAME": "UI-navn:",
+      "UI_DESC": "Beskrivelse af UI:",
+      "UI_CREATED": "UI blev oprettet",
+      "UI_DELETED": "UI blev slettet",
+      "UI_UPDATED": "UI blev gemt"
+    },
+    "DATA_DIALOG": {
+      "TITLE_CREATE": "Opret dataobjekt",
+      "TITLE_UPDATE": "Opdatér dataobjekt",
+      "DATA_NAME": "Navn på dataobjekt:",
+      "DATA_DESC": "Beskrivelse af dataobjekt:",
+      "DATA_CREATED": "Dataobjekt blev oprettet",
+      "DATA_DELETED": "Dataobjekt blev slettet",
+      "DATA_UPDATED": "Dataobjekt blev gemt"
+    },
+    "DECISION_TABLE_DIALOG": {
+      "TITLE_CREATE": "Opret beslutningstabel",
+      "TITLE_UPDATE": "Opdatér beslutningstabel",
+      "DECISION_TABLE_NAME": "Navn på beslutningstabel:",
+      "DECISION_TABLE_DESC": "Beskrivelse af beslutningstabel:",
+      "DECISION_TABLE_CREATED": "Beslutningstabel blev oprettet",
+      "DECISION_TABLE_DELETED": "Beslutningstabel blev slettet",
+      "DECISION_TABLE_UPDATED": "Beslutningstabel blev gemt"
+    },
+    "FILE_DIALOG": {
+      "TITLE_CREATE": "Opret fil",
+      "TITLE_UPDATE": "Opdatér fil",
+      "FILE_NAME": "Filnavn:",
+      "FILE_DESC": "Filbeskrivelse:",
+      "FILE_CREATED": "Fil blev oprettet",
+      "FILE_DELETED": "Fil blev slettet",
+      "FILE_UPDATED": "Fil blev gemt"
+    },
+    "SCRIPT_DIALOG": {
+      "TITLE_CREATE": "Opret script",
+      "TITLE_UPDATE": "Opdatér script",
+      "SCRIPT_NAME": "Navn på script:",
+      "SCRIPT_DESC": "Beskrivelse af script:",
+      "SCRIPT_CREATED": "Script blev oprettet",
+      "SCRIPT_DELETED": "Script blev slettet",
+      "SCRIPT_UPDATED": "Skript gemt"
+    },
+    "TRIGGER_DIALOG": {
+      "TITLE_CREATE": "Opret udløser",
+      "TITLE_UPDATE": "Opdatér udløser",
+      "TRIGGER_NAME": "Navn på udløser:",
+      "TRIGGER_DESC": "Beskrivelse af udløser:",
+      "TRIGGER_CREATED": "Udløser blev oprettet",
+      "TRIGGER_DELETED": "Udløser blev slettet",
+      "TRIGGER_UPDATED": "Udløser blev gemt"
+    },
+    "ACTION_DIALOG": {
+      "ACTION_DETAILS": "Handlingsdetaljer",
+      "ACTION_NAME": "Handlingsnavn",
+      "ACTION_DESC": "Beskrivelse af handling",
+      "ADD_ACTION": "Tilføj handling",
+      "DEL_ACTION": "Slet handling"
+    },
+    "EVENT_DIALOG": {
+      "EVENT_DETAILS": "Hændelsesdetaljer",
+      "EVENT_NAME": "Navn på hændelse",
+      "EVENT_DESC": "Beskrivelse af hændelse",
+      "ADD_EVENT": "Tilføj hændelse",
+      "DEL_EVENT": "Slet hændelse"
+    },
+    "PROJECT_MODEL_DIALOG": {
+      "TITLE_CREATE": "Opret indholdsmodel",
+      "TITLE_UPDATE": "Aktualiser indholdsmodel",
+      "PROJECT_MODEL_NAME": "Indholdsmodellens navn",
+      "PROJECT_MODEL_DESC": "Beskrivelse af indholdsmodel:",
+      "PROJECT_MODEL_CREATED": "Indholdsmodel oprettet",
+      "PROJECT_MODEL_DELETED": "Indholdsmodel slettet",
+      "PROJECT_MODEL_UPDATED": "Indholsmodel gemt"
+    },
+    "FORM_WIDGET_DIALOG": {
+      "TITLE_CREATE": "Opret formular-widget",
+      "TITLE_UPDATE": "Aktualiser formular-widget",
+      "FORM_WIDGET_NAME": "Widget-navn:",
+      "FORM_WIDGET_DESC": "Widget-beskrivelse:",
+      "FORM_WIDGET_CREATED": "Formular-widget oprettet",
+      "FORM_WIDGET_DELETED": "Formular-widget slettet",
+      "FORM_WIDGET_UPDATED": "Formular-widget gemt"
+    },
+    "ERROR": {
+      "UPLOAD_FILE": "Der opstod et problem under upload af filen. Prøv at uploade den igen.",
+      "DELETE_PROJECT": "Der opstod et problem under sletning af projektet. Prøv at slette det igen.",
+      "CHANGE_FAVORITE": "Der opstod et problem under angivelse af dette projekt som favorit. Prøv at angive det igen som favorit.",
+      "DELETE_PROCESS": "Der opstod et problem under sletning af processen. Prøv at slette den igen.",
+      "LOAD_MODELS": "Der er opstået et problem under indlæsning af modellerne. Prøv at opdatere siden.",
+      "RELEASE_PROJECT": "Der opstod et problem under frigivelse af projektet. Prøv at frigive det igen.",
+      "CREATE_PROCESS": {
+        "DUPLICATION": "Der findes allerede en proces med det navn",
+        "GENERAL": "Der opstod et problem under oprettelse af processen. Prøv at oprette den igen."
+      },
+      "UPDATE_PROCESS": {
+        "DUPLICATION": "Der findes allerede en proces med det navn",
+        "GENERAL": "Der opstod et problem under lagring af processen. Prøv at gemme den igen.",
+        "EMPTY_NAME": "Der skal angives et navn"
+      },
+      "CREATE_CONNECTOR": {
+        "DUPLICATION": "Der findes allerede en forbindelse med det navn",
+        "GENERAL": "Der opstod et problem under oprettelse af forbindelsen. Prøv at oprette den igen."
+      },
+      "UPDATE_CONNECTOR": {
+        "DUPLICATION": "Der findes allerede en forbindelse med det navn",
+        "GENERAL": "Der opstod et problem under lagring af forbindelsen. Prøv at gemme den igen."
+      },
+      "CREATE_FORM": {
+        "DUPLICATION": "Der findes allerede en formular med det navn",
+        "GENERAL": "Der opstod et problem under oprettelse af formularen. Prøv at oprette den igen."
+      },
+      "UPDATE_FORM": {
+        "DUPLICATION": "Der findes allerede en formular med det navn",
+        "GENERAL": "Der opstod et problem under lagring af formularen. Prøv at gemme den igen."
+      },
+      "CREATE_UI": {
+        "DUPLICATION": "Der findes allerede en UI med det navn",
+        "GENERAL": "Der opstod et problem under oprettelse af UI. Prøv at oprette den igen."
+      },
+      "UPDATE_UI": {
+        "DUPLICATION": "Der findes allerede en UI med det navn",
+        "GENERAL": "Der opstod et problem under lagring af UI. Prøv at gemme den igen."
+      },
+      "CREATE_DECISION_TABLE": {
+        "DUPLICATION": "Der findes allerede en beslutningstabel med det navn",
+        "GENERAL": "Der opstod et problem under oprettelse af beslutningstabellen. Prøv at oprette den igen."
+      },
+      "UPDATE_DECISION_TABLE": {
+        "DUPLICATION": "Der findes allerede en beslutningstabel med det navn",
+        "GENERAL": "Der opstod et problem under lagring af beslutningstabellen. Prøv at gemme den igen."
+      },
+      "CREATE_DATA": {
+        "DUPLICATION": "Der findes allerede et dataobjekt med det navn",
+        "GENERAL": "Der opstod et problem under oprettelse af dataobjektet. Prøv at oprette det igen."
+      },
+      "UPDATE_DATA": {
+        "DUPLICATION": "Der findes allerede et dataobjekt med det navn",
+        "GENERAL": "Der opstod et problem under lagring af dataobjektet. Prøv at gemme det igen."
+      },
+      "CREATE_PROJECT": {
+        "DUPLICATION": "Der findes allerede et projekt med det navn",
+        "GENERAL": "Der opstod et problem under oprettelse af projektet. Prøv at oprette det igen."
+      },
+      "UPDATE_PROJECT": {
+        "DUPLICATION": "Der findes allerede et projekt med det navn",
+        "GENERAL": "Der opstod et problem under lagring af projektet. Prøv at gemme det igen."
+      },
+      "UPLOAD_PROJECT": {
+        "DUPLICATION": "Der findes allerede et projekt med det navn",
+        "GENERAL": "Der opstod et problem under upload af projektet. Prøv at uploade det igen."
+      },
+      "GET_PROJECT": "Der opstod et problem under indlæsning af projektet. Prøv at opdatere siden.",
+      "EXPORT_PROJECT": "Der opstod en ukendt fejl under eksport af projektet",
+      "CREATE_FILE": {
+        "DUPLICATION": "Der findes allerede en fil med det navn",
+        "GENERAL": "Der opstod et problem under oprettelse af filen. Prøv at oprette den igen."
+      },
+      "UPDATE_FILE": {
+        "DUPLICATION": "Der findes allerede en fil med det navn",
+        "GENERAL": "Der opstod et problem under lagring af filen. Prøv at gemme den igen."
+      },
+      "CREATE_SCRIPT": {
+        "DUPLICATION": "Der findes allerede et script med det navn",
+        "GENERAL": "Der opstod et problem under oprettelse af scriptet. Prøv at oprette det igen."
+      },
+      "UPDATE_SCRIPT": {
+        "DUPLICATION": "Der findes allerede et script med det navn",
+        "GENERAL": "Der opstod et problem under lagring af scriptet. Prøv at oprette det igen."
+      },
+      "CREATE_TRIGGER": {
+        "DUPLICATION": "Der findes allerede en udløser med det navn",
+        "GENERAL": "Der opstod et problem under oprettelse af udløseren. Prøv at oprette den igen."
+      },
+      "UPDATE_TRIGGER": {
+        "DUPLICATION": "Der findes allerede en udløser med det navn",
+        "GENERAL": "Der opstod et problem under lagring af udløseren. Prøv at gemme den igen."
+      },
+      "CREATE_FORM_WIDGET": {
+        "DUPLICATION": "En formular-widget med dette navn findes allerede",
+        "GENERAL": "Vi har et problem med at oprette formular-widgetten. Prøv at oprette den igen."
+      },
+      "UPDATE_FORM_WIDGET": {
+        "DUPLICATION": "En formular-widget med dette navn findes allerede",
+        "GENERAL": "Vi har et problem med at gemme widgetten. Prøv at gemme den igen."
+      }
+    }
+  }
+}

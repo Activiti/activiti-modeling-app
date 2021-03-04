@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "Nový",
+      "CREATE_PROJECT_TITLE": "Vytvoření projektu",
+      "OVERRIDE_PROJECT_TITLE": "Projekt s tímto názvem již existuje.",
+      "EDIT_PROJECT_TITLE": "Úprava projektu",
+      "PROJECT_CREATED": "Projekt byl vytvořen",
+      "PROJECT_UPLOADED": "Projekt byl odeslán",
+      "PROJECT_UPDATED": "Projekt byl uložen",
+      "PROJECT_RELEASED": "Projekt byl vydán",
+      "PROJECT_DELETED": "Projekt byl odstraněn",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "Vytvoření projektu",
+        "UPLOAD_PROJECT": "Odeslat projekt",
+        "CREATE_MODEL": "Model obsahu"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "Název projektu:",
+      "PROJECT_DESC": "Popis projektu:"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "Projekty",
+        "TOOLTIP": "Publikované projekty"
+      },
+      "RELEASES": {
+        "LABEL": "Verze",
+        "TOOLTIP": "Verze"
+      },
+      "PROCESSES": {
+        "LABEL": "Procesy",
+        "TOOLTIP": "Publikované procesy"
+      },
+      "FAVORITES": {
+        "LABEL": "Oblíbené",
+        "TOOLTIP": "Oblíbené"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "Název",
+      "COLUMN_VERSION": "Verze",
+      "COLUMN_CREATED": "Vytvořeno",
+      "COLUMN_CREATED_BY": "Vytvořil(a)",
+      "COLUMN_OPTIONS": "Možnosti",
+      "NO_ITEMS": "Vytvořte nebo naimportujte projekt, který chcete zobrazit v seznamu.",
+      "NO_FAV_PROCESSES": "Označte proces jako oblíbený, aby byl k dispozici zde.",
+      "NO_FAV_PROJECTS": "Označte projekt jako oblíbený, aby byl k dispozici zde.",
+      "RELEASE_ID": "ID verze",
+      "PROJECT_NAME": "Název projektu"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "Došlo k problému při načítání projektů. Zkuste obnovit stránku.",
+      "LOAD_RELEASES": "Došlo k problému při načítání verzí. Zkuste obnovit stránku.",
+      "LOAD_PROCESSES": "Došlo k problému při načítání procesů. Zkuste obnovit stránku."
+    }
+  }
+}

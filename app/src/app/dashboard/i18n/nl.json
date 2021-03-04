@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "Nieuw",
+      "CREATE_PROJECT_TITLE": "Project maken",
+      "OVERRIDE_PROJECT_TITLE": "Er bestaat al een project met die naam.",
+      "EDIT_PROJECT_TITLE": "Project bewerken",
+      "PROJECT_CREATED": "Project gemaakt",
+      "PROJECT_UPLOADED": "Project geüpload",
+      "PROJECT_UPDATED": "Project opgeslagen",
+      "PROJECT_RELEASED": "Project vrijgegeven",
+      "PROJECT_DELETED": "Project verwijderd",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "Project maken",
+        "UPLOAD_PROJECT": "Project uploaden",
+        "CREATE_MODEL": "Contentmodel"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "Projectnaam:",
+      "PROJECT_DESC": "Projectbeschrijving:"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "Projecten",
+        "TOOLTIP": "Gepubliceerde projecten"
+      },
+      "RELEASES": {
+        "LABEL": "Releases",
+        "TOOLTIP": "Releases"
+      },
+      "PROCESSES": {
+        "LABEL": "Processen",
+        "TOOLTIP": "Gepubliceerde processen"
+      },
+      "FAVORITES": {
+        "LABEL": "Favorieten",
+        "TOOLTIP": "Favorieten"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "Naam",
+      "COLUMN_VERSION": "Versie",
+      "COLUMN_CREATED": "Gemaakt",
+      "COLUMN_CREATED_BY": "Gemaakt door",
+      "COLUMN_OPTIONS": "Opties",
+      "NO_ITEMS": "Maak of importeer een project om het in de lijst weer te geven.",
+      "NO_FAV_PROCESSES": "Stel een proces in als favoriet om het hier beschikbaar te stellen.",
+      "NO_FAV_PROJECTS": "Stel een project in als favoriet om het hier beschikbaar te stellen.",
+      "RELEASE_ID": "Release-ID",
+      "PROJECT_NAME": "Projectnaam"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "Er is een probleem opgetreden bij het laden van de projecten. Vernieuw de pagina.",
+      "LOAD_RELEASES": "Er is een probleem opgetreden bij het laden van de releases. Vernieuw de pagina",
+      "LOAD_PROCESSES": "Er is een probleem opgetreden bij het laden van de processen. Vernieuw de pagina"
+    }
+  }
+}

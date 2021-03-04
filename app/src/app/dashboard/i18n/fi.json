@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "Uusi",
+      "CREATE_PROJECT_TITLE": "Luo projekti",
+      "OVERRIDE_PROJECT_TITLE": "Samanniminen projekti on jo olemassa.",
+      "EDIT_PROJECT_TITLE": "Muokkaa projektia",
+      "PROJECT_CREATED": "Projekti luotiin",
+      "PROJECT_UPLOADED": "Projekti ladattiin",
+      "PROJECT_UPDATED": "Projekti tallennettiin",
+      "PROJECT_RELEASED": "Projekti julkaistiin",
+      "PROJECT_DELETED": "Projekti poistettiin",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "Luo projekti",
+        "UPLOAD_PROJECT": "Lataa projekti palvelimelle",
+        "CREATE_MODEL": "Sisältömalli"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "Projektin nimi:",
+      "PROJECT_DESC": "Projektin kuvaus:"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "Projektit",
+        "TOOLTIP": "Julkaistut projektit"
+      },
+      "RELEASES": {
+        "LABEL": "Julkaisut",
+        "TOOLTIP": "Julkaisut"
+      },
+      "PROCESSES": {
+        "LABEL": "Prosessit",
+        "TOOLTIP": "Julkaistut prosessit"
+      },
+      "FAVORITES": {
+        "LABEL": "Suosikit",
+        "TOOLTIP": "Suosikit"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "Nimi",
+      "COLUMN_VERSION": "Versio",
+      "COLUMN_CREATED": "Luotu",
+      "COLUMN_CREATED_BY": "Tekijä",
+      "COLUMN_OPTIONS": "Valinnat",
+      "NO_ITEMS": "Luo tai tuo projekti, jotta voit tarkastella sitä luettelossa.",
+      "NO_FAV_PROCESSES": "Lisää prosessi suosikkeihin saattaaksesi sen käytettäväksi täällä.",
+      "NO_FAV_PROJECTS": "Lisää projekti suosikkeihin saattaaksesi sen käytettäväksi täällä.",
+      "RELEASE_ID": "Julkaisun tunnus",
+      "PROJECT_NAME": "Projektin nimi"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "Projektien lataamisessa ilmeni ongelma. Päivitä sivu ja yritä uudelleen.",
+      "LOAD_RELEASES": "Julkaisujen lataamisessa ilmeni ongelma. Päivitä sivu ja yritä uudelleen.",
+      "LOAD_PROCESSES": "Prosessien lataamisessa ilmeni ongelma. Päivitä sivu ja yrtiä uudelleen."
+    }
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "PROJECT_EDITOR": {
+    "BACK_TO": "Volver a proyectos",
+    "NAME": "Editor de proyectos",
+    "UPLOAD_FILE": "Añadir fichero",
+    "DOWNLOAD_PROJECT": "Descargar proyecto",
+    "PROJECT_VALID": "El proyecto no contiene errores de validación",
+    "EXPORT_SUCCESS": "Proyecto exportado",
+    "SETTINGS": {
+      "PROJECT_SETTINGS": "Configuración del editor de proyectos",
+      "CONNECTORS_TAB_LABEL": "Conectores"
+    },
+    "UPLOAD": "Cargar",
+    "IMPORT": "Importar",
+    "CREATE_NEW": "Crear nuevo",
+    "SEARCH": "Buscar",
+    "UPLOAD_FILE_SUCCESS": "Fichero cargado",
+    "NO_CONTENT": "<vacío>",
+    "NO_SELECTION": "Crear un nuevo modelo o editar uno existente usando la barra lateral",
+    "NEW_MENU": {
+      "LABEL": "Nuevo",
+      "CREATE": "Crear",
+      "UPLOAD": "Cargar",
+      "IMPORT": "Importar",
+      "CREATE_PROCESS_TITLE": "Crear proceso",
+      "MENU_ITEMS": {
+        "CREATE_PROCESS": "Proceso",
+        "CREATE_CONNECTOR": "conector",
+        "CREATE_FORM": "Formulario",
+        "CREATE_UI": "IU",
+        "CREATE_DATA": "Objeto de datos",
+        "CREATE_DECISION_TABLE": "tabla de decisión",
+        "CREATE_FILE": "fichero",
+        "CREATE_SCRIPT": "script",
+        "CREATE_TRIGGER": "Desencadenador",
+        "CREATE_PROJECT_MODEL": "Modelo de contenido",
+        "CREATE_FORM_WIDGET": "Widget de formulario"
+      }
+    },
+    "TREE": {
+      "PROCESSES": "Procesos",
+      "FORMS": "Formularios",
+      "CONNECTORS": "Conectores",
+      "DATA": "datos",
+      "DECISION_TABLES": "Tablas decisión",
+      "UIS": "IU",
+      "FILES": "Ficheros",
+      "SCRIPTS": "Scripts",
+      "TRIGGERS": "Desencadenadores"
+    },
+    "PROCESS_DIALOG": {
+      "TITLE_CREATE": "Crear proceso",
+      "TITLE_UPDATE": "Actualizar proceso",
+      "PROCESS_NAME": "Nombre del proceso:",
+      "PROCESS_DESC": "Documentación del proceso:",
+      "PROCESS_CREATED": "Proceso creado",
+      "PROCESS_DELETED": "Proceso eliminado",
+      "PROCESS_UPDATED": "Proceso guardado"
+    },
+    "CONNECTOR_DIALOG": {
+      "TITLE_CREATE": "Crear conector",
+      "TITLE_UPDATE": "Actualizar conector",
+      "CONNECTOR_NAME": "Nombre del conector:",
+      "CONNECTOR_DESC": "Descripción del conector:",
+      "CONNECTOR_CREATED": "Conector creado",
+      "CONNECTOR_DELETED": "Conector eliminado",
+      "CONNECTOR_UPDATED": "Conector guardado"
+    },
+    "FORM_DIALOG": {
+      "TITLE_CREATE": "Crear formulario",
+      "TITLE_UPDATE": "Actualizar formulario",
+      "FORM_NAME": "Nombre del formulario:",
+      "FORM_DESC": "Descripción del formulario:",
+      "FORM_CREATED": "Formulario creado",
+      "FORM_DELETED": "Formulario eliminado",
+      "FORM_UPDATED": "Formulario guardado",
+      "FORM_CONTENT_CREATED": "Se ha creado el contenido inicial del formulario a partir del modelo de contenido"
+    },
+    "UI_DIALOG": {
+      "TITLE_CREATE": "Crear IU",
+      "TITLE_UPDATE": "Actualizar IU",
+      "UI_NAME": "Nombre de la IU:",
+      "UI_DESC": "Descripción de la IU:",
+      "UI_CREATED": "IU creada",
+      "UI_DELETED": "IU eliminada",
+      "UI_UPDATED": "IU guardada"
+    },
+    "DATA_DIALOG": {
+      "TITLE_CREATE": "Crear objeto de datos",
+      "TITLE_UPDATE": "Actualizar objeto de datos",
+      "DATA_NAME": "Nombre del objeto de datos:",
+      "DATA_DESC": "Descripción del objeto de datos:",
+      "DATA_CREATED": "Objeto de datos creado",
+      "DATA_DELETED": "Objeto de datos eliminado",
+      "DATA_UPDATED": "Objeto de datos guardado"
+    },
+    "DECISION_TABLE_DIALOG": {
+      "TITLE_CREATE": "Crear tabla de decisión",
+      "TITLE_UPDATE": "Actualizar tabla de decisión",
+      "DECISION_TABLE_NAME": "Nombre de la tabla de decisión:",
+      "DECISION_TABLE_DESC": "Descripción de la tabla de decisión:",
+      "DECISION_TABLE_CREATED": "Tabla de decisión creada",
+      "DECISION_TABLE_DELETED": "Tabla de decisión eliminada",
+      "DECISION_TABLE_UPDATED": "Tabla de decisión guardada"
+    },
+    "FILE_DIALOG": {
+      "TITLE_CREATE": "Crear fichero",
+      "TITLE_UPDATE": "Actualizar fichero",
+      "FILE_NAME": "Nombre del fichero",
+      "FILE_DESC": "Descripción del fichero:",
+      "FILE_CREATED": "Fichero creado",
+      "FILE_DELETED": "Fichero eliminado",
+      "FILE_UPDATED": "Fichero guardado"
+    },
+    "SCRIPT_DIALOG": {
+      "TITLE_CREATE": "Crear script",
+      "TITLE_UPDATE": "Actualizar script",
+      "SCRIPT_NAME": "Nombre del script:",
+      "SCRIPT_DESC": "Descripción del script:",
+      "SCRIPT_CREATED": "Script creado",
+      "SCRIPT_DELETED": "Script eliminado",
+      "SCRIPT_UPDATED": "Script guardado"
+    },
+    "TRIGGER_DIALOG": {
+      "TITLE_CREATE": "Crear desencadenador",
+      "TITLE_UPDATE": "Actualizar desencadenador",
+      "TRIGGER_NAME": "Nombre del desencadenador:",
+      "TRIGGER_DESC": "Descripción del desencadenador:",
+      "TRIGGER_CREATED": "Desencadenador creado",
+      "TRIGGER_DELETED": "Desencadenador eliminado",
+      "TRIGGER_UPDATED": "Desencadenador guardado"
+    },
+    "ACTION_DIALOG": {
+      "ACTION_DETAILS": "Detalles de la acción",
+      "ACTION_NAME": "Nombre de la acción",
+      "ACTION_DESC": "Descripción de la acción",
+      "ADD_ACTION": "Añadir acción",
+      "DEL_ACTION": "Eliminar acción"
+    },
+    "EVENT_DIALOG": {
+      "EVENT_DETAILS": "Detalles del evento",
+      "EVENT_NAME": "Nombre del evento",
+      "EVENT_DESC": "Descripción del evento",
+      "ADD_EVENT": "Añadir evento",
+      "DEL_EVENT": "Eliminar evento"
+    },
+    "PROJECT_MODEL_DIALOG": {
+      "TITLE_CREATE": "Crear modelo de contenido",
+      "TITLE_UPDATE": "Actualizar modelo de contenido",
+      "PROJECT_MODEL_NAME": "Nombre del modelo de contenido:",
+      "PROJECT_MODEL_DESC": "Descripción del modelo de contenido:",
+      "PROJECT_MODEL_CREATED": "Modelo de contenido creado",
+      "PROJECT_MODEL_DELETED": "Modelo de contenido eliminado",
+      "PROJECT_MODEL_UPDATED": "Modelo de contenido guardado"
+    },
+    "FORM_WIDGET_DIALOG": {
+      "TITLE_CREATE": "Crear widget de formulario",
+      "TITLE_UPDATE": "Actualizar el widget del formulario",
+      "FORM_WIDGET_NAME": "Nombre del widget:",
+      "FORM_WIDGET_DESC": "Descripción del widget:",
+      "FORM_WIDGET_CREATED": "Widget de formulario creado",
+      "FORM_WIDGET_DELETED": "Widget de formulario eliminado",
+      "FORM_WIDGET_UPDATED": "Widget de formulario guardado"
+    },
+    "ERROR": {
+      "UPLOAD_FILE": "Ha surgido un problema al cargar el fichero. Vuelva a intentar cargarlo.",
+      "DELETE_PROJECT": "Ha surgido un problema al eliminar el proyecto. Vuelva a intentar eliminarlo.",
+      "CHANGE_FAVORITE": "Ha surgido un problema al marcar ese proyecto como favorito. Vuelva a intentar marcarlo como favorito.",
+      "DELETE_PROCESS": "Ha surgido un problema al eliminar el proceso. Vuelva a intentar eliminarlo.",
+      "LOAD_MODELS": "Ha surgido un problema al cargar los modelos. Vuelva a intentar actualizar la página.",
+      "RELEASE_PROJECT": "Ha surgido un problema al lanzar el proyecto. Vuelva a intentar lanzarlo.",
+      "CREATE_PROCESS": {
+        "DUPLICATION": "Ya existe un proceso con ese nombre",
+        "GENERAL": "Ha surgido un problema al crear el proceso. Vuelva a intentar crearlo."
+      },
+      "UPDATE_PROCESS": {
+        "DUPLICATION": "Ya existe un proceso con ese nombre",
+        "GENERAL": "Ha surgido un problema al guardar el proceso. Vuelva a intentar guardarlo.",
+        "EMPTY_NAME": "Se requiere un nombre"
+      },
+      "CREATE_CONNECTOR": {
+        "DUPLICATION": "Ya existe un conector con ese nombre",
+        "GENERAL": "Ha surgido un problema al crear el conector. Vuelva a intentar crearlo."
+      },
+      "UPDATE_CONNECTOR": {
+        "DUPLICATION": "Ya existe un conector con ese nombre",
+        "GENERAL": "Ha surgido un problema al guardar el conector. Vuelva a intentar guardarlo."
+      },
+      "CREATE_FORM": {
+        "DUPLICATION": "Ya existe un formulario con ese nombre",
+        "GENERAL": "Ha surgido un problema al crear el formulario. Vuelva a intentar crearlo."
+      },
+      "UPDATE_FORM": {
+        "DUPLICATION": "Ya existe un formulario con ese nombre",
+        "GENERAL": "Ha surgido un problema al guardar el formulario. Vuelva a intentar guardarlo."
+      },
+      "CREATE_UI": {
+        "DUPLICATION": "Ya existe una IU con ese nombre",
+        "GENERAL": "Ha surgido un problema al crear la IU. Vuelva a intentar crearla."
+      },
+      "UPDATE_UI": {
+        "DUPLICATION": "Ya existe una IU con ese nombre",
+        "GENERAL": "Ha surgido un problema al guardar la IU. Vuelva a intentar guardarla."
+      },
+      "CREATE_DECISION_TABLE": {
+        "DUPLICATION": "Ya existe una tabla de decisión con ese nombre",
+        "GENERAL": "Ha surgido un problema al crear la tabla de decisión. Vuelva a intentar crearla."
+      },
+      "UPDATE_DECISION_TABLE": {
+        "DUPLICATION": "Ya existe una tabla de decisión con ese nombre",
+        "GENERAL": "Ha surgido un problema al guardar la tabla de decisión. Vuelva a intentar guardarla."
+      },
+      "CREATE_DATA": {
+        "DUPLICATION": "Ya existe un objeto de datos con ese nombre",
+        "GENERAL": "Ha surgido un problema al crear el objeto de datos. Vuelva a intentar crearlo."
+      },
+      "UPDATE_DATA": {
+        "DUPLICATION": "Ya existe un objeto de datos con ese nombre",
+        "GENERAL": "Ha surgido un problema al guardar el objeto de datos. Vuelva a intentar guardarlo."
+      },
+      "CREATE_PROJECT": {
+        "DUPLICATION": "Ya existe un proyecto con ese nombre",
+        "GENERAL": "Ha surgido un problema al crear el proyecto. Vuelva a intentar crearlo."
+      },
+      "UPDATE_PROJECT": {
+        "DUPLICATION": "Ya existe un proyecto con ese nombre",
+        "GENERAL": "Ha surgido un problema al guardar el proyecto. Vuelva a intentar guardarlo."
+      },
+      "UPLOAD_PROJECT": {
+        "DUPLICATION": "Ya existe un proyecto con ese nombre",
+        "GENERAL": "Ha surgido un problema al cargar el proyecto. Vuelva a intentar cargarlo."
+      },
+      "GET_PROJECT": "Ha surgido un problema al cargar el proyecto. Vuelva a intentar actualizar la página.",
+      "EXPORT_PROJECT": "Error desconocido durante la exportación del proyecto",
+      "CREATE_FILE": {
+        "DUPLICATION": "Ya existe un fichero con ese nombre",
+        "GENERAL": "Ha surgido un problema al crear el fichero. Vuelva a intentar crearlo."
+      },
+      "UPDATE_FILE": {
+        "DUPLICATION": "Ya existe un fichero con ese nombre",
+        "GENERAL": "Ha surgido un problema al guardar el fichero. Vuelva a intentar guardarlo."
+      },
+      "CREATE_SCRIPT": {
+        "DUPLICATION": "Ya existe un script con ese nombre",
+        "GENERAL": "Ha surgido un problema al crear el script. Vuelva a intentar crearlo."
+      },
+      "UPDATE_SCRIPT": {
+        "DUPLICATION": "Ya existe un script con ese nombre",
+        "GENERAL": "Ha surgido un problema al guardar el script. Vuelva a intentar guardarlo."
+      },
+      "CREATE_TRIGGER": {
+        "DUPLICATION": "Ya existe un desencadenador con ese nombre",
+        "GENERAL": "Ha surgido un problema al crear el desencadenador. Vuelva a intentar crearlo."
+      },
+      "UPDATE_TRIGGER": {
+        "DUPLICATION": "Ya existe un desencadenador con ese nombre",
+        "GENERAL": "Ha surgido un problema al guardar el desencadenador. Vuelva a intentar guardarlo."
+      },
+      "CREATE_FORM_WIDGET": {
+        "DUPLICATION": "Ya existe un widget de formulario con ese nombre",
+        "GENERAL": "Ha surgido un problema al crear el widget del formulario. Intente crearlo de nuevo."
+      },
+      "UPDATE_FORM_WIDGET": {
+        "DUPLICATION": "Ya existe un widget de formulario con ese nombre",
+        "GENERAL": "Ha surgido un problema al guardar el widget. Intente guardarlo de nuevo."
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "NY",
+      "CREATE_PROJECT_TITLE": "Opret projekt",
+      "OVERRIDE_PROJECT_TITLE": "Der findes allerede et projekt med det navn.",
+      "EDIT_PROJECT_TITLE": "Redigér projekt",
+      "PROJECT_CREATED": "Projekt blev oprettet",
+      "PROJECT_UPLOADED": "Projekt blev uploadet",
+      "PROJECT_UPDATED": "Projekt blev gemt",
+      "PROJECT_RELEASED": "Projekt blev frigivet",
+      "PROJECT_DELETED": "Projekt blev slettet",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "Opret projekt",
+        "UPLOAD_PROJECT": "Uploade projekt",
+        "CREATE_MODEL": "Indholdsmodel"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "Projektnavn:",
+      "PROJECT_DESC": "Projektbeskrivelse:"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "Projekter",
+        "TOOLTIP": "Udgivne projekter"
+      },
+      "RELEASES": {
+        "LABEL": "Frigivelser",
+        "TOOLTIP": "Frigivelser"
+      },
+      "PROCESSES": {
+        "LABEL": "Processer",
+        "TOOLTIP": "Udgivne processer"
+      },
+      "FAVORITES": {
+        "LABEL": "Angivet som favorit",
+        "TOOLTIP": "Angivet som favorit"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "Navn",
+      "COLUMN_VERSION": "Version",
+      "COLUMN_CREATED": "Oprettet",
+      "COLUMN_CREATED_BY": "Oprettet af",
+      "COLUMN_OPTIONS": "Valgmuligheder",
+      "NO_ITEMS": "Opret eller importér et projekt, så det vises på listen.",
+      "NO_FAV_PROCESSES": "Angiv en proces som favorit for at gøre den tilgængelig her.",
+      "NO_FAV_PROJECTS": "Angiv et projekt som favorit for at gøre det tilgængeligt her.",
+      "RELEASE_ID": "Frigivelses-id",
+      "PROJECT_NAME": "Projektnavn"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "Der opstod et problem under indlæsning af projekterne. Prøv at opdatere siden.",
+      "LOAD_RELEASES": "Der opstod et problem under indlæsning af frigivelserne. Prøv at opdatere siden.",
+      "LOAD_PROCESSES": "Der opstod et problem under indlæsning af processerne. Prøv at opdatere siden."
+    }
+  }
+}

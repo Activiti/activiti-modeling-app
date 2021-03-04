@@ -1,0 +1,269 @@
+{
+  "PROJECT_EDITOR": {
+    "BACK_TO": "عودة إلى المشروعات",
+    "NAME": "محرر المشروعات",
+    "UPLOAD_FILE": "تحميل ملف",
+    "DOWNLOAD_PROJECT": "تنزيل المشروع",
+    "PROJECT_VALID": "المشروع لا يحتوي على أخطاء تحقق من الصحة",
+    "EXPORT_SUCCESS": "تم تصدير المشروع",
+    "SETTINGS": {
+      "PROJECT_SETTINGS": "إعدادات محرر المشروع",
+      "CONNECTORS_TAB_LABEL": "موصلات"
+    },
+    "UPLOAD": "تحميل",
+    "IMPORT": "استيراد",
+    "CREATE_NEW": "إنشاء جديد",
+    "SEARCH": "بحث",
+    "UPLOAD_FILE_SUCCESS": "تم تحميل الملف",
+    "NO_CONTENT": "<فارغ>",
+    "NO_SELECTION": "إنشاء نموذج جديد أو تحرير نموذج قائم باستخدام الشريط الجانبي",
+    "NEW_MENU": {
+      "LABEL": "جديد",
+      "CREATE": "إنشاء",
+      "UPLOAD": "تحميل",
+      "IMPORT": "استيراد",
+      "CREATE_PROCESS_TITLE": "إنشاء عملية",
+      "MENU_ITEMS": {
+        "CREATE_PROCESS": "العملية",
+        "CREATE_CONNECTOR": "الموصل",
+        "CREATE_FORM": "نموذج",
+        "CREATE_UI": "UI",
+        "CREATE_DATA": "كائن البيانات",
+        "CREATE_DECISION_TABLE": "جدول القرارات",
+        "CREATE_FILE": "ملف",
+        "CREATE_SCRIPT": "البرنامج النصي",
+        "CREATE_TRIGGER": "المشغل",
+        "CREATE_PROJECT_MODEL": "نموذج المحتوى",
+        "CREATE_FORM_WIDGET": "عنصر واجهة النموذج"
+      }
+    },
+    "TREE": {
+      "PROCESSES": "عمليات",
+      "FORMS": "النماذج",
+      "CONNECTORS": "موصلات",
+      "DATA": "البيانات",
+      "DECISION_TABLES": "جداول القرارات",
+      "UIS": "UI",
+      "FILES": "ملفات",
+      "SCRIPTS": "البرامج النصية",
+      "TRIGGERS": "المشغلات"
+    },
+    "PROCESS_DIALOG": {
+      "TITLE_CREATE": "إنشاء عملية",
+      "TITLE_UPDATE": "تحديث العملية",
+      "PROCESS_NAME": "اسم العملية:",
+      "PROCESS_DESC": "وثائق العملية:",
+      "PROCESS_CREATED": "تم إنشاء العملية",
+      "PROCESS_DELETED": "تم حذف العملية",
+      "PROCESS_UPDATED": "تم حفظ العملية"
+    },
+    "CONNECTOR_DIALOG": {
+      "TITLE_CREATE": "إنشاء موصل",
+      "TITLE_UPDATE": "تحديث الموصل",
+      "CONNECTOR_NAME": "اسم الموصل:",
+      "CONNECTOR_DESC": "وصف الموصل:",
+      "CONNECTOR_CREATED": "تم إنشاء الموصل",
+      "CONNECTOR_DELETED": "تم حذف الموصل",
+      "CONNECTOR_UPDATED": "تم حفظ الموصل"
+    },
+    "FORM_DIALOG": {
+      "TITLE_CREATE": "إنشاء نموذج",
+      "TITLE_UPDATE": "تحديث النموذج",
+      "FORM_NAME": "اسم النموذج:",
+      "FORM_DESC": "وصف النموذج:",
+      "FORM_CREATED": "تم إنشاء النموذج",
+      "FORM_DELETED": "تم حذف النموذج",
+      "FORM_UPDATED": "تم حفظ النموذج",
+      "FORM_CONTENT_CREATED": "تم إنشاء محتوى النموذج الأولي من نموذج المحتوى"
+    },
+    "UI_DIALOG": {
+      "TITLE_CREATE": "إنشاء UI",
+      "TITLE_UPDATE": "تحديث UI",
+      "UI_NAME": "اسم UI:",
+      "UI_DESC": "وصف UI:",
+      "UI_CREATED": "تم إنشاء UI",
+      "UI_DELETED": "تم حذف UI",
+      "UI_UPDATED": "تم حفظ UI"
+    },
+    "DATA_DIALOG": {
+      "TITLE_CREATE": "إنشاء كائن بيانات",
+      "TITLE_UPDATE": "تحديث كائن البيانات",
+      "DATA_NAME": "اسم كائن البيانات:",
+      "DATA_DESC": "وصف كائن البيانات:",
+      "DATA_CREATED": "تم إنشاء كائن البيانات",
+      "DATA_DELETED": "تم حذف كائن البيانات",
+      "DATA_UPDATED": "تم حفظ كائن البيانات"
+    },
+    "DECISION_TABLE_DIALOG": {
+      "TITLE_CREATE": "إنشاء جدول قرارات",
+      "TITLE_UPDATE": "تحديث جدول القرارات",
+      "DECISION_TABLE_NAME": "اسم جدول القرارات:",
+      "DECISION_TABLE_DESC": "وصف جدول القرارات:",
+      "DECISION_TABLE_CREATED": "تم إنشاء جدول القرارات",
+      "DECISION_TABLE_DELETED": "تم حذف جدول القرارات",
+      "DECISION_TABLE_UPDATED": "تم حفظ جدول القرارات"
+    },
+    "FILE_DIALOG": {
+      "TITLE_CREATE": "إنشاء ملف",
+      "TITLE_UPDATE": "تحديث الملف",
+      "FILE_NAME": "اسم الملف:",
+      "FILE_DESC": "وصف الملف:",
+      "FILE_CREATED": "تم إنشاء الملف",
+      "FILE_DELETED": "تم حذف الملف",
+      "FILE_UPDATED": "تم حفظ الملف"
+    },
+    "SCRIPT_DIALOG": {
+      "TITLE_CREATE": "إنشاء برنامج نصي",
+      "TITLE_UPDATE": "تحديث البرنامج النصي",
+      "SCRIPT_NAME": "اسم البرنامج النصي:",
+      "SCRIPT_DESC": "وصف البرنامج النصي:",
+      "SCRIPT_CREATED": "تم إنشاء البرنامج النصي",
+      "SCRIPT_DELETED": "تم حذف البرنامج النصي",
+      "SCRIPT_UPDATED": "تم حفظ البرنامج النصي"
+    },
+    "TRIGGER_DIALOG": {
+      "TITLE_CREATE": "إنشاء مشغل",
+      "TITLE_UPDATE": "تحديث المشغل",
+      "TRIGGER_NAME": "اسم المشغل:",
+      "TRIGGER_DESC": "وصف المشغل:",
+      "TRIGGER_CREATED": "تم إنشاء المشغل",
+      "TRIGGER_DELETED": "تم حذف المشغل",
+      "TRIGGER_UPDATED": "تم حفظ المشغل"
+    },
+    "ACTION_DIALOG": {
+      "ACTION_DETAILS": "تفاصيل الإجراء",
+      "ACTION_NAME": "اسم الإجراء",
+      "ACTION_DESC": "وصف الإجراء",
+      "ADD_ACTION": "إضافة إجراء",
+      "DEL_ACTION": "حذف الإجراء"
+    },
+    "EVENT_DIALOG": {
+      "EVENT_DETAILS": "تفاصيل الحدث",
+      "EVENT_NAME": "اسم الحدث",
+      "EVENT_DESC": "وصف الحدث",
+      "ADD_EVENT": "إضافة الحدث",
+      "DEL_EVENT": "حذف الحدث"
+    },
+    "PROJECT_MODEL_DIALOG": {
+      "TITLE_CREATE": "إنشاء نموذج المحتوى",
+      "TITLE_UPDATE": "تحديث نموذج المحتوى",
+      "PROJECT_MODEL_NAME": "اسم نموذج المحتوى:",
+      "PROJECT_MODEL_DESC": "وصف نموذج المحتوى:",
+      "PROJECT_MODEL_CREATED": "تم إنشاء نموذج المحتوى",
+      "PROJECT_MODEL_DELETED": "تم حذف نموذج المحتوى",
+      "PROJECT_MODEL_UPDATED": "تم حفظ نموذج المحتوى"
+    },
+    "FORM_WIDGET_DIALOG": {
+      "TITLE_CREATE": "إنشاء عنصر واجهة النموذج",
+      "TITLE_UPDATE": "تحديث عنصر واجهة النموذج",
+      "FORM_WIDGET_NAME": "اسم عنصر الواجهة:",
+      "FORM_WIDGET_DESC": "وصف عنصر الواجهة:",
+      "FORM_WIDGET_CREATED": "تم إنشاء عنصر واجهة  النموذج",
+      "FORM_WIDGET_DELETED": "تم حذف عنصر واجهة النموذج",
+      "FORM_WIDGET_UPDATED": "تم حفظ عنصر واجهة النموذج"
+    },
+    "ERROR": {
+      "UPLOAD_FILE": "نواجه مشكلة في تحميل الملف. حاول تحميله مرة أخرى.",
+      "DELETE_PROJECT": "نواجه مشكلة في حذف المشروع. حاول حذفه مرة أخرى.",
+      "CHANGE_FAVORITE": "نواجه مشكلة في تفضيل هذا المشروع. حاول تفضيله مرة أخرى.",
+      "DELETE_PROCESS": "نواجه مشكلة في حذف العملية. حاول حذفها مرة اخرى.",
+      "LOAD_MODELS": "نواجه مشكلة في تحميل النماذج. حاول تحديث الصفحة.",
+      "RELEASE_PROJECT": "نواجه مشكلة في تحرير المشروع. حاول تحريره مرة اخرى.",
+      "CREATE_PROCESS": {
+        "DUPLICATION": "عملية بنفس الاسم موجودة بالفعل",
+        "GENERAL": "نواجه مشكلة في إنشاء العملية. حاول إنشاءها مرة أخرى."
+      },
+      "UPDATE_PROCESS": {
+        "DUPLICATION": "عملية بنفس الاسم موجودة بالفعل",
+        "GENERAL": "نواجه مشكلة في حفظ العملية. حاول حفظها مرة أخرى.",
+        "EMPTY_NAME": "مطلوب اسم"
+      },
+      "CREATE_CONNECTOR": {
+        "DUPLICATION": "موصل بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في إنشاء الموصل. حاول إنشاءه مرة اخرى."
+      },
+      "UPDATE_CONNECTOR": {
+        "DUPLICATION": "موصل بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في حفظ الموصل. حاول حفظه مرة أخرى."
+      },
+      "CREATE_FORM": {
+        "DUPLICATION": "نموذج بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في إنشاء النموذج. حاول إنشاءه مرة اخرى."
+      },
+      "UPDATE_FORM": {
+        "DUPLICATION": "نموذج بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في حفظ النموذج. حاول حفظه مرة أخرى."
+      },
+      "CREATE_UI": {
+        "DUPLICATION": "واجهة UI بهذا الاسم موجودة بالفعل",
+        "GENERAL": "نواجه مشكلة في إنشاء UI. حاول إنشاءها مرة أخرى."
+      },
+      "UPDATE_UI": {
+        "DUPLICATION": "واجهة UI بهذا الاسم موجودة بالفعل",
+        "GENERAL": "نواجه مشكلة في حفظ UI. حاول حفظها مرة أخرى."
+      },
+      "CREATE_DECISION_TABLE": {
+        "DUPLICATION": "جدول قرارات بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في إنشاء جدول القرارات. حاول إنشاءه مرة أخرى."
+      },
+      "UPDATE_DECISION_TABLE": {
+        "DUPLICATION": "جدول قرارات بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في حفظ جدول القرارات. حاول حفظه مرة أخرى."
+      },
+      "CREATE_DATA": {
+        "DUPLICATION": "كائن بيانات بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في إنشاء كائن البيانات. حاول إنشاءه مرة أخرى."
+      },
+      "UPDATE_DATA": {
+        "DUPLICATION": "كائن بيانات بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في حفظ كائن البيانات. حاول حفظه مرة أخرى."
+      },
+      "CREATE_PROJECT": {
+        "DUPLICATION": "مشروع بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في إنشاء المشروع. حاول إنشاءه مرة اخرى."
+      },
+      "UPDATE_PROJECT": {
+        "DUPLICATION": "مشروع بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في حفظ المشروع. حاول حفظه مرة أخرى."
+      },
+      "UPLOAD_PROJECT": {
+        "DUPLICATION": "مشروع بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في تحميل المشروع. حاول تحميله مرة أخرى."
+      },
+      "GET_PROJECT": "نواجه مشكلة في تحميل المشروع. حاول تحديث الصفحة.",
+      "EXPORT_PROJECT": "حدث خطأ غير معروف أثناء تصدير المشروع",
+      "CREATE_FILE": {
+        "DUPLICATION": "ملف بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في إنشاء الملف. حاول إنشاءه مرة أخرى."
+      },
+      "UPDATE_FILE": {
+        "DUPLICATION": "ملف بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في حفظ الملف. حاول حفظه مرة أخرى."
+      },
+      "CREATE_SCRIPT": {
+        "DUPLICATION": "برنامج نصي بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في إنشاء البرنامج النصي. حاول إنشاءه مرة أخرى."
+      },
+      "UPDATE_SCRIPT": {
+        "DUPLICATION": "برنامج نصي بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في حفظ البرنامج النصي. حاول حفظه مرة أخرى."
+      },
+      "CREATE_TRIGGER": {
+        "DUPLICATION": "مشغل بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في إنشاء المشغل. حاول إنشاؤه مرة أخرى."
+      },
+      "UPDATE_TRIGGER": {
+        "DUPLICATION": "مشغل بهذا الاسم موجود بالفعل",
+        "GENERAL": "نواجه مشكلة في حفظ المشغل. حاول حفظه مرة أخرى."
+      },
+      "CREATE_FORM_WIDGET": {
+        "DUPLICATION": "يوجد بالفعل عنصر واجهة نموذج بهذا الاسم",
+        "GENERAL": "واجهتنا مشكلة أثناء إنشاء عنصر واجهة النموذج. حاول إنشائه مرة أخرى."
+      },
+      "UPDATE_FORM_WIDGET": {
+        "DUPLICATION": "يوجد بالفعل عنصر واجهة نموذج بهذا الاسم",
+        "GENERAL": "واجهتنا مشكلة في حفظ عنصر الواجهة. حاول حفظه مرة أخرى."
+      }
+    }
+  }
+}

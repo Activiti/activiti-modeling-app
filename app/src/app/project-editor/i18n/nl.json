@@ -1,0 +1,269 @@
+{
+  "PROJECT_EDITOR": {
+    "BACK_TO": "Terug naar projecten",
+    "NAME": "Projecteditor",
+    "UPLOAD_FILE": "Bestand uploaden",
+    "DOWNLOAD_PROJECT": "Project downloaden",
+    "PROJECT_VALID": "Project bevat geen validatiefouten",
+    "EXPORT_SUCCESS": "Project geëxporteerd",
+    "SETTINGS": {
+      "PROJECT_SETTINGS": "Instellingen projecteditor",
+      "CONNECTORS_TAB_LABEL": "Connectors"
+    },
+    "UPLOAD": "Uploaden",
+    "IMPORT": "Importeren",
+    "CREATE_NEW": "Nieuw maken",
+    "SEARCH": "Zoeken",
+    "UPLOAD_FILE_SUCCESS": "Bestand geüpload",
+    "NO_CONTENT": "<leeg>",
+    "NO_SELECTION": "Maak een nieuw model of bewerk een bestaand model met de zijbalk",
+    "NEW_MENU": {
+      "LABEL": "Nieuw",
+      "CREATE": "Maken",
+      "UPLOAD": "Uploaden",
+      "IMPORT": "Importeren",
+      "CREATE_PROCESS_TITLE": "Proces maken",
+      "MENU_ITEMS": {
+        "CREATE_PROCESS": "Proces",
+        "CREATE_CONNECTOR": "Connector",
+        "CREATE_FORM": "Formulier",
+        "CREATE_UI": "UI",
+        "CREATE_DATA": "Gegevensobject",
+        "CREATE_DECISION_TABLE": "Beslissingstabel",
+        "CREATE_FILE": "Bestand",
+        "CREATE_SCRIPT": "Script",
+        "CREATE_TRIGGER": "Trigger",
+        "CREATE_PROJECT_MODEL": "Contentmodel",
+        "CREATE_FORM_WIDGET": "Formulierwidget"
+      }
+    },
+    "TREE": {
+      "PROCESSES": "Processen",
+      "FORMS": "Formulieren",
+      "CONNECTORS": "Connectors",
+      "DATA": "Gegevens",
+      "DECISION_TABLES": "Beslissingstabellen",
+      "UIS": "UI",
+      "FILES": "Bestanden",
+      "SCRIPTS": "Scripts",
+      "TRIGGERS": "Triggers"
+    },
+    "PROCESS_DIALOG": {
+      "TITLE_CREATE": "Proces maken",
+      "TITLE_UPDATE": "Proces bijwerken",
+      "PROCESS_NAME": "Procesnaam:",
+      "PROCESS_DESC": "Procesdocumentatie:",
+      "PROCESS_CREATED": "Proces gemaakt",
+      "PROCESS_DELETED": "Proces verwijderd",
+      "PROCESS_UPDATED": "Proces opgeslagen"
+    },
+    "CONNECTOR_DIALOG": {
+      "TITLE_CREATE": "Connector maken",
+      "TITLE_UPDATE": "Connector bijwerken",
+      "CONNECTOR_NAME": "Connectornaam:",
+      "CONNECTOR_DESC": "Connectorbeschrijving:",
+      "CONNECTOR_CREATED": "Connector gemaakt",
+      "CONNECTOR_DELETED": "Connector verwijderd",
+      "CONNECTOR_UPDATED": "Connector opgeslagen"
+    },
+    "FORM_DIALOG": {
+      "TITLE_CREATE": "Formulier maken",
+      "TITLE_UPDATE": "Formulier bijwerken",
+      "FORM_NAME": "Formuliernaam:",
+      "FORM_DESC": "Formulierbeschrijving:",
+      "FORM_CREATED": "Formulier gemaakt",
+      "FORM_DELETED": "Formulier verwijderd",
+      "FORM_UPDATED": "Formulier opgeslagen",
+      "FORM_CONTENT_CREATED": "Eerste formuliercontent van gemaakt contentmodel"
+    },
+    "UI_DIALOG": {
+      "TITLE_CREATE": "UI maken",
+      "TITLE_UPDATE": "UI bijwerken",
+      "UI_NAME": "UI-naam:",
+      "UI_DESC": "UI-beschrijving:",
+      "UI_CREATED": "UI gemaakt",
+      "UI_DELETED": "UI verwijderd",
+      "UI_UPDATED": "UI opgeslagen"
+    },
+    "DATA_DIALOG": {
+      "TITLE_CREATE": "Gegevensobject maken",
+      "TITLE_UPDATE": "Gegevensobject bijwerken",
+      "DATA_NAME": "Gegevensobjectnaam:",
+      "DATA_DESC": "Gegevensobjectbeschrijving:",
+      "DATA_CREATED": "Gegevensobject gemaakt",
+      "DATA_DELETED": "Gegevensobject verwijderd",
+      "DATA_UPDATED": "Gegevensobject opgeslagen"
+    },
+    "DECISION_TABLE_DIALOG": {
+      "TITLE_CREATE": "Beslissingstabel maken",
+      "TITLE_UPDATE": "Beslissingstabel bijwerken",
+      "DECISION_TABLE_NAME": "Beslissingstabelnaam:",
+      "DECISION_TABLE_DESC": "Beslissingstabelbeschrijving:",
+      "DECISION_TABLE_CREATED": "Beslissingstabel gemaakt",
+      "DECISION_TABLE_DELETED": "Beslissingstabel verwijderd",
+      "DECISION_TABLE_UPDATED": "Beslissingstabel opgeslagen"
+    },
+    "FILE_DIALOG": {
+      "TITLE_CREATE": "Bestand maken",
+      "TITLE_UPDATE": "Bestand bijwerken",
+      "FILE_NAME": "Bestandsnaam:",
+      "FILE_DESC": "Bestandsbeschrijving:",
+      "FILE_CREATED": "Bestand gemaakt",
+      "FILE_DELETED": "Bestand verwijderd",
+      "FILE_UPDATED": "Bestand opgeslagen"
+    },
+    "SCRIPT_DIALOG": {
+      "TITLE_CREATE": "Script maken",
+      "TITLE_UPDATE": "Script bijwerken",
+      "SCRIPT_NAME": "Scriptnaam:",
+      "SCRIPT_DESC": "Scriptbeschrijving:",
+      "SCRIPT_CREATED": "Script gemaakt",
+      "SCRIPT_DELETED": "Script verwijderd",
+      "SCRIPT_UPDATED": "Script opgeslagen"
+    },
+    "TRIGGER_DIALOG": {
+      "TITLE_CREATE": "Trigger maken",
+      "TITLE_UPDATE": "Trigger bijwerken",
+      "TRIGGER_NAME": "Triggernaam:",
+      "TRIGGER_DESC": "Triggerbeschrijving:",
+      "TRIGGER_CREATED": "Trigger gemaakt",
+      "TRIGGER_DELETED": "Trigger verwijderd",
+      "TRIGGER_UPDATED": "Trigger opgeslagen"
+    },
+    "ACTION_DIALOG": {
+      "ACTION_DETAILS": "Actiegegevens",
+      "ACTION_NAME": "Actienaam",
+      "ACTION_DESC": "Actiebeschrijving",
+      "ADD_ACTION": "Actie toevoegen",
+      "DEL_ACTION": "Actie verwijderen"
+    },
+    "EVENT_DIALOG": {
+      "EVENT_DETAILS": "Gebeurtenisgegevens",
+      "EVENT_NAME": "Gebeurtenisnaam",
+      "EVENT_DESC": "Gebeurtenisbeschrijving",
+      "ADD_EVENT": "Gebeurtenis toevoegen",
+      "DEL_EVENT": "Gebeurtenis verwijderen"
+    },
+    "PROJECT_MODEL_DIALOG": {
+      "TITLE_CREATE": "Contentmodel maken",
+      "TITLE_UPDATE": "Contentmodel bijwerken",
+      "PROJECT_MODEL_NAME": "Naam contentmodel:",
+      "PROJECT_MODEL_DESC": "Beschrijving contentmodel:",
+      "PROJECT_MODEL_CREATED": "Contentmodel gemaakt",
+      "PROJECT_MODEL_DELETED": "Contentmodel verwijderd",
+      "PROJECT_MODEL_UPDATED": "Contentmodel opgeslagen"
+    },
+    "FORM_WIDGET_DIALOG": {
+      "TITLE_CREATE": "Formulierwidget maken",
+      "TITLE_UPDATE": "Formulierwidget bijwerken",
+      "FORM_WIDGET_NAME": "Naam widget:",
+      "FORM_WIDGET_DESC": "Beschrijving widget:",
+      "FORM_WIDGET_CREATED": "Formulierwidget gemaakt",
+      "FORM_WIDGET_DELETED": "Formulierwidget verwijderd",
+      "FORM_WIDGET_UPDATED": "Formulierwidget opgeslagen"
+    },
+    "ERROR": {
+      "UPLOAD_FILE": "Er is een probleem opgetreden bij het uploaden van het bestand. Probeer het opnieuw te uploaden.",
+      "DELETE_PROJECT": "Er is een probleem opgetreden bij het verwijderen van het project. Probeer het opnieuw te verwijderen.",
+      "CHANGE_FAVORITE": "Er is een probleem opgetreden bij het instellen van dat project als favoriet. Probeer het opnieuw in te stellen als favoriet.",
+      "DELETE_PROCESS": "Er is een probleem opgetreden bij het verwijderen van het proces. Probeer het opnieuw te verwijderen.",
+      "LOAD_MODELS": "Er is een probleem opgetreden bij laden van de modellen. Vernieuw de pagina.",
+      "RELEASE_PROJECT": "Er is een probleem opgetreden bij het vrijgeven van het project. Probeer het opnieuw vrij te geven.",
+      "CREATE_PROCESS": {
+        "DUPLICATION": "Er bestaat al een proces met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het maken van het proces. Probeer het opnieuw te maken."
+      },
+      "UPDATE_PROCESS": {
+        "DUPLICATION": "Er bestaat al een proces met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het opslaan van het proces. Probeer het opnieuw op te slaan.",
+        "EMPTY_NAME": "Een naam is vereist"
+      },
+      "CREATE_CONNECTOR": {
+        "DUPLICATION": "Er bestaat al een connector met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het maken van de connector. Probeer de connector opnieuw te maken."
+      },
+      "UPDATE_CONNECTOR": {
+        "DUPLICATION": "Er bestaat al een connector met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het opslaan van de connector. Probeer de connector opnieuw op te slaan."
+      },
+      "CREATE_FORM": {
+        "DUPLICATION": "Er bestaat al een formulier met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het maken van het formulier. Probeer het opnieuw te maken."
+      },
+      "UPDATE_FORM": {
+        "DUPLICATION": "Er bestaat al een formulier met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het opslaan van het formulier. Probeer het opnieuw op te slaan."
+      },
+      "CREATE_UI": {
+        "DUPLICATION": "Er bestaat al een UI met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het maken van de UI. Probeer de UI opnieuw te maken."
+      },
+      "UPDATE_UI": {
+        "DUPLICATION": "Er bestaat al een UI met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het opslaan van de UI. Probeer de UI opnieuw op te slaan."
+      },
+      "CREATE_DECISION_TABLE": {
+        "DUPLICATION": "Er bestaat al een beslissingstabel met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het maken van de beslissingstabel. Probeer de beslissingstabel opnieuw te maken."
+      },
+      "UPDATE_DECISION_TABLE": {
+        "DUPLICATION": "Er bestaat al een beslissingstabel met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het opslaan van de beslissingstabel. Probeer de beslissingstabel opnieuw op te slaan."
+      },
+      "CREATE_DATA": {
+        "DUPLICATION": "Er bestaat al een gegevensobject met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het maken van het gegevensobject. Probeer het opnieuw te maken."
+      },
+      "UPDATE_DATA": {
+        "DUPLICATION": "Er bestaat al een gegevensobject met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het opslaan van het gegevensobject. Probeer het opnieuw op te slaan."
+      },
+      "CREATE_PROJECT": {
+        "DUPLICATION": "Er bestaat al een project met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het maken van het project. Probeer het opnieuw te maken."
+      },
+      "UPDATE_PROJECT": {
+        "DUPLICATION": "Er bestaat al een project met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het opslaan van het project. Probeer het opnieuw op te slaan."
+      },
+      "UPLOAD_PROJECT": {
+        "DUPLICATION": "Er bestaat al een project met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het uploaden van het project. Probeer het opnieuw te uploaden."
+      },
+      "GET_PROJECT": "Er is een probleem opgetreden bij het laden van het project. Vernieuw de pagina.",
+      "EXPORT_PROJECT": "Er is een onbekende fout opgetreden bij het exporteren van het project",
+      "CREATE_FILE": {
+        "DUPLICATION": "Er bestaat al een bestand met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het maken van het bestand. Probeer het opnieuw te maken."
+      },
+      "UPDATE_FILE": {
+        "DUPLICATION": "Er bestaat al een bestand met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het opslaan van het bestand. Probeer het opnieuw op te slaan."
+      },
+      "CREATE_SCRIPT": {
+        "DUPLICATION": "Er bestaat al een script met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het maken van het script. Probeer het opnieuw te maken."
+      },
+      "UPDATE_SCRIPT": {
+        "DUPLICATION": "Er bestaat al een script met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het opslaan van het script. Probeer het opnieuw op te slaan."
+      },
+      "CREATE_TRIGGER": {
+        "DUPLICATION": "Er bestaat al een trigger met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het maken van de trigger. Probeer de trigger opnieuw te maken."
+      },
+      "UPDATE_TRIGGER": {
+        "DUPLICATION": "Er bestaat al een trigger met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het opslaan van de trigger. Probeer de trigger opnieuw op te slaan."
+      },
+      "CREATE_FORM_WIDGET": {
+        "DUPLICATION": "Er bestaat al een formulierwidget met deze naam",
+        "GENERAL": "Er is een probleem opgetreden bij het maken van de formulierwidget. Probeer de widget opnieuw te maken."
+      },
+      "UPDATE_FORM_WIDGET": {
+        "DUPLICATION": "Er bestaat al een formulierwidget met deze naam",
+        "GENERAL": "Er is een probleem opgetreden bij het opslaan van de widget. Probeer de widget opnieuw op te slaan."
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "Novo",
+      "CREATE_PROJECT_TITLE": "Criar Projeto",
+      "OVERRIDE_PROJECT_TITLE": "Um projeto com este nome já existe.",
+      "EDIT_PROJECT_TITLE": "Editar Projeto",
+      "PROJECT_CREATED": "Projeto criado",
+      "PROJECT_UPLOADED": "Projeto carregado",
+      "PROJECT_UPDATED": "Projeto salvo",
+      "PROJECT_RELEASED": "Projeto liberado",
+      "PROJECT_DELETED": "Projeto excluído",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "Criar Projeto",
+        "UPLOAD_PROJECT": "Carregar Projeto",
+        "CREATE_MODEL": "Modelo de conteúdo"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "Nome do projeto:",
+      "PROJECT_DESC": "Descrição do projeto:"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "Projetos",
+        "TOOLTIP": "Projetos publicados"
+      },
+      "RELEASES": {
+        "LABEL": "Versões",
+        "TOOLTIP": "Versões"
+      },
+      "PROCESSES": {
+        "LABEL": "Processos",
+        "TOOLTIP": "Processos Publicados"
+      },
+      "FAVORITES": {
+        "LABEL": "Favoritos",
+        "TOOLTIP": "Favoritos"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "Nome",
+      "COLUMN_VERSION": "Versão",
+      "COLUMN_CREATED": "Criado",
+      "COLUMN_CREATED_BY": "Criado por",
+      "COLUMN_OPTIONS": "Opções",
+      "NO_ITEMS": "Crie ou importe um projeto para exibi-lo na lista.",
+      "NO_FAV_PROCESSES": "Marcar um processo como favorito para deixá-lo disponível aqui.",
+      "NO_FAV_PROJECTS": "Marcar um projeto como favorito para deixá-lo disponível aqui.",
+      "RELEASE_ID": "ID da versão",
+      "PROJECT_NAME": "Nome do projeto"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "Encontramos um problema ao carregar os projetos. Tente atualizar a página.",
+      "LOAD_RELEASES": "Encontramos um problema ao carregar as versões. Tente atualizar a página.",
+      "LOAD_PROCESSES": "Encontramos um problema ao carregar os processos. Tente atualizar a página."
+    }
+  }
+}

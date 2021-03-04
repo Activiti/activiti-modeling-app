@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "جديد",
+      "CREATE_PROJECT_TITLE": "إنشاء مشروع",
+      "OVERRIDE_PROJECT_TITLE": "مشروع بهذا الاسم موجود بالفعل.",
+      "EDIT_PROJECT_TITLE": "تحرير المشروع",
+      "PROJECT_CREATED": "تم إنشاء المشروع",
+      "PROJECT_UPLOADED": "تم تحميل المشروع",
+      "PROJECT_UPDATED": "تم حفظ المشروع",
+      "PROJECT_RELEASED": "تم إصدار المشروع",
+      "PROJECT_DELETED": "تم حذف المشروع",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "إنشاء مشروع",
+        "UPLOAD_PROJECT": "تحميل مشروع",
+        "CREATE_MODEL": "نموذج المحتوى"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "اسم المشروع:",
+      "PROJECT_DESC": "وصف المشروع"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "المشروعات",
+        "TOOLTIP": "المشروعات المنشورة"
+      },
+      "RELEASES": {
+        "LABEL": "الإصدارات",
+        "TOOLTIP": "الإصدارات"
+      },
+      "PROCESSES": {
+        "LABEL": "عمليات",
+        "TOOLTIP": "العمليات المنشورة"
+      },
+      "FAVORITES": {
+        "LABEL": "مفضلات",
+        "TOOLTIP": "مفضلات"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "الاسم",
+      "COLUMN_VERSION": "الإصدار",
+      "COLUMN_CREATED": "تم الإنشاء",
+      "COLUMN_CREATED_BY": "تم الإنشاء بواسطة",
+      "COLUMN_OPTIONS": "خيارات",
+      "NO_ITEMS": "إنشاؤ مشروع أو استيراده لعرضه في القائمة.",
+      "NO_FAV_PROCESSES": "تفضيل عملية لجعلها متاحة هنا.",
+      "NO_FAV_PROJECTS": "تفضيل مشروع لجعله متاحًا هنا.",
+      "RELEASE_ID": "معرف الإصدار",
+      "PROJECT_NAME": "اسم المشروع"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "نواجه مشكلة في تحميل المشروعات. حاول تحديث الصفحة.",
+      "LOAD_RELEASES": "نواجه مشكلة في تحميل الإصدارات. حاول تحديث الصفحة",
+      "LOAD_PROCESSES": "نواجه مشكلة في تحميل العمليات. حاول تحديث الصفحة"
+    }
+  }
+}

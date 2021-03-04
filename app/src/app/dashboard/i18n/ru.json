@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "Создать",
+      "CREATE_PROJECT_TITLE": "Создать проект",
+      "OVERRIDE_PROJECT_TITLE": "Проект с таким именем уже существует.",
+      "EDIT_PROJECT_TITLE": "Редактировать проект",
+      "PROJECT_CREATED": "Проект создан",
+      "PROJECT_UPLOADED": "Проект выгружен",
+      "PROJECT_UPDATED": "Проект сохранен",
+      "PROJECT_RELEASED": "Проект выпущен",
+      "PROJECT_DELETED": "Проект удален",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "Создать проект",
+        "UPLOAD_PROJECT": "Выгрузить проект",
+        "CREATE_MODEL": "Модель содержимого"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "Имя проекта:",
+      "PROJECT_DESC": "Описание проекта:"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "Проекты",
+        "TOOLTIP": "Опубликованные проекты"
+      },
+      "RELEASES": {
+        "LABEL": "Выпуски",
+        "TOOLTIP": "Выпуски"
+      },
+      "PROCESSES": {
+        "LABEL": "Процессы",
+        "TOOLTIP": "Опубликованные процессы"
+      },
+      "FAVORITES": {
+        "LABEL": "Избранное",
+        "TOOLTIP": "Избранное"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "Имя",
+      "COLUMN_VERSION": "Версия",
+      "COLUMN_CREATED": "Создано",
+      "COLUMN_CREATED_BY": "Создано пользователем",
+      "COLUMN_OPTIONS": "Параметры",
+      "NO_ITEMS": "Создайте либо импортируйте проект, чтобы увидеть его в списке.",
+      "NO_FAV_PROCESSES": "Добавить в избранное процесс, чтобы сделать его доступным здесь.",
+      "NO_FAV_PROJECTS": "Добавить в избранное проект, чтобы сделать его доступным здесь.",
+      "RELEASE_ID": "Идентификатор выпуска",
+      "PROJECT_NAME": "Имя проекта"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "Во время загрузки проектов возникла проблема. Попробуйте обновить страницу.",
+      "LOAD_RELEASES": "Во время загрузки выпусков возникла проблема. Попробуйте обновить страницу",
+      "LOAD_PROCESSES": "Во время загрузки процессов возникла проблема. Попробуйте обновить страницу"
+    }
+  }
+}

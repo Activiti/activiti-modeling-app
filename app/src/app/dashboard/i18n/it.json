@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "Nuovo",
+      "CREATE_PROJECT_TITLE": "Crea progetto",
+      "OVERRIDE_PROJECT_TITLE": "Esiste già un progetto con il nome specificato.",
+      "EDIT_PROJECT_TITLE": "Modifica progetto",
+      "PROJECT_CREATED": "Progetto creato",
+      "PROJECT_UPLOADED": "Progetto caricato",
+      "PROJECT_UPDATED": "Progetto salvato",
+      "PROJECT_RELEASED": "Progetto rilasciato",
+      "PROJECT_DELETED": "Progetto eliminato",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "Crea progetto",
+        "UPLOAD_PROJECT": "Carica progetto",
+        "CREATE_MODEL": "Modello di contenuto"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "Nome progetto:",
+      "PROJECT_DESC": "Descrizione progetto:"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "Progetti",
+        "TOOLTIP": "Progetti pubblicati"
+      },
+      "RELEASES": {
+        "LABEL": "Rilasci",
+        "TOOLTIP": "Rilasci"
+      },
+      "PROCESSES": {
+        "LABEL": "Processi",
+        "TOOLTIP": "Processi pubblicati"
+      },
+      "FAVORITES": {
+        "LABEL": "Preferiti",
+        "TOOLTIP": "Preferiti"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "Nome",
+      "COLUMN_VERSION": "Versione",
+      "COLUMN_CREATED": "Creato",
+      "COLUMN_CREATED_BY": "Creato da",
+      "COLUMN_OPTIONS": "Opzioni",
+      "NO_ITEMS": "Creare o importare un progetto per visualizzarlo nell'elenco.",
+      "NO_FAV_PROCESSES": "Scegliere un processo preferito da rendere disponibile qui.",
+      "NO_FAV_PROJECTS": "Scegliere un progetto preferito da rendere disponibile qui.",
+      "RELEASE_ID": "ID rilascio",
+      "PROJECT_NAME": "Nome progetto"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "Si è verificato un problema durante il caricamento dei progetti. Aggiornare la pagina.",
+      "LOAD_RELEASES": "Si è verificato un problema durante il caricamento dei rilasci. Aggiornare la pagina.",
+      "LOAD_PROCESSES": "Si è verificato un problema durante il caricamento dei processi. Aggiornare la pagina."
+    }
+  }
+}

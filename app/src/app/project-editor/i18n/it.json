@@ -1,0 +1,269 @@
+{
+  "PROJECT_EDITOR": {
+    "BACK_TO": "Torna ai progetti",
+    "NAME": "Editor progetto",
+    "UPLOAD_FILE": "Carica file",
+    "DOWNLOAD_PROJECT": "Scarica progetto",
+    "PROJECT_VALID": "Il progetto non contiene errori di convalida",
+    "EXPORT_SUCCESS": "Progetto esportato",
+    "SETTINGS": {
+      "PROJECT_SETTINGS": "Impostazioni editor progetto",
+      "CONNECTORS_TAB_LABEL": "Connettori"
+    },
+    "UPLOAD": "Carica",
+    "IMPORT": "Importa",
+    "CREATE_NEW": "Crea nuovo progetto",
+    "SEARCH": "Cerca",
+    "UPLOAD_FILE_SUCCESS": "File caricato",
+    "NO_CONTENT": "<vuoto>",
+    "NO_SELECTION": "Creare un nuovo modello o modificarne uno esistente usando la barra laterale",
+    "NEW_MENU": {
+      "LABEL": "Nuovo",
+      "CREATE": "Crea",
+      "UPLOAD": "Carica",
+      "IMPORT": "Importa",
+      "CREATE_PROCESS_TITLE": "Crea processo",
+      "MENU_ITEMS": {
+        "CREATE_PROCESS": "Processo",
+        "CREATE_CONNECTOR": "Connettore",
+        "CREATE_FORM": "Modulo",
+        "CREATE_UI": "IU",
+        "CREATE_DATA": "Oggetto dati",
+        "CREATE_DECISION_TABLE": "Tabella decisioni",
+        "CREATE_FILE": "File",
+        "CREATE_SCRIPT": "Script",
+        "CREATE_TRIGGER": "Trigger",
+        "CREATE_PROJECT_MODEL": "Modello di contenuto",
+        "CREATE_FORM_WIDGET": "Widget modulo"
+      }
+    },
+    "TREE": {
+      "PROCESSES": "Processi",
+      "FORMS": "Moduli",
+      "CONNECTORS": "Connettori",
+      "DATA": "Dati",
+      "DECISION_TABLES": "Tabelle decisioni",
+      "UIS": "IU",
+      "FILES": "File",
+      "SCRIPTS": "Script",
+      "TRIGGERS": "Trigger"
+    },
+    "PROCESS_DIALOG": {
+      "TITLE_CREATE": "Crea processo",
+      "TITLE_UPDATE": "Aggiornamento processo",
+      "PROCESS_NAME": "Nome processo:",
+      "PROCESS_DESC": "Documentazione del processo:",
+      "PROCESS_CREATED": "Processo creato",
+      "PROCESS_DELETED": "Processo eliminato",
+      "PROCESS_UPDATED": "Processo salvato"
+    },
+    "CONNECTOR_DIALOG": {
+      "TITLE_CREATE": "Crea connettore",
+      "TITLE_UPDATE": "Aggiorna connettore",
+      "CONNECTOR_NAME": "Nome connettore:",
+      "CONNECTOR_DESC": "Descrizione connettore:",
+      "CONNECTOR_CREATED": "Connettore creato",
+      "CONNECTOR_DELETED": "Connettore eliminato",
+      "CONNECTOR_UPDATED": "Connettore salvato"
+    },
+    "FORM_DIALOG": {
+      "TITLE_CREATE": "Crea modulo",
+      "TITLE_UPDATE": "Aggiornamento modulo",
+      "FORM_NAME": "Nome modulo:",
+      "FORM_DESC": "Descrizione modulo:",
+      "FORM_CREATED": "Modulo creato",
+      "FORM_DELETED": "Modulo eliminato",
+      "FORM_UPDATED": "Modulo salvato",
+      "FORM_CONTENT_CREATED": "Contenuto modulo iniziale creato da modello di contenuto"
+    },
+    "UI_DIALOG": {
+      "TITLE_CREATE": "Creazione​ IU",
+      "TITLE_UPDATE": "Aggiornamento IU",
+      "UI_NAME": "Nome IU:",
+      "UI_DESC": "Descrizione IU:",
+      "UI_CREATED": "IU creata",
+      "UI_DELETED": "IU eliminata",
+      "UI_UPDATED": "IU salvata"
+    },
+    "DATA_DIALOG": {
+      "TITLE_CREATE": "Creazione oggetto dati",
+      "TITLE_UPDATE": "Aggiornamento oggetto dati",
+      "DATA_NAME": "Nome oggetto dati:",
+      "DATA_DESC": "Descrizione oggetto dati:",
+      "DATA_CREATED": "Oggetto dati creato",
+      "DATA_DELETED": "Oggetto dati eliminato",
+      "DATA_UPDATED": "Oggetto dati salvato"
+    },
+    "DECISION_TABLE_DIALOG": {
+      "TITLE_CREATE": "Creazione tabella decisioni",
+      "TITLE_UPDATE": "Aggiornamento tabella decisioni",
+      "DECISION_TABLE_NAME": "Nome tabella decisioni:",
+      "DECISION_TABLE_DESC": "Descrizione tabella decisioni:",
+      "DECISION_TABLE_CREATED": "Tabella decisioni creata",
+      "DECISION_TABLE_DELETED": "Tabella decisioni eliminata",
+      "DECISION_TABLE_UPDATED": "Tabella decisioni salvata"
+    },
+    "FILE_DIALOG": {
+      "TITLE_CREATE": "Creazione file",
+      "TITLE_UPDATE": "Aggiornamento file",
+      "FILE_NAME": "Nome file:",
+      "FILE_DESC": "Descrizione file:",
+      "FILE_CREATED": "File creato",
+      "FILE_DELETED": "File eliminato",
+      "FILE_UPDATED": "File salvato"
+    },
+    "SCRIPT_DIALOG": {
+      "TITLE_CREATE": "Crea script",
+      "TITLE_UPDATE": "Aggiorna script",
+      "SCRIPT_NAME": "Nome script:",
+      "SCRIPT_DESC": "Descrizione script:",
+      "SCRIPT_CREATED": "Script creato",
+      "SCRIPT_DELETED": "Script eliminato",
+      "SCRIPT_UPDATED": "Script salvato"
+    },
+    "TRIGGER_DIALOG": {
+      "TITLE_CREATE": "Crea trigger",
+      "TITLE_UPDATE": "Aggiorna trigger",
+      "TRIGGER_NAME": "Nome trigger:",
+      "TRIGGER_DESC": "Descrizione trigger:",
+      "TRIGGER_CREATED": "Trigger creato",
+      "TRIGGER_DELETED": "Trigger eliminato",
+      "TRIGGER_UPDATED": "Trigger salvato"
+    },
+    "ACTION_DIALOG": {
+      "ACTION_DETAILS": "Dettagli azione",
+      "ACTION_NAME": "Nome azione",
+      "ACTION_DESC": "Descrizione azione",
+      "ADD_ACTION": "Aggiunta azione",
+      "DEL_ACTION": "Eliminazione azione"
+    },
+    "EVENT_DIALOG": {
+      "EVENT_DETAILS": "Dettagli evento",
+      "EVENT_NAME": "Nome evento",
+      "EVENT_DESC": "Descrizione evento",
+      "ADD_EVENT": "Aggiungi evento",
+      "DEL_EVENT": "Elimina evento"
+    },
+    "PROJECT_MODEL_DIALOG": {
+      "TITLE_CREATE": "Crea modello di contenuto",
+      "TITLE_UPDATE": "Aggiorna modello di contenuto",
+      "PROJECT_MODEL_NAME": "Nome modello di contenuto:",
+      "PROJECT_MODEL_DESC": "Descrizione modello di contenuto:",
+      "PROJECT_MODEL_CREATED": "Modello di contenuto creato",
+      "PROJECT_MODEL_DELETED": "Modello di contenuto eliminato",
+      "PROJECT_MODEL_UPDATED": "Modello di contenuto salvato"
+    },
+    "FORM_WIDGET_DIALOG": {
+      "TITLE_CREATE": "Crea widget di modulo",
+      "TITLE_UPDATE": "Aggiorna widget di modulo",
+      "FORM_WIDGET_NAME": "Nome widget:",
+      "FORM_WIDGET_DESC": "Descrizione widget:",
+      "FORM_WIDGET_CREATED": "Widget di modulo creato",
+      "FORM_WIDGET_DELETED": "Widget di modulo eliminato",
+      "FORM_WIDGET_UPDATED": "Widget di modulo salvato"
+    },
+    "ERROR": {
+      "UPLOAD_FILE": "Si è verificato un problema durante il caricamento del file. Riprovare.",
+      "DELETE_PROJECT": "Si è verificato un problema durante l'eliminazione del progetto. Riprovare.",
+      "CHANGE_FAVORITE": "Si è verificato un problema durante la scelta del progetto come preferito. Riprovare.",
+      "DELETE_PROCESS": "Si è verificato un problema durante l'eliminazione del processo. Riprovare.",
+      "LOAD_MODELS": "Si è verificato un problema durante il caricamento dei modelli. Aggiornare la pagina.",
+      "RELEASE_PROJECT": "Si è verificato un problema durante il rilascio del progetto. Riprovare.",
+      "CREATE_PROCESS": {
+        "DUPLICATION": "Esiste già un processo con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante la creazione del processo. Riprovare."
+      },
+      "UPDATE_PROCESS": {
+        "DUPLICATION": "Esiste già un processo con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante il salvataggio del processo. Riprovare.",
+        "EMPTY_NAME": "È obbligatorio specificare un nome"
+      },
+      "CREATE_CONNECTOR": {
+        "DUPLICATION": "Esiste già un connettore con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante la creazione del connettore. Riprovare."
+      },
+      "UPDATE_CONNECTOR": {
+        "DUPLICATION": "Esiste già un connettore con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante il salvataggio del connettore. Riprovare."
+      },
+      "CREATE_FORM": {
+        "DUPLICATION": "Esiste già un modulo con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante la creazione del modulo. Riprovare."
+      },
+      "UPDATE_FORM": {
+        "DUPLICATION": "Esiste già un modulo con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante il salvataggio del modulo. Riprovare."
+      },
+      "CREATE_UI": {
+        "DUPLICATION": "Esiste già una IU con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante la creazione della IU. Riprovare."
+      },
+      "UPDATE_UI": {
+        "DUPLICATION": "Esiste già una IU con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante il salvataggio della IU. Riprovare."
+      },
+      "CREATE_DECISION_TABLE": {
+        "DUPLICATION": "Esiste già una tabella decisioni con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante la creazione della tabella decisioni. Riprovare."
+      },
+      "UPDATE_DECISION_TABLE": {
+        "DUPLICATION": "Esiste già una tabella decisioni con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante il salvataggio della tabella decisioni. Riprovare."
+      },
+      "CREATE_DATA": {
+        "DUPLICATION": "Esiste già un oggetto dati con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante la creazione dell'oggetto dati. Riprovare."
+      },
+      "UPDATE_DATA": {
+        "DUPLICATION": "Esiste già un oggetto dati con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante il salvataggio dell'oggetto dati. Riprovare."
+      },
+      "CREATE_PROJECT": {
+        "DUPLICATION": "Esiste già un progetto con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante la creazione del progetto. Riprovare."
+      },
+      "UPDATE_PROJECT": {
+        "DUPLICATION": "Esiste già un progetto con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante il salvataggio del progetto. Riprovare."
+      },
+      "UPLOAD_PROJECT": {
+        "DUPLICATION": "Esiste già un progetto con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante il caricamento del progetto. Riprovare."
+      },
+      "GET_PROJECT": "Si è verificato un problema durante il caricamento del progetto. Aggiornare la pagina.",
+      "EXPORT_PROJECT": "Errore sconosciuto durante l'esportazione del progetto",
+      "CREATE_FILE": {
+        "DUPLICATION": "Esiste già un file con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante la creazione del file. Riprovare."
+      },
+      "UPDATE_FILE": {
+        "DUPLICATION": "Esiste già un file con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante il salvataggio del file. Riprovare."
+      },
+      "CREATE_SCRIPT": {
+        "DUPLICATION": "Esiste già uno script con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante la creazione dello script. Riprovare."
+      },
+      "UPDATE_SCRIPT": {
+        "DUPLICATION": "Esiste già uno script con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante il salvataggio dello script. Riprovare."
+      },
+      "CREATE_TRIGGER": {
+        "DUPLICATION": "Esiste già un trigger con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante la creazione del trigger. Riprovare."
+      },
+      "UPDATE_TRIGGER": {
+        "DUPLICATION": "Esiste già un trigger con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante il salvataggio del trigger. Riprovare."
+      },
+      "CREATE_FORM_WIDGET": {
+        "DUPLICATION": "Esiste già un widget di modulo con questo nome",
+        "GENERAL": "Si è verificato un problema durante la creazione del widget di modulo. Riprovare."
+      },
+      "UPDATE_FORM_WIDGET": {
+        "DUPLICATION": "Esiste già un widget di modulo con questo nome",
+        "GENERAL": "Si è verificato un problema durante la creazione del widget. Riprovare."
+      }
+    }
+  }
+}

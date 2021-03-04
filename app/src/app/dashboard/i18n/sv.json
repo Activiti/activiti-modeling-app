@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "Ny",
+      "CREATE_PROJECT_TITLE": "Skapa projekt",
+      "OVERRIDE_PROJECT_TITLE": "Det finns redan ett projekt med det namnet.",
+      "EDIT_PROJECT_TITLE": "Redigera projekt",
+      "PROJECT_CREATED": "Projekt skapat",
+      "PROJECT_UPLOADED": "Projekt uppladdat",
+      "PROJECT_UPDATED": "Projekt sparat",
+      "PROJECT_RELEASED": "Projekt avsagt",
+      "PROJECT_DELETED": "Projekt raderat",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "Skapa projekt",
+        "UPLOAD_PROJECT": "Ladda upp projekt",
+        "CREATE_MODEL": "Innehållsmodell"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "Projektnamn:",
+      "PROJECT_DESC": "Projektbeskrivning"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "Projekt",
+        "TOOLTIP": "Publicerade projekt"
+      },
+      "RELEASES": {
+        "LABEL": "Versioner",
+        "TOOLTIP": "Versioner"
+      },
+      "PROCESSES": {
+        "LABEL": "Processer",
+        "TOOLTIP": "Publicerade processer"
+      },
+      "FAVORITES": {
+        "LABEL": "Favoriter",
+        "TOOLTIP": "Favoriter"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "Namn",
+      "COLUMN_VERSION": "Version",
+      "COLUMN_CREATED": "Skapad",
+      "COLUMN_CREATED_BY": "Skapad av",
+      "COLUMN_OPTIONS": "Alternativ",
+      "NO_ITEMS": "Skapa eller importera ett projekt som ska visas i listan.",
+      "NO_FAV_PROCESSES": "Favoritmärk en process för att göra den tillgänglig här.",
+      "NO_FAV_PROJECTS": "Favoritmarkera ett projekt för att göra det tillgängligt här.",
+      "RELEASE_ID": "Versions-ID",
+      "PROJECT_NAME": "Projektnamn"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "Vi stötte på ett problem med att läsa in projekten. Prova att uppdatera sidan.",
+      "LOAD_RELEASES": "Vi stötte på ett problem med att läsa in avsägningarna. Prova att uppdatera sidan.",
+      "LOAD_PROCESSES": "Vi stötte på ett problem med att läsa in processerna. Prova att uppdatera sidan."
+    }
+  }
+}

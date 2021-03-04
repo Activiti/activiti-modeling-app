@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "Nouveau",
+      "CREATE_PROJECT_TITLE": "Créer un projet",
+      "OVERRIDE_PROJECT_TITLE": "Un projet portant ce nom existe déjà.",
+      "EDIT_PROJECT_TITLE": "Modifier le projet",
+      "PROJECT_CREATED": "Projet créé",
+      "PROJECT_UPLOADED": "Projet importé",
+      "PROJECT_UPDATED": "Projet enregistré",
+      "PROJECT_RELEASED": "Projet lancé",
+      "PROJECT_DELETED": "Projet supprimé",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "Créer un projet",
+        "UPLOAD_PROJECT": "Importer un projet",
+        "CREATE_MODEL": "Modèle de contenu"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "Nom du projet :",
+      "PROJECT_DESC": "Description du projet :"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "Projets",
+        "TOOLTIP": "Projets publiés"
+      },
+      "RELEASES": {
+        "LABEL": "Versions",
+        "TOOLTIP": "Versions"
+      },
+      "PROCESSES": {
+        "LABEL": "Processus",
+        "TOOLTIP": "Processus publiés"
+      },
+      "FAVORITES": {
+        "LABEL": "Favoris",
+        "TOOLTIP": "Favoris"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "Nom",
+      "COLUMN_VERSION": "Version",
+      "COLUMN_CREATED": "Créé",
+      "COLUMN_CREATED_BY": "Créé par",
+      "COLUMN_OPTIONS": "Options",
+      "NO_ITEMS": "Créer ou importer un projet pour l'afficher dans la liste.",
+      "NO_FAV_PROCESSES": "Ajouter un processus aux favoris pour qu'il soit disponible ici.",
+      "NO_FAV_PROJECTS": "Ajouter un projet aux favoris pour qu'il soit disponible ici.",
+      "RELEASE_ID": "ID de version",
+      "PROJECT_NAME": "Nom du projet"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "Un problème est survenu lors du chargement des projets. Essayez d'actualiser la page.",
+      "LOAD_RELEASES": "Un problème est survenu lors du chargement des versions. Essayez d'actualiser la page.",
+      "LOAD_PROCESSES": "Un problème est survenu lors du chargement des processus. Essayez d'actualiser la page."
+    }
+  }
+}

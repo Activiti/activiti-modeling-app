@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "Neu",
+      "CREATE_PROJECT_TITLE": "Projekt erstellt",
+      "OVERRIDE_PROJECT_TITLE": "Es gibt bereits ein Projekt mit diesem Namen.",
+      "EDIT_PROJECT_TITLE": "Projekt bearbeiten",
+      "PROJECT_CREATED": "Projekt erstellt",
+      "PROJECT_UPLOADED": "Projekt hochgeladen",
+      "PROJECT_UPDATED": "Projekt gespeichert",
+      "PROJECT_RELEASED": "Projekt freigegeben",
+      "PROJECT_DELETED": "Projekt gelöscht",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "Projekt erstellt",
+        "UPLOAD_PROJECT": "Projekt hochladen",
+        "CREATE_MODEL": "Content-Modell"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "Projektname:",
+      "PROJECT_DESC": "Projektbeschreibung:"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "Projekte",
+        "TOOLTIP": "Veröffentlichte Projekte"
+      },
+      "RELEASES": {
+        "LABEL": "Versionen",
+        "TOOLTIP": "Versionen"
+      },
+      "PROCESSES": {
+        "LABEL": "Prozesse",
+        "TOOLTIP": "Veröffentlichte Prozesse"
+      },
+      "FAVORITES": {
+        "LABEL": "Favoriten",
+        "TOOLTIP": "Favoriten"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "Name",
+      "COLUMN_VERSION": "Version",
+      "COLUMN_CREATED": "Erstellt",
+      "COLUMN_CREATED_BY": "Erstellt von",
+      "COLUMN_OPTIONS": "Optionen",
+      "NO_ITEMS": "Erstellen oder importieren Sie ein Projekt, um es in der Liste anzuzeigen.",
+      "NO_FAV_PROCESSES": "Markieren Sie einen Prozess als Favorit und machen Sie ihn hier verfügbar.",
+      "NO_FAV_PROJECTS": "Markieren Sie ein Projekt als Favorit und machen Sie es hier verfügbar.",
+      "RELEASE_ID": "Versions-ID",
+      "PROJECT_NAME": "Projektname"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "Beim Laden der Projekte ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren.",
+      "LOAD_RELEASES": "Beim Laden der Versionen ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren.",
+      "LOAD_PROCESSES": "Beim Laden der Prozesse ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren."
+    }
+  }
+}

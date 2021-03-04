@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "新建",
+      "CREATE_PROJECT_TITLE": "创建项目",
+      "OVERRIDE_PROJECT_TITLE": "具有此名称的项目已存在。",
+      "EDIT_PROJECT_TITLE": "编辑项目",
+      "PROJECT_CREATED": "项目已创建",
+      "PROJECT_UPLOADED": "项目已上传",
+      "PROJECT_UPDATED": "项目已保存",
+      "PROJECT_RELEASED": "项目已发布",
+      "PROJECT_DELETED": "项目已删除",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "创建项目",
+        "UPLOAD_PROJECT": "上传项目",
+        "CREATE_MODEL": "内容模型"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "项目名称：",
+      "PROJECT_DESC": "项目描述:"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "项目",
+        "TOOLTIP": "已发布的项目"
+      },
+      "RELEASES": {
+        "LABEL": "发布",
+        "TOOLTIP": "发布"
+      },
+      "PROCESSES": {
+        "LABEL": "流程",
+        "TOOLTIP": "已发布的流程"
+      },
+      "FAVORITES": {
+        "LABEL": "收藏夹",
+        "TOOLTIP": "收藏夹"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "名称",
+      "COLUMN_VERSION": "版本",
+      "COLUMN_CREATED": "已创建",
+      "COLUMN_CREATED_BY": "创建者",
+      "COLUMN_OPTIONS": "选项",
+      "NO_ITEMS": "创建或导入项目以在列表中查看它。",
+      "NO_FAV_PROCESSES": "收藏流程以使其在此处可用。",
+      "NO_FAV_PROJECTS": "收藏项目以使其在此处可用。",
+      "RELEASE_ID": "发布 ID",
+      "PROJECT_NAME": "项目名称"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "加载项目时遇到问题。尝试刷新页面。",
+      "LOAD_RELEASES": "加载发布时遇到问题。尝试刷新页面",
+      "LOAD_PROCESSES": "加载流程时遇到问题。尝试刷新页面"
+    }
+  }
+}

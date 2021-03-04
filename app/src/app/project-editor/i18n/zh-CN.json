@@ -1,0 +1,269 @@
+{
+  "PROJECT_EDITOR": {
+    "BACK_TO": "返回项目",
+    "NAME": "项目编辑器",
+    "UPLOAD_FILE": "上传文件",
+    "DOWNLOAD_PROJECT": "下载项目",
+    "PROJECT_VALID": "验证错误",
+    "EXPORT_SUCCESS": "项目已导出",
+    "SETTINGS": {
+      "PROJECT_SETTINGS": "项目编辑器设置",
+      "CONNECTORS_TAB_LABEL": "连接器"
+    },
+    "UPLOAD": "上传",
+    "IMPORT": "导入",
+    "CREATE_NEW": "新建",
+    "SEARCH": "搜索",
+    "UPLOAD_FILE_SUCCESS": "文件已上传",
+    "NO_CONTENT": "<空>",
+    "NO_SELECTION": "使用侧边栏新建模型或编辑现有模型",
+    "NEW_MENU": {
+      "LABEL": "新建",
+      "CREATE": "创建",
+      "UPLOAD": "上传",
+      "IMPORT": "导入",
+      "CREATE_PROCESS_TITLE": "创建流程",
+      "MENU_ITEMS": {
+        "CREATE_PROCESS": "流程",
+        "CREATE_CONNECTOR": "连接器",
+        "CREATE_FORM": "表单",
+        "CREATE_UI": "UI",
+        "CREATE_DATA": "数据对象",
+        "CREATE_DECISION_TABLE": "决策表",
+        "CREATE_FILE": "文件",
+        "CREATE_SCRIPT": "脚本",
+        "CREATE_TRIGGER": "触发器",
+        "CREATE_PROJECT_MODEL": "内容模型",
+        "CREATE_FORM_WIDGET": "表单小组件"
+      }
+    },
+    "TREE": {
+      "PROCESSES": "流程",
+      "FORMS": "表单",
+      "CONNECTORS": "连接器",
+      "DATA": "数据",
+      "DECISION_TABLES": "决策表",
+      "UIS": "UI",
+      "FILES": "文件",
+      "SCRIPTS": "多个脚本",
+      "TRIGGERS": "多个触发器"
+    },
+    "PROCESS_DIALOG": {
+      "TITLE_CREATE": "创建流程",
+      "TITLE_UPDATE": "更新流程",
+      "PROCESS_NAME": "流程名称：",
+      "PROCESS_DESC": "流程文档：",
+      "PROCESS_CREATED": "流程已创建",
+      "PROCESS_DELETED": "流程已删除",
+      "PROCESS_UPDATED": "流程已保存"
+    },
+    "CONNECTOR_DIALOG": {
+      "TITLE_CREATE": "创建连接器",
+      "TITLE_UPDATE": "更新连接器",
+      "CONNECTOR_NAME": "连接器名称:",
+      "CONNECTOR_DESC": "连接器描述：",
+      "CONNECTOR_CREATED": "连接器已创建",
+      "CONNECTOR_DELETED": "连接器已删除",
+      "CONNECTOR_UPDATED": "连接器已保存"
+    },
+    "FORM_DIALOG": {
+      "TITLE_CREATE": "创建表单",
+      "TITLE_UPDATE": "更新表单",
+      "FORM_NAME": "表单名称：",
+      "FORM_DESC": "表单描述：",
+      "FORM_CREATED": "表单已创建",
+      "FORM_DELETED": "表单已删除",
+      "FORM_UPDATED": "表单已保存",
+      "FORM_CONTENT_CREATED": "根据内容模型创建的初始表单内容"
+    },
+    "UI_DIALOG": {
+      "TITLE_CREATE": "创建 UI",
+      "TITLE_UPDATE": "更新 UI",
+      "UI_NAME": "UI 名称：",
+      "UI_DESC": "UI 描述：",
+      "UI_CREATED": "UI 已创建",
+      "UI_DELETED": "UI 已删除",
+      "UI_UPDATED": "UI 已保存"
+    },
+    "DATA_DIALOG": {
+      "TITLE_CREATE": "创建数据对象",
+      "TITLE_UPDATE": "更新数据对象",
+      "DATA_NAME": "数据对象名称：",
+      "DATA_DESC": "数据对象描述：",
+      "DATA_CREATED": "数据对象已创建",
+      "DATA_DELETED": "数据对象已删除",
+      "DATA_UPDATED": "数据对象已保存"
+    },
+    "DECISION_TABLE_DIALOG": {
+      "TITLE_CREATE": "创建决策表",
+      "TITLE_UPDATE": "更新决策表",
+      "DECISION_TABLE_NAME": "决策表名称：",
+      "DECISION_TABLE_DESC": "决策表描述：",
+      "DECISION_TABLE_CREATED": "决策表已创建",
+      "DECISION_TABLE_DELETED": "决策表已删除",
+      "DECISION_TABLE_UPDATED": "决策表已保存"
+    },
+    "FILE_DIALOG": {
+      "TITLE_CREATE": "创建文件",
+      "TITLE_UPDATE": "更新文件",
+      "FILE_NAME": "文件名称：",
+      "FILE_DESC": "文件描述：",
+      "FILE_CREATED": "文件已创建",
+      "FILE_DELETED": "文件已删除",
+      "FILE_UPDATED": "文件已保存"
+    },
+    "SCRIPT_DIALOG": {
+      "TITLE_CREATE": "创建脚本",
+      "TITLE_UPDATE": "更新脚本",
+      "SCRIPT_NAME": "脚本名称：",
+      "SCRIPT_DESC": "脚本描述：",
+      "SCRIPT_CREATED": "脚本已创建",
+      "SCRIPT_DELETED": "脚本已删除",
+      "SCRIPT_UPDATED": "脚本已保存"
+    },
+    "TRIGGER_DIALOG": {
+      "TITLE_CREATE": "创建触发器",
+      "TITLE_UPDATE": "更新触发器",
+      "TRIGGER_NAME": "触发器名称:",
+      "TRIGGER_DESC": "触发器描述:",
+      "TRIGGER_CREATED": "触发器已创建",
+      "TRIGGER_DELETED": "触发器已删除",
+      "TRIGGER_UPDATED": "触发器已保存"
+    },
+    "ACTION_DIALOG": {
+      "ACTION_DETAILS": "操作详细信息",
+      "ACTION_NAME": "操作名称",
+      "ACTION_DESC": "操作描述",
+      "ADD_ACTION": "添加操作",
+      "DEL_ACTION": "删除操作"
+    },
+    "EVENT_DIALOG": {
+      "EVENT_DETAILS": "事件详细信息",
+      "EVENT_NAME": "事件名称",
+      "EVENT_DESC": "事件描述",
+      "ADD_EVENT": "添加事件",
+      "DEL_EVENT": "删除事件"
+    },
+    "PROJECT_MODEL_DIALOG": {
+      "TITLE_CREATE": "创建内容模型",
+      "TITLE_UPDATE": "更新内容模型",
+      "PROJECT_MODEL_NAME": "内容模型名称:",
+      "PROJECT_MODEL_DESC": "内容模型描述:",
+      "PROJECT_MODEL_CREATED": "内容模型已创建",
+      "PROJECT_MODEL_DELETED": "内容模型已删除",
+      "PROJECT_MODEL_UPDATED": "内容模型已保存"
+    },
+    "FORM_WIDGET_DIALOG": {
+      "TITLE_CREATE": "创建表单小组件",
+      "TITLE_UPDATE": "更新表单小组件",
+      "FORM_WIDGET_NAME": "小组件名称:",
+      "FORM_WIDGET_DESC": "小组件描述:",
+      "FORM_WIDGET_CREATED": "表单小组件已创建",
+      "FORM_WIDGET_DELETED": "表单小组件已删除",
+      "FORM_WIDGET_UPDATED": "表单小组件已保存"
+    },
+    "ERROR": {
+      "UPLOAD_FILE": "上传文件时遇到问题。尝试重新上传。",
+      "DELETE_PROJECT": "删除项目时遇到问题。尝试重新删除。",
+      "CHANGE_FAVORITE": "收藏该项目时遇到问题。尝试重新收藏。",
+      "DELETE_PROCESS": "删除流程时遇到问题。尝试重新删除。",
+      "LOAD_MODELS": "加载模型时遇到问题。尝试重新更新。",
+      "RELEASE_PROJECT": "发行项目时遇到问题。尝试重新发行。",
+      "CREATE_PROCESS": {
+        "DUPLICATION": "具有此名称的值已存在",
+        "GENERAL": "创建流程时遇到问题。尝试重新创建。"
+      },
+      "UPDATE_PROCESS": {
+        "DUPLICATION": "具有此名称的值已存在",
+        "GENERAL": "保存流程时遇到问题。尝试重新保存。",
+        "EMPTY_NAME": "需要名称"
+      },
+      "CREATE_CONNECTOR": {
+        "DUPLICATION": "具有此名称的连接器已存在",
+        "GENERAL": "创建连接器时遇到问题。尝试重新创建。"
+      },
+      "UPDATE_CONNECTOR": {
+        "DUPLICATION": "具有此名称的连接器已存在",
+        "GENERAL": "保存连接器时遇到问题。尝试重新保存。"
+      },
+      "CREATE_FORM": {
+        "DUPLICATION": "具有此名称的表单已存在",
+        "GENERAL": "创建表单时遇到问题。尝试重新创建。"
+      },
+      "UPDATE_FORM": {
+        "DUPLICATION": "具有此名称的表单已存在",
+        "GENERAL": "保存表单时遇到问题。尝试重新保存。"
+      },
+      "CREATE_UI": {
+        "DUPLICATION": "具有此名称的 UI 已存在",
+        "GENERAL": "创建 UI 时遇到问题。尝试重新创建。"
+      },
+      "UPDATE_UI": {
+        "DUPLICATION": "具有此名称的 UI 已存在",
+        "GENERAL": "保存 UI 时遇到问题。尝试重新保存。"
+      },
+      "CREATE_DECISION_TABLE": {
+        "DUPLICATION": "具有此名称的决策表已存在",
+        "GENERAL": "创建决策表时遇到问题。尝试重新创建。"
+      },
+      "UPDATE_DECISION_TABLE": {
+        "DUPLICATION": "具有此名称的决策表已存在",
+        "GENERAL": "保存决策表时遇到问题。尝试重新保存。"
+      },
+      "CREATE_DATA": {
+        "DUPLICATION": "具有此名称的数据对象已存在",
+        "GENERAL": "创建数据对象时遇到问题。尝试重新创建。"
+      },
+      "UPDATE_DATA": {
+        "DUPLICATION": "具有此名称的数据对象已存在",
+        "GENERAL": "保存数据对象时遇到问题。尝试重新保存。"
+      },
+      "CREATE_PROJECT": {
+        "DUPLICATION": "具有此名称的项目已存在",
+        "GENERAL": "创建项目时遇到问题。尝试重新创建。"
+      },
+      "UPDATE_PROJECT": {
+        "DUPLICATION": "具有此名称的项目已存在",
+        "GENERAL": "保存项目时遇到问题。尝试重新保存。"
+      },
+      "UPLOAD_PROJECT": {
+        "DUPLICATION": "具有此名称的项目已存在",
+        "GENERAL": "上传项目时遇到问题。尝试重新上传。"
+      },
+      "GET_PROJECT": "加载项目时遇到问题。尝试刷新页面。",
+      "EXPORT_PROJECT": "项目导出期间出现未知错误",
+      "CREATE_FILE": {
+        "DUPLICATION": "具有此名称的文件已存在",
+        "GENERAL": "创建文件时遇到问题。尝试重新创建。"
+      },
+      "UPDATE_FILE": {
+        "DUPLICATION": "具有此名称的文件已存在",
+        "GENERAL": "保存文件时遇到问题。尝试重新保存。"
+      },
+      "CREATE_SCRIPT": {
+        "DUPLICATION": "具有此名称的脚本已存在",
+        "GENERAL": "创建脚本时遇到问题。尝试重新创建。"
+      },
+      "UPDATE_SCRIPT": {
+        "DUPLICATION": "具有此名称的脚本已存在",
+        "GENERAL": "保存脚本时遇到问题。尝试重新保存。"
+      },
+      "CREATE_TRIGGER": {
+        "DUPLICATION": "具有此名称的触发器已存在",
+        "GENERAL": "创建触发器时遇到问题。尝试重新创建。"
+      },
+      "UPDATE_TRIGGER": {
+        "DUPLICATION": "具有此名称的触发器已存在",
+        "GENERAL": "保存触发器时遇到问题。尝试重新保存。"
+      },
+      "CREATE_FORM_WIDGET": {
+        "DUPLICATION": "具有该名称的表单小组件已存在",
+        "GENERAL": "创建表单小组件时遇到问题。尝试重新创建。"
+      },
+      "UPDATE_FORM_WIDGET": {
+        "DUPLICATION": "具有该名称的表单小组件已存在",
+        "GENERAL": "保存小组件时遇到问题。再保存一次"
+      }
+    }
+  }
+}

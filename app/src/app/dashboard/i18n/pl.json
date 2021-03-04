@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "Nowy",
+      "CREATE_PROJECT_TITLE": "Utwórz projekt",
+      "OVERRIDE_PROJECT_TITLE": "Projekt o tej nazwie już istnieje.",
+      "EDIT_PROJECT_TITLE": "Edytuj projekt",
+      "PROJECT_CREATED": "Utworzono projekt",
+      "PROJECT_UPLOADED": "Przesłano projekt",
+      "PROJECT_UPDATED": "Zapisano projekt",
+      "PROJECT_RELEASED": "Zwolniono projekt",
+      "PROJECT_DELETED": "Usunięto projekt",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "Utwórz projekt",
+        "UPLOAD_PROJECT": "Prześlij projekt",
+        "CREATE_MODEL": "Model treści"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "Nazwa projektu:",
+      "PROJECT_DESC": "Opis projektu:"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "Projekty",
+        "TOOLTIP": "Opublikowane projekty"
+      },
+      "RELEASES": {
+        "LABEL": "Wydania",
+        "TOOLTIP": "Wydania"
+      },
+      "PROCESSES": {
+        "LABEL": "Procesy",
+        "TOOLTIP": "Opublikowane procesy"
+      },
+      "FAVORITES": {
+        "LABEL": "Ulubione",
+        "TOOLTIP": "Ulubione"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "Nazwa",
+      "COLUMN_VERSION": "Wersja",
+      "COLUMN_CREATED": "Utworzono",
+      "COLUMN_CREATED_BY": "Utworzone przez",
+      "COLUMN_OPTIONS": "Opcje",
+      "NO_ITEMS": "Utwórz lub zaimportuj projekt, aby wyświetlić go na liście.",
+      "NO_FAV_PROCESSES": "Dodaj proces do ulubionych, aby udostępnić go tutaj.",
+      "NO_FAV_PROJECTS": "Dodaj projekt do ulubionych, aby udostępnić go tutaj.",
+      "RELEASE_ID": "Identyfikator wydania",
+      "PROJECT_NAME": "Nazwa projektu"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "Wystąpił problem podczas ładowania projektów. Spróbuj odświeżyć stronę.",
+      "LOAD_RELEASES": "Wystąpił problem podczas ładowania wydań. Spróbuj odświeżyć stronę.",
+      "LOAD_PROCESSES": "Wystąpił problem podczas ładowania procesów. Spróbuj odświeżyć stronę."
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "新規",
+      "CREATE_PROJECT_TITLE": "プロジェクトを作成",
+      "OVERRIDE_PROJECT_TITLE": "同じ名前のプロジェクトが既に存在します。",
+      "EDIT_PROJECT_TITLE": "プロジェクトを編集",
+      "PROJECT_CREATED": "プロジェクトが作成されました",
+      "PROJECT_UPLOADED": "プロジェクトがアップロードされました",
+      "PROJECT_UPDATED": "プロジェクトが保存されました",
+      "PROJECT_RELEASED": "プロジェクトがリリースされました",
+      "PROJECT_DELETED": "プロジェクトが削除されました",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "プロジェクトを作成",
+        "UPLOAD_PROJECT": "プロジェクトをアップロード",
+        "CREATE_MODEL": "コンテンツモデル"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "プロジェクト名:",
+      "PROJECT_DESC": "プロジェクトの説明:"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "プロジェクト",
+        "TOOLTIP": "公開されたプロジェクト"
+      },
+      "RELEASES": {
+        "LABEL": "リリース",
+        "TOOLTIP": "リリース"
+      },
+      "PROCESSES": {
+        "LABEL": "プロセス",
+        "TOOLTIP": "公開されたプロセス"
+      },
+      "FAVORITES": {
+        "LABEL": "お気に入り",
+        "TOOLTIP": "お気に入り"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "名前",
+      "COLUMN_VERSION": "バージョン",
+      "COLUMN_CREATED": "作成日",
+      "COLUMN_CREATED_BY": "作成者",
+      "COLUMN_OPTIONS": "オプション",
+      "NO_ITEMS": "リストに表示するプロジェクトを作成するかインポートしてください。",
+      "NO_FAV_PROCESSES": "ここで使用するプロセスをお気に入りに登録します。",
+      "NO_FAV_PROJECTS": "ここで使用するプロジェクトをお気に入りに登録します。",
+      "RELEASE_ID": "リリース ID",
+      "PROJECT_NAME": "プロジェクト名"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "プロジェクトの読み込み中に問題が発生しました。ページを再読み込みしてください。",
+      "LOAD_RELEASES": "リリースの読み込み中に問題が発生しました。ページを再読み込みしてください。",
+      "LOAD_PROCESSES": "プロセスの読み込み中に問題が発生しました。ページを再読み込みしてください。"
+    }
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "PROJECT_EDITOR": {
+    "BACK_TO": "Zpět k projektům",
+    "NAME": "Editor projektů",
+    "UPLOAD_FILE": "Odeslat soubor",
+    "DOWNLOAD_PROJECT": "Stáhnout projekt",
+    "PROJECT_VALID": "Projekt neobsahuje žádné chyby ověřování.",
+    "EXPORT_SUCCESS": "Projekt byl exportován",
+    "SETTINGS": {
+      "PROJECT_SETTINGS": "Nastavení editoru projektů",
+      "CONNECTORS_TAB_LABEL": "Konektory"
+    },
+    "UPLOAD": "Odeslat",
+    "IMPORT": "Importovat",
+    "CREATE_NEW": "Vytvořit nový",
+    "SEARCH": "Hledat",
+    "UPLOAD_FILE_SUCCESS": "Soubor byl odeslán",
+    "NO_CONTENT": "<prázdný>",
+    "NO_SELECTION": "Vytvořte nový model nebo upravte existující pomocí bočního panelu.",
+    "NEW_MENU": {
+      "LABEL": "Nový",
+      "CREATE": "Vytvořit",
+      "UPLOAD": "Odeslat",
+      "IMPORT": "Importovat",
+      "CREATE_PROCESS_TITLE": "Vytvořit proces",
+      "MENU_ITEMS": {
+        "CREATE_PROCESS": "Proces",
+        "CREATE_CONNECTOR": "Konektor",
+        "CREATE_FORM": "Formulář",
+        "CREATE_UI": "Uživatelské rozhraní",
+        "CREATE_DATA": "Datový objekt",
+        "CREATE_DECISION_TABLE": "Rozhodovací tabulka",
+        "CREATE_FILE": "Soubor",
+        "CREATE_SCRIPT": "Skript",
+        "CREATE_TRIGGER": "Aktivační procedura",
+        "CREATE_PROJECT_MODEL": "Model obsahu",
+        "CREATE_FORM_WIDGET": "Widget formuláře"
+      }
+    },
+    "TREE": {
+      "PROCESSES": "Procesy",
+      "FORMS": "Formuláře",
+      "CONNECTORS": "Konektory",
+      "DATA": "Data",
+      "DECISION_TABLES": "Rozhodovací tabulky",
+      "UIS": "Uživatelské rozhraní",
+      "FILES": "Soubory",
+      "SCRIPTS": "Skripty",
+      "TRIGGERS": "Aktivační procedury"
+    },
+    "PROCESS_DIALOG": {
+      "TITLE_CREATE": "Vytvořit proces",
+      "TITLE_UPDATE": "Aktualizovat proces",
+      "PROCESS_NAME": "Název procesu:",
+      "PROCESS_DESC": "Procesní dokumentace:",
+      "PROCESS_CREATED": "Proces byl vytvořen",
+      "PROCESS_DELETED": "Proces byl odstraněn",
+      "PROCESS_UPDATED": "Proces byl uložen"
+    },
+    "CONNECTOR_DIALOG": {
+      "TITLE_CREATE": "Vytvořit konektor",
+      "TITLE_UPDATE": "Aktualizovat konektor",
+      "CONNECTOR_NAME": "Název konektoru:",
+      "CONNECTOR_DESC": "Popis konektoru:",
+      "CONNECTOR_CREATED": "Konektor byl vytvořen",
+      "CONNECTOR_DELETED": "Konektor byl odstraněn",
+      "CONNECTOR_UPDATED": "Konektor byl uložen"
+    },
+    "FORM_DIALOG": {
+      "TITLE_CREATE": "Vytvořit formulář",
+      "TITLE_UPDATE": "Aktualizovat formulář",
+      "FORM_NAME": "Název formuláře:",
+      "FORM_DESC": "Popis formuláře:",
+      "FORM_CREATED": "Formulář byl vytvořen",
+      "FORM_DELETED": "Formulář byl odstraněn",
+      "FORM_UPDATED": "Formulář byl uložen",
+      "FORM_CONTENT_CREATED": "Vytvoření počátečního obsahu formuláře z modelu obsahu"
+    },
+    "UI_DIALOG": {
+      "TITLE_CREATE": "Vytvořit uživatelské rozhraní",
+      "TITLE_UPDATE": "Aktualizovat uživatelské rozhraní",
+      "UI_NAME": "Název uživatelského rozhraní:",
+      "UI_DESC": "Popis uživatelského rozhraní:",
+      "UI_CREATED": "Uživatelské rozhraní bylo vytvořeno",
+      "UI_DELETED": "Uživatelské rozhraní bylo odstraněno",
+      "UI_UPDATED": "Uživatelské rozhraní bylo uloženo"
+    },
+    "DATA_DIALOG": {
+      "TITLE_CREATE": "Vytvořit datový objekt",
+      "TITLE_UPDATE": "Aktualizovat datový objekt",
+      "DATA_NAME": "Název datového objektu:",
+      "DATA_DESC": "Popis datového objektu:",
+      "DATA_CREATED": "Datový objekt byl vytvořen",
+      "DATA_DELETED": "Datový objekt byl odstraněn",
+      "DATA_UPDATED": "Datový objekt byl uložen"
+    },
+    "DECISION_TABLE_DIALOG": {
+      "TITLE_CREATE": "Vytvořit rozhodovací tabulku",
+      "TITLE_UPDATE": "Aktualizovat rozhodovací tabulku",
+      "DECISION_TABLE_NAME": "Název rozhodovací tabulky:",
+      "DECISION_TABLE_DESC": "Popis rozhodovací tabulky:",
+      "DECISION_TABLE_CREATED": "Rozhodovací tabulka byla vytvořena",
+      "DECISION_TABLE_DELETED": "Rozhodovací tabulka byla odstraněna",
+      "DECISION_TABLE_UPDATED": "Rozhodovací tabulka byla uložena"
+    },
+    "FILE_DIALOG": {
+      "TITLE_CREATE": "Vytvořit soubor",
+      "TITLE_UPDATE": "Aktualizovat soubor",
+      "FILE_NAME": "Název souboru:",
+      "FILE_DESC": "Popis souboru:",
+      "FILE_CREATED": "Soubor byl vytvořen",
+      "FILE_DELETED": "Soubor byl odstraněn",
+      "FILE_UPDATED": "Soubor byl uložen"
+    },
+    "SCRIPT_DIALOG": {
+      "TITLE_CREATE": "Vytvořit skript",
+      "TITLE_UPDATE": "Aktualizovat skript",
+      "SCRIPT_NAME": "Název skriptu:",
+      "SCRIPT_DESC": "Popis skriptu:",
+      "SCRIPT_CREATED": "Skript byl vytvořen",
+      "SCRIPT_DELETED": "Skript byl odstraněn",
+      "SCRIPT_UPDATED": "Uložení skriptu"
+    },
+    "TRIGGER_DIALOG": {
+      "TITLE_CREATE": "Vytvořit aktivační proceduru",
+      "TITLE_UPDATE": "Aktualizovat aktivační proceduru",
+      "TRIGGER_NAME": "Název aktivační procedury:",
+      "TRIGGER_DESC": "Popis aktivační procedury:",
+      "TRIGGER_CREATED": "Aktivační procedura byla vytvořena",
+      "TRIGGER_DELETED": "Aktivační procedura byla odstraněna",
+      "TRIGGER_UPDATED": "Aktivační procedura byla uložena"
+    },
+    "ACTION_DIALOG": {
+      "ACTION_DETAILS": "Podrobnosti akce",
+      "ACTION_NAME": "Název akce",
+      "ACTION_DESC": "Popis akce",
+      "ADD_ACTION": "Přidat akci",
+      "DEL_ACTION": "Odstranit akci"
+    },
+    "EVENT_DIALOG": {
+      "EVENT_DETAILS": "Podrobnosti události",
+      "EVENT_NAME": "Název události",
+      "EVENT_DESC": "Popis události",
+      "ADD_EVENT": "Přidat událost",
+      "DEL_EVENT": "Odstranit událost"
+    },
+    "PROJECT_MODEL_DIALOG": {
+      "TITLE_CREATE": "Vytvořit model obsahu",
+      "TITLE_UPDATE": "Aktualizovat model obsahu",
+      "PROJECT_MODEL_NAME": "Název modelu obsahu:",
+      "PROJECT_MODEL_DESC": "Popis modelu obsahu:",
+      "PROJECT_MODEL_CREATED": "Vytvoření modelu obsahu",
+      "PROJECT_MODEL_DELETED": "Odstranění modelu obsahu",
+      "PROJECT_MODEL_UPDATED": "Uložení modelu obsahu"
+    },
+    "FORM_WIDGET_DIALOG": {
+      "TITLE_CREATE": "Vytvořit widget formuláře",
+      "TITLE_UPDATE": "Aktualizovat widget formuláře",
+      "FORM_WIDGET_NAME": "Název widgetu:",
+      "FORM_WIDGET_DESC": "Popis widgetu:",
+      "FORM_WIDGET_CREATED": "Vytvoření widgetu formuláře",
+      "FORM_WIDGET_DELETED": "Odstranění widgetu formuláře",
+      "FORM_WIDGET_UPDATED": "Uložení widgetu formuláře"
+    },
+    "ERROR": {
+      "UPLOAD_FILE": "Došlo k problému při odesílání souboru. Zkuste ho odeslat znovu.",
+      "DELETE_PROJECT": "Došlo k problému při odstraňování projektu. Zkuste ho odstranit znovu.",
+      "CHANGE_FAVORITE": "Došlo k problému při přidávání projektu do oblíbených. Zkuste ho přidat do oblíbených znovu.",
+      "DELETE_PROCESS": "Došlo k problému při odstraňování procesu. Zkuste ho odstranit znovu.",
+      "LOAD_MODELS": "Došlo k problému při načítání modelů. Zkuste obnovit stránku.",
+      "RELEASE_PROJECT": "Došlo k problému při odstraňování projektu. Zkuste ho odstranit znovu.",
+      "CREATE_PROCESS": {
+        "DUPLICATION": "Proces s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při vytváření procesu. Zkuste ho vytvořit znovu."
+      },
+      "UPDATE_PROCESS": {
+        "DUPLICATION": "Proces s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při ukládání procesu. Zkuste ho uložit znovu.",
+        "EMPTY_NAME": "Název je povinný."
+      },
+      "CREATE_CONNECTOR": {
+        "DUPLICATION": "Konektor s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při vytváření konektoru. Zkuste ho vytvořit znovu."
+      },
+      "UPDATE_CONNECTOR": {
+        "DUPLICATION": "Konektor s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při ukládání konektoru. Zkuste ho uložit znovu."
+      },
+      "CREATE_FORM": {
+        "DUPLICATION": "Formulář s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při vytváření formuláře. Zkuste ho vytvořit znovu."
+      },
+      "UPDATE_FORM": {
+        "DUPLICATION": "Formulář s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při ukládání formuláře. Zkuste ho uložit znovu."
+      },
+      "CREATE_UI": {
+        "DUPLICATION": "Uživatelské rozhraní s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při vytváření uživatelského rozhraní. Zkuste ho vytvořit znovu."
+      },
+      "UPDATE_UI": {
+        "DUPLICATION": "Uživatelské rozhraní s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při ukládání uživatelského rozhraní. Zkuste ho uložit znovu."
+      },
+      "CREATE_DECISION_TABLE": {
+        "DUPLICATION": "Rozhodovací tabulka s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při vytváření rozhodovací tabulky. Zkuste ji vytvořit znovu."
+      },
+      "UPDATE_DECISION_TABLE": {
+        "DUPLICATION": "Rozhodovací tabulka s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při vytváření rozhodovací tabulky. Zkuste ji vytvořit znovu."
+      },
+      "CREATE_DATA": {
+        "DUPLICATION": "Datový objekt s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při vytváření datového objektu. Zkuste ho vytvořit znovu."
+      },
+      "UPDATE_DATA": {
+        "DUPLICATION": "Datový objekt s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při ukládání datového objektu. Zkuste ho uložit znovu."
+      },
+      "CREATE_PROJECT": {
+        "DUPLICATION": "Projekt s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při vytváření projektu. Zkuste ho vytvořit znovu."
+      },
+      "UPDATE_PROJECT": {
+        "DUPLICATION": "Projekt s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při ukládání projektu. Zkuste ho uložit znovu."
+      },
+      "UPLOAD_PROJECT": {
+        "DUPLICATION": "Projekt s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při odesílání projektu. Zkuste ho odeslat znovu."
+      },
+      "GET_PROJECT": "Došlo k problému při načítání projektu. Zkuste obnovit stránku.",
+      "EXPORT_PROJECT": "Během exportu projektu došlo k neznámé chybě",
+      "CREATE_FILE": {
+        "DUPLICATION": "Soubor s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při vytváření souboru. Zkuste ho vytvořit znovu."
+      },
+      "UPDATE_FILE": {
+        "DUPLICATION": "Soubor s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při ukládání souboru. Zkuste ho uložit znovu."
+      },
+      "CREATE_SCRIPT": {
+        "DUPLICATION": "Skript s tímto názvem již existuje",
+        "GENERAL": "Při vytváření skriptu došlo k problému. Zkuste ho vytvořit znovu."
+      },
+      "UPDATE_SCRIPT": {
+        "DUPLICATION": "Skript s tímto názvem již existuje",
+        "GENERAL": "Při ukládání skriptu došlo k problému. Zkuste ho uložit znovu."
+      },
+      "CREATE_TRIGGER": {
+        "DUPLICATION": "Aktivační procedura s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při vytváření aktivační procedury. Zkuste ji vytvořit znovu."
+      },
+      "UPDATE_TRIGGER": {
+        "DUPLICATION": "Aktivační procedura s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při ukládání aktivační procedury. Zkuste ji uložit znovu."
+      },
+      "CREATE_FORM_WIDGET": {
+        "DUPLICATION": "Widget formuláře s tímto názvem již existuje.",
+        "GENERAL": "Během vytváření widgetu formuláře se vyskytl problém. Zkuste ho vytvořit znovu."
+      },
+      "UPDATE_FORM_WIDGET": {
+        "DUPLICATION": "Widget formuláře s tímto názvem již existuje.",
+        "GENERAL": "Během ukládání widgetu se vyskytl problém. Zkuste ho uložit znovu."
+      }
+    }
+  }
+}

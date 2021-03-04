@@ -1,0 +1,269 @@
+{
+  "PROJECT_EDITOR": {
+    "BACK_TO": "Tillbaka till projekt",
+    "NAME": "Projekteditor",
+    "UPLOAD_FILE": "Ladda upp fil",
+    "DOWNLOAD_PROJECT": "Ladda ner projekt",
+    "PROJECT_VALID": "Projektet innehåller inga valideringsfel",
+    "EXPORT_SUCCESS": "Projektet exporterat",
+    "SETTINGS": {
+      "PROJECT_SETTINGS": "Projekteditorinställningar",
+      "CONNECTORS_TAB_LABEL": "Konnektorer"
+    },
+    "UPLOAD": "Ladda upp",
+    "IMPORT": "Importera",
+    "CREATE_NEW": "Skapa ny",
+    "SEARCH": "Sök",
+    "UPLOAD_FILE_SUCCESS": "Fil uppladdad",
+    "NO_CONTENT": "<empty>",
+    "NO_SELECTION": "Skapa en ny modell eller redigera en befintlig med sidoraden",
+    "NEW_MENU": {
+      "LABEL": "Ny",
+      "CREATE": "Skapa",
+      "UPLOAD": "Ladda upp",
+      "IMPORT": "Importera",
+      "CREATE_PROCESS_TITLE": "Skapa process",
+      "MENU_ITEMS": {
+        "CREATE_PROCESS": "Process",
+        "CREATE_CONNECTOR": "Konnektor",
+        "CREATE_FORM": "Formulär",
+        "CREATE_UI": "Gränssnitt",
+        "CREATE_DATA": "Dataobjekt",
+        "CREATE_DECISION_TABLE": "Beslutstabell",
+        "CREATE_FILE": "Fil",
+        "CREATE_SCRIPT": "Skript",
+        "CREATE_TRIGGER": "Utlösare",
+        "CREATE_PROJECT_MODEL": "Innehållsmodell",
+        "CREATE_FORM_WIDGET": "Widgetform"
+      }
+    },
+    "TREE": {
+      "PROCESSES": "Processer",
+      "FORMS": "Formulär",
+      "CONNECTORS": "Konnektorer",
+      "DATA": "Data",
+      "DECISION_TABLES": "Beslutstabeller",
+      "UIS": "Gränssnitt",
+      "FILES": "Filer",
+      "SCRIPTS": "Skript",
+      "TRIGGERS": "Utlösare"
+    },
+    "PROCESS_DIALOG": {
+      "TITLE_CREATE": "Skapa process",
+      "TITLE_UPDATE": "Uppdatera process",
+      "PROCESS_NAME": "Processnamn",
+      "PROCESS_DESC": "Processdokumentation",
+      "PROCESS_CREATED": "Process skapad",
+      "PROCESS_DELETED": "Process raderad",
+      "PROCESS_UPDATED": "Process sparad"
+    },
+    "CONNECTOR_DIALOG": {
+      "TITLE_CREATE": "Skapa konnektor",
+      "TITLE_UPDATE": "Uppdatera konnektor",
+      "CONNECTOR_NAME": "Konnektor namn:",
+      "CONNECTOR_DESC": "Konnektor beskrivning:",
+      "CONNECTOR_CREATED": "Konnektor skapad",
+      "CONNECTOR_DELETED": "Konnektor raderad",
+      "CONNECTOR_UPDATED": "Konnektor sparad"
+    },
+    "FORM_DIALOG": {
+      "TITLE_CREATE": "Skapa formulär",
+      "TITLE_UPDATE": "Uppdatera formulär",
+      "FORM_NAME": "Formulär namn",
+      "FORM_DESC": "Formulär beskrivning",
+      "FORM_CREATED": "Formulär skapat",
+      "FORM_DELETED": "Formulär raderat",
+      "FORM_UPDATED": "Formulär sparat",
+      "FORM_CONTENT_CREATED": "Initialt formulärinnehåll skapat från innehållsmodell"
+    },
+    "UI_DIALOG": {
+      "TITLE_CREATE": "Skapa gränssnitt",
+      "TITLE_UPDATE": "Uppdatera gränsnitt",
+      "UI_NAME": "Gränssnitt namn:",
+      "UI_DESC": "Beskrivning av gränssnitt",
+      "UI_CREATED": "Gränssnitt skapat",
+      "UI_DELETED": "Gränssnitt raderat",
+      "UI_UPDATED": "Gränssnitt sparat"
+    },
+    "DATA_DIALOG": {
+      "TITLE_CREATE": "Skapa dataobjekt",
+      "TITLE_UPDATE": "Uppdatera dataobjekt",
+      "DATA_NAME": "Dataobjektsnamn:",
+      "DATA_DESC": "Dataobjektsbeskrivning:",
+      "DATA_CREATED": "Dataobjekt skapat",
+      "DATA_DELETED": "Dataobjekt raderat",
+      "DATA_UPDATED": "Dataobjekt sparat"
+    },
+    "DECISION_TABLE_DIALOG": {
+      "TITLE_CREATE": "Skapa beslutstabell",
+      "TITLE_UPDATE": "Uppdatera beslutstabell",
+      "DECISION_TABLE_NAME": "Beslutstabellsnamn:",
+      "DECISION_TABLE_DESC": "Beslutstabell beskrivning:",
+      "DECISION_TABLE_CREATED": "Beslutstabell skapad",
+      "DECISION_TABLE_DELETED": "Beslutstabell raderad",
+      "DECISION_TABLE_UPDATED": "Beslutstabell sparad"
+    },
+    "FILE_DIALOG": {
+      "TITLE_CREATE": "Skapa fil",
+      "TITLE_UPDATE": "Uppdatera fil",
+      "FILE_NAME": "Filnamn:",
+      "FILE_DESC": "Filbeskrivning:",
+      "FILE_CREATED": "Fil skapad",
+      "FILE_DELETED": "Fil raderad",
+      "FILE_UPDATED": "Fil sparad"
+    },
+    "SCRIPT_DIALOG": {
+      "TITLE_CREATE": "Skapa skript",
+      "TITLE_UPDATE": "Uppdatera skript",
+      "SCRIPT_NAME": "Skriptnamn:",
+      "SCRIPT_DESC": "Beskrivning av skript:",
+      "SCRIPT_CREATED": "Skript har skapats",
+      "SCRIPT_DELETED": "Skript raderat",
+      "SCRIPT_UPDATED": "Skript sparat"
+    },
+    "TRIGGER_DIALOG": {
+      "TITLE_CREATE": "Skapa utlösare",
+      "TITLE_UPDATE": "Uppdatera utlösare",
+      "TRIGGER_NAME": "Utlösarnamn",
+      "TRIGGER_DESC": "Beskrivning av utlösare:",
+      "TRIGGER_CREATED": "Utlösare skapades",
+      "TRIGGER_DELETED": "Utlösare raderades",
+      "TRIGGER_UPDATED": "Utlösare sparades"
+    },
+    "ACTION_DIALOG": {
+      "ACTION_DETAILS": "Åtgärdsinformation",
+      "ACTION_NAME": "Åtgärdsnamn",
+      "ACTION_DESC": "Åtgärdsbeskrivning",
+      "ADD_ACTION": "Lägg till åtgärd",
+      "DEL_ACTION": "Radera åtgärd"
+    },
+    "EVENT_DIALOG": {
+      "EVENT_DETAILS": "Information om händelse",
+      "EVENT_NAME": "Händelsenamn",
+      "EVENT_DESC": "Händelsebeskrivning",
+      "ADD_EVENT": "Lägg till händelse",
+      "DEL_EVENT": "Radera händelse"
+    },
+    "PROJECT_MODEL_DIALOG": {
+      "TITLE_CREATE": "Skapa innehållsmodell",
+      "TITLE_UPDATE": "Uppdatera innehållsmodell",
+      "PROJECT_MODEL_NAME": "Innehållsmodellens namn:",
+      "PROJECT_MODEL_DESC": "Beskrivning av innehållsmodell:",
+      "PROJECT_MODEL_CREATED": "Innehållsmodell skapad",
+      "PROJECT_MODEL_DELETED": "Innehållsmodell raderad",
+      "PROJECT_MODEL_UPDATED": "Innehållsmodell sparad"
+    },
+    "FORM_WIDGET_DIALOG": {
+      "TITLE_CREATE": "Skapa formulärwidget",
+      "TITLE_UPDATE": "Uppdatera formulärwidget",
+      "FORM_WIDGET_NAME": "Widgetnamn:",
+      "FORM_WIDGET_DESC": "Widgetbeskrivning:",
+      "FORM_WIDGET_CREATED": "Formulärwidget skapad",
+      "FORM_WIDGET_DELETED": "Formulärwidget raderad",
+      "FORM_WIDGET_UPDATED": "Formulärwidget sparad"
+    },
+    "ERROR": {
+      "UPLOAD_FILE": "Vi stötte på ett problem med att ladda upp filen. Försök att ladda upp den igen.",
+      "DELETE_PROJECT": "Vi stötte på ett problem när filen raderades. Försök att radera den igen.",
+      "CHANGE_FAVORITE": "Vi stötte på ett problem när filen skulle favoritmarkeras. Försök att favoritmarkera den igen.",
+      "DELETE_PROCESS": "Vi stötte på ett problem när processen skulle raderas Försök att radera den igen.",
+      "LOAD_MODELS": "Vi stötte på ett problem med att läsa in modellerna. Prova att uppdatera sidan.",
+      "RELEASE_PROJECT": "Vi stötte på ett problem när projektet skulle friges. Försök att frige det igen.",
+      "CREATE_PROCESS": {
+        "DUPLICATION": "En process med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem med att skapa processen. Försök att skapa den igen."
+      },
+      "UPDATE_PROCESS": {
+        "DUPLICATION": "En process med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem när processen skulle sparas. Försök att spara den igen.",
+        "EMPTY_NAME": "Ett namn krävs"
+      },
+      "CREATE_CONNECTOR": {
+        "DUPLICATION": "En konnektor med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem när konnektorn skulle skapas. Försök att skapa den igen."
+      },
+      "UPDATE_CONNECTOR": {
+        "DUPLICATION": "En konnektor med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem när konnektorn skulle sparas. Försök att spara den igen."
+      },
+      "CREATE_FORM": {
+        "DUPLICATION": "Ett formulär med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem när formuläret skulle skapas. Försök att skapa det igen."
+      },
+      "UPDATE_FORM": {
+        "DUPLICATION": "Ett formulär med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem när formuläret skulle sparas. Försök att spara det igen."
+      },
+      "CREATE_UI": {
+        "DUPLICATION": "Ett gränssnitt med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem med att skapa gränssnittet. Försök att skapa det igen."
+      },
+      "UPDATE_UI": {
+        "DUPLICATION": "Ett gränssnitt med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem när gränssnittet skulle sparas. Försök att spara det igen."
+      },
+      "CREATE_DECISION_TABLE": {
+        "DUPLICATION": "En beslutstabell med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem när beslutstabellen skulle skapas. Försök att skapa den igen."
+      },
+      "UPDATE_DECISION_TABLE": {
+        "DUPLICATION": "En beslutstabell med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem när beslutstabellen skulle sparas. Försök att spara den igen."
+      },
+      "CREATE_DATA": {
+        "DUPLICATION": "Ett datobjekt med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem när dataobjektet skulle skapas. Försök att skapa det igen."
+      },
+      "UPDATE_DATA": {
+        "DUPLICATION": "Ett datobjekt med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem när dataobjektet skulle sparas. Försök att spara det igen."
+      },
+      "CREATE_PROJECT": {
+        "DUPLICATION": "Ett projekt med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem när projektet skulle skapas. Försök att skapa det igen."
+      },
+      "UPDATE_PROJECT": {
+        "DUPLICATION": "Ett projekt med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem med att spara projektet. Prova att spara det igen."
+      },
+      "UPLOAD_PROJECT": {
+        "DUPLICATION": "Ett projekt med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem med att ladda upp projektet. Prova att ladda upp det igen."
+      },
+      "GET_PROJECT": "Vi stötte på ett problem med att ladda upp projektet. Prova att uppdatera sidan.",
+      "EXPORT_PROJECT": "Ett okänt fel inträffade under projektexporten",
+      "CREATE_FILE": {
+        "DUPLICATION": "En fil med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem när filen skulle skapas. Försök att skapa den igen."
+      },
+      "UPDATE_FILE": {
+        "DUPLICATION": "En fil med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem när filen skulle sparas. Försök att spara den igen."
+      },
+      "CREATE_SCRIPT": {
+        "DUPLICATION": "Det finns redan ett skript med det namnet",
+        "GENERAL": "Vi stötte på ett problem med att skapa skriptet. Försök skapa det igen."
+      },
+      "UPDATE_SCRIPT": {
+        "DUPLICATION": "Det finns redan ett skript med det namnet",
+        "GENERAL": "Vi stötte på ett problem med att spara skriptet. Försök skapa det igen."
+      },
+      "CREATE_TRIGGER": {
+        "DUPLICATION": "Det finns redan en utlösare med det namnet",
+        "GENERAL": "Vi stötte på ett problem med att skapa utlösaren. Försök att spara den igen."
+      },
+      "UPDATE_TRIGGER": {
+        "DUPLICATION": "Det finns redan en utlösare med det namnet",
+        "GENERAL": "Vi stötte på ett problem med att spara utlösaren. Försök att spara den igen."
+      },
+      "CREATE_FORM_WIDGET": {
+        "DUPLICATION": "Det finns redan en formulärwidget med det namnet",
+        "GENERAL": "Vi stötte på ett problem när formulärwidgeten skulle skapas. Försök att skapa den igen."
+      },
+      "UPDATE_FORM_WIDGET": {
+        "DUPLICATION": "Det finns redan en formulärwidget med det namnet",
+        "GENERAL": "Vi stötte på ett problem när widgeten skulle sparas. Försök att spara den igen."
+      }
+    }
+  }
+}

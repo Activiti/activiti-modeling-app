@@ -1,0 +1,269 @@
+{
+  "PROJECT_EDITOR": {
+    "BACK_TO": "Wstecz do projektów",
+    "NAME": "Edytor projektów",
+    "UPLOAD_FILE": "Prześlij plik",
+    "DOWNLOAD_PROJECT": "Pobierz projekt",
+    "PROJECT_VALID": "Projekt nie zawiera błędów weryfikacji",
+    "EXPORT_SUCCESS": "Wyeksportowano projekt",
+    "SETTINGS": {
+      "PROJECT_SETTINGS": "Ustawienia edytora projektów",
+      "CONNECTORS_TAB_LABEL": "Łączniki"
+    },
+    "UPLOAD": "Prześlij",
+    "IMPORT": "Importuj",
+    "CREATE_NEW": "Utwórz nowe",
+    "SEARCH": "Szukaj",
+    "UPLOAD_FILE_SUCCESS": "Przesłano plik",
+    "NO_CONTENT": "<puste>",
+    "NO_SELECTION": "Utwórz nowy model lub edytuj istniejący za pomocą paska bocznego",
+    "NEW_MENU": {
+      "LABEL": "Nowy",
+      "CREATE": "Utwórz",
+      "UPLOAD": "Prześlij",
+      "IMPORT": "Importuj",
+      "CREATE_PROCESS_TITLE": "Utwórz proces",
+      "MENU_ITEMS": {
+        "CREATE_PROCESS": "Proces",
+        "CREATE_CONNECTOR": "Łącznik",
+        "CREATE_FORM": "Formularz",
+        "CREATE_UI": "Interfejs użytkownika",
+        "CREATE_DATA": "Obiekt danych",
+        "CREATE_DECISION_TABLE": "Tabela decyzji",
+        "CREATE_FILE": "Plik",
+        "CREATE_SCRIPT": "Skrypt",
+        "CREATE_TRIGGER": "Wyzwalacz",
+        "CREATE_PROJECT_MODEL": "Model treści",
+        "CREATE_FORM_WIDGET": "Widżet formularza"
+      }
+    },
+    "TREE": {
+      "PROCESSES": "Procesy",
+      "FORMS": "Formularze",
+      "CONNECTORS": "Łączniki",
+      "DATA": "Dane",
+      "DECISION_TABLES": "Tabele decyzji",
+      "UIS": "Interfejs użytkownika",
+      "FILES": "Pliki",
+      "SCRIPTS": "Skrypty",
+      "TRIGGERS": "Wyzwalacze"
+    },
+    "PROCESS_DIALOG": {
+      "TITLE_CREATE": "Utwórz proces",
+      "TITLE_UPDATE": "Aktualizuj proces",
+      "PROCESS_NAME": "Nazwa procesu:",
+      "PROCESS_DESC": "Dokumentacja procesu:",
+      "PROCESS_CREATED": "Utworzono proces",
+      "PROCESS_DELETED": "Usunięto proces",
+      "PROCESS_UPDATED": "Zapisano proces"
+    },
+    "CONNECTOR_DIALOG": {
+      "TITLE_CREATE": "Utwórz łącznik",
+      "TITLE_UPDATE": "Aktualizuj łącznik",
+      "CONNECTOR_NAME": "Nazwa łącznika:",
+      "CONNECTOR_DESC": "Opis łącznika:",
+      "CONNECTOR_CREATED": "Utworzono łącznik",
+      "CONNECTOR_DELETED": "Usunięto łącznik",
+      "CONNECTOR_UPDATED": "Zapisano łącznik"
+    },
+    "FORM_DIALOG": {
+      "TITLE_CREATE": "Utwórz formularz",
+      "TITLE_UPDATE": "Aktualizuj formularz",
+      "FORM_NAME": "Nazwa formularza:",
+      "FORM_DESC": "Opis formularza:",
+      "FORM_CREATED": "Utworzono formularz",
+      "FORM_DELETED": "Usunięto formularz",
+      "FORM_UPDATED": "Zapisano formularz",
+      "FORM_CONTENT_CREATED": "Utworzono wstępną treść formularza na podstawie modelu zawartości"
+    },
+    "UI_DIALOG": {
+      "TITLE_CREATE": "Utwórz interfejs użytkownika",
+      "TITLE_UPDATE": "Aktualizuj interfejs użytkownika",
+      "UI_NAME": "Nazwa interfejsu użytkownika:",
+      "UI_DESC": "Opis interfejsu użytkownika:",
+      "UI_CREATED": "Utworzono interfejs użytkownika",
+      "UI_DELETED": "Usunięto interfejs użytkownika",
+      "UI_UPDATED": "Zapisano interfejs użytkownika"
+    },
+    "DATA_DIALOG": {
+      "TITLE_CREATE": "Utwórz obiekt danych",
+      "TITLE_UPDATE": "Aktualizuj obiekt danych",
+      "DATA_NAME": "Nazwa obiektu danych:",
+      "DATA_DESC": "Opis obiektu danych:",
+      "DATA_CREATED": "Utworzono obiekt danych",
+      "DATA_DELETED": "Usunięto obiekt danych",
+      "DATA_UPDATED": "Zapisano obiekt danych"
+    },
+    "DECISION_TABLE_DIALOG": {
+      "TITLE_CREATE": "Utwórz tabelę decyzji",
+      "TITLE_UPDATE": "Aktualizuj tabelę decyzji",
+      "DECISION_TABLE_NAME": "Nazwa tabeli decyzji:",
+      "DECISION_TABLE_DESC": "Opis tabeli decyzji:",
+      "DECISION_TABLE_CREATED": "Utworzono tabelę decyzji",
+      "DECISION_TABLE_DELETED": "Usunięto tabelę decyzji",
+      "DECISION_TABLE_UPDATED": "Zapisano tabelę decyzji"
+    },
+    "FILE_DIALOG": {
+      "TITLE_CREATE": "Utwórz plik",
+      "TITLE_UPDATE": "Aktualizuj plik",
+      "FILE_NAME": "Nazwa pliku:",
+      "FILE_DESC": "Opis pliku:",
+      "FILE_CREATED": "Utworzono plik",
+      "FILE_DELETED": "Usunięto plik",
+      "FILE_UPDATED": "Zapisano plik"
+    },
+    "SCRIPT_DIALOG": {
+      "TITLE_CREATE": "Utwórz skrypt",
+      "TITLE_UPDATE": "Aktualizuj skrypt",
+      "SCRIPT_NAME": "Nazwa skryptu:",
+      "SCRIPT_DESC": "Opis skryptu:",
+      "SCRIPT_CREATED": "Utworzono skrypt",
+      "SCRIPT_DELETED": "Usunięto skrypt",
+      "SCRIPT_UPDATED": "Zapisano skrypt"
+    },
+    "TRIGGER_DIALOG": {
+      "TITLE_CREATE": "Utwórz wyzwalacz",
+      "TITLE_UPDATE": "Aktualizuj wyzwalacz",
+      "TRIGGER_NAME": "Nazwa wyzwalacza:",
+      "TRIGGER_DESC": "Opis wyzwalacza:",
+      "TRIGGER_CREATED": "Utworzono wyzwalacz",
+      "TRIGGER_DELETED": "Usunięto wyzwalacz",
+      "TRIGGER_UPDATED": "Zapisano wyzwalacz"
+    },
+    "ACTION_DIALOG": {
+      "ACTION_DETAILS": "Szczegóły czynności",
+      "ACTION_NAME": "Nazwa czynności",
+      "ACTION_DESC": "Opis czynności",
+      "ADD_ACTION": "Dodaj czynność",
+      "DEL_ACTION": "Usuń czynność"
+    },
+    "EVENT_DIALOG": {
+      "EVENT_DETAILS": "Szczegóły zdarzenia",
+      "EVENT_NAME": "Nazwa zdarzenia",
+      "EVENT_DESC": "Opis zdarzenia",
+      "ADD_EVENT": "Dodaj zdarzenie",
+      "DEL_EVENT": "Usuń zdarzenie"
+    },
+    "PROJECT_MODEL_DIALOG": {
+      "TITLE_CREATE": "Utwórz model zawartości",
+      "TITLE_UPDATE": "Aktualizuj model zawartości",
+      "PROJECT_MODEL_NAME": "Nazwa modelu zawartości:",
+      "PROJECT_MODEL_DESC": "Opis modelu zawartości:",
+      "PROJECT_MODEL_CREATED": "Utworzono model zawartości",
+      "PROJECT_MODEL_DELETED": "Usunięto model zawartości",
+      "PROJECT_MODEL_UPDATED": "Zapisano model zawartości"
+    },
+    "FORM_WIDGET_DIALOG": {
+      "TITLE_CREATE": "Utwórz widżet formularza",
+      "TITLE_UPDATE": "Aktualizuj widżet formularza",
+      "FORM_WIDGET_NAME": "Nazwa widżetu:",
+      "FORM_WIDGET_DESC": "Opis widżetu:",
+      "FORM_WIDGET_CREATED": "Utworzono widżet formularza",
+      "FORM_WIDGET_DELETED": "Usunięto widżet formularza",
+      "FORM_WIDGET_UPDATED": "Zapisano widżet formularza"
+    },
+    "ERROR": {
+      "UPLOAD_FILE": "Wystąpił problem podczas przesyłania pliku. Spróbuj przesłać go ponownie.",
+      "DELETE_PROJECT": "Wystąpił problem podczas usuwania projektu. Spróbuj usunąć go ponownie.",
+      "CHANGE_FAVORITE": "Wystąpił problem podczas dodawania projektu do ulubionych. Spróbuj dodać go do ulubionych ponownie.",
+      "DELETE_PROCESS": "Wystąpił problem podczas usuwania procesu. Spróbuj usunąć go ponownie.",
+      "LOAD_MODELS": "Wystąpił problem podczas ładowania modeli. Spróbuj odświeżyć stronę.",
+      "RELEASE_PROJECT": "Wystąpił problem podczas zwalniania projektu. Spróbuj zwolnić go ponownie.",
+      "CREATE_PROCESS": {
+        "DUPLICATION": "Proces o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas tworzenia procesu. Spróbuj utworzyć go ponownie."
+      },
+      "UPDATE_PROCESS": {
+        "DUPLICATION": "Proces o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas zapisywania procesu. Spróbuj zapisać go ponownie.",
+        "EMPTY_NAME": "Nazwa jest wymagana"
+      },
+      "CREATE_CONNECTOR": {
+        "DUPLICATION": "Łącznik o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas tworzenia łącznika. Spróbuj utworzyć go ponownie."
+      },
+      "UPDATE_CONNECTOR": {
+        "DUPLICATION": "Łącznik o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas zapisywania łącznika. Spróbuj zapisać go ponownie."
+      },
+      "CREATE_FORM": {
+        "DUPLICATION": "Formularz o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas tworzenia formularza. Spróbuj utworzyć go ponownie."
+      },
+      "UPDATE_FORM": {
+        "DUPLICATION": "Formularz o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas zapisywania formularza. Spróbuj zapisać go ponownie."
+      },
+      "CREATE_UI": {
+        "DUPLICATION": "Interfejs użytkownika o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas tworzenia interfejsu użytkownika. Spróbuj utworzyć go ponownie."
+      },
+      "UPDATE_UI": {
+        "DUPLICATION": "Interfejs użytkownika o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas zapisywania interfejsu użytkownika. Spróbuj zapisać go ponownie."
+      },
+      "CREATE_DECISION_TABLE": {
+        "DUPLICATION": "Tabela decyzji o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas tworzenia tabeli decyzji. Spróbuj utworzyć ją ponownie."
+      },
+      "UPDATE_DECISION_TABLE": {
+        "DUPLICATION": "Tabela decyzji o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas zapisywania tabeli decyzji. Spróbuj zapisać ją ponownie."
+      },
+      "CREATE_DATA": {
+        "DUPLICATION": "Obiekt danych o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas tworzenia obiektu danych. Spróbuj utworzyć go ponownie."
+      },
+      "UPDATE_DATA": {
+        "DUPLICATION": "Obiekt danych o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas zapisywania obiektu danych. Spróbuj zapisać go ponownie."
+      },
+      "CREATE_PROJECT": {
+        "DUPLICATION": "Projekt o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas tworzenia projektu. Spróbuj utworzyć go ponownie."
+      },
+      "UPDATE_PROJECT": {
+        "DUPLICATION": "Projekt o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas zapisywania projektu. Spróbuj zapisać go ponownie."
+      },
+      "UPLOAD_PROJECT": {
+        "DUPLICATION": "Projekt o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas przesyłania projektu. Spróbuj przesłać go ponownie."
+      },
+      "GET_PROJECT": "Wystąpił problem podczas ładowania projektu. Spróbuj odświeżyć stronę.",
+      "EXPORT_PROJECT": "Wystąpił nieznany błąd podczas eksportowania projektu",
+      "CREATE_FILE": {
+        "DUPLICATION": "Plik o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas tworzenia pliku. Spróbuj utworzyć go ponownie."
+      },
+      "UPDATE_FILE": {
+        "DUPLICATION": "Plik o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas zapisywania pliku. Spróbuj zapisać go ponownie."
+      },
+      "CREATE_SCRIPT": {
+        "DUPLICATION": "Skrypt o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas tworzenia skryptu. Spróbuj utworzyć go ponownie."
+      },
+      "UPDATE_SCRIPT": {
+        "DUPLICATION": "Skrypt o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas zapisywania skryptu. Spróbuj zapisać go ponownie."
+      },
+      "CREATE_TRIGGER": {
+        "DUPLICATION": "Wyzwalacz o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas tworzenia wyzwalacza. Spróbuj utworzyć go ponownie."
+      },
+      "UPDATE_TRIGGER": {
+        "DUPLICATION": "Wyzwalacz o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas zapisywania wyzwalacza. Spróbuj zapisać go ponownie."
+      },
+      "CREATE_FORM_WIDGET": {
+        "DUPLICATION": "Widżet formularza o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas tworzenia widżetu formularza. Spróbuj utworzyć go ponownie."
+      },
+      "UPDATE_FORM_WIDGET": {
+        "DUPLICATION": "Widżet formularza o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas zapisywania widżetu. Spróbuj zapisać ponownie."
+      }
+    }
+  }
+}

@@ -1,0 +1,269 @@
+{
+  "PROJECT_EDITOR": {
+    "BACK_TO": "Tilbake til prosjekter",
+    "NAME": "Prosjektredigering",
+    "UPLOAD_FILE": "Last opp fil",
+    "DOWNLOAD_PROJECT": "Last ned prosjekt",
+    "PROJECT_VALID": "Prosjektet inneholder ingen valideringsfeil",
+    "EXPORT_SUCCESS": "Prosjekt eksportert",
+    "SETTINGS": {
+      "PROJECT_SETTINGS": "Prosjektredigeringsinnstillinger",
+      "CONNECTORS_TAB_LABEL": "Koblinger"
+    },
+    "UPLOAD": "Last opp",
+    "IMPORT": "Importer",
+    "CREATE_NEW": "Opprett ny",
+    "SEARCH": "Søk",
+    "UPLOAD_FILE_SUCCESS": "Fil lastet opp",
+    "NO_CONTENT": "<tom>",
+    "NO_SELECTION": "Opprett en ny modell eller rediger en eksisterende modell med sidepanelet",
+    "NEW_MENU": {
+      "LABEL": "Ny",
+      "CREATE": "Opprett",
+      "UPLOAD": "Last opp",
+      "IMPORT": "Importer",
+      "CREATE_PROCESS_TITLE": "Opprett prosess",
+      "MENU_ITEMS": {
+        "CREATE_PROCESS": "Prosess",
+        "CREATE_CONNECTOR": "Kobling",
+        "CREATE_FORM": "Skjema",
+        "CREATE_UI": "Brukergrensesnitt",
+        "CREATE_DATA": "Dataobjekt",
+        "CREATE_DECISION_TABLE": "Beslutningstabell",
+        "CREATE_FILE": "Fil",
+        "CREATE_SCRIPT": "Skript",
+        "CREATE_TRIGGER": "Utløser",
+        "CREATE_PROJECT_MODEL": "Innholdsmodell",
+        "CREATE_FORM_WIDGET": "Skjema-widget"
+      }
+    },
+    "TREE": {
+      "PROCESSES": "Prosesser",
+      "FORMS": "Skjemaer",
+      "CONNECTORS": "Koblinger",
+      "DATA": "Data",
+      "DECISION_TABLES": "Beslutningstabeller",
+      "UIS": "Brukergrensesnitt",
+      "FILES": "Filer",
+      "SCRIPTS": "Skript",
+      "TRIGGERS": "Utløsere"
+    },
+    "PROCESS_DIALOG": {
+      "TITLE_CREATE": "Opprett prosess",
+      "TITLE_UPDATE": "Oppdater prosess",
+      "PROCESS_NAME": "Prosessnavn:",
+      "PROCESS_DESC": "Prosessdokumentasjon:",
+      "PROCESS_CREATED": "Prosess opprettet",
+      "PROCESS_DELETED": "Prosess slettet",
+      "PROCESS_UPDATED": "Prosess lagret"
+    },
+    "CONNECTOR_DIALOG": {
+      "TITLE_CREATE": "Opprett kobling",
+      "TITLE_UPDATE": "Oppdater kobling",
+      "CONNECTOR_NAME": "Koblingsnavn:",
+      "CONNECTOR_DESC": "Koblingsbeskrivelse:",
+      "CONNECTOR_CREATED": "Kobling opprettet",
+      "CONNECTOR_DELETED": "Kobling slettet",
+      "CONNECTOR_UPDATED": "Kobling lagret"
+    },
+    "FORM_DIALOG": {
+      "TITLE_CREATE": "Opprett skjema",
+      "TITLE_UPDATE": "Oppdater skjema",
+      "FORM_NAME": "Skjemanavn:",
+      "FORM_DESC": "Skjemabeskrivelse:",
+      "FORM_CREATED": "Skjema opprettet",
+      "FORM_DELETED": "Skjema slettet",
+      "FORM_UPDATED": "Skjema lagret",
+      "FORM_CONTENT_CREATED": "Første skjemainnhold fra innholdsmodell opprettet"
+    },
+    "UI_DIALOG": {
+      "TITLE_CREATE": "Opprett brukergrensesnitt",
+      "TITLE_UPDATE": "Oppdater brukergrensesnitt",
+      "UI_NAME": "Navn på brukergrensesnitt:",
+      "UI_DESC": "Beskrivelse av brukergrensesnitt:",
+      "UI_CREATED": "Brukergrensesnitt opprettet",
+      "UI_DELETED": "Brukergrensesnitt slettet",
+      "UI_UPDATED": "Brukergrensesnitt lagret"
+    },
+    "DATA_DIALOG": {
+      "TITLE_CREATE": "Opprett dataobjekt",
+      "TITLE_UPDATE": "Oppdater dataobjekt",
+      "DATA_NAME": "Navn på dataobjekt:",
+      "DATA_DESC": "Beskrivelse av dataobjekt:",
+      "DATA_CREATED": "Dataobjekt opprettet",
+      "DATA_DELETED": "Dataobjekt slettet",
+      "DATA_UPDATED": "Dataobjekt lagret"
+    },
+    "DECISION_TABLE_DIALOG": {
+      "TITLE_CREATE": "Opprett beslutningstabell",
+      "TITLE_UPDATE": "Oppdater beslutningstabell",
+      "DECISION_TABLE_NAME": "Navn på beslutningstabell:",
+      "DECISION_TABLE_DESC": "Beskrivelse av beslutningstabell:",
+      "DECISION_TABLE_CREATED": "Beslutningstabell opprettet",
+      "DECISION_TABLE_DELETED": "Beslutningstabell slettet",
+      "DECISION_TABLE_UPDATED": "Beslutningstabell lagret"
+    },
+    "FILE_DIALOG": {
+      "TITLE_CREATE": "Opprett fil",
+      "TITLE_UPDATE": "Oppdater fil",
+      "FILE_NAME": "Filnavn:",
+      "FILE_DESC": "Filbeskrivelse:",
+      "FILE_CREATED": "Fil opprettet",
+      "FILE_DELETED": "Fil slettet",
+      "FILE_UPDATED": "Fil lagret"
+    },
+    "SCRIPT_DIALOG": {
+      "TITLE_CREATE": "Opprett skript",
+      "TITLE_UPDATE": "Oppdater skript",
+      "SCRIPT_NAME": "Skriptnavn:",
+      "SCRIPT_DESC": "Skriptbeskrivelse:",
+      "SCRIPT_CREATED": "Skript opprettet",
+      "SCRIPT_DELETED": "Skript slettet",
+      "SCRIPT_UPDATED": "Skript lagret"
+    },
+    "TRIGGER_DIALOG": {
+      "TITLE_CREATE": "Opprett utløser",
+      "TITLE_UPDATE": "Oppdater utløser",
+      "TRIGGER_NAME": "Utløsernavn:",
+      "TRIGGER_DESC": "Utløserbeskrivelse:",
+      "TRIGGER_CREATED": "Utløser opprettet",
+      "TRIGGER_DELETED": "Utløser slettet",
+      "TRIGGER_UPDATED": "Utløser lagret"
+    },
+    "ACTION_DIALOG": {
+      "ACTION_DETAILS": "Handlingsdetaljer",
+      "ACTION_NAME": "Handlingsnavn",
+      "ACTION_DESC": "Handlingsbeskrivelse",
+      "ADD_ACTION": "Legg til handling",
+      "DEL_ACTION": "Slett handling"
+    },
+    "EVENT_DIALOG": {
+      "EVENT_DETAILS": "Hendelsesdetaljer",
+      "EVENT_NAME": "Hendelsesnavn",
+      "EVENT_DESC": "Hendelsesbeskrivelse",
+      "ADD_EVENT": "Legg til hendelse",
+      "DEL_EVENT": "Slett hendelse"
+    },
+    "PROJECT_MODEL_DIALOG": {
+      "TITLE_CREATE": "Opprett innholdsmodell",
+      "TITLE_UPDATE": "Oppdater innholdsmodell",
+      "PROJECT_MODEL_NAME": "Innholdsmodellens navn:",
+      "PROJECT_MODEL_DESC": "Beskrivelse av innholdsmodell:",
+      "PROJECT_MODEL_CREATED": "Innholdsmodell opprettet",
+      "PROJECT_MODEL_DELETED": "Innholdsmodell slettet",
+      "PROJECT_MODEL_UPDATED": "Innholdsmodell lagret"
+    },
+    "FORM_WIDGET_DIALOG": {
+      "TITLE_CREATE": "Opprett skjema-widget",
+      "TITLE_UPDATE": "Oppdater skjema-widget",
+      "FORM_WIDGET_NAME": "Widget-navn:",
+      "FORM_WIDGET_DESC": "Widget-beskrivelse:",
+      "FORM_WIDGET_CREATED": "Skjema-widget opprettet",
+      "FORM_WIDGET_DELETED": "Skjema-widget slettet",
+      "FORM_WIDGET_UPDATED": "Skjema-widget lagret"
+    },
+    "ERROR": {
+      "UPLOAD_FILE": "Vi støtte på et problem med å laste opp filen. Prøv å laste den opp på nytt.",
+      "DELETE_PROJECT": "Vi støtte på et problem med å slette prosjektet. Prøv å slette det på nytt.",
+      "CHANGE_FAVORITE": "Vi støtte på et problem med å legge til prosjektet i favoritter. Prøv å legge det til i favoritter på nytt.",
+      "DELETE_PROCESS": "Vi støtte på et problem med å slette prosessen. Prøv å slette den på nytt.",
+      "LOAD_MODELS": "Vi støtte på et problem med å laste inn modellene. Prøv å oppdatere siden.",
+      "RELEASE_PROJECT": "Vi støtte på et problem med å frigi prosjektet. Prøv å frigi det på nytt.",
+      "CREATE_PROCESS": {
+        "DUPLICATION": "En prosess med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å opprette prosessen. Prøv å opprette den på nytt."
+      },
+      "UPDATE_PROCESS": {
+        "DUPLICATION": "En prosess med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å lagre prosessen. Prøv å lagre den på nytt.",
+        "EMPTY_NAME": "Et navn er påkrevd"
+      },
+      "CREATE_CONNECTOR": {
+        "DUPLICATION": "En kobling med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å opprette koblingen. Prøv å opprette den på nytt."
+      },
+      "UPDATE_CONNECTOR": {
+        "DUPLICATION": "En kobling med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å lagre koblingen. Prøv å lagre den på nytt."
+      },
+      "CREATE_FORM": {
+        "DUPLICATION": "Et skjema med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å opprette skjemaet. Prøv å opprette det på nytt."
+      },
+      "UPDATE_FORM": {
+        "DUPLICATION": "Et skjema med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å lagre skjemaet. Prøv å lagre det på nytt."
+      },
+      "CREATE_UI": {
+        "DUPLICATION": "Et brukergrensesnitt med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å opprette brukergrensesnittet. Prøv å opprette det på nytt."
+      },
+      "UPDATE_UI": {
+        "DUPLICATION": "Et brukergrensesnitt med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å lagre brukergrensesnittet. Prøv å lagre det på nytt."
+      },
+      "CREATE_DECISION_TABLE": {
+        "DUPLICATION": "En beslutningstabell med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å opprette beslutningstabellen. Prøv å opprette den på nytt."
+      },
+      "UPDATE_DECISION_TABLE": {
+        "DUPLICATION": "En beslutningstabell med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å lagre beslutningstabellen. Prøv å lagre den på nytt."
+      },
+      "CREATE_DATA": {
+        "DUPLICATION": "Et dataobjekt med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å opprette dataobjektet. Prøv å opprette det på nytt."
+      },
+      "UPDATE_DATA": {
+        "DUPLICATION": "Et dataobjekt med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å lagre dataobjektet. Prøv å lagre det på nytt."
+      },
+      "CREATE_PROJECT": {
+        "DUPLICATION": "Et prosjekt med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å opprette prosjektet. Prøv å opprette det på nytt."
+      },
+      "UPDATE_PROJECT": {
+        "DUPLICATION": "Et prosjekt med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å lagre prosjektet. Prøv å lagre det på nytt."
+      },
+      "UPLOAD_PROJECT": {
+        "DUPLICATION": "Et prosjekt med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å laste opp prosjektet. Prøv å laste det opp på nytt."
+      },
+      "GET_PROJECT": "Vi støtte på et problem med å laste inn prosjektet. Prøv å oppdatere siden.",
+      "EXPORT_PROJECT": "Det oppstod en ukjent feil under prosjekteksporten",
+      "CREATE_FILE": {
+        "DUPLICATION": "En fil med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å opprette filen. Prøv å opprette den på nytt."
+      },
+      "UPDATE_FILE": {
+        "DUPLICATION": "En fil med det navnet finnes allerede",
+        "GENERAL": "Vi støtte på et problem med å lagre filen. Prøv å lagre den på nytt."
+      },
+      "CREATE_SCRIPT": {
+        "DUPLICATION": "Et skript med det navnet finnes alt",
+        "GENERAL": "Vi støtte på et problem med å opprette skriptet. Prøv å opprette det på nytt."
+      },
+      "UPDATE_SCRIPT": {
+        "DUPLICATION": "Et skript med det navnet finnes alt",
+        "GENERAL": "Vi støtte på et problem med å lagre skriptet. Prøv å lagre det på nytt."
+      },
+      "CREATE_TRIGGER": {
+        "DUPLICATION": "En utløser med det navnet finnes alt",
+        "GENERAL": "Vi støtte på et problem med å opprette utløseren. Prøv å opprette den på nytt."
+      },
+      "UPDATE_TRIGGER": {
+        "DUPLICATION": "En utløser med det navnet finnes alt",
+        "GENERAL": "Vi støtte på et problem med å lagre utløseren. Prøv å lagre den på nytt."
+      },
+      "CREATE_FORM_WIDGET": {
+        "DUPLICATION": "En skjema-widget med det navnet finnes alt",
+        "GENERAL": "Vi støtte på et problem med å opprette skjema-widgeten. Prøv å opprette den på nytt."
+      },
+      "UPDATE_FORM_WIDGET": {
+        "DUPLICATION": "En skjema-widget med det navnet finnes alt",
+        "GENERAL": "Vi støtte på et problem med å lagre widgeten. Prøv å lagre den på nytt."
+      }
+    }
+  }
+}

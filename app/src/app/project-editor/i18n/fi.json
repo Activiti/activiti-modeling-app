@@ -1,0 +1,269 @@
+{
+  "PROJECT_EDITOR": {
+    "BACK_TO": "Takaisin projekteihin",
+    "NAME": "Projektieditori",
+    "UPLOAD_FILE": "Lataa tiedosto",
+    "DOWNLOAD_PROJECT": "Lataa projekti",
+    "PROJECT_VALID": "Projektissa ei ole vahvistusivirheitä.",
+    "EXPORT_SUCCESS": "Projekti viety",
+    "SETTINGS": {
+      "PROJECT_SETTINGS": "Projektieditorin asetukset",
+      "CONNECTORS_TAB_LABEL": "Liittimet"
+    },
+    "UPLOAD": "Lataa",
+    "IMPORT": "Tuo",
+    "CREATE_NEW": "Luo uusi",
+    "SEARCH": "Hae",
+    "UPLOAD_FILE_SUCCESS": "Tiedosto ladattu palvelimelle",
+    "NO_CONTENT": "<tyhjä>",
+    "NO_SELECTION": "Luo uusi malli tai käytä jo olemassa olevaa mallia sivupalkista",
+    "NEW_MENU": {
+      "LABEL": "Uusi",
+      "CREATE": "Luo",
+      "UPLOAD": "Lataa",
+      "IMPORT": "Tuo",
+      "CREATE_PROCESS_TITLE": "Luo prosessi",
+      "MENU_ITEMS": {
+        "CREATE_PROCESS": "Prosessi",
+        "CREATE_CONNECTOR": "Liitin",
+        "CREATE_FORM": "Lomake",
+        "CREATE_UI": "käyttöliittymä",
+        "CREATE_DATA": "Dataobjekti",
+        "CREATE_DECISION_TABLE": "Päätöstaulukko",
+        "CREATE_FILE": "Tiedosto",
+        "CREATE_SCRIPT": "Komentosarja",
+        "CREATE_TRIGGER": "Laukaisija",
+        "CREATE_PROJECT_MODEL": "Sisältömalli",
+        "CREATE_FORM_WIDGET": "Lomakepiensovellus"
+      }
+    },
+    "TREE": {
+      "PROCESSES": "Prosessit",
+      "FORMS": "Lomakkeet",
+      "CONNECTORS": "Liittimet",
+      "DATA": "Data",
+      "DECISION_TABLES": "Päätöstaulukot",
+      "UIS": "käyttöliittymä",
+      "FILES": "Tiedostot",
+      "SCRIPTS": "Komentosarjat",
+      "TRIGGERS": "Laukaisijat"
+    },
+    "PROCESS_DIALOG": {
+      "TITLE_CREATE": "Luo prosessi",
+      "TITLE_UPDATE": "Päivitä prosessi",
+      "PROCESS_NAME": "Prosessin nimi:",
+      "PROCESS_DESC": "Prosessin dokumentaatio:",
+      "PROCESS_CREATED": "Prosessi luotiin",
+      "PROCESS_DELETED": "Prosessi poistettiin",
+      "PROCESS_UPDATED": "Prosessi tallennettiin"
+    },
+    "CONNECTOR_DIALOG": {
+      "TITLE_CREATE": "Luo liitin",
+      "TITLE_UPDATE": "Päivitä liitin",
+      "CONNECTOR_NAME": "Liittimen nimi:",
+      "CONNECTOR_DESC": "Liittimen kuvaus:",
+      "CONNECTOR_CREATED": "Liitin luotiin",
+      "CONNECTOR_DELETED": "Liitin poistettiin",
+      "CONNECTOR_UPDATED": "Liitin tallennettiin"
+    },
+    "FORM_DIALOG": {
+      "TITLE_CREATE": "Luo lomake",
+      "TITLE_UPDATE": "Päivitä lomake",
+      "FORM_NAME": "Lomakkeen nimi:",
+      "FORM_DESC": "Lomakkeen kuvaus:",
+      "FORM_CREATED": "Lomake luotiin",
+      "FORM_DELETED": "Lomake poistettiin",
+      "FORM_UPDATED": "Lomake tallennettiin",
+      "FORM_CONTENT_CREATED": "Luotiin alustava lomakesisältö sisältömallista"
+    },
+    "UI_DIALOG": {
+      "TITLE_CREATE": "Luo käyttöliittymä",
+      "TITLE_UPDATE": "Päivitä käyttöliittymä",
+      "UI_NAME": "Käyttöliittymän nimi:",
+      "UI_DESC": "Käyttöliittymän kuvaus:",
+      "UI_CREATED": "Käyttöliittymä luotiin",
+      "UI_DELETED": "Käyttöliittymä poistettiin",
+      "UI_UPDATED": "Käyttöliittymä tallennettiin"
+    },
+    "DATA_DIALOG": {
+      "TITLE_CREATE": "Luo dataobjekti",
+      "TITLE_UPDATE": "Päivitä dataobjekti",
+      "DATA_NAME": "Dataobjektin nimi:",
+      "DATA_DESC": "Dataobjektin kuvaus:",
+      "DATA_CREATED": "Dataobjekti luotiin",
+      "DATA_DELETED": "Dataobjekti poistettiin",
+      "DATA_UPDATED": "Dataobjekti tallennettiin"
+    },
+    "DECISION_TABLE_DIALOG": {
+      "TITLE_CREATE": "Luo päätöstaulukko",
+      "TITLE_UPDATE": "Päivitä päätöstaulukko",
+      "DECISION_TABLE_NAME": "Päätöstaulukon nimi:",
+      "DECISION_TABLE_DESC": "Päätöstaulukon kuvaus:",
+      "DECISION_TABLE_CREATED": "Päätöstaulukko luotiin",
+      "DECISION_TABLE_DELETED": "Päätöstaulukko poistettiin",
+      "DECISION_TABLE_UPDATED": "Päätöstaulukko tallennettiin"
+    },
+    "FILE_DIALOG": {
+      "TITLE_CREATE": "Luo tiedosto",
+      "TITLE_UPDATE": "Päivitä tiedosto",
+      "FILE_NAME": "Tiedoston nimi:",
+      "FILE_DESC": "Tiedoston kuvaus:",
+      "FILE_CREATED": "Tiedosto luotiin",
+      "FILE_DELETED": "Tiedosto poistettiin",
+      "FILE_UPDATED": "Tiedosto tallennettiin"
+    },
+    "SCRIPT_DIALOG": {
+      "TITLE_CREATE": "Luo komentosarja",
+      "TITLE_UPDATE": "Päivitä komentosarja",
+      "SCRIPT_NAME": "Komentosarjan nimi:",
+      "SCRIPT_DESC": "Komentosarjan kuvaus:",
+      "SCRIPT_CREATED": "Komentosarja luotiin",
+      "SCRIPT_DELETED": "Komentosarja poistettiin",
+      "SCRIPT_UPDATED": "Komentosarja tallennettu"
+    },
+    "TRIGGER_DIALOG": {
+      "TITLE_CREATE": "Luo laukaisija",
+      "TITLE_UPDATE": "Päivitä laukaisija",
+      "TRIGGER_NAME": "Laukaisijan nimi:",
+      "TRIGGER_DESC": "Laukaisijan kuvaus:",
+      "TRIGGER_CREATED": "Laukaisija luotiin",
+      "TRIGGER_DELETED": "Laukaisija poistettiin",
+      "TRIGGER_UPDATED": "Laukaisija tallennettiin"
+    },
+    "ACTION_DIALOG": {
+      "ACTION_DETAILS": "Toiminnon tiedot",
+      "ACTION_NAME": "Toiminnon nimi",
+      "ACTION_DESC": "Toiminnon kuvaus",
+      "ADD_ACTION": "Lisää toiminto",
+      "DEL_ACTION": "Poista toiminto"
+    },
+    "EVENT_DIALOG": {
+      "EVENT_DETAILS": "Tapahtuman tiedot",
+      "EVENT_NAME": "Tapahtuman nimi",
+      "EVENT_DESC": "Tapahtuman kuvaus",
+      "ADD_EVENT": "Lisää tapahtuma",
+      "DEL_EVENT": "Poista tapahtuma"
+    },
+    "PROJECT_MODEL_DIALOG": {
+      "TITLE_CREATE": "Luo sisältömalli",
+      "TITLE_UPDATE": "Päivitä sisältömalli",
+      "PROJECT_MODEL_NAME": "Sisältömallin nimi:",
+      "PROJECT_MODEL_DESC": "Sisältömallin kuvaus:",
+      "PROJECT_MODEL_CREATED": "Sisältömalli luotu",
+      "PROJECT_MODEL_DELETED": "Sisältömalli poistettu",
+      "PROJECT_MODEL_UPDATED": "Sisältömalli tallennettu"
+    },
+    "FORM_WIDGET_DIALOG": {
+      "TITLE_CREATE": "Luo lomakepiensovellus",
+      "TITLE_UPDATE": "Päivitä lomakepiensovellus",
+      "FORM_WIDGET_NAME": "Piensovelluksen nimi:",
+      "FORM_WIDGET_DESC": "Piensovelluksen kuvaus:",
+      "FORM_WIDGET_CREATED": "Lomakepiensovellus luotu",
+      "FORM_WIDGET_DELETED": "Lomakepiensovellus poistettu",
+      "FORM_WIDGET_UPDATED": "Lomakepiensovellus tallennettu"
+    },
+    "ERROR": {
+      "UPLOAD_FILE": "Tiedoston lataamisessa palvelimelle ilmeni ongelma. Yritä ladata se uudelleen.",
+      "DELETE_PROJECT": "Projektin poistamisessa ilmeni ongelma. Yritä poistaa se uudelleen.",
+      "CHANGE_FAVORITE": "Projektin lisäämisessä suosikkeihin ilmeni ongelma. Yritä lisätä se uudelleen.",
+      "DELETE_PROCESS": "Prosessin poistamisessa ilmeni ongelma. Yritä poistaa se uudelleen.",
+      "LOAD_MODELS": "Mallien lataamisessa ilmeni ongelma. Päivitä sivu ja yritä ladata uudelleen.",
+      "RELEASE_PROJECT": "Projektin julkaisussa ilmeni ongelma. Yritä julkaista se uudelleen.",
+      "CREATE_PROCESS": {
+        "DUPLICATION": "Samanniminen prosessi on jo olemassa",
+        "GENERAL": "Prosessin luomisessa ilmeni ongelma. Yritä luoda se uudelleen."
+      },
+      "UPDATE_PROCESS": {
+        "DUPLICATION": "Samanniminen prosessi on jo olemassa",
+        "GENERAL": "Prosessin tallentamisessa ilmeni ongelma. Yritä tallentaa se uudelleen.",
+        "EMPTY_NAME": "Nimi on pakollinen"
+      },
+      "CREATE_CONNECTOR": {
+        "DUPLICATION": "Samanniminen liitin on jo olemassa",
+        "GENERAL": "Liittimen luomisessa ilmeni ongelma. Yritä luoda se uudelleen."
+      },
+      "UPDATE_CONNECTOR": {
+        "DUPLICATION": "Samanniminen liitin on jo olemassa",
+        "GENERAL": "Liittimen tallentamisessa ilmeni ongelma. Yritä tallentaa se uudelleen."
+      },
+      "CREATE_FORM": {
+        "DUPLICATION": "Samanniminen lomake on jo olemassa",
+        "GENERAL": "Lomakkeen luomisessa ilmeni ongelma. Yritä luoda se uudelleen."
+      },
+      "UPDATE_FORM": {
+        "DUPLICATION": "Samanniminen lomake on jo olemassa",
+        "GENERAL": "Lomakkeen tallentamisessa ilmeni ongelma. Yritä tallentaa se uudelleen."
+      },
+      "CREATE_UI": {
+        "DUPLICATION": "Samanniminen käyttöliittymä on jo olemassa",
+        "GENERAL": "Käyttöliittymän luomisessa ilmeni ongelma. Yritä luoda se uudelleen."
+      },
+      "UPDATE_UI": {
+        "DUPLICATION": "Samanniminen käyttöliittymä on jo olemassa",
+        "GENERAL": "Käyttöliittymän tallentamisessa ilmeni ongelma. Yritä tallentaa se uudelleen."
+      },
+      "CREATE_DECISION_TABLE": {
+        "DUPLICATION": "Samanniminen päätöstaulukko on jo olemassa",
+        "GENERAL": "Päätöstaulukon luomisessa ilmeni ongelma. Yritä luoda se uudelleen."
+      },
+      "UPDATE_DECISION_TABLE": {
+        "DUPLICATION": "Samanniminen päätöstaulukko on jo olemassa",
+        "GENERAL": "Päätöstaulukon tallentamisessa ilmeni ongelma. Yritä tallentaa se uudelleen."
+      },
+      "CREATE_DATA": {
+        "DUPLICATION": "Samanniminen dataobjekti on jo olemassa",
+        "GENERAL": "Dataobjektin luomisessa ilmeni ongelma. Yritä luoda se uudelleen."
+      },
+      "UPDATE_DATA": {
+        "DUPLICATION": "Samanniminen dataobjekti on jo olemassa",
+        "GENERAL": "Dataobjektin tallentamisessa ilmeni ongelma. Yritä tallentaa se uudelleen."
+      },
+      "CREATE_PROJECT": {
+        "DUPLICATION": "Samanniminen projekti on jo olemassa",
+        "GENERAL": "Projektin luomisessa ilmeni ongelma. Yritä luoda se uudelleen."
+      },
+      "UPDATE_PROJECT": {
+        "DUPLICATION": "Samanniminen projekti on jo olemassa",
+        "GENERAL": "Projektin tallentamisessa ilmeni ongelma. Yritä tallentaa se uudelleen."
+      },
+      "UPLOAD_PROJECT": {
+        "DUPLICATION": "Samanniminen projekti on jo olemassa",
+        "GENERAL": "Projektin lataamisessa palvelimelle ilmeni ongelma. Yritä ladata se uudelleen."
+      },
+      "GET_PROJECT": "Projektin lataamisessa ilmeni ongelma. Päivitä sivu ja yritä uudelleen.",
+      "EXPORT_PROJECT": "Projektiraportin aikana tapahtui tuntematon virhe",
+      "CREATE_FILE": {
+        "DUPLICATION": "Samanniminen tiedosto on jo olemassa",
+        "GENERAL": "Tiedoston luomisessa ilmeni ongelma. Yritä luoda se uudelleen."
+      },
+      "UPDATE_FILE": {
+        "DUPLICATION": "Samanniminen tiedosto on jo olemassa",
+        "GENERAL": "Tiedoston tallentamisessa ilmeni ongelma. Yritä tallentaa se uudelleen."
+      },
+      "CREATE_SCRIPT": {
+        "DUPLICATION": "Samanniminen komentosarja on jo olemassa",
+        "GENERAL": "Komentosarjan luonnissa ilmeni ongelma. Yritä luoda se uudelleen."
+      },
+      "UPDATE_SCRIPT": {
+        "DUPLICATION": "Samanniminen komentosarja on jo olemassa",
+        "GENERAL": "Komentosarjan tallennuksessa ilmeni ongelma. Yritä tallentaa se uudelleen."
+      },
+      "CREATE_TRIGGER": {
+        "DUPLICATION": "Samanniminen laukaisija on jo olemassa",
+        "GENERAL": "Laukaisijan luonnissa ilmeni ongelma. Yritä luoda se uudelleen."
+      },
+      "UPDATE_TRIGGER": {
+        "DUPLICATION": "Samanniminen laukaisija on jo olemassa",
+        "GENERAL": "Laukaisijan tallennuksessa ilmeni ongelma. Yritä tallentaa se uudelleen."
+      },
+      "CREATE_FORM_WIDGET": {
+        "DUPLICATION": "Samanniminen lomakepiensovellus on jo olemassa",
+        "GENERAL": "Lomakepiensovelluksen luomisessa ilmeni ongelma. Yritä luoda se uudelleen."
+      },
+      "UPDATE_FORM_WIDGET": {
+        "DUPLICATION": "Samanniminen lomakepiensovellus on jo olemassa",
+        "GENERAL": "Piensovelluksen tallentamisessa ilmeni ongelma. Yritä tallentaa se uudelleen."
+      }
+    }
+  }
+}

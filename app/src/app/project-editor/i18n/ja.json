@@ -1,0 +1,269 @@
+{
+  "PROJECT_EDITOR": {
+    "BACK_TO": "プロジェクトに戻る",
+    "NAME": "プロジェクトエディタ",
+    "UPLOAD_FILE": "ファイルのアップロード",
+    "DOWNLOAD_PROJECT": "プロジェクトのダウンロード",
+    "PROJECT_VALID": "プロジェクトに検証エラーはありません",
+    "EXPORT_SUCCESS": "プロジェクトがエクスポートされました",
+    "SETTINGS": {
+      "PROJECT_SETTINGS": "プロジェクトエディタの設定",
+      "CONNECTORS_TAB_LABEL": "コネクタ"
+    },
+    "UPLOAD": "アップロード",
+    "IMPORT": "インポート",
+    "CREATE_NEW": "新規作成",
+    "SEARCH": "検索",
+    "UPLOAD_FILE_SUCCESS": "ファイルがアップロードされました",
+    "NO_CONTENT": "<空>",
+    "NO_SELECTION": "新しいモデルを作成するか、サイドバーを使って既存のモデルを編集します",
+    "NEW_MENU": {
+      "LABEL": "新規",
+      "CREATE": "作成",
+      "UPLOAD": "アップロード",
+      "IMPORT": "インポート",
+      "CREATE_PROCESS_TITLE": "プロセスを作成",
+      "MENU_ITEMS": {
+        "CREATE_PROCESS": "プロセス",
+        "CREATE_CONNECTOR": "コネクタ",
+        "CREATE_FORM": "フォーム",
+        "CREATE_UI": "UI",
+        "CREATE_DATA": "データオブジェクト",
+        "CREATE_DECISION_TABLE": "意思決定テーブル",
+        "CREATE_FILE": "ファイル",
+        "CREATE_SCRIPT": "スクリプト",
+        "CREATE_TRIGGER": "トリガー",
+        "CREATE_PROJECT_MODEL": "コンテンツモデル",
+        "CREATE_FORM_WIDGET": "フォームウィジェット"
+      }
+    },
+    "TREE": {
+      "PROCESSES": "プロセス",
+      "FORMS": "フォーム",
+      "CONNECTORS": "コネクタ",
+      "DATA": "データ",
+      "DECISION_TABLES": "意思決定テーブル",
+      "UIS": "UI",
+      "FILES": "ファイル",
+      "SCRIPTS": "スクリプト",
+      "TRIGGERS": "トリガー"
+    },
+    "PROCESS_DIALOG": {
+      "TITLE_CREATE": "プロセスを作成",
+      "TITLE_UPDATE": "プロセスを更新",
+      "PROCESS_NAME": "プロセス名:",
+      "PROCESS_DESC": "プロセスの説明:",
+      "PROCESS_CREATED": "プロセスが作成されました",
+      "PROCESS_DELETED": "プロセスが削除されました",
+      "PROCESS_UPDATED": "プロセスが保存されました"
+    },
+    "CONNECTOR_DIALOG": {
+      "TITLE_CREATE": "コネクタを作成",
+      "TITLE_UPDATE": "コネクタ更新",
+      "CONNECTOR_NAME": "コネクタ名:",
+      "CONNECTOR_DESC": "コネクタの説明:",
+      "CONNECTOR_CREATED": "コネクタが作成されました",
+      "CONNECTOR_DELETED": "コネクタが削除されました",
+      "CONNECTOR_UPDATED": "コネクタが保存されました"
+    },
+    "FORM_DIALOG": {
+      "TITLE_CREATE": "フォームを作成",
+      "TITLE_UPDATE": "フォームを更新",
+      "FORM_NAME": "フォーム名:",
+      "FORM_DESC": "フォームの説明:",
+      "FORM_CREATED": "フォームが作成されました",
+      "FORM_DELETED": "フォームが削除されました",
+      "FORM_UPDATED": "フォームが保存されました",
+      "FORM_CONTENT_CREATED": "作成されたコンテンツモデルからの初期フォームコンテンツ"
+    },
+    "UI_DIALOG": {
+      "TITLE_CREATE": "UI を作成",
+      "TITLE_UPDATE": "UI を更新",
+      "UI_NAME": "UI 名:",
+      "UI_DESC": "UI の説明:",
+      "UI_CREATED": "UI が作成されました",
+      "UI_DELETED": "UI が削除されました",
+      "UI_UPDATED": "UI が保存されました"
+    },
+    "DATA_DIALOG": {
+      "TITLE_CREATE": "データオブジェクトを作成",
+      "TITLE_UPDATE": "データオブジェクトを更新",
+      "DATA_NAME": "データオブジェクト名:",
+      "DATA_DESC": "データオブジェクトの説明:",
+      "DATA_CREATED": "データオブジェクトが作成されました",
+      "DATA_DELETED": "データオブジェクトが削除されました",
+      "DATA_UPDATED": "データオブジェクトが保存されました"
+    },
+    "DECISION_TABLE_DIALOG": {
+      "TITLE_CREATE": "意思決定テーブルを作成",
+      "TITLE_UPDATE": "意思決定テーブルを更新",
+      "DECISION_TABLE_NAME": "意思決定テーブル名:",
+      "DECISION_TABLE_DESC": "意思決定テーブルの説明:",
+      "DECISION_TABLE_CREATED": "意思決定テーブルが作成されました",
+      "DECISION_TABLE_DELETED": "意思決定テーブルが削除されました",
+      "DECISION_TABLE_UPDATED": "意思決定テーブルが保存されました"
+    },
+    "FILE_DIALOG": {
+      "TITLE_CREATE": "ファイルを作成",
+      "TITLE_UPDATE": "ファイルを更新",
+      "FILE_NAME": "ファイル名:",
+      "FILE_DESC": "ファイルの説明:",
+      "FILE_CREATED": "ファイルが作成されました",
+      "FILE_DELETED": "ファイルが削除されました",
+      "FILE_UPDATED": "ファイルが保存されました"
+    },
+    "SCRIPT_DIALOG": {
+      "TITLE_CREATE": "スクリプトを作成",
+      "TITLE_UPDATE": "スクリプトを更新",
+      "SCRIPT_NAME": "スクリプト名:",
+      "SCRIPT_DESC": "スクリプトの説明:",
+      "SCRIPT_CREATED": "スクリプトが作成されました",
+      "SCRIPT_DELETED": "スクリプトが削除されました",
+      "SCRIPT_UPDATED": "スクリプトが保存されました"
+    },
+    "TRIGGER_DIALOG": {
+      "TITLE_CREATE": "トリガーを作成",
+      "TITLE_UPDATE": "トリガーを更新",
+      "TRIGGER_NAME": "トリガー名:",
+      "TRIGGER_DESC": "トリガーの説明:",
+      "TRIGGER_CREATED": "トリガーが作成されました",
+      "TRIGGER_DELETED": "トリガーが削除されました",
+      "TRIGGER_UPDATED": "トリガーが保存されました"
+    },
+    "ACTION_DIALOG": {
+      "ACTION_DETAILS": "処理の詳細",
+      "ACTION_NAME": "処理名",
+      "ACTION_DESC": "処理の説明",
+      "ADD_ACTION": "処理を追加",
+      "DEL_ACTION": "処理を削除"
+    },
+    "EVENT_DIALOG": {
+      "EVENT_DETAILS": "イベントの詳細",
+      "EVENT_NAME": "イベント名",
+      "EVENT_DESC": "イベントの説明",
+      "ADD_EVENT": "イベントを追加",
+      "DEL_EVENT": "イベントを削除"
+    },
+    "PROJECT_MODEL_DIALOG": {
+      "TITLE_CREATE": "コンテンツモデルを作成",
+      "TITLE_UPDATE": "コンテンツモデルを更新",
+      "PROJECT_MODEL_NAME": "コンテンツモデル名:",
+      "PROJECT_MODEL_DESC": "コンテンツモデルの説明:",
+      "PROJECT_MODEL_CREATED": "コンテンツモデルが作成されました",
+      "PROJECT_MODEL_DELETED": "コンテンツモデルが削除されました",
+      "PROJECT_MODEL_UPDATED": "コンテンツモデルが保存されました"
+    },
+    "FORM_WIDGET_DIALOG": {
+      "TITLE_CREATE": "フォームウィジェットを作成",
+      "TITLE_UPDATE": "フォームウィジェットを更新",
+      "FORM_WIDGET_NAME": "ウィジェット名:",
+      "FORM_WIDGET_DESC": "ウィジェットの説明:",
+      "FORM_WIDGET_CREATED": "フォームウィジェットが作成されました",
+      "FORM_WIDGET_DELETED": "フォームウィジェットが削除されました",
+      "FORM_WIDGET_UPDATED": "フォームウィジェットが保存されました"
+    },
+    "ERROR": {
+      "UPLOAD_FILE": "ファイルのアップロード中に問題が発生しました。アップロードをやり直してください。",
+      "DELETE_PROJECT": "プロジェクトの削除中に問題が発生しました。削除をやり直してください。",
+      "CHANGE_FAVORITE": "プロジェクトをお気に入りに登録中に問題が発生しました。お気に入りへの登録をやり直してください。",
+      "DELETE_PROCESS": "プロセスの削除中に問題が発生しました。削除をやり直してください。",
+      "LOAD_MODELS": "モデルの読み込み中に問題が発生しました。ページを再読み込みしてください。",
+      "RELEASE_PROJECT": "プロジェクトのリリース中に問題が発生しました。リリースをやり直してください。",
+      "CREATE_PROCESS": {
+        "DUPLICATION": "同じ名前のプロセスが既に存在します",
+        "GENERAL": "プロセスの作成中に問題が発生しました。作成をやり直してください。"
+      },
+      "UPDATE_PROCESS": {
+        "DUPLICATION": "同じ名前のプロセスが既に存在します",
+        "GENERAL": "プロセスの保存中に問題が発生しました。保存をやり直してください。",
+        "EMPTY_NAME": "名前を指定してください"
+      },
+      "CREATE_CONNECTOR": {
+        "DUPLICATION": "同じ名前のコネクタが既に存在します",
+        "GENERAL": "コネクタの作成中に問題が発生しました。作成をやり直してください。"
+      },
+      "UPDATE_CONNECTOR": {
+        "DUPLICATION": "同じ名前のコネクタが既に存在します",
+        "GENERAL": "コネクタの保存中に問題が発生しました。保存をやり直してください。"
+      },
+      "CREATE_FORM": {
+        "DUPLICATION": "同じ名前のフォームが既に存在します",
+        "GENERAL": "フォームの作成中に問題が発生しました。作成をやり直してください。"
+      },
+      "UPDATE_FORM": {
+        "DUPLICATION": "同じ名前のフォームが既に存在します",
+        "GENERAL": "フォームの保存中に問題が発生しました。保存をやり直してください。"
+      },
+      "CREATE_UI": {
+        "DUPLICATION": "同じ名前の UI が既に存在します",
+        "GENERAL": "UI の作成中に問題が発生しました。作成をやり直してください。"
+      },
+      "UPDATE_UI": {
+        "DUPLICATION": "同じ名前の UI が既に存在します",
+        "GENERAL": "UI の保存中に問題が発生しました。保存をやり直してください。"
+      },
+      "CREATE_DECISION_TABLE": {
+        "DUPLICATION": "同じ名前の意思決定テーブルが既に存在します",
+        "GENERAL": "意思決定テーブルの作成中に問題が発生しました。作成をやり直してください。"
+      },
+      "UPDATE_DECISION_TABLE": {
+        "DUPLICATION": "同じ名前の意思決定テーブルが既に存在します",
+        "GENERAL": "意思決定テーブルの保存中に問題が発生しました。保存をやり直してください。"
+      },
+      "CREATE_DATA": {
+        "DUPLICATION": "同じ名前のデータオブジェクトが既に存在します",
+        "GENERAL": "データオブジェクトの作成中に問題が発生しました。作成をやり直してください。"
+      },
+      "UPDATE_DATA": {
+        "DUPLICATION": "同じ名前のデータオブジェクトが既に存在します",
+        "GENERAL": "データオブジェクトの保存中に問題が発生しました。保存をやり直してください。"
+      },
+      "CREATE_PROJECT": {
+        "DUPLICATION": "同じ名前のプロジェクトが既に存在します",
+        "GENERAL": "プロジェクトの作成中に問題が発生しました。作成をやり直してください。"
+      },
+      "UPDATE_PROJECT": {
+        "DUPLICATION": "同じ名前のプロジェクトが既に存在します",
+        "GENERAL": "プロジェクトの保存中に問題が発生しました。保存をやり直してください。"
+      },
+      "UPLOAD_PROJECT": {
+        "DUPLICATION": "同じ名前のプロジェクトが既に存在します",
+        "GENERAL": "プロジェクトのアップロード中に問題が発生しました。アップロードをやり直してください。"
+      },
+      "GET_PROJECT": "プロジェクトの読み込み中に問題が発生しました。ページを再読み込みしてください。",
+      "EXPORT_PROJECT": "プロジェクトのエクスポート中に不明なエラーが発生しました",
+      "CREATE_FILE": {
+        "DUPLICATION": "同じ名前のファイルが既に存在します",
+        "GENERAL": "ファイルの作成中に問題が発生しました。作成をやり直してください。"
+      },
+      "UPDATE_FILE": {
+        "DUPLICATION": "同じ名前のファイルが既に存在します",
+        "GENERAL": "ファイルの保存中に問題が発生しました。保存をやり直してください。"
+      },
+      "CREATE_SCRIPT": {
+        "DUPLICATION": "同じ名前のスクリプトが既に存在します",
+        "GENERAL": "スクリプトの作成中に問題が発生しました。作成をやり直してください。"
+      },
+      "UPDATE_SCRIPT": {
+        "DUPLICATION": "同じ名前のスクリプトが既に存在します",
+        "GENERAL": "スクリプトの保存中に問題が発生しました。保存をやり直してください。"
+      },
+      "CREATE_TRIGGER": {
+        "DUPLICATION": "同じ名前のトリガーが既に存在します",
+        "GENERAL": "トリガーの作成中に問題が発生しました。作成をやり直してください。"
+      },
+      "UPDATE_TRIGGER": {
+        "DUPLICATION": "同じ名前のトリガーが既に存在します",
+        "GENERAL": "トリガーの保存中に問題が発生しました。保存をやり直してください。"
+      },
+      "CREATE_FORM_WIDGET": {
+        "DUPLICATION": "同じ名前のフォームウィジェットは、既に存在します",
+        "GENERAL": "フォームウィジェットの作成中に問題が発生しました。作成をやり直してください。"
+      },
+      "UPDATE_FORM_WIDGET": {
+        "DUPLICATION": "同じ名前のフォームウィジェットは、既に存在します",
+        "GENERAL": "保存中に問題が発生しました。保存をやり直してください。"
+      }
+    }
+  }
+}

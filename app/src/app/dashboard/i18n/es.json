@@ -1,0 +1,59 @@
+{
+  "DASHBOARD": {
+    "NEW_MENU": {
+      "LABEL": "Nuevo",
+      "CREATE_PROJECT_TITLE": "Crear proyecto",
+      "OVERRIDE_PROJECT_TITLE": "Ya existe un proyecto con ese nombre.",
+      "EDIT_PROJECT_TITLE": "Editar proyecto",
+      "PROJECT_CREATED": "Proyecto creado",
+      "PROJECT_UPLOADED": "Proyecto cargado",
+      "PROJECT_UPDATED": "Proyecto guardado",
+      "PROJECT_RELEASED": "Proyecto lanzado",
+      "PROJECT_DELETED": "Proyecto eliminado",
+      "MENU_ITEMS": {
+        "CREATE_PROJECT": "Crear proyecto",
+        "UPLOAD_PROJECT": "Cargar proyecto",
+        "CREATE_MODEL": "Modelo de contenido"
+      }
+    },
+    "DIALOGS": {
+      "PROJECT_NAME": "Nombre de proyecto:",
+      "PROJECT_DESC": "Descripción de proyecto:"
+    },
+    "NAVIGATION": {
+      "PROJECTS": {
+        "LABEL": "Proyectos",
+        "TOOLTIP": "Proyectos publicados"
+      },
+      "RELEASES": {
+        "LABEL": "Versiones",
+        "TOOLTIP": "Versiones"
+      },
+      "PROCESSES": {
+        "LABEL": "Procesos",
+        "TOOLTIP": "Procesos publicados"
+      },
+      "FAVORITES": {
+        "LABEL": "Favoritos",
+        "TOOLTIP": "Favoritos"
+      }
+    },
+    "TABLE": {
+      "COLUMN_NAME": "Nombre",
+      "COLUMN_VERSION": "Versión",
+      "COLUMN_CREATED": "Creado",
+      "COLUMN_CREATED_BY": "Creado por",
+      "COLUMN_OPTIONS": "Opciones",
+      "NO_ITEMS": "Crear o importar un proyecto para verlo en la lista.",
+      "NO_FAV_PROCESSES": "Marque un proceso como favorito para que esté disponible aquí.",
+      "NO_FAV_PROJECTS": "Marque un proyecto como favorito para que esté disponible aquí.",
+      "RELEASE_ID": "ID de versión",
+      "PROJECT_NAME": "Nombre de proyecto"
+    },
+    "ERROR": {
+      "LOAD_PROJECTS": "Ha surgido un problema al cargar los proyectos. Vuelva a intentar actualizar la página.",
+      "LOAD_RELEASES": "Ha surgido un problema al cargar las versiones. Vuelva a intentar actualizar la página.",
+      "LOAD_PROCESSES": "Ha surgido un problema al cargar los procesos. Vuelva a intentar actualizar la página."
+    }
+  }
+}
