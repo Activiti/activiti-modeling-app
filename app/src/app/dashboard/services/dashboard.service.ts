@@ -43,4 +43,8 @@ export class DashboardService {
     importProject(file: File, name?: string): Observable<Partial<Project>> {
         return this.amaApi.Project.import(file, name);
     }
+
+    saveAsProject(projectId: string, name: string): Observable<Partial<Project>> {
+        return this.amaApi.Project.copy(projectId, name);
+    }
 }

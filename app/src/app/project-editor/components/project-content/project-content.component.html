@@ -39,6 +39,9 @@
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" class="project-context-menu">
+            <button mat-menu-item (click)="saveAsProject(project)" [attr.data-automation-id]="'project-save-as-' + project.id">
+                <mat-icon svgIcon="save_as"></mat-icon> <span>{{ 'APP.MENU.SAVE_AS' | translate }}</span>
+            </button>
             <button *ngFor="let button of buttons" mat-menu-item (click)="handleClick(button.actionClass, project.id)" [attr.data-automation-id]="'project-' + button.automationId + '-' + project.id">
                 <mat-icon>{{ button.icon }}</mat-icon> <span>{{ button.title | translate }}</span>
             </button>

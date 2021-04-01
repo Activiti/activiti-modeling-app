@@ -1,0 +1,27 @@
+<h2 mat-dialog-title> {{ 'SDK.SAVE_AS_DIALOG.TITLE' | translate}} </h2>
+
+<mat-dialog-content>
+  <mat-form-field class="adf-full-width">
+    <input matInput
+           required
+           placeholder="{{ 'SDK.SAVE_AS_DIALOG.FIELD_PROPERTIES.NAME' | translate }}"
+           data-automation-id="name-field"
+           [(ngModel)]="name" (keydown.enter)="submit()">
+  </mat-form-field>
+  <mat-error data-automation-id="error-validation" *ngIf="name && !validate()">{{ allowedCharacters.error | translate }}</mat-error>
+
+</mat-dialog-content>
+
+<mat-dialog-actions class="adf-dialog-buttons">
+  <span class="adf-fill-remaining-space"></span>
+
+  <button mat-button mat-dialog-close class="cancel-btn">
+    {{ 'APP.DIALOGS.CANCEL' | translate }}
+  </button>
+
+  <button mat-button class="adf-dialog-action-button" (click)="submit()"
+          data-automation-id="submit-button" [disabled]="!validate()">
+    {{ 'APP.DIALOGS.SAVE' | translate }}
+  </button>
+</mat-dialog-actions>
+

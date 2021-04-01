@@ -74,6 +74,15 @@ export class ACMProjectApi implements ProjectApi {
             );
     }
 
+    public copy(projectId: string, name: string): Observable<Project> {
+        return this.requestApiHelper
+            .post(`/modeling-service/v1/projects/${projectId}/copy`, { queryParams: { 'name': name } } )
+            .pipe(
+                map((response: any) => response.entry),
+                map(this.createProject.bind(this))
+            );
+    }
+
     public delete(projectId: string): Observable<void> {
         return this.requestApiHelper.delete(`/modeling-service/v1/projects/${projectId}`);
     }

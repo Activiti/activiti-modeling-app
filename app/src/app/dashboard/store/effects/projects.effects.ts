@@ -55,6 +55,13 @@ import {
     UpdateProjectSuccessAction,
     GetProjectsSuccessAction,
     UploadProjectSuccessAction,
+    OpenSaveAsProjectDialogAction,
+    SaveAsProjectAttemptAction,
+    OPEN_SAVE_AS_PROJECT_DIALOG,
+    SAVE_AS_PROJECT_ATTEMPT,
+    SaveAsProjectDialogPayload,
+    SaveAsProjectDialogComponent,
+    DialogService,
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Injectable()
@@ -62,6 +69,7 @@ export class ProjectsEffects {
     constructor(
         private actions$: Actions,
         private dashboardService: DashboardService,
+        private dialogService: DialogService,
         private store: Store<AmaState>,
         private router: Router
     ) {}
@@ -117,6 +125,19 @@ export class ProjectsEffects {
     createProjectSuccessEffect$ = this.actions$.pipe(
         ofType<CreateProjectSuccessAction>(CREATE_PROJECT_SUCCESS),
         tap((action) => this.router.navigate(['/projects', action.payload.id]))
+    );
+
+    @Effect({ dispatch: false })
+    openSaveAsProjectDialogAction = this.actions$.pipe(
+        ofType<OpenSaveAsProjectDialogAction>(OPEN_SAVE_AS_PROJECT_DIALOG),
+        tap((action) => this.openSaveAsProjectDialog(action.payload))
+    );
+
+    @Effect()
+    saveAsProjectAttemptAction = this.actions$.pipe(
+        ofType<SaveAsProjectAttemptAction>(SAVE_AS_PROJECT_ATTEMPT),
+        map(action => action.payload),
+        mergeMap(payload => this.saveAsProject(payload))
     );
 
     private deleteProject(projectId: string, sorting: ServerSideSorting, search: SearchQuery, pagination: Pagination) {
@@ -229,5 +250,31 @@ export class ProjectsEffects {
 
     private handleError(userMessage: string): Observable<SnackbarErrorAction> {
         return of(new SnackbarErrorAction(userMessage));
+    }
+
+    private handleProjectSaveAsError(error: ErrorResponse): Observable<SnackbarErrorAction> {
+        let errorMessage: string;
+
+        if (error.status === 409) {
+            errorMessage = 'PROJECT_EDITOR.ERROR.CREATE_PROJECT.DUPLICATION';
+        } else {
+            errorMessage = 'PROJECT_EDITOR.ERROR.CREATE_PROJECT.GENERAL';
+        }
+
+        return of(new SnackbarErrorAction(errorMessage));
+    }
+
+    private openSaveAsProjectDialog(data: SaveAsProjectDialogPayload) {
+        this.dialogService.openDialog(SaveAsProjectDialogComponent, { data });
+    }
+
+    private saveAsProject(projectPayload: Partial<SaveAsProjectDialogPayload>) {
+        return this.dashboardService.saveAsProject(projectPayload.id, projectPayload.name).pipe(
+            switchMap(project => [
+                new CreateProjectSuccessAction(project),
+                new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_CREATED')
+            ]),
+            catchError(e => this.handleProjectSaveAsError(e))
+        );
     }
 }

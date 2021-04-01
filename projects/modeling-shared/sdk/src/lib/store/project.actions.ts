@@ -20,6 +20,7 @@ import { Action } from '@ngrx/store';
 import { Release, ServerSideSorting, SearchQuery, Project, FetchQueries } from '../api/types';
 import { Update } from '@ngrx/entity';
 import { Pagination } from '@alfresco/js-api';
+import { SaveAsProjectDialogPayload } from '../components/save-as-project-dialog/public-api';
 
 export const CREATE_PROJECT_ATTEMPT = 'CREATE_PROJECT_ATTEMPT';
 export class CreateProjectAttemptAction implements Action {
@@ -137,4 +138,16 @@ export const SHOW_PROJECTS = 'SHOW_PROJECTS';
 export class ShowProjectsAction implements Action {
     readonly type = SHOW_PROJECTS;
     constructor(public pagination?: Partial<Pagination>) {}
+}
+
+export const OPEN_SAVE_AS_PROJECT_DIALOG = 'OPEN_SAVE_AS_PROJECT_DIALOG';
+export class OpenSaveAsProjectDialogAction implements Action {
+    readonly type = OPEN_SAVE_AS_PROJECT_DIALOG;
+    constructor(public payload: SaveAsProjectDialogPayload) {}
+}
+
+export const SAVE_AS_PROJECT_ATTEMPT = 'SAVE_AS_PROJECT_ATTEMPT';
+export class SaveAsProjectAttemptAction implements Action {
+    readonly type = SAVE_AS_PROJECT_ATTEMPT;
+    constructor(public payload: SaveAsProjectDialogPayload) {}
 }

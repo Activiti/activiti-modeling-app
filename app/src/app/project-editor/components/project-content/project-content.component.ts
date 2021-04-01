@@ -23,7 +23,7 @@ import {
     selectProject,
     PROJECT_CONTEXT_MENU_OPTIONS,
     ProjectContextMenuOption,
-    ProjectContextMenuActionClass
+    ProjectContextMenuActionClass, OpenSaveAsProjectDialogAction, SaveAsProjectAttemptAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Observable, Subscription } from 'rxjs';
 import { ExportProjectAction, ValidateProjectAttemptAction, ExportProjectAttemptAction, ExportProjectAttemptPayload } from '../../store/project-editor.actions';
@@ -55,6 +55,14 @@ export class ProjectContentComponent implements OnInit {
 
     validateApp(projectId: string): void {
         this.store.dispatch(new ValidateProjectAttemptAction(projectId));
+    }
+
+    saveAsProject(project: Partial<Project>) {
+        this.store.dispatch(new OpenSaveAsProjectDialogAction({
+            id: project.id,
+            name: project.name,
+            action: SaveAsProjectAttemptAction
+        }));
     }
 
     handleClick(actionClass: ProjectContextMenuActionClass, projectId: string) {

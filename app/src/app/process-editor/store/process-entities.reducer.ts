@@ -47,7 +47,8 @@ import {
     EntityProperty,
     EntityProperties,
     ProcessExtensionsContent,
-    createExtensionsObject
+    createExtensionsObject,
+    SAVE_AS_PROJECT_ATTEMPT
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 const cloneDeep = require('lodash/cloneDeep');
@@ -94,6 +95,12 @@ export function processEntitiesReducer(
             return removeElementMapping(state, <RemoveElementMappingAction>action);
 
         case LEAVE_PROJECT:
+            return {
+                ...state,
+                loaded: false
+            };
+
+        case SAVE_AS_PROJECT_ATTEMPT:
             return {
                 ...state,
                 loaded: false

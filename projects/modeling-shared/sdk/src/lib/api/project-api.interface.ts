@@ -27,6 +27,7 @@ export abstract class ProjectApi {
     public abstract create(project: Partial<Project>): Observable<Project>;
     public abstract get(projectId: string): Observable<Project>;
     public abstract update(projectId: string, project: Partial<Project>): Observable<Project>;
+    public abstract copy(projectId: string, name: string): Observable<Project>;
     public abstract delete(projectId: string): Observable<void>;
     public abstract validate(projectId: string): Observable<void | ValidationErrors>;
 

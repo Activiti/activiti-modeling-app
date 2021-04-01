@@ -33,7 +33,8 @@ import {
     connectorEntityAdapter,
     LEAVE_PROJECT,
     CreateConnectorSuccessAction,
-    CREATE_CONNECTOR_SUCCESS
+    CREATE_CONNECTOR_SUCCESS,
+    SAVE_AS_PROJECT_ATTEMPT
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Action } from '@ngrx/store';
 
@@ -63,6 +64,12 @@ export function connectorEntitiesReducer(
         case GET_CONNECTOR_SUCCESS:
             return getConnectorSuccess(state, <GetConnectorSuccessAction>action);
         case LEAVE_PROJECT:
+            return {
+                ...state,
+                loaded: false
+            };
+
+        case SAVE_AS_PROJECT_ATTEMPT:
             return {
                 ...state,
                 loaded: false

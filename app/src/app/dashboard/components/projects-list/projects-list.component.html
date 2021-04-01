@@ -63,6 +63,9 @@
                                         <button mat-menu-item (click)="downloadProject(element)" [attr.data-automation-id]="'project-download-' + element.id">
                                             <mat-icon>file_download</mat-icon> <span>{{ 'APP.MENU.DOWNLOAD' | translate }}</span>
                                         </button>
+                                        <button mat-menu-item (click)="saveAsProject(element)" [attr.data-automation-id]="'project-save-as-' + element.id">
+                                            <mat-icon svgIcon="save_as"></mat-icon> <span>{{ 'APP.MENU.SAVE_AS' | translate }}</span>
+                                        </button>
                                         <button *ngFor="let button of buttons" mat-menu-item
                                             [attr.data-automation-id]="'project-' + button.automationId + '-' + element.id"
                                             (click)="handleClick(button.actionClass, element.id)">

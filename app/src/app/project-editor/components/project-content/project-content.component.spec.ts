@@ -22,17 +22,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToolbarModule } from '@alfresco/adf-core';
-import { ProjectEditorState, PROJECT_CONTEXT_MENU_OPTIONS } from '@alfresco-dbp/modeling-shared/sdk';
+import { ProjectEditorState, PROJECT_CONTEXT_MENU_OPTIONS, OpenSaveAsProjectDialogAction, SaveAsProjectAttemptAction, AmaApi } from '@alfresco-dbp/modeling-shared/sdk';
 import { of } from 'rxjs';
 import { ExportProjectAction, ExportProjectAttemptAction } from '../../store/project-editor.actions';
 import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CommonModule } from '@angular/common';
+import { ProjectEditorService } from '../../services/project-editor.service';
+import { mockProject } from './project-content.mock';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ProjectContentComponent', () => {
     let fixture: ComponentFixture<ProjectContentComponent>;
     let store: Store<ProjectEditorState>;
+    let projectEditorService: ProjectEditorService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -43,17 +47,27 @@ describe('ProjectContentComponent', () => {
                 MatButtonModule,
                 MatMenuModule,
                 ToolbarModule,
-                TranslateModule.forRoot()
+                TranslateModule.forRoot(),
+                NoopAnimationsModule
             ],
             declarations: [ProjectContentComponent],
             providers: [
-                {provide: Store, useValue: {dispatch: jest.fn(), select: jest.fn().mockReturnValue(of({}))}},
+                AmaApi,
+                ProjectEditorService,
+                {
+                    provide: Store,
+                    useValue: {
+                        dispatch: jest.fn(),
+                        select: jest.fn().mockReturnValue(of(mockProject))
+                    }
+                },
                 { provide: PROJECT_CONTEXT_MENU_OPTIONS, useValue: []},
             ]
         });
     });
 
     beforeEach(() => {
+        projectEditorService = TestBed.inject(ProjectEditorService);
         fixture = TestBed.createComponent(ProjectContentComponent);
         store = TestBed.inject(Store);
         fixture.detectChanges();
@@ -72,8 +86,8 @@ describe('ProjectContentComponent', () => {
 
         const exportActionAttempt: ExportProjectAttemptAction = dispatchSpy.calls.argsFor(0)[0];
         const payload = {
-            projectId: undefined,
-            projectName: undefined
+            projectId: 'mock-project-id',
+            projectName: 'mock-project-name'
         };
 
         expect(exportActionAttempt.type).toBe('EXPORT_PROJECT_ATTEMPT');
@@ -81,7 +95,29 @@ describe('ProjectContentComponent', () => {
             action: new ExportProjectAction(payload),
             ...payload
         });
-    }
+    });
 
-    );
+    it('clicking on save as button should dispatch an OpenSaveAsProjectDialogAction', () => {
+        projectEditorService.fetchProject = jest.fn().mockReturnValue(of( mockProject ));
+
+        const dispatchSpy = spyOn(store, 'dispatch');
+        const menu = fixture.debugElement.query(By.css('[data-automation-id="project-context-mock-project-id"]'));
+        menu.triggerEventHandler('click', {});
+        fixture.detectChanges();
+        const button = fixture.debugElement.query(By.css('[data-automation-id="project-save-as-mock-project-id"]'));
+        button.triggerEventHandler('click', {});
+        fixture.detectChanges();
+
+        const openSaveAsProjectDialogAction: OpenSaveAsProjectDialogAction = dispatchSpy.calls.argsFor(0)[0];
+        const payload = {
+            id: 'mock-project-id',
+            name: 'mock-project-name'
+        };
+
+        expect(openSaveAsProjectDialogAction.type).toBe('OPEN_SAVE_AS_PROJECT_DIALOG');
+        expect(openSaveAsProjectDialogAction.payload).toEqual({
+            action: SaveAsProjectAttemptAction,
+            ... payload
+        });
+    });
 });

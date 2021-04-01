@@ -18,7 +18,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ProjectsEffects } from './projects.effects';
 import { Observable, BehaviorSubject, throwError, of } from 'rxjs';
-import { cold, hot } from 'jasmine-marbles';
+import { cold, getTestScheduler, hot } from 'jasmine-marbles';
 import { DashboardService } from '../../services/dashboard.service';
 import { Store } from '@ngrx/store';
 import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
@@ -51,7 +51,10 @@ import {
     UpdateProjectSuccessAction,
     DeleteProjectAttemptAction,
     DeleteProjectSuccessAction,
-    GetProjectsSuccessAction
+    GetProjectsSuccessAction,
+    SaveAsProjectDialogPayload,
+    SaveAsProjectAttemptAction,
+    OpenSaveAsProjectDialogAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -60,6 +63,7 @@ describe('ProjectsEffects', () => {
     let metadata: EffectsMetadata<ProjectsEffects>;
     let actions$: Observable<any>;
     let dashboardService: DashboardService;
+    let dialogService: DialogService;
     const projectsLoaded$ = new BehaviorSubject<boolean>(false);
     const paginationLoaded$ = new BehaviorSubject<Pagination>(paginationMock);
     let router: Router;
@@ -89,6 +93,7 @@ describe('ProjectsEffects', () => {
                 AmaApi,
                 ProjectApi,
                 DashboardService,
+                DialogService,
                 DownloadResourceService,
                 {
                     provide: TranslationService,
@@ -130,6 +135,7 @@ describe('ProjectsEffects', () => {
         router = TestBed.inject(Router);
         metadata = getEffectsMetadata(effects);
         dashboardService = TestBed.inject(DashboardService);
+        dialogService = TestBed.inject(DialogService);
     });
 
     describe('ShowProject', () => {
@@ -411,6 +417,58 @@ describe('ProjectsEffects', () => {
             });
 
             expect(effects.getProjectsAttemptEffect).toBeObservable(expected);
+        });
+    });
+
+    describe('SaveAsProjectsAttemptEffect', () => {
+        const payload: SaveAsProjectDialogPayload = { id: 'id', name: 'test-name' };
+
+        it('should dispatch an action', () => {
+            expect(metadata.saveAsProjectAttemptAction.dispatch).toBeTruthy();
+        });
+
+        it('openSaveAsProjectDialog should open save as dialog', () => {
+            spyOn(dialogService, 'openDialog');
+            actions$ = hot('a', { a: new OpenSaveAsProjectDialogAction(payload) });
+            effects.openSaveAsProjectDialogAction.subscribe(() => {});
+            getTestScheduler().flush();
+            expect(dialogService.openDialog).toHaveBeenCalled();
+        });
+
+        it('should trigger the right action on successful save as', () => {
+            dashboardService.saveAsProject = jest.fn().mockReturnValue(of(mockProject));
+            actions$ = hot('a', { a: new SaveAsProjectAttemptAction(payload) });
+
+            const expected = cold('(bc)', {
+                b: new CreateProjectSuccessAction(mockProject),
+                c: new SnackbarInfoAction('DASHBOARD.NEW_MENU.PROJECT_CREATED')
+            });
+
+            expect(effects.saveAsProjectAttemptAction).toBeObservable(expected);
+        });
+
+        it('should trigger the right action on unsuccessful save as', () => {
+            dashboardService.saveAsProject = jest.fn().mockReturnValue(throwError(new Error()));
+            actions$ = hot('a', { a: new SaveAsProjectAttemptAction(payload) });
+
+            const expected = cold('b', {
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.CREATE_PROJECT.GENERAL')
+            });
+
+            expect(effects.saveAsProjectAttemptAction).toBeObservable(expected);
+        });
+
+        it('should trigger the right action on unsuccessful save as with error 409', () => {
+            const error: any = new Error();
+            error.status = 409;
+            dashboardService.saveAsProject = jest.fn().mockReturnValue(throwError(error));
+            actions$ = hot('a', { a: new SaveAsProjectAttemptAction(payload) });
+
+            const expected = cold('b', {
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.CREATE_PROJECT.DUPLICATION')
+            });
+
+            expect(effects.saveAsProjectAttemptAction).toBeObservable(expected);
         });
     });
 });

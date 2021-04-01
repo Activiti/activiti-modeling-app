@@ -24,7 +24,8 @@ import {
     AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting,
     SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption,
     PROJECT_CONTEXT_MENU_OPTIONS, ProjectContextMenuActionClass,
-    selectLoading, selectPagination, selectProjectSummaries, GetProjectsAttemptAction, DeleteProjectAttemptAction, UpdateProjectAttemptAction
+    selectLoading, selectPagination, selectProjectSummaries, GetProjectsAttemptAction,
+    DeleteProjectAttemptAction, UpdateProjectAttemptAction, OpenSaveAsProjectDialogAction, SaveAsProjectAttemptAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ExportProjectAction } from '../../../project-editor/store/project-editor.actions';
 import { MatTableDataSource } from '@angular/material/table';
@@ -180,6 +181,14 @@ export class ProjectsListComponent implements OnInit {
             };
             this.store.dispatch(new ExportProjectAction(payload));
         }
+    }
+
+    saveAsProject(project: Partial<Project>) {
+        this.store.dispatch(new OpenSaveAsProjectDialogAction({
+            id: project.id,
+            name: project.name,
+            action: SaveAsProjectAttemptAction
+        }));
     }
 
     handleClick(actionClass: ProjectContextMenuActionClass, projectId: string) {
