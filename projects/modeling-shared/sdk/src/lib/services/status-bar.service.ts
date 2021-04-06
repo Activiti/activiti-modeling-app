@@ -15,13 +15,17 @@
  * limitations under the License.
  */
 
-export * from './uuid.service';
-export * from './title.service';
-export * from './download-resource.service';
-export * from './ama-services.module';
-export * from './auth.service';
-export * from './blob.service';
-export * from './log-factory.service';
-export * from './process.service';
-export * from './status-bar.service';
-export * from './variable-mapping-type.service';
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { ToolbarMessageAction } from '../store/app.actions';
+
+@Injectable({ providedIn: 'root' })
+export class StatusBarService {
+    constructor(private store: Store<any>) {}
+
+    setText(text: string) {
+        if (text) {
+            this.store.dispatch(new ToolbarMessageAction(text));
+        }
+    }
+}

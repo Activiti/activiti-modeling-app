@@ -32,10 +32,10 @@ import {
     AdvancedConnectorEditorKey,
     CONNECTOR,
     getFileUri,
-    ToolbarMessageAction,
     CodeEditorPosition,
     ModelEditorState,
-    CanComponentDeactivate
+    CanComponentDeactivate,
+    StatusBarService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 const memoize = require('lodash/memoize');
@@ -67,7 +67,8 @@ export class ConnectorEditorComponent implements CanComponentDeactivate {
         private store: Store<AmaState>,
         private codeValidatorService: CodeValidatorService,
         private changeDetectorRef: ChangeDetectorRef,
-        private componentRegister: ComponentRegisterService
+        private componentRegister: ComponentRegisterService,
+        private statusBarService: StatusBarService
     ) {
         this.vsTheme$ = this.getVsTheme();
         this.loadingState$ = this.store.select(selectConnectorLoadingState);
@@ -91,7 +92,7 @@ export class ConnectorEditorComponent implements CanComponentDeactivate {
     onTabChange(event: MatTabChangeEvent): void {
         this.disableSave = false;
         this.selectedTabIndex = event.index;
-        this.store.dispatch(new ToolbarMessageAction(this.tabNames[this.selectedTabIndex]));
+        this.statusBarService.setText(this.tabNames[this.selectedTabIndex]);
     }
 
     isAdvancedEditorEmbedded(): boolean {
@@ -125,7 +126,7 @@ export class ConnectorEditorComponent implements CanComponentDeactivate {
 
     codeEditorPositionChanged(position: CodeEditorPosition) {
         if (!this.isAdvancedEditorEmbedded() || this.selectedTabIndex > 0 ) {
-            this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
+            this.statusBarService.setText(`Ln ${position.lineNumber}, Col ${position.column}`);
         }
     }
 

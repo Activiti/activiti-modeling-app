@@ -18,7 +18,16 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, switchMap, takeUntil } from 'rxjs/operators';
-import { ProcessContent, SnackbarErrorAction, ProcessModelerServiceToken, ProcessModelerService, ToolbarMessageAction, SetAppDirtyStateAction, BpmnElement, BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    ProcessContent,
+    SnackbarErrorAction,
+    ProcessModelerServiceToken,
+    ProcessModelerService,
+    SetAppDirtyStateAction,
+    BpmnElement,
+    BpmnProperty,
+    StatusBarService
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import {
     SelectModelerElementAction,
@@ -50,14 +59,15 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
         private store: Store<ProcessEntitiesState>,
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
         private processLoaderService: ProcessDiagramLoaderService,
-        private canvas: ElementRef
+        private canvas: ElementRef,
+        private statusBarService: StatusBarService
     ) {}
 
     ngOnInit() {
         this.processModelerService.init({
             clickHandler: event => {
                 this.store.dispatch(new SelectModelerElementAction(createSelectedElement(event.element)));
-                this.store.dispatch(new ToolbarMessageAction(event.element.type));
+                this.statusBarService.setText(event.element.type);
             },
             changeHandler: event => {
                 this.store.dispatch(new SetAppDirtyStateAction(true));

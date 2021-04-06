@@ -41,10 +41,10 @@ import {
     PROCESS,
     getFileUri,
     CodeEditorPosition,
-    ToolbarMessageAction,
     EntityDialogForm,
     CanComponentDeactivate,
-    ModelEditorState
+    ModelEditorState,
+    StatusBarService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import {
     UpdateProcessExtensionsAction,
@@ -91,7 +91,8 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate {
         private store: Store<AmaState>,
         private codeValidatorService: CodeValidatorService,
         @Inject(ProcessModelerServiceToken) private processModeler: ProcessModelerService,
-        private processLoaderService: ProcessDiagramLoaderService
+        private processLoaderService: ProcessDiagramLoaderService,
+        private statusBarService: StatusBarService
     ) {
         this.vsTheme$ = this.getVsTheme();
         this.extensionsLanguageType = 'json';
@@ -176,13 +177,13 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate {
 
     selectedTabChange(event: MatTabChangeEvent) {
         this.selectedTabIndex = event.index;
-        this.store.dispatch(new ToolbarMessageAction(this.tabNames[this.selectedTabIndex]));
+        this.statusBarService.setText(this.tabNames[this.selectedTabIndex]);
         this.store.dispatch(new ChangeProcessModelContextAction(this.modelContext[this.selectedTabIndex]));
     }
 
     codeEditorPositionChanged(position: CodeEditorPosition) {
         if (this.selectedTabIndex > 0 ) {
-            this.store.dispatch(new ToolbarMessageAction(`Ln ${position.lineNumber}, Col ${position.column}`));
+            this.statusBarService.setText(`Ln ${position.lineNumber}, Col ${position.column}`);
         }
     }
 
