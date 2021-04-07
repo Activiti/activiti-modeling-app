@@ -17,39 +17,6 @@
 
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import {
-    GetConnectorSuccessAction,
-    UpdateConnectorContentAttemptAction,
-    UPDATE_CONNECTOR_CONTENT_ATTEMPT,
-    UpdateConnectorSuccessAction,
-    UPDATE_CONNECTOR_SUCCESS,
-    DELETE_CONNECTOR_ATTEMPT,
-    DeleteConnectorAttemptAction,
-    DeleteConnectorSuccessAction,
-    DELETE_CONNECTOR_SUCCESS,
-    GetConnectorsSuccessAction,
-    GET_CONNECTORS_ATTEMPT,
-    GetConnectorsAttemptAction,
-    ShowConnectorsAction,
-    SHOW_CONNECTORS,
-    UploadConnectorAttemptAction,
-    UPLOAD_CONNECTOR_ATTEMPT,
-    DownloadConnectorAction,
-    DOWNLOAD_CONNECTOR,
-    ValidateConnectorAttemptAction,
-    VALIDATE_CONNECTOR_ATTEMPT,
-    ValidateConnectorPayload,
-    ChangedConnectorSettingsAction,
-    CHANGE_CONNECTOR_SETTINGS,
-    CHANGE_CONNECTOR_CONTENT,
-    ChangeConnectorContent,
-    UPDATE_CONNECTOR_FAILED,
-    UpdateConnectorFailedAction,
-    OpenSaveAsConnectorAction,
-    OPEN_CONNECTOR_SAVE_AS_FORM,
-    SaveAsConnectorAttemptAction,
-    SAVE_AS_CONNECTOR_ATTEMPT
-} from './connector-editor.actions';
 import { map, switchMap, catchError, mergeMap, take, withLatestFrom, tap } from 'rxjs/operators';
 import {
     EntityDialogForm,
@@ -79,14 +46,44 @@ import {
     ErrorResponse,
     SaveAsDialogPayload,
     SaveAsDialogComponent,
-    DialogService
+    DialogService,
+    ShowConnectorsAction,
+    SHOW_CONNECTORS
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ConnectorEditorService } from '../services/connector-editor.service';
 import { of, zip, forkJoin, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { StorageService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { selectConnectorsLoaded, selectSelectedConnectorContent, selectSelectedConnector } from './connector-editor.selectors';
+import {
+    ValidateConnectorAttemptAction,
+    VALIDATE_CONNECTOR_ATTEMPT,
+    UpdateConnectorContentAttemptAction,
+    UPDATE_CONNECTOR_CONTENT_ATTEMPT,
+    DeleteConnectorAttemptAction,
+    DELETE_CONNECTOR_ATTEMPT,
+    DeleteConnectorSuccessAction,
+    DELETE_CONNECTOR_SUCCESS,
+    ChangeConnectorContent,
+    CHANGE_CONNECTOR_CONTENT,
+    UpdateConnectorSuccessAction,
+    UPDATE_CONNECTOR_SUCCESS,
+    UpdateConnectorFailedAction,
+    UPDATE_CONNECTOR_FAILED,
+    GetConnectorsAttemptAction,
+    GET_CONNECTORS_ATTEMPT,
+    UploadConnectorAttemptAction,
+    UPLOAD_CONNECTOR_ATTEMPT,
+    DownloadConnectorAction,
+    DOWNLOAD_CONNECTOR,
+    OpenSaveAsConnectorAction,
+    OPEN_CONNECTOR_SAVE_AS_FORM,
+    SaveAsConnectorAttemptAction,
+    SAVE_AS_CONNECTOR_ATTEMPT,
+    ValidateConnectorPayload,
+    GetConnectorsSuccessAction,
+    GetConnectorSuccessAction
+} from './connector-editor.actions';
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 
 @Injectable()
@@ -96,7 +93,6 @@ export class ConnectorEditorEffects {
         private actions$: Actions,
         private dialogService: DialogService,
         private connectorEditorService: ConnectorEditorService,
-        private storageService: StorageService,
         private logFactory: LogFactoryService,
         private router: Router
     ) {}
@@ -218,12 +214,6 @@ export class ConnectorEditorEffects {
         ofType<DownloadConnectorAction>(DOWNLOAD_CONNECTOR),
         switchMap(() => this.downloadConnector())
     );
-
-    @Effect({ dispatch: false })
-    changedConnectorSettingsEffect = this.actions$.pipe(
-        ofType<ChangedConnectorSettingsAction>(CHANGE_CONNECTOR_SETTINGS),
-        tap(action => this.storageService.setItem('showConnectorsWithTemplate', action.isChecked.toString())
-    ));
 
     @Effect({ dispatch: false })
     openSaveAsConnectorEffect = this.actions$.pipe(

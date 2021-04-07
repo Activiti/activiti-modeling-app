@@ -17,7 +17,6 @@
 
 import { Action } from '@ngrx/store';
 import { INITIAL_SETTINGS_STATE, AmaSettingsState } from './../states/settings.state';
-import { CHANGE_CONNECTOR_SETTINGS, ChangedConnectorSettingsAction } from './../../connector-editor/store/connector-editor.actions';
 import { AppActionTypes, AsyncInitAction } from '../actions/app.actions';
 
 export function settingsReducer(
@@ -25,18 +24,11 @@ export function settingsReducer(
     action: Action
 ): AmaSettingsState {
     switch (action.type) {
-        case CHANGE_CONNECTOR_SETTINGS:
-            return changedConnectorSettings(state, <ChangedConnectorSettingsAction> action);
         case AppActionTypes.AsyncInit:
             return loadFromLocalStorage(state, <AsyncInitAction> action);
         default:
             return { ...state };
     }
-}
-
-function changedConnectorSettings(state: AmaSettingsState, action: ChangedConnectorSettingsAction): AmaSettingsState {
-    const newState = {...state, connectors: {showWithTemplate: action.isChecked}};
-    return newState;
 }
 
 function loadFromLocalStorage(state: AmaSettingsState, action: AsyncInitAction) {

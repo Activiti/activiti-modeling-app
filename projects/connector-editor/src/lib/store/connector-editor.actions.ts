@@ -15,17 +15,18 @@
  * limitations under the License.
  */
 
-import { Action } from '@ngrx/store';
-import { Update } from '@ngrx/entity';
 import {
-    EntityDialogForm,
-    GetConnectorAttemptAction,
-    UploadFileAttemptPayload,
-    Connector,
     ConnectorContent,
+    EntityDialogForm,
+    Connector,
+    UploadFileAttemptPayload,
+    SaveAsDialogPayload,
+    GetConnectorAttemptAction,
     CreateConnectorAttemptAction,
-    SaveAsDialogPayload
+    ShowConnectorsAction
 } from '@alfresco-dbp/modeling-shared/sdk';
+import { Update } from '@ngrx/entity';
+import { Action } from '@ngrx/store';
 
 export interface ValidateConnectorPayload {
     title: string;
@@ -34,18 +35,6 @@ export interface ValidateConnectorPayload {
     action: Action;
     errorAction?: Action;
     projectId?: string;
-}
-
-export const VALIDATE_CONNECTOR_ATTEMPT = '[Connector] Validate attempt';
-export class ValidateConnectorAttemptAction implements Action {
-    readonly type = VALIDATE_CONNECTOR_ATTEMPT;
-    constructor(public payload: ValidateConnectorPayload) {}
-}
-
-export const CHANGE_CONNECTOR_CONTENT = '[Connector] Content change';
-export class ChangeConnectorContent implements Action {
-    readonly type = CHANGE_CONNECTOR_CONTENT;
-    constructor() {}
 }
 
 export interface UpdateConnectorPayload {
@@ -59,10 +48,16 @@ export interface ConnectorDialogPayload {
     connector?: Connector;
 }
 
-export const SHOW_CONNECTORS = '[Connectors] Show the list';
-export class ShowConnectorsAction implements Action {
-    readonly type = SHOW_CONNECTORS;
-    constructor(public projectId: string) {}
+export const VALIDATE_CONNECTOR_ATTEMPT = '[Connector] Validate attempt';
+export class ValidateConnectorAttemptAction implements Action {
+    readonly type = VALIDATE_CONNECTOR_ATTEMPT;
+    constructor(public payload: ValidateConnectorPayload) {}
+}
+
+export const CHANGE_CONNECTOR_CONTENT = '[Connector] Content change';
+export class ChangeConnectorContent implements Action {
+    readonly type = CHANGE_CONNECTOR_CONTENT;
+    constructor() {}
 }
 
 export const GET_CONNECTORS_ATTEMPT = '[Connectors] Get attempt';
@@ -123,12 +118,6 @@ export const DOWNLOAD_CONNECTOR = '[Connector] Download connector';
 export class DownloadConnectorAction implements Action {
     readonly type = DOWNLOAD_CONNECTOR;
     constructor() {}
-}
-
-export const CHANGE_CONNECTOR_SETTINGS = '[Connector] Changed connector settings';
-export class ChangedConnectorSettingsAction implements Action {
-    readonly type = CHANGE_CONNECTOR_SETTINGS;
-    constructor(public isChecked: boolean) {}
 }
 
 export const OPEN_CONNECTOR_SAVE_AS_FORM = '[Connector] Open save as connector';

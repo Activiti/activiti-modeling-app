@@ -32,14 +32,12 @@ import {
     DeleteConnectorSuccessAction,
     DELETE_CONNECTOR_SUCCESS,
     ChangeConnectorContent,
-    ShowConnectorsAction,
     GET_CONNECTORS_ATTEMPT,
     GetConnectorsAttemptAction,
     GetConnectorsSuccessAction,
     UploadConnectorAttemptAction,
     ValidateConnectorPayload,
     ValidateConnectorAttemptAction,
-    ChangedConnectorSettingsAction,
     UpdateConnectorFailedAction,
     SaveAsConnectorAttemptAction,
     OpenSaveAsConnectorAction
@@ -67,13 +65,14 @@ import {
     CreateConnectorAttemptAction,
     SetApplicationLoadingStateAction,
     ModelScope,
-    SaveAsDialogPayload
+    SaveAsDialogPayload,
+    ShowConnectorsAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Update } from '@ngrx/entity';
 import { selectConnectorsLoaded, selectSelectedConnector } from './connector-editor.selectors';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
-import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 import { TranslateModule } from '@ngx-translate/core';
+import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 
 describe('ConnectorEditorEffects', () => {
     let actions$: Observable<any>;
@@ -82,7 +81,6 @@ describe('ConnectorEditorEffects', () => {
     let metadata: EffectsMetadata<ConnectorEditorEffects>;
     let connectorEditorService: ConnectorEditorService;
     let store: Store<AmaState>;
-    let storageService: StorageService;
     let logFactory: LogFactoryService;
     let dialogService: DialogService;
 
@@ -178,7 +176,6 @@ describe('ConnectorEditorEffects', () => {
         metadata = getEffectsMetadata(effects);
         store = TestBed.inject(Store);
         actions$ = null;
-        storageService = TestBed.inject(StorageService);
         dialogService = TestBed.inject(DialogService);
     });
 
@@ -523,21 +520,6 @@ describe('ConnectorEditorEffects', () => {
             });
 
             expect(effects.validateConnectorEffect).toBeObservable(expected);
-        });
-    });
-
-    describe('changedConnectorSettingsEffect', () => {
-        it('changedConnectorSettingsEffect should not dispatch an action', () => {
-            expect(metadata.changedConnectorSettingsEffect.dispatch).toBeFalsy();
-        });
-
-        it('should call the setItem method of StorageService', () => {
-            spyOn(storageService, 'setItem');
-            actions$ = hot('a', { a: new ChangedConnectorSettingsAction(true) });
-            effects.changedConnectorSettingsEffect.subscribe(() => {
-            });
-            getTestScheduler().flush();
-            expect(storageService.setItem).toHaveBeenCalledWith('showConnectorsWithTemplate', 'true');
         });
     });
 

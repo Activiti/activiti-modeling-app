@@ -1,3 +1,4 @@
+@import "../../../projects/connector-editor/src/lib/connector-editor.module";
 @import "./app/app-layout/app-layout.component";
 @import "./app/app-layout/app-layout-global.component";
 @import "./app/header/header-menu.component";
@@ -5,7 +6,6 @@
 @import "./dashboard/dashboard.module";
 @import "./process-editor/process-editor.module";
 @import "./project-editor/project-editor.module";
-@import "./connector-editor/connector-editor.module";
 @import "./app/app-layout/logging/components/log-history/log-history.component";
 @import "./app/app-layout/editor-footer/editor-footer.component";
 

@@ -16,17 +16,6 @@
  */
 
 import {
-    GET_CONNECTORS_SUCCESS,
-    UPDATE_CONNECTOR_SUCCESS,
-    GET_CONNECTOR_SUCCESS,
-    GetConnectorSuccessAction,
-    DELETE_CONNECTOR_SUCCESS,
-    UpdateConnectorSuccessAction,
-    GET_CONNECTORS_ATTEMPT,
-    GetConnectorsSuccessAction,
-    DeleteConnectorSuccessAction
-} from './connector-editor.actions';
-import {
     ConnectorContent,
     initialConnectorEntitiesState,
     ConnectorEntitiesState,
@@ -37,6 +26,17 @@ import {
     SAVE_AS_PROJECT_ATTEMPT
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Action } from '@ngrx/store';
+import {
+    GET_CONNECTORS_SUCCESS,
+    DELETE_CONNECTOR_SUCCESS,
+    UPDATE_CONNECTOR_SUCCESS,
+    UpdateConnectorSuccessAction,
+    GET_CONNECTORS_ATTEMPT,
+    GetConnectorsSuccessAction,
+    DeleteConnectorSuccessAction,
+    GetConnectorSuccessAction,
+    GET_CONNECTOR_SUCCESS
+} from './connector-editor.actions';
 
 export function connectorEntitiesReducer(
     state: ConnectorEntitiesState = initialConnectorEntitiesState,

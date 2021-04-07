@@ -42,3 +42,9 @@ export class CreateConnectorAttemptAction implements Action {
     readonly type = CREATE_CONNECTOR_ATTEMPT;
     constructor(public payload: Partial<EntityDialogForm>, public navigateTo = false, public callback?: Function) {}
 }
+
+export const SHOW_CONNECTORS = '[Connectors] Show the list';
+export class ShowConnectorsAction implements Action {
+    readonly type = SHOW_CONNECTORS;
+    constructor(public projectId: string) {}
+}

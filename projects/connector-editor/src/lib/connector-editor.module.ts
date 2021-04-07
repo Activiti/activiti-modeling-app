@@ -35,7 +35,7 @@ import {
     provideLoadableModelSchema,
     CONNECTOR,
     MODEL_SCHEMA_TYPE,
-    getExtensionErrorProvider
+    getExtensionErrorProvider,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { EffectsModule } from '@ngrx/effects';
 import { ConnectorEditorEffects } from './store/connector-editor.effects';
@@ -47,8 +47,8 @@ import { connectorEntitiesReducer } from './store/connector-entities.reducer';
 import { getConnectorsFilterProvider } from './extension/connectors-filter.extension';
 import { getConnectorCreatorProvider } from './extension/connector-creator.extension';
 import { getConnectorUploaderProvider } from './extension/connector-uploader.extension';
-import { getConnectorLogInitiator } from './services/connector-editor.constants';
 import { ConnectorErrorProviderService } from './services/connector-error-provider.service';
+import { getConnectorLogInitiator } from './services/connector-editor.constants';
 
 @NgModule({
     imports: [

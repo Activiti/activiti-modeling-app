@@ -22,6 +22,7 @@
         "baseUrl": "./",
         "paths": {
             "@alfresco-dbp/modeling-shared/sdk": ["projects/modeling-shared/sdk/src/public-api.ts"],
+            "@alfresco-dbp/modeling-ce/connector-editor": ["projects/connector-editor/src/public-api.ts"],
             "package.json": ["./package.json"]
         }
     },

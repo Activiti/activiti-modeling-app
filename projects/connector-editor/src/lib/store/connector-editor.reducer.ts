@@ -17,8 +17,17 @@
 
 import { Action } from '@ngrx/store';
 import { ConnectorEditorState, INITIAL_CONNECTOR_EDITOR_STATE } from './connector-editor.state';
-import { GET_CONNECTOR_SUCCESS, UPDATE_CONNECTOR_CONTENT_ATTEMPT, UPDATE_CONNECTOR_FAILED, UPDATE_CONNECTOR_SUCCESS } from './connector-editor.actions';
-import { GET_CONNECTOR_ATTEMPT, LOAD_CONNECTOR_ATTEMPT, ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    GET_CONNECTOR_ATTEMPT,
+    LOAD_CONNECTOR_ATTEMPT,
+    ModelEditorState,
+} from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    GET_CONNECTOR_SUCCESS,
+    UPDATE_CONNECTOR_SUCCESS,
+    UPDATE_CONNECTOR_CONTENT_ATTEMPT,
+    UPDATE_CONNECTOR_FAILED
+} from './connector-editor.actions';
 
 export function connectorEditorReducer(
     state: ConnectorEditorState = { ...INITIAL_CONNECTOR_EDITOR_STATE },

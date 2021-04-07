@@ -18,7 +18,6 @@
 import { selectLogsByInitiator } from './app.selectors';
 import { allLogFilter, MESSAGE } from '@alfresco-dbp/modeling-shared/sdk';
 import { INITIAL_STATE } from '../states/app.state';
-import { getConnectorLogInitiator } from '../../connector-editor/services/connector-editor.constants';
 
 describe('App selectors', () => {
 
@@ -60,7 +59,10 @@ describe('App selectors', () => {
 
         it('should display logs just for Connectors', () => {
             state.app.logs = logs;
-            const actionsSelector = selectLogsByInitiator(getConnectorLogInitiator());
+            const actionsSelector = selectLogsByInitiator({
+                key: 'Connector Editor',
+                displayName: 'CONNECTOR_EDITOR.NAME'
+            });
             const selectedLogs = actionsSelector(state);
             expect(selectedLogs).toEqual([logs[0]]);
         });

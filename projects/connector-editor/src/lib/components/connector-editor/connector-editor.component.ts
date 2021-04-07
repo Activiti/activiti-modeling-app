@@ -21,7 +21,6 @@ import { Store } from '@ngrx/store';
 import { selectSelectedConnectorContent, selectConnectorLoadingState, selectSelectedConnectorId, selectConnectorEditorSaving } from '../../store/connector-editor.selectors';
 import { map, filter, take, tap, switchMap, catchError } from 'rxjs/operators';
 import { Observable, of, zip } from 'rxjs';
-import { ChangeConnectorContent, UpdateConnectorContentAttemptAction, ValidateConnectorAttemptAction } from '../../store/connector-editor.actions';
 import {
     AmaState,
     selectSelectedTheme,
@@ -38,6 +37,11 @@ import {
     StatusBarService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import {
+    ChangeConnectorContent,
+    UpdateConnectorContentAttemptAction,
+    ValidateConnectorAttemptAction
+} from '../../store/connector-editor.actions';
 const memoize = require('lodash/memoize');
 
 @Component({

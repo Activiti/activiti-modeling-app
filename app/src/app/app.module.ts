@@ -38,7 +38,7 @@ import { ProcessEditorModule } from './process-editor/process-editor.module';
 import { ProjectEditorModule } from './project-editor/project-editor.module';
 
 import { appRoutes } from './app.routes';
-import { ConnectorEditorModule } from './connector-editor/connector-editor.module';
+import { ConnectorEditorModule } from '@alfresco-dbp/modeling-ce/connector-editor';
 import { AmaLocalStorageMergeGuard } from './common/services/ama-localstorage-merge-guard.service';
 import { ErrorContentComponent } from './app/error/error-content.component';
 import { MatInputModule } from '@angular/material/input';

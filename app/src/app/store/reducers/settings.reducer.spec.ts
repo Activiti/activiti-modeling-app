@@ -17,18 +17,10 @@
 
 import { AmaSettingsState, INITIAL_SETTINGS_STATE } from '../states/settings.state';
 import { settingsReducer } from './settings.reducer';
-import { CHANGE_CONNECTOR_SETTINGS, ChangedConnectorSettingsAction } from './../../connector-editor/store/connector-editor.actions';
 import { AsyncInitAction, AppActionTypes } from '../actions/app.actions';
 
 describe('settingsReducer', () => {
     const initialState: AmaSettingsState = INITIAL_SETTINGS_STATE;
-
-    it ('should handle CHANGE_CONNECTOR_SETTINGS', () => {
-        const action =  <ChangedConnectorSettingsAction>{ type: CHANGE_CONNECTOR_SETTINGS, isChecked: true };
-        const newState = settingsReducer(initialState, action);
-
-        expect(newState.connectors.showWithTemplate).toBe(true);
-    });
 
     it ('should handle AsyncInitAction', () => {
         const action =  <AsyncInitAction>{ type: AppActionTypes.AsyncInit, config: <any>{

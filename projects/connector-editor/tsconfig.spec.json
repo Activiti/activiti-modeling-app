@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig.lib.json",
+    "compilerOptions": {
+        "outDir": "../../../out-tsc/connector-editor-spec"
+    },
+    "include": [ "**/*.spec.ts", "**/*.d.ts" ],
+    "angularCompilerOptions": {
+        "skipTemplateCodegen": true,
+        "strictMetadataEmit": true,
+        "fullTemplateTypeCheck": true,
+        "strictInjectionParameters": true,
+        "enableResourceInlining": true
+    }
+}

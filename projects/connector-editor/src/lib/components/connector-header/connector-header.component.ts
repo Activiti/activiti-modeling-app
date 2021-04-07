@@ -17,7 +17,14 @@
 
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BreadcrumbItem, AmaState, OpenConfirmDialogAction, SnackbarInfoAction, SnackbarErrorAction, BreadCrumbHelperService } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    BreadcrumbItem,
+    AmaState,
+    OpenConfirmDialogAction,
+    SnackbarInfoAction,
+    SnackbarErrorAction,
+    BreadCrumbHelperService
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { selectConnectorCrumb } from '../../store/connector-editor.selectors';
 import {

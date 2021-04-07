@@ -16,6 +16,13 @@
                 "category:modeling-ce"
             ]
         },
+        "modeling-ce-connector-editor": {
+          "tags": [
+              "modeling-ce-connector-editor",
+              "type:lib",
+              "category:modeling-ce"
+            ]
+       },
         "modeling-sdk": {
             "tags": [
                 "scope:modeling-sdk",

@@ -19,9 +19,8 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { ProjectEditorState, GetProjectAttemptAction } from '@alfresco-dbp/modeling-shared/sdk';
+import { ProjectEditorState, GetProjectAttemptAction, ShowConnectorsAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { ShowProcessesAction } from '../../../process-editor/store/process-editor.actions';
-import { ShowConnectorsAction } from '../../../connector-editor/store/connector-editor.actions';
 
 @Injectable()
 export class ProjectLoaderGuard implements CanActivate {
