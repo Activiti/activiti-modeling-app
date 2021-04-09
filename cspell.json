@@ -55,6 +55,7 @@
         "docusign",
         "docgen",
         "transpiled",
-        "keycodes"
+        "keycodes",
+        "stylelint"
     ]
 }

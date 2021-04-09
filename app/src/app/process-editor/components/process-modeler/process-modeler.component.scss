@@ -41,7 +41,7 @@
         box-shadow: 0 1px 4px mat-color($foreground, slider-off);
         border-radius: 2px;
         list-style: none;
-        padding: 5px 5px 0 5px;
+        padding: 5px 5px 0;
         margin: 0;
 
         &.bpmn-fit-to-view {
@@ -59,7 +59,7 @@
         hr {
             border: none;
             border-top: solid 1px mat-color($foreground, slider-off);
-            margin: 0 0 5px 0;
+            margin: 0 0 5px;
         }
 
         button {

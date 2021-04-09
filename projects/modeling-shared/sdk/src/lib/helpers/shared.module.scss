@@ -1,7 +1,7 @@
-@import "./header-breadcrumbs/header-breadcrumbs.component";
-@import "../components/input-mapping-table/input-mapping-table.component";
-@import "../components/output-mapping-table/output-mapping-table.component";
-@import "../components/mapping-dialog/mapping-dialog.component";
+@import './header-breadcrumbs/header-breadcrumbs.component';
+@import '../components/input-mapping-table/input-mapping-table.component';
+@import '../components/output-mapping-table/output-mapping-table.component';
+@import '../components/mapping-dialog/mapping-dialog.component';
 
 @mixin modelingsdk-shared-module($theme) {
     @include modelingsdk-header-breadcrumbs($theme);

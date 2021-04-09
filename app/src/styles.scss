@@ -1,8 +1,8 @@
-@import "ama-theming.scss";
-@import "@alfresco/adf-core/theming";
-@import "@alfresco/adf-process-services-cloud/theming";
-@import "~@angular/material/theming";
-@import "./app/app.component";
+@import 'ama-theming.scss';
+@import '@alfresco/adf-core/theming';
+@import '@alfresco/adf-process-services-cloud/theming';
+@import '~@angular/material/theming';
+@import './app/app.component';
 
 @include mat-core($alfresco-typography);
 

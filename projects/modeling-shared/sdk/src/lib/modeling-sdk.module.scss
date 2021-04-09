@@ -1,8 +1,8 @@
-@import "ama-theming";
-@import "./code-editor/code-editor.module";
-@import "./helpers/shared.module";
-@import "./variables/variables.module";
-@import "./workbench-layout/workbench-layout.module";
+@import 'ama-theming';
+@import './code-editor/code-editor.module';
+@import './helpers/shared.module';
+@import './variables/variables.module';
+@import './workbench-layout/workbench-layout.module';
 
 body {
     @include modelingsdk-workbench-layout($theme);

@@ -1,9 +1,9 @@
-@import "./components/project-tree/project-tree.component";
-@import "./components/project-tree/project-tree-icons/project-tree-icons.component";
-@import "./components/project-tree/project-tree-module-filter/project-tree-filter.component";
-@import "./components/upload-file-button/upload-file-button.component";
-@import "./components/project-navigation/project-navigation.component";
-@import "./components/project-content/project-content.component";
+@import './components/project-tree/project-tree.component';
+@import './components/project-tree/project-tree-icons/project-tree-icons.component';
+@import './components/project-tree/project-tree-module-filter/project-tree-filter.component';
+@import './components/upload-file-button/upload-file-button.component';
+@import './components/project-navigation/project-navigation.component';
+@import './components/project-content/project-content.component';
 
 @mixin ama-project-editor-module($theme) {
     @include ama-project-content($theme);

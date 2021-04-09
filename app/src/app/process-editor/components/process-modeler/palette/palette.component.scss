@@ -5,7 +5,7 @@
     ama-process-palette .mat-card {
         width: 90px;
         border: 1px solid mat-color($foreground, text, 0.07);
-        border-radius: 0px;
+        border-radius: 0;
         box-sizing: content-box;
         padding: 0;
 
@@ -21,7 +21,7 @@
                 height: 10px;
                 margin: 0;
                 position: absolute;
-                right: 0px;
+                right: 0;
                 top: 1px;
             }
         }
@@ -147,7 +147,6 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .bpmn-alfresco-icon-content-task {
