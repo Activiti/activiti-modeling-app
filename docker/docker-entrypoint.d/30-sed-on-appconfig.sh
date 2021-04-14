@@ -75,3 +75,13 @@ else
   sed -e "s/\"ecmHost\": \".*\"/\"ecmHost\": \"\"/g" \
     -i "${NGINX_ENVSUBST_OUTPUT_DIR}/app.config.json"
 fi
+
+if [ -n "${EXAMPLE_PROJECTS_HOST}" ]; then
+  replace="\/"
+  encoded=${EXAMPLE_PROJECTS_HOST//\//$replace}
+  sed -e "s/\"exampleProjectsHost\": \".*\"/\"exampleProjectsHost\": \"$encoded\"/g" \
+    -i "${NGINX_ENVSUBST_OUTPUT_DIR}/app.config.json"
+else
+  sed -e "s/\"exampleProjectsHost\": \".*\"/\"exampleProjectsHost\": \"\"/g" \
+    -i "${NGINX_ENVSUBST_OUTPUT_DIR}/app.config.json"
+fi
