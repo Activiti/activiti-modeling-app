@@ -27,6 +27,12 @@ declare namespace Bpmn {
         id: string;
         type: string;
         businessObject: BusinessObject;
+        source?: DiagramElement;
+        target?: DiagramElement;
+        incoming?: DiagramElement[];
+        outgoing?: DiagramElement[];
+        parent?: DiagramElement;
+        labelTarget?: DiagramElement;
     }
 
     export type NamedDiagramService =

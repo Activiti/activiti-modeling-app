@@ -16,15 +16,16 @@
  */
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ServiceParameterMappings, EntityProperty, TaskAssignmentContent } from '../api/types';
+import { ServiceParameterMappings, EntityProperty, TaskAssignmentContent, Process, ModelScope } from '../api/types';
 import { getEntitiesState } from '../store/entity.selectors';
-import { selectOpenedModel } from '../store/app.selectors';
+import { selectOpenedModel, selectSelectedProjectId } from '../store/app.selectors';
 import { ProcessExtensionsModel } from './process-extensions.model';
 
 export const PROCESS_EDITOR_STATE_NAME = 'process-editor';
 export const getProcessEditorFeatureState = createFeatureSelector(PROCESS_EDITOR_STATE_NAME);
 
 export const selectProcessEntityContainer = createSelector(getEntitiesState, (state: any) => state.processes);
+export const selectProcessEntities = createSelector(selectProcessEntityContainer, state => state.entities);
 
 export const selectSelectedProcess = createSelector(
     selectOpenedModel,
@@ -78,8 +79,17 @@ export const selectProcessTaskAssignmentFor = (processId: string, serviceId: str
             if (!process || !process.extensions) {
                 return {};
             }
-            const assignments = <TaskAssignmentContent> new ProcessExtensionsModel(process.extensions).getAssignments(processId);
+            const assignments = <TaskAssignmentContent>new ProcessExtensionsModel(process.extensions).getAssignments(processId);
             return assignments && assignments[serviceId] ? assignments[serviceId] : {};
         }
     );
 };
+
+export const selectProcessesArray = createSelector(
+    selectProcessEntities,
+    selectSelectedProjectId,
+    (processes, selectedProjectId) => <Process[]>Object.values(processes).filter((process: Process) =>
+        selectedProjectId ?
+            (process.projectIds && process.projectIds.indexOf(selectedProjectId) >= 0) :
+            process.scope === ModelScope.GLOBAL)
+);
