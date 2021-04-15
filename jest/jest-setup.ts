@@ -17,7 +17,7 @@
 
 /** Source: https://www.xfive.co/blog/testing-angular-faster-jest/  */
 import './jest-global-mocks';
-import 'jest-preset-angular';
+import 'jest-preset-angular/setup-jest';
 
 /** Zone shorter output and more meaningful error stack traces */
 Error.stackTraceLimit = 2;

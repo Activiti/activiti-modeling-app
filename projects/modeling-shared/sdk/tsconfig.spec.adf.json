@@ -1,0 +1,15 @@
+{
+    "extends": "../../../../../tsconfig.base.adf.json",
+    "compilerOptions": {
+        "outDir": "../../../out-tsc/modelig-sdk-spec"
+    },
+    "angularCompilerOptions": {
+        "skipTemplateCodegen": true,
+        "strictMetadataEmit": true,
+        "fullTemplateTypeCheck": true,
+        "strictInjectionParameters": true,
+        "enableResourceInlining": true
+    },
+    "exclude": ["src/test.ts"]
+}
+

@@ -24,8 +24,8 @@ module.exports = {
         '^.+\\.(ts|js|html)$': 'ts-jest'
     },
     snapshotSerializers: [
-        'jest-preset-angular/build/AngularSnapshotSerializer.js',
-        'jest-preset-angular/build/HTMLCommentSerializer.js',
+        'jest-preset-angular/build/serializers/ng-snapshot.js',
+        'jest-preset-angular/build/serializers/html-comment.js',
     ],
     globals: {
         "ts-jest": {
