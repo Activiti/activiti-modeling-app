@@ -17,7 +17,7 @@
 
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { CardViewDueDateItemComponent } from './due-date-item.component';
-import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
+import { CardViewUpdateService } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
@@ -69,8 +69,6 @@ describe('CardViewDueDateItemComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             providers: [
-                CardItemTypeService,
-                CardViewUpdateService,
                 FormBuilder,
                 {
                     provide: Store,

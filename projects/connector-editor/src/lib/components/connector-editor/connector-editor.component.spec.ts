@@ -29,8 +29,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { selectConnectorEditorSaving, selectSelectedConnector } from '../../store/connector-editor.selectors';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
-import { AmaTitleService, CONNECTOR, CodeValidatorService, SharedModule, AmaState, ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
-import { ExtensionsModule, ComponentRegisterService } from '@alfresco/adf-extensions';
+import { CONNECTOR, SharedModule, AmaState, ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
+import { ExtensionsModule } from '@alfresco/adf-extensions';
 import { UpdateConnectorContentAttemptAction, ValidateConnectorAttemptAction } from '../../store/connector-editor.actions';
 
 describe('ConnectorEditorComponent', () => {
@@ -70,9 +70,6 @@ describe('ConnectorEditorComponent', () => {
                 ConnectorHeaderComponent
             ],
             providers: [
-                ComponentRegisterService,
-                AmaTitleService,
-                CodeValidatorService,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: Store,

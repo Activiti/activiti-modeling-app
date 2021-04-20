@@ -17,10 +17,8 @@
 
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { UuidService } from './uuid.service';
-import { AmaTitleService } from './title.service';
 import { DownloadResourceService } from './download-resource.service';
 import { provideTranslations } from '../i18n/provide-translations';
-import { BlobService } from './blob.service';
 import { ProcessService } from './process.service';
 
 @NgModule()
@@ -30,9 +28,7 @@ export class AmaServicesModule {
             ngModule: AmaServicesModule,
             providers: [
                 provideTranslations('modeling-sdk'),
-                BlobService,
                 UuidService,
-                AmaTitleService,
                 DownloadResourceService,
                 ProcessService
             ]

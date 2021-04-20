@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AmaTitleService {
     title: string;
 

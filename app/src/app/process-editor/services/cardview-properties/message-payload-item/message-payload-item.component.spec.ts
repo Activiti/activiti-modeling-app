@@ -16,7 +16,7 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CardItemTypeService, CardViewUpdateService, LocalizedDatePipe, setupTestBed } from '@alfresco/adf-core';
+import { LocalizedDatePipe, setupTestBed } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CardViewMessagePayloadItemComponent } from './message-payload-item.component';
@@ -73,8 +73,6 @@ describe('CardViewMessageItemComponent', () => {
 
     setupTestBed({
         providers: [
-            CardItemTypeService,
-            CardViewUpdateService,
             {
                 provide: Store,
                 useValue: {

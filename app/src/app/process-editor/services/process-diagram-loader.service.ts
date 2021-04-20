@@ -34,7 +34,7 @@ import { createSelectedElement } from '../store/process-editor.state';
 import { SelectModelerElementAction } from '../store/process-editor.actions';
 import { processXmlUpdater } from './process-xml-updater';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ProcessDiagramLoaderService {
     constructor(
         private store: Store<ProcessEntitiesState>,

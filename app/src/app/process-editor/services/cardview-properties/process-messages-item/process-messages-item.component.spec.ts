@@ -19,7 +19,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Store } from '@ngrx/store';
 import { ProcessEditorState } from '../../../store/process-editor.state';
-import { CardItemTypeService } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CardViewProcessMessagesItemComponent } from './process-messages-item.component';
@@ -34,7 +33,7 @@ describe('ProcessVariableItemComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [CardItemTypeService, {provide: Store, useValue: { dispatch: jest.fn()}}],
+            providers: [{provide: Store, useValue: { dispatch: jest.fn()}}],
             declarations: [CardViewProcessMessagesItemComponent],
             imports: [TranslateModule.forRoot()],
             schemas: [ NO_ERRORS_SCHEMA]

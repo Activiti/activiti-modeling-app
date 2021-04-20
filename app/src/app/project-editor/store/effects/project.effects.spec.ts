@@ -49,7 +49,6 @@ describe('Project Effects', () => {
             providers: [
                 DialogService,
                 ProjectEffects,
-                DownloadResourceService,
                 { provide: MatDialogRef, useValue: mockDialog },
                 provideMockActions(() => actions$),
                 {

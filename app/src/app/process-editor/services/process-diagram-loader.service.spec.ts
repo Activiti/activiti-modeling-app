@@ -48,7 +48,6 @@ describe('ProcessDiagramLoaderService', () => {
             imports: [],
             providers: [
                 { provide: TranslationService, useClass: TranslationMock },
-                ProcessDiagramLoaderService,
                 { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
                 { provide: BpmnFactoryToken, useClass: BpmnFactoryMock },
                 {

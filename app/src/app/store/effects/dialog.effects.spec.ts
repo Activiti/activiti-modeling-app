@@ -18,9 +18,9 @@
 import { TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
 import { hot, getTestScheduler } from 'jasmine-marbles';
-import { StorageService, CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
+import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { AmaTitleService, OpenEntityDialogAction, EntityDialogPayload, CreateProjectAttemptAction, DialogService, EntityDialogComponent } from '@alfresco-dbp/modeling-shared/sdk';
+import { OpenEntityDialogAction, EntityDialogPayload, CreateProjectAttemptAction, DialogService, EntityDialogComponent } from '@alfresco-dbp/modeling-shared/sdk';
 import { TranslateModule } from '@ngx-translate/core';
 import { DialogEffects } from './dialog.effects';
 import { Store } from '@ngrx/store';
@@ -39,9 +39,7 @@ describe('DialogEffects', () => {
             ],
             providers: [
                 DialogEffects,
-                StorageService,
                 DialogService,
-                AmaTitleService,
                 provideMockActions(() => actions$),
                 {
                     provide: TranslationService,

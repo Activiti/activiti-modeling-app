@@ -35,7 +35,6 @@ import { CardViewPropertiesFactory } from './services/cardview-properties/cardvi
 import { Title } from '@angular/platform-browser';
 import {
     AmaStoreModule,
-    AmaTitleService,
     BpmnFactoryToken,
     BpmnProperty,
     CodeEditorModule,
@@ -182,7 +181,6 @@ import { CardViewProcessErrorsItemComponent } from './services/cardview-properti
         ProcessModelerPaletteService,
         ClipboardService,
         CardViewPropertiesFactory,
-        AmaTitleService,
         MessagesService,
         TaskAssignmentService,
         Title,

@@ -19,7 +19,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { createBlobFormDataFromStringContent } from '../helpers/utils/createJsonBlob';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class BlobService {
 
     convert2Json(blob: Blob): Observable<any> {

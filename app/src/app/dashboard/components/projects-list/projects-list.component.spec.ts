@@ -63,7 +63,6 @@ describe ('Projects List Component', () => {
             ],
             providers: [
                 AmaApi,
-                DashboardService,
                 {
                     provide: Store,
                     useValue: {

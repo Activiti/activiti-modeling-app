@@ -53,7 +53,6 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { AmaRoleGuard } from './ama-role-guard.service';
 import { AppExtensionsModule } from './extensions.module';
-import { ModelStorageService } from './common/services/model-storage.service';
 import { GlobalErrorHandler } from './common/helpers/services/error-handler.service';
 import { LogHistoryComponent } from './app/app-layout/logging/components/log-history/log-history.component';
 import { LogHistoryEntryComponent } from './app/app-layout/logging/components/log-history/log-history-entry/log-history-entry.component';
@@ -124,7 +123,6 @@ import { CustomIconsModule } from './common/custom-icons.module';
         AmaRoleGuard,
         AmaModelSchemaLoaderGuard,
         AuthTokenProcessorService,
-        ModelStorageService,
         { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: AppFooterService },
         provideLogFilter(getBackendLogInitiator()),
         provideLogFilter(allLogFilter),

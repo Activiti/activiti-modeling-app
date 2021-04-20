@@ -35,7 +35,6 @@ describe('CardViewTaskAssignmentItemComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             providers: [
-                CardViewUpdateService,
                 TaskAssignmentService,
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: ProcessModelerServiceToken, useValue: { getElement: () => ({}) } },

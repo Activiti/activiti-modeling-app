@@ -59,7 +59,6 @@ describe('UnsavedPageGuard', () => {
       providers: [
         UnsavedPageGuard,
         MockComponent,
-        AmaTitleService,
         DialogService,
         {
           provide: TranslationService,

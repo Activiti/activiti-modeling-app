@@ -20,7 +20,7 @@ import { Observable } from 'rxjs';
 import { PaginatedEntries } from '@alfresco/js-api';
 import { Project, AmaApi, EntityDialogForm, ServerSideSorting, FetchQueries, SearchQuery } from '@alfresco-dbp/modeling-shared/sdk';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class DashboardService {
     constructor(private amaApi: AmaApi) {}
 

@@ -20,7 +20,7 @@ import { ProcessHeaderComponent } from './process-header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule, AmaState, OpenConfirmDialogAction, ProcessModelerServiceToken, AmaTitleService } from '@alfresco-dbp/modeling-shared/sdk';
+import { SharedModule, AmaState, OpenConfirmDialogAction, ProcessModelerServiceToken } from '@alfresco-dbp/modeling-shared/sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { By } from '@angular/platform-browser';
 import { mockProcessModel } from '../../store/process.mock';
@@ -49,7 +49,6 @@ describe('ProcessHeaderComponent', () => {
                 HttpClientTestingModule
             ],
             providers: [
-                AmaTitleService,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: Store,

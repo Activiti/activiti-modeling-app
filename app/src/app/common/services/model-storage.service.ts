@@ -24,7 +24,7 @@ import {
     ModelRegistration
 } from '@alfresco-dbp/modeling-shared/sdk';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ModelStorageService {
     constructor(
         private injector: Injector,

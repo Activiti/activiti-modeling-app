@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class DownloadResourceService {
     downloadResource(name: string, data: Blob, extension: string) {
         const link = document.createElement('a');

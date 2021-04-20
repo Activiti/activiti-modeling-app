@@ -47,7 +47,6 @@ import {
     EntityDialogForm,
     SetAppDirtyStateAction,
     selectSelectedProjectId,
-    AmaTitleService,
     AmaApi,
     SnackbarErrorAction,
     SnackbarInfoAction,
@@ -116,7 +115,6 @@ describe('ConnectorEditorEffects', () => {
             providers: [
                 ConnectorEditorEffects,
                 AmaApi,
-                AmaTitleService,
                 DialogService,
                 StorageService,
                 {

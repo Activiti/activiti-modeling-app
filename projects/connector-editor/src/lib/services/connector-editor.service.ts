@@ -28,7 +28,7 @@ import {
     ModelApiInterface
 } from '@alfresco-dbp/modeling-shared/sdk';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ConnectorEditorService {
     constructor(
         @Inject(CONNECTOR_API_TOKEN) private connectorApi: ModelApiInterface<Connector, ConnectorContent>,

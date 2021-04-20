@@ -16,7 +16,6 @@
  */
 
 import { CardViewErrorRefItemComponent } from './error-ref-item.component';
-import { CardViewUpdateService, CardItemTypeService } from '@alfresco/adf-core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import {
     ProcessModelerServiceToken, selectProjectConnectorsArray,
@@ -142,8 +141,6 @@ describe('CardViewErrorRefItemComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             providers: [
-                CardItemTypeService,
-                CardViewUpdateService,
                 {
                     provide: ProcessModelerServiceToken, useValue: {
                         getRootProcessElement: jest.fn(),

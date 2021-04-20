@@ -34,7 +34,6 @@ import {
     SnackbarErrorAction,
     SnackbarInfoAction,
     EntityDialogForm,
-    DownloadResourceService,
     Pagination,
     ServerSideSorting,
     SearchQuery,
@@ -92,9 +91,7 @@ describe('ProjectsEffects', () => {
                 ProjectsEffects,
                 AmaApi,
                 ProjectApi,
-                DashboardService,
                 DialogService,
-                DownloadResourceService,
                 {
                     provide: TranslationService,
                     useClass: TranslationMock

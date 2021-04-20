@@ -15,18 +15,17 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProcessEditorComponent } from './process-editor.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule, AmaState, ProcessModelerServiceToken, AmaTitleService, ProcessModelerService, ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
+import { SharedModule, AmaState, ProcessModelerServiceToken, ProcessModelerService, ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { mockProcessModel } from '../../store/process.mock';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
 import { UpdateProcessAttemptAction, ValidateProcessAttemptAction } from '../../store/process-editor.actions';
 import { selectProcessEditorSaving } from '../../store/process-editor.selectors';
 
@@ -42,7 +41,7 @@ describe('ProcessEditorComponent', () => {
         content: content,
         metadata: { name: mockProcessModel.name, description: mockProcessModel.description }
     });
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 SharedModule,
@@ -53,8 +52,6 @@ describe('ProcessEditorComponent', () => {
                 HttpClientTestingModule
             ],
             providers: [
-                AmaTitleService,
-                ProcessDiagramLoaderService,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: Store,
@@ -86,8 +83,8 @@ describe('ProcessEditorComponent', () => {
                 }
             ],
             declarations: [ProcessEditorComponent]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ProcessEditorComponent);

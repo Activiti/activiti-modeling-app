@@ -18,8 +18,8 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { AmaTitleService, CodeEditorModule, AssignmentMode, AssignmentType, ExpressionsEditorService } from '@alfresco-dbp/modeling-shared/sdk';
-import { CoreModule, TranslationService, TranslationMock, IdentityGroupService, IdentityUserService, AlfrescoApiService } from '@alfresco/adf-core';
+import { CodeEditorModule, AssignmentMode, AssignmentType, ExpressionsEditorService } from '@alfresco-dbp/modeling-shared/sdk';
+import { CoreModule, TranslationService, TranslationMock, AlfrescoApiService } from '@alfresco/adf-core';
 import { By } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { Subject, BehaviorSubject } from 'rxjs';
@@ -114,9 +114,6 @@ describe('AssignmentDialogComponent', () => {
                 MatSelectModule
             ],
             providers: [
-                AmaTitleService,
-                IdentityGroupService,
-                IdentityUserService,
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: ExpressionsEditorService, useValue: expressionsEditorService },
                 { provide: MatDialogRef, useValue: mockDialogRef },

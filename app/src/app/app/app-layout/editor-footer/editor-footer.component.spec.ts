@@ -69,7 +69,6 @@ import { of } from 'rxjs';
                         dispatch: jest.fn()
                     }
                 },
-                AppFooterService,
                 { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: AppFooterService },
                 provideLogFilter({
                     key: '*',

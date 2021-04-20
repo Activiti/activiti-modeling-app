@@ -42,7 +42,6 @@ describe('PluginRoutesManagerService', () => {
                 MatButtonModule
             ],
             providers: [
-                PluginRoutesManagerService,
                 { provide: APP_BASE_HREF, useValue: '/' }
             ]
         }).compileComponents();

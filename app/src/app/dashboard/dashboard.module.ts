@@ -26,7 +26,6 @@ import { MomentModule } from 'ngx-moment';
 import { DashboardNavigationComponent } from './components/dashboard-navigation/dashboard-navigation.component';
 import { ProjectsListComponent } from './components/projects-list/projects-list.component';
 
-import { DashboardService } from './services/dashboard.service';
 import { EffectsModule } from '@ngrx/effects';
 import { ProjectsEffects } from './store/effects/projects.effects';
 import { SharedModule, PROJECT_ENTITY_KEY, AmaStoreModule, projectEntitiesReducer, provideTranslations } from '@alfresco-dbp/modeling-shared/sdk';
@@ -56,7 +55,6 @@ import { SearchHeaderComponent } from '../app/app-layout/search-header/search-he
     ],
     exports: [DashboardRoutingModule],
     providers: [
-        DashboardService,
         provideTranslations('dashboard')
     ]
 })

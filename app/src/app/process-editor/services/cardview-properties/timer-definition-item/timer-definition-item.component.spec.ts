@@ -17,7 +17,7 @@
 
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { CardViewTimerDefinitionItemComponent } from './timer-definition-item.component';
-import { CardItemTypeService, CardViewUpdateService, AppConfigService } from '@alfresco/adf-core';
+import { CardViewUpdateService, AppConfigService } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
@@ -98,8 +98,6 @@ describe('CardViewTimerDefinitionItemComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             providers: [
-                CardItemTypeService,
-                CardViewUpdateService,
                 FormBuilder,
                 {
                     provide: Store,

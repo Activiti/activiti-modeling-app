@@ -22,7 +22,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import { AmaState, MODEL_UPLOADERS, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
-import { LogService } from '@alfresco/adf-core';
 import { HttpClientModule } from '@angular/common/http';
 import { UploadProcessAttemptAction, UPLOAD_PROCESS_ATTEMPT } from '../../../process-editor/store/process-editor.actions';
 
@@ -43,7 +42,6 @@ describe('UploadFileButtonComponent', () => {
                 UploadFileButtonComponent
             ],
             providers: [
-                LogService,
                 {
                     provide: Store,
                     useValue: {dispatch: jest.fn()}

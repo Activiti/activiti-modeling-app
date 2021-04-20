@@ -95,8 +95,7 @@ describe('Palette component', () => {
             providers: [
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: ProcessModelerPaletteService, useValue: {delegateEvent: jest.fn()}},
-                { provide: PaletteElementsToken, useValue: testPaletteElements},
-                AppConfigService
+                { provide: PaletteElementsToken, useValue: testPaletteElements}
             ],
             declarations: [PaletteComponent, PaletteOverlayDirective],
             schemas: [NO_ERRORS_SCHEMA]

@@ -39,7 +39,6 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { EffectsModule } from '@ngrx/effects';
 import { ConnectorEditorEffects } from './store/connector-editor.effects';
-import { ConnectorEditorService } from './services/connector-editor.service';
 import { StoreModule } from '@ngrx/store';
 import { CONNECTOR_EDITOR_STATE_NAME } from './store/connector-editor.selectors';
 import { connectorEditorReducer } from './store/connector-editor.reducer';
@@ -71,7 +70,6 @@ import { getConnectorLogInitiator } from './services/connector-editor.constants'
     ],
     exports: [ ConnectorEditorRoutingModule ],
     providers: [
-        ConnectorEditorService,
         provideTranslations('connector-editor'),
         ...getConnectorsFilterProvider(),
         ...getConnectorCreatorProvider(),

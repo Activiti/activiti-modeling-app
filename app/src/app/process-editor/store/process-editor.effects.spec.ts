@@ -49,12 +49,10 @@ import { throwError, of, Observable } from 'rxjs';
 import { mockProcessModel, validateError } from './process.mock';
 import {
     AmaApi,
-    DownloadResourceService,
     Process,
     SnackbarErrorAction,
     SnackbarInfoAction,
     SetAppDirtyStateAction,
-    AmaTitleService,
     selectSelectedProcess,
     UploadFileAttemptPayload,
     BpmnFactoryToken,
@@ -91,8 +89,6 @@ describe('ProcessEditorEffects', () => {
             providers: [
                 ProcessEditorEffects,
                 { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
-                AmaTitleService,
-                DownloadResourceService,
                 AmaApi,
                 DialogService,
                 provideMockActions(() => actions$),

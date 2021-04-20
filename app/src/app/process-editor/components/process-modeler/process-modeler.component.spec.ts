@@ -28,7 +28,6 @@ import { of } from 'rxjs';
 import { mockProcessModel } from '../../store/process.mock';
 import { processEntitiesReducer } from '../../store/process-entities.reducer';
 import { Component } from '@angular/core';
-import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { createSelectedElement } from '../../store/process-editor.state';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -60,7 +59,6 @@ describe('ProcessModelerComponent', () => {
                 NoopAnimationsModule
             ],
             providers: [
-                ProcessDiagramLoaderService,
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
                 { provide: BpmnFactoryToken, useClass: BpmnFactoryMock },

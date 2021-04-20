@@ -37,7 +37,6 @@ describe('AuthEffects', () => {
             imports: [ HttpClientModule ],
             providers: [
                 AuthEffects,
-                StorageService,
                 { provide: AppConfigService, useClass: AppConfigServiceMock },
                 provideMockActions(() => actions$)
             ]

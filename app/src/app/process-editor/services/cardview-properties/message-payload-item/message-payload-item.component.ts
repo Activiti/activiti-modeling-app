@@ -16,7 +16,7 @@
  */
 
 import { Component, Input, OnInit } from '@angular/core';
-import { CardItemTypeService, MomentDateAdapter, LocalizedDatePipe } from '@alfresco/adf-core';
+import { MomentDateAdapter, LocalizedDatePipe } from '@alfresco/adf-core';
 import { Moment } from 'moment';
 import { AmaState, selectSelectedProcess, MessagePayload, EntityProperty, ProcessExtensionsModel, ServiceParameterMappings } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
@@ -45,7 +45,6 @@ export const MOMENT_DATE_FORMATS = {
     selector: 'ama-process-message-payload',
     templateUrl: './message-payload-item.component.html',
     providers: [
-        CardItemTypeService,
         { provide: DateAdapter, useClass: MomentDateAdapter },
         { provide: MAT_DATE_FORMATS, useValue: MOMENT_DATE_FORMATS },
     ]

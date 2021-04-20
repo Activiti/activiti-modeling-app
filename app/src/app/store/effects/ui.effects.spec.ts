@@ -23,7 +23,6 @@ import { StorageService, CoreModule, TranslationService, TranslationMock } from 
 import { provideMockActions } from '@ngrx/effects/testing';
 import { UiEffects } from './ui.effects';
 import { SetMenuAction } from '../actions/ui';
-import { AmaTitleService } from '@alfresco-dbp/modeling-shared/sdk';
 import { TranslateModule } from '@ngx-translate/core';
 
 describe('UiEffects', () => {
@@ -39,8 +38,6 @@ describe('UiEffects', () => {
                 TranslateModule.forRoot()],
             providers: [
                 UiEffects,
-                StorageService,
-                AmaTitleService,
                 provideMockActions(() => actions$),
                 {
                     provide: TranslationService,

@@ -17,7 +17,6 @@
 
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
-import { CardItemTypeService } from '@alfresco/adf-core';
 import { FormsModule } from '@angular/forms';
 import { MatDialogRef, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,7 +24,6 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { Subject, of } from 'rxjs';
 import { VariablesComponent } from './variables.component';
-import { VariablesService } from './variables.service';
 import { CodeValidatorService } from './../code-editor/services/code-validator.service';
 import { By } from '@angular/platform-browser';
 
@@ -45,8 +43,6 @@ describe('VariablesComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             providers: [
-                CardItemTypeService,
-                VariablesService,
                 { provide: CodeValidatorService, useValue: {validator: jest.fn()}},
                 { provide: Store, useValue: { dispatch: jest.fn(), select: jest.fn().mockReturnValue(of())}},
                 { provide: MatDialogRef, useValue: mockDialog },
