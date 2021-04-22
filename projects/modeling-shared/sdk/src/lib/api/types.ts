@@ -349,6 +349,7 @@ export interface UiContentExtension {
         $vendor: string;
         $license: string;
         $description?: string;
+        appConfig?: any;
         actions?: UiAction[];
         rules?: UiRule[];
         features?: UiFeatures;

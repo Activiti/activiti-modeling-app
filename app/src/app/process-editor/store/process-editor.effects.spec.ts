@@ -85,7 +85,8 @@ describe('ProcessEditorEffects', () => {
         TestBed.configureTestingModule({
             imports: [
                 CoreModule.forChild(),
-                TranslateModule.forRoot()],
+                TranslateModule.forRoot()
+            ],
             providers: [
                 ProcessEditorEffects,
                 { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
