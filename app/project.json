@@ -1,4 +1,7 @@
 {
+    "standalone": {
+        "packageJson": "../package.json"
+    },
     "scripts" : {
         "prebuild": [{
             "command": "mkdir",

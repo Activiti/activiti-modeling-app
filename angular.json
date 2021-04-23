@@ -88,7 +88,14 @@
               "app/src/styles.scss",
               "projects/modeling-shared/sdk/src/lib/modeling-sdk.module.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "moment-es6",
+              "minimatch",
+              "zen-observable",
+              "superagent",
+              "event-emitter"
+            ]
           },
           "configurations": {
             "production": {
