@@ -17,11 +17,8 @@
 
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subject, Observable } from 'rxjs';
-import {
-    AmaState, EntityProperty, selectSelectedTheme, ExpressionsEditorService, UuidService
-} from '@alfresco-dbp/modeling-shared/sdk';
-import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { AmaState, EntityProperty, ExpressionsEditorService, UuidService } from '@alfresco-dbp/modeling-shared/sdk';
 import { UpdateCalledElementAction } from '../../../../store/called-element.actions';
 import { CalledElementTypes, CalledElementService } from '../called-element.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -46,7 +43,6 @@ export class CalledElementDialogComponent implements OnInit, OnDestroy {
     isCalledElementValid = false;
     expression = '';
 
-    vsTheme$: Observable<string>;
     language = 'expressions';
     processFileUri: string;
     extendedProperties = {
@@ -63,7 +59,6 @@ export class CalledElementDialogComponent implements OnInit, OnDestroy {
         private calledElementService: CalledElementService,
         public dialog: MatDialogRef<CalledElementDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: CalledElementModel) {
-        this.vsTheme$ = this.getVsTheme();
     }
 
     ngOnInit() {
@@ -119,11 +114,5 @@ export class CalledElementDialogComponent implements OnInit, OnDestroy {
         this.expressionsEditorService.removeEditorLanguageSettings(this.language);
         this.onDestroy$.next();
         this.onDestroy$.complete();
-    }
-
-    private getVsTheme(): Observable<string> {
-        return this.store
-            .select(selectSelectedTheme)
-            .pipe(map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light')));
     }
 }

@@ -15,14 +15,19 @@
  * limitations under the License.
  */
 
-export * from './uuid.service';
-export * from './title.service';
-export * from './download-resource.service';
-export * from './ama-services.module';
-export * from './auth.service';
-export * from './blob.service';
-export * from './log-factory.service';
-export * from './process.service';
-export * from './status-bar.service';
-export * from './variable-mapping-type.service';
-export * from './theming.service';
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AppTheme, selectSelectedTheme } from '../store/public-api';
+
+@Injectable({ providedIn: 'root' })
+export class ThemingService {
+    readonly theme$: Observable<AppTheme>;
+    readonly vsCodeTheme$: Observable<string>;
+
+    constructor(store: Store<any>) {
+        this.theme$ = store.select(selectSelectedTheme);
+        this.vsCodeTheme$ = store.select(selectSelectedTheme).pipe(map((theme) => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light')));
+    }
+}

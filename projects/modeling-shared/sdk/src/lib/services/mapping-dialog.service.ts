@@ -16,7 +16,7 @@
  */
 
 import { ServiceParameterMapping, ConnectorParameter, MappingType, EntityProperty } from '../api/types';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { InputTypeItem, INPUT_TYPE_ITEM_HANDLER } from '../variables/public-api';
 import { Inject, Injectable } from '@angular/core';
 
@@ -30,7 +30,6 @@ export interface MappingDialogData {
     selectedRow?: number;
     selectedProcessVariable?: string;
     selectedOutputParameter?: string;
-    theme$: Observable<string>;
     inputMappingUpdate$?: Subject<ServiceParameterMapping>;
     outputMappingUpdate$?: Subject<ServiceParameterMapping>;
     extensionObject?: any;

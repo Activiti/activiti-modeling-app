@@ -16,7 +16,6 @@
  */
 
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ConnectorParameter, EntityProperty, ServiceParameterMapping } from '../../api/types';
 import { UuidService } from '../../services/uuid.service';
 import { VariableMappingType, MappingRowModel, MappingValueType, MappingDialogService, MappingDialogData } from '../../services/mapping-dialog.service';
@@ -42,7 +41,6 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
     selectedRow: number;
     selectedProcessVariable: string;
     selectedOutputParameter: string;
-    vsTheme$: Observable<string>;
     selectedDestination: string;
     extensionObject: any;
     keyColumnHeader = 'SDK.MAPPING_DIALOG.INPUT_PARAMETER';
@@ -82,7 +80,6 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
         this.selectedRow = data.selectedRow;
         this.selectedProcessVariable = data.selectedProcessVariable;
         this.selectedOutputParameter = data.selectedOutputParameter;
-        this.vsTheme$ = data.theme$;
         this.extensionObject = data.extensionObject;
         this.configDialogLabels();
     }

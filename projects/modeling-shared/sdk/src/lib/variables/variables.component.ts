@@ -17,7 +17,7 @@
 
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
-import { Subject, Subscription, Observable } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { VariablesService } from './variables.service';
 import { CodeValidatorService } from './../code-editor/services/code-validator.service';
 import { EntityProperties } from '../../lib/api/types';
@@ -33,7 +33,6 @@ export interface VariableDialogData extends MatDialogConfig {
     filterPlaceholder: string;
     required: boolean;
     propertiesUpdate$: Subject<EntityProperties>;
-    theme$: Observable<string>;
 }
 
 @Component({
@@ -47,7 +46,6 @@ export class VariablesComponent implements OnInit, OnDestroy {
     filterValue = '';
     subscription: Subscription;
     serviceSubscription: Subscription;
-    vsTheme$: Observable<string>;
     title: string;
     filterPlaceholder: string;
     requiredCheckbox: boolean;
@@ -61,7 +59,6 @@ export class VariablesComponent implements OnInit, OnDestroy {
         private variablesService: VariablesService,
         private codeValidatorService: CodeValidatorService
     ) {
-        this.vsTheme$ = data.theme$;
         this.title = data.title;
         this.filterPlaceholder = data.filterPlaceholder;
         this.requiredCheckbox = data.required;

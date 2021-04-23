@@ -148,7 +148,6 @@
             <mat-tab label="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.EXPRESSION.TITLE' | translate }}">
                 <ng-container>
                     <modelingsdk-code-editor
-                        [vsTheme]="vsTheme$ | async"
                         [content]="expressionContent"
                         [fileUri]="processFileUri$ | async"
                         [language]="languageType"

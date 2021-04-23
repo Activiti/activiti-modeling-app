@@ -17,6 +17,9 @@
 
 import { Component, Output, EventEmitter, Input, OnDestroy, ChangeDetectionStrategy, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { NgxEditorModel, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ThemingService } from '../../../services/theming.service';
 const memoize = require('lodash/memoize');
 
 export type EditorOptions = monaco.editor.IEditorOptions | { language: string; theme: string };
@@ -48,7 +51,6 @@ const DEFAULT_OPTIONS = {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CodeEditorComponent implements OnDestroy, OnInit, OnChanges {
-    @Input() vsTheme = 'vs-light';
     @Input() options: EditorOptions;
     @Input() fileUri: string;
     @Input() language: string;
@@ -59,8 +61,12 @@ export class CodeEditorComponent implements OnDestroy, OnInit, OnChanges {
     editorModel: NgxEditorModel;
     config: NgxMonacoEditorConfig;
 
-    private editor: monaco.editor.ICodeEditor = <monaco.editor.ICodeEditor>{ dispose: () => {} };
+    private editor: monaco.editor.ICodeEditor;
+    private vsTheme = 'vs-light';
     private defaultOptions: any;
+    private onDestroy$ = new Subject<boolean>();
+
+    constructor(private themingService: ThemingService) {}
 
     ngOnInit() {
         this.defaultOptions = Object.assign({}, DEFAULT_OPTIONS, this.options);
@@ -69,6 +75,10 @@ export class CodeEditorComponent implements OnDestroy, OnInit, OnChanges {
             language: this.language,
             uri: this.fileUri
         };
+
+        this.themingService.vsCodeTheme$
+            .pipe(takeUntil(this.onDestroy$))
+            .subscribe(theme => this.vsTheme = theme || 'vs-light');
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -86,7 +96,12 @@ export class CodeEditorComponent implements OnDestroy, OnInit, OnChanges {
     }
 
     ngOnDestroy() {
-        this.editor.dispose();
+        this.onDestroy$.next(true);
+        this.onDestroy$.complete();
+
+        if (this.editor) {
+            this.editor.dispose();
+        }
     }
 
     onEditorInit(editor: monaco.editor.ICodeEditor): void {

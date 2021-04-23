@@ -14,8 +14,10 @@
 
         <mat-tab label="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.CALLED_ELEMENT.DIALOG.EXPRESSION' | translate }}">
             <ng-container *ngIf="processVariables.length; else noProcessVariables">
-                <modelingsdk-code-editor (changed)="expressionChanged($event)" [content]="expression"
-                    [language]="language" [vsTheme]="vsTheme$ | async">
+                <modelingsdk-code-editor
+                    (changed)="expressionChanged($event)"
+                    [content]="expression"
+                    [language]="language">
                 </modelingsdk-code-editor>
             </ng-container>
             <ng-template #noProcessVariables>

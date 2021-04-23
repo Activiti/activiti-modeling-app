@@ -32,7 +32,6 @@ import {
     selectProjectCrumb,
     ProcessContent,
     selectSelectedProcess,
-    selectSelectedTheme,
     SetAppDirtyStateAction,
     ProcessModelerService,
     ProcessModelerServiceToken,
@@ -69,7 +68,6 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate {
     bpmnContent$: Observable<ProcessContent>;
     process$: Observable<Process>;
     extensions$: Observable<string>;
-    vsTheme$: Observable<string>;
     disableSave: boolean;
     tabNames = [
         'PROCESS_EDITOR.TABS.DIAGRAM_EDITOR',
@@ -94,7 +92,6 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate {
         private processLoaderService: ProcessDiagramLoaderService,
         private statusBarService: StatusBarService
     ) {
-        this.vsTheme$ = this.getVsTheme();
         this.extensionsLanguageType = 'json';
         this.processesLanguageType = 'xml';
     }
@@ -122,12 +119,6 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate {
             this.store.select(selectProjectCrumb).pipe(filter(value => value !== null)),
             this.store.select(selectProcessCrumb).pipe(filter(value => value !== null))
         ]);
-    }
-
-    private getVsTheme(): Observable<string> {
-        return this.store
-            .select(selectSelectedTheme)
-            .pipe(map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light')));
     }
 
     onBpmnEditorChange(): void {

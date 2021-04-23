@@ -22,7 +22,6 @@ import { MatTableModule } from '@angular/material/table';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { MappingDialogComponent } from './mapping-dialog.component';
 import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
-import { of } from 'rxjs';
 import { MappingType } from '../../api/types';
 import { UuidService } from '../../services/public-api';
 import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
@@ -64,7 +63,6 @@ describe('MappingDialogComponent', () => {
     const helpIconText = 'help';
 
     const mockDialogDataInputMapping: MappingDialogData = {
-        theme$: of(''),
         mappingType: VariableMappingType.input,
         inputMapping: {
             checkid: { type: MappingType.variable, value: 'booleanVar' },
@@ -102,7 +100,6 @@ describe('MappingDialogComponent', () => {
     };
 
     const mockDialogDataOutputMapping: MappingDialogData = {
-        theme$: of(''),
         mappingType: VariableMappingType.output,
         outputMapping: {
             stringVar: { type: MappingType.variable, value: 'textid' },

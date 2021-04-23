@@ -26,7 +26,7 @@
                     <mat-tab label="{{ 'CONNECTOR_EDITOR.TABS.JSON_EDITOR' | translate }}">
                         <div class="ama-connector-page ama-connector-page-raw-editor"
                             data-automation-id="connector-basic-tab">
-                            <modelingsdk-code-editor [vsTheme]="vsTheme$ | async"
+                            <modelingsdk-code-editor
                                 [content]="editorContent"
                                 (positionChanged)="codeEditorPositionChanged($event)"
                                 (changed)="onChangeAttempt($event)"
@@ -39,7 +39,7 @@
             </ng-container>
 
             <ng-container *ngIf="!isAdvancedEditorEmbedded()">
-                <modelingsdk-code-editor [vsTheme]="vsTheme$ | async"
+                <modelingsdk-code-editor
                     class="connector-json"
                     [content]="editorContent"
                     (positionChanged)="codeEditorPositionChanged($event)"

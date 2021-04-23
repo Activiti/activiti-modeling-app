@@ -36,7 +36,6 @@
                         <modelingsdk-code-editor
                             (changed)="onXmlChangeAttempt($event)"
                             (positionChanged)="codeEditorPositionChanged($event)"
-                            [vsTheme]="vsTheme$ | async"
                             [options]="{language: 'xml'}"
                             [content]="content$ | async"
                             [fileUri]="processFileUri$ | async"
@@ -49,7 +48,6 @@
                         <modelingsdk-code-editor
                             (changed)="onExtensionsChangeAttempt($event, process.id)"
                             (positionChanged)="codeEditorPositionChanged($event)"
-                            [vsTheme]="vsTheme$ | async"
                             [content]="extensions$ | async"
                             [fileUri]="extensionFileUri$ | async"
                             [language]="extensionsLanguageType">

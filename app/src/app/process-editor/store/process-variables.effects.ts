@@ -24,7 +24,6 @@ import {
     DialogService,
     SetAppDirtyStateAction,
     EntityProperties,
-    selectSelectedTheme,
     ProcessModelerServiceToken,
     ProcessModelerService,
     VariablesComponent,
@@ -71,15 +70,11 @@ export class ProcessVariablesEffects {
         const required = true;
         const columns = [ 'name', 'type', 'required', 'value', 'delete' ];
 
-        const theme$ = this.store.select(selectSelectedTheme).pipe(
-            map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light'))
-        );
-
         this.dialogService.openDialog(VariablesComponent, {
             disableClose: true,
             height: '530px',
             width: '1000px',
-            data: { properties, title, filterPlaceholder, columns, required, propertiesUpdate$, theme$ },
+            data: { properties, title, filterPlaceholder, columns, required, propertiesUpdate$ },
         });
 
         propertiesUpdate$.subscribe(data => {

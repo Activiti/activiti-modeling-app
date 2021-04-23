@@ -16,11 +16,10 @@
  */
 
 import { Component, OnInit, Renderer2, OnDestroy } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AmaState, ErrorResponse, selectSelectedTheme } from '@alfresco-dbp/modeling-shared/sdk';
+import { ErrorResponse, ThemingService } from '@alfresco-dbp/modeling-shared/sdk';
 import { PluginRoutesManagerService } from './common/services/plugin-routes-manager.service';
 import { AlfrescoApiService } from '@alfresco/adf-core';
 
@@ -32,11 +31,11 @@ export class AppComponent implements OnInit, OnDestroy {
     onDestroy$: Subject<void> = new Subject<void>();
 
     constructor(
-        private store: Store<AmaState>,
         private renderer: Renderer2,
         private pluginRoutesManager: PluginRoutesManagerService,
         private router: Router,
-        private alfrescoApiService: AlfrescoApiService) {
+        private alfrescoApiService: AlfrescoApiService,
+        private themingService: ThemingService) {
         this.pluginRoutesManager.patchRoutes();
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
@@ -48,8 +47,7 @@ export class AppComponent implements OnInit, OnDestroy {
             }
         });
 
-        this.store
-            .select(selectSelectedTheme)
+        this.themingService.theme$
             .pipe(takeUntil(this.onDestroy$))
             .subscribe(selectedTheme => this.renderer.setAttribute(document.body, 'class', selectedTheme.className));
     }

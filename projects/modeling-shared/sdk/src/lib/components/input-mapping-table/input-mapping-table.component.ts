@@ -18,11 +18,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConnectorParameter, EntityProperty, MappingType, ServiceParameterMapping } from '../../api/types';
-import { Store } from '@ngrx/store';
-import { map } from 'rxjs/operators';
-import { selectSelectedTheme } from '../../store/app.selectors';
 import { DialogService } from '../../dialogs/services/dialog.service';
-import { AmaState } from '../../store/app.state';
 import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
 import { Subject } from 'rxjs';
 import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
@@ -85,7 +81,6 @@ export class InputMappingTableComponent implements OnChanges {
 
     constructor(
         private dialogService: DialogService,
-        private store: Store<AmaState>,
         private inputMappingDataSourceService: InputMappingDialogService
     ) { }
 
@@ -187,18 +182,13 @@ export class InputMappingTableComponent implements OnChanges {
     edit(parameterRow: number) {
         const inputMappingUpdate$ = new Subject<ServiceParameterMapping>();
 
-        const theme$ = this.store.select(selectSelectedTheme).pipe(
-            map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light'))
-        );
-
         const dialogData: MappingDialogData = {
             inputMapping: this.mapping,
             inputParameters: this.parameters,
             mappingType: VariableMappingType.input,
             processProperties: this.processProperties,
             selectedRow: parameterRow,
-            theme$: theme$,
-            inputMappingUpdate$: inputMappingUpdate$,
+            inputMappingUpdate$,
             extensionObject: {...this.extensionObject, editDialogKeyHeader: this.editDialogKeyHeader, editDialogValueHeader: this.editDialogValueHeader},
         };
 

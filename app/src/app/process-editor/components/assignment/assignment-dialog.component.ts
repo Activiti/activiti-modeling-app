@@ -22,7 +22,6 @@ import {
     AmaState,
     selectProcessTaskAssignmentFor,
     selectSelectedProcess,
-    selectSelectedTheme,
     UpdateServiceAssignmentAction,
     TaskAssignment,
     AssignmentType,
@@ -150,7 +149,6 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     processVariables$: Observable<any>;
     process$: Observable<Process>;
     processFileUri$: Observable<string>;
-    vsTheme$: Observable<string>;
     onDestroy$: Subject<void> = new Subject<void>();
 
     assignmentForm: FormGroup;
@@ -173,9 +171,7 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         public dialogRef: MatDialogRef<AssignmentDialogComponent>,
         private formBuilder: FormBuilder,
         private expressionsEditorService: ExpressionsEditorService,
-        @Inject(MAT_DIALOG_DATA) public settings: AssignmentSettings
-    ) {
-        this.vsTheme$ = this.getVsTheme();
+        @Inject(MAT_DIALOG_DATA) public settings: AssignmentSettings) {
     }
 
     ngOnInit() {
@@ -198,20 +194,11 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         this.expressionsEditorService.initExpressionEditor(this.languageType, this.expressionSuggestions);
     }
 
-    private getVsTheme(): Observable<string> {
-        return this.store
-            .select(selectSelectedTheme)
-            .pipe(map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light')));
-    }
-
     createAssignmentForm() {
         this.assignmentForm = this.formBuilder.group({
-            staticForm: this.formBuilder.group({
-            }),
-            identityForm: this.formBuilder.group({
-            }),
-            expressionForm: this.formBuilder.group({
-            })
+            staticForm: this.formBuilder.group({}),
+            identityForm: this.formBuilder.group({}),
+            expressionForm: this.formBuilder.group({})
         });
         this.createChildrenFormControls();
         this.loadingForm = false;

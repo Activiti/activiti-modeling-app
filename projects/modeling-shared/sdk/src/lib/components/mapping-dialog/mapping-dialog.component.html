@@ -164,8 +164,7 @@
                                 <modelingsdk-code-editor #expressionInput
                                     class="monaco-editor mapping-dialog-expression-editor"
                                     (changed)="valueMappingExpressionChange($event,selectedRow)"
-                                    content="{{expressionValue}}" language="{{language}}"
-                                    vsTheme="{{vsTheme$ | async}}">
+                                    content="{{expressionValue}}" language="{{language}}">
                                 </modelingsdk-code-editor>
                             </ng-container>
                         </mat-tab>

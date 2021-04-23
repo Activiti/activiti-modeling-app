@@ -23,7 +23,6 @@ import { map, filter, take, tap, switchMap, catchError } from 'rxjs/operators';
 import { Observable, of, zip } from 'rxjs';
 import {
     AmaState,
-    selectSelectedTheme,
     ConnectorContent,
     CodeValidatorService,
     ValidationResponse,
@@ -52,7 +51,6 @@ export class ConnectorEditorComponent implements CanComponentDeactivate {
     disableSave = false;
 
     connectorId$: Observable<string>;
-    vsTheme$: Observable<string>;
     editorContent$: Observable<string>;
     loadingState$: Observable<boolean>;
     componentKey = AdvancedConnectorEditorKey;
@@ -74,7 +72,6 @@ export class ConnectorEditorComponent implements CanComponentDeactivate {
         private componentRegister: ComponentRegisterService,
         private statusBarService: StatusBarService
     ) {
-        this.vsTheme$ = this.getVsTheme();
         this.loadingState$ = this.store.select(selectConnectorLoadingState);
         this.connectorId$ = this.store.select(selectSelectedConnectorId);
         this.editorContent$ = this.store.select(selectSelectedConnectorContent).pipe(
@@ -120,12 +117,6 @@ export class ConnectorEditorComponent implements CanComponentDeactivate {
 
     private validate(connectorContentString: string): ValidationResponse<ConnectorContent> {
         return this.codeValidatorService.validateJson<ConnectorContent>(connectorContentString);
-    }
-
-    private getVsTheme(): Observable<string> {
-        return this.store
-            .select(selectSelectedTheme)
-            .pipe(map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light')));
     }
 
     codeEditorPositionChanged(position: CodeEditorPosition) {

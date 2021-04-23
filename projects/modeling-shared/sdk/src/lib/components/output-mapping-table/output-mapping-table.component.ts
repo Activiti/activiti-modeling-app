@@ -18,11 +18,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConnectorParameter, EntityProperty, MappingType, ServiceParameterMapping, ServiceParameterMappings } from '../../api/types';
-import { Store } from '@ngrx/store';
-import { map } from 'rxjs/operators';
-import { selectSelectedTheme } from '../../store/app.selectors';
 import { DialogService } from '../../dialogs/services/dialog.service';
-import { AmaState } from '../../store/app.state';
 import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
 import { Subject } from 'rxjs';
 import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
@@ -61,7 +57,6 @@ export class OutputMappingTableComponent implements OnChanges {
 
     constructor(
         private dialogService: DialogService,
-        private store: Store<AmaState>,
         private outputMappingDataSourceService: OutputMappingDialogService
     ) { }
 
@@ -170,10 +165,6 @@ export class OutputMappingTableComponent implements OnChanges {
     edit(parameterRow: number) {
         const outputMappingUpdate$ = new Subject<ServiceParameterMapping>();
 
-        const theme$ = this.store.select(selectSelectedTheme).pipe(
-            map(theme => (theme.className === 'dark-theme' ? 'vs-dark' : 'vs-light'))
-        );
-
         let selectedProcessVariable;
         const variableNames = Object.keys(this.data);
         variableNames.forEach(variable => {
@@ -189,8 +180,7 @@ export class OutputMappingTableComponent implements OnChanges {
             processProperties: this.processProperties,
             selectedProcessVariable: selectedProcessVariable,
             selectedOutputParameter: this.tableParameters[parameterRow].name,
-            theme$: theme$,
-            outputMappingUpdate$: outputMappingUpdate$
+            outputMappingUpdate$
         };
 
         this.dialogService.openDialog(MappingDialogComponent, {

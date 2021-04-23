@@ -20,15 +20,35 @@ import { By } from '@angular/platform-browser';
 import { CodeEditorComponent, CodeEditorPosition } from './code-editor.component';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { FormsModule } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { BehaviorSubject, of } from 'rxjs';
+import { selectSelectedTheme } from '../../../store/app.selectors';
+import { ThemingService } from '../../../services/theming.service';
 
 describe('CodeEditorComponent', () => {
     let fixture: ComponentFixture<CodeEditorComponent>;
     let component: CodeEditorComponent;
+    let vsCodeTheme$: BehaviorSubject<string>;
 
     beforeEach(() => {
+        vsCodeTheme$ = new BehaviorSubject<string>('vs-light');
+
         TestBed.configureTestingModule({
             imports: [FormsModule, MonacoEditorModule.forRoot()],
-            declarations: [CodeEditorComponent]
+            declarations: [CodeEditorComponent],
+            providers: [
+                { provide: ThemingService, useValue: { vsCodeTheme$ } },
+                { provide: Store, useValue: {
+                    select: jest.fn().mockImplementation((selector) => {
+                        if (selector === selectSelectedTheme) {
+                            return of({ name: 'Light', className: 'vs-light' });
+                        }
+
+                        return of({});
+                    }),
+                    dispatch: jest.fn() }
+                }
+            ]
         });
 
         fixture = TestBed.createComponent(CodeEditorComponent);
@@ -65,13 +85,19 @@ describe('CodeEditorComponent', () => {
             expect(options1).toBe(options2);
         });
 
-        it(`should get back another object if the values don't match`, () => {
+        it(`should get back another object if the values don't match`, async () => {
+            fixture.detectChanges();
+            await fixture.whenStable();
+
             const options1: any = component.editorOptions;
 
-            component.vsTheme = 'vs-dark';
+            vsCodeTheme$.next('vs-dark');
+
+            fixture.detectChanges();
+            await fixture.whenStable();
+
             const options2: any = component.editorOptions;
 
-            expect(options1).not.toBe(options2);
             expect(options1.theme).toBe('vs-light');
             expect(options2.theme).toBe('vs-dark');
         });
