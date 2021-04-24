@@ -1,33 +1,33 @@
 {
-    "npmScope": "activiti-modeling-app",
-    "implicitDependencies": {
-        "angular.json": "*",
-        "package.json": "*",
-        "tsconfig.json": "*",
-        "tslint.json": "*",
-        "nx.json": "*",
-        "travis.yml": "*"
+  "npmScope": "activiti-modeling-app",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*",
+    "travis.yml": "*"
+  },
+  "projects": {
+    "modeling-ce": {
+      "tags": [
+        "scope:modeling-ce",
+        "type:app",
+        "category:modeling-ce"
+      ]
     },
-    "projects": {
-        "modeling-ce": {
-            "tags": [
-                "scope:modeling-ce",
-                "type:app",
-                "category:modeling-ce"
-            ]
-        },
-        "modeling-ce-connector-editor": {
-          "tags": [
-              "modeling-ce-connector-editor",
-              "type:lib",
-              "category:modeling-ce"
-            ]
-       },
-        "modeling-sdk": {
-            "tags": [
-                "scope:modeling-sdk",
-                "category:modeling-ce"
-            ]
-        }
+    "modeling-ce-connector-editor": {
+      "tags": [
+        "scope:modeling-ce-connector-editor",
+        "type:lib",
+        "category:modeling-ce"
+      ]
+    },
+    "modeling-sdk": {
+      "tags": [
+        "scope:modeling-sdk",
+        "category:modeling-ce"
+      ]
     }
+  }
 }

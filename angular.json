@@ -48,17 +48,17 @@
                 "output": "/assets/process-editor/i18n",
                 "glob": "**/*"
               },
-            {
+              {
                 "input": "src/assets/svg/icons",
                 "output": "/assets/svg/icons",
                 "glob": "**/*"
-            },
-            {
+              },
+              {
                 "input": "projects/connector-editor/i18n",
                 "output": "/assets/connector-editor/i18n",
                 "glob": "**/*"
-            },
-            {
+              },
+              {
                 "input": "projects/modeling-shared/sdk/i18n",
                 "output": "/assets/modeling-sdk/i18n",
                 "glob": "**/*"
@@ -140,20 +140,6 @@
             "jestConfig": "./app/jest.config.js",
             "tsConfig": "app/tsconfig.spec.json"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "app/tsconfig.app.json",
-              "app/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "projects/modeling-shared/sdk/**"
-            ],
-            "format": "stylish"
-          }
         }
       }
     },
@@ -180,39 +166,39 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "projects/modeling-shared/sdk/jest.config.js",
-            "tsConfig":"projects/modeling-shared/sdk/tsconfig.spec.json"
+            "tsConfig": "projects/modeling-shared/sdk/tsconfig.spec.json"
           }
         }
       }
     },
     "modeling-ce-connector-editor": {
-        "root": "projects/connector-editor",
-        "sourceRoot": "projects/connector-editor/src",
-        "projectType": "library",
-        "prefix": "connector-editor",
-        "architect": {
-          "lint": {
-            "builder": "@angular-devkit/build-angular:tslint",
-            "options": {
-              "tsConfig": [
-                "projects/connector-editor/tsconfig.lib.json"
-              ],
-              "exclude": [
-                "**/node_modules/**",
-                "projects/connector-editor/jest.config.js"
-              ],
-              "format": "stylish"
-            }
-          },
-          "test": {
-            "builder": "@nrwl/jest:jest",
-            "options": {
-              "jestConfig": "projects/connector-editor/jest.config.js",
-              "tsConfig":"projects/connector-editor/tsconfig.spec.json"
-            }
+      "root": "projects/connector-editor",
+      "sourceRoot": "projects/connector-editor/src",
+      "projectType": "library",
+      "prefix": "connector-editor",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/connector-editor/tsconfig.lib.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "projects/connector-editor/jest.config.js"
+            ],
+            "format": "stylish"
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "projects/connector-editor/jest.config.js",
+            "tsConfig": "projects/connector-editor/tsconfig.spec.json"
           }
         }
       }
+    }
   },
   "defaultProject": "modeling-ce",
   "schematics": {
