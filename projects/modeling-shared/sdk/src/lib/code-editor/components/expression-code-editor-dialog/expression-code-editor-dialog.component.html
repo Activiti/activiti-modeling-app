@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>
+    {{'SDK.EXPRESSION_CODE_EDITOR.EXPRESSION_EDITOR' | translate}}
+</h2>
+<mat-dialog-content class="ama-expression-code-editor-dialog-content"
+    data-automation-id="ama-expression-code-editor-dialog">
+    <modelingsdk-expression-code-editor [(expression)]="expression" [language]="data.language"
+        [removeEnclosingBrackets]="data.removeEnclosingBrackets" [variables]="data.variables"
+        [enableDialogEditor]="false" [enableInlineEditor]="true" [fileUri]="data.fileUri">
+    </modelingsdk-expression-code-editor>
+</mat-dialog-content>
+<mat-dialog-actions class="adf-dialog-buttons">
+    <span class="adf-fill-remaining-space"></span>
+
+    <button mat-button mat-dialog-close (click)="onClose()"
+        data-automation-id="ama-expression-code-editor-dialog-close-button">
+        {{ 'APP.DIALOGS.CANCEL' | translate }}
+    </button>
+
+    <button class="adf-dialog-action-button save-btn" color="primary" mat-button (click)="onSave()"
+        data-automation-id="ama-expression-code-editor-dialog-save-button">
+        {{ 'APP.DIALOGS.SAVE' | translate }}
+    </button>
+</mat-dialog-actions>

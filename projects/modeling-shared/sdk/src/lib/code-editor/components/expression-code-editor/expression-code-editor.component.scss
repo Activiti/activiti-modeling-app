@@ -1,0 +1,45 @@
+@mixin ama-expression-code-editor($theme) {
+    $foreground: map-get($theme, foreground);
+
+    .ama-expression-code-editor {
+        border: 1px solid mat-color($foreground, text, 0.07);
+        border-radius: 6px;
+        padding: 6px;
+        position: relative;
+
+        &-edit-button {
+            position: absolute;
+            float: right;
+            bottom: 3px;
+            right: 3px;
+            z-index: 10;
+        }
+        &-monaco {
+            .code-editor {
+                min-height: 100px;
+
+                .editor-container {
+                    height: 100%;
+                }
+            }
+        }
+
+        &.editor-disabled {
+            background: mat-color($foreground, text, 0.05);
+        }
+
+        &-preview {
+            margin: 0;
+            min-height: 100px;
+            white-space: inherit;
+            word-break: break-word;
+            font-size: mat-font-size($alfresco-typography, caption);
+            padding-left: 26px;
+            padding-right: 18px;
+            &.preview-hidden {
+                display: none;
+                visibility: hidden;
+            }
+        }
+    }
+}

@@ -30,7 +30,7 @@ export interface CodeEditorPosition {
 
 const createMemoizedEditorOptions = memoize(
     (theme, language, basicOptions): EditorOptions => ({ ...basicOptions, theme, language }),
-    (theme, language) => `${theme}-${language}`
+    (theme, language, basicOptions) => `${theme}-${language}-${basicOptions['lineNumbers']}-${basicOptions['wordWrap']}`
 );
 
 const DEFAULT_OPTIONS = {

@@ -109,4 +109,8 @@ export class ExpressionsEditorService {
             });
         }
     }
+
+    colorizeElement(element: HTMLElement, options?: monaco.editor.IColorizerElementOptions) {
+        monaco.editor.colorizeElement(element, options || {});
+    }
 }

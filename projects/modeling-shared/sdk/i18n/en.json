@@ -85,6 +85,10 @@
                 "NAME": "Name",
                 "DESCRIPTION": "Description"
             }
+        },
+        "EXPRESSION_CODE_EDITOR": {
+            "EDIT_IN_DIALOG": "Edit in dialog",
+            "EXPRESSION_EDITOR": "Expression editor"
         }
     }
 }
