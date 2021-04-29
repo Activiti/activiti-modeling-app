@@ -1,11 +1,11 @@
 require('dotenv').config({ path: process.env.ENV_FILE });
 
-const API_HOST = process.env.API_HOST;
+const APP_CONFIG_BPM_HOST = process.env.APP_CONFIG_BPM_HOST;
 const EXAMPLE_PROJECTS_HOST = process.env.EXAMPLE_PROJECTS_HOST;
 
 module.exports = {
     "/modeling-service": {
-        "target": API_HOST,
+        "target": APP_CONFIG_BPM_HOST,
         "secure": false,
         "changeOrigin": true,
         "pathRewrite": {
@@ -14,7 +14,7 @@ module.exports = {
         "logLevel": "silent"
     },
     "/dmn-service": {
-        "target": API_HOST,
+        "target": APP_CONFIG_BPM_HOST,
         "secure": false,
         "changeOrigin": true,
         "pathRewrite": {
@@ -23,7 +23,7 @@ module.exports = {
         "logLevel": "silent"
     },
     "/alfresco": {
-        "target": API_HOST,
+        "target": APP_CONFIG_BPM_HOST,
         "secure": false,
         "pathRewrite": {
             "^/alfresco/alfresco": ""
@@ -31,7 +31,7 @@ module.exports = {
         "changeOrigin": true
     },
     "/script-service": {
-        "target": API_HOST,
+        "target": APP_CONFIG_BPM_HOST,
         "secure": false,
         "changeOrigin": true,
         "pathRewrite": {

@@ -1,24 +1,25 @@
 {
     "$schema": "../node_modules/@alfresco/adf-core/app.config.schema.json",
-    "authType": "OAUTH",
-    "showNotificationHistory": true,
+    "authType": "${APP_CONFIG_AUTH_TYPE}",
     "providers": "BPM",
-    "bpmHost": "http://localhost:4201",
-    "identityHost": "${IDENTITY_HOST}",
+    "ecmHost": "${APP_CONFIG_ECM_HOST}",
+    "bpmHost": "${APP_CONFIG_BPM_HOST}",
+    "identityHost": "${APP_CONFIG_IDENTITY_HOST}",
     "loginRoute": "/login",
     "oauth2": {
-        "host": "${OAUTH_HOST}",
+        "host": "${APP_CONFIG_OAUTH2_HOST}",
         "authPath": "/protocol/openid-connect/token/",
-        "clientId": "activiti",
+        "clientId": "${APP_CONFIG_OAUTH2_CLIENTID}",
         "scope": "openid",
         "secret": "",
-        "implicitFlow": true,
-        "silentLogin": true,
-        "redirectSilentIframeUri": "",
-        "redirectUri": "/",
-        "redirectUriLogout": "/"
+        "implicitFlow": ${APP_CONFIG_OAUTH2_IMPLICIT_FLOW},
+        "silentLogin": ${APP_CONFIG_OAUTH2_SILENT_LOGIN},
+        "redirectSilentIframeUri": "${APP_CONFIG_OAUTH2_REDIRECT_SILENT_IFRAME_URI}",
+        "redirectUri": "${APP_CONFIG_OAUTH2_REDIRECT_LOGIN}",
+        "redirectUriLogout": "${APP_CONFIG_OAUTH2_REDIRECT_LOGOUT}"
     },
-    "notificationDefaultDuration": "4000",
+    "notificationDefaultDuration": ${APP_CONFIG_NOTIFICATION_LAST},
+    "showNotificationHistory": ${APP_CONFIG_SHOW_NOTIFICATION_HISTORY},
     "logLevel": "trace",
     "application": {
         "name": "Activiti Modeling Application"

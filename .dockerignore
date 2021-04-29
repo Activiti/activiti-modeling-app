@@ -1,14 +1,7 @@
-.git
-.github
-.vscode
-coverage
-docs
-e2e
-node_modules
-scripts
-src
-jest
-projects
-resources
-status
+# Ignore everything
+**
+
+# Only allow
+!dist
+!docker
 

@@ -137,6 +137,7 @@
     "cpx": "1.5.0",
     "cspell": "^5.3.12",
     "dotenv": "8.2.0",
+    "envsub": "^4.0.7",
     "fs-extra": "^9.1.0",
     "github-api": "^3.3.0",
     "handlebars": "4.7.6",
