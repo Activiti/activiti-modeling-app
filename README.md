@@ -20,6 +20,30 @@ Run the following command to install all third-party dependencies:
 npm install
 ```
 
+## Setting up environment variables
+
+We need to set some environment variable to be able to run the local dev server. In the project root folder, create an `.env` file (this is gitignored) with the following data:
+
+```bash
+APP_CONFIG_BPM_HOST="<your-api-url>"
+APP_CONFIG_ECM_HOST="<your-api-url>"
+
+# Like: http://my-acm.implementation.com/auth/realms/alfresco
+APP_CONFIG_OAUTH2_HOST="<your-api-url/auth>"
+# Like: http://my-acm.implementation.com/auth/admin/realms/alfresco
+APP_CONFIG_IDENTITY_HOST="<your-api-url/auth/admin>"
+
+APP_CONFIG_AUTH_TYPE="OAUTH"
+APP_CONFIG_OAUTH2_CLIENTID="activiti"
+APP_CONFIG_OAUTH2_IMPLICIT_FLOW=true
+APP_CONFIG_OAUTH2_SILENT_LOGIN=true
+APP_CONFIG_OAUTH2_REDIRECT_SILENT_IFRAME_URI="{protocol}//{hostname}{:port}/assets/silent-refresh.html"
+APP_CONFIG_OAUTH2_REDIRECT_LOGIN=/
+APP_CONFIG_OAUTH2_REDIRECT_LOGOUT=/
+APP_CONFIG_NOTIFICATION_LAST=6000
+APP_CONFIG_SHOW_NOTIFICATION_HISTORY=true
+```
+
 ### Running the application
 
 Use one of the following commands to run the application:

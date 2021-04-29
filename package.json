@@ -1,12 +1,16 @@
 {
   "name": "activiti-modeling-app",
   "description": "Activiti Modeling Application",
-  "commit": "",
+  "commit": "<build-generated-commit>",
   "version": "0.2.0",
   "author": "Alfresco Software, Ltd.",
   "scripts": {
     "postinstall": "ngcc",
+    "prebuild": "mkdir -p ./app/.tmp && cp ./app/src/app.config.json.tpl ./app/.tmp/app.config.json",
     "build": "ng build",
+    "prestart": "mkdir -p ./app/.tmp && npm run assemble-app-config && npm run validate-app-config",
+    "assemble-app-config": "envsub --env-file ./.env --env APP_CONFIG_BPM_HOST=http://localhost:4201 --env APP_CONFIG_ECM_HOST=http://localhost:4201 --all ./app/src/app.config.json.tpl ./app/.tmp/app.config.json",
+    "validate-app-config": "ajv validate -s ./node_modules/@alfresco/adf-core/app.config.schema.json -d ./app/.tmp/app.config.json --errors=text --verbose",
     "start": "ng serve",
     "test": "ng test",
     "dep-graph": "nx dep-graph"

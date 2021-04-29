@@ -25,7 +25,11 @@
               ]
             },
             "assets": [
-              "app/src/app.config.json",
+              {
+                "input": "app/.tmp",
+                "output": "/",
+                "glob": "app.config.json"
+              },
               "app/src/favicon-96x96.png",
               "app/src/assets",
               {
