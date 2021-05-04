@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { EntityProperty } from '../../../api/types';
 import { DialogService } from '../../../dialogs/services/dialog.service';
@@ -28,7 +28,7 @@ import { ExpressionCodeEditorDialogComponent, ExpressionCodeEditorDialogData } f
     selector: 'modelingsdk-expression-code-editor',
     templateUrl: 'expression-code-editor.component.html',
 })
-export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnChanges {
 
     constructor(
         private uuidService: UuidService,
@@ -94,7 +94,6 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
 
     workingExpression: string;
     private cachedExpression: string;
-    private removeLanguage = false;
 
     ngOnInit(): void {
         this.initLanguage();
@@ -147,17 +146,10 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
         }
     }
 
-    ngOnDestroy(): void {
-        if (this.removeLanguage) {
-            this.expressionsEditorService.removeEditorLanguageSettings(this.language);
-        }
-    }
-
     private initLanguage(force = false) {
         if (force || !this.language) {
             this.language = this.EXPRESSION_LANGUAGE_PREFIX + '-' + this.uuidService.generate();
             this.expressionsEditorService.initExpressionEditor(this.language, this.variables);
-            this.removeLanguage = true;
         }
     }
 

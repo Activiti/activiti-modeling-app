@@ -61,7 +61,6 @@ describe('ExpressionCodeEditorComponent', () => {
                     provide: ExpressionsEditorService,
                     useValue: {
                         initExpressionEditor: jest.fn(),
-                        removeEditorLanguageSettings: jest.fn(),
                         colorizeElement: jest.fn(),
                     }
                 }
@@ -316,28 +315,6 @@ describe('ExpressionCodeEditorComponent', () => {
             };
             component.ngOnChanges(changes);
             expect(component.editorOptions.wordWrap).toEqual('off');
-        });
-    });
-
-    describe('ngOnDestroy', () => {
-        it('should removeEditorLanguageSettings if it is an expression language', () => {
-            spyOn(expressionsEditorService, 'removeEditorLanguageSettings');
-
-            component.language = 'expression-language';
-
-            component.ngOnDestroy();
-
-            expect(expressionsEditorService.removeEditorLanguageSettings).toHaveBeenCalled();
-        });
-
-        it('should not removeEditorLanguageSettings if it is not an expression language', () => {
-            spyOn(expressionsEditorService, 'removeEditorLanguageSettings');
-
-            component.language = 'javascript';
-
-            component.ngOnDestroy();
-
-            expect(expressionsEditorService.removeEditorLanguageSettings).toHaveBeenCalled();
         });
     });
 

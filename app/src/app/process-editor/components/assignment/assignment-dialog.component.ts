@@ -846,7 +846,6 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.onDestroy$.next();
         this.onDestroy$.complete();
-        this.expressionsEditorService.removeEditorLanguageSettings(this.languageType);
     }
 
     get staticForm(): FormGroup {

@@ -39,10 +39,6 @@ describe('AssignmentDialogComponent', () => {
     let component: AssignmentDialogComponent;
     let alfrescoApiService: AlfrescoApiService;
 
-    const expressionsEditorService: ExpressionsEditorService = new ExpressionsEditorService();
-    expressionsEditorService.initExpressionEditor = () => { };
-    expressionsEditorService.removeEditorLanguageSettings = () => { };
-
     const mockDialogRef = {
         close: jasmine.createSpy('close'),
         open: jasmine.createSpy('open')
@@ -115,7 +111,9 @@ describe('AssignmentDialogComponent', () => {
             ],
             providers: [
                 { provide: TranslationService, useClass: TranslationMock },
-                { provide: ExpressionsEditorService, useValue: expressionsEditorService },
+                { provide: ExpressionsEditorService, useValue: {
+                    initExpressionEditor: jest.fn()
+                } },
                 { provide: MatDialogRef, useValue: mockDialogRef },
                 { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
                 {

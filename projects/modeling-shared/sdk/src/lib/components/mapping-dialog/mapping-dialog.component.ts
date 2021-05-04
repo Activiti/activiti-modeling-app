@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ConnectorParameter, EntityProperty, ServiceParameterMapping } from '../../api/types';
 import { UuidService } from '../../services/uuid.service';
 import { VariableMappingType, MappingRowModel, MappingValueType, MappingDialogService, MappingDialogData } from '../../services/mapping-dialog.service';
@@ -31,7 +31,7 @@ import { ExpressionsEditorService } from '../../code-editor/services/expressions
     host: { class: 'modelingsdk-mapping-dialog' }
 })
 
-export class MappingDialogComponent implements OnInit, OnDestroy {
+export class MappingDialogComponent implements OnInit {
     inputMapping: ServiceParameterMapping;
     inputParameters: ConnectorParameter[];
     outputParameters: ConnectorParameter[];
@@ -108,10 +108,6 @@ export class MappingDialogComponent implements OnInit, OnDestroy {
         this.initSelectedTab(this.selectedRow, true);
         const values = this.service.initMappingValue(this.dataSource, this.selectedRow);
         Object.assign(this, { variableValue: values.variableValue, expressionValue: values.expressionValue, valueValue: values.valueValue });
-    }
-
-    ngOnDestroy() {
-        this.expressionsEditorService.removeEditorLanguageSettings(this.language);
     }
 
     private dataSourceInit(type: VariableMappingType): void {

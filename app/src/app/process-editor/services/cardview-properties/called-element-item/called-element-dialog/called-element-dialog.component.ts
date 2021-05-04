@@ -111,7 +111,6 @@ export class CalledElementDialogComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.expressionsEditorService.removeEditorLanguageSettings(this.language);
         this.onDestroy$.next();
         this.onDestroy$.complete();
     }

@@ -56,9 +56,6 @@ describe('MappingDialogComponent', () => {
 
     const inputMappingDialogService: InputMappingDialogService = new InputMappingDialogService(inputTypes);
     const outputMappingDialogService: OutputMappingDialogService = new OutputMappingDialogService(inputTypes);
-    const expressionsEditorService: ExpressionsEditorService = new ExpressionsEditorService();
-    expressionsEditorService.initExpressionEditor = () => { };
-    expressionsEditorService.removeEditorLanguageSettings = () => { };
 
     const helpIconText = 'help';
 
@@ -155,7 +152,9 @@ describe('MappingDialogComponent', () => {
                 { provide: UuidService, useValue: { generate() { return 'generated-uuid'; } } },
                 { provide: InputMappingDialogService, useValue: inputMappingDialogService },
                 { provide: OutputMappingDialogService, useValue: outputMappingDialogService },
-                { provide: ExpressionsEditorService, useValue: expressionsEditorService },
+                { provide: ExpressionsEditorService, useValue: {
+                    initExpressionEditor: jest.fn()
+                } },
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });
