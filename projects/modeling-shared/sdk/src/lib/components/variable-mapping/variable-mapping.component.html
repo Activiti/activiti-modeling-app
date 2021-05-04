@@ -2,9 +2,9 @@
     <div class="adf-property-label">{{ 'SDK.VARIABLE_MAPPING.MAPPING_TYPE' | translate }}</div>
     <mat-select [(ngModel)]="mappingBehavior" (selectionChange)="onChangeMappingBehavior($event)">
         <mat-option [value]="variableBehaviorList.none">{{ 'SDK.VARIABLE_MAPPING.MAP_NO_VARIABLE' | translate }}</mat-option>
+        <mat-option [value]="variableBehaviorList.all">{{ 'SDK.VARIABLE_MAPPING.MAP_ALL' | translate }}</mat-option>
         <mat-option *ngIf="canShowMapVariableOption" [value]="variableBehaviorList.map">{{ 'SDK.VARIABLE_MAPPING.MAP_VARIABLES' | translate }}</mat-option>
         <mat-option [value]="variableBehaviorList.inputs">{{ 'SDK.VARIABLE_MAPPING.MAP_ALL_INPUTS' | translate }}</mat-option>
         <mat-option [value]="variableBehaviorList.outputs">{{ 'SDK.VARIABLE_MAPPING.MAP_ALL_OUTPUTS' | translate }}</mat-option>
-        <mat-option [value]="variableBehaviorList.all">{{ 'SDK.VARIABLE_MAPPING.MAP_ALL' | translate }}</mat-option>
     </mat-select>
 </mat-form-field>

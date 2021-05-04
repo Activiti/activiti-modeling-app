@@ -36,10 +36,10 @@ export class VariableMappingTypeComponent {
 
     variableBehaviorList = {
         none: VariableMappingBehavior.MAP_NO_VARIABLE,
+        all: VariableMappingBehavior.MAP_ALL,
         map: VariableMappingBehavior.MAP_VARIABLE,
         inputs: VariableMappingBehavior.MAP_ALL_INPUTS,
-        outputs: VariableMappingBehavior.MAP_ALL_OUTPUTS,
-        all: VariableMappingBehavior.MAP_ALL
+        outputs: VariableMappingBehavior.MAP_ALL_OUTPUTS
     };
 
     onChangeMappingBehavior(event: MatSelectChange) {

@@ -64,10 +64,10 @@ describe('VariableMappingComponent', () => {
         fixture.detectChanges();
         const options = fixture.debugElement.queryAll(By.css('.mat-option'));
         expect(options[0].nativeElement.textContent).toEqual('SDK.VARIABLE_MAPPING.MAP_NO_VARIABLE');
-        expect(options[1].nativeElement.textContent).toEqual('SDK.VARIABLE_MAPPING.MAP_VARIABLES');
-        expect(options[2].nativeElement.textContent).toEqual('SDK.VARIABLE_MAPPING.MAP_ALL_INPUTS');
-        expect(options[3].nativeElement.textContent).toEqual('SDK.VARIABLE_MAPPING.MAP_ALL_OUTPUTS');
-        expect(options[4].nativeElement.textContent).toEqual('SDK.VARIABLE_MAPPING.MAP_ALL');
+        expect(options[1].nativeElement.textContent).toEqual('SDK.VARIABLE_MAPPING.MAP_ALL');
+        expect(options[2].nativeElement.textContent).toEqual('SDK.VARIABLE_MAPPING.MAP_VARIABLES');
+        expect(options[3].nativeElement.textContent).toEqual('SDK.VARIABLE_MAPPING.MAP_ALL_INPUTS');
+        expect(options[4].nativeElement.textContent).toEqual('SDK.VARIABLE_MAPPING.MAP_ALL_OUTPUTS');
     });
 
     it('should emit mapping behavior on dropdown change', () => {
@@ -77,7 +77,7 @@ describe('VariableMappingComponent', () => {
         select1.nativeElement.click();
         fixture.detectChanges();
         const options = fixture.debugElement.queryAll(By.css('.mat-option'));
-        options[1].nativeElement.click();
+        options[2].nativeElement.click();
         fixture.detectChanges();
         expect(component.mappingBehaviorChange.emit).toHaveBeenCalledWith(VariableMappingBehavior.MAP_VARIABLE);
     });
