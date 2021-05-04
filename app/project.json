@@ -1,6 +1,6 @@
 {
     "standalone": {
-        "packageJson": "../package.json"
+        "projectRoot": ".."
     },
     "scripts" : {
         "prebuild": [{
