@@ -79,56 +79,65 @@ describe('ExpressionCodeEditorComponent', () => {
     });
 
     describe('onInit', () => {
-        it('should not init language when it is set', () => {
-            spyOn(uuidService, 'generate');
+        it('should init expression language', () => {
+            spyOn(uuidService, 'generate').and.returnValue('generated-uuid-2');
             spyOn(expressionsEditorService, 'initExpressionEditor');
-            component.language = 'javascript';
-            component.ngOnInit();
-            expect(uuidService.generate).not.toHaveBeenCalled();
-            expect(expressionsEditorService.initExpressionEditor).not.toHaveBeenCalled();
-            expect(component.language).toEqual('javascript');
-
-        });
-
-        it('should init language when it is not set', () => {
-            spyOn(uuidService, 'generate').and.returnValue('generated-uuid');
-            spyOn(expressionsEditorService, 'initExpressionEditor');
+            component.expressionLanguage = null;
             component.language = null;
+
             component.ngOnInit();
+
             expect(uuidService.generate).toHaveBeenCalled();
             expect(expressionsEditorService.initExpressionEditor).toHaveBeenCalled();
-            expect(component.language).toEqual('expression-generated-uuid');
+            expect(component.expressionLanguage).toEqual('expression-generated-uuid-2');
         });
 
-        it('should create working expression with brackets when not removeEnclosingBrackets', () => {
+        it('should create working expression with brackets when not removeEnclosingBrackets and no host language', () => {
             component.removeEnclosingBrackets = false;
+
+            component.ngOnInit();
+
+            expect(component.workingExpression).toEqual('${a == b}');
+        });
+
+        it('should create working expression without brackets when removeEnclosingBrackets and no host language', () => {
+            component.removeEnclosingBrackets = true;
+
+            component.ngOnInit();
+
+            expect(component.workingExpression).toEqual('a == b');
+        });
+
+        it('should create working expression with brackets when host language', () => {
+            component.language = 'javascript';
+            component.removeEnclosingBrackets = false;
+
+            component.ngOnInit();
+
+            expect(component.workingExpression).toEqual('${a == b}');
+
+            component.removeEnclosingBrackets = true;
+
             component.ngOnInit();
             expect(component.workingExpression).toEqual('${a == b}');
         });
 
-        it('should create working expression without brackets when removeEnclosingBrackets', () => {
-            component.removeEnclosingBrackets = true;
-            component.ngOnInit();
-            expect(component.workingExpression).toEqual('a == b');
-        });
-
-        it('should init fileUri when it is not set', () => {
+        it('should init fileUri always', () => {
+            component.expressionLanguage = null;
             component.fileUri = null;
-            component.language = 'expression-generated-uuid';
-            component.ngOnInit();
-            expect(component.fileUri).toEqual('expression://expression-generated-uuid:editor');
-        });
+            component.language = 'javascript';
 
-        it('should not init fileUri when it is set', () => {
-            component.fileUri = 'my://file:uri';
             component.ngOnInit();
-            expect(component.fileUri).toEqual('my://file:uri');
+
+            expect(component.fileUri).toEqual('expression://javascript:expression-generated-uuid');
         });
 
         it('should init editorOptions', () => {
             component.removeLineNumbers = false;
             component.lineWrapping = true;
+
             component.ngOnInit();
+
             expect(component.editorOptions.wordWrap).toEqual('on');
             expect(component.editorOptions.lineNumbers).toEqual('on');
         });
@@ -138,22 +147,32 @@ describe('ExpressionCodeEditorComponent', () => {
         it('should colorize element when not enableInlineEditor', () => {
             spyOn(expressionsEditorService, 'colorizeElement');
             component.enableInlineEditor = false;
+
             component.ngAfterViewInit();
+
             expect(expressionsEditorService.colorizeElement).toHaveBeenCalled();
         });
 
         it('should not colorize element when enableInlineEditor', () => {
             spyOn(expressionsEditorService, 'colorizeElement');
+
             component.enableInlineEditor = true;
             component.ngAfterViewInit();
+
             expect(expressionsEditorService.colorizeElement).not.toHaveBeenCalled();
         });
     });
 
     describe('ngOnChanges', () => {
-        beforeAll(() => {
+        beforeEach(() => {
+            component.language = null;
+            component.expressionLanguage = null;
+            component.workingExpression = null;
+            component.removeEnclosingBrackets = true;
             component.removeLineNumbers = true;
             component.lineWrapping = true;
+            component.variables = [];
+
             component.ngOnInit();
         });
 
@@ -178,30 +197,29 @@ describe('ExpressionCodeEditorComponent', () => {
             expect(expressionsEditorService.colorizeElement).toHaveBeenCalled();
         });
 
-        it('should init language and previewer on language changes', () => {
+        it('should init language and previewer on host language changes', () => {
             spyOn(expressionsEditorService, 'colorizeElement');
             spyOn(uuidService, 'generate').and.returnValue('generated-uuid');
             spyOn(expressionsEditorService, 'initExpressionEditor');
 
             component.enableInlineEditor = false;
             component.removeEnclosingBrackets = true;
-            component.language = null;
+            component.language = 'javascript';
             const changes: SimpleChanges = {
-                language: {
-                    currentValue: null,
+                hostLanguage: {
+                    currentValue: 'javascript',
                     firstChange: false,
                     isFirstChange: () => false,
-                    previousValue: 'javascript'
+                    previousValue: null
                 }
             };
 
             component.ngOnChanges(changes);
 
-            expect(uuidService.generate).toHaveBeenCalled();
-            expect(expressionsEditorService.initExpressionEditor).toHaveBeenCalled();
-            expect(component.language).toEqual('expression-generated-uuid');
+            expect(expressionsEditorService.initExpressionEditor).toHaveBeenCalledWith('expression-generated-uuid', [], 'javascript', false);
+            expect(component.expressionLanguage).toEqual('expression-generated-uuid');
             expect(expressionsEditorService.colorizeElement).toHaveBeenCalled();
-            expect(component.fileUri).toEqual('expression://expression-generated-uuid:editor');
+            expect(component.fileUri).toEqual('expression://javascript:expression-generated-uuid');
         });
 
         it('should init working expression and previewer on removeEnclosingBrackets changes', () => {
@@ -210,7 +228,7 @@ describe('ExpressionCodeEditorComponent', () => {
             component.enableInlineEditor = false;
             component.expression = '${a == b}';
             component.removeEnclosingBrackets = true;
-            const changes: SimpleChanges = {
+            let changes: SimpleChanges = {
                 removeEnclosingBrackets: {
                     currentValue: true,
                     firstChange: false,
@@ -223,6 +241,23 @@ describe('ExpressionCodeEditorComponent', () => {
 
             expect(component.workingExpression).toEqual('a == b');
             expect(expressionsEditorService.colorizeElement).toHaveBeenCalled();
+
+            component.language = 'javascript';
+            component.enableInlineEditor = false;
+            component.removeEnclosingBrackets = true;
+            changes = {
+                removeEnclosingBrackets: {
+                    currentValue: true,
+                    firstChange: false,
+                    isFirstChange: () => false,
+                    previousValue: false
+                }
+            };
+
+            component.ngOnChanges(changes);
+
+            expect(component.workingExpression).toEqual('${a == b}');
+            expect(expressionsEditorService.colorizeElement).toHaveBeenCalled();
         });
 
         it('should init language and previewer on variables changes', () => {
@@ -232,7 +267,7 @@ describe('ExpressionCodeEditorComponent', () => {
 
             component.enableInlineEditor = false;
             component.removeEnclosingBrackets = true;
-            component.language = 'expression-generated-uuid';
+            component.language = 'javascript';
             component.variables = null;
             const changes: SimpleChanges = {
                 variables: {
@@ -246,8 +281,8 @@ describe('ExpressionCodeEditorComponent', () => {
             component.ngOnChanges(changes);
 
             expect(uuidService.generate).toHaveBeenCalled();
-            expect(expressionsEditorService.initExpressionEditor).toHaveBeenCalled();
-            expect(component.language).toEqual('expression-new-generated-uuid');
+            expect(expressionsEditorService.initExpressionEditor).toHaveBeenCalledWith('expression-new-generated-uuid', null, 'javascript', false);
+            expect(component.expressionLanguage).toEqual('expression-new-generated-uuid');
             expect(expressionsEditorService.colorizeElement).toHaveBeenCalled();
         });
 
@@ -319,10 +354,10 @@ describe('ExpressionCodeEditorComponent', () => {
     });
 
     describe('Component outputs', () => {
-        it('should emit bracketed expression if expression contains brackets and is expression language', () => {
+        it('should emit bracketed expression if expression contains brackets and no host language', () => {
             spyOn(component.expressionChange, 'emit');
 
-            component.language = 'expression-generated-uuid';
+            component.language = null;
             component.removeEnclosingBrackets = true;
             component.expression = '${a == b}';
 
@@ -331,10 +366,10 @@ describe('ExpressionCodeEditorComponent', () => {
             expect(component.expressionChange.emit).toHaveBeenCalledWith('${c == d}');
         });
 
-        it('should emit bracketed expression if expression does not contain brackets and is expression language', () => {
+        it('should emit bracketed expression if expression does not contain brackets and no host language', () => {
             spyOn(component.expressionChange, 'emit');
 
-            component.language = 'expression-generated-uuid';
+            component.language = null;
             component.removeEnclosingBrackets = true;
             component.expression = '${a == b}';
 
@@ -343,7 +378,7 @@ describe('ExpressionCodeEditorComponent', () => {
             expect(component.expressionChange.emit).toHaveBeenCalledWith('${c == d}');
         });
 
-        it('should emit undefined if expression is null', () => {
+        it('should emit null if expression is null', () => {
             spyOn(component.expressionChange, 'emit');
 
             component.language = 'expression-generated-uuid';
@@ -351,6 +386,18 @@ describe('ExpressionCodeEditorComponent', () => {
             component.expression = '${a == b}';
 
             component.expChanged(null);
+
+            expect(component.expressionChange.emit).toHaveBeenCalledWith(null);
+        });
+
+        it('should emit undefined if expression is undefined', () => {
+            spyOn(component.expressionChange, 'emit');
+
+            component.language = 'expression-generated-uuid';
+            component.removeEnclosingBrackets = true;
+            component.expression = '${a == b}';
+
+            component.expChanged(undefined);
 
             expect(component.expressionChange.emit).toHaveBeenCalledWith(undefined);
         });
@@ -367,7 +414,7 @@ describe('ExpressionCodeEditorComponent', () => {
             expect(component.expressionChange.emit).toHaveBeenCalledWith('');
         });
 
-        it('should emit the expression string if it is not an expression language', () => {
+        it('should emit the expression string if it has host language', () => {
             spyOn(component.expressionChange, 'emit');
 
             component.language = 'javascript';
@@ -377,6 +424,10 @@ describe('ExpressionCodeEditorComponent', () => {
             component.expChanged('let a=5;');
 
             expect(component.expressionChange.emit).toHaveBeenCalledWith('let a=5;');
+
+            component.expChanged('let a=${c == d};');
+
+            expect(component.expressionChange.emit).toHaveBeenCalledWith('let a=${c == d};');
         });
     });
 

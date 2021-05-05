@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { EntityProperty } from '../../../api/types';
 import { DialogService } from '../../../dialogs/services/dialog.service';
@@ -34,7 +34,8 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
         private uuidService: UuidService,
         private expressionsEditorService: ExpressionsEditorService,
         private dialogService: DialogService,
-        private cdr: ChangeDetectorRef) { }
+        private cdr: ChangeDetectorRef,
+        private renderer: Renderer2) { }
 
     @Input()
     expression = '';
@@ -53,9 +54,6 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
 
     @Input()
     enableDialogEditor = true;
-
-    @Input()
-    fileUri: string;
 
     @Input()
     removeLineNumbers = true;
@@ -91,81 +89,83 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
         lineNumbers: 'off',
         wordWrap: 'on'
     };
-
+    fileUri: string;
     workingExpression: string;
+    workingRemoveEnclosingBrackets: boolean;
+    expressionLanguage: string;
     private cachedExpression: string;
+    private initialized = false;
+
+    init() {
+        if (!this.initialized) {
+            this.fullInit();
+            this.initialized = true;
+        }
+    }
 
     ngOnInit(): void {
-        this.initLanguage();
-        this.initFileUri();
-        this.initEditorOptions();
-        this.initWorkingExpression(this.expression);
+        try {
+            this.fullInit();
+            this.initialized = true;
+        } catch (error) {
+            this.initialized = false;
+        }
     }
 
     ngAfterViewInit(): void {
-        if (!this.enableInlineEditor) {
-            this.previewer.nativeElement.innerHTML = this.workingExpression;
-            this.expressionsEditorService.colorizeElement(this.previewer.nativeElement);
-        }
+        this.initExpressionViewerIfNeeded();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['expression'] && !changes['expression'].firstChange && changes['expression'].currentValue !== this.cachedExpression) {
             this.cachedExpression = changes['expression'].currentValue;
             this.initWorkingExpression(this.expression);
-            this.ngAfterViewInit();
+            this.initExpressionViewerIfNeeded();
         }
-        if (changes['language'] && !changes['language'].firstChange) {
-            this.initLanguage();
-            this.initFileUri(true);
-            this.recreateEditor();
-            this.ngAfterViewInit();
+        if (changes['hostLanguage'] && !changes['hostLanguage'].firstChange) {
+            this.fullInit();
         }
         if (changes['removeEnclosingBrackets'] && !changes['removeEnclosingBrackets'].firstChange) {
-            this.initWorkingExpression(this.expression);
-            this.ngAfterViewInit();
+            this.fullInit();
         }
         if (changes['variables'] && !changes['variables'].firstChange) {
-            if (this.language?.startsWith(this.EXPRESSION_LANGUAGE_PREFIX + '-')) {
-                this.initLanguage(true);
-            }
-            this.recreateEditor();
-            this.ngAfterViewInit();
+            this.fullInit();
         }
         if (changes['enableInlineEditor'] && !changes['enableInlineEditor'].firstChange) {
-            this.ngAfterViewInit();
+            this.initWorkingExpression(this.expression);
+            this.initExpressionViewerIfNeeded();
         }
-        if (changes['fileUri'] && !changes['fileUri'].firstChange) {
-            this.initFileUri();
-            this.recreateEditor();
-        }
-
         if ((changes['removeLineNumbers'] && !changes['removeLineNumbers'].firstChange) || (changes['lineWrapping'] && !changes['lineWrapping'].firstChange)) {
+            this.initWorkingExpression(this.expression);
             this.initEditorOptions();
             this.recreateEditor();
         }
     }
 
-    private initLanguage(force = false) {
-        if (force || !this.language) {
-            this.language = this.EXPRESSION_LANGUAGE_PREFIX + '-' + this.uuidService.generate();
-            this.expressionsEditorService.initExpressionEditor(this.language, this.variables);
+    private fullInit() {
+        this.initRemoveEnclosingBrackets();
+        this.initWorkingExpression(this.expression);
+        this.initLanguage();
+        this.initEditorOptions();
+        this.recreateEditor();
+        this.initExpressionViewerIfNeeded();
+    }
+
+    private initRemoveEnclosingBrackets() {
+        if (this.language) {
+            this.workingRemoveEnclosingBrackets = false;
+        } else {
+            this.workingRemoveEnclosingBrackets = this.removeEnclosingBrackets;
         }
     }
 
     private initWorkingExpression(exp: string) {
-        this.workingExpression = exp ? exp.trim() : '';
-        if (this.removeEnclosingBrackets && exp && exp.trim().length > 0) {
+        this.workingExpression = exp ? exp : '';
+        if (this.workingRemoveEnclosingBrackets && exp && exp.trim().length > 0) {
             const groups = exp.trim().match(this.expressionRegex);
             if (groups) {
-                this.workingExpression = groups[1].trim();
+                this.workingExpression = groups[1];
             }
-        }
-    }
-
-    private initFileUri(force = false) {
-        if (force || !this.fileUri) {
-            this.fileUri = getFileUri(this.EXPRESSION_LANGUAGE_PREFIX, this.language, 'editor');
         }
     }
 
@@ -173,6 +173,20 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
         this.editorOptions.language = this.language;
         this.editorOptions.lineNumbers = this.removeLineNumbers ? 'off' : 'on';
         this.editorOptions.wordWrap = this.lineWrapping ? 'on' : 'off';
+    }
+
+    private initLanguage() {
+        this.expressionLanguage = this.EXPRESSION_LANGUAGE_PREFIX + '-' + this.uuidService.generate();
+        this.fileUri = getFileUri(this.EXPRESSION_LANGUAGE_PREFIX, this.language, this.expressionLanguage);
+        this.expressionsEditorService.initExpressionEditor(this.expressionLanguage, this.variables, this.language, this.workingRemoveEnclosingBrackets);
+    }
+
+    private initExpressionViewerIfNeeded() {
+        if (!this.enableInlineEditor) {
+            this.previewer.nativeElement.innerHTML = '';
+            this.renderer.appendChild(this.previewer.nativeElement, this.renderer.createText(this.workingExpression));
+            this.expressionsEditorService.colorizeElement(this.previewer.nativeElement);
+        }
     }
 
     private recreateEditor() {
@@ -190,16 +204,16 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
         this.expressionChange.emit(this.expression);
     }
 
-    private setExpressionToBracketedExpressionIfNeeded(exp: string) {
-        exp = exp?.trim();
-        if (this.language?.startsWith(this.EXPRESSION_LANGUAGE_PREFIX + '-')) {
+    private setExpressionToBracketedExpressionIfNeeded(expression: string) {
+        const exp = expression ? expression.trim() : expression;
+        if (!this.language && this.workingRemoveEnclosingBrackets) {
             if (exp && exp.length > 0 && exp.match(this.expressionRegex)) {
                 this.expression = exp;
             } else {
                 this.expression = (exp && exp.length > 0) ? `\${${exp}}` : exp;
             }
         } else {
-            this.expression = exp;
+            this.expression = expression;
         }
     }
 
@@ -209,9 +223,8 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
         const dialogData: ExpressionCodeEditorDialogData = {
             expression: this.expression,
             language: this.language,
-            removeEnclosingBrackets: this.removeEnclosingBrackets,
+            removeEnclosingBrackets: this.workingRemoveEnclosingBrackets,
             variables: this.variables,
-            fileUri: this.fileUri + '-dialog',
             expressionUpdate$: expressionUpdate$
         };
 

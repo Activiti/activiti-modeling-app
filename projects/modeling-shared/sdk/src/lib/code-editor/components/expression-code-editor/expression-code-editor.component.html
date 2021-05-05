@@ -1,9 +1,9 @@
 <div class="ama-expression-code-editor" [ngClass]="!enableInlineEditor ? 'editor-disabled' : ''">
-    <modelingsdk-code-editor class="monaco-editor ama-expression-code-editor-monaco" *ngIf="enableInlineEditor"
-        (changed)="expChanged($event)" content="{{workingExpression}}" language="{{language}}" [fileUri]="fileUri"
+    <modelingsdk-code-editor class="monaco-editor ama-expression-code-editor-monaco" *ngIf="enableInlineEditor" (onInit)="init()"
+        (changed)="expChanged($event)" content="{{workingExpression}}" language="{{expressionLanguage}}" [fileUri]="fileUri"
         [options]="editorOptions">
     </modelingsdk-code-editor>
-    <pre id="{{language}}" data-lang="{{language}}" class="ama-expression-code-editor-preview" #expressionPreviewer
+    <pre id="{{expressionLanguage}}" data-lang="{{expressionLanguage}}" class="ama-expression-code-editor-preview" #expressionPreviewer
         [ngClass]="enableInlineEditor ? 'preview-hidden' : ''">
     </pre>
     <button mat-mini-fab color="primary" matTooltip="{{'SDK.EXPRESSION_CODE_EDITOR.EDIT_IN_DIALOG'|translate}}"

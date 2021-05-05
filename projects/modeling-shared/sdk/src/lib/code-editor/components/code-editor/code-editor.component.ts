@@ -57,6 +57,7 @@ export class CodeEditorComponent implements OnDestroy, OnInit, OnChanges {
     @Input() content = '';
     @Output() changed = new EventEmitter<string>();
     @Output() positionChanged = new EventEmitter<CodeEditorPosition>();
+    @Output() onInit = new EventEmitter<monaco.editor.ICodeEditor>();
 
     editorModel: NgxEditorModel;
     config: NgxMonacoEditorConfig;
@@ -116,6 +117,8 @@ export class CodeEditorComponent implements OnDestroy, OnInit, OnChanges {
         editor.onDidChangeCursorPosition((event: { position: CodeEditorPosition }) => {
             this.positionChanged.emit(event.position);
         });
+
+        this.onInit.emit(editor);
     }
 
     onEditorChange(): void {

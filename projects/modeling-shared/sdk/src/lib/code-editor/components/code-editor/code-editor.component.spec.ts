@@ -38,15 +38,17 @@ describe('CodeEditorComponent', () => {
             declarations: [CodeEditorComponent],
             providers: [
                 { provide: ThemingService, useValue: { vsCodeTheme$ } },
-                { provide: Store, useValue: {
-                    select: jest.fn().mockImplementation((selector) => {
-                        if (selector === selectSelectedTheme) {
-                            return of({ name: 'Light', className: 'vs-light' });
-                        }
+                {
+                    provide: Store, useValue: {
+                        select: jest.fn().mockImplementation((selector) => {
+                            if (selector === selectSelectedTheme) {
+                                return of({ name: 'Light', className: 'vs-light' });
+                            }
 
-                        return of({});
-                    }),
-                    dispatch: jest.fn() }
+                            return of({});
+                        }),
+                        dispatch: jest.fn()
+                    }
                 }
             ]
         });
@@ -60,6 +62,19 @@ describe('CodeEditorComponent', () => {
     it('should render the editor', () => {
         const editor = fixture.debugElement.query(By.css('.monaco-editor'));
         expect(editor).not.toBeNull();
+    });
+
+    it('should emit onInit when editor is ready', () => {
+        spyOn(component.onInit, 'emit');
+        const editor = {
+            onKeyUp: jest.fn(),
+            onDidChangeCursorPosition: jest.fn(),
+            dispose: jest.fn()
+        } as unknown as monaco.editor.ICodeEditor;
+
+        component.onEditorInit(editor);
+
+        expect(component.onInit.emit).toHaveBeenCalledWith(editor);
     });
 
     describe('editorOptions', () => {
@@ -108,7 +123,7 @@ describe('CodeEditorComponent', () => {
 
         beforeEach(() => {
             dummyEditor = <any>{
-                dispose() {},
+                dispose() { },
                 onKeyUp(callback) {
                     storedCallback = callback;
                 },
@@ -119,10 +134,10 @@ describe('CodeEditorComponent', () => {
                     storedCallback();
                 },
                 triggerPositionChange(position: CodeEditorPosition) {
-                    storedPositionCallback({position});
+                    storedPositionCallback({ position });
                 },
                 getValue() {
-                    return JSON.stringify({foo: 'bar'});
+                    return JSON.stringify({ foo: 'bar' });
                 }
             };
         });
