@@ -15,23 +15,21 @@
  * limitations under the License.
  */
 
-import { CardViewTextItemModel } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
+import { BpmnProperty, CardViewConditionExpressionItemModel } from '@alfresco-dbp/modeling-shared/sdk';
 import { FactoryProps } from './cardview-properties.factory';
 import { CardViewExpressionValidator } from './validators/card-view-expression.validator';
 
 const propertyName = BpmnProperty.conditionExpression;
 
 export function createExpressionProperty({ element }: FactoryProps) {
-    return new CardViewTextItemModel({
+    return new CardViewConditionExpressionItemModel({
         label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.EXPRESSION',
         value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,
         default: '',
-        multiline: true,
         editable: true,
-        data: { id: element.id },
+        data: { id: element.id, element },
         validators: [new CardViewExpressionValidator()]
     });
 }

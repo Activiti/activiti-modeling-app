@@ -109,6 +109,7 @@ import { CalledElementDialogComponent } from './services/cardview-properties/cal
 import { ProcessErrorsEffects } from './store/process-errors.effects';
 import { ProcessErrorsDialogComponent } from './components/process-modeler/process-errors/process-errors-dialog.component';
 import { CardViewProcessErrorsItemComponent } from './services/cardview-properties/process-errors-item/process-errors-item.component';
+import { CardViewConditionExpressionItemComponent } from './services/cardview-properties/condition-expression-item/condition-expression-item.component';
 
 @NgModule({
     imports: [
@@ -170,7 +171,8 @@ import { CardViewProcessErrorsItemComponent } from './services/cardview-properti
         CardViewTaskAssignmentItemComponent,
         CardViewProcessNameItemComponent,
         CalledElementDialogComponent,
-        CardViewProcessErrorsItemComponent
+        CardViewProcessErrorsItemComponent,
+        CardViewConditionExpressionItemComponent,
     ],
     exports: [ProcessEditorRoutingModule],
     providers: [
@@ -206,6 +208,7 @@ import { CardViewProcessErrorsItemComponent } from './services/cardview-properti
         providePropertyHandler(BpmnProperty.messagePayload, CardViewMessagePayloadItemComponent),
         providePropertyHandler(BpmnProperty.dueDate, CardViewDueDateItemComponent),
         providePropertyHandler(BpmnProperty.processName, CardViewProcessNameItemComponent),
+        providePropertyHandler(BpmnProperty.conditionExpression, CardViewConditionExpressionItemComponent),
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider(),
@@ -218,4 +221,4 @@ import { CardViewProcessErrorsItemComponent } from './services/cardview-properti
         ProcessConnectorService
     ]
 })
-export class ProcessEditorModule {}
+export class ProcessEditorModule { }
