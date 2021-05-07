@@ -61,6 +61,9 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
     @Input()
     lineWrapping = true;
 
+    @Input()
+    nonBracketedOutput = false;
+
     @Output()
     expressionChange = new EventEmitter<string>();
 
@@ -208,9 +211,9 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
         const exp = expression ? expression.trim() : expression;
         if (!this.language && this.workingRemoveEnclosingBrackets) {
             if (exp && exp.length > 0 && exp.match(this.expressionRegex)) {
-                this.expression = exp;
+                this.expression = this.nonBracketedOutput ? exp.match(this.expressionRegex)[1] : exp;
             } else {
-                this.expression = (exp && exp.length > 0) ? `\${${exp}}` : exp;
+                this.expression = (exp && exp.length > 0 && !this.nonBracketedOutput) ? `\${${exp}}` : exp;
             }
         } else {
             this.expression = expression;
@@ -225,6 +228,7 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
             language: this.language,
             removeEnclosingBrackets: this.workingRemoveEnclosingBrackets,
             variables: this.variables,
+            nonBracketedOutput: this.nonBracketedOutput,
             expressionUpdate$: expressionUpdate$
         };
 

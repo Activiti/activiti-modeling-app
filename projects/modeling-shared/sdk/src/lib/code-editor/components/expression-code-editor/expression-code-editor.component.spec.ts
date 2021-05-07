@@ -359,6 +359,7 @@ describe('ExpressionCodeEditorComponent', () => {
 
             component.language = null;
             component.removeEnclosingBrackets = true;
+            component.nonBracketedOutput = false;
             component.expression = '${a == b}';
 
             component.expChanged('${c == d}');
@@ -371,6 +372,7 @@ describe('ExpressionCodeEditorComponent', () => {
 
             component.language = null;
             component.removeEnclosingBrackets = true;
+            component.nonBracketedOutput = false;
             component.expression = '${a == b}';
 
             component.expChanged('c == d');
@@ -378,11 +380,38 @@ describe('ExpressionCodeEditorComponent', () => {
             expect(component.expressionChange.emit).toHaveBeenCalledWith('${c == d}');
         });
 
+        it('should not emit bracketed expression if expression contains brackets and no host language and nonBracketedOutputs', () => {
+            spyOn(component.expressionChange, 'emit');
+
+            component.language = null;
+            component.removeEnclosingBrackets = true;
+            component.nonBracketedOutput = true;
+            component.expression = '${a == b}';
+
+            component.expChanged('${c == d}');
+
+            expect(component.expressionChange.emit).toHaveBeenCalledWith('c == d');
+        });
+
+        it('should not emit bracketed expression if expression does not contain brackets and no host language and nonBracketedOutputs', () => {
+            spyOn(component.expressionChange, 'emit');
+
+            component.language = null;
+            component.removeEnclosingBrackets = true;
+            component.nonBracketedOutput = true;
+            component.expression = '${a == b}';
+
+            component.expChanged('c == d');
+
+            expect(component.expressionChange.emit).toHaveBeenCalledWith('c == d');
+        });
+
         it('should emit null if expression is null', () => {
             spyOn(component.expressionChange, 'emit');
 
             component.language = 'expression-generated-uuid';
             component.removeEnclosingBrackets = true;
+            component.nonBracketedOutput = true;
             component.expression = '${a == b}';
 
             component.expChanged(null);
@@ -395,6 +424,7 @@ describe('ExpressionCodeEditorComponent', () => {
 
             component.language = 'expression-generated-uuid';
             component.removeEnclosingBrackets = true;
+            component.nonBracketedOutput = true;
             component.expression = '${a == b}';
 
             component.expChanged(undefined);
@@ -407,6 +437,7 @@ describe('ExpressionCodeEditorComponent', () => {
 
             component.language = 'expression-generated-uuid';
             component.removeEnclosingBrackets = true;
+            component.nonBracketedOutput = true;
             component.expression = '${a == b}';
 
             component.expChanged('');
@@ -419,6 +450,7 @@ describe('ExpressionCodeEditorComponent', () => {
 
             component.language = 'javascript';
             component.removeEnclosingBrackets = true;
+            component.nonBracketedOutput = true;
             component.expression = '${a == b}';
 
             component.expChanged('let a=5;');

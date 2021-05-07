@@ -24,6 +24,7 @@ export interface ExpressionCodeEditorDialogData {
     expression: string;
     language: string;
     removeEnclosingBrackets: boolean;
+    nonBracketedOutput: boolean;
     variables: EntityProperty[];
     expressionUpdate$: Subject<string>;
 }

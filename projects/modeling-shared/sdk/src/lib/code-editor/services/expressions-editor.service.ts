@@ -58,7 +58,7 @@ export class ExpressionsEditorService {
     }
 
     static getTypeNameOfWord(word: string, parameters: any[], primitiveModelingTypesService: PrimitiveModelingTypesService, offset = 0): string {
-        const parts = word.split('.');
+        const parts = word?.split('.') || [];
         let typeName: string = null;
 
         for (let index = 0; index < (parts.length - 1 + offset); index++) {
@@ -276,15 +276,18 @@ export class ExpressionsEditorService {
                     endColumn: position.column
                 });
                 const words = lineBeforeCursor.match(ExpressionsEditorService.wordRegexSignature);
-                const offset = word.word.length > 0 ? activeParameter + 1 : activeParameter;
-                const activeTyping = words[words.length - 1 - offset];
+                if (words) {
+                    const offset = word.word.length > 0 ? activeParameter + 1 : activeParameter;
+                    const activeTyping = words[words.length - 1 - offset];
 
-                const typeName: string = ExpressionsEditorService.getTypeNameOfWord(activeTyping, parameters, primitiveModelingTypesService);
-                if (typeName) {
-                    const parts = activeTyping.split('.');
-                    const activeMethodSignature = parts[parts.length - 1];
-                    signatures = primitiveModelingTypesService.getSignatureHelperByType(typeName).filter(signature => signature.method.signature.startsWith(activeMethodSignature));
-                    activeSignature = signatures.findIndex(signature => signature.parameters?.length > activeParameter) || 0;
+                    const typeName: string = ExpressionsEditorService.getTypeNameOfWord(activeTyping, parameters, primitiveModelingTypesService);
+                    if (typeName) {
+                        const parts = activeTyping.split('.');
+                        const activeMethodSignature = parts[parts.length - 1];
+                        signatures = primitiveModelingTypesService.getSignatureHelperByType(typeName)
+                            .filter(signature => signature.method.signature.startsWith(activeMethodSignature));
+                        activeSignature = signatures.findIndex(signature => signature.parameters?.length > activeParameter) || 0;
+                    }
                 }
                 signatures.map(signature => signature.range = range);
                 return {
@@ -292,6 +295,7 @@ export class ExpressionsEditorService {
                     activeSignature,
                     signatures
                 };
+
             }
         });
     }
