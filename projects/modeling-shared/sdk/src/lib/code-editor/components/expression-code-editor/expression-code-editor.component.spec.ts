@@ -206,7 +206,7 @@ describe('ExpressionCodeEditorComponent', () => {
             component.removeEnclosingBrackets = true;
             component.language = 'javascript';
             const changes: SimpleChanges = {
-                hostLanguage: {
+                language: {
                     currentValue: 'javascript',
                     firstChange: false,
                     isFirstChange: () => false,

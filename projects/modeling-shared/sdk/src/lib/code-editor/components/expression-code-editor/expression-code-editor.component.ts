@@ -125,7 +125,7 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
             this.initWorkingExpression(this.expression);
             this.initExpressionViewerIfNeeded();
         }
-        if (changes['hostLanguage'] && !changes['hostLanguage'].firstChange) {
+        if (changes['language'] && !changes['language'].firstChange) {
             this.fullInit();
         }
         if (changes['removeEnclosingBrackets'] && !changes['removeEnclosingBrackets'].firstChange) {
