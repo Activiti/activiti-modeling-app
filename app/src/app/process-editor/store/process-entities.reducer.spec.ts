@@ -33,8 +33,11 @@ import {
     DeleteProcessExtensionAction
 } from './process-editor.actions';
 import { ProcessEntitiesState, initialProcessEntitiesState } from './process-entities.state';
-import { PROCESS, Process, ProcessContent, ServicesParameterMappings, ServiceParameterMappings,
-    UpdateServiceParametersAction, EntityProperty, EntityProperties, MappingType, UPDATE_SERVICE_PARAMETERS } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    PROCESS, Process, ProcessContent, ServicesParameterMappings, ServiceParameterMappings,
+    UpdateServiceParametersAction, EntityProperty, EntityProperties, MappingType, UPDATE_SERVICE_PARAMETERS,
+    UpdateUserTaskTemplateAction, TaskTemplateType, UPDATE_TASK_TEMPLATE
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { processEntitiesReducer } from './process-entities.reducer';
 import { mockProcessModel, mappings } from './process.mock';
 import * as processVariablesActions from './process-variables.actions';
@@ -86,35 +89,37 @@ describe('ProcessEntitiesReducer', () => {
 
     it('should handle REMOVE_ELEMENT_MAPPING', () => {
         const elementId = 'UserTask_0o7efx6';
-        const processes = [{ ...process, extensions: {
-            [processId]: {
-                mappings: {
-                    [elementId]: {
-                        inputs: {
-                            'e441111c-5a3d-4f78-a571-f57e67ce85bf': {
-                                type: MappingType.value,
-                                value: 'test'
+        const processes = [{
+            ...process, extensions: {
+                [processId]: {
+                    mappings: {
+                        [elementId]: {
+                            inputs: {
+                                'e441111c-5a3d-4f78-a571-f57e67ce85bf': {
+                                    type: MappingType.value,
+                                    value: 'test'
+                                }
                             }
                         }
-                    }
-                },
-                constants: {
-                    [elementId]: {
-                        '_activiti_dmn_table_"': {
-                            'value': 'dt'
+                    },
+                    constants: {
+                        [elementId]: {
+                            '_activiti_dmn_table_"': {
+                                'value': 'dt'
+                            }
                         }
-                    }
-                },
-                assignments: {
-                    [elementId]: {
-                        'type': 'identity',
-                        'assignment': 'assignee',
-                        'id': elementId
-                    }
-                },
-                properties: {}
+                    },
+                    assignments: {
+                        [elementId]: {
+                            'type': 'identity',
+                            'assignment': 'assignee',
+                            'id': elementId
+                        }
+                    },
+                    properties: {}
+                }
             }
-        } }];
+        }];
         action = <GetProcessesSuccessAction>{ type: GET_PROCESSES_SUCCESS, processes };
         let newState = processEntitiesReducer(initialState, action);
 
@@ -147,12 +152,14 @@ describe('ProcessEntitiesReducer', () => {
                 'value': 'dt'
             }
         };
-        const processes = [{ ...process, extensions: {
-            mappings: {},
-            id: 'mock-id',
-            properties: {},
-            constants: {}
-        } }];
+        const processes = [{
+            ...process, extensions: {
+                mappings: {},
+                id: 'mock-id',
+                properties: {},
+                constants: {}
+            }
+        }];
         let newState = processEntitiesReducer(initialState, <GetProcessesSuccessAction>{ type: GET_PROCESSES_SUCCESS, processes });
 
         newState = processEntitiesReducer(newState, <UpdateServiceParametersAction>{
@@ -186,10 +193,10 @@ describe('ProcessEntitiesReducer', () => {
             modelId: process.id,
             processId: processId,
             serviceId: elementId,
-            serviceParameterMappings: { inputs: {...mockMapping.inputs }, outputs: {}}
+            serviceParameterMappings: { inputs: { ...mockMapping.inputs }, outputs: {} }
         });
         expect(newState.entities[process.id].extensions[processId].mappings).toEqual({
-            [elementId]: { inputs: {...mockMapping.inputs }}
+            [elementId]: { inputs: { ...mockMapping.inputs } }
         });
 
         newState = processEntitiesReducer(newState, <UpdateServiceParametersAction>{
@@ -197,10 +204,10 @@ describe('ProcessEntitiesReducer', () => {
             modelId: process.id,
             processId: processId,
             serviceId: elementId,
-            serviceParameterMappings: { inputs: {}, outputs: {...mockMapping.outputs}}
+            serviceParameterMappings: { inputs: {}, outputs: { ...mockMapping.outputs } }
         });
         expect(newState.entities[process.id].extensions[processId].mappings).toEqual({
-            [elementId]: { outputs: {...mockMapping.outputs}}
+            [elementId]: { outputs: { ...mockMapping.outputs } }
         });
 
         newState = processEntitiesReducer(newState, <UpdateServiceParametersAction>{
@@ -208,7 +215,7 @@ describe('ProcessEntitiesReducer', () => {
             modelId: process.id,
             processId: processId,
             serviceId: elementId,
-            serviceParameterMappings: { inputs: {}, outputs: {}}
+            serviceParameterMappings: { inputs: {}, outputs: {} }
         });
         expect(newState.entities[process.id].extensions[processId].mappings).toEqual({});
     });
@@ -283,7 +290,7 @@ describe('ProcessEntitiesReducer', () => {
         });
     });
 
-   describe('GET_PROCESS_SUCCESS', () => {
+    describe('GET_PROCESS_SUCCESS', () => {
         let diagram: ProcessContent;
 
         beforeEach(() => {
@@ -318,8 +325,8 @@ describe('ProcessEntitiesReducer', () => {
     it('should handle UPDATE_SERVICE_PARAMETERS', () => {
         const serviceTaskId = 'serviceTaskId';
         const serviceParameterMappings: ServiceParameterMappings = {
-                inputs: { 'param1': { type: MappingType.variable, value: 'variable1'}},
-                outputs: { 'param2': { type: MappingType.variable, value: 'variable'}}
+            inputs: { 'param1': { type: MappingType.variable, value: 'variable1' } },
+            outputs: { 'param2': { type: MappingType.variable, value: 'variable' } }
         };
         initialState = {
             ...initialProcessEntitiesState,
@@ -377,7 +384,7 @@ describe('ProcessEntitiesReducer', () => {
                 properties: mockProperties
             }));
 
-            const updatedMappings: ServicesParameterMappings = {'taskId': { inputs: {'input-param-2': {'type': MappingType.variable, 'value': 'mock-variable'}}}};
+            const updatedMappings: ServicesParameterMappings = { 'taskId': { inputs: { 'input-param-2': { 'type': MappingType.variable, 'value': 'mock-variable' } } } };
             expect(newState.entities[mockProcessModel.id].extensions[processId].mappings).toEqual(updatedMappings);
         });
 
@@ -398,7 +405,7 @@ describe('ProcessEntitiesReducer', () => {
                 properties: mockProperties
             }));
 
-            const updatedMappings: ServicesParameterMappings = {'taskId': { inputs: {'input-param-2': {'type': MappingType.variable, 'value': 'mock-variable'}}}};
+            const updatedMappings: ServicesParameterMappings = { 'taskId': { inputs: { 'input-param-2': { 'type': MappingType.variable, 'value': 'mock-variable' } } } };
             expect(newState.entities[mockProcessModel.id].extensions[processId].mappings).toEqual(updatedMappings);
         });
 
@@ -464,5 +471,70 @@ describe('ProcessEntitiesReducer', () => {
 
         const newState = processEntitiesReducer(initialState, new DeleteProcessExtensionAction('id1', 'Process_12345678'));
         expect(newState).toEqual(expected);
+    });
+
+    it('should handle UPDATE_TASK_TEMPLATE', () => {
+        const elementId = 'UserTask_0o7efx6';
+        const processes = [{
+            ...process, extensions: {
+                [processId]: {
+                    mappings: {},
+                    properties: {},
+                    constants: {},
+                    templates: {}
+                }
+            }
+        }];
+
+        let newState = processEntitiesReducer(initialState, <GetProcessesSuccessAction>{ type: GET_PROCESSES_SUCCESS, processes });
+
+        newState = processEntitiesReducer(newState, <UpdateUserTaskTemplateAction>{
+            type: UPDATE_TASK_TEMPLATE,
+            modelId: process.id,
+            processId: processId,
+            userTaskId: elementId,
+            taskTemplate: {
+                assignee: {
+                    type: TaskTemplateType.file,
+                    value: 'file://myFile.bin'
+                },
+                candidate: {
+                    type: TaskTemplateType.file,
+                    value: 'file://myFile.bin'
+                }
+            },
+        });
+
+        expect(newState.entities[process.id].extensions[processId].templates).toEqual({
+            tasks: {
+                [elementId]: {
+                    assignee: {
+                        type: TaskTemplateType.file,
+                        value: 'file://myFile.bin'
+                    },
+                    candidate: {
+                        type: TaskTemplateType.file,
+                        value: 'file://myFile.bin'
+                    }
+
+                }
+            },
+            default: {}
+
+        });
+
+        newState = processEntitiesReducer(newState, <UpdateUserTaskTemplateAction>{
+            type: UPDATE_TASK_TEMPLATE,
+            modelId: process.id,
+            processId: processId,
+            userTaskId: elementId,
+            taskTemplate: {
+                type: TaskTemplateType.file,
+                value: ''
+            }
+
+        });
+
+        expect(newState.entities[process.id].extensions[processId].templates).toEqual({ tasks: {}, default: {} });
     });
 });

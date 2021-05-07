@@ -16,12 +16,12 @@
  */
 
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
-import { FileService } from '../file.service';
 import { Observable } from 'rxjs';
 import { ActivitiFile } from '../../../api/types';
 import { Store } from '@ngrx/store';
 import { AmaState } from '../../../store/app.state';
 import { selectSelectedProjectId } from '../../../store/app.selectors';
+import { FileService } from '../../../services/file.service';
 
 @Component({
     template: `
@@ -50,7 +50,7 @@ export class PropertiesViewerFileInputComponent implements OnInit {
 
     ngOnInit() {
         this.store.select(selectSelectedProjectId)
-            .subscribe(projectId => this.files = this.fileService.getList(projectId));
+            .subscribe(projectId => this.files = this.fileService.getFileList(projectId));
     }
     onChange() {
         this.change.emit(this.value);

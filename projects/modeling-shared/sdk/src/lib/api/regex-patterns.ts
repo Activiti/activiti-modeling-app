@@ -17,4 +17,6 @@
 
 export const NAME_REGEXP = /^([A-Za-z0-9\-\_]+)?$/;
 export const URL_REGEXP = /^[A-Za-z][A-Za-z\d.+-]*:\/*(?:\w+(?::\w+)?@)?[^\s/]+(?::\d+)?(?:\/[\w#!:.?+=&%@\-/]*)?$/;
+export const EXTERNAL_URL_REGEXP = /^(http|https):\/\/.*[^/]$/;
 export const CONTENT_MODEL_PREFIX_PROPERTY_REGEXP = /^[a-z]([a-zA-Z0-9]{0,25})?$/;
+export const HTML_REGEXP = /<\/?[a-z][\s\S]*>/;

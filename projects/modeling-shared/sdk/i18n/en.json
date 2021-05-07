@@ -10,7 +10,8 @@
                 "EMPTY_NAME": "A name is required",
                 "INVALID_NAME": "Invalid variable name",
                 "VARIABLE_NAME_TOOLTIP": "The name can must start with a letter and can only contain alphanumeric characters and underscores",
-                "NAME_ALREADY_EXISTS": "Variable names must be unique"
+                "NAME_ALREADY_EXISTS": "Variable names must be unique",
+                "FILE_ALREADY_EXISTS": "File already exists"
             },
             "TABS": {
                 "VIEWER": "Properties Viewer",

@@ -203,11 +203,35 @@ export interface TaskAssignmentContent {
     [serviceTaskId: string]: TaskAssignment;
 }
 
+export interface TaskTemplates {
+    [userTaskId: string]: TaskTemplateMapping;
+}
+
+export enum TaskTemplateType {
+    file = 'file',
+    variable = 'variable'
+}
+
+export interface TaskTemplate {
+    type: TaskTemplateType;
+    value: string;
+}
+export interface TaskTemplateMapping {
+    assignee?: TaskTemplate;
+    candidate?: TaskTemplate;
+}
+
+export interface TaskTemplateContent {
+    tasks?: TaskTemplates;
+    default?: TaskTemplateMapping;
+}
+
 export interface ProcessExtensionsContent {
     properties: EntityProperties;
     mappings: ServicesParameterMappings;
     constants: ServicesConstants;
     assignments?: TaskAssignmentContent;
+    templates?: TaskTemplateContent;
 }
 
 export interface ProcessExtensions {
@@ -343,16 +367,16 @@ export interface UiContent {
 }
 
 export interface UiContentExtension {
-        $id: string;
-        $name: string;
-        $version: string;
-        $vendor: string;
-        $license: string;
-        $description?: string;
-        appConfig?: any;
-        actions?: UiAction[];
-        rules?: UiRule[];
-        features?: UiFeatures;
+    $id: string;
+    $name: string;
+    $version: string;
+    $vendor: string;
+    $license: string;
+    $description?: string;
+    appConfig?: any;
+    actions?: UiAction[];
+    rules?: UiRule[];
+    features?: UiFeatures;
 }
 
 export interface UiRule {

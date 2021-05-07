@@ -36,7 +36,8 @@
             },
             "CONFIRM": {
                 "TITLE": "Are you sure?",
-                "SUBTITLE": "Are you sure that you want to do this action?",
+                "SUBTITLE": "Are you sure that you want to do this action?",  
+                "EMAIL_TEMPLATE_DESCRIPTION": "This action can't be undone",
                 "BUTTON": "Confirm",
                 "RELEASE": "Are you sure you want to release a new version of this project?",
                 "TYPES": {
@@ -74,6 +75,7 @@
                     "DECISION_TABLE": "Are you sure you want to save this decision table?",
                     "CONNECTOR": "Are you sure you want to save this connector?",
                     "FILE": "Are you sure you want to save this file?",
+                    "EMAIL_TEMPLATE": "Are you sure you want to overwrite the email template?",
                     "SCRIPT": "Are you sure you want to save this script?",
                     "TRIGGER": "Are you sure you want to save this Trigger?",
                     "MODEL": "Are you sure you want to save this Content Model?",
@@ -124,6 +126,7 @@
             "ERRORS": {
                 "CHANGE_USER": "Change user",
                 "NOT_VALID_JSON": "Invalid JSON object",
+                "NOT_VALID_HTML": "Invalid HTML object",
                 "NOT_VALID_SCHEMA": "The JSON object does not match the schema"
             }
         },

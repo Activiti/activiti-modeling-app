@@ -84,5 +84,4 @@ export const bpmn2cardView = {
     [BpmnProperty.textAnnotation]: createTextAnnotationProperty,
     [BpmnProperty.isExecutable]: createIsExecutableProperty,
     [BpmnCompositeProperty.errors]: createProcessErrorsProperty
-
 };

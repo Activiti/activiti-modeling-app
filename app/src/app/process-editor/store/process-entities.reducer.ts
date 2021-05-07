@@ -48,7 +48,9 @@ import {
     EntityProperties,
     ProcessExtensionsContent,
     createExtensionsObject,
-    SAVE_AS_PROJECT_ATTEMPT
+    SAVE_AS_PROJECT_ATTEMPT,
+    UpdateUserTaskTemplateAction,
+    UPDATE_TASK_TEMPLATE
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 const cloneDeep = require('lodash/cloneDeep');
@@ -85,11 +87,14 @@ export function processEntitiesReducer(
         case UPDATE_TASK_ASSIGNMENTS:
             return updateProcessTaskAssignments(state, <UpdateServiceAssignmentAction>action);
 
+        case UPDATE_TASK_TEMPLATE:
+            return updateUserTaskTemplate(state, <UpdateUserTaskTemplateAction>action);
+
         case UPDATE_PROCESS_EXTENSIONS:
             return updateExtensions(state, <UpdateProcessExtensionsAction>action);
 
         case DELETE_PROCESS_EXTENSION:
-            return deleteExtensions(state, <DeleteProcessExtensionAction> action);
+            return deleteExtensions(state, <DeleteProcessExtensionAction>action);
 
         case REMOVE_ELEMENT_MAPPING:
             return removeElementMapping(state, <RemoveElementMappingAction>action);
@@ -340,4 +345,23 @@ function updateProcess(state: ProcessEntitiesState, action: UpdateProcessSuccess
     };
 
     return processAdapter.updateOne({ ...action.payload, changes: action.payload.changes }, newState);
+}
+
+function updateUserTaskTemplate(state: ProcessEntitiesState, action: UpdateUserTaskTemplateAction): ProcessEntitiesState {
+    const oldExtensions = cloneDeep(state.entities[action.modelId].extensions);
+    const newExtensions = new ProcessExtensionsModel(oldExtensions).setTemplate(
+        action.processId,
+        action.userTaskId,
+        action.taskTemplate
+    );
+
+    return {
+        ...state,
+        entities: {
+            ...state.entities, [action.modelId]: {
+                ...state.entities[action.modelId],
+                extensions: newExtensions
+            }
+        }
+    };
 }

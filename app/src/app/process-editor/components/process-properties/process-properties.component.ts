@@ -50,7 +50,7 @@ export class ProcessPropertiesComponent implements OnInit, OnDestroy, AfterViewI
         private cardViewFactory: CardViewPropertiesFactory,
         private cardViewUpdateService: CardViewUpdateService,
         private cardItemTypeService: CardItemTypeService,
-       @Inject(PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS) private customPropertyHandlers: ProcessEditorCustomProperty[]
+        @Inject(PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS) private customPropertyHandlers: ProcessEditorCustomProperty[]
     ) {}
 
     ngOnInit() {

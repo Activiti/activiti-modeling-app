@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+import { AbstractControl, ValidatorFn } from '@angular/forms';
+
 export const PROCESS_FILE_FORMAT = '.bpmn20.xml';
 export const PROCESS_SVG_FILE_FORMAT = '.svg';
 export const CONNECTOR_FILE_FORMAT = '.json';
@@ -52,10 +54,23 @@ export const changeFileName = (file: File, newName: string): File => {
 };
 
 export const formatUuid = (contentType: string, uuid: string): string => {
-    return `${ contentType.toLowerCase()}-${uuid}`;
+    return `${contentType.toLowerCase()}-${uuid}`;
 };
 
 /* cspell: disable-next-line */
 export const getRandomCharsAndNums = (noOfCharStringLengths: number): string => {
     return Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, noOfCharStringLengths);
+};
+
+export const variableNameValidator = (): ValidatorFn => {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+        const isTemplateNameValid = MODELER_NAME_REGEX.test(control.value) && control.value.length > 0;
+        return !isTemplateNameValid ? { 'invalidVariableName': { value: control.value } } : null;
+    };
+};
+
+export const availableVariableValidator = (variableNames: string[]): ValidatorFn => {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+        return variableNames.includes(control.value) ? { 'takenVariableName': { value: control.value } } : null;
+    };
 };

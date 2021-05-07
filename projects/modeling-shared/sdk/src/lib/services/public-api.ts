@@ -26,3 +26,4 @@ export * from './process.service';
 export * from './status-bar.service';
 export * from './variable-mapping-type.service';
 export * from './theming.service';
+export * from './file.service';

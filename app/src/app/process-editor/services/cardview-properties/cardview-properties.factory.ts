@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { CardViewItem, AppConfigService } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { elementsProperties } from '../bpmn/elements-properties';
-import { BpmnProperty, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
+import { BpmnProperty, AmaState, PROCESS_ELEMENTS_TOKEN, PROCESS_CARDVIEW_PROPERTIES_TOKEN } from '@alfresco-dbp/modeling-shared/sdk';
 import { bpmn2cardView } from './bpmn2CardView';
 import { Store } from '@ngrx/store';
 
@@ -31,14 +31,22 @@ export interface FactoryProps {
 
 @Injectable()
 export class CardViewPropertiesFactory {
+    public elementsProperties;
+    public bpmn2cardView;
+
     constructor(
         private appConfigService: AppConfigService,
-        private store: Store<AmaState>
-    ) {}
+        private store: Store<AmaState>,
+        @Optional() @Inject(PROCESS_ELEMENTS_TOKEN) extendedElementsProperties,
+        @Optional() @Inject(PROCESS_CARDVIEW_PROPERTIES_TOKEN) extendedBpmn2cardView,
+    ) {
+        this.elementsProperties = { ...elementsProperties, ...extendedElementsProperties };
+        this.bpmn2cardView = { ...bpmn2cardView, ...extendedBpmn2cardView };
+    }
 
     createCardViewPropertiesFor(element: Bpmn.DiagramElement): CardViewItem[] {
         const type = ElementHelper.getType(element);
-        const bpmnPropertiesForElement = elementsProperties[type];
+        const bpmnPropertiesForElement = this.elementsProperties[type];
 
         if (!bpmnPropertiesForElement) {
             return [];
@@ -49,7 +57,7 @@ export class CardViewPropertiesFactory {
     }
 
     private createCardViewPropertyFor(element: Bpmn.DiagramElement, bpmnProperty: BpmnProperty): CardViewItem {
-        const factoryFunction = bpmn2cardView[bpmnProperty];
+        const factoryFunction = this.bpmn2cardView[bpmnProperty];
 
         if (!factoryFunction) {
             return null;

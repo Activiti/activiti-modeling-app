@@ -56,7 +56,8 @@ export enum BpmnCompositeProperty {
     assignment = 'assignment',
     properties = 'properties',
     messages = 'messages',
-    errors = 'errors'
+    errors = 'errors',
+    emailTemplate = 'emailTemplate'
 }
 
 export const PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS = new InjectionToken<ProcessEditorCustomProperty[]>('process-editor-custom-property-handlers');
@@ -71,5 +72,27 @@ export function providePropertyHandler(type: BpmnProperty | BpmnCompositePropert
         provide: PROCESS_EDITOR_CUSTOM_PROPERTY_HANDLERS,
         useValue: { type, implementationClass: implementationClass },
         multi: true
+    };
+}
+
+export interface ProcessElements {
+    [bpmnElement: string]: (BpmnProperty | BpmnCompositeProperty)[];
+}
+
+export const PROCESS_ELEMENTS_TOKEN = new InjectionToken('process-elements');
+
+export function provideProcessElementProperties(extendedElementProperties: ProcessElements) {
+    return {
+        provide: PROCESS_ELEMENTS_TOKEN,
+        useValue: extendedElementProperties
+    };
+}
+
+export const PROCESS_CARDVIEW_PROPERTIES_TOKEN = new InjectionToken('process-cardview-properties');
+
+export function provideCardViewProperties(extendedCardViewProperties) {
+    return {
+        provide: PROCESS_CARDVIEW_PROPERTIES_TOKEN,
+        useValue: extendedCardViewProperties
     };
 }

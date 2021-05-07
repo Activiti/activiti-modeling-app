@@ -22,15 +22,18 @@ import {
     TaskAssignmentContent,
     ServicesParameterConstants,
     TaskAssignment,
-    ServicesConstants
+    ServicesConstants,
+    TaskTemplateMapping,
+    ProcessExtensionsContent
 } from '../api/types';
 
-export function createExtensionsObject() {
+export function createExtensionsObject(): ProcessExtensionsContent {
     return {
         constants: {},
         mappings: {},
         properties: {},
-        assignments: {}
+        assignments: {},
+        templates: { tasks: {}, default: {} }
     };
 }
 
@@ -120,5 +123,45 @@ export class ProcessExtensionsModel {
 
     getConstants(processId: string): ServicesConstants {
         return this.extensions[processId] ? this.extensions[processId].constants : {};
+    }
+
+    setTemplate(processId: string, userTaskId: string, taskTemplate: TaskTemplateMapping) {
+        const processExtensions = this.extensions[processId] ? this.validateTemplateObject(this.extensions[processId]) : createExtensionsObject();
+
+        if (userTaskId) {
+            if (taskTemplate.assignee || taskTemplate.candidate) {
+                processExtensions.templates.tasks[userTaskId] = taskTemplate;
+            } else {
+                delete processExtensions.templates.tasks[userTaskId];
+            }
+        } else {
+            if (taskTemplate.assignee || taskTemplate.candidate) {
+                processExtensions.templates.default = taskTemplate;
+            } else {
+                delete processExtensions.templates.default;
+            }
+        }
+
+        this.extensions[processId] = processExtensions;
+        return this.extensions;
+    }
+
+    getTemplates(processId: string) {
+        return this.extensions[processId]?.templates ? this.extensions[processId].templates : {};
+    }
+
+    private validateTemplateObject(processExtensions: ProcessExtensionsContent): ProcessExtensionsContent {
+        if (processExtensions.templates === undefined) {
+            processExtensions.templates = { tasks: {}, default: {} };
+        } else {
+            if (processExtensions.templates.tasks === undefined) {
+                processExtensions.templates.tasks = {};
+            }
+            if (processExtensions.templates.default === undefined) {
+                processExtensions.templates.default = {};
+            }
+        }
+
+        return processExtensions;
     }
 }

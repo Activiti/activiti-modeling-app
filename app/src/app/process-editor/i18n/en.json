@@ -51,6 +51,7 @@
             "MAPPING_TYPE": "Mapping type",
             "MAP_VARIABLES": "Map variables",
             "SEND_ALL_VARIABLES": "Send all variables",
+            "EDIT_EMAIL_TEMPLATE": "Edit Email Template",
             "SEND_NO_VARIABLES": "Don't send variables",
             "SIGNAL_NAME": "Signal name",
             "ERROR_NAME": "Error name",
@@ -120,11 +121,11 @@
             "INVALID_ELEMENT_VARIABLE": "Value must be of type string",
             "MESSAGE_EXPRESSION_INVALID": "Value must be a number or an expression",
             "MESSAGE_PAYLOAD": {
-                "TITLE":"Message Payload",
+                "TITLE": "Message Payload",
                 "ADD": "Add",
                 "CREATE_PROPERTY": "Create new property",
                 "NO_PROPERTIES": "Message has no payload. Add a payload in the message throw event.",
-                "FORM":{
+                "FORM": {
                     "NAME": "Name",
                     "TYPE": "Type",
                     "PROCESS_VARIABLE": "Process variable",
