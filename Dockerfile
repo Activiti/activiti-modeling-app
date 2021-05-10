@@ -23,7 +23,6 @@ ENV NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx/conf.d
 # APP_CONFIG_OAUTH2_HOST
 # APP_CONFIG_BPM_HOST
 # APP_CONFIG_ECM_HOST
-# EXAMPLE_PROJECTS_HOST
 
 # App config variables with default values:
 # -------------------------------
