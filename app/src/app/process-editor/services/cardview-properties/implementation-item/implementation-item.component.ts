@@ -45,8 +45,8 @@ export class CardViewImplementationItemComponent implements OnInit, OnDestroy {
         this.store.select(selectProcessMappingsFor(this.property.data.processId, this.elementId)).pipe(
             takeUntil(this.onDestroy$)
         ).subscribe(mappings => {
-            this.inputs = JSON.stringify(mappings.inputs);
-            this.outputs = JSON.stringify(mappings.outputs);
+            this.inputs = mappings ? JSON.stringify(mappings.inputs) : '';
+            this.outputs = mappings ? JSON.stringify(mappings.outputs) : '';
         });
     }
 
