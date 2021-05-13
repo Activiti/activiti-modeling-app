@@ -89,6 +89,7 @@
               }
             ],
             "styles": [
+              "node_modules/cropperjs/dist/cropper.min.css",
               "app/src/styles.scss",
               "projects/modeling-shared/sdk/src/lib/modeling-sdk.module.scss"
             ],
