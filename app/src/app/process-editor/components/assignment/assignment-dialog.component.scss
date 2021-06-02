@@ -50,5 +50,14 @@
             display: flex;
             flex-direction: column;
         }
+
+        .ama-assignment-expression {
+            padding-top: 9px;
+            display: block;
+
+            .ama-expression-code-editor {
+                height: 200px;
+            }
+        }
     }
 }

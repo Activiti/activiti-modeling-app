@@ -26,18 +26,16 @@ import {
     TaskAssignment,
     AssignmentType,
     AssignmentMode,
-    getFileUri,
     ValidationResponse,
     Process,
     CodeValidatorService,
     selectProcessPropertiesArrayFor,
-    CodeEditorComponent,
-    ExpressionsEditorService
+    CodeEditorComponent
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { IdentityUserModel, IdentityGroupModel } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
-import { filter, take, takeUntil, map } from 'rxjs/operators';
+import { filter, take, takeUntil } from 'rxjs/operators';
 import { AbstractControl, FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTabChangeEvent } from '@angular/material/tabs';
@@ -123,7 +121,6 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     @ViewChild('editor') editor: CodeEditorComponent;
 
     roles = ['ACTIVITI_USER'];
-    languageType = 'expression-json';
     selectedMode: string = AssignmentMode.assignee;
     selectedType: string = AssignmentType.static;
     currentActiveTab = AssignmentTabs.STATIC;
@@ -148,7 +145,6 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     assignmentXML: TaskAssignment;
     processVariables$: Observable<any>;
     process$: Observable<Process>;
-    processFileUri$: Observable<string>;
     onDestroy$: Subject<void> = new Subject<void>();
 
     assignmentForm: FormGroup;
@@ -170,7 +166,6 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         private codeValidatorService: CodeValidatorService,
         public dialogRef: MatDialogRef<AssignmentDialogComponent>,
         private formBuilder: FormBuilder,
-        private expressionsEditorService: ExpressionsEditorService,
         @Inject(MAT_DIALOG_DATA) public settings: AssignmentSettings) {
     }
 
@@ -186,12 +181,6 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         this.processVariables$ = this.store.select(selectProcessPropertiesArrayFor(this.settings.processId));
         this.deductConfigFromXML();
         this.createAssignmentForm();
-        this.processFileUri$ = this.process$.pipe(
-            filter(process => !!process),
-            map(process => getFileUri(this.selectedMode, this.languageType, process.id))
-        );
-
-        this.expressionsEditorService.initExpressionEditor(this.languageType, this.expressionSuggestions);
     }
 
     createAssignmentForm() {
@@ -400,10 +389,6 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
     onSelect(selectedType: MatSelectChange) {
         this.selectedMode = selectedType.value;
         this.resetProperties();
-        this.processFileUri$ = this.process$.pipe(
-            filter(process => !!process),
-            map(process => getFileUri(this.selectedMode, this.languageType, process.id))
-        );
         this.assignmentPayload = undefined;
         if (this.isOriginalSelection()) {
             this.restoreFromXML();

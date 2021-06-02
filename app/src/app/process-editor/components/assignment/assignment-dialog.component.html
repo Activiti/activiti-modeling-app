@@ -147,12 +147,19 @@
             </mat-tab>
             <mat-tab label="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.EXPRESSION.TITLE' | translate }}">
                 <ng-container>
-                    <modelingsdk-code-editor
-                        [content]="expressionContent"
-                        [fileUri]="processFileUri$ | async"
-                        [language]="languageType"
-                        (changed)="onExpressionChange($event)">
-                    </modelingsdk-code-editor>
+                    <modelingsdk-expression-code-editor class="ama-assignment-expression"
+                        [attr.data-automation-id]="'ama-assignment-expression'"
+                        [expression]="expressionContent"
+                        (expressionChange)="onExpressionChange($event)"
+                        [language]="'json'"
+                        [removeEnclosingBrackets]="false"
+                        [variables]="expressionSuggestions"
+                        [enableDialogEditor]="false"
+                        [enableInlineEditor]="true"
+                        [nonBracketedOutput]="false"
+                        [removeLineNumbers]="false"
+                        [lineWrapping]="false">
+                    </modelingsdk-expression-code-editor>
                 </ng-container>
             </mat-tab>
         </mat-tab-group>
