@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'ama-settings',
-    templateUrl: 'host-settings.component.html'
+    templateUrl: './host-settings.component.html'
 })
 export class HostSettingsComponent {
 

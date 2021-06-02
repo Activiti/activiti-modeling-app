@@ -21,7 +21,7 @@ import { APP_GITHUB_COMMIT, APP_VERSION, APP_DEPS } from '@alfresco-dbp/modeling
 @Component({
     selector: 'ama-about',
     templateUrl: './about.component.html',
-    styleUrls: [ 'about.component.css' ]
+    styleUrls: [ './about.component.css' ]
 })
 export class AboutComponent {
     showExtensions = true;

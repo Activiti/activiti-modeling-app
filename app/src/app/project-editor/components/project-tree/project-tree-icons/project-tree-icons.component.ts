@@ -23,8 +23,7 @@ import { MODEL_TYPE, ModelFilter, OpenFilterAction, AmaState } from '@alfresco-d
 
 @Component({
     selector: 'ama-project-tree-icons',
-    templateUrl: './project-tree-icons.component.html',
-    styleUrls: ['./project-tree-icons.component.scss']
+    templateUrl: './project-tree-icons.component.html'
 })
 export class ProjectTreeIconsComponent {
     filters: ModelFilter[];

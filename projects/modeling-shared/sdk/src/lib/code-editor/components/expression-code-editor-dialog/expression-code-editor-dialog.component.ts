@@ -31,7 +31,7 @@ export interface ExpressionCodeEditorDialogData {
 
 @Component({
     selector: 'modelingsdk-expression-code-editor-dialog',
-    templateUrl: 'expression-code-editor-dialog.component.html',
+    templateUrl: './expression-code-editor-dialog.component.html',
 })
 export class ExpressionCodeEditorDialogComponent {
 

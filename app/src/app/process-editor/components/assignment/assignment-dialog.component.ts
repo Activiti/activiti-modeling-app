@@ -91,8 +91,7 @@ export const identityCandidateValidator: ValidatorFn = (candidateFormGroup: Form
 
 @Component({
     selector: 'ama-assignment-dialog',
-    templateUrl: './assignment-dialog.component.html',
-    styleUrls: ['./assignment-dialog.component.scss']
+    templateUrl: './assignment-dialog.component.html'
 })
 export class AssignmentDialogComponent implements OnInit, OnDestroy {
     static ASSIGNEE_CONTENT = JSON.stringify({ assignee: '${}' }, null, '\t');

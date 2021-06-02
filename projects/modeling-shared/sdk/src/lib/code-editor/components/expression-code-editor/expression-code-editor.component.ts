@@ -26,7 +26,7 @@ import { ExpressionCodeEditorDialogComponent, ExpressionCodeEditorDialogData } f
 
 @Component({
     selector: 'modelingsdk-expression-code-editor',
-    templateUrl: 'expression-code-editor.component.html',
+    templateUrl: './expression-code-editor.component.html',
 })
 export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnChanges {
 

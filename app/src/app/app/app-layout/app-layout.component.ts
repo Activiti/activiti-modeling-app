@@ -27,7 +27,7 @@ import { AmaState, OpenDialogAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { Router } from '@angular/router';
 
 @Component({
-    templateUrl: 'app-layout.component.html',
+    templateUrl: './app-layout.component.html',
     host: { class: 'adf-app-layout' },
     encapsulation: ViewEncapsulation.None
 })

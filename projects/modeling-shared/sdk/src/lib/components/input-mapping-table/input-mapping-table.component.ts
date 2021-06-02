@@ -35,7 +35,7 @@ export const NoneValue = Symbol('None value');
 
 @Component({
     selector: 'modelingsdk-input-mapping-table',
-    templateUrl: 'input-mapping-table.component.html',
+    templateUrl: './input-mapping-table.component.html',
     host: { class: 'modelingsdk-input-mapping-table' }
 })
 export class InputMappingTableComponent implements OnChanges {

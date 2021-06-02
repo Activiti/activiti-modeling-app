@@ -34,7 +34,6 @@ import { SelectedProcessElement } from '../../store/process-editor.state';
 @Component({
     selector: 'ama-process-properties',
     templateUrl: './process-properties.component.html',
-    styleUrls: ['./process-properties.component.scss'],
     providers: [CardViewUpdateService, CardItemTypeService],
     changeDetection: ChangeDetectionStrategy.OnPush
 })

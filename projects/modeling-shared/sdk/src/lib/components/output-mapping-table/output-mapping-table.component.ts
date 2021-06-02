@@ -27,7 +27,7 @@ import { EXPRESSION } from '../../helpers/primitive-types';
 
 @Component({
     selector: 'modelingsdk-output-mapping-table',
-    templateUrl: 'output-mapping-table.component.html',
+    templateUrl: './output-mapping-table.component.html',
     host: { class: 'modelingsdk-input-mapping-table' }
 })
 export class OutputMappingTableComponent implements OnChanges {
