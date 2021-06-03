@@ -217,11 +217,19 @@
             ]
           },
           {
+            "sourceTag": "scope:modeling-ce-process-editor",
+            "onlyDependOnLibsWithTags": [
+              "scope:modeling-ce-process-editor",
+              "scope:modeling-sdk"
+            ]
+          },
+          {
             "sourceTag": "scope:modeling-ce",
             "onlyDependOnLibsWithTags": [
               "scope:modeling-ce",
               "scope:modeling-sdk",
-              "scope:modeling-ce-connector-editor"
+              "scope:modeling-ce-connector-editor",
+              "scope:modeling-ce-process-editor"
             ]
           },
           {

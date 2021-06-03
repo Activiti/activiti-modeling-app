@@ -16,7 +16,7 @@
  */
 
 import { SearchHeaderComponent } from './search-header.component';
-import { SearchTextInputComponent, AppConfigService, CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
+import { AppConfigService, CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -41,8 +41,7 @@ describe ('Search Header Component', () => {
                 RouterTestingModule
             ],
             declarations: [
-                SearchHeaderComponent,
-                SearchTextInputComponent
+                SearchHeaderComponent
             ],
             providers: [
                 TranslateService,

@@ -23,6 +23,12 @@
         "category:modeling-ce"
       ]
     },
+    "modeling-ce-process-editor": {
+      "tags": [
+        "scope:modeling-ce-process-editor",
+        "category:modeling-ce"
+      ]
+    },
     "modeling-sdk": {
       "tags": [
         "scope:modeling-sdk",

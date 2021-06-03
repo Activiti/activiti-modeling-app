@@ -16,7 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Process, ProcessContent, UpdateServiceParametersAction, ModelExtensions, EntityDialogForm, UploadFileAttemptPayload, SaveAsDialogPayload } from '@alfresco-dbp/modeling-shared/sdk';
+import { Process, ProcessContent, UpdateServiceParametersAction, ModelExtensions, EntityDialogForm, UploadFileAttemptPayload, SaveAsDialogPayload, ShowProcessesAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { SelectedProcessElement, ProcessModelContext } from './process-editor.state';
 import { Update } from '@ngrx/entity';
 
@@ -35,12 +35,6 @@ export const DELETE_PROCESS_EXTENSION = '[Process] Delete extension';
 export class DeleteProcessExtensionAction implements Action {
     readonly type = DELETE_PROCESS_EXTENSION;
     constructor(public processId: string, public bpmnProcessId: string) {}
-}
-
-export const SHOW_PROCESSES = '[App Tree] Show Processes';
-export class ShowProcessesAction implements Action {
-    readonly type = SHOW_PROCESSES;
-    constructor(public projectId: string) {}
 }
 
 export const GET_PROCESSES_ATTEMPT = 'GET_PROCESSES_ATTEMPT';

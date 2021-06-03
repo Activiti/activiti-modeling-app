@@ -4,7 +4,7 @@
 @import './app/header/header-menu.component';
 @import './app/settings/settings-dialog.component';
 @import './dashboard/dashboard.module';
-@import './process-editor/process-editor.module';
+@import '../../../projects/process-editor/src/process-editor.module';
 @import './project-editor/project-editor.module';
 @import './app/app-layout/logging/components/log-history/log-history.component';
 @import './app/app-layout/editor-footer/editor-footer.component';

@@ -46,8 +46,6 @@ import {
     RemoveDiagramElementAction,
     RemoveElementMappingAction,
     SelectModelerElementAction,
-    SHOW_PROCESSES,
-    ShowProcessesAction,
     UPDATE_PROCESS_ATTEMPT,
     UPDATE_PROCESS_FAILED,
     UPDATE_PROCESS_SUCCESS,
@@ -93,7 +91,9 @@ import {
     SaveAsDialogPayload,
     SaveAsDialogComponent,
     DialogService,
-    ModelExtensions
+    ModelExtensions,
+    ShowProcessesAction,
+    SHOW_PROCESSES
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { selectProcessesLoaded, selectSelectedElement } from './process-editor.selectors';

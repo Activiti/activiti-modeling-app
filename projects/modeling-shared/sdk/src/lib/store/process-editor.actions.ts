@@ -15,20 +15,10 @@
  * limitations under the License.
  */
 
-export * from './app.state';
-export * from './app.selectors';
-export * from './entities';
-export * from './entity.actions';
-export * from './entity.selectors';
-export * from './ama-store.module';
-export * from './app.actions';
-export * from './project.state';
-export * from './project.selectors';
-export * from './project-entities.state';
-export * from './project-entities.reducer';
-export * from './project-tree.state';
-export * from './project.actions';
-export * from './logging.actions';
-export * from './dialog.actions';
-export * from './dashboard.selectors';
-export * from './process-editor.actions';
+import { Action } from '@ngrx/store';
+
+export const SHOW_PROCESSES = '[App Tree] Show Processes';
+export class ShowProcessesAction implements Action {
+    readonly type = SHOW_PROCESSES;
+    constructor(public projectId: string) {}
+}

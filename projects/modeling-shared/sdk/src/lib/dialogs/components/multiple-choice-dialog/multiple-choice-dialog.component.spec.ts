@@ -25,6 +25,7 @@ import { Subject } from 'rxjs';
 import { MultipleChoiceDialogReturnType } from '../../services/dialog.service';
 import { DebugElement } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 describe('MultipleChoiceDialog Component', () => {
     enum fakeType {
@@ -43,7 +44,7 @@ describe('MultipleChoiceDialog Component', () => {
 
     function setUpTestBed(customMockDialogData) {
         TestBed.configureTestingModule({
-            imports: [NoopAnimationsModule, MatDialogModule, TranslateModule.forRoot(), MatButtonModule],
+            imports: [NoopAnimationsModule, MatDialogModule, TranslateModule.forRoot(), MatButtonModule, MatProgressSpinnerModule],
             declarations: [MultipleChoiceDialogComponent],
             providers: [
                 { provide: MatDialogRef, useValue: mockDialog },

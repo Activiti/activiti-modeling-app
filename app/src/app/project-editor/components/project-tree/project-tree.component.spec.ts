@@ -32,6 +32,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UploadFileButtonComponent } from '../upload-file-button/upload-file-button.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 describe('ProjectTreeFilterComponent ', () => {
     let fixture: ComponentFixture<ProjectTreeComponent>;
@@ -53,7 +54,8 @@ describe('ProjectTreeFilterComponent ', () => {
                 TranslateModule.forRoot(),
                 MatProgressSpinnerModule,
                 HttpClientTestingModule,
-                MatIconModule
+                MatIconModule,
+                RouterModule
             ],
             declarations: [
                 ProjectTreeComponent,

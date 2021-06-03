@@ -34,7 +34,6 @@ import { HostSettingsComponent } from './app/host-settings/host-settings.compone
 
 import { AdfModule } from './common/adf.module';
 import { AppStoreModule } from './app-store.module';
-import { ProcessEditorModule } from './process-editor/process-editor.module';
 import { ProjectEditorModule } from './project-editor/project-editor.module';
 
 import { appRoutes } from './app.routes';
@@ -67,6 +66,7 @@ import { AlfrescoApiService, TranslateLoaderService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { unauthorizedServiceFactory } from './common/services/unauthorized-service-factory';
 import { CustomIconsModule } from './common/custom-icons.module';
+import { ProcessEditorModule } from '@alfresco-dbp/modeling-ce/process-editor';
 
 @NgModule({
     imports: [

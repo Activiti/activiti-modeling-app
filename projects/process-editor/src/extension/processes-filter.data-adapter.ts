@@ -16,21 +16,28 @@
  */
 
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AmaState, OpenFilterAction, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
-import { ShowProcessesAction } from '../../store/process-editor.actions';
+import { Observable } from 'rxjs';
+import { PROCESS, FilterDataAdapter, AmaState, Filter, ShowProcessesAction } from '@alfresco-dbp/modeling-shared/sdk';
+import { selectProcessesArray, selectProcessesLoading } from '../store/process-editor.selectors';
 
 @Injectable()
-export class ProcessesLoaderGuard implements CanActivate {
+export class ProcessesFilterDataAdapter implements FilterDataAdapter {
     constructor(private store: Store<AmaState>) {}
 
-    canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-        const projectId = route.params.projectId;
-        this.store.dispatch(new ShowProcessesAction(projectId));
-        this.store.dispatch(new OpenFilterAction(PROCESS));
+    get expandedPredicate() {
+        return (filters) => filters.indexOf(PROCESS) !== -1;
+    }
 
-        return of(true);
+    get contents(): Observable<Partial<Filter>[]> {
+        return this.store.select(selectProcessesArray);
+    }
+
+    get loading(): Observable<boolean> {
+        return this.store.select(selectProcessesLoading);
+    }
+
+    load(projectId: string): void {
+        this.store.dispatch(new ShowProcessesAction(projectId));
     }
 }

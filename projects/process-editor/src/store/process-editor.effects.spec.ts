@@ -32,7 +32,6 @@ import {
     SelectModelerElementAction,
     UpdateProcessAttemptAction,
     UpdateProcessSuccessAction,
-    ShowProcessesAction,
     GET_PROCESSES_ATTEMPT,
     CreateProcessSuccessAction,
     UploadProcessAttemptAction,
@@ -63,7 +62,8 @@ import {
     OpenConfirmDialogAction,
     BpmnElement,
     DialogService,
-    SaveAsDialogPayload
+    SaveAsDialogPayload,
+    ShowProcessesAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessEntitiesState } from './process-entities.state';
 import { getProcessLogInitiator } from '../services/process-editor.constants';

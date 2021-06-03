@@ -20,11 +20,10 @@ import { Observable, of } from 'rxjs';
 import { hot, getTestScheduler } from 'jasmine-marbles';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { OpenEntityDialogAction, EntityDialogPayload, CreateProjectAttemptAction, DialogService, EntityDialogComponent } from '@alfresco-dbp/modeling-shared/sdk';
+import { OpenEntityDialogAction, EntityDialogPayload, CreateProjectAttemptAction, DialogService, EntityDialogComponent, InputMappingTableComponent } from '@alfresco-dbp/modeling-shared/sdk';
 import { TranslateModule } from '@ngx-translate/core';
 import { DialogEffects } from './dialog.effects';
 import { Store } from '@ngrx/store';
-import { AssignmentDialogComponent } from '../../process-editor/components/assignment/assignment-dialog.component';
 
 describe('DialogEffects', () => {
     let effects: DialogEffects;
@@ -85,7 +84,7 @@ describe('DialogEffects', () => {
             nameField: 'mock-name',
             descriptionField: 'mock-description',
             action: CreateProjectAttemptAction,
-            dialog: AssignmentDialogComponent
+            dialog: InputMappingTableComponent
         };
         const openEntityDialog = new OpenEntityDialogAction(data);
         actions$ = hot('a', { a: openEntityDialog });
@@ -94,6 +93,6 @@ describe('DialogEffects', () => {
         });
         getTestScheduler().flush();
 
-        expect(dialogService.openDialog).toHaveBeenCalledWith(AssignmentDialogComponent, { data });
+        expect(dialogService.openDialog).toHaveBeenCalledWith(InputMappingTableComponent, { data });
     });
 });

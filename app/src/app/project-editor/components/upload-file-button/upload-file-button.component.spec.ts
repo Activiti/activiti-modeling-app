@@ -23,7 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import { AmaState, MODEL_UPLOADERS, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
 import { HttpClientModule } from '@angular/common/http';
-import { UploadProcessAttemptAction, UPLOAD_PROCESS_ATTEMPT } from '../../../process-editor/store/process-editor.actions';
+import { ValidateProjectAttemptAction, VALIDATE_PROJECT_ATTEMPT } from '../../store/project-editor.actions';
 
 describe('UploadFileButtonComponent', () => {
     let component: UploadFileButtonComponent;
@@ -51,7 +51,7 @@ describe('UploadFileButtonComponent', () => {
                     useValue: {
                         type: PROCESS,
                         acceptedFileType: '.xml',
-                        action: UploadProcessAttemptAction
+                        action: ValidateProjectAttemptAction
                     },
                     multi: true
                 }
@@ -86,15 +86,15 @@ describe('UploadFileButtonComponent', () => {
         expect(component.fileInput.nativeElement.click).toHaveBeenCalled();
     });
 
-    it('onUpload method should dispatch a UploadProcessAttemptAction if type is defined', () => {
+    it('onUpload method should dispatch the provided action if type is defined', () => {
         const dispatchSpy = spyOn(store, 'dispatch');
 
         component.type = 'process';
         const inputField = fixture.nativeElement.querySelector('input');
         inputField.dispatchEvent(new Event('change'));
 
-        const uploadAction: UploadProcessAttemptAction = dispatchSpy.calls.argsFor(0)[0];
-        expect(uploadAction.type).toBe(UPLOAD_PROCESS_ATTEMPT);
+        const uploadAction: ValidateProjectAttemptAction = dispatchSpy.calls.argsFor(0)[0];
+        expect(uploadAction.type).toBe(VALIDATE_PROJECT_ATTEMPT);
         expect(store.dispatch).toHaveBeenCalledWith(uploadAction);
         expect(inputField.value).toBe('');
     });

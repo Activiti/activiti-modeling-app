@@ -48,7 +48,7 @@
                 "glob": "**/*"
               },
               {
-                "input": "app/src/app/process-editor/i18n",
+                "input": "projects/process-editor/i18n",
                 "output": "/assets/process-editor/i18n",
                 "glob": "**/*"
               },
@@ -202,20 +202,47 @@
             "tsConfig": "projects/connector-editor/tsconfig.spec.json"
           }
         }
-      }
-    }
-  },
-  "defaultProject": "modeling-ce",
-  "schematics": {
-    "@ngrx/schematics:component": {
-      "prefix": "app",
-      "styleext": "scss"
     },
-    "@ngrx/schematics:directive": {
-      "prefix": "app"
+    "modeling-ce-process-editor": {
+        "root": "projects/process-editor",
+        "sourceRoot": "projects/process-editor/src",
+        "projectType": "library",
+        "prefix": "modelingsdk",
+        "architect": {
+            "lint": {
+                "builder": "@angular-devkit/build-angular:tslint",
+                "options": {
+                "tsConfig": [
+                    "projects/process-editor/tsconfig.lib.json"
+                ],
+                "exclude": [
+                    "**/node_modules/**",
+                    "projects/process-editor/jest.config.js"
+                ],
+                "format": "stylish"
+                }
+            },
+            "test": {
+                "builder": "@nrwl/jest:jest",
+                "options": {
+                "jestConfig": "projects/process-editor/jest.config.js",
+                "tsConfig":"projects/process-editor/tsconfig.spec.json"
+                }
+            }
+        }
+    },
+    "defaultProject": "modeling-ce",
+    "schematics": {
+        "@ngrx/schematics:component": {
+        "prefix": "app",
+        "styleext": "scss"
+        },
+        "@ngrx/schematics:directive": {
+        "prefix": "app"
+        }
+    },
+    "cli": {
+        "analytics": "cab81094-0dcd-4c8e-9ed3-a91b9c5e57e3"
     }
-  },
-  "cli": {
-    "analytics": "cab81094-0dcd-4c8e-9ed3-a91b9c5e57e3"
   }
 }
