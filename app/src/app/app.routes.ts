@@ -24,7 +24,6 @@ import { HostSettingsComponent } from './app/host-settings/host-settings.compone
 import { AmaLocalStorageMergeGuard } from './common/services/ama-localstorage-merge-guard.service';
 import { AmaRoleGuard } from './ama-role-guard.service';
 import { ErrorContentComponent } from './app/error/error-content.component';
-import { AboutComponent } from './app/about/about.component';
 import { dashboardRoutes } from './dashboard/router/dashboard.routes';
 import { AmaModelSchemaLoaderGuard } from './common/services/ama-model-schema-loader-guard.service';
 import { DASHBOARD_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
@@ -65,7 +64,6 @@ export const appRoutes: Routes = [
                 canActivate: [AmaRoleGuard],
                 children: projectEditorRoutes
             },
-            { path: 'about', component: AboutComponent },
             { path: 'home', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
         ]

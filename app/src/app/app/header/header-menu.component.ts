@@ -26,15 +26,10 @@ export class HeaderMenuComponent {
     @Input() showLanguagePicker = false;
     @Output() logout = new EventEmitter<void>();
     @Output() openSettings = new EventEmitter<void>();
-    @Output() openAbout = new EventEmitter<void>();
 
     user: any = null;
 
     onOpenSettings() {
         this.openSettings.next();
-    }
-
-    onAbout() {
-        this.openAbout.next();
     }
 }

@@ -24,7 +24,6 @@ import { selectMenuOpened } from '../../store/selectors/app.selectors';
 import { first, takeUntil } from 'rxjs/operators';
 import { SettingsDialogComponent } from '../settings/settings-dialog.component';
 import { AmaState, OpenDialogAction } from '@alfresco-dbp/modeling-shared/sdk';
-import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './app-layout.component.html',
@@ -37,7 +36,7 @@ export class AppLayoutComponent implements AfterViewInit, OnDestroy {
     menuOpened$: Observable<boolean>;
     onDestroy$ = new Subject<void>();
 
-    constructor(private store: Store<AmaState>, private appConfig: AppConfigService, private router: Router) {
+    constructor(private store: Store<AmaState>, private appConfig: AppConfigService) {
         this.menuOpened$ = this.store.select(selectMenuOpened).pipe(first());
     }
 
@@ -68,10 +67,6 @@ export class AppLayoutComponent implements AfterViewInit, OnDestroy {
 
     onOpenSettings() {
         this.store.dispatch(new OpenDialogAction(SettingsDialogComponent));
-    }
-
-    onOpenAbout() {
-        this.router.navigate(['/about']);
     }
 
     ngOnDestroy() {

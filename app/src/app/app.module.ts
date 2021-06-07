@@ -25,13 +25,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './common/material.module';
 
 import { AppComponent } from './app.component';
-import { AboutComponent } from './app/about/about.component';
 import { AppLoginComponent } from './app/app-login/app-login.component';
 import { AppLayoutComponent } from './app/app-layout/app-layout.component';
 import { HeaderMenuComponent } from './app/header/header-menu.component';
 import { SettingsDialogComponent } from './app/settings/settings-dialog.component';
 import { HostSettingsComponent } from './app/host-settings/host-settings.component';
 
+import { AboutModule } from './app/about/about.module';
 import { AdfModule } from './common/adf.module';
 import { AppStoreModule } from './app-store.module';
 import { ProjectEditorModule } from './project-editor/project-editor.module';
@@ -67,6 +67,7 @@ import { Store } from '@ngrx/store';
 import { unauthorizedServiceFactory } from './common/services/unauthorized-service-factory';
 import { CustomIconsModule } from './common/custom-icons.module';
 import { ProcessEditorModule } from '@alfresco-dbp/modeling-ce/process-editor';
+import { environment } from '../environments/environment';
 
 @NgModule({
     imports: [
@@ -101,11 +102,11 @@ import { ProcessEditorModule } from '@alfresco-dbp/modeling-ce/process-editor';
         DialogsModule,
 
         AppExtensionsModule,
-        CustomIconsModule
+        CustomIconsModule,
+        ...(environment.devTools ? [ AboutModule ] : [])
     ],
     declarations: [
         AppComponent,
-        AboutComponent,
         AppLoginComponent,
         AppLayoutComponent,
         ErrorContentComponent,
@@ -115,7 +116,6 @@ import { ProcessEditorModule } from '@alfresco-dbp/modeling-ce/process-editor';
         LogHistoryComponent,
         LogHistoryEntryComponent,
         EditorFooterComponent,
-        AboutComponent
     ],
     providers: [
         { provide: ErrorHandler, useClass: GlobalErrorHandler },

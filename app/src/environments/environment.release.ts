@@ -16,6 +16,6 @@
  */
 
 export const environment = {
-  production: true,
-  devTools: true
-};
+    production: true,
+    devTools: false
+  };
