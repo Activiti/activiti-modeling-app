@@ -64,6 +64,12 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
     @Input()
     nonBracketedOutput = false;
 
+    @Input()
+    dialogRemoveLineNumbers = false;
+
+    @Input()
+    dialogLineWrapping = false;
+
     @Output()
     expressionChange = new EventEmitter<string>();
 
@@ -229,6 +235,8 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
             removeEnclosingBrackets: this.workingRemoveEnclosingBrackets,
             variables: this.variables,
             nonBracketedOutput: this.nonBracketedOutput,
+            lineWrapping: this.dialogLineWrapping,
+            removeLineNumbers: this.dialogRemoveLineNumbers,
             expressionUpdate$: expressionUpdate$
         };
 

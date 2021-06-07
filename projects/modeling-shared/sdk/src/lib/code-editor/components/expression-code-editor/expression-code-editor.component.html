@@ -6,6 +6,7 @@
     <pre id="{{expressionLanguage}}" data-lang="{{expressionLanguage}}" class="ama-expression-code-editor-preview" #expressionPreviewer
         [ngClass]="enableInlineEditor ? 'preview-hidden' : ''">
     </pre>
+    <mat-icon class="ama-expression-code-editor-hint" *ngIf="removeEnclosingBrackets" matTooltip="{{'SDK.EXPRESSION_CODE_EDITOR.NO_BRACKETS_HINT'|translate}}">money_off</mat-icon>
     <button mat-mini-fab color="primary" matTooltip="{{'SDK.EXPRESSION_CODE_EDITOR.EDIT_IN_DIALOG'|translate}}"
         (click)="editInDialog()" class="ama-expression-code-editor-edit-button" *ngIf="enableDialogEditor">
         <mat-icon>open_in_new</mat-icon>

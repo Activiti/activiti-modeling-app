@@ -26,6 +26,7 @@ import { UuidService } from '../../../services/uuid.service';
 import { CodeEditorModule } from '../../code-editor.module';
 import { ExpressionsEditorService } from '../../services/expressions-editor.service';
 import { CodeEditorComponent } from '../code-editor/code-editor.component';
+import { ExpressionCodeEditorDialogComponent } from '../expression-code-editor-dialog/expression-code-editor-dialog.component';
 import { ExpressionCodeEditorComponent } from './expression-code-editor.component';
 
 describe('ExpressionCodeEditorComponent', () => {
@@ -356,11 +357,11 @@ describe('ExpressionCodeEditorComponent', () => {
     describe('Component outputs', () => {
         it('should emit bracketed expression if expression contains brackets and no host language', () => {
             spyOn(component.expressionChange, 'emit');
-
             component.language = null;
             component.removeEnclosingBrackets = true;
             component.nonBracketedOutput = false;
             component.expression = '${a == b}';
+            component.ngOnInit();
 
             component.expChanged('${c == d}');
 
@@ -369,11 +370,11 @@ describe('ExpressionCodeEditorComponent', () => {
 
         it('should emit bracketed expression if expression does not contain brackets and no host language', () => {
             spyOn(component.expressionChange, 'emit');
-
             component.language = null;
             component.removeEnclosingBrackets = true;
             component.nonBracketedOutput = false;
             component.expression = '${a == b}';
+            component.ngOnInit();
 
             component.expChanged('c == d');
 
@@ -382,11 +383,11 @@ describe('ExpressionCodeEditorComponent', () => {
 
         it('should not emit bracketed expression if expression contains brackets and no host language and nonBracketedOutputs', () => {
             spyOn(component.expressionChange, 'emit');
-
             component.language = null;
             component.removeEnclosingBrackets = true;
             component.nonBracketedOutput = true;
             component.expression = '${a == b}';
+            component.ngOnInit();
 
             component.expChanged('${c == d}');
 
@@ -395,11 +396,11 @@ describe('ExpressionCodeEditorComponent', () => {
 
         it('should not emit bracketed expression if expression does not contain brackets and no host language and nonBracketedOutputs', () => {
             spyOn(component.expressionChange, 'emit');
-
             component.language = null;
             component.removeEnclosingBrackets = true;
             component.nonBracketedOutput = true;
             component.expression = '${a == b}';
+            component.ngOnInit();
 
             component.expChanged('c == d');
 
@@ -408,11 +409,11 @@ describe('ExpressionCodeEditorComponent', () => {
 
         it('should emit null if expression is null', () => {
             spyOn(component.expressionChange, 'emit');
-
             component.language = 'expression-generated-uuid';
             component.removeEnclosingBrackets = true;
             component.nonBracketedOutput = true;
             component.expression = '${a == b}';
+            component.ngOnInit();
 
             component.expChanged(null);
 
@@ -421,11 +422,11 @@ describe('ExpressionCodeEditorComponent', () => {
 
         it('should emit undefined if expression is undefined', () => {
             spyOn(component.expressionChange, 'emit');
-
             component.language = 'expression-generated-uuid';
             component.removeEnclosingBrackets = true;
             component.nonBracketedOutput = true;
             component.expression = '${a == b}';
+            component.ngOnInit();
 
             component.expChanged(undefined);
 
@@ -434,11 +435,11 @@ describe('ExpressionCodeEditorComponent', () => {
 
         it('should emit empty string if expression is empty', () => {
             spyOn(component.expressionChange, 'emit');
-
             component.language = 'expression-generated-uuid';
             component.removeEnclosingBrackets = true;
             component.nonBracketedOutput = true;
             component.expression = '${a == b}';
+            component.ngOnInit();
 
             component.expChanged('');
 
@@ -447,11 +448,11 @@ describe('ExpressionCodeEditorComponent', () => {
 
         it('should emit the expression string if it has host language', () => {
             spyOn(component.expressionChange, 'emit');
-
             component.language = 'javascript';
             component.removeEnclosingBrackets = true;
             component.nonBracketedOutput = true;
             component.expression = '${a == b}';
+            component.ngOnInit();
 
             component.expChanged('let a=5;');
 
@@ -465,11 +466,32 @@ describe('ExpressionCodeEditorComponent', () => {
 
     it('should open editor dialog', () => {
         spyOn(dialogService, 'openDialog').and.stub();
-
+        component.language = null;
+        component.expression = '${a == b}';
         component.enableDialogEditor = true;
+        component.removeEnclosingBrackets = false;
+        component.nonBracketedOutput = false;
+        component.variables = [];
+        component.dialogLineWrapping = true;
+        component.dialogRemoveLineNumbers = true;
+        component.ngOnInit();
 
         component.editInDialog();
 
-        expect(dialogService.openDialog).toHaveBeenCalled();
+        expect(dialogService.openDialog).toHaveBeenCalledWith(ExpressionCodeEditorDialogComponent, {
+            disableClose: true,
+            height: '450px',
+            width: '1000px',
+            data: {
+                expression: '${a == b}',
+                language: null,
+                removeEnclosingBrackets: false,
+                variables: [],
+                nonBracketedOutput: false,
+                lineWrapping: true,
+                removeLineNumbers: true,
+                expressionUpdate$: jasmine.any(Object)
+            }
+        });
     });
 });
