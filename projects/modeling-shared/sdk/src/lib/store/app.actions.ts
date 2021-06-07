@@ -17,6 +17,7 @@
 
 import { Action } from '@ngrx/store';
 import { MODEL_TYPE } from '../api/types';
+import { DialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
 
 export const SNACKBAR_ERROR = 'SNACKBAR_ERROR';
 export class SnackbarErrorAction implements Action {
@@ -42,29 +43,12 @@ export class SetAppDirtyStateAction implements Action {
     constructor(public payload: boolean) {}
 }
 
-export interface DialogData {
-    title?: string;
-    subtitle?: string;
-    messages?: string[];
-}
-
 export interface OpenInfoDialogActionPayload {
     dialogData?: DialogData;
 }
 
 export interface OpenConfirmDialogActionPayload extends OpenInfoDialogActionPayload {
     action?: Action;
-}
-
-export interface HumanReadableChoice<T> {
-    choice: T;
-    title?: string;
-    subtitle?: string;
-    color?: 'primary' | 'accent' | 'default';
-    spinnable?: boolean;
-}
-export interface MultipleChoiceDialogData<T> extends DialogData {
-    choices: HumanReadableChoice<T>[];
 }
 
 export const OPEN_CONFIRM_DIALOG = 'OPEN_CONFIRM_DIALOG';

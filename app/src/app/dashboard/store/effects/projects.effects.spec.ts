@@ -27,7 +27,6 @@ import { LogService, CoreModule, TranslationService, TranslationMock } from '@al
 import { provideMockActions } from '@ngrx/effects/testing';
 import { mockProject, paginationMock, paginationCountMock } from './project.mock';
 import {
-    DialogService,
     AmaApi,
     CreateProjectAttemptAction,
     ProjectApi,
@@ -55,6 +54,7 @@ import {
     SaveAsProjectAttemptAction,
     OpenSaveAsProjectDialogAction
 } from '@alfresco-dbp/modeling-shared/sdk';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 
 describe('ProjectsEffects', () => {

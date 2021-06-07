@@ -15,5 +15,9 @@
  * limitations under the License.
  */
 
-export * from './dialogs.module';
+export * from './dialog.module';
+export * from './interfaces/dialog.interface';
 export * from './services/dialog.service';
+export * from './components/confirmation-dialog/confirmation-dialog.component';
+export * from './components/info-dialog/info-dialog.component';
+export * from './components/multiple-choice-dialog/multiple-choice-dialog.component';

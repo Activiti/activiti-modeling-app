@@ -90,11 +90,11 @@ import {
     ErrorResponse,
     SaveAsDialogPayload,
     SaveAsDialogComponent,
-    DialogService,
     ModelExtensions,
     ShowProcessesAction,
     SHOW_PROCESSES
 } from '@alfresco-dbp/modeling-shared/sdk';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProcessEditorService } from '../services/process-editor.service';
 import { selectProcessesLoaded, selectSelectedElement } from './process-editor.selectors';
 import { Store } from '@ngrx/store';

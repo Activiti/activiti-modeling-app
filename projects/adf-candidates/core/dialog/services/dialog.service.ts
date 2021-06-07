@@ -19,7 +19,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subject, Observable } from 'rxjs';
 import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
-import { DialogData, MultipleChoiceDialogData } from '../../store/app.actions';
+import { DialogData, MultipleChoiceDialogData } from '../interfaces/dialog.interface';
 import { InfoDialogComponent } from '../components/info-dialog/info-dialog.component';
 import { MultipleChoiceDialogComponent } from '../components/multiple-choice-dialog/multiple-choice-dialog.component';
 

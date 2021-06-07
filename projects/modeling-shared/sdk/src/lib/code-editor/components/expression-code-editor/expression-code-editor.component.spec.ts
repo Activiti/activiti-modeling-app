@@ -21,7 +21,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
-import { DialogService } from '../../../dialogs/services/dialog.service';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { UuidService } from '../../../services/uuid.service';
 import { CodeEditorModule } from '../../code-editor.module';
 import { ExpressionsEditorService } from '../../services/expressions-editor.service';

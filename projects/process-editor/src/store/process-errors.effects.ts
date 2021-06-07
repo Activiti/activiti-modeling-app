@@ -20,10 +20,10 @@ import { switchMap, tap, take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import {
     AmaState,
-    DialogService,
     SetAppDirtyStateAction,
     selectSelectedProcess
 } from '@alfresco-dbp/modeling-shared/sdk';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { OpenProcessErrorsDialogAction, OPEN_PROCESS_ERRORS_DIALOG } from './process-errors.actions';

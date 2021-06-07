@@ -21,7 +21,6 @@ import { switchMap, tap, take, map, mergeMap } from 'rxjs/operators';
 import { Injectable, Inject } from '@angular/core';
 import {
     AmaState,
-    DialogService,
     SetAppDirtyStateAction,
     EntityProperties,
     ProcessModelerServiceToken,
@@ -30,6 +29,7 @@ import {
     selectSelectedProcess,
     BpmnCompositeProperty
 } from '@alfresco-dbp/modeling-shared/sdk';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { Store } from '@ngrx/store';
 import { Subject, of, zip } from 'rxjs';
 

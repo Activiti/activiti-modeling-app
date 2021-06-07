@@ -45,11 +45,11 @@ import { MatInputModule } from '@angular/material/input';
 import {
     ACMApiModule,
     AmaServicesModule,
-    DialogsModule,
     AuthTokenProcessorService,
     allLogFilter,
     provideLogFilter
 } from '@alfresco-dbp/modeling-shared/sdk';
+import { DialogsModule } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { AmaRoleGuard } from './ama-role-guard.service';
 import { AppExtensionsModule } from './extensions.module';
 import { GlobalErrorHandler } from './common/helpers/services/error-handler.service';

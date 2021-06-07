@@ -18,7 +18,8 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { CodeEditorModule, AssignmentMode, AssignmentType, ExpressionsEditorService, UuidService, DialogService } from '@alfresco-dbp/modeling-shared/sdk';
+import { CodeEditorModule, AssignmentMode, AssignmentType, ExpressionsEditorService, UuidService } from '@alfresco-dbp/modeling-shared/sdk';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { CoreModule, TranslationService, TranslationMock, AlfrescoApiService } from '@alfresco/adf-core';
 import { By } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';

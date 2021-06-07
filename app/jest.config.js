@@ -34,6 +34,7 @@ module.exports = {
         }
     },
     moduleNameMapper: {
-        '@alfresco-dbp/modeling-shared/sdk': '<rootDir>/../projects/modeling-shared/sdk/src/public-api.ts'
+        '@alfresco-dbp/modeling-shared/sdk': '<rootDir>/../projects/modeling-shared/sdk/src/public-api.ts',
+        '@alfresco-dbp/adf-candidates/core/(.*)': '<rootDir>/../projects/adf-candidates/core/$1'
     }
 };

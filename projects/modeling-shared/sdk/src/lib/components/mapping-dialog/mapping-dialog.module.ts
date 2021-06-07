@@ -19,7 +19,7 @@ import { CoreModule } from '@alfresco/adf-core';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MappingDialogComponent } from './mapping-dialog.component';
-import { DialogService } from '../../dialogs/services/dialog.service';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { VariablesModule } from '../../variables/variables.module';
 import { CodeEditorModule } from '../../code-editor/public-api';
 import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';

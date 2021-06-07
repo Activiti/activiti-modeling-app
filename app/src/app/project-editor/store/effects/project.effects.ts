@@ -22,12 +22,12 @@ import { Router } from '@angular/router';
 import { OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, LogFactoryService,
     LeaveProjectAction,
     SnackbarInfoAction,
-    DialogData,
     getProjectEditorLogInitiator,
     GetProjectAttemptAction,
     GET_PROJECT_ATTEMPT,
     GetProjectSuccessAction,
     OpenInfoDialogAction} from '@alfresco-dbp/modeling-shared/sdk';
+import { DialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import {
     ExportProjectAction,

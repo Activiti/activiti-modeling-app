@@ -61,10 +61,10 @@ import {
     SetApplicationLoadingStateAction,
     OpenConfirmDialogAction,
     BpmnElement,
-    DialogService,
     SaveAsDialogPayload,
     ShowProcessesAction
 } from '@alfresco-dbp/modeling-shared/sdk';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProcessEntitiesState } from './process-entities.state';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
 import { TranslateModule } from '@ngx-translate/core';

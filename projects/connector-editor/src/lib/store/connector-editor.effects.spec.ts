@@ -59,7 +59,6 @@ import {
     OpenConfirmDialogAction,
     GetConnectorAttemptAction,
     CreateConnectorSuccessAction,
-    DialogService,
     LogFactoryService,
     CreateConnectorAttemptAction,
     SetApplicationLoadingStateAction,
@@ -67,6 +66,7 @@ import {
     SaveAsDialogPayload,
     ShowConnectorsAction
 } from '@alfresco-dbp/modeling-shared/sdk';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { Update } from '@ngrx/entity';
 import { selectConnectorsLoaded, selectSelectedConnector } from './connector-editor.selectors';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';

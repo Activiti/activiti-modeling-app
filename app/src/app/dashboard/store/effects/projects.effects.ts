@@ -61,8 +61,8 @@ import {
     SAVE_AS_PROJECT_ATTEMPT,
     SaveAsProjectDialogPayload,
     SaveAsProjectDialogComponent,
-    DialogService,
 } from '@alfresco-dbp/modeling-shared/sdk';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 
 @Injectable()
 export class ProjectsEffects {

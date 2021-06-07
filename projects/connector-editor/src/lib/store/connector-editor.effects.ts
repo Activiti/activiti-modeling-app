@@ -46,10 +46,10 @@ import {
     ErrorResponse,
     SaveAsDialogPayload,
     SaveAsDialogComponent,
-    DialogService,
     ShowConnectorsAction,
     SHOW_CONNECTORS
 } from '@alfresco-dbp/modeling-shared/sdk';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ConnectorEditorService } from '../services/connector-editor.service';
 import { of, zip, forkJoin, Observable } from 'rxjs';
 import { Router } from '@angular/router';

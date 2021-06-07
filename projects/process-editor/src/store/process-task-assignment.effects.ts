@@ -17,12 +17,12 @@
 
 import { Injectable, Inject } from '@angular/core';
 import {
-    DialogService,
     ProcessModelerServiceToken,
     ProcessModelerService,
     AmaState,
     SetAppDirtyStateAction
 } from '@alfresco-dbp/modeling-shared/sdk';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { Effect, ofType, Actions } from '@ngrx/effects';
 import { OpenTaskAssignmentDialogAction, OPEN_TASK_ASSIGNMENT_DIALOG, UpdateTaskAssignmentAction, UPDATE_TASK_ASSIGNMENT_VARIABLES } from './process-task-assignment.actions';
 import { switchMap, take, map, tap, mergeMap } from 'rxjs/operators';

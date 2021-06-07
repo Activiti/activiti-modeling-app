@@ -22,7 +22,7 @@ import { By } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MappingType, ServiceParameterMapping } from '../../api/types';
 import { OutputMappingTableComponent } from './output-mapping-table.component';
-import { DialogService } from '../../dialogs/services/dialog.service';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { OutputMappingTableModule } from './output-mapping-table.module';
 import { MatDialog } from '@angular/material/dialog';
 import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';

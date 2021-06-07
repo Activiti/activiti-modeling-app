@@ -27,6 +27,9 @@ module.exports = {
         'jest-preset-angular/build/serializers/ng-snapshot.js',
         'jest-preset-angular/build/serializers/html-comment.js',
     ],
+    moduleNameMapper: {
+        '@alfresco-dbp/adf-candidates/core/(.*)': '<rootDir>/../../../projects/adf-candidates/core/$1'
+    },
     globals: {
         "ts-jest": {
             stringifyContentPathRegex: '\\.html?$',

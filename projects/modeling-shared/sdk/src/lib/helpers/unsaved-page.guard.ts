@@ -22,10 +22,9 @@ import { Store } from '@ngrx/store';
 import { of, Observable, zip } from 'rxjs';
 import { switchMap, tap, catchError } from 'rxjs/operators';
 import { AmaState } from '../store/app.state';
-import { DialogService } from '../dialogs/services/dialog.service';
+import { DialogService, MultipleChoiceDialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { AmaTitleService } from '../services/title.service';
 import { selectAppDirtyState, selectSelectedModel } from '../store/app.selectors';
-import { MultipleChoiceDialogData } from '../store/app.actions';
 
 export interface CanComponentDeactivate {
     canDeactivate: () => Observable<boolean>;

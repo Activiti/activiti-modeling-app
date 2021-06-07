@@ -21,8 +21,6 @@ import { map, switchMap } from 'rxjs/operators';
 import {
     OPEN_CONFIRM_DIALOG,
     OpenConfirmDialogAction,
-    DialogService,
-    DialogData,
     EntityDialogComponent,
     SetApplicationLoadingStateAction,
     MODELER_NAME_REGEX,
@@ -44,6 +42,7 @@ import {
     OPEN_INFO_DIALOG,
     OpenInfoDialogAction
 } from '@alfresco-dbp/modeling-shared/sdk';
+import { DialogService, DialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { Action, Store } from '@ngrx/store';
 
 @Injectable()

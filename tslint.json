@@ -206,21 +206,24 @@
           {
             "sourceTag": "scope:modeling-sdk",
             "onlyDependOnLibsWithTags": [
-              "scope:modeling-sdk"
+              "scope:modeling-sdk",
+              "scope:adf-candidates"
             ]
           },
           {
             "sourceTag": "scope:modeling-ce-connector-editor",
             "onlyDependOnLibsWithTags": [
               "scope:modeling-ce-connector-editor",
-              "scope:modeling-sdk"
+              "scope:modeling-sdk",
+              "scope:adf-candidates"
             ]
           },
           {
             "sourceTag": "scope:modeling-ce-process-editor",
             "onlyDependOnLibsWithTags": [
               "scope:modeling-ce-process-editor",
-              "scope:modeling-sdk"
+              "scope:modeling-sdk",
+              "scope:adf-candidates"
             ]
           },
           {
@@ -229,7 +232,8 @@
               "scope:modeling-ce",
               "scope:modeling-sdk",
               "scope:modeling-ce-connector-editor",
-              "scope:modeling-ce-process-editor"
+              "scope:modeling-ce-process-editor",
+              "scope:adf-candidates"
             ]
           },
           {

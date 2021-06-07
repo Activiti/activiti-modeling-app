@@ -6,16 +6,17 @@ module.exports = {
     verbose: true,
     testURL: 'http://localhost',
     setupFilesAfterEnv: [ path.resolve(__dirname, '..', '..', 'jest/jest-setup.ts') ],
-    coverageDirectory: '<rootDir>/../../../../coverage/modeling-ce/modeling-ce-process-editor',
+    coverageDirectory: '<rootDir>/../../../../coverage/modeling-ce/adf-candidates',
     collectCoverage: true,
     collectCoverageFrom: [
         '<rootDir>/src/**/*.ts',
+        '<rootDir>/**/*.ts',
         '!<rootDir>/src/*.ts',
         '!<rootDir>/src/**/*.d.ts',
         '!<rootDir>/src/**/index.ts'
     ],
     roots: [
-        path.resolve(__dirname, 'src')
+        path.resolve(__dirname)
     ],
     transformIgnorePatterns: [
         'node_modules/(?!@alfresco\\/js-api)'
@@ -27,10 +28,6 @@ module.exports = {
         'jest-preset-angular/build/serializers/ng-snapshot.js',
         'jest-preset-angular/build/serializers/html-comment.js',
     ],
-    moduleNameMapper: {
-        '@alfresco-dbp/modeling-shared/sdk': '<rootDir>/../../projects/modeling-shared/sdk/src/public-api.ts',
-        '@alfresco-dbp/adf-candidates/core/(.*)': '<rootDir>../../projects/adf-candidates/core/$1'
-    },
     globals: {
         "ts-jest": {
             stringifyContentPathRegex: '\\.html?$',

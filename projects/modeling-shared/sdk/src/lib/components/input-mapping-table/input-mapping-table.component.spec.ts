@@ -28,7 +28,7 @@ import { Store } from '@ngrx/store';
 import { selectSelectedTheme } from '../../store/app.selectors';
 import { of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogService } from '../../dialogs/services/dialog.service';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { PropertiesViewerStringInputComponent, INPUT_TYPE_ITEM_HANDLER } from '../../variables/public-api';
 import { TranslateModule } from '@ngx-translate/core';
 

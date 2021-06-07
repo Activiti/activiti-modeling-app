@@ -22,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
-import { DialogService } from '../dialogs/public-api';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { AmaTitleService } from '../services/title.service';
 import { selectAppDirtyState } from '../store/app.selectors';
 import { CanComponentDeactivate, UnsavedPageGuard } from './unsaved-page.guard';

@@ -20,7 +20,7 @@ import { TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
-import { DialogData, MultipleChoiceDialogData } from '../../store/app.actions';
+import { DialogData, MultipleChoiceDialogData } from '../interfaces/dialog.interface';
 import { MultipleChoiceDialogComponent } from '../components/multiple-choice-dialog/multiple-choice-dialog.component';
 import { Subject } from 'rxjs';
 

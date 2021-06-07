@@ -25,8 +25,9 @@ import { Router } from '@angular/router';
 import { LogService } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { of } from 'rxjs';
-import { DialogService, BpmnFactoryToken, ProcessModelerServiceToken } from '@alfresco-dbp/modeling-shared/sdk';
+import { BpmnFactoryToken, ProcessModelerServiceToken } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessErrorsEffects } from './process-errors.effects';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 
 describe('Process errors effects', () => {
     let effects: ProcessErrorsEffects;

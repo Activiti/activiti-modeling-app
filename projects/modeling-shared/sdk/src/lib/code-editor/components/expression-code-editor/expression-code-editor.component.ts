@@ -18,7 +18,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { EntityProperty } from '../../../api/types';
-import { DialogService } from '../../../dialogs/services/dialog.service';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { UuidService } from '../../../services/uuid.service';
 import { getFileUri } from '../../helpers/file-uri';
 import { ExpressionsEditorService } from '../../services/expressions-editor.service';

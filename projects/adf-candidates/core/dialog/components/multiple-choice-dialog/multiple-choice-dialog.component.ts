@@ -18,7 +18,7 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
-import { HumanReadableChoice } from '../../../store/app.actions';
+import { HumanReadableChoice } from '../../interfaces/dialog.interface';
 import { MultipleChoiceDialogReturnType } from '../../services/dialog.service';
 
 export interface MultipleChoiceDialogPayload<T> {
