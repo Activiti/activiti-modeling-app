@@ -36,21 +36,10 @@ export interface ExportProjectAttemptPayload {
     action?: Action;
 }
 
-export interface ExportProjectPayload {
-    projectId: string;
-    projectName: string;
-}
-
 export const EXPORT_PROJECT_ATTEMPT = 'EXPORT_PROJECT_ATTEMPT';
 export class ExportProjectAttemptAction implements Action {
     readonly type = EXPORT_PROJECT_ATTEMPT;
     constructor(public payload: ExportProjectAttemptPayload) {}
-}
-
-export const EXPORT_PROJECT = 'EXPORT_PROJECT';
-export class ExportProjectAction implements Action {
-    readonly type = EXPORT_PROJECT;
-    constructor(public payload: ExportProjectPayload) {}
 }
 
 export const VALIDATE_PROJECT_ATTEMPT = 'VALIDATE_PROJECT_ATTEMPT';

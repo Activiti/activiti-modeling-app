@@ -22,9 +22,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToolbarModule } from '@alfresco/adf-core';
-import { ProjectEditorState, PROJECT_CONTEXT_MENU_OPTIONS, OpenSaveAsProjectDialogAction, SaveAsProjectAttemptAction, AmaApi } from '@alfresco-dbp/modeling-shared/sdk';
+import { ProjectEditorState, PROJECT_CONTEXT_MENU_OPTIONS, OpenSaveAsProjectDialogAction, SaveAsProjectAttemptAction, AmaApi, ExportProjectAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { of } from 'rxjs';
-import { ExportProjectAction, ExportProjectAttemptAction } from '../../store/project-editor.actions';
 import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -32,6 +31,7 @@ import { CommonModule } from '@angular/common';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import { mockProject } from './project-content.mock';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ExportProjectAttemptAction } from '../../store/project-editor.actions';
 
 describe('ProjectContentComponent', () => {
     let fixture: ComponentFixture<ProjectContentComponent>;

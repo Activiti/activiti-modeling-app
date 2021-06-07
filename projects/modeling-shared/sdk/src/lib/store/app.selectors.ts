@@ -21,6 +21,7 @@ import { getEntitiesState } from './entity.selectors';
 
 export const selectApp = (state: AmaState) => state.app;
 
+export const selectMenuOpened = createSelector(selectApp, (state: AppState) => state.menuOpened);
 export const selectSelectedTheme = createSelector(selectApp, (state: AppState) => state.selectedTheme);
 export const selectSelectedProjectId = createSelector(selectApp, (state: AppState) => state.selectedProjectId);
 export const selectAppDirtyState = createSelector(selectApp, (state: AppState) => state.dirtyState);

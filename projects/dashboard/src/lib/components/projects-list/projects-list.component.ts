@@ -25,9 +25,8 @@ import {
     SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption,
     PROJECT_CONTEXT_MENU_OPTIONS, ProjectContextMenuActionClass,
     selectLoading, selectPagination, selectProjectSummaries, GetProjectsAttemptAction,
-    DeleteProjectAttemptAction, UpdateProjectAttemptAction, OpenSaveAsProjectDialogAction, SaveAsProjectAttemptAction
+    DeleteProjectAttemptAction, UpdateProjectAttemptAction, OpenSaveAsProjectDialogAction, SaveAsProjectAttemptAction, ExportProjectAction
 } from '@alfresco-dbp/modeling-shared/sdk';
-import { ExportProjectAction } from '../../../project-editor/store/project-editor.actions';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';

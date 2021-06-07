@@ -31,7 +31,7 @@ import { ProjectsEffects } from './store/effects/projects.effects';
 import { SharedModule, PROJECT_ENTITY_KEY, AmaStoreModule, projectEntitiesReducer, provideTranslations } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { SearchHeaderComponent } from '../app/app-layout/search-header/search-header.component';
+import { SearchHeaderComponent } from './components/search-header/search-header.component';
 
 @NgModule({
     imports: [

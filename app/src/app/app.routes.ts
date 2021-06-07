@@ -24,9 +24,9 @@ import { HostSettingsComponent } from './app/host-settings/host-settings.compone
 import { AmaLocalStorageMergeGuard } from './common/services/ama-localstorage-merge-guard.service';
 import { AmaRoleGuard } from './ama-role-guard.service';
 import { ErrorContentComponent } from './app/error/error-content.component';
-import { dashboardRoutes } from './dashboard/router/dashboard.routes';
 import { AmaModelSchemaLoaderGuard } from './common/services/ama-model-schema-loader-guard.service';
 import { DASHBOARD_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
+import { dashboardRoutes } from '@alfresco-dbp/modeling-ce/dashboard';
 
 export const appRoutes: Routes = [
     {

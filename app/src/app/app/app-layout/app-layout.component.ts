@@ -20,10 +20,9 @@ import { SidenavLayoutComponent, AppConfigService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { SetMenuAction } from '../../store/actions';
 import { Observable, Subject } from 'rxjs';
-import { selectMenuOpened } from '../../store/selectors/app.selectors';
 import { first, takeUntil } from 'rxjs/operators';
 import { SettingsDialogComponent } from '../settings/settings-dialog.component';
-import { AmaState, OpenDialogAction } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaState, OpenDialogAction, selectMenuOpened } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Component({
     templateUrl: './app-layout.component.html',

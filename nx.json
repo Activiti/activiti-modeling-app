@@ -25,7 +25,13 @@
     },
     "modeling-ce-process-editor": {
       "tags": [
-        "scope:modeling-ce-process-editor",
+        "scope:modeling-ce-process-editor"
+      ]
+    },
+    "modeling-ce-dashboard": {
+      "tags": [
+        "scope:modeling-ce-dashboard",
+        "type:lib",
         "category:modeling-ce"
       ]
     },

@@ -18,11 +18,10 @@
 import { Component, Inject, AfterContentInit, Optional } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectMenuOpened } from '../../../store/selectors/app.selectors';
 import {
     AmaState, selectSelectedProjectId, ModelCreatorDialogParams,
     MODEL_CREATORS, ModelCreator, OpenEntityDialogAction, MODEL_IMPORTERS,
-    ModelImporter, CONNECTOR
+    ModelImporter, CONNECTOR, selectMenuOpened
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { AppConfigService } from '@alfresco/adf-core';
 

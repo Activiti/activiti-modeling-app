@@ -151,3 +151,14 @@ export class SaveAsProjectAttemptAction implements Action {
     readonly type = SAVE_AS_PROJECT_ATTEMPT;
     constructor(public payload: SaveAsProjectDialogPayload) {}
 }
+
+export interface ExportProjectPayload {
+    projectId: string;
+    projectName: string;
+}
+
+export const EXPORT_PROJECT = 'EXPORT_PROJECT';
+export class ExportProjectAction implements Action {
+    readonly type = EXPORT_PROJECT;
+    constructor(public payload: ExportProjectPayload) {}
+}

@@ -19,8 +19,7 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { AppConfigService } from '@alfresco/adf-core';
-import { AmaState } from '@alfresco-dbp/modeling-shared/sdk';
-import { selectMenuOpened } from '../../../store/selectors/app.selectors';
+import { AmaState, selectMenuOpened } from '@alfresco-dbp/modeling-shared/sdk';
 
 export interface CreateAction {
     title: string;

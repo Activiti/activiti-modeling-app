@@ -18,8 +18,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectMenuOpened } from '../../../store/selectors/app.selectors';
-import { selectSelectedProjectId, MODEL_TYPE, ModelFilter, OpenFilterAction, Filter, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
+import { selectSelectedProjectId, MODEL_TYPE, ModelFilter, OpenFilterAction, Filter, AmaState, selectMenuOpened } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProjectTreeHelper } from './project-tree.helper';
 import { CloseFilterAction } from '../../store/project-editor.actions';
 import { selectOpenedFilters } from '../../store/selectors/project-tree.selectors';

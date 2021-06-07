@@ -38,6 +38,7 @@ import { ProjectEditorModule } from './project-editor/project-editor.module';
 
 import { appRoutes } from './app.routes';
 import { ConnectorEditorModule } from '@alfresco-dbp/modeling-ce/connector-editor';
+import { DashboardModule } from '@alfresco-dbp/modeling-ce/dashboard';
 import { AmaLocalStorageMergeGuard } from './common/services/ama-localstorage-merge-guard.service';
 import { ErrorContentComponent } from './app/error/error-content.component';
 import { MatInputModule } from '@angular/material/input';
@@ -58,7 +59,6 @@ import { LogHistoryEntryComponent } from './app/app-layout/logging/components/lo
 import { EditorFooterComponent } from './app/app-layout/editor-footer/editor-footer.component';
 import { AppFooterService } from './common/services/app-footer.service';
 import { EDITOR_FOOTER_SERVICE_TOKEN } from './app/app-layout/editor-footer/editor-footer.service.interface';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { AmaModelSchemaLoaderGuard } from './common/services/ama-model-schema-loader-guard.service';
 import { getBackendLogInitiator } from './common/services/application.constants';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';

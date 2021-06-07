@@ -26,17 +26,17 @@ import { OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadReso
     GetProjectAttemptAction,
     GET_PROJECT_ATTEMPT,
     GetProjectSuccessAction,
-    OpenInfoDialogAction} from '@alfresco-dbp/modeling-shared/sdk';
+    OpenInfoDialogAction,
+    ExportProjectAction,
+    EXPORT_PROJECT} from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import {
-    ExportProjectAction,
-    EXPORT_PROJECT,
     ValidateProjectAttemptAction,
     VALIDATE_PROJECT_ATTEMPT,
     ExportProjectAttemptAction,
     EXPORT_PROJECT_ATTEMPT,
-    ExportProjectAttemptPayload
+    ExportProjectAttemptPayload,
 } from '../project-editor.actions';
  import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 

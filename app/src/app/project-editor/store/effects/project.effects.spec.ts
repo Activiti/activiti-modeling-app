@@ -20,13 +20,12 @@ import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { Observable, throwError, of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
-import { ACMApiModule, DownloadResourceService, BlobService, SnackbarErrorAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
+import { ACMApiModule, DownloadResourceService, BlobService, SnackbarErrorAction, ExportProjectAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { LogService, AlfrescoApiService, AlfrescoApiServiceMock, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { Router } from '@angular/router';
-import { ExportProjectAction } from '../project-editor.actions';
 import { hot, getTestScheduler, cold } from 'jasmine-marbles';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 

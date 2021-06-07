@@ -18,7 +18,7 @@
 import { Routes } from '@angular/router';
 import { DashboardNavigationComponent } from '../components/dashboard-navigation/dashboard-navigation.component';
 import { ProjectsListComponent } from '../components/projects-list/projects-list.component';
-import { SearchHeaderComponent } from '../../app/app-layout/search-header/search-header.component';
+import { SearchHeaderComponent } from '../components/search-header/search-header.component';
 
 export const dashboardRoutes: Routes = [
     {
