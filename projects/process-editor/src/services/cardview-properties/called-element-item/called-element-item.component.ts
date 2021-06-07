@@ -130,7 +130,7 @@ export class CalledElementComponent implements OnInit, OnDestroy {
     openDialog() {
         this.store.dispatch(new OpenDialogAction(CalledElementDialogComponent, {
             disableClose: true,
-            height: '300px',
+            height: '375px',
             width: '500px',
             data: <CalledElementModel>{
                 processName: this.selectedProcess.name,

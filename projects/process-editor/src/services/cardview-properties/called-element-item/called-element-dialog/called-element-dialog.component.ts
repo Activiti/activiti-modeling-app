@@ -18,7 +18,7 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
-import { AmaState, EntityProperty, ExpressionsEditorService, UuidService } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaState, EntityProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { UpdateCalledElementAction } from '../../../../store/called-element.actions';
 import { CalledElementTypes, CalledElementService } from '../called-element.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -43,7 +43,6 @@ export class CalledElementDialogComponent implements OnInit, OnDestroy {
     isCalledElementValid = false;
     expression = '';
 
-    language = 'expressions';
     processFileUri: string;
     extendedProperties = {
         plain: true,
@@ -54,8 +53,6 @@ export class CalledElementDialogComponent implements OnInit, OnDestroy {
 
     constructor(
         private store: Store<AmaState>,
-        private expressionsEditorService: ExpressionsEditorService,
-        private uuidService: UuidService,
         private calledElementService: CalledElementService,
         public dialog: MatDialogRef<CalledElementDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: CalledElementModel) {
@@ -63,8 +60,6 @@ export class CalledElementDialogComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.initDialog();
-        this.language = this.language + '-' + this.uuidService.generate();
-        this.expressionsEditorService.initExpressionEditor(this.language, this.processVariables);
     }
 
     initDialog() {

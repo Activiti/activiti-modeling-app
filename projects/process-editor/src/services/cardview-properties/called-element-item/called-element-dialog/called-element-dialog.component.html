@@ -6,7 +6,7 @@
     <mat-tab-group mat-stretch-tabs class="called-element-dialog-content" [selectedIndex]="currentActiveTab"
         (selectedTabChange)="onTabChange($event)">
         <mat-tab label="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.CALLED_ELEMENT.DIALOG.STATIC' | translate}}">
-            <div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS_NAME' | translate }}</div>
+            <h3>{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS_NAME' | translate }}</h3>
             <modelingsdk-value-type-input [value]="processId" [extendedProperties]="extendedProperties"
                 [type]="'process'" (onChange)="onProcessChange($event)">
             </modelingsdk-value-type-input>
@@ -14,11 +14,18 @@
 
         <mat-tab label="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.CALLED_ELEMENT.DIALOG.EXPRESSION' | translate }}">
             <ng-container *ngIf="processVariables.length; else noProcessVariables">
-                <modelingsdk-code-editor
-                    (changed)="expressionChanged($event)"
-                    [content]="expression"
-                    [language]="language">
-                </modelingsdk-code-editor>
+                <modelingsdk-expression-code-editor class="called-element-dialog-expression"
+                    [attr.data-automation-id]="'called-element-dialog-expression'"
+                    [expression]="expression"
+                    (expressionChange)="expressionChanged($event)"
+                    [variables]="processVariables"
+                    [removeEnclosingBrackets]="true"
+                    [enableDialogEditor]="true"
+                    [enableInlineEditor]="true"
+                    [removeLineNumbers]="true"
+                    [lineWrapping]="true"
+                    [nonBracketedOutput]="false">
+                </modelingsdk-expression-code-editor>
             </ng-container>
             <ng-template #noProcessVariables>
                 <h5 data-automation-id="no-process-variables-error">

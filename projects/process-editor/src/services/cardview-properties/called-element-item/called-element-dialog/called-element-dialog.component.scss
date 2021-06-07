@@ -2,7 +2,7 @@
     $error: map-get($theme, warn);
 
     .called-element-dialog-content {
-        height: 160px;
+        height: 230px;
         .mat-tab-header {
             margin-bottom: 30px;
         }
@@ -12,6 +12,15 @@
         width: 100%;
         .mat-form-field-infix {
             border-top: 0;
+        }
+    }
+
+    .called-element-dialog-expression {
+        display: block;
+        height: 150px;
+
+        .ama-expression-code-editor {
+            height: 120px;
         }
     }
 }
