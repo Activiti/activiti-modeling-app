@@ -45,6 +45,9 @@ export * from './lib/components/save-as-project-dialog/public-api';
 export * from './lib/api-implementations/acm-api/acm-api.module';
 export * from './lib/api-implementations/acm-api/request-api.helper';
 
+export * from './lib/services/process-editor-element-variables-provider.service';
+export * from './lib/services/process-editor-element-variables.service';
+
 // TODO: Remove it ===================================================
 export * from './lib/api-implementations/acm-api/content-types';
 export * from './lib/api-implementations/acm-api/form-definition';
