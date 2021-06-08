@@ -1,35 +1,64 @@
 {
-    "standalone": {
-        "projectRoot": ".."
-    },
-    "scripts" : {
-        "prebuild": [{
-            "command": "mkdir",
-            "args": [ "-p", "$THIS_PROJECT_ROOT_PATH/.tmp" ]
-        },{
-            "command": "cp",
-            "args": [ "$THIS_PROJECT_SOURCE_ROOT_PATH/app.config.json.tpl", "$THIS_PROJECT_ROOT_PATH/.tmp/app.config.json" ]
-        }],
-        "prestart": [{
-            "command": "mkdir",
-            "args": [ "-p", "$THIS_PROJECT_ROOT_PATH/.tmp" ]
-        },{
-            "command": "./node_modules/.bin/envsub",
-            "args": [
-                "--env-file",
-                "./.env",
-                "--env",
-                "APP_CONFIG_BPM_HOST=$DEV_SERVER_URL",
-                "--env",
-                "APP_CONFIG_ECM_HOST=$DEV_SERVER_URL",
-                "--all",
-                "$THIS_PROJECT_SOURCE_ROOT_PATH/app.config.json.tpl",
-                "$THIS_PROJECT_ROOT_PATH/.tmp/app.config.json"
-            ]
-        },
-        {
-            "command": "./node_modules/.bin/ajv",
-            "args": [ "validate", "-s", "./node_modules/@alfresco/adf-core/app.config.schema.json", "-d", "$THIS_PROJECT_ROOT_PATH/.tmp/app.config.json" , "--errors=text", "--verbose" ]
-        }]
-    }
+  "standalone": {
+    "projectRoot": ".."
+  },
+  "scripts": {
+    "prebuild": [
+      {
+        "command": "./scripts/local/check-for-extra-node-modules"
+      },
+      {
+        "command": "mkdir",
+        "args": [
+          "-p",
+          "$THIS_PROJECT_ROOT_PATH/.tmp"
+        ]
+      },
+      {
+        "command": "cp",
+        "args": [
+          "$THIS_PROJECT_SOURCE_ROOT_PATH/app.config.json.tpl",
+          "$THIS_PROJECT_ROOT_PATH/.tmp/app.config.json"
+        ]
+      }
+    ],
+    "prestart": [
+      {
+        "command": "./scripts/local/check-for-extra-node-modules"
+      },
+      {
+        "command": "mkdir",
+        "args": [
+          "-p",
+          "$THIS_PROJECT_ROOT_PATH/.tmp"
+        ]
+      },
+      {
+        "command": "./node_modules/.bin/envsub",
+        "args": [
+          "--env-file",
+          "./.env",
+          "--env",
+          "APP_CONFIG_BPM_HOST=$DEV_SERVER_URL",
+          "--env",
+          "APP_CONFIG_ECM_HOST=$DEV_SERVER_URL",
+          "--all",
+          "$THIS_PROJECT_SOURCE_ROOT_PATH/app.config.json.tpl",
+          "$THIS_PROJECT_ROOT_PATH/.tmp/app.config.json"
+        ]
+      },
+      {
+        "command": "./node_modules/.bin/ajv",
+        "args": [
+          "validate",
+          "-s",
+          "./node_modules/@alfresco/adf-core/app.config.schema.json",
+          "-d",
+          "$THIS_PROJECT_ROOT_PATH/.tmp/app.config.json",
+          "--errors=text",
+          "--verbose"
+        ]
+      }
+    ]
+  }
 }

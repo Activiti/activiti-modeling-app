@@ -43,29 +43,33 @@ export const appRoutes: Routes = [
     },
     {
         path: '',
-
-        component: AppLayoutComponent,
-        canActivate: [
-            AuthGuard,
-            AmaLocalStorageMergeGuard,
-            AmaModelSchemaLoaderGuard
-        ],
+        canActivate: [AuthGuard],
         children: [
-            { path: 'error/:id', component: ErrorContentComponent },
             {
-                path: 'dashboard',
-                canActivate: [AmaRoleGuard],
-                children: dashboardRoutes,
-                data: { hostFor: DASHBOARD_ROUTES }
-            },
-            // Impossible to lazily load ADF modules, that is why the hack
-            {
-                path: 'projects',
-                canActivate: [AmaRoleGuard],
-                children: projectEditorRoutes
-            },
-            { path: 'home', redirectTo: 'dashboard', pathMatch: 'full' },
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+                path: '',
+                component: AppLayoutComponent,
+                canActivate: [
+                    AmaLocalStorageMergeGuard,
+                    AmaModelSchemaLoaderGuard
+                ],
+                children: [
+                    { path: 'error/:id', component: ErrorContentComponent },
+                    {
+                        path: 'dashboard',
+                        canActivate: [AmaRoleGuard],
+                        children: dashboardRoutes,
+                        data: { hostFor: DASHBOARD_ROUTES }
+                    },
+                    // Impossible to lazily load ADF modules, that is why the hack
+                    {
+                        path: 'projects',
+                        canActivate: [AmaRoleGuard],
+                        children: projectEditorRoutes
+                    },
+                    { path: 'home', redirectTo: 'dashboard', pathMatch: 'full' },
+                    { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+                ]
+            }
         ]
     }
 ];

@@ -10,7 +10,7 @@ module.exports = {
         "pathRewrite": {
             "^/modeling-service/modeling-service": ""
         },
-        "logLevel": "silent"
+        'logLevel': 'debug'
     },
     "/dmn-service": {
         "target": APP_CONFIG_BPM_HOST,
@@ -19,7 +19,7 @@ module.exports = {
         "pathRewrite": {
             "^/dmn-service/dmn-service": ""
         },
-        "logLevel": "silent"
+        'logLevel': 'debug'
     },
     "/alfresco": {
         "target": APP_CONFIG_BPM_HOST,
@@ -27,7 +27,8 @@ module.exports = {
         "pathRewrite": {
             "^/alfresco/alfresco": ""
         },
-        "changeOrigin": true
+        "changeOrigin": true,
+        'logLevel': 'debug'
     },
     "/script-service": {
         "target": APP_CONFIG_BPM_HOST,
@@ -36,6 +37,6 @@ module.exports = {
         "pathRewrite": {
             "^/script-service/script-service": ""
         },
-        "logLevel": "silent"
+        'logLevel': 'debug'
     }
 };
