@@ -26,6 +26,7 @@ import { Subject, of } from 'rxjs';
 import { VariablesComponent } from './variables.component';
 import { CodeValidatorService } from './../code-editor/services/code-validator.service';
 import { By } from '@angular/platform-browser';
+import { INPUT_TYPE_ITEM_HANDLER } from './properties-viewer/value-type-inputs/value-type-inputs';
 
 describe('VariablesComponent', () => {
     let fixture: ComponentFixture<VariablesComponent>;
@@ -46,7 +47,8 @@ describe('VariablesComponent', () => {
                 { provide: CodeValidatorService, useValue: {validator: jest.fn()}},
                 { provide: Store, useValue: { dispatch: jest.fn(), select: jest.fn().mockReturnValue(of())}},
                 { provide: MatDialogRef, useValue: mockDialog },
-                { provide: MAT_DIALOG_DATA, useValue: mockData }
+                { provide: MAT_DIALOG_DATA, useValue: mockData },
+                { provide: INPUT_TYPE_ITEM_HANDLER, useValue: [] }
             ],
             declarations: [VariablesComponent],
             imports: [FormsModule, NoopAnimationsModule, MatDialogModule, TranslateModule.forRoot()],

@@ -33,13 +33,15 @@ import {
     PropertiesViewerIntegerInputComponent,
     PropertiesViewerBooleanInputComponent,
     InputTypeItem,
-    VariableValuePipe
+    VariableValuePipe,
+    INPUT_TYPE_ITEM_HANDLER
 } from '../../variables/public-api';
 import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 import { ExpressionsEditorService } from '../../code-editor/services/expressions-editor.service';
 import { MatSelectModule } from '@angular/material/select';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { VariableExpressionLanguagePipe } from '../../variables/properties-viewer/variable-expression-language.pipe';
 
 describe('MappingDialogComponent', () => {
     let fixture: ComponentFixture<MappingDialogComponent>;
@@ -144,7 +146,7 @@ describe('MappingDialogComponent', () => {
                 MatSelectModule,
                 NoopAnimationsModule
             ],
-            declarations: [MappingDialogComponent, VariableValuePipe],
+            declarations: [MappingDialogComponent, VariableValuePipe, VariableExpressionLanguagePipe],
             providers: [
                 { provide: MatDialogRef, useValue: mockDialog },
                 { provide: MAT_DIALOG_DATA, useValue: customMockDialogData },
@@ -152,9 +154,12 @@ describe('MappingDialogComponent', () => {
                 { provide: UuidService, useValue: { generate() { return 'generated-uuid'; } } },
                 { provide: InputMappingDialogService, useValue: inputMappingDialogService },
                 { provide: OutputMappingDialogService, useValue: outputMappingDialogService },
-                { provide: ExpressionsEditorService, useValue: {
-                    initExpressionEditor: jest.fn()
-                } },
+                {
+                    provide: ExpressionsEditorService, useValue: {
+                        initExpressionEditor: jest.fn()
+                    }
+                },
+                { provide: INPUT_TYPE_ITEM_HANDLER, useValue: [] }
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });
@@ -268,7 +273,7 @@ describe('MappingDialogComponent', () => {
             }
         });
 
-        it('should display all the process variable except those  when creating a new entry', async() => {
+        it('should display all the process variable except those  when creating a new entry', async () => {
             let processVariableSelector = element.query(By.css(`[data-automation-id="process-variable-destination-select"]>div`));
             processVariableSelector.nativeElement.click();
             fixture.detectChanges();

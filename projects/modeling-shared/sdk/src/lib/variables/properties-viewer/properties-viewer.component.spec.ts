@@ -26,6 +26,7 @@ import { UuidService } from './../../services/uuid.service';
 import { VariableValuePipe } from './variable-value.pipe';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+import { INPUT_TYPE_ITEM_HANDLER } from './value-type-inputs/value-type-inputs';
 
 describe('PropertiesViewerComponent', () => {
     let fixture: ComponentFixture<PropertiesViewerComponent>;
@@ -46,7 +47,8 @@ describe('PropertiesViewerComponent', () => {
                 VariablesService,
                 { provide: MatDialogRef, useValue: mockDialog },
                 { provide: Store, useValue: { dispatch: jest.fn(), select: jest.fn().mockReturnValue(of()) }},
-                { provide: UuidService, useValue: { generate() { return 'generated-uuid'; } } }
+                { provide: UuidService, useValue: { generate() { return 'generated-uuid'; } } },
+                { provide: INPUT_TYPE_ITEM_HANDLER, useValue: [] }
             ],
             declarations: [PropertiesViewerComponent, VariableValuePipe],
             imports: [ MatTableModule, TranslateModule.forRoot()],

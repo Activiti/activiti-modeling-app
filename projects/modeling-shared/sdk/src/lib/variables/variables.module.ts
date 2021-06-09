@@ -34,6 +34,7 @@ import { PropertiesViewerDateTimeInputComponent } from './properties-viewer/valu
 import { provideInputTypeItemHandler } from './properties-viewer/value-type-inputs/value-type-inputs';
 import { PropertiesViewerArrayInputComponent } from './properties-viewer/value-type-inputs/array-input.component';
 import { MatSortModule } from '@angular/material/sort';
+import { VariableExpressionLanguagePipe } from './properties-viewer/variable-expression-language.pipe';
 
 @NgModule({
     imports: [
@@ -55,7 +56,8 @@ import { MatSortModule } from '@angular/material/sort';
         PropertiesViewerJsonInputComponent,
         PropertiesViewerFileInputComponent,
         VariableValuePipe,
-        PropertiesViewerArrayInputComponent
+        PropertiesViewerArrayInputComponent,
+        VariableExpressionLanguagePipe
     ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
@@ -70,7 +72,8 @@ import { MatSortModule } from '@angular/material/sort';
     ],
     exports: [
         ValueTypeInputComponent,
-        VariableValuePipe
+        VariableValuePipe,
+        VariableExpressionLanguagePipe
     ]
 })
 export class VariablesModule { }

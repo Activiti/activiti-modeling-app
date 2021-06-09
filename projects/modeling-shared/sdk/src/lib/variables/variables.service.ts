@@ -14,16 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable, Output, EventEmitter, Inject } from '@angular/core';
 import { EntityProperties, EntityProperty } from '../../lib/api/types';
+import { primitive_types } from '../helpers/primitive-types';
+import { InputTypeItem, INPUT_TYPE_ITEM_HANDLER } from './properties-viewer/value-type-inputs/value-type-inputs';
 
 @Injectable({
     providedIn: 'root',
-  })
+})
 export class VariablesService {
     @Output() variablesData: EventEmitter<any> = new EventEmitter<any>();
-    constructor() {}
+
+    constructor(
+        @Inject(INPUT_TYPE_ITEM_HANDLER) private inputTypeItemHandler: InputTypeItem[]) { }
+
+    getPrimitiveType(type: string): string {
+        for (const handler of this.inputTypeItemHandler) {
+            if (handler.type === type) {
+                return handler.primitiveType;
+            }
+        }
+        return primitive_types.find(primitive => primitive === type) || 'json';
+    }
+
+    getVariablePrimitiveType(variable: EntityProperty): string {
+        return this.getPrimitiveType(variable.type);
+    }
 
     sendData(data: string, error: string) {
         this.variablesData.emit({ data: data, error: error });
@@ -39,7 +55,7 @@ export class VariablesService {
     }
 
     private variableNameExists(variable: EntityProperty, variables: EntityProperties): boolean {
-        const variableIndex = Object.keys(variables).findIndex( key => {
+        const variableIndex = Object.keys(variables).findIndex(key => {
             return variables[key].name === variable.name && variables[key].id !== variable.id;
         });
         return variableIndex > -1;

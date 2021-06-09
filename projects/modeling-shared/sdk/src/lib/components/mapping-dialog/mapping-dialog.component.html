@@ -24,10 +24,10 @@
             <div class="mapping-table-viewer {{mappingType}}-mapping-table">
                 <mat-table [dataSource]="dataSource" [trackBy]="trackBy">
                     <ng-container matColumnDef="name">
-                        <mat-header-cell *matHeaderCellDef><span
-                                *ngIf="mappingType === 'input'">{{ keyColumnHeader | translate }}</span>
-                            <span
-                                *ngIf="mappingType === 'output'">{{ 'SDK.MAPPING_DIALOG.OUTPUT_PARAMETER' | translate }}/{{ 'SDK.MAPPING_DIALOG.VALUE_MAPPING' | translate }}</span>
+                        <mat-header-cell *matHeaderCellDef><span *ngIf="mappingType === 'input'">{{ keyColumnHeader |
+                                translate }}</span>
+                            <span *ngIf="mappingType === 'output'">{{ 'SDK.MAPPING_DIALOG.OUTPUT_PARAMETER' | translate
+                                }}/{{ 'SDK.MAPPING_DIALOG.VALUE_MAPPING' | translate }}</span>
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element; index as i"
                             [attr.data-automation-id]="'variable-name-cell-' + i"
@@ -35,7 +35,9 @@
                             [ngClass]="(mappingType === 'output' && element.mappingValueType !== 'variable') ? 'non-variable-mapping': 'variable-mapping'">
                             <span>
                                 <span>
-                                    {{element.label || element.name  | variablevalue}}<span *ngIf="element.required && mappingType === 'input'" class="required-indicator">&nbsp;*</span>
+                                    {{element.label || element.name | variablevalue}}<span
+                                        *ngIf="element.required && mappingType === 'input'"
+                                        class="required-indicator">&nbsp;*</span>
                                 </span>
                             </span>
                             <mat-icon
@@ -56,16 +58,17 @@
                     </ng-container>
 
                     <ng-container matColumnDef="value">
-                        <mat-header-cell *matHeaderCellDef><span
-                                *ngIf="mappingType === 'input'">{{ valueColumnHeader | translate }}/{{ 'SDK.MAPPING_DIALOG.VALUE_MAPPING' | translate }}</span>
-                            <span
-                                *ngIf="mappingType === 'output'">{{ 'SDK.MAPPING_DIALOG.PROCESS_VARIABLE' | translate }}</span>
+                        <mat-header-cell *matHeaderCellDef><span *ngIf="mappingType === 'input'">{{ valueColumnHeader |
+                                translate }}/{{ 'SDK.MAPPING_DIALOG.VALUE_MAPPING' | translate }}</span>
+                            <span *ngIf="mappingType === 'output'">{{ 'SDK.MAPPING_DIALOG.PROCESS_VARIABLE' | translate
+                                }}</span>
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element; index as i"
                             [attr.data-automation-id]="'variable-value-cell-' + i"
                             class="ellipsis-cell {{element.readOnly ? 'mat-select-placeholder input-disabled' : ''}}">
                             <span
-                                [ngClass]="(mappingType === 'input' && element.mappingValueType !== 'variable') ? 'non-variable-mapping': 'variable-mapping'">{{element.value | variablevalue}}</span>
+                                [ngClass]="(mappingType === 'input' && element.mappingValueType !== 'variable') ? 'non-variable-mapping': 'variable-mapping'">{{element.value
+                                | variablevalue}}</span>
                         </mat-cell>
                     </ng-container>
 
@@ -161,11 +164,20 @@
                         <mat-tab label="{{'SDK.MAPPING_DIALOG.EXPRESSION_MAPPING'| translate}}"
                             data-automation-id="expression-mapping-tab">
                             <ng-container *ngIf="selectedTab===2 && tabCheck === selectedTab">
-                                <modelingsdk-code-editor #expressionInput
+                                <modelingsdk-expression-code-editor
                                     class="monaco-editor mapping-dialog-expression-editor"
-                                    (changed)="valueMappingExpressionChange($event,selectedRow)"
-                                    content="{{expressionValue}}" language="{{language}}">
-                                </modelingsdk-code-editor>
+                                    [attr.data-automation-id]="'mapping-dialog-expression-editor'"
+                                    [expression]="expressionValue"
+                                    (expressionChange)="valueMappingExpressionChange($event,selectedRow)"
+                                    [variables]="mappingType === 'output' ? outputParameters : processProperties"
+                                    [language]="dataSource[selectedRow] | variableExpressionLanguage"
+                                    [removeEnclosingBrackets]="false"
+                                    [enableDialogEditor]="true"
+                                    [enableInlineEditor]="true"
+                                    [removeLineNumbers]="true"
+                                    [lineWrapping]="true"
+                                    [nonBracketedOutput]="false">
+                                </modelingsdk-expression-code-editor>
                             </ng-container>
                         </mat-tab>
                     </mat-tab-group>

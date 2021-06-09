@@ -17,13 +17,11 @@
 
 import { Component, OnInit, Inject } from '@angular/core';
 import { ConnectorParameter, EntityProperty, ServiceParameterMapping } from '../../api/types';
-import { UuidService } from '../../services/uuid.service';
 import { VariableMappingType, MappingRowModel, MappingValueType, MappingDialogService, MappingDialogData } from '../../services/mapping-dialog.service';
 import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
 import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSelectChange } from '@angular/material/select';
-import { ExpressionsEditorService } from '../../code-editor/services/expressions-editor.service';
 
 @Component({
     templateUrl: './mapping-dialog.component.html',
@@ -59,16 +57,12 @@ export class MappingDialogComponent implements OnInit {
 
     filteredProcessVariables: EntityProperty[];
 
-    language = 'expressions';
-
     extendedProperties = {};
 
     constructor(
         public dialog: MatDialogRef<MappingDialogComponent>,
-        private uuidService: UuidService,
         private inputMappingDataSourceService: InputMappingDialogService,
         private outputMappingDataSourceService: OutputMappingDialogService,
-        private expressionsEditorService: ExpressionsEditorService,
         @Inject(MAT_DIALOG_DATA) public data: MappingDialogData
     ) {
         this.inputMapping = data.inputMapping;
@@ -93,12 +87,10 @@ export class MappingDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.language = this.language + '-' + this.uuidService.generate();
         this.dataSourceInit(this.mappingType);
         if (this.selectedRow) {
             this.extendedProperties = this.getExtendedProperties(this.dataSource[this.selectedRow].type);
         }
-        this.expressionsEditorService.initExpressionEditor(this.language, this.mappingType === VariableMappingType.output ? this.outputParameters : this.processProperties);
         this.initSelectedRow();
         if (this.mappingType === VariableMappingType.output) {
             this.displayedColumns.push('delete');
