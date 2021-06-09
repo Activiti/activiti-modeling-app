@@ -55,6 +55,10 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
     @Output() propertyChanged: EventEmitter<boolean> = new EventEmitter();
     @ViewChild(MatSort) sort: MatSort;
 
+    extendedProperties: {
+        variables: EntityProperty[]
+    };
+
     constructor(private variablesService: VariablesService, private uuidService: UuidService, private changeDetectorRef: ChangeDetectorRef) {
         this.form = {
             id: '',
@@ -124,7 +128,7 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
     private convertJsonObjectsToJsonStringVariables(properties) {
         for (const key in properties) {
             if ((properties[key].type === 'json' || properties[key].type === 'folder') && typeof (properties[key].value) === 'object') {
-                properties[key].value = JSON.stringify(properties[key].value);
+                properties[key].value = JSON.stringify(properties[key].value, null, 4);
             }
         }
     }
@@ -154,6 +158,13 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         this.value = this.form.value = element.value;
         this.position = index;
         this.id = element.id;
+        this.extendedProperties = {
+            variables: this.getVariablesForExpressionEditor(element.id)
+        };
+    }
+
+    private getVariablesForExpressionEditor(id: any): EntityProperty[] {
+        return this.dataSource.data.filter(property => property.id !== id);
     }
 
     onTypeChange() {
@@ -223,5 +234,8 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         this.editRow(newVariable, length - 1);
         this.propertyChanged.emit(true);
         this.dataSource.sort = this.sort;
+        this.extendedProperties = {
+            variables: this.getVariablesForExpressionEditor(newVariable.id)
+        };
     }
 }

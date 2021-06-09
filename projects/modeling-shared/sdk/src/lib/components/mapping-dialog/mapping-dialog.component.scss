@@ -188,6 +188,13 @@
                             padding: 0 8px;
                         }
                     }
+
+                    .value-mapping-input {
+                        modelingsdk-expression-code-editor {
+                            display: block;
+                            height: 235px;
+                        }
+                    }
                 }
             }
         }

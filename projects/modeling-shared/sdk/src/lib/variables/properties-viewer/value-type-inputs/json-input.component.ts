@@ -15,53 +15,36 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter, Input, ViewChild } from '@angular/core';
-import { EditorComponent } from 'ngx-monaco-editor';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { EntityProperty } from '../../../api/types';
 
 @Component({
     template: `
-             <ngx-monaco-editor #editor class="monaco-editor"
-                data-automation-id="variable-value"
-                (keyup)="onChange()"
-                [options]="editorOptions"
-                [(ngModel)]="value"
-                (onInit)="onInit($event)"
-                (onDidChangeConfiguration)="onConfigurationChange($event)">
-            </ngx-monaco-editor>
+            <modelingsdk-expression-code-editor
+                [attr.data-automation-id]="'variable-value'"
+                [expression]="value"
+                (expressionChange)="onChange($event)"
+                [variables]="extendedProperties?.variables || []"
+                [language]="'json'"
+                [removeEnclosingBrackets]="false"
+                [enableDialogEditor]="!disabled"
+                [enableInlineEditor]="!disabled"
+                [removeLineNumbers]="true"
+                [lineWrapping]="false"
+                [nonBracketedOutput]="false">
+            </modelingsdk-expression-code-editor>
     `
 })
 export class PropertiesViewerJsonInputComponent {
     @Output() change = new EventEmitter();
     @Input() value: string;
     @Input() disabled = false;
-
-    @ViewChild('editor', { static: true }) editor: EditorComponent;
-
-    monacoEditor: any;
-
-    editorOptions = {
-        language: 'json',
-        readOnly: this.disabled
+    @Input() extendedProperties: {
+        variables?: EntityProperty[];
     };
 
-    onInit(editor) {
-        this.monacoEditor = editor;
-        this.monacoEditor.updateOptions({
-            language: 'json',
-            readOnly: this.disabled
-        });
-    }
-
-    onConfigurationChange(configuration) {
-        if (configuration.readOnly === undefined || configuration.readOnly !== this.disabled) {
-            this.monacoEditor.updateOptions({
-                language: 'json',
-                readOnly: this.disabled
-            });
-        }
-    }
-
-    onChange() {
+    onChange(value: string) {
+        this.value = value;
         if (this.value && this.value.trim()) {
             try {
                 JSON.parse(this.value);
@@ -73,5 +56,4 @@ export class PropertiesViewerJsonInputComponent {
             this.change.emit(null);
         }
     }
-
 }

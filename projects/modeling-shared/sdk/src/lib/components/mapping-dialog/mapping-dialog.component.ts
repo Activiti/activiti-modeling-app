@@ -337,6 +337,12 @@ export class MappingDialogComponent implements OnInit {
             case 'expression-mapping':
                 extendedProperties = this.extensionObject;
                 break;
+            case 'json':
+                const parameters: EntityProperty[] = this.dataSource.map(parameter => ({ ...parameter, type: parameter.type, id: null }));
+                extendedProperties = {
+                    variables: (this.processProperties || []).concat(parameters)
+                };
+                break;
             default:
                 extendedProperties = null;
         }

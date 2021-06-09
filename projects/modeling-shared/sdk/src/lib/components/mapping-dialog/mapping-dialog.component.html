@@ -150,7 +150,7 @@
                             data-automation-id="value-mapping-tab"
                             [disabled]="mappingType === 'output' && !dataSource[selectedRow].type">
                             <ng-container *ngIf="selectedTab===1 && tabCheck === selectedTab">
-                                <modelingsdk-value-type-input #valueInput data-automation-id="value-mapping-input"
+                                <modelingsdk-value-type-input #valueInput data-automation-id="value-mapping-input" class="value-mapping-input"
                                     (onChange)="valueMappingValueChange($event,selectedRow)" [(ngModel)]="valueValue"
                                     [index]="selectedRow+1" [type]="dataSource[selectedRow].type"
                                     [required]="dataSource[selectedRow].required"

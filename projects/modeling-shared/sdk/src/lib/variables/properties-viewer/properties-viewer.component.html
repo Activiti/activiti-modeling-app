@@ -70,7 +70,7 @@
             </mat-select>
         </mat-form-field>
 
-        <modelingsdk-value-type-input [(ngModel)]="value" [index]="position" [type]="selectedType" (onChange)="updateVariableValue($event)">
+        <modelingsdk-value-type-input [(ngModel)]="value" [index]="position" [type]="selectedType" (onChange)="updateVariableValue($event)" [extendedProperties]="extendedProperties">
         </modelingsdk-value-type-input>
 
         <mat-checkbox *ngIf="requiredCheckbox" [(ngModel)]="required" (change)="saveChanges()" color="primary"

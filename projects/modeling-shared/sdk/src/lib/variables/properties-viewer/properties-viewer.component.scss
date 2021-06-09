@@ -76,10 +76,16 @@
             vertical-align: middle;
             font-size: medium;
         }
+
+        modelingsdk-expression-code-editor {
+            display: block;
+            height: 145px;
+            padding-bottom: 20px;
+        }
     }
 
     .no-properties {
-        color:  mat-color($foreground, text, 0.54);
+        color: mat-color($foreground, text, 0.54);
         width: 300px;
         font-size: 16px;
         margin-left: 40px;

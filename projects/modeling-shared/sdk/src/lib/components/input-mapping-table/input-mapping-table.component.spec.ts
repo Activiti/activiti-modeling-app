@@ -31,10 +31,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { PropertiesViewerStringInputComponent, INPUT_TYPE_ITEM_HANDLER } from '../../variables/public-api';
 import { TranslateModule } from '@ngx-translate/core';
+import { ExpressionsEditorService } from '../../code-editor/services/expressions-editor.service';
+import { UuidService } from '../../services/uuid.service';
 
 describe('InputMappingTableComponent', () => {
     let fixture: ComponentFixture<InputMappingTableComponent>;
     let component: InputMappingTableComponent;
+    let uuidService: UuidService;
+    let expressionsEditorService: ExpressionsEditorService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -46,6 +50,8 @@ describe('InputMappingTableComponent', () => {
                 TranslateModule.forRoot()
             ],
             providers: [
+                UuidService,
+                ExpressionsEditorService,
                 {
                     provide: Store,
                     useValue: {
@@ -72,6 +78,10 @@ describe('InputMappingTableComponent', () => {
     });
 
     beforeEach(() => {
+        uuidService = TestBed.inject(UuidService);
+        spyOn(uuidService, 'generate').and.returnValue('generated-uuid');
+        expressionsEditorService = TestBed.inject(ExpressionsEditorService);
+        spyOn(expressionsEditorService, 'initExpressionEditor');
         fixture = TestBed.createComponent(InputMappingTableComponent);
         component = fixture.componentInstance;
         component.parameters = [{
