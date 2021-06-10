@@ -25,7 +25,6 @@ import { selectProcessesArray } from './../../../store/process-editor.selectors'
 import {
     AmaState,
     Process,
-    selectProcessPropertiesArrayFor,
     selectProcessMappingsFor,
     UpdateServiceParametersAction,
     selectSelectedProcess,
@@ -35,7 +34,10 @@ import {
     OpenDialogAction,
     ServiceParameterMappings,
     VariableMappingBehavior,
-    VariableMappingTypeService
+    VariableMappingTypeService,
+    ProcessEditorElementVariablesService,
+    ProcessEditorElementVariable,
+    ElementVariable
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { UpdateCalledElementAction, UPDATE_CALLED_ELEMENT } from '../../../store/called-element.actions';
 import { CalledElementDialogComponent, CalledElementModel } from './called-element-dialog/called-element-dialog.component';
@@ -58,20 +60,26 @@ export class CalledElementComponent implements OnInit, OnDestroy {
     calledElement = '';
     calledElementType: string;
     sendNoVariables: boolean;
-    processVariables: EntityProperty[] = [];
+    processVariables: ElementVariable[] = [];
     subProcessVariables: EntityProperty[] = [];
     mappings$: Observable<ServiceParameterMappings>;
     mappingBehavior$: Observable<VariableMappingBehavior>;
     canMapVariable$: Observable<boolean>;
     parameterMappings: ServiceParameterMappings = {};
-    loading = false;
+    loadingActions = false;
+    loadingVariables = true;
 
     constructor(
         private cardViewUpdateService: CardViewUpdateService,
         private calledElementService: CalledElementService,
         private actions$: Actions,
-        private store: Store<AmaState>
+        private store: Store<AmaState>,
+        private variablesService: ProcessEditorElementVariablesService
     ) { }
+
+    get loading(): boolean {
+        return this.loadingActions || this.loadingVariables;
+    }
 
     ngOnInit() {
         this.setCalledElement(this.property.value);
@@ -88,12 +96,12 @@ export class CalledElementComponent implements OnInit, OnDestroy {
             distinctUntilChanged(),
             takeUntil(this.onDestroy$))
             .subscribe((action) => {
-                this.loading = true;
+                this.loadingActions = true;
                 this.setCalledElement(action.payload.calledElement);
                 this.cardViewArrayItem = this.calledElementService.createCardViewArrayItem(this.calledElement);
                 this.cardViewUpdateService.update(this.property, this.calledElement);
                 this.loadCallActivity();
-                this.loading = false;
+                this.loadingActions = false;
                 this.parameterMappings = {};
                 this.updateMapping();
             });
@@ -154,9 +162,17 @@ export class CalledElementComponent implements OnInit, OnDestroy {
     }
 
     loadVariables() {
-        this.store.select(selectProcessPropertiesArrayFor(this.property.data.processId)).subscribe((processVariables) => {
-            this.processVariables = processVariables;
+        this.loadingVariables = true;
+        this.variablesService.getAvailableVariablesForElement(this.property.data.element).pipe(takeUntil(this.onDestroy$)).subscribe(availableVariables => {
+            this.processVariables = this.getVariablesList(availableVariables);
+            this.loadingVariables = false;
         });
+    }
+
+    private getVariablesList(variables: ProcessEditorElementVariable[]): ElementVariable[] {
+        let vars: ElementVariable[] = [];
+        variables.filter((variable) => variable.variables && variable.variables.length > 0).forEach((element) => vars = vars.concat(element.variables));
+        return vars;
     }
 
     loadCalledElementVariables() {

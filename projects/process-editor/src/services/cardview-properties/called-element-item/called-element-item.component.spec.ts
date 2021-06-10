@@ -21,7 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { selectSelectedProcess } from '@alfresco-dbp/modeling-shared/sdk';
+import { ProcessEditorElementVariablesService, PROCESS_EDITOR_ELEMENT_VARIABLES_PROVIDERS, selectSelectedProcess } from '@alfresco-dbp/modeling-shared/sdk';
 import { of, Observable } from 'rxjs';
 import { CalledElementComponent } from './called-element-item.component';
 import { CalledElementItemModel } from './called-element-item.model';
@@ -35,6 +35,7 @@ describe('CalledElementComponent', () => {
     let component: CalledElementComponent;
     let cardViewUpdateService: CardViewUpdateService;
     let actions$: Observable<any>;
+    let variableService: ProcessEditorElementVariablesService;
 
     const propertyMock = {
         data: {
@@ -65,7 +66,14 @@ describe('CalledElementComponent', () => {
                         }),
                     }
                 },
-                provideMockActions(() => actions$)
+                provideMockActions(() => actions$),
+                { provide: PROCESS_EDITOR_ELEMENT_VARIABLES_PROVIDERS, useValue: [] },
+                {
+                    provide: ProcessEditorElementVariablesService,
+                    useValue: {
+                        getAvailableVariablesForElement: jest.fn().mockImplementation(() => of([]))
+                    }
+                },
             ],
             declarations: [CalledElementComponent],
             imports: [TranslateModule.forRoot(), CardViewModule],
@@ -79,6 +87,7 @@ describe('CalledElementComponent', () => {
         component.property = <CalledElementItemModel>propertyMock;
         actions$ = null;
 
+        variableService = TestBed.inject(ProcessEditorElementVariablesService);
         cardViewUpdateService = TestBed.inject(CardViewUpdateService);
         spyOn(cardViewUpdateService, 'update').and.callThrough();
     });
@@ -139,5 +148,14 @@ describe('CalledElementComponent', () => {
         component.property.value = '${myExpression}';
         fixture.detectChanges();
         expect(loadCalledElementVariablesSpy).not.toHaveBeenCalled();
+    });
+
+    it('should retrieve process variables from the ProcessEditorElementVariablesService', async () => {
+        const spy = spyOn(variableService, 'getAvailableVariablesForElement').and.stub();
+
+        component.ngOnInit();
+        await fixture.whenStable();
+
+        expect(spy).toHaveBeenCalledWith(propertyMock.data.element);
     });
 });

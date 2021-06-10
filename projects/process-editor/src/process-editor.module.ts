@@ -55,7 +55,8 @@ import {
     MODEL_SCHEMA_TYPE,
     BpmnCompositeProperty,
     ProcessNameSelectorModule,
-    VariableMappingTypeModule
+    VariableMappingTypeModule,
+    provideProcessEditorElementVariablesProvider
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { ProcessDiagramLoaderService } from './services/process-diagram-loader.service';
@@ -110,6 +111,8 @@ import { ProcessErrorsEffects } from './store/process-errors.effects';
 import { ProcessErrorsDialogComponent } from './components/process-modeler/process-errors/process-errors-dialog.component';
 import { CardViewProcessErrorsItemComponent } from './services/cardview-properties/process-errors-item/process-errors-item.component';
 import { CardViewConditionExpressionItemComponent } from './services/cardview-properties/condition-expression-item/condition-expression-item.component';
+import { ProcessElementVariablesProviderService } from './services/process-element-variables-provider.service';
+import { CalledElementVariablesProviderService } from './services/called-element-variables-provider.service';
 
 @NgModule({
     imports: [
@@ -218,7 +221,9 @@ import { CardViewConditionExpressionItemComponent } from './services/cardview-pr
             schemaKey: MODEL_SCHEMA_TYPE.PROCESS_EXTENSION,
             transform: transformJsonSchema
         }),
-        ProcessConnectorService
+        ProcessConnectorService,
+        provideProcessEditorElementVariablesProvider(ProcessElementVariablesProviderService),
+        provideProcessEditorElementVariablesProvider(CalledElementVariablesProviderService),
     ]
 })
 export class ProcessEditorModule { }
