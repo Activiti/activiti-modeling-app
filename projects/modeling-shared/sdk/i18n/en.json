@@ -91,6 +91,20 @@
             "EDIT_IN_DIALOG": "Edit in dialog",
             "EXPRESSION_EDITOR": "Expression editor",
             "NO_BRACKETS_HINT": "The whole expression in this editor will be saved enclosed inside curly brackets (${...}) so you don't need to type them"
+        },
+        "VARIABLES_SELECTORS": {
+            "ACTIONS": {
+                "SEARCH": "Search"
+            },
+            "TYPES": {
+                "START_EVENT": "Start event",
+                "PROCESS": "Process",
+                "SERVICE_TASK": "Service task",
+                "CALLED_ELEMENT": "Called element",
+                "SCRIPT_TASK": "Script task",
+                "DECISION_TABLE": "Decision table",
+                "USER_TASK": "User task"
+            }
         }
     }
 }

@@ -2,10 +2,12 @@
 @import '../components/input-mapping-table/input-mapping-table.component';
 @import '../components/output-mapping-table/output-mapping-table.component';
 @import '../components/mapping-dialog/mapping-dialog.component';
+@import '../components/variable-selectors/variable-selector/variable-selector.component';
 
 @mixin modelingsdk-shared-module($theme) {
     @include modelingsdk-header-breadcrumbs($theme);
     @include modelingsdk-input-mapping-table($theme);
     @include modelingsdk-output-mapping-table($theme);
     @include modelingsdk-mapping-dialog($theme);
+    @include modelingsdk-process-variables-selector($theme);
 }
