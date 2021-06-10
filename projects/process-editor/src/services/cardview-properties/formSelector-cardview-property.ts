@@ -31,7 +31,8 @@ export function createFormKeyProperty({ element }: FactoryProps) {
         data: { id: element.id,
                 processId: ElementHelper.getProperty(element, BpmnProperty.processId),
                 isMultiInstance: !!ElementHelper.getProperty(element, BpmnProperty.loopCharacteristics),
-                loopDataOutputRef: ElementHelper.getProperty(element, BpmnProperty.loopDataOutputRef)
+                loopDataOutputRef: ElementHelper.getProperty(element, BpmnProperty.loopDataOutputRef),
+                element
               },
     });
 }
