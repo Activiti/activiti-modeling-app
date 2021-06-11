@@ -70,7 +70,7 @@ describe('VariableSelectorComponent', () => {
 
         for (let index = 0; index < vars.length; index++) {
             const variable = vars[index];
-            expect(variable.name).toBe(variableNames[index].nativeElement.textContent.trim());
+            expect(variable.label || variable.name).toBe(variableNames[index].nativeElement.textContent.trim());
         }
     });
 
@@ -93,7 +93,7 @@ describe('VariableSelectorComponent', () => {
 
         for (let index = 0; index < expectation.length; index++) {
             const variable = expectation[index];
-            expect(variable.name).toBe(variableNames[index].nativeElement.textContent.trim());
+            expect(variable.label || variable.name).toBe(variableNames[index].nativeElement.textContent.trim());
         }
     });
 
@@ -116,7 +116,7 @@ describe('VariableSelectorComponent', () => {
 
         for (let index = 0; index < expectation.length; index++) {
             const variable = expectation[index];
-            expect(variable.name).toBe(variableNames[index].nativeElement.textContent.trim());
+            expect(variable.label || variable.name).toBe(variableNames[index].nativeElement.textContent.trim());
         }
     });
 
@@ -149,7 +149,7 @@ describe('VariableSelectorComponent', () => {
 
         for (let index = 0; index < vars.length; index++) {
             const variable = vars[index];
-            expect(variable.name).toBe(variableNames[index].nativeElement.textContent.trim());
+            expect(variable.label || variable.name).toBe(variableNames[index].nativeElement.textContent.trim());
         }
     });
 

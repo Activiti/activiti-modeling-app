@@ -124,8 +124,14 @@ export class ProcessEditorElementVariablesService {
         });
         return {
             source,
-            variables
+            variables: variables.sort(this.sortByName)
         };
+    }
+
+    private sortByName(a: ElementVariable, b: ElementVariable): number {
+        const firstComparingString = a.label || a.name;
+        const secondComparingString = b.label || b.name;
+        return (firstComparingString > secondComparingString) ? 1 : -1;
     }
 
     private getTypeFromBpmnDiagramElementType(element: Bpmn.DiagramElement): ProcessEditorElementWithVariables {

@@ -19,13 +19,16 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { CoreModule } from '@alfresco/adf-core';
 import { VariableSelectorComponent } from './variable-selector/variable-selector.component';
+import { VariableSelectorDropdownComponent } from './variable-selector-dropdown/variable-selector-dropdown.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
     imports: [
         CommonModule,
-        CoreModule.forChild()
+        CoreModule.forChild(),
+        OverlayModule
     ],
-    declarations: [VariableSelectorComponent],
-    exports: [VariableSelectorComponent]
+    declarations: [VariableSelectorComponent, VariableSelectorDropdownComponent],
+    exports: [VariableSelectorComponent, VariableSelectorDropdownComponent]
 })
-export class VariableSelectorsModule {}
+export class VariableSelectorsModule { }

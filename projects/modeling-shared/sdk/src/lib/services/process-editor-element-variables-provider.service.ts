@@ -46,6 +46,7 @@ export interface ElementVariable {
     type: string;
     icon?: string;
     tooltip?: string;
+    label?: string;
 }
 
 export interface ProcessEditorElementVariablesProvider {

@@ -16,7 +16,7 @@
                 [width]="'200'" [htmlContent]="variable.tooltip" [offsetX]="tooltipOffsetX" [offsetY]="tooltipOffsetY"
                 class="variables-selector-variables-group-list-item {{varIdSelected && varIdSelected === variable?.id ? 'selected' : ''}}">
                 <pre class="variables-selector-variables-group-list-item-type">{{variable.icon}}</pre>
-                <span class="variables-selector-variables-group-list-item-name">{{variable.name}}</span>
+                <span class="variables-selector-variables-group-list-item-name">{{variable.label || variable.name}}</span>
             </div>
         </div>
     </div>

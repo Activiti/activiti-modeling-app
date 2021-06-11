@@ -1,0 +1,29 @@
+@mixin modelingsdk-process-variables-selector-dropdown($theme) {
+    $background: map-get($theme, background);
+
+    .ama-variable-selector-dropdown {
+        &-input {
+            cursor: pointer;
+
+            input {
+                cursor: pointer;
+            }
+
+            &-plain {
+                width: 100%;
+                display: flex;
+
+                .mat-select-arrow-wrapper {
+                    padding-top: 6px;
+                }
+            }
+        }
+
+        &-variables-panel {
+            background-color: mat-color($background, dialog);
+            display: block;
+            overflow: auto;
+            padding: 12px;
+        }
+    }
+}
