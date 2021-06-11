@@ -85,6 +85,7 @@ import {
     GetConnectorSuccessAction
 } from './connector-editor.actions';
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
+import { TranslationService } from '@alfresco/adf-core';
 
 @Injectable()
 export class ConnectorEditorEffects {
@@ -94,7 +95,8 @@ export class ConnectorEditorEffects {
         private dialogService: DialogService,
         private connectorEditorService: ConnectorEditorService,
         private logFactory: LogFactoryService,
-        private router: Router
+        private router: Router,
+        private translationService: TranslationService
     ) {}
 
     @Effect()
@@ -263,7 +265,15 @@ export class ConnectorEditorEffects {
                 new CreateConnectorSuccessAction(connector, true),
                 new SnackbarInfoAction('CONNECTOR_EDITOR.UPLOAD_SUCCESS')
             ]),
-            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.UPLOAD_FILE')));
+            catchError(error => {
+                if (error.status === 409) {
+                    const message = this.translationService.instant('PROJECT_EDITOR.ERROR.UPLOAD_DUPLICATE_FILE',
+                        { modelType: this.translationService.instant('PROJECT_EDITOR.NEW_MENU.MENU_ITEMS.CREATE_CONNECTOR') });
+                    return this.handleError(message);
+                }
+                return this.handleError('PROJECT_EDITOR.ERROR.UPLOAD_FILE');
+            })
+        );
     }
 
     private getConnectors(projectId: string): Observable<{} | GetConnectorsSuccessAction> {

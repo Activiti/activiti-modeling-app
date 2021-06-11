@@ -163,6 +163,7 @@
             "FORM_WIDGET_UPDATED": "Form Widget saved"
         },
         "ERROR": {
+            "UPLOAD_DUPLICATE_FILE": "{{modelType}} with the same name already exist",
             "UPLOAD_FILE": "We hit a problem uploading the file. Try uploading it again.",
             "DELETE_PROJECT": "We hit a problem deleting the project. Try deleting it again.",
             "CHANGE_FAVORITE": "We hit a problem favoriting that project. Try favoriting it again.",

@@ -100,6 +100,7 @@ import { selectProcessesLoaded, selectSelectedElement } from './process-editor.s
 import { Store } from '@ngrx/store';
 import { getProcessLogInitiator, PROCESS_SVG_IMAGE } from '../services/process-editor.constants';
 import { ProcessValidationResponse } from './process-editor.state';
+import { TranslationService } from '@alfresco/adf-core';
 
 export const PROCESS_CONTENT_TYPE = 'text/xml';
 export const XML_PROCESS_TAG = 'bpmn2:process';
@@ -119,6 +120,7 @@ export class ProcessEditorEffects {
         private processEditorService: ProcessEditorService,
         private logFactory: LogFactoryService,
         private router: Router,
+        private translationService: TranslationService,
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService
     ) {}
 
@@ -364,7 +366,15 @@ export class ProcessEditorEffects {
                 new CreateProcessSuccessAction(process, true),
                 new SnackbarInfoAction('PROCESS_EDITOR.UPLOAD_SUCCESS')
             ]),
-            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.UPLOAD_FILE')));
+            catchError(error => {
+                if (error.status === 409) {
+                    const message = this.translationService.instant('PROJECT_EDITOR.ERROR.UPLOAD_DUPLICATE_FILE',
+                        { modelType: this.translationService.instant('PROJECT_EDITOR.NEW_MENU.MENU_ITEMS.CREATE_PROCESS') });
+                    return this.handleError(message);
+                }
+                return this.handleError('PROJECT_EDITOR.ERROR.UPLOAD_FILE');
+            })
+        );
     }
 
     private getProcesses(projectId: string): Observable<{} | GetProcessesSuccessAction> {
