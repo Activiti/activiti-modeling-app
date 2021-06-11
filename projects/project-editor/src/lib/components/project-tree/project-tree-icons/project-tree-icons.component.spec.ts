@@ -23,8 +23,18 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProjectTreeHelper } from '../project-tree.helper';
 import { MatIconModule } from '@angular/material/icon';
-import { PROCESS, CONNECTOR, MODEL_TYPE, ModelFilter, OpenFilterAction, OPEN_FILTER, AmaState, MODEL_FILTERS } from '@alfresco-dbp/modeling-shared/sdk';
-import { SetMenuAction, SET_MENU } from '../../../../store/actions';
+import {
+    PROCESS,
+    CONNECTOR,
+    MODEL_TYPE,
+    ModelFilter,
+    OpenFilterAction,
+    OPEN_FILTER,
+    AmaState,
+    MODEL_FILTERS,
+    SetMenuAction,
+    SET_MENU
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { Injectable } from '@angular/core';
 
 @Injectable()

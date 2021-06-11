@@ -19,7 +19,6 @@ import { Routes } from '@angular/router';
 import { AuthGuard, BlankPageComponent } from '@alfresco/adf-core';
 import { AppLayoutComponent } from './app/app-layout/app-layout.component';
 import { AppLoginComponent } from './app/app-login/app-login.component';
-import { projectEditorRoutes } from './project-editor/router/project-editor.routes';
 import { HostSettingsComponent } from './app/host-settings/host-settings.component';
 import { AmaLocalStorageMergeGuard } from './common/services/ama-localstorage-merge-guard.service';
 import { AmaRoleGuard } from './ama-role-guard.service';
@@ -27,6 +26,7 @@ import { ErrorContentComponent } from './app/error/error-content.component';
 import { AmaModelSchemaLoaderGuard } from './common/services/ama-model-schema-loader-guard.service';
 import { DASHBOARD_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
 import { dashboardRoutes } from '@alfresco-dbp/modeling-ce/dashboard';
+import { projectEditorRoutes } from '@alfresco-dbp/modeling-ce/project-editor';
 
 export const appRoutes: Routes = [
     {

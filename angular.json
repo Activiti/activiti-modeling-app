@@ -43,7 +43,7 @@
                                 "glob": "**/*"
                             },
                             {
-                                "input": "app/src/app/project-editor/i18n",
+                                "input": "projects/project-editor/i18n",
                                 "output": "/assets/project-editor/i18n",
                                 "glob": "**/*"
                             },
@@ -228,6 +228,34 @@
                     "options": {
                         "jestConfig": "projects/dashboard/jest.config.js",
                         "tsConfig": "projects/dashboard/tsconfig.spec.json"
+                    }
+                }
+            }
+        },
+        "modeling-ce-project-editor": {
+            "root": "projects/project-editor",
+            "sourceRoot": "projects/project-editor/src",
+            "projectType": "library",
+            "prefix": "connector-editor",
+            "architect": {
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/project-editor/tsconfig.lib.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**",
+                            "projects/project-editor/jest.config.js"
+                        ],
+                        "format": "stylish"
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "options": {
+                        "jestConfig": "projects/project-editor/jest.config.js",
+                        "tsConfig": "projects/project-editor/tsconfig.spec.json"
                     }
                 }
             }

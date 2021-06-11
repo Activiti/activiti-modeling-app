@@ -17,9 +17,8 @@
 
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SetMenuAction } from '../../../../store/actions';
 import { ProjectTreeHelper } from '../project-tree.helper';
-import { MODEL_TYPE, ModelFilter, OpenFilterAction, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
+import { MODEL_TYPE, ModelFilter, OpenFilterAction, AmaState, SetMenuAction } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Component({
     selector: 'ama-project-tree-icons',

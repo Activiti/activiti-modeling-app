@@ -16,8 +16,16 @@
  */
 
 import { appReducer } from './app.reducer';
-import { PROCESS, ModelOpenedAction, MODEL_OPENED, ModelClosedAction, MODEL_CLOSED, SetApplicationLoadingStateAction, LOADED_APPLICATION } from '@alfresco-dbp/modeling-shared/sdk';
-import { SelectProjectAction } from '../../project-editor/store/project-editor.actions';
+import {
+    PROCESS,
+    ModelOpenedAction,
+    MODEL_OPENED,
+    ModelClosedAction,
+    MODEL_CLOSED,
+    SetApplicationLoadingStateAction,
+    LOADED_APPLICATION,
+    SelectProjectAction
+} from '@alfresco-dbp/modeling-shared/sdk';
 
 describe('appReducer', () => {
 

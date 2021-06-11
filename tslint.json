@@ -235,6 +235,14 @@
             ]
           },
           {
+            "sourceTag": "scope:modeling-ce-project-editor",
+            "onlyDependOnLibsWithTags": [
+              "scope:modeling-ce-project-editor",
+              "scope:modeling-sdk",
+              "scope:adf-candidates"
+            ]
+          },
+          {
             "sourceTag": "scope:modeling-ce",
             "onlyDependOnLibsWithTags": [
               "scope:modeling-ce",
@@ -242,7 +250,8 @@
               "scope:modeling-ce-connector-editor",
               "scope:modeling-ce-process-editor",
               "scope:adf-candidates",
-              "scope:modeling-ce-dashboard"
+              "scope:modeling-ce-dashboard",
+              "scope:modeling-ce-project-editor"
             ]
           },
           {

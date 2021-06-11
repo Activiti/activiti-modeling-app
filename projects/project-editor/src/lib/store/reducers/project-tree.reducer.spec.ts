@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-import { ProjectTreeState, INITIAL_PROJECT_TREE_STATE, OpenFilterAction, CONNECTOR, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
+import { ProjectTreeState, INITIAL_PROJECT_TREE_STATE, OpenFilterAction, CONNECTOR, PROCESS, SELECT_PROJECT } from '@alfresco-dbp/modeling-shared/sdk';
+import { CloseFilterAction } from '../project-editor.actions';
 import { projectTreeReducer } from './project-tree.reducer';
-import { SELECT_PROJECT, CloseFilterAction } from '../project-editor.actions';
 
 describe('ProjectTreeReducer', () => {
     let initState: ProjectTreeState;

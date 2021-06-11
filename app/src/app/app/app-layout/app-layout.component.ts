@@ -18,11 +18,10 @@
 import { Component, ViewChild, ViewEncapsulation, AfterViewInit, OnDestroy } from '@angular/core';
 import { SidenavLayoutComponent, AppConfigService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
-import { SetMenuAction } from '../../store/actions';
 import { Observable, Subject } from 'rxjs';
 import { first, takeUntil } from 'rxjs/operators';
 import { SettingsDialogComponent } from '../settings/settings-dialog.component';
-import { AmaState, OpenDialogAction, selectMenuOpened } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaState, OpenDialogAction, selectMenuOpened, SetMenuAction } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Component({
     templateUrl: './app-layout.component.html',

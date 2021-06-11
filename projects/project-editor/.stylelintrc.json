@@ -1,0 +1,11 @@
+{
+    "extends": ["../../stylelint-config.json"],
+    "rules": {
+        "selector-class-pattern": [
+            "",
+            {
+                "resolveNestedSelectors": true
+            }
+        ]
+    }
+}

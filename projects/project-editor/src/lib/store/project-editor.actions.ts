@@ -18,12 +18,6 @@
 import { Action } from '@ngrx/store';
 import { MODEL_TYPE } from '@alfresco-dbp/modeling-shared/sdk';
 
-export const SELECT_PROJECT = 'SELECT_PROJECT';
-export class SelectProjectAction implements Action {
-    readonly type = SELECT_PROJECT;
-    constructor(public payload: string) {}
-}
-
 export const CLOSE_FILTER = '[App Tree] Close filter';
 export class CloseFilterAction implements Action {
     readonly type = CLOSE_FILTER;

@@ -28,6 +28,11 @@
         "scope:modeling-ce-process-editor"
       ]
     },
+    "modeling-ce-project-editor": {
+      "tags": [
+        "scope:modeling-ce-project-editor"
+      ]
+    },
     "modeling-ce-dashboard": {
       "tags": [
         "scope:modeling-ce-dashboard",

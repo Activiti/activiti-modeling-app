@@ -15,21 +15,5 @@
  * limitations under the License.
  */
 
-export * from './app.state';
-export * from './app.selectors';
-export * from './entities';
-export * from './entity.actions';
-export * from './entity.selectors';
-export * from './ama-store.module';
-export * from './app.actions';
-export * from './project.state';
-export * from './project.selectors';
-export * from './project-entities.state';
-export * from './project-entities.reducer';
-export * from './project-tree.state';
-export * from './project.actions';
-export * from './logging.actions';
-export * from './dialog.actions';
-export * from './dashboard.selectors';
-export * from './process-editor.actions';
-export * from './ui';
+export * from './lib/project-editor.module';
+export * from './lib/router/project-editor.routes';

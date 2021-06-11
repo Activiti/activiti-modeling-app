@@ -16,8 +16,8 @@
  */
 
 import { Action } from '@ngrx/store';
-import { ProjectTreeState, INITIAL_PROJECT_TREE_STATE as init, OPEN_FILTER, OpenFilterAction } from '@alfresco-dbp/modeling-shared/sdk';
-import { SELECT_PROJECT, CLOSE_FILTER, CloseFilterAction } from '../project-editor.actions';
+import { ProjectTreeState, INITIAL_PROJECT_TREE_STATE as init, OPEN_FILTER, OpenFilterAction, SELECT_PROJECT } from '@alfresco-dbp/modeling-shared/sdk';
+import { CLOSE_FILTER, CloseFilterAction } from '../project-editor.actions';
 
 export function projectTreeReducer(state: ProjectTreeState = init, action: Action): ProjectTreeState {
     let newState: ProjectTreeState;

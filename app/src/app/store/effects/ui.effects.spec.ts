@@ -22,8 +22,8 @@ import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { StorageService, CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { UiEffects } from './ui.effects';
-import { SetMenuAction } from '../actions/ui';
 import { TranslateModule } from '@ngx-translate/core';
+import { SetMenuAction } from '@alfresco-dbp/modeling-shared/sdk';
 
 describe('UiEffects', () => {
     let effects: UiEffects;

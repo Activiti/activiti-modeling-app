@@ -34,7 +34,6 @@ import { HostSettingsComponent } from './app/host-settings/host-settings.compone
 import { AboutModule } from './app/about/about.module';
 import { AdfModule } from './common/adf.module';
 import { AppStoreModule } from './app-store.module';
-import { ProjectEditorModule } from './project-editor/project-editor.module';
 
 import { appRoutes } from './app.routes';
 import { ConnectorEditorModule } from '@alfresco-dbp/modeling-ce/connector-editor';
@@ -68,6 +67,7 @@ import { unauthorizedServiceFactory } from './common/services/unauthorized-servi
 import { CustomIconsModule } from './common/custom-icons.module';
 import { ProcessEditorModule } from '@alfresco-dbp/modeling-ce/process-editor';
 import { environment } from '../environments/environment';
+import { ProjectEditorModule } from '@alfresco-dbp/modeling-ce/project-editor';
 
 @NgModule({
     imports: [

@@ -16,9 +16,8 @@
  */
 
 import { Action } from '@ngrx/store';
-import { UPDATE_SETTINGS, UpdateSettingsAction, SET_MENU, SetMenuAction } from '../actions';
+import { UPDATE_SETTINGS, UpdateSettingsAction } from '../actions';
 import { INITIAL_APP_STATE } from '../states/app.state';
-import { SELECT_PROJECT, SelectProjectAction } from '../../project-editor/store/project-editor.actions';
 import { appThemes } from '../../app/themes';
 import {
     AppActionTypes,
@@ -41,6 +40,10 @@ import {
     LOG_ACTION,
     SET_LOG_HISTORY_VISIBILITY,
     SetLogHistoryVisibilityAction,
+    SelectProjectAction,
+    SELECT_PROJECT,
+    SetMenuAction,
+    SET_MENU,
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action): AppState {
