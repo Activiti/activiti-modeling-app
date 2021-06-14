@@ -32,6 +32,19 @@ export class CodeEditorService {
         });
     }
 
+    replaceSchema(uri: string, fileMatch: string | string[], schema: string | Object) {
+        const schemaIndex = this.schemas.findIndex(itemSchema => itemSchema.uri === uri);
+        if (schemaIndex === -1) {
+            this.addSchema(uri, fileMatch, schema);
+        } else {
+            this.schemas[schemaIndex] = {
+                uri,
+                fileMatch: Array.isArray(fileMatch) ? fileMatch : [ fileMatch ],
+                schema
+            };
+        }
+    }
+
     getConfig() {
         return {
             baseUrl: './assets',

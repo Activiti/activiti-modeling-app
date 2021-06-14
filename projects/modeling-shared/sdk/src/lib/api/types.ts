@@ -309,6 +309,7 @@ export interface ConnectorFeature {
     description?: string;
     inputs?: ConnectorParameter[];
     outputs?: ConnectorParameter[];
+    model?: any;
 }
 
 export interface Form extends Model {
