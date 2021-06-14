@@ -29,6 +29,10 @@ export class VariablesService {
         @Inject(INPUT_TYPE_ITEM_HANDLER) private inputTypeItemHandler: InputTypeItem[]) { }
 
     getPrimitiveType(type: string): string {
+        if (!type) {
+            return type;
+        }
+
         for (const handler of this.inputTypeItemHandler) {
             if (handler.type === type) {
                 return handler.primitiveType;
@@ -38,7 +42,7 @@ export class VariablesService {
     }
 
     getVariablePrimitiveType(variable: EntityProperty): string {
-        return this.getPrimitiveType(variable.type);
+        return this.getPrimitiveType(variable?.type);
     }
 
     sendData(data: string, error: string) {

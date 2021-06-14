@@ -57,5 +57,13 @@ describe('PropertiesViewerComponent', () => {
 
             expect(spy).toHaveBeenCalledWith(variable.type);
         });
+
+        it('should return undefined as primitive type when type is undefined', () => {
+            expect(service.getPrimitiveType(undefined)).toBe(undefined);
+        });
+
+        it('should return null as primitive type when type is null', () => {
+            expect(service.getPrimitiveType(null)).toBe(null);
+        });
     });
 });

@@ -105,6 +105,14 @@
                 "DECISION_TABLE": "Decision table",
                 "USER_TASK": "User task"
             }
+        },
+        "VARIABLE_EXPRESSION": {
+            "TITLE": {
+                "VARIABLES": "Variables",
+                "EXPRESSION": "Expression",
+                "OPEN_EXPRESSION_EDITOR": "Open the expression editor dialog",
+                "SWITCH_TO_VARIABLES": "Switch to variables selector"
+            }
         }
     }
 }
