@@ -25,6 +25,8 @@ import { ExpressionCodeEditorComponent } from './components/expression-code-edit
 import { ExpressionCodeEditorDialogComponent } from './components/expression-code-editor-dialog/expression-code-editor-dialog.component';
 import { CoreModule } from '@alfresco/adf-core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { provideModelingTypeProvider } from './services/modeling-type-provider.service';
+import { PrimitiveModelingTypesService } from './services/primitive-modeling-types.service';
 
 export function monacoEditorConfigFactory(codeEditorService: CodeEditorService) {
     return codeEditorService.getConfig();
@@ -57,7 +59,8 @@ export function monacoEditorConfigFactory(codeEditorService: CodeEditorService) 
             provide: NGX_MONACO_EDITOR_CONFIG,
             useFactory: monacoEditorConfigFactory,
             deps: [ CodeEditorService ]
-        }
+        },
+        provideModelingTypeProvider(PrimitiveModelingTypesService)
     ]
 })
 export class CodeEditorModule {}

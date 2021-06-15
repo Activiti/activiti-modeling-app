@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ModelingType } from '../primitive-modeling-types.service';
+import { ModelingType } from '../modeling-type-provider.service';
 import { arrayModelType } from './array.model.type';
 import { contentModelType } from './content.model.type';
 

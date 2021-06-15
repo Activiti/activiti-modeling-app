@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ModelingType, ModelingTypeSuggestion } from '../services/primitive-modeling-types.service';
+import { ModelingType, ModelingTypeSuggestion } from '../services/modeling-type-provider.service';
 
 /* cspell: disable */
 export const expectedPrimitiveTypes: { [id: string]: ModelingType } = {

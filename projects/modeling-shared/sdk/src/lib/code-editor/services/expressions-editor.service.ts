@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { expressionLanguageConfiguration, expressionLanguageMonarch } from './expression-language/expression-language.monarch';
-import { PrimitiveModelingTypesService } from './primitive-modeling-types.service';
+import { ModelingTypesService } from './modeling-types.service';
 
 @Injectable({
     providedIn: 'root'
@@ -30,7 +30,7 @@ export class ExpressionsEditorService {
 
     private typeTranslation: string;
 
-    constructor(private translateService: TranslateService, private primitiveModelingTypesService: PrimitiveModelingTypesService) {
+    constructor(private translateService: TranslateService, private modelingTypesService: ModelingTypesService) {
         this.typeTranslation = this.translateService.instant('SDK.VARIABLES_EDITOR.TABLE.COLUMN_TYPE');
     }
 
@@ -38,7 +38,7 @@ export class ExpressionsEditorService {
         model: monaco.editor.ITextModel,
         position: monaco.Position,
         parameters: any[],
-        primitiveModelingTypesService: PrimitiveModelingTypesService,
+        modelingTypesService: ModelingTypesService,
         offset = 0
     ): string {
         const lineBeforeCursor = model.getValueInRange({
@@ -52,12 +52,12 @@ export class ExpressionsEditorService {
 
         if (words) {
             const activeTyping = words[words.length - 1 - offset];
-            typeName = ExpressionsEditorService.getTypeNameOfWord(activeTyping, parameters, primitiveModelingTypesService, offset);
+            typeName = ExpressionsEditorService.getTypeNameOfWord(activeTyping, parameters, modelingTypesService, offset);
         }
         return typeName;
     }
 
-    static getTypeNameOfWord(word: string, parameters: any[], primitiveModelingTypesService: PrimitiveModelingTypesService, offset = 0): string {
+    static getTypeNameOfWord(word: string, parameters: any[], modelingTypesService: ModelingTypesService, offset = 0): string {
         const parts = word?.split('.') || [];
         let typeName: string = null;
 
@@ -70,22 +70,22 @@ export class ExpressionsEditorService {
                 if (array) {
                     if (!typeName) {
                         typeName = parameters.find(parameter => parameter.name === array[1])?.type;
-                        typeName = primitiveModelingTypesService.getType(typeName)?.collectionOf || 'json';
+                        typeName = modelingTypesService.getType(typeName)?.collectionOf || 'json';
                     } else {
-                        typeName = primitiveModelingTypesService.getType(typeName)?.collectionOf || 'json';
+                        typeName = modelingTypesService.getType(typeName)?.collectionOf || 'json';
                     }
                 } else if (typeName && arrayAfterMethod) {
-                    typeName = primitiveModelingTypesService.getType(typeName).methods?.filter(registeredMethod => !!registeredMethod)
+                    typeName = modelingTypesService.getType(typeName).methods?.filter(registeredMethod => !!registeredMethod)
                         .find(registeredMethod => registeredMethod.signature.startsWith(arrayAfterMethod[1]))?.type;
-                    typeName = primitiveModelingTypesService.getType(typeName)?.collectionOf || 'json';
+                    typeName = modelingTypesService.getType(typeName)?.collectionOf || 'json';
                 } else if (typeName && method) {
-                    typeName = primitiveModelingTypesService.getType(typeName).methods?.filter(registeredMethod => !!registeredMethod)
+                    typeName = modelingTypesService.getType(typeName).methods?.filter(registeredMethod => !!registeredMethod)
                         .find(registeredMethod => registeredMethod.signature.startsWith(method[1]))?.type;
                 } else {
                     if (!typeName) {
                         typeName = parameters.find(parameter => parameter.name === element)?.type;
                     } else {
-                        typeName = primitiveModelingTypesService.getType(typeName).properties?.filter(property => !!property)
+                        typeName = modelingTypesService.getType(typeName).properties?.filter(property => !!property)
                             .find(property => property.property === element)?.type;
                     }
                 }
@@ -110,12 +110,12 @@ export class ExpressionsEditorService {
         return (activeTyping.match(/\,(?=([^"\\]*(\\.|"([^"\\]*\\.)*[^"\\]*"))*[^"]*$)/g) || []).length;
     }
 
-    static getHoverCard(typeName: string, word: string, range: any, typeTranslation: string, primitiveModelingTypesService: PrimitiveModelingTypesService): any {
+    static getHoverCard(typeName: string, word: string, range: any, typeTranslation: string, modelingTypesService: ModelingTypesService): any {
         let hoverCard;
         if (typeName) {
-            const methodHover = primitiveModelingTypesService.getType(typeName).methods?.
+            const methodHover = modelingTypesService.getType(typeName).methods?.
                 filter(method => !!method).find(method => method.signature === word);
-            const propertyHover = primitiveModelingTypesService.getType(typeName).properties?.
+            const propertyHover = modelingTypesService.getType(typeName).properties?.
                 filter(property => !!property).find(property => property.property === word);
             if (methodHover) {
                 hoverCard = {
@@ -157,9 +157,9 @@ export class ExpressionsEditorService {
             monaco.languages.setMonarchTokensProvider(language, this.getMonarchLanguageDefinition(parameters, hostLanguage, highlightAllText));
             monaco.languages.setLanguageConfiguration(language, expressionLanguageConfiguration as monaco.languages.LanguageConfiguration);
             this.registerCompletionProviderForKeywords(language);
-            this.registerCompletionProviderForMethodsAndProperties(language, this.primitiveModelingTypesService, parameters);
-            this.registerSignatureProviderForMethods(language, this.primitiveModelingTypesService, parameters);
-            this.registerHoverProviderForMethodsAndProperties(language, this.primitiveModelingTypesService, parameters, this.typeTranslation);
+            this.registerCompletionProviderForMethodsAndProperties(language, this.modelingTypesService, parameters);
+            this.registerSignatureProviderForMethods(language, this.modelingTypesService, parameters);
+            this.registerHoverProviderForMethodsAndProperties(language, this.modelingTypesService, parameters, this.typeTranslation);
         }
 
         if (parameters) {
@@ -226,7 +226,7 @@ export class ExpressionsEditorService {
         });
     }
 
-    private registerCompletionProviderForMethodsAndProperties(language: string, primitiveModelingTypesService: PrimitiveModelingTypesService, parameters: any[]) {
+    private registerCompletionProviderForMethodsAndProperties(language: string, modelingTypesService: ModelingTypesService, parameters: any[]) {
         monaco.languages.registerCompletionItemProvider(language, {
             triggerCharacters: ['.'],
             provideCompletionItems: (model, position) => {
@@ -240,10 +240,10 @@ export class ExpressionsEditorService {
 
                 let suggestions = [];
                 const offset = word.word.length === 0 ? 1 : 0;
-                const typeName: string = ExpressionsEditorService.getTypeName(model, position, parameters, primitiveModelingTypesService, offset);
+                const typeName: string = ExpressionsEditorService.getTypeName(model, position, parameters, modelingTypesService, offset);
                 if (typeName) {
-                    suggestions = suggestions.concat(primitiveModelingTypesService.getMethodsSuggestionsByType(typeName));
-                    suggestions = suggestions.concat(primitiveModelingTypesService.getPropertiesSuggestionsByType(typeName));
+                    suggestions = suggestions.concat(modelingTypesService.getMethodsSuggestionsByType(typeName));
+                    suggestions = suggestions.concat(modelingTypesService.getPropertiesSuggestionsByType(typeName));
                 }
 
                 suggestions.map(suggestion => suggestion.range = range);
@@ -252,7 +252,7 @@ export class ExpressionsEditorService {
         });
     }
 
-    private registerSignatureProviderForMethods(language: string, primitiveModelingTypesService: PrimitiveModelingTypesService, parameters: any[]) {
+    private registerSignatureProviderForMethods(language: string, modelingTypesService: ModelingTypesService, parameters: any[]) {
         monaco.languages.registerSignatureHelpProvider(language, {
             signatureHelpTriggerCharacters: ['(', ','],
             signatureHelpRetriggerCharacters: [],
@@ -280,11 +280,11 @@ export class ExpressionsEditorService {
                     const offset = word.word.length > 0 ? activeParameter + 1 : activeParameter;
                     const activeTyping = words[words.length - 1 - offset];
 
-                    const typeName: string = ExpressionsEditorService.getTypeNameOfWord(activeTyping, parameters, primitiveModelingTypesService);
+                    const typeName: string = ExpressionsEditorService.getTypeNameOfWord(activeTyping, parameters, modelingTypesService);
                     if (typeName) {
                         const parts = activeTyping.split('.');
                         const activeMethodSignature = parts[parts.length - 1];
-                        signatures = primitiveModelingTypesService.getSignatureHelperByType(typeName)
+                        signatures = modelingTypesService.getSignatureHelperByType(typeName)
                             .filter(signature => signature.method.signature.startsWith(activeMethodSignature));
                         activeSignature = signatures.findIndex(signature => signature.parameters?.length > activeParameter) || 0;
                     }
@@ -337,7 +337,7 @@ export class ExpressionsEditorService {
 
     private registerHoverProviderForMethodsAndProperties(
         language: string,
-        primitiveModelingTypesService: PrimitiveModelingTypesService,
+        modelingTypesService: ModelingTypesService,
         parameters: any[],
         typeTranslation: string
     ) {
@@ -352,8 +352,8 @@ export class ExpressionsEditorService {
                         startColumn: word.startColumn,
                         endColumn: word.endColumn
                     };
-                    const typeName: string = ExpressionsEditorService.getTypeName(model, position, parameters, primitiveModelingTypesService);
-                    hoverCard = ExpressionsEditorService.getHoverCard(typeName, word.word, range, typeTranslation, primitiveModelingTypesService);
+                    const typeName: string = ExpressionsEditorService.getTypeName(model, position, parameters, modelingTypesService);
+                    hoverCard = ExpressionsEditorService.getHoverCard(typeName, word.word, range, typeTranslation, modelingTypesService);
                 }
                 return hoverCard;
             }

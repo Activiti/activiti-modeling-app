@@ -16,9 +16,8 @@
  */
 
 import { TestBed } from '@angular/core/testing';
-import { primitive_types } from '../../helpers/primitive-types';
-import { expectedArrayMethodSuggestions, expectedArrayPropertiesSuggestions, expectedArraySignatureHelpers, expectedPrimitiveTypes } from '../mocks/primitive-types.mock';
-import { ModelingTypeSignatureHelper, PrimitiveModelingTypesService } from './primitive-modeling-types.service';
+import { expectedPrimitiveTypes } from '../mocks/primitive-types.mock';
+import { PrimitiveModelingTypesService } from './primitive-modeling-types.service';
 
 describe('PrimitiveModelingTypesService', () => {
     let service: PrimitiveModelingTypesService;
@@ -31,79 +30,10 @@ describe('PrimitiveModelingTypesService', () => {
         service = TestBed.inject(PrimitiveModelingTypesService);
     });
 
-    describe('Memoize', () => {
-        // Use toBe to compare same object
-        it('should return memoized primitive types', () => {
-            const firstCall = service.getPrimitiveModelingTypes();
-            const secondCall = service.getPrimitiveModelingTypes();
-
-            expect(secondCall).toBe(firstCall);
-        });
-
-        it('should return memoized method suggestions', () => {
-            const firstCall = service.getMethodsSuggestionsByType('array');
-            const secondCall = service.getMethodsSuggestionsByType('array');
-
-            expect(secondCall).toBe(firstCall);
-        });
-
-        it('should return memoized properties suggestions', () => {
-            const firstCall = service.getPropertiesSuggestionsByType('array');
-            const secondCall = service.getPropertiesSuggestionsByType('array');
-
-            expect(secondCall).toBe(firstCall);
-        });
-
-        it('should return memoized signature helpers', () => {
-            const firstCall = service.getSignatureHelperByType('array');
-            const secondCall = service.getSignatureHelperByType('array');
-
-            expect(secondCall).toBe(firstCall);
-        });
-
-        it('should return memoized type', () => {
-            const firstCall = service.getType('array');
-            const secondCall = service.getType('array');
-
-            expect(secondCall).toBe(firstCall);
-        });
-    });
-
-    it('should return the primitive modeling types', () => {
-        const actual = service.getPrimitiveModelingTypes();
-
-        expect(actual).toEqual(expectedPrimitiveTypes);
-    });
-
-    it('should return the methods suggestions', () => {
-        const actual = service.getMethodsSuggestionsByType('array');
-
-        expect(actual).toEqual(expectedArrayMethodSuggestions);
-    });
-
-    it('should return the properties suggestions', () => {
-        const actual = service.getPropertiesSuggestionsByType('array');
-
-        expect(actual).toEqual(expectedArrayPropertiesSuggestions);
-    });
-
-    it('should return the signature helpers', () => {
-        const actual = service.getSignatureHelperByType('array');
-
-        expect(actual).toEqual(expectedArraySignatureHelpers as ModelingTypeSignatureHelper[]);
-    });
-
-    it('should return the type', () => {
-        const actual = service.getType('array');
-
-        expect(actual).toEqual(expectedPrimitiveTypes.array);
-    });
-
-    it('should include a type definition for each primitive type of the application', () => {
-        const registeredTypes = service.getPrimitiveModelingTypes();
-
-        primitive_types.forEach(type => {
-            expect(registeredTypes[type].id).toEqual(type);
+    it('should emit the primitive types on subscription', (done) => {
+        service.modelingTypesUpdated$.subscribe(modelingTypes => {
+            expect(modelingTypes).toEqual(expectedPrimitiveTypes);
+            done();
         });
     });
 });
