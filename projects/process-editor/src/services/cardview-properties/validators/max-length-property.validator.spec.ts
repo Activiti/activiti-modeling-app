@@ -15,14 +15,13 @@
  * limitations under the License.
  */
 
-import { CardViewItemValidator } from '@alfresco/adf-core';
+import { MaxLengthPropertyValidator } from './max-length-property.validator';
 
-export class NamePropertyValidator implements CardViewItemValidator {
-
-    message = 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_NAME_LENGTH';
-    maxNameLength = 40;
-
-    isValid(value: string): boolean {
-        return value.length <= this.maxNameLength;
-    }
-}
+describe('Max length property validator', () => {
+    it('should validate a value', () => {
+        const validator = new MaxLengthPropertyValidator(5, 'error');
+        expect(validator.isValid('12345')).toBe(true);
+        expect(validator.isValid('1235')).toBe(true);
+        expect(validator.isValid('123556')).toBe(false);
+    });
+});
