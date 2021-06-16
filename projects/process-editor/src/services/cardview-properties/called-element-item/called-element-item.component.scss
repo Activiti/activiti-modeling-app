@@ -15,17 +15,26 @@
             margin-bottom: 5px;
         }
 
-        .mat-row, .mat-header-row {
+        .mat-row,
+        .mat-header-row {
             padding: 0 8px;
         }
 
         .action-form-field-error {
             color: mat-color($error);
-            .adf-property-label, .mat-select-arrow {
+            .adf-property-label,
+            .mat-select-arrow {
                 color: mat-color($error);
             }
-            .mat-form-field-ripple, .mat-form-field-underline {
+            .mat-form-field-ripple,
+            .mat-form-field-underline {
                 background-color: mat-color($error);
+            }
+        }
+
+        &-spinner {
+            mat-spinner {
+                margin: auto;
             }
         }
     }

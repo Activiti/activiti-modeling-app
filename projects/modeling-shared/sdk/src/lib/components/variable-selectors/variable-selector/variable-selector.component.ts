@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { ElementVariable, ProcessEditorElementVariable } from '../../../services/process-editor-element-variables-provider.service';
 
 @Component({
     selector: 'modelingsdk-variable-selector',
     templateUrl: './variable-selector.component.html'
 })
-export class VariableSelectorComponent implements OnInit {
+export class VariableSelectorComponent implements OnInit, OnChanges {
 
     @Input()
     variables: ProcessEditorElementVariable[];
@@ -39,14 +39,22 @@ export class VariableSelectorComponent implements OnInit {
     @Input()
     tooltipOffsetY = 33;
 
+    @Input()
+    filterExpressionVariables = false;
+
     @Output()
     variableSelected = new EventEmitter<ElementVariable>();
 
     search = '';
 
     filteredVars: ProcessEditorElementVariable[];
+    private readonly EXPRESSION_REGEX = /\${([^]*)}/gm;
 
     ngOnInit(): void {
+        this.filteredVars = this.getFilteredVariables();
+    }
+
+    ngOnChanges(): void {
         this.filteredVars = this.getFilteredVariables();
     }
 
@@ -64,8 +72,23 @@ export class VariableSelectorComponent implements OnInit {
     }
 
     private getFilteredVariables() {
+        let filteredExpressionVariables = [];
+        if (this.filterExpressionVariables) {
+            this.variables.forEach(element => {
+                const elementVariables = element.variables.filter(variable => !variable.name.match(this.EXPRESSION_REGEX));
+                if (elementVariables.length > 0) {
+                    filteredExpressionVariables.push({
+                        source: element.source,
+                        variables: elementVariables
+                    });
+                }
+            });
+        } else {
+            filteredExpressionVariables = [...this.variables];
+        }
+
         const vars: ProcessEditorElementVariable[] = [];
-        this.variables.forEach(element => {
+        filteredExpressionVariables.forEach(element => {
             vars.push({
                 source: element.source,
                 variables: this.filterBySearchAndType(element.variables)

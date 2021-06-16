@@ -1,29 +1,58 @@
-@mixin modelingsdk-process-variables-selector-dropdown($theme) {
-    $background: map-get($theme, background);
+.modelingsdk-variable-selector-dropdown {
+    &-input {
+        cursor: pointer;
 
-    .ama-variable-selector-dropdown {
-        &-input {
+        input {
             cursor: pointer;
+        }
 
-            input {
-                cursor: pointer;
+        &-plain {
+            width: 100%;
+            display: flex;
+
+            .mat-select-arrow-wrapper {
+                padding-top: 6px;
             }
+        }
+    }
 
-            &-plain {
-                width: 100%;
+    &-panel {
+        display: block;
+        padding: 12px;
+
+        &-button-container {
+            position: relative;
+            bottom: 12px;
+            height: 20px;
+            width: 40px;
+            right: 32px;
+        }
+
+        &-title {
+            display: flex;
+            width: 100%;
+            height: 28px;
+            margin: 0;
+            position: relative;
+            right: 32px;
+            &-label {
+                width: 75%;
                 display: flex;
-
-                .mat-select-arrow-wrapper {
-                    padding-top: 6px;
+                & > span {
+                    font-weight: bold;
+                    display: inline-block;
+                    position: relative;
+                    top: 2px;
                 }
+            }
+            &-actions {
+                width: 25%;
+                text-align: right;
             }
         }
 
-        &-variables-panel {
-            background-color: mat-color($background, dialog);
-            display: block;
+        &-content {
             overflow: auto;
-            padding: 12px;
         }
     }
 }

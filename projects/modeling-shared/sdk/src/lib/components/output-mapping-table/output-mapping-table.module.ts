@@ -26,6 +26,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { VariableSelectorsModule } from '../variable-selectors/variable-selectors.module';
+import { OutputMappingAvailableVariablePipe } from './output-mapping-available-variables.pipe';
 
 @NgModule({
     imports: [
@@ -37,9 +39,10 @@ import { MatInputModule } from '@angular/material/input';
         MatInputModule,
         MappingDialogModule,
         VariablesModule,
-        CoreModule.forChild()
+        CoreModule.forChild(),
+        VariableSelectorsModule
     ],
-    declarations: [OutputMappingTableComponent],
+    declarations: [OutputMappingTableComponent, OutputMappingAvailableVariablePipe],
     exports: [OutputMappingTableComponent]
 })
 export class OutputMappingTableModule {}

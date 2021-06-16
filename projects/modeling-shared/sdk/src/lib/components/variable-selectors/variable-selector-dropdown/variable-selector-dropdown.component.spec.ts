@@ -58,13 +58,13 @@ describe('VariableSelectorDropdownComponent', () => {
     }));
 
     it('should display the variable selector when clicking on the select', async () => {
-        const dropdown = fixture.debugElement.query(By.css('.ama-variable-selector-dropdown-input'));
+        const dropdown = fixture.debugElement.query(By.css('.modelingsdk-variable-selector-dropdown-input'));
 
         dropdown.nativeElement.click();
 
         fixture.detectChanges();
         await fixture.whenStable();
-        const variablesPanel = fixture.debugElement.query(By.css('.ama-variable-selector-dropdown-variables-panel'));
+        const variablesPanel = fixture.debugElement.query(By.css('modelingsdk-variable-selector'));
 
         expect(variablesPanel).not.toBeNull();
     });
@@ -77,5 +77,66 @@ describe('VariableSelectorDropdownComponent', () => {
 
         expect(component.variableSelected.emit).toHaveBeenCalledWith(vars[0]);
         expect(component.variablesPanelDisplay).toBe(false);
+    });
+
+    it('should display no variable message when there are no available variables', () => {
+        component.variables = [];
+        component.ngOnChanges();
+        fixture.detectChanges();
+
+        const noVariableMessage = fixture.debugElement.query(By.css('.modelingsdk-variable-selector-no-process-properties-msg'));
+
+        expect(noVariableMessage).not.toBeNull();
+    });
+
+    it('should not display the clear selection button when no variable is selected', async() => {
+        component.varIdSelected = null;
+        component.required = false;
+        component.ngOnChanges();
+        fixture.detectChanges();
+
+        const dropdown = fixture.debugElement.query(By.css('.modelingsdk-variable-selector-dropdown-input'));
+
+        dropdown.nativeElement.click();
+
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const clearButton = fixture.debugElement.query(By.css('.modelingsdk-variable-selector-dropdown-panel-title-button'));
+        expect(clearButton).toBeNull();
+    });
+
+    it('should not display the clear selection button when required', async() => {
+        component.varIdSelected = 'c2f8729e-5056-44d2-8cd7-fb1bada7f4dd';
+        component.required = true;
+        component.ngOnChanges();
+        fixture.detectChanges();
+
+        const dropdown = fixture.debugElement.query(By.css('.modelingsdk-variable-selector-dropdown-input'));
+
+        dropdown.nativeElement.click();
+
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const clearButton = fixture.debugElement.query(By.css('.modelingsdk-variable-selector-dropdown-panel-title-button'));
+        expect(clearButton).toBeNull();
+    });
+
+    it('should display the clear selection button when variable is selected and not required', async() => {
+        component.varIdSelected = 'c2f8729e-5056-44d2-8cd7-fb1bada7f4dd';
+        component.required = false;
+        component.ngOnChanges();
+        fixture.detectChanges();
+
+        const dropdown = fixture.debugElement.query(By.css('.modelingsdk-variable-selector-dropdown-input'));
+
+        dropdown.nativeElement.click();
+
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const clearButton = fixture.debugElement.query(By.css('.modelingsdk-variable-selector-dropdown-panel-title-button'));
+        expect(clearButton).not.toBeNull();
     });
 });

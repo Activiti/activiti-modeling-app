@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, CardViewArrayItemModel } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { CalledElementItemModel } from './called-element-item.model';
@@ -69,12 +69,15 @@ export class CalledElementComponent implements OnInit, OnDestroy {
     loadingActions = false;
     loadingVariables = true;
 
+    editorVariables: ProcessEditorElementVariable[];
+
     constructor(
         private cardViewUpdateService: CardViewUpdateService,
         private calledElementService: CalledElementService,
         private actions$: Actions,
         private store: Store<AmaState>,
-        private variablesService: ProcessEditorElementVariablesService
+        private variablesService: ProcessEditorElementVariablesService,
+        private cdr: ChangeDetectorRef
     ) { }
 
     get loading(): boolean {
@@ -104,6 +107,7 @@ export class CalledElementComponent implements OnInit, OnDestroy {
                 this.loadingActions = false;
                 this.parameterMappings = {};
                 this.updateMapping();
+                this.cdr.detectChanges();
             });
     }
 
@@ -164,15 +168,11 @@ export class CalledElementComponent implements OnInit, OnDestroy {
     loadVariables() {
         this.loadingVariables = true;
         this.variablesService.getAvailableVariablesForElement(this.property.data.element).pipe(takeUntil(this.onDestroy$)).subscribe(availableVariables => {
-            this.processVariables = this.getVariablesList(availableVariables);
+            this.editorVariables = availableVariables;
+            this.processVariables = this.variablesService.getVariablesList(availableVariables);
             this.loadingVariables = false;
+            this.cdr.detectChanges();
         });
-    }
-
-    private getVariablesList(variables: ProcessEditorElementVariable[]): ElementVariable[] {
-        let vars: ElementVariable[] = [];
-        variables.filter((variable) => variable.variables && variable.variables.length > 0).forEach((element) => vars = vars.concat(element.variables));
-        return vars;
     }
 
     loadCalledElementVariables() {

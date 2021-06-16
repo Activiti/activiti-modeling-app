@@ -31,6 +31,8 @@ import { selectSelectedTheme } from '../../store/app.selectors';
 import { mockDropDownFields, mockDropDownProcessVariable, mockValueMapping } from './output-mapping-table.component.mock';
 import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
+import { ProcessEditorElementWithVariables, PROCESS_EDITOR_ELEMENT_VARIABLES_PROVIDERS } from '../../services/process-editor-element-variables-provider.service';
+import { ProcessEditorElementVariablesService } from '../../services/process-editor-element-variables.service';
 
 describe('OutputMappingTableComponent', () => {
     let fixture: ComponentFixture<OutputMappingTableComponent>;
@@ -64,7 +66,9 @@ describe('OutputMappingTableComponent', () => {
                     useClass: TranslationMock
                 },
                 DialogService,
-                MatDialog
+                MatDialog,
+                { provide: PROCESS_EDITOR_ELEMENT_VARIABLES_PROVIDERS, useValue: [] },
+                ProcessEditorElementVariablesService
             ], schemas: [NO_ERRORS_SCHEMA]
         });
     });
@@ -85,25 +89,27 @@ describe('OutputMappingTableComponent', () => {
         }];
         component.processProperties = [
             {
-                id: '1',
-                name: 'var1',
-                type: 'string',
-                required: false,
-                value: ''
-            },
-            {
-                id: '2',
-                name: 'var2',
-                type: 'date',
-                required: false,
-                value: ''
-            },
-            {
-                id: 'stringVarId',
-                name: 'stringVar',
-                type: 'string',
-                required: false,
-                value: ''
+                source: {
+                    name: 'Process',
+                    type: ProcessEditorElementWithVariables.Process
+                },
+                variables: [
+                    {
+                        id: '1',
+                        name: 'var1',
+                        type: 'string'
+                    },
+                    {
+                        id: '2',
+                        name: 'var2',
+                        type: 'date'
+                    },
+                    {
+                        id: 'stringVarId',
+                        name: 'stringVar',
+                        type: 'string'
+                    }
+                ]
             }
         ];
         component.mapping = {};
@@ -114,16 +120,11 @@ describe('OutputMappingTableComponent', () => {
 
     it('should emit the correct data when a property value is set', () => {
         spyOn(component.update, 'emit');
-        const select = fixture.debugElement.query(By.css('.mat-select-trigger'));
-        select.nativeElement.click();
-        fixture.detectChanges();
 
-        const options = fixture.debugElement.queryAll(By.css('.mat-option'));
-        options[1].nativeElement.click();
-        fixture.detectChanges();
+        component.changeSelection(component.processProperties[0].variables[1], 0, component.parameters[0]);
 
-        const data = {
-            [component.processProperties.sort((a, b) => (a.name > b.name) ? 1 : -1)[0].name]: {
+        const data: ServiceParameterMapping = {
+            [component.processProperties[0].variables[1].name]: {
                 type: MappingType.variable,
                 value: component.parameters[0].name
             }
@@ -133,7 +134,7 @@ describe('OutputMappingTableComponent', () => {
 
     it('should emit the correct data when a property value is reset', () => {
         component.mapping = {
-            [component.processProperties[0].name]: {
+            [component.processProperties[0].variables[0].name]: {
                 type: MappingType.variable,
                 value: component.parameters[0].name
             }
@@ -143,31 +144,16 @@ describe('OutputMappingTableComponent', () => {
 
         spyOn(component.update, 'emit');
 
-        const select = fixture.debugElement.query(By.css('.mat-select-trigger'));
-        select.nativeElement.click();
-        fixture.detectChanges();
-
-        const options = fixture.debugElement.queryAll(By.css('.mat-option'));
-        options[1].nativeElement.click();
-        fixture.detectChanges();
+        component.changeSelection(component.processProperties[0].variables[1], 0, component.parameters[0]);
 
         const data = {
-            [component.processProperties[2].name]: {
+            [component.processProperties[0].variables[1].name]: {
                 type: MappingType.variable,
                 value: component.parameters[0].name
             }
         };
 
         expect(component.update.emit).toHaveBeenCalledWith(data);
-    });
-
-    it('should filter the processProperties', () => {
-        const select = fixture.debugElement.query(By.css('.mat-select-trigger'));
-        select.nativeElement.click();
-        fixture.detectChanges();
-
-        const options = fixture.debugElement.queryAll(By.css('.mat-option'));
-        expect(options.length).toBe(3, 'Two options are expected from type: string');
     });
 
     it('should filter the form variables labeled as variables. in the name', () => {
@@ -178,52 +164,24 @@ describe('OutputMappingTableComponent', () => {
         expect(spanLabel.nativeElement.textContent.trim()).toBe('name');
     });
 
-    it('should display a message if no process property', () => {
-        component.parameters[0].type = 'boolean';
-        component.ngOnChanges();
-        fixture.detectChanges();
-
-        const select = fixture.debugElement.query(By.css('.mat-select'));
-        const noPropMsg = fixture.debugElement.query(By.css('.no-process-properties-msg'));
-
-        expect(select).toBeNull();
-        expect(noPropMsg).not.toBeNull();
-    });
-
-    it('if a parameter is marked non-required then None value will appear first in the properties list to choose from', () => {
-        component.parameters.push({ id: 'id2', name: 'name2', type: 'string', required: false });
-        component.ngOnChanges();
-        fixture.detectChanges();
-
-        expect(component.optionsForParams[1][0]).toEqual({ id: null, name: 'None' });
-    });
-
-    it('if a parameter is marked required or not marked at all then None value will appear first in the properties list to choose from', () => {
-        component.parameters.push({ id: 'id3', name: 'name3', type: 'string', required: true });
-        component.ngOnChanges();
-        fixture.detectChanges();
-
-        expect(component.optionsForParams[0]).toEqual([
-            { id: null, name: 'None' },
-            component.processProperties[2],
-            component.processProperties[0]
-        ]);
-        expect(component.optionsForParams[1]).toEqual([
-            component.processProperties[2],
-            component.processProperties[0]
-        ]);
-    });
-
     it('should update the value if mapping type is expression', () => {
         component.parameters.concat(mockDropDownFields);
-        component.processProperties = mockDropDownProcessVariable;
+        component.processProperties = [
+            {
+                source: {
+                    name: 'Process',
+                    type: ProcessEditorElementWithVariables.Process
+                },
+                variables: mockDropDownProcessVariable
+            }
+        ];
         component.mapping = mockValueMapping;
 
         component.ngOnChanges();
         fixture.detectChanges();
         expect(component.data).toEqual(mockValueMapping);
 
-        component.changeSelection({ value: 'dId' }, 0, mockDropDownFields[0]);
+        component.changeSelection(mockDropDownProcessVariable[0], 0, mockDropDownFields[0]);
         let updatedMapping: ServiceParameterMapping = {
             ...mockValueMapping,
             'dId': {
@@ -232,7 +190,7 @@ describe('OutputMappingTableComponent', () => {
             }
         };
 
-        component.changeSelection({ value: 'text' }, 0, mockDropDownFields[4]);
+        component.changeSelection(mockDropDownProcessVariable[4], 0, mockDropDownFields[4]);
         updatedMapping = {
             ...updatedMapping,
             'text': {
@@ -249,5 +207,22 @@ describe('OutputMappingTableComponent', () => {
         const icon = fixture.debugElement.query(By.css('.help-icon'));
         expect(icon).toBeDefined();
         expect(icon.nativeElement).toBeDefined();
+    });
+
+    it('should init selected variables', () => {
+        component.processProperties = [
+            {
+                source: {
+                    name: 'Process',
+                    type: ProcessEditorElementWithVariables.Process
+                },
+                variables: mockDropDownProcessVariable
+            }
+        ];
+        component.mapping = mockValueMapping;
+
+        component.ngOnChanges();
+
+        expect(component.selectedVariablesArray).toEqual([undefined, '2beb4fd9-dd04-4413-993b-1c102b88e60d', '87a99fda-ff12-4ec4-a516-27415e7bd2d0']);
     });
 });

@@ -94,7 +94,7 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
 
     ngOnInit(): void {
         this.variables.filter((variable) => variable.variables && variable.variables.length > 0).forEach((element) => this.vars = this.vars.concat(element.variables));
-        this.language = this.expressionLanguagePipe.transform(this.typeFilter) === 'json' ? 'json' : null;
+        this.language = this.expressionLanguagePipe.transform(this.typeFilter);
         if (this.mapping) {
             if (!this.mapping.type || this.mapping.type === MappingType.variable) {
                 this.mode = 'variables';

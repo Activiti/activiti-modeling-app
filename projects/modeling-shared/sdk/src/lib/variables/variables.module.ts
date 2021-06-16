@@ -35,6 +35,7 @@ import { provideInputTypeItemHandler } from './properties-viewer/value-type-inpu
 import { PropertiesViewerArrayInputComponent } from './properties-viewer/value-type-inputs/array-input.component';
 import { MatSortModule } from '@angular/material/sort';
 import { VariableExpressionLanguagePipe } from './properties-viewer/variable-expression-language.pipe';
+import { VariablePrimitiveTypePipe } from './properties-viewer/variable-primitive-type.pipe';
 
 @NgModule({
     imports: [
@@ -57,7 +58,8 @@ import { VariableExpressionLanguagePipe } from './properties-viewer/variable-exp
         PropertiesViewerFileInputComponent,
         VariableValuePipe,
         PropertiesViewerArrayInputComponent,
-        VariableExpressionLanguagePipe
+        VariableExpressionLanguagePipe,
+        VariablePrimitiveTypePipe
     ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
@@ -73,7 +75,8 @@ import { VariableExpressionLanguagePipe } from './properties-viewer/variable-exp
     exports: [
         ValueTypeInputComponent,
         VariableValuePipe,
-        VariableExpressionLanguagePipe
+        VariableExpressionLanguagePipe,
+        VariablePrimitiveTypePipe
     ]
 })
 export class VariablesModule { }

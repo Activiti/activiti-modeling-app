@@ -19,15 +19,18 @@
             {{ 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE' | translate }}
         </mat-header-cell>
         <mat-cell *matCellDef="let parameter; let i = index;">
-            <mat-select *ngIf="optionsForParams[i]?.length; else noProcessPropertiesTmpl"
-                placeholder="{{ 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE' | translate }}"
-                (selectionChange)="changeSelection($event,i, parameter)" [value]="getProcessVariable(i)"
-                matTooltipPosition="before" [attr.data-automation-id]="'variable-selector-' + i"
-                [ngClass]="'output-mapping'">
-                <mat-option *ngFor="let property of optionsForParams[i]" [value]="property.name">
-                    {{ property.name }}
-                </mat-option>
-            </mat-select>
+            <modelingsdk-variable-selector-dropdown
+                [variables]="processProperties | outputMappingAvailableVariable: mapping: parameter.name" [placeholder]="'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE' | translate"
+                [varIdSelected]="selectedVariablesArray[i]"
+                [noVariablePlaceholder]="'SDK.VARIABLE_MAPPING.NO_PROCESS_PROPERTIES'"
+                (variableSelected)="changeSelection($event,i, parameter)"
+                [typeFilter]="parameter | variablePrimitiveType"
+                [attr.data-automation-id]="'variable-selector-' + i" [ngClass]="'output-mapping'"
+                [required]="parameter.required || false"
+                [variablesPanelHeight]="300"
+                [variablesPanelWidth]="200"
+                [filterExpressionVariables]="true">
+            </modelingsdk-variable-selector-dropdown>
             <mat-icon (click)="edit(i)" class="modelingsdk-input-mapping-table__mapping-icon adf-textitem-action"
                 [attr.data-automation-id]="'edit-output-mapping-' + i">
                 edit
@@ -37,7 +40,3 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;"></mat-row>
 </mat-table>
-
-<ng-template #noProcessPropertiesTmpl>
-    <span class="no-process-properties-msg">{{ 'SDK.VARIABLE_MAPPING.NO_PROCESS_PROPERTIES' | translate }}</span>
-</ng-template>

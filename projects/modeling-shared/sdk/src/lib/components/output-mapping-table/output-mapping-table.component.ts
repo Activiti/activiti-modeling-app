@@ -17,13 +17,14 @@
 
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ConnectorParameter, EntityProperty, MappingType, ServiceParameterMapping, ServiceParameterMappings } from '../../api/types';
+import { ConnectorParameter, MappingType, ServiceParameterMapping, ServiceParameterMappings } from '../../api/types';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
 import { Subject } from 'rxjs';
 import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
-import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
 import { EXPRESSION } from '../../helpers/primitive-types';
+import { ElementVariable, ProcessEditorElementVariable } from '../../services/process-editor-element-variables-provider.service';
+import { ProcessEditorElementVariablesService } from '../../services/process-editor-element-variables.service';
 
 @Component({
     selector: 'modelingsdk-output-mapping-table',
@@ -35,7 +36,7 @@ export class OutputMappingTableComponent implements OnChanges {
     parameters: ConnectorParameter[];
 
     @Input()
-    processProperties: EntityProperty[];
+    processProperties: ProcessEditorElementVariable[];
 
     @Input()
     mapping: ServiceParameterMapping;
@@ -47,26 +48,27 @@ export class OutputMappingTableComponent implements OnChanges {
     noneValue = 'None';
     displayedColumns: string[] = ['name', 'process-variable'];
     dataSource: MatTableDataSource<ConnectorParameter>;
-    optionsForParams: {
-        [paramName: string]: { id: string; name: string }[];
-    } = {};
 
     filteredParameters = [];
     mappingParameters = [];
     tableParameters = [];
 
+    variablesList: ElementVariable[] = [];
+    selectedVariablesArray: string[] = [];
+
     constructor(
         private dialogService: DialogService,
-        private outputMappingDataSourceService: OutputMappingDialogService
+        private variableService: ProcessEditorElementVariablesService
     ) { }
 
     ngOnChanges() {
+        this.variablesList = this.variableService.getVariablesList(this.processProperties);
         this.initFilteredParameters();
         this.initParametersFromMapping();
         this.tableParameters = this.filteredParameters.concat(this.mappingParameters);
         this.dataSource = new MatTableDataSource(this.tableParameters);
+        this.initSelectedVariables();
         this.data = { ...this.mapping };
-        this.initOptionsForParams(this.tableParameters);
     }
 
     private initParametersFromMapping() {
@@ -87,7 +89,7 @@ export class OutputMappingTableComponent implements OnChanges {
                         id: processVariable,
                         processVariable: processVariable,
                         name: this.mapping[processVariable].value,
-                        type: this.processProperties.find(variable => variable.name === processVariable).type,
+                        type: this.variablesList.find(variable => variable.name === processVariable).type,
                         description: ''
                     });
                 }
@@ -99,13 +101,13 @@ export class OutputMappingTableComponent implements OnChanges {
         const parameter = this.mappingParameters.find(param => param.name === this.mapping[processVariable].value);
         if (parameter) {
             parameter.processVariable = processVariable;
-            parameter.type = this.processProperties.find(variable => variable.name === processVariable).type;
+            parameter.type = this.variablesList.find(variable => variable.name === processVariable).type;
         } else {
             this.mappingParameters.push({
                 id: processVariable,
                 processVariable: processVariable,
                 name: this.mapping[processVariable].value,
-                type: this.processProperties.find(variable => variable.name === processVariable).type,
+                type: this.variablesList.find(variable => variable.name === processVariable).type,
                 description: ''
             });
         }
@@ -117,8 +119,16 @@ export class OutputMappingTableComponent implements OnChanges {
         filtered.forEach(filteredParam => this.filteredParameters.push({ ...filteredParam, processVariable: undefined }));
     }
 
+    private initSelectedVariables() {
+        this.selectedVariablesArray = [];
+        for (let index = 0; index < this.dataSource.data.length; index++) {
+            const element = this.dataSource.data[index];
+            this.selectedVariablesArray.push(this.variablesList.find(variable => variable.name === element['processVariable'])?.id);
+        }
+    }
+
     changeSelection(
-        { value: variableName },
+        variable: ElementVariable,
         index: number,
         parameter: ConnectorParameter
     ): void {
@@ -127,39 +137,20 @@ export class OutputMappingTableComponent implements OnChanges {
             delete this.data[oldVariable];
         }
 
-        if (variableName !== this.noneValue) {
+        if (variable) {
             if (this.isExpression(parameter)) {
-                this.data[variableName] = {
+                this.data[variable.name] = {
                     type: MappingType.value,
                     value: parameter.name
                 };
             } else {
-                this.data[variableName] = {
+                this.data[variable.name] = {
                     type: MappingType.variable,
                     value: parameter.name
                 };
             }
         }
         this.update.emit(this.data);
-    }
-
-    initOptionsForParams(parameters: ConnectorParameter[]) {
-        parameters.forEach((param, index) => this.setOptionForAParam(param, index));
-    }
-
-    private setOptionForAParam(param, index) {
-        this.optionsForParams[index] = [
-            ...this.processProperties
-                .filter(variable => this.outputMappingDataSourceService.getPrimitiveType(variable.type) === this.outputMappingDataSourceService.getPrimitiveType(param.type))
-                .filter(
-                    variable =>
-                        !this.mapping[variable.name] ||
-                        variable.name === this.getProcessVariable(index)
-                ).sort((a, b) => (a.name > b.name) ? 1 : -1)
-        ];
-        if (this.optionsForParams[index].length > 0 && !param.required) {
-            this.optionsForParams[index].unshift({ id: null, name: this.noneValue });
-        }
     }
 
     edit(parameterRow: number) {
@@ -177,7 +168,7 @@ export class OutputMappingTableComponent implements OnChanges {
             mappingType: VariableMappingType.output,
             outputMapping: this.mapping,
             outputParameters: this.parameters,
-            processProperties: this.processProperties,
+            processProperties: this.variablesList,
             selectedProcessVariable: selectedProcessVariable,
             selectedOutputParameter: this.tableParameters[parameterRow].name,
             outputMappingUpdate$

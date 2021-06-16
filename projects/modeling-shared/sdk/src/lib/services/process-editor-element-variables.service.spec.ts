@@ -107,4 +107,16 @@ describe('ProcessEditorElementVariablesService', () => {
             calledActivitiElement.incoming.pop();
         });
     });
+
+    it('should return the variable as element list if variables are set', () => {
+        const expectedVariablesList = expectedVariables[0].variables.concat(expectedVariables[1].variables);
+
+        expect(service.getVariablesList(expectedVariables)).toEqual(expectedVariablesList);
+    });
+
+    it('should return an empty array as variable list if variables are not set', () => {
+        expect(service.getVariablesList(null)).toEqual([]);
+        expect(service.getVariablesList(undefined)).toEqual([]);
+        expect(service.getVariablesList([])).toEqual([]);
+    });
 });

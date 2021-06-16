@@ -106,12 +106,32 @@
                 "USER_TASK": "User task"
             }
         },
+        "CONDITION": {
+            "TYPES": {
+                "START_EVENT": "Start event",
+                "PROCESS": "Process",
+                "SERVICE_TASK": "Service task",
+                "CALLED_ELEMENT": "Called element",
+                "SCRIPT_TASK": "Script task",
+                "DECISION_TABLE": "Decision table",
+                "USER_TASK": "User task",
+                "NONE": "None"
+            },
+            "TOOLTIP": {
+                "VARIABLE": "Variable",
+                "PROCESS_VARIABLE_TOOLTIP": "Process variable of {{processName}}",
+                "NONE_VARIABLE_TOOLTIP": "Select 'None' to clear the selection",
+                "OUTPUT_VARIABLE_TOOLTIP": "Output of the {{taskType}} {{taskName}}",
+                "PROPERTIES": "Properties"
+            }
+        },
         "VARIABLE_EXPRESSION": {
             "TITLE": {
                 "VARIABLES": "Variables",
                 "EXPRESSION": "Expression",
                 "OPEN_EXPRESSION_EDITOR": "Open the expression editor dialog",
-                "SWITCH_TO_VARIABLES": "Switch to variables selector"
+                "SWITCH_TO_VARIABLES": "Switch to variables selector",
+                "CLEAR_SELECTION": "Clear selection"
             }
         }
     }

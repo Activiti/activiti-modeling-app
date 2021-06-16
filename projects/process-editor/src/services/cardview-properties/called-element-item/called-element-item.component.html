@@ -22,7 +22,7 @@
                     <h5 data-automation-id="output-mapping-header">
                         {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.OUTPUT_MAPPING' | translate }}:</h5>
                     <modelingsdk-output-mapping-table [parameters]="subProcessVariables"
-                        [processProperties]="processVariables" [mapping]="(mappings$ | async).outputs || {}"
+                        [processProperties]="editorVariables" [mapping]="(mappings$ | async).outputs || {}"
                         (update)="changeMapping($event, 'outputs')">
                     </modelingsdk-output-mapping-table>
                 </div>
@@ -41,4 +41,8 @@
             {{ 'PROCESS_EDITOR.ERRORS.NO_SUB_PROCESS_VARIABLES' | translate }}
         </h5>
     </ng-template>
+</div>
+
+<div class="called-element-block-spinner" *ngIf="loading">
+    <mat-spinner></mat-spinner>
 </div>

@@ -16,7 +16,7 @@
  */
 
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { CardViewUpdateService, CardViewModule } from '@alfresco/adf-core';
+import { CardViewUpdateService, CardViewModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
@@ -36,6 +36,7 @@ describe('CalledElementComponent', () => {
     let cardViewUpdateService: CardViewUpdateService;
     let actions$: Observable<any>;
     let variableService: ProcessEditorElementVariablesService;
+    let variableServiceSpy: any;
 
     const propertyMock = {
         data: {
@@ -68,12 +69,11 @@ describe('CalledElementComponent', () => {
                 },
                 provideMockActions(() => actions$),
                 { provide: PROCESS_EDITOR_ELEMENT_VARIABLES_PROVIDERS, useValue: [] },
+                ProcessEditorElementVariablesService,
                 {
-                    provide: ProcessEditorElementVariablesService,
-                    useValue: {
-                        getAvailableVariablesForElement: jest.fn().mockImplementation(() => of([]))
-                    }
-                },
+                    provide: TranslationService,
+                    useClass: TranslationMock
+                }
             ],
             declarations: [CalledElementComponent],
             imports: [TranslateModule.forRoot(), CardViewModule],
@@ -88,6 +88,7 @@ describe('CalledElementComponent', () => {
         actions$ = null;
 
         variableService = TestBed.inject(ProcessEditorElementVariablesService);
+        variableServiceSpy = spyOn(variableService, 'getAvailableVariablesForElement').and.returnValue(of([]));
         cardViewUpdateService = TestBed.inject(CardViewUpdateService);
         spyOn(cardViewUpdateService, 'update').and.callThrough();
     });
@@ -151,11 +152,9 @@ describe('CalledElementComponent', () => {
     });
 
     it('should retrieve process variables from the ProcessEditorElementVariablesService', async () => {
-        const spy = spyOn(variableService, 'getAvailableVariablesForElement').and.stub();
-
         component.ngOnInit();
         await fixture.whenStable();
 
-        expect(spy).toHaveBeenCalledWith(propertyMock.data.element);
+        expect(variableServiceSpy).toHaveBeenCalledWith(propertyMock.data.element);
     });
 });

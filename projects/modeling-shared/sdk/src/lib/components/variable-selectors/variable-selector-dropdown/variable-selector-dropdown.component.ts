@@ -15,14 +15,15 @@
  * limitations under the License.
  */
 
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { ElementVariable, ProcessEditorElementVariable } from '../../../services/process-editor-element-variables-provider.service';
 
 @Component({
     selector: 'modelingsdk-variable-selector-dropdown',
-    templateUrl: './variable-selector-dropdown.component.html'
+    templateUrl: './variable-selector-dropdown.component.html',
+    styleUrls: ['./variable-selector-dropdown.component.scss']
 })
-export class VariableSelectorDropdownComponent implements OnInit, AfterViewInit {
+export class VariableSelectorDropdownComponent implements OnInit, AfterViewInit, OnChanges {
 
     @Input()
     variables: ProcessEditorElementVariable[];
@@ -54,6 +55,21 @@ export class VariableSelectorDropdownComponent implements OnInit, AfterViewInit 
     @Input()
     variablesPanelHeight = 200;
 
+    @Input()
+    variablesPanelWidth: number;
+
+    @Input()
+    variablesTitle = 'SDK.VARIABLE_EXPRESSION.TITLE.VARIABLES';
+
+    @Input()
+    noVariablePlaceholder = 'SDK.VARIABLE_MAPPING.NO_PROCESS_PROPERTIES';
+
+    @Input()
+    filterExpressionVariables = false;
+
+    @Input()
+    required = false;
+
     @Output()
     variableSelected = new EventEmitter<ElementVariable>();
 
@@ -62,20 +78,38 @@ export class VariableSelectorDropdownComponent implements OnInit, AfterViewInit 
 
     selectedVariableName = '';
     variablesPanelDisplay = false;
-    variablesPanelWidth = 0;
+    availableVariables = true;
 
-    constructor(private cdr: ChangeDetectorRef) {}
+    constructor(private cdr: ChangeDetectorRef) { }
 
     ngOnInit(): void {
+        this.init();
+    }
+
+    ngOnChanges(): void {
+        this.init();
+    }
+
+    private init() {
+       let vars: ElementVariable[] = [];
+        this.variables.filter((variable) => variable.variables && variable.variables.length > 0).forEach((element) => vars = vars.concat(element.variables));
+
         if (this.varIdSelected) {
-            let vars: ElementVariable[] = [];
-            this.variables.filter((variable) => variable.variables && variable.variables.length > 0).forEach((element) => vars = vars.concat(element.variables));
-            this.selectedVariableName = vars.find(variable => variable.id === this.varIdSelected)?.name || '';
+            const selectedVariable = vars.find(variable => variable.id === this.varIdSelected);
+            this.selectedVariableName = selectedVariable?.label || selectedVariable?.name || '';
+        }
+
+        if (this.typeFilter) {
+            this.availableVariables = vars.filter(variable => variable.type === this.typeFilter).length > 0;
+        } else {
+            this.availableVariables = vars.length > 0;
         }
     }
 
     ngAfterViewInit(): void {
-        this.variablesPanelWidth = this.dropdown.nativeElement.offsetWidth - 24;
+        if (!this.variablesPanelWidth) {
+            this.variablesPanelWidth = this.dropdown.nativeElement.offsetWidth - 24;
+        }
     }
 
     openPanel() {
@@ -89,9 +123,16 @@ export class VariableSelectorDropdownComponent implements OnInit, AfterViewInit 
     }
 
     onVariableSelected(variable: ElementVariable) {
-        this.selectedVariableName = variable?.name || '';
+        this.selectedVariableName = variable?.label || variable?.name || '';
         this.varIdSelected = variable.id;
         this.closePanel();
         this.variableSelected.emit(variable);
+    }
+
+    clearSelection() {
+        this.selectedVariableName = '';
+        this.varIdSelected = null;
+        this.closePanel();
+        this.variableSelected.emit(null);
     }
 }

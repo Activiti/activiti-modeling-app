@@ -16,9 +16,10 @@
  */
 
 import { ServiceParameterMapping, MappingType } from '../../api/types';
+import { ProcessEditorElementVariable, ProcessEditorElementWithVariables } from '../../services/process-editor-element-variables-provider.service';
 
 /* cSpell:disable */
-export const mockValueMapping: ServiceParameterMapping  = {
+export const mockValueMapping: ServiceParameterMapping = {
     'dName': {
         type: MappingType.value,
         value: '${Dropdown009gay.name}'
@@ -104,4 +105,83 @@ export const mockDropDownProcessVariable = [
         'required': false
     }
 ];
+
+export const pipeProcessProperties: ProcessEditorElementVariable[] = [
+    {
+        'source': {
+            'name': 'process',
+            'type': ProcessEditorElementWithVariables.Process,
+            'subtype': 'bpmn:Process'
+        },
+        'variables': [
+            {
+                'id': 'var-string-1-id',
+                'name': 'var-string-1',
+                'type': 'string',
+                'icon': 's',
+                'tooltip': ''
+            }
+        ]
+    },
+    {
+        'source': {
+            'name': 'service task',
+            'type': ProcessEditorElementWithVariables.ServiceTask,
+            'subtype': 'bpmn:ServiceTask'
+        },
+        'variables': [
+            {
+                'id': 'var-string-2-id',
+                'name': 'var-string-2',
+                'type': 'string',
+                'icon': 's',
+                'tooltip': ''
+            }
+        ]
+    },
+    {
+        'source': {
+            'name': 'call activity',
+            'type': ProcessEditorElementWithVariables.CalledElement,
+            'subtype': 'bpmn:CallActivity'
+        },
+        'variables': [
+            {
+                'id': 'var-string-3-id',
+                'name': 'var-string-3',
+                'type': 'string',
+                'icon': 's',
+                'tooltip': ''
+            }
+        ]
+    },
+    {
+        'source': {
+            'name': 'start event',
+            'type': ProcessEditorElementWithVariables.StartEvent,
+            'subtype': 'bpmn:StartEvent'
+        },
+        'variables': [
+            {
+                'id': 'var-string-4-id',
+                'name': 'var-string-4',
+                'type': 'string',
+                'icon': 's',
+                'tooltip': ''
+            }
+        ]
+    }
+];
+
+export const pipeMapping: ServiceParameterMapping = {
+    'var-string-1': {
+        'type': MappingType.variable,
+        'value': 'task-output-1'
+    },
+    'var-string-2': {
+        'type': MappingType.variable,
+        'value': 'task-output-2'
+    }
+};
+
 /* cSpell:enable */

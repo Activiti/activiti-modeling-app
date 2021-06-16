@@ -1,16 +1,20 @@
-<div class="ama-variable-selector-dropdown-wrapper">
-    <div class="ama-variable-selector-dropdown-input" cdkOverlayOrigin #openVariablesPanel="cdkOverlayOrigin" #dropdown
-        (click)="openPanel()">
-        <mat-form-field *ngIf="!plain">
-            <input matInput placeholder="{{placeholder}}" readonly autocomplete="off" [value]="selectedVariableName">
-            <button mat-button matSuffix mat-icon-button (click)="openPanel()">
-                <mat-icon>arrow_drop_down</mat-icon>
-            </button>
-        </mat-form-field>
-        <div class="ama-variable-selector-dropdown-input-plain" *ngIf="plain">
-            <input matInput placeholder="{{placeholder}}" readonly autocomplete="off" [value]="selectedVariableName">
-            <div class="mat-select-arrow-wrapper">
-                <div class="mat-select-arrow"></div>
+<div class="modelingsdk-variable-selector-dropdown-wrapper">
+    <div cdkOverlayOrigin #openVariablesPanel="cdkOverlayOrigin" #dropdown>
+        <div *ngIf="availableVariables; else noProcessPropertiesTmpl" (click)="openPanel()"
+            class="modelingsdk-variable-selector-dropdown-input">
+            <mat-form-field *ngIf="!plain">
+                <input matInput placeholder="{{placeholder}}" readonly autocomplete="off"
+                    [value]="selectedVariableName">
+                <button mat-button matSuffix mat-icon-button (click)="openPanel()">
+                    <mat-icon>arrow_drop_down</mat-icon>
+                </button>
+            </mat-form-field>
+            <div class="modelingsdk-variable-selector-dropdown-input-plain" *ngIf="plain">
+                <input matInput placeholder="{{placeholder}}" readonly autocomplete="off"
+                    [value]="selectedVariableName">
+                <div class="mat-select-arrow-wrapper">
+                    <div class="mat-select-arrow"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -18,13 +22,38 @@
 
 <ng-template cdkConnectedOverlay [cdkConnectedOverlayOffsetX]="offsetX" [cdkConnectedOverlayOffsetY]="offsetY"
     [cdkConnectedOverlayOrigin]="openVariablesPanel" [cdkConnectedOverlayOpen]="variablesPanelDisplay"
-    [cdkConnectedOverlayHasBackdrop]="true" (backdropClick)="closePanel()"
+    [cdkConnectedOverlayHasBackdrop]="true" (backdropClick)="closePanel()" (detach)="closePanel()"
     [cdkConnectedOverlayBackdropClass]="'cdk-overlay-transparent-backdrop'" #variableSelector>
-    <div class="ama-variable-selector-dropdown-variables-panel mat-elevation-z6"
-        [ngStyle]="{ 'width.px': variablesPanelWidth, 'height.px': variablesPanelHeight }">
-        <modelingsdk-variable-selector [variables]="variables" [varIdSelected]="varIdSelected" [typeFilter]="typeFilter"
-            (variableSelected)="onVariableSelected($event)" [tooltipOffsetX]="tooltipOffsetX"
-            [tooltipOffsetY]="tooltipOffsetY">
-        </modelingsdk-variable-selector>
-    </div>
+
+    <mat-card class="modelingsdk-variable-selector-dropdown-panel mat-elevation-z6"
+        [ngStyle]="{ 'width.px': variablesPanelWidth, 'max-height.px': variablesPanelHeight }">
+        <mat-card-header>
+            <div class="modelingsdk-variable-selector-dropdown-panel-button-container">
+                <button mat-icon-button (click)="clearSelection()" *ngIf="!required && varIdSelected"
+                    class="modelingsdk-variable-selector-dropdown-panel-title-button"
+                    matTooltip="{{'SDK.VARIABLE_EXPRESSION.TITLE.CLEAR_SELECTION'| translate}}">
+                    <mat-icon>backspace</mat-icon>
+                </button>
+            </div>
+            <h3 class="modelingsdk-variable-selector-dropdown-panel-title">
+                <div class="modelingsdk-variable-selector-dropdown-panel-title-label">
+                    {{ variablesTitle | translate}}
+                </div>
+            </h3>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="modelingsdk-variable-selector-dropdown-panel-content"
+                [ngStyle]="{ 'max-height.px': variablesPanelHeight - 28 }">
+                <modelingsdk-variable-selector [variables]="variables" [varIdSelected]="varIdSelected"
+                    [typeFilter]="typeFilter" (variableSelected)="onVariableSelected($event)"
+                    [tooltipOffsetX]="tooltipOffsetX" [tooltipOffsetY]="tooltipOffsetY"
+                    [filterExpressionVariables]="filterExpressionVariables">
+                </modelingsdk-variable-selector>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</ng-template>
+
+<ng-template #noProcessPropertiesTmpl>
+    <div class="modelingsdk-variable-selector-no-process-properties-msg">{{ noVariablePlaceholder | translate }}</div>
 </ng-template>

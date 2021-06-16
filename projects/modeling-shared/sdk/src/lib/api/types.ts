@@ -249,7 +249,7 @@ export interface EntityProperty {
     label?: string;
     type: string;
     required?: boolean;
-    value: string;
+    value?: string;
     description?: string;
 }
 
