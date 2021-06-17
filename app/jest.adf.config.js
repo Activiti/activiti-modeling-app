@@ -1,11 +1,4 @@
 const config = require('./jest.config');
+const { overrideTsConfig } = require('../jest-utils');
 
-module.exports = {
-    ...config,
-    globals: {
-        "ts-jest": {
-            stringifyContentPathRegex: '\\.html?$',
-            tsconfig:"<rootDir>/tsconfig.spec.adf.json"
-        }
-    },
-}
+module.exports = overrideTsConfig(config, "<rootDir>/tsconfig.spec.adf.json");
