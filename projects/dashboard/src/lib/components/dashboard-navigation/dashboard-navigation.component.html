@@ -20,43 +20,25 @@
         </div>
     </adf-sidebar-action-menu>
 
-    <div
-        class="dashboard-navigation__section dashboard-navigation__section--menu"
-        *ngFor="let list of navigation"
-    >
+    <div class="dashboard-navigation__section dashboard-navigation__section--menu" *ngFor="let list of navigation">
         <ul class="dashboard-navigation-menu">
-            <li
-                *ngFor="let item of list"
-                class="dashboard-navigation-menu__item"
-                routerLinkActive
-                #rla="routerLinkActive"
-                title="{{ item.title || '' | translate }}"
-            >
-                <button
-                    mat-icon-button
-                    mat-ripple
-                    matRippleColor="primary"
-                    [routerLink]="item.route.url"
-                    [color]="rla.isActive ? 'accent' : 'primary'"
-                    [matRippleTrigger]="rippleTrigger"
-                    [matRippleCentered]="true"
-                    [title]="item.label | translate"
-                >
-                    <mat-icon>{{ item.icon }}</mat-icon>
-                </button>
+            <ng-container *ngFor="let item of list">
+                <li class="dashboard-navigation-menu__item" routerLinkActive #rla="routerLinkActive"
+                    title="{{ item.title || '' | translate }}" *ngIf="!item.disabled">
 
-                <span
-                    #rippleTrigger
-                    class="menu__item--label"
-                    [routerLink]="item.route.url"
-                    [hidden]="!(expanded$ | async)"
-                    [ngClass]="{
-                        'menu__item--active': rla.isActive,
-                        'menu__item--default': !rla.isActive
-                    }"
-                    >{{ item.label | translate }}</span
-                >
-            </li>
+                    <button mat-icon-button mat-ripple matRippleColor="primary" [routerLink]="item.route.url"
+                        [color]="rla.isActive ? 'accent' : 'primary'" [matRippleTrigger]="rippleTrigger"
+                        [matRippleCentered]="true" [title]="item.label | translate">
+                        <mat-icon>{{ item.icon }}</mat-icon>
+                    </button>
+
+                    <span #rippleTrigger class="menu__item--label" [routerLink]="item.route.url"
+                        [hidden]="!(expanded$ | async)" [ngClass]="{
+                                        'menu__item--active': rla.isActive,
+                                        'menu__item--default': !rla.isActive
+                                    }">{{ item.label | translate }}</span>
+                </li>
+            </ng-container>
         </ul>
     </div>
 </div>
