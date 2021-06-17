@@ -15,14 +15,19 @@
  * limitations under the License.
  */
 
-import { ModelingType, ModelingTypeSuggestion } from '../services/modeling-type-provider.service';
+import { ModelingTypeMap, ModelingTypeSuggestion } from '../services/modeling-type-provider.service';
 
 /* cspell: disable */
-export const expectedPrimitiveTypes: { [id: string]: ModelingType } = {
-    'boolean': { 'id': 'boolean' },
-    'integer': { 'id': 'integer' },
+export const expectedPrimitiveTypes: ModelingTypeMap = {
+    'boolean': {
+        'id': 'boolean'
+    },
+    'integer': {
+        'id': 'integer'
+    },
     'string': {
         'id': 'string',
+        'properties': [],
         'methods': [
             {
                 'type': 'string',
@@ -160,7 +165,7 @@ export const expectedPrimitiveTypes: { [id: string]: ModelingType } = {
                 ]
             },
             {
-                'type': null,
+                'type': 'null',
                 'signature': 'getChars',
                 'documentation': 'Copies characters from this string into the destination character array.',
                 'parameters': [
@@ -444,7 +449,7 @@ export const expectedPrimitiveTypes: { [id: string]: ModelingType } = {
                 ]
             },
             {
-                'type': 'array-string',
+                'type': 'string-array',
                 'signature': 'split',
                 'documentation': 'Splits this string around matches of the given regular expression.',
                 'parameters': [
@@ -455,7 +460,7 @@ export const expectedPrimitiveTypes: { [id: string]: ModelingType } = {
                 ]
             },
             {
-                'type': 'array-string',
+                'type': 'string-array',
                 'signature': 'split',
                 'documentation': 'Splits this string around matches of the given regular expression.',
                 'parameters': [
@@ -559,7 +564,7 @@ export const expectedPrimitiveTypes: { [id: string]: ModelingType } = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is "equal to" this one.',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
@@ -575,403 +580,547 @@ export const expectedPrimitiveTypes: { [id: string]: ModelingType } = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
             }
-        ],
-        'properties': undefined
+        ]
     },
     'json': {
         'id': 'json',
-        'methods': [{
-            'signature': 'equals',
-            'type': 'boolean',
-            'documentation': 'Indicates whether some other object is "equal to" this one.',
-            'parameters': [{
-                'label': 'obj',
-                'documentation': 'obj: object – the reference object with which to compare'
-            }]
-        },
-        {
-            'signature': 'hashCode',
-            'type': 'integer',
-            'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
-        },
-        {
-            'signature': 'toString',
-            'type': 'string',
-            'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
-        }]
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': []
     },
     'date': {
         'id': 'date',
-        'methods': [{
-            'signature': 'after',
-            'type': 'boolean',
-            'documentation': 'Tests if this date is after the specified date.',
-            'parameters': [{
-                'label': 'date',
-                'documentation': 'date: date – the reference object with which to compare'
-            }]
-        },
-        {
-            'signature': 'before',
-            'type': 'boolean',
-            'documentation': 'Tests if this date is before the specified date.',
-            'parameters': [{
-                'label': 'date',
-                'documentation': 'date: date – the reference object with which to compare'
-            }]
-        },
-        {
-            'signature': 'compareTo',
-            'type': 'integer',
-            'documentation': 'Compares two Dates for ordering.',
-            'parameters': [{
-                'label': 'anotherDate',
-                'documentation': 'anotherDate: date – the date to be compared'
-            }]
-        },
-        {
-            'signature': 'getTime',
-            'type': 'integer',
-            'documentation': 'Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by this Date object.'
-        },
-        {
-            'signature': 'setTime',
-            'type': null,
-            'documentation': 'Sets this Date object to represent a point in time that is time milliseconds after January 1, 1970 00:00:00 GMT.',
-            'parameters': [{
-                'label': 'time',
-                'documentation': 'time: integer – the number of milliseconds'
-            }]
-        },
-        {
-            'signature': 'equals',
-            'type': 'boolean',
-            'documentation': 'Indicates whether some other object is "equal to" this one.',
-            'parameters': [{
-                'label': 'obj',
-                'documentation': 'obj: object – the reference object with which to compare'
-            }]
-        },
-        {
-            'signature': 'hashCode',
-            'type': 'integer',
-            'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
-        },
-        {
-            'signature': 'toString',
-            'type': 'string',
-            'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
-        }],
-        'properties': undefined
+        'properties': [],
+        'methods': [
+            {
+                'signature': 'after',
+                'type': 'boolean',
+                'documentation': 'Tests if this date is after the specified date.',
+                'parameters': [
+                    {
+                        'label': 'date',
+                        'documentation': 'date: date – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'before',
+                'type': 'boolean',
+                'documentation': 'Tests if this date is before the specified date.',
+                'parameters': [
+                    {
+                        'label': 'date',
+                        'documentation': 'date: date – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'compareTo',
+                'type': 'integer',
+                'documentation': 'Compares two Dates for ordering.',
+                'parameters': [
+                    {
+                        'label': 'anotherDate',
+                        'documentation': 'anotherDate: date – the date to be compared'
+                    }
+                ]
+            },
+            {
+                'signature': 'getTime',
+                'type': 'integer',
+                'documentation': 'Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by this Date object.'
+            },
+            {
+                'signature': 'setTime',
+                'type': 'null',
+                'documentation': 'Sets this Date object to represent a point in time that is time milliseconds after January 1, 1970 00:00:00 GMT.',
+                'parameters': [
+                    {
+                        'label': 'time',
+                        'documentation': 'time: integer – the number of milliseconds'
+                    }
+                ]
+            },
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ]
     },
     'datetime': {
         'id': 'datetime',
-        'methods': [{
-            'signature': 'after',
-            'type': 'boolean',
-            'documentation': 'Tests if this date is after the specified date.',
-            'parameters': [{
-                'label': 'date',
-                'documentation': 'date: date – the reference object with which to compare'
-            }]
-        },
-        {
-            'signature': 'before',
-            'type': 'boolean',
-            'documentation': 'Tests if this date is before the specified date.',
-            'parameters': [{
-                'label': 'date',
-                'documentation': 'date: date – the reference object with which to compare'
-            }]
-        },
-        {
-            'signature': 'compareTo',
-            'type': 'integer',
-            'documentation': 'Compares two Dates for ordering.',
-            'parameters': [{
-                'label': 'anotherDate',
-                'documentation': 'anotherDate: date – the date to be compared'
-            }]
-        },
-        {
-            'signature': 'getTime',
-            'type': 'integer',
-            'documentation': 'Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by this Date object.'
-        },
-        {
-            'signature': 'setTime',
-            'type': null,
-            'documentation': 'Sets this Date object to represent a point in time that is time milliseconds after January 1, 1970 00:00:00 GMT.',
-            'parameters': [{
-                'label': 'time',
-                'documentation': 'time: integer – the number of milliseconds'
-            }]
-        },
-        {
-            'signature': 'equals',
-            'type': 'boolean',
-            'documentation': 'Indicates whether some other object is "equal to" this one.',
-            'parameters': [{
-                'label': 'obj',
-                'documentation': 'obj: object – the reference object with which to compare'
-            }]
-        },
-        {
-            'signature': 'hashCode',
-            'type': 'integer',
-            'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
-        },
-        {
-            'signature': 'toString',
-            'type': 'string',
-            'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
-        }],
-        'properties': undefined
+        'properties': [],
+        'methods': [
+            {
+                'signature': 'after',
+                'type': 'boolean',
+                'documentation': 'Tests if this date is after the specified date.',
+                'parameters': [
+                    {
+                        'label': 'date',
+                        'documentation': 'date: date – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'before',
+                'type': 'boolean',
+                'documentation': 'Tests if this date is before the specified date.',
+                'parameters': [
+                    {
+                        'label': 'date',
+                        'documentation': 'date: date – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'compareTo',
+                'type': 'integer',
+                'documentation': 'Compares two Dates for ordering.',
+                'parameters': [
+                    {
+                        'label': 'anotherDate',
+                        'documentation': 'anotherDate: date – the date to be compared'
+                    }
+                ]
+            },
+            {
+                'signature': 'getTime',
+                'type': 'integer',
+                'documentation': 'Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by this Date object.'
+            },
+            {
+                'signature': 'setTime',
+                'type': 'null',
+                'documentation': 'Sets this Date object to represent a point in time that is time milliseconds after January 1, 1970 00:00:00 GMT.',
+                'parameters': [
+                    {
+                        'label': 'time',
+                        'documentation': 'time: integer – the number of milliseconds'
+                    }
+                ]
+            },
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ]
     },
-    'array': {
-        'id': 'array',
-        'collectionOf': 'json',
+    'content-metadata': {
+        'id': 'content-metadata',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'sizeInBytes',
+                'documentation': 'Node size in bytes',
+                'type': 'integer'
+            },
+            {
+                'property': 'mimeType',
+                'documentation': 'Node mime type',
+                'type': 'string'
+            }
+        ]
+    },
+    'content': {
+        'id': 'content',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'id',
+                'documentation': 'Node identifier',
+                'type': 'string'
+            },
+            {
+                'property': 'name',
+                'documentation': 'Node name',
+                'type': 'string'
+            },
+            {
+                'property': 'uri',
+                'documentation': 'Node URI',
+                'type': 'string'
+            },
+            {
+                'property': 'content',
+                'type': 'content-metadata'
+            }
+        ]
+    },
+    'content-array': {
+        'id': 'content-array',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
         'properties': [
             {
                 'property': 'length',
                 'type': 'integer',
                 'documentation': 'Return the number of elements in the array'
-            },
-            undefined],
-        'methods': [{
-            'signature': 'equals',
-            'type': 'boolean',
-            'documentation': 'Indicates whether some other object is "equal to" this one.',
-            'parameters': [{
-                'label': 'obj',
-                'documentation': 'obj: object – the reference object with which to compare'
-            }]
-        },
-        {
-            'signature': 'hashCode',
-            'type': 'integer',
-            'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
-        },
-        {
-            'signature': 'toString',
-            'type': 'string',
-            'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
-        }]
+            }
+        ],
+        'collectionOf': 'content'
     },
     'file': {
         'id': 'file',
-        'collectionOf': 'content',
-        'methods': [{
-            'signature': 'equals',
-            'type': 'boolean',
-            'documentation': 'Indicates whether some other object is "equal to" this one.',
-            'parameters': [{
-                'label': 'obj',
-                'documentation': 'obj: object – the reference object with which to compare'
-            }]
-        },
-        {
-            'signature': 'hashCode',
-            'type': 'integer',
-            'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
-        },
-        {
-            'signature': 'toString',
-            'type': 'string',
-            'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
-        }],
-        'properties': [{
-            'property': 'length',
-            'type': 'integer',
-            'documentation': 'Return the number of elements in the array'
-        },
-            undefined,
-        {
-            'property': 'id',
-            'type': 'string',
-            'documentation': 'Node identifier'
-        },
-        {
-            'property': 'name',
-            'type': 'string',
-            'documentation': 'Node name'
-        },
-        {
-            'property': 'uri',
-            'type': 'string',
-            'documentation': 'Node URI'
-        },
-        {
-            'property': 'content',
-            'type': 'content-metadata',
-            'documentation': 'Node content metadata'
-        },
-            undefined]
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'id',
+                'documentation': 'Node identifier',
+                'type': 'string'
+            },
+            {
+                'property': 'name',
+                'documentation': 'Node name',
+                'type': 'string'
+            },
+            {
+                'property': 'uri',
+                'documentation': 'Node URI',
+                'type': 'string'
+            },
+            {
+                'property': 'content',
+                'type': 'content-metadata'
+            },
+            {
+                'property': 'length',
+                'type': 'integer',
+                'documentation': 'Return the number of elements in the array'
+            }
+        ],
+        'collectionOf': 'content'
+    },
+    'node': {
+        'id': 'node',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'id',
+                'documentation': 'Node identifier',
+                'type': 'string'
+            },
+            {
+                'property': 'name',
+                'documentation': 'Node name',
+                'type': 'string'
+            }
+        ]
+    },
+    'node-array': {
+        'id': 'node-array',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'length',
+                'type': 'integer',
+                'documentation': 'Return the number of elements in the array'
+            }
+        ],
+        'collectionOf': 'node'
     },
     'folder': {
         'id': 'folder',
-        'methods': [{
-            'signature': 'equals',
-            'type': 'boolean',
-            'documentation': 'Indicates whether some other object is "equal to" this one.',
-            'parameters': [{
-                'label': 'obj',
-                'documentation': 'obj: object – the reference object with which to compare'
-            }]
-        },
-        {
-            'signature': 'hashCode',
-            'type': 'integer',
-            'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
-        },
-        {
-            'signature': 'toString',
-            'type': 'string',
-            'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
-        }],
-        'properties': [{
-            'property': 'length',
-            'type': 'integer',
-            'documentation': 'Return the number of elements in the array'
-        },
-            undefined,
-        {
-            'property': 'id',
-            'type': 'string',
-            'documentation': 'Node identifier'
-        },
-        {
-            'property': 'name',
-            'type': 'string',
-            'documentation': 'Node name'
-        },
-        {
-            'property': 'uri',
-            'type': 'string',
-            'documentation': 'Node URI'
-        },
-        {
-            'property': 'content',
-            'type': 'content-metadata',
-            'documentation': 'Node content metadata'
-        },
-            undefined],
-        'collectionOf': 'content'
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'id',
+                'documentation': 'Node identifier',
+                'type': 'string'
+            },
+            {
+                'property': 'name',
+                'documentation': 'Node name',
+                'type': 'string'
+            },
+            {
+                'property': 'length',
+                'type': 'integer',
+                'documentation': 'Return the number of elements in the array'
+            }
+        ],
+        'collectionOf': 'node'
     },
-    'content': {
-        'id': 'content',
-        'hidden': true,
-        'properties': [{
-            'property': 'id',
-            'type': 'string',
-            'documentation': 'Node identifier'
-        },
-        {
-            'property': 'name',
-            'type': 'string',
-            'documentation': 'Node name'
-        },
-        {
-            'property': 'uri',
-            'type': 'string',
-            'documentation': 'Node URI'
-        },
-        {
-            'property': 'content',
-            'type': 'content-metadata',
-            'documentation': 'Node content metadata'
-        },
-            undefined],
-        'methods': [{
-            'signature': 'equals',
-            'type': 'boolean',
-            'documentation': 'Indicates whether some other object is "equal to" this one.',
-            'parameters': [{
-                'label': 'obj',
-                'documentation': 'obj: object – the reference object with which to compare'
-            }]
-        },
-        {
-            'signature': 'hashCode',
-            'type': 'integer',
-            'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
-        },
-        {
-            'signature': 'toString',
-            'type': 'string',
-            'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
-        }]
+    'null': {
+        'id': 'null'
     },
-    'content-metadata': {
-        'id': 'content-metadata',
-        'hidden': true,
-        'properties': [{
-            'property': 'sizeInBytes',
-            'type': 'integer',
-            'documentation': 'Node size in bytes'
-        },
-        {
-            'property': 'mimeType',
-            'type': 'string',
-            'documentation': 'Node mime type'
-        },
-        {
-            'property': 'uri',
-            'type': 'string',
-            'documentation': 'Node URI'
-        },
-            undefined],
-        'methods': [{
-            'signature': 'equals',
-            'type': 'boolean',
-            'documentation': 'Indicates whether some other object is "equal to" this one.',
-            'parameters': [{
-                'label': 'obj',
-                'documentation': 'obj: object – the reference object with which to compare'
-            }]
-        },
-        {
-            'signature': 'hashCode',
-            'type': 'integer',
-            'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
-        },
-        {
-            'signature': 'toString',
-            'type': 'string',
-            'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
-        }]
+    'string-array': {
+        'id': 'string-array',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'length',
+                'type': 'integer',
+                'documentation': 'Return the number of elements in the array'
+            }
+        ],
+        'collectionOf': 'string'
     },
-    'array-string': {
-        'id': 'array-string',
-        'methods': [{
-            'signature': 'equals',
-            'type': 'boolean',
-            'documentation': 'Indicates whether some other object is "equal to" this one.',
-            'parameters': [{
-                'label': 'obj',
-                'documentation': 'obj: object – the reference object with which to compare'
-            }]
-        },
-        {
-            'signature': 'hashCode',
-            'type': 'integer',
-            'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
-        },
-        {
-            'signature': 'toString',
-            'type': 'string',
-            'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
-        }],
-        'properties': [{
-            'property': 'length',
-            'type': 'integer',
-            'documentation': 'Return the number of elements in the array'
-        },
-            undefined],
-        'collectionOf': 'string',
-        'hidden': true
+    'array': {
+        'id': 'array',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'length',
+                'type': 'integer',
+                'documentation': 'Return the number of elements in the array'
+            }
+        ],
+        'collectionOf': 'json'
     }
 };
 
@@ -1058,3 +1207,420 @@ export const expectedArraySignatureHelpers = [
         }
     }
 ];
+
+export const expectedEventSchemaTypes: ModelingTypeMap = {
+    'eventSchema-UserInfo': {
+        'id': 'eventSchema-UserInfo',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'displayName',
+                'type': 'string'
+            },
+            {
+                'property': 'id',
+                'type': 'string'
+            }
+        ]
+    },
+    'eventSchema-data-resource-content': {
+        'id': 'eventSchema-data-resource-content',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'encoding',
+                'type': 'string'
+            },
+            {
+                'property': 'mimeType',
+                'type': 'string'
+            },
+            {
+                'property': 'sizeInBytes',
+                'type': 'integer'
+            }
+        ]
+    },
+    'eventSchema-data-resource-primaryHierarchy': {
+        'id': 'eventSchema-data-resource-primaryHierarchy',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'length',
+                'type': 'integer',
+                'documentation': 'Return the number of elements in the array'
+            }
+        ],
+        'collectionOf': 'string'
+    },
+    'eventSchema-data-resource-properties': {
+        'id': 'eventSchema-data-resource-properties',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': []
+    },
+    'eventSchema-data-resource-aspectNames': {
+        'id': 'eventSchema-data-resource-aspectNames',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'length',
+                'type': 'integer',
+                'documentation': 'Return the number of elements in the array'
+            }
+        ],
+        'collectionOf': 'string'
+    },
+    'eventSchema-data-resource': {
+        'id': 'eventSchema-data-resource',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'id',
+                'type': 'string'
+            },
+            {
+                'property': 'name',
+                'type': 'string'
+            },
+            {
+                'property': 'nodeType',
+                'type': 'string'
+            },
+            {
+                'property': 'isFile',
+                'type': 'boolean'
+            },
+            {
+                'property': 'isFolder',
+                'type': 'boolean'
+            },
+            {
+                'property': 'createdByUser',
+                'type': 'eventSchema-UserInfo'
+            },
+            {
+                'property': 'createdAt',
+                'type': 'string'
+            },
+            {
+                'property': 'modifiedByUser',
+                'type': 'eventSchema-UserInfo'
+            },
+            {
+                'property': 'modifiedAt',
+                'type': 'string'
+            },
+            {
+                'property': 'content',
+                'type': 'eventSchema-data-resource-content'
+            },
+            {
+                'property': 'primaryHierarchy',
+                'type': 'eventSchema-data-resource-primaryHierarchy'
+            },
+            {
+                'property': 'properties',
+                'type': 'eventSchema-data-resource-properties'
+            },
+            {
+                'property': 'aspectNames',
+                'type': 'eventSchema-data-resource-aspectNames'
+            }
+        ]
+    },
+    'eventSchema-data': {
+        'id': 'eventSchema-data',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'eventGroupId',
+                'type': 'string'
+            },
+            {
+                'property': 'resource',
+                'type': 'eventSchema-data-resource'
+            }
+        ]
+    },
+    'eventSchema': {
+        'id': 'eventSchema',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'specversion',
+                'type': 'string'
+            },
+            {
+                'property': 'type',
+                'type': 'string'
+            },
+            {
+                'property': 'id',
+                'type': 'string'
+            },
+            {
+                'property': 'source',
+                'type': 'string'
+            },
+            {
+                'property': 'time',
+                'type': 'string'
+            },
+            {
+                'property': 'dataschema',
+                'type': 'string'
+            },
+            {
+                'property': 'datacontenttype',
+                'type': 'string'
+            },
+            {
+                'property': 'data',
+                'type': 'eventSchema-data'
+            }
+        ]
+    }
+};
+
+export const expectedEventExtendedSchemaTypes: ModelingTypeMap = {
+    'eventExtendedSchema': {
+        'id': 'eventExtendedSchema',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'specversion',
+                'type': 'string'
+            },
+            {
+                'property': 'type',
+                'type': 'string'
+            },
+            {
+                'property': 'id',
+                'type': 'string'
+            },
+            {
+                'property': 'source',
+                'type': 'string'
+            },
+            {
+                'property': 'time',
+                'type': 'string'
+            },
+            {
+                'property': 'dataschema',
+                'type': 'string'
+            },
+            {
+                'property': 'datacontenttype',
+                'type': 'string'
+            },
+            {
+                'property': 'data',
+                'type': 'eventSchema-data'
+            },
+            {
+                'property': 'myCustomProperty',
+                'type': 'string'
+            }
+        ]
+    }
+};

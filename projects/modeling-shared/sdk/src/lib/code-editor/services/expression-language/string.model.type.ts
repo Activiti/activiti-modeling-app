@@ -160,7 +160,7 @@ export const stringModelType: ModelingType = {
             ]
         },
         {
-            type: null,
+            type: 'null',
             signature: 'getChars',
             documentation: 'Copies characters from this string into the destination character array.',
             parameters: [
@@ -444,7 +444,7 @@ export const stringModelType: ModelingType = {
             ]
         },
         {
-            type: 'array-string',
+            type: 'string-array',
             signature: 'split',
             documentation: 'Splits this string around matches of the given regular expression.',
             parameters: [
@@ -455,7 +455,7 @@ export const stringModelType: ModelingType = {
             ]
         },
         {
-            type: 'array-string',
+            type: 'string-array',
             signature: 'split',
             documentation: 'Splits this string around matches of the given regular expression.',
             parameters: [

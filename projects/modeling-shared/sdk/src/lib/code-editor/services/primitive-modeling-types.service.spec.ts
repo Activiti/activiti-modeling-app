@@ -17,6 +17,7 @@
 
 import { TestBed } from '@angular/core/testing';
 import { expectedPrimitiveTypes } from '../mocks/primitive-types.mock';
+import { JSONSchemaToModelingTypesService } from './json-schema-to-modeling-types.service';
 import { PrimitiveModelingTypesService } from './primitive-modeling-types.service';
 
 describe('PrimitiveModelingTypesService', () => {
@@ -24,7 +25,7 @@ describe('PrimitiveModelingTypesService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [PrimitiveModelingTypesService]
+            providers: [PrimitiveModelingTypesService, JSONSchemaToModelingTypesService]
         });
 
         service = TestBed.inject(PrimitiveModelingTypesService);

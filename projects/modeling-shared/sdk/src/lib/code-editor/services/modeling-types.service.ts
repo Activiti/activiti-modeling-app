@@ -85,7 +85,7 @@ function getMethodLabel(method: ModelingTypeMethodDescription): string {
 }
 
 const createMemoizedModelingTypes = memoize(
-    (modelingTypesByProvider: ProviderModelingTypeMap, status) => {
+    (modelingTypesByProvider: ProviderModelingTypeMap, status: string) => {
         const modelingTypes = {};
         Object.keys(modelingTypesByProvider).forEach(provider => {
             const types = modelingTypesByProvider[provider];
@@ -93,33 +93,33 @@ const createMemoizedModelingTypes = memoize(
         });
         return modelingTypes;
     },
-    (modelingTypesByProvider: ProviderModelingTypeMap, status) => status
+    (modelingTypesByProvider: ProviderModelingTypeMap, status: string) => status
 );
 
 const createMemoizedMethodSuggestions = memoize(
-    (type: ModelingType) => {
+    (type: ModelingType, status: string) => {
         const suggestions = [];
         if (type && type.methods) {
             type.methods.filter(method => !!method).forEach(method => suggestions.push(getMethodSuggestion(method)));
         }
         return suggestions;
     },
-    (type: ModelingType, status) => status
+    (type: ModelingType, status: string) => type.id + '_' + status
 );
 
 const createMemoizedPropertySuggestions = memoize(
-    (type: ModelingType) => {
+    (type: ModelingType, status: string) => {
         const suggestions = [];
         if (type && type.properties) {
             type.properties.filter(property => !!property).forEach(property => suggestions.push(getPropertySuggestion(property)));
         }
         return suggestions;
     },
-    (type: ModelingType, status) => status
+    (type: ModelingType, status: string) => type.id + '_' + status
 );
 
 const createMemoizedSignatureHelpers = memoize(
-    (type: ModelingType) => {
+    (type: ModelingType, status: string) => {
         const signatures = [];
         if (type && type.methods) {
             type.methods.filter(method => !!method).forEach(method => signatures.push({
@@ -131,7 +131,7 @@ const createMemoizedSignatureHelpers = memoize(
         }
         return signatures;
     },
-    (type: ModelingType, status) => status
+    (type: ModelingType, status: string) => type.id + '_' + status
 );
 
 @Injectable({

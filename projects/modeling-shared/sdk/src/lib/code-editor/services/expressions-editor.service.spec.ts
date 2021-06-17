@@ -25,8 +25,7 @@ describe('ExpressionsEditorService', () => {
         getType: jest.fn().mockImplementation((typeName: string) => expectedPrimitiveTypes[typeName])
     } as unknown as ModelingTypesService;
 
-    const codeLine = 'beginning of the line ${folderVar[0].content.uri && folderVar.toString().split(",", 2)[myInteger].substring(0, 5).toUpperCase()} end of the line';
-
+    const codeLine = 'beginning of the line ${myFileVar[0].content.uri && myFileVar.toString().split(",", 2)[myInteger].substring(0, 5).toUpperCase()} end of the line';
     const modelMock: monaco.editor.ITextModel = {
         getValueInRange: jest.fn().mockImplementation((range: monaco.IRange) => codeLine.substr(range.startColumn, range.endColumn - range.startColumn))
     } as unknown as monaco.editor.ITextModel;
@@ -38,9 +37,9 @@ describe('ExpressionsEditorService', () => {
 
     const parameters = [
         {
-            id: 'folder-node-id',
-            name: 'folderVar',
-            type: 'folder'
+            id: 'file-node-id',
+            name: 'myFileVar',
+            type: 'file'
         },
         {
             id: 'an-integer-var',
@@ -71,7 +70,7 @@ describe('ExpressionsEditorService', () => {
             testingPosition = { ...position, column: 64 } as monaco.Position;
             typeName = ExpressionsEditorService.getTypeName(modelMock, testingPosition, parameters, modelingTypesService);
 
-            expect(typeName).toEqual('folder');
+            expect(typeName).toEqual('file');
 
             testingPosition = { ...position, column: 75 } as monaco.Position;
             typeName = ExpressionsEditorService.getTypeName(modelMock, testingPosition, parameters, modelingTypesService);

@@ -1,0 +1,126 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$defs": {
+        "UserInfo": {
+            "type": "object",
+            "properties": {
+                "displayName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "type": "object",
+    "properties": {
+        "specversion": {
+            "type": "string"
+        },
+        "type": {
+            "type": "string"
+        },
+        "id": {
+            "type": "string"
+        },
+        "source": {
+            "type": "string"
+        },
+        "time": {
+            "type": "string"
+        },
+        "dataschema": {
+            "type": "string"
+        },
+        "datacontenttype": {
+            "type": "string"
+        },
+        "data": {
+            "type": "object",
+            "properties": {
+                "eventGroupId": {
+                    "type": "string"
+                },
+                "resource": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "nodeType": {
+                            "type": "string"
+                        },
+                        "isFile": {
+                            "type": "boolean"
+                        },
+                        "isFolder": {
+                            "type": "boolean"
+                        },
+                        "createdByUser": {
+                            "$ref": "#/$defs/UserInfo"
+                        },
+                        "createdAt": {
+                            "type": "string"
+                        },
+                        "modifiedByUser": {
+                            "$ref": "#/$defs/UserInfo"
+                        },
+                        "modifiedAt": {
+                            "type": "string"
+                        },
+                        "content": {
+                            "type": "object",
+                            "properties": {
+                                "encoding": {
+                                    "type": "string"
+                                },
+                                "mimeType": {
+                                    "type": "string"
+                                },
+                                "sizeInBytes": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "primaryHierarchy": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "properties": {
+                            "type": "object"
+                        },
+                        "aspectNames": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": [
+                        "id"
+                    ]
+                }
+            },
+            "required": [
+                "eventGroupId",
+                "resource"
+            ]
+        }
+    },
+    "required": [
+        "specversion",
+        "type",
+        "id",
+        "source",
+        "time",
+        "dataschema",
+        "datacontenttype",
+        "data"
+    ]
+}

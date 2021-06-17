@@ -53,31 +53,51 @@ describe('ModelingTypesService', () => {
         });
 
         it('should return memoized method suggestions', () => {
-            const firstCall = service.getMethodsSuggestionsByType('array');
-            const secondCall = service.getMethodsSuggestionsByType('array');
+            let firstCall = service.getMethodsSuggestionsByType('array');
+            let secondCall = service.getMethodsSuggestionsByType('array');
 
             expect(secondCall).toBe(firstCall);
+
+            firstCall = service.getMethodsSuggestionsByType('string');
+            secondCall = service.getMethodsSuggestionsByType('date');
+
+            expect(secondCall).not.toEqual(firstCall);
         });
 
         it('should return memoized properties suggestions', () => {
-            const firstCall = service.getPropertiesSuggestionsByType('array');
-            const secondCall = service.getPropertiesSuggestionsByType('array');
+            let firstCall = service.getPropertiesSuggestionsByType('array');
+            let secondCall = service.getPropertiesSuggestionsByType('array');
 
             expect(secondCall).toBe(firstCall);
+
+            firstCall = service.getPropertiesSuggestionsByType('string');
+            secondCall = service.getPropertiesSuggestionsByType('folder');
+
+            expect(secondCall).not.toEqual(firstCall);
         });
 
         it('should return memoized signature helpers', () => {
-            const firstCall = service.getSignatureHelperByType('array');
-            const secondCall = service.getSignatureHelperByType('array');
+            let firstCall = service.getSignatureHelperByType('array');
+            let secondCall = service.getSignatureHelperByType('array');
 
             expect(secondCall).toBe(firstCall);
+
+            firstCall = service.getSignatureHelperByType('string');
+            secondCall = service.getSignatureHelperByType('date');
+
+            expect(secondCall).not.toEqual(firstCall);
         });
 
         it('should return memoized type', () => {
-            const firstCall = service.getType('array');
-            const secondCall = service.getType('array');
+            let firstCall = service.getType('array');
+            let secondCall = service.getType('array');
 
             expect(secondCall).toBe(firstCall);
+
+            firstCall = service.getType('string');
+            secondCall = service.getType('date');
+
+            expect(secondCall).not.toEqual(firstCall);
         });
     });
 

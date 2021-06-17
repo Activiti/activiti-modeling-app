@@ -17,20 +17,20 @@
 
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { arrayModelType } from './expression-language/array.model.type';
-import { contentMetadataModelType } from './expression-language/content-metadata.model.type';
-import { contentModelType } from './expression-language/content.model.type';
-import { dateModelType } from './expression-language/date.model.type';
-import { fileModelType } from './expression-language/file.model.type';
-import { folderModelType } from './expression-language/folder.model.type';
-import { jsonModelType } from './expression-language/json.model.type';
-import { stringModelType } from './expression-language/string.model.type';
+import { JSONSchemaToModelingTypesService } from './json-schema-to-modeling-types.service';
 import { ModelingTypeProvider, ModelingTypeMap } from './modeling-type-provider.service';
+import * as primitiveTypesSchema from './expression-language/primitive-types-schema.json';
 
 @Injectable({
     providedIn: 'root'
 })
 export class PrimitiveModelingTypesService extends ModelingTypeProvider {
+
+    private primitiveModelingTypes: ModelingTypeMap;
+
+    constructor(private serviceJSONSchemaToModelingTypes: JSONSchemaToModelingTypesService) {
+        super(serviceJSONSchemaToModelingTypes);
+    }
 
     getProviderName(): string {
         return 'primitiveTypes';
@@ -40,38 +40,13 @@ export class PrimitiveModelingTypesService extends ModelingTypeProvider {
         return models$;
     }
 
-    protected retrieveModelingTypesMap(): Observable<ModelingTypeMap> {
-        return of(this.getPrimitiveTypes());
+    protected retrieveModelingTypesMap(serviceJSONSchemaToModelingTypes: JSONSchemaToModelingTypesService): Observable<ModelingTypeMap> {
+        if (!this.primitiveModelingTypes) {
+            this.serviceJSONSchemaToModelingTypes = serviceJSONSchemaToModelingTypes;
+            this.primitiveModelingTypes = this.serviceJSONSchemaToModelingTypes
+                .getPrimitiveModelingTypesFromJSONSchema(primitiveTypesSchema);
+        }
+        return of( this.primitiveModelingTypes);
     }
 
-    private getPrimitiveTypes(): ModelingTypeMap {
-        const types: ModelingTypeMap = {};
-
-        types.boolean = {
-            id: 'boolean'
-        };
-        types.integer = {
-            id: 'integer'
-        };
-        types.string = stringModelType;
-        types.json = jsonModelType;
-        types.date = dateModelType;
-        types.datetime = { ...dateModelType, id: 'datetime' };
-        types.array = arrayModelType;
-        types.file = fileModelType;
-        types.folder = folderModelType;
-
-        types.content = contentModelType;
-        types['content-metadata'] = contentMetadataModelType;
-
-        types['array-string'] = {
-            id: 'array-string',
-            methods: arrayModelType.methods,
-            properties: arrayModelType.properties,
-            collectionOf: 'string',
-            hidden: true
-        };
-
-        return types;
-    }
 }

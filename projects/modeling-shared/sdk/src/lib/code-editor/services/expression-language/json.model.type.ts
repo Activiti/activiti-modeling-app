@@ -19,6 +19,7 @@ import { ModelingType } from '../modeling-type-provider.service';
 
 export const jsonModelType: ModelingType = {
     id: 'json',
+    properties: [],
     methods: [
         {
             signature: 'equals',
