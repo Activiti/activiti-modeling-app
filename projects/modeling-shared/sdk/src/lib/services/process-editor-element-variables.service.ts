@@ -61,7 +61,7 @@ export class ProcessEditorElementVariablesService {
             map(results => {
                 let variables: ProcessEditorElementVariable[] = [];
                 results.forEach(result => variables = variables.concat(result));
-                return variables;
+                return variables.filter(processElement => processElement.variables?.length > 0);
             })
         );
     }
@@ -120,19 +120,22 @@ export class ProcessEditorElementVariablesService {
         }
     }
 
-    private patchSourceIconAndTooltip(element: Bpmn.DiagramElement, variables: ElementVariable[]): ProcessEditorElementVariable {
+    patchSourceIconAndTooltip(element: Bpmn.DiagramElement, variables: ElementVariable[]): ProcessEditorElementVariable {
         const source = {
             name: element.businessObject.name,
             type: this.getTypeFromBpmnDiagramElementType(element),
             subtype: element.businessObject.$type
         };
+        const outputVariables = [];
         variables.forEach(variable => {
-            variable.icon = this.getTypeIcon(variable.type);
-            variable.tooltip = this.getVariableTooltip(variable, source);
+            const outVariable = {...variable};
+            outVariable.icon = this.getTypeIcon(outVariable.type);
+            outVariable.tooltip = this.getVariableTooltip(outVariable, source);
+            outputVariables.push(outVariable);
         });
         return {
             source,
-            variables: variables.sort(this.sortByName)
+            variables: outputVariables.sort(this.sortByName)
         };
     }
 
@@ -163,6 +166,8 @@ export class ProcessEditorElementVariablesService {
                     default:
                         return ProcessEditorElementWithVariables.ServiceTask;
                 }
+            case ProcessEditorElementWithVariables.Event:
+                return ProcessEditorElementWithVariables.Event;
             case 'bpmn:IntermediateCatchEvent':
             case 'bpmn:IntermediateThrowEvent':
             case 'bpmn:ErrorEventDefinition':
@@ -224,19 +229,19 @@ export class ProcessEditorElementVariablesService {
         let tooltipText = '';
         const name = source?.name || '';
         if (source?.type === ProcessEditorElementWithVariables.Process) {
-            tooltipText = this.translateService.instant('ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.PROCESS_VARIABLE_TOOLTIP', { processName: name });
+            tooltipText = this.translateService.instant('SDK.CONDITION.TOOLTIP.PROCESS_VARIABLE_TOOLTIP', { processName: name });
         } else {
-            const taskType = source?.type ? this.translateService.instant('ADVANCED_PROCESS_EDITOR.CONDITION.TYPES.' + source?.type) : '';
-            tooltipText = this.translateService.instant('ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.OUTPUT_VARIABLE_TOOLTIP', { taskName: name, taskType });
+            const taskType = source?.type ? this.translateService.instant('SDK.CONDITION.TYPES.' + source?.type) : '';
+            tooltipText = this.translateService.instant('SDK.CONDITION.TOOLTIP.OUTPUT_VARIABLE_TOOLTIP', { taskName: name, taskType });
         }
         return `
             <div class="variables-selector-tooltip">
-                <h3 class="variables-selector-tooltip-first-header">${this.translateService.instant('ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.VARIABLE')}</h3>
+                <h3 class="variables-selector-tooltip-first-header">${this.translateService.instant('SDK.CONDITION.TOOLTIP.VARIABLE')}</h3>
                 <div class="variables-selector-tooltip-text">
                     <p>${tooltipText.trim()}.</p>
                     <span>${variable.description ? '<p>' + variable.description + '</p>' : ''}</span>
                 </div>
-                <h3>${this.translateService.instant('ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.PROPERTIES')}</h3>
+                <h3>${this.translateService.instant('SDK.CONDITION.TOOLTIP.PROPERTIES')}</h3>
                 <div class="variables-selector-tooltip-text">
                     <p>
                         <pre class="variables-selector-variables-group-list-item-type">${this.getTypeIcon(variable.type)}</pre>

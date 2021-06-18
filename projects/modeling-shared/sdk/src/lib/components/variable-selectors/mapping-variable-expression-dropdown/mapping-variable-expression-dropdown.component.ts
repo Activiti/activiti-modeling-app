@@ -16,7 +16,7 @@
  */
 
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { MappingType } from '../../../api/types';
 import { ExpressionCodeEditorDialogComponent } from '../../../code-editor/components/expression-code-editor-dialog/expression-code-editor-dialog.component';
@@ -28,7 +28,7 @@ import { VariableExpressionLanguagePipe } from '../../../variables/properties-vi
     templateUrl: './mapping-variable-expression-dropdown.component.html',
     styleUrls: ['./mapping-variable-expression-dropdown.component.scss']
 })
-export class MappingVariableExpressionDropdownComponent implements OnInit, AfterViewInit {
+export class MappingVariableExpressionDropdownComponent implements OnInit, AfterViewInit, OnChanges {
 
     @Input()
     variables: ProcessEditorElementVariable[];
@@ -64,10 +64,25 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
     panelHeight = 200;
 
     @Input()
+    panelWidth: number;
+
+    @Input()
     variablesTitle = 'SDK.VARIABLE_EXPRESSION.TITLE.VARIABLES';
 
     @Input()
     switchToVariablesSelectorTitle = 'SDK.VARIABLE_EXPRESSION.TITLE.SWITCH_TO_VARIABLES';
+
+    @Input()
+    noVariablePlaceholder = 'SDK.VARIABLE_MAPPING.NO_PROCESS_PROPERTIES';
+
+    @Input()
+    filterExpressionVariables = false;
+
+    @Input()
+    required = false;
+
+    @Input()
+    disabled = false;
 
     @Output()
     mappingChanged = new EventEmitter<{
@@ -78,14 +93,14 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
     @ViewChild('dropdown')
     dropdown: ElementRef;
 
-    mode: 'variables' | 'expression' = 'variables';
-    selectedVariableName = '';
-    displayedValue = '';
+    mode: 'variables' | 'expression';
+    selectedVariableName: string;
+    displayedValue: string;
     selectedVariableId: string;
-    expression = '';
-    panelDisplay = false;
-    panelWidth = 0;
-    vars: ElementVariable[] = [];
+    expression: string;
+    panelDisplay: boolean;
+    vars: ElementVariable[];
+    availableVariables: boolean;
 
     private language;
     private readonly EXPRESSION_REGEX = /\${([^]*)}/gm;
@@ -93,15 +108,34 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
     constructor(private cdr: ChangeDetectorRef, private dialogService: DialogService, private expressionLanguagePipe: VariableExpressionLanguagePipe) { }
 
     ngOnInit(): void {
+        this.init();
+    }
+
+    ngOnChanges(): void {
+        this.init();
+    }
+
+    private init() {
+        this.mode = 'variables';
+        this.selectedVariableName = '';
+        this.displayedValue = '';
+        this.selectedVariableId = null;
+        this.expression = '';
+        this.panelDisplay = false;
+        this.vars = [];
+        this.availableVariables = true;
+
         this.variables.filter((variable) => variable.variables && variable.variables.length > 0).forEach((element) => this.vars = this.vars.concat(element.variables));
+
         this.language = this.expressionLanguagePipe.transform(this.typeFilter);
+
         if (this.mapping) {
             if (!this.mapping.type || this.mapping.type === MappingType.variable) {
                 this.mode = 'variables';
-                this.selectedVariableName = this.mapping.value;
+                this.selectedVariableName = this.mapping.value || '';
                 const variable = this.vars.find(elementVariable => elementVariable.name === this.selectedVariableName);
                 this.selectedVariableId = variable?.name;
-                this.displayedValue = variable.label || this.selectedVariableName;
+                this.displayedValue = variable?.label || this.selectedVariableName;
             } else {
                 this.mode = 'expression';
                 if (this.mapping.value) {
@@ -118,18 +152,34 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
                 this.displayedValue = this.expression;
             }
         }
+        if (this.typeFilter) {
+            this.availableVariables = this.vars.filter(variable => variable.type === this.typeFilter).length > 0;
+        } else {
+            this.availableVariables = this.vars.length > 0;
+        }
     }
 
     ngAfterViewInit(): void {
-        this.panelWidth = this.dropdown.nativeElement.offsetWidth - 24;
+        if (!this.panelWidth) {
+            this.panelWidth = this.dropdown.nativeElement.offsetWidth - 24;
+        }
     }
 
     openPanel() {
-        this.panelDisplay = true;
+        if (!this.disabled) {
+            this.panelDisplay = true;
+            this.cdr.detectChanges();
+        }
+    }
+
+    detachPanel() {
+        this.init();
+        this.panelDisplay = false;
         this.cdr.detectChanges();
     }
 
     closePanel() {
+        this.mappingChanged.emit(this.mapping);
         this.panelDisplay = false;
         this.cdr.detectChanges();
     }
@@ -138,26 +188,25 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
         this.selectedVariableName = variable?.name || '';
         this.displayedValue = variable?.label || this.selectedVariableName;
         this.selectedVariableId = variable?.id;
-        this.closePanel();
 
         if (this.selectedVariableName.match(this.EXPRESSION_REGEX)) {
-            this.mappingChanged.emit({
+            this.mapping = {
                 type: MappingType.value,
                 value: this.selectedVariableName
-            });
+            };
             this.expression = this.selectedVariableName;
             this.displayedValue = this.expression;
             this.mode = 'expression';
             this.selectedVariableId = null;
             this.selectedVariableName = '';
         } else {
-            this.mappingChanged.emit({
+            this.mapping = {
                 type: MappingType.variable,
                 value: this.selectedVariableName
-            });
+            };
             this.expression = '';
         }
-        this.cdr.detectChanges();
+        this.closePanel();
     }
 
     switchToVariables() {
@@ -172,7 +221,7 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
             expression: this.expression,
             language: this.language,
             removeEnclosingBrackets: false,
-            variables: this.vars,
+            variables: this.filterExpressionVariables ? this.vars.filter(variable => !variable.name.match(this.EXPRESSION_REGEX)) : this.vars,
             nonBracketedOutput: false,
             expressionUpdate$: expressionUpdate$
         };
@@ -200,14 +249,23 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
             }
         }
         this.mode = 'expression';
-        this.closePanel();
-        this.mappingChanged.emit({
+        this.mapping = {
             type: MappingType.value,
             value
-        });
+        };
         this.displayedValue = this.expression;
         this.selectedVariableId = null;
         this.selectedVariableName = '';
-        this.cdr.detectChanges();
+        this.closePanel();
+    }
+
+    clearSelection() {
+        this.selectedVariableName = '';
+        this.displayedValue = '';
+        this.selectedVariableId = null;
+        this.expression = '';
+        this.mode = 'variables';
+        this.mapping = null;
+        this.closePanel();
     }
 }

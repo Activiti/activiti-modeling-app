@@ -168,7 +168,7 @@ export class OutputMappingTableComponent implements OnChanges {
             mappingType: VariableMappingType.output,
             outputMapping: this.mapping,
             outputParameters: this.parameters,
-            processProperties: this.variablesList,
+            editorVariables: this.processProperties,
             selectedProcessVariable: selectedProcessVariable,
             selectedOutputParameter: this.tableParameters[parameterRow].name,
             outputMappingUpdate$

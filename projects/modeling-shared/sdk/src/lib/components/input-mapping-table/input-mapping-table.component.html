@@ -21,24 +21,20 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let parameter; let i = index">
             <ng-container *ngIf="parameter.type !== 'process'">
-                <div *ngIf="mappingTypes[parameter.name] === VALUE_TYPE"
-                    class="modelingsdk-input-mapping-table-mapped-value-div ellipsis-cell">
-                    <span [attr.data-automation-id]="'value-input-' + parameter.id"
-                        class="input-mapping-table-mapped-value-div-value variable-value-type-value {{parameter.readOnly ? 'mat-select-placeholder' : ''}}">
-                        {{values[parameter.name] | variablevalue}}
-                    </span>
-                </div>
-                <ng-container *ngIf="mappingTypes[parameter.name] === VARIABLE_TYPE">
-                    <mat-select *ngIf="isThereOptionForParam(parameter); else noProcessPropertiesTmpl"
-                        placeholder="{{ variableColumnHeader | translate }}" [disabled]="parameter.readOnly"
-                        (selectionChange)="selectVariable($event.value, parameter)" [compareWith]="compareWith"
-                        [value]="paramName2VariableName[parameter.name]"
-                        [attr.data-automation-id]="'variable-selector-' + parameter.id" [ngClass]="'input-mapping'">
-                        <mat-option *ngFor="let property of optionsForParams[parameter.name]" [value]="property">
-                            {{ property.name }}
-                        </mat-option>
-                    </mat-select>
-                </ng-container>
+                    <modelingsdk-mapping-variable-expression-dropdown
+                    [variables]="processProperties"
+                    [mapping]="data[parameter.name] || null"
+                    [typeFilter]="parameter | variablePrimitiveType"
+                    [placeholder]="placeholder | translate"
+                    [noVariablePlaceholder]="'SDK.VARIABLE_MAPPING.NO_PROCESS_PROPERTIES'"
+                    (mappingChanged)="selectVariable($event, parameter)"
+                    [panelHeight]="panelHeight"
+                    [panelWidth]="panelWidth"
+                    [required]="parameter.required || false"
+                    [disabled]="parameter.readOnly"
+                    [attr.data-automation-id]="'variable-selector-' + parameter.id"
+                    [ngClass]="'input-mapping'">
+                    </modelingsdk-mapping-variable-expression-dropdown>
             </ng-container>
             <ng-container *ngIf="parameter.type === 'process'">
                 <div *ngIf="(mappingTypes[parameter.name] === VALUE_TYPE && values[parameter.name] && values[parameter.name].startsWith('${'))

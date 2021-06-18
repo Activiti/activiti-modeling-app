@@ -10,12 +10,12 @@
                 (mappingBehaviorChange)="onChangeMappingBehavior($event)"></modelingsdk-variable-mapping-type>
 
         <div *ngIf="isStaticCalledElement() && (canMapVariable$ | async)">
-            <div *ngIf="processVariables.length; else noProcessVariables">
+            <div *ngIf="editorVariables?.length >0; else noProcessVariables">
                 <div *ngIf="subProcessVariables.length; else noSubProcessVariables">
                     <h5 data-automation-id="input-mapping-header">
                         {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INPUT_MAPPING' | translate }}:</h5>
                     <modelingsdk-input-mapping-table [parameters]="subProcessVariables"
-                        [processProperties]="processVariables" [mapping]="(mappings$ | async).inputs || {}"
+                        [processProperties]="editorVariables" [mapping]="(mappings$ | async).inputs || {}"
                         (update)="changeMapping($event, 'inputs')">
                     </modelingsdk-input-mapping-table>
 

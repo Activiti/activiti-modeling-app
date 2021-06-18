@@ -195,7 +195,7 @@ describe('MappingVariableExpressionDropdownComponent', () => {
             fixture.detectChanges();
             await fixture.whenStable();
 
-            const button = fixture.debugElement.query(By.css('.modelingsdk-mapping-variable-expression-dropdown-panel-title-button'));
+            const button = fixture.debugElement.query(By.css('.modelingsdk-mapping-variable-expression-dropdown-panel-title-button.switch'));
             button.nativeElement.click();
             fixture.detectChanges();
             await fixture.whenStable();
@@ -221,12 +221,11 @@ describe('MappingVariableExpressionDropdownComponent', () => {
             fixture.detectChanges();
             await fixture.whenStable();
 
-            const button = fixture.debugElement.query(By.css('.modelingsdk-mapping-variable-expression-dropdown-panel-title-button'));
+            const button = fixture.debugElement.query(By.css('.modelingsdk-mapping-variable-expression-dropdown-panel-title-button.expression'));
             button.nativeElement.click();
             fixture.detectChanges();
             await fixture.whenStable();
 
-            expect(component.vars);
             expect(dialogService.openDialog).toHaveBeenCalledWith(ExpressionCodeEditorDialogComponent, {
                 disableClose: true,
                 height: '450px',
@@ -411,5 +410,76 @@ describe('MappingVariableExpressionDropdownComponent', () => {
                 value: { a: 'b', c: 1, d: '${true}' }
             });
         });
+    });
+
+    it('should display no variable message when there are no available variables', async() => {
+        component.variables = [];
+        component.ngOnChanges();
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const noVariableMessage = fixture.debugElement.query(By.css('.modelingsdk-mapping-variable-expression-no-process-properties-msg'));
+
+        expect(noVariableMessage).not.toBeNull();
+    });
+
+    it('should not display the clear selection button when no variable is selected', async () => {
+        component.mapping = null;
+        component.required = false;
+        component.ngOnChanges();
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const dropdown = fixture.debugElement.query(By.css('.modelingsdk-mapping-variable-expression-dropdown-input'));
+
+        dropdown.nativeElement.click();
+
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const clearButton = fixture.debugElement.query(By.css('.modelingsdk-variable-selector-dropdown-panel-title-button'));
+        expect(clearButton).toBeNull();
+    });
+
+    it('should not display the clear selection button when required', async () => {
+        component.mapping = {
+            type: MappingType.variable,
+            value: 'uno'
+        };
+        component.required = true;
+        component.ngOnChanges();
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const dropdown = fixture.debugElement.query(By.css('.modelingsdk-mapping-variable-expression-dropdown-input'));
+
+        dropdown.nativeElement.click();
+
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const clearButton = fixture.debugElement.query(By.css('.modelingsdk-variable-selector-dropdown-panel-title-button'));
+        expect(clearButton).toBeNull();
+    });
+
+    it('should display the clear selection button when variable is selected and not required', async () => {
+        component.mapping = {
+            type: MappingType.variable,
+            value: 'uno'
+        };
+        component.required = false;
+        component.ngOnChanges();
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const dropdown = fixture.debugElement.query(By.css('.modelingsdk-mapping-variable-expression-dropdown-input'));
+
+        dropdown.nativeElement.click();
+
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const clearButton = fixture.debugElement.query(By.css('.modelingsdk-mapping-variable-expression-dropdown-panel-title-button.clear'));
+        expect(clearButton).not.toBeNull();
     });
 });

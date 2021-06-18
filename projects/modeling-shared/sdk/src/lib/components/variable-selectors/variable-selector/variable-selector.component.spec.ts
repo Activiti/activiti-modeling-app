@@ -79,7 +79,7 @@ describe('VariableSelectorComponent', () => {
         component.ngOnInit();
         fixture.detectChanges();
 
-        const expectation = [vars[0], vars[3]];
+        const expectation = [vars[2], vars[3]];
         const variableIcons = fixture.debugElement.queryAll(By.css('.variables-selector-variables-group-list-item-type'));
         const variableNames = fixture.debugElement.queryAll(By.css('.variables-selector-variables-group-list-item-name'));
 
@@ -102,7 +102,7 @@ describe('VariableSelectorComponent', () => {
         component.onSearch();
         fixture.detectChanges();
 
-        const expectation = [vars[0], vars[1], vars[3], vars[4]];
+        const expectation = [vars[0], vars[2], vars[3], vars[5]];
         const variableIcons = fixture.debugElement.queryAll(By.css('.variables-selector-variables-group-list-item-type'));
         const variableNames = fixture.debugElement.queryAll(By.css('.variables-selector-variables-group-list-item-name'));
 

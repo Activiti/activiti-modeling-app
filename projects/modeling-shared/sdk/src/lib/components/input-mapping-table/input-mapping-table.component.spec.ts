@@ -21,7 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ConnectorParameter, MappingType } from '../../api/types';
-import { InputMappingTableComponent, NoneValue } from './input-mapping-table.component';
+import { InputMappingTableComponent } from './input-mapping-table.component';
 import { InputMappingTableModule } from './input-mapping-table.module';
 import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
@@ -33,6 +33,7 @@ import { PropertiesViewerStringInputComponent, INPUT_TYPE_ITEM_HANDLER } from '.
 import { TranslateModule } from '@ngx-translate/core';
 import { ExpressionsEditorService } from '../../code-editor/services/expressions-editor.service';
 import { UuidService } from '../../services/uuid.service';
+import { ProcessEditorElementWithVariables } from '../../services/process-editor-element-variables-provider.service';
 
 describe('InputMappingTableComponent', () => {
     let fixture: ComponentFixture<InputMappingTableComponent>;
@@ -93,18 +94,20 @@ describe('InputMappingTableComponent', () => {
         }];
         component.processProperties = [
             {
-                id: '1',
-                name: 'var1',
-                type: 'string',
-                required: false,
-                value: ''
-            },
-            {
-                id: '2',
-                name: 'var2',
-                type: 'date',
-                required: false,
-                value: ''
+                source: {
+                    name: 'Process',
+                    type: ProcessEditorElementWithVariables.Process
+                },
+                variables: [{
+                    id: '1',
+                    name: 'var1',
+                    type: 'string',
+                },
+                {
+                    id: '2',
+                    name: 'var2',
+                    type: 'date',
+                }]
             }
         ];
         component.mapping = {};
@@ -119,24 +122,25 @@ describe('InputMappingTableComponent', () => {
 
     it('should emit the correct data when a property value is set to a variable', () => {
         spyOn(component.update, 'emit');
-        const select = fixture.debugElement.query(By.css('.mat-select-trigger'));
-        select.nativeElement.click();
-        fixture.detectChanges();
 
-        const options = fixture.debugElement.queryAll(By.css('.mat-option'));
-        options[1].nativeElement.click();
-        fixture.detectChanges();
+        component.selectVariable(
+            {
+                type: MappingType.variable,
+                value: component.processProperties[0].variables[0].name
+            },
+            component.parameters[0]
+        );
 
         const data = {
             ...component.data, [component.parameters[0].name]: {
                 type: MappingType.variable,
-                value: component.processProperties[0].name
+                value: component.processProperties[0].variables[0].name
             }
         };
         expect(component.update.emit).toHaveBeenCalledWith(data);
     });
 
-    it('should emit the correct data when a required property variable is reset to None', () => {
+    it('should emit the correct data when a required property variable is reset', () => {
         spyOn(component.update, 'emit');
         component.parameters[0].required = true;
         component.mapping = {
@@ -148,13 +152,10 @@ describe('InputMappingTableComponent', () => {
         component.ngOnChanges();
         fixture.detectChanges();
 
-        const select = fixture.debugElement.query(By.css('.mat-select-trigger'));
-        select.nativeElement.click();
-        fixture.detectChanges();
-
-        const options = fixture.debugElement.queryAll(By.css('.mat-option'));
-        options[0].nativeElement.click();
-        fixture.detectChanges();
+        component.selectVariable(
+            null,
+            component.parameters[0]
+        );
 
         const data = {
             'name': {
@@ -165,7 +166,7 @@ describe('InputMappingTableComponent', () => {
         expect(component.update.emit).toHaveBeenCalledWith(data);
     });
 
-    it('should emit the correct data when a NON-required property variable is reset to None', () => {
+    it('should emit the correct data when a NON-required property variable is reset', () => {
         spyOn(component.update, 'emit');
         component.parameters[0].required = false;
         component.mapping = {
@@ -177,61 +178,13 @@ describe('InputMappingTableComponent', () => {
         component.ngOnChanges();
         fixture.detectChanges();
 
-        const select = fixture.debugElement.query(By.css('.mat-select-trigger'));
-        select.nativeElement.click();
-        fixture.detectChanges();
-
-        const options = fixture.debugElement.queryAll(By.css('.mat-option'));
-        options[0].nativeElement.click();
-        fixture.detectChanges();
+        component.selectVariable(
+            null,
+            component.parameters[0]
+        );
 
         const data = {};
         expect(component.update.emit).toHaveBeenCalledWith(data);
-    });
-
-    it('should filter the processProperties', () => {
-        const select = fixture.debugElement.query(By.css('.mat-select-trigger'));
-        select.nativeElement.click();
-        fixture.detectChanges();
-
-        const options = fixture.debugElement.queryAll(By.css('.mat-option'));
-        expect(options.length).toBe(2);
-    });
-
-    it('should display a message if no process property in case of required parameter if there is no matching type', () => {
-        component.parameters[0].type = 'boolean';
-        component.parameters[0].required = true;
-        component.ngOnChanges();
-        fixture.detectChanges();
-
-        const select = fixture.debugElement.query(By.css('.mat-select'));
-        const noPropMsg = fixture.debugElement.query(By.css('.no-process-properties-msg'));
-
-        expect(select).toBeNull();
-        expect(noPropMsg).not.toBeNull();
-    });
-
-    it('should display a selectbox with "None" as first option in case of non-required parameter if there is a matching type', () => {
-        component.parameters[0].type = 'string';
-        component.parameters[0].required = true;
-        component.ngOnChanges();
-        fixture.detectChanges();
-
-        const select = fixture.debugElement.query(By.css('.mat-select'));
-        const noPropMsg = fixture.debugElement.query(By.css('.no-process-properties-msg'));
-
-        expect(select).not.toBeNull();
-        expect(noPropMsg).toBeNull();
-        expect(component.optionsForParams['name'][0]).toEqual({ id: NoneValue, name: 'None' });
-    });
-
-    it('should display a selectbox with "None" as first option in case of non-required parameter', () => {
-        component.parameters[0].type = 'string';
-        component.parameters[0].required = false;
-        component.ngOnChanges();
-        fixture.detectChanges();
-
-        expect(component.optionsForParams['name'][0]).toEqual({ id: NoneValue, name: 'None' });
     });
 
     it('should display the process selector if parameter\'s type is process and is value mapping', () => {
@@ -279,7 +232,7 @@ describe('InputMappingTableComponent', () => {
 
     it('should reset to default mapping `variable` type when no value', () => {
         component.parameters = [{ name: 'test', type: 'string' }] as ConnectorParameter[];
-        component.mapping[component.parameters[0].name] = { type: MappingType.value , value: 'bogus' };
+        component.mapping[component.parameters[0].name] = { type: MappingType.value, value: 'bogus' };
 
         component.ngOnChanges();
         expect(component.mappingTypes[component.parameters[0].name]).toBe(MappingType.value);

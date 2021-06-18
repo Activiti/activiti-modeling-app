@@ -22,6 +22,7 @@ import { InputMappingDialogService } from '../../services/input-mapping-dialog.s
 import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSelectChange } from '@angular/material/select';
+import { ElementVariable, ProcessEditorElementVariable } from '../../services/process-editor-element-variables-provider.service';
 
 @Component({
     templateUrl: './mapping-dialog.component.html',
@@ -58,6 +59,7 @@ export class MappingDialogComponent implements OnInit {
     filteredProcessVariables: EntityProperty[];
 
     extendedProperties = {};
+    editorVariables: ProcessEditorElementVariable[];
 
     constructor(
         public dialog: MatDialogRef<MappingDialogComponent>,
@@ -69,13 +71,22 @@ export class MappingDialogComponent implements OnInit {
         this.inputParameters = this.getSortedCopy(data.inputParameters);
         this.outputMapping = data.outputMapping;
         this.outputParameters = this.getSortedCopy(data.outputParameters);
-        this.processProperties = this.getSortedCopy(data.processProperties);
+        this.editorVariables = data.editorVariables;
+        this.processProperties = this.getSortedCopy(this.getVariablesList(this.editorVariables));
         this.mappingType = data.mappingType;
         this.selectedRow = data.selectedRow;
         this.selectedProcessVariable = data.selectedProcessVariable;
         this.selectedOutputParameter = data.selectedOutputParameter;
         this.extensionObject = data.extensionObject;
         this.configDialogLabels();
+    }
+
+    private getVariablesList(variables: ProcessEditorElementVariable[]): ElementVariable[] {
+        let vars: ElementVariable[] = [];
+        if (variables) {
+            variables.filter((variable) => variable.variables && variable.variables.length > 0).forEach((element) => vars = vars.concat(element.variables));
+        }
+        return vars;
     }
 
     private getSortedCopy(array: any[]): any[] {
@@ -324,10 +335,11 @@ export class MappingDialogComponent implements OnInit {
         let extendedProperties;
         switch (inputType) {
             case 'content-metadata':
-                extendedProperties = { processProperties: this.processProperties };
+                extendedProperties = { editorVariables: this.editorVariables };
                 break;
             case 'expression-mapping':
                 extendedProperties = this.extensionObject;
+                extendedProperties['panelWidth'] = 200;
                 break;
             case 'json':
                 const parameters: EntityProperty[] = this.dataSource.map(parameter => ({ ...parameter, type: parameter.type, id: null }));

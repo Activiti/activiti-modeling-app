@@ -95,15 +95,6 @@
         "VARIABLES_SELECTORS": {
             "ACTIONS": {
                 "SEARCH": "Search"
-            },
-            "TYPES": {
-                "START_EVENT": "Start event",
-                "PROCESS": "Process",
-                "SERVICE_TASK": "Service task",
-                "CALLED_ELEMENT": "Called element",
-                "SCRIPT_TASK": "Script task",
-                "DECISION_TABLE": "Decision table",
-                "USER_TASK": "User task"
             }
         },
         "CONDITION": {
@@ -115,7 +106,8 @@
                 "SCRIPT_TASK": "Script task",
                 "DECISION_TABLE": "Decision table",
                 "USER_TASK": "User task",
-                "NONE": "None"
+                "NONE": "None",
+                "EVENT": "Event"
             },
             "TOOLTIP": {
                 "VARIABLE": "Variable",

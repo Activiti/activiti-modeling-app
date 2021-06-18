@@ -1,20 +1,22 @@
 <div class="modelingsdk-mapping-variable-expression-dropdown-wrapper">
-    <div class="modelingsdk-mapping-variable-expression-dropdown-input" cdkOverlayOrigin #openVariablesPanel="cdkOverlayOrigin"
-        #dropdown (click)="openPanel()">
-        <mat-form-field *ngIf="!plain">
-            <input matInput placeholder="{{placeholder}}" readonly autocomplete="off"
-                [value]="displayedValue | variablevalue"
-                [ngClass]="{'modelingsdk-mapping-variable-expression-dropdown-input-expression': mode === 'expression'}">
-            <button mat-button matSuffix mat-icon-button (click)="openPanel()">
-                <mat-icon>arrow_drop_down</mat-icon>
-            </button>
-        </mat-form-field>
-        <div class="modelingsdk-mapping-variable-expression-dropdown-input-plain" *ngIf="plain">
-            <input matInput placeholder="{{placeholder}}" readonly autocomplete="off"
-                [value]="displayedValue | variablevalue"
-                [ngClass]="{'modelingsdk-mapping-variable-expression-dropdown-input-expression': mode === 'expression'}">
-            <div class="mat-select-arrow-wrapper">
-                <div class="mat-select-arrow"></div>
+    <div cdkOverlayOrigin #openVariablesPanel="cdkOverlayOrigin" #dropdown>
+        <div class="modelingsdk-mapping-variable-expression-dropdown-input" (click)="openPanel()"
+            [ngClass]="disabled ? 'disabled' : 'enabled'" *ngIf="availableVariables; else noProcessPropertiesTmpl">
+            <mat-form-field *ngIf="!plain">
+                <input matInput placeholder="{{placeholder}}" readonly autocomplete="off"
+                    [value]="displayedValue | variablevalue" [disabled]="disabled"
+                    [ngClass]="{'modelingsdk-mapping-variable-expression-dropdown-input-expression': mode === 'expression'}">
+                <button mat-button matSuffix mat-icon-button (click)="openPanel()" *ngIf="!disabled">
+                    <mat-icon>arrow_drop_down</mat-icon>
+                </button>
+            </mat-form-field>
+            <div class="modelingsdk-mapping-variable-expression-dropdown-input-plain" *ngIf="plain">
+                <input matInput placeholder="{{placeholder}}" readonly autocomplete="off"
+                    [value]="displayedValue | variablevalue" [disabled]="disabled"
+                    [ngClass]="{'modelingsdk-mapping-variable-expression-dropdown-input-expression': mode === 'expression'}">
+                <div class="mat-select-arrow-wrapper">
+                    <div class="mat-select-arrow"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -22,25 +24,33 @@
 
 <ng-template cdkConnectedOverlay [cdkConnectedOverlayOffsetX]="offsetX" [cdkConnectedOverlayOffsetY]="offsetY"
     [cdkConnectedOverlayOrigin]="openVariablesPanel" [cdkConnectedOverlayOpen]="panelDisplay"
-    [cdkConnectedOverlayHasBackdrop]="true" (backdropClick)="closePanel()" (detach)="closePanel()"
+    [cdkConnectedOverlayHasBackdrop]="true" (backdropClick)="detachPanel()" (detach)="detachPanel()"
     [cdkConnectedOverlayBackdropClass]="'cdk-overlay-transparent-backdrop'" #variableSelector>
 
     <mat-card class="modelingsdk-mapping-variable-expression-dropdown-panel mat-elevation-z6"
-        [ngStyle]="{ 'width.px': panelWidth, 'height.px': panelHeight }">
+        [ngStyle]="{ 'width.px': panelWidth, 'max-height.px': panelHeight }">
         <mat-card-header>
+            <div class="modelingsdk-mapping-variable-expression-dropdown-panel-button-container">
+                <button mat-icon-button (click)="clearSelection()" *ngIf="!required && selectedVariableId"
+                    class="modelingsdk-mapping-variable-expression-dropdown-panel-title-button clear"
+                    matTooltip="{{'SDK.VARIABLE_EXPRESSION.TITLE.CLEAR_SELECTION'| translate}}">
+                    <mat-icon>backspace</mat-icon>
+                </button>
+            </div>
             <h3 class="modelingsdk-mapping-variable-expression-dropdown-panel-title">
                 <div class="modelingsdk-mapping-variable-expression-dropdown-panel-title-label">
                     <span *ngIf="mode === 'variables'">{{ variablesTitle | translate}}</span>
-                    <span *ngIf="mode === 'expression'">{{'SDK.VARIABLE_EXPRESSION.TITLE.EXPRESSION' | translate}}</span>
+                    <span *ngIf="mode === 'expression'">{{'SDK.VARIABLE_EXPRESSION.TITLE.EXPRESSION' |
+                        translate}}</span>
                 </div>
                 <div class="modelingsdk-mapping-variable-expression-dropdown-panel-title-actions">
                     <button mat-icon-button (click)="openExpressionEditor()" *ngIf="mode === 'variables'"
-                        class="modelingsdk-mapping-variable-expression-dropdown-panel-title-button"
+                        class="modelingsdk-mapping-variable-expression-dropdown-panel-title-button expression"
                         matTooltip="{{'SDK.VARIABLE_EXPRESSION.TITLE.OPEN_EXPRESSION_EDITOR'| translate}}">
                         <mat-icon>attach_money</mat-icon>
                     </button>
                     <button mat-icon-button (click)="switchToVariables()" *ngIf="mode === 'expression'"
-                        class="modelingsdk-mapping-variable-expression-dropdown-panel-title-button"
+                        class="modelingsdk-mapping-variable-expression-dropdown-panel-title-button switch"
                         matTooltip="{{ switchToVariablesSelectorTitle | translate}}">
                         <mat-icon>money_off</mat-icon>
                     </button>
@@ -49,17 +59,21 @@
         </mat-card-header>
         <mat-card-content>
             <div class="modelingsdk-mapping-variable-expression-dropdown-panel-content"
-                [ngStyle]="{ 'height.px': panelHeight - 28 }">
+                [ngStyle]="{ 'max-height.px': panelHeight - 28 }">
                 <modelingsdk-variable-selector [variables]="variables" [varIdSelected]="selectedVariableId"
                     [typeFilter]="typeFilter" (variableSelected)="onVariableSelected($event)"
                     [tooltipOffsetX]="tooltipOffsetX" [tooltipOffsetY]="tooltipOffsetY" *ngIf="mode === 'variables'">
                 </modelingsdk-variable-selector>
                 <modelingsdk-expression-code-editor *ngIf="mode === 'expression'" [expression]="expression"
                     [language]="language" [variables]="vars" [removeEnclosingBrackets]="false"
-                    [enableInlineEditor]="false" [ngStyle]="{ 'height.px': panelHeight - 14 - 28 }"
+                    [enableInlineEditor]="false" [ngStyle]="{ 'max-height.px': panelHeight - 14 - 28 }"
                     (expressionChange)="onExpressionChanges($event)">
                 </modelingsdk-expression-code-editor>
             </div>
         </mat-card-content>
     </mat-card>
+</ng-template>
+
+<ng-template #noProcessPropertiesTmpl>
+    <div class="modelingsdk-mapping-variable-expression-no-process-properties-msg">{{ noVariablePlaceholder | translate }}</div>
 </ng-template>

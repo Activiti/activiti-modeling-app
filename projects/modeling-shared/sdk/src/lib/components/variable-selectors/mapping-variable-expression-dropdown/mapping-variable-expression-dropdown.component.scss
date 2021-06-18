@@ -1,9 +1,11 @@
 .modelingsdk-mapping-variable-expression-dropdown {
     &-input {
-        cursor: pointer;
-
-        input {
+        &.enabled {
             cursor: pointer;
+
+            input {
+                cursor: pointer;
+            }
         }
 
         &-plain {
@@ -24,11 +26,21 @@
         display: block;
         padding: 12px;
 
+        &-button-container {
+            position: relative;
+            bottom: 10px;
+            height: 20px;
+            width: 40px;
+            right: 32px;
+        }
+
         &-title {
             display: flex;
             width: 100%;
             height: 28px;
             margin: 0;
+            position: relative;
+            right: 32px;
             &-label {
                 width: 75%;
                 display: flex;
@@ -42,6 +54,8 @@
             &-actions {
                 width: 25%;
                 text-align: right;
+                position: relative;
+                left: 32px;
             }
 
             button {

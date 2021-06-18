@@ -30,41 +30,18 @@ export const expectedVariables: ProcessEditorElementVariable[] = [
         'variables': [
             {
                 'description': undefined,
-                'id': 'c2f8729e-5056-44d2-8cd7-fb1bada7f4dd',
-                'name': 'uno',
-                'type': 'string',
-                'icon': 's',
-                'tooltip': `
-            <div class="variables-selector-tooltip">
-                <h3 class="variables-selector-tooltip-first-header">ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.VARIABLE</h3>
-                <div class="variables-selector-tooltip-text">
-                    <p>ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.PROCESS_VARIABLE_TOOLTIP.</p>
-                    <span></span>
-                </div>
-                <h3>ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.PROPERTIES</h3>
-                <div class="variables-selector-tooltip-text">
-                    <p>
-                        <pre class="variables-selector-variables-group-list-item-type">s</pre>
-                        <span>string</span>
-                    </p>
-                </div>
-            </div>
-        `
-            },
-            {
-                'description': undefined,
                 'id': 'b1b04bf1-19cb-4930-b750-eecb6f3977ee',
                 'name': 'dos',
                 'type': 'integer',
                 'icon': 'i',
                 'tooltip': `
             <div class="variables-selector-tooltip">
-                <h3 class="variables-selector-tooltip-first-header">ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.VARIABLE</h3>
+                <h3 class="variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
                 <div class="variables-selector-tooltip-text">
-                    <p>ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.PROCESS_VARIABLE_TOOLTIP.</p>
+                    <p>SDK.CONDITION.TOOLTIP.PROCESS_VARIABLE_TOOLTIP.</p>
                     <span></span>
                 </div>
-                <h3>ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.PROPERTIES</h3>
+                <h3>SDK.CONDITION.TOOLTIP.PROPERTIES</h3>
                 <div class="variables-selector-tooltip-text">
                     <p>
                         <pre class="variables-selector-variables-group-list-item-type">i</pre>
@@ -82,16 +59,39 @@ export const expectedVariables: ProcessEditorElementVariable[] = [
                 'icon': 'b',
                 'tooltip': `
             <div class="variables-selector-tooltip">
-                <h3 class="variables-selector-tooltip-first-header">ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.VARIABLE</h3>
+                <h3 class="variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
                 <div class="variables-selector-tooltip-text">
-                    <p>ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.PROCESS_VARIABLE_TOOLTIP.</p>
+                    <p>SDK.CONDITION.TOOLTIP.PROCESS_VARIABLE_TOOLTIP.</p>
                     <span></span>
                 </div>
-                <h3>ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.PROPERTIES</h3>
+                <h3>SDK.CONDITION.TOOLTIP.PROPERTIES</h3>
                 <div class="variables-selector-tooltip-text">
                     <p>
                         <pre class="variables-selector-variables-group-list-item-type">b</pre>
                         <span>boolean</span>
+                    </p>
+                </div>
+            </div>
+        `
+            },
+            {
+                'description': undefined,
+                'id': 'c2f8729e-5056-44d2-8cd7-fb1bada7f4dd',
+                'name': 'uno',
+                'type': 'string',
+                'icon': 's',
+                'tooltip': `
+            <div class="variables-selector-tooltip">
+                <h3 class="variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
+                <div class="variables-selector-tooltip-text">
+                    <p>SDK.CONDITION.TOOLTIP.PROCESS_VARIABLE_TOOLTIP.</p>
+                    <span></span>
+                </div>
+                <h3>SDK.CONDITION.TOOLTIP.PROPERTIES</h3>
+                <div class="variables-selector-tooltip-text">
+                    <p>
+                        <pre class="variables-selector-variables-group-list-item-type">s</pre>
+                        <span>string</span>
                     </p>
                 </div>
             </div>
@@ -114,39 +114,16 @@ export const expectedVariables: ProcessEditorElementVariable[] = [
                 'icon': 's',
                 'tooltip': `
             <div class="variables-selector-tooltip">
-                <h3 class="variables-selector-tooltip-first-header">ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.VARIABLE</h3>
+                <h3 class="variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
                 <div class="variables-selector-tooltip-text">
-                    <p>ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.OUTPUT_VARIABLE_TOOLTIP.</p>
+                    <p>SDK.CONDITION.TOOLTIP.OUTPUT_VARIABLE_TOOLTIP.</p>
                     <span></span>
                 </div>
-                <h3>ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.PROPERTIES</h3>
+                <h3>SDK.CONDITION.TOOLTIP.PROPERTIES</h3>
                 <div class="variables-selector-tooltip-text">
                     <p>
                         <pre class="variables-selector-variables-group-list-item-type">s</pre>
                         <span>string</span>
-                    </p>
-                </div>
-            </div>
-        `
-            },
-            {
-                'description': undefined,
-                'id': 'b1b04bf1-19cb-4930-b750-eecb6f3977bb',
-                'name': 'two',
-                'type': 'integer',
-                'icon': 'i',
-                'tooltip': `
-            <div class="variables-selector-tooltip">
-                <h3 class="variables-selector-tooltip-first-header">ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.VARIABLE</h3>
-                <div class="variables-selector-tooltip-text">
-                    <p>ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.OUTPUT_VARIABLE_TOOLTIP.</p>
-                    <span></span>
-                </div>
-                <h3>ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.PROPERTIES</h3>
-                <div class="variables-selector-tooltip-text">
-                    <p>
-                        <pre class="variables-selector-variables-group-list-item-type">i</pre>
-                        <span>integer</span>
                     </p>
                 </div>
             </div>
@@ -160,16 +137,39 @@ export const expectedVariables: ProcessEditorElementVariable[] = [
                 'icon': 'b',
                 'tooltip': `
             <div class="variables-selector-tooltip">
-                <h3 class="variables-selector-tooltip-first-header">ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.VARIABLE</h3>
+                <h3 class="variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
                 <div class="variables-selector-tooltip-text">
-                    <p>ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.OUTPUT_VARIABLE_TOOLTIP.</p>
+                    <p>SDK.CONDITION.TOOLTIP.OUTPUT_VARIABLE_TOOLTIP.</p>
                     <span></span>
                 </div>
-                <h3>ADVANCED_PROCESS_EDITOR.CONDITION.TOOLTIP.PROPERTIES</h3>
+                <h3>SDK.CONDITION.TOOLTIP.PROPERTIES</h3>
                 <div class="variables-selector-tooltip-text">
                     <p>
                         <pre class="variables-selector-variables-group-list-item-type">b</pre>
                         <span>boolean</span>
+                    </p>
+                </div>
+            </div>
+        `
+            },
+            {
+                'description': undefined,
+                'id': 'b1b04bf1-19cb-4930-b750-eecb6f3977bb',
+                'name': 'two',
+                'type': 'integer',
+                'icon': 'i',
+                'tooltip': `
+            <div class="variables-selector-tooltip">
+                <h3 class="variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
+                <div class="variables-selector-tooltip-text">
+                    <p>SDK.CONDITION.TOOLTIP.OUTPUT_VARIABLE_TOOLTIP.</p>
+                    <span></span>
+                </div>
+                <h3>SDK.CONDITION.TOOLTIP.PROPERTIES</h3>
+                <div class="variables-selector-tooltip-text">
+                    <p>
+                        <pre class="variables-selector-variables-group-list-item-type">i</pre>
+                        <span>integer</span>
                     </p>
                 </div>
             </div>

@@ -9,7 +9,7 @@
     <div class="variables-selector-variables-group">
         <h3 class="variables-selector-variables-group-header">
             {{group.source.name}}
-            ({{'SDK.VARIABLES_SELECTORS.TYPES.'+group.source.type | translate}})
+            ({{'SDK.CONDITION.TYPES.'+group.source.type | translate}})
         </h3>
         <div class="variables-selector-variables-group-list">
             <div *ngFor="let variable of group.variables" (click)="onVariableSelect(variable)" [adf-tooltip-card]="''"

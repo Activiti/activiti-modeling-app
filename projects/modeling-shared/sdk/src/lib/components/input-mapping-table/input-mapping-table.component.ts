@@ -17,12 +17,12 @@
 
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ConnectorParameter, EntityProperty, MappingType, ServiceParameterMapping } from '../../api/types';
+import { ConnectorParameter, MappingType, ServiceParameterMapping } from '../../api/types';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
 import { Subject } from 'rxjs';
 import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
-import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
+import { ProcessEditorElementVariable } from '../../services/process-editor-element-variables-provider.service';
 
 export interface ParameterSelectOption {
     id: string | Symbol;
@@ -31,7 +31,6 @@ export interface ParameterSelectOption {
 export interface ParametersSelectOptions {
     [paramName: string]: ParameterSelectOption[];
 }
-export const NoneValue = Symbol('None value');
 
 @Component({
     selector: 'modelingsdk-input-mapping-table',
@@ -43,7 +42,7 @@ export class InputMappingTableComponent implements OnChanges {
     parameters: ConnectorParameter[];
 
     @Input()
-    processProperties: EntityProperty[];
+    processProperties: ProcessEditorElementVariable[];
 
     @Input()
     mapping: ServiceParameterMapping;
@@ -63,6 +62,15 @@ export class InputMappingTableComponent implements OnChanges {
     @Input()
     extensionObject: any;
 
+    @Input()
+    panelHeight = 300;
+
+    @Input()
+    panelWidth = 200;
+
+    @Input()
+    placeholder = 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE';
+
     @Output()
     update = new EventEmitter<ServiceParameterMapping>();
 
@@ -74,19 +82,16 @@ export class InputMappingTableComponent implements OnChanges {
     displayedColumns: string[] = ['name', 'process-variable'];
     dataSource: MatTableDataSource<ConnectorParameter>;
     dataSelect: any[] = [];
-    optionsForParams: ParametersSelectOptions = {};
     mappingTypes: { [paramName: string]: MappingType } = {};
     values: { [paramName: string]: string } = {};
     paramName2VariableName: { [paramName: string]: string } = {};
 
     constructor(
-        private dialogService: DialogService,
-        private inputMappingDataSourceService: InputMappingDialogService
+        private dialogService: DialogService
     ) { }
 
     ngOnChanges() {
         if (this.parameters) {
-            this.initOptionsForParams();
             this.initMapping();
             this.dataSource = new MatTableDataSource(this.getSortedCopy(this.parameters));
         }
@@ -94,20 +99,24 @@ export class InputMappingTableComponent implements OnChanges {
     }
 
     selectVariable(
-        selection: ParameterSelectOption,
+        selection: {
+            type: MappingType,
+            value: any;
+        },
         param: ConnectorParameter
     ): void {
-        const noneSelected = selection.id === NoneValue;
-
-        if (noneSelected && !param.required) {
-            delete this.data[param.name];
-            this.paramName2VariableName[param.name] = null;
-        } else {
+        if (selection) {
+            this.data[param.name] = selection;
+            this.paramName2VariableName[param.name] = this.data[param.name].value;
+        } else if (param.required) {
             this.data[param.name] = {
                 type: MappingType.variable,
-                value: noneSelected ? null : selection.name
+                value: null
             };
             this.paramName2VariableName[param.name] = this.data[param.name].value;
+        } else {
+            delete this.data[param.name];
+            this.paramName2VariableName[param.name] = null;
         }
         this.update.emit(this.data);
     }
@@ -122,17 +131,6 @@ export class InputMappingTableComponent implements OnChanges {
             };
         }
         this.update.emit(this.data);
-    }
-
-    initOptionsForParams() {
-        this.parameters.forEach(param => {
-            this.optionsForParams[param.name] = [
-                { id: NoneValue, name: 'None' },
-                ...this.getSortedCopy(this.processProperties.filter(
-                    prop => this.inputMappingDataSourceService.getPrimitiveType(prop.type) === this.inputMappingDataSourceService.getPrimitiveType(param.type)
-                ))
-            ];
-        });
     }
 
     initMapping() {
@@ -156,29 +154,6 @@ export class InputMappingTableComponent implements OnChanges {
         });
     }
 
-    compareWith(option: ParameterSelectOption, selectedVariableName: string) {
-        if (selectedVariableName === null && option.id === NoneValue) {
-            return true;
-        }
-
-        return option.name === selectedVariableName;
-    }
-
-    isThereOptionForParam(parameter: ConnectorParameter) {
-        if (parameter.required) {
-            return this.optionsForParams[parameter.name].length > 1;
-        }
-
-        return this.optionsForParams[parameter.name].length > 0;
-    }
-
-    toggle(paramName: string) {
-        this.mappingTypes[paramName] =
-            this.mappingTypes[paramName] === MappingType.variable
-                ? MappingType.value
-                : MappingType.variable;
-    }
-
     edit(parameterRow: number) {
         const inputMappingUpdate$ = new Subject<ServiceParameterMapping>();
 
@@ -186,10 +161,10 @@ export class InputMappingTableComponent implements OnChanges {
             inputMapping: this.mapping,
             inputParameters: this.parameters,
             mappingType: VariableMappingType.input,
-            processProperties: this.processProperties,
+            editorVariables: this.processProperties,
             selectedRow: parameterRow,
             inputMappingUpdate$,
-            extensionObject: {...this.extensionObject, editDialogKeyHeader: this.editDialogKeyHeader, editDialogValueHeader: this.editDialogValueHeader},
+            extensionObject: { ...this.extensionObject, editDialogKeyHeader: this.editDialogKeyHeader, editDialogValueHeader: this.editDialogValueHeader },
         };
 
         this.dialogService.openDialog(MappingDialogComponent, {
@@ -209,7 +184,7 @@ export class InputMappingTableComponent implements OnChanges {
         return array ? [...array].sort(this.sortByName) : [];
     }
 
-    sortByName(a: { name: string }, b: { name: string }): number {
+    private sortByName(a: { name: string }, b: { name: string }): number {
         return (a.name > b.name) ? 1 : -1;
     }
 }

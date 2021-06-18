@@ -81,14 +81,21 @@ describe('MappingDialogComponent', () => {
             { id: 'textid', label: 'Label Text', name: 'textid', type: 'string', description: 'Label Text' },
             { id: 'textexp', label: '', name: 'textexp', type: 'string', description: '' }
         ],
-        processProperties: [
-            { id: '1e6da084-63bf-4f2a-8003-bd0969f461e9', name: 'datetimeVar', type: 'datetime', required: false, value: undefined },
-            { id: 'a9af83ae-5fd2-4547-8d9a-122d9edf96a2', name: 'stringVar', type: 'string', required: false, value: undefined },
-            { id: '8046efe8-c58d-42af-8958-dd9a9048c72b', name: 'integerVar', type: 'integer', required: false, value: undefined },
-            { id: '7d073289-abd9-40d8-9124-e7b10cdd218f', name: 'dateVar', type: 'date', required: false, value: undefined },
-            { id: 'a3ec58eb-d30b-4764-8034-92f422e1de6c', name: 'booleanVar', type: 'boolean', required: false, value: undefined },
-            { id: '97cba7e6-53af-409e-821b-5fe9697f77a9', name: 'stringValue', type: 'string', required: false, value: undefined },
-            { id: '52e54d3e-1fbd-4440-b023-aff935a18aab', name: 'stringExpression', type: 'string', required: false, value: undefined }
+        editorVariables: [
+            {
+                source: {
+                    name: 'process'
+                },
+                variables: [
+                    { id: '1e6da084-63bf-4f2a-8003-bd0969f461e9', name: 'datetimeVar', type: 'datetime' },
+                    { id: 'a9af83ae-5fd2-4547-8d9a-122d9edf96a2', name: 'stringVar', type: 'string' },
+                    { id: '8046efe8-c58d-42af-8958-dd9a9048c72b', name: 'integerVar', type: 'integer' },
+                    { id: '7d073289-abd9-40d8-9124-e7b10cdd218f', name: 'dateVar', type: 'date' },
+                    { id: 'a3ec58eb-d30b-4764-8034-92f422e1de6c', name: 'booleanVar', type: 'boolean' },
+                    { id: '97cba7e6-53af-409e-821b-5fe9697f77a9', name: 'stringValue', type: 'string' },
+                    { id: '52e54d3e-1fbd-4440-b023-aff935a18aab', name: 'stringExpression', type: 'string' }
+                ]
+            }
         ],
         selectedRow: 0
     };
@@ -116,19 +123,26 @@ describe('MappingDialogComponent', () => {
             { id: 'textid', label: 'Label Text', name: 'textid', type: 'string', description: 'Label Text' },
             { id: 'textexp', label: '', name: 'textexp', type: 'string', description: '' }
         ],
-        processProperties: [
-            { id: '1e6da084-63bf-4f2a-8003-bd0969f461e9', name: 'datetimeVar', type: 'datetime', required: false, value: undefined },
-            { id: 'a9af83ae-5fd2-4547-8d9a-122d9edf96a2', name: 'stringVar', type: 'string', required: false, value: undefined },
-            { id: '8046efe8-c58d-42af-8958-dd9a9048c72b', name: 'integerVar', type: 'integer', required: false, value: undefined },
-            { id: '7d073289-abd9-40d8-9124-e7b10cdd218f', name: 'dateVar', type: 'date', required: false, value: undefined },
-            { id: 'a3ec58eb-d30b-4764-8034-92f422e1de6c', name: 'booleanVar', type: 'boolean', required: false, value: undefined },
-            { id: '97cba7e6-53af-409e-821b-5fe9697f77a9', name: 'stringValue', type: 'string', required: false, value: undefined },
-            { id: '52e54d3e-1fbd-4440-b023-aff935a18aab', name: 'stringExpression', type: 'string', required: false, value: undefined },
-            { id: '52e54d3e-1fbd-4440-b023-aff935a18aac', name: 'notMappedProcessVariable1', type: 'string', required: false, value: undefined },
-            { id: '52e54d3e-1fbd-4440-b023-aff935a18aad', name: 'notMappedProcessVariable2', type: 'datetime', required: false, value: undefined },
-            { id: '52e54d3e-1fbd-4440-b023-aff935a18aae', name: 'notMappedProcessVariable3', type: 'integer', required: false, value: undefined },
-            { id: '52e54d3e-1fbd-4440-b023-aff935a18aaf', name: 'notMappedProcessVariable4', type: 'date', required: false, value: undefined },
-            { id: '52e54d3e-1fbd-4440-b023-aff935a18aag', name: 'notMappedProcessVariable5', type: 'boolean', required: false, value: undefined }
+        editorVariables: [
+            {
+                source: {
+                    name: 'process'
+                },
+                variables: [
+                    { id: '1e6da084-63bf-4f2a-8003-bd0969f461e9', name: 'datetimeVar', type: 'datetime' },
+                    { id: 'a9af83ae-5fd2-4547-8d9a-122d9edf96a2', name: 'stringVar', type: 'string' },
+                    { id: '8046efe8-c58d-42af-8958-dd9a9048c72b', name: 'integerVar', type: 'integer' },
+                    { id: '7d073289-abd9-40d8-9124-e7b10cdd218f', name: 'dateVar', type: 'date' },
+                    { id: 'a3ec58eb-d30b-4764-8034-92f422e1de6c', name: 'booleanVar', type: 'boolean' },
+                    { id: '97cba7e6-53af-409e-821b-5fe9697f77a9', name: 'stringValue', type: 'string' },
+                    { id: '52e54d3e-1fbd-4440-b023-aff935a18aab', name: 'stringExpression', type: 'string' },
+                    { id: '52e54d3e-1fbd-4440-b023-aff935a18aac', name: 'notMappedProcessVariable1', type: 'string' },
+                    { id: '52e54d3e-1fbd-4440-b023-aff935a18aad', name: 'notMappedProcessVariable2', type: 'datetime' },
+                    { id: '52e54d3e-1fbd-4440-b023-aff935a18aae', name: 'notMappedProcessVariable3', type: 'integer' },
+                    { id: '52e54d3e-1fbd-4440-b023-aff935a18aaf', name: 'notMappedProcessVariable4', type: 'date' },
+                    { id: '52e54d3e-1fbd-4440-b023-aff935a18aag', name: 'notMappedProcessVariable5', type: 'boolean' }
+                ]
+            }
         ],
         selectedRow: 1,
         selectedProcessVariable: 'booleanVar'
