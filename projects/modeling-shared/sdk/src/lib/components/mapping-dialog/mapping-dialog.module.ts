@@ -30,6 +30,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { VariableSelectorsModule } from '../variable-selectors/variable-selectors.module';
 
 @NgModule({
     imports: [
@@ -42,7 +43,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatDialogModule,
         VariablesModule,
         CodeEditorModule,
-        CoreModule.forChild()
+        CoreModule.forChild(),
+        VariableSelectorsModule
     ],
     providers: [DialogService, InputMappingDialogService, OutputMappingDialogService],
     declarations: [MappingDialogComponent],

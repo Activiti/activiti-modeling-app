@@ -25,6 +25,7 @@ import { CodeEditorModule } from '../../code-editor/code-editor.module';
 import { MappingVariableExpressionDropdownComponent } from './mapping-variable-expression-dropdown/mapping-variable-expression-dropdown.component';
 import { VariablesModule } from '../../variables/variables.module';
 import { VariableExpressionLanguagePipe } from '../../variables/properties-viewer/variable-expression-language.pipe';
+import { VariableIdFromVariableNamePipe } from './variable-id-from-variable-name.pipe';
 
 @NgModule({
     imports: [
@@ -35,7 +36,7 @@ import { VariableExpressionLanguagePipe } from '../../variables/properties-viewe
         VariablesModule
     ],
     providers: [ VariableExpressionLanguagePipe ],
-    declarations: [VariableSelectorComponent, VariableSelectorDropdownComponent, MappingVariableExpressionDropdownComponent],
-    exports: [VariableSelectorComponent, VariableSelectorDropdownComponent, MappingVariableExpressionDropdownComponent]
+    declarations: [VariableSelectorComponent, VariableSelectorDropdownComponent, MappingVariableExpressionDropdownComponent, VariableIdFromVariableNamePipe],
+    exports: [VariableSelectorComponent, VariableSelectorDropdownComponent, MappingVariableExpressionDropdownComponent, VariableIdFromVariableNamePipe]
 })
 export class VariableSelectorsModule { }

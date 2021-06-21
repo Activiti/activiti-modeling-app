@@ -64,7 +64,7 @@ export class InputMappingDialogService extends MappingDialogService {
 
     createMappingFromDataSource(dataSource: MappingRowModel[]): ServiceParameterMapping {
         const inputMapping = {};
-        dataSource.forEach(item => {
+        dataSource.filter(mapping => mapping.mappingValueType !== MappingValueType.variable || (!!mapping.value || mapping.required)).forEach(item => {
             inputMapping[item.name] = {
                 type: item.mappingValueType === MappingValueType.variable ? MappingType.variable : MappingType.value,
                 value: item.value

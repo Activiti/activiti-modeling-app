@@ -61,6 +61,8 @@ export class MappingDialogComponent implements OnInit {
     extendedProperties = {};
     editorVariables: ProcessEditorElementVariable[];
 
+    private readonly EXPRESSION_REGEX = /\${([^]*)}/gm;
+
     constructor(
         public dialog: MatDialogRef<MappingDialogComponent>,
         private inputMappingDataSourceService: InputMappingDialogService,
@@ -240,10 +242,24 @@ export class MappingDialogComponent implements OnInit {
         return array.filter(prop => this.service.getPrimitiveType(prop.type) === this.service.getPrimitiveType(type)).sort(this.sortByName);
     }
 
-    variableMappingValueChange($event: MatSelectChange, i: number) {
+    clearSelection(i: number) {
+        this.variableMappingValueChange(null, i);
+    }
+
+    mappingChanges(event: string, i: number) {
+        if (event && event.match(this.EXPRESSION_REGEX)) {
+            this.valueMappingExpressionChange(event, i);
+            this.selectedTab = 2;
+            this.tabCheck = 2;
+        } else {
+            this.variableMappingValueChange(event, i);
+        }
+    }
+
+    variableMappingValueChange(name: string, i: number) {
         this.dataSource[i].mappingValueType = MappingValueType.variable;
-        this.variableValue = $event.value;
-        this.service.setDataSourceValue(this.dataSource, i, $event.value);
+        this.variableValue = name;
+        this.service.setDataSourceValue(this.dataSource, i, name);
     }
 
     valueMappingValueChange($event: any, i: number) {

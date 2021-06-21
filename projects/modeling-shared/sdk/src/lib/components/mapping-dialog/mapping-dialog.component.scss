@@ -216,4 +216,23 @@
         display: block;
         height: 235px;
     }
+
+    .mapping-dialog-variable-selector {
+        display: block;
+        height: 235px;
+        overflow: auto;
+
+        &-clear-button {
+            position: absolute;
+            left: 7px;
+            top: 0;
+            line-height: 30px;
+            height: 30px;
+            font-size: mat-font-size($alfresco-typography, caption);
+
+            mat-icon {
+                font-size: mat-font-size($alfresco-typography, title);
+            }
+        }
+    }
 }

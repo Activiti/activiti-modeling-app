@@ -42,6 +42,8 @@ import { ExpressionsEditorService } from '../../code-editor/services/expressions
 import { MatSelectModule } from '@angular/material/select';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { VariableExpressionLanguagePipe } from '../../variables/properties-viewer/variable-expression-language.pipe';
+import { VariableIdFromVariableNamePipe } from '../variable-selectors/variable-id-from-variable-name.pipe';
+import { VariablePrimitiveTypePipe } from '../../variables/properties-viewer/variable-primitive-type.pipe';
 
 describe('MappingDialogComponent', () => {
     let fixture: ComponentFixture<MappingDialogComponent>;
@@ -160,7 +162,13 @@ describe('MappingDialogComponent', () => {
                 MatSelectModule,
                 NoopAnimationsModule
             ],
-            declarations: [MappingDialogComponent, VariableValuePipe, VariableExpressionLanguagePipe],
+            declarations: [
+                MappingDialogComponent,
+                VariableValuePipe,
+                VariableExpressionLanguagePipe,
+                VariableIdFromVariableNamePipe,
+                VariablePrimitiveTypePipe
+            ],
             providers: [
                 { provide: MatDialogRef, useValue: mockDialog },
                 { provide: MAT_DIALOG_DATA, useValue: customMockDialogData },
@@ -315,6 +323,46 @@ describe('MappingDialogComponent', () => {
             expectedProcessVariableSelectOptions.forEach((value, index) => {
                 expect(processVariablesAvailable[index].nativeElement.textContent.trim()).toBe(value);
             });
+        });
+    });
+
+    describe('Clear selection', () => {
+        it('should not display clear selection button if no variable is selected', async () => {
+            const inputData = { ...mockDialogDataInputMapping, inputMapping: {} };
+            setUpTestBed(inputData);
+            component.ngOnInit();
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const clearButton = element.query(By.css('.mapping-dialog-variable-selector-clear-button'));
+
+            expect(clearButton).toBeNull();
+        });
+
+        it('should display clear selection button if variable is selected', async () => {
+            setUpTestBed(mockDialogDataInputMapping);
+            component.ngOnInit();
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const clearButton = element.query(By.css('.mapping-dialog-variable-selector-clear-button'));
+
+            expect(clearButton).not.toBeNull();
+        });
+
+        it('should clear the variable selection when clicking the button', async () => {
+            setUpTestBed(mockDialogDataInputMapping);
+            component.ngOnInit();
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const clearButton = element.query(By.css('.mapping-dialog-variable-selector-clear-button'));
+            clearButton.nativeElement.click();
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            expect(component.dataSource[0].mappingValueType).toEqual(MappingType.variable);
+            expect(component.dataSource[0].value).toEqual(null);
         });
     });
 });
