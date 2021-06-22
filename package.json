@@ -15,19 +15,9 @@
     "test": "ng test",
     "dep-graph": "nx dep-graph"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Activiti/activiti-modeling-app.git"
-  },
-  "lint-staged": {
-    "*.ts": [
-      "tslint"
-    ]
   },
   "bugs": {
     "url": "https://github.com/Activiti/activiti-modeling-app/issues"
@@ -169,7 +159,6 @@
     "karma-junit-reporter": "^2.0.1",
     "karma-mocha-reporter": "^2.2.5",
     "license-checker": "^25.0.1",
-    "lint-staged": "^10.5.4",
     "lite-server": "^2.5.4",
     "lodash.wrap": "^4.1.1",
     "mock-fs": "^4.13.0",
