@@ -130,15 +130,20 @@ describe('VariablesComponent', () => {
         expect(errorMessageLabel).toBeDefined();
     });
 
-    it('should clear filter input on click of clearFilterInput button', async(() => {
+    it('should clear filter input on click of clearFilterInput button', async () => {
         component.filterValue = 'var1';
+
         fixture.detectChanges();
+        await fixture.whenStable();
+
         const clearFilterButton: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="variable-clear-filter"]');
         clearFilterButton.click();
+
         fixture.detectChanges();
+        await fixture.whenStable();
 
         expect(component.filterValue).toEqual('');
-    }));
+    });
 
     it('should set filterValue from input', () => {
         const input = fixture.debugElement.query(By.css('[data-automation-id="variable-filter"]'));

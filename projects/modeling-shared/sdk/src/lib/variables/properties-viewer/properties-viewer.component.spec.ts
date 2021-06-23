@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
@@ -41,7 +41,7 @@ describe('PropertiesViewerComponent', () => {
         '234' : {'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''},
         '345' : {'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': ''}
     };
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 VariablesService,
@@ -53,8 +53,8 @@ describe('PropertiesViewerComponent', () => {
             declarations: [PropertiesViewerComponent, VariableValuePipe],
             imports: [ MatTableModule, TranslateModule.forRoot()],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(PropertiesViewerComponent);
@@ -284,19 +284,21 @@ describe('PropertiesViewerComponent', () => {
         expect(addButton.getAttribute('disabled')).toBe(null);
     });
 
-    it('should call applyFilter on filterValue change', async(() => {
+    it('should call applyFilter on filterValue change', async () => {
         const changes = { filterValue: new SimpleChange(null, 'var2', false) };
         component.ngOnChanges(changes);
+        await fixture.whenStable();
 
         expect(component.dataSource.filter).toBe('var2');
         expect(component.dataSource.filteredData).toEqual([{'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''}]);
-    }));
+    });
 
-    it('should filter only based on name column', async(() => {
+    it('should filter only based on name column', async () => {
         const changes = { filterValue: new SimpleChange(null, 'string', false) };
         component.ngOnChanges(changes);
         fixture.detectChanges();
+        await fixture.whenStable();
 
         expect(component.dataSource.filteredData).toEqual([]);
-    }));
+    });
 });

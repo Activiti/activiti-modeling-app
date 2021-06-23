@@ -17,7 +17,7 @@
 
 import { SearchHeaderComponent } from './search-header.component';
 import { AppConfigService, CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
@@ -69,33 +69,39 @@ describe ('Search Header Component', () => {
         expect(fixture.nativeElement.querySelector('#adf-control-input')).not.toBeNull();
     });
 
-    it('should call onSearchSubmit on enter from search input', async(() => {
+    it('should call onSearchSubmit on enter from search input', async () => {
         const onSearchSubmitSpy = spyOn(component, 'onSearchSubmit');
         fixture.detectChanges();
+        await fixture.whenStable();
 
         const searchButton = fixture.debugElement.query(By.css('#adf-search-button'));
         searchButton.triggerEventHandler('click', null);
         fixture.detectChanges();
+        await fixture.whenStable();
 
         const input = fixture.debugElement.query(By.css('#adf-control-input'));
         input.triggerEventHandler('keyup.enter', { target: { value: 'MOCK-SEARCH'}});
         fixture.detectChanges();
+        await fixture.whenStable();
 
         expect(onSearchSubmitSpy).toHaveBeenCalled();
-    }));
+    });
 
-    it('should send case insensitive value to searchProjects', async(() => {
+    it('should send case insensitive value to searchProjects', async () => {
         const searchProjectSpy = spyOn(component, 'searchProjects');
         fixture.detectChanges();
+        await fixture.whenStable();
 
         const searchButton = fixture.debugElement.query(By.css('#adf-search-button'));
         searchButton.triggerEventHandler('click', null);
         fixture.detectChanges();
+        await fixture.whenStable();
 
         const input = fixture.debugElement.query(By.css('#adf-control-input'));
         input.triggerEventHandler('keyup.enter', { target: { value: 'MOCK-SEARCH'}});
         fixture.detectChanges();
+        await fixture.whenStable();
 
         expect(searchProjectSpy).toHaveBeenCalledWith('mock-search');
-    }));
+    });
 });

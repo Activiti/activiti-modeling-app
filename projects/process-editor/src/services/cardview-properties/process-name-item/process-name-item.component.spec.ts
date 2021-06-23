@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { CardViewProcessNameItemComponent } from './process-name-item.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -56,7 +56,7 @@ describe('CardViewProcessNameItemComponent', () => {
         }
     };
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
@@ -71,8 +71,8 @@ describe('CardViewProcessNameItemComponent', () => {
                 NoopAnimationsModule
             ],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(CardViewProcessNameItemComponent);
@@ -121,7 +121,7 @@ describe('CardViewProcessNameItemComponent', () => {
         expect(processModelerService.updateElementProperty).toHaveBeenCalledWith(propertyMock.data.element.id, BpmnProperty.processName, 'new-process-name');
     }));
 
-    it('should throw error when process name does not meet criteria', async(() => {
+    it('should throw error when process name does not meet criteria', async () => {
         propertyMock.data.element.businessObject.name = 'my-pool-name';
         propertyMock.value = 'my-pool-name';
         component.property = propertyMock;
@@ -133,13 +133,12 @@ describe('CardViewProcessNameItemComponent', () => {
         processNameInput.nativeElement.dispatchEvent(new Event('input'));
         component.processName.markAsTouched();
         fixture.detectChanges();
+        await fixture.whenStable();
 
-        fixture.whenStable().then(() => {
-            expect(component.processName.valid).toBe(false);
-            const errorElement = fixture.debugElement.query(By.css('mat-error[data-automation-id="process-name-error"]'));
-            expect(errorElement.nativeElement.innerHTML.trim()).toEqual('PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_PROCESS_NAME');
-        });
-    }));
+        expect(component.processName.valid).toBe(false);
+        const errorElement = fixture.debugElement.query(By.css('mat-error[data-automation-id="process-name-error"]'));
+        expect(errorElement.nativeElement.innerHTML.trim()).toEqual('PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_PROCESS_NAME');
+    });
 
     it('should not update pool name when pool name is defined', () => {
         propertyMock.data.element.businessObject.name = 'my-pool-name';

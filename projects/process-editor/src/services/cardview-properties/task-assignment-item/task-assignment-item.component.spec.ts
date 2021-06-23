@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CardViewTaskAssignmentItemComponent } from './task-assignment-item.component';
 import { TaskAssignmentService } from './task-assignment.service';
 import { Store } from '@ngrx/store';
@@ -32,7 +32,7 @@ describe('CardViewTaskAssignmentItemComponent', () => {
     let cardViewUpdateService: CardViewUpdateService;
     let store: Store<AmaState>;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 TaskAssignmentService,
@@ -48,8 +48,8 @@ describe('CardViewTaskAssignmentItemComponent', () => {
             ],
             declarations: [CardViewTaskAssignmentItemComponent, CardViewArrayItemComponent],
             imports: [CommonModule, TranslateModule.forRoot(),  MaterialModule],
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(CardViewTaskAssignmentItemComponent);
@@ -60,37 +60,43 @@ describe('CardViewTaskAssignmentItemComponent', () => {
         taskAssignmentService.getDisplayValue = jest.fn().mockImplementation(() => [] as CardViewArrayItem[]);
     });
 
-    it('render default view on init when there is no data', async(() => {
+    it('render default view on init when there is no data', async () => {
         fixture.detectChanges();
+        await fixture.whenStable();
+
         const defaultElement = fixture.debugElement.nativeElement.querySelector('.adf-card-array-item-default');
         expect(defaultElement).not.toBeNull();
-    }));
+    });
 
-    it('render render assignment on init when data exists', async(() => {
+    it('render render assignment on init when data exists', async () => {
         taskAssignmentService.getDisplayValue = jest.fn().mockImplementation(() => [{ icon: 'person', value: 'Borg' }] as CardViewArrayItem[]);
         fixture.detectChanges();
+        await fixture.whenStable();
 
         const defaultElement = fixture.debugElement.nativeElement.querySelector('.adf-property-value');
         expect(defaultElement.textContent).toContain('Borg');
-    }));
+    });
 
-    it('should open assignments dialog on itemClicked$ event', async(() => {
+    it('should open assignments dialog on itemClicked$ event', async () => {
         fixture.detectChanges();
+        await fixture.whenStable();
         cardViewUpdateService.itemClicked$.next();
 
         expect(store.dispatch).toHaveBeenCalledWith(new OpenTaskAssignmentDialogAction());
-    }));
+    });
 
-    it('should update assignment on assignmentSubject event', async(() => {
+    it('should update assignment on assignmentSubject event', async () => {
         const element = () => fixture.debugElement.nativeElement.querySelector('.adf-property-value');
         taskAssignmentService.getDisplayValue = jest.fn().mockImplementation(() => [{ icon: 'person', value: 'Borg' }] as CardViewArrayItem[]);
         taskAssignmentService.updateDisplayValue = jest.fn().mockImplementation(() => [{ icon: 'person', value: 'Picard' }] as CardViewArrayItem[]);
 
         fixture.detectChanges();
+        await fixture.whenStable();
         expect(element().textContent).toContain('Borg');
 
         taskAssignmentService.assignmentSubject.next();
         fixture.detectChanges();
+        await fixture.whenStable();
         expect(element().textContent).toContain('Picard');
-    }));
+    });
 });

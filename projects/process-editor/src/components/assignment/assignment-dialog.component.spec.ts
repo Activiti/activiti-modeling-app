@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CodeEditorModule, AssignmentMode, AssignmentType, ExpressionsEditorService, UuidService } from '@alfresco-dbp/modeling-shared/sdk';
@@ -159,137 +159,135 @@ describe('AssignmentDialogComponent', () => {
 
     describe('Form Disable', () => {
 
-        it('Should disable assign button if mode type changed single to candidates)', async(() => {
+        it('Should disable assign button if mode type changed single to candidates)', async () => {
             fixture.detectChanges();
-            fixture.whenStable().then(() => {
-                const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
-                const nameInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-assignment-static-single-user-input"]`));
-                nameInput.nativeElement.value = 'add mock static assignee';
-                nameInput.nativeElement.dispatchEvent(new Event('input'));
-                nameInput.nativeElement.dispatchEvent(new Event('blur'));
-                fixture.detectChanges();
-                expect(component.assigneeStaticControl.value).toBe('add mock static assignee');
-                expect(assignButton.nativeElement['disabled']).toBeFalsy();
-                openSelect();
-                const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
-                candidateOption.nativeElement.click();
-                fixture.detectChanges();
-                expect(assignButton.nativeElement['disabled']).toBeTruthy();
-            });
-        }));
+            await fixture.whenStable();
 
-        it('Should show warning message on static candidate assignment if the values are not set', async(() => {
+            const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
+            const nameInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-assignment-static-single-user-input"]`));
+            nameInput.nativeElement.value = 'add mock static assignee';
+            nameInput.nativeElement.dispatchEvent(new Event('input'));
+            nameInput.nativeElement.dispatchEvent(new Event('blur'));
             fixture.detectChanges();
-            fixture.whenStable().then(() => {
-
-                openSelect();
-                const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
-                candidateOption.nativeElement.click();
-                fixture.detectChanges();
-
-                const nameInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-assignment-static-candidate-groups-input"]`));
-                nameInput.nativeElement.value = '';
-                nameInput.nativeElement.dispatchEvent(new Event('input'));
-                nameInput.nativeElement.dispatchEvent(new Event('blur'));
-                fixture.detectChanges();
-                expect(component.candidateGroupsStaticControl.value).toBe('');
-
-                const warningMessage = fixture.debugElement.query(By.css(`[data-automation-id="candidate-warning"]`));
-                expect(warningMessage.nativeElement).toBeDefined();
-            });
-        }));
-
-        it('Should not show warning message on static candidate assignment if one value are set', async(() => {
+            expect(component.assigneeStaticControl.value).toBe('add mock static assignee');
+            expect(assignButton.nativeElement['disabled']).toBeFalsy();
+            openSelect();
+            const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
+            candidateOption.nativeElement.click();
             fixture.detectChanges();
-            fixture.whenStable().then(() => {
+            expect(assignButton.nativeElement['disabled']).toBeTruthy();
+        });
 
-                openSelect();
-                const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
-                candidateOption.nativeElement.click();
-                fixture.detectChanges();
+        it('Should show warning message on static candidate assignment if the values are not set', async () => {
+            fixture.detectChanges();
+            await fixture.whenStable();
 
-                const nameInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-assignment-static-candidate-groups-input"]`));
-                nameInput.nativeElement.value = 'add mock static group assignee';
-                nameInput.nativeElement.dispatchEvent(new Event('input'));
-                nameInput.nativeElement.dispatchEvent(new Event('blur'));
-                fixture.detectChanges();
-                expect(component.candidateGroupsStaticControl.value).toBe('add mock static group assignee');
-                const warningMessage = fixture.debugElement.query(By.css(`[data-automation-id="candidate-warning"]`));
-                expect(warningMessage).toBeNull();
-            });
-        }));
+            openSelect();
+            const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
+            candidateOption.nativeElement.click();
+            fixture.detectChanges();
 
-        it('Should disable assign button if mode type changed candidates to single', async(() => {
+            const nameInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-assignment-static-candidate-groups-input"]`));
+            nameInput.nativeElement.value = '';
+            nameInput.nativeElement.dispatchEvent(new Event('input'));
+            nameInput.nativeElement.dispatchEvent(new Event('blur'));
+            fixture.detectChanges();
+            expect(component.candidateGroupsStaticControl.value).toBe('');
+
+            const warningMessage = fixture.debugElement.query(By.css(`[data-automation-id="candidate-warning"]`));
+            expect(warningMessage.nativeElement).toBeDefined();
+        });
+
+        it('Should not show warning message on static candidate assignment if one value are set', async () => {
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            openSelect();
+            const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
+            candidateOption.nativeElement.click();
+            fixture.detectChanges();
+
+            const nameInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-assignment-static-candidate-groups-input"]`));
+            nameInput.nativeElement.value = 'add mock static group assignee';
+            nameInput.nativeElement.dispatchEvent(new Event('input'));
+            nameInput.nativeElement.dispatchEvent(new Event('blur'));
+            fixture.detectChanges();
+            expect(component.candidateGroupsStaticControl.value).toBe('add mock static group assignee');
+            const warningMessage = fixture.debugElement.query(By.css(`[data-automation-id="candidate-warning"]`));
+            expect(warningMessage).toBeNull();
+        });
+
+        it('Should disable assign button if mode type changed candidates to single', async () => {
             mockStreams.assignments.next({
                 type: AssignmentType.identity,
                 assignment: AssignmentMode.candidates,
                 id: 'mock-shape-id'
             });
             fixture.detectChanges();
-            fixture.whenStable().then(() => {
-                const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
-                const candidateUserInput = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-search-input"]'));
-                const candidateGroupInput = fixture.debugElement.query(By.css('[data-automation-id="adf-cloud-group-search-input"]'));
+            await fixture.whenStable();
 
-                candidateUserInput.nativeElement.value = 'Candidate user';
-                candidateUserInput.nativeElement.dispatchEvent(new Event('input'));
+            const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
+            const candidateUserInput = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-search-input"]'));
+            const candidateGroupInput = fixture.debugElement.query(By.css('[data-automation-id="adf-cloud-group-search-input"]'));
 
-                candidateGroupInput.nativeElement.value = 'Candidate group';
-                candidateGroupInput.nativeElement.dispatchEvent(new Event('input'));
+            candidateUserInput.nativeElement.value = 'Candidate user';
+            candidateUserInput.nativeElement.dispatchEvent(new Event('input'));
 
-                expect(component.candidateUsersIdentityControl.value).toBe('Candidate user');
-                expect(component.candidateGroupsIdentityControl.value).toBe('Candidate group');
+            candidateGroupInput.nativeElement.value = 'Candidate group';
+            candidateGroupInput.nativeElement.dispatchEvent(new Event('input'));
 
-                fixture.detectChanges();
-                openSelect();
-                const assigneeOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-assignee"]'));
-                assigneeOption.nativeElement.click();
-                fixture.detectChanges();
-                expect(assignButton.nativeElement['disabled']).toBeTruthy();
-            });
-        }));
+            expect(component.candidateUsersIdentityControl.value).toBe('Candidate user');
+            expect(component.candidateGroupsIdentityControl.value).toBe('Candidate group');
 
-        it('Should be disable assign button if the identity assignee is invalid', async(() => {
+            fixture.detectChanges();
+            openSelect();
+            const assigneeOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-assignee"]'));
+            assigneeOption.nativeElement.click();
+            fixture.detectChanges();
+            expect(assignButton.nativeElement['disabled']).toBeTruthy();
+        });
+
+        it('Should be disable assign button if the identity assignee is invalid', async () => {
             mockStreams.assignments.next({
                 type: AssignmentType.identity,
                 assignment: AssignmentMode.assignee,
                 id: 'mock-shape-id'
             });
             fixture.detectChanges();
-            fixture.whenStable().then(() => {
-                const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
-                const assigneeInput = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-search-input"]'));
+            await fixture.whenStable();
 
-                assigneeInput.nativeElement.value = 'assignee user';
-                assigneeInput.nativeElement.dispatchEvent(new Event('input'));
+            const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
+            const assigneeInput = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-search-input"]'));
 
-                expect(assignButton.nativeElement['disabled']).toBeTruthy();
-            });
-        }));
+            assigneeInput.nativeElement.value = 'assignee user';
+            assigneeInput.nativeElement.dispatchEvent(new Event('input'));
 
-        it('Should be disable assign button if one of the identity candidates is invalid', async(() => {
+            expect(assignButton.nativeElement['disabled']).toBeTruthy();
+        });
+
+        it('Should be disable assign button if one of the identity candidates is invalid', async () => {
             mockStreams.assignments.next({
                 type: AssignmentType.identity,
                 assignment: AssignmentMode.candidates,
                 id: 'mock-shape-id'
             });
             fixture.detectChanges();
-            fixture.whenStable().then(() => {
-                const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
-                const candidateUserInput = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-search-input"]'));
-                const candidateGroupInput = fixture.debugElement.query(By.css('[data-automation-id="adf-cloud-group-search-input"]'));
+            await fixture.whenStable();
 
-                candidateUserInput.nativeElement.value = 'Candidate user';
-                candidateUserInput.nativeElement.dispatchEvent(new Event('input'));
+            const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
+            const candidateUserInput = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-search-input"]'));
+            const candidateGroupInput = fixture.debugElement.query(By.css('[data-automation-id="adf-cloud-group-search-input"]'));
 
-                candidateGroupInput.nativeElement.value = 'Candidate group';
-                candidateGroupInput.nativeElement.dispatchEvent(new Event('input'));
+            candidateUserInput.nativeElement.value = 'Candidate user';
+            candidateUserInput.nativeElement.dispatchEvent(new Event('input'));
 
-                expect(assignButton.nativeElement['disabled']).toBeTruthy();
-            });
-        }));
+            candidateGroupInput.nativeElement.value = 'Candidate group';
+            candidateGroupInput.nativeElement.dispatchEvent(new Event('input'));
 
-        it('Should disable assign button if both candidate expressions are empty', async(() => {
+            expect(assignButton.nativeElement['disabled']).toBeTruthy();
+        });
+
+        it('Should disable assign button if both candidate expressions are empty', async () => {
             mockStreams.assignments.next({
                 type: AssignmentType.expression,
                 assignment: AssignmentMode.candidates,
@@ -308,18 +306,18 @@ describe('AssignmentDialogComponent', () => {
             component.processVariables$ = mockStreams.processVariables;
             mockStreams.processVariables.next(mockProcessVariable);
             fixture.detectChanges();
-            fixture.whenStable().then(() => {
-                const editor = fixture.debugElement.query(By.css('.monaco-editor'));
-                const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
-                expect(editor).not.toBeNull();
-                expect(assignButton.nativeElement['disabled']).toBeTruthy();
-                component.onExpressionChange(mockEmptyCandidates);
-                fixture.detectChanges();
-                expect(assignButton.nativeElement['disabled']).toBeTruthy();
-            });
-        }));
+            await fixture.whenStable();
 
-        it('Should enable assign button if one of the two candidates expression is valid', async(() => {
+            const editor = fixture.debugElement.query(By.css('.monaco-editor'));
+            const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
+            expect(editor).not.toBeNull();
+            expect(assignButton.nativeElement['disabled']).toBeTruthy();
+            component.onExpressionChange(mockEmptyCandidates);
+            fixture.detectChanges();
+            expect(assignButton.nativeElement['disabled']).toBeTruthy();
+        });
+
+        it('Should enable assign button if one of the two candidates expression is valid', async () => {
             mockStreams.assignments.next({
                 type: AssignmentType.expression,
                 assignment: AssignmentMode.candidates,
@@ -338,18 +336,18 @@ describe('AssignmentDialogComponent', () => {
             component.processVariables$ = mockStreams.processVariables;
             mockStreams.processVariables.next(mockProcessVariable);
             fixture.detectChanges();
-            fixture.whenStable().then(() => {
-                const editor = fixture.debugElement.query(By.css('.monaco-editor'));
-                const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
-                expect(editor).not.toBeNull();
-                expect(assignButton.nativeElement['disabled']).toBeTruthy();
-                component.onExpressionChange(mockOneValidCandidate);
-                fixture.detectChanges();
-                expect(assignButton.nativeElement['disabled']).toBeFalsy();
-            });
-        }));
+            await fixture.whenStable();
 
-        it('Should disable assign button if assignee expression is invalid', async(() => {
+            const editor = fixture.debugElement.query(By.css('.monaco-editor'));
+            const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
+            expect(editor).not.toBeNull();
+            expect(assignButton.nativeElement['disabled']).toBeTruthy();
+            component.onExpressionChange(mockOneValidCandidate);
+            fixture.detectChanges();
+            expect(assignButton.nativeElement['disabled']).toBeFalsy();
+        });
+
+        it('Should disable assign button if assignee expression is invalid', async () => {
             mockStreams.assignments.next({
                 type: AssignmentType.expression,
                 assignment: AssignmentMode.assignee,
@@ -367,21 +365,21 @@ describe('AssignmentDialogComponent', () => {
             component.processVariables$ = mockStreams.processVariables;
             mockStreams.processVariables.next(mockProcessVariable);
             fixture.detectChanges();
-            fixture.whenStable().then(() => {
-                const editor = fixture.debugElement.query(By.css('.monaco-editor'));
-                const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
-                expect(editor).not.toBeNull();
-                expect(assignButton.nativeElement['disabled']).toBeTruthy();
-                component.onExpressionChange(AssignmentDialogComponent.ASSIGNEE_CONTENT);
-                fixture.detectChanges();
-                expect(assignButton.nativeElement['disabled']).toBeTruthy();
-            });
-        }));
+            await fixture.whenStable();
+
+            const editor = fixture.debugElement.query(By.css('.monaco-editor'));
+            const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
+            expect(editor).not.toBeNull();
+            expect(assignButton.nativeElement['disabled']).toBeTruthy();
+            component.onExpressionChange(AssignmentDialogComponent.ASSIGNEE_CONTENT);
+            fixture.detectChanges();
+            expect(assignButton.nativeElement['disabled']).toBeTruthy();
+        });
     });
 
     describe('Expression with process variables', () => {
 
-        it('Should show code-editor if process variables exists', async(() => {
+        it('Should show code-editor if process variables exists', async () => {
             mockStreams.assignments.next({
                 type: AssignmentType.expression,
                 assignment: AssignmentMode.assignee,
@@ -399,13 +397,13 @@ describe('AssignmentDialogComponent', () => {
             component.processVariables$ = mockStreams.processVariables;
             mockStreams.processVariables.next(mockProcessVariable);
             fixture.detectChanges();
-            fixture.whenStable().then(() => {
-                const editor = fixture.debugElement.query(By.css('.monaco-editor'));
-                expect(editor).not.toBeNull();
-            });
-        }));
+            await fixture.whenStable();
 
-        it('Should show code-editor if process variables are not exists', async(() => {
+            const editor = fixture.debugElement.query(By.css('.monaco-editor'));
+            expect(editor).not.toBeNull();
+        });
+
+        it('Should show code-editor if process variables are not exists', async () => {
             mockStreams.assignments.next({
                 type: AssignmentType.expression,
                 assignment: AssignmentMode.assignee,
@@ -420,62 +418,62 @@ describe('AssignmentDialogComponent', () => {
                 shapeId: 'shapeId'
               };
             fixture.detectChanges();
-            fixture.whenStable().then(() => {
-                const editor = fixture.debugElement.query(By.css('.monaco-editor'));
-                expect(editor).not.toBeNull();
-            });
-        }));
+            await fixture.whenStable();
+
+            const editor = fixture.debugElement.query(By.css('.monaco-editor'));
+            expect(editor).not.toBeNull();
+        });
     });
 
     describe('Reset assignments', () => {
 
-        it('Should reset the static values if the user change tab (identity/expression)', async(() => {
+        it('Should reset the static values if the user change tab (identity/expression)', async () => {
             mockStreams.assignments.next({
                 type: AssignmentType.static,
                 assignment: AssignmentMode.assignee,
                 id: 'mock-shape-id'
             });
             fixture.detectChanges();
-            fixture.whenStable().then(() => {
-                const nameInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-assignment-static-single-user-input"]`));
-                nameInput.nativeElement.value = 'mock assignee';
+            await fixture.whenStable();
 
-                nameInput.nativeElement.dispatchEvent(new Event('input'));
-                expect(component.assigneeStaticControl.value).toBe('mock assignee');
+            const nameInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-assignment-static-single-user-input"]`));
+            nameInput.nativeElement.value = 'mock assignee';
 
-                component.onTabChange({index: 1, tab: null});
-                fixture.detectChanges();
-                expect(component.assigneeStaticControl).toBeNull();
-            });
-        }));
+            nameInput.nativeElement.dispatchEvent(new Event('input'));
+            expect(component.assigneeStaticControl.value).toBe('mock assignee');
 
-        it('Should reset the identity values if the user change tab (static/expression)', async(() => {
+            component.onTabChange({index: 1, tab: null});
+            fixture.detectChanges();
+            expect(component.assigneeStaticControl).toBeNull();
+        });
+
+        it('Should reset the identity values if the user change tab (static/expression)', async () => {
             mockStreams.assignments.next({
                     type: AssignmentType.identity,
                     assignment: AssignmentMode.candidates,
                     id: 'mock-shape-id'
                 });
             fixture.detectChanges();
-            fixture.whenStable().then(() => {
-                const candidateUserInput = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-search-input"]'));
-                const candidateGroupInput = fixture.debugElement.query(By.css('[data-automation-id="adf-cloud-group-search-input"]'));
+            await fixture.whenStable();
 
-                candidateUserInput.nativeElement.value = 'Candidate user';
-                candidateUserInput.nativeElement.dispatchEvent(new Event('input'));
+            const candidateUserInput = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-search-input"]'));
+            const candidateGroupInput = fixture.debugElement.query(By.css('[data-automation-id="adf-cloud-group-search-input"]'));
 
-                candidateGroupInput.nativeElement.value = 'Candidate group';
-                candidateGroupInput.nativeElement.dispatchEvent(new Event('input'));
+            candidateUserInput.nativeElement.value = 'Candidate user';
+            candidateUserInput.nativeElement.dispatchEvent(new Event('input'));
 
-                expect(component.candidateUsersIdentityControl.value).toBe('Candidate user');
-                expect(component.candidateGroupsIdentityControl.value).toBe('Candidate group');
+            candidateGroupInput.nativeElement.value = 'Candidate group';
+            candidateGroupInput.nativeElement.dispatchEvent(new Event('input'));
 
-                component.onTabChange({index: AssignmentTabs.STATIC, tab: null});
-                fixture.detectChanges();
-                expect(component.candidatesIdentityFormGroup).toBeNull();
-            });
-        }));
+            expect(component.candidateUsersIdentityControl.value).toBe('Candidate user');
+            expect(component.candidateGroupsIdentityControl.value).toBe('Candidate group');
 
-        it('Should reset the expression values if the user change tab (static/identity)', async(() => {
+            component.onTabChange({index: AssignmentTabs.STATIC, tab: null});
+            fixture.detectChanges();
+            expect(component.candidatesIdentityFormGroup).toBeNull();
+        });
+
+        it('Should reset the expression values if the user change tab (static/identity)', async () => {
             mockStreams.assignments.next({
                     type: AssignmentType.expression,
                     assignment: AssignmentMode.candidates,
@@ -489,40 +487,40 @@ describe('AssignmentDialogComponent', () => {
                 shapeId: 'shapeId'
                 };
             fixture.detectChanges();
-            fixture.whenStable().then(() => {
-                expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates, 'Before tab change');
-                component.onTabChange({index: AssignmentTabs.STATIC, tab: null});
-                expect(JSON.parse(component.expressionContent)).toEqual(JSON.parse(mockEmptyCandidates), 'After tab change');
-            });
-        }));
+            await fixture.whenStable();
+
+            expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates, 'Before tab change');
+            component.onTabChange({index: AssignmentTabs.STATIC, tab: null});
+            expect(JSON.parse(component.expressionContent)).toEqual(JSON.parse(mockEmptyCandidates), 'After tab change');
+        });
     });
 
     describe('Reload assignments', () => {
 
         describe('Reload on tab change', () => {
 
-            it('Should reload the static assignee value if the user change to original tab', async(() => {
+            it('Should reload the static assignee value if the user change to original tab', async () => {
                 mockStreams.assignments.next({
                     type: AssignmentType.static,
                     assignment: AssignmentMode.assignee,
                     id: 'mock-shape-id'
                 });
                 fixture.detectChanges();
-                fixture.whenStable().then(() => {
-                    const assigneeBeforeTabChange = fixture.debugElement.query(By.css('.ama-assignment-widget .mat-chip'));
-                    expect(component.staticAssignee).toBe('mock assignee');
-                    expect(assigneeBeforeTabChange.nativeElement.textContent).toContain('mock assignee cancel');
-                    component.onTabChange({index: 1, tab: null});
-                    fixture.detectChanges();
-                    const assigneeAfterTabChange = fixture.debugElement.query(By.css('.ama-assignment-widget .mat-chip'));
-                    expect(assigneeAfterTabChange).toBeNull();
-                    component.onTabChange({index: AssignmentTabs.STATIC, tab: null});
-                    fixture.detectChanges();
-                    expect(assigneeBeforeTabChange.nativeElement.textContent.trim()).toContain('mock assignee cancel');
-                });
-            }));
+                await fixture.whenStable();
 
-            it('Should reload the identity candidate values if the user change to original tab', async(() => {
+                const assigneeBeforeTabChange = fixture.debugElement.query(By.css('.ama-assignment-widget .mat-chip'));
+                expect(component.staticAssignee).toBe('mock assignee');
+                expect(assigneeBeforeTabChange.nativeElement.textContent).toContain('mock assignee cancel');
+                component.onTabChange({index: 1, tab: null});
+                fixture.detectChanges();
+                const assigneeAfterTabChange = fixture.debugElement.query(By.css('.ama-assignment-widget .mat-chip'));
+                expect(assigneeAfterTabChange).toBeNull();
+                component.onTabChange({index: AssignmentTabs.STATIC, tab: null});
+                fixture.detectChanges();
+                expect(assigneeBeforeTabChange.nativeElement.textContent.trim()).toContain('mock assignee cancel');
+            });
+
+            it('Should reload the identity candidate values if the user change to original tab', async () => {
                 mockStreams.assignments.next({
                         type: AssignmentType.identity,
                         assignment: AssignmentMode.candidates,
@@ -536,26 +534,26 @@ describe('AssignmentDialogComponent', () => {
                     shapeId: 'shapeId'
                   };
                 fixture.detectChanges();
-                fixture.whenStable().then(() => {
-                    const candidateUserChipBeforeTabChange = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-chip-mock candidateUser"]'));
-                    expect(component.identityCandidateUsers[0].username).toContain('mock candidateUser');
-                    expect(component.identityCandidateGroups[0].name).toContain('mock candidateGroup');
-                    expect(candidateUserChipBeforeTabChange.nativeElement.textContent).toContain(' mock candidateUser  cancel');
+                await fixture.whenStable();
 
-                    component.onTabChange({index: AssignmentTabs.STATIC, tab: null});
-                    fixture.detectChanges();
-                    const candidateUserChipAfterTabChange = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-chip-mock candidateUser"]'));
-                    const candidateGroupChipAfterTabChange = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-chip-mock candidateGroup"]'));
-                    expect(candidateGroupChipAfterTabChange).toBeNull();
-                    expect(candidateUserChipAfterTabChange).toBeNull();
+                const candidateUserChipBeforeTabChange = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-chip-mock candidateUser"]'));
+                expect(component.identityCandidateUsers[0].username).toContain('mock candidateUser');
+                expect(component.identityCandidateGroups[0].name).toContain('mock candidateGroup');
+                expect(candidateUserChipBeforeTabChange.nativeElement.textContent).toContain(' mock candidateUser  cancel');
 
-                    component.onTabChange({index: 1, tab: null});
-                    fixture.detectChanges();
-                    expect(candidateUserChipBeforeTabChange.nativeElement.textContent).toContain(' mock candidateUser  cancel');
-                });
-            }));
+                component.onTabChange({index: AssignmentTabs.STATIC, tab: null});
+                fixture.detectChanges();
+                const candidateUserChipAfterTabChange = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-chip-mock candidateUser"]'));
+                const candidateGroupChipAfterTabChange = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-chip-mock candidateGroup"]'));
+                expect(candidateGroupChipAfterTabChange).toBeNull();
+                expect(candidateUserChipAfterTabChange).toBeNull();
 
-            it('Should reload the expression values if the user change to original tab', async(() => {
+                component.onTabChange({index: 1, tab: null});
+                fixture.detectChanges();
+                expect(candidateUserChipBeforeTabChange.nativeElement.textContent).toContain(' mock candidateUser  cancel');
+            });
+
+            it('Should reload the expression values if the user change to original tab', async () => {
                 mockStreams.assignments.next({
                     type: AssignmentType.expression,
                     assignment: AssignmentMode.candidates,
@@ -569,23 +567,23 @@ describe('AssignmentDialogComponent', () => {
                     shapeId: 'shapeId'
                     };
                 fixture.detectChanges();
-                fixture.whenStable().then(() => {
-                    expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates, 'Before tab change');
+                await fixture.whenStable();
 
-                    component.onTabChange({index: AssignmentTabs.STATIC, tab: null});
-                    fixture.detectChanges();
-                    expect(JSON.parse(component.expressionContent)).toEqual(JSON.parse(mockEmptyCandidates), 'After tab change');
+                expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates, 'Before tab change');
 
-                    component.onTabChange({index: AssignmentTabs.EXPRESSION, tab: null});
-                    fixture.detectChanges();
-                    expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates, 'Before tab change');
-                });
-            }));
+                component.onTabChange({index: AssignmentTabs.STATIC, tab: null});
+                fixture.detectChanges();
+                expect(JSON.parse(component.expressionContent)).toEqual(JSON.parse(mockEmptyCandidates), 'After tab change');
+
+                component.onTabChange({index: AssignmentTabs.EXPRESSION, tab: null});
+                fixture.detectChanges();
+                expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates, 'Before tab change');
+            });
         });
 
         describe('Reload on assignment mode change', () => {
 
-            it('Should reload identity candidate values if the user change to original mode', async(() => {
+            it('Should reload identity candidate values if the user change to original mode', async () => {
                 mockStreams.assignments.next({
                     type: AssignmentType.identity,
                     assignment: AssignmentMode.candidates,
@@ -599,32 +597,32 @@ describe('AssignmentDialogComponent', () => {
                     shapeId: 'shapeId'
                 };
                 fixture.detectChanges();
-                fixture.whenStable().then(() => {
-                    const candidateUserChipBeforeModeChange = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-chip-mock candidateUser"]'));
-                    expect(component.identityCandidateUsers[0].username).toContain('mock candidateUser');
-                    expect(component.identityCandidateGroups[0].name).toContain('mock candidateGroup');
-                    expect(candidateUserChipBeforeModeChange.nativeElement.textContent).toContain(' mock candidateUser  cancel');
+                await fixture.whenStable();
 
-                    openSelect();
-                    fixture.detectChanges();
-                    const assigneeOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-assignee"]'));
-                    assigneeOption.nativeElement.click();
-                    fixture.detectChanges();
-                    const candidateUserChipAfterModeChange = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-chip-mock candidateUser"]'));
-                    const candidateGroupChipAfterModeChange = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-chip-mock candidateGroup"]'));
-                    expect(candidateGroupChipAfterModeChange).toBeNull();
-                    expect(candidateUserChipAfterModeChange).toBeNull();
+                const candidateUserChipBeforeModeChange = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-chip-mock candidateUser"]'));
+                expect(component.identityCandidateUsers[0].username).toContain('mock candidateUser');
+                expect(component.identityCandidateGroups[0].name).toContain('mock candidateGroup');
+                expect(candidateUserChipBeforeModeChange.nativeElement.textContent).toContain(' mock candidateUser  cancel');
 
-                    openSelect();
-                    fixture.detectChanges();
-                    const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
-                    candidateOption.nativeElement.click();
-                    fixture.detectChanges();
-                    expect(candidateUserChipBeforeModeChange).not.toBeNull();
-                });
-            }));
+                openSelect();
+                fixture.detectChanges();
+                const assigneeOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-assignee"]'));
+                assigneeOption.nativeElement.click();
+                fixture.detectChanges();
+                const candidateUserChipAfterModeChange = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-chip-mock candidateUser"]'));
+                const candidateGroupChipAfterModeChange = fixture.debugElement.query(By.css('[data-automation-id="adf-people-cloud-chip-mock candidateGroup"]'));
+                expect(candidateGroupChipAfterModeChange).toBeNull();
+                expect(candidateUserChipAfterModeChange).toBeNull();
 
-            it('Should reload the expression values if the user change to original mode', async(() => {
+                openSelect();
+                fixture.detectChanges();
+                const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
+                candidateOption.nativeElement.click();
+                fixture.detectChanges();
+                expect(candidateUserChipBeforeModeChange).not.toBeNull();
+            });
+
+            it('Should reload the expression values if the user change to original mode', async () => {
                 mockStreams.assignments.next({
                     type: AssignmentType.expression,
                     assignment: AssignmentMode.candidates,
@@ -638,27 +636,27 @@ describe('AssignmentDialogComponent', () => {
                     shapeId: 'shapeId'
                     };
                 fixture.detectChanges();
-                fixture.whenStable().then(() => {
-                    expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates, 'Before tab change');
+                await fixture.whenStable();
 
-                    openSelect();
-                    fixture.detectChanges();
-                    const assigneeOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-assignee"]'));
-                    assigneeOption.nativeElement.click();
+                expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates, 'Before tab change');
 
-                    fixture.detectChanges();
-                    expect(JSON.parse(component.expressionContent)).toEqual(JSON.parse(AssignmentDialogComponent.ASSIGNEE_CONTENT), 'After tab change');
+                openSelect();
+                fixture.detectChanges();
+                const assigneeOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-assignee"]'));
+                assigneeOption.nativeElement.click();
 
-                    openSelect();
-                    fixture.detectChanges();
-                    const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
-                    candidateOption.nativeElement.click();
-                    fixture.detectChanges();
-                    expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates, 'Before tab change');
-                });
-            }));
+                fixture.detectChanges();
+                expect(JSON.parse(component.expressionContent)).toEqual(JSON.parse(AssignmentDialogComponent.ASSIGNEE_CONTENT), 'After tab change');
 
-            it('Should reload static candidate values if the user change to original mode', async(() => {
+                openSelect();
+                fixture.detectChanges();
+                const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
+                candidateOption.nativeElement.click();
+                fixture.detectChanges();
+                expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates, 'Before tab change');
+            });
+
+            it('Should reload static candidate values if the user change to original mode', async () => {
                 mockStreams.assignments.next({
                     type: AssignmentType.static,
                     assignment: AssignmentMode.candidates,
@@ -672,35 +670,35 @@ describe('AssignmentDialogComponent', () => {
                     shapeId: 'shapeId'
                 };
                 fixture.detectChanges();
-                fixture.whenStable().then(() => {
-                    const candidateUserChipBeforeModeChange = fixture.debugElement.query(By.css('[data-automation-id="ama-candidate-user-chip-mock candidateUser"]'));
-                    const candidateGroupChipBeforeModeChange = fixture.debugElement.query(By.css('[data-automation-id="ama-candidate-group-chip-mock candidateGroup"]'));
-                    expect(component.staticCandidateUsers[0]).toContain('mock candidateUser');
-                    expect(component.staticCandidateGroups[0]).toContain('mock candidateGroup');
-                    expect(candidateUserChipBeforeModeChange.nativeElement.textContent).toContain(' mock candidateUser cancel');
-                    expect(candidateGroupChipBeforeModeChange.nativeElement.textContent).toContain(' mock candidateGroup cancel');
+                await fixture.whenStable();
 
-                    openSelect();
-                    fixture.detectChanges();
-                    const assigneeOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-assignee"]'));
-                    assigneeOption.nativeElement.click();
-                    fixture.detectChanges();
-                    const candidateUserChipAfterModeChange = fixture.debugElement.query(By.css('[data-automation-id="ama-candidate-user-chip-mock candidateUser"]'));
-                    const candidateGroupChipAfterModeChange = fixture.debugElement.query(By.css('[data-automation-id="ama-candidate-group-chip-mock candidateGroup"]'));
-                    expect(candidateGroupChipAfterModeChange).toBeNull();
-                    expect(candidateUserChipAfterModeChange).toBeNull();
+                const candidateUserChipBeforeModeChange = fixture.debugElement.query(By.css('[data-automation-id="ama-candidate-user-chip-mock candidateUser"]'));
+                const candidateGroupChipBeforeModeChange = fixture.debugElement.query(By.css('[data-automation-id="ama-candidate-group-chip-mock candidateGroup"]'));
+                expect(component.staticCandidateUsers[0]).toContain('mock candidateUser');
+                expect(component.staticCandidateGroups[0]).toContain('mock candidateGroup');
+                expect(candidateUserChipBeforeModeChange.nativeElement.textContent).toContain(' mock candidateUser cancel');
+                expect(candidateGroupChipBeforeModeChange.nativeElement.textContent).toContain(' mock candidateGroup cancel');
 
-                    openSelect();
-                    fixture.detectChanges();
-                    const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
-                    candidateOption.nativeElement.click();
-                    fixture.detectChanges();
-                    expect(candidateUserChipBeforeModeChange).not.toBeNull();
-                    expect(candidateGroupChipBeforeModeChange).not.toBeNull();
-                    expect(candidateUserChipBeforeModeChange.nativeElement.textContent).toContain(' mock candidateUser cancel');
-                    expect(candidateGroupChipBeforeModeChange.nativeElement.textContent).toContain(' mock candidateGroup cancel');
-                });
-            }));
+                openSelect();
+                fixture.detectChanges();
+                const assigneeOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-assignee"]'));
+                assigneeOption.nativeElement.click();
+                fixture.detectChanges();
+                const candidateUserChipAfterModeChange = fixture.debugElement.query(By.css('[data-automation-id="ama-candidate-user-chip-mock candidateUser"]'));
+                const candidateGroupChipAfterModeChange = fixture.debugElement.query(By.css('[data-automation-id="ama-candidate-group-chip-mock candidateGroup"]'));
+                expect(candidateGroupChipAfterModeChange).toBeNull();
+                expect(candidateUserChipAfterModeChange).toBeNull();
+
+                openSelect();
+                fixture.detectChanges();
+                const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
+                candidateOption.nativeElement.click();
+                fixture.detectChanges();
+                expect(candidateUserChipBeforeModeChange).not.toBeNull();
+                expect(candidateGroupChipBeforeModeChange).not.toBeNull();
+                expect(candidateUserChipBeforeModeChange.nativeElement.textContent).toContain(' mock candidateUser cancel');
+                expect(candidateGroupChipBeforeModeChange.nativeElement.textContent).toContain(' mock candidateGroup cancel');
+            });
         });
     });
 });
