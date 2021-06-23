@@ -87,7 +87,7 @@ export class UpdateConnectorContentAttemptAction implements Action {
 export const UPDATE_CONNECTOR_SUCCESS = '[Connector] Update success';
 export class UpdateConnectorSuccessAction implements Action {
     readonly type = UPDATE_CONNECTOR_SUCCESS;
-    constructor(public connector: Update<Partial<Connector>>) {}
+    constructor(public connector: Update<Partial<ConnectorContent>>) {}
 }
 
 export const UPDATE_CONNECTOR_FAILED = '[Connector] Update failed';

@@ -26,7 +26,7 @@ import * as primitiveTypesSchema from './expression-language/primitive-types-sch
 })
 export class PrimitiveModelingTypesService extends ModelingTypeProvider {
 
-    private primitiveModelingTypes: ModelingTypeMap;
+    private primitiveModelingTypes: ModelingTypeMap = {};
 
     constructor(private serviceJSONSchemaToModelingTypes: JSONSchemaToModelingTypesService) {
         super(serviceJSONSchemaToModelingTypes);
@@ -40,13 +40,13 @@ export class PrimitiveModelingTypesService extends ModelingTypeProvider {
         return models$;
     }
 
-    protected retrieveModelingTypesMap(serviceJSONSchemaToModelingTypes: JSONSchemaToModelingTypesService): Observable<ModelingTypeMap> {
-        if (!this.primitiveModelingTypes) {
-            this.serviceJSONSchemaToModelingTypes = serviceJSONSchemaToModelingTypes;
+    protected retrieveModelingTypesMap(services: any[]): Observable<ModelingTypeMap> {
+        if (!this.primitiveModelingTypes && services?.length > 0) {
+            this.serviceJSONSchemaToModelingTypes = services[0] as JSONSchemaToModelingTypesService;
             this.primitiveModelingTypes = this.serviceJSONSchemaToModelingTypes
                 .getPrimitiveModelingTypesFromJSONSchema(primitiveTypesSchema);
         }
-        return of( this.primitiveModelingTypes);
+        return of(this.primitiveModelingTypes);
     }
 
 }

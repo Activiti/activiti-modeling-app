@@ -24,3 +24,5 @@ export * from './services/code-editor-service.service';
 export * from './services/expressions-editor.service';
 export * from './helpers/file-uri';
 export * from './code-editor.extensions';
+export * from './services/modeling-type-provider.service';
+export * from './services/json-schema-to-modeling-types.service';

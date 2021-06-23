@@ -16,3 +16,4 @@
  */
 
 export * from './lib/connector-editor.module';
+export * from './lib/store/connector-editor.actions';

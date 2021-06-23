@@ -78,13 +78,13 @@ export abstract class ModelingTypeProvider {
 
     modelingTypesUpdated$ = this.modelingTypesUpdated.asObservable().pipe(filter(modelingTypes => !!modelingTypes));
 
-    constructor(service: any) {
-        this.retrieveModelingTypesMap(service).pipe(take(1)).subscribe(modelingTypesMap => this.modelingTypesUpdated.next(modelingTypesMap));
+    constructor(...services: any[]) {
+        this.retrieveModelingTypesMap(services).pipe(take(1)).subscribe(modelingTypesMap => this.modelingTypesUpdated.next(modelingTypesMap));
     }
 
     protected abstract transformModelsToModelingTypeMap(models$: Observable<any>): Observable<ModelingTypeMap>;
 
-    protected abstract retrieveModelingTypesMap(service: any): Observable<ModelingTypeMap>;
+    protected abstract retrieveModelingTypesMap(...services: any[]): Observable<ModelingTypeMap>;
 
     abstract getProviderName(): string;
 
