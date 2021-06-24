@@ -22,9 +22,9 @@ import { By } from '@angular/platform-browser';
 import { Action, Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { SaveAsProjectDialogComponent, SaveAsProjectDialogPayload } from './save-as-project-dialog.component';
-import { AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { AmaState } from '../../store/app.state';
 
 describe('SaveAsProjectDialogComponent', () => {
     let component: SaveAsProjectDialogComponent;

@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-import { ElementVariable } from '@alfresco-dbp/modeling-shared/sdk';
 import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
@@ -24,6 +23,7 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { expectedVariables } from '../../../mocks/process-editor.mock';
+import { ElementVariable } from '../../../services/process-editor-element-variables-provider.service';
 import { VariableSelectorComponent } from './variable-selector.component';
 
 describe('VariableSelectorComponent', () => {

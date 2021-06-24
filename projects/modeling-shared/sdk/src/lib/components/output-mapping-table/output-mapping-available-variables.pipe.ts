@@ -14,8 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { ProcessEditorElementVariable, ServiceParameterMapping } from '@alfresco-dbp/modeling-shared/sdk';
 import { Pipe, PipeTransform } from '@angular/core';
+import { ServiceParameterMapping } from '../../api/types';
+import { ProcessEditorElementVariable } from '../../services/process-editor-element-variables-provider.service';
 
 @Pipe({ name: 'outputMappingAvailableVariable' })
 export class OutputMappingAvailableVariablePipe implements PipeTransform {

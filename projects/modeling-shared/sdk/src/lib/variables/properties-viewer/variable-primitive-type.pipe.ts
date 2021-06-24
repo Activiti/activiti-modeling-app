@@ -14,8 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { EntityProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { Pipe, PipeTransform } from '@angular/core';
+import { EntityProperty } from '../../api/types';
 import { VariablesService } from '../variables.service';
 
 @Pipe({ name: 'variablePrimitiveType' })
