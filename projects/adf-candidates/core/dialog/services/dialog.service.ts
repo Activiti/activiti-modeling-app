@@ -15,13 +15,14 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Subject, Observable } from 'rxjs';
 import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
 import { DialogData, MultipleChoiceDialogData } from '../interfaces/dialog.interface';
 import { InfoDialogComponent } from '../components/info-dialog/info-dialog.component';
 import { MultipleChoiceDialogComponent } from '../components/multiple-choice-dialog/multiple-choice-dialog.component';
+import { ComponentType } from '@angular/cdk/portal';
 
 export interface MultipleChoiceDialogReturnType<T> {
     dialogRef: MatDialogRef<MultipleChoiceDialogComponent<T>>;
@@ -31,7 +32,7 @@ export interface MultipleChoiceDialogReturnType<T> {
 export class DialogService {
     constructor(private dialog: MatDialog) {}
 
-    openDialog(dialog, options = {}): void {
+    openDialog<T>(dialog: ComponentType<T> | TemplateRef<T>, options = {}): void {
         this.dialog.open(dialog, {
             width: '600px',
             ...options
