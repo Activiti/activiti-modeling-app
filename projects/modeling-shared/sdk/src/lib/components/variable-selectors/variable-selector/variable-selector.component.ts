@@ -51,6 +51,11 @@ export class VariableSelectorComponent implements OnInit, OnChanges {
     private readonly EXPRESSION_REGEX = /\${([^]*)}/gm;
 
     ngOnInit(): void {
+        if (this.varIdSelected && this.variables?.length > 0) {
+            let vars: ElementVariable[] = [];
+            this.variables.filter((variable) => variable.variables && variable.variables.length > 0).forEach((element) => vars = vars.concat(element.variables));
+            this.search = vars.find(variable => variable.id === this.varIdSelected)?.name || null;
+        }
         this.filteredVars = this.getFilteredVariables();
     }
 
