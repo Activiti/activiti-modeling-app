@@ -1,0 +1,15 @@
+@import './app/app-layout/app-layout.component';
+@import './app/app-layout/app-layout-global.component';
+@import './app/header/header-menu.component';
+@import './app/settings/settings-dialog.component';
+@import './app/app-layout/logging/components/log-history/log-history.component';
+@import './app/app-layout/editor-footer/editor-footer.component';
+
+@mixin app-shell-module($theme) {
+    @include ama-layout-global-theme($theme);
+    @include ama-layout-theme($theme);
+    @include ama-header-menu($theme);
+    @include adf-dialog-theme($theme);
+    @include ama-log-history($theme);
+    @include ama-editor-footer($theme);
+}

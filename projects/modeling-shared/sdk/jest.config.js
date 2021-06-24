@@ -15,7 +15,7 @@ module.exports = getJestConfig({
         path.resolve(__dirname, 'src')
     ],
     moduleNameMapper: {
-        '@alfresco-dbp/adf-candidates/core/(.*)': '<rootDir>/../../../projects/adf-candidates/core/$1'
+        '@alfresco-dbp/adf-candidates/core/(.*)': '<rootDir>/../../adf-candidates/core/$1'
     },
     globals: {
         "ts-jest": {

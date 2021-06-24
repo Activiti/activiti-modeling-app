@@ -12,7 +12,8 @@
     "assemble-app-config": "envsub --env-file ./.env --env APP_CONFIG_BPM_HOST=http://localhost:4201 --env APP_CONFIG_ECM_HOST=http://localhost:4201 --all ./app/src/app.config.json.tpl ./app/.tmp/app.config.json",
     "validate-app-config": "ajv validate -s ./node_modules/@alfresco/adf-core/app.config.schema.json -d ./app/.tmp/app.config.json --errors=text --verbose",
     "start": "ng serve",
-    "test": "ng test",
+    "test": "nx affected:test --all",
+    "lint": "nx affected:lint --all",
     "dep-graph": "nx dep-graph"
   },
   "repository": {

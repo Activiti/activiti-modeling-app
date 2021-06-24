@@ -33,6 +33,11 @@
                             "app/src/favicon-96x96.png",
                             "app/src/assets",
                             {
+                                "input": "projects/app-shell/resources",
+                                "output": "/resources",
+                                "glob": "**/*"
+                            },
+                            {
                                 "input": "app/resources",
                                 "output": "/resources",
                                 "glob": "**/*"
@@ -137,13 +142,6 @@
                             "browserTarget": "modeling-ce:build:production",
                             "disableHostCheck": false
                         }
-                    }
-                },
-                "test": {
-                    "builder": "@nrwl/jest:jest",
-                    "options": {
-                        "jestConfig": "./app/jest.config.js",
-                        "tsConfig": "app/tsconfig.spec.json"
                     }
                 }
             }
@@ -290,21 +288,42 @@
         },
         "adf-candidates": {
             "projectType": "library",
-            "root": "apps/modeling-ce/projects/adf-candidates",
-            "sourceRoot": "apps/modeling-ce/projects/adf-candidates",
+            "root": "projects/adf-candidates",
+            "sourceRoot": "projects/adf-candidates",
             "prefix": "alfresco-dbp",
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
                     "options": {
-                        "jestConfig": "apps/modeling-ce/projects/adf-candidates/jest.config.js"
+                        "jestConfig": "projects/adf-candidates/jest.config.js"
                     }
                 },
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
-                        "tsConfig": ["apps/modeling-ce/projects/adf-candidates/tsconfig.lib.json"],
-                        "exclude": ["**/node_modules/**", "!apps/modeling-ce/projects/adf-candidates/**/*"]
+                        "tsConfig": ["projects/adf-candidates/tsconfig.lib.json"],
+                        "exclude": ["**/node_modules/**", "!projects/adf-candidates/**/*"]
+                    }
+                }
+            }
+        },
+        "modeling-ce-app-shell": {
+            "projectType": "library",
+            "root": "projects/app-shell",
+            "sourceRoot": "projects/app-shell",
+            "prefix": "alfresco-dbp",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "options": {
+                        "jestConfig": "projects/app-shell/jest.config.js"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["projects/app-shell/tsconfig.lib.json"],
+                        "exclude": ["**/node_modules/**", "!projects/app-shell/**/*"]
                     }
                 }
             }

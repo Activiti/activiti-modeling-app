@@ -7,6 +7,11 @@
   "extends": [
     "rxjs-tslint-rules"
   ],
+  "linterOptions": {
+    "exclude": [
+        "**/*.js"
+    ]
+  },
   "rules": {
     "adf-license-banner": [
       true,
@@ -243,6 +248,15 @@
             ]
           },
           {
+            "sourceTag": "scope:modeling-ce-app-shell",
+            "onlyDependOnLibsWithTags": [
+              "scope:modeling-sdk",
+              "scope:adf-candidates",
+              "scope:modeling-ce-dashboard",
+              "scope:modeling-ce-project-editor"
+            ]
+          },
+          {
             "sourceTag": "scope:modeling-ce",
             "onlyDependOnLibsWithTags": [
               "scope:modeling-ce",
@@ -251,7 +265,8 @@
               "scope:modeling-ce-process-editor",
               "scope:adf-candidates",
               "scope:modeling-ce-dashboard",
-              "scope:modeling-ce-project-editor"
+              "scope:modeling-ce-project-editor",
+              "scope:modeling-ce-app-shell"
             ]
           },
           {

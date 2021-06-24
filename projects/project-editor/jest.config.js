@@ -15,8 +15,9 @@ module.exports = getJestConfig({
         path.resolve(__dirname, 'src')
     ],
     moduleNameMapper: {
-        '@alfresco-dbp/modeling-shared/sdk': '<rootDir>/../../projects/modeling-shared/sdk/src/public-api.ts',
-        '@alfresco-dbp/adf-candidates/core/dialog': '<rootDir>/../../projects/adf-candidates/core/dialog/public-api.ts'
+        '@alfresco-dbp/modeling-shared/sdk': '<rootDir>/../modeling-shared/sdk/src/public-api.ts',
+        '@alfresco-dbp/adf-candidates/core/dialog': '<rootDir>/../adf-candidates/core/dialog/public-api.ts',
+        '@alfresco-dbp/modeling-shared/sdk': '<rootDir>/../modeling-shared/sdk/src/public-api.ts'
     },
     globals: {
         "ts-jest": {

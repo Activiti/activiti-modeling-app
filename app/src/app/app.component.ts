@@ -20,8 +20,8 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ErrorResponse, ThemingService } from '@alfresco-dbp/modeling-shared/sdk';
-import { PluginRoutesManagerService } from './common/services/plugin-routes-manager.service';
 import { AlfrescoApiService } from '@alfresco/adf-core';
+import { PluginRoutesManagerService } from '@alfresco-dbp/modeling-ce/app-shell';
 
 @Component({
     selector: 'ama-root',

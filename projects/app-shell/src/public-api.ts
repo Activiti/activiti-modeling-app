@@ -15,11 +15,6 @@
  * limitations under the License.
  */
 
-import { MetaReducer } from '@ngrx/store';
-import { environment } from '../../../environments/environment';
-import { logoutMetaReducer } from './logout.meta.reducer';
-
-export const metaReducers: MetaReducer<any>[] = [
-    ...(!environment.production ? [] : []),
-    logoutMetaReducer
-];
+export * from './lib/app-shell.module';
+export * from './lib/app/about/about.module';
+export * from './lib/common/services/plugin-routes-manager.service';

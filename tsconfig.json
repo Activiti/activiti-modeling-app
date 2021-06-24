@@ -24,6 +24,7 @@
             "@alfresco-dbp/modeling-shared/sdk": ["projects/modeling-shared/sdk/src/public-api.ts"],
             "@alfresco-dbp/modeling-ce/connector-editor": ["projects/connector-editor/src/public-api.ts"],
             "@alfresco-dbp/modeling-ce/process-editor": ["projects/process-editor/src/public-api.ts"],
+            "@alfresco-dbp/modeling-ce/app-shell": ["projects/app-shell/src/public-api.ts"],
             "@alfresco-dbp/adf-candidates/core/*": ["projects/adf-candidates/core/*"],
             "@alfresco-dbp/modeling-ce/dashboard": ["projects/dashboard/src/public-api.ts"],
             "@alfresco-dbp/modeling-ce/project-editor": ["projects/project-editor/src/public-api.ts"],

@@ -33,8 +33,8 @@ import {
 import { tap, map, catchError } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { getBackendLogInitiator } from './application.constants';
-import assigneeSchema from './../../../../resources/schema/assignee-schema.json';
-import candidateSchema from './../../../../resources/schema/candidates-schema.json';
+import assigneeSchema from '../../../../resources/assignee-schema.json';
+import candidateSchema from '../../../../resources/candidates-schema.json';
 
 export enum TaskAssignmentSchema {
     assigneeURI = 'TASK-ASSIGNEE-EXTENSION',

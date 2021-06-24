@@ -17,7 +17,9 @@ branches:
     - master
 
 stages:
+  - name: Lint
   - name: Build
+  - name: Unit Test
   - name: Package
     if: type != pull_request
   - name: Publish
@@ -32,6 +34,10 @@ jobs:
 
   include:
 
+    - stage: Lint
+      name: Lint
+      script: npm run lint
+
     - stage: Build
       name: Build
       script: npm run build -- --prod
@@ -42,6 +48,10 @@ jobs:
             - dist
         use:
           - modeling-ce-build-artifact-cache
+
+    - stage: Unit Test
+      name: Unit Test
+      script: npm run test
 
     - stage: Package
       name: Build Docker Image

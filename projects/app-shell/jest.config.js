@@ -1,10 +1,13 @@
 const path = require('path');
-const getJestConfig = require('../../jest.get-config');
 
-module.exports = getJestConfig({
+module.exports = {
+    preset: 'jest-preset-angular',
     rootDir: path.resolve(__dirname),
+    verbose: true,
+    testURL: 'http://localhost',
     setupFilesAfterEnv: [ path.resolve(__dirname, '..', '..', 'jest/jest-setup.ts') ],
-    coverageDirectory: '<rootDir>/../../../../coverage/modeling-ce/dashboard',
+    coverageDirectory: '../coverage/modeling-ce/app-shell',
+    collectCoverage: true,
     collectCoverageFrom: [
         '<rootDir>/src/**/*.ts',
         '!<rootDir>/src/*.ts',
@@ -14,13 +17,24 @@ module.exports = getJestConfig({
     roots: [
         path.resolve(__dirname, 'src')
     ],
+    transformIgnorePatterns: [
+        'node_modules/(?!@alfresco\\/js-api)'
+    ],
+    transform: {
+        '^.+\\.(ts|js|html)$': 'ts-jest'
+    },
+    snapshotSerializers: [
+        'jest-preset-angular/build/serializers/ng-snapshot.js',
+        'jest-preset-angular/build/serializers/html-comment.js',
+    ],
     moduleNameMapper: {
         '@alfresco-dbp/modeling-shared/sdk': '<rootDir>/../modeling-shared/sdk/src/public-api.ts',
         '@alfresco-dbp/adf-candidates/core/(.*)': '<rootDir>/../adf-candidates/core/$1'
     },
     globals: {
         "ts-jest": {
+            stringifyContentPathRegex: '\\.html?$',
             tsconfig: "<rootDir>/tsconfig.spec.json"
         }
     }
-});
+};

@@ -1,9 +1,5 @@
 {
-    "extends": "./tsconfig.lib.json",
-    "compilerOptions": {
-        "outDir": "../../out-tsc/dashboard-spec"
-    },
-    "include": [ "**/*.spec.ts", "**/*.d.ts" ],
+    "extends": "../../tsconfig.json",
     "angularCompilerOptions": {
         "skipTemplateCodegen": true,
         "strictMetadataEmit": true,

@@ -1,7 +1,7 @@
 {
     "extends": "./tsconfig.lib.json",
     "compilerOptions": {
-        "outDir": "../../out-tsc/dashboard-spec"
+        "outDir": "../../out-tsc/app-shell-spec"
     },
     "include": [ "**/*.spec.ts", "**/*.d.ts" ],
     "angularCompilerOptions": {

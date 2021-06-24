@@ -40,6 +40,20 @@
         "category:modeling-ce"
       ]
     },
+    "modeling-ce-app-shell": {
+      "tags": [
+        "scope:modeling-ce-app-shell",
+        "type:lib",
+        "category:modeling-ce"
+      ]
+    },
+    "adf-candidates": {
+      "tags": [
+        "scope:adf-candidates",
+        "type:lib",
+        "category:modeling-ce"
+      ]
+    },
     "modeling-sdk": {
       "tags": [
         "scope:modeling-sdk",
