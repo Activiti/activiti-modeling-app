@@ -32,8 +32,8 @@ export interface MultipleChoiceDialogReturnType<T> {
 export class DialogService {
     constructor(private dialog: MatDialog) {}
 
-    openDialog<T>(dialog: ComponentType<T> | TemplateRef<T>, options = {}): void {
-        this.dialog.open(dialog, {
+    openDialog<T>(dialog: ComponentType<T> | TemplateRef<T>, options = {}): MatDialogRef<T> {
+        return this.dialog.open(dialog, {
             width: '600px',
             ...options
         });
