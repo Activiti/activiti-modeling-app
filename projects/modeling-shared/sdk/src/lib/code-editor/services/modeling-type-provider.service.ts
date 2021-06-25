@@ -98,7 +98,7 @@ export abstract class ModelingTypeProvider {
 export function provideModelingTypeProvider(implementationClass: Type<ModelingTypeProvider>): Provider {
     return {
         provide: MODELING_TYPES_PROVIDERS,
-        useClass: implementationClass,
         multi: true,
+        useExisting: implementationClass
     };
 }

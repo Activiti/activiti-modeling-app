@@ -16,11 +16,12 @@
  */
 
 import { TestBed } from '@angular/core/testing';
-import { expectedEventExtendedSchemaTypes, expectedEventSchemaTypes, expectedPrimitiveTypes } from '../mocks/primitive-types.mock';
+import { expectedEventExtendedSchemaTypes, expectedEventSchemaTypes, expectedPrimitiveTypes, expectedRestEventSchemaTypes } from '../mocks/primitive-types.mock';
 import { JSONSchemaInfoBasics, JSONSchemaToModelingTypesService } from './json-schema-to-modeling-types.service';
-import * as primitiveTypesSchema from './expression-language/primitive-types-schema.json';
 import * as eventsSchema from '../mocks/event-schema.json';
 import * as eventsSchemaExtended from '../mocks/event-schema-extended.json';
+import * as eventData from '../mocks/event-data.json';
+import { primitiveTypesSchema } from './expression-language/primitive-types-schema';
 
 describe('JSONSchemaToModelingTypesService', () => {
     let service: JSONSchemaToModelingTypesService;
@@ -59,5 +60,11 @@ describe('JSONSchemaToModelingTypesService', () => {
         const actual = service.getModelingTypesFromJSONSchema(eventsSchemaExtended as JSONSchemaInfoBasics, 'eventExtendedSchema', eventSchema);
 
         expect(actual).toEqual(expectedEventExtendedSchemaTypes);
+    });
+
+    it('should create a event model type extending event schema', () => {
+        const eventSchema = service.getModelingTypesFromEventDataJSONSchema(eventData, 'rest');
+
+        expect(eventSchema).toEqual(expectedRestEventSchemaTypes);
     });
 });

@@ -1624,3 +1624,168 @@ export const expectedEventExtendedSchemaTypes: ModelingTypeMap = {
         ]
     }
 };
+
+export const expectedRestEventSchemaTypes = {
+    'event-rest-data-mapList': {
+        'id': 'event-rest-data-mapList',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': []
+    },
+    'event-rest-data-body': {
+        'id': 'event-rest-data-body',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': []
+    },
+    'event-rest-data': {
+        'id': 'event-rest-data',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'method',
+                'type': 'string'
+            },
+            {
+                'property': 'path',
+                'type': 'string'
+            },
+            {
+                'property': 'params',
+                'type': 'event-rest-data-mapList'
+            },
+            {
+                'property': 'headers',
+                'type': 'event-rest-data-mapList'
+            },
+            {
+                'property': 'body',
+                'type': 'event-rest-data-body'
+            }
+        ]
+    },
+    'event-rest': {
+        'id': 'event-rest',
+        'methods': [
+            {
+                'signature': 'equals',
+                'type': 'boolean',
+                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'parameters': [
+                    {
+                        'label': 'obj',
+                        'documentation': 'obj: object – the reference object with which to compare'
+                    }
+                ]
+            },
+            {
+                'signature': 'hashCode',
+                'type': 'integer',
+                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+            },
+            {
+                'signature': 'toString',
+                'type': 'string',
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+            }
+        ],
+        'properties': [
+            {
+                'property': 'specversion',
+                'type': 'string'
+            },
+            {
+                'property': 'type',
+                'type': 'string'
+            },
+            {
+                'property': 'id',
+                'type': 'string'
+            },
+            {
+                'property': 'source',
+                'type': 'string'
+            },
+            {
+                'property': 'time',
+                'type': 'datetime'
+            },
+            {
+                'property': 'dataschema',
+                'type': 'string'
+            },
+            {
+                'property': 'datacontenttype',
+                'type': 'string'
+            },
+            {
+                'property': 'data',
+                'type': 'event-rest-data'
+            }
+        ]
+    }
+};

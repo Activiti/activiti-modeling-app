@@ -18,20 +18,19 @@
 import { Injectable } from '@angular/core';
 import { arrayModelType } from './expression-language/array.model.type';
 import { dateModelType } from './expression-language/date.model.type';
+import { eventSchema } from './expression-language/event-schema';
 import { jsonModelType } from './expression-language/json.model.type';
 import { stringModelType } from './expression-language/string.model.type';
 import { ModelingType, ModelingTypeMap, ModelingTypeMethodDescription, ModelingTypePropertyDescription } from './modeling-type-provider.service';
-
-type JSONPrimitiveTypes = 'array' | 'boolean' | 'integer' | 'null' | 'number' | 'object' | 'string';
 
 export interface JSONRef {
     $ref: string;
 }
 
 export interface JSONSchemaInfoBasics {
-    anyOf?: JSONSchemaPropertyBasics[] | JSONRef[];
-    allOf?: JSONSchemaPropertyBasics[] | JSONRef[];
-    type?: JSONPrimitiveTypes | JSONPrimitiveTypes[] | JSONRef[];
+    anyOf?: JSONSchemaPropertyBasics[] | JSONRef[] | JSONSchemaInfoBasics[];
+    allOf?: JSONSchemaPropertyBasics[] | JSONRef[] | JSONSchemaInfoBasics[];
+    type?: string | string[] | JSONRef[];
     properties?: JSONSchemaPropertyBasics;
     items?: JSONRef[] | JSONSchemaPropertyBasics[] | JSONSchemaInfoBasics;
     description?: string;
@@ -47,6 +46,8 @@ export interface JSONSchemaPropertyBasics {
 })
 export class JSONSchemaToModelingTypesService {
 
+    public static readonly EVENT_PREFIX = 'event-';
+
     getPrimitiveModelingTypesFromJSONSchema(jsonSchema: JSONSchemaInfoBasics): ModelingTypeMap {
         return this.getModelingTypesFromJSONSchema(jsonSchema, null);
     }
@@ -54,9 +55,12 @@ export class JSONSchemaToModelingTypesService {
     getModelingTypesFromJSONSchema(
         jsonSchema: JSONSchemaInfoBasics,
         schemaName: string,
-        existingModelingTypes: ModelingTypeMap = {}
+        ...existingModelingTypes: ModelingTypeMap[]
     ): ModelingTypeMap {
-        const modelingTypes = { ...existingModelingTypes };
+        let modelingTypes = {};
+        if (existingModelingTypes?.length > 0) {
+            existingModelingTypes.forEach(existingTypes => modelingTypes = { ...modelingTypes, ...existingTypes });
+        }
         if (jsonSchema.anyOf) {
             this.addModelingType(this.addTypeFromArrayOfTypes(jsonSchema.anyOf, modelingTypes, schemaName, jsonSchema, schemaName), schemaName, modelingTypes, true);
         } else if (jsonSchema.allOf) {
@@ -88,12 +92,38 @@ export class JSONSchemaToModelingTypesService {
                     break;
             }
         }
-        Object.keys(existingModelingTypes).forEach(key => delete modelingTypes[key]);
+        if (existingModelingTypes?.length > 0) {
+            existingModelingTypes.forEach(existingTypes => { Object.keys(existingTypes).forEach(key => delete modelingTypes[key]); });
+        }
         return modelingTypes;
     }
 
+    getModelingTypesFromEventDataJSONSchema(dataJsonSchema: JSONSchemaInfoBasics, schemaName: string) {
+        const dataModelingTypes = this.getModelingTypesFromJSONSchema(dataJsonSchema, JSONSchemaToModelingTypesService.EVENT_PREFIX + schemaName + '-data');
+        const eventSchemaModelingTypes = this.getModelingTypesFromJSONSchema(eventSchema, 'event');
+
+        const jsonSchema = {
+            allOf: [
+                {
+                    type: 'event'
+                },
+                {
+                    type: 'object',
+                    properties: {
+                        data: {
+                            type: JSONSchemaToModelingTypesService.EVENT_PREFIX + schemaName + '-data'
+                        }
+                    }
+                }
+            ]
+        };
+
+        const result = this.getModelingTypesFromJSONSchema(jsonSchema, JSONSchemaToModelingTypesService.EVENT_PREFIX + schemaName, eventSchemaModelingTypes, dataModelingTypes);
+        return { ...result, ...dataModelingTypes };
+    }
+
     private addTypeFromArrayOfTypes(
-        jsonTypesArray: JSONSchemaPropertyBasics[] | JSONRef[],
+        jsonTypesArray: JSONSchemaPropertyBasics[] | JSONRef[] | JSONSchemaInfoBasics[],
         modelingTypes: ModelingTypeMap,
         typeName: string,
         originalJsonSchema: JSONSchemaInfoBasics,
@@ -143,7 +173,7 @@ export class JSONSchemaToModelingTypesService {
 
     private getModelingTypesFromArray(
         name: string,
-        jsonTypesArray: JSONSchemaPropertyBasics[] | JSONRef[],
+        jsonTypesArray: JSONSchemaPropertyBasics[] | JSONRef[] | JSONSchemaInfoBasics[],
         modelingTypes: ModelingTypeMap,
         originalJsonSchema: JSONSchemaInfoBasics,
         schemaName: string

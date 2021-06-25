@@ -17,16 +17,16 @@
 
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { primitiveTypesSchema } from './expression-language/primitive-types-schema';
 import { JSONSchemaToModelingTypesService } from './json-schema-to-modeling-types.service';
 import { ModelingTypeProvider, ModelingTypeMap } from './modeling-type-provider.service';
-import * as primitiveTypesSchema from './expression-language/primitive-types-schema.json';
 
 @Injectable({
     providedIn: 'root'
 })
 export class PrimitiveModelingTypesService extends ModelingTypeProvider {
 
-    private primitiveModelingTypes: ModelingTypeMap = {};
+    private primitiveModelingTypes: ModelingTypeMap;
 
     constructor(private serviceJSONSchemaToModelingTypes: JSONSchemaToModelingTypesService) {
         super(serviceJSONSchemaToModelingTypes);
@@ -43,8 +43,7 @@ export class PrimitiveModelingTypesService extends ModelingTypeProvider {
     protected retrieveModelingTypesMap(services: any[]): Observable<ModelingTypeMap> {
         if (!this.primitiveModelingTypes && services?.length > 0) {
             this.serviceJSONSchemaToModelingTypes = services[0] as JSONSchemaToModelingTypesService;
-            this.primitiveModelingTypes = this.serviceJSONSchemaToModelingTypes
-                .getPrimitiveModelingTypesFromJSONSchema(primitiveTypesSchema);
+            this.primitiveModelingTypes = this.serviceJSONSchemaToModelingTypes.getPrimitiveModelingTypesFromJSONSchema(primitiveTypesSchema);
         }
         return of(this.primitiveModelingTypes);
     }
