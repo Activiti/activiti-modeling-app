@@ -268,4 +268,8 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
         this.mapping = null;
         this.closePanel();
     }
+
+    displayValue(): boolean {
+        return this.availableVariables || this.displayedValue?.length > 0;
+    }
 }

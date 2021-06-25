@@ -79,7 +79,7 @@ describe('VariableSelectorDropdownComponent', () => {
         expect(component.variablesPanelDisplay).toBe(false);
     });
 
-    it('should display no variable message when there are no available variables', () => {
+    it('should display no variable message when there are no available variables and there is no selected variable', () => {
         component.variables = [];
         component.ngOnChanges();
         fixture.detectChanges();
@@ -87,6 +87,17 @@ describe('VariableSelectorDropdownComponent', () => {
         const noVariableMessage = fixture.debugElement.query(By.css('.modelingsdk-variable-selector-no-process-properties-msg'));
 
         expect(noVariableMessage).not.toBeNull();
+    });
+
+    it('should not display no variable message when there are no available variables but there is a selected variable', () => {
+        component.variables = [];
+        component.selectedVariableName = 'mock-var';
+        component.ngOnChanges();
+        fixture.detectChanges();
+
+        const noVariableMessage = fixture.debugElement.query(By.css('.modelingsdk-variable-selector-no-process-properties-msg'));
+
+        expect(noVariableMessage).toBeNull();
     });
 
     it('should not display the clear selection button when no variable is selected', async() => {

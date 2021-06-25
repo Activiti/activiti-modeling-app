@@ -91,7 +91,7 @@ export class VariableSelectorDropdownComponent implements OnInit, AfterViewInit,
     }
 
     private init() {
-       let vars: ElementVariable[] = [];
+        let vars: ElementVariable[] = [];
         this.variables.filter((variable) => variable.variables && variable.variables.length > 0).forEach((element) => vars = vars.concat(element.variables));
 
         if (this.varIdSelected) {
@@ -134,5 +134,9 @@ export class VariableSelectorDropdownComponent implements OnInit, AfterViewInit,
         this.varIdSelected = null;
         this.closePanel();
         this.variableSelected.emit(null);
+    }
+
+    displayValue(): boolean {
+        return this.availableVariables || this.selectedVariableName?.length > 0;
     }
 }

@@ -412,7 +412,7 @@ describe('MappingVariableExpressionDropdownComponent', () => {
         });
     });
 
-    it('should display no variable message when there are no available variables', async() => {
+    it('should display no variable message when there are no available variables and there is no mapped value', async () => {
         component.variables = [];
         component.ngOnChanges();
         fixture.detectChanges();
@@ -421,6 +421,21 @@ describe('MappingVariableExpressionDropdownComponent', () => {
         const noVariableMessage = fixture.debugElement.query(By.css('.modelingsdk-mapping-variable-expression-no-process-properties-msg'));
 
         expect(noVariableMessage).not.toBeNull();
+    });
+
+    it('should not display no variable message when there are no available variables but there is a mapped value', async () => {
+        component.variables = [];
+        component.mapping = {
+            type: MappingType.value,
+            value: '${abcd}'
+        };
+        component.ngOnChanges();
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const noVariableMessage = fixture.debugElement.query(By.css('.modelingsdk-mapping-variable-expression-no-process-properties-msg'));
+
+        expect(noVariableMessage).toBeNull();
     });
 
     it('should not display the clear selection button when no variable is selected', async () => {

@@ -1,6 +1,6 @@
 <div class="modelingsdk-variable-selector-dropdown-wrapper">
     <div cdkOverlayOrigin #openVariablesPanel="cdkOverlayOrigin" #dropdown>
-        <div *ngIf="availableVariables; else noProcessPropertiesTmpl" (click)="openPanel()"
+        <div *ngIf="displayValue(); else noProcessPropertiesTmpl" (click)="openPanel()"
             class="modelingsdk-variable-selector-dropdown-input">
             <mat-form-field *ngIf="!plain">
                 <input matInput placeholder="{{placeholder}}" readonly autocomplete="off"
