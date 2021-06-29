@@ -138,7 +138,7 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
                 this.displayedValue = variable?.label || this.selectedVariableName;
             } else {
                 this.mode = 'expression';
-                if (this.mapping.value) {
+                if (this.mapping.value !== null && this.mapping.value !== undefined) {
                     if (typeof this.mapping.value === 'string' && this.language !== 'json') {
                         this.expression = this.mapping.value;
                     } else {
@@ -240,7 +240,7 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
 
     onExpressionChanges(data: string) {
         this.expression = data;
-        let value = data;
+        let value = data?.trim().length > 0 ? data.trim() : null;
         if (data) {
             if (!data.match(this.EXPRESSION_REGEX) || this.language === 'json') {
                 try {

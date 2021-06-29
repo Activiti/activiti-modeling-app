@@ -276,9 +276,9 @@ export class MappingDialogComponent implements OnInit {
 
     valueMappingExpressionChange($event: string, i: number) {
         this.dataSource[i].mappingValueType = MappingValueType.expression;
-        this.expressionValue = $event;
+        this.expressionValue = $event?.trim().length > 0 ? $event.trim() : null;
         if (this.service.getPrimitiveType(this.dataSource[i].type) === 'json') {
-            this.valueValue = JSON.parse($event);
+            this.valueValue = JSON.parse(this.expressionValue);
             this.service.setDataSourceValue(this.dataSource, i, this.valueValue);
         } else {
             this.service.setDataSourceValue(this.dataSource, i, this.expressionValue);

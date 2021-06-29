@@ -21,7 +21,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { MappingDialogComponent } from './mapping-dialog.component';
-import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
+import { MappingDialogData, MappingValueType, VariableMappingType } from '../../services/mapping-dialog.service';
 import { MappingType } from '../../api/types';
 import { UuidService } from '../../services/public-api';
 import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
@@ -364,5 +364,17 @@ describe('MappingDialogComponent', () => {
             expect(component.dataSource[0].mappingValueType).toEqual(MappingType.variable);
             expect(component.dataSource[0].value).toEqual(null);
         });
+    });
+
+    it('should emit null as value if the expression string is empty', async () => {
+        setUpTestBed(mockDialogDataInputMapping);
+        component.ngOnInit();
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        component.valueMappingExpressionChange('', 5);
+
+        expect(component.dataSource[5].mappingValueType).toEqual(MappingValueType.expression);
+        expect(component.dataSource[5].value).toEqual(null);
     });
 });

@@ -410,6 +410,18 @@ describe('MappingVariableExpressionDropdownComponent', () => {
                 value: { a: 'b', c: 1, d: '${true}' }
             });
         });
+
+        it('should emit mapping with null value when editor expression is empty', () => {
+            spyOn(component.mappingChanged, 'emit');
+            component.ngOnInit();
+
+            component.onExpressionChanges('');
+
+            expect(component.mappingChanged.emit).toHaveBeenCalledWith({
+                type: MappingType.value,
+                value: null
+            });
+        });
     });
 
     it('should display no variable message when there are no available variables and there is no mapped value', async () => {
@@ -428,6 +440,21 @@ describe('MappingVariableExpressionDropdownComponent', () => {
         component.mapping = {
             type: MappingType.value,
             value: '${abcd}'
+        };
+        component.ngOnChanges();
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const noVariableMessage = fixture.debugElement.query(By.css('.modelingsdk-mapping-variable-expression-no-process-properties-msg'));
+
+        expect(noVariableMessage).toBeNull();
+    });
+
+    it('should not display no variable message when there are no available variables but there is a mapped value and the value is false', async () => {
+        component.variables = [];
+        component.mapping = {
+            type: MappingType.value,
+            value: false
         };
         component.ngOnChanges();
         fixture.detectChanges();
