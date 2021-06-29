@@ -48,6 +48,7 @@ import { processIdHandler } from './process-id.handler';
 import { processErrorsHandler } from './process-errors.handler';
 import { loopCharacteristics } from './loopCharacteristics.handler';
 import { loopDataOutputRef } from './loopDataOutputRef.handler';
+import { emailServiceTaskHandler } from './emailServiceTask.handler';
 
 export const handlers = {
     [BpmnProperty.id]: idHandler,
@@ -81,5 +82,6 @@ export const handlers = {
     [BpmnProperty.isExecutable]: isExecutableHandler,
     [BpmnCompositeProperty.errors]: processErrorsHandler,
     [BpmnProperty.loopCharacteristics]: loopCharacteristics,
-    [BpmnProperty.loopDataOutputRef]: loopDataOutputRef
+    [BpmnProperty.loopDataOutputRef]: loopDataOutputRef,
+    [BpmnProperty.emailServiceTask]: emailServiceTaskHandler
 };

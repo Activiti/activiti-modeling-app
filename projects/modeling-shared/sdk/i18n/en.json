@@ -107,7 +107,8 @@
                 "DECISION_TABLE": "Decision table",
                 "USER_TASK": "User task",
                 "NONE": "None",
-                "EVENT": "Event"
+                "EVENT": "Event",
+                "EMAIL_SERVICE_TASK": "Email service task"
             },
             "TOOLTIP": {
                 "VARIABLE": "Variable",

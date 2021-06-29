@@ -163,6 +163,8 @@ export class ProcessEditorElementVariablesService {
                         return ProcessEditorElementWithVariables.ScriptTask;
                     case 'dmn-connector.EXECUTE_TABLE':
                         return ProcessEditorElementWithVariables.DecisionTable;
+                    case 'email-service.SEND':
+                        return ProcessEditorElementWithVariables.EmailServiceTask;
                     default:
                         return ProcessEditorElementWithVariables.ServiceTask;
                 }

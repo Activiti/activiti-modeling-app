@@ -147,9 +147,14 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .bpmn-alfresco-icon-content-task {
+            float: left;
+        }
+
+        .bpmn-alfresco-icon-email-task {
             float: left;
         }
     }

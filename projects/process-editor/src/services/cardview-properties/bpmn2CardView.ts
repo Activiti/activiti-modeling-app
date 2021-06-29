@@ -49,6 +49,7 @@ import { createIsExecutableProperty } from './isExecutable-cardview-property';
 import { createAssignmentProperty } from './assignment-cardview-property';
 import { createProcessIdProperty } from './process-id-cardview-property';
 import { createProcessErrorsProperty } from './process-errors-item-property';
+import { createEmailServiceTaskProperty } from './emailServiceTask-cardview-property';
 
 export const bpmn2cardView = {
     [BpmnProperty.id]: createIdProperty,
@@ -83,5 +84,6 @@ export const bpmn2cardView = {
     [BpmnProperty.messagePayload]: createMessagePayloadProperty,
     [BpmnProperty.textAnnotation]: createTextAnnotationProperty,
     [BpmnProperty.isExecutable]: createIsExecutableProperty,
-    [BpmnCompositeProperty.errors]: createProcessErrorsProperty
+    [BpmnCompositeProperty.errors]: createProcessErrorsProperty,
+    [BpmnProperty.emailServiceTask]: createEmailServiceTaskProperty
 };

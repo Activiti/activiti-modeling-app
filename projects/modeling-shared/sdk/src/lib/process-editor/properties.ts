@@ -49,7 +49,8 @@ export enum BpmnProperty {
     textAnnotation = 'textAnnotation',
     isExecutable = 'isExecutable',
     loopCharacteristics = 'loopCharacteristics',
-    loopDataOutputRef = 'loopDataOutputRef'
+    loopDataOutputRef = 'loopDataOutputRef',
+    emailServiceTask = 'emailServiceTask'
 }
 
 export enum BpmnCompositeProperty {

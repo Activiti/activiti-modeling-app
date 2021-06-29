@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty, BpmnElement, DECISION_TASK_IMPLEMENTATION, SCRIPT_TASK_IMPLEMENTATION, BpmnCompositeProperty } from '@alfresco-dbp/modeling-shared/sdk';
+import { BpmnProperty, BpmnElement, DECISION_TASK_IMPLEMENTATION, SCRIPT_TASK_IMPLEMENTATION, BpmnCompositeProperty, EMAIL_SERVICE_TASK_IMPLEMENTATION } from '@alfresco-dbp/modeling-shared/sdk';
 
 const isSignalEvent = (element: Bpmn.DiagramElement) => {
     return !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.SignalEventDefinition;
@@ -36,6 +36,7 @@ const haveSignalRef = (element: Bpmn.DiagramElement) => !!element.businessObject
 const haveConditionExpression = (element: Bpmn.DiagramElement) => !!element.businessObject.conditionExpression;
 const isDecisionTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === DECISION_TASK_IMPLEMENTATION;
 const isScriptTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === SCRIPT_TASK_IMPLEMENTATION;
+const isEmailServiceTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === EMAIL_SERVICE_TASK_IMPLEMENTATION;
 const isExclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type === BpmnElement.ExclusiveGateway;
 const isInclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type === BpmnElement.InclusiveGateway;
 const isConditionalFlow = (element: Bpmn.DiagramElement) => element.businessObject.$type === BpmnElement.SequenceFlow && haveConditionExpression(element);
@@ -139,7 +140,9 @@ export const elementsProperties = {
         BpmnProperty.name,
         BpmnProperty.documentation,
         BpmnProperty.multiInstanceType,
-        ...(isDecisionTask(element) ? [BpmnProperty.decisionTask] : [isScriptTask(element) ? [BpmnProperty.scriptTask] : [BpmnProperty.implementation]])
+        ...(isDecisionTask(element) ? [BpmnProperty.decisionTask] : [isScriptTask(element) ?
+            [BpmnProperty.scriptTask] : [isEmailServiceTask(element) ?
+                [BpmnProperty.emailServiceTask] : [BpmnProperty.implementation]]])
     ],
     [BpmnElement.CallActivity]: [
         BpmnProperty.id,
