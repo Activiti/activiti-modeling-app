@@ -158,4 +158,50 @@ describe('VariableSelectorComponent', () => {
         component.onVariableSelect(vars[0]);
         expect(component.variableSelected.emit).toHaveBeenCalledWith(vars[0]);
     });
+
+    describe('Clear selection', () => {
+        beforeEach(() => {
+            component.displayClearButton = true;
+        });
+
+        it('should not display clear selection button if no variable is selected', async () => {
+            component.varIdSelected = null;
+            component.ngOnInit();
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const clearButton = fixture.debugElement.query(By.css('.variables-selector-clear-button'));
+
+            expect(clearButton).toBeNull();
+        });
+
+        it('should display clear selection button if variable is selected', async () => {
+            component.varIdSelected = vars[0].id;
+            component.ngOnInit();
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const clearButton = fixture.debugElement.query(By.css('.variables-selector-clear-button'));
+
+            expect(clearButton).not.toBeNull();
+        });
+
+        it('should clear the variable selection when clicking the button', async () => {
+            spyOn(component.variableSelected, 'emit');
+
+            component.varIdSelected = vars[0].id;
+            component.ngOnInit();
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const clearButton = fixture.debugElement.query(By.css('.variables-selector-clear-button'));
+            clearButton.nativeElement.click();
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            expect(component.varIdSelected).toEqual(null);
+            expect(component.search).toEqual('');
+            expect(component.variableSelected.emit).toHaveBeenCalledWith(null);
+        });
+    });
 });

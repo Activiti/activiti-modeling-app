@@ -122,16 +122,12 @@
                         <mat-tab *ngIf="mappingType === 'input'" data-automation-id="process-variable-tab"
                             label="{{ valueColumnHeader | translate}}">
                             <ng-container *ngIf="selectedTab===0 && tabCheck === selectedTab">
-                                <button mat-flat-button (click)="clearSelection(selectedRow)"
-                                    *ngIf="variableValue | variableIdFromVariableName: editorVariables"
-                                    class="mapping-dialog-variable-selector-clear-button">
-                                    <mat-icon>backspace</mat-icon> {{'SDK.VARIABLE_EXPRESSION.TITLE.CLEAR_SELECTION'| translate}}
-                                </button>
                                 <div class="mapping-dialog-variable-selector">
                                     <modelingsdk-variable-selector [variables]="editorVariables"
                                         [varIdSelected]="variableValue | variableIdFromVariableName: editorVariables"
                                         [typeFilter]="dataSource[selectedRow].type | variablePrimitiveType"
                                         (variableSelected)="mappingChanges($event?.name,selectedRow)"
+                                        [displayClearButton]="true"
                                         [attr.data-automation-id]="'process-variable-select'">
                                     </modelingsdk-variable-selector>
                                 </div>

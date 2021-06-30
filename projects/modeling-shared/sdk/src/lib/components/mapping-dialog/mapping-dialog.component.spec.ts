@@ -326,46 +326,6 @@ describe('MappingDialogComponent', () => {
         });
     });
 
-    describe('Clear selection', () => {
-        it('should not display clear selection button if no variable is selected', async () => {
-            const inputData = { ...mockDialogDataInputMapping, inputMapping: {} };
-            setUpTestBed(inputData);
-            component.ngOnInit();
-            fixture.detectChanges();
-            await fixture.whenStable();
-
-            const clearButton = element.query(By.css('.mapping-dialog-variable-selector-clear-button'));
-
-            expect(clearButton).toBeNull();
-        });
-
-        it('should display clear selection button if variable is selected', async () => {
-            setUpTestBed(mockDialogDataInputMapping);
-            component.ngOnInit();
-            fixture.detectChanges();
-            await fixture.whenStable();
-
-            const clearButton = element.query(By.css('.mapping-dialog-variable-selector-clear-button'));
-
-            expect(clearButton).not.toBeNull();
-        });
-
-        it('should clear the variable selection when clicking the button', async () => {
-            setUpTestBed(mockDialogDataInputMapping);
-            component.ngOnInit();
-            fixture.detectChanges();
-            await fixture.whenStable();
-
-            const clearButton = element.query(By.css('.mapping-dialog-variable-selector-clear-button'));
-            clearButton.nativeElement.click();
-            fixture.detectChanges();
-            await fixture.whenStable();
-
-            expect(component.dataSource[0].mappingValueType).toEqual(MappingType.variable);
-            expect(component.dataSource[0].value).toEqual(null);
-        });
-    });
-
     it('should emit null as value if the expression string is empty', async () => {
         setUpTestBed(mockDialogDataInputMapping);
         component.ngOnInit();

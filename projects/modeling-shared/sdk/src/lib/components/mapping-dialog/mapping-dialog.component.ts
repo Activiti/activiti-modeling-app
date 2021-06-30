@@ -242,10 +242,6 @@ export class MappingDialogComponent implements OnInit {
         return array.filter(prop => this.service.getPrimitiveType(prop.type) === this.service.getPrimitiveType(type)).sort(this.sortByName);
     }
 
-    clearSelection(i: number) {
-        this.variableMappingValueChange(null, i);
-    }
-
     mappingChanges(event: string, i: number) {
         if (event && event.match(this.EXPRESSION_REGEX)) {
             this.valueMappingExpressionChange(event, i);

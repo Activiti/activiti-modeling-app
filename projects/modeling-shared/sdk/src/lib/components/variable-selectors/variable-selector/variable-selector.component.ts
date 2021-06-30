@@ -42,6 +42,9 @@ export class VariableSelectorComponent implements OnInit, OnChanges {
     @Input()
     filterExpressionVariables = false;
 
+    @Input()
+    displayClearButton = false;
+
     @Output()
     variableSelected = new EventEmitter<ElementVariable>();
 
@@ -74,6 +77,12 @@ export class VariableSelectorComponent implements OnInit, OnChanges {
 
     onVariableSelect(variable: ElementVariable) {
         this.variableSelected.emit(variable);
+    }
+
+    clearSelection() {
+        this.varIdSelected = null;
+        this.clearSearch();
+        this.onVariableSelect(null);
     }
 
     private getFilteredVariables() {

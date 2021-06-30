@@ -5,6 +5,15 @@
     $primary: map-get($theme, primary);
 
     .variables-selector {
+        &-header {
+            display: flex;
+
+            .variables-selector-clear-button {
+                position: relative;
+                top: 6px;
+            }
+        }
+
         &-search {
             font-size: mat-font-size($alfresco-typography, caption);
 
