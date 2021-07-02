@@ -36,5 +36,5 @@ export const dashboardRoutes: Routes = [
         outlet: 'search'
     },
     { path: '', redirectTo: '/dashboard/projects?maxItems=25&skipCount=0&sort=name,asc', pathMatch: 'full' },
-    { path: '', redirectTo: '/dashboard/example-projects?maxItems=10&skipCount=0&sort=name,asc', pathMatch: 'full' }
+    { path: '', redirectTo: '/dashboard/sample-projects?maxItems=10&skipCount=0&sort=name,asc', pathMatch: 'full' }
 ];
