@@ -5,13 +5,13 @@
     "SAVE_CONNECTOR": "Zapisz łącznik",
     "CONNECTOR_VALID": "Łącznik jest prawidłowy",
     "CONNECTOR_INVALID": "Łącznik zawiera błędy weryfikacji.",
-    "UPLOAD_SUCCESS": "Przesłano łącznik",
+    "UPLOAD_SUCCESS": "Łącznik przesłany",
     "TABS": {
-      "CONNECTOR_EDITOR": "Edytor łączników",
+      "CONNECTOR_EDITOR": "Edytor łącznika",
       "JSON_EDITOR": "Edytor JSON"
     },
     "ERRORS": {
-      "GET_CONNECTOR": "Wystąpił problem podczas przesyłania łącznika. Spróbuj przesłać go ponownie."
+      "GET_CONNECTOR": "Wystąpił problem podczas ładowania łącznika. Spróbuj załadować go ponownie."
     },
     "DIALOG": {
       "TITLE": "Ustawienia edytora łącznika",
@@ -19,6 +19,6 @@
       "CANCEL": "Anuluj",
       "APPLY": "Zastosuj"
     },
-    "NAME": "Edytor łączników"
+    "NAME": "Edytor łącznika"
   }
 }

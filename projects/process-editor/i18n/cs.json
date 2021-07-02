@@ -5,8 +5,9 @@
     "VALIDATE_PROCESS": "Ověřit proces",
     "SAVE_PROCESS": "Uložit proces",
     "SELECT_PROCESS_VARIABLE": "Vybrat proměnnou procesu",
+    "SCRIPT_NAME": "Název skriptu",
     "PRIORITIES": {
-      "NONE": "Žádné",
+      "NONE": "Žádný",
       "LOW": "Nízká",
       "MEDIUM": "Střední",
       "HIGH": "Vysoká"
@@ -18,7 +19,7 @@
       "DATE": "Datum"
     },
     "MULTI_INSTANCE_TYPES": {
-      "NONE": "Žádné",
+      "NONE": "Žádný",
       "PARALLEL": "Paralelní",
       "SEQUENCE": "Sekvenční"
     },
@@ -34,7 +35,7 @@
       "ZOOM_OUT": "Oddálit",
       "UNDO": "Zpět",
       "FIT_VIEW_PORT": "Přizpůsobit zobrazení",
-      "REDO": "Opakovat",
+      "REDO": "Zopakovat akci",
       "LASSO_TOOL": "Nástroj Laso"
     },
     "ELEMENT_PROPERTIES": {
@@ -50,6 +51,7 @@
       "MAPPING_TYPE": "Typ mapování",
       "MAP_VARIABLES": "Mapovat proměnné",
       "SEND_ALL_VARIABLES": "Odesílat všechny proměnné",
+      "EDIT_EMAIL_TEMPLATE": "Upravit e-mailovou šablonu",
       "SEND_NO_VARIABLES": "Neodesílat proměnné",
       "SIGNAL_NAME": "Název signálu",
       "ERROR_NAME": "Název chyby",
@@ -84,6 +86,7 @@
       "ACTIVITY_NAME": "Volaný element",
       "PROCESS": "Proces",
       "PROCESS_VARIABLE": "Proměnná procesu",
+      "FILTER_PROCESS_VARIABLE": "Filtrovat proměnnou procesu",
       "USE_PROCESS_VARIABLE": "Použít proměnnou procesu",
       "USE_EXPRESSION": "Použít výraz",
       "PROCESS_VARIABLES": "Proměnné procesu",
@@ -93,6 +96,7 @@
       "PROCESS_NAME_REQUIRED": "Název procesu je povinný",
       "INVALID_PROCESS_NAME": "Neplatný název procesu",
       "INVALID_NAME_LENGTH": "Název musí obsahovat méně než 40 znaků.",
+      "INVALID_DOCUMENTATION_LENGTH": "Dokumentace musí mít méně než 256 znaků",
       "INVALID_FORM_NAME": "Neplatný název formuláře",
       "INVALID_EXPRESSION": "Neplatný výraz ${condition}",
       "MESSAGE": "Zpráva",
@@ -193,6 +197,7 @@
     "PROCESS_INVALID": "Proces obsahuje chyby ověření.",
     "ERRORS": {
       "NO_PROCESS_VARIABLES": "Žádné proměnné procesu",
+      "CREATE_PROCESS_VARIABLE": "Vytvořte proměnnou procesu, abyste mohli přidat přiřazení výrazu.",
       "NO_SUB_PROCESS_VARIABLES": "Žádné proměnné podprocesu",
       "LOAD_DIAGRAM": "Došlo k problému při načítání diagramu. Zkuste obnovit stránku.",
       "SAVE_DIAGRAM": "Při ukládání diagramu došlo k problému. Zkuste ho uložit znovu.",

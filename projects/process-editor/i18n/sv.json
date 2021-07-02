@@ -5,6 +5,7 @@
     "VALIDATE_PROCESS": "Validera process",
     "SAVE_PROCESS": "Spara process",
     "SELECT_PROCESS_VARIABLE": "Välj processvariabel",
+    "SCRIPT_NAME": "Skriptnamn",
     "PRIORITIES": {
       "NONE": "Ingen",
       "LOW": "Låg",
@@ -50,6 +51,7 @@
       "MAPPING_TYPE": "Mappningstyp",
       "MAP_VARIABLES": "Mappa variabler",
       "SEND_ALL_VARIABLES": "Skicka alla variabler",
+      "EDIT_EMAIL_TEMPLATE": "Redigera e-postmall",
       "SEND_NO_VARIABLES": "Skicka inte variabler",
       "SIGNAL_NAME": "Signalnamn",
       "ERROR_NAME": "Felnamn",
@@ -68,8 +70,8 @@
       "IMPLEMENTATION": "Implementering",
       "DECISION_TASK": "Beslutsuppgift",
       "DECISION_TABLE_NAME": "Beslutstabellnamn",
-      "INPUT_MAPPING": "Inmatningsmappning",
-      "OUTPUT_MAPPING": "Utmatningsmappning",
+      "INPUT_MAPPING": "Indata-mappning",
+      "OUTPUT_MAPPING": "Utdata-mappning",
       "INPUTS": "Inmatningar",
       "OUTPUTS": "Utmatningar",
       "INPUT": "Inmatning",
@@ -84,6 +86,7 @@
       "ACTIVITY_NAME": "Anropat element",
       "PROCESS": "Process",
       "PROCESS_VARIABLE": "Processvariabel",
+      "FILTER_PROCESS_VARIABLE": "Filtrera processvariabel",
       "USE_PROCESS_VARIABLE": "Använd processvariabel",
       "USE_EXPRESSION": "Använd uttryck",
       "PROCESS_VARIABLES": "Processvariabler",
@@ -93,6 +96,7 @@
       "PROCESS_NAME_REQUIRED": "Processnamn krävs",
       "INVALID_PROCESS_NAME": "Ogiltigt processnamn",
       "INVALID_NAME_LENGTH": "Namnet måste vara kortare än 40 tecken",
+      "INVALID_DOCUMENTATION_LENGTH": "Dokumentationen måste bestå av mindre än 256 tecken",
       "INVALID_FORM_NAME": "Ogiltigt formulärnamn",
       "INVALID_EXPRESSION": "Ogiltigt uttryck ${villkor}",
       "MESSAGE": "Meddelande",
@@ -140,7 +144,7 @@
       "TIMERS": {
         "TIMER_TYPE": "Timertyp",
         "TIMER_DEFINITION": "Timerdefinition",
-        "REQUIRED": "Krävs",
+        "REQUIRED": "Obligatorisk",
         "YEARS": "År",
         "MONTHS": "Månader",
         "WEEKS": "Veckor",
@@ -193,6 +197,7 @@
     "PROCESS_INVALID": "Processen innehåller valideringsfel.",
     "ERRORS": {
       "NO_PROCESS_VARIABLES": "Inga processvariabler",
+      "CREATE_PROCESS_VARIABLE": "Skapa en processvariabel för att lägga till uttryckstilldelning",
       "NO_SUB_PROCESS_VARIABLES": "Inga delprocessvariabler",
       "LOAD_DIAGRAM": "Vi stötte på ett problem med att läsa in diagrammet. Prova att uppdatera sidan.",
       "SAVE_DIAGRAM": "Vi stötte på ett problem med att spara diagrammet. Försök att spara det igen.",
@@ -207,7 +212,7 @@
       "TABLE": {
         "COLUMN_NAME": "Namn",
         "COLUMN_TYPE": "Typ",
-        "COLUMN_REQUIRED": "Krävs",
+        "COLUMN_REQUIRED": "Obligatorisk",
         "COLUMN_VALUE": "Värde",
         "NO_PROPERTIES": "Välj eller skapa en variabel för att visa dess egenskaper"
       },
@@ -218,7 +223,7 @@
     "PALETTE": {
       "CALL_ACTIVITY": "Skapa anropsaktivitet",
       "CONNECT_TOOL": "Globalt anslutningsverktyg",
-      "CONTAINER": "Dedikerade tjänster",
+      "CONTAINER": "Dedikerade servicer",
       "END_EVENT": "Skapa sluthändelse",
       "GATEWAY": "Skapa gateway",
       "HAND_TOOL": "Handverktyg",

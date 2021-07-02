@@ -163,6 +163,7 @@
       "FORM_WIDGET_UPDATED": "Widget de formulaire enregistré"
     },
     "ERROR": {
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} du même nom existe déjà",
       "UPLOAD_FILE": "Un problème est survenu lors de l'importation du fichier. Essayez de l'importer à nouveau.",
       "DELETE_PROJECT": "Un problème est survenu lors de la suppression du projet. Essayez de le supprimer à nouveau.",
       "CHANGE_FAVORITE": "Un problème est survenu lors de l'ajout du projet aux favoris. Essayez à nouveau de l'ajouter aux favoris.",

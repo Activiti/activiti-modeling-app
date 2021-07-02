@@ -1,16 +1,17 @@
 {
   "SDK": {
     "SNACKBAR": {
-      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "粘贴的值必须采用此模式"
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "粘贴的值必须遵循这个模式"
     },
     "ALL": "全部",
     "VALUE": "值",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "需要名称",
-        "INVALID_NAME": "变量名称无效",
-        "VARIABLE_NAME_TOOLTIP": "名称必须以字母开头，且只能包含字母数字字符和下划线",
-        "NAME_ALREADY_EXISTS": "变量名称必须唯一"
+        "INVALID_NAME": "无效的变量名称",
+        "VARIABLE_NAME_TOOLTIP": "名称必须以字母开头，只能包含字母数字字符和下划线",
+        "NAME_ALREADY_EXISTS": "变量名称必须是唯一的",
+        "FILE_ALREADY_EXISTS": "文件已经存在"
       },
       "TABS": {
         "VIEWER": "属性查看器",
@@ -27,23 +28,43 @@
     "VARIABLE_MAPPING": {
       "PARAMETER": "参数",
       "VALUE": "值",
-      "PROCESS_VARIABLE": "单个流程变量",
+      "PROCESS_VARIABLE": "流程变量",
       "SWITCH_VAR_VAL": "切换变量/值",
-      "NO_PROCESS_PROPERTIES": "没有流程变量",
-      "NO_PAYLOAD": "消息没有有效负载。在消息抛出事件中添加有效负载。",
-      "CLEAR_ASSIGNMENT": "清除赋值",
+      "NO_PROCESS_PROPERTIES": "没有流程属性",
+      "NO_PAYLOAD": "消息没有有效 payload。在消息抛出事件中添加有效 payload。",
+      "CLEAR_ASSIGNMENT": "清除分配",
+      "MAPPING_TYPE": "映射类型",
+      "MAP_VARIABLES": "映射变量",
+      "MAP_NO_VARIABLE": "不要映射变量",
+      "MAP_ALL": "映射所有的输入/输出变量",
+      "MAP_ALL_INPUTS": "映射所有的输入变量",
+      "MAP_ALL_OUTPUTS": "映射所有的输出变量",
       "NONE": "无"
     },
     "MESSAGES_EDITOR": {
       "TITLE": "流程消息",
       "ERRORS": {
         "EMPTY_NAME": "需要名称",
-        "NAME_ALREADY_EXISTS": "消息名称必须唯一"
+        "NAME_ALREADY_EXISTS": "消息名称必须是唯一的"
       },
       "TABLE": {
         "COLUMN_NAME": "名称",
         "COLUMN_ID": "ID",
-        "NO_MESSAGES": "选择或创建要查看属性的消息"
+        "NO_MESSAGES": "选择或创建一个消息，以查看其属性"
+      }
+    },
+    "ERRORS_EDITOR": {
+      "TITLE": "流程错误",
+      "ERRORS": {
+        "EMPTY_NAME": "需要名称",
+        "EMPTY_CODE": "需要有一个错误代码",
+        "NAME_ALREADY_EXISTS": "流程错误名称必须是唯一的"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "错误名称",
+        "COLUMN_CODE": "错误代码",
+        "COLUMN_ID": "错误 Id",
+        "NO_PROCESS_ERRORS": "选择或创建一个流程错误，以查看其属性"
       }
     },
     "MAPPING_DIALOG": {
@@ -51,13 +72,60 @@
       "SELECTOR_TITLE": "选择要编辑的变量映射类型",
       "INPUT_MAPPING": "输入映射",
       "OUTPUT_MAPPING": "输出映射",
-      "PROCESS_VARIABLE": "单个流程变量",
+      "PROCESS_VARIABLE": "流程变量",
       "INPUT_PARAMETER": "输入参数",
       "OUTPUT_PARAMETER": "输出参数",
       "VALUE_MAPPING": "值",
       "EXPRESSION_MAPPING": "表达式",
       "NONE": "无",
       "TYPE": "类型"
+    },
+    "SAVE_AS_DIALOG": {
+      "TITLE": "保存为",
+      "FIELD_PROPERTIES": {
+        "NAME": "名称",
+        "DESCRIPTION": "说明"
+      }
+    },
+    "EXPRESSION_CODE_EDITOR": {
+      "EDIT_IN_DIALOG": "在对话框中编辑",
+      "EXPRESSION_EDITOR": "表达式编辑器",
+      "NO_BRACKETS_HINT": "此编辑器中的整个表达式将被保存在波形括号 (${...}) 内，因此不需要键入它们"
+    },
+    "VARIABLES_SELECTORS": {
+      "ACTIONS": {
+        "SEARCH": "搜索"
+      }
+    },
+    "CONDITION": {
+      "TYPES": {
+        "START_EVENT": "启动事件",
+        "PROCESS": "流程",
+        "SERVICE_TASK": "服务任务",
+        "CALLED_ELEMENT": "调用的元素",
+        "SCRIPT_TASK": "脚本任务",
+        "DECISION_TABLE": "决策表",
+        "USER_TASK": "用户任务",
+        "NONE": "无",
+        "EVENT": "事件",
+        "EMAIL_SERVICE_TASK": "电子邮件服务任务"
+      },
+      "TOOLTIP": {
+        "VARIABLE": "变量",
+        "PROCESS_VARIABLE_TOOLTIP": "{{processName}}的进程变量",
+        "NONE_VARIABLE_TOOLTIP": "选择“无”以清除所选内容",
+        "OUTPUT_VARIABLE_TOOLTIP": "{{taskType}} {{taskName}} 的输出",
+        "PROPERTIES": "属性"
+      }
+    },
+    "VARIABLE_EXPRESSION": {
+      "TITLE": {
+        "VARIABLES": "变量",
+        "EXPRESSION": "表达式",
+        "OPEN_EXPRESSION_EDITOR": "打开表达式编辑器对话框",
+        "SWITCH_TO_VARIABLES": "切换到变量选择器",
+        "CLEAR_SELECTION": "清除选定内容"
+      }
     }
   }
 }

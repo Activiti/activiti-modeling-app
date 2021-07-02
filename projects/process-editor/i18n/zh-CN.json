@@ -5,6 +5,7 @@
     "VALIDATE_PROCESS": "验证流程",
     "SAVE_PROCESS": "保存流程",
     "SELECT_PROCESS_VARIABLE": "选择流程变量",
+    "SCRIPT_NAME": "脚本名称",
     "PRIORITIES": {
       "NONE": "无",
       "LOW": "低",
@@ -34,7 +35,7 @@
       "ZOOM_OUT": "缩小",
       "UNDO": "撤消",
       "FIT_VIEW_PORT": "适应视区",
-      "REDO": "恢复",
+      "REDO": "重做",
       "LASSO_TOOL": "套索工具"
     },
     "ELEMENT_PROPERTIES": {
@@ -50,12 +51,13 @@
       "MAPPING_TYPE": "映射类型",
       "MAP_VARIABLES": "映射变量",
       "SEND_ALL_VARIABLES": "不发送所有变量",
+      "EDIT_EMAIL_TEMPLATE": "编辑电子邮件模板",
       "SEND_NO_VARIABLES": "不发送变量",
       "SIGNAL_NAME": "信号名称",
       "ERROR_NAME": "错误名称",
       "ERROR_CODE": "错误代码",
-      "CREATE_NEW_SIGNAL": "新建信号",
-      "CREATE_NEW_ERROR": "Create new error",
+      "CREATE_NEW_SIGNAL": "创建新建的信号",
+      "CREATE_NEW_ERROR": "创建新的错误",
       "SCOPE": "范围",
       "SCOPE_VALUES": {
         "GLOBAL": "全局",
@@ -83,7 +85,8 @@
       "PRIORITY": "优先级",
       "ACTIVITY_NAME": "调用的元素",
       "PROCESS": "流程",
-      "PROCESS_VARIABLE": "单个流程变量",
+      "PROCESS_VARIABLE": "流程变量",
+      "FILTER_PROCESS_VARIABLE": "筛选流程变量",
       "USE_PROCESS_VARIABLE": "使用流程变量",
       "USE_EXPRESSION": "使用表达式",
       "PROCESS_VARIABLES": "多个流程变量",
@@ -93,11 +96,12 @@
       "PROCESS_NAME_REQUIRED": "流程名称必填",
       "INVALID_PROCESS_NAME": "无效的流程名称",
       "INVALID_NAME_LENGTH": "名称必须少于40个字符",
+      "INVALID_DOCUMENTATION_LENGTH": "文档必须少于256个字符",
       "INVALID_FORM_NAME": "无效的表单名称",
       "INVALID_EXPRESSION": "无效的表达式 ${condition}",
       "MESSAGE": "消息",
       "MESSAGE_NAME": "消息名称",
-      "CREATE_NEW_MESSAGE": "新建消息",
+      "CREATE_NEW_MESSAGE": "创建新的消息",
       "MAP_MESSAGE": "Map message to process variables",
       "CORRELATION_KEY": "相关性键",
       "CLASS": "类",
@@ -118,17 +122,17 @@
       "INVALID_ELEMENT_VARIABLE": "值必须是字符串类型",
       "MESSAGE_EXPRESSION_INVALID": "值必须是数字或一个表达式",
       "MESSAGE_PAYLOAD": {
-        "TITLE": "消息负载",
+        "TITLE": "消息 payload",
         "ADD": "添加",
-        "CREATE_PROPERTY": "新建属性",
-        "NO_PROPERTIES": "消息没有有效负载。在消息抛出事件中添加有效负载。",
+        "CREATE_PROPERTY": "创建新的属性",
+        "NO_PROPERTIES": "消息没有有效 payload。在消息抛出事件中添加有效 payload。",
         "FORM": {
           "NAME": "名称",
           "TYPE": "类型",
-          "PROCESS_VARIABLE": "单个流程变量",
+          "PROCESS_VARIABLE": "流程变量",
           "VALUE": "值"
         },
-        "INVALID_PAYLOAD_NAME": "无效的负载名称"
+        "INVALID_PAYLOAD_NAME": "无效的 payload 名称"
       },
       "CALLED_ELEMENT": {
         "DIALOG": {
@@ -151,7 +155,7 @@
         "REPETITIONS": "重复",
         "DATE": "日期",
         "USE_PROCESS_VARIABLE": "使用流程变量",
-        "PROCESS_VARIABLE": "单个流程变量",
+        "PROCESS_VARIABLE": "流程变量",
         "USE_CRON_EXPRESSION": "使用 cron 表达式",
         "CRON_EXPRESSION": "Cron 表达式",
         "INVALID_CRON_EXPRESSION": "无效的 cron 表达式"
@@ -193,6 +197,7 @@
     "PROCESS_INVALID": "流程包含验证错误。",
     "ERRORS": {
       "NO_PROCESS_VARIABLES": "无流程变量",
+      "CREATE_PROCESS_VARIABLE": "创建流程变量以添加表达式赋值",
       "NO_SUB_PROCESS_VARIABLES": "无子流程变量",
       "LOAD_DIAGRAM": "加载图表时遇到问题。尝试刷新页面。",
       "SAVE_DIAGRAM": "保存图表时遇到问题。尝试重新保存。",

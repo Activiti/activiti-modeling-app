@@ -37,6 +37,7 @@
       "CONFIRM": {
         "TITLE": "Vous êtes sûr ?",
         "SUBTITLE": "Voulez-vous vraiment effectuer cette action ?",
+        "EMAIL_TEMPLATE_DESCRIPTION": "Cette action ne peut pas être annulée",
         "BUTTON": "Confirmer",
         "RELEASE": "Voulez-vous vraiment lancer une nouvelle version de ce projet ?",
         "TYPES": {
@@ -74,10 +75,24 @@
           "DECISION_TABLE": "Voulez-vous vraiment enregistrer cette table de décision ?",
           "CONNECTOR": "Voulez-vous vraiment enregistrer ce connecteur ?",
           "FILE": "Voulez-vous vraiment enregistrer ce fichier ?",
+          "EMAIL_TEMPLATE": "Voulez-vous vraiment remplacer le modèle d'e-mail ?",
           "SCRIPT": "Voulez-vous vraiment enregistrer ce script ?",
           "TRIGGER": "Voulez-vous vraiment enregistrer ce déclencheur ?",
           "MODEL": "Voulez-vous vraiment enregistrer ce modèle de contenu ?",
           "FORM_WIDGET": "Voulez-vous vraiment enregistrer ce widget de formulaire ?"
+        },
+        "SAVE_AS": {
+          "PROCESS": "Voulez-vous vraiment copier ce processus ?",
+          "FORM": "Voulez-vous vraiment copier ce formulaire ?",
+          "UI": "Voulez-vous vraiment copier cette IU ?",
+          "DATA": "Voulez-vous vraiment copier cet objet de données ?",
+          "DECISION_TABLE": "Voulez-vous vraiment copier cette table de décision ?",
+          "CONNECTOR": "Voulez-vous vraiment copier ce connecteur ?",
+          "FILE": "Voulez-vous vraiment copier ce fichier ?",
+          "SCRIPT": "Voulez-vous vraiment copier ce script ?",
+          "TRIGGER": "Voulez-vous vraiment copier ce déclencheur ?",
+          "MODEL": "Voulez-vous vraiment copier ce modèle de contenu ?",
+          "FORM_WIDGET": "Voulez-vous vraiment copier ce widget de formulaire ?"
         },
         "DOWNLOAD": {
           "PROCESS": "Voulez-vous vraiment télécharger ce processus ?",
@@ -101,7 +116,8 @@
       "RELEASE": "Libérer",
       "COLLABORATORS": "Collaborateurs",
       "SEE_RELEASES": "Voir les versions",
-      "DOWNLOAD": "Télécharger"
+      "DOWNLOAD": "Télécharger",
+      "SAVE_AS": "Enregistrer sous"
     },
     "SETTINGS": {
       "HEADER": "Paramètres de l'application"
@@ -110,6 +126,7 @@
       "ERRORS": {
         "CHANGE_USER": "Changer d'utilisateur",
         "NOT_VALID_JSON": "Objet JSON non valide",
+        "NOT_VALID_HTML": "Objet HTML non valide",
         "NOT_VALID_SCHEMA": "L'objet JSON ne correspond pas au schéma"
       }
     },

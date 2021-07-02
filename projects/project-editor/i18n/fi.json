@@ -4,7 +4,7 @@
     "NAME": "Projektieditori",
     "UPLOAD_FILE": "Lataa tiedosto",
     "DOWNLOAD_PROJECT": "Lataa projekti",
-    "PROJECT_VALID": "Projektissa ei ole vahvistusivirheitä.",
+    "PROJECT_VALID": "Projekti ei sisällä vahvistusivirheitä.",
     "EXPORT_SUCCESS": "Projekti viety",
     "SETTINGS": {
       "PROJECT_SETTINGS": "Projektieditorin asetukset",
@@ -163,6 +163,7 @@
       "FORM_WIDGET_UPDATED": "Lomakepiensovellus tallennettu"
     },
     "ERROR": {
+      "UPLOAD_DUPLICATE_FILE": "Samanniminen {{modelType}} on jo olemassa",
       "UPLOAD_FILE": "Tiedoston lataamisessa palvelimelle ilmeni ongelma. Yritä ladata se uudelleen.",
       "DELETE_PROJECT": "Projektin poistamisessa ilmeni ongelma. Yritä poistaa se uudelleen.",
       "CHANGE_FAVORITE": "Projektin lisäämisessä suosikkeihin ilmeni ongelma. Yritä lisätä se uudelleen.",

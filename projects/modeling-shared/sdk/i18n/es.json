@@ -8,9 +8,10 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Se requiere un nombre",
-        "INVALID_NAME": "Nombre de variable no válido",
-        "VARIABLE_NAME_TOOLTIP": "El nombre debe comenzar con una letra y solo puede contener caracteres alfanuméricos y guiones bajos.",
-        "NAME_ALREADY_EXISTS": "Los nombres de las variables deben ser únicos"
+        "INVALID_NAME": "Nombre de la variable no es válido",
+        "VARIABLE_NAME_TOOLTIP": "El nombre debe empezar por una letra y sólo puede contener caracteres alfanuméricos y guiones bajos",
+        "NAME_ALREADY_EXISTS": "Los nombres de las variables deben ser únicos",
+        "FILE_ALREADY_EXISTS": "El fichero ya existe"
       },
       "TABS": {
         "VIEWER": "Visor de propiedades",
@@ -19,7 +20,7 @@
       "TABLE": {
         "COLUMN_NAME": "Nombre",
         "COLUMN_TYPE": "Tipo",
-        "COLUMN_REQUIRED": "Requerido",
+        "COLUMN_REQUIRED": "Obligatorio",
         "COLUMN_VALUE": "Valor",
         "NO_PROPERTIES": "Seleccione o cree una variable para ver sus propiedades"
       }
@@ -27,37 +28,104 @@
     "VARIABLE_MAPPING": {
       "PARAMETER": "Parámetro",
       "VALUE": "Valor",
-      "PROCESS_VARIABLE": "Variable de proceso",
+      "PROCESS_VARIABLE": "Variable del proceso",
       "SWITCH_VAR_VAL": "Alternar variable/valor",
-      "NO_PROCESS_PROPERTIES": "Sin propiedades de proceso",
+      "NO_PROCESS_PROPERTIES": "No hay propiedades de proceso",
       "NO_PAYLOAD": "El mensaje no tiene carga. Añada una carga en el evento de lanzamiento del mensaje.",
-      "CLEAR_ASSIGNMENT": "Eliminar asignación",
+      "CLEAR_ASSIGNMENT": "Borrar asignación",
+      "MAPPING_TYPE": "Tipo de asignación",
+      "MAP_VARIABLES": "Asignar variables",
+      "MAP_NO_VARIABLE": "No asignar variables",
+      "MAP_ALL": "Asignar todas las variables de entradas/salidas",
+      "MAP_ALL_INPUTS": "Asignar todas las variables de entradas",
+      "MAP_ALL_OUTPUTS": "Asignar todas las variables de salidas",
       "NONE": "Ninguno"
     },
     "MESSAGES_EDITOR": {
-      "TITLE": "Procesar mensajes",
+      "TITLE": "Mensajes del proceso",
       "ERRORS": {
         "EMPTY_NAME": "Se requiere un nombre",
-        "NAME_ALREADY_EXISTS": "Los nombres de los mensajes deben ser únicos"
+        "NAME_ALREADY_EXISTS": "Los nombres de mensaje deben ser únicos"
       },
       "TABLE": {
         "COLUMN_NAME": "Nombre",
         "COLUMN_ID": "ID",
-        "NO_MESSAGES": "Seleccione o cree un mensaje para ver sus propiedades"
+        "NO_MESSAGES": "Seleccione o cree un mensaje para ver las propiedades"
+      }
+    },
+    "ERRORS_EDITOR": {
+      "TITLE": "Errores del proceso",
+      "ERRORS": {
+        "EMPTY_NAME": "Se requiere un nombre",
+        "EMPTY_CODE": "Se requiere un código de error",
+        "NAME_ALREADY_EXISTS": "Los nombres de los errores de proceso deben ser únicos"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nombre de error",
+        "COLUMN_CODE": "Código de error",
+        "COLUMN_ID": "ID del error",
+        "NO_PROCESS_ERRORS": "Seleccione o cree un error de proceso para ver las propiedades"
       }
     },
     "MAPPING_DIALOG": {
-      "TITLE": "Editar asignación de variables",
-      "SELECTOR_TITLE": "Seleccione el tipo de asignación de variables que editar",
-      "INPUT_MAPPING": "Asignación de entradas",
-      "OUTPUT_MAPPING": "Asignación de salidas",
-      "PROCESS_VARIABLE": "Variable de proceso",
+      "TITLE": "Editar la asignación de variables",
+      "SELECTOR_TITLE": "Seleccionar el tipo de asignación de variables para editar",
+      "INPUT_MAPPING": "Asignación de entrada",
+      "OUTPUT_MAPPING": "Asignación de salida",
+      "PROCESS_VARIABLE": "Variable del proceso",
       "INPUT_PARAMETER": "Parámetro de entrada",
       "OUTPUT_PARAMETER": "Parámetro de salida",
       "VALUE_MAPPING": "Valor",
       "EXPRESSION_MAPPING": "Expresión",
       "NONE": "Ninguno",
       "TYPE": "Tipo"
+    },
+    "SAVE_AS_DIALOG": {
+      "TITLE": "Guardar como",
+      "FIELD_PROPERTIES": {
+        "NAME": "Nombre",
+        "DESCRIPTION": "Descripción"
+      }
+    },
+    "EXPRESSION_CODE_EDITOR": {
+      "EDIT_IN_DIALOG": "Editar en el diálogo",
+      "EXPRESSION_EDITOR": "Editor de expresiones",
+      "NO_BRACKETS_HINT": "La expresión completa en este editor se guardará entre llaves (${...}) para que no tenga que escribirlas"
+    },
+    "VARIABLES_SELECTORS": {
+      "ACTIONS": {
+        "SEARCH": "Buscar"
+      }
+    },
+    "CONDITION": {
+      "TYPES": {
+        "START_EVENT": "Evento inicial",
+        "PROCESS": "Proceso",
+        "SERVICE_TASK": "Tarea de servicio",
+        "CALLED_ELEMENT": "Elemento llamado",
+        "SCRIPT_TASK": "Tarea de script",
+        "DECISION_TABLE": "Tabla de decisión",
+        "USER_TASK": "Tarea de usuario",
+        "NONE": "Ninguno",
+        "EVENT": "Evento",
+        "EMAIL_SERVICE_TASK": "Tarea de servicio de correo electrónico"
+      },
+      "TOOLTIP": {
+        "VARIABLE": "Variable",
+        "PROCESS_VARIABLE_TOOLTIP": "Process variable of {{processName}}",
+        "NONE_VARIABLE_TOOLTIP": "Seleccione \"Ninguno\" para borrar la selección",
+        "OUTPUT_VARIABLE_TOOLTIP": "Salida del {{taskType}} {{taskName}}",
+        "PROPERTIES": "Propiedades"
+      }
+    },
+    "VARIABLE_EXPRESSION": {
+      "TITLE": {
+        "VARIABLES": "Variables",
+        "EXPRESSION": "Expresión",
+        "OPEN_EXPRESSION_EDITOR": "Abrir el diálogo del editor de expresiones",
+        "SWITCH_TO_VARIABLES": "Cambiar al selector de variables",
+        "CLEAR_SELECTION": "Borrar selección"
+      }
     }
   }
 }

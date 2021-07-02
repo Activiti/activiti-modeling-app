@@ -163,6 +163,7 @@
       "FORM_WIDGET_UPDATED": "Formulärwidget sparad"
     },
     "ERROR": {
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} med samma namn finns redan",
       "UPLOAD_FILE": "Vi stötte på ett problem med att ladda upp filen. Försök att ladda upp den igen.",
       "DELETE_PROJECT": "Vi stötte på ett problem när filen raderades. Försök att radera den igen.",
       "CHANGE_FAVORITE": "Vi stötte på ett problem när filen skulle favoritmarkeras. Försök att favoritmarkera den igen.",

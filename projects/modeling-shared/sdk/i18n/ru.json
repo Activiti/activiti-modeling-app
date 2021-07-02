@@ -1,16 +1,17 @@
 {
   "SDK": {
     "SNACKBAR": {
-      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Вставляемые значения должны соответствовать данному шаблону"
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Вставленные значения должны соответствовать этому шаблону"
     },
     "ALL": "Все",
     "VALUE": "Значение",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Необходимо указать имя",
-        "INVALID_NAME": "Неверное имя переменной",
+        "INVALID_NAME": "Недопустимое имя переменной",
         "VARIABLE_NAME_TOOLTIP": "Имя должно начинаться с буквы и может содержать только буквенно-цифровые символы и символы подчеркивания",
-        "NAME_ALREADY_EXISTS": "Имена переменных должны быть уникальными"
+        "NAME_ALREADY_EXISTS": "Имена переменных должны быть уникальными",
+        "FILE_ALREADY_EXISTS": "Файл уже существует"
       },
       "TABS": {
         "VIEWER": "Средство просмотра свойств",
@@ -19,7 +20,7 @@
       "TABLE": {
         "COLUMN_NAME": "Имя",
         "COLUMN_TYPE": "Тип",
-        "COLUMN_REQUIRED": "Обязательное поле",
+        "COLUMN_REQUIRED": "Обязательно",
         "COLUMN_VALUE": "Значение",
         "NO_PROPERTIES": "Выберите либо создайте переменную, чтобы увидеть ее свойства"
       }
@@ -28,10 +29,16 @@
       "PARAMETER": "Параметр",
       "VALUE": "Значение",
       "PROCESS_VARIABLE": "Переменная процесса",
-      "SWITCH_VAR_VAL": "Переключить переменную/значение",
+      "SWITCH_VAR_VAL": "Переключение переменной/значения",
       "NO_PROCESS_PROPERTIES": "Нет свойств процесса",
       "NO_PAYLOAD": "У сообщения нет полезной нагрузки. Добавьте полезную нагрузку в событие-инициатор",
-      "CLEAR_ASSIGNMENT": "Удалить назначение",
+      "CLEAR_ASSIGNMENT": "Очистить назначение",
+      "MAPPING_TYPE": "Тип сопоставления",
+      "MAP_VARIABLES": "Сопоставить переменные",
+      "MAP_NO_VARIABLE": "Не сопоставлять переменные",
+      "MAP_ALL": "Сопоставить все входные/выходные переменные",
+      "MAP_ALL_INPUTS": "Сопоставить все входные переменные",
+      "MAP_ALL_OUTPUTS": "Сопоставить все выходные переменные",
       "NONE": "Нет"
     },
     "MESSAGES_EDITOR": {
@@ -43,14 +50,28 @@
       "TABLE": {
         "COLUMN_NAME": "Имя",
         "COLUMN_ID": "Идентификатор",
-        "NO_MESSAGES": "Выберите либо создайте сообщение, чтобы увидеть его свойства"
+        "NO_MESSAGES": "Выберите или создайте сообщение, чтобы просмотреть его свойства"
+      }
+    },
+    "ERRORS_EDITOR": {
+      "TITLE": "Ошибки процесса",
+      "ERRORS": {
+        "EMPTY_NAME": "Необходимо указать имя",
+        "EMPTY_CODE": "Необходимо указать код ошибки",
+        "NAME_ALREADY_EXISTS": "Имена ошибок процесса должны быть уникальными"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Имя ошибки",
+        "COLUMN_CODE": "Код ошибки",
+        "COLUMN_ID": "Идентификатор ошибки",
+        "NO_PROCESS_ERRORS": "Выберите или создайте ошибку процесса для просмотра ее свойств"
       }
     },
     "MAPPING_DIALOG": {
-      "TITLE": "Редактировать отображение переменной",
-      "SELECTOR_TITLE": "Выберите тип отображения переменной для редактирования",
-      "INPUT_MAPPING": "Входное сопоставление",
-      "OUTPUT_MAPPING": "Выходное сопоставление",
+      "TITLE": "Редактировать сопоставление переменных",
+      "SELECTOR_TITLE": "Выберите тип сопоставления переменных для редактирования",
+      "INPUT_MAPPING": "Сопоставление ввода",
+      "OUTPUT_MAPPING": "Сопоставление вывода",
       "PROCESS_VARIABLE": "Переменная процесса",
       "INPUT_PARAMETER": "Входной параметр",
       "OUTPUT_PARAMETER": "Выходной параметр",
@@ -58,6 +79,53 @@
       "EXPRESSION_MAPPING": "Выражение",
       "NONE": "Нет",
       "TYPE": "Тип"
+    },
+    "SAVE_AS_DIALOG": {
+      "TITLE": "Сохранить как",
+      "FIELD_PROPERTIES": {
+        "NAME": "Имя",
+        "DESCRIPTION": "Описание"
+      }
+    },
+    "EXPRESSION_CODE_EDITOR": {
+      "EDIT_IN_DIALOG": "Редактировать в диалоговом окне",
+      "EXPRESSION_EDITOR": "Редактор выражений",
+      "NO_BRACKETS_HINT": "Все выражение в этом редакторе будет сохранено в фигурных скобках (${...}), поэтому вам не нужно их вводить."
+    },
+    "VARIABLES_SELECTORS": {
+      "ACTIONS": {
+        "SEARCH": "Поиск"
+      }
+    },
+    "CONDITION": {
+      "TYPES": {
+        "START_EVENT": "Стартовое событие",
+        "PROCESS": "Процесс",
+        "SERVICE_TASK": "Сервисная задача",
+        "CALLED_ELEMENT": "Вызванный элемент",
+        "SCRIPT_TASK": "Задача сценария",
+        "DECISION_TABLE": "Таблица принятия решения",
+        "USER_TASK": "Задача пользователя",
+        "NONE": "Нет",
+        "EVENT": "Событие",
+        "EMAIL_SERVICE_TASK": "Задача для почтового сервиса"
+      },
+      "TOOLTIP": {
+        "VARIABLE": "Переменная",
+        "PROCESS_VARIABLE_TOOLTIP": "Переменная процесса {{processName}}",
+        "NONE_VARIABLE_TOOLTIP": "Выберите «Нет», чтобы очистить выбор",
+        "OUTPUT_VARIABLE_TOOLTIP": "Вывод {{taskType}} {{taskName}}",
+        "PROPERTIES": "Свойства"
+      }
+    },
+    "VARIABLE_EXPRESSION": {
+      "TITLE": {
+        "VARIABLES": "Переменные",
+        "EXPRESSION": "Выражение",
+        "OPEN_EXPRESSION_EDITOR": "Открыть диалоговое окно редактора выражений",
+        "SWITCH_TO_VARIABLES": "Переключить на средство выбора переменных",
+        "CLEAR_SELECTION": "Очистить выбор"
+      }
     }
   }
 }

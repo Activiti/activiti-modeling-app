@@ -163,6 +163,7 @@
       "FORM_WIDGET_UPDATED": "フォームウィジェットが保存されました"
     },
     "ERROR": {
+      "UPLOAD_DUPLICATE_FILE": "同じ名前の{{modelType}}が既に存在しています",
       "UPLOAD_FILE": "ファイルのアップロード中に問題が発生しました。アップロードをやり直してください。",
       "DELETE_PROJECT": "プロジェクトの削除中に問題が発生しました。削除をやり直してください。",
       "CHANGE_FAVORITE": "プロジェクトをお気に入りに登録中に問題が発生しました。お気に入りへの登録をやり直してください。",
@@ -176,7 +177,7 @@
       "UPDATE_PROCESS": {
         "DUPLICATION": "同じ名前のプロセスが既に存在します",
         "GENERAL": "プロセスの保存中に問題が発生しました。保存をやり直してください。",
-        "EMPTY_NAME": "名前を指定してください"
+        "EMPTY_NAME": "名前は必須です"
       },
       "CREATE_CONNECTOR": {
         "DUPLICATION": "同じ名前のコネクタが既に存在します",

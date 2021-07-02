@@ -1,21 +1,21 @@
 {
   "CONNECTOR_EDITOR": {
     "DOWNLOAD_CONNECTOR": "موصل التنزيل",
-    "VALIDATE_CONNECTOR": "التحقق من الموصل",
+    "VALIDATE_CONNECTOR": "التحقق من صحة الموصل",
     "SAVE_CONNECTOR": "حفظ الموصل",
-    "CONNECTOR_VALID": "الموصل صحيح",
-    "CONNECTOR_INVALID": "الموصل يحتوي على أخطاء تحقق.",
+    "CONNECTOR_VALID": "الموصل صالح",
+    "CONNECTOR_INVALID": "يحتوي الموصل على أخطاء التحقق من الصحة.",
     "UPLOAD_SUCCESS": "تم تحميل الموصل",
     "TABS": {
       "CONNECTOR_EDITOR": "محرر الموصل",
       "JSON_EDITOR": "محرر JSON"
     },
     "ERRORS": {
-      "GET_CONNECTOR": "نواجه مشكلة في تحميل الموصل. حاول تحميله مرة أخرى."
+      "GET_CONNECTOR": "واجهتنا مشكلة في تحميل الموصل. حاول تحميله مرة أخرى."
     },
     "DIALOG": {
       "TITLE": "إعدادات محرر الموصل",
-      "SHOW": "إظهار الموصلات مع القوالب على الشريط الجانبي الأيسر",
+      "SHOW": "عرض الموصلات مع قوالب على الشريط الجانبي الأيسر",
       "CANCEL": "إلغاء",
       "APPLY": "تطبيق"
     },

@@ -8,7 +8,7 @@
     "ADD_ACTION": "Lägg till ny åtgärd",
     "ADD_EVENT": "Lägg till ny händelse",
     "HEADER": {
-      "APP_NAME": "Modellera program",
+      "APP_NAME": "Modeling Application",
       "SIGN_OUT": "Logga ut",
       "SETTINGS": "Inställningar",
       "ABOUT": "Om",
@@ -21,21 +21,24 @@
       "CREATE": "Skapa",
       "UPDATE": "Uppdatera",
       "CLOSE": "Stäng",
+      "DONT_SAVE": "Spara ej",
+      "UNSAVED_PAGE_TITLE": "Vill du spara ändringarna som gjordes av",
       "EDIT_PROPERTIES": "Redigera processvariabler",
       "EDIT_PROCESS_MESSAGES": "Redigera meddelanden",
+      "EDIT_PROCESS_ERRORS": "Redigera fel",
       "EDIT_FORM_PROPERTIES": "Redigera formulärvariabler",
       "EDIT_VISIBILITY_CONDITIONS": "Redigera synlighetsvillkor",
       "ERROR": {
         "TITLE": "Vill du ändå spara den?",
-        "SUBTITLE": "Valideringsfel",
+        "SUBTITLE": "Valideringsfel:",
         "NAME_DOESNT_MATCH_PATTERN": "Namnet motsvarar inte följande mönster",
         "GENERAL_NAME_VALIDATION": "Namnet måste vara i gemener och mellan 1 och 26 tecken långt. Alfanumeriska tecken och bindestreck är tillåtna, men namnet måste börja med en bokstav och sluta alfanumeriskt."
       },
       "CONFIRM": {
         "TITLE": "Är du säker?",
         "SUBTITLE": "Är du säker på att du vill genomföra denna åtgärd?",
+        "EMAIL_TEMPLATE_DESCRIPTION": "Denna åtgärd kan inte ångras",
         "BUTTON": "Bekräfta",
-        "UNSAVED_PAGE": "Är du säker på att du vill lämna utan att spara {{ types }}",
         "RELEASE": "Är du säker på att du vill avsäga en ny version av det här projektet?",
         "TYPES": {
           "DECISION": "beslutstabell",
@@ -46,7 +49,9 @@
           "PROCESS": "Process",
           "FILE": "fil",
           "SCRIPT": "skript",
-          "TRIGGER": "Utlösare"
+          "TRIGGER": "Utlösare",
+          "MODEL": "Innehållsmodell",
+          "CUSTOM-FORM-WIDGET": "Widgetform"
         },
         "DELETE": {
           "PROJECT": "Är du säker på att du vill radera det här projektet?",
@@ -58,7 +63,9 @@
           "CONNECTOR": "Är du säker på att du vill radera den här konnektorn?",
           "FILE": "Är du säker på att du vill radera den här filen?",
           "SCRIPT": "Är du säker på att du vill radera detta skript?",
-          "TRIGGER": "Är du säker på att du vill radera den här utlösaren?"
+          "TRIGGER": "Är du säker på att du vill radera den här utlösaren?",
+          "MODEL": "Är du säker på att du vill radera den här innehållsmodellen?",
+          "FORM_WIDGET": "Är du säker på att du vill radera det här formuläret?"
         },
         "SAVE": {
           "PROCESS": "Är du säker på att du vill spara den här processen?",
@@ -68,8 +75,24 @@
           "DECISION_TABLE": "Är du säker på att du vill spara den här beslutstabellen?",
           "CONNECTOR": "Är du säker på att du vill spara den här konnektorn?",
           "FILE": "Är du säker på att du vill spara den här filen?",
+          "EMAIL_TEMPLATE": "Vill du verkligen skriva över e-postmallen?",
           "SCRIPT": "Är du säker på att du vill spara detta skript?",
-          "TRIGGER": "Är du säker på att du vill spara den här utlösaren?"
+          "TRIGGER": "Är du säker på att du vill spara den här utlösaren?",
+          "MODEL": "Är du säker på att du vill spara den här innehållsmodellen?",
+          "FORM_WIDGET": "Är du säker på att du vill spara det här formuläret?"
+        },
+        "SAVE_AS": {
+          "PROCESS": "Vill du verkligen kopiera den här processen?",
+          "FORM": "Vill du verkligen kopiera det här formuläret?",
+          "UI": "Vill du verkligen kopiera detta användargränssnitt?",
+          "DATA": "Vill du verkligen kopiera detta dataobjekt?",
+          "DECISION_TABLE": "Vill du verkligen kopiera denna beslutstabell?",
+          "CONNECTOR": "Vill du verkligen kopiera denna konnektor?",
+          "FILE": "Vill du verkligen kopiera den här filen?",
+          "SCRIPT": "Vill du verkligen kopiera det här skriptet?",
+          "TRIGGER": "Vill du verkligen kopiera den här utlösaren?",
+          "MODEL": "Vill du verkligen kopiera den här innehållsmodellen?",
+          "FORM_WIDGET": "Vill du verkligen kopiera den här formulärwidgeten?"
         },
         "DOWNLOAD": {
           "PROCESS": "Är du säker på att du vill ladda ner den här processen?",
@@ -81,7 +104,9 @@
           "CONNECTOR": "Är du säker på att du vill ladda ner den här konnektorn?",
           "FILE": "Är du säker på att du vill ladda ner den här filen?",
           "SCRIPT": "Är du säker på att du vill ladda ner detta skript?",
-          "TRIGGER": "Är du säker på att du vill ladda ner den här utlösaren?"
+          "TRIGGER": "Är du säker på att du vill ladda ner den här utlösaren?",
+          "MODEL": "Är du säker på att du vill ladda ner den här innehållsmodellen?",
+          "FORM_WIDGET": "Är du säker på att du vill ladda ner det här formuläret?"
         }
       }
     },
@@ -91,7 +116,8 @@
       "RELEASE": "Avsäga",
       "COLLABORATORS": "Medarbetare",
       "SEE_RELEASES": "Visa versioner",
-      "DOWNLOAD": "Ladda ner"
+      "DOWNLOAD": "Ladda ner",
+      "SAVE_AS": "Spara som"
     },
     "SETTINGS": {
       "HEADER": "Programinställningar"
@@ -100,8 +126,13 @@
       "ERRORS": {
         "CHANGE_USER": "Ändra användare",
         "NOT_VALID_JSON": "Ogiltigt JSON-objekt",
+        "NOT_VALID_HTML": "Ogiltigt HTML-objekt",
         "NOT_VALID_SCHEMA": "JSON-objektet matchar inte schemat"
       }
+    },
+    "EDITOR": {
+      "NAME": "Namn",
+      "DESCRIPTION": "Beskrivning"
     }
   }
 }

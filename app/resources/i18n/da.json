@@ -21,8 +21,11 @@
       "CREATE": "Opret",
       "UPDATE": "Opdater",
       "CLOSE": "Luk",
+      "DONT_SAVE": "Gem ikke",
+      "UNSAVED_PAGE_TITLE": "Vil du gemme ændringerne i",
       "EDIT_PROPERTIES": "Redigér procesvariabler",
-      "EDIT_PROCESS_MESSAGES": "Redigér beskeder",
+      "EDIT_PROCESS_MESSAGES": "Redigér meddelelser",
+      "EDIT_PROCESS_ERRORS": "Redigér fejl",
       "EDIT_FORM_PROPERTIES": "Redigér formularvariabler",
       "EDIT_VISIBILITY_CONDITIONS": "Redigér synlighedsbetingelser",
       "ERROR": {
@@ -34,8 +37,8 @@
       "CONFIRM": {
         "TITLE": "Er du sikker?",
         "SUBTITLE": "Er du sikker på, at du vil udføre denne handling?",
+        "EMAIL_TEMPLATE_DESCRIPTION": "Denne handling kan ikke fortrydes",
         "BUTTON": "Bekræft",
-        "UNSAVED_PAGE": "Er du sikker på, at du vil forlade uden at gemme {{ types }}",
         "RELEASE": "Er du sikker på, at du vil frigive en ny version af dette projekt?",
         "TYPES": {
           "DECISION": "beslutningstabel",
@@ -46,7 +49,9 @@
           "PROCESS": "Proces",
           "FILE": "fil",
           "SCRIPT": "script",
-          "TRIGGER": "Udløser"
+          "TRIGGER": "Trigger",
+          "MODEL": "Indholdsmodel",
+          "CUSTOM-FORM-WIDGET": "Formularwidget"
         },
         "DELETE": {
           "PROJECT": "Er du sikker på, at du vil slette dette projekt?",
@@ -58,7 +63,9 @@
           "CONNECTOR": "Er du sikker på, at du vil slette denne forbindelse?",
           "FILE": "Er du sikker på, at du vil slette denne fil?",
           "SCRIPT": "Er du sikker på, at du vil slette dette script?",
-          "TRIGGER": "Er du sikker på, at du vil slette denne udløser?"
+          "TRIGGER": "Er du sikker på, at du vil slette denne Trigger?",
+          "MODEL": "Vil du slette denne indholdsmodel?",
+          "FORM_WIDGET": "Vil du slette denne formularwidget?"
         },
         "SAVE": {
           "PROCESS": "Er du sikker på, at du vil gemme denne proces?",
@@ -68,8 +75,24 @@
           "DECISION_TABLE": "Er du sikker på, at du vil gemme denne beslutningstabel?",
           "CONNECTOR": "Er du sikker på, at du vil gemme denne forbindelse?",
           "FILE": "Er du sikker på, at du vil gemme denne fil?",
+          "EMAIL_TEMPLATE": "Er du sikker på, at du vil overskrive e-mail-skabelonen?",
           "SCRIPT": "Er du sikker på, at du vil gemme dette script?",
-          "TRIGGER": "Er du sikker på, at du vil gemme denne udløser?"
+          "TRIGGER": "Er du sikker på, at du vil gemme denne Trigger?",
+          "MODEL": "Vil du gemme denne indholdsmodel?",
+          "FORM_WIDGET": "Vil du gemme denne formularwidget?"
+        },
+        "SAVE_AS": {
+          "PROCESS": "Er du sikker på, at du vil kopiere denne proces?",
+          "FORM": "Er du sikker på, at du vil gemme denne formular?",
+          "UI": "Er du sikker på, at du vil gemme denne UI?",
+          "DATA": "Er du sikker på, at du vil gemme dette dataobjekt?",
+          "DECISION_TABLE": "Er du sikker på, at du vil gemme denne beslutningstabel?",
+          "CONNECTOR": "Er du sikker på, at du vil gemme denne forbindelse?",
+          "FILE": "Er du sikker på, at du vil gemme denne fil?",
+          "SCRIPT": "Er du sikker på, at du vil gemme dette script?",
+          "TRIGGER": "Er du sikker på, at du vil gemme denne Trigger?",
+          "MODEL": "Vil du gemme denne indholdsmodel?",
+          "FORM_WIDGET": "Vil du gemme denne formularwidget?"
         },
         "DOWNLOAD": {
           "PROCESS": "Er du sikker på, at du vil downloade denne proces?",
@@ -81,7 +104,9 @@
           "CONNECTOR": "Er du sikker på, at du vil downloade denne forbindelse?",
           "FILE": "Er du sikker på, at du vil downloade denne fil?",
           "SCRIPT": "Er du sikker på, at du vil downloade dette script?",
-          "TRIGGER": "Er du sikker på, at du vil downloade denne udløser?"
+          "TRIGGER": "Er du sikker på, at du vil downloade denne Trigger?",
+          "MODEL": "Vil du downloade denne indholdsmodel?",
+          "FORM_WIDGET": "Vil du downloade denne formularwidget?"
         }
       }
     },
@@ -91,7 +116,8 @@
       "RELEASE": "Frigiv",
       "COLLABORATORS": "Samarbejdspartnere",
       "SEE_RELEASES": "Vis frigivelser",
-      "DOWNLOAD": "Download"
+      "DOWNLOAD": "Download",
+      "SAVE_AS": "Gem som"
     },
     "SETTINGS": {
       "HEADER": "Appindstillinger"
@@ -100,8 +126,13 @@
       "ERRORS": {
         "CHANGE_USER": "Skift bruger",
         "NOT_VALID_JSON": "Ugyldigt JSON-objekt",
+        "NOT_VALID_HTML": "Ugyldigt JSON-objekt",
         "NOT_VALID_SCHEMA": "JSON-objektet matcher ikke skemaet"
       }
+    },
+    "EDITOR": {
+      "NAME": "Navn",
+      "DESCRIPTION": "Beskrivelse"
     }
   }
 }

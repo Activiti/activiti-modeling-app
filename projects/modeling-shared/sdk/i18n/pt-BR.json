@@ -1,19 +1,20 @@
 {
   "SDK": {
     "SNACKBAR": {
-      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Os valores colados devem seguir este padrão"
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Valores colados devem seguir este padrão"
     },
     "ALL": "Todos",
     "VALUE": "Valor",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "O nome é obrigatório",
-        "INVALID_NAME": "Nome de variável inválido",
-        "VARIABLE_NAME_TOOLTIP": "O nome deve começar com uma letra e só pode ter caracteres alfanuméricos e sublinhados",
-        "NAME_ALREADY_EXISTS": "Nomes de variáveis devem ser exclusivos"
+        "INVALID_NAME": "Nome inválido da variável",
+        "VARIABLE_NAME_TOOLTIP": "O nome deve iniciar com uma letra e só pode conter caracteres alfanuméricos e sublinhados",
+        "NAME_ALREADY_EXISTS": "Nomes de variáveis devem ser exclusivos",
+        "FILE_ALREADY_EXISTS": "O arquivo já existe"
       },
       "TABS": {
-        "VIEWER": "Visualizador de Propriedades",
+        "VIEWER": "Visualizador de propriedades",
         "JSON_EDITOR": "Editor JSON"
       },
       "TABLE": {
@@ -27,15 +28,21 @@
     "VARIABLE_MAPPING": {
       "PARAMETER": "Parâmetro",
       "VALUE": "Valor",
-      "PROCESS_VARIABLE": "Variável do processo",
+      "PROCESS_VARIABLE": "Variável de processo",
       "SWITCH_VAR_VAL": "Alternar variável/valor",
-      "NO_PROCESS_PROPERTIES": "Sem propriedades de processo",
+      "NO_PROCESS_PROPERTIES": "Nenhuma propriedade do processo",
       "NO_PAYLOAD": "A mensagem não tem carga. Adicione uma carga ao evento de throw de mensagem.",
       "CLEAR_ASSIGNMENT": "Limpar atribuição",
+      "MAPPING_TYPE": "Tipo de mapeamento",
+      "MAP_VARIABLES": "Mapear variáveis",
+      "MAP_NO_VARIABLE": "Não mapear variáveis",
+      "MAP_ALL": "Mapear todas as variáveis de entradas/saídas",
+      "MAP_ALL_INPUTS": "Mapear todas as variáveis de entradas",
+      "MAP_ALL_OUTPUTS": "Mapear todas as variáveis de saídas",
       "NONE": "Nenhum"
     },
     "MESSAGES_EDITOR": {
-      "TITLE": "Processar mensagens",
+      "TITLE": "Mensagens do processo",
       "ERRORS": {
         "EMPTY_NAME": "O nome é obrigatório",
         "NAME_ALREADY_EXISTS": "Nomes de mensagens devem ser exclusivos"
@@ -43,21 +50,82 @@
       "TABLE": {
         "COLUMN_NAME": "Nome",
         "COLUMN_ID": "ID",
-        "NO_MESSAGES": "Selecione ou crie uma mensagem para exibir suas propriedades"
+        "NO_MESSAGES": "Selecione ou crie uma mensagem para visualizar suas propriedades"
+      }
+    },
+    "ERRORS_EDITOR": {
+      "TITLE": "Erros do processo",
+      "ERRORS": {
+        "EMPTY_NAME": "O nome é obrigatório",
+        "EMPTY_CODE": "Um código de erro é necessário",
+        "NAME_ALREADY_EXISTS": "Nomes de erro de processo devem ser exclusivos"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nome do erro",
+        "COLUMN_CODE": "Código de erro",
+        "COLUMN_ID": "Id do erro",
+        "NO_PROCESS_ERRORS": "Selecione ou crie um erro do processo para visualizar suas propriedades"
       }
     },
     "MAPPING_DIALOG": {
       "TITLE": "Editar mapeamento de variável",
-      "SELECTOR_TITLE": "Selecione o tipo de mapeamento de variável para editar",
+      "SELECTOR_TITLE": "Selecione o tipo de mapeamento de variável a editar",
       "INPUT_MAPPING": "Mapeamento de entrada",
       "OUTPUT_MAPPING": "Mapeamento de saída",
-      "PROCESS_VARIABLE": "Variável do processo",
+      "PROCESS_VARIABLE": "Variável de processo",
       "INPUT_PARAMETER": "Parâmetro de entrada",
       "OUTPUT_PARAMETER": "Parâmetro de saída",
       "VALUE_MAPPING": "Valor",
       "EXPRESSION_MAPPING": "Expressão",
       "NONE": "Nenhum",
       "TYPE": "Tipo"
+    },
+    "SAVE_AS_DIALOG": {
+      "TITLE": "Salvar como",
+      "FIELD_PROPERTIES": {
+        "NAME": "Nome",
+        "DESCRIPTION": "Descrição"
+      }
+    },
+    "EXPRESSION_CODE_EDITOR": {
+      "EDIT_IN_DIALOG": "Editar na caixa de diálogo",
+      "EXPRESSION_EDITOR": "Editor de expressão",
+      "NO_BRACKETS_HINT": "A expressão inteira neste editor será salva entre chaves (${...}) para que você não precise digitá-la"
+    },
+    "VARIABLES_SELECTORS": {
+      "ACTIONS": {
+        "SEARCH": "Pesquisar"
+      }
+    },
+    "CONDITION": {
+      "TYPES": {
+        "START_EVENT": "Evento de início",
+        "PROCESS": "Processo",
+        "SERVICE_TASK": "Tarefa de serviço",
+        "CALLED_ELEMENT": "Elemento chamado",
+        "SCRIPT_TASK": "Tarefa de script",
+        "DECISION_TABLE": "Tabela de decisão",
+        "USER_TASK": "Tarefa de usuário",
+        "NONE": "Nenhum",
+        "EVENT": "Evento",
+        "EMAIL_SERVICE_TASK": "Tarefa do serviço de email"
+      },
+      "TOOLTIP": {
+        "VARIABLE": "Variável",
+        "PROCESS_VARIABLE_TOOLTIP": "Variável do processo de {{processName}}",
+        "NONE_VARIABLE_TOOLTIP": "Selecionar 'Nenhum' para limpar a seleção",
+        "OUTPUT_VARIABLE_TOOLTIP": "Saída de {{taskType}} {{taskName}}",
+        "PROPERTIES": "Propriedades"
+      }
+    },
+    "VARIABLE_EXPRESSION": {
+      "TITLE": {
+        "VARIABLES": "Variáveis",
+        "EXPRESSION": "Expressão",
+        "OPEN_EXPRESSION_EDITOR": "Abrir a caixa do editor de expressões",
+        "SWITCH_TO_VARIABLES": "Alternar para o seletor de variáveis",
+        "CLEAR_SELECTION": "Limpar seleção"
+      }
     }
   }
 }

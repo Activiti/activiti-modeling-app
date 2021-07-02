@@ -32,11 +32,12 @@
         "TITLE": "¿Quiere guardarlo de todas formas?",
         "SUBTITLE": "Errores de validación:",
         "NAME_DOESNT_MATCH_PATTERN": "El nombre no sigue el siguiente patrón",
-        "GENERAL_NAME_VALIDATION": "El nombre debe ir en minúsculas y tener entre 1 y 26 caracteres de longitud. Se permiten los caracteres alfanuméricos y los guiones bajos, pero el nombre debe empezar por una letra y acabar alfanuméricamente."
+        "GENERAL_NAME_VALIDATION": "El nombre debe ir en minúsculas y tener entre 1 y 26 caracteres de longitud. Se permiten los caracteres alfanuméricos y los guiones, pero el nombre debe empezar por una letra y acabar alfanuméricamente."
       },
       "CONFIRM": {
         "TITLE": "¿Está seguro?",
         "SUBTITLE": "¿Está seguro de que desea realizar esta acción?",
+        "EMAIL_TEMPLATE_DESCRIPTION": "Esta acción no puede deshacerse",
         "BUTTON": "Confirmar",
         "RELEASE": "¿Está seguro de que desea lanzar una versión nueva de este proyecto?",
         "TYPES": {
@@ -74,10 +75,24 @@
           "DECISION_TABLE": "¿Está seguro de que desea guardar esta tabla de decisión?",
           "CONNECTOR": "¿Está seguro de que desea guardar este conector?",
           "FILE": "¿Está seguro de que desea guardar este fichero?",
+          "EMAIL_TEMPLATE": "¿Está seguro de que desea sobrescribir la plantilla de correo electrónico?",
           "SCRIPT": "¿Está seguro de que desea guardar este script?",
           "TRIGGER": "¿Está seguro de que desea guardar este desencadenador?",
           "MODEL": "¿Está seguro de que desea guardar este modelo de contenido?",
           "FORM_WIDGET": "¿Está seguro de que desea guardar este widget de formulario?"
+        },
+        "SAVE_AS": {
+          "PROCESS": "¿Está seguro de que desea copiar este proceso?",
+          "FORM": "¿Está seguro de que desea copiar este formulario?",
+          "UI": "¿Está seguro de que desea copiar esta IU?",
+          "DATA": "¿Está seguro de que desea copiar este objeto de datos?",
+          "DECISION_TABLE": "¿Está seguro de que desea copiar esta tabla de decisión?",
+          "CONNECTOR": "¿Está seguro de que desea copiar este conector?",
+          "FILE": "¿Está seguro de que desea copiar este fichero?",
+          "SCRIPT": "¿Está seguro de que desea copiar este script?",
+          "TRIGGER": "¿Está seguro de que desea copiar este desencadenador?",
+          "MODEL": "¿Está seguro de que desea copiar este modelo de contenido?",
+          "FORM_WIDGET": "¿Está seguro de que desea copiar este widget de formulario?"
         },
         "DOWNLOAD": {
           "PROCESS": "¿Está seguro de que desea descargar este proceso?",
@@ -101,7 +116,8 @@
       "RELEASE": "Liberar",
       "COLLABORATORS": "Colaboradores",
       "SEE_RELEASES": "Ver versiones",
-      "DOWNLOAD": "Descargar"
+      "DOWNLOAD": "Descargar",
+      "SAVE_AS": "Guardar como"
     },
     "SETTINGS": {
       "HEADER": "Config. de aplicación"
@@ -110,6 +126,7 @@
       "ERRORS": {
         "CHANGE_USER": "Cambiar usuario",
         "NOT_VALID_JSON": "Objeto JSON no válido",
+        "NOT_VALID_HTML": "Objeto HTML no válido",
         "NOT_VALID_SCHEMA": "El objeto JSON no coincide con el esquema"
       }
     },

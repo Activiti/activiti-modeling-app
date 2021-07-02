@@ -12,7 +12,7 @@
       "PROJECT_DELETED": "Projekt blev slettet",
       "MENU_ITEMS": {
         "CREATE_PROJECT": "Opret projekt",
-        "UPLOAD_PROJECT": "Uploade projekt",
+        "UPLOAD_PROJECT": "Upload projekt",
         "CREATE_MODEL": "Indholdsmodel"
       }
     },
@@ -34,8 +34,8 @@
         "TOOLTIP": "Udgivne processer"
       },
       "FAVORITES": {
-        "LABEL": "Angivet som favorit",
-        "TOOLTIP": "Angivet som favorit"
+        "LABEL": "Favoritter",
+        "TOOLTIP": "Favoritter"
       }
     },
     "TABLE": {
@@ -43,7 +43,7 @@
       "COLUMN_VERSION": "Version",
       "COLUMN_CREATED": "Oprettet",
       "COLUMN_CREATED_BY": "Oprettet af",
-      "COLUMN_OPTIONS": "Valgmuligheder",
+      "COLUMN_OPTIONS": "Indstillinger",
       "NO_ITEMS": "Opret eller importér et projekt, så det vises på listen.",
       "NO_FAV_PROCESSES": "Angiv en proces som favorit for at gøre den tilgængelig her.",
       "NO_FAV_PROJECTS": "Angiv et projekt som favorit for at gøre det tilgængeligt her.",

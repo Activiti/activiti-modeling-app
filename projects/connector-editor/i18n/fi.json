@@ -1,21 +1,21 @@
 {
   "CONNECTOR_EDITOR": {
     "DOWNLOAD_CONNECTOR": "Lataa liitin",
-    "VALIDATE_CONNECTOR": "Validoi liitin",
+    "VALIDATE_CONNECTOR": "Vahvista liitin",
     "SAVE_CONNECTOR": "Tallenna liitin",
-    "CONNECTOR_VALID": "Liitin on validi",
-    "CONNECTOR_INVALID": "Liittimessä on validointivirhe(itä).",
-    "UPLOAD_SUCCESS": "Liitin ladattu palvelimelle",
+    "CONNECTOR_VALID": "Liitin on vahvistettu",
+    "CONNECTOR_INVALID": "Liitin sisältää vahvistusvirheitä.",
+    "UPLOAD_SUCCESS": "Liitin ladattiin",
     "TABS": {
       "CONNECTOR_EDITOR": "Liitineditori",
       "JSON_EDITOR": "JSON-editori"
     },
     "ERRORS": {
-      "GET_CONNECTOR": "Liittimen lataamisessa ilmeni virhe. Kokeile sen lataamista uudelleen."
+      "GET_CONNECTOR": "Liittimen lataamisessa ilmeni ongelma. Yritä ladata se uudelleen."
     },
     "DIALOG": {
       "TITLE": "Liitineditorin asetukset",
-      "SHOW": "Näytä liittimet mallinnusten vieressä vasemmassa sivupalkissa",
+      "SHOW": "Näytä liittimet vasemassa sivupalkissa olevilla malleilla",
       "CANCEL": "Peruuta",
       "APPLY": "Käytä"
     },

@@ -37,6 +37,7 @@
       "CONFIRM": {
         "TITLE": "実行しますか?",
         "SUBTITLE": "この処理を実行しますか?",
+        "EMAIL_TEMPLATE_DESCRIPTION": "このアクションは元に戻せません",
         "BUTTON": "確定",
         "RELEASE": "このプロジェクトの新しいバージョンをリリースしますか?",
         "TYPES": {
@@ -74,10 +75,24 @@
           "DECISION_TABLE": "このディシジョンテーブルを保存しますか?",
           "CONNECTOR": "このコネクタを保存しますか?",
           "FILE": "このファイルを保存しますか?",
+          "EMAIL_TEMPLATE": "Eメールテンプレートを上書きしますか？",
           "SCRIPT": "このスクリプトを保存しますか?",
           "TRIGGER": "このトリガーを保存しますか?",
           "MODEL": "このコンテンツモデルを保存しますか?",
           "FORM_WIDGET": "このフォームウィジェットを保存しますか?"
+        },
+        "SAVE_AS": {
+          "PROCESS": "このプロセスをコピーしますか？",
+          "FORM": "このフォームをコピーしますか？",
+          "UI": "このUIをコピーしますか？",
+          "DATA": "このデータオブジェクトをコピーしますか？",
+          "DECISION_TABLE": "この意思決定テーブルをコピーしますか？",
+          "CONNECTOR": "このコネクタをコピーしますか？",
+          "FILE": "このファイルをコピーしますか？",
+          "SCRIPT": "このスクリプトをコピーしますか？",
+          "TRIGGER": "このトリガーをコピーしますか？",
+          "MODEL": "このコンテンツモデルをコピーしますか？",
+          "FORM_WIDGET": "このフォームウィジェットをコピーしますか？"
         },
         "DOWNLOAD": {
           "PROCESS": "このプロセスをダウンロードしますか?",
@@ -99,9 +114,10 @@
       "EDIT": "編集",
       "DELETE": "削除",
       "RELEASE": "担当解除",
-      "COLLABORATORS": "共同作業者",
+      "COLLABORATORS": "コラボレーター",
       "SEE_RELEASES": "リリースの表示",
-      "DOWNLOAD": "ダウンロード"
+      "DOWNLOAD": "ダウンロード",
+      "SAVE_AS": "名前を付けて保存"
     },
     "SETTINGS": {
       "HEADER": "アプリケーションの設定"
@@ -110,6 +126,7 @@
       "ERRORS": {
         "CHANGE_USER": "ユーザーの変更",
         "NOT_VALID_JSON": "JSON オブジェクトが無効です",
+        "NOT_VALID_HTML": "無効なHTMLオブジェクト",
         "NOT_VALID_SCHEMA": "JSON オブジェクトがスキーマと一致しません"
       }
     },

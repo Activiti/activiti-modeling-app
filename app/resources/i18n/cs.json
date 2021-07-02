@@ -37,6 +37,7 @@
       "CONFIRM": {
         "TITLE": "Jste si jistí?",
         "SUBTITLE": "Opravdu chcete tuto akci provést?",
+        "EMAIL_TEMPLATE_DESCRIPTION": "Tuto akci nelze vzít zpět",
         "BUTTON": "Potvrdit",
         "RELEASE": "Opravdu chcete vydat novou verzi tohoto projektu?",
         "TYPES": {
@@ -49,7 +50,7 @@
           "FILE": "Soubor",
           "SCRIPT": "skript",
           "TRIGGER": "Aktivační procedura",
-          "MODEL": "Model obsahu",
+          "MODEL": "Model ACS",
           "CUSTOM-FORM-WIDGET": "Widget formuláře"
         },
         "DELETE": {
@@ -63,7 +64,7 @@
           "FILE": "Opravdu chcete tento soubor odstranit?",
           "SCRIPT": "Opravdu chcete tento skript odstranit?",
           "TRIGGER": "Opravdu chcete tuto aktivační proceduru odstranit?",
-          "MODEL": "Opravdu chcete tento model obsahu odstranit?",
+          "MODEL": "Opravdu chcete tento model ACS odstranit?",
           "FORM_WIDGET": "Opravdu chcete tento widget formuláře odstranit?"
         },
         "SAVE": {
@@ -74,10 +75,24 @@
           "DECISION_TABLE": "Opravdu chcete tuto rozhodovací tabulku uložit?",
           "CONNECTOR": "Opravdu chcete tento konektor uložit?",
           "FILE": "Opravdu chcete tento soubor uložit?",
+          "EMAIL_TEMPLATE": "Opravdu chcete přepsat e-mailovou šablonu?",
           "SCRIPT": "Opravdu chcete tento skript uložit?",
           "TRIGGER": "Opravdu chcete tuto aktivační proceduru uložit?",
-          "MODEL": "Opravdu chcete tento model obsahu uložit?",
+          "MODEL": "Opravdu chcete tento model ACS uložit?",
           "FORM_WIDGET": "Opravdu chcete tento widget formuláře uložit?"
+        },
+        "SAVE_AS": {
+          "PROCESS": "Opravdu chcete tento proces kopírovat?",
+          "FORM": "Opravdu chcete kopírovat tento formulář?",
+          "UI": "Opravdu chcete kopírovat toto uživatelské rozhraní?",
+          "DATA": "Opravdu chcete kopírovat tento datový objekt?",
+          "DECISION_TABLE": "Opravdu chcete kopírovat tuto rozhodovací tabulku?",
+          "CONNECTOR": "Opravdu chcete kopírovat tento konektor?",
+          "FILE": "Opravdu chcete kopírovat tento soubor?",
+          "SCRIPT": "Opravdu chcete kopírovat tento skript?",
+          "TRIGGER": "Opravdu chcete kopírovat tento spouštěč?",
+          "MODEL": "Opravdu chcete kopírovat tento ACS obsahu?",
+          "FORM_WIDGET": "Opravdu chcete kopírovat tento widget formuláře?"
         },
         "DOWNLOAD": {
           "PROCESS": "Opravdu chcete tento proces stáhnout?",
@@ -90,7 +105,7 @@
           "FILE": "Opravdu chcete tento soubor stáhnout?",
           "SCRIPT": "Opravdu chcete tento skript stáhnout?",
           "TRIGGER": "Opravdu chcete tuto aktivační proceduru stáhnout?",
-          "MODEL": "Opravdu chcete tento model obsahu stáhnout?",
+          "MODEL": "Opravdu chcete tento model ACS stáhnout?",
           "FORM_WIDGET": "Opravdu chcete tento widget formuláře stáhnout?"
         }
       }
@@ -101,7 +116,8 @@
       "RELEASE": "Vzdát se",
       "COLLABORATORS": "Spolupracovníci",
       "SEE_RELEASES": "Zobrazit verze",
-      "DOWNLOAD": "Stáhnout"
+      "DOWNLOAD": "Stáhnout",
+      "SAVE_AS": "Uložit jako"
     },
     "SETTINGS": {
       "HEADER": "Nastavení aplikace"
@@ -110,6 +126,7 @@
       "ERRORS": {
         "CHANGE_USER": "Změnit uživatele",
         "NOT_VALID_JSON": "Neplatný objekt JSON",
+        "NOT_VALID_HTML": "Neplatný objekt HTML",
         "NOT_VALID_SCHEMA": "Objekt JSON neodpovídá schématu."
       }
     },

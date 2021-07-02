@@ -37,6 +37,7 @@
       "CONFIRM": {
         "TITLE": "Czy na pewno?",
         "SUBTITLE": "Czy na pewno chcesz wykonać tę czynność?",
+        "EMAIL_TEMPLATE_DESCRIPTION": "Tej czynności nie można cofnąć",
         "BUTTON": "Potwierdź",
         "RELEASE": "Czy na pewno chcesz zwolnić nowe wydanie tego projektu?",
         "TYPES": {
@@ -74,10 +75,24 @@
           "DECISION_TABLE": "Czy na pewno chcesz zapisać tę tabelę decyzji?",
           "CONNECTOR": "Czy na pewno chcesz zapisać ten łącznik?",
           "FILE": "Czy na pewno chcesz zapisać ten plik?",
+          "EMAIL_TEMPLATE": "Czy na pewno chcesz nadpisać ten szablon wiadomości e-mail?",
           "SCRIPT": "Czy na pewno chcesz zapisać ten skrypt?",
           "TRIGGER": "Czy na pewno chcesz zapisać ten wyzwalacz?",
           "MODEL": "Czy na pewno chcesz zapisać ten model zawartości?",
           "FORM_WIDGET": "Czy na pewno chcesz zapisać ten widżet formularza?"
+        },
+        "SAVE_AS": {
+          "PROCESS": "Czy na pewno chcesz skopiować ten proces?",
+          "FORM": "Czy na pewno chcesz skopiować ten formularz?",
+          "UI": "Czy na pewno chcesz skopiować ten IU?",
+          "DATA": "Czy na pewno chcesz skopiować ten obiekt danych?",
+          "DECISION_TABLE": "Czy na pewno chcesz skopiować tę tabelę decyzji?",
+          "CONNECTOR": "Czy na pewno chcesz skopiować ten łącznik?",
+          "FILE": "Czy na pewno chcesz skopiować ten plik?",
+          "SCRIPT": "Czy na pewno chcesz skopiować ten skrypt?",
+          "TRIGGER": "Czy na pewno chcesz skopiować ten wyzwalacz?",
+          "MODEL": "Czy na pewno chcesz skopiować ten model zawartości?",
+          "FORM_WIDGET": "Czy na pewno chcesz skopiować ten widżet formularza?"
         },
         "DOWNLOAD": {
           "PROCESS": "Czy na pewno chcesz pobrać ten proces?",
@@ -101,7 +116,8 @@
       "RELEASE": "Zwolnij",
       "COLLABORATORS": "Współpracownicy",
       "SEE_RELEASES": "Wyświetl wydania",
-      "DOWNLOAD": "Pobierz"
+      "DOWNLOAD": "Pobierz",
+      "SAVE_AS": "Zapisz jako"
     },
     "SETTINGS": {
       "HEADER": "Ustawienia aplikacji"
@@ -110,6 +126,7 @@
       "ERRORS": {
         "CHANGE_USER": "Zmień użytkownika",
         "NOT_VALID_JSON": "Nieprawidłowy obiekt JSON",
+        "NOT_VALID_HTML": "Nieprawidłowy obiekt HTML",
         "NOT_VALID_SCHEMA": "Obiekt JSON nie jest zgodny ze schematem"
       }
     },

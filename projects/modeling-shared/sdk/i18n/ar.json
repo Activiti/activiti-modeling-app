@@ -1,16 +1,17 @@
 {
   "SDK": {
     "SNACKBAR": {
-      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "يجب أن تتبع القيم الملصقة هذا النمط"
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "يجب أن تتبع القيم  التي تم لصقها هذا النمط"
     },
     "ALL": "الكل",
     "VALUE": "القيمة",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "مطلوب اسم",
-        "INVALID_NAME": "اسم متغير غير صحيح",
-        "VARIABLE_NAME_TOOLTIP": "يجب أن يبدأ الاسم بحرف على أن يتضمن أحرفًا أبجدية رقمية وشرطات سفلية فقط",
-        "NAME_ALREADY_EXISTS": "يجب أن تكون أسماء المتغيرات فريدة"
+        "INVALID_NAME": "اسم متغير غير صالح",
+        "VARIABLE_NAME_TOOLTIP": "يجب أن يبدأ الاسم بحرف ويمكن أن يحتوي فقط على أحرف أبجدية رقمية وشرطات سفلية",
+        "NAME_ALREADY_EXISTS": "يجب أن تكون أسماء المتغيرات فريدة",
+        "FILE_ALREADY_EXISTS": "الملف موجود بالفعل"
       },
       "TABS": {
         "VIEWER": "عارض الخصائص",
@@ -25,17 +26,23 @@
       }
     },
     "VARIABLE_MAPPING": {
-      "PARAMETER": "المعامل",
+      "PARAMETER": "معلمات",
       "VALUE": "القيمة",
       "PROCESS_VARIABLE": "متغير العملية",
-      "SWITCH_VAR_VAL": "تبديل المتغير/القيمة",
-      "NO_PROCESS_PROPERTIES": "لا خصائص عملية",
-      "NO_PAYLOAD": "الرسالة لا تملك حمولة. أضف حمولة في حدث طرح الرسالة.",
-      "CLEAR_ASSIGNMENT": "مسح المهمة",
+      "SWITCH_VAR_VAL": "تبديل المتغير / القيمة",
+      "NO_PROCESS_PROPERTIES": "لا توجد خصائص للعملية",
+      "NO_PAYLOAD": "لا تملك الرسالة اي حمولة. أضف الحمولة في حدث طرح الرسالة.",
+      "CLEAR_ASSIGNMENT": "مهمة واضحة",
+      "MAPPING_TYPE": "نوع التخطيط",
+      "MAP_VARIABLES": "متغيرات الخريطة",
+      "MAP_NO_VARIABLE": "لا تقم بتخطيط المتغيرات",
+      "MAP_ALL": "قم بتخطيط جميع المدخلات / المخرجات",
+      "MAP_ALL_INPUTS": "تخطيط جميع متغيرات المدخلات",
+      "MAP_ALL_OUTPUTS": "تخطيط جميع متغيرات المخرجات",
       "NONE": "بلا"
     },
     "MESSAGES_EDITOR": {
-      "TITLE": "رسائل العملية",
+      "TITLE": "رسائل المعالجة",
       "ERRORS": {
         "EMPTY_NAME": "مطلوب اسم",
         "NAME_ALREADY_EXISTS": "يجب أن تكون أسماء الرسائل فريدة"
@@ -43,21 +50,82 @@
       "TABLE": {
         "COLUMN_NAME": "الاسم",
         "COLUMN_ID": "المعرف",
-        "NO_MESSAGES": "حدد رسالة أو أنشئها لعرض خصائصها"
+        "NO_MESSAGES": "حدد أو قم بإنشاء رسالة لعرض خصائصها"
+      }
+    },
+    "ERRORS_EDITOR": {
+      "TITLE": "أخطاء العملية",
+      "ERRORS": {
+        "EMPTY_NAME": "مطلوب اسم",
+        "EMPTY_CODE": "رمز الخطأ مطلوب",
+        "NAME_ALREADY_EXISTS": "يجب أن تكون أسماء أخطاء العملية فريدة"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "اسم الخطأ",
+        "COLUMN_CODE": "رمز الخطأ",
+        "COLUMN_ID": "معرف الخطأ",
+        "NO_PROCESS_ERRORS": "حدد أو قم بإنشاء خطأ عملية لعرض خصائصه"
       }
     },
     "MAPPING_DIALOG": {
       "TITLE": "تحرير تخطيط المتغير",
-      "SELECTOR_TITLE": "حدد نوع تخطيط المتغير لتحريره",
+      "SELECTOR_TITLE": "حدد نوع تخطيط المتغير للقيام بتحريره",
       "INPUT_MAPPING": "تخطيط المدخلات",
       "OUTPUT_MAPPING": "تخطيط المخرجات",
       "PROCESS_VARIABLE": "متغير العملية",
-      "INPUT_PARAMETER": "معامل الإدخال",
-      "OUTPUT_PARAMETER": "معامل الإخراج",
+      "INPUT_PARAMETER": "معلمة الإدخال",
+      "OUTPUT_PARAMETER": "معلمة الإخراج",
       "VALUE_MAPPING": "القيمة",
       "EXPRESSION_MAPPING": "التعبير",
       "NONE": "بلا",
       "TYPE": "النوع"
+    },
+    "SAVE_AS_DIALOG": {
+      "TITLE": "حفظ باسم",
+      "FIELD_PROPERTIES": {
+        "NAME": "الاسم",
+        "DESCRIPTION": "الوصف"
+      }
+    },
+    "EXPRESSION_CODE_EDITOR": {
+      "EDIT_IN_DIALOG": "تحرير في مربع الحوار",
+      "EXPRESSION_EDITOR": "محرر التعبير",
+      "NO_BRACKETS_HINT": "سيتم حفظ التعبير كاملاً في هذا المحرر داخل أقواس متعرجة ($ {...}) حتى لا تحتاج إلى كتابتها"
+    },
+    "VARIABLES_SELECTORS": {
+      "ACTIONS": {
+        "SEARCH": "بحث"
+      }
+    },
+    "CONDITION": {
+      "TYPES": {
+        "START_EVENT": "بدء الحدث",
+        "PROCESS": "العملية",
+        "SERVICE_TASK": "مهمة الخدمة",
+        "CALLED_ELEMENT": "العنصر الذي تم استدعاؤه",
+        "SCRIPT_TASK": "مهمة البرنامج النصي",
+        "DECISION_TABLE": "جدول القرارات",
+        "USER_TASK": "مهمة المستخدم",
+        "NONE": "بلا",
+        "EVENT": "حدث",
+        "EMAIL_SERVICE_TASK": "مهمة خدمة البريد الإلكتروني"
+      },
+      "TOOLTIP": {
+        "VARIABLE": "متغير",
+        "PROCESS_VARIABLE_TOOLTIP": "متغير العملية لـ {{processName}}",
+        "NONE_VARIABLE_TOOLTIP": "حدد \"بلا\" لمسح التحديد",
+        "OUTPUT_VARIABLE_TOOLTIP": "مخرجات {{TaskType}} {{taskName}}",
+        "PROPERTIES": "الخصائص"
+      }
+    },
+    "VARIABLE_EXPRESSION": {
+      "TITLE": {
+        "VARIABLES": "متغيرات",
+        "EXPRESSION": "التعبير",
+        "OPEN_EXPRESSION_EDITOR": "افتح مربع حوار محرر التعبير",
+        "SWITCH_TO_VARIABLES": "التبديل إلى محدد المتغيرات",
+        "CLEAR_SELECTION": "مسح التحديد"
+      }
     }
   }
 }

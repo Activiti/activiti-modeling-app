@@ -1,7 +1,7 @@
 {
   "SDK": {
     "SNACKBAR": {
-      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Inklistrade värden måste följa detta mönster"
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Klistrade värden måste följa detta mönster"
     },
     "ALL": "Alla",
     "VALUE": "Värde",
@@ -9,11 +9,12 @@
       "ERRORS": {
         "EMPTY_NAME": "Ett namn krävs",
         "INVALID_NAME": "Ogiltigt variabelnamn",
-        "VARIABLE_NAME_TOOLTIP": "Namnet måste börja med en bokstav och får bara innehålla alfanumeriska tecken och understreck",
-        "NAME_ALREADY_EXISTS": "Variabelnamn måste vara unika"
+        "VARIABLE_NAME_TOOLTIP": "Namnet kan börja med en bokstav och kan endast innehålla alfanumeriska tecken och understrykningar",
+        "NAME_ALREADY_EXISTS": "Variabla namn måste vara unika",
+        "FILE_ALREADY_EXISTS": "Filen finns redan"
       },
       "TABS": {
-        "VIEWER": "Egenskaper visare",
+        "VIEWER": "Egenskap granskare",
         "JSON_EDITOR": "JSON-editor"
       },
       "TABLE": {
@@ -32,13 +33,19 @@
       "NO_PROCESS_PROPERTIES": "Inga processegenskaper",
       "NO_PAYLOAD": "Meddelandet har ingen nyttolast. Lägg till en nyttolast i meddelandets kasthändelse.",
       "CLEAR_ASSIGNMENT": "Rensa tilldelning",
+      "MAPPING_TYPE": "Mappningstyp",
+      "MAP_VARIABLES": "Mappa variabler",
+      "MAP_NO_VARIABLE": "Mappa inte variabler",
+      "MAP_ALL": "Mappa alla inmatningar/utmatningar variabler",
+      "MAP_ALL_INPUTS": "Mappa alla inmatningar variabler",
+      "MAP_ALL_OUTPUTS": "Mappa alla utmatningar variabler",
       "NONE": "Ingen"
     },
     "MESSAGES_EDITOR": {
       "TITLE": "Processmeddelanden",
       "ERRORS": {
         "EMPTY_NAME": "Ett namn krävs",
-        "NAME_ALREADY_EXISTS": "Meddelandets namn måste vara unikt"
+        "NAME_ALREADY_EXISTS": "Meddelandets namn måste vara unika"
       },
       "TABLE": {
         "COLUMN_NAME": "Namn",
@@ -46,11 +53,25 @@
         "NO_MESSAGES": "Välj eller skapa ett meddelande för att visa dess egenskaper"
       }
     },
+    "ERRORS_EDITOR": {
+      "TITLE": "Processfel",
+      "ERRORS": {
+        "EMPTY_NAME": "Ett namn krävs",
+        "EMPTY_CODE": "En felkod krävs",
+        "NAME_ALREADY_EXISTS": "Processfelnamn måste vara unika"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Felnamn",
+        "COLUMN_CODE": "Felkod",
+        "COLUMN_ID": "Fel-ID",
+        "NO_PROCESS_ERRORS": "Välj eller skapa ett processfel för att visa dess egenskaper"
+      }
+    },
     "MAPPING_DIALOG": {
-      "TITLE": "Redigera variabelmappning",
-      "SELECTOR_TITLE": "Välj varibelmappningstyp som ska redigeras",
-      "INPUT_MAPPING": "Inmatningsmappning",
-      "OUTPUT_MAPPING": "Utmatningsmappning",
+      "TITLE": "Redigera variabel mappning",
+      "SELECTOR_TITLE": "Välj den variabla mappningstyp som ska redigeras",
+      "INPUT_MAPPING": "Indata-mappning",
+      "OUTPUT_MAPPING": "Utdata-mappning",
       "PROCESS_VARIABLE": "Processvariabel",
       "INPUT_PARAMETER": "Inmatningsparameter",
       "OUTPUT_PARAMETER": "Utmatningsparameter",
@@ -58,6 +79,53 @@
       "EXPRESSION_MAPPING": "Uttryck",
       "NONE": "Ingen",
       "TYPE": "Typ"
+    },
+    "SAVE_AS_DIALOG": {
+      "TITLE": "Spara som",
+      "FIELD_PROPERTIES": {
+        "NAME": "Namn",
+        "DESCRIPTION": "Beskrivning"
+      }
+    },
+    "EXPRESSION_CODE_EDITOR": {
+      "EDIT_IN_DIALOG": "Redigera i dialog",
+      "EXPRESSION_EDITOR": "Uttryckseditor",
+      "NO_BRACKETS_HINT": "Hela uttrycket i den här editor kommer att sparas inrymt i lockiga parenteser ($ {...}) så att du inte behöver skriva dem"
+    },
+    "VARIABLES_SELECTORS": {
+      "ACTIONS": {
+        "SEARCH": "Sök"
+      }
+    },
+    "CONDITION": {
+      "TYPES": {
+        "START_EVENT": "Starthändelse",
+        "PROCESS": "Process",
+        "SERVICE_TASK": "Serviceuppgift",
+        "CALLED_ELEMENT": "Anropat element",
+        "SCRIPT_TASK": "Skriptuppgift",
+        "DECISION_TABLE": "Beslutstabell",
+        "USER_TASK": "Användaruppgift",
+        "NONE": "Ingen",
+        "EVENT": "Händelse",
+        "EMAIL_SERVICE_TASK": "E-post serviceuppgift"
+      },
+      "TOOLTIP": {
+        "VARIABLE": "Variabel",
+        "PROCESS_VARIABLE_TOOLTIP": "Processvariabel av {{processName}}",
+        "NONE_VARIABLE_TOOLTIP": "Välj 'Ingen' för att rensa urvalet",
+        "OUTPUT_VARIABLE_TOOLTIP": "Utmatning av {{taskType}} {{taskName}}",
+        "PROPERTIES": "Egenskaper"
+      }
+    },
+    "VARIABLE_EXPRESSION": {
+      "TITLE": {
+        "VARIABLES": "Variabler",
+        "EXPRESSION": "Uttryck",
+        "OPEN_EXPRESSION_EDITOR": "Öppna dialog för uttryckseditor",
+        "SWITCH_TO_VARIABLES": "Byt till variabelväljaren",
+        "CLEAR_SELECTION": "Rensa urval"
+      }
     }
   }
 }

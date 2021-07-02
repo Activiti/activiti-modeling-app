@@ -1,21 +1,21 @@
 {
   "CONNECTOR_EDITOR": {
-    "DOWNLOAD_CONNECTOR": "コネクタのダウンロード",
-    "VALIDATE_CONNECTOR": "コネクタの検証",
-    "SAVE_CONNECTOR": "コネクタの保存",
+    "DOWNLOAD_CONNECTOR": "コネクタをダウンロード",
+    "VALIDATE_CONNECTOR": "コネクタを検証",
+    "SAVE_CONNECTOR": "コネクタを保存",
     "CONNECTOR_VALID": "コネクタは有効です",
-    "CONNECTOR_INVALID": "コネクタに検証エラーがあります。",
+    "CONNECTOR_INVALID": "コネクタに検証エラーが含まれています。",
     "UPLOAD_SUCCESS": "コネクタがアップロードされました",
     "TABS": {
       "CONNECTOR_EDITOR": "コネクタエディタ",
       "JSON_EDITOR": "JSON エディタ"
     },
     "ERRORS": {
-      "GET_CONNECTOR": "コネクタのアップロード中に問題が発生しました。アップロードをやり直してください。"
+      "GET_CONNECTOR": "コネクタの読込中に問題が発生しました。アップロードをやり直してください。"
     },
     "DIALOG": {
       "TITLE": "コネクタエディタの設定",
-      "SHOW": "テンプレート付きコネクタを左側のサイドバーに表示",
+      "SHOW": "左側のサイドバーにテンプレート付きのコネクタを表示",
       "CANCEL": "キャンセル",
       "APPLY": "適用"
     },

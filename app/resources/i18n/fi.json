@@ -3,7 +3,7 @@
     "APPLICATION": "Sovellus",
     "BACKEND_SERVICE": "Taustapalvelu",
     "MORE_ACTIONS": "Lisää toimintoja",
-    "VALIDATE_PROJECT": "Validoi projekti",
+    "VALIDATE_PROJECT": "Vahvista projekti",
     "DOWNLOAD_PROJECT": "Lataa projekti",
     "ADD_ACTION": "Lisää uusi toiminto",
     "ADD_EVENT": "Lisää uusi tapahtuma",
@@ -21,22 +21,25 @@
       "CREATE": "Luo",
       "UPDATE": "Päivitä",
       "CLOSE": "Sulje",
+      "DONT_SAVE": "Älä tallenna",
+      "UNSAVED_PAGE_TITLE": "Haluatko tallentaa tähän tehdyt muutokset",
       "EDIT_PROPERTIES": "Muokkaa prosessimuuttujia",
       "EDIT_PROCESS_MESSAGES": "Muokkaa viestejä",
+      "EDIT_PROCESS_ERRORS": "Muokkaa virheitä",
       "EDIT_FORM_PROPERTIES": "Muokkaa lomakkeen muuttujia",
       "EDIT_VISIBILITY_CONDITIONS": "Muokkaa näkyvyysehtoja",
       "ERROR": {
         "TITLE": "Haluatko silti tallentaa?",
-        "SUBTITLE": "Virheitä validoinnissa:",
+        "SUBTITLE": "Vahvistusvirheet:",
         "NAME_DOESNT_MATCH_PATTERN": "Nimi ei vastaa seuraavaa kaavaa",
         "GENERAL_NAME_VALIDATION": "Nimi on kirjoitettava pienin kirjaimin, ja sen on oltava 1-26 merkin pituinen. Alfanumeeriset merkit ja viivamerkit ovat sallittuja, mutta nimen on alettava kirjaimella ja päätyttävä alfanumeeriseen merkkiin."
       },
       "CONFIRM": {
         "TITLE": "Oletko varma?",
         "SUBTITLE": "Haluatko varmasti suorittaa tämän toiminnon?",
+        "EMAIL_TEMPLATE_DESCRIPTION": "Toimintoa ei voi kumota",
         "BUTTON": "Vahvista",
-        "UNSAVED_PAGE": "Haluatko varmasti poistua ja jättää {{ types }} tallentamatta",
-        "RELEASE": "Haluatko varmasti vapauttaa uuden version tästä projektista?",
+        "RELEASE": "Haluatko varmasti julkaista uuden version tästä projektista?",
         "TYPES": {
           "DECISION": "päätöstaulukko",
           "DATA": "data",
@@ -46,7 +49,9 @@
           "PROCESS": "prosessi",
           "FILE": "tiedosto",
           "SCRIPT": "komentosarja",
-          "TRIGGER": "Laukaisija"
+          "TRIGGER": "Laukaisija",
+          "MODEL": "Sisältömalli",
+          "CUSTOM-FORM-WIDGET": "Lomakepiensovellus"
         },
         "DELETE": {
           "PROJECT": "Haluatko varmasti poistaa tämän projektin?",
@@ -58,7 +63,9 @@
           "CONNECTOR": "Haluatko varmasti poistaa tämän liittimen?",
           "FILE": "Haluatko varmasti poistaa tämän tiedoston?",
           "SCRIPT": "Haluatko varmasti poistaa tämän komentosarjan?",
-          "TRIGGER": "Haluatko varmasti poistaa tämän laukaisijan?"
+          "TRIGGER": "Haluatko varmasti poistaa tämän laukaisijan?",
+          "MODEL": "Haluatko varmasti poistaa tämän sisältömallin?",
+          "FORM_WIDGET": "Haluatko varmasti poistaa tämän lomakepiensovelluksen?"
         },
         "SAVE": {
           "PROCESS": "Haluatko varmasti tallentaa tämän prosessin?",
@@ -68,8 +75,24 @@
           "DECISION_TABLE": "Haluatko varmasti tallentaa tämän päätöstaulukon?",
           "CONNECTOR": "Haluatko varmasti tallentaa tämän liittimen?",
           "FILE": "Haluatko varmasti tallentaa tämän tiedoston?",
+          "EMAIL_TEMPLATE": "Haluatko varmasti korvata tämän sähköpostimallin?",
           "SCRIPT": "Haluatko varmasti tallentaa tämän komentosarjan?",
-          "TRIGGER": "Haluatko varmasti tallentaa tämän laukaisijan?"
+          "TRIGGER": "Haluatko varmasti tallentaa tämän laukaisijan?",
+          "MODEL": "Haluatko varmasti tallentaa tämän sisältömallin?",
+          "FORM_WIDGET": "Haluatko varmasti tallentaa tämän lomakepiensovelluksen?"
+        },
+        "SAVE_AS": {
+          "PROCESS": "Haluatko varmasti kopioida tämän prosessin?",
+          "FORM": "Haluatko varmasti kopioida tämän lomakkeen?",
+          "UI": "Haluatko varmasti kopioida tämän käyttöliittymän?",
+          "DATA": "Haluatko varmasti kopioida tämän dataobjektin?",
+          "DECISION_TABLE": "Haluatko varmasti kopioida tämän päätöstaulukon?",
+          "CONNECTOR": "Haluatko varmasti kopioida tämän liittimen?",
+          "FILE": "Haluatko varmasti kopioida tämän tiedoston?",
+          "SCRIPT": "Haluatko varmasti kopioida tämän komentosarjan?",
+          "TRIGGER": "Haluatko varmasti kopioida tämän laukaisijan?",
+          "MODEL": "Haluatko varmasti kopioida tämän sisältömallin?",
+          "FORM_WIDGET": "Haluatko varmasti kopioida tämän lomakepiensovelluksen?"
         },
         "DOWNLOAD": {
           "PROCESS": "Haluatko varmasti ladata tämän prosessin?",
@@ -81,17 +104,20 @@
           "CONNECTOR": "Haluatko varmasti ladata tämän liittimen?",
           "FILE": "Haluatko varmasti ladata tämän tiedoston?",
           "SCRIPT": "Haluatko varmasti ladata tämän komentosarjan?",
-          "TRIGGER": "Haluatko varmasti ladata tämän laukaisijan?"
+          "TRIGGER": "Haluatko varmasti ladata tämän laukaisijan?",
+          "MODEL": "Haluatko varmasti ladata tämän sisältömallin?",
+          "FORM_WIDGET": "Haluatko varmasti ladata tämän lomakepiensovelluksen?"
         }
       }
     },
     "MENU": {
       "EDIT": "Muokkaa",
       "DELETE": "Poista",
-      "RELEASE": "Vapauta",
+      "RELEASE": "Julkaise",
       "COLLABORATORS": "Yhteistyökumppanit",
-      "SEE_RELEASES": "Näytä painokset",
-      "DOWNLOAD": "Lataa"
+      "SEE_RELEASES": "Näytä julkaisut",
+      "DOWNLOAD": "Lataa",
+      "SAVE_AS": "Tallenna nimellä"
     },
     "SETTINGS": {
       "HEADER": "Sovellusasetukset"
@@ -100,8 +126,13 @@
       "ERRORS": {
         "CHANGE_USER": "Vaihda käyttäjää",
         "NOT_VALID_JSON": "JSON-objekti ei kelpaa",
+        "NOT_VALID_HTML": "Virheellinen HTML-objekti",
         "NOT_VALID_SCHEMA": "JSON-objekti ei vastaa rakennetta"
       }
+    },
+    "EDITOR": {
+      "NAME": "Nimi",
+      "DESCRIPTION": "Kuvaus"
     }
   }
 }

@@ -5,6 +5,7 @@
     "VALIDATE_PROCESS": "Prozess validieren",
     "SAVE_PROCESS": "Prozess speichern",
     "SELECT_PROCESS_VARIABLE": "Prozessvariable auswählen",
+    "SCRIPT_NAME": "Skript-Name",
     "PRIORITIES": {
       "NONE": "Keine",
       "LOW": "Niedrig",
@@ -47,9 +48,10 @@
       "DIAGRAM_NAME": "Diagrammname",
       "SIGNAL": "Signal",
       "ERROR": "Fehler",
-      "MAPPING_TYPE": "Zuweisungstyp",
+      "MAPPING_TYPE": "Zuordnungstyp:",
       "MAP_VARIABLES": "Variablen zuordnen",
       "SEND_ALL_VARIABLES": "Alle Variablen senden",
+      "EDIT_EMAIL_TEMPLATE": "E-Mail-Vorlage bearbeiten",
       "SEND_NO_VARIABLES": "Keine Variablen senden",
       "SIGNAL_NAME": "Signalname",
       "ERROR_NAME": "Name des Fehlers",
@@ -84,6 +86,7 @@
       "ACTIVITY_NAME": "Empfängerelement",
       "PROCESS": "Prozess",
       "PROCESS_VARIABLE": "Prozessvariable",
+      "FILTER_PROCESS_VARIABLE": "Prozessvariable filtern",
       "USE_PROCESS_VARIABLE": "Prozessvariable verwenden",
       "USE_EXPRESSION": "Ausdruck verwenden",
       "PROCESS_VARIABLES": "Prozessvariablen",
@@ -93,6 +96,7 @@
       "PROCESS_NAME_REQUIRED": "Prozessname ist erforderlich",
       "INVALID_PROCESS_NAME": "Ungültiger Prozessname",
       "INVALID_NAME_LENGTH": "Der Name muss weniger als 40 Zeichen lang sein.",
+      "INVALID_DOCUMENTATION_LENGTH": "Die Dokumentation darf maximal 255 Zeichen lang sein",
       "INVALID_FORM_NAME": "Ungültiger Formularname",
       "INVALID_EXPRESSION": "Ungültiger Ausdruck ${condition}",
       "MESSAGE": "Nachricht",
@@ -180,8 +184,8 @@
           "NO_PROCESS_VARIABLES": "Prozessvariable erstellen, um die Ausdruckszuweisung hinzuzufügen",
           "CANDIDATE_EMPTY": "Kandidaten können nicht leer sein. Geben Sie entweder Kandidatenbenutzer oder Kandidatengruppen ein.",
           "ASSIGNEE_EMPTY": "Zugewiesener Benutzer darf nicht leer sein.",
-          "ASSIGNEE_INVALID_ERROR": "Ungültiger Ausdruck, z.B. { assignee:${var1} }",
-          "CANDIDATE_INVALID_ERROR": "Ungültiger Ausdruck, z.B. { candidateUsers: ${var1}, candidateGroups: ${var2} }"
+          "ASSIGNEE_INVALID_ERROR": "Ungültiger Ausdruck, z. B. { assignee:${var1} }",
+          "CANDIDATE_INVALID_ERROR": "Ungültiger Ausdruck, z. B. { candidateUsers: ${var1}, candidateGroups: ${var2} }"
         }
       }
     },
@@ -193,6 +197,7 @@
     "PROCESS_INVALID": "Prozess enthält Validierungsfehler.",
     "ERRORS": {
       "NO_PROCESS_VARIABLES": "Keine Prozessvariablen",
+      "CREATE_PROCESS_VARIABLE": "Prozessvariable erstellen, um die Ausdruckszuweisung hinzuzufügen",
       "NO_SUB_PROCESS_VARIABLES": "Keine Unterprozessvariablen",
       "LOAD_DIAGRAM": "Beim Laden des Diagramms ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren.",
       "SAVE_DIAGRAM": "Beim Speichern des Diagramms ist ein Problem aufgetreten. Versuchen Sie es noch einmal.",
@@ -209,7 +214,7 @@
         "COLUMN_TYPE": "Typ",
         "COLUMN_REQUIRED": "Erforderlich",
         "COLUMN_VALUE": "Wert",
-        "NO_PROPERTIES": "Wählen Sie eine Variable aus oder erstellen Sie eine, um ihre Eigenschaften anzusehen"
+        "NO_PROPERTIES": "Wählen Sie eine Variable aus oder erstellen Sie eine, um ihre Eigenschaften anzuzeigen"
       },
       "ERRORS": {
         "EMPTY_NAME": "Ein Name ist erforderlich"

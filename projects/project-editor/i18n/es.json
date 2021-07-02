@@ -30,8 +30,8 @@
         "CREATE_UI": "IU",
         "CREATE_DATA": "Objeto de datos",
         "CREATE_DECISION_TABLE": "tabla de decisión",
-        "CREATE_FILE": "fichero",
-        "CREATE_SCRIPT": "script",
+        "CREATE_FILE": "Fichero",
+        "CREATE_SCRIPT": "Script",
         "CREATE_TRIGGER": "Desencadenador",
         "CREATE_PROJECT_MODEL": "Modelo de contenido",
         "CREATE_FORM_WIDGET": "Widget de formulario"
@@ -163,6 +163,7 @@
       "FORM_WIDGET_UPDATED": "Widget de formulario guardado"
     },
     "ERROR": {
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} con el mismo nombre ya existe",
       "UPLOAD_FILE": "Ha surgido un problema al cargar el fichero. Vuelva a intentar cargarlo.",
       "DELETE_PROJECT": "Ha surgido un problema al eliminar el proyecto. Vuelva a intentar eliminarlo.",
       "CHANGE_FAVORITE": "Ha surgido un problema al marcar ese proyecto como favorito. Vuelva a intentar marcarlo como favorito.",

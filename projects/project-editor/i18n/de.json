@@ -163,6 +163,7 @@
       "FORM_WIDGET_UPDATED": "Formular-Widget gespeichert"
     },
     "ERROR": {
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} mit dem gleichen Namen ist bereits vorhanden",
       "UPLOAD_FILE": "Beim Hochladen der Datei ist ein Problem aufgetreten. Versuchen Sie noch einmal, sie hochzuladen.",
       "DELETE_PROJECT": "Beim Löschen des Projekts ist ein Problem aufgetreten. Versuchen Sie noch einmal, es zu löschen.",
       "CHANGE_FAVORITE": "Beim Markieren des Projekts als Favorit ist ein Problem aufgetreten. Versuchen Sie noch einmal, es als Favorit zu markieren.",

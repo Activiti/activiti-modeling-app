@@ -37,6 +37,7 @@
       "CONFIRM": {
         "TITLE": "Sind Sie sicher?",
         "SUBTITLE": "Möchten Sie dies wirklich tun?",
+        "EMAIL_TEMPLATE_DESCRIPTION": "Diese Aktion kann nicht rückgängig gemacht werden.",
         "BUTTON": "Bestätigen",
         "RELEASE": "Sind Sie sicher, dass Sie eine neue Version dieses Projekts freigeben möchten?",
         "TYPES": {
@@ -74,10 +75,24 @@
           "DECISION_TABLE": "Möchten Sie diese Entscheidungstabelle wirklich speichern?",
           "CONNECTOR": "Möchten Sie diesen Connector wirklich speichern?",
           "FILE": "Möchten Sie diese Datei wirklich speichern?",
+          "EMAIL_TEMPLATE": "Möchten Sie die E-Mail-Vorlage wirklich überschreiben?",
           "SCRIPT": "Möchten Sie dieses Skript wirklich speichern?",
           "TRIGGER": "Möchten Sie diesen Trigger wirklich speichern?",
           "MODEL": "Möchten Sie dieses Inhaltsmodell wirklich speichern?",
           "FORM_WIDGET": "Möchten Sie dieses Formular-Widget wirklich speichern?"
+        },
+        "SAVE_AS": {
+          "PROCESS": "Möchten Sie diesen Prozess wirklich kopieren?",
+          "FORM": "Möchten Sie dieses Formular wirklich kopieren?",
+          "UI": "Möchten Sie diese UI wirklich kopieren?",
+          "DATA": "Möchten Sie dieses Datenobjekt wirklich kopieren?",
+          "DECISION_TABLE": "Möchten Sie diese Entscheidungstabelle wirklich kopieren?",
+          "CONNECTOR": "Möchten Sie diesen Connector wirklich kopieren?",
+          "FILE": "Möchten Sie diese Datei wirklich kopieren?",
+          "SCRIPT": "Möchten Sie dieses Skript wirklich kopieren?",
+          "TRIGGER": "Möchten Sie diesen Trigger wirklich kopieren?",
+          "MODEL": "Möchten Sie dieses Inhaltsmodell wirklich kopieren?",
+          "FORM_WIDGET": "Möchten Sie dieses Formular-Widget wirklich kopieren?"
         },
         "DOWNLOAD": {
           "PROCESS": "Möchten Sie diesen Prozess wirklich herunterladen?",
@@ -101,7 +116,8 @@
       "RELEASE": "Anspruch aufheben",
       "COLLABORATORS": "Mitarbeiter",
       "SEE_RELEASES": "Versionen anzeigen",
-      "DOWNLOAD": "Herunterladen"
+      "DOWNLOAD": "Herunterladen",
+      "SAVE_AS": "Speichern unter"
     },
     "SETTINGS": {
       "HEADER": "Anwendungseinstellungen"
@@ -110,6 +126,7 @@
       "ERRORS": {
         "CHANGE_USER": "Benutzer ändern",
         "NOT_VALID_JSON": "Unzulässiges JSON-Objekt",
+        "NOT_VALID_HTML": "Ungültiges HTML-Objekt",
         "NOT_VALID_SCHEMA": "Das JSON-Objekt stimmt nicht mit dem Schema überein"
       }
     },

@@ -32,7 +32,7 @@
         "CREATE_DECISION_TABLE": "Beslutningstabel",
         "CREATE_FILE": "Fil",
         "CREATE_SCRIPT": "Script",
-        "CREATE_TRIGGER": "Udløser",
+        "CREATE_TRIGGER": "Trigger",
         "CREATE_PROJECT_MODEL": "Indholdsmodel",
         "CREATE_FORM_WIDGET": "Formularwidget"
       }
@@ -46,7 +46,7 @@
       "UIS": "UI",
       "FILES": "Filer",
       "SCRIPTS": "Scripts",
-      "TRIGGERS": "Udløsere"
+      "TRIGGERS": "Triggere"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Opret proces",
@@ -122,13 +122,13 @@
       "SCRIPT_UPDATED": "Skript gemt"
     },
     "TRIGGER_DIALOG": {
-      "TITLE_CREATE": "Opret udløser",
-      "TITLE_UPDATE": "Opdatér udløser",
-      "TRIGGER_NAME": "Navn på udløser:",
-      "TRIGGER_DESC": "Beskrivelse af udløser:",
-      "TRIGGER_CREATED": "Udløser blev oprettet",
-      "TRIGGER_DELETED": "Udløser blev slettet",
-      "TRIGGER_UPDATED": "Udløser blev gemt"
+      "TITLE_CREATE": "Opret Trigger",
+      "TITLE_UPDATE": "Opdatér Trigger",
+      "TRIGGER_NAME": "Navn på Trigger:",
+      "TRIGGER_DESC": "Beskrivelse af Trigger:",
+      "TRIGGER_CREATED": "Trigger blev oprettet",
+      "TRIGGER_DELETED": "Trigger blev slettet",
+      "TRIGGER_UPDATED": "Trigger blev gemt"
     },
     "ACTION_DIALOG": {
       "ACTION_DETAILS": "Handlingsdetaljer",
@@ -150,7 +150,7 @@
       "PROJECT_MODEL_NAME": "Indholdsmodellens navn",
       "PROJECT_MODEL_DESC": "Beskrivelse af indholdsmodel:",
       "PROJECT_MODEL_CREATED": "Indholdsmodel oprettet",
-      "PROJECT_MODEL_DELETED": "Indholdsmodel slettet",
+      "PROJECT_MODEL_DELETED": "Indholdsmodel blev slettet",
       "PROJECT_MODEL_UPDATED": "Indholsmodel gemt"
     },
     "FORM_WIDGET_DIALOG": {
@@ -159,10 +159,11 @@
       "FORM_WIDGET_NAME": "Widget-navn:",
       "FORM_WIDGET_DESC": "Widget-beskrivelse:",
       "FORM_WIDGET_CREATED": "Formular-widget oprettet",
-      "FORM_WIDGET_DELETED": "Formular-widget slettet",
+      "FORM_WIDGET_DELETED": "Formular-widget blev slettet",
       "FORM_WIDGET_UPDATED": "Formular-widget gemt"
     },
     "ERROR": {
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} med samme navn findes allerede",
       "UPLOAD_FILE": "Der opstod et problem under upload af filen. Prøv at uploade den igen.",
       "DELETE_PROJECT": "Der opstod et problem under sletning af projektet. Prøv at slette det igen.",
       "CHANGE_FAVORITE": "Der opstod et problem under angivelse af dette projekt som favorit. Prøv at angive det igen som favorit.",
@@ -249,12 +250,12 @@
         "GENERAL": "Der opstod et problem under lagring af scriptet. Prøv at oprette det igen."
       },
       "CREATE_TRIGGER": {
-        "DUPLICATION": "Der findes allerede en udløser med det navn",
-        "GENERAL": "Der opstod et problem under oprettelse af udløseren. Prøv at oprette den igen."
+        "DUPLICATION": "Der findes allerede en Trigger med det navn",
+        "GENERAL": "Der opstod et problem under oprettelse af Triggeren. Prøv at oprette den igen."
       },
       "UPDATE_TRIGGER": {
-        "DUPLICATION": "Der findes allerede en udløser med det navn",
-        "GENERAL": "Der opstod et problem under lagring af udløseren. Prøv at gemme den igen."
+        "DUPLICATION": "Der findes allerede en Trigger med det navn",
+        "GENERAL": "Der opstod et problem under lagring af Triggeren. Prøv at gemme den igen."
       },
       "CREATE_FORM_WIDGET": {
         "DUPLICATION": "En formular-widget med dette navn findes allerede",

@@ -1,7 +1,7 @@
 {
   "SDK": {
     "SNACKBAR": {
-      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Wklejane wartości muszą być zgodne z tym wzorem"
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Wklejone wartości muszą być zgodne z tym wzorem"
     },
     "ALL": "Wszystkie",
     "VALUE": "Wartość",
@@ -9,8 +9,9 @@
       "ERRORS": {
         "EMPTY_NAME": "Nazwa jest wymagana",
         "INVALID_NAME": "Nieprawidłowa nazwa zmiennej",
-        "VARIABLE_NAME_TOOLTIP": "Nazwa powinna rozpoczynać się od litery i może zawierać wyłącznie znaki alfanumeryczne i podkreślenia",
-        "NAME_ALREADY_EXISTS": "Nazwy zmiennych muszą być unikatowe"
+        "VARIABLE_NAME_TOOLTIP": "Nazwa musi zaczynać się literą i może zawierać tylko znaki alfanumeryczne i podkreślenia",
+        "NAME_ALREADY_EXISTS": "Nazwy zmiennych muszą być unikatowe",
+        "FILE_ALREADY_EXISTS": "Plik już istnieje"
       },
       "TABS": {
         "VIEWER": "Przeglądarka właściwości",
@@ -31,7 +32,13 @@
       "SWITCH_VAR_VAL": "Przełącz zmienną/wartość",
       "NO_PROCESS_PROPERTIES": "Brak właściwości procesu",
       "NO_PAYLOAD": "Komunikat nie ma ładunku. Dodaj ładunek do zdarzenia wyrzucania komunikatu.",
-      "CLEAR_ASSIGNMENT": "Wyczyść przypisanie",
+      "CLEAR_ASSIGNMENT": "Wyczyść przydział",
+      "MAPPING_TYPE": "Typ mapowania",
+      "MAP_VARIABLES": "Mapuj zmienne",
+      "MAP_NO_VARIABLE": "Nie odwzorowuj zmiennych",
+      "MAP_ALL": "Odzworuj wszystkie zmienne wejściowe/wyjściowe",
+      "MAP_ALL_INPUTS": "Odwzoruj wszystkie zmienne wejściowe",
+      "MAP_ALL_OUTPUTS": "Odwzoruj wszystkie zmienne wyjściowe",
       "NONE": "Brak"
     },
     "MESSAGES_EDITOR": {
@@ -46,11 +53,25 @@
         "NO_MESSAGES": "Wybierz lub utwórz komunikat, aby wyświetlić jego właściwości"
       }
     },
+    "ERRORS_EDITOR": {
+      "TITLE": "Błędy procesu",
+      "ERRORS": {
+        "EMPTY_NAME": "Nazwa jest wymagana",
+        "EMPTY_CODE": "Kod błędu jest wymagany",
+        "NAME_ALREADY_EXISTS": "Nazwy błędów procesu muszą być unikatowe"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nazwa błędu",
+        "COLUMN_CODE": "Kod błędu",
+        "COLUMN_ID": "ID błędu",
+        "NO_PROCESS_ERRORS": "Wybierz lub utwórz błąd procesu, aby wyświetlić jego właściwości"
+      }
+    },
     "MAPPING_DIALOG": {
       "TITLE": "Edytuj odwzorowanie zmiennej",
       "SELECTOR_TITLE": "Wybierz typ odwzorowania zmiennej do edycji",
-      "INPUT_MAPPING": "Odwzorowanie danych wejściowych",
-      "OUTPUT_MAPPING": "Odwzorowanie danych wyjściowych",
+      "INPUT_MAPPING": "Mapowanie wejściowe",
+      "OUTPUT_MAPPING": "Mapowanie wyjściowe",
       "PROCESS_VARIABLE": "Zmienna procesu",
       "INPUT_PARAMETER": "Parametr wejściowy",
       "OUTPUT_PARAMETER": "Parametr wyjściowy",
@@ -58,6 +79,53 @@
       "EXPRESSION_MAPPING": "Wyrażenie",
       "NONE": "Brak",
       "TYPE": "Typ"
+    },
+    "SAVE_AS_DIALOG": {
+      "TITLE": "Zapisz jako",
+      "FIELD_PROPERTIES": {
+        "NAME": "Nazwa",
+        "DESCRIPTION": "Opis"
+      }
+    },
+    "EXPRESSION_CODE_EDITOR": {
+      "EDIT_IN_DIALOG": "Edytuj w oknie dialogowym",
+      "EXPRESSION_EDITOR": "Edytor wyrażeń",
+      "NO_BRACKETS_HINT": "Całe wyrażenie w tym edytorze zostanie zapisane wewnątrz nawiasów klamrowych (${...}), więc nie trzeba ich wpisywać."
+    },
+    "VARIABLES_SELECTORS": {
+      "ACTIONS": {
+        "SEARCH": "Szukaj"
+      }
+    },
+    "CONDITION": {
+      "TYPES": {
+        "START_EVENT": "Zdarzenie początkowe",
+        "PROCESS": "Proces",
+        "SERVICE_TASK": "Zadanie usługi",
+        "CALLED_ELEMENT": "Wywołany element",
+        "SCRIPT_TASK": "Zadanie skryptu",
+        "DECISION_TABLE": "Tabela decyzji",
+        "USER_TASK": "Zadanie użytkownika",
+        "NONE": "Brak",
+        "EVENT": "Zdarzenie",
+        "EMAIL_SERVICE_TASK": "Zadanie usługi e-mail"
+      },
+      "TOOLTIP": {
+        "VARIABLE": "Zmienna",
+        "PROCESS_VARIABLE_TOOLTIP": "Zmienna procesu {{processName}}",
+        "NONE_VARIABLE_TOOLTIP": "Wybierz „Brak”, aby wyczyścić zaznaczenie",
+        "OUTPUT_VARIABLE_TOOLTIP": "Dane wyjściowe {{taskType}} {{taskName}}",
+        "PROPERTIES": "Właściwości"
+      }
+    },
+    "VARIABLE_EXPRESSION": {
+      "TITLE": {
+        "VARIABLES": "Zmienne",
+        "EXPRESSION": "Wyrażenie",
+        "OPEN_EXPRESSION_EDITOR": "Otwórz okno dialogowe edytora wyrażeń",
+        "SWITCH_TO_VARIABLES": "Przełącz na selektor zmiennych",
+        "CLEAR_SELECTION": "Wyczyść zaznaczenie"
+      }
     }
   }
 }

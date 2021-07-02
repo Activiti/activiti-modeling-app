@@ -163,6 +163,7 @@
       "FORM_WIDGET_UPDATED": "Zapisano widżet formularza"
     },
     "ERROR": {
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} o tej nazwie już istnieje",
       "UPLOAD_FILE": "Wystąpił problem podczas przesyłania pliku. Spróbuj przesłać go ponownie.",
       "DELETE_PROJECT": "Wystąpił problem podczas usuwania projektu. Spróbuj usunąć go ponownie.",
       "CHANGE_FAVORITE": "Wystąpił problem podczas dodawania projektu do ulubionych. Spróbuj dodać go do ulubionych ponownie.",

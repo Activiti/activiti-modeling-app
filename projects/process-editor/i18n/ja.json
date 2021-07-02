@@ -5,6 +5,7 @@
     "VALIDATE_PROCESS": "プロセスを検証",
     "SAVE_PROCESS": "プロセスを保存",
     "SELECT_PROCESS_VARIABLE": "プロセス変数を選択",
+    "SCRIPT_NAME": "スクリプト名",
     "PRIORITIES": {
       "NONE": "なし",
       "LOW": "低",
@@ -40,7 +41,7 @@
     "ELEMENT_PROPERTIES": {
       "ID": "ID",
       "NAME": "名前",
-      "ACTION": "処理",
+      "ACTION": "アクション",
       "PROPERTIES": "プロパティ",
       "PROCESS_NAME": "プロセス定義名",
       "PROCESS_ID": "プロセス ID",
@@ -48,10 +49,11 @@
       "SIGNAL": "シグナル",
       "ERROR": "エラー",
       "MAPPING_TYPE": "マッピングの種類",
-      "MAP_VARIABLES": "変数をマップ",
+      "MAP_VARIABLES": "変数の割り当て",
       "SEND_ALL_VARIABLES": "すべての変数を送信",
+      "EDIT_EMAIL_TEMPLATE": "Eメールテンプレートを編集",
       "SEND_NO_VARIABLES": "変数を送信しない",
-      "SIGNAL_NAME": "シグナル名",
+      "SIGNAL_NAME": "信号名",
       "ERROR_NAME": "エラー名",
       "ERROR_CODE": "エラーコード",
       "CREATE_NEW_SIGNAL": "新しいシグナルを作成",
@@ -65,11 +67,11 @@
       "VARIABLES": "変数",
       "DOCUMENTATION": "文書化",
       "EXECUTABLE": "実行可能ファイル",
-      "IMPLEMENTATION": "実装",
+      "IMPLEMENTATION": "実行",
       "DECISION_TASK": "意思決定タスク",
       "DECISION_TABLE_NAME": "意思決定表の名前",
-      "INPUT_MAPPING": "入力マッピング",
-      "OUTPUT_MAPPING": "出力マッピング",
+      "INPUT_MAPPING": "入力割り当て",
+      "OUTPUT_MAPPING": "出力割り当て",
       "INPUTS": "入力",
       "OUTPUTS": "出力",
       "INPUT": "入力",
@@ -84,15 +86,17 @@
       "ACTIVITY_NAME": "呼び出された要素",
       "PROCESS": "プロセス",
       "PROCESS_VARIABLE": "プロセス変数",
+      "FILTER_PROCESS_VARIABLE": "プロセス変数をフィルタ",
       "USE_PROCESS_VARIABLE": "プロセス変数を使用",
       "USE_EXPRESSION": "式を使用",
       "PROCESS_VARIABLES": "プロセス変数",
       "EXPRESSION": "条件式",
-      "FORM_SELECTOR": "フォーム名",
+      "FORM_SELECTOR": "フォームの名前",
       "DEFAULT_SEQUENCE_FLOW": "デフォルトのシーケンスフロー",
-      "PROCESS_NAME_REQUIRED": "プロセス名は必須です",
+      "PROCESS_NAME_REQUIRED": "プロセス名を入力してください",
       "INVALID_PROCESS_NAME": "無効なプロセス名",
       "INVALID_NAME_LENGTH": "名前は 40 文字より少ない必要があります",
+      "INVALID_DOCUMENTATION_LENGTH": "説明は256文字未満でなければなりません",
       "INVALID_FORM_NAME": "無効なフォーム名",
       "INVALID_EXPRESSION": "無効な式 ${condition}",
       "MESSAGE": "メッセージ",
@@ -133,7 +137,7 @@
       "CALLED_ELEMENT": {
         "DIALOG": {
           "TITLE": "呼び出された要素",
-          "STATIC": "静的",
+          "STATIC": "固定",
           "EXPRESSION": "式"
         }
       },
@@ -145,7 +149,7 @@
         "MONTHS": "月",
         "WEEKS": "週",
         "DAYS": "日",
-        "HOURS": "時間",
+        "HOURS": "時",
         "MINUTES": "分",
         "SECONDS": "秒",
         "REPETITIONS": "繰り返し",
@@ -162,7 +166,7 @@
         "SUB_TITLE": "割りて当オプションを選択",
         "SINGLE_USER": "単一ユーザーにタスクを割り当て",
         "CANDIDATES": "候補にタスクを割り当て",
-        "STATIC": "静的",
+        "STATIC": "固定",
         "IDENTITY": "ID",
         "ASSIGNEE": "担当者",
         "CANDIDATE_WARNING": "candidateUsers または candidateGroups の間の1つのフィールドは必須です。値を入力して Enter キーを押してください。",
@@ -193,6 +197,7 @@
     "PROCESS_INVALID": "プロセスに検証エラーがあります。",
     "ERRORS": {
       "NO_PROCESS_VARIABLES": "プロセス変数はありません",
+      "CREATE_PROCESS_VARIABLE": "式割り当てを追加してプロセス変数を作成",
       "NO_SUB_PROCESS_VARIABLES": "サブプロセス変数はありません",
       "LOAD_DIAGRAM": "図の読み込み中に問題が発生しました。ページを再読み込みしてください。",
       "SAVE_DIAGRAM": "図の保存中に問題が発生しました。保存をやり直してください。",
@@ -212,7 +217,7 @@
         "NO_PROPERTIES": "プロパティを表示する変数を選択するか作成してください"
       },
       "ERRORS": {
-        "EMPTY_NAME": "名前を指定してください"
+        "EMPTY_NAME": "名前は必須です"
       }
     },
     "PALETTE": {

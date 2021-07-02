@@ -163,6 +163,7 @@
       "FORM_WIDGET_UPDATED": "表单小组件已保存"
     },
     "ERROR": {
+      "UPLOAD_DUPLICATE_FILE": "同名的{{modelType}}已经存在。",
       "UPLOAD_FILE": "上传文件时遇到问题。尝试重新上传。",
       "DELETE_PROJECT": "删除项目时遇到问题。尝试重新删除。",
       "CHANGE_FAVORITE": "收藏该项目时遇到问题。尝试重新收藏。",

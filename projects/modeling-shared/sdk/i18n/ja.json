@@ -1,16 +1,17 @@
 {
   "SDK": {
     "SNACKBAR": {
-      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "貼り付ける値は、このパターンに従っている必要があります"
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "貼り付ける値は、次のパターンに従う必要があります"
     },
     "ALL": "すべて",
     "VALUE": "値",
     "VARIABLES_EDITOR": {
       "ERRORS": {
-        "EMPTY_NAME": "名前を指定してください",
-        "INVALID_NAME": "変数名が無効です",
-        "VARIABLE_NAME_TOOLTIP": "名前に使用できる文字は英数字とアンダースコアのみで、先頭の文字は英字にする必要があります",
-        "NAME_ALREADY_EXISTS": "他と重複しない変数名を指定してください"
+        "EMPTY_NAME": "名前は必須です",
+        "INVALID_NAME": "無効な変数名",
+        "VARIABLE_NAME_TOOLTIP": "名前は文字で始まり、英数字とアンダースコアしか使用できません",
+        "NAME_ALREADY_EXISTS": "変数名は固有な必要があります",
+        "FILE_ALREADY_EXISTS": "既にファイルが存在しています"
       },
       "TABS": {
         "VIEWER": "プロパティビューア",
@@ -28,36 +29,103 @@
       "PARAMETER": "パラメータ",
       "VALUE": "値",
       "PROCESS_VARIABLE": "プロセス変数",
-      "SWITCH_VAR_VAL": "変数/値の切り換え",
+      "SWITCH_VAR_VAL": "変数/値を切り替え",
       "NO_PROCESS_PROPERTIES": "プロセスのプロパティがありません",
       "NO_PAYLOAD": "メッセージにペイロードがありません。メッセージのスローイベントにペイロードを追加してください。",
-      "CLEAR_ASSIGNMENT": "割り当ての解除",
+      "CLEAR_ASSIGNMENT": "割リ当てをクリア",
+      "MAPPING_TYPE": "マッピングの種類",
+      "MAP_VARIABLES": "変数の割り当て",
+      "MAP_NO_VARIABLE": "変数をマップしない",
+      "MAP_ALL": "すべての入力/出力変数をマップ",
+      "MAP_ALL_INPUTS": "すべての入力変数をマップ",
+      "MAP_ALL_OUTPUTS": "すべての出力変数をマップ",
       "NONE": "なし"
     },
     "MESSAGES_EDITOR": {
-      "TITLE": "プロセスのメッセージ",
+      "TITLE": "プロセスメッセージ",
       "ERRORS": {
-        "EMPTY_NAME": "名前を指定してください",
-        "NAME_ALREADY_EXISTS": "他と重複しないメッセージ名を指定してください"
+        "EMPTY_NAME": "名前は必須です",
+        "NAME_ALREADY_EXISTS": "メッセージ名は固有な必要があります"
       },
       "TABLE": {
         "COLUMN_NAME": "名前",
         "COLUMN_ID": "ID",
-        "NO_MESSAGES": "プロパティを表示するメッセージを選択するか作成してください"
+        "NO_MESSAGES": "メッセージを選択または作成してプロパティを表示"
+      }
+    },
+    "ERRORS_EDITOR": {
+      "TITLE": "プロセスエラー",
+      "ERRORS": {
+        "EMPTY_NAME": "名前は必須です",
+        "EMPTY_CODE": "エラーコードは必須です",
+        "NAME_ALREADY_EXISTS": "プロセスエラー名は、固有な必要があります"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "エラー名",
+        "COLUMN_CODE": "エラーコード",
+        "COLUMN_ID": "エラーID",
+        "NO_PROCESS_ERRORS": "プロセスエラーを選択または作成してプロパティを表示"
       }
     },
     "MAPPING_DIALOG": {
-      "TITLE": "変数マッピングの編集",
-      "SELECTOR_TITLE": "編集する変数マッピングタイプを選択してください",
-      "INPUT_MAPPING": "入力マッピング",
-      "OUTPUT_MAPPING": "出力マッピング",
+      "TITLE": "変数マッピングを編集",
+      "SELECTOR_TITLE": "変数マッピングタイプを選択して編集",
+      "INPUT_MAPPING": "入力割り当て",
+      "OUTPUT_MAPPING": "出力割り当て",
       "PROCESS_VARIABLE": "プロセス変数",
-      "INPUT_PARAMETER": "入力パラメータ",
-      "OUTPUT_PARAMETER": "出力パラメータ",
+      "INPUT_PARAMETER": "入力パラメーター",
+      "OUTPUT_PARAMETER": "出力パラメーター",
       "VALUE_MAPPING": "値",
       "EXPRESSION_MAPPING": "式",
       "NONE": "なし",
       "TYPE": "種類"
+    },
+    "SAVE_AS_DIALOG": {
+      "TITLE": "名前を付けて保存",
+      "FIELD_PROPERTIES": {
+        "NAME": "名前",
+        "DESCRIPTION": "説明"
+      }
+    },
+    "EXPRESSION_CODE_EDITOR": {
+      "EDIT_IN_DIALOG": "ダイアログで編集",
+      "EXPRESSION_EDITOR": "式エディタ",
+      "NO_BRACKETS_HINT": "このエディタの全体式は中括弧（$ {...}）で囲まれて保存されるため、入力する必要はありません"
+    },
+    "VARIABLES_SELECTORS": {
+      "ACTIONS": {
+        "SEARCH": "検索"
+      }
+    },
+    "CONDITION": {
+      "TYPES": {
+        "START_EVENT": "開始イベント",
+        "PROCESS": "プロセス",
+        "SERVICE_TASK": "サービスタスク",
+        "CALLED_ELEMENT": "呼び出された要素",
+        "SCRIPT_TASK": "スクリプトタスク",
+        "DECISION_TABLE": "意思決定表",
+        "USER_TASK": "ユーザータスク",
+        "NONE": "なし",
+        "EVENT": "イベント",
+        "EMAIL_SERVICE_TASK": "Eメールサービスタスク"
+      },
+      "TOOLTIP": {
+        "VARIABLE": "変数",
+        "PROCESS_VARIABLE_TOOLTIP": "{{processName}}のプロセス変数",
+        "NONE_VARIABLE_TOOLTIP": "選択を解除するには「なし」を選択",
+        "OUTPUT_VARIABLE_TOOLTIP": "{{taskType}} {{taskName}}の出力",
+        "PROPERTIES": "プロパティ"
+      }
+    },
+    "VARIABLE_EXPRESSION": {
+      "TITLE": {
+        "VARIABLES": "変数",
+        "EXPRESSION": "式",
+        "OPEN_EXPRESSION_EDITOR": "式編集ダイアログを開く",
+        "SWITCH_TO_VARIABLES": "変数セレクターに切り替え",
+        "CLEAR_SELECTION": "選択を解除"
+      }
     }
   }
 }

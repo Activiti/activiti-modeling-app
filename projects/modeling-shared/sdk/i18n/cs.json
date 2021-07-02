@@ -1,7 +1,7 @@
 {
   "SDK": {
     "SNACKBAR": {
-      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Vkládané hodnoty musí vyhovovat tomuto vzoru"
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Vložené hodnoty musí dodržovat tento vzorec"
     },
     "ALL": "Vše",
     "VALUE": "Hodnota",
@@ -9,8 +9,9 @@
       "ERRORS": {
         "EMPTY_NAME": "Název je povinný.",
         "INVALID_NAME": "Neplatný název proměnné",
-        "VARIABLE_NAME_TOOLTIP": "Název musí začínat písmenem a může obsahovat pouze alfanumerické znaky a podtržítka",
-        "NAME_ALREADY_EXISTS": "Názvy proměnných musí být jedinečné"
+        "VARIABLE_NAME_TOOLTIP": "Název musí začínat písmenem a může obsahovat jen alfanumerické znaky a podtržítko",
+        "NAME_ALREADY_EXISTS": "Názvy proměnných musí být jedinečné",
+        "FILE_ALREADY_EXISTS": "Soubor již existuje"
       },
       "TABS": {
         "VIEWER": "Prohlížeč vlastností",
@@ -19,7 +20,7 @@
       "TABLE": {
         "COLUMN_NAME": "Název",
         "COLUMN_TYPE": "Typ",
-        "COLUMN_REQUIRED": "Požadováno",
+        "COLUMN_REQUIRED": "Povinné",
         "COLUMN_VALUE": "Hodnota",
         "NO_PROPERTIES": "Vyberte nebo vytvořte proměnnou, jejíž vlastnosti chcete zobrazit"
       }
@@ -32,10 +33,16 @@
       "NO_PROCESS_PROPERTIES": "Žádné vlastnosti procesu",
       "NO_PAYLOAD": "Zpráva nemá žádnou datovou část. Přidejte datovou část do události aktivace zprávy.",
       "CLEAR_ASSIGNMENT": "Vymazat přiřazení",
+      "MAPPING_TYPE": "Typ mapování",
+      "MAP_VARIABLES": "Mapovat proměnné",
+      "MAP_NO_VARIABLE": "Nemapovat proměnné",
+      "MAP_ALL": "Mapovat všechny vstupní/výstupní proměnné",
+      "MAP_ALL_INPUTS": "Mapovat všechny vstupní proměnné",
+      "MAP_ALL_OUTPUTS": "Mapovat všechny výstupní proměnné",
       "NONE": "Žádný"
     },
     "MESSAGES_EDITOR": {
-      "TITLE": "Zpracování zpráv",
+      "TITLE": "Zpráva procesu",
       "ERRORS": {
         "EMPTY_NAME": "Název je povinný.",
         "NAME_ALREADY_EXISTS": "Názvy zpráv musí být jedinečné"
@@ -43,14 +50,28 @@
       "TABLE": {
         "COLUMN_NAME": "Název",
         "COLUMN_ID": "ID",
-        "NO_MESSAGES": "Vyberte nebo vytvořte zprávu, jejíž vlastnosti chcete zobrazit"
+        "NO_MESSAGES": "Vyberte nebo vytvořte zprávu pro zobrazení jejích vlastností"
+      }
+    },
+    "ERRORS_EDITOR": {
+      "TITLE": "Chyby procesu",
+      "ERRORS": {
+        "EMPTY_NAME": "Název je povinný.",
+        "EMPTY_CODE": "Je požadován kód chyby",
+        "NAME_ALREADY_EXISTS": "Názvy chyb procesu musí být jedinečné"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Název chyby",
+        "COLUMN_CODE": "Kód chyby",
+        "COLUMN_ID": "ID chyby",
+        "NO_PROCESS_ERRORS": "Vyberte nebo vytvořte chybu procesu pro zobrazení jejích vlastností"
       }
     },
     "MAPPING_DIALOG": {
       "TITLE": "Upravit mapování proměnných",
-      "SELECTOR_TITLE": "Vyberte typ mapování proměnných, který chcete upravit",
-      "INPUT_MAPPING": "Mapování vstupů",
-      "OUTPUT_MAPPING": "Mapování výstupů",
+      "SELECTOR_TITLE": "Vyberte typ mapování proměnných pro úpravu",
+      "INPUT_MAPPING": "Mapování vstupu",
+      "OUTPUT_MAPPING": "Mapování výstupu",
       "PROCESS_VARIABLE": "Proměnná procesu",
       "INPUT_PARAMETER": "Vstupní parametr",
       "OUTPUT_PARAMETER": "Výstupní parametr",
@@ -58,6 +79,53 @@
       "EXPRESSION_MAPPING": "Výraz",
       "NONE": "Žádný",
       "TYPE": "Typ"
+    },
+    "SAVE_AS_DIALOG": {
+      "TITLE": "Uložit jako",
+      "FIELD_PROPERTIES": {
+        "NAME": "Název",
+        "DESCRIPTION": "Popis"
+      }
+    },
+    "EXPRESSION_CODE_EDITOR": {
+      "EDIT_IN_DIALOG": "Upravit v dialogu",
+      "EXPRESSION_EDITOR": "Editor výrazů",
+      "NO_BRACKETS_HINT": "Celý výraz v tomto editoru bude uložen uzavřený do složených závorek (${...}), takže je nemusíte zapisovat"
+    },
+    "VARIABLES_SELECTORS": {
+      "ACTIONS": {
+        "SEARCH": "Hledat"
+      }
+    },
+    "CONDITION": {
+      "TYPES": {
+        "START_EVENT": "Počáteční událost",
+        "PROCESS": "Proces",
+        "SERVICE_TASK": "Servisní úkol",
+        "CALLED_ELEMENT": "Volaný element",
+        "SCRIPT_TASK": "Úkol skriptu",
+        "DECISION_TABLE": "Rozhodovací tabulka",
+        "USER_TASK": "Uživatelský úkol",
+        "NONE": "Žádný",
+        "EVENT": "Událost",
+        "EMAIL_SERVICE_TASK": "Úloha e-mailové služby"
+      },
+      "TOOLTIP": {
+        "VARIABLE": "Proměnná",
+        "PROCESS_VARIABLE_TOOLTIP": "Proměnná procesu {{processName}}",
+        "NONE_VARIABLE_TOOLTIP": "Výběr vymažete zvolením možnosti ,Žádný‘",
+        "OUTPUT_VARIABLE_TOOLTIP": "Výstup úlohy {{taskType}} {{taskName}}",
+        "PROPERTIES": "Vlastnosti"
+      }
+    },
+    "VARIABLE_EXPRESSION": {
+      "TITLE": {
+        "VARIABLES": "Proměnné",
+        "EXPRESSION": "Výraz",
+        "OPEN_EXPRESSION_EDITOR": "Otevřít dialogové okno editoru výrazů",
+        "SWITCH_TO_VARIABLES": "Přepnout na volič proměnných",
+        "CLEAR_SELECTION": "Vymazat výběr"
+      }
     }
   }
 }

@@ -37,6 +37,7 @@
       "CONFIRM": {
         "TITLE": "Tem certeza?",
         "SUBTITLE": "Tem certeza de que deseja implementar esta ação?",
+        "EMAIL_TEMPLATE_DESCRIPTION": "Esta ação não pode ser desfeita",
         "BUTTON": "Confirmar",
         "RELEASE": "Tem certeza de que deseja liberar uma nova versão deste projeto?",
         "TYPES": {
@@ -74,10 +75,24 @@
           "DECISION_TABLE": "Tem certeza de que deseja salvar esta tabela de decisão?",
           "CONNECTOR": "Tem certeza de que deseja salvar este conector?",
           "FILE": "Tem certeza de que deseja salvar este arquivo?",
+          "EMAIL_TEMPLATE": "Tem certeza de que deseja substituir o modelo de email?",
           "SCRIPT": "Tem certeza de que deseja salvar este script?",
           "TRIGGER": "Tem certeza de que deseja salvar este gatilho?",
           "MODEL": "Deseja salvar este Modelo de conteúdo classificado?",
           "FORM_WIDGET": "Deseja salvar este widget de formulário?"
+        },
+        "SAVE_AS": {
+          "PROCESS": "Tem certeza de que deseja copiar este processo?",
+          "FORM": "Tem certeza de que deseja copiar este formulário?",
+          "UI": "Tem certeza de que deseja copiar esta interface de usuário?",
+          "DATA": "Tem certeza de que deseja copiar este objeto de dados?",
+          "DECISION_TABLE": "Tem certeza de que deseja copiar esta tabela de decisão?",
+          "CONNECTOR": "Tem certeza de que deseja copiar este conector?",
+          "FILE": "Tem certeza de que deseja copiar este arquivo?",
+          "SCRIPT": "Tem certeza de que deseja copiar este script?",
+          "TRIGGER": "Tem certeza de que deseja copiar este acionador?",
+          "MODEL": "Tem certeza de que deseja copiar este modelo de conteúdo?",
+          "FORM_WIDGET": "Tem certeza de que deseja copiar este widget de formulário?"
         },
         "DOWNLOAD": {
           "PROCESS": "Tem certeza de que deseja baixar este processo?",
@@ -101,7 +116,8 @@
       "RELEASE": "Liberar",
       "COLLABORATORS": "Colaboradores",
       "SEE_RELEASES": "Exibir Versões",
-      "DOWNLOAD": "Download"
+      "DOWNLOAD": "Download",
+      "SAVE_AS": "Salvar como"
     },
     "SETTINGS": {
       "HEADER": "Configurações do aplicativo"
@@ -110,6 +126,7 @@
       "ERRORS": {
         "CHANGE_USER": "Alterar usuário",
         "NOT_VALID_JSON": "Objeto JSON inválido",
+        "NOT_VALID_HTML": "Objeto HTML inválido",
         "NOT_VALID_SCHEMA": "O objeto JSON não corresponde ao esquema"
       }
     },

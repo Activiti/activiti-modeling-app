@@ -5,6 +5,7 @@
     "VALIDATE_PROCESS": "Validar processo",
     "SAVE_PROCESS": "Salvar processo",
     "SELECT_PROCESS_VARIABLE": "Selecionar variável de processo",
+    "SCRIPT_NAME": "Nome do script",
     "PRIORITIES": {
       "NONE": "Nenhum",
       "LOW": "Baixo",
@@ -50,6 +51,7 @@
       "MAPPING_TYPE": "Tipo de mapeamento",
       "MAP_VARIABLES": "Mapear variáveis",
       "SEND_ALL_VARIABLES": "Enviar todas as variáveis",
+      "EDIT_EMAIL_TEMPLATE": "Editar modelo de email",
       "SEND_NO_VARIABLES": "Não enviar variáveis",
       "SIGNAL_NAME": "Nome de sinal",
       "ERROR_NAME": "Nome do erro",
@@ -83,7 +85,8 @@
       "PRIORITY": "Prioridade",
       "ACTIVITY_NAME": "Elemento chamado",
       "PROCESS": "Processo",
-      "PROCESS_VARIABLE": "Variável do processo",
+      "PROCESS_VARIABLE": "Variável de processo",
+      "FILTER_PROCESS_VARIABLE": "Filtrar variável do processo",
       "USE_PROCESS_VARIABLE": "Usar variável do processo",
       "USE_EXPRESSION": "Usar expressão",
       "PROCESS_VARIABLES": "Variáveis do processo",
@@ -93,6 +96,7 @@
       "PROCESS_NAME_REQUIRED": "Nome do processo é obrigatório",
       "INVALID_PROCESS_NAME": "Nome do processo inválido",
       "INVALID_NAME_LENGTH": "O nome deve ter menos de 40 caracteres",
+      "INVALID_DOCUMENTATION_LENGTH": "A documentação deve ter menos de 256 caracteres",
       "INVALID_FORM_NAME": "Nome do formulário inválido",
       "INVALID_EXPRESSION": "Expressão inválida ${condition}",
       "MESSAGE": "Mensagem",
@@ -125,7 +129,7 @@
         "FORM": {
           "NAME": "Nome",
           "TYPE": "Tipo",
-          "PROCESS_VARIABLE": "Variável do processo",
+          "PROCESS_VARIABLE": "Variável de processo",
           "VALUE": "Valor"
         },
         "INVALID_PAYLOAD_NAME": "Nome da carga inválido"
@@ -151,7 +155,7 @@
         "REPETITIONS": "Repetições",
         "DATE": "Data",
         "USE_PROCESS_VARIABLE": "Usar variável do processo",
-        "PROCESS_VARIABLE": "Variável do processo",
+        "PROCESS_VARIABLE": "Variável de processo",
         "USE_CRON_EXPRESSION": "Usar expressão cron",
         "CRON_EXPRESSION": "Expressão cron",
         "INVALID_CRON_EXPRESSION": "Expressão cron inválida"
@@ -193,6 +197,7 @@
     "PROCESS_INVALID": "O processo contém erros de validação.",
     "ERRORS": {
       "NO_PROCESS_VARIABLES": "Sem variáveis de processo",
+      "CREATE_PROCESS_VARIABLE": "Criar uma variável de processo para adicionar atribuição de expressão",
       "NO_SUB_PROCESS_VARIABLES": "Sem variáveis de processo secundário",
       "LOAD_DIAGRAM": "Encontramos um problema ao carregar o diagrama. Tente atualizar a página.",
       "SAVE_DIAGRAM": "Encontramos um problema ao salvar o diagrama. Tente salvar novamente.",

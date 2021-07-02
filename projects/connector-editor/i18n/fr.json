@@ -4,18 +4,18 @@
     "VALIDATE_CONNECTOR": "Valider le connecteur",
     "SAVE_CONNECTOR": "Enregistrer le connecteur",
     "CONNECTOR_VALID": "Le connecteur est valide",
-    "CONNECTOR_INVALID": "Le connecteur contient une ou des erreur(s) de validation.",
+    "CONNECTOR_INVALID": "Le connecteur contient une ou plusieurs erreurs de validation.",
     "UPLOAD_SUCCESS": "Connecteur importé",
     "TABS": {
       "CONNECTOR_EDITOR": "Editeur de connecteurs",
       "JSON_EDITOR": "Editeur JSON"
     },
     "ERRORS": {
-      "GET_CONNECTOR": "Un problème est survenu lors de l'importation du connecteur. Essayez de l'importer à nouveau."
+      "GET_CONNECTOR": "Un problème est survenu lors du chargement du connecteur. Essayez de l'importer à nouveau."
     },
     "DIALOG": {
       "TITLE": "Paramètres de l'éditeur de connecteurs",
-      "SHOW": "Afficher les connecteurs avec modèles dans la barre latérale de gauche",
+      "SHOW": "Afficher les connecteurs avec modèles dans la barre latérale gauche",
       "CANCEL": "Annuler",
       "APPLY": "Appliquer"
     },

@@ -1,10 +1,11 @@
 {
   "PROCESS_EDITOR": {
-    "DOWNLOAD_PROCESS": "Downloade proces",
+    "DOWNLOAD_PROCESS": "Download proces",
     "SAVE_PROCESS_IMAGE": "Gem procesdiagram som SVG",
     "VALIDATE_PROCESS": "Valider proces",
     "SAVE_PROCESS": "Gem proces",
     "SELECT_PROCESS_VARIABLE": "Vælg procesvariabel",
+    "SCRIPT_NAME": "Navn på script",
     "PRIORITIES": {
       "NONE": "Ingen",
       "LOW": "Lav",
@@ -34,7 +35,7 @@
       "ZOOM_OUT": "Zoom ud",
       "UNDO": "Fortryd",
       "FIT_VIEW_PORT": "Installer visningsport",
-      "REDO": "Annullér Fortryd",
+      "REDO": "Annuller Fortryd",
       "LASSO_TOOL": "Lasso-værktøj"
     },
     "ELEMENT_PROPERTIES": {
@@ -50,6 +51,7 @@
       "MAPPING_TYPE": "Tilknytningstype",
       "MAP_VARIABLES": "Tilknyt variabler",
       "SEND_ALL_VARIABLES": "Send alle variabler",
+      "EDIT_EMAIL_TEMPLATE": "Rediger e-mail-skabelon",
       "SEND_NO_VARIABLES": "Send ikke variabler",
       "SIGNAL_NAME": "Signalnavn",
       "ERROR_NAME": "Fejlnavn",
@@ -68,8 +70,8 @@
       "IMPLEMENTATION": "Implementering",
       "DECISION_TASK": "Opgaven Beslutning",
       "DECISION_TABLE_NAME": "Navn på beslutningstabel",
-      "INPUT_MAPPING": "Tilknytning af input",
-      "OUTPUT_MAPPING": "Tilknytning af output",
+      "INPUT_MAPPING": "Inputtilknytning",
+      "OUTPUT_MAPPING": "Outputtilknytning",
       "INPUTS": "Input",
       "OUTPUTS": "Output",
       "INPUT": "Input",
@@ -84,6 +86,7 @@
       "ACTIVITY_NAME": "Kaldt element",
       "PROCESS": "Proces",
       "PROCESS_VARIABLE": "Procesvariabel",
+      "FILTER_PROCESS_VARIABLE": "Filtrer procesvariabel",
       "USE_PROCESS_VARIABLE": "Anvend procesvariabel",
       "USE_EXPRESSION": "Anvend udtryk",
       "PROCESS_VARIABLES": "Procesvariabler",
@@ -93,6 +96,7 @@
       "PROCESS_NAME_REQUIRED": "Procesnavn er påkrævet",
       "INVALID_PROCESS_NAME": "Ugyldigt procesnavn",
       "INVALID_NAME_LENGTH": "Navnet skal være mindre end 40 tegn",
+      "INVALID_DOCUMENTATION_LENGTH": "Dokumentation skal indeholde mindre end 256 tegn",
       "INVALID_FORM_NAME": "Ugyldigt formularnavn",
       "INVALID_EXPRESSION": "Ugyldigt udtryk ${betingelse}",
       "MESSAGE": "Meddelelse",
@@ -121,7 +125,7 @@
         "TITLE": "Meddelelse indhold",
         "ADD": "Tilføj",
         "CREATE_PROPERTY": "Opret ny egenskab",
-        "NO_PROPERTIES": "Beskeden har ingen nyttedata. Tilføj nyttedata i beskedens kastehændelse.",
+        "NO_PROPERTIES": "meddelelsen har ingen nyttedata. Tilføj nyttedata i meddelelsens kastehændelse.",
         "FORM": {
           "NAME": "Navn",
           "TYPE": "Type",
@@ -193,6 +197,7 @@
     "PROCESS_INVALID": "Processen indeholder valideringsfejl.",
     "ERRORS": {
       "NO_PROCESS_VARIABLES": "Ingen procesvariabler",
+      "CREATE_PROCESS_VARIABLE": "Opret en procesvariabel til at tilføje udtrykstildeling",
       "NO_SUB_PROCESS_VARIABLES": "Ingen sub-procesvariabler",
       "LOAD_DIAGRAM": "Der opstod et problem under indlæsning af diagrammet. Prøv at opdatere siden.",
       "SAVE_DIAGRAM": "Der opstod et problem under lagring af diagrammet. Prøv at gemme det igen.",

@@ -5,8 +5,9 @@
     "VALIDATE_PROCESS": "Valider le processus",
     "SAVE_PROCESS": "Enregistrer le processus",
     "SELECT_PROCESS_VARIABLE": "Sélectionner une variable de processus",
+    "SCRIPT_NAME": "Nom du script",
     "PRIORITIES": {
-      "NONE": "Aucun(e)",
+      "NONE": "Aucune",
       "LOW": "Basse",
       "MEDIUM": "Normale",
       "HIGH": "Élevée"
@@ -18,7 +19,7 @@
       "DATE": "Date"
     },
     "MULTI_INSTANCE_TYPES": {
-      "NONE": "Aucun(e)",
+      "NONE": "Aucune",
       "PARALLEL": "Parallèle",
       "SEQUENCE": "Séquentielle"
     },
@@ -34,7 +35,7 @@
       "ZOOM_OUT": "Zoom arrière",
       "UNDO": "Annuler",
       "FIT_VIEW_PORT": "Ajuster à la fenêtre d'affichage",
-      "REDO": "Répéter",
+      "REDO": "Rétablir",
       "LASSO_TOOL": "Outil Lasso"
     },
     "ELEMENT_PROPERTIES": {
@@ -50,6 +51,7 @@
       "MAPPING_TYPE": "Type de mappage",
       "MAP_VARIABLES": "Mapper des variables",
       "SEND_ALL_VARIABLES": "Envoyer toutes les variables",
+      "EDIT_EMAIL_TEMPLATE": "Modifier le modèle d'e-mail",
       "SEND_NO_VARIABLES": "Ne pas envoyer de variables",
       "SIGNAL_NAME": "Nom de signal",
       "ERROR_NAME": "Nom de l'erreur",
@@ -84,15 +86,17 @@
       "ACTIVITY_NAME": "Elément appelé",
       "PROCESS": "Processus",
       "PROCESS_VARIABLE": "Variable de processus",
+      "FILTER_PROCESS_VARIABLE": "Filtrer une variable de processus",
       "USE_PROCESS_VARIABLE": "Utiliser une variable de processus",
       "USE_EXPRESSION": "Utiliser une expression",
       "PROCESS_VARIABLES": "Variables de processus",
-      "EXPRESSION": "Expression de condition",
+      "EXPRESSION": "Expression de la condition",
       "FORM_SELECTOR": "Nom du formulaire",
       "DEFAULT_SEQUENCE_FLOW": "Flux de séquence par défaut",
       "PROCESS_NAME_REQUIRED": "Le nom du processus est obligatoire",
       "INVALID_PROCESS_NAME": "Nom du processus non valide",
       "INVALID_NAME_LENGTH": "Le nom doit comporter moins de 40 caractères",
+      "INVALID_DOCUMENTATION_LENGTH": "La documentation doit comporter moins de 256 caractères",
       "INVALID_FORM_NAME": "Nom du formulaire non valide",
       "INVALID_EXPRESSION": "Expression non valide ${condition}",
       "MESSAGE": "Message",
@@ -140,7 +144,7 @@
       "TIMERS": {
         "TIMER_TYPE": "Type de minuteur",
         "TIMER_DEFINITION": "Définition du minuteur",
-        "REQUIRED": "Obligatoire",
+        "REQUIRED": "Requis",
         "YEARS": "Années",
         "MONTHS": "Mois",
         "WEEKS": "Semaines",
@@ -193,6 +197,7 @@
     "PROCESS_INVALID": "Le processus contient une ou des erreurs de validation.",
     "ERRORS": {
       "NO_PROCESS_VARIABLES": "Aucune variable de processus",
+      "CREATE_PROCESS_VARIABLE": "Créer une variable de processus pour ajouter une affectation d'expression",
       "NO_SUB_PROCESS_VARIABLES": "Aucune variable de sous-processus",
       "LOAD_DIAGRAM": "Un problème est survenu lors du chargement du diagramme. Essayez d'actualiser la page.",
       "SAVE_DIAGRAM": "Une erreur est survenue lors de l'enregistrement du diagramme. Essayez de l'enregistrer à nouveau.",
@@ -207,7 +212,7 @@
       "TABLE": {
         "COLUMN_NAME": "Nom",
         "COLUMN_TYPE": "Type",
-        "COLUMN_REQUIRED": "Obligatoire",
+        "COLUMN_REQUIRED": "Requis",
         "COLUMN_VALUE": "Valeur",
         "NO_PROPERTIES": "Sélectionnez ou créez une variable pour afficher ses propriétés"
       },
@@ -222,8 +227,8 @@
       "END_EVENT": "Créer un événement de fin",
       "GATEWAY": "Créer une passerelle",
       "HAND_TOOL": "Outil Main",
-      "INTERMEDIATE_CATCH_EVENT_SIGNAL": "Créer un signal d'événement de capture intermédiaire",
-      "INTERMEDIATE_THROW_EVENT": "Créer un événement de lancement intermédiaire",
+      "INTERMEDIATE_CATCH_EVENT_SIGNAL": "Créer un signal d'événement de réception intermédiaire",
+      "INTERMEDIATE_THROW_EVENT": "Créer un événement d'envoi intermédiaire",
       "INTERMEDIATE_THROW_EVENT_SIGNAL": "Créer un signal d'événement d'envoi intermédiaire",
       "LASSO_TOOL": "Outil Lasso",
       "PARTICIPANT": "Créer un pool",

@@ -37,6 +37,7 @@
       "CONFIRM": {
         "TITLE": "确定吗？",
         "SUBTITLE": "确定要执行此操作吗？",
+        "EMAIL_TEMPLATE_DESCRIPTION": "此操作无法撤消",
         "BUTTON": "确认",
         "RELEASE": "确定要发布新版本的此项目吗？",
         "TYPES": {
@@ -74,10 +75,24 @@
           "DECISION_TABLE": "确定要保存此决策表吗？",
           "CONNECTOR": "确定要保存此连接器吗？",
           "FILE": "确定要保存此文件吗？",
+          "EMAIL_TEMPLATE": "确定要覆盖电子邮件模板吗？",
           "SCRIPT": "确定要保存此脚本吗？",
           "TRIGGER": "确定要保存此触发器吗?",
           "MODEL": "确定要保存此内容模型吗？",
           "FORM_WIDGET": "确定要保存此表单小组件吗？"
+        },
+        "SAVE_AS": {
+          "PROCESS": "确定要复制此进程吗？",
+          "FORM": "确定要复制此表单吗？",
+          "UI": "确定要复制这个用户界面吗？",
+          "DATA": "确定要复制这个数据对象吗？",
+          "DECISION_TABLE": "确定要复制这个决策表吗？",
+          "CONNECTOR": "确定要复制这个连接器吗？",
+          "FILE": "确定要复制这个文件吗？",
+          "SCRIPT": "确定要复制这个脚本吗？",
+          "TRIGGER": "确定要复制这个触发器吗？",
+          "MODEL": "确定要复制这个内容模型吗？",
+          "FORM_WIDGET": "确定要复制这个表格小组件吗？"
         },
         "DOWNLOAD": {
           "PROCESS": "确定要下载此流程吗？",
@@ -101,7 +116,8 @@
       "RELEASE": "发布",
       "COLLABORATORS": "协作者",
       "SEE_RELEASES": "查看发布",
-      "DOWNLOAD": "下载"
+      "DOWNLOAD": "下载",
+      "SAVE_AS": "保存为"
     },
     "SETTINGS": {
       "HEADER": "App 设置"
@@ -110,6 +126,7 @@
       "ERRORS": {
         "CHANGE_USER": "更改用户",
         "NOT_VALID_JSON": "无效的 JSON 对象",
+        "NOT_VALID_HTML": "无效的 HTML 对象",
         "NOT_VALID_SCHEMA": "JSON 对象与架构不匹配"
       }
     },

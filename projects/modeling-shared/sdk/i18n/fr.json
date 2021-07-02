@@ -1,7 +1,7 @@
 {
   "SDK": {
     "SNACKBAR": {
-      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Les valeurs collées doivent correspondre à ce modèle"
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Les valeurs collées doivent suivre ce modèle"
     },
     "ALL": "Tout",
     "VALUE": "Valeur",
@@ -9,11 +9,12 @@
       "ERRORS": {
         "EMPTY_NAME": "Vous devez spécifier un nom",
         "INVALID_NAME": "Nom de variable non valide",
-        "VARIABLE_NAME_TOOLTIP": "Le nom doit commencer par une lettre et contenir uniquement des caractères alphanumériques et des traits de soulignement",
-        "NAME_ALREADY_EXISTS": "Les noms de variables doivent être uniques"
+        "VARIABLE_NAME_TOOLTIP": "Le nom doit commencer par une lettre et peut contenir uniquement des caractères alphanumériques et des traits de soulignement",
+        "NAME_ALREADY_EXISTS": "Les noms de variables doivent être uniques",
+        "FILE_ALREADY_EXISTS": "Le fichier existe déjà"
       },
       "TABS": {
-        "VIEWER": "Afficheur de propriétés",
+        "VIEWER": "Visionneuse de propriétés",
         "JSON_EDITOR": "Editeur JSON"
       },
       "TABLE": {
@@ -28,14 +29,20 @@
       "PARAMETER": "Paramètre",
       "VALUE": "Valeur",
       "PROCESS_VARIABLE": "Variable de processus",
-      "SWITCH_VAR_VAL": "Basculer entre variable et valeur",
+      "SWITCH_VAR_VAL": "Activer/désactiver la variable/valeur",
       "NO_PROCESS_PROPERTIES": "Aucune propriété de processus",
       "NO_PAYLOAD": "Le message n'a pas de charge utile. Ajoutez une charge utile dans l'événement d'envoi de message.",
-      "CLEAR_ASSIGNMENT": "Effacer l'affectation",
+      "CLEAR_ASSIGNMENT": "Supprimer l'affectation",
+      "MAPPING_TYPE": "Type de mappage",
+      "MAP_VARIABLES": "Mapper des variables",
+      "MAP_NO_VARIABLE": "Ne pas mapper les variables",
+      "MAP_ALL": "Mapper toutes les variables d'entrée/sortie",
+      "MAP_ALL_INPUTS": "Mapper toutes les variables d'entrée",
+      "MAP_ALL_OUTPUTS": "Mapper toutes les variables de sortie",
       "NONE": "Aucune"
     },
     "MESSAGES_EDITOR": {
-      "TITLE": "Traiter les messages",
+      "TITLE": "Messages de processus",
       "ERRORS": {
         "EMPTY_NAME": "Vous devez spécifier un nom",
         "NAME_ALREADY_EXISTS": "Les noms de messages doivent être uniques"
@@ -43,12 +50,26 @@
       "TABLE": {
         "COLUMN_NAME": "Nom",
         "COLUMN_ID": "ID",
-        "NO_MESSAGES": "Sélectionnez ou créez un message pour afficher ses propriétés"
+        "NO_MESSAGES": "Sélectionner ou créer un message pour afficher ses propriétés"
+      }
+    },
+    "ERRORS_EDITOR": {
+      "TITLE": "Erreurs de processus",
+      "ERRORS": {
+        "EMPTY_NAME": "Vous devez spécifier un nom",
+        "EMPTY_CODE": "Un code d'erreur est requis",
+        "NAME_ALREADY_EXISTS": "Les noms d'erreurs de processus doivent être uniques"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nom de l'erreur",
+        "COLUMN_CODE": "Code d'erreur",
+        "COLUMN_ID": "ID de l'erreur",
+        "NO_PROCESS_ERRORS": "Sélectionner ou créer une erreur de processus pour afficher ses propriétés"
       }
     },
     "MAPPING_DIALOG": {
-      "TITLE": "Modifier le mappage des variables",
-      "SELECTOR_TITLE": "Sélectionnez le type de mappage de variable à modifier",
+      "TITLE": "Modifier le mappage de variable",
+      "SELECTOR_TITLE": "Sélectionner le type de mappage de variable à modifier",
       "INPUT_MAPPING": "Mappage d'entrée",
       "OUTPUT_MAPPING": "Mappage de sortie",
       "PROCESS_VARIABLE": "Variable de processus",
@@ -58,6 +79,53 @@
       "EXPRESSION_MAPPING": "Expression",
       "NONE": "Aucune",
       "TYPE": "Type"
+    },
+    "SAVE_AS_DIALOG": {
+      "TITLE": "Enregistrer sous",
+      "FIELD_PROPERTIES": {
+        "NAME": "Nom",
+        "DESCRIPTION": "Description"
+      }
+    },
+    "EXPRESSION_CODE_EDITOR": {
+      "EDIT_IN_DIALOG": "Modifier dans la boîte de dialogue",
+      "EXPRESSION_EDITOR": "Editeur d'expressions",
+      "NO_BRACKETS_HINT": "L'expression complète dans cet éditeur sera enregistrée entre accolades (${...}). Vous n'avez donc pas besoin de les saisir"
+    },
+    "VARIABLES_SELECTORS": {
+      "ACTIONS": {
+        "SEARCH": "Rechercher"
+      }
+    },
+    "CONDITION": {
+      "TYPES": {
+        "START_EVENT": "Evénement de début",
+        "PROCESS": "Processus",
+        "SERVICE_TASK": "Tâche de service",
+        "CALLED_ELEMENT": "Elément appelé",
+        "SCRIPT_TASK": "Tâche de script",
+        "DECISION_TABLE": "Table de décision",
+        "USER_TASK": "Tâche Utilisateur",
+        "NONE": "Aucun",
+        "EVENT": "Evénement",
+        "EMAIL_SERVICE_TASK": "Tâche du service de messagerie"
+      },
+      "TOOLTIP": {
+        "VARIABLE": "Variable",
+        "PROCESS_VARIABLE_TOOLTIP": "Variable de processus de {{processName}}",
+        "NONE_VARIABLE_TOOLTIP": "Sélectionner 'Aucun' pour supprimer la sélection",
+        "OUTPUT_VARIABLE_TOOLTIP": "Sortie de {{taskName}} {{taskType}}",
+        "PROPERTIES": "Propriétés"
+      }
+    },
+    "VARIABLE_EXPRESSION": {
+      "TITLE": {
+        "VARIABLES": "Variables",
+        "EXPRESSION": "Expression",
+        "OPEN_EXPRESSION_EDITOR": "Ouvrir la boîte de dialogue de l'éditeur d'expressions",
+        "SWITCH_TO_VARIABLES": "Basculer vers le sélecteur de variables",
+        "CLEAR_SELECTION": "Supprimer la sélection"
+      }
     }
   }
 }

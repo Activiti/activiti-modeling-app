@@ -11,11 +11,11 @@
       "JSON_EDITOR": "JSON 编辑器"
     },
     "ERRORS": {
-      "GET_CONNECTOR": "加载连接器时遇到问题。尝试重新上传。"
+      "GET_CONNECTOR": "加载连接器时遇到了问题。请尝试再次上传。"
     },
     "DIALOG": {
       "TITLE": "连接器编辑器设置",
-      "SHOW": "使用左侧边栏上的模板显示连接器",
+      "SHOW": "在左边的侧边栏上显示带有模板的连接器",
       "CANCEL": "取消",
       "APPLY": "应用"
     },

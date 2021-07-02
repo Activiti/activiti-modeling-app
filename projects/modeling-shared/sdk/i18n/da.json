@@ -1,7 +1,7 @@
 {
   "SDK": {
     "SNACKBAR": {
-      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "De indsatte værdier skal følge dette mønster"
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Indsatte værdier skal følge dette mønster"
     },
     "ALL": "Alle",
     "VALUE": "Værdi",
@@ -9,11 +9,12 @@
       "ERRORS": {
         "EMPTY_NAME": "Der skal angives et navn",
         "INVALID_NAME": "Ugyldigt navn på variabel",
-        "VARIABLE_NAME_TOOLTIP": "Navnet skal begynde med et bogstav og må kun indeholde alfanumeriske tegn og understregningstegn",
-        "NAME_ALREADY_EXISTS": "Navne på variabler skal være entydige"
+        "VARIABLE_NAME_TOOLTIP": "Navnet skal starte med et bogstav og må kun indeholde alfanumeriske tegn og understregninger",
+        "NAME_ALREADY_EXISTS": "Variabelnavne skal være unikke",
+        "FILE_ALREADY_EXISTS": "Fil eksisterer allerede"
       },
       "TABS": {
-        "VIEWER": "Fremviser til egenskaber",
+        "VIEWER": "Fremviser af egenskaber",
         "JSON_EDITOR": "JSON-editor"
       },
       "TABLE": {
@@ -28,36 +29,103 @@
       "PARAMETER": "Parameter",
       "VALUE": "Værdi",
       "PROCESS_VARIABLE": "Procesvariabel",
-      "SWITCH_VAR_VAL": "Slå variabel/værdi til/fra",
+      "SWITCH_VAR_VAL": "Skift mellem variabel/værdi",
       "NO_PROCESS_PROPERTIES": "Ingen procesegenskaber",
-      "NO_PAYLOAD": "Beskeden har ingen nyttedata. Tilføj nyttedata i beskedens kastehændelse.",
+      "NO_PAYLOAD": "meddelelsen har ingen nyttedata. Tilføj nyttedata i meddelelsens kastehændelse.",
       "CLEAR_ASSIGNMENT": "Ryd tildeling",
+      "MAPPING_TYPE": "Tilknytningstype",
+      "MAP_VARIABLES": "Tilknyt variabler",
+      "MAP_NO_VARIABLE": "Kortlæg ikke variabler",
+      "MAP_ALL": "Kortlæg alle indgangs-/udgangsvariabler",
+      "MAP_ALL_INPUTS": "Kortlæg alle indgangsvariabler",
+      "MAP_ALL_OUTPUTS": "Kortlæg alle udgangsvariabler",
       "NONE": "Ingen"
     },
     "MESSAGES_EDITOR": {
-      "TITLE": "Procesbeskeder",
+      "TITLE": "Procesmeddelelser",
       "ERRORS": {
         "EMPTY_NAME": "Der skal angives et navn",
-        "NAME_ALREADY_EXISTS": "Navne på beskeder skal være entydige"
+        "NAME_ALREADY_EXISTS": "Meddelelsesnavn skal være unikt"
       },
       "TABLE": {
         "COLUMN_NAME": "Navn",
         "COLUMN_ID": "Id",
-        "NO_MESSAGES": "Vælg eller opret en besked for at få vist dens egenskaber"
+        "NO_MESSAGES": "Vælg eller opret en meddelelse for at se dens egenskaber"
+      }
+    },
+    "ERRORS_EDITOR": {
+      "TITLE": "Procesfejl",
+      "ERRORS": {
+        "EMPTY_NAME": "Der skal angives et navn",
+        "EMPTY_CODE": "En fejlkode er påkrævet",
+        "NAME_ALREADY_EXISTS": "Procefejlnavne skal være unikke"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Fejlnavn",
+        "COLUMN_CODE": "Fejlkode",
+        "COLUMN_ID": "Fejl-id",
+        "NO_PROCESS_ERRORS": "Vælg eller opret en procesfejl for at se dens egenskaber"
       }
     },
     "MAPPING_DIALOG": {
-      "TITLE": "Redigér tilknytning af variabel",
-      "SELECTOR_TITLE": "Vælg den tilknytningstype af variabel, der skal redigeres",
-      "INPUT_MAPPING": "Tilknytning af input",
-      "OUTPUT_MAPPING": "Tilknytning af output",
+      "TITLE": "Rediger variabel kortlægning",
+      "SELECTOR_TITLE": "Vælg den variable kortlægningstype der skal redigeres",
+      "INPUT_MAPPING": "Inputtilknytning",
+      "OUTPUT_MAPPING": "Outputtilknytning",
       "PROCESS_VARIABLE": "Procesvariabel",
-      "INPUT_PARAMETER": "Inputparameter",
-      "OUTPUT_PARAMETER": "Outputparameter",
+      "INPUT_PARAMETER": "Udgangsparameter",
+      "OUTPUT_PARAMETER": "Indgangsparameter",
       "VALUE_MAPPING": "Værdi",
       "EXPRESSION_MAPPING": "Udtryk",
       "NONE": "Ingen",
       "TYPE": "Type"
+    },
+    "SAVE_AS_DIALOG": {
+      "TITLE": "Gem som",
+      "FIELD_PROPERTIES": {
+        "NAME": "Navn",
+        "DESCRIPTION": "Beskrivelse"
+      }
+    },
+    "EXPRESSION_CODE_EDITOR": {
+      "EDIT_IN_DIALOG": "Rediger i dialog",
+      "EXPRESSION_EDITOR": "Udtryk redigeringsenhed",
+      "NO_BRACKETS_HINT": "Hele udtrykket i denne redigeringsenhed gemmes inden i de krøllede parenteser (${...}) så du ikke behøver at indtaste dem"
+    },
+    "VARIABLES_SELECTORS": {
+      "ACTIONS": {
+        "SEARCH": "Søg"
+      }
+    },
+    "CONDITION": {
+      "TYPES": {
+        "START_EVENT": "Starthændelse",
+        "PROCESS": "Proces",
+        "SERVICE_TASK": "Tjenesteopgave",
+        "CALLED_ELEMENT": "Kaldt element",
+        "SCRIPT_TASK": "Scriptopgave",
+        "DECISION_TABLE": "Beslutningstabel",
+        "USER_TASK": "Brugeropgave",
+        "NONE": "Ingen",
+        "EVENT": "Hændelse",
+        "EMAIL_SERVICE_TASK": "E-mail serviceopgave"
+      },
+      "TOOLTIP": {
+        "VARIABLE": "Variabel",
+        "PROCESS_VARIABLE_TOOLTIP": "Procesvariabel for {{processName}}",
+        "NONE_VARIABLE_TOOLTIP": "Vælg \"Ingen\" for at rydde valget",
+        "OUTPUT_VARIABLE_TOOLTIP": "Resultat for {{taskType}} {{taskName}}",
+        "PROPERTIES": "Egenskaber"
+      }
+    },
+    "VARIABLE_EXPRESSION": {
+      "TITLE": {
+        "VARIABLES": "Variabler",
+        "EXPRESSION": "Udtryk",
+        "OPEN_EXPRESSION_EDITOR": "Åbn dialgo for udtryk-redigeringsenhed",
+        "SWITCH_TO_VARIABLES": "Skift til vælger for variable",
+        "CLEAR_SELECTION": "Ryd valg"
+      }
     }
   }
 }

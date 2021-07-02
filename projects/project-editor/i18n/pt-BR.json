@@ -163,6 +163,7 @@
       "FORM_WIDGET_UPDATED": "Widget do formulário salvo"
     },
     "ERROR": {
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} com o mesmo nome já existe",
       "UPLOAD_FILE": "Encontramos um problema ao carregar o arquivo. Tente carregar novamente.",
       "DELETE_PROJECT": "Encontramos um problema ao excluir o projeto. Tente excluir novamente.",
       "CHANGE_FAVORITE": "Encontramos um problema ao marcar o projeto como favorito. Tente marcar como favorito novamente.",

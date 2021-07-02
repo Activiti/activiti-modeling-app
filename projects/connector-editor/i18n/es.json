@@ -4,21 +4,21 @@
     "VALIDATE_CONNECTOR": "Validar conector",
     "SAVE_CONNECTOR": "Guardar conector",
     "CONNECTOR_VALID": "El conector es válido",
-    "CONNECTOR_INVALID": "El conector contiene error(es) de validación.",
+    "CONNECTOR_INVALID": "El conector contiene errores de validación.",
     "UPLOAD_SUCCESS": "Conector cargado",
     "TABS": {
-      "CONNECTOR_EDITOR": "Editor de conectores",
+      "CONNECTOR_EDITOR": "Editor del conector",
       "JSON_EDITOR": "Editor de JSON"
     },
     "ERRORS": {
-      "GET_CONNECTOR": "Ha surgido un problema al cargar el conector. Vuelva a intentar cargarlo."
+      "GET_CONNECTOR": "Se produjo un error al cargar el conector. Intente cargarlo de nuevo."
     },
     "DIALOG": {
-      "TITLE": "Config. del editor de conectores",
+      "TITLE": "Configuración del editor del conector",
       "SHOW": "Mostrar conectores con plantillas en la barra lateral izquierda",
       "CANCEL": "Cancelar",
       "APPLY": "Aplicar"
     },
-    "NAME": "Editor de conectores"
+    "NAME": "Editor del conector"
   }
 }

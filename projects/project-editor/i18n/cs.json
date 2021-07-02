@@ -145,13 +145,13 @@
       "DEL_EVENT": "Odstranit událost"
     },
     "PROJECT_MODEL_DIALOG": {
-      "TITLE_CREATE": "Vytvořit model obsahu",
-      "TITLE_UPDATE": "Aktualizovat model obsahu",
-      "PROJECT_MODEL_NAME": "Název modelu obsahu:",
-      "PROJECT_MODEL_DESC": "Popis modelu obsahu:",
-      "PROJECT_MODEL_CREATED": "Vytvoření modelu obsahu",
-      "PROJECT_MODEL_DELETED": "Odstranění modelu obsahu",
-      "PROJECT_MODEL_UPDATED": "Uložení modelu obsahu"
+      "TITLE_CREATE": "Vytvořit model ACS",
+      "TITLE_UPDATE": "Aktualizovat model ACS",
+      "PROJECT_MODEL_NAME": "Název modelu ACS:",
+      "PROJECT_MODEL_DESC": "Popis modelu ACS:",
+      "PROJECT_MODEL_CREATED": "Vytvoření modelu ACS",
+      "PROJECT_MODEL_DELETED": "Odstranění modelu ACS",
+      "PROJECT_MODEL_UPDATED": "Uložení modelu ACS"
     },
     "FORM_WIDGET_DIALOG": {
       "TITLE_CREATE": "Vytvořit widget formuláře",
@@ -163,6 +163,7 @@
       "FORM_WIDGET_UPDATED": "Uložení widgetu formuláře"
     },
     "ERROR": {
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} se stejným názvem již existuje",
       "UPLOAD_FILE": "Došlo k problému při odesílání souboru. Zkuste ho odeslat znovu.",
       "DELETE_PROJECT": "Došlo k problému při odstraňování projektu. Zkuste ho odstranit znovu.",
       "CHANGE_FAVORITE": "Došlo k problému při přidávání projektu do oblíbených. Zkuste ho přidat do oblíbených znovu.",
