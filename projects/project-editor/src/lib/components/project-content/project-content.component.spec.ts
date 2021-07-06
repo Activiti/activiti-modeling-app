@@ -18,7 +18,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectContentComponent } from './project-content.component';
 import { Store } from '@ngrx/store';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToolbarModule } from '@alfresco/adf-core';
@@ -32,6 +32,7 @@ import { ProjectEditorService } from '../../services/project-editor.service';
 import { mockProject } from './project-content.mock';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ExportProjectAttemptAction } from '../../store/project-editor.actions';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ProjectContentComponent', () => {
     let fixture: ComponentFixture<ProjectContentComponent>;
@@ -61,8 +62,14 @@ describe('ProjectContentComponent', () => {
                         select: jest.fn().mockReturnValue(of(mockProject))
                     }
                 },
-                { provide: PROJECT_CONTEXT_MENU_OPTIONS, useValue: []},
-            ]
+                { provide: PROJECT_CONTEXT_MENU_OPTIONS, useValue: [] }
+            ],
+            schemas: [NO_ERRORS_SCHEMA]
+        }).overrideModule(MatIconModule, {
+            remove: {
+                declarations: [MatIcon],
+                exports: [MatIcon]
+            }
         });
     });
 

@@ -33,7 +33,7 @@ export class CodeEditorService {
     }
 
     replaceSchema(uri: string, fileMatch: string | string[], schema: string | Object) {
-        const schemaIndex = this.schemas.findIndex(itemSchema => itemSchema.uri === uri);
+        const schemaIndex = this.getSchemaIndexByUri(uri);
         if (schemaIndex === -1) {
             this.addSchema(uri, fileMatch, schema);
         } else {
@@ -45,11 +45,26 @@ export class CodeEditorService {
         }
     }
 
+    deleteSchemaByUri(uri: string) {
+        const schemaIndex = this.getSchemaIndexByUri(uri);
+        if (schemaIndex !== -1) {
+            this.deleteSchema(schemaIndex);
+        }
+    }
+
     getConfig() {
         return {
             baseUrl: './assets',
             onMonacoLoad: this.onMonacoLoad.bind(this)
         };
+    }
+
+    private deleteSchema(index: number) {
+        this.schemas.splice(index, 1);
+    }
+
+    private getSchemaIndexByUri(uri: string): number {
+        return this.schemas.findIndex(itemSchema => itemSchema.uri === uri);
     }
 
     private onMonacoLoad() {

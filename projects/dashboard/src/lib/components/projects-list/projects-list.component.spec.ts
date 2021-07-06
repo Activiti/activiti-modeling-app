@@ -19,7 +19,6 @@ import { ProjectsListComponent } from './projects-list.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationMock, TranslationService, AppConfigService, CoreModule } from '@alfresco/adf-core';
-import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 import { Store } from '@ngrx/store';
 import { AmaState, AmaApi, PROJECT_CONTEXT_MENU_OPTIONS, selectLoading, selectPagination, selectProjectSummaries, ExportProjectAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { By } from '@angular/platform-browser';
@@ -34,6 +33,8 @@ import { mockProject, paginationMock } from './projects-list.mock';
 import { DashboardService } from '../../services/dashboard.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe ('Projects List Component', () => {
     let component: ProjectsListComponent;
@@ -55,7 +56,8 @@ describe ('Projects List Component', () => {
                 MatPaginatorModule,
                 MomentModule,
                 RouterTestingModule,
-                NoopAnimationsModule
+                NoopAnimationsModule,
+                MatIconModule
             ],
             declarations: [
                 ProjectsListComponent
@@ -83,7 +85,12 @@ describe ('Projects List Component', () => {
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: AppConfigService, useValue: { get() { return {}; } } }
             ],
-            schemas: [NO_ERRORS_SCHEMA],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+        }).overrideModule(MatIconModule, {
+            remove: {
+                declarations: [MatIcon],
+                exports: [MatIcon]
+            }
         });
 
         dashboardService = TestBed.inject(DashboardService);

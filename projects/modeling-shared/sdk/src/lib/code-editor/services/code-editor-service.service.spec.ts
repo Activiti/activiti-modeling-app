@@ -40,4 +40,17 @@ describe('CodeEditorService', () => {
         service.replaceSchema('test', 'test-replace', 'test-replace');
         expect(addSchemaSpy).not.toHaveBeenCalled();
     });
+
+    it('should call deleteSchema on deleteSchemaByUri when uri is present', () => {
+        service.addSchema('test', 'test-add', 'test-add');
+        const deleteSchemaSpy = spyOn<any>(service, 'deleteSchema');
+        service.deleteSchemaByUri('test');
+        expect(deleteSchemaSpy).toHaveBeenCalled();
+    });
+
+    it('should not call deleteSchema on deleteSchemaByUri when uri is not present', () => {
+        const deleteSchemaSpy = spyOn<any>(service, 'deleteSchema');
+        service.deleteSchemaByUri('notPresent');
+        expect(deleteSchemaSpy).not.toHaveBeenCalled();
+    });
 });
