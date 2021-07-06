@@ -27,7 +27,7 @@
         "CREATE_PROCESS": "Processo",
         "CREATE_CONNECTOR": "Connettore",
         "CREATE_FORM": "Modulo",
-        "CREATE_UI": "IU",
+        "CREATE_UI": "UI",
         "CREATE_DATA": "Oggetto dati",
         "CREATE_DECISION_TABLE": "Tabella decisioni",
         "CREATE_FILE": "File",
@@ -43,7 +43,7 @@
       "CONNECTORS": "Connettori",
       "DATA": "Dati",
       "DECISION_TABLES": "Tabelle decisioni",
-      "UIS": "IU",
+      "UIS": "UI",
       "FILES": "File",
       "SCRIPTS": "Script",
       "TRIGGERS": "Trigger"
@@ -77,13 +77,13 @@
       "FORM_CONTENT_CREATED": "Contenuto modulo iniziale creato da modello di contenuto"
     },
     "UI_DIALOG": {
-      "TITLE_CREATE": "Creazione​ IU",
-      "TITLE_UPDATE": "Aggiornamento IU",
-      "UI_NAME": "Nome IU:",
-      "UI_DESC": "Descrizione IU:",
-      "UI_CREATED": "IU creata",
-      "UI_DELETED": "IU eliminata",
-      "UI_UPDATED": "IU salvata"
+      "TITLE_CREATE": "Creazione​ UI",
+      "TITLE_UPDATE": "Aggiornamento UI",
+      "UI_NAME": "Nome UI:",
+      "UI_DESC": "Descrizione UI:",
+      "UI_CREATED": "UI creata",
+      "UI_DELETED": "UI eliminata",
+      "UI_UPDATED": "UI salvata"
     },
     "DATA_DIALOG": {
       "TITLE_CREATE": "Creazione oggetto dati",
@@ -104,7 +104,7 @@
       "DECISION_TABLE_UPDATED": "Tabella decisioni salvata"
     },
     "FILE_DIALOG": {
-      "TITLE_CREATE": "Creazione file",
+      "TITLE_CREATE": "Crea file",
       "TITLE_UPDATE": "Aggiornamento file",
       "FILE_NAME": "Nome file:",
       "FILE_DESC": "Descrizione file:",
@@ -163,11 +163,12 @@
       "FORM_WIDGET_UPDATED": "Widget di modulo salvato"
     },
     "ERROR": {
+      "UPLOAD_DUPLICATE_FILE": "Esiste già {{modelType}} con lo stesso nome",
       "UPLOAD_FILE": "Si è verificato un problema durante il caricamento del file. Riprovare.",
       "DELETE_PROJECT": "Si è verificato un problema durante l'eliminazione del progetto. Riprovare.",
       "CHANGE_FAVORITE": "Si è verificato un problema durante la scelta del progetto come preferito. Riprovare.",
       "DELETE_PROCESS": "Si è verificato un problema durante l'eliminazione del processo. Riprovare.",
-      "LOAD_MODELS": "Si è verificato un problema durante il caricamento dei modelli. Aggiornare la pagina.",
+      "LOAD_MODELS": "Si è verificato un problema durante il caricamento dei modelli. Provare ad aggiornare la pagina.",
       "RELEASE_PROJECT": "Si è verificato un problema durante il rilascio del progetto. Riprovare.",
       "CREATE_PROCESS": {
         "DUPLICATION": "Esiste già un processo con il nome specificato",
@@ -195,11 +196,11 @@
         "GENERAL": "Si è verificato un problema durante il salvataggio del modulo. Riprovare."
       },
       "CREATE_UI": {
-        "DUPLICATION": "Esiste già una IU con il nome specificato",
-        "GENERAL": "Si è verificato un problema durante la creazione della IU. Riprovare."
+        "DUPLICATION": "Esiste già una UI con il nome specificato",
+        "GENERAL": "Si è verificato un problema durante la creazione della UI. Riprovare."
       },
       "UPDATE_UI": {
-        "DUPLICATION": "Esiste già una IU con il nome specificato",
+        "DUPLICATION": "Esiste già una UI con il nome specificato",
         "GENERAL": "Si è verificato un problema durante il salvataggio della IU. Riprovare."
       },
       "CREATE_DECISION_TABLE": {
@@ -230,7 +231,7 @@
         "DUPLICATION": "Esiste già un progetto con il nome specificato",
         "GENERAL": "Si è verificato un problema durante il caricamento del progetto. Riprovare."
       },
-      "GET_PROJECT": "Si è verificato un problema durante il caricamento del progetto. Aggiornare la pagina.",
+      "GET_PROJECT": "Si è verificato un problema durante il caricamento del progetto. Provare ad aggiornare la pagina.",
       "EXPORT_PROJECT": "Errore sconosciuto durante l'esportazione del progetto",
       "CREATE_FILE": {
         "DUPLICATION": "Esiste già un file con il nome specificato",

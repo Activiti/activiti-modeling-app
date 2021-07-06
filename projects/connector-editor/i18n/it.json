@@ -4,7 +4,7 @@
     "VALIDATE_CONNECTOR": "Convalida connettore",
     "SAVE_CONNECTOR": "Salva connettore",
     "CONNECTOR_VALID": "Il connettore è valido",
-    "CONNECTOR_INVALID": "Il connettore contiene uno o più errori di convalida.",
+    "CONNECTOR_INVALID": "Il connettore contiene errori di convalida.",
     "UPLOAD_SUCCESS": "Connettore caricato",
     "TABS": {
       "CONNECTOR_EDITOR": "Editor connettore",
@@ -15,7 +15,7 @@
     },
     "DIALOG": {
       "TITLE": "Impostazioni editor connettore",
-      "SHOW": "Mostra i connettori con i modelli sulla barra laterale sinistra",
+      "SHOW": "Mostra connettori con modelli nella barra laterale a sinistra",
       "CANCEL": "Annulla",
       "APPLY": "Applica"
     },

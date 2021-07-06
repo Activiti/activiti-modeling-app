@@ -5,6 +5,7 @@
     "VALIDATE_PROCESS": "Proces valideren",
     "SAVE_PROCESS": "Proces opslaan",
     "SELECT_PROCESS_VARIABLE": "Procesvariabele selecteren",
+    "SCRIPT_NAME": "Scriptnaam",
     "PRIORITIES": {
       "NONE": "Geen",
       "LOW": "Laag",
@@ -25,7 +26,7 @@
     "TABS": {
       "DIAGRAM_EDITOR": "Diagram-editor",
       "RAW_EDITOR": "XML-editor",
-      "EXTENSIONS_EDITOR": "Uitbreidingeneditor",
+      "EXTENSIONS_EDITOR": "Extensies-editor",
       "JSON_EDITOR": "XML-editor",
       "PROCESS_EDITOR": "Proceseditor"
     },
@@ -43,13 +44,14 @@
       "ACTION": "Actie",
       "PROPERTIES": "Eigenschappen",
       "PROCESS_NAME": "Naam procesdefinitie",
-      "PROCESS_ID": "Proces-ID",
+      "PROCESS_ID": "Proces-id",
       "DIAGRAM_NAME": "Naam diagram",
       "SIGNAL": "Signaal",
       "ERROR": "Fout",
       "MAPPING_TYPE": "Toewijzingstype",
       "MAP_VARIABLES": "Variabelen toewijzen",
       "SEND_ALL_VARIABLES": "Alle variabelen verzenden",
+      "EDIT_EMAIL_TEMPLATE": "E-mailsjabloon bewerken",
       "SEND_NO_VARIABLES": "Geen variabelen verzenden",
       "SIGNAL_NAME": "Signaalnaam",
       "ERROR_NAME": "Foutnaam",
@@ -84,15 +86,17 @@
       "ACTIVITY_NAME": "Aangeroepen element",
       "PROCESS": "Proces",
       "PROCESS_VARIABLE": "Procesvariabele",
+      "FILTER_PROCESS_VARIABLE": "Procesvariabele filteren",
       "USE_PROCESS_VARIABLE": "Procesvariabele gebruiken",
       "USE_EXPRESSION": "Expressie gebruiken",
       "PROCESS_VARIABLES": "Procesvariabelen",
       "EXPRESSION": "Voorwaarde-expressie",
       "FORM_SELECTOR": "Formuliernaam",
-      "DEFAULT_SEQUENCE_FLOW": "Standaardsequentiestroom",
+      "DEFAULT_SEQUENCE_FLOW": "Standaard sequence flow",
       "PROCESS_NAME_REQUIRED": "Procesnaam is vereist",
       "INVALID_PROCESS_NAME": "Ongeldige procesnaam",
       "INVALID_NAME_LENGTH": "Naam mag uit maximaal 40 tekens bestaan",
+      "INVALID_DOCUMENTATION_LENGTH": "Documentatie moet uit minder dan 256 tekens bestaan",
       "INVALID_FORM_NAME": "Ongeldige formuliernaam",
       "INVALID_EXPRESSION": "Ongeldige expressie ${condition}",
       "MESSAGE": "Bericht",
@@ -128,7 +132,7 @@
           "PROCESS_VARIABLE": "Procesvariabele",
           "VALUE": "Waarde"
         },
-        "INVALID_PAYLOAD_NAME": "Ongeldige naam nettowaarde"
+        "INVALID_PAYLOAD_NAME": "Ongeldige naam nettolading"
       },
       "CALLED_ELEMENT": {
         "DIALOG": {
@@ -193,6 +197,7 @@
     "PROCESS_INVALID": "Proces bevat validatiefout(en).",
     "ERRORS": {
       "NO_PROCESS_VARIABLES": "Geen procesvariabelen",
+      "CREATE_PROCESS_VARIABLE": "Maak een procesvariabele om expressietoewijzing toe te voegen",
       "NO_SUB_PROCESS_VARIABLES": "Geen subprocesvariabelen",
       "LOAD_DIAGRAM": "Er is een probleem opgetreden bij het laden van het diagram. Vernieuw de pagina.",
       "SAVE_DIAGRAM": "Er is een probleem opgetreden bij opslaan van het diagram. Probeer het opnieuw op te slaan.",
@@ -216,7 +221,7 @@
       }
     },
     "PALETTE": {
-      "CALL_ACTIVITY": "Aanroepactiviteit  maken",
+      "CALL_ACTIVITY": "Aanroepactiviteit maken",
       "CONNECT_TOOL": "Globale verbinding",
       "CONTAINER": "Toegewezen services",
       "END_EVENT": "Eindgebeurtenis maken",

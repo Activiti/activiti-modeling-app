@@ -10,7 +10,8 @@
         "EMPTY_NAME": "Et navn er påkrevd",
         "INVALID_NAME": "Ugyldig variabelnavn",
         "VARIABLE_NAME_TOOLTIP": "Navnet må begynne med en bokstav og kan kun inneholde alfanumeriske tegn og understrekingstegn",
-        "NAME_ALREADY_EXISTS": "Variabelnavn må være unike"
+        "NAME_ALREADY_EXISTS": "Variabelnavn må være unike",
+        "FILE_ALREADY_EXISTS": "Filen finnes alt"
       },
       "TABS": {
         "VIEWER": "Egenskapsvisning",
@@ -31,14 +32,20 @@
       "SWITCH_VAR_VAL": "Aktiver/deaktiver variabel/verdi",
       "NO_PROCESS_PROPERTIES": "Ingen prosessegenskaper",
       "NO_PAYLOAD": "Meldingen har ingen nyttelast. Legg til en nyttelast i meldingens kasthendelse.",
-      "CLEAR_ASSIGNMENT": "Fjern oppgave",
+      "CLEAR_ASSIGNMENT": "Fjern tilordning",
+      "MAPPING_TYPE": "Tilordningstype",
+      "MAP_VARIABLES": "Tilordne variabler",
+      "MAP_NO_VARIABLE": "Ikke tilordne variabler",
+      "MAP_ALL": "Tilordne alle inndata-/utdata-variabler",
+      "MAP_ALL_INPUTS": "Tilordne alle inndatavariabler",
+      "MAP_ALL_OUTPUTS": "Tilordne alle utdatavariabler",
       "NONE": "Ingen"
     },
     "MESSAGES_EDITOR": {
-      "TITLE": "Behandle meldinger",
+      "TITLE": "Prosessmeldinger",
       "ERRORS": {
         "EMPTY_NAME": "Et navn er påkrevd",
-        "NAME_ALREADY_EXISTS": "Meldingsnavnet må være unikt"
+        "NAME_ALREADY_EXISTS": "Meldingsnavn må være unike"
       },
       "TABLE": {
         "COLUMN_NAME": "Navn",
@@ -46,9 +53,23 @@
         "NO_MESSAGES": "Velg eller opprett en melding for å vise egenskapene dens"
       }
     },
+    "ERRORS_EDITOR": {
+      "TITLE": "Prosessfeil",
+      "ERRORS": {
+        "EMPTY_NAME": "Et navn er påkrevd",
+        "EMPTY_CODE": "En feilkode er påkrevd",
+        "NAME_ALREADY_EXISTS": "Prosessfeilnavn må være unike"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Feilnavn",
+        "COLUMN_CODE": "Feilkode",
+        "COLUMN_ID": "Feil-ID",
+        "NO_PROCESS_ERRORS": "Velg eller opprett en prosessfeil for å vise egenskapene dens"
+      }
+    },
     "MAPPING_DIALOG": {
-      "TITLE": "Rediger tilordning av variabler",
-      "SELECTOR_TITLE": "Velg type variabeltilordning for å redigere",
+      "TITLE": "Rediger variabeltilordning",
+      "SELECTOR_TITLE": "Velg typen variabeltilordning du vil redigere",
       "INPUT_MAPPING": "Tilordning av inndata",
       "OUTPUT_MAPPING": "Tilordning av utdata",
       "PROCESS_VARIABLE": "Prosessvariabel",
@@ -58,6 +79,53 @@
       "EXPRESSION_MAPPING": "Uttrykk",
       "NONE": "Ingen",
       "TYPE": "Type"
+    },
+    "SAVE_AS_DIALOG": {
+      "TITLE": "Lagre som",
+      "FIELD_PROPERTIES": {
+        "NAME": "Navn",
+        "DESCRIPTION": "Beskrivelse"
+      }
+    },
+    "EXPRESSION_CODE_EDITOR": {
+      "EDIT_IN_DIALOG": "Rediger i dialog",
+      "EXPRESSION_EDITOR": "Uttrykksredigering",
+      "NO_BRACKETS_HINT": "Hele uttrykket i denne redigeringen vil bli lagret inne i klemmeparanteser (${...}), slik at du slipper å skrive dem inn"
+    },
+    "VARIABLES_SELECTORS": {
+      "ACTIONS": {
+        "SEARCH": "Søk"
+      }
+    },
+    "CONDITION": {
+      "TYPES": {
+        "START_EVENT": "Start-hendelse",
+        "PROCESS": "Prosess",
+        "SERVICE_TASK": "Serviceoppgave",
+        "CALLED_ELEMENT": "Anropt element",
+        "SCRIPT_TASK": "Skriptoppgave",
+        "DECISION_TABLE": "Beslutningstabell",
+        "USER_TASK": "Brukeroppgaver",
+        "NONE": "Ingen",
+        "EVENT": "Hendelse",
+        "EMAIL_SERVICE_TASK": "Serviceoppgave for e-post"
+      },
+      "TOOLTIP": {
+        "VARIABLE": "Variabel",
+        "PROCESS_VARIABLE_TOOLTIP": "Prosessvariabel for {{processName}}",
+        "NONE_VARIABLE_TOOLTIP": "Velg \"Ingen\" for å fjerne valget",
+        "OUTPUT_VARIABLE_TOOLTIP": "Utdata for {{taskType}} {{taskName}}",
+        "PROPERTIES": "Egenskaper"
+      }
+    },
+    "VARIABLE_EXPRESSION": {
+      "TITLE": {
+        "VARIABLES": "Variabler",
+        "EXPRESSION": "Uttrykk",
+        "OPEN_EXPRESSION_EDITOR": "Åpne dialogen for uttrykksredigering",
+        "SWITCH_TO_VARIABLES": "Bytt til variabelvelger",
+        "CLEAR_SELECTION": "Fjern valg"
+      }
     }
   }
 }

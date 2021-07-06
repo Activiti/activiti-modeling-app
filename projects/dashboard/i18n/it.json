@@ -51,9 +51,9 @@
       "PROJECT_NAME": "Nome progetto"
     },
     "ERROR": {
-      "LOAD_PROJECTS": "Si è verificato un problema durante il caricamento dei progetti. Aggiornare la pagina.",
-      "LOAD_RELEASES": "Si è verificato un problema durante il caricamento dei rilasci. Aggiornare la pagina.",
-      "LOAD_PROCESSES": "Si è verificato un problema durante il caricamento dei processi. Aggiornare la pagina."
+      "LOAD_PROJECTS": "Si è verificato un problema durante il caricamento dei progetti. Provare ad aggiornare la pagina.",
+      "LOAD_RELEASES": "Si è verificato un problema durante il caricamento dei rilasci. Provare ad aggiornare la pagina.",
+      "LOAD_PROCESSES": "Si è verificato un problema durante il caricamento dei processi. Provare ad aggiornare la pagina."
     }
   }
 }

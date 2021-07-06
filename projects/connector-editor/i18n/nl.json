@@ -7,18 +7,18 @@
     "CONNECTOR_INVALID": "Connector bevat validatiefout(en).",
     "UPLOAD_SUCCESS": "Connector geüpload",
     "TABS": {
-      "CONNECTOR_EDITOR": "Connectoreditor",
+      "CONNECTOR_EDITOR": "Connector-editor",
       "JSON_EDITOR": "JSON-editor"
     },
     "ERRORS": {
-      "GET_CONNECTOR": "Er is een probleem opgetreden bij het uploaden van de connector. Probeer de connector opnieuw te uploaden."
+      "GET_CONNECTOR": "Er is een probleem opgetreden bij het laden van de connector. Probeer de connector opnieuw te uploaden."
     },
     "DIALOG": {
-      "TITLE": "Instellingen connectoreditor",
-      "SHOW": "Connectors weergeven met sjablonen op de linkerzijbalk",
+      "TITLE": "Instellingen connector-editor",
+      "SHOW": "Connectors weergeven met sjablonen in de linkerzijbalk",
       "CANCEL": "Annuleren",
       "APPLY": "Toepassen"
     },
-    "NAME": "Connectoreditor"
+    "NAME": "Connector-editor"
   }
 }

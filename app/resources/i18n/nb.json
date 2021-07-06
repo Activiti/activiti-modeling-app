@@ -37,6 +37,7 @@
       "CONFIRM": {
         "TITLE": "Er du sikker?",
         "SUBTITLE": "Er du sikker på at du vil utføre denne handlingen?",
+        "EMAIL_TEMPLATE_DESCRIPTION": "Du kan ikke endre denne handlingen",
         "BUTTON": "Bekreft",
         "RELEASE": "Er du sikker på at du vil utgi en ny versjon av dette prosjektet?",
         "TYPES": {
@@ -74,10 +75,24 @@
           "DECISION_TABLE": "Er du sikker på at du vil lagre denne beslutningstabellen?",
           "CONNECTOR": "Er du sikker på at du vil lagre denne koblingen?",
           "FILE": "Er du sikker på at du vil lagre denne filen?",
+          "EMAIL_TEMPLATE": "Er du sikker på at du vil overskrive e-postmalen?",
           "SCRIPT": "Er du sikker på at du vil lagre dette skriptet?",
           "TRIGGER": "Er du sikker på at du vil lagre denne utløseren?",
           "MODEL": "Er du sikker på at du vil lagre denne innholdsmodellen?",
           "FORM_WIDGET": "Er du sikker på at du vil lagre denne skjema-widgeten?"
+        },
+        "SAVE_AS": {
+          "PROCESS": "Er du sikker på at du vil kopiere denne prosessen?",
+          "FORM": "Er du sikker på at du vil kopiere dette skjemaet?",
+          "UI": "Are you sure you want to copy this UI?",
+          "DATA": "Er du sikker på at du vil kopiere dette dataobjektet?",
+          "DECISION_TABLE": "Er du sikker på at du vil kopiere denne beslutningstabellen?",
+          "CONNECTOR": "Er du sikker på at du vil kopiere denne koblingen?",
+          "FILE": "Er du sikker på at du vil kopiere denne filen?",
+          "SCRIPT": "Er du sikker på at du vil kopiere dette skriptet?",
+          "TRIGGER": "Er du sikker på at du vil kopiere denne utløseren?",
+          "MODEL": "Er du sikker på at du vil kopiere denne innholdsmodellen?",
+          "FORM_WIDGET": "Er du sikker på at du vil kopiere denne skjema-widgeten?"
         },
         "DOWNLOAD": {
           "PROCESS": "Er du sikker på at du vil laste ned denne prosessen?",
@@ -101,7 +116,8 @@
       "RELEASE": "Frigi",
       "COLLABORATORS": "Samarbeidspartnere",
       "SEE_RELEASES": "Vis utgivelser",
-      "DOWNLOAD": "Last ned"
+      "DOWNLOAD": "Last ned",
+      "SAVE_AS": "Lagre som"
     },
     "SETTINGS": {
       "HEADER": "Programinnstillinger"
@@ -110,6 +126,7 @@
       "ERRORS": {
         "CHANGE_USER": "Endre bruker",
         "NOT_VALID_JSON": "Ugyldig JSON-objekt",
+        "NOT_VALID_HTML": "Ugyldig HTML-objekt",
         "NOT_VALID_SCHEMA": "JSON-objektet stemmer ikke overens med skjemaet"
       }
     },

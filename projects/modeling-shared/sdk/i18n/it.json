@@ -1,16 +1,17 @@
 {
   "SDK": {
     "SNACKBAR": {
-      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "I valori incollati devono seguire questo schema"
+      "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "I valori incollati devono seguire questo modello"
     },
     "ALL": "Tutti",
     "VALUE": "Valore",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "È obbligatorio specificare un nome",
-        "INVALID_NAME": "Nome della variabile non valido",
-        "VARIABLE_NAME_TOOLTIP": "Il nome deve cominciare con una lettera. Può contenere solo caratteri alfanumerici e di sottolineatura",
-        "NAME_ALREADY_EXISTS": "I nomi delle variabili devono essere univoci"
+        "INVALID_NAME": "Nome variabile non valido",
+        "VARIABLE_NAME_TOOLTIP": "Il nome deve iniziare con una lettera e può contenere solo caratteri alfanumerici e di sottolineatura",
+        "NAME_ALREADY_EXISTS": "II nomi delle variabili devono essere univoci",
+        "FILE_ALREADY_EXISTS": "Il file esiste già"
       },
       "TABS": {
         "VIEWER": "Visualizzatore proprietà",
@@ -19,7 +20,7 @@
       "TABLE": {
         "COLUMN_NAME": "Nome",
         "COLUMN_TYPE": "Tipo",
-        "COLUMN_REQUIRED": "Campo obbligatorio",
+        "COLUMN_REQUIRED": "Obbligatorio",
         "COLUMN_VALUE": "Valore",
         "NO_PROPERTIES": "Selezionare o creare una variabile per visualizzarne le proprietà"
       }
@@ -32,10 +33,16 @@
       "NO_PROCESS_PROPERTIES": "Nessuna proprietà del processo",
       "NO_PAYLOAD": "Il messaggio non ha payload. Aggiungere un payload nell'evento di generazione del messaggio.",
       "CLEAR_ASSIGNMENT": "Cancella assegnazione",
-      "NONE": "Nessuno"
+      "MAPPING_TYPE": "Tipo di mappatura",
+      "MAP_VARIABLES": "Mappa variabili",
+      "MAP_NO_VARIABLE": "Non mappare le variabili",
+      "MAP_ALL": "Mappa tutte le variabili di input/output",
+      "MAP_ALL_INPUTS": "Mappa tutte le variabili di input",
+      "MAP_ALL_OUTPUTS": "Mappa tutte le variabili di output",
+      "NONE": "Nessuna"
     },
     "MESSAGES_EDITOR": {
-      "TITLE": "Messaggi del processo",
+      "TITLE": "Messaggi di processo",
       "ERRORS": {
         "EMPTY_NAME": "È obbligatorio specificare un nome",
         "NAME_ALREADY_EXISTS": "I nomi dei messaggi devono essere univoci"
@@ -43,21 +50,82 @@
       "TABLE": {
         "COLUMN_NAME": "Nome",
         "COLUMN_ID": "ID",
-        "NO_MESSAGES": "Selezionare o creare un messaggio per visualizzarne le proprietà"
+        "NO_MESSAGES": "Seleziona o crea un messaggio per visualizzarne le proprietà"
+      }
+    },
+    "ERRORS_EDITOR": {
+      "TITLE": "Errori di processo",
+      "ERRORS": {
+        "EMPTY_NAME": "È obbligatorio specificare un nome",
+        "EMPTY_CODE": "È richiesto un codice di errore",
+        "NAME_ALREADY_EXISTS": "I nomi degli errori di processo devono essere univoci"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Nome errore",
+        "COLUMN_CODE": "Codice errore",
+        "COLUMN_ID": "ID errore",
+        "NO_PROCESS_ERRORS": "Seleziona o crea un errore di processo per visualizzarne le proprietà"
       }
     },
     "MAPPING_DIALOG": {
-      "TITLE": "Modifica associazione variabili",
-      "SELECTOR_TITLE": "Selezionare il tipo di associazione variabili da modificare",
-      "INPUT_MAPPING": "Associazione immissione",
-      "OUTPUT_MAPPING": "Associazione risultato",
+      "TITLE": "Modifica mappatura variabili",
+      "SELECTOR_TITLE": "Seleziona il tipo di mappatura delle variabili da modificare",
+      "INPUT_MAPPING": "Mappatura di input",
+      "OUTPUT_MAPPING": "Mappatura di output",
       "PROCESS_VARIABLE": "Variabile del processo",
-      "INPUT_PARAMETER": "Parametro di immissione",
-      "OUTPUT_PARAMETER": "Parametro dei risultati",
+      "INPUT_PARAMETER": "Parametro di input",
+      "OUTPUT_PARAMETER": "Parametro di output",
       "VALUE_MAPPING": "Valore",
       "EXPRESSION_MAPPING": "Espressione",
-      "NONE": "Nessuno",
+      "NONE": "Nessuna",
       "TYPE": "Tipo"
+    },
+    "SAVE_AS_DIALOG": {
+      "TITLE": "Salva con nome",
+      "FIELD_PROPERTIES": {
+        "NAME": "Nome",
+        "DESCRIPTION": "Descrizione"
+      }
+    },
+    "EXPRESSION_CODE_EDITOR": {
+      "EDIT_IN_DIALOG": "Modifica nella finestra di dialogo",
+      "EXPRESSION_EDITOR": "Editor espressione",
+      "NO_BRACKETS_HINT": "L'intera espressione contenuta nell'editor verrà salvata tra parentesi graffe (${...}) che, pertanto, non dovranno essere digitate"
+    },
+    "VARIABLES_SELECTORS": {
+      "ACTIONS": {
+        "SEARCH": "Cerca"
+      }
+    },
+    "CONDITION": {
+      "TYPES": {
+        "START_EVENT": "Evento iniziale",
+        "PROCESS": "Processo",
+        "SERVICE_TASK": "Compito di servizio",
+        "CALLED_ELEMENT": "Elemento richiamato",
+        "SCRIPT_TASK": "Compito di script",
+        "DECISION_TABLE": "Tabella decisioni",
+        "USER_TASK": "Compito utente",
+        "NONE": "Nessuno",
+        "EVENT": "Evento",
+        "EMAIL_SERVICE_TASK": "Compito servizio e-mail"
+      },
+      "TOOLTIP": {
+        "VARIABLE": "Variabile",
+        "PROCESS_VARIABLE_TOOLTIP": "Variabile del processo di {{processName}}",
+        "NONE_VARIABLE_TOOLTIP": "Selezionare 'Nessuno' per cancellare la selezione",
+        "OUTPUT_VARIABLE_TOOLTIP": "Output del {{taskName}} {{taskType}}",
+        "PROPERTIES": "Proprietà"
+      }
+    },
+    "VARIABLE_EXPRESSION": {
+      "TITLE": {
+        "VARIABLES": "Variabili",
+        "EXPRESSION": "Espressione",
+        "OPEN_EXPRESSION_EDITOR": "Apri la finestra di dialogo dell'editor espressioni",
+        "SWITCH_TO_VARIABLES": "Passa al selettore variabili",
+        "CLEAR_SELECTION": "Cancella selezione"
+      }
     }
   }
 }

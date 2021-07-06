@@ -16,7 +16,7 @@
     "SEARCH": "Zoeken",
     "UPLOAD_FILE_SUCCESS": "Bestand geüpload",
     "NO_CONTENT": "<leeg>",
-    "NO_SELECTION": "Maak een nieuw model of bewerk een bestaand model met de zijbalk",
+    "NO_SELECTION": "Maak een nieuw model of bewerk een bestaand model met de zijmarge",
     "NEW_MENU": {
       "LABEL": "Nieuw",
       "CREATE": "Maken",
@@ -163,6 +163,7 @@
       "FORM_WIDGET_UPDATED": "Formulierwidget opgeslagen"
     },
     "ERROR": {
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} met dezelfde naam bestaat al",
       "UPLOAD_FILE": "Er is een probleem opgetreden bij het uploaden van het bestand. Probeer het opnieuw te uploaden.",
       "DELETE_PROJECT": "Er is een probleem opgetreden bij het verwijderen van het project. Probeer het opnieuw te verwijderen.",
       "CHANGE_FAVORITE": "Er is een probleem opgetreden bij het instellen van dat project als favoriet. Probeer het opnieuw in te stellen als favoriet.",

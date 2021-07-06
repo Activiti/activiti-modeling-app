@@ -163,6 +163,7 @@
       "FORM_WIDGET_UPDATED": "Skjema-widget lagret"
     },
     "ERROR": {
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} med samme navn finnes allerede",
       "UPLOAD_FILE": "Vi støtte på et problem med å laste opp filen. Prøv å laste den opp på nytt.",
       "DELETE_PROJECT": "Vi støtte på et problem med å slette prosjektet. Prøv å slette det på nytt.",
       "CHANGE_FAVORITE": "Vi støtte på et problem med å legge til prosjektet i favoritter. Prøv å legge det til i favoritter på nytt.",

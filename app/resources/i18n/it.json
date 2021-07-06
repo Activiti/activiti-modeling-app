@@ -37,12 +37,13 @@
       "CONFIRM": {
         "TITLE": "Continuare?",
         "SUBTITLE": "Eseguire questa azione?",
+        "EMAIL_TEMPLATE_DESCRIPTION": "Questa azione non può essere annullata",
         "BUTTON": "Conferma",
         "RELEASE": "Rilasciare una nuova versione di questo progetto?",
         "TYPES": {
           "DECISION": "tabella decisioni",
           "DATA": "dati",
-          "UI": "IU",
+          "UI": "UI",
           "CONNECTOR": "connettore",
           "FORM": "Modulo",
           "PROCESS": "Processo",
@@ -56,7 +57,7 @@
           "PROJECT": "Eliminare questo progetto?",
           "PROCESS": "Eliminare questo processo?",
           "FORM": "Eliminare questo modulo?",
-          "UI": "Eliminare questa IU?",
+          "UI": "Eliminare questa UI?",
           "DATA": "Eliminare questo oggetto dati?",
           "DECISION_TABLE": "Eliminare questa tabella decisioni?",
           "CONNECTOR": "Eliminare questo connettore?",
@@ -69,21 +70,35 @@
         "SAVE": {
           "PROCESS": "Salvare questo processo?",
           "FORM": "Salvare questo modulo?",
-          "UI": "Salvare questa IU?",
+          "UI": "Salvare questa UI?",
           "DATA": "Salvare questo oggetto dati?",
           "DECISION_TABLE": "Salvare questa tabella decisioni?",
           "CONNECTOR": "Salvare questo connettore?",
           "FILE": "Salvare questo file?",
+          "EMAIL_TEMPLATE": "Sovrascrivere il modello di e-mail?",
           "SCRIPT": "Salvare questo script?",
           "TRIGGER": "Salvare questo trigger?",
           "MODEL": "Salvare questo modello di contenuto?",
           "FORM_WIDGET": "Salvare questo widget di modulo?"
         },
+        "SAVE_AS": {
+          "PROCESS": "Copiare questo processo?",
+          "FORM": "Copiare questo modulo?",
+          "UI": "Copiare questa UI?",
+          "DATA": "Copiare questo oggetto dati?",
+          "DECISION_TABLE": "Copiare questa tabella decisioni?",
+          "CONNECTOR": "Copiare questo connettore?",
+          "FILE": "Copiare questo file?",
+          "SCRIPT": "Copiare questo script?",
+          "TRIGGER": "Copiare questo trigger?",
+          "MODEL": "Copiare questo modello di contenuto?",
+          "FORM_WIDGET": "Copiare questo widget di modulo?"
+        },
         "DOWNLOAD": {
           "PROCESS": "Salvare questo processo?",
           "IMAGE": "Scaricare l'immagine svg di questo processo?",
           "FORM": "Scaricare questo modulo?",
-          "UI": "Scaricare questa IU?",
+          "UI": "Scaricare questa UI?",
           "DATA": "Scaricare questo oggetto dati?",
           "DECISION_TABLE": "Scaricare questa tabella decisioni?",
           "CONNECTOR": "Scaricare questo connettore?",
@@ -101,7 +116,8 @@
       "RELEASE": "Restituisci",
       "COLLABORATORS": "Collaboratori",
       "SEE_RELEASES": "Visualizza rilasci",
-      "DOWNLOAD": "Scarica"
+      "DOWNLOAD": "Scarica",
+      "SAVE_AS": "Salva con nome"
     },
     "SETTINGS": {
       "HEADER": "Impostazioni applicazione"
@@ -110,6 +126,7 @@
       "ERRORS": {
         "CHANGE_USER": "Cambiare utente",
         "NOT_VALID_JSON": "Oggetto JSON non valido",
+        "NOT_VALID_HTML": "Oggetto HTML non valido",
         "NOT_VALID_SCHEMA": "L'oggetto JSON non coincide con lo schema"
       }
     },

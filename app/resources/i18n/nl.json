@@ -37,6 +37,7 @@
       "CONFIRM": {
         "TITLE": "Weet u het zeker?",
         "SUBTITLE": "Weet u zeker dat u deze actie wilt uitvoeren?",
+        "EMAIL_TEMPLATE_DESCRIPTION": "Deze actie kan niet ongedaan worden gemaakt",
         "BUTTON": "Bevestigen",
         "RELEASE": "Weet u zeker dat u een nieuwe versie van dit project wilt vrijgeven?",
         "TYPES": {
@@ -74,10 +75,24 @@
           "DECISION_TABLE": "Weet u zeker dat u deze beslissingstabel wilt opslaan?",
           "CONNECTOR": "Weet u zeker dat u deze connector wilt opslaan?",
           "FILE": "Weet u zeker dat u dit bestand wilt opslaan?",
+          "EMAIL_TEMPLATE": "Weet u zeker dat u de e-mailsjabloon wilt overschrijven?",
           "SCRIPT": "Weet u zeker dat u dit script wilt opslaan?",
           "TRIGGER": "Weet u zeker dat u deze trigger wilt opslaan?",
           "MODEL": "Weet u zeker dat u dit contentmodel wilt opslaan?",
           "FORM_WIDGET": "Weet u zeker dat u deze formulierwidget wilt opslaan?"
+        },
+        "SAVE_AS": {
+          "PROCESS": "Weet u zeker dat u dit proces wilt kopiëren?",
+          "FORM": "Weet u zeker dat u dit formulier wilt kopiëren?",
+          "UI": "Weet u zeker dat u deze UI wilt kopiëren?",
+          "DATA": "Weet u zeker dat u dit gegevensobject wilt kopiëren?",
+          "DECISION_TABLE": "Weet u zeker dat u deze beslissingstabel wilt kopiëren?",
+          "CONNECTOR": "Weet u zeker dat u deze connector wilt kopiëren?",
+          "FILE": "Weet u zeker dat u dit bestand wilt kopiëren?",
+          "SCRIPT": "Weet u zeker dat u dit script wilt kopiëren?",
+          "TRIGGER": "Weet u zeker dat u deze trigger wilt kopiëren?",
+          "MODEL": "Weet u zeker dat u dit contentmodel wilt kopiëren?",
+          "FORM_WIDGET": "Weet u zeker dat u deze formulierwidget wilt kopiëren?"
         },
         "DOWNLOAD": {
           "PROCESS": "Weet u zeker dat u dit proces wilt downloaden?",
@@ -101,7 +116,8 @@
       "RELEASE": "Vrijgeven",
       "COLLABORATORS": "Samenwerkers",
       "SEE_RELEASES": "Releases weergeven",
-      "DOWNLOAD": "Downloaden"
+      "DOWNLOAD": "Downloaden",
+      "SAVE_AS": "Opslaan als"
     },
     "SETTINGS": {
       "HEADER": "App-instellingen"
@@ -110,6 +126,7 @@
       "ERRORS": {
         "CHANGE_USER": "Gebruiker wijzigen",
         "NOT_VALID_JSON": "Ongeldig JSON-object",
+        "NOT_VALID_HTML": "Ongeldig HTML-object",
         "NOT_VALID_SCHEMA": "Het JSON-object komt niet overeen met het schema"
       }
     },

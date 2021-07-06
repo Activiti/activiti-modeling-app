@@ -11,7 +11,7 @@
       "JSON_EDITOR": "JSON-redigering"
     },
     "ERRORS": {
-      "GET_CONNECTOR": "Vi støtte på et problem med å laste opp koblingen. Prøv å laste den opp på nytt."
+      "GET_CONNECTOR": "Vi støtte på et problem med å laste inn koblingen. Prøv å laste den opp på nytt."
     },
     "DIALOG": {
       "TITLE": "Innstillinger for koblingsredigering",

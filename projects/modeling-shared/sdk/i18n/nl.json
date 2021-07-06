@@ -10,7 +10,8 @@
         "EMPTY_NAME": "Een naam is vereist",
         "INVALID_NAME": "Ongeldige variabelenaam",
         "VARIABLE_NAME_TOOLTIP": "De naam moet beginnen met een letter en mag alleen alfanumerieke tekens en onderstrepingstekens bevatten",
-        "NAME_ALREADY_EXISTS": "Variabelenamen moeten uniek zijn"
+        "NAME_ALREADY_EXISTS": "Variabelenamen moeten uniek zijn",
+        "FILE_ALREADY_EXISTS": "Bestand bestaat al"
       },
       "TABS": {
         "VIEWER": "Eigenschappenviewer",
@@ -28,10 +29,16 @@
       "PARAMETER": "Parameter",
       "VALUE": "Waarde",
       "PROCESS_VARIABLE": "Procesvariabele",
-      "SWITCH_VAR_VAL": "Schakelen tussen variabele/waarde",
+      "SWITCH_VAR_VAL": "Variabele/waarde in- of uitschakelen",
       "NO_PROCESS_PROPERTIES": "Geen proceseigenschappen",
       "NO_PAYLOAD": "Bericht heeft geen nettolading. Voeg een nettolading toe aan de activerende gebeurtenis voor het bericht.",
       "CLEAR_ASSIGNMENT": "Toewijzing wissen",
+      "MAPPING_TYPE": "Toewijzingstype",
+      "MAP_VARIABLES": "Variabelen toewijzen",
+      "MAP_NO_VARIABLE": "Variabelen niet toewijzen",
+      "MAP_ALL": "Alle invoer-/uitvoervariabelen toewijzen",
+      "MAP_ALL_INPUTS": "Alle invoervariabelen toewijzen",
+      "MAP_ALL_OUTPUTS": "Alle uitvoervariabelen toewijzen",
       "NONE": "Geen"
     },
     "MESSAGES_EDITOR": {
@@ -42,8 +49,22 @@
       },
       "TABLE": {
         "COLUMN_NAME": "Naam",
-        "COLUMN_ID": "ID",
+        "COLUMN_ID": "Id",
         "NO_MESSAGES": "Selecteer of maak een bericht om de eigenschappen ervan weer te geven"
+      }
+    },
+    "ERRORS_EDITOR": {
+      "TITLE": "Procesfouten",
+      "ERRORS": {
+        "EMPTY_NAME": "Een naam is vereist",
+        "EMPTY_CODE": "Er is een foutcode vereist",
+        "NAME_ALREADY_EXISTS": "Procesfoutnamen moeten uniek zijn"
+      },
+      "TABLE": {
+        "COLUMN_NAME": "Foutnaam",
+        "COLUMN_CODE": "Foutcode",
+        "COLUMN_ID": "Fout-id",
+        "NO_PROCESS_ERRORS": "Selecteer of maak een procesfout om de eigenschappen ervan weer te geven"
       }
     },
     "MAPPING_DIALOG": {
@@ -58,6 +79,53 @@
       "EXPRESSION_MAPPING": "Expressie",
       "NONE": "Geen",
       "TYPE": "Type"
+    },
+    "SAVE_AS_DIALOG": {
+      "TITLE": "Opslaan als",
+      "FIELD_PROPERTIES": {
+        "NAME": "Naam",
+        "DESCRIPTION": "Beschrijving"
+      }
+    },
+    "EXPRESSION_CODE_EDITOR": {
+      "EDIT_IN_DIALOG": "Bewerken in dialoogvenster",
+      "EXPRESSION_EDITOR": "Expressie-editor",
+      "NO_BRACKETS_HINT": "De volledige expressie in deze editor wordt opgeslagen binnen accolades (${...}), zodat u deze niet hoeft te typen"
+    },
+    "VARIABLES_SELECTORS": {
+      "ACTIONS": {
+        "SEARCH": "Zoeken"
+      }
+    },
+    "CONDITION": {
+      "TYPES": {
+        "START_EVENT": "Begingebeurtenis",
+        "PROCESS": "Proces",
+        "SERVICE_TASK": "Servicetaak",
+        "CALLED_ELEMENT": "Aangeroepen element",
+        "SCRIPT_TASK": "Scripttaak",
+        "DECISION_TABLE": "Beslissingstabel",
+        "USER_TASK": "Gebruikerstaak",
+        "NONE": "Geen",
+        "EVENT": "Gebeurtenis",
+        "EMAIL_SERVICE_TASK": "E-mailservicetaak"
+      },
+      "TOOLTIP": {
+        "VARIABLE": "Variabele",
+        "PROCESS_VARIABLE_TOOLTIP": "Procesvariabele van {{processName}}",
+        "NONE_VARIABLE_TOOLTIP": "Selecteer 'Geen' om de selectie te wissen",
+        "OUTPUT_VARIABLE_TOOLTIP": "Uitvoer van het {{taskType}} {{taskName}}",
+        "PROPERTIES": "Eigenschappen"
+      }
+    },
+    "VARIABLE_EXPRESSION": {
+      "TITLE": {
+        "VARIABLES": "Variabelen",
+        "EXPRESSION": "Expressie",
+        "OPEN_EXPRESSION_EDITOR": "Open het expressie-editordialoogvenster",
+        "SWITCH_TO_VARIABLES": "Overschakelen naar variabelenselector",
+        "CLEAR_SELECTION": "Selectie wissen"
+      }
     }
   }
 }
