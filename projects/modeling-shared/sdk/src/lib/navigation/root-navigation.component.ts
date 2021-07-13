@@ -19,7 +19,8 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { AppConfigService } from '@alfresco/adf-core';
-import { AmaState, selectMenuOpened } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaState } from '../store/app.state';
+import { selectMenuOpened } from '../store/app.selectors';
 
 export interface CreateAction {
     title: string;
@@ -28,9 +29,9 @@ export interface CreateAction {
 }
 
 @Component({
-    templateUrl: './dashboard-navigation.component.html'
+    templateUrl: './root-navigation.component.html'
 })
-export class DashboardNavigationComponent implements OnInit, AfterContentInit {
+export class RootNavigationComponent implements OnInit, AfterContentInit {
     expanded$: Observable<boolean>;
     navigation: any[];
 

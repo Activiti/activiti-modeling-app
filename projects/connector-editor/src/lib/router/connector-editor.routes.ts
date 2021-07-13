@@ -18,13 +18,13 @@
 import { Routes } from '@angular/router';
 import { ConnectorLoaderGuard } from './guards/connector-loader.guard';
 import { ConnectorEditorComponent } from '../components/connector-editor/connector-editor.component';
-import { UnsavedPageGuard, CONNECTOR, MODULE_EDITOR_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
+import { UnsavedPageGuard, CONNECTOR, MODEL_EDITOR_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
 import { ConnectorsLoaderGuard } from './guards/connectors-loader.guard';
 
 export const connectorEditorRoutes: Routes = [
     {
         path: CONNECTOR,
-        data: { injectTo: MODULE_EDITOR_ROUTES },
+        data: { injectTo: MODEL_EDITOR_ROUTES },
         children: [
             {
                 path: ':connectorId',

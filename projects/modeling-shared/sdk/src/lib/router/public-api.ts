@@ -15,12 +15,5 @@
  * limitations under the License.
  */
 
-import { Routes } from '@angular/router';
-import { ProjectContentComponent } from '../components/project-content/project-content.component';
-import { ProjectNavigationComponent } from '../components/project-navigation/project-navigation.component';
-import { MODEL_EDITOR_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
-
-export const projectEditorRoutes: Routes = [
-    { path: '', component: ProjectContentComponent, data: { injectTo: MODEL_EDITOR_ROUTES } },
-    { path: '', component: ProjectNavigationComponent, data: { injectTo: MODEL_EDITOR_ROUTES }, outlet: 'navigation' }
-];
+export * from './guards/project-loader.guard';
+export * from './guards/selected-project-setter.guard';

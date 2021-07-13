@@ -17,19 +17,19 @@
 
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { ProjectEditorState, GetProjectAttemptAction, ShowProcessesAction, ShowConnectorsAction } from '@alfresco-dbp/modeling-shared/sdk';
+import { Observable, of } from 'rxjs';
+import { AmaState } from '../../store/app.state';
+import { SelectProjectAction } from '../../store/project.actions';
 
-@Injectable()
-export class ProjectLoaderGuard implements CanActivate {
-    constructor(private store: Store<ProjectEditorState>) {}
+@Injectable({ providedIn: 'root' })
+export class SelectedProjectSetterGuard implements CanActivate {
+
+    constructor(private store: Store<AmaState>) {}
 
     canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
         const projectId = route.params.projectId;
-        this.store.dispatch(new GetProjectAttemptAction(projectId));
-        this.store.dispatch(new ShowProcessesAction(projectId));
-        this.store.dispatch(new ShowConnectorsAction(projectId));
+        this.store.dispatch(new SelectProjectAction(projectId));
         return of(true);
     }
 }

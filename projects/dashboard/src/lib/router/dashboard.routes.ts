@@ -16,25 +16,26 @@
  */
 
 import { Routes } from '@angular/router';
-import { DashboardNavigationComponent } from '../components/dashboard-navigation/dashboard-navigation.component';
 import { ProjectsListComponent } from '../components/projects-list/projects-list.component';
 import { SearchHeaderComponent } from '../components/search-header/search-header.component';
+import { DASHBOARD_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const dashboardRoutes: Routes = [
     {
-        path: 'projects',
-        component: ProjectsListComponent,
-    },
-    {
         path: '',
-        component: DashboardNavigationComponent,
-        outlet: 'navigation'
-    },
-    {
-        path: '',
-        component: SearchHeaderComponent,
-        outlet: 'search'
-    },
-    { path: '', redirectTo: '/dashboard/projects?maxItems=25&skipCount=0&sort=name,asc', pathMatch: 'full' },
-    { path: '', redirectTo: '/dashboard/sample-projects?maxItems=10&skipCount=0&sort=name,asc', pathMatch: 'full' }
+        data: { injectTo: DASHBOARD_ROUTES },
+        children: [
+            {
+                path: 'projects',
+                component: ProjectsListComponent,
+            },
+            {
+                path: '',
+                component: SearchHeaderComponent,
+                outlet: 'search'
+            },
+            { path: '', redirectTo: '/dashboard/projects?maxItems=25&skipCount=0&sort=name,asc', pathMatch: 'full' },
+            { path: '', redirectTo: '/dashboard/sample-projects?maxItems=10&skipCount=0&sort=name,asc', pathMatch: 'full' }
+        ]
+    }
 ];

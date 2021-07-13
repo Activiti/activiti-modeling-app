@@ -36,7 +36,7 @@ jobs:
 
     - stage: Lint
       name: Lint
-      script: npm run lint
+      script: npm run lint:ci
 
     - stage: Build
       name: Build
@@ -51,7 +51,7 @@ jobs:
 
     - stage: Unit Test
       name: Unit Test
-      script: npm run test
+      script: npm run test:ci
 
     - stage: Package
       name: Build Docker Image

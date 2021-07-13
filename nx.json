@@ -17,35 +17,23 @@
       ]
     },
     "modeling-ce-connector-editor": {
-      "tags": [
-        "scope:modeling-ce-connector-editor",
-        "type:lib",
-        "category:modeling-ce"
-      ]
-    },
-    "modeling-ce-process-editor": {
-      "tags": [
-        "scope:modeling-ce-process-editor"
-      ]
-    },
-    "modeling-ce-project-editor": {
-      "tags": [
-        "scope:modeling-ce-project-editor"
-      ]
+      "implicitDependencies": ["modeling-ce-app-shell"],
+      "tags": ["scope:modeling-ce-connector-editor", "type:lib", "category:modeling-ce"]
     },
     "modeling-ce-dashboard": {
-      "tags": [
-        "scope:modeling-ce-dashboard",
-        "type:lib",
-        "category:modeling-ce"
-      ]
+      "implicitDependencies": ["modeling-ce-app-shell"],
+      "tags": ["scope:modeling-ce-dashboard", "type:lib", "category:modeling-ce"]
     },
     "modeling-ce-app-shell": {
-      "tags": [
-        "scope:modeling-ce-app-shell",
-        "type:lib",
-        "category:modeling-ce"
-      ]
+      "tags": ["scope:modeling-ce-app-shell", "type:lib", "category:modeling-ce"]
+    },
+    "modeling-ce-process-editor": {
+      "implicitDependencies": ["modeling-ce-app-shell"],
+      "tags": ["scope:modeling-ce-process-editor", "category:modeling-ce"]
+    },
+    "modeling-ce-project-editor": {
+      "implicitDependencies": ["modeling-ce-app-shell"],
+      "tags": ["scope:modeling-ce-project-editor", "category:modeling-ce"]
     },
     "adf-candidates": {
       "tags": [

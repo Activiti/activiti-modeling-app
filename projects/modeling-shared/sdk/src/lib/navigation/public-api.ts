@@ -15,20 +15,5 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { AmaState, SelectProjectAction } from '@alfresco-dbp/modeling-shared/sdk';
-
-@Injectable()
-export class SelectedProjectSetterGuard implements CanActivate {
-
-    constructor(private store: Store<AmaState>) {}
-
-    canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-        const projectId = route.params.projectId;
-        this.store.dispatch(new SelectProjectAction(projectId));
-        return of(true);
-    }
-}
+export * from './navigation.module';
+export * from './root-navigation.component';

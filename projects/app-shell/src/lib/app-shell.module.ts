@@ -40,7 +40,7 @@ import { AlfrescoApiService, TranslateLoaderService } from '@alfresco/adf-core';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { getBackendLogInitiator } from './common/services/application.constants';
-import { provideLogFilter } from '@alfresco-dbp/modeling-shared/sdk';
+import { provideLogFilter, NavigationModule } from '@alfresco-dbp/modeling-shared/sdk';
 import { unauthorizedServiceFactory } from './common/services/unauthorized-service-factory';
 import { Store } from '@ngrx/store';
 import { AmaLocalStorageMergeGuard } from './common/services/ama-localstorage-merge-guard.service';
@@ -49,9 +49,11 @@ import { AmaRoleGuard } from './common/services/ama-role-guard.service';
 import { AppStoreModule } from './store/app-store.module';
 import { RouterStateSerializer } from '@ngrx/router-store';
 import { AmaRouterStateSerializer } from './common/helpers/router-state.serializer';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     imports: [
+        CommonModule,
         CustomIconsModule,
         MaterialModule,
         AdfModule,
@@ -62,6 +64,7 @@ import { AmaRouterStateSerializer } from './common/helpers/router-state.serializ
         MaterialModule,
         FlexLayoutModule,
         HttpClientModule,
+        NavigationModule,
         AppStoreModule,
         TranslateModule.forRoot({
             loader: {

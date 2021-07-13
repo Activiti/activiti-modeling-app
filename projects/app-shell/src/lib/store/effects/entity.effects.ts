@@ -33,6 +33,7 @@ import {
 import { ModelStorageService } from '../../common/services/model-storage.service';
 import { Store } from '@ngrx/store';
 
+// TODO: Dead code at the moment, nothing uses it...
 @Injectable()
 export class EntityEffects {
     constructor(

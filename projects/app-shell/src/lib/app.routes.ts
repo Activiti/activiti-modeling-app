@@ -17,9 +17,7 @@
 
 import { Routes } from '@angular/router';
 import { AuthGuard, BlankPageComponent } from '@alfresco/adf-core';
-import { DASHBOARD_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
-import { dashboardRoutes } from '@alfresco-dbp/modeling-ce/dashboard';
-import { projectEditorRoutes } from '@alfresco-dbp/modeling-ce/project-editor';
+import { DASHBOARD_ROUTES, MODEL_EDITOR_ROUTES, SelectedProjectSetterGuard, ProjectLoaderGuard, AUTHENTICATED_ROUTES, RootNavigationComponent } from '@alfresco-dbp/modeling-shared/sdk';
 import { AppLoginComponent } from './app/app-login/app-login.component';
 import { AppLayoutComponent } from './app/app-layout/app-layout.component';
 import { AmaLocalStorageMergeGuard } from './common/services/ama-localstorage-merge-guard.service';
@@ -48,6 +46,7 @@ export const appRoutes: Routes = [
             {
                 path: '',
                 component: AppLayoutComponent,
+                data: { hostFor: AUTHENTICATED_ROUTES },
                 canActivate: [
                     AmaLocalStorageMergeGuard,
                     AmaModelSchemaLoaderGuard
@@ -57,14 +56,24 @@ export const appRoutes: Routes = [
                     {
                         path: 'dashboard',
                         canActivate: [AmaRoleGuard],
-                        children: dashboardRoutes,
+                        children: [
+                            { path: '', component: RootNavigationComponent, outlet: 'navigation' }
+                        ],
+                        // Impossible to lazily load ADF modules, that is why the hack
                         data: { hostFor: DASHBOARD_ROUTES }
                     },
-                    // Impossible to lazily load ADF modules, that is why the hack
                     {
                         path: 'projects',
                         canActivate: [AmaRoleGuard],
-                        children: projectEditorRoutes
+                        children: [
+                            {
+                                path: ':projectId',
+                                // Impossible to lazily load ADF modules, that is why the hack
+                                data: { hostFor: MODEL_EDITOR_ROUTES },
+                                canActivate: [ SelectedProjectSetterGuard, ProjectLoaderGuard ],
+                                children: []
+                            }
+                        ]
                     },
                     { path: 'home', redirectTo: 'dashboard', pathMatch: 'full' },
                     { path: '', redirectTo: 'dashboard', pathMatch: 'full' }

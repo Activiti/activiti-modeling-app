@@ -1,9 +1,9 @@
-<div class="dashboard-navigation">
+<div class="root-navigation">
     <adf-sidebar-action-menu
         *ngIf="actions$ | async as actions"
         [title]="'DASHBOARD.NEW_MENU.LABEL' | translate"
         [expanded]="expanded$ | async"
-        class="dashboard-navigation__section dashboard-navigation__section--new"
+        class="root-navigation__section root-navigation__section--new"
         [ngClass]="{ 'section--new--mini': !(expanded$ | async) }"
     >
         <mat-icon sidebar-menu-title-icon>arrow_drop_down</mat-icon>
@@ -20,10 +20,10 @@
         </div>
     </adf-sidebar-action-menu>
 
-    <div class="dashboard-navigation__section dashboard-navigation__section--menu" *ngFor="let list of navigation">
-        <ul class="dashboard-navigation-menu">
+    <div class="root-navigation__section root-navigation__section--menu" *ngFor="let list of navigation">
+        <ul class="root-navigation-menu">
             <ng-container *ngFor="let item of list">
-                <li class="dashboard-navigation-menu__item" routerLinkActive #rla="routerLinkActive"
+                <li class="root-navigation-menu__item" routerLinkActive #rla="routerLinkActive"
                     title="{{ item.title || '' | translate }}" *ngIf="!item.disabled">
 
                     <button mat-icon-button mat-ripple matRippleColor="primary" [routerLink]="item.route.url"

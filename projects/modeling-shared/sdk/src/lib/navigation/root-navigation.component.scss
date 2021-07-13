@@ -1,8 +1,8 @@
-@mixin ama-dashboard-navigation($theme) {
+@mixin ama-root-navigation($theme) {
     $foreground: map-get($theme, foreground);
     $accent: map-get($theme, accent);
 
-    .dashboard-navigation {
+    .root-navigation {
         display: flex;
         flex: 1;
         flex-direction: column;

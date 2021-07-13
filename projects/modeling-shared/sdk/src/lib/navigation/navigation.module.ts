@@ -15,14 +15,23 @@
  * limitations under the License.
  */
 
-import { RouterModule } from '@angular/router';
+import { CoreModule } from '@alfresco/adf-core';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { projectEditorRoutes } from './project-editor.routes';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { RootNavigationComponent } from './root-navigation.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     imports: [
-        RouterModule.forChild(projectEditorRoutes)
+        CommonModule,
+        MatIconModule,
+        MatButtonModule,
+        RouterModule.forChild([]),
+        CoreModule.forChild()
     ],
-    exports: [RouterModule]
+    declarations: [ RootNavigationComponent] ,
+    exports: [ RootNavigationComponent ]
 })
-export class ProjectEditorRoutingModule {}
+export class NavigationModule { }

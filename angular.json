@@ -11,11 +11,16 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+                        "aot": true,
                         "outputPath": "dist/modeling-ce",
                         "index": "app/src/index.html",
                         "main": "app/src/main.ts",
                         "tsConfig": "app/tsconfig.app.json",
                         "polyfills": "app/src/polyfills.ts",
+                        "allowedCommonJsDependencies": [
+                            "moment-es6",
+                            "minimatch"
+                        ],
                         "stylePreprocessorOptions": {
                             "includePaths": [
                                 "lib",
@@ -58,11 +63,6 @@
                                 "glob": "**/*"
                             },
                             {
-                                "input": "src/assets/svg/icons",
-                                "output": "/assets/svg/icons",
-                                "glob": "**/*"
-                            },
-                            {
                                 "input": "projects/connector-editor/i18n",
                                 "output": "/assets/connector-editor/i18n",
                                 "glob": "**/*"
@@ -70,6 +70,16 @@
                             {
                                 "input": "projects/modeling-shared/sdk/i18n",
                                 "output": "/assets/modeling-sdk/i18n",
+                                "glob": "**/*"
+                            },
+                            {
+                                "input": "node_modules/ngx-monaco-editor/assets/monaco",
+                                "output": "/assets/monaco",
+                                "glob": "**/*"
+                            },
+                            {
+                                "input": "node_modules/pdfjs-dist/web",
+                                "output": "/~pdfjs-dist/web",
                                 "glob": "**/*"
                             },
                             {
@@ -88,8 +98,8 @@
                                 "glob": "**/*"
                             },
                             {
-                                "input": "node_modules/ngx-monaco-editor/assets/monaco",
-                                "output": "/assets/monaco",
+                                "input": "src/assets/svg/icons",
+                                "output": "/assets/svg/icons",
                                 "glob": "**/*"
                             }
                         ],
@@ -98,17 +108,16 @@
                             "app/src/styles.scss",
                             "projects/modeling-shared/sdk/src/lib/modeling-sdk.module.scss"
                         ],
-                        "scripts": [],
-                        "allowedCommonJsDependencies": [
-                            "moment-es6",
-                            "minimatch",
-                            "zen-observable",
-                            "superagent",
-                            "event-emitter"
-                        ]
+                        "scripts": []
                     },
                     "configurations": {
                         "production": {
+                            "budgets": [
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb"
+                                }
+                            ],
                             "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": false,
@@ -124,6 +133,14 @@
                                     "with": "app/src/environments/environment.prod.ts"
                                 }
                             ]
+                        },
+                        "release": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "app/src/environments/environment.ts",
+                                    "with": "app/src/environments/environment.release.ts"
+                                }
+                            ]
                         }
                     }
                 },
@@ -132,7 +149,6 @@
                     "options": {
                         "browserTarget": "modeling-ce:build",
                         "port": 4201,
-                        "host": "0.0.0.0",
                         "disableHostCheck": true,
                         "open": true,
                         "proxyConfig": "./app/proxy.conf.js"
@@ -152,25 +168,25 @@
             "projectType": "library",
             "prefix": "modelingsdk",
             "architect": {
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tslintConfig": "tslint.community.json",
-                        "tsConfig": [
-                            "projects/modeling-shared/sdk/tsconfig.lib.json"
-                        ],
-                        "exclude": [
-                            "**/node_modules/**",
-                            "projects/modeling-shared/sdk/jest.config.js"
-                        ],
-                        "format": "stylish"
-                    }
-                },
                 "test": {
                     "builder": "@nrwl/jest:jest",
                     "options": {
                         "jestConfig": "projects/modeling-shared/sdk/jest.config.js",
                         "tsConfig": "projects/modeling-shared/sdk/tsconfig.spec.json"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/modeling-shared/sdk/tsconfig.lib.json"
+                        ],
+                        "tslintConfig": "projects/modeling-shared/sdk/tslint.json",
+                        "exclude": [
+                            "**/node_modules/**",
+                            "projects/adf-candidates/**"
+                        ],
+                        "format": "stylish"
                     }
                 }
             }
@@ -179,27 +195,28 @@
             "root": "projects/connector-editor",
             "sourceRoot": "projects/connector-editor/src",
             "projectType": "library",
-            "prefix": "connector-editor",
+            "prefix": "modeling-ce-connector-editor",
             "architect": {
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tslintConfig": "tslint.community.json",
-                        "tsConfig": [
-                            "projects/connector-editor/tsconfig.lib.json"
-                        ],
-                        "exclude": [
-                            "**/node_modules/**",
-                            "projects/connector-editor/jest.config.js"
-                        ],
-                        "format": "stylish"
-                    }
-                },
                 "test": {
                     "builder": "@nrwl/jest:jest",
                     "options": {
                         "jestConfig": "projects/connector-editor/jest.config.js",
                         "tsConfig": "projects/connector-editor/tsconfig.spec.json"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/connector-editor/tsconfig.lib.json"
+                        ],
+                        "tslintConfig": "projects/connector-editor/tslint.json",
+                        "exclude": [
+                            "**/node_modules/**",
+                            "projects/adf-candidates/**",
+                            "projects/modeling-shared/**"
+                        ],
+                        "format": "stylish"
                     }
                 }
             }
@@ -208,27 +225,28 @@
             "root": "projects/dashboard",
             "sourceRoot": "projects/dashboard/src",
             "projectType": "library",
-            "prefix": "connector-editor",
+            "prefix": "modeling-ce-dashboard",
             "architect": {
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tslintConfig": "tslint.community.json",
-                        "tsConfig": [
-                            "projects/dashboard/tsconfig.lib.json"
-                        ],
-                        "exclude": [
-                            "**/node_modules/**",
-                            "projects/dashboard/jest.config.js"
-                        ],
-                        "format": "stylish"
-                    }
-                },
                 "test": {
                     "builder": "@nrwl/jest:jest",
                     "options": {
                         "jestConfig": "projects/dashboard/jest.config.js",
                         "tsConfig": "projects/dashboard/tsconfig.spec.json"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/dashboard/tsconfig.lib.json"
+                        ],
+                        "tslintConfig": "projects/dashboard/tslint.json",
+                        "exclude": [
+                            "**/node_modules/**",
+                            "projects/adf-candidates/**",
+                            "projects/modeling-shared/**"
+                        ],
+                        "format": "stylish"
                     }
                 }
             }
@@ -237,27 +255,28 @@
             "root": "projects/project-editor",
             "sourceRoot": "projects/project-editor/src",
             "projectType": "library",
-            "prefix": "connector-editor",
+            "prefix": "modeling-ce-project-editor",
             "architect": {
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tslintConfig": "tslint.community.json",
-                        "tsConfig": [
-                            "projects/project-editor/tsconfig.lib.json"
-                        ],
-                        "exclude": [
-                            "**/node_modules/**",
-                            "projects/project-editor/jest.config.js"
-                        ],
-                        "format": "stylish"
-                    }
-                },
                 "test": {
                     "builder": "@nrwl/jest:jest",
                     "options": {
                         "jestConfig": "projects/project-editor/jest.config.js",
                         "tsConfig": "projects/project-editor/tsconfig.spec.json"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/project-editor/tsconfig.lib.json"
+                        ],
+                        "tslintConfig": "projects/project-editor/tslint.json",
+                        "exclude": [
+                            "**/node_modules/**",
+                            "projects/adf-candidates/**",
+                            "projects/modeling-shared/**"
+                        ],
+                        "format": "stylish"
                     }
                 }
             }
@@ -266,27 +285,28 @@
             "root": "projects/process-editor",
             "sourceRoot": "projects/process-editor/src",
             "projectType": "library",
-            "prefix": "modelingsdk",
+            "prefix": "modeling-ce-process-editor",
             "architect": {
-                "lint": {
-                    "builder": "@angular-devkit/build-angular:tslint",
-                    "options": {
-                        "tslintConfig": "tslint.community.json",
-                        "tsConfig": [
-                            "projects/process-editor/tsconfig.lib.json"
-                        ],
-                        "exclude": [
-                            "**/node_modules/**",
-                            "projects/process-editor/jest.config.js"
-                        ],
-                        "format": "stylish"
-                    }
-                },
                 "test": {
                     "builder": "@nrwl/jest:jest",
                     "options": {
                         "jestConfig": "projects/process-editor/jest.config.js",
                         "tsConfig": "projects/process-editor/tsconfig.spec.json"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/process-editor/tsconfig.lib.json"
+                        ],
+                        "tslintConfig": "projects/connector-editor/tslint.json",
+                        "exclude": [
+                            "**/node_modules/**",
+                            "projects/adf-candidates/**",
+                            "projects/modeling-shared/**"
+                        ],
+                        "format": "stylish"
                     }
                 }
             }
@@ -295,7 +315,7 @@
             "projectType": "library",
             "root": "projects/adf-candidates",
             "sourceRoot": "projects/adf-candidates",
-            "prefix": "alfresco-dbp",
+            "prefix": "adf-candidates",
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
@@ -306,7 +326,7 @@
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
-                        "tslintConfig": "tslint.community.json",
+                        "tslintConfig": "projects/adf-candidates/tslint.json",
                         "tsConfig": ["projects/adf-candidates/tsconfig.lib.json"],
                         "exclude": ["**/node_modules/**", "!projects/adf-candidates/**/*"]
                     }
@@ -314,10 +334,10 @@
             }
         },
         "modeling-ce-app-shell": {
-            "projectType": "library",
             "root": "projects/app-shell",
             "sourceRoot": "projects/app-shell",
-            "prefix": "alfresco-dbp",
+            "projectType": "library",
+            "prefix": "modeling-ce-app-shell",
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
@@ -328,13 +348,14 @@
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
-                        "tslintConfig": "tslint.community.json",
+                        "tslintConfig": "projects/app-shell/tslint.json",
                         "tsConfig": ["projects/app-shell/tsconfig.lib.json"],
                         "exclude": ["**/node_modules/**", "!projects/app-shell/**/*"]
                     }
                 }
             }
         }
+
     },
     "defaultProject": "modeling-ce",
     "schematics": {

@@ -18,14 +18,14 @@
 import { Routes } from '@angular/router';
 import { ProcessEditorComponent } from '../components/process-editor/process-editor.component';
 import { ProcessLoaderGuard } from './guards/process-loader.guard';
-import { UnsavedPageGuard, PROCESS, MODULE_EDITOR_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
+import { UnsavedPageGuard, PROCESS, MODEL_EDITOR_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessDeactivateGuard } from './guards/process-deactivate.guard';
 import { ProcessesLoaderGuard } from './guards/processes-loader.guard';
 
 export const processEditorRoutes: Routes = [
     {
         path: PROCESS,
-        data: { injectTo: MODULE_EDITOR_ROUTES },
+        data: { injectTo: MODEL_EDITOR_ROUTES },
         children: [
             {
                 path: ':processId',

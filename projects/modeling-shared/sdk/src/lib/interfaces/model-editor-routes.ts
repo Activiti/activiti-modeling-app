@@ -15,5 +15,6 @@
  * limitations under the License.
  */
 
-export const MODULE_EDITOR_ROUTES = 'MODULE_EDITOR_ROUTES';
+export const MODEL_EDITOR_ROUTES = 'MODEL_EDITOR_ROUTES';
 export const DASHBOARD_ROUTES = 'DASHBOARD_ROUTES';
+export const AUTHENTICATED_ROUTES = 'AUTHENTICATED_ROUTES';

@@ -23,7 +23,6 @@ import { DashboardRoutingModule } from './router/dashboard-routing.module';
 import { CoreModule } from '@alfresco/adf-core';
 import { MomentModule } from 'ngx-moment';
 
-import { DashboardNavigationComponent } from './components/dashboard-navigation/dashboard-navigation.component';
 import { ProjectsListComponent } from './components/projects-list/projects-list.component';
 
 import { EffectsModule } from '@ngrx/effects';
@@ -49,7 +48,6 @@ import { SearchHeaderComponent } from './components/search-header/search-header.
         EffectsModule.forFeature([ProjectsEffects])
     ],
     declarations: [
-        DashboardNavigationComponent,
         ProjectsListComponent,
         SearchHeaderComponent
     ],
