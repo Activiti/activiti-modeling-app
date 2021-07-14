@@ -165,6 +165,7 @@
     "lodash.wrap": "^4.1.1",
     "mock-fs": "^4.13.0",
     "ng-packagr": "^10.1.2",
+    "njwt": "^1.1.0",
     "node-stream-zip": "^1.13.0",
     "nx-stylelint": "^11.2.0",
     "ora": "^5.1.0",
