@@ -105,8 +105,8 @@
           "FILE": "Tem certeza de que deseja baixar este arquivo?",
           "SCRIPT": "Tem certeza de que deseja baixar este script?",
           "TRIGGER": "Tem certeza de que deseja baixar este gatilho?",
-          "MODEL": "Deseja fazer download deste Modelo de conteúdo classificado?",
-          "FORM_WIDGET": "Deseja fazer download deste widget de formulário?"
+          "MODEL": "Tem certeza de que deseja baixar este modelo de conteúdo?",
+          "FORM_WIDGET": "Tem certeza de que deseja baixar este widget de formulário?"
         }
       }
     },
@@ -116,7 +116,7 @@
       "RELEASE": "Liberar",
       "COLLABORATORS": "Colaboradores",
       "SEE_RELEASES": "Exibir Versões",
-      "DOWNLOAD": "Download",
+      "DOWNLOAD": "Baixar",
       "SAVE_AS": "Salvar como"
     },
     "SETTINGS": {

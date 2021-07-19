@@ -202,7 +202,7 @@
       "LOAD_DIAGRAM": "Encontramos um problema ao carregar o diagrama. Tente atualizar a página.",
       "SAVE_DIAGRAM": "Encontramos um problema ao salvar o diagrama. Tente salvar novamente.",
       "PARSE_BPMN": "Encontramos um problema ao analisar o XML. Tente atualizar novamente.",
-      "DOWNLOAD_DIAGRAM": "Encontramos um problema ao descarregar o processo. Tente descarregar novamente.",
+      "DOWNLOAD_DIAGRAM": "Encontramos um problema ao baixar o processo. Tente baixá-lo novamente.",
       "CHANGE_FAVORITE": "Encontramos um problema ao alterar o status do processo. Atualize a página e tente novamente.",
       "DOWNLOAD_SVG_IMAGE": "Encontramos um problema ao baixar a imagem do diagrama. Tente baixar novamente.",
       "NO_CONNECTOR_ACTIONS": "Criar uma ação para o conector usar",

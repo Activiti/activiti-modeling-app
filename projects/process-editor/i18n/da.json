@@ -2,7 +2,7 @@
   "PROCESS_EDITOR": {
     "DOWNLOAD_PROCESS": "Download proces",
     "SAVE_PROCESS_IMAGE": "Gem procesdiagram som SVG",
-    "VALIDATE_PROCESS": "Valider proces",
+    "VALIDATE_PROCESS": "Bekræft proces",
     "SAVE_PROCESS": "Gem proces",
     "SELECT_PROCESS_VARIABLE": "Vælg procesvariabel",
     "SCRIPT_NAME": "Navn på script",
