@@ -29,9 +29,9 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
     template: `
         <mat-form-field class="advanced-datetime-picker">
             <mat-label>{{placeholder}}</mat-label>
-            <input (dateChange)="onChange($event)" [formControl]="pickerDate" [matDatetimepicker]="datetimePicker" matInput>
+            <input (dateChange)="onChange($any($event))" [formControl]="pickerDate" [matDatetimepicker]="datetimePicker" matInput>
             <mat-datetimepicker-toggle [for]="datetimePicker" matSuffix></mat-datetimepicker-toggle>
-            <mat-datetimepicker #datetimePicker openOnFocus="true" timeInterval="5" type="datetime"></mat-datetimepicker>
+            <mat-datetimepicker #datetimePicker [openOnFocus]="true" [timeInterval]="5" type="datetime"></mat-datetimepicker>
         </mat-form-field>
     `,
     providers: [

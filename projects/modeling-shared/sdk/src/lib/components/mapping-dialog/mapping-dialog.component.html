@@ -88,7 +88,7 @@
                         [class.active]="i == selectedRow" [attr.data-automation-id]="'mapping-row-' + i"></mat-row>
                 </mat-table>
                 <button mat-raised-button class="add-btn" color="primary" *ngIf="mappingType === 'output'"
-                    data-automation-id="add-variable-button" (click)="addOutputMapping()">
+                    data-automation-id="add-variable-button" (click)="addOutputMapping('')">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
@@ -170,7 +170,7 @@
                                     [expression]="expressionValue"
                                     (expressionChange)="valueMappingExpressionChange($event,selectedRow)"
                                     [variables]="mappingType === 'output' ? outputParameters : processProperties"
-                                    [language]="dataSource[selectedRow] | variableExpressionLanguage"
+                                    [language]="$any(dataSource[selectedRow]) | variableExpressionLanguage"
                                     [removeEnclosingBrackets]="false" [enableDialogEditor]="true"
                                     [enableInlineEditor]="true" [removeLineNumbers]="true" [lineWrapping]="true"
                                     [nonBracketedOutput]="false">

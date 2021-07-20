@@ -22,6 +22,7 @@ import { Observable, Subject } from 'rxjs';
 import { first, takeUntil } from 'rxjs/operators';
 import { SettingsDialogComponent } from '../settings/settings-dialog.component';
 import { AmaState, OpenDialogAction, selectMenuOpened, SetMenuAction } from '@alfresco-dbp/modeling-shared/sdk';
+import { LogoutAction } from '../../store/actions/app.actions';
 
 @Component({
     templateUrl: './app-layout.component.html',
@@ -61,6 +62,10 @@ export class AppLayoutComponent implements AfterViewInit, OnDestroy {
 
     dispatchToggleMenuAction(menuOpened) {
         this.store.dispatch(new SetMenuAction(menuOpened));
+    }
+
+    onLogout() {
+        this.store.dispatch(new LogoutAction());
     }
 
     onOpenSettings() {

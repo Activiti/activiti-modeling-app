@@ -17,11 +17,11 @@
 
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, AppConfigService, MomentDateAdapter } from '@alfresco/adf-core';
-import { FormBuilder, Validators, FormControl, FormGroup, AbstractControl } from '@angular/forms';
+import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, takeUntil, filter, take } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import moment from 'moment-es6';
-import { AmaState, EntityProperty, selectSelectedProcess, ProcessExtensionsModel, AMA_DATETIME_FORMATS } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaState, EntityProperty, selectSelectedProcess, ProcessExtensionsModel, AMA_DATETIME_FORMATS} from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { TimerDefinitionItemModel } from './timer-definition-item.model';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -285,60 +285,60 @@ export class CardViewTimerDefinitionItemComponent implements OnInit, OnDestroy {
         return this.eventType !== 'bpmn:StartEvent' && this.isTimerTypeDefined();
     }
 
-    get timerType(): AbstractControl {
-        return this.timerDefinitionForm.get('timerType');
+    get timerType(): FormControl {
+        return this.timerDefinitionForm.get('timerType') as FormControl;
     }
 
-    get date(): AbstractControl {
-        return this.timerDefinitionForm.get('date');
+    get date(): FormControl {
+        return this.timerDefinitionForm.get('date') as FormControl;
     }
 
-    get years(): AbstractControl {
-        return this.timerDefinitionForm.get('years');
+    get years(): FormControl {
+        return this.timerDefinitionForm.get('years') as FormControl;
     }
 
-    get months(): AbstractControl {
-        return this.timerDefinitionForm.get('months');
+    get months(): FormControl {
+        return this.timerDefinitionForm.get('months') as FormControl;
     }
 
-    get weeks(): AbstractControl {
-        return this.timerDefinitionForm.get('weeks');
+    get weeks(): FormControl {
+        return this.timerDefinitionForm.get('weeks') as FormControl;
     }
 
-    get days(): AbstractControl {
-        return this.timerDefinitionForm.get('days');
+    get days(): FormControl {
+        return this.timerDefinitionForm.get('days') as FormControl;
     }
 
-    get hours(): AbstractControl {
-        return this.timerDefinitionForm.get('hours');
+    get hours(): FormControl {
+        return this.timerDefinitionForm.get('hours') as FormControl;
     }
 
-    get minutes(): AbstractControl {
-        return this.timerDefinitionForm.get('minutes');
+    get minutes(): FormControl {
+        return this.timerDefinitionForm.get('minutes') as FormControl;
     }
 
-    get seconds(): AbstractControl {
-        return this.timerDefinitionForm.get('seconds');
+    get seconds(): FormControl {
+        return this.timerDefinitionForm.get('seconds') as FormControl;
     }
 
-    get repetitions(): AbstractControl {
-        return this.timerDefinitionForm.get('repetitions');
+    get repetitions(): FormControl {
+        return this.timerDefinitionForm.get('repetitions') as FormControl;
     }
 
-    get processVariable(): AbstractControl {
-        return this.timerDefinitionForm.get('processVariable');
+    get processVariable(): FormControl {
+        return this.timerDefinitionForm.get('processVariable') as FormControl;
     }
 
-    get useProcessVariable(): AbstractControl {
-        return this.timerDefinitionForm.get('useProcessVariable');
+    get useProcessVariable(): FormControl {
+        return this.timerDefinitionForm.get('useProcessVariable') as FormControl;
     }
 
-    get cronExpression(): AbstractControl {
-        return this.timerDefinitionForm.get('cronExpression');
+    get cronExpression(): FormControl {
+        return this.timerDefinitionForm.get('cronExpression') as FormControl;
     }
 
-    get useCronExpression(): AbstractControl {
-        return this.timerDefinitionForm.get('useCronExpression');
+    get useCronExpression(): FormControl {
+        return this.timerDefinitionForm.get('useCronExpression') as FormControl;
     }
 
     ngOnDestroy() {

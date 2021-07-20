@@ -10,6 +10,6 @@
         </div>
     </div>
 
-    <input type="file" #fileInput (click)="$event.stopPropagation()" (change)="onUpload($event.target.files)" accept="{{ acceptedFileTypes }}"
+    <input type="file" #fileInput (click)="$event.stopPropagation()" (change)="onUpload($any($event).target.files)" accept="{{ acceptedFileTypes }}"
         class="ama-upload-button__file-input" data-automation-id="upload-input"/>
 </div>

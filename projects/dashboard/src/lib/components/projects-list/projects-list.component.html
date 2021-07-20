@@ -9,7 +9,7 @@
                             [dataSource]="dataSource"
                             matSort
                             [matSortActive]="sorting.key"
-                            [matSortDirection]="sorting.direction"
+                            [matSortDirection]="$any(sorting.direction)"
                             [matSortDisableClear]="true"
                             (matSortChange)="onSortChange($event)">
                             <ng-container matColumnDef="thumbnail">

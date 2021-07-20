@@ -33,6 +33,7 @@ declare namespace Bpmn {
         outgoing?: DiagramElement[];
         parent?: DiagramElement;
         labelTarget?: DiagramElement;
+        name?: string;
     }
 
     export type NamedDiagramService =

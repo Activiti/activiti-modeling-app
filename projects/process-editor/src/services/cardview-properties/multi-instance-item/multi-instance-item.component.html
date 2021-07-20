@@ -15,7 +15,7 @@
             <div class="adf-property-label">
                 {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MULTI_INSTANCE.CARDINALITY_NAME' | translate }}
             </div>
-            <input (change)="onCardinalityChange($event.target.value)"
+            <input (change)="onCardinalityChange($any($event).target.value)"
                    formControlName="cardinality"
                    data-automation-id="cardinality-field"
                    matInput/>
@@ -28,7 +28,7 @@
             <div class="adf-property-label">
                 {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MULTI_INSTANCE.COLLECTION' | translate }}
             </div>
-            <input (change)="onCollectionExpressionChange($event.target.value)"
+            <input (change)="onCollectionExpressionChange($any($event).target.value)"
                    formControlName="collectionExpression"
                    data-automation-id="collection-field"
                    matInput/>
@@ -41,7 +41,7 @@
             <div class="adf-property-label">
                 {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ELEMENT_VARIABLE' | translate }}
             </div>
-            <input (change)="onElementVariableChange($event.target.value)"
+            <input (change)="onElementVariableChange($any($event).target.value)"
                    formControlName="elementVariable"
                    data-automation-id="element-variable-field"
                    matInput/>
@@ -54,7 +54,7 @@
             <div class="adf-property-label">
                 {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.MULTI_INSTANCE.COMPLETION_CONDITION' | translate }}
             </div>
-            <input (change)="onCompletionConditionChange($event.target.value)"
+            <input (change)="onCompletionConditionChange($any($event).target.value)"
                    formControlName="completionCondition"
                    data-automation-id="completionCondition-field"
                    matInput/>

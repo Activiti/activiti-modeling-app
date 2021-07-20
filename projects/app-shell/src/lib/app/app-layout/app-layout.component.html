@@ -13,7 +13,7 @@
                 <adf-userinfo></adf-userinfo>
 
                 <ama-header-menu
-                    [showLanguagePicker]="showLanguagePicker"
+                    [showLanguagePicker]="$any(showLanguagePicker)"
                     (logout)="onLogout()"
                     (openSettings)="onOpenSettings()">
                 </ama-header-menu>

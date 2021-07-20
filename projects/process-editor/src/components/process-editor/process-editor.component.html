@@ -36,7 +36,7 @@
                         <modelingsdk-code-editor
                             (changed)="onXmlChangeAttempt($event)"
                             (positionChanged)="codeEditorPositionChanged($event)"
-                            [options]="{language: 'xml'}"
+                            [options]="$any({language: 'xml'})"
                             [content]="content$ | async"
                             [fileUri]="processFileUri$ | async"
                             [language]="processesLanguageType">

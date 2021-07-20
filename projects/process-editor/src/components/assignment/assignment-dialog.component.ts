@@ -836,8 +836,8 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         return <FormGroup> this.assignmentForm.get('staticForm');
     }
 
-    get assigneeStaticControl(): AbstractControl {
-        return this.staticForm.get('assignee');
+    get assigneeStaticControl(): FormControl {
+        return this.staticForm.get('assignee') as FormControl;
     }
 
     get assigneeChipsStaticControl(): AbstractControl {
@@ -894,8 +894,8 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         return <FormGroup> this.candidatesStaticFormGroup.get('candidateUserFormGroup');
     }
 
-    get candidateUsersStaticControl(): AbstractControl {
-        return this.candidateUserStaticFormGroup.get('candidateUsers');
+    get candidateUsersStaticControl(): FormControl {
+        return this.candidateUserStaticFormGroup.get('candidateUsers') as FormControl;
     }
 
     get candidateUsersChipsStaticControl(): AbstractControl {
@@ -906,8 +906,8 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         return <FormGroup> this.candidatesStaticFormGroup.get('candidateGroupFormGroup');
     }
 
-    get candidateGroupsStaticControl(): AbstractControl {
-        return this.candidateGroupStaticFormGroup.get('candidateGroups');
+    get candidateGroupsStaticControl(): FormControl {
+        return this.candidateGroupStaticFormGroup.get('candidateGroups') as FormControl;
     }
 
     get candidateGroupsChipsStaticControl(): AbstractControl {
@@ -918,12 +918,12 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         return <FormGroup> this.assignmentForm.get('identityForm');
     }
 
-    get assigneeIdentityControl(): AbstractControl {
-        return this.identityForm.get('assignee');
+    get assigneeIdentityControl(): FormControl {
+        return this.identityForm.get('assignee') as FormControl;
     }
 
-    get assigneeChipsIdentityControl(): AbstractControl {
-        return this.identityForm.get('assigneeChips');
+    get assigneeChipsIdentityControl(): FormControl {
+        return this.identityForm.get('assigneeChips') as FormControl;
     }
 
     get candidatesIdentityFormGroup(): FormGroup {
@@ -934,24 +934,24 @@ export class AssignmentDialogComponent implements OnInit, OnDestroy {
         return <FormGroup> this.candidatesIdentityFormGroup.get('candidateUserFormGroup');
     }
 
-    get candidateUsersIdentityControl(): AbstractControl {
-        return this.candidateUserIdentityFormGroup.get('candidateUsers');
+    get candidateUsersIdentityControl(): FormControl {
+        return this.candidateUserIdentityFormGroup.get('candidateUsers') as FormControl;
     }
 
-    get candidateUsersChipsIdentityControl(): AbstractControl {
-        return this.candidateUserIdentityFormGroup.get('candidateUsersChips');
+    get candidateUsersChipsIdentityControl(): FormControl {
+        return this.candidateUserIdentityFormGroup.get('candidateUsersChips') as FormControl;
     }
 
     get candidateGroupIdentityFormGroup(): FormGroup {
         return <FormGroup> this.candidatesIdentityFormGroup.get('candidateGroupFormGroup');
     }
 
-    get candidateGroupsChipsIdentityControl(): AbstractControl {
-        return this.candidateGroupIdentityFormGroup.get('candidateGroupsChips');
+    get candidateGroupsChipsIdentityControl(): FormControl {
+        return this.candidateGroupIdentityFormGroup.get('candidateGroupsChips') as FormControl;
     }
 
-    get candidateGroupsIdentityControl(): AbstractControl {
-        return this.candidateGroupIdentityFormGroup.get('candidateGroups');
+    get candidateGroupsIdentityControl(): FormControl {
+        return this.candidateGroupIdentityFormGroup.get('candidateGroups') as FormControl;
     }
 
     get expressionForm(): FormGroup {

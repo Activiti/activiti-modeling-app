@@ -5,8 +5,8 @@
     <div class="palette-body" [class.opened]="opened">
         <ng-container *ngFor="let item of paletteElements">
             <ng-container
-                 *ngIf="!isSeparator(item) && isAllowed(item); else separator">
-                <ng-container *ngTemplateOutlet="hasChildren(item) ? containerElement : clickableElement; context: { $implicit: item }">
+                 *ngIf="!isSeparator($any(item)) && isAllowed($any(item)); else separator">
+                <ng-container *ngTemplateOutlet="hasChildren($any(item)) ? containerElement : clickableElement; context: { $implicit: item }">
                 </ng-container>
             </ng-container>
         </ng-container>
@@ -22,7 +22,6 @@
                 ama-palette-overlay
                 [templatePortalContent]="drawer"
                 [amaPaletteItem]="item"
-                amaPaletteOverlayRef
                 [attr.nested]="item.nested ? item.nested : false">
             </button>
         </div>

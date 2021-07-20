@@ -77,5 +77,7 @@ export class CardViewProcessNameItemComponent implements OnInit {
         };
     }
 
-    get processName() { return this.processNameForm.get('processName'); }
+    get processName(): FormControl {
+        return this.processNameForm.get('processName') as FormControl;
+    }
 }

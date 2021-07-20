@@ -101,8 +101,8 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
     panelDisplay: boolean;
     vars: ElementVariable[];
     availableVariables: boolean;
+    language: string;
 
-    private language;
     private readonly EXPRESSION_REGEX = /\${([^]*)}/gm;
 
     constructor(private cdr: ChangeDetectorRef, private dialogService: DialogService, private expressionLanguagePipe: VariableExpressionLanguagePipe) { }

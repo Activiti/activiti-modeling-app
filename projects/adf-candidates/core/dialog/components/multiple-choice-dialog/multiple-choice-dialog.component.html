@@ -6,11 +6,10 @@
 
 <mat-dialog-actions class="adf-dialog-buttons">
     <span class="adf-fill-remaining-space"></span>
-   
     <button mat-button *ngFor="let choice of choices"
         [attr.data-automation-id]="'dialog-button-' + choice.choice"
         (click)="choose(choice.choice)"
-        [color]="choice.color ? choice.color : 'default'"
+        [color]="choice.color ? $any(choice.color) : null"
         [disabled]="disableButtons">
         {{ choice.title | translate }}
         <mat-icon *ngIf="isSpinnerVisible(choice)">

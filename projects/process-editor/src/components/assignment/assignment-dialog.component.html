@@ -153,7 +153,7 @@
                         (expressionChange)="onExpressionChange($event)"
                         [language]="'json'"
                         [removeEnclosingBrackets]="false"
-                        [variables]="expressionSuggestions"
+                        [variables]="$any(expressionSuggestions)"
                         [enableDialogEditor]="false"
                         [enableInlineEditor]="true"
                         [nonBracketedOutput]="false"

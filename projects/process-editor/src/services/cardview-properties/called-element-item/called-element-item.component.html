@@ -23,7 +23,7 @@
                         {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.OUTPUT_MAPPING' | translate }}:</h5>
                     <modelingsdk-output-mapping-table [parameters]="subProcessVariables"
                         [processProperties]="editorVariables" [mapping]="(mappings$ | async).outputs || {}"
-                        (update)="changeMapping($event, 'outputs')">
+                        (update)="changeMapping($any($event), 'outputs')">
                     </modelingsdk-output-mapping-table>
                 </div>
             </div>
