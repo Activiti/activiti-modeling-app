@@ -1,6 +1,6 @@
 
 {
-    "extends": "../../../tsconfig.base.adf.json",
+    "extends": "../../../tsconfig.adf.json",
     "compilerOptions": {
         "outDir": "../out-tsc/spec",
         "module": "commonjs"
