@@ -1,9 +1,8 @@
 const path = require('path');
-const getJestConfig = require('../../jest.get-config');
+const getJestConfig = require('../adf-candidates/testing/jest/jest.get-config');
 
 module.exports = getJestConfig({
     rootDir: path.resolve(__dirname),
-    setupFilesAfterEnv: [ path.resolve(__dirname, '..', '..', 'jest/jest-setup.ts') ],
     coverageDirectory: '<rootDir>/../../../../coverage/modeling-ce/project-editor',
     collectCoverageFrom: [
         '<rootDir>/src/**/*.ts',
@@ -14,14 +13,9 @@ module.exports = getJestConfig({
     roots: [
         path.resolve(__dirname, 'src')
     ],
-    moduleNameMapper: {
-        '@alfresco-dbp/modeling-shared/sdk': '<rootDir>/../modeling-shared/sdk/src/public-api.ts',
-        '@alfresco-dbp/adf-candidates/core/dialog': '<rootDir>/../adf-candidates/core/dialog/public-api.ts',
-        '@alfresco-dbp/modeling-shared/sdk': '<rootDir>/../modeling-shared/sdk/src/public-api.ts'
-    },
     globals: {
         "ts-jest": {
             tsconfig: "<rootDir>/tsconfig.spec.json"
         }
     }
-});
+}, 'tsconfig.json', path.resolve(__dirname, '../..'));

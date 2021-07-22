@@ -1,9 +1,8 @@
 const path = require('path');
-const getJestConfig = require('../../jest.get-config');
+const getJestConfig = require('./testing/jest/jest.get-config');
 
 module.exports = getJestConfig({
     rootDir: path.resolve(__dirname),
-    setupFilesAfterEnv: [ path.resolve(__dirname, '..', '..', 'jest/jest-setup.ts') ],
     coverageDirectory: '<rootDir>/../../../../coverage/modeling-ce/adf-candidates',
     collectCoverageFrom: [
         '<rootDir>/src/**/*.ts',
@@ -19,5 +18,5 @@ module.exports = getJestConfig({
         "ts-jest": {
             tsconfig: "<rootDir>/tsconfig.spec.json"
         }
-    }
-});
+    },
+}, 'tsconfig.json', path.resolve(__dirname, '../..'));
