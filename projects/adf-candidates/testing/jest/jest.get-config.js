@@ -1,6 +1,6 @@
 const { pathsToModuleNameMapper } = require('ts-jest/utils');
 const path = require('path');
-const DEFAULT_TS_CONFIG = 'tsconfig.json';
+const DEFAULT_TS_CONFIG = 'tsconfig.base.json';
 const ROOT_DIR = process.cwd();
 
 module.exports = function getJestConfig(config, tsConfigFileName = DEFAULT_TS_CONFIG, rootDirectory = ROOT_DIR) {
