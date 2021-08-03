@@ -56,6 +56,7 @@
         "docgen",
         "transpiled",
         "keycodes",
-        "stylelint"
+        "stylelint",
+        "SQLSERVER"
     ]
 }
