@@ -79,6 +79,9 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
     filterExpressionVariables = false;
 
     @Input()
+    expressionEditorVariables: ElementVariable[];
+
+    @Input()
     required = false;
 
     @Input()
@@ -126,6 +129,10 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
         this.availableVariables = true;
 
         this.variables.filter((variable) => variable.variables && variable.variables.length > 0).forEach((element) => this.vars = this.vars.concat(element.variables));
+
+        if (!this.expressionEditorVariables) {
+            this.expressionEditorVariables = this.vars;
+        }
 
         this.language = this.expressionLanguagePipe.transform(this.typeFilter);
 
@@ -221,7 +228,9 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
             expression: this.expression,
             language: this.language,
             removeEnclosingBrackets: false,
-            variables: this.filterExpressionVariables ? this.vars.filter(variable => !variable.name.match(this.EXPRESSION_REGEX)) : this.vars,
+            variables: this.filterExpressionVariables ?
+                this.expressionEditorVariables.filter(variable => !variable.name.match(this.EXPRESSION_REGEX)) :
+                this.expressionEditorVariables,
             nonBracketedOutput: false,
             expressionUpdate$: expressionUpdate$
         };

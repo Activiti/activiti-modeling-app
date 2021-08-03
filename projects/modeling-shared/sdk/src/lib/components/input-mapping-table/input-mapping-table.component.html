@@ -30,6 +30,7 @@
                     (mappingChanged)="selectVariable($event, parameter)"
                     [panelHeight]="panelHeight"
                     [panelWidth]="panelWidth"
+                    [expressionEditorVariables]="expressionEditorVariables"
                     [required]="parameter.required || false"
                     [disabled]="parameter.readOnly"
                     [attr.data-automation-id]="'variable-selector-' + parameter.id"

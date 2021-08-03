@@ -22,7 +22,7 @@ import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
 import { Subject } from 'rxjs';
 import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
-import { ProcessEditorElementVariable } from '../../services/process-editor-element-variables-provider.service';
+import { ElementVariable, ProcessEditorElementVariable } from '../../services/process-editor-element-variables-provider.service';
 
 export interface ParameterSelectOption {
     id: string | Symbol;
@@ -70,6 +70,9 @@ export class InputMappingTableComponent implements OnChanges {
 
     @Input()
     placeholder = 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE';
+
+    @Input()
+    expressionEditorVariables: ElementVariable[];
 
     @Output()
     update = new EventEmitter<ServiceParameterMapping>();
@@ -162,6 +165,7 @@ export class InputMappingTableComponent implements OnChanges {
             inputParameters: this.parameters,
             mappingType: VariableMappingType.input,
             editorVariables: this.processProperties,
+            expressionEditorVariables: this.expressionEditorVariables,
             selectedRow: parameterRow,
             inputMappingUpdate$,
             extensionObject: { ...this.extensionObject, editDialogKeyHeader: this.editDialogKeyHeader, editDialogValueHeader: this.editDialogValueHeader },

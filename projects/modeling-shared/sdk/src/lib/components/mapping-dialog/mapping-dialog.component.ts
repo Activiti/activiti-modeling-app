@@ -60,6 +60,7 @@ export class MappingDialogComponent implements OnInit {
 
     extendedProperties = {};
     editorVariables: ProcessEditorElementVariable[];
+    expressionEditorVariables: ElementVariable[];
 
     private readonly EXPRESSION_REGEX = /\${([^]*)}/gm;
 
@@ -74,6 +75,7 @@ export class MappingDialogComponent implements OnInit {
         this.outputMapping = data.outputMapping;
         this.outputParameters = this.getSortedCopy(data.outputParameters);
         this.editorVariables = data.editorVariables;
+        this.expressionEditorVariables = data.expressionEditorVariables;
         this.processProperties = this.getSortedCopy(this.getVariablesList(this.editorVariables));
         this.mappingType = data.mappingType;
         this.selectedRow = data.selectedRow;

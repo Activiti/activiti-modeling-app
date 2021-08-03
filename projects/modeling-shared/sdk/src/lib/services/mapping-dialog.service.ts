@@ -19,7 +19,7 @@ import { ServiceParameterMapping, ConnectorParameter, MappingType, EntityPropert
 import { Subject } from 'rxjs';
 import { InputTypeItem, INPUT_TYPE_ITEM_HANDLER } from '../variables/public-api';
 import { Inject, Injectable } from '@angular/core';
-import { ProcessEditorElementVariable } from './process-editor-element-variables-provider.service';
+import { ElementVariable, ProcessEditorElementVariable } from './process-editor-element-variables-provider.service';
 
 export interface MappingDialogData {
     inputMapping?: ServiceParameterMapping;
@@ -27,6 +27,7 @@ export interface MappingDialogData {
     outputMapping?: ServiceParameterMapping;
     outputParameters?: ConnectorParameter[];
     editorVariables: ProcessEditorElementVariable[];
+    expressionEditorVariables?: ElementVariable[];
     mappingType: VariableMappingType;
     selectedRow?: number;
     selectedProcessVariable?: string;

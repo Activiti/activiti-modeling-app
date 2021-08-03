@@ -169,7 +169,7 @@
                                     [attr.data-automation-id]="'mapping-dialog-expression-editor'"
                                     [expression]="expressionValue"
                                     (expressionChange)="valueMappingExpressionChange($event,selectedRow)"
-                                    [variables]="mappingType === 'output' ? outputParameters : processProperties"
+                                    [variables]="mappingType === 'output' ? outputParameters : (expressionEditorVariables || processProperties)"
                                     [language]="$any(dataSource[selectedRow]) | variableExpressionLanguage"
                                     [removeEnclosingBrackets]="false" [enableDialogEditor]="true"
                                     [enableInlineEditor]="true" [removeLineNumbers]="true" [lineWrapping]="true"
