@@ -1,65 +1,63 @@
-@mixin modelingsdk-header-breadcrumbs($theme) {
-    .ama-breadcrumb-container {
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-        cursor: default;
-        display: flex;
+.ama-breadcrumb-container {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    cursor: default;
+    display: flex;
+    overflow: hidden;
+
+    .ama-breadcrumb-item {
+        font-weight: normal;
+        padding-right: 2px;
         overflow: hidden;
+        display: flex;
+        line-height: 33px;
+        font-size: 14px;
+        letter-spacing: -0.2px;
+        text-align: left;
+        opacity: 0.6;
+        flex: 0 10 auto;
+        min-width: 35px;
+        text-overflow: ellipsis;
 
-        .ama-breadcrumb-item {
-            font-weight: normal;
-            padding-right: 2px;
-            overflow: hidden;
+        &:hover,
+        &.active {
             display: flex;
-            line-height: 33px;
-            font-size: 14px;
-            letter-spacing: -0.2px;
-            text-align: left;
-            opacity: 0.6;
-            flex: 0 10 auto;
-            min-width: 35px;
-            text-overflow: ellipsis;
-
-            &:hover,
-            &.active {
-                display: flex;
-                width: initial;
-                opacity: 1;
-            }
-
-            &.dirty {
-                font-weight: bolder;
-
-                &::after {
-                    content: '*';
-                    font-size: 16px;
-                }
-            }
-        }
-
-        .ama-breadcrumb-item-anchor {
-            box-sizing: border-box;
-            color: inherit;
-            text-decoration: none;
-            display: inline-block;
-            width: 100%;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            flex: 0 1 auto;
-        }
-
-        .ama-breadcrumb-item-chevron {
+            width: initial;
             opacity: 1;
-            margin-top: 9px;
-            font-size: 17px;
         }
 
-        .ama-breadcrumb-item-current {
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
+        &.dirty {
+            font-weight: bolder;
+
+            &::after {
+                content: '*';
+                font-size: 16px;
+            }
         }
+    }
+
+    .ama-breadcrumb-item-anchor {
+        box-sizing: border-box;
+        color: inherit;
+        text-decoration: none;
+        display: inline-block;
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        flex: 0 1 auto;
+    }
+
+    .ama-breadcrumb-item-chevron {
+        opacity: 1;
+        margin-top: 9px;
+        font-size: 17px;
+    }
+
+    .ama-breadcrumb-item-current {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
 }

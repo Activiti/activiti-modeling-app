@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, Inject, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import {
     BpmnProperty,
@@ -91,7 +91,9 @@ export const identityCandidateValidator: ValidatorFn = (candidateFormGroup: Form
 
 @Component({
     selector: 'ama-assignment-dialog',
-    templateUrl: './assignment-dialog.component.html'
+    templateUrl: './assignment-dialog.component.html',
+    styleUrls: ['./assignment-dialog.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class AssignmentDialogComponent implements OnInit, OnDestroy {
     static ASSIGNEE_CONTENT = JSON.stringify({ assignee: '${}' }, null, '\t');

@@ -1,9 +1,0 @@
-@import './components/code-editor/code-editor.component';
-@import './components/expression-code-editor/expression-code-editor.component';
-@import './components/expression-code-editor-dialog/expression-code-editor-dialog.component';
-
-@mixin modelingsdk-code-editor-module($theme) {
-    @include modelingsdk-code-editor($theme);
-    @include ama-expression-code-editor($theme);
-    @include ama-expression-code-editor-dialog($theme);
-}

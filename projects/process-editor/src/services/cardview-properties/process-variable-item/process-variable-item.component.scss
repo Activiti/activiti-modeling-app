@@ -1,10 +1,8 @@
-@mixin ama-process-variable-item ($theme) {
-    ama-processvariables button {
-        width: 100%;
-    }
+ama-processvariables button {
+    width: 100%;
+}
 
-    .variables-icon {
-        vertical-align: middle;
-        margin-right: 5px;
-    }
+.variables-icon {
+    vertical-align: middle;
+    margin-right: 5px;
 }

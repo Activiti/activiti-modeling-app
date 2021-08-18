@@ -1,112 +1,106 @@
-@mixin ama-project-tree-filter($theme) {
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    $foreground: map-get($theme, foreground);
-
-    .project-tree-filter {
-        .mat-expansion-panel {
-            &-body {
-                padding: 0 0 16px 24px;
-            }
-
-            &-header {
-                padding: 0 0 0 8px;
-                height: 48px !important;
-                position: relative;
-
-                &:hover {
-                    background: none;
-                }
-
-                .mat-content {
-                    align-items: center;
-                }
-            }
+.project-tree-filter {
+    .mat-expansion-panel {
+        &-body {
+            padding: 0 0 16px 24px;
         }
 
-        .mat-expansion-panel-body {
-            padding: 0;
+        &-header {
+            padding: 0 0 0 8px;
+            height: 48px !important;
+            position: relative;
 
-            .project-tree-filter__button.active {
-                background: mat-color($foreground, text, 0.3);
+            &:hover {
+                background: none;
             }
 
-            .project-tree-filter-global-item mat-icon {
-                color: mat-color($accent);
+            .mat-content {
+                align-items: center;
             }
         }
+    }
 
-        &__content {
-            display: flex;
-            align-items: stretch;
-            justify-content: center;
-            flex-direction: column;
+    .mat-expansion-panel-body {
+        padding: 0;
+
+        .project-tree-filter__button.active {
+            background: var(--theme-text-selection-color);
         }
 
-        &__icon {
-            margin-right: 8px;
+        .project-tree-filter-global-item mat-icon {
+            color: var(--theme-accent-color);
+        }
+    }
+
+    &__content {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    &__icon {
+        margin-right: 8px;
+        font-size: 16px;
+        width: 18px;
+        height: 22px;
+        line-height: 20px;
+        display: inline-block;
+
+        &.filter-icon {
+            color: var(--theme-primary-color);
+        }
+    }
+
+    &__item_icon {
+        margin-right: 8px;
+        margin-left: 1px;
+        font-size: 14px;
+        width: 17px;
+        height: 22px;
+        line-height: 24px;
+        display: inline-block;
+
+        &.filter-icon {
+            color: var(--theme-primary-color);
+        }
+    }
+
+    &__title {
+        display: flex;
+        align-items: center;
+        width: 240px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    &__button.mat-button {
+        flex: 1 0 auto;
+        padding: 0 8px;
+        margin-left: 19px;
+        text-align: left;
+        font-size: 12px;
+        white-space: nowrap;
+        height: 26px;
+        line-height: 26px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        mat-icon {
             font-size: 16px;
             width: 18px;
             height: 22px;
             line-height: 20px;
-            display: inline-block;
-
-            &.filter-icon {
-                color: mat-color($primary);
-            }
         }
+    }
 
-        &__item_icon {
-            margin-right: 8px;
-            margin-left: 1px;
-            font-size: 14px;
-            width: 17px;
-            height: 22px;
-            line-height: 24px;
-            display: inline-block;
+    &__spinner {
+        margin-right: 8px;
+        height: 24px;
+        width: 24px;
+    }
 
-            &.filter-icon {
-                color: mat-color($primary);
-            }
-        }
-
-        &__title {
-            display: flex;
-            align-items: center;
-            width: 240px;
-            font-size: 13px;
-            white-space: nowrap;
-        }
-
-        &__button.mat-button {
-            flex: 1 0 auto;
-            padding: 0 8px;
-            margin-left: 19px;
-            text-align: left;
-            font-size: 12px;
-            white-space: nowrap;
-            height: 26px;
-            line-height: 26px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-
-            mat-icon {
-                font-size: 16px;
-                width: 18px;
-                height: 22px;
-                line-height: 20px;
-            }
-        }
-
-        &__spinner {
-            margin-right: 8px;
-            height: 24px;
-            width: 24px;
-        }
-
-        &__no-content {
-            font-size: 12px;
-            padding-left: 44px;
-        }
+    &__no-content {
+        font-size: 12px;
+        padding-left: 44px;
     }
 }

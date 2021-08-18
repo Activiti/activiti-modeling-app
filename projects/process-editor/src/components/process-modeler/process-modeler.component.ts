@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, ElementRef, Input, OnDestroy, OnInit, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, Output, EventEmitter, Inject, ViewEncapsulation } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, switchMap, takeUntil } from 'rxjs/operators';
 import {
@@ -40,6 +40,8 @@ import { createSelectedElement } from '../../store/process-editor.state';
 @Component({
     selector: 'ama-process-modeler',
     templateUrl: './process-modeler.component.html',
+    styleUrls: ['./process-modeler.component.scss', './process-modeler-bpmnjs.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     host: { class: 'ama-process-modeler canvas-editor' }
 })
 export class ProcessModelerComponent implements OnInit, OnDestroy {

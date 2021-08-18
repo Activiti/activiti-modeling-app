@@ -1,94 +1,89 @@
-@mixin modelingsdk-properties-viewer($theme) {
-    $foreground: map-get($theme, foreground);
-    $background: map-get($theme, background);
+modelingsdk-value-type-input .mat-form-field-infix {
+    border-top: 0;
+}
 
-    modelingsdk-value-type-input .mat-form-field-infix {
-        border-top: 0;
+modelingsdk-properties-viewer {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.properties-viewer {
+    min-height: 90px;
+    width: 600px;
+
+    .mat-table {
+        border: 1px solid var(--theme-border-color);
+        height: 200px;
+        overflow: scroll;
     }
 
-    modelingsdk-properties-viewer {
-        padding: 10px;
-        display: flex;
-        flex-direction: row;
+    .mat-header-row {
+        top: 0;
+        position: sticky;
+        background-color: var(--theme-card-background-color);
     }
-    .properties-viewer {
-        min-height: 90px;
-        width: 600px;
 
-        .mat-table {
-            border: 1px solid mat-color($foreground, text, 0.07);
-            height: 200px;
-            overflow: scroll;
-        }
+    .mat-row {
+        cursor: pointer;
 
-        .mat-header-row {
-            top: 0;
-            position: sticky;
-            background-color: mat-color($background, card);
-        }
+        &.active {
+            background-color: var(--theme-border-color);
 
-        .mat-row {
-            cursor: pointer;
-
-            &.active {
-                background-color: mat-color($foreground, text, 0.07);
-
-                .mat-cell {
-                    color: mat-color($foreground, text);
-                }
-            }
-
-            &:last-of-type {
-                border-bottom: 0;
-            }
-
-            .ellipsis-cell {
-                display: block;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                line-height: 48px;
+            .mat-cell {
+                color: var(--theme-text-fg-color);
             }
         }
 
-        .add-btn {
-            float: right;
-            padding: 0 10px;
-            min-width: 30px;
-            margin-top: -50px;
+        &:last-of-type {
+            border-bottom: 0;
         }
 
-        .mat-column-delete {
-            text-align: right;
-        }
-    }
-
-    .properties-form {
-        text-align: left;
-        width: 300px;
-        margin-left: 40px;
-
-        .mat-form-field {
+        .ellipsis-cell {
             display: block;
-        }
-
-        .variable-name-info-icon {
-            vertical-align: middle;
-            font-size: medium;
-        }
-
-        modelingsdk-expression-code-editor {
-            display: block;
-            height: 145px;
-            padding-bottom: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height: 48px;
         }
     }
 
-    .no-properties {
-        color: mat-color($foreground, text, 0.54);
-        width: 300px;
-        font-size: 16px;
-        margin-left: 40px;
-        text-align: center;
+    .add-btn {
+        float: right;
+        padding: 0 10px;
+        min-width: 30px;
+        margin-top: -50px;
     }
+
+    .mat-column-delete {
+        text-align: right;
+    }
+}
+
+.properties-form {
+    text-align: left;
+    width: 300px;
+    margin-left: 40px;
+
+    .mat-form-field {
+        display: block;
+    }
+
+    .variable-name-info-icon {
+        vertical-align: middle;
+        font-size: medium;
+    }
+
+    modelingsdk-expression-code-editor {
+        display: block;
+        height: 145px;
+        padding-bottom: 20px;
+    }
+}
+
+.no-properties {
+    color: var(--theme-text-color);
+    width: 300px;
+    font-size: 16px;
+    margin-left: 40px;
+    text-align: center;
 }

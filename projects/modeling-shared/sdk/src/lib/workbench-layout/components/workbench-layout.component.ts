@@ -20,6 +20,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 @Component({
     selector: 'modelingsdk-workbench-layout',
     templateUrl: './workbench-layout.component.html',
+    styleUrls: ['./workbench-layout.component.scss'],
     encapsulation: ViewEncapsulation.None,
     host: { class: 'modelingsdk-workbench-layout' }
 })

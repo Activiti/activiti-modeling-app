@@ -1,41 +1,36 @@
-@mixin ama-timer-definition-item($theme) {
+.timer-definition-block {
 
-    .timer-definition-block {
-
-        .mat-form-field {
-            width: 100%;
-        }
-
-        .mat-input-element {
-            margin-top: 7px;
-        }
+    .mat-form-field {
+        width: 100%;
     }
 
-    .timer-duration-time {
-        display: flex;
-        justify-content: space-between;
-
-        .mat-form-field {
-            width: 31%;
-        }
-    }
-
-    .timer-duration-date {
-        display: flex;
-        justify-content: space-between;
-
-        .mat-form-field {
-            width: 48%;
-        }
-    }
-
-    .timer-date {
-        .mat-datetimepicker-toggle {
-            position: absolute;
-            left: -25px;
-            top: 7px;
-        }
+    .mat-input-element {
+        margin-top: 7px;
     }
 }
 
+.timer-duration-time {
+    display: flex;
+    justify-content: space-between;
 
+    .mat-form-field {
+        width: 31%;
+    }
+}
+
+.timer-duration-date {
+    display: flex;
+    justify-content: space-between;
+
+    .mat-form-field {
+        width: 48%;
+    }
+}
+
+.timer-date {
+    .mat-datetimepicker-toggle {
+        position: absolute;
+        left: -25px;
+        top: 7px;
+    }
+}

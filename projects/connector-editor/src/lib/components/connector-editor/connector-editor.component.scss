@@ -1,73 +1,71 @@
-@mixin ama-connector-editor($theme) {
-    .ama-connector-editor {
+.ama-connector-editor {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .mat-tab-body.mat-tab-body-active {
+        position: absolute;
+    }
+
+    &-spinner {
+        padding-top: 48px;
         height: 100%;
         display: flex;
-        flex-direction: column;
-        position: relative;
+        justify-content: center;
+    }
 
-        .mat-tab-body.mat-tab-body-active {
-            position: absolute;
-        }
+    .ama-connector-header {
+        flex: 0 0 auto;
+    }
 
-        &-spinner {
-            padding-top: 48px;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-        }
+    .connector-json {
+        position: absolute;
+        top: 60px;
+        height: calc(100% - 60px);
+    }
 
-        .ama-connector-header {
-            flex: 0 0 auto;
-        }
+    .ama-connector-tab-group {
+        flex: 1 1 auto;
 
-        .connector-json {
-            position: absolute;
-            top: 60px;
-            height: calc(100% - 60px);
-        }
-
-        .ama-connector-tab-group {
+        .mat-tab-body-wrapper {
             flex: 1 1 auto;
 
-            .mat-tab-body-wrapper {
+            .mat-tab-body-content {
                 flex: 1 1 auto;
+                display: flex;
+                overflow: hidden;
 
-                .mat-tab-body-content {
-                    flex: 1 1 auto;
+                .ama-connector-page {
                     display: flex;
-                    overflow: hidden;
+                    flex: 1 1 auto;
+                    overflow: auto;
 
-                    .ama-connector-page {
-                        display: flex;
-                        flex: 1 1 auto;
-                        overflow: auto;
-
-                        adf-dynamic-component {
-                            display: block;
-                            width: 100%;
-                        }
-
-                        &-raw-editor {
-                            overflow:hidden;
-                        }
-                    }
-
-                    ama-connector-advanced-editor {
+                    adf-dynamic-component {
+                        display: block;
                         width: 100%;
                     }
+
+                    &-raw-editor {
+                        overflow:hidden;
+                    }
+                }
+
+                ama-connector-advanced-editor {
+                    width: 100%;
                 }
             }
         }
+    }
 
-        modelingsdk-code-editor {
-            display: flex;
-            width: 100%;
-            flex: 1 1 auto;
+    modelingsdk-code-editor {
+        display: flex;
+        width: 100%;
+        flex: 1 1 auto;
 
-            .code-editor {
-                flex: 1 0 auto;
-                height: auto;
-            }
+        .code-editor {
+            flex: 1 0 auto;
+            height: auto;
         }
     }
 }

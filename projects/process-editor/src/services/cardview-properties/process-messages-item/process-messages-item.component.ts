@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { OpenProcessMessagesDialogAction } from '../../../store/process-messages.actions';
 import { Store } from '@ngrx/store';
 import { CardItemTypeService } from '@alfresco/adf-core';
@@ -24,6 +24,8 @@ import { ProcessEntitiesState } from '../../../store/process-entities.state';
 @Component({
     selector: 'ama-process-messages',
     templateUrl: './process-messages-item.component.html',
+    styleUrls: ['./process-messages-item.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [CardItemTypeService]
 })
 

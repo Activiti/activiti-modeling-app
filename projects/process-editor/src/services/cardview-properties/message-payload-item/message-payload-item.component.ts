@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { MomentDateAdapter, LocalizedDatePipe } from '@alfresco/adf-core';
 import { Moment } from 'moment';
 import { AmaState, selectSelectedProcess, MessagePayload, EntityProperty, ProcessExtensionsModel, ServiceParameterMappings } from '@alfresco-dbp/modeling-shared/sdk';
@@ -44,6 +44,8 @@ export const MOMENT_DATE_FORMATS = {
 @Component({
     selector: 'ama-process-message-payload',
     templateUrl: './message-payload-item.component.html',
+    styleUrls: ['./message-payload-item.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [
         { provide: DateAdapter, useClass: MomentDateAdapter },
         { provide: MAT_DATE_FORMATS, useValue: MOMENT_DATE_FORMATS },

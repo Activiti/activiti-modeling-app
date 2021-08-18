@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, Inject, Optional } from '@angular/core';
+import { Component, Input, OnInit, Inject, Optional, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -36,7 +36,9 @@ const DEFAULT_SORT_DIRECTION = 'asc';
 
 @Component({
     selector: 'ama-projects-list',
-    templateUrl: './projects-list.component.html'
+    templateUrl: './projects-list.component.html',
+    styleUrls: ['./projects-list.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class ProjectsListComponent implements OnInit {
     dataSource$: Observable<MatTableDataSource<Partial<Project>>>;

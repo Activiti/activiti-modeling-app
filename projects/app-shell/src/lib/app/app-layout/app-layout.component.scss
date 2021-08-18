@@ -1,54 +1,59 @@
-@mixin ama-layout-theme($theme) {
-    $primary: map-get($theme, primary);
-    $foreground: map-get($theme, foreground);
-    $background: map-get($theme, background);
-    $minimumAppWidth: 320px;
+.adf-app-layout {
+    display: flex;
+    flex: 1;
+    min-width: 320px;
+    height: 100%;
 
-    .adf-app-layout {
-        display: flex;
-        flex: 1;
-        min-width: $minimumAppWidth;
-        height: 100%;
+    .mat-sidenav-content {
+        > div {
+            height: 100%;
+            position: relative;
 
-        .mat-sidenav-content {
             > div {
-                height: 100%;
-                position: relative;
+                display: flex;
+                flex-direction: column;
 
-                > div {
-                    display: flex;
-                    flex-direction: column;
+                ng-component {
+                    flex: 1;
+                }
 
-                    ng-component {
-                        flex: 1;
-                    }
+                ama-projects-list {
+                    min-height: 0;
+                    flex: 1;
+                }
 
-                    ama-projects-list {
-                        min-height: 0;
-                        flex: 1;
-                    }
-
-                    ama-about {
-                        overflow: auto;
-                        min-height: 0;
-                        flex: 1;
-                    }
+                ama-about {
+                    overflow: auto;
+                    min-height: 0;
+                    flex: 1;
                 }
             }
-
-            .adf-toolbar .mat-toolbar {
-                border-left: none;
-                border-right: none;
-                height: 48px;
-            }
         }
 
-        .mat-sidenav {
-            background-color: mat-color($background, app-bar);
-        }
-
-        adf-layout-header .mat-toolbar-single-row {
-            background-color: mat-color($primary, 800);
+        .adf-toolbar .mat-toolbar {
+            border-left: none;
+            border-right: none;
+            height: 48px;
         }
     }
+
+    .mat-sidenav {
+        background-color: var(--theme-app-bar-bg-color);
+    }
+
+    adf-layout-header .mat-toolbar-single-row {
+        background-color: var(--theme-primary-color);
+    }
+}
+
+.error-snackbar {
+    background-color: var(--theme-warn-color);
+}
+
+.warning-snackbar {
+    background-color: var(--theme-accent-color);
+}
+
+.info-snackbar {
+    background-color: var(--theme-primary-color);
 }

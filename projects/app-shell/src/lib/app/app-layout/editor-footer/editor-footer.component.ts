@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { EDITOR_FOOTER_SERVICE_TOKEN, EditorFooterService } from './editor-footer.service.interface';
 import { Store } from '@ngrx/store';
 import { AmaState, LogMessage,  LOG_FILTER_ITEM_TOKEN, LogMessageInitiator  } from '@alfresco-dbp/modeling-shared/sdk';
@@ -25,7 +25,9 @@ import { take } from 'rxjs/operators';
 
 @Component({
     selector: 'ama-editor-footer',
-    templateUrl: './editor-footer.component.html'
+    styleUrls: ['./editor-footer.component.scss'],
+    templateUrl: './editor-footer.component.html',
+    encapsulation: ViewEncapsulation.None
 })
 export class EditorFooterComponent {
     filters: LogMessageInitiator[];

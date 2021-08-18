@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConnectorParameter, MappingType, ServiceParameterMapping } from '../../api/types';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
@@ -35,6 +35,8 @@ export interface ParametersSelectOptions {
 @Component({
     selector: 'modelingsdk-input-mapping-table',
     templateUrl: './input-mapping-table.component.html',
+    styleUrls: ['./input-mapping-table.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     host: { class: 'modelingsdk-input-mapping-table' }
 })
 export class InputMappingTableComponent implements OnChanges {

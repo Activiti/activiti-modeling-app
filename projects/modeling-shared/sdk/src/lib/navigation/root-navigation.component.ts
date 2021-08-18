@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { AppConfigService } from '@alfresco/adf-core';
@@ -29,7 +29,9 @@ export interface CreateAction {
 }
 
 @Component({
-    templateUrl: './root-navigation.component.html'
+    templateUrl: './root-navigation.component.html',
+    styleUrls: ['./root-navigation.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class RootNavigationComponent implements OnInit, AfterContentInit {
     expanded$: Observable<boolean>;

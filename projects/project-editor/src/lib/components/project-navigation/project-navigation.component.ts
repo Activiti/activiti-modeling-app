@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Inject, AfterContentInit, Optional } from '@angular/core';
+import { Component, Inject, AfterContentInit, Optional, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import {
@@ -28,7 +28,9 @@ import { AppConfigService } from '@alfresco/adf-core';
 const orderBy = require('lodash/orderBy');
 
 @Component({
-    templateUrl: './project-navigation.component.html'
+    templateUrl: './project-navigation.component.html',
+    styleUrls: ['./project-navigation.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class ProjectNavigationComponent implements AfterContentInit {
     expanded$: Observable<boolean>;

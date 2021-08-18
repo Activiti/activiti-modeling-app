@@ -1,36 +1,33 @@
-@mixin workbench-layout-component($theme) {
+modelingsdk-workbench-layout {
+    height: 100%;
+    width: 100%;
 
-    modelingsdk-workbench-layout {
-        height: 100%;
-        width: 100%;
-
-        mat-sidenav {
-            width: 400px;
-            overflow: visible !important;
-        }
+    mat-sidenav {
+        width: 400px;
+        overflow: visible !important;
     }
+}
 
-    modelingsdk-workbench-layout-content {
-        padding-right: 15px;
-        height: 100%;
+modelingsdk-workbench-layout-content {
+    padding-right: 15px;
+    height: 100%;
+    position: relative;
+    margin-right: 10px;
+}
+
+.modelingsdk-workbench-layout {
+    &-content {
+        flex: 1 1 auto;
         position: relative;
-        margin-right: 10px;
     }
 
-    .modelingsdk-workbench-layout {
-        &-content {
-            flex: 1 1 auto;
-            position: relative;
-        }
-
-        &_button {
-            transform: rotate(90deg) translateX(-50%) translateY(-100%);
-            top: 50%;
-            touch-action: none;
-            position: absolute;
-            right: 390px;
-            visibility: visible !important;
-        }
+    &_button {
+        transform: rotate(90deg) translateX(-50%) translateY(-100%);
+        top: 50%;
+        touch-action: none;
+        position: absolute;
+        right: 390px;
+        visibility: visible !important;
     }
 }
 

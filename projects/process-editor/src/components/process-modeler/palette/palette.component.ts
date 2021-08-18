@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Inject, Optional, HostListener, OnInit } from '@angular/core';
+import { Component, Inject, Optional, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
 import {
@@ -32,7 +32,9 @@ import { AppConfigService } from '@alfresco/adf-core';
 
 @Component({
     templateUrl: './palette.component.html',
-    selector: 'ama-process-palette'
+    selector: 'ama-process-palette',
+    styleUrls: ['./palette.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class PaletteComponent implements OnInit {
 

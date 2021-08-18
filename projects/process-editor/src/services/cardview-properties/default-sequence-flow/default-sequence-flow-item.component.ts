@@ -15,13 +15,15 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
 import { DefaultSequenceFlowItemModel } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Component({
     selector: 'ama-process-default-sequence-flow',
     templateUrl: './default-sequence-flow-item.component.html',
+    styleUrls: ['./default-sequence-flow-item.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [CardItemTypeService]
 })
 export class CardViewDefaultSequenceFlowItemComponent implements OnInit {

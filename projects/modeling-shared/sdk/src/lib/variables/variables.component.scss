@@ -1,42 +1,40 @@
-@mixin ama-variables($theme) {
-    .properties-content {
-        height: 380px;
+.properties-content {
+    height: 380px;
 
-        &.variables-dialog-content {
-            overflow: hidden;
-            padding-bottom: 12px;
-            .mat-tab-body.mat-tab-body-active {
-                min-height: 280px;
-            }
-        }
-
-        .code-editor {
-            max-height: 300px;
-            overflow: hidden;
-        }
-
-        .json-editor {
-            height: 260px;
-            overflow: hidden;
+    &.variables-dialog-content {
+        overflow: hidden;
+        padding-bottom: 12px;
+        .mat-tab-body.mat-tab-body-active {
+            min-height: 280px;
         }
     }
 
-    .properties-viewer {
-        .mat-table {
-            height: 300px !important;
-        }
+    .code-editor {
+        max-height: 300px;
+        overflow: hidden;
     }
 
-    .variables-dialog-title {
-        margin: 0 0 10px !important;
-        .variables-icon {
-            vertical-align: middle;
-            margin-right: 5px;
-        }
+    .json-editor {
+        height: 260px;
+        overflow: hidden;
     }
+}
 
-    .variables-filter {
-        width: 50%;
-        margin-left: 10px;
+.properties-viewer {
+    .mat-table {
+        height: 300px !important;
     }
+}
+
+.variables-dialog-title {
+    margin: 0 0 10px !important;
+    .variables-icon {
+        vertical-align: middle;
+        margin-right: 5px;
+    }
+}
+
+.variables-filter {
+    width: 50%;
+    margin-left: 10px;
 }

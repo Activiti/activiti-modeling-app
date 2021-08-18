@@ -1,5 +1,0 @@
-@import './components/workbench-layout.component';
-
-@mixin modelingsdk-workbench-layout($theme) {
-    @include workbench-layout-component($theme);
-}

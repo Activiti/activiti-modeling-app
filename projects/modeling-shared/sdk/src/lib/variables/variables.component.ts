@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 import { Subject, Subscription } from 'rxjs';
 import { VariablesService } from './variables.service';
@@ -36,7 +36,9 @@ export interface VariableDialogData extends MatDialogConfig {
 }
 
 @Component({
-    templateUrl: './variables.component.html'
+    templateUrl: './variables.component.html',
+    styleUrls: ['./variables.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class VariablesComponent implements OnInit, OnDestroy {

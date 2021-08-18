@@ -1,7 +1,0 @@
-@import './components/projects-list/projects-list.component';
-
-@mixin ama-dashboard-module($theme) {
-    @include ama-projects-list($theme);
-}
-
-

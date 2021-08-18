@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { CardItemTypeService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { takeUntil } from 'rxjs/operators';
@@ -34,6 +34,8 @@ import {
 @Component({
     selector: 'ama-process-decision-task',
     templateUrl: './decision-task-item.component.html',
+    styleUrls: ['./decision-task-item.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [CardItemTypeService]
 })
 export class CardViewDecisionTaskItemComponent implements OnInit, OnDestroy {

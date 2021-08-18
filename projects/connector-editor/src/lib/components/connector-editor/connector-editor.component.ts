@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { ComponentRegisterService } from '@alfresco/adf-extensions';
 import { Store } from '@ngrx/store';
 import { selectSelectedConnectorContent, selectConnectorLoadingState, selectSelectedConnectorId, selectConnectorEditorSaving } from '../../store/connector-editor.selectors';
@@ -44,7 +44,9 @@ import {
 const memoize = require('lodash/memoize');
 
 @Component({
-    templateUrl: './connector-editor.component.html'
+    templateUrl: './connector-editor.component.html',
+    styleUrls: ['./connector-editor.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class ConnectorEditorComponent implements CanComponentDeactivate {

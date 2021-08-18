@@ -1,161 +1,156 @@
-@mixin ama-palette($theme) {
-    $foreground: map-get($theme, foreground);
-    $primary: map-get($theme, primary);
+ama-process-palette .mat-card {
+    width: 90px;
+    border: 1px solid var(--theme-border-color);
+    border-radius: 0;
+    box-sizing: content-box;
+    padding: 0;
 
-    ama-process-palette .mat-card {
-        width: 90px;
-        border: 1px solid mat-color($foreground, text, 0.07);
-        border-radius: 0;
-        box-sizing: content-box;
-        padding: 0;
+    .palette-header {
+        height: 12px;
+        background: var(--theme-ama-palette-header-bg-color);
+        cursor: move;
+        position: relative;
 
-        .palette-header {
-            height: 12px;
-            background: mat-color($foreground, text, 0.08);
-            cursor: move;
-            position: relative;
-
-            mat-icon {
-                font-size: 10px;
-                width: 10px;
-                height: 10px;
-                margin: 0;
-                position: absolute;
-                right: 0;
-                top: 1px;
-            }
-        }
-
-        .palette-body {
-            background: mat-color($foreground, text, 0.03);
-            padding: 6px;
-            display: none;
-
-            &.opened {
-                display: block;
-            }
-        }
-
-        .entry-parent {
-            display: inline-block;
-            padding: 7px;
-        }
-
-        .entry {
-            font-size: 25px;
-            border: 0;
-            background: transparent;
-            padding: 0;
-            cursor: pointer;
-
-            &:not(:first-child) {
-                margin-top: 5px;
-                margin-bottom: 5px;
-            }
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-
-            button {
-                cursor: pointer;
-                position: absolute;
-                height: 25px;
-                width: 25px;
-                margin-left: -30px;
-                background: transparent;
-                border: none;
-                outline: none;
-            }
-
-            &:hover,
-            &.selected {
-                color: mat-color($primary);
-            }
-        }
-
-        .separator {
-            border-color: mat-color($foreground, text, 0.05);
+        mat-icon {
+            font-size: 10px;
+            width: 10px;
+            height: 10px;
+            margin: 0;
+            position: absolute;
+            right: 0;
+            top: 1px;
         }
     }
 
-    .mat-card.palette-drawer {
-        min-width: 25px;
-        box-sizing: content-box;
-        text-align: center;
+    .palette-body {
+        background: var(--theme-ama-palette-bg-color);
+        padding: 6px;
+        display: none;
+
+        &.opened {
+            display: block;
+        }
+    }
+
+    .entry-parent {
+        display: inline-block;
+        padding: 7px;
+    }
+
+    .entry {
         font-size: 25px;
+        border: 0;
+        background: transparent;
         padding: 0;
-        margin-left: 38px;
-        overflow: auto;
+        cursor: pointer;
 
-        .palette-body {
-            padding: 6px;
-            background: mat-color($foreground, text, 0.03);
+        &:not(:first-child) {
+            margin-top: 5px;
+            margin-bottom: 5px;
         }
 
-        .entry {
-            &.svg {
-                width: 20px;
-                height: 20px;
+        &:last-child {
+            margin-bottom: 0;
+        }
 
-                button {
-                    margin-left: -13px;
-                    height: 3px;
-                }
-            }
+        button {
+            cursor: pointer;
+            position: absolute;
+            height: 25px;
+            width: 25px;
+            margin-left: -30px;
+            background: transparent;
+            border: none;
+            outline: none;
+        }
+
+        &:hover,
+        &.selected {
+            color: var(--theme-primary-color);
+        }
+    }
+
+    .separator {
+        border-color: var(--theme-ama-palette-separator-color);
+    }
+}
+
+.mat-card.palette-drawer {
+    min-width: 25px;
+    box-sizing: content-box;
+    text-align: center;
+    font-size: 25px;
+    padding: 0;
+    margin-left: 38px;
+    overflow: auto;
+
+    .palette-body {
+        padding: 6px;
+        background: var(--theme-ama-palette-bg-color);
+    }
+
+    .entry {
+        &.svg {
+            width: 20px;
+            height: 20px;
+
             button {
-                cursor: pointer;
-                position: absolute;
-                height: 25px;
-                width: 25px;
-                margin-left: -30px;
-                background: transparent;
-                border: none;
-                outline: none;
-            }
-            svg {
-                cursor: pointer;
-                position: absolute;
-                height: 20px;
-                width: 20px;
-                margin-left: -10px;
-                background: transparent;
-                border: none;
-                outline: none;
-            }
-
-            &:hover {
-                color: mat-color($primary);
-                cursor: pointer;
+                margin-left: -13px;
+                height: 3px;
             }
         }
-
-        .entry-parent {
-            &:not(:last-child) {
-                margin-bottom: 5px;
-            }
+        button {
+            cursor: pointer;
+            position: absolute;
+            height: 25px;
+            width: 25px;
+            margin-left: -30px;
+            background: transparent;
+            border: none;
+            outline: none;
+        }
+        svg {
+            cursor: pointer;
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            margin-left: -10px;
+            background: transparent;
+            border: none;
+            outline: none;
         }
 
-        .drawer-item-tag {
-            font-size: 12px;
-            display: inline-block;
-            position: relative;
-            top: 4px;
-            margin-left: 6px;
-            width: 120px;
-            text-align: left;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
+        &:hover {
+            color: color(--theme-primary-color);
             cursor: pointer;
         }
+    }
 
-        .bpmn-alfresco-icon-content-task {
-            float: left;
+    .entry-parent {
+        &:not(:last-child) {
+            margin-bottom: 5px;
         }
+    }
 
-        .bpmn-alfresco-icon-email-task {
-            float: left;
-        }
+    .drawer-item-tag {
+        font-size: 12px;
+        display: inline-block;
+        position: relative;
+        top: 4px;
+        margin-left: 6px;
+        width: 120px;
+        text-align: left;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .bpmn-alfresco-icon-content-task {
+        float: left;
+    }
+
+    .bpmn-alfresco-icon-email-task {
+        float: left;
     }
 }

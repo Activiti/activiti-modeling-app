@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { MessagesService } from '../../../services/messages.service';
 import { Subject } from 'rxjs';
 import { MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -28,7 +28,9 @@ export interface MessageDialogData extends MatDialogConfig {
 
 @Component({
     templateUrl: './messages-dialog.component.html',
-    selector: 'ama-messages-dialog'
+    selector: 'ama-messages-dialog',
+    styleUrls: ['./messages-dialog.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class MessagesDialogComponent implements OnInit {

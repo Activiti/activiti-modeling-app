@@ -15,12 +15,14 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ElementVariable, ProcessEditorElementVariable } from '../../../services/process-editor-element-variables-provider.service';
 
 @Component({
     selector: 'modelingsdk-variable-selector',
-    templateUrl: './variable-selector.component.html'
+    templateUrl: './variable-selector.component.html',
+    styleUrls: ['./variable-selector.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class VariableSelectorComponent implements OnInit, OnChanges {
 

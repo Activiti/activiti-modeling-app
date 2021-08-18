@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AmaState } from '../../store/app.state';
@@ -24,7 +24,9 @@ import { BreadcrumbItem } from './breadcrumb-helper.service';
 
 @Component({
     selector: 'modelingsdk-header-breadcrumbs',
-    templateUrl: './header-breadcrumbs.component.html'
+    templateUrl: './header-breadcrumbs.component.html',
+    styleUrls: ['./header-breadcrumbs.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 
 export class HeaderBreadcrumbsComponent implements OnInit {

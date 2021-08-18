@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, Inject, Optional } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, Inject, Optional, ViewEncapsulation } from '@angular/core';
 import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction, ModelScope, Model, CONNECTOR } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { AppConfigService } from '@alfresco/adf-core';
@@ -23,6 +23,8 @@ import { AppConfigService } from '@alfresco/adf-core';
 @Component({
     selector: 'ama-project-tree-filter',
     templateUrl: './project-tree-filter.component.html',
+    styleUrls: ['./project-tree-filter.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectTreeFilterComponent implements OnInit {

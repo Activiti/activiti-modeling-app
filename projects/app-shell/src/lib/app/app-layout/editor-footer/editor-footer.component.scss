@@ -1,92 +1,84 @@
-@mixin ama-editor-footer($theme) {
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    $warn: map-get($theme, warn);
-    $foreground: map-get($theme, foreground);
-    $background: map-get($theme, background);
+.editor-footer {
 
-    .editor-footer {
+    .mat-toolbar {
+        border: 1px solid var(--theme-border-color);
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        font-size: 12px;
 
-        .mat-toolbar {
-            border: 1px solid mat-color($foreground, text, 0.07);
-            border-left: none;
-            border-right: none;
-            border-bottom: none;
-            font-size: 12px;
+        &.mat-toolbar-single-row {
+            height: 35px;
+            line-height: 32px;
+            padding: 6px 12px;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-            &.mat-toolbar-single-row {
-                height: 35px;
-                line-height: 32px;
-                padding: 6px 12px;
+        .log-history-filters {
+            width: 150px;
+            margin-left: 10px;
+        }
+
+        .log-history-controls {
+            margin-left: auto;
+        }
+
+        &.editor-footer-toolbar {
+
+            .editor-footer-toolbar-left {
+                display: flex;
                 flex-direction: row;
-                justify-content: space-between;
+                justify-content: flex-start;
                 align-items: center;
+                flex-wrap: nowrap;
             }
 
-            .log-history-filters {
-                width: 150px;
-                margin-left: 10px;
+            .editor-footer-toolbar-right {
+
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                flex-wrap: nowrap;
+
+                .footer-user-message {
+                    margin-right: 12px;
+                }
+
+                .message-indicator {
+                    padding: 0 2px;
+                    min-width: 20px;
+                    height: 20px;
+                    border-radius: 10px;
+                    background-color: var(--theme-warn-color);
+                    color: var(--theme-warn-color-default-contrast);
+                    line-height: 20px;
+                    text-align: center;
+                    cursor: pointer;
+
+                    &.inactive {
+                        background-color: var(--theme-unselected-chip-bg-color);
+                        color: var(--theme-disabled-text-color);
+                    }
+                }
+            }
+        }
+
+        &.log-history-toolbar {
+            padding: 0 12px;
+
+            .log-history-toolbar-title {
+                font-size: 14px;
             }
 
             .log-history-controls {
-                margin-left: auto;
-            }
-
-            &.editor-footer-toolbar {
-
-                .editor-footer-toolbar-left {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: flex-start;
-                    align-items: center;
-                    flex-wrap: nowrap;
-                }
-
-                .editor-footer-toolbar-right {
-
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: flex-end;
-                    align-items: center;
-                    flex-wrap: nowrap;
-
-                    .footer-user-message {
-                        margin-right: 12px;
-                    }
-
-                    .message-indicator {
-                        padding: 0 2px;
-                        min-width: 20px;
-                        height: 20px;
-                        border-radius: 10px;
-                        background-color: mat-color($warn);
-                        color: mat-color($warn, default-contrast);
-                        line-height: 20px;
-                        text-align: center;
-                        cursor: pointer;
-
-                        &.inactive {
-                            background-color: mat-color($background, unselected-chip);
-                            color: mat-color($foreground, disabled-text);
-                        }
-                    }
-                }
-            }
-
-            &.log-history-toolbar {
-                padding: 0 12px;
-
-                .log-history-toolbar-title {
+                button {
+                    width: 32px;
+                    height: 32px;
+                    line-height: 32px;
                     font-size: 14px;
-                }
-
-                .log-history-controls {
-                    button {
-                        width: 32px;
-                        height: 32px;
-                        line-height: 32px;
-                        font-size: 14px;
-                    }
                 }
             }
         }

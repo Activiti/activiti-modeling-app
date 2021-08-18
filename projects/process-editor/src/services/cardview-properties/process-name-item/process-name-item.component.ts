@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, Inject } from '@angular/core';
+import { Component, Input, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { ProcessModelerServiceToken, ProcessModelerService, BpmnProperty, MODELER_NAME_REGEX, BpmnElement } from '@alfresco-dbp/modeling-shared/sdk';
 import { CardViewProcessNameItemModel } from './process-name-item.model';
 import { FormControl, ValidatorFn, AbstractControl, FormGroup } from '@angular/forms';
@@ -23,7 +23,9 @@ import { Subject } from 'rxjs';
 
 @Component({
     selector: 'ama-process-name',
-    templateUrl: './process-name-item.component.html'
+    templateUrl: './process-name-item.component.html',
+    styleUrls: ['./process-name-item.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class CardViewProcessNameItemComponent implements OnInit {
 

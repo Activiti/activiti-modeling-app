@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, Inject } from '@angular/core';
+import { Component, Input, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
 import { ProcessModelerServiceToken, ProcessModelerService, AmaState, BpmnElement } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
@@ -25,6 +25,8 @@ import { MessageItemModel } from './message-item.model';
 @Component({
     selector: 'ama-message-item',
     templateUrl: './message-item.component.html',
+    styleUrls: ['./message-item.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [CardItemTypeService]
 })
 export class CardViewMessageItemComponent implements OnInit {

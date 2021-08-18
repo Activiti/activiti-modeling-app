@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { EntityProperty } from '../../../api/types';
@@ -34,6 +34,8 @@ export interface ExpressionCodeEditorDialogData {
 @Component({
     selector: 'modelingsdk-expression-code-editor-dialog',
     templateUrl: './expression-code-editor-dialog.component.html',
+    styleUrls: ['./expression-code-editor-dialog.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class ExpressionCodeEditorDialogComponent {
 

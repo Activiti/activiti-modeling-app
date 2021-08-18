@@ -26,6 +26,7 @@ import { LogoutAction } from '../../store/actions/app.actions';
 
 @Component({
     templateUrl: './app-layout.component.html',
+    styleUrls: ['./app-layout.component.scss'],
     host: { class: 'adf-app-layout' },
     encapsulation: ViewEncapsulation.None
 })

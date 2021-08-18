@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { OpenProcessErrorsDialogAction } from '../../../store/process-errors.actions';
 import { Store } from '@ngrx/store';
 import { CardItemTypeService } from '@alfresco/adf-core';
@@ -24,6 +24,8 @@ import { ProcessEntitiesState } from '../../../store/process-entities.state';
 @Component({
     selector: 'ama-process-errors',
     templateUrl: './process-errors-item.component.html',
+    styleUrls: ['./process-errors-item.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [CardItemTypeService]
 })
 

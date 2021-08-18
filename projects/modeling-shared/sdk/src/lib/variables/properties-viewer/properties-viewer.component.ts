@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -28,7 +28,9 @@ import { MatSort } from '@angular/material/sort';
 
 @Component({
     templateUrl: './properties-viewer.component.html',
-    selector: 'modelingsdk-properties-viewer'
+    selector: 'modelingsdk-properties-viewer',
+    styleUrls: ['./properties-viewer.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {

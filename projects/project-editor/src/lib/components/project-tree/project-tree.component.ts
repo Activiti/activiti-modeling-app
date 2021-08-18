@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectSelectedProjectId, MODEL_TYPE, ModelFilter, OpenFilterAction, Filter, AmaState, selectMenuOpened } from '@alfresco-dbp/modeling-shared/sdk';
@@ -26,7 +26,9 @@ import { delay, map } from 'rxjs/operators';
 
 @Component({
     selector: 'ama-project-tree',
-    templateUrl: './project-tree.component.html'
+    templateUrl: './project-tree.component.html',
+    styleUrls: ['./project-tree.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class ProjectTreeComponent implements OnInit {
     expanded$: Observable<boolean>;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit, Inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit, Inject, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { CardViewItem, CardViewUpdateService, UpdateNotification, CardItemTypeService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { selectSelectedElement } from '../../store/process-editor.selectors';
@@ -34,6 +34,8 @@ import { SelectedProcessElement } from '../../store/process-editor.state';
 @Component({
     selector: 'ama-process-properties',
     templateUrl: './process-properties.component.html',
+    styleUrls: ['./process-properties.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [CardViewUpdateService, CardItemTypeService],
     changeDetection: ChangeDetectionStrategy.OnPush
 })

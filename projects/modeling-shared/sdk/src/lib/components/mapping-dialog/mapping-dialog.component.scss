@@ -1,238 +1,232 @@
-@mixin modelingsdk-mapping-dialog($theme) {
-    $foreground: map-get($theme, foreground);
-    $background: map-get($theme, background);
-    $error: map-get($theme, warn);
-
-    modelingsdk-mapping-dialog {
-        .mat-card {
-            box-shadow: none !important;
-        }
+modelingsdk-mapping-dialog {
+    .mat-card {
+        box-shadow: none !important;
     }
+}
 
-    .mat-dialog-title {
-        margin: 0 0 20px;
-        display: block;
-    }
+.mat-dialog-title {
+    margin: 0 0 20px;
+    display: block;
+}
 
-    .mapping-icon {
-        vertical-align: middle;
-        margin-right: 5px;
-    }
+.mapping-icon {
+    vertical-align: middle;
+    margin-right: 5px;
+}
 
-    div.mapping-dialog-content-container {
+div.mapping-dialog-content-container {
+    display: flex;
+    flex-direction: column;
+
+    .mapping-dialog-selector-container {
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
+        flex-direction: row;
 
-        .mapping-dialog-selector-container {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: row;
-
-            .mapping-dialog-selector-title {
-                line-height: 33px;
-                font-size: 18px;
-            }
-
-            .mapping-dialog-selector {
-                width: 30%;
-            }
+        .mapping-dialog-selector-title {
+            line-height: 33px;
+            font-size: 18px;
         }
 
-        .mapping-body {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: row;
+        .mapping-dialog-selector {
+            width: 30%;
+        }
+    }
 
-            .mapping-table-viewer {
-                min-height: 90px;
-                margin-top: 10px;
-                width: 50%;
-                padding-right: 12px;
-                height: 295px;
+    .mapping-body {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
 
-                .mat-table {
-                    border: 1px solid mat-color($foreground, text, 0.07);
-                    height: 100%;
-                    overflow: scroll;
+        .mapping-table-viewer {
+            min-height: 90px;
+            margin-top: 10px;
+            width: 50%;
+            padding-right: 12px;
+            height: 295px;
 
-                    .mat-column-name {
-                        width: 50%;
-                    }
+            .mat-table {
+                border: 1px solid var(--theme-border-color);
+                height: 100%;
+                overflow: scroll;
 
-                    .mat-column-value {
-                        width: 50%;
-                    }
-
-                    .mat-column-icon {
-                        max-width: 24px;
-                        padding: 0 12px;
-                    }
-
-                    .mat-column-delete {
-                        max-width: 24px;
-                        padding: 0 12px;
-                    }
-
-                    .input-disabled {
-                        cursor: default;
-                    }
-
-                    span {
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                    }
+                .mat-column-name {
+                    width: 50%;
                 }
 
-                .mat-header-row {
-                    top: 0;
-                    position: sticky;
-                    background-color: mat-color($background, card);
+                .mat-column-value {
+                    width: 50%;
                 }
 
-                .mat-row {
-                    cursor: pointer;
-
-                    &.active {
-                        background-color: mat-color($foreground, text, 0.07);
-
-                        .mat-cell {
-                            color: mat-color($foreground, text);
-                        }
-                    }
-
-                    &:last-of-type {
-                        border-bottom: 0;
-                    }
-
-                    .ellipsis-cell {
-                        display: flex;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                        line-height: 48px;
-                    }
-
-                    .required-indicator {
-                        color: red;
-                    }
-
-                    .non-variable-mapping {
-                        font-style: italic;
-                    }
-                }
-
-                .add-btn {
-                    float: right;
-                    padding: 0 10px;
-                    min-width: 30px;
-                    margin-top: 10px;
+                .mat-column-icon {
+                    max-width: 24px;
+                    padding: 0 12px;
                 }
 
                 .mat-column-delete {
-                    text-align: right;
+                    max-width: 24px;
+                    padding: 0 12px;
+                }
+
+                .input-disabled {
+                    cursor: default;
+                }
+
+                span {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
 
-            .mapping-table-viewer.input-mapping-table {
-                height: 340px;
+            .mat-header-row {
+                top: 0;
+                position: sticky;
+                background-color: var(--theme-card-background-color);
             }
 
-            .mapping-value-form {
-                width: 50%;
-                padding-left: 12px;
-                display: flex;
-                flex-direction: column;
+            .mat-row {
+                cursor: pointer;
 
-                .variable-selector {
+                &.active {
+                    background-color: var(--theme-border-color);
+
+                    .mat-cell {
+                        color: var(--theme-text-fg-color);
+                    }
+                }
+
+                &:last-of-type {
+                    border-bottom: 0;
+                }
+
+                .ellipsis-cell {
                     display: flex;
-                    flex-direction: row;
-                    padding: 12px 0;
-
-                    mat-label {
-                        width: 40%;
-                    }
-
-                    mat-select {
-                        width: 60%;
-                    }
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    line-height: 48px;
                 }
 
-                div.mapping-value {
+                .required-indicator {
+                    color: red;
+                }
+
+                .non-variable-mapping {
+                    font-style: italic;
+                }
+            }
+
+            .add-btn {
+                float: right;
+                padding: 0 10px;
+                min-width: 30px;
+                margin-top: 10px;
+            }
+
+            .mat-column-delete {
+                text-align: right;
+            }
+        }
+
+        .mapping-table-viewer.input-mapping-table {
+            height: 340px;
+        }
+
+        .mapping-value-form {
+            width: 50%;
+            padding-left: 12px;
+            display: flex;
+            flex-direction: column;
+
+            .variable-selector {
+                display: flex;
+                flex-direction: row;
+                padding: 12px 0;
+
+                mat-label {
+                    width: 40%;
+                }
+
+                mat-select {
+                    width: 60%;
+                }
+            }
+
+            div.mapping-value {
+                height: 100%;
+
+                mat-tab-group {
                     height: 100%;
 
-                    mat-tab-group {
+                    .mat-tab-label,
+                    .mat-tab-label-active {
+                        min-width: 33%;
+                    }
+
+                    div.mat-tab-body-wrapper {
                         height: 100%;
 
-                        .mat-tab-label,
-                        .mat-tab-label-active {
-                            min-width: 33%;
-                        }
-
-                        div.mat-tab-body-wrapper {
+                        mat-tab-body {
                             height: 100%;
+                            padding: 24px;
+                        }
 
-                            mat-tab-body {
-                                height: 100%;
-                                padding: 24px;
-                            }
-
-                            mat-form-field {
-                                width: 100%;
-                            }
+                        mat-form-field {
+                            width: 100%;
                         }
                     }
+                }
 
-                    modelingsdk-input-mapping-table {
-                        .mat-row,
-                        .mat-header-row {
-                            padding: 0 8px;
-                        }
+                modelingsdk-input-mapping-table {
+                    .mat-row,
+                    .mat-header-row {
+                        padding: 0 8px;
                     }
+                }
 
-                    .value-mapping-input {
-                        modelingsdk-expression-code-editor {
-                            display: block;
-                            height: 235px;
-                        }
+                .value-mapping-input {
+                    modelingsdk-expression-code-editor {
+                        display: block;
+                        height: 235px;
                     }
                 }
             }
         }
     }
+}
 
-    .help-icon {
-        line-height: 10px;
-        font-size: 16px;
-        width: 16px;
-        height: 16px;
-        position: relative;
-        top: 4px;
-        padding: 0 4px;
-        opacity: 0.8;
-        cursor: pointer;
-    }
+.help-icon {
+    line-height: 10px;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: 4px;
+    padding: 0 4px;
+    opacity: 0.8;
+    cursor: pointer;
+}
 
-    .mapping-dialog-expression-editor {
-        display: block;
-        height: 235px;
-    }
+.mapping-dialog-expression-editor {
+    display: block;
+    height: 235px;
+}
 
-    .mapping-dialog-variable-selector {
-        display: block;
-        height: 235px;
-        overflow: auto;
+.mapping-dialog-variable-selector {
+    display: block;
+    height: 235px;
+    overflow: auto;
 
-        &-clear-button {
-            position: absolute;
-            left: 7px;
-            top: 0;
-            line-height: 30px;
-            height: 30px;
-            font-size: mat-font-size($alfresco-typography, caption);
+    &-clear-button {
+        position: absolute;
+        left: 7px;
+        top: 0;
+        line-height: 30px;
+        height: 30px;
+        font-size: var(--theme-caption-font-size);
 
-            mat-icon {
-                font-size: mat-font-size($alfresco-typography, title);
-            }
+        mat-icon {
+            font-size: var(--theme-title-font-size);
         }
     }
 }

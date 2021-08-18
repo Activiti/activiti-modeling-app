@@ -1,7 +1,0 @@
-@import './properties-viewer/properties-viewer.component';
-@import './variables.component';
-
-@mixin ama-variables-module($theme) {
-    @include ama-variables($theme);
-    @include modelingsdk-properties-viewer($theme);
-}

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { CardItemTypeService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import {
@@ -31,6 +31,8 @@ import { MessageItemModel } from '../message-item/message-item.model';
 @Component({
     selector: 'ama-message-variable-mapping',
     templateUrl: './message-variable-mapping.component.html',
+    styleUrls: ['./message-variable-mapping.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [CardItemTypeService]
 })
 export class CardViewMessageVariableMappingComponent implements OnInit {

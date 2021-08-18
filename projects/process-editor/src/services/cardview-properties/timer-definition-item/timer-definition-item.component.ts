@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, AppConfigService, MomentDateAdapter } from '@alfresco/adf-core';
 import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, takeUntil, filter, take } from 'rxjs/operators';
@@ -31,6 +31,8 @@ import { MomentDatetimeAdapter } from '@mat-datetimepicker/moment';
 @Component({
     selector: 'ama-process-timer-definition',
     templateUrl: './timer-definition-item.component.html',
+    styleUrls: ['./timer-definition-item.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [
         CardItemTypeService,
         { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },

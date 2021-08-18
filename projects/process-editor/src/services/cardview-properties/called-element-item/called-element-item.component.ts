@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, CardViewArrayItemModel } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { CalledElementItemModel } from './called-element-item.model';
@@ -47,6 +47,8 @@ import { CalledElementService, CalledElementTypes } from './called-element.servi
 @Component({
     selector: 'ama-process-called-element',
     templateUrl: './called-element-item.component.html',
+    styleUrls: ['./called-element-item.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [CardItemTypeService]
 })
 export class CalledElementComponent implements OnInit, OnDestroy {

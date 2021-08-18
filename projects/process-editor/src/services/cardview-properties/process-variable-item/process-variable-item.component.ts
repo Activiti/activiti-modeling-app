@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { OpenProcessVariablesDialogAction } from './../../../store/process-variables.actions';
 import { Store } from '@ngrx/store';
 import { CardItemTypeService } from '@alfresco/adf-core';
@@ -25,6 +25,8 @@ import { ProcessEntitiesState } from '../../../store/process-entities.state';
     /* cspell: disable-next-line */
     selector: 'ama-processvariables',
     templateUrl: './process-variable-item.component.html',
+    styleUrls: ['./process-variable-item.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [CardItemTypeService]
 })
 

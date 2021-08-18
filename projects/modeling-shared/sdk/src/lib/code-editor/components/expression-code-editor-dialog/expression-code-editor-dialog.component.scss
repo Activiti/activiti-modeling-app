@@ -1,14 +1,12 @@
-@mixin ama-expression-code-editor-dialog($theme) {
-    .ama-expression-code-editor-dialog {
-        &-content {
+.ama-expression-code-editor-dialog {
+    &-content {
+        min-height: 290px;
+
+        .ama-expression-code-editor-monaco {
             min-height: 290px;
 
-            .ama-expression-code-editor-monaco {
-                min-height: 290px;
-
-                .code-editor {
-                    height: 275px;
-                }
+            .code-editor {
+                height: 275px;
             }
         }
     }

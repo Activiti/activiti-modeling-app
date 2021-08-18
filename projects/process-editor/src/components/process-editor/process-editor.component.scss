@@ -1,97 +1,95 @@
 @import 'bpmn-io';
 
-@mixin ama-process-editor($theme) {
 
-    .process-editor {
-        height: 100%;
-        overflow-y: hidden;
+.process-editor {
+    height: 100%;
+    overflow-y: hidden;
 
-        .mat-tab-body.mat-tab-body-active {
-            position: absolute;
-        }
+    .mat-tab-body.mat-tab-body-active {
+        position: absolute;
+    }
 
-        .ama-process-tab-group {
+    .ama-process-tab-group {
+        flex: 1 1 auto;
+
+        .mat-tab-body-wrapper {
             flex: 1 1 auto;
 
-            .mat-tab-body-wrapper {
+            .mat-tab-body-content {
                 flex: 1 1 auto;
-
-                .mat-tab-body-content {
-                    flex: 1 1 auto;
-                    display: flex;
-                    overflow: hidden;
-
-                    .ama-process-code-editor {
-                        display: flex;
-                        flex: 1 1 auto;
-                        overflow: hidden;
-                    }
-                }
-            }
-        }
-
-        modelingsdk-code-editor {
-            display: flex;
-            width: 100%;
-            flex: 1 1 auto;
-
-            .code-editor {
-                flex: 1 0 auto;
-                height: auto;
-            }
-        }
-
-        &-modeling {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-
-            &-area {
                 display: flex;
-                flex-direction: row;
-                flex: 1 0 auto;
-                max-height: 100%;
-                max-width: 100%;
+                overflow: hidden;
 
-                &-properties {
-                    width: 360px;
-                    box-sizing: border-box;
+                .ama-process-code-editor {
+                    display: flex;
+                    flex: 1 1 auto;
+                    overflow: hidden;
                 }
-
             }
-        }
-
-        &-spinner {
-            padding-top: 48px;
-            height: 100%;
-            display: flex;
-            justify-content: center;
         }
     }
 
-    .quick {
+    modelingsdk-code-editor {
+        display: flex;
+        width: 100%;
+        flex: 1 1 auto;
 
-        &-form-button, &-implementation-button, &-script-button, &-dmn-button, &-navigation-button {
-            position: absolute;
-            top: 0;
-            padding: 0;
-            margin: 0;
-            min-width: 20px;
-            height: 20px;
-            z-index: 10;
+        .code-editor {
+            flex: 1 0 auto;
+            height: auto;
+        }
+    }
 
-            .mat-icon {
-                font-size: 15px;
-                line-height: 6px;
+    &-modeling {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        &-area {
+            display: flex;
+            flex-direction: row;
+            flex: 1 0 auto;
+            max-height: 100%;
+            max-width: 100%;
+
+            &-properties {
+                width: 360px;
+                box-sizing: border-box;
             }
-        }
 
-        &-form-button, &-implementation-button, &-dmn-button, &-script-button {
-            right: 0;
         }
+    }
 
-        &-navigation-button {
-            right: 30px;
+    &-spinner {
+        padding-top: 48px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.quick {
+
+    &-form-button, &-implementation-button, &-script-button, &-dmn-button, &-navigation-button {
+        position: absolute;
+        top: 0;
+        padding: 0;
+        margin: 0;
+        min-width: 20px;
+        height: 20px;
+        z-index: 10;
+
+        .mat-icon {
+            font-size: 15px;
+            line-height: 6px;
         }
+    }
+
+    &-form-button, &-implementation-button, &-dmn-button, &-script-button {
+        right: 0;
+    }
+
+    &-navigation-button {
+        right: 30px;
     }
 }

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ProcessErrorsService } from '../../../services/process-errors.service';
 import { MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -28,7 +28,9 @@ export interface ProcessErrorsDialogData extends MatDialogConfig {
 
 @Component({
     templateUrl: './process-errors-dialog.component.html',
-    selector: 'ama-process-errors-dialog'
+    selector: 'ama-process-errors-dialog',
+    styleUrls: ['./process-errors-dialog.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class ProcessErrorsDialogComponent implements OnInit {

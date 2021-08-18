@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter, Input, OnDestroy, ChangeDetectionStrategy, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnDestroy, ChangeDetectionStrategy, OnInit, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { NgxEditorModel, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -48,6 +48,8 @@ const DEFAULT_OPTIONS = {
 @Component({
     selector: 'modelingsdk-code-editor',
     templateUrl: './code-editor.component.html',
+    styleUrls: ['./code-editor.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CodeEditorComponent implements OnDestroy, OnInit, OnChanges {

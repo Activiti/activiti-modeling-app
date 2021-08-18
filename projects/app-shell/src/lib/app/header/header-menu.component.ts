@@ -15,11 +15,13 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'ama-header-menu',
-    templateUrl: './header-menu.component.html'
+    templateUrl: './header-menu.component.html',
+    styleUrls: ['./header-menu.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class HeaderMenuComponent {
 

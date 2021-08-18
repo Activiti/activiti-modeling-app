@@ -1,19 +1,15 @@
-@mixin ama-project-content($theme) {
-    $foreground: map-get($theme, foreground);
-
-    .project-header {
-        .project-name {
-            font-size: 14px;
-            padding-top: 5px;
-        }
+.project-header {
+    .project-name {
+        font-size: 14px;
+        padding-top: 5px;
     }
+}
 
-    .ama-no-selection {
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: calc(100% - 114px);
-        color: mat-color($foreground, text, 0.5);
-    }
+.ama-no-selection {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 114px);
+    color: var(--theme-text-color);
 }

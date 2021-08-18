@@ -1,70 +1,65 @@
-@mixin ama-expression-code-editor($theme) {
-    $foreground: map-get($theme, foreground);
-    $background: map-get($theme, background);
+.ama-expression-code-editor {
+    height: 100%;
+    border: 1px solid var(--theme-border-color);
+    border-radius: 6px;
+    padding: 6px;
+    position: relative;
 
-    .ama-expression-code-editor {
+    &-edit-button {
+        position: absolute;
+        float: right;
+        bottom: 3px;
+        right: 3px;
+        z-index: 10;
+    }
+    &-monaco {
         height: 100%;
-        border: 1px solid mat-color($foreground, text, 0.07);
-        border-radius: 6px;
-        padding: 6px;
-        position: relative;
-
-        &-edit-button {
-            position: absolute;
-            float: right;
-            bottom: 3px;
-            right: 3px;
-            z-index: 10;
-        }
-        &-monaco {
-            height: 100%;
-            .code-editor {
-                min-height: 100px;
-
-                .editor-container {
-                    height: 100%;
-                }
-            }
-        }
-
-        &.editor-disabled {
-            background: mat-color($foreground, text, 0.05);
-        }
-
-        &-preview {
-            margin: 0;
+        .code-editor {
             min-height: 100px;
-            white-space: inherit;
-            word-break: break-word;
-            font-size: mat-font-size($alfresco-typography, caption);
-            padding-left: 26px;
-            padding-right: 18px;
-            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
 
-            &.preview-hidden {
-                display: none;
-                visibility: hidden;
+            .editor-container {
+                height: 100%;
             }
         }
+    }
 
-        &-hint {
-            position: absolute;
-            float: left;
-            bottom: 3px;
-            left: 3px;
-            right: 0;
-            z-index: 10;
-            font-size: mat-font-size($alfresco-typography, body-1);
-            color: mat-color($background, dialog);
-            background: mat-color($foreground, text, 0.5);
-            width: mat-font-size($alfresco-typography, body-1);
-            height: mat-font-size($alfresco-typography, body-1);
-            border-radius: 50%;
-            text-align: center;
-            line-height: mat-font-size($alfresco-typography, body-1);
-            vertical-align: middle;
-            padding: 3px;
-            cursor: help;
+    &.editor-disabled {
+        background: var(--theme-disabled-bg-color);
+    }
+
+    &-preview {
+        margin: 0;
+        min-height: 100px;
+        white-space: inherit;
+        word-break: break-word;
+        font-size: var(--theme-caption-font-size);
+        padding-left: 26px;
+        padding-right: 18px;
+        font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+
+        &.preview-hidden {
+            display: none;
+            visibility: hidden;
         }
+    }
+
+    &-hint {
+        position: absolute;
+        float: left;
+        bottom: 3px;
+        left: 3px;
+        right: 0;
+        z-index: 10;
+        font-size: var(--theme-body-1-font-size);
+        color: var(--theme-dialog-bg-color);
+        background: color(--theme-hint-bg-color);
+        width: var(--theme-body-1-font-size);
+        height: var(--theme-body-1-font-size);
+        border-radius: 50%;
+        text-align: center;
+        line-height: var(--theme-body-1-font-size);
+        vertical-align: middle;
+        padding: 3px;
+        cursor: help;
     }
 }

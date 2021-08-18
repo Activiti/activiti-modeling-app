@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, Inject } from '@angular/core';
+import { Component, Input, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
 import { ProcessModelerServiceToken, ProcessModelerService, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 import { SignalRefItemModel } from './signal-ref-item.model';
@@ -25,6 +25,8 @@ import { SelectModelerElementAction } from '../../../store/process-editor.action
 @Component({
     selector: 'ama-process-signal-ref',
     templateUrl: './signal-ref-item.component.html',
+    styleUrls: ['./signal-ref-item.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [CardItemTypeService]
 })
 export class CardViewSignalRefItemComponent implements OnInit {

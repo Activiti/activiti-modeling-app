@@ -59,6 +59,7 @@ import { documentationHandler } from '../../services/bpmn-js/property-handlers/d
 
 @Component({
     templateUrl: './process-editor.component.html',
+    styleUrls: ['./process-editor.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
 export class ProcessEditorComponent implements OnInit, CanComponentDeactivate {

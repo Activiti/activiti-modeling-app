@@ -1,10 +1,8 @@
-@mixin ama-process-errors-item ($theme) {
-    ama-process-errors button {
-        width: 100%;
-    }
+ama-process-errors button {
+    width: 100%;
+}
 
-    .errors-icon {
-        vertical-align: middle;
-        margin-right: 5px;
-    }
+.errors-icon {
+    vertical-align: middle;
+    margin-right: 5px;
 }

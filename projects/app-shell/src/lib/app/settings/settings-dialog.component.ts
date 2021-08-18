@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { UpdateSettingsAction } from '../../store/actions';
@@ -25,7 +25,9 @@ import { takeUntil } from 'rxjs/operators';
 import { AppTheme, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Component({
-    templateUrl: './settings-dialog.component.html'
+    templateUrl: './settings-dialog.component.html',
+    styleUrls: ['./settings-dialog.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class SettingsDialogComponent implements OnInit, OnDestroy {
     form: any;

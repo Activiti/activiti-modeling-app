@@ -1,33 +1,29 @@
-@mixin ama-process-properties-panel($theme) {
-    $background: map-get($theme, background);
+.process-properties {
+    height: 100%;
+    background: var(--theme-app-bar-bg-color);
+    box-sizing: border-box;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
 
-    .process-properties {
-        height: 100%;
-        background: mat-color($background, app-bar);
-        box-sizing: border-box;
-        overflow: scroll;
-        display: flex;
-        flex-direction: column;
-
-        &-card {
-            width: 360px;
-            flex: 1 0 auto;
-            min-height: calc(100% - 48px);
-        }
-
-        /** @deprecated: bpmnjs-properties */
-        &-bpmnjs {
-            margin-top: 12px;
-            margin-bottom: 12px;
-
-            &:empty {
-                display: hidden;
-                margin: 0;
-            }
-        }
+    &-card {
+        width: 360px;
+        flex: 1 0 auto;
+        min-height: calc(100% - 48px);
     }
 
-    .mat-form-field-type-mat-select {
-        width: 100%;
+    /** @deprecated: bpmnjs-properties */
+    &-bpmnjs {
+        margin-top: 12px;
+        margin-bottom: 12px;
+
+        &:empty {
+            display: hidden;
+            margin: 0;
+        }
     }
+}
+
+.mat-form-field-type-mat-select {
+    width: 100%;
 }

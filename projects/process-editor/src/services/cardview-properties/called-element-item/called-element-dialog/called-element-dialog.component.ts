@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { AmaState, EntityProperty } from '@alfresco-dbp/modeling-shared/sdk';
@@ -32,7 +32,9 @@ export interface CalledElementModel {
 }
 
 @Component({
-    templateUrl: './called-element-dialog.component.html'
+    templateUrl: './called-element-dialog.component.html',
+    styleUrls: ['./called-element-dialog.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class CalledElementDialogComponent implements OnInit, OnDestroy {
 

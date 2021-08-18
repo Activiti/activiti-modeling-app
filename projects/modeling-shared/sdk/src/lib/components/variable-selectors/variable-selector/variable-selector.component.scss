@@ -1,82 +1,75 @@
-@mixin modelingsdk-process-variables-selector($theme) {
-    $foreground: map-get($theme, foreground);
-    $error: map-get($theme, warn);
-    $background: map-get($theme, background);
-    $primary: map-get($theme, primary);
+.variables-selector {
+    &-header {
+        display: flex;
 
-    .variables-selector {
-        &-header {
-            display: flex;
+        .variables-selector-clear-button {
+            position: relative;
+            top: 6px;
+        }
+    }
 
-            .variables-selector-clear-button {
-                position: relative;
-                top: 6px;
-            }
+    &-search {
+        font-size: var(--theme-caption-font-size);
+
+        .mat-form-field-outline {
+            background: var(--theme-ama-var-selector-bg-color);
+            border-radius: 6px;
         }
 
-        &-search {
-            font-size: mat-font-size($alfresco-typography, caption);
-
-            .mat-form-field-outline {
-                background: mat-color($foreground, text, 0.05);
-                border-radius: 6px;
-            }
-
-            &-suffix {
-                cursor: pointer;
-            }
+        &-suffix {
+            cursor: pointer;
         }
+    }
 
-        &-variables {
-            &-group {
-                margin-bottom: 10px;
+    &-variables {
+        &-group {
+            margin-bottom: 10px;
 
-                h3 {
-                    margin-top: 0;
-                }
+            h3 {
+                margin-top: 0;
+            }
 
-                &-list {
-                    &-item {
-                        cursor: pointer;
-                        padding-top: 6px;
-                        padding-left: 6px;
-                        padding-bottom: 6px;
-                        &-type {
-                            background: mat-color($foreground, text, 0.2);
-                            border-radius: 50%;
-                            height: 20px;
-                            width: 20px;
-                            display: inline-block;
-                            text-align: center;
-                            font-weight: bold;
-                            margin: 0 12px 0 0;
-                            color: mat-color($primary, default-contrast) !important;
-                        }
+            &-list {
+                &-item {
+                    cursor: pointer;
+                    padding-top: 6px;
+                    padding-left: 6px;
+                    padding-bottom: 6px;
+                    &-type {
+                        background: var(--theme-border-color-light);
+                        border-radius: 50%;
+                        height: 20px;
+                        width: 20px;
+                        display: inline-block;
+                        text-align: center;
+                        font-weight: bold;
+                        margin: 0 12px 0 0;
+                        color: var(--theme-primary-color-default-contrast) !important;
+                    }
 
-                        &.selected {
-                            background: mat-color($foreground, text, 0.1);
-                            border: 1px solid mat-color($foreground, text, 0.2);
-                            border-radius: 6px;
-                        }
+                    &.selected {
+                        background: var(--theme-ama-var-selector-selected-text-bg-color);
+                        border: 1px solid var(--theme-border-color-light);
+                        border-radius: 6px;
+                    }
 
-                        &:hover {
-                            background: mat-color($foreground, text, 0.05);
-                            border-radius: 6px;
-                        }
+                    &:hover {
+                        background: var(--theme-ama-var-selector-bg-color);
+                        border-radius: 6px;
                     }
                 }
             }
         }
+    }
 
-        &-tooltip {
-            &-first-header {
-                margin-top: 0;
-            }
+    &-tooltip {
+        &-first-header {
+            margin-top: 0;
         }
     }
+}
 
-    div.adf-tooltip-card {
-        border-radius: 0;
-        border: none;
-    }
+div.adf-tooltip-card {
+    border-radius: 0;
+    border: none;
 }

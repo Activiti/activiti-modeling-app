@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { EntityProperty } from '../../../api/types';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
@@ -27,6 +27,8 @@ import { ExpressionCodeEditorDialogComponent, ExpressionCodeEditorDialogData } f
 @Component({
     selector: 'modelingsdk-expression-code-editor',
     templateUrl: './expression-code-editor.component.html',
+    styleUrls: ['./expression-code-editor.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnChanges {
 

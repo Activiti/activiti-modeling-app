@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { takeUntil } from 'rxjs/operators';
@@ -25,6 +25,8 @@ import { selectProcessMappingsFor, UpdateServiceParametersAction, Implementation
 @Component({
     selector: 'ama-process-implementation',
     templateUrl: './implementation-item.component.html',
+    styleUrls: ['./implementation-item.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [CardItemTypeService]
 })
 export class CardViewImplementationItemComponent implements OnInit, OnDestroy {

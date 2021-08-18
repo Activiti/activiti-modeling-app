@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { ConnectorParameter, EntityProperty, ServiceParameterMapping } from '../../api/types';
 import { VariableMappingType, MappingRowModel, MappingValueType, MappingDialogService, MappingDialogData } from '../../services/mapping-dialog.service';
 import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
@@ -27,6 +27,8 @@ import { ElementVariable, ProcessEditorElementVariable } from '../../services/pr
 @Component({
     templateUrl: './mapping-dialog.component.html',
     selector: 'modelingsdk-mapping-dialog',
+    styleUrls: ['./mapping-dialog.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     host: { class: 'modelingsdk-mapping-dialog' }
 })
 

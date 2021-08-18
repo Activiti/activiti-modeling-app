@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, MomentDateAdapter, CardViewDatetimeItemModel, CardViewItem } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { AmaState, selectSelectedProcess, AMA_DATETIME_FORMATS, MOMENT_DATETIME_FORMAT,
@@ -32,6 +32,8 @@ import { DueDateItemModel } from './due-date-item.model';
 @Component({
     selector: 'ama-process-due-date',
     templateUrl: './due-date-item.component.html',
+    styleUrls: ['./due-date-item.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [
         CardItemTypeService,
         { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },

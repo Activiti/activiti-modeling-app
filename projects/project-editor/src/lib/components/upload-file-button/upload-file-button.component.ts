@@ -15,14 +15,16 @@
  * limitations under the License.
  */
 
-import { Component, Input, ElementRef, ViewChild, Inject, Optional } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, Inject, Optional, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { LogService } from '@alfresco/adf-core';
 import { ModelUploader, AmaState, MODEL_UPLOADERS } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Component({
     selector: 'ama-upload-file-button',
-    templateUrl: './upload-file-button.component.html'
+    templateUrl: './upload-file-button.component.html',
+    styleUrls: ['./upload-file-button.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class UploadFileButtonComponent {
     @Input() type: string;

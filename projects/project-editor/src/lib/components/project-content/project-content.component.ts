@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, Inject, Optional } from '@angular/core';
+import { Component, OnInit, Inject, Optional, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
     ProjectEditorState,
@@ -29,7 +29,9 @@ import { Observable, Subscription } from 'rxjs';
 import { ValidateProjectAttemptAction, ExportProjectAttemptAction, ExportProjectAttemptPayload } from '../../store/project-editor.actions';
 
 @Component({
-    templateUrl: './project-content.component.html'
+    templateUrl: './project-content.component.html',
+    styleUrls: ['./project-content.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class ProjectContentComponent implements OnInit {
     project$: Observable<Partial<Project>>;

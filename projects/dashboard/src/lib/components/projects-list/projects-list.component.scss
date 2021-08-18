@@ -1,108 +1,101 @@
-@mixin ama-projects-list($theme) {
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    $foreground: map-get($theme, foreground);
-    $background: map-get($theme, background);
+// Remove it, when community supports project releases
+.project-release-button {
+    display: none;
+}
 
-    // Remove it, when community supports project releases
-    .project-release-button {
-        display: none;
+.dashboard {
+    height: 100%;
+
+    .paginator-block {
+        border-top: 1px solid var(--theme-border-color);
+        position: absolute;
+        width: 100%;
+        bottom: 0;
     }
 
-    .dashboard {
+    .mat-paginator {
+        &-container {
+            position: relative;
+            .mat-paginator-page-size {
+                position: absolute;
+                left: 20px;
+            }
+        }
+
+        .mat-form-field-type-mat-select {
+            width: 56px;
+        }
+    }
+
+    &-list {
+        position: relative;
         height: 100%;
 
-        .paginator-block {
-            border-top: 1px solid mat-color($foreground, text, 0.07);
-            position: absolute;
-            width: 100%;
-            bottom: 0;
+        &-container {
+            overflow: scroll;
+            height: calc(100% - 40px);
+            background: transparent;
         }
 
-        .mat-paginator {
-            &-container {
-                position: relative;
-                .mat-paginator-page-size {
-                    position: absolute;
-                    left: 20px;
-                }
-            }
-
-            .mat-form-field-type-mat-select {
-                width: 56px;
-            }
+        .mat-header-row {
+            background-color: var(--theme-card-background-color);
+            padding: 0 24px 0 0;
         }
 
-        &-list {
-            position: relative;
-            height: 100%;
+        .mat-row {
+            cursor: pointer;
+            transition: background-color 250ms;
+            padding: 0 24px 0 0;
 
-            &-container {
-                overflow: scroll;
-                height: calc(100% - 40px);
-                background: transparent;
+            .mat-cell {
+                line-height: 48px;
+                vertical-align: middle;
             }
 
-            .mat-header-row {
-                background: mat-color($background, card);
-                padding: 0 24px 0 0;
+            .mat-icon.thumbnail {
+                transition: color 250ms;
             }
 
-            .mat-row {
-                cursor: pointer;
-                transition: background-color 250ms;
-                padding: 0 24px 0 0;
-
-                .mat-cell {
-                    line-height: 48px;
-                    vertical-align: middle;
-                }
+            &:hover {
+                background-color: var(--theme-selected-button-bg-color);
 
                 .mat-icon.thumbnail {
-                    transition: color 250ms;
+                    color: var(--theme-accent-color);
                 }
-
-                &:hover {
-                    background-color: mat-color($background, selected-button);
-
-                    .mat-icon.thumbnail {
-                        color: mat-color($accent);
-                    }
-                }
-            }
-
-            .mat-table {
-                padding-bottom: 15px;
-            }
-
-            .cdk-column-thumbnail {
-                flex: 0 1 auto;
-                min-width: 24px;
-                padding-left: 24px;
-                .mat-icon {
-                    vertical-align: middle;
-                }
-            }
-
-            .cdk-column-name {
-                padding: 0 24px;
-                flex-grow: 1;
-            }
-
-            .cdk-column-menu {
-                flex: 0 1 auto;
-                padding-right: 24px;
             }
         }
 
-        &-spinner {
-            margin-top: 20%;
-            margin-left: calc(50% - 100px);
+        .mat-table {
+            padding-bottom: 15px;
         }
 
-        &-emptylist .adf-empty-content {
-            margin-top: 48px;
-            text-align: center;
+        .cdk-column-thumbnail {
+            flex: 0 1 auto;
+            min-width: 24px;
+            padding-left: 24px;
+            .mat-icon {
+                vertical-align: middle;
+            }
         }
+
+        .cdk-column-name {
+            padding: 0 24px;
+            flex-grow: 1;
+        }
+
+        .cdk-column-menu {
+            flex: 0 1 auto;
+            padding-right: 24px;
+        }
+    }
+
+    &-spinner {
+        margin-top: 20%;
+        margin-left: calc(50% - 100px);
+    }
+
+    &-emptylist .adf-empty-content {
+        margin-top: 48px;
+        text-align: center;
     }
 }

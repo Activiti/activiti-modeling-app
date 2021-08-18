@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, Inject, OnDestroy, ChangeDetectorRef, Optional, Injector } from '@angular/core';
+import { Component, Input, OnInit, Inject, OnDestroy, ChangeDetectorRef, Optional, Injector, ViewEncapsulation } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService } from '@alfresco/adf-core';
 import {
     ProcessModelerServiceToken, ProcessModelerService, AmaState,
@@ -36,6 +36,8 @@ export interface ErrorGroup {
 @Component({
     selector: 'ama-process-error-ref',
     templateUrl: './error-ref-item.component.html',
+    styleUrls: ['./error-ref-item.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [CardItemTypeService]
 })
 export class CardViewErrorRefItemComponent implements OnInit, OnDestroy {

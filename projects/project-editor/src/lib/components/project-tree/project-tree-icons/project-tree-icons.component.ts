@@ -15,14 +15,16 @@
  * limitations under the License.
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ProjectTreeHelper } from '../project-tree.helper';
 import { MODEL_TYPE, ModelFilter, OpenFilterAction, AmaState, SetMenuAction } from '@alfresco-dbp/modeling-shared/sdk';
 
 @Component({
     selector: 'ama-project-tree-icons',
-    templateUrl: './project-tree-icons.component.html'
+    templateUrl: './project-tree-icons.component.html',
+    styleUrls: ['./project-tree-icons.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class ProjectTreeIconsComponent {
     filters: ModelFilter[];
