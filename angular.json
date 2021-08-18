@@ -183,7 +183,7 @@
                         "tslintConfig": "projects/modeling-shared/sdk/tslint.json",
                         "exclude": [
                             "**/node_modules/**",
-                            "projects/adf-candidates/**"
+                            "!projects/modeling-shared/sdk/**/*"
                         ],
                         "format": "stylish"
                     }
@@ -212,8 +212,7 @@
                         "tslintConfig": "projects/connector-editor/tslint.json",
                         "exclude": [
                             "**/node_modules/**",
-                            "projects/adf-candidates/**",
-                            "projects/modeling-shared/**"
+                            "!projects/connector-editor/**/*"
                         ],
                         "format": "stylish"
                     }
@@ -242,8 +241,7 @@
                         "tslintConfig": "projects/dashboard/tslint.json",
                         "exclude": [
                             "**/node_modules/**",
-                            "projects/adf-candidates/**",
-                            "projects/modeling-shared/**"
+                            "!projects/dashboard/**/*"
                         ],
                         "format": "stylish"
                     }
@@ -272,8 +270,7 @@
                         "tslintConfig": "projects/project-editor/tslint.json",
                         "exclude": [
                             "**/node_modules/**",
-                            "projects/adf-candidates/**",
-                            "projects/modeling-shared/**"
+                            "!projects/project-editor/**/*"
                         ],
                         "format": "stylish"
                     }
@@ -302,8 +299,7 @@
                         "tslintConfig": "projects/connector-editor/tslint.json",
                         "exclude": [
                             "**/node_modules/**",
-                            "projects/adf-candidates/**",
-                            "projects/modeling-shared/**"
+                            "!projects/process-editor/**/*"
                         ],
                         "format": "stylish"
                     }
