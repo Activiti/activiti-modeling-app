@@ -206,7 +206,7 @@
     "nx-enforce-module-boundaries": [
       true,
       {
-        "allow": [],
+        "allow": ["@alfresco-dbp/shared-testing/**"],
         "depConstraints": [
           {
             "sourceTag": "scope:modeling-sdk",
