@@ -138,6 +138,7 @@
     "cspell": "^5.3.12",
     "cypress": "^7.5.0",
     "cypress-keycloak-commands": "^1.2.0",
+    "deepmerge": "^4.2.2",
     "dotenv": "8.2.0",
     "envsub": "^4.0.7",
     "fs-extra": "^9.1.0",
