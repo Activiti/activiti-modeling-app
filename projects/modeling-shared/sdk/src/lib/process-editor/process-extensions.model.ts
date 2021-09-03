@@ -98,12 +98,21 @@ export class ProcessExtensionsModel {
         }
 
         if (Object.values(assignment).length) {
-            processExtensions.assignments[serviceId] = assignment;
+            const currentAssignment = processExtensions.assignments[serviceId];
+            if (this.checkAssignmentChange(assignment, currentAssignment)) {
+                processExtensions.assignments[serviceId] = assignment;
+            }
         } else {
             delete processExtensions.assignments[serviceId];
         }
         this.extensions[processId] = processExtensions;
         return this.extensions;
+    }
+
+    private checkAssignmentChange(newAssignmentObj, currentAssignmentObj): boolean {
+        return currentAssignmentObj === undefined ||
+            newAssignmentObj.id !== currentAssignmentObj.id ||
+            newAssignmentObj.assignment !== currentAssignmentObj.assignment;
     }
 
     getAssignments(processId: string): TaskAssignmentContent {

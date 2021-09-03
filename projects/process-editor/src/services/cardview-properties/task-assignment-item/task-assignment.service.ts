@@ -101,4 +101,8 @@ export class TaskAssignmentService {
     private convertStringToArray(value: string): string[] {
         return value ? value.split(',') : [];
     }
+
+    getProcessIdForElement(element): string {
+      return ElementHelper.getProperty(element, BpmnProperty.processId);
+    }
 }

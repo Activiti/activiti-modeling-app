@@ -154,4 +154,14 @@ describe('ProcessModelerServiceImplementation', () => {
             });
         });
     });
+
+    describe('register event handler', () => {
+
+        it('should call the method registered for the event handler', () => {
+            const fakeFunc = jasmine.createSpy('registeredEventHandler');
+            service.createEventHandlerForAction('banana.action', fakeFunc);
+            bpmnFactoryMock.modeler.get('eventBus').fire('banana.action');
+            expect(fakeFunc).toHaveBeenCalled();
+        });
+    });
 });

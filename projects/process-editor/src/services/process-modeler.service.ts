@@ -159,4 +159,8 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
         this.modeler.off('create.end', this.modelerInitOptions.createHandler);
         this.modeler.off('selection.changed', this.modelerInitOptions.selectHandler);
     }
+
+    public createEventHandlerForAction(actionName: string, handler: (event) => any | void) {
+        this.modeler.on(actionName, handler);
+    }
 }

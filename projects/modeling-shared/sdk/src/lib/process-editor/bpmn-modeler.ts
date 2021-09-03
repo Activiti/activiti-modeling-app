@@ -48,6 +48,7 @@ export interface ProcessModelerService {
     undo(): void;
     redo(): void;
     destroy(): void;
+    createEventHandlerForAction(action: string, handler: (event) => any | void): void;
 }
 
 export interface BpmnFactory {

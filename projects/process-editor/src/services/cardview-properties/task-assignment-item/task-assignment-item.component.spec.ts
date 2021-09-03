@@ -25,19 +25,22 @@ import { AmaState, ProcessModelerServiceToken } from '@alfresco-dbp/modeling-sha
 import { of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { OpenTaskAssignmentDialogAction } from '../../../store/process-task-assignment.actions';
+import { AssignmentSettings } from 'projects/process-editor/src/components/assignment/assignment-dialog.component';
 
 describe('CardViewTaskAssignmentItemComponent', () => {
     let fixture: ComponentFixture<CardViewTaskAssignmentItemComponent>;
     let taskAssignmentService: TaskAssignmentService;
     let cardViewUpdateService: CardViewUpdateService;
     let store: Store<AmaState>;
+    const eventSpy = jest.fn();
+    const elementSpy = jest.fn();
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 TaskAssignmentService,
                 { provide: TranslationService, useClass: TranslationMock },
-                { provide: ProcessModelerServiceToken, useValue: { getElement: () => ({}) } },
+                { provide: ProcessModelerServiceToken, useValue: { getElement: elementSpy, createEventHandlerForAction: eventSpy } },
                 {
                     provide: Store,
                     useValue: {
@@ -58,6 +61,7 @@ describe('CardViewTaskAssignmentItemComponent', () => {
         store = TestBed.inject(Store);
 
         taskAssignmentService.getDisplayValue = jest.fn().mockImplementation(() => [] as CardViewArrayItem[]);
+        taskAssignmentService.getAssignments = jest.fn().mockImplementation(() => <AssignmentSettings> { assignee: [], candidateUsers: [], candidateGroups: [] });
     });
 
     it('render default view on init when there is no data', async () => {
@@ -98,5 +102,17 @@ describe('CardViewTaskAssignmentItemComponent', () => {
         fixture.detectChanges();
         await fixture.whenStable();
         expect(element().textContent).toContain('Picard');
+    });
+
+    describe('Handling copy event', () => {
+
+        it('Should not update the extension when task with no assignee is copied', async () => {
+            fixture.detectChanges();
+            await fixture.whenStable();
+            const eventObj = { descriptor: {businessObject: { }} };
+            const copyFunc = eventSpy.mock.calls[0][1];
+            copyFunc(eventObj);
+            expect(store.dispatch).not.toHaveBeenCalled();
+        });
     });
 });
