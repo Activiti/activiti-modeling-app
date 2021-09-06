@@ -63,7 +63,7 @@
       "TABLE": {
         "COLUMN_NAME": "Foutnaam",
         "COLUMN_CODE": "Foutcode",
-        "COLUMN_ID": "Fout-id",
+        "COLUMN_ID": "Fout-ID",
         "NO_PROCESS_ERRORS": "Selecteer of maak een procesfout om de eigenschappen ervan weer te geven"
       }
     },
