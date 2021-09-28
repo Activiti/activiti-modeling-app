@@ -80,7 +80,7 @@ describe('UploadFileButtonComponent', () => {
 
     it('clicking on the upload button should fire a click event on input field', () => {
         spyOn(component.fileInput.nativeElement, 'click');
-        const button = fixture.nativeElement.querySelector('[data-automation-id="upload-button"]');
+        const button = fixture.nativeElement.querySelector('[data-automation-id="upload-button-ref"]');
         button.click();
 
         expect(component.fileInput.nativeElement.click).toHaveBeenCalled();

@@ -1,10 +1,10 @@
 <div class="ama-upload-button">
 
-    <div (click)="onClick($event)" data-automation-id="upload-button">
-        <div #ref><ng-content></ng-content></div>
+    <div>
+        <div #ref (click)="onClick($event)" data-automation-id="upload-button-ref"><ng-content></ng-content></div>
 
         <div *ngIf="!ref.innerHTML.trim()">
-            <button class="default-upload-button" mat-stroked-button>
+            <button class="default-upload-button" (click)="onClick($event)" data-automation-id="upload-button-menu" mat-stroked-button>
                 <mat-icon>file_upload</mat-icon> {{'PROJECT_EDITOR.UPLOAD' | translate }}
             </button>
         </div>
