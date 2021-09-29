@@ -1,15 +1,15 @@
-.log-history {
-    .log-history-panel {
+.ama-log-history {
+    .ama-log-history-panel {
         background-color: var(--theme-status-bar-bg-color);
         height: 200px;
         overflow: auto;
         padding: 12px;
         font-family: 'Courier New', Courier, monospace;
 
-        .log-entry {
+        .ama-log-entry {
             margin-bottom: 8px;
 
-            .log-meta {
+            .ama-log-meta {
                 color: var(--theme-primary-color);
 
                 mat-icon {
@@ -21,16 +21,16 @@
                     left: -4px;
                 }
 
-                .log-initiator {
+                .ama-log-initiator {
                     font-weight: bold;
                 }
             }
 
-            &.log-warning .log-meta {
+            &.ama-log-warning .ama-log-meta {
                 color: var(--theme-accent-color);
             }
 
-            &.log-error .log-meta {
+            &.ama-log-error .ama-log-meta {
                 color: var(--theme-warn-color);
             }
         }

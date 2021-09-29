@@ -89,7 +89,7 @@ describe('ProjectTreeFilterComponent ', () => {
         component.contents = [];
 
         fixture.detectChanges();
-        const filter = fixture.debugElement.nativeElement.querySelector('.project-tree-filter.process > mat-expansion-panel-header');
+        const filter = fixture.debugElement.nativeElement.querySelector('.ama-project-tree-filter.process > mat-expansion-panel-header');
         filter.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
@@ -115,7 +115,7 @@ describe('ProjectTreeFilterComponent ', () => {
         component.contents = [];
 
         fixture.detectChanges();
-        const filter = fixture.debugElement.nativeElement.querySelector('.project-tree-filter.process > mat-expansion-panel-header');
+        const filter = fixture.debugElement.nativeElement.querySelector('.ama-project-tree-filter.process > mat-expansion-panel-header');
         filter.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
@@ -151,8 +151,8 @@ describe('ProjectTreeFilterComponent ', () => {
         const localProcess = fixture.debugElement.query(By.css('[data-automation-id="process-local-process-id"]'));
         const globalProcess = fixture.debugElement.query(By.css('[data-automation-id="process-global-process-id"]'));
 
-        expect(localProcess.classes['project-tree-filter-global-item']).toBeFalsy();
-        expect(globalProcess.classes['project-tree-filter-global-item']).toBeTruthy();
+        expect(localProcess.classes['ama-project-tree-filter-global-item']).toBeFalsy();
+        expect(globalProcess.classes['ama-project-tree-filter-global-item']).toBeTruthy();
     });
 
     it('should not display connector add and upload options when enableCustomConnectors is false', () => {
@@ -206,7 +206,7 @@ describe('ProjectTreeFilterComponent ', () => {
 
         component.contents = [];
         fixture.detectChanges();
-        const connectorHeader = fixture.debugElement.nativeElement.querySelector('.project-tree-filter.connector > mat-expansion-panel-header');
+        const connectorHeader = fixture.debugElement.nativeElement.querySelector('.ama-project-tree-filter.connector > mat-expansion-panel-header');
         connectorHeader.dispatchEvent(new Event('click'));
     }
 });

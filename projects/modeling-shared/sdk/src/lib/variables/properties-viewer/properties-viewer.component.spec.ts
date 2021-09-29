@@ -104,8 +104,8 @@ describe('PropertiesViewerComponent', () => {
         component.data = data;
         fixture.detectChanges();
 
-        const template = fixture.nativeElement.querySelector('.properties-form');
-        const message = fixture.nativeElement.querySelector('.no-properties');
+        const template = fixture.nativeElement.querySelector('.ama-properties-form');
+        const message = fixture.nativeElement.querySelector('.ama-no-properties');
 
         expect(template === null).toBeTruthy();
         expect(message === null).toBeFalsy();
@@ -122,8 +122,8 @@ describe('PropertiesViewerComponent', () => {
         editRow.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        const template = fixture.nativeElement.querySelector('.properties-form');
-        const message = fixture.nativeElement.querySelector('.no-properties');
+        const template = fixture.nativeElement.querySelector('.ama-properties-form');
+        const message = fixture.nativeElement.querySelector('.ama-no-properties');
 
         expect(template === null).toBeFalsy();
         expect(message === null).toBeTruthy();
@@ -147,7 +147,7 @@ describe('PropertiesViewerComponent', () => {
         editRow.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        const template = fixture.nativeElement.querySelector('.properties-form');
+        const template = fixture.nativeElement.querySelector('.ama-properties-form');
         const input = template.querySelector('input');
         component.name = 'changed';
 
@@ -180,7 +180,7 @@ describe('PropertiesViewerComponent', () => {
         editRow.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        const template = fixture.nativeElement.querySelector('.properties-form');
+        const template = fixture.nativeElement.querySelector('.ama-properties-form');
         const input = template.querySelector('input');
         component.name = 'a2_#';
         input.dispatchEvent(new Event('keyup'));
@@ -193,7 +193,7 @@ describe('PropertiesViewerComponent', () => {
 
         expect(component.name).toEqual('a2_#');
         expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data2, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME');
-        const infoIconWhenError = fixture.nativeElement.querySelector('.variable-name-info-icon');
+        const infoIconWhenError = fixture.nativeElement.querySelector('.ama-variable-name-info-icon');
         expect (infoIconWhenError === null).toBeFalsy();
     });
 
@@ -213,7 +213,7 @@ describe('PropertiesViewerComponent', () => {
         editRow.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        const template = fixture.nativeElement.querySelector('.properties-form');
+        const template = fixture.nativeElement.querySelector('.ama-properties-form');
         const input = template.querySelector('input');
         component.name = 'a2_';
         input.dispatchEvent(new Event('keyup'));
@@ -226,7 +226,7 @@ describe('PropertiesViewerComponent', () => {
 
         expect(component.name).toEqual('a2_');
         expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data3, null, 2), null);
-        const infoIcon = fixture.nativeElement.querySelector('.variable-name-info-icon');
+        const infoIcon = fixture.nativeElement.querySelector('.ama-variable-name-info-icon');
         expect (infoIcon === null).toBeTruthy();
     });
 
@@ -243,7 +243,7 @@ describe('PropertiesViewerComponent', () => {
         };
         spyOn(service, 'sendData');
 
-        const button = fixture.nativeElement.querySelector('.add-btn');
+        const button = fixture.nativeElement.querySelector('.ama-add-btn');
         button.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
@@ -261,7 +261,7 @@ describe('PropertiesViewerComponent', () => {
         const invalidName: HTMLElement = fixture.nativeElement.querySelector('.mat-error');
         expect(invalidName.textContent).toEqual('SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME');
 
-        const template = fixture.nativeElement.querySelector('.properties-form');
+        const template = fixture.nativeElement.querySelector('.ama-properties-form');
         const input = template.querySelector('input');
         component.name = 'a2_';
         input.dispatchEvent(new Event('keyup'));

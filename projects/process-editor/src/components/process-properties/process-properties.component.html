@@ -1,5 +1,5 @@
-<div class="process-properties">
-    <mat-card class="process-properties-card">
+<div class="ama-process-properties">
+    <mat-card class="ama-process-properties-card">
         <mat-card-title>{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROPERTIES' | translate }} </mat-card-title>
         <mat-card-content>
             <adf-card-view [properties]="properties$ | async" [displayNoneOption]="false" [editable]="true">
@@ -9,5 +9,5 @@
     </mat-card>
 
     <!-- @deprecated: bpmnjs-properties -->
-    <div #bpmnPropertiesPanel class="bpmn-properties process-properties-bpmnjs"></div>
+    <div #bpmnPropertiesPanel class="bpmn-properties ama-process-properties-bpmnjs"></div>
 </div>

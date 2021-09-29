@@ -1,10 +1,10 @@
-<div class="ama-expression-code-editor" [ngClass]="!enableInlineEditor ? 'editor-disabled' : ''">
+<div class="ama-expression-code-editor" [ngClass]="!enableInlineEditor ? 'ama-editor-disabled' : ''">
     <modelingsdk-code-editor class="monaco-editor ama-expression-code-editor-monaco" *ngIf="enableInlineEditor" (onInit)="init()"
         (changed)="expChanged($event)" content="{{workingExpression}}" language="{{expressionLanguage}}" [fileUri]="fileUri"
         [options]="$any(editorOptions)">
     </modelingsdk-code-editor>
     <pre id="{{expressionLanguage}}" data-lang="{{expressionLanguage}}" class="ama-expression-code-editor-preview" #expressionPreviewer
-        [ngClass]="enableInlineEditor ? 'preview-hidden' : ''">
+        [ngClass]="enableInlineEditor ? 'ama-preview-hidden' : ''">
     </pre>
     <mat-icon class="ama-expression-code-editor-hint" *ngIf="removeEnclosingBrackets" matTooltip="{{'SDK.EXPRESSION_CODE_EDITOR.NO_BRACKETS_HINT'|translate}}">money_off</mat-icon>
     <button mat-mini-fab color="primary" matTooltip="{{'SDK.EXPRESSION_CODE_EDITOR.EDIT_IN_DIALOG'|translate}}"

@@ -1,4 +1,4 @@
-.editor-footer {
+.ama-editor-footer {
 
     .mat-toolbar {
         border: 1px solid var(--theme-border-color);
@@ -16,18 +16,18 @@
             align-items: center;
         }
 
-        .log-history-filters {
+        .ama-log-history-filters {
             width: 150px;
             margin-left: 10px;
         }
 
-        .log-history-controls {
+        .ama-log-history-controls {
             margin-left: auto;
         }
 
-        &.editor-footer-toolbar {
+        &.ama-editor-footer-toolbar {
 
-            .editor-footer-toolbar-left {
+            .ama-editor-footer-toolbar-left {
                 display: flex;
                 flex-direction: row;
                 justify-content: flex-start;
@@ -35,7 +35,7 @@
                 flex-wrap: nowrap;
             }
 
-            .editor-footer-toolbar-right {
+            .ama-editor-footer-toolbar-right {
 
                 display: flex;
                 flex-direction: row;
@@ -43,11 +43,11 @@
                 align-items: center;
                 flex-wrap: nowrap;
 
-                .footer-user-message {
+                .ama-footer-user-message {
                     margin-right: 12px;
                 }
 
-                .message-indicator {
+                .ama-message-indicator {
                     padding: 0 2px;
                     min-width: 20px;
                     height: 20px;
@@ -58,7 +58,7 @@
                     text-align: center;
                     cursor: pointer;
 
-                    &.inactive {
+                    &.ama-inactive {
                         background-color: var(--theme-unselected-chip-bg-color);
                         color: var(--theme-disabled-text-color);
                     }
@@ -66,14 +66,14 @@
             }
         }
 
-        &.log-history-toolbar {
+        &.ama-log-history-toolbar {
             padding: 0 12px;
 
-            .log-history-toolbar-title {
+            .ama-log-history-toolbar-title {
                 font-size: 14px;
             }
 
-            .log-history-controls {
+            .ama-log-history-controls {
                 button {
                     width: 32px;
                     height: 32px;

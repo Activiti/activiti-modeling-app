@@ -35,16 +35,16 @@ export const expectedVariables: ProcessEditorElementVariable[] = [
                 'type': 'integer',
                 'icon': 'i',
                 'tooltip': `
-            <div class="variables-selector-tooltip">
-                <h3 class="variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
-                <div class="variables-selector-tooltip-text">
+            <div class="ama-variables-selector-tooltip">
+                <h3 class="ama-variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
+                <div class="ama-variables-selector-tooltip-text">
                     <p>SDK.CONDITION.TOOLTIP.PROCESS_VARIABLE_TOOLTIP.</p>
                     <span></span>
                 </div>
                 <h3>SDK.CONDITION.TOOLTIP.PROPERTIES</h3>
-                <div class="variables-selector-tooltip-text">
+                <div class="ama-variables-selector-tooltip-text">
                     <p>
-                        <pre class="variables-selector-variables-group-list-item-type">i</pre>
+                        <pre class="ama-variables-selector-variables-group-list-item-type">i</pre>
                         <span>integer</span>
                     </p>
                 </div>
@@ -58,16 +58,16 @@ export const expectedVariables: ProcessEditorElementVariable[] = [
                 'type': 'boolean',
                 'icon': 'b',
                 'tooltip': `
-            <div class="variables-selector-tooltip">
-                <h3 class="variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
-                <div class="variables-selector-tooltip-text">
+            <div class="ama-variables-selector-tooltip">
+                <h3 class="ama-variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
+                <div class="ama-variables-selector-tooltip-text">
                     <p>SDK.CONDITION.TOOLTIP.PROCESS_VARIABLE_TOOLTIP.</p>
                     <span></span>
                 </div>
                 <h3>SDK.CONDITION.TOOLTIP.PROPERTIES</h3>
-                <div class="variables-selector-tooltip-text">
+                <div class="ama-variables-selector-tooltip-text">
                     <p>
-                        <pre class="variables-selector-variables-group-list-item-type">b</pre>
+                        <pre class="ama-variables-selector-variables-group-list-item-type">b</pre>
                         <span>boolean</span>
                     </p>
                 </div>
@@ -81,16 +81,16 @@ export const expectedVariables: ProcessEditorElementVariable[] = [
                 'type': 'string',
                 'icon': 's',
                 'tooltip': `
-            <div class="variables-selector-tooltip">
-                <h3 class="variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
-                <div class="variables-selector-tooltip-text">
+            <div class="ama-variables-selector-tooltip">
+                <h3 class="ama-variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
+                <div class="ama-variables-selector-tooltip-text">
                     <p>SDK.CONDITION.TOOLTIP.PROCESS_VARIABLE_TOOLTIP.</p>
                     <span></span>
                 </div>
                 <h3>SDK.CONDITION.TOOLTIP.PROPERTIES</h3>
-                <div class="variables-selector-tooltip-text">
+                <div class="ama-variables-selector-tooltip-text">
                     <p>
-                        <pre class="variables-selector-variables-group-list-item-type">s</pre>
+                        <pre class="ama-variables-selector-variables-group-list-item-type">s</pre>
                         <span>string</span>
                     </p>
                 </div>
@@ -113,16 +113,16 @@ export const expectedVariables: ProcessEditorElementVariable[] = [
                 'type': 'string',
                 'icon': 's',
                 'tooltip': `
-            <div class="variables-selector-tooltip">
-                <h3 class="variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
-                <div class="variables-selector-tooltip-text">
+            <div class="ama-variables-selector-tooltip">
+                <h3 class="ama-variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
+                <div class="ama-variables-selector-tooltip-text">
                     <p>SDK.CONDITION.TOOLTIP.OUTPUT_VARIABLE_TOOLTIP.</p>
                     <span></span>
                 </div>
                 <h3>SDK.CONDITION.TOOLTIP.PROPERTIES</h3>
-                <div class="variables-selector-tooltip-text">
+                <div class="ama-variables-selector-tooltip-text">
                     <p>
-                        <pre class="variables-selector-variables-group-list-item-type">s</pre>
+                        <pre class="ama-variables-selector-variables-group-list-item-type">s</pre>
                         <span>string</span>
                     </p>
                 </div>
@@ -136,16 +136,16 @@ export const expectedVariables: ProcessEditorElementVariable[] = [
                 'type': 'boolean',
                 'icon': 'b',
                 'tooltip': `
-            <div class="variables-selector-tooltip">
-                <h3 class="variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
-                <div class="variables-selector-tooltip-text">
+            <div class="ama-variables-selector-tooltip">
+                <h3 class="ama-variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
+                <div class="ama-variables-selector-tooltip-text">
                     <p>SDK.CONDITION.TOOLTIP.OUTPUT_VARIABLE_TOOLTIP.</p>
                     <span></span>
                 </div>
                 <h3>SDK.CONDITION.TOOLTIP.PROPERTIES</h3>
-                <div class="variables-selector-tooltip-text">
+                <div class="ama-variables-selector-tooltip-text">
                     <p>
-                        <pre class="variables-selector-variables-group-list-item-type">b</pre>
+                        <pre class="ama-variables-selector-variables-group-list-item-type">b</pre>
                         <span>boolean</span>
                     </p>
                 </div>
@@ -159,16 +159,16 @@ export const expectedVariables: ProcessEditorElementVariable[] = [
                 'type': 'integer',
                 'icon': 'i',
                 'tooltip': `
-            <div class="variables-selector-tooltip">
-                <h3 class="variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
-                <div class="variables-selector-tooltip-text">
+            <div class="ama-variables-selector-tooltip">
+                <h3 class="ama-variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
+                <div class="ama-variables-selector-tooltip-text">
                     <p>SDK.CONDITION.TOOLTIP.OUTPUT_VARIABLE_TOOLTIP.</p>
                     <span></span>
                 </div>
                 <h3>SDK.CONDITION.TOOLTIP.PROPERTIES</h3>
-                <div class="variables-selector-tooltip-text">
+                <div class="ama-variables-selector-tooltip-text">
                     <p>
-                        <pre class="variables-selector-variables-group-list-item-type">i</pre>
+                        <pre class="ama-variables-selector-variables-group-list-item-type">i</pre>
                         <span>integer</span>
                     </p>
                 </div>

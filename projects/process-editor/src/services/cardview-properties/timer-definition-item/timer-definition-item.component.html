@@ -1,4 +1,4 @@
-<div class="timer-definition-block">
+<div class="ama-timer-definition-block">
     <form [formGroup]="timerDefinitionForm">
         <div class="timer-type">
             <div class="adf-property-label">
@@ -55,7 +55,7 @@
             </mat-form-field>
         </div>
 
-        <div *ngIf="isDateTimer()" class="timer-date">
+        <div *ngIf="isDateTimer()" class="ama-timer-date">
             <mat-form-field>
                 <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.DATE' | translate}}</div>
                 <mat-datetimepicker-toggle [for]="datetimePicker" matSuffix></mat-datetimepicker-toggle>
@@ -66,8 +66,8 @@
             </mat-form-field>
         </div>
 
-        <div *ngIf="isDurationTimer()" class="timer-duration">
-            <div class="timer-duration-date">
+        <div *ngIf="isDurationTimer()" class="ama-timer-duration">
+            <div class="ama-timer-duration-date">
                 <mat-form-field>
                     <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.YEARS' | translate}}
                     </div>
@@ -80,7 +80,7 @@
                 </mat-form-field>
             </div>
 
-            <div class="timer-duration-date">
+            <div class="ama-timer-duration-date">
                 <mat-form-field>
                     <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.WEEKS' | translate}}
                     </div>
@@ -93,7 +93,7 @@
                 </mat-form-field>
             </div>
 
-            <div class="timer-duration-time">
+            <div class="ama-timer-duration-time">
                 <mat-form-field>
                     <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIMERS.HOURS' | translate}}
                     </div>

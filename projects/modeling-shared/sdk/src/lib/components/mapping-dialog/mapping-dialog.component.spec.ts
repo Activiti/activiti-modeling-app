@@ -200,7 +200,7 @@ describe('MappingDialogComponent', () => {
         it('should render input mapping table correctly', () => {
             const parameters = Object.values(mockDialogDataInputMapping.inputParameters).sort(fixture.componentInstance.sortByName);
 
-            const rows = element.queryAll(By.css('div.mapping-table-viewer mat-row'));
+            const rows = element.queryAll(By.css('div.ama-mapping-table-viewer mat-row'));
             expect(rows.length).toBe(parameters.length);
 
             for (let index = 0; index < rows.length; index++) {
@@ -211,7 +211,7 @@ describe('MappingDialogComponent', () => {
                 const iconContainer = element.query(By.css(`[data-automation-id=variable-icon-cell-${index}] mat-icon`));
                 const variableValueContainer = element.query(By.css(`[data-automation-id=variable-value-cell-${index}] span`));
                 const deleteButtonContainer = element.query(By.css(`[data-automation-id=delete-row-button-${index}]`));
-                const iconHelp = fixture.debugElement.query(By.css('.help-icon'));
+                const iconHelp = fixture.debugElement.query(By.css('.ama-help-icon'));
 
                 expect(parameterContainer.nativeElement.textContent.replace(helpIconText, '').trim())
                     .toBe(parameter.label && parameter.label !== '' ? parameter.label : parameter.name);
@@ -220,7 +220,7 @@ describe('MappingDialogComponent', () => {
                 if (mapping.type === MappingType.variable) {
                     expect(variableValueContainer.nativeElement.className).toBe('variable-mapping');
                 } else {
-                    expect(variableValueContainer.nativeElement.className).toBe('non-variable-mapping');
+                    expect(variableValueContainer.nativeElement.className).toBe('ama-non-variable-mapping');
                 }
 
                 expect(iconHelp.nativeElement).toBeDefined();
@@ -230,7 +230,7 @@ describe('MappingDialogComponent', () => {
         });
 
         it('should render input mapping table with default headers', () => {
-            const headers = element.queryAll(By.css('div.mapping-table-viewer mat-header-cell'));
+            const headers = element.queryAll(By.css('div.ama-mapping-table-viewer mat-header-cell'));
             expect(headers).not.toBeNull();
             expect(headers.filter(header =>
                 header.nativeElement.textContent.trim() === 'SDK.MAPPING_DIALOG.INPUT_PARAMETER').length).toBe(1);
@@ -246,7 +246,7 @@ describe('MappingDialogComponent', () => {
         }));
 
         it('should render input mapping table with custom headers', () => {
-            const headers = element.queryAll(By.css('div.mapping-table-viewer mat-header-cell'));
+            const headers = element.queryAll(By.css('div.ama-mapping-table-viewer mat-header-cell'));
             expect(headers).not.toBeNull();
             expect(headers.filter(header =>
                 header.nativeElement.textContent.trim() === 'CUSTOM_KEY_HEADER').length).toBe(1);
@@ -263,7 +263,7 @@ describe('MappingDialogComponent', () => {
         it('should render output mapping table correctly', () => {
             const outputMapping = Object.keys(mockDialogDataOutputMapping.outputMapping);
 
-            const rows = element.queryAll(By.css('div.mapping-table-viewer mat-row'));
+            const rows = element.queryAll(By.css('div.ama-mapping-table-viewer mat-row'));
             expect(rows.length).toBe(outputMapping.length);
 
             for (let index = 0; index < rows.length; index++) {
@@ -274,7 +274,7 @@ describe('MappingDialogComponent', () => {
                 const iconContainer = element.query(By.css(`[data-automation-id=variable-icon-cell-${index}] mat-icon`));
                 const variableValueContainer = element.query(By.css(`[data-automation-id=variable-value-cell-${index}] span`));
                 const deleteButtonContainer = element.query(By.css(`[data-automation-id=delete-row-button-${index}]`));
-                const iconHelp = fixture.debugElement.query(By.css('.help-icon'));
+                const iconHelp = fixture.debugElement.query(By.css('.ama-help-icon'));
 
                 let parameter = '';
                 if (mapping.type === MappingType.variable) {
@@ -283,7 +283,7 @@ describe('MappingDialogComponent', () => {
                     expect(parameterContainer.classes['variable-mapping']).toBe(true);
                 } else {
                     parameter = mapping.value;
-                    expect(parameterContainer.classes['non-variable-mapping']).toBe(true);
+                    expect(parameterContainer.classes['ama-non-variable-mapping']).toBe(true);
                 }
 
                 expect(iconHelp.nativeElement).toBeDefined();

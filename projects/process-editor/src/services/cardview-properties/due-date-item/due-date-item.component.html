@@ -1,4 +1,4 @@
-<div class="due-date-block">
+<div class="ama-due-date-block">
     <form [formGroup]="dueDateForm">
         <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.DUE_DATE' | translate}}</div>
         <mat-checkbox formControlName="useProcessVariable">
@@ -18,7 +18,7 @@
         </div>
 
         <div *ngIf="!useProcessVariable.value"
-             class="due-date-input">
+             class="ama-due-date-input">
             <adf-card-view [properties]="properties"
                            [editable]="true"
                            [displayClearAction]="true">

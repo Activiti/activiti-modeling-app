@@ -42,7 +42,7 @@ import { createSelectedElement } from '../../store/process-editor.state';
     templateUrl: './process-modeler.component.html',
     styleUrls: ['./process-modeler.component.scss', './process-modeler-bpmnjs.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    host: { class: 'ama-process-modeler canvas-editor' }
+    host: { class: 'ama-process-modeler ama-canvas-editor' }
 })
 export class ProcessModelerComponent implements OnInit, OnDestroy {
     diagramData$ = new BehaviorSubject<ProcessContent>(null);

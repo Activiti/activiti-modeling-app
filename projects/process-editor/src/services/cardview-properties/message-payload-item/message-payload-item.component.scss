@@ -1,9 +1,9 @@
-.message-payload-block {
+.ama-message-payload-block {
     .mat-form-field {
         width: 100%;
     }
 
-    .messages-payload-add-button {
+    .ama-messages-payload-add-button {
         display: flex;
         justify-content: center;
         margin-top: 15px;
@@ -13,7 +13,7 @@
         }
     }
 
-    .message-list-item.mat-list-item {
+    .ama-message-list-item.mat-list-item {
         font-size: 13px;
         height: 35px !important;
 
@@ -26,10 +26,10 @@
         }
     }
 
-    .message-list-item-properties {
+    .ama-message-list-item-properties {
         display: flex;
 
-        .message-list-item {
+        .ama-message-list-item {
             &-type {
                 color: var(--theme-text-color);
             }
@@ -42,7 +42,7 @@
             }
         }
 
-        .message-item-cell {
+        .ama-message-item-cell {
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
@@ -50,7 +50,7 @@
         }
     }
 
-    .messages-payload-remove-button {
+    .ama-messages-payload-remove-button {
         color: var(--theme-warn-color);
         border-radius: 50%;
         font-size: 17px;

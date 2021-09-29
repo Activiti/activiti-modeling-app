@@ -14,16 +14,17 @@
     }
     &-monaco {
         height: 100%;
-        .code-editor {
+        .ama-code-editor {
             min-height: 100px;
 
+            /* stylelint-disable-next-line */
             .editor-container {
                 height: 100%;
             }
         }
     }
 
-    &.editor-disabled {
+    &.ama-editor-disabled {
         background: var(--theme-disabled-bg-color);
     }
 
@@ -37,7 +38,7 @@
         padding-right: 18px;
         font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
 
-        &.preview-hidden {
+        &.ama-preview-hidden {
             display: none;
             visibility: hidden;
         }

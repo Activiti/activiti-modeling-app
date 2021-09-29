@@ -9,36 +9,36 @@ modelingsdk-mapping-dialog {
     display: block;
 }
 
-.mapping-icon {
+.ama-mapping-icon {
     vertical-align: middle;
     margin-right: 5px;
 }
 
-div.mapping-dialog-content-container {
+div.ama-mapping-dialog-content-container {
     display: flex;
     flex-direction: column;
 
-    .mapping-dialog-selector-container {
+    .ama-mapping-dialog-selector-container {
         display: flex;
         justify-content: space-between;
         flex-direction: row;
 
-        .mapping-dialog-selector-title {
+        .ama-mapping-dialog-selector-title {
             line-height: 33px;
             font-size: 18px;
         }
 
-        .mapping-dialog-selector {
+        .ama-mapping-dialog-selector {
             width: 30%;
         }
     }
 
-    .mapping-body {
+    .ama-mapping-body {
         display: flex;
         justify-content: space-between;
         flex-direction: row;
 
-        .mapping-table-viewer {
+        .ama-mapping-table-viewer {
             min-height: 90px;
             margin-top: 10px;
             width: 50%;
@@ -68,7 +68,7 @@ div.mapping-dialog-content-container {
                     padding: 0 12px;
                 }
 
-                .input-disabled {
+                .ama-input-disabled {
                     cursor: default;
                 }
 
@@ -99,7 +99,7 @@ div.mapping-dialog-content-container {
                     border-bottom: 0;
                 }
 
-                .ellipsis-cell {
+                .ama-ellipsis-cell {
                     display: flex;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -107,16 +107,16 @@ div.mapping-dialog-content-container {
                     line-height: 48px;
                 }
 
-                .required-indicator {
+                .ama-required-indicator {
                     color: red;
                 }
 
-                .non-variable-mapping {
+                .ama-non-variable-mapping {
                     font-style: italic;
                 }
             }
 
-            .add-btn {
+            .ama-add-btn {
                 float: right;
                 padding: 0 10px;
                 min-width: 30px;
@@ -128,17 +128,17 @@ div.mapping-dialog-content-container {
             }
         }
 
-        .mapping-table-viewer.input-mapping-table {
+        .ama-mapping-table-viewer.ama-input-mapping-table {
             height: 340px;
         }
 
-        .mapping-value-form {
+        .ama-mapping-value-form {
             width: 50%;
             padding-left: 12px;
             display: flex;
             flex-direction: column;
 
-            .variable-selector {
+            .ama-variable-selector {
                 display: flex;
                 flex-direction: row;
                 padding: 12px 0;
@@ -152,7 +152,7 @@ div.mapping-dialog-content-container {
                 }
             }
 
-            div.mapping-value {
+            div.ama-mapping-value {
                 height: 100%;
 
                 mat-tab-group {
@@ -184,7 +184,7 @@ div.mapping-dialog-content-container {
                     }
                 }
 
-                .value-mapping-input {
+                .ama-value-mapping-input {
                     modelingsdk-expression-code-editor {
                         display: block;
                         height: 235px;
@@ -195,7 +195,7 @@ div.mapping-dialog-content-container {
     }
 }
 
-.help-icon {
+.ama-help-icon {
     line-height: 10px;
     font-size: 16px;
     width: 16px;
@@ -207,12 +207,12 @@ div.mapping-dialog-content-container {
     cursor: pointer;
 }
 
-.mapping-dialog-expression-editor {
+.ama-mapping-dialog-expression-editor {
     display: block;
     height: 235px;
 }
 
-.mapping-dialog-variable-selector {
+.ama-mapping-dialog-variable-selector {
     display: block;
     height: 235px;
     overflow: auto;

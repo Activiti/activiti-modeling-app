@@ -7,13 +7,13 @@ ama-assignment-dialog {
         overflow: hidden;
     }
 
-    .code-editor {
+    .ama-code-editor {
         min-height: 180px;
     }
 }
 
 .ama-assignment-container {
-    &.assignment-dialog-content {
+    &.ama-assignment-dialog-content {
         .mat-tab-body.mat-tab-body-active {
             min-height: 210px;
         }

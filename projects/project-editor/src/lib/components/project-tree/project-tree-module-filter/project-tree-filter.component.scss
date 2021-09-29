@@ -1,4 +1,4 @@
-.project-tree-filter {
+.ama-project-tree-filter {
     .mat-expansion-panel {
         &-body {
             padding: 0 0 16px 24px;
@@ -22,11 +22,11 @@
     .mat-expansion-panel-body {
         padding: 0;
 
-        .project-tree-filter__button.active {
+        .ama-project-tree-filter__button.active {
             background: var(--theme-text-selection-color);
         }
 
-        .project-tree-filter-global-item mat-icon {
+        .ama-project-tree-filter-global-item mat-icon {
             color: var(--theme-accent-color);
         }
     }
@@ -46,7 +46,7 @@
         line-height: 20px;
         display: inline-block;
 
-        &.filter-icon {
+        &.ama-filter-icon {
             color: var(--theme-primary-color);
         }
     }
@@ -60,7 +60,7 @@
         line-height: 24px;
         display: inline-block;
 
-        &.filter-icon {
+        &.ama-filter-icon {
             color: var(--theme-primary-color);
         }
     }

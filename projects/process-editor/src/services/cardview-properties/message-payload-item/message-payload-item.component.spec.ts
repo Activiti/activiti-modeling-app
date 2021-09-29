@@ -118,7 +118,7 @@ describe('CardViewMessageItemComponent', () => {
         const showPropertiesForm = fixture.debugElement.query(By.css('#show-property-form'));
         expect(showPropertiesForm).toBeNull();
 
-        const addProperty = fixture.debugElement.query(By.css('.messages-payload-add-button button'));
+        const addProperty = fixture.debugElement.query(By.css('.ama-messages-payload-add-button button'));
         addProperty.nativeElement.click();
         fixture.detectChanges();
         expect(showPropertiesForm).toBeDefined();
@@ -150,7 +150,7 @@ describe('CardViewMessageItemComponent', () => {
         const error = fixture.debugElement.query(By.css('[id="payload-name-field"] mat-error'));
         expect(error.nativeElement.textContent.trim()).toEqual('PROCESS_EDITOR.ELEMENT_PROPERTIES.MESSAGE_PAYLOAD.INVALID_PAYLOAD_NAME');
 
-        const saveButton = fixture.debugElement.query(By.css('.messages-payload-add-button button'));
+        const saveButton = fixture.debugElement.query(By.css('.ama-messages-payload-add-button button'));
         expect(saveButton.nativeElement.disabled).toBe(true);
     });
 });

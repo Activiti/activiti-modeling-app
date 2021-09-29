@@ -19,7 +19,7 @@
         flex: 0 0 auto;
     }
 
-    .connector-json {
+    .ama-connector-json {
         position: absolute;
         top: 60px;
         height: calc(100% - 60px);
@@ -63,7 +63,7 @@
         width: 100%;
         flex: 1 1 auto;
 
-        .code-editor {
+        .ama-code-editor {
             flex: 1 0 auto;
             height: auto;
         }

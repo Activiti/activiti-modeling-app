@@ -1,10 +1,10 @@
 <h2 mat-dialog-title>
-    <mat-icon class="variables-icon">email</mat-icon>{{ 'SDK.MESSAGES_EDITOR.TITLE' | translate}}
+    <mat-icon class="ama-variables-icon">email</mat-icon>{{ 'SDK.MESSAGES_EDITOR.TITLE' | translate}}
 </h2>
 
-<mat-dialog-content class="properties-content variables-dialog-content" data-automation-id="variables-dialog">
-    <div class="message-dialog">
-        <div class=message-table>
+<mat-dialog-content class="ama-properties-content ama-variables-dialog-content" data-automation-id="variables-dialog">
+    <div class="ama-message-dialog">
+        <div class="ama-message-table">
             <mat-table [dataSource]="dataSource">
                 <ng-container matColumnDef="id">
                     <mat-header-cell *matHeaderCellDef>{{ 'SDK.MESSAGES_EDITOR.TABLE.COLUMN_ID' | translate }}
@@ -37,14 +37,14 @@
                     [class.active]="i == position" [attr.data-automation-id]="'message-row-' + i + '-' + row.id">
                 </mat-row>
             </mat-table>
-            <button mat-raised-button class="add-btn" color="primary" (click)="createMessage()"
+            <button mat-raised-button class="ama-add-btn" color="primary" (click)="createMessage()"
                 data-automation-id="create-new-message">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
 
         <ng-container *ngIf="showForm; else noMessagesTemplate">
-            <div class="message-form">
+            <div class="ama-message-form">
                 <mat-form-field>
                     <div class="adf-messages-form-label">{{'SDK.MESSAGES_EDITOR.TABLE.COLUMN_ID' | translate}}</div>
                     <input matInput [(ngModel)]="selectedMessage.id" data-automation-id="message-id" disabled>
@@ -53,13 +53,13 @@
                     <div class="adf-property-label">{{'SDK.MESSAGES_EDITOR.TABLE.COLUMN_NAME' | translate}}</div>
                     <input matInput [(ngModel)]="selectedMessage.name" data-automation-id="message-name" (keyup)="onMessageChanged()">
                 </mat-form-field>
-                <div class="mat-error error-message" *ngIf="!selectedMessage.name.length">
+                <div class="mat-error ama-error-message" *ngIf="!selectedMessage.name.length">
                     {{ 'SDK.MESSAGES_EDITOR.ERRORS.EMPTY_NAME' | translate }}</div>
             </div>
         </ng-container>
 
         <ng-template #noMessagesTemplate>
-            <p class="no-messages">{{'SDK.MESSAGES_EDITOR.TABLE.NO_MESSAGES' | translate}}</p>
+            <p class="ama-no-messages">{{'SDK.MESSAGES_EDITOR.TABLE.NO_MESSAGES' | translate}}</p>
         </ng-template>
     </div>
 </mat-dialog-content>

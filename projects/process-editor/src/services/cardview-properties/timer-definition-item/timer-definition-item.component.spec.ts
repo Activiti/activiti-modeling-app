@@ -135,8 +135,8 @@ describe('CardViewTimerDefinitionItemComponent', () => {
 
     it('should not display timer inputs if type is not selected', () => {
         const cycleInput = fixture.nativeElement.querySelector('div[class="timer-cycle"]');
-        const dateInput = fixture.nativeElement.querySelector('div[class="timer-date"]');
-        const durationInput = fixture.nativeElement.querySelector('div[class="timer-duration"]');
+        const dateInput = fixture.nativeElement.querySelector('div[class="ama-timer-date"]');
+        const durationInput = fixture.nativeElement.querySelector('div[class="ama-timer-duration"]');
         expect(cycleInput).toBeNull();
         expect(dateInput).toBeNull();
         expect(durationInput).toBeNull();
@@ -147,8 +147,8 @@ describe('CardViewTimerDefinitionItemComponent', () => {
         component.useProcessVariable.setValue(true);
         fixture.detectChanges();
         const cycleInput = fixture.nativeElement.querySelector('div[class="timer-cycle"]');
-        const dateInput = fixture.nativeElement.querySelector('div[class="timer-date"]');
-        const durationInput = fixture.nativeElement.querySelector('div[class="timer-duration"]');
+        const dateInput = fixture.nativeElement.querySelector('div[class="ama-timer-date"]');
+        const durationInput = fixture.nativeElement.querySelector('div[class="ama-timer-duration"]');
         expect(cycleInput).toBeNull();
         expect(dateInput).toBeNull();
         expect(durationInput).toBeNull();
@@ -158,8 +158,8 @@ describe('CardViewTimerDefinitionItemComponent', () => {
         component.timerType.setValue('timeCycle');
         fixture.detectChanges();
         const cycleInput = fixture.nativeElement.querySelector('div[class="timer-cycle"]');
-        const dateInput = fixture.nativeElement.querySelector('div[class="timer-date"]');
-        const durationInput = fixture.nativeElement.querySelector('div[class="timer-duration"]');
+        const dateInput = fixture.nativeElement.querySelector('div[class="ama-timer-date"]');
+        const durationInput = fixture.nativeElement.querySelector('div[class="ama-timer-duration"]');
         expect(cycleInput).not.toBeNull();
         expect(dateInput).not.toBeNull();
         expect(durationInput).not.toBeNull();
@@ -169,8 +169,8 @@ describe('CardViewTimerDefinitionItemComponent', () => {
         component.timerType.setValue('timeDate');
         fixture.detectChanges();
         const cycleInput = fixture.nativeElement.querySelector('div[class="timer-cycle"]');
-        const dateInput = fixture.nativeElement.querySelector('div[class="timer-date"]');
-        const durationInput = fixture.nativeElement.querySelector('div[class="timer-duration"]');
+        const dateInput = fixture.nativeElement.querySelector('div[class="ama-timer-date"]');
+        const durationInput = fixture.nativeElement.querySelector('div[class="ama-timer-duration"]');
         expect(cycleInput).toBeNull();
         expect(dateInput).not.toBeNull();
         expect(durationInput).toBeNull();
@@ -180,8 +180,8 @@ describe('CardViewTimerDefinitionItemComponent', () => {
         component.timerType.setValue('timeDuration');
         fixture.detectChanges();
         const cycleInput = fixture.nativeElement.querySelector('div[class="timer-cycle"]');
-        const dateInput = fixture.nativeElement.querySelector('div[class="timer-date"]');
-        const durationInput = fixture.nativeElement.querySelector('div[class="timer-duration"]');
+        const dateInput = fixture.nativeElement.querySelector('div[class="ama-timer-date"]');
+        const durationInput = fixture.nativeElement.querySelector('div[class="ama-timer-duration"]');
         expect(cycleInput).toBeNull();
         expect(dateInput).toBeNull();
         expect(durationInput).not.toBeNull();

@@ -1,8 +1,8 @@
-<h2 mat-dialog-title class="variables-dialog-title"><mat-icon class="variables-icon">layers</mat-icon>{{title | translate}}</h2>
+<h2 mat-dialog-title class="ama-variables-dialog-title"><mat-icon class="ama-variables-icon">layers</mat-icon>{{title | translate}}</h2>
 
-<mat-dialog-content class="properties-content variables-dialog-content" data-automation-id="variables-dialog">
+<mat-dialog-content class="ama-properties-content ama-variables-dialog-content" data-automation-id="variables-dialog">
 
-    <mat-form-field class="variables-filter">
+    <mat-form-field class="ama-variables-filter">
         <mat-label>{{ filterPlaceholder | translate }}</mat-label>
         <input [(ngModel)]="filterValue" matInput autocomplete="false" data-automation-id="variable-filter">
         <button mat-button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear" (click)="filterValue = ''" data-automation-id="variable-clear-filter">
@@ -15,7 +15,7 @@
 
 
 <mat-dialog-actions class="adf-dialog-buttons">
-    <p class="error-message" *ngIf="!validVariables">{{ 'SDK.VARIABLES_EDITOR.ERRORS.NAME_ALREADY_EXISTS' | translate }}</p>
+    <p class="ama-error-message" *ngIf="!validVariables">{{ 'SDK.VARIABLES_EDITOR.ERRORS.NAME_ALREADY_EXISTS' | translate }}</p>
     <span class="adf-fill-remaining-space"></span>
 
     <button mat-button mat-dialog-close (click)="onClose()" data-automation-id="close-button">

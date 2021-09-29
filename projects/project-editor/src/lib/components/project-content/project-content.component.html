@@ -1,4 +1,4 @@
-<adf-toolbar class="inline project-header">
+<adf-toolbar class="inline ama-project-header">
     <ng-container *ngIf="project$ | async as project;">
         <adf-toolbar-title>
             <button
@@ -9,7 +9,7 @@
                 [title]="'PROJECT_EDITOR.BACK_TO' | translate">
                 <mat-icon>home</mat-icon>
             </button>
-            <span class="project-name">{{ project.name }} ({{ project.version }})</span>
+            <span class="ama-project-name">{{ project.name }} ({{ project.version }})</span>
         </adf-toolbar-title>
 
         <div class="adf-toolbar--spacer"></div>

@@ -1,14 +1,14 @@
 <h2 mat-dialog-title>
-    <mat-icon class="mapping-icon">compare_arrows</mat-icon>{{'SDK.MAPPING_DIALOG.TITLE' | translate}}
+    <mat-icon class="ama-mapping-icon">compare_arrows</mat-icon>{{'SDK.MAPPING_DIALOG.TITLE' | translate}}
 </h2>
 
-<mat-dialog-content class="properties-content mapping-dialog-content" data-automation-id="mapping-dialog">
-    <div class="mapping-dialog-content-container">
-        <div class="mapping-dialog-selector-container" *ngIf="isMappingSelectorEnabled()">
-            <span class="mapping-dialog-selector-title">
+<mat-dialog-content class="ama-properties-content mapping-dialog-content" data-automation-id="mapping-dialog">
+    <div class="ama-mapping-dialog-content-container">
+        <div class="ama-mapping-dialog-selector-container" *ngIf="isMappingSelectorEnabled()">
+            <span class="ama-mapping-dialog-selector-title">
                 {{ 'SDK.MAPPING_DIALOG.SELECTOR_TITLE' | translate }}
             </span>
-            <mat-form-field class="mapping-dialog-selector">
+            <mat-form-field class="ama-mapping-dialog-selector">
                 <mat-select [(ngModel)]="mappingType" (selectionChange)="variableMappingTypeChange($event)">
                     <mat-option [value]="'input'">
                         {{ 'SDK.MAPPING_DIALOG.INPUT_MAPPING' | translate }}
@@ -20,8 +20,8 @@
             </mat-form-field>
         </div>
 
-        <div class="mapping-body">
-            <div class="mapping-table-viewer {{mappingType}}-mapping-table">
+        <div class="ama-mapping-body">
+            <div class="ama-mapping-table-viewer {{mappingType}}-mapping-table">
                 <mat-table [dataSource]="dataSource" [trackBy]="trackBy">
                     <ng-container matColumnDef="name">
                         <mat-header-cell *matHeaderCellDef><span *ngIf="mappingType === 'input'">{{ keyColumnHeader |
@@ -31,18 +31,18 @@
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element; index as i"
                             [attr.data-automation-id]="'variable-name-cell-' + i"
-                            class="ellipsis-cell {{element.readOnly ? 'mat-select-placeholder input-disabled' : ''}}"
-                            [ngClass]="(mappingType === 'output' && element.mappingValueType !== 'variable') ? 'non-variable-mapping': 'variable-mapping'">
+                            class="ama-ellipsis-cell {{element.readOnly ? 'mat-select-placeholder ama-input-disabled' : ''}}"
+                            [ngClass]="(mappingType === 'output' && element.mappingValueType !== 'variable') ? 'ama-non-variable-mapping': 'variable-mapping'">
                             <span>
                                 <span>
                                     {{element.label || element.name | variablevalue}}<span
                                         *ngIf="element.required && mappingType === 'input'"
-                                        class="required-indicator">&nbsp;*</span>
+                                        class="ama-required-indicator">&nbsp;*</span>
                                 </span>
                             </span>
                             <mat-icon
                                 matTooltip="{{ element.description}} ({{'SDK.MAPPING_DIALOG.TYPE' | translate}}: {{element.type}})"
-                                matTooltipPosition="below" class="help-icon">help
+                                matTooltipPosition="below" class="ama-help-icon">help
                             </mat-icon>
                         </mat-cell>
                     </ng-container>
@@ -50,7 +50,7 @@
                     <ng-container matColumnDef="icon">
                         <mat-header-cell *matHeaderCellDef></mat-header-cell>
                         <mat-cell *matCellDef="let element;index as i"
-                            class="{{element.readOnly ? 'mat-select-placeholder input-disabled' : ''}}"
+                            class="{{element.readOnly ? 'mat-select-placeholder ama-input-disabled' : ''}}"
                             [attr.data-automation-id]="'variable-icon-cell-' + i">
                             <mat-icon *ngIf="mappingType === 'input'">arrow_backward</mat-icon>
                             <mat-icon *ngIf="mappingType === 'output'">arrow_forward</mat-icon>
@@ -65,9 +65,9 @@
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element; index as i"
                             [attr.data-automation-id]="'variable-value-cell-' + i"
-                            class="ellipsis-cell {{element.readOnly ? 'mat-select-placeholder input-disabled' : ''}}">
+                            class="ama-ellipsis-cell {{element.readOnly ? 'mat-select-placeholder ama-input-disabled' : ''}}">
                             <span
-                                [ngClass]="(mappingType === 'input' && element.mappingValueType !== 'variable') ? 'non-variable-mapping': 'variable-mapping'">{{element.value
+                                [ngClass]="(mappingType === 'input' && element.mappingValueType !== 'variable') ? 'ama-non-variable-mapping': 'variable-mapping'">{{element.value
                                 | variablevalue}}</span>
                         </mat-cell>
                     </ng-container>
@@ -87,13 +87,13 @@
                     <mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" (click)="editRow(i)"
                         [class.active]="i == selectedRow" [attr.data-automation-id]="'mapping-row-' + i"></mat-row>
                 </mat-table>
-                <button mat-raised-button class="add-btn" color="primary" *ngIf="mappingType === 'output'"
+                <button mat-raised-button class="ama-add-btn" color="primary" *ngIf="mappingType === 'output'"
                     data-automation-id="add-variable-button" (click)="addOutputMapping('')">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
-            <div class="mapping-value-form" *ngIf="selectedRow !== undefined && selectedRow <= dataSource.length">
-                <div class="variable-selector">
+            <div class="ama-mapping-value-form" *ngIf="selectedRow !== undefined && selectedRow <= dataSource.length">
+                <div class="ama-variable-selector">
                     <ng-container *ngIf="mappingType === 'input'">
                         <mat-label value="selectedDestination">{{ keyColumnHeader | translate}}
                         </mat-label>
@@ -117,12 +117,12 @@
                         </mat-select>
                     </ng-container>
                 </div>
-                <div class="mapping-value">
+                <div class="ama-mapping-value">
                     <mat-tab-group [(selectedIndex)]="selectedTab" (selectedTabChange)="selectedTabChange()">
                         <mat-tab *ngIf="mappingType === 'input'" data-automation-id="process-variable-tab"
                             label="{{ valueColumnHeader | translate}}">
                             <ng-container *ngIf="selectedTab===0 && tabCheck === selectedTab">
-                                <div class="mapping-dialog-variable-selector">
+                                <div class="ama-mapping-dialog-variable-selector">
                                     <modelingsdk-variable-selector [variables]="editorVariables"
                                         [varIdSelected]="variableValue | variableIdFromVariableName: editorVariables"
                                         [typeFilter]="dataSource[selectedRow].type | variablePrimitiveType"
@@ -154,7 +154,7 @@
                             [disabled]="mappingType === 'output' && !dataSource[selectedRow].type">
                             <ng-container *ngIf="selectedTab===1 && tabCheck === selectedTab">
                                 <modelingsdk-value-type-input #valueInput data-automation-id="value-mapping-input"
-                                    class="value-mapping-input" (onChange)="valueMappingValueChange($event,selectedRow)"
+                                    class="ama-value-mapping-input" (onChange)="valueMappingValueChange($event,selectedRow)"
                                     [(ngModel)]="valueValue" [index]="selectedRow+1"
                                     [type]="dataSource[selectedRow].type" [required]="dataSource[selectedRow].required"
                                     [extendedProperties]="extendedProperties">
@@ -165,7 +165,7 @@
                             data-automation-id="expression-mapping-tab">
                             <ng-container *ngIf="selectedTab===2 && tabCheck === selectedTab">
                                 <modelingsdk-expression-code-editor
-                                    class="monaco-editor mapping-dialog-expression-editor"
+                                    class="monaco-editor ama-mapping-dialog-expression-editor"
                                     [attr.data-automation-id]="'mapping-dialog-expression-editor'"
                                     [expression]="expressionValue"
                                     (expressionChange)="valueMappingExpressionChange($event,selectedRow)"

@@ -1,7 +1,7 @@
 <div class="app-navigation">
 
     <div class="app-navigation__section app-navigation__section--new adf-sidebar-action-menu"
-        [ngClass]="{ 'section--new--mini': !(expanded$ | async) }">
+        [ngClass]="{ 'ama-section--new--mini': !(expanded$ | async) }">
         <button mat-button *ngIf="(expanded$ | async)" [matMenuTriggerFor]="menu" data-automation-id="create-button"
             class="adf-sidebar-action-menu-button mat-raised-button">
             <span class="adf-sidebar-action-menu-text">{{ 'PROJECT_EDITOR.NEW_MENU.LABEL' | translate }}</span>

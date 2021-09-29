@@ -7,7 +7,7 @@ modelingsdk-properties-viewer {
     display: flex;
     flex-direction: row;
 }
-.properties-viewer {
+.ama-properties-viewer {
     min-height: 90px;
     width: 600px;
 
@@ -38,7 +38,7 @@ modelingsdk-properties-viewer {
             border-bottom: 0;
         }
 
-        .ellipsis-cell {
+        .ama-ellipsis-cell {
             display: block;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -47,7 +47,7 @@ modelingsdk-properties-viewer {
         }
     }
 
-    .add-btn {
+    .ama-add-btn {
         float: right;
         padding: 0 10px;
         min-width: 30px;
@@ -59,7 +59,7 @@ modelingsdk-properties-viewer {
     }
 }
 
-.properties-form {
+.ama-properties-form {
     text-align: left;
     width: 300px;
     margin-left: 40px;
@@ -68,7 +68,7 @@ modelingsdk-properties-viewer {
         display: block;
     }
 
-    .variable-name-info-icon {
+    .ama-variable-name-info-icon {
         vertical-align: middle;
         font-size: medium;
     }
@@ -80,7 +80,7 @@ modelingsdk-properties-viewer {
     }
 }
 
-.no-properties {
+.ama-no-properties {
     color: var(--theme-text-color);
     width: 300px;
     font-size: 16px;

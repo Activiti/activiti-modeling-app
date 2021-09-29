@@ -89,8 +89,8 @@ describe('ProcessErrorsDialogComponent', () => {
     it('should hide form if no process error is clicked', () => {
         fixture.detectChanges();
 
-        const template = fixture.nativeElement.querySelector('.process-error-form');
-        const processError = fixture.nativeElement.querySelector('.no-process-errors');
+        const template = fixture.nativeElement.querySelector('.ama-process-error-form');
+        const processError = fixture.nativeElement.querySelector('.ama-no-process-errors');
 
         expect(template === null).toBeTruthy();
         expect(processError === null).toBeFalsy();
@@ -105,8 +105,8 @@ describe('ProcessErrorsDialogComponent', () => {
         editRow.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        const template = fixture.nativeElement.querySelector('.process-error-form');
-        const processError = fixture.nativeElement.querySelector('.no-process-errors');
+        const template = fixture.nativeElement.querySelector('.ama-process-error-form');
+        const processError = fixture.nativeElement.querySelector('.ama-no-process-errors');
 
         expect(template === null).toBeFalsy();
         expect(processError === null).toBeTruthy();
@@ -121,7 +121,7 @@ describe('ProcessErrorsDialogComponent', () => {
         editRow.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        const template = fixture.nativeElement.querySelector('.process-error-form');
+        const template = fixture.nativeElement.querySelector('.ama-process-error-form');
         const input = template.querySelector('input');
         component.selectedProcessError.name = 'changedProcessError';
         input.dispatchEvent(new Event('keyup'));
@@ -141,7 +141,7 @@ describe('ProcessErrorsDialogComponent', () => {
         editRow.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        const template = fixture.nativeElement.querySelector('.process-error-form');
+        const template = fixture.nativeElement.querySelector('.ama-process-error-form');
         const input = template.querySelector('input');
         component.selectedProcessError.errorCode = 'changedProcessErrorCode';
         input.dispatchEvent(new Event('keyup'));
@@ -161,7 +161,7 @@ describe('ProcessErrorsDialogComponent', () => {
         editRow.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        const template = fixture.nativeElement.querySelector('.process-error-form');
+        const template = fixture.nativeElement.querySelector('.ama-process-error-form');
         const input = template.querySelector('input[data-automation-id="process-error-name"]');
         component.selectedProcessError.name = '';
         input.dispatchEvent(new Event('keyup'));
@@ -191,7 +191,7 @@ describe('ProcessErrorsDialogComponent', () => {
         editRow.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        const template = fixture.nativeElement.querySelector('.process-error-form');
+        const template = fixture.nativeElement.querySelector('.ama-process-error-form');
         const input = template.querySelector('input[data-automation-id="process-error-code"]');
         component.selectedProcessError.errorCode = '';
         input.dispatchEvent(new Event('keyup'));
@@ -218,7 +218,7 @@ describe('ProcessErrorsDialogComponent', () => {
         expect(saveButton.disabled).toBeTruthy();
 
         spyOn(service, 'createProcessError').and.returnValue({ 'id': '678', 'name': 'error4', 'type': 'bpmn:error' });
-        const addButton = fixture.nativeElement.querySelector('.add-btn');
+        const addButton = fixture.nativeElement.querySelector('.ama-add-btn');
         expect(addButton).toBeDefined();
         addButton.dispatchEvent(new Event('click'));
         fixture.detectChanges();

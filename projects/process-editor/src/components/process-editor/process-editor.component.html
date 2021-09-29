@@ -1,6 +1,6 @@
-<div class="process-editor">
+<div class="ama-process-editor">
     <ng-container *ngIf="!(loading$ | async); else loading;">
-        <div class="process-editor-modeling" [attr.data-automation-id]="'process-editor-modeling'">
+        <div class="ama-process-editor-modeling" [attr.data-automation-id]="'process-editor-modeling'">
             <ama-process-header
                 [process]="process$ | async"
                 [disableSave]="disableSave"
@@ -11,7 +11,7 @@
             <mat-tab-group class="ama-process-tab-group" *ngIf="process$ | async as process;"
                            (selectedTabChange)="selectedTabChange($event)">
                 <mat-tab label="{{ 'PROCESS_EDITOR.TABS.DIAGRAM_EDITOR' | translate }}">
-                    <div class="process-editor-modeling-area" style="flex-direction: column">
+                    <div class="ama-process-editor-modeling-area" style="flex-direction: column">
 
                         <modelingsdk-workbench-layout>
                             <modelingsdk-workbench-layout-sidenav>
@@ -25,7 +25,7 @@
                                     [source]="bpmnContent$ | async"
                                     [attr.data-automation-id]="'process-editor-modeler'">
                                 </ama-process-modeler>
-                                <ama-process-palette class="process-palette"></ama-process-palette>
+                                <ama-process-palette class="ama-process-palette"></ama-process-palette>
                             </modelingsdk-workbench-layout-content>
                         </modelingsdk-workbench-layout>
 
@@ -59,7 +59,7 @@
     </ng-container>
 
     <ng-template #loading>
-        <div class="process-editor-spinner">
+        <div class="ama-process-editor-spinner">
             <mat-spinner></mat-spinner>
         </div>
     </ng-template>

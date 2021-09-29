@@ -1,12 +1,12 @@
 <ng-container *ngIf="showConsole$ | async let showConsole;">
-    <mat-toolbar class="log-history-toolbar">
-        <span class="log-history-toolbar-title">Log history for</span>
-            <mat-select placeholder="All" [(ngModel)]="filterType" (selectionChange)="changeFilter()" class="log-history-filters">
+    <mat-toolbar class="ama-log-history-toolbar">
+        <span class="ama-log-history-toolbar-title">Log history for</span>
+            <mat-select placeholder="All" [(ngModel)]="filterType" (selectionChange)="changeFilter()" class="ama-log-history-filters">
                 <mat-option *ngFor="let filter of filters" [value]="filter">
                     {{filter.displayName | translate}}
                 </mat-option>
             </mat-select>
-        <div class="log-history-controls">
+        <div class="ama-log-history-controls">
             <button mat-icon-button data-automation-id='collapse' (click)="toggleConsole()">
                 <mat-icon>expand_more</mat-icon>
             </button>
@@ -15,17 +15,17 @@
             </button>
         </div>
     </mat-toolbar>
-    <ama-log-history class="log-history" [messages]="logs$ | async"></ama-log-history>
+    <ama-log-history class="ama-log-history" [messages]="logs$ | async"></ama-log-history>
 </ng-container>
-<mat-toolbar class="editor-footer-toolbar">
-    <div class="editor-footer-toolbar-left">
+<mat-toolbar class="ama-editor-footer-toolbar">
+    <div class="ama-editor-footer-toolbar-left">
         <div class="loading-indicator" *ngIf="editorFooterService.inProgress$ | async">
             <mat-progress-spinner color="primary" mode="indeterminate" diameter="20"></mat-progress-spinner>
         </div>
     </div>
-    <div class="editor-footer-toolbar-right">
-        <div class="footer-user-message">{{ editorFooterService.userMessage$ | async | translate }}</div>
-        <div class="message-indicator" [class.inactive]="!(editorFooterService.isNewError$ | async)"
+    <div class="ama-editor-footer-toolbar-right">
+        <div class="ama-footer-user-message">{{ editorFooterService.userMessage$ | async | translate }}</div>
+        <div class="ama-message-indicator" [class.ama-inactive]="!(editorFooterService.isNewError$ | async)"
             (click)="toggleConsole()">
             {{ editorFooterService.newErrorNumber$ | async }}
         </div>

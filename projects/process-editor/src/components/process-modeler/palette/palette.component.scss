@@ -5,7 +5,7 @@ ama-process-palette .mat-card {
     box-sizing: content-box;
     padding: 0;
 
-    .palette-header {
+    .ama-palette-header {
         height: 12px;
         background: var(--theme-ama-palette-header-bg-color);
         cursor: move;
@@ -22,12 +22,12 @@ ama-process-palette .mat-card {
         }
     }
 
-    .palette-body {
+    .ama-palette-body {
         background: var(--theme-ama-palette-bg-color);
         padding: 6px;
         display: none;
 
-        &.opened {
+        &.ama-opened {
             display: block;
         }
     }
@@ -65,17 +65,17 @@ ama-process-palette .mat-card {
         }
 
         &:hover,
-        &.selected {
+        &.ama-selected {
             color: var(--theme-primary-color);
         }
     }
 
-    .separator {
+    .ama-separator {
         border-color: var(--theme-ama-palette-separator-color);
     }
 }
 
-.mat-card.palette-drawer {
+.mat-card.ama-palette-drawer {
     min-width: 25px;
     box-sizing: content-box;
     text-align: center;
@@ -84,13 +84,13 @@ ama-process-palette .mat-card {
     margin-left: 38px;
     overflow: auto;
 
-    .palette-body {
+    .ama-palette-body {
         padding: 6px;
         background: var(--theme-ama-palette-bg-color);
     }
 
     .entry {
-        &.svg {
+        &.ama-svg {
             width: 20px;
             height: 20px;
 
@@ -132,7 +132,7 @@ ama-process-palette .mat-card {
         }
     }
 
-    .drawer-item-tag {
+    .ama-drawer-item-tag {
         font-size: 12px;
         display: inline-block;
         position: relative;

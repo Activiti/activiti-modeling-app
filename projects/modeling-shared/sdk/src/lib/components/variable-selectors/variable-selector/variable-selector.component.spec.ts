@@ -57,8 +57,8 @@ describe('VariableSelectorComponent', () => {
     }));
 
     it('should display variable list', () => {
-        const variableIcons = fixture.debugElement.queryAll(By.css('.variables-selector-variables-group-list-item-type'));
-        const variableNames = fixture.debugElement.queryAll(By.css('.variables-selector-variables-group-list-item-name'));
+        const variableIcons = fixture.debugElement.queryAll(By.css('.ama-variables-selector-variables-group-list-item-type'));
+        const variableNames = fixture.debugElement.queryAll(By.css('.ama-variables-selector-variables-group-list-item-name'));
 
         expect(variableIcons.length).toBe(vars.length);
         expect(variableNames.length).toBe(vars.length);
@@ -80,8 +80,8 @@ describe('VariableSelectorComponent', () => {
         fixture.detectChanges();
 
         const expectation = [vars[2], vars[3]];
-        const variableIcons = fixture.debugElement.queryAll(By.css('.variables-selector-variables-group-list-item-type'));
-        const variableNames = fixture.debugElement.queryAll(By.css('.variables-selector-variables-group-list-item-name'));
+        const variableIcons = fixture.debugElement.queryAll(By.css('.ama-variables-selector-variables-group-list-item-type'));
+        const variableNames = fixture.debugElement.queryAll(By.css('.ama-variables-selector-variables-group-list-item-name'));
 
         expect(variableIcons.length).toBe(expectation.length);
         expect(variableNames.length).toBe(expectation.length);
@@ -103,8 +103,8 @@ describe('VariableSelectorComponent', () => {
         fixture.detectChanges();
 
         const expectation = [vars[0], vars[2], vars[3], vars[5]];
-        const variableIcons = fixture.debugElement.queryAll(By.css('.variables-selector-variables-group-list-item-type'));
-        const variableNames = fixture.debugElement.queryAll(By.css('.variables-selector-variables-group-list-item-name'));
+        const variableIcons = fixture.debugElement.queryAll(By.css('.ama-variables-selector-variables-group-list-item-type'));
+        const variableNames = fixture.debugElement.queryAll(By.css('.ama-variables-selector-variables-group-list-item-name'));
 
         expect(variableIcons.length).toBe(expectation.length);
         expect(variableNames.length).toBe(expectation.length);
@@ -126,8 +126,8 @@ describe('VariableSelectorComponent', () => {
         fixture.detectChanges();
 
         const expectation = [vars[0], vars[1], vars[3], vars[4]];
-        let variableIcons = fixture.debugElement.queryAll(By.css('.variables-selector-variables-group-list-item-type'));
-        let variableNames = fixture.debugElement.queryAll(By.css('.variables-selector-variables-group-list-item-name'));
+        let variableIcons = fixture.debugElement.queryAll(By.css('.ama-variables-selector-variables-group-list-item-type'));
+        let variableNames = fixture.debugElement.queryAll(By.css('.ama-variables-selector-variables-group-list-item-name'));
 
         expect(variableIcons.length).toBe(expectation.length);
         expect(variableNames.length).toBe(expectation.length);
@@ -135,8 +135,8 @@ describe('VariableSelectorComponent', () => {
         component.clearSearch();
         fixture.detectChanges();
 
-        variableIcons = fixture.debugElement.queryAll(By.css('.variables-selector-variables-group-list-item-type'));
-        variableNames = fixture.debugElement.queryAll(By.css('.variables-selector-variables-group-list-item-name'));
+        variableIcons = fixture.debugElement.queryAll(By.css('.ama-variables-selector-variables-group-list-item-type'));
+        variableNames = fixture.debugElement.queryAll(By.css('.ama-variables-selector-variables-group-list-item-name'));
 
         expect(component.search).toBe('');
         expect(variableIcons.length).toBe(vars.length);
@@ -170,7 +170,7 @@ describe('VariableSelectorComponent', () => {
             fixture.detectChanges();
             await fixture.whenStable();
 
-            const clearButton = fixture.debugElement.query(By.css('.variables-selector-clear-button'));
+            const clearButton = fixture.debugElement.query(By.css('.ama-variables-selector-clear-button'));
 
             expect(clearButton).toBeNull();
         });
@@ -181,7 +181,7 @@ describe('VariableSelectorComponent', () => {
             fixture.detectChanges();
             await fixture.whenStable();
 
-            const clearButton = fixture.debugElement.query(By.css('.variables-selector-clear-button'));
+            const clearButton = fixture.debugElement.query(By.css('.ama-variables-selector-clear-button'));
 
             expect(clearButton).not.toBeNull();
         });
@@ -194,7 +194,7 @@ describe('VariableSelectorComponent', () => {
             fixture.detectChanges();
             await fixture.whenStable();
 
-            const clearButton = fixture.debugElement.query(By.css('.variables-selector-clear-button'));
+            const clearButton = fixture.debugElement.query(By.css('.ama-variables-selector-clear-button'));
             clearButton.nativeElement.click();
             fixture.detectChanges();
             await fixture.whenStable();

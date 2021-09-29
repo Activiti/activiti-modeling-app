@@ -93,7 +93,7 @@ describe('ProjectTreeIconsComponent', () => {
     });
 
     it('should display the filter icons provided by the projectTreeHelper', () => {
-        const icons = fixture.debugElement.queryAll(By.css('[data-automation-class="project-tree-icon"]'));
+        const icons = fixture.debugElement.queryAll(By.css('[data-automation-class="ama-project-tree-icon"]'));
 
         expect(icons.length).toBe(2);
     });
@@ -101,7 +101,7 @@ describe('ProjectTreeIconsComponent', () => {
     it('should dispatch the right actions on the icon click', () => {
         const dispatchSpy = spyOn(store, 'dispatch');
 
-        const processIcon = fixture.debugElement.query(By.css('[data-automation-class="project-tree-icon"]'));
+        const processIcon = fixture.debugElement.query(By.css('[data-automation-class="ama-project-tree-icon"]'));
         processIcon.triggerEventHandler('click', {});
 
         const setMenuAction: SetMenuAction = dispatchSpy.calls.argsFor(0)[0];
@@ -114,7 +114,7 @@ describe('ProjectTreeIconsComponent', () => {
     });
 
     it('should the getDataAdapter and load methods with the proper parameters', () => {
-        const icons = fixture.debugElement.queryAll(By.css('[data-automation-class="project-tree-icon"]')),
+        const icons = fixture.debugElement.queryAll(By.css('[data-automation-class="ama-project-tree-icon"]')),
             connectorIcon = icons[1];
 
         component.projectId = 'app-id';

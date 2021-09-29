@@ -1,4 +1,4 @@
-.timer-definition-block {
+.ama-timer-definition-block {
 
     .mat-form-field {
         width: 100%;
@@ -9,7 +9,7 @@
     }
 }
 
-.timer-duration-time {
+.ama-timer-duration-time {
     display: flex;
     justify-content: space-between;
 
@@ -18,7 +18,7 @@
     }
 }
 
-.timer-duration-date {
+.ama-timer-duration-date {
     display: flex;
     justify-content: space-between;
 
@@ -27,7 +27,7 @@
     }
 }
 
-.timer-date {
+.ama-timer-date {
     .mat-datetimepicker-toggle {
         position: absolute;
         left: -25px;

@@ -1,10 +1,10 @@
 <h2 mat-dialog-title>
-    <mat-icon class="variables-icon">error</mat-icon>{{ 'SDK.ERRORS_EDITOR.TITLE' | translate}}
+    <mat-icon class="ama-variables-icon">error</mat-icon>{{ 'SDK.ERRORS_EDITOR.TITLE' | translate}}
 </h2>
 
-<mat-dialog-content class="properties-content variables-dialog-content" data-automation-id="variables-dialog">
-    <div class="process-error-dialog">
-        <div class=process-error-table>
+<mat-dialog-content class="ama-properties-content ama-variables-dialog-content" data-automation-id="variables-dialog">
+    <div class="ama-process-error-dialog">
+        <div class=ama-process-error-table>
             <mat-table [dataSource]="dataSource">
                 <ng-container matColumnDef="id">
                     <mat-header-cell *matHeaderCellDef>{{ 'SDK.ERRORS_EDITOR.TABLE.COLUMN_ID' | translate }}
@@ -45,14 +45,14 @@
                     [class.active]="i == position" [attr.data-automation-id]="'process-error-row-' + i + '-' + row.id">
                 </mat-row>
             </mat-table>
-            <button mat-raised-button class="add-btn" color="primary" (click)="createProcessError()"
+            <button mat-raised-button class="ama-add-btn" color="primary" (click)="createProcessError()"
                 data-automation-id="create-new-process-error">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
 
         <ng-container *ngIf="showForm; else noProcessErrorsTemplate">
-            <div class="process-error-form">
+            <div class="ama-process-error-form">
                 <mat-form-field>
                     <div class="adf-process-errors-form-label">{{'SDK.ERRORS_EDITOR.TABLE.COLUMN_ID' | translate}}</div>
                     <input matInput [(ngModel)]="selectedProcessError.id" data-automation-id="process-error-id" disabled>
@@ -62,20 +62,20 @@
                     <div class="adf-property-label">{{'SDK.ERRORS_EDITOR.TABLE.COLUMN_NAME' | translate}}</div>
                     <input matInput [(ngModel)]="selectedProcessError.name" data-automation-id="process-error-name" (keyup)="onProcessErrorChanged()">
                 </mat-form-field>
-                <div class="mat-error error-process-error" *ngIf="!selectedProcessError.name.length">
+                <div class="mat-error ama-error-process-error" *ngIf="!selectedProcessError.name.length">
                     {{ 'SDK.ERRORS_EDITOR.ERRORS.EMPTY_NAME' | translate }}</div>
 
                 <mat-form-field>
                     <div class="adf-property-label">{{'SDK.ERRORS_EDITOR.TABLE.COLUMN_CODE' | translate}}</div>
                     <input matInput [(ngModel)]="selectedProcessError.errorCode" data-automation-id="process-error-code" (keyup)="onProcessErrorChanged()">
                 </mat-form-field>
-                <div class="mat-error error-process-error" *ngIf="!selectedProcessError.errorCode.length">
+                <div class="mat-error ama-error-process-error" *ngIf="!selectedProcessError.errorCode.length">
                     {{ 'SDK.ERRORS_EDITOR.ERRORS.EMPTY_CODE' | translate }}</div>
             </div>
         </ng-container>
 
         <ng-template #noProcessErrorsTemplate>
-            <p class="no-process-errors">{{'SDK.ERRORS_EDITOR.TABLE.NO_PROCESS_ERRORS' | translate}}</p>
+            <p class="ama-no-process-errors">{{'SDK.ERRORS_EDITOR.TABLE.NO_PROCESS_ERRORS' | translate}}</p>
         </ng-template>
     </div>
 </mat-dialog-content>

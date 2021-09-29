@@ -237,16 +237,16 @@ export class ProcessEditorElementVariablesService {
             tooltipText = this.translateService.instant('SDK.CONDITION.TOOLTIP.OUTPUT_VARIABLE_TOOLTIP', { taskName: name, taskType });
         }
         return `
-            <div class="variables-selector-tooltip">
-                <h3 class="variables-selector-tooltip-first-header">${this.translateService.instant('SDK.CONDITION.TOOLTIP.VARIABLE')}</h3>
-                <div class="variables-selector-tooltip-text">
+            <div class="ama-variables-selector-tooltip">
+                <h3 class="ama-variables-selector-tooltip-first-header">${this.translateService.instant('SDK.CONDITION.TOOLTIP.VARIABLE')}</h3>
+                <div class="ama-variables-selector-tooltip-text">
                     <p>${tooltipText.trim()}.</p>
                     <span>${variable.description ? '<p>' + variable.description + '</p>' : ''}</span>
                 </div>
                 <h3>${this.translateService.instant('SDK.CONDITION.TOOLTIP.PROPERTIES')}</h3>
-                <div class="variables-selector-tooltip-text">
+                <div class="ama-variables-selector-tooltip-text">
                     <p>
-                        <pre class="variables-selector-variables-group-list-item-type">${this.getTypeIcon(variable.type)}</pre>
+                        <pre class="ama-variables-selector-variables-group-list-item-type">${this.getTypeIcon(variable.type)}</pre>
                         <span>${variable.type}</span>
                     </p>
                 </div>

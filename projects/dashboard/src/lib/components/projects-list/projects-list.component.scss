@@ -1,12 +1,13 @@
 // Remove it, when community supports project releases
+/* stylelint-disable-next-line */
 .project-release-button {
     display: none;
 }
 
-.dashboard {
+.ama-dashboard {
     height: 100%;
 
-    .paginator-block {
+    .ama-paginator-block {
         border-top: 1px solid var(--theme-border-color);
         position: absolute;
         width: 100%;
@@ -52,14 +53,14 @@
                 vertical-align: middle;
             }
 
-            .mat-icon.thumbnail {
+            .mat-icon.ama-thumbnail {
                 transition: color 250ms;
             }
 
             &:hover {
                 background-color: var(--theme-selected-button-bg-color);
 
-                .mat-icon.thumbnail {
+                .mat-icon.ama-thumbnail {
                     color: var(--theme-accent-color);
                 }
             }

@@ -11,7 +11,7 @@
         padding-right: 0;
     }
 
-    .required-parameter {
+    .ama-required-parameter {
         color: var(--theme-warn-color);
     }
 
@@ -29,11 +29,11 @@
         }
     }
 
-    .variable-value-type-value {
+    .ama-variable-value-type-value {
         font-style: italic;
     }
 
-    .ellipsis-cell {
+    .ama-ellipsis-cell {
         display: block;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -66,7 +66,7 @@
     }
 }
 
-.help-icon {
+.ama-help-icon {
     line-height: 10px;
     font-size: 16px;
     width: 16px;

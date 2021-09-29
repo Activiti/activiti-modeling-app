@@ -1,10 +1,10 @@
-<div class="dashboard">
+<div class="ama-dashboard">
 
     <ng-container *ngIf="!(loading$ | async); else loadingTemplate">
         <ng-container *ngIf="dataSource$ | async; let dataSource">
             <ng-container *ngIf="dataSource.data.length; else noDataTemplate">
-                <div class="dashboard-list">
-                    <div class="dashboard-list-container">
+                <div class="ama-dashboard-list">
+                    <div class="ama-dashboard-list-container">
                             <mat-table
                             [dataSource]="dataSource"
                             matSort
@@ -15,7 +15,7 @@
                             <ng-container matColumnDef="thumbnail">
                                 <mat-header-cell *matHeaderCellDef></mat-header-cell>
                                 <mat-cell *matCellDef="let element" (click)="rowSelected(element)">
-                                    <mat-icon class="thumbnail" color="primary">assessment</mat-icon>
+                                    <mat-icon class="ama-thumbnail" color="primary">assessment</mat-icon>
                                 </mat-cell>
                             </ng-container>
 
@@ -81,7 +81,7 @@
                         </mat-table>
                     </div>
 
-                    <div *ngIf="(dataSource$ | async).data.length" class="paginator-block">
+                    <div *ngIf="(dataSource$ | async).data.length" class="ama-paginator-block">
                         <mat-paginator
                             *ngIf="pagination$ | async; let pagination"
                             (page)="onPageChange($event, pagination)"
@@ -98,7 +98,7 @@
             <ng-template #noDataTemplate>
                 <adf-empty-content
                     icon="apps"
-                    class="dashboard-emptylist"
+                    class="ama-dashboard-emptylist"
                     title="DASHBOARD.TABLE.NO_ITEMS">
                 </adf-empty-content>
             </ng-template>
@@ -107,8 +107,8 @@
 
 
     <ng-template #loadingTemplate>
-        <div class="dashboard-list">
-            <mat-spinner class="dashboard-spinner"></mat-spinner>
+        <div class="ama-dashboard-list">
+            <mat-spinner class="ama-dashboard-spinner"></mat-spinner>
         </div>
     </ng-template>
 

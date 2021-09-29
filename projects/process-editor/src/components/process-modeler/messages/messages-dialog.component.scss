@@ -1,7 +1,7 @@
-.message-dialog {
+.ama-message-dialog {
     display: flex;
 
-    .message-table {
+    .ama-message-table {
         min-height: 90px;
         margin-top: 10px;
         width: 600px;
@@ -34,7 +34,7 @@
             }
         }
 
-        .add-btn {
+        .ama-add-btn {
             float: right;
             padding: 0 10px;
             min-width: 30px;
@@ -50,7 +50,7 @@
         }
     }
 
-    .message-form {
+    .ama-message-form {
         text-align: left;
         width: 300px;
         margin-left: 40px;
@@ -64,7 +64,7 @@
         }
     }
 
-    .no-messages {
+    .ama-no-messages {
         color:  var(--theme-text-color);
         width: 300px;
         font-size: 16px;
@@ -72,7 +72,7 @@
         text-align: center;
     }
 
-    .error-message.mat-error {
+    .ama-error-message.mat-error {
         font-size: 12px;
         margin-left: 0;
         margin-top: -18px;

@@ -3,7 +3,7 @@
 </h2>
 
 <mat-dialog-content data-automation-id="called-element-dialog">
-    <mat-tab-group mat-stretch-tabs class="called-element-dialog-content" [selectedIndex]="currentActiveTab"
+    <mat-tab-group mat-stretch-tabs class="ama-called-element-dialog-content" [selectedIndex]="currentActiveTab"
         (selectedTabChange)="onTabChange($event)">
         <mat-tab label="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.CALLED_ELEMENT.DIALOG.STATIC' | translate}}">
             <h3>{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS_NAME' | translate }}</h3>
@@ -14,7 +14,7 @@
 
         <mat-tab label="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.CALLED_ELEMENT.DIALOG.EXPRESSION' | translate }}">
             <ng-container *ngIf="processVariables.length; else noProcessVariables">
-                <modelingsdk-expression-code-editor class="called-element-dialog-expression"
+                <modelingsdk-expression-code-editor class="ama-called-element-dialog-expression"
                     [attr.data-automation-id]="'called-element-dialog-expression'"
                     [expression]="expression"
                     (expressionChange)="expressionChanged($event)"

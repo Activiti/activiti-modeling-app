@@ -1,7 +1,7 @@
 <div class="modelingsdk-mapping-variable-expression-dropdown-wrapper">
     <div cdkOverlayOrigin #openVariablesPanel="cdkOverlayOrigin" #dropdown>
         <div class="modelingsdk-mapping-variable-expression-dropdown-input" (click)="openPanel()"
-            [ngClass]="disabled ? 'disabled' : 'enabled'" *ngIf="displayValue(); else noProcessPropertiesTmpl">
+            [ngClass]="disabled ? 'disabled' : 'ama-enabled'" *ngIf="displayValue(); else noProcessPropertiesTmpl">
             <mat-form-field *ngIf="!plain">
                 <input matInput placeholder="{{placeholder}}" readonly autocomplete="off"
                     [value]="displayedValue | variablevalue" [disabled]="disabled"

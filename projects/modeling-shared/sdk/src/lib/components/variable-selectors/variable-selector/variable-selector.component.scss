@@ -1,8 +1,8 @@
-.variables-selector {
+.ama-variables-selector {
     &-header {
         display: flex;
 
-        .variables-selector-clear-button {
+        .ama-variables-selector-clear-button {
             position: relative;
             top: 6px;
         }
@@ -55,7 +55,7 @@
                         ) !important;
                     }
 
-                    &.selected {
+                    &.ama-selected {
                         background: var(
                             --theme-ama-var-selector-selected-text-bg-color
                         );

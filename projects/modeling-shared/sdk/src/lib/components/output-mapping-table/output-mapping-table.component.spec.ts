@@ -204,7 +204,7 @@ describe('OutputMappingTableComponent', () => {
     it('should display an icon help for each parameter', () => {
         component.ngOnChanges();
         fixture.detectChanges();
-        const icon = fixture.debugElement.query(By.css('.help-icon'));
+        const icon = fixture.debugElement.query(By.css('.ama-help-icon'));
         expect(icon).toBeDefined();
         expect(icon.nativeElement).toBeDefined();
     });

@@ -6,11 +6,11 @@
             <span>
                 <span class="{{parameter.readOnly ? 'mat-select-placeholder' : ''}}">
                     {{ parameter.label || parameter.name }}
-                    <span class="required-parameter" *ngIf="parameter.required">*</span>
+                    <span class="ama-required-parameter" *ngIf="parameter.required">*</span>
                 </span>
             </span>
             <mat-icon matTooltip="{{ parameter.description + ' (type: ' + parameter.type + ')' }}"
-                      matTooltipPosition="below" class="help-icon">help</mat-icon>
+                      matTooltipPosition="below" class="ama-help-icon">help</mat-icon>
         </mat-cell>
     </ng-container>
     <ng-container matColumnDef="process-variable">
@@ -40,15 +40,15 @@
             <ng-container *ngIf="parameter.type === 'process'">
                 <div *ngIf="(mappingTypes[parameter.name] === VALUE_TYPE && values[parameter.name] && values[parameter.name].startsWith('${'))
                            || (mappingTypes[parameter.name] === VARIABLE_TYPE && values[parameter.name] && values[parameter.name].length >0) ; else elseBlock"
-                    class="modelingsdk-input-mapping-table-mapped-value-div ellipsis-cell">
+                    class="modelingsdk-input-mapping-table-mapped-value-div ama-ellipsis-cell">
                     <span [attr.data-automation-id]="'value-input-' + parameter.id"
                         *ngIf="mappingTypes[parameter.name] === VALUE_TYPE"
-                        class="input-mapping-table-mapped-value-div-value value-process-input-mapping variable-value-type-value {{parameter.readOnly ? 'mat-select-placeholder' : ''}}">
+                        class="ama-input-mapping-table-mapped-value-div-value value-process-input-mapping ama-variable-value-type-value {{parameter.readOnly ? 'mat-select-placeholder' : ''}}">
                         {{values[parameter.name] | variablevalue}}
                     </span>
                     <span [attr.data-automation-id]="'variable-input-' + parameter.id"
                         *ngIf="mappingTypes[parameter.name] === VARIABLE_TYPE"
-                        class="input-mapping-table-mapped-value-div-value value-process-input-mapping {{parameter.readOnly ? 'mat-select-placeholder' : ''}}">
+                        class="ama-input-mapping-table-mapped-value-div-value value-process-input-mapping {{parameter.readOnly ? 'mat-select-placeholder' : ''}}">
                         {{paramName2VariableName[parameter.name]}}
                     </span>
                 </div>
@@ -72,5 +72,5 @@
 </mat-table>
 
 <ng-template #noProcessPropertiesTmpl>
-    <span class="no-process-properties-msg">{{ 'SDK.VARIABLE_MAPPING.NO_PROCESS_PROPERTIES' | translate }}</span>
+    <span class="ama-no-process-properties-msg">{{ 'SDK.VARIABLE_MAPPING.NO_PROCESS_PROPERTIES' | translate }}</span>
 </ng-template>

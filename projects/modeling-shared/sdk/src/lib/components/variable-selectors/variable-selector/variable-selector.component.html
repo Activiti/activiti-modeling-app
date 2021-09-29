@@ -1,32 +1,32 @@
-<div class="variables-selector-header">
+<div class="ama-variables-selector-header">
     <button mat-icon-button (click)="clearSelection()" *ngIf="displayClearButton && varIdSelected"
-        class="variables-selector-clear-button"
+        class="ama-variables-selector-clear-button"
         matTooltip="{{'SDK.VARIABLE_EXPRESSION.TITLE.CLEAR_SELECTION'| translate}}">
         <mat-icon>backspace</mat-icon>
     </button>
-    <mat-form-field appearance="outline" class="variables-selector-search">
+    <mat-form-field appearance="outline" class="ama-variables-selector-search">
         <mat-label>{{'SDK.VARIABLES_SELECTORS.ACTIONS.SEARCH' | translate}}</mat-label>
-        <mat-icon matPrefix class="variables-selector-search-prefix">search</mat-icon>
+        <mat-icon matPrefix class="ama-variables-selector-search-prefix">search</mat-icon>
         <input matInput [(ngModel)]="search" (input)="onSearch()">
-        <mat-icon matSuffix (click)="clearSearch()" class="variables-selector-search-suffix" *ngIf="search?.length>0">
+        <mat-icon matSuffix (click)="clearSearch()" class="ama-variables-selector-search-suffix" *ngIf="search?.length>0">
             close
         </mat-icon>
     </mat-form-field>
 </div>
 
-<div *ngFor="let group of filteredVars" class="variables-selector-variables">
-    <div class="variables-selector-variables-group">
-        <h3 class="variables-selector-variables-group-header">
+<div *ngFor="let group of filteredVars" class="ama-variables-selector-variables">
+    <div class="ama-variables-selector-variables-group">
+        <h3 class="ama-variables-selector-variables-group-header">
             {{group.source.name}}
             ({{'SDK.CONDITION.TYPES.'+group.source.type | translate}})
         </h3>
-        <div class="variables-selector-variables-group-list">
+        <div class="ama-variables-selector-variables-group-list">
             <div *ngFor="let variable of group.variables" (click)="onVariableSelect(variable)" [adf-tooltip-card]="''"
                 [width]="'200'" [htmlContent]="variable.tooltip" [offsetX]="tooltipOffsetX" [offsetY]="tooltipOffsetY"
-                class="variables-selector-variables-group-list-item {{varIdSelected && varIdSelected === variable?.id ? 'selected' : ''}}"
+                class="ama-variables-selector-variables-group-list-item {{varIdSelected && varIdSelected === variable?.id ? 'ama-selected' : ''}}"
                 [attr.data-automation-id]="'var-' + variable.id">
-                <pre class="variables-selector-variables-group-list-item-type">{{variable.icon}}</pre>
-                <span class="variables-selector-variables-group-list-item-name">{{variable.label ||
+                <pre class="ama-variables-selector-variables-group-list-item-type">{{variable.icon}}</pre>
+                <span class="ama-variables-selector-variables-group-list-item-name">{{variable.label ||
                     variable.name}}</span>
             </div>
         </div>

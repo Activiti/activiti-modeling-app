@@ -4,13 +4,13 @@
             {{ 'SDK.VARIABLE_MAPPING.PARAMETER' | translate }}</mat-header-cell>
         <mat-cell *matCellDef="let parameter; let i = index;" [attr.data-automation-id]="'output-param-id-' + i">
             <span>
-                <span [ngClass]="{'variable-value-type-value': isValueMapping(parameter.name)}">
+                <span [ngClass]="{'ama-variable-value-type-value': isValueMapping(parameter.name)}">
                     {{ parameter.label || parameter.name | variablevalue }}
                 </span>
             </span>
             <mat-icon
                 matTooltip="{{ parameter.description }} ({{'SDK.MAPPING_DIALOG.TYPE' | translate}}: {{parameter.type}})"
-                matTooltipPosition="below" class="help-icon">help</mat-icon>
+                matTooltipPosition="below" class="ama-help-icon">help</mat-icon>
         </mat-cell>
     </ng-container>
     <ng-container matColumnDef="process-variable">

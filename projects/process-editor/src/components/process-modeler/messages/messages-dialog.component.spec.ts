@@ -89,8 +89,8 @@ describe('MessageDialogComponent', () => {
     it('should hide form if no message is clicked', () => {
         fixture.detectChanges();
 
-        const template = fixture.nativeElement.querySelector('.message-form');
-        const message = fixture.nativeElement.querySelector('.no-messages');
+        const template = fixture.nativeElement.querySelector('.ama-message-form');
+        const message = fixture.nativeElement.querySelector('.ama-no-messages');
 
         expect(template === null).toBeTruthy();
         expect(message === null).toBeFalsy();
@@ -105,8 +105,8 @@ describe('MessageDialogComponent', () => {
         editRow.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        const template = fixture.nativeElement.querySelector('.message-form');
-        const message = fixture.nativeElement.querySelector('.no-messages');
+        const template = fixture.nativeElement.querySelector('.ama-message-form');
+        const message = fixture.nativeElement.querySelector('.ama-no-messages');
 
         expect(template === null).toBeFalsy();
         expect(message === null).toBeTruthy();
@@ -121,7 +121,7 @@ describe('MessageDialogComponent', () => {
         editRow.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        const template = fixture.nativeElement.querySelector('.message-form');
+        const template = fixture.nativeElement.querySelector('.ama-message-form');
         const input = template.querySelector('input');
         component.selectedMessage.name = 'changedMessage';
         input.dispatchEvent(new Event('keyup'));
@@ -138,7 +138,7 @@ describe('MessageDialogComponent', () => {
         expect(saveButton.disabled).toBeTruthy();
 
         spyOn(service, 'createMessage').and.returnValue({ 'id': '678', 'name': 'message4', 'type': 'bpmn:message' });
-        const addButton = fixture.nativeElement.querySelector('.add-btn');
+        const addButton = fixture.nativeElement.querySelector('.ama-add-btn');
         expect(addButton).toBeDefined();
         addButton.dispatchEvent(new Event('click'));
         fixture.detectChanges();

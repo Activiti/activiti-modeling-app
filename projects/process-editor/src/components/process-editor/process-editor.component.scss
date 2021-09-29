@@ -1,7 +1,7 @@
 @import 'bpmn-io';
 
 
-.process-editor {
+.ama-process-editor {
     height: 100%;
     overflow-y: hidden;
 
@@ -34,7 +34,7 @@
         width: 100%;
         flex: 1 1 auto;
 
-        .code-editor {
+        .ama-code-editor {
             flex: 1 0 auto;
             height: auto;
         }

@@ -1,8 +1,8 @@
 <mat-card cdkDrag cdkDragBoundary=".process-editor-modeling-area">
-    <div class="palette-header" cdkDragHandle>
+    <div class="ama-palette-header" cdkDragHandle>
         <mat-icon (click)="toggleOpen()">more_horiz</mat-icon>
     </div>
-    <div class="palette-body" [class.opened]="opened">
+    <div class="ama-palette-body" [class.ama-opened]="opened">
         <ng-container *ngFor="let item of paletteElements">
             <ng-container
                  *ngIf="!isSeparator($any(item)) && isAllowed($any(item)); else separator">
@@ -30,7 +30,7 @@
 
 <ng-template #clickableElement let-item>
     <div class="entry-parent">
-        <div *ngIf="paletteIconSvg[item?.svg]" class="entry svg" draggable="true"
+        <div *ngIf="paletteIconSvg[item?.svg]" class="entry ama-svg" draggable="true"
             [attr.data-automation-id]="item.group + '::' + item.type"
             [innerHTML]="paletteIconSvg[item?.svg]"
             [title]="item.title | translate"
@@ -39,23 +39,23 @@
         </div>
         <div *ngIf="!paletteElementIcons[item?.svg] && !hasChildren(item)" draggable="true" class="entry {{item.icon}}"
             [title]="item.title | translate"
-            [class.selected]="item === selectedTool"
+            [class.ama-selected]="item === selectedTool"
             [attr.data-automation-id]="item.group + '::' + item.type"
             (click)="onClick(item, $event)"
             (dragstart)="onDrag(item, $event)">
         </div>
-        <span class="drawer-item-tag" *ngIf="item.tag" [title]="item.title | translate" draggable="true"
+        <span class="ama-drawer-item-tag" *ngIf="item.tag" [title]="item.title | translate" draggable="true"
         (click)="onClick(item, $event)" (dragstart)="onDrag(item, $event)">{{item.tag | translate}}</span>
     </div>
 </ng-template>
 
 <ng-template #separator>
-    <hr class="separator">
+    <hr class="ama-separator">
 </ng-template>
 
 <ng-template let-item #drawer>
-    <mat-card class="palette-drawer" >
-        <div class="palette-body">
+    <mat-card class="ama-palette-drawer" >
+        <div class="ama-palette-body">
             <ng-container *ngFor="let child of item.children">
                 <ng-container *ngTemplateOutlet="hasChildren(child) ? containerElement : clickableElement; context: { $implicit: child }">
                 </ng-container>

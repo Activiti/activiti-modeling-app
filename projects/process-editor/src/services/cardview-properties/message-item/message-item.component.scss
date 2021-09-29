@@ -2,17 +2,18 @@
     border-top: 0;
 }
 
+/* stylelint-disable-next-line */
 .message-type-checkbox .mat-checkbox-layout {
     margin-bottom: 25px;
 }
 
-.error-message.mat-error {
+.ama-error-message.mat-error {
     font-size: 12px;
     margin-left: 0;
     margin-top: -18px;
 }
 
-.message-block {
+.ama-message-block {
     position: relative;
 
     .mat-form-field {
@@ -23,7 +24,7 @@
         border-top: 0;
     }
 
-    .add-message-button {
+    .ama-add-message-button {
         position: absolute;
         top: 0;
         right: 0;

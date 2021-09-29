@@ -1,11 +1,11 @@
-<div class="log-entry log-{{log.type}}">
-    <div class="log-meta">
+<div class="ama-log-entry ama-log-{{log.type}}">
+    <div class="ama-log-meta">
         <mat-icon>chevron_right</mat-icon>
-        <span class="log-initiator">{{ log.initiator.displayName | translate }}</span> at
-        <span class="log-datetime">{{ log.datetime | date:"HH:mm:ss" }} </span>
-        <span class="log-level">[{{ log.type }}]</span>
+        <span class="ama-log-initiator">{{ log.initiator.displayName | translate }}</span> at
+        <span class="ama-log-datetime">{{ log.datetime | date:"HH:mm:ss" }} </span>
+        <span class="ama-log-level">[{{ log.type }}]</span>
     </div>
-    <div class="log-content">
+    <div class="ama-log-content">
         <div *ngFor="let message of log.messages">{{ message }}</div>
     </div>
 </div>

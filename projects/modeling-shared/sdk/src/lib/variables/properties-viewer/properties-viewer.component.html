@@ -1,5 +1,5 @@
-<div class="properties-viewer">
-    <button mat-raised-button class="add-btn" color="primary" (click)="addRow()" [disabled]="error"
+<div class="ama-properties-viewer">
+    <button mat-raised-button class="ama-add-btn" color="primary" (click)="addRow()" [disabled]="error"
         data-automation-id="add-variable">
         <mat-icon>add</mat-icon>
     </button>
@@ -7,7 +7,7 @@
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_NAME' | translate }}
             </mat-header-cell>
-            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'variable-name-cell-' + element.name" class="ellipsis-cell">
+            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'variable-name-cell-' + element.name" class="ama-ellipsis-cell">
                 {{element.name}}</mat-cell>
         </ng-container>
 
@@ -30,7 +30,7 @@
         <ng-container matColumnDef="value">
             <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_VALUE' | translate }}
             </mat-header-cell>
-            <mat-cell *matCellDef="let element; index as i" [attr.data-automation-id]="'variable-value-cell-' + i" class="ellipsis-cell">
+            <mat-cell *matCellDef="let element; index as i" [attr.data-automation-id]="'variable-value-cell-' + i" class="ama-ellipsis-cell">
                 {{element.value | variablevalue}}
             </mat-cell>
         </ng-container>
@@ -52,13 +52,13 @@
 </div>
 
 <ng-container *ngIf="showForm; else noProjectsTemplate">
-    <div class="properties-form">
+    <div class="ama-properties-form">
         <mat-form-field floatLabel="never">
             <input matInput placeholder="Name" [(ngModel)]="name" (keyup)="saveChanges()"
                 data-automation-id="variable-name">
             <p class="mat-error" *ngIf="!name.length">{{ 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME' | translate }}</p>
             <p class="mat-error" *ngIf="name.length && !isValid(name)">{{ 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME' | translate }}
-                <mat-icon class="variable-name-info-icon" data-automation-id="variable-name-info-icon" color="warn" [matTooltip]="'SDK.VARIABLES_EDITOR.ERRORS.VARIABLE_NAME_TOOLTIP' | translate">info</mat-icon>
+                <mat-icon class="ama-variable-name-info-icon" data-automation-id="variable-name-info-icon" color="warn" [matTooltip]="'SDK.VARIABLES_EDITOR.ERRORS.VARIABLE_NAME_TOOLTIP' | translate">info</mat-icon>
             </p>
         </mat-form-field>
         <mat-form-field floatLabel="never">
@@ -81,5 +81,5 @@
 </ng-container>
 
 <ng-template #noProjectsTemplate>
-    <p class="no-properties">{{'SDK.VARIABLES_EDITOR.TABLE.NO_PROPERTIES' | translate}}</p>
+    <p class="ama-no-properties">{{'SDK.VARIABLES_EDITOR.TABLE.NO_PROPERTIES' | translate}}</p>
 </ng-template>
