@@ -19,7 +19,8 @@
                         "polyfills": "app/src/polyfills.ts",
                         "allowedCommonJsDependencies": [
                             "moment-es6",
-                            "minimatch"
+                            "minimatch",
+                            "zen-observable"
                         ],
                         "stylePreprocessorOptions": {
                             "includePaths": [
