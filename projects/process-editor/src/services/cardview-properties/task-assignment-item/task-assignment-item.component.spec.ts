@@ -25,7 +25,7 @@ import { AmaState, ProcessModelerServiceToken } from '@alfresco-dbp/modeling-sha
 import { of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { OpenTaskAssignmentDialogAction } from '../../../store/process-task-assignment.actions';
-import { AssignmentSettings } from 'projects/process-editor/src/components/assignment/assignment-dialog.component';
+import { AssignmentSettings } from '../../../components/assignment/assignment-dialog.component';
 
 describe('CardViewTaskAssignmentItemComponent', () => {
     let fixture: ComponentFixture<CardViewTaskAssignmentItemComponent>;
