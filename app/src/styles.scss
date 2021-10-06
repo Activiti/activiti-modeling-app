@@ -1,6 +1,5 @@
 @import 'ama-theming.scss';
 @import '@alfresco/adf-core/theming';
-@import '@alfresco/adf-process-services-cloud/theming';
 @import '~@angular/material/theming';
 
 @include mat-core($alfresco-typography);
@@ -18,17 +17,7 @@ body {
     overflow: auto;
 }
 
-body {
-    @include angular-material-theme($theme);
-    @include adf-core-theme($theme);
-    @include adf-process-services-cloud-theme($theme);
-}
-
-body.dark-theme {
-    @include angular-material-theme($dark-theme);
-    @include adf-core-theme($dark-theme);
-    @include adf-process-services-cloud-theme($dark-theme);
-}
+.adf-full-width { width: 100%; }
 
 $foreground: map-get($theme, foreground);
 $background: map-get($theme, background);
@@ -84,7 +73,15 @@ $defaults: (
   --theme-body-1-line-height: mat-line-height($alfresco-typography, body-1),
   --theme-caption-font-size: mat-font-size($alfresco-typography, caption),
   --theme-title-font-size: mat-font-size($alfresco-typography, title),
-  --theme-subheading-2-font-size: mat-font-size($alfresco-typography, subheading-2)
+  --theme-subheading-2-font-size: mat-font-size($alfresco-typography, subheading-2),
+
+  // ADF components and services
+  --adf-snackbar-error-bg-color: mat-color($warn),
+  --adf-snackbar-error-action-color: white,
+  --adf-snackbar-warning-bg-color: mat-color($accent),
+  --adf-snackbar-warning-action-color: white,
+  --adf-snackbar-info-bg-color: mat-color($primary),
+  --adf-snackbar-info-action-color: white,
 );
 
 // propagates SCSS variables into the CSS variables scope
@@ -92,4 +89,14 @@ $defaults: (
   @each $name, $value in $defaults {
     #{$name}: #{$value};
   }
+}
+
+body {
+    @include angular-material-theme($theme);
+    @include adf-core-theme($theme);
+}
+
+body.dark-theme {
+    @include angular-material-theme($dark-theme);
+    @include adf-core-theme($dark-theme);
 }

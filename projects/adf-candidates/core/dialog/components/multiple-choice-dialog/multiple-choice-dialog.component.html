@@ -4,7 +4,7 @@
     <p *ngIf="subtitle">{{ subtitle | translate }}</p>
 </mat-dialog-content>
 
-<mat-dialog-actions class="adf-dialog-buttons">
+<mat-dialog-actions align="end">
     <span class="adf-fill-remaining-space"></span>
     <button mat-button *ngFor="let choice of choices"
         [attr.data-automation-id]="'dialog-button-' + choice.choice"
