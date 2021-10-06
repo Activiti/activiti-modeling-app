@@ -121,12 +121,22 @@ export class VariablesComponent implements OnInit, OnDestroy {
         this.dialog.close();
     }
 
-    private convertJsonStringVariablesToJsonObjects(data) {
-        for (const key  in data) {
-            if ((data[key].type === 'json' || data[key].type === 'folder') && data[key].value && typeof(data[key].value) !== 'object') {
-                data[key].value = JSON.parse(data[key].value);
+    private convertJsonStringVariablesToJsonObjects(data): void {
+        for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+                if (data[key].type === 'json' && !data[key].value) {
+                    data[key].value = {};
+                } else if (this.canValueBeParsedToObject(data[key])) {
+                    data[key].value = JSON.parse(data[key].value);
+                }
             }
         }
+    }
+
+    private canValueBeParsedToObject(data): boolean {
+        return (data.type === 'json' || data.type === 'folder') &&
+            data.value &&
+            typeof(data.value) !== 'object';
     }
 
     onClose() {

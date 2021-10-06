@@ -54,7 +54,11 @@
 <ng-container *ngIf="showForm; else noProjectsTemplate">
     <div class="ama-properties-form">
         <mat-form-field floatLabel="never">
-            <input matInput placeholder="Name" [(ngModel)]="name" (keyup)="saveChanges()"
+            <input
+                matInput
+                placeholder="Name"
+                [(ngModel)]="name"
+                (keyup)="saveChanges()"
                 data-automation-id="variable-name">
             <p class="mat-error" *ngIf="!name.length">{{ 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME' | translate }}</p>
             <p class="mat-error" *ngIf="name.length && !isValid(name)">{{ 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME' | translate }}
@@ -70,7 +74,12 @@
             </mat-select>
         </mat-form-field>
 
-        <modelingsdk-value-type-input [(ngModel)]="value" [index]="position" [type]="selectedType" (onChange)="updateVariableValue($event)" [extendedProperties]="extendedProperties">
+        <modelingsdk-value-type-input
+            (onChange)="updateVariableValue($event)"
+            [(ngModel)]="value"
+            [index]="position"
+            [type]="selectedType"
+            [extendedProperties]="extendedProperties">
         </modelingsdk-value-type-input>
 
         <mat-checkbox *ngIf="requiredCheckbox" [(ngModel)]="required" (change)="saveChanges()" color="primary"

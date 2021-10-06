@@ -69,8 +69,11 @@ export class ProcessEditorElementVariablesService {
     getVariablesList(variables: ProcessEditorElementVariable[]): ElementVariable[] {
         let vars: ElementVariable[] = [];
         if (variables) {
-            variables.filter((variable) => variable.variables && variable.variables.length > 0).forEach((element) => vars = vars.concat(element.variables));
+            variables
+                .filter((variable) => variable.variables?.length > 0)
+                .forEach((element) => vars = vars.concat(element.variables));
         }
+
         return vars;
     }
 

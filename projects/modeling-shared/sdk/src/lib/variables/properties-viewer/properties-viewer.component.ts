@@ -199,8 +199,8 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         this.propertyChanged.emit(true);
     }
 
-    updateVariableValue(value?: any) {
-        if (value !== '' || value !== undefined || value !== null) {
+    updateVariableValue(value?: string): void {
+        if (value) {
             this.form.value = value;
         } else {
             delete this.form.value;
@@ -209,7 +209,7 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         this.saveChanges();
     }
 
-    isNotEmpty(data: EntityProperties) {
+    isNotEmpty(data: EntityProperties): boolean {
         return Object.values(data).every(item => !!item.name.trim().length);
     }
 

@@ -77,9 +77,12 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
         this.onChange.emit(this.value);
     }
 
-    ngOnChanges(changes: SimpleChanges) {
-
-        if (!changes.value && changes.type && changes.type.previousValue !== changes.type.currentValue) {
+    ngOnChanges(changes: SimpleChanges): void {
+        if (
+            !changes.value &&
+            changes.type &&
+            changes.type.previousValue !== changes.type.currentValue
+        ) {
             this.value = null;
         }
 
@@ -93,8 +96,14 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
             this.valueTypeInput.clear();
             const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(this.getInputItemImplementationClass(this.type));
             this.valueTypeInputRef = this.valueTypeInput.createComponent(factory);
-            this.valueTypeInputRef.instance.change.pipe(takeUntil(this.onDestroy$)).subscribe(inputValue => this.setInputValue(inputValue));
-            this.valueTypeInputRef.instance.advancedOutputs?.pipe(takeUntil(this.onDestroy$)).subscribe(advancedOutputs => this.advancedOutputs.emit(advancedOutputs));
+
+            this.valueTypeInputRef.instance.change
+                .pipe(takeUntil(this.onDestroy$))
+                .subscribe(inputValue => this.setInputValue(inputValue));
+
+            this.valueTypeInputRef.instance
+                .advancedOutputs?.pipe(takeUntil(this.onDestroy$))
+                .subscribe(advancedOutputs => this.advancedOutputs.emit(advancedOutputs));
         }
 
         this.valueTypeInputRef.instance.disabled = this.disabled;

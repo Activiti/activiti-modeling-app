@@ -98,6 +98,35 @@ describe('VariablesComponent', () => {
         expect(component.data.propertiesUpdate$.next).toHaveBeenCalledWith(result);
     });
 
+    it('should set default value for json variable', () => {
+        spyOn(component.data.propertiesUpdate$, 'next');
+
+        const data = {
+            '123': {
+                'id': '123',
+                'name': 'test',
+                'type': 'json',
+                'required': false,
+            }
+        };
+
+        const expectedResult = {
+            '123' : {
+                'id': '123',
+                'name': 'test',
+                'type': 'json',
+                'required': false,
+                'value': {}
+            }
+        };
+
+        component.editorContent = JSON.stringify(data, null, 2);
+        const button = fixture.nativeElement.querySelector('.save-btn');
+        button.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+        expect(component.data.propertiesUpdate$.next).toHaveBeenCalledWith(expectedResult);
+    });
+
     it('should validate unique variable names', () => {
         const data = {
             '123': {

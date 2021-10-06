@@ -24,10 +24,14 @@ export class VariablePrimitiveTypePipe implements PipeTransform {
     constructor(private variablesService: VariablesService) { }
 
     transform(variable: string | EntityProperty): string {
+        if (!variable) {
+            return '';
+        }
+
         if (typeof variable === 'string') {
             return this.variablesService.getPrimitiveType(variable);
-        } else {
-            return this.variablesService.getVariablePrimitiveType(variable);
         }
+
+        return this.variablesService.getVariablePrimitiveType(variable);
     }
 }

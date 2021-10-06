@@ -23,7 +23,11 @@ export class VariableExpressionLanguagePipe implements PipeTransform {
 
     constructor(private variablesService: VariablesService) { }
 
-    transform(variable: string | EntityProperty): string {
+    transform(variable: string | EntityProperty): string | null {
+        if (!variable) {
+            return null;
+        }
+
         let primitiveType = variable;
         if (typeof variable === 'string') {
             primitiveType = this.variablesService.getPrimitiveType(variable);
