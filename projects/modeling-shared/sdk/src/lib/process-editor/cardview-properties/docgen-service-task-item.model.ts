@@ -19,7 +19,7 @@ import { CardViewItem, DynamicComponentModel } from '@alfresco/adf-core';
 import { BpmnProperty } from '../properties';
 import { ImplementationItemModel } from './implementation-item.model';
 
-export class EmailServiceTaskItemModel extends ImplementationItemModel implements CardViewItem, DynamicComponentModel {
-    type = BpmnProperty.emailServiceTask;
-    descriptor = 'emailConnector';
+export class DocgenServiceTaskItemModel extends ImplementationItemModel implements CardViewItem, DynamicComponentModel {
+    type = BpmnProperty.docgenServiceTask;
+    descriptor = 'docgenConnector';
 }

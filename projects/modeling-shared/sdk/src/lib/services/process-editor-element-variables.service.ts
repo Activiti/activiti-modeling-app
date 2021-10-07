@@ -168,6 +168,8 @@ export class ProcessEditorElementVariablesService {
                         return ProcessEditorElementWithVariables.DecisionTable;
                     case 'email-service.SEND':
                         return ProcessEditorElementWithVariables.EmailServiceTask;
+                    case 'docgen-service.GENERATE':
+                        return ProcessEditorElementWithVariables.DocgenServiceTask;
                     default:
                         return ProcessEditorElementWithVariables.ServiceTask;
                 }

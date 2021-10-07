@@ -20,6 +20,7 @@ import { BpmnProperty } from '../properties';
 
 export class ImplementationItemModel extends CardViewBaseItemModel implements CardViewItem, DynamicComponentModel {
     type = BpmnProperty.implementation;
+    descriptor: string;
 
     get displayValue() {
         return this.default;

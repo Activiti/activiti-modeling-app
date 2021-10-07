@@ -28,6 +28,7 @@ export enum ProcessEditorElementWithVariables {
     ScriptTask = 'SCRIPT_TASK',
     DecisionTable = 'DECISION_TABLE',
     EmailServiceTask = 'EMAIL_SERVICE',
+    DocgenServiceTask = 'DOCGEN_SERVICE',
     UserTask = 'USER_TASK',
     Event = 'EVENT'
 }
