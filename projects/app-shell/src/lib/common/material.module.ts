@@ -31,6 +31,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
+import { MAT_TABS_CONFIG } from '@angular/material/tabs';
 
 @NgModule({
     imports: [
@@ -66,6 +67,9 @@ import { MatIconModule } from '@angular/material/icon';
         MatTableModule,
         MatBadgeModule,
         MatIconModule
+    ],
+    providers: [
+        { provide: MAT_TABS_CONFIG, useValue: { animationDuration: '0ms' } }
     ]
 })
 export class MaterialModule {
