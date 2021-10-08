@@ -19,15 +19,16 @@ ENV NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx/conf.d
 
 # App config variables without default values:
 # -------------------------------
-# APP_CONFIG_IDENTITY_HOST
-# APP_CONFIG_OAUTH2_HOST
-# APP_CONFIG_BPM_HOST
-# APP_CONFIG_ECM_HOST
 # APP_CONFIG_EXAMPLE_PROJECTS_HOST
 # APP_CONFIG_EXAMPLE_PROJECTS_RESOURCE
 
 # App config variables with default values:
 # -------------------------------
+ENV APP_CONFIG_IDENTITY_HOST="{protocol}//{hostname}{:port}/auth/admin/realms/alfresco"
+ENV APP_CONFIG_OAUTH2_HOST="{protocol}//{hostname}{:port}/auth/realms/alfresco"
+ENV APP_CONFIG_BPM_HOST="{protocol}//{hostname}{:port}"
+ENV APP_CONFIG_ECM_HOST="{protocol}//{hostname}{:port}"
+ENV APP_CONFIG_PROVIDER="ALL"
 ENV APP_CONFIG_AUTH_TYPE="OAUTH"
 ENV APP_CONFIG_OAUTH2_CLIENTID="activiti"
 ENV APP_CONFIG_OAUTH2_IMPLICIT_FLOW=true
