@@ -28,6 +28,7 @@
             "@alfresco-dbp/adf-candidates/core/*": ["projects/adf-candidates/core/*"],
             "@alfresco-dbp/modeling-ce/dashboard": ["projects/dashboard/src/public-api.ts"],
             "@alfresco-dbp/modeling-ce/project-editor": ["projects/project-editor/src/public-api.ts"],
+            "@alfresco-dbp/adf-core/tooling": ["projects/adf-candidates/core/tooling/src/index.ts"],
             "package.json": ["./package.json"]
         }
     },

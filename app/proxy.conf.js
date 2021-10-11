@@ -1,4 +1,4 @@
-require('dotenv').config({ path: process.env.ENV_FILE });
+require('@alfresco/adf-cli/tooling').dotenvConfig({ path: process.env.ENV_FILE });
 
 const APP_CONFIG_BPM_HOST = process.env.APP_CONFIG_BPM_HOST;
 

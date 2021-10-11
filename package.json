@@ -72,6 +72,7 @@
     "custom-event-polyfill": "^1.0.6",
     "dmn-js": "^6.3.3",
     "dmn-moddle": "^6.0.0",
+    "dotenv-expand": "^5.1.0",
     "graphql": "^15.4.0",
     "intl": "1.2.5",
     "lodash": "^4.17.21",
