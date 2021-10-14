@@ -25,7 +25,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 @Component({
     template: `
         <mat-form-field>
-            <input matInput [matDatepicker]="picker" [formControl]="pickerDate" (dateChange)="onChange($event)" data-automation-id="variable-value">
+            <input matInput [matDatepicker]="picker" [formControl]="pickerDate" (dateChange)="onChange($event)" data-automation-id="variable-value" [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -55,6 +55,7 @@ export class PropertiesViewerDateInputComponent {
     @Output() change = new EventEmitter();
     @Input() value: string;
     @Input() disabled: boolean;
+    @Input() placeholder;
 
     format = 'YYYY-MM-DD';
 

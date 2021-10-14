@@ -19,7 +19,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 @Component({
     template: `
         <mat-form-field floatLabel="never">
-            <input matInput (keyup)="onChange()" [(ngModel)]="value" placeholder="Value" data-automation-id="variable-value" [disabled]="disabled" [readonly]="readonly">
+            <input matInput (keyup)="onChange()" [(ngModel)]="value" placeholder="Value" data-automation-id="variable-value" [disabled]="disabled" [readonly]="readonly" [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate">
         </mat-form-field>
     `
 })
@@ -31,6 +31,7 @@ export class PropertiesViewerStringInputComponent {
     @Input() value: string;
     @Input() disabled: boolean;
     @Input() readonly: boolean;
+    @Input() placeholder: string;
 
     onChange() {
         this.change.emit( (this.value && this.value.length) ? this.value : null);

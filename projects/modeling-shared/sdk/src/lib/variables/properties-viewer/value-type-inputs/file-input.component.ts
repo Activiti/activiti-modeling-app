@@ -26,7 +26,7 @@ import { FileService } from '../../../services/file.service';
 @Component({
     template: `
     <mat-form-field>
-        <mat-select (selectionChange)="onChange()" [compareWith]="compareObjects"
+        <mat-select (selectionChange)="onChange()" [compareWith]="compareObjects" [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate"
         [(ngModel)]="value" data-automation-id="variable-value" [disabled]="disabled">
             <mat-option *ngFor="let file of files | async" [value]="file.extensions">
                 {{file.name}}
@@ -42,6 +42,7 @@ export class PropertiesViewerFileInputComponent implements OnInit {
     @Output() change = new EventEmitter();
     @Input() value: ActivitiFile;
     @Input() disabled: boolean;
+    @Input() placeholder;
 
     projectId: string;
     files: Observable<ActivitiFile[]>;

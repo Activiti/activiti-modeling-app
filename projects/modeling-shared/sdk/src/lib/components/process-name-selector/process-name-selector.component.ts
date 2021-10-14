@@ -38,6 +38,7 @@ export class ProcessNameSelectorComponent implements OnInit {
     @Input() value: string;
     @Input() disabled: boolean;
     @Input() required:  boolean;
+    @Input() placeholder: string;
     @Input() extendedProperties: {
         plain: boolean;
         excludedProcesses: string[]
