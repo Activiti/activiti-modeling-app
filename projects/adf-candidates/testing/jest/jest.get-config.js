@@ -8,7 +8,7 @@ module.exports = function getJestConfig(config, tsConfigFileName = DEFAULT_TS_CO
     return {
         preset: 'jest-preset-angular',
         rootDir: rootDirectory,
-        verbose: true,
+        verbose: false,
         testURL: 'http://localhost',
         setupFilesAfterEnv: [ path.resolve(rootDirectory, 'jest/jest-setup.ts') ],
         collectCoverage: true,
