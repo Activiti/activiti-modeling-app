@@ -25,7 +25,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Subject, of } from 'rxjs';
 import { VariablesComponent } from './variables.component';
 import { CodeValidatorService } from './../code-editor/services/code-validator.service';
-import { By } from '@angular/platform-browser';
 import { INPUT_TYPE_ITEM_HANDLER } from './properties-viewer/value-type-inputs/value-type-inputs';
 
 describe('VariablesComponent', () => {
@@ -157,28 +156,5 @@ describe('VariablesComponent', () => {
         fixture.detectChanges();
         const errorMessageLabel = fixture.nativeElement.querySelector('.error-message');
         expect(errorMessageLabel).toBeDefined();
-    });
-
-    it('should clear filter input on click of clearFilterInput button', async () => {
-        component.filterValue = 'var1';
-
-        fixture.detectChanges();
-        await fixture.whenStable();
-
-        const clearFilterButton: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="variable-clear-filter"]');
-        clearFilterButton.click();
-
-        fixture.detectChanges();
-        await fixture.whenStable();
-
-        expect(component.filterValue).toEqual('');
-    });
-
-    it('should set filterValue from input', () => {
-        const input = fixture.debugElement.query(By.css('[data-automation-id="variable-filter"]'));
-        input.triggerEventHandler('input', { target: { value: 'string'}});
-        fixture.detectChanges();
-
-        expect(component.filterValue).toEqual('string');
     });
 });

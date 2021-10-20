@@ -1,29 +1,24 @@
-<h2 mat-dialog-title class="ama-variables-dialog-title"><mat-icon class="ama-variables-icon">layers</mat-icon>{{title | translate}}</h2>
+<h2 mat-dialog-title class="ama-variables-dialog-title">
+    <mat-icon class="ama-variables-icon">layers</mat-icon>{{title | translate}}
+</h2>
 
 <mat-dialog-content class="ama-properties-content ama-variables-dialog-content" data-automation-id="variables-dialog">
-
-    <mat-form-field class="ama-variables-filter">
-        <mat-label>{{ filterPlaceholder | translate }}</mat-label>
-        <input [(ngModel)]="filterValue" matInput autocomplete="false" data-automation-id="variable-filter">
-        <button mat-button *ngIf="filterValue" matSuffix mat-icon-button aria-label="Clear" (click)="filterValue = ''" data-automation-id="variable-clear-filter">
-            <mat-icon>close</mat-icon>
-        </button>
-    </mat-form-field>
-
-    <modelingsdk-properties-viewer [properties]="editorContent" [filterValue]="filterValue" [types]="types" [requiredCheckbox]="requiredCheckbox" [displayedColumns]="columns" (propertyChanged)="onPropertyChanged()"></modelingsdk-properties-viewer>
+    <modelingsdk-properties-viewer [filterPlaceholder]="filterPlaceholder" [properties]="editorContent"
+        [filterValue]="filterValue" [types]="types" [requiredCheckbox]="requiredCheckbox" [displayedColumns]="columns"
+        [allowExpressions]="allowExpressions" (propertyChanged)="onPropertyChanged()"></modelingsdk-properties-viewer>
 </mat-dialog-content>
-
 
 <mat-dialog-actions align="end">
     <p class="ama-error-message" *ngIf="!validVariables">{{ 'SDK.VARIABLES_EDITOR.ERRORS.NAME_ALREADY_EXISTS' | translate }}</p>
+
     <span class="adf-fill-remaining-space"></span>
 
     <button mat-button mat-dialog-close (click)="onClose()" data-automation-id="close-button">
         {{ 'APP.DIALOGS.CANCEL' | translate }}
     </button>
 
-    <button [disabled]="isSaveDisabled()" class="adf-dialog-action-button save-btn" color="primary" mat-button (click)="save()"
-        data-automation-id="update-button">
+    <button [disabled]="isSaveDisabled()" class="adf-dialog-action-button save-btn" color="primary" mat-button
+        (click)="save()" data-automation-id="update-button">
         {{ 'APP.DIALOGS.UPDATE' | translate }}
     </button>
 </mat-dialog-actions>

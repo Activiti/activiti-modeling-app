@@ -36,6 +36,7 @@ import { PropertiesViewerArrayInputComponent } from './properties-viewer/value-t
 import { MatSortModule } from '@angular/material/sort';
 import { VariableExpressionLanguagePipe } from './properties-viewer/variable-expression-language.pipe';
 import { VariablePrimitiveTypePipe } from './properties-viewer/variable-primitive-type.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -44,6 +45,7 @@ import { VariablePrimitiveTypePipe } from './properties-viewer/variable-primitiv
         CodeEditorModule,
         SharedModule,
         MatSortModule,
+        FormsModule
     ],
     declarations: [
         VariablesComponent,

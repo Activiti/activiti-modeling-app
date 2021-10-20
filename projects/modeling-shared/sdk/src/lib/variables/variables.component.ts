@@ -33,6 +33,7 @@ export interface VariableDialogData extends MatDialogConfig {
     filterPlaceholder: string;
     required: boolean;
     propertiesUpdate$: Subject<EntityProperties>;
+    allowExpressions: boolean;
 }
 
 @Component({
@@ -54,6 +55,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
     columns: string[];
     types: string[];
     validVariables = true;
+    allowExpressions = false;
 
     constructor(
         public dialog: MatDialogRef<VariablesComponent>,
@@ -66,6 +68,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
         this.requiredCheckbox = data.required;
         this.columns = data.columns;
         this.types = data.types || primitive_types;
+        this.allowExpressions = data.allowExpressions || false;
     }
 
     ngOnInit() {

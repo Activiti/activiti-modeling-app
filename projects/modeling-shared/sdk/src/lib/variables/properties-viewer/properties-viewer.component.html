@@ -1,25 +1,37 @@
 <div class="ama-properties-viewer">
+    <mat-form-field class="ama-variables-filter">
+        <mat-label>{{filterPlaceholder | translate}}</mat-label>
+        <input [(ngModel)]="filterValue" matInput autocomplete="false" data-automation-id="variable-filter" (ngModelChange)="applyFilter($event)">
+        <button mat-button *ngIf="filterValue" matSuffix mat-icon-button attr.aria-label="{{'SDK.VARIABLES_EDITOR.TABLE.CLEAR' | translate}}" (click)="filterValue = ''"
+            data-automation-id="variable-clear-filter">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
     <button mat-raised-button class="ama-add-btn" color="primary" (click)="addRow()" [disabled]="error"
         data-automation-id="add-variable">
         <mat-icon>add</mat-icon>
     </button>
     <mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_NAME' | translate }}
+            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_NAME' | translate
+                }}
             </mat-header-cell>
-            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'variable-name-cell-' + element.name" class="ama-ellipsis-cell">
+            <mat-cell *matCellDef="let element" [attr.data-automation-id]="'variable-name-cell-' + element.name"
+                class="ama-ellipsis-cell">
                 {{element.name}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="type">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_TYPE' | translate }}
+            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_TYPE' | translate
+                }}
             </mat-header-cell>
             <mat-cell *matCellDef="let element" [attr.data-automation-id]="'variable-type-cell-' + element.type">
                 {{element.type}}</mat-cell>
         </ng-container>
 
         <ng-container *ngIf="requiredCheckbox" matColumnDef="required">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_REQUIRED' | translate }}
+            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_REQUIRED' |
+                translate }}
             </mat-header-cell>
             <mat-cell *matCellDef="let element"
                 [attr.data-automation-id]="'variable-required-cell-' + element.required">
@@ -28,9 +40,12 @@
         </ng-container>
 
         <ng-container matColumnDef="value">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_VALUE' | translate }}
+            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_VALUE' | translate
+                }}
             </mat-header-cell>
-            <mat-cell *matCellDef="let element; index as i" [attr.data-automation-id]="'variable-value-cell-' + i" class="ama-ellipsis-cell">
+            <mat-cell *matCellDef="let element; index as i" [attr.data-automation-id]="'variable-value-cell-' + i"
+                class="ama-ellipsis-cell">
+
                 {{element.value | variablevalue}}
             </mat-cell>
         </ng-container>
@@ -52,7 +67,7 @@
 </div>
 
 <ng-container *ngIf="showForm; else noProjectsTemplate">
-    <div class="ama-properties-form">
+    <div class="ama-properties-form {{!allowExpressions ? 'ama-space-top' : ''}}">
         <mat-form-field floatLabel="never">
             <input
                 matInput
@@ -61,20 +76,47 @@
                 (keyup)="saveChanges()"
                 data-automation-id="variable-name">
             <p class="mat-error" *ngIf="!name.length">{{ 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME' | translate }}</p>
-            <p class="mat-error" *ngIf="name.length && !isValid(name)">{{ 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME' | translate }}
-                <mat-icon class="ama-variable-name-info-icon" data-automation-id="variable-name-info-icon" color="warn" [matTooltip]="'SDK.VARIABLES_EDITOR.ERRORS.VARIABLE_NAME_TOOLTIP' | translate">info</mat-icon>
+
+            <p class="mat-error" *ngIf="name.length && !isValid(name)">{{ 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME' |
+                translate }}
+                <mat-icon class="ama-variable-name-info-icon" data-automation-id="variable-name-info-icon" color="warn"
+                    [matTooltip]="'SDK.VARIABLES_EDITOR.ERRORS.VARIABLE_NAME_TOOLTIP' | translate">info</mat-icon>
             </p>
         </mat-form-field>
-        <mat-form-field floatLabel="never">
-            <mat-select placeholder="Type" [(ngModel)]="selectedType" (selectionChange)="onTypeChange()"
-                data-automation-id="variable-type">
-                <mat-option *ngFor="let type of types" [value]="type" [attr.data-automation-id]="'variable-type-' + type">
-                    {{type}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+        <div class="ama-variable-type-required-row">
+            <mat-form-field floatLabel="never">
+                <mat-select placeholder="Type" [(ngModel)]="selectedType" (selectionChange)="onTypeChange()"
+                    data-automation-id="variable-type">
+                    <mat-option *ngFor="let type of types" [value]="type"
+                        [attr.data-automation-id]="'variable-type-' + type">
+                        {{type}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-checkbox *ngIf="requiredCheckbox && allowExpressions" [(ngModel)]="required" (change)="saveChanges()" color="primary"
+
+                data-automation-id="variable-required" class="ama-variable-required">
+                {{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_REQUIRED' | translate }}
+            </mat-checkbox>
+        </div>
+
+        <mat-tab-group *ngIf="allowExpressions" [selectedIndex]="tabIndex">
+            <mat-tab label="{{'SDK.MAPPING_DIALOG.VALUE_MAPPING'| translate}}">
+                <modelingsdk-value-type-input [(ngModel)]="value" [index]="position" [type]="selectedType"
+                    (onChange)="updateVariableValue($event)" [extendedProperties]="extendedProperties">
+                </modelingsdk-value-type-input>
+            </mat-tab>
+            <mat-tab label="{{'SDK.MAPPING_DIALOG.EXPRESSION_MAPPING'| translate}}">
+                <modelingsdk-expression-code-editor [attr.data-automation-id]="'variable-value'" [expression]="value"
+                    (expressionChange)="updateVariableValue($event)" [variables]="extendedProperties?.variables || []"
+                    [removeEnclosingBrackets]="false" [enableDialogEditor]="true" [enableInlineEditor]="true"
+                    [removeLineNumbers]="true" [lineWrapping]="false" [nonBracketedOutput]="false">
+                </modelingsdk-expression-code-editor>
+            </mat-tab>
+        </mat-tab-group>
 
         <modelingsdk-value-type-input
+            *ngIf="!allowExpressions"
             (onChange)="updateVariableValue($event)"
             [(ngModel)]="value"
             [index]="position"
@@ -82,8 +124,8 @@
             [extendedProperties]="extendedProperties">
         </modelingsdk-value-type-input>
 
-        <mat-checkbox *ngIf="requiredCheckbox" [(ngModel)]="required" (change)="saveChanges()" color="primary"
-            data-automation-id="variable-required">
+        <mat-checkbox *ngIf="requiredCheckbox && !allowExpressions" [(ngModel)]="required" (change)="saveChanges()" color="primary"
+            data-automation-id="variable-required" class="ama-variable-required">
             {{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_REQUIRED' | translate }}
         </mat-checkbox>
     </div>

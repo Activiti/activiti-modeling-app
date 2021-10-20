@@ -22,7 +22,8 @@
                 "COLUMN_TYPE": "Type",
                 "COLUMN_REQUIRED": "Required",
                 "COLUMN_VALUE": "Value",
-                "NO_PROPERTIES": "Select or create a variable to view its properties"
+                "NO_PROPERTIES": "Select or create a variable to view its properties",
+                "CLEAR": "Clear"
             }
         },
         "VARIABLE_MAPPING": {

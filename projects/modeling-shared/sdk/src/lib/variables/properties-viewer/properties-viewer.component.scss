@@ -9,7 +9,7 @@ modelingsdk-properties-viewer {
 }
 .ama-properties-viewer {
     min-height: 90px;
-    width: 600px;
+    width: 560px;
 
     .mat-table {
         border: 1px solid var(--theme-border-color);
@@ -48,10 +48,9 @@ modelingsdk-properties-viewer {
     }
 
     .ama-add-btn {
-        float: right;
         padding: 0 10px;
         min-width: 30px;
-        margin-top: -50px;
+        margin-left: 32px;
     }
 
     .mat-column-delete {
@@ -61,11 +60,16 @@ modelingsdk-properties-viewer {
 
 .ama-properties-form {
     text-align: left;
-    width: 300px;
-    margin-left: 40px;
+    width: 360px;
+    margin-left: 20px;
+
+    &.ama-space-top {
+        margin-top: 65px;
+    }
 
     .mat-form-field {
         display: block;
+        width: 100%;
     }
 
     .ama-variable-name-info-icon {
@@ -73,17 +77,40 @@ modelingsdk-properties-viewer {
         font-size: medium;
     }
 
-    modelingsdk-expression-code-editor {
-        display: block;
-        height: 135px;
-        padding-bottom: 20px;
+    .mat-tab-body-content {
+        height: 175px;
+        overflow: auto;
+        margin-top: 12px;
+
+        modelingsdk-expression-code-editor {
+            display: block;
+            height: 135px;
+            padding-bottom: 20px;
+        }
     }
 }
 
 .ama-no-properties {
     color: var(--theme-text-color);
-    width: 300px;
+    width: 360px;
     font-size: 16px;
-    margin-left: 40px;
+    margin-left: 20px;
     text-align: center;
+    margin-top: 65px;
+}
+
+.ama-variables-filter {
+    width: 460px;
+    margin-left: 10px;
+}
+
+.ama-variable-type-required-row {
+    display: flex;
+    flex: 1 1 auto;
+
+    .ama-variable-required {
+        top: 20px;
+        position: relative;
+        margin-left: 6px;
+    }
 }

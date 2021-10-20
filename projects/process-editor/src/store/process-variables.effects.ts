@@ -69,12 +69,13 @@ export class ProcessVariablesEffects {
         const filterPlaceholder = 'PROCESS_EDITOR.ELEMENT_PROPERTIES.FILTER_PROCESS_VARIABLE';
         const required = true;
         const columns = [ 'name', 'type', 'required', 'value', 'delete' ];
+        const allowExpressions = true;
 
         this.dialogService.openDialog(VariablesComponent, {
             disableClose: true,
             height: '530px',
             width: '1000px',
-            data: { properties, title, filterPlaceholder, columns, required, propertiesUpdate$ },
+            data: { properties, title, filterPlaceholder, columns, required, allowExpressions, propertiesUpdate$ },
         });
 
         propertiesUpdate$.subscribe(data => {

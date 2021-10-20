@@ -21,12 +21,20 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { PropertiesViewerComponent } from './properties-viewer.component';
 import { of } from 'rxjs';
+import { By } from '@angular/platform-browser';
 import { VariablesService } from '../variables.service';
 import { UuidService } from './../../services/uuid.service';
 import { VariableValuePipe } from './variable-value.pipe';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { INPUT_TYPE_ITEM_HANDLER } from './value-type-inputs/value-type-inputs';
+import { FormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CodeEditorModule, ExpressionsEditorService } from './../../../public-api';
+import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
+import { ValueTypeInputComponent } from './value-type-input.component';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
+import { CommonModule } from '@angular/common';
 
 describe('PropertiesViewerComponent', () => {
     let fixture: ComponentFixture<PropertiesViewerComponent>;
@@ -45,13 +53,27 @@ describe('PropertiesViewerComponent', () => {
         TestBed.configureTestingModule({
             providers: [
                 VariablesService,
+                DialogService,
                 { provide: MatDialogRef, useValue: mockDialog },
                 { provide: Store, useValue: { dispatch: jest.fn(), select: jest.fn().mockReturnValue(of()) }},
                 { provide: UuidService, useValue: { generate() { return 'generated-uuid'; } } },
-                { provide: INPUT_TYPE_ITEM_HANDLER, useValue: [] }
+                { provide: INPUT_TYPE_ITEM_HANDLER, useValue: [] },
+                {
+                    provide: ExpressionsEditorService, useValue: {
+                        initExpressionEditor: jest.fn()
+                    }
+                },
+                { provide: TranslationService, useClass: TranslationMock },
             ],
-            declarations: [PropertiesViewerComponent, VariableValuePipe],
-            imports: [ MatTableModule, TranslateModule.forRoot()],
+            declarations: [PropertiesViewerComponent, VariableValuePipe, ValueTypeInputComponent],
+            imports: [
+                CoreModule,
+                MatTableModule,
+                TranslateModule.forRoot(),
+                FormsModule,
+                NoopAnimationsModule,
+                CodeEditorModule,
+            ],
             schemas: [NO_ERRORS_SCHEMA]
         });
     });
@@ -275,7 +297,7 @@ describe('PropertiesViewerComponent', () => {
         const addButton: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="add-variable"]');
         addButton.dispatchEvent(new Event('click'));
         fixture.detectChanges();
-        expect(addButton.getAttribute('disabled')).toBe('');
+        expect(addButton.getAttribute('disabled')).toBe('true');
 
         const deleteButton: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="delete-variable"]');
         deleteButton.dispatchEvent(new Event('click'));
@@ -300,5 +322,167 @@ describe('PropertiesViewerComponent', () => {
         await fixture.whenStable();
 
         expect(component.dataSource.filteredData).toEqual([]);
+    });
+
+    it('should clear filter input on click of clearFilterInput button', async () => {
+        component.filterValue = 'var1';
+
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const clearFilterButton: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="variable-clear-filter"]');
+        clearFilterButton.click();
+
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        expect(component.filterValue).toEqual('');
+    });
+
+    it('should set filterValue from input', () => {
+        const input = fixture.debugElement.query(By.css('[data-automation-id="variable-filter"]'));
+        input.triggerEventHandler('input', { target: { value: 'string'}});
+        fixture.detectChanges();
+
+        expect(component.filterValue).toEqual('string');
+    });
+
+    it('should show the correct tab in editor', () => {
+        component.requiredCheckbox = true;
+        const data1 = {
+          '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello'},
+          '243':  {'id': '243', 'name': 'var2', 'type': 'string', 'required': false, 'value': '${123}'},
+          '345':  {'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': ''}
+        };
+
+        component.dataSource = new MatTableDataSource(Object.values(data1));
+        component.data = data1;
+        fixture.detectChanges();
+
+        const rows: HTMLElement[] = fixture.nativeElement.querySelectorAll('.mat-row');
+
+        rows[0].dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+        expect(component.tabIndex).toBe(0);
+
+        rows[1].dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+        expect(component.tabIndex).toBe(1);
+    });
+
+    it('should not display tabs when expression is not allowed', () => {
+        component.allowExpressions = false;
+        const data1 = {
+            '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello'},
+        };
+
+        component.dataSource = new MatTableDataSource(Object.values(data1));
+        component.data = data1;
+        fixture.detectChanges();
+
+        const rows: HTMLElement[] = fixture.nativeElement.querySelectorAll('.mat-row');
+        rows[0].dispatchEvent(new Event('click'));
+
+        const tabGroup: HTMLElement = fixture.nativeElement.querySelector('mat-tab-group');
+        expect(tabGroup).toBe(null);
+    });
+
+    it('should display tabs when expression is allowed', () => {
+        component.allowExpressions = true;
+        const data1 = {
+            '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello'},
+        };
+
+        component.dataSource = new MatTableDataSource(Object.values(data1));
+        component.data = data1;
+        fixture.detectChanges();
+
+        const rows: HTMLElement[] = fixture.nativeElement.querySelectorAll('.mat-row');
+        rows[0].dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+
+        const tabGroup: HTMLElement = fixture.nativeElement.querySelector('mat-tab-group');
+        expect(tabGroup).not.toBeNull();
+        expect(tabGroup).toBeDefined();
+    });
+
+    it('should display the expression editor in the expression tab content', () => {
+        component.allowExpressions = true;
+        const data1 = {
+            '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello'},
+        };
+
+        component.dataSource = new MatTableDataSource(Object.values(data1));
+        component.data = data1;
+        fixture.detectChanges();
+
+        const rows: HTMLElement = fixture.nativeElement.querySelector('.mat-row');
+        rows.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+
+        component.tabIndex = 1;
+        fixture.detectChanges();
+
+        const codeEditor: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="variable-value"]');
+        expect(codeEditor).not.toBeNull();
+        expect(codeEditor).toBeDefined();
+    });
+
+    it('should not display tabs when expression is not allowed', () => {
+        component.allowExpressions = false;
+        const data1 = {
+            '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello'},
+        };
+
+        component.dataSource = new MatTableDataSource(Object.values(data1));
+        component.data = data1;
+        fixture.detectChanges();
+
+        const rows: HTMLElement[] = fixture.nativeElement.querySelectorAll('.mat-row');
+        rows[0].dispatchEvent(new Event('click'));
+
+        const tabGroup: HTMLElement = fixture.nativeElement.querySelector('mat-tab-group');
+        expect(tabGroup).toBe(null);
+    });
+
+    it('should display tabs when expression is allowed', () => {
+        component.allowExpressions = true;
+        const data1 = {
+            '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello'},
+        };
+
+        component.dataSource = new MatTableDataSource(Object.values(data1));
+        component.data = data1;
+        fixture.detectChanges();
+
+        const rows: HTMLElement[] = fixture.nativeElement.querySelectorAll('.mat-row');
+        rows[0].dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+
+        const tabGroup: HTMLElement = fixture.nativeElement.querySelector('mat-tab-group');
+        expect(tabGroup).not.toBeNull();
+        expect(tabGroup).toBeDefined();
+    });
+
+    it('should display the expression editor in the expression tab content', () => {
+        component.allowExpressions = true;
+        const data1 = {
+            '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello'},
+        };
+
+        component.dataSource = new MatTableDataSource(Object.values(data1));
+        component.data = data1;
+        fixture.detectChanges();
+
+        const rows: HTMLElement = fixture.nativeElement.querySelector('.mat-row');
+        rows.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+
+        component.tabIndex = 1;
+        fixture.detectChanges();
+
+        const codeEditor: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="variable-value"]');
+        expect(codeEditor).not.toBeNull();
+        expect(codeEditor).toBeDefined();
     });
 });

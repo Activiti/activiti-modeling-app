@@ -49,11 +49,15 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
     value: any;
     id: string;
     selection = new SelectionModel<EntityProperty>();
+    tabIndex = null;
+    private readonly EXPRESSION_REGEX = /\${([^]*)}/m;
     @Input() types: string[] = primitive_types;
     @Input() properties = '';
     @Input() requiredCheckbox = true;
     @Input() displayedColumns = ['name', 'type', 'required', 'value', 'delete'];
     @Input() filterValue = '';
+    @Input() filterPlaceholder: string;
+    @Input() allowExpressions = false;
     @Output() propertyChanged: EventEmitter<boolean> = new EventEmitter();
     @ViewChild(MatSort) sort: MatSort;
 
@@ -163,6 +167,7 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         this.extendedProperties = {
             variables: this.getVariablesForExpressionEditor(element.id)
         };
+        this.updateTabIndex();
     }
 
     private getVariablesForExpressionEditor(id: any): EntityProperty[] {
@@ -239,5 +244,15 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         this.extendedProperties = {
             variables: this.getVariablesForExpressionEditor(newVariable.id)
         };
+    }
+
+    updateTabIndex() {
+        const actualValue = String(this.value);
+        const expressionExist = this.EXPRESSION_REGEX.test(actualValue);
+        if (expressionExist) {
+            this.tabIndex = 1;
+        } else {
+            this.tabIndex = 0;
+        }
     }
 }
