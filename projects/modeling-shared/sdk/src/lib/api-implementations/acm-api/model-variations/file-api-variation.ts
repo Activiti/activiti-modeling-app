@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { ActivitiFileContent, ActivitiFile, MinimalModelSummary } from '../../../api/types';
+import { ActivitiFileContent, ActivitiFile, MinimalModelSummary, FileVisibility } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { FILE_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
@@ -39,10 +39,18 @@ export class FileApiVariation<M extends ActivitiFile, C extends ActivitiFileCont
     }
 
     public createSummaryPatch(model: Partial<M>, modelContent: C) {
-        const { name, description } = model;
+        const {
+            name,
+            description,
+            extensions,
+        } = model;
+
         return {
             name,
             description,
+            extensions: {
+                visibility: extensions?.visibility ?? FileVisibility.Private,
+            },
             type: this.contentType
         };
     }

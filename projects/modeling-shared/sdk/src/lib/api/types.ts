@@ -504,12 +504,18 @@ export interface ActivitiFile extends Model {
     extensions: FileExtensions;
 }
 
+export enum FileVisibility {
+    Public = 'public',
+    Private = 'private',
+}
+
 export interface FileExtensions {
     id: string;
     uri: string;
     name?: string;
     content?: FileExtensionsContent;
     createdAt?: Date;
+    visibility?: FileVisibility;
 }
 
 export interface FileExtensionsContent {
