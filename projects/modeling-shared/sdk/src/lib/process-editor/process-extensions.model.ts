@@ -61,7 +61,7 @@ export class ProcessExtensionsModel {
 
         Object.keys(this.extensions).map((extensionPropertyKey: string) => {
             if (extensionPropertyKey !== 'constants' && extensionPropertyKey !== 'mappings' && extensionPropertyKey !== 'properties') {
-                properties = { ...this.extensions[extensionPropertyKey].properties };
+                properties = { ...properties, ...this.extensions[extensionPropertyKey].properties };
             }
         });
 
@@ -100,6 +100,11 @@ export class ProcessExtensionsModel {
         if (Object.values(assignment).length) {
             const currentAssignment = processExtensions.assignments[serviceId];
             if (this.checkAssignmentChange(assignment, currentAssignment)) {
+                const existingAssignment = processExtensions.assignments[assignment.id];
+                if (this.checkAssignmentCopied(existingAssignment, assignment)) {
+                    assignment.id = serviceId;
+                    assignment.type = existingAssignment.type;
+                }
                 processExtensions.assignments[serviceId] = assignment;
             }
         } else {
@@ -107,6 +112,10 @@ export class ProcessExtensionsModel {
         }
         this.extensions[processId] = processExtensions;
         return this.extensions;
+    }
+
+    private checkAssignmentCopied(existingAssignment, assignment): boolean {
+        return !!existingAssignment && existingAssignment.id === assignment.id;
     }
 
     private checkAssignmentChange(newAssignmentObj, currentAssignmentObj): boolean {
