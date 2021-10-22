@@ -23,7 +23,8 @@ import { EntityDialogPayload, AllowedCharacters, EntityDialogForm } from '../../
 import { MODELER_NAME_REGEX } from '../../utils/create-entries-names';
 
 @Component({
-    templateUrl: './entity-dialog.component.html'
+    templateUrl: './entity-dialog.component.html',
+    styleUrls: ['./entity-dialog.component.scss']
 })
 export class EntityDialogComponent implements OnInit {
 
