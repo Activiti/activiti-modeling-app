@@ -14,9 +14,10 @@
             color: var(--theme-accent-color);
         }
 
-        .mat-raised-button {
+        .adf-sidebar-action-menu-button {
             width: 100%;
             background-color: var(--theme-accent-color);
+            color: var(--theme-primary-color-default-contrast) !important;
         }
     }
 
