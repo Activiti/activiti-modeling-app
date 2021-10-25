@@ -74,6 +74,7 @@ $defaults: (
   --theme-caption-font-size: mat-font-size($alfresco-typography, caption),
   --theme-title-font-size: mat-font-size($alfresco-typography, title),
   --theme-subheading-2-font-size: mat-font-size($alfresco-typography, subheading-2),
+  --theme-card-bg-color: mat-color($background, card),
 
   // ADF components and services
   --adf-snackbar-error-bg-color: mat-color($warn),
