@@ -65,10 +65,7 @@ export class PropertiesViewerFileInputComponent implements OnInit {
     @Input() disabled: boolean;
     @Input() placeholder;
 
-    @Input() extendedProperties: FileInputExtendedProperties = {
-        allowedMimeTypes: [],
-        showPublicFilesOnly: false,
-    };
+    @Input() extendedProperties?: FileInputExtendedProperties;
 
     projectId: string;
     files: Observable<ActivitiFile[]>;
@@ -79,7 +76,7 @@ export class PropertiesViewerFileInputComponent implements OnInit {
         const {
             allowedMimeTypes,
             showPublicFilesOnly
-        } = this.extendedProperties;
+        } = this.extendedProperties ?? {};
 
         this.store.select(selectSelectedProjectId)
             .subscribe(

@@ -106,6 +106,16 @@ describe('PropertiesViewerArrayInputComponent', () => {
         });
     });
 
+    it('should work if "extendedProperties" is set to "null"', (done) => {
+        component.extendedProperties = null;
+
+        component.ngOnInit();
+        component.files.subscribe(files => {
+            expect(files).toEqual(activityFiles);
+            done();
+        });
+    });
+
     it('should show default option', async () => {
         spyOn(component.change, 'emit');
         component.value = activityFiles[0].extensions;
