@@ -21,3 +21,4 @@ export const URL_REGEXP = /^[A-Za-z][A-Za-z\d.+-]*:\/*(?:\w+(?::\w+)?@)?[^\s/]+(
 export const EXTERNAL_URL_REGEXP = /^(http|https):\/\/.*[^/]$/;
 export const CONTENT_MODEL_PREFIX_PROPERTY_REGEXP = /^[a-z]([a-zA-Z0-9]{0,25})?$/;
 export const HTML_REGEXP = /<\/?[a-z][\s\S]*>/;
+export const MODELINGSDK_ALLOWED_CHARACTERS_REGEXP = /^[a-z]([-a-z0-9]{0,24}[-a-z0-9])?$/;
