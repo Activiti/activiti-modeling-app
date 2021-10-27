@@ -20,8 +20,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
     template: `
     <mat-form-field>
         <mat-select (selectionChange)="onChange()" [(ngModel)]="value" data-automation-id="variable-value" [disabled]="disabled" [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate" >
-            <mat-option [value]="true">true</mat-option>
-            <mat-option [value]="false">false</mat-option>
+            <mat-option *ngFor="let option of booleanOptions" [value]="option.value">{{option.label}}</mat-option>
         </mat-select>
     </mat-form-field>
     `
@@ -34,6 +33,16 @@ export class PropertiesViewerBooleanInputComponent {
     @Input() value: boolean;
     @Input() disabled: boolean;
     @Input() placeholder;
+    booleanOptions = [
+        { value: true, label: true  },
+        { value: false, label: false  }
+    ];
+
+    set options(_options: any) {
+        if (_options && _options.length) {
+            this.booleanOptions = [ ..._options ];
+        }
+    }
 
     onChange() {
         this.change.emit(this.value);

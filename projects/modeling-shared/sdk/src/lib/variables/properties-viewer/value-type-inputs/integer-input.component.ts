@@ -19,7 +19,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 @Component({
     template: `
         <mat-form-field floatLabel="never">
-            <input matInput (keyup)="onChange()" [(ngModel)]="value" [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate"
+            <input matInput (keyup)="onChange()" [(ngModel)]="value" [step]="step" [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate"
             [modelingsdk-allowed-characters]="regexInput" data-automation-id="variable-value" [disabled]="disabled">
         </mat-form-field>
     `
@@ -30,6 +30,7 @@ export class PropertiesViewerIntegerInputComponent {
     // tslint:disable-next-line
     @Output() change = new EventEmitter();
     @Input() value: string;
+    @Input() step: number = null;
     @Input() disabled: boolean;
     @Input() placeholder;
     regexInput = /^[0-9]*$/;

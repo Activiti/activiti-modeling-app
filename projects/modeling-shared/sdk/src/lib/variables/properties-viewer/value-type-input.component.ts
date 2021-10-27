@@ -56,6 +56,8 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
     // tslint:disable-next-line
     @Output() advancedOutputs = new EventEmitter();
     @Input() type: string;
+    @Input() step: number = null;
+    @Input() options = null;
     @Input() disabled = false;
     @Input() extendedProperties = null;
     @Input() required = false;
@@ -106,6 +108,8 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
                 .subscribe(advancedOutputs => this.advancedOutputs.emit(advancedOutputs));
         }
 
+        this.valueTypeInputRef.instance.step = this.step;
+        this.valueTypeInputRef.instance.options = this.options;
         this.valueTypeInputRef.instance.disabled = this.disabled;
         this.valueTypeInputRef.instance.readonly = this.readonly;
         this.valueTypeInputRef.instance.placeholder = this.placeholder;
