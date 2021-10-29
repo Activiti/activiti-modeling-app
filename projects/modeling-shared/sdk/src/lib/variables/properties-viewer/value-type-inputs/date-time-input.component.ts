@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 import moment from 'moment-es6';
 import { FormControl } from '@angular/forms';
 import { MAT_DATETIME_FORMATS, DatetimeAdapter } from '@mat-datetimepicker/core';
@@ -24,16 +24,31 @@ import { MomentDateAdapter } from '@alfresco/adf-core';
 import { AMA_DATETIME_FORMATS, MOMENT_DATETIME_FORMAT } from '../../../helpers/primitive-types';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
     template: `
-        <mat-form-field class="advanced-datetime-picker">
-            <mat-label>{{(placeholder || 'SDK.VALUE') | translate}}</mat-label>
-            <input (dateChange)="onChange($any($event))" [formControl]="pickerDate" [matDatetimepicker]="datetimePicker" matInput>
+        <mat-form-field *ngIf="!currentDateTime" class="advanced-datetime-picker">
+            <div class='ama-datepicker-date-input'>
+                    <input matInput [matDatetimepicker]="datetimePicker" [formControl]="pickerDate" (dateChange)="onChange($any($event))" data-automation-id="variable-value" [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate">
+                    <mat-icon *ngIf="clearButton" (click)="onDateClear()" class="ama-datepicker-date-clear-button">
+                        clear
+                    </mat-icon>
+            </div>
             <mat-datetimepicker-toggle [for]="datetimePicker" matSuffix></mat-datetimepicker-toggle>
             <mat-datetimepicker #datetimePicker [openOnFocus]="true" [timeInterval]="5" type="datetime"></mat-datetimepicker>
         </mat-form-field>
+        <mat-checkbox *ngIf="!clearButton"
+            data-automation-id="current-datetime-checkbox"
+            [disabled]="disabled ? true : false"
+            [(ngModel)]="currentDateTime"
+            (change)=(onChange($event))
+            color="primary">
+                {{'SDK.VARIABLE_TYPE_INPUT.DATE_TIME.CURRENT_DATE_TIME' | translate}}
+        </mat-checkbox>
     `,
+    styles: ['.ama-datepicker-date-input {display: flex; justify-content: space-between; width: 100%;}',
+                '.ama-datepicker-date-clear-button {font-size: 16px; height: 16px; opacity: 0.5;}'],
     providers: [
         { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
         { provide: DatetimeAdapter, useClass: MomentDatetimeAdapter },
@@ -41,7 +56,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
     ]
 })
 
-export class PropertiesViewerDateTimeInputComponent {
+export class PropertiesViewerDateTimeInputComponent implements OnChanges {
 
     // tslint:disable-next-line
     @Output() change = new EventEmitter();
@@ -50,12 +65,40 @@ export class PropertiesViewerDateTimeInputComponent {
     @Input() placeholder;
 
     today = new Date();
+    currentDateTime = false;
+    clearButton = false;
+
+    ngOnChanges() {
+        this.showCheckboxOrDatepicker();
+    }
+
+    showCheckboxOrDatepicker() {
+        this.currentDateTime = this.value === '${now()}' ? true : false;
+        this.clearButton = this.value ? !this.currentDateTime : false;
+    }
+
+    onDateClear() {
+        this.change.emit('');
+        this.clearButton = false;
+    }
 
     get pickerDate(): FormControl {
         return new FormControl({ value: this.value ? moment(this.value, MOMENT_DATETIME_FORMAT) : '', disabled: this.disabled });
     }
 
-    onChange(event: MatDatepickerInputEvent<Date>) {
-        this.change.emit(moment(event.value).format(MOMENT_DATETIME_FORMAT));
+    onChange(event: MatDatepickerInputEvent<Date> | MatCheckboxChange) {
+        let res = '';
+        if (event instanceof MatCheckboxChange) {
+            if (event.checked) {
+                res = '${now()}';
+            } else {
+                res = '';
+                this.clearButton = false;
+            }
+        } else {
+            res = moment(event.value).format(MOMENT_DATETIME_FORMAT);
+            this.currentDateTime = false;
+        }
+        this.change.emit(res);
     }
 }

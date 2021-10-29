@@ -128,6 +128,16 @@
                 "SWITCH_TO_VARIABLES": "Switch to variables selector",
                 "CLEAR_SELECTION": "Clear selection"
             }
+        },
+        "VARIABLE_TYPE_INPUT": {
+            "DATE": {
+                "CURRENT_DATE": "Today",
+                "CLEAR_BUTTON": "Clear"
+            },
+            "DATE_TIME": {
+                "CURRENT_DATE_TIME": "Now",
+                "CLEAR_BUTTON": "Clear"
+            }
         }
     }
 }

@@ -34,7 +34,6 @@ import { CodeEditorModule, ExpressionsEditorService } from './../../../public-ap
 import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { ValueTypeInputComponent } from './value-type-input.component';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
-import { CommonModule } from '@angular/common';
 
 describe('PropertiesViewerComponent', () => {
     let fixture: ComponentFixture<PropertiesViewerComponent>;
