@@ -20,6 +20,7 @@ export * from './cardview-properties/decision-task-item.model';
 export * from './cardview-properties/script-task-item.model';
 export * from './cardview-properties/email-service-task-item.model';
 export * from './cardview-properties/docgen-service-task-item.model';
+export * from './cardview-properties/content-service-task-item.model';
 export * from './cardview-properties/form-key.model';
 export * from './cardview-properties/default-sequence-flow-item.model';
 export * from './cardview-properties/condition-expression-item.model';

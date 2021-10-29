@@ -22,7 +22,8 @@ import {
     SCRIPT_TASK_IMPLEMENTATION,
     BpmnCompositeProperty,
     EMAIL_SERVICE_SEND_TASK_IMPLEMENTATION,
-    DOCGEN_SERVICE_GENERATE_TASK_IMPLEMENTATION
+    DOCGEN_SERVICE_GENERATE_TASK_IMPLEMENTATION,
+    CONTENT_SERVICE_NAME
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 const isSignalEvent = (element: Bpmn.DiagramElement) => {
@@ -46,6 +47,7 @@ const isDecisionTask = (element: Bpmn.DiagramElement) => element.businessObject.
 const isScriptTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === SCRIPT_TASK_IMPLEMENTATION;
 const isEmailServiceTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === EMAIL_SERVICE_SEND_TASK_IMPLEMENTATION;
 const isDocgenServiceTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === DOCGEN_SERVICE_GENERATE_TASK_IMPLEMENTATION;
+const isContentServiceTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation?.startsWith(CONTENT_SERVICE_NAME);
 const isExclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type === BpmnElement.ExclusiveGateway;
 const isInclusiveGateway = (element: Bpmn.DiagramElement) => element.businessObject.sourceRef.$type === BpmnElement.InclusiveGateway;
 const isConditionalFlow = (element: Bpmn.DiagramElement) => element.businessObject.$type === BpmnElement.SequenceFlow && haveConditionExpression(element);
@@ -152,7 +154,8 @@ export const elementsProperties = {
         ...(isDecisionTask(element) ? [BpmnProperty.decisionTask] : [isScriptTask(element) ?
             [BpmnProperty.scriptTask] : [isEmailServiceTask(element) ?
                 [BpmnProperty.emailServiceTask] : [isDocgenServiceTask(element) ?
-                    [BpmnProperty.docgenServiceTask] : [BpmnProperty.implementation]]]])
+                    [BpmnProperty.docgenServiceTask] : [isContentServiceTask(element) ?
+                        [BpmnProperty.contentServiceTask] : BpmnProperty.implementation]]]])
     ],
     [BpmnElement.CallActivity]: [
         BpmnProperty.id,

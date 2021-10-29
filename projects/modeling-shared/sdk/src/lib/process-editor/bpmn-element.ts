@@ -23,6 +23,7 @@ export const EMAIL_SERVICE_SEND_TASK_IMPLEMENTATION = 'email-service.SEND';
 export const EMAIL_SERVICE_NAME = 'email-service';
 export const DOCGEN_SERVICE_GENERATE_TASK_IMPLEMENTATION = 'docgen-service.GENERATE';
 export const DOCGEN_SERVICE_NAME = 'docgen-service';
+export const CONTENT_SERVICE_NAME = 'content-service';
 
 export const OOTB_SERVICE_TASK_DESCRIPTORS = {
     [DOCGEN_SERVICE_GENERATE_TASK_IMPLEMENTATION]: 'docgenConnector',
