@@ -81,4 +81,42 @@ describe('PropertiesViewerDateInputComponent', () => {
         checkboxDate.click();
         expect(component.change.emit).toHaveBeenCalledWith('');
     });
+
+    describe('Expressions not allowed', () => {
+
+        beforeEach(() => {
+            component.extendedProperties = { allowExpressions: false };
+            fixture.detectChanges();
+        });
+
+        it('should not display the checkbox when field is empty', () => {
+            const checkboxDateTime = fixture.nativeElement.querySelector('[data-automation-id="current-date-checkbox"] .mat-checkbox-input');
+            const inputDateTime = fixture.nativeElement.querySelector('[data-automation-id="variable-value"]');
+
+            expect(checkboxDateTime).toBeNull();
+            expect(inputDateTime).not.toBeNull();
+        });
+
+        it('should not display the checkbox when field has value', () => {
+            component.value = '2021-11-03';
+            fixture.detectChanges();
+
+            const checkboxDateTime = fixture.nativeElement.querySelector('[data-automation-id="current-date-checkbox"] .mat-checkbox-input');
+            const inputDateTime = fixture.nativeElement.querySelector('[data-automation-id="variable-value"]');
+
+            expect(checkboxDateTime).toBeNull();
+            expect(inputDateTime).not.toBeNull();
+        });
+
+        it('should display the date input even if value is the expression', () => {
+            component.value = '${now()}';
+            fixture.detectChanges();
+
+            const checkboxDateTime = fixture.nativeElement.querySelector('[data-automation-id="current-date-checkbox"] .mat-checkbox-input');
+            const inputDateTime = fixture.nativeElement.querySelector('[data-automation-id="variable-value"]');
+
+            expect(checkboxDateTime).toBeNull();
+            expect(inputDateTime).not.toBeNull();
+        });
+    });
 });

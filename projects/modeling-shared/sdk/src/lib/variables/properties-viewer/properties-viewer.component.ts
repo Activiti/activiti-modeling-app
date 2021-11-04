@@ -62,7 +62,8 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
     @ViewChild(MatSort) sort: MatSort;
 
     extendedProperties: {
-        variables: EntityProperty[]
+        variables: EntityProperty[],
+        allowExpressions: boolean;
     };
 
     constructor(private variablesService: VariablesService, private uuidService: UuidService, private changeDetectorRef: ChangeDetectorRef) {
@@ -165,7 +166,8 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         this.position = index;
         this.id = element.id;
         this.extendedProperties = {
-            variables: this.getVariablesForExpressionEditor(element.id)
+            variables: this.getVariablesForExpressionEditor(element.id),
+            allowExpressions: this.allowExpressions
         };
         this.updateTabIndex();
     }
@@ -207,8 +209,10 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
     updateVariableValue(value?: string): void {
         if (value) {
             this.form.value = value;
+            this.value = value;
         } else {
             delete this.form.value;
+            this.value = '';
         }
 
         this.saveChanges();
@@ -242,7 +246,8 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         this.propertyChanged.emit(true);
         this.dataSource.sort = this.sort;
         this.extendedProperties = {
-            variables: this.getVariablesForExpressionEditor(newVariable.id)
+            variables: this.getVariablesForExpressionEditor(newVariable.id),
+            allowExpressions: this.allowExpressions
         };
     }
 

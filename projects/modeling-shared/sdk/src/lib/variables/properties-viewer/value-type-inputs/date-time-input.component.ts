@@ -28,19 +28,24 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
     template: `
-        <mat-form-field *ngIf="!currentDateTime" class="advanced-datetime-picker">
+        <mat-form-field *ngIf="!currentDateTime || !extendedProperties?.allowExpressions" class="advanced-datetime-picker">
             <div class='ama-datepicker-date-input'>
-                    <input matInput [matDatetimepicker]="datetimePicker" [formControl]="pickerDate" (dateChange)="onChange($any($event))" data-automation-id="variable-value" [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate">
-                    <mat-icon *ngIf="clearButton" (click)="onDateClear()" class="ama-datepicker-date-clear-button">
+                    <input matInput
+                        [matDatetimepicker]="datetimePicker"
+                        [formControl]="pickerDate"
+                        (dateChange)="onChange($any($event))"
+                        data-automation-id="variable-value"
+                        [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate">
+                    <mat-icon *ngIf="clearButton  && !disabled" (click)="onDateClear($event)" class="ama-datepicker-date-clear-button">
                         clear
                     </mat-icon>
             </div>
             <mat-datetimepicker-toggle [for]="datetimePicker" matSuffix></mat-datetimepicker-toggle>
             <mat-datetimepicker #datetimePicker [openOnFocus]="true" [timeInterval]="5" type="datetime"></mat-datetimepicker>
         </mat-form-field>
-        <mat-checkbox *ngIf="!clearButton"
+        <mat-checkbox *ngIf="!clearButton && extendedProperties?.allowExpressions"
             data-automation-id="current-datetime-checkbox"
-            [disabled]="disabled ? true : false"
+            [disabled]="disabled"
             [(ngModel)]="currentDateTime"
             (change)=(onChange($event))
             color="primary">
@@ -48,7 +53,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
         </mat-checkbox>
     `,
     styles: ['.ama-datepicker-date-input {display: flex; justify-content: space-between; width: 100%;}',
-                '.ama-datepicker-date-clear-button {font-size: 16px; height: 16px; opacity: 0.5;}'],
+                '.ama-datepicker-date-clear-button {font-size: 16px; height: 16px; opacity: 0.5; cursor: pointer;}'],
     providers: [
         { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
         { provide: DatetimeAdapter, useClass: MomentDatetimeAdapter },
@@ -63,6 +68,7 @@ export class PropertiesViewerDateTimeInputComponent implements OnChanges {
     @Input() value: string;
     @Input() disabled: boolean;
     @Input() placeholder;
+    @Input() extendedProperties: { allowExpressions: boolean; } = { allowExpressions: true };
 
     today = new Date();
     currentDateTime = false;
@@ -77,9 +83,11 @@ export class PropertiesViewerDateTimeInputComponent implements OnChanges {
         this.clearButton = this.value ? !this.currentDateTime : false;
     }
 
-    onDateClear() {
+    onDateClear(event: Event) {
         this.change.emit('');
         this.clearButton = false;
+        this.value = null;
+        event.stopPropagation();
     }
 
     get pickerDate(): FormControl {
@@ -98,6 +106,7 @@ export class PropertiesViewerDateTimeInputComponent implements OnChanges {
         } else {
             res = moment(event.value).format(MOMENT_DATETIME_FORMAT);
             this.currentDateTime = false;
+            this.clearButton = true;
         }
         this.change.emit(res);
     }
