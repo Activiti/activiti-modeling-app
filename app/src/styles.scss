@@ -84,6 +84,7 @@ $defaults: (
   --adf-snackbar-warning-action-color: white,
   --adf-snackbar-info-bg-color: mat-color($primary),
   --adf-snackbar-info-action-color: white,
+  --adf-header-text-color: mat-color($primary, default-contrast),
 );
 
 // propagates SCSS variables into the CSS variables scope
