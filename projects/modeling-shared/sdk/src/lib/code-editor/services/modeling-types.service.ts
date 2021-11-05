@@ -107,6 +107,17 @@ const createMemoizedMethodSuggestions = memoize(
     (type: ModelingType, status: string) => type.id + '_' + status
 );
 
+const createMemoizedFunctionsSuggestions = memoize(
+    (functions: ModelingTypeMethodDescription[]) => {
+        const suggestions = [];
+        if (functions) {
+            functions.filter(primitiveFunction => !!primitiveFunction).forEach(primitiveFunction => suggestions.push(getMethodSuggestion(primitiveFunction)));
+        }
+        return suggestions;
+    },
+    (functions: ModelingTypeMethodDescription[]) => 'functions'
+);
+
 const createMemoizedPropertySuggestions = memoize(
     (type: ModelingType, status: string) => {
         const suggestions = [];
@@ -182,4 +193,7 @@ export class ModelingTypesService {
         return createMemoizedSignatureHelpers(registeredType, this.status);
     }
 
+    getFunctionsSuggestions(functions: ModelingTypeMethodDescription[]): ModelingTypeSuggestion[] {
+        return createMemoizedFunctionsSuggestions(functions);
+    }
 }

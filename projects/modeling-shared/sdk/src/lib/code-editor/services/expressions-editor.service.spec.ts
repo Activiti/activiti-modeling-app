@@ -15,11 +15,14 @@
  * limitations under the License.
  */
 
+import { TranslationMock } from '@alfresco/adf-core';
 import { expectedPrimitiveTypes } from '../mocks/primitive-types.mock';
 import { ExpressionsEditorService } from './expressions-editor.service';
 import { ModelingTypesService } from './modeling-types.service';
 
 describe('ExpressionsEditorService', () => {
+    const translateService = new TranslationMock();
+    translateService.instant = (key: string | Array<string>) => key === 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_TYPE' ? 'type' : key;
 
     const modelingTypesService = {
         getType: jest.fn().mockImplementation((typeName: string) => expectedPrimitiveTypes[typeName])
@@ -56,6 +59,7 @@ describe('ExpressionsEditorService', () => {
     };
 
     describe('static methods', () => {
+
         it('should get type name of the active cursor typing', () => {
             let testingPosition = { ...position, column: 39 } as monaco.Position;
             let typeName = ExpressionsEditorService.getTypeName(modelMock, testingPosition, parameters, modelingTypesService);
@@ -110,7 +114,7 @@ describe('ExpressionsEditorService', () => {
                 ]
             };
 
-            const hoverCard = ExpressionsEditorService.getHoverCard('array', 'equals', mockRange, 'type', modelingTypesService);
+            const hoverCard = ExpressionsEditorService.getHoverCard('array', 'equals', mockRange, modelingTypesService, translateService);
 
             expect(hoverCard).toEqual(mockCard);
         });
@@ -125,19 +129,29 @@ describe('ExpressionsEditorService', () => {
                 ]
             };
 
-            const hoverCard = ExpressionsEditorService.getHoverCard('array', 'length', mockRange, 'type', modelingTypesService);
+            const hoverCard = ExpressionsEditorService.getHoverCard('array', 'length', mockRange, modelingTypesService, translateService);
 
             expect(hoverCard).toEqual(mockCard);
         });
 
         it('should return no hover card if the word is neither a method nor a property, or if no type is present', () => {
-            let hoverCard = ExpressionsEditorService.getHoverCard('array', 'unknown', mockRange, 'type', modelingTypesService);
+            let hoverCard = ExpressionsEditorService.getHoverCard('array', 'unknown', mockRange, modelingTypesService, translateService);
 
             expect(hoverCard).not.toBeDefined();
 
-            hoverCard = ExpressionsEditorService.getHoverCard(null, 'length', mockRange, 'type', modelingTypesService);
+            hoverCard = ExpressionsEditorService.getHoverCard(null, 'length', mockRange, modelingTypesService, translateService);
 
             expect(hoverCard).not.toBeDefined();
+        });
+
+        it('should return the return type of language registered functions', () => {
+            let typeName = ExpressionsEditorService.getTypeNameFromLanguageFunctions('now()');
+
+            expect(typeName).toEqual('date');
+
+            typeName = ExpressionsEditorService.getTypeNameFromLanguageFunctions('now');
+
+            expect(typeName).toEqual('date');
         });
     });
 });

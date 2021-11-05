@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
+import { TranslationService } from '@alfresco/adf-core';
 import { Injectable } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { expressionLanguageConfiguration, expressionLanguageMonarch } from './expression-language/expression-language.monarch';
 import { ModelingTypesService } from './modeling-types.service';
 
@@ -28,10 +28,7 @@ export class ExpressionsEditorService {
     static wordRegex = /((\w+((\.?\w+){0,1}(\[\S+\]){0,1}(\((?:[^)(]+|\((?:[^)(]+|\([^)(]*\))*\))*\)){0,1})*)|\W)/g;
     static wordRegexSignature = /\w+((\.?\w+){0,1}(\[\S+\]){0,1}(\((?:[^)(]+|\((?:[^)(]+|\([^)(]*\))*\))*\)){0,1})*/g;
 
-    private typeTranslation: string;
-
-    constructor(private translateService: TranslateService, private modelingTypesService: ModelingTypesService) {
-        this.typeTranslation = this.translateService.instant('SDK.VARIABLES_EDITOR.TABLE.COLUMN_TYPE');
+    constructor(private translationService: TranslationService, private modelingTypesService: ModelingTypesService) {
     }
 
     static getTypeName(
@@ -83,7 +80,8 @@ export class ExpressionsEditorService {
                         .find(registeredMethod => registeredMethod.signature.startsWith(method[1]))?.type;
                 } else {
                     if (!typeName) {
-                        typeName = parameters.find(parameter => parameter.name === element)?.type;
+                        typeName = parameters.find(parameter => parameter.name === element)?.type
+                            || ExpressionsEditorService.getTypeNameFromLanguageFunctions(element);
                     } else {
                         typeName = modelingTypesService.getType(typeName).properties?.filter(property => !!property)
                             .find(property => property.property === element)?.type;
@@ -95,6 +93,12 @@ export class ExpressionsEditorService {
             }
         }
         return typeName;
+    }
+
+    static getTypeNameFromLanguageFunctions(element: string): string {
+        const endIndex = element.indexOf('(');
+        const functionSignature = element.substr(0, endIndex > 0 ? endIndex : element.length);
+        return expressionLanguageMonarch.functions.find(primitiveFunction => primitiveFunction.signature === functionSignature)?.type;
     }
 
     static getActiveParameter(model: monaco.editor.ITextModel, position: monaco.Position): number {
@@ -110,7 +114,7 @@ export class ExpressionsEditorService {
         return (activeTyping.match(/\,(?=([^"\\]*(\\.|"([^"\\]*\\.)*[^"\\]*"))*[^"]*$)/g) || []).length;
     }
 
-    static getHoverCard(typeName: string, word: string, range: any, typeTranslation: string, modelingTypesService: ModelingTypesService): any {
+    static getHoverCard(typeName: string, word: string, range: any, modelingTypesService: ModelingTypesService, translationService: TranslationService): any {
         let hoverCard;
         if (typeName) {
             const methodHover = modelingTypesService.getType(typeName).methods?.
@@ -124,18 +128,18 @@ export class ExpressionsEditorService {
                 };
 
                 if (methodHover.documentation) {
-                    hoverCard.contents.push({ value: methodHover.documentation });
+                    hoverCard.contents.push({ value: translationService.instant(methodHover.documentation) });
                 }
-                hoverCard.contents.push({ value: typeTranslation + ': ' + methodHover.type });
+                hoverCard.contents.push({ value: translationService.instant('SDK.VARIABLES_EDITOR.TABLE.COLUMN_TYPE') + ': ' + methodHover.type });
             } else if (propertyHover) {
                 hoverCard = {
                     range,
                     contents: [{ value: `*${propertyHover.property}*` }]
                 };
                 if (propertyHover.documentation) {
-                    hoverCard.contents.push({ value: propertyHover.documentation });
+                    hoverCard.contents.push({ value: translationService.instant(propertyHover.documentation) });
                 }
-                hoverCard.contents.push({ value: typeTranslation + ': ' + propertyHover.type });
+                hoverCard.contents.push({ value: translationService.instant('SDK.VARIABLES_EDITOR.TABLE.COLUMN_TYPE') + ': ' + propertyHover.type });
             }
         }
         return hoverCard;
@@ -157,14 +161,16 @@ export class ExpressionsEditorService {
             monaco.languages.setMonarchTokensProvider(language, this.getMonarchLanguageDefinition(parameters, hostLanguage, highlightAllText));
             monaco.languages.setLanguageConfiguration(language, expressionLanguageConfiguration as monaco.languages.LanguageConfiguration);
             this.registerCompletionProviderForKeywords(language);
+            this.registerCompletionProviderForFunctions(language, this.modelingTypesService);
+            this.registerHoverProviderForFunctions(language, this.translationService);
             this.registerCompletionProviderForMethodsAndProperties(language, this.modelingTypesService, parameters);
             this.registerSignatureProviderForMethods(language, this.modelingTypesService, parameters);
-            this.registerHoverProviderForMethodsAndProperties(language, this.modelingTypesService, parameters, this.typeTranslation);
+            this.registerHoverProviderForMethodsAndProperties(language, this.modelingTypesService, parameters, this.translationService);
         }
 
         if (parameters) {
-            this.registerCompletionProviderForVariables(language, parameters);
-            this.registerHoverProviderForVariables(language, parameters, this.typeTranslation);
+            this.registerCompletionProviderForVariables(language, parameters, this.translationService);
+            this.registerHoverProviderForVariables(language, parameters, this.translationService);
         }
     }
 
@@ -183,7 +189,7 @@ export class ExpressionsEditorService {
                     endColumn: word.endColumn
                 };
                 const suggestions = [];
-                if (word.startColumn === 1 || model.getLineContent(position.lineNumber).substr(position.column - 2, 1) === '.') {
+                if (word.startColumn === 1 || model.getLineContent(position.lineNumber).substr(position.column - 2, 1) !== '.') {
                     expressionLanguageMonarch.keywords.forEach(keyword => {
                         suggestions.push({
                             label: keyword,
@@ -198,7 +204,27 @@ export class ExpressionsEditorService {
         });
     }
 
-    private registerCompletionProviderForVariables(language: string, parameters: any[]) {
+    private registerCompletionProviderForFunctions(language: string, modelingTypesService: ModelingTypesService) {
+        monaco.languages.registerCompletionItemProvider(language, {
+            provideCompletionItems: (model, position) => {
+                const word = model.getWordAtPosition(position) || model.getWordUntilPosition(position);
+                const range = {
+                    startLineNumber: position.lineNumber,
+                    endLineNumber: position.lineNumber,
+                    startColumn: word.startColumn,
+                    endColumn: word.endColumn
+                };
+                let suggestions = [];
+                if (word.startColumn === 1 || model.getLineContent(position.lineNumber).substr(position.column - 2, 1) !== '.') {
+                    suggestions = suggestions.concat(modelingTypesService.getFunctionsSuggestions(expressionLanguageMonarch.functions));
+                }
+                suggestions.map(suggestion => suggestion.range = range);
+                return { suggestions };
+            }
+        });
+    }
+
+    private registerCompletionProviderForVariables(language: string, parameters: any[], translationService: TranslationService) {
         monaco.languages.registerCompletionItemProvider(language, {
             provideCompletionItems: (model, position) => {
                 const word = model.getWordAtPosition(position) || model.getWordUntilPosition(position);
@@ -216,7 +242,7 @@ export class ExpressionsEditorService {
                             detail: parameter.type,
                             kind: monaco.languages.CompletionItemKind.Variable,
                             insertText: parameter.name,
-                            documentation: parameter.markup || parameter.description,
+                            documentation: parameter.markup || translationService.instant(parameter.description),
                             range: range,
                         });
                     });
@@ -300,7 +326,7 @@ export class ExpressionsEditorService {
         });
     }
 
-    private registerHoverProviderForVariables(language: string, parameters: any[], typeTranslation: string) {
+    private registerHoverProviderForVariables(language: string, parameters: any[], translationService: TranslationService) {
         monaco.languages.registerHoverProvider(language, {
             provideHover: function (model, position) {
                 const word = model.getWordAtPosition(position);
@@ -320,14 +346,47 @@ export class ExpressionsEditorService {
                             contents: [{ value: `*${variable.name}*` }]
                         };
 
-                        if (variable.markdown) {
-                            hoverCard.contents.push({ value: variable.markdown });
+                        if (variable.markup) {
+                            hoverCard.contents.push({ value: variable.markup });
                         } else {
                             if (variable.description) {
-                                hoverCard.contents.push({ value: variable.description });
+                                hoverCard.contents.push({ value: translationService.instant(variable.description) });
                             }
-                            hoverCard.contents.push({ value: typeTranslation + ': ' + variable.type });
+                            hoverCard.contents.push({ value: translationService.instant('SDK.VARIABLES_EDITOR.TABLE.COLUMN_TYPE') + ': ' + variable.type });
                         }
+                    }
+                }
+                return hoverCard;
+            }
+        });
+    }
+
+    private registerHoverProviderForFunctions(language: string, translationService: TranslationService) {
+        monaco.languages.registerHoverProvider(language, {
+            provideHover: function (model, position) {
+                const word = model.getWordAtPosition(position);
+                let hoverCard;
+                if (word) {
+                    const range = {
+                        startLineNumber: position.lineNumber,
+                        endLineNumber: position.lineNumber,
+                        startColumn: word.startColumn,
+                        endColumn: word.endColumn
+                    };
+
+                    const functionHover = expressionLanguageMonarch.functions.
+                        filter(primitiveFunction => !!primitiveFunction).find(primitiveFunction => primitiveFunction.signature === word.word);
+
+                    if (functionHover) {
+                        hoverCard = {
+                            range,
+                            contents: [{ value: `*${functionHover.signature}*` }]
+                        };
+
+                        if (functionHover.documentation) {
+                            hoverCard.contents.push({ value: translationService.instant(functionHover.documentation) });
+                        }
+                        hoverCard.contents.push({ value: translationService.instant('SDK.VARIABLES_EDITOR.TABLE.COLUMN_TYPE') + ': ' + functionHover.type });
                     }
                 }
                 return hoverCard;
@@ -339,7 +398,7 @@ export class ExpressionsEditorService {
         language: string,
         modelingTypesService: ModelingTypesService,
         parameters: any[],
-        typeTranslation: string
+        translationService: TranslationService
     ) {
         monaco.languages.registerHoverProvider(language, {
             provideHover: function (model, position) {
@@ -353,7 +412,7 @@ export class ExpressionsEditorService {
                         endColumn: word.endColumn
                     };
                     const typeName: string = ExpressionsEditorService.getTypeName(model, position, parameters, modelingTypesService);
-                    hoverCard = ExpressionsEditorService.getHoverCard(typeName, word.word, range, typeTranslation, modelingTypesService);
+                    hoverCard = ExpressionsEditorService.getHoverCard(typeName, word.word, range, modelingTypesService, translationService);
                 }
                 return hoverCard;
             }

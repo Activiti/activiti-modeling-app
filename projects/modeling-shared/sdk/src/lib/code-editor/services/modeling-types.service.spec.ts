@@ -18,13 +18,21 @@
 import { UuidService } from '../../services/uuid.service';
 import { TestBed } from '@angular/core/testing';
 import { primitive_types } from '../../helpers/primitive-types';
-import { expectedArrayMethodSuggestions, expectedArrayPropertiesSuggestions, expectedArraySignatureHelpers, expectedPrimitiveTypes } from '../mocks/primitive-types.mock';
+import { expectedArrayMethodSuggestions, expectedArrayPropertiesSuggestions, expectedArraySignatureHelpers, expectedFunctionsSuggestions, expectedPrimitiveTypes } from '../mocks/primitive-types.mock';
 import { ModelingTypeSignatureHelper, provideModelingTypeProvider } from './modeling-type-provider.service';
 import { ModelingTypesService } from './modeling-types.service';
 import { PrimitiveModelingTypesService } from './primitive-modeling-types.service';
 
 describe('ModelingTypesService', () => {
     let service: ModelingTypesService;
+
+    const functions = [
+        {
+            signature: 'now',
+            type: 'date',
+            documentation: 'Return the current system date.'
+        }
+    ];
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -99,6 +107,13 @@ describe('ModelingTypesService', () => {
 
             expect(secondCall).not.toEqual(firstCall);
         });
+
+        it('should return memoized function suggestions', () => {
+            const firstCall = service.getFunctionsSuggestions(functions);
+            const secondCall = service.getFunctionsSuggestions(functions);
+
+            expect(secondCall).toBe(firstCall);
+        });
     });
 
     it('should return the primitive modeling types', () => {
@@ -137,5 +152,11 @@ describe('ModelingTypesService', () => {
         primitive_types.forEach(type => {
             expect(registeredTypes[type].id).toEqual(type);
         });
+    });
+
+    it('should return the function suggestions', () => {
+        const actual = service.getFunctionsSuggestions(functions);
+
+        expect(actual).toEqual(expectedFunctionsSuggestions);
     });
 });

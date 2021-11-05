@@ -480,7 +480,7 @@ describe('ExpressionCodeEditorComponent', () => {
 
         expect(dialogService.openDialog).toHaveBeenCalledWith(ExpressionCodeEditorDialogComponent, {
             disableClose: true,
-            height: '450px',
+            height: '460px',
             width: '1000px',
             data: {
                 expression: '${a == b}',

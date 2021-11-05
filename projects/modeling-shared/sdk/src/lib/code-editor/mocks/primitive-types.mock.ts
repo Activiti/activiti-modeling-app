@@ -1789,3 +1789,16 @@ export const expectedRestEventSchemaTypes = {
         ]
     }
 };
+
+export const expectedFunctionsSuggestions = [
+    {
+        label: 'now(): date',
+        filterText: 'now',
+        kind: 0,
+        insertText: 'now()',
+        documentation: 'Return the current system date.',
+        detail: 'date',
+        insertTextRules: undefined,
+        command: undefined,
+    },
+];

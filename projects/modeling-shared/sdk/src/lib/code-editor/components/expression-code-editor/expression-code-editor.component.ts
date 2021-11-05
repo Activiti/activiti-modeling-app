@@ -244,7 +244,7 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
 
         this.dialogService.openDialog(ExpressionCodeEditorDialogComponent, {
             disableClose: true,
-            height: '450px',
+            height: '460px',
             width: '1000px',
             data: dialogData,
         });

@@ -55,6 +55,7 @@ export interface ModelingTypeSuggestion {
     detail: string;
     insertTextRules?: number;
     command?: any;
+    range?: any;
 }
 
 export interface ModelingTypeSignatureHelper {
