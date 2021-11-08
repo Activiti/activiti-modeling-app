@@ -178,7 +178,7 @@ export interface ServicesConstants {
 
 export interface ServicesParameterConstants {
     [type: string]: {
-        value: string;
+        value?: string;
     };
 }
 
