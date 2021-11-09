@@ -22,7 +22,8 @@
         "COLUMN_TYPE": "Typ",
         "COLUMN_REQUIRED": "Povinné",
         "COLUMN_VALUE": "Hodnota",
-        "NO_PROPERTIES": "Vyberte nebo vytvořte proměnnou, jejíž vlastnosti chcete zobrazit"
+        "NO_PROPERTIES": "Vyberte nebo vytvořte proměnnou, jejíž vlastnosti chcete zobrazit",
+        "CLEAR": "Vymazat"
       }
     },
     "VARIABLE_MAPPING": {
@@ -108,7 +109,8 @@
         "USER_TASK": "Uživatelský úkol",
         "NONE": "Žádný",
         "EVENT": "Událost",
-        "EMAIL_SERVICE_TASK": "Úloha e-mailové služby"
+        "EMAIL_SERVICE_TASK": "Úloha e-mailové služby",
+        "DOCGEN_SERVICE": "Úkol služby Docgen"
       },
       "TOOLTIP": {
         "VARIABLE": "Proměnná",
@@ -125,6 +127,16 @@
         "OPEN_EXPRESSION_EDITOR": "Otevřít dialogové okno editoru výrazů",
         "SWITCH_TO_VARIABLES": "Přepnout na volič proměnných",
         "CLEAR_SELECTION": "Vymazat výběr"
+      }
+    },
+    "VARIABLE_TYPE_INPUT": {
+      "DATE": {
+        "CURRENT_DATE": "Dnes",
+        "CLEAR_BUTTON": "Vymazat"
+      },
+      "DATE_TIME": {
+        "CURRENT_DATE_TIME": "Teď",
+        "CLEAR_BUTTON": "Vymazat"
       }
     }
   }

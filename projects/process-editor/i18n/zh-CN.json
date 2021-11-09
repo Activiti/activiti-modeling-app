@@ -102,11 +102,11 @@
       "MESSAGE": "消息",
       "MESSAGE_NAME": "消息名称",
       "CREATE_NEW_MESSAGE": "创建新的消息",
-      "MAP_MESSAGE": "Map message to process variables",
+      "MAP_MESSAGE": "将消息映射到流程变量",
       "CORRELATION_KEY": "相关性键",
       "CLASS": "类",
       "DELEGATE_EXPRESSION": "委派表达式",
-      "MESSAGE_EXPRESSION": "Message expression",
+      "MESSAGE_EXPRESSION": "消息表达式",
       "USE_MESSAGE_EXPRESSION": "使用消息表达式",
       "MESSAGE_EXPRESSION_REQUIRED": "需要消息表达式",
       "MULTI_INSTANCE": {

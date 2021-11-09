@@ -132,7 +132,8 @@
     },
     "EDITOR": {
       "NAME": "名前",
-      "DESCRIPTION": "説明"
+      "DESCRIPTION": "説明",
+      "TITLE": "アプリケーションタイトル"
     }
   }
 }

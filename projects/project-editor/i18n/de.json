@@ -110,7 +110,9 @@
       "FILE_DESC": "Dateibeschreibung:",
       "FILE_CREATED": "Datei erstellt",
       "FILE_DELETED": "Datei gelöscht",
-      "FILE_UPDATED": "Datei gespeichert"
+      "FILE_UPDATED": "Datei gespeichert",
+      "PRIVATE_FILE": "Privat",
+      "PUBLIC_FILE": "Öffentlich"
     },
     "SCRIPT_DIALOG": {
       "TITLE_CREATE": "Skript erstellen",

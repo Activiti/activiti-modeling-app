@@ -22,7 +22,8 @@
         "COLUMN_TYPE": "Typ",
         "COLUMN_REQUIRED": "Obligatorisk",
         "COLUMN_VALUE": "Värde",
-        "NO_PROPERTIES": "Välj eller skapa en variabel för att visa dess egenskaper"
+        "NO_PROPERTIES": "Välj eller skapa en variabel för att visa dess egenskaper",
+        "CLEAR": "Rensa"
       }
     },
     "VARIABLE_MAPPING": {
@@ -108,7 +109,8 @@
         "USER_TASK": "Användaruppgift",
         "NONE": "Ingen",
         "EVENT": "Händelse",
-        "EMAIL_SERVICE_TASK": "E-post serviceuppgift"
+        "EMAIL_SERVICE_TASK": "E-post serviceuppgift",
+        "DOCGEN_SERVICE": "Docgen serviceuppgift"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabel",
@@ -125,6 +127,16 @@
         "OPEN_EXPRESSION_EDITOR": "Öppna dialog för uttryckseditor",
         "SWITCH_TO_VARIABLES": "Byt till variabelväljaren",
         "CLEAR_SELECTION": "Rensa urval"
+      }
+    },
+    "VARIABLE_TYPE_INPUT": {
+      "DATE": {
+        "CURRENT_DATE": "I dag",
+        "CLEAR_BUTTON": "Rensa"
+      },
+      "DATE_TIME": {
+        "CURRENT_DATE_TIME": "Nu",
+        "CLEAR_BUTTON": "Rensa"
       }
     }
   }

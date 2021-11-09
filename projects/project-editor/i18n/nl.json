@@ -110,7 +110,9 @@
       "FILE_DESC": "Bestandsbeschrijving:",
       "FILE_CREATED": "Bestand gemaakt",
       "FILE_DELETED": "Bestand verwijderd",
-      "FILE_UPDATED": "Bestand opgeslagen"
+      "FILE_UPDATED": "Bestand opgeslagen",
+      "PRIVATE_FILE": "Privé",
+      "PUBLIC_FILE": "Openbaar"
     },
     "SCRIPT_DIALOG": {
       "TITLE_CREATE": "Script maken",

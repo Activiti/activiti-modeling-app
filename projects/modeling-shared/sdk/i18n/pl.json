@@ -22,7 +22,8 @@
         "COLUMN_TYPE": "Typ",
         "COLUMN_REQUIRED": "Wymagane",
         "COLUMN_VALUE": "Wartość",
-        "NO_PROPERTIES": "Wybierz lub utwórz zmienną, aby wyświetlić jej właściwości"
+        "NO_PROPERTIES": "Wybierz lub utwórz zmienną, aby wyświetlić jej właściwości",
+        "CLEAR": "Wyczyść"
       }
     },
     "VARIABLE_MAPPING": {
@@ -108,7 +109,8 @@
         "USER_TASK": "Zadanie użytkownika",
         "NONE": "Brak",
         "EVENT": "Zdarzenie",
-        "EMAIL_SERVICE_TASK": "Zadanie usługi e-mail"
+        "EMAIL_SERVICE_TASK": "Zadanie usługi e-mail",
+        "DOCGEN_SERVICE": "Zadanie usługi docgen"
       },
       "TOOLTIP": {
         "VARIABLE": "Zmienna",
@@ -125,6 +127,16 @@
         "OPEN_EXPRESSION_EDITOR": "Otwórz okno dialogowe edytora wyrażeń",
         "SWITCH_TO_VARIABLES": "Przełącz na selektor zmiennych",
         "CLEAR_SELECTION": "Wyczyść zaznaczenie"
+      }
+    },
+    "VARIABLE_TYPE_INPUT": {
+      "DATE": {
+        "CURRENT_DATE": "Dzisiaj",
+        "CLEAR_BUTTON": "Wyczyść"
+      },
+      "DATE_TIME": {
+        "CURRENT_DATE_TIME": "Teraz",
+        "CLEAR_BUTTON": "Wyczyść"
       }
     }
   }

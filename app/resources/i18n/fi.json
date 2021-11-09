@@ -132,7 +132,8 @@
     },
     "EDITOR": {
       "NAME": "Nimi",
-      "DESCRIPTION": "Kuvaus"
+      "DESCRIPTION": "Kuvaus",
+      "TITLE": "Sovelluksen otsikko"
     }
   }
 }

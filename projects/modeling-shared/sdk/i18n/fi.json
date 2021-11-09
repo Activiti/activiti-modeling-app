@@ -22,7 +22,8 @@
         "COLUMN_TYPE": "Tyyppi",
         "COLUMN_REQUIRED": "Pakollinen",
         "COLUMN_VALUE": "Arvo",
-        "NO_PROPERTIES": "Valitse tai luo muuttuja tarkastellaksesi sen ominaisuuksia"
+        "NO_PROPERTIES": "Valitse tai luo muuttuja tarkastellaksesi sen ominaisuuksia",
+        "CLEAR": "Tyhjennä"
       }
     },
     "VARIABLE_MAPPING": {
@@ -108,7 +109,8 @@
         "USER_TASK": "Käyttäjätehtävä",
         "NONE": "Ei yhtään",
         "EVENT": "Tapahtuma",
-        "EMAIL_SERVICE_TASK": "Sähköpostipalvelutehtävä"
+        "EMAIL_SERVICE_TASK": "Sähköpostipalvelutehtävä",
+        "DOCGEN_SERVICE": "Docgen-palvelutehtävä"
       },
       "TOOLTIP": {
         "VARIABLE": "Muuttuja",
@@ -125,6 +127,16 @@
         "OPEN_EXPRESSION_EDITOR": "Avaa lauseke-editorin valintaikkuna",
         "SWITCH_TO_VARIABLES": "Siirry muuttujien valintaan",
         "CLEAR_SELECTION": "Tyhjennä valinnat"
+      }
+    },
+    "VARIABLE_TYPE_INPUT": {
+      "DATE": {
+        "CURRENT_DATE": "Tänään",
+        "CLEAR_BUTTON": "Tyhjennä"
+      },
+      "DATE_TIME": {
+        "CURRENT_DATE_TIME": "Nyt",
+        "CLEAR_BUTTON": "Tyhjennä"
       }
     }
   }

@@ -22,7 +22,8 @@
         "COLUMN_TYPE": "Тип",
         "COLUMN_REQUIRED": "Обязательно",
         "COLUMN_VALUE": "Значение",
-        "NO_PROPERTIES": "Выберите либо создайте переменную, чтобы увидеть ее свойства"
+        "NO_PROPERTIES": "Выберите либо создайте переменную, чтобы увидеть ее свойства",
+        "CLEAR": "Очистить"
       }
     },
     "VARIABLE_MAPPING": {
@@ -108,7 +109,8 @@
         "USER_TASK": "Задача пользователя",
         "NONE": "Нет",
         "EVENT": "Событие",
-        "EMAIL_SERVICE_TASK": "Задача для почтового сервиса"
+        "EMAIL_SERVICE_TASK": "Задача для почтового сервиса",
+        "DOCGEN_SERVICE": "Сервисная задача docgen"
       },
       "TOOLTIP": {
         "VARIABLE": "Переменная",
@@ -125,6 +127,16 @@
         "OPEN_EXPRESSION_EDITOR": "Открыть диалоговое окно редактора выражений",
         "SWITCH_TO_VARIABLES": "Переключить на средство выбора переменных",
         "CLEAR_SELECTION": "Очистить выбор"
+      }
+    },
+    "VARIABLE_TYPE_INPUT": {
+      "DATE": {
+        "CURRENT_DATE": "Сегодня",
+        "CLEAR_BUTTON": "Очистить"
+      },
+      "DATE_TIME": {
+        "CURRENT_DATE_TIME": "Сейчас",
+        "CLEAR_BUTTON": "Очистить"
       }
     }
   }

@@ -22,7 +22,8 @@
         "COLUMN_TYPE": "Type",
         "COLUMN_REQUIRED": "Påkrevd",
         "COLUMN_VALUE": "Verdi",
-        "NO_PROPERTIES": "Velg eller opprett en variabel for å vise egenskapene dens"
+        "NO_PROPERTIES": "Velg eller opprett en variabel for å vise egenskapene dens",
+        "CLEAR": "Fjern"
       }
     },
     "VARIABLE_MAPPING": {
@@ -108,7 +109,8 @@
         "USER_TASK": "Brukeroppgaver",
         "NONE": "Ingen",
         "EVENT": "Hendelse",
-        "EMAIL_SERVICE_TASK": "Serviceoppgave for e-post"
+        "EMAIL_SERVICE_TASK": "Serviceoppgave for e-post",
+        "DOCGEN_SERVICE": "Docgen-tjenesteoppgave"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabel",
@@ -125,6 +127,16 @@
         "OPEN_EXPRESSION_EDITOR": "Åpne dialogen for uttrykksredigering",
         "SWITCH_TO_VARIABLES": "Bytt til variabelvelger",
         "CLEAR_SELECTION": "Fjern valg"
+      }
+    },
+    "VARIABLE_TYPE_INPUT": {
+      "DATE": {
+        "CURRENT_DATE": "I dag",
+        "CLEAR_BUTTON": "Fjern"
+      },
+      "DATE_TIME": {
+        "CURRENT_DATE_TIME": "Nå",
+        "CLEAR_BUTTON": "Fjern"
       }
     }
   }

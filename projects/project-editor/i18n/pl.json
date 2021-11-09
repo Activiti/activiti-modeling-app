@@ -110,7 +110,9 @@
       "FILE_DESC": "Opis pliku:",
       "FILE_CREATED": "Utworzono plik",
       "FILE_DELETED": "Usunięto plik",
-      "FILE_UPDATED": "Zapisano plik"
+      "FILE_UPDATED": "Zapisano plik",
+      "PRIVATE_FILE": "Prywatne",
+      "PUBLIC_FILE": "Publiczne"
     },
     "SCRIPT_DIALOG": {
       "TITLE_CREATE": "Utwórz skrypt",

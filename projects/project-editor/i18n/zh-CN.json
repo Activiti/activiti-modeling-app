@@ -110,7 +110,9 @@
       "FILE_DESC": "文件描述：",
       "FILE_CREATED": "文件已创建",
       "FILE_DELETED": "文件已删除",
-      "FILE_UPDATED": "文件已保存"
+      "FILE_UPDATED": "文件已保存",
+      "PRIVATE_FILE": "私有",
+      "PUBLIC_FILE": "公共"
     },
     "SCRIPT_DIALOG": {
       "TITLE_CREATE": "创建脚本",

@@ -132,7 +132,8 @@
     },
     "EDITOR": {
       "NAME": "Namn",
-      "DESCRIPTION": "Beskrivning"
+      "DESCRIPTION": "Beskrivning",
+      "TITLE": "Programtitel"
     }
   }
 }

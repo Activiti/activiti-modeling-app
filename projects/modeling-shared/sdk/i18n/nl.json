@@ -22,7 +22,8 @@
         "COLUMN_TYPE": "Type",
         "COLUMN_REQUIRED": "Vereist",
         "COLUMN_VALUE": "Waarde",
-        "NO_PROPERTIES": "Selecteer of maak een variabele om de eigenschappen ervan weer te geven"
+        "NO_PROPERTIES": "Selecteer of maak een variabele om de eigenschappen ervan weer te geven",
+        "CLEAR": "Wissen"
       }
     },
     "VARIABLE_MAPPING": {
@@ -108,7 +109,8 @@
         "USER_TASK": "Gebruikerstaak",
         "NONE": "Geen",
         "EVENT": "Gebeurtenis",
-        "EMAIL_SERVICE_TASK": "E-mailservicetaak"
+        "EMAIL_SERVICE_TASK": "E-mailservicetaak",
+        "DOCGEN_SERVICE": "Docgen-servicetaak"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabele",
@@ -125,6 +127,16 @@
         "OPEN_EXPRESSION_EDITOR": "Open het expressie-editordialoogvenster",
         "SWITCH_TO_VARIABLES": "Overschakelen naar variabelenselector",
         "CLEAR_SELECTION": "Selectie wissen"
+      }
+    },
+    "VARIABLE_TYPE_INPUT": {
+      "DATE": {
+        "CURRENT_DATE": "Vandaag",
+        "CLEAR_BUTTON": "Wissen"
+      },
+      "DATE_TIME": {
+        "CURRENT_DATE_TIME": "Nu",
+        "CLEAR_BUTTON": "Wissen"
       }
     }
   }

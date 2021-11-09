@@ -22,7 +22,8 @@
         "COLUMN_TYPE": "Type",
         "COLUMN_REQUIRED": "Påkrævet",
         "COLUMN_VALUE": "Værdi",
-        "NO_PROPERTIES": "Vælg eller opret en variabel for at få vist dens egenskaber"
+        "NO_PROPERTIES": "Vælg eller opret en variabel for at få vist dens egenskaber",
+        "CLEAR": "Ryd"
       }
     },
     "VARIABLE_MAPPING": {
@@ -108,7 +109,8 @@
         "USER_TASK": "Brugeropgave",
         "NONE": "Ingen",
         "EVENT": "Hændelse",
-        "EMAIL_SERVICE_TASK": "E-mail serviceopgave"
+        "EMAIL_SERVICE_TASK": "E-mail serviceopgave",
+        "DOCGEN_SERVICE": "Docgen-serviceopgave"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabel",
@@ -125,6 +127,16 @@
         "OPEN_EXPRESSION_EDITOR": "Åbn dialgo for udtryk-redigeringsenhed",
         "SWITCH_TO_VARIABLES": "Skift til vælger for variable",
         "CLEAR_SELECTION": "Ryd valg"
+      }
+    },
+    "VARIABLE_TYPE_INPUT": {
+      "DATE": {
+        "CURRENT_DATE": "I dag",
+        "CLEAR_BUTTON": "Ryd"
+      },
+      "DATE_TIME": {
+        "CURRENT_DATE_TIME": "Nu",
+        "CLEAR_BUTTON": "Ryd"
       }
     }
   }

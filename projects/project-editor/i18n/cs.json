@@ -110,7 +110,9 @@
       "FILE_DESC": "Popis souboru:",
       "FILE_CREATED": "Soubor byl vytvořen",
       "FILE_DELETED": "Soubor byl odstraněn",
-      "FILE_UPDATED": "Soubor byl uložen"
+      "FILE_UPDATED": "Soubor byl uložen",
+      "PRIVATE_FILE": "Soukromé",
+      "PUBLIC_FILE": "Veřejné"
     },
     "SCRIPT_DIALOG": {
       "TITLE_CREATE": "Vytvořit skript",

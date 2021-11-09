@@ -22,7 +22,8 @@
         "COLUMN_TYPE": "类型",
         "COLUMN_REQUIRED": "必需",
         "COLUMN_VALUE": "值",
-        "NO_PROPERTIES": "选择或创建变量以查看其属性"
+        "NO_PROPERTIES": "选择或创建变量以查看其属性",
+        "CLEAR": "清除"
       }
     },
     "VARIABLE_MAPPING": {
@@ -108,7 +109,8 @@
         "USER_TASK": "用户任务",
         "NONE": "无",
         "EVENT": "事件",
-        "EMAIL_SERVICE_TASK": "电子邮件服务任务"
+        "EMAIL_SERVICE_TASK": "电子邮件服务任务",
+        "DOCGEN_SERVICE": "Docgen 服务任务"
       },
       "TOOLTIP": {
         "VARIABLE": "变量",
@@ -125,6 +127,16 @@
         "OPEN_EXPRESSION_EDITOR": "打开表达式编辑器对话框",
         "SWITCH_TO_VARIABLES": "切换到变量选择器",
         "CLEAR_SELECTION": "清除选定内容"
+      }
+    },
+    "VARIABLE_TYPE_INPUT": {
+      "DATE": {
+        "CURRENT_DATE": "今天",
+        "CLEAR_BUTTON": "清除"
+      },
+      "DATE_TIME": {
+        "CURRENT_DATE_TIME": "现在",
+        "CLEAR_BUTTON": "清除"
       }
     }
   }

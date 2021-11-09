@@ -110,7 +110,9 @@
       "FILE_DESC": "Tiedoston kuvaus:",
       "FILE_CREATED": "Tiedosto luotiin",
       "FILE_DELETED": "Tiedosto poistettiin",
-      "FILE_UPDATED": "Tiedosto tallennettiin"
+      "FILE_UPDATED": "Tiedosto tallennettiin",
+      "PRIVATE_FILE": "Yksityinen",
+      "PUBLIC_FILE": "Julkinen"
     },
     "SCRIPT_DIALOG": {
       "TITLE_CREATE": "Luo komentosarja",

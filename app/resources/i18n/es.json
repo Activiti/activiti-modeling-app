@@ -132,7 +132,8 @@
     },
     "EDITOR": {
       "NAME": "Nombre",
-      "DESCRIPTION": "Descripción"
+      "DESCRIPTION": "Descripción",
+      "TITLE": "Título de la aplicación"
     }
   }
 }

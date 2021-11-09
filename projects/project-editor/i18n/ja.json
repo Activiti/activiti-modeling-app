@@ -110,7 +110,9 @@
       "FILE_DESC": "ファイルの説明:",
       "FILE_CREATED": "ファイルが作成されました",
       "FILE_DELETED": "ファイルが削除されました",
-      "FILE_UPDATED": "ファイルが保存されました"
+      "FILE_UPDATED": "ファイルが保存されました",
+      "PRIVATE_FILE": "非公開",
+      "PUBLIC_FILE": "公開"
     },
     "SCRIPT_DIALOG": {
       "TITLE_CREATE": "スクリプトを作成",

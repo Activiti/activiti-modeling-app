@@ -110,7 +110,9 @@
       "FILE_DESC": "Descrição do arquivo:",
       "FILE_CREATED": "Arquivo criado",
       "FILE_DELETED": "Arquivo excluído",
-      "FILE_UPDATED": "Arquivo salvo"
+      "FILE_UPDATED": "Arquivo salvo",
+      "PRIVATE_FILE": "Privado",
+      "PUBLIC_FILE": "Público"
     },
     "SCRIPT_DIALOG": {
       "TITLE_CREATE": "Criar script",

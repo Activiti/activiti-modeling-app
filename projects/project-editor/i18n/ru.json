@@ -110,7 +110,9 @@
       "FILE_DESC": "Описание файла:",
       "FILE_CREATED": "Файл создан",
       "FILE_DELETED": "Файл удален",
-      "FILE_UPDATED": "Файл сохранен"
+      "FILE_UPDATED": "Файл сохранен",
+      "PRIVATE_FILE": "Частный",
+      "PUBLIC_FILE": "Общедоступный"
     },
     "SCRIPT_DIALOG": {
       "TITLE_CREATE": "Создать сценарий",

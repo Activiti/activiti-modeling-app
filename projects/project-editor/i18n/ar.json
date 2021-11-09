@@ -110,7 +110,9 @@
       "FILE_DESC": "وصف الملف:",
       "FILE_CREATED": "تم إنشاء الملف",
       "FILE_DELETED": "تم حذف الملف",
-      "FILE_UPDATED": "تم حفظ الملف"
+      "FILE_UPDATED": "تم حفظ الملف",
+      "PRIVATE_FILE": "خاص",
+      "PUBLIC_FILE": "عام"
     },
     "SCRIPT_DIALOG": {
       "TITLE_CREATE": "إنشاء برنامج نصي",

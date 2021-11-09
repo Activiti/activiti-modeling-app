@@ -132,7 +132,8 @@
     },
     "EDITOR": {
       "NAME": "Naam",
-      "DESCRIPTION": "Beschrijving"
+      "DESCRIPTION": "Beschrijving",
+      "TITLE": "Toepassingsnaam"
     }
   }
 }

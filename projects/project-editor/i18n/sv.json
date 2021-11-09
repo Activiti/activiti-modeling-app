@@ -110,7 +110,9 @@
       "FILE_DESC": "Filbeskrivning:",
       "FILE_CREATED": "Fil skapad",
       "FILE_DELETED": "Fil raderad",
-      "FILE_UPDATED": "Fil sparad"
+      "FILE_UPDATED": "Fil sparad",
+      "PRIVATE_FILE": "Privat",
+      "PUBLIC_FILE": "Offentlig"
     },
     "SCRIPT_DIALOG": {
       "TITLE_CREATE": "Skapa skript",

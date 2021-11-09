@@ -22,7 +22,8 @@
         "COLUMN_TYPE": "النوع",
         "COLUMN_REQUIRED": "مطلوب",
         "COLUMN_VALUE": "القيمة",
-        "NO_PROPERTIES": "حدد متغيرًا أو أنشئه لعرض خصائصه"
+        "NO_PROPERTIES": "حدد متغيرًا أو أنشئه لعرض خصائصه",
+        "CLEAR": "مسح"
       }
     },
     "VARIABLE_MAPPING": {
@@ -108,7 +109,8 @@
         "USER_TASK": "مهمة المستخدم",
         "NONE": "بلا",
         "EVENT": "حدث",
-        "EMAIL_SERVICE_TASK": "مهمة خدمة البريد الإلكتروني"
+        "EMAIL_SERVICE_TASK": "مهمة خدمة البريد الإلكتروني",
+        "DOCGEN_SERVICE": "مهمة خدمة Docgen"
       },
       "TOOLTIP": {
         "VARIABLE": "متغير",
@@ -125,6 +127,16 @@
         "OPEN_EXPRESSION_EDITOR": "افتح مربع حوار محرر التعبير",
         "SWITCH_TO_VARIABLES": "التبديل إلى محدد المتغيرات",
         "CLEAR_SELECTION": "مسح التحديد"
+      }
+    },
+    "VARIABLE_TYPE_INPUT": {
+      "DATE": {
+        "CURRENT_DATE": "اليوم",
+        "CLEAR_BUTTON": "مسح"
+      },
+      "DATE_TIME": {
+        "CURRENT_DATE_TIME": "حاليا",
+        "CLEAR_BUTTON": "مسح"
       }
     }
   }

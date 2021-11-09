@@ -22,7 +22,8 @@
         "COLUMN_TYPE": "種類",
         "COLUMN_REQUIRED": "必須",
         "COLUMN_VALUE": "値",
-        "NO_PROPERTIES": "プロパティを表示する変数を選択するか作成してください"
+        "NO_PROPERTIES": "プロパティを表示する変数を選択するか作成してください",
+        "CLEAR": "消去"
       }
     },
     "VARIABLE_MAPPING": {
@@ -108,7 +109,8 @@
         "USER_TASK": "ユーザータスク",
         "NONE": "なし",
         "EVENT": "イベント",
-        "EMAIL_SERVICE_TASK": "Eメールサービスタスク"
+        "EMAIL_SERVICE_TASK": "Eメールサービスタスク",
+        "DOCGEN_SERVICE": "Docgenサービスタスク"
       },
       "TOOLTIP": {
         "VARIABLE": "変数",
@@ -125,6 +127,16 @@
         "OPEN_EXPRESSION_EDITOR": "式編集ダイアログを開く",
         "SWITCH_TO_VARIABLES": "変数セレクターに切り替え",
         "CLEAR_SELECTION": "選択を解除"
+      }
+    },
+    "VARIABLE_TYPE_INPUT": {
+      "DATE": {
+        "CURRENT_DATE": "今日",
+        "CLEAR_BUTTON": "消去"
+      },
+      "DATE_TIME": {
+        "CURRENT_DATE_TIME": "現在",
+        "CLEAR_BUTTON": "消去"
       }
     }
   }

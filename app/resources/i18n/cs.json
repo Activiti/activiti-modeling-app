@@ -132,7 +132,8 @@
     },
     "EDITOR": {
       "NAME": "Název",
-      "DESCRIPTION": "Popis"
+      "DESCRIPTION": "Popis",
+      "TITLE": "Název aplikace"
     }
   }
 }

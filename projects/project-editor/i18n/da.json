@@ -110,7 +110,9 @@
       "FILE_DESC": "Filbeskrivelse:",
       "FILE_CREATED": "Fil blev oprettet",
       "FILE_DELETED": "Fil blev slettet",
-      "FILE_UPDATED": "Fil blev gemt"
+      "FILE_UPDATED": "Fil blev gemt",
+      "PRIVATE_FILE": "Privat",
+      "PUBLIC_FILE": "Offentlig"
     },
     "SCRIPT_DIALOG": {
       "TITLE_CREATE": "Opret script",

@@ -132,7 +132,8 @@
     },
     "EDITOR": {
       "NAME": "名称",
-      "DESCRIPTION": "说明"
+      "DESCRIPTION": "说明",
+      "TITLE": "应用程序标题"
     }
   }
 }
