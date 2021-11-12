@@ -13,7 +13,6 @@
         </mat-tab>
 
         <mat-tab label="{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.CALLED_ELEMENT.DIALOG.EXPRESSION' | translate }}">
-            <ng-container *ngIf="processVariables.length; else noProcessVariables">
                 <modelingsdk-expression-code-editor class="ama-called-element-dialog-expression"
                     [attr.data-automation-id]="'called-element-dialog-expression'"
                     [expression]="expression"
@@ -26,12 +25,6 @@
                     [lineWrapping]="true"
                     [nonBracketedOutput]="false">
                 </modelingsdk-expression-code-editor>
-            </ng-container>
-            <ng-template #noProcessVariables>
-                <h5 data-automation-id="no-process-variables-error">
-                    {{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.EXPRESSION.NO_PROCESS_VARIABLES' | translate }}
-                </h5>
-            </ng-template>
         </mat-tab>
     </mat-tab-group>
 </mat-dialog-content>
