@@ -17,41 +17,9 @@
 
 import { InjectionToken, Provider, Type } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ElementVariable, ProcessEditorElementWithVariables } from '../api/types';
 
 export const PROCESS_EDITOR_ELEMENT_VARIABLES_PROVIDERS = new InjectionToken<ProcessEditorElementVariablesProvider[]>('process-editor-element-variables-providers');
-
-export enum ProcessEditorElementWithVariables {
-    StartEvent = 'START_EVENT',
-    Process = 'PROCESS',
-    ServiceTask = 'SERVICE_TASK',
-    CalledElement = 'CALLED_ELEMENT',
-    ScriptTask = 'SCRIPT_TASK',
-    DecisionTable = 'DECISION_TABLE',
-    EmailServiceTask = 'EMAIL_SERVICE',
-    DocgenServiceTask = 'DOCGEN_SERVICE',
-    ContentServiceTask = 'CONTENT_SERVICE',
-    UserTask = 'USER_TASK',
-    Event = 'EVENT'
-}
-
-export interface ProcessEditorElementVariable {
-    source: {
-        name: string;
-        type?: ProcessEditorElementWithVariables;
-        subtype?: string;
-    };
-    variables: ElementVariable[];
-}
-
-export interface ElementVariable {
-    id: string;
-    description?: string;
-    name: string;
-    type: string;
-    icon?: string;
-    tooltip?: string;
-    label?: string;
-}
 
 export interface ProcessEditorElementVariablesProvider {
     getHandledTypes(): ProcessEditorElementWithVariables[];

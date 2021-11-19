@@ -16,30 +16,13 @@
  */
 
 import { Injectable } from '@angular/core';
+import { JSONRef, JSONSchemaInfoBasics, JSONSchemaPropertyBasics } from '../../api/types';
 import { arrayModelType } from './expression-language/array.model.type';
 import { dateModelType } from './expression-language/date.model.type';
 import { eventSchema } from './expression-language/event-schema';
 import { jsonModelType } from './expression-language/json.model.type';
 import { stringModelType } from './expression-language/string.model.type';
 import { ModelingType, ModelingTypeMap, ModelingTypeMethodDescription, ModelingTypePropertyDescription } from './modeling-type-provider.service';
-
-export interface JSONRef {
-    $ref: string;
-}
-
-export interface JSONSchemaInfoBasics {
-    anyOf?: JSONSchemaPropertyBasics[] | JSONRef[] | JSONSchemaInfoBasics[];
-    allOf?: JSONSchemaPropertyBasics[] | JSONRef[] | JSONSchemaInfoBasics[];
-    type?: string | string[] | JSONRef[];
-    properties?: JSONSchemaPropertyBasics;
-    items?: JSONRef[] | JSONSchemaPropertyBasics[] | JSONSchemaInfoBasics;
-    description?: string;
-    $ref?: string;
-}
-
-export interface JSONSchemaPropertyBasics {
-    [name: string]: JSONSchemaInfoBasics;
-}
 
 @Injectable({
     providedIn: 'root'

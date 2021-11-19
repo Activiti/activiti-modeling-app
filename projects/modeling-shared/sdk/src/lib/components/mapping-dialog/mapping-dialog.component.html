@@ -156,8 +156,13 @@
                                 <modelingsdk-value-type-input #valueInput data-automation-id="value-mapping-input"
                                     class="ama-value-mapping-input" (onChange)="valueMappingValueChange($event,selectedRow)"
                                     [(ngModel)]="valueValue" [index]="selectedRow+1"
-                                    [type]="dataSource[selectedRow].type" [required]="dataSource[selectedRow].required"
-                                    [extendedProperties]="extendedProperties">
+                                    [type]="dataSource[selectedRow].type"
+                                    [required]="dataSource[selectedRow].required"
+                                    [disabled]="dataSource[selectedRow].readOnly"
+                                    [extendedProperties]="extendedProperties"
+                                    [model]="dataSource[selectedRow].model"
+                                    [placeholder]="dataSource[selectedRow].placeholder"
+                                    [autocompletionContext]="mappingType === 'output' ? outputParameters : (expressionEditorVariables || processProperties)">
                                 </modelingsdk-value-type-input>
                             </ng-container>
                         </mat-tab>

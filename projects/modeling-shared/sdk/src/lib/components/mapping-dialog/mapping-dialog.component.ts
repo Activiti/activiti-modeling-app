@@ -16,13 +16,12 @@
  */
 
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
-import { ConnectorParameter, EntityProperty, ServiceParameterMapping } from '../../api/types';
+import { ConnectorParameter, ElementVariable, EntityProperty, ProcessEditorElementVariable, ServiceParameterMapping } from '../../api/types';
 import { VariableMappingType, MappingRowModel, MappingValueType, MappingDialogService, MappingDialogData } from '../../services/mapping-dialog.service';
 import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
 import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSelectChange } from '@angular/material/select';
-import { ElementVariable, ProcessEditorElementVariable } from '../../services/process-editor-element-variables-provider.service';
 
 @Component({
     templateUrl: './mapping-dialog.component.html',
@@ -307,7 +306,7 @@ export class MappingDialogComponent implements OnInit {
                 mappingValueType = MappingValueType.variable;
             }
         }
-        this.dataSource = this.dataSource.concat({ name: defaultOutputParameter, label, value: undefined, type, mappingValueType });
+        this.dataSource = this.dataSource.concat({ id: defaultOutputParameter, name: defaultOutputParameter, label, value: undefined, type, mappingValueType });
         this.editRow(this.dataSource.length - 1);
     }
 
@@ -357,14 +356,8 @@ export class MappingDialogComponent implements OnInit {
                 extendedProperties = this.extensionObject;
                 extendedProperties['panelWidth'] = 200;
                 break;
-            case 'json':
-                const parameters: EntityProperty[] = this.dataSource.map(parameter => ({ ...parameter, type: parameter.type, id: null }));
-                extendedProperties = {
-                    variables: (this.processProperties || []).concat(parameters)
-                };
-                break;
             default:
-                extendedProperties = null;
+                extendedProperties = {};
         }
         return extendedProperties;
     }

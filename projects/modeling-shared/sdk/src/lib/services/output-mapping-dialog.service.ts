@@ -54,12 +54,14 @@ export class OutputMappingDialogService extends MappingDialogService {
                 : (JSON.stringify(mapping[key].value).includes('${') ? MappingValueType.expression : MappingValueType.value);
 
             dataSource.push({
+                id: outputParameter?.id,
                 name: mapping[key].value,
-                label: outputParameter != null ? outputParameter.label : null,
-                description: outputParameter != null ? outputParameter.description : null,
+                label: outputParameter?.label || null,
+                description: outputParameter?.description || null,
                 value: key,
                 type: processVariable.type,
-                mappingValueType: mappingValueType
+                mappingValueType: mappingValueType,
+                model: outputParameter?.model
             });
         });
         return dataSource;

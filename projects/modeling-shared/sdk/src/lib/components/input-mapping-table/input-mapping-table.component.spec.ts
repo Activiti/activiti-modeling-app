@@ -20,7 +20,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ConnectorParameter, MappingType } from '../../api/types';
+import { ConnectorParameter, MappingType, ProcessEditorElementWithVariables } from '../../api/types';
 import { InputMappingTableComponent } from './input-mapping-table.component';
 import { InputMappingTableModule } from './input-mapping-table.module';
 import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
@@ -33,7 +33,6 @@ import { PropertiesViewerStringInputComponent, INPUT_TYPE_ITEM_HANDLER } from '.
 import { TranslateModule } from '@ngx-translate/core';
 import { ExpressionsEditorService } from '../../code-editor/services/expressions-editor.service';
 import { UuidService } from '../../services/uuid.service';
-import { ProcessEditorElementWithVariables } from '../../services/process-editor-element-variables-provider.service';
 
 describe('InputMappingTableComponent', () => {
     let fixture: ComponentFixture<InputMappingTableComponent>;

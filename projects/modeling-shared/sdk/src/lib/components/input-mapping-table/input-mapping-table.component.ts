@@ -17,12 +17,11 @@
 
 import { Component, EventEmitter, Input, OnChanges, Output, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ConnectorParameter, MappingType, ServiceParameterMapping } from '../../api/types';
+import { ConnectorParameter, ElementVariable, MappingType, ProcessEditorElementVariable, ServiceParameterMapping } from '../../api/types';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
 import { Subject } from 'rxjs';
 import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
-import { ElementVariable, ProcessEditorElementVariable } from '../../services/process-editor-element-variables-provider.service';
 
 export interface ParameterSelectOption {
     id: string | Symbol;

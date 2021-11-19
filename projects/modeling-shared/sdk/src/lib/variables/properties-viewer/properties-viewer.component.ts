@@ -22,7 +22,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { VariablesService } from '../variables.service';
 import { UuidService } from './../../services/uuid.service';
 import { primitive_types } from '../../helpers/primitive-types';
-import { EntityProperty, EntityProperties } from './../../api/types';
+import { EntityProperty, EntityProperties, JSONSchemaInfoBasics } from './../../api/types';
 import { FIELD_VARIABLE_NAME_REGEX } from '../../helpers/utils/create-entries-names';
 import { MatSort } from '@angular/material/sort';
 
@@ -62,9 +62,10 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
     @ViewChild(MatSort) sort: MatSort;
 
     extendedProperties: {
-        variables: EntityProperty[],
         allowExpressions: boolean;
     };
+    autocompletionContext: EntityProperty[];
+    model: JSONSchemaInfoBasics;
 
     constructor(private variablesService: VariablesService, private uuidService: UuidService, private changeDetectorRef: ChangeDetectorRef) {
         this.form = {
@@ -157,7 +158,7 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         this.dataSource.sort = this.sort;
     }
 
-    editRow(element, index: number) {
+    editRow(element: EntityProperty, index: number) {
         this.showForm = true;
         this.name = element.name;
         this.selectedType = element.type;
@@ -166,9 +167,10 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         this.position = index;
         this.id = element.id;
         this.extendedProperties = {
-            variables: this.getVariablesForExpressionEditor(element.id),
             allowExpressions: this.allowExpressions
         };
+        this.autocompletionContext = this.getVariablesForExpressionEditor(element.id);
+        this.model = element.model;
         this.updateTabIndex();
     }
 
@@ -246,9 +248,9 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         this.propertyChanged.emit(true);
         this.dataSource.sort = this.sort;
         this.extendedProperties = {
-            variables: this.getVariablesForExpressionEditor(newVariable.id),
             allowExpressions: this.allowExpressions
         };
+        this.autocompletionContext = this.getVariablesForExpressionEditor(newVariable.id);
     }
 
     updateTabIndex() {

@@ -15,8 +15,7 @@
  * limitations under the License.
  */
 
-import { ServiceParameterMapping, MappingType } from '../../api/types';
-import { ProcessEditorElementVariable, ProcessEditorElementWithVariables } from '../../services/process-editor-element-variables-provider.service';
+import { ServiceParameterMapping, MappingType, ProcessEditorElementWithVariables, ProcessEditorElementVariable } from '../../api/types';
 
 /* cSpell:disable */
 export const mockValueMapping: ServiceParameterMapping = {

@@ -26,14 +26,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
 import { VariableSelectorComponent } from '../variable-selector/variable-selector.component';
 import { MappingVariableExpressionDropdownComponent } from './mapping-variable-expression-dropdown.component';
-import { ElementVariable } from '../../../services/process-editor-element-variables-provider.service';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { expectedVariables } from '../../../mocks/process-editor.mock';
 import { UuidService } from '../../../services/uuid.service';
 import { ExpressionsEditorService } from '../../../code-editor/services/expressions-editor.service';
 import { CodeEditorModule } from '../../../code-editor/code-editor.module';
 import { VariablesModule } from '../../../variables/variables.module';
-import { MappingType } from '../../../api/types';
+import { ElementVariable, MappingType } from '../../../api/types';
 import { ExpressionCodeEditorDialogComponent } from '../../../code-editor/components/expression-code-editor-dialog/expression-code-editor-dialog.component';
 import { VariableExpressionLanguagePipe } from '../../../variables/properties-viewer/variable-expression-language.pipe';
 

@@ -20,7 +20,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MappingType, ServiceParameterMapping } from '../../api/types';
+import { MappingType, ProcessEditorElementWithVariables, ServiceParameterMapping } from '../../api/types';
 import { OutputMappingTableComponent } from './output-mapping-table.component';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { OutputMappingTableModule } from './output-mapping-table.module';
@@ -31,7 +31,7 @@ import { selectSelectedTheme } from '../../store/app.selectors';
 import { mockDropDownFields, mockDropDownProcessVariable, mockValueMapping } from './output-mapping-table.component.mock';
 import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
-import { ProcessEditorElementWithVariables, PROCESS_EDITOR_ELEMENT_VARIABLES_PROVIDERS } from '../../services/process-editor-element-variables-provider.service';
+import { PROCESS_EDITOR_ELEMENT_VARIABLES_PROVIDERS } from '../../services/process-editor-element-variables-provider.service';
 import { ProcessEditorElementVariablesService } from '../../services/process-editor-element-variables.service';
 
 describe('OutputMappingTableComponent', () => {

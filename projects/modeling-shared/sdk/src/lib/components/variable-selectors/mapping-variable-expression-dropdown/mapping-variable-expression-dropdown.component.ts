@@ -18,9 +18,8 @@
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
-import { MappingType } from '../../../api/types';
+import { ElementVariable, MappingType, ProcessEditorElementVariable } from '../../../api/types';
 import { ExpressionCodeEditorDialogComponent } from '../../../code-editor/components/expression-code-editor-dialog/expression-code-editor-dialog.component';
-import { ElementVariable, ProcessEditorElementVariable } from '../../../services/process-editor-element-variables-provider.service';
 import { VariableExpressionLanguagePipe } from '../../../variables/properties-viewer/variable-expression-language.pipe';
 
 @Component({

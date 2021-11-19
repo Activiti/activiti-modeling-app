@@ -15,11 +15,10 @@
  * limitations under the License.
  */
 
-import { ServiceParameterMapping, ConnectorParameter, MappingType, EntityProperty } from '../api/types';
+import { ServiceParameterMapping, ConnectorParameter, MappingType, ProcessEditorElementVariable, ElementVariable, EntityProperty } from '../api/types';
 import { Subject } from 'rxjs';
 import { InputTypeItem, INPUT_TYPE_ITEM_HANDLER } from '../variables/public-api';
 import { Inject, Injectable } from '@angular/core';
-import { ElementVariable, ProcessEditorElementVariable } from './process-editor-element-variables-provider.service';
 
 export interface MappingDialogData {
     inputMapping?: ServiceParameterMapping;
@@ -42,14 +41,7 @@ export enum VariableMappingType {
     output = 'output'
 }
 
-export interface MappingRowModel {
-    name: string;
-    label?: string;
-    description?: string;
-    value: any;
-    required?: boolean;
-    type?: string;
-    readOnly?: boolean;
+export interface MappingRowModel extends ElementVariable {
     mappingValueType: MappingValueType;
 }
 

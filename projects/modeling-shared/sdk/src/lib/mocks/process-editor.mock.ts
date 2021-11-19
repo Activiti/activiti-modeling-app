@@ -16,8 +16,9 @@
  */
 
 import { Observable, of } from 'rxjs';
+import { ElementVariable, ProcessEditorElementVariable, ProcessEditorElementWithVariables } from '../api/types';
 import { BpmnElement } from '../process-editor/bpmn-element';
-import { ElementVariable, ProcessEditorElementVariable, ProcessEditorElementVariablesProvider, ProcessEditorElementWithVariables } from '../services/process-editor-element-variables-provider.service';
+import { ProcessEditorElementVariablesProvider } from '../services/process-editor-element-variables-provider.service';
 
 /*cspell: disable*/
 export const expectedVariables: ProcessEditorElementVariable[] = [

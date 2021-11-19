@@ -16,7 +16,7 @@
  */
 
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
-import { ElementVariable, ProcessEditorElementVariable } from '../../../services/process-editor-element-variables-provider.service';
+import { ElementVariable, ProcessEditorElementVariable } from '../../../api/types';
 
 @Component({
     selector: 'modelingsdk-variable-selector-dropdown',

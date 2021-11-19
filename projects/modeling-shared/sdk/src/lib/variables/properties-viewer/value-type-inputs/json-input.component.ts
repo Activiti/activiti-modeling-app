@@ -16,7 +16,7 @@
  */
 
 import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { EntityProperty } from '../../../api/types';
+import { EntityProperty, JSONSchemaInfoBasics } from '../../../api/types';
 
 @Component({
     template: `
@@ -24,7 +24,7 @@ import { EntityProperty } from '../../../api/types';
                 [attr.data-automation-id]="'variable-value'"
                 [expression]="value"
                 (expressionChange)="onChange($event)"
-                [variables]="extendedProperties?.variables || []"
+                [variables]="autocompletionContext"
                 [language]="'json'"
                 [removeEnclosingBrackets]="false"
                 [enableDialogEditor]="!disabled"
@@ -39,9 +39,8 @@ export class PropertiesViewerJsonInputComponent {
     @Output() change = new EventEmitter();
     @Input() value: string;
     @Input() disabled = false;
-    @Input() extendedProperties: {
-        variables?: EntityProperty[];
-    };
+    @Input() model: JSONSchemaInfoBasics | string;
+    @Input() autocompletionContext: EntityProperty[] = [];
 
     onChange(value: string) {
         this.value = value;

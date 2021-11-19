@@ -37,6 +37,7 @@ import { INPUT_TYPE_ITEM_HANDLER, InputTypeItem } from './value-type-inputs/valu
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { PropertiesViewerJsonInputComponent } from './value-type-inputs/json-input.component';
+import { ElementVariable, JSONSchemaInfoBasics } from '../../api/types';
 
 @Component({
     template: '<template #valueTypeInput></template>',
@@ -63,6 +64,8 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
     @Input() required = false;
     @Input() placeholder: string;
     @Input() readonly = false;
+    @Input() model: JSONSchemaInfoBasics;
+    @Input() autocompletionContext: ElementVariable[] = [];
 
     @ViewChild('valueTypeInput', { read: ViewContainerRef, static: true }) valueTypeInput;
     valueTypeInputRef: ComponentRef<any>;
@@ -114,6 +117,8 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
         this.valueTypeInputRef.instance.readonly = this.readonly;
         this.valueTypeInputRef.instance.placeholder = this.placeholder;
         this.valueTypeInputRef.instance.extendedProperties = this.extendedProperties;
+        this.valueTypeInputRef.instance.model = this.model;
+        this.valueTypeInputRef.instance.autocompletionContext = this.autocompletionContext;
         this.writeValue(this.value);
     }
 

@@ -16,6 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
+import { JSONSchemaInfoBasics } from '../../api/types';
 
 @Injectable({
     providedIn: 'root'
@@ -23,6 +24,10 @@ import { Injectable } from '@angular/core';
 export class CodeEditorService {
 
     private schemas = [];
+
+    getSchema(uri: string): JSONSchemaInfoBasics {
+        return this.schemas.find(schema => schema.schema?.$id === uri)?.schema;
+    }
 
     addSchema(uri: string, fileMatch: string | string[], schema: string | Object) {
         this.schemas.push({

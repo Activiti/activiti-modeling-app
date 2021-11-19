@@ -248,9 +248,12 @@ export interface EntityProperty {
     name: string;
     label?: string;
     type: string;
+    model?: JSONSchemaInfoBasics;
     required?: boolean;
     value?: string;
     description?: string;
+    readOnly?: boolean;
+    placeholder?: string;
 }
 
 export interface EntityProperties {
@@ -278,16 +281,8 @@ export interface ConnectorError {
     code?: string;
 }
 
-export interface ConnectorParameter {
-    id: string;
-    name: string;
-    label?: string;
-    description?: string;
-    type: string;
+export interface ConnectorParameter extends EntityProperty {
     mappingValueType?: string;
-    required?: boolean;
-    readOnly?: boolean;
-    value?: any;
 }
 export interface ConnectorContent {
     name: string;
@@ -635,4 +630,59 @@ export interface TriggerParameter {
     required?: boolean;
     readOnly?: boolean;
     value?: any;
+}
+
+export interface JSONRef {
+    $ref: string;
+}
+
+export interface JSONSchemaInfoBasics {
+    $id?: string;
+    anyOf?: JSONSchemaPropertyBasics[] | JSONRef[] | JSONSchemaInfoBasics[];
+    allOf?: JSONSchemaPropertyBasics[] | JSONRef[] | JSONSchemaInfoBasics[];
+    type?: string | string[] | JSONRef[];
+    properties?: JSONSchemaPropertyBasics;
+    items?: JSONRef[] | JSONSchemaPropertyBasics[] | JSONSchemaInfoBasics;
+    description?: string;
+    $comment?: string;
+    $ref?: string;
+    $defs?: any;
+    default?: any;
+    enum?: any[];
+    readOnly?: boolean;
+    title?: string;
+    required?: string[];
+    const?: any;
+}
+
+export interface JSONSchemaPropertyBasics {
+    [name: string]: JSONSchemaInfoBasics;
+}
+
+export enum ProcessEditorElementWithVariables {
+    StartEvent = 'START_EVENT',
+    Process = 'PROCESS',
+    ServiceTask = 'SERVICE_TASK',
+    CalledElement = 'CALLED_ELEMENT',
+    ScriptTask = 'SCRIPT_TASK',
+    DecisionTable = 'DECISION_TABLE',
+    EmailServiceTask = 'EMAIL_SERVICE',
+    DocgenServiceTask = 'DOCGEN_SERVICE',
+    ContentServiceTask = 'CONTENT_SERVICE',
+    UserTask = 'USER_TASK',
+    Event = 'EVENT'
+}
+
+export interface ProcessEditorElementVariable {
+    source: {
+        name: string;
+        type?: ProcessEditorElementWithVariables;
+        subtype?: string;
+    };
+    variables: ElementVariable[];
+}
+
+export interface ElementVariable extends EntityProperty {
+    icon?: string;
+    tooltip?: string;
 }

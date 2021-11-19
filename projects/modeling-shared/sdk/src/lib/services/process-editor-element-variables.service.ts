@@ -20,12 +20,13 @@ import { Inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap, take } from 'rxjs/operators';
+import { ElementVariable, ProcessEditorElementVariable, ProcessEditorElementWithVariables } from '../api/types';
 import { VariableMappingBehavior } from '../interfaces/variable-mapping-type.interface';
 import { BpmnElement } from '../process-editor/bpmn-element';
 import { selectProcessMappingsFor } from '../process-editor/process-editor.selectors';
 import { BpmnProperty } from '../process-editor/properties';
 import { AmaState } from '../store/app.state';
-import { ElementVariable, ProcessEditorElementVariable, ProcessEditorElementVariablesProvider, ProcessEditorElementWithVariables, PROCESS_EDITOR_ELEMENT_VARIABLES_PROVIDERS } from './process-editor-element-variables-provider.service';
+import { ProcessEditorElementVariablesProvider, PROCESS_EDITOR_ELEMENT_VARIABLES_PROVIDERS } from './process-editor-element-variables-provider.service';
 import { VariableMappingTypeService } from './variable-mapping-type.service';
 @Injectable({
     providedIn: 'root'

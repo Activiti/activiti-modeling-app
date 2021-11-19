@@ -18,7 +18,7 @@ import { EntityProperty } from '../api/types';
 import { primitive_types } from '../helpers/primitive-types';
 import { VariablesService } from './variables.service';
 
-describe('PropertiesViewerComponent', () => {
+describe('VariablesService', () => {
     let service: VariablesService;
 
     beforeAll(() => {

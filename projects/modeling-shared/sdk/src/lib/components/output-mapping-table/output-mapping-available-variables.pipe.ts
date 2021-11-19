@@ -15,8 +15,7 @@
  * limitations under the License.
  */
 import { Pipe, PipeTransform } from '@angular/core';
-import { ServiceParameterMapping } from '../../api/types';
-import { ProcessEditorElementVariable } from '../../services/process-editor-element-variables-provider.service';
+import { ProcessEditorElementVariable, ServiceParameterMapping } from '../../api/types';
 
 @Pipe({ name: 'outputMappingAvailableVariable' })
 export class OutputMappingAvailableVariablePipe implements PipeTransform {

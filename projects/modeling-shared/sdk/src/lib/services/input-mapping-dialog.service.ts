@@ -48,6 +48,7 @@ export class InputMappingDialogService extends MappingDialogService {
                 value = mapping[parameter.name].value;
             }
             dataSource.push({
+                id: parameter.id,
                 name: parameter.name,
                 label: parameter.label,
                 description: parameter.description,
@@ -55,7 +56,9 @@ export class InputMappingDialogService extends MappingDialogService {
                 type: parameter.type,
                 required: parameter.required,
                 readOnly: parameter.readOnly,
-                mappingValueType: mappingValueType
+                model: parameter.model,
+                mappingValueType: mappingValueType,
+                placeholder: parameter.placeholder
             });
         });
 

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 import { Pipe, PipeTransform } from '@angular/core';
-import { ElementVariable, ProcessEditorElementVariable } from '../../services/process-editor-element-variables-provider.service';
+import { ElementVariable, ProcessEditorElementVariable } from '../../api/types';
 
 @Pipe({ name: 'variableIdFromVariableName' })
 export class VariableIdFromVariableNamePipe implements PipeTransform {
