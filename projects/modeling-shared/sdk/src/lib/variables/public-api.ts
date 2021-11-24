@@ -27,3 +27,4 @@ export * from './properties-viewer/value-type-inputs/json-input.component';
 export * from './properties-viewer/value-type-inputs/file-input.component';
 export * from './properties-viewer/value-type-inputs/date-time-input.component';
 export * from './properties-viewer/value-type-inputs/array-input.component';
+export * from './properties-viewer/value-type-inputs/enum-input/enum-input.component';

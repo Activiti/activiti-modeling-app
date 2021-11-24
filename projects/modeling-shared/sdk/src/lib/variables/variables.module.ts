@@ -37,6 +37,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { VariableExpressionLanguagePipe } from './properties-viewer/variable-expression-language.pipe';
 import { VariablePrimitiveTypePipe } from './properties-viewer/variable-primitive-type.pipe';
 import { FormsModule } from '@angular/forms';
+import { PropertiesViewerEnumInputComponent } from './properties-viewer/value-type-inputs/enum-input/enum-input.component';
 
 @NgModule({
     imports: [
@@ -61,7 +62,8 @@ import { FormsModule } from '@angular/forms';
         VariableValuePipe,
         PropertiesViewerArrayInputComponent,
         VariableExpressionLanguagePipe,
-        VariablePrimitiveTypePipe
+        VariablePrimitiveTypePipe,
+        PropertiesViewerEnumInputComponent
     ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
@@ -72,7 +74,8 @@ import { FormsModule } from '@angular/forms';
         provideInputTypeItemHandler('json', PropertiesViewerJsonInputComponent),
         provideInputTypeItemHandler('file', PropertiesViewerFileInputComponent),
         provideInputTypeItemHandler('folder', PropertiesViewerJsonInputComponent),
-        provideInputTypeItemHandler('array', PropertiesViewerArrayInputComponent)
+        provideInputTypeItemHandler('array', PropertiesViewerArrayInputComponent),
+        provideInputTypeItemHandler('enum', PropertiesViewerEnumInputComponent)
     ],
     exports: [
         ValueTypeInputComponent,
