@@ -49,7 +49,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         DialogsModule,
         AppExtensionsModule,
         AppShellModule,
-        environment.production ? StoreDevtoolsModule.instrument({ maxAge: 25 }) : [],
+        environment.production ? [] : StoreDevtoolsModule.instrument({ maxAge: 25 }),
         ...(environment.devTools ? [ AboutModule ] : [])
     ],
     declarations: [

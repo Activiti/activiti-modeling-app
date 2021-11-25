@@ -19,6 +19,7 @@
 /// <reference path="./lib/process-editor/diagram.d.ts" />
 
 export * from './lib/api/public-api';
+export * from './lib/model-editor/public-api';
 export * from './lib/code-editor/public-api';
 export * from './lib/components/input-mapping-table/public-api';
 export * from './lib/components/output-mapping-table/public-api';
