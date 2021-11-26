@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, Inject, Optional, ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Input, OnInit, Inject, Optional, ViewEncapsulation, OnDestroy } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 import {
     AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting,
     SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption,
@@ -40,7 +40,7 @@ const DEFAULT_SORT_DIRECTION = 'asc';
     styleUrls: ['./projects-list.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class ProjectsListComponent implements OnInit {
+export class ProjectsListComponent implements OnInit, OnDestroy {
     dataSource$: Observable<MatTableDataSource<Partial<Project>>>;
     loading$: Observable<boolean>;
     pagination$: Observable<Pagination>;
@@ -50,6 +50,7 @@ export class ProjectsListComponent implements OnInit {
         key: DEFAULT_SORT_KEY,
         direction: DEFAULT_SORT_DIRECTION
     };
+    private unsubscribe$ = new Subject<void>();
 
     @Input() customDataSource$: Observable<Partial<Project>[]>;
 
@@ -70,12 +71,14 @@ export class ProjectsListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.maxItems = +this.route.snapshot.queryParamMap.get('maxItems') || 25;
-        this.skipCount = +this.route.snapshot.queryParamMap.get('skipCount') || 0;
-        this.sorting = this.parseSorting(this.route.snapshot.queryParamMap.get('sort'));
-        this.search.value = this.route.snapshot.queryParamMap.get(this.search.key);
-
-        this.loadProjects();
+        this.route.queryParams.pipe(takeUntil(this.unsubscribe$))
+            .subscribe(params => {
+                this.maxItems = +params.maxItems || 25;
+                this.skipCount = +params.skipCount || 0;
+                this.sorting = this.parseSorting(params.sort);
+                this.search.value = params[this.search.key];
+                this.loadProjects();
+        });
 
         this.loading$ = this.store.select(selectLoading);
         this.pagination$ = this.store.select(selectPagination);
@@ -194,5 +197,10 @@ export class ProjectsListComponent implements OnInit {
 
     handleClick(actionClass: ProjectContextMenuActionClass, projectId: string) {
         this.store.dispatch(new actionClass(projectId));
+    }
+
+    ngOnDestroy() {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 }

@@ -37,7 +37,6 @@ export class AppComponent implements OnInit, OnDestroy {
         private alfrescoApiService: AlfrescoApiService,
         private themingService: ThemingService) {
         this.pluginRoutesManager.patchRoutes();
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
     ngOnInit() {
