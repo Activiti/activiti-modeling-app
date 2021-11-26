@@ -101,7 +101,7 @@
 
         <mat-tab-group *ngIf="allowExpressions" [selectedIndex]="tabIndex">
             <mat-tab label="{{'SDK.MAPPING_DIALOG.VALUE_MAPPING'| translate}}">
-                <modelingsdk-value-type-input [(ngModel)]="value" [index]="position" [type]="selectedType"
+                <modelingsdk-value-type-input [(ngModel)]="value" [index]="position" [type]="selectedType" [extendedProperties]="extendedProperties"
                     (onChange)="updateVariableValue($event)" [autocompletionContext]="autocompletionContext" [model]="model">
                 </modelingsdk-value-type-input>
             </mat-tab>
@@ -121,7 +121,8 @@
             [index]="position"
             [type]="selectedType"
             [model]="model"
-            [autocompletionContext]="autocompletionContext">
+            [autocompletionContext]="autocompletionContext"
+            [extendedProperties]="extendedProperties">
         </modelingsdk-value-type-input>
 
         <mat-checkbox *ngIf="requiredCheckbox && !allowExpressions" [(ngModel)]="required" (change)="saveChanges()" color="primary"
