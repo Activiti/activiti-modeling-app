@@ -69,7 +69,6 @@
                 },
                 "SAVE": {
                     "PROCESS": "Are you sure you want to save this process?",
-                    "FORM": "Are you sure you want to save this form?",
                     "UI": "Are you sure you want to save this UI?",
                     "DATA": "Are you sure you want to save this data object?",
                     "DECISION_TABLE": "Are you sure you want to save this decision table?",
