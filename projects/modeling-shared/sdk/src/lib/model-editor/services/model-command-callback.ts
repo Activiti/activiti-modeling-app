@@ -16,9 +16,10 @@
  */
 
 import { Observable } from 'rxjs';
+import { MODEL_TYPE } from '../../api/types';
 
 export class ModelCommandCallbackEvent extends Event {
-    constructor(type: string, public modelId$: Observable<string>, public modelContent$: Observable<string> ) {
+    constructor(type: string, public modelType: MODEL_TYPE, public modelId$: Observable<string>, public modelContent$: Observable<string> ) {
         super(type, {});
     }
 }

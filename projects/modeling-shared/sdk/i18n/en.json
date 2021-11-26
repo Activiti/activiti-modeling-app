@@ -1,5 +1,10 @@
 {
     "SDK": {
+        "MODEL_EDITOR": {
+            "DIALOG": {
+                "CONFIRM_INVALID_MODEL_SAVE": "Are you sure you want to save this {{ modelType }}?"
+            }
+        },
         "SNACKBAR": {
             "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Pasted values must follow this pattern"
         },

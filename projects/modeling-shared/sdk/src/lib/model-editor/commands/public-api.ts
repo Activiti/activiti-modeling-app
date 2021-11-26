@@ -16,4 +16,4 @@
  */
 
 export * from './save-model.command';
-export * from './basic-model-commands';
+export * from './commands.interface';

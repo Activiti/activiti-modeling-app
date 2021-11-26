@@ -77,7 +77,6 @@
                     "FILE": "Are you sure you want to save this file?",
                     "EMAIL_TEMPLATE": "Are you sure you want to overwrite the email template?",
                     "SCRIPT": "Are you sure you want to save this script?",
-                    "TRIGGER": "Are you sure you want to save this Trigger?",
                     "MODEL": "Are you sure you want to save this Content Model?",
                     "FORM_WIDGET": "Are you sure you want to save this Form Widget?"
                 },

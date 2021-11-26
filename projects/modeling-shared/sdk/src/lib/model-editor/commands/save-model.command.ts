@@ -15,28 +15,25 @@
  * limitations under the License.
  */
 
-import { Action, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { MODEL_TYPE } from '../../api/types';
 import { AmaState } from '../../store/app.state';
-
-export interface ModelCommand {
-    execute(modelId: string, content: string, metadata?: any): void;
-}
+import { ModelCommand, UpdateActionLike, ValidateActionLike } from './commands.interface';
 
 export abstract class GenericSaveModelCommand implements ModelCommand {
-    constructor(protected store: Store<AmaState>) {}
+    constructor(protected store: Store<AmaState>, protected translationService: any) {}
 
-    protected abstract title: string;
-    protected abstract ValidateAction: new(payload: any) => Action;
-    protected abstract UpdateAction: new(payload: any) => Action;
+    protected abstract ValidateAction: ValidateActionLike;
+    protected abstract UpdateAction: UpdateActionLike;
 
-    execute(modelId: string, content: string, metadata?: any) {
+    execute(modelType: MODEL_TYPE, modelId: string, content: string, metadata?: any) {
         const ValidateAction = this.ValidateAction;
         const UpdateAction = this.UpdateAction;
 
         this.store.dispatch(new ValidateAction({
-            title: this.title,
-            triggerId: modelId,
-            triggerContent: JSON.parse(content),
+            title: this.translationService.instant('SDK.MODEL_EDITOR.DIALOG.CONFIRM_INVALID_MODEL_SAVE', { modelType }),
+            modelId: modelId,
+            modelContent: JSON.parse(content),
             action: new UpdateAction(JSON.parse(content))
         }));
     }

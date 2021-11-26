@@ -16,33 +16,26 @@
  */
 
 import { Action, Store } from '@ngrx/store';
+import { PROCESS } from '../../api/types';
 import { GenericSaveModelCommand } from './save-model.command';
 
-class TestValidateAction implements Action {
+class TestValidateAction {
     type: 'validate';
-
     constructor(public payload: {
         title: string;
-        triggerId: string;
-        triggerContent: any;
+        modelId: string;
+        modelContent: any;
         action: Action;
-        errorAction?: Action;
-        projectId?: string;
     }) {}
 }
 
-class TestUpdateAction implements Action {
+class TestUpdateAction {
     type: 'update';
-
-    constructor(public payload: {
-        id: string;
-        name: string;
-        description?: string;
-    }) {}
+    constructor(public payload: any) {}
 }
 class SpecificSaveModelCommand extends GenericSaveModelCommand {
-    constructor(store: Store<any>) {
-        super(store);
+    constructor(store: Store<any>, translationService: any) {
+        super(store, translationService);
     }
 
     protected title = 'test-title';
@@ -52,20 +45,23 @@ class SpecificSaveModelCommand extends GenericSaveModelCommand {
 
 describe('GenericSaveModelCommand', () => {
 
+    const translationServiceMock = { instant: jest.fn().mockReturnValue('test-title-translated') };
+
     it('should trigger the proper action on store when executed', () => {
         const mockStore = { dispatch: jest.fn() } as unknown as Store;
-        const command = new SpecificSaveModelCommand(mockStore);
+        const command = new SpecificSaveModelCommand(mockStore, translationServiceMock);
         const modelId = 'test-id';
         const modelContent = JSON.stringify({ foo: 'bar' });
 
-        command.execute(modelId, modelContent);
+        command.execute(PROCESS, modelId, modelContent);
 
         const dispatchedAction = new TestValidateAction({
-            title: 'test-title',
-            triggerId: modelId,
-            triggerContent: JSON.parse(modelContent),
+            title: 'test-title-translated',
+            modelId: modelId,
+            modelContent: JSON.parse(modelContent),
             action: new TestUpdateAction(JSON.parse(modelContent))
         });
+        expect(translationServiceMock.instant).toHaveBeenCalled();
         expect(mockStore.dispatch).toHaveBeenCalledWith(dispatchedAction);
     });
 });

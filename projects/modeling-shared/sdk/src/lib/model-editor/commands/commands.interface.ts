@@ -15,6 +15,9 @@
  * limitations under the License.
  */
 
+import { Action } from '@ngrx/store';
+import { MODEL_TYPE } from '../../api/types';
+
 export enum BasicModelCommands {
     save = 'save',
     /* cspell: disable-next-line */
@@ -22,4 +25,14 @@ export enum BasicModelCommands {
     download = 'download',
     delete = 'delete',
     validate = 'validate'
+}
+
+export interface UpdateActionLike {
+    new(payload: any);
+}
+export interface ValidateActionLike {
+    new(payload: {title: string; modelId: string; modelContent: any, action: Action});
+}
+export interface ModelCommand {
+    execute(modelType: MODEL_TYPE, modelId: string, content: string, metadata?: any): void;
 }

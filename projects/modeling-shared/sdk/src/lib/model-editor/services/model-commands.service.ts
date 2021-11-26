@@ -17,8 +17,8 @@
 
 import { Observable, zip } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { BasicModelCommands } from '../commands/basic-model-commands';
-import { ModelCommand } from '../commands/save-model.command';
+import { MODEL_TYPE } from '../../api/types';
+import { BasicModelCommands, ModelCommand } from '../commands/commands.interface';
 import { ModelCommandCallback, ModelCommandCallbackEvent } from './model-command-callback';
 
 interface EventMethod {
@@ -29,6 +29,7 @@ interface EventMethod {
 export class ModelCommandsService {
     protected eventTarget: EventTarget;
 
+    protected modelType: MODEL_TYPE;
     protected modelId$: Observable<string>;
     protected modelContent$: Observable<string>;
     // protected modelMetadata$: Observable<string>;
@@ -39,14 +40,15 @@ export class ModelCommandsService {
         this.eventTarget = new EventTarget();
     }
 
-    public init(modelId$: Observable<string>, modelContent$: Observable<string>, modelMetadata$?: Observable<any>) {
+    public init(modelType: MODEL_TYPE, modelId$: Observable<string>, modelContent$: Observable<string>, modelMetadata$?: Observable<any>) {
+        this.modelType = modelType;
         this.modelId$ = modelId$;
         this.modelContent$ = modelContent$;
         // this.modelMetadata$ = modelMetadata$;
     }
 
     public dispatchEvent(value: BasicModelCommands) {
-        this.eventTarget.dispatchEvent(new ModelCommandCallbackEvent(value, this.modelId$, this.modelContent$));
+        this.eventTarget.dispatchEvent(new ModelCommandCallbackEvent(value, this.modelType, this.modelId$, this.modelContent$));
     }
 
     public addEventListener(eventName: string, command: ModelCommand) {
@@ -62,7 +64,7 @@ export class ModelCommandsService {
     private getCommandCallback(command: ModelCommand): ModelCommandCallback {
         return (event: ModelCommandCallbackEvent) => {
             zip(event.modelId$, event.modelContent$).pipe(take(1))
-                .subscribe(([modelId, content]) => command.execute(modelId, content) );
+                .subscribe(([modelId, content]) => command.execute(event.modelType, modelId, content) );
         };
     }
 }
