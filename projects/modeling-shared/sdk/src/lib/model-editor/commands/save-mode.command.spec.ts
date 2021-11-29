@@ -38,6 +38,7 @@ class SpecificSaveModelCommand extends GenericSaveModelCommand {
         super(store, translationService);
     }
 
+    protected title = 'test-title';
     protected ValidateAction = TestValidateAction;
     protected UpdateAction = TestUpdateAction;
 }
