@@ -22,7 +22,6 @@ export const PROCESS_SVG_FILE_FORMAT = '.svg';
 export const CONNECTOR_FILE_FORMAT = '.json';
 export const FORM_FILE_FORMAT = '.json';
 export const UI_FILE_FORMAT = '.json';
-export const DATA_FILE_FORMAT = '.json';
 export const DECISION_TABLE_FILE_FORMAT = '.dmn';
 export const FILE_FILE_FORMAT = '.bin';
 export const SCRIPT_FILE_FORMAT = '.bin';

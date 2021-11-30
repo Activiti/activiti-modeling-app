@@ -17,13 +17,14 @@
 
 import { ActivitiFile, ActivitiFileContent, FileVisibility } from '../../../api/types';
 import { ContentType } from '../content-types';
+import { ModelContentSerializer } from '../model-content-serializer';
 import { FileApiVariation } from './file-api-variation';
 
 describe('FileApiVariation', () => {
     let fileApiVariation: FileApiVariation<ActivitiFile, ActivitiFileContent>;
 
     beforeEach(() => {
-        fileApiVariation = new FileApiVariation();
+        fileApiVariation = new FileApiVariation({register: () => {}} as unknown as ModelContentSerializer);
     });
 
     it('should return proper summary patch with "Public" visibility flag', () => {

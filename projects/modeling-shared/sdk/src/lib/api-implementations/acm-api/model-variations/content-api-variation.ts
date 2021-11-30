@@ -22,17 +22,19 @@ import { ContentType } from '../content-types';
 import { CONTENT_MODEL_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { getEmptyContentModel } from '../../../helpers/utils/empty-content-model';
 import { AuthenticationService } from '@alfresco/adf-core';
+import { ModelContentSerializer } from '../model-content-serializer';
 
 @Injectable()
 export class ModelContentApiVariation<M extends ContentModel, C extends ContentModelXML> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Model;
     readonly retrieveModelAfterUpdate = false;
 
-    constructor(private authenticationService: AuthenticationService) {
+    constructor(private authenticationService: AuthenticationService, private serializer: ModelContentSerializer<ContentModelXML>) {
+        serializer.register({ type: this.contentType, serialize: x => x, deserialize: x => x });
     }
 
     public serialize(content: C): string {
-        return content;
+        return this.serializer.serialize(content, this.contentType);
     }
 
     createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {

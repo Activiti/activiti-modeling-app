@@ -26,7 +26,6 @@ import {
     PROCESS_API_TOKEN,
     FORM_API_TOKEN,
     DECISION_TABLE_API_TOKEN,
-    DATA_API_TOKEN,
     FILE_API_TOKEN,
     SCHEMA_API_TOKEN,
     SCRIPT_API_TOKEN,
@@ -41,7 +40,6 @@ import { ConnectorApiVariation } from './model-variations/connector-api-variatio
 import { ModelApi, ModelApiVariation } from './model-api';
 import { FormApiVariation } from './model-variations/form-api-variation';
 import { ProcessApiVariation } from './model-variations/process-api-variation';
-import { DataApiVariation } from './model-variations/data-api-variation';
 import { ProcessAcmApi } from './process-api';
 import { FileApiVariation } from './model-variations/file-api-variation';
 import { ModelSchemaAcmApi } from './model-schema-api';
@@ -84,9 +82,6 @@ export class ACMApiModule {
 
                 DecisionTableApiVariation,
                 { provide: DECISION_TABLE_API_TOKEN, useFactory: modelApiFactory, deps: [DecisionTableApiVariation, RequestApiHelper]},
-
-                DataApiVariation,
-                { provide: DATA_API_TOKEN, useFactory: modelApiFactory, deps: [DataApiVariation, RequestApiHelper] },
 
                 FileApiVariation,
                 { provide: FILE_API_TOKEN, useFactory: modelApiFactory, deps: [FileApiVariation, RequestApiHelper] },

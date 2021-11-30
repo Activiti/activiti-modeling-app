@@ -22,14 +22,13 @@ export type CUSTOM_MODEL_TYPE = 'model';
 export type PROCESS_TYPE = 'process';
 export type FORM_TYPE = 'form';
 export type CONNECTOR_TYPE = 'connector';
-export type DATA_TYPE = 'data';
 export type DECISION_TABLE_TYPE = 'decision';
 export type UI_TYPE = 'ui';
 export type FILE_TYPE = 'file';
 export type SCRIPT_TYPE = 'script';
 export type TRIGGER_TYPE = 'trigger';
 export type FORM_WIDGET_TYPE = 'custom-form-widget';
-export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DATA_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE | TRIGGER_TYPE | CUSTOM_MODEL_TYPE
+export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE | TRIGGER_TYPE | CUSTOM_MODEL_TYPE
     | FORM_WIDGET_TYPE;
 
 export const PROJECT: PROJECT_TYPE = 'project';
@@ -37,7 +36,6 @@ export const CUSTOM_MODEL: CUSTOM_MODEL_TYPE = 'model';
 export const PROCESS: PROCESS_TYPE = 'process';
 export const FORM: FORM_TYPE = 'form';
 export const CONNECTOR: CONNECTOR_TYPE = 'connector';
-export const DATA: DATA_TYPE = 'data';
 export const DECISION_TABLE: DECISION_TABLE_TYPE = 'decision';
 export const UI: UI_TYPE = 'ui';
 export const FILE: FILE_TYPE = 'file';
@@ -442,17 +440,7 @@ export interface Ui extends Model {
     type: UI_TYPE;
 }
 
-export interface DataContent {
-    id: string;
-    name: string;
-    description?: string;
-}
-
 export type DecisionTableContent = string;
-
-export interface Data extends Model {
-    type: DATA_TYPE;
-}
 
 export interface DecisionTable extends Model {
     type: DECISION_TABLE_TYPE;

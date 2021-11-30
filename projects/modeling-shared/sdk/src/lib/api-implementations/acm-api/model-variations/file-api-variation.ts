@@ -20,14 +20,19 @@ import { ActivitiFileContent, ActivitiFile, MinimalModelSummary, FileVisibility 
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { FILE_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
+import { ModelContentSerializer } from '../model-content-serializer';
 
 @Injectable()
 export class FileApiVariation<M extends ActivitiFile, C extends ActivitiFileContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.File;
     readonly retrieveModelAfterUpdate = true;
 
+    constructor(private serializer: ModelContentSerializer<ActivitiFileContent>) {
+        serializer.register({ type: this.contentType, serialize: x => x.toString(), deserialize: x => new File[x] });
+    }
+
     public serialize(content: C): string {
-        return '';
+        return this.serializer.serialize(content, this.contentType);
     }
 
     createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {

@@ -20,14 +20,19 @@ import { Trigger, TriggerContent, MinimalModelSummary } from '../../../api/types
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { formatUuid, TRIGGER_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
+import { ModelContentSerializer } from '../model-content-serializer';
 
 @Injectable()
 export class TriggerApiVariation<M extends Trigger, C extends TriggerContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Trigger;
     readonly retrieveModelAfterUpdate = false;
 
+    constructor(private serializer: ModelContentSerializer<TriggerContent>) {
+        serializer.register({ type: this.contentType, serialize: JSON.stringify, deserialize: JSON.parse });
+    }
+
     public serialize(content: C): string {
-        return JSON.stringify(content);
+        return this.serializer.serialize(content, this.contentType);
     }
 
     createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {

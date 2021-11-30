@@ -20,14 +20,19 @@ import { Connector, ConnectorContent, MinimalModelSummary } from '../../../api/t
 import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
 import { CONNECTOR_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
+import { ModelContentSerializer } from '../model-content-serializer';
 
 @Injectable()
 export class ConnectorApiVariation<M extends Connector, C extends ConnectorContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Connector;
     readonly retrieveModelAfterUpdate = false;
 
+    constructor(private serializer: ModelContentSerializer<ConnectorContent>) {
+        serializer.register({ type: this.contentType, serialize: JSON.stringify, deserialize: JSON.parse });
+    }
+
     public serialize(content: C): string {
-        return JSON.stringify(content);
+        return this.serializer.serialize(content, this.contentType);
     }
 
     createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {

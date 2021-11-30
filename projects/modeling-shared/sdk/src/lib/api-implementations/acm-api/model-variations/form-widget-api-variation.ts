@@ -20,14 +20,19 @@ import { Widget, WidgetContent } from '../../../api/types';
 import { FORM_WIDGET_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
+import { ModelContentSerializer } from '../model-content-serializer';
 
 @Injectable()
 export class FormWidgetApiVariation<M extends Widget, C extends WidgetContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.CustomFormWidget;
     readonly retrieveModelAfterUpdate = false;
 
+    constructor(private serializer: ModelContentSerializer<WidgetContent>) {
+        serializer.register({ type: this.contentType, serialize: JSON.stringify, deserialize: JSON.parse });
+    }
+
     public serialize(content: C): string {
-        return JSON.stringify(content);
+        return this.serializer.serialize(content, this.contentType);
     }
 
     createInitialMetadata(model: Partial<M>): Partial<M> {

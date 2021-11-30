@@ -21,6 +21,7 @@ import { ModelApiVariation } from '../model-api';
 import { Process, ProcessContent, MinimalModelSummary } from '../../../api/types';
 import { getEmptyDiagram } from '../../../helpers/utils/empty-diagram';
 import { PROCESS_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
+import { ModelContentSerializer } from '../model-content-serializer';
 const shortid = require('shortid');
 
 @Injectable()
@@ -28,8 +29,12 @@ export class ProcessApiVariation<M extends Process, C extends ProcessContent> im
     readonly contentType = ContentType.Process;
     readonly retrieveModelAfterUpdate = false;
 
+    constructor(private serializer: ModelContentSerializer<ProcessContent>) {
+        serializer.register({ type: this.contentType, serialize: x => x, deserialize: x => x });
+    }
+
     public serialize(content: C): string {
-        return content;
+        return this.serializer.serialize(content, this.contentType);
     }
 
     public createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {

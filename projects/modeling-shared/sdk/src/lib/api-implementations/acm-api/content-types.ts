@@ -15,16 +15,15 @@
  * limitations under the License.
  */
 
-export const ContentType = {
-    Model: 'MODEL',
-    Process: 'PROCESS',
-    Connector: 'CONNECTOR',
-    Data: 'DATA',
-    DecisionTable: 'DECISION',
-    Form: 'FORM',
-    Ui: 'UI',
-    File: 'FILE',
-    Script: 'SCRIPT',
-    Trigger: 'TRIGGER',
-    CustomFormWidget: 'CUSTOM-FORM-WIDGET'
-};
+export enum ContentType {
+    Model = 'MODEL',
+    Process = 'PROCESS',
+    Connector = 'CONNECTOR',
+    DecisionTable = 'DECISION',
+    Form = 'FORM',
+    Ui = 'UI',
+    File = 'FILE',
+    Script = 'SCRIPT',
+    Trigger = 'TRIGGER',
+    CustomFormWidget = 'CUSTOM-FORM-WIDGET'
+}

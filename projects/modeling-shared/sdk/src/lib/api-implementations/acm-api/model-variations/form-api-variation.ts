@@ -21,14 +21,19 @@ import { formatUuid, FORM_FILE_FORMAT } from '../../../helpers/utils/create-entr
 import { ModelApiVariation } from '../model-api';
 import { Form, FormContent, MinimalModelSummary } from '../../../api/types';
 import { createEmptyForm } from '../form-definition';
+import { ModelContentSerializer } from '../model-content-serializer';
 
 @Injectable()
 export class FormApiVariation<M extends Form, C extends FormContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Form;
     readonly retrieveModelAfterUpdate = true;
 
+    constructor(private serializer: ModelContentSerializer<FormContent>) {
+        serializer.register({ type: this.contentType, serialize: JSON.stringify, deserialize: JSON.parse });
+    }
+
     public serialize(content: C): string {
-        return JSON.stringify(content);
+        return this.serializer.serialize(content, this.contentType);
     }
 
     createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {

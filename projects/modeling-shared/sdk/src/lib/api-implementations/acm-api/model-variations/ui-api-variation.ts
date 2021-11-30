@@ -20,14 +20,19 @@ import { Ui, UiContent, MinimalModelSummary } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { formatUuid, UI_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
+import { ModelContentSerializer } from '../model-content-serializer';
 
 @Injectable()
 export class UiApiVariation<M extends Ui, C extends UiContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Ui;
     readonly retrieveModelAfterUpdate = false;
 
+    constructor(private serializer: ModelContentSerializer<UiContent>) {
+        serializer.register({ type: this.contentType, serialize: JSON.stringify, deserialize: JSON.parse });
+    }
+
     public serialize(content: C): string {
-        return JSON.stringify(content);
+        return this.serializer.serialize(content, this.contentType);
     }
 
     createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {

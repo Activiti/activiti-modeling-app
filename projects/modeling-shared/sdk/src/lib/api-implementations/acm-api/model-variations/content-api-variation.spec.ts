@@ -20,6 +20,7 @@ import { ContentModelXML, ContentModel, ModelScope } from '../../../api/types';
 import { AuthenticationService, setupTestBed } from '@alfresco/adf-core';
 import { TestBed } from '@angular/core/testing';
 import { ContentType } from '../content-types';
+import { ModelContentSerializer } from '../model-content-serializer';
 
 /* spellchecker: disable */
 describe('ModelContentApiVariation', () => {
@@ -86,7 +87,7 @@ describe('ModelContentApiVariation', () => {
 
     beforeAll(() => {
         authenticationService = TestBed.inject(AuthenticationService);
-        variation = new ModelContentApiVariation(authenticationService);
+        variation = new ModelContentApiVariation(authenticationService, {register: () => {}} as unknown as ModelContentSerializer);
     });
 
     it('should create summary patch from xml content', () => {

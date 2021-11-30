@@ -21,14 +21,19 @@ import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
 import { DECISION_TABLE_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { getEmptyDecisionTable } from '../../../helpers/utils/empty-decision-table';
+import { ModelContentSerializer } from '../model-content-serializer';
 
 @Injectable()
 export class DecisionTableApiVariation<M extends DecisionTable, C extends DecisionTableContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.DecisionTable;
     readonly retrieveModelAfterUpdate = false;
 
+    constructor(private serializer: ModelContentSerializer<DecisionTableContent>) {
+        serializer.register({ type: this.contentType, serialize: x => x, deserialize: x => x });
+    }
+
     public serialize(content: C): string {
-        return content;
+        return this.serializer.serialize(content, this.contentType);
     }
 
     createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {

@@ -21,14 +21,19 @@ import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { SCRIPT_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { getEmptyScript } from '../../../helpers/utils/empty-script';
+import { ModelContentSerializer } from '../model-content-serializer';
 
 @Injectable()
 export class ScriptApiVariation<M extends ActivitiScript, C extends ActivitiScriptContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Script;
     readonly retrieveModelAfterUpdate = true;
 
+    constructor(private serializer: ModelContentSerializer<ActivitiScriptContent>) {
+        serializer.register({ type: this.contentType, serialize: x => x, deserialize: x => x });
+    }
+
     public serialize(content: C): string {
-        return content;
+        return this.serializer.serialize(content, this.contentType);
     }
 
     createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {
