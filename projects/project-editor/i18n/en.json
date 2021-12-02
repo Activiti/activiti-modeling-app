@@ -34,7 +34,8 @@
                 "CREATE_SCRIPT": "Script",
                 "CREATE_TRIGGER": "Trigger",
                 "CREATE_PROJECT_MODEL": "Content Model",
-                "CREATE_FORM_WIDGET": "Form Widget"
+                "CREATE_FORM_WIDGET": "Form Widget",
+                "CREATE_DATA_MODEL": "Data Model"
             }
         },
         "TREE": {
@@ -46,7 +47,8 @@
             "UIS": "UI",
             "FILES": "Files",
             "SCRIPTS": "Scripts",
-            "TRIGGERS": "Triggers"
+            "TRIGGERS": "Triggers",
+            "DATA_MODELS": "Data Models"
         },
         "PROCESS_DIALOG": {
             "TITLE_CREATE": "Create Process",
@@ -164,6 +166,15 @@
             "FORM_WIDGET_DELETED": "Form Widget deleted",
             "FORM_WIDGET_UPDATED": "Form Widget saved"
         },
+        "DATA_MODEL_DIALOG": {
+            "TITLE_CREATE": "Create Data Model",
+            "TITLE_UPDATE": "Update Data Model",
+            "DATA_MODEL_NAME": "Data Model name",
+            "DATA_MODEL_DESC": "Data Model description",
+            "DATA_MODEL_CREATED": "Data Model created",
+            "DATA_MODEL_DELETED": "Data Model deleted",
+            "DATA_MODEL_UPDATED": "Data Model saved"
+        },
         "ERROR": {
             "UPLOAD_DUPLICATE_FILE": "{{modelType}} with the same name already exist",
             "UPLOAD_FILE": "We hit a problem uploading the file. Try uploading it again.",
@@ -213,13 +224,13 @@
                 "DUPLICATION": "A decision table with that name already exists",
                 "GENERAL": "We hit a problem saving the decision table. Try saving it again."
             },
-            "CREATE_DATA": {
-                "DUPLICATION": "A data object with that name already exists",
-                "GENERAL": "We hit a problem creating the data object. Try creating it again."
+            "CREATE_DATA_MODEL": {
+                "DUPLICATION": "A data model with that name already exists",
+                "GENERAL": "We hit a problem creating the data model. Try creating it again."
             },
-            "UPDATE_DATA": {
-                "DUPLICATION": "A data object with that name already exists",
-                "GENERAL": "We hit a problem saving the data object. Try saving it again."
+            "UPDATE_DATA_MODEL": {
+                "DUPLICATION": "A data model with that name already exists",
+                "GENERAL": "We hit a problem saving the data model. Try saving it again."
             },
             "CREATE_PROJECT": {
                 "DUPLICATION": "A project with that name already exists",

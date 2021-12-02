@@ -15,16 +15,12 @@
  * limitations under the License.
  */
 
-export enum ContentType {
-    Model = 'MODEL',
-    Process = 'PROCESS',
-    Connector = 'CONNECTOR',
-    DecisionTable = 'DECISION',
-    Form = 'FORM',
-    Ui = 'UI',
-    File = 'FILE',
-    Script = 'SCRIPT',
-    Trigger = 'TRIGGER',
-    CustomFormWidget = 'CUSTOM-FORM-WIDGET',
-    Data = 'DATA'
+import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+export class InstantErrorStateMatcher implements ErrorStateMatcher {
+    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+        const isSubmitted = form && form.submitted;
+        return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+    }
 }

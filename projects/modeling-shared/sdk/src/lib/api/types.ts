@@ -28,8 +28,9 @@ export type FILE_TYPE = 'file';
 export type SCRIPT_TYPE = 'script';
 export type TRIGGER_TYPE = 'trigger';
 export type FORM_WIDGET_TYPE = 'custom-form-widget';
+export type DATA_TYPE = 'data';
 export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE | TRIGGER_TYPE | CUSTOM_MODEL_TYPE
-    | FORM_WIDGET_TYPE;
+    | FORM_WIDGET_TYPE | DATA_TYPE;
 
 export const PROJECT: PROJECT_TYPE = 'project';
 export const CUSTOM_MODEL: CUSTOM_MODEL_TYPE = 'model';
@@ -42,6 +43,7 @@ export const FILE: FILE_TYPE = 'file';
 export const SCRIPT: SCRIPT_TYPE = 'script';
 export const TRIGGER: TRIGGER_TYPE = 'trigger';
 export const FORM_WIDGET: FORM_WIDGET_TYPE = 'custom-form-widget';
+export const DATA: DATA_TYPE = 'data';
 
 export interface Project {
     type: PROJECT_TYPE;
@@ -682,4 +684,8 @@ export interface ProcessEditorElementVariable {
 export interface ElementVariable extends EntityProperty {
     icon?: string;
     tooltip?: string;
+}
+
+export interface Data extends Model {
+    type: DATA_TYPE;
 }

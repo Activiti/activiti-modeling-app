@@ -16,23 +16,18 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Trigger, TriggerContent, MinimalModelSummary } from '../../../api/types';
+import { JSONSchemaInfoBasics, Data, MinimalModelSummary } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
-import { TRIGGER_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
-import { ModelContentSerializer } from '../model-content-serializer';
+import { DATA_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 
 @Injectable()
-export class TriggerApiVariation<M extends Trigger, C extends TriggerContent> implements ModelApiVariation<M, C> {
-    readonly contentType = ContentType.Trigger;
+export class DataApiVariation<M extends Data, C extends JSONSchemaInfoBasics> implements ModelApiVariation<M, C> {
+    readonly contentType = ContentType.Data;
     readonly retrieveModelAfterUpdate = false;
 
-    constructor(private serializer: ModelContentSerializer<TriggerContent>) {
-        serializer.register({ type: this.contentType, serialize: JSON.stringify, deserialize: JSON.parse });
-    }
-
     public serialize(content: C): string {
-        return this.serializer.serialize(content, this.contentType);
+        return JSON.stringify(content);
     }
 
     createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {
@@ -64,7 +59,7 @@ export class TriggerApiVariation<M extends Trigger, C extends TriggerContent> im
     }
 
     public getModelFileName(model: Partial<M>): string {
-        return model.name + TRIGGER_FILE_FORMAT;
+        return model.name + DATA_FILE_FORMAT;
     }
 
     public getFileToUpload(model: Partial<M>, content: C): Blob {

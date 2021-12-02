@@ -27,6 +27,8 @@ import {
     ConnectorContent,
     ContentModel,
     ContentModelXML,
+    Data,
+    JSONSchemaInfoBasics,
     DecisionTable,
     DecisionTableContent,
     Form,
@@ -47,6 +49,7 @@ export const CONNECTOR_API_TOKEN = new InjectionToken<ModelApiInterface<Connecto
 export const FORM_API_TOKEN = new InjectionToken<ModelApiInterface<Form, FormContent>>('form-api');
 export const UI_API_TOKEN = new InjectionToken<ModelApiInterface<Ui, UiContent>>('ui-api');
 export const DECISION_TABLE_API_TOKEN = new InjectionToken<ModelApiInterface<DecisionTable, DecisionTableContent>>('connector-api');
+export const DATA_API_TOKEN = new InjectionToken<ModelApiInterface<Data, JSONSchemaInfoBasics>>('data-api');
 export const FILE_API_TOKEN = new InjectionToken<ModelApiInterface<ActivitiFile, ActivitiFileContent>>('file-api');
 export const SCHEMA_API_TOKEN = new InjectionToken<ModelSchemaApi>('schema-api');
 export const SCRIPT_API_TOKEN = new InjectionToken<ModelApiInterface<ActivitiScript, ActivitiScriptContent>>('script-api');
@@ -60,6 +63,7 @@ export abstract class AmaApi {
     public Connector: ModelApiInterface<Connector, ConnectorContent>;
     public Form: ModelApiInterface<Form, FormContent>;
     public Ui: ModelApiInterface<Ui, UiContent>;
+    public Data: ModelApiInterface<Data, JSONSchemaInfoBasics>;
     public DecisionTable: ModelApiInterface<DecisionTable, DecisionTableContent>;
     public File: ModelApiInterface<ActivitiFile, ActivitiFileContent>;
     public script: ModelApiInterface<ActivitiScript, ActivitiScriptContent>;

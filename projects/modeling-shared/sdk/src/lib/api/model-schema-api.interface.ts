@@ -25,7 +25,8 @@ export enum MODEL_SCHEMA_TYPE {
     FILE = 'FILE',
     SCRIPT = 'SCRIPT',
     TRIGGER = 'TRIGGER',
-    CUSTOM_FORM_WIDGET = 'CUSTOM-FORM-WIDGET'
+    CUSTOM_FORM_WIDGET = 'CUSTOM-FORM-WIDGET',
+    DATA = 'DATA'
 }
 
 export interface JsonArray extends Array<string|number|boolean|Date|Json|JsonArray> { }

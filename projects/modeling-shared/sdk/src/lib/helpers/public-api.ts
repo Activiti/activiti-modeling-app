@@ -30,3 +30,4 @@ export * from './directives/allowed-characters.directive';
 export * from './directives/palette-overlay.directive';
 export * from './utils/log-filters';
 export * from './header-breadcrumbs/public-api';
+export * from './utils/instant-error-state-matcher';
