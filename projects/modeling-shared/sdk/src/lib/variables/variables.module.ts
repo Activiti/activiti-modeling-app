@@ -38,6 +38,8 @@ import { VariableExpressionLanguagePipe } from './properties-viewer/variable-exp
 import { VariablePrimitiveTypePipe } from './properties-viewer/variable-primitive-type.pipe';
 import { FormsModule } from '@angular/forms';
 import { PropertiesViewerEnumInputComponent } from './properties-viewer/value-type-inputs/enum-input/enum-input.component';
+import { provideModelingJsonSchemaProvider } from '../services/modeling-json-schema-provider.service';
+import { RegisteredInputsModelingJsonSchemaProvider } from '../services/registered-inputs-modeling-json-schema-provider.service';
 
 @NgModule({
     imports: [
@@ -75,7 +77,8 @@ import { PropertiesViewerEnumInputComponent } from './properties-viewer/value-ty
         provideInputTypeItemHandler('file', PropertiesViewerFileInputComponent),
         provideInputTypeItemHandler('folder', PropertiesViewerJsonInputComponent),
         provideInputTypeItemHandler('array', PropertiesViewerArrayInputComponent),
-        provideInputTypeItemHandler('enum', PropertiesViewerEnumInputComponent)
+        provideInputTypeItemHandler('enum', PropertiesViewerEnumInputComponent, 'json'),
+        provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
     ],
     exports: [
         ValueTypeInputComponent,

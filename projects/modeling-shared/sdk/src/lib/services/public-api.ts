@@ -27,3 +27,6 @@ export * from './status-bar.service';
 export * from './variable-mapping-type.service';
 export * from './theming.service';
 export * from './file.service';
+export * from './json-schema-to-entity-property.service';
+export * from './modeling-json-schema-provider.service';
+export * from './modeling-json-schema.service';

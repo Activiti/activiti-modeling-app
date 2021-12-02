@@ -230,13 +230,19 @@ export class JSONSchemaToModelingTypesService {
                         break;
                     case 'string':
                         if (!schemaName) {
-                            this.addModelingType({
-                                id: 'string',
-                                properties: stringModelType.properties || [],
-                                methods: stringModelType.methods || []
-                            }, 'string', modelingTypes);
+                            if (typeName === 'date' || typeName === 'datetime') {
+                                this.addModelingType({ ...dateModelType, id: typeName }, typeName, modelingTypes);
+                            } else {
+                                this.addModelingType({
+                                    id: 'string',
+                                    properties: stringModelType.properties || [],
+                                    methods: stringModelType.methods || []
+                                }, 'string', modelingTypes);
+                                typeName = 'string';
+                            }
+                        } else {
+                            typeName = 'string';
                         }
-                        typeName = 'string';
                         break;
                     case 'number':
                         if (!schemaName) {

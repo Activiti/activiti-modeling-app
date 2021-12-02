@@ -641,6 +641,15 @@ export interface JSONSchemaInfoBasics {
     title?: string;
     required?: string[];
     const?: any;
+    additionalProperties?: boolean | JSONSchemaInfoBasics;
+    pattern?: string;
+    minLength?: number;
+    maxLength?: number;
+    multipleOf?: number;
+    minimum?: number;
+    exclusiveMinimum?: number;
+    maximum?: number;
+    exclusiveMaximum?: number;
 }
 
 export interface JSONSchemaPropertyBasics {

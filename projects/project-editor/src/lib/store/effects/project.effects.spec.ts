@@ -21,7 +21,7 @@ import { Store } from '@ngrx/store';
 import { Observable, throwError, of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
-import { ACMApiModule, DownloadResourceService, BlobService, SnackbarErrorAction, ExportProjectAction } from '@alfresco-dbp/modeling-shared/sdk';
+import { ACMApiModule, DownloadResourceService, BlobService, SnackbarErrorAction, ExportProjectAction, ModelingJSONSchemaService, GetProjectAttemptAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { LogService, AlfrescoApiService, AlfrescoApiServiceMock, TranslationService, TranslationMock } from '@alfresco/adf-core';
@@ -35,6 +35,7 @@ describe('Project Effects', () => {
     let actions$: Observable<any>;
     let service: ProjectEditorService;
     let downloadService: DownloadResourceService;
+    let modelingJSONSchemaService: ModelingJSONSchemaService;
 
     const mockDialog = {
         close: jest.fn()
@@ -49,6 +50,12 @@ describe('Project Effects', () => {
             providers: [
                 DialogService,
                 ProjectEffects,
+                {
+                    provide: ModelingJSONSchemaService,
+                    useValue: {
+                        initializeProjectSchema: () => jest.fn()
+                    }
+                },
                 { provide: MatDialogRef, useValue: mockDialog },
                 provideMockActions(() => actions$),
                 {
@@ -69,15 +76,15 @@ describe('Project Effects', () => {
                 },
                 {
                     provide: Store,
-                    useValue: {dispatch: jest.fn(), select: jest.fn()}
+                    useValue: { dispatch: jest.fn(), select: jest.fn() }
                 },
                 {
                     provide: ProjectEditorService,
-                    useValue: {fetchProject: jest.fn(), exportProject: jest.fn().mockReturnValue(of())}
+                    useValue: { fetchProject: jest.fn(), exportProject: jest.fn().mockReturnValue(of()) }
                 },
                 {
                     provide: BlobService,
-                    useValue: { convert2Json: jest.fn().mockReturnValue(of({ message: 'test', errors: [ {description: 'd1'}, {description: 'd2'}, {description: 'd3'} ] })) }
+                    useValue: { convert2Json: jest.fn().mockReturnValue(of({ message: 'test', errors: [{ description: 'd1' }, { description: 'd2' }, { description: 'd3' }] })) }
                 }
             ]
         });
@@ -86,6 +93,7 @@ describe('Project Effects', () => {
         metadata = getEffectsMetadata(effects);
         service = TestBed.inject(ProjectEditorService);
         downloadService = TestBed.inject(DownloadResourceService);
+        modelingJSONSchemaService = TestBed.inject(ModelingJSONSchemaService);
 
     });
 
@@ -104,7 +112,7 @@ describe('Project Effects', () => {
         service.exportProject = jest.fn().mockReturnValue(of(mockPayload));
 
         actions$ = hot('a', { a: new ExportProjectAction(mockPayload) });
-        effects.exportApplicationEffect.subscribe( () => {} );
+        effects.exportApplicationEffect.subscribe(() => { });
         getTestScheduler().flush();
         expect(service.exportProject).toHaveBeenCalledWith('id1');
         getTestScheduler().flush();
@@ -113,7 +121,7 @@ describe('Project Effects', () => {
 
     it('ExportProject effect should dispatch OpenConfirmDialogAction on error', () => {
         const error: any = new Error();
-        error.error = { response: { body: new Blob() }};
+        error.error = { response: { body: new Blob() } };
         const exportProject: jest.Mock = <jest.Mock>service.exportProject;
         exportProject.mockReturnValue(throwError(error));
 
@@ -124,5 +132,23 @@ describe('Project Effects', () => {
         });
 
         expect(effects.exportApplicationEffect).toBeObservable(expected);
+    });
+
+    it('GetProject effect should initialize json schema for project', () => {
+        const mockPayload: any = {
+            projectId: 'id1',
+            projectName: 'Project 1'
+        };
+
+        spyOn(service, 'fetchProject');
+        spyOn(modelingJSONSchemaService, 'initializeProjectSchema');
+        service.fetchProject = jest.fn().mockReturnValue(of(mockPayload));
+
+        actions$ = hot('a', { a: new GetProjectAttemptAction('id1') });
+        effects.getProjectEffect.subscribe(() => { });
+        getTestScheduler().flush();
+        expect(service.fetchProject).toHaveBeenCalledWith('id1');
+        getTestScheduler().flush();
+        expect(modelingJSONSchemaService.initializeProjectSchema).toHaveBeenCalledWith('id1');
     });
 });

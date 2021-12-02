@@ -15,20 +15,28 @@
  * limitations under the License.
  */
 
-import { Type, InjectionToken } from '@angular/core';
+import { Type, InjectionToken, ValueProvider } from '@angular/core';
+import { JSONSchemaInfoBasics } from '../../../api/types';
+import { primitiveTypesSchema } from '../../../code-editor/services/expression-language/primitive-types-schema';
 
 export const INPUT_TYPE_ITEM_HANDLER = new InjectionToken<InputTypeItem[]>('input-type-item-handlers');
 
 export interface InputTypeItem {
     type: string;
     primitiveType: string;
+    model?: JSONSchemaInfoBasics;
     implementationClass: Type<{}>;
 }
 
-export function provideInputTypeItemHandler(type: string, implementationClass: Type<{}>, primitiveType?: string) {
+export function provideInputTypeItemHandler(type: string, implementationClass: Type<{}>, primitiveType?: string, model?: JSONSchemaInfoBasics): ValueProvider {
     return {
         provide: INPUT_TYPE_ITEM_HANDLER,
-        useValue: { type, primitiveType: primitiveType ? primitiveType : type, implementationClass: implementationClass },
+        useValue: {
+            type,
+            primitiveType: primitiveType || type,
+            model: model || primitiveTypesSchema.$defs[type],
+            implementationClass: implementationClass
+        },
         multi: true
     };
 }

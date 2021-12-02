@@ -28,7 +28,8 @@ import { OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadReso
     GetProjectSuccessAction,
     OpenInfoDialogAction,
     ExportProjectAction,
-    EXPORT_PROJECT} from '@alfresco-dbp/modeling-shared/sdk';
+    EXPORT_PROJECT,
+    ModelingJSONSchemaService} from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import {
@@ -48,7 +49,8 @@ export class ProjectEffects {
         protected router: Router,
         protected downloadService: DownloadResourceService,
         private logFactory: LogFactoryService,
-        protected blobService: BlobService
+        protected blobService: BlobService,
+        private modelingJSONSchemaService: ModelingJSONSchemaService
     ) {}
 
     @Effect()
@@ -87,7 +89,10 @@ export class ProjectEffects {
 
     private getProject(projectId: string) {
         return this.projectEditorService.fetchProject(projectId).pipe(
-            switchMap(project => of(new GetProjectSuccessAction(project))),
+            switchMap(project => {
+                this.modelingJSONSchemaService.initializeProjectSchema(projectId);
+                return of(new GetProjectSuccessAction(project));
+            }),
             catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.GET_PROJECT')));
     }
 
