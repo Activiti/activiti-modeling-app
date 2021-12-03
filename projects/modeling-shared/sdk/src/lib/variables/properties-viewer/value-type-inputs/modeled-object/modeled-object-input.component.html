@@ -1,0 +1,33 @@
+<div class="ama-modeled-object adf-property-list" *ngIf="!primitiveType else primitiveTypeInput">
+    <form [formGroup]="objectForm" *ngIf="model">
+        <div *ngFor="let input of inputs; let i=index" class="ama-modeled-object-input adf-property">
+            <div class="ama-modeled-object-input-label adf-property-label">
+                {{input.label ? input.label : input.name}}
+                <span class="ama-modeled-object-input-required-field" *ngIf="input.required"> *</span>
+                <span> ({{'SDK.TYPE' | translate}} : {{input.type}})</span>
+            </div>
+            <div class="ama-modeled-object-input-description adf-property-label" *ngIf="input.description">
+                {{ input.description | translate}}
+            </div>
+            <modelingsdk-value-type-input [formControlName]="input.name" [index]="i"
+                [class.ama-nested-modeled-object]="!!input.model && input.type==='json'"
+                [type]="input.type"
+                [model]="input.model"
+                [placeholder]="input.placeholder"
+                [autocompletionContext]="autocompletionContext"
+                [attr.data-automation-id]="'modeled-object-input-field-'+input.name">
+            </modelingsdk-value-type-input>
+        </div>
+    </form>
+</div>
+
+<ng-template #primitiveTypeInput>
+    <modelingsdk-value-type-input class="ama-modeled-object-primitive"
+        [value]="value"
+        (change)="primitiveTypeChanges($event)"
+        [type]="primitiveType"
+        [model]="model"
+        [placeholder]="placeholder"
+        [autocompletionContext]="autocompletionContext">
+    </modelingsdk-value-type-input>
+</ng-template>

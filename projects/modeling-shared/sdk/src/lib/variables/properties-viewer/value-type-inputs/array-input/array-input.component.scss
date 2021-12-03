@@ -1,0 +1,52 @@
+.ama-variable-array-input {
+    width: 100%;
+
+    &-string {
+        width: 100%;
+    }
+
+    &-primitive {
+        width: 100%;
+
+        &-input {
+            display: flex;
+
+            &-chips {
+                width: 100%;
+
+                .mat-chip-list-wrapper {
+                    border-bottom: 1px solid var(--theme-text-disabled-color);
+                    padding-bottom: 6px;
+                    margin-bottom: 12px;
+                }
+            }
+
+            modelingsdk-value-type-input {
+                display: block;
+                width: 100%;
+
+                .mat-form-field {
+                    width: 100%;
+                }
+
+                modelingsdk-expression-code-editor {
+                    max-height: 300px;
+                    display: block;
+                }
+            }
+        }
+    }
+
+    &-object {
+        width: 100%;
+        display: flex;
+
+        &-container {
+            width: 100%;
+        }
+
+        &-chips {
+            width: 100%;
+        }
+    }
+}

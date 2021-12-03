@@ -26,5 +26,7 @@ export * from './properties-viewer/value-type-inputs/date-input.component';
 export * from './properties-viewer/value-type-inputs/json-input.component';
 export * from './properties-viewer/value-type-inputs/file-input.component';
 export * from './properties-viewer/value-type-inputs/date-time-input.component';
-export * from './properties-viewer/value-type-inputs/array-input.component';
 export * from './properties-viewer/value-type-inputs/enum-input/enum-input.component';
+export * from './properties-viewer/value-type-inputs/array-input/array-input.component';
+export * from './properties-viewer/value-type-inputs/array-input/array-input-dialog/array-input-dialog.component';
+export * from './properties-viewer/value-type-inputs/modeled-object/modeled-object-input.component';

@@ -82,6 +82,13 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
         this.onChange.emit(this.value);
     }
 
+    resetInput() {
+        this.setInputValue(null);
+        this.ngOnChanges({
+            type: { currentValue: this.type, firstChange: false, isFirstChange: () => false, previousValue: null }
+        });
+    }
+
     ngOnChanges(changes: SimpleChanges): void {
         if (
             !changes.value &&
@@ -143,6 +150,12 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
                 this.valueTypeInputRef.instance.value = value;
             }
         }
+
+        this.valueTypeInputRef.instance.value = value;
+
+        if (this.valueTypeInputRef.instance.ngOnChanges) {
+            this.valueTypeInputRef.instance.ngOnChanges(value);
+        }
     }
 
     registerOnChange(fn) {
@@ -154,6 +167,13 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
     ngOnDestroy() {
         this.onDestroy$.next();
         this.valueTypeInputRef.destroy();
+    }
+
+    setDisabledState(isDisabled: boolean) {
+        this.disabled = isDisabled;
+        this.ngOnChanges({
+            type: { currentValue: this.type, firstChange: false, isFirstChange: () => false, previousValue: this.type }
+        });
     }
 
 }

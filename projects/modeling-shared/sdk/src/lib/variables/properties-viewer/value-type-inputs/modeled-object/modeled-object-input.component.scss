@@ -1,0 +1,54 @@
+body .adf-property-list .adf-property {
+    .ama-modeled-object-input-description.adf-property-label {
+        font-size: 75%;
+    }
+
+    .mat-form-field-label {
+        color: var(--theme-text-color, rgba(0, 0, 0, 0.54));
+    }
+}
+
+.ama-modeled-object {
+    width: 100%;
+
+    &-input {
+        width: 100%;
+
+        &-label {
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        &-description.adf-property-label {
+            flex-grow: 1;
+            width: 100%;
+            font-size: 75%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        &-required-field {
+            color: var(--theme-warn-color);
+        }
+
+        modelingsdk-value-type-input {
+            flex-grow: 1;
+            width: 100%;
+
+            mat-form-field {
+                width: 100%;
+            }
+
+            div.mat-form-field-infix {
+                border-top: none;
+            }
+        }
+    }
+}
+
+.ama-nested-modeled-object {
+    .ama-modeled-object {
+        padding-left: 12px;
+    }
+}

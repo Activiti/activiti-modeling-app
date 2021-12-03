@@ -1,0 +1,26 @@
+<h2 mat-dialog-title *ngIf="title">{{ title | translate }}</h2>
+
+<mat-dialog-content>
+    <modelingsdk-modeled-object-input
+        [autocompletionContext]="autocompletionContext"
+        [value]="value"
+        (valueChanges)="onValueChanges($event)"
+        [disabled]="disabled"
+        [model]="model"
+        (valid)="onValidChanges($event)"
+        [placeholder]="title"
+    >
+    </modelingsdk-modeled-object-input>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <span class="adf-fill-remaining-space"></span>
+
+    <button mat-button [mat-dialog-close]="value" color="primary" [disabled]="!valid"
+        [attr.data-automation-id]="'dialog-add'">{{(edit ? 'SDK.VARIABLE_TYPE_INPUT.ARRAY_INPUT.EDIT' : 'SDK.VARIABLE_TYPE_INPUT.ARRAY_INPUT.ADD') | translate}}</button>
+
+    <button mat-button mat-dialog-close (click)="close()">
+        {{ 'APP.DIALOGS.CLOSE' | translate }}
+    </button>
+
+</mat-dialog-actions>

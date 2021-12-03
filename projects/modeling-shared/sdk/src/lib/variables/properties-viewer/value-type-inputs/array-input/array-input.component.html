@@ -1,0 +1,65 @@
+<div [ngSwitch]="type" class="ama-variable-array-input" [attr.data-automation-id]="'variable-value'">
+    <mat-form-field class="ama-variable-array-input-string" *ngSwitchCase="'string'">
+        <mat-chip-list #chipArray class="ama-variable-array-input-string-chips">
+            <mat-chip *ngFor="let item of value" [selectable]="false" [removable]="!disabled" (removed)="remove(item)">
+                {{item}}
+                <mat-icon matChipRemove *ngIf="!disabled">cancel</mat-icon>
+            </mat-chip>
+            <input #stringInput [matChipInputFor]="chipArray"
+                placeholder="{{(placeholder ? placeholder : 'SDK.VALUE') | translate }}" [formControl]="arrayCtrl"
+                [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="add($event)" [attr.disabled]="disabled"
+                [modelingsdk-allowed-characters]="regexInput">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let item of filteredItems | async" [value]="item">
+                {{item}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+
+    <div *ngSwitchCase="'primitive'">
+        <mat-form-field class="ama-variable-array-input-primitive">
+            <mat-chip-list #chipArray class="ama-variable-array-input-primitive-chips">
+                <mat-chip *ngFor="let item of value" [selectable]="false" [removable]="!disabled"
+                    (removed)="remove(item)">
+                    {{item | variablevalue:(extendedProperties?.truncate || 40)}}
+                    <mat-icon matChipRemove *ngIf="!disabled">cancel</mat-icon>
+                </mat-chip>
+                <input [matChipInputFor]="chipArray"
+                    [placeholder]="!value || value.length === 0 ? ((placeholder ? placeholder : 'SDK.VALUE') | translate) : ''"
+                    [disabled]="true">
+            </mat-chip-list>
+        </mat-form-field>
+        <div class="ama-variable-array-input-primitive-input" *ngIf="!disabled">
+            <modelingsdk-value-type-input #primitiveInput class="ama-variable-array-input-primitive-input-field"
+                [type]="primitiveType"
+                [placeholder]="'SDK.VARIABLE_TYPE_INPUT.ARRAY_INPUT.VALUE_TO_ADD_TO_ARRAY' | translate" [(ngModel)]="primitiveValue"
+                [disabled]="disabled">
+            </modelingsdk-value-type-input>
+            <button mat-mini-fab color="primary" class="ama-variable-array-input-primitive-input-button"
+                (click)="addPrimitive()" [disabled]="primitiveValue === null || primitiveValue === undefined">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div *ngSwitchCase="'object'" class="ama-variable-array-input-object">
+        <mat-form-field class="ama-variable-array-input-object-container">
+            <mat-chip-list #chipArray class="ama-variable-array-input-object-chips">
+                <mat-chip *ngFor="let item of value; let i=index" [selectable]="false" [removable]="!disabled"
+                    (removed)="remove(item)" (click)="editObject(item, i)">
+                    {{item | variablevalue:extendedProperties?.truncate || 40}}
+                    <mat-icon matChipRemove *ngIf="!disabled">cancel</mat-icon>
+                </mat-chip>
+                <input [matChipInputFor]="chipArray"
+                    [placeholder]="!value || value.length === 0 ? ((placeholder ? placeholder : 'SDK.VALUE') | translate) : ''"
+                    [disabled]="true">
+            </mat-chip-list>
+        </mat-form-field>
+        <button mat-mini-fab color="primary" (click)="addObject()" *ngIf="!disabled"
+            class="ama-variable-array-input-object-button">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</div>

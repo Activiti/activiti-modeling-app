@@ -188,6 +188,7 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         this.form.type = this.selectedType;
         this.form.required = this.required;
         this.form.id = this.id;
+        this.form.model = this.model;
 
         this.data[this.id] = this.form;
 

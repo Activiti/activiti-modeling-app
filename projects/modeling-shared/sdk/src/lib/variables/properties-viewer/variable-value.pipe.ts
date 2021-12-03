@@ -20,19 +20,29 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({ name: 'variablevalue' })
 /* cSpell:enable */
 export class VariableValuePipe implements PipeTransform {
-    transform(value: any): string {
+    transform(value: any, limit?: number): string {
         if (value === undefined || value === null) {
             return null;
         } else if (typeof value === 'object' && value.uri !== undefined) {
-            return this.getFileNameFromUri(value.uri);
+            return this.getEllipsisText(this.getFileNameFromUri(value.uri), limit);
         } else if (typeof value === 'object' && value.uri === undefined) {
-            return JSON.stringify(value);
+            return this.getEllipsisText(JSON.stringify(value), limit);
         } else {
-            return String(value);
+            return this.getEllipsisText(String(value), limit);
         }
     }
 
     private getFileNameFromUri(uri: string): string {
         return uri.slice('file:/'.length).split('.').slice(0, -1).join('.');
+    }
+
+    private getEllipsisText(text: string, limit: number) {
+        let result = text;
+        if (text && limit && limit > 3) {
+            if (text.length > limit) {
+                result = text.substring(0, (limit - 3)) + '...';
+            }
+        }
+        return result;
     }
 }

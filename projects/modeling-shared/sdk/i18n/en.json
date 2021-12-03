@@ -10,6 +10,7 @@
         },
         "ALL": "All",
         "VALUE": "Value",
+        "TYPE": "Type",
         "VARIABLES_EDITOR": {
             "ERRORS": {
                 "EMPTY_NAME": "A name is required",
@@ -142,6 +143,12 @@
             "DATE_TIME": {
                 "CURRENT_DATE_TIME": "Now",
                 "CLEAR_BUTTON": "Clear"
+            },
+            "ARRAY_INPUT": {
+                "VALUE_TO_ADD_TO_ARRAY": "Value to be added to the array",
+                "ADD": "Add",
+                "EDIT_VALUE": "Edit value",
+                "EDIT": "Edit"
             }
         }
     }

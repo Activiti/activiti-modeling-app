@@ -32,7 +32,6 @@ import { SharedModule } from '../helpers/public-api';
 import { VariableValuePipe } from './properties-viewer/variable-value.pipe';
 import { PropertiesViewerDateTimeInputComponent } from './properties-viewer/value-type-inputs/date-time-input.component';
 import { provideInputTypeItemHandler } from './properties-viewer/value-type-inputs/value-type-inputs';
-import { PropertiesViewerArrayInputComponent } from './properties-viewer/value-type-inputs/array-input.component';
 import { MatSortModule } from '@angular/material/sort';
 import { VariableExpressionLanguagePipe } from './properties-viewer/variable-expression-language.pipe';
 import { VariablePrimitiveTypePipe } from './properties-viewer/variable-primitive-type.pipe';
@@ -40,6 +39,9 @@ import { FormsModule } from '@angular/forms';
 import { PropertiesViewerEnumInputComponent } from './properties-viewer/value-type-inputs/enum-input/enum-input.component';
 import { provideModelingJsonSchemaProvider } from '../services/modeling-json-schema-provider.service';
 import { RegisteredInputsModelingJsonSchemaProvider } from '../services/registered-inputs-modeling-json-schema-provider.service';
+import { PropertiesViewerModeledObjectInputComponent } from './properties-viewer/value-type-inputs/modeled-object/modeled-object-input.component';
+import { PropertiesViewerArrayInputComponent } from './properties-viewer/value-type-inputs/array-input/array-input.component';
+import { ArrayInputDialogComponent } from './properties-viewer/value-type-inputs/array-input/array-input-dialog/array-input-dialog.component';
 
 @NgModule({
     imports: [
@@ -61,8 +63,10 @@ import { RegisteredInputsModelingJsonSchemaProvider } from '../services/register
         PropertiesViewerDateTimeInputComponent,
         PropertiesViewerJsonInputComponent,
         PropertiesViewerFileInputComponent,
-        VariableValuePipe,
+        PropertiesViewerModeledObjectInputComponent,
         PropertiesViewerArrayInputComponent,
+        ArrayInputDialogComponent,
+        VariableValuePipe,
         VariableExpressionLanguagePipe,
         VariablePrimitiveTypePipe,
         PropertiesViewerEnumInputComponent
