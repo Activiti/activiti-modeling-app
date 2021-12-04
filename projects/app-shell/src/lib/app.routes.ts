@@ -25,6 +25,7 @@ import { AmaModelSchemaLoaderGuard } from './common/services/ama-model-schema-lo
 import { AmaRoleGuard } from './common/services/ama-role-guard.service';
 import { HostSettingsComponent } from './app/host-settings/host-settings.component';
 import { ErrorContentComponent } from './app/error/error-content.component';
+import { AboutComponent } from './app/about/about.component';
 
 export const appRoutes: Routes = [
     {
@@ -52,6 +53,7 @@ export const appRoutes: Routes = [
                     AmaModelSchemaLoaderGuard
                 ],
                 children: [
+                    { path: 'about', component: AboutComponent },
                     { path: 'error/:id', component: ErrorContentComponent },
                     {
                         path: 'dashboard',

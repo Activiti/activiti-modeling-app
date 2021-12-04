@@ -16,7 +16,8 @@
  */
 
 import { Component, Inject } from '@angular/core';
-import { APP_GITHUB_COMMIT, APP_VERSION, APP_DEPS } from '@alfresco-dbp/modeling-shared/sdk';
+import pkg from 'package.json';
+import { DEV_MODE_TOKEN } from './dev-mode.tokens';
 
 @Component({
     selector: 'ama-about',
@@ -24,11 +25,11 @@ import { APP_GITHUB_COMMIT, APP_VERSION, APP_DEPS } from '@alfresco-dbp/modeling
     styleUrls: [ './about.component.css' ]
 })
 export class AboutComponent {
-    showExtensions = true;
+    pkg: any;
+    dev: any;
 
-    constructor(
-        @Inject(APP_GITHUB_COMMIT) public url: string,
-        @Inject(APP_VERSION) public version: string,
-        @Inject(APP_DEPS) public dependencies: any[]
-    ) {}
+    constructor(@Inject(DEV_MODE_TOKEN) devMode) {
+        this.dev = !devMode;
+        this.pkg = pkg;
+    }
 }

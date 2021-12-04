@@ -16,6 +16,7 @@
  */
 
 import { Component, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'ama-header-menu',
@@ -31,7 +32,14 @@ export class HeaderMenuComponent {
 
     user: any = null;
 
+    constructor(private router: Router) {
+    }
+
     onOpenSettings() {
         this.openSettings.next();
+    }
+
+    navigateToAbout() {
+        this.router.navigate(['about']);
     }
 }

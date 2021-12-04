@@ -47,10 +47,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         ConnectorEditorModule,
         MatInputModule,
         DialogsModule,
-        AppExtensionsModule,
         AppShellModule,
+        AppExtensionsModule,
         environment.production ? [] : StoreDevtoolsModule.instrument({ maxAge: 25 }),
-        ...(environment.devTools ? [ AboutModule ] : [])
+        AboutModule.forRoot(environment.production)
     ],
     declarations: [
         AppComponent

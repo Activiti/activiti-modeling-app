@@ -20,6 +20,11 @@
         <span>{{ 'APP.HEADER.SETTINGS' | translate }}</span>
     </button>
 
+    <button mat-menu-item data-automation-id="about" (click)="navigateToAbout()">
+        <mat-icon>info</mat-icon>
+        <span>{{ 'APP.HEADER.ABOUT' | translate }}</span>
+    </button>
+
     <button mat-menu-item data-automation-id="user-logout" adf-logout [enableRedirect]="false">
         <mat-icon>exit_to_app</mat-icon>
         <span>{{ 'APP.HEADER.SIGN_OUT' | translate }}</span>

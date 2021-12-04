@@ -17,6 +17,4 @@
 
 import { InjectionToken } from '@angular/core';
 
-export const APP_GITHUB_COMMIT = new InjectionToken<string>('app_github_commit');
-export const APP_VERSION = new InjectionToken<string>('app_version');
-export const APP_DEPS = new InjectionToken<any[]>('app_dependencies');
+export const DEV_MODE_TOKEN = new InjectionToken<boolean>('devMode');

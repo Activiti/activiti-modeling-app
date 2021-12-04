@@ -15,13 +15,14 @@
  * limitations under the License.
  */
 
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './about.component';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '@alfresco/adf-core';
 import { MatTableModule } from '@angular/material/table';
 import { AppLayoutComponent } from '../app-layout/app-layout.component';
+import { DEV_MODE_TOKEN } from './dev-mode.tokens';
 
 const routes: Routes = [
     {
@@ -50,4 +51,12 @@ const routes: Routes = [
     AboutComponent
   ]
 })
-export class AboutModule {}
+export class AboutModule {
+    public static forRoot(devMode: boolean): ModuleWithProviders<AboutModule> {
+
+        return {
+            ngModule: AboutModule,
+            providers: [{ provide: DEV_MODE_TOKEN, useValue: devMode }]
+        };
+    }
+}
