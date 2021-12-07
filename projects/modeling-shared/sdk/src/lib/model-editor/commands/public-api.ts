@@ -16,4 +16,5 @@
  */
 
 export * from './save-model.command';
+export * from './delete-model.command';
 export * from './commands.interface';

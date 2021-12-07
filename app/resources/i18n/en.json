@@ -63,7 +63,6 @@
                     "CONNECTOR": "Are you sure you want to delete this connector?",
                     "FILE": "Are you sure you want to delete this file?",
                     "SCRIPT": "Are you sure you want to delete this script?",
-                    "TRIGGER": "Are you sure you want to delete this Trigger?",
                     "MODEL": "Are you sure you want to delete this Content Model?",
                     "FORM_WIDGET": "Are you sure you want to delete this form widget?"
                 },

@@ -31,7 +31,10 @@ export interface UpdateActionLike {
     new(payload: any);
 }
 export interface ValidateActionLike {
-    new(payload: {title: string; modelId: string; modelContent: any, action: Action});
+    new(payload: {title: string, modelId: string, modelContent: any, action: Action});
+}
+export interface DeleteActionLike {
+    new(modelId: string);
 }
 export interface ModelCommand {
     execute(modelType: MODEL_TYPE, modelId: string, content: string, metadata?: any): void;
