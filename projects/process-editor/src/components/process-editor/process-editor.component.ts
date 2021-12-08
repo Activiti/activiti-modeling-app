@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { filter, map, take, tap, switchMap, catchError } from 'rxjs/operators';
-import { Observable, combineLatest, of, zip } from 'rxjs';
+import { filter, map, take, tap, switchMap, catchError, takeUntil } from 'rxjs/operators';
+import { Observable, combineLatest, of, zip, Subject } from 'rxjs';
 import {
     selectProcessCrumb,
     selectProcessLoading,
@@ -56,13 +56,14 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ProcessModelContext } from '../../store/process-editor.state';
 import { modelNameHandler } from '../../services/bpmn-js/property-handlers/model-name.handler';
 import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     templateUrl: './process-editor.component.html',
     styleUrls: ['./process-editor.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class ProcessEditorComponent implements OnInit, CanComponentDeactivate {
+export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, OnDestroy {
     loading$: Observable<boolean>;
     breadcrumbs$: Observable<BreadcrumbItem[]>;
     content$: Observable<ProcessContent>;
@@ -85,9 +86,11 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate {
     processFileUri$: Observable<string>;
     extensionsLanguageType: string;
     processesLanguageType: string;
+    private unsubscribe$ = new Subject<void>();
 
     constructor(
         private store: Store<AmaState>,
+        private route: ActivatedRoute,
         private codeValidatorService: CodeValidatorService,
         @Inject(ProcessModelerServiceToken) private processModeler: ProcessModelerService,
         private processLoaderService: ProcessDiagramLoaderService,
@@ -98,6 +101,15 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate {
     }
 
     ngOnInit() {
+        this.route.params.pipe(takeUntil(this.unsubscribe$))
+            .subscribe(() => {
+                 /* cspell: disable-next-line */
+                this.initialLoad_QuickFix_RenameToNgOninit();
+            });
+    }
+
+     /* cspell: disable-next-line */
+    initialLoad_QuickFix_RenameToNgOninit() {
         this.loading$ = this.store.select(selectProcessLoading);
         this.process$ = this.store.select(selectSelectedProcess);
         this.processFileUri$ = this.process$.pipe(
@@ -191,5 +203,10 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate {
                 catchError(() => of(false))
             );
 
+    }
+
+    ngOnDestroy() {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 }

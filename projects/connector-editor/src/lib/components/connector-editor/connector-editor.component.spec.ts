@@ -32,6 +32,7 @@ import { By } from '@angular/platform-browser';
 import { CONNECTOR, SharedModule, AmaState, ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
 import { ExtensionsModule } from '@alfresco/adf-extensions';
 import { UpdateConnectorContentAttemptAction, ValidateConnectorAttemptAction } from '../../store/connector-editor.actions';
+import { ActivatedRoute } from '@angular/router';
 
 describe('ConnectorEditorComponent', () => {
     let fixture: ComponentFixture<ConnectorEditorComponent>;
@@ -70,6 +71,10 @@ describe('ConnectorEditorComponent', () => {
                 ConnectorHeaderComponent
             ],
             providers: [
+                {
+                    provide: ActivatedRoute,
+                    useValue: { params: of({}), snapshot: {url: ''} }
+                },
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: Store,

@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-import { Component, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { ComponentRegisterService } from '@alfresco/adf-extensions';
 import { Store } from '@ngrx/store';
 import { selectSelectedConnectorContent, selectConnectorLoadingState, selectSelectedConnectorId, selectConnectorEditorSaving } from '../../store/connector-editor.selectors';
-import { map, filter, take, tap, switchMap, catchError } from 'rxjs/operators';
-import { Observable, of, zip } from 'rxjs';
+import { map, filter, take, tap, switchMap, catchError, takeUntil } from 'rxjs/operators';
+import { Observable, of, Subject, zip } from 'rxjs';
 import {
     AmaState,
     ConnectorContent,
@@ -41,6 +41,7 @@ import {
     UpdateConnectorContentAttemptAction,
     ValidateConnectorAttemptAction
 } from '../../store/connector-editor.actions';
+import { ActivatedRoute } from '@angular/router';
 const memoize = require('lodash/memoize');
 
 @Component({
@@ -49,7 +50,7 @@ const memoize = require('lodash/memoize');
     encapsulation: ViewEncapsulation.None
 })
 
-export class ConnectorEditorComponent implements CanComponentDeactivate {
+export class ConnectorEditorComponent implements CanComponentDeactivate, OnDestroy {
     disableSave = false;
 
     connectorId$: Observable<string>;
@@ -66,14 +67,23 @@ export class ConnectorEditorComponent implements CanComponentDeactivate {
         'CONNECTOR_EDITOR.TABS.JSON_EDITOR'
     ];
     selectedTabIndex = 0;
+    private unsubscribe$ = new Subject<void>();
 
     constructor(
         private store: Store<AmaState>,
+        private route: ActivatedRoute,
         private codeValidatorService: CodeValidatorService,
         private changeDetectorRef: ChangeDetectorRef,
         private componentRegister: ComponentRegisterService,
         private statusBarService: StatusBarService
     ) {
+        this.route.params.pipe(takeUntil(this.unsubscribe$))
+            .subscribe(() => {
+                this.initialLoad_QuickFix_RenameToConstructor();
+            });
+    }
+
+    initialLoad_QuickFix_RenameToConstructor() {
         this.loadingState$ = this.store.select(selectConnectorLoadingState);
         this.connectorId$ = this.store.select(selectSelectedConnectorId);
         this.editorContent$ = this.store.select(selectSelectedConnectorContent).pipe(
@@ -153,5 +163,10 @@ export class ConnectorEditorComponent implements CanComponentDeactivate {
                 map(state => state === ModelEditorState.SAVED),
                 catchError(() => of(false))
             );
+    }
+
+    ngOnDestroy() {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 }

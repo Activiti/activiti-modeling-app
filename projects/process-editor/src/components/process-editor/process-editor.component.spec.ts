@@ -28,6 +28,7 @@ import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UpdateProcessAttemptAction, ValidateProcessAttemptAction } from '../../store/process-editor.actions';
 import { selectProcessEditorSaving } from '../../store/process-editor.selectors';
+import { ActivatedRoute } from '@angular/router';
 
 describe('ProcessEditorComponent', () => {
     let fixture: ComponentFixture<ProcessEditorComponent>;
@@ -52,6 +53,10 @@ describe('ProcessEditorComponent', () => {
                 HttpClientTestingModule
             ],
             providers: [
+                {
+                    provide: ActivatedRoute,
+                    useValue: { params: of({}), snapshot: {url: ''} }
+                },
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: Store,
