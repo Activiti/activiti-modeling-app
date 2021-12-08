@@ -16,6 +16,7 @@
  */
 
 import { Action } from '@ngrx/store';
+import { ContentType } from '../../api-implementations/acm-api/content-types';
 import { MODEL_TYPE } from '../../api/types';
 
 export enum BasicModelCommands {
@@ -28,14 +29,14 @@ export enum BasicModelCommands {
 }
 
 export interface UpdateActionLike {
-    new(payload: any);
+    new(payload: { modelId: string; modelContent: any, modelMetadata?: any });
 }
 export interface ValidateActionLike {
-    new(payload: {title: string, modelId: string, modelContent: any, action: Action});
+    new(payload: { title: string; modelId: string; modelContent: any, modelMetadata?: any, action: Action });
 }
 export interface DeleteActionLike {
     new(modelId: string);
 }
 export interface ModelCommand {
-    execute(modelType: MODEL_TYPE, modelId: string, content: string, metadata?: any): void;
+    execute(modelType: MODEL_TYPE, modelContentType: ContentType, modelId: string, content: string, metadata?: any): void;
 }

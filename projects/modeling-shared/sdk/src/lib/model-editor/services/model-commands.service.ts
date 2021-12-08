@@ -17,6 +17,7 @@
 
 import { Observable, zip } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { ContentType } from '../../api-implementations/acm-api/content-types';
 import { MODEL_TYPE } from '../../api/types';
 import { BasicModelCommands, ModelCommand } from '../commands/commands.interface';
 import { ModelCommandCallback, ModelCommandCallbackEvent } from './model-command-callback';
@@ -30,9 +31,10 @@ export class ModelCommandsService {
     protected eventTarget: EventTarget;
 
     protected modelType: MODEL_TYPE;
+    protected modelContentType: ContentType;
     protected modelId$: Observable<string>;
     protected modelContent$: Observable<string>;
-    // protected modelMetadata$: Observable<string>;
+    protected modelMetadata$: Observable<Record<string, any>>;
 
     protected commands: EventMethod[] = [];
 
@@ -40,15 +42,25 @@ export class ModelCommandsService {
         this.eventTarget = new EventTarget();
     }
 
-    public init(modelType: MODEL_TYPE, modelId$: Observable<string>, modelContent$: Observable<string>, modelMetadata$?: Observable<any>) {
+    public init(modelType: MODEL_TYPE, modelContentType: ContentType, modelId$: Observable<string>, modelContent$: Observable<string>, modelMetadata$?: Observable<any>) {
         this.modelType = modelType;
+        this.modelContentType = modelContentType;
         this.modelId$ = modelId$;
         this.modelContent$ = modelContent$;
-        // this.modelMetadata$ = modelMetadata$;
+        this.modelMetadata$ = modelMetadata$;
     }
 
     public dispatchEvent(value: BasicModelCommands) {
-        this.eventTarget.dispatchEvent(new ModelCommandCallbackEvent(value, this.modelType, this.modelId$, this.modelContent$));
+        this.eventTarget.dispatchEvent(
+            new ModelCommandCallbackEvent(
+                value,
+                this.modelType,
+                this.modelContentType,
+                this.modelId$,
+                this.modelContent$,
+                this.modelMetadata$
+            )
+        );
     }
 
     public addEventListener(eventName: string, command: ModelCommand) {
@@ -63,8 +75,15 @@ export class ModelCommandsService {
 
     private getCommandCallback(command: ModelCommand): ModelCommandCallback {
         return (event: ModelCommandCallbackEvent) => {
-            zip(event.modelId$, event.modelContent$).pipe(take(1))
-                .subscribe(([modelId, content]) => command.execute(event.modelType, modelId, content) );
+            const streams$ = [event.modelId$, event.modelContent$, ...(event.modelMetadata$ ? [event.modelMetadata$] : []) ];
+            zip(...streams$).pipe(take(1))
+                .subscribe(([modelId, content, metadata]) => command.execute(
+                    event.modelType,
+                    event.modelContentType,
+                    modelId as string,
+                    content as string,
+                    metadata
+                ));
         };
     }
 }

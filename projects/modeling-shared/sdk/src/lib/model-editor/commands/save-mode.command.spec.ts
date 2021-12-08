@@ -16,6 +16,8 @@
  */
 
 import { Action, Store } from '@ngrx/store';
+import { ContentType } from '../../api-implementations/acm-api/content-types';
+import { ModelContentSerializer } from '../../api-implementations/acm-api/model-content-serializer';
 import { PROCESS } from '../../api/types';
 import { GenericSaveModelCommand } from './save-model.command';
 
@@ -25,17 +27,22 @@ class TestValidateAction {
         title: string;
         modelId: string;
         modelContent: any;
+        modelMetadata: any;
         action: Action;
     }) {}
 }
 
 class TestUpdateAction {
     type: 'update';
-    constructor(public payload: any) {}
+    constructor(public payload: {
+        modelId: string;
+        modelContent: any;
+        modelMetadata: any;
+    }) {}
 }
 class SpecificSaveModelCommand extends GenericSaveModelCommand {
     constructor(store: Store<any>, translationService: any) {
-        super(store, translationService);
+        super(store, { deserialize: JSON.parse } as unknown as ModelContentSerializer, translationService);
     }
 
     protected title = 'test-title';
@@ -52,14 +59,16 @@ describe('GenericSaveModelCommand', () => {
         const command = new SpecificSaveModelCommand(mockStore, translationServiceMock);
         const modelId = 'test-id';
         const modelContent = JSON.stringify({ foo: 'bar' });
+        const modelMetadata = { bar: 'baz' };
 
-        command.execute(PROCESS, modelId, modelContent);
+        command.execute(PROCESS, ContentType.Process, modelId, modelContent, modelMetadata);
 
         const dispatchedAction = new TestValidateAction({
             title: 'test-title-translated',
             modelId: modelId,
             modelContent: JSON.parse(modelContent),
-            action: new TestUpdateAction(JSON.parse(modelContent))
+            modelMetadata,
+            action: new TestUpdateAction({modelId, modelContent: JSON.parse(modelContent), modelMetadata})
         });
         expect(translationServiceMock.instant).toHaveBeenCalled();
         expect(mockStore.dispatch).toHaveBeenCalledWith(dispatchedAction);

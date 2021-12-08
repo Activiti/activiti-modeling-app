@@ -19,9 +19,10 @@ import { GenericDeleteModelCommand } from '../commands/delete-model.command';
 import { Store } from '@ngrx/store';
 import { PROCESS } from '../../api/types';
 import { OpenConfirmDialogAction } from '../../store/app.actions';
+import { ContentType } from '../../api-implementations/acm-api/content-types';
 class TestDeleteAction {
     type: 'delete';
-    constructor(public payload: any) {}
+    constructor(public payload: any) { }
 }
 class SpecificDeleteModelCommand extends GenericDeleteModelCommand {
     constructor(store: Store<any>, translationService: any) {
@@ -40,10 +41,10 @@ describe('GenericDeleteModelCommand', () => {
         const command = new SpecificDeleteModelCommand(mockStore, translationServiceMock);
         const modelId = 'test-id';
 
-        command.execute(PROCESS, modelId);
+        command.execute(PROCESS, ContentType.Process, modelId);
 
         const dispatchedAction = new OpenConfirmDialogAction({
-            dialogData : { title : 'test-title-translated'},
+            dialogData: { title: 'test-title-translated' },
             action: new TestDeleteAction(modelId)
         });
         expect(translationServiceMock.instant).toHaveBeenCalled();

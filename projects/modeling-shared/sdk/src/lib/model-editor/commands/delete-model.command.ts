@@ -20,13 +20,14 @@ import { Store } from '@ngrx/store';
 import { MODEL_TYPE } from '../../api/types';
 import { AmaState } from '../../store/app.state';
 import { ModelCommand, DeleteActionLike } from './commands.interface';
+import { ContentType } from '../../api-implementations/acm-api/content-types';
 
 export abstract class GenericDeleteModelCommand implements ModelCommand {
     constructor(protected store: Store<AmaState>, protected translationService: any) { }
 
     protected abstract DeleteAction: DeleteActionLike;
 
-    execute(modelType: MODEL_TYPE, modelId: string) {
+    execute(modelType: MODEL_TYPE, modelContentType: ContentType, modelId: string) {
         const DeleteAction = this.DeleteAction;
         this.store.dispatch(
             new OpenConfirmDialogAction({

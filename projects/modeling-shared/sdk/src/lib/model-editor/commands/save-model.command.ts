@@ -16,25 +16,38 @@
  */
 
 import { Store } from '@ngrx/store';
+import { ContentType } from '../../api-implementations/acm-api/content-types';
+import { ModelContentSerializer } from '../../api-implementations/acm-api/model-content-serializer';
 import { MODEL_TYPE } from '../../api/types';
 import { AmaState } from '../../store/app.state';
 import { ModelCommand, UpdateActionLike, ValidateActionLike } from './commands.interface';
 
 export abstract class GenericSaveModelCommand implements ModelCommand {
-    constructor(protected store: Store<AmaState>, protected translationService: any) {}
+    constructor(
+        protected store: Store<AmaState>,
+        protected serializer: ModelContentSerializer,
+        protected translationService: any
+    ) {}
 
     protected abstract ValidateAction: ValidateActionLike;
     protected abstract UpdateAction: UpdateActionLike;
 
-    execute(modelType: MODEL_TYPE, modelId: string, content: string, metadata?: any) {
+    execute(modelType: MODEL_TYPE, modelContentType: ContentType, modelId: string, serializedModelContent: string, modelMetadata?: any) {
         const ValidateAction = this.ValidateAction;
         const UpdateAction = this.UpdateAction;
+
+        const modelContent = this.serializer.deserialize(serializedModelContent, modelContentType);
 
         this.store.dispatch(new ValidateAction({
             title: this.translationService.instant('SDK.MODEL_EDITOR.DIALOG.CONFIRM_INVALID_MODEL_SAVE', { modelType }),
             modelId: modelId,
-            modelContent: JSON.parse(content),
-            action: new UpdateAction(JSON.parse(content))
+            modelContent,
+            ...( modelMetadata ? { modelMetadata } : {} ),
+            action: new UpdateAction({
+                modelId,
+                modelContent,
+                ...( modelMetadata ? { modelMetadata } : {} )
+            })
         }));
     }
 }

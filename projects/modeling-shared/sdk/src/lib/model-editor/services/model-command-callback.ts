@@ -16,11 +16,18 @@
  */
 
 import { Observable } from 'rxjs';
+import { ContentType } from '../../api-implementations/acm-api/content-types';
 import { MODEL_TYPE } from '../../api/types';
 
 export class ModelCommandCallbackEvent extends Event {
-    constructor(type: string, public modelType: MODEL_TYPE, public modelId$: Observable<string>, public modelContent$: Observable<string> ) {
-        super(type, {});
+    constructor(
+        type: string,
+        public modelType: MODEL_TYPE,
+        public modelContentType: ContentType,
+        public modelId$: Observable<string>,
+        public modelContent$: Observable<string>,
+        public modelMetadata$: Observable<Record<string, any>>) {
+            super(type, {});
     }
 }
 
