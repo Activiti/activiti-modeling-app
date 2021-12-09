@@ -36,8 +36,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { INPUT_TYPE_ITEM_HANDLER, InputTypeItem } from './value-type-inputs/value-type-inputs';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { PropertiesViewerJsonInputComponent } from './value-type-inputs/json-input.component';
 import { ElementVariable, JSONSchemaInfoBasics } from '../../api/types';
+import { PropertiesViewerStringInputComponent } from './value-type-inputs/string-input.component';
 
 @Component({
     template: '<template #valueTypeInput></template>',
@@ -135,7 +135,16 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
                 return handler.implementationClass;
             }
         }
-        return PropertiesViewerJsonInputComponent;
+        return this.getDefaultImplementationClass();
+    }
+
+    private getDefaultImplementationClass(): Type<{}> {
+        for (const handler of this.inputTypeItemHandler) {
+            if (handler.type === 'json') {
+                return handler.implementationClass;
+            }
+        }
+        return PropertiesViewerStringInputComponent;
     }
 
     writeValue(value) {

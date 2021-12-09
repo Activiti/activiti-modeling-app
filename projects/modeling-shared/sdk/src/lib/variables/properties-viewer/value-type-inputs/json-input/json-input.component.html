@@ -1,0 +1,42 @@
+<ng-container *ngIf="model else expressionEditor">
+    <mat-tab-group *ngIf="extendedProperties?.enableExpressionEditor else modeledObject" [attr.data-automation-id]="'json-input-tabs'">
+        <mat-tab [label]="'SDK.VALUE' | translate">
+            <ng-container *ngTemplateOutlet="modeledObject"></ng-container>
+        </mat-tab>
+        <mat-tab [label]="'SDK.EXPRESSION' | translate">
+            <ng-container *ngTemplateOutlet="expressionEditor"></ng-container>
+        </mat-tab>
+    </mat-tab-group>
+</ng-container>
+
+<ng-template #modeledObject>
+    <modelingsdk-modeled-object-input
+        [attr.data-automation-id]="'variable-value'"
+        [autocompletionContext]="autocompletionContext"
+        [value]="value | jsonParse"
+        (valueChanges)="onModeledObjectChanges($event)"
+        [disabled]="disabled"
+        [model]="model"
+        [placeholder]="placeholder"
+        (valid)="onValidChanges($event)">
+    </modelingsdk-modeled-object-input>
+</ng-template>
+
+<ng-template #expressionEditor>
+    <modelingsdk-expression-code-editor
+        [attr.data-automation-id]="'variable-value'"
+        [expression]="value"
+        (expressionChange)="onChange($event)"
+        [variables]="autocompletionContext"
+        [language]="'json'"
+        [removeEnclosingBrackets]="false"
+        [enableDialogEditor]="!disabled"
+        [enableInlineEditor]="!disabled"
+        [removeLineNumbers]="true"
+        [lineWrapping]="false"
+        [nonBracketedOutput]="false">
+    </modelingsdk-expression-code-editor>
+</ng-template>
+
+
+

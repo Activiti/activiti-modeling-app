@@ -16,40 +16,44 @@
  */
 
 import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { EntityProperty, JSONSchemaInfoBasics } from '../../../api/types';
+import { EntityProperty, JSONSchemaInfoBasics } from '../../../../api/types';
 
 @Component({
-    template: `
-            <modelingsdk-expression-code-editor
-                [attr.data-automation-id]="'variable-value'"
-                [expression]="value"
-                (expressionChange)="onChange($event)"
-                [variables]="autocompletionContext"
-                [language]="'json'"
-                [removeEnclosingBrackets]="false"
-                [enableDialogEditor]="!disabled"
-                [enableInlineEditor]="!disabled"
-                [removeLineNumbers]="true"
-                [lineWrapping]="false"
-                [nonBracketedOutput]="false">
-            </modelingsdk-expression-code-editor>
-    `
+    templateUrl: './json-input.component.html'
 })
 export class PropertiesViewerJsonInputComponent {
     @Output() change = new EventEmitter();
     @Input() value: string;
     @Input() disabled = false;
-    @Input() model: JSONSchemaInfoBasics | string;
+    @Input() placeholder: string;
+    @Input() model: JSONSchemaInfoBasics;
     @Input() autocompletionContext: EntityProperty[] = [];
+    @Input() extendedProperties = {
+        enableExpressionEditor: false
+    };
+
+    valid = true;
+
+    onModeledObjectChanges(value: any) {
+        if (value && typeof value !== 'string') {
+            this.value = JSON.stringify(value, null, 4);
+        } else {
+            this.value = value;
+        }
+        this.emitValue();
+    }
+
+    onValidChanges(valid: boolean) {
+        this.valid = valid;
+    }
 
     onChange(value: string) {
         this.value = value;
-        if (this.value && this.value.trim()) {
-            try {
-                JSON.parse(this.value);
-            } catch (e) {
-                return;
-            }
+        this.emitValue();
+    }
+
+    private emitValue() {
+        if (this.valid && this.value && this.value.trim()) {
             this.change.emit(this.value);
         } else {
             this.change.emit(null);

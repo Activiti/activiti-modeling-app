@@ -26,7 +26,7 @@ import { PropertiesViewerStringInputComponent } from './properties-viewer/value-
 import { PropertiesViewerIntegerInputComponent } from './properties-viewer/value-type-inputs/integer-input.component';
 import { PropertiesViewerBooleanInputComponent } from './properties-viewer/value-type-inputs/boolean-input.component';
 import { PropertiesViewerDateInputComponent } from './properties-viewer/value-type-inputs/date-input.component';
-import { PropertiesViewerJsonInputComponent } from './properties-viewer/value-type-inputs/json-input.component';
+import { PropertiesViewerJsonInputComponent } from './properties-viewer/value-type-inputs/json-input/json-input.component';
 import { PropertiesViewerFileInputComponent } from './properties-viewer/value-type-inputs/file-input.component';
 import { SharedModule } from '../helpers/public-api';
 import { VariableValuePipe } from './properties-viewer/variable-value.pipe';
@@ -42,6 +42,7 @@ import { RegisteredInputsModelingJsonSchemaProvider } from '../services/register
 import { PropertiesViewerModeledObjectInputComponent } from './properties-viewer/value-type-inputs/modeled-object/modeled-object-input.component';
 import { PropertiesViewerArrayInputComponent } from './properties-viewer/value-type-inputs/array-input/array-input.component';
 import { ArrayInputDialogComponent } from './properties-viewer/value-type-inputs/array-input/array-input-dialog/array-input-dialog.component';
+import { JsonParsePipe } from './properties-viewer/json-parse.pipe';
 
 @NgModule({
     imports: [
@@ -69,7 +70,8 @@ import { ArrayInputDialogComponent } from './properties-viewer/value-type-inputs
         VariableValuePipe,
         VariableExpressionLanguagePipe,
         VariablePrimitiveTypePipe,
-        PropertiesViewerEnumInputComponent
+        PropertiesViewerEnumInputComponent,
+        JsonParsePipe
     ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
@@ -88,7 +90,8 @@ import { ArrayInputDialogComponent } from './properties-viewer/value-type-inputs
         ValueTypeInputComponent,
         VariableValuePipe,
         VariableExpressionLanguagePipe,
-        VariablePrimitiveTypePipe
+        VariablePrimitiveTypePipe,
+        JsonParsePipe
     ]
 })
 export class VariablesModule { }
