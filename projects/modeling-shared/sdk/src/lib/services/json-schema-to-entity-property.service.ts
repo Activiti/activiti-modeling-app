@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { EntityProperty, JSONRef, JSONSchemaInfoBasics, JSONSchemaPropertyBasics } from '../api/types';
+import { EntityProperty, JSONSchemaInfoBasics, JSONSchemaPropertyBasics } from '../api/types';
 import { ModelingJSONSchemaService } from './modeling-json-schema.service';
 
 @Injectable({
@@ -27,7 +27,7 @@ export class JSONSchemaToEntityPropertyService {
     constructor(private modelingJSONSchemaService: ModelingJSONSchemaService) {
     }
 
-    getPrimitiveType(schema: JSONRef[] | JSONSchemaPropertyBasics[] | JSONSchemaInfoBasics): string {
+    getPrimitiveType(schema: JSONSchemaPropertyBasics[] | JSONSchemaInfoBasics): string | string[] {
         return this.modelingJSONSchemaService.getPrimitiveType(schema);
     }
 
@@ -42,28 +42,38 @@ export class JSONSchemaToEntityPropertyService {
             } else if (jsonSchema.allOf) {
                 jsonSchema.allOf.forEach(schema => entityProperties.push(this.getPrimitiveEntityProperty(schema, jsonSchema)));
             } else if (jsonSchema.type) {
-                switch (jsonSchema.type) {
-                    case 'object':
-                        if (jsonSchema.properties) {
-                            Object.keys(jsonSchema.properties).forEach(property => {
-                                entityProperties.push(this.getPrimitiveEntityProperty(jsonSchema.properties[property], jsonSchema, property));
-                            });
-                            if (jsonSchema.required) {
-                                jsonSchema.required.forEach(requiredProperty => {
-                                    const index = entityProperties.findIndex(property => property.name === requiredProperty);
-                                    if (index >= 0) {
-                                        entityProperties[index].required = true;
-                                    }
+                if (Array.isArray(jsonSchema.type)) {
+                    jsonSchema.type.forEach(type => {
+                        if (typeof type === 'string') {
+                            this.getEntityPropertiesFromJSONSchema({ type }, name).forEach(property => entityProperties.push(property));
+                        } else {
+                            this.getEntityPropertiesFromJSONSchema(type, name).forEach(property => entityProperties.push(property));
+                        }
+                    });
+                } else {
+                    switch (jsonSchema.type) {
+                        case 'object':
+                            if (jsonSchema.properties) {
+                                Object.keys(jsonSchema.properties).forEach(property => {
+                                    entityProperties.push(this.getPrimitiveEntityProperty(jsonSchema.properties[property], jsonSchema, property));
                                 });
+                                if (jsonSchema.required) {
+                                    jsonSchema.required.forEach(requiredProperty => {
+                                        const index = entityProperties.findIndex(property => property.name === requiredProperty);
+                                        if (index >= 0) {
+                                            entityProperties[index].required = true;
+                                        }
+                                    });
+                                }
                             }
-                        }
-                        break;
-                    default:
-                        const entityProperty = this.getPrimitiveEntityProperty(jsonSchema, jsonSchema, name);
-                        if (entityProperty) {
-                            entityProperties.push(entityProperty);
-                        }
-                        break;
+                            break;
+                        default:
+                            const entityProperty = this.getPrimitiveEntityProperty(jsonSchema, jsonSchema, name);
+                            if (entityProperty) {
+                                entityProperties.push(entityProperty);
+                            }
+                            break;
+                    }
                 }
             } else if (jsonSchema.enum || jsonSchema.const) {
                 entityProperties.push(this.getPrimitiveEntityProperty(jsonSchema, jsonSchema, name));

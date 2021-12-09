@@ -83,7 +83,7 @@ export class PropertiesViewerArrayInputComponent implements OnChanges {
         }
 
         if (!this.model && !this.extendedProperties?.values) {
-            this.model = { type: 'array', items: { type: 'string'} };
+            this.model = { type: 'array', items: { type: 'string' } };
         }
 
         if (!this.extendedProperties) {
@@ -123,12 +123,12 @@ export class PropertiesViewerArrayInputComponent implements OnChanges {
 
     setType() {
         if (this.model?.items) {
-            this.primitiveType = this.jsonService.getPrimitiveType(this.model.items);
-                if (this.primitiveType) {
-                    this.type = this.primitiveType === 'string' ? 'string' : 'primitive';
-                } else {
-                    this.type = 'object';
-                }
+            const modelPrimitiveType = this.jsonService.getPrimitiveType(this.model.items);
+            if (!Array.isArray(modelPrimitiveType) && modelPrimitiveType !== 'json') {
+                this.type = modelPrimitiveType === 'string' ? 'string' : 'primitive';
+            } else {
+                this.type = 'object';
+            }
         } else {
             this.type = this.extendedProperties?.values === 'string' ? 'string' : 'primitive';
             this.primitiveType = this.extendedProperties?.values;

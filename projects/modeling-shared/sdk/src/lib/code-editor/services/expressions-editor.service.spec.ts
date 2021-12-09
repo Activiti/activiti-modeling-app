@@ -16,17 +16,28 @@
  */
 
 import { TranslationMock } from '@alfresco/adf-core';
-import { expectedPrimitiveTypes } from '../mocks/primitive-types.mock';
+import { JSONSchemaToEntityPropertyService } from '../../services/json-schema-to-entity-property.service';
+import { ModelingJSONSchemaService } from '../../services/modeling-json-schema.service';
+import { UuidService } from '../../services/uuid.service';
+import { CodeEditorService } from './code-editor-service.service';
+import { primitiveTypesSchema } from './expression-language/primitive-types-schema';
 import { ExpressionsEditorService } from './expressions-editor.service';
+import { JSONSchemaToModelingTypesService } from './json-schema-to-modeling-types.service';
 import { ModelingTypesService } from './modeling-types.service';
+import { PrimitiveModelingTypesService } from './primitive-modeling-types.service';
 
 describe('ExpressionsEditorService', () => {
     const translateService = new TranslationMock();
     translateService.instant = (key: string | Array<string>) => key === 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_TYPE' ? 'type' : key;
 
-    const modelingTypesService = {
-        getType: jest.fn().mockImplementation((typeName: string) => expectedPrimitiveTypes[typeName])
-    } as unknown as ModelingTypesService;
+    const jSONSchemaToModelingTypesService = new JSONSchemaToModelingTypesService();
+    const primitiveModelingTypesService = new PrimitiveModelingTypesService(jSONSchemaToModelingTypesService);
+    const uuidService = new UuidService();
+    const codeEditorService = new CodeEditorService();
+    const modelingJSONSchemaService = new ModelingJSONSchemaService(codeEditorService, [], []);
+    modelingJSONSchemaService.initializeProjectSchema('test');
+    const jSONSchemaToEntityPropertyService = new JSONSchemaToEntityPropertyService(modelingJSONSchemaService);
+    const modelingTypesService = new ModelingTypesService([primitiveModelingTypesService], uuidService, modelingJSONSchemaService, jSONSchemaToEntityPropertyService);
 
     const codeLine = 'beginning of the line ${myFileVar[0].content.uri && myFileVar.toString().split(",", 2)[myInteger].substring(0, 5).toUpperCase()} end of the line';
     const modelMock: monaco.editor.ITextModel = {
@@ -60,36 +71,36 @@ describe('ExpressionsEditorService', () => {
 
     describe('static methods', () => {
 
-        it('should get type name of the active cursor typing', () => {
+        it('should get model schema of the active cursor typing', () => {
             let testingPosition = { ...position, column: 39 } as monaco.Position;
-            let typeName = ExpressionsEditorService.getTypeName(modelMock, testingPosition, parameters, modelingTypesService);
+            let modelSchema = ExpressionsEditorService.getModelSchema(modelMock, testingPosition, parameters, modelingTypesService);
 
-            expect(typeName).toEqual('content');
+            expect(modelSchema).toEqual(primitiveTypesSchema.$defs.primitive['content']);
 
             testingPosition = { ...position, column: 47 } as monaco.Position;
-            typeName = ExpressionsEditorService.getTypeName(modelMock, testingPosition, parameters, modelingTypesService);
+            modelSchema = ExpressionsEditorService.getModelSchema(modelMock, testingPosition, parameters, modelingTypesService);
 
-            expect(typeName).toEqual('content-metadata');
+            expect(modelSchema).toEqual(primitiveTypesSchema.$defs.primitive['content-info']);
 
             testingPosition = { ...position, column: 64 } as monaco.Position;
-            typeName = ExpressionsEditorService.getTypeName(modelMock, testingPosition, parameters, modelingTypesService);
+            modelSchema = ExpressionsEditorService.getModelSchema(modelMock, testingPosition, parameters, modelingTypesService);
 
-            expect(typeName).toEqual('file');
+            expect(modelSchema).toEqual(primitiveTypesSchema.$defs.primitive['file']);
 
             testingPosition = { ...position, column: 75 } as monaco.Position;
-            typeName = ExpressionsEditorService.getTypeName(modelMock, testingPosition, parameters, modelingTypesService);
+            modelSchema = ExpressionsEditorService.getModelSchema(modelMock, testingPosition, parameters, modelingTypesService);
 
-            expect(typeName).toEqual('string');
+            expect(modelSchema).toEqual(primitiveTypesSchema.$defs.primitive['string']);
 
             testingPosition = { ...position, column: 100 } as monaco.Position;
-            typeName = ExpressionsEditorService.getTypeName(modelMock, testingPosition, parameters, modelingTypesService);
+            modelSchema = ExpressionsEditorService.getModelSchema(modelMock, testingPosition, parameters, modelingTypesService);
 
-            expect(typeName).toEqual('string');
+            expect(modelSchema).toEqual(primitiveTypesSchema.$defs.primitive['string']);
 
             testingPosition = { ...position, column: 117 } as monaco.Position;
-            typeName = ExpressionsEditorService.getTypeName(modelMock, testingPosition, parameters, modelingTypesService);
+            modelSchema = ExpressionsEditorService.getModelSchema(modelMock, testingPosition, parameters, modelingTypesService);
 
-            expect(typeName).toEqual('string');
+            expect(modelSchema).toEqual(primitiveTypesSchema.$defs.primitive['string']);
         });
 
         it('should get current signature method of the active cursor typing', () => {
@@ -114,7 +125,7 @@ describe('ExpressionsEditorService', () => {
                 ]
             };
 
-            const hoverCard = ExpressionsEditorService.getHoverCard('array', 'equals', mockRange, modelingTypesService, translateService);
+            const hoverCard = ExpressionsEditorService.getHoverCard(primitiveTypesSchema.$defs.primitive['array'], 'equals', mockRange, modelingTypesService, translateService);
 
             expect(hoverCard).toEqual(mockCard);
         });
@@ -129,13 +140,13 @@ describe('ExpressionsEditorService', () => {
                 ]
             };
 
-            const hoverCard = ExpressionsEditorService.getHoverCard('array', 'length', mockRange, modelingTypesService, translateService);
+            const hoverCard = ExpressionsEditorService.getHoverCard(primitiveTypesSchema.$defs.primitive['array'], 'length', mockRange, modelingTypesService, translateService);
 
             expect(hoverCard).toEqual(mockCard);
         });
 
         it('should return no hover card if the word is neither a method nor a property, or if no type is present', () => {
-            let hoverCard = ExpressionsEditorService.getHoverCard('array', 'unknown', mockRange, modelingTypesService, translateService);
+            let hoverCard = ExpressionsEditorService.getHoverCard(primitiveTypesSchema.$defs.primitive['array'], 'unknown', mockRange, modelingTypesService, translateService);
 
             expect(hoverCard).not.toBeDefined();
 
@@ -145,13 +156,13 @@ describe('ExpressionsEditorService', () => {
         });
 
         it('should return the return type of language registered functions', () => {
-            let typeName = ExpressionsEditorService.getTypeNameFromLanguageFunctions('now()');
+            let modelSchema = ExpressionsEditorService.getModelSchemaFromLanguageFunctions('now()', modelingTypesService);
 
-            expect(typeName).toEqual('date');
+            expect(modelSchema).toEqual(primitiveTypesSchema.$defs.primitive['date']);
 
-            typeName = ExpressionsEditorService.getTypeNameFromLanguageFunctions('now');
+            modelSchema = ExpressionsEditorService.getModelSchemaFromLanguageFunctions('now', modelingTypesService);
 
-            expect(typeName).toEqual('date');
+            expect(modelSchema).toEqual(primitiveTypesSchema.$defs.primitive['date']);
         });
     });
 });

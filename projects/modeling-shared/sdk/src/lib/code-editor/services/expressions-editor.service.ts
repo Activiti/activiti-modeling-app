@@ -17,6 +17,7 @@
 
 import { TranslationService } from '@alfresco/adf-core';
 import { Injectable } from '@angular/core';
+import { EntityProperty, JSONSchemaInfoBasics } from '../../api/types';
 import { expressionLanguageConfiguration, expressionLanguageMonarch } from './expression-language/expression-language.monarch';
 import { ModelingTypesService } from './modeling-types.service';
 
@@ -31,13 +32,13 @@ export class ExpressionsEditorService {
     constructor(private translationService: TranslationService, private modelingTypesService: ModelingTypesService) {
     }
 
-    static getTypeName(
+    static getModelSchema(
         model: monaco.editor.ITextModel,
         position: monaco.Position,
-        parameters: any[],
+        parameters: EntityProperty[],
         modelingTypesService: ModelingTypesService,
         offset = 0
-    ): string {
+    ): JSONSchemaInfoBasics {
         const lineBeforeCursor = model.getValueInRange({
             startLineNumber: position.lineNumber,
             startColumn: 0,
@@ -45,18 +46,18 @@ export class ExpressionsEditorService {
             endColumn: position.column
         });
         const words = lineBeforeCursor.match(ExpressionsEditorService.wordRegex);
-        let typeName: string = null;
+        let modelSchema: JSONSchemaInfoBasics = null;
 
         if (words) {
             const activeTyping = words[words.length - 1 - offset];
-            typeName = ExpressionsEditorService.getTypeNameOfWord(activeTyping, parameters, modelingTypesService, offset);
+            modelSchema = ExpressionsEditorService.getModelSchemaOfWord(activeTyping, parameters, modelingTypesService, offset);
         }
-        return typeName;
+        return modelSchema;
     }
 
-    static getTypeNameOfWord(word: string, parameters: any[], modelingTypesService: ModelingTypesService, offset = 0): string {
+    static getModelSchemaOfWord(word: string, parameters: EntityProperty[], modelingTypesService: ModelingTypesService, offset = 0): JSONSchemaInfoBasics {
         const parts = word?.split('.') || [];
-        let typeName: string = null;
+        let modelSchema: JSONSchemaInfoBasics = null;
 
         for (let index = 0; index < (parts.length - 1 + offset); index++) {
             const element = parts[index];
@@ -65,40 +66,84 @@ export class ExpressionsEditorService {
                 const method = element.match(/([a-z][\w]*)\((\S|\s)*\)/);
                 const arrayAfterMethod = element.match(/([a-z][\w]*)\((\S|\s)*\)\[(\S)*\]/);
                 if (array) {
-                    if (!typeName) {
-                        typeName = parameters.find(parameter => parameter.name === array[1])?.type;
-                        typeName = modelingTypesService.getType(typeName)?.collectionOf || 'json';
+                    if (!modelSchema) {
+                        modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(parameters.find(parameter => parameter.name === array[1]));
+                        modelSchema = ExpressionsEditorService.extractItemsModelSchema(modelSchema);
                     } else {
-                        typeName = modelingTypesService.getType(typeName)?.collectionOf || 'json';
+                        modelSchema = ExpressionsEditorService.extractItemsModelSchema(modelSchema);
                     }
-                } else if (typeName && arrayAfterMethod) {
-                    typeName = modelingTypesService.getType(typeName).methods?.filter(registeredMethod => !!registeredMethod)
-                        .find(registeredMethod => registeredMethod.signature.startsWith(arrayAfterMethod[1]))?.type;
-                    typeName = modelingTypesService.getType(typeName)?.collectionOf || 'json';
-                } else if (typeName && method) {
-                    typeName = modelingTypesService.getType(typeName).methods?.filter(registeredMethod => !!registeredMethod)
-                        .find(registeredMethod => registeredMethod.signature.startsWith(method[1]))?.type;
+                } else if (modelSchema && arrayAfterMethod) {
+                    modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(
+                        modelingTypesService.getMethodsByModelSchema(modelSchema)
+                            .filter(registeredMethod => !!registeredMethod)
+                            .find(registeredMethod => registeredMethod.signature.startsWith(arrayAfterMethod[1]))
+                    );
+                    modelSchema = ExpressionsEditorService.extractItemsModelSchema(modelSchema);
+                } else if (modelSchema && method) {
+                    modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(
+                        modelingTypesService.getMethodsByModelSchema(modelSchema)
+                            .filter(registeredMethod => !!registeredMethod)
+                            .find(registeredMethod => registeredMethod.signature.startsWith(method[1]))
+                    );
                 } else {
-                    if (!typeName) {
-                        typeName = parameters.find(parameter => parameter.name === element)?.type
-                            || ExpressionsEditorService.getTypeNameFromLanguageFunctions(element);
+                    if (!modelSchema) {
+                        modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(parameters.find(parameter => parameter.name === element))
+                            || ExpressionsEditorService.getModelSchemaFromLanguageFunctions(element, modelingTypesService);
                     } else {
-                        typeName = modelingTypesService.getType(typeName).properties?.filter(property => !!property)
-                            .find(property => property.property === element)?.type;
+                        modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(
+                            modelingTypesService.getPropertiesByModelSchema(modelSchema)
+                                .filter(property => !!property)
+                                .find(property => property.property === element)
+                        );
                     }
                 }
             }
-            if (!typeName) {
+            if (!modelSchema) {
                 break;
             }
         }
-        return typeName;
+        return modelSchema;
     }
 
-    static getTypeNameFromLanguageFunctions(element: string): string {
+    static extractItemsModelSchema(modelSchema: JSONSchemaInfoBasics): JSONSchemaInfoBasics {
+        let schema: JSONSchemaInfoBasics = modelSchema?.items;
+        if (modelSchema?.allOf) {
+            const arraySchemas = modelSchema.allOf.filter(model => model.type === 'array');
+            if (arraySchemas.length === 1) {
+                schema = arraySchemas[0].items;
+            } else if (arraySchemas.length > 0) {
+                schema = { allOf: arraySchemas.map(model => model.items) };
+            }
+        } else if (modelSchema?.anyOf) {
+            const arraySchemas = modelSchema.anyOf.filter(model => model.type === 'array');
+            if (arraySchemas.length === 1) {
+                schema = arraySchemas[0].items;
+            } else if (arraySchemas.length > 1) {
+                schema = { anyOf: arraySchemas.map(model => model.items) };
+            }
+        } else if (Array.isArray(modelSchema?.type)) {
+            schema = { type: [] };
+            modelSchema.type.forEach(model => {
+                if (model === 'array') {
+                    (schema.type as JSONSchemaInfoBasics[]).push(modelSchema.items);
+                } else if (model.type === 'array') {
+                    (schema.type as JSONSchemaInfoBasics[]).push(model.items);
+                }
+            });
+
+            if (schema.type.length === 1) {
+                schema = schema.type[0] as JSONSchemaInfoBasics;
+            }
+        }
+        return schema || {};
+    }
+
+    static getModelSchemaFromLanguageFunctions(element: string, modelingTypesService: ModelingTypesService): JSONSchemaInfoBasics {
         const endIndex = element.indexOf('(');
         const functionSignature = element.substr(0, endIndex > 0 ? endIndex : element.length);
-        return expressionLanguageMonarch.functions.find(primitiveFunction => primitiveFunction.signature === functionSignature)?.type;
+        return modelingTypesService.getModelSchemaFromEntityProperty(
+            expressionLanguageMonarch.functions.find(primitiveFunction => primitiveFunction.signature === functionSignature)
+        );
     }
 
     static getActiveParameter(model: monaco.editor.ITextModel, position: monaco.Position): number {
@@ -114,12 +159,12 @@ export class ExpressionsEditorService {
         return (activeTyping.match(/\,(?=([^"\\]*(\\.|"([^"\\]*\\.)*[^"\\]*"))*[^"]*$)/g) || []).length;
     }
 
-    static getHoverCard(typeName: string, word: string, range: any, modelingTypesService: ModelingTypesService, translationService: TranslationService): any {
+    static getHoverCard(modelSchema: JSONSchemaInfoBasics, word: string, range: any, modelingTypesService: ModelingTypesService, translationService: TranslationService): any {
         let hoverCard;
-        if (typeName) {
-            const methodHover = modelingTypesService.getType(typeName).methods?.
+        if (modelSchema) {
+            const methodHover = modelingTypesService.getMethodsByModelSchema(modelSchema).
                 filter(method => !!method).find(method => method.signature === word);
-            const propertyHover = modelingTypesService.getType(typeName).properties?.
+            const propertyHover = modelingTypesService.getPropertiesByModelSchema(modelSchema).
                 filter(property => !!property).find(property => property.property === word);
             if (methodHover) {
                 hoverCard = {
@@ -154,7 +199,7 @@ export class ExpressionsEditorService {
     * @arg highlightAllText - If there is no **hostLanguage**, then we can tell the language to colorize only the text inside ${...} (*by default*)
     * or all the text (by setting this to ***true***)
     */
-    initExpressionEditor(language: string, parameters: any[], hostLanguage: string = null, highlightAllText = false) {
+    initExpressionEditor(language: string, parameters: EntityProperty[], hostLanguage: string = null, highlightAllText = false) {
         const languages = monaco.languages.getLanguages();
         if (languages.findIndex(lang => lang.id === language) < 0) {
             monaco.languages.register({ id: language });
@@ -224,7 +269,7 @@ export class ExpressionsEditorService {
         });
     }
 
-    private registerCompletionProviderForVariables(language: string, parameters: any[], translationService: TranslationService) {
+    private registerCompletionProviderForVariables(language: string, parameters: EntityProperty[], translationService: TranslationService) {
         monaco.languages.registerCompletionItemProvider(language, {
             provideCompletionItems: (model, position) => {
                 const word = model.getWordAtPosition(position) || model.getWordUntilPosition(position);
@@ -242,7 +287,7 @@ export class ExpressionsEditorService {
                             detail: parameter.type,
                             kind: monaco.languages.CompletionItemKind.Variable,
                             insertText: parameter.name,
-                            documentation: parameter.markup || translationService.instant(parameter.description),
+                            documentation: parameter['markup'] || translationService.instant(parameter.description),
                             range: range,
                         });
                     });
@@ -252,7 +297,7 @@ export class ExpressionsEditorService {
         });
     }
 
-    private registerCompletionProviderForMethodsAndProperties(language: string, modelingTypesService: ModelingTypesService, parameters: any[]) {
+    private registerCompletionProviderForMethodsAndProperties(language: string, modelingTypesService: ModelingTypesService, parameters: EntityProperty[]) {
         monaco.languages.registerCompletionItemProvider(language, {
             triggerCharacters: ['.'],
             provideCompletionItems: (model, position) => {
@@ -266,10 +311,10 @@ export class ExpressionsEditorService {
 
                 let suggestions = [];
                 const offset = word.word.length === 0 ? 1 : 0;
-                const typeName: string = ExpressionsEditorService.getTypeName(model, position, parameters, modelingTypesService, offset);
-                if (typeName) {
-                    suggestions = suggestions.concat(modelingTypesService.getMethodsSuggestionsByType(typeName));
-                    suggestions = suggestions.concat(modelingTypesService.getPropertiesSuggestionsByType(typeName));
+                const modelSchema: JSONSchemaInfoBasics = ExpressionsEditorService.getModelSchema(model, position, parameters, modelingTypesService, offset);
+                if (modelSchema) {
+                    suggestions = suggestions.concat(modelingTypesService.getMethodsSuggestionsByModelSchema(modelSchema));
+                    suggestions = suggestions.concat(modelingTypesService.getPropertiesSuggestionsByModelSchema(modelSchema));
                 }
 
                 suggestions.map(suggestion => suggestion.range = range);
@@ -278,7 +323,7 @@ export class ExpressionsEditorService {
         });
     }
 
-    private registerSignatureProviderForMethods(language: string, modelingTypesService: ModelingTypesService, parameters: any[]) {
+    private registerSignatureProviderForMethods(language: string, modelingTypesService: ModelingTypesService, parameters: EntityProperty[]) {
         monaco.languages.registerSignatureHelpProvider(language, {
             signatureHelpTriggerCharacters: ['(', ','],
             signatureHelpRetriggerCharacters: [],
@@ -306,11 +351,11 @@ export class ExpressionsEditorService {
                     const offset = word.word.length > 0 ? activeParameter + 1 : activeParameter;
                     const activeTyping = words[words.length - 1 - offset];
 
-                    const typeName: string = ExpressionsEditorService.getTypeNameOfWord(activeTyping, parameters, modelingTypesService);
-                    if (typeName) {
+                    const modelSchema: JSONSchemaInfoBasics = ExpressionsEditorService.getModelSchemaOfWord(activeTyping, parameters, modelingTypesService);
+                    if (modelSchema) {
                         const parts = activeTyping.split('.');
                         const activeMethodSignature = parts[parts.length - 1];
-                        signatures = modelingTypesService.getSignatureHelperByType(typeName)
+                        signatures = modelingTypesService.getSignatureHelperByModelSchema(modelSchema)
                             .filter(signature => signature.method.signature.startsWith(activeMethodSignature));
                         activeSignature = signatures.findIndex(signature => signature.parameters?.length > activeParameter) || 0;
                     }
@@ -326,7 +371,7 @@ export class ExpressionsEditorService {
         });
     }
 
-    private registerHoverProviderForVariables(language: string, parameters: any[], translationService: TranslationService) {
+    private registerHoverProviderForVariables(language: string, parameters: EntityProperty[], translationService: TranslationService) {
         monaco.languages.registerHoverProvider(language, {
             provideHover: function (model, position) {
                 const word = model.getWordAtPosition(position);
@@ -346,8 +391,8 @@ export class ExpressionsEditorService {
                             contents: [{ value: `*${variable.name}*` }]
                         };
 
-                        if (variable.markup) {
-                            hoverCard.contents.push({ value: variable.markup });
+                        if (variable['markup']) {
+                            hoverCard.contents.push({ value: variable['markup'] });
                         } else {
                             if (variable.description) {
                                 hoverCard.contents.push({ value: translationService.instant(variable.description) });
@@ -397,7 +442,7 @@ export class ExpressionsEditorService {
     private registerHoverProviderForMethodsAndProperties(
         language: string,
         modelingTypesService: ModelingTypesService,
-        parameters: any[],
+        parameters: EntityProperty[],
         translationService: TranslationService
     ) {
         monaco.languages.registerHoverProvider(language, {
@@ -411,15 +456,15 @@ export class ExpressionsEditorService {
                         startColumn: word.startColumn,
                         endColumn: word.endColumn
                     };
-                    const typeName: string = ExpressionsEditorService.getTypeName(model, position, parameters, modelingTypesService);
-                    hoverCard = ExpressionsEditorService.getHoverCard(typeName, word.word, range, modelingTypesService, translationService);
+                    const modelSchema: JSONSchemaInfoBasics = ExpressionsEditorService.getModelSchema(model, position, parameters, modelingTypesService);
+                    hoverCard = ExpressionsEditorService.getHoverCard(modelSchema, word.word, range, modelingTypesService, translationService);
                 }
                 return hoverCard;
             }
         });
     }
 
-    private getMonarchLanguageDefinition(parameters: any, hostLanguage: string, highlightAllText: boolean): monaco.languages.IMonarchLanguage {
+    private getMonarchLanguageDefinition(parameters: EntityProperty[], hostLanguage: string, highlightAllText: boolean): monaco.languages.IMonarchLanguage {
         const languageDef = { ...expressionLanguageMonarch, variables: [], defaultToken: '' };
         parameters?.forEach(parameter => {
             languageDef.variables.push(parameter.name);

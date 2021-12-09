@@ -18,6 +18,7 @@
 import { InjectionToken, Provider, Type } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
+import { JSONSchemaInfoBasics } from '../../api/types';
 
 export const MODELING_TYPES_PROVIDERS = new InjectionToken<ModelingTypeProvider[]>('modeling-types-providers');
 
@@ -33,6 +34,7 @@ export interface ModelingTypeMethodDescription {
     type: string;
     documentation?: string;
     parameters?: ModelingMethodParameter[];
+    model?: JSONSchemaInfoBasics;
 }
 
 export interface ModelingMethodParameter {
@@ -44,6 +46,7 @@ export interface ModelingTypePropertyDescription {
     property: string;
     type: string;
     documentation?: string;
+    model?: JSONSchemaInfoBasics;
 }
 
 export interface ModelingTypeSuggestion {

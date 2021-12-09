@@ -34,7 +34,7 @@ export function provideInputTypeItemHandler(type: string, implementationClass: T
         useValue: {
             type,
             primitiveType: primitiveType || type,
-            model: model || primitiveTypesSchema.$defs[type],
+            model: model || primitiveTypesSchema.$defs.primitive[type],
             implementationClass: implementationClass
         },
         multi: true

@@ -73,7 +73,7 @@ describe('ModelingJSONSchemaService', () => {
             expect(codeService.getSchema(projectSchemaUri)).toEqual({
                 $id: projectSchemaUri,
                 $defs: {
-                    primitive: { ...primitiveTypesSchema.$defs, employee: exampleJSONSchema },
+                    primitive: { ...primitiveTypesSchema.$defs.primitive, employee: exampleJSONSchema },
                     path: {
                         to: {
                             type: exampleJSONSchema

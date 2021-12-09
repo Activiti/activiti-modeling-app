@@ -763,8 +763,8 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             }
         ]
     },
-    'content-metadata': {
-        'id': 'content-metadata',
+    'content-info': {
+        'id': 'content-info',
         'methods': [
             {
                 'signature': 'equals',
@@ -844,7 +844,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             },
             {
                 'property': 'content',
-                'type': 'content-metadata'
+                'type': 'content-info'
             }
         ]
     },
@@ -925,7 +925,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             },
             {
                 'property': 'content',
-                'type': 'content-metadata'
+                'type': 'content-info'
             },
             {
                 'property': 'length',

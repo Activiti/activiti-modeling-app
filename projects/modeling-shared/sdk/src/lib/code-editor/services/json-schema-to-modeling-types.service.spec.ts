@@ -17,11 +17,12 @@
 
 import { TestBed } from '@angular/core/testing';
 import { expectedEventExtendedSchemaTypes, expectedEventSchemaTypes, expectedPrimitiveTypes, expectedRestEventSchemaTypes } from '../mocks/primitive-types.mock';
-import { JSONSchemaInfoBasics, JSONSchemaToModelingTypesService } from './json-schema-to-modeling-types.service';
+import { JSONSchemaToModelingTypesService } from './json-schema-to-modeling-types.service';
 import * as eventsSchema from '../mocks/event-schema.json';
 import * as eventsSchemaExtended from '../mocks/event-schema-extended.json';
 import * as eventData from '../mocks/event-data.json';
 import { primitiveTypesSchema } from './expression-language/primitive-types-schema';
+import { JSONSchemaInfoBasics } from '../../api/types';
 
 describe('JSONSchemaToModelingTypesService', () => {
     let service: JSONSchemaToModelingTypesService;

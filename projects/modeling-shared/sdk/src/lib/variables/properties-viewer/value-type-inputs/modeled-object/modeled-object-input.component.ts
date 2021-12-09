@@ -47,16 +47,10 @@ export class PropertiesViewerModeledObjectInputComponent implements OnChanges {
 
     ngOnChanges(): void {
         if (!this.valueInit) {
-            if (Array.isArray(this.model)) {
-                this.primitiveType = 'array';
-            } else if (typeof this.model === 'object') {
-                this.primitiveType = this.jsonService.getPrimitiveType(this.model);
-            } else {
-                this.primitiveType = 'string';
-            }
-            if (!this.primitiveType) {
-                this.init();
-            }
+            this.primitiveType = this.jsonService.getPrimitiveType(this.model || { type: 'string' });
+
+            this.init();
+
             this.valueInit = !!this.value;
         }
     }

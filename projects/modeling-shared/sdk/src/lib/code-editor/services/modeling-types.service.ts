@@ -16,7 +16,11 @@
  */
 
 import { Inject, Injectable } from '@angular/core';
+import { JSONSchemaInfoBasics } from '../../api/types';
+import { JSONSchemaToEntityPropertyService } from '../../services/json-schema-to-entity-property.service';
+import { ModelingJSONSchemaService } from '../../services/modeling-json-schema.service';
 import { UuidService } from '../../services/uuid.service';
+import { primitiveTypesSchema } from './expression-language/primitive-types-schema';
 import {
     ModelingType,
     ModelingTypeMap as ModelingTypesMap,
@@ -153,7 +157,11 @@ export class ModelingTypesService {
     private modelingTypesByProvider: ProviderModelingTypeMap = {};
     private status: string;
 
-    constructor(@Inject(MODELING_TYPES_PROVIDERS) private providers: ModelingTypeProvider[], private uuidService: UuidService) {
+    constructor(
+        @Inject(MODELING_TYPES_PROVIDERS) private providers: ModelingTypeProvider[],
+        private uuidService: UuidService,
+        private modelingJSONSchemaService: ModelingJSONSchemaService,
+        private jSONSchemaToEntityPropertyService: JSONSchemaToEntityPropertyService) {
         this.providers.forEach(provider => {
             provider.modelingTypesUpdated$.subscribe(typesMap => {
                 this.updateProviderAndStatus(provider, typesMap);
@@ -178,9 +186,69 @@ export class ModelingTypesService {
         return this.getModelingTypes()[typeName];
     }
 
+    getMethodsByModelSchema(modelSchema: JSONSchemaInfoBasics): ModelingTypeMethodDescription[] {
+        const typeName = this.modelingJSONSchemaService.getPrimitiveType(modelSchema);
+        let methods: ModelingTypeMethodDescription[] = [];
+        if (Array.isArray(typeName)) {
+            typeName.forEach(type => {
+                this.getModelingTypes()[type].methods.forEach(method => {
+                    if (methods.findIndex(element => this.methodsEquality(element, method)) === -1) {
+                        methods.push(method);
+                    }
+                });
+            });
+        } else {
+            methods = [...(this.getModelingTypes()[typeName].methods || [])] ;
+        }
+        return methods;
+    }
+
+    private methodsEquality(method1: ModelingTypeMethodDescription, method2: ModelingTypeMethodDescription): boolean {
+        return method1.signature === method2.signature && method1.parameters?.length === method2.parameters?.length;
+    }
+
+    getPropertiesByModelSchema(modelSchema: JSONSchemaInfoBasics): ModelingTypePropertyDescription[] {
+        const flattenedModelSchema = this.modelingJSONSchemaService.flatSchemaReference(modelSchema);
+        const properties = [];
+
+        if (flattenedModelSchema.properties) {
+            this.jSONSchemaToEntityPropertyService.getEntityPropertiesFromJSONSchema(flattenedModelSchema).forEach(property => properties.push({
+                type: property.type,
+                property: property.name,
+                documentation: property.description,
+                model: property.model
+            }));
+        }
+
+        if (flattenedModelSchema.allOf) {
+            flattenedModelSchema.allOf.forEach(model => this.getPropertiesByModelSchema(model).forEach(property => properties.push(property)));
+        } else if (flattenedModelSchema.anyOf) {
+            flattenedModelSchema.anyOf.forEach(model => this.getPropertiesByModelSchema(model).forEach(property => properties.push(property)));
+        } else if (Array.isArray(flattenedModelSchema.type)) {
+            flattenedModelSchema.type.forEach(model => {
+                if (typeof model !== 'string') {
+                    this.getPropertiesByModelSchema(model).forEach(property => properties.push(property));
+                }
+            });
+        } else {
+            const typeName = this.modelingJSONSchemaService.getPrimitiveType(modelSchema);
+            if (Array.isArray(typeName)) {
+                typeName.forEach(type => this.getType(type).properties?.forEach(property => properties.push(property)));
+            } else {
+                this.getType(typeName).properties?.forEach(property => properties.push(property));
+            }
+        }
+
+        return properties;
+    }
+
     getMethodsSuggestionsByType(typeName: string): ModelingTypeSuggestion[] {
         const registeredType = this.getType(typeName);
         return createMemoizedMethodSuggestions(registeredType, this.status);
+    }
+
+    getMethodsSuggestionsByModelSchema(modelSchema: JSONSchemaInfoBasics): ModelingTypeSuggestion[] {
+        return this.getMethodsByModelSchema(modelSchema).map(method => getMethodSuggestion(method));
     }
 
     getPropertiesSuggestionsByType(typeName: string): ModelingTypeSuggestion[] {
@@ -188,12 +256,40 @@ export class ModelingTypesService {
         return createMemoizedPropertySuggestions(registeredType, this.status);
     }
 
+    getPropertiesSuggestionsByModelSchema(modelSchema: JSONSchemaInfoBasics): ModelingTypeSuggestion[] {
+        return this.getPropertiesByModelSchema(modelSchema).map(property => getPropertySuggestion(property));
+    }
+
     getSignatureHelperByType(typeName: string): ModelingTypeSignatureHelper[] {
         const registeredType = this.getType(typeName);
         return createMemoizedSignatureHelpers(registeredType, this.status);
     }
 
+    getSignatureHelperByModelSchema(modelSchema: JSONSchemaInfoBasics): ModelingTypeSignatureHelper[] {
+        const methods = this.getMethodsByModelSchema(modelSchema);
+
+        const signatures = [];
+
+        methods.filter(method => !!method).forEach(method => signatures.push({
+            label: getMethodLabel(method),
+            documentation: method.documentation,
+            parameters: method.parameters,
+            method: method
+        }));
+
+        return signatures;
+    }
+
     getFunctionsSuggestions(functions: ModelingTypeMethodDescription[]): ModelingTypeSuggestion[] {
         return createMemoizedFunctionsSuggestions(functions);
+    }
+
+    getModelSchemaFromEntityProperty(property: { type: string, model?: JSONSchemaInfoBasics }): JSONSchemaInfoBasics {
+        if (property) {
+            const modelSchema = property.model || primitiveTypesSchema.$defs.primitive[property.type] || {};
+            return this.modelingJSONSchemaService.flatSchemaReference(modelSchema);
+        } else {
+            return {};
+        }
     }
 }

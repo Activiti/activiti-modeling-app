@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { JSONRef, JSONSchemaInfoBasics, JSONSchemaPropertyBasics } from '../../api/types';
+import { JSONSchemaInfoBasics, JSONSchemaPropertyBasics } from '../../api/types';
 import { arrayModelType } from './expression-language/array.model.type';
 import { dateModelType } from './expression-language/date.model.type';
 import { eventSchema } from './expression-language/event-schema';
@@ -106,7 +106,7 @@ export class JSONSchemaToModelingTypesService {
     }
 
     private addTypeFromArrayOfTypes(
-        jsonTypesArray: JSONSchemaPropertyBasics[] | JSONRef[] | JSONSchemaInfoBasics[],
+        jsonTypesArray: JSONSchemaPropertyBasics[] | JSONSchemaInfoBasics[],
         modelingTypes: ModelingTypeMap,
         typeName: string,
         originalJsonSchema: JSONSchemaInfoBasics,
@@ -156,7 +156,7 @@ export class JSONSchemaToModelingTypesService {
 
     private getModelingTypesFromArray(
         name: string,
-        jsonTypesArray: JSONSchemaPropertyBasics[] | JSONRef[] | JSONSchemaInfoBasics[],
+        jsonTypesArray: JSONSchemaPropertyBasics[] | JSONSchemaInfoBasics[],
         modelingTypes: ModelingTypeMap,
         originalJsonSchema: JSONSchemaInfoBasics,
         schemaName: string
@@ -279,7 +279,7 @@ export class JSONSchemaToModelingTypesService {
     }
 
     private getArrayCollectionType(
-        items: JSONRef[] | JSONSchemaPropertyBasics[] | JSONSchemaInfoBasics,
+        items: JSONSchemaPropertyBasics[] | JSONSchemaInfoBasics,
         modelingTypes: ModelingTypeMap,
         prefix: string,
         originalJsonSchema: JSONSchemaInfoBasics,

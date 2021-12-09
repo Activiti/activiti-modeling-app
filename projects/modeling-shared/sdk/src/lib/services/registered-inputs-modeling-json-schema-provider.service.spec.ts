@@ -46,17 +46,17 @@ describe('RegisteredInputsModelingJsonSchemaProvider', () => {
             {
                 projectId,
                 typeId: ['string'],
-                schema: primitiveTypesSchema.$defs.string
+                schema: primitiveTypesSchema.$defs.primitive.string
             },
             {
                 projectId,
                 typeId: ['integer'],
-                schema: primitiveTypesSchema.$defs.integer
+                schema: primitiveTypesSchema.$defs.primitive.integer
             },
             {
                 projectId,
                 typeId: ['boolean'],
-                schema: primitiveTypesSchema.$defs.boolean
+                schema: primitiveTypesSchema.$defs.primitive.boolean
             }
         ]);
     });

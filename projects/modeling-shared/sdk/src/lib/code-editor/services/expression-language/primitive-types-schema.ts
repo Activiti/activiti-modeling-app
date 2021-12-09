@@ -20,155 +20,157 @@ export const primitiveTypesSchema = {
     'description': 'A schema that validates the minimum requirements for validation output',
     'anyOf': [
         {
-            '$ref': '#/$defs/boolean'
+            '$ref': '#/$defs/primitive/boolean'
         },
         {
-            '$ref': '#/$defs/integer'
+            '$ref': '#/$defs/primitive/integer'
         },
         {
-            '$ref': '#/$defs/string'
+            '$ref': '#/$defs/primitive/string'
         },
         {
-            '$ref': '#/$defs/json'
+            '$ref': '#/$defs/primitive/json'
         },
         {
-            '$ref': '#/$defs/date'
+            '$ref': '#/$defs/primitive/date'
         },
         {
-            '$ref': '#/$defs/datetime'
+            '$ref': '#/$defs/primitive/datetime'
         },
         {
-            '$ref': '#/$defs/file'
+            '$ref': '#/$defs/primitive/file'
         },
         {
-            '$ref': '#/$defs/folder'
+            '$ref': '#/$defs/primitive/folder'
         },
         {
-            '$ref': '#/$defs/null'
+            '$ref': '#/$defs/primitive/null'
         },
         {
-            '$ref': '#/$defs/string-array'
+            '$ref': '#/$defs/primitive/string-array'
         },
         {
-            '$ref': '#/$defs/array'
+            '$ref': '#/$defs/primitive/array'
         }
     ],
     '$defs': {
-        'boolean': {
-            'type': 'boolean'
-        },
-        'integer': {
-            'type': 'integer'
-        },
-        'string': {
-            'type': 'string'
-        },
-        'json': {
-            'type': 'object',
-            'additionalProperties': true
-        },
-        'date': {
-            'type': 'string',
-            'pattern': '^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$'
-        },
-        'datetime': {
-            'type': 'string',
-            'pattern': '^((19|20)[0-9][0-9])[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])[T]([01][0-9]|[2][0-3])[:]([0-5][0-9])[:]([0-5][0-9])([+|-]([01][0-9]|[2][0-3])[:]([0-5][0-9])){0,1}$'
-        },
-        'node': {
-            'type': 'object',
-            'additionalProperties': true,
-            'properties': {
-                'id': {
-                    'type': 'string',
-                    'description': 'Node identifier'
-                },
-                'name': {
-                    'type': 'string',
-                    'description': 'Node name'
+        'primitive': {
+            'boolean': {
+                'type': 'boolean'
+            },
+            'integer': {
+                'type': 'integer'
+            },
+            'string': {
+                'type': 'string'
+            },
+            'json': {
+                'type': 'object',
+                'additionalProperties': true
+            },
+            'date': {
+                'type': 'string',
+                'pattern': '^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$'
+            },
+            'datetime': {
+                'type': 'string',
+                'pattern': '^((19|20)[0-9][0-9])[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])[T]([01][0-9]|[2][0-3])[:]([0-5][0-9])[:]([0-5][0-9])([+|-]([01][0-9]|[2][0-3])[:]([0-5][0-9])){0,1}$'
+            },
+            'node': {
+                'type': 'object',
+                'additionalProperties': true,
+                'properties': {
+                    'id': {
+                        'type': 'string',
+                        'description': 'Node identifier'
+                    },
+                    'name': {
+                        'type': 'string',
+                        'description': 'Node name'
+                    }
                 }
-            }
-        },
-        'node-array': {
-            'type': 'array',
-            'items': {
-                '$ref': '#/$defs/node'
-            }
-        },
-        'content': {
-            'type': 'object',
-            'additionalProperties': false,
-            'properties': {
-                'id': {
-                    'type': 'string',
-                    'description': 'Node identifier'
-                },
-                'name': {
-                    'type': 'string',
-                    'description': 'Node name'
-                },
-                'uri': {
-                    'type': 'string',
-                    'description': 'Node URI'
-                },
-                'content': {
-                    '$ref': '#/$defs/content-metadata'
+            },
+            'node-array': {
+                'type': 'array',
+                'items': {
+                    '$ref': '#/$defs/primitive/node'
                 }
-            }
-        },
-        'content-metadata': {
-            'type': 'object',
-            'additionalProperties': false,
-            'properties': {
-                'sizeInBytes': {
-                    'type': 'integer',
-                    'description': 'Node size in bytes'
-                },
-                'mimeType': {
-                    'type': 'string',
-                    'description': 'Node mime type'
+            },
+            'content': {
+                'type': 'object',
+                'additionalProperties': false,
+                'properties': {
+                    'id': {
+                        'type': 'string',
+                        'description': 'Node identifier'
+                    },
+                    'name': {
+                        'type': 'string',
+                        'description': 'Node name'
+                    },
+                    'uri': {
+                        'type': 'string',
+                        'description': 'Node URI'
+                    },
+                    'content': {
+                        '$ref': '#/$defs/primitive/content-info'
+                    }
                 }
-            }
-        },
-        'content-array': {
-            'type': 'array',
-            'items': {
-                '$ref': '#/$defs/content'
-            }
-        },
-        'file': {
-            'type': [
-                {
-                    '$ref': '#/$defs/content'
-                },
-                {
-                    '$ref': '#/$defs/content-array'
+            },
+            'content-info': {
+                'type': 'object',
+                'additionalProperties': false,
+                'properties': {
+                    'sizeInBytes': {
+                        'type': 'integer',
+                        'description': 'Node size in bytes'
+                    },
+                    'mimeType': {
+                        'type': 'string',
+                        'description': 'Node mime type'
+                    }
                 }
-            ]
-        },
-        'folder': {
-            'type': [
-                {
-                    '$ref': '#/$defs/node'
-                },
-                {
-                    '$ref': '#/$defs/node-array'
+            },
+            'content-array': {
+                'type': 'array',
+                'items': {
+                    '$ref': '#/$defs/primitive/content'
                 }
-            ]
-        },
-        'null': {
-            'type': 'null'
-        },
-        'string-array': {
-            'type': 'array',
-            'items': {
-                '$ref': '#/$defs/string'
-            }
-        },
-        'array': {
-            'type': 'array',
-            'items': {
-                '$ref': '#/$defs/json'
+            },
+            'file': {
+                'type': [
+                    {
+                        '$ref': '#/$defs/primitive/content'
+                    },
+                    {
+                        '$ref': '#/$defs/primitive/content-array'
+                    }
+                ]
+            },
+            'folder': {
+                'type': [
+                    {
+                        '$ref': '#/$defs/primitive/node'
+                    },
+                    {
+                        '$ref': '#/$defs/primitive/node-array'
+                    }
+                ]
+            },
+            'null': {
+                'type': 'null'
+            },
+            'string-array': {
+                'type': 'array',
+                'items': {
+                    '$ref': '#/$defs/primitive/string'
+                }
+            },
+            'array': {
+                'type': 'array',
+                'items': {
+                    '$ref': '#/$defs/primitive/json'
+                }
             }
         }
     }

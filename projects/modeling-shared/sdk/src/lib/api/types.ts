@@ -622,17 +622,13 @@ export interface TriggerParameter {
     value?: any;
 }
 
-export interface JSONRef {
-    $ref: string;
-}
-
 export interface JSONSchemaInfoBasics {
     $id?: string;
-    anyOf?: JSONSchemaPropertyBasics[] | JSONRef[] | JSONSchemaInfoBasics[];
-    allOf?: JSONSchemaPropertyBasics[] | JSONRef[] | JSONSchemaInfoBasics[];
-    type?: string | string[] | JSONRef[];
+    anyOf?: JSONSchemaInfoBasics[];
+    allOf?: JSONSchemaInfoBasics[];
+    type?: string | string[] | JSONSchemaInfoBasics[];
     properties?: JSONSchemaPropertyBasics;
-    items?: JSONRef[] | JSONSchemaPropertyBasics[] | JSONSchemaInfoBasics;
+    items?: JSONSchemaInfoBasics;
     description?: string;
     $comment?: string;
     $ref?: string;

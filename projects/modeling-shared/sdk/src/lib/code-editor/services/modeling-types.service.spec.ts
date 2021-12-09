@@ -22,6 +22,9 @@ import { expectedArrayMethodSuggestions, expectedArrayPropertiesSuggestions, exp
 import { ModelingTypeSignatureHelper, provideModelingTypeProvider } from './modeling-type-provider.service';
 import { ModelingTypesService } from './modeling-types.service';
 import { PrimitiveModelingTypesService } from './primitive-modeling-types.service';
+import { INPUT_TYPE_ITEM_HANDLER } from '../../variables/properties-viewer/value-type-inputs/value-type-inputs';
+import { provideModelingJsonSchemaProvider } from '../../services/modeling-json-schema-provider.service';
+import { RegisteredInputsModelingJsonSchemaProvider } from '../../services/registered-inputs-modeling-json-schema-provider.service';
 
 describe('ModelingTypesService', () => {
     let service: ModelingTypesService;
@@ -44,7 +47,9 @@ describe('ModelingTypesService', () => {
                     }
                 },
                 ModelingTypesService,
-                provideModelingTypeProvider(PrimitiveModelingTypesService)
+                provideModelingTypeProvider(PrimitiveModelingTypesService),
+                { provide: INPUT_TYPE_ITEM_HANDLER, useValue: [] },
+                provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
             ]
         });
 
