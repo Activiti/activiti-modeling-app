@@ -109,7 +109,9 @@ export const XML_NAME_ATTRIBUTE = 'name';
 export const XML_BPMNDI_PLANE_TAG = 'bpmndi:BPMNPlane';
 export const XML_BPMNDI_PLANE_ELEMENT_ATTRIBUTE = 'bpmnElement';
 export const XML_DEFINITIONS_TAG = 'bpmn2:definitions';
-
+export const XML_COLLABORATION_TAG = 'bpmn2:collaboration';
+export const XML_PARTICIPANT_TAG = 'bpmn2:participant';
+export const XML_PROCESS_REFERENCE_ATTR = 'processRef';
 @Injectable()
 export class ProcessEditorEffects {
 
@@ -477,14 +479,32 @@ export class ProcessEditorEffects {
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(sourceContent, PROCESS_CONTENT_TYPE);
         this.updateProcessKeyId(xmlDoc, processKeyId);
+        this.updateProcessPool(xmlDoc, processKeyId, name);
         this.updateProcessName(xmlDoc, name);
         this.updateProcessDocumentation(xmlDoc, documentation);
         return xmlDoc.documentElement.outerHTML;
     }
 
+    private getCollaborationId(xmlDoc: Document): string {
+        return xmlDoc.getElementsByTagName(XML_COLLABORATION_TAG)[0]?.id;
+    }
+
+    private updateProcessPool(xmlDoc: Document, processKeyId: string, name: string) {
+        if (this.getCollaborationId(xmlDoc)) {
+            Array.from(xmlDoc.getElementsByTagName(XML_PARTICIPANT_TAG)).forEach( item => {
+                if (item.getAttribute(XML_PROCESS_REFERENCE_ATTR)) {
+                    item.setAttribute(XML_PROCESS_REFERENCE_ATTR, processKeyId);
+                    item.setAttribute(XML_NAME_ATTRIBUTE, name);
+                }
+            });
+        }
+    }
+
     private updateProcessKeyId(xmlDoc: Document, processKeyId: string) {
         xmlDoc.getElementsByTagName(XML_PROCESS_TAG)[0].id = processKeyId;
-        xmlDoc.getElementsByTagName(XML_BPMNDI_PLANE_TAG)[0].setAttribute(XML_BPMNDI_PLANE_ELEMENT_ATTRIBUTE, processKeyId);
+        if (this.getCollaborationId(xmlDoc) !== xmlDoc.getElementsByTagName(XML_BPMNDI_PLANE_TAG)[0].getAttribute(XML_BPMNDI_PLANE_ELEMENT_ATTRIBUTE)) {
+            xmlDoc.getElementsByTagName(XML_BPMNDI_PLANE_TAG)[0].setAttribute(XML_BPMNDI_PLANE_ELEMENT_ATTRIBUTE, processKeyId);
+        }
     }
 
     private updateProcessName(xmlDoc: Document, name: string) {

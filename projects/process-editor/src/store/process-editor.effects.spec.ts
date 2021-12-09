@@ -69,6 +69,7 @@ import { ProcessEntitiesState } from './process-entities.state';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
 import { TranslateModule } from '@ngx-translate/core';
 import { SelectedProcessElement } from './process-editor.state';
+import { mockOpenSaveAsDialog, mockProcessPoolSaveAsAttemptDialog, mockProcessSaveAsAttemptDialog, mockXMLProcessPool } from './process-editor.effects.mock';
 
 describe('ProcessEditorEffects', () => {
     let effects: ProcessEditorEffects;
@@ -446,50 +447,6 @@ describe('ProcessEditorEffects', () => {
         let openSaveAsDialogPayload: SaveAsDialogPayload;
         let saveAsProcess: SaveAsDialogPayload;
 
-        const mockOpenSaveAsDialog: SaveAsDialogPayload = {
-            name: 'test-name',
-            description: 'test-description',
-            sourceContent: 'content'
-        };
-
-        // tslint:disable-next-line
-        // cSpell:disable
-        const mockXMLProcess = `<?xml version="1.0" encoding="UTF-8"?>
-        <bpmn2:definitions name="process-test" id="model-fd525131-8580-4b28-98fd-484bde7c3ff1" xmlns:activiti="http://activiti.org/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" targetNamespace="http://bpmn.io/schema/bpmn">
-            <bpmn2:process id="Process_YXLPKi8G8" isExecutable="true" name="process-test">
-                <bpmn2:documentation></bpmn2:documentation>
-                <bpmn2:startEvent id="Event_1" />
-            </bpmn2:process>
-            <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-                <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_YXLPKi8G8">
-                    <bpmndi:BPMNShape id="_BPMNShape_Event_2" bpmnElement="Event_1">
-                        <dc:Bounds height="36.0" width="36.0" x="412.0" y="240.0" />
-                    </bpmndi:BPMNShape>
-                </bpmndi:BPMNPlane>
-            </bpmndi:BPMNDiagram>
-        </bpmn2:definitions>`;
-        /* cSpell:enable */
-
-        const mockProcessSaveAsAttemptDialog: SaveAsDialogPayload = {
-            name: 'test-name',
-            description: 'test-description',
-            sourceContent: mockXMLProcess,
-            sourceExtensions: {
-                'Process_ruTEr0CHz': {
-                    'constants': {},
-                    'mappings': {},
-                    'properties': {},
-                    'assignments': {
-                        'UserTask_191ib1o': {
-                            'type': 'static',
-                            'assignment': 'assignee',
-                            'id': 'UserTask_191ib1o'
-                        }
-                    }
-                }
-            }
-        };
-
         beforeEach(() => {
             openSaveAsDialogPayload = <SaveAsDialogPayload>mockOpenSaveAsDialog;
             process = <Process>mockProcessModel;
@@ -513,6 +470,22 @@ describe('ProcessEditorEffects', () => {
         });
 
         it('should call the save as process with the proper parameters', () => {
+            processEditorService.create = jest.fn().mockReturnValue(of(process));
+            spyOn(processEditorService, 'update');
+            actions$ = hot('a', { a: new SaveAsProcessAttemptAction(saveAsProcess)});
+
+            effects.saveAsProcessEffect.subscribe(() => {});
+            getTestScheduler().flush();
+
+            const expectSaveAsPayload = {name: 'test-name', description: 'test-description'};
+
+            expect(processEditorService.create).toHaveBeenCalledWith(expectSaveAsPayload, 'test1');
+            expect(processEditorService.update).toHaveBeenCalledWith('id1', process, saveAsProcess.sourceContent, 'test1');
+        });
+
+        it('should call the save as process with the proper parameters for process with pool', () => {
+            saveAsProcess = <SaveAsDialogPayload>mockProcessPoolSaveAsAttemptDialog;
+
             processEditorService.create = jest.fn().mockReturnValue(of(process));
             spyOn(processEditorService, 'update');
             actions$ = hot('a', { a: new SaveAsProcessAttemptAction(saveAsProcess)});
