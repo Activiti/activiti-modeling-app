@@ -29,8 +29,9 @@ export type SCRIPT_TYPE = 'script';
 export type TRIGGER_TYPE = 'trigger';
 export type FORM_WIDGET_TYPE = 'custom-form-widget';
 export type DATA_TYPE = 'data';
+export type AUTHENTICATION_TYPE = 'authentication';
 export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE | TRIGGER_TYPE | CUSTOM_MODEL_TYPE
-    | FORM_WIDGET_TYPE | DATA_TYPE;
+    | FORM_WIDGET_TYPE | DATA_TYPE | AUTHENTICATION_TYPE;
 
 export const PROJECT: PROJECT_TYPE = 'project';
 export const CUSTOM_MODEL: CUSTOM_MODEL_TYPE = 'model';
@@ -44,6 +45,7 @@ export const SCRIPT: SCRIPT_TYPE = 'script';
 export const TRIGGER: TRIGGER_TYPE = 'trigger';
 export const FORM_WIDGET: FORM_WIDGET_TYPE = 'custom-form-widget';
 export const DATA: DATA_TYPE = 'data';
+export const AUTHENTICATION: AUTHENTICATION_TYPE = 'authentication';
 
 export interface Project {
     type: PROJECT_TYPE;
@@ -600,6 +602,10 @@ export interface WidgetContent {
 export interface Widget extends Model {
     type: FORM_WIDGET_TYPE;
     extensions: WidgetContent;
+}
+
+export interface Authentication extends Model {
+    type: AUTHENTICATION_TYPE;
 }
 
 export interface TriggerFeature {

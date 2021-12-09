@@ -172,7 +172,8 @@
                     "builder": "@nrwl/jest:jest",
                     "options": {
                         "jestConfig": "projects/modeling-shared/sdk/jest.config.js",
-                        "tsConfig": "projects/modeling-shared/sdk/tsconfig.spec.json"
+                        "tsConfig": "projects/modeling-shared/sdk/tsconfig.spec.json",
+                        "runInBand": true
                     }
                 },
                 "lint": {
@@ -201,7 +202,8 @@
                     "builder": "@nrwl/jest:jest",
                     "options": {
                         "jestConfig": "projects/connector-editor/jest.config.js",
-                        "tsConfig": "projects/connector-editor/tsconfig.spec.json"
+                        "tsConfig": "projects/connector-editor/tsconfig.spec.json",
+                        "runInBand": true
                     }
                 },
                 "lint": {
@@ -230,7 +232,8 @@
                     "builder": "@nrwl/jest:jest",
                     "options": {
                         "jestConfig": "projects/dashboard/jest.config.js",
-                        "tsConfig": "projects/dashboard/tsconfig.spec.json"
+                        "tsConfig": "projects/dashboard/tsconfig.spec.json",
+                        "runInBand": true
                     }
                 },
                 "lint": {
@@ -259,7 +262,8 @@
                     "builder": "@nrwl/jest:jest",
                     "options": {
                         "jestConfig": "projects/project-editor/jest.config.js",
-                        "tsConfig": "projects/project-editor/tsconfig.spec.json"
+                        "tsConfig": "projects/project-editor/tsconfig.spec.json",
+                        "runInBand": true
                     }
                 },
                 "lint": {
@@ -288,7 +292,8 @@
                     "builder": "@nrwl/jest:jest",
                     "options": {
                         "jestConfig": "projects/process-editor/jest.config.js",
-                        "tsConfig": "projects/process-editor/tsconfig.spec.json"
+                        "tsConfig": "projects/process-editor/tsconfig.spec.json",
+                        "runInBand": true
                     }
                 },
                 "lint": {
@@ -316,7 +321,8 @@
                 "test": {
                     "builder": "@nrwl/jest:jest",
                     "options": {
-                        "jestConfig": "projects/adf-candidates/jest.config.js"
+                        "jestConfig": "projects/adf-candidates/jest.config.js",
+                        "runInBand": true
                     }
                 },
                 "lint": {
@@ -338,7 +344,8 @@
                 "test": {
                     "builder": "@nrwl/jest:jest",
                     "options": {
-                        "jestConfig": "projects/app-shell/jest.config.js"
+                        "jestConfig": "projects/app-shell/jest.config.js",
+                        "runInBand": true
                     }
                 },
                 "lint": {
