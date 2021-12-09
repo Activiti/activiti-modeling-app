@@ -37,7 +37,7 @@ import { INPUT_TYPE_ITEM_HANDLER, InputTypeItem } from './value-type-inputs/valu
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { ElementVariable, JSONSchemaInfoBasics } from '../../api/types';
-import { PropertiesViewerStringInputComponent } from './value-type-inputs/string-input.component';
+import { PropertiesViewerStringInputComponent } from './value-type-inputs/string-input/string-input.component';
 
 @Component({
     template: '<template #valueTypeInput></template>',
@@ -152,12 +152,12 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
             if (this.type === 'json' && typeof (value) === 'object') {
                 value = JSON.stringify(value, null, 4);
             }
-            if (value !== this.valueTypeInputRef.instance.value && this.valueTypeInputRef.instance.ngOnChanges) {
-                this.valueTypeInputRef.instance.value = value;
-                this.valueTypeInputRef.instance.ngOnChanges(value);
-            } else {
-                this.valueTypeInputRef.instance.value = value;
-            }
+        }
+
+        this.valueTypeInputRef.instance.value = value;
+
+        if (this.valueTypeInputRef.instance.ngOnChanges) {
+            this.valueTypeInputRef.instance.ngOnChanges(value);
         }
 
         this.valueTypeInputRef.instance.value = value;

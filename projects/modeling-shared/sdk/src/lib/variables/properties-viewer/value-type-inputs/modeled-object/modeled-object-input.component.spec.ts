@@ -27,7 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { JSONSchemaToEntityPropertyService } from '../../../../services/json-schema-to-entity-property.service';
-import { PropertiesViewerStringInputComponent } from '../string-input.component';
+import { PropertiesViewerStringInputComponent } from '../string-input/string-input.component';
 import { ModelingJSONSchemaService } from '../../../../services/modeling-json-schema.service';
 import { CodeEditorService } from '../../../../code-editor/services/code-editor-service.service';
 import { provideInputTypeItemHandler } from '../value-type-inputs';

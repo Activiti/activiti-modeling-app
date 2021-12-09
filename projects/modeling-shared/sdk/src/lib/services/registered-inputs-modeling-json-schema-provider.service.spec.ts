@@ -17,8 +17,8 @@
 import { TestBed } from '@angular/core/testing';
 import { primitiveTypesSchema } from '../code-editor/services/expression-language/primitive-types-schema';
 import { PropertiesViewerBooleanInputComponent } from '../variables/properties-viewer/value-type-inputs/boolean-input.component';
-import { PropertiesViewerIntegerInputComponent } from '../variables/properties-viewer/value-type-inputs/integer-input.component';
-import { PropertiesViewerStringInputComponent } from '../variables/properties-viewer/value-type-inputs/string-input.component';
+import { PropertiesViewerIntegerInputComponent } from '../variables/properties-viewer/value-type-inputs/integer-input/integer-input.component';
+import { PropertiesViewerStringInputComponent } from '../variables/properties-viewer/value-type-inputs/string-input/string-input.component';
 import { provideInputTypeItemHandler } from '../variables/properties-viewer/value-type-inputs/value-type-inputs';
 import { provideModelingJsonSchemaProvider } from './modeling-json-schema-provider.service';
 import { RegisteredInputsModelingJsonSchemaProvider } from './registered-inputs-modeling-json-schema-provider.service';

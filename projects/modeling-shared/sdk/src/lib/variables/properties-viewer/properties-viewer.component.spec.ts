@@ -302,7 +302,7 @@ describe('PropertiesViewerComponent', () => {
         deleteButton.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        expect(addButton.getAttribute('disabled')).toBe(null);
+        expect(addButton.getAttribute('disabled')).toBe('true');
     });
 
     it('should call applyFilter on filterValue change', async () => {
@@ -311,7 +311,7 @@ describe('PropertiesViewerComponent', () => {
         await fixture.whenStable();
 
         expect(component.dataSource.filter).toBe('var2');
-        expect(component.dataSource.filteredData).toEqual([{'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''}]);
+        expect(component.dataSource.filteredData).toEqual([{'id': '234', 'name': 'var2', 'type': 'string', 'required': false}]);
     });
 
     it('should filter only based on name column', async () => {

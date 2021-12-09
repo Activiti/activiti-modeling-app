@@ -1,0 +1,9 @@
+<mat-form-field [floatLabel]="useTextArea ? 'auto': 'never'">
+    <input *ngIf="!useTextArea" matInput [formControl]="validatedInput" [errorStateMatcher]="matcher" data-automation-id="variable-value"
+        [readonly]="readonly" [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate">
+
+    <textarea *ngIf="useTextArea" matInput [formControl]="validatedInput" [errorStateMatcher]="matcher" data-automation-id="variable-value"
+        [readonly]="readonly" [placeholder]="(placeholder ? placeholder : 'SDK.VALUE') | translate"></textarea>
+
+    <mat-error modelingsdk-input-error></mat-error>
+</mat-form-field>

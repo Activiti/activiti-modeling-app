@@ -19,8 +19,8 @@ import { CodeEditorService } from '../code-editor/services/code-editor-service.s
 import { JSONSchemaToEntityPropertyService } from './json-schema-to-entity-property.service';
 import { ModelingJSONSchemaService } from './modeling-json-schema.service';
 import { PropertiesViewerBooleanInputComponent } from '../variables/properties-viewer/value-type-inputs/boolean-input.component';
-import { PropertiesViewerIntegerInputComponent } from '../variables/properties-viewer/value-type-inputs/integer-input.component';
-import { PropertiesViewerStringInputComponent } from '../variables/properties-viewer/value-type-inputs/string-input.component';
+import { PropertiesViewerIntegerInputComponent } from '../variables/properties-viewer/value-type-inputs/integer-input/integer-input.component';
+import { PropertiesViewerStringInputComponent } from '../variables/properties-viewer/value-type-inputs/string-input/string-input.component';
 import { provideInputTypeItemHandler } from '../variables/properties-viewer/value-type-inputs/value-type-inputs';
 import { provideModelingJsonSchemaProvider } from './modeling-json-schema-provider.service';
 import { RegisteredInputsModelingJsonSchemaProvider } from './registered-inputs-modeling-json-schema-provider.service';

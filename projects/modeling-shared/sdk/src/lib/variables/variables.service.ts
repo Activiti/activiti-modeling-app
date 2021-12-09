@@ -15,10 +15,20 @@
  * limitations under the License.
  */
 import { Injectable, Output, EventEmitter, Inject } from '@angular/core';
-import { EntityProperties, EntityProperty } from '../../lib/api/types';
+import { AbstractControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { EntityProperties, EntityProperty, JSONSchemaInfoBasics } from '../../lib/api/types';
 import { primitive_types } from '../helpers/primitive-types';
 import { InputTypeItem, INPUT_TYPE_ITEM_HANDLER } from './properties-viewer/value-type-inputs/value-type-inputs';
 
+export function multipleOfValidator(multipleOfValue: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+        if (control.value == null || control.value.length === 0 || multipleOfValue == null || multipleOfValue === 0) {
+            return null;
+        }
+        const value = parseFloat(control.value);
+        return !isNaN(value) && value % multipleOfValue !== 0 ? { 'multipleOf': { 'multipleOf': multipleOfValue, 'actual': control.value } } : null;
+    };
+}
 @Injectable({
     providedIn: 'root',
 })
@@ -65,4 +75,51 @@ export class VariablesService {
         return variableIndex > -1;
     }
 
+    getValidatorsFromModel(model: JSONSchemaInfoBasics, required?: boolean): ValidatorFn[] {
+        const validators: ValidatorFn[] = [];
+        switch (model?.type) {
+            case 'string':
+                if (model.pattern) {
+                    validators.push(Validators.pattern(model.pattern));
+                }
+
+                if (model.minLength) {
+                    validators.push(Validators.minLength(model.minLength));
+                }
+
+                if (model.maxLength) {
+                    validators.push(Validators.maxLength(model.maxLength));
+                }
+                break;
+            case 'integer':
+                if (model.multipleOf) {
+                    validators.push(multipleOfValidator(model.multipleOf));
+                }
+
+                if (model.minimum) {
+                    validators.push(Validators.min(model.minimum));
+                }
+
+                if (model.exclusiveMinimum) {
+                    validators.push(Validators.min(model.minimum + 1));
+                }
+
+                if (model.maximum) {
+                    validators.push(Validators.max(model.maximum));
+                }
+
+                if (model.exclusiveMaximum) {
+                    validators.push(Validators.max(model.maximum - 1));
+                }
+                break;
+            default:
+                break;
+        }
+
+        if (model?.required || required) {
+            validators.push(Validators.required);
+        }
+
+        return validators;
+    }
 }

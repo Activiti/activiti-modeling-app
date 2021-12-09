@@ -22,8 +22,8 @@ import { CoreModule } from '@alfresco/adf-core';
 import { VariablesComponent } from './variables.component';
 import { PropertiesViewerComponent } from './properties-viewer/properties-viewer.component';
 import { ValueTypeInputComponent } from './properties-viewer/value-type-input.component';
-import { PropertiesViewerStringInputComponent } from './properties-viewer/value-type-inputs/string-input.component';
-import { PropertiesViewerIntegerInputComponent } from './properties-viewer/value-type-inputs/integer-input.component';
+import { PropertiesViewerStringInputComponent } from './properties-viewer/value-type-inputs/string-input/string-input.component';
+import { PropertiesViewerIntegerInputComponent } from './properties-viewer/value-type-inputs/integer-input/integer-input.component';
 import { PropertiesViewerBooleanInputComponent } from './properties-viewer/value-type-inputs/boolean-input.component';
 import { PropertiesViewerDateInputComponent } from './properties-viewer/value-type-inputs/date-input.component';
 import { PropertiesViewerJsonInputComponent } from './properties-viewer/value-type-inputs/json-input/json-input.component';
@@ -43,6 +43,7 @@ import { PropertiesViewerModeledObjectInputComponent } from './properties-viewer
 import { PropertiesViewerArrayInputComponent } from './properties-viewer/value-type-inputs/array-input/array-input.component';
 import { ArrayInputDialogComponent } from './properties-viewer/value-type-inputs/array-input/array-input-dialog/array-input-dialog.component';
 import { JsonParsePipe } from './properties-viewer/json-parse.pipe';
+import { InputErrorDirective } from './properties-viewer/input-error.directive';
 
 @NgModule({
     imports: [
@@ -71,7 +72,8 @@ import { JsonParsePipe } from './properties-viewer/json-parse.pipe';
         VariableExpressionLanguagePipe,
         VariablePrimitiveTypePipe,
         PropertiesViewerEnumInputComponent,
-        JsonParsePipe
+        JsonParsePipe,
+        InputErrorDirective
     ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),

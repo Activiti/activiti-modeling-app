@@ -31,7 +31,7 @@ import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { ArrayInputDialogComponent } from './array-input-dialog/array-input-dialog.component';
 import { VariableValuePipe } from '../../variable-value.pipe';
-import { PropertiesViewerStringInputComponent } from '../string-input.component';
+import { PropertiesViewerStringInputComponent } from '../string-input/string-input.component';
 import { provideInputTypeItemHandler } from '../value-type-inputs';
 import { JSONSchemaToEntityPropertyService } from '../../../../services/json-schema-to-entity-property.service';
 import { ModelingJSONSchemaService } from '../../../../services/modeling-json-schema.service';

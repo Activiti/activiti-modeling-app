@@ -24,8 +24,8 @@ export * from './properties-viewer/variable-primitive-type.pipe';
 export * from './properties-viewer/value-type-inputs/value-type-inputs';
 export * from './properties-viewer/json-parse.pipe';
 
-export * from './properties-viewer/value-type-inputs/integer-input.component';
-export * from './properties-viewer/value-type-inputs/string-input.component';
+export * from './properties-viewer/value-type-inputs/integer-input/integer-input.component';
+export * from './properties-viewer/value-type-inputs/string-input/string-input.component';
 export * from './properties-viewer/value-type-inputs/boolean-input.component';
 export * from './properties-viewer/value-type-inputs/date-input.component';
 export * from './properties-viewer/value-type-inputs/json-input/json-input.component';

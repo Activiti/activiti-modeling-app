@@ -14,9 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { Validators } from '@angular/forms';
 import { EntityProperty } from '../api/types';
 import { primitive_types } from '../helpers/primitive-types';
-import { VariablesService } from './variables.service';
+import { multipleOfValidator, VariablesService } from './variables.service';
 
 describe('VariablesService', () => {
     let service: VariablesService;
@@ -64,6 +65,53 @@ describe('VariablesService', () => {
 
         it('should return null as primitive type when type is null', () => {
             expect(service.getPrimitiveType(null)).toBe(null);
+        });
+    });
+
+    describe('getValidatorsFromModel', () => {
+
+        it('should return empty array when no model provided', () => {
+            let validators = service.getValidatorsFromModel(null);
+            expect(validators).toEqual([]);
+
+            validators = service.getValidatorsFromModel(undefined);
+            expect(validators).toEqual([]);
+
+            validators = service.getValidatorsFromModel({});
+            expect(validators).toEqual([]);
+        });
+
+        it('should return required validator when required provided', () => {
+            const validators = service.getValidatorsFromModel(null, true);
+            expect(validators).toEqual([Validators.required]);
+        });
+
+        it('should return validators for string', () => {
+            const model = {
+                type: 'string',
+                pattern: '[a-z0-9]+',
+                minLength: 8,
+                maxLength: 13
+            };
+
+            const expectedValidators = [Validators.pattern(model.pattern), Validators.minLength(model.minLength), Validators.maxLength(model.maxLength)];
+
+            const validators = service.getValidatorsFromModel(model);
+            expect(JSON.stringify(validators)).toContain(JSON.stringify(expectedValidators));
+        });
+
+        it('should return validators for integer', () => {
+            const model = {
+                minimum: 8,
+                maximum: 13,
+                multipleOf: 2,
+                type: 'integer'
+            };
+
+            const expectedValidators = [Validators.min(model.minimum), Validators.max(model.maximum), multipleOfValidator(model.multipleOf)];
+
+            const validators = service.getValidatorsFromModel(model);
+            expect(JSON.stringify(validators)).toContain(JSON.stringify(expectedValidators));
         });
     });
 });

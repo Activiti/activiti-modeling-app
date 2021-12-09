@@ -26,7 +26,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValueTypeInputComponent } from '../../../value-type-input.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { PropertiesViewerStringInputComponent } from '../../string-input.component';
+import { PropertiesViewerStringInputComponent } from '../../string-input/string-input.component';
 import { provideInputTypeItemHandler } from '../../value-type-inputs';
 import { CodeEditorService } from '../../../../../code-editor/services/code-editor-service.service';
 import { JSONSchemaToEntityPropertyService } from '../../../../../services/json-schema-to-entity-property.service';
