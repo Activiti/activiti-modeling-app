@@ -18,13 +18,19 @@
 import { UuidService } from '../../services/uuid.service';
 import { TestBed } from '@angular/core/testing';
 import { primitive_types } from '../../helpers/primitive-types';
-import { expectedArrayMethodSuggestions, expectedArrayPropertiesSuggestions, expectedArraySignatureHelpers, expectedFunctionsSuggestions, expectedPrimitiveTypes } from '../mocks/primitive-types.mock';
-import { ModelingTypeSignatureHelper, provideModelingTypeProvider } from './modeling-type-provider.service';
+import {
+    expectedArrayMethodSuggestions,
+    expectedArrayPropertiesSuggestions,
+    expectedArraySignatureHelpers,
+    expectedFunctionsSuggestions,
+    expectedPrimitiveTypes
+} from '../mocks/primitive-types.mock';
 import { ModelingTypesService } from './modeling-types.service';
-import { PrimitiveModelingTypesService } from './primitive-modeling-types.service';
 import { INPUT_TYPE_ITEM_HANDLER } from '../../variables/properties-viewer/value-type-inputs/value-type-inputs';
 import { provideModelingJsonSchemaProvider } from '../../services/modeling-json-schema-provider.service';
 import { RegisteredInputsModelingJsonSchemaProvider } from '../../services/registered-inputs-modeling-json-schema-provider.service';
+import { primitiveTypesSchema } from './expression-language/primitive-types-schema';
+import { ModelingTypeSignatureHelper } from './modeling-type.model';
 
 describe('ModelingTypesService', () => {
     let service: ModelingTypesService;
@@ -47,7 +53,6 @@ describe('ModelingTypesService', () => {
                     }
                 },
                 ModelingTypesService,
-                provideModelingTypeProvider(PrimitiveModelingTypesService),
                 { provide: INPUT_TYPE_ITEM_HANDLER, useValue: [] },
                 provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
             ]
@@ -56,106 +61,33 @@ describe('ModelingTypesService', () => {
         service = TestBed.inject(ModelingTypesService);
     });
 
-    describe('Memoize', () => {
-        // Use toBe to compare same object
-        it('should return memoized primitive types', () => {
-            const firstCall = service.getModelingTypes();
-            const secondCall = service.getModelingTypes();
-
-            expect(secondCall).toBe(firstCall);
-        });
-
-        it('should return memoized method suggestions', () => {
-            let firstCall = service.getMethodsSuggestionsByType('array');
-            let secondCall = service.getMethodsSuggestionsByType('array');
-
-            expect(secondCall).toBe(firstCall);
-
-            firstCall = service.getMethodsSuggestionsByType('string');
-            secondCall = service.getMethodsSuggestionsByType('date');
-
-            expect(secondCall).not.toEqual(firstCall);
-        });
-
-        it('should return memoized properties suggestions', () => {
-            let firstCall = service.getPropertiesSuggestionsByType('array');
-            let secondCall = service.getPropertiesSuggestionsByType('array');
-
-            expect(secondCall).toBe(firstCall);
-
-            firstCall = service.getPropertiesSuggestionsByType('string');
-            secondCall = service.getPropertiesSuggestionsByType('folder');
-
-            expect(secondCall).not.toEqual(firstCall);
-        });
-
-        it('should return memoized signature helpers', () => {
-            let firstCall = service.getSignatureHelperByType('array');
-            let secondCall = service.getSignatureHelperByType('array');
-
-            expect(secondCall).toBe(firstCall);
-
-            firstCall = service.getSignatureHelperByType('string');
-            secondCall = service.getSignatureHelperByType('date');
-
-            expect(secondCall).not.toEqual(firstCall);
-        });
-
-        it('should return memoized type', () => {
-            let firstCall = service.getType('array');
-            let secondCall = service.getType('array');
-
-            expect(secondCall).toBe(firstCall);
-
-            firstCall = service.getType('string');
-            secondCall = service.getType('date');
-
-            expect(secondCall).not.toEqual(firstCall);
-        });
-
-        it('should return memoized function suggestions', () => {
-            const firstCall = service.getFunctionsSuggestions(functions);
-            const secondCall = service.getFunctionsSuggestions(functions);
-
-            expect(secondCall).toBe(firstCall);
-        });
-    });
-
-    it('should return the primitive modeling types', () => {
-        const actual = service.getModelingTypes();
-
-        expect(actual).toEqual(expectedPrimitiveTypes);
-    });
-
     it('should return the methods suggestions', () => {
-        const actual = service.getMethodsSuggestionsByType('array');
+        const actual = service.getMethodsSuggestionsByModelSchema(primitiveTypesSchema.$defs.primitive['array']);
 
         expect(actual).toEqual(expectedArrayMethodSuggestions);
     });
 
     it('should return the properties suggestions', () => {
-        const actual = service.getPropertiesSuggestionsByType('array');
+        const actual = service.getPropertiesSuggestionsByModelSchema(primitiveTypesSchema.$defs.primitive['array']);
 
         expect(actual).toEqual(expectedArrayPropertiesSuggestions);
     });
 
     it('should return the signature helpers', () => {
-        const actual = service.getSignatureHelperByType('array');
+        const actual = service.getSignatureHelperByModelSchema(primitiveTypesSchema.$defs.primitive['array']);
 
         expect(actual).toEqual(expectedArraySignatureHelpers as ModelingTypeSignatureHelper[]);
     });
 
     it('should return the type', () => {
-        const actual = service.getType('array');
+        const actual = service.getRegisteredType('array');
 
         expect(actual).toEqual(expectedPrimitiveTypes.array);
     });
 
     it('should include a type definition for each primitive type of the application', () => {
-        const registeredTypes = service.getModelingTypes();
-
         primitive_types.forEach(type => {
-            expect(registeredTypes[type].id).toEqual(type);
+            expect(service.getRegisteredType(type)).toBeDefined();
         });
     });
 

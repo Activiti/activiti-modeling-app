@@ -21,6 +21,7 @@ import { JSONSchemaInfoBasics, JSONSchemaPropertyBasics } from '../api/types';
 import { getFileUriPattern } from '../code-editor/helpers/file-uri';
 import { CodeEditorService } from '../code-editor/services/code-editor-service.service';
 import { primitiveTypesSchema } from '../code-editor/services/expression-language/primitive-types-schema';
+import { primitive_types } from '../helpers/primitive-types';
 import { ModelingJsonSchemaProvider, MODELING_JSON_SCHEMA_PROVIDERS } from './modeling-json-schema-provider.service';
 
 @Injectable({
@@ -89,28 +90,32 @@ export class ModelingJSONSchemaService {
     }
 
     flatSchemaReference(schema: JSONSchemaInfoBasics): JSONSchemaInfoBasics {
+        return this.flatSchemaReferenceWithOriginalSchema(schema, schema);
+    }
+
+    private flatSchemaReferenceWithOriginalSchema(schema: JSONSchemaInfoBasics, originalSchema: JSONSchemaInfoBasics): JSONSchemaInfoBasics {
         let result = { ...schema };
 
         if (schema?.$ref) {
-            result = this.getSchemaFromReference(schema.$ref, schema);
-            return this.flatSchemaReference(result);
+            result = this.getSchemaFromReference(schema.$ref, originalSchema);
+            return this.flatSchemaReferenceWithOriginalSchema(result, originalSchema);
         }
 
         if (schema?.properties) {
             Object.keys(schema.properties).forEach(propertyName => {
-                result.properties[propertyName] = this.flatSchemaReference(schema.properties[propertyName]);
+                result.properties[propertyName] = this.flatSchemaReferenceWithOriginalSchema(schema.properties[propertyName], originalSchema);
             });
         }
 
         if (schema?.type === 'array') {
-            result.items = this.flatSchemaReference(schema.items);
+            result.items = this.flatSchemaReferenceWithOriginalSchema(schema.items, originalSchema);
         }
 
         if (schema?.type && Array.isArray(schema.type)) {
             for (let index = 0; index < schema.type.length; index++) {
                 const element = schema.type[index];
                 if (typeof element !== 'string') {
-                    (result.type as JSONSchemaInfoBasics)[index] = this.flatSchemaReference(element);
+                    (result.type as JSONSchemaInfoBasics)[index] = this.flatSchemaReferenceWithOriginalSchema(element, originalSchema);
                 }
             }
         }
@@ -118,7 +123,7 @@ export class ModelingJSONSchemaService {
         if (schema?.allOf) {
             for (let index = 0; index < schema.allOf.length; index++) {
                 const element = schema.allOf[index];
-                result.allOf[index] = this.flatSchemaReference(element);
+                result.allOf[index] = this.flatSchemaReferenceWithOriginalSchema(element, originalSchema);
 
             }
         }
@@ -126,7 +131,7 @@ export class ModelingJSONSchemaService {
         if (schema?.anyOf) {
             for (let index = 0; index < schema.anyOf.length; index++) {
                 const element = schema.anyOf[index];
-                result.anyOf[index] = this.flatSchemaReference(element);
+                result.anyOf[index] = this.flatSchemaReferenceWithOriginalSchema(element, originalSchema);
 
             }
         }
@@ -151,6 +156,13 @@ export class ModelingJSONSchemaService {
             }
         }
         return null;
+    }
+
+    getPrimitiveTypeFromModel(model: JSONSchemaInfoBasics, defaultType: string): string {
+        return primitive_types.find(type => {
+            const primitiveSchema = this.getSchemaFromReference(ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH + '/' + type);
+            return JSON.stringify(primitiveSchema) === JSON.stringify(model);
+        }) || defaultType;
     }
 
     initializeProjectSchema(projectId: string) {
@@ -197,7 +209,7 @@ export class ModelingJSONSchemaService {
                 primitiveType = accessor[accessor.length - 1];
             } else if (schema.type && schema.type !== 'object') {
                 if (!Array.isArray(schema.type)) {
-                    primitiveType = schema.type === 'number' ? 'string' : schema.type;
+                    primitiveType = schema.type === 'number' ? 'string' : this.getPrimitiveTypeFromModel(schema, schema.type);
                 } else {
                     primitiveType = (schema.type as any[]).map(type => {
                         if (typeof type === 'string') {

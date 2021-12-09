@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ModelingType } from '../modeling-type-provider.service';
+import { ModelingType } from '../modeling-type.model';
 
 export const jsonModelType: ModelingType = {
     id: 'json',

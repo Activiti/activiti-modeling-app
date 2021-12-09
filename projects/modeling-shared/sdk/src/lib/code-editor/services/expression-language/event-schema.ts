@@ -14,9 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+import { JSONSchemaInfoBasics } from '../../../api/types';
+
 /* cspell: disable */
-export const eventSchema = {
-    '$schema': 'https://json-schema.org/draft/2019-09/schema',
+export const eventSchema: JSONSchemaInfoBasics = {
     'type': 'object',
     'properties': {
         'specversion': {
@@ -32,13 +34,16 @@ export const eventSchema = {
             'type': 'string'
         },
         'time': {
-            'type': 'datetime'
+            '$ref': '#/$defs/primitive/datetime'
         },
         'dataschema': {
             'type': 'string'
         },
         'datacontenttype': {
             'type': 'string'
+        },
+        'data': {
+            'type': 'object'
         }
     },
     'required': ['specversion', 'type', 'id', 'source', 'time', 'dataschema', 'datacontenttype']

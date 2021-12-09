@@ -33,21 +33,22 @@ export class JSONSchemaToEntityPropertyService {
 
     getEntityPropertiesFromJSONSchema(
         jsonSchema: JSONSchemaInfoBasics,
-        name?: string
+        name?: string,
+        prefix = ''
     ): EntityProperty[] {
         const entityProperties: EntityProperty[] = [];
         if (typeof jsonSchema === 'object' && !('length' in jsonSchema)) {
             if (jsonSchema.anyOf) {
-                jsonSchema.anyOf.forEach(schema => entityProperties.push(this.getPrimitiveEntityProperty(schema, jsonSchema)));
+                jsonSchema.anyOf.forEach(schema => entityProperties.push(this.getPrimitiveEntityProperty(schema, jsonSchema, name, prefix)));
             } else if (jsonSchema.allOf) {
-                jsonSchema.allOf.forEach(schema => entityProperties.push(this.getPrimitiveEntityProperty(schema, jsonSchema)));
+                jsonSchema.allOf.forEach(schema => entityProperties.push(this.getPrimitiveEntityProperty(schema, jsonSchema, name, prefix)));
             } else if (jsonSchema.type) {
                 if (Array.isArray(jsonSchema.type)) {
                     jsonSchema.type.forEach(type => {
                         if (typeof type === 'string') {
-                            this.getEntityPropertiesFromJSONSchema({ type }, name).forEach(property => entityProperties.push(property));
+                            this.getEntityPropertiesFromJSONSchema({ type }, name, prefix).forEach(property => entityProperties.push(property));
                         } else {
-                            this.getEntityPropertiesFromJSONSchema(type, name).forEach(property => entityProperties.push(property));
+                            this.getEntityPropertiesFromJSONSchema(type, name, prefix).forEach(property => entityProperties.push(property));
                         }
                     });
                 } else {
@@ -55,7 +56,7 @@ export class JSONSchemaToEntityPropertyService {
                         case 'object':
                             if (jsonSchema.properties) {
                                 Object.keys(jsonSchema.properties).forEach(property => {
-                                    entityProperties.push(this.getPrimitiveEntityProperty(jsonSchema.properties[property], jsonSchema, property));
+                                    entityProperties.push(this.getPrimitiveEntityProperty(jsonSchema.properties[property], jsonSchema, property, prefix));
                                 });
                                 if (jsonSchema.required) {
                                     jsonSchema.required.forEach(requiredProperty => {
@@ -68,7 +69,7 @@ export class JSONSchemaToEntityPropertyService {
                             }
                             break;
                         default:
-                            const entityProperty = this.getPrimitiveEntityProperty(jsonSchema, jsonSchema, name);
+                            const entityProperty = this.getPrimitiveEntityProperty(jsonSchema, jsonSchema, name, prefix);
                             if (entityProperty) {
                                 entityProperties.push(entityProperty);
                             }
@@ -76,19 +77,27 @@ export class JSONSchemaToEntityPropertyService {
                     }
                 }
             } else if (jsonSchema.enum || jsonSchema.const) {
-                entityProperties.push(this.getPrimitiveEntityProperty(jsonSchema, jsonSchema, name));
+                entityProperties.push(this.getPrimitiveEntityProperty(jsonSchema, jsonSchema, name, prefix));
             } else if (jsonSchema.$ref) {
-                entityProperties.push(this.getPrimitiveEntityProperty(this.modelingJSONSchemaService.getSchemaFromReference(jsonSchema.$ref, jsonSchema), jsonSchema, name));
+                entityProperties.push(this.getPrimitiveEntityProperty(
+                    this.modelingJSONSchemaService.getSchemaFromReference(jsonSchema.$ref, jsonSchema),
+                    jsonSchema,
+                    name,
+                    prefix)
+                );
             }
         }
         return entityProperties;
     }
 
-    private getPrimitiveEntityProperty(jsonSchema: JSONSchemaInfoBasics, originalJsonSchema: JSONSchemaInfoBasics, name?: string): EntityProperty {
-        let entityProperty = this.getBasicEntityProperty(jsonSchema, name);
+    private getPrimitiveEntityProperty(jsonSchema: JSONSchemaInfoBasics, originalJsonSchema: JSONSchemaInfoBasics, name: string, prefix: string): EntityProperty {
+        let entityProperty = this.getBasicEntityProperty(jsonSchema, name, prefix);
         if (jsonSchema) {
             if (jsonSchema.type) {
                 switch (jsonSchema.type) {
+                    case 'object':
+                        entityProperty.type = 'json';
+                        break;
                     case 'number':
                         entityProperty.type = 'string';
                         break;
@@ -101,7 +110,8 @@ export class JSONSchemaToEntityPropertyService {
                 entityProperty = this.getPrimitiveEntityProperty(
                     this.modelingJSONSchemaService.getSchemaFromReference(jsonSchema.$ref, originalJsonSchema),
                     originalJsonSchema,
-                    name
+                    name,
+                    prefix
                 );
             } else if (jsonSchema.const) {
                 entityProperty.value = jsonSchema.const;
@@ -111,16 +121,19 @@ export class JSONSchemaToEntityPropertyService {
             }
         }
 
+        this.fixPrimitiveType(entityProperty);
+
         return entityProperty;
     }
 
-    private getBasicEntityProperty(jsonSchema: JSONSchemaInfoBasics, name?: string): EntityProperty {
+    private getBasicEntityProperty(jsonSchema: JSONSchemaInfoBasics, name: string, prefix: string): EntityProperty {
         if (jsonSchema) {
             const typeString = (jsonSchema.type || (jsonSchema.enum ? 'enum' : 'const')).toString();
 
             return {
                 id: name || typeString,
-                name: name || (typeString.charAt(0).toUpperCase() + typeString.toLowerCase().slice(1)),
+                name: prefix + (name || (typeString.charAt(0).toUpperCase() + typeString.toLowerCase().slice(1))),
+                label: name || (typeString.charAt(0).toUpperCase() + typeString.toLowerCase().slice(1)),
                 type: typeString,
                 description: jsonSchema.description,
                 value: jsonSchema.default,
@@ -132,5 +145,9 @@ export class JSONSchemaToEntityPropertyService {
         } else {
             return null;
         }
+    }
+
+    private fixPrimitiveType(entity: EntityProperty) {
+        entity.type = this.modelingJSONSchemaService.getPrimitiveTypeFromModel(entity?.model, entity.type);
     }
 }

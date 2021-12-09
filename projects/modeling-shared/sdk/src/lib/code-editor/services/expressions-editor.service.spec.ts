@@ -18,26 +18,20 @@
 import { TranslationMock } from '@alfresco/adf-core';
 import { JSONSchemaToEntityPropertyService } from '../../services/json-schema-to-entity-property.service';
 import { ModelingJSONSchemaService } from '../../services/modeling-json-schema.service';
-import { UuidService } from '../../services/uuid.service';
 import { CodeEditorService } from './code-editor-service.service';
 import { primitiveTypesSchema } from './expression-language/primitive-types-schema';
 import { ExpressionsEditorService } from './expressions-editor.service';
-import { JSONSchemaToModelingTypesService } from './json-schema-to-modeling-types.service';
 import { ModelingTypesService } from './modeling-types.service';
-import { PrimitiveModelingTypesService } from './primitive-modeling-types.service';
 
 describe('ExpressionsEditorService', () => {
     const translateService = new TranslationMock();
     translateService.instant = (key: string | Array<string>) => key === 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_TYPE' ? 'type' : key;
 
-    const jSONSchemaToModelingTypesService = new JSONSchemaToModelingTypesService();
-    const primitiveModelingTypesService = new PrimitiveModelingTypesService(jSONSchemaToModelingTypesService);
-    const uuidService = new UuidService();
     const codeEditorService = new CodeEditorService();
     const modelingJSONSchemaService = new ModelingJSONSchemaService(codeEditorService, [], []);
     modelingJSONSchemaService.initializeProjectSchema('test');
     const jSONSchemaToEntityPropertyService = new JSONSchemaToEntityPropertyService(modelingJSONSchemaService);
-    const modelingTypesService = new ModelingTypesService([primitiveModelingTypesService], uuidService, modelingJSONSchemaService, jSONSchemaToEntityPropertyService);
+    const modelingTypesService = new ModelingTypesService(modelingJSONSchemaService, jSONSchemaToEntityPropertyService);
 
     const codeLine = 'beginning of the line ${myFileVar[0].content.uri && myFileVar.toString().split(",", 2)[myInteger].substring(0, 5).toUpperCase()} end of the line';
     const modelMock: monaco.editor.ITextModel = {

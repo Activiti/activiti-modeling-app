@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ModelingType } from '../modeling-type-provider.service';
+import { ModelingType } from '../modeling-type.model';
 import { jsonModelType } from './json.model.type';
 
 /* cspell: disable */

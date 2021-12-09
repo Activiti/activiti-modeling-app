@@ -57,6 +57,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'string',
                     name: 'String',
+                    label: 'String',
                     type: 'string',
                     readOnly: false,
                     required: false,
@@ -77,6 +78,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'boolean',
                     name: 'Boolean',
+                    label: 'Boolean',
                     type: 'boolean',
                     readOnly: false,
                     required: false,
@@ -100,6 +102,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'array',
                     name: 'Array',
+                    label: 'Array',
                     type: 'array',
                     readOnly: false,
                     model: JSONSchema,
@@ -120,6 +123,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'enum',
                     name: 'Enum',
+                    label: 'Enum',
                     type: 'enum',
                     readOnly: false,
                     model: JSONSchema,
@@ -140,6 +144,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'const',
                     name: 'Const',
+                    label: 'Const',
                     type: 'json',
                     readOnly: true,
                     value: { a: 'b' },
@@ -192,6 +197,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'company',
                     name: 'company',
+                    label: 'company',
                     type: 'string',
                     readOnly: true,
                     value: 'Alfresco',
@@ -201,6 +207,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'domain',
                     name: 'domain',
+                    label: 'domain',
                     type: 'json',
                     readOnly: true,
                     value: 'alfresco.com',
@@ -211,6 +218,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'gender',
                     name: 'gender',
+                    label: 'gender',
                     type: 'enum',
                     readOnly: false,
                     required: false,
@@ -219,6 +227,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'employeeNumber',
                     name: 'employeeNumber',
+                    label: 'employeeNumber',
                     type: 'integer',
                     readOnly: false,
                     required: true,
@@ -227,6 +236,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'salary',
                     name: 'salary',
+                    label: 'salary',
                     type: 'string',
                     readOnly: false,
                     required: false,
@@ -235,6 +245,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'positions',
                     name: 'positions',
+                    label: 'positions',
                     type: 'array',
                     readOnly: false,
                     model: JSONSchema.properties.positions,
@@ -243,6 +254,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'disabled',
                     name: 'disabled',
+                    label: 'disabled',
                     type: 'boolean',
                     readOnly: false,
                     value: false,
@@ -264,6 +276,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'boolean',
                     name: 'Boolean',
+                    label: 'Boolean',
                     type: 'boolean',
                     readOnly: false,
                     required: false,
@@ -293,6 +306,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'boolean',
                     name: 'Boolean',
+                    label: 'Boolean',
                     type: 'boolean',
                     readOnly: false,
                     required: false,
@@ -327,6 +341,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'boolean',
                     name: 'Boolean',
+                    label: 'Boolean',
                     type: 'boolean',
                     readOnly: false,
                     required: false,
@@ -337,6 +352,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'boolean',
                     name: 'Boolean',
+                    label: 'Boolean',
                     type: 'boolean',
                     readOnly: false,
                     required: false,
@@ -371,6 +387,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'boolean',
                     name: 'Boolean',
+                    label: 'Boolean',
                     type: 'boolean',
                     readOnly: false,
                     required: false,
@@ -381,6 +398,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 {
                     id: 'boolean',
                     name: 'Boolean',
+                    label: 'Boolean',
                     type: 'boolean',
                     readOnly: false,
                     required: false,
