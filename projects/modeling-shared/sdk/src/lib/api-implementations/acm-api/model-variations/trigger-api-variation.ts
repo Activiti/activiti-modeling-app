@@ -19,7 +19,7 @@ import { Injectable } from '@angular/core';
 import { Trigger, TriggerContent, MinimalModelSummary } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
-import { TRIGGER_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
+import { formatUuid, TRIGGER_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { ModelContentSerializer } from '../model-content-serializer';
 
 @Injectable()
@@ -40,14 +40,15 @@ export class TriggerApiVariation<M extends Trigger, C extends TriggerContent> im
     }
 
     public createInitialContent(model: M): C {
-        return <C>{
+        return <C> {
+            id: formatUuid(this.contentType, model.id),
+            name: model.name,
             description: model.description
         };
     }
 
     public createSummaryPatch(model: Partial<M>, modelContent: C) {
-        const { name } = model;
-        const { description } = modelContent;
+        const { name, description } = modelContent;
         return {
             name,
             description,
