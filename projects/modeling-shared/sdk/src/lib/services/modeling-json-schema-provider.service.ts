@@ -26,6 +26,10 @@ export interface ModelingJsonSchema {
     schema: JSONSchemaInfoBasics;
 }
 
+export interface ModelsWithJsonSchemaMap<T> {
+    [id: string]: T;
+}
+
 export const MODELING_JSON_SCHEMA_PROVIDERS = new InjectionToken<ModelingJsonSchemaProvider<any>[]>('modeling-json-schema-providers');
 
 export abstract class ModelingJsonSchemaProvider<T> {
@@ -35,23 +39,23 @@ export abstract class ModelingJsonSchemaProvider<T> {
 
     abstract getProviderName(): string;
 
-    protected abstract retrieveModels(projectId: string): Observable<T[]>;
+    protected abstract retrieveModels(projectId: string): Observable<ModelsWithJsonSchemaMap<T>>;
 
-    protected abstract transformModelToJsonSchemas(projectId: string, model: T): ModelingJsonSchema[];
+    protected abstract transformModelToJsonSchemas(projectId: string, modelId: string, modelContent: T): ModelingJsonSchema[];
 
     isGlobalProvider() {
         return false;
     }
 
-    updateModelingJsonSchema(projectId: string, model: T) {
-        this.modelingJsonSchemasUpdated.next(this.transformModelToJsonSchemas(projectId, model));
+    updateModelingJsonSchema(projectId: string, modelId: string, modelContent: T) {
+        this.modelingJsonSchemasUpdated.next(this.transformModelToJsonSchemas(projectId, modelId, modelContent));
     }
 
     initializeModelingJsonSchemasForProject(projectId: string): Observable<ModelingJsonSchema[]> {
         const schemas = this.retrieveModels(projectId).pipe(
             map(models => {
                 let jsonSchemas: ModelingJsonSchema[] = [];
-                models.forEach(model => jsonSchemas = jsonSchemas.concat(this.transformModelToJsonSchemas(projectId, model)));
+                Object.keys(models).forEach(modelId => jsonSchemas = jsonSchemas.concat(this.transformModelToJsonSchemas(projectId, modelId, models[modelId])));
                 return jsonSchemas;
             })
         ).pipe(take(1));

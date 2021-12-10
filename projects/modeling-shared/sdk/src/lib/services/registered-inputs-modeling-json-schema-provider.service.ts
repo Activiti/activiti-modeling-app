@@ -17,13 +17,14 @@
 
 import { Inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { JSONSchemaInfoBasics } from '../api/types';
 import { InputTypeItem, INPUT_TYPE_ITEM_HANDLER } from '../variables/properties-viewer/value-type-inputs/value-type-inputs';
-import { ModelingJsonSchema, ModelingJsonSchemaProvider } from './modeling-json-schema-provider.service';
+import { ModelingJsonSchema, ModelingJsonSchemaProvider, ModelsWithJsonSchemaMap } from './modeling-json-schema-provider.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class RegisteredInputsModelingJsonSchemaProvider extends ModelingJsonSchemaProvider<string> {
+export class RegisteredInputsModelingJsonSchemaProvider extends ModelingJsonSchemaProvider<JSONSchemaInfoBasics> {
 
     constructor(@Inject(INPUT_TYPE_ITEM_HANDLER) private inputTypeItemHandler: InputTypeItem[]) {
         super();
@@ -37,17 +38,20 @@ export class RegisteredInputsModelingJsonSchemaProvider extends ModelingJsonSche
         return true;
     }
 
-    protected retrieveModels(projectId: string): Observable<string[]> {
-        return of(this.inputTypeItemHandler.filter(handler => !!handler.model).map(handler => handler.type));
+    protected retrieveModels(projectId: string): Observable<ModelsWithJsonSchemaMap<JSONSchemaInfoBasics>> {
+        const result: ModelsWithJsonSchemaMap<JSONSchemaInfoBasics> = {};
+        const handlersWithModel = this.inputTypeItemHandler.filter(handler => !!handler.model);
+        handlersWithModel.forEach(handler => result[handler.type] = handler.model);
+
+        return of(result);
     }
 
-    protected transformModelToJsonSchemas(projectId: string, handlerType: string): ModelingJsonSchema[] {
-        const model = this.inputTypeItemHandler.find(handler => handler.type === handlerType).model;
+    protected transformModelToJsonSchemas(projectId: string, handlerId: string, handlerModel: JSONSchemaInfoBasics): ModelingJsonSchema[] {
         return [
             {
                 projectId,
-                schema: model,
-                typeId: [handlerType]
+                schema: handlerModel,
+                typeId: [handlerId]
             }
         ];
     }
