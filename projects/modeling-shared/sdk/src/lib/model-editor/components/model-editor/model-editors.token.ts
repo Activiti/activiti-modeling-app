@@ -15,8 +15,12 @@
  * limitations under the License.
  */
 
-export * from './model-editor.module';
-export * from './commands/public-api';
-export * from './services/public-api';
-export * from './router/guards/public-api';
-export { ModelEditorProxyComponent, ModelEditorRouterData } from './components/model-editor-proxy/model-editor-proxy.component';
+import { InjectionToken, Type } from '@angular/core';
+import { MODEL_TYPE } from '../../../api/types';
+
+export interface ModelEditorType {
+    type: MODEL_TYPE;
+    componentClass: Type<any>;
+}
+
+export const MODEL_EDITORS_TOKEN = new InjectionToken<ModelEditorType[]>('model-editor-components');

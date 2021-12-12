@@ -16,7 +16,6 @@
  */
 
 export * from './common';
-export * from './unsaved-page.guard';
 export * from './utils/create-entries-names';
 export * from './shared.module';
 export * from './utils/empty-diagram';

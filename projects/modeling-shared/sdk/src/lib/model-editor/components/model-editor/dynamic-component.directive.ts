@@ -15,8 +15,9 @@
  * limitations under the License.
  */
 
-export * from './model-editor.module';
-export * from './commands/public-api';
-export * from './services/public-api';
-export * from './router/guards/public-api';
-export { ModelEditorProxyComponent, ModelEditorRouterData } from './components/model-editor-proxy/model-editor-proxy.component';
+import { Directive, ViewContainerRef } from '@angular/core';
+
+@Directive({ selector: '[modelingsdk-dynamic-component]' })
+export class DynamicComponentDirective {
+    constructor(public viewContainerRef: ViewContainerRef) { }
+}

@@ -21,10 +21,10 @@ import { CanDeactivate } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { of, Observable, zip } from 'rxjs';
 import { switchMap, tap, catchError } from 'rxjs/operators';
-import { AmaState } from '../store/app.state';
+import { AmaState } from '../../../store/app.state';
 import { DialogService, MultipleChoiceDialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
-import { AmaTitleService } from '../services/title.service';
-import { selectAppDirtyState, selectSelectedModel } from '../store/app.selectors';
+import { AmaTitleService } from '../../../services/title.service';
+import { selectAppDirtyState, selectSelectedModel } from '../../../store/app.selectors';
 
 export interface CanComponentDeactivate {
     canDeactivate: () => Observable<boolean>;

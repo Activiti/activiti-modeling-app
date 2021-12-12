@@ -15,18 +15,42 @@
  * limitations under the License.
  */
 
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ModelEditorType, MODEL_EDITORS_TOKEN } from './components/model-editor/model-editors.token';
+import { ModelEditorComponent } from './components/model-editor/model-editor.component';
+import { DynamicComponentDirective } from './components/model-editor/dynamic-component.directive';
+import { ModelLoaderGuard } from './router/guards/model-loader.guard';
+import { ModelEditorProxyComponent } from './components/model-editor-proxy/model-editor-proxy.component';
+import { UnsavedPageGuard } from './router/guards/unsaved-page.guard';
 
 @NgModule({
     imports: [
         CommonModule
     ],
     declarations: [
+        DynamicComponentDirective,
+        ModelEditorComponent,
+        ModelEditorProxyComponent
     ],
     exports: [
-        CommonModule
+        CommonModule,
+        ModelEditorComponent,
+        ModelEditorProxyComponent
     ],
-    providers: []
+    providers: [
+        UnsavedPageGuard,
+        ModelLoaderGuard
+    ]
 })
-export class ModelEditorModule {}
+export class ModelEditorModule {
+    public static forChild(modelEditorType: ModelEditorType): ModuleWithProviders<ModelEditorModule> {
+        return {
+            ngModule: ModelEditorModule,
+            providers: [
+                { provide: MODEL_EDITORS_TOKEN, useValue: modelEditorType, multi: true }
+            ]
+        };
+    }
+
+}

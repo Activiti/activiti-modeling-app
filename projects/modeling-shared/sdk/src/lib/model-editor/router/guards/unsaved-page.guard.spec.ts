@@ -23,9 +23,9 @@ import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
-import { AmaTitleService } from '../services/title.service';
-import { selectAppDirtyState } from '../store/app.selectors';
 import { CanComponentDeactivate, UnsavedPageGuard } from './unsaved-page.guard';
+import { AmaTitleService } from '../../../services/title.service';
+import { selectAppDirtyState } from '../../../store/app.selectors';
 
 class MockComponent implements CanComponentDeactivate {
   returnValue: Observable<boolean> = of(false);
