@@ -21,6 +21,7 @@ import {
     Inject,
     Input,
     OnChanges,
+    Type,
     ViewChild
 } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -57,7 +58,6 @@ export class ModelEditorComponent implements OnChanges, CanComponentDeactivate {
         }
 
         this.loadComponent();
-        this.loaded = true;
     }
 
     private destroyComponent() {
@@ -65,16 +65,27 @@ export class ModelEditorComponent implements OnChanges, CanComponentDeactivate {
     }
 
     private loadComponent() {
-        const factoryClass = this.getComponentByType(this.modelType);
-        const factory = this.resolver.resolveComponentFactory(factoryClass);
-        this.componentReference = this.content.viewContainerRef.createComponent(factory);
-        this.componentReference.instance.modelId = this.modelId;
+        const componentClass = this.getComponentByType(this.modelType);
+        if (componentClass) {
+            const componentFactory = this.resolver.resolveComponentFactory(componentClass);
+            this.componentReference = this.content.viewContainerRef.createComponent(componentFactory);
+            this.componentReference.instance.modelId = this.modelId;
+            this.loaded = true;
+        }
     }
 
-    private getComponentByType(type: string) {
-        return this.modelEditors
+    private getComponentByType(type: string): Type<any> | null | never  {
+        try {
+            return this.modelEditors
             .find(modelFetcher => modelFetcher.type === type)
             .componentClass;
+        } catch (e) {
+            if (e instanceof TypeError) {
+                console.error(`There is no registered editor for model type: ${this.modelType}`);
+                return null;
+            }
+            throw e;
+        }
     }
 
     public canDeactivate(): Observable<boolean> {
