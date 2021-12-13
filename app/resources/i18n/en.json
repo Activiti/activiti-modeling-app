@@ -101,7 +101,6 @@
                     "CONNECTOR": "Are you sure you want to download this connector?",
                     "FILE": "Are you sure you want to download this file?",
                     "SCRIPT": "Are you sure you want to download this script?",
-                    "TRIGGER": "Are you sure you want to download this Trigger?",
                     "MODEL": "Are you sure you want to download this Content Model?",
                     "FORM_WIDGET": "Are you sure you want to download this Form Widget?"
                 }

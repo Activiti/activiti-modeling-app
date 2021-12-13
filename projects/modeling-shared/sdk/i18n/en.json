@@ -3,7 +3,8 @@
         "MODEL_EDITOR": {
             "DIALOG": {
                 "CONFIRM_INVALID_MODEL_SAVE": "Are you sure you want to save this {{ modelType }}?",
-                "CONFIRM_DELETE_MODEL": "Are you sure you want to delete this {{ modelType }}?"
+                "CONFIRM_DELETE_MODEL": "Are you sure you want to delete this {{ modelType }}?",
+                "CONFIRM_DOWNLOAD_MODEL": "Are you sure you want to download this {{ modelType }}?"
             }
         },
         "SNACKBAR": {

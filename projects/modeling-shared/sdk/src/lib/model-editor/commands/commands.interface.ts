@@ -37,6 +37,9 @@ export interface ValidateActionLike {
 export interface DeleteActionLike {
     new(modelId: string);
 }
+export interface DownloadActionLike {
+    new();
+}
 export interface ModelCommand {
     execute(modelType: MODEL_TYPE, modelContentType: ContentType, modelId: string, content: string, metadata?: any): void;
 }
