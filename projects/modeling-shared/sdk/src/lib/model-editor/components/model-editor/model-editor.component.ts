@@ -23,7 +23,9 @@ import {
     OnChanges,
     ViewChild
 } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { MODEL_TYPE } from '../../../api/types';
+import { CanComponentDeactivate } from '../../router/guards/unsaved-page.guard';
 import { DynamicComponentDirective } from './dynamic-component.directive';
 import { ModelEditorType, MODEL_EDITORS_TOKEN } from './model-editors.token';
 
@@ -31,7 +33,7 @@ import { ModelEditorType, MODEL_EDITORS_TOKEN } from './model-editors.token';
     selector: 'modelingsdk-model-editor',
     template: '<ng-template modelingsdk-dynamic-component></ng-template>'
 })
-export class ModelEditorComponent implements OnChanges {
+export class ModelEditorComponent implements OnChanges, CanComponentDeactivate {
     @Input()
     modelId: string;
 
@@ -73,5 +75,9 @@ export class ModelEditorComponent implements OnChanges {
         return this.modelEditors
             .find(modelFetcher => modelFetcher.type === type)
             .componentClass;
+    }
+
+    public canDeactivate(): Observable<boolean> {
+        return this.componentReference.instance.canDeactivate?.() || of(true);
     }
 }

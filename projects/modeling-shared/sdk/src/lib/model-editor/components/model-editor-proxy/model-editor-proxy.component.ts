@@ -15,11 +15,13 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MODEL_TYPE } from '../../../api/types';
+import { CanComponentDeactivate } from '../../router/guards/unsaved-page.guard';
+import { ModelEditorComponent } from '../model-editor/model-editor.component';
 
 interface ModelEditorRouterParams {
     projectId: string;
@@ -31,17 +33,24 @@ export interface ModelEditorRouterData {
 }
 
 @Component({
-    template: `<modelingsdk-model-editor [modelId]="modelId$ | async" [modelType]="modelType$ | async"></modelingsdk-model-editor>`,
+    template: `<modelingsdk-model-editor #modelEditor [modelId]="modelId$ | async" [modelType]="modelType$ | async"></modelingsdk-model-editor>`,
     encapsulation: ViewEncapsulation.None,
 })
-export class ModelEditorProxyComponent implements OnInit {
+export class ModelEditorProxyComponent implements OnInit, CanComponentDeactivate {
     modelId$: Observable<string>;
     modelType$: Observable<MODEL_TYPE>;
+
+    @ViewChild('modelEditor')
+    private modelEditor: ModelEditorComponent & CanComponentDeactivate;
 
     constructor(private activatedroute: ActivatedRoute) {}
 
     public ngOnInit(): void {
         this.modelId$ = this.activatedroute.params.pipe(map((params: ModelEditorRouterParams) => params.modelId));
         this.modelType$ = this.activatedroute.data.pipe(map((data: ModelEditorRouterData) => data.modelType));
+    }
+
+    canDeactivate(): Observable<boolean> {
+        return this.modelEditor.canDeactivate();
     }
 }
