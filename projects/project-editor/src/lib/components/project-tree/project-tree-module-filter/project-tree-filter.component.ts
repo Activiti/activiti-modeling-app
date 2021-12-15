@@ -16,7 +16,7 @@
  */
 
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, Inject, Optional, ViewEncapsulation } from '@angular/core';
-import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction, ModelScope, Model, CONNECTOR } from '@alfresco-dbp/modeling-shared/sdk';
+import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction, ModelScope, Model, CONNECTOR, AUTHENTICATION } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { AppConfigService } from '@alfresco/adf-core';
 
@@ -86,6 +86,10 @@ export class ProjectTreeFilterComponent implements OnInit {
 
     isAllowed(type: MODEL_TYPE): boolean {
         return type !== CONNECTOR || this.isCustomConnectorsEnabled();
+    }
+
+    isUploadButtonEnabled(type: MODEL_TYPE): boolean {
+        return type !== AUTHENTICATION;
     }
 
     private isCustomConnectorsEnabled(): boolean {

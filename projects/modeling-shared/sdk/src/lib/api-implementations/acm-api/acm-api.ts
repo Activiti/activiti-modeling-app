@@ -18,6 +18,7 @@
 import { Inject, Injectable } from '@angular/core';
 import {
     AmaApi,
+    AUTHENTICATION_API_TOKEN,
     CONNECTOR_API_TOKEN,
     CONTENT_MODEL_API_TOKEN,
     DATA_API_TOKEN,
@@ -37,6 +38,8 @@ import {
     ActivitiFileContent,
     ActivitiScript,
     ActivitiScriptContent,
+    Authentication,
+    AuthenticationContent,
     Connector as ConnectorType,
     ConnectorContent,
     ContentModel,
@@ -72,5 +75,6 @@ export class ACMApi implements AmaApi {
         @Inject(TRIGGER_API_TOKEN) public trigger: ModelApiInterface<Trigger, TriggerContent>,
         @Inject(CONTENT_MODEL_API_TOKEN) public contentModel: ModelApiInterface<ContentModel, ContentModelXML>,
         @Inject(FORM_WIDGET_API_TOKEN) public  formWidget: ModelApiInterface<Widget, WidgetContent>,
+        @Inject(AUTHENTICATION_API_TOKEN) public  authentication: ModelApiInterface<Authentication, AuthenticationContent>
     ) {}
 }

@@ -39,7 +39,7 @@
             </div>
         </ng-container>
         <ama-upload-file-button
-            *ngIf="isAllowed(filter.type)"
+            *ngIf="isAllowed(filter.type) && isUploadButtonEnabled(filter.type)"
             [attr.data-automation-id]="'upload-' + filter.type"
             [projectId]="projectId" [type]="filter.type">
         </ama-upload-file-button>

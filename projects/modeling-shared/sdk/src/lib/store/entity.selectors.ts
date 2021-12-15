@@ -32,6 +32,7 @@ export const SCRIPTS_ENTITY_KEY = 'scripts';
 export const TRIGGERS_ENTITY_KEY = 'triggers';
 export const CONTENT_MODELS_ENTITY_KEY = 'projectModels';
 export const FORM_WIDGETS_ENTITY_KEY = 'formWidgets';
+export const AUTHENTICATIONS_ENTITY_KEY = 'authentications';
 
 export interface ModelEntitiesState extends EntityState<Model>  {
     loading: boolean;

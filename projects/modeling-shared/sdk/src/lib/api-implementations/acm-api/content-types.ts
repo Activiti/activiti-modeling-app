@@ -26,5 +26,6 @@ export enum ContentType {
     Script = 'SCRIPT',
     Trigger = 'TRIGGER',
     CustomFormWidget = 'CUSTOM-FORM-WIDGET',
-    Data = 'DATA'
+    Data = 'DATA',
+    Authentication = 'AUTHENTICATION'
 }

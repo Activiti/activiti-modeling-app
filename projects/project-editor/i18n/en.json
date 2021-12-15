@@ -35,7 +35,8 @@
                 "CREATE_TRIGGER": "Trigger",
                 "CREATE_PROJECT_MODEL": "Content Model",
                 "CREATE_FORM_WIDGET": "Form Widget",
-                "CREATE_DATA_MODEL": "Data Model"
+                "CREATE_DATA_MODEL": "Data Model",
+                "CREATE_AUTHENTICATION": "Authentication"
             }
         },
         "TREE": {
@@ -48,7 +49,8 @@
             "FILES": "Files",
             "SCRIPTS": "Scripts",
             "TRIGGERS": "Triggers",
-            "DATA_MODELS": "Data Models"
+            "DATA_MODELS": "Data Models",
+            "AUTHENTICATIONS": "Authentications"
         },
         "PROCESS_DIALOG": {
             "TITLE_CREATE": "Create Process",
@@ -175,6 +177,15 @@
             "DATA_MODEL_DELETED": "Data Model deleted",
             "DATA_MODEL_UPDATED": "Data Model saved"
         },
+        "AUTHENTICATION_DIALOG": {
+            "TITLE_CREATE": "Create Authentication",
+            "TITLE_UPDATE": "Update Authentication",
+            "AUTHENTICATION_NAME": "Authentication name",
+            "AUTHENTICATION_DESC": "Authentication description",
+            "AUTHENTICATION_CREATED": "Authentication created",
+            "AUTHENTICATION_DELETED": "Authentication deleted",
+            "AUTHENTICATION_UPDATED": "Authentication saved"
+        },
         "ERROR": {
             "UPLOAD_DUPLICATE_FILE": "{{modelType}} with the same name already exist",
             "UPLOAD_FILE": "We hit a problem uploading the file. Try uploading it again.",
@@ -223,6 +234,14 @@
             "UPDATE_DECISION_TABLE": {
                 "DUPLICATION": "A decision table with that name already exists",
                 "GENERAL": "We hit a problem saving the decision table. Try saving it again."
+            },
+            "CREATE_AUTHENTICATION": {
+                "DUPLICATION": "A authentication with that name already exists",
+                "GENERAL": "We hit a problem creating the authentication. Try creating it again."
+            },
+            "UPDATE_AUTHENTICATION": {
+                "DUPLICATION": "A authentication with that name already exists",
+                "GENERAL": "We hit a problem saving the authentication. Try saving it again."
             },
             "CREATE_DATA_MODEL": {
                 "DUPLICATION": "A data model with that name already exists",

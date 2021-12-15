@@ -604,6 +604,17 @@ export interface Widget extends Model {
     extensions: WidgetContent;
 }
 
+interface AuthenticationProperties {
+    authenticationType: string;
+}
+
+export interface AuthenticationContent {
+    id: string;
+    name: string;
+    authProperties: AuthenticationProperties;
+    description?: string;
+}
+
 export interface Authentication extends Model {
     type: AUTHENTICATION_TYPE;
 }
