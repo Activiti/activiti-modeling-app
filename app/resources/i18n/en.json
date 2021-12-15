@@ -87,7 +87,6 @@
                   "CONNECTOR": "Are you sure you want to copy this connector?",
                   "FILE": "Are you sure you want to copy this file?",
                   "SCRIPT": "Are you sure you want to copy this script?",
-                  "TRIGGER": "Are you sure you want to copy this Trigger?",
                   "MODEL": "Are you sure you want to copy this Content Model?",
                   "FORM_WIDGET": "Are you sure you want to copy this Form Widget?"
               },

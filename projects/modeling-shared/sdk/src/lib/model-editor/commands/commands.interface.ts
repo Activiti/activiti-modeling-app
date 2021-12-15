@@ -18,11 +18,11 @@
 import { Action } from '@ngrx/store';
 import { ContentType } from '../../api-implementations/acm-api/content-types';
 import { MODEL_TYPE } from '../../api/types';
+import { SaveAsDialogPayload } from '../../components/save-as-dialog/save-as-dialog.component';
 
 export enum BasicModelCommands {
     save = 'save',
-    /* cspell: disable-next-line */
-    saveas = 'saveas',
+    saveAs = 'saveAs',
     download = 'download',
     delete = 'delete',
     validate = 'validate'
@@ -39,6 +39,12 @@ export interface DeleteActionLike {
 }
 export interface DownloadActionLike {
     new();
+}
+export interface OpenSaveAsActionLike {
+    new(payload: SaveAsDialogPayload);
+}
+export interface SaveAsModelActionLike {
+    new(payload: SaveAsDialogPayload, navigateTo: boolean);
 }
 export interface ModelCommand {
     execute(modelType: MODEL_TYPE, modelContentType: ContentType, modelId: string, content: string, metadata?: any): void;
