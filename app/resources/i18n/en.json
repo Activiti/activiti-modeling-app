@@ -72,7 +72,6 @@
                     "DATA": "Are you sure you want to save this data object?",
                     "DECISION_TABLE": "Are you sure you want to save this decision table?",
                     "CONNECTOR": "Are you sure you want to save this connector?",
-                    "FILE": "Are you sure you want to save this file?",
                     "EMAIL_TEMPLATE": "Are you sure you want to overwrite the email template?",
                     "SCRIPT": "Are you sure you want to save this script?",
                     "MODEL": "Are you sure you want to save this Content Model?",

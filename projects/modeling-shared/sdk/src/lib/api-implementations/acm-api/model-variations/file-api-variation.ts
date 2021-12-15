@@ -28,7 +28,7 @@ export class FileApiVariation<M extends ActivitiFile, C extends ActivitiFileCont
     readonly retrieveModelAfterUpdate = true;
 
     constructor(private serializer: ModelContentSerializer<ActivitiFileContent>) {
-        serializer.register({ type: this.contentType, serialize: x => x.toString(), deserialize: x => new File[x] });
+        serializer.register({ type: this.contentType, serialize: x => x.toString(), deserialize: x => new File([x], '') });
     }
 
     public serialize(content: C): string {
