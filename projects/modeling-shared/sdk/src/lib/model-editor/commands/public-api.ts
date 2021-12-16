@@ -19,4 +19,5 @@ export * from './save-model.command';
 export * from './delete-model.command';
 export * from './download-model.command';
 export * from './save-as-model.command';
+export * from './validate-model.command';
 export * from './commands.interface';

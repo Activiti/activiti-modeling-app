@@ -32,7 +32,7 @@ export interface UpdateActionLike {
     new(payload: { modelId: string; modelContent: any, modelMetadata?: any });
 }
 export interface ValidateActionLike {
-    new(payload: { title: string; modelId: string; modelContent: any, modelMetadata?: any, action: Action });
+    new(payload: { title: string; modelId: string; modelContent: any, modelMetadata?: any, action: Action | Action[], errorAction?: Action });
 }
 export interface DeleteActionLike {
     new(modelId: string);
@@ -45,6 +45,12 @@ export interface OpenSaveAsActionLike {
 }
 export interface SaveAsModelActionLike {
     new(payload: SaveAsDialogPayload, navigateTo: boolean);
+}
+export interface SuccessActionLike {
+    new(payload: Action[]);
+}
+export interface ErrorActionLike {
+    new(message: string, params?: any);
 }
 export interface ModelCommand {
     execute(modelType: MODEL_TYPE, modelContentType: ContentType, modelId: string, content: string, metadata?: any): void;
