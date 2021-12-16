@@ -1801,4 +1801,16 @@ export const expectedFunctionsSuggestions = [
         insertTextRules: undefined,
         command: undefined,
     },
+    {
+        label: 'list(elements): array',
+        filterText: 'list',
+        kind: 0,
+        insertText: 'list(${1:elements})',
+        documentation: 'Returns a list containing an arbitrary number of elements.',
+        detail: 'array',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints'
+        },
+    }
 ];

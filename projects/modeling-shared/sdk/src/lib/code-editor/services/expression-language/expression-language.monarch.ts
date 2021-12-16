@@ -90,6 +90,17 @@ export const expressionLanguageMonarch = {
             signature: 'now',
             type: 'date',
             documentation: 'Return the current system date.'
+        },
+        {
+            signature: 'list',
+            type: 'array',
+            documentation: 'Returns a list containing an arbitrary number of elements.',
+            parameters: [
+                {
+                    label: 'elements',
+                    documentation: 'obj: the elements to be contained in the list comma-separated'
+                }
+            ]
         }
     ],
 
