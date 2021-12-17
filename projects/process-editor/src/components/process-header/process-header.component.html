@@ -8,21 +8,21 @@
     <button mat-icon-button *ngIf="isDiagramTabSelected()"
         data-automation-id="process-editor-download-svg-button"
         [title]="'PROCESS_EDITOR.SAVE_PROCESS_IMAGE' | translate"
-        (click)="onSaveProcessImage(process)">
+        (click)="onSaveProcessImage(modelMetadata)">
         <mat-icon>image</mat-icon>
     </button>
 
     <button mat-icon-button
         data-automation-id="process-editor-download-button"
         [title]="'PROCESS_EDITOR.DOWNLOAD_PROCESS' | translate"
-        (click)="onDownload(process)">
+        (click)="onDownload(modelMetadata)">
         <mat-icon>file_download</mat-icon>
     </button>
 
     <button mat-icon-button
         data-automation-id="process-editor-validate-button"
         [title]="'PROCESS_EDITOR.VALIDATE_PROCESS' | translate"
-        (click)="onValidateProcess(process)">
+        (click)="onValidateProcess(modelMetadata)">
         <mat-icon>done</mat-icon>
     </button>
 

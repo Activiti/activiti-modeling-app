@@ -17,8 +17,6 @@
 
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { ProcessLoaderGuard } from './guards/process-loader.guard';
-import { UnsavedPageGuard } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessDeactivateGuard } from './guards/process-deactivate.guard';
 import { processEditorRoutes } from './process-editor.routes';
 import { ProcessesLoaderGuard } from './guards/processes-loader.guard';
@@ -28,8 +26,6 @@ import { ProcessesLoaderGuard } from './guards/processes-loader.guard';
         RouterModule.forChild(processEditorRoutes)
     ],
     providers: [
-        UnsavedPageGuard,
-        ProcessLoaderGuard,
         ProcessesLoaderGuard,
         ProcessDeactivateGuard
     ],

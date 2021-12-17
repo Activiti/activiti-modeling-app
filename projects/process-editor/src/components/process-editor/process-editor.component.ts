@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, ViewEncapsulation, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject, OnDestroy, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { filter, map, take, tap, switchMap, catchError, takeUntil } from 'rxjs/operators';
-import { Observable, combineLatest, of, zip, Subject } from 'rxjs';
+import { filter, map, take, tap, switchMap, catchError, shareReplay } from 'rxjs/operators';
+import { Observable, combineLatest, of, Subject, concat, zip, merge } from 'rxjs';
 import {
     selectProcessCrumb,
     selectProcessLoading,
-    selectSelectedProcessDiagram,
-    selectProcessEditorSaving
+    selectProcessEditorSaving,
+    selectProcessContentById
 } from '../../store/process-editor.selectors';
 import {
     Process,
@@ -31,7 +31,6 @@ import {
     AmaState,
     selectProjectCrumb,
     ProcessContent,
-    selectSelectedProcess,
     SetAppDirtyStateAction,
     ProcessModelerService,
     ProcessModelerServiceToken,
@@ -40,35 +39,46 @@ import {
     PROCESS,
     getFileUri,
     CodeEditorPosition,
-    EntityDialogForm,
     CanComponentDeactivate,
     ModelEditorState,
-    StatusBarService
+    StatusBarService,
+    ContentType,
+    selectProcessById,
+    ModelExtensions
 } from '@alfresco-dbp/modeling-shared/sdk';
 import {
-    UpdateProcessExtensionsAction,
     ChangeProcessModelContextAction,
-    ValidateProcessAttemptAction,
-    UpdateProcessAttemptAction
+    UpdateProcessAttemptAction,
+    UpdateProcessExtensionsAction
 } from '../../store/process-editor.actions';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ProcessModelContext } from '../../store/process-editor.state';
 import { modelNameHandler } from '../../services/bpmn-js/property-handlers/model-name.handler';
 import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
-import { ActivatedRoute } from '@angular/router';
+import { ProcessCommandsService } from '../../services/commands/process-commands.service';
 
 @Component({
+    selector: 'ama-process-editor-component',
     templateUrl: './process-editor.component.html',
     styleUrls: ['./process-editor.component.scss'],
     encapsulation: ViewEncapsulation.None,
+    providers: [ ProcessCommandsService ]
 })
 export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, OnDestroy {
+    @Input()
+    modelId: string;
+
     loading$: Observable<boolean>;
     breadcrumbs$: Observable<BreadcrumbItem[]>;
-    content$: Observable<ProcessContent>;
-    bpmnContent$: Observable<ProcessContent>;
-    process$: Observable<Process>;
+
+    modelId$: Observable<string>;
+    editorContent$: Observable<ProcessContent>;
+    initialContent: ProcessContent;
+    modelMetadata$: Observable<Process>;
+    editorContentSubject$: Subject<ProcessContent> = new Subject<ProcessContent>();
+    editorMetadataSubject$: Subject<Process> = new Subject<Process>();
+
     extensions$: Observable<string>;
     disableSave: boolean;
     tabNames = [
@@ -82,51 +92,46 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
         ProcessModelContext.extension
     ];
     selectedTabIndex = 0;
-    extensionFileUri$: Observable<string>;
-    processFileUri$: Observable<string>;
-    extensionsLanguageType: string;
-    processesLanguageType: string;
-    private unsubscribe$ = new Subject<void>();
+    extensionFileUri: string;
+    processFileUri: string;
+    extensionsLanguageType = 'json';
+    processesLanguageType = 'xml';
 
     constructor(
         private store: Store<AmaState>,
-        private route: ActivatedRoute,
         private codeValidatorService: CodeValidatorService,
         @Inject(ProcessModelerServiceToken) private processModeler: ProcessModelerService,
         private processLoaderService: ProcessDiagramLoaderService,
-        private statusBarService: StatusBarService
-    ) {
-        this.extensionsLanguageType = 'json';
-        this.processesLanguageType = 'xml';
-    }
+        private statusBarService: StatusBarService,
+        private modelCommands: ProcessCommandsService
+    ) {}
 
     ngOnInit() {
-        this.route.params.pipe(takeUntil(this.unsubscribe$))
-            .subscribe(() => {
-                 /* cspell: disable-next-line */
-                this.initialLoad_QuickFix_RenameToNgOninit();
-            });
-    }
+        const contentFromStore$ = this.store.select(selectProcessContentById(this.modelId)).pipe(
+            filter(content => !!content),
+            take(1),
+            tap(content => this.initialContent = content)
+        );
+        const metadataFromStore$ = this.store.select(selectProcessById(this.modelId)).pipe(
+            filter(metadata => !!metadata)
+        );
+        this.editorContent$ = concat(contentFromStore$, this.editorContentSubject$).pipe(shareReplay(1));
+        this.modelMetadata$ = merge(metadataFromStore$, this.editorMetadataSubject$).pipe(
+            shareReplay(1)
+        );
 
-     /* cspell: disable-next-line */
-    initialLoad_QuickFix_RenameToNgOninit() {
-        this.loading$ = this.store.select(selectProcessLoading);
-        this.process$ = this.store.select(selectSelectedProcess);
-        this.processFileUri$ = this.process$.pipe(
-            filter(process => !!process),
-            map(process => getFileUri(PROCESS, this.processesLanguageType, process.id))
-        );
-        this.extensionFileUri$ = this.process$.pipe(
-            filter(process => !!process),
-            map(process => getFileUri(PROCESS, this.extensionsLanguageType, process.id))
-        );
-        this.content$ = this.store.select(selectSelectedProcessDiagram);
-        this.bpmnContent$ = this.store.select(selectSelectedProcessDiagram);
-        this.extensions$ = this.process$.pipe(
+        this.extensions$ = this.modelMetadata$.pipe(
             filter(process => !!process && !!process.extensions),
             map(process => JSON.stringify(process.extensions, undefined, 4).trim())
         );
 
+        this.modelId$ = of(this.modelId); // Refactor this to not be an observable
+        this.modelCommands.init(PROCESS, ContentType.Process, this.modelId$, this.editorContent$, this.modelMetadata$);
+
+        this.processFileUri = getFileUri(PROCESS, this.processesLanguageType, this.modelId);
+        this.extensionFileUri = getFileUri(PROCESS, this.extensionsLanguageType, this.modelId);
+
+        this.loading$ = this.store.select(selectProcessLoading);
         this.breadcrumbs$ = combineLatest([
             of({ url: '/home', name: 'Dashboard' }),
             this.store.select(selectProjectCrumb).pipe(filter(value => value !== null)),
@@ -134,49 +139,38 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
         ]);
     }
 
-    onBpmnEditorChange(): void {
-        this.processModeler.export().then(content => this.content$ = of(content));
+    async onBpmnEditorChange(): Promise<void> {
+        const modelContent = await this.processModeler.export();
+        this.editorContentSubject$.next(modelContent);
+
+        const element = this.processModeler.getRootProcessElement();
+        this.editorMetadataSubject$.next({
+            ...this.metadataSnapshot,
+            extensions: {
+                ...this.extensionsSnapshot
+            },
+            name: modelNameHandler.get(element),
+            description: documentationHandler.get(element),
+        });
     }
 
-    onXmlChangeAttempt(processContent: ProcessContent): void {
-        this.processLoaderService.load(processContent)
+    onXmlEditorChange(modelContent: ProcessContent): void {
+        this.processLoaderService.load(modelContent)
             .subscribe(() => {
                 this.store.dispatch(new SetAppDirtyStateAction(true));
             });
-        this.content$ = of(processContent);
+        this.editorContentSubject$.next(modelContent);
     }
 
-    onExtensionsChangeAttempt(extensionsString: string, processId: string): void {
-        const validation = this.codeValidatorService.validateJson<ProcessExtensions>(extensionsString);
+    onExtensionEditorChange(extensions: string): void {
+        const validation = this.codeValidatorService.validateJson<ProcessExtensions>(extensions);
 
         this.disableSave = !validation.valid;
 
         if (validation.valid) {
-            this.store.dispatch(new UpdateProcessExtensionsAction({ extensions: JSON.parse(extensionsString), processId }));
+            this.store.dispatch(new UpdateProcessExtensionsAction({ extensions: JSON.parse(extensions), modelId: this.modelId }));
             this.store.dispatch(new SetAppDirtyStateAction(true));
         }
-    }
-
-    private saveAction(processId: string, content): UpdateProcessAttemptAction {
-        const element = this.processModeler.getRootProcessElement();
-        const metadata: Partial<EntityDialogForm> = {
-            name: modelNameHandler.get(element),
-            description: documentationHandler.get(element),
-        };
-        return new UpdateProcessAttemptAction({ processId: processId, content: content, metadata });
-    }
-
-    onSave() {
-        zip(this.content$, this.process$)
-            .pipe(take(1)).subscribe(([content, process]) => {
-                this.store.dispatch(new ValidateProcessAttemptAction({
-                    title: 'APP.DIALOGS.CONFIRM.SAVE.PROCESS',
-                    processId: process.id,
-                    content: content,
-                    extensions: process.extensions,
-                    action: this.saveAction(process.id, content)
-                }));
-        });
     }
 
     selectedTabChange(event: MatTabChangeEvent) {
@@ -192,21 +186,36 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
     }
 
     canDeactivate(): Observable<boolean> {
-        return zip(this.content$, this.process$)
+        return zip(this.editorContent$, this.modelMetadata$)
             .pipe(
                 take(1),
-                tap(([content, process]) => this.store.dispatch(this.saveAction(process.id, content)) ),
+                tap(([modelContent, modelMetadata]) => this.store.dispatch(
+                    new UpdateProcessAttemptAction({ modelId: this.modelId,
+                        modelContent,
+                        modelMetadata
+                    })
+                )),
                 switchMap(() => this.store.select(selectProcessEditorSaving)),
                 filter(updateState => (updateState === ModelEditorState.SAVED) || (updateState === ModelEditorState.FAILED)),
                 take(1),
                 map(state => state === ModelEditorState.SAVED),
                 catchError(() => of(false))
             );
+    }
 
+    private get metadataSnapshot(): Process {
+        let metadata: Process;
+        this.modelMetadata$.pipe(take(1)).subscribe(m => metadata = m);
+        return metadata;
+    }
+
+    private get extensionsSnapshot(): ModelExtensions {
+        let extensions: ModelExtensions;
+        this.extensions$.pipe(take(1)).subscribe(e => extensions = JSON.parse(e));
+        return extensions;
     }
 
     ngOnDestroy() {
-        this.unsubscribe$.next();
-        this.unsubscribe$.complete();
+        this.modelCommands.destroy();
     }
 }

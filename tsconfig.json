@@ -12,7 +12,7 @@
         "skipLibCheck": true,
         "noUnusedLocals": true,
         "noImplicitReturns": true,
-        "target": "es5",
+        "target": "es2015",
         "allowJs": true,
         "allowSyntheticDefaultImports": true,
         "typeRoots": ["node_modules/@types", "../../node_modules/@types"],

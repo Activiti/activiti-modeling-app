@@ -15,22 +15,17 @@
  * limitations under the License.
  */
 
+import { BasicModelCommands, ModelCommandsService } from '@alfresco-dbp/modeling-shared/sdk';
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
-
-import { Observable, of } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { GetProcessAttemptAction } from '../../store/process-editor.actions';
-import { ProcessEntitiesState } from '../../store/process-entities.state';
+import { SaveProcessCommand } from './save-process.command';
 
 @Injectable()
-export class ProcessLoaderGuard implements CanActivate {
+export class ProcessCommandsService extends ModelCommandsService {
+    constructor(saveCommand: SaveProcessCommand) {
+        super();
 
-    constructor(private store: Store<ProcessEntitiesState>) { }
-
-    canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-        const processId = route.params.processId;
-        this.store.dispatch(new GetProcessAttemptAction(processId));
-        return of(true);
+        [
+            { eventName: BasicModelCommands.save, command: saveCommand }
+        ].forEach(eventMethod => this.addEventListener(eventMethod.eventName, eventMethod.command));
     }
 }

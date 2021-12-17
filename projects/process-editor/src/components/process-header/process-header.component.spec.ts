@@ -20,7 +20,7 @@ import { ProcessHeaderComponent } from './process-header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule, AmaState, OpenConfirmDialogAction, ProcessModelerServiceToken } from '@alfresco-dbp/modeling-shared/sdk';
+import { SharedModule, AmaState, OpenConfirmDialogAction, ProcessModelerServiceToken, BasicModelCommands } from '@alfresco-dbp/modeling-shared/sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { By } from '@angular/platform-browser';
 import { mockProcessModel } from '../../store/process.mock';
@@ -30,6 +30,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DeleteProcessAttemptAction, DownloadProcessAction, ValidateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
 import { Actions } from '@ngrx/effects';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
+import { ProcessCommandsService } from '../../services/commands/process-commands.service';
+import { SaveProcessCommand } from '../../services/commands/save-process.command';
 
 describe('ProcessHeaderComponent', () => {
     let fixture: ComponentFixture<ProcessHeaderComponent>;
@@ -49,6 +51,8 @@ describe('ProcessHeaderComponent', () => {
                 HttpClientTestingModule
             ],
             providers: [
+                SaveProcessCommand,
+                ProcessCommandsService,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: Store,
@@ -85,7 +89,8 @@ describe('ProcessHeaderComponent', () => {
         fixture = TestBed.createComponent(ProcessHeaderComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
-        component.process = mockProcessModel;
+        component.modelId = mockProcessModel.id;
+        component.modelMetadata = mockProcessModel;
         component.content = 'mockProcessContent';
         store = TestBed.inject(Store);
     });
@@ -104,9 +109,9 @@ describe('ProcessHeaderComponent', () => {
 
         const payload = new ValidateProcessAttemptAction({
             title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.PROCESS',
-            processId: mockProcessModel.id,
-            content: component.content,
-            extensions: mockProcessModel.extensions,
+            modelId: mockProcessModel.id,
+            modelContent: component.content,
+            modelMetadata: mockProcessModel,
             action: new DownloadProcessAction(mockProcessModel)
         });
 
@@ -145,9 +150,9 @@ describe('ProcessHeaderComponent', () => {
 
         const payload = new ValidateProcessAttemptAction({
             title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.IMAGE',
-            processId: mockProcessModel.id,
-            content: component.content,
-            extensions: mockProcessModel.extensions,
+            modelId: mockProcessModel.id,
+            modelContent: component.content,
+            modelMetadata: mockProcessModel,
             action: new DownloadProcessSVGImageAction(mockProcessModel)
         });
 
@@ -166,12 +171,15 @@ describe('ProcessHeaderComponent', () => {
         expect(button).toBeNull();
     });
 
-    it('should emit save event emitter on click of save button ', () => {
-        const emitSpy = spyOn(component.save, 'emit');
-        fixture.detectChanges();
+    it('should dispatch save on save click', () => {
+        const commandService = TestBed.inject(ProcessCommandsService);
+        const emitSpy = spyOn(commandService, 'dispatchEvent');
+
         const saveButton = fixture.debugElement.query(By.css('[data-automation-id="process-editor-save-button"]'));
         saveButton.triggerEventHandler('click', {});
-        expect(emitSpy).toHaveBeenCalled();
+        fixture.detectChanges();
+
+        expect(emitSpy).toHaveBeenCalledWith(BasicModelCommands.save);
     });
 
     it('should render save as button inside menu', () => {

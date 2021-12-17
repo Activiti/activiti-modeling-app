@@ -199,17 +199,17 @@ describe('ProcessEditorEffects', () => {
     describe('updateProcessEffect', () => {
 
         const mockActionPayload = {
-            processId: mockProcessModel.id,
-            content: 'diagramData',
-            metadata: { name: mockProcessModel.name, description: mockProcessModel.description, version: mockProcessModel.version }
+            modelId: mockProcessModel.id,
+            modelContent: 'diagramData',
+            modelMetadata: mockProcessModel
         };
 
         const mockValidatePayload: ValidateProcessPayload = {
             projectId: 'test',
             title: 'mock title',
-            processId: mockProcessModel.id,
-            content: 'diagramData',
-            extensions: {},
+            modelId: mockProcessModel.id,
+            modelContent: 'diagramData',
+            modelMetadata: mockProcessModel,
             action: new UpdateProcessAttemptAction(mockActionPayload)
         };
 
@@ -230,9 +230,9 @@ describe('ProcessEditorEffects', () => {
             getTestScheduler().flush();
 
             expect(processEditorService.update).toHaveBeenCalledWith(
-                mockActionPayload.processId,
-                { ...mockProcessModel, ...mockActionPayload.metadata },
-                mockActionPayload.content,
+                mockActionPayload.modelId,
+                { ...mockProcessModel, ...mockActionPayload.modelMetadata },
+                mockActionPayload.modelContent,
                 'test1'
             );
         });
@@ -247,8 +247,8 @@ describe('ProcessEditorEffects', () => {
                 b: new SetApplicationLoadingStateAction(true),
                 c: new UpdateProcessSuccessAction({
                     id: mockProcessModel.id,
-                    changes: mockActionPayload.metadata
-                }, mockActionPayload.content),
+                    changes: mockActionPayload.modelMetadata
+                }, mockActionPayload.modelContent),
                 d: new SetAppDirtyStateAction(false),
                 e: expectedLogAction,
                 f: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_SAVED')

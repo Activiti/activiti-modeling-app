@@ -22,7 +22,7 @@ import { Update } from '@ngrx/entity';
 
 export interface UpdateProcessExtensionsPayload {
     extensions: ModelExtensions;
-    processId: string;
+    modelId: string;
 }
 
 export const UPDATE_PROCESS_EXTENSIONS = '[Process] Update extensions';
@@ -102,16 +102,16 @@ export class SelectModelerElementAction implements Action {
 }
 
 export interface UpdateProcessPayload {
-    processId: string;
-    content: ProcessContent;
-    metadata: Partial<EntityDialogForm>;
+    modelId: string;
+    modelContent: ProcessContent;
+    modelMetadata: Process;
 }
 
 export interface ValidateProcessPayload {
     title: string;
-    processId: string;
-    content: ProcessContent;
-    extensions: ModelExtensions;
+    modelId: string;
+    modelContent: ProcessContent;
+    modelMetadata: Process;
     action: Action;
     errorAction?: Action;
     projectId?: string;

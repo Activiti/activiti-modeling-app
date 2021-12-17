@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, OnDestroy, Output, EventEmitter, Inject } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Inject } from '@angular/core';
 import {
     Process,
     AmaState,
@@ -25,7 +25,8 @@ import {
     SnackbarInfoAction,
     SnackbarErrorAction,
     ProcessModelerService,
-    ProcessModelerServiceToken
+    ProcessModelerServiceToken,
+    BasicModelCommands
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -34,6 +35,7 @@ import { takeUntil } from 'rxjs/operators';
 import { selectProcessModelContext } from '../../store/process-editor.selectors';
 import { ProcessModelContext } from '../../store/process-editor.state';
 import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
+import { ProcessCommandsService } from '../../services/commands/process-commands.service';
 
 @Component({
     selector: 'ama-process-header',
@@ -42,22 +44,30 @@ import { documentationHandler } from '../../services/bpmn-js/property-handlers/d
 export class ProcessHeaderComponent implements  OnInit, OnDestroy {
     private destroy$ = new Subject<boolean>();
 
-    @Input() process: Process;
-    @Input() content: ProcessContent;
-    @Input() breadcrumbs$: Observable<BreadcrumbItem[]>;
-    @Input() disableSave = false;
+    @Input()
+    modelId: string;
 
-    @Output()
-    save = new EventEmitter<void>();
+    @Input()
+    content: ProcessContent;
+
+    @Input()
+    modelMetadata: Process;
+
+    @Input()
+    breadcrumbs$: Observable<BreadcrumbItem[]>;
+
+    @Input()
+    disableSave = false;
 
     public modeler: Bpmn.Modeler;
     private modelContext: ProcessModelContext;
 
     constructor(
         private store: Store<AmaState>,
+        private modelCommands: ProcessCommandsService,
         @Inject(ProcessModelerServiceToken)
         private processModeler: ProcessModelerService
-        ) {}
+    ) {}
 
     ngOnInit(): void {
         this.store.select(selectProcessModelContext).pipe(
@@ -75,15 +85,15 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
     }
 
     onSaveClick(): void {
-        this.save.emit();
+        this.modelCommands.dispatchEvent(BasicModelCommands.save);
     }
 
     onDownload(process: Process): void {
         this.store.dispatch(new ValidateProcessAttemptAction({
             title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.PROCESS',
-            processId: process.id,
-            content: this.content,
-            extensions: this.process.extensions,
+            modelId: process.id,
+            modelContent: this.content,
+            modelMetadata: this.modelMetadata,
             action: new DownloadProcessAction(process)
         }));
     }
@@ -92,7 +102,7 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
         this.store.dispatch(
             new OpenConfirmDialogAction({
                 dialogData: { title: 'APP.DIALOGS.CONFIRM.DELETE.PROCESS' },
-                action: new DeleteProcessAttemptAction(this.process.id)
+                action: new DeleteProcessAttemptAction(this.modelId)
             })
         );
     }
@@ -100,9 +110,9 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
     onSaveProcessImage(process: Process): void {
         this.store.dispatch(new ValidateProcessAttemptAction({
             title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.IMAGE',
-            processId: process.id,
-            content: this.content,
-            extensions: this.process.extensions,
+            modelId: process.id,
+            modelContent: this.content,
+            modelMetadata: this.modelMetadata,
             action: new DownloadProcessSVGImageAction(process)
         }));
     }
@@ -110,9 +120,9 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
     onValidateProcess(process: Process): void {
         this.store.dispatch(new ValidateProcessAttemptAction({
             title: 'APP.DIALOGS.ERROR.SUBTITLE',
-            processId: process.id,
-            content: this.content,
-            extensions: this.process.extensions,
+            modelId: process.id,
+            modelContent: this.content,
+            modelMetadata: this.modelMetadata,
             action: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_VALID'),
             errorAction: new SnackbarErrorAction('PROCESS_EDITOR.PROCESS_INVALID')
         }));
@@ -122,15 +132,15 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
         const element = this.processModeler.getRootProcessElement();
         this.store.dispatch(new ValidateProcessAttemptAction({
             title: 'APP.DIALOGS.CONFIRM.SAVE_AS.PROCESS',
-            processId: this.process.id,
-            content: this.content,
-            extensions: this.process.extensions,
+            modelId: this.modelId,
+            modelContent: this.content,
+            modelMetadata: this.modelMetadata,
             action: new OpenSaveAsProcessAction({
-                id: this.process.id,
-                name: this.process.name,
+                id: this.modelId,
+                name: this.modelMetadata.name,
                 description: documentationHandler.get(element),
                 sourceContent: this.content,
-                sourceExtensions: this.process.extensions,
+                sourceExtensions: this.modelMetadata.extensions,
                 action: SaveAsProcessAttemptAction
             })
         }));

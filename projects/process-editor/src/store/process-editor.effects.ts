@@ -80,7 +80,6 @@ import {
     ProcessModelerService,
     ProcessModelerServiceToken,
     selectOpenedModel,
-    selectSelectedProcess,
     selectSelectedProjectId,
     SetAppDirtyStateAction,
     SnackbarErrorAction,
@@ -195,8 +194,8 @@ export class ProcessEditorEffects {
     updateProcessEffect = this.actions$.pipe(
         ofType<UpdateProcessAttemptAction>(UPDATE_PROCESS_ATTEMPT),
         map(action => action.payload),
-        mergeMap(payload => zip(of(payload), this.store.select(selectSelectedProcess), this.store.select(selectSelectedProjectId))),
-        mergeMap(([payload, process, projectId]) => this.updateProcess(payload, process, projectId))
+        mergeMap(payload => zip(of(payload), this.store.select(selectSelectedProjectId))),
+        mergeMap(([payload, projectId]) => this.updateProcess(payload, projectId))
     );
 
     @Effect()
@@ -278,7 +277,7 @@ export class ProcessEditorEffects {
     );
 
     private validateProcess(payload: ValidateProcessPayload) {
-        return this.processEditorService.validate(payload.processId, payload.content, payload.projectId, payload.extensions).pipe(
+        return this.processEditorService.validate(payload.modelId, payload.modelContent, payload.projectId, payload.modelMetadata.extensions).pipe(
             switchMap(() => [new SetApplicationLoadingStateAction(true), payload.action, new SetApplicationLoadingStateAction(false)]),
             catchError((response) => {
                 const parsedResponse = JSON.parse(response.message);
@@ -309,22 +308,22 @@ export class ProcessEditorEffects {
         );
     }
 
-    private updateProcess(payload: UpdateProcessPayload, process: Process, projectId: string): Observable<SnackbarErrorAction | {}> {
+    private updateProcess(payload: UpdateProcessPayload, projectId: string): Observable<SnackbarErrorAction | {}> {
         return this.processEditorService.update(
-            payload.processId,
-            { ...process, ...payload.metadata },
-            payload.content,
+            payload.modelId,
+            payload.modelMetadata,
+            payload.modelContent,
             projectId
         ).pipe(
             switchMap((updateResponse) => [
                 new SetApplicationLoadingStateAction(true),
                 new UpdateProcessSuccessAction({
-                    id: payload.processId,
+                    id: payload.modelId,
                     changes: {
-                        ...payload.metadata,
+                        ...payload.modelMetadata,
                         version: updateResponse.version
                     }
-                }, payload.content),
+                }, payload.modelContent),
                 new SetAppDirtyStateAction(false),
                 this.logFactory.logInfo(getProcessLogInitiator(), 'PROCESS_EDITOR.PROCESS_SAVED'),
                 new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_SAVED')

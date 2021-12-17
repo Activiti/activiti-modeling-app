@@ -20,27 +20,27 @@ import { ProcessEditorComponent } from './process-editor.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule, AmaState, ProcessModelerServiceToken, ProcessModelerService, ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
+import { SharedModule, AmaState, ProcessModelerServiceToken, ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { mockProcessModel } from '../../store/process.mock';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { UpdateProcessAttemptAction, ValidateProcessAttemptAction } from '../../store/process-editor.actions';
+import { UpdateProcessAttemptAction } from '../../store/process-editor.actions';
 import { selectProcessEditorSaving } from '../../store/process-editor.selectors';
 import { ActivatedRoute } from '@angular/router';
+import { SaveProcessCommand } from '../../services/commands/save-process.command';
 
 describe('ProcessEditorComponent', () => {
     let fixture: ComponentFixture<ProcessEditorComponent>;
     let component: ProcessEditorComponent;
     let store: Store<AmaState>;
-    let processModelerService: ProcessModelerService;
     const content = 'mockProcessContent';
     let processEditorState = ModelEditorState.SAVED;
     const updateProcessPayload = new UpdateProcessAttemptAction({
-        processId: mockProcessModel.id,
-        content: content,
-        metadata: { name: mockProcessModel.name, description: mockProcessModel.description }
+        modelId: mockProcessModel.id,
+        modelContent: content,
+        modelMetadata: { ...mockProcessModel, name: mockProcessModel.name, description: mockProcessModel.description }
     });
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -53,6 +53,7 @@ describe('ProcessEditorComponent', () => {
                 HttpClientTestingModule
             ],
             providers: [
+                SaveProcessCommand,
                 {
                     provide: ActivatedRoute,
                     useValue: { params: of({}), snapshot: {url: ''} }
@@ -94,28 +95,14 @@ describe('ProcessEditorComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ProcessEditorComponent);
         component = fixture.componentInstance;
+        component.modelId = mockProcessModel.id;
         fixture.detectChanges();
-        component.process$ = of(mockProcessModel);
-        component.content$ = of('mockProcessContent');
+        component.modelMetadata$ = of(mockProcessModel);
+        component.editorContent$ = of('mockProcessContent');
         store = TestBed.inject(Store);
-        processModelerService = TestBed.inject(ProcessModelerServiceToken);
     });
 
     afterEach(() => fixture.destroy());
-
-    it('should test trigger of onSave() validates and updates process', async() => {
-        spyOn(store, 'dispatch');
-        const payload = new ValidateProcessAttemptAction({
-                title: 'APP.DIALOGS.CONFIRM.SAVE.PROCESS',
-                processId: mockProcessModel.id,
-                content: content,
-                extensions: mockProcessModel.extensions,
-                action: updateProcessPayload
-            });
-        component.onSave();
-        await expect(store.dispatch).toHaveBeenCalledWith(payload);
-        await expect(processModelerService.getRootProcessElement).toHaveBeenCalled();
-    });
 
     it('should test canDeactivate() response to be true when selectProcessEditorSaving is in saved state', (done) => {
         spyOn(store, 'dispatch');

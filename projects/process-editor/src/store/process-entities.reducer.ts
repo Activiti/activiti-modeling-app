@@ -141,8 +141,8 @@ function updateExtensions(state: ProcessEntitiesState, action: UpdateProcessExte
     return {
         ...state,
         entities: {
-            ...state.entities, [action.payload.processId]: {
-                ...state.entities[action.payload.processId],
+            ...state.entities, [action.payload.modelId]: {
+                ...state.entities[action.payload.modelId],
                 extensions: action.payload.extensions
             }
         }

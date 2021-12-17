@@ -61,6 +61,13 @@ export const selectSelectedProcessDiagram = createSelector(
     (processId: string, state: ProcessEntitiesState) => state.entityContents[processId]
 );
 
+export const selectProcessContentById = (modelId: string) => {
+    return createSelector(
+        selectProcessEntityContainer,
+        state => state.entityContents[modelId]
+    );
+};
+
 export const selectProcessesKeyLabelArray = createSelector(
     selectProcesses,
     processes => Object.values(processes).map((process: Process) => ({

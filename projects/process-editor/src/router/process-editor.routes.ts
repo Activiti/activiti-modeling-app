@@ -16,11 +16,18 @@
  */
 
 import { Routes } from '@angular/router';
-import { ProcessEditorComponent } from '../components/process-editor/process-editor.component';
-import { ProcessLoaderGuard } from './guards/process-loader.guard';
-import { UnsavedPageGuard, PROCESS, MODEL_EDITOR_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    UnsavedPageGuard,
+    PROCESS,
+    MODEL_EDITOR_ROUTES,
+    ModelLoaderGuard,
+    ModelEditorProxyComponent,
+    ModelEditorRouterGuardData,
+    ModelEditorRouterData
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessDeactivateGuard } from './guards/process-deactivate.guard';
 import { ProcessesLoaderGuard } from './guards/processes-loader.guard';
+import { GetProcessAttemptAction } from '../store/process-editor.actions';
 
 export const processEditorRoutes: Routes = [
     {
@@ -28,10 +35,14 @@ export const processEditorRoutes: Routes = [
         data: { injectTo: MODEL_EDITOR_ROUTES },
         children: [
             {
-                path: ':processId',
-                canActivate: [ ProcessLoaderGuard ],
+                path: ':modelId',
+                canActivate: [ ModelLoaderGuard ],
                 canDeactivate: [ UnsavedPageGuard, ProcessDeactivateGuard ],
-                component: ProcessEditorComponent
+                component: ModelEditorProxyComponent,
+                data: {
+                    modelType: PROCESS,
+                    actionClass: GetProcessAttemptAction
+                } as ModelEditorRouterGuardData & ModelEditorRouterData
             }
         ],
         canActivate: [ ProcessesLoaderGuard ]

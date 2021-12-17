@@ -56,7 +56,8 @@ import {
     BpmnCompositeProperty,
     ProcessNameSelectorModule,
     VariableMappingTypeModule,
-    provideProcessEditorElementVariablesProvider
+    provideProcessEditorElementVariablesProvider,
+    ModelEditorModule
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { ProcessDiagramLoaderService } from './services/process-diagram-loader.service';
@@ -113,6 +114,7 @@ import { CardViewProcessErrorsItemComponent } from './services/cardview-properti
 import { CardViewConditionExpressionItemComponent } from './services/cardview-properties/condition-expression-item/condition-expression-item.component';
 import { ProcessElementVariablesProviderService } from './services/process-element-variables-provider.service';
 import { CalledElementVariablesProviderService } from './services/called-element-variables-provider.service';
+import { SaveProcessCommand } from './services/commands/save-process.command';
 
 @NgModule({
     imports: [
@@ -130,6 +132,10 @@ import { CalledElementVariablesProviderService } from './services/called-element
         AmaStoreModule.registerEntity({
             key: PROCESSES_ENTITY_KEY,
             reducer: processEntitiesReducer
+        }),
+        ModelEditorModule.forChild({
+            type: PROCESS,
+            componentClass: ProcessEditorComponent
         }),
         StoreModule.forFeature(PROCESS_EDITOR_STATE_NAME, processEditorReducer),
         SharedModule,
@@ -179,6 +185,7 @@ import { CalledElementVariablesProviderService } from './services/called-element
     ],
     exports: [ProcessEditorRoutingModule],
     providers: [
+        SaveProcessCommand,
         ProcessEditorService,
         ProcessDiagramLoaderService,
         { provide: BpmnFactoryToken, useClass: BpmnFactoryService },

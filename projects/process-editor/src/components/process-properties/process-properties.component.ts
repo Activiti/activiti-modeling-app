@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit, Inject, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { CardViewItem, CardViewUpdateService, UpdateNotification, CardItemTypeService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { selectSelectedElement } from '../../store/process-editor.selectors';
@@ -39,9 +39,7 @@ import { SelectedProcessElement } from '../../store/process-editor.state';
     providers: [CardViewUpdateService, CardItemTypeService],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProcessPropertiesComponent implements OnInit, OnDestroy, AfterViewInit {
-    /** @deprecated: bpmnjs-properties */
-    @ViewChild('bpmnPropertiesPanel', { static: true }) bpmnPropertiesPanel: ElementRef;
+export class ProcessPropertiesComponent implements OnInit, OnDestroy {
     onDestroy$: Subject<void> = new Subject<void>();
     properties$: Observable<CardViewItem[]>;
 
@@ -63,17 +61,6 @@ export class ProcessPropertiesComponent implements OnInit, OnDestroy, AfterViewI
 
         for (const handler of this.customPropertyHandlers) {
             this.cardItemTypeService.setComponentTypeResolver(handler.type, () => handler.implementationClass, true);
-        }
-    }
-
-    /** @deprecated: bpmnjs-properties */
-    ngAfterViewInit() {
-        try {
-            const propertiesPanel = (<any>this.processModelerService).modeler.get('propertiesPanel');
-            propertiesPanel.attachTo(this.bpmnPropertiesPanel.nativeElement);
-        } catch {
-            /*tslint:disable-next-line*/
-            console.warn('Bpmnjs properties panel are not included. If not needed, remove all code marked with "@deprecated: bpmnjs-properties".');
         }
     }
 
