@@ -74,8 +74,7 @@
                     "CONNECTOR": "Are you sure you want to save this connector?",
                     "EMAIL_TEMPLATE": "Are you sure you want to overwrite the email template?",
                     "SCRIPT": "Are you sure you want to save this script?",
-                    "MODEL": "Are you sure you want to save this Content Model?",
-                    "FORM_WIDGET": "Are you sure you want to save this Form Widget?"
+                    "MODEL": "Are you sure you want to save this Content Model?"
                 },
                 "SAVE_AS": {
                   "PROCESS": "Are you sure you want to copy this process?",
