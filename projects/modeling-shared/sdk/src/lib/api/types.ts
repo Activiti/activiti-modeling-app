@@ -604,14 +604,29 @@ export interface Widget extends Model {
     extensions: WidgetContent;
 }
 
-interface AuthenticationProperties {
-    authenticationType: string;
+export interface BasicAuthenticationProperties {
+    authenticationType: 'basic';
+    username: string;
+    password: string;
+}
+
+export interface TokenAuthenticationProperties {
+    authenticationType: 'bearer';
+    token: string;
+}
+
+export interface OauthAuthenticationProperties {
+    authenticationType: 'client_credentials';
+    clientId: string;
+    clientSecret: string;
+    endpoint: string;
+    scope: string;
 }
 
 export interface AuthenticationContent {
     id: string;
     name: string;
-    authProperties: AuthenticationProperties;
+    authProperties: BasicAuthenticationProperties | TokenAuthenticationProperties | OauthAuthenticationProperties;
     description?: string;
 }
 
