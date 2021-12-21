@@ -1,0 +1,8 @@
+<modelingsdk-entity-dialog-content
+    [data]="data"
+    (submit)="submit($event)"
+>
+    <ama-process-category-selector
+        (categoryChange)=onCategoryChange($event)
+    ></ama-process-category-selector>
+</modelingsdk-entity-dialog-content>

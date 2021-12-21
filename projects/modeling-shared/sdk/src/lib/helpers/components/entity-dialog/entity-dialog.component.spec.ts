@@ -25,13 +25,19 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { AmaState } from '../../../store/app.state';
 import { EntityDialogPayload } from '../../common';
-import { CreateProjectAttemptAction } from '../../../store/project.actions';
 import { By } from '@angular/platform-browser';
+import { EntityDialogContentComponent } from './dialog-content/entity-dialog-content.component';
 
 describe('EntityDialogComponent', () => {
     let component: EntityDialogComponent;
     let fixture: ComponentFixture<EntityDialogComponent>;
     let store: Store<AmaState>;
+
+    const callback = jest.fn();
+    const createProjectAttemptActionImplementationMock = jest.fn();
+    const createProjectAttemptActionMock = jest.fn().mockImplementation(() => {
+        return createProjectAttemptActionImplementationMock;
+    });
 
     const mockDialog = {
         close: jest.fn()
@@ -41,13 +47,19 @@ describe('EntityDialogComponent', () => {
         title: 'mock-title',
         nameField: 'name',
         descriptionField: 'desc',
-        action: CreateProjectAttemptAction
+        action: createProjectAttemptActionMock,
+        values: {
+            id: 'id',
+            name: 'name',
+            description: 'description',
+        },
+        callback
     };
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async(async () => {
+        await TestBed.configureTestingModule({
             imports: [TranslateModule.forRoot(), NoopAnimationsModule, MatDialogModule],
-            declarations: [EntityDialogComponent],
+            declarations: [EntityDialogComponent, EntityDialogContentComponent],
             providers: [
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: Store, useValue: { dispatch: jest.fn() } },
@@ -56,6 +68,8 @@ describe('EntityDialogComponent', () => {
             ],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
+
+        createProjectAttemptActionMock.mockClear();
     }));
 
     beforeEach(() => {
@@ -65,120 +79,22 @@ describe('EntityDialogComponent', () => {
         store = TestBed.inject(Store);
     });
 
-    it('should render input placeholders', () => {
-        const nameField = fixture.debugElement.query(By.css('[data-automation-id="name-field"]'));
-        const descField = fixture.debugElement.query(By.css('[data-automation-id="desc-field"]'));
-
-        expect(nameField.nativeElement.placeholder).toBe(mockDialogData.nameField);
-        expect(descField.nativeElement.placeholder).toBe(mockDialogData.descriptionField);
-    });
-
-    it('should test submit button on create entity', () => {
+    it('should dispatch action on submit', async () => {
         spyOn(store, 'dispatch');
 
-        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
+        const submitButton = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
 
-        component.form.name = 'name';
-        component.form.description = 'test-desc';
-        fixture.detectChanges();
+        submitButton.triggerEventHandler('click', null);
 
-        submitBtn.triggerEventHandler('click', null);
+        const payload = {
+            form: {
+                name: 'name',
+                description: 'description'
+            },
+            id: 'id'
+        };
 
-        expect(store.dispatch).toHaveBeenCalledWith(new mockDialogData.action(component.form));
-    });
-
-    it('should test submit action on enter keydown of submit button', () => {
-        spyOn(store, 'dispatch');
-        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
-        component.form.name = 'name';
-        component.form.description = 'test-desc';
-
-        submitBtn.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', bubbles: true}));
-
-        expect(store.dispatch).toHaveBeenCalledTimes(1);
-    });
-
-    it('should test submit action on enter keydown of name field', () => {
-        spyOn(store, 'dispatch');
-        const nameField = fixture.debugElement.query(By.css('[data-automation-id="name-field"]'));
-        component.form.name = 'name';
-        component.form.description = 'test-desc';
-
-        nameField.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', bubbles: true}));
-
-        expect(store.dispatch).toHaveBeenCalledTimes(1);
-    });
-
-    it('should not submit action on enter keydown if the form is not valid', () => {
-        spyOn(store, 'dispatch');
-        const nameField = fixture.debugElement.query(By.css('[data-automation-id="name-field"]'));
-        component.form.name = 'not_valid-name';
-        component.form.description = 'test-desc';
-
-        nameField.nativeElement.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter', bubbles: true}));
-
-        expect(store.dispatch).not.toHaveBeenCalled();
-    });
-
-    it('should render input values', () => {
-        const mockValues = { id: 'id', name: 'name', description: 'desc' };
-        component.data = { ...mockDialogData, values: mockValues };
-        component.ngOnInit();
-        fixture.detectChanges();
-
-        expect(component.form.name).toBe(mockValues.name);
-        expect(component.form.description).toBe(mockValues.description);
-    });
-
-    it('should test submit button on edit', () => {
-        const mockValues = { id: 'id', name: 'name', description: 'desc' };
-        component.data = { ...mockDialogData, values: mockValues };
-        spyOn(store, 'dispatch');
-
-        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
-        submitBtn.triggerEventHandler('click', null);
-
-        expect(store.dispatch).toHaveBeenCalledWith(new mockDialogData.action({ id: mockValues.id, form: component.form }));
-    });
-
-    it('should validate name field value', () => {
-        component.form.name = '@$#&* {}[],=-().+;\'/';
-        fixture.detectChanges();
-        const errorMessage = fixture.debugElement.query(By.css('[data-automation-id="error-validation"]'));
-        expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
-        const submitBtn = fixture.debugElement.query(By.css('[data-automation-id="submit-button"]'));
-        expect(submitBtn.nativeElement.disabled).toBeTruthy();
-
-        /* cspell: disable-next-line */
-        component.form.name = 'Testautomation';
-        fixture.detectChanges();
-        expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
-        expect(submitBtn.nativeElement.disabled).toBeTruthy();
-
-        component.form.name = 'testAutomation';
-        fixture.detectChanges();
-        expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
-        expect(submitBtn.nativeElement.disabled).toBeTruthy();
-
-        component.form.name = 'test-automation';
-        fixture.detectChanges();
-        expect(errorMessage.nativeElement).not.toBeNull();
-        expect(submitBtn.nativeElement.disabled).toBeFalsy();
-
-        component.form.name = 'test1automation';
-        fixture.detectChanges();
-        expect(errorMessage.nativeElement).not.toBeNull();
-        expect(submitBtn.nativeElement.disabled).toBeFalsy();
-
-        component.form.name = 'test_automation';
-        fixture.detectChanges();
-        expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
-        expect(submitBtn.nativeElement.disabled).toBeTruthy();
-
-        /* cSpell:disable */
-        component.form.name = 'testautomationlengthmorethan26';
-        fixture.detectChanges();
-        expect(errorMessage.nativeElement.textContent).toEqual(component.allowedCharacters.error);
-        expect(submitBtn.nativeElement.disabled).toBeTruthy();
+        expect(component.data.action).toHaveBeenCalledWith(payload, true, callback);
+        expect(store.dispatch).toHaveBeenCalledWith(createProjectAttemptActionImplementationMock);
     });
 });

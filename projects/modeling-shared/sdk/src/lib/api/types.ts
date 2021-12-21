@@ -146,6 +146,7 @@ export interface Filter extends Model {
 
 export interface Process extends Model {
     type: PROCESS_TYPE;
+    category: string;
     extensions?: ModelExtensions;
 }
 

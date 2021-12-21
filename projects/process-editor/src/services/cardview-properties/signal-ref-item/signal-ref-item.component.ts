@@ -66,7 +66,7 @@ export class CardViewSignalRefItemComponent implements OnInit {
 
     changeSignalRef() {
         this.cardViewUpdateService.update(this.property, this.selectedSignal);
-        const { id, type, name } = this.property.data.element;
-        this.store.dispatch(new SelectModelerElementAction({ id, type, name }));
+        const { id, type, name, category } = this.property.data.element;
+        this.store.dispatch(new SelectModelerElementAction({ id, type, name, category }));
     }
 }

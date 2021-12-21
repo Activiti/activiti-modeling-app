@@ -44,6 +44,7 @@ import { multiInstanceHandler } from './multi-instance.handler';
 import { textAnnotationHandler } from './textAnnotation.handler';
 import { modelNameHandler } from './model-name.handler';
 import { isExecutableHandler } from './isExecutable.handler';
+import { categoryHandler } from './category.handler';
 import { processIdHandler } from './process-id.handler';
 import { processErrorsHandler } from './process-errors.handler';
 import { loopCharacteristics } from './loopCharacteristics.handler';
@@ -57,6 +58,7 @@ export const handlers = {
     [BpmnProperty.modelName]: modelNameHandler,
     [BpmnProperty.name]: nameHandler,
     [BpmnProperty.documentation]: documentationHandler,
+    [BpmnProperty.category]: categoryHandler,
     [BpmnProperty.implementation]: implementationHandler,
     [BpmnProperty.decisionTask]: decisionTaskHandler,
     [BpmnProperty.scriptTask]: scriptTaskHandler,

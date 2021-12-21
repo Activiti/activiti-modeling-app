@@ -68,6 +68,18 @@ export const selectProcessContentById = (modelId: string) => {
     );
 };
 
+export const selectProcessCategories = createSelector(
+    selectProcessesArray,
+    (processes) => {
+        const allCategories = processes
+            .map(process => process.category)
+            .filter(category => !!category);
+
+        const uniqueCategories = Array.from(new Set(allCategories));
+        return uniqueCategories;
+    }
+);
+
 export const selectProcessesKeyLabelArray = createSelector(
     selectProcesses,
     processes => Object.values(processes).map((process: Process) => ({

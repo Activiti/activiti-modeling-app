@@ -162,8 +162,8 @@ describe('ProcessModelerComponent', () => {
             id: 'mock-element-id',
             type: 'mock-element-type',
             name: 'mock-element-name',
-            processId: 'mock-parent-id'
+            processId: 'mock-parent-id',
+            category: 'mock-parent-category'
         });
     });
-
 });

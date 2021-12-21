@@ -40,7 +40,12 @@ describe('ProcessEditorComponent', () => {
     const updateProcessPayload = new UpdateProcessAttemptAction({
         modelId: mockProcessModel.id,
         modelContent: content,
-        modelMetadata: { ...mockProcessModel, name: mockProcessModel.name, description: mockProcessModel.description }
+        modelMetadata: {
+            ...mockProcessModel,
+            name: mockProcessModel.name,
+            description: mockProcessModel.description,
+            category: mockProcessModel.category
+        }
     });
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -77,7 +82,13 @@ describe('ProcessEditorComponent', () => {
                     useValue: {
                         getRootProcessElement: jest.fn().mockReturnValue({
                             businessObject: {
-                                $parent: { name: mockProcessModel.name },
+                                $parent: {
+                                    name: mockProcessModel.name,
+                                    targetNamespace: mockProcessModel.category,
+                                    get(key: string) {
+                                        return this[key];
+                                    }
+                                },
                                 name: mockProcessModel.name,
                                 get: (param) => {
                                     const data = { documentation: mockProcessModel.description };

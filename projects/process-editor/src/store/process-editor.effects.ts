@@ -62,13 +62,13 @@ import {
     OpenSaveAsProcessAction,
     OPEN_PROCESS_SAVE_AS_FORM,
     SAVE_AS_PROCESS_ATTEMPT,
-    SaveAsProcessAttemptAction
+    SaveAsProcessAttemptAction,
+    ProcessEntityDialogForm
 } from './process-editor.actions';
 import {
     AmaState,
     BpmnElement,
     createModelName,
-    EntityDialogForm,
     GeneralError,
     SetApplicationLoadingStateAction,
     LogFactoryService,
@@ -395,7 +395,7 @@ export class ProcessEditorEffects {
             catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.DELETE_PROCESS')));
     }
 
-    private createProcess(form: Partial<EntityDialogForm>, navigateTo: boolean, projectId: string): Observable<{} | SnackbarInfoAction | CreateProcessSuccessAction> {
+    private createProcess(form: Partial<ProcessEntityDialogForm>, navigateTo: boolean, projectId: string): Observable<{} | SnackbarInfoAction | CreateProcessSuccessAction> {
         return this.processEditorService.create(form, projectId).pipe(
             switchMap((process) => [
                 new CreateProcessSuccessAction(process, navigateTo),

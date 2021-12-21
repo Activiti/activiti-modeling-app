@@ -61,7 +61,8 @@ export function getDiagramElementMock(businessObject): Bpmn.DiagramElement {
             $type: 'mock-element-type',
             id: 'mock-element-id',
             $parent: {
-                id: 'mock-parent-id'
+                id: 'mock-parent-id',
+                targetNamespace: 'mock-parent-category'
             },
             get: function(key) {
                 return this[key];

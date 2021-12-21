@@ -23,7 +23,6 @@ import {
     DownloadResourceService,
     Process,
     ProcessContent,
-    EntityDialogForm,
     UploadFileAttemptPayload,
     PROCESS_API_TOKEN,
     ModelApiInterface,
@@ -31,6 +30,7 @@ import {
     ContentType,
     ModelExtensions
 } from '@alfresco-dbp/modeling-shared/sdk';
+import { ProcessEntityDialogForm } from '../store/process-editor.actions';
 
 @Injectable()
 export class ProcessEditorService {
@@ -42,7 +42,7 @@ export class ProcessEditorService {
         return this.processApi.getList(projectId);
     }
 
-    create(form: Partial<EntityDialogForm>, projectId: string): Observable<Process> {
+    create(form: Partial<ProcessEntityDialogForm>, projectId: string): Observable<Process> {
         return this.processApi.create(form, projectId);
     }
 

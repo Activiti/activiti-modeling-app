@@ -1,0 +1,7 @@
+<div class="adf-property-label">{{ 'PROCESS_EDITOR.ELEMENT_PROPERTIES.CATEGORY' | translate }}</div>
+
+<ama-process-category-selector
+    [showLabel]="false"
+    [category]="property.value"
+    (categoryChange)="onCategoryChange($event)"
+></ama-process-category-selector>

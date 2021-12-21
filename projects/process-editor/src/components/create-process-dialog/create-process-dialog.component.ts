@@ -15,24 +15,24 @@
  * limitations under the License.
  */
 
-import { Component, Optional, Inject } from '@angular/core';
+import { AmaState, EntityDialogComponent, EntityDialogPayload, EntityDialogContentSubmitData } from '@alfresco-dbp/modeling-shared/sdk';
+import { Component, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { AmaState } from '../../../store/app.state';
-import { EntityDialogPayload } from '../../common';
-import { EntityDialogContentSubmitData } from './dialog-content/entity-dialog-content.component';
 
 @Component({
-    templateUrl: './entity-dialog.component.html',
+    templateUrl: './create-process-dialog.component.html',
 })
-export class EntityDialogComponent {
-    constructor(
-        private store: Store<AmaState>,
-        public dialog: MatDialogRef<EntityDialogComponent>,
+export class CreateProcessDialogComponent {
+    private processCategory = '';
 
+    constructor(
         @Optional()
         @Inject(MAT_DIALOG_DATA)
-        public data: EntityDialogPayload
+        public data: EntityDialogPayload,
+
+        public dialog: MatDialogRef<EntityDialogComponent>,
+        private store: Store<AmaState>,
     ) {
     }
 
@@ -43,7 +43,18 @@ export class EntityDialogComponent {
             callback
         } = $event;
 
-        this.store.dispatch(new this.data.action(payload, navigateTo, callback));
+        const actionPayload = {
+            ...payload,
+            category: this.processCategory
+        };
+
+        const action = new this.data.action(actionPayload, navigateTo, callback);
+
+        this.store.dispatch(action);
         this.dialog.close();
+    }
+
+    onCategoryChange(processCategory: string): void {
+        this.processCategory = processCategory;
     }
 }

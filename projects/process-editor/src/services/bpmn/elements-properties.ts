@@ -60,6 +60,7 @@ export const elementsProperties = {
         BpmnProperty.processName,
         BpmnProperty.isExecutable,
         BpmnProperty.documentation,
+        BpmnProperty.category,
         BpmnCompositeProperty.properties,
         BpmnCompositeProperty.messages,
         BpmnCompositeProperty.errors

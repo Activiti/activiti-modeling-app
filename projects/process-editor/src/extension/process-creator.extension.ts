@@ -18,6 +18,7 @@
 import { MODEL_CREATORS, ModelCreator, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
 import { PROCESS_ICON } from './processes-filter.extension';
 import { CreateProcessAttemptAction } from '../store/process-editor.actions';
+import { CreateProcessDialogComponent } from '../components/create-process-dialog/create-process-dialog.component';
 
 export function createProcessCreator(callback = () => {}): ModelCreator {
     return {
@@ -30,7 +31,8 @@ export function createProcessCreator(callback = () => {}): ModelCreator {
             nameField: 'PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_NAME',
             descriptionField: 'PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_DESC',
             action: CreateProcessAttemptAction,
-            callback: callback
+            callback: callback,
+            dialog: CreateProcessDialogComponent,
         }
     };
 }

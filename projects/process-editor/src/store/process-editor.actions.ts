@@ -101,6 +101,10 @@ export class SelectModelerElementAction implements Action {
     constructor(public element: SelectedProcessElement) {}
 }
 
+export interface ProcessEntityDialogForm extends EntityDialogForm {
+    category: string;
+}
+
 export interface UpdateProcessPayload {
     modelId: string;
     modelContent: ProcessContent;

@@ -24,6 +24,7 @@ export * from './primitive-types';
 export * from './utils/createJsonBlob';
 export * from './utils/default-email-template';
 export * from './components/entity-dialog/entity-dialog.component';
+export * from './components/entity-dialog/dialog-content/entity-dialog-content.component';
 export * from './directives/allowed-characters.directive';
 export * from './directives/palette-overlay.directive';
 export * from './utils/log-filters';

@@ -45,6 +45,7 @@ import { createMultiInstanceProperty } from './multi-instance-cardview-property'
 import { createMessagePayloadProperty } from './messagePayload-cardview-property';
 import { createTextAnnotationProperty } from './text-annotation-cardview-property';
 import { createModelNameProperty } from './model-name-cardview-property';
+import { createModelCategoryProperty } from './model-category-cardview-property';
 import { createIsExecutableProperty } from './isExecutable-cardview-property';
 import { createAssignmentProperty } from './assignment-cardview-property';
 import { createProcessIdProperty } from './process-id-cardview-property';
@@ -74,6 +75,7 @@ export const bpmn2cardView = {
     [BpmnProperty.processName]: createProcessNameProperty,
     [BpmnProperty.processId]: createProcessIdProperty,
     [BpmnProperty.modelName]: createModelNameProperty,
+    [BpmnProperty.category]: createModelCategoryProperty,
     [BpmnProperty.defaultSequenceFlow]: createDefaultSequenceFlowProperty,
     [BpmnProperty.signalRef]: createSignalRefProperty,
     [BpmnProperty.errorRef]: createErrorRefProperty,

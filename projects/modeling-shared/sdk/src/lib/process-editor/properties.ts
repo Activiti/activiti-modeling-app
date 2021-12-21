@@ -22,6 +22,7 @@ export enum BpmnProperty {
     name = 'name',
     modelName = 'modelName',
     documentation = 'documentation',
+    category = 'targetNamespace',
     implementation = 'implementation',
     decisionTask = 'decisionTask',
     scriptTask = 'scriptTask',

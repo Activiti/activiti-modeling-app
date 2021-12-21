@@ -66,6 +66,7 @@
             "VERSION": "Version",
             "VARIABLES": "Variables",
             "DOCUMENTATION": "Documentation",
+            "CATEGORY": "Category",
             "EXECUTABLE": "Executable",
             "IMPLEMENTATION": "Implementation",
             "DECISION_TASK": "Decision task",

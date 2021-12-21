@@ -1,0 +1,24 @@
+<ng-container *ngIf="allCategories$ | async">
+    <mat-form-field class="ama-process-category-selector">
+        <mat-label *ngIf="showLabel">Process Category</mat-label>
+
+        <input
+            matInput
+            autocomplete="off"
+            name="processCategorySelector"
+            type="text"
+            [formControl]="categorySearchInput"
+            [matAutocomplete]="auto"
+            data-automation-id="process-category-selector-input"
+        />
+
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option
+                *ngFor="let category of filteredCategories$ | async"
+                [value]="category"
+            >
+                {{category}}
+            </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+</ng-container>

@@ -115,6 +115,10 @@ import { CardViewConditionExpressionItemComponent } from './services/cardview-pr
 import { ProcessElementVariablesProviderService } from './services/process-element-variables-provider.service';
 import { CalledElementVariablesProviderService } from './services/called-element-variables-provider.service';
 import { SaveProcessCommand } from './services/commands/save-process.command';
+import { CreateProcessDialogComponent } from './components/create-process-dialog/create-process-dialog.component';
+import { ProcessCategorySelectorComponent } from './components/process-category-selector/process-category-selector.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { CardProcessCategoryItemComponent } from './services/cardview-properties/process-category-item/process-category-item.component';
 
 @NgModule({
     imports: [
@@ -146,6 +150,7 @@ import { SaveProcessCommand } from './services/commands/save-process.command';
         MatCardModule,
         MatDialogModule,
         MatSnackBarModule,
+        MatAutocompleteModule,
         CodeEditorModule,
         DragDropModule,
         InputMappingTableModule,
@@ -181,7 +186,10 @@ import { SaveProcessCommand } from './services/commands/save-process.command';
         CardViewProcessNameItemComponent,
         CalledElementDialogComponent,
         CardViewProcessErrorsItemComponent,
+        CardProcessCategoryItemComponent,
         CardViewConditionExpressionItemComponent,
+        CreateProcessDialogComponent,
+        ProcessCategorySelectorComponent,
     ],
     exports: [ProcessEditorRoutingModule],
     providers: [
@@ -219,6 +227,7 @@ import { SaveProcessCommand } from './services/commands/save-process.command';
         providePropertyHandler(BpmnProperty.dueDate, CardViewDueDateItemComponent),
         providePropertyHandler(BpmnProperty.processName, CardViewProcessNameItemComponent),
         providePropertyHandler(BpmnProperty.conditionExpression, CardViewConditionExpressionItemComponent),
+        providePropertyHandler(BpmnProperty.category, CardProcessCategoryItemComponent),
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider(),

@@ -49,7 +49,7 @@ import {
 import {
     ChangeProcessModelContextAction,
     UpdateProcessAttemptAction,
-    UpdateProcessExtensionsAction
+    UpdateProcessExtensionsAction,
 } from '../../store/process-editor.actions';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
 import { MatTabChangeEvent } from '@angular/material/tabs';

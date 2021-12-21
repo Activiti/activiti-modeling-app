@@ -138,8 +138,8 @@ export class CardViewErrorRefItemComponent implements OnInit, OnDestroy {
             }
         }
         this.cardViewUpdateService.update(this.property, this.selectedError);
-        const { id, type, name } = this.property.data.element;
-        this.store.dispatch(new SelectModelerElementAction({ id, type, name }));
+        const { id, type, name, category } = this.property.data.element;
+        this.store.dispatch(new SelectModelerElementAction({ id, type, name, category }));
     }
 
     getAttachedErrorProvider(attached: any) {

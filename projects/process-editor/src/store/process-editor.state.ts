@@ -22,9 +22,10 @@ export function createSelectedElement(element): SelectedProcessElement {
     return {
         id: element.id,
         type: element.type,
-        name: element.businessObject && element.businessObject.name || '',
+        name: element.businessObject?.name ?? '',
+        category: element.businessObject?.$parent?.targetNamespace ?? '',
         get processId() {
-            if (element.businessObject && element.businessObject.$parent) {
+            if (element.businessObject?.$parent) {
                 if (element.businessObject.$parent.$type === BpmnElement.SubProcess) {
                     return element.businessObject.$parent.$parent.id;
                 } else if (element.type === BpmnElement.Participant) {
@@ -43,6 +44,7 @@ export function getProcessRefId(element: any) {
 export interface SelectedProcessElement {
     id: string;
     type: string;
+    category: string;
     name?: string;
     processId?: string;
 }
