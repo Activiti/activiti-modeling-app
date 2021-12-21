@@ -26,6 +26,9 @@ import { RegisteredInputsModelingJsonSchemaProvider } from './registered-inputs-
 import { PropertiesViewerStringInputComponent } from '../variables/properties-viewer/value-type-inputs/string-input/string-input.component';
 import { PropertiesViewerIntegerInputComponent } from '../variables/properties-viewer/value-type-inputs/integer-input/integer-input.component';
 import { PropertiesViewerJsonInputComponent } from '../variables/properties-viewer/value-type-inputs/json-input/json-input.component';
+import { take } from 'rxjs/operators';
+import { expectedItems } from '../mocks/modeling-json-schema.service.mock';
+import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 
 describe('ModelingJSONSchemaService', () => {
     let service: ModelingJSONSchemaService;
@@ -34,6 +37,7 @@ describe('ModelingJSONSchemaService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
+                { provide: TranslationService, useClass: TranslationMock },
                 provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
                 provideInputTypeItemHandler('integer', PropertiesViewerIntegerInputComponent),
                 provideInputTypeItemHandler('boolean', PropertiesViewerBooleanInputComponent),
@@ -113,5 +117,11 @@ describe('ModelingJSONSchemaService', () => {
         const schema = service.getSchemaFromReference('#/$defs/path/to/type', { ...exampleJSONSchema, $defs: { path: { to: { type: { type: 'string' } } } } });
 
         expect(schema).toEqual({ type: 'string' });
+    });
+
+    it('should get property items form registered providers', async() => {
+        const items = await service.getPropertyTypeItems().pipe(take(1)).toPromise();
+
+        expect(items).toEqual(expectedItems);
     });
 });

@@ -35,3 +35,5 @@ export * from './properties-viewer/value-type-inputs/enum-input/enum-input.compo
 export * from './properties-viewer/value-type-inputs/array-input/array-input.component';
 export * from './properties-viewer/value-type-inputs/array-input/array-input-dialog/array-input-dialog.component';
 export * from './properties-viewer/value-type-inputs/modeled-object/modeled-object-input.component';
+
+export * from './properties-viewer/property-type-item/models';

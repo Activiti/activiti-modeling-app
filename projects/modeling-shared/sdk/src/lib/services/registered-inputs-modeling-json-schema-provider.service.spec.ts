@@ -14,8 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { TestBed } from '@angular/core/testing';
+import { take } from 'rxjs/operators';
 import { primitiveTypesSchema } from '../code-editor/services/expression-language/primitive-types-schema';
+import { expectedRegisteredInputsItems } from '../mocks/modeling-json-schema.service.mock';
 import { PropertiesViewerBooleanInputComponent } from '../variables/properties-viewer/value-type-inputs/boolean-input.component';
 import { PropertiesViewerIntegerInputComponent } from '../variables/properties-viewer/value-type-inputs/integer-input/integer-input.component';
 import { PropertiesViewerStringInputComponent } from '../variables/properties-viewer/value-type-inputs/string-input/string-input.component';
@@ -26,9 +29,12 @@ import { RegisteredInputsModelingJsonSchemaProvider } from './registered-inputs-
 describe('RegisteredInputsModelingJsonSchemaProvider', () => {
     let service: RegisteredInputsModelingJsonSchemaProvider;
 
+    const projectId = null;
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
+                { provide: TranslationService, useClass: TranslationMock },
                 provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
                 provideInputTypeItemHandler('integer', PropertiesViewerIntegerInputComponent),
                 provideInputTypeItemHandler('boolean', PropertiesViewerBooleanInputComponent),
@@ -40,7 +46,6 @@ describe('RegisteredInputsModelingJsonSchemaProvider', () => {
     });
 
     it('should return inputs schemas', async () => {
-        const projectId = null;
         const jsonSchemas = await service.initializeModelingJsonSchemasForProject(projectId).toPromise();
         expect(jsonSchemas).toEqual([
             {
@@ -59,5 +64,11 @@ describe('RegisteredInputsModelingJsonSchemaProvider', () => {
                 schema: primitiveTypesSchema.$defs.primitive.boolean
             }
         ]);
+    });
+
+    it('should get property items form registered providers', async() => {
+        const items = await service.getPropertyTypeItems(projectId).pipe(take(1)).toPromise();
+
+        expect(items).toEqual(expectedRegisteredInputsItems);
     });
 });

@@ -142,6 +142,7 @@
             }
         },
         "VARIABLE_TYPE_INPUT": {
+            "BASIC_PROPERTIES_TYPES": "Basics",
             "DATE": {
                 "CURRENT_DATE": "Today",
                 "CLEAR_BUTTON": "Clear"

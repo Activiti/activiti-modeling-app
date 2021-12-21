@@ -16,12 +16,14 @@
  */
 
 import { Inject, Injectable } from '@angular/core';
-import { take } from 'rxjs/operators';
+import { forkJoin, Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 import { JSONSchemaInfoBasics, JSONSchemaPropertyBasics } from '../api/types';
 import { getFileUriPattern } from '../code-editor/helpers/file-uri';
 import { CodeEditorService } from '../code-editor/services/code-editor-service.service';
 import { primitiveTypesSchema } from '../code-editor/services/expression-language/primitive-types-schema';
 import { primitive_types } from '../helpers/primitive-types';
+import { PropertyTypeItem } from '../variables/properties-viewer/property-type-item/models';
 import { ModelingJsonSchemaProvider, MODELING_JSON_SCHEMA_PROVIDERS } from './modeling-json-schema-provider.service';
 
 @Injectable({
@@ -284,6 +286,32 @@ export class ModelingJSONSchemaService {
         } else {
             this.codeEditorService.addSchema(projectId, getFileUriPattern(projectId, 'json'), { ...this.projectSchema });
             return this.projectSchema;
+        }
+    }
+
+    getPropertyTypeItems(): Observable<PropertyTypeItem[]> {
+        const observables: Observable<PropertyTypeItem>[] = [];
+        this.providers.forEach(provider => {
+            observables.push(this.getPropertyTypeItemsFromProvider(provider, this.projectId));
+        });
+        return forkJoin(observables).pipe(map(items => items.filter(item => item.children?.length > 0)));
+    }
+
+    private getPropertyTypeItemsFromProvider(provider: ModelingJsonSchemaProvider<any>, projectId: string): Observable<PropertyTypeItem> {
+        return provider.getPropertyTypeItems(projectId).pipe(map(rootItem => {
+            this.setPropertyTypeItemValue(provider, rootItem);
+            return rootItem;
+        }));
+    }
+
+    private setPropertyTypeItemValue(provider: ModelingJsonSchemaProvider<any>, item: PropertyTypeItem) {
+        if (item.children?.length > 0) {
+            item.children.forEach(child => this.setPropertyTypeItemValue(provider, child));
+        }
+
+        if (item.typeId) {
+            const prefix = provider.isGlobalProvider() ? ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH : ModelingJSONSchemaService.DEFINITIONS_PATH;
+            item.value = { $ref: prefix + '/' + item.typeId.join('/') };
         }
     }
 }

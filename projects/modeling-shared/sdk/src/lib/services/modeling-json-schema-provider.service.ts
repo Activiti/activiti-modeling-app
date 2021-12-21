@@ -19,6 +19,7 @@ import { InjectionToken, Provider, Type } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
 import { JSONSchemaInfoBasics } from '../api/types';
+import { PropertyTypeItem } from '../variables/properties-viewer/property-type-item/models';
 
 export interface ModelingJsonSchema {
     projectId: string;
@@ -39,6 +40,14 @@ export abstract class ModelingJsonSchemaProvider<T> {
 
     abstract getProviderName(): string;
 
+    abstract getProviderIcon(): string;
+
+    protected isCustomIcon(): boolean {
+        return false;
+    }
+
+    abstract getProviderTranslatedName(): string;
+
     protected abstract retrieveModels(projectId: string): Observable<ModelsWithJsonSchemaMap<T>>;
 
     protected abstract transformModelToJsonSchemas(projectId: string, modelId: string, modelContent: T): ModelingJsonSchema[];
@@ -52,17 +61,29 @@ export abstract class ModelingJsonSchemaProvider<T> {
     }
 
     initializeModelingJsonSchemasForProject(projectId: string): Observable<ModelingJsonSchema[]> {
-        const schemas = this.retrieveModels(projectId).pipe(
+        const schemas = this.getModelingSchemasForProvider(projectId);
+
+        schemas.subscribe(jsonSchemas => this.modelingJsonSchemasUpdated.next(jsonSchemas));
+
+        return schemas;
+    }
+
+    getModelingSchemasForProvider(projectId: string) {
+        return this.retrieveModels(projectId).pipe(
             map(models => {
                 let jsonSchemas: ModelingJsonSchema[] = [];
                 Object.keys(models).forEach(modelId => jsonSchemas = jsonSchemas.concat(this.transformModelToJsonSchemas(projectId, modelId, models[modelId])));
                 return jsonSchemas;
             })
         ).pipe(take(1));
+    }
 
-        schemas.subscribe(jsonSchemas => this.modelingJsonSchemasUpdated.next(jsonSchemas));
+    public abstract getPropertyTypeItems(projectId: string): Observable<PropertyTypeItem>;
 
-        return schemas;
+    protected sort(a: PropertyTypeItem, b: PropertyTypeItem): number {
+        const textA = a.displayName.toUpperCase();
+        const textB = b.displayName.toUpperCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
     }
 }
 

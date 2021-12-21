@@ -15,9 +15,12 @@
  * limitations under the License.
  */
 
+import { TranslationService } from '@alfresco/adf-core';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 import { JSONSchemaInfoBasics } from '../api/types';
+import { PropertyTypeItem } from '../variables/properties-viewer/property-type-item/models';
 import { InputTypeItem, INPUT_TYPE_ITEM_HANDLER } from '../variables/properties-viewer/value-type-inputs/value-type-inputs';
 import { ModelingJsonSchema, ModelingJsonSchemaProvider, ModelsWithJsonSchemaMap } from './modeling-json-schema-provider.service';
 
@@ -25,17 +28,26 @@ import { ModelingJsonSchema, ModelingJsonSchemaProvider, ModelsWithJsonSchemaMap
     providedIn: 'root'
 })
 export class RegisteredInputsModelingJsonSchemaProvider extends ModelingJsonSchemaProvider<JSONSchemaInfoBasics> {
-
-    constructor(@Inject(INPUT_TYPE_ITEM_HANDLER) private inputTypeItemHandler: InputTypeItem[]) {
+    constructor(@Inject(INPUT_TYPE_ITEM_HANDLER) private inputTypeItemHandler: InputTypeItem[], private translationService: TranslationService) {
         super();
     }
 
+    public static readonly PROVIDER_NAME = 'registered-inputs';
+
     getProviderName(): string {
-        return 'registered-inputs';
+        return RegisteredInputsModelingJsonSchemaProvider.PROVIDER_NAME;
     }
 
     isGlobalProvider() {
         return true;
+    }
+
+    getProviderIcon(): string {
+        return 'assignment_late';
+    }
+
+    getProviderTranslatedName(): string {
+        return this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.BASIC_PROPERTIES_TYPES');
     }
 
     protected retrieveModels(projectId: string): Observable<ModelsWithJsonSchemaMap<JSONSchemaInfoBasics>> {
@@ -54,5 +66,31 @@ export class RegisteredInputsModelingJsonSchemaProvider extends ModelingJsonSche
                 typeId: [handlerId]
             }
         ];
+    }
+
+    getPropertyTypeItems(projectId: string): Observable<PropertyTypeItem> {
+        return this.getModelingSchemasForProvider(projectId).pipe(take(1), map(modelingSchemas => {
+            const rootItem: PropertyTypeItem = {
+                displayName: this.getProviderTranslatedName(),
+                iconName: this.getProviderIcon(),
+                isCustomIcon: this.isCustomIcon(),
+                provider: this.getProviderName(),
+                children: []
+            };
+
+            modelingSchemas.forEach(modelingSchema => {
+                rootItem.children.push({
+                    displayName: modelingSchema.typeId[modelingSchema.typeId.length - 1],
+                    iconName: this.getProviderIcon(),
+                    isCustomIcon: this.isCustomIcon(),
+                    provider: this.getProviderName(),
+                    typeId: modelingSchema.typeId
+                });
+            });
+
+            rootItem.children.sort(this.sort);
+
+            return rootItem;
+        }));
     }
 }

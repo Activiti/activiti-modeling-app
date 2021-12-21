@@ -24,6 +24,7 @@ import { PropertiesViewerStringInputComponent } from '../variables/properties-vi
 import { provideInputTypeItemHandler } from '../variables/properties-viewer/value-type-inputs/value-type-inputs';
 import { provideModelingJsonSchemaProvider } from './modeling-json-schema-provider.service';
 import { RegisteredInputsModelingJsonSchemaProvider } from './registered-inputs-modeling-json-schema-provider.service';
+import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 
 describe('JSONSchemaToEntityPropertyService', () => {
     let service: JSONSchemaToEntityPropertyService;
@@ -35,7 +36,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 CodeEditorService,
                 ModelingJSONSchemaService,
                 JSONSchemaToEntityPropertyService,
-                ModelingJSONSchemaService,
+                { provide: TranslationService, useClass: TranslationMock },
                 provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
                 provideInputTypeItemHandler('integer', PropertiesViewerIntegerInputComponent),
                 provideInputTypeItemHandler('boolean', PropertiesViewerBooleanInputComponent),
