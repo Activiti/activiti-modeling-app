@@ -89,7 +89,7 @@ describe('PropertiesViewerJsonInputComponent', () => {
         });
 
         it('object', () => {
-            component.onChange('{"a":"b"}');
+            component.onChange('{ "a": "b" }');
             expect(component.change.emit).toHaveBeenCalledWith(null);
         });
 
@@ -122,13 +122,13 @@ describe('PropertiesViewerJsonInputComponent', () => {
         });
 
         it('object', () => {
-            component.onChange('{"a":"b"}');
-            expect(component.change.emit).toHaveBeenCalledWith('{"a":"b"}');
+            component.onChange('{ "a": "b" }');
+            expect(component.change.emit).toHaveBeenCalledWith({ a: 'b' });
         });
 
         it('integer', () => {
             component.onChange('1');
-            expect(component.change.emit).toHaveBeenCalledWith('1');
+            expect(component.change.emit).toHaveBeenCalledWith(1);
         });
 
         it('string', () => {
@@ -138,12 +138,12 @@ describe('PropertiesViewerJsonInputComponent', () => {
 
         it('boolean', () => {
             component.onChange('true');
-            expect(component.change.emit).toHaveBeenCalledWith('true');
+            expect(component.change.emit).toHaveBeenCalledWith(true);
         });
 
         it('array', () => {
             component.onChange('[1, 2, 3]');
-            expect(component.change.emit).toHaveBeenCalledWith('[1, 2, 3]');
+            expect(component.change.emit).toHaveBeenCalledWith([1, 2, 3]);
         });
     });
 
@@ -155,12 +155,12 @@ describe('PropertiesViewerJsonInputComponent', () => {
 
         it('object', () => {
             component.onModeledObjectChanges({ a: 'b' });
-            expect(component.change.emit).toHaveBeenCalledWith(JSON.stringify({ a: 'b' }, null, 4));
+            expect(component.change.emit).toHaveBeenCalledWith({ a: 'b' });
         });
 
         it('integer', () => {
             component.onModeledObjectChanges(1);
-            expect(component.change.emit).toHaveBeenCalledWith('1');
+            expect(component.change.emit).toHaveBeenCalledWith(1);
         });
 
         it('string', () => {
@@ -170,12 +170,12 @@ describe('PropertiesViewerJsonInputComponent', () => {
 
         it('boolean', () => {
             component.onModeledObjectChanges(true);
-            expect(component.change.emit).toHaveBeenCalledWith('true');
+            expect(component.change.emit).toHaveBeenCalledWith(true);
         });
 
         it('array', () => {
             component.onModeledObjectChanges([1, 2, 3]);
-            expect(component.change.emit).toHaveBeenCalledWith(JSON.stringify([1, 2, 3], null, 4));
+            expect(component.change.emit).toHaveBeenCalledWith([1, 2, 3]);
         });
     });
 });

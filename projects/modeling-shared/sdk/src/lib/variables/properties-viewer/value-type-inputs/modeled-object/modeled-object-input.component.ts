@@ -17,6 +17,7 @@
 
 import { Component, Output, EventEmitter, Input, ViewEncapsulation, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { ElementVariable, EntityProperty, JSONSchemaInfoBasics } from '../../../../api/types';
 import { JSONSchemaToEntityPropertyService } from '../../../../services/json-schema-to-entity-property.service';
 
@@ -43,31 +44,69 @@ export class PropertiesViewerModeledObjectInputComponent implements OnChanges {
 
     objectForm: FormGroup;
 
+    private oldModel = null;
+    private oldValue = null;
+    private subscription: Subscription = null;
+
     constructor(private formBuilder: FormBuilder, private jsonService: JSONSchemaToEntityPropertyService) { }
 
     ngOnChanges(): void {
-        if (!this.valueInit) {
+        const modelChanged = !this.objectEquals(this.oldModel, this.model);
+        const valueChanges = this.value && !this.objectEquals(this.oldValue, this.value);
+
+        this.oldModel = this.model;
+        this.oldValue = this.value;
+
+        if (modelChanged || valueChanges) {
             this.primitiveType = this.jsonService.getPrimitiveType(this.model || { type: 'string' });
+            this.inputs = this.jsonService.getEntityPropertiesFromJSONSchema(this.model);
+        }
 
+        if (modelChanged) {
             this.init();
+        }
 
-            this.valueInit = !!this.value;
+        if (valueChanges) {
+            this.subscription.unsubscribe();
+            this.setValues();
+            this.updateValues();
+        }
+
+    }
+
+    primitiveTypeChanges(value: any) {
+        this.value = value;
+        this.valueChanges.emit(this.value);
+    }
+
+    private objectEquals(obj1: any, obj2: any): boolean {
+        if (!obj1 || typeof obj1 !== 'string') {
+            return obj1 === obj2;
+        } else {
+            try {
+                return JSON.stringify(obj1) === JSON.stringify(obj2);
+            } catch (error) {
+                return false;
+            }
         }
     }
 
-    init(): void {
-        this.inputs = this.jsonService.getEntityPropertiesFromJSONSchema(this.model);
+    private init(): void {
         this.buildForm();
         this.valid.emit(this.objectForm.valid);
     }
 
-    buildForm(): void {
+    private setValues(): void {
+        this.inputs.forEach(input => this.objectForm?.get(input.name)?.setValue(this.getCurrentValueFromInput(input)));
+    }
+
+    private buildForm(): void {
         const group = {};
         if (this.model) {
             this.inputs.forEach(input => {
                 group[input.name] = [
                     {
-                        value: this.value && this.value[input.name] ? this.value[input.name] : input.value,
+                        value: this.getCurrentValueFromInput(input),
                         disabled: this.disabled || input.readOnly || false
                     }
                 ];
@@ -80,15 +119,15 @@ export class PropertiesViewerModeledObjectInputComponent implements OnChanges {
         this.updateValues();
     }
 
-    primitiveTypeChanges(value: any) {
-        this.value = value;
-        this.valueChanges.emit(this.value);
+    private getCurrentValueFromInput(input: EntityProperty): any {
+        return this.value && this.value[input.name] ? this.value[input.name] : input.value;
     }
 
-    updateValues() {
-        this.objectForm.valueChanges.subscribe(() => {
+    private updateValues() {
+        this.subscription = this.objectForm.valueChanges.subscribe(() => {
             if (this.objectForm.valid) {
                 this.value = this.objectForm.value;
+                this.oldValue = this.value;
                 this.valueChanges.emit(this.value);
             } else {
                 this.valueChanges.emit(null);

@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 import { EntityProperty, JSONSchemaInfoBasics } from '../../../../api/types';
 
 @Component({
     templateUrl: './json-input.component.html'
 })
-export class PropertiesViewerJsonInputComponent {
+export class PropertiesViewerJsonInputComponent implements OnChanges {
     @Output() change = new EventEmitter();
-    @Input() value: string;
+    @Input() value: any;
     @Input() disabled = false;
     @Input() placeholder: string;
     @Input() model: JSONSchemaInfoBasics;
@@ -34,12 +34,10 @@ export class PropertiesViewerJsonInputComponent {
 
     valid = true;
 
+    stringValue = '';
+
     onModeledObjectChanges(value: any) {
-        if (value && typeof value !== 'string') {
-            this.value = JSON.stringify(value, null, 4);
-        } else {
-            this.value = value;
-        }
+        this.value = value;
         this.emitValue();
     }
 
@@ -47,13 +45,44 @@ export class PropertiesViewerJsonInputComponent {
         this.valid = valid;
     }
 
+    ngOnChanges(): void {
+        if (this.value && this.contentChanges()) {
+            if (typeof this.value !== 'string') {
+                this.stringValue = this.stringifyValue();
+            } else {
+                this.stringValue = this.value;
+            }
+        }
+    }
+
+    private contentChanges(): boolean {
+        let check = this.stringValue;
+        try {
+            check = this.stringifyValue();
+        } catch (error) { }
+        return this.stringValue !== check;
+    }
+
+    private stringifyValue(): string {
+        return JSON.stringify(this.value, null, 4);
+    }
+
     onChange(value: string) {
-        this.value = value;
+        this.stringValue = value;
+        if (value) {
+            try {
+                this.value = JSON.parse(value);
+            } catch (e) {
+                this.value = value;
+            }
+        } else {
+            this.value = value;
+        }
         this.emitValue();
     }
 
     private emitValue() {
-        if (this.valid && this.value && this.value.trim()) {
+        if (this.valid && this.value) {
             this.change.emit(this.value);
         } else {
             this.change.emit(null);

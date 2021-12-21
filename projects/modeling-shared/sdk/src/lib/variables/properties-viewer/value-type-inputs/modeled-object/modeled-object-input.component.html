@@ -1,5 +1,5 @@
 <div class="ama-modeled-object adf-property-list" *ngIf="(primitiveType === 'json' && model) else primitiveTypeInput">
-    <form [formGroup]="objectForm">
+    <form [formGroup]="objectForm" *ngIf="objectForm">
         <div *ngFor="let input of inputs; let i=index" class="ama-modeled-object-input adf-property">
             <div class="ama-modeled-object-input-label adf-property-label">
                 {{input.label ? input.label : input.name}}

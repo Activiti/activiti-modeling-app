@@ -200,7 +200,7 @@ export class ExpressionsEditorService {
     * or all the text (by setting this to ***true***)
     */
     initExpressionEditor(language: string, parameters: EntityProperty[], hostLanguage: string = null, highlightAllText = false) {
-        const languages = monaco.languages.getLanguages();
+        const languages = monaco?.languages?.getLanguages() || [];
         if (languages.findIndex(lang => lang.id === language) < 0) {
             monaco.languages.register({ id: language });
             monaco.languages.setMonarchTokensProvider(language, this.getMonarchLanguageDefinition(parameters, hostLanguage, highlightAllText));

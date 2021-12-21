@@ -1,4 +1,4 @@
-<ng-container *ngIf="model else expressionEditor">
+<ng-container *ngIf="((model?.type === 'object' && model?.properties) || model?.$ref) else expressionEditor">
     <mat-tab-group *ngIf="extendedProperties?.enableExpressionEditor else modeledObject" [attr.data-automation-id]="'json-input-tabs'">
         <mat-tab [label]="'SDK.VALUE' | translate">
             <ng-container *ngTemplateOutlet="modeledObject"></ng-container>
@@ -13,7 +13,7 @@
     <modelingsdk-modeled-object-input
         [attr.data-automation-id]="'variable-value'"
         [autocompletionContext]="autocompletionContext"
-        [value]="value | jsonParse"
+        [value]="value"
         (valueChanges)="onModeledObjectChanges($event)"
         [disabled]="disabled"
         [model]="model"
@@ -25,7 +25,7 @@
 <ng-template #expressionEditor>
     <modelingsdk-expression-code-editor
         [attr.data-automation-id]="'variable-value'"
-        [expression]="value"
+        [expression]="stringValue"
         (expressionChange)="onChange($event)"
         [variables]="autocompletionContext"
         [language]="'json'"
