@@ -72,8 +72,7 @@
                     "DECISION_TABLE": "Are you sure you want to save this decision table?",
                     "CONNECTOR": "Are you sure you want to save this connector?",
                     "EMAIL_TEMPLATE": "Are you sure you want to overwrite the email template?",
-                    "SCRIPT": "Are you sure you want to save this script?",
-                    "MODEL": "Are you sure you want to save this Content Model?"
+                    "SCRIPT": "Are you sure you want to save this script?"
                 },
                 "SAVE_AS": {
                   "PROCESS": "Are you sure you want to copy this process?",
