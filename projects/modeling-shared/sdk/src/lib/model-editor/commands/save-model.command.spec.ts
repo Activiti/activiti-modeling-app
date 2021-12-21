@@ -45,7 +45,6 @@ class SpecificSaveModelCommand extends GenericSaveModelCommand {
         super(store, { deserialize: JSON.parse } as unknown as ModelContentSerializer, translationService);
     }
 
-    protected title = 'test-title';
     protected ValidateAction = TestValidateAction;
     protected UpdateAction = TestUpdateAction;
 }
