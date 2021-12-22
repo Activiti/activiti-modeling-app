@@ -44,6 +44,10 @@ import { PropertiesViewerArrayInputComponent } from './properties-viewer/value-t
 import { ArrayInputDialogComponent } from './properties-viewer/value-type-inputs/array-input/array-input-dialog/array-input-dialog.component';
 import { JsonParsePipe } from './properties-viewer/json-parse.pipe';
 import { InputErrorDirective } from './properties-viewer/input-error.directive';
+import { PropertyTypeSelectorSmartComponent } from './properties-viewer/property-type-selector/property-type-selector.smart-component';
+import { PropertyTypeItemUiComponent } from './properties-viewer/property-type-item/property-type-item.ui-component';
+import { AutomationIdPipe } from './properties-viewer/property-type-item/automation-id.pipe';
+import { UseModeledObjectPipe } from './properties-viewer/value-type-inputs/json-input/use-modeled-object.pipe';
 
 @NgModule({
     imports: [
@@ -73,7 +77,11 @@ import { InputErrorDirective } from './properties-viewer/input-error.directive';
         VariablePrimitiveTypePipe,
         PropertiesViewerEnumInputComponent,
         JsonParsePipe,
-        InputErrorDirective
+        InputErrorDirective,
+        PropertyTypeSelectorSmartComponent,
+        PropertyTypeItemUiComponent,
+        AutomationIdPipe,
+        UseModeledObjectPipe
     ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),

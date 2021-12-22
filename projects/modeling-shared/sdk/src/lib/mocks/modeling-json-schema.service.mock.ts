@@ -66,6 +66,47 @@ export const expectedItems = [
     }
 ];
 
+export const expectedHierarchy = [
+    {
+        displayName: 'SDK.VARIABLE_TYPE_INPUT.BASIC_PROPERTIES_TYPES',
+        iconName: 'assignment_late',
+        isCustomIcon: false,
+        provider: 'registered-inputs',
+        children: [
+            {
+                displayName: 'boolean',
+                iconName: 'assignment_late',
+                isCustomIcon: false,
+                provider: 'registered-inputs',
+                typeId: ['boolean'],
+                value: {
+                    $ref: '#/$defs/primitive/boolean'
+                }
+            },
+            {
+                displayName: 'integer',
+                iconName: 'assignment_late',
+                isCustomIcon: false,
+                provider: 'registered-inputs',
+                typeId: ['integer'],
+                value: {
+                    $ref: '#/$defs/primitive/integer'
+                }
+            },
+            {
+                displayName: 'string',
+                iconName: 'assignment_late',
+                isCustomIcon: false,
+                provider: 'registered-inputs',
+                typeId: ['string'],
+                value: {
+                    $ref: '#/$defs/primitive/string'
+                }
+            }
+        ]
+    }
+];
+
 export const expectedRegisteredInputsItems = {
     displayName: 'SDK.VARIABLE_TYPE_INPUT.BASIC_PROPERTIES_TYPES',
     iconName: 'assignment_late',

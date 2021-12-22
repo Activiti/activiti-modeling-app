@@ -32,17 +32,23 @@ export class JSONSchemaToEntityPropertyService {
     }
 
     getEntityPropertiesFromJSONSchema(
-        jsonSchema: JSONSchemaInfoBasics,
+        providedSchema: JSONSchemaInfoBasics,
         name?: string,
         prefix = ''
     ): EntityProperty[] {
         const entityProperties: EntityProperty[] = [];
+        const jsonSchema = this.modelingJSONSchemaService.flatSchemaReference(providedSchema);
+
         if (typeof jsonSchema === 'object' && !('length' in jsonSchema)) {
             if (jsonSchema.anyOf) {
                 jsonSchema.anyOf.forEach(schema => entityProperties.push(this.getPrimitiveEntityProperty(schema, jsonSchema, name, prefix)));
-            } else if (jsonSchema.allOf) {
+            }
+
+            if (jsonSchema.allOf) {
                 jsonSchema.allOf.forEach(schema => entityProperties.push(this.getPrimitiveEntityProperty(schema, jsonSchema, name, prefix)));
-            } else if (jsonSchema.type) {
+            }
+
+            if (jsonSchema.type) {
                 if (Array.isArray(jsonSchema.type)) {
                     jsonSchema.type.forEach(type => {
                         if (typeof type === 'string') {
@@ -76,9 +82,13 @@ export class JSONSchemaToEntityPropertyService {
                             break;
                     }
                 }
-            } else if (jsonSchema.enum || jsonSchema.const) {
+            }
+
+            if (jsonSchema.enum || jsonSchema.const) {
                 entityProperties.push(this.getPrimitiveEntityProperty(jsonSchema, jsonSchema, name, prefix));
-            } else if (jsonSchema.$ref) {
+            }
+
+            if (jsonSchema.$ref) {
                 entityProperties.push(this.getPrimitiveEntityProperty(
                     this.modelingJSONSchemaService.getSchemaFromReference(jsonSchema.$ref, jsonSchema),
                     jsonSchema,
@@ -127,7 +137,7 @@ export class JSONSchemaToEntityPropertyService {
     }
 
     private getBasicEntityProperty(jsonSchema: JSONSchemaInfoBasics, name: string, prefix: string): EntityProperty {
-        if (jsonSchema) {
+        if (jsonSchema && Object.keys(jsonSchema).length > 0) {
             const typeString = (jsonSchema.type || (jsonSchema.enum ? 'enum' : 'const')).toString();
 
             return {
@@ -148,6 +158,8 @@ export class JSONSchemaToEntityPropertyService {
     }
 
     private fixPrimitiveType(entity: EntityProperty) {
-        entity.type = this.modelingJSONSchemaService.getPrimitiveTypeFromModel(entity?.model, entity.type);
+        if (!!entity) {
+            entity.type = this.modelingJSONSchemaService.getPrimitiveTypeFromModel(entity.model, entity.type);
+        }
     }
 }

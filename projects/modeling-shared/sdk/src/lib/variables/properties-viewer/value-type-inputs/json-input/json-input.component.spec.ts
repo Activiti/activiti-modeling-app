@@ -38,6 +38,9 @@ import { VariableValuePipe } from '../../variable-value.pipe';
 import { AllowedCharactersDirective } from '../../../../helpers/directives/allowed-characters.directive';
 import { Store } from '@ngrx/store';
 import { PropertiesViewerJsonInputComponent } from './json-input.component';
+import { UseModeledObjectPipe } from './use-modeled-object.pipe';
+import { RegisteredInputsModelingJsonSchemaProvider } from '../../../../services/registered-inputs-modeling-json-schema-provider.service';
+import { provideModelingJsonSchemaProvider } from '../../../../services/modeling-json-schema-provider.service';
 
 describe('PropertiesViewerJsonInputComponent', () => {
     let component: PropertiesViewerJsonInputComponent;
@@ -63,7 +66,8 @@ describe('PropertiesViewerJsonInputComponent', () => {
                 PropertiesViewerStringInputComponent,
                 PropertiesViewerArrayInputComponent,
                 VariableValuePipe,
-                AllowedCharactersDirective
+                AllowedCharactersDirective,
+                UseModeledObjectPipe
             ],
             providers: [
                 FormBuilder,
@@ -72,7 +76,8 @@ describe('PropertiesViewerJsonInputComponent', () => {
                 CodeEditorService,
                 provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
                 { provide: TranslationService, useClass: TranslationMock },
-                { provide: Store, useValue: { dispatch: jest.fn() } }
+                { provide: Store, useValue: { dispatch: jest.fn() } },
+                provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
             ]
         }).compileComponents();
     }));

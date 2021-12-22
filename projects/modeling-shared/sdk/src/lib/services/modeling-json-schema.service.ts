@@ -258,25 +258,34 @@ export class ModelingJSONSchemaService {
                 }
                 this.createTypeDefinition(definitions[path], typeId.slice(1), schema, typeIdPath, isPrimitive);
             } else if (!isPrimitive) {
-                definitions[path] = this.fixReferences(schema, typeIdPath);
+                definitions[path] = this.fixReferences(schema, typeIdPath, schema);
             } else {
                 definitions[path] = schema;
             }
         }
     }
 
-    private fixReferences(schema: JSONSchemaInfoBasics, typeIdPath: string[]): JSONSchemaInfoBasics {
-        const result: JSONSchemaInfoBasics = {};
-        Object.keys(schema).forEach(key => {
-            if (key === '$ref') {
-                result[key] = schema[key].replace(/\#/g, ModelingJSONSchemaService.DEFINITIONS_PATH + '/' + typeIdPath.join('/'));
-            } else if (typeof schema[key] === 'object') {
-                result[key] = this.fixReferences(schema[key], typeIdPath);
-            } else {
-                result[key] = schema[key];
-            }
-        });
-        return result;
+    private fixReferences(
+        schema: JSONSchemaInfoBasics | JSONSchemaInfoBasics[],
+        typeIdPath: string[], originalSchema: JSONSchemaInfoBasics
+    ): JSONSchemaInfoBasics | JSONSchemaInfoBasics[] {
+        if (Array.isArray(schema)) {
+            const result: JSONSchemaInfoBasics[] = [];
+            schema.forEach(subSchema => result.push(<JSONSchemaInfoBasics> this.fixReferences(subSchema, typeIdPath, originalSchema)));
+            return result;
+        } else {
+            const result: JSONSchemaInfoBasics = {};
+            Object.keys(schema).forEach(key => {
+                if (key === '$ref' && !!this.getSchemaFromReference(schema[key], originalSchema)) {
+                    result[key] = schema[key].replace(/\#/g, ModelingJSONSchemaService.DEFINITIONS_PATH + '/' + typeIdPath.join('/'));
+                } else if (typeof schema[key] === 'object') {
+                    result[key] = this.fixReferences(schema[key], typeIdPath, originalSchema);
+                } else {
+                    result[key] = schema[key];
+                }
+            });
+            return result;
+        }
     }
 
     private registerModelingSchema(projectId: string, schema?: JSONSchemaInfoBasics): JSONSchemaInfoBasics {

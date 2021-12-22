@@ -1,0 +1,22 @@
+<div class="ama-spinner-loading" *ngIf="!hierarchy">
+    <mat-progress-bar *ngIf="!hierarchy" mode="indeterminate"></mat-progress-bar>
+</div>
+<ng-container *ngIf="hierarchy">
+    <mat-form-field floatLabel="never">
+        <span [matMenuTriggerFor]="menu.childMenu">
+            <div class="ama-property-type-selector-input-icon">
+                <mat-icon *ngIf="displayedIcon && !displayedCustomIcon">{{displayedIcon}}</mat-icon>
+                <span *ngIf="displayedIcon && displayedCustomIcon"
+                    class="{{displayedIcon}} ama-property-type-selector-custom-icon"></span>
+            </div>
+            <input matInput placeholder="{{'SDK.TYPE'| translate }}" data-automation-id="ama-property-type-selector"
+                class="ama-property-type-selector-input" autocomplete="off" [value]="displayedValue"
+                [disabled]="disabled" />
+            <div class="mat-select-arrow-wrapper ama-property-type-selector-input-arrow">
+                <div class="mat-select-arrow"></div>
+            </div>
+        </span>
+    </mat-form-field>
+    <modelingsdk-property-type-item-ui #menu [items]="hierarchy" [automationId]="automationId"
+        (change)="onSelectionChanges($event)"></modelingsdk-property-type-item-ui>
+</ng-container>

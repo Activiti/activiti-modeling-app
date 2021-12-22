@@ -1,4 +1,4 @@
-<ng-container *ngIf="((model?.type === 'object' && model?.properties) || model?.$ref) else expressionEditor">
+<ng-container *ngIf="(model | useModeledObject) else expressionEditor">
     <mat-tab-group *ngIf="extendedProperties?.enableExpressionEditor else modeledObject" [attr.data-automation-id]="'json-input-tabs'">
         <mat-tab [label]="'SDK.VALUE' | translate">
             <ng-container *ngTemplateOutlet="modeledObject"></ng-container>

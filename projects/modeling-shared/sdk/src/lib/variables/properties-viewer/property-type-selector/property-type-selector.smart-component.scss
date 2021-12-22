@@ -1,0 +1,31 @@
+div.ama-property-type-selector-input-icon {
+    height: 24px;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-right: 6px;
+}
+input.ama-property-type-selector-input {
+    width: calc(100% - 24px - 20px - 6px);
+    display: inline-block;
+}
+div.ama-property-type-selector-input-arrow {
+    padding: 8px 0;
+    display: inline-block;
+
+    .mat-select-arrow {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid;
+        margin: 0 4px;
+    }
+}
+span.ama-property-type-selector-custom-icon {
+    line-height: 1;
+    vertical-align: middle;
+    height: 24px;
+    width: 24px;
+    display: table-cell;
+    text-align: center;
+}

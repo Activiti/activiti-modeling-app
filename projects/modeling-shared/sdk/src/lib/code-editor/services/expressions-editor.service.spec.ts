@@ -28,7 +28,7 @@ describe('ExpressionsEditorService', () => {
     translateService.instant = (key: string | Array<string>) => key === 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_TYPE' ? 'type' : key;
 
     const codeEditorService = new CodeEditorService();
-    const modelingJSONSchemaService = new ModelingJSONSchemaService(codeEditorService, [], []);
+    const modelingJSONSchemaService = new ModelingJSONSchemaService(codeEditorService, []);
     modelingJSONSchemaService.initializeProjectSchema('test');
     const jSONSchemaToEntityPropertyService = new JSONSchemaToEntityPropertyService(modelingJSONSchemaService);
     const modelingTypesService = new ModelingTypesService(modelingJSONSchemaService, jSONSchemaToEntityPropertyService);

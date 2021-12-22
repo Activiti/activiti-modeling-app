@@ -52,14 +52,14 @@ export class PropertiesViewerModeledObjectInputComponent implements OnChanges {
 
     ngOnChanges(): void {
         const modelChanged = !this.objectEquals(this.oldModel, this.model);
-        const valueChanges = this.value && !this.objectEquals(this.oldValue, this.value);
+        const valueChanges = !!this.value && !this.objectEquals(this.oldValue, this.value);
 
         this.oldModel = this.model;
         this.oldValue = this.value;
 
         if (modelChanged || valueChanges) {
             this.primitiveType = this.jsonService.getPrimitiveType(this.model || { type: 'string' });
-            this.inputs = this.jsonService.getEntityPropertiesFromJSONSchema(this.model);
+            this.inputs = this.jsonService.getEntityPropertiesFromJSONSchema(this.model).filter(input => !!input);
         }
 
         if (modelChanged) {
@@ -80,14 +80,10 @@ export class PropertiesViewerModeledObjectInputComponent implements OnChanges {
     }
 
     private objectEquals(obj1: any, obj2: any): boolean {
-        if (!obj1 || typeof obj1 !== 'string') {
+        try {
+            return JSON.stringify(obj1) === JSON.stringify(obj2);
+        } catch (error) {
             return obj1 === obj2;
-        } else {
-            try {
-                return JSON.stringify(obj1) === JSON.stringify(obj2);
-            } catch (error) {
-                return false;
-            }
         }
     }
 
