@@ -27,7 +27,7 @@
     [cdkConnectedOverlayHasBackdrop]="true" (backdropClick)="detachPanel()" (detach)="detachPanel()"
     [cdkConnectedOverlayBackdropClass]="'cdk-overlay-transparent-backdrop'" #variableSelector>
 
-    <mat-card class="modelingsdk-mapping-variable-expression-dropdown-panel mat-elevation-z6"
+    <mat-card class="modelingsdk-mapping-variable-expression-dropdown-panel mat-elevation-z6" data-automation-id="variable-dropdown"
         [ngStyle]="{ 'width.px': panelWidth, 'max-height.px': panelHeight }">
         <mat-card-header>
             <div class="modelingsdk-mapping-variable-expression-dropdown-panel-button-container">
