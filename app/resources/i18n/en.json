@@ -62,7 +62,6 @@
                     "DATA": "Are you sure you want to delete this data object?",
                     "CONNECTOR": "Are you sure you want to delete this connector?",
                     "SCRIPT": "Are you sure you want to delete this script?",
-                    "MODEL": "Are you sure you want to delete this Content Model?",
                     "FORM_WIDGET": "Are you sure you want to delete this form widget?"
                 },
                 "SAVE": {
