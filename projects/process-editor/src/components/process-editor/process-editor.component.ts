@@ -56,6 +56,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ProcessModelContext } from '../../store/process-editor.state';
 import { modelNameHandler } from '../../services/bpmn-js/property-handlers/model-name.handler';
 import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
+import { categoryHandler } from '../../services/bpmn-js/property-handlers/category.handler';
 import { ProcessCommandsService } from '../../services/commands/process-commands.service';
 
 @Component({
@@ -151,6 +152,7 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
             },
             name: modelNameHandler.get(element),
             description: documentationHandler.get(element),
+            category: categoryHandler.get(element),
         });
     }
 
