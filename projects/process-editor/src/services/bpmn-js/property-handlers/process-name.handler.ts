@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BpmnProperty, BpmnElement, sanitizeString } from '@alfresco-dbp/modeling-shared/sdk';
+import { BpmnProperty, BpmnElement, createProcessModelName } from '@alfresco-dbp/modeling-shared/sdk';
 
 const propertyKey = BpmnProperty.name;
 
@@ -30,7 +30,7 @@ const get = (element) => {
     return processName || '';
 };
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    value = sanitizeString(value);
+    value = createProcessModelName(value);
 
     if (element.type === BpmnElement.Participant) {
         element.businessObject.processRef.name = value;

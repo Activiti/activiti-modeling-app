@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { MODEL_CREATORS, ModelCreator, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
+import { MODEL_CREATORS, ModelCreator, PROCESS, PROCESS_NAME_REGEX } from '@alfresco-dbp/modeling-shared/sdk';
 import { PROCESS_ICON } from './processes-filter.extension';
 import { CreateProcessAttemptAction } from '../store/process-editor.actions';
 import { CreateProcessDialogComponent } from '../components/create-process-dialog/create-process-dialog.component';
@@ -27,6 +27,10 @@ export function createProcessCreator(callback = () => {}): ModelCreator {
         type: PROCESS,
         order: 0,
         dialog: {
+            allowedCharacters: {
+                regex: PROCESS_NAME_REGEX,
+                error: 'APP.DIALOGS.ERROR.PROCESS_NAME_VALIDATION'
+            },
             title: 'PROJECT_EDITOR.PROCESS_DIALOG.TITLE_CREATE',
             nameField: 'PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_NAME',
             descriptionField: 'PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_DESC',

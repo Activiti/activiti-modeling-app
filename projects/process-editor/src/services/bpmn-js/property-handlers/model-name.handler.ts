@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-import { sanitizeString } from '@alfresco-dbp/modeling-shared/sdk';
+import { createProcessModelName } from '@alfresco-dbp/modeling-shared/sdk';
 
 const get = (element) => element.businessObject.$parent.name || '';
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    value = sanitizeString(value);
+    value = createProcessModelName(value);
     element.businessObject.$parent.name = value;
     modeling.updateProperties(element, {});
 };

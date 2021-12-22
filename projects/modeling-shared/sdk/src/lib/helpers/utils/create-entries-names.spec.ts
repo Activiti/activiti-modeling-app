@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { sanitizeString, createModelName, formatUuid, MODELER_NAME_REGEX } from './create-entries-names';
+import { sanitizeString, createModelName, formatUuid, MODELER_NAME_REGEX, PROCESS_NAME_REGEX } from './create-entries-names';
 
 describe('Create entries names', () => {
     it ('test sanitizeString function', () => {
@@ -31,6 +31,31 @@ describe('Create entries names', () => {
     it('test formatUid', () => {
         /* cspell: disable-next-line */
         expect(formatUuid('testType', '1234')).toEqual('testtype-1234');
+    });
+
+    it('PROCESS_NAME_REGEX should allow spaces in process name', () => {
+        const testString = 'new process name';
+        expect(PROCESS_NAME_REGEX.test(testString)).toBe(true);
+    });
+
+    it('PROCESS_NAME_REGEX should not allow space in the beginning of process name', () => {
+        const testString = ' new process name';
+        expect(PROCESS_NAME_REGEX.test(testString)).toBe(false);
+    });
+
+    it('PROCESS_NAME_REGEX should not allow empty strings', () => {
+        const testString = ' ';
+        expect(PROCESS_NAME_REGEX.test(testString)).toBe(false);
+    });
+
+    it('PROCESS_NAME_REGEX should allow Capital letters in process name', () => {
+        const testString = 'New Process';
+        expect(PROCESS_NAME_REGEX.test(testString)).toBe(true);
+    });
+
+    it('PROCESS_NAME_REGEX should allow Special characters in process name', () => {
+        const testString = 'name !@#£\$%\^\&*\)\(+=._-';
+        expect(PROCESS_NAME_REGEX.test(testString)).toBe(true);
     });
 
     it('MODELER_NAME_REGEX should not allow empty strings', () => {

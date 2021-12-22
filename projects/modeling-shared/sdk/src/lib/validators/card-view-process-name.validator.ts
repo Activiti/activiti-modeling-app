@@ -15,5 +15,14 @@
  * limitations under the License.
  */
 
-export * from './card-view-model-name.validator';
-export * from './card-view-process-name.validator';
+import { CardViewItemValidator } from '@alfresco/adf-core';
+import { PROCESS_NAME_REGEX } from '../helpers/utils/create-entries-names';
+
+export class CardViewProcessNameValidator implements CardViewItemValidator {
+
+    constructor(public message: string) {}
+
+    isValid(value: string): boolean {
+        return value.length > 0 && PROCESS_NAME_REGEX.test(value);
+    }
+}

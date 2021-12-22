@@ -16,7 +16,7 @@
  */
 
 import { Component, Input, OnInit, Inject, ViewEncapsulation } from '@angular/core';
-import { ProcessModelerServiceToken, ProcessModelerService, BpmnProperty, MODELER_NAME_REGEX, BpmnElement } from '@alfresco-dbp/modeling-shared/sdk';
+import { ProcessModelerServiceToken, ProcessModelerService, BpmnProperty, BpmnElement, PROCESS_NAME_REGEX } from '@alfresco-dbp/modeling-shared/sdk';
 import { CardViewProcessNameItemModel } from './process-name-item.model';
 import { FormControl, ValidatorFn, AbstractControl, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -39,7 +39,7 @@ export class CardViewProcessNameItemComponent implements OnInit {
     ngOnInit() {
         this.updatePoolName();
         this.processNameForm = new FormGroup({
-            'processName': new FormControl(this.property.value, this.validateProcessName(MODELER_NAME_REGEX))
+            'processName': new FormControl(this.property.value, this.validateProcessName(PROCESS_NAME_REGEX))
         });
     }
 

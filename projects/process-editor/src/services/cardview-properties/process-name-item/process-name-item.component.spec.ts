@@ -129,7 +129,7 @@ describe('CardViewProcessNameItemComponent', () => {
 
         expect(component.processName.valid).toBe(true);
         const processNameInput = fixture.debugElement.query(By.css('input[data-automation-id="process-name"]'));
-        processNameInput.nativeElement.value = '11new-process-name';
+        processNameInput.nativeElement.value = '11new-process-name longer-name';
         processNameInput.nativeElement.dispatchEvent(new Event('input'));
         component.processName.markAsTouched();
         fixture.detectChanges();

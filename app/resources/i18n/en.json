@@ -32,7 +32,8 @@
                 "TITLE": "Do you want to save it anyway?",
                 "SUBTITLE": "Validation errors:",
                 "NAME_DOESNT_MATCH_PATTERN": "The name doesn't match the following pattern",
-                "GENERAL_NAME_VALIDATION": "The name must be in lowercase and between 1 and 26 characters in length. Alphanumeric characters and hyphens are allowed, however the name must begin with a letter and end alphanumerically."
+                "GENERAL_NAME_VALIDATION": "The name must be in lowercase and between 1 and 26 characters in length. Alphanumeric characters and hyphens are allowed, however the name must begin with a letter and end alphanumerically.",
+                "PROCESS_NAME_VALIDATION": "The name must be between 1 and 26 characters in length and cannot start with blank space"
             },
             "CONFIRM": {
                 "TITLE": "Are you sure?",

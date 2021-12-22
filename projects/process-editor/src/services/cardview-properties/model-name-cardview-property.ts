@@ -17,7 +17,7 @@
 
 import { CardViewTextItemModel } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
-import { BpmnProperty, sanitizeString, CardViewModelNameValidator } from '@alfresco-dbp/modeling-shared/sdk';
+import { BpmnProperty, CardViewProcessNameValidator, createProcessModelName } from '@alfresco-dbp/modeling-shared/sdk';
 import { FactoryProps } from './cardview-properties.factory';
 
 const propertyName = BpmnProperty.modelName;
@@ -25,12 +25,12 @@ const propertyName = BpmnProperty.modelName;
 export function createModelNameProperty({ element }: FactoryProps) {
     return new CardViewTextItemModel({
         label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.DIAGRAM_NAME',
-        value: sanitizeString(ElementHelper.getProperty(element, propertyName)),
+        value: createProcessModelName(ElementHelper.getProperty(element, propertyName)),
         key: propertyName,
         default: '',
         multiline: false,
         editable: true,
         data: { id: element.id },
-        validators: [new CardViewModelNameValidator('PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_PROCESS_NAME')]
+        validators: [new CardViewProcessNameValidator('PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_PROCESS_NAME')]
     });
 }

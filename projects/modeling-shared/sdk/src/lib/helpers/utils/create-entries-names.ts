@@ -29,9 +29,11 @@ export const TRIGGER_FILE_FORMAT = '.json';
 export const CONTENT_MODEL_FILE_FORMAT = '.xml';
 export const FORM_WIDGET_FILE_FORMAT = '.json';
 export const MODEL_NAME_CHARACTERS = 'a-z0-9-';
+export const PROCESS_NAME_CHARACTERS = 'a-zA-Z0-9- !@#£\$%\^\?\&*\)\(+\[\]\=/._-';
 export const DATA_FILE_FORMAT = '.json';
 export const MODELER_NAME_REGEX = /^[a-z]([-a-z0-9]{0,24}[a-z0-9])?$/;
 export const FIELD_VARIABLE_NAME_REGEX = /^[a-z][a-z0-9_]*$/i;
+export const PROCESS_NAME_REGEX = /^[\w!@#£\$%\^\?\&*\)\(+\[\]\=/._-]([\Wa-zA-Z0-9_]{0,24}[\Wa-zA-Z0-9_])?$/;
 
 export const sanitizeString = (text: string) => {
     const pastedText = text,
@@ -40,8 +42,15 @@ export const sanitizeString = (text: string) => {
     return sanitizedValue;
 };
 
+export const createProcessModelName = (text: string) => {
+    const pastedText = text;
+    const negativeRegex = new RegExp(`[^${PROCESS_NAME_CHARACTERS}]`, 'g');
+    const sanitizedValue = pastedText.replace(negativeRegex, '').replace(/''/g, '');
+    return sanitizedValue;
+};
+
 export const createModelName = (name) => {
-    return sanitizeString(name.replace(PROCESS_FILE_FORMAT, ''));
+    return createProcessModelName(name.replace(PROCESS_FILE_FORMAT, ''));
 };
 
 export const createDecisionTableName = (name) => {
