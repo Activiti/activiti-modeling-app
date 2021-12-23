@@ -61,7 +61,6 @@
                     "UI": "Are you sure you want to delete this UI?",
                     "DATA": "Are you sure you want to delete this data object?",
                     "CONNECTOR": "Are you sure you want to delete this connector?",
-                    "SCRIPT": "Are you sure you want to delete this script?",
                     "FORM_WIDGET": "Are you sure you want to delete this form widget?"
                 },
                 "SAVE": {
@@ -69,8 +68,7 @@
                     "UI": "Are you sure you want to save this UI?",
                     "DATA": "Are you sure you want to save this data object?",
                     "CONNECTOR": "Are you sure you want to save this connector?",
-                    "EMAIL_TEMPLATE": "Are you sure you want to overwrite the email template?",
-                    "SCRIPT": "Are you sure you want to save this script?"
+                    "EMAIL_TEMPLATE": "Are you sure you want to overwrite the email template?"
                 },
                 "SAVE_AS": {
                   "PROCESS": "Are you sure you want to copy this process?",
