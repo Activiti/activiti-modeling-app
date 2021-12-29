@@ -90,7 +90,7 @@ export abstract class ModelingJsonSchemaProvider<T> {
 export function provideModelingJsonSchemaProvider(implementationClass: Type<ModelingJsonSchemaProvider<any>>): Provider {
     return {
         provide: MODELING_JSON_SCHEMA_PROVIDERS,
-        useClass: implementationClass,
+        useExisting: implementationClass,
         multi: true
     };
 }
