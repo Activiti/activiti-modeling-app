@@ -72,28 +72,25 @@
             <input
                 matInput
                 placeholder="Name"
-                [(ngModel)]="name"
+                [(ngModel)]="form.name"
                 (keyup)="saveChanges()"
                 data-automation-id="variable-name">
-            <p class="mat-error" *ngIf="!name.length">{{ 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME' | translate }}</p>
+            <p class="mat-error" *ngIf="!form.name.length">{{ 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME' | translate }}</p>
 
-            <p class="mat-error" *ngIf="name.length && !isValid(name)">{{ 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME' |
+            <p class="mat-error" *ngIf="form.name.length && !isValid(form.name)">{{ 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME' |
                 translate }}
                 <mat-icon class="ama-variable-name-info-icon" data-automation-id="variable-name-info-icon" color="warn"
                     [matTooltip]="'SDK.VARIABLES_EDITOR.ERRORS.VARIABLE_NAME_TOOLTIP' | translate">info</mat-icon>
             </p>
         </mat-form-field>
         <div class="ama-variable-type-required-row">
-            <mat-form-field floatLabel="never">
-                <mat-select placeholder="Type" [(ngModel)]="selectedType" (selectionChange)="onTypeChange()"
-                    data-automation-id="variable-type">
-                    <mat-option *ngFor="let type of types" [value]="type"
-                        [attr.data-automation-id]="'variable-type-' + type">
-                        {{type}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-checkbox *ngIf="requiredCheckbox && allowExpressions" [(ngModel)]="required" (change)="saveChanges()" color="primary"
+            <modelingsdk-property-type-selector-smart
+                [automationId]="'variable-type'"
+                [onlyPrimitiveTypes]="true"
+                [(ngModel)]="form"
+                (change)="onTypeChange()">
+            </modelingsdk-property-type-selector-smart>
+            <mat-checkbox *ngIf="requiredCheckbox && allowExpressions" [(ngModel)]="form.required" (change)="saveChanges()" color="primary"
                 data-automation-id="variable-required" class="ama-variable-required">
                 {{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_REQUIRED' | translate }}
             </mat-checkbox>
@@ -101,31 +98,44 @@
 
         <mat-tab-group *ngIf="allowExpressions" [selectedIndex]="tabIndex">
             <mat-tab label="{{'SDK.MAPPING_DIALOG.VALUE_MAPPING'| translate}}">
-                <modelingsdk-value-type-input [(ngModel)]="value" [index]="position" [type]="selectedType" [extendedProperties]="extendedProperties"
-                    (onChange)="updateVariableValue($event)" [autocompletionContext]="autocompletionContext" [model]="model">
+                <modelingsdk-value-type-input #valueTypeInput
+                    (onChange)="updateVariableValue($event)"
+                    [ngModel]="form.value"
+                    [index]="position"
+                    [type]="form.type"
+                    [model]="form.model"
+                    [autocompletionContext]="autocompletionContext"
+                    [extendedProperties]="extendedProperties">
                 </modelingsdk-value-type-input>
             </mat-tab>
             <mat-tab label="{{'SDK.MAPPING_DIALOG.EXPRESSION_MAPPING'| translate}}">
-                <modelingsdk-expression-code-editor [attr.data-automation-id]="'variable-value'" [expression]="value"
-                    (expressionChange)="updateVariableValue($event)" [variables]="autocompletionContext"
-                    [removeEnclosingBrackets]="false" [enableDialogEditor]="true" [enableInlineEditor]="true"
-                    [removeLineNumbers]="true" [lineWrapping]="false" [nonBracketedOutput]="false">
+                <modelingsdk-expression-code-editor
+                    [attr.data-automation-id]="'variable-value'"
+                    [expression]="expression"
+                    (expressionChange)="updateVariableExpression($event)"
+                    [variables]="autocompletionContext"
+                    [removeEnclosingBrackets]="false"
+                    [enableDialogEditor]="true"
+                    [enableInlineEditor]="true"
+                    [removeLineNumbers]="true"
+                    [lineWrapping]="false"
+                    [nonBracketedOutput]="false">
                 </modelingsdk-expression-code-editor>
             </mat-tab>
         </mat-tab-group>
 
-        <modelingsdk-value-type-input
+        <modelingsdk-value-type-input #valueTypeInput
             *ngIf="!allowExpressions"
             (onChange)="updateVariableValue($event)"
-            [(ngModel)]="value"
+            [(ngModel)]="form.value"
             [index]="position"
-            [type]="selectedType"
-            [model]="model"
+            [type]="form.type"
+            [model]="form.model"
             [autocompletionContext]="autocompletionContext"
             [extendedProperties]="extendedProperties">
         </modelingsdk-value-type-input>
 
-        <mat-checkbox *ngIf="requiredCheckbox && !allowExpressions" [(ngModel)]="required" (change)="saveChanges()" color="primary"
+        <mat-checkbox *ngIf="requiredCheckbox && !allowExpressions" [(ngModel)]="form.required" (change)="saveChanges()" color="primary"
             data-automation-id="variable-required" class="ama-variable-required">
             {{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_REQUIRED' | translate }}
         </mat-checkbox>

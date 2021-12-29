@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, forwardRef, HostListener, Input, OnChanges, OnDestroy, Output, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, forwardRef, HostListener, Input, OnChanges, OnDestroy, Output, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { Subject } from 'rxjs';
@@ -62,7 +62,8 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
     _onTouched: any = () => { };
 
     constructor(
-        private modelingJSONSchemaService: ModelingJSONSchemaService
+        private modelingJSONSchemaService: ModelingJSONSchemaService,
+        private cdr: ChangeDetectorRef
     ) {
         this.modelingJSONSchemaService.getPropertyTypeItems().pipe(takeUntil(this.onDestroy$)).subscribe(items => {
             this.initialHierarchy = items;
@@ -104,7 +105,7 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
 
     writeValue(property: EntityProperty): void {
         this.property = property;
-        if (this.property) {
+        if (this.property && this.hierarchy) {
             this.hierarchy.some(child => this.initSelectedValue(child));
         }
     }
@@ -132,17 +133,20 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
     }
 
     private initSelectedValue(item: PropertyTypeItem): boolean {
+        let result = false;
+        this.clearInput();
         if (item.children && item.children.length) {
-            return item.children.some(child => this.initSelectedValue(child));
+            result = item.children.some(child => this.initSelectedValue(child));
         } else {
             if (this.compareObjects(this.property, item.value)) {
                 this.displayedValue = item.displayName;
                 this.displayedCustomIcon = item.isCustomIcon;
                 this.displayedIcon = item.iconName;
-                return true;
+                result = true;
             }
         }
-        return false;
+        this.cdr.detectChanges();
+        return result;
     }
 
     private compareObjects(property: EntityProperty, value: JSONSchemaInfoBasics): boolean {
@@ -171,12 +175,17 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
         return false;
     }
 
-    private clearSelection() {
-        this.property = null;
+    private clearInput() {
         this.displayedValue = null;
         this.displayedIcon = null;
         this.displayedCustomIcon = false;
-        this.change.emit(null);
+    }
+
+    private clearSelection() {
+        delete this.property.type;
+        delete this.property.model;
+        this.clearInput();
+        this.change.emit(this.property);
     }
 
     private updatePropertyModel($event: PropertyTypeItem) {

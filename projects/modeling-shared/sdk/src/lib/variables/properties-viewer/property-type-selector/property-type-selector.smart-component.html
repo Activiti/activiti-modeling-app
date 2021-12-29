@@ -9,7 +9,7 @@
                 <span *ngIf="displayedIcon && displayedCustomIcon"
                     class="{{displayedIcon}} ama-property-type-selector-custom-icon"></span>
             </div>
-            <input matInput placeholder="{{'SDK.TYPE'| translate }}" data-automation-id="ama-property-type-selector"
+            <input matInput placeholder="{{'SDK.TYPE'| translate }}" [attr.data-automation-id]="automationId"
                 class="ama-property-type-selector-input" autocomplete="off" [value]="displayedValue"
                 [disabled]="disabled" />
             <div class="mat-select-arrow-wrapper ama-property-type-selector-input-arrow">

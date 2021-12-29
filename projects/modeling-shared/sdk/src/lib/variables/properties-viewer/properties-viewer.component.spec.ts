@@ -27,13 +27,22 @@ import { UuidService } from './../../services/uuid.service';
 import { VariableValuePipe } from './variable-value.pipe';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
-import { INPUT_TYPE_ITEM_HANDLER } from './value-type-inputs/value-type-inputs';
+import { provideInputTypeItemHandler } from './value-type-inputs/value-type-inputs';
 import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { CodeEditorModule, ExpressionsEditorService } from './../../../public-api';
 import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { ValueTypeInputComponent } from './value-type-input.component';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
+import { AutomationIdPipe } from './property-type-item/automation-id.pipe';
+import { PropertyTypeItemUiComponent } from './property-type-item/property-type-item.ui-component';
+import { PropertyTypeSelectorSmartComponent } from './property-type-selector/property-type-selector.smart-component';
+import { RegisteredInputsModelingJsonSchemaProvider } from '../../services/registered-inputs-modeling-json-schema-provider.service';
+import { ExpressionsEditorService } from '../../code-editor/services/expressions-editor.service';
+import { PropertiesViewerStringInputComponent } from './value-type-inputs/string-input/string-input.component';
+import { PropertiesViewerIntegerInputComponent } from './value-type-inputs/integer-input/integer-input.component';
+import { PropertiesViewerBooleanInputComponent } from './value-type-inputs/boolean-input.component';
+import { provideModelingJsonSchemaProvider } from '../../services/modeling-json-schema-provider.service';
+import { CodeEditorModule } from '../../code-editor/code-editor.module';
 
 describe('PropertiesViewerComponent', () => {
     let fixture: ComponentFixture<PropertiesViewerComponent>;
@@ -56,22 +65,35 @@ describe('PropertiesViewerComponent', () => {
                 { provide: MatDialogRef, useValue: mockDialog },
                 { provide: Store, useValue: { dispatch: jest.fn(), select: jest.fn().mockReturnValue(of()) }},
                 { provide: UuidService, useValue: { generate() { return 'generated-uuid'; } } },
-                { provide: INPUT_TYPE_ITEM_HANDLER, useValue: [] },
                 {
                     provide: ExpressionsEditorService, useValue: {
                         initExpressionEditor: jest.fn()
                     }
                 },
                 { provide: TranslationService, useClass: TranslationMock },
+                provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
+                provideInputTypeItemHandler('integer', PropertiesViewerIntegerInputComponent),
+                provideInputTypeItemHandler('boolean', PropertiesViewerBooleanInputComponent),
+                provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
             ],
-            declarations: [PropertiesViewerComponent, VariableValuePipe, ValueTypeInputComponent],
+            declarations: [
+                PropertiesViewerComponent,
+                VariableValuePipe,
+                ValueTypeInputComponent,
+                PropertyTypeSelectorSmartComponent,
+                PropertyTypeItemUiComponent,
+                AutomationIdPipe,
+                PropertiesViewerStringInputComponent,
+                PropertiesViewerIntegerInputComponent,
+                PropertiesViewerBooleanInputComponent
+            ],
             imports: [
                 CoreModule,
                 MatTableModule,
                 TranslateModule.forRoot(),
                 FormsModule,
                 NoopAnimationsModule,
-                CodeEditorModule,
+                CodeEditorModule
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });
@@ -170,7 +192,7 @@ describe('PropertiesViewerComponent', () => {
 
         const template = fixture.nativeElement.querySelector('.ama-properties-form');
         const input = template.querySelector('input');
-        component.name = 'changed';
+        component.form.name = 'changed';
 
         input.dispatchEvent(new Event('keyup'));
         fixture.detectChanges();
@@ -181,7 +203,7 @@ describe('PropertiesViewerComponent', () => {
             '345' : {'id': '345', 'name': 'var3', 'type': 'string', 'value': '', 'required': false}
         };
 
-       expect(component.name).toEqual('changed');
+       expect(component.form.name).toEqual('changed');
        expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data2, null, 2), null);
 
     });
@@ -203,7 +225,7 @@ describe('PropertiesViewerComponent', () => {
 
         const template = fixture.nativeElement.querySelector('.ama-properties-form');
         const input = template.querySelector('input');
-        component.name = 'a2_#';
+        component.form.name = 'a2_#';
         input.dispatchEvent(new Event('keyup'));
 
         fixture.detectChanges();
@@ -212,7 +234,7 @@ describe('PropertiesViewerComponent', () => {
             '123' : {'id': '123', 'name': 'a2_#', 'type': 'string', 'value': '', 'required': false}
         };
 
-        expect(component.name).toEqual('a2_#');
+        expect(component.form.name).toEqual('a2_#');
         expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data2, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME');
         const infoIconWhenError = fixture.nativeElement.querySelector('.ama-variable-name-info-icon');
         expect (infoIconWhenError === null).toBeFalsy();
@@ -236,7 +258,7 @@ describe('PropertiesViewerComponent', () => {
 
         const template = fixture.nativeElement.querySelector('.ama-properties-form');
         const input = template.querySelector('input');
-        component.name = 'a2_';
+        component.form.name = 'a2_';
         input.dispatchEvent(new Event('keyup'));
 
         fixture.detectChanges();
@@ -245,7 +267,7 @@ describe('PropertiesViewerComponent', () => {
             '123' : {'id': '123', 'name': 'a2_', 'type': 'string', 'value': '', 'required': false}
         };
 
-        expect(component.name).toEqual('a2_');
+        expect(component.form.name).toEqual('a2_');
         expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data3, null, 2), null);
         const infoIcon = fixture.nativeElement.querySelector('.ama-variable-name-info-icon');
         expect (infoIcon === null).toBeTruthy();
@@ -284,7 +306,7 @@ describe('PropertiesViewerComponent', () => {
 
         const template = fixture.nativeElement.querySelector('.ama-properties-form');
         const input = template.querySelector('input');
-        component.name = 'a2_';
+        component.form.name = 'a2_';
         input.dispatchEvent(new Event('keyup'));
 
         fixture.detectChanges();

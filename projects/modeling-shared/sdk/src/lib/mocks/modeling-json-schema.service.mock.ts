@@ -18,13 +18,13 @@
 export const expectedItems = [
     {
         displayName: 'SDK.VARIABLE_TYPE_INPUT.BASIC_PROPERTIES_TYPES',
-        iconName: 'assignment_late',
+        iconName: 'assignment_turned_in',
         isCustomIcon: false,
         provider: 'registered-inputs',
         children: [
             {
                 displayName: 'boolean',
-                iconName: 'assignment_late',
+                iconName: 'assignment_turned_in',
                 isCustomIcon: false,
                 provider: 'registered-inputs',
                 typeId: ['boolean'],
@@ -34,7 +34,7 @@ export const expectedItems = [
             },
             {
                 displayName: 'employee',
-                iconName: 'assignment_late',
+                iconName: 'assignment_turned_in',
                 isCustomIcon: false,
                 provider: 'registered-inputs',
                 typeId: ['employee'],
@@ -44,7 +44,7 @@ export const expectedItems = [
             },
             {
                 displayName: 'integer',
-                iconName: 'assignment_late',
+                iconName: 'assignment_turned_in',
                 isCustomIcon: false,
                 provider: 'registered-inputs',
                 typeId: ['integer'],
@@ -54,7 +54,7 @@ export const expectedItems = [
             },
             {
                 displayName: 'string',
-                iconName: 'assignment_late',
+                iconName: 'assignment_turned_in',
                 isCustomIcon: false,
                 provider: 'registered-inputs',
                 typeId: ['string'],
@@ -69,13 +69,13 @@ export const expectedItems = [
 export const expectedHierarchy = [
     {
         displayName: 'SDK.VARIABLE_TYPE_INPUT.BASIC_PROPERTIES_TYPES',
-        iconName: 'assignment_late',
+        iconName: 'assignment_turned_in',
         isCustomIcon: false,
         provider: 'registered-inputs',
         children: [
             {
                 displayName: 'boolean',
-                iconName: 'assignment_late',
+                iconName: 'assignment_turned_in',
                 isCustomIcon: false,
                 provider: 'registered-inputs',
                 typeId: ['boolean'],
@@ -85,7 +85,7 @@ export const expectedHierarchy = [
             },
             {
                 displayName: 'integer',
-                iconName: 'assignment_late',
+                iconName: 'assignment_turned_in',
                 isCustomIcon: false,
                 provider: 'registered-inputs',
                 typeId: ['integer'],
@@ -95,7 +95,7 @@ export const expectedHierarchy = [
             },
             {
                 displayName: 'string',
-                iconName: 'assignment_late',
+                iconName: 'assignment_turned_in',
                 isCustomIcon: false,
                 provider: 'registered-inputs',
                 typeId: ['string'],
@@ -109,27 +109,27 @@ export const expectedHierarchy = [
 
 export const expectedRegisteredInputsItems = {
     displayName: 'SDK.VARIABLE_TYPE_INPUT.BASIC_PROPERTIES_TYPES',
-    iconName: 'assignment_late',
+    iconName: 'assignment_turned_in',
     isCustomIcon: false,
     provider: 'registered-inputs',
     children: [
         {
             displayName: 'boolean',
-            iconName: 'assignment_late',
+            iconName: 'assignment_turned_in',
             isCustomIcon: false,
             provider: 'registered-inputs',
             typeId: ['boolean']
         },
         {
             displayName: 'integer',
-            iconName: 'assignment_late',
+            iconName: 'assignment_turned_in',
             isCustomIcon: false,
             provider: 'registered-inputs',
             typeId: ['integer']
         },
         {
             displayName: 'string',
-            iconName: 'assignment_late',
+            iconName: 'assignment_turned_in',
             isCustomIcon: false,
             provider: 'registered-inputs',
             typeId: ['string']

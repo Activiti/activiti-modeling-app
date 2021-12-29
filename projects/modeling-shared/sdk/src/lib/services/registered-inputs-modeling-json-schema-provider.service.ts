@@ -43,7 +43,7 @@ export class RegisteredInputsModelingJsonSchemaProvider extends ModelingJsonSche
     }
 
     getProviderIcon(): string {
-        return 'assignment_late';
+        return 'assignment_turned_in';
     }
 
     getProviderTranslatedName(): string {

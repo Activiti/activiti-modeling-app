@@ -108,6 +108,10 @@ modelingsdk-properties-viewer {
     display: flex;
     flex: 1 1 auto;
 
+    modelingsdk-property-type-selector-smart {
+        flex-grow: inherit;
+    }
+
     .ama-variable-required {
         top: 20px;
         position: relative;

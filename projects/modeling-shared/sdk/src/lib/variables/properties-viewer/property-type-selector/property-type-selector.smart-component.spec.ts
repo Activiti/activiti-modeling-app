@@ -90,7 +90,7 @@ describe('PropertyTypeSelectorSmartComponent', () => {
 
     it('should initialize values on init', () => {
         expect(component.displayedValue).toEqual('string');
-        expect(component.displayedIcon).toEqual('assignment_late');
+        expect(component.displayedIcon).toEqual('assignment_turned_in');
         expect(component.displayedCustomIcon).toEqual(false);
     });
 
@@ -105,7 +105,7 @@ describe('PropertyTypeSelectorSmartComponent', () => {
     it('should update values when selection changes', () => {
         component.onSelectionChanges(expectedItems[0].children[1]);
         expect(component.displayedValue).toEqual('employee');
-        expect(component.displayedIcon).toEqual('assignment_late');
+        expect(component.displayedIcon).toEqual('assignment_turned_in');
         expect(component.displayedCustomIcon).toEqual(false);
     });
 
@@ -132,11 +132,11 @@ describe('PropertyTypeSelectorSmartComponent', () => {
         expect(component.displayedCustomIcon).toEqual(false);
     });
 
-    it('should emit null when Delete key is pushed', () => {
+    it('should emit the property with cleared type when Delete key is pushed', () => {
         spyOn(component.change, 'emit');
         element.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Delete', bubbles: true }));
         fixture.detectChanges();
-        expect(component.change.emit).toHaveBeenCalledWith(null);
+        expect(component.change.emit).toHaveBeenCalledWith({...property, type: undefined, model: undefined});
     });
 
     it('should clear the value when Backspace key is pushed', () => {
@@ -147,11 +147,11 @@ describe('PropertyTypeSelectorSmartComponent', () => {
         expect(component.displayedCustomIcon).toEqual(false);
     });
 
-    it('should emit null when Backspace key is pushed', () => {
+    it('should emit the property with cleared type when Backspace key is pushed', () => {
         spyOn(component.change, 'emit');
         element.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Backspace', bubbles: true }));
         fixture.detectChanges();
-        expect(component.change.emit).toHaveBeenCalledWith(null);
+        expect(component.change.emit).toHaveBeenCalledWith({...property, type: undefined, model: undefined});
     });
 
     it('should open menu when a non remove key is pushed', () => {

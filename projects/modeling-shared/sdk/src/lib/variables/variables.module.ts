@@ -101,7 +101,8 @@ import { UseModeledObjectPipe } from './properties-viewer/value-type-inputs/json
         VariableValuePipe,
         VariableExpressionLanguagePipe,
         VariablePrimitiveTypePipe,
-        JsonParsePipe
+        JsonParsePipe,
+        PropertyTypeSelectorSmartComponent
     ]
 })
 export class VariablesModule { }
