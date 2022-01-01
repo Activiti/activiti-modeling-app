@@ -86,7 +86,6 @@
                     "DATA": "Are you sure you want to download this data object?",
                     "DECISION_TABLE": "Are you sure you want to download this decision table?",
                     "CONNECTOR": "Are you sure you want to download this connector?",
-                    "FILE": "Are you sure you want to download this file?",
                     "SCRIPT": "Are you sure you want to download this script?",
                     "MODEL": "Are you sure you want to download this Content Model?",
                     "FORM_WIDGET": "Are you sure you want to download this Form Widget?"
