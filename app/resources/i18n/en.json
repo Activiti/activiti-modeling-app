@@ -79,7 +79,6 @@
                 "DOWNLOAD": {
                     "PROCESS": "Are you sure you want to download this process?",
                     "IMAGE": "Are you sure you want to download the svg image of this process?",
-                    "FORM": "Are you sure you want to download this form?",
                     "UI": "Are you sure you want to download this UI?",
                     "DATA": "Are you sure you want to download this data object?",
                     "DECISION_TABLE": "Are you sure you want to download this decision table?",
