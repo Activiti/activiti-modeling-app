@@ -19,7 +19,6 @@ import { Component, Input, OnInit, OnDestroy, Inject } from '@angular/core';
 import {
     Process,
     AmaState,
-    OpenConfirmDialogAction,
     ProcessContent,
     BreadcrumbItem,
     SnackbarInfoAction,
@@ -30,7 +29,7 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { DeleteProcessAttemptAction, ValidateProcessAttemptAction, DownloadProcessAction, DownloadProcessSVGImageAction, OpenSaveAsProcessAction, SaveAsProcessAttemptAction } from '../../store/process-editor.actions';
+import { ValidateProcessAttemptAction, DownloadProcessAction, DownloadProcessSVGImageAction, OpenSaveAsProcessAction, SaveAsProcessAttemptAction } from '../../store/process-editor.actions';
 import { takeUntil } from 'rxjs/operators';
 import { selectProcessModelContext } from '../../store/process-editor.selectors';
 import { ProcessModelContext } from '../../store/process-editor.state';
@@ -99,12 +98,7 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
     }
 
     deleteProcess(): void {
-        this.store.dispatch(
-            new OpenConfirmDialogAction({
-                dialogData: { title: 'APP.DIALOGS.CONFIRM.DELETE.PROCESS' },
-                action: new DeleteProcessAttemptAction(this.modelId)
-            })
-        );
+        this.modelCommands.dispatchEvent(BasicModelCommands.delete);
     }
 
     onSaveProcessImage(process: Process): void {

@@ -20,24 +20,36 @@ import { ProcessHeaderComponent } from './process-header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule, AmaState, OpenConfirmDialogAction, ProcessModelerServiceToken, BasicModelCommands } from '@alfresco-dbp/modeling-shared/sdk';
+import { SharedModule, AmaState, ProcessModelerServiceToken, BasicModelCommands } from '@alfresco-dbp/modeling-shared/sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { By } from '@angular/platform-browser';
 import { mockProcessModel } from '../../store/process.mock';
 import { Store } from '@ngrx/store';
 import { of, Subject } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { DeleteProcessAttemptAction, DownloadProcessAction, ValidateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
+import { DownloadProcessAction, ValidateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
 import { Actions } from '@ngrx/effects';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { ProcessCommandsService } from '../../services/commands/process-commands.service';
 import { SaveProcessCommand } from '../../services/commands/save-process.command';
+import { DeleteProcessCommand } from '../../services/commands/delete-process.command';
 
 describe('ProcessHeaderComponent', () => {
     let fixture: ComponentFixture<ProcessHeaderComponent>;
     let component: ProcessHeaderComponent;
     let store: Store<AmaState>;
     const mockAction = new Subject();
+
+    function verifyButtonClickFor(buttonId: string, actionName: string) {
+        const commandService = TestBed.inject(ProcessCommandsService);
+        const emitSpy = spyOn(commandService, 'dispatchEvent');
+
+        const buttonElement = fixture.debugElement.query(By.css(`[data-automation-id="${buttonId}"]`));
+        buttonElement.triggerEventHandler('click', null);
+        fixture.detectChanges();
+
+        expect(emitSpy).toHaveBeenCalledWith(BasicModelCommands[actionName]);
+    }
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -51,6 +63,7 @@ describe('ProcessHeaderComponent', () => {
                 HttpClientTestingModule
             ],
             providers: [
+                DeleteProcessCommand,
                 SaveProcessCommand,
                 ProcessCommandsService,
                 { provide: TranslationService, useClass: TranslationMock },
@@ -119,24 +132,11 @@ describe('ProcessHeaderComponent', () => {
     });
 
     it('should test delete button', () => {
-        spyOn(store, 'dispatch');
-
         const menuButton = fixture.debugElement.query(By.css('[data-automation-id="process-editor-menu-button"]'));
         menuButton.triggerEventHandler('click', {});
         fixture.detectChanges();
 
-        const deleteButton = fixture.debugElement.query(By.css('[data-automation-id="process-editor-delete-button"]'));
-        deleteButton.triggerEventHandler('click', {});
-        fixture.detectChanges();
-
-        const payload = new OpenConfirmDialogAction({
-            dialogData: {
-                title: 'APP.DIALOGS.CONFIRM.DELETE.PROCESS'
-            },
-            action: new DeleteProcessAttemptAction(mockProcessModel.id)
-        });
-
-        expect(store.dispatch).toHaveBeenCalledWith(payload);
+        verifyButtonClickFor('process-editor-delete-button', 'delete');
     });
 
     it('should download process image as svg', async () => {

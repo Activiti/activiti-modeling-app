@@ -56,7 +56,6 @@
                 },
                 "DELETE": {
                     "PROJECT": "Are you sure you want to delete this project?",
-                    "PROCESS": "Are you sure you want to delete this process?",
                     "FORM": "Are you sure you want to delete this form?",
                     "UI": "Are you sure you want to delete this UI?",
                     "DATA": "Are you sure you want to delete this data object?",

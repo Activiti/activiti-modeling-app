@@ -15,22 +15,20 @@
  * limitations under the License.
  */
 
-import { BasicModelCommands, ModelCommandsService } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaState, GenericDeleteModelCommand } from '@alfresco-dbp/modeling-shared/sdk';
+import { TranslationService } from '@alfresco/adf-core';
 import { Injectable } from '@angular/core';
-import { DeleteProcessCommand } from './delete-process.command';
-import { SaveProcessCommand } from './save-process.command';
+import { Store } from '@ngrx/store';
+import { DeleteProcessAttemptAction } from '../../store/process-editor.actions';
 
 @Injectable()
-export class ProcessCommandsService extends ModelCommandsService {
+export class DeleteProcessCommand extends GenericDeleteModelCommand {
     constructor(
-        saveCommand: SaveProcessCommand,
-        deleteCommand: DeleteProcessCommand
+        protected store: Store<AmaState>,
+        protected translationService: TranslationService
     ) {
-        super();
-
-        [
-            { eventName: BasicModelCommands.save, command: saveCommand },
-            { eventName: BasicModelCommands.delete, command: deleteCommand}
-        ].forEach(eventMethod => this.addEventListener(eventMethod.eventName, eventMethod.command));
+        super(store, translationService);
     }
+
+    protected DeleteAction = DeleteProcessAttemptAction;
 }

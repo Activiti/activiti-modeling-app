@@ -119,6 +119,7 @@ import { CreateProcessDialogComponent } from './components/create-process-dialog
 import { ProcessCategorySelectorComponent } from './components/process-category-selector/process-category-selector.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CardProcessCategoryItemComponent } from './services/cardview-properties/process-category-item/process-category-item.component';
+import { DeleteProcessCommand } from './services/commands/delete-process.command';
 
 @NgModule({
     imports: [
@@ -193,6 +194,7 @@ import { CardProcessCategoryItemComponent } from './services/cardview-properties
     ],
     exports: [ProcessEditorRoutingModule],
     providers: [
+        DeleteProcessCommand,
         SaveProcessCommand,
         ProcessEditorService,
         ProcessDiagramLoaderService,

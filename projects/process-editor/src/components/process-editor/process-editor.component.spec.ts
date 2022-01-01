@@ -28,8 +28,8 @@ import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UpdateProcessAttemptAction } from '../../store/process-editor.actions';
 import { selectProcessEditorSaving } from '../../store/process-editor.selectors';
-import { ActivatedRoute } from '@angular/router';
 import { SaveProcessCommand } from '../../services/commands/save-process.command';
+import { DeleteProcessCommand } from '../../services/commands/delete-process.command';
 
 describe('ProcessEditorComponent', () => {
     let fixture: ComponentFixture<ProcessEditorComponent>;
@@ -59,10 +59,7 @@ describe('ProcessEditorComponent', () => {
             ],
             providers: [
                 SaveProcessCommand,
-                {
-                    provide: ActivatedRoute,
-                    useValue: { params: of({}), snapshot: {url: ''} }
-                },
+                DeleteProcessCommand,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: Store,
