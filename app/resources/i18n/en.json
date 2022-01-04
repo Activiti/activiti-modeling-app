@@ -75,7 +75,6 @@
                 "DOWNLOAD": {
                     "PROCESS": "Are you sure you want to download this process?",
                     "IMAGE": "Are you sure you want to download the svg image of this process?",
-                    "UI": "Are you sure you want to download this UI?",
                     "DATA": "Are you sure you want to download this data object?",
                     "CONNECTOR": "Are you sure you want to download this connector?"
                 }
