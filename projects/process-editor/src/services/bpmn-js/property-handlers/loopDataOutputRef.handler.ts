@@ -26,8 +26,16 @@ const get = (element) => {
 };
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    if (element.businessObject[multiInstanceKey]) {
-        modeling.updateProperties(element.businessObject[multiInstanceKey], { [propertyKey]: value });
+    updateMultiInstanceShapeProperty(element, value);
+    modeling.updateProperties(element, {});
+};
+
+const updateMultiInstanceShapeProperty = (element: Bpmn.DiagramElement, value: any) => {
+    if (value) {
+        const multiInstanceProperty = element.businessObject[multiInstanceKey];
+        if (multiInstanceProperty) {
+            multiInstanceProperty[propertyKey] = value;
+        }
     }
 };
 

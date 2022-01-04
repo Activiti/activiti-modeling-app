@@ -59,6 +59,14 @@ describe('LoopDataOutputRef', () => {
 
             expect(version).toBe('set-test');
         });
-    });
 
+        it('should call updateProperties with empty properties', () => {
+            spyOn(modeling, 'updateProperties');
+            const set = handler.set,
+                modifiedValue = 'set-test';
+
+            set(modeling, mockElement, modifiedValue);
+            expect(modeling.updateProperties).toHaveBeenCalledWith(mockElement, {});
+        });
+    });
 });
