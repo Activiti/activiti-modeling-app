@@ -72,8 +72,7 @@
                   "DATA": "Are you sure you want to copy this data object?",
                   "CONNECTOR": "Are you sure you want to copy this connector?",
                   "FILE": "Are you sure you want to copy this file?",
-                  "SCRIPT": "Are you sure you want to copy this script?",
-                  "FORM_WIDGET": "Are you sure you want to copy this Form Widget?"
+                  "SCRIPT": "Are you sure you want to copy this script?"
               },
                 "DOWNLOAD": {
                     "PROCESS": "Are you sure you want to download this process?",
