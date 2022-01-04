@@ -80,8 +80,7 @@
                     "UI": "Are you sure you want to download this UI?",
                     "DATA": "Are you sure you want to download this data object?",
                     "CONNECTOR": "Are you sure you want to download this connector?",
-                    "SCRIPT": "Are you sure you want to download this script?",
-                    "FORM_WIDGET": "Are you sure you want to download this Form Widget?"
+                    "SCRIPT": "Are you sure you want to download this script?"
                 }
             }
         },
