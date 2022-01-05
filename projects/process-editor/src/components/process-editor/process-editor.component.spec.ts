@@ -30,6 +30,7 @@ import { UpdateProcessAttemptAction } from '../../store/process-editor.actions';
 import { selectProcessEditorSaving } from '../../store/process-editor.selectors';
 import { SaveProcessCommand } from '../../services/commands/save-process.command';
 import { DeleteProcessCommand } from '../../services/commands/delete-process.command';
+import { ValidateProcessCommand } from '../../services/commands/validate-process.command';
 
 describe('ProcessEditorComponent', () => {
     let fixture: ComponentFixture<ProcessEditorComponent>;
@@ -60,6 +61,7 @@ describe('ProcessEditorComponent', () => {
             providers: [
                 SaveProcessCommand,
                 DeleteProcessCommand,
+                ValidateProcessCommand,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: Store,

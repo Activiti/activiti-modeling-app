@@ -120,6 +120,7 @@ import { ProcessCategorySelectorComponent } from './components/process-category-
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CardProcessCategoryItemComponent } from './services/cardview-properties/process-category-item/process-category-item.component';
 import { DeleteProcessCommand } from './services/commands/delete-process.command';
+import { ValidateProcessCommand } from './services/commands/validate-process.command';
 
 @NgModule({
     imports: [
@@ -196,6 +197,7 @@ import { DeleteProcessCommand } from './services/commands/delete-process.command
     providers: [
         DeleteProcessCommand,
         SaveProcessCommand,
+        ValidateProcessCommand,
         ProcessEditorService,
         ProcessDiagramLoaderService,
         { provide: BpmnFactoryToken, useClass: BpmnFactoryService },

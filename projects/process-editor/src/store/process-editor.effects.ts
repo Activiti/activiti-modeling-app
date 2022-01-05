@@ -63,7 +63,9 @@ import {
     OPEN_PROCESS_SAVE_AS_FORM,
     SAVE_AS_PROCESS_ATTEMPT,
     SaveAsProcessAttemptAction,
-    ProcessEntityDialogForm
+    ProcessEntityDialogForm,
+    ValidateProcessSuccessAction,
+    VALIDATE_PROCESS_SUCCESS
 } from './process-editor.actions';
 import {
     AmaState,
@@ -215,6 +217,12 @@ export class ProcessEditorEffects {
         ofType<ValidateProcessAttemptAction>(VALIDATE_PROCESS_ATTEMPT),
         withLatestFrom(this.store.select(selectSelectedProjectId)),
         mergeMap(([action, projectId]) => this.validateProcess({...action.payload, projectId}))
+    );
+
+    @Effect()
+    validateProcessSuccessEffect = this.actions$.pipe(
+        ofType<ValidateProcessSuccessAction>(VALIDATE_PROCESS_SUCCESS),
+        mergeMap(action => action.payload)
     );
 
     @Effect()

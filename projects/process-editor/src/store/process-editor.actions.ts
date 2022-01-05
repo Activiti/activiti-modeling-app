@@ -127,6 +127,12 @@ export class ValidateProcessAttemptAction implements Action {
     constructor(public payload: ValidateProcessPayload) {}
 }
 
+export const VALIDATE_PROCESS_SUCCESS = '[Process] Validate success';
+export class ValidateProcessSuccessAction implements Action {
+    readonly type = VALIDATE_PROCESS_SUCCESS;
+    constructor(public payload: Action[]) {}
+}
+
 export const UPDATE_PROCESS_ATTEMPT = '[Process] Update attempt';
 export class UpdateProcessAttemptAction implements Action {
     readonly type = UPDATE_PROCESS_ATTEMPT;

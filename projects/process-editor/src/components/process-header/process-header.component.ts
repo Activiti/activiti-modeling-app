@@ -21,11 +21,9 @@ import {
     AmaState,
     ProcessContent,
     BreadcrumbItem,
-    SnackbarInfoAction,
-    SnackbarErrorAction,
     ProcessModelerService,
     ProcessModelerServiceToken,
-    BasicModelCommands
+    BasicModelCommands,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -112,14 +110,7 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
     }
 
     onValidateProcess(process: Process): void {
-        this.store.dispatch(new ValidateProcessAttemptAction({
-            title: 'APP.DIALOGS.ERROR.SUBTITLE',
-            modelId: process.id,
-            modelContent: this.content,
-            modelMetadata: this.modelMetadata,
-            action: new SnackbarInfoAction('PROCESS_EDITOR.PROCESS_VALID'),
-            errorAction: new SnackbarErrorAction('PROCESS_EDITOR.PROCESS_INVALID')
-        }));
+        this.modelCommands.dispatchEvent(BasicModelCommands.validate);
     }
 
     onSaveAs() {

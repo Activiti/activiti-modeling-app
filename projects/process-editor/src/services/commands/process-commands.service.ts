@@ -19,18 +19,21 @@ import { BasicModelCommands, ModelCommandsService } from '@alfresco-dbp/modeling
 import { Injectable } from '@angular/core';
 import { DeleteProcessCommand } from './delete-process.command';
 import { SaveProcessCommand } from './save-process.command';
+import { ValidateProcessCommand } from './validate-process.command';
 
 @Injectable()
 export class ProcessCommandsService extends ModelCommandsService {
     constructor(
         saveCommand: SaveProcessCommand,
-        deleteCommand: DeleteProcessCommand
+        deleteCommand: DeleteProcessCommand,
+        validateCommand: ValidateProcessCommand
     ) {
         super();
 
         [
             { eventName: BasicModelCommands.save, command: saveCommand },
-            { eventName: BasicModelCommands.delete, command: deleteCommand}
+            { eventName: BasicModelCommands.delete, command: deleteCommand },
+            { eventName: BasicModelCommands.validate, command: validateCommand },
         ].forEach(eventMethod => this.addEventListener(eventMethod.eventName, eventMethod.command));
     }
 }

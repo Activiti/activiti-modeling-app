@@ -33,6 +33,7 @@ import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { ProcessCommandsService } from '../../services/commands/process-commands.service';
 import { SaveProcessCommand } from '../../services/commands/save-process.command';
 import { DeleteProcessCommand } from '../../services/commands/delete-process.command';
+import { ValidateProcessCommand } from '../../services/commands/validate-process.command';
 
 describe('ProcessHeaderComponent', () => {
     let fixture: ComponentFixture<ProcessHeaderComponent>;
@@ -65,6 +66,7 @@ describe('ProcessHeaderComponent', () => {
             providers: [
                 DeleteProcessCommand,
                 SaveProcessCommand,
+                ValidateProcessCommand,
                 ProcessCommandsService,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
@@ -191,5 +193,9 @@ describe('ProcessHeaderComponent', () => {
 
         expect(saveAsButton).not.toBeNull();
         expect(saveAsButton.nativeElement.textContent).toEqual('APP.MENU.SAVE_AS');
+    });
+
+    it('should test validate button', () => {
+        verifyButtonClickFor('process-editor-validate-button', 'validate');
     });
 });
