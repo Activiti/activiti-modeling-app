@@ -20,7 +20,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
-import { AmaState, OpenConfirmDialogAction, SharedModule } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaState, OpenConfirmDialogAction, SharedModule, BasicModelCommands } from '@alfresco-dbp/modeling-shared/sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { CommonModule } from '@angular/common';
 import { of } from 'rxjs';
@@ -29,6 +29,8 @@ import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DeleteConnectorAttemptAction, ValidateConnectorAttemptAction, DownloadConnectorAction } from '../../store/connector-editor.actions';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
+import { ConnectorCommandsService } from '../../services/commands/connector-commands.service';
+import { SaveConnectorCommand } from '../../services/commands/save-connector.command';
 
 describe('ConnectorHeaderComponent', () => {
     let fixture: ComponentFixture<ConnectorHeaderComponent>;
@@ -51,6 +53,8 @@ describe('ConnectorHeaderComponent', () => {
                 ConnectorHeaderComponent
             ],
             providers: [
+                ConnectorCommandsService,
+                SaveConnectorCommand,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: Store,
@@ -66,7 +70,7 @@ describe('ConnectorHeaderComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ConnectorHeaderComponent);
         component = fixture.componentInstance;
-        component.connectorId = 'mock-id';
+        component.modelId = 'mock-id';
         component.content = JSON.stringify({
             id: 'mock-id',
             name: 'mock-name',
@@ -76,12 +80,13 @@ describe('ConnectorHeaderComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should emit save event on save button click', () => {
-        const emitSpy = spyOn(component.save, 'emit');
+    it('should save event on save button click', () => {
+        const commandService = TestBed.inject(ConnectorCommandsService);
+        const emitSpy = spyOn(commandService, 'dispatchEvent');
         const button = fixture.debugElement.query(By.css('[data-automation-id="connector-editor-save-button"]'));
         button.triggerEventHandler('click', null);
         fixture.detectChanges();
-        expect(emitSpy).toHaveBeenCalled();
+        expect(emitSpy).toHaveBeenCalledWith(BasicModelCommands.save);
     });
 
     it('should disable save button when "disableSave" input is true', () => {
@@ -106,7 +111,7 @@ describe('ConnectorHeaderComponent', () => {
             dialogData: {
                 title: 'APP.DIALOGS.CONFIRM.DELETE.CONNECTOR'
             },
-            action: new DeleteConnectorAttemptAction(component.connectorId)
+            action: new DeleteConnectorAttemptAction(component.modelId)
         });
 
         expect(store.dispatch).toHaveBeenCalledWith(payload);
@@ -121,8 +126,8 @@ describe('ConnectorHeaderComponent', () => {
 
         const payload = {
             title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.CONNECTOR',
-            connectorId: component.connectorId,
-            connectorContent: JSON.parse(component.content),
+            modelId: component.modelId,
+            modelContent: JSON.parse(component.content),
             action: new DownloadConnectorAction()
         };
         expect(store.dispatch).toHaveBeenCalledWith(new ValidateConnectorAttemptAction(payload));

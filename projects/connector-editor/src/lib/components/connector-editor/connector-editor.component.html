@@ -3,10 +3,9 @@
         <ng-container *ngIf="editorContent$ | async; let editorContent">
 
             <ama-connector-header [disableSave]="disableSave"
-                [connectorId]="connectorId$ | async"
+                [modelId]="modelId"
                 [content]="editorContent"
-                class="ama-connector-header"
-                (save)="onSave()">
+                class="ama-connector-header">
             </ama-connector-header>
 
             <ng-container *ngIf="isAdvancedEditorEmbedded()">
@@ -30,7 +29,7 @@
                                 [content]="editorContent"
                                 (positionChanged)="codeEditorPositionChanged($event)"
                                 (changed)="onChangeAttempt($event)"
-                                [fileUri]="fileUri$ | async"
+                                [fileUri]="fileUri"
                                 [language]="languageType">
                             </modelingsdk-code-editor>
                         </div>
@@ -44,7 +43,7 @@
                     [content]="editorContent"
                     (positionChanged)="codeEditorPositionChanged($event)"
                     (changed)="onChangeAttempt($event)"
-                    [fileUri]="fileUri$ | async"
+                    [fileUri]="fileUri"
                     [language]="languageType">
                 </modelingsdk-code-editor>
             </ng-container>

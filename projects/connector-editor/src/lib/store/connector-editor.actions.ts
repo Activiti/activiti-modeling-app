@@ -30,8 +30,8 @@ import { Action } from '@ngrx/store';
 
 export interface ValidateConnectorPayload {
     title: string;
-    connectorId: string;
-    connectorContent: ConnectorContent;
+    modelId: string;
+    modelContent: ConnectorContent;
     action: Action;
     errorAction?: Action;
     projectId?: string;
@@ -46,6 +46,10 @@ export interface UpdateConnectorPayload {
 export interface ConnectorDialogPayload {
     projectId: string;
     connector?: Connector;
+}
+export interface SaveConnectorPayload {
+    modelId: string;
+    modelContent: ConnectorContent;
 }
 
 export const VALIDATE_CONNECTOR_ATTEMPT = '[Connector] Validate attempt';
@@ -81,7 +85,7 @@ export class GetConnectorSuccessAction implements Action {
 export const UPDATE_CONNECTOR_CONTENT_ATTEMPT = '[Connector] Update content attempt';
 export class UpdateConnectorContentAttemptAction implements Action {
     readonly type = UPDATE_CONNECTOR_CONTENT_ATTEMPT;
-    constructor(public payload: ConnectorContent) {}
+    constructor(public payload: SaveConnectorPayload) {}
 }
 
 export const UPDATE_CONNECTOR_SUCCESS = '[Connector] Update success';

@@ -38,7 +38,6 @@ import {
     SnackbarInfoAction,
     UploadFileAttemptPayload,
     changeFileName,
-    ConnectorContent,
     Connector,
     selectSelectedProjectId,
     CreateConnectorAttemptAction,
@@ -47,14 +46,15 @@ import {
     SaveAsDialogPayload,
     SaveAsDialogComponent,
     ShowConnectorsAction,
-    SHOW_CONNECTORS
+    SHOW_CONNECTORS,
+    ConnectorContent
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ConnectorEditorService } from '../services/connector-editor.service';
 import { of, zip, forkJoin, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { selectConnectorsLoaded, selectSelectedConnectorContent, selectSelectedConnector } from './connector-editor.selectors';
+import { selectConnectorsLoaded, selectSelectedConnectorContent, selectConnectorById } from './connector-editor.selectors';
 import {
     ValidateConnectorAttemptAction,
     VALIDATE_CONNECTOR_ATTEMPT,
@@ -82,8 +82,7 @@ import {
     SAVE_AS_CONNECTOR_ATTEMPT,
     ValidateConnectorPayload,
     GetConnectorsSuccessAction,
-    GetConnectorSuccessAction
-} from './connector-editor.actions';
+    GetConnectorSuccessAction} from './connector-editor.actions';
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 import { TranslationService } from '@alfresco/adf-core';
 
@@ -110,8 +109,8 @@ export class ConnectorEditorEffects {
     updateConnectorContentEffect = this.actions$.pipe(
         ofType<UpdateConnectorContentAttemptAction>(UPDATE_CONNECTOR_CONTENT_ATTEMPT),
         map(action => action.payload),
-        withLatestFrom(this.store.select(selectSelectedConnector), this.store.select(selectSelectedProjectId)),
-        mergeMap(([content, model, projectId]) => this.updateConnector(model, content, projectId))
+        mergeMap((payload) => zip(of(payload), this.store.select(selectConnectorById(payload.modelId)), this.store.select(selectSelectedProjectId))),
+        mergeMap(([payload, connector, projectId]) => this.updateConnector(connector, payload.modelContent, projectId))
     );
 
     @Effect()
@@ -232,8 +231,8 @@ export class ConnectorEditorEffects {
         })
     );
 
-    private validateConnector({ connectorId, connectorContent, action, title, errorAction, projectId }: ValidateConnectorPayload) {
-        return this.connectorEditorService.validate(connectorId, connectorContent, projectId).pipe(
+    private validateConnector({ modelId, modelContent, action, title, errorAction, projectId }: ValidateConnectorPayload) {
+        return this.connectorEditorService.validate(modelId, modelContent, projectId).pipe(
             switchMap(() => [new SetApplicationLoadingStateAction(true), action, new SetApplicationLoadingStateAction(false)]),
             catchError(response => {
                 const errors = JSON.parse(response.message).errors.map(error => error.description);

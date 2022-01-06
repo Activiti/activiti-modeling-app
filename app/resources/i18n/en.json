@@ -62,7 +62,6 @@
                 "SAVE": {
                     "PROCESS": "Are you sure you want to save this process?",
                     "DATA": "Are you sure you want to save this data object?",
-                    "CONNECTOR": "Are you sure you want to save this connector?",
                     "EMAIL_TEMPLATE": "Are you sure you want to overwrite the email template?"
                 },
                 "SAVE_AS": {

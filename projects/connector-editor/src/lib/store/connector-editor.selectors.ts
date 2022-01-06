@@ -67,3 +67,17 @@ export const selectConnectorCrumb = createSelector(
 );
 
 export const selectConnectorEditorSaving = createSelector(getConnectorFeatureState, state => state.updateState);
+
+export const selectConnectorContentById = (modelId: string) => {
+    return createSelector(
+        selectConnectorEntityContents,
+        (entityContents) => entityContents[modelId]
+    );
+};
+
+export const selectConnectorById = (modelId: string) => {
+    return createSelector(
+        selectConnectorEntities,
+        (entities) => entities[modelId]
+    );
+};

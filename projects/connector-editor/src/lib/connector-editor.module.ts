@@ -36,6 +36,7 @@ import {
     CONNECTOR,
     MODEL_SCHEMA_TYPE,
     getExtensionErrorProvider,
+    ModelEditorModule,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { EffectsModule } from '@ngrx/effects';
 import { ConnectorEditorEffects } from './store/connector-editor.effects';
@@ -48,6 +49,7 @@ import { getConnectorCreatorProvider } from './extension/connector-creator.exten
 import { getConnectorUploaderProvider } from './extension/connector-uploader.extension';
 import { ConnectorErrorProviderService } from './services/connector-error-provider.service';
 import { getConnectorLogInitiator } from './services/connector-editor.constants';
+import { SaveConnectorCommand } from './services/commands/save-connector.command';
 
 @NgModule({
     imports: [
@@ -62,6 +64,10 @@ import { getConnectorLogInitiator } from './services/connector-editor.constants'
             key: CONNECTORS_ENTITY_KEY,
             reducer: connectorEntitiesReducer
         }),
+        ModelEditorModule.forChild({
+            type: CONNECTOR,
+            componentClass: ConnectorEditorComponent
+        }),
         StoreModule.forFeature(CONNECTOR_EDITOR_STATE_NAME, connectorEditorReducer)
     ],
     declarations: [
@@ -70,6 +76,7 @@ import { getConnectorLogInitiator } from './services/connector-editor.constants'
     ],
     exports: [ ConnectorEditorRoutingModule ],
     providers: [
+        SaveConnectorCommand,
         provideTranslations('connector-editor'),
         ...getConnectorsFilterProvider(),
         ...getConnectorCreatorProvider(),

@@ -18,6 +18,7 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
+    BasicModelCommands,
     BreadcrumbItem,
     AmaState,
     OpenConfirmDialogAction,
@@ -34,6 +35,7 @@ import {
     OpenSaveAsConnectorAction,
     SaveAsConnectorAttemptAction
 } from '../../store/connector-editor.actions';
+import { ConnectorCommandsService } from '../../services/commands/connector-commands.service';
 
 @Component({
     selector: 'ama-connector-header',
@@ -45,7 +47,7 @@ export class ConnectorHeaderComponent {
     disableSave = false;
 
     @Input()
-    connectorId: string;
+    modelId: string;
 
     @Input()
     content: string;
@@ -54,10 +56,11 @@ export class ConnectorHeaderComponent {
     download = new EventEmitter<void>();
     breadcrumbs$: Observable<BreadcrumbItem[]>;
 
-    @Output()
-    save = new EventEmitter<void>();
-
-    constructor(private store: Store<AmaState>, breadCrumbHelperService: BreadCrumbHelperService) {
+    constructor(
+        private store: Store<AmaState>,
+        private modelCommands: ConnectorCommandsService,
+        breadCrumbHelperService: BreadCrumbHelperService
+        ) {
         this.breadcrumbs$ = breadCrumbHelperService.getModelCrumbs(selectConnectorCrumb);
     }
 
@@ -65,7 +68,7 @@ export class ConnectorHeaderComponent {
         this.store.dispatch(
             new OpenConfirmDialogAction({
                 dialogData: { title: 'APP.DIALOGS.CONFIRM.DELETE.CONNECTOR' },
-                action: new DeleteConnectorAttemptAction(this.connectorId)
+                action: new DeleteConnectorAttemptAction(this.modelId)
             })
         );
     }
@@ -73,8 +76,8 @@ export class ConnectorHeaderComponent {
     onDownload() {
         this.store.dispatch(new ValidateConnectorAttemptAction({
             title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.CONNECTOR',
-            connectorId: this.connectorId,
-            connectorContent: JSON.parse(this.content),
+            modelId: this.modelId,
+            modelContent: JSON.parse(this.content),
             action: new DownloadConnectorAction()
         }));
     }
@@ -82,23 +85,23 @@ export class ConnectorHeaderComponent {
     onValidate() {
         this.store.dispatch(new ValidateConnectorAttemptAction({
             title: null,
-            connectorId: this.connectorId,
-            connectorContent: JSON.parse(this.content),
+            modelId: this.modelId,
+            modelContent: JSON.parse(this.content),
             action: new SnackbarInfoAction('CONNECTOR_EDITOR.CONNECTOR_VALID'),
             errorAction: new SnackbarErrorAction('CONNECTOR_EDITOR.CONNECTOR_INVALID')
         }));
     }
 
     onSave(): void {
-        this.save.emit();
+        this.modelCommands.dispatchEvent(BasicModelCommands.save);
     }
 
     onSaveAs() {
         const contentObj = JSON.parse(this.content);
         this.store.dispatch(new ValidateConnectorAttemptAction({
             title: 'APP.DIALOGS.CONFIRM.SAVE_AS.CONNECTOR',
-            connectorId: this.connectorId,
-            connectorContent: contentObj,
+            modelId: this.modelId,
+            modelContent: contentObj,
             action: new OpenSaveAsConnectorAction({
                 id: contentObj.id,
                 name: contentObj.name,

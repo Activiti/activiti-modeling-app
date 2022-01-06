@@ -31,7 +31,8 @@ import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { CONNECTOR, SharedModule, AmaState, ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
 import { ExtensionsModule } from '@alfresco/adf-extensions';
-import { UpdateConnectorContentAttemptAction, ValidateConnectorAttemptAction } from '../../store/connector-editor.actions';
+import { UpdateConnectorContentAttemptAction } from '../../store/connector-editor.actions';
+import { SaveConnectorCommand } from '../../services/commands/save-connector.command';
 import { ActivatedRoute } from '@angular/router';
 
 describe('ConnectorEditorComponent', () => {
@@ -51,7 +52,7 @@ describe('ConnectorEditorComponent', () => {
         name: 'mock-name',
         description: 'mock-description'
     });
-    const updateConnectorPayload = new UpdateConnectorContentAttemptAction(JSON.parse(content));
+    const updateConnectorPayload = new UpdateConnectorContentAttemptAction({modelId: 'mock-id', modelContent: JSON.parse(content)});
     let connectorEditorState = ModelEditorState.SAVED;
 
     beforeEach(async(() => {
@@ -71,6 +72,7 @@ describe('ConnectorEditorComponent', () => {
                 ConnectorHeaderComponent
             ],
             providers: [
+                SaveConnectorCommand,
                 {
                     provide: ActivatedRoute,
                     useValue: { params: of({}), snapshot: {url: ''} }
@@ -102,7 +104,7 @@ describe('ConnectorEditorComponent', () => {
         fixture.detectChanges();
         store = TestBed.inject(Store);
         component.editorContent$ = of(content);
-        component.connectorId$ = of(mockConnector.id);
+        component.modelId = mockConnector.id;
     });
 
     it('should render spinner if loading state is true', () => {
@@ -110,18 +112,6 @@ describe('ConnectorEditorComponent', () => {
         const spinner = fixture.debugElement.query(By.css('.ama-connector-editor-spinner'));
 
         expect(spinner).not.toBeNull();
-    });
-
-    it('should test trigger of onSave() validates and updates connector', async() => {
-        spyOn(store, 'dispatch');
-        const payload = {
-            title: 'APP.DIALOGS.CONFIRM.SAVE.CONNECTOR',
-            connectorId: mockConnector.id,
-            connectorContent: JSON.parse(content),
-            action: updateConnectorPayload
-        };
-        component.onSave();
-        await expect(store.dispatch).toHaveBeenCalledWith(new ValidateConnectorAttemptAction(payload));
     });
 
     it('should test canDeactivate() response to be true when selectConnectorEditorSaving is in saved state', (done) => {

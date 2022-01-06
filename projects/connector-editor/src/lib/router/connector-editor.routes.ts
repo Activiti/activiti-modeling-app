@@ -16,9 +16,16 @@
  */
 
 import { Routes } from '@angular/router';
-import { ConnectorLoaderGuard } from './guards/connector-loader.guard';
-import { ConnectorEditorComponent } from '../components/connector-editor/connector-editor.component';
-import { UnsavedPageGuard, CONNECTOR, MODEL_EDITOR_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    UnsavedPageGuard,
+    CONNECTOR,
+    MODEL_EDITOR_ROUTES,
+    ModelLoaderGuard,
+    ModelEditorProxyComponent,
+    ModelEditorRouterGuardData,
+    ModelEditorRouterData,
+    LoadConnectorAttemptAction
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { ConnectorsLoaderGuard } from './guards/connectors-loader.guard';
 
 export const connectorEditorRoutes: Routes = [
@@ -27,10 +34,14 @@ export const connectorEditorRoutes: Routes = [
         data: { injectTo: MODEL_EDITOR_ROUTES },
         children: [
             {
-                path: ':connectorId',
-                canActivate: [ ConnectorLoaderGuard ],
+                path: ':modelId',
+                canActivate: [ ModelLoaderGuard ],
                 canDeactivate: [ UnsavedPageGuard ],
-                component: ConnectorEditorComponent
+                component: ModelEditorProxyComponent,
+                data: {
+                    modelType: CONNECTOR,
+                    actionClass: LoadConnectorAttemptAction
+                } as ModelEditorRouterGuardData & ModelEditorRouterData
             }
         ],
         canActivate: [ ConnectorsLoaderGuard ]

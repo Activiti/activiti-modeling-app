@@ -40,8 +40,7 @@ import {
     ValidateConnectorAttemptAction,
     UpdateConnectorFailedAction,
     SaveAsConnectorAttemptAction,
-    OpenSaveAsConnectorAction
-} from './connector-editor.actions';
+    OpenSaveAsConnectorAction} from './connector-editor.actions';
 import { hot, cold, getTestScheduler } from 'jasmine-marbles';
 import {
     EntityDialogForm,
@@ -68,7 +67,7 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { Update } from '@ngrx/entity';
-import { selectConnectorsLoaded, selectSelectedConnector } from './connector-editor.selectors';
+import { selectConnectorsLoaded, selectConnectorById, selectSelectedConnector } from './connector-editor.selectors';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
@@ -147,6 +146,10 @@ describe('ConnectorEditorEffects', () => {
                                 return of(connector.projectIds[0]);
                             }
 
+                            if (selectConnectorById(connector.id)) {
+                                return of(connector);
+                            }
+
                             return of({});
                         })
                     }
@@ -205,7 +208,7 @@ describe('ConnectorEditorEffects', () => {
         });
 
         it('updateConnectorContentEffect should dispatch the UpdateConnectorSuccessAction and SnackbarInfoAction actions', () => {
-            const mockPayload = <ConnectorContent>{ name: 'mock-name', description: 'mock-desc' };
+            const mockPayload = {modelId: 'mock-id', modelContent: <ConnectorContent>{ name: 'mock-name', description: 'mock-desc' }};
             updateConnector.mockReturnValue(of(connector));
 
             actions$ = hot('a', { a: new UpdateConnectorContentAttemptAction(mockPayload) });
@@ -213,7 +216,7 @@ describe('ConnectorEditorEffects', () => {
             expectedLogAction.log.datetime = (<any>expect).any(Date);
             const expected = cold('(bcdf)', {
                 b: new SetApplicationLoadingStateAction(true),
-                c: new UpdateConnectorSuccessAction({ id: connector.id, changes: mockPayload }),
+                c: new UpdateConnectorSuccessAction({ id: connector.id, changes: mockPayload.modelContent }),
                 d: expectedLogAction,
                 f: new SnackbarInfoAction('PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_UPDATED')
             });
@@ -222,7 +225,7 @@ describe('ConnectorEditorEffects', () => {
         });
 
         it('should dispatch the SnackbarErrorAction with duplication error on 409 status error', () => {
-            const mockPayload = <ConnectorContent>{ name: 'mock-name', description: 'mock-desc' };
+            const mockPayload = {modelId: 'mock-id', modelContent: <ConnectorContent>{ name: 'mock-name', description: 'mock-desc' }};
             const error: any = new Error();
             error.status = 409;
             updateConnector.mockReturnValue(throwError(error));
@@ -237,11 +240,11 @@ describe('ConnectorEditorEffects', () => {
         });
 
         it('should dispatch the SnackbarErrorAction with general error on every other error', () => {
-            const mockPayload = <ConnectorContent>{ name: 'mock-name', description: 'mock-desc' };
+            const mockPayload = {modelId: 'mock-id', modelContent: <ConnectorContent>{ name: 'mock-name', description: 'mock-desc' }};
             const error: any = new Error();
             updateConnector.mockReturnValue(throwError(error));
 
-            actions$ = hot('a', { a: new UpdateConnectorContentAttemptAction(mockPayload) });
+            actions$ = hot('a', { a: new UpdateConnectorContentAttemptAction(mockPayload)});
             const expected = cold('(bc)', {
                 b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.UPDATE_CONNECTOR.GENERAL'),
                 c: new UpdateConnectorFailedAction()
@@ -471,9 +474,9 @@ describe('ConnectorEditorEffects', () => {
         let validateConnector: jest.Mock;
         const payload: ValidateConnectorPayload = {
             title: 'APP.DIALOGS.CONFIRM.TITLE',
-            connectorId: connector.id,
-            connectorContent,
-            action: new UpdateConnectorContentAttemptAction(connectorContent)
+            modelId: connector.id,
+            modelContent: connectorContent,
+            action: new UpdateConnectorContentAttemptAction({modelId: 'mock-id', modelContent: connectorContent})
         };
 
         beforeEach(() => {

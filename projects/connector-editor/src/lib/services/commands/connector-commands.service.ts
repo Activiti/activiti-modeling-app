@@ -15,22 +15,17 @@
  * limitations under the License.
  */
 
+import { ModelCommandsService, BasicModelCommands } from '@alfresco-dbp/modeling-shared/sdk';
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
-
-import { Observable, of } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { ProjectEditorState, LoadConnectorAttemptAction, SetAppDirtyStateAction } from '@alfresco-dbp/modeling-shared/sdk';
+import { SaveConnectorCommand } from './save-connector.command';
 
 @Injectable()
-export class ConnectorLoaderGuard implements CanActivate {
+export class ConnectorCommandsService extends ModelCommandsService {
+    constructor(saveCommand: SaveConnectorCommand) {
+        super();
 
-    constructor(private store: Store<ProjectEditorState>) { }
-
-    canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-        const connectorId = route.params.connectorId;
-        this.store.dispatch(new SetAppDirtyStateAction(false));
-        this.store.dispatch(new LoadConnectorAttemptAction(connectorId));
-        return of(true);
+        [
+            { eventName: BasicModelCommands.save, command: saveCommand }
+        ].forEach(eventMethod => this.addEventListener(eventMethod.eventName, eventMethod.command));
     }
 }
