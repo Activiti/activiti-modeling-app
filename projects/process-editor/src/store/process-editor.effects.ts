@@ -93,11 +93,12 @@ import {
     SaveAsDialogComponent,
     ModelExtensions,
     ShowProcessesAction,
-    SHOW_PROCESSES
+    SHOW_PROCESSES,
+    selectProcessById,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProcessEditorService } from '../services/process-editor.service';
-import { selectProcessesLoaded, selectSelectedElement } from './process-editor.selectors';
+import { selectProcessesLoaded, selectSelectedElement, selectSelectedProcessId } from './process-editor.selectors';
 import { Store } from '@ngrx/store';
 import { getProcessLogInitiator, PROCESS_SVG_IMAGE } from '../services/process-editor.constants';
 import { ProcessValidationResponse } from './process-editor.state';
@@ -235,7 +236,9 @@ export class ProcessEditorEffects {
     @Effect({ dispatch: false })
     downloadProcessEffect = this.actions$.pipe(
         ofType<DownloadProcessAction>(DOWNLOAD_PROCESS_DIAGRAM),
-        map(({ process }) => this.downloadProcessDiagram(process.id, process.name))
+        withLatestFrom(this.store.select(selectSelectedProcessId)),
+        mergeMap(([action, processId]) => this.store.select(selectProcessById(processId))),
+        map((process) => this.downloadProcessDiagram(process.id, process.name))
     );
 
     @Effect({ dispatch: false })

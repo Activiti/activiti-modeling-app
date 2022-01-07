@@ -27,13 +27,14 @@ import { mockProcessModel } from '../../store/process.mock';
 import { Store } from '@ngrx/store';
 import { of, Subject } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { DownloadProcessAction, ValidateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
+import { ValidateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
 import { Actions } from '@ngrx/effects';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { ProcessCommandsService } from '../../services/commands/process-commands.service';
 import { SaveProcessCommand } from '../../services/commands/save-process.command';
 import { DeleteProcessCommand } from '../../services/commands/delete-process.command';
 import { ValidateProcessCommand } from '../../services/commands/validate-process.command';
+import { DownloadProcessCommand } from '../../services/commands/download-process.command';
 
 describe('ProcessHeaderComponent', () => {
     let fixture: ComponentFixture<ProcessHeaderComponent>;
@@ -67,6 +68,7 @@ describe('ProcessHeaderComponent', () => {
                 DeleteProcessCommand,
                 SaveProcessCommand,
                 ValidateProcessCommand,
+                DownloadProcessCommand,
                 ProcessCommandsService,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
@@ -116,21 +118,7 @@ describe('ProcessHeaderComponent', () => {
     });
 
     it('should test download button', () => {
-        spyOn(store, 'dispatch');
-
-        const button = fixture.debugElement.query(By.css('[data-automation-id="process-editor-download-button"]'));
-        button.triggerEventHandler('click', {});
-        fixture.detectChanges();
-
-        const payload = new ValidateProcessAttemptAction({
-            title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.PROCESS',
-            modelId: mockProcessModel.id,
-            modelContent: component.content,
-            modelMetadata: mockProcessModel,
-            action: new DownloadProcessAction(mockProcessModel)
-        });
-
-        expect(store.dispatch).toHaveBeenCalledWith(payload);
+        verifyButtonClickFor('process-editor-download-button', 'download');
     });
 
     it('should test delete button', () => {

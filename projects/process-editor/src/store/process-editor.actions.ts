@@ -158,7 +158,6 @@ export interface DownloadProcessPayload {
 export const DOWNLOAD_PROCESS_DIAGRAM = 'DOWNLOAD_PROCESS_DIAGRAM';
 export class DownloadProcessAction implements Action {
     readonly type = DOWNLOAD_PROCESS_DIAGRAM;
-    constructor(public process: DownloadProcessPayload) {}
 }
 
 export const DOWNLOAD_PROCESS_SVG_IMAGE = 'DOWNLOAD_PROCESS_SVG_IMAGE';

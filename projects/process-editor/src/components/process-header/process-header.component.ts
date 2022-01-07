@@ -27,7 +27,7 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { ValidateProcessAttemptAction, DownloadProcessAction, DownloadProcessSVGImageAction, OpenSaveAsProcessAction, SaveAsProcessAttemptAction } from '../../store/process-editor.actions';
+import { ValidateProcessAttemptAction, DownloadProcessSVGImageAction, OpenSaveAsProcessAction, SaveAsProcessAttemptAction } from '../../store/process-editor.actions';
 import { takeUntil } from 'rxjs/operators';
 import { selectProcessModelContext } from '../../store/process-editor.selectors';
 import { ProcessModelContext } from '../../store/process-editor.state';
@@ -86,13 +86,7 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
     }
 
     onDownload(process: Process): void {
-        this.store.dispatch(new ValidateProcessAttemptAction({
-            title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.PROCESS',
-            modelId: process.id,
-            modelContent: this.content,
-            modelMetadata: this.modelMetadata,
-            action: new DownloadProcessAction(process)
-        }));
+        this.modelCommands.dispatchEvent(BasicModelCommands.download);
     }
 
     deleteProcess(): void {
