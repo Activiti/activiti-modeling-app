@@ -56,8 +56,7 @@
                 },
                 "DELETE": {
                     "PROJECT": "Are you sure you want to delete this project?",
-                    "DATA": "Are you sure you want to delete this data object?",
-                    "CONNECTOR": "Are you sure you want to delete this connector?"
+                    "DATA": "Are you sure you want to delete this data object?"
                 },
                 "SAVE": {
                     "PROCESS": "Are you sure you want to save this process?",

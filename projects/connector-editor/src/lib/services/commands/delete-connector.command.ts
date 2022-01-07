@@ -15,22 +15,20 @@
  * limitations under the License.
  */
 
-import { ModelCommandsService, BasicModelCommands } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaState, GenericDeleteModelCommand } from '@alfresco-dbp/modeling-shared/sdk';
+import { TranslationService } from '@alfresco/adf-core';
 import { Injectable } from '@angular/core';
-import { DeleteConnectorCommand } from './delete-connector.command';
-import { SaveConnectorCommand } from './save-connector.command';
+import { Store } from '@ngrx/store';
+import { DeleteConnectorAttemptAction } from '../../store/connector-editor.actions';
 
 @Injectable()
-export class ConnectorCommandsService extends ModelCommandsService {
+export class DeleteConnectorCommand extends GenericDeleteModelCommand {
     constructor(
-        saveCommand: SaveConnectorCommand,
-        deleteCommand: DeleteConnectorCommand
-        ) {
-        super();
-
-        [
-            { eventName: BasicModelCommands.save, command: saveCommand },
-            { eventName: BasicModelCommands.delete, command: deleteCommand }
-        ].forEach(eventMethod => this.addEventListener(eventMethod.eventName, eventMethod.command));
+        protected store: Store<AmaState>,
+        protected translationService: TranslationService
+    ) {
+        super(store, translationService);
     }
+
+    protected DeleteAction = DeleteConnectorAttemptAction;
 }

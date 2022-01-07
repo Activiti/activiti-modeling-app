@@ -21,7 +21,6 @@ import {
     BasicModelCommands,
     BreadcrumbItem,
     AmaState,
-    OpenConfirmDialogAction,
     SnackbarInfoAction,
     SnackbarErrorAction,
     BreadCrumbHelperService
@@ -29,7 +28,6 @@ import {
 import { Store } from '@ngrx/store';
 import { selectConnectorCrumb } from '../../store/connector-editor.selectors';
 import {
-    DeleteConnectorAttemptAction,
     ValidateConnectorAttemptAction,
     DownloadConnectorAction,
     OpenSaveAsConnectorAction,
@@ -65,12 +63,7 @@ export class ConnectorHeaderComponent {
     }
 
     onDelete() {
-        this.store.dispatch(
-            new OpenConfirmDialogAction({
-                dialogData: { title: 'APP.DIALOGS.CONFIRM.DELETE.CONNECTOR' },
-                action: new DeleteConnectorAttemptAction(this.modelId)
-            })
-        );
+        this.modelCommands.dispatchEvent(BasicModelCommands.delete);
     }
 
     onDownload() {

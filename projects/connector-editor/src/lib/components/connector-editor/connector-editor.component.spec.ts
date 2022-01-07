@@ -34,6 +34,7 @@ import { ExtensionsModule } from '@alfresco/adf-extensions';
 import { UpdateConnectorContentAttemptAction } from '../../store/connector-editor.actions';
 import { SaveConnectorCommand } from '../../services/commands/save-connector.command';
 import { ActivatedRoute } from '@angular/router';
+import { DeleteConnectorCommand } from '../../services/commands/delete-connector.command';
 
 describe('ConnectorEditorComponent', () => {
     let fixture: ComponentFixture<ConnectorEditorComponent>;
@@ -72,6 +73,7 @@ describe('ConnectorEditorComponent', () => {
                 ConnectorHeaderComponent
             ],
             providers: [
+                DeleteConnectorCommand,
                 SaveConnectorCommand,
                 {
                     provide: ActivatedRoute,

@@ -50,6 +50,7 @@ import { getConnectorUploaderProvider } from './extension/connector-uploader.ext
 import { ConnectorErrorProviderService } from './services/connector-error-provider.service';
 import { getConnectorLogInitiator } from './services/connector-editor.constants';
 import { SaveConnectorCommand } from './services/commands/save-connector.command';
+import { DeleteConnectorCommand } from './services/commands/delete-connector.command';
 
 @NgModule({
     imports: [
@@ -76,6 +77,7 @@ import { SaveConnectorCommand } from './services/commands/save-connector.command
     ],
     exports: [ ConnectorEditorRoutingModule ],
     providers: [
+        DeleteConnectorCommand,
         SaveConnectorCommand,
         provideTranslations('connector-editor'),
         ...getConnectorsFilterProvider(),

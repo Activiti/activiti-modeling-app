@@ -20,22 +20,34 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
-import { AmaState, OpenConfirmDialogAction, SharedModule, BasicModelCommands } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaState, SharedModule, BasicModelCommands } from '@alfresco-dbp/modeling-shared/sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { CommonModule } from '@angular/common';
 import { of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { DeleteConnectorAttemptAction, ValidateConnectorAttemptAction, DownloadConnectorAction } from '../../store/connector-editor.actions';
+import { ValidateConnectorAttemptAction, DownloadConnectorAction } from '../../store/connector-editor.actions';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { ConnectorCommandsService } from '../../services/commands/connector-commands.service';
 import { SaveConnectorCommand } from '../../services/commands/save-connector.command';
+import { DeleteConnectorCommand } from '../../services/commands/delete-connector.command';
 
 describe('ConnectorHeaderComponent', () => {
     let fixture: ComponentFixture<ConnectorHeaderComponent>;
     let component: ConnectorHeaderComponent;
     let store: Store<AmaState>;
+
+    function verifyButtonClickFor(buttonId: string, actionName: string) {
+        const commandService = TestBed.inject(ConnectorCommandsService);
+        const emitSpy = spyOn(commandService, 'dispatchEvent');
+
+        const buttonElement = fixture.debugElement.query(By.css(`[data-automation-id="${buttonId}"]`));
+        buttonElement.triggerEventHandler('click', null);
+        fixture.detectChanges();
+
+        expect(emitSpy).toHaveBeenCalledWith(BasicModelCommands[actionName]);
+    }
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -54,6 +66,7 @@ describe('ConnectorHeaderComponent', () => {
             ],
             providers: [
                 ConnectorCommandsService,
+                DeleteConnectorCommand,
                 SaveConnectorCommand,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
@@ -81,12 +94,7 @@ describe('ConnectorHeaderComponent', () => {
     });
 
     it('should save event on save button click', () => {
-        const commandService = TestBed.inject(ConnectorCommandsService);
-        const emitSpy = spyOn(commandService, 'dispatchEvent');
-        const button = fixture.debugElement.query(By.css('[data-automation-id="connector-editor-save-button"]'));
-        button.triggerEventHandler('click', null);
-        fixture.detectChanges();
-        expect(emitSpy).toHaveBeenCalledWith(BasicModelCommands.save);
+        verifyButtonClickFor('connector-editor-save-button', 'save');
     });
 
     it('should disable save button when "disableSave" input is true', () => {
@@ -99,22 +107,11 @@ describe('ConnectorHeaderComponent', () => {
     });
 
     it('should delete an connector on button click', () => {
-        spyOn(store, 'dispatch');
-
         const dropdown = fixture.debugElement.query(By.css('[data-automation-id="connector-editor-menu-button"]'));
         dropdown.triggerEventHandler('click', null);
+        fixture.detectChanges();
 
-        const deleteButton = fixture.debugElement.query(By.css('[data-automation-id="connector-editor-delete-button"]'));
-        deleteButton.triggerEventHandler('click', null);
-
-        const payload = new OpenConfirmDialogAction({
-            dialogData: {
-                title: 'APP.DIALOGS.CONFIRM.DELETE.CONNECTOR'
-            },
-            action: new DeleteConnectorAttemptAction(component.modelId)
-        });
-
-        expect(store.dispatch).toHaveBeenCalledWith(payload);
+        verifyButtonClickFor('connector-editor-delete-button', 'delete');
     });
 
     it('clicking on download button should emit', () => {
