@@ -66,7 +66,6 @@
                 "SAVE_AS": {
                   "PROCESS": "Are you sure you want to copy this process?",
                   "DATA": "Are you sure you want to copy this data object?",
-                  "CONNECTOR": "Are you sure you want to copy this connector?",
                   "FILE": "Are you sure you want to copy this file?",
                   "SCRIPT": "Are you sure you want to copy this script?"
               },

@@ -27,11 +27,7 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { selectConnectorCrumb } from '../../store/connector-editor.selectors';
-import {
-    ValidateConnectorAttemptAction,
-    OpenSaveAsConnectorAction,
-    SaveAsConnectorAttemptAction
-} from '../../store/connector-editor.actions';
+import { ValidateConnectorAttemptAction } from '../../store/connector-editor.actions';
 import { ConnectorCommandsService } from '../../services/commands/connector-commands.service';
 
 @Component({
@@ -84,19 +80,7 @@ export class ConnectorHeaderComponent {
     }
 
     onSaveAs() {
-        const contentObj = JSON.parse(this.content);
-        this.store.dispatch(new ValidateConnectorAttemptAction({
-            title: 'APP.DIALOGS.CONFIRM.SAVE_AS.CONNECTOR',
-            modelId: this.modelId,
-            modelContent: contentObj,
-            action: new OpenSaveAsConnectorAction({
-                id: contentObj.id,
-                name: contentObj.name,
-                description: contentObj.description,
-                sourceContent: contentObj,
-                action: SaveAsConnectorAttemptAction
-            })
-        }));
+        this.modelCommands.dispatchEvent(BasicModelCommands.saveAs);
     }
 
 }

@@ -31,6 +31,7 @@ import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { ConnectorCommandsService } from '../../services/commands/connector-commands.service';
 import { SaveConnectorCommand } from '../../services/commands/save-connector.command';
 import { DeleteConnectorCommand } from '../../services/commands/delete-connector.command';
+import { SaveAsConnectorCommand } from '../../services/commands/save-as-connector.command';
 import { DownloadConnectorCommand } from '../../services/commands/download-connector.command';
 
 describe('ConnectorHeaderComponent', () => {
@@ -68,6 +69,7 @@ describe('ConnectorHeaderComponent', () => {
                 DeleteConnectorCommand,
                 DownloadConnectorCommand,
                 SaveConnectorCommand,
+                SaveAsConnectorCommand,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: Store,

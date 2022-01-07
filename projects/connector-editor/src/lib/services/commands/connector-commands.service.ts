@@ -18,6 +18,7 @@
 import { ModelCommandsService, BasicModelCommands } from '@alfresco-dbp/modeling-shared/sdk';
 import { Injectable } from '@angular/core';
 import { DeleteConnectorCommand } from './delete-connector.command';
+import { SaveAsConnectorCommand } from './save-as-connector.command';
 import { DownloadConnectorCommand } from './download-connector.command';
 import { SaveConnectorCommand } from './save-connector.command';
 
@@ -26,6 +27,7 @@ export class ConnectorCommandsService extends ModelCommandsService {
     constructor(
         saveCommand: SaveConnectorCommand,
         deleteCommand: DeleteConnectorCommand,
+        saveAsCommand: SaveAsConnectorCommand,
         downloadCommand: DownloadConnectorCommand
         ) {
         super();
@@ -33,6 +35,7 @@ export class ConnectorCommandsService extends ModelCommandsService {
         [
             { eventName: BasicModelCommands.save, command: saveCommand },
             { eventName: BasicModelCommands.delete, command: deleteCommand },
+            { eventName: BasicModelCommands.saveAs, command: saveAsCommand },
             { eventName: BasicModelCommands.download, command: downloadCommand }
         ].forEach(eventMethod => this.addEventListener(eventMethod.eventName, eventMethod.command));
     }
