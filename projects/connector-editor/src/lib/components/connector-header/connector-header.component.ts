@@ -29,7 +29,6 @@ import { Store } from '@ngrx/store';
 import { selectConnectorCrumb } from '../../store/connector-editor.selectors';
 import {
     ValidateConnectorAttemptAction,
-    DownloadConnectorAction,
     OpenSaveAsConnectorAction,
     SaveAsConnectorAttemptAction
 } from '../../store/connector-editor.actions';
@@ -67,12 +66,7 @@ export class ConnectorHeaderComponent {
     }
 
     onDownload() {
-        this.store.dispatch(new ValidateConnectorAttemptAction({
-            title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.CONNECTOR',
-            modelId: this.modelId,
-            modelContent: JSON.parse(this.content),
-            action: new DownloadConnectorAction()
-        }));
+        this.modelCommands.dispatchEvent(BasicModelCommands.download);
     }
 
     onValidate() {

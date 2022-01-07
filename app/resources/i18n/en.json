@@ -73,8 +73,7 @@
                 "DOWNLOAD": {
                     "PROCESS": "Are you sure you want to download this process?",
                     "IMAGE": "Are you sure you want to download the svg image of this process?",
-                    "DATA": "Are you sure you want to download this data object?",
-                    "CONNECTOR": "Are you sure you want to download this connector?"
+                    "DATA": "Are you sure you want to download this data object?"
                 }
             }
         },

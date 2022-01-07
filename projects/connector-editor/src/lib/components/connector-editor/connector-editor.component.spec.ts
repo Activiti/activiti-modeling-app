@@ -35,6 +35,7 @@ import { UpdateConnectorContentAttemptAction } from '../../store/connector-edito
 import { SaveConnectorCommand } from '../../services/commands/save-connector.command';
 import { ActivatedRoute } from '@angular/router';
 import { DeleteConnectorCommand } from '../../services/commands/delete-connector.command';
+import { DownloadConnectorCommand } from '../../services/commands/download-connector.command';
 
 describe('ConnectorEditorComponent', () => {
     let fixture: ComponentFixture<ConnectorEditorComponent>;
@@ -74,6 +75,7 @@ describe('ConnectorEditorComponent', () => {
             ],
             providers: [
                 DeleteConnectorCommand,
+                DownloadConnectorCommand,
                 SaveConnectorCommand,
                 {
                     provide: ActivatedRoute,

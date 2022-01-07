@@ -20,23 +20,22 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
-import { AmaState, SharedModule, BasicModelCommands } from '@alfresco-dbp/modeling-shared/sdk';
+import { SharedModule, BasicModelCommands } from '@alfresco-dbp/modeling-shared/sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { CommonModule } from '@angular/common';
 import { of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ValidateConnectorAttemptAction, DownloadConnectorAction } from '../../store/connector-editor.actions';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { ConnectorCommandsService } from '../../services/commands/connector-commands.service';
 import { SaveConnectorCommand } from '../../services/commands/save-connector.command';
 import { DeleteConnectorCommand } from '../../services/commands/delete-connector.command';
+import { DownloadConnectorCommand } from '../../services/commands/download-connector.command';
 
 describe('ConnectorHeaderComponent', () => {
     let fixture: ComponentFixture<ConnectorHeaderComponent>;
     let component: ConnectorHeaderComponent;
-    let store: Store<AmaState>;
 
     function verifyButtonClickFor(buttonId: string, actionName: string) {
         const commandService = TestBed.inject(ConnectorCommandsService);
@@ -67,6 +66,7 @@ describe('ConnectorHeaderComponent', () => {
             providers: [
                 ConnectorCommandsService,
                 DeleteConnectorCommand,
+                DownloadConnectorCommand,
                 SaveConnectorCommand,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
@@ -89,7 +89,6 @@ describe('ConnectorHeaderComponent', () => {
             name: 'mock-name',
             description: 'mock-description'
         });
-        store = TestBed.inject(Store);
         fixture.detectChanges();
     });
 
@@ -115,19 +114,7 @@ describe('ConnectorHeaderComponent', () => {
     });
 
     it('clicking on download button should emit', () => {
-        spyOn(store, 'dispatch');
-
-        const button = fixture.debugElement.query(By.css('[data-automation-id="connector-editor-download-button"]'));
-        button.triggerEventHandler('click', null);
-        fixture.detectChanges();
-
-        const payload = {
-            title: 'APP.DIALOGS.CONFIRM.DOWNLOAD.CONNECTOR',
-            modelId: component.modelId,
-            modelContent: JSON.parse(component.content),
-            action: new DownloadConnectorAction()
-        };
-        expect(store.dispatch).toHaveBeenCalledWith(new ValidateConnectorAttemptAction(payload));
+        verifyButtonClickFor('connector-editor-download-button', 'download');
     });
 
     it('should render save as button inside menu', () => {
