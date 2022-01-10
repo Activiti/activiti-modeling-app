@@ -79,8 +79,10 @@ export function providePropertyHandler(type: BpmnProperty | BpmnCompositePropert
     };
 }
 
+type ParticipantType = (element: Bpmn.DiagramElement) => (BpmnProperty | BpmnCompositeProperty)[];
+
 export interface ProcessElements {
-    [bpmnElement: string]: (BpmnProperty | BpmnCompositeProperty)[];
+    [bpmnElement: string]: (BpmnProperty | BpmnCompositeProperty)[] | ParticipantType;
 }
 
 export const PROCESS_ELEMENTS_TOKEN = new InjectionToken('process-elements');
