@@ -53,6 +53,7 @@ import { SaveConnectorCommand } from './services/commands/save-connector.command
 import { DeleteConnectorCommand } from './services/commands/delete-connector.command';
 import { SaveAsConnectorCommand } from './services/commands/save-as-connector.command';
 import { DownloadConnectorCommand } from './services/commands/download-connector.command';
+import { ValidateConnectorCommand } from './services/commands/validate-connector.command';
 
 @NgModule({
     imports: [
@@ -83,6 +84,7 @@ import { DownloadConnectorCommand } from './services/commands/download-connector
         DownloadConnectorCommand,
         SaveConnectorCommand,
         SaveAsConnectorCommand,
+        ValidateConnectorCommand,
         provideTranslations('connector-editor'),
         ...getConnectorsFilterProvider(),
         ...getConnectorCreatorProvider(),

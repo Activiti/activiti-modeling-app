@@ -21,6 +21,7 @@ import { DeleteConnectorCommand } from './delete-connector.command';
 import { SaveAsConnectorCommand } from './save-as-connector.command';
 import { DownloadConnectorCommand } from './download-connector.command';
 import { SaveConnectorCommand } from './save-connector.command';
+import { ValidateConnectorCommand } from './validate-connector.command';
 
 @Injectable()
 export class ConnectorCommandsService extends ModelCommandsService {
@@ -28,7 +29,8 @@ export class ConnectorCommandsService extends ModelCommandsService {
         saveCommand: SaveConnectorCommand,
         deleteCommand: DeleteConnectorCommand,
         saveAsCommand: SaveAsConnectorCommand,
-        downloadCommand: DownloadConnectorCommand
+        downloadCommand: DownloadConnectorCommand,
+        validateCommand: ValidateConnectorCommand
         ) {
         super();
 
@@ -36,7 +38,8 @@ export class ConnectorCommandsService extends ModelCommandsService {
             { eventName: BasicModelCommands.save, command: saveCommand },
             { eventName: BasicModelCommands.delete, command: deleteCommand },
             { eventName: BasicModelCommands.saveAs, command: saveAsCommand },
-            { eventName: BasicModelCommands.download, command: downloadCommand }
+            { eventName: BasicModelCommands.download, command: downloadCommand },
+            { eventName: BasicModelCommands.validate, command: validateCommand }
         ].forEach(eventMethod => this.addEventListener(eventMethod.eventName, eventMethod.command));
     }
 }

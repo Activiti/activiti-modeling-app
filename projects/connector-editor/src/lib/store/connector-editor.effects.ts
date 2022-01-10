@@ -82,7 +82,9 @@ import {
     SAVE_AS_CONNECTOR_ATTEMPT,
     ValidateConnectorPayload,
     GetConnectorsSuccessAction,
-    GetConnectorSuccessAction} from './connector-editor.actions';
+    GetConnectorSuccessAction,
+    ValidateConnectorSuccessAction,
+    VALIDATE_CONNECTOR_SUCCESS} from './connector-editor.actions';
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
 import { TranslationService } from '@alfresco/adf-core';
 
@@ -103,6 +105,12 @@ export class ConnectorEditorEffects {
         ofType<ValidateConnectorAttemptAction>(VALIDATE_CONNECTOR_ATTEMPT),
         withLatestFrom(this.store.select(selectSelectedProjectId)),
         mergeMap(([action, projectId]) => this.validateConnector({...action.payload, projectId}))
+    );
+
+    @Effect()
+    validateConnectorSuccessEffect = this.actions$.pipe(
+        ofType<ValidateConnectorSuccessAction>(VALIDATE_CONNECTOR_SUCCESS),
+        mergeMap((action) => action.payload)
     );
 
     @Effect()

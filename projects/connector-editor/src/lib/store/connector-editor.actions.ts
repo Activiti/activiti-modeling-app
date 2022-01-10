@@ -58,6 +58,12 @@ export class ValidateConnectorAttemptAction implements Action {
     constructor(public payload: ValidateConnectorPayload) {}
 }
 
+export const VALIDATE_CONNECTOR_SUCCESS = '[Connector] Validate success';
+export class ValidateConnectorSuccessAction implements Action {
+    readonly type = VALIDATE_CONNECTOR_SUCCESS;
+    constructor(public payload: Action[]) {}
+}
+
 export const CHANGE_CONNECTOR_CONTENT = '[Connector] Content change';
 export class ChangeConnectorContent implements Action {
     readonly type = CHANGE_CONNECTOR_CONTENT;

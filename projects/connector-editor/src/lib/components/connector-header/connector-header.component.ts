@@ -20,14 +20,9 @@ import { Observable } from 'rxjs';
 import {
     BasicModelCommands,
     BreadcrumbItem,
-    AmaState,
-    SnackbarInfoAction,
-    SnackbarErrorAction,
     BreadCrumbHelperService
 } from '@alfresco-dbp/modeling-shared/sdk';
-import { Store } from '@ngrx/store';
 import { selectConnectorCrumb } from '../../store/connector-editor.selectors';
-import { ValidateConnectorAttemptAction } from '../../store/connector-editor.actions';
 import { ConnectorCommandsService } from '../../services/commands/connector-commands.service';
 
 @Component({
@@ -50,7 +45,6 @@ export class ConnectorHeaderComponent {
     breadcrumbs$: Observable<BreadcrumbItem[]>;
 
     constructor(
-        private store: Store<AmaState>,
         private modelCommands: ConnectorCommandsService,
         breadCrumbHelperService: BreadCrumbHelperService
         ) {
@@ -66,13 +60,7 @@ export class ConnectorHeaderComponent {
     }
 
     onValidate() {
-        this.store.dispatch(new ValidateConnectorAttemptAction({
-            title: null,
-            modelId: this.modelId,
-            modelContent: JSON.parse(this.content),
-            action: new SnackbarInfoAction('CONNECTOR_EDITOR.CONNECTOR_VALID'),
-            errorAction: new SnackbarErrorAction('CONNECTOR_EDITOR.CONNECTOR_INVALID')
-        }));
+        this.modelCommands.dispatchEvent(BasicModelCommands.validate);
     }
 
     onSave(): void {

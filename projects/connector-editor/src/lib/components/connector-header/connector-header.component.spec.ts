@@ -33,6 +33,7 @@ import { SaveConnectorCommand } from '../../services/commands/save-connector.com
 import { DeleteConnectorCommand } from '../../services/commands/delete-connector.command';
 import { SaveAsConnectorCommand } from '../../services/commands/save-as-connector.command';
 import { DownloadConnectorCommand } from '../../services/commands/download-connector.command';
+import { ValidateConnectorCommand } from '../../services/commands/validate-connector.command';
 
 describe('ConnectorHeaderComponent', () => {
     let fixture: ComponentFixture<ConnectorHeaderComponent>;
@@ -70,6 +71,7 @@ describe('ConnectorHeaderComponent', () => {
                 DownloadConnectorCommand,
                 SaveConnectorCommand,
                 SaveAsConnectorCommand,
+                ValidateConnectorCommand,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: Store,

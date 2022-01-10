@@ -37,6 +37,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DeleteConnectorCommand } from '../../services/commands/delete-connector.command';
 import { SaveAsConnectorCommand } from '../../services/commands/save-as-connector.command';
 import { DownloadConnectorCommand } from '../../services/commands/download-connector.command';
+import { ValidateConnectorCommand } from '../../services/commands/validate-connector.command';
 
 describe('ConnectorEditorComponent', () => {
     let fixture: ComponentFixture<ConnectorEditorComponent>;
@@ -79,6 +80,7 @@ describe('ConnectorEditorComponent', () => {
                 DownloadConnectorCommand,
                 SaveConnectorCommand,
                 SaveAsConnectorCommand,
+                ValidateConnectorCommand,
                 {
                     provide: ActivatedRoute,
                     useValue: { params: of({}), snapshot: {url: ''} }
