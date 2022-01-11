@@ -85,7 +85,7 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
         this.modelCommands.dispatchEvent(BasicModelCommands.save);
     }
 
-    onDownload(process: Process): void {
+    onDownload(): void {
         this.modelCommands.dispatchEvent(BasicModelCommands.download);
     }
 

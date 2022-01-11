@@ -41,7 +41,6 @@ class SpecificDownloadModelCommand extends GenericDownloadModelCommand {
         super(store, { deserialize: JSON.parse } as unknown as ModelContentSerializer, translationService);
     }
 
-    protected title = 'test-title';
     protected ValidateAction = TestValidateAction;
     protected DownloadAction = TestDownloadAction;
 }

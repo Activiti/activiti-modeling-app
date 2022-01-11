@@ -17,7 +17,7 @@
 
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Inject, Injectable } from '@angular/core';
-import { catchError, filter, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { catchError, filter, map, mergeMap, switchMap, take, tap, withLatestFrom } from 'rxjs/operators';
 import { forkJoin, Observable, of, zip } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -94,11 +94,11 @@ import {
     ModelExtensions,
     ShowProcessesAction,
     SHOW_PROCESSES,
-    selectProcessById,
+    selectSelectedProcess,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProcessEditorService } from '../services/process-editor.service';
-import { selectProcessesLoaded, selectSelectedElement, selectSelectedProcessId } from './process-editor.selectors';
+import { selectProcessesLoaded, selectSelectedElement, selectSelectedProcessDiagram } from './process-editor.selectors';
 import { Store } from '@ngrx/store';
 import { getProcessLogInitiator, PROCESS_SVG_IMAGE } from '../services/process-editor.constants';
 import { ProcessValidationResponse } from './process-editor.state';
@@ -236,9 +236,7 @@ export class ProcessEditorEffects {
     @Effect({ dispatch: false })
     downloadProcessEffect = this.actions$.pipe(
         ofType<DownloadProcessAction>(DOWNLOAD_PROCESS_DIAGRAM),
-        withLatestFrom(this.store.select(selectSelectedProcessId)),
-        mergeMap(([action, processId]) => this.store.select(selectProcessById(processId))),
-        map((process) => this.downloadProcessDiagram(process.id, process.name))
+        switchMap(() => this.downloadProcessDiagram())
     );
 
     @Effect({ dispatch: false })
@@ -342,12 +340,14 @@ export class ProcessEditorEffects {
             catchError(e => this.handleProcessUpdatingError(e)));
     }
 
-    private downloadProcessDiagram(processId: string, processName: string) {
-        const name = createModelName(processName);
-        return this.processModelerService
-            .export()
-            .then(data => this.processEditorService.downloadDiagram(name, data))
-            .catch(_ => this.handleError('APP.PROCESSES.ERRORS.DOWNLOAD_DIAGRAM'));
+    private downloadProcessDiagram() {
+        return zip(this.store.select(selectSelectedProcess), this.store.select(selectSelectedProcessDiagram)).pipe(
+            map(([metadata, content]) => {
+                const name = createModelName(metadata.name);
+                return this.processEditorService.downloadDiagram(name, content);
+            }),
+            take(1),
+            catchError(e => this.handleError('APP.PROCESSES.ERRORS.DOWNLOAD_DIAGRAM')));
     }
 
     private downloadProcessSVGImage(processName: string) {
