@@ -18,10 +18,12 @@
 import { Injectable } from '@angular/core';
 import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
-import { Process, ProcessContent, MinimalModelSummary } from '../../../api/types';
+import { Process, ProcessContent, MinimalModelSummary, PROCESS } from '../../../api/types';
 import { getEmptyDiagram } from '../../../helpers/utils/empty-diagram';
 import { PROCESS_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { ModelContentSerializer } from '../model-content-serializer';
+import { ModelDataExtractor } from '../model-data-extractor';
+import { extractProcessData } from './model-data-extractors/process-data-extractor';
 const shortid = require('shortid');
 
 @Injectable()
@@ -29,8 +31,12 @@ export class ProcessApiVariation<M extends Process, C extends ProcessContent> im
     readonly contentType = ContentType.Process;
     readonly retrieveModelAfterUpdate = false;
 
-    constructor(private serializer: ModelContentSerializer<ProcessContent>) {
+    constructor(
+        private serializer: ModelContentSerializer<ProcessContent>,
+        private dataExtractor: ModelDataExtractor<ProcessContent, Process>
+    ) {
         serializer.register({ type: this.contentType, serialize: x => x, deserialize: x => x });
+        this.dataExtractor.register({ type: PROCESS, get: extractProcessData });
     }
 
     public serialize(content: C): string {

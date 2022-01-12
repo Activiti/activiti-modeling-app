@@ -16,20 +16,26 @@
  */
 
 import { Injectable } from '@angular/core';
-import { ActivitiScriptContent, ActivitiScript, MinimalModelSummary } from '../../../api/types';
+import { ActivitiScriptContent, ActivitiScript, MinimalModelSummary, SCRIPT } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { SCRIPT_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { getEmptyScript } from '../../../helpers/utils/empty-script';
 import { ModelContentSerializer } from '../model-content-serializer';
+import { ModelDataExtractor } from '../model-data-extractor';
+import { extractDataFromMetadata } from './model-data-extractors/extract-data-from-metadata';
 
 @Injectable()
 export class ScriptApiVariation<M extends ActivitiScript, C extends ActivitiScriptContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Script;
     readonly retrieveModelAfterUpdate = true;
 
-    constructor(private serializer: ModelContentSerializer<ActivitiScriptContent>) {
+    constructor(
+        private serializer: ModelContentSerializer<ActivitiScriptContent>,
+        private dataExtractor: ModelDataExtractor<ActivitiScriptContent, ActivitiScript>
+    ) {
         serializer.register({ type: this.contentType, serialize: x => x, deserialize: x => x });
+        this.dataExtractor.register({ type: SCRIPT, get: extractDataFromMetadata });
     }
 
     public serialize(content: C): string {

@@ -16,19 +16,25 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Widget, WidgetContent } from '../../../api/types';
+import { FORM_WIDGET, Widget, WidgetContent } from '../../../api/types';
 import { FORM_WIDGET_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
 import { ModelContentSerializer } from '../model-content-serializer';
+import { ModelDataExtractor } from '../model-data-extractor';
+import { extractDataFromContent } from './model-data-extractors/extract-data-from-content';
 
 @Injectable()
 export class FormWidgetApiVariation<M extends Widget, C extends WidgetContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.CustomFormWidget;
     readonly retrieveModelAfterUpdate = false;
 
-    constructor(private serializer: ModelContentSerializer<WidgetContent>) {
+    constructor(
+        private serializer: ModelContentSerializer<WidgetContent>,
+        private dataExtractor: ModelDataExtractor<WidgetContent, Widget>
+    ) {
         serializer.register({ type: this.contentType, serialize: JSON.stringify, deserialize: JSON.parse });
+        this.dataExtractor.register({ type: FORM_WIDGET, get: extractDataFromContent });
     }
 
     public serialize(content: C): string {

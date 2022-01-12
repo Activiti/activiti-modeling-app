@@ -16,19 +16,25 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Trigger, TriggerContent, MinimalModelSummary } from '../../../api/types';
+import { Trigger, TriggerContent, MinimalModelSummary, TRIGGER } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { formatUuid, TRIGGER_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { ModelContentSerializer } from '../model-content-serializer';
+import { ModelDataExtractor } from '../model-data-extractor';
+import { extractDataFromContent } from './model-data-extractors/extract-data-from-content';
 
 @Injectable()
 export class TriggerApiVariation<M extends Trigger, C extends TriggerContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Trigger;
     readonly retrieveModelAfterUpdate = false;
 
-    constructor(private serializer: ModelContentSerializer<TriggerContent>) {
+    constructor(
+        private serializer: ModelContentSerializer<TriggerContent>,
+        private dataExtractor: ModelDataExtractor<TriggerContent, Trigger>
+    ) {
         serializer.register({ type: this.contentType, serialize: JSON.stringify, deserialize: JSON.parse });
+        this.dataExtractor.register({ type: TRIGGER, get: extractDataFromContent });
     }
 
     public serialize(content: C): string {

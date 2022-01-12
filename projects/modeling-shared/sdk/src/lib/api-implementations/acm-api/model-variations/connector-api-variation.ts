@@ -16,19 +16,25 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Connector, ConnectorContent, MinimalModelSummary } from '../../../api/types';
+import { CONNECTOR, Connector, ConnectorContent, MinimalModelSummary } from '../../../api/types';
 import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
 import { CONNECTOR_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { ModelContentSerializer } from '../model-content-serializer';
+import { ModelDataExtractor } from '../model-data-extractor';
+import { extractDataFromContent } from './model-data-extractors/extract-data-from-content';
 
 @Injectable()
 export class ConnectorApiVariation<M extends Connector, C extends ConnectorContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Connector;
     readonly retrieveModelAfterUpdate = false;
 
-    constructor(private serializer: ModelContentSerializer<ConnectorContent>) {
+    constructor(
+        private serializer: ModelContentSerializer<ConnectorContent>,
+        private dataExtractor: ModelDataExtractor<ConnectorContent, Connector>,
+    ) {
         serializer.register({ type: this.contentType, serialize: JSON.stringify, deserialize: JSON.parse });
+        this.dataExtractor.register({ type: CONNECTOR, get: extractDataFromContent });
     }
 
     public serialize(content: C): string {

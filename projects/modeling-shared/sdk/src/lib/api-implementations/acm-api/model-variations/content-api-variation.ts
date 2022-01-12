@@ -16,21 +16,28 @@
  */
 
 import { Injectable } from '@angular/core';
-import { ContentModel, ContentModelXML, MinimalModelSummary } from '../../../api/types';
+import { ContentModel, ContentModelXML, CUSTOM_MODEL, MinimalModelSummary } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { CONTENT_MODEL_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { getEmptyContentModel } from '../../../helpers/utils/empty-content-model';
 import { AuthenticationService } from '@alfresco/adf-core';
 import { ModelContentSerializer } from '../model-content-serializer';
+import { ModelDataExtractor } from '../model-data-extractor';
+import { extractProjectModelData } from './model-data-extractors/project-model-data-extractor';
 
 @Injectable()
 export class ModelContentApiVariation<M extends ContentModel, C extends ContentModelXML> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Model;
     readonly retrieveModelAfterUpdate = false;
 
-    constructor(private authenticationService: AuthenticationService, private serializer: ModelContentSerializer<ContentModelXML>) {
+    constructor(
+        private authenticationService: AuthenticationService,
+        private serializer: ModelContentSerializer<ContentModelXML>,
+        private dataExtractor: ModelDataExtractor<ContentModelXML, ContentModel>
+    ) {
         serializer.register({ type: this.contentType, serialize: x => x, deserialize: x => x });
+        this.dataExtractor.register({ type: CUSTOM_MODEL, get: extractProjectModelData });
     }
 
     public serialize(content: C): string {

@@ -19,17 +19,23 @@ import { Injectable } from '@angular/core';
 import { ContentType } from '../content-types';
 import { formatUuid, FORM_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { ModelApiVariation } from '../model-api';
-import { Form, FormContent, MinimalModelSummary } from '../../../api/types';
+import { FORM, Form, FormContent, MinimalModelSummary } from '../../../api/types';
 import { createEmptyForm } from '../form-definition';
 import { ModelContentSerializer } from '../model-content-serializer';
+import { ModelDataExtractor } from '../model-data-extractor';
+import { extractFormData } from './model-data-extractors/form-data-extractor';
 
 @Injectable()
 export class FormApiVariation<M extends Form, C extends FormContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Form;
     readonly retrieveModelAfterUpdate = true;
 
-    constructor(private serializer: ModelContentSerializer<FormContent>) {
+    constructor(
+        private serializer: ModelContentSerializer<FormContent>,
+        private dataExtractor: ModelDataExtractor<FormContent, Form>
+    ) {
         serializer.register({ type: this.contentType, serialize: JSON.stringify, deserialize: JSON.parse });
+        this.dataExtractor.register({ type: FORM, get: extractFormData });
     }
 
     public serialize(content: C): string {

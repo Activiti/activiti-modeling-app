@@ -16,19 +16,25 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Ui, UiContent, MinimalModelSummary } from '../../../api/types';
+import { Ui, UiContent, MinimalModelSummary, UI } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { formatUuid, UI_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { ModelContentSerializer } from '../model-content-serializer';
+import { ModelDataExtractor } from '../model-data-extractor';
+import { extractDataFromContent } from './model-data-extractors/extract-data-from-content';
 
 @Injectable()
 export class UiApiVariation<M extends Ui, C extends UiContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Ui;
     readonly retrieveModelAfterUpdate = false;
 
-    constructor(private serializer: ModelContentSerializer<UiContent>) {
+    constructor(
+        private serializer: ModelContentSerializer<UiContent>,
+        private dataExtractor: ModelDataExtractor<UiContent, Ui>
+    ) {
         serializer.register({ type: this.contentType, serialize: JSON.stringify, deserialize: JSON.parse });
+        this.dataExtractor.register({ type: UI, get: extractDataFromContent });
     }
 
     public serialize(content: C): string {

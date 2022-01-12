@@ -16,20 +16,26 @@
  */
 
 import { Injectable } from '@angular/core';
-import { DecisionTableContent, DecisionTable, MinimalModelSummary } from '../../../api/types';
+import { DecisionTableContent, DecisionTable, MinimalModelSummary, DECISION_TABLE } from '../../../api/types';
 import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
 import { DECISION_TABLE_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { getEmptyDecisionTable } from '../../../helpers/utils/empty-decision-table';
 import { ModelContentSerializer } from '../model-content-serializer';
+import { ModelDataExtractor } from '../model-data-extractor';
+import { extractDataFromMetadata } from './model-data-extractors/extract-data-from-metadata';
 
 @Injectable()
 export class DecisionTableApiVariation<M extends DecisionTable, C extends DecisionTableContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.DecisionTable;
     readonly retrieveModelAfterUpdate = false;
 
-    constructor(private serializer: ModelContentSerializer<DecisionTableContent>) {
+    constructor(
+        private serializer: ModelContentSerializer<DecisionTableContent>,
+        private dataExtractor: ModelDataExtractor<DecisionTableContent, DecisionTable>
+    ) {
         serializer.register({ type: this.contentType, serialize: x => x, deserialize: x => x });
+        this.dataExtractor.register({ type: DECISION_TABLE, get: extractDataFromMetadata });
     }
 
     public serialize(content: C): string {

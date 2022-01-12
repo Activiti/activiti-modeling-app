@@ -16,19 +16,25 @@
  */
 
 import { Injectable } from '@angular/core';
-import { ActivitiFileContent, ActivitiFile, MinimalModelSummary, FileVisibility } from '../../../api/types';
+import { ActivitiFileContent, ActivitiFile, MinimalModelSummary, FileVisibility, FILE } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { FILE_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
 import { ModelContentSerializer } from '../model-content-serializer';
+import { ModelDataExtractor } from '../model-data-extractor';
+import { extractDataFromMetadata } from './model-data-extractors/extract-data-from-metadata';
 
 @Injectable()
 export class FileApiVariation<M extends ActivitiFile, C extends ActivitiFileContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.File;
     readonly retrieveModelAfterUpdate = true;
 
-    constructor(private serializer: ModelContentSerializer<ActivitiFileContent>) {
+    constructor(
+        private serializer: ModelContentSerializer<ActivitiFileContent>,
+        private dataExtractor: ModelDataExtractor<ActivitiFileContent, ActivitiFile>
+    ) {
         serializer.register({ type: this.contentType, serialize: x => x.toString(), deserialize: x => new File([x], '') });
+        this.dataExtractor.register({ type: FILE, get: extractDataFromMetadata });
     }
 
     public serialize(content: C): string {
