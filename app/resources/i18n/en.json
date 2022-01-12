@@ -64,7 +64,6 @@
                     "EMAIL_TEMPLATE": "Are you sure you want to overwrite the email template?"
                 },
                 "SAVE_AS": {
-                  "PROCESS": "Are you sure you want to copy this process?",
                   "DATA": "Are you sure you want to copy this data object?",
                   "FILE": "Are you sure you want to copy this file?",
                   "SCRIPT": "Are you sure you want to copy this script?"

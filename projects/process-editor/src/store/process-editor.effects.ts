@@ -462,9 +462,9 @@ export class ProcessEditorEffects {
         projectId: string): Observable<{} | SnackbarInfoAction | CreateProcessSuccessAction> {
         return this.processEditorService.create({ name: processPayload.name, description: processPayload.description }, projectId).pipe(
             tap((process: Process) => this.updateProcessExtensionsOnSaveAs(processPayload, process)),
-            tap((process: Process) => processPayload.sourceContent = this.updateContentOnSaveAs(processPayload.sourceContent,
+            tap((process: Process) => processPayload.sourceModelContent = this.updateContentOnSaveAs(processPayload.sourceModelContent,
                  this.getProcessKey(process.extensions), processPayload.name, processPayload.description)),
-            mergeMap((process: Process) => this.processEditorService.update(process.id, process, processPayload.sourceContent, projectId)),
+            mergeMap((process: Process) => this.processEditorService.update(process.id, process, processPayload.sourceModelContent, projectId)),
             switchMap((process: Process) => [
                 new CreateProcessSuccessAction(process, navigateTo),
                 new SnackbarInfoAction('PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_CREATED')
@@ -477,12 +477,12 @@ export class ProcessEditorEffects {
     }
 
     private updateProcessExtensionsOnSaveAs(processPayload: Partial<SaveAsDialogPayload>, process: Process) {
-        processPayload.sourceExtensions = {
+        processPayload.sourceModelMetadata = {
             [this.getProcessKey(process.extensions)]: {
-                ...processPayload.sourceExtensions[this.getProcessKey(processPayload.sourceExtensions)]
+                ...processPayload.sourceModelMetadata.extensions[this.getProcessKey(processPayload.sourceModelMetadata.extensions)]
             }
         };
-        process.extensions = processPayload.sourceExtensions;
+        process.extensions = processPayload.sourceModelMetadata;
     }
 
     private updateContentOnSaveAs(sourceContent: string, processKeyId: string, name: string, documentation: string): string {

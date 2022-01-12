@@ -123,6 +123,7 @@ import { DeleteProcessCommand } from './services/commands/delete-process.command
 import { ValidateProcessCommand } from './services/commands/validate-process.command';
 import { DownloadProcessCommand } from './services/commands/download-process.command';
 import { ParticipantElementVariablesProviderService } from './services/participant-element-variables-provider.service';
+import { SaveAsProcessCommand } from './services/commands/save-as-process.command';
 
 @NgModule({
     imports: [
@@ -201,6 +202,7 @@ import { ParticipantElementVariablesProviderService } from './services/participa
         SaveProcessCommand,
         ValidateProcessCommand,
         DownloadProcessCommand,
+        SaveAsProcessCommand,
         ProcessEditorService,
         ProcessDiagramLoaderService,
         { provide: BpmnFactoryToken, useClass: BpmnFactoryService },

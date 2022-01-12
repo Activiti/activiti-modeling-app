@@ -49,6 +49,7 @@ export * from './lib/components/variable-selectors/public-api';
 export * from './lib/api-implementations/acm-api/acm-api.module';
 export * from './lib/api-implementations/acm-api/request-api.helper';
 export * from './lib/api-implementations/acm-api/model-content-serializer';
+export * from './lib/api-implementations/acm-api/model-data-extractor';
 
 export * from './lib/services/process-editor-element-variables-provider.service';
 export * from './lib/services/process-editor-element-variables.service';

@@ -537,7 +537,7 @@ describe('ConnectorEditorEffects', () => {
             id: 'connector-old-id',
             name: 'test-name',
             description: 'test-description',
-            sourceContent: {
+            sourceModelContent: {
                 'name': 'old-name',
                 'description': ''
             }
@@ -569,7 +569,7 @@ describe('ConnectorEditorEffects', () => {
             getTestScheduler().flush();
 
             expect(createConnector).toHaveBeenCalledWith(mockOpenSaveAsDialog, connector.projectIds[0]);
-            expect(updateConnector).toHaveBeenCalledWith(connector.id, connector, mockOpenSaveAsDialog.sourceContent, connector.projectIds[0]);
+            expect(updateConnector).toHaveBeenCalledWith(connector.id, connector, mockOpenSaveAsDialog.sourceModelContent, connector.projectIds[0]);
         });
 
         it('should trigger the right action on unsuccessful save as', () => {

@@ -32,6 +32,7 @@ import { SaveProcessCommand } from '../../services/commands/save-process.command
 import { DeleteProcessCommand } from '../../services/commands/delete-process.command';
 import { ValidateProcessCommand } from '../../services/commands/validate-process.command';
 import { DownloadProcessCommand } from '../../services/commands/download-process.command';
+import { SaveAsProcessCommand } from '../../services/commands/save-as-process.command';
 
 describe('ProcessEditorComponent', () => {
     let fixture: ComponentFixture<ProcessEditorComponent>;
@@ -64,6 +65,7 @@ describe('ProcessEditorComponent', () => {
                 DeleteProcessCommand,
                 ValidateProcessCommand,
                 DownloadProcessCommand,
+                SaveAsProcessCommand,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: Store,

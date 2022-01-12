@@ -43,8 +43,8 @@ describe('SaveAsDialogComponent', () => {
         id: 'process-id',
         name: 'process-name',
         description: 'process-documentation',
-        sourceContent: '',
-        sourceExtensions: '',
+        sourceModelContent: '',
+        sourceModelMetadata: '',
         action: SaveAsMockAttemptAction
     };
 

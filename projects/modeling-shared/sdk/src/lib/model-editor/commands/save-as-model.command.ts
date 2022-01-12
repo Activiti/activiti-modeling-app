@@ -22,12 +22,14 @@ import { MODEL_TYPE } from '../../api/types';
 import { AmaState } from '../../store/app.state';
 import { ModelCommand, ValidateActionLike, OpenSaveAsActionLike, SaveAsModelActionLike } from './commands.interface';
 import { SaveAsDialogPayload } from '../../components/save-as-dialog/save-as-dialog.component';
+import { ModelDataExtractor } from '../../api-implementations/acm-api/model-data-extractor';
 
 export abstract class GenericSaveAsModelCommand implements ModelCommand {
 
     constructor(
         protected store: Store<AmaState>,
         protected serializer: ModelContentSerializer,
+        protected dataExtractor: ModelDataExtractor,
         protected translationService: any
     ) {}
 
@@ -41,12 +43,14 @@ export abstract class GenericSaveAsModelCommand implements ModelCommand {
         const SaveAsModelAction = this.SaveAsModelAction;
 
         const modelContent = this.serializer.deserialize(serializedModelContent, modelContentType);
+        const name = this.dataExtractor.get('name', modelContent, modelMetadata, modelType);
+        const description = this.dataExtractor.get('description', modelContent, modelMetadata, modelType);
 
         const saveAsDialogPayload: SaveAsDialogPayload = {
-            sourceContent: modelContent,
-            name: modelContent.name,
-            description: modelContent.description ?? '',
-            sourceExtensions: modelContent.sourceExtensions,
+            sourceModelContent: modelContent,
+            name,
+            description,
+            sourceModelMetadata: modelMetadata,
             action: SaveAsModelAction
         };
 

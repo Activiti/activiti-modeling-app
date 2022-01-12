@@ -15,24 +15,24 @@
  * limitations under the License.
  */
 
-import { AmaState, Connector, ConnectorContent, GenericSaveAsModelCommand, ModelContentSerializer, ModelDataExtractor } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaState, GenericSaveAsModelCommand, ModelContentSerializer, ModelDataExtractor, Process, ProcessContent } from '@alfresco-dbp/modeling-shared/sdk';
 import { TranslationService } from '@alfresco/adf-core';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { OpenSaveAsConnectorAction, SaveAsConnectorAttemptAction, ValidateConnectorAttemptAction } from '../../store/connector-editor.actions';
+import { OpenSaveAsProcessAction, SaveAsProcessAttemptAction, ValidateProcessAttemptAction } from '../../store/process-editor.actions';
 
 @Injectable()
-export class SaveAsConnectorCommand extends GenericSaveAsModelCommand {
+export class SaveAsProcessCommand extends GenericSaveAsModelCommand {
     constructor(
         protected store: Store<AmaState>,
         protected serializer: ModelContentSerializer<string>,
-        protected dataExtractor: ModelDataExtractor<ConnectorContent, Connector>,
-        protected translationService: TranslationService
+        protected dataExtractor: ModelDataExtractor<ProcessContent, Process>,
+        protected translationService: TranslationService,
     ) {
         super(store, serializer, dataExtractor, translationService);
     }
 
-    protected ValidateAction = ValidateConnectorAttemptAction;
-    protected OpenSaveAsAction = OpenSaveAsConnectorAction;
-    protected SaveAsModelAction = SaveAsConnectorAttemptAction;
+    protected ValidateAction = ValidateProcessAttemptAction;
+    protected OpenSaveAsAction = OpenSaveAsProcessAction;
+    protected SaveAsModelAction = SaveAsProcessAttemptAction;
 }

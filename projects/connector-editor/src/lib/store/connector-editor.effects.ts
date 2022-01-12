@@ -380,7 +380,7 @@ export class ConnectorEditorEffects {
         projectId: string): Observable<{} | SnackbarInfoAction | CreateConnectorSuccessAction> {
         return this.connectorEditorService.create(connectorData, projectId).pipe(
             tap(() => this.updateContentOnSaveAs(connectorData)),
-            mergeMap((connector) => this.connectorEditorService.update(connector.id, connector, connectorData.sourceContent, projectId)),
+            mergeMap((connector) => this.connectorEditorService.update(connector.id, connector, connectorData.sourceModelContent, projectId)),
             mergeMap((connector) => [
                 new CreateConnectorSuccessAction(connector, navigateTo),
                 new SnackbarInfoAction('PROJECT_EDITOR.CONNECTOR_DIALOG.CONNECTOR_CREATED')
@@ -389,8 +389,8 @@ export class ConnectorEditorEffects {
     }
 
     private updateContentOnSaveAs(data: Partial<SaveAsDialogPayload>): void {
-        data.sourceContent.name = data.name;
-        data.sourceContent.description = data.description;
+        data.sourceModelContent.name = data.name;
+        data.sourceModelContent.description = data.description;
     }
 
 }

@@ -480,7 +480,7 @@ describe('ProcessEditorEffects', () => {
             const expectSaveAsPayload = {name: 'test-name', description: 'test-description'};
 
             expect(processEditorService.create).toHaveBeenCalledWith(expectSaveAsPayload, 'test1');
-            expect(processEditorService.update).toHaveBeenCalledWith('id1', process, saveAsProcess.sourceContent, 'test1');
+            expect(processEditorService.update).toHaveBeenCalledWith('id1', process, saveAsProcess.sourceModelContent, 'test1');
         });
 
         it('should call the save as process with the proper parameters for process with pool', () => {
@@ -496,7 +496,7 @@ describe('ProcessEditorEffects', () => {
             const expectSaveAsPayload = {name: 'test-name', description: 'test-description'};
 
             expect(processEditorService.create).toHaveBeenCalledWith(expectSaveAsPayload, 'test1');
-            expect(processEditorService.update).toHaveBeenCalledWith('id1', process, saveAsProcess.sourceContent, 'test1');
+            expect(processEditorService.update).toHaveBeenCalledWith('id1', process, saveAsProcess.sourceModelContent, 'test1');
         });
 
         it('should trigger the right action on unsuccessful save as', () => {

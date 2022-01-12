@@ -21,6 +21,7 @@ import { DeleteProcessCommand } from './delete-process.command';
 import { DownloadProcessCommand } from './download-process.command';
 import { SaveProcessCommand } from './save-process.command';
 import { ValidateProcessCommand } from './validate-process.command';
+import { SaveAsProcessCommand } from './save-as-process.command';
 
 @Injectable()
 export class ProcessCommandsService extends ModelCommandsService {
@@ -29,6 +30,7 @@ export class ProcessCommandsService extends ModelCommandsService {
         deleteCommand: DeleteProcessCommand,
         validateCommand: ValidateProcessCommand,
         downloadCommand: DownloadProcessCommand,
+        saveAsCommand: SaveAsProcessCommand,
     ) {
         super();
 
@@ -37,6 +39,7 @@ export class ProcessCommandsService extends ModelCommandsService {
             { eventName: BasicModelCommands.delete, command: deleteCommand },
             { eventName: BasicModelCommands.validate, command: validateCommand },
             { eventName: BasicModelCommands.download, command: downloadCommand },
+            { eventName: BasicModelCommands.saveAs, command: saveAsCommand },
         ].forEach(eventMethod => this.addEventListener(eventMethod.eventName, eventMethod.command));
     }
 }

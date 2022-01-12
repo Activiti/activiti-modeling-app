@@ -20,7 +20,7 @@ import { ProcessHeaderComponent } from './process-header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule, AmaState, ProcessModelerServiceToken, BasicModelCommands } from '@alfresco-dbp/modeling-shared/sdk';
+import { SharedModule, AmaState, BasicModelCommands } from '@alfresco-dbp/modeling-shared/sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { By } from '@angular/platform-browser';
 import { mockProcessModel } from '../../store/process.mock';
@@ -35,6 +35,7 @@ import { SaveProcessCommand } from '../../services/commands/save-process.command
 import { DeleteProcessCommand } from '../../services/commands/delete-process.command';
 import { ValidateProcessCommand } from '../../services/commands/validate-process.command';
 import { DownloadProcessCommand } from '../../services/commands/download-process.command';
+import { SaveAsProcessCommand } from '../../services/commands/save-as-process.command';
 
 describe('ProcessHeaderComponent', () => {
     let fixture: ComponentFixture<ProcessHeaderComponent>;
@@ -69,6 +70,7 @@ describe('ProcessHeaderComponent', () => {
                 SaveProcessCommand,
                 ValidateProcessCommand,
                 DownloadProcessCommand,
+                SaveAsProcessCommand,
                 ProcessCommandsService,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
@@ -76,21 +78,6 @@ describe('ProcessHeaderComponent', () => {
                     useValue: {
                         select: jest.fn().mockReturnValue(of({})),
                         dispatch: jest.fn()
-                    }
-                },
-                {
-                    provide: ProcessModelerServiceToken,
-                    useValue: {
-                        getRootProcessElement: jest.fn().mockReturnValue({
-                            businessObject: {
-                                $parent: { name: mockProcessModel.name },
-                                name: mockProcessModel.name,
-                                get: (param) => {
-                                    const data = { documentation: mockProcessModel.description };
-                                    return data[param];
-                                }
-                            }
-                        })
                     }
                 },
                 {
@@ -162,14 +149,7 @@ describe('ProcessHeaderComponent', () => {
     });
 
     it('should dispatch save on save click', () => {
-        const commandService = TestBed.inject(ProcessCommandsService);
-        const emitSpy = spyOn(commandService, 'dispatchEvent');
-
-        const saveButton = fixture.debugElement.query(By.css('[data-automation-id="process-editor-save-button"]'));
-        saveButton.triggerEventHandler('click', {});
-        fixture.detectChanges();
-
-        expect(emitSpy).toHaveBeenCalledWith(BasicModelCommands.save);
+        verifyButtonClickFor('process-editor-save-button', 'save');
     });
 
     it('should render save as button inside menu', () => {
@@ -185,5 +165,13 @@ describe('ProcessHeaderComponent', () => {
 
     it('should test validate button', () => {
         verifyButtonClickFor('process-editor-validate-button', 'validate');
+    });
+
+    it('should emit save as event when clicked', () => {
+        const menuButton = fixture.debugElement.query(By.css('[data-automation-id="process-editor-menu-button"]'));
+        menuButton.triggerEventHandler('click', {});
+        fixture.detectChanges();
+
+        verifyButtonClickFor('process-editor-save-as-button', 'saveAs');
     });
 });

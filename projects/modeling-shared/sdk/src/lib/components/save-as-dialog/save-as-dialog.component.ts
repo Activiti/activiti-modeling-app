@@ -23,8 +23,8 @@ import { MODELER_NAME_REGEX } from '../../helpers/public-api';
 import { AmaState } from '../../store/app.state';
 
 export interface SaveAsDialogPayload extends EntityDialogForm {
-    sourceContent: any;
-    sourceExtensions?: any;
+    sourceModelContent: any;
+    sourceModelMetadata?: any;
     action?: any;
 }
 
@@ -66,8 +66,8 @@ export class SaveAsDialogComponent implements OnInit {
             {
                 name: this.name,
                 description: this.description,
-                sourceContent: this.data.sourceContent,
-                sourceExtensions: this.data.sourceExtensions ? this.data.sourceExtensions : null
+                sourceModelContent: this.data.sourceModelContent,
+                sourceModelMetadata: this.data.sourceModelMetadata ? this.data.sourceModelMetadata : null
             },
             true));
             this.dialog.close();

@@ -20,7 +20,7 @@ import { SaveAsDialogPayload } from '@alfresco-dbp/modeling-shared/sdk';
 export const mockOpenSaveAsDialog: SaveAsDialogPayload = {
     name: 'test-name',
     description: 'test-description',
-    sourceContent: 'content'
+    sourceModelContent: 'content'
 };
 
 // tslint:disable-next-line
@@ -81,8 +81,9 @@ export const mockXMLProcessPool = `<?xml version="1.0" encoding="UTF-8"?>
 export const mockProcessPoolSaveAsAttemptDialog: SaveAsDialogPayload = {
   name: 'test-name',
   description: 'test-description',
-  sourceContent: mockXMLProcessPool,
-  sourceExtensions: {
+  sourceModelContent: mockXMLProcessPool,
+  sourceModelMetadata: {
+    extensions: {
       'Process_ruTEr0CHz': {
           'constants': {},
           'mappings': {},
@@ -95,25 +96,28 @@ export const mockProcessPoolSaveAsAttemptDialog: SaveAsDialogPayload = {
               }
           }
       }
+    }
   }
 };
 
 export const mockProcessSaveAsAttemptDialog: SaveAsDialogPayload = {
     name: 'test-name',
     description: 'test-description',
-    sourceContent: mockXMLProcess,
-    sourceExtensions: {
+    sourceModelContent: mockXMLProcess,
+    sourceModelMetadata: {
+      extensions: {
         'Process_ruTEr0CHz': {
-            'constants': {},
-            'mappings': {},
-            'properties': {},
-            'assignments': {
-                'UserTask_191ib1o': {
-                    'type': 'static',
-                    'assignment': 'assignee',
-                    'id': 'UserTask_191ib1o'
-                }
-            }
+          'constants': {},
+          'mappings': {},
+          'properties': {},
+          'assignments': {
+              'UserTask_191ib1o': {
+                  'type': 'static',
+                  'assignment': 'assignee',
+                  'id': 'UserTask_191ib1o'
+              }
+          }
         }
+      }
     }
 };

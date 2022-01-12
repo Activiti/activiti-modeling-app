@@ -15,23 +15,20 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import {
     Process,
     AmaState,
     ProcessContent,
     BreadcrumbItem,
-    ProcessModelerService,
-    ProcessModelerServiceToken,
     BasicModelCommands,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { ValidateProcessAttemptAction, DownloadProcessSVGImageAction, OpenSaveAsProcessAction, SaveAsProcessAttemptAction } from '../../store/process-editor.actions';
+import { ValidateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
 import { takeUntil } from 'rxjs/operators';
 import { selectProcessModelContext } from '../../store/process-editor.selectors';
 import { ProcessModelContext } from '../../store/process-editor.state';
-import { documentationHandler } from '../../services/bpmn-js/property-handlers/documentation.handler';
 import { ProcessCommandsService } from '../../services/commands/process-commands.service';
 
 @Component({
@@ -61,9 +58,7 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
 
     constructor(
         private store: Store<AmaState>,
-        private modelCommands: ProcessCommandsService,
-        @Inject(ProcessModelerServiceToken)
-        private processModeler: ProcessModelerService
+        private modelCommands: ProcessCommandsService
     ) {}
 
     ngOnInit(): void {
@@ -103,25 +98,11 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
         }));
     }
 
-    onValidateProcess(process: Process): void {
+    onValidateProcess(): void {
         this.modelCommands.dispatchEvent(BasicModelCommands.validate);
     }
 
     onSaveAs() {
-        const element = this.processModeler.getRootProcessElement();
-        this.store.dispatch(new ValidateProcessAttemptAction({
-            title: 'APP.DIALOGS.CONFIRM.SAVE_AS.PROCESS',
-            modelId: this.modelId,
-            modelContent: this.content,
-            modelMetadata: this.modelMetadata,
-            action: new OpenSaveAsProcessAction({
-                id: this.modelId,
-                name: this.modelMetadata.name,
-                description: documentationHandler.get(element),
-                sourceContent: this.content,
-                sourceExtensions: this.modelMetadata.extensions,
-                action: SaveAsProcessAttemptAction
-            })
-        }));
+        this.modelCommands.dispatchEvent(BasicModelCommands.saveAs);
     }
 }

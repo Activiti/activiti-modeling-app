@@ -21,6 +21,7 @@ import { ModelContentSerializer } from '../../api-implementations/acm-api/model-
 import { PROCESS } from '../../api/types';
 import { GenericSaveAsModelCommand } from './save-as-model.command';
 import { SaveAsDialogPayload } from '../../components/save-as-dialog/save-as-dialog.component';
+import { ModelDataExtractor } from '../../api-implementations/acm-api/model-data-extractor';
 
 class TestValidateAction {
     type: 'validate';
@@ -45,10 +46,13 @@ class SaveAsModelAction {
 
 class SpecificSaveAsModelCommand extends GenericSaveAsModelCommand {
     constructor(store: Store<any>, translationService: any) {
-        super(store, { deserialize: JSON.parse } as unknown as ModelContentSerializer, translationService);
+        super(
+            store,
+            { deserialize: JSON.parse } as unknown as ModelContentSerializer,
+            { get: () => 'bar'  } as unknown as ModelDataExtractor,
+            translationService);
     }
 
-    protected title = 'test-title';
     protected ValidateAction = TestValidateAction;
     protected SaveAsModelAction = SaveAsModelAction;
     protected OpenSaveAsAction = OpenSaveAsAction;
@@ -63,17 +67,17 @@ describe('GenericSaveAsModelCommand', () => {
         const mockStore = { dispatch: jest.fn() } as unknown as Store;
         const command = new SpecificSaveAsModelCommand(mockStore, translationServiceMock);
         const modelId = 'test-id';
-        const modelContent = { name: 'bar', description: 'ban bar', sourceExtensions: null };
+        const modelContent = { name: 'bar', description: 'ban bar', sourceModelMetadata: null };
         const modelContentString = JSON.stringify(modelContent);
         const modelMetadata = { bar: 'baz' };
 
         command.execute(PROCESS, ContentType.Process, modelId, modelContentString, modelMetadata);
 
         const saveAsDialogPayload: SaveAsDialogPayload = {
-            sourceContent: modelContent,
-            name: modelContent.name,
-            description: modelContent.description,
-            sourceExtensions: modelContent.sourceExtensions,
+            sourceModelContent: modelContent,
+            name: 'bar',
+            description: 'bar',
+            sourceModelMetadata: modelMetadata,
             action: SaveAsModelAction
         };
 
