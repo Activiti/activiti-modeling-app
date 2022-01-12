@@ -33,7 +33,7 @@ export interface BreadcrumbItem {
 export class BreadCrumbHelperService {
     constructor(private store: Store<AmaState>) {}
 
-    getModelCrumbs(modelCrumbSelector$: MemoizedSelector<object, any>): Observable<BreadcrumbItem[]> {
+    getModelCrumbs(modelCrumbSelector$: MemoizedSelector<AmaState, any>): Observable<BreadcrumbItem[]> {
         return combineLatest([
             of({ url: '/home', name: 'Dashboard' }),
             this.store.select(selectProjectCrumb).pipe(filter(value => value !== null)),
