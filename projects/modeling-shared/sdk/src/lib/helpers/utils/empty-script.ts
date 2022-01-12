@@ -156,5 +156,17 @@ export const getEmptyScript = (model) => {
     *
     *           const queryTaskService = new QueryTaskService();
     *           queryTaskService.findById('idTask');
+    *
+    *   7 - Form APIs Example. The following APIs are currently supported: FormApi.
+    *
+    *   Examples for the different APIs:
+    *
+    *       7.1.- FormService (it includes FormApi):
+    *
+    *           const formId = variables.formId;
+    *           const formService = new FormService();
+    *           const form = formService.getFormDefinition(formId);
+    *
+    *
     */`;
 }
