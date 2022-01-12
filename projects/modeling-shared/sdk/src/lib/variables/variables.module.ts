@@ -115,7 +115,8 @@ import { RequiredPipe } from './json-schema/pipes/required-pipe/required.pipe';
         VariablePrimitiveTypePipe,
         JsonParsePipe,
         PropertyTypeSelectorSmartComponent,
-        JsonSchemaEditorComponent
+        JsonSchemaEditorComponent,
+        PropertiesViewerModeledObjectInputComponent
     ]
 })
 export class VariablesModule { }
