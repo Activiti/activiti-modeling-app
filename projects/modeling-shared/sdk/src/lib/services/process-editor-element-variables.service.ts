@@ -89,7 +89,7 @@ export class ProcessEditorElementVariablesService {
         return this.isMappingOutputsImplicitly(processId, element.id).pipe(
             switchMap(isMappingImplicit => {
                 const observables: Observable<ElementVariable[]>[] = [];
-                if (isMappingImplicit || element.type === BpmnElement.Process) {
+                if (isMappingImplicit || element.type === BpmnElement.Process || element.type === BpmnElement.Participant) {
                     const providerType = this.getTypeFromBpmnDiagramElementType(element);
                     if (providerType) {
                         const availableProviders = this.providers.filter(provider => provider.getHandledTypes().findIndex(type => type === providerType) >= 0) || [];
@@ -176,6 +176,8 @@ export class ProcessEditorElementVariablesService {
                 }
             case ProcessEditorElementWithVariables.Event:
                 return ProcessEditorElementWithVariables.Event;
+            case 'bpmn:Participant':
+                return ProcessEditorElementWithVariables.Participant;
             case 'bpmn:IntermediateCatchEvent':
             case 'bpmn:IntermediateThrowEvent':
             case 'bpmn:ErrorEventDefinition':
@@ -186,7 +188,6 @@ export class ProcessEditorElementVariablesService {
             case 'bpmn:EndEvent':
             case 'bpmn:BoundaryEvent':
             case 'bpmn:SequenceFlow':
-            case 'bpmn:Participant':
             case 'bpmn:ExclusiveGateway':
             case 'bpmn:FormalExpression':
             case 'bpmn:ParallelGateway':

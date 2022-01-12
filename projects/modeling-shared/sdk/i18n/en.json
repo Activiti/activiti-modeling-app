@@ -122,7 +122,8 @@
                 "NONE": "None",
                 "EVENT": "Event",
                 "EMAIL_SERVICE_TASK": "Email service task",
-                "DOCGEN_SERVICE": "Docgen service task"
+                "DOCGEN_SERVICE": "Docgen service task",
+                "PARTICIPANT": "Process"
             },
             "TOOLTIP": {
                 "VARIABLE": "Variable",

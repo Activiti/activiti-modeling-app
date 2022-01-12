@@ -122,6 +122,7 @@ import { CardProcessCategoryItemComponent } from './services/cardview-properties
 import { DeleteProcessCommand } from './services/commands/delete-process.command';
 import { ValidateProcessCommand } from './services/commands/validate-process.command';
 import { DownloadProcessCommand } from './services/commands/download-process.command';
+import { ParticipantElementVariablesProviderService } from './services/participant-element-variables-provider.service';
 
 @NgModule({
     imports: [
@@ -246,6 +247,7 @@ import { DownloadProcessCommand } from './services/commands/download-process.com
         ProcessConnectorService,
         provideProcessEditorElementVariablesProvider(ProcessElementVariablesProviderService),
         provideProcessEditorElementVariablesProvider(CalledElementVariablesProviderService),
+        provideProcessEditorElementVariablesProvider(ParticipantElementVariablesProviderService)
     ]
 })
 export class ProcessEditorModule { }

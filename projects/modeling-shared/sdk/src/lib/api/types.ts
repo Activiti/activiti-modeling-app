@@ -698,7 +698,8 @@ export enum ProcessEditorElementWithVariables {
     DocgenServiceTask = 'DOCGEN_SERVICE',
     ContentServiceTask = 'CONTENT_SERVICE',
     UserTask = 'USER_TASK',
-    Event = 'EVENT'
+    Event = 'EVENT',
+    Participant = 'PARTICIPANT'
 }
 
 export interface ProcessEditorElementVariable {
