@@ -48,6 +48,12 @@ import { PropertyTypeSelectorSmartComponent } from './properties-viewer/property
 import { PropertyTypeItemUiComponent } from './properties-viewer/property-type-item/property-type-item.ui-component';
 import { AutomationIdPipe } from './properties-viewer/property-type-item/automation-id.pipe';
 import { UseModeledObjectPipe } from './properties-viewer/value-type-inputs/json-input/use-modeled-object.pipe';
+import { JsonSchemaEditorDialogComponent } from './json-schema/components/json-schema-editor-dialog/json-schema-editor-dialog.component';
+import { JsonSchemaEditorComponent } from './json-schema/components/json-schema-editor/json-schema-editor.component';
+import { ReferenceSelectorComponent } from './json-schema/components/reference-selector/reference-selector.component';
+import { IsAnyTypePipe } from './json-schema/pipes/is-any-type-pipe/is-any-type.pipe';
+import { IsNotTypePipe } from './json-schema/pipes/is-not-type-pipe/is-not-type.pipe';
+import { RequiredPipe } from './json-schema/pipes/required-pipe/required.pipe';
 
 @NgModule({
     imports: [
@@ -81,7 +87,13 @@ import { UseModeledObjectPipe } from './properties-viewer/value-type-inputs/json
         PropertyTypeSelectorSmartComponent,
         PropertyTypeItemUiComponent,
         AutomationIdPipe,
-        UseModeledObjectPipe
+        UseModeledObjectPipe,
+        JsonSchemaEditorComponent,
+        JsonSchemaEditorDialogComponent,
+        ReferenceSelectorComponent,
+        RequiredPipe,
+        IsAnyTypePipe,
+        IsNotTypePipe
     ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
@@ -102,7 +114,8 @@ import { UseModeledObjectPipe } from './properties-viewer/value-type-inputs/json
         VariableExpressionLanguagePipe,
         VariablePrimitiveTypePipe,
         JsonParsePipe,
-        PropertyTypeSelectorSmartComponent
+        PropertyTypeSelectorSmartComponent,
+        JsonSchemaEditorComponent
     ]
 })
 export class VariablesModule { }

@@ -1,0 +1,12 @@
+<div>
+    <modelingsdk-property-type-selector-smart
+        *ngIf="hierarchy && hierarchy.length > 0; else loading"
+        [automationId]="'type-sel'"
+        [(ngModel)]="property"
+        [staticHierarchy]="hierarchy"
+        (change)="onPropertyChanges(property)">
+    </modelingsdk-property-type-selector-smart>
+    <ng-template #loading>
+        <mat-progress-bar color="primary" mode="indeterminate"> </mat-progress-bar>
+    </ng-template>
+</div>

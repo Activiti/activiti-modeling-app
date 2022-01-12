@@ -136,7 +136,7 @@ describe('PropertyTypeSelectorSmartComponent', () => {
         spyOn(component.change, 'emit');
         element.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Delete', bubbles: true }));
         fixture.detectChanges();
-        expect(component.change.emit).toHaveBeenCalledWith({...property, type: undefined, model: undefined});
+        expect(component.change.emit).toHaveBeenCalledWith({ ...property, type: undefined, model: undefined });
     });
 
     it('should clear the value when Backspace key is pushed', () => {
@@ -151,7 +151,7 @@ describe('PropertyTypeSelectorSmartComponent', () => {
         spyOn(component.change, 'emit');
         element.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Backspace', bubbles: true }));
         fixture.detectChanges();
-        expect(component.change.emit).toHaveBeenCalledWith({...property, type: undefined, model: undefined});
+        expect(component.change.emit).toHaveBeenCalledWith({ ...property, type: undefined, model: undefined });
     });
 
     it('should open menu when a non remove key is pushed', () => {
@@ -188,5 +188,44 @@ describe('PropertyTypeSelectorSmartComponent', () => {
         component.onSelectionChanges(expectedItems[0].children[2]);
         fixture.detectChanges();
         expect(component.displayedValue).toEqual('integer');
+    });
+
+    it('should use static hierarchy when provided', () => {
+        const staticHierarchy = [
+            {
+                displayName: 'custom 1',
+                iconName: 'assignment_returned',
+                isCustomIcon: false,
+                provider: 'custom-provider',
+                typeId: ['custom', '1'],
+                value: {
+                    $ref: '#/$defs/custom/1'
+                }
+            },
+            {
+                displayName: 'custom 2',
+                iconName: 'assignment_returned',
+                isCustomIcon: false,
+                provider: 'custom-provider',
+                typeId: ['custom', '2'],
+                value: {
+                    $ref: '#/$defs/custom/2'
+                }
+            }
+        ];
+
+        expect(component.hierarchy).not.toEqual(staticHierarchy);
+
+        component.staticHierarchy = staticHierarchy;
+        component.ngOnChanges({
+            staticHierarchy: {
+                currentValue: staticHierarchy,
+                firstChange: true,
+                isFirstChange: () => true,
+                previousValue: []
+            }
+        });
+
+        expect(component.hierarchy).toEqual(staticHierarchy);
     });
 });

@@ -42,6 +42,7 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
     @Input() disabled: boolean;
     @Input() automationId = 'ama-property-type-selector';
     @Input() onlyPrimitiveTypes = false;
+    @Input() staticHierarchy: PropertyTypeItem[];
 
     placeholder: string;
 
@@ -71,9 +72,6 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
             if (this.initialHierarchy) {
                 this.initHierarchy();
             }
-            if (this.property) {
-                this.hierarchy.some(child => this.initSelectedValue(child));
-            }
         });
     }
 
@@ -88,6 +86,10 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
         }
 
         if (changes['onlyPrimitiveTypes'] && changes['onlyPrimitiveTypes'].currentValue !== changes['onlyPrimitiveTypes'].previousValue && this.initialHierarchy) {
+            this.initHierarchy();
+        }
+
+        if (changes['staticHierarchy'] && changes['staticHierarchy'].currentValue !== changes['staticHierarchy'].previousValue) {
             this.initHierarchy();
         }
     }
@@ -123,12 +125,20 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
     }
 
     private initHierarchy() {
-        this.hierarchy = this.initialHierarchy.slice();
-        if (this.onlyPrimitiveTypes) {
-            const registeredInputsProviderItem = this.hierarchy.find(item => item.provider === RegisteredInputsModelingJsonSchemaProvider.PROVIDER_NAME);
-            if (registeredInputsProviderItem) {
-                registeredInputsProviderItem.children = registeredInputsProviderItem.children.filter(item => primitive_types.find(element => element === item.displayName));
+        if (this.staticHierarchy) {
+            this.hierarchy = this.staticHierarchy.slice();
+        } else {
+            this.hierarchy = this.initialHierarchy.slice();
+            if (this.onlyPrimitiveTypes) {
+                const registeredInputsProviderItem = this.hierarchy.find(item => item.provider === RegisteredInputsModelingJsonSchemaProvider.PROVIDER_NAME);
+                if (registeredInputsProviderItem) {
+                    registeredInputsProviderItem.children = registeredInputsProviderItem.children.filter(item => primitive_types.find(element => element === item.displayName));
+                }
             }
+        }
+
+        if (this.property) {
+            this.hierarchy.some(child => this.initSelectedValue(child));
         }
     }
 

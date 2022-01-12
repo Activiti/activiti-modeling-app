@@ -1,0 +1,138 @@
+.modelingsdk-json-schema-editor-component {
+    border-left: 1px solid var(--theme-primary-color);
+    margin-left: 20px;
+    position: relative;
+
+    &.modelingsdk-json-schema-editor-parent {
+        margin: 0;
+        border-left: 1px solid transparent;
+
+        .modelingsdk-json-schema-editor.modelingsdk-json-schema-editor-parent {
+            padding: 0;
+        }
+
+        .modelingsdk-json-schema-editor-definitions {
+            padding: 0;
+        }
+    }
+}
+
+.modelingsdk-json-schema-editor {
+    padding-left: 32px;
+    position: relative;
+
+    &-node {
+        display: flex;
+        line-height: 70px;
+
+        &-inputs {
+            width: calc(100% - 180px - 16px - 120px);
+            display: flex;
+            line-height: 70px;
+
+            .mat-form-field {
+                width: 100%;
+            }
+
+            &-id {
+                width: calc(40% - 20px);
+
+                &.ama-parent {
+                    width: calc(40% - 20px + 40px - 16px);
+                }
+
+                .mat-form-field.modelingsdk-json-schema-editor-element-name {
+                    width: 100%;
+
+                    &.modelingsdk-json-schema-editor-parent {
+                        width: calc(100% - 40px);
+                    }
+
+                    .ama-name-error {
+                        font-size: 80%;
+
+                        .mat-icon {
+                            font-size: 100%;
+                            cursor: help;
+                            position: relative;
+                            height: 16px;
+                            width: 16px;
+                            left: 2px;
+                        }
+                    }
+                }
+            }
+
+            &-required {
+                width: 40px;
+                text-align: center;
+            }
+
+            &-type {
+                width: calc(60% - 20px);
+                display: flex;
+
+                &.ama-parent {
+                    margin-left: 16px;
+                }
+
+                &-selector {
+                    position: relative;
+                    top: 3px;
+
+                    &.ama-ref {
+                        width: 20%;
+                    }
+                }
+
+                &-reference {
+                    margin-left: 12px;
+                    position: relative;
+                    width: 80%;
+
+                    .mat-form-field-infix {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        &-title {
+            width: 180px;
+            margin-left: 16px;
+        }
+
+        &-actions {
+            line-height: 70px;
+            min-width: 120px;
+            text-align: right;
+        }
+    }
+}
+
+.modelingsdk-json-schema-editor-component::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: calc(100% - 37px);
+    left: -1px;
+    width: 25px;
+    border-left: 1px solid var(--theme-primary-color);
+    border-bottom: 1px solid var(--theme-primary-color);
+    border-top: 0 none transparent;
+    border-right: 0 none transparent;
+}
+
+.modelingsdk-json-schema-editor-component.modelingsdk-json-schema-editor-last-child {
+    border-left: 1px solid transparent;
+}
+
+.modelingsdk-json-schema-editor-component.modelingsdk-json-schema-editor-parent::before {
+    border: 1px solid transparent;
+}
+
+.modelingsdk-json-schema-editor-spacer {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+}

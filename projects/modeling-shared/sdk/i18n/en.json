@@ -168,6 +168,53 @@
                 "INVALID_MULTIPLE_OF_VALUE": "Invalid value. It should be a multiple of",
                 "GENERIC_ERROR": "Invalid value"
             }
+        },
+        "JSON_SCHEMA_EDITOR": {
+            "EXPAND": "Expand",
+            "COLLAPSE": "Collapse",
+            "NAME": "Name",
+            "INVALID_NAME": "Invalid name",
+            "REQUIRED": "Required",
+            "REFERENCE": "Reference",
+            "TITLE": "Title",
+            "ADD_PROPERTY": "Add property",
+            "ADD_CHILD_ALL_OF": "Add child to allOf",
+            "ADD_CHILD_ANY_OF": "Add child to anyOf",
+            "ADVANCED_SETTINGS": "Advanced settings",
+            "REMOVE_NODE": "Remove node",
+            "ADD_DEFINITION": "Add definition",
+            "BASIC_ATTRIBUTES": "Basic attributes",
+            "CUSTOM_ATTRIBUTES": "Custom attributes",
+            "ADD_CUSTOM_ATTRIBUTE": "Add custom attribute",
+            "DELETE_CUSTOM_ATTRIBUTE": "Delete custom attribute",
+            "ATTRIBUTE_NAME": "Attribute name",
+            "ATTRIBUTE_VALUE": "Attribute value",
+            "CONFIRM_ATTRIBUTE_ADDITION": "Confirm attribute addition",
+            "CANCEL_ATTRIBUTE_ADDITION": "Cancel attribute addition",
+            "TYPES_GROUPS": {
+                "JSON_SCHEMA_TYPES": "JSON schema types",
+                "ENUMERATION": "Enumeration",
+                "MODELING_APP": "Modeling app",
+                "COMPOSITION": "Composition"
+            },
+            "ATTRIBUTES": {
+                "DESCRIPTION": "Description",
+                "MAX_ITEMS": "Max. items",
+                "MIN_ITEMS": "Min. items",
+                "UNIQUE_ITEMS": "Unique items",
+                "ENUMERATED_VALUES": "Enumerated values",
+                "MAXIMUM": "Maximum",
+                "MINIMUM": "Minimum",
+                "EXCLUSIVE_MAXIMUM": "Exclusive maximum",
+                "EXCLUSIVE_MINIMUM": "Exclusive minimum",
+                "MAX_PROPERTIES": "Max. properties",
+                "MIN_PROPERTIES": "Min. properties",
+                "MAX_LENGTH": "Max. length",
+                "MIN_LENGTH": "Min. length",
+                "PATTERN": "Pattern",
+                "FORMAT": "Format"
+            },
+            "PREVIEW": "Preview"
         }
     }
 }
