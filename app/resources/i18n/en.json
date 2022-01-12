@@ -65,8 +65,7 @@
                 },
                 "SAVE_AS": {
                   "DATA": "Are you sure you want to copy this data object?",
-                  "FILE": "Are you sure you want to copy this file?",
-                  "SCRIPT": "Are you sure you want to copy this script?"
+                  "FILE": "Are you sure you want to copy this file?"
               },
                 "DOWNLOAD": {
                     "IMAGE": "Are you sure you want to download the svg image of this process?",
