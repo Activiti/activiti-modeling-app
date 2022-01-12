@@ -96,7 +96,7 @@
             </mat-checkbox>
         </div>
 
-        <mat-tab-group *ngIf="allowExpressions" [selectedIndex]="tabIndex">
+        <mat-tab-group *ngIf="allowExpressions && form.type" [selectedIndex]="tabIndex">
             <mat-tab label="{{'SDK.MAPPING_DIALOG.VALUE_MAPPING'| translate}}">
                 <modelingsdk-value-type-input #valueTypeInput
                     (onChange)="updateVariableValue($event)"
@@ -125,7 +125,7 @@
         </mat-tab-group>
 
         <modelingsdk-value-type-input #valueTypeInput
-            *ngIf="!allowExpressions"
+            *ngIf="!allowExpressions && form.type"
             (onChange)="updateVariableValue($event)"
             [(ngModel)]="form.value"
             [index]="position"

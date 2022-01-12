@@ -47,7 +47,7 @@ export class RegisteredInputsModelingJsonSchemaProvider extends ModelingJsonSche
     }
 
     getProviderTranslatedName(): string {
-        return this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.BASIC_PROPERTIES_TYPES');
+        return this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.PRIMITIVE_PROPERTIES_TYPES');
     }
 
     protected retrieveModels(projectId: string): Observable<ModelsWithJsonSchemaMap<JSONSchemaInfoBasics>> {

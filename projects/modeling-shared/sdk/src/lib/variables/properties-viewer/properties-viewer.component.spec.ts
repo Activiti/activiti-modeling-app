@@ -279,7 +279,7 @@ describe('PropertiesViewerComponent', () => {
             'generated-uuid': {
                 'id': 'generated-uuid',
                 'name': '',
-                'type': 'string',
+                'type': null,
                 'value': '',
                 'required': false
             }
@@ -324,7 +324,7 @@ describe('PropertiesViewerComponent', () => {
         deleteButton.dispatchEvent(new Event('click'));
         fixture.detectChanges();
 
-        expect(addButton.getAttribute('disabled')).toBe('true');
+        expect(addButton.getAttribute('disabled')).toBeFalsy();
     });
 
     it('should call applyFilter on filterValue change', async () => {

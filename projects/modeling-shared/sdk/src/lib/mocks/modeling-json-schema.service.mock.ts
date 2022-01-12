@@ -17,7 +17,7 @@
 
 export const expectedItems = [
     {
-        displayName: 'SDK.VARIABLE_TYPE_INPUT.BASIC_PROPERTIES_TYPES',
+        displayName: 'SDK.VARIABLE_TYPE_INPUT.PRIMITIVE_PROPERTIES_TYPES',
         iconName: 'assignment_turned_in',
         isCustomIcon: false,
         provider: 'registered-inputs',
@@ -68,7 +68,7 @@ export const expectedItems = [
 
 export const expectedHierarchy = [
     {
-        displayName: 'SDK.VARIABLE_TYPE_INPUT.BASIC_PROPERTIES_TYPES',
+        displayName: 'SDK.VARIABLE_TYPE_INPUT.PRIMITIVE_PROPERTIES_TYPES',
         iconName: 'assignment_turned_in',
         isCustomIcon: false,
         provider: 'registered-inputs',
@@ -108,7 +108,7 @@ export const expectedHierarchy = [
 ];
 
 export const expectedRegisteredInputsItems = {
-    displayName: 'SDK.VARIABLE_TYPE_INPUT.BASIC_PROPERTIES_TYPES',
+    displayName: 'SDK.VARIABLE_TYPE_INPUT.PRIMITIVE_PROPERTIES_TYPES',
     iconName: 'assignment_turned_in',
     isCustomIcon: false,
     provider: 'registered-inputs',

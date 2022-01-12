@@ -165,7 +165,7 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
     onTypeChange() {
         delete this.form.value;
         this.expression = '';
-        this.valueTypeInput.resetInput();
+        this.valueTypeInput?.resetInput();
         this.updateTabIndex();
         this.saveChanges();
     }
@@ -233,7 +233,7 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         const newVariable = {
             'id': this.uuidService.generate(),
             'name': '',
-            'type': 'string',
+            'type': null,
             'value': ''
         };
 

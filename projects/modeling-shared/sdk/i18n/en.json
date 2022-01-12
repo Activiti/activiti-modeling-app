@@ -143,7 +143,7 @@
             }
         },
         "VARIABLE_TYPE_INPUT": {
-            "BASIC_PROPERTIES_TYPES": "Basics",
+            "PRIMITIVE_PROPERTIES_TYPES": "Primitives",
             "DATE": {
                 "CURRENT_DATE": "Today",
                 "CLEAR_BUTTON": "Clear"
