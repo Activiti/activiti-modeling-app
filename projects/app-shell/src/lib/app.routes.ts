@@ -19,7 +19,7 @@ import { Routes } from '@angular/router';
 import { AuthGuard, BlankPageComponent } from '@alfresco/adf-core';
 import { DASHBOARD_ROUTES, MODEL_EDITOR_ROUTES, SelectedProjectSetterGuard, ProjectLoaderGuard, AUTHENTICATED_ROUTES, RootNavigationComponent } from '@alfresco-dbp/modeling-shared/sdk';
 import { AppLoginComponent } from './app/app-login/app-login.component';
-import { AppLayoutComponent } from './app/app-layout/app-layout.component';
+import { AppLayoutComponent } from './layout';
 import { AmaLocalStorageMergeGuard } from './common/services/ama-localstorage-merge-guard.service';
 import { AmaModelSchemaLoaderGuard } from './common/services/ama-model-schema-loader-guard.service';
 import { AmaRoleGuard } from './common/services/ama-role-guard.service';

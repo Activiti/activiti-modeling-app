@@ -15,18 +15,11 @@
  * limitations under the License.
  */
 
-import { EditorFooterComponent } from './app/app-layout/editor-footer/editor-footer.component';
-import { AppLayoutComponent } from './app/app-layout/app-layout.component';
 import { SettingsDialogComponent } from './app/settings/settings-dialog.component';
-import { LogHistoryEntryComponent } from './app/app-layout/logging/components/log-history/log-history-entry/log-history-entry.component';
-import { HeaderMenuComponent } from './app/header/header-menu.component';
 import { ErrorContentComponent } from './app/error/error-content.component';
 import { HostSettingsComponent } from './app/host-settings/host-settings.component';
 import { CustomIconsModule } from './common/custom-icons.module';
 import { AppLoginComponent } from './app/app-login/app-login.component';
-import { LogHistoryComponent } from './app/app-layout/logging/components/log-history/log-history.component';
-import { EDITOR_FOOTER_SERVICE_TOKEN } from './app/app-layout/editor-footer/editor-footer.service.interface';
-import { AppFooterService } from './common/services/app-footer.service';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { MaterialModule } from './common/material.module';
 import { AdfModule } from './common/adf.module';
@@ -50,6 +43,7 @@ import { AppStoreModule } from './store/app-store.module';
 import { RouterStateSerializer } from '@ngrx/router-store';
 import { AmaRouterStateSerializer } from './common/helpers/router-state.serializer';
 import { CommonModule } from '@angular/common';
+import { AppLayoutModule } from './layout';
 
 @NgModule({
     imports: [
@@ -66,6 +60,7 @@ import { CommonModule } from '@angular/common';
         HttpClientModule,
         NavigationModule,
         AppStoreModule,
+        AppLayoutModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -76,17 +71,11 @@ import { CommonModule } from '@angular/common';
     ],
     declarations: [
         AppLoginComponent,
-        AppLayoutComponent,
         ErrorContentComponent,
-        HeaderMenuComponent,
         SettingsDialogComponent,
-        HostSettingsComponent,
-        LogHistoryComponent,
-        LogHistoryEntryComponent,
-        EditorFooterComponent,
+        HostSettingsComponent
     ],
     providers: [
-        { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: AppFooterService },
         AmaLocalStorageMergeGuard,
         AmaModelSchemaLoaderGuard,
         AmaRoleGuard,

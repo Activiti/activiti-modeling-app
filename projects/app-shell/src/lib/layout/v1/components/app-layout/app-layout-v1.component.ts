@@ -20,17 +20,17 @@ import { SidenavLayoutComponent, AppConfigService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { first, takeUntil } from 'rxjs/operators';
-import { SettingsDialogComponent } from '../settings/settings-dialog.component';
+import { SettingsDialogComponent } from '../../../../app/settings/settings-dialog.component';
 import { AmaState, OpenDialogAction, selectMenuOpened, SetMenuAction } from '@alfresco-dbp/modeling-shared/sdk';
-import { LogoutAction } from '../../store/actions/app.actions';
+import { LogoutAction } from '../../../../store/actions/app.actions';
 
 @Component({
-    templateUrl: './app-layout.component.html',
-    styleUrls: ['./app-layout.component.scss'],
+    templateUrl: './app-layout-v1.component.html',
+    styleUrls: ['./app-layout-v1.component.scss'],
     host: { class: 'adf-app-layout' },
     encapsulation: ViewEncapsulation.None
 })
-export class AppLayoutComponent implements AfterViewInit, OnDestroy {
+export class AppLayoutV1Component implements AfterViewInit, OnDestroy {
     @ViewChild('sidenavLayout', { static: true }) sidenavLayout: SidenavLayoutComponent;
 
     menuOpened$: Observable<boolean>;

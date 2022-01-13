@@ -16,35 +16,16 @@
  */
 
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 import { AboutComponent } from './about.component';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '@alfresco/adf-core';
 import { MatTableModule } from '@angular/material/table';
-import { AppLayoutComponent } from '../app-layout/app-layout.component';
 import { DEV_MODE_TOKEN } from './dev-mode.tokens';
-
-const routes: Routes = [
-    {
-        path: 'about',
-        component: AppLayoutComponent,
-        children: [
-            {
-                path: '',
-                component: AboutComponent,
-                data: {
-                  title: 'APP.TITLE.ABOUT'
-                }
-            }
-        ]
-    }
-];
 
 @NgModule({
   imports: [
     CommonModule,
     CoreModule.forChild(),
-    RouterModule.forChild(routes),
     MatTableModule
   ],
   declarations: [

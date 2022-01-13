@@ -26,11 +26,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { EDITOR_FOOTER_SERVICE_TOKEN } from './editor-footer.service.interface';
-import { AppFooterService } from '../../../common/services/app-footer.service';
-import { selectToolbarInProgress } from '../../../store/selectors/app.selectors';
+import { AppFooterService } from '../../services/app-footer.service';
+import { selectToolbarInProgress } from '../../../../store/selectors/app.selectors';
 import { By } from '@angular/platform-browser';
-import { LogHistoryComponent } from '../logging/components/log-history/log-history.component';
-import { LogHistoryEntryComponent } from '../logging/components/log-history/log-history-entry/log-history-entry.component';
+import { LogHistoryComponent } from '../log-history/log-history.component';
+import { LogHistoryEntryComponent } from '../log-history/log-history-entry/log-history-entry.component';
 import { of } from 'rxjs';
 
  describe('EditorFooterComponent', () => {

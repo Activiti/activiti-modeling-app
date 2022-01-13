@@ -20,9 +20,9 @@ import { Store } from '@ngrx/store';
 import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
 import { LogMessage, MESSAGE, SetLogHistoryVisibilityAction, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 import { map, tap } from 'rxjs/operators';
-import { ClearLogHistoryAction } from '../../store/actions/app.actions';
-import { selectToolbarUserMessage, selectToolbarInProgress, selectToolbarLogs, selectToolbarLogsVisibility } from '../../store/selectors/app.selectors';
-import { EditorFooterService } from '../../app/app-layout/editor-footer/editor-footer.service.interface';
+import { ClearLogHistoryAction } from '../../../store/actions/app.actions';
+import { selectToolbarUserMessage, selectToolbarInProgress, selectToolbarLogs, selectToolbarLogsVisibility } from '../../../store/selectors/app.selectors';
+import { EditorFooterService } from '../components/editor-footer/editor-footer.service.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AppFooterService implements EditorFooterService  {
