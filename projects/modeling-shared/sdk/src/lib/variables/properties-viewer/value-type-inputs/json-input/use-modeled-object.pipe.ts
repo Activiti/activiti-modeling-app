@@ -34,6 +34,15 @@ export class UseModeledObjectPipe implements PipeTransform {
             if (!!schema.properties) {
                 result = Object.keys(schema.properties).length > 0;
             }
+            if (!!schema.allOf) {
+                result = result || schema.allOf.length > 0;
+            }
+            if (!!schema.anyOf) {
+                result = result || schema.anyOf.length > 0;
+            }
+            if (!!schema.oneOf) {
+                result = result || schema.oneOf.length > 0;
+            }
         }
 
         return result;

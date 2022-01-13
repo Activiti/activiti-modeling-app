@@ -50,16 +50,19 @@ export class PropertiesViewerModeledObjectInputComponent implements OnChanges {
 
     constructor(private formBuilder: FormBuilder, private jsonService: JSONSchemaToEntityPropertyService) { }
 
-    ngOnChanges(): void {
+    ngOnChanges() {
         const modelChanged = !this.objectEquals(this.oldModel, this.model);
         const valueChanges = !!this.value && !this.objectEquals(this.oldValue, this.value);
 
-        this.oldModel = this.model;
-        this.oldValue = this.value;
+        this.oldModel = this.deepCopy(this.model);
+        this.oldValue = this.deepCopy(this.value);
 
         if (modelChanged || valueChanges) {
             this.primitiveType = this.jsonService.getPrimitiveType(this.model || { type: 'string' });
             this.inputs = this.jsonService.getEntityPropertiesFromJSONSchema(this.model).filter(input => !!input);
+            if (this.inputs.length === 1 && this.inputs[0].aggregatedTypes) {
+                this.primitiveType = this.inputs[0].aggregatedTypes;
+            }
         }
 
         if (modelChanged) {
@@ -130,5 +133,42 @@ export class PropertiesViewerModeledObjectInputComponent implements OnChanges {
             }
             this.valid.emit(this.objectForm.valid);
         });
+    }
+
+    private deepCopy(obj: any): any {
+        let copy;
+
+        if (null == obj || 'object' !== typeof obj) {
+            return obj;
+        }
+
+        if (obj instanceof Date) {
+            copy = new Date();
+            copy.setTime(obj.getTime());
+            return copy;
+        }
+
+        if (obj instanceof Array) {
+            copy = [];
+            for (let i = 0, len = obj.length; i < len; i++) {
+                copy[i] = this.deepCopy(obj[i]);
+            }
+            return copy;
+        }
+
+        if (obj instanceof Object) {
+            copy = {};
+            for (const attr in obj) {
+                if (obj.hasOwnProperty(attr)) {
+                    (<any>copy)[attr] = this.deepCopy(obj[attr]);
+                }
+            }
+            return copy;
+        }
+    }
+
+    reset() {
+        this.value = undefined;
+        this.init();
     }
 }

@@ -121,6 +121,13 @@ export class ExpressionsEditorService {
             } else if (arraySchemas.length > 1) {
                 schema = { anyOf: arraySchemas.map(model => model.items) };
             }
+        } else if (modelSchema?.oneOf) {
+            const arraySchemas = modelSchema.oneOf.filter(model => model.type === 'array');
+            if (arraySchemas.length === 1) {
+                schema = arraySchemas[0].items;
+            } else if (arraySchemas.length > 1) {
+                schema = { oneOf: arraySchemas.map(model => model.items) };
+            }
         } else if (Array.isArray(modelSchema?.type)) {
             schema = { type: [] };
             modelSchema.type.forEach(model => {

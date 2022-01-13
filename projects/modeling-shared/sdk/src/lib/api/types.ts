@@ -257,6 +257,7 @@ export interface EntityProperty {
     description?: string;
     readOnly?: boolean;
     placeholder?: string;
+    aggregatedTypes?: string[];
 }
 
 export interface EntityProperties {
@@ -659,6 +660,7 @@ export interface JSONSchemaInfoBasics {
     $id?: string;
     anyOf?: JSONSchemaInfoBasics[];
     allOf?: JSONSchemaInfoBasics[];
+    oneOf?: JSONSchemaInfoBasics[];
     type?: string | string[] | JSONSchemaInfoBasics[];
     properties?: JSONSchemaPropertyBasics;
     items?: JSONSchemaInfoBasics;

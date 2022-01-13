@@ -36,7 +36,7 @@ export class JsonSchemaEditorDialogComponent {
     addProp: { key: string, value: any } = { key: '', value: '' };
 
     node: any;
-    private readonly PROTECTED_ATTRIBUTES = ['type', '$ref', '$defs', 'anyOf', 'allOf', 'properties', 'required', 'title', 'items'];
+    private readonly PROTECTED_ATTRIBUTES = ['type', '$ref', '$defs', 'anyOf', 'allOf', 'oneOf', 'properties', 'required', 'title', 'items'];
 
     constructor(
         private dialogRef: MatDialogRef<JsonSchemaEditorDialogComponent>,

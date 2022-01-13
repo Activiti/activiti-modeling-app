@@ -322,96 +322,466 @@ describe('JSONSchemaToEntityPropertyService', () => {
             expect(results).toEqual(expectedProperties);
         });
 
-        it('should get entities for a anyOf type', () => {
-            const JSONSchema = {
-                anyOf: [
+        describe('anyOf', () => {
+            it('should get entities for a anyOf type when it has one definition', () => {
+                const JSONSchema = {
+                    anyOf: [
+                        {
+                            $ref: '#/$defs/boolean',
+                        }
+                    ],
+                    $defs: {
+                        boolean: {
+                            type: 'boolean'
+                        }
+                    }
+                };
+                const expectedProperties = [
                     {
-                        $ref: '#/$defs/boolean',
+                        id: 'boolean',
+                        name: 'Boolean',
+                        label: 'Boolean',
+                        type: 'boolean',
+                        readOnly: false,
+                        required: false,
+                        model: {
+                            type: 'boolean'
+                        }
+                    }
+                ];
+
+                const results = service.getEntityPropertiesFromJSONSchema(JSONSchema);
+
+                expect(results).toEqual(expectedProperties);
+            });
+
+            it('should get entities for a anyOf type when it has no basic properties', () => {
+                const JSONSchema = {
+                    anyOf: [
+                        {
+                            type: 'object',
+                            properties: {
+                                first: {
+                                    type: 'string'
+                                }
+                            }
+                        },
+                        {
+                            type: 'object',
+                            properties: {
+                                second: {
+                                    type: 'string'
+                                }
+                            }
+                        }
+                    ]
+                };
+                const expectedProperties = [
+                    {
+                        id: 'first',
+                        name: 'first',
+                        label: 'first',
+                        type: 'string',
+                        readOnly: false,
+                        required: false,
+                        model: {
+                            type: 'string'
+                        }
                     },
                     {
-                        $ref: '#/$defs/boolean'
+                        id: 'second',
+                        name: 'second',
+                        label: 'second',
+                        type: 'string',
+                        readOnly: false,
+                        required: false,
+                        model: {
+                            type: 'string'
+                        }
                     }
-                ],
-                $defs: {
-                    boolean: {
-                        type: 'boolean'
-                    }
-                }
-            };
-            const expectedProperties = [
-                {
-                    id: 'boolean',
-                    name: 'Boolean',
-                    label: 'Boolean',
-                    type: 'boolean',
-                    readOnly: false,
-                    required: false,
-                    model: {
-                        type: 'boolean'
-                    }
-                },
-                {
-                    id: 'boolean',
-                    name: 'Boolean',
-                    label: 'Boolean',
-                    type: 'boolean',
-                    readOnly: false,
-                    required: false,
-                    model: {
-                        type: 'boolean'
-                    }
-                }
-            ];
+                ];
 
-            const results = service.getEntityPropertiesFromJSONSchema(JSONSchema);
+                const results = service.getEntityPropertiesFromJSONSchema(JSONSchema);
 
-            expect(results).toEqual(expectedProperties);
+                expect(results).toEqual(expectedProperties);
+            });
+
+            it('should get aggregated entity for a anyOf type when it has basic properties', () => {
+                const JSONSchema = {
+                    anyOf: [
+                        {
+                            type: 'object',
+                            properties: {
+                                first: {
+                                    type: 'string'
+                                }
+                            }
+                        },
+                        {
+                            type: 'integer'
+                        }
+                    ]
+                };
+                const expectedProperties = [
+                    {
+                        id: 'json',
+                        name: 'Json',
+                        label: 'Json',
+                        type: 'json',
+                        readOnly: false,
+                        required: false,
+                        aggregatedTypes: ['object', 'integer']
+                    }
+                ];
+
+                const results = service.getEntityPropertiesFromJSONSchema(JSONSchema);
+
+                expect(results).toEqual(expectedProperties);
+            });
+
+            it('should get aggregated entity for a anyOf type when it has more than one definition', () => {
+                const JSONSchema = {
+                    anyOf: [
+                        {
+                            $ref: '#/$defs/boolean',
+                        },
+                        {
+                            $ref: '#/$defs/integer'
+                        }
+                    ],
+                    $defs: {
+                        boolean: {
+                            type: 'boolean'
+                        },
+                        integer: {
+                            type: 'integer'
+                        }
+                    }
+                };
+                const expectedProperties = [
+                    {
+                        id: 'json',
+                        name: 'Json',
+                        label: 'Json',
+                        type: 'json',
+                        readOnly: false,
+                        required: false,
+                        aggregatedTypes: ['boolean', 'integer']
+                    }
+                ];
+
+                const results = service.getEntityPropertiesFromJSONSchema(JSONSchema);
+
+                expect(results).toEqual(expectedProperties);
+            });
         });
 
-        it('should get entities for a allOf type', () => {
-            const JSONSchema = {
-                allOf: [
+        describe('allOf', () => {
+            it('should get entities for a allOf type when it has one definition', () => {
+                const JSONSchema = {
+                    allOf: [
+                        {
+                            $ref: '#/$defs/boolean',
+                        }
+                    ],
+                    $defs: {
+                        boolean: {
+                            type: 'boolean'
+                        }
+                    }
+                };
+                const expectedProperties = [
                     {
-                        $ref: '#/$defs/boolean',
+                        id: 'boolean',
+                        name: 'Boolean',
+                        label: 'Boolean',
+                        type: 'boolean',
+                        readOnly: false,
+                        required: false,
+                        model: {
+                            type: 'boolean'
+                        }
+                    }
+                ];
+
+                const results = service.getEntityPropertiesFromJSONSchema(JSONSchema);
+
+                expect(results).toEqual(expectedProperties);
+            });
+
+            it('should get entities for a allOf type when it has no basic properties', () => {
+                const JSONSchema = {
+                    allOf: [
+                        {
+                            type: 'object',
+                            properties: {
+                                first: {
+                                    type: 'string'
+                                }
+                            }
+                        },
+                        {
+                            type: 'object',
+                            properties: {
+                                second: {
+                                    type: 'string'
+                                }
+                            }
+                        }
+                    ]
+                };
+                const expectedProperties = [
+                    {
+                        id: 'first',
+                        name: 'first',
+                        label: 'first',
+                        type: 'string',
+                        readOnly: false,
+                        required: false,
+                        model: {
+                            type: 'string'
+                        }
                     },
                     {
-                        $ref: '#/$defs/boolean'
+                        id: 'second',
+                        name: 'second',
+                        label: 'second',
+                        type: 'string',
+                        readOnly: false,
+                        required: false,
+                        model: {
+                            type: 'string'
+                        }
                     }
-                ],
-                $defs: {
-                    boolean: {
-                        type: 'boolean'
-                    }
-                }
-            };
-            const expectedProperties = [
-                {
-                    id: 'boolean',
-                    name: 'Boolean',
-                    label: 'Boolean',
-                    type: 'boolean',
-                    readOnly: false,
-                    required: false,
-                    model: {
-                        type: 'boolean'
-                    }
-                },
-                {
-                    id: 'boolean',
-                    name: 'Boolean',
-                    label: 'Boolean',
-                    type: 'boolean',
-                    readOnly: false,
-                    required: false,
-                    model: {
-                        type: 'boolean'
-                    }
-                }
-            ];
+                ];
 
-            const results = service.getEntityPropertiesFromJSONSchema(JSONSchema);
+                const results = service.getEntityPropertiesFromJSONSchema(JSONSchema);
 
-            expect(results).toEqual(expectedProperties);
+                expect(results).toEqual(expectedProperties);
+            });
+
+            it('should get aggregated entity for a allOf type when it has basic properties', () => {
+                const JSONSchema = {
+                    allOf: [
+                        {
+                            type: 'object',
+                            properties: {
+                                first: {
+                                    type: 'string'
+                                }
+                            }
+                        },
+                        {
+                            type: 'integer'
+                        }
+                    ]
+                };
+                const expectedProperties = [
+                    {
+                        id: 'json',
+                        name: 'Json',
+                        label: 'Json',
+                        type: 'json',
+                        readOnly: false,
+                        required: false,
+                        aggregatedTypes: ['object', 'integer']
+                    }
+                ];
+
+                const results = service.getEntityPropertiesFromJSONSchema(JSONSchema);
+
+                expect(results).toEqual(expectedProperties);
+            });
+
+            it('should get aggregated entity for a allOf type when it has more than one definition', () => {
+                const JSONSchema = {
+                    allOf: [
+                        {
+                            $ref: '#/$defs/boolean',
+                        },
+                        {
+                            $ref: '#/$defs/integer'
+                        }
+                    ],
+                    $defs: {
+                        boolean: {
+                            type: 'boolean'
+                        },
+                        integer: {
+                            type: 'integer'
+                        }
+                    }
+                };
+                const expectedProperties = [
+                    {
+                        id: 'json',
+                        name: 'Json',
+                        label: 'Json',
+                        type: 'json',
+                        readOnly: false,
+                        required: false,
+                        aggregatedTypes: ['boolean', 'integer']
+                    }
+                ];
+
+                const results = service.getEntityPropertiesFromJSONSchema(JSONSchema);
+
+                expect(results).toEqual(expectedProperties);
+            });
+        });
+
+        describe('oneOf', () => {
+            it('should get entities for a oneOf type when it has one definition', () => {
+                const JSONSchema = {
+                    oneOf: [
+                        {
+                            $ref: '#/$defs/boolean',
+                        }
+                    ],
+                    $defs: {
+                        boolean: {
+                            type: 'boolean'
+                        }
+                    }
+                };
+                const expectedProperties = [
+                    {
+                        id: 'boolean',
+                        name: 'Boolean',
+                        label: 'Boolean',
+                        type: 'boolean',
+                        readOnly: false,
+                        required: false,
+                        model: {
+                            type: 'boolean'
+                        }
+                    }
+                ];
+
+                const results = service.getEntityPropertiesFromJSONSchema(JSONSchema);
+
+                expect(results).toEqual(expectedProperties);
+            });
+
+            it('should get entities for a oneOf type when it has no basic properties', () => {
+                const JSONSchema = {
+                    oneOf: [
+                        {
+                            type: 'object',
+                            properties: {
+                                first: {
+                                    type: 'string'
+                                }
+                            }
+                        },
+                        {
+                            type: 'object',
+                            properties: {
+                                second: {
+                                    type: 'string'
+                                }
+                            }
+                        }
+                    ]
+                };
+                const expectedProperties = [
+                    {
+                        id: 'first',
+                        name: 'first',
+                        label: 'first',
+                        type: 'string',
+                        readOnly: false,
+                        required: false,
+                        model: {
+                            type: 'string'
+                        }
+                    },
+                    {
+                        id: 'second',
+                        name: 'second',
+                        label: 'second',
+                        type: 'string',
+                        readOnly: false,
+                        required: false,
+                        model: {
+                            type: 'string'
+                        }
+                    }
+                ];
+
+                const results = service.getEntityPropertiesFromJSONSchema(JSONSchema);
+
+                expect(results).toEqual(expectedProperties);
+            });
+
+            it('should get aggregated entity for a oneOf type when it has basic properties', () => {
+                const JSONSchema = {
+                    oneOf: [
+                        {
+                            type: 'object',
+                            properties: {
+                                first: {
+                                    type: 'string'
+                                }
+                            }
+                        },
+                        {
+                            type: 'integer'
+                        }
+                    ]
+                };
+                const expectedProperties = [
+                    {
+                        id: 'json',
+                        name: 'Json',
+                        label: 'Json',
+                        type: 'json',
+                        readOnly: false,
+                        required: false,
+                        aggregatedTypes: ['object', 'integer']
+                    }
+                ];
+
+                const results = service.getEntityPropertiesFromJSONSchema(JSONSchema);
+
+                expect(results).toEqual(expectedProperties);
+            });
+
+            it('should get aggregated entity for a oneOf type when it has more than one definition', () => {
+                const JSONSchema = {
+                    oneOf: [
+                        {
+                            $ref: '#/$defs/boolean',
+                        },
+                        {
+                            $ref: '#/$defs/integer'
+                        }
+                    ],
+                    $defs: {
+                        boolean: {
+                            type: 'boolean'
+                        },
+                        integer: {
+                            type: 'integer'
+                        }
+                    }
+                };
+                const expectedProperties = [
+                    {
+                        id: 'json',
+                        name: 'Json',
+                        label: 'Json',
+                        type: 'json',
+                        readOnly: false,
+                        required: false,
+                        aggregatedTypes: ['boolean', 'integer']
+                    }
+                ];
+
+                const results = service.getEntityPropertiesFromJSONSchema(JSONSchema);
+
+                expect(results).toEqual(expectedProperties);
+            });
         });
     });
 });

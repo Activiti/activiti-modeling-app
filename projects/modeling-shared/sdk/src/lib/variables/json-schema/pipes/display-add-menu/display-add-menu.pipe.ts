@@ -15,22 +15,25 @@
  * limitations under the License.
  */
 
-import { EntityProperty } from '../../../api/types';
+import { Pipe, PipeTransform } from '@angular/core';
 
-export const objectTypeSpecificProperties: { [key: string]: EntityProperty} = {
-    maxProperties: {
-        id: 'maxProperties',
-        name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.MAX_PROPERTIES',
-        type: 'integer'
-    },
-    minProperties: {
-        id: 'minProperties',
-        name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.MIN_PROPERTIES',
-        type: 'integer'
-    },
-    additionalProperties: {
-        id: 'additionalProperties',
-        name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.ADDITIONAL_PROPERTIES',
-        type: 'boolean'
+@Pipe({
+    name: 'displayAddMenu'
+})
+export class DisplayAddMenuPipe implements PipeTransform {
+
+    private static readonly ADD_BUTTON_TYPES = ['object', 'allOf', 'anyOf', 'oneOf'];
+
+    transform(types: string[]): boolean {
+        let count = 0;
+
+        DisplayAddMenuPipe.ADD_BUTTON_TYPES.forEach(type => {
+            if (types.indexOf(type) !== -1) {
+                count++;
+            }
+        });
+
+        return count > 1;
     }
-};
+
+}

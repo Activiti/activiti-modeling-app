@@ -69,7 +69,10 @@ describe('ExpressionsEditorService', () => {
             let testingPosition = { ...position, column: 39 } as monaco.Position;
             let modelSchema = ExpressionsEditorService.getModelSchema(modelMock, testingPosition, parameters, modelingTypesService);
 
-            expect(modelSchema).toEqual(primitiveTypesSchema.$defs.primitive['content']);
+            const expectedContent: any = { ...primitiveTypesSchema.$defs.primitive['content'], properties: { content: {} } };
+            expectedContent.properties = { ...primitiveTypesSchema.$defs.primitive['content'].properties };
+            expectedContent.properties.content = { ...primitiveTypesSchema.$defs.primitive['content-info'] };
+            expect(modelSchema).toEqual(expectedContent);
 
             testingPosition = { ...position, column: 47 } as monaco.Position;
             modelSchema = ExpressionsEditorService.getModelSchema(modelMock, testingPosition, parameters, modelingTypesService);
@@ -79,7 +82,13 @@ describe('ExpressionsEditorService', () => {
             testingPosition = { ...position, column: 64 } as monaco.Position;
             modelSchema = ExpressionsEditorService.getModelSchema(modelMock, testingPosition, parameters, modelingTypesService);
 
-            expect(modelSchema).toEqual(primitiveTypesSchema.$defs.primitive['file']);
+            const expectedFile = { ...primitiveTypesSchema.$defs.primitive['file'], type: [] };
+            expectedFile.type.push(expectedContent);
+            expectedFile.type.push({
+                type: 'array',
+                items: expectedContent
+            });
+            expect(modelSchema).toEqual(expectedFile);
 
             testingPosition = { ...position, column: 75 } as monaco.Position;
             modelSchema = ExpressionsEditorService.getModelSchema(modelMock, testingPosition, parameters, modelingTypesService);

@@ -28,7 +28,7 @@ export const TYPES: { name: string, value: string[] }[] = [
     { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.JSON_SCHEMA_TYPES', value: ['array', 'boolean', 'integer', 'object', 'number', 'string'] },
     { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.MODELING_APP', value: ['date', 'datetime'] },
     { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.ENUMERATION', value: ['enum'] },
-    { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.COMPOSITION', value: ['allOf', 'anyOf', 'ref'] }
+    { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.COMPOSITION', value: ['allOf', 'anyOf', 'oneOf', 'ref'] }
 ];
 
 export const TYPE: { [key: string]: JSONTypePropertiesDefinition } = {
@@ -57,4 +57,9 @@ export interface JSONTypePropertiesDefinition {
 export interface JSONSchemaEditorDialogData {
     value: JSONSchemaInfoBasics;
     typeAttributes: JSONTypePropertiesDefinition;
+}
+
+export interface ChildrenDeletedEvent {
+    compositionType: string;
+    index: number;
 }

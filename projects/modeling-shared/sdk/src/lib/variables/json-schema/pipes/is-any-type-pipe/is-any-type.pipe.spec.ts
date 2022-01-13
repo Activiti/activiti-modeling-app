@@ -44,6 +44,7 @@ describe('IsAnyTypePipe', () => {
             expect(pipe.transform(types, 'ref')).toBeFalsy();
             expect(pipe.transform(types, 'anyOf')).toBeFalsy();
             expect(pipe.transform(types, 'allOf')).toBeFalsy();
+            expect(pipe.transform(types, 'oneOf')).toBeFalsy();
             expect(pipe.transform(types, 'array')).toBeFalsy();
         });
 
@@ -54,6 +55,7 @@ describe('IsAnyTypePipe', () => {
             expect(pipe.transform(types, 'string', 'ref')).toBeTruthy();
             expect(pipe.transform(types, 'string', 'anyOf')).toBeTruthy();
             expect(pipe.transform(types, 'string', 'allOf')).toBeTruthy();
+            expect(pipe.transform(types, 'string', 'oneOf')).toBeTruthy();
             expect(pipe.transform(types, 'string', 'array')).toBeTruthy();
         });
     });
@@ -73,6 +75,7 @@ describe('IsAnyTypePipe', () => {
             expect(pipe.transform(types, 'ref')).toBeFalsy();
             expect(pipe.transform(types, 'anyOf')).toBeFalsy();
             expect(pipe.transform(types, 'allOf')).toBeFalsy();
+            expect(pipe.transform(types, 'oneOf')).toBeFalsy();
             expect(pipe.transform(types, 'array')).toBeFalsy();
         });
 
@@ -83,6 +86,7 @@ describe('IsAnyTypePipe', () => {
             expect(pipe.transform(types, 'string', 'ref')).toBeTruthy();
             expect(pipe.transform(types, 'string', 'anyOf')).toBeTruthy();
             expect(pipe.transform(types, 'string', 'allOf')).toBeTruthy();
+            expect(pipe.transform(types, 'string', 'oneOf')).toBeTruthy();
             expect(pipe.transform(types, 'string', 'array')).toBeTruthy();
         });
     });

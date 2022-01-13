@@ -35,7 +35,7 @@ export interface EnumExtendedProperties {
             [disabled]="disabled">
 
             <mat-option *ngIf="extendedProperties?.nullSelectionAllowed" [value]="null">
-                {{'SDK.VARIABLE_MAPPING.NONE'}}
+                {{'SDK.VARIABLE_MAPPING.NONE' | translate}}
             </mat-option>
 
             <mat-option *ngFor="let item of items" [value]="item">

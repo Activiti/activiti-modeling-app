@@ -83,6 +83,8 @@ export class ModelingTypesService {
             flattenedModelSchema.allOf.forEach(model => this.getPropertiesByModelSchema(model).forEach(property => properties.push(property)));
         } else if (flattenedModelSchema.anyOf) {
             flattenedModelSchema.anyOf.forEach(model => this.getPropertiesByModelSchema(model).forEach(property => properties.push(property)));
+        } else if (flattenedModelSchema.oneOf) {
+            flattenedModelSchema.oneOf.forEach(model => this.getPropertiesByModelSchema(model).forEach(property => properties.push(property)));
         } else if (Array.isArray(flattenedModelSchema.type)) {
             flattenedModelSchema.type.forEach(model => {
                 if (typeof model !== 'string') {
@@ -164,6 +166,8 @@ export class ModelingTypesService {
             this.addModelingType(this.addTypeFromArrayOfTypes(jsonSchema.anyOf, modelingTypes, schemaName, jsonSchema, schemaName), schemaName, modelingTypes, true);
         } else if (jsonSchema.allOf) {
             this.addModelingType(this.addTypeFromArrayOfTypes(jsonSchema.allOf, modelingTypes, schemaName, jsonSchema, schemaName), schemaName, modelingTypes, true);
+        } else if (jsonSchema.oneOf) {
+            this.addModelingType(this.addTypeFromArrayOfTypes(jsonSchema.oneOf, modelingTypes, schemaName, jsonSchema, schemaName), schemaName, modelingTypes, true);
         } else if (jsonSchema.type) {
             switch (jsonSchema.type) {
                 case 'object':
@@ -348,6 +352,8 @@ export class ModelingTypesService {
             this.addModelingType(this.addTypeFromArrayOfTypes(property.anyOf, modelingTypes, typeName, originalJsonSchema, schemaName), typeName, modelingTypes, true);
         } else if (property.allOf) {
             this.addModelingType(this.addTypeFromArrayOfTypes(property.allOf, modelingTypes, typeName, originalJsonSchema, schemaName), typeName, modelingTypes, true);
+        } else if (property.oneOf) {
+            this.addModelingType(this.addTypeFromArrayOfTypes(property.oneOf, modelingTypes, typeName, originalJsonSchema, schemaName), typeName, modelingTypes, true);
         } else if (property.type) {
             if (Array.isArray(property.type)) {
                 const items = [];

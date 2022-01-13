@@ -180,6 +180,7 @@
             "ADD_PROPERTY": "Add property",
             "ADD_CHILD_ALL_OF": "Add child to allOf",
             "ADD_CHILD_ANY_OF": "Add child to anyOf",
+            "ADD_CHILD_ONE_OF": "Add child to oneOf",
             "ADVANCED_SETTINGS": "Advanced settings",
             "REMOVE_NODE": "Remove node",
             "ADD_DEFINITION": "Add definition",
@@ -212,7 +213,8 @@
                 "MAX_LENGTH": "Max. length",
                 "MIN_LENGTH": "Min. length",
                 "PATTERN": "Pattern",
-                "FORMAT": "Format"
+                "FORMAT": "Format",
+                "ADDITIONAL_PROPERTIES": "Additional properties"
             },
             "PREVIEW": "Preview"
         }

@@ -33,16 +33,60 @@ describe('UseModeledObjectPipe', () => {
         expect(pipe.transform(undefined)).toBeFalsy();
     });
 
-    it('return false if model has no properties', () => {
-        expect(pipe.transform({})).toBeFalsy();
+    describe('properties', () => {
+        it('return false if model has no properties', () => {
+            expect(pipe.transform({})).toBeFalsy();
+        });
+
+        it('return false if model properties are empty', () => {
+            expect(pipe.transform({ properties: {} })).toBeFalsy();
+        });
+
+        it('return true if model has properties', () => {
+            expect(pipe.transform({ properties: { name: { type: 'string' } } })).toBeTruthy();
+        });
     });
 
-    it('return false if model properties are empty', () => {
-        expect(pipe.transform({ properties: {} })).toBeFalsy();
+    describe('allOf', () => {
+        it('return false if allOf has no properties', () => {
+            expect(pipe.transform({})).toBeFalsy();
+        });
+
+        it('return false if allOf is empty', () => {
+            expect(pipe.transform({ allOf: [] })).toBeFalsy();
+        });
+
+        it('return true if allOf has definitions', () => {
+            expect(pipe.transform({ allOf: [{ type: 'string' }] })).toBeTruthy();
+        });
     });
 
-    it('return true if model has properties', () => {
-        expect(pipe.transform({ properties: { name: { type: 'string' } } })).toBeTruthy();
+    describe('anyOf', () => {
+        it('return false if anyOf has no properties', () => {
+            expect(pipe.transform({})).toBeFalsy();
+        });
+
+        it('return false if anyOf is empty', () => {
+            expect(pipe.transform({ anyOf: [] })).toBeFalsy();
+        });
+
+        it('return true if anyOf has definitions', () => {
+            expect(pipe.transform({ anyOf: [{ type: 'string' }] })).toBeTruthy();
+        });
+    });
+
+    describe('oneOf', () => {
+        it('return false if oneOf has no properties', () => {
+            expect(pipe.transform({})).toBeFalsy();
+        });
+
+        it('return false if oneOf is empty', () => {
+            expect(pipe.transform({ oneOf: [] })).toBeFalsy();
+        });
+
+        it('return true if oneOf has definitions', () => {
+            expect(pipe.transform({ oneOf: [{ type: 'string' }] })).toBeTruthy();
+        });
     });
 
 });

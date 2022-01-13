@@ -54,6 +54,7 @@ import { ReferenceSelectorComponent } from './json-schema/components/reference-s
 import { IsAnyTypePipe } from './json-schema/pipes/is-any-type-pipe/is-any-type.pipe';
 import { IsNotTypePipe } from './json-schema/pipes/is-not-type-pipe/is-not-type.pipe';
 import { RequiredPipe } from './json-schema/pipes/required-pipe/required.pipe';
+import { DisplayAddMenuPipe } from './json-schema/pipes/display-add-menu/display-add-menu.pipe';
 
 @NgModule({
     imports: [
@@ -93,7 +94,8 @@ import { RequiredPipe } from './json-schema/pipes/required-pipe/required.pipe';
         ReferenceSelectorComponent,
         RequiredPipe,
         IsAnyTypePipe,
-        IsNotTypePipe
+        IsNotTypePipe,
+        DisplayAddMenuPipe
     ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),

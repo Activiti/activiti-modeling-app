@@ -73,6 +73,10 @@ describe('JsonSchemaEditorService', () => {
             it('anyOf', () => {
                 expect(service.getTypes({ anyOf: [] })).toEqual(['anyOf']);
             });
+
+            it('oneOf', () => {
+                expect(service.getTypes({ oneOf: [] })).toEqual(['oneOf']);
+            });
         });
 
         it('multiple types', () => {
@@ -81,10 +85,11 @@ describe('JsonSchemaEditorService', () => {
                 enum: ['a', 'b', 'c'],
                 $ref: '#/$defs/primitive/date',
                 allOf: [],
-                anyOf: []
+                anyOf: [],
+                oneOf: []
             };
 
-            expect(service.getTypes(value)).toEqual(['object', 'string', 'integer', 'date', 'enum', 'anyOf', 'allOf']);
+            expect(service.getTypes(value)).toEqual(['object', 'string', 'integer', 'date', 'enum', 'anyOf', 'allOf', 'oneOf']);
         });
 
     });
@@ -169,6 +174,19 @@ describe('JsonSchemaEditorService', () => {
             expect(value).toEqual({});
         });
 
+        it('oneOf', () => {
+            const value = {};
+            const expectedValue = { oneOf: [] };
+
+            service.setType('oneOf', true, value);
+
+            expect(value).toEqual(expectedValue);
+
+            service.setType('oneOf', false, value);
+
+            expect(value).toEqual({});
+        });
+
         it('array', () => {
             const value = {};
             const expectedValue = { type: 'array', items: { type: 'string' } };
@@ -238,7 +256,8 @@ describe('JsonSchemaEditorService', () => {
             const value = {
                 $ref: '#/$defs/primitive/date',
                 allOf: [],
-                anyOf: []
+                anyOf: [],
+                oneOf: []
             };
             expect(service.advancedAttr(value)).toEqual({
                 description: { id: 'description', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.DESCRIPTION', type: 'string' }
@@ -261,7 +280,8 @@ describe('JsonSchemaEditorService', () => {
                 enum: ['a', 'b', 'c'],
                 $ref: '#/$defs/primitive/date',
                 allOf: [],
-                anyOf: []
+                anyOf: [],
+                oneOf: []
             };
 
             const expectedAttributes = {
@@ -276,6 +296,7 @@ describe('JsonSchemaEditorService', () => {
                 exclusiveMinimum: { id: 'exclusiveMinimum', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.EXCLUSIVE_MINIMUM', type: 'boolean' },
                 maxProperties: { id: 'maxProperties', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.MAX_PROPERTIES', type: 'integer' },
                 minProperties: { id: 'minProperties', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.MIN_PROPERTIES', type: 'integer' },
+                additionalProperties: { id: 'additionalProperties', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.ADDITIONAL_PROPERTIES', type: 'boolean' },
                 maxLength: { id: 'maxLength', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.MAX_LENGTH', type: 'integer' },
                 minLength: { id: 'minLength', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.MIN_LENGTH', type: 'integer' },
                 pattern: { id: 'pattern', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.PATTERN', type: 'string' },

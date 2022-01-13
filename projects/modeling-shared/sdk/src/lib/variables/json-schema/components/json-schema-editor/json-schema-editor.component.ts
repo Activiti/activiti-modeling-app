@@ -20,7 +20,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatOptionSelectionChange } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
-import { JSONSchemaDefinition, JSONSchemaEditorDialogData, TYPES } from '../../models/model';
+import { ChildrenDeletedEvent, JSONSchemaDefinition, JSONSchemaEditorDialogData, TYPES } from '../../models/model';
 import { JsonSchemaEditorDialogComponent } from '../json-schema-editor-dialog/json-schema-editor-dialog.component';
 import { JsonSchemaEditorService } from '../../services/json-schema-editor.service';
 import { JSONSchemaInfoBasics } from '../../../../api/types';
@@ -51,8 +51,10 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor {
     @Input() displayRequired = true;
     @Input() filteredReferences: string[] = [];
     @Input() hierarchy: Observable<PropertyTypeItem[]>;
+    @Input() compositionIndex = -1;
     @Output() changes = new EventEmitter<JSONSchemaInfoBasics>();
     @Output() propertyDeleted = new EventEmitter<string>();
+    @Output() childrenDeleted = new EventEmitter<ChildrenDeletedEvent>();
     @Output() requiredChanges = new EventEmitter<{ key: string, value: boolean }>();
     @Output() nameChanges = new EventEmitter<{ oldName: string, newName: string }>();
 
@@ -151,6 +153,10 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor {
         this.propertyDeleted.emit(this.key);
     }
 
+    onRemoveChild(compositionType: string, index: number) {
+        this.childrenDeleted.emit({ compositionType, index });
+    }
+
     onTypeChanges(event: MatOptionSelectionChange) {
         if (event.isUserInput) {
             this.jsonSchemaEditorService.setType(event.source.value, event.source.selected, this.value);
@@ -185,6 +191,14 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor {
                 }
             }
         }
+        this.onChanges();
+    }
+
+    onChildrenDeleted(event: ChildrenDeletedEvent) {
+        if (this.value[event.compositionType]) {
+            this.value[event.compositionType].splice(event.index, 1);
+        }
+
         this.onChanges();
     }
 
@@ -330,5 +344,26 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor {
 
     isValid(name: string): boolean {
         return MODELER_NAME_REGEX.test(name);
+    }
+
+    get lastTypeNotEmpty(): string {
+        if (!this.isEmpty(this.value.oneOf)) {
+            return 'oneOf';
+        }
+        if (!this.isEmpty(this.value.anyOf)) {
+            return 'anyOf';
+        }
+        if (!this.isEmpty(this.value.allOf)) {
+            return 'allOf';
+        }
+        if (!!this.value.items) {
+            return 'array';
+        }
+
+        return 'object';
+    }
+
+    private isEmpty(array: JSONSchemaInfoBasics[]): boolean {
+        return array?.length === 0 || array?.length === undefined;
     }
 }

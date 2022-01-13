@@ -67,6 +67,11 @@ export class JsonSchemaEditorService {
         if (!!value.allOf) {
             types.push('allOf');
         }
+
+        if (!!value.oneOf) {
+            types.push('oneOf');
+        }
+
         return types;
     }
 
@@ -112,6 +117,13 @@ export class JsonSchemaEditorService {
                     value.anyOf = [];
                 } else {
                     delete value.anyOf;
+                }
+                break;
+            case 'oneOf':
+                if (added) {
+                    value.oneOf = [];
+                } else {
+                    delete value.oneOf;
                 }
                 break;
             default:
@@ -186,7 +198,7 @@ export class JsonSchemaEditorService {
     }
 
     private instanceOfJSONSchemaInfoBasics(object: any): object is JSONSchemaInfoBasics {
-        return 'type' in object || 'enum' in object || 'allOf' in object || 'anyOf' in object;
+        return 'type' in object || 'enum' in object || 'allOf' in object || 'anyOf' in object || 'oneOf' in object;
     }
 
     advancedAttr(value: JSONSchemaInfoBasics): JSONTypePropertiesDefinition {

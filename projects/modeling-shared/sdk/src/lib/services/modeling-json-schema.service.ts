@@ -35,7 +35,6 @@ export class ModelingJSONSchemaService {
     public static readonly PRIMITIVE_DEFINITIONS_PATH = '#/$defs/primitive';
 
     private projectId: string;
-    private projectSchema: JSONSchemaInfoBasics = { $defs: {} };
     private primitiveDefs = primitiveTypesSchema.$defs.primitive;
 
     constructor(
@@ -60,35 +59,27 @@ export class ModelingJSONSchemaService {
     }
 
     getProjectSchemaUri(projectId?: string): string {
-        if (projectId) {
-            let projectSchema = this.codeEditorService.getSchema(getFileUriPattern(projectId, 'json'));
-            if (!projectSchema) {
-                projectSchema = {
-                    $id: getFileUriPattern(projectId, 'json'),
-                    $defs: {}
-                };
-                this.registerModelingSchema(projectId, projectSchema);
-            }
-            return projectSchema.$id;
-        } else {
-            return this.getProjectSchemaUri(this.projectId);
+        let projectSchema = this.codeEditorService.getSchema(getFileUriPattern(projectId || this.projectId, 'json'));
+        if (!projectSchema) {
+            projectSchema = {
+                $id: getFileUriPattern(projectId, 'json'),
+                $defs: {}
+            };
+            this.registerModelingSchema(projectId, projectSchema);
         }
+        return projectSchema.$id;
     }
 
     getProjectSchema(projectId?: string): JSONSchemaInfoBasics {
-        if (projectId) {
-            let projectSchema = this.codeEditorService.getSchema(getFileUriPattern(projectId, 'json'));
-            if (!projectSchema) {
-                projectSchema = {
-                    $id: getFileUriPattern(projectId, 'json'),
-                    $defs: {}
-                };
-                this.registerModelingSchema(projectId, projectSchema);
-            }
-            return projectSchema;
-        } else {
-            return this.getProjectSchema(this.projectId);
+        let projectSchema = this.codeEditorService.getSchema(getFileUriPattern(projectId || this.projectId, 'json'));
+        if (!projectSchema) {
+            projectSchema = {
+                $id: getFileUriPattern(projectId, 'json'),
+                $defs: {}
+            };
+            this.registerModelingSchema(projectId, projectSchema);
         }
+        return projectSchema;
     }
 
     flatSchemaReference(schema: JSONSchemaInfoBasics): JSONSchemaInfoBasics {
@@ -96,7 +87,7 @@ export class ModelingJSONSchemaService {
     }
 
     private flatSchemaReferenceWithOriginalSchema(schema: JSONSchemaInfoBasics, originalSchema: JSONSchemaInfoBasics): JSONSchemaInfoBasics {
-        let result = { ...schema };
+        let result = this.deepCopy(schema);
 
         if (schema?.$ref) {
             result = this.getSchemaFromReference(schema.$ref, originalSchema);
@@ -126,7 +117,6 @@ export class ModelingJSONSchemaService {
             for (let index = 0; index < schema.allOf.length; index++) {
                 const element = schema.allOf[index];
                 result.allOf[index] = this.flatSchemaReferenceWithOriginalSchema(element, originalSchema);
-
             }
         }
 
@@ -134,7 +124,13 @@ export class ModelingJSONSchemaService {
             for (let index = 0; index < schema.anyOf.length; index++) {
                 const element = schema.anyOf[index];
                 result.anyOf[index] = this.flatSchemaReferenceWithOriginalSchema(element, originalSchema);
+            }
+        }
 
+        if (schema?.oneOf) {
+            for (let index = 0; index < schema.oneOf.length; index++) {
+                const element = schema.oneOf[index];
+                result.oneOf[index] = this.flatSchemaReferenceWithOriginalSchema(element, originalSchema);
             }
         }
 
@@ -142,19 +138,24 @@ export class ModelingJSONSchemaService {
     }
 
     getSchemaFromReference(ref: string, schema?: JSONSchemaInfoBasics): JSONSchemaInfoBasics {
-        if (ref) {
-            const accessor = ref.substr(ref.lastIndexOf('#') + 2).split('/');
+        return this.getSchemaInSchemaFromReference(ref, schema) || this.getSchemaInProjectFromReference(ref);
+    }
 
-            if (ref.startsWith(ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH)) {
-                return this.getTypeDefinition(this.projectSchema, accessor);
-            } else {
-                if (schema) {
-                    const inSchema = this.getTypeDefinition(schema, accessor);
-                    if (inSchema) {
-                        return inSchema;
-                    }
-                }
-                return this.getTypeDefinition(this.projectSchema, accessor);
+    private getSchemaInProjectFromReference(ref: string): JSONSchemaInfoBasics {
+        if (ref) {
+            const accessor = ref.substring(ref.lastIndexOf('#') + 2).split('/');
+
+            return this.getTypeDefinition(this.getProjectSchema(), accessor);
+        }
+        return null;
+    }
+
+    private getSchemaInSchemaFromReference(ref: string, schema: JSONSchemaInfoBasics): JSONSchemaInfoBasics {
+        if (ref && schema) {
+            const accessor = ref.substring(ref.lastIndexOf('#') + 2).split('/');
+            const inSchema = this.getTypeDefinition(schema, accessor);
+            if (inSchema) {
+                return inSchema;
             }
         }
         return null;
@@ -169,37 +170,32 @@ export class ModelingJSONSchemaService {
 
     initializeProjectSchema(projectId: string) {
         this.projectId = projectId;
-        this.projectSchema = {
+        const projectSchema = {
             $id: getFileUriPattern(projectId, 'json'),
             $defs: {
                 primitive: this.primitiveDefs
             }
         };
 
-        this.registerModelingSchema(projectId);
+        this.registerModelingSchema(projectId, projectSchema);
 
         this.providers.forEach(provider => provider.initializeModelingJsonSchemasForProject(projectId));
     }
 
     registerTypeModel(typeId: string[], schema: JSONSchemaInfoBasics, projectId?: string, enableReplacement = true) {
         if (typeId && schema) {
-            if (projectId) {
-                let projectSchema = this.codeEditorService.getSchema(getFileUriPattern(projectId, 'json'));
-                if (!projectSchema) {
-                    projectSchema = {
-                        $id: getFileUriPattern(projectId, 'json'),
-                        $defs: {}
-                    };
-                }
-                if (!enableReplacement && this.getTypeDefinition(projectSchema, typeId)) {
-                    throw new Error(`The ${typeId} model has already been registered for the project ${projectId}`);
-                }
-                this.createTypeDefinition(projectSchema.$defs, typeId, schema, typeId);
-                this.registerModelingSchema(projectId, projectSchema);
-            } else {
-                this.createTypeDefinition(this.projectSchema.$defs, typeId, schema, typeId);
-                this.registerModelingSchema(this.projectId);
+            let projectSchema = this.codeEditorService.getSchema(getFileUriPattern(projectId || this.projectId, 'json'));
+            if (!projectSchema) {
+                projectSchema = {
+                    $id: getFileUriPattern(projectId, 'json'),
+                    $defs: {}
+                };
             }
+            if (!enableReplacement && this.getTypeDefinition(projectSchema, typeId)) {
+                throw new Error(`The ${typeId} model has already been registered for the project ${projectId}`);
+            }
+            this.createTypeDefinition(projectSchema.$defs, typeId, schema, typeId);
+            this.registerModelingSchema(projectId, projectSchema);
         }
     }
 
@@ -271,14 +267,14 @@ export class ModelingJSONSchemaService {
     ): JSONSchemaInfoBasics | JSONSchemaInfoBasics[] {
         if (Array.isArray(schema)) {
             const result: JSONSchemaInfoBasics[] = [];
-            schema.forEach(subSchema => result.push(<JSONSchemaInfoBasics> this.fixReferences(subSchema, typeIdPath, originalSchema)));
+            schema.forEach(subSchema => result.push(<JSONSchemaInfoBasics>this.fixReferences(subSchema, typeIdPath, originalSchema)));
             return result;
         } else {
             const result: JSONSchemaInfoBasics = {};
             Object.keys(schema).forEach(key => {
-                if (key === '$ref' && !!this.getSchemaFromReference(schema[key], originalSchema)) {
+                if (key === '$ref' && !this.getSchemaInProjectFromReference(schema[key]) && !!this.getSchemaInSchemaFromReference(schema[key], originalSchema)) {
                     result[key] = schema[key].replace(/\#/g, ModelingJSONSchemaService.DEFINITIONS_PATH + '/' + typeIdPath.join('/'));
-                } else if (typeof schema[key] === 'object') {
+                } else if (typeof schema[key] === 'object' && !Array.isArray(schema[key])) {
                     result[key] = this.fixReferences(schema[key], typeIdPath, originalSchema);
                 } else {
                     result[key] = schema[key];
@@ -288,14 +284,9 @@ export class ModelingJSONSchemaService {
         }
     }
 
-    private registerModelingSchema(projectId: string, schema?: JSONSchemaInfoBasics): JSONSchemaInfoBasics {
-        if (schema) {
-            this.codeEditorService.addSchema(projectId, getFileUriPattern(projectId, 'json'), schema);
-            return schema;
-        } else {
-            this.codeEditorService.addSchema(projectId, getFileUriPattern(projectId, 'json'), { ...this.projectSchema });
-            return this.projectSchema;
-        }
+    private registerModelingSchema(projectId: string, schema: JSONSchemaInfoBasics): JSONSchemaInfoBasics {
+        this.codeEditorService.addSchema(projectId, getFileUriPattern(projectId, 'json'), schema);
+        return schema;
     }
 
     getPropertyTypeItems(): Observable<PropertyTypeItem[]> {
@@ -321,6 +312,38 @@ export class ModelingJSONSchemaService {
         if (item.typeId) {
             const prefix = provider.isGlobalProvider() ? ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH : ModelingJSONSchemaService.DEFINITIONS_PATH;
             item.value = { $ref: prefix + '/' + item.typeId.join('/') };
+        }
+    }
+
+    private deepCopy(obj: any): any {
+        let copy;
+
+        if (null == obj || 'object' !== typeof obj) {
+            return obj;
+        }
+
+        if (obj instanceof Date) {
+            copy = new Date();
+            copy.setTime(obj.getTime());
+            return copy;
+        }
+
+        if (obj instanceof Array) {
+            copy = [];
+            for (let i = 0, len = obj.length; i < len; i++) {
+                copy[i] = this.deepCopy(obj[i]);
+            }
+            return copy;
+        }
+
+        if (obj instanceof Object) {
+            copy = {};
+            for (const attr in obj) {
+                if (obj.hasOwnProperty(attr)) {
+                    (<any>copy)[attr] = this.deepCopy(obj[attr]);
+                }
+            }
+            return copy;
         }
     }
 }

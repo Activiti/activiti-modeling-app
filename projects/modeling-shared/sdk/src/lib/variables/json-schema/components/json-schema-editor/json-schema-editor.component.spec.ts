@@ -25,6 +25,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -36,6 +37,7 @@ import { JSONSchemaInfoBasics } from '../../../../api/types';
 import { SharedModule } from '../../../../helpers/shared.module';
 import { ModelingJSONSchemaService } from '../../../../services/modeling-json-schema.service';
 import { expectedDefinitions, expectedProperties, hierarchy, mockJsonSchema } from '../../mocks/json-schema-editor.mocks';
+import { DisplayAddMenuPipe } from '../../pipes/display-add-menu/display-add-menu.pipe';
 import { IsAnyTypePipe } from '../../pipes/is-any-type-pipe/is-any-type.pipe';
 import { IsNotTypePipe } from '../../pipes/is-not-type-pipe/is-not-type.pipe';
 import { RequiredPipe } from '../../pipes/required-pipe/required.pipe';
@@ -56,7 +58,8 @@ describe('JsonSchemaEditorComponent', () => {
                 JsonSchemaEditorDialogComponent,
                 RequiredPipe,
                 IsAnyTypePipe,
-                IsNotTypePipe
+                IsNotTypePipe,
+                DisplayAddMenuPipe
             ],
             imports: [
                 CommonModule,
@@ -68,6 +71,7 @@ describe('JsonSchemaEditorComponent', () => {
                 MatTooltipModule,
                 MatButtonModule,
                 MatSlideToggleModule,
+                MatMenuModule,
                 FormsModule,
                 ReactiveFormsModule,
                 MatDialogModule,
@@ -335,6 +339,7 @@ describe('JsonSchemaEditorComponent', () => {
                 data: {
                     typeAttributes: {
                         description: { id: 'description', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.DESCRIPTION', type: 'string' },
+                        additionalProperties: { id: 'additionalProperties', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.ADDITIONAL_PROPERTIES', type: 'boolean' },
                         maxProperties: { id: 'maxProperties', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.MAX_PROPERTIES', type: 'integer' },
                         minProperties: { id: 'minProperties', name: 'SDK.JSON_SCHEMA_EDITOR.ATTRIBUTES.MIN_PROPERTIES', type: 'integer' }
                     },
