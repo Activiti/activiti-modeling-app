@@ -26,7 +26,8 @@ export enum MODEL_SCHEMA_TYPE {
     SCRIPT = 'SCRIPT',
     TRIGGER = 'TRIGGER',
     CUSTOM_FORM_WIDGET = 'CUSTOM-FORM-WIDGET',
-    DATA = 'DATA'
+    DATA = 'DATA',
+    AUTHENTICATION = 'AUTHENTICATION'
 }
 
 export interface JsonArray extends Array<string|number|boolean|Date|Json|JsonArray> { }

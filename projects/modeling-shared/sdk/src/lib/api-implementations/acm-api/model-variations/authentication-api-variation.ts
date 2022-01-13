@@ -16,17 +16,28 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Authentication, AuthenticationContent } from '../../../api/types';
+import { Authentication, AuthenticationContent, AUTHENTICATION } from '../../../api/types';
 import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
+import { ModelContentSerializer } from '../model-content-serializer';
+import { extractDataFromContent } from './model-data-extractors/extract-data-from-content';
+import { ModelDataExtractor } from '../model-data-extractor';
 
 @Injectable()
 export class AuthenticationApiVariation<M extends Authentication, C extends AuthenticationContent> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Authentication;
     readonly retrieveModelAfterUpdate = false;
 
+    constructor(
+        private serializer: ModelContentSerializer<AuthenticationContent>,
+        private dataExtractor: ModelDataExtractor<AuthenticationContent, Authentication>
+    ) {
+        serializer.register({ type: this.contentType, serialize: JSON.stringify, deserialize: JSON.parse });
+        this.dataExtractor.register({ type: AUTHENTICATION, get: extractDataFromContent });
+    }
+
     public serialize(content: C): string {
-        return JSON.stringify(content);
+        return this.serializer.serialize(content, this.contentType);
     }
 
     createInitialMetadata(model: Partial<M>): Partial<M> {
@@ -45,7 +56,7 @@ export class AuthenticationApiVariation<M extends Authentication, C extends Auth
         return {
             name,
             description,
-            extensions: modelContent
+            type: this.contentType
         };
     }
 
