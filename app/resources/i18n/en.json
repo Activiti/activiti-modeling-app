@@ -64,9 +64,8 @@
                     "EMAIL_TEMPLATE": "Are you sure you want to overwrite the email template?"
                 },
                 "SAVE_AS": {
-                  "DATA": "Are you sure you want to copy this data object?",
-                  "FILE": "Are you sure you want to copy this file?"
-              },
+                  "DATA": "Are you sure you want to copy this data object?"
+                },
                 "DOWNLOAD": {
                     "IMAGE": "Are you sure you want to download the svg image of this process?",
                     "DATA": "Are you sure you want to download this data object?"
