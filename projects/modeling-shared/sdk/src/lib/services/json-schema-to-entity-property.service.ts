@@ -80,7 +80,7 @@ export class JSONSchemaToEntityPropertyService {
                                 });
                                 if (jsonSchema.required) {
                                     jsonSchema.required.forEach(requiredProperty => {
-                                        const index = entityProperties.findIndex(property => property.name === requiredProperty);
+                                        const index = entityProperties.filter(property => !!property).findIndex(property => property.name === requiredProperty);
                                         if (index >= 0) {
                                             entityProperties[index].required = true;
                                         }
@@ -110,7 +110,7 @@ export class JSONSchemaToEntityPropertyService {
                 );
             }
         }
-        return entityProperties.filter(properties => !!properties.type);
+        return entityProperties.filter(properties => !!properties?.type);
     }
 
     private isBasicProperty(element: JSONSchemaInfoBasics) {

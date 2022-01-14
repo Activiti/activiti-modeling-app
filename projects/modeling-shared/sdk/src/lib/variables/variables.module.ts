@@ -55,6 +55,7 @@ import { IsAnyTypePipe } from './json-schema/pipes/is-any-type-pipe/is-any-type.
 import { IsNotTypePipe } from './json-schema/pipes/is-not-type-pipe/is-not-type.pipe';
 import { RequiredPipe } from './json-schema/pipes/required-pipe/required.pipe';
 import { DisplayAddMenuPipe } from './json-schema/pipes/display-add-menu/display-add-menu.pipe';
+import { PropertyTypeDialogComponent } from './properties-viewer/property-type-dialog/property-type-dialog.component';
 
 @NgModule({
     imports: [
@@ -95,7 +96,8 @@ import { DisplayAddMenuPipe } from './json-schema/pipes/display-add-menu/display
         RequiredPipe,
         IsAnyTypePipe,
         IsNotTypePipe,
-        DisplayAddMenuPipe
+        DisplayAddMenuPipe,
+        PropertyTypeDialogComponent
     ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),

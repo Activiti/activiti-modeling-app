@@ -61,7 +61,7 @@ export class CalledElementVariablesProviderService implements ProcessEditorEleme
                 if (selectedExternalProcess) {
                     variables = Object.values(new ProcessExtensionsModel(selectedExternalProcess.extensions).getProperties(processDefinitionId));
                 }
-                return variables.map(variable => ({ id: variable.id, name: variable.name, description: variable.description, type: variable.type }));
+                return variables.map(variable => ({ id: variable.id, name: variable.name, description: variable.description, type: variable.type, model: variable.model }));
             })
         );
     }

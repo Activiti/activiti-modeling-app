@@ -17,6 +17,7 @@
 
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -58,6 +59,7 @@ describe('PropertyTypeSelectorSmartComponent', () => {
                 MatInputModule,
                 MatIconModule,
                 MatTooltipModule,
+                MatDialogModule,
                 TranslateModule.forRoot(),
                 MatProgressBarModule
             ],
@@ -227,5 +229,37 @@ describe('PropertyTypeSelectorSmartComponent', () => {
         });
 
         expect(component.hierarchy).toEqual(staticHierarchy);
+    });
+
+    it('should include custom edit item if is custom model', () => {
+        const hierarchWithAddCustomModel = [...expectedHierarchy];
+        expectedHierarchy[1] = {
+            displayName: 'SDK.PROPERTY_TYPE_SELECTOR.EDIT_MODEL',
+            description: 'SDK.PROPERTY_TYPE_SELECTOR.EDIT_MODEL_DESCRIPTION',
+            isCustomIcon: false,
+            iconName: 'note_alt',
+            value: { type: 'object' },
+            provider: 'PropertyTypeSelectorSmartComponent'
+        };
+        component.onlyPrimitiveTypes = true;
+
+        component.ngOnChanges({
+            onlyPrimitiveTypes: {
+                currentValue: true,
+                previousValue: false,
+                firstChange: false,
+                isFirstChange: () => false
+            },
+            property: {
+                currentValue: {
+                    model: { type: 'object' }
+                },
+                firstChange: true,
+                isFirstChange: () => true,
+                previousValue: []
+            }
+        });
+
+        expect(component.hierarchy).toEqual(hierarchWithAddCustomModel);
     });
 });

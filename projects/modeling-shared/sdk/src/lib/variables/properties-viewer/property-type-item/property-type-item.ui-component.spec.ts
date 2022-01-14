@@ -17,36 +17,38 @@
 
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
+import { of } from 'rxjs';
 import { expectedItems } from '../../../mocks/modeling-json-schema.service.mock';
+import { PropertyTypeDialogComponent } from '../property-type-dialog/property-type-dialog.component';
 import { AutomationIdPipe } from './automation-id.pipe';
 import { PropertyTypeItemUiComponent } from './property-type-item.ui-component';
 
 describe('PropertyTypeItemUiComponent', () => {
     let component: PropertyTypeItemUiComponent;
     let fixture: ComponentFixture<PropertyTypeItemUiComponent>;
+    let dialog: MatDialog;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
+    beforeEach(() => {
+        TestBed.configureTestingModule({
             imports: [
                 NoopAnimationsModule,
                 MatMenuModule,
                 MatIconModule,
                 MatTooltipModule,
+                MatDialogModule,
                 TranslateModule.forRoot()],
             declarations: [PropertyTypeItemUiComponent, AutomationIdPipe],
             providers: [
                 { provide: TranslationService, useClass: TranslationMock }
             ]
-        })
-            .compileComponents();
-    });
-
-    beforeEach(() => {
+        });
+        dialog = TestBed.inject(MatDialog);
         fixture = TestBed.createComponent(PropertyTypeItemUiComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -60,5 +62,29 @@ describe('PropertyTypeItemUiComponent', () => {
     it('should emit value when option is selected', () => {
         component.onChange(expectedItems[0].children[3]);
         expect(component.change.emit).toHaveBeenCalledWith(expectedItems[0].children[3]);
+    });
+
+    it('should open the dialog', () => {
+        spyOn(dialog, 'open').and.returnValue({ afterClosed: () => of({}) } as any);
+
+        const customItem = {
+            displayName: 'SDK.PROPERTY_TYPE_SELECTOR.EDIT_MODEL',
+            description: 'SDK.PROPERTY_TYPE_SELECTOR.EDIT_MODEL_DESCRIPTION',
+            isCustomIcon: false,
+            iconName: 'note_alt',
+            value: { type: 'object' },
+            provider: 'PropertyTypeSelectorSmartComponent'
+        };
+
+        const expectedArguments = {
+            data: {
+                value: { type: 'object' }
+            },
+            width: '900px'
+        };
+
+        component.onChange(customItem);
+
+        expect(dialog.open).toHaveBeenCalledWith(PropertyTypeDialogComponent, expectedArguments);
     });
 });

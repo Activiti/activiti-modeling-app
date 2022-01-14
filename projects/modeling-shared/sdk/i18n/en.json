@@ -217,6 +217,12 @@
                 "ADDITIONAL_PROPERTIES": "Additional properties"
             },
             "PREVIEW": "Preview"
+        },
+        "PROPERTY_TYPE_SELECTOR": {
+            "CREATE_MODEL": "Create custom model",
+            "CREATE_MODEL_DESCRIPTION": "Create a custom model and assign it to the entity",
+            "EDIT_MODEL": "Edit custom model",
+            "EDIT_MODEL_DESCRIPTION": "Edit the previously created custom model of the entity"
         }
     }
 }

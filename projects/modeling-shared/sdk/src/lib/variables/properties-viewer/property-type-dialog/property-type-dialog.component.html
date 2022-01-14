@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>{{'SDK.PROPERTY_TYPE_SELECTOR.EDIT_MODEL' | translate}}</h1>
+
+<mat-dialog-content>
+    <modelingsdk-json-schema-editor [(ngModel)]="value"></modelingsdk-json-schema-editor>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close data-automation-id="modelingsdk-json-schema-editor-dialog-close-button">
+        {{ 'APP.DIALOGS.CANCEL' | translate }}
+    </button>
+
+    <button class="adf-dialog-action-button save-btn" color="primary" mat-button [mat-dialog-close]="value"
+        data-automation-id="modelingsdk-json-schema-editor-dialog-save-button">
+        {{ 'APP.DIALOGS.SAVE' | translate }}
+    </button>
+</mat-dialog-actions>

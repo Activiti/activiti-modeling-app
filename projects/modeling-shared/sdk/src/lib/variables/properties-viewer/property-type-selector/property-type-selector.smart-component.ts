@@ -15,7 +15,20 @@
  * limitations under the License.
  */
 
-import { ChangeDetectorRef, Component, EventEmitter, forwardRef, HostListener, Input, OnChanges, OnDestroy, Output, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
+import { TranslationService } from '@alfresco/adf-core';
+import {
+    ChangeDetectorRef,
+    Component, EventEmitter,
+    forwardRef,
+    HostListener,
+    Input,
+    OnChanges,
+    OnDestroy,
+    Output,
+    SimpleChanges,
+    ViewChild,
+    ViewEncapsulation
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { Subject } from 'rxjs';
@@ -36,6 +49,8 @@ import { PropertyTypeItem } from '../property-type-item/models';
     ]
 })
 export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor, OnChanges, OnDestroy {
+
+    public static readonly PROVIDER_NAME = 'PropertyTypeSelectorSmartComponent';
 
     @Output() change = new EventEmitter();
     @Input() property: EntityProperty;
@@ -64,6 +79,7 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
 
     constructor(
         private modelingJSONSchemaService: ModelingJSONSchemaService,
+        private translationService: TranslationService,
         private cdr: ChangeDetectorRef
     ) {
         this.modelingJSONSchemaService.getPropertyTypeItems().pipe(takeUntil(this.onDestroy$)).subscribe(items => {
@@ -82,6 +98,7 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['property'] && changes['property'].currentValue !== changes['property'].previousValue && this.property) {
+            this.setCustomModelHierarchyItem();
             this.hierarchy.some(child => this.initSelectedValue(child));
         }
 
@@ -102,11 +119,15 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
 
         this.updatePropertyModel($event);
 
+        this.setCustomModelHierarchyItem();
+        this.hierarchy.some(child => this.initSelectedValue(child));
+
         this.change.emit(this.property);
     }
 
     writeValue(property: EntityProperty): void {
         this.property = property;
+        this.setCustomModelHierarchyItem();
         if (this.property && this.hierarchy) {
             this.hierarchy.some(child => this.initSelectedValue(child));
         }
@@ -137,8 +158,42 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
             }
         }
 
+        this.setCustomModelHierarchyItem();
+
         if (this.property) {
             this.hierarchy.some(child => this.initSelectedValue(child));
+        }
+    }
+
+    private setCustomModelHierarchyItem() {
+        if (!this.staticHierarchy) {
+            let displayName = this.translationService.instant('SDK.PROPERTY_TYPE_SELECTOR.CREATE_MODEL');
+            let description = this.translationService.instant('SDK.PROPERTY_TYPE_SELECTOR.CREATE_MODEL_DESCRIPTION');
+            let value: JSONSchemaInfoBasics = {};
+            if (this.property?.model && !this.property.model.$ref) {
+                displayName = this.translationService.instant('SDK.PROPERTY_TYPE_SELECTOR.EDIT_MODEL');
+                description = this.translationService.instant('SDK.PROPERTY_TYPE_SELECTOR.EDIT_MODEL_DESCRIPTION');
+                value = this.property.model;
+            }
+
+            let customItem = this.hierarchy.find(item => item.provider === PropertyTypeSelectorSmartComponent.PROVIDER_NAME);
+
+            if (customItem) {
+                customItem.displayName = displayName;
+                customItem.description = description;
+                customItem.value = value;
+            } else {
+                customItem = {
+                    displayName,
+                    description,
+                    isCustomIcon: false,
+                    iconName: 'note_alt',
+                    value,
+                    provider: PropertyTypeSelectorSmartComponent.PROVIDER_NAME
+                };
+
+                this.hierarchy.push(customItem);
+            }
         }
     }
 
@@ -195,15 +250,17 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
         delete this.property.type;
         delete this.property.model;
         this.clearInput();
+        this.setCustomModelHierarchyItem();
         this.change.emit(this.property);
     }
 
     private updatePropertyModel($event: PropertyTypeItem) {
-        if ($event.value.$ref && $event.value.$ref.startsWith(ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH)) {
-            const parts = $event.value.$ref.split('/');
-            this.property.type = parts[parts.length - 1];
-        } else {
+        const primitiveType = this.modelingJSONSchemaService.getPrimitiveType($event.value);
+        if (Array.isArray(primitiveType)) {
+            this.property.aggregatedTypes = primitiveType;
             this.property.type = 'json';
+        } else {
+            this.property.type = primitiveType;
         }
         this.property.model = $event.value;
     }

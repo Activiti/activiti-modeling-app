@@ -136,7 +136,7 @@
                 <div>
                     <modelingsdk-json-schema-editor [(ngModel)]="value.items" [key]="'items'" [depth]="depth+1"
                         (requiredChanges)="onRequiredChanges($event)" (nameChanges)="onNameChanges($event)"
-                        (propertyDeleted)="onPropertyDeleted($event)" [blockedNode]="true"
+                        (propertyDeleted)="onPropertyDeleted($event)" (changes)="onChanges()" [blockedNode]="true"
                         [lastChild]="lastTypeNotEmpty === 'array'" [hierarchy]="hierarchy">
                     </modelingsdk-json-schema-editor>
                 </div>

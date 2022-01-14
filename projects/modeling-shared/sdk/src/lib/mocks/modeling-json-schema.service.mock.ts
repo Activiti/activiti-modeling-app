@@ -104,6 +104,14 @@ export const expectedHierarchy = [
                 }
             }
         ]
+    },
+    {
+        displayName: 'SDK.PROPERTY_TYPE_SELECTOR.CREATE_MODEL',
+        description: 'SDK.PROPERTY_TYPE_SELECTOR.CREATE_MODEL_DESCRIPTION',
+        isCustomIcon: false,
+        iconName: 'note_alt',
+        value: {},
+        provider: 'PropertyTypeSelectorSmartComponent'
     }
 ];
 
