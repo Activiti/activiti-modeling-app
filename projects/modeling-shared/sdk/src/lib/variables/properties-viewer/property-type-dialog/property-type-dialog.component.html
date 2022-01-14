@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>{{'SDK.PROPERTY_TYPE_SELECTOR.EDIT_MODEL' | translate}}</h1>
 
 <mat-dialog-content>
-    <modelingsdk-json-schema-editor [(ngModel)]="value"></modelingsdk-json-schema-editor>
+    <modelingsdk-json-schema-editor [(ngModel)]="value" [blockedNode]="true"></modelingsdk-json-schema-editor>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">

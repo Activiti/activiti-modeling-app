@@ -159,27 +159,27 @@ describe('PropertiesViewerJsonInputComponent', () => {
         });
 
         it('object', () => {
-            component.onModeledObjectChanges({ a: 'b' });
+            component.onModeledObjectChanges({ valid: true, value: { a: 'b' } });
             expect(component.change.emit).toHaveBeenCalledWith({ a: 'b' });
         });
 
         it('integer', () => {
-            component.onModeledObjectChanges(1);
+            component.onModeledObjectChanges({ valid: true, value: 1});
             expect(component.change.emit).toHaveBeenCalledWith(1);
         });
 
         it('string', () => {
-            component.onModeledObjectChanges('a');
+            component.onModeledObjectChanges({ valid: true, value: 'a'});
             expect(component.change.emit).toHaveBeenCalledWith('a');
         });
 
         it('boolean', () => {
-            component.onModeledObjectChanges(true);
+            component.onModeledObjectChanges({ valid: true, value: true});
             expect(component.change.emit).toHaveBeenCalledWith(true);
         });
 
         it('array', () => {
-            component.onModeledObjectChanges([1, 2, 3]);
+            component.onModeledObjectChanges({ valid: true, value: [1, 2, 3]});
             expect(component.change.emit).toHaveBeenCalledWith([1, 2, 3]);
         });
     });

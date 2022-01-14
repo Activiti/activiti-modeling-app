@@ -18,6 +18,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ElementVariable, JSONSchemaInfoBasics } from '../../../../../api/types';
+import { ModeledObjectChanges } from '../../modeled-object/modeled-object-input.component';
 
 export interface ArrayInputDialogPayload {
     title?: string;
@@ -57,8 +58,9 @@ export class ArrayInputDialogComponent implements OnInit {
         this.valid = valid;
     }
 
-    onValueChanges(value: any) {
-        this.value = value;
+    onValueChanges(value: ModeledObjectChanges) {
+        this.value = value.value;
+        this.valid = value.valid;
     }
 
     close() {

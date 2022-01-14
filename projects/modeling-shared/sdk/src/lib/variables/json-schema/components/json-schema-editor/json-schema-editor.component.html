@@ -19,7 +19,7 @@
                             [modelingsdk-allowed-characters]="regex" (blur)="onChangeName($event)" />
                         <span class="mat-error ama-name-error" *ngIf="enableKeyEdition && !key?.length">{{
                             'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME' | translate }}</span>
-                        <span class="mat-error ama-name-error" *ngIf="enableKeyEdition && key.length && !isValid(key)">
+                        <span class="mat-error ama-name-error" *ngIf="enableKeyEdition && key?.length && !isValid(key)">
                             <span>{{ 'SDK.JSON_SCHEMA_EDITOR.INVALID_NAME' |translate }}</span>
                             <mat-icon class="ama-variable-name-info-icon" data-automation-id="variable-name-info-icon"
                                 color="warn" [matTooltip]="'APP.DIALOGS.ERROR.GENERAL_NAME_VALIDATION' | translate">info

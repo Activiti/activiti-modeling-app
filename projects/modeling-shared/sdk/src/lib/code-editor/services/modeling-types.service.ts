@@ -21,6 +21,7 @@ import { JSONSchemaToEntityPropertyService } from '../../services/json-schema-to
 import { ModelingJSONSchemaService } from '../../services/modeling-json-schema.service';
 import { arrayModelType } from './expression-language/array.model.type';
 import { dateModelType } from './expression-language/date.model.type';
+import { enumModelType } from './expression-language/enum.model.type';
 import { eventSchema } from './expression-language/event-schema';
 import { jsonModelType } from './expression-language/json.model.type';
 import { primitiveTypesSchema } from './expression-language/primitive-types-schema';
@@ -39,6 +40,7 @@ export class ModelingTypesService {
         private jSONSchemaToEntityPropertyService: JSONSchemaToEntityPropertyService
     ) {
         this.registeredTypes = this.getPrimitiveModelingTypesFromJSONSchema();
+        this.registeredTypes['enum'] = { ...enumModelType, id: 'enum' };
     }
 
     getRegisteredType(type: string): ModelingType {

@@ -123,7 +123,7 @@ describe('PropertiesViewerModeledObjectInputComponent', () => {
             fixture.detectChanges();
             await fixture.whenStable();
 
-            expect(component.valueChanges.emit).toHaveBeenCalledWith({ name: 'two' });
+            expect(component.valueChanges.emit).toHaveBeenCalledWith({ valid: true, value: { name: 'two' } });
         });
 
         it('should emit null value when is invalid', async () => {
@@ -134,7 +134,7 @@ describe('PropertiesViewerModeledObjectInputComponent', () => {
             fixture.detectChanges();
             await fixture.whenStable();
 
-            expect(component.valueChanges.emit).toHaveBeenCalledWith(null);
+            expect(component.valueChanges.emit).toHaveBeenCalledWith({ valid: false, value: null });
         });
 
         it('should emit invalid when form is invalid', async () => {
@@ -188,7 +188,7 @@ describe('PropertiesViewerModeledObjectInputComponent', () => {
             component.primitiveTypeChanges(['1', '2', '3', 'test']);
 
             expect(component.value).toEqual(['1', '2', '3', 'test']);
-            expect(component.valueChanges.emit).toHaveBeenCalledWith(['1', '2', '3', 'test']);
+            expect(component.valueChanges.emit).toHaveBeenCalledWith({ valid: true, value: ['1', '2', '3', 'test'] });
         });
     });
 
@@ -217,7 +217,7 @@ describe('PropertiesViewerModeledObjectInputComponent', () => {
             component.primitiveTypeChanges('test');
 
             expect(component.value).toEqual('test');
-            expect(component.valueChanges.emit).toHaveBeenCalledWith('test');
+            expect(component.valueChanges.emit).toHaveBeenCalledWith({ valid: true, value: 'test' });
         });
     });
 });

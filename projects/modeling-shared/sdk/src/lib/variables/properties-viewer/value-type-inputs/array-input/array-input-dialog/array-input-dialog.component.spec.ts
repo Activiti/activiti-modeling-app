@@ -111,7 +111,7 @@ describe('ArrayInputDialogComponent', () => {
         });
 
         it('should update the value when changes', () => {
-            component.onValueChanges({ name: 'two' });
+            component.onValueChanges({ value: { name: 'two' }, valid: true });
             expect(component.value).toEqual({ name: 'two' });
         });
 
@@ -142,7 +142,7 @@ describe('ArrayInputDialogComponent', () => {
         });
 
         it('should update the value when changes', () => {
-            component.onValueChanges({ name: 'two' });
+            component.onValueChanges({ value: { name: 'two' }, valid: true });
             expect(component.value).toEqual({ name: 'two' });
         });
 

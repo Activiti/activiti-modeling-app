@@ -70,7 +70,7 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
     hierarchy: PropertyTypeItem[];
     private initialHierarchy: PropertyTypeItem[];
 
-    private readonly modeledPrimitiveTypes = ['json', 'array'];
+    private readonly modeledPrimitiveTypes = ['json', 'array', 'enum'];
 
     private onDestroy$: Subject<boolean> = new Subject<boolean>();
 

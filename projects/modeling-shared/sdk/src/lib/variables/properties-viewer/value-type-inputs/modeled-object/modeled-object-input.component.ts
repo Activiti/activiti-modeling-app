@@ -21,6 +21,11 @@ import { Subscription } from 'rxjs';
 import { ElementVariable, EntityProperty, JSONSchemaInfoBasics } from '../../../../api/types';
 import { JSONSchemaToEntityPropertyService } from '../../../../services/json-schema-to-entity-property.service';
 
+export interface ModeledObjectChanges {
+    valid: boolean;
+    value: any;
+}
+
 @Component({
     selector: 'modelingsdk-modeled-object-input',
     templateUrl: './modeled-object-input.component.html',
@@ -30,7 +35,7 @@ import { JSONSchemaToEntityPropertyService } from '../../../../services/json-sch
 export class PropertiesViewerModeledObjectInputComponent implements OnChanges {
 
     // tslint:disable-next-line
-    @Output() valueChanges: EventEmitter<any> = new EventEmitter();
+    @Output() valueChanges: EventEmitter<ModeledObjectChanges> = new EventEmitter();
     @Output() valid: EventEmitter<boolean> = new EventEmitter();
     @Input() value: any;
     @Input() disabled: boolean;
@@ -79,7 +84,7 @@ export class PropertiesViewerModeledObjectInputComponent implements OnChanges {
 
     primitiveTypeChanges(value: any) {
         this.value = value;
-        this.valueChanges.emit(this.value);
+        this.valueChanges.emit({ value: this.value, valid: this.objectForm ? this.objectForm.valid : true });
     }
 
     private objectEquals(obj1: any, obj2: any): boolean {
@@ -126,10 +131,10 @@ export class PropertiesViewerModeledObjectInputComponent implements OnChanges {
         this.subscription = this.objectForm.valueChanges.subscribe(() => {
             if (this.objectForm.valid) {
                 this.value = this.objectForm.value;
-                this.oldValue = this.value;
-                this.valueChanges.emit(this.value);
+                this.oldValue = this.deepCopy(this.value);
+                this.valueChanges.emit({ value: this.value, valid: this.objectForm.valid });
             } else {
-                this.valueChanges.emit(null);
+                this.valueChanges.emit({ value: null, valid: this.objectForm.valid });
             }
             this.valid.emit(this.objectForm.valid);
         });

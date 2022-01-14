@@ -17,6 +17,7 @@
 
 import { Component, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 import { EntityProperty, JSONSchemaInfoBasics } from '../../../../api/types';
+import { ModeledObjectChanges } from '../modeled-object/modeled-object-input.component';
 
 @Component({
     templateUrl: './json-input.component.html'
@@ -36,8 +37,9 @@ export class PropertiesViewerJsonInputComponent implements OnChanges {
 
     stringValue = '';
 
-    onModeledObjectChanges(value: any) {
-        this.value = value;
+    onModeledObjectChanges(value: ModeledObjectChanges) {
+        this.value = value.value;
+        this.valid = value.valid;
         this.emitValue();
     }
 
