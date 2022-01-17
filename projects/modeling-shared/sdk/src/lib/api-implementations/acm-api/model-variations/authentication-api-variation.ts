@@ -22,6 +22,7 @@ import { ModelApiVariation } from '../model-api';
 import { ModelContentSerializer } from '../model-content-serializer';
 import { extractDataFromContent } from './model-data-extractors/extract-data-from-content';
 import { ModelDataExtractor } from '../model-data-extractor';
+import { formatUuid } from '../../../helpers/utils/create-entries-names';
 
 @Injectable()
 export class AuthenticationApiVariation<M extends Authentication, C extends AuthenticationContent> implements ModelApiVariation<M, C> {
@@ -46,6 +47,7 @@ export class AuthenticationApiVariation<M extends Authentication, C extends Auth
 
     public createInitialContent(model: M): C {
         return <C>{
+            id: formatUuid(this.contentType, model.id),
             name: model.name,
             description: model.description
         };

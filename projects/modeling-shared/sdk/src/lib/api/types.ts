@@ -612,12 +612,12 @@ export interface BasicAuthenticationProperties {
     password: string;
 }
 
-export interface TokenAuthenticationProperties {
+export interface BearerAuthenticationProperties {
     authenticationType: 'bearer';
     token: string;
 }
 
-export interface OauthAuthenticationProperties {
+export interface ClientCredentialsAuthenticationProperties {
     authenticationType: 'client_credentials';
     clientId: string;
     clientSecret: string;
@@ -628,7 +628,7 @@ export interface OauthAuthenticationProperties {
 export interface AuthenticationContent {
     id: string;
     name: string;
-    authProperties: BasicAuthenticationProperties | TokenAuthenticationProperties | OauthAuthenticationProperties;
+    authProperties: BasicAuthenticationProperties | BearerAuthenticationProperties | ClientCredentialsAuthenticationProperties;
     description?: string;
 }
 
