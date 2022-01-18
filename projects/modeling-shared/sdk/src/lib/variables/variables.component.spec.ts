@@ -43,8 +43,8 @@ describe('VariablesComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             providers: [
-                { provide: CodeValidatorService, useValue: {validator: jest.fn()}},
-                { provide: Store, useValue: { dispatch: jest.fn(), select: jest.fn().mockReturnValue(of())}},
+                { provide: CodeValidatorService, useValue: { validator: jest.fn() } },
+                { provide: Store, useValue: { dispatch: jest.fn(), select: jest.fn().mockReturnValue(of()) } },
                 { provide: MatDialogRef, useValue: mockDialog },
                 { provide: MAT_DIALOG_DATA, useValue: mockData },
                 { provide: INPUT_TYPE_ITEM_HANDLER, useValue: [] }
@@ -63,7 +63,7 @@ describe('VariablesComponent', () => {
 
     it('should have save button', () => {
         const button = fixture.nativeElement.querySelector('.save-btn');
-        expect (button === null).toBeFalsy();
+        expect(button === null).toBeFalsy();
         expect(button.innerHTML.trim()).toEqual('APP.DIALOGS.UPDATE');
     });
 
@@ -81,7 +81,7 @@ describe('VariablesComponent', () => {
         };
 
         const result = {
-            '123' : {
+            '123': {
                 'id': '123',
                 'name': 'test',
                 'type': 'string',
@@ -110,7 +110,7 @@ describe('VariablesComponent', () => {
         };
 
         const expectedResult = {
-            '123' : {
+            '123': {
                 'id': '123',
                 'name': 'test',
                 'type': 'json',
@@ -156,5 +156,26 @@ describe('VariablesComponent', () => {
         fixture.detectChanges();
         const errorMessageLabel = fixture.nativeElement.querySelector('.error-message');
         expect(errorMessageLabel).toBeDefined();
+    });
+
+    it('should save trimmed string value when string is used in json input', () => {
+        const expectedResult = {
+            sample: {
+                id: 'e37adb5e-1f8e-4d41-b7d3-36d1ce5c1480',
+                name: 'aVariable',
+                type: 'json',
+                required: false,
+                model: {
+                    $ref: '#/$defs/content-models/aiContentModel/labels'
+                },
+                value: '${12 === 11}'
+            }
+        };
+        spyOn(component.data.propertiesUpdate$, 'next');
+        component.editorContent = JSON.stringify({ sample: { ...expectedResult.sample, value: '    ${12 === 11}    ' } });
+
+        component.save();
+
+        expect(component.data.propertiesUpdate$.next).toHaveBeenCalledWith(expectedResult);
     });
 });

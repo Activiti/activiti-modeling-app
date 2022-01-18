@@ -100,7 +100,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
     onPropertyChanged() {
         try {
             const data = JSON.parse(this.editorContent);
-            this.validVariables = this.validateDuplicateVariable(<EntityProperties> data);
+            this.validVariables = this.validateDuplicateVariable(<EntityProperties>data);
         } catch (e) {
             // tslint:disable-next-line:no-console
             console.log('Error cannot parse JSON', e);
@@ -130,7 +130,13 @@ export class VariablesComponent implements OnInit, OnDestroy {
                 if (data[key].type === 'json' && !data[key].value) {
                     data[key].value = {};
                 } else if (this.canValueBeParsedToObject(data[key])) {
-                    data[key].value = JSON.parse(data[key].value);
+                    try {
+                        data[key].value = JSON.parse(data[key].value);
+                    } catch (e) {
+                        if (typeof data[key].value === 'string') {
+                            data[key].value = data[key].value.trim();
+                        }
+                    }
                 }
             }
         }
@@ -139,7 +145,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
     private canValueBeParsedToObject(data): boolean {
         return (data.type === 'json' || data.type === 'folder') &&
             data.value &&
-            typeof(data.value) !== 'object';
+            typeof (data.value) !== 'object';
     }
 
     onClose() {
