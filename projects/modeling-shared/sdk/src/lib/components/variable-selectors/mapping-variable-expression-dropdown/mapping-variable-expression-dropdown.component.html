@@ -47,12 +47,12 @@
                     <button mat-icon-button (click)="openExpressionEditor()" *ngIf="mode === 'variables'"
                         class="modelingsdk-mapping-variable-expression-dropdown-panel-title-button expression"
                         matTooltip="{{'SDK.VARIABLE_EXPRESSION.TITLE.OPEN_EXPRESSION_EDITOR'| translate}}">
-                        <mat-icon>attach_money</mat-icon>
+                        <mat-icon>code</mat-icon>
                     </button>
                     <button mat-icon-button (click)="switchToVariables()" *ngIf="mode === 'expression'"
                         class="modelingsdk-mapping-variable-expression-dropdown-panel-title-button switch"
                         matTooltip="{{ switchToVariablesSelectorTitle | translate}}">
-                        <mat-icon>money_off</mat-icon>
+                        <mat-icon>code_off</mat-icon>
                     </button>
                 </div>
             </h3>
