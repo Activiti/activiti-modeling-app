@@ -4,7 +4,7 @@
             [ngClass]="disabled ? 'disabled' : 'ama-enabled'" *ngIf="displayValue(); else noProcessPropertiesTmpl">
             <mat-form-field *ngIf="!plain">
                 <input matInput placeholder="{{placeholder}}" readonly autocomplete="off"
-                    [value]="displayedValue | variablevalue" [disabled]="disabled"
+                    [value]="displayedValue | variablevalue : null : mode === 'expression'" [disabled]="disabled"
                     [ngClass]="{'modelingsdk-mapping-variable-expression-dropdown-input-expression': mode === 'expression'}">
                 <button mat-button matSuffix mat-icon-button (click)="openPanel()" *ngIf="!disabled">
                     <mat-icon>arrow_drop_down</mat-icon>
@@ -12,7 +12,7 @@
             </mat-form-field>
             <div class="modelingsdk-mapping-variable-expression-dropdown-input-plain" *ngIf="plain">
                 <input matInput placeholder="{{placeholder}}" readonly autocomplete="off"
-                    [value]="displayedValue | variablevalue" [disabled]="disabled"
+                    [value]="displayedValue | variablevalue : null : mode === 'expression'" [disabled]="disabled"
                     [ngClass]="{'modelingsdk-mapping-variable-expression-dropdown-input-expression': mode === 'expression'}">
                 <div class="mat-select-arrow-wrapper">
                     <div class="mat-select-arrow"></div>

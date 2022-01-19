@@ -20,7 +20,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({ name: 'variablevalue' })
 /* cSpell:enable */
 export class VariableValuePipe implements PipeTransform {
-    transform(value: any, limit?: number): string {
+    transform(value: any, limit?: number, isExpression?: boolean): string {
         if (value === undefined || value === null) {
             return null;
         } else if (typeof value === 'object' && value.uri !== undefined) {
@@ -28,7 +28,7 @@ export class VariableValuePipe implements PipeTransform {
         } else if (typeof value === 'object' && value.uri === undefined) {
             return this.getEllipsisText(JSON.stringify(value), limit);
         } else {
-            return this.getEllipsisText(String(value), limit);
+            return this.getEllipsisText(this.getString(value, isExpression), limit);
         }
     }
 
@@ -44,5 +44,15 @@ export class VariableValuePipe implements PipeTransform {
             }
         }
         return result;
+    }
+
+    private getString(value: any, isExpression: boolean): string {
+        let result = String(value) || '';
+
+        if (isExpression && result.startsWith('"') && result.endsWith('"') && result.length > 2) {
+            result = result.substring(1, result.length - 1);
+        }
+
+        return result.trim();
     }
 }

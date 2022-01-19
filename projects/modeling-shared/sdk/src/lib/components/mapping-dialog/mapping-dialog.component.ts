@@ -186,7 +186,7 @@ export class MappingDialogComponent implements OnInit {
             case 1:
                 this.dataSource[this.selectedRow].mappingValueType = MappingValueType.value;
                 if (this.variableValue && this.service.getPrimitiveType(this.dataSource[this.selectedRow].type) === 'json' && this.valueValue) {
-                    this.service.setDataSourceValue(this.dataSource, this.selectedRow, JSON.parse(this.valueValue));
+                    this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.parseObjectOrString(this.valueValue));
                 } else {
                     this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.valueValue);
                 }
@@ -194,7 +194,7 @@ export class MappingDialogComponent implements OnInit {
             case 2:
                 this.dataSource[this.selectedRow].mappingValueType = MappingValueType.expression;
                 if (this.expressionValue && this.service.getPrimitiveType(this.dataSource[this.selectedRow].type) === 'json' && this.expressionValue) {
-                    this.service.setDataSourceValue(this.dataSource, this.selectedRow, JSON.parse(this.expressionValue));
+                    this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.parseObjectOrString(this.expressionValue));
                 } else {
                     this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.expressionValue);
                 }
@@ -265,7 +265,7 @@ export class MappingDialogComponent implements OnInit {
         this.dataSource[i].mappingValueType = MappingValueType.value;
         let value = $event;
         if (typeof $event === 'string' && this.service.getPrimitiveType(this.dataSource[i].type) === 'json') {
-            value = JSON.parse($event);
+            value = this.parseObjectOrString($event);
             this.expressionValue = $event;
         } else if (this.service.getPrimitiveType(this.dataSource[i].type) === 'json') {
             this.expressionValue = JSON.stringify($event);
@@ -277,7 +277,7 @@ export class MappingDialogComponent implements OnInit {
         this.dataSource[i].mappingValueType = MappingValueType.expression;
         this.expressionValue = $event?.trim().length > 0 ? $event.trim() : null;
         if (this.service.getPrimitiveType(this.dataSource[i].type) === 'json') {
-            this.valueValue = JSON.parse(this.expressionValue);
+            this.valueValue = this.parseObjectOrString(this.expressionValue);
             this.service.setDataSourceValue(this.dataSource, i, this.valueValue);
         } else {
             this.service.setDataSourceValue(this.dataSource, i, this.expressionValue);
@@ -366,6 +366,14 @@ export class MappingDialogComponent implements OnInit {
         if (this.extensionObject && this.extensionObject.editDialogKeyHeader && this.extensionObject.editDialogValueHeader) {
             this.keyColumnHeader = this.extensionObject.editDialogKeyHeader;
             this.valueColumnHeader = this.extensionObject.editDialogValueHeader;
+        }
+    }
+
+    private parseObjectOrString(value: string): any {
+        try {
+            return JSON.parse(value);
+        } catch (error) {
+            return value;
         }
     }
 }

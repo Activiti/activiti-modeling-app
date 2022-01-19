@@ -103,7 +103,7 @@ export abstract class MappingDialogService {
             case MappingValueType.value:
                 valueValue = value;
                 if (this.getPrimitiveType(dataSource[i].type) === 'json') {
-                    expressionValue = JSON.stringify(value, null, 4);
+                    expressionValue = typeof value === 'string' ? value : JSON.stringify(value, null, 4);
                 }
                 break;
             case MappingValueType.expression:
