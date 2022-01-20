@@ -33,7 +33,7 @@ export class UiApiVariation<M extends Ui, C extends UiContent> implements ModelA
         private serializer: ModelContentSerializer<UiContent>,
         private dataExtractor: ModelDataExtractor<UiContent, Ui>
     ) {
-        serializer.register({ type: this.contentType, serialize: JSON.stringify, deserialize: JSON.parse });
+        serializer.register({ type: this.contentType, serialize: (content: UiContent) => JSON.stringify(content, null, 4), deserialize: JSON.parse });
         this.dataExtractor.register({ type: UI, get: extractDataFromContent });
     }
 
