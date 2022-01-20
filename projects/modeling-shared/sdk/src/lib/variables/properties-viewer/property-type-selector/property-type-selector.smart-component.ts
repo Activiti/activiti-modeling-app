@@ -51,6 +51,7 @@ import { PropertyTypeItem } from '../property-type-item/models';
 export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor, OnChanges, OnDestroy {
 
     public static readonly PROVIDER_NAME = 'PropertyTypeSelectorSmartComponent';
+    private static readonly PRIMITIVE_REFERENCE_PREFIX = ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH + '/';
 
     @Output() change = new EventEmitter();
     @Input() property: EntityProperty;
@@ -166,7 +167,7 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
     }
 
     private setCustomModelHierarchyItem() {
-        if (!this.staticHierarchy) {
+        if (!this.staticHierarchy && !!this.hierarchy) {
             let displayName = this.translationService.instant('SDK.PROPERTY_TYPE_SELECTOR.CREATE_MODEL');
             let description = this.translationService.instant('SDK.PROPERTY_TYPE_SELECTOR.CREATE_MODEL_DESCRIPTION');
             let value: JSONSchemaInfoBasics = {};
@@ -218,12 +219,17 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
         const primitive = this.modeledPrimitiveTypes.find(type => property.type === type);
         if (primitive) {
             try {
-                return JSON.stringify(property.model) === JSON.stringify(value);
+                if (property.model) {
+                    return JSON.stringify(property.model) === JSON.stringify(value);
+                } else {
+                    const valuePrimitiveType = value.$ref.substring(PropertyTypeSelectorSmartComponent.PRIMITIVE_REFERENCE_PREFIX.length);
+                    return property.type === valuePrimitiveType;
+                }
             } catch (error) {
                 return false;
             }
         } else {
-            return value.$ref === ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH + '/' + property.type;
+            return value.$ref === PropertyTypeSelectorSmartComponent.PRIMITIVE_REFERENCE_PREFIX + property.type;
         }
     }
 

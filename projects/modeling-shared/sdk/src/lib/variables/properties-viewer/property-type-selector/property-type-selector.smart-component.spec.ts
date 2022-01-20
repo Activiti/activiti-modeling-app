@@ -69,6 +69,7 @@ describe('PropertyTypeSelectorSmartComponent', () => {
                 provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
                 provideInputTypeItemHandler('integer', PropertiesViewerIntegerInputComponent),
                 provideInputTypeItemHandler('boolean', PropertiesViewerBooleanInputComponent),
+                provideInputTypeItemHandler('json', PropertiesViewerJsonInputComponent),
                 provideInputTypeItemHandler('employee', PropertiesViewerJsonInputComponent, 'json', exampleJSONSchema),
                 provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
             ]
@@ -81,7 +82,7 @@ describe('PropertyTypeSelectorSmartComponent', () => {
         component = fixture.componentInstance;
         element = fixture.debugElement.nativeElement;
 
-        component.property = property;
+        component.property = { ...property };
         component.ngOnChanges({ property: { currentValue: property, previousValue: null, firstChange: false, isFirstChange: () => false } });
         fixture.detectChanges();
     });
@@ -261,5 +262,17 @@ describe('PropertyTypeSelectorSmartComponent', () => {
         });
 
         expect(component.hierarchy).toEqual(hierarchWithAddCustomModel);
+    });
+
+    it('should set the correct selected type when property is primitive but does not have model', () => {
+        const myProperty = { ...property, type: 'json', model: undefined };
+        component.property = myProperty;
+
+        component.ngOnChanges({ property: { currentValue: myProperty, previousValue: property, firstChange: false, isFirstChange: () => false } });
+        fixture.detectChanges();
+
+        expect(component.displayedValue).toEqual('json');
+        expect(component.displayedIcon).toEqual('assignment_turned_in');
+        expect(component.displayedCustomIcon).toEqual(false);
     });
 });

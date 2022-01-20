@@ -94,6 +94,16 @@ export const expectedHierarchy = [
                 }
             },
             {
+                displayName: 'json',
+                iconName: 'assignment_turned_in',
+                isCustomIcon: false,
+                provider: 'registered-inputs',
+                typeId: ['json'],
+                value: {
+                    $ref: '#/$defs/primitive/json'
+                }
+            },
+            {
                 displayName: 'string',
                 iconName: 'assignment_turned_in',
                 isCustomIcon: false,
