@@ -20,6 +20,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, 
 import { Subject } from 'rxjs';
 import { ElementVariable, MappingType, ProcessEditorElementVariable } from '../../../api/types';
 import { ExpressionCodeEditorDialogComponent } from '../../../code-editor/components/expression-code-editor-dialog/expression-code-editor-dialog.component';
+import { ModelingJSONSchemaService } from '../../../services/modeling-json-schema.service';
 import { VariableExpressionLanguagePipe } from '../../../variables/properties-viewer/variable-expression-language.pipe';
 
 @Component({
@@ -39,7 +40,7 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
     };
 
     @Input()
-    typeFilter: string;
+    typeFilter: string[];
 
     @Input()
     placeholder: string;
@@ -107,7 +108,12 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
 
     private readonly EXPRESSION_REGEX = /\${([^]*)}/gm;
 
-    constructor(private cdr: ChangeDetectorRef, private dialogService: DialogService, private expressionLanguagePipe: VariableExpressionLanguagePipe) { }
+    constructor(
+        private cdr: ChangeDetectorRef,
+        private dialogService: DialogService,
+        private expressionLanguagePipe: VariableExpressionLanguagePipe,
+        private modelingJSONSchemaService: ModelingJSONSchemaService
+    ) { }
 
     ngOnInit(): void {
         this.init();
@@ -159,7 +165,7 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
             }
         }
         if (this.typeFilter) {
-            this.availableVariables = this.vars.filter(variable => variable.type === this.typeFilter).length > 0;
+            this.availableVariables = this.vars.filter(variable => this.modelingJSONSchemaService.variableMatchesTypeFilter(variable, this.typeFilter)).length > 0;
         } else {
             this.availableVariables = this.vars.length > 0;
         }

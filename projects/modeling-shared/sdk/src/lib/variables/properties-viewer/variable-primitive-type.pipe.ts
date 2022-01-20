@@ -16,22 +16,18 @@
  */
 import { Pipe, PipeTransform } from '@angular/core';
 import { EntityProperty } from '../../api/types';
-import { VariablesService } from '../variables.service';
+import { ModelingJSONSchemaService } from '../../services/modeling-json-schema.service';
 
 @Pipe({ name: 'variablePrimitiveType' })
 export class VariablePrimitiveTypePipe implements PipeTransform {
 
-    constructor(private variablesService: VariablesService) { }
+    constructor(private modelingJSONSchemaService: ModelingJSONSchemaService) { }
 
-    transform(variable: string | EntityProperty): string {
-        if (!variable) {
-            return '';
-        }
-
+    transform(variable: string | EntityProperty): string[] {
         if (typeof variable === 'string') {
-            return this.variablesService.getPrimitiveType(variable);
+            return [this.modelingJSONSchemaService.getMappingPrimitiveTypeForString(variable)].filter(type => !!type);
+        } else {
+            return this.modelingJSONSchemaService.getMappingPrimitiveTypeForEntityProperty(variable);
         }
-
-        return this.variablesService.getVariablePrimitiveType(variable);
     }
 }

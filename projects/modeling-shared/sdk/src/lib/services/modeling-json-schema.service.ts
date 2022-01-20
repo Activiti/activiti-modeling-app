@@ -18,12 +18,13 @@
 import { Inject, Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { JSONSchemaInfoBasics, JSONSchemaPropertyBasics } from '../api/types';
+import { EntityProperty, JSONSchemaInfoBasics, JSONSchemaPropertyBasics } from '../api/types';
 import { getFileUriPattern } from '../code-editor/helpers/file-uri';
 import { CodeEditorService } from '../code-editor/services/code-editor-service.service';
 import { primitiveTypesSchema } from '../code-editor/services/expression-language/primitive-types-schema';
 import { primitive_types } from '../helpers/primitive-types';
 import { PropertyTypeItem } from '../variables/properties-viewer/property-type-item/models';
+import { InputTypeItem, INPUT_TYPE_ITEM_HANDLER } from '../variables/properties-viewer/value-type-inputs/value-type-inputs';
 import { ModelingJsonSchemaProvider, MODELING_JSON_SCHEMA_PROVIDERS } from './modeling-json-schema-provider.service';
 
 @Injectable({
@@ -39,7 +40,8 @@ export class ModelingJSONSchemaService {
 
     constructor(
         private codeEditorService: CodeEditorService,
-        @Inject(MODELING_JSON_SCHEMA_PROVIDERS) private providers: ModelingJsonSchemaProvider<any>[]
+        @Inject(MODELING_JSON_SCHEMA_PROVIDERS) private providers: ModelingJsonSchemaProvider<any>[],
+        @Inject(INPUT_TYPE_ITEM_HANDLER) private inputTypeItemHandler: InputTypeItem[]
     ) {
         this.providers.filter(provider => !provider.isGlobalProvider()).forEach(provider => {
             provider.modelingJsonSchemasUpdated$.subscribe(modelingJsonSchemas => {
@@ -224,6 +226,36 @@ export class ModelingJSONSchemaService {
             primitiveType = 'array';
         }
         return primitiveType || 'json';
+    }
+
+    getMappingPrimitiveTypeForString(type: string): string {
+        if (!type) {
+            return type;
+        }
+
+        for (const handler of this.inputTypeItemHandler) {
+            if (handler.type === type) {
+                return handler.primitiveType;
+            }
+        }
+        return primitive_types.find(primitive => primitive === type) || 'json';
+    }
+
+    getMappingPrimitiveTypeForEntityProperty(property: EntityProperty): string[] {
+        let primitiveTypes: string[] = [];
+        if (property?.model) {
+            const primitiveType = this.getPrimitiveType(property.model);
+            primitiveTypes = typeof primitiveType === 'string' ? [primitiveType] : primitiveType;
+        } else {
+            primitiveTypes.push(property?.type);
+        }
+
+        return primitiveTypes.filter(type => !!type).map(type => this.getMappingPrimitiveTypeForString(type));
+    }
+
+    variableMatchesTypeFilter(variable: EntityProperty, typeFilter: string[]): boolean {
+        const variablePrimitiveMappingTypes = this.getMappingPrimitiveTypeForEntityProperty(variable);
+        return variablePrimitiveMappingTypes.some(type => typeFilter.indexOf(type) >= 0);
     }
 
     private registerGlobalTypeModel(typeId: string[], schema: JSONSchemaInfoBasics) {

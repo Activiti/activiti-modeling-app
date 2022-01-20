@@ -26,6 +26,8 @@ import { VariableSelectorComponent } from '../variable-selector/variable-selecto
 import { VariableSelectorDropdownComponent } from './variable-selector-dropdown.component';
 import { expectedVariables } from '../../../mocks/process-editor.mock';
 import { ElementVariable } from '../../../api/types';
+import { MODELING_JSON_SCHEMA_PROVIDERS } from '../../../services/modeling-json-schema-provider.service';
+import { INPUT_TYPE_ITEM_HANDLER } from '../../../variables/properties-viewer/value-type-inputs/value-type-inputs';
 
 describe('VariableSelectorDropdownComponent', () => {
 
@@ -36,7 +38,9 @@ describe('VariableSelectorDropdownComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             providers: [
-                { provide: TranslationService, useClass: TranslationMock }
+                { provide: TranslationService, useClass: TranslationMock },
+                { provide: MODELING_JSON_SCHEMA_PROVIDERS, useValue: [] },
+                { provide: INPUT_TYPE_ITEM_HANDLER, useValue: [] }
             ],
             imports: [
                 CommonModule,

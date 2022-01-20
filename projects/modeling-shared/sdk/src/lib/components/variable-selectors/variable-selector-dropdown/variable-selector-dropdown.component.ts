@@ -17,6 +17,7 @@
 
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { ElementVariable, ProcessEditorElementVariable } from '../../../api/types';
+import { ModelingJSONSchemaService } from '../../../services/modeling-json-schema.service';
 
 @Component({
     selector: 'modelingsdk-variable-selector-dropdown',
@@ -32,7 +33,7 @@ export class VariableSelectorDropdownComponent implements OnInit, AfterViewInit,
     varIdSelected: string;
 
     @Input()
-    typeFilter: string;
+    typeFilter: string[];
 
     @Input()
     placeholder: string;
@@ -80,7 +81,10 @@ export class VariableSelectorDropdownComponent implements OnInit, AfterViewInit,
     variablesPanelDisplay = false;
     availableVariables = true;
 
-    constructor(private cdr: ChangeDetectorRef) { }
+    constructor(
+        private cdr: ChangeDetectorRef,
+        private modelingJSONSchemaService: ModelingJSONSchemaService
+    ) { }
 
     ngOnInit(): void {
         this.init();
@@ -100,7 +104,7 @@ export class VariableSelectorDropdownComponent implements OnInit, AfterViewInit,
         }
 
         if (this.typeFilter) {
-            this.availableVariables = vars.filter(variable => variable.type === this.typeFilter).length > 0;
+            this.availableVariables = vars.filter(variable => this.modelingJSONSchemaService.variableMatchesTypeFilter(variable, this.typeFilter)).length > 0;
         } else {
             this.availableVariables = vars.length > 0;
         }

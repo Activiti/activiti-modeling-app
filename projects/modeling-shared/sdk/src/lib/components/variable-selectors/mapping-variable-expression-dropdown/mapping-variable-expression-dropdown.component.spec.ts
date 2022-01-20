@@ -399,7 +399,7 @@ describe('MappingVariableExpressionDropdownComponent', () => {
 
         it('should emit mapping with json value when editor changes', () => {
             spyOn(component.mappingChanged, 'emit');
-            component.typeFilter = 'json';
+            component.typeFilter = ['json'];
             component.ngOnInit();
 
             component.onExpressionChanges('{"a": "b","c": 1,"d": "${true}"}');

@@ -29,6 +29,7 @@ import { PropertiesViewerJsonInputComponent } from '../variables/properties-view
 import { take } from 'rxjs/operators';
 import { expectedItems } from '../mocks/modeling-json-schema.service.mock';
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
+import { EntityProperty } from '../api/types';
 
 describe('ModelingJSONSchemaService', () => {
     let service: ModelingJSONSchemaService;
@@ -119,9 +120,80 @@ describe('ModelingJSONSchemaService', () => {
         expect(schema).toEqual({ type: 'string' });
     });
 
-    it('should get property items form registered providers', async() => {
+    it('should get property items form registered providers', async () => {
         const items = await service.getPropertyTypeItems().pipe(take(1)).toPromise();
 
         expect(items).toEqual(expectedItems);
+    });
+
+    it('should get the primitive type used in mapping from a type represented as string', () => {
+        expect(service.getMappingPrimitiveTypeForString('string')).toEqual('string');
+        expect(service.getMappingPrimitiveTypeForString('integer')).toEqual('integer');
+        expect(service.getMappingPrimitiveTypeForString('boolean')).toEqual('boolean');
+        expect(service.getMappingPrimitiveTypeForString('employee')).toEqual('json');
+        expect(service.getMappingPrimitiveTypeForString('non-existing')).toEqual('json');
+    });
+
+    describe('should get the primitive type used in mapping from an entity property', () => {
+        it('the entity property does not have a model', () => {
+            const property: EntityProperty = {
+                id: 'test',
+                name: 'test',
+                type: 'string'
+            };
+
+            expect(service.getMappingPrimitiveTypeForEntityProperty({ ...property, type: 'string' })).toEqual(['string']);
+            expect(service.getMappingPrimitiveTypeForEntityProperty({ ...property, type: 'integer' })).toEqual(['integer']);
+            expect(service.getMappingPrimitiveTypeForEntityProperty({ ...property, type: 'boolean' })).toEqual(['boolean']);
+            expect(service.getMappingPrimitiveTypeForEntityProperty({ ...property, type: 'employee' })).toEqual(['json']);
+            expect(service.getMappingPrimitiveTypeForEntityProperty({ ...property, type: 'non-existing' })).toEqual(['json']);
+        });
+
+        it('the entity property has one type in the model', () => {
+            const property: EntityProperty = {
+                id: 'test',
+                name: 'test',
+                type: undefined,
+                model: {
+                    $ref: '#/$defs/primitive/string'
+                }
+            };
+
+            expect(service.getMappingPrimitiveTypeForEntityProperty({ ...property })).toEqual(['string']);
+            expect(service.getMappingPrimitiveTypeForEntityProperty({ ...property, model: { $ref: '#/$defs/primitive/integer' } })).toEqual(['integer']);
+            expect(service.getMappingPrimitiveTypeForEntityProperty({ ...property, model: { $ref: '#/$defs/primitive/boolean' } })).toEqual(['boolean']);
+            expect(service.getMappingPrimitiveTypeForEntityProperty({ ...property, model: { $ref: '#/$defs/primitive/employee' } })).toEqual(['json']);
+            expect(service.getMappingPrimitiveTypeForEntityProperty({ ...property, model: { $ref: '#/$defs/primitive/non-existing' } })).toEqual(['json']);
+        });
+
+        it('the entity property has two types in the model', () => {
+            const property: EntityProperty = {
+                id: 'test',
+                name: 'test',
+                type: undefined,
+                model: {
+                    type: ['string', 'boolean']
+                }
+            };
+
+            expect(service.getMappingPrimitiveTypeForEntityProperty({ ...property })).toEqual(['string', 'boolean']);
+        });
+    });
+
+    it('should return if a variable matches the filter types', () => {
+        const property: EntityProperty = {
+            id: 'test',
+            name: 'test',
+            type: undefined,
+            model: {
+                type: ['string', 'boolean']
+            }
+        };
+
+        expect(service.variableMatchesTypeFilter(property, ['string'])).toBeTruthy();
+        expect(service.variableMatchesTypeFilter(property, ['boolean'])).toBeTruthy();
+        expect(service.variableMatchesTypeFilter(property, ['string', 'boolean'])).toBeTruthy();
+        expect(service.variableMatchesTypeFilter(property, ['integer', 'json'])).toBeFalsy();
+        expect(service.variableMatchesTypeFilter(property, [])).toBeFalsy();
     });
 });

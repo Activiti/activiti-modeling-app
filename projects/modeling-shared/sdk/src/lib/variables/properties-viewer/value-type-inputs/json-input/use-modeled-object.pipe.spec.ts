@@ -24,7 +24,7 @@ describe('UseModeledObjectPipe', () => {
     let modelingJSONSchemaService: ModelingJSONSchemaService;
 
     beforeEach(() => {
-        modelingJSONSchemaService = new ModelingJSONSchemaService(new CodeEditorService(), []);
+        modelingJSONSchemaService = new ModelingJSONSchemaService(new CodeEditorService(), [], []);
         pipe = new UseModeledObjectPipe(modelingJSONSchemaService);
     });
 

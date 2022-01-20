@@ -16,25 +16,23 @@
  */
 import { Pipe, PipeTransform } from '@angular/core';
 import { EntityProperty } from '../../api/types';
-import { VariablesService } from '../variables.service';
+import { ModelingJSONSchemaService } from '../../services/modeling-json-schema.service';
 
 @Pipe({ name: 'variableExpressionLanguage' })
 export class VariableExpressionLanguagePipe implements PipeTransform {
 
-    constructor(private variablesService: VariablesService) { }
+    constructor(private modelingJSONSchemaService: ModelingJSONSchemaService) { }
 
-    transform(variable: string | EntityProperty): string | null {
-        if (!variable) {
-            return null;
-        }
-
-        let primitiveType = variable;
-        if (typeof variable === 'string') {
-            primitiveType = this.variablesService.getPrimitiveType(variable);
+    transform(value: string | EntityProperty | string[]): string {
+        let types: string[];
+        if (typeof value === 'string') {
+            types = [this.modelingJSONSchemaService.getMappingPrimitiveTypeForString(value)].filter(type => !!type);
+        } else if (Array.isArray(value)) {
+            types = value;
         } else {
-            primitiveType = this.variablesService.getVariablePrimitiveType(variable);
+            types = this.modelingJSONSchemaService.getMappingPrimitiveTypeForEntityProperty(value);
         }
 
-        return primitiveType === 'json' ? 'json' : null;
+        return types.indexOf('json') >= 0 ? 'json' : null;
     }
 }

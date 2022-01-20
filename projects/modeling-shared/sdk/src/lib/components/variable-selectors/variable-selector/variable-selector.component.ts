@@ -17,6 +17,7 @@
 
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ElementVariable, ProcessEditorElementVariable } from '../../../api/types';
+import { ModelingJSONSchemaService } from '../../../services/modeling-json-schema.service';
 
 @Component({
     selector: 'modelingsdk-variable-selector',
@@ -33,7 +34,7 @@ export class VariableSelectorComponent implements OnInit, OnChanges {
     varIdSelected: string;
 
     @Input()
-    typeFilter: string;
+    typeFilter: string[];
 
     @Input()
     tooltipOffsetX = -230;
@@ -54,6 +55,10 @@ export class VariableSelectorComponent implements OnInit, OnChanges {
 
     filteredVars: ProcessEditorElementVariable[];
     private readonly EXPRESSION_REGEX = /\${([^]*)}/gm;
+
+    constructor(
+        private modelingJSONSchemaService: ModelingJSONSchemaService
+    ) { }
 
     ngOnInit(): void {
         if (this.varIdSelected && this.variables?.length > 0) {
@@ -116,7 +121,10 @@ export class VariableSelectorComponent implements OnInit, OnChanges {
     private filterBySearchAndType(variables: ElementVariable[]): ElementVariable[] {
         const vars = [];
         variables.forEach(variable => {
-            if ((!this.search || this.search.trim().length === 0 || variable.name.includes(this.search.trim())) && (!this.typeFilter || this.typeFilter === variable.type)) {
+            if (
+                (!this.search || this.search.trim().length === 0 || variable.name.includes(this.search.trim())) &&
+                (!this.typeFilter || this.modelingJSONSchemaService.variableMatchesTypeFilter(variable, this.typeFilter))
+            ) {
                 vars.push({ ...variable });
             }
         });

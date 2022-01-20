@@ -23,7 +23,7 @@ import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { MappingDialogComponent } from './mapping-dialog.component';
 import { MappingDialogData, MappingValueType, VariableMappingType } from '../../services/mapping-dialog.service';
 import { MappingType } from '../../api/types';
-import { UuidService } from '../../services/public-api';
+import { MODELING_JSON_SCHEMA_PROVIDERS, UuidService } from '../../services/public-api';
 import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
 import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
 import {
@@ -181,6 +181,7 @@ describe('MappingDialogComponent', () => {
                         initExpressionEditor: jest.fn()
                     }
                 },
+                { provide: MODELING_JSON_SCHEMA_PROVIDERS, useValue: [] },
                 { provide: INPUT_TYPE_ITEM_HANDLER, useValue: [] }
             ],
             schemas: [NO_ERRORS_SCHEMA]

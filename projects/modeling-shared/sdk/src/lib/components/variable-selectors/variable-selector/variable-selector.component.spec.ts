@@ -24,6 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { ElementVariable } from '../../../api/types';
 import { expectedVariables } from '../../../mocks/process-editor.mock';
+import { MODELING_JSON_SCHEMA_PROVIDERS } from '../../../services/modeling-json-schema-provider.service';
+import { INPUT_TYPE_ITEM_HANDLER } from '../../../variables/properties-viewer/value-type-inputs/value-type-inputs';
 import { VariableSelectorComponent } from './variable-selector.component';
 
 describe('VariableSelectorComponent', () => {
@@ -35,7 +37,9 @@ describe('VariableSelectorComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             providers: [
-                { provide: TranslationService, useClass: TranslationMock }
+                { provide: TranslationService, useClass: TranslationMock },
+                { provide: MODELING_JSON_SCHEMA_PROVIDERS, useValue: [] },
+                { provide: INPUT_TYPE_ITEM_HANDLER, useValue: [] }
             ],
             imports: [
                 CommonModule,
@@ -75,7 +79,7 @@ describe('VariableSelectorComponent', () => {
     });
 
     it('should filter variable list by type', () => {
-        component.typeFilter = 'string';
+        component.typeFilter = ['string'];
         component.ngOnInit();
         fixture.detectChanges();
 
