@@ -69,6 +69,7 @@ export const elementsProperties = {
         BpmnProperty.modelName,
         BpmnProperty.id,
         BpmnProperty.documentation,
+        BpmnProperty.category,
         BpmnCompositeProperty.messages,
         BpmnCompositeProperty.errors
     ],
