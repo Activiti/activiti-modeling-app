@@ -35,6 +35,8 @@ export interface ModelingTypeMethodDescription {
     documentation?: string;
     parameters?: ModelingMethodParameter[];
     model?: JSONSchemaInfoBasics;
+    isArrayAccessor?: boolean;
+    isSameTypeAsObject?: boolean;
 }
 
 export interface ModelingMethodParameter {

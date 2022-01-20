@@ -19,29 +19,7 @@ import { ModelingType } from '../modeling-type.model';
 import { jsonModelType } from './json.model.type';
 
 export const enumModelType: ModelingType = {
-    id: 'json',
-    properties: [],
-    methods: [[
-        {
-            signature: 'compareTo',
-            type: 'integer',
-            documentation: 'Compares this enum with the specified object for order.',
-            parameters: [
-                {
-                    label: 'anotherEnum',
-                    documentation: 'anotherEnum: enum – the enum with which to compare'
-                }
-            ]
-        },
-        {
-            signature: 'name',
-            type: 'string',
-            documentation: 'Returns the name of this enum constant, exactly as declared in its enum declaration.'
-        },
-        {
-            signature: 'ordinal',
-            type: 'integer',
-            documentation: 'Returns the ordinal of this enumeration constant (its position in its enum declaration, where the initial constant is assigned an ordinal of zero).'
-        }
-    ], jsonModelType.methods].flat()
+    id: 'enum',
+    properties: jsonModelType.properties,
+    methods: jsonModelType.methods
 };

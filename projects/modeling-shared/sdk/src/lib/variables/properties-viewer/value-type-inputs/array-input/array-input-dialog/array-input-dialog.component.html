@@ -14,13 +14,10 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-    <span class="adf-fill-remaining-space"></span>
-
-    <button mat-button [mat-dialog-close]="value" color="primary" [disabled]="!valid"
-        [attr.data-automation-id]="'dialog-add'">{{(edit ? 'SDK.VARIABLE_TYPE_INPUT.ARRAY_INPUT.EDIT' : 'SDK.VARIABLE_TYPE_INPUT.ARRAY_INPUT.ADD') | translate}}</button>
-
     <button mat-button mat-dialog-close (click)="close()">
         {{ 'APP.DIALOGS.CLOSE' | translate }}
     </button>
 
+    <button mat-button [mat-dialog-close]="value" color="primary" [disabled]="!valid"
+        [attr.data-automation-id]="'dialog-add'">{{(edit ? 'SDK.VARIABLE_TYPE_INPUT.ARRAY_INPUT.EDIT' : 'SDK.VARIABLE_TYPE_INPUT.ARRAY_INPUT.ADD') | translate}}</button>
 </mat-dialog-actions>

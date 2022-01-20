@@ -80,11 +80,16 @@ export class ExpressionsEditorService {
                     );
                     modelSchema = ExpressionsEditorService.extractItemsModelSchema(modelSchema);
                 } else if (modelSchema && method) {
-                    modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(
-                        modelingTypesService.getMethodsByModelSchema(modelSchema)
-                            .filter(registeredMethod => !!registeredMethod)
-                            .find(registeredMethod => registeredMethod.signature.startsWith(method[1]))
-                    );
+                    const methodDescription = modelingTypesService.getMethodsByModelSchema(modelSchema)
+                        .filter(registeredMethod => !!registeredMethod)
+                        .find(registeredMethod => registeredMethod.signature.startsWith(method[1]));
+                    if (methodDescription?.isArrayAccessor && methodDescription?.type === 'json') {
+                        modelSchema = modelSchema?.items;
+                    } else if (methodDescription?.isSameTypeAsObject && methodDescription?.type === 'json') {
+                        modelSchema = modelSchema;
+                    } else {
+                        modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(methodDescription);
+                    }
                 } else {
                     if (!modelSchema) {
                         modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(parameters.find(parameter => parameter.name === element))

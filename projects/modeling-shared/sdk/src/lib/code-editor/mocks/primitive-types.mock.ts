@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ModelingTypeMap, ModelingTypeSuggestion } from '../services/modeling-type-provider.service';
+import { ModelingTypeMap, ModelingTypeSuggestion } from '../services/modeling-type.model';
 
 /* cspell: disable */
 export const expectedPrimitiveTypes: ModelingTypeMap = {
@@ -1089,123 +1089,931 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
         'collectionOf': 'string'
     },
     'array': {
-        'id': 'array',
-        'methods': [
+        id: 'array',
+        methods: [
             {
-                'signature': 'equals',
-                'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
-                'parameters': [
+                signature: 'add',
+                type: 'boolean',
+                documentation: 'Appends the specified element to the end of this list (optional operation).',
+                parameters: [
                     {
-                        'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
-                    }
-                ]
+                        label: 'element',
+                        documentation: 'element - element to be appended to this list',
+                    },
+                ],
             },
             {
-                'signature': 'hashCode',
-                'type': 'integer',
-                'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
+                signature: 'add',
+                type: 'null',
+                documentation: 'Inserts the specified element at the specified position in this list (optional operation).',
+                parameters: [
+                    {
+                        label: 'index',
+                        documentation: 'index - index at which the specified element is to be inserted',
+                    },
+                    {
+                        label: 'element',
+                        documentation: 'element - element to be inserted',
+                    },
+                ],
             },
             {
-                'signature': 'toString',
-                'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
-            }
-        ],
-        'properties': [
+                signature: 'addAll',
+                type: 'boolean',
+                documentation: 'Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection\'s iterator (optional operation).',
+                parameters: [
+                    {
+                        label: 'c',
+                        documentation: 'c - collection containing elements to be added to this list',
+                    },
+                ],
+            },
             {
-                'property': 'length',
-                'type': 'integer',
-                'documentation': 'Return the number of elements in the array'
-            }
+                signature: 'addAll',
+                type: 'boolean',
+                documentation: 'Inserts all of the elements in the specified collection into this list at the specified position (optional operation).',
+                parameters: [
+                    {
+                        label: 'index',
+                        documentation: 'index - index at which to insert the first element from the specified collection',
+                    },
+                    {
+                        label: 'c',
+                        documentation: 'c - collection containing elements to be added to this list',
+                    },
+                ],
+            },
+            {
+                signature: 'clear',
+                type: 'null',
+                documentation: 'Removes all of the elements from this list (optional operation).',
+            },
+            {
+                signature: 'contains',
+                type: 'boolean',
+                documentation: 'Returns true if this list contains the specified element.',
+                parameters: [
+                    {
+                        label: 'o',
+                        documentation: 'o - element whose presence in this list is to be tested',
+                    },
+                ],
+            },
+            {
+                signature: 'containsAll',
+                type: 'boolean',
+                documentation: 'Returns true if this list contains all of the elements of the specified collection.',
+                parameters: [
+                    {
+                        label: 'c',
+                        documentation: 'c - collection to be checked for containment in this list',
+                    },
+                ],
+            },
+            {
+                signature: 'get',
+                type: 'json',
+                documentation: 'Returns the element at the specified position in this list.',
+                parameters: [
+                    {
+                        label: 'index',
+                        documentation: 'index - index of the element to return',
+                    },
+                ],
+                isArrayAccessor: true,
+            },
+            {
+                signature: 'indexOf',
+                type: 'integer',
+                documentation: 'Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.',
+                parameters: [
+                    {
+                        label: 'o',
+                        documentation: 'o - element to search for',
+                    },
+                ],
+            },
+            {
+                signature: 'isEmpty',
+                type: 'boolean',
+                documentation: 'Returns true if this list contains no elements.',
+            },
+            {
+                signature: 'lastIndexOf',
+                type: 'integer',
+                documentation: 'Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.',
+                parameters: [
+                    {
+                        label: 'o',
+                        documentation: 'o - element to search for',
+                    },
+                ],
+            },
+            {
+                signature: 'remove',
+                type: 'json',
+                documentation: 'Removes the element at the specified position in this list (optional operation).',
+                parameters: [
+                    {
+                        label: 'index',
+                        documentation: 'index - the index of the element to be removed',
+                    },
+                ],
+                isArrayAccessor: true,
+            },
+            {
+                signature: 'remove',
+                type: 'boolean',
+                documentation: 'Removes the first occurrence of the specified element from this list, if it is present (optional operation).',
+                parameters: [
+                    {
+                        label: 'o',
+                        documentation: 'o - element to be removed from this list, if present',
+                    },
+                ],
+            },
+            {
+                signature: 'removeAll',
+                type: 'boolean',
+                documentation: 'Removes from this list all of its elements that are contained in the specified collection (optional operation).',
+                parameters: [
+                    {
+                        label: 'c',
+                        documentation: 'c - collection containing elements to be removed from this list',
+                    },
+                ],
+            },
+            {
+                signature: 'retainAll',
+                type: 'boolean',
+                documentation: 'Retains only the elements in this list that are contained in the specified collection (optional operation).',
+                parameters: [
+                    {
+                        label: 'c',
+                        documentation: 'c - collection containing elements to be retained in this list',
+                    },
+                ],
+            },
+            {
+                signature: 'set',
+                type: 'json',
+                documentation: 'Replaces the element at the specified position in this list with the specified element (optional operation).',
+                parameters: [
+                    {
+                        label: 'index',
+                        documentation: 'index - index of the element to replace',
+                    },
+                    {
+                        label: 'element',
+                        documentation: 'element - element to be stored at the specified position',
+                    },
+                ],
+                isArrayAccessor: true,
+            },
+            {
+                signature: 'size',
+                type: 'integer',
+                documentation: 'Returns the number of elements in this list.',
+            },
+            {
+                signature: 'subList',
+                type: 'json',
+                documentation: 'Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.',
+                parameters: [
+                    {
+                        label: 'fromIndex',
+                        documentation: 'fromIndex - low endpoint (inclusive) of the subList',
+                    },
+                    {
+                        label: 'toIndex',
+                        documentation: 'toIndex - high endpoint (exclusive) of the subList',
+                    },
+                ],
+                isSameTypeAsObject: true,
+            },
+            {
+                signature: 'toArray',
+                type: 'array',
+                documentation: 'Returns an array containing all of the elements in this list in proper sequence (from first to last element).',
+            },
+            {
+                signature: 'equals',
+                type: 'boolean',
+                documentation: 'Indicates whether some other object is "equal to" this one.',
+                parameters: [
+                    {
+                        label: 'obj',
+                        documentation: 'obj: object – the reference object with which to compare',
+                    },
+                ],
+            },
+            {
+                signature: 'hashCode',
+                type: 'integer',
+                documentation: 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.',
+            },
+            {
+                signature: 'toString',
+                type: 'string',
+                documentation: 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.',
+            },
         ],
-        'collectionOf': 'json'
+        properties: [
+        ],
+        collectionOf: 'json',
     }
 };
 
 export const expectedArrayMethodSuggestions: ModelingTypeSuggestion[] = [
     {
-        'label': 'equals(obj): boolean',
-        'filterText': 'equals',
-        'kind': 0,
-        'insertText': 'equals(${1:obj})',
-        'documentation': 'Indicates whether some other object is "equal to" this one.',
-        'detail': 'boolean',
-        'insertTextRules': 4,
-        'command': {
-            'id': 'editor.action.triggerParameterHints'
-        }
+        label: 'add(element): boolean',
+        filterText: 'add',
+        kind: 0,
+        insertText: 'add(${1:element})',
+        documentation: 'Appends the specified element to the end of this list (optional operation).',
+        detail: 'boolean',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
     },
     {
-        'label': 'hashCode(): integer',
-        'filterText': 'hashCode',
-        'kind': 0,
-        'insertText': 'hashCode()',
-        'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.',
-        'detail': 'integer'
+        label: 'add(index, element): null',
+        filterText: 'add',
+        kind: 0,
+        insertText: 'add(${1:index}, ${2:element})',
+        documentation: 'Inserts the specified element at the specified position in this list (optional operation).',
+        detail: 'null',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
     },
     {
-        'label': 'toString(): string',
-        'filterText': 'toString',
-        'kind': 0,
-        'insertText': 'toString()',
-        'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.',
-        'detail': 'string'
-    }
+        label: 'addAll(c): boolean',
+        filterText: 'addAll',
+        kind: 0,
+        insertText: 'addAll(${1:c})',
+        documentation: 'Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection\'s iterator (optional operation).',
+        detail: 'boolean',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
+    },
+    {
+        label: 'addAll(index, c): boolean',
+        filterText: 'addAll',
+        kind: 0,
+        insertText: 'addAll(${1:index}, ${2:c})',
+        documentation: 'Inserts all of the elements in the specified collection into this list at the specified position (optional operation).',
+        detail: 'boolean',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
+    },
+    {
+        label: 'clear(): null',
+        filterText: 'clear',
+        kind: 0,
+        insertText: 'clear()',
+        documentation: 'Removes all of the elements from this list (optional operation).',
+        detail: 'null',
+        insertTextRules: undefined,
+        command: undefined,
+    },
+    {
+        label: 'contains(o): boolean',
+        filterText: 'contains',
+        kind: 0,
+        insertText: 'contains(${1:o})',
+        documentation: 'Returns true if this list contains the specified element.',
+        detail: 'boolean',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
+    },
+    {
+        label: 'containsAll(c): boolean',
+        filterText: 'containsAll',
+        kind: 0,
+        insertText: 'containsAll(${1:c})',
+        documentation: 'Returns true if this list contains all of the elements of the specified collection.',
+        detail: 'boolean',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
+    },
+    {
+        label: 'get(index): json',
+        filterText: 'get',
+        kind: 0,
+        insertText: 'get(${1:index})',
+        documentation: 'Returns the element at the specified position in this list.',
+        detail: 'json',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
+    },
+    {
+        label: 'indexOf(o): integer',
+        filterText: 'indexOf',
+        kind: 0,
+        insertText: 'indexOf(${1:o})',
+        documentation: 'Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.',
+        detail: 'integer',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
+    },
+    {
+        label: 'isEmpty(): boolean',
+        filterText: 'isEmpty',
+        kind: 0,
+        insertText: 'isEmpty()',
+        documentation: 'Returns true if this list contains no elements.',
+        detail: 'boolean',
+        insertTextRules: undefined,
+        command: undefined,
+    },
+    {
+        label: 'lastIndexOf(o): integer',
+        filterText: 'lastIndexOf',
+        kind: 0,
+        insertText: 'lastIndexOf(${1:o})',
+        documentation: 'Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.',
+        detail: 'integer',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
+    },
+    {
+        label: 'remove(index): json',
+        filterText: 'remove',
+        kind: 0,
+        insertText: 'remove(${1:index})',
+        documentation: 'Removes the element at the specified position in this list (optional operation).',
+        detail: 'json',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
+    },
+    {
+        label: 'remove(o): boolean',
+        filterText: 'remove',
+        kind: 0,
+        insertText: 'remove(${1:o})',
+        documentation: 'Removes the first occurrence of the specified element from this list, if it is present (optional operation).',
+        detail: 'boolean',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
+    },
+    {
+        label: 'removeAll(c): boolean',
+        filterText: 'removeAll',
+        kind: 0,
+        insertText: 'removeAll(${1:c})',
+        documentation: 'Removes from this list all of its elements that are contained in the specified collection (optional operation).',
+        detail: 'boolean',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
+    },
+    {
+        label: 'retainAll(c): boolean',
+        filterText: 'retainAll',
+        kind: 0,
+        insertText: 'retainAll(${1:c})',
+        documentation: 'Retains only the elements in this list that are contained in the specified collection (optional operation).',
+        detail: 'boolean',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
+    },
+    {
+        label: 'set(index, element): json',
+        filterText: 'set',
+        kind: 0,
+        insertText: 'set(${1:index}, ${2:element})',
+        documentation: 'Replaces the element at the specified position in this list with the specified element (optional operation).',
+        detail: 'json',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
+    },
+    {
+        label: 'size(): integer',
+        filterText: 'size',
+        kind: 0,
+        insertText: 'size()',
+        documentation: 'Returns the number of elements in this list.',
+        detail: 'integer',
+        insertTextRules: undefined,
+        command: undefined,
+    },
+    {
+        label: 'subList(fromIndex, toIndex): json',
+        filterText: 'subList',
+        kind: 0,
+        insertText: 'subList(${1:fromIndex}, ${2:toIndex})',
+        documentation: 'Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.',
+        detail: 'json',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
+    },
+    {
+        label: 'toArray(): array',
+        filterText: 'toArray',
+        kind: 0,
+        insertText: 'toArray()',
+        documentation: 'Returns an array containing all of the elements in this list in proper sequence (from first to last element).',
+        detail: 'array',
+        insertTextRules: undefined,
+        command: undefined,
+    },
+    {
+        label: 'equals(obj): boolean',
+        filterText: 'equals',
+        kind: 0,
+        insertText: 'equals(${1:obj})',
+        documentation: 'Indicates whether some other object is "equal to" this one.',
+        detail: 'boolean',
+        insertTextRules: 4,
+        command: {
+            id: 'editor.action.triggerParameterHints',
+        },
+    },
+    {
+        label: 'hashCode(): integer',
+        filterText: 'hashCode',
+        kind: 0,
+        insertText: 'hashCode()',
+        documentation: 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.',
+        detail: 'integer',
+        insertTextRules: undefined,
+        command: undefined,
+    },
+    {
+        label: 'toString(): string',
+        filterText: 'toString',
+        kind: 0,
+        insertText: 'toString()',
+        documentation: 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.',
+        detail: 'string',
+        insertTextRules: undefined,
+        command: undefined,
+    },
 ];
 
-export const expectedArrayPropertiesSuggestions: ModelingTypeSuggestion[] = [
-    {
-        'label': 'length',
-        'filterText': 'length',
-        'kind': 9,
-        'insertText': 'length',
-        'documentation': 'Return the number of elements in the array',
-        'detail': 'integer'
-    }
-];
+export const expectedArrayPropertiesSuggestions: ModelingTypeSuggestion[] = [];
 
 export const expectedArraySignatureHelpers = [
     {
-        'label': 'equals(obj): boolean',
-        'documentation': 'Indicates whether some other object is "equal to" this one.',
-        'parameters': [
+        label: 'add(element): boolean',
+        documentation: 'Appends the specified element to the end of this list (optional operation).',
+        parameters: [
             {
-                'label': 'obj',
-                'documentation': 'obj: object – the reference object with which to compare'
-            }
+                label: 'element',
+                documentation: 'element - element to be appended to this list',
+            },
         ],
-        'method': {
-            'signature': 'equals',
-            'type': 'boolean',
-            'documentation': 'Indicates whether some other object is "equal to" this one.',
-            'parameters': [
+        method: {
+            signature: 'add',
+            type: 'boolean',
+            documentation: 'Appends the specified element to the end of this list (optional operation).',
+            parameters: [
                 {
-                    'label': 'obj',
-                    'documentation': 'obj: object – the reference object with which to compare'
-                }
-            ]
-        }
+                    label: 'element',
+                    documentation: 'element - element to be appended to this list',
+                },
+            ],
+        },
     },
     {
-        'label': 'hashCode(): integer',
-        'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.',
-        'method': {
-            'signature': 'hashCode',
-            'type': 'integer',
-            'documentation': 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.'
-        }
+        label: 'add(index, element): null',
+        documentation: 'Inserts the specified element at the specified position in this list (optional operation).',
+        parameters: [
+            {
+                label: 'index',
+                documentation: 'index - index at which the specified element is to be inserted',
+            },
+            {
+                label: 'element',
+                documentation: 'element - element to be inserted',
+            },
+        ],
+        method: {
+            signature: 'add',
+            type: 'null',
+            documentation: 'Inserts the specified element at the specified position in this list (optional operation).',
+            parameters: [
+                {
+                    label: 'index',
+                    documentation: 'index - index at which the specified element is to be inserted',
+                },
+                {
+                    label: 'element',
+                    documentation: 'element - element to be inserted',
+                },
+            ],
+        },
     },
     {
-        'label': 'toString(): string',
-        'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.',
-        'method': {
-            'signature': 'toString',
-            'type': 'string',
-            'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
-        }
-    }
+        label: 'addAll(c): boolean',
+        documentation: 'Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection\'s iterator (optional operation).',
+        parameters: [
+            {
+                label: 'c',
+                documentation: 'c - collection containing elements to be added to this list',
+            },
+        ],
+        method: {
+            signature: 'addAll',
+            type: 'boolean',
+            documentation: 'Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection\'s iterator (optional operation).',
+            parameters: [
+                {
+                    label: 'c',
+                    documentation: 'c - collection containing elements to be added to this list',
+                },
+            ],
+        },
+    },
+    {
+        label: 'addAll(index, c): boolean',
+        documentation: 'Inserts all of the elements in the specified collection into this list at the specified position (optional operation).',
+        parameters: [
+            {
+                label: 'index',
+                documentation: 'index - index at which to insert the first element from the specified collection',
+            },
+            {
+                label: 'c',
+                documentation: 'c - collection containing elements to be added to this list',
+            },
+        ],
+        method: {
+            signature: 'addAll',
+            type: 'boolean',
+            documentation: 'Inserts all of the elements in the specified collection into this list at the specified position (optional operation).',
+            parameters: [
+                {
+                    label: 'index',
+                    documentation: 'index - index at which to insert the first element from the specified collection',
+                },
+                {
+                    label: 'c',
+                    documentation: 'c - collection containing elements to be added to this list',
+                },
+            ],
+        },
+    },
+    {
+        label: 'clear(): null',
+        documentation: 'Removes all of the elements from this list (optional operation).',
+        parameters: undefined,
+        method: {
+            signature: 'clear',
+            type: 'null',
+            documentation: 'Removes all of the elements from this list (optional operation).',
+        },
+    },
+    {
+        label: 'contains(o): boolean',
+        documentation: 'Returns true if this list contains the specified element.',
+        parameters: [
+            {
+                label: 'o',
+                documentation: 'o - element whose presence in this list is to be tested',
+            },
+        ],
+        method: {
+            signature: 'contains',
+            type: 'boolean',
+            documentation: 'Returns true if this list contains the specified element.',
+            parameters: [
+                {
+                    label: 'o',
+                    documentation: 'o - element whose presence in this list is to be tested',
+                },
+            ],
+        },
+    },
+    {
+        label: 'containsAll(c): boolean',
+        documentation: 'Returns true if this list contains all of the elements of the specified collection.',
+        parameters: [
+            {
+                label: 'c',
+                documentation: 'c - collection to be checked for containment in this list',
+            },
+        ],
+        method: {
+            signature: 'containsAll',
+            type: 'boolean',
+            documentation: 'Returns true if this list contains all of the elements of the specified collection.',
+            parameters: [
+                {
+                    label: 'c',
+                    documentation: 'c - collection to be checked for containment in this list',
+                },
+            ],
+        },
+    },
+    {
+        label: 'get(index): json',
+        documentation: 'Returns the element at the specified position in this list.',
+        parameters: [
+            {
+                label: 'index',
+                documentation: 'index - index of the element to return',
+            },
+        ],
+        method: {
+            signature: 'get',
+            type: 'json',
+            documentation: 'Returns the element at the specified position in this list.',
+            parameters: [
+                {
+                    label: 'index',
+                    documentation: 'index - index of the element to return',
+                },
+            ],
+            isArrayAccessor: true,
+        },
+    },
+    {
+        label: 'indexOf(o): integer',
+        documentation: 'Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.',
+        parameters: [
+            {
+                label: 'o',
+                documentation: 'o - element to search for',
+            },
+        ],
+        method: {
+            signature: 'indexOf',
+            type: 'integer',
+            documentation: 'Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.',
+            parameters: [
+                {
+                    label: 'o',
+                    documentation: 'o - element to search for',
+                },
+            ],
+        },
+    },
+    {
+        label: 'isEmpty(): boolean',
+        documentation: 'Returns true if this list contains no elements.',
+        parameters: undefined,
+        method: {
+            signature: 'isEmpty',
+            type: 'boolean',
+            documentation: 'Returns true if this list contains no elements.',
+        },
+    },
+    {
+        label: 'lastIndexOf(o): integer',
+        documentation: 'Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.',
+        parameters: [
+            {
+                label: 'o',
+                documentation: 'o - element to search for',
+            },
+        ],
+        method: {
+            signature: 'lastIndexOf',
+            type: 'integer',
+            documentation: 'Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.',
+            parameters: [
+                {
+                    label: 'o',
+                    documentation: 'o - element to search for',
+                },
+            ],
+        },
+    },
+    {
+        label: 'remove(index): json',
+        documentation: 'Removes the element at the specified position in this list (optional operation).',
+        parameters: [
+            {
+                label: 'index',
+                documentation: 'index - the index of the element to be removed',
+            },
+        ],
+        method: {
+            signature: 'remove',
+            type: 'json',
+            documentation: 'Removes the element at the specified position in this list (optional operation).',
+            parameters: [
+                {
+                    label: 'index',
+                    documentation: 'index - the index of the element to be removed',
+                },
+            ],
+            isArrayAccessor: true,
+        },
+    },
+    {
+        label: 'remove(o): boolean',
+        documentation: 'Removes the first occurrence of the specified element from this list, if it is present (optional operation).',
+        parameters: [
+            {
+                label: 'o',
+                documentation: 'o - element to be removed from this list, if present',
+            },
+        ],
+        method: {
+            signature: 'remove',
+            type: 'boolean',
+            documentation: 'Removes the first occurrence of the specified element from this list, if it is present (optional operation).',
+            parameters: [
+                {
+                    label: 'o',
+                    documentation: 'o - element to be removed from this list, if present',
+                },
+            ],
+        },
+    },
+    {
+        label: 'removeAll(c): boolean',
+        documentation: 'Removes from this list all of its elements that are contained in the specified collection (optional operation).',
+        parameters: [
+            {
+                label: 'c',
+                documentation: 'c - collection containing elements to be removed from this list',
+            },
+        ],
+        method: {
+            signature: 'removeAll',
+            type: 'boolean',
+            documentation: 'Removes from this list all of its elements that are contained in the specified collection (optional operation).',
+            parameters: [
+                {
+                    label: 'c',
+                    documentation: 'c - collection containing elements to be removed from this list',
+                },
+            ],
+        },
+    },
+    {
+        label: 'retainAll(c): boolean',
+        documentation: 'Retains only the elements in this list that are contained in the specified collection (optional operation).',
+        parameters: [
+            {
+                label: 'c',
+                documentation: 'c - collection containing elements to be retained in this list',
+            },
+        ],
+        method: {
+            signature: 'retainAll',
+            type: 'boolean',
+            documentation: 'Retains only the elements in this list that are contained in the specified collection (optional operation).',
+            parameters: [
+                {
+                    label: 'c',
+                    documentation: 'c - collection containing elements to be retained in this list',
+                },
+            ],
+        },
+    },
+    {
+        label: 'set(index, element): json',
+        documentation: 'Replaces the element at the specified position in this list with the specified element (optional operation).',
+        parameters: [
+            {
+                label: 'index',
+                documentation: 'index - index of the element to replace',
+            },
+            {
+                label: 'element',
+                documentation: 'element - element to be stored at the specified position',
+            },
+        ],
+        method: {
+            signature: 'set',
+            type: 'json',
+            documentation: 'Replaces the element at the specified position in this list with the specified element (optional operation).',
+            parameters: [
+                {
+                    label: 'index',
+                    documentation: 'index - index of the element to replace',
+                },
+                {
+                    label: 'element',
+                    documentation: 'element - element to be stored at the specified position',
+                },
+            ],
+            isArrayAccessor: true,
+        },
+    },
+    {
+        label: 'size(): integer',
+        documentation: 'Returns the number of elements in this list.',
+        parameters: undefined,
+        method: {
+            signature: 'size',
+            type: 'integer',
+            documentation: 'Returns the number of elements in this list.',
+        },
+    },
+    {
+        label: 'subList(fromIndex, toIndex): json',
+        documentation: 'Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.',
+        parameters: [
+            {
+                label: 'fromIndex',
+                documentation: 'fromIndex - low endpoint (inclusive) of the subList',
+            },
+            {
+                label: 'toIndex',
+                documentation: 'toIndex - high endpoint (exclusive) of the subList',
+            },
+        ],
+        method: {
+            signature: 'subList',
+            type: 'json',
+            documentation: 'Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.',
+            parameters: [
+                {
+                    label: 'fromIndex',
+                    documentation: 'fromIndex - low endpoint (inclusive) of the subList',
+                },
+                {
+                    label: 'toIndex',
+                    documentation: 'toIndex - high endpoint (exclusive) of the subList',
+                },
+            ],
+            isSameTypeAsObject: true,
+        },
+    },
+    {
+        label: 'toArray(): array',
+        documentation: 'Returns an array containing all of the elements in this list in proper sequence (from first to last element).',
+        parameters: undefined,
+        method: {
+            signature: 'toArray',
+            type: 'array',
+            documentation: 'Returns an array containing all of the elements in this list in proper sequence (from first to last element).',
+        },
+    },
+    {
+        label: 'equals(obj): boolean',
+        documentation: 'Indicates whether some other object is "equal to" this one.',
+        parameters: [
+            {
+                label: 'obj',
+                documentation: 'obj: object – the reference object with which to compare',
+            },
+        ],
+        method: {
+            signature: 'equals',
+            type: 'boolean',
+            documentation: 'Indicates whether some other object is "equal to" this one.',
+            parameters: [
+                {
+                    label: 'obj',
+                    documentation: 'obj: object – the reference object with which to compare',
+                },
+            ],
+        },
+    },
+    {
+        label: 'hashCode(): integer',
+        documentation: 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.',
+        parameters: undefined,
+        method: {
+            signature: 'hashCode',
+            type: 'integer',
+            documentation: 'Returns a hash code value for the object. This method is supported for the benefit of hash tables such as those provided by java.util.HashMap.',
+        },
+    },
+    {
+        label: 'toString(): string',
+        documentation: 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.',
+        parameters: undefined,
+        method: {
+            signature: 'toString',
+            type: 'string',
+            documentation: 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.',
+        },
+    },
 ];
 
 export const expectedEventSchemaTypes: ModelingTypeMap = {

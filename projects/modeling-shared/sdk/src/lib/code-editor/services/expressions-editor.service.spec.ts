@@ -137,13 +137,13 @@ describe('ExpressionsEditorService', () => {
             const mockCard = {
                 range: mockRange,
                 contents: [
-                    { value: '*length*' },
-                    { value: 'Return the number of elements in the array' },
+                    { value: '*size*' },
+                    { value: 'Returns the number of elements in this list.' },
                     { value: 'type: integer' }
                 ]
             };
 
-            const hoverCard = ExpressionsEditorService.getHoverCard(primitiveTypesSchema.$defs.primitive['array'], 'length', mockRange, modelingTypesService, translateService);
+            const hoverCard = ExpressionsEditorService.getHoverCard(primitiveTypesSchema.$defs.primitive['array'], 'size', mockRange, modelingTypesService, translateService);
 
             expect(hoverCard).toEqual(mockCard);
         });
