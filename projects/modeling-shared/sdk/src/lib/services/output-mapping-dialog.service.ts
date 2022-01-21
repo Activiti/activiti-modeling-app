@@ -61,7 +61,8 @@ export class OutputMappingDialogService extends MappingDialogService {
                 value: key,
                 type: processVariable.type,
                 mappingValueType: mappingValueType,
-                model: outputParameter?.model
+                model: outputParameter?.model,
+                aggregatedTypes: outputParameter?.aggregatedTypes
             });
         });
         return dataSource;

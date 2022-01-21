@@ -22,7 +22,15 @@ import { JSONSchemaInfoBasics } from '../../../api/types';
 import { ModelingJSONSchemaService } from '../../../services/modeling-json-schema.service';
 import { RegisteredInputsModelingJsonSchemaProvider } from '../../../services/registered-inputs-modeling-json-schema-provider.service';
 import { PropertyTypeItem } from '../../properties-viewer/property-type-item/models';
-import { DATETIME_TYPE_REFERENCE, DATE_TYPE_REFERENCE, JSONSchemaDefinition, JSONTypePropertiesDefinition, TYPE } from '../models/model';
+import {
+    DATETIME_TYPE_REFERENCE,
+    DATE_TYPE_REFERENCE,
+    FILE_TYPE_REFERENCE,
+    FOLDER_TYPE_REFERENCE,
+    JSONSchemaDefinition,
+    JSONTypePropertiesDefinition,
+    TYPE
+} from '../models/model';
 
 @Injectable({
     providedIn: 'root'
@@ -52,6 +60,10 @@ export class JsonSchemaEditorService {
                 types.push('date');
             } else if (value.$ref === DATETIME_TYPE_REFERENCE) {
                 types.push('datetime');
+            } else if (value.$ref === FILE_TYPE_REFERENCE) {
+                types.push('file');
+            } else if (value.$ref === FOLDER_TYPE_REFERENCE) {
+                types.push('folder');
             } else {
                 types.push('ref');
             }
@@ -87,6 +99,20 @@ export class JsonSchemaEditorService {
             case 'datetime':
                 if (added) {
                     value.$ref = DATETIME_TYPE_REFERENCE;
+                } else {
+                    delete value.$ref;
+                }
+                break;
+            case 'file':
+                if (added) {
+                    value.$ref = FILE_TYPE_REFERENCE;
+                } else {
+                    delete value.$ref;
+                }
+                break;
+            case 'folder':
+                if (added) {
+                    value.$ref = FOLDER_TYPE_REFERENCE;
                 } else {
                     delete value.$ref;
                 }

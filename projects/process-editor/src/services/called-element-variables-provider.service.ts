@@ -19,6 +19,7 @@ import {
     AmaState,
     BpmnProperty,
     ElementVariable,
+    EntityProperty,
     ProcessEditorElementVariablesProvider,
     ProcessEditorElementWithVariables,
     ProcessExtensionsModel,
@@ -57,11 +58,11 @@ export class CalledElementVariablesProviderService implements ProcessEditorEleme
         return this.store.select(selectProcessesArray).pipe(
             map(processes => {
                 const selectedExternalProcess = processes.find((process) => !!process.extensions[processDefinitionId]);
-                let variables = [];
+                let variables: EntityProperty[] = [];
                 if (selectedExternalProcess) {
                     variables = Object.values(new ProcessExtensionsModel(selectedExternalProcess.extensions).getProperties(processDefinitionId));
                 }
-                return variables.map(variable => ({ id: variable.id, name: variable.name, description: variable.description, type: variable.type, model: variable.model }));
+                return variables;
             })
         );
     }

@@ -54,7 +54,7 @@ export class ProcessElementVariablesProviderService implements ProcessEditorElem
         return this.store.select(selectProcessPropertiesArrayFor(processDefinitionKey)).pipe(
             map(variables => {
                 if (variables) {
-                    return variables.map(variable => ({ id: variable.id, name: variable.name, description: variable.description, type: variable.type, model: variable.model }));
+                    return variables;
                 }
                 return [];
             })

@@ -1,4 +1,5 @@
-<div class="ama-modeled-object adf-property-list" *ngIf="(primitiveType === 'json' && model && inputs?.length > 0) else primitiveTypeInput">
+<div class="ama-modeled-object adf-property-list"
+    *ngIf="(primitiveType.length === 1 &&  primitiveType[0] === 'json' && model && inputs?.length > 0) else primitiveTypeInput">
     <form [formGroup]="objectForm" *ngIf="objectForm">
         <div *ngFor="let input of inputs; let i=index" class="ama-modeled-object-input adf-property">
             <div class="ama-modeled-object-input-label adf-property-label">
@@ -10,11 +11,8 @@
                 {{ input.description | translate}}
             </div>
             <modelingsdk-value-type-input [formControlName]="input.name" [index]="i"
-                [class.ama-nested-modeled-object]="!!input.model && input.type==='json'"
-                [type]="input.type"
-                [model]="input.model"
-                [placeholder]="input.placeholder"
-                [autocompletionContext]="autocompletionContext"
+                [class.ama-nested-modeled-object]="!!input.model && input.type==='json'" [type]="input.type"
+                [model]="input.aggregatedTypes?.length > 1 ? null : input.model" [placeholder]="input.placeholder" [autocompletionContext]="autocompletionContext"
                 [attr.data-automation-id]="'modeled-object-input-field-'+input.name">
             </modelingsdk-value-type-input>
         </div>
@@ -22,18 +20,13 @@
 </div>
 
 <ng-template #primitiveTypeInput>
-    <mat-icon
-        matTooltip="{{'SDK.TYPE' | translate}}: {{primitiveType}}"
-        *ngIf="primitiveType?.entries"
+    <mat-icon matTooltip="{{'SDK.TYPE' | translate}}: {{primitiveType}}" *ngIf="primitiveType.length > 1"
         class="ama-modeled-object-primitive-type-hint">
         info
     </mat-icon>
-    <modelingsdk-value-type-input class="ama-modeled-object-primitive"
-        [value]="value || model.const"
-        (onChange)="primitiveTypeChanges($event)"
-        [type]="primitiveType"
-        [model]="(primitiveType.entries || primitiveType === 'json') ? null : model"
-        [placeholder]="model?.title || placeholder"
-        [autocompletionContext]="autocompletionContext">
+    <modelingsdk-value-type-input class="ama-modeled-object-primitive" [value]="value || model.const"
+        (onChange)="primitiveTypeChanges($event)" [type]="primitiveType.length > 1 ? 'json' : primitiveType[0]"
+        [model]="(primitiveType.length > 1 || primitiveType[0] === 'json') ? null : model"
+        [placeholder]="model?.title || placeholder" [autocompletionContext]="autocompletionContext">
     </modelingsdk-value-type-input>
 </ng-template>

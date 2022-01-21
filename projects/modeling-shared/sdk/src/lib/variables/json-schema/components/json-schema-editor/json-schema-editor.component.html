@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="modelingsdk-json-schema-editor-node-title">
-                <mat-form-field *ngIf="type | IsNotType: 'ref' : 'anyOf': 'allOf' : 'oneOf' : 'date' : 'datetime'">
+                <mat-form-field *ngIf="type | IsNotType: 'ref' : 'anyOf': 'allOf' : 'oneOf' : 'date' : 'datetime' : 'file': 'folder'">
                     <input matInput [(ngModel)]="value.title"
                         placeholder="{{'SDK.JSON_SCHEMA_EDITOR.TITLE' | translate}}" (blur)="onChangeTitle($event)" />
                 </mat-form-field>
@@ -107,7 +107,7 @@
                 </mat-menu>
                 <button mat-button mat-icon-button
                     matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.ADVANCED_SETTINGS' | translate}}" (click)="onSettings()"
-                    [disabled]="!(type | IsNotType: 'ref' : 'anyOf': 'allOf' : 'oneOf' : 'date' : 'datetime')">
+                    [disabled]="!(type | IsNotType: 'ref' : 'anyOf': 'allOf' : 'oneOf' : 'date' : 'datetime' : 'file': 'folder')">
                     <mat-icon>settings</mat-icon>
                 </button>
                 <button mat-button mat-icon-button matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.REMOVE_NODE' | translate}}"

@@ -132,8 +132,8 @@ export class ProcessEditorElementVariablesService {
         };
         const outputVariables = [];
         variables.forEach(variable => {
-            const outVariable = {...variable};
-            outVariable.icon = this.getTypeIcon(outVariable.type);
+            const outVariable = { ...variable };
+            outVariable.icon = this.getTypeIcon(outVariable.type, outVariable.aggregatedTypes);
             outVariable.tooltip = this.getVariableTooltip(outVariable, source);
             outputVariables.push(outVariable);
         });
@@ -253,22 +253,26 @@ export class ProcessEditorElementVariablesService {
                 <h3>${this.translateService.instant('SDK.CONDITION.TOOLTIP.PROPERTIES')}</h3>
                 <div class="ama-variables-selector-tooltip-text">
                     <p>
-                        <pre class="ama-variables-selector-variables-group-list-item-type">${this.getTypeIcon(variable.type)}</pre>
-                        <span>${variable.type}</span>
+                        <pre class="ama-variables-selector-variables-group-list-item-type">${this.getTypeIcon(variable.type, variable.aggregatedTypes)}</pre>
+                        <span>${variable.aggregatedTypes || variable.type}</span>
                     </p>
                 </div>
             </div>
         `;
     }
 
-    private getTypeIcon(type: string): string {
-        switch (type) {
-            case 'datetime':
-                return 'dt';
-            case 'folder':
-                return 'fo';
-            default:
-                return type && type.length > 0 ? type.trim().substring(0, 1).toLowerCase() : '?';
+    private getTypeIcon(type: string, aggregatedTypes: string[]): string {
+        if (!aggregatedTypes || aggregatedTypes.length === 1) {
+            switch (type) {
+                case 'datetime':
+                    return 'dt';
+                case 'folder':
+                    return 'fo';
+                default:
+                    return type && type.length > 0 ? type.trim().substring(0, 1).toLowerCase() : '?';
+            }
+        } else {
+            return 'm';
         }
     }
 }

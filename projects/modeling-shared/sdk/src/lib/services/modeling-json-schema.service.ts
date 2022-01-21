@@ -18,7 +18,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { EntityProperty, JSONSchemaInfoBasics, JSONSchemaPropertyBasics } from '../api/types';
+import { EntityProperty, JSONSchemaInfoBasics } from '../api/types';
 import { getFileUriPattern } from '../code-editor/helpers/file-uri';
 import { CodeEditorService } from '../code-editor/services/code-editor-service.service';
 import { primitiveTypesSchema } from '../code-editor/services/expression-language/primitive-types-schema';
@@ -84,33 +84,28 @@ export class ModelingJSONSchemaService {
         return projectSchema;
     }
 
-    flatSchemaReference(schema: JSONSchemaInfoBasics): JSONSchemaInfoBasics {
-        return this.flatSchemaReferenceWithOriginalSchema(schema, schema);
+    flatSchemaReference(schema: JSONSchemaInfoBasics, flatPrimitiveTypes = false): JSONSchemaInfoBasics {
+        return this.flatSchemaReferenceWithOriginalSchema(schema, schema, flatPrimitiveTypes);
     }
 
-    private flatSchemaReferenceWithOriginalSchema(schema: JSONSchemaInfoBasics, originalSchema: JSONSchemaInfoBasics): JSONSchemaInfoBasics {
-        let result = this.deepCopy(schema);
-
-        if (schema?.$ref) {
-            result = this.getSchemaFromReference(schema.$ref, originalSchema);
-            return this.flatSchemaReferenceWithOriginalSchema(result, originalSchema);
-        }
+    private flatSchemaReferenceWithOriginalSchema(schema: JSONSchemaInfoBasics, originalSchema: JSONSchemaInfoBasics, flatPrimitiveTypes: boolean): JSONSchemaInfoBasics {
+        let result = this.deepCopy(schema) as JSONSchemaInfoBasics;
 
         if (schema?.properties) {
             Object.keys(schema.properties).forEach(propertyName => {
-                result.properties[propertyName] = this.flatSchemaReferenceWithOriginalSchema(schema.properties[propertyName], originalSchema);
+                result.properties[propertyName] = this.flatSchemaReferenceWithOriginalSchema(schema.properties[propertyName], originalSchema, flatPrimitiveTypes);
             });
         }
 
         if (schema?.type === 'array') {
-            result.items = this.flatSchemaReferenceWithOriginalSchema(schema.items, originalSchema);
+            result.items = this.flatSchemaReferenceWithOriginalSchema(schema.items, originalSchema, flatPrimitiveTypes);
         }
 
         if (schema?.type && Array.isArray(schema.type)) {
             for (let index = 0; index < schema.type.length; index++) {
                 const element = schema.type[index];
                 if (typeof element !== 'string') {
-                    (result.type as JSONSchemaInfoBasics)[index] = this.flatSchemaReferenceWithOriginalSchema(element, originalSchema);
+                    (result.type as JSONSchemaInfoBasics)[index] = this.flatSchemaReferenceWithOriginalSchema(element, originalSchema, flatPrimitiveTypes);
                 }
             }
         }
@@ -118,22 +113,33 @@ export class ModelingJSONSchemaService {
         if (schema?.allOf) {
             for (let index = 0; index < schema.allOf.length; index++) {
                 const element = schema.allOf[index];
-                result.allOf[index] = this.flatSchemaReferenceWithOriginalSchema(element, originalSchema);
+                result.allOf[index] = this.flatSchemaReferenceWithOriginalSchema(element, originalSchema, flatPrimitiveTypes);
             }
         }
 
         if (schema?.anyOf) {
             for (let index = 0; index < schema.anyOf.length; index++) {
                 const element = schema.anyOf[index];
-                result.anyOf[index] = this.flatSchemaReferenceWithOriginalSchema(element, originalSchema);
+                result.anyOf[index] = this.flatSchemaReferenceWithOriginalSchema(element, originalSchema, flatPrimitiveTypes);
             }
         }
 
         if (schema?.oneOf) {
             for (let index = 0; index < schema.oneOf.length; index++) {
                 const element = schema.oneOf[index];
-                result.oneOf[index] = this.flatSchemaReferenceWithOriginalSchema(element, originalSchema);
+                result.oneOf[index] = this.flatSchemaReferenceWithOriginalSchema(element, originalSchema, flatPrimitiveTypes);
             }
+        }
+
+        if (schema?.$ref && (!schema.$ref.startsWith(ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH) || flatPrimitiveTypes)) {
+            const referencedSchema = this.getSchemaFromReference(schema.$ref, originalSchema);
+            const flattenedReferencedSchema = this.flatSchemaReferenceWithOriginalSchema(referencedSchema, originalSchema, flatPrimitiveTypes);
+            if (JSON.stringify(result) === JSON.stringify(schema) && Object.keys(schema).length === 1) {
+                result = flattenedReferencedSchema;
+            } else {
+                result.allOf ? result.allOf.push(flattenedReferencedSchema) : result.allOf = [flattenedReferencedSchema];
+            }
+            delete result.$ref;
         }
 
         return result || {};
@@ -201,31 +207,53 @@ export class ModelingJSONSchemaService {
         }
     }
 
-    getPrimitiveType(schema: JSONSchemaPropertyBasics[] | JSONSchemaInfoBasics): string | string[] {
-        let primitiveType;
-        if (!Array.isArray(schema)) {
+    getPrimitiveTypes(schema: JSONSchemaInfoBasics): string[] {
+        let primitiveType: string[] = [];
+
+        if (!!schema) {
             if (schema.$ref && schema.$ref.startsWith(ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH)) {
-                const accessor = schema.$ref.substr(schema.$ref.lastIndexOf('#') + 2).split('/');
-                primitiveType = accessor[accessor.length - 1];
-            } else if (schema.type && schema.type !== 'object') {
+                const accessor = schema.$ref.substring(schema.$ref.lastIndexOf('#') + 2).split('/');
+                primitiveType.push(this.getMappingPrimitiveTypeForString(accessor[accessor.length - 1]));
+            }
+
+            if (schema.type) {
                 if (!Array.isArray(schema.type)) {
-                    primitiveType = schema.type === 'number' ? 'string' : this.getPrimitiveTypeFromModel(schema, schema.type);
+                    primitiveType.push(this.getModelingTypeFromJSONSchemaType(schema.type));
                 } else {
-                    primitiveType = (schema.type as any[]).map(type => {
+                    (schema.type as string[] | JSONSchemaInfoBasics[]).forEach((type: string | JSONSchemaInfoBasics) => {
                         if (typeof type === 'string') {
-                            return type === 'number' ? 'string' : type;
+                            primitiveType.push(this.getModelingTypeFromJSONSchemaType(type));
                         } else {
-                            return this.getPrimitiveType(type);
+                            primitiveType = primitiveType.concat(this.getPrimitiveTypes(type));
                         }
                     });
                 }
-            } else if (schema.enum) {
-                primitiveType = 'enum';
             }
-        } else {
-            primitiveType = 'array';
+
+            if (schema.enum) {
+                primitiveType.push(this.getMappingPrimitiveTypeForString('enum'));
+            }
         }
-        return primitiveType || 'json';
+
+        return primitiveType.length > 0 ? [...new Set(primitiveType)] : ['json'];
+    }
+
+    getModelingTypeFromJSONSchemaType(jsonSchemaType: string): string {
+        let type = 'json';
+
+        switch (jsonSchemaType) {
+            case 'number':
+                type = 'string';
+                break;
+            case 'object':
+                type = 'json';
+                break;
+            default:
+                type = this.getMappingPrimitiveTypeForString(jsonSchemaType);
+                break;
+        }
+
+        return type;
     }
 
     getMappingPrimitiveTypeForString(type: string): string {
@@ -244,18 +272,25 @@ export class ModelingJSONSchemaService {
     getMappingPrimitiveTypeForEntityProperty(property: EntityProperty): string[] {
         let primitiveTypes: string[] = [];
         if (property?.model) {
-            const primitiveType = this.getPrimitiveType(property.model);
-            primitiveTypes = typeof primitiveType === 'string' ? [primitiveType] : primitiveType;
+            primitiveTypes = this.getPrimitiveTypes(property.model);
         } else {
-            primitiveTypes.push(property?.type);
+            primitiveTypes.push(this.getMappingPrimitiveTypeForString(property?.type));
         }
 
-        return primitiveTypes.filter(type => !!type).map(type => this.getMappingPrimitiveTypeForString(type));
+        return primitiveTypes.filter(type => !!type);
     }
 
-    variableMatchesTypeFilter(variable: EntityProperty, typeFilter: string[]): boolean {
+    variableMatchesTypeFilter(variable: EntityProperty, typeFilter: string[] | string): boolean {
+        if (!typeFilter) {
+            return true;
+        }
+
         const variablePrimitiveMappingTypes = this.getMappingPrimitiveTypeForEntityProperty(variable);
-        return variablePrimitiveMappingTypes.some(type => typeFilter.indexOf(type) >= 0);
+        if (Array.isArray(typeFilter)) {
+            return variablePrimitiveMappingTypes.some(type => typeFilter.indexOf(type) >= 0);
+        } else {
+            return variablePrimitiveMappingTypes.some(type => typeFilter === type);
+        }
     }
 
     private registerGlobalTypeModel(typeId: string[], schema: JSONSchemaInfoBasics) {

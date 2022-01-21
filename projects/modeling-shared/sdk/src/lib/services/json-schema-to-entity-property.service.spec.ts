@@ -282,7 +282,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                     readOnly: false,
                     required: false,
                     model: {
-                        type: 'boolean'
+                        $ref: '#/$defs/primitive/boolean'
                     }
                 }
             ];
@@ -430,7 +430,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                         type: 'json',
                         readOnly: false,
                         required: false,
-                        aggregatedTypes: ['object', 'integer']
+                        aggregatedTypes: ['json', 'integer']
                     }
                 ];
 
@@ -584,7 +584,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                         type: 'json',
                         readOnly: false,
                         required: false,
-                        aggregatedTypes: ['object', 'integer']
+                        aggregatedTypes: ['json', 'integer']
                     }
                 ];
 
@@ -738,7 +738,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                         type: 'json',
                         readOnly: false,
                         required: false,
-                        aggregatedTypes: ['object', 'integer']
+                        aggregatedTypes: ['json', 'integer']
                     }
                 ];
 

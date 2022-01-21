@@ -34,7 +34,7 @@ export class VariableSelectorComponent implements OnInit, OnChanges {
     varIdSelected: string;
 
     @Input()
-    typeFilter: string[];
+    typeFilter: string[] | string;
 
     @Input()
     tooltipOffsetX = -230;

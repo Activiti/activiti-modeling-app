@@ -123,9 +123,9 @@ export class PropertiesViewerArrayInputComponent implements OnChanges {
 
     setType() {
         if (this.model?.items) {
-            const modelPrimitiveType = this.jsonService.getPrimitiveType(this.model.items);
-            if (!Array.isArray(modelPrimitiveType) && modelPrimitiveType !== 'json') {
-                this.type = modelPrimitiveType === 'string' ? 'string' : 'primitive';
+            const modelPrimitiveType = this.jsonService.getPrimitiveTypes(this.model.items);
+            if (modelPrimitiveType.length === 1 && modelPrimitiveType[0] !== 'json') {
+                this.type = modelPrimitiveType[0] === 'string' ? 'string' : 'primitive';
             } else {
                 this.type = 'object';
             }

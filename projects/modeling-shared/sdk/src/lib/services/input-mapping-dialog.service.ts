@@ -58,7 +58,8 @@ export class InputMappingDialogService extends MappingDialogService {
                 readOnly: parameter.readOnly,
                 model: parameter.model,
                 mappingValueType: mappingValueType,
-                placeholder: parameter.placeholder
+                placeholder: parameter.placeholder,
+                aggregatedTypes: parameter.aggregatedTypes
             });
         });
 

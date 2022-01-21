@@ -38,7 +38,6 @@ import { VariableValuePipe } from '../../variable-value.pipe';
 import { AllowedCharactersDirective } from '../../../../helpers/directives/allowed-characters.directive';
 import { Store } from '@ngrx/store';
 import { PropertiesViewerJsonInputComponent } from './json-input.component';
-import { UseModeledObjectPipe } from './use-modeled-object.pipe';
 import { RegisteredInputsModelingJsonSchemaProvider } from '../../../../services/registered-inputs-modeling-json-schema-provider.service';
 import { provideModelingJsonSchemaProvider } from '../../../../services/modeling-json-schema-provider.service';
 
@@ -66,8 +65,7 @@ describe('PropertiesViewerJsonInputComponent', () => {
                 PropertiesViewerStringInputComponent,
                 PropertiesViewerArrayInputComponent,
                 VariableValuePipe,
-                AllowedCharactersDirective,
-                UseModeledObjectPipe
+                AllowedCharactersDirective
             ],
             providers: [
                 FormBuilder,
@@ -164,22 +162,22 @@ describe('PropertiesViewerJsonInputComponent', () => {
         });
 
         it('integer', () => {
-            component.onModeledObjectChanges({ valid: true, value: 1});
+            component.onModeledObjectChanges({ valid: true, value: 1 });
             expect(component.change.emit).toHaveBeenCalledWith(1);
         });
 
         it('string', () => {
-            component.onModeledObjectChanges({ valid: true, value: 'a'});
+            component.onModeledObjectChanges({ valid: true, value: 'a' });
             expect(component.change.emit).toHaveBeenCalledWith('a');
         });
 
         it('boolean', () => {
-            component.onModeledObjectChanges({ valid: true, value: true});
+            component.onModeledObjectChanges({ valid: true, value: true });
             expect(component.change.emit).toHaveBeenCalledWith(true);
         });
 
         it('array', () => {
-            component.onModeledObjectChanges({ valid: true, value: [1, 2, 3]});
+            component.onModeledObjectChanges({ valid: true, value: [1, 2, 3] });
             expect(component.change.emit).toHaveBeenCalledWith([1, 2, 3]);
         });
     });

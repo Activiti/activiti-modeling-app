@@ -22,6 +22,7 @@ import { ProcessEditorElementVariablesService } from './process-editor-element-v
 import { provideProcessEditorElementVariablesProvider } from './process-editor-element-variables-provider.service';
 import { calledActivitiElement, CalledElementVariablesProviderService, expectedVariables, ProcessElementVariablesProviderService, sequenceFlowElement3, sequenceFlowElement4 } from '../mocks/process-editor.mock';
 import { Store } from '@ngrx/store';
+import { ElementVariable } from '../api/types';
 
 describe('ProcessEditorElementVariablesService', () => {
     let service: ProcessEditorElementVariablesService;
@@ -118,5 +119,36 @@ describe('ProcessEditorElementVariablesService', () => {
         expect(service.getVariablesList(null)).toEqual([]);
         expect(service.getVariablesList(undefined)).toEqual([]);
         expect(service.getVariablesList([])).toEqual([]);
+    });
+
+    it('should set the multiple type when patching the variables', () => {
+        const variables: ElementVariable[] = [{
+            id: 'multiple',
+            name: 'multiple',
+            type: 'json',
+            aggregatedTypes: ['boolean', 'string'],
+            description: 'this variable has multiple types'
+        }];
+        const expectedTooltip = `
+            <div class="ama-variables-selector-tooltip">
+                <h3 class="ama-variables-selector-tooltip-first-header">SDK.CONDITION.TOOLTIP.VARIABLE</h3>
+                <div class="ama-variables-selector-tooltip-text">
+                    <p>SDK.CONDITION.TOOLTIP.OUTPUT_VARIABLE_TOOLTIP.</p>
+                    <span><p>this variable has multiple types</p></span>
+                </div>
+                <h3>SDK.CONDITION.TOOLTIP.PROPERTIES</h3>
+                <div class="ama-variables-selector-tooltip-text">
+                    <p>
+                        <pre class="ama-variables-selector-variables-group-list-item-type">m</pre>
+                        <span>boolean,string</span>
+                    </p>
+                </div>
+            </div>
+        `;
+
+        const result = service.patchSourceIconAndTooltip(sequenceFlowElement3, variables);
+
+        expect(result.variables[0].icon).toEqual('m');
+        expect(result.variables[0].tooltip).toEqual(expectedTooltip);
     });
 });

@@ -26,7 +26,7 @@ import { stringTypeSpecificProperties } from './string';
 
 export const TYPES: { name: string, value: string[] }[] = [
     { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.JSON_SCHEMA_TYPES', value: ['array', 'boolean', 'integer', 'object', 'number', 'string'] },
-    { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.MODELING_APP', value: ['date', 'datetime'] },
+    { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.MODELING_APP', value: ['date', 'datetime', 'file', 'folder'] },
     { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.ENUMERATION', value: ['enum'] },
     { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.COMPOSITION', value: ['allOf', 'anyOf', 'oneOf', 'ref'] }
 ];
@@ -43,6 +43,8 @@ export const TYPE: { [key: string]: JSONTypePropertiesDefinition } = {
 
 export const DATE_TYPE_REFERENCE = '#/$defs/primitive/date';
 export const DATETIME_TYPE_REFERENCE = '#/$defs/primitive/datetime';
+export const FILE_TYPE_REFERENCE = '#/$defs/primitive/file';
+export const FOLDER_TYPE_REFERENCE = '#/$defs/primitive/folder';
 
 export interface JSONSchemaDefinition {
     accessor: string;

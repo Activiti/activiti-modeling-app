@@ -48,24 +48,21 @@ export class ModelingTypesService {
     }
 
     getMethodsByModelSchema(modelSchema: JSONSchemaInfoBasics): ModelingTypeMethodDescription[] {
-        const typeName = this.modelingJSONSchemaService.getPrimitiveType(modelSchema);
-        let methods: ModelingTypeMethodDescription[] = [];
-        if (Array.isArray(typeName)) {
-            typeName.forEach(type => {
-                this.getRegisteredType(type).methods.forEach(method => {
-                    if (methods.findIndex(element => this.methodsEquality(element, method)) === -1) {
-                        methods.push(method);
-                    }
-                });
+        const typeName = this.modelingJSONSchemaService.getPrimitiveTypes(modelSchema);
+        const methods: ModelingTypeMethodDescription[] = [];
+        typeName.forEach(type => {
+            this.getRegisteredType(type).methods.forEach(method => {
+                if (methods.findIndex(element => this.methodsEquality(element, method)) === -1) {
+                    methods.push(method);
+                }
             });
-        } else {
-            methods = [...(this.getRegisteredType(typeName).methods || [])];
-        }
+        });
+
         return methods;
     }
 
     private methodsEquality(method1: ModelingTypeMethodDescription, method2: ModelingTypeMethodDescription): boolean {
-        return method1.signature === method2.signature && method1.parameters?.length === method2.parameters?.length;
+        return JSON.stringify(method1) === JSON.stringify(method2);
     }
 
     getPropertiesByModelSchema(modelSchema: JSONSchemaInfoBasics): ModelingTypePropertyDescription[] {
@@ -94,12 +91,8 @@ export class ModelingTypesService {
                 }
             });
         } else {
-            const typeName = this.modelingJSONSchemaService.getPrimitiveType(modelSchema);
-            if (Array.isArray(typeName)) {
-                typeName.forEach(type => this.getRegisteredType(type).properties?.forEach(property => properties.push(property)));
-            } else {
-                this.getRegisteredType(typeName).properties?.forEach(property => properties.push(property));
-            }
+            const typeName = this.modelingJSONSchemaService.getPrimitiveTypes(modelSchema);
+            typeName.forEach(type => this.getRegisteredType(type).properties?.forEach(property => properties.push(property)));
         }
 
         return properties;
@@ -131,7 +124,7 @@ export class ModelingTypesService {
     getModelSchemaFromEntityProperty(property: { type: string, model?: JSONSchemaInfoBasics }): JSONSchemaInfoBasics {
         if (property) {
             const modelSchema = property.model || primitiveTypesSchema.$defs.primitive[property.type] || {};
-            return this.modelingJSONSchemaService.flatSchemaReference(modelSchema);
+            return this.modelingJSONSchemaService.flatSchemaReference(modelSchema, true);
         } else {
             return {};
         }
@@ -147,7 +140,7 @@ export class ModelingTypesService {
 
     getEventJsonSchemaFromDataSchema(dataSchema: JSONSchemaInfoBasics): JSONSchemaInfoBasics {
         const result = { ...eventSchema };
-        result.properties.data = this.modelingJSONSchemaService.flatSchemaReference(dataSchema);
+        result.properties.data = this.modelingJSONSchemaService.flatSchemaReference(dataSchema, true);
         return result;
     }
 

@@ -84,7 +84,7 @@ export class ExpressionsEditorService {
                         .filter(registeredMethod => !!registeredMethod)
                         .find(registeredMethod => registeredMethod.signature.startsWith(method[1]));
                     if (methodDescription?.isArrayAccessor && methodDescription?.type === 'json') {
-                        modelSchema = modelSchema?.items;
+                        modelSchema = ExpressionsEditorService.extractItemsModelSchema(modelSchema);
                     } else if (methodDescription?.isSameTypeAsObject && methodDescription?.type === 'json') {
                         modelSchema = modelSchema;
                     } else {

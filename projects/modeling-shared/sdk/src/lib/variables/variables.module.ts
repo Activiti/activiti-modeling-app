@@ -47,7 +47,6 @@ import { InputErrorDirective } from './properties-viewer/input-error.directive';
 import { PropertyTypeSelectorSmartComponent } from './properties-viewer/property-type-selector/property-type-selector.smart-component';
 import { PropertyTypeItemUiComponent } from './properties-viewer/property-type-item/property-type-item.ui-component';
 import { AutomationIdPipe } from './properties-viewer/property-type-item/automation-id.pipe';
-import { UseModeledObjectPipe } from './properties-viewer/value-type-inputs/json-input/use-modeled-object.pipe';
 import { JsonSchemaEditorDialogComponent } from './json-schema/components/json-schema-editor-dialog/json-schema-editor-dialog.component';
 import { JsonSchemaEditorComponent } from './json-schema/components/json-schema-editor/json-schema-editor.component';
 import { ReferenceSelectorComponent } from './json-schema/components/reference-selector/reference-selector.component';
@@ -89,7 +88,6 @@ import { PropertyTypeDialogComponent } from './properties-viewer/property-type-d
         PropertyTypeSelectorSmartComponent,
         PropertyTypeItemUiComponent,
         AutomationIdPipe,
-        UseModeledObjectPipe,
         JsonSchemaEditorComponent,
         JsonSchemaEditorDialogComponent,
         ReferenceSelectorComponent,

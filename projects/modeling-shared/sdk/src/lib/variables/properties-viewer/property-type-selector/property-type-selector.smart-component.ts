@@ -71,7 +71,7 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
     hierarchy: PropertyTypeItem[];
     private initialHierarchy: PropertyTypeItem[];
 
-    private readonly modeledPrimitiveTypes = ['json', 'array', 'enum'];
+    private readonly modeledPrimitiveTypes = ['json', 'array', 'enum', 'file', 'folder'];
 
     private onDestroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -171,7 +171,7 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
             let displayName = this.translationService.instant('SDK.PROPERTY_TYPE_SELECTOR.CREATE_MODEL');
             let description = this.translationService.instant('SDK.PROPERTY_TYPE_SELECTOR.CREATE_MODEL_DESCRIPTION');
             let value: JSONSchemaInfoBasics = {};
-            if (this.property?.model && !this.property.model.$ref) {
+            if (this.property?.model && !this.isReferencedType(this.property.model)) {
                 displayName = this.translationService.instant('SDK.PROPERTY_TYPE_SELECTOR.EDIT_MODEL');
                 description = this.translationService.instant('SDK.PROPERTY_TYPE_SELECTOR.EDIT_MODEL_DESCRIPTION');
                 value = this.property.model;
@@ -196,6 +196,10 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
                 this.hierarchy.push(customItem);
             }
         }
+    }
+
+    private isReferencedType(model: JSONSchemaInfoBasics) {
+        return !!model?.$ref && Object.keys(model).length === 1;
     }
 
     private initSelectedValue(item: PropertyTypeItem): boolean {
@@ -261,12 +265,12 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
     }
 
     private updatePropertyModel($event: PropertyTypeItem) {
-        const primitiveType = this.modelingJSONSchemaService.getPrimitiveType($event.value);
-        if (Array.isArray(primitiveType)) {
+        const primitiveType = this.modelingJSONSchemaService.getPrimitiveTypes($event.value);
+        if (primitiveType.length > 1) {
             this.property.aggregatedTypes = primitiveType;
             this.property.type = 'json';
         } else {
-            this.property.type = primitiveType;
+            this.property.type = primitiveType[0];
         }
         this.property.model = $event.value;
     }

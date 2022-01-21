@@ -45,7 +45,7 @@ export class PropertiesViewerModeledObjectInputComponent implements OnChanges {
 
     inputs: EntityProperty[] = [];
     valueInit = false;
-    primitiveType = null;
+    primitiveType: string[] = null;
 
     objectForm: FormGroup;
 
@@ -63,11 +63,8 @@ export class PropertiesViewerModeledObjectInputComponent implements OnChanges {
         this.oldValue = this.deepCopy(this.value);
 
         if (modelChanged || valueChanges) {
-            this.primitiveType = this.jsonService.getPrimitiveType(this.model || { type: 'string' });
+            this.primitiveType = this.jsonService.getPrimitiveTypes(this.model || { type: 'string' });
             this.inputs = this.jsonService.getEntityPropertiesFromJSONSchema(this.model).filter(input => !!input);
-            if (this.inputs.length === 1 && this.inputs[0].aggregatedTypes) {
-                this.primitiveType = this.inputs[0].aggregatedTypes;
-            }
         }
 
         if (modelChanged) {

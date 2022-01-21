@@ -58,6 +58,14 @@ describe('JsonSchemaEditorService', () => {
                 expect(service.getTypes({ $ref: '#/$defs/primitive/datetime' })).toEqual(['datetime']);
             });
 
+            it('file', () => {
+                expect(service.getTypes({ $ref: '#/$defs/primitive/file' })).toEqual(['file']);
+            });
+
+            it('folder', () => {
+                expect(service.getTypes({ $ref: '#/$defs/primitive/folder' })).toEqual(['folder']);
+            });
+
             it('enum', () => {
                 expect(service.getTypes({ enum: ['a', 'b', 'c'] })).toEqual(['enum']);
             });
@@ -118,6 +126,32 @@ describe('JsonSchemaEditorService', () => {
             expect(value).toEqual(expectedValue);
 
             service.setType('datetime', false, value);
+
+            expect(value).toEqual({});
+        });
+
+        it('file', () => {
+            const value = {};
+            const expectedValue = { $ref: '#/$defs/primitive/file' };
+
+            service.setType('file', true, value);
+
+            expect(value).toEqual(expectedValue);
+
+            service.setType('file', false, value);
+
+            expect(value).toEqual({});
+        });
+
+        it('folder', () => {
+            const value = {};
+            const expectedValue = { $ref: '#/$defs/primitive/folder' };
+
+            service.setType('folder', true, value);
+
+            expect(value).toEqual(expectedValue);
+
+            service.setType('folder', false, value);
 
             expect(value).toEqual({});
         });

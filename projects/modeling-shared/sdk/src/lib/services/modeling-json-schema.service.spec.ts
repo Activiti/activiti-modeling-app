@@ -196,4 +196,64 @@ describe('ModelingJSONSchemaService', () => {
         expect(service.variableMatchesTypeFilter(property, ['integer', 'json'])).toBeFalsy();
         expect(service.variableMatchesTypeFilter(property, [])).toBeFalsy();
     });
+
+    describe('flat schema reference', () => {
+        let model;
+
+        beforeEach(() => {
+            service.initializeProjectSchema('test');
+            model = {
+                $ref: '#/$defs/primitive/employee'
+            };
+        });
+
+        it('do not flat primitive types', () => {
+            expect(service.flatSchemaReference(model, true)).toEqual(exampleJSONSchema);
+        });
+
+        it('flat primitive types', () => {
+            expect(service.flatSchemaReference(model)).toEqual(model);
+        });
+
+        it('multiple modeling types', () => {
+            model = {
+                type: ['boolean', 'string'],
+                $ref: '#/$defs/primitive/employee'
+            };
+
+            expect(service.flatSchemaReference(model, true)).toEqual({
+                type: ['boolean', 'string'],
+                allOf: [exampleJSONSchema]
+            });
+        });
+    });
+
+    describe('get primitive types', () => {
+
+        it('get types from multiple model', () => {
+            const model = {
+                type: ['boolean', 'string'],
+                $ref: '#/$defs/primitive/employee',
+                enum: [1, 2, 3]
+            };
+
+            expect(service.getPrimitiveTypes(model)).toEqual(['json', 'boolean', 'string']);
+        });
+
+        it('get types from simple json models', () => {
+            expect(service.getPrimitiveTypes({ type: 'boolean' })).toEqual(['boolean']);
+            expect(service.getPrimitiveTypes({ type: 'string' })).toEqual(['string']);
+            expect(service.getPrimitiveTypes({ type: 'integer' })).toEqual(['integer']);
+            expect(service.getPrimitiveTypes({ type: 'array' })).toEqual(['array']);
+            expect(service.getPrimitiveTypes({ type: 'number' })).toEqual(['string']);
+            expect(service.getPrimitiveTypes({ type: 'object' })).toEqual(['json']);
+        });
+
+        it('return json by default', () => {
+            expect(service.getPrimitiveTypes(null)).toEqual(['json']);
+            expect(service.getPrimitiveTypes(undefined)).toEqual(['json']);
+            expect(service.getPrimitiveTypes({})).toEqual(['json']);
+            expect(service.getPrimitiveTypes({ type: 'non-existing' })).toEqual(['json']);
+        });
+    });
 });

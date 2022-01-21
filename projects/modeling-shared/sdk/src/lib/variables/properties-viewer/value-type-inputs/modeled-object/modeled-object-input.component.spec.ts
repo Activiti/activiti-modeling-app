@@ -178,7 +178,7 @@ describe('PropertiesViewerModeledObjectInputComponent', () => {
             const primitive = fixture.debugElement.query(By.css('.ama-modeled-object-primitive'));
 
             expect(form).toBeNull();
-            expect(component.primitiveType).toEqual('array');
+            expect(component.primitiveType).toEqual(['array']);
             expect(primitive).not.toBeNull();
         });
 
@@ -207,7 +207,7 @@ describe('PropertiesViewerModeledObjectInputComponent', () => {
             const primitive = fixture.debugElement.query(By.css('.ama-modeled-object-primitive'));
 
             expect(form).toBeNull();
-            expect(component.primitiveType).toEqual('string');
+            expect(component.primitiveType).toEqual(['string']);
             expect(primitive).not.toBeNull();
         });
 
