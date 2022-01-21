@@ -226,6 +226,14 @@ describe('ModelingJSONSchemaService', () => {
                 allOf: [exampleJSONSchema]
             });
         });
+
+        it('do not flat date and datetime types', () => {
+            expect(service.flatSchemaReference({$ref: '#/$defs/primitive/date'})).toEqual({$ref: '#/$defs/primitive/date'});
+            expect(service.flatSchemaReference({$ref: '#/$defs/primitive/date'}, true)).toEqual({$ref: '#/$defs/primitive/date'});
+            expect(service.flatSchemaReference({$ref: '#/$defs/primitive/datetime'})).toEqual({$ref: '#/$defs/primitive/datetime'});
+            expect(service.flatSchemaReference({$ref: '#/$defs/primitive/datetime'}, true)).toEqual({$ref: '#/$defs/primitive/datetime'});
+        });
+
     });
 
     describe('get primitive types', () => {

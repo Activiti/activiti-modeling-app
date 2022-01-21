@@ -131,7 +131,7 @@ export class ModelingJSONSchemaService {
             }
         }
 
-        if (schema?.$ref && (!schema.$ref.startsWith(ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH) || flatPrimitiveTypes)) {
+        if (this.flatReference(schema?.$ref, flatPrimitiveTypes)) {
             const referencedSchema = this.getSchemaFromReference(schema.$ref, originalSchema);
             const flattenedReferencedSchema = this.flatSchemaReferenceWithOriginalSchema(referencedSchema, originalSchema, flatPrimitiveTypes);
             if (JSON.stringify(result) === JSON.stringify(schema) && Object.keys(schema).length === 1) {
@@ -143,6 +143,20 @@ export class ModelingJSONSchemaService {
         }
 
         return result || {};
+    }
+
+    private flatReference(reference: string, flatPrimitiveTypes: boolean): boolean {
+        let flatReference = true;
+
+        flatReference = flatReference && !!reference;
+
+        if (reference?.startsWith(ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH)) {
+            flatReference = flatReference && flatPrimitiveTypes;
+            flatReference = flatReference && (reference !== ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH + '/date');
+            flatReference = flatReference && (reference !== ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH + '/datetime');
+        }
+
+        return flatReference;
     }
 
     getSchemaFromReference(ref: string, schema?: JSONSchemaInfoBasics): JSONSchemaInfoBasics {
