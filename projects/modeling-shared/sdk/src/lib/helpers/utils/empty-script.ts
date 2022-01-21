@@ -113,7 +113,7 @@ export const getEmptyScript = (model) => {
     *
     *           const startProcessPayload = { businessKey: variables.businessKey, payloadType: 'StartProcessPayload', processDefinitionKey: variables.processKey };
     *           const runtimeProcessInstanceAdminService = new RuntimeProcessInstanceAdminService();
-    *           runtimeProcessInstanceService.startProcess(startProcessPayload);
+    *           runtimeProcessInstanceAdminService.startProcess(startProcessPayload);
     *
     *       5.2.- runtimeProcessInstanceService (it includes ProcessInstanceControllerApi, ProcessInstanceTasksControllerApi and ProcessInstanceVariableControllerApi):
     *
