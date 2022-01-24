@@ -25,6 +25,8 @@ import { provideInputTypeItemHandler } from '../variables/properties-viewer/valu
 import { provideModelingJsonSchemaProvider } from './modeling-json-schema-provider.service';
 import { RegisteredInputsModelingJsonSchemaProvider } from './registered-inputs-modeling-json-schema-provider.service';
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
+import { PropertiesViewerJsonInputComponent } from '../variables/properties-viewer/value-type-inputs/json-input/json-input.component';
+import { exampleJSONSchema } from '../mocks/json-schema.mock';
 
 describe('JSONSchemaToEntityPropertyService', () => {
     let service: JSONSchemaToEntityPropertyService;
@@ -40,6 +42,7 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
                 provideInputTypeItemHandler('integer', PropertiesViewerIntegerInputComponent),
                 provideInputTypeItemHandler('boolean', PropertiesViewerBooleanInputComponent),
+                provideInputTypeItemHandler('employee', PropertiesViewerJsonInputComponent, 'json', exampleJSONSchema),
                 provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
             ]
         });
@@ -783,5 +786,118 @@ describe('JSONSchemaToEntityPropertyService', () => {
                 expect(results).toEqual(expectedProperties);
             });
         });
+    });
+
+    it('should get primitive referenced inputs in object properties', () => {
+        const model = {
+            type: 'object',
+            properties: {
+                file: {
+                    $ref: '#/$defs/primitive/file'
+                }
+            }
+        };
+
+        const expectedProperties = [
+            {
+                id: 'file',
+                name: 'file',
+                label: 'file',
+                type: 'file',
+                readOnly: false,
+                required: false,
+                model: {
+                    $ref: '#/$defs/primitive/file'
+                }
+            }
+        ];
+
+        const results = service.getEntityPropertiesFromJSONSchema(model);
+
+        expect(results).toEqual(expectedProperties);
+    });
+
+    it('should get not add the model for json plain inputs', () => {
+        const model = {
+            type: 'object',
+            properties: {
+                obj: {
+                    $ref: '#/$defs/primitive/json'
+                }
+            }
+        };
+
+        const expectedProperties = [
+            {
+                id: 'obj',
+                name: 'obj',
+                label: 'obj',
+                type: 'json',
+                readOnly: false,
+                required: false,
+                model: null
+            }
+        ];
+
+        const results = service.getEntityPropertiesFromJSONSchema(model);
+
+        expect(results).toEqual(expectedProperties);
+    });
+
+    it('should aggregate inputs in object properties', () => {
+        const model = {
+            type: 'object',
+            properties: {
+                aggregated: {
+                    $ref: '#/$defs/primitive/file',
+                    type: ['string', 'number']
+                }
+            }
+        };
+
+        const expectedProperties = [
+            {
+                id: 'aggregated',
+                name: 'aggregated',
+                label: 'aggregated',
+                type: 'json',
+                readOnly: false,
+                required: false,
+                aggregatedTypes: ['string', 'file']
+            }
+        ];
+
+        const results = service.getEntityPropertiesFromJSONSchema(model);
+
+        expect(results).toEqual(expectedProperties);
+    });
+
+    it('should resolve registered inputs in object properties', () => {
+        const model = {
+            type: 'object',
+            properties: {
+                employee: {
+                    $ref: '#/$defs/primitive/employee'
+                }
+            }
+        };
+
+        const expectedProperties = [
+            {
+                id: 'employee',
+                name: 'employee',
+                label: 'employee',
+                type: 'employee',
+                readOnly: false,
+                required: false,
+                model: {
+                    $ref: '#/$defs/primitive/employee'
+                }
+            }
+        ];
+
+        const results = service.getEntityPropertiesFromJSONSchema(model);
+
+        expect(results).toEqual(expectedProperties);
     });
 });

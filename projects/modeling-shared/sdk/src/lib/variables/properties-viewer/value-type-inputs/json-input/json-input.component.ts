@@ -17,6 +17,7 @@
 
 import { Component, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 import { EntityProperty, JSONSchemaInfoBasics } from '../../../../api/types';
+import { ModelingJSONSchemaService } from '../../../../services/modeling-json-schema.service';
 import { ModeledObjectChanges } from '../modeled-object/modeled-object-input.component';
 
 @Component({
@@ -89,5 +90,9 @@ export class PropertiesViewerJsonInputComponent implements OnChanges {
         } else {
             this.change.emit(null);
         }
+    }
+
+    get isPrimitiveJSONInput() {
+        return !this.model || Object.keys(this.model).length === 0 || this.model.$ref === ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH + '/json';
     }
 }

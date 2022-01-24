@@ -119,15 +119,20 @@ export class JSONSchemaToEntityPropertyService {
         return entityProperties.filter(properties => !!properties?.type);
     }
 
-    private isBasicProperty(element: JSONSchemaInfoBasics) {
+    private isBasicProperty(element: JSONSchemaInfoBasics): boolean {
         return element.type !== 'object' && element.type !== 'array' && !element.enum && !element.const;
     }
 
-    private getAggregatedEntityProperty(types: JSONSchemaInfoBasics[] | string[], name: string, prefix: string) {
+    private getAggregatedEntityProperty(types: (JSONSchemaInfoBasics | string)[], name: string, prefix: string): EntityProperty {
         const entityProperty = this.getPrimitiveEntityProperty({ type: 'json' }, name, prefix);
         entityProperty.aggregatedTypes = [];
-        types.forEach(receivedType => {
-            entityProperty.aggregatedTypes = entityProperty.aggregatedTypes.concat(this.modelingJSONSchemaService.getPrimitiveTypes(receivedType));
+        types.forEach((receivedType: JSONSchemaInfoBasics | string) => {
+            if (typeof receivedType === 'string') {
+                const modelingType = this.modelingJSONSchemaService.getModelingTypeFromJSONSchemaType(receivedType);
+                entityProperty.aggregatedTypes.push(modelingType);
+            } else {
+                entityProperty.aggregatedTypes = entityProperty.aggregatedTypes.concat(this.modelingJSONSchemaService.getPrimitiveTypes(receivedType));
+            }
         });
         entityProperty.aggregatedTypes = [...new Set(entityProperty.aggregatedTypes)];
         delete entityProperty.model;
@@ -137,38 +142,83 @@ export class JSONSchemaToEntityPropertyService {
     private getPrimitiveEntityProperty(jsonSchema: JSONSchemaInfoBasics, name: string, prefix: string): EntityProperty {
         let entityProperty = this.getBasicEntityProperty(jsonSchema, name, prefix);
         if (jsonSchema) {
-            if (jsonSchema.type) {
-                switch (jsonSchema.type) {
-                    case 'object':
-                        entityProperty.type = 'json';
-                        break;
-                    case 'number':
-                        entityProperty.type = 'string';
-                        break;
-                    case null:
-                        return null;
-                    default:
-                        break;
+            const aggregatedModels = this.getAggregatedModels(jsonSchema);
+            if (aggregatedModels.length > 1) {
+                entityProperty = this.getAggregatedEntityProperty(aggregatedModels, name, prefix);
+            } else {
+                if (jsonSchema.type) {
+                    switch (jsonSchema.type) {
+                        case 'object':
+                            entityProperty.type = 'json';
+                            break;
+                        case 'number':
+                            entityProperty.type = 'string';
+                            break;
+                        case null:
+                            return null;
+                        default:
+                            break;
+                    }
+                } else if (jsonSchema.const) {
+                    entityProperty.value = jsonSchema.const;
+                    entityProperty.readOnly = true;
+                    entityProperty.type = 'json';
+                    entityProperty.model = null;
+                } else if (jsonSchema.allOf || jsonSchema.anyOf || jsonSchema.oneOf) {
+                    entityProperty.type = 'json';
+                } else if (jsonSchema.$ref && jsonSchema.$ref.startsWith(ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH)) {
+                    const type = jsonSchema.$ref.substring(ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH.length + 1);
+                    entityProperty.type = type;
+                    entityProperty.model = type === 'json' ? null : { $ref: jsonSchema.$ref };
+                } else if (!jsonSchema.enum) {
+                    entityProperty = {
+                        id: name,
+                        name,
+                        type: null
+                    };
                 }
-            } else if (jsonSchema.const) {
-                entityProperty.value = jsonSchema.const;
-                entityProperty.readOnly = true;
-                entityProperty.type = 'json';
-                entityProperty.model = null;
-            } else if (jsonSchema.allOf || jsonSchema.anyOf || jsonSchema.oneOf) {
-                entityProperty.type = 'json';
-            } else if (!jsonSchema.enum) {
-                entityProperty = {
-                    id: name,
-                    name,
-                    type: null
-                };
             }
         }
 
-        this.fixPrimitiveType(entityProperty);
-
         return entityProperty;
+    }
+
+    private getAggregatedModels(jsonSchema: JSONSchemaInfoBasics): (JSONSchemaInfoBasics | string)[] {
+        let aggregatedModels: (JSONSchemaInfoBasics | string)[] = [];
+
+        if (jsonSchema?.type) {
+            if (Array.isArray(jsonSchema.type)) {
+                aggregatedModels = jsonSchema.type;
+            } else {
+                aggregatedModels.push(jsonSchema.type);
+            }
+        }
+
+        if (jsonSchema?.$ref) {
+            aggregatedModels.push({ $ref: jsonSchema.$ref });
+        }
+
+        if (jsonSchema?.anyOf) {
+            aggregatedModels = aggregatedModels.concat(jsonSchema.anyOf);
+        }
+
+        if (jsonSchema?.allOf) {
+            aggregatedModels = aggregatedModels.concat(jsonSchema.allOf);
+        }
+
+        if (jsonSchema?.oneOf) {
+            aggregatedModels = aggregatedModels.concat(jsonSchema.oneOf);
+        }
+
+        if (jsonSchema?.enum) {
+            aggregatedModels.push({ enum: jsonSchema.enum });
+        }
+
+        if (jsonSchema?.const) {
+            aggregatedModels.push({ const: jsonSchema.const });
+        }
+
+        return [...new Set(aggregatedModels)];
     }
 
     private getBasicEntityProperty(jsonSchema: JSONSchemaInfoBasics, name: string, prefix: string): EntityProperty {
@@ -209,12 +259,6 @@ export class JSONSchemaToEntityPropertyService {
             };
         } else {
             return null;
-        }
-    }
-
-    private fixPrimitiveType(entity: EntityProperty) {
-        if (!!entity) {
-            entity.type = this.modelingJSONSchemaService.getPrimitiveTypeFromModel(entity.model, entity.type);
         }
     }
 }

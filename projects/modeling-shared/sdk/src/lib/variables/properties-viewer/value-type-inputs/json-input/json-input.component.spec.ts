@@ -181,4 +181,18 @@ describe('PropertiesViewerJsonInputComponent', () => {
             expect(component.change.emit).toHaveBeenCalledWith([1, 2, 3]);
         });
     });
+
+    it('should not use the modeled object if model is referencing the primitive JSON schema', () => {
+        component.model = null;
+        expect(component.isPrimitiveJSONInput).toEqual(true);
+
+        component.model = {};
+        expect(component.isPrimitiveJSONInput).toEqual(true);
+
+        component.model = { $ref: '#/$defs/primitive/file' };
+        expect(component.isPrimitiveJSONInput).toEqual(false);
+
+        component.model = { $ref: '#/$defs/primitive/json' };
+        expect(component.isPrimitiveJSONInput).toEqual(true);
+    });
 });
