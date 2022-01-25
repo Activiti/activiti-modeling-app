@@ -66,6 +66,7 @@
       "VERSION": "Versão",
       "VARIABLES": "Variáveis",
       "DOCUMENTATION": "Documentação",
+      "CATEGORY": "Categoria",
       "EXECUTABLE": "Executável",
       "IMPLEMENTATION": "Implementação",
       "DECISION_TASK": "Tarefa de decisão",
@@ -181,7 +182,6 @@
         "CLOSE": "Fechar",
         "EXPRESSION": {
           "TITLE": "Expressão",
-          "NO_PROCESS_VARIABLES": "Criar uma variável de processo para adicionar atribuição de expressão",
           "CANDIDATE_EMPTY": "Os candidatos não podem estar vazios, forneça candidateUsers ou candidateGroups",
           "ASSIGNEE_EMPTY": "O usuário atribuído não pode estar vazio",
           "ASSIGNEE_INVALID_ERROR": "Expressão inválida, por exemplo { assignee:${var1} }",
@@ -196,8 +196,6 @@
     "PROCESS_VALID": "O processo é válido",
     "PROCESS_INVALID": "O processo contém erros de validação.",
     "ERRORS": {
-      "NO_PROCESS_VARIABLES": "Sem variáveis de processo",
-      "CREATE_PROCESS_VARIABLE": "Criar uma variável de processo para adicionar atribuição de expressão",
       "NO_SUB_PROCESS_VARIABLES": "Sem variáveis de processo secundário",
       "LOAD_DIAGRAM": "Encontramos um problema ao carregar o diagrama. Tente atualizar a página.",
       "SAVE_DIAGRAM": "Encontramos um problema ao salvar o diagrama. Tente salvar novamente.",

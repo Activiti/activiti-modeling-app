@@ -34,7 +34,9 @@
         "CREATE_SCRIPT": "Script",
         "CREATE_TRIGGER": "Déclencheur",
         "CREATE_PROJECT_MODEL": "Modèle de contenu",
-        "CREATE_FORM_WIDGET": "Widget de formulaire"
+        "CREATE_FORM_WIDGET": "Widget de formulaire",
+        "CREATE_DATA_MODEL": "Modèle de données",
+        "CREATE_AUTHENTICATION": "Authentification"
       }
     },
     "TREE": {
@@ -46,7 +48,9 @@
       "UIS": "IU",
       "FILES": "Fichiers",
       "SCRIPTS": "Scripts",
-      "TRIGGERS": "Déclencheurs"
+      "TRIGGERS": "Déclencheurs",
+      "DATA_MODELS": "Modèles de données",
+      "AUTHENTICATIONS": "Authentifications"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Créer un processus",
@@ -164,6 +168,24 @@
       "FORM_WIDGET_DELETED": "Widget de formulaire supprimé",
       "FORM_WIDGET_UPDATED": "Widget de formulaire enregistré"
     },
+    "DATA_MODEL_DIALOG": {
+      "TITLE_CREATE": "Créer un modèle de données",
+      "TITLE_UPDATE": "Mettre à jour le modèle de données",
+      "DATA_MODEL_NAME": "Nom du modèle de données",
+      "DATA_MODEL_DESC": "Description du modèle de données",
+      "DATA_MODEL_CREATED": "Modèle de données créé",
+      "DATA_MODEL_DELETED": "Modèle de données supprimé",
+      "DATA_MODEL_UPDATED": "Modèle de données enregistré"
+    },
+    "AUTHENTICATION_DIALOG": {
+      "TITLE_CREATE": "Créer une authentification",
+      "TITLE_UPDATE": "Mettre à jour l'authentification",
+      "AUTHENTICATION_NAME": "Nom de l'authentification",
+      "AUTHENTICATION_DESC": "Description de l'authentification",
+      "AUTHENTICATION_CREATED": "Authentification créée",
+      "AUTHENTICATION_DELETED": "Authentification supprimée",
+      "AUTHENTICATION_UPDATED": "Authentification enregistrée"
+    },
     "ERROR": {
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} du même nom existe déjà",
       "UPLOAD_FILE": "Un problème est survenu lors de l'importation du fichier. Essayez de l'importer à nouveau.",
@@ -213,13 +235,21 @@
         "DUPLICATION": "Une table de décision portant ce nom existe déjà",
         "GENERAL": "Un problème est survenu lors de l'enregistrement de la table de décision. Essayez de l'enregistrer à nouveau."
       },
-      "CREATE_DATA": {
-        "DUPLICATION": "Un objet de données portant ce nom existe déjà",
-        "GENERAL": "Un problème est survenu lors de la création de l'objet de données. Essayez de le créer à nouveau."
+      "CREATE_AUTHENTICATION": {
+        "DUPLICATION": "Une authentification portant ce nom existe déjà",
+        "GENERAL": "Un problème est survenu lors de la création de l'authentification. Essayez de la créer à nouveau."
       },
-      "UPDATE_DATA": {
-        "DUPLICATION": "Un objet de données portant ce nom existe déjà",
-        "GENERAL": "Un problème est survenu lors de l'enregistrement de l'objet de données. Essayez de l'enregistrer à nouveau."
+      "UPDATE_AUTHENTICATION": {
+        "DUPLICATION": "Une authentification portant ce nom existe déjà",
+        "GENERAL": "Un problème est survenu lors de l'enregistrement de l'authentification. Essayez de l'enregistrer à nouveau."
+      },
+      "CREATE_DATA_MODEL": {
+        "DUPLICATION": "Un modèle de données portant ce nom existe déjà",
+        "GENERAL": "Un problème est survenu lors de la création du modèle de données. Essayez de le créer à nouveau."
+      },
+      "UPDATE_DATA_MODEL": {
+        "DUPLICATION": "Un modèle de données portant ce nom existe déjà",
+        "GENERAL": "Un problème est survenu lors de l'enregistrement du modèle de données. Essayez de l'enregistrer à nouveau."
       },
       "CREATE_PROJECT": {
         "DUPLICATION": "Un projet portant ce nom existe déjà",

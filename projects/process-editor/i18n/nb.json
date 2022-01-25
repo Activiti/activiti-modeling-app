@@ -66,6 +66,7 @@
       "VERSION": "Versjon",
       "VARIABLES": "Variabler",
       "DOCUMENTATION": "Dokumentasjon",
+      "CATEGORY": "Kategori",
       "EXECUTABLE": "Kjørbar fil",
       "IMPLEMENTATION": "Implementering",
       "DECISION_TASK": "Beslutningsoppgave",
@@ -181,7 +182,6 @@
         "CLOSE": "Lukk",
         "EXPRESSION": {
           "TITLE": "Uttrykk",
-          "NO_PROCESS_VARIABLES": "Opprett en prosessvariabel for å legge til uttrykkstilordning",
           "CANDIDATE_EMPTY": "Kandidater kan ikke stå tomt – oppgi enten kandidatbrukere eller kandidatgrupper",
           "ASSIGNEE_EMPTY": "Tilordnet kan ikke stå tomt",
           "ASSIGNEE_INVALID_ERROR": "Ugyldig uttrykk, f.eks. { assignee:${var1} }",
@@ -196,8 +196,6 @@
     "PROCESS_VALID": "Prosessen er gyldig",
     "PROCESS_INVALID": "Prosessen inneholder valideringsfeil.",
     "ERRORS": {
-      "NO_PROCESS_VARIABLES": "Ingen prosessvariabler",
-      "CREATE_PROCESS_VARIABLE": "Opprett en prosessvariabel for å legge til uttrykkstilordning",
       "NO_SUB_PROCESS_VARIABLES": "Ingen variabler for underordnet prosess",
       "LOAD_DIAGRAM": "Vi støtte på et problem med å laste inn diagrammet. Prøv å oppdatere siden.",
       "SAVE_DIAGRAM": "Vi støtte på et problem med å lagre diagrammet. Prøv å lagre det på nytt.",

@@ -66,6 +66,7 @@
       "VERSION": "バージョン",
       "VARIABLES": "変数",
       "DOCUMENTATION": "文書化",
+      "CATEGORY": "カテゴリ",
       "EXECUTABLE": "実行可能ファイル",
       "IMPLEMENTATION": "実行",
       "DECISION_TASK": "意思決定タスク",
@@ -181,7 +182,6 @@
         "CLOSE": "閉じる",
         "EXPRESSION": {
           "TITLE": "式",
-          "NO_PROCESS_VARIABLES": "式割り当てを追加してプロセス変数を作成",
           "CANDIDATE_EMPTY": "候補を空にすることはできません。candidateUsers または candidateGroups のどちらかを入力してください",
           "ASSIGNEE_EMPTY": "担当者を空にすることはできません",
           "ASSIGNEE_INVALID_ERROR": "無効な式 例 { assignee:${var1} }",
@@ -196,8 +196,6 @@
     "PROCESS_VALID": "プロセスは無効です",
     "PROCESS_INVALID": "プロセスに検証エラーがあります。",
     "ERRORS": {
-      "NO_PROCESS_VARIABLES": "プロセス変数はありません",
-      "CREATE_PROCESS_VARIABLE": "式割り当てを追加してプロセス変数を作成",
       "NO_SUB_PROCESS_VARIABLES": "サブプロセス変数はありません",
       "LOAD_DIAGRAM": "図の読み込み中に問題が発生しました。ページを再読み込みしてください。",
       "SAVE_DIAGRAM": "図の保存中に問題が発生しました。保存をやり直してください。",

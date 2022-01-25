@@ -66,6 +66,7 @@
       "VERSION": "Wersja",
       "VARIABLES": "Zmienne",
       "DOCUMENTATION": "Dokumentacja",
+      "CATEGORY": "Kategoria",
       "EXECUTABLE": "Wykonywalny",
       "IMPLEMENTATION": "Implementacja",
       "DECISION_TASK": "Zadanie decyzji",
@@ -181,7 +182,6 @@
         "CLOSE": "Zamknij",
         "EXPRESSION": {
           "TITLE": "Wyrażenie",
-          "NO_PROCESS_VARIABLES": "Utwórz zmienną procesu, aby dodać przypisanie wyrażenia",
           "CANDIDATE_EMPTY": "Pole kandydatów nie może być puste. Wprowadź wartość w polu candidateUsers lub candidateGroups",
           "ASSIGNEE_EMPTY": "Pole osoby przypisanej nie może być puste",
           "ASSIGNEE_INVALID_ERROR": "Nieprawidłowe wyrażenie, np. { assignee:${var1} }",
@@ -196,8 +196,6 @@
     "PROCESS_VALID": "Proces jest prawidłowy",
     "PROCESS_INVALID": "Proces zawiera błędy weryfikacji.",
     "ERRORS": {
-      "NO_PROCESS_VARIABLES": "Brak zmiennych procesu",
-      "CREATE_PROCESS_VARIABLE": "Utwórz zmienną procesu, aby dodać przypisanie wyrażenia",
       "NO_SUB_PROCESS_VARIABLES": "Brak zmiennych procesu podrzędnego",
       "LOAD_DIAGRAM": "Wystąpił problem podczas ładowania schematu. Spróbuj odświeżyć stronę.",
       "SAVE_DIAGRAM": "Wystąpił problem podczas zapisywania schematu. Spróbuj zapisać go ponownie.",

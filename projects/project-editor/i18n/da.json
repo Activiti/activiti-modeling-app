@@ -34,7 +34,9 @@
         "CREATE_SCRIPT": "Script",
         "CREATE_TRIGGER": "Trigger",
         "CREATE_PROJECT_MODEL": "Indholdsmodel",
-        "CREATE_FORM_WIDGET": "Formularwidget"
+        "CREATE_FORM_WIDGET": "Formularwidget",
+        "CREATE_DATA_MODEL": "Datamodel",
+        "CREATE_AUTHENTICATION": "Godkendelse"
       }
     },
     "TREE": {
@@ -46,7 +48,9 @@
       "UIS": "UI",
       "FILES": "Filer",
       "SCRIPTS": "Scripts",
-      "TRIGGERS": "Triggere"
+      "TRIGGERS": "Triggere",
+      "DATA_MODELS": "Datamodeller",
+      "AUTHENTICATIONS": "Godkendelser"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Opret proces",
@@ -164,6 +168,24 @@
       "FORM_WIDGET_DELETED": "Formular-widget blev slettet",
       "FORM_WIDGET_UPDATED": "Formular-widget gemt"
     },
+    "DATA_MODEL_DIALOG": {
+      "TITLE_CREATE": "Opret datamodel",
+      "TITLE_UPDATE": "Opdater datamodel",
+      "DATA_MODEL_NAME": "Navn på datamodel",
+      "DATA_MODEL_DESC": "Beskrivelse af datamodel",
+      "DATA_MODEL_CREATED": "Datamodel oprettet",
+      "DATA_MODEL_DELETED": "Datamodel slettet",
+      "DATA_MODEL_UPDATED": "Datamodel gemt"
+    },
+    "AUTHENTICATION_DIALOG": {
+      "TITLE_CREATE": "Opret godkendelse",
+      "TITLE_UPDATE": "Opdater godkendelse",
+      "AUTHENTICATION_NAME": "Godkendelsesnavn",
+      "AUTHENTICATION_DESC": "Beskrivelse af godkendelse",
+      "AUTHENTICATION_CREATED": "Godkendelse oprettet",
+      "AUTHENTICATION_DELETED": "Godkendelse slettet",
+      "AUTHENTICATION_UPDATED": "Godkendelse gemt"
+    },
     "ERROR": {
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} med samme navn findes allerede",
       "UPLOAD_FILE": "Der opstod et problem under upload af filen. Prøv at uploade den igen.",
@@ -213,13 +235,21 @@
         "DUPLICATION": "Der findes allerede en beslutningstabel med det navn",
         "GENERAL": "Der opstod et problem under lagring af beslutningstabellen. Prøv at gemme den igen."
       },
-      "CREATE_DATA": {
-        "DUPLICATION": "Der findes allerede et dataobjekt med det navn",
-        "GENERAL": "Der opstod et problem under oprettelse af dataobjektet. Prøv at oprette det igen."
+      "CREATE_AUTHENTICATION": {
+        "DUPLICATION": "Der findes allerede en godkendelse med dette navn",
+        "GENERAL": "Der opstod et problem under oprettelse af godkendelsen. Prøv at oprette den igen."
       },
-      "UPDATE_DATA": {
-        "DUPLICATION": "Der findes allerede et dataobjekt med det navn",
-        "GENERAL": "Der opstod et problem under lagring af dataobjektet. Prøv at gemme det igen."
+      "UPDATE_AUTHENTICATION": {
+        "DUPLICATION": "Der findes allerede en godkendelse med dette navn",
+        "GENERAL": "Der opstod et problem under lagring af godkendelsen. Prøv at gemme den igen."
+      },
+      "CREATE_DATA_MODEL": {
+        "DUPLICATION": "En datamodel med dette navn findes allerede",
+        "GENERAL": "Vi har et problem med oprettelsen af datamodellen. Prøv at oprette den igen."
+      },
+      "UPDATE_DATA_MODEL": {
+        "DUPLICATION": "En datamodel med dette navn findes allerede",
+        "GENERAL": "Vi har et problem med lagringen af datamodellen. Prøv at gemme den igen."
       },
       "CREATE_PROJECT": {
         "DUPLICATION": "Der findes allerede et projekt med det navn",

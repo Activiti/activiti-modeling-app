@@ -66,6 +66,7 @@
       "VERSION": "الإصدار",
       "VARIABLES": "متغيرات",
       "DOCUMENTATION": "الوثائق",
+      "CATEGORY": "الفئة",
       "EXECUTABLE": "قابل للتنفيذ",
       "IMPLEMENTATION": "التطبيق",
       "DECISION_TASK": "مهمة القرار",
@@ -181,7 +182,6 @@
         "CLOSE": "إغلاق",
         "EXPRESSION": {
           "TITLE": "التعبير",
-          "NO_PROCESS_VARIABLES": "قم بإنشاء متغير عملية لإضافة تعيين التعبير",
           "CANDIDATE_EMPTY": "لا يجوز ترك المرشحين فارغ، قم بتوفير إما مستخدمين مرشحين أو مجموعات مرشحة",
           "ASSIGNEE_EMPTY": "لا يجوز أن يكون المعين فارغ",
           "ASSIGNEE_INVALID_ERROR": "تعبير غير صالح ، على سبيل المثال: {assignee: $ {var1}}",
@@ -196,8 +196,6 @@
     "PROCESS_VALID": "العملية صالحة",
     "PROCESS_INVALID": "تحتوي العملية على خطأ (أخطاء) التحقق من الصحة.",
     "ERRORS": {
-      "NO_PROCESS_VARIABLES": "لا توجد متغيرات للعملية",
-      "CREATE_PROCESS_VARIABLE": "قم بإنشاء متغير عملية لإضافة تعيين التعبير",
       "NO_SUB_PROCESS_VARIABLES": "لا توجد متغيرات للعملية الفرعية",
       "LOAD_DIAGRAM": "واجهتنا مشكلة في تحميل المخطط. حاول تحديث الصفحة.",
       "SAVE_DIAGRAM": "واجهتنا مشكلة في حفظ المخطط. حاول حفظه مرة أخرى.",

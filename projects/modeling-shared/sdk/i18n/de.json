@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "Möchten Sie \"{{ modelType }}\" wirklich speichern?",
+        "CONFIRM_DELETE_MODEL": "Möchten Sie \"{{ modelType }}\" wirklich löschen?",
+        "CONFIRM_DOWNLOAD_MODEL": "Möchten Sie \"{{ modelType }}\" wirklich herunterladen?",
+        "CONFIRM_SAVE_AS_MODEL": "Möchten Sie \"{{ modelType }}\" wirklich kopieren?",
+        "INVALID_MODEL": "{{ modelType }} enthält Validierungsfehler.",
+        "VALID_MODEL": "{{ modelType }} validiert"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Eingefügte Werte müssen diesem Muster folgen"
     },
     "ALL": "Alle",
     "VALUE": "Wert",
+    "EXPRESSION": "Ausdruck",
+    "TYPE": "Typ",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Ein Name ist erforderlich",
@@ -110,7 +122,8 @@
         "NONE": "Keine",
         "EVENT": "Ereignis",
         "EMAIL_SERVICE_TASK": "E-Mail-Serviceaufgabe",
-        "DOCGEN_SERVICE": "Docgen-Serviceaufgabe"
+        "DOCGEN_SERVICE": "Docgen-Serviceaufgabe",
+        "PARTICIPANT": "Prozess"
       },
       "TOOLTIP": {
         "VARIABLE": "Variable",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "Kernwerte",
       "DATE": {
         "CURRENT_DATE": "Heute",
         "CLEAR_BUTTON": "Löschen"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "Jetzt",
         "CLEAR_BUTTON": "Löschen"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "Wert, der dem Array hinzugefügt werden soll",
+        "ADD": "Hinzufügen",
+        "EDIT_VALUE": "Wert bearbeiten",
+        "EDIT": "Bearbeiten"
+      },
+      "VALIDATION": {
+        "REQUIRED": "Eingabe erforderlich",
+        "INVALID_FORMAT": "Eingabeformat nicht zulässig",
+        "INVALID_MIN_LENGTH": "Mindestlängenangabe nicht zulässig",
+        "INVALID_MAX_LENGTH": "Höchstlängenangabe nicht zulässig",
+        "INVALID_MIN_VALUE": "Ungültiger Wert. Zulässige Eingaben sind größer oder gleich",
+        "INVALID_MAX_VALUE": "Ungültiger Wert. Zulässige Eingaben sind kleiner oder gleich",
+        "INVALID_MULTIPLE_OF_VALUE": "Ungültiger Wert. Zulässige Eingaben sind ein Vielfaches von",
+        "GENERIC_ERROR": "Ungültiger Wert"
       }
     }
   }

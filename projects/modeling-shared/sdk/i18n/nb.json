@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "Er du sikker på at du vil lagre denne {{ modelType }}?",
+        "CONFIRM_DELETE_MODEL": "Er du sikker på at du vil slette denne {{ modelType }}?",
+        "CONFIRM_DOWNLOAD_MODEL": "Er du sikker på at du vil laste ned denne {{ modelType }}?",
+        "CONFIRM_SAVE_AS_MODEL": "Er du sikker på at du vil kopiere denne {{ modelType }}?",
+        "INVALID_MODEL": "{{ modelType }} inneholder valideringsfeil.",
+        "VALID_MODEL": "{{ modelType }} er gyldig"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Innlimte verdier må følge dette mønsteret"
     },
     "ALL": "Alle",
     "VALUE": "Verdi",
+    "EXPRESSION": "Uttrykk",
+    "TYPE": "Type",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Et navn er påkrevd",
@@ -110,7 +122,8 @@
         "NONE": "Ingen",
         "EVENT": "Hendelse",
         "EMAIL_SERVICE_TASK": "Serviceoppgave for e-post",
-        "DOCGEN_SERVICE": "Docgen-tjenesteoppgave"
+        "DOCGEN_SERVICE": "Docgen-tjenesteoppgave",
+        "PARTICIPANT": "Prosess"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabel",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "Grunnleggende",
       "DATE": {
         "CURRENT_DATE": "I dag",
         "CLEAR_BUTTON": "Fjern"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "Nå",
         "CLEAR_BUTTON": "Fjern"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "Verdi som skal legges til i matrisen",
+        "ADD": "Legg til",
+        "EDIT_VALUE": "Rediger verdi",
+        "EDIT": "Rediger"
+      },
+      "VALIDATION": {
+        "REQUIRED": "Inndata er påkrevd",
+        "INVALID_FORMAT": "Ugyldig inndataformat",
+        "INVALID_MIN_LENGTH": "Ugyldig minimumslengde",
+        "INVALID_MAX_LENGTH": "Ugyldig maksimumslengde",
+        "INVALID_MIN_VALUE": "Ugyldig verdi. Den skal være større enn eller lik",
+        "INVALID_MAX_VALUE": "Ugyldig verdi. Den skal være mindre enn eller lik",
+        "INVALID_MULTIPLE_OF_VALUE": "Ugyldig verdi. Den skal være et multiplum av",
+        "GENERIC_ERROR": "Ugyldig verdi"
       }
     }
   }

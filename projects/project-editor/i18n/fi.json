@@ -34,7 +34,9 @@
         "CREATE_SCRIPT": "Komentosarja",
         "CREATE_TRIGGER": "Laukaisija",
         "CREATE_PROJECT_MODEL": "Sisältömalli",
-        "CREATE_FORM_WIDGET": "Lomakepiensovellus"
+        "CREATE_FORM_WIDGET": "Lomakepiensovellus",
+        "CREATE_DATA_MODEL": "Tietomalli",
+        "CREATE_AUTHENTICATION": "Todennus"
       }
     },
     "TREE": {
@@ -46,7 +48,9 @@
       "UIS": "käyttöliittymä",
       "FILES": "Tiedostot",
       "SCRIPTS": "Komentosarjat",
-      "TRIGGERS": "Laukaisijat"
+      "TRIGGERS": "Laukaisijat",
+      "DATA_MODELS": "Tietomallit",
+      "AUTHENTICATIONS": "Todennukset"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Luo prosessi",
@@ -164,6 +168,24 @@
       "FORM_WIDGET_DELETED": "Lomakepiensovellus poistettu",
       "FORM_WIDGET_UPDATED": "Lomakepiensovellus tallennettu"
     },
+    "DATA_MODEL_DIALOG": {
+      "TITLE_CREATE": "Luo tietomalli",
+      "TITLE_UPDATE": "Päivitä tietomalli",
+      "DATA_MODEL_NAME": "Tietomallin nimi",
+      "DATA_MODEL_DESC": "Tietomallin kuvaus",
+      "DATA_MODEL_CREATED": "Tietomalli luotiin",
+      "DATA_MODEL_DELETED": "Tietomalli poistettiin",
+      "DATA_MODEL_UPDATED": "Tietomalli tallennettiin"
+    },
+    "AUTHENTICATION_DIALOG": {
+      "TITLE_CREATE": "Luo todennus",
+      "TITLE_UPDATE": "Päivitä todennus",
+      "AUTHENTICATION_NAME": "Todennusnimi",
+      "AUTHENTICATION_DESC": "Todennuksen kuvaus",
+      "AUTHENTICATION_CREATED": "Todennus luotiin",
+      "AUTHENTICATION_DELETED": "Todennus poistettiin",
+      "AUTHENTICATION_UPDATED": "Todennus tallennettu"
+    },
     "ERROR": {
       "UPLOAD_DUPLICATE_FILE": "Samanniminen {{modelType}} on jo olemassa",
       "UPLOAD_FILE": "Tiedoston lataamisessa palvelimelle ilmeni ongelma. Yritä ladata se uudelleen.",
@@ -213,13 +235,21 @@
         "DUPLICATION": "Samanniminen päätöstaulukko on jo olemassa",
         "GENERAL": "Päätöstaulukon tallentamisessa ilmeni ongelma. Yritä tallentaa se uudelleen."
       },
-      "CREATE_DATA": {
-        "DUPLICATION": "Samanniminen dataobjekti on jo olemassa",
-        "GENERAL": "Dataobjektin luomisessa ilmeni ongelma. Yritä luoda se uudelleen."
+      "CREATE_AUTHENTICATION": {
+        "DUPLICATION": "Samanniminen todennus on jo olemassa",
+        "GENERAL": "Todennuksen luomisessa ilmeni ongelma. Yritä luoda se uudelleen."
       },
-      "UPDATE_DATA": {
-        "DUPLICATION": "Samanniminen dataobjekti on jo olemassa",
-        "GENERAL": "Dataobjektin tallentamisessa ilmeni ongelma. Yritä tallentaa se uudelleen."
+      "UPDATE_AUTHENTICATION": {
+        "DUPLICATION": "Samanniminen todennus on jo olemassa",
+        "GENERAL": "Todennuksen tallentamisessa ilmeni ongelma. Yritä tallentaa se uudelleen."
+      },
+      "CREATE_DATA_MODEL": {
+        "DUPLICATION": "Samanniminen tietomalli on jo olemassa",
+        "GENERAL": "Tietomallin luomisessa ilmeni ongelma. Yritä luoda se uudelleen."
+      },
+      "UPDATE_DATA_MODEL": {
+        "DUPLICATION": "Samanniminen tietomalli on jo olemassa",
+        "GENERAL": "Tietomallin tallentamisessa ilmeni ongelma. Yritä tallentaa se uudelleen."
       },
       "CREATE_PROJECT": {
         "DUPLICATION": "Samanniminen projekti on jo olemassa",

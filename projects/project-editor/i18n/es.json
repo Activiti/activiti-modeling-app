@@ -34,7 +34,9 @@
         "CREATE_SCRIPT": "Script",
         "CREATE_TRIGGER": "Desencadenador",
         "CREATE_PROJECT_MODEL": "Modelo de contenido",
-        "CREATE_FORM_WIDGET": "Widget de formulario"
+        "CREATE_FORM_WIDGET": "Widget de formulario",
+        "CREATE_DATA_MODEL": "Modelos de datos",
+        "CREATE_AUTHENTICATION": "Autenticación"
       }
     },
     "TREE": {
@@ -46,7 +48,9 @@
       "UIS": "IU",
       "FILES": "Ficheros",
       "SCRIPTS": "Scripts",
-      "TRIGGERS": "Desencadenadores"
+      "TRIGGERS": "Desencadenadores",
+      "DATA_MODELS": "Modelos de datos",
+      "AUTHENTICATIONS": "Autenticaciones"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Crear proceso",
@@ -106,7 +110,7 @@
     "FILE_DIALOG": {
       "TITLE_CREATE": "Crear fichero",
       "TITLE_UPDATE": "Actualizar fichero",
-      "FILE_NAME": "Nombre del fichero",
+      "FILE_NAME": "Nombre del fichero:",
       "FILE_DESC": "Descripción del fichero:",
       "FILE_CREATED": "Fichero creado",
       "FILE_DELETED": "Fichero eliminado",
@@ -164,6 +168,24 @@
       "FORM_WIDGET_DELETED": "Widget de formulario eliminado",
       "FORM_WIDGET_UPDATED": "Widget de formulario guardado"
     },
+    "DATA_MODEL_DIALOG": {
+      "TITLE_CREATE": "Crear modelo de datos",
+      "TITLE_UPDATE": "Actualizar modelo de datos",
+      "DATA_MODEL_NAME": "Nombre del modelo de datos",
+      "DATA_MODEL_DESC": "Descripción del modelo de datos",
+      "DATA_MODEL_CREATED": "Modelo de datos creado",
+      "DATA_MODEL_DELETED": "Modelo de datos eliminado",
+      "DATA_MODEL_UPDATED": "Modelo de datos guardado"
+    },
+    "AUTHENTICATION_DIALOG": {
+      "TITLE_CREATE": "Crear autenticación",
+      "TITLE_UPDATE": "Actualizar autenticación",
+      "AUTHENTICATION_NAME": "Nombre de autenticación",
+      "AUTHENTICATION_DESC": "Descripción de autenticación",
+      "AUTHENTICATION_CREATED": "Autenticación creada",
+      "AUTHENTICATION_DELETED": "Autenticación eliminada",
+      "AUTHENTICATION_UPDATED": "Autenticación guardada"
+    },
     "ERROR": {
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} con el mismo nombre ya existe",
       "UPLOAD_FILE": "Ha surgido un problema al cargar el fichero. Vuelva a intentar cargarlo.",
@@ -213,13 +235,21 @@
         "DUPLICATION": "Ya existe una tabla de decisión con ese nombre",
         "GENERAL": "Ha surgido un problema al guardar la tabla de decisión. Vuelva a intentar guardarla."
       },
-      "CREATE_DATA": {
-        "DUPLICATION": "Ya existe un objeto de datos con ese nombre",
-        "GENERAL": "Ha surgido un problema al crear el objeto de datos. Vuelva a intentar crearlo."
+      "CREATE_AUTHENTICATION": {
+        "DUPLICATION": "Ya existe una autenticación con ese nombre",
+        "GENERAL": "Ha surgido un problema al crear la autenticación. Vuelva a intentar crearla."
       },
-      "UPDATE_DATA": {
-        "DUPLICATION": "Ya existe un objeto de datos con ese nombre",
-        "GENERAL": "Ha surgido un problema al guardar el objeto de datos. Vuelva a intentar guardarlo."
+      "UPDATE_AUTHENTICATION": {
+        "DUPLICATION": "Ya existe una autenticación con ese nombre",
+        "GENERAL": "Ha surgido un problema al guardar la autenticación. Vuelva a intentar guardarlo."
+      },
+      "CREATE_DATA_MODEL": {
+        "DUPLICATION": "Ya existe un modelo de datos con ese nombre",
+        "GENERAL": "Ha surgido un problema al crear el modelo de datos. Intente crearlo de nuevo."
+      },
+      "UPDATE_DATA_MODEL": {
+        "DUPLICATION": "Ya existe un modelo de datos con ese nombre",
+        "GENERAL": "Ha surgido un problema al guardar el modelo de datos. Intente guardarlo de nuevo."
       },
       "CREATE_PROJECT": {
         "DUPLICATION": "Ya existe un proyecto con ese nombre",

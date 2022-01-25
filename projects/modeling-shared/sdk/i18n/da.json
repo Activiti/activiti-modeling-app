@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "Er du sikker på, at du vil gemme denne {{ modelType }}?",
+        "CONFIRM_DELETE_MODEL": "Er du sikker på, at du vil slette denne {{ modelType }}?",
+        "CONFIRM_DOWNLOAD_MODEL": "Ert du sikker på, at du vil du downloade denne {{ modelType }}?",
+        "CONFIRM_SAVE_AS_MODEL": "Er du sikker på, at du vil gemme denne {{ modelType }}?",
+        "INVALID_MODEL": "{{ modelType }} indeholder valideringsfejl.",
+        "VALID_MODEL": "{{ modelType }} er ugyldig"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Indsatte værdier skal følge dette mønster"
     },
     "ALL": "Alle",
     "VALUE": "Værdi",
+    "EXPRESSION": "Udtryk",
+    "TYPE": "Type",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Der skal angives et navn",
@@ -110,7 +122,8 @@
         "NONE": "Ingen",
         "EVENT": "Hændelse",
         "EMAIL_SERVICE_TASK": "E-mail serviceopgave",
-        "DOCGEN_SERVICE": "Docgen-serviceopgave"
+        "DOCGEN_SERVICE": "Docgen-serviceopgave",
+        "PARTICIPANT": "Proces"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabel",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "Grundlæggende",
       "DATE": {
         "CURRENT_DATE": "I dag",
         "CLEAR_BUTTON": "Ryd"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "Nu",
         "CLEAR_BUTTON": "Ryd"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "Værdi, der skal tilføjes til array'en",
+        "ADD": "Tilføj",
+        "EDIT_VALUE": "Rediger værdi",
+        "EDIT": "Rediger"
+      },
+      "VALIDATION": {
+        "REQUIRED": "Input er påkrævet",
+        "INVALID_FORMAT": "Ugyldigt inputformat",
+        "INVALID_MIN_LENGTH": "Ugyldig minimumlængde",
+        "INVALID_MAX_LENGTH": "Ugyldig maksimumlængde",
+        "INVALID_MIN_VALUE": "Ugyldig værdi. Den skal være større end eller lig med",
+        "INVALID_MAX_VALUE": "Ugyldig værdi. Den skal være mindre end eller lig med",
+        "INVALID_MULTIPLE_OF_VALUE": "Ugyldig værdi. Den skal være et multiplum af",
+        "GENERIC_ERROR": "Ugyldig værdi"
       }
     }
   }

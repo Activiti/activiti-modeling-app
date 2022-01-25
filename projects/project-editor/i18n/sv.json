@@ -34,7 +34,9 @@
         "CREATE_SCRIPT": "Skript",
         "CREATE_TRIGGER": "Utlösare",
         "CREATE_PROJECT_MODEL": "Innehållsmodell",
-        "CREATE_FORM_WIDGET": "Widgetform"
+        "CREATE_FORM_WIDGET": "Widgetform",
+        "CREATE_DATA_MODEL": "Datamodell",
+        "CREATE_AUTHENTICATION": "Autentisering"
       }
     },
     "TREE": {
@@ -46,7 +48,9 @@
       "UIS": "Gränssnitt",
       "FILES": "Filer",
       "SCRIPTS": "Skript",
-      "TRIGGERS": "Utlösare"
+      "TRIGGERS": "Utlösare",
+      "DATA_MODELS": "Datamodeller",
+      "AUTHENTICATIONS": "Autentiseringar"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Skapa process",
@@ -164,6 +168,24 @@
       "FORM_WIDGET_DELETED": "Formulärwidget raderad",
       "FORM_WIDGET_UPDATED": "Formulärwidget sparad"
     },
+    "DATA_MODEL_DIALOG": {
+      "TITLE_CREATE": "Skapa datamodell",
+      "TITLE_UPDATE": "Uppdatera datamodell",
+      "DATA_MODEL_NAME": "Namn på datamodell",
+      "DATA_MODEL_DESC": "Beskrivning av innehållsmodell",
+      "DATA_MODEL_CREATED": "Datamodell skapad",
+      "DATA_MODEL_DELETED": "Datamodell raderad",
+      "DATA_MODEL_UPDATED": "Datamodell sparad"
+    },
+    "AUTHENTICATION_DIALOG": {
+      "TITLE_CREATE": "Skapa autentisering",
+      "TITLE_UPDATE": "Uppdatera autentisering",
+      "AUTHENTICATION_NAME": "Autentiseringsnamn",
+      "AUTHENTICATION_DESC": "Beskrivning av autentisering",
+      "AUTHENTICATION_CREATED": "Autentisering skapad",
+      "AUTHENTICATION_DELETED": "Autentisering raderad",
+      "AUTHENTICATION_UPDATED": "Autentisering sparad"
+    },
     "ERROR": {
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} med samma namn finns redan",
       "UPLOAD_FILE": "Vi stötte på ett problem med att ladda upp filen. Försök att ladda upp den igen.",
@@ -213,13 +235,21 @@
         "DUPLICATION": "En beslutstabell med det namnet finns redan",
         "GENERAL": "Vi stötte på ett problem när beslutstabellen skulle sparas. Försök att spara den igen."
       },
-      "CREATE_DATA": {
-        "DUPLICATION": "Ett datobjekt med det namnet finns redan",
-        "GENERAL": "Vi stötte på ett problem när dataobjektet skulle skapas. Försök att skapa det igen."
+      "CREATE_AUTHENTICATION": {
+        "DUPLICATION": "Ett program med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem när konnektorn skulle skapas. Försök att skapa den igen."
       },
-      "UPDATE_DATA": {
-        "DUPLICATION": "Ett datobjekt med det namnet finns redan",
-        "GENERAL": "Vi stötte på ett problem när dataobjektet skulle sparas. Försök att spara det igen."
+      "UPDATE_AUTHENTICATION": {
+        "DUPLICATION": "Ett program med det namnet finns redan",
+        "GENERAL": "Vi stötte på ett problem när konnektorn skulle sparas. Försök att spara den igen."
+      },
+      "CREATE_DATA_MODEL": {
+        "DUPLICATION": "Det finns redan en innehållsmodell med det namnet",
+        "GENERAL": "Vi stötte på ett problem med att skapa innehållsmodellen. Försök att skapa den igen."
+      },
+      "UPDATE_DATA_MODEL": {
+        "DUPLICATION": "Det finns redan en innehållsmodell med det namnet",
+        "GENERAL": "Vi stötte på ett problem med att spara innehållsmodellen. Försök att spara den igen."
       },
       "CREATE_PROJECT": {
         "DUPLICATION": "Ett projekt med det namnet finns redan",

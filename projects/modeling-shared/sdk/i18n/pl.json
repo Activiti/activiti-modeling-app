@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "Czy na pewno chcesz zapisać ten {{ modelType }}?",
+        "CONFIRM_DELETE_MODEL": "Czy na pewno chcesz usunąć ten {{ modelType }}?",
+        "CONFIRM_DOWNLOAD_MODEL": "Czy na pewno chcesz pobrać ten {{ modelType }}?",
+        "CONFIRM_SAVE_AS_MODEL": "Czy na pewno chcesz skopiować ten {{ modelType }}?",
+        "INVALID_MODEL": "{{ modelType }} zawiera błędy weryfikacji.",
+        "VALID_MODEL": "{{ modelType }} jest prawidłowy"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Wklejone wartości muszą być zgodne z tym wzorem"
     },
     "ALL": "Wszystkie",
     "VALUE": "Wartość",
+    "EXPRESSION": "Wyrażenie",
+    "TYPE": "Typ",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Nazwa jest wymagana",
@@ -110,7 +122,8 @@
         "NONE": "Brak",
         "EVENT": "Zdarzenie",
         "EMAIL_SERVICE_TASK": "Zadanie usługi e-mail",
-        "DOCGEN_SERVICE": "Zadanie usługi docgen"
+        "DOCGEN_SERVICE": "Zadanie usługi docgen",
+        "PARTICIPANT": "Proces"
       },
       "TOOLTIP": {
         "VARIABLE": "Zmienna",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "Podstawy",
       "DATE": {
         "CURRENT_DATE": "Dzisiaj",
         "CLEAR_BUTTON": "Wyczyść"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "Teraz",
         "CLEAR_BUTTON": "Wyczyść"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "Wartość do dodania do macierzy",
+        "ADD": "Dodaj",
+        "EDIT_VALUE": "Edytuj wartość",
+        "EDIT": "Edytuj"
+      },
+      "VALIDATION": {
+        "REQUIRED": "Dane wejściowe są wymagane",
+        "INVALID_FORMAT": "Nieprawidłowy format danych wejściowych",
+        "INVALID_MIN_LENGTH": "Nieprawidłowa długość minimalna",
+        "INVALID_MAX_LENGTH": "Nieprawidłowa długość maksymalna",
+        "INVALID_MIN_VALUE": "Nieprawidłowa wartość. Powinna być większa lub równa",
+        "INVALID_MAX_VALUE": "Nieprawidłowa wartość. Powinna być mniejsza lub równa",
+        "INVALID_MULTIPLE_OF_VALUE": "Nieprawidłowa wartość. Powinna być wielokrotnością",
+        "GENERIC_ERROR": "Nieprawidłowa wartość"
       }
     }
   }

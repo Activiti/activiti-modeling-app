@@ -32,7 +32,8 @@
         "TITLE": "Czy chcesz zapisać mimo to?",
         "SUBTITLE": "Błędy weryfikacji:",
         "NAME_DOESNT_MATCH_PATTERN": "Nazwa jest niezgodna z następującym wzorem",
-        "GENERAL_NAME_VALIDATION": "Nazwa musi zawierać tylko małe litery i mieć długość od 1 do 26 znaków. Można używać znaków alfanumerycznych i dywizów, nazwa musi się jednak zaczynać od litery i kończyć znakiem alfanumerycznym."
+        "GENERAL_NAME_VALIDATION": "Nazwa musi zawierać tylko małe litery i mieć długość od 1 do 26 znaków. Można używać znaków alfanumerycznych i dywizów, nazwa musi się jednak zaczynać od litery i kończyć znakiem alfanumerycznym.",
+        "PROCESS_NAME_VALIDATION": "Nazwa musi mieć od 1 do 26 znaków i nie może zaczynać się spacją."
       },
       "CONFIRM": {
         "TITLE": "Czy na pewno?",
@@ -55,58 +56,22 @@
         },
         "DELETE": {
           "PROJECT": "Czy na pewno chcesz usunąć ten projekt?",
-          "PROCESS": "Czy na pewno chcesz usunąć ten proces?",
-          "FORM": "Czy na pewno chcesz usunąć ten formularz?",
-          "UI": "Czy na pewno chcesz usunąć ten interfejs użytkownika?",
-          "DATA": "Czy na pewno chcesz usunąć ten obiekt danych?",
-          "DECISION_TABLE": "Czy na pewno chcesz usunąć tę tabelę decyzji?",
-          "CONNECTOR": "Czy na pewno chcesz usunąć ten łącznik?",
-          "FILE": "Czy na pewno chcesz usunąć ten plik?",
-          "SCRIPT": "Czy na pewno chcesz usunąć ten skrypt?",
-          "TRIGGER": "Czy na pewno chcesz usunąć ten wyzwalacz?",
-          "MODEL": "Czy na pewno chcesz usunąć ten model zawartości?",
-          "FORM_WIDGET": "Czy na pewno chcesz usunąć ten widżet formularza?"
+          "DATA": "Czy na pewno chcesz usunąć ten obiekt danych?"
         },
         "SAVE": {
           "PROCESS": "Czy na pewno chcesz zapisać ten proces?",
-          "FORM": "Czy na pewno chcesz zapisać ten formularz?",
-          "UI": "Czy na pewno chcesz zapisać ten interfejs użytkownika?",
           "DATA": "Czy na pewno chcesz zapisać ten obiekt danych?",
-          "DECISION_TABLE": "Czy na pewno chcesz zapisać tę tabelę decyzji?",
-          "CONNECTOR": "Czy na pewno chcesz zapisać ten łącznik?",
-          "FILE": "Czy na pewno chcesz zapisać ten plik?",
-          "EMAIL_TEMPLATE": "Czy na pewno chcesz nadpisać ten szablon wiadomości e-mail?",
-          "SCRIPT": "Czy na pewno chcesz zapisać ten skrypt?",
-          "TRIGGER": "Czy na pewno chcesz zapisać ten wyzwalacz?",
-          "MODEL": "Czy na pewno chcesz zapisać ten model zawartości?",
-          "FORM_WIDGET": "Czy na pewno chcesz zapisać ten widżet formularza?"
+          "EMAIL_TEMPLATE": "Czy na pewno chcesz nadpisać ten szablon wiadomości e-mail?"
         },
         "SAVE_AS": {
           "PROCESS": "Czy na pewno chcesz skopiować ten proces?",
-          "FORM": "Czy na pewno chcesz skopiować ten formularz?",
-          "UI": "Czy na pewno chcesz skopiować ten IU?",
           "DATA": "Czy na pewno chcesz skopiować ten obiekt danych?",
-          "DECISION_TABLE": "Czy na pewno chcesz skopiować tę tabelę decyzji?",
-          "CONNECTOR": "Czy na pewno chcesz skopiować ten łącznik?",
           "FILE": "Czy na pewno chcesz skopiować ten plik?",
-          "SCRIPT": "Czy na pewno chcesz skopiować ten skrypt?",
-          "TRIGGER": "Czy na pewno chcesz skopiować ten wyzwalacz?",
-          "MODEL": "Czy na pewno chcesz skopiować ten model zawartości?",
-          "FORM_WIDGET": "Czy na pewno chcesz skopiować ten widżet formularza?"
+          "SCRIPT": "Czy na pewno chcesz skopiować ten skrypt?"
         },
         "DOWNLOAD": {
-          "PROCESS": "Czy na pewno chcesz pobrać ten proces?",
           "IMAGE": "Czy na pewno chcesz pobrać obraz svg tego procesu?",
-          "FORM": "Czy na pewno chcesz pobrać ten formularz?",
-          "UI": "Czy na pewno chcesz pobrać ten interfejs użytkownika?",
-          "DATA": "Czy na pewno chcesz pobrać ten obiekt danych?",
-          "DECISION_TABLE": "Czy na pewno chcesz pobrać tę tabelę decyzji?",
-          "CONNECTOR": "Czy na pewno chcesz pobrać ten łącznik?",
-          "FILE": "Czy na pewno chcesz pobrać ten plik?",
-          "SCRIPT": "Czy na pewno chcesz pobrać ten skrypt?",
-          "TRIGGER": "Czy na pewno chcesz pobrać ten wyzwalacz?",
-          "MODEL": "Czy na pewno chcesz pobrać ten model zawartości?",
-          "FORM_WIDGET": "Czy na pewno chcesz pobrać ten widżet formularza?"
+          "DATA": "Czy na pewno chcesz pobrać ten obiekt danych?"
         }
       }
     },

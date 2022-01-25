@@ -66,6 +66,7 @@
       "VERSION": "Version",
       "VARIABLES": "Variablen",
       "DOCUMENTATION": "Dokumentation",
+      "CATEGORY": "Kategorie",
       "EXECUTABLE": "Programmdatei",
       "IMPLEMENTATION": "Implementierung",
       "DECISION_TASK": "Entscheidungsaufgabe",
@@ -181,7 +182,6 @@
         "CLOSE": "Schließen",
         "EXPRESSION": {
           "TITLE": "Ausdruck",
-          "NO_PROCESS_VARIABLES": "Prozessvariable erstellen, um die Ausdruckszuweisung hinzuzufügen",
           "CANDIDATE_EMPTY": "Kandidaten können nicht leer sein. Geben Sie entweder Kandidatenbenutzer oder Kandidatengruppen ein.",
           "ASSIGNEE_EMPTY": "Zugewiesener Benutzer darf nicht leer sein.",
           "ASSIGNEE_INVALID_ERROR": "Ungültiger Ausdruck, z. B. { assignee:${var1} }",
@@ -196,8 +196,6 @@
     "PROCESS_VALID": "Prozess ist gültig.",
     "PROCESS_INVALID": "Prozess enthält Validierungsfehler.",
     "ERRORS": {
-      "NO_PROCESS_VARIABLES": "Keine Prozessvariablen",
-      "CREATE_PROCESS_VARIABLE": "Prozessvariable erstellen, um die Ausdruckszuweisung hinzuzufügen",
       "NO_SUB_PROCESS_VARIABLES": "Keine Unterprozessvariablen",
       "LOAD_DIAGRAM": "Beim Laden des Diagramms ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren.",
       "SAVE_DIAGRAM": "Beim Speichern des Diagramms ist ein Problem aufgetreten. Versuchen Sie es noch einmal.",

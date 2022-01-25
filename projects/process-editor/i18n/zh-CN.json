@@ -66,6 +66,7 @@
       "VERSION": "版本",
       "VARIABLES": "变量",
       "DOCUMENTATION": "文档",
+      "CATEGORY": "类别",
       "EXECUTABLE": "可执行",
       "IMPLEMENTATION": "实现",
       "DECISION_TASK": "决策任务",
@@ -181,7 +182,6 @@
         "CLOSE": "关闭",
         "EXPRESSION": {
           "TITLE": "表达式",
-          "NO_PROCESS_VARIABLES": "创建流程变量以添加表达式赋值",
           "CANDIDATE_EMPTY": "候选用户不能为空，请提供候选用户或候选组",
           "ASSIGNEE_EMPTY": "被分派人不能为空",
           "ASSIGNEE_INVALID_ERROR": "无效的表达式, 例如 { assignee:${var1} }",
@@ -196,8 +196,6 @@
     "PROCESS_VALID": "流程有效",
     "PROCESS_INVALID": "流程包含验证错误。",
     "ERRORS": {
-      "NO_PROCESS_VARIABLES": "无流程变量",
-      "CREATE_PROCESS_VARIABLE": "创建流程变量以添加表达式赋值",
       "NO_SUB_PROCESS_VARIABLES": "无子流程变量",
       "LOAD_DIAGRAM": "加载图表时遇到问题。尝试刷新页面。",
       "SAVE_DIAGRAM": "保存图表时遇到问题。尝试重新保存。",

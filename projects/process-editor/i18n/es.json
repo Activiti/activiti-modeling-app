@@ -66,6 +66,7 @@
       "VERSION": "Versión",
       "VARIABLES": "Variables",
       "DOCUMENTATION": "Documentación",
+      "CATEGORY": "Categoría",
       "EXECUTABLE": "Ejecutable",
       "IMPLEMENTATION": "Implementación",
       "DECISION_TASK": "Tarea de decisiones",
@@ -181,7 +182,6 @@
         "CLOSE": "Cerrar",
         "EXPRESSION": {
           "TITLE": "Expresión",
-          "NO_PROCESS_VARIABLES": "Crear una variable de proceso para añadir una asignación de expresión",
           "CANDIDATE_EMPTY": "Los campos candidatos no pueden dejarse en blanco, proporcione los Usuarios candidatos o Grupos candidatos",
           "ASSIGNEE_EMPTY": "El campo del usuario asignado no puede dejarse en blanco",
           "ASSIGNEE_INVALID_ERROR": "Expresión no válida, por ejemplo { assignee:${var1} }",
@@ -196,8 +196,6 @@
     "PROCESS_VALID": "Proceso es válido",
     "PROCESS_INVALID": "El proceso contiene errores de validación.",
     "ERRORS": {
-      "NO_PROCESS_VARIABLES": "No hay variables de proceso",
-      "CREATE_PROCESS_VARIABLE": "Crear una variable de proceso para añadir una asignación de expresión",
       "NO_SUB_PROCESS_VARIABLES": "No hay variables de subproceso",
       "LOAD_DIAGRAM": "Ha surgido un problema al cargar el diagrama. Vuelva a intentar actualizar la página.",
       "SAVE_DIAGRAM": "Ha surgido un problema al guardar el diagrama. Vuelva a intentar guardarlo.",

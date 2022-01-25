@@ -32,7 +32,8 @@
         "TITLE": "Vill du ändå spara den?",
         "SUBTITLE": "Valideringsfel:",
         "NAME_DOESNT_MATCH_PATTERN": "Namnet motsvarar inte följande mönster",
-        "GENERAL_NAME_VALIDATION": "Namnet måste vara i gemener och mellan 1 och 26 tecken långt. Alfanumeriska tecken och bindestreck är tillåtna, men namnet måste börja med en bokstav och sluta alfanumeriskt."
+        "GENERAL_NAME_VALIDATION": "Namnet måste vara i gemener och mellan 1 och 26 tecken långt. Alfanumeriska tecken och bindestreck är tillåtna, men namnet måste börja med en bokstav och sluta alfanumeriskt.",
+        "PROCESS_NAME_VALIDATION": "Namnet måste vara mellan 1 och 26 tecken långt och kan inte innehålla blanksteg"
       },
       "CONFIRM": {
         "TITLE": "Är du säker?",
@@ -55,58 +56,22 @@
         },
         "DELETE": {
           "PROJECT": "Är du säker på att du vill radera det här projektet?",
-          "PROCESS": "Är du säker på att du vill radera den här processen?",
-          "FORM": "Är du säker på att du vill radera det här formuläret?",
-          "UI": "Är du säker på att du vill radera det här gränssnittet?",
-          "DATA": "Är du säker på att du vill radera det här dataobjektet?",
-          "DECISION_TABLE": "Är du säker på att du vill radera den här beslutstabellen?",
-          "CONNECTOR": "Är du säker på att du vill radera den här konnektorn?",
-          "FILE": "Är du säker på att du vill radera den här filen?",
-          "SCRIPT": "Är du säker på att du vill radera detta skript?",
-          "TRIGGER": "Är du säker på att du vill radera den här utlösaren?",
-          "MODEL": "Är du säker på att du vill radera den här innehållsmodellen?",
-          "FORM_WIDGET": "Är du säker på att du vill radera det här formuläret?"
+          "DATA": "Är du säker på att du vill radera det här dataobjektet?"
         },
         "SAVE": {
           "PROCESS": "Är du säker på att du vill spara den här processen?",
-          "FORM": "Är du säker på att du vill spara det här formuläret?",
-          "UI": "Är du säker på att du vill spara det här gränssnittet?",
           "DATA": "Är du säker på att du vill spara det här dataobjektet?",
-          "DECISION_TABLE": "Är du säker på att du vill spara den här beslutstabellen?",
-          "CONNECTOR": "Är du säker på att du vill spara den här konnektorn?",
-          "FILE": "Är du säker på att du vill spara den här filen?",
-          "EMAIL_TEMPLATE": "Vill du verkligen skriva över e-postmallen?",
-          "SCRIPT": "Är du säker på att du vill spara detta skript?",
-          "TRIGGER": "Är du säker på att du vill spara den här utlösaren?",
-          "MODEL": "Är du säker på att du vill spara den här innehållsmodellen?",
-          "FORM_WIDGET": "Är du säker på att du vill spara det här formuläret?"
+          "EMAIL_TEMPLATE": "Vill du verkligen skriva över e-postmallen?"
         },
         "SAVE_AS": {
           "PROCESS": "Vill du verkligen kopiera den här processen?",
-          "FORM": "Vill du verkligen kopiera det här formuläret?",
-          "UI": "Vill du verkligen kopiera detta användargränssnitt?",
           "DATA": "Vill du verkligen kopiera detta dataobjekt?",
-          "DECISION_TABLE": "Vill du verkligen kopiera denna beslutstabell?",
-          "CONNECTOR": "Vill du verkligen kopiera denna konnektor?",
           "FILE": "Vill du verkligen kopiera den här filen?",
-          "SCRIPT": "Vill du verkligen kopiera det här skriptet?",
-          "TRIGGER": "Vill du verkligen kopiera den här utlösaren?",
-          "MODEL": "Vill du verkligen kopiera den här innehållsmodellen?",
-          "FORM_WIDGET": "Vill du verkligen kopiera den här formulärwidgeten?"
+          "SCRIPT": "Vill du verkligen kopiera det här skriptet?"
         },
         "DOWNLOAD": {
-          "PROCESS": "Är du säker på att du vill ladda ner den här processen?",
           "IMAGE": "Är du säker på att du vill ladda ner svg-bilden av denna process?",
-          "FORM": "Är du säker på att du vill ladda ner det här formuläret?",
-          "UI": "Är du säker på att du vill ladda ner det här gränssnittet?",
-          "DATA": "Är du säker på att du vill ladda ner det här dataobjeketet?",
-          "DECISION_TABLE": "Är du säker på att du vill ladda ner den här beslutstabellen?",
-          "CONNECTOR": "Är du säker på att du vill ladda ner den här konnektorn?",
-          "FILE": "Är du säker på att du vill ladda ner den här filen?",
-          "SCRIPT": "Är du säker på att du vill ladda ner detta skript?",
-          "TRIGGER": "Är du säker på att du vill ladda ner den här utlösaren?",
-          "MODEL": "Är du säker på att du vill ladda ner den här innehållsmodellen?",
-          "FORM_WIDGET": "Är du säker på att du vill ladda ner det här formuläret?"
+          "DATA": "Är du säker på att du vill ladda ner det här dataobjeketet?"
         }
       }
     },

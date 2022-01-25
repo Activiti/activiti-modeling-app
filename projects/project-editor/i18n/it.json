@@ -34,7 +34,9 @@
         "CREATE_SCRIPT": "Script",
         "CREATE_TRIGGER": "Trigger",
         "CREATE_PROJECT_MODEL": "Modello di contenuto",
-        "CREATE_FORM_WIDGET": "Widget modulo"
+        "CREATE_FORM_WIDGET": "Widget modulo",
+        "CREATE_DATA_MODEL": "Modello di dati",
+        "CREATE_AUTHENTICATION": "Autenticazione"
       }
     },
     "TREE": {
@@ -46,7 +48,9 @@
       "UIS": "UI",
       "FILES": "File",
       "SCRIPTS": "Script",
-      "TRIGGERS": "Trigger"
+      "TRIGGERS": "Trigger",
+      "DATA_MODELS": "Modelli di dati",
+      "AUTHENTICATIONS": "Autenticazioni"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Crea processo",
@@ -164,6 +168,24 @@
       "FORM_WIDGET_DELETED": "Widget di modulo eliminato",
       "FORM_WIDGET_UPDATED": "Widget di modulo salvato"
     },
+    "DATA_MODEL_DIALOG": {
+      "TITLE_CREATE": "Crea modello di dati",
+      "TITLE_UPDATE": "Aggiorna modello di dati",
+      "DATA_MODEL_NAME": "Nome modello di dati",
+      "DATA_MODEL_DESC": "Descrizione modello di dati",
+      "DATA_MODEL_CREATED": "Modello di dati creato",
+      "DATA_MODEL_DELETED": "Modello di dati eliminato",
+      "DATA_MODEL_UPDATED": "Modello di dati salvato"
+    },
+    "AUTHENTICATION_DIALOG": {
+      "TITLE_CREATE": "Crea autenticazione",
+      "TITLE_UPDATE": "Aggiorna autenticazione",
+      "AUTHENTICATION_NAME": "Nome autenticazione",
+      "AUTHENTICATION_DESC": "Descrizione autenticazione",
+      "AUTHENTICATION_CREATED": "Autenticazione creata",
+      "AUTHENTICATION_DELETED": "Autenticazione eliminata",
+      "AUTHENTICATION_UPDATED": "Autenticazione salvata"
+    },
     "ERROR": {
       "UPLOAD_DUPLICATE_FILE": "Esiste già {{modelType}} con lo stesso nome",
       "UPLOAD_FILE": "Si è verificato un problema durante il caricamento del file. Riprovare.",
@@ -213,13 +235,21 @@
         "DUPLICATION": "Esiste già una tabella decisioni con il nome specificato",
         "GENERAL": "Si è verificato un problema durante il salvataggio della tabella decisioni. Riprovare."
       },
-      "CREATE_DATA": {
-        "DUPLICATION": "Esiste già un oggetto dati con il nome specificato",
-        "GENERAL": "Si è verificato un problema durante la creazione dell'oggetto dati. Riprovare."
+      "CREATE_AUTHENTICATION": {
+        "DUPLICATION": "Esiste già un'autenticazione con questo nome",
+        "GENERAL": "Si è verificato un problema durante la creazione dell'autenticazione. Riprovare."
       },
-      "UPDATE_DATA": {
-        "DUPLICATION": "Esiste già un oggetto dati con il nome specificato",
-        "GENERAL": "Si è verificato un problema durante il salvataggio dell'oggetto dati. Riprovare."
+      "UPDATE_AUTHENTICATION": {
+        "DUPLICATION": "Esiste già un'autenticazione con questo nome",
+        "GENERAL": "Si è verificato un problema durante il salvataggio dell'autenticazione. Riprovare."
+      },
+      "CREATE_DATA_MODEL": {
+        "DUPLICATION": "Esiste già un modello di dati con questo nome",
+        "GENERAL": "Si è verificato un problema durante la creazione del modello di dati. Riprovare."
+      },
+      "UPDATE_DATA_MODEL": {
+        "DUPLICATION": "Esiste già un modello di dati con questo nome",
+        "GENERAL": "Si è verificato un problema durante il salvataggio del modello di dati. Riprovare."
       },
       "CREATE_PROJECT": {
         "DUPLICATION": "Esiste già un progetto con il nome specificato",

@@ -66,6 +66,7 @@
       "VERSION": "Versione",
       "VARIABLES": "Variabili",
       "DOCUMENTATION": "Documentazione",
+      "CATEGORY": "Categoria",
       "EXECUTABLE": "Eseguibile",
       "IMPLEMENTATION": "Implementazione",
       "DECISION_TASK": "Compito decisione",
@@ -181,7 +182,6 @@
         "CLOSE": "Chiudi",
         "EXPRESSION": {
           "TITLE": "Espressione",
-          "NO_PROCESS_VARIABLES": "Crea una variabile di processo per aggiungere l'assegnazione dell'espressione",
           "CANDIDATE_EMPTY": "Il campo dei candidati non può essere vuoto. Immettere un valore per Utenti candidati o Gruppi candidati.",
           "ASSIGNEE_EMPTY": "Il campo dell'assegnatario non può essere vuoto",
           "ASSIGNEE_INVALID_ERROR": "Espressione non valida, ad es. { assignee:${var1} }",
@@ -196,8 +196,6 @@
     "PROCESS_VALID": "Processo valido",
     "PROCESS_INVALID": "Il processo contiene errori di convalida.",
     "ERRORS": {
-      "NO_PROCESS_VARIABLES": "Nessuna variabile di processo",
-      "CREATE_PROCESS_VARIABLE": "Crea una variabile di processo per aggiungere l'assegnazione dell'espressione",
       "NO_SUB_PROCESS_VARIABLES": "Nessuna variabile di sottoprocesso",
       "LOAD_DIAGRAM": "Si è verificato un problema durante il caricamento del diagramma. Provare ad aggiornare la pagina.",
       "SAVE_DIAGRAM": "Si è verificato un problema durante il salvataggio del diagramma. Riprovare.",

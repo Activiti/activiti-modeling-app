@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "确定要保存此 {{ modelType }} 吗？",
+        "CONFIRM_DELETE_MODEL": "确定要删除此 {{ modelType }} 吗？",
+        "CONFIRM_DOWNLOAD_MODEL": "确定要下载此 {{ modelType }}吗？",
+        "CONFIRM_SAVE_AS_MODEL": "确定要复制此 {{ modelType }} 吗？",
+        "INVALID_MODEL": "{{ modelType }} 包含验证错误。",
+        "VALID_MODEL": "{{ modelType }} 是有效的"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "粘贴的值必须遵循这个模式"
     },
     "ALL": "全部",
     "VALUE": "值",
+    "EXPRESSION": "表达式",
+    "TYPE": "类型",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "需要名称",
@@ -110,7 +122,8 @@
         "NONE": "无",
         "EVENT": "事件",
         "EMAIL_SERVICE_TASK": "电子邮件服务任务",
-        "DOCGEN_SERVICE": "Docgen 服务任务"
+        "DOCGEN_SERVICE": "Docgen 服务任务",
+        "PARTICIPANT": "流程"
       },
       "TOOLTIP": {
         "VARIABLE": "变量",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "基本",
       "DATE": {
         "CURRENT_DATE": "今天",
         "CLEAR_BUTTON": "清除"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "现在",
         "CLEAR_BUTTON": "清除"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "要添加到数组中的值",
+        "ADD": "添加",
+        "EDIT_VALUE": "编辑值",
+        "EDIT": "编辑"
+      },
+      "VALIDATION": {
+        "REQUIRED": "需要输入",
+        "INVALID_FORMAT": "无效的输入格式",
+        "INVALID_MIN_LENGTH": "无效的最小长度",
+        "INVALID_MAX_LENGTH": "无效的最大长度",
+        "INVALID_MIN_VALUE": "无效的值。它应该大于或等于",
+        "INVALID_MAX_VALUE": "无效的值。它应该小于或等于",
+        "INVALID_MULTIPLE_OF_VALUE": "无效的值。它应该是以下数字的倍数",
+        "GENERIC_ERROR": "无效的值"
       }
     }
   }

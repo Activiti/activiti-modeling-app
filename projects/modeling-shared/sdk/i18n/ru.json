@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "Вы действительно хотите сохранить данную {{ modelType }}?",
+        "CONFIRM_DELETE_MODEL": "Вы действительно хотите удалить данную {{ modelType }}?",
+        "CONFIRM_DOWNLOAD_MODEL": "Вы действительно хотите скачать данную {{ modelType }}?",
+        "CONFIRM_SAVE_AS_MODEL": "Вы действительно хотите скопировать данную {{ modelType }}?",
+        "INVALID_MODEL": "{{ modelType }} содержит ошибку (ошибки) проверки.",
+        "VALID_MODEL": "{{ modelType }} проверена"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Вставленные значения должны соответствовать этому шаблону"
     },
     "ALL": "Все",
     "VALUE": "Значение",
+    "EXPRESSION": "Выражение",
+    "TYPE": "Тип",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Необходимо указать имя",
@@ -110,7 +122,8 @@
         "NONE": "Нет",
         "EVENT": "Событие",
         "EMAIL_SERVICE_TASK": "Задача для почтового сервиса",
-        "DOCGEN_SERVICE": "Сервисная задача docgen"
+        "DOCGEN_SERVICE": "Сервисная задача docgen",
+        "PARTICIPANT": "Процесс"
       },
       "TOOLTIP": {
         "VARIABLE": "Переменная",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "Базовый",
       "DATE": {
         "CURRENT_DATE": "Сегодня",
         "CLEAR_BUTTON": "Очистить"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "Сейчас",
         "CLEAR_BUTTON": "Очистить"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "Значение, которое нужно добавить в массив",
+        "ADD": "Добавить",
+        "EDIT_VALUE": "Редактировать значение",
+        "EDIT": "Редактировать"
+      },
+      "VALIDATION": {
+        "REQUIRED": "Необходимо ввести данные",
+        "INVALID_FORMAT": "Недопустимый формат входных данных",
+        "INVALID_MIN_LENGTH": "Недопустимая минимальная длина",
+        "INVALID_MAX_LENGTH": "Недопустимая максимальная длина",
+        "INVALID_MIN_VALUE": "Недопустимое значение. Оно должно быть больше или равно",
+        "INVALID_MAX_VALUE": "Недопустимое значение. Оно должно быть меньше или равно",
+        "INVALID_MULTIPLE_OF_VALUE": "Недопустимое значение. Оно должно быть кратно",
+        "GENERIC_ERROR": "Недопустимое значение"
       }
     }
   }

@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "Är du säker på att du vill spara den här {{ modelType }}?",
+        "CONFIRM_DELETE_MODEL": "Är du säker på att du vill radera den här {{ modelType }}?",
+        "CONFIRM_DOWNLOAD_MODEL": "Är du säker på att du vill ladda ner den här {{ modelType }}?",
+        "CONFIRM_SAVE_AS_MODEL": "Vill du verkligen kopiera den här {{ modelType }}?",
+        "INVALID_MODEL": "{{ modelType }} innehåller valideringsfel.",
+        "VALID_MODEL": "{{ modelType }} är giltig"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Klistrade värden måste följa detta mönster"
     },
     "ALL": "Alla",
     "VALUE": "Värde",
+    "EXPRESSION": "Uttryck",
+    "TYPE": "Typ",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Ett namn krävs",
@@ -110,7 +122,8 @@
         "NONE": "Ingen",
         "EVENT": "Händelse",
         "EMAIL_SERVICE_TASK": "E-post serviceuppgift",
-        "DOCGEN_SERVICE": "Docgen serviceuppgift"
+        "DOCGEN_SERVICE": "Docgen serviceuppgift",
+        "PARTICIPANT": "Process"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabel",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "Grundläggande",
       "DATE": {
         "CURRENT_DATE": "I dag",
         "CLEAR_BUTTON": "Rensa"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "Nu",
         "CLEAR_BUTTON": "Rensa"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "Värdet som ska läggas till i matrisen",
+        "ADD": "Lägg till",
+        "EDIT_VALUE": "Redigera värde",
+        "EDIT": "Redigera"
+      },
+      "VALIDATION": {
+        "REQUIRED": "Inmatning krävs",
+        "INVALID_FORMAT": "Ogiltigt inmatningsformat",
+        "INVALID_MIN_LENGTH": "Ogiltig minimilängd",
+        "INVALID_MAX_LENGTH": "Ogiltig maxlängd",
+        "INVALID_MIN_VALUE": "Ogiltigt värde. Det ska vara större än eller lika med",
+        "INVALID_MAX_VALUE": "Ogiltigt värde. Det ska vara mindre än eller lika med",
+        "INVALID_MULTIPLE_OF_VALUE": "Ogiltigt värde. Det måste vara en multipel av",
+        "GENERIC_ERROR": "Ogiltigt värde"
       }
     }
   }

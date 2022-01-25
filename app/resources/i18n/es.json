@@ -32,7 +32,8 @@
         "TITLE": "¿Quiere guardarlo de todas formas?",
         "SUBTITLE": "Errores de validación:",
         "NAME_DOESNT_MATCH_PATTERN": "El nombre no sigue el siguiente patrón",
-        "GENERAL_NAME_VALIDATION": "El nombre debe ir en minúsculas y tener entre 1 y 26 caracteres de longitud. Se permiten los caracteres alfanuméricos y los guiones, pero el nombre debe empezar por una letra y acabar alfanuméricamente."
+        "GENERAL_NAME_VALIDATION": "El nombre debe ir en minúsculas y tener entre 1 y 26 caracteres de longitud. Se permiten los caracteres alfanuméricos y los guiones, pero el nombre debe empezar por una letra y acabar alfanuméricamente.",
+        "PROCESS_NAME_VALIDATION": "El nombre debe tener entre 1 y 26 caracteres y no puede empezar con un espacio en blanco"
       },
       "CONFIRM": {
         "TITLE": "¿Está seguro?",
@@ -55,58 +56,22 @@
         },
         "DELETE": {
           "PROJECT": "¿Está seguro de que desea eliminar este proyecto?",
-          "PROCESS": "¿Está seguro de que desea eliminar este proceso?",
-          "FORM": "¿Está seguro de que desea eliminar este formulario?",
-          "UI": "¿Está seguro de que desea eliminar esta IU?",
-          "DATA": "¿Está seguro de que desea eliminar este objeto de datos?",
-          "DECISION_TABLE": "¿Está seguro de que desea eliminar esta tabla de decisión?",
-          "CONNECTOR": "¿Está seguro de que desea eliminar este conector?",
-          "FILE": "¿Está seguro de que desea eliminar este fichero?",
-          "SCRIPT": "¿Está seguro de que desea eliminar este script?",
-          "TRIGGER": "¿Está seguro de que desea eliminar este desencadenador?",
-          "MODEL": "¿Está seguro de que desea eliminar este modelo de contenido?",
-          "FORM_WIDGET": "¿Está seguro de que desea eliminar este widget de formulario?"
+          "DATA": "¿Está seguro de que desea eliminar este objeto de datos?"
         },
         "SAVE": {
           "PROCESS": "¿Está seguro de que desea guardar este proceso?",
-          "FORM": "¿Está seguro de que desea guardar este formulario?",
-          "UI": "¿Está seguro de que desea guardar esta IU?",
           "DATA": "¿Está seguro de que desea guardar este objeto de datos?",
-          "DECISION_TABLE": "¿Está seguro de que desea guardar esta tabla de decisión?",
-          "CONNECTOR": "¿Está seguro de que desea guardar este conector?",
-          "FILE": "¿Está seguro de que desea guardar este fichero?",
-          "EMAIL_TEMPLATE": "¿Está seguro de que desea sobrescribir la plantilla de correo electrónico?",
-          "SCRIPT": "¿Está seguro de que desea guardar este script?",
-          "TRIGGER": "¿Está seguro de que desea guardar este desencadenador?",
-          "MODEL": "¿Está seguro de que desea guardar este modelo de contenido?",
-          "FORM_WIDGET": "¿Está seguro de que desea guardar este widget de formulario?"
+          "EMAIL_TEMPLATE": "¿Está seguro de que desea sobrescribir la plantilla de correo electrónico?"
         },
         "SAVE_AS": {
           "PROCESS": "¿Está seguro de que desea copiar este proceso?",
-          "FORM": "¿Está seguro de que desea copiar este formulario?",
-          "UI": "¿Está seguro de que desea copiar esta IU?",
           "DATA": "¿Está seguro de que desea copiar este objeto de datos?",
-          "DECISION_TABLE": "¿Está seguro de que desea copiar esta tabla de decisión?",
-          "CONNECTOR": "¿Está seguro de que desea copiar este conector?",
           "FILE": "¿Está seguro de que desea copiar este fichero?",
-          "SCRIPT": "¿Está seguro de que desea copiar este script?",
-          "TRIGGER": "¿Está seguro de que desea copiar este desencadenador?",
-          "MODEL": "¿Está seguro de que desea copiar este modelo de contenido?",
-          "FORM_WIDGET": "¿Está seguro de que desea copiar este widget de formulario?"
+          "SCRIPT": "¿Está seguro de que desea copiar este script?"
         },
         "DOWNLOAD": {
-          "PROCESS": "¿Está seguro de que desea descargar este proceso?",
           "IMAGE": "¿Está seguro de que desea descargar la imagen svg de este proceso?",
-          "FORM": "¿Está seguro de que desea descargar este formulario?",
-          "UI": "¿Está seguro de que desea descargar esta IU?",
-          "DATA": "¿Está seguro de que desea descargar este objeto de datos?",
-          "DECISION_TABLE": "¿Está seguro de que desea descargar esta tabla de decisión?",
-          "CONNECTOR": "¿Está seguro de que desea descargar este conector?",
-          "FILE": "¿Está seguro de que desea descargar este fichero?",
-          "SCRIPT": "¿Está seguro de que desea descargar este script?",
-          "TRIGGER": "¿Está seguro de que desea descargar este desencadenador?",
-          "MODEL": "¿Está seguro de que desea descargar este modelo de contenido?",
-          "FORM_WIDGET": "¿Está seguro de que desea descargar este widget de formulario?"
+          "DATA": "¿Está seguro de que desea descargar este objeto de datos?"
         }
       }
     },

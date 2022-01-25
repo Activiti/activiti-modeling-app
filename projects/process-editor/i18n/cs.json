@@ -66,6 +66,7 @@
       "VERSION": "Verze",
       "VARIABLES": "Proměnné",
       "DOCUMENTATION": "Dokumentace",
+      "CATEGORY": "Kategorie",
       "EXECUTABLE": "Spustitelný soubor",
       "IMPLEMENTATION": "Implementace",
       "DECISION_TASK": "Úkol rozhodnutí",
@@ -181,7 +182,6 @@
         "CLOSE": "Zavřít",
         "EXPRESSION": {
           "TITLE": "Výraz",
-          "NO_PROCESS_VARIABLES": "Vytvořte proměnnou procesu, abyste mohli přidat přiřazení výrazu.",
           "CANDIDATE_EMPTY": "Pole Kandidáti nesmí být prázdné. Zadejte hodnotu Uživatelé kandidáti nebo Skupiny kandidátů.",
           "ASSIGNEE_EMPTY": "Pole Pověřená osoba nesmí být prázdné.",
           "ASSIGNEE_INVALID_ERROR": "Neplatný výraz, např. { assignee:${var1} }",
@@ -196,8 +196,6 @@
     "PROCESS_VALID": "Proces je platný.",
     "PROCESS_INVALID": "Proces obsahuje chyby ověření.",
     "ERRORS": {
-      "NO_PROCESS_VARIABLES": "Žádné proměnné procesu",
-      "CREATE_PROCESS_VARIABLE": "Vytvořte proměnnou procesu, abyste mohli přidat přiřazení výrazu.",
       "NO_SUB_PROCESS_VARIABLES": "Žádné proměnné podprocesu",
       "LOAD_DIAGRAM": "Došlo k problému při načítání diagramu. Zkuste obnovit stránku.",
       "SAVE_DIAGRAM": "Při ukládání diagramu došlo k problému. Zkuste ho uložit znovu.",

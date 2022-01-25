@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "Tem certeza de que deseja salvar este {{ modelType }}?",
+        "CONFIRM_DELETE_MODEL": "Tem certeza de que deseja excluir este {{ modelType }}?",
+        "CONFIRM_DOWNLOAD_MODEL": "Tem certeza de que deseja baixar este {{ modelType }}?",
+        "CONFIRM_SAVE_AS_MODEL": "Tem certeza de que deseja copiar este {{ modelType }}?",
+        "INVALID_MODEL": "O {{ modelType }} contém erros de validação.",
+        "VALID_MODEL": "{{ modelType }} é válido"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Valores colados devem seguir este padrão"
     },
     "ALL": "Todos",
     "VALUE": "Valor",
+    "EXPRESSION": "Expressão",
+    "TYPE": "Tipo",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "O nome é obrigatório",
@@ -110,7 +122,8 @@
         "NONE": "Nenhum",
         "EVENT": "Evento",
         "EMAIL_SERVICE_TASK": "Tarefa do serviço de email",
-        "DOCGEN_SERVICE": "Tarefa do serviço docgen"
+        "DOCGEN_SERVICE": "Tarefa do serviço docgen",
+        "PARTICIPANT": "Processo"
       },
       "TOOLTIP": {
         "VARIABLE": "Variável",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "Básico",
       "DATE": {
         "CURRENT_DATE": "Hoje",
         "CLEAR_BUTTON": "Limpar"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "Agora",
         "CLEAR_BUTTON": "Limpar"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "Valor a ser adicionado à matriz",
+        "ADD": "Adicionar",
+        "EDIT_VALUE": "Editar valor",
+        "EDIT": "Editar"
+      },
+      "VALIDATION": {
+        "REQUIRED": "Entrada é necessária",
+        "INVALID_FORMAT": "Formato de entrada inválido",
+        "INVALID_MIN_LENGTH": "Comprimento mínimo inválido",
+        "INVALID_MAX_LENGTH": "Comprimento máximo inválido",
+        "INVALID_MIN_VALUE": "Valor inválido. O valor deve ser maior que ou igual a",
+        "INVALID_MAX_VALUE": "Valor inválido. O valor deve ser menor que ou igual a",
+        "INVALID_MULTIPLE_OF_VALUE": "Valor inválido. O valor deve ser um múltiplo de",
+        "GENERIC_ERROR": "Valor inválido"
       }
     }
   }

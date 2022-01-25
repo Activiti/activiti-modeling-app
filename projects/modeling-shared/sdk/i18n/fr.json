@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "Voulez-vous vraiment enregistrer ce {{ modelType }} ?",
+        "CONFIRM_DELETE_MODEL": "Voulez-vous vraiment supprimer ce {{ modelType }} ?",
+        "CONFIRM_DOWNLOAD_MODEL": "Voulez-vous vraiment télécharger ce {{ modelType }} ?",
+        "CONFIRM_SAVE_AS_MODEL": "Voulez-vous vraiment copier ce {{ modelType }} ?",
+        "INVALID_MODEL": "{{ modelType }} contient une ou plusieurs erreurs de validation.",
+        "VALID_MODEL": "{{ modelType }} est valide"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Les valeurs collées doivent suivre ce modèle"
     },
     "ALL": "Tout",
     "VALUE": "Valeur",
+    "EXPRESSION": "Expression",
+    "TYPE": "Type",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Vous devez spécifier un nom",
@@ -110,7 +122,8 @@
         "NONE": "Aucun",
         "EVENT": "Evénement",
         "EMAIL_SERVICE_TASK": "Tâche du service de messagerie",
-        "DOCGEN_SERVICE": "Tâche de service Docgen"
+        "DOCGEN_SERVICE": "Tâche de service Docgen",
+        "PARTICIPANT": "Processus"
       },
       "TOOLTIP": {
         "VARIABLE": "Variable",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "Types de base",
       "DATE": {
         "CURRENT_DATE": "Aujourd'hui",
         "CLEAR_BUTTON": "Supprimer"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "Maintenant",
         "CLEAR_BUTTON": "Supprimer"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "Valeur à ajouter au tableau",
+        "ADD": "Ajouter",
+        "EDIT_VALUE": "Modifier la valeur",
+        "EDIT": "Modifier"
+      },
+      "VALIDATION": {
+        "REQUIRED": "Une valeur est obligatoire",
+        "INVALID_FORMAT": "Format d'entrée non valide",
+        "INVALID_MIN_LENGTH": "Longueur minimale non valide",
+        "INVALID_MAX_LENGTH": "Longueur maximale non valide",
+        "INVALID_MIN_VALUE": "Valeur non valide. Elle doit être supérieure ou égale à",
+        "INVALID_MAX_VALUE": "Valeur non valide. Elle doit être inférieure ou égale à",
+        "INVALID_MULTIPLE_OF_VALUE": "Valeur non valide. Elle doit être un multiple de",
+        "GENERIC_ERROR": "Valeur non valide"
       }
     }
   }

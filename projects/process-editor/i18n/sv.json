@@ -66,6 +66,7 @@
       "VERSION": "Version",
       "VARIABLES": "Variabler",
       "DOCUMENTATION": "Dokumentation",
+      "CATEGORY": "Kategori",
       "EXECUTABLE": "Utförbar",
       "IMPLEMENTATION": "Implementering",
       "DECISION_TASK": "Beslutsuppgift",
@@ -181,7 +182,6 @@
         "CLOSE": "Stäng",
         "EXPRESSION": {
           "TITLE": "Uttryck",
-          "NO_PROCESS_VARIABLES": "Skapa en processvariabel för att lägga till uttryckstilldelning",
           "CANDIDATE_EMPTY": "Kandidater kan inte vara tomma, ange antingen kandidatanvändare eller kandidatgrupper",
           "ASSIGNEE_EMPTY": "Tilldelad användare kan inte vara tom",
           "ASSIGNEE_INVALID_ERROR": "Ogiltigt uttryck t.ex. { tilldelad användare:${var1} }",
@@ -196,8 +196,6 @@
     "PROCESS_VALID": "Giltig process",
     "PROCESS_INVALID": "Processen innehåller valideringsfel.",
     "ERRORS": {
-      "NO_PROCESS_VARIABLES": "Inga processvariabler",
-      "CREATE_PROCESS_VARIABLE": "Skapa en processvariabel för att lägga till uttryckstilldelning",
       "NO_SUB_PROCESS_VARIABLES": "Inga delprocessvariabler",
       "LOAD_DIAGRAM": "Vi stötte på ett problem med att läsa in diagrammet. Prova att uppdatera sidan.",
       "SAVE_DIAGRAM": "Vi stötte på ett problem med att spara diagrammet. Försök att spara det igen.",

@@ -34,7 +34,9 @@
         "CREATE_SCRIPT": "スクリプト",
         "CREATE_TRIGGER": "トリガー",
         "CREATE_PROJECT_MODEL": "コンテンツモデル",
-        "CREATE_FORM_WIDGET": "フォームウィジェット"
+        "CREATE_FORM_WIDGET": "フォームウィジェット",
+        "CREATE_DATA_MODEL": "データモデル",
+        "CREATE_AUTHENTICATION": "認証"
       }
     },
     "TREE": {
@@ -46,7 +48,9 @@
       "UIS": "UI",
       "FILES": "ファイル",
       "SCRIPTS": "スクリプト",
-      "TRIGGERS": "トリガー"
+      "TRIGGERS": "トリガー",
+      "DATA_MODELS": "データモデル",
+      "AUTHENTICATIONS": "認証"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "プロセスを作成",
@@ -164,6 +168,24 @@
       "FORM_WIDGET_DELETED": "フォームウィジェットが削除されました",
       "FORM_WIDGET_UPDATED": "フォームウィジェットが保存されました"
     },
+    "DATA_MODEL_DIALOG": {
+      "TITLE_CREATE": "データモデルの作成",
+      "TITLE_UPDATE": "データモデルの更新",
+      "DATA_MODEL_NAME": "データモデル名",
+      "DATA_MODEL_DESC": "データモデルの説明",
+      "DATA_MODEL_CREATED": "データモデルが作成されました",
+      "DATA_MODEL_DELETED": "データモデルが削除されました",
+      "DATA_MODEL_UPDATED": "データモデルが保存されました"
+    },
+    "AUTHENTICATION_DIALOG": {
+      "TITLE_CREATE": "認証の作成",
+      "TITLE_UPDATE": "認証の更新",
+      "AUTHENTICATION_NAME": "認証名",
+      "AUTHENTICATION_DESC": "認証の説明",
+      "AUTHENTICATION_CREATED": "認証が作成されました",
+      "AUTHENTICATION_DELETED": "認証が削除されました",
+      "AUTHENTICATION_UPDATED": "認証が保存されました"
+    },
     "ERROR": {
       "UPLOAD_DUPLICATE_FILE": "同じ名前の{{modelType}}が既に存在しています",
       "UPLOAD_FILE": "ファイルのアップロード中に問題が発生しました。アップロードをやり直してください。",
@@ -213,34 +235,42 @@
         "DUPLICATION": "同じ名前の意思決定テーブルが既に存在します",
         "GENERAL": "意思決定テーブルの保存中に問題が発生しました。保存をやり直してください。"
       },
-      "CREATE_DATA": {
-        "DUPLICATION": "同じ名前のデータオブジェクトが既に存在します",
-        "GENERAL": "データオブジェクトの作成中に問題が発生しました。作成をやり直してください。"
+      "CREATE_AUTHENTICATION": {
+        "DUPLICATION": "その名前の認証がすでに存在します",
+        "GENERAL": "認証の作成中に問題が発生しました。作成をやり直してください。"
       },
-      "UPDATE_DATA": {
-        "DUPLICATION": "同じ名前のデータオブジェクトが既に存在します",
-        "GENERAL": "データオブジェクトの保存中に問題が発生しました。保存をやり直してください。"
+      "UPDATE_AUTHENTICATION": {
+        "DUPLICATION": "その名前の認証がすでに存在します",
+        "GENERAL": "認証の保存中に問題が発生しました。保存をやり直してください。"
+      },
+      "CREATE_DATA_MODEL": {
+        "DUPLICATION": "その名前のデータモデルがすでに存在します",
+        "GENERAL": "データモデルの作成中に問題が発生しました。作成をやり直してください。"
+      },
+      "UPDATE_DATA_MODEL": {
+        "DUPLICATION": "その名前のデータモデルがすでに存在します",
+        "GENERAL": "データモデルの保存中に問題が発生しました。保存をやり直してください。"
       },
       "CREATE_PROJECT": {
-        "DUPLICATION": "同じ名前のプロジェクトが既に存在します",
+        "DUPLICATION": "その名前のプロジェクトがすでに存在します",
         "GENERAL": "プロジェクトの作成中に問題が発生しました。作成をやり直してください。"
       },
       "UPDATE_PROJECT": {
-        "DUPLICATION": "同じ名前のプロジェクトが既に存在します",
+        "DUPLICATION": "その名前のプロジェクトがすでに存在します",
         "GENERAL": "プロジェクトの保存中に問題が発生しました。保存をやり直してください。"
       },
       "UPLOAD_PROJECT": {
-        "DUPLICATION": "同じ名前のプロジェクトが既に存在します",
+        "DUPLICATION": "その名前のプロジェクトがすでに存在します",
         "GENERAL": "プロジェクトのアップロード中に問題が発生しました。アップロードをやり直してください。"
       },
       "GET_PROJECT": "プロジェクトの読み込み中に問題が発生しました。ページを再読み込みしてください。",
       "EXPORT_PROJECT": "プロジェクトのエクスポート中に不明なエラーが発生しました",
       "CREATE_FILE": {
-        "DUPLICATION": "同じ名前のファイルが既に存在します",
+        "DUPLICATION": "その名前のファイルがすでに存在します",
         "GENERAL": "ファイルの作成中に問題が発生しました。作成をやり直してください。"
       },
       "UPDATE_FILE": {
-        "DUPLICATION": "同じ名前のファイルが既に存在します",
+        "DUPLICATION": "その名前のファイルがすでに存在します",
         "GENERAL": "ファイルの保存中に問題が発生しました。保存をやり直してください。"
       },
       "CREATE_SCRIPT": {

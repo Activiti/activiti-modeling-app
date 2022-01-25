@@ -32,7 +32,8 @@
         "TITLE": "Haluatko silti tallentaa?",
         "SUBTITLE": "Vahvistusvirheet:",
         "NAME_DOESNT_MATCH_PATTERN": "Nimi ei vastaa seuraavaa kaavaa",
-        "GENERAL_NAME_VALIDATION": "Nimi on kirjoitettava pienin kirjaimin, ja sen on oltava 1-26 merkin pituinen. Alfanumeeriset merkit ja viivamerkit ovat sallittuja, mutta nimen on alettava kirjaimella ja päätyttävä alfanumeeriseen merkkiin."
+        "GENERAL_NAME_VALIDATION": "Nimi on kirjoitettava pienin kirjaimin, ja sen on oltava 1-26 merkin pituinen. Alfanumeeriset merkit ja viivamerkit ovat sallittuja, mutta nimen on alettava kirjaimella ja päätyttävä alfanumeeriseen merkkiin.",
+        "PROCESS_NAME_VALIDATION": "Nimen tulee olla 1-26 merkkiä pitkä, ja se ei voi alkaa tyhjällä tilalla"
       },
       "CONFIRM": {
         "TITLE": "Oletko varma?",
@@ -55,58 +56,22 @@
         },
         "DELETE": {
           "PROJECT": "Haluatko varmasti poistaa tämän projektin?",
-          "PROCESS": "Haluatko varmasti poistaa tämän prosessin?",
-          "FORM": "Haluatko varmasti poistaa tämän lomakkeen?",
-          "UI": "Haluatko varmasti poistaa tämän käyttöliittymän?",
-          "DATA": "Haluatko varmasti poistaa tämän dataobjektin?",
-          "DECISION_TABLE": "Haluatko varmasti poistaa tämän päätöstaulukon?",
-          "CONNECTOR": "Haluatko varmasti poistaa tämän liittimen?",
-          "FILE": "Haluatko varmasti poistaa tämän tiedoston?",
-          "SCRIPT": "Haluatko varmasti poistaa tämän komentosarjan?",
-          "TRIGGER": "Haluatko varmasti poistaa tämän laukaisijan?",
-          "MODEL": "Haluatko varmasti poistaa tämän sisältömallin?",
-          "FORM_WIDGET": "Haluatko varmasti poistaa tämän lomakepiensovelluksen?"
+          "DATA": "Haluatko varmasti poistaa tämän dataobjektin?"
         },
         "SAVE": {
           "PROCESS": "Haluatko varmasti tallentaa tämän prosessin?",
-          "FORM": "Haluatko varmasti tallentaa tämän lomakkeen?",
-          "UI": "Haluatko varmasti tallentaa tämän käyttöliittymän?",
           "DATA": "Haluatko varmasti tallentaa tämän dataobjektin?",
-          "DECISION_TABLE": "Haluatko varmasti tallentaa tämän päätöstaulukon?",
-          "CONNECTOR": "Haluatko varmasti tallentaa tämän liittimen?",
-          "FILE": "Haluatko varmasti tallentaa tämän tiedoston?",
-          "EMAIL_TEMPLATE": "Haluatko varmasti korvata tämän sähköpostimallin?",
-          "SCRIPT": "Haluatko varmasti tallentaa tämän komentosarjan?",
-          "TRIGGER": "Haluatko varmasti tallentaa tämän laukaisijan?",
-          "MODEL": "Haluatko varmasti tallentaa tämän sisältömallin?",
-          "FORM_WIDGET": "Haluatko varmasti tallentaa tämän lomakepiensovelluksen?"
+          "EMAIL_TEMPLATE": "Haluatko varmasti korvata tämän sähköpostimallin?"
         },
         "SAVE_AS": {
           "PROCESS": "Haluatko varmasti kopioida tämän prosessin?",
-          "FORM": "Haluatko varmasti kopioida tämän lomakkeen?",
-          "UI": "Haluatko varmasti kopioida tämän käyttöliittymän?",
           "DATA": "Haluatko varmasti kopioida tämän dataobjektin?",
-          "DECISION_TABLE": "Haluatko varmasti kopioida tämän päätöstaulukon?",
-          "CONNECTOR": "Haluatko varmasti kopioida tämän liittimen?",
           "FILE": "Haluatko varmasti kopioida tämän tiedoston?",
-          "SCRIPT": "Haluatko varmasti kopioida tämän komentosarjan?",
-          "TRIGGER": "Haluatko varmasti kopioida tämän laukaisijan?",
-          "MODEL": "Haluatko varmasti kopioida tämän sisältömallin?",
-          "FORM_WIDGET": "Haluatko varmasti kopioida tämän lomakepiensovelluksen?"
+          "SCRIPT": "Haluatko varmasti kopioida tämän komentosarjan?"
         },
         "DOWNLOAD": {
-          "PROCESS": "Haluatko varmasti ladata tämän prosessin?",
           "IMAGE": "Haluatko varmasti ladata tämän prosessin svg-kuvan?",
-          "FORM": "Haluatko varmasti ladata tämän lomakkeen?",
-          "UI": "Haluatko varmasti ladata tämän käyttöliittymän?",
-          "DATA": "Haluatko varmasti ladata tämän dataobjektin?",
-          "DECISION_TABLE": "Haluatko varmasti ladata tämän päätöstaulukon?",
-          "CONNECTOR": "Haluatko varmasti ladata tämän liittimen?",
-          "FILE": "Haluatko varmasti ladata tämän tiedoston?",
-          "SCRIPT": "Haluatko varmasti ladata tämän komentosarjan?",
-          "TRIGGER": "Haluatko varmasti ladata tämän laukaisijan?",
-          "MODEL": "Haluatko varmasti ladata tämän sisältömallin?",
-          "FORM_WIDGET": "Haluatko varmasti ladata tämän lomakepiensovelluksen?"
+          "DATA": "Haluatko varmasti ladata tämän dataobjektin?"
         }
       }
     },

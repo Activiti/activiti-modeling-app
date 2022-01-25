@@ -34,7 +34,9 @@
         "CREATE_SCRIPT": "البرنامج النصي",
         "CREATE_TRIGGER": "المشغل",
         "CREATE_PROJECT_MODEL": "نموذج المحتوى",
-        "CREATE_FORM_WIDGET": "عنصر واجهة النموذج"
+        "CREATE_FORM_WIDGET": "عنصر واجهة النموذج",
+        "CREATE_DATA_MODEL": "نموذج البيانات",
+        "CREATE_AUTHENTICATION": "المصادقة"
       }
     },
     "TREE": {
@@ -46,7 +48,9 @@
       "UIS": "UI",
       "FILES": "ملفات",
       "SCRIPTS": "البرامج النصية",
-      "TRIGGERS": "المشغلات"
+      "TRIGGERS": "المشغلات",
+      "DATA_MODELS": "نماذج البيانات",
+      "AUTHENTICATIONS": "المصادقات"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "إنشاء عملية",
@@ -164,6 +168,24 @@
       "FORM_WIDGET_DELETED": "تم حذف عنصر واجهة النموذج",
       "FORM_WIDGET_UPDATED": "تم حفظ عنصر واجهة النموذج"
     },
+    "DATA_MODEL_DIALOG": {
+      "TITLE_CREATE": "تكوين نموذج بيانات",
+      "TITLE_UPDATE": "تحديث نموذج البيانات",
+      "DATA_MODEL_NAME": "اسم نموذج البيانات",
+      "DATA_MODEL_DESC": "وصف نموذج المحتوى",
+      "DATA_MODEL_CREATED": "تم إنشاء نموذج البيانات",
+      "DATA_MODEL_DELETED": "تم حذف نموذج البيانات",
+      "DATA_MODEL_UPDATED": "تم حفظ نموذج البيانات"
+    },
+    "AUTHENTICATION_DIALOG": {
+      "TITLE_CREATE": "إنشاء المصادقة",
+      "TITLE_UPDATE": "تحديث المصادقة",
+      "AUTHENTICATION_NAME": "نوع المصادقة",
+      "AUTHENTICATION_DESC": "وصف المصادقة",
+      "AUTHENTICATION_CREATED": "تم إنشاء المصادقة",
+      "AUTHENTICATION_DELETED": "تم حذف المصادقة",
+      "AUTHENTICATION_UPDATED": "تم حفظ المصادقة"
+    },
     "ERROR": {
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} بنفس الاسم موجودة بالفعل",
       "UPLOAD_FILE": "نواجه مشكلة في تحميل الملف. حاول تحميله مرة أخرى.",
@@ -213,13 +235,21 @@
         "DUPLICATION": "جدول قرارات بهذا الاسم موجود بالفعل",
         "GENERAL": "نواجه مشكلة في حفظ جدول القرارات. حاول حفظه مرة أخرى."
       },
-      "CREATE_DATA": {
-        "DUPLICATION": "كائن بيانات بهذا الاسم موجود بالفعل",
-        "GENERAL": "نواجه مشكلة في إنشاء كائن البيانات. حاول إنشاءه مرة أخرى."
+      "CREATE_AUTHENTICATION": {
+        "DUPLICATION": "توجد بالفعل مصادقة بهذا الاسم",
+        "GENERAL": "نواجه مشكلة في إنشاء المصادقة. حاول إنشائه مرة أخرى."
       },
-      "UPDATE_DATA": {
-        "DUPLICATION": "كائن بيانات بهذا الاسم موجود بالفعل",
-        "GENERAL": "نواجه مشكلة في حفظ كائن البيانات. حاول حفظه مرة أخرى."
+      "UPDATE_AUTHENTICATION": {
+        "DUPLICATION": "توجد بالفعل مصادقة بهذا الاسم",
+        "GENERAL": "لقد واجهنا مشكلة في حفظ المصادقة. حاول حفظه مرة أخرى."
+      },
+      "CREATE_DATA_MODEL": {
+        "DUPLICATION": "يوجد نموذج بيانات بهذا الاسم بالفعل",
+        "GENERAL": "لقد واجهنا مشكلة في إنشاء نموذج البيانات. حاول إنشائه مرة أخرى."
+      },
+      "UPDATE_DATA_MODEL": {
+        "DUPLICATION": "يوجد نموذج بيانات بهذا الاسم بالفعل",
+        "GENERAL": "واجهنا مشكلة في حفظ نموذج البيانات. حاول حفظه مرة أخرى."
       },
       "CREATE_PROJECT": {
         "DUPLICATION": "مشروع بهذا الاسم موجود بالفعل",

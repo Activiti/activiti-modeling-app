@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "¿Está seguro de que desea guardar este {{ modelType }}?",
+        "CONFIRM_DELETE_MODEL": "¿Está seguro de que desea eliminar este {{ modelType }}?",
+        "CONFIRM_DOWNLOAD_MODEL": "¿Está seguro de que desea descargar este {{ modelType }}?",
+        "CONFIRM_SAVE_AS_MODEL": "¿Está seguro de que desea copiar este {{ modelType }}?",
+        "INVALID_MODEL": "{{ modelType }} contiene error(es) de validación.",
+        "VALID_MODEL": "{{ modelType }} es válido"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Los valores pegados deben seguir este patrón"
     },
     "ALL": "Todos",
     "VALUE": "Valor",
+    "EXPRESSION": "Expresión",
+    "TYPE": "Tipo",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Se requiere un nombre",
@@ -110,7 +122,8 @@
         "NONE": "Ninguno",
         "EVENT": "Evento",
         "EMAIL_SERVICE_TASK": "Tarea de servicio de correo electrónico",
-        "DOCGEN_SERVICE": "Tarea de servicio de Docgen"
+        "DOCGEN_SERVICE": "Tarea de servicio de Docgen",
+        "PARTICIPANT": "Proceso"
       },
       "TOOLTIP": {
         "VARIABLE": "Variable",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "Fundamentos",
       "DATE": {
         "CURRENT_DATE": "Hoy",
         "CLEAR_BUTTON": "Borrar"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "Ahora",
         "CLEAR_BUTTON": "Borrar"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "El valor se añade a la matriz",
+        "ADD": "Añadir",
+        "EDIT_VALUE": "Editar valor",
+        "EDIT": "Editar"
+      },
+      "VALIDATION": {
+        "REQUIRED": "Se requiere una entrada",
+        "INVALID_FORMAT": "Formato de entrada no es válido",
+        "INVALID_MIN_LENGTH": "Longitud mínima no es válida",
+        "INVALID_MAX_LENGTH": "Longitud máxima no es válida",
+        "INVALID_MIN_VALUE": "El valor no es válido. Debe ser mayor o igual que",
+        "INVALID_MAX_VALUE": "El valor no es válido. Debe ser menor o igual que",
+        "INVALID_MULTIPLE_OF_VALUE": "Valor no válido. Debe ser un múltiple de",
+        "GENERIC_ERROR": "Valor no válido"
       }
     }
   }

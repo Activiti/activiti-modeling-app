@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "هل أنت متأكد أنك تريد حفظ {{modelType}}؟",
+        "CONFIRM_DELETE_MODEL": "هل أنت متأكد أنك تريد حذف {{modelType}}؟",
+        "CONFIRM_DOWNLOAD_MODEL": "هل أنت متأكد أنك تريد تنزيل هذا {{modelType}}؟",
+        "CONFIRM_SAVE_AS_MODEL": "هل أنت متأكد أنك تريد نسخ {{modelType}}؟",
+        "INVALID_MODEL": "يحتوي {{modelType}} على أخطاء التحقق من الصحة.",
+        "VALID_MODEL": "{{modelType}} صالح"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "يجب أن تتبع القيم  التي تم لصقها هذا النمط"
     },
     "ALL": "الكل",
     "VALUE": "القيمة",
+    "EXPRESSION": "التعبير",
+    "TYPE": "النوع",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "مطلوب اسم",
@@ -110,7 +122,8 @@
         "NONE": "بلا",
         "EVENT": "حدث",
         "EMAIL_SERVICE_TASK": "مهمة خدمة البريد الإلكتروني",
-        "DOCGEN_SERVICE": "مهمة خدمة Docgen"
+        "DOCGEN_SERVICE": "مهمة خدمة Docgen",
+        "PARTICIPANT": "العملية"
       },
       "TOOLTIP": {
         "VARIABLE": "متغير",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "أساسي",
       "DATE": {
         "CURRENT_DATE": "اليوم",
         "CLEAR_BUTTON": "مسح"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "حاليا",
         "CLEAR_BUTTON": "مسح"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "القيمة المراد إضافتها إلى الصفيف",
+        "ADD": "إضافة",
+        "EDIT_VALUE": "تحرير القيمة",
+        "EDIT": "تحرير"
+      },
+      "VALIDATION": {
+        "REQUIRED": "الإدخال مطلوب",
+        "INVALID_FORMAT": "تنسيق الإدخال غير صالح",
+        "INVALID_MIN_LENGTH": "الطول الأدنى غير صالح",
+        "INVALID_MAX_LENGTH": "الطول الأقصى غير صالح",
+        "INVALID_MIN_VALUE": "قيمة غير صالحة. يجب أن يكون أكبر من أو يساوي",
+        "INVALID_MAX_VALUE": "قيمة غير صالحة. يجب أن يكون أقل من أو يساوي",
+        "INVALID_MULTIPLE_OF_VALUE": "قيمة غير صالحة. يجب أن يكون من مضاعفات",
+        "GENERIC_ERROR": "قيمة غير صالحة"
       }
     }
   }

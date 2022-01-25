@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "Salvare questo {{ modelType }}?",
+        "CONFIRM_DELETE_MODEL": "Eliminare questo {{ modelType }}?",
+        "CONFIRM_DOWNLOAD_MODEL": "Scaricare questo {{ modelType }}?",
+        "CONFIRM_SAVE_AS_MODEL": "Copiare questo {{ modelType }}?",
+        "INVALID_MODEL": "{{ modelType }} contiene errori di convalida.",
+        "VALID_MODEL": "{{ modelType }} è valido"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "I valori incollati devono seguire questo modello"
     },
     "ALL": "Tutti",
     "VALUE": "Valore",
+    "EXPRESSION": "Espressione",
+    "TYPE": "Tipo",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "È obbligatorio specificare un nome",
@@ -110,7 +122,8 @@
         "NONE": "Nessuno",
         "EVENT": "Evento",
         "EMAIL_SERVICE_TASK": "Compito servizio e-mail",
-        "DOCGEN_SERVICE": "Compito Servizio docgen"
+        "DOCGEN_SERVICE": "Compito Servizio docgen",
+        "PARTICIPANT": "Processo"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabile",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "Standard",
       "DATE": {
         "CURRENT_DATE": "Oggi",
         "CLEAR_BUTTON": "Cancella"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "Ora",
         "CLEAR_BUTTON": "Cancella"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "Valore da aggiungere all'array",
+        "ADD": "Aggiungi",
+        "EDIT_VALUE": "Modifica valore",
+        "EDIT": "Modifica"
+      },
+      "VALIDATION": {
+        "REQUIRED": "È richiesto un input",
+        "INVALID_FORMAT": "Formato di input non valido",
+        "INVALID_MIN_LENGTH": "Lunghezza minima non valida",
+        "INVALID_MAX_LENGTH": "Lunghezza massima non valida",
+        "INVALID_MIN_VALUE": "Valore non valido. Deve essere maggiore o uguale a",
+        "INVALID_MAX_VALUE": "Valore non valido. Deve essere inferiore o uguale a",
+        "INVALID_MULTIPLE_OF_VALUE": "Valore non valido. Deve essere un multiplo di",
+        "GENERIC_ERROR": "Valore non valido"
       }
     }
   }

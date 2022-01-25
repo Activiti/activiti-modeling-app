@@ -32,7 +32,8 @@
         "TITLE": "Chcete přesto provést uložení?",
         "SUBTITLE": "Chyba ověřování:",
         "NAME_DOESNT_MATCH_PATTERN": "Název neodpovídá následujícímu vzoru",
-        "GENERAL_NAME_VALIDATION": "Název se musí psát malými písmeny a musí mít délku 1 až 26 znaků. Jsou povoleny alfanumerické znaky a pomlčky, avšak název musí začínat písmenem a končit alfanumerickým znakem."
+        "GENERAL_NAME_VALIDATION": "Název se musí psát malými písmeny a musí mít délku 1 až 26 znaků. Jsou povoleny alfanumerické znaky a pomlčky, avšak název musí začínat písmenem a končit alfanumerickým znakem.",
+        "PROCESS_NAME_VALIDATION": "Název musí mít délku 1 až 26 znaků a nesmí začínat mezerou."
       },
       "CONFIRM": {
         "TITLE": "Jste si jistí?",
@@ -55,58 +56,22 @@
         },
         "DELETE": {
           "PROJECT": "Opravdu chcete tento projekt odstranit?",
-          "PROCESS": "Opravdu chcete tento proces odstranit?",
-          "FORM": "Opravdu chcete tento formulář odstranit?",
-          "UI": "Opravdu chcete toto uživatelské rozhraní odstranit?",
-          "DATA": "Opravdu chcete tento datový objekt odstranit?",
-          "DECISION_TABLE": "Opravdu chcete tuto rozhodovací tabulku odstranit?",
-          "CONNECTOR": "Opravdu chcete tento konektor odstranit?",
-          "FILE": "Opravdu chcete tento soubor odstranit?",
-          "SCRIPT": "Opravdu chcete tento skript odstranit?",
-          "TRIGGER": "Opravdu chcete tuto aktivační proceduru odstranit?",
-          "MODEL": "Opravdu chcete tento model ACS odstranit?",
-          "FORM_WIDGET": "Opravdu chcete tento widget formuláře odstranit?"
+          "DATA": "Opravdu chcete tento datový objekt odstranit?"
         },
         "SAVE": {
           "PROCESS": "Opravdu chcete tento proces uložit?",
-          "FORM": "Opravdu chcete tento formulář uložit?",
-          "UI": "Opravdu chcete toto uživatelské rozhraní uložit?",
           "DATA": "Opravdu chcete tento datový objekt uložit?",
-          "DECISION_TABLE": "Opravdu chcete tuto rozhodovací tabulku uložit?",
-          "CONNECTOR": "Opravdu chcete tento konektor uložit?",
-          "FILE": "Opravdu chcete tento soubor uložit?",
-          "EMAIL_TEMPLATE": "Opravdu chcete přepsat e-mailovou šablonu?",
-          "SCRIPT": "Opravdu chcete tento skript uložit?",
-          "TRIGGER": "Opravdu chcete tuto aktivační proceduru uložit?",
-          "MODEL": "Opravdu chcete tento model ACS uložit?",
-          "FORM_WIDGET": "Opravdu chcete tento widget formuláře uložit?"
+          "EMAIL_TEMPLATE": "Opravdu chcete přepsat e-mailovou šablonu?"
         },
         "SAVE_AS": {
           "PROCESS": "Opravdu chcete tento proces kopírovat?",
-          "FORM": "Opravdu chcete kopírovat tento formulář?",
-          "UI": "Opravdu chcete kopírovat toto uživatelské rozhraní?",
           "DATA": "Opravdu chcete kopírovat tento datový objekt?",
-          "DECISION_TABLE": "Opravdu chcete kopírovat tuto rozhodovací tabulku?",
-          "CONNECTOR": "Opravdu chcete kopírovat tento konektor?",
           "FILE": "Opravdu chcete kopírovat tento soubor?",
-          "SCRIPT": "Opravdu chcete kopírovat tento skript?",
-          "TRIGGER": "Opravdu chcete kopírovat tento spouštěč?",
-          "MODEL": "Opravdu chcete kopírovat tento ACS obsahu?",
-          "FORM_WIDGET": "Opravdu chcete kopírovat tento widget formuláře?"
+          "SCRIPT": "Opravdu chcete kopírovat tento skript?"
         },
         "DOWNLOAD": {
-          "PROCESS": "Opravdu chcete tento proces stáhnout?",
           "IMAGE": "Opravdu chcete stáhnout obraz SVG tohoto procesu?",
-          "FORM": "Opravdu chcete tento formulář stáhnout?",
-          "UI": "Opravdu chcete toto uživatelské rozhraní stáhnout?",
-          "DATA": "Opravdu chcete tento datový objekt stáhnout?",
-          "DECISION_TABLE": "Opravdu chcete tuto rozhodovací tabulku stáhnout?",
-          "CONNECTOR": "Opravdu chcete tento konektor stáhnout?",
-          "FILE": "Opravdu chcete tento soubor stáhnout?",
-          "SCRIPT": "Opravdu chcete tento skript stáhnout?",
-          "TRIGGER": "Opravdu chcete tuto aktivační proceduru stáhnout?",
-          "MODEL": "Opravdu chcete tento model ACS stáhnout?",
-          "FORM_WIDGET": "Opravdu chcete tento widget formuláře stáhnout?"
+          "DATA": "Opravdu chcete tento datový objekt stáhnout?"
         }
       }
     },

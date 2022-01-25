@@ -66,6 +66,7 @@
       "VERSION": "Versio",
       "VARIABLES": "Muuttujat",
       "DOCUMENTATION": "Dokumentaatio",
+      "CATEGORY": "Luokka",
       "EXECUTABLE": "Ajotiedosto",
       "IMPLEMENTATION": "Toteutus",
       "DECISION_TASK": "Päätöstehtävä",
@@ -181,7 +182,6 @@
         "CLOSE": "Sulje",
         "EXPRESSION": {
           "TITLE": "Lauseke",
-          "NO_PROCESS_VARIABLES": "Luo prosessimuuttuja lisätäksesi lausekemäärityksen",
           "CANDIDATE_EMPTY": "Kandidaattikentät eivät voi olla tyhjiä, anna joko candidateUsers tai candidateGroups",
           "ASSIGNEE_EMPTY": "Vastuuhenkilökenttä ei voi olla tyhjä",
           "ASSIGNEE_INVALID_ERROR": "Virheellinen lauseke, esim. { assignee:${var1} }",
@@ -196,8 +196,6 @@
     "PROCESS_VALID": "Prosessi on kelvollinen",
     "PROCESS_INVALID": "Prosessi sisältää vahvistusvirheitä.",
     "ERRORS": {
-      "NO_PROCESS_VARIABLES": "Ei prosessimuuttujia",
-      "CREATE_PROCESS_VARIABLE": "Luo prosessimuuttuja lisätäksesi lausekemäärityksen",
       "NO_SUB_PROCESS_VARIABLES": "Ei aliprosessimuuttujia",
       "LOAD_DIAGRAM": "Diagrammin lataamisessa ilmeni ongelma. Päivitä sivu ja yritä uudelleen.",
       "SAVE_DIAGRAM": "Diagrammin tallennuksessa ilmeni ongelma. Kokeile tallentaa se uudelleen.",

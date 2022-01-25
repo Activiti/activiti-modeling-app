@@ -66,6 +66,7 @@
       "VERSION": "Version",
       "VARIABLES": "Variables",
       "DOCUMENTATION": "Documentation",
+      "CATEGORY": "Catégorie",
       "EXECUTABLE": "Exécutable",
       "IMPLEMENTATION": "Implémentation",
       "DECISION_TASK": "Tâche de décision",
@@ -181,7 +182,6 @@
         "CLOSE": "Fermer",
         "EXPRESSION": {
           "TITLE": "Expression",
-          "NO_PROCESS_VARIABLES": "Créer une variable de processus pour ajouter une affectation d'expression",
           "CANDIDATE_EMPTY": "Les champs des candidats ne peuvent pas être vides. Renseignez soit Utilisateurs candidats soit Groupes candidats",
           "ASSIGNEE_EMPTY": "Le champ de la personne assignée ne peut pas être vide",
           "ASSIGNEE_INVALID_ERROR": "Expression non valide par ex. { assignee:${var1} }",
@@ -196,8 +196,6 @@
     "PROCESS_VALID": "Le processus est valide",
     "PROCESS_INVALID": "Le processus contient une ou des erreurs de validation.",
     "ERRORS": {
-      "NO_PROCESS_VARIABLES": "Aucune variable de processus",
-      "CREATE_PROCESS_VARIABLE": "Créer une variable de processus pour ajouter une affectation d'expression",
       "NO_SUB_PROCESS_VARIABLES": "Aucune variable de sous-processus",
       "LOAD_DIAGRAM": "Un problème est survenu lors du chargement du diagramme. Essayez d'actualiser la page.",
       "SAVE_DIAGRAM": "Une erreur est survenue lors de l'enregistrement du diagramme. Essayez de l'enregistrer à nouveau.",

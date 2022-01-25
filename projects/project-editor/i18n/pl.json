@@ -34,7 +34,9 @@
         "CREATE_SCRIPT": "Skrypt",
         "CREATE_TRIGGER": "Wyzwalacz",
         "CREATE_PROJECT_MODEL": "Model treści",
-        "CREATE_FORM_WIDGET": "Widżet formularza"
+        "CREATE_FORM_WIDGET": "Widżet formularza",
+        "CREATE_DATA_MODEL": "Model danych",
+        "CREATE_AUTHENTICATION": "Uwierzytelnianie"
       }
     },
     "TREE": {
@@ -46,7 +48,9 @@
       "UIS": "Interfejs użytkownika",
       "FILES": "Pliki",
       "SCRIPTS": "Skrypty",
-      "TRIGGERS": "Wyzwalacze"
+      "TRIGGERS": "Wyzwalacze",
+      "DATA_MODELS": "Modele danych",
+      "AUTHENTICATIONS": "Uwierzytelnienia"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Utwórz proces",
@@ -164,6 +168,24 @@
       "FORM_WIDGET_DELETED": "Usunięto widżet formularza",
       "FORM_WIDGET_UPDATED": "Zapisano widżet formularza"
     },
+    "DATA_MODEL_DIALOG": {
+      "TITLE_CREATE": "Utwórz model danych",
+      "TITLE_UPDATE": "Aktualizuj model danych",
+      "DATA_MODEL_NAME": "Nazwa modelu danych",
+      "DATA_MODEL_DESC": "Opis modelu danych",
+      "DATA_MODEL_CREATED": "Utworzono model danych",
+      "DATA_MODEL_DELETED": "Usunięto model danych",
+      "DATA_MODEL_UPDATED": "Zapisano model danych"
+    },
+    "AUTHENTICATION_DIALOG": {
+      "TITLE_CREATE": "Utwórz uwierzytelnianie",
+      "TITLE_UPDATE": "Aktualizuj uwierzytelnianie",
+      "AUTHENTICATION_NAME": "Nazwa uwierzytelniania",
+      "AUTHENTICATION_DESC": "Opis uwierzytelniania",
+      "AUTHENTICATION_CREATED": "Utworzono uwierzytelnianie",
+      "AUTHENTICATION_DELETED": "Usunięto uwierzytelnianie",
+      "AUTHENTICATION_UPDATED": "Zapisano uwierzytelnianie"
+    },
     "ERROR": {
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} o tej nazwie już istnieje",
       "UPLOAD_FILE": "Wystąpił problem podczas przesyłania pliku. Spróbuj przesłać go ponownie.",
@@ -213,13 +235,21 @@
         "DUPLICATION": "Tabela decyzji o tej nazwie już istnieje",
         "GENERAL": "Wystąpił problem podczas zapisywania tabeli decyzji. Spróbuj zapisać ją ponownie."
       },
-      "CREATE_DATA": {
-        "DUPLICATION": "Obiekt danych o tej nazwie już istnieje",
-        "GENERAL": "Wystąpił problem podczas tworzenia obiektu danych. Spróbuj utworzyć go ponownie."
+      "CREATE_AUTHENTICATION": {
+        "DUPLICATION": "Uwierzytelnianie o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas tworzenia uwierzytelniania. Spróbuj utworzyć je ponownie."
       },
-      "UPDATE_DATA": {
-        "DUPLICATION": "Obiekt danych o tej nazwie już istnieje",
-        "GENERAL": "Wystąpił problem podczas zapisywania obiektu danych. Spróbuj zapisać go ponownie."
+      "UPDATE_AUTHENTICATION": {
+        "DUPLICATION": "Uwierzytelnianie o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas zapisywania uwierzytelniania. Spróbuj zapisać je ponownie."
+      },
+      "CREATE_DATA_MODEL": {
+        "DUPLICATION": "Model danych o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas tworzenia modelu danych. Spróbuj utworzyć go ponownie."
+      },
+      "UPDATE_DATA_MODEL": {
+        "DUPLICATION": "Model danych o tej nazwie już istnieje",
+        "GENERAL": "Wystąpił problem podczas zapisywania modelu danych. Spróbuj zapisać go ponownie."
       },
       "CREATE_PROJECT": {
         "DUPLICATION": "Projekt o tej nazwie już istnieje",

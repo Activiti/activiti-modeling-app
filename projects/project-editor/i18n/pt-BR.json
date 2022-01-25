@@ -34,7 +34,9 @@
         "CREATE_SCRIPT": "Script",
         "CREATE_TRIGGER": "Gatilho",
         "CREATE_PROJECT_MODEL": "Modelo de conteúdo",
-        "CREATE_FORM_WIDGET": "Widget de formulário"
+        "CREATE_FORM_WIDGET": "Widget de formulário",
+        "CREATE_DATA_MODEL": "Modelo de dados",
+        "CREATE_AUTHENTICATION": "Autenticação"
       }
     },
     "TREE": {
@@ -46,7 +48,9 @@
       "UIS": "UI",
       "FILES": "Arquivos",
       "SCRIPTS": "Scripts",
-      "TRIGGERS": "Gatilhos"
+      "TRIGGERS": "Gatilhos",
+      "DATA_MODELS": "Modelos de dados",
+      "AUTHENTICATIONS": "Autenticações"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Criar processo",
@@ -164,6 +168,24 @@
       "FORM_WIDGET_DELETED": "Widget do formulário excluído",
       "FORM_WIDGET_UPDATED": "Widget do formulário salvo"
     },
+    "DATA_MODEL_DIALOG": {
+      "TITLE_CREATE": "Criar modelo de dados",
+      "TITLE_UPDATE": "Atualizar modelo de dados",
+      "DATA_MODEL_NAME": "Nome do modelo de dados",
+      "DATA_MODEL_DESC": "Descrição do modelo de dados",
+      "DATA_MODEL_CREATED": "Modelo de dados criado",
+      "DATA_MODEL_DELETED": "Modelo de dados excluído",
+      "DATA_MODEL_UPDATED": "Modelo de dados salvo"
+    },
+    "AUTHENTICATION_DIALOG": {
+      "TITLE_CREATE": "Criar autenticação",
+      "TITLE_UPDATE": "Atualizar autenticação",
+      "AUTHENTICATION_NAME": "Nome da autenticação",
+      "AUTHENTICATION_DESC": "Descrição da autenticação",
+      "AUTHENTICATION_CREATED": "Autenticação criada",
+      "AUTHENTICATION_DELETED": "Autenticação excluída",
+      "AUTHENTICATION_UPDATED": "Autenticação salva"
+    },
     "ERROR": {
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} com o mesmo nome já existe",
       "UPLOAD_FILE": "Encontramos um problema ao carregar o arquivo. Tente carregar novamente.",
@@ -213,13 +235,21 @@
         "DUPLICATION": "Já existe uma tabela de decisão com o mesmo nome",
         "GENERAL": "Encontramos um problema ao salvar a tabela de decisão. Tente salvar novamente."
       },
-      "CREATE_DATA": {
-        "DUPLICATION": "Já existe um objeto de dados com o mesmo nome.",
-        "GENERAL": "Encontramos um problema ao criar o objeto de dados. Tente criar novamente."
+      "CREATE_AUTHENTICATION": {
+        "DUPLICATION": "Uma autenticação com este nome já existe",
+        "GENERAL": "Erro ao criar a autenticação. Tente criá-la novamente."
       },
-      "UPDATE_DATA": {
-        "DUPLICATION": "Já existe um objeto de dados com o mesmo nome.",
-        "GENERAL": "Encontramos um problema ao salvar o objeto de dados. Tente salvar novamente."
+      "UPDATE_AUTHENTICATION": {
+        "DUPLICATION": "Uma autenticação com este nome já existe",
+        "GENERAL": "Erro ao salvar a autenticação. Tente salvá-la novamente."
+      },
+      "CREATE_DATA_MODEL": {
+        "DUPLICATION": "Um modelo de dados com este nome já existe",
+        "GENERAL": "Erro criar o modelo de dados. Tente criá-lo novamente."
+      },
+      "UPDATE_DATA_MODEL": {
+        "DUPLICATION": "Um modelo de dados com este nome já existe",
+        "GENERAL": "Erro ao salvar o modelo de dados. Tente salvá-lo novamente."
       },
       "CREATE_PROJECT": {
         "DUPLICATION": "Já existe um projeto com o mesmo nome",

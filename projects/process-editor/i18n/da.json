@@ -66,6 +66,7 @@
       "VERSION": "Version",
       "VARIABLES": "Variabler",
       "DOCUMENTATION": "Dokumentation",
+      "CATEGORY": "Kategori",
       "EXECUTABLE": "Eksekverbar fil",
       "IMPLEMENTATION": "Implementering",
       "DECISION_TASK": "Opgaven Beslutning",
@@ -181,7 +182,6 @@
         "CLOSE": "Luk",
         "EXPRESSION": {
           "TITLE": "Udtryk",
-          "NO_PROCESS_VARIABLES": "Opret en procesvariabel til at tilføje udtrykstildeling",
           "CANDIDATE_EMPTY": "Kandidater kan ikke være tomme, angiv enten kandidatbrugere eller kandidatgrupper",
           "ASSIGNEE_EMPTY": "Assignaten kan ikke være tom",
           "ASSIGNEE_INVALID_ERROR": "Ugyldigt udtryk f.eks. {assignat:${var1}}",
@@ -196,8 +196,6 @@
     "PROCESS_VALID": "Processen er gyldig",
     "PROCESS_INVALID": "Processen indeholder valideringsfejl.",
     "ERRORS": {
-      "NO_PROCESS_VARIABLES": "Ingen procesvariabler",
-      "CREATE_PROCESS_VARIABLE": "Opret en procesvariabel til at tilføje udtrykstildeling",
       "NO_SUB_PROCESS_VARIABLES": "Ingen sub-procesvariabler",
       "LOAD_DIAGRAM": "Der opstod et problem under indlæsning af diagrammet. Prøv at opdatere siden.",
       "SAVE_DIAGRAM": "Der opstod et problem under lagring af diagrammet. Prøv at gemme det igen.",

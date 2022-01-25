@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "Weet u zeker dat u dit {{ modelType }} wilt opslaan?",
+        "CONFIRM_DELETE_MODEL": "Weet u zeker dat u dit {{ modelType }} wilt verwijderen?",
+        "CONFIRM_DOWNLOAD_MODEL": "Weet u zeker dat u dit {{ modelType }} wilt downloaden?",
+        "CONFIRM_SAVE_AS_MODEL": "Weet u zeker dat u dit {{ modelType }} wilt kopiëren?",
+        "INVALID_MODEL": "{{ modelType }} bevat validatiefout(en).",
+        "VALID_MODEL": "{{ modelType }} is geldig"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Geplakte waarden moeten dit patroon volgen"
     },
     "ALL": "Alle",
     "VALUE": "Waarde",
+    "EXPRESSION": "Expressie",
+    "TYPE": "Type",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Een naam is vereist",
@@ -110,7 +122,8 @@
         "NONE": "Geen",
         "EVENT": "Gebeurtenis",
         "EMAIL_SERVICE_TASK": "E-mailservicetaak",
-        "DOCGEN_SERVICE": "Docgen-servicetaak"
+        "DOCGEN_SERVICE": "Docgen-servicetaak",
+        "PARTICIPANT": "Proces"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabele",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "Basis",
       "DATE": {
         "CURRENT_DATE": "Vandaag",
         "CLEAR_BUTTON": "Wissen"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "Nu",
         "CLEAR_BUTTON": "Wissen"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "Waarde die moet worden toegevoegd aan de matrix",
+        "ADD": "Toevoegen",
+        "EDIT_VALUE": "Waarde bewerken",
+        "EDIT": "Bewerken"
+      },
+      "VALIDATION": {
+        "REQUIRED": "Invoer is vereist",
+        "INVALID_FORMAT": "Ongeldige invoerindeling",
+        "INVALID_MIN_LENGTH": "Ongeldige minimumlengte",
+        "INVALID_MAX_LENGTH": "Ongeldige maximumlengte",
+        "INVALID_MIN_VALUE": "Ongeldige waarde. Deze moet groter zijn dan of gelijk zijn aan",
+        "INVALID_MAX_VALUE": "Ongeldige waarde. Deze moet kleiner zijn dan of gelijk zijn aan",
+        "INVALID_MULTIPLE_OF_VALUE": "Ongeldige waarde. Deze moet een meervoud zijn van",
+        "GENERIC_ERROR": "Ongeldige waarde"
       }
     }
   }

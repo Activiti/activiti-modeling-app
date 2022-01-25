@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "この{{ modelType }}を保存しますか?",
+        "CONFIRM_DELETE_MODEL": "この{{ modelType }}を削除しますか？",
+        "CONFIRM_DOWNLOAD_MODEL": "この{{ modelType }}をダウンロードしますか?",
+        "CONFIRM_SAVE_AS_MODEL": "この{{ modelType }}をコピーしますか？",
+        "INVALID_MODEL": "{{ modelType }}に検証エラーが含まれています。",
+        "VALID_MODEL": "{{ modelType }}は無効です"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "貼り付ける値は、次のパターンに従う必要があります"
     },
     "ALL": "すべて",
     "VALUE": "値",
+    "EXPRESSION": "式",
+    "TYPE": "種類",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "名前は必須です",
@@ -110,7 +122,8 @@
         "NONE": "なし",
         "EVENT": "イベント",
         "EMAIL_SERVICE_TASK": "Eメールサービスタスク",
-        "DOCGEN_SERVICE": "Docgenサービスタスク"
+        "DOCGEN_SERVICE": "Docgenサービスタスク",
+        "PARTICIPANT": "プロセス"
       },
       "TOOLTIP": {
         "VARIABLE": "変数",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "基本",
       "DATE": {
         "CURRENT_DATE": "今日",
         "CLEAR_BUTTON": "消去"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "現在",
         "CLEAR_BUTTON": "消去"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "配列に追加された値",
+        "ADD": "追加",
+        "EDIT_VALUE": "値の編集",
+        "EDIT": "編集"
+      },
+      "VALIDATION": {
+        "REQUIRED": "入力は必須です",
+        "INVALID_FORMAT": "無効な入力形式",
+        "INVALID_MIN_LENGTH": "無効な最小の長さ",
+        "INVALID_MAX_LENGTH": "無効な最大の長さ",
+        "INVALID_MIN_VALUE": "無効な値。より大きいか等しくなければなりません",
+        "INVALID_MAX_VALUE": "無効な値。より小さいか等しくなければなりません",
+        "INVALID_MULTIPLE_OF_VALUE": "無効な値。次の倍数でなければなりません：",
+        "GENERIC_ERROR": "無効な値"
       }
     }
   }

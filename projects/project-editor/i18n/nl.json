@@ -34,7 +34,9 @@
         "CREATE_SCRIPT": "Script",
         "CREATE_TRIGGER": "Trigger",
         "CREATE_PROJECT_MODEL": "Contentmodel",
-        "CREATE_FORM_WIDGET": "Formulierwidget"
+        "CREATE_FORM_WIDGET": "Formulierwidget",
+        "CREATE_DATA_MODEL": "Gegevensmodel",
+        "CREATE_AUTHENTICATION": "Verificatie"
       }
     },
     "TREE": {
@@ -46,7 +48,9 @@
       "UIS": "UI",
       "FILES": "Bestanden",
       "SCRIPTS": "Scripts",
-      "TRIGGERS": "Triggers"
+      "TRIGGERS": "Triggers",
+      "DATA_MODELS": "Gegevensmodellen",
+      "AUTHENTICATIONS": "Verificaties"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Proces maken",
@@ -164,6 +168,24 @@
       "FORM_WIDGET_DELETED": "Formulierwidget verwijderd",
       "FORM_WIDGET_UPDATED": "Formulierwidget opgeslagen"
     },
+    "DATA_MODEL_DIALOG": {
+      "TITLE_CREATE": "Gegevensmodel maken",
+      "TITLE_UPDATE": "Gegevensmodel bijwerken",
+      "DATA_MODEL_NAME": "Naam gegevensmodel",
+      "DATA_MODEL_DESC": "Beschrijving gegevensmodel",
+      "DATA_MODEL_CREATED": "Gegevensmodel gemaakt",
+      "DATA_MODEL_DELETED": "Gegevensmodel verwijderd",
+      "DATA_MODEL_UPDATED": "Gegevensmodel opgeslagen"
+    },
+    "AUTHENTICATION_DIALOG": {
+      "TITLE_CREATE": "Verificatie maken",
+      "TITLE_UPDATE": "Verificatie bijwerken",
+      "AUTHENTICATION_NAME": "Naam verificatie",
+      "AUTHENTICATION_DESC": "Beschrijving verificatie",
+      "AUTHENTICATION_CREATED": "Verificatie gemaakt",
+      "AUTHENTICATION_DELETED": "Verificatie verwijderd",
+      "AUTHENTICATION_UPDATED": "Verificatie opgeslagen"
+    },
     "ERROR": {
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} met dezelfde naam bestaat al",
       "UPLOAD_FILE": "Er is een probleem opgetreden bij het uploaden van het bestand. Probeer het opnieuw te uploaden.",
@@ -213,13 +235,21 @@
         "DUPLICATION": "Er bestaat al een beslissingstabel met die naam",
         "GENERAL": "Er is een probleem opgetreden bij het opslaan van de beslissingstabel. Probeer de beslissingstabel opnieuw op te slaan."
       },
-      "CREATE_DATA": {
-        "DUPLICATION": "Er bestaat al een gegevensobject met die naam",
-        "GENERAL": "Er is een probleem opgetreden bij het maken van het gegevensobject. Probeer het opnieuw te maken."
+      "CREATE_AUTHENTICATION": {
+        "DUPLICATION": "Er bestaat al een verificatie met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het maken van de verificatie. Probeer deze opnieuw te maken."
       },
-      "UPDATE_DATA": {
-        "DUPLICATION": "Er bestaat al een gegevensobject met die naam",
-        "GENERAL": "Er is een probleem opgetreden bij het opslaan van het gegevensobject. Probeer het opnieuw op te slaan."
+      "UPDATE_AUTHENTICATION": {
+        "DUPLICATION": "Er bestaat al een verificatie met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het opslaan van de verificatie. Probeer deze opnieuw op te slaan."
+      },
+      "CREATE_DATA_MODEL": {
+        "DUPLICATION": "Er bestaat al een gegevensmodel met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het maken van het gegevensmodel. Probeer het opnieuw te maken."
+      },
+      "UPDATE_DATA_MODEL": {
+        "DUPLICATION": "Er bestaat al een gegevensmodel met die naam",
+        "GENERAL": "Er is een probleem opgetreden bij het opslaan van het gegevensmodel. Probeer het opnieuw op te slaan."
       },
       "CREATE_PROJECT": {
         "DUPLICATION": "Er bestaat al een project met die naam",

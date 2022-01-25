@@ -66,6 +66,7 @@
       "VERSION": "Versie",
       "VARIABLES": "Variabelen",
       "DOCUMENTATION": "Documentatie",
+      "CATEGORY": "Categorie",
       "EXECUTABLE": "Uitvoerbaar",
       "IMPLEMENTATION": "Implementatie",
       "DECISION_TASK": "Beslissingstaak",
@@ -181,7 +182,6 @@
         "CLOSE": "Sluiten",
         "EXPRESSION": {
           "TITLE": "Expressie",
-          "NO_PROCESS_VARIABLES": "Maak een procesvariabele om expressietoewijzing toe te voegen",
           "CANDIDATE_EMPTY": "Kandidaten mag niet leeg zijn. Voer Kandidaatgebruikers of Kandidaatgroepen in.",
           "ASSIGNEE_EMPTY": "Toegewezen persoon mag niet leeg zijn",
           "ASSIGNEE_INVALID_ERROR": "Ongeldige expressie, bijv. { assignee:${var1} }",
@@ -196,8 +196,6 @@
     "PROCESS_VALID": "Proces is geldig",
     "PROCESS_INVALID": "Proces bevat validatiefout(en).",
     "ERRORS": {
-      "NO_PROCESS_VARIABLES": "Geen procesvariabelen",
-      "CREATE_PROCESS_VARIABLE": "Maak een procesvariabele om expressietoewijzing toe te voegen",
       "NO_SUB_PROCESS_VARIABLES": "Geen subprocesvariabelen",
       "LOAD_DIAGRAM": "Er is een probleem opgetreden bij het laden van het diagram. Vernieuw de pagina.",
       "SAVE_DIAGRAM": "Er is een probleem opgetreden bij opslaan van het diagram. Probeer het opnieuw op te slaan.",

@@ -32,7 +32,8 @@
         "TITLE": "Voulez-vous vraiment l'enregistrer ?",
         "SUBTITLE": "Erreurs de validation :",
         "NAME_DOESNT_MATCH_PATTERN": "Le nom ne correspond pas au modèle suivant",
-        "GENERAL_NAME_VALIDATION": "Le nom doit être en minuscules et comporter entre 1 et 26 caractères. Les caractères alphanumériques et les traits d'union sont autorisés, toutefois le nom doit commencer par une lettre et se terminer par un caractère alphanumérique."
+        "GENERAL_NAME_VALIDATION": "Le nom doit être en minuscules et comporter entre 1 et 26 caractères. Les caractères alphanumériques et les traits d'union sont autorisés, toutefois le nom doit commencer par une lettre et se terminer par un caractère alphanumérique.",
+        "PROCESS_NAME_VALIDATION": "Le nom doit comporter entre 1 et 26 caractères et ne peut pas commencer par un espace vide"
       },
       "CONFIRM": {
         "TITLE": "Vous êtes sûr ?",
@@ -55,58 +56,22 @@
         },
         "DELETE": {
           "PROJECT": "Voulez-vous vraiment supprimer ce projet ?",
-          "PROCESS": "Voulez-vous vraiment supprimer ce processus ?",
-          "FORM": "Voulez-vous vraiment supprimer ce formulaire ?",
-          "UI": "Voulez-vous vraiment supprimer cette IU ?",
-          "DATA": "Voulez-vous vraiment supprimer cet objet de données ?",
-          "DECISION_TABLE": "Voulez-vous vraiment supprimer cette table de décision ?",
-          "CONNECTOR": "Voulez-vous vraiment supprimer ce connecteur ?",
-          "FILE": "Voulez-vous vraiment supprimer ce fichier ?",
-          "SCRIPT": "Voulez-vous vraiment supprimer ce script ?",
-          "TRIGGER": "Voulez-vous vraiment supprimer ce déclencheur ?",
-          "MODEL": "Voulez-vous vraiment supprimer ce modèle de contenu ?",
-          "FORM_WIDGET": "Voulez-vous vraiment supprimer ce widget de formulaire ?"
+          "DATA": "Voulez-vous vraiment supprimer cet objet de données ?"
         },
         "SAVE": {
           "PROCESS": "Voulez-vous vraiment enregistrer ce processus ?",
-          "FORM": "Voulez-vous vraiment enregistrer ce formulaire ?",
-          "UI": "Voulez-vous vraiment enregistrer cette IU ?",
           "DATA": "Voulez-vous vraiment enregistrer cet objet de données ?",
-          "DECISION_TABLE": "Voulez-vous vraiment enregistrer cette table de décision ?",
-          "CONNECTOR": "Voulez-vous vraiment enregistrer ce connecteur ?",
-          "FILE": "Voulez-vous vraiment enregistrer ce fichier ?",
-          "EMAIL_TEMPLATE": "Voulez-vous vraiment remplacer le modèle d'e-mail ?",
-          "SCRIPT": "Voulez-vous vraiment enregistrer ce script ?",
-          "TRIGGER": "Voulez-vous vraiment enregistrer ce déclencheur ?",
-          "MODEL": "Voulez-vous vraiment enregistrer ce modèle de contenu ?",
-          "FORM_WIDGET": "Voulez-vous vraiment enregistrer ce widget de formulaire ?"
+          "EMAIL_TEMPLATE": "Voulez-vous vraiment remplacer le modèle d'e-mail ?"
         },
         "SAVE_AS": {
           "PROCESS": "Voulez-vous vraiment copier ce processus ?",
-          "FORM": "Voulez-vous vraiment copier ce formulaire ?",
-          "UI": "Voulez-vous vraiment copier cette IU ?",
           "DATA": "Voulez-vous vraiment copier cet objet de données ?",
-          "DECISION_TABLE": "Voulez-vous vraiment copier cette table de décision ?",
-          "CONNECTOR": "Voulez-vous vraiment copier ce connecteur ?",
           "FILE": "Voulez-vous vraiment copier ce fichier ?",
-          "SCRIPT": "Voulez-vous vraiment copier ce script ?",
-          "TRIGGER": "Voulez-vous vraiment copier ce déclencheur ?",
-          "MODEL": "Voulez-vous vraiment copier ce modèle de contenu ?",
-          "FORM_WIDGET": "Voulez-vous vraiment copier ce widget de formulaire ?"
+          "SCRIPT": "Voulez-vous vraiment copier ce script ?"
         },
         "DOWNLOAD": {
-          "PROCESS": "Voulez-vous vraiment télécharger ce processus ?",
           "IMAGE": "Voulez-vous vraiment télécharger l'image svg de ce processus ?",
-          "FORM": "Voulez-vous vraiment télécharger ce formulaire ?",
-          "UI": "Voulez-vous vraiment télécharger cette IU ?",
-          "DATA": "Voulez-vous vraiment télécharger cet objet de données ?",
-          "DECISION_TABLE": "Voulez-vous vraiment télécharger cette table de décision ?",
-          "CONNECTOR": "Voulez-vous vraiment télécharger ce connecteur ?",
-          "FILE": "Voulez-vous vraiment télécharger ce fichier ?",
-          "SCRIPT": "Voulez-vous vraiment télécharger ce script ?",
-          "TRIGGER": "Voulez-vous vraiment télécharger ce déclencheur ?",
-          "MODEL": "Voulez-vous vraiment télécharger ce modèle de contenu ?",
-          "FORM_WIDGET": "Voulez-vous vraiment télécharger ce widget de formulaire ?"
+          "DATA": "Voulez-vous vraiment télécharger cet objet de données ?"
         }
       }
     },

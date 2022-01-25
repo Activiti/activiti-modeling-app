@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "Opravdu chcete uložit tento {{ modelType }}?",
+        "CONFIRM_DELETE_MODEL": "Opravdu chcete odstranit tento {{ modelType }}?",
+        "CONFIRM_DOWNLOAD_MODEL": "Opravdu chcete stáhnout tento {{ modelType }}?",
+        "CONFIRM_SAVE_AS_MODEL": "Opravdu chcete kopírovat tento {{ modelType }}?",
+        "INVALID_MODEL": "{{ modelType }} obsahuje chyby ověření.",
+        "VALID_MODEL": "{{ modelType }} je platný"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Vložené hodnoty musí dodržovat tento vzorec"
     },
     "ALL": "Vše",
     "VALUE": "Hodnota",
+    "EXPRESSION": "Výraz",
+    "TYPE": "Typ",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Název je povinný.",
@@ -110,7 +122,8 @@
         "NONE": "Žádný",
         "EVENT": "Událost",
         "EMAIL_SERVICE_TASK": "Úloha e-mailové služby",
-        "DOCGEN_SERVICE": "Úkol služby Docgen"
+        "DOCGEN_SERVICE": "Úkol služby Docgen",
+        "PARTICIPANT": "Proces"
       },
       "TOOLTIP": {
         "VARIABLE": "Proměnná",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "Základy",
       "DATE": {
         "CURRENT_DATE": "Dnes",
         "CLEAR_BUTTON": "Vymazat"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "Teď",
         "CLEAR_BUTTON": "Vymazat"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "Hodnota, která se přidá do pole",
+        "ADD": "Přidat",
+        "EDIT_VALUE": "Upravit hodnotu",
+        "EDIT": "Upravit"
+      },
+      "VALIDATION": {
+        "REQUIRED": "Je požadován vstup",
+        "INVALID_FORMAT": "Neplatný formát vstupu",
+        "INVALID_MIN_LENGTH": "Neplatná minimální délka",
+        "INVALID_MAX_LENGTH": "Neplatná maximální délka",
+        "INVALID_MIN_VALUE": "Neplatná hodnota. Musí být větší než nebo rovna",
+        "INVALID_MAX_VALUE": "Neplatná hodnota. Musí být menší než nebo rovna",
+        "INVALID_MULTIPLE_OF_VALUE": "Neplatná hodnota. Musí být násobkem",
+        "GENERIC_ERROR": "Neplatná hodnota"
       }
     }
   }

@@ -32,7 +32,8 @@
         "TITLE": "Salvare comunque?",
         "SUBTITLE": "Errori di convalida:",
         "NAME_DOESNT_MATCH_PATTERN": "Il nome non coincide con il seguente modello",
-        "GENERAL_NAME_VALIDATION": "Il nome deve essere minuscolo e di lunghezza compresa fra 1 e 26 caratteri. Sono ammessi caratteri alfanumerici e trattini, tuttavia il nome deve cominciare con una lettera e terminare con una lettera o un numero."
+        "GENERAL_NAME_VALIDATION": "Il nome deve essere minuscolo e di lunghezza compresa fra 1 e 26 caratteri. Sono ammessi caratteri alfanumerici e trattini, tuttavia il nome deve cominciare con una lettera e terminare con una lettera o un numero.",
+        "PROCESS_NAME_VALIDATION": "Il nome deve avere una lunghezza compresa tra 1 e 26 caratteri e non può iniziare con uno spazio vuoto"
       },
       "CONFIRM": {
         "TITLE": "Continuare?",
@@ -55,58 +56,22 @@
         },
         "DELETE": {
           "PROJECT": "Eliminare questo progetto?",
-          "PROCESS": "Eliminare questo processo?",
-          "FORM": "Eliminare questo modulo?",
-          "UI": "Eliminare questa UI?",
-          "DATA": "Eliminare questo oggetto dati?",
-          "DECISION_TABLE": "Eliminare questa tabella decisioni?",
-          "CONNECTOR": "Eliminare questo connettore?",
-          "FILE": "Eliminare questo file?",
-          "SCRIPT": "Eliminare questo script?",
-          "TRIGGER": "Eliminare questo trigger?",
-          "MODEL": "Eliminare questo modello di contenuto?",
-          "FORM_WIDGET": "Eliminare questo widget di modulo?"
+          "DATA": "Eliminare questo oggetto dati?"
         },
         "SAVE": {
           "PROCESS": "Salvare questo processo?",
-          "FORM": "Salvare questo modulo?",
-          "UI": "Salvare questa UI?",
           "DATA": "Salvare questo oggetto dati?",
-          "DECISION_TABLE": "Salvare questa tabella decisioni?",
-          "CONNECTOR": "Salvare questo connettore?",
-          "FILE": "Salvare questo file?",
-          "EMAIL_TEMPLATE": "Sovrascrivere il modello di e-mail?",
-          "SCRIPT": "Salvare questo script?",
-          "TRIGGER": "Salvare questo trigger?",
-          "MODEL": "Salvare questo modello di contenuto?",
-          "FORM_WIDGET": "Salvare questo widget di modulo?"
+          "EMAIL_TEMPLATE": "Sovrascrivere il modello di e-mail?"
         },
         "SAVE_AS": {
           "PROCESS": "Copiare questo processo?",
-          "FORM": "Copiare questo modulo?",
-          "UI": "Copiare questa UI?",
           "DATA": "Copiare questo oggetto dati?",
-          "DECISION_TABLE": "Copiare questa tabella decisioni?",
-          "CONNECTOR": "Copiare questo connettore?",
           "FILE": "Copiare questo file?",
-          "SCRIPT": "Copiare questo script?",
-          "TRIGGER": "Copiare questo trigger?",
-          "MODEL": "Copiare questo modello di contenuto?",
-          "FORM_WIDGET": "Copiare questo widget di modulo?"
+          "SCRIPT": "Copiare questo script?"
         },
         "DOWNLOAD": {
-          "PROCESS": "Salvare questo processo?",
           "IMAGE": "Scaricare l'immagine svg di questo processo?",
-          "FORM": "Scaricare questo modulo?",
-          "UI": "Scaricare questa UI?",
-          "DATA": "Scaricare questo oggetto dati?",
-          "DECISION_TABLE": "Scaricare questa tabella decisioni?",
-          "CONNECTOR": "Scaricare questo connettore?",
-          "FILE": "Scaricare questo file?",
-          "SCRIPT": "Scaricare questo script?",
-          "TRIGGER": "Scaricare questo trigger?",
-          "MODEL": "Scaricare questo modello di contenuto?",
-          "FORM_WIDGET": "Scaricare questo widget di modulo?"
+          "DATA": "Scaricare questo oggetto dati?"
         }
       }
     },

@@ -34,7 +34,9 @@
         "CREATE_SCRIPT": "Skript",
         "CREATE_TRIGGER": "Trigger",
         "CREATE_PROJECT_MODEL": "Content-Modell",
-        "CREATE_FORM_WIDGET": "Formular-Widget"
+        "CREATE_FORM_WIDGET": "Formular-Widget",
+        "CREATE_DATA_MODEL": "Datenmodell",
+        "CREATE_AUTHENTICATION": "Authentifizierung"
       }
     },
     "TREE": {
@@ -46,7 +48,9 @@
       "UIS": "UI",
       "FILES": "Dateien",
       "SCRIPTS": "Skripte",
-      "TRIGGERS": "Trigger"
+      "TRIGGERS": "Trigger",
+      "DATA_MODELS": "Datenmodelle",
+      "AUTHENTICATIONS": "Authentifizierungen"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Prozess erstellen",
@@ -164,6 +168,24 @@
       "FORM_WIDGET_DELETED": "Formular-Widget gelöscht",
       "FORM_WIDGET_UPDATED": "Formular-Widget gespeichert"
     },
+    "DATA_MODEL_DIALOG": {
+      "TITLE_CREATE": "Datenmodell erstellen",
+      "TITLE_UPDATE": "Datenmodell aktualisieren",
+      "DATA_MODEL_NAME": "Datenmodellname",
+      "DATA_MODEL_DESC": "Datenmodellbeschreibung",
+      "DATA_MODEL_CREATED": "Datenmodell erstellt",
+      "DATA_MODEL_DELETED": "Datenmodell gelöscht",
+      "DATA_MODEL_UPDATED": "Datenmodell gespeichert"
+    },
+    "AUTHENTICATION_DIALOG": {
+      "TITLE_CREATE": "Authentifizierung erstellen",
+      "TITLE_UPDATE": "Authentifizierung aktualisieren",
+      "AUTHENTICATION_NAME": "Authentifizierungsname",
+      "AUTHENTICATION_DESC": "Authentifizierungsbeschreibung",
+      "AUTHENTICATION_CREATED": "Authentifizierung erstellt",
+      "AUTHENTICATION_DELETED": "Authentifizierung gelöscht",
+      "AUTHENTICATION_UPDATED": "Authentifizierung gespeichert"
+    },
     "ERROR": {
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} mit dem gleichen Namen ist bereits vorhanden",
       "UPLOAD_FILE": "Beim Hochladen der Datei ist ein Problem aufgetreten. Versuchen Sie noch einmal, sie hochzuladen.",
@@ -213,13 +235,21 @@
         "DUPLICATION": "Es gibt bereits eine Entscheidungstabelle mit diesem Namen",
         "GENERAL": "Beim Speichern der Entscheidungstabelle ist ein Problem aufgetreten. Versuchen Sie noch einmal, sie zu speichern."
       },
-      "CREATE_DATA": {
-        "DUPLICATION": "Es gibt bereits ein Datenobjekt mit diesem Namen",
-        "GENERAL": "Beim Erstellen des Datenobjekts ist ein Problem aufgetreten. Versuchen Sie noch einmal, es zu erstellen."
+      "CREATE_AUTHENTICATION": {
+        "DUPLICATION": "Eine Authentifizierung mit diesem Namen ist bereits vorhanden.",
+        "GENERAL": "Beim Erstellen der Authentifizierung ist ein Problem aufgetreten. Bitte wiederholen Sie den Vorgang."
       },
-      "UPDATE_DATA": {
-        "DUPLICATION": "Es gibt bereits ein Datenobjekt mit diesem Namen",
-        "GENERAL": "Beim Speichern des Datenobjekts ist ein Problem aufgetreten. Versuchen Sie noch einmal, es zu speichern."
+      "UPDATE_AUTHENTICATION": {
+        "DUPLICATION": "Eine Authentifizierung mit diesem Namen ist bereits vorhanden.",
+        "GENERAL": "Beim Speichern der Authentifizierung ist ein Problem aufgetreten. Bitte wiederholen Sie den Vorgang."
+      },
+      "CREATE_DATA_MODEL": {
+        "DUPLICATION": "Ein Datenmodell mit diesem Namen ist bereits vorhanden.",
+        "GENERAL": "Beim Erstellen des Datenmodells ist ein Problem aufgetreten. Bitte wiederholen Sie den Vorgang."
+      },
+      "UPDATE_DATA_MODEL": {
+        "DUPLICATION": "Ein Datenmodell mit diesem Namen ist bereits vorhanden.",
+        "GENERAL": "Beim Speichern des Datenmodells ist ein Problem aufgetreten. Bitte wiederholen Sie den Vorgang."
       },
       "CREATE_PROJECT": {
         "DUPLICATION": "Es gibt bereits ein Projekt mit diesem Namen",

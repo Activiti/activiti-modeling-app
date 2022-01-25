@@ -32,7 +32,8 @@
         "TITLE": "Deseja salvar mesmo assim?",
         "SUBTITLE": "Erros de validação:",
         "NAME_DOESNT_MATCH_PATTERN": "O nome não corresponde ao seguinte padrão",
-        "GENERAL_NAME_VALIDATION": "O nome deve estar em letras minúsculas e ter entre 1 e 26 caracteres. Caracteres alfanuméricos e hifens são permitidos, mas o nome deve começar por uma letra e terminar com um caractere alfanumérico."
+        "GENERAL_NAME_VALIDATION": "O nome deve estar em letras minúsculas e ter entre 1 e 26 caracteres. Caracteres alfanuméricos e hifens são permitidos, mas o nome deve começar por uma letra e terminar com um caractere alfanumérico.",
+        "PROCESS_NAME_VALIDATION": "O nome deve ter 1 a 26 caracteres de comprimento e não pode iniciar com espaço em branco"
       },
       "CONFIRM": {
         "TITLE": "Tem certeza?",
@@ -55,58 +56,22 @@
         },
         "DELETE": {
           "PROJECT": "Tem certeza de que deseja excluir este projeto?",
-          "PROCESS": "Tem certeza de que deseja excluir este processo?",
-          "FORM": "Tem certeza de que deseja excluir este formulário?",
-          "UI": "Tem certeza de que deseja excluir esta UI?",
-          "DATA": "Tem certeza de que deseja excluir este objeto de dados?",
-          "DECISION_TABLE": "Tem certeza de que deseja excluir esta tabela de decisão?",
-          "CONNECTOR": "Tem certeza de que deseja excluir este conector?",
-          "FILE": "Tem certeza de que deseja excluir este arquivo?",
-          "SCRIPT": "Tem certeza de que deseja excluir este script?",
-          "TRIGGER": "Tem certeza de que deseja excluir este gatilho?",
-          "MODEL": "Deseja excluir este Modelo de conteúdo classificado?",
-          "FORM_WIDGET": "Deseja excluir este widget de formulário?"
+          "DATA": "Tem certeza de que deseja excluir este objeto de dados?"
         },
         "SAVE": {
           "PROCESS": "Tem certeza de que deseja salvar este processo?",
-          "FORM": "Tem certeza de que deseja salvar este formulário?",
-          "UI": "Tem certeza de que deseja salvar esta UI?",
           "DATA": "Tem certeza de que deseja salvar este objeto de dados?",
-          "DECISION_TABLE": "Tem certeza de que deseja salvar esta tabela de decisão?",
-          "CONNECTOR": "Tem certeza de que deseja salvar este conector?",
-          "FILE": "Tem certeza de que deseja salvar este arquivo?",
-          "EMAIL_TEMPLATE": "Tem certeza de que deseja substituir o modelo de email?",
-          "SCRIPT": "Tem certeza de que deseja salvar este script?",
-          "TRIGGER": "Tem certeza de que deseja salvar este gatilho?",
-          "MODEL": "Deseja salvar este Modelo de conteúdo classificado?",
-          "FORM_WIDGET": "Deseja salvar este widget de formulário?"
+          "EMAIL_TEMPLATE": "Tem certeza de que deseja substituir o modelo de email?"
         },
         "SAVE_AS": {
           "PROCESS": "Tem certeza de que deseja copiar este processo?",
-          "FORM": "Tem certeza de que deseja copiar este formulário?",
-          "UI": "Tem certeza de que deseja copiar esta interface de usuário?",
           "DATA": "Tem certeza de que deseja copiar este objeto de dados?",
-          "DECISION_TABLE": "Tem certeza de que deseja copiar esta tabela de decisão?",
-          "CONNECTOR": "Tem certeza de que deseja copiar este conector?",
           "FILE": "Tem certeza de que deseja copiar este arquivo?",
-          "SCRIPT": "Tem certeza de que deseja copiar este script?",
-          "TRIGGER": "Tem certeza de que deseja copiar este acionador?",
-          "MODEL": "Tem certeza de que deseja copiar este modelo de conteúdo?",
-          "FORM_WIDGET": "Tem certeza de que deseja copiar este widget de formulário?"
+          "SCRIPT": "Tem certeza de que deseja copiar este script?"
         },
         "DOWNLOAD": {
-          "PROCESS": "Tem certeza de que deseja baixar este processo?",
           "IMAGE": "Tem certeza de que deseja baixar a imagem svg deste processo?",
-          "FORM": "Tem certeza de que deseja baixar este formulário?",
-          "UI": "Tem certeza de que deseja baixar esta UI?",
-          "DATA": "Tem certeza de que deseja baixar este objeto de dados?",
-          "DECISION_TABLE": "Tem certeza de que deseja baixar esta tabela de decisão?",
-          "CONNECTOR": "Tem certeza de que deseja baixar este conector?",
-          "FILE": "Tem certeza de que deseja baixar este arquivo?",
-          "SCRIPT": "Tem certeza de que deseja baixar este script?",
-          "TRIGGER": "Tem certeza de que deseja baixar este gatilho?",
-          "MODEL": "Tem certeza de que deseja baixar este modelo de conteúdo?",
-          "FORM_WIDGET": "Tem certeza de que deseja baixar este widget de formulário?"
+          "DATA": "Tem certeza de que deseja baixar este objeto de dados?"
         }
       }
     },

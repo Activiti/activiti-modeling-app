@@ -34,7 +34,9 @@
         "CREATE_SCRIPT": "Skript",
         "CREATE_TRIGGER": "Aktivační procedura",
         "CREATE_PROJECT_MODEL": "Model obsahu",
-        "CREATE_FORM_WIDGET": "Widget formuláře"
+        "CREATE_FORM_WIDGET": "Widget formuláře",
+        "CREATE_DATA_MODEL": "Datový model",
+        "CREATE_AUTHENTICATION": "Ověřování"
       }
     },
     "TREE": {
@@ -46,7 +48,9 @@
       "UIS": "Uživatelské rozhraní",
       "FILES": "Soubory",
       "SCRIPTS": "Skripty",
-      "TRIGGERS": "Aktivační procedury"
+      "TRIGGERS": "Aktivační procedury",
+      "DATA_MODELS": "Datové modely",
+      "AUTHENTICATIONS": "Ověřování"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Vytvořit proces",
@@ -164,6 +168,24 @@
       "FORM_WIDGET_DELETED": "Odstranění widgetu formuláře",
       "FORM_WIDGET_UPDATED": "Uložení widgetu formuláře"
     },
+    "DATA_MODEL_DIALOG": {
+      "TITLE_CREATE": "Vytvořit datový model",
+      "TITLE_UPDATE": "Aktualizovat datový model",
+      "DATA_MODEL_NAME": "Název datového modelu",
+      "DATA_MODEL_DESC": "Popis datového modelu",
+      "DATA_MODEL_CREATED": "Datový model vytvořen",
+      "DATA_MODEL_DELETED": "Datový model odstraněn",
+      "DATA_MODEL_UPDATED": "Datový model uložen"
+    },
+    "AUTHENTICATION_DIALOG": {
+      "TITLE_CREATE": "Vytvořit ověřování",
+      "TITLE_UPDATE": "Aktualizovat ověřování",
+      "AUTHENTICATION_NAME": "Název ověřování",
+      "AUTHENTICATION_DESC": "Popis ověřování",
+      "AUTHENTICATION_CREATED": "Ověřování vytvořeno",
+      "AUTHENTICATION_DELETED": "Ověřování odstraněno",
+      "AUTHENTICATION_UPDATED": "Ověřování uloženo"
+    },
     "ERROR": {
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} se stejným názvem již existuje",
       "UPLOAD_FILE": "Došlo k problému při odesílání souboru. Zkuste ho odeslat znovu.",
@@ -213,13 +235,21 @@
         "DUPLICATION": "Rozhodovací tabulka s tímto názvem již existuje",
         "GENERAL": "Došlo k problému při vytváření rozhodovací tabulky. Zkuste ji vytvořit znovu."
       },
-      "CREATE_DATA": {
-        "DUPLICATION": "Datový objekt s tímto názvem již existuje",
-        "GENERAL": "Došlo k problému při vytváření datového objektu. Zkuste ho vytvořit znovu."
+      "CREATE_AUTHENTICATION": {
+        "DUPLICATION": "Ověřování s tímto názvem již existuje.",
+        "GENERAL": "Došlo k problému při vytváření ověřování. Zkuste ho vytvořit znovu."
       },
-      "UPDATE_DATA": {
-        "DUPLICATION": "Datový objekt s tímto názvem již existuje",
-        "GENERAL": "Došlo k problému při ukládání datového objektu. Zkuste ho uložit znovu."
+      "UPDATE_AUTHENTICATION": {
+        "DUPLICATION": "Ověřování s tímto názvem již existuje",
+        "GENERAL": "Došlo k problému při ukládání ověřování. Zkuste ho uložit znovu."
+      },
+      "CREATE_DATA_MODEL": {
+        "DUPLICATION": "Datový model s tímto názvem již existuje",
+        "GENERAL": "Při vytváření datového modelu se vyskytl problém. Zkuste ho vytvořit znovu."
+      },
+      "UPDATE_DATA_MODEL": {
+        "DUPLICATION": "Datový model s tímto názvem již existuje",
+        "GENERAL": "Při ukládání datového modelu se vyskytl problém. Zkuste ho uložit znovu."
       },
       "CREATE_PROJECT": {
         "DUPLICATION": "Projekt s tímto názvem již existuje",

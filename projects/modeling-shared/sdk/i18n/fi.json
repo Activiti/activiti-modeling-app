@@ -1,10 +1,22 @@
 {
   "SDK": {
+    "MODEL_EDITOR": {
+      "DIALOG": {
+        "CONFIRM_INVALID_MODEL_SAVE": "Haluatko varmasti tallentaa tämän {{ modelType }} mallityypin?",
+        "CONFIRM_DELETE_MODEL": "Haluatko varmasti poistaa tämän {{ modelType }} mallityypin?",
+        "CONFIRM_DOWNLOAD_MODEL": "Haluatko varmasti ladata tämän {{ modelType }} mallityypin?",
+        "CONFIRM_SAVE_AS_MODEL": "Haluatko varmasti kopioida tämän {{ modelType }} mallityypin?",
+        "INVALID_MODEL": "{{ modelType }} sisältää vahvistusvirheitä.",
+        "VALID_MODEL": "{{ modelType }} on kelvollinen"
+      }
+    },
     "SNACKBAR": {
       "PASTED_VALUE_NEEDS_TO_FOLLOW_PATTERN": "Kopioitujen arvojen tulee vastata tätä kaavaa"
     },
     "ALL": "Kaikki",
     "VALUE": "Arvo",
+    "EXPRESSION": "Lauseke",
+    "TYPE": "Tyyppi",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Nimi on pakollinen",
@@ -110,7 +122,8 @@
         "NONE": "Ei yhtään",
         "EVENT": "Tapahtuma",
         "EMAIL_SERVICE_TASK": "Sähköpostipalvelutehtävä",
-        "DOCGEN_SERVICE": "Docgen-palvelutehtävä"
+        "DOCGEN_SERVICE": "Docgen-palvelutehtävä",
+        "PARTICIPANT": "Prosessi"
       },
       "TOOLTIP": {
         "VARIABLE": "Muuttuja",
@@ -130,6 +143,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
+      "BASIC_PROPERTIES_TYPES": "Olennaiset",
       "DATE": {
         "CURRENT_DATE": "Tänään",
         "CLEAR_BUTTON": "Tyhjennä"
@@ -137,6 +151,22 @@
       "DATE_TIME": {
         "CURRENT_DATE_TIME": "Nyt",
         "CLEAR_BUTTON": "Tyhjennä"
+      },
+      "ARRAY_INPUT": {
+        "VALUE_TO_ADD_TO_ARRAY": "Taulukkoon lisättävä arvo",
+        "ADD": "Lisää",
+        "EDIT_VALUE": "Muokkaa arvoa",
+        "EDIT": "Muokkaa"
+      },
+      "VALIDATION": {
+        "REQUIRED": "Syöte on pakollinen",
+        "INVALID_FORMAT": "Virheellinen syötemuoto",
+        "INVALID_MIN_LENGTH": "Virheellinen minimipituus",
+        "INVALID_MAX_LENGTH": "Virheellinen maksimipituus",
+        "INVALID_MIN_VALUE": "Virheellinen arvo. Arvon tulee olla suurempi tai yhtä suuri kuin",
+        "INVALID_MAX_VALUE": "Virheellinen arvo. Arvon tulee olla pienempi tai yhtä suuri kuin",
+        "INVALID_MULTIPLE_OF_VALUE": "Virheellinen arvo. Arvon tulee olla seuraavien yhteissumma",
+        "GENERIC_ERROR": "Virheellinen arvo"
       }
     }
   }

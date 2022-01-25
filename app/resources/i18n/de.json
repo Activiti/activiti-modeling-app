@@ -32,7 +32,8 @@
         "TITLE": "Trotzdem speichern?",
         "SUBTITLE": "Validierungsfehler:",
         "NAME_DOESNT_MATCH_PATTERN": "Der Name entspricht nicht dem folgenden Muster",
-        "GENERAL_NAME_VALIDATION": "Der Name darf nur Kleinbuchstaben enthalten und muss zwischen 1 und 26 Zeichen lang sein. Alphanumerische Zeichen und Bindestriche sind erlaubt, aber der Name muss mit einem Buchstaben beginnen und das letzte Zeichen muss ein alphanumerisches Zeichen sein."
+        "GENERAL_NAME_VALIDATION": "Der Name darf nur Kleinbuchstaben enthalten und muss zwischen 1 und 26 Zeichen lang sein. Alphanumerische Zeichen und Bindestriche sind erlaubt, aber der Name muss mit einem Buchstaben beginnen und das letzte Zeichen muss ein alphanumerisches Zeichen sein.",
+        "PROCESS_NAME_VALIDATION": "Der Name muss zwischen 1 bis 26 Zeichen lang sein und darf nicht mit einem Leerzeichen beginnen."
       },
       "CONFIRM": {
         "TITLE": "Sind Sie sicher?",
@@ -55,58 +56,22 @@
         },
         "DELETE": {
           "PROJECT": "Möchten Sie dieses Projekt wirklich löschen?",
-          "PROCESS": "Möchten Sie diesen Prozess wirklich löschen?",
-          "FORM": "Möchten Sie dieses Formular wirklich löschen?",
-          "UI": "Möchten Sie diese UI wirklich löschen?",
-          "DATA": "Möchten Sie dieses Datenobjekt wirklich löschen?",
-          "DECISION_TABLE": "Möchten Sie diese Entscheidungstabelle wirklich löschen?",
-          "CONNECTOR": "Möchten Sie diesen Connector wirklich löschen?",
-          "FILE": "Möchten Sie diese Datei wirklich löschen?",
-          "SCRIPT": "Möchten Sie dieses Skript wirklich löschen?",
-          "TRIGGER": "Möchten Sie diesen Trigger wirklich löschen?",
-          "MODEL": "Möchten Sie dieses Inhaltsmodell wirklich löschen?",
-          "FORM_WIDGET": "Möchten Sie dieses Formular-Widget wirklich löschen?"
+          "DATA": "Möchten Sie dieses Datenobjekt wirklich löschen?"
         },
         "SAVE": {
           "PROCESS": "Möchten Sie diesen Prozess wirklich löschen?",
-          "FORM": "Möchten Sie dieses Formular wirklich speichern?",
-          "UI": "Möchten Sie diese UI wirklich speichern?",
           "DATA": "Möchten Sie dieses Datenobjekt wirklich speichern?",
-          "DECISION_TABLE": "Möchten Sie diese Entscheidungstabelle wirklich speichern?",
-          "CONNECTOR": "Möchten Sie diesen Connector wirklich speichern?",
-          "FILE": "Möchten Sie diese Datei wirklich speichern?",
-          "EMAIL_TEMPLATE": "Möchten Sie die E-Mail-Vorlage wirklich überschreiben?",
-          "SCRIPT": "Möchten Sie dieses Skript wirklich speichern?",
-          "TRIGGER": "Möchten Sie diesen Trigger wirklich speichern?",
-          "MODEL": "Möchten Sie dieses Inhaltsmodell wirklich speichern?",
-          "FORM_WIDGET": "Möchten Sie dieses Formular-Widget wirklich speichern?"
+          "EMAIL_TEMPLATE": "Möchten Sie die E-Mail-Vorlage wirklich überschreiben?"
         },
         "SAVE_AS": {
           "PROCESS": "Möchten Sie diesen Prozess wirklich kopieren?",
-          "FORM": "Möchten Sie dieses Formular wirklich kopieren?",
-          "UI": "Möchten Sie diese UI wirklich kopieren?",
           "DATA": "Möchten Sie dieses Datenobjekt wirklich kopieren?",
-          "DECISION_TABLE": "Möchten Sie diese Entscheidungstabelle wirklich kopieren?",
-          "CONNECTOR": "Möchten Sie diesen Connector wirklich kopieren?",
           "FILE": "Möchten Sie diese Datei wirklich kopieren?",
-          "SCRIPT": "Möchten Sie dieses Skript wirklich kopieren?",
-          "TRIGGER": "Möchten Sie diesen Trigger wirklich kopieren?",
-          "MODEL": "Möchten Sie dieses Inhaltsmodell wirklich kopieren?",
-          "FORM_WIDGET": "Möchten Sie dieses Formular-Widget wirklich kopieren?"
+          "SCRIPT": "Möchten Sie dieses Skript wirklich kopieren?"
         },
         "DOWNLOAD": {
-          "PROCESS": "Möchten Sie diesen Prozess wirklich herunterladen?",
           "IMAGE": "Möchten Sie das SVG-Bild dieses Prozesses wirklich herunterladen?",
-          "FORM": "Möchten Sie dieses Formular wirklich herunterladen?",
-          "UI": "Möchten Sie diese UI wirklich herunterladen?",
-          "DATA": "Möchten Sie dieses Datenobjekt wirklich herunterladen?",
-          "DECISION_TABLE": "Möchten Sie diese Entscheidungstabelle wirklich herunterladen?",
-          "CONNECTOR": "Möchten Sie diesen Connector wirklich herunterladen?",
-          "FILE": "Möchten Sie diese Datei wirklich herunterladen?",
-          "SCRIPT": "Möchten Sie dieses Skript wirklich herunterladen?",
-          "TRIGGER": "Möchten Sie diesen Trigger wirklich herunterladen?",
-          "MODEL": "Möchten Sie dieses Inhaltsmodell wirklich herunterladen?",
-          "FORM_WIDGET": "Möchten Sie dieses Formular-Widget wirklich herunterladen?"
+          "DATA": "Möchten Sie dieses Datenobjekt wirklich herunterladen?"
         }
       }
     },

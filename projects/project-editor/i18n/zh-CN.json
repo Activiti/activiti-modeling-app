@@ -34,7 +34,9 @@
         "CREATE_SCRIPT": "脚本",
         "CREATE_TRIGGER": "触发器",
         "CREATE_PROJECT_MODEL": "内容模型",
-        "CREATE_FORM_WIDGET": "表单小组件"
+        "CREATE_FORM_WIDGET": "表单小组件",
+        "CREATE_DATA_MODEL": "数据模型",
+        "CREATE_AUTHENTICATION": "身份验证"
       }
     },
     "TREE": {
@@ -46,7 +48,9 @@
       "UIS": "UI",
       "FILES": "文件",
       "SCRIPTS": "多个脚本",
-      "TRIGGERS": "多个触发器"
+      "TRIGGERS": "多个触发器",
+      "DATA_MODELS": "数据模型",
+      "AUTHENTICATIONS": "身份验证"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "创建流程",
@@ -164,6 +168,24 @@
       "FORM_WIDGET_DELETED": "表单小组件已删除",
       "FORM_WIDGET_UPDATED": "表单小组件已保存"
     },
+    "DATA_MODEL_DIALOG": {
+      "TITLE_CREATE": "创建数据模型",
+      "TITLE_UPDATE": "更新数据模型",
+      "DATA_MODEL_NAME": "数据模型名称",
+      "DATA_MODEL_DESC": "数据模型描述",
+      "DATA_MODEL_CREATED": "创建的数据模型",
+      "DATA_MODEL_DELETED": "删除的数据模型",
+      "DATA_MODEL_UPDATED": "数据模型已保存"
+    },
+    "AUTHENTICATION_DIALOG": {
+      "TITLE_CREATE": "创建身份验证",
+      "TITLE_UPDATE": "更新身份验证",
+      "AUTHENTICATION_NAME": "身份验证名称",
+      "AUTHENTICATION_DESC": "身份验证描述",
+      "AUTHENTICATION_CREATED": "已创建身份验证",
+      "AUTHENTICATION_DELETED": "已删除身份验证",
+      "AUTHENTICATION_UPDATED": "已保存身份验证"
+    },
     "ERROR": {
       "UPLOAD_DUPLICATE_FILE": "同名的{{modelType}}已经存在。",
       "UPLOAD_FILE": "上传文件时遇到问题。尝试重新上传。",
@@ -213,13 +235,21 @@
         "DUPLICATION": "具有此名称的决策表已存在",
         "GENERAL": "保存决策表时遇到问题。尝试重新保存。"
       },
-      "CREATE_DATA": {
-        "DUPLICATION": "具有此名称的数据对象已存在",
-        "GENERAL": "创建数据对象时遇到问题。尝试重新创建。"
+      "CREATE_AUTHENTICATION": {
+        "DUPLICATION": "具有该名称的身份验证已存在",
+        "GENERAL": "创建身份验证时遇到问题。尝试重新创建。"
       },
-      "UPDATE_DATA": {
-        "DUPLICATION": "具有此名称的数据对象已存在",
-        "GENERAL": "保存数据对象时遇到问题。尝试重新保存。"
+      "UPDATE_AUTHENTICATION": {
+        "DUPLICATION": "具有该名称的身份验证已存在",
+        "GENERAL": "保存身份验证时遇到问题。尝试重新保存。"
+      },
+      "CREATE_DATA_MODEL": {
+        "DUPLICATION": "具有该名称的数据模型已存在",
+        "GENERAL": "创建数据模型时遇到问题。尝试重新创建。"
+      },
+      "UPDATE_DATA_MODEL": {
+        "DUPLICATION": "具有该名称的数据模型已存在",
+        "GENERAL": "保存数据模型时遇到问题。尝试重新保存。"
       },
       "CREATE_PROJECT": {
         "DUPLICATION": "具有此名称的项目已存在",
