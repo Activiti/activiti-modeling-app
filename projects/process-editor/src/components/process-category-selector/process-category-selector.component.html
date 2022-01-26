@@ -14,8 +14,9 @@
 
         <mat-autocomplete #auto="matAutocomplete">
             <mat-option
-                *ngFor="let category of filteredCategories$ | async"
+                *ngFor="let category of filteredCategories$ | async; index as i"
                 [value]="category"
+                [attr.data-automation-id]="'process-category-selector-option-' + i"
             >
                 {{category}}
             </mat-option>
