@@ -16,7 +16,8 @@
                         [ngClass]="(type | isAnyType: 'object': 'array': 'allOf': 'anyOf': 'oneOf') ? 'modelingsdk-json-schema-editor-parent' : ''">
                         <input matInput [placeholder]="'SDK.JSON_SCHEMA_EDITOR.NAME' | translate"
                             [disabled]="blockedNode && !enableKeyEdition" [value]="key"
-                            [modelingsdk-allowed-characters]="regex" (blur)="onChangeName($event)" />
+                            [modelingsdk-allowed-characters]="regex" (blur)="onChangeName($event)"
+                            [attr.data-automation-id]="'json-schema-editor-name'"/>
                         <span class="mat-error ama-name-error" *ngIf="enableKeyEdition && !key?.length">{{
                             'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME' | translate }}</span>
                         <span class="mat-error ama-name-error" *ngIf="enableKeyEdition && key?.length && !isValid(key)">
@@ -30,14 +31,15 @@
                 <div class="modelingsdk-json-schema-editor-node-inputs-required"
                     *ngIf="!blockedNode && displayRequired">
                     <mat-checkbox matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.REQUIRED' | translate}}" [(ngModel)]="required"
-                        (change)="onCheck($event)">
+                        (change)="onCheck($event)" [attr.data-automation-id]="'json-schema-editor-required'">
                     </mat-checkbox>
                 </div>
                 <div class="modelingsdk-json-schema-editor-node-inputs-type"
                     [ngClass]="(blockedNode || !displayRequired) ? 'ama-parent' : ''">
                     <mat-form-field class="modelingsdk-json-schema-editor-node-inputs-type-selector"
                         [ngClass]="(type | isAnyType: 'ref') ? 'ama-ref' : ''">
-                        <mat-select [value]="type" multiple placeholder="{{'SDK.TYPE' | translate}}">
+                        <mat-select [value]="type" multiple placeholder="{{'SDK.TYPE' | translate}}"
+                            [attr.data-automation-id]="'json-schema-editor-type'">
                             <mat-optgroup *ngFor="let group of typeNames" [label]="group.name | translate">
                                 <mat-option *ngFor="let typeName of group.value" [value]="typeName"
                                     (onSelectionChange)="onTypeChanges($event)">
@@ -49,72 +51,73 @@
 
                     <modelingsdk-reference-selector *ngIf="type | isAnyType: 'ref'"
                         class="modelingsdk-json-schema-editor-node-inputs-type-reference"
-                        [hierarchy]="hierarchy | async" [(ngModel)]="value.$ref" (change)="onReferenceChanges($event)">
+                        [hierarchy]="hierarchy | async" [(ngModel)]="value.$ref" (change)="onReferenceChanges($event)"
+                        [attr.data-automation-id]="'json-schema-editor-reference'">
                     </modelingsdk-reference-selector>
                 </div>
             </div>
             <div class="modelingsdk-json-schema-editor-node-title">
                 <mat-form-field *ngIf="type | IsNotType: 'ref' : 'anyOf': 'allOf' : 'oneOf' : 'date' : 'datetime' : 'file': 'folder'">
-                    <input matInput [(ngModel)]="value.title"
+                    <input matInput [(ngModel)]="value.title" [attr.data-automation-id]="'json-schema-editor-title'"
                         placeholder="{{'SDK.JSON_SCHEMA_EDITOR.TITLE' | translate}}" (blur)="onChangeTitle($event)" />
                 </mat-form-field>
             </div>
             <div class="modelingsdk-json-schema-editor-node-actions">
                 <span *ngIf="!(type | displayAddMenu); else addMenu">
-                    <button mat-button mat-icon-button *ngIf="type | isAnyType: 'object'"
+                    <button mat-button mat-icon-button *ngIf="type | isAnyType: 'object'" [attr.data-automation-id]="'json-schema-editor-add-property-btn'"
                         matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.ADD_PROPERTY' | translate}}" (click)="onAddProperty()">
                         <mat-icon>add</mat-icon>
                     </button>
-                    <button mat-button mat-icon-button *ngIf="(value.allOf)"
+                    <button mat-button mat-icon-button *ngIf="(value.allOf)" [attr.data-automation-id]="'json-schema-editor-add-allof-btn'"
                         matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.ADD_CHILD_ALL_OF' | translate}}"
                         (click)="onAddChild('allOf')">
                         <mat-icon>playlist_add</mat-icon>
                     </button>
-                    <button mat-button mat-icon-button *ngIf="(value.anyOf)"
+                    <button mat-button mat-icon-button *ngIf="(value.anyOf)" [attr.data-automation-id]="'json-schema-editor-add-anyof-btn'"
                         matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.ADD_CHILD_ANY_OF' | translate}}"
                         (click)="onAddChild('anyOf')">
                         <mat-icon>playlist_add</mat-icon>
                     </button>
-                    <button mat-button mat-icon-button *ngIf="(value.oneOf)"
+                    <button mat-button mat-icon-button *ngIf="(value.oneOf)" [attr.data-automation-id]="'json-schema-editor-add-oneof-btn'"
                         matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.ADD_CHILD_ONE_OF' | translate}}"
                         (click)="onAddChild('oneOf')">
                         <mat-icon>playlist_add</mat-icon>
                     </button>
                 </span>
                 <ng-template #addMenu>
-                    <button mat-button mat-icon-button [matMenuTriggerFor]="menu"
+                    <button mat-button mat-icon-button [matMenuTriggerFor]="menu" [attr.data-automation-id]="'json-schema-editor-menu-btn'"
                         [attr.data-automation-id]="'add-menu-button'">
                         <mat-icon>add</mat-icon>
                     </button>
                 </ng-template>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item *ngIf="type | isAnyType: 'object'" (click)="onAddProperty()">
+                    <button mat-menu-item *ngIf="type | isAnyType: 'object'" (click)="onAddProperty()" [attr.data-automation-id]="'json-schema-editor-add-property-btn'">
                         <mat-icon>add</mat-icon>
                         <span>{{'SDK.JSON_SCHEMA_EDITOR.ADD_PROPERTY' | translate}}</span>
                     </button>
-                    <button mat-menu-item *ngIf="(value.allOf)" (click)="onAddChild('allOf')">
+                    <button mat-menu-item *ngIf="(value.allOf)" (click)="onAddChild('allOf')" [attr.data-automation-id]="'json-schema-editor-add-allof-btn'">
                         <mat-icon>playlist_add</mat-icon>
                         <span>{{'SDK.JSON_SCHEMA_EDITOR.ADD_CHILD_ALL_OF' | translate}}</span>
                     </button>
-                    <button mat-menu-item *ngIf="(value.anyOf)" (click)="onAddChild('anyOf')">
+                    <button mat-menu-item *ngIf="(value.anyOf)" (click)="onAddChild('anyOf')" [attr.data-automation-id]="'json-schema-editor-add-anyof-btn'">
                         <mat-icon>playlist_add</mat-icon>
                         <span>{{'SDK.JSON_SCHEMA_EDITOR.ADD_CHILD_ANY_OF' | translate}}</span>
                     </button>
-                    <button mat-menu-item *ngIf="(value.oneOf)" (click)="onAddChild('oneOf')">
+                    <button mat-menu-item *ngIf="(value.oneOf)" (click)="onAddChild('oneOf')" [attr.data-automation-id]="'json-schema-editor-add-oneof-btn'">
                         <mat-icon>playlist_add</mat-icon>
                         <span>{{'SDK.JSON_SCHEMA_EDITOR.ADD_CHILD_ONE_OF' | translate}}</span>
                     </button>
                 </mat-menu>
-                <button mat-button mat-icon-button
+                <button mat-button mat-icon-button [attr.data-automation-id]="'json-schema-editor-settings-btn'"
                     matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.ADVANCED_SETTINGS' | translate}}" (click)="onSettings()"
                     [disabled]="!(type | IsNotType: 'ref' : 'anyOf': 'allOf' : 'oneOf' : 'date' : 'datetime' : 'file': 'folder')">
                     <mat-icon>settings</mat-icon>
                 </button>
                 <button mat-button mat-icon-button matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.REMOVE_NODE' | translate}}"
-                    *ngIf="compositionIndex === -1" (click)="onRemoveNode()" [disabled]="blockedNode">
+                    *ngIf="compositionIndex === -1" (click)="onRemoveNode()" [disabled]="blockedNode" [attr.data-automation-id]="'json-schema-editor-remove-node-btn'">
                     <mat-icon>delete</mat-icon>
                 </button>
-                <button mat-button mat-icon-button matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.REMOVE_NODE' | translate}}"
+                <button mat-button mat-icon-button matTooltip="{{'SDK.JSON_SCHEMA_EDITOR.REMOVE_NODE' | translate}}" [attr.data-automation-id]="'json-schema-editor-remove-child-btn'"
                     *ngIf="compositionIndex > -1" (click)="onRemoveChild(key,compositionIndex)">
                     <mat-icon>delete</mat-icon>
                 </button>
@@ -128,7 +131,8 @@
                         (nameChanges)="onNameChanges($event)" (propertyDeleted)="onPropertyDeleted($event)"
                         [required]="value | requiredPipe : properties[i].key"
                         [lastChild]="lastTypeNotEmpty === 'object' && i === properties.length -1"
-                        [hierarchy]="hierarchy">
+                        [hierarchy]="hierarchy"
+                        [attr.data-automation-id]="'property_' + (depth+1) + '_' + i">
                     </modelingsdk-json-schema-editor>
                 </div>
             </div>
@@ -137,7 +141,8 @@
                     <modelingsdk-json-schema-editor [(ngModel)]="value.items" [key]="'items'" [depth]="depth+1"
                         (requiredChanges)="onRequiredChanges($event)" (nameChanges)="onNameChanges($event)"
                         (propertyDeleted)="onPropertyDeleted($event)" (changes)="onChanges()" [blockedNode]="true"
-                        [lastChild]="lastTypeNotEmpty === 'array'" [hierarchy]="hierarchy">
+                        [lastChild]="lastTypeNotEmpty === 'array'" [hierarchy]="hierarchy"
+                        [attr.data-automation-id]="'array' + (depth+1)">
                     </modelingsdk-json-schema-editor>
                 </div>
             </div>
@@ -147,7 +152,8 @@
                         (requiredChanges)="onRequiredChanges($event)" (nameChanges)="onNameChanges($event)"
                         (childrenDeleted)="onChildrenDeleted($event)" [blockedNode]="true" [compositionIndex]="i"
                         [lastChild]="lastTypeNotEmpty === 'allOf' &&  i === value.allOf.length -1"
-                        (changes)="onChanges()" [hierarchy]="hierarchy">
+                        (changes)="onChanges()" [hierarchy]="hierarchy"
+                        [attr.data-automation-id]="'allOf_' + (depth+1) + '_' + i">
                     </modelingsdk-json-schema-editor>
                 </div>
             </div>
@@ -157,7 +163,8 @@
                         (requiredChanges)="onRequiredChanges($event)" (nameChanges)="onNameChanges($event)"
                         (childrenDeleted)="onChildrenDeleted($event)" [blockedNode]="true" [compositionIndex]="i"
                         [lastChild]="lastTypeNotEmpty === 'anyOf' &&  i === value.anyOf.length -1"
-                        (changes)="onChanges()" [hierarchy]="hierarchy">
+                        (changes)="onChanges()" [hierarchy]="hierarchy"
+                        [attr.data-automation-id]="'anyOf_' + (depth+1) + '_' + i">
                     </modelingsdk-json-schema-editor>
                 </div>
             </div>
@@ -167,7 +174,8 @@
                         (requiredChanges)="onRequiredChanges($event)" (nameChanges)="onNameChanges($event)"
                         (childrenDeleted)="onChildrenDeleted($event)" [blockedNode]="true" [compositionIndex]="i"
                         [lastChild]="lastTypeNotEmpty === 'oneOf' &&  i === value.oneOf.length -1"
-                        (changes)="onChanges()" [hierarchy]="hierarchy">
+                        (changes)="onChanges()" [hierarchy]="hierarchy"
+                        [attr.data-automation-id]="'oneOf_' + (depth+1) + '_' + i">
                     </modelingsdk-json-schema-editor>
                 </div>
             </div>
@@ -202,7 +210,8 @@
                 <modelingsdk-json-schema-editor [(ngModel)]="definitions[i].definition" [key]="definitions[i].key"
                     [depth]="depth+1" (nameChanges)="onDefinitionNameChanges($event)"
                     (propertyDeleted)="onDefinitionDeleted($event)" (changes)="onDefinitionChanges(i, $event)"
-                    [lastChild]="i === definitions.length -1" [displayRequired]="false" [hierarchy]="hierarchy">
+                    [lastChild]="i === definitions.length -1" [displayRequired]="false" [hierarchy]="hierarchy"
+                    [attr.data-automation-id]="'definition_' + (depth+1) + '_' + i">
                 </modelingsdk-json-schema-editor>
             </div>
         </div>
