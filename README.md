@@ -17,33 +17,66 @@ The Alfresco Modeling Application is an extended version of the [Activiti Modeli
 Run the following command to install all third-party dependencies:
 
 ```bash
-npm install
+npm ci
 ```
 
-## Setting up environment variables
+## App required environment variables
 
-We need to set some environment variable to be able to run the local dev server. In the project root folder, create an `.env` file (this is gitignored) with the following data:
+We need to set some environment variables to be able to run the local dev server. In the project root folder, create a `.env` file (this is gitignored) with the following data:
 
 ```bash
-APP_CONFIG_BPM_HOST="<your-api-url>"
-APP_CONFIG_ECM_HOST="<your-api-url>"
-
-# Like: http://my-acm.implementation.com/auth/realms/alfresco
-APP_CONFIG_OAUTH2_HOST="<your-api-url/auth>"
-# Like: http://my-acm.implementation.com/auth/admin/realms/alfresco
-APP_CONFIG_IDENTITY_HOST="<your-api-url/auth/admin>"
-
+# App config settings
+APP_CONFIG_BPM_HOST="<url>"
+APP_CONFIG_ECM_HOST="<url>"
+APP_CONFIG_OAUTH2_HOST="<url>"
+APP_CONFIG_IDENTITY_HOST="<url>"
+APP_CONFIG_PROVIDER="ALL"
 APP_CONFIG_AUTH_TYPE="OAUTH"
-APP_CONFIG_OAUTH2_CLIENTID="activiti"
+APP_CONFIG_OAUTH2_CLIENTID="alfresco"
 APP_CONFIG_OAUTH2_IMPLICIT_FLOW=true
 APP_CONFIG_OAUTH2_SILENT_LOGIN=true
 APP_CONFIG_OAUTH2_REDIRECT_SILENT_IFRAME_URI="{protocol}//{hostname}{:port}/assets/silent-refresh.html"
 APP_CONFIG_OAUTH2_REDIRECT_LOGIN=/
 APP_CONFIG_OAUTH2_REDIRECT_LOGOUT=/
+APP_CONFIG_APPS_DEPLOYED="[{"name": "simpleapp"}]"
+
+# MODELING RELATED
 APP_CONFIG_NOTIFICATION_LAST=6000
 APP_CONFIG_SHOW_NOTIFICATION_HISTORY=true
-```
 
+# E2E settings
+E2E_USE_MOCK_BACKEND=true
+E2E_HOST="http://localhost"
+E2E_PORT="4200"
+BROWSER_RUN="true"
+E2E_PREFIX="e2e"
+SMART_RUNNER_DIRECTORY=".protractor-smartrunner"
+SAVE_SCREENSHOT="true"
+SCREENSHOT_URL="<url>"
+SCREENSHOT_PASSWORD="<password>"
+LOG_LEVEL="TRACE"
+LOG=true
+
+# Test user credentials
+E2E_USERNAME="<username>"
+E2E_PASSWORD="<password>"
+E2E_UNAUTHORIZED_USER="<username>"
+E2E_UNAUTHORIZED_USER_PASSWORD="<password>"
+IDENTITY_USER_EMAIL="<username>"
+IDENTITY_USER_PASSWORD="<password>"
+SUPERADMIN_EMAIL="<username>"
+SUPERADMIN_PASSWORD="<password>"
+DEVOPS_EMAIL="<username>"
+DEVOPS_PASSWORD="<password>"
+MODELER_EMAIL="<username>"
+MODELER_PASSWORD="<password>"
+PROCESS_ADMIN_EMAIL="<username>"
+PROCESS_ADMIN_PASSWORD="<password>"
+HR_USER="<username>"
+HR_USER_PASSWORD="<password>"
+ADMIN_EMAIL="<email>"
+ADMIN_PASSWORD="<password>"
+```
 ### Running the application
 
 Use one of the following commands to run the application:
@@ -93,6 +126,6 @@ The application is supported in the following browsers:
 | **Browser**   | **Version** |
 | ------------- | ----------- |
 | Chrome        | Latest      |
-| Safari (OS X) | 9.x         |
+| Safari (OS X) | Latest      |
 | Firefox       | Latest      |
-| Edge          | 13, 14      |
+| Microsoft Edge | Latest     |
