@@ -33,7 +33,7 @@ export class TriggerApiVariation<M extends Trigger, C extends TriggerContent> im
         private serializer: ModelContentSerializer<TriggerContent>,
         private dataExtractor: ModelDataExtractor<TriggerContent, Trigger>
     ) {
-        serializer.register({ type: this.contentType, serialize: JSON.stringify, deserialize: JSON.parse });
+        serializer.register({ type: this.contentType, serialize: (content: TriggerContent) => JSON.stringify(content, null, 4), deserialize: JSON.parse });
         this.dataExtractor.register({ type: TRIGGER, get: extractDataFromContent });
     }
 
