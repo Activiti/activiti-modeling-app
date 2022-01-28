@@ -23,12 +23,6 @@ import { BpmnProperty, AmaState, PROCESS_ELEMENTS_TOKEN, PROCESS_CARDVIEW_PROPER
 import { bpmn2cardView } from './bpmn2CardView';
 import { Store } from '@ngrx/store';
 
-export interface FactoryProps {
-    element: Bpmn.DiagramElement;
-    appConfigService?: AppConfigService;
-    store?: Store<AmaState>;
-}
-
 @Injectable()
 export class CardViewPropertiesFactory {
     public elementsProperties;

@@ -17,7 +17,7 @@
 
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
-import { FactoryProps } from './cardview-properties.factory';
+import { FactoryProps } from './interfaces/cardview-properties.interfaces';
 import { ErrorRefItemModel } from './error-ref-item/error-ref-item.model';
 
 const propertyName = BpmnProperty.errorRef;

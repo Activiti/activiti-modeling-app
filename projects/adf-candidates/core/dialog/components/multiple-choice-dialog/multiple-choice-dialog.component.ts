@@ -19,13 +19,17 @@ import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { HumanReadableChoice } from '../../interfaces/dialog.interface';
-import { MultipleChoiceDialogReturnType } from '../../services/dialog.service';
 
 export interface MultipleChoiceDialogPayload<T> {
     subject: Subject<MultipleChoiceDialogReturnType<T>>;
     choices?: HumanReadableChoice<T>[];
     title?: string;
     subtitle?: string;
+}
+
+export interface MultipleChoiceDialogReturnType<T> {
+    dialogRef: MatDialogRef<MultipleChoiceDialogComponent<T>>;
+    choice: T;
 }
 
 @Component({

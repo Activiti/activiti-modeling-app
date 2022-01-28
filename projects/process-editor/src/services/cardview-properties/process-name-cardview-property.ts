@@ -17,7 +17,7 @@
 
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty, CardViewProcessNameValidator, createProcessModelName } from '@alfresco-dbp/modeling-shared/sdk';
-import { FactoryProps } from './cardview-properties.factory';
+import { FactoryProps } from './interfaces/cardview-properties.interfaces';
 import { CardViewProcessNameItemModel } from './process-name-item/process-name-item.model';
 
 const propertyName = BpmnProperty.processName;

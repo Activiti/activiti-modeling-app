@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { FactoryProps } from './cardview-properties.factory';
+import { FactoryProps } from './interfaces/cardview-properties.interfaces';
 import { BpmnCompositeProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { CardViewTaskAssignmentItemModel } from './task-assignment-item/task-assignment-item.model';
 

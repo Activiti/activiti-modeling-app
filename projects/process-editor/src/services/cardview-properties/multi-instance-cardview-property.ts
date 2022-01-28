@@ -17,7 +17,7 @@
 
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
-import { FactoryProps } from './cardview-properties.factory';
+import { FactoryProps } from './interfaces/cardview-properties.interfaces';
 import { MultiInstanceItemModel } from './multi-instance-item/multi-instance.item.model';
 
 const propertyName = BpmnProperty.multiInstanceType;

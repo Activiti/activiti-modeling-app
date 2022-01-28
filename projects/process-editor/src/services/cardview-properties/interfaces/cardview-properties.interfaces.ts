@@ -15,18 +15,12 @@
  * limitations under the License.
  */
 
-import { FactoryProps } from './interfaces/cardview-properties.interfaces';
-import { BpmnCompositeProperty } from '@alfresco-dbp/modeling-shared/sdk';
-import { CardViewProcessMessagesItemModel } from './process-messages-item/process-messages-item.model';
+import { AppConfigService } from '@alfresco/adf-core';
+import { AmaState } from '@alfresco-dbp/modeling-shared/sdk';
+import { Store } from '@ngrx/store';
 
-const propertyName = BpmnCompositeProperty.messages;
-
-export function createProcessMessagesProperty({ element }: FactoryProps) {
-    return new CardViewProcessMessagesItemModel({
-        label: '',
-        value: '',
-        key: propertyName,
-        default: '',
-        editable: false
-    });
+export interface FactoryProps {
+    element: Bpmn.DiagramElement;
+    appConfigService?: AppConfigService;
+    store?: Store<AmaState>;
 }

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ModelIdentifier } from './project.actions';
+import { ModelIdentifier } from './ama-store.interfaces';
 
 export interface AppTheme {
     name: string;

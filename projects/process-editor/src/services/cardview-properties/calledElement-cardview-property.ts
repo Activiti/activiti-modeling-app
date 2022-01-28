@@ -17,7 +17,7 @@
 
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
-import { FactoryProps } from './cardview-properties.factory';
+import { FactoryProps } from './interfaces/cardview-properties.interfaces';
 import { CalledElementItemModel } from './called-element-item/called-element-item.model';
 
 const propertyName = BpmnProperty.calledElement;

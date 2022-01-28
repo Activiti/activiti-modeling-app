@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { FactoryProps } from './cardview-properties.factory';
+import { FactoryProps } from './interfaces/cardview-properties.interfaces';
 import { CardViewProcessVariableItemModel } from './process-variable-item/process-variable-item.model';
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';

@@ -21,13 +21,9 @@ import { Subject, Observable } from 'rxjs';
 import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
 import { DialogData, MultipleChoiceDialogData } from '../interfaces/dialog.interface';
 import { InfoDialogComponent } from '../components/info-dialog/info-dialog.component';
-import { MultipleChoiceDialogComponent } from '../components/multiple-choice-dialog/multiple-choice-dialog.component';
+import { MultipleChoiceDialogComponent, MultipleChoiceDialogReturnType } from '../components/multiple-choice-dialog/multiple-choice-dialog.component';
 import { ComponentType } from '@angular/cdk/portal';
 
-export interface MultipleChoiceDialogReturnType<T> {
-    dialogRef: MatDialogRef<MultipleChoiceDialogComponent<T>>;
-    choice: T;
-}
 @Injectable()
 export class DialogService {
     constructor(private dialog: MatDialog) {}

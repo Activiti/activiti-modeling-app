@@ -16,7 +16,7 @@
  */
 
 import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
-import { FactoryProps } from './cardview-properties.factory';
+import { FactoryProps } from './interfaces/cardview-properties.interfaces';
 import { MessagePayloadItemModel } from './message-payload-item/message-payload-item.model';
 import { ElementHelper } from '../bpmn-js/element.helper';
 

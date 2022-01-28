@@ -16,7 +16,7 @@
  */
 
 import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
-import { FactoryProps } from './cardview-properties.factory';
+import { FactoryProps } from './interfaces/cardview-properties.interfaces';
 import { CardProcessCategoryItemModel } from './process-category-item/process-category-item.model';
 
 export function createModelCategoryProperty({ element }: FactoryProps) {

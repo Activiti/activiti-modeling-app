@@ -20,7 +20,8 @@ import { Action } from '@ngrx/store';
 import { Release, ServerSideSorting, SearchQuery, Project, FetchQueries } from '../api/types';
 import { Update } from '@ngrx/entity';
 import { Pagination } from '@alfresco/js-api';
-import { SaveAsProjectDialogPayload } from '../components/save-as-project-dialog/public-api';
+import { SaveAsProjectDialogPayload } from '../components/save-as-project-dialog/save-as-project-dialog.component';
+import { ModelIdentifier } from './ama-store.interfaces';
 
 export const CREATE_PROJECT_ATTEMPT = 'CREATE_PROJECT_ATTEMPT';
 export class CreateProjectAttemptAction implements Action {
@@ -32,11 +33,6 @@ export const OVERRIDE_PROJECT_ATTEMPT = 'OVERRIDE_PROJECT_ATTEMPT';
 export class OverrideProjectAttemptAction implements Action {
     readonly type = OVERRIDE_PROJECT_ATTEMPT;
     constructor(public payload: any) {}
-}
-
-export interface ModelIdentifier {
-    type: string;
-    id: string;
 }
 
 export const MODEL_OPENED = 'MODEL_OPENED';

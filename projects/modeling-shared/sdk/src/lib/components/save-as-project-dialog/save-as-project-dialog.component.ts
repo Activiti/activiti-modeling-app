@@ -19,7 +19,7 @@ import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Store} from '@ngrx/store';
 import {AllowedCharacters, EntityDialogForm} from '../../helpers/common';
-import {MODELER_NAME_REGEX} from '../../helpers/public-api';
+import { MODELER_NAME_REGEX } from '../../helpers/utils/create-entries-names';
 import {AmaState} from '../../store/app.state';
 
 export interface SaveAsProjectDialogPayload extends EntityDialogForm {

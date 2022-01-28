@@ -17,7 +17,7 @@
 
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { BpmnProperty, CardViewConditionExpressionItemModel } from '@alfresco-dbp/modeling-shared/sdk';
-import { FactoryProps } from './cardview-properties.factory';
+import { FactoryProps } from './interfaces/cardview-properties.interfaces';
 import { CardViewExpressionValidator } from './validators/card-view-expression.validator';
 
 const propertyName = BpmnProperty.conditionExpression;
