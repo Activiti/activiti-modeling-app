@@ -20,7 +20,7 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs/operators';
 import { LogoutAction, AppActionTypes, AsyncInitAction, LoggedInAction } from '../actions/app.actions';
 import { AuthenticationService, StorageService } from '@alfresco/adf-core';
-import { appThemes } from '../../app/themes';
+import { appThemes } from '../../common/components/themes';
 import { of } from 'rxjs';
 
 @Injectable()

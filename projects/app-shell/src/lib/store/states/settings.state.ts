@@ -19,7 +19,7 @@ export interface AmaSettingsState {
     connectors: AmaConnectorSettings;
 }
 
-export interface AmaConnectorSettings {
+interface AmaConnectorSettings {
     showWithTemplate: boolean;
 }
 

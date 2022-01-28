@@ -19,7 +19,7 @@ import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
-import { AmaRouterStateSerializer } from '../common/helpers/router-state.serializer';
+import { AmaRouterStateSerializer } from './router/router-state.serializer';
 
 import { UiEffects } from './effects/ui.effects';
 import { SnackbarEffects } from './effects/snackbar.effects';

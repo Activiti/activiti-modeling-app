@@ -18,7 +18,7 @@
 import {AlfrescoApiService} from '@alfresco/adf-core';
 import {Store} from '@ngrx/store';
 import {filter} from 'rxjs/operators';
-import { LogoutAction } from '../../store/actions/app.actions';
+import { LogoutAction } from '../../store';
 
 export function unauthorizedServiceFactory(alfrescoApiService: AlfrescoApiService, store: Store ): Function {
     return () => alfrescoApiService.alfrescoApiInitialized.pipe(filter((isInitialized) => isInitialized))

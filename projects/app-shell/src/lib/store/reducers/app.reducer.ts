@@ -16,9 +16,9 @@
  */
 
 import { Action } from '@ngrx/store';
-import { UPDATE_SETTINGS, UpdateSettingsAction } from '../actions';
+import { UPDATE_SETTINGS, UpdateSettingsAction } from '../actions/settings';
 import { INITIAL_APP_STATE } from '../states/app.state';
-import { appThemes } from '../../app/themes';
+import { appThemes } from '../../common/components/themes';
 import {
     AppActionTypes,
     AsyncInitAction,

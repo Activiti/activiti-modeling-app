@@ -15,24 +15,13 @@
  * limitations under the License.
  */
 
-import { appThemes } from '../../common/components/themes';
-import { AppState, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
+export * from './actions/settings';
+export { LogoutAction, LoggedInAction, ClearLogHistoryAction } from './actions/app.actions';
 
-export const INITIAL_APP_STATE: AppState = {
-    selectedProjectId: null,
-    openedModel: null,
-    menuOpened: true,
-    selectedTheme: appThemes[0],
-    dirtyState: false,
-    toolbar: {
-        inProgress: false,
-        userMessage: '',
-        logHistoryVisible: false,
-    },
-    logs: []
-
-};
-
-export const INITIAL_STATE: AmaState = {
-    app: INITIAL_APP_STATE
-};
+export {
+    selectToolbarUserMessage,
+    selectToolbarInProgress,
+    selectToolbarLogs,
+    selectToolbarLogsVisibility,
+    selectLogsByInitiator
+} from './selectors/app.selectors';

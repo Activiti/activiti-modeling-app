@@ -15,24 +15,7 @@
  * limitations under the License.
  */
 
-import { appThemes } from '../../common/components/themes';
-import { AppState, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
-
-export const INITIAL_APP_STATE: AppState = {
-    selectedProjectId: null,
-    openedModel: null,
-    menuOpened: true,
-    selectedTheme: appThemes[0],
-    dirtyState: false,
-    toolbar: {
-        inProgress: false,
-        userMessage: '',
-        logHistoryVisible: false,
-    },
-    logs: []
-
-};
-
-export const INITIAL_STATE: AmaState = {
-    app: INITIAL_APP_STATE
-};
+export * from './guards/ama-localstorage-merge-guard.service';
+export * from './guards/ama-model-schema-loader-guard.service';
+export * from './guards/ama-role-guard.service';
+export * from './app-routing.module';

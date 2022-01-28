@@ -16,5 +16,5 @@
  */
 
 export * from './lib/app-shell.module';
-export * from './lib/app/about/about.module';
+export * from './lib/common/components/about/about.module';
 export * from './lib/common/services/plugin-routes-manager.service';

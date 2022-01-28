@@ -29,7 +29,6 @@ export * from './lib/components/process-name-selector/public-api';
 export * from './lib/process-editor/public-api';
 export * from './lib/connector-editor/public-api';
 export * from './lib/connector-editor/public-api';
-export * from './lib/extension/public-api';
 export * from './lib/helpers/public-api';
 export * from './lib/navigation/public-api';
 export * from './lib/i18n/public-api';

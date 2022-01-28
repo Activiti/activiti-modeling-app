@@ -1,0 +1,12 @@
+<router-outlet name="search"></router-outlet>
+<mat-sidenav-container class="studio-layout">
+    <mat-sidenav mode="side" position="start" opened="true">
+        <router-outlet name="navigation"></router-outlet>
+    </mat-sidenav>
+    <mat-sidenav mode="side" position="end">
+        <router-outlet name="right-sidenav"></router-outlet>
+    </mat-sidenav>
+    <section>
+        <router-outlet></router-outlet>
+    </section>
+</mat-sidenav-container>

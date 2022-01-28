@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-import { SettingsDialogComponent } from './app/settings/settings-dialog.component';
-import { ErrorContentComponent } from './app/error/error-content.component';
-import { HostSettingsComponent } from './app/host-settings/host-settings.component';
+import { SettingsDialogComponent } from './common/components/settings/settings-dialog.component';
+import { ErrorContentComponent } from './common/components/error/error-content.component';
+import { HostSettingsComponent } from './common/components/host-settings/host-settings.component';
 import { CustomIconsModule } from './common/custom-icons.module';
-import { AppLoginComponent } from './app/app-login/app-login.component';
+import { AppLoginComponent } from './common/components/app-login/app-login.component';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { MaterialModule } from './common/material.module';
 import { AdfModule } from './common/adf.module';
@@ -30,20 +30,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AlfrescoApiService, TranslateLoaderService } from '@alfresco/adf-core';
-import { RouterModule } from '@angular/router';
-import { appRoutes } from './app.routes';
 import { getBackendLogInitiator } from './common/services/application.constants';
 import { provideLogFilter, NavigationModule } from '@alfresco-dbp/modeling-shared/sdk';
 import { unauthorizedServiceFactory } from './common/services/unauthorized-service-factory';
 import { Store } from '@ngrx/store';
-import { AmaLocalStorageMergeGuard } from './common/services/ama-localstorage-merge-guard.service';
-import { AmaModelSchemaLoaderGuard } from './common/services/ama-model-schema-loader-guard.service';
-import { AmaRoleGuard } from './common/services/ama-role-guard.service';
 import { AppStoreModule } from './store/app-store.module';
-import { RouterStateSerializer } from '@ngrx/router-store';
-import { AmaRouterStateSerializer } from './common/helpers/router-state.serializer';
 import { CommonModule } from '@angular/common';
 import { AppLayoutModule } from './layout';
+import { AppRoutingModule } from './router';
+import { applicationRoutes } from './application.routes';
 
 @NgModule({
     imports: [
@@ -67,7 +62,7 @@ import { AppLayoutModule } from './layout';
                 useClass: TranslateLoaderService
             }
         }),
-        RouterModule.forRoot(appRoutes, { useHash: true }),
+        AppRoutingModule.forRoot(applicationRoutes, { useHash: true }),
     ],
     declarations: [
         AppLoginComponent,
@@ -76,9 +71,6 @@ import { AppLayoutModule } from './layout';
         HostSettingsComponent
     ],
     providers: [
-        AmaLocalStorageMergeGuard,
-        AmaModelSchemaLoaderGuard,
-        AmaRoleGuard,
         provideLogFilter(getBackendLogInitiator()),
         {
             provide: APP_INITIALIZER,
@@ -88,8 +80,7 @@ import { AppLayoutModule } from './layout';
                 Store
             ],
             multi: true
-        },
-        { provide: RouterStateSerializer, useClass: AmaRouterStateSerializer }
+        }
     ]
 })
 export class AppShellModule {}

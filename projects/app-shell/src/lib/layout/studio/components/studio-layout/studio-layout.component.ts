@@ -15,24 +15,12 @@
  * limitations under the License.
  */
 
-import { appThemes } from '../../common/components/themes';
-import { AppState, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
+import { Component, ViewEncapsulation } from '@angular/core';
 
-export const INITIAL_APP_STATE: AppState = {
-    selectedProjectId: null,
-    openedModel: null,
-    menuOpened: true,
-    selectedTheme: appThemes[0],
-    dirtyState: false,
-    toolbar: {
-        inProgress: false,
-        userMessage: '',
-        logHistoryVisible: false,
-    },
-    logs: []
-
-};
-
-export const INITIAL_STATE: AmaState = {
-    app: INITIAL_APP_STATE
-};
+@Component({
+    templateUrl: './studio-layout.component.html',
+    styleUrls: ['./studio-layout.component.scss'],
+    encapsulation: ViewEncapsulation.None
+})
+export class StudioLayoutComponent {
+}

@@ -22,7 +22,7 @@ import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
 import { StorageService, AppConfigServiceMock, AppConfigService } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { AsyncInitAction, LoggedInAction } from '../actions/app.actions';
-import { appThemes } from '../../app/themes';
+import { appThemes } from '../../common/components/themes';
 import { AuthEffects } from './auth.effects';
 import { HttpClientModule } from '@angular/common/http';
 

@@ -44,5 +44,3 @@ export class ClearLogHistoryAction implements Action {
     readonly type = CLEAR_LOG_HISTORY;
     constructor() {}
 }
-
-export type AppActions = AsyncInitAction | LogoutAction | LoggedInAction;

@@ -19,3 +19,4 @@ export * from './connector-editor.selectors';
 export * from './connector-entities.state';
 export * from './connector-editor.actions';
 export * from './connector.creator';
+export * from './connector-editor.extensions';

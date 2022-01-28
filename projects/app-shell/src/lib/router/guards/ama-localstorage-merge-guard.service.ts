@@ -15,24 +15,22 @@
  * limitations under the License.
  */
 
-import { appThemes } from '../../common/components/themes';
-import { AppState, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { AmaState } from '@alfresco-dbp/modeling-shared/sdk';
+import { Store } from '@ngrx/store';
+import { LoggedInAction } from '../../store';
 
-export const INITIAL_APP_STATE: AppState = {
-    selectedProjectId: null,
-    openedModel: null,
-    menuOpened: true,
-    selectedTheme: appThemes[0],
-    dirtyState: false,
-    toolbar: {
-        inProgress: false,
-        userMessage: '',
-        logHistoryVisible: false,
-    },
-    logs: []
+@Injectable()
+export class AmaLocalStorageMergeGuard implements CanActivate {
+    constructor(
+        protected router: Router,
+        protected store: Store<AmaState>
+    ) {}
 
-};
-
-export const INITIAL_STATE: AmaState = {
-    app: INITIAL_APP_STATE
-};
+    canActivate():  Observable<boolean> {
+        this.store.dispatch(new LoggedInAction());
+        return of(true);
+    }
+}

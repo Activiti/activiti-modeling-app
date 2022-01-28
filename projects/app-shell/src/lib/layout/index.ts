@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-import { AppLayoutV1Module } from './v1/app-layout-v1.module';
-import { AppLayoutV1Component } from './v1/components/app-layout/app-layout-v1.component';
+import { OriginsLayoutModule } from './origins/origins-layout.module';
+import { originsLayoutRoutes } from './origins/origins-layout.routes';
 
-import { AppLayoutV2Module } from './v2/app-layout-v2.module';
-import { AppLayoutV2Component } from './v2/components/app-layout/app-layout-v2.component';
+import { StudioLayoutModule } from './studio/studio-layout.module';
+import { studioLayoutRoutes } from './studio/studio-layout.routes';
 
 let version: string;
 version = 'v1'; // This should come from an environment variable
 
-export const AppLayoutModule = (version === 'v1') ? AppLayoutV1Module : AppLayoutV2Module;
-export const AppLayoutComponent = (version === 'v1') ? AppLayoutV1Component : AppLayoutV2Component;
+export const AppLayoutModule = (version === 'v1') ? OriginsLayoutModule : StudioLayoutModule;
+export const layoutRoutes = (version === 'v1') ? originsLayoutRoutes : studioLayoutRoutes;
