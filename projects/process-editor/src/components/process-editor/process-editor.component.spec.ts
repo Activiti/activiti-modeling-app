@@ -27,7 +27,7 @@ import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UpdateProcessAttemptAction } from '../../store/process-editor.actions';
-import { selectProcessEditorSaving } from '../../store/process-editor.selectors';
+import { PROCESS_MODEL_ENTITY_SELECTORS, selectProcessEditorSaving } from '../../store/process-editor.selectors';
 import { SaveProcessCommand } from '../../services/commands/save-process.command';
 import { DeleteProcessCommand } from '../../services/commands/delete-process.command';
 import { ValidateProcessCommand } from '../../services/commands/validate-process.command';
@@ -99,6 +99,13 @@ describe('ProcessEditorComponent', () => {
                                 }
                             }
                         })
+                    }
+                },
+                {
+                    provide: PROCESS_MODEL_ENTITY_SELECTORS,
+                    useValue: {
+                        selectModelContentById: jest.fn().mockImplementation(() => of()),
+                        selectModelMetadataById: jest.fn().mockImplementation(() => of())
                     }
                 }
             ],

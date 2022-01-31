@@ -32,13 +32,6 @@ export const selectSelectedProcess = createSelector(
     selectProcessEntityContainer,
     (openedModel, state) => openedModel ? state.entities[openedModel.id] : null);
 
-export const selectProcessById = (modelId: string) => {
-    return createSelector(
-        selectProcessEntityContainer,
-        state => state.entities[modelId]
-    );
-};
-
 export const selectProcessPropertiesArrayFor = (processId: string) => {
     return createSelector(
         selectSelectedProcess,

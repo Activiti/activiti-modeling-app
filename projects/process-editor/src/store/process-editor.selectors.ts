@@ -23,13 +23,13 @@ import {
     formatUuid,
     ContentType,
     selectProcessEntityContainer,
-    selectSelectedProcess,
     Process,
     selectSelectedProjectId,
     ModelScope
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessEditorState } from './process-editor.state';
 import { ProcessEntitiesState } from './process-entities.state';
+import { InjectionToken } from '@angular/core';
 
 export const PROCESS_EDITOR_STATE_NAME = 'process-editor';
 export const getProcessEditorFeatureState = createFeatureSelector<ProcessEditorState>(PROCESS_EDITOR_STATE_NAME);
@@ -46,6 +46,8 @@ export const selectProcessModelContext = createSelector(getProcessEditorFeatureS
 export const selectProcessLoading = createSelector(getProcessEditorFeatureState, state => state.loading);
 export const selectProcessEditorSaving = createSelector(getProcessEditorFeatureState, state => state.updateState);
 
+export const PROCESS_MODEL_ENTITY_SELECTORS = new InjectionToken<string>('process-selector-token');
+
 export const selectProcessesArray = createSelector(
     selectProcessEntities,
     selectSelectedProjectId,
@@ -54,19 +56,6 @@ export const selectProcessesArray = createSelector(
         (process.projectIds && process.projectIds.indexOf(selectedProjectId) >= 0) :
         process.scope === ModelScope.GLOBAL)
 );
-
-export const selectSelectedProcessDiagram = createSelector(
-    selectSelectedProcessId,
-    selectProcessEntityContainer,
-    (processId: string, state: ProcessEntitiesState) => state.entityContents[processId]
-);
-
-export const selectProcessContentById = (modelId: string) => {
-    return createSelector(
-        selectProcessEntityContainer,
-        state => state.entityContents[modelId]
-    );
-};
 
 export const selectProcessCategories = createSelector(
     selectProcessesArray,
@@ -86,9 +75,4 @@ export const selectProcessesKeyLabelArray = createSelector(
         key: formatUuid(ContentType.Process, process.id),
         label: createModelName(process.name)
     }))
-);
-
-export const selectProcessCrumb = createSelector(
-    selectSelectedProcess,
-    process => process ? { name: `${createModelName(process.name)} (${process.version})` } : null
 );

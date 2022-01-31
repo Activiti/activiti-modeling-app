@@ -94,11 +94,11 @@ import {
     ModelExtensions,
     ShowProcessesAction,
     SHOW_PROCESSES,
-    selectSelectedProcess,
+    ModelEntitySelectors,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProcessEditorService } from '../services/process-editor.service';
-import { selectProcessesLoaded, selectSelectedElement, selectSelectedProcessDiagram } from './process-editor.selectors';
+import { PROCESS_MODEL_ENTITY_SELECTORS, selectProcessesLoaded, selectSelectedElement } from './process-editor.selectors';
 import { Store } from '@ngrx/store';
 import { getProcessLogInitiator, PROCESS_SVG_IMAGE } from '../services/process-editor.constants';
 import { ProcessValidationResponse } from './process-editor.state';
@@ -125,7 +125,9 @@ export class ProcessEditorEffects {
         private logFactory: LogFactoryService,
         private router: Router,
         private translationService: TranslationService,
-        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService
+        @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
+        @Inject(PROCESS_MODEL_ENTITY_SELECTORS)
+        private entitySelector: ModelEntitySelectors,
     ) {}
 
     @Effect()
@@ -236,7 +238,7 @@ export class ProcessEditorEffects {
     @Effect({ dispatch: false })
     downloadProcessEffect = this.actions$.pipe(
         ofType<DownloadProcessAction>(DOWNLOAD_PROCESS_DIAGRAM),
-        switchMap(() => this.downloadProcessDiagram())
+        switchMap((action) => this.downloadProcessDiagram(action.modelId))
     );
 
     @Effect({ dispatch: false })
@@ -340,8 +342,10 @@ export class ProcessEditorEffects {
             catchError(e => this.handleProcessUpdatingError(e)));
     }
 
-    private downloadProcessDiagram() {
-        return zip(this.store.select(selectSelectedProcess), this.store.select(selectSelectedProcessDiagram)).pipe(
+    private downloadProcessDiagram(modelId: string) {
+        return zip(
+                this.store.select(this.entitySelector.selectModelMetadataById(modelId)),
+                this.store.select(this.entitySelector.selectModelContentById(modelId))).pipe(
             map(([metadata, content]) => {
                 const name = createModelName(metadata.name);
                 return this.processEditorService.downloadDiagram(name, content);

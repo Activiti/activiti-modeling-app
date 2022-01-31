@@ -36,6 +36,8 @@ import { DeleteProcessCommand } from '../../services/commands/delete-process.com
 import { ValidateProcessCommand } from '../../services/commands/validate-process.command';
 import { DownloadProcessCommand } from '../../services/commands/download-process.command';
 import { SaveAsProcessCommand } from '../../services/commands/save-as-process.command';
+import { PROCESS_MODEL_ENTITY_SELECTORS } from '../../store/process-editor.selectors';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ProcessHeaderComponent', () => {
     let fixture: ComponentFixture<ProcessHeaderComponent>;
@@ -57,6 +59,7 @@ describe('ProcessHeaderComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
+                RouterTestingModule,
                 SharedModule,
                 CoreModule.forChild(),
                 MatIconModule,
@@ -83,6 +86,12 @@ describe('ProcessHeaderComponent', () => {
                 {
                     provide: Actions,
                     useValue: mockAction
+                },
+                {
+                    provide: PROCESS_MODEL_ENTITY_SELECTORS,
+                    useValue: {
+                        selectBreadCrumbs: jest.fn().mockImplementation(() => of())
+                    }
                 }
             ],
             declarations: [ProcessHeaderComponent]

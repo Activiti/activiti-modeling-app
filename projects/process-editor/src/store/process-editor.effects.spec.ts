@@ -25,7 +25,7 @@ import { LogService, CoreModule, TranslationService, TranslationMock } from '@al
 import { provideMockActions } from '@ngrx/effects/testing';
 import { ProcessModelerServiceImplementation } from '../services/process-modeler.service';
 import { ProcessEditorService } from '../services/process-editor.service';
-import { selectSelectedElement } from './process-editor.selectors';
+import { PROCESS_MODEL_ENTITY_SELECTORS, selectSelectedElement } from './process-editor.selectors';
 import { BpmnFactoryMock } from '../services/bpmn-js/bpmn-js.mock';
 import {
     ChangedProcessAction,
@@ -52,7 +52,6 @@ import {
     SnackbarErrorAction,
     SnackbarInfoAction,
     SetAppDirtyStateAction,
-    selectSelectedProcess,
     UploadFileAttemptPayload,
     BpmnFactoryToken,
     ProcessModelerServiceToken,
@@ -81,6 +80,7 @@ describe('ProcessEditorEffects', () => {
     let router: Router;
     let logFactory: LogFactoryService;
     let dialogService: DialogService;
+    const mockSelector = {};
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -116,7 +116,7 @@ describe('ProcessEditorEffects', () => {
                         select: jest.fn().mockImplementation(selector => {
                             if (selector === selectSelectedElement) {
                                 return of(false);
-                            } else if (selector === selectSelectedProcess) {
+                            } else if (selector === mockSelector) {
                                 return of(process);
                             } else if (selector === selectSelectedProjectId) {
                                 return of('test1');
@@ -138,6 +138,13 @@ describe('ProcessEditorEffects', () => {
                         upload: jest.fn().mockReturnValue(of(mockProcessModel)),
                         fetchAll: jest.fn().mockReturnValue(of([mockProcessModel])),
                         validate: jest.fn().mockReturnValue(of([mockProcessModel]))
+                    }
+                },
+                {
+                    provide: PROCESS_MODEL_ENTITY_SELECTORS,
+                    useValue: {
+                        selectModelContentById: jest.fn().mockReturnValue(mockSelector),
+                        selectModelMetadataById: jest.fn().mockReturnValue(mockSelector)
                     }
                 }
             ]

@@ -15,19 +15,21 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Inject } from '@angular/core';
 import {
     Process,
     AmaState,
     ProcessContent,
     BreadcrumbItem,
     BasicModelCommands,
+    BreadCrumbHelperService,
+    ModelEntitySelectors,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ValidateProcessAttemptAction, DownloadProcessSVGImageAction } from '../../store/process-editor.actions';
 import { takeUntil } from 'rxjs/operators';
-import { selectProcessModelContext } from '../../store/process-editor.selectors';
+import { PROCESS_MODEL_ENTITY_SELECTORS, selectProcessModelContext } from '../../store/process-editor.selectors';
 import { ProcessModelContext } from '../../store/process-editor.state';
 import { ProcessCommandsService } from '../../services/commands/process-commands.service';
 
@@ -48,23 +50,25 @@ export class ProcessHeaderComponent implements  OnInit, OnDestroy {
     modelMetadata: Process;
 
     @Input()
-    breadcrumbs$: Observable<BreadcrumbItem[]>;
-
-    @Input()
     disableSave = false;
 
+    breadcrumbs$: Observable<BreadcrumbItem[]>;
     public modeler: Bpmn.Modeler;
     private modelContext: ProcessModelContext;
 
     constructor(
         private store: Store<AmaState>,
-        private modelCommands: ProcessCommandsService
+        private modelCommands: ProcessCommandsService,
+        @Inject(PROCESS_MODEL_ENTITY_SELECTORS)
+        private entitySelector: ModelEntitySelectors,
+        private breadCrumbHelperService: BreadCrumbHelperService
     ) {}
 
     ngOnInit(): void {
         this.store.select(selectProcessModelContext).pipe(
             takeUntil(this.destroy$))
             .subscribe(context => this.modelContext = context);
+        this.breadcrumbs$ = this.breadCrumbHelperService.getModelCrumbs(this.entitySelector.selectBreadCrumbs(this.modelId));
     }
 
     ngOnDestroy(): void {

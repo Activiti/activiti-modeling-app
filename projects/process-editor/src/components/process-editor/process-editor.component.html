@@ -5,7 +5,6 @@
                 [modelMetadata]="modelMetadata$ | async"
                 [modelId]="modelId"
                 [disableSave]="disableSave"
-                [breadcrumbs$]="breadcrumbs$"
                 [content]="editorContent$ | async">
             </ama-process-header>
             <mat-tab-group class="ama-process-tab-group" *ngIf="modelMetadata$ | async as process;"

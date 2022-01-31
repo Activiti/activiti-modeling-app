@@ -18,18 +18,15 @@
 import { Component, OnInit, ViewEncapsulation, Inject, OnDestroy, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { filter, map, take, tap, switchMap, catchError, shareReplay } from 'rxjs/operators';
-import { Observable, combineLatest, of, Subject, concat, zip, merge } from 'rxjs';
+import { Observable, of, Subject, concat, zip, merge } from 'rxjs';
 import {
-    selectProcessCrumb,
     selectProcessLoading,
     selectProcessEditorSaving,
-    selectProcessContentById
+    PROCESS_MODEL_ENTITY_SELECTORS
 } from '../../store/process-editor.selectors';
 import {
     Process,
-    BreadcrumbItem,
     AmaState,
-    selectProjectCrumb,
     ProcessContent,
     SetAppDirtyStateAction,
     ProcessModelerService,
@@ -43,8 +40,8 @@ import {
     ModelEditorState,
     StatusBarService,
     ContentType,
-    selectProcessById,
-    ModelExtensions
+    ModelExtensions,
+    ModelEntitySelectors
 } from '@alfresco-dbp/modeling-shared/sdk';
 import {
     ChangeProcessModelContextAction,
@@ -71,7 +68,6 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
     modelId: string;
 
     loading$: Observable<boolean>;
-    breadcrumbs$: Observable<BreadcrumbItem[]>;
 
     modelId$: Observable<string>;
     editorContent$: Observable<ProcessContent>;
@@ -104,16 +100,18 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
         @Inject(ProcessModelerServiceToken) private processModeler: ProcessModelerService,
         private processLoaderService: ProcessDiagramLoaderService,
         private statusBarService: StatusBarService,
-        private modelCommands: ProcessCommandsService
+        private modelCommands: ProcessCommandsService,
+        @Inject(PROCESS_MODEL_ENTITY_SELECTORS)
+        private entitySelector: ModelEntitySelectors,
     ) {}
 
     ngOnInit() {
-        const contentFromStore$ = this.store.select(selectProcessContentById(this.modelId)).pipe(
+        const contentFromStore$ = this.store.select(this.entitySelector.selectModelContentById(this.modelId)).pipe(
             filter(content => !!content),
             take(1),
             tap(content => this.initialContent = content)
         );
-        const metadataFromStore$ = this.store.select(selectProcessById(this.modelId)).pipe(
+        const metadataFromStore$ = this.store.select(this.entitySelector.selectModelMetadataById(this.modelId)).pipe(
             filter(metadata => !!metadata)
         );
         this.editorContent$ = concat(contentFromStore$, this.editorContentSubject$).pipe(shareReplay(1));
@@ -133,11 +131,6 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
         this.extensionFileUri = getFileUri(PROCESS, this.extensionsLanguageType, this.modelId);
 
         this.loading$ = this.store.select(selectProcessLoading);
-        this.breadcrumbs$ = combineLatest([
-            of({ url: '/home', name: 'Dashboard' }),
-            this.store.select(selectProjectCrumb).pipe(filter(value => value !== null)),
-            this.store.select(selectProcessCrumb).pipe(filter(value => value !== null))
-        ]);
     }
 
     async onBpmnEditorChange(): Promise<void> {
