@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, switchMap, catchError, mergeMap, take, withLatestFrom, tap } from 'rxjs/operators';
 import {
@@ -47,14 +47,16 @@ import {
     SaveAsDialogComponent,
     ShowConnectorsAction,
     SHOW_CONNECTORS,
-    ConnectorContent
+    ConnectorContent,
+    CONNECTOR_MODEL_ENTITY_SELECTORS,
+    ModelEntitySelectors
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ConnectorEditorService } from '../services/connector-editor.service';
 import { of, zip, forkJoin, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { selectConnectorsLoaded, selectSelectedConnectorContent, selectConnectorById } from './connector-editor.selectors';
+import { selectConnectorsLoaded } from './connector-editor.selectors';
 import {
     ValidateConnectorAttemptAction,
     VALIDATE_CONNECTOR_ATTEMPT,
@@ -97,7 +99,9 @@ export class ConnectorEditorEffects {
         private connectorEditorService: ConnectorEditorService,
         private logFactory: LogFactoryService,
         private router: Router,
-        private translationService: TranslationService
+        private translationService: TranslationService,
+        @Inject(CONNECTOR_MODEL_ENTITY_SELECTORS)
+        private entitySelector: ModelEntitySelectors,
     ) {}
 
     @Effect()
@@ -117,7 +121,7 @@ export class ConnectorEditorEffects {
     updateConnectorContentEffect = this.actions$.pipe(
         ofType<UpdateConnectorContentAttemptAction>(UPDATE_CONNECTOR_CONTENT_ATTEMPT),
         map(action => action.payload),
-        mergeMap((payload) => zip(of(payload), this.store.select(selectConnectorById(payload.modelId)), this.store.select(selectSelectedProjectId))),
+        mergeMap((payload) => zip(of(payload), this.store.select(this.entitySelector.selectModelMetadataById(payload.modelId)), this.store.select(selectSelectedProjectId))),
         mergeMap(([payload, connector, projectId]) => this.updateConnector(connector, payload.modelContent, projectId))
     );
 
@@ -221,7 +225,7 @@ export class ConnectorEditorEffects {
     @Effect({ dispatch: false })
     downloadConnectorEffect = this.actions$.pipe(
         ofType<DownloadConnectorAction>(DOWNLOAD_CONNECTOR),
-        switchMap(() => this.downloadConnector())
+        switchMap((action) => this.downloadConnector(action.modelId))
     );
 
     @Effect({ dispatch: false })
@@ -362,8 +366,8 @@ export class ConnectorEditorEffects {
         return of(new SnackbarErrorAction(userMessage));
     }
 
-    private downloadConnector() {
-       return this.store.select(selectSelectedConnectorContent).pipe(
+    private downloadConnector(modelId: string) {
+       return this.store.select(this.entitySelector.selectModelContentById(modelId)).pipe(
            map(content => this.connectorEditorService.download(content.name, JSON.stringify(content))),
            map(() => new SetApplicationLoadingStateAction(false)),
            take(1)

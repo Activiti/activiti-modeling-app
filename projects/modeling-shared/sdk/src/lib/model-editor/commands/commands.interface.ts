@@ -38,7 +38,7 @@ export interface DeleteActionLike {
     new(modelId: string);
 }
 export interface DownloadActionLike {
-    new();
+    new(modelId?: string);
 }
 export interface OpenSaveAsActionLike {
     new(payload: SaveAsDialogPayload);

@@ -43,7 +43,7 @@ export abstract class GenericDownloadModelCommand implements ModelCommand {
             modelId: modelId,
             modelContent,
             ...( modelMetadata ? { modelMetadata } : {} ),
-            action: new DownloadAction()
+            action: new DownloadAction(modelId)
         }));
     }
 }

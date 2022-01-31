@@ -34,3 +34,4 @@ export * from './dashboard.selectors';
 export * from './process-editor.actions';
 export * from './ui';
 export * from './ama-store.interfaces';
+export * from './model-entity.selectors';

@@ -20,7 +20,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
-import { SharedModule, BasicModelCommands } from '@alfresco-dbp/modeling-shared/sdk';
+import { SharedModule, BasicModelCommands, CONNECTOR_MODEL_ENTITY_SELECTORS } from '@alfresco-dbp/modeling-shared/sdk';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { CommonModule } from '@angular/common';
 import { of } from 'rxjs';
@@ -78,6 +78,12 @@ describe('ConnectorHeaderComponent', () => {
                     useValue: {
                         select: jest.fn().mockReturnValue(of({ url: '/', name: 'Mock' })),
                         dispatch: jest.fn()
+                    }
+                },
+                {
+                    provide: CONNECTOR_MODEL_ENTITY_SELECTORS,
+                    useValue: {
+                        selectBreadCrumbs: jest.fn().mockImplementation(() => of())
                     }
                 }
             ]

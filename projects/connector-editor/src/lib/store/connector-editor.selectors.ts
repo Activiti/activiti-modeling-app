@@ -21,7 +21,6 @@ import {
     CONNECTOR,
     selectConnectorsEntityContainer,
     selectConnectorEntities,
-    selectConnectorEntityContents
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ConnectorEditorState } from './connector-editor.state';
 
@@ -35,11 +34,6 @@ export const selectSelectedConnectorId = selectSelectedModelIdFor(CONNECTOR);
 
 export const selectConnectorsArray = createSelector(selectConnectorEntities, state => Object.values(state));
 
-export const selectSelectedConnector = createSelector(
-    selectSelectedConnectorId,
-    selectConnectorEntities,
-    (selectedConnectorId, entities) => entities[selectedConnectorId]
-);
 // =================================================================================================
 
 export const CONNECTOR_EDITOR_STATE_NAME = 'connector-editor';
@@ -50,34 +44,4 @@ export const selectConnectorLoadingState = createSelector(
     (state: ConnectorEditorState) => state.loading
 );
 
-export const selectSelectedConnectorContent = createSelector(
-    selectSelectedConnectorId,
-    selectConnectorEntityContents,
-    (selectedConnectorId, entityContents) => entityContents[selectedConnectorId]
-);
-
-export const selectConnectorCrumb = createSelector(
-    selectSelectedConnector,
-    (selectedConnector) => {
-        if (!selectedConnector) {
-            return null;
-        }
-        return { name: selectedConnector.name };
-    }
-);
-
 export const selectConnectorEditorSaving = createSelector(getConnectorFeatureState, state => state.updateState);
-
-export const selectConnectorContentById = (modelId: string) => {
-    return createSelector(
-        selectConnectorEntityContents,
-        (entityContents) => entityContents[modelId]
-    );
-};
-
-export const selectConnectorById = (modelId: string) => {
-    return createSelector(
-        selectConnectorEntities,
-        (entities) => entities[modelId]
-    );
-};

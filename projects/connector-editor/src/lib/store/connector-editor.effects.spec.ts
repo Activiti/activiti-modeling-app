@@ -63,11 +63,12 @@ import {
     SetApplicationLoadingStateAction,
     ModelScope,
     SaveAsDialogPayload,
-    ShowConnectorsAction
+    ShowConnectorsAction,
+    CONNECTOR_MODEL_ENTITY_SELECTORS
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { Update } from '@ngrx/entity';
-import { selectConnectorsLoaded, selectConnectorById, selectSelectedConnector } from './connector-editor.selectors';
+import { selectConnectorsLoaded } from './connector-editor.selectors';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { getConnectorLogInitiator } from '../services/connector-editor.constants';
@@ -81,6 +82,7 @@ describe('ConnectorEditorEffects', () => {
     let store: Store<AmaState>;
     let logFactory: LogFactoryService;
     let dialogService: DialogService;
+    const mockSelector = {};
 
     const connector: Connector = {
         type: CONNECTOR,
@@ -134,10 +136,6 @@ describe('ConnectorEditorEffects', () => {
                     provide: Store,
                     useValue: {
                         select: jest.fn().mockImplementation(selector => {
-                            if (selector === selectSelectedConnector) {
-                                return of(connector);
-                            }
-
                             if (selector === selectConnectorsLoaded) {
                                 return of(false);
                             }
@@ -146,7 +144,7 @@ describe('ConnectorEditorEffects', () => {
                                 return of(connector.projectIds[0]);
                             }
 
-                            if (selectConnectorById(connector.id)) {
+                            if (selector === mockSelector) {
                                 return of(connector);
                             }
 
@@ -165,6 +163,12 @@ describe('ConnectorEditorEffects', () => {
                         upload: jest.fn().mockReturnValue(of(connector)),
                         fetchAll: jest.fn().mockReturnValue(of([connector])),
                         validate: jest.fn().mockReturnValue(of([connector]))
+                    }
+                },
+                {
+                    provide: CONNECTOR_MODEL_ENTITY_SELECTORS,
+                    useValue: {
+                        selectModelMetadataById: jest.fn().mockReturnValue(mockSelector)
                     }
                 }
             ]

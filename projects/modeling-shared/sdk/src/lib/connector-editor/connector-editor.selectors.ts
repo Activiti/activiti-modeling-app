@@ -28,6 +28,8 @@ export const selectConnectorEntities = createSelector(selectConnectorsEntityCont
 export const selectConnectorEntityContents = createSelector(selectConnectorsEntityContainer, state => state.entityContents);
 
 export const CONNECTOR_SELECTORS_TOKEN = new InjectionToken<MemoizedSelector<object, Connector[]>>('connector-selectors');
+export const CONNECTOR_MODEL_ENTITY_SELECTORS = new InjectionToken<string>('connector-selector-token');
+
 export const selectProjectConnectorsArray = createSelector(
     selectConnectorEntities,
     selectSelectedProjectId,

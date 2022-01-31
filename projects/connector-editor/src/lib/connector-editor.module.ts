@@ -37,6 +37,8 @@ import {
     MODEL_SCHEMA_TYPE,
     getExtensionErrorProvider,
     ModelEditorModule,
+    CONNECTOR_MODEL_ENTITY_SELECTORS,
+    ModelEntitySelectors,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { EffectsModule } from '@ngrx/effects';
 import { ConnectorEditorEffects } from './store/connector-editor.effects';
@@ -95,7 +97,11 @@ import { ValidateConnectorCommand } from './services/commands/validate-connector
             modelType: CONNECTOR,
             schemaKey: MODEL_SCHEMA_TYPE.CONNECTOR
         }),
-        { provide: CONNECTOR_SELECTORS_TOKEN, useValue: selectProjectConnectorsArray }
+        { provide: CONNECTOR_SELECTORS_TOKEN, useValue: selectProjectConnectorsArray },
+        {
+            provide: CONNECTOR_MODEL_ENTITY_SELECTORS,
+            useFactory: () => new ModelEntitySelectors(CONNECTORS_ENTITY_KEY),
+        }
     ]
 })
 export class ConnectorEditorModule {}

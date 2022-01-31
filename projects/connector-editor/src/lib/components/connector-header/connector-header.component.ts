@@ -15,21 +15,22 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, Inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
     BasicModelCommands,
     BreadcrumbItem,
-    BreadCrumbHelperService
+    BreadCrumbHelperService,
+    CONNECTOR_MODEL_ENTITY_SELECTORS,
+    ModelEntitySelectors
 } from '@alfresco-dbp/modeling-shared/sdk';
-import { selectConnectorCrumb } from '../../store/connector-editor.selectors';
 import { ConnectorCommandsService } from '../../services/commands/connector-commands.service';
 
 @Component({
     selector: 'ama-connector-header',
     templateUrl: './connector-header.component.html'
 })
-export class ConnectorHeaderComponent {
+export class ConnectorHeaderComponent implements OnInit {
 
     @Input()
     disableSave = false;
@@ -46,9 +47,13 @@ export class ConnectorHeaderComponent {
 
     constructor(
         private modelCommands: ConnectorCommandsService,
-        breadCrumbHelperService: BreadCrumbHelperService
-        ) {
-        this.breadcrumbs$ = breadCrumbHelperService.getModelCrumbs(selectConnectorCrumb);
+        @Inject(CONNECTOR_MODEL_ENTITY_SELECTORS)
+        private entitySelector: ModelEntitySelectors,
+        private breadCrumbHelperService: BreadCrumbHelperService
+    ) {}
+
+    ngOnInit() {
+        this.breadcrumbs$ = this.breadCrumbHelperService.getModelCrumbs(this.entitySelector.selectBreadCrumbs(this.modelId));
     }
 
     onDelete() {

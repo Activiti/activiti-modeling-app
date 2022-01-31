@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-import { Component, ChangeDetectorRef, ViewEncapsulation, OnDestroy, OnInit, Input } from '@angular/core';
+import { Component, ChangeDetectorRef, ViewEncapsulation, OnDestroy, OnInit, Input, Inject } from '@angular/core';
 import { ComponentRegisterService } from '@alfresco/adf-extensions';
 import { Store } from '@ngrx/store';
-import { selectConnectorLoadingState, selectConnectorEditorSaving, selectConnectorContentById } from '../../store/connector-editor.selectors';
+import { selectConnectorLoadingState, selectConnectorEditorSaving } from '../../store/connector-editor.selectors';
 import { map, filter, take, tap, switchMap, catchError, shareReplay } from 'rxjs/operators';
 import { Observable, of, concat, Subject } from 'rxjs';
 import {
@@ -34,7 +34,9 @@ import {
     ModelEditorState,
     CanComponentDeactivate,
     StatusBarService,
-    ContentType
+    ContentType,
+    CONNECTOR_MODEL_ENTITY_SELECTORS,
+    ModelEntitySelectors
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ConnectorCommandsService } from '../../services/commands/connector-commands.service';
@@ -50,7 +52,7 @@ const memoize = require('lodash/memoize');
     styleUrls: ['./connector-editor.component.scss'],
     encapsulation: ViewEncapsulation.None,
     providers: [
-        ConnectorCommandsService
+        ConnectorCommandsService,
     ]
 })
 
@@ -82,13 +84,15 @@ export class ConnectorEditorComponent implements OnInit, CanComponentDeactivate,
         private codeValidatorService: CodeValidatorService,
         private changeDetectorRef: ChangeDetectorRef,
         private componentRegister: ComponentRegisterService,
-        private statusBarService: StatusBarService
+        private statusBarService: StatusBarService,
+        @Inject(CONNECTOR_MODEL_ENTITY_SELECTORS)
+        private entitySelector: ModelEntitySelectors,
     ) {}
 
     ngOnInit() {
         this.loadingState$ = this.store.select(selectConnectorLoadingState);
         this.modelId$ = of(this.modelId);
-        const contentFromStore$ = this.store.select(selectConnectorContentById(this.modelId)).pipe(
+        const contentFromStore$ = this.store.select(this.entitySelector.selectModelContentById(this.modelId)).pipe(
             filter(content => !!content),
             take(1),
             map(content => JSON.stringify(content, undefined, 4).trim())

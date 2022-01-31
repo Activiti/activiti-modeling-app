@@ -127,7 +127,7 @@ export class UploadConnectorAttemptAction implements Action {
 export const DOWNLOAD_CONNECTOR = '[Connector] Download connector';
 export class DownloadConnectorAction implements Action {
     readonly type = DOWNLOAD_CONNECTOR;
-    constructor() {}
+    constructor(public modelId: string) {}
 }
 
 export const OPEN_CONNECTOR_SAVE_AS_FORM = '[Connector] Open save as connector';

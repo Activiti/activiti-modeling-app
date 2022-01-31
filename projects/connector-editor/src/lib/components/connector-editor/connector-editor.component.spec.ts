@@ -26,10 +26,10 @@ import { ConnectorHeaderComponent } from '../connector-header/connector-header.c
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { selectConnectorEditorSaving, selectSelectedConnector } from '../../store/connector-editor.selectors';
+import { selectConnectorEditorSaving } from '../../store/connector-editor.selectors';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
-import { CONNECTOR, SharedModule, AmaState, ModelEditorState } from '@alfresco-dbp/modeling-shared/sdk';
+import { CONNECTOR, SharedModule, AmaState, ModelEditorState, CONNECTOR_MODEL_ENTITY_SELECTORS } from '@alfresco-dbp/modeling-shared/sdk';
 import { ExtensionsModule } from '@alfresco/adf-extensions';
 import { UpdateConnectorContentAttemptAction } from '../../store/connector-editor.actions';
 import { SaveConnectorCommand } from '../../services/commands/save-connector.command';
@@ -90,15 +90,19 @@ describe('ConnectorEditorComponent', () => {
                     provide: Store,
                     useValue: {
                         select: jest.fn().mockImplementation((selector) => {
-                            if (selector === selectSelectedConnector) {
-                                return of(mockConnector);
-                            } else if (selector === selectConnectorEditorSaving) {
+                            if (selector === selectConnectorEditorSaving) {
                                 return of(connectorEditorState);
                             }
 
                             return of({});
                         }),
                         dispatch: jest.fn()
+                    }
+                },
+                {
+                    provide: CONNECTOR_MODEL_ENTITY_SELECTORS,
+                    useValue: {
+                        selectModelContentById: jest.fn().mockImplementation(() => of())
                     }
                 }
             ],
