@@ -40,10 +40,7 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ConnectorCommandsService } from '../../services/commands/connector-commands.service';
-
-import {
-    ChangeConnectorContent,
-    UpdateConnectorContentAttemptAction} from '../../store/connector-editor.actions';
+import { ChangeConnectorContent, UpdateConnectorContentAttemptAction} from '../../store/connector-editor.actions';
 const memoize = require('lodash/memoize');
 
 @Component({
