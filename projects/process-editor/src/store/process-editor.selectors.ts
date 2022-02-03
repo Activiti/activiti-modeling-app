@@ -18,8 +18,6 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import {
     createModelName,
-    PROCESS,
-    selectSelectedModelIdFor,
     formatUuid,
     ContentType,
     selectProcessEntityContainer,
@@ -39,7 +37,6 @@ export const selectProcessEntities = createSelector(selectProcessEntityContainer
 export const selectProcessesLoading = createSelector(selectProcessEntityContainer, state => state.loading);
 export const selectProcessesLoaded = createSelector(selectProcessEntityContainer, state => state.loaded);
 export const selectEntityContents = createSelector(selectProcessEntityContainer, (state: ProcessEntitiesState) => state.entityContents);
-export const selectSelectedProcessId = selectSelectedModelIdFor(PROCESS);
 export const selectProcesses = createSelector(selectProcessEntityContainer, state => state.entities);
 export const selectSelectedElement = createSelector(getProcessEditorFeatureState, state => state.selectedElement);
 export const selectProcessModelContext = createSelector(getProcessEditorFeatureState, state => state.modelContext);

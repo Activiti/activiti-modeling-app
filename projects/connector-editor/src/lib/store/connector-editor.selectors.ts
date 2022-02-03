@@ -16,11 +16,7 @@
  */
 
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import {
-    selectSelectedModelIdFor,
-    CONNECTOR,
-    selectConnectorsEntityContainer,
-    selectConnectorEntities,
+import { selectConnectorsEntityContainer, selectConnectorEntities,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ConnectorEditorState } from './connector-editor.state';
 
@@ -29,8 +25,6 @@ import { ConnectorEditorState } from './connector-editor.state';
 export const selectConnectorsIds = createSelector(selectConnectorsEntityContainer, state => state.ids);
 export const selectConnectorsLoading = createSelector(selectConnectorsEntityContainer, state => state.loading);
 export const selectConnectorsLoaded = createSelector(selectConnectorsEntityContainer, state => state.loaded);
-
-export const selectSelectedConnectorId = selectSelectedModelIdFor(CONNECTOR);
 
 export const selectConnectorsArray = createSelector(selectConnectorEntities, state => Object.values(state));
 

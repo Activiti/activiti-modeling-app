@@ -23,7 +23,7 @@ import { of } from 'rxjs';
 import { ConnectorsFilterDataAdapter } from './connectors-filter.data-adapter';
 import { CONNECTOR, selectProjectConnectorsArray, CONNECTOR_SELECTORS_TOKEN, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 import { cold } from 'jasmine-marbles';
-import { selectConnectorsLoading, selectSelectedConnectorId } from '../store/connector-editor.selectors';
+import { selectConnectorsLoading } from '../store/connector-editor.selectors';
 
 describe('ConnectorsFilterDataAdapter ', () => {
     let store: Store<AmaState>;
@@ -51,8 +51,6 @@ describe('ConnectorsFilterDataAdapter ', () => {
                                 return of(true);
                             } else if (selector === selectProjectConnectorsArray) {
                                 return of([mockConnector, {...mockConnector, template: 'slackConnector'}, {...mockConnector, template: null}]);
-                            } else if (selector === selectSelectedConnectorId) {
-                                return of(mockConnector.id);
                             }
 
                             return of({});
