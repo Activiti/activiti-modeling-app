@@ -40,5 +40,5 @@ export abstract class ProjectApi {
     public abstract addCollaborator(projectId: string, collaborator: IdentityUserModel): Observable<CollaboratorEntry>;
     public abstract removeCollaborator(projectId: string, collaborator: IdentityUserModel): Observable<void>;
     public abstract downloadRelease(releaseId: string): Observable<Blob>;
-
+    public abstract uploadRelease(projectId: string, file: File): Observable<Release>;
 }

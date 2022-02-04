@@ -107,6 +107,8 @@ export interface Release {
     lastModifiedBy: string;
     version?: string;
     projectName?: string;
+    projectId?: string;
+    imported?: boolean;
 }
 
 export interface Collaborator {

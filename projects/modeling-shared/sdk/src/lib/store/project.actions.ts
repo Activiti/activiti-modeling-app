@@ -62,13 +62,13 @@ export class GetProjectAttemptAction implements Action {
 export const RELEASE_PROJECT_ATTEMPT = 'RELEASE_PROJECT_ATTEMPT';
 export class ReleaseProjectAttemptAction implements Action {
     readonly type = RELEASE_PROJECT_ATTEMPT;
-    constructor(public projectId: string) {}
+    constructor(public projectId: string, public refresh = false, public pagination?: Pagination) {}
 }
 
 export const RELEASE_PROJECT_SUCCESS = 'RELEASE_PROJECT_SUCCESS';
 export class ReleaseProjectSuccessAction implements Action {
     readonly type = RELEASE_PROJECT_SUCCESS;
-    constructor(public release: Partial<Release>, public projectId: string) {}
+    constructor(public release: Partial<Release>, public projectId: string, public refresh = false, public pagination?: Pagination) {}
 }
 
 export const GET_PROJECT_SUCCESS = 'GET_PROJECT_SUCCESS';

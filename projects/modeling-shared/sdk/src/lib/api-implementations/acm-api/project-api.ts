@@ -201,4 +201,14 @@ export class ACMProjectApi implements ProjectApi {
             { queryParams: { 'attachment': false }, responseType: 'blob' }
         );
     }
+
+    public uploadRelease(projectId: string, file: File): Observable<Release> {
+        const postData: any = { formParams: { 'file': file }, contentTypes: ['multipart/form-data'] };
+
+        return this.requestApiHelper
+            .post(`/modeling-service/v1/projects/${projectId}/releases/upload`, postData)
+            .pipe(
+                map((response: any) => response.entry)
+            );
+    }
 }

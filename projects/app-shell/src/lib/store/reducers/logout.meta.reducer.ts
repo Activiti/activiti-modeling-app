@@ -20,7 +20,7 @@ import { INITIAL_APP_STATE } from '../states/app.state';
 
 export function logoutMetaReducer(reducer) {
     return function logoutReducer(state, action) {
-        if (action.type === AppActionTypes.Logout) {
+        if (action.type === AppActionTypes.Logout || action.type === AppActionTypes.Reset) {
             return reducer({ ...INITIAL_APP_STATE }, action);
         }
         return reducer(state, action);
