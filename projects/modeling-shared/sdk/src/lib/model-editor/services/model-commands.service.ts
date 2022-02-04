@@ -15,18 +15,19 @@
  * limitations under the License.
  */
 
+import { ModelButtonService } from './model-button.service';
 import { Observable, zip } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { ContentType } from '../../api-implementations/acm-api/content-types';
 import { MODEL_TYPE } from '../../api/types';
 import { BasicModelCommands, ModelCommand } from '../commands/commands.interface';
 import { ModelCommandCallback, ModelCommandCallbackEvent } from './model-command-callback';
+import { CommandButton, CommandButtonPriority, ShowCommandButton, CommandButtonRequest } from './command.model';
 
 interface EventMethod {
     eventName: string;
     callback: ModelCommandCallback;
 }
-
 export class ModelCommandsService {
     protected eventTarget: EventTarget;
 
@@ -37,6 +38,7 @@ export class ModelCommandsService {
     protected modelMetadata$: Observable<Record<string, any>>;
 
     protected commands: EventMethod[] = [];
+    protected modelButtonService: ModelButtonService = new ModelButtonService();
 
     constructor() {
         this.eventTarget = new EventTarget();
@@ -63,10 +65,25 @@ export class ModelCommandsService {
         );
     }
 
-    public addEventListener(eventName: string, command: ModelCommand) {
+    private addEventListener(eventName: string, command: ModelCommand) {
         const callback = this.getCommandCallback(command);
         this.commands.push({ eventName, callback });
         this.eventTarget.addEventListener(eventName, callback);
+    }
+
+    public registerCommand(command: CommandButton) {
+        this.addEventListener(command.commandName, command.action);
+        this.modelButtonService.addButton(command);
+    }
+
+    public getBasicModelCommands(buttonRequest: CommandButtonRequest, modelType: MODEL_TYPE): CommandButton [] {
+        const basicCommands = [];
+        for (const command in buttonRequest) {
+            if (!!command && buttonRequest.hasOwnProperty(command)) {
+                basicCommands.push(this.modelButtonService.getCommandButtonFor(<BasicModelCommands>command, buttonRequest[command], modelType));
+            }
+        }
+        return basicCommands;
     }
 
     public destroy() {
@@ -86,4 +103,13 @@ export class ModelCommandsService {
                 ));
         };
     }
+
+    public getCommandButtons(priority?: CommandButtonPriority): ShowCommandButton[] {
+        return this.modelButtonService.getCommandButtons(priority);
+    }
+
+    public setDisable(commandName: BasicModelCommands, value: boolean) {
+        this.modelButtonService.setDisable(commandName, value);
+    }
+
 }

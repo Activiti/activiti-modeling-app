@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BasicModelCommands, ModelCommandsService } from '@alfresco-dbp/modeling-shared/sdk';
+import { BasicModelCommands, ModelCommandsService, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
 import { Injectable } from '@angular/core';
 import { DeleteProcessCommand } from './delete-process.command';
 import { DownloadProcessCommand } from './download-process.command';
@@ -30,16 +30,18 @@ export class ProcessCommandsService extends ModelCommandsService {
         deleteCommand: DeleteProcessCommand,
         validateCommand: ValidateProcessCommand,
         downloadCommand: DownloadProcessCommand,
-        saveAsCommand: SaveAsProcessCommand,
+        saveAsCommand: SaveAsProcessCommand
     ) {
         super();
 
         [
-            { eventName: BasicModelCommands.save, command: saveCommand },
-            { eventName: BasicModelCommands.delete, command: deleteCommand },
-            { eventName: BasicModelCommands.validate, command: validateCommand },
-            { eventName: BasicModelCommands.download, command: downloadCommand },
-            { eventName: BasicModelCommands.saveAs, command: saveAsCommand },
-        ].forEach(eventMethod => this.addEventListener(eventMethod.eventName, eventMethod.command));
+            ...this.getBasicModelCommands({
+                [BasicModelCommands.save] : saveCommand,
+                [BasicModelCommands.delete]: deleteCommand,
+                [BasicModelCommands.download]: downloadCommand,
+                [BasicModelCommands.validate]: validateCommand,
+                [BasicModelCommands.saveAs]: saveAsCommand
+            }, PROCESS)
+        ].forEach(command => this.registerCommand(command));
     }
 }

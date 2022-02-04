@@ -22,7 +22,7 @@ import { SaveAsDialogPayload } from '../../components/save-as-dialog/save-as-dia
 
 export enum BasicModelCommands {
     save = 'save',
-    saveAs = 'saveAs',
+    saveAs = 'save-as',
     download = 'download',
     delete = 'delete',
     validate = 'validate'

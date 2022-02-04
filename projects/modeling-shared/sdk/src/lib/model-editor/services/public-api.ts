@@ -17,3 +17,4 @@
 
 export * from './model-commands.service';
 export * from './model-command-callback';
+export * from './command.model';

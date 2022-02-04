@@ -29,7 +29,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { selectConnectorEditorSaving } from '../../store/connector-editor.selectors';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
-import { CONNECTOR, SharedModule, AmaState, ModelEditorState, CONNECTOR_MODEL_ENTITY_SELECTORS } from '@alfresco-dbp/modeling-shared/sdk';
+import { CONNECTOR, SharedModule, AmaState, ModelEditorState, CONNECTOR_MODEL_ENTITY_SELECTORS, ModelButtonService } from '@alfresco-dbp/modeling-shared/sdk';
 import { ExtensionsModule } from '@alfresco/adf-extensions';
 import { UpdateConnectorContentAttemptAction } from '../../store/connector-editor.actions';
 import { SaveConnectorCommand } from '../../services/commands/save-connector.command';
