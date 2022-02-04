@@ -44,6 +44,7 @@
             "COLUMN_CREATED": "Created",
             "COLUMN_CREATED_BY": "Created By",
             "COLUMN_OPTIONS": "Options",
+            "COLUMN_ACTIONS": "Actions",
             "NO_ITEMS": "Create or import a project to view it in the list.",
             "NO_FAV_PROCESSES": "Favorite a process to make it available here.",
             "NO_FAV_PROJECTS": "Favorite a project to make it available here.",

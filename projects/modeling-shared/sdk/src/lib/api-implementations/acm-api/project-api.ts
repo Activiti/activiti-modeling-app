@@ -194,4 +194,11 @@ export class ACMProjectApi implements ProjectApi {
         return this.requestApiHelper
         .delete(`/modeling-service/v1/projects/${projectId}/collaborators/${collaborator.username}`);
     }
+
+    public downloadRelease(releaseId: string): Observable<Blob> {
+        return this.requestApiHelper.get(
+            `/modeling-service/v1/releases/${releaseId}/export`,
+            { queryParams: { 'attachment': false }, responseType: 'blob' }
+        );
+    }
 }
