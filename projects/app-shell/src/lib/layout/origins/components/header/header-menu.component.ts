@@ -18,6 +18,7 @@
 import { Component, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
+/** @deprecated: theming **/
 @Component({
     selector: 'ama-header-menu',
     templateUrl: './header-menu.component.html',

@@ -1,12 +1,13 @@
-<router-outlet name="search"></router-outlet>
+<!-- <router-outlet name="search"></router-outlet> -->
 <mat-sidenav-container class="studio-layout">
     <mat-sidenav mode="side" position="start" opened="true">
-        <router-outlet name="navigation"></router-outlet>
+        <router-outlet name="left-sidebar"></router-outlet>
     </mat-sidenav>
     <mat-sidenav mode="side" position="end">
         <router-outlet name="right-sidenav"></router-outlet>
     </mat-sidenav>
     <section>
+        <router-outlet name="content-header"></router-outlet>
         <router-outlet></router-outlet>
     </section>
 </mat-sidenav-container>

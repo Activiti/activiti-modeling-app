@@ -36,9 +36,9 @@ import { unauthorizedServiceFactory } from './common/services/unauthorized-servi
 import { Store } from '@ngrx/store';
 import { AppStoreModule } from './store/app-store.module';
 import { CommonModule } from '@angular/common';
-import { AppLayoutModule } from './layout';
 import { AppRoutingModule } from './router';
-import { applicationRoutes } from './application.routes';
+import { OriginsLayoutModule, originsLayoutRoutes, StudioLayoutModule, studioLayoutRoutes } from './layout';
+import { getApplicationRoutes } from './application.routes';
 
 @NgModule({
     imports: [
@@ -54,15 +54,7 @@ import { applicationRoutes } from './application.routes';
         FlexLayoutModule,
         HttpClientModule,
         NavigationModule,
-        AppStoreModule,
-        AppLayoutModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useClass: TranslateLoaderService
-            }
-        }),
-        AppRoutingModule.forRoot(applicationRoutes, { useHash: true }),
+        AppStoreModule
     ],
     declarations: [
         AppLoginComponent,
@@ -83,4 +75,37 @@ import { applicationRoutes } from './application.routes';
         }
     ]
 })
-export class AppShellModule {}
+export class AppShellMainModule {}
+
+/** @deprecated: theming **/
+@NgModule({
+    imports: [
+        AppShellMainModule,
+        OriginsLayoutModule,
+        AppRoutingModule.forRoot(getApplicationRoutes(originsLayoutRoutes), { useHash: true }),
+        // Ngx-translate only works if placed here, not in the AppShellMainModule...
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useClass: TranslateLoaderService
+            }
+        })
+    ]
+})
+export class OriginsAppShellModule {}
+
+@NgModule({
+    imports: [
+        AppShellMainModule,
+        StudioLayoutModule,
+        AppRoutingModule.forRoot(getApplicationRoutes(studioLayoutRoutes), { useHash: true }),
+        // Ngx-translate only works if placed here, not in the AppShellMainModule...
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useClass: TranslateLoaderService
+            }
+        })
+    ]
+})
+export class StudioAppShellModule {}

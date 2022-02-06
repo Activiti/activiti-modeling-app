@@ -15,14 +15,9 @@
  * limitations under the License.
  */
 
-import { OriginsLayoutModule } from './origins/origins-layout.module';
-import { originsLayoutRoutes } from './origins/origins-layout.routes';
+export { StudioLayoutModule } from './studio/studio-layout.module';
+export { studioLayoutRoutes } from './studio/studio-layout.routes';
 
-import { StudioLayoutModule } from './studio/studio-layout.module';
-import { studioLayoutRoutes } from './studio/studio-layout.routes';
-
-let version: string;
-version = 'v1'; // This should come from an environment variable
-
-export const AppLayoutModule = (version === 'v1') ? OriginsLayoutModule : StudioLayoutModule;
-export const layoutRoutes = (version === 'v1') ? originsLayoutRoutes : studioLayoutRoutes;
+/** @deprecated: theming **/
+export { OriginsLayoutModule } from './origins/origins-layout.module';
+export { originsLayoutRoutes } from './origins/origins-layout.routes';

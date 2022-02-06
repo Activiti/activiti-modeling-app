@@ -1,23 +1,21 @@
-/** @deprecated: theming **/
-
 @import '@alfresco/adf-core/theming';
 @import '~@angular/material/theming';
 
-$ama-green: (
-    50 : #eaf6e3,
-    100 : #cbe9b9,
-    200 : #a8da8a,
-    300 : #85cb5b,
-    400 : #6bbf37,
-    500 : #51b414,
-    600 : #4aad12,
-    700 : #40a40e,
-    800 : #379c0b,
-    900 : #278c06,
-    A100 : #c7ffb9,
-    A200 : #9dff86,
-    A400 : #74ff53,
-    A700 : #5fff3a,
+$studio-orange: (
+    50: #fff8e0,
+    100: #ffeeb3,
+    200: #ffe380,
+    300: #ffd74d,
+    400: #ffcf26,
+    500: #ffc600,
+    600: #ffc000,
+    700: #ffb900,
+    800: #ffb100,
+    900: #ffa400,
+    A100: #ffffff,
+    A200: #fffaf2,
+    A400: #ffe5bf,
+    A700: #ffdba6,
     contrast: (
         50: $black-87-opacity,
         100: $black-87-opacity,
@@ -36,9 +34,10 @@ $ama-green: (
     )
 );
 
-$primary: mat-palette($ama-green);
-$accent: mat-palette($alfresco-accent-orange);
-$warn: mat-palette($alfresco-warn);
+// $primary: mat-palette($studio-orange);
+$primary: mat-palette($mat-grey);
+$accent: mat-palette($mat-orange);
+$warn: mat-palette($mat-deep-orange);
 $theme: mat-light-theme($primary, $accent, $warn);
 
 $dark-primary: mat-palette($mat-cyan);

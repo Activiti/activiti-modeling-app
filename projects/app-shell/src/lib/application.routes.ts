@@ -19,9 +19,8 @@ import { Routes } from '@angular/router';
 import { BlankPageComponent } from '@alfresco/adf-core';
 import { AppLoginComponent } from './common/components/app-login/app-login.component';
 import { HostSettingsComponent } from './common/components/host-settings/host-settings.component';
-import { layoutRoutes } from './layout';
 
-export const applicationRoutes: Routes = [
+export const getApplicationRoutes = (layoutRoutes: Routes) => [
     {
         path: 'blank',
         component: BlankPageComponent
@@ -39,4 +38,4 @@ export const applicationRoutes: Routes = [
         path: '**',
         redirectTo: 'home'
     }
-];
+] as Routes;

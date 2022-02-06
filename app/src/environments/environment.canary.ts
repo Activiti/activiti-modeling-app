@@ -22,6 +22,6 @@ export const environment: Environment<typeof features> = {
   devTools: true,
   e2e: false,
   features: {
-      layoutV2: false
+      layoutV2: true
   }
 };

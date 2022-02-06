@@ -15,7 +15,13 @@
  * limitations under the License.
  */
 
-export const environment = {
+import { Environment, features } from '@alfresco-dbp/modeling-shared/sdk';
+
+export const environment: Environment<typeof features> = {
     production: true,
-    devTools: false
-  };
+    devTools: false,
+    e2e: false,
+    features: {
+        layoutV2: false
+    }
+};

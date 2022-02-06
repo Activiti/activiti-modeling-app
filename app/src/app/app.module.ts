@@ -32,10 +32,10 @@ import {
 import { DialogsModule } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { AppExtensionsModule } from './extensions.module';
 import { ProcessEditorModule } from '@alfresco-dbp/modeling-ce/process-editor';
-import { environment } from '../environments/environment';
 import { ProjectEditorModule } from '@alfresco-dbp/modeling-ce/project-editor';
-import { AboutModule, AppShellModule } from '@alfresco-dbp/modeling-ce/app-shell';
+import { AboutModule, OriginsAppShellModule, StudioAppShellModule } from '@alfresco-dbp/modeling-ce/app-shell';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
     imports: [
@@ -47,9 +47,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         ConnectorEditorModule,
         MatInputModule,
         DialogsModule,
-        AppShellModule,
+        ...(environment.features.layoutV2 ? [ StudioAppShellModule ] : [ OriginsAppShellModule ]),
         AppExtensionsModule,
-        environment.production ? [] : StoreDevtoolsModule.instrument({ maxAge: 25 }),
+        environment.devTools ? StoreDevtoolsModule.instrument({ maxAge: 25 }) : [],
         AboutModule.forRoot(environment.production)
     ],
     declarations: [

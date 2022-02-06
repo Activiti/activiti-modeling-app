@@ -33,6 +33,7 @@ import { EDITOR_FOOTER_SERVICE_TOKEN } from './components/editor-footer/editor-f
 import { AppFooterService } from './services/app-footer.service';
 import { RouterModule } from '@angular/router';
 
+/** @deprecated: theming **/
 @NgModule({
     imports: [
         CommonModule,

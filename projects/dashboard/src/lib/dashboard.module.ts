@@ -31,6 +31,7 @@ import { SharedModule, PROJECT_ENTITY_KEY, AmaStoreModule, projectEntitiesReduce
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { SearchHeaderComponent } from './components/search-header/search-header.component';
+import { ProjectListHeaderComponent } from './components/project-list-header/project-list-header.component';
 
 @NgModule({
     imports: [
@@ -49,7 +50,8 @@ import { SearchHeaderComponent } from './components/search-header/search-header.
     ],
     declarations: [
         ProjectsListComponent,
-        SearchHeaderComponent
+        SearchHeaderComponent,
+        ProjectListHeaderComponent
     ],
     exports: [DashboardRoutingModule],
     providers: [

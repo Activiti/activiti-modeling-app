@@ -24,6 +24,7 @@ import { SettingsDialogComponent } from '../../../../common/components/settings/
 import { AmaState, OpenDialogAction, selectMenuOpened, SetMenuAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { LogoutAction } from '../../../../store';
 
+/** @deprecated: theming **/
 @Component({
     templateUrl: './origins-layout.component.html',
     styleUrls: ['./origins-layout.component.scss'],

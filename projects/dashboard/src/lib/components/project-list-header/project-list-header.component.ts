@@ -15,13 +15,19 @@
  * limitations under the License.
  */
 
-import { Environment, features } from '@alfresco-dbp/modeling-shared/sdk';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
-export const environment: Environment<typeof features> = {
-  production: true,
-  devTools: true,
-  e2e: false,
-  features: {
-      layoutV2: false
+@Component({
+  templateUrl: './project-list-header.component.html',
+  styleUrls: ['./project-list-header.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class ProjectListHeaderComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
   }
-};
+
+}

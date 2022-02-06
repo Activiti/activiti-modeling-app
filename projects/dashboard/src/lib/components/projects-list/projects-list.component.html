@@ -12,12 +12,6 @@
                             [matSortDirection]="$any(sorting.direction)"
                             [matSortDisableClear]="true"
                             (matSortChange)="onSortChange($event)">
-                            <ng-container matColumnDef="thumbnail">
-                                <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                                <mat-cell *matCellDef="let element" (click)="rowSelected(element)">
-                                    <mat-icon class="ama-thumbnail" color="primary">assessment</mat-icon>
-                                </mat-cell>
-                            </ng-container>
 
                             <ng-container matColumnDef="name">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'DASHBOARD.TABLE.COLUMN_NAME' | translate }}</mat-header-cell>

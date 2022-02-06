@@ -17,11 +17,12 @@
 
 import { Routes } from '@angular/router';
 import { AuthGuard } from '@alfresco/adf-core';
-import { DASHBOARD_ROUTES, MODEL_EDITOR_ROUTES, SelectedProjectSetterGuard, ProjectLoaderGuard, AUTHENTICATED_ROUTES, RootNavigationComponent } from '@alfresco-dbp/modeling-shared/sdk';
+import { DASHBOARD_ROUTES, MODEL_EDITOR_ROUTES, SelectedProjectSetterGuard, ProjectLoaderGuard, AUTHENTICATED_ROUTES } from '@alfresco-dbp/modeling-shared/sdk';
 import { StudioLayoutComponent } from './components/studio-layout/studio-layout.component';
 import { ErrorContentComponent } from '../../common/components/error/error-content.component';
 import { AboutComponent } from '../../common/components/about/about.component';
 import { AmaLocalStorageMergeGuard, AmaModelSchemaLoaderGuard, AmaRoleGuard } from '../../router';
+import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 
 export const studioLayoutRoutes: Routes = [
     {
@@ -43,7 +44,7 @@ export const studioLayoutRoutes: Routes = [
                         path: 'dashboard',
                         canActivate: [AmaRoleGuard],
                         children: [
-                            { path: '', component: RootNavigationComponent, outlet: 'navigation' }
+                            { path: '', component: MainNavigationComponent, outlet: 'left-sidebar' }
                         ],
                         // Impossible to lazily load ADF modules, that is why the hack
                         data: { hostFor: DASHBOARD_ROUTES }
