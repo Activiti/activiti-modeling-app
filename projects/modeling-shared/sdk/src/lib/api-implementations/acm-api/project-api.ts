@@ -211,4 +211,12 @@ export class ACMProjectApi implements ProjectApi {
                 map((response: any) => response.entry)
             );
     }
+
+    public restoreRelease(releaseId: string): Observable<Release> {
+        return this.requestApiHelper
+            .post(`/modeling-service/v1/releases/${releaseId}/restore`)
+            .pipe(
+                map((response: any) => response.entry)
+            );
+    }
 }
