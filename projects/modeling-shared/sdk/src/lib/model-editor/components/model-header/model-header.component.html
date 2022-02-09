@@ -1,0 +1,44 @@
+<adf-toolbar>
+    <adf-toolbar-title>
+        <modelingsdk-header-breadcrumbs [breadcrumbs$]="breadcrumbs$">
+        </modelingsdk-header-breadcrumbs>
+    </adf-toolbar-title>
+
+    <div class="adf-toolbar--spacer"></div>
+
+    <button mat-icon-button *ngFor="let button of primaryButtons"
+        [title]="(button.title | translate)"
+        [disabled]="button.disabled$ | async"
+        [attr.data-automation-id]="modelName+'-editor-'+button.commandName+'-button'"
+        (click)="onClick(button.commandName)">
+        <mat-icon>{{button.icon}}</mat-icon>
+    </button>
+
+    <button mat-icon-button 
+        [title]="'APP.MORE_ACTIONS' | translate"
+        [attr.data-automation-id]="modelName+'-editor-menu-button'"
+        [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item *ngFor="let menuButton of secondaryButtons"
+            [attr.data-automation-id]="modelName+'-editor-'+menuButton.commandName+'-button'"
+            [disabled]="menuButton.disabled$ | async"
+            (click)="onClick(menuButton.commandName)">
+            <ng-container
+                [ngTemplateOutlet]=" menuButton.isSvgIcon ? svg_icon : standard_icon"
+                [ngTemplateOutletContext]="{menuButton:menuButton}">
+            </ng-container>
+            <span>{{ menuButton.title | translate }}</span>
+        </button>
+    </mat-menu>
+</adf-toolbar>
+
+<ng-template #standard_icon let-menuButton='menuButton'>
+    <mat-icon>{{menuButton?.icon}}</mat-icon>
+</ng-template>
+
+<ng-template #svg_icon let-menuButton='menuButton'>
+    <mat-icon [svgIcon]="menuButton?.icon"></mat-icon>
+</ng-template>

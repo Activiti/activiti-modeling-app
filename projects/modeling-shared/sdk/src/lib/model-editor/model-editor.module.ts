@@ -23,20 +23,29 @@ import { DynamicComponentDirective } from './components/model-editor/dynamic-com
 import { ModelLoaderGuard } from './router/guards/model-loader.guard';
 import { ModelEditorProxyComponent } from './components/model-editor-proxy/model-editor-proxy.component';
 import { UnsavedPageGuard } from './router/guards/unsaved-page.guard';
-
+import { ModelHeaderComponent } from './components/model-header/model-header.component';
+import { SharedModule } from '../helpers/shared.module';
+import { MaterialModule, ToolbarModule } from '@alfresco/adf-core';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        SharedModule,
+        MaterialModule,
+        ToolbarModule,
+        TranslateModule.forRoot()
     ],
     declarations: [
         DynamicComponentDirective,
         ModelEditorComponent,
-        ModelEditorProxyComponent
+        ModelEditorProxyComponent,
+        ModelHeaderComponent
     ],
     exports: [
         CommonModule,
         ModelEditorComponent,
-        ModelEditorProxyComponent
+        ModelEditorProxyComponent,
+        ModelHeaderComponent
     ],
     providers: [
         UnsavedPageGuard,
