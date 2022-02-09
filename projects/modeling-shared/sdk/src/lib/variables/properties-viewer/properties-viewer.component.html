@@ -1,16 +1,20 @@
 <div class="ama-properties-viewer">
-    <mat-form-field class="ama-variables-filter">
-        <mat-label>{{filterPlaceholder | translate}}</mat-label>
-        <input [(ngModel)]="filterValue" matInput autocomplete="false" data-automation-id="variable-filter" (ngModelChange)="applyFilter($event)">
-        <button mat-button *ngIf="filterValue" matSuffix mat-icon-button attr.aria-label="{{'SDK.VARIABLES_EDITOR.TABLE.CLEAR' | translate}}" (click)="filterValue = ''"
-            data-automation-id="variable-clear-filter">
-            <mat-icon>close</mat-icon>
+
+    <div class="ama-properties-viewer__header">
+        <mat-form-field class="ama-variables-filter">
+            <mat-label>{{filterPlaceholder | translate}}</mat-label>
+            <input [(ngModel)]="filterValue" matInput autocomplete="false" data-automation-id="variable-filter" (ngModelChange)="applyFilter($event)">
+            <button mat-button *ngIf="filterValue" matSuffix mat-icon-button attr.aria-label="{{'SDK.VARIABLES_EDITOR.TABLE.CLEAR' | translate}}" (click)="filterValue = ''"
+                data-automation-id="variable-clear-filter">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <button mat-raised-button class="ama-add-btn" color="primary" (click)="addRow()" [disabled]="error"
+            data-automation-id="add-variable">
+            <mat-icon>add</mat-icon>
         </button>
-    </mat-form-field>
-    <button mat-raised-button class="ama-add-btn" color="primary" (click)="addRow()" [disabled]="error"
-        data-automation-id="add-variable">
-        <mat-icon>add</mat-icon>
-    </button>
+    </div>
+
     <mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_NAME' | translate

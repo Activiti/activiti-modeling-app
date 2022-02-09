@@ -7,9 +7,16 @@ modelingsdk-properties-viewer {
     display: flex;
     flex-direction: row;
 }
+
 .ama-properties-viewer {
     min-height: 90px;
     width: 560px;
+
+    &__header {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+    }
 
     .mat-table {
         border: 1px solid var(--theme-border-color);
