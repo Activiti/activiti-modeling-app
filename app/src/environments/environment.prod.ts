@@ -15,13 +15,15 @@
  * limitations under the License.
  */
 
-import { Environment, features } from '@alfresco-dbp/modeling-shared/sdk';
+import { Environment } from '@alfresco-dbp/adf-candidates/core/environment';
+import { FEATURES } from '@alfresco-dbp/modeling-shared/sdk';
 
-export const environment: Environment<typeof features> = {
-  production: true,
-  devTools: true,
-  e2e: false,
-  features: {
-      layoutV2: false
-  }
+export const environment: Environment<typeof FEATURES> = {
+    production: true,
+    devTools: true,
+    e2e: false,
+    features: {
+        canary: true,
+        studioLayout: false
+    }
 };

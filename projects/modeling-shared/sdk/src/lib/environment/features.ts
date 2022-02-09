@@ -15,15 +15,20 @@
  * limitations under the License.
  */
 
-import { Environment } from '@alfresco-dbp/adf-candidates/core/environment';
-import { FEATURES } from '@alfresco-dbp/modeling-shared/sdk';
+import { FeaturesInfo } from '@alfresco-dbp/adf-candidates/core/environment';
 
-export const environment: Environment<typeof FEATURES> = {
-    production: true,
-    devTools: true,
-    e2e: false,
-    features: {
-        canary: true,
-        studioLayout: true
+export enum FEATURES {
+    canary = 'canary',
+    studioLayout = 'studioLayout'
+}
+
+export const featuresInfo: FeaturesInfo<typeof FEATURES> = {
+    canary: {
+        name: 'Canary features',
+        description: 'Listing of Canary (experimental) features as part of the About page'
+    },
+    studioLayout: {
+        name: 'Studio layout',
+        description: 'Experimental (HxP) Studio layout'
     }
 };

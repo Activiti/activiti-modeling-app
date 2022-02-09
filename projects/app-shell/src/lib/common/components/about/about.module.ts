@@ -21,11 +21,13 @@ import { CommonModule } from '@angular/common';
 import { CoreModule } from '@alfresco/adf-core';
 import { MatTableModule } from '@angular/material/table';
 import { DEV_MODE_TOKEN } from './dev-mode.tokens';
+import { EnvironmentModule } from '@alfresco-dbp/adf-candidates/core/environment';
 
 @NgModule({
   imports: [
     CommonModule,
     CoreModule.forChild(),
+    EnvironmentModule,
     MatTableModule
   ],
   declarations: [

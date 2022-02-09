@@ -15,15 +15,11 @@
  * limitations under the License.
  */
 
-import { Environment } from '@alfresco-dbp/adf-candidates/core/environment';
-import { FEATURES } from '@alfresco-dbp/modeling-shared/sdk';
+import { Environment, EnvironmentService, FeaturesInfo } from './environment.service';
+import { InjectionToken } from '@angular/core';
 
-export const environment: Environment<typeof FEATURES> = {
-    production: true,
-    devTools: true,
-    e2e: false,
-    features: {
-        canary: true,
-        studioLayout: true
-    }
-};
+export function createEnvironmentServices<T = any>(config: Environment<T>, featuresInfo: FeaturesInfo<T>) {
+    return new EnvironmentService<T>(config, featuresInfo);
+}
+
+export const ENVIRONMENT_SERVICE_TOKEN = new InjectionToken<EnvironmentService<any>>('generic-environment-service');

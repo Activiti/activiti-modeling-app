@@ -18,7 +18,7 @@
 /// <reference path="./lib/process-editor/bpmn.d.ts" />
 /// <reference path="./lib/process-editor/diagram.d.ts" />
 
-export * from './lib/features';
+export * from './lib/environment/public-api';
 export * from './lib/api/public-api';
 export * from './lib/model-editor/public-api';
 export * from './lib/code-editor/public-api';

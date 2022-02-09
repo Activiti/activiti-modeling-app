@@ -1,0 +1,45 @@
+.adf-environment-info {
+    margin:24px 0;
+
+    header {
+        h2 {
+            line-height: 32px;
+
+            mat-icon {
+                position: relative;
+                top: 4px;
+                margin-right: 4px;
+            }
+        }
+    }
+
+    .adf-feature {
+        &-header {
+            .mat-content {
+                justify-content: space-between;
+            }
+        }
+
+        &-name {
+            line-height: 32px;
+            font-size: 14px;
+        }
+
+        &-availability {
+            flex-grow: 0;
+
+            &-chip {
+                font-size: 13px;
+                background-color: var(--theme-warn-color);
+                color: var(--adf-header-text-color);
+                border-radius: 16px;
+                line-height: 32px;
+                padding: 0 12px;
+
+                &.active {
+                    background-color: var(--theme-primary-color);
+                }
+            }
+        }
+    }
+}

@@ -15,11 +15,5 @@
  * limitations under the License.
  */
 
-export interface Environment<T> {
-  production: boolean;
-  devTools: boolean;
-  e2e: boolean;
-  features: {
-      [Property in keyof T]: boolean
-  };
-}
+export * from './environment.token';
+export * from './features';

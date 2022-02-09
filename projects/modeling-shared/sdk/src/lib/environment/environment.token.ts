@@ -15,6 +15,9 @@
  * limitations under the License.
  */
 
-export const features = {
-    layoutV2: 'HxP Studio experimental layout',
-};
+import { InjectionToken } from '@angular/core';
+import { EnvironmentService } from '@alfresco-dbp/adf-candidates/core/environment';
+import { FEATURES } from './features';
+
+export type StudioEnvironmentService = EnvironmentService<typeof FEATURES>;
+export const STUDIO_ENVIRONMENT_SERVICE_TOKEN = new InjectionToken<StudioEnvironmentService>('studio-environment-service');

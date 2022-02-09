@@ -20,7 +20,10 @@ import { NgModule } from '@angular/core';
 import { CoreModule, AppConfigService, DebugAppConfigService, TRANSLATION_PROVIDER } from '@alfresco/adf-core';
 import { ProcessServicesCloudModule } from '@alfresco/adf-process-services-cloud';
 @NgModule({
-    imports: [ CoreModule.forRoot(), ProcessServicesCloudModule ],
+    imports: [
+        CoreModule.forRoot(),
+        ProcessServicesCloudModule
+    ],
     exports: [ CoreModule, ProcessServicesCloudModule ],
     providers: [
         { provide: AppConfigService, useClass: DebugAppConfigService },

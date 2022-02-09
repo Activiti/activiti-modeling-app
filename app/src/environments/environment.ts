@@ -20,13 +20,15 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
-import { Environment, features } from '@alfresco-dbp/modeling-shared/sdk';
+import { Environment } from '@alfresco-dbp/adf-candidates/core/environment';
+import { FEATURES } from '@alfresco-dbp/modeling-shared/sdk';
 
-export const environment: Environment<typeof features> = {
-  production: false,
-  devTools: true,
-  e2e: false,
-  features: {
-      layoutV2: false
-  }
+export const environment: Environment<typeof FEATURES> = {
+    production: false,
+    devTools: true,
+    e2e: false,
+    features: {
+        canary: true,
+        studioLayout: false
+    }
 };

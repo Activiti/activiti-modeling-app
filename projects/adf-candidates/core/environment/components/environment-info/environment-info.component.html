@@ -1,0 +1,21 @@
+<section class="adf-environment-info">
+    <header>
+        <h2>
+            <mat-icon>science</mat-icon>
+            Features
+        </h2>
+    </header>
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let feature of features" class="adf-feature" hideToggle>
+            <mat-expansion-panel-header class="adf-feature-header">
+                <mat-panel-title class="adf-feature-name">{{ feature.name }}</mat-panel-title>
+                <mat-panel-description class="adf-feature-availability">
+                    <div class="adf-feature-availability-chip" [class.active]="feature.active">{{ feature.active ? 'enabled' : 'disabled' }}</div>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="adf-feature-description">
+                {{ feature.description }}
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</section>
