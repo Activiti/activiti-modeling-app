@@ -15,12 +15,13 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BreadcrumbItem } from '../../../helpers/header-breadcrumbs/breadcrumb-helper.service';
 import { BasicModelCommands } from '../../commands/commands.interface';
 import { CommandButtonPriority, ShowCommandButton } from '../../services/command.model';
 import { ModelCommandsService } from '../../services/model-commands.service';
+import { MODEL_COMMAND_SERVICE_TOKEN } from '../model-editor/model-editors.token';
 
 @Component({
     /* cspell: disable-next-line */
@@ -35,13 +36,12 @@ export class ModelHeaderComponent implements OnInit {
     @Input()
     modelName: string;
 
-    @Input()
-    modelCommands: ModelCommandsService;
-
     primaryButtons: ShowCommandButton[];
     secondaryButtons: ShowCommandButton[];
 
-    constructor() {}
+    constructor(@Inject(MODEL_COMMAND_SERVICE_TOKEN)
+                private modelCommands: ModelCommandsService) {
+    }
 
     ngOnInit() {
         this.primaryButtons = this.modelCommands.getCommandButtons(CommandButtonPriority.PRIMARY);

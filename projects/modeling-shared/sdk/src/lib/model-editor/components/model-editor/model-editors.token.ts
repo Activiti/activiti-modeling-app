@@ -17,6 +17,7 @@
 
 import { InjectionToken, Type } from '@angular/core';
 import { MODEL_TYPE } from '../../../api/types';
+import { ModelCommandsService } from '../../services/model-commands.service';
 
 export interface ModelEditorType {
     type: MODEL_TYPE;
@@ -24,3 +25,5 @@ export interface ModelEditorType {
 }
 
 export const MODEL_EDITORS_TOKEN = new InjectionToken<ModelEditorType[]>('model-editor-components');
+
+export const MODEL_COMMAND_SERVICE_TOKEN = new InjectionToken<ModelCommandsService>('modelCommands');

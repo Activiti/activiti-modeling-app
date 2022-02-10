@@ -30,15 +30,12 @@ import { SharedModule } from '../../../helpers/shared.module';
 import { BasicModelCommands } from '../../commands/commands.interface';
 import { CommandButtonPriority, ShowCommandButton } from '../../services/command.model';
 import { ModelCommandsService } from '../../services/model-commands.service';
+import { MODEL_COMMAND_SERVICE_TOKEN } from '../model-editor/model-editors.token';
 import { ModelHeaderComponent } from './model-header.component';
 
-/* tslint:disable:component-selector  */
 describe('ModelHeaderComponent', () => {
-    let fixture: ComponentFixture<ModelHeaderComponent>;
-    let component: ModelHeaderComponent;
-
     const mockTestCommand = {execute() {}};
-    let mockCommands: ModelCommandsService;
+
     const mockPrimaryButtons: ShowCommandButton[] = [
         {
             commandName: BasicModelCommands.save,
@@ -73,6 +70,21 @@ describe('ModelHeaderComponent', () => {
             visible$: of(true)
         }
     ];
+
+    const modelCommand =  {
+        getCommandButtons: jest.fn().mockImplementation(command => {
+            if (command === CommandButtonPriority.PRIMARY) {
+                return mockPrimaryButtons;
+            }
+            return mockSecondaryButtons;
+        }),
+        setDisable: jest.fn().mockImplementation(() => of()),
+        dispatchEvent: jest.fn().mockImplementation((value) => of()),
+    };
+
+    let fixture: ComponentFixture<ModelHeaderComponent>;
+    let component: ModelHeaderComponent;
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
@@ -89,18 +101,10 @@ describe('ModelHeaderComponent', () => {
                 ModelHeaderComponent
             ],
             providers: [
+                ModelCommandsService,
                 {
-                    provide: ModelCommandsService,
-                    useValue: {
-                        getCommandButtons: jest.fn().mockImplementation(command => {
-                            if (command === CommandButtonPriority.PRIMARY) {
-                                return mockPrimaryButtons;
-                            }
-                            return mockSecondaryButtons;
-                        }),
-                        setDisable: jest.fn().mockImplementation(() => of()),
-                        dispatchEvent: jest.fn().mockImplementation(() => of()),
-                    }
+                    provide: MODEL_COMMAND_SERVICE_TOKEN,
+                    useValue: modelCommand
                 },
                 { provide: TranslationService, useClass: TranslationMock },
                 {
@@ -109,7 +113,7 @@ describe('ModelHeaderComponent', () => {
                         select: jest.fn().mockReturnValue(of({ url: '/', name: 'Mock' })),
                         dispatch: jest.fn()
                     }
-                },
+                }
             ]
         }).compileComponents();
     }));
@@ -118,14 +122,11 @@ describe('ModelHeaderComponent', () => {
         fixture = TestBed.createComponent(ModelHeaderComponent);
         component = fixture.componentInstance;
         component.modelName = 'test';
-        mockCommands = TestBed.inject(ModelCommandsService);
-        component.modelCommands = mockCommands;
         fixture.detectChanges();
     });
 
     it('should dispatch action event on primary button click', () => {
-        const commandService = TestBed.inject(ModelCommandsService);
-        const emitSpy = spyOn(commandService, 'dispatchEvent');
+        const emitSpy = spyOn(modelCommand, 'dispatchEvent');
         fixture.detectChanges();
 
         const button = fixture.debugElement.query(By.css('[data-automation-id="test-editor-save-button"]'));
@@ -135,8 +136,7 @@ describe('ModelHeaderComponent', () => {
     });
 
     it('should dispatch an action on secondary button click', () => {
-        const commandService = TestBed.inject(ModelCommandsService);
-        const emitSpy = spyOn(commandService, 'dispatchEvent');
+        const emitSpy = spyOn(modelCommand, 'dispatchEvent');
         fixture.detectChanges();
 
         const dropdown = fixture.debugElement.query(By.css('[data-automation-id="test-editor-menu-button"]'));

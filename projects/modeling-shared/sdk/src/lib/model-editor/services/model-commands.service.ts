@@ -28,6 +28,7 @@ interface EventMethod {
     eventName: string;
     callback: ModelCommandCallback;
 }
+
 export class ModelCommandsService {
     protected eventTarget: EventTarget;
 
