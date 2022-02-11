@@ -41,10 +41,10 @@ import {
     UiContent,
     Widget,
     WidgetContent,
-    AuthenticationContent,
     Authentication
 } from './types';
 import { ModelSchemaApi } from './model-schema-api.interface';
+import { AuthenticationContent } from './authentication/authentication.model';
 
 export const PROCESS_API_TOKEN = new InjectionToken<ModelApiInterface<Process, ProcessContent>>('connector-api');
 export const CONNECTOR_API_TOKEN = new InjectionToken<ModelApiInterface<Connector, ConnectorContent>>('connector-api');
@@ -59,6 +59,7 @@ export const TRIGGER_API_TOKEN = new InjectionToken<ModelApiInterface<Trigger, T
 export const CONTENT_MODEL_API_TOKEN = new InjectionToken<ModelApiInterface<ContentModel, ContentModelXML>>('content-model-api');
 export const FORM_WIDGET_API_TOKEN = new InjectionToken<ModelApiInterface<Widget, WidgetContent>>('form-widget-api');
 export const AUTHENTICATION_API_TOKEN = new InjectionToken<ModelApiInterface<Authentication, AuthenticationContent>>('authentication-api');
+
 @Injectable()
 export abstract class AmaApi {
     public Project: ProjectApi;

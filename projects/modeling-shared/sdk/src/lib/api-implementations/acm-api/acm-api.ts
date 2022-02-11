@@ -39,7 +39,6 @@ import {
     ActivitiScript,
     ActivitiScriptContent,
     Authentication,
-    AuthenticationContent,
     Connector as ConnectorType,
     ConnectorContent,
     ContentModel,
@@ -59,6 +58,7 @@ import {
     Widget,
     WidgetContent
 } from '../../api/types';
+import { AuthenticationContent } from '../../api/authentication/authentication.model';
 
 @Injectable()
 export class ACMApi implements AmaApi {

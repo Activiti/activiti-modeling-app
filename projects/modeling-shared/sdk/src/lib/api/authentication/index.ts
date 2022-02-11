@@ -15,10 +15,5 @@
  * limitations under the License.
  */
 
-export * from './api.interface';
-export * from './project-api.interface';
-export * from './generalmodel-api.interface';
-export * from './model-schema-api.interface';
-export * from './types';
-export * from './regex-patterns';
-export * from './authentication';
+export * from './authentication.model';
+export * from './authentication.types';

@@ -608,32 +608,6 @@ export interface Widget extends Model {
     extensions: WidgetContent;
 }
 
-export interface BasicAuthenticationProperties {
-    authenticationType: 'basic';
-    username: string;
-    password: string;
-}
-
-export interface BearerAuthenticationProperties {
-    authenticationType: 'bearer';
-    token: string;
-}
-
-export interface ClientCredentialsAuthenticationProperties {
-    authenticationType: 'client_credentials';
-    clientId: string;
-    clientSecret: string;
-    endpoint: string;
-    scope: string;
-}
-
-export interface AuthenticationContent {
-    id: string;
-    name: string;
-    authProperties: BasicAuthenticationProperties | BearerAuthenticationProperties | ClientCredentialsAuthenticationProperties;
-    description?: string;
-}
-
 export interface Authentication extends Model {
     type: AUTHENTICATION_TYPE;
 }

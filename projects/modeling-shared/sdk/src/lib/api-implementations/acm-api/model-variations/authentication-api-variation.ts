@@ -16,13 +16,14 @@
  */
 
 import { Injectable } from '@angular/core';
-import { Authentication, AuthenticationContent, AUTHENTICATION } from '../../../api/types';
+import { Authentication, AUTHENTICATION } from '../../../api/types';
 import { ContentType } from '../content-types';
 import { ModelApiVariation } from '../model-api';
 import { ModelContentSerializer } from '../model-content-serializer';
 import { extractDataFromContent } from './model-data-extractors/extract-data-from-content';
 import { ModelDataExtractor } from '../model-data-extractor';
 import { formatUuid } from '../../../helpers/utils/create-entries-names';
+import { AuthenticationContent } from '../../../api/authentication/authentication.model';
 
 @Injectable()
 export class AuthenticationApiVariation<M extends Authentication, C extends AuthenticationContent> implements ModelApiVariation<M, C> {
