@@ -6,15 +6,18 @@
 
     <div class="adf-toolbar--spacer"></div>
 
-    <button mat-icon-button *ngFor="let button of primaryButtons"
+    <span *ngFor="let button of primaryButtons">
+        <button mat-icon-button
         [title]="(button.title | translate)"
         [disabled]="button.disabled$ | async"
+        *ngIf="button.visible$ | async"
         [attr.data-automation-id]="modelName+'-editor-'+button.commandName+'-button'"
         (click)="onClick(button.commandName)">
         <mat-icon>{{button.icon}}</mat-icon>
     </button>
+    </span>
 
-    <button mat-icon-button 
+    <button mat-icon-button
         [title]="'APP.MORE_ACTIONS' | translate"
         [attr.data-automation-id]="modelName+'-editor-menu-button'"
         [matMenuTriggerFor]="menu">
@@ -22,8 +25,10 @@
     </button>
 
     <mat-menu #menu="matMenu">
-        <button mat-menu-item *ngFor="let menuButton of secondaryButtons"
+        <span *ngFor="let menuButton of secondaryButtons">
+            <button mat-menu-item
             [attr.data-automation-id]="modelName+'-editor-'+menuButton.commandName+'-button'"
+            *ngIf="menuButton.visible$ | async"
             [disabled]="menuButton.disabled$ | async"
             (click)="onClick(menuButton.commandName)">
             <ng-container
@@ -32,6 +37,7 @@
             </ng-container>
             <span>{{ menuButton.title | translate }}</span>
         </button>
+        </span>
     </mat-menu>
 </adf-toolbar>
 

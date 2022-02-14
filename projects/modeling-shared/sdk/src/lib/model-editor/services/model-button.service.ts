@@ -95,6 +95,11 @@ export class ModelButtonService {
         currentButton.disabled$.next(value);
     }
 
+    public setVisible(commandName: BasicModelCommands, value: boolean) {
+        const currentButton = this.buttons.find((button) => button.commandName === commandName);
+        currentButton.visible$.next(value);
+    }
+
     public isSvgIcon(commandName: string): boolean {
         return commandName === BasicModelCommands.saveAs;
     }

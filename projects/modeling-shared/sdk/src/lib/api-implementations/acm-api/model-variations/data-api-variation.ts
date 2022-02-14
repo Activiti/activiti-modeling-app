@@ -16,18 +16,29 @@
  */
 
 import { Injectable } from '@angular/core';
-import { JSONSchemaInfoBasics, Data, MinimalModelSummary } from '../../../api/types';
+import { JSONSchemaInfoBasics, Data, MinimalModelSummary, DATA } from '../../../api/types';
 import { ModelApiVariation } from '../model-api';
 import { ContentType } from '../content-types';
 import { DATA_FILE_FORMAT } from '../../../helpers/utils/create-entries-names';
+import { ModelContentSerializer } from '../model-content-serializer';
+import { ModelDataExtractor } from '../model-data-extractor';
+import { extractDataModelData } from './model-data-extractors/data-model-data-extractor';
 
 @Injectable()
 export class DataApiVariation<M extends Data, C extends JSONSchemaInfoBasics> implements ModelApiVariation<M, C> {
     readonly contentType = ContentType.Data;
     readonly retrieveModelAfterUpdate = false;
 
+    constructor(
+        private serializer: ModelContentSerializer<JSONSchemaInfoBasics>,
+        private dataExtractor: ModelDataExtractor<JSONSchemaInfoBasics, Data>
+    ) {
+        serializer.register({ type: this.contentType, serialize: (content: JSONSchemaInfoBasics) => JSON.stringify(content, null, 4), deserialize: JSON.parse });
+        this.dataExtractor.register({ type: DATA, get: extractDataModelData });
+    }
+
     public serialize(content: C): string {
-        return JSON.stringify(content);
+        return this.serializer.serialize(content, this.contentType);
     }
 
     createInitialMetadata(model: Partial<MinimalModelSummary>): Partial<M> {

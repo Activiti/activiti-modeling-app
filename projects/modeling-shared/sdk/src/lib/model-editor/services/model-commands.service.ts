@@ -113,4 +113,8 @@ export class ModelCommandsService {
         this.modelButtonService.setDisable(commandName, value);
     }
 
+    public setVisible(commandName: BasicModelCommands, value: boolean) {
+        this.modelButtonService.setVisible(commandName, value);
+    }
+
 }

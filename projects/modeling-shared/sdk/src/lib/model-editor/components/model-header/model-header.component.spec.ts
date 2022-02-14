@@ -56,6 +56,16 @@ describe('ModelHeaderComponent', () => {
             action: mockTestCommand,
             disabled$: of(true),
             visible$: of(true)
+        },
+        {
+            commandName: <BasicModelCommands> 'hidden-primary',
+            title: 'Hidden primary',
+            icon: 'delete',
+            priority: CommandButtonPriority.PRIMARY,
+            isSvgIcon: false,
+            action: mockTestCommand,
+            disabled$: of(false),
+            visible$: of(false)
         }
     ];
     const mockSecondaryButtons = [
@@ -68,6 +78,16 @@ describe('ModelHeaderComponent', () => {
             action: mockTestCommand,
             disabled$: of(false),
             visible$: of(true)
+        },
+        {
+            commandName: <BasicModelCommands> 'hidden-secondary',
+            title: 'Hidden secondary',
+            icon: 'delete',
+            priority: CommandButtonPriority.SECONDARY,
+            isSvgIcon: false,
+            action: mockTestCommand,
+            disabled$: of(false),
+            visible$: of(false)
         }
     ];
 
@@ -154,5 +174,13 @@ describe('ModelHeaderComponent', () => {
         const button = fixture.debugElement.query(By.css('[data-automation-id="test-editor-validate-button"]:disabled'));
         fixture.detectChanges();
         expect(button).not.toBeNull();
+    });
+
+    it('should hide the button when visibility is set to false', () => {
+        const primaryHiddenButton = fixture.debugElement.query(By.css('[data-automation-id="test-editor-hidden-primary-button"]'));
+        const secondaryHiddenButton = fixture.debugElement.query(By.css('[data-automation-id="test-editor-hidden-secondary-button"]'));
+        fixture.detectChanges();
+        expect(primaryHiddenButton).toBeNull();
+        expect(secondaryHiddenButton).toBeNull();
     });
 });
