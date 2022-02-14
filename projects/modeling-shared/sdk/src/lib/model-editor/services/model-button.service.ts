@@ -51,11 +51,19 @@ export class ModelButtonService {
     private buildTitleForButton(modelName: string, commandName: BasicModelCommands): string {
         let title = '';
         if (priorityMapping[CommandButtonPriority.PRIMARY].includes(commandName)) {
-            title = `ADV_${modelName.toUpperCase()}_EDITOR.${commandName.toUpperCase()}_${modelName.toUpperCase()}`;
+            title = this.getFormattedModelName(modelName, commandName);
         } else {
-            title = `APP.MENU.${commandName.toUpperCase().replace('-', '_')}`;
+            title = `APP.MENU.${this.formatValue(commandName)}`;
         }
         return title;
+    }
+
+    private getFormattedModelName(modelName: string, commandName: string): string {
+        return `ADV_${this.formatValue(modelName)}_EDITOR.${commandName.toUpperCase()}_${this.formatValue(modelName)}`;
+    }
+
+    private formatValue(value: string): string {
+        return value.toUpperCase().replace('-', '_');
     }
 
     private getButtonPriority(commandName: BasicModelCommands): CommandButtonPriority {
