@@ -2,18 +2,17 @@
     <ng-container *ngIf="!(loadingState$ | async); else loading;">
         <ng-container *ngIf="editorContent$ | async; let editorContent">
 
-            <ama-connector-header [disableSave]="disableSave"
-                [modelId]="modelId"
-                [content]="editorContent"
-                class="ama-connector-header">
-            </ama-connector-header>
+            <modelingsdk-model-header class="ama-connector-header"
+                [breadcrumbs$]="breadcrumbs$"
+                [modelName]="modelType">
+            </modelingsdk-model-header>
 
             <ng-container *ngIf="isAdvancedEditorEmbedded()">
                 <mat-tab-group
                     (selectedTabChange)="onTabChange($event)"
                     [@.disabled]="true"
                     class="ama-connector-tab-group">
-                    <mat-tab label="{{ 'CONNECTOR_EDITOR.TABS.CONNECTOR_EDITOR' | translate }}">
+                    <mat-tab label="{{ 'ADV_CONNECTOR_EDITOR.TABS.CONNECTOR_EDITOR' | translate }}">
                         <div class="ama-connector-page"
                             data-automation-id="connector-advanced-tab">
                             <adf-dynamic-component
@@ -22,7 +21,7 @@
                             </adf-dynamic-component>
                         </div>
                     </mat-tab>
-                    <mat-tab label="{{ 'CONNECTOR_EDITOR.TABS.JSON_EDITOR' | translate }}">
+                    <mat-tab label="{{ 'ADV_CONNECTOR_EDITOR.TABS.JSON_EDITOR' | translate }}">
                         <div class="ama-connector-page ama-connector-page-raw-editor"
                             data-automation-id="connector-basic-tab">
                             <modelingsdk-code-editor

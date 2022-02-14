@@ -22,14 +22,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
-import { ConnectorHeaderComponent } from '../connector-header/connector-header.component';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { selectConnectorEditorSaving } from '../../store/connector-editor.selectors';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
-import { CONNECTOR, SharedModule, AmaState, ModelEditorState, CONNECTOR_MODEL_ENTITY_SELECTORS, ModelButtonService } from '@alfresco-dbp/modeling-shared/sdk';
+import { CONNECTOR, SharedModule, AmaState, ModelEditorState, CONNECTOR_MODEL_ENTITY_SELECTORS } from '@alfresco-dbp/modeling-shared/sdk';
 import { ExtensionsModule } from '@alfresco/adf-extensions';
 import { UpdateConnectorContentAttemptAction } from '../../store/connector-editor.actions';
 import { SaveConnectorCommand } from '../../services/commands/save-connector.command';
@@ -73,7 +72,6 @@ describe('ConnectorEditorComponent', () => {
             ],
             declarations: [
                 ConnectorEditorComponent,
-                ConnectorHeaderComponent
             ],
             providers: [
                 DeleteConnectorCommand,
@@ -102,7 +100,8 @@ describe('ConnectorEditorComponent', () => {
                 {
                     provide: CONNECTOR_MODEL_ENTITY_SELECTORS,
                     useValue: {
-                        selectModelContentById: jest.fn().mockImplementation(() => of())
+                        selectModelContentById: jest.fn().mockImplementation(() => of()),
+                        selectBreadCrumbs: jest.fn().mockImplementation(() => of())
                     }
                 }
             ],

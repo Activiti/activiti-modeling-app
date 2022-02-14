@@ -61,7 +61,7 @@ describe('App selectors', () => {
             state.app.logs = logs;
             const actionsSelector = selectLogsByInitiator({
                 key: 'Connector Editor',
-                displayName: 'CONNECTOR_EDITOR.NAME'
+                displayName: 'ADV_CONNECTOR_EDITOR.NAME'
             });
             const selectedLogs = actionsSelector(state);
             expect(selectedLogs).toEqual([logs[0]]);

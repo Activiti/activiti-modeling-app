@@ -22,7 +22,7 @@ export const CONNECTOR_EDITOR_LOGS = 'Connector Editor';
 export function getConnectorLogInitiator(extra?: any): LogMessageInitiator {
     return {
         key: CONNECTOR_EDITOR_LOGS,
-        displayName: 'CONNECTOR_EDITOR.NAME',
+        displayName: 'ADV_CONNECTOR_EDITOR.NAME',
         extra
     };
 }

@@ -274,7 +274,7 @@ export class ConnectorEditorEffects {
         return this.connectorEditorService.upload({ ...payload, file }).pipe(
             switchMap((connector: Connector) => [
                 new CreateConnectorSuccessAction(connector, true),
-                new SnackbarInfoAction('CONNECTOR_EDITOR.UPLOAD_SUCCESS')
+                new SnackbarInfoAction('ADV_CONNECTOR_EDITOR.UPLOAD_SUCCESS')
             ]),
             catchError(error => {
                 if (error.status === 409) {
@@ -335,7 +335,7 @@ export class ConnectorEditorEffects {
                 new GetConnectorSuccessAction(connector, connectorContent),
                 ...(loadConnector ? [new ModelOpenedAction({ id: connectorId, type: CONNECTOR })] : [])
             ]),
-            catchError(_ => this.handleError('CONNECTOR_EDITOR.ERRORS.GET_CONNECTOR')));
+            catchError(_ => this.handleError('ADV_CONNECTOR_EDITOR.ERRORS.GET_CONNECTOR')));
     }
 
     private handleConnectorUpdatingError(error: ErrorResponse): Observable<SnackbarErrorAction | {}> {

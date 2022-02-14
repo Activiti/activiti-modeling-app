@@ -36,7 +36,10 @@ import {
     StatusBarService,
     ContentType,
     CONNECTOR_MODEL_ENTITY_SELECTORS,
-    ModelEntitySelectors
+    ModelEntitySelectors,
+    BreadcrumbItem,
+    BreadCrumbHelperService,
+    MODEL_COMMAND_SERVICE_TOKEN
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ConnectorCommandsService } from '../../services/commands/connector-commands.service';
@@ -50,6 +53,10 @@ const memoize = require('lodash/memoize');
     encapsulation: ViewEncapsulation.None,
     providers: [
         ConnectorCommandsService,
+        {
+            provide: MODEL_COMMAND_SERVICE_TOKEN,
+            useExisting: ConnectorCommandsService
+        }
     ]
 })
 
@@ -58,7 +65,7 @@ export class ConnectorEditorComponent implements OnInit, CanComponentDeactivate,
     modelId: string;
 
     disableSave = false;
-
+    readonly modelType = CONNECTOR;
     modelId$: Observable<string>;
     editorContent$: Observable<string>;
     editorContentSubject$: Subject<string> = new Subject<string>();
@@ -70,10 +77,11 @@ export class ConnectorEditorComponent implements OnInit, CanComponentDeactivate,
     fileUri: string;
     languageType = 'json';
     tabNames = [
-        'CONNECTOR_EDITOR.TABS.CONNECTOR_EDITOR',
-        'CONNECTOR_EDITOR.TABS.JSON_EDITOR'
+        'ADV_CONNECTOR_EDITOR.TABS.CONNECTOR_EDITOR',
+        'ADV_CONNECTOR_EDITOR.TABS.JSON_EDITOR'
     ];
     selectedTabIndex = 0;
+    breadcrumbs$: Observable<BreadcrumbItem[]>;
 
     constructor(
         private store: Store<AmaState>,
@@ -84,9 +92,11 @@ export class ConnectorEditorComponent implements OnInit, CanComponentDeactivate,
         private statusBarService: StatusBarService,
         @Inject(CONNECTOR_MODEL_ENTITY_SELECTORS)
         private entitySelector: ModelEntitySelectors,
+        private breadCrumbHelperService: BreadCrumbHelperService
     ) {}
 
     ngOnInit() {
+        this.breadcrumbs$ = this.breadCrumbHelperService.getModelCrumbs(this.entitySelector.selectBreadCrumbs(this.modelId));
         this.loadingState$ = this.store.select(selectConnectorLoadingState);
         this.modelId$ = of(this.modelId);
         const contentFromStore$ = this.store.select(this.entitySelector.selectModelContentById(this.modelId)).pipe(

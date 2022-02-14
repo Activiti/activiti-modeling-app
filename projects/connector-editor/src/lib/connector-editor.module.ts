@@ -22,7 +22,6 @@ import { ExtensionsModule } from '@alfresco/adf-extensions';
 
 import { ConnectorEditorComponent } from './components/connector-editor/connector-editor.component';
 import { ConnectorEditorRoutingModule } from './router/connector-editor-routing.module';
-import { ConnectorHeaderComponent } from './components/connector-header/connector-header.component';
 import {
     CodeEditorModule,
     SharedModule,
@@ -78,7 +77,6 @@ import { ValidateConnectorCommand } from './services/commands/validate-connector
     ],
     declarations: [
         ConnectorEditorComponent,
-        ConnectorHeaderComponent,
     ],
     exports: [ ConnectorEditorRoutingModule ],
     providers: [
