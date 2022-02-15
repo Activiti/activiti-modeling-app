@@ -16,7 +16,9 @@
  */
 
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { EntityProperty, JSONSchemaInfoBasics } from '../api/types';
+import { ModelingJsonSchema } from './modeling-json-schema-provider.service';
 import { ModelingJSONSchemaService } from './modeling-json-schema.service';
 
 @Injectable({
@@ -24,7 +26,10 @@ import { ModelingJSONSchemaService } from './modeling-json-schema.service';
 })
 export class JSONSchemaToEntityPropertyService {
 
+    public schemasChanged$: Observable<ModelingJsonSchema[]>;
+
     constructor(private modelingJSONSchemaService: ModelingJSONSchemaService) {
+        this.schemasChanged$ = this.modelingJSONSchemaService.schemasChanged$;
     }
 
     getPrimitiveTypes(schema: JSONSchemaInfoBasics): string[] {

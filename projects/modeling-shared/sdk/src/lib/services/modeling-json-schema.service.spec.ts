@@ -26,7 +26,7 @@ import { RegisteredInputsModelingJsonSchemaProvider } from './registered-inputs-
 import { PropertiesViewerStringInputComponent } from '../variables/properties-viewer/value-type-inputs/string-input/string-input.component';
 import { PropertiesViewerIntegerInputComponent } from '../variables/properties-viewer/value-type-inputs/integer-input/integer-input.component';
 import { PropertiesViewerJsonInputComponent } from '../variables/properties-viewer/value-type-inputs/json-input/json-input.component';
-import { take } from 'rxjs/operators';
+import { first, take } from 'rxjs/operators';
 import { expectedItems } from '../mocks/modeling-json-schema.service.mock';
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { EntityProperty } from '../api/types';
@@ -228,10 +228,10 @@ describe('ModelingJSONSchemaService', () => {
         });
 
         it('do not flat date and datetime types', () => {
-            expect(service.flatSchemaReference({$ref: '#/$defs/primitive/date'})).toEqual({$ref: '#/$defs/primitive/date'});
-            expect(service.flatSchemaReference({$ref: '#/$defs/primitive/date'}, true)).toEqual({$ref: '#/$defs/primitive/date'});
-            expect(service.flatSchemaReference({$ref: '#/$defs/primitive/datetime'})).toEqual({$ref: '#/$defs/primitive/datetime'});
-            expect(service.flatSchemaReference({$ref: '#/$defs/primitive/datetime'}, true)).toEqual({$ref: '#/$defs/primitive/datetime'});
+            expect(service.flatSchemaReference({ $ref: '#/$defs/primitive/date' })).toEqual({ $ref: '#/$defs/primitive/date' });
+            expect(service.flatSchemaReference({ $ref: '#/$defs/primitive/date' }, true)).toEqual({ $ref: '#/$defs/primitive/date' });
+            expect(service.flatSchemaReference({ $ref: '#/$defs/primitive/datetime' })).toEqual({ $ref: '#/$defs/primitive/datetime' });
+            expect(service.flatSchemaReference({ $ref: '#/$defs/primitive/datetime' }, true)).toEqual({ $ref: '#/$defs/primitive/datetime' });
         });
 
     });
@@ -263,5 +263,40 @@ describe('ModelingJSONSchemaService', () => {
             expect(service.getPrimitiveTypes({})).toEqual(['json']);
             expect(service.getPrimitiveTypes({ type: 'non-existing' })).toEqual(['json']);
         });
+    });
+
+    it('should notify schemaChanges when provider schemas changes', async () => {
+        const notification = await service.schemasChanged$.pipe(first()).toPromise();
+
+        const expectedNotification = [
+            {
+                projectId: null,
+                schema: {
+                    type: 'string',
+                },
+                typeId: ['string']
+            },
+            {
+                projectId: null,
+                schema: {
+                    type: 'integer',
+                },
+                typeId: ['integer']
+            },
+            {
+                projectId: null,
+                schema: {
+                    type: 'boolean',
+                },
+                typeId: ['boolean']
+            },
+            {
+                projectId: null,
+                schema: exampleJSONSchema,
+                typeId: ['employee']
+            }
+        ];
+
+        expect(notification).toEqual(expectedNotification);
     });
 });

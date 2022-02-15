@@ -16,8 +16,8 @@
  */
 
 import { Inject, Injectable } from '@angular/core';
-import { forkJoin, Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
+import { filter, map, take } from 'rxjs/operators';
 import { EntityProperty, JSONSchemaInfoBasics } from '../api/types';
 import { getFileUriPattern } from '../code-editor/helpers/file-uri';
 import { CodeEditorService } from '../code-editor/services/code-editor-service.service';
@@ -25,7 +25,7 @@ import { primitiveTypesSchema } from '../code-editor/services/expression-languag
 import { primitive_types } from '../helpers/primitive-types';
 import { PropertyTypeItem } from '../variables/properties-viewer/property-type-item/models';
 import { InputTypeItem, INPUT_TYPE_ITEM_HANDLER } from '../variables/properties-viewer/value-type-inputs/value-type-inputs';
-import { ModelingJsonSchemaProvider, MODELING_JSON_SCHEMA_PROVIDERS } from './modeling-json-schema-provider.service';
+import { ModelingJsonSchema, ModelingJsonSchemaProvider, MODELING_JSON_SCHEMA_PROVIDERS } from './modeling-json-schema-provider.service';
 
 @Injectable({
     providedIn: 'root'
@@ -37,6 +37,10 @@ export class ModelingJSONSchemaService {
 
     private projectId: string;
     private primitiveDefs = primitiveTypesSchema.$defs.primitive;
+
+    protected schemasChanged: BehaviorSubject<ModelingJsonSchema[]> = new BehaviorSubject<ModelingJsonSchema[]>(null);
+
+    public schemasChanged$ = this.schemasChanged.asObservable().pipe(filter(jsonSchemas => !!jsonSchemas));
 
     constructor(
         private codeEditorService: CodeEditorService,
@@ -50,12 +54,14 @@ export class ModelingJSONSchemaService {
                         this.registerTypeModel(modelingJsonSchema.typeId, modelingJsonSchema.schema, modelingJsonSchema.projectId);
                     });
                 }
+                this.schemasChanged.next(modelingJsonSchemas);
             });
         });
 
         this.providers.filter(provider => provider.isGlobalProvider()).forEach(provider => {
             provider.initializeModelingJsonSchemasForProject(null).pipe(take(1)).subscribe(jsonSchemas => {
                 jsonSchemas.forEach(jsonSchema => this.registerGlobalTypeModel(jsonSchema.typeId, jsonSchema.schema));
+                this.schemasChanged.next(jsonSchemas);
             });
         });
     }
