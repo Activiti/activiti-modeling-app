@@ -16,7 +16,8 @@
  */
 
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { BreadcrumbItem } from '../../../helpers/header-breadcrumbs/breadcrumb-helper.service';
 import { BasicModelCommands } from '../../commands/commands.interface';
 import { CommandButtonPriority, ShowCommandButton } from '../../services/command.model';
@@ -46,6 +47,11 @@ export class ModelHeaderComponent implements OnInit {
     ngOnInit() {
         this.primaryButtons = this.modelCommands.getCommandButtons(CommandButtonPriority.PRIMARY);
         this.secondaryButtons = this.modelCommands.getCommandButtons(CommandButtonPriority.SECONDARY);
+    }
+
+    showMenu() {
+        const buttonsVisible$ = this.secondaryButtons.map(button => button.visible$);
+        return combineLatest(buttonsVisible$).pipe(map(buttonsVisible => buttonsVisible.some(isVisible => isVisible)));
     }
 
     onClick(commandName: BasicModelCommands) {

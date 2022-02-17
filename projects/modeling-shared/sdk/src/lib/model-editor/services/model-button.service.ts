@@ -63,7 +63,7 @@ export class ModelButtonService {
     }
 
     private formatValue(value: string): string {
-        return value.toUpperCase().replace('-', '_');
+        return value.toUpperCase().split('-').join('_');
     }
 
     private getButtonPriority(commandName: BasicModelCommands): CommandButtonPriority {

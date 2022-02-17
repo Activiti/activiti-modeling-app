@@ -77,7 +77,7 @@ describe('ModelHeaderComponent', () => {
             isSvgIcon: false,
             action: mockTestCommand,
             disabled$: of(false),
-            visible$: of(true)
+            visible$: of(false)
         },
         {
             commandName: <BasicModelCommands> 'hidden-secondary',
@@ -155,21 +155,6 @@ describe('ModelHeaderComponent', () => {
         expect(emitSpy).toHaveBeenCalledWith(mockPrimaryButtons[0].commandName);
     });
 
-    it('should dispatch an action on secondary button click', () => {
-        const emitSpy = spyOn(modelCommand, 'dispatchEvent');
-        fixture.detectChanges();
-
-        const dropdown = fixture.debugElement.query(By.css('[data-automation-id="test-editor-menu-button"]'));
-        dropdown.triggerEventHandler('click', null);
-        fixture.detectChanges();
-
-        const button = fixture.debugElement.query(By.css('[data-automation-id="test-editor-delete-button"]'));
-        button.triggerEventHandler('click', null);
-        fixture.detectChanges();
-
-        expect(emitSpy).toHaveBeenCalledWith(mockSecondaryButtons[0].commandName);
-    });
-
     it('should disable the button when disabled is set to true', () => {
         const button = fixture.debugElement.query(By.css('[data-automation-id="test-editor-validate-button"]:disabled'));
         fixture.detectChanges();
@@ -182,5 +167,11 @@ describe('ModelHeaderComponent', () => {
         fixture.detectChanges();
         expect(primaryHiddenButton).toBeNull();
         expect(secondaryHiddenButton).toBeNull();
+    });
+
+    it('should hide the menu button when all secondary buttons visibility is set to false', () => {
+        const menuButton = fixture.debugElement.query(By.css('[data-automation-id="test-editor-menu-button"]'));
+        fixture.detectChanges();
+        expect(menuButton).toBeNull();
     });
 });

@@ -18,6 +18,7 @@
     </span>
 
     <button mat-icon-button
+        *ngIf="showMenu() | async"
         [title]="'APP.MORE_ACTIONS' | translate"
         [attr.data-automation-id]="modelName+'-editor-menu-button'"
         [matMenuTriggerFor]="menu">
