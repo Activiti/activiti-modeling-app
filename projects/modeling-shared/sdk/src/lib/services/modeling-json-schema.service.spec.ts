@@ -19,7 +19,6 @@ import { CodeEditorService } from '../code-editor/services/code-editor-service.s
 import { ModelingJSONSchemaService } from './modeling-json-schema.service';
 import { PropertiesViewerBooleanInputComponent } from '../variables/properties-viewer/value-type-inputs/boolean-input.component';
 import { provideInputTypeItemHandler } from '../variables/properties-viewer/value-type-inputs/value-type-inputs';
-import { primitiveTypesSchema } from '../code-editor/services/expression-language/primitive-types-schema';
 import { provideModelingJsonSchemaProvider } from './modeling-json-schema-provider.service';
 import { exampleJSONSchema, exampleJSONSchemaWithSelfReference } from '../mocks/json-schema.mock';
 import { RegisteredInputsModelingJsonSchemaProvider } from './registered-inputs-modeling-json-schema-provider.service';
@@ -30,6 +29,7 @@ import { first, take } from 'rxjs/operators';
 import { expectedItems } from '../mocks/modeling-json-schema.service.mock';
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { EntityProperty } from '../api/types';
+import { primitiveTypesSchema } from '../variables/expression-code-editor/services/expression-language/primitive-types-schema';
 
 describe('ModelingJSONSchemaService', () => {
     let service: ModelingJSONSchemaService;

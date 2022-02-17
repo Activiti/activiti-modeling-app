@@ -31,7 +31,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { PropertiesViewerStringInputComponent, INPUT_TYPE_ITEM_HANDLER } from '../../variables/public-api';
 import { TranslateModule } from '@ngx-translate/core';
-import { ExpressionsEditorService } from '../../code-editor/services/expressions-editor.service';
+import { ExpressionsEditorService } from '../../variables/expression-code-editor/services/expressions-editor.service';
 import { UuidService } from '../../services/uuid.service';
 import { provideModelingJsonSchemaProvider } from '../../services/modeling-json-schema-provider.service';
 import { RegisteredInputsModelingJsonSchemaProvider } from '../../services/registered-inputs-modeling-json-schema-provider.service';

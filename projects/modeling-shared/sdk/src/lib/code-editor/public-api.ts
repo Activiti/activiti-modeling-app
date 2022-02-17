@@ -17,11 +17,7 @@
 
 export * from './code-editor.module';
 export * from './components/code-editor/code-editor.component';
-export * from './components/expression-code-editor/expression-code-editor.component';
-export * from './components/expression-code-editor-dialog/expression-code-editor-dialog.component';
 export * from './services/code-validator.service';
 export * from './services/code-editor-service.service';
-export * from './services/expressions-editor.service';
 export * from './helpers/file-uri';
 export * from './code-editor.extensions';
-export * from './services/modeling-types.service';

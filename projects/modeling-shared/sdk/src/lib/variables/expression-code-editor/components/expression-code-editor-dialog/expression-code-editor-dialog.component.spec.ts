@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { TranslationService, TranslationMock } from '@alfresco/adf-core';
+import { TranslationService, TranslationMock, CoreModule } from '@alfresco/adf-core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,8 +23,7 @@ import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { of, Subject } from 'rxjs';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
-import { UuidService } from '../../../services/uuid.service';
-import { CodeEditorModule } from '../../code-editor.module';
+import { UuidService } from '../../../../services/uuid.service';
 import { ExpressionsEditorService } from '../../services/expressions-editor.service';
 import { ExpressionCodeEditorComponent } from '../expression-code-editor/expression-code-editor.component';
 import { ExpressionCodeEditorDialogComponent } from './expression-code-editor-dialog.component';
@@ -41,7 +40,7 @@ describe('ExpressionCodeEditorDialogComponent', () => {
     beforeAll(() => {
         TestBed.configureTestingModule({
             imports: [
-                CodeEditorModule,
+                CoreModule,
                 NoopAnimationsModule,
                 TranslateModule.forRoot()
             ],

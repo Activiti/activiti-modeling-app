@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-import { UuidService } from '../../services/uuid.service';
+import { UuidService } from '../../../services/uuid.service';
 import { TestBed } from '@angular/core/testing';
-import { primitive_types } from '../../helpers/primitive-types';
+import { primitive_types } from '../../../helpers/primitive-types';
 import {
     expectedArrayMethodSuggestions,
     expectedArrayPropertiesSuggestions,
@@ -26,12 +26,12 @@ import {
     expectedPrimitiveTypes
 } from '../mocks/primitive-types.mock';
 import { ModelingTypesService } from './modeling-types.service';
-import { INPUT_TYPE_ITEM_HANDLER } from '../../variables/properties-viewer/value-type-inputs/value-type-inputs';
-import { provideModelingJsonSchemaProvider } from '../../services/modeling-json-schema-provider.service';
-import { RegisteredInputsModelingJsonSchemaProvider } from '../../services/registered-inputs-modeling-json-schema-provider.service';
 import { primitiveTypesSchema } from './expression-language/primitive-types-schema';
 import { ModelingTypeSignatureHelper } from './modeling-type.model';
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
+import { INPUT_TYPE_ITEM_HANDLER } from '../../properties-viewer/value-type-inputs/value-type-inputs';
+import { provideModelingJsonSchemaProvider } from '../../../services/modeling-json-schema-provider.service';
+import { RegisteredInputsModelingJsonSchemaProvider } from '../../../services/registered-inputs-modeling-json-schema-provider.service';
 
 describe('ModelingTypesService', () => {
     let service: ModelingTypesService;

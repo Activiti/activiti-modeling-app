@@ -16,9 +16,9 @@
  */
 
 import { TranslationMock } from '@alfresco/adf-core';
-import { JSONSchemaToEntityPropertyService } from '../../services/json-schema-to-entity-property.service';
-import { ModelingJSONSchemaService } from '../../services/modeling-json-schema.service';
-import { CodeEditorService } from './code-editor-service.service';
+import { CodeEditorService } from '../../../code-editor/services/code-editor-service.service';
+import { JSONSchemaToEntityPropertyService } from '../../../services/json-schema-to-entity-property.service';
+import { ModelingJSONSchemaService } from '../../../services/modeling-json-schema.service';
 import { primitiveTypesSchema } from './expression-language/primitive-types-schema';
 import { ExpressionsEditorService } from './expressions-editor.service';
 import { ModelingTypesService } from './modeling-types.service';

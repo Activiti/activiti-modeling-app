@@ -21,7 +21,6 @@ import { NgModule } from '@angular/core';
 import { MappingDialogComponent } from './mapping-dialog.component';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { VariablesModule } from '../../variables/variables.module';
-import { CodeEditorModule } from '../../code-editor/public-api';
 import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
 import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
 import { MatTableModule } from '@angular/material/table';
@@ -42,7 +41,6 @@ import { VariableSelectorsModule } from '../variable-selectors/variable-selector
         MatInputModule,
         MatDialogModule,
         VariablesModule,
-        CodeEditorModule,
         CoreModule.forChild(),
         VariableSelectorsModule
     ],

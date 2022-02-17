@@ -17,7 +17,7 @@
 
 import { TranslationService } from '@alfresco/adf-core';
 import { Injectable } from '@angular/core';
-import { EntityProperty, JSONSchemaInfoBasics } from '../../api/types';
+import { EntityProperty, JSONSchemaInfoBasics } from '../../../api/types';
 import { expressionLanguageConfiguration, expressionLanguageMonarch } from './expression-language/expression-language.monarch';
 import { ModelingTypesService } from './modeling-types.service';
 

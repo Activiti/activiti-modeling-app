@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { JSONSchemaInfoBasics } from '../../../api/types';
+import { JSONSchemaInfoBasics } from '../../../../api/types';
 
 /* cspell: disable */
 export const eventSchema: JSONSchemaInfoBasics = {

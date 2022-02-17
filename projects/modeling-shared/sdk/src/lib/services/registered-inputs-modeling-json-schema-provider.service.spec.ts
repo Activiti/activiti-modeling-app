@@ -17,7 +17,7 @@
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { TestBed } from '@angular/core/testing';
 import { take } from 'rxjs/operators';
-import { primitiveTypesSchema } from '../code-editor/services/expression-language/primitive-types-schema';
+import { primitiveTypesSchema } from '../variables/expression-code-editor/services/expression-language/primitive-types-schema';
 import { expectedRegisteredInputsItems } from '../mocks/modeling-json-schema.service.mock';
 import { PropertiesViewerBooleanInputComponent } from '../variables/properties-viewer/value-type-inputs/boolean-input.component';
 import { PropertiesViewerIntegerInputComponent } from '../variables/properties-viewer/value-type-inputs/integer-input/integer-input.component';

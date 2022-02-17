@@ -29,11 +29,10 @@ import { MappingVariableExpressionDropdownComponent } from './mapping-variable-e
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { expectedVariables } from '../../../mocks/process-editor.mock';
 import { UuidService } from '../../../services/uuid.service';
-import { ExpressionsEditorService } from '../../../code-editor/services/expressions-editor.service';
-import { CodeEditorModule } from '../../../code-editor/code-editor.module';
+import { ExpressionsEditorService } from '../../../variables/expression-code-editor/services/expressions-editor.service';
 import { VariablesModule } from '../../../variables/variables.module';
 import { ElementVariable, MappingType } from '../../../api/types';
-import { ExpressionCodeEditorDialogComponent } from '../../../code-editor/components/expression-code-editor-dialog/expression-code-editor-dialog.component';
+import { ExpressionCodeEditorDialogComponent } from '../../../variables/expression-code-editor/components/expression-code-editor-dialog/expression-code-editor-dialog.component';
 import { VariableExpressionLanguagePipe } from '../../../variables/properties-viewer/variable-expression-language.pipe';
 
 describe('MappingVariableExpressionDropdownComponent', () => {
@@ -75,7 +74,6 @@ describe('MappingVariableExpressionDropdownComponent', () => {
                 OverlayModule,
                 TranslateModule.forRoot(),
                 BrowserAnimationsModule,
-                CodeEditorModule,
                 VariablesModule
             ],
             declarations: [VariableSelectorComponent, MappingVariableExpressionDropdownComponent]

@@ -17,7 +17,7 @@
 
 import { Type, InjectionToken } from '@angular/core';
 import { JSONSchemaInfoBasics } from '../../../api/types';
-import { primitiveTypesSchema } from '../../../code-editor/services/expression-language/primitive-types-schema';
+import { primitiveTypesSchema } from '../../expression-code-editor/services/expression-language/primitive-types-schema';
 
 export const INPUT_TYPE_ITEM_HANDLER = new InjectionToken<InputTypeItem[]>('input-type-item-handlers');
 

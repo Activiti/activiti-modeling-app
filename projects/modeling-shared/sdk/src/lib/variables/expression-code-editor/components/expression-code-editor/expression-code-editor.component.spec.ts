@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { TranslationMock, TranslationService } from '@alfresco/adf-core';
+import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { SimpleChanges } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,12 +22,12 @@ import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
-import { UuidService } from '../../../services/uuid.service';
-import { CodeEditorModule } from '../../code-editor.module';
+import { UuidService } from '../../../../services/uuid.service';
 import { ExpressionsEditorService } from '../../services/expressions-editor.service';
-import { CodeEditorComponent } from '../code-editor/code-editor.component';
 import { ExpressionCodeEditorDialogComponent } from '../expression-code-editor-dialog/expression-code-editor-dialog.component';
 import { ExpressionCodeEditorComponent } from './expression-code-editor.component';
+import { CodeEditorModule } from '../../../../code-editor/code-editor.module';
+import { CodeEditorComponent } from '../../../../code-editor/components/code-editor/code-editor.component';
 
 describe('ExpressionCodeEditorComponent', () => {
     let fixture: ComponentFixture<ExpressionCodeEditorComponent>;
@@ -40,6 +40,7 @@ describe('ExpressionCodeEditorComponent', () => {
         TestBed.configureTestingModule({
             imports: [
                 CodeEditorModule,
+                CoreModule,
                 NoopAnimationsModule,
                 TranslateModule.forRoot()
             ],

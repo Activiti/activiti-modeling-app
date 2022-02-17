@@ -21,7 +21,6 @@ import { CoreModule } from '@alfresco/adf-core';
 import { VariableSelectorComponent } from './variable-selector/variable-selector.component';
 import { VariableSelectorDropdownComponent } from './variable-selector-dropdown/variable-selector-dropdown.component';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { CodeEditorModule } from '../../code-editor/code-editor.module';
 import { MappingVariableExpressionDropdownComponent } from './mapping-variable-expression-dropdown/mapping-variable-expression-dropdown.component';
 import { VariablesModule } from '../../variables/variables.module';
 import { VariableExpressionLanguagePipe } from '../../variables/properties-viewer/variable-expression-language.pipe';
@@ -32,7 +31,6 @@ import { VariableIdFromVariableNamePipe } from './variable-id-from-variable-name
         CommonModule,
         CoreModule.forChild(),
         OverlayModule,
-        CodeEditorModule,
         VariablesModule
     ],
     providers: [ VariableExpressionLanguagePipe ],

@@ -21,8 +21,6 @@ import { FormsModule } from '@angular/forms';
 import { MonacoEditorModule, NGX_MONACO_EDITOR_CONFIG } from 'ngx-monaco-editor';
 import { CodeEditorComponent } from './components/code-editor/code-editor.component';
 import { CodeEditorService } from './services/code-editor-service.service';
-import { ExpressionCodeEditorComponent } from './components/expression-code-editor/expression-code-editor.component';
-import { ExpressionCodeEditorDialogComponent } from './components/expression-code-editor-dialog/expression-code-editor-dialog.component';
 import { CoreModule } from '@alfresco/adf-core';
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -40,17 +38,13 @@ export function monacoEditorConfigFactory(codeEditorService: CodeEditorService) 
         MatDialogModule
     ],
     declarations: [
-        CodeEditorComponent,
-        ExpressionCodeEditorComponent,
-        ExpressionCodeEditorDialogComponent
+        CodeEditorComponent
     ],
     exports: [
         CommonModule,
         FormsModule,
         MonacoEditorModule,
-        CodeEditorComponent,
-        ExpressionCodeEditorComponent,
-        ExpressionCodeEditorDialogComponent
+        CodeEditorComponent
     ],
     providers: [
         {

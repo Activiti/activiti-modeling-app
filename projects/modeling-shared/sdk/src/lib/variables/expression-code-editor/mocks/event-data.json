@@ -1,0 +1,45 @@
+{
+    "$defs": {
+        "mapList": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "type": "object",
+    "properties": {
+        "method": {
+            "type": "string",
+            "enum": [
+                "GET",
+                "HEAD",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE",
+                "OPTIONS",
+                "TRACE"
+            ]
+        },
+        "path": {
+            "type": "string"
+        },
+        "params": {
+            "$ref": "#/$defs/mapList"
+        },
+        "headers": {
+            "$ref": "#/$defs/mapList"
+        },
+        "body": {
+            "type": "object"
+        }
+    },
+    "required": [
+        "method",
+        "path"
+    ]
+}

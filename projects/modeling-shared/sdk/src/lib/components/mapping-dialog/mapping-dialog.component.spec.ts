@@ -38,7 +38,7 @@ import {
 } from '../../variables/public-api';
 import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
-import { ExpressionsEditorService } from '../../code-editor/services/expressions-editor.service';
+import { ExpressionsEditorService } from '../../variables/expression-code-editor/services/expressions-editor.service';
 import { MatSelectModule } from '@angular/material/select';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { VariableExpressionLanguagePipe } from '../../variables/properties-viewer/variable-expression-language.pipe';

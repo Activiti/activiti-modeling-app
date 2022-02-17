@@ -37,12 +37,12 @@ import { AutomationIdPipe } from './property-type-item/automation-id.pipe';
 import { PropertyTypeItemUiComponent } from './property-type-item/property-type-item.ui-component';
 import { PropertyTypeSelectorSmartComponent } from './property-type-selector/property-type-selector.smart-component';
 import { RegisteredInputsModelingJsonSchemaProvider } from '../../services/registered-inputs-modeling-json-schema-provider.service';
-import { ExpressionsEditorService } from '../../code-editor/services/expressions-editor.service';
 import { PropertiesViewerStringInputComponent } from './value-type-inputs/string-input/string-input.component';
 import { PropertiesViewerIntegerInputComponent } from './value-type-inputs/integer-input/integer-input.component';
 import { PropertiesViewerBooleanInputComponent } from './value-type-inputs/boolean-input.component';
 import { provideModelingJsonSchemaProvider } from '../../services/modeling-json-schema-provider.service';
 import { CodeEditorModule } from '../../code-editor/code-editor.module';
+import { ExpressionsEditorService } from '../expression-code-editor/services/expressions-editor.service';
 
 describe('PropertiesViewerComponent', () => {
     let fixture: ComponentFixture<PropertiesViewerComponent>;

@@ -17,12 +17,12 @@
 
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
-import { EntityProperty } from '../../../api/types';
+import { EntityProperty } from '../../../../api/types';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
-import { UuidService } from '../../../services/uuid.service';
-import { getFileUri } from '../../helpers/file-uri';
+import { UuidService } from '../../../../services/uuid.service';
 import { ExpressionsEditorService } from '../../services/expressions-editor.service';
 import { ExpressionCodeEditorDialogComponent, ExpressionCodeEditorDialogData } from '../expression-code-editor-dialog/expression-code-editor-dialog.component';
+import { getFileUri } from '../../../../code-editor/helpers/file-uri';
 
 @Component({
     selector: 'modelingsdk-expression-code-editor',

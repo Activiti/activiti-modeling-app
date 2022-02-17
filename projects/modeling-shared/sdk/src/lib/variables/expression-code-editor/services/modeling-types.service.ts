@@ -16,9 +16,9 @@
  */
 
 import { Injectable } from '@angular/core';
-import { JSONSchemaInfoBasics, JSONSchemaPropertyBasics } from '../../api/types';
-import { JSONSchemaToEntityPropertyService } from '../../services/json-schema-to-entity-property.service';
-import { ModelingJSONSchemaService } from '../../services/modeling-json-schema.service';
+import { JSONSchemaInfoBasics, JSONSchemaPropertyBasics } from '../../../api/types';
+import { JSONSchemaToEntityPropertyService } from '../../../services/json-schema-to-entity-property.service';
+import { ModelingJSONSchemaService } from '../../../services/modeling-json-schema.service';
 import { arrayModelType } from './expression-language/array.model.type';
 import { dateModelType } from './expression-language/date.model.type';
 import { enumModelType } from './expression-language/enum.model.type';

@@ -18,7 +18,7 @@
 import { InjectionToken, Provider, Type } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
-import { JSONSchemaInfoBasics } from '../../api/types';
+import { JSONSchemaInfoBasics } from '../../../api/types';
 
 export const MODELING_TYPES_PROVIDERS = new InjectionToken<ModelingTypeProvider[]>('modeling-types-providers');
 

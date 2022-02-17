@@ -55,6 +55,8 @@ import { IsNotTypePipe } from './json-schema/pipes/is-not-type-pipe/is-not-type.
 import { RequiredPipe } from './json-schema/pipes/required-pipe/required.pipe';
 import { DisplayAddMenuPipe } from './json-schema/pipes/display-add-menu/display-add-menu.pipe';
 import { PropertyTypeDialogComponent } from './properties-viewer/property-type-dialog/property-type-dialog.component';
+import { ExpressionCodeEditorComponent } from './expression-code-editor/components/expression-code-editor/expression-code-editor.component';
+import { ExpressionCodeEditorDialogComponent } from './expression-code-editor/components/expression-code-editor-dialog/expression-code-editor-dialog.component';
 
 @NgModule({
     imports: [
@@ -95,7 +97,9 @@ import { PropertyTypeDialogComponent } from './properties-viewer/property-type-d
         IsAnyTypePipe,
         IsNotTypePipe,
         DisplayAddMenuPipe,
-        PropertyTypeDialogComponent
+        PropertyTypeDialogComponent,
+        ExpressionCodeEditorComponent,
+        ExpressionCodeEditorDialogComponent
     ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
@@ -118,7 +122,8 @@ import { PropertyTypeDialogComponent } from './properties-viewer/property-type-d
         JsonParsePipe,
         PropertyTypeSelectorSmartComponent,
         JsonSchemaEditorComponent,
-        PropertiesViewerModeledObjectInputComponent
+        PropertiesViewerModeledObjectInputComponent,
+        ExpressionCodeEditorComponent
     ]
 })
 export class VariablesModule { }

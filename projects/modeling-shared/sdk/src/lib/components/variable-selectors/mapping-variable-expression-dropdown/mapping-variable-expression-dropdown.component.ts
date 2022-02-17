@@ -19,7 +19,7 @@ import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ElementVariable, MappingType, ProcessEditorElementVariable } from '../../../api/types';
-import { ExpressionCodeEditorDialogComponent } from '../../../code-editor/components/expression-code-editor-dialog/expression-code-editor-dialog.component';
+import { ExpressionCodeEditorDialogComponent } from '../../../variables/expression-code-editor/components/expression-code-editor-dialog/expression-code-editor-dialog.component';
 import { ModelingJSONSchemaService } from '../../../services/modeling-json-schema.service';
 import { VariableExpressionLanguagePipe } from '../../../variables/properties-viewer/variable-expression-language.pipe';
 
