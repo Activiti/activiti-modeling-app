@@ -103,7 +103,13 @@
         "EXPRESSION_CODE_EDITOR": {
             "EDIT_IN_DIALOG": "Edit in dialog",
             "EXPRESSION_EDITOR": "Expression editor",
-            "NO_BRACKETS_HINT": "The whole expression in this editor will be saved enclosed inside curly brackets (${...}) so you don't need to type them"
+            "NO_BRACKETS_HINT": "The whole expression in this editor will be saved enclosed inside curly brackets (${...}) so you don't need to type them",
+            "JUEL_EXPRESSION_SIMULATOR": "JUEL expression simulator",
+            "SIMULATE": "Simulate",
+            "OPEN_SIMULATION": "Open simulation",
+            "CLOSE_SIMULATION": "Close simulation",
+            "SET_VARIABLES_VALUES": "Set variable's values",
+            "DELETE_VARIABLE_FROM_SIMULATION": "Delete variable from simulation"
         },
         "VARIABLES_SELECTORS": {
             "ACTIONS": {

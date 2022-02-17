@@ -2,12 +2,26 @@
     &-content {
         min-height: 300px;
 
+        mat-sidenav {
+            width: 500px;
+        }
+
         .ama-expression-code-editor-monaco {
             min-height: 300px;
 
             .ama-code-editor {
                 height: 270px;
             }
+        }
+
+        .mat-drawer-container {
+            background: var(--theme-dialog-bg-color);
+        }
+    }
+
+    &-actions {
+        .adf-fill-remaining-space {
+            flex: 1 1 auto;
         }
     }
 }

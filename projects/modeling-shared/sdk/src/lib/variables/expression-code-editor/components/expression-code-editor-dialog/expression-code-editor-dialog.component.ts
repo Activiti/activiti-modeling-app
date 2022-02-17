@@ -40,6 +40,7 @@ export interface ExpressionCodeEditorDialogData {
 export class ExpressionCodeEditorDialogComponent {
 
     expression: string;
+    simulation = false;
 
     constructor(public dialog: MatDialogRef<ExpressionCodeEditorDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: ExpressionCodeEditorDialogData) {
         this.expression = data.expression;

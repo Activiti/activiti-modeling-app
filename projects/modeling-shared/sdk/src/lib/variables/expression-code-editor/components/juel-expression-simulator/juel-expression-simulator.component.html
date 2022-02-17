@@ -1,0 +1,78 @@
+<div class="ama-expression-code-editor-dialog-content-card">
+    <h4 class="ama-expression-code-editor-dialog-content-card-title">
+        <span class="ama-expression-code-editor-dialog-content-card-title-text">{{ 'SDK.EXPRESSION_CODE_EDITOR.JUEL_EXPRESSION_SIMULATOR' | translate }}</span>
+        <div>
+            <button mat-icon-button
+                [matMenuTriggerFor]="addVarMenu"
+                [matTooltip]="'SDK.EXPRESSION_CODE_EDITOR.SET_VARIABLES_VALUES' | translate">
+                <mat-icon>layers</mat-icon>
+            </button>
+
+            <button mat-raised-button color="accent"
+                class="ama-expression-code-editor-dialog-simulate"
+                (click)="executeSimulation()"
+                data-automation-id="ama-expression-code-editor-dialog-simulate">
+                {{ 'SDK.EXPRESSION_CODE_EDITOR.SIMULATE' | translate }}
+            </button>
+        </div>
+    </h4>
+
+    <pre class="ama-expression-code-editor-dialog-content-card-result" *ngIf="simulation">{{result}}</pre>
+
+    <div class="ama-expression-code-editor-dialog-content-card-loading" *ngIf="loading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+
+
+    <div class="ama-expression-code-editor-dialog-content-card-variables">
+        <mat-accordion *ngIf="!!variablesToSimulate && variablesToSimulate.length > 0" multi="true">
+            <mat-expansion-panel *ngFor="let variable of variablesToSimulate;let i = index; trackBy: trackByVariableId"
+                [(expanded)]="collapsiblePanelStatus[i]">
+                <mat-expansion-panel-header >
+                    <mat-panel-title><span>{{variable.name}}</span></mat-panel-title>
+                    <mat-panel-description>
+                        <button mat-icon-button
+                            [matTooltip]="'SDK.EXPRESSION_CODE_EDITOR.DELETE_VARIABLE_FROM_SIMULATION' | translate"
+                            (click)="deleteVariableToSimulate(i)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <modelingsdk-modeled-object-input
+                    [model]="variable.model"
+                    [value]="variable.value"
+                    [autocompletionContext]="variables"
+                    (valueChanges)="variableChanges(i, $event.value)">
+                </modelingsdk-modeled-object-input>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+    <mat-menu #addVarMenu="matMenu">
+        <div class="ama-variables-selector-menu">
+            <div class="ama-variables-selector-header">
+                <mat-form-field appearance="outline" class="ama-variables-selector-search" (click)="doNotCloseMenu($event)" >
+                    <mat-label>{{'SDK.VARIABLES_SELECTORS.ACTIONS.SEARCH' | translate}}</mat-label>
+                    <mat-icon matPrefix class="ama-variables-selector-search-prefix">search</mat-icon>
+                    <input matInput autocomplete="off"
+                        [(ngModel)]="search"
+                        (input)="onSearch()">
+                    <mat-icon matSuffix (click)="clearSearch()"
+                        class="ama-variables-selector-search-suffix"
+                        *ngIf="search?.length>0">
+                        close
+                    </mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="ama-variables-selector-variables-group-list">
+                <div *ngFor="let variable of filteredVars"
+                    (click)="onVariableSelect(variable)"
+                    class="ama-variables-selector-variables-group-list-item"
+                    [attr.data-automation-id]="'var-' + variable.id">
+                    <pre class="ama-variables-selector-variables-group-list-item-type">{{variable | variableIcon}}</pre>
+                    <span class="ama-variables-selector-variables-group-list-item-name">{{variable.name}}</span>
+                </div>
+            </div>
+        </div>
+    </mat-menu>
+</div>

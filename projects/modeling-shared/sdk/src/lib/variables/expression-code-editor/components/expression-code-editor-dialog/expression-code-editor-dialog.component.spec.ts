@@ -27,6 +27,7 @@ import { UuidService } from '../../../../services/uuid.service';
 import { ExpressionsEditorService } from '../../services/expressions-editor.service';
 import { ExpressionCodeEditorComponent } from '../expression-code-editor/expression-code-editor.component';
 import { ExpressionCodeEditorDialogComponent } from './expression-code-editor-dialog.component';
+import { JuelExpressionSimulatorComponent } from '../juel-expression-simulator/juel-expression-simulator.component';
 
 describe('ExpressionCodeEditorDialogComponent', () => {
     let fixture: ComponentFixture<ExpressionCodeEditorDialogComponent>;
@@ -80,7 +81,7 @@ describe('ExpressionCodeEditorDialogComponent', () => {
                     }
                 }
             ],
-            declarations: [ExpressionCodeEditorComponent, ExpressionCodeEditorDialogComponent]
+            declarations: [ExpressionCodeEditorComponent, ExpressionCodeEditorDialogComponent, JuelExpressionSimulatorComponent]
         });
 
         fixture = TestBed.createComponent(ExpressionCodeEditorDialogComponent);

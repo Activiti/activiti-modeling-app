@@ -1,0 +1,109 @@
+.ama-expression-code-editor-dialog {
+    &-content {
+        &-card {
+            padding: 0 12px;
+            &-title {
+                display: flex;
+                justify-content: space-between;
+                &-text {
+                    line-height: 36px;
+                }
+            }
+            &-variables {
+                mat-panel-title > span {
+                    line-height: 45px;
+                }
+                mat-panel-description {
+                    flex: 0;
+                }
+                modelingsdk-modeled-object-input {
+                    width: 100%;
+
+                    mat-form-field {
+                        width: 100%;
+                    }
+                }
+            }
+            &-actions {
+                padding-top: 12px;
+                text-align: center;
+            }
+            &-result {
+                border: 1px solid var(--theme-border-color);
+                border-radius: 6px;
+                margin-bottom: 24px;
+                font-size: var(--theme-caption-font-size);
+                padding: 12px;
+                font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+                background: var(--theme-disabled-bg-color);
+            }
+            &-loading {
+                margin-bottom: 24px;
+            }
+        }
+    }
+}
+
+.ama-variables-selector-menu {
+    padding: 6px;
+    max-height: 300px;
+    overflow: auto;
+    .ama-variables-selector {
+        &-header {
+            display: flex;
+
+            .ama-variables-selector-clear-button {
+                position: relative;
+                top: 6px;
+            }
+        }
+
+        &-search {
+            font-size: var(--theme-caption-font-size);
+            max-width: 100%;
+            width: 100%;
+
+            .mat-form-field-outline {
+                background: var(--theme-ama-var-selector-bg-color);
+                border-radius: 6px;
+            }
+
+            &-suffix {
+                cursor: pointer;
+            }
+        }
+
+        &-variables {
+            &-group-list {
+                &-item {
+                    cursor: pointer;
+                    padding-top: 6px;
+                    padding-left: 6px;
+                    padding-bottom: 6px;
+                    max-width: 100%;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    &-type {
+                        background: var(--theme-border-color-light);
+                        border-radius: 50%;
+                        height: 20px;
+                        width: 20px;
+                        display: inline-block;
+                        text-align: center;
+                        font-weight: bold;
+                        margin: 0 12px 0 0;
+                        color: var(
+                            --theme-primary-color-default-contrast
+                        ) !important;
+                    }
+
+                    &:hover {
+                        background: var(--theme-ama-var-selector-bg-color);
+                        border-radius: 6px;
+                    }
+                }
+            }
+        }
+    }
+}

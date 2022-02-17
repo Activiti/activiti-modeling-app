@@ -57,6 +57,7 @@
         "transpiled",
         "keycodes",
         "stylelint",
-        "SQLSERVER"
+        "SQLSERVER",
+        "juel"
     ]
 }

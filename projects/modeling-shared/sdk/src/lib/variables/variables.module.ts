@@ -57,6 +57,8 @@ import { DisplayAddMenuPipe } from './json-schema/pipes/display-add-menu/display
 import { PropertyTypeDialogComponent } from './properties-viewer/property-type-dialog/property-type-dialog.component';
 import { ExpressionCodeEditorComponent } from './expression-code-editor/components/expression-code-editor/expression-code-editor.component';
 import { ExpressionCodeEditorDialogComponent } from './expression-code-editor/components/expression-code-editor-dialog/expression-code-editor-dialog.component';
+import { JuelExpressionSimulatorComponent } from './expression-code-editor/components/juel-expression-simulator/juel-expression-simulator.component';
+import { VariableIconPipe } from './expression-code-editor/pipes/variable-icon.pipe';
 
 @NgModule({
     imports: [
@@ -99,7 +101,9 @@ import { ExpressionCodeEditorDialogComponent } from './expression-code-editor/co
         DisplayAddMenuPipe,
         PropertyTypeDialogComponent,
         ExpressionCodeEditorComponent,
-        ExpressionCodeEditorDialogComponent
+        ExpressionCodeEditorDialogComponent,
+        JuelExpressionSimulatorComponent,
+        VariableIconPipe
     ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
