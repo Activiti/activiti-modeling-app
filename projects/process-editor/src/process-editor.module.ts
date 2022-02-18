@@ -25,7 +25,6 @@ import { ProcessServicesCloudModule } from '@alfresco/adf-process-services-cloud
 import { EffectsModule } from '@ngrx/effects';
 import { ProcessEditorComponent } from './components/process-editor/process-editor.component';
 import { ProcessModelerComponent } from './components/process-modeler/process-modeler.component';
-import { ProcessHeaderComponent } from './components/process-header/process-header.component';
 import { ProcessModelerServiceImplementation } from './services/process-modeler.service';
 import { ProcessEditorService } from './services/process-editor.service';
 import { ProcessEditorEffects } from './store/process-editor.effects';
@@ -125,6 +124,7 @@ import { ValidateProcessCommand } from './services/commands/validate-process.com
 import { DownloadProcessCommand } from './services/commands/download-process.command';
 import { ParticipantElementVariablesProviderService } from './services/participant-element-variables-provider.service';
 import { SaveAsProcessCommand } from './services/commands/save-as-process.command';
+import { DownloadProcessSVGImageCommand } from './services/commands/download-process-svg-image.command';
 
 @NgModule({
     imports: [
@@ -166,7 +166,6 @@ import { SaveAsProcessCommand } from './services/commands/save-as-process.comman
     ],
     declarations: [
         ProcessEditorComponent,
-        ProcessHeaderComponent,
         PaletteComponent,
         ProcessModelerComponent,
         ProcessPropertiesComponent,
@@ -204,6 +203,7 @@ import { SaveAsProcessCommand } from './services/commands/save-as-process.comman
         ValidateProcessCommand,
         DownloadProcessCommand,
         SaveAsProcessCommand,
+        DownloadProcessSVGImageCommand,
         ProcessEditorService,
         ProcessDiagramLoaderService,
         { provide: BpmnFactoryToken, useClass: BpmnFactoryService },

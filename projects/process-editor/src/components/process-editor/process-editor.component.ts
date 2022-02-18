@@ -41,7 +41,11 @@ import {
     StatusBarService,
     ContentType,
     ModelExtensions,
-    ModelEntitySelectors
+    ModelEntitySelectors,
+    BreadCrumbHelperService,
+    BreadcrumbItem,
+    BasicModelCommands,
+    MODEL_COMMAND_SERVICE_TOKEN
 } from '@alfresco-dbp/modeling-shared/sdk';
 import {
     ChangeProcessModelContextAction,
@@ -61,23 +65,28 @@ import { ProcessCommandsService } from '../../services/commands/process-commands
     templateUrl: './process-editor.component.html',
     styleUrls: ['./process-editor.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    providers: [ ProcessCommandsService ]
+    providers: [
+        ProcessCommandsService,
+        {
+            provide: MODEL_COMMAND_SERVICE_TOKEN,
+            useExisting: ProcessCommandsService
+        }
+    ]
 })
 export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, OnDestroy {
     @Input()
     modelId: string;
 
     loading$: Observable<boolean>;
-
+    readonly modelType = PROCESS;
     modelId$: Observable<string>;
     editorContent$: Observable<ProcessContent>;
-    initialContent: ProcessContent;
+    contentFromStore$: Observable<ProcessContent>;
     modelMetadata$: Observable<Process>;
     editorContentSubject$: Subject<ProcessContent> = new Subject<ProcessContent>();
     editorMetadataSubject$: Subject<Process> = new Subject<Process>();
 
     extensions$: Observable<string>;
-    disableSave: boolean;
     tabNames = [
         'PROCESS_EDITOR.TABS.DIAGRAM_EDITOR',
         'PROCESS_EDITOR.TABS.RAW_EDITOR',
@@ -93,6 +102,7 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
     processFileUri: string;
     extensionsLanguageType = 'json';
     processesLanguageType = 'xml';
+    breadcrumbs$: Observable<BreadcrumbItem[]>;
 
     constructor(
         private store: Store<AmaState>,
@@ -103,18 +113,19 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
         private modelCommands: ProcessCommandsService,
         @Inject(PROCESS_MODEL_ENTITY_SELECTORS)
         private entitySelector: ModelEntitySelectors,
+        private breadCrumbHelperService: BreadCrumbHelperService,
     ) {}
 
     ngOnInit() {
-        const contentFromStore$ = this.store.select(this.entitySelector.selectModelContentById(this.modelId)).pipe(
+        this.breadcrumbs$ = this.breadCrumbHelperService.getModelCrumbs(this.entitySelector.selectBreadCrumbs(this.modelId));
+        this.contentFromStore$ = this.store.select(this.entitySelector.selectModelContentById(this.modelId)).pipe(
             filter(content => !!content),
-            take(1),
-            tap(content => this.initialContent = content)
+            take(1)
         );
         const metadataFromStore$ = this.store.select(this.entitySelector.selectModelMetadataById(this.modelId)).pipe(
             filter(metadata => !!metadata)
         );
-        this.editorContent$ = concat(contentFromStore$, this.editorContentSubject$).pipe(shareReplay(1));
+        this.editorContent$ = concat(this.contentFromStore$, this.editorContentSubject$).pipe(shareReplay(1));
         this.modelMetadata$ = merge(metadataFromStore$, this.editorMetadataSubject$).pipe(
             shareReplay(1)
         );
@@ -131,6 +142,7 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
         this.extensionFileUri = getFileUri(PROCESS, this.extensionsLanguageType, this.modelId);
 
         this.loading$ = this.store.select(selectProcessLoading);
+        this.modelCommands.setVisible(<BasicModelCommands> ProcessCommandsService.DOWNLOAD_PROCESS_SVG_IMAGE_COMMAND_BUTTON, this.isDiagramTabSelected());
     }
 
     async onBpmnEditorChange(): Promise<void> {
@@ -159,8 +171,7 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
 
     onExtensionEditorChange(extensions: string): void {
         const validation = this.codeValidatorService.validateJson<ProcessExtensions>(extensions);
-
-        this.disableSave = !validation.valid;
+        this.updateDisabledStatusForButton(!validation.valid);
 
         if (validation.valid) {
             this.store.dispatch(new UpdateProcessExtensionsAction({ extensions: JSON.parse(extensions), modelId: this.modelId }));
@@ -172,6 +183,7 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
         this.selectedTabIndex = event.index;
         this.statusBarService.setText(this.tabNames[this.selectedTabIndex]);
         this.store.dispatch(new ChangeProcessModelContextAction(this.modelContext[this.selectedTabIndex]));
+        this.modelCommands.setVisible(<BasicModelCommands> ProcessCommandsService.DOWNLOAD_PROCESS_SVG_IMAGE_COMMAND_BUTTON, this.isDiagramTabSelected());
     }
 
     codeEditorPositionChanged(position: CodeEditorPosition) {
@@ -208,6 +220,15 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
         let extensions: ModelExtensions;
         this.extensions$.pipe(take(1)).subscribe(e => extensions = JSON.parse(e));
         return extensions;
+    }
+
+    private isDiagramTabSelected(): boolean {
+        return this.modelContext[this.selectedTabIndex] === ProcessModelContext.diagram;
+    }
+
+    updateDisabledStatusForButton(status: boolean) {
+        this.modelCommands.setDisable(BasicModelCommands.save, status);
+        this.modelCommands.setDisable(BasicModelCommands.saveAs, status);
     }
 
     ngOnDestroy() {

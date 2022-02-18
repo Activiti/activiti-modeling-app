@@ -33,6 +33,7 @@ import { DeleteProcessCommand } from '../../services/commands/delete-process.com
 import { ValidateProcessCommand } from '../../services/commands/validate-process.command';
 import { DownloadProcessCommand } from '../../services/commands/download-process.command';
 import { SaveAsProcessCommand } from '../../services/commands/save-as-process.command';
+import { DownloadProcessSVGImageCommand } from '../../services/commands/download-process-svg-image.command';
 
 describe('ProcessEditorComponent', () => {
     let fixture: ComponentFixture<ProcessEditorComponent>;
@@ -66,6 +67,7 @@ describe('ProcessEditorComponent', () => {
                 ValidateProcessCommand,
                 DownloadProcessCommand,
                 SaveAsProcessCommand,
+                DownloadProcessSVGImageCommand,
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: Store,
@@ -105,7 +107,8 @@ describe('ProcessEditorComponent', () => {
                     provide: PROCESS_MODEL_ENTITY_SELECTORS,
                     useValue: {
                         selectModelContentById: jest.fn().mockImplementation(() => of()),
-                        selectModelMetadataById: jest.fn().mockImplementation(() => of())
+                        selectModelMetadataById: jest.fn().mockImplementation(() => of()),
+                        selectBreadCrumbs: jest.fn().mockImplementation(() => of())
                     }
                 }
             ],

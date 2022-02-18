@@ -1,9 +1,11 @@
 {
-    "PROCESS_EDITOR": {
+    "ADV_PROCESS_EDITOR": {
         "DOWNLOAD_PROCESS": "Download process",
         "SAVE_PROCESS_IMAGE": "Save process diagram as SVG",
         "VALIDATE_PROCESS": "Validate process",
-        "SAVE_PROCESS": "Save process",
+        "SAVE_PROCESS": "Save process"
+    },
+    "PROCESS_EDITOR": {
         "SELECT_PROCESS_VARIABLE": "Select process variable",
         "SCRIPT_NAME": "Script name",
         "PRIORITIES": {
