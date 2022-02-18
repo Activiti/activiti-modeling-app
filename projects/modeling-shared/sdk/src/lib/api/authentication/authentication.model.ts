@@ -52,6 +52,14 @@ export class AuthenticationContent {
         return this.authProperties?.authenticationType;
     }
 
+    getAuthName(): string {
+        return this.name || '';
+     }
+
+    getAuthDescription(): string {
+        return this.description || '';
+    }
+
     isBasicAuth(): boolean {
         return this.getAuthType() === AuthenticationTypes.BASIC;
     }
