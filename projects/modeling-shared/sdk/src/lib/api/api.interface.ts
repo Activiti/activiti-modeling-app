@@ -44,7 +44,7 @@ import {
     Authentication
 } from './types';
 import { ModelSchemaApi } from './model-schema-api.interface';
-import { AuthenticationContent } from './authentication/authentication.model';
+import { AuthenticationContent } from './authentication/authentication.interface';
 
 export const PROCESS_API_TOKEN = new InjectionToken<ModelApiInterface<Process, ProcessContent>>('connector-api');
 export const CONNECTOR_API_TOKEN = new InjectionToken<ModelApiInterface<Connector, ConnectorContent>>('connector-api');

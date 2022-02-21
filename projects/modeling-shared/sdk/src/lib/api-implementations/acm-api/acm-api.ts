@@ -58,7 +58,7 @@ import {
     Widget,
     WidgetContent
 } from '../../api/types';
-import { AuthenticationContent } from '../../api/authentication/authentication.model';
+import { AuthenticationContent } from '../../api/authentication/authentication.interface';
 
 @Injectable()
 export class ACMApi implements AmaApi {

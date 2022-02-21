@@ -21,4 +21,4 @@ export * from './generalmodel-api.interface';
 export * from './model-schema-api.interface';
 export * from './types';
 export * from './regex-patterns';
-export * from './authentication';
+export * from './authentication/authentication.interface';

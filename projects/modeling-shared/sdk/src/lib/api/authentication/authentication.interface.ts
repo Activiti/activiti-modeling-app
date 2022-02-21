@@ -17,6 +17,13 @@
 
 export type AuthenticationProperties = BasicAuthenticationProperties | BearerAuthenticationProperties | ClientCredentialsAuthenticationProperties;
 
+export interface AuthenticationContent {
+    id: string;
+    name: string;
+    authProperties: AuthenticationProperties;
+    description?: string;
+}
+
 export interface BasicAuthenticationProperties {
     authenticationType: 'basic';
     username: string;
@@ -35,11 +42,3 @@ export interface ClientCredentialsAuthenticationProperties {
     endpoint: string;
     scope: string;
 }
-
-export enum AuthenticationTypes {
-    BASIC = 'basic',
-    BEARER = 'bearer',
-    CLIENT_CREDENTIALS = 'client_credentials'
-}
-
-export type AuthenticationType = 'basic' | 'bearer' | 'client_credentials';

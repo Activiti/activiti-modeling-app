@@ -23,7 +23,7 @@ import { ModelContentSerializer } from '../model-content-serializer';
 import { extractDataFromContent } from './model-data-extractors/extract-data-from-content';
 import { ModelDataExtractor } from '../model-data-extractor';
 import { formatUuid } from '../../../helpers/utils/create-entries-names';
-import { AuthenticationContent } from '../../../api/authentication/authentication.model';
+import { AuthenticationContent } from '../../../api/authentication/authentication.interface';
 
 @Injectable()
 export class AuthenticationApiVariation<M extends Authentication, C extends AuthenticationContent> implements ModelApiVariation<M, C> {
