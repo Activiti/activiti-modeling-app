@@ -3,10 +3,15 @@
         &-card {
             padding: 0 12px;
             &-title {
-                display: flex;
-                justify-content: space-between;
-                &-text {
-                    line-height: 36px;
+                margin-top: 0;
+                &-actions {
+                    display: flex;
+                    justify-content: space-between;
+                }
+                &-test-hint {
+                    text-align: right;
+                    color: var(--theme-text-color);
+                    font-size: var(--theme-caption-font-size);
                 }
             }
             &-variables {

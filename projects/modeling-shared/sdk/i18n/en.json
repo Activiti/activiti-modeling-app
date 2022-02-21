@@ -105,11 +105,14 @@
             "EXPRESSION_EDITOR": "Expression editor",
             "NO_BRACKETS_HINT": "The whole expression in this editor will be saved enclosed inside curly brackets (${...}) so you don't need to type them",
             "JUEL_EXPRESSION_SIMULATOR": "JUEL expression simulator",
-            "SIMULATE": "Simulate",
-            "OPEN_SIMULATION": "Open simulation",
-            "CLOSE_SIMULATION": "Close simulation",
+            "TEST": "Test",
+            "TEST_DISABLED_TOOLTIP": "Add a variable to the test before executing it",
+            "TEST_ENABLED_TOOLTIP": "Test the expression using the values provided for the variables",
+            "OPEN_TESTER": "Open tester",
+            "CLOSE_TESTER": "Close tester",
             "SET_VARIABLES_VALUES": "Set variable's values",
-            "DELETE_VARIABLE_FROM_SIMULATION": "Delete variable from simulation"
+            "SET_VARIABLES_VALUES_TOOLTIP": "Select a variable to set its value in the test",
+            "DELETE_VARIABLE_FROM_TEST": "Delete variable from test"
         },
         "VARIABLES_SELECTORS": {
             "ACTIONS": {

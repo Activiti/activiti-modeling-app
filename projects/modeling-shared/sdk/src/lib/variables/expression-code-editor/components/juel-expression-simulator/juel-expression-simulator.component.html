@@ -1,19 +1,25 @@
 <div class="ama-expression-code-editor-dialog-content-card">
     <h4 class="ama-expression-code-editor-dialog-content-card-title">
-        <span class="ama-expression-code-editor-dialog-content-card-title-text">{{ 'SDK.EXPRESSION_CODE_EDITOR.JUEL_EXPRESSION_SIMULATOR' | translate }}</span>
-        <div>
-            <button mat-icon-button
+        <div class="ama-expression-code-editor-dialog-content-card-title-actions">
+            <button mat-raised-button
                 [matMenuTriggerFor]="addVarMenu"
-                [matTooltip]="'SDK.EXPRESSION_CODE_EDITOR.SET_VARIABLES_VALUES' | translate">
+                [matTooltip]="'SDK.EXPRESSION_CODE_EDITOR.SET_VARIABLES_VALUES_TOOLTIP' | translate">
                 <mat-icon>layers</mat-icon>
+                {{ 'SDK.EXPRESSION_CODE_EDITOR.SET_VARIABLES_VALUES' | translate }}
             </button>
 
             <button mat-raised-button color="accent"
-                class="ama-expression-code-editor-dialog-simulate"
+                class="ama-expression-code-editor-dialog-test"
                 (click)="executeSimulation()"
-                data-automation-id="ama-expression-code-editor-dialog-simulate">
-                {{ 'SDK.EXPRESSION_CODE_EDITOR.SIMULATE' | translate }}
+                data-automation-id="ama-expression-code-editor-dialog-test"
+                [disabled]="!variablesToSimulate || variablesToSimulate.length === 0"
+                [matTooltip]="('SDK.EXPRESSION_CODE_EDITOR.TEST_ENABLED_TOOLTIP' | translate)">
+                {{ 'SDK.EXPRESSION_CODE_EDITOR.TEST' | translate }}
             </button>
+        </div>
+
+        <div class="ama-expression-code-editor-dialog-content-card-title-test-hint adf-property-label" *ngIf="!variablesToSimulate || variablesToSimulate.length === 0">
+            {{'SDK.EXPRESSION_CODE_EDITOR.TEST_DISABLED_TOOLTIP' | translate}}
         </div>
     </h4>
 
@@ -32,7 +38,7 @@
                     <mat-panel-title><span>{{variable.name}}</span></mat-panel-title>
                     <mat-panel-description>
                         <button mat-icon-button
-                            [matTooltip]="'SDK.EXPRESSION_CODE_EDITOR.DELETE_VARIABLE_FROM_SIMULATION' | translate"
+                            [matTooltip]="'SDK.EXPRESSION_CODE_EDITOR.DELETE_VARIABLE_FROM_TEST' | translate"
                             (click)="deleteVariableToSimulate(i)">
                             <mat-icon>delete</mat-icon>
                         </button>

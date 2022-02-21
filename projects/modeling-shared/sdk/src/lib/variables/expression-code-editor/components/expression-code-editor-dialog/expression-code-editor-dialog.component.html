@@ -29,13 +29,13 @@
 
 </mat-dialog-content>
 <mat-dialog-actions class="ama-expression-code-editor-dialog-actions">
-    <button mat-button color="accent" (click)="simulation = true" *ngIf="!simulation"
-        data-automation-id="ama-expression-code-editor-dialog-open-simulation-button">
-        {{ 'SDK.EXPRESSION_CODE_EDITOR.OPEN_SIMULATION' | translate }}
+    <button mat-button color="accent" (click)="simulation = true" *ngIf="!simulation && !!expression && expression.trim().length > 0"
+        data-automation-id="ama-expression-code-editor-dialog-open-tester-button">
+        {{ 'SDK.EXPRESSION_CODE_EDITOR.OPEN_TESTER' | translate }}
     </button>
     <button mat-button color="accent" (click)="simulation = false" *ngIf="simulation"
-        data-automation-id="ama-expression-code-editor-dialog-close-simulation-button">
-        {{ 'SDK.EXPRESSION_CODE_EDITOR.CLOSE_SIMULATION' | translate }}
+        data-automation-id="ama-expression-code-editor-dialog-close-tester-button">
+        {{ 'SDK.EXPRESSION_CODE_EDITOR.CLOSE_TESTER' | translate }}
     </button>
 
     <span class="adf-fill-remaining-space"></span>
