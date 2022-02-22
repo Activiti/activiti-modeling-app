@@ -69,6 +69,7 @@
     "bpmn-js-properties-panel": "^0.34.0",
     "camunda-bpmn-moddle": "4.3.0",
     "classlist.js": "1.1.20150312",
+    "crypto-js": "^4.1.1",
     "custom-event-polyfill": "^1.0.6",
     "dmn-js": "^6.3.3",
     "dmn-moddle": "^6.0.0",
