@@ -14,11 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Injectable, Output, EventEmitter, Inject } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { AbstractControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
 import { EntityProperties, EntityProperty, JSONSchemaInfoBasics } from '../../lib/api/types';
 import { primitive_types } from '../helpers/primitive-types';
 import { InputTypeItem, INPUT_TYPE_ITEM_HANDLER } from './properties-viewer/value-type-inputs/value-type-inputs';
+
+interface VariablesData {
+    readonly data: string;
+    readonly error: string | null;
+}
 
 export function multipleOfValidator(multipleOfValue: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -33,7 +39,8 @@ export function multipleOfValidator(multipleOfValue: number): ValidatorFn {
     providedIn: 'root',
 })
 export class VariablesService {
-    @Output() variablesData: EventEmitter<any> = new EventEmitter<any>();
+    private readonly variablesDataSub = new Subject<VariablesData>();
+    readonly variablesData$ = this.variablesDataSub.asObservable();
 
     constructor(
         @Inject(INPUT_TYPE_ITEM_HANDLER) private inputTypeItemHandler: InputTypeItem[]) { }
@@ -56,7 +63,7 @@ export class VariablesService {
     }
 
     sendData(data: string, error: string) {
-        this.variablesData.emit({ data: data, error: error });
+        this.variablesDataSub.next({ data, error });
     }
 
     validateFormVariable(variables: EntityProperties): boolean {

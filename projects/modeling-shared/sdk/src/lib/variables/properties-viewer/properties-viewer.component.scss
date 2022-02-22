@@ -1,3 +1,4 @@
+
 modelingsdk-value-type-input .mat-form-field-infix {
     border-top: 0;
 }
@@ -6,22 +7,20 @@ modelingsdk-properties-viewer {
     padding: 10px;
     display: flex;
     flex-direction: row;
+    height: 100%;
 }
 
 .ama-properties-viewer {
     min-height: 90px;
     width: 560px;
-
-    &__header {
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-    }
+    display: flex;
+    flex-flow: column;
 
     .mat-table {
         border: 1px solid var(--theme-border-color);
-        height: 200px;
+        height: 100%;
         overflow: scroll;
+        box-sizing: border-box;
     }
 
     .mat-header-row {
@@ -69,6 +68,10 @@ modelingsdk-properties-viewer {
     text-align: left;
     width: 360px;
     margin-left: 20px;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
 
     &.ama-space-top {
         margin-top: 65px;
@@ -84,15 +87,24 @@ modelingsdk-properties-viewer {
         font-size: medium;
     }
 
+    .ama-variable-tab--auto-height {
+        overflow-y: auto;
+        flex-grow: 1;
+
+        .mat-tab-body-wrapper {
+            height: 100%;
+        }
+    }
+
     .mat-tab-body-content {
-        height: 175px;
         overflow: auto;
-        margin-top: 12px;
+        padding-top: 12px;
+        box-sizing: border-box;
 
         modelingsdk-expression-code-editor {
             display: block;
-            height: 135px;
-            padding-bottom: 20px;
+            height: 100%;
+            min-height: 120px;
         }
     }
 }
@@ -113,10 +125,10 @@ modelingsdk-properties-viewer {
 
 .ama-variable-type-required-row {
     display: flex;
-    flex: 1 1 auto;
+    width: 100%;
 
     modelingsdk-property-type-selector-smart {
-        flex-grow: inherit;
+        width: 100%;
     }
 
     .ama-variable-required {
@@ -124,4 +136,67 @@ modelingsdk-properties-viewer {
         position: relative;
         margin-left: 6px;
     }
+}
+
+.ama-properties-viewer__flex-row {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.ama-properties-viewer__text-ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0;
+}
+
+.ama-properties-viewer__table {
+    .mat-column-delete {
+        max-width: 40px;
+        justify-content: flex-end;
+    }
+
+    .mat-column-value {
+        flex-grow: 1.3;
+        padding-left: 28px;
+        position: relative;
+    }
+}
+
+.ama-properties-viewer__table__icon {
+    display: block;
+}
+
+.ama-properties-viewer__table__icon-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 24px;
+    width: 24px;
+    margin: auto;
+}
+
+.ama-properties-viewer-error {
+    height: 28px;
+}
+
+.ama-properties-viewer-error__info {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    border-top: 1px solid var(--theme-warn-color);
+    padding-top: 4px;
+    box-sizing: border-box;
+    height: 28px;
+}
+
+.ama-properties-viewer-error__text {
+    color: var(--theme-warn-color);
+    font-size: var(--theme-caption-font-size);
+    margin: 0;
+}
+
+.ama-properties-viewer-error__icon {
+    margin-right: 4px;
 }

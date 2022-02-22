@@ -1,6 +1,6 @@
 <div class="ama-properties-viewer">
 
-    <div class="ama-properties-viewer__header">
+    <div class="ama-properties-viewer__flex-row">
         <mat-form-field class="ama-variables-filter">
             <mat-label>{{filterPlaceholder | translate}}</mat-label>
             <input [(ngModel)]="filterValue" matInput autocomplete="false" data-automation-id="variable-filter" (ngModelChange)="applyFilter($event)">
@@ -15,7 +15,7 @@
         </button>
     </div>
 
-    <mat-table [dataSource]="dataSource" matSort>
+    <mat-table [dataSource]="dataSource" matSort class="ama-properties-viewer__table">
         <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_NAME' | translate
                 }}
@@ -49,15 +49,25 @@
             </mat-header-cell>
             <mat-cell *matCellDef="let element; index as i" [attr.data-automation-id]="'variable-value-cell-' + i"
                 class="ama-ellipsis-cell">
-
-                {{element.value | variablevalue}}
+                <div class="ama-properties-viewer__flex-row">
+                    <div class="ama-properties-viewer__table__icon-wrapper">
+                        <mat-icon
+                            *ngIf="getValueErrorMessage(element.value, element.type) as error"
+                            [matTooltip]="error | translate"
+                            class="ama-properties-viewer__table__icon"
+                            color="warn">
+                            error
+                        </mat-icon>
+                    </div>
+                    <p class="ama-properties-viewer__text-ellipsis">{{ element.value | variablevalue }}</p>
+                </div>
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="delete">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let element, let i = index">
-                <mat-icon (click)="deleteRow(element, i)" color="primary" class="delete-btn"
+                <mat-icon (click)="deleteRow(element.id)" color="primary" class="delete-btn"
                     data-automation-id="delete-variable">
                     delete
                 </mat-icon>
@@ -100,7 +110,7 @@
             </mat-checkbox>
         </div>
 
-        <mat-tab-group *ngIf="allowExpressions && form.type" [selectedIndex]="tabIndex">
+        <mat-tab-group *ngIf="allowExpressions && form.type" [selectedIndex]="tabIndex" class="ama-variable-tab--auto-height">
             <mat-tab label="{{'SDK.MAPPING_DIALOG.VALUE_MAPPING'| translate}}">
                 <modelingsdk-value-type-input #valueTypeInput
                     (onChange)="updateVariableValue($event)"
@@ -143,6 +153,13 @@
             data-automation-id="variable-required" class="ama-variable-required">
             {{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_REQUIRED' | translate }}
         </mat-checkbox>
+
+        <div class="ama-properties-viewer-error">
+            <div class="ama-properties-viewer-error__info" *ngIf="currentValueErrorMessage">
+                <mat-icon class="ama-properties-viewer-error__icon" color="warn">error</mat-icon>
+                <p class="ama-properties-viewer-error__text">{{ currentValueErrorMessage | translate  }}</p>
+            </div>
+        </div>
     </div>
 </ng-container>
 

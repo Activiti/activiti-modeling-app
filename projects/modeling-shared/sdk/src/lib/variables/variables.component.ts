@@ -72,7 +72,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.serviceSubscription = this.variablesService.variablesData.subscribe(dataObj => {
+        this.serviceSubscription = this.variablesService.variablesData$.subscribe(dataObj => {
             if (dataObj.data) {
                 this.editorContent = dataObj.data;
                 this.error = dataObj.error;

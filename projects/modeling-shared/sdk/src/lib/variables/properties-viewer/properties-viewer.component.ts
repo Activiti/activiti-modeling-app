@@ -26,6 +26,7 @@ import { EntityProperty, EntityProperties } from './../../api/types';
 import { FIELD_VARIABLE_NAME_REGEX } from '../../helpers/utils/create-entries-names';
 import { MatSort } from '@angular/material/sort';
 import { ValueTypeInputComponent } from './value-type-input.component';
+import { CodeValidatorService } from '../../code-editor/services/code-validator.service';
 
 @Component({
     templateUrl: './properties-viewer.component.html',
@@ -35,19 +36,6 @@ import { ValueTypeInputComponent } from './value-type-input.component';
 })
 
 export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, AfterViewInit {
-    subscription: Subscription;
-    serviceSubscription: Subscription;
-    dataSource: MatTableDataSource<EntityProperty>;
-    data: EntityProperties = {};
-    form: EntityProperty;
-    expression: string;
-    position: number;
-    showForm = false;
-    error = false;
-    isSelected = false;
-    selection = new SelectionModel<EntityProperty>();
-    tabIndex = null;
-    private readonly EXPRESSION_REGEX = /\${([^]*)}/m;
     @Input() types: string[] = primitive_types;
     @Input() properties = '';
     @Input() requiredCheckbox = true;
@@ -59,12 +47,32 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(ValueTypeInputComponent) valueTypeInput: ValueTypeInputComponent;
 
+    subscription: Subscription;
+    serviceSubscription: Subscription;
+    dataSource: MatTableDataSource<EntityProperty>;
+    data: EntityProperties = {};
+    form: EntityProperty;
+    expression: string;
+    position: number;
+    showForm = false;
+    error = false;
+    currentValueErrorMessage: string | null = null;
+    isSelected = false;
+    selection = new SelectionModel<EntityProperty>();
+    tabIndex = null;
     extendedProperties: {
         allowExpressions: boolean;
     };
     autocompletionContext: EntityProperty[];
 
-    constructor(private variablesService: VariablesService, private uuidService: UuidService, private changeDetectorRef: ChangeDetectorRef) {
+    private readonly EXPRESSION_REGEX = /\${([^]*)}/m;
+
+    constructor(
+        private variablesService: VariablesService,
+        private uuidService: UuidService,
+        private changeDetectorRef: ChangeDetectorRef,
+        private codeValidatorService: CodeValidatorService
+    ) {
         this.form = {
             id: '',
             name: '',
@@ -88,24 +96,26 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
             this.data = JSON.parse(this.properties);
         }
 
-        this.serviceSubscription = this.variablesService.variablesData.subscribe(dataObj => {
+        this.serviceSubscription = this.variablesService.variablesData$.subscribe((dataObj) => {
             if (!dataObj.error || dataObj.error === 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME') {
-                let dataArray: EntityProperty[] = [];
-                dataArray = Object.values(JSON.parse(dataObj.data));
-
-                this.dataSource = new MatTableDataSource(dataArray);
-                this.data = JSON.parse(dataObj.data);
-
-                dataArray.forEach((item, index) => {
-                    if (this.position === index) {
-                        this.form = item;
-                        this.setExpression(item);
-                    }
-                });
-
                 this.error = false;
             }
+
+            const parsedData: EntityProperties = JSON.parse(dataObj.data);
+            const dataArray = Object.values(parsedData);
+
+            this.dataSource = new MatTableDataSource(dataArray);
+            this.data = parsedData;
+
+            const item = dataArray.find((_, index) => index === this.position);
+
+            if (item) {
+                this.form = item;
+                this.setExpression(item);
+            }
+
         });
+
         this.dataSource.filterPredicate = (data, filter) => (data.name.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1);
     }
 
@@ -133,14 +143,18 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         this.serviceSubscription.unsubscribe();
     }
 
-    deleteRow(element, index) {
+    deleteRow(id: string) {
         this.showForm = false;
         this.position = -1;
-        delete this.data[element.id];
-        this.variablesService.sendData(JSON.stringify(this.data, null, 2), null);
+        this.currentValueErrorMessage = null;
+
+        delete this.data[id];
+
+        const errorMessage = this.getErrorMessageFromData(this.data, this.form.name);
+        this.variablesService.sendData(JSON.stringify(this.data, null, 2), errorMessage);
 
         if (this.isNotEmpty(this.data)) {
-            this.error = false;
+            this.error = !!errorMessage;
         }
         this.propertyChanged.emit(true);
         this.dataSource.sort = this.sort;
@@ -156,6 +170,7 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         };
         this.autocompletionContext = this.getVariablesForExpressionEditor(element.id);
         this.updateTabIndex();
+        this.validateCurrentFormValue();
     }
 
     private getVariablesForExpressionEditor(id: any): EntityProperty[] {
@@ -173,25 +188,39 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
     saveChanges() {
         this.data[this.form.id] = this.form;
 
-        if (this.isNotEmpty(this.data)) {
+        const data = JSON.stringify(this.data, null, 2);
+        const errorMessage = this.getErrorMessageFromData(this.data, this.form.name);
 
-            if (!this.isValid(this.form.name)) {
-                this.variablesService.sendData(JSON.stringify(this.data, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME');
-                this.error = true;
-            } else {
-                this.variablesService.sendData(JSON.stringify(this.data, null, 2), null);
-                this.error = false;
-            }
+        this.variablesService.sendData(data, errorMessage);
+        this.error = !!errorMessage;
 
-        } else {
-            this.variablesService.sendData(JSON.stringify(this.data, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME');
-            this.error = true;
-        }
+        this.validateCurrentFormValue();
         this.propertyChanged.emit(true);
     }
 
+    validateCurrentFormValue() {
+        this.currentValueErrorMessage = this.getValueErrorMessage(this.form.value, this.form.type);
+    }
+
+    getErrorMessageFromData(entityProperties: EntityProperties, currentFormName: string): string | null {
+
+        if (!this.isNotEmpty(entityProperties)) {
+            return 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME';
+        }
+
+        if (currentFormName && !this.isValid(currentFormName)) {
+            return 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME';
+        }
+
+        if (this.hasInvalidJson(entityProperties)) {
+            return 'APP.GENERAL.ERRORS.NOT_VALID_JSON';
+        }
+
+        return null;
+    }
+
     updateVariableValue(value?: any): void {
-        if (this.isValidValue(value)) {
+        if (this.isValidValue(value, this.form.type)) {
             this.form.value = value;
         } else if (!this.expression || this.expression.trim().length === 0) {
             delete this.form.value;
@@ -200,10 +229,16 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         this.saveChanges();
     }
 
-    private isValidValue(value: any) {
+    private isValidValue(value: any, type: string) {
+
+        if (type === 'json' && this.isValidJson(value)) {
+            return true;
+        }
+
         if (value !== null && value !== undefined) {
             return typeof value === 'string' ? value.trim().length > 0 : true;
         }
+
         return false;
     }
 
@@ -223,6 +258,26 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
 
     isNotEmpty(data: EntityProperties): boolean {
         return Object.values(data).every(item => !!item.name.trim().length);
+    }
+
+    isValidJson(value?: string | Object) {
+        if (!value || typeof value === 'object') {
+            return true;
+        }
+
+        return this.codeValidatorService.validateJson(value).valid;
+    }
+
+    getValueErrorMessage(value: string | Object, type: string): string {
+        if (type === 'json' && !this.isValidJson(value)) {
+            return 'APP.GENERAL.ERRORS.NOT_VALID_JSON';
+        }
+
+        return '';
+    }
+
+    hasInvalidJson(data: EntityProperties): boolean {
+        return Object.values(data).filter(({type}) => type === 'json').some(({value}) => !this.isValidJson(value));
     }
 
     isValid(name: string): boolean {

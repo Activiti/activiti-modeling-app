@@ -43,6 +43,8 @@ import { PropertiesViewerBooleanInputComponent } from './value-type-inputs/boole
 import { provideModelingJsonSchemaProvider } from '../../services/modeling-json-schema-provider.service';
 import { CodeEditorModule } from '../../code-editor/code-editor.module';
 import { ExpressionsEditorService } from '../expression-code-editor/services/expressions-editor.service';
+import { CodeValidatorService } from '../../code-editor/public-api';
+import { EntityProperties } from '../../api/types';
 
 describe('PropertiesViewerComponent', () => {
     let fixture: ComponentFixture<PropertiesViewerComponent>;
@@ -57,10 +59,12 @@ describe('PropertiesViewerComponent', () => {
         '234' : {'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''},
         '345' : {'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': ''}
     };
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 VariablesService,
+                CodeValidatorService,
                 DialogService,
                 { provide: MatDialogRef, useValue: mockDialog },
                 { provide: Store, useValue: { dispatch: jest.fn(), select: jest.fn().mockReturnValue(of()) }},
@@ -109,7 +113,7 @@ describe('PropertiesViewerComponent', () => {
 
     it('should call sendData of VariableDialogService when clicking on delete ', () => {
         component.requiredCheckbox = true;
-        component.data = data;
+        component.data = {...data};
         fixture.detectChanges();
         spyOn(service, 'sendData');
 
@@ -129,8 +133,8 @@ describe('PropertiesViewerComponent', () => {
     it('should have the same number of rows as properties in table', () => {
         component.requiredCheckbox = true;
         const data1 = {
-          '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': ''},
-          '243':  {'id': '243', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''},
+          '123': {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': ''},
+          '243': {'id': '243', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''},
           '345': {'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': ''}
         };
 
@@ -144,7 +148,7 @@ describe('PropertiesViewerComponent', () => {
 
     it('should show no properties if row was not clicked', () => {
         component.requiredCheckbox = true;
-        component.data = data;
+        component.data = {...data};
         fixture.detectChanges();
 
         const template = fixture.nativeElement.querySelector('.ama-properties-form');
@@ -157,7 +161,7 @@ describe('PropertiesViewerComponent', () => {
 
     it('should show edit form if row was clicked', () => {
         component.requiredCheckbox = true;
-        component.data = data;
+        component.data = {...data};
         fixture.detectChanges();
 
         const editRow = fixture.nativeElement.querySelector('.mat-row');
@@ -333,7 +337,7 @@ describe('PropertiesViewerComponent', () => {
         await fixture.whenStable();
 
         expect(component.dataSource.filter).toBe('var2');
-        expect(component.dataSource.filteredData).toEqual([{'id': '234', 'name': 'var2', 'type': 'string', 'required': false}]);
+        expect(component.dataSource.filteredData).toEqual([{'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''}]);
     });
 
     it('should filter only based on name column', async () => {
@@ -506,4 +510,129 @@ describe('PropertiesViewerComponent', () => {
         expect(codeEditor).not.toBeNull();
         expect(codeEditor).toBeDefined();
     });
+
+    it('should not disable update button when json values are correct', () => {
+
+        const jsonData: EntityProperties = {
+            '1' : {'id': '1', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': '{ "correct": "json" }'},
+            // the code editor is passing valid json as object,
+            '4' : {'id': '4', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': { aa: 'aa' } as unknown as string},
+        };
+
+        component.data = jsonData;
+        component.form.name = 'changed';
+
+        const variablesServiceSpy = spyOn(service, 'sendData');
+
+        component.saveChanges();
+        expect(component.error).toBe(false);
+        expect(variablesServiceSpy).toHaveBeenCalledWith(JSON.stringify(jsonData, null, 2), null);
+    });
+
+    it('should disable update button when any of the table rows contain invalid json data', () => {
+
+        const jsonData: EntityProperties = {
+            '1' : {'id': '1', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': '{ "correct": "json" }'},
+            '2' : {'id': '2', 'name': 'invalid_json', 'type': 'json', 'required': false, 'value': '{ "missTyped": "json }'},
+            '3' : {'id': '3', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': '{ "correct": "json" }'},
+        };
+
+        component.data = jsonData;
+        component.form.name = 'changed';
+
+        const variablesServiceSpy = spyOn(service, 'sendData');
+
+        component.saveChanges();
+        expect(component.error).toBe(true);
+        expect(variablesServiceSpy).toHaveBeenCalledWith(JSON.stringify(jsonData, null, 2), 'APP.GENERAL.ERRORS.NOT_VALID_JSON');
+    });
+
+    describe('#isValidJson', () => {
+        it('should detect that "{ "correct": "json" }" value is a valid json', () => {
+            const actual = component.isValidJson('{ "correct": "json" }');
+            expect(actual).toBe(true);
+        });
+
+        it('should detect that for our useCase the Object is a valid json, as ', () => {
+            const actual = component.isValidJson({ correct: 'json' });
+            expect(actual).toBe(true);
+        });
+
+        it('should detect that { "missTyped": "json value is invalid json', () => {
+            const actual = component.isValidJson('{ { "missTyped": "json');
+            expect(actual).toBe(false);
+        });
+
+        it('should detect that empty string is a valid json ', () => {
+            const actual = component.isValidJson('');
+            expect(actual).toBe(true);
+        });
+    });
+
+    describe('#getValueErrorMessage', () => {
+        it('should return error message for invalid JSON value', () => {
+            const invalid_json = '{ "missTyped": "json }';
+            const actual = component.getValueErrorMessage(invalid_json, 'json');
+            expect(actual).toBe('APP.GENERAL.ERRORS.NOT_VALID_JSON');
+        });
+
+        it('should return no error message for valid value', () => {
+            const invalid_json = '{ "correct": "json" }';
+            const actual = component.getValueErrorMessage(invalid_json, 'json');
+            expect(actual).toBe('');
+        });
+    });
+
+    describe('Table Rows actions', () => {
+
+        const validJsonVariable = {'id': '1', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': '{ "correct": "json" }'};
+        const invalidJsonVariable = {'id': '2', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': '{ "missTyped": "json }'};
+
+        beforeEach(() => {
+
+            const input: EntityProperties = {
+                '1' : validJsonVariable,
+                '2' : invalidJsonVariable,
+                '3' : {...validJsonVariable, id: '3'},
+            };
+
+            component.data = input;
+            component.form.name = 'changed';
+        });
+
+        describe('#deleteRow', () => {
+            it('should notify service that remained values are not correct, and set error flag to true', () => {
+
+                const expected: EntityProperties = {
+                    '1' : validJsonVariable,
+                    '2' : invalidJsonVariable,
+                };
+                const variablesServiceSpy = spyOn(service, 'sendData').and.callThrough();
+
+                component.deleteRow('3');
+
+                expect(variablesServiceSpy).toHaveBeenCalledWith(JSON.stringify(expected, null, 2), 'APP.GENERAL.ERRORS.NOT_VALID_JSON');
+                expect(component.dataSource.data.length).toBe(2);
+                expect(component.error).toBeTruthy();
+            });
+
+            it('should set currentValueErrorMessage to null', () => {
+                component.currentValueErrorMessage = 'ERROR';
+                component.deleteRow('3');
+                expect(component.currentValueErrorMessage).toBeNull();
+            });
+        });
+
+        describe('#editRow', () => {
+            it('should keep track of currently edited row, and update currentValueErrorMessage on change', () => {
+                component.editRow(invalidJsonVariable, 0);
+                expect(component.currentValueErrorMessage).toBe('APP.GENERAL.ERRORS.NOT_VALID_JSON');
+
+                component.editRow(validJsonVariable, 1);
+                expect(component.currentValueErrorMessage).toBe('');
+            });
+        });
+
+    });
+
 });
