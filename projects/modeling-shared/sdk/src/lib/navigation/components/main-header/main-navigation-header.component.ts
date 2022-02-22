@@ -15,19 +15,16 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  templateUrl: './main-navigation.component.html',
-  styleUrls: ['./main-navigation.component.scss'],
+  templateUrl: './main-navigation-header.component.html',
+  styleUrls: ['./main-navigation-header.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainNavigationComponent implements OnInit {
+export class MainNavigationHeaderComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

@@ -20,8 +20,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { RootNavigationComponent } from './root-navigation.component';
 import { RouterModule } from '@angular/router';
+import { RootNavigationComponent } from './components/root/root-navigation.component';
+import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
+import { MainNavigationHeaderComponent } from './components/main-header/main-navigation-header.component';
 
 @NgModule({
     imports: [
@@ -31,7 +33,7 @@ import { RouterModule } from '@angular/router';
         RouterModule.forChild([]),
         CoreModule.forChild()
     ],
-    declarations: [ RootNavigationComponent] ,
-    exports: [ RootNavigationComponent ]
+    declarations: [ RootNavigationComponent, MainNavigationComponent, MainNavigationHeaderComponent] ,
+    exports: [ RootNavigationComponent, MainNavigationComponent, MainNavigationHeaderComponent ]
 })
 export class NavigationModule { }

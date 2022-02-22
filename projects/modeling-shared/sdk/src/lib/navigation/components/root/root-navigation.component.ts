@@ -19,15 +19,15 @@ import { Component, OnInit, AfterContentInit, ViewEncapsulation } from '@angular
 import { Store } from '@ngrx/store';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { AppConfigService } from '@alfresco/adf-core';
-import { AmaState } from '../store/app.state';
-import { selectMenuOpened } from '../store/app.selectors';
+import { AmaState } from '../../../store/app.state';
+import { selectMenuOpened } from '../../../store/app.selectors';
 
 export interface CreateAction {
     title: string;
     icon: string;
     handler: string;
 }
-
+/** @deprecated: theming */
 @Component({
     templateUrl: './root-navigation.component.html',
     styleUrls: ['./root-navigation.component.scss'],

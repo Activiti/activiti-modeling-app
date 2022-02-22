@@ -56,5 +56,33 @@
             "LOAD_RELEASES": "We hit a problem loading the releases. Try refreshing the page",
             "LOAD_PROCESSES": "We hit a problem loading the processes. Try refreshing the page"
         }
+    },
+    "NEW_STUDIO_DASHBOARD" :{
+        "NAME": "Modeler",
+        "NAVIGATION": {
+            "PROJECT_TITLE": "Projects",
+            "CUSTOM_MODEL_TITLE": "Custom Models",
+            "DATA_MODELS_TITLE": "Data Models",
+            "ALL_PROJECTS": {
+                "LABEL": "All projects",
+                "TOOLTIP": "All Published Projects"
+            },
+            "FAVORITE_PROJECTS": {
+                "LABEL": "Favorite projects",
+                "TOOLTIP": "Favorites Projects"
+            },
+            "MY_MODELS": {
+                "LABEL": "My models",
+                "TOOLTIP": "Models created by the user"
+            },
+            "SHARED_MODELS": {
+                "LABEL": "Shared models",
+                "TOOLTIP": "Models shared across the projects"
+            },
+            "DATA_MODELS": {
+                "LABEL": "Data models",
+                "TOOLTIP": "Published data models"
+            }
+        }
     }
 }

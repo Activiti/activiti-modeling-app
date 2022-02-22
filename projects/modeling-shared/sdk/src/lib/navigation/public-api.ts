@@ -16,4 +16,6 @@
  */
 
 export * from './navigation.module';
-export * from './root-navigation.component';
+export * from './components/root/root-navigation.component';
+export * from './components/main-navigation/main-navigation.component';
+export * from './components/main-header/main-navigation-header.component';

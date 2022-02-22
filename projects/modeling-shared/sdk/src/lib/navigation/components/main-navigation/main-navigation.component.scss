@@ -1,0 +1,94 @@
+.studio-main-navigation {
+    width: 288px;
+    height: calc(100% - 15px);
+    background: var(--theme-app-bar-bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-left: 35px;
+    padding-top: 15px;
+
+    &-header {
+        width: inherit;
+        display:flex;
+        justify-content: space-between;
+
+        &-title {
+            display:flex;
+            align-items: center;
+
+            .studio-logo {
+                display:flex;
+
+                &-circle {
+                    width: 22px;
+                    height: 22px;
+                    background-color: #ffc600;
+                    border-radius: 11px;
+                }
+
+                &-square {
+                    width: 18px;
+                    height: 18px;
+                    background-color: #ff9015;
+                    border-radius: 2px;
+                    position: relative;
+                    left: -8px;
+                    top: 2px;
+                    transform: rotate(45deg);
+                }
+            }
+
+            &-text {
+                font-size: 16px;
+                line-height: 22px;
+                margin-left: 12px;
+            }
+        }
+
+        &-controls {
+            display: flex;
+        }
+    }
+
+    &-section {
+        padding-top: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &-main-title {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.2px;
+        text-transform: capitalize;
+    }
+
+    &-menu {
+        display: flex;
+        flex-direction: column;
+        padding-left: 0;
+        list-style-type: none;
+
+        &-element {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.25px;
+
+            &-active {
+                color: var(--theme-accent-color);
+            }
+        }
+      }
+}
