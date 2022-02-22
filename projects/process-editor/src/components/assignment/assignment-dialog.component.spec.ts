@@ -371,7 +371,7 @@ describe('AssignmentDialogComponent', () => {
             const assignButton = fixture.debugElement.query(By.css(`#ama-assign-button`));
             expect(editor).not.toBeNull();
             expect(assignButton.nativeElement['disabled']).toBeTruthy();
-            component.onExpressionChange(AssignmentDialogComponent.ASSIGNEE_CONTENT);
+            component.onExpressionChange('${}');
             fixture.detectChanges();
             expect(assignButton.nativeElement['disabled']).toBeTruthy();
         });

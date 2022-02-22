@@ -96,7 +96,7 @@ export const identityCandidateValidator: ValidatorFn = (candidateFormGroup: Form
     encapsulation: ViewEncapsulation.None
 })
 export class AssignmentDialogComponent implements OnInit, OnDestroy {
-    static ASSIGNEE_CONTENT = JSON.stringify({ assignee: '${}' }, null, '\t');
+    static ASSIGNEE_CONTENT = JSON.stringify({ assignee: '${initiator}' }, null, '\t');
     static CANDIDATES_CONTENT = JSON.stringify({
         candidateUsers: '${}',
         candidateGroups: '${}'

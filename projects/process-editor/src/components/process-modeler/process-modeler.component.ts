@@ -90,6 +90,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
                 const element = createSelectedElement(event.elements[0]);
                 if (element.type === BpmnElement.UserTask) {
                     this.processModelerService.updateElementProperty(element.id, BpmnProperty.priority, 0);
+                    this.processModelerService.updateElementProperty(element.id, BpmnProperty.assignee, '${initiator}');
                 }
             }
         });
