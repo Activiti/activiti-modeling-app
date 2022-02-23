@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Output, EventEmitter, Input, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { EntityProperty, JSONSchemaInfoBasics } from '../../../../api/types';
 import { ModelingJSONSchemaService } from '../../../../services/modeling-json-schema.service';
 import { ModeledObjectChanges } from '../modeled-object/modeled-object-input.component';
@@ -49,25 +49,37 @@ export class PropertiesViewerJsonInputComponent implements OnChanges {
     }
 
     ngOnChanges(): void {
-        if (this.value && this.contentChanges()) {
-            if (typeof this.value !== 'string') {
-                this.stringValue = this.stringifyValue();
-            } else {
-                this.stringValue = this.value;
-            }
+        if (this.contentChanges()) {
+            this.stringValue = this.getStringValue(this.value);
         }
+    }
+
+    private getStringValue(value: unknown) {
+        if (!value) {
+            return '';
+        }
+
+        if (typeof value !== 'string') {
+            return this.stringifyValue(value);
+        }
+
+        return value;
     }
 
     private contentChanges(): boolean {
         let check = this.stringValue;
         try {
-            check = this.stringifyValue();
+            check = this.stringifyValue(this.value);
         } catch (error) { }
         return this.stringValue !== check;
     }
 
-    private stringifyValue(): string {
-        return JSON.stringify(this.value, null, 4);
+    private stringifyValue(value: unknown): string {
+        try {
+            return JSON.stringify(value, null, 4);
+        } catch (e) { }
+
+        return '';
     }
 
     onChange(value: string) {
@@ -84,12 +96,22 @@ export class PropertiesViewerJsonInputComponent implements OnChanges {
         this.emitValue();
     }
 
-    private emitValue() {
-        if (this.valid && this.value) {
-            this.change.emit(this.value);
-        } else {
-            this.change.emit(null);
+    private getValueForEmit() {
+        if (!this.value) {
+            return '';
         }
+
+        if (this.valid && this.value) {
+            return this.value;
+        }
+
+        return null;
+    }
+
+    private emitValue() {
+        const value = this.getValueForEmit();
+
+        this.change.emit(value);
     }
 
     get isPrimitiveJSONInput() {

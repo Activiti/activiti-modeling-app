@@ -15,31 +15,30 @@
  * limitations under the License.
  */
 
+import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { TranslateModule } from '@ngx-translate/core';
-import { TranslationService, TranslationMock } from '@alfresco/adf-core';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ValueTypeInputComponent } from '../../value-type-input.component';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { JSONSchemaToEntityPropertyService } from '../../../../services/json-schema-to-entity-property.service';
-import { PropertiesViewerStringInputComponent } from '../string-input/string-input.component';
-import { ModelingJSONSchemaService } from '../../../../services/modeling-json-schema.service';
-import { CodeEditorService } from '../../../../code-editor/services/code-editor-service.service';
-import { provideInputTypeItemHandler } from '../value-type-inputs';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { PropertiesViewerArrayInputComponent } from '../array-input/array-input.component';
-import { VariableValuePipe } from '../../variable-value.pipe';
-import { AllowedCharactersDirective } from '../../../../helpers/directives/allowed-characters.directive';
+import { MatInputModule } from '@angular/material/input';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
-import { PropertiesViewerJsonInputComponent } from './json-input.component';
-import { RegisteredInputsModelingJsonSchemaProvider } from '../../../../services/registered-inputs-modeling-json-schema-provider.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { CodeEditorService } from '../../../../code-editor/services/code-editor-service.service';
+import { AllowedCharactersDirective } from '../../../../helpers/directives/allowed-characters.directive';
+import { JSONSchemaToEntityPropertyService } from '../../../../services/json-schema-to-entity-property.service';
 import { provideModelingJsonSchemaProvider } from '../../../../services/modeling-json-schema-provider.service';
+import { ModelingJSONSchemaService } from '../../../../services/modeling-json-schema.service';
+import { RegisteredInputsModelingJsonSchemaProvider } from '../../../../services/registered-inputs-modeling-json-schema-provider.service';
+import { ValueTypeInputComponent } from '../../value-type-input.component';
+import { VariableValuePipe } from '../../variable-value.pipe';
+import { PropertiesViewerArrayInputComponent } from '../array-input/array-input.component';
+import { PropertiesViewerStringInputComponent } from '../string-input/string-input.component';
+import { provideInputTypeItemHandler } from '../value-type-inputs';
+import { PropertiesViewerJsonInputComponent } from './json-input.component';
 
 describe('PropertiesViewerJsonInputComponent', () => {
     let component: PropertiesViewerJsonInputComponent;
@@ -148,6 +147,11 @@ describe('PropertiesViewerJsonInputComponent', () => {
             component.onChange('[1, 2, 3]');
             expect(component.change.emit).toHaveBeenCalledWith([1, 2, 3]);
         });
+
+        it('undefined', () => {
+            component.onChange(undefined);
+            expect(component.change.emit).toHaveBeenCalledWith('');
+        });
     });
 
     describe('should emit the modeled object stringified when is valid', () => {
@@ -194,5 +198,35 @@ describe('PropertiesViewerJsonInputComponent', () => {
 
         component.model = { $ref: '#/$defs/primitive/json' };
         expect(component.isPrimitiveJSONInput).toEqual(true);
+    });
+
+    describe('should transform to string', () => {
+        it('null', () => {
+            component.value = null;
+            component.ngOnChanges();
+
+            expect(component.stringValue).toBe('');
+        });
+
+        it('number', () => {
+            component.value = 123;
+            component.ngOnChanges();
+
+            expect(component.stringValue).toBe('123');
+        });
+
+        it('string', () => {
+            component.value = 'a';
+            component.ngOnChanges();
+
+            expect(component.stringValue).toBe('a');
+        });
+
+        it('boolean', () => {
+            component.value = true;
+            component.ngOnChanges();
+
+            expect(component.stringValue).toBe('true');
+        });
     });
 });
