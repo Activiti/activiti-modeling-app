@@ -50,6 +50,7 @@ import { processErrorsHandler } from './process-errors.handler';
 import { loopCharacteristics } from './loopCharacteristics.handler';
 import { loopDataOutputRef } from './loopDataOutputRef.handler';
 import { emailServiceTaskHandler } from './emailServiceTask.handler';
+import { inheritBusinessKeyHandler } from './inheritBusinessKey.handler';
 
 export const handlers = {
     [BpmnProperty.id]: idHandler,
@@ -85,5 +86,6 @@ export const handlers = {
     [BpmnCompositeProperty.errors]: processErrorsHandler,
     [BpmnProperty.loopCharacteristics]: loopCharacteristics,
     [BpmnProperty.loopDataOutputRef]: loopDataOutputRef,
-    [BpmnProperty.emailServiceTask]: emailServiceTaskHandler
+    [BpmnProperty.emailServiceTask]: emailServiceTaskHandler,
+    [BpmnProperty.inheritBusinessKey]: inheritBusinessKeyHandler
 };

@@ -53,7 +53,8 @@ export enum BpmnProperty {
     loopDataOutputRef = 'loopDataOutputRef',
     emailServiceTask = 'emailServiceTask',
     docgenServiceTask = 'docgenServiceTask',
-    contentServiceTask = 'contentServiceTask'
+    contentServiceTask = 'contentServiceTask',
+    inheritBusinessKey = 'activiti:inheritBusinessKey'
 }
 
 export enum BpmnCompositeProperty {

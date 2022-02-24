@@ -63,7 +63,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
         private processLoaderService: ProcessDiagramLoaderService,
         private canvas: ElementRef,
         private statusBarService: StatusBarService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.processModelerService.init({
@@ -92,6 +92,9 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
                     this.processModelerService.updateElementProperty(element.id, BpmnProperty.priority, 0);
                     this.processModelerService.updateElementProperty(element.id, BpmnProperty.assignee, '${initiator}');
                 }
+                if (element.type === BpmnElement.CallActivity) {
+                    this.processModelerService.updateElementProperty(element.id, BpmnProperty.inheritBusinessKey, true);
+                }
             }
         });
 
@@ -104,7 +107,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
                 takeUntil(this.onDestroy$)
             )
             .subscribe(
-                () => {},
+                () => { },
                 () => this.store.dispatch(new SnackbarErrorAction('PROCESS_EDITOR.ERRORS.LOAD_DIAGRAM'))
             );
     }

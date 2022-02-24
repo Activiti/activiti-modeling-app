@@ -360,6 +360,12 @@
                     "name": "variableMappingDelegateExpression",
                     "isAttr": true,
                     "type": "String"
+                },
+                {
+                    "name": "inheritBusinessKey",
+                    "isAttr": true,
+                    "type": "Boolean",
+                    "default": true
                 }
             ]
         },

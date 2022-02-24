@@ -53,6 +53,7 @@ import { createProcessErrorsProperty } from './process-errors-item-property';
 import { createEmailServiceTaskProperty } from './emailServiceTask-cardview-property';
 import { createDocgenServiceTaskProperty } from './docgenServiceTask-cardview-property';
 import { createContentServiceTaskProperty } from './contentServiceTask-cardview-property';
+import { createInheritBusinessKeyProperty } from './inheritBusinessKey-cardview-property';
 
 export const bpmn2cardView = {
     [BpmnProperty.id]: createIdProperty,
@@ -91,5 +92,6 @@ export const bpmn2cardView = {
     [BpmnCompositeProperty.errors]: createProcessErrorsProperty,
     [BpmnProperty.emailServiceTask]: createEmailServiceTaskProperty,
     [BpmnProperty.docgenServiceTask]: createDocgenServiceTaskProperty,
-    [BpmnProperty.contentServiceTask]: createContentServiceTaskProperty
+    [BpmnProperty.contentServiceTask]: createContentServiceTaskProperty,
+    [BpmnProperty.inheritBusinessKey]: createInheritBusinessKeyProperty
 };

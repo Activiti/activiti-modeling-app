@@ -163,6 +163,7 @@ export const elementsProperties = {
         BpmnProperty.id,
         BpmnProperty.name,
         BpmnProperty.documentation,
+        BpmnProperty.inheritBusinessKey,
         BpmnProperty.multiInstanceType,
         BpmnProperty.calledElement
     ],

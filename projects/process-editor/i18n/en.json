@@ -189,7 +189,8 @@
                     "ASSIGNEE_INVALID_ERROR": "Invalid expression e.g { assignee:${var1} }",
                     "CANDIDATE_INVALID_ERROR": "Invalid expression e.g { candidateUsers: ${var1}, candidateGroups: ${var2} }"
                 }
-            }
+            },
+            "INHERIT_BUSINESS_KEY": "Inherit business key"
         },
         "PROPERTIES_BUTTON": "Properties",
         "UPLOAD_SUCCESS": "Process uploaded",
