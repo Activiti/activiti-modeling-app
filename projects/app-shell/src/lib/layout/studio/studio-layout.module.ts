@@ -24,7 +24,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { StudioLayoutComponent } from './components/studio-layout/studio-layout.component';
-
 @NgModule({
     imports: [
         CommonModule,

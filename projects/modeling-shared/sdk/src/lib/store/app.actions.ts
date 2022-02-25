@@ -63,6 +63,12 @@ export class OpenInfoDialogAction implements Action {
     constructor(public payload: OpenInfoDialogActionPayload) {}
 }
 
+export const OPEN_SETTINGS_DIALOG = 'OPEN_SETTINGS_DIALOG';
+export class OpenSettingsDialogAction implements Action {
+    readonly type = OPEN_SETTINGS_DIALOG;
+    constructor() {}
+}
+
 export const OPEN_FILTER = '[App Tree] Open filter';
 export class OpenFilterAction implements Action {
     readonly type = OPEN_FILTER;

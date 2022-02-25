@@ -24,6 +24,7 @@ import { RouterModule } from '@angular/router';
 import { RootNavigationComponent } from './components/root/root-navigation.component';
 import { MainNavigationComponent } from './components/main-navigation/main-navigation.component';
 import { MainNavigationHeaderComponent } from './components/main-header/main-navigation-header.component';
+import { UserInfoMenuComponent } from './components/user-info-menu/user-info-menu.component';
 
 @NgModule({
     imports: [
@@ -33,7 +34,7 @@ import { MainNavigationHeaderComponent } from './components/main-header/main-nav
         RouterModule.forChild([]),
         CoreModule.forChild()
     ],
-    declarations: [ RootNavigationComponent, MainNavigationComponent, MainNavigationHeaderComponent] ,
-    exports: [ RootNavigationComponent, MainNavigationComponent, MainNavigationHeaderComponent ]
+    declarations: [ RootNavigationComponent, MainNavigationComponent, MainNavigationHeaderComponent, UserInfoMenuComponent] ,
+    exports: [ RootNavigationComponent, MainNavigationComponent, MainNavigationHeaderComponent, UserInfoMenuComponent ]
 })
 export class NavigationModule { }

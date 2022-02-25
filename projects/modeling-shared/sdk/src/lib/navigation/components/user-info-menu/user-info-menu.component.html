@@ -1,0 +1,37 @@
+<div class="ama-user-menu">
+    <div  class="ama-user-menu-initials">
+        <button mat-button [matMenuTriggerFor]="menu" class="ama-user-initials">
+            <div [outerHTML]="userDetails |  usernameInitials"></div>
+        </button>
+    </div>
+
+    <mat-menu #menu="matMenu" xPosition="before">
+        <a *ngIf="isUserAdmin()" mat-menu-item class="ama-user-menu-admin" (click)="openAdminApp()">
+            <mat-icon svgIcon="admin"></mat-icon> 
+            <span>{{ 'NEW_STUDIO_DASHBOARD.USER_INFO_MENU.ADMIN' | translate }}</span>
+        </a>
+        <mat-divider *ngIf="isUserAdmin()"></mat-divider>
+
+        <button mat-menu-item (click)="onOpenSettings()" data-automation-id="ama-user-menu-settings">
+            <mat-icon>settings</mat-icon>
+            <span>{{ 'APP.HEADER.SETTINGS' | translate }}</span>
+        </button>
+        <a mat-menu-item data-automation-id="ama-user-menu-docs" (click)="navigateToDocs()">
+            <mat-icon>book</mat-icon>
+            <span>{{ 'NEW_STUDIO_DASHBOARD.USER_INFO_MENU.DOCUMENTATION' | translate }}</span>
+        </a>
+        <mat-divider></mat-divider>
+
+        <div mat-menu-item class="ama-user-menu-initials">
+            <button class="ama-user-initials">
+                <div [outerHTML]="userDetails |  usernameInitials"></div>
+            </button>
+            <span class="ama-user-menu-name">{{ userName }}</span>
+        </div>
+
+        <button mat-menu-item data-automation-id="ama-user-menu-logout" adf-logout [enableRedirect]="false">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>{{ 'APP.HEADER.SIGN_OUT' | translate }}</span>
+        </button>
+    </mat-menu>
+</div>

@@ -83,6 +83,10 @@
                 "LABEL": "Data models",
                 "TOOLTIP": "Published data models"
             }
+        },
+        "USER_INFO_MENU": {
+            "ADMIN": "Admin",
+            "DOCUMENTATION": "Documentation"
         }
     }
 }

@@ -20,7 +20,8 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
 export enum ModelingIcons {
-    SaveAs = 'save_as'
+    SaveAs = 'save_as',
+    Admin = 'admin'
 }
 
 @Injectable({
