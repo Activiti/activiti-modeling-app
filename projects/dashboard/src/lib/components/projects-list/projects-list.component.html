@@ -35,6 +35,11 @@
                                 <mat-cell *matCellDef="let element" (click)="rowSelected(element)"> {{ element.createdBy }} </mat-cell>
                             </ng-container>
 
+                            <ng-container matColumnDef="lastModifiedDate">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'DASHBOARD.TABLE.COLUMN_MODIFIED' | translate }}</mat-header-cell>
+                                <mat-cell *matCellDef="let element" (click)="rowSelected(element)">{{ element.lastModifiedDate | amTimeAgo }}</mat-cell>
+                            </ng-container>
+
                             <ng-container matColumnDef="version">
                                 <mat-header-cell *matHeaderCellDef>{{ 'DASHBOARD.TABLE.COLUMN_VERSION' | translate }}</mat-header-cell>
                                 <mat-cell *matCellDef="let element" [attr.data-automation-id]="'project-version-' + element.id" (click)="rowSelected(element)"> {{ element.version }} </mat-cell>
@@ -66,6 +71,18 @@
                                                 <mat-icon>{{ button.icon }}</mat-icon> <span>{{ button.title | translate }}</span>
                                         </button>
                                     </mat-menu>
+                                </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="favorite">
+                                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                                <mat-cell
+                                    *matCellDef="let element"
+                                    [attr.data-automation-id]="'project-favorite-' + element.id"
+                                    (click)="addOrRemoveProjectFavorite(element)"
+                                    class="ama-dashboard-list-container-favorite-cell">
+                                    <mat-icon data-automation-id="favorite-project" *ngIf="element.favorite">star</mat-icon>
+                                    <mat-icon data-automation-id="non-favorite-project" *ngIf="!element.favorite">star_border</mat-icon>
                                 </mat-cell>
                             </ng-container>
 

@@ -33,5 +33,19 @@ export const mockProject: Project = {
     createdBy: 'user',
     creationDate: new Date(),
     lastModifiedBy: 'user',
-    lastModifiedDate: new Date()
+    lastModifiedDate: new Date(),
+    favorite: true
+};
+
+export const mockProject1: Project = {
+    id: 'mock-project-id-1',
+    name: 'mock-project-name',
+    description: 'description',
+    version: '0.0.1',
+    type: PROJECT,
+    createdBy: 'user',
+    creationDate: new Date(),
+    lastModifiedBy: 'user',
+    lastModifiedDate: new Date(),
+    favorite: false
 };

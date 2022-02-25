@@ -30,6 +30,8 @@ export abstract class ProjectApi {
     public abstract copy(projectId: string, name: string): Observable<Project>;
     public abstract delete(projectId: string): Observable<void>;
     public abstract validate(projectId: string): Observable<void | ValidationErrors>;
+    public abstract addToFavorites(projectId: string): Observable<void>;
+    public abstract removeFromFavorites(projectId: string): Observable<void>;
 
     public abstract import(file: File, name?: string):  Observable<any>;
     public abstract export(projectId: string): Observable<Blob>;

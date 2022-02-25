@@ -52,7 +52,11 @@ import {
     GetProjectsSuccessAction,
     SaveAsProjectDialogPayload,
     SaveAsProjectAttemptAction,
-    OpenSaveAsProjectDialogAction
+    OpenSaveAsProjectDialogAction,
+    AddToFavoritesProjectAttemptAction,
+    AddToFavoritesProjectSuccessAction,
+    RemoveFromFavoritesProjectAttemptAction,
+    RemoveFromFavoritesProjectSuccessAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { TranslateModule } from '@ngx-translate/core';
@@ -371,6 +375,68 @@ describe('ProjectsEffects', () => {
             });
 
             expect(effects.deleteProjectAttemptEffect).toBeObservable(expected);
+        });
+    });
+
+    describe('AddToFavoritesProjectAttemptEffect', () => {
+
+        it('should dispatch an action', () => {
+            expect(metadata.addToFavoritesProjectAttemptEffect.dispatch).toBeTruthy();
+        });
+
+        it('should trigger the right action on successful adding projects to favorite', () => {
+            dashboardService.addToFavoritesProject = jest.fn().mockReturnValue(of(mockProject));
+            actions$ = hot('a', { a: new AddToFavoritesProjectAttemptAction(mockProject.id, sorting, search) });
+
+            const expected = cold('(bce)', {
+                b: new AddToFavoritesProjectSuccessAction(mockProject.id),
+                c: new SnackbarInfoAction('NEW_STUDIO_DASHBOARD.ADD_TO_FAVORITES'),
+                e: new GetProjectsAttemptAction(updatedPagination, sorting, search)
+            });
+
+            expect(effects.addToFavoritesProjectAttemptEffect).toBeObservable(expected);
+        });
+
+        it('should trigger the right action on unsuccessful adding favorites to project', () => {
+            dashboardService.addToFavoritesProject = jest.fn().mockReturnValue(throwError(new Error()));
+            actions$ = hot('a', { a: new AddToFavoritesProjectAttemptAction(mockProject.id) });
+
+            const expected = cold('b', {
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.ADD_TO_FAVORITES')
+            });
+
+            expect(effects.addToFavoritesProjectAttemptEffect).toBeObservable(expected);
+        });
+    });
+
+    describe('RemoveFromFavoritesProjectAttemptEffect', () => {
+
+        it('should dispatch an action', () => {
+            expect(metadata.removeFromFavoritesProjectAttemptEffect.dispatch).toBeTruthy();
+        });
+
+        it('should trigger the right action on successfully removing project from favorite', () => {
+            dashboardService.removeFromFavoritesProject = jest.fn().mockReturnValue(of(mockProject));
+            actions$ = hot('a', { a: new RemoveFromFavoritesProjectAttemptAction(mockProject.id, sorting, search) });
+
+            const expected = cold('(bce)', {
+                b: new RemoveFromFavoritesProjectSuccessAction(mockProject.id),
+                c: new SnackbarInfoAction('NEW_STUDIO_DASHBOARD.REMOVE_FROM_FAVORITES'),
+                e: new GetProjectsAttemptAction(updatedPagination, sorting, search)
+            });
+
+            expect(effects.removeFromFavoritesProjectAttemptEffect).toBeObservable(expected);
+        });
+
+        it('should trigger the right action on unsuccessful in removing project from favorites', () => {
+            dashboardService.removeFromFavoritesProject = jest.fn().mockReturnValue(throwError(new Error()));
+            actions$ = hot('a', { a: new RemoveFromFavoritesProjectAttemptAction(mockProject.id) });
+
+            const expected = cold('b', {
+                b: new SnackbarErrorAction('PROJECT_EDITOR.ERROR.REMOVE_FROM_FAVORITES')
+            });
+
+            expect(effects.removeFromFavoritesProjectAttemptEffect).toBeObservable(expected);
         });
     });
 

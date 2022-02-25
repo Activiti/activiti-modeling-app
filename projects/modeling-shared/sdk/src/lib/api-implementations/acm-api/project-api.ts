@@ -34,6 +34,7 @@ export interface BackendProject {
     lastModifiedDate: Date;
     lastModifiedBy: string;
     version: string;
+    favorite: boolean;
 }
 
 @Injectable()
@@ -85,6 +86,14 @@ export class ACMProjectApi implements ProjectApi {
 
     public delete(projectId: string): Observable<void> {
         return this.requestApiHelper.delete(`/modeling-service/v1/projects/${projectId}`);
+    }
+
+    public addToFavorites(projectId: string): Observable<void> {
+        return this.requestApiHelper.put(`/modeling-service/v1/projects/${projectId}/favorites`);
+    }
+
+    public removeFromFavorites(projectId: string): Observable<void> {
+        return this.requestApiHelper.delete(`/modeling-service/v1/projects/${projectId}/favorites`);
     }
 
     public import(file: File, name?: string): Observable<Partial<Project>> {

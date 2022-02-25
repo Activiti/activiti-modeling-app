@@ -57,6 +57,7 @@ export interface Project {
     lastModifiedBy: string;
     description: string;
     version: string;
+    favorite: boolean;
 }
 
 export type CustomModelStatus = 'ACTIVE' | 'DRAFT';

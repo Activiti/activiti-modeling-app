@@ -20,7 +20,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationMock, TranslationService, AppConfigService, CoreModule } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
-import { AmaState, AmaApi, PROJECT_CONTEXT_MENU_OPTIONS, selectLoading, selectPagination, selectProjectSummaries, ExportProjectAction } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    AmaState, AmaApi, PROJECT_CONTEXT_MENU_OPTIONS, selectLoading,
+    selectPagination, selectProjectSummaries, ExportProjectAction,
+    RemoveFromFavoritesProjectAttemptAction, AddToFavoritesProjectAttemptAction
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { By } from '@angular/platform-browser';
 import { of, BehaviorSubject } from 'rxjs';
 import { MatMenuModule } from '@angular/material/menu';
@@ -29,7 +33,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MomentModule } from 'ngx-moment';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Pagination } from '@alfresco/js-api';
-import { mockProject, paginationMock } from './projects-list.mock';
+import { mockProject, mockProject1, paginationMock } from './projects-list.mock';
 import { DashboardService } from '../../services/dashboard.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -74,7 +78,7 @@ describe ('Projects List Component', () => {
                             } else if (selector === selectPagination) {
                                 return paginationLoaded$;
                             } else if (selector === selectProjectSummaries) {
-                                return of([ mockProject ]);
+                                return of([ mockProject, mockProject1 ]);
                             }
 
                             return of({});
@@ -118,5 +122,31 @@ describe ('Projects List Component', () => {
             projectId: 'mock-project-id',
             projectName: 'mock-project-name'
         });
+    });
+
+    it('should dispatch RemoveFromFavoritesProjectAttemptAction action if the project is favorite', () => {
+        const dispatchSpy = spyOn(store, 'dispatch');
+        const favoriteStar = fixture.debugElement.query(By.css('[data-automation-id="favorite-project"]'));
+        expect(favoriteStar.nativeElement).not.toBeNull();
+        const button = fixture.debugElement.query(By.css('[data-automation-id="project-favorite-mock-project-id"]'));
+        button.triggerEventHandler('click', {});
+        fixture.detectChanges();
+        const removeFromFavorites: RemoveFromFavoritesProjectAttemptAction = dispatchSpy.calls.argsFor(0)[0];
+
+        expect(removeFromFavorites.type).toBe('REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT');
+        expect(removeFromFavorites.projectId).toEqual('mock-project-id');
+    });
+
+    it('should dispatch AddToFavoritesProjectAttemptAction action if the project is not favorite', () => {
+        const dispatchSpy = spyOn(store, 'dispatch');
+        const nonFavoriteStar = fixture.debugElement.query(By.css('[data-automation-id="non-favorite-project"]'));
+        expect(nonFavoriteStar.nativeElement).not.toBeNull();
+        const button = fixture.debugElement.query(By.css('[data-automation-id="project-favorite-mock-project-id-1"]'));
+        button.triggerEventHandler('click', {});
+        fixture.detectChanges();
+        const addToFavorites: AddToFavoritesProjectAttemptAction = dispatchSpy.calls.argsFor(0)[0];
+
+        expect(addToFavorites.type).toBe('ADD_TO_FAVORITES_PROJECT_ATTEMPT');
+        expect(addToFavorites.projectId).toEqual('mock-project-id-1');
     });
 });

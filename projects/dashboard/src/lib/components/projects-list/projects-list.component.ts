@@ -25,7 +25,8 @@ import {
     SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption,
     PROJECT_CONTEXT_MENU_OPTIONS, ProjectContextMenuActionClass,
     selectLoading, selectPagination, selectProjectSummaries, GetProjectsAttemptAction,
-    DeleteProjectAttemptAction, UpdateProjectAttemptAction, OpenSaveAsProjectDialogAction, SaveAsProjectAttemptAction, ExportProjectAction
+    DeleteProjectAttemptAction, UpdateProjectAttemptAction, OpenSaveAsProjectDialogAction,
+    SaveAsProjectAttemptAction, ExportProjectAction, AddToFavoritesProjectAttemptAction, RemoveFromFavoritesProjectAttemptAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
@@ -44,7 +45,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     dataSource$: Observable<MatTableDataSource<Partial<Project>>>;
     loading$: Observable<boolean>;
     pagination$: Observable<Pagination>;
-    displayedColumns = ['name', 'creationDate', 'createdBy', 'version', 'menu'];
+    displayedColumns = ['name', 'creationDate', 'createdBy', 'lastModifiedDate', 'version', 'menu', 'favorite'];
     pageSizeOptions = [10, 25, 50, 100, 1000];
     sorting: ServerSideSorting = {
         key: DEFAULT_SORT_KEY,
@@ -202,5 +203,13 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.unsubscribe$.next();
         this.unsubscribe$.complete();
+    }
+
+    addOrRemoveProjectFavorite(item: Partial<Project>) {
+        if (item?.favorite) {
+            this.store.dispatch(new RemoveFromFavoritesProjectAttemptAction(item.id, this.sorting, this.search));
+        } else {
+            this.store.dispatch(new AddToFavoritesProjectAttemptAction(item.id, this.sorting, this.search));
+        }
     }
 }

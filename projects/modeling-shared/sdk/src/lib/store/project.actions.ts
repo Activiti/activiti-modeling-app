@@ -124,6 +124,30 @@ export class DeleteProjectSuccessAction implements Action {
     constructor(public payload: string) {}
 }
 
+export const ADD_TO_FAVORITES_PROJECT_ATTEMPT = 'ADD_TO_FAVORITES_PROJECT_ATTEMPT';
+export class AddToFavoritesProjectAttemptAction implements Action {
+    readonly type = ADD_TO_FAVORITES_PROJECT_ATTEMPT;
+    constructor(public projectId: string, public sorting?, public search?: SearchQuery) {}
+}
+
+export const ADD_TO_FAVORITES_PROJECT_SUCCESS = 'ADD_TO_FAVORITES_PROJECT_SUCCESS';
+export class AddToFavoritesProjectSuccessAction implements Action {
+    readonly type = ADD_TO_FAVORITES_PROJECT_SUCCESS;
+    constructor(public payload: string) {}
+}
+
+export const REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT = 'REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT';
+export class RemoveFromFavoritesProjectAttemptAction implements Action {
+    readonly type = REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT;
+    constructor(public projectId: string, public sorting?, public search?: SearchQuery) {}
+}
+
+export const REMOVE_FROM_FAVORITES_PROJECT_SUCCESS = 'REMOVE_FROM_FAVORITES_PROJECT_SUCCESS';
+export class RemoveFromFavoritesProjectSuccessAction implements Action {
+    readonly type = REMOVE_FROM_FAVORITES_PROJECT_SUCCESS;
+    constructor(public payload: string) {}
+}
+
 export const GET_PROJECTS_SUCCESS = 'GET_PROJECTS_SUCCESS';
 export class GetProjectsSuccessAction implements Action {
     readonly type = GET_PROJECTS_SUCCESS;

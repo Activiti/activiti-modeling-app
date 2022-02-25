@@ -43,6 +43,7 @@
             "COLUMN_VERSION": "Version",
             "COLUMN_CREATED": "Created",
             "COLUMN_CREATED_BY": "Created By",
+            "COLUMN_MODIFIED": "Updated",
             "COLUMN_OPTIONS": "Options",
             "COLUMN_ACTIONS": "Actions",
             "NO_ITEMS": "Create or import a project to view it in the list.",
@@ -87,6 +88,8 @@
         "USER_INFO_MENU": {
             "ADMIN": "Admin",
             "DOCUMENTATION": "Documentation"
-        }
+        },
+        "ADD_TO_FAVORITES": "Project added to favorites",
+        "REMOVE_FROM_FAVORITES": "Project removed from favorites"
     }
 }

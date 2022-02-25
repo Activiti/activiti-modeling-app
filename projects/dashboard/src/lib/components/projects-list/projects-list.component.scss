@@ -36,6 +36,18 @@
             overflow: scroll;
             height: calc(100% - 30px);
             background: transparent;
+
+            &-favorite-cell {
+                justify-content: center;
+            }
+
+            .mat-column-version {
+                flex: 0 0 8%;
+            }
+
+            .mat-column-favorite {
+                flex: 0 0 4%;
+            }
         }
 
         .mat-header-row {

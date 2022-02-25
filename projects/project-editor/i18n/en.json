@@ -190,6 +190,8 @@
             "UPLOAD_DUPLICATE_FILE": "{{modelType}} with the same name already exist",
             "UPLOAD_FILE": "We hit a problem uploading the file. Try uploading it again.",
             "DELETE_PROJECT": "We hit a problem deleting the project. Try deleting it again.",
+            "ADD_TO_FAVORITES": "We hit a problem adding the project to favorites. Try adding it again.",
+            "REMOVE_FROM_FAVORITES": "We hit a problem removing the project from favorites. Try removing it again.",
             "CHANGE_FAVORITE": "We hit a problem favoriting that project. Try favoriting it again.",
             "DELETE_PROCESS": "We hit a problem deleting the process. Try deleting it again.",
             "LOAD_MODELS": "We hit a problem loading the models. Try refreshing the page.",
