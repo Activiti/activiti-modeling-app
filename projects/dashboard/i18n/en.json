@@ -90,6 +90,9 @@
             "DOCUMENTATION": "Documentation"
         },
         "ADD_TO_FAVORITES": "Project added to favorites",
-        "REMOVE_FROM_FAVORITES": "Project removed from favorites"
+        "REMOVE_FROM_FAVORITES": "Project removed from favorites",
+        "ERROR": {
+            "LOAD_FAVORITE_PROJECTS": "We hit a problem loading the favorite projects. Try refreshing the page."
+        }
     }
 }

@@ -23,7 +23,9 @@ import {
     CreateProjectSuccessAction,
     UpdateProjectSuccessAction,
     DeleteProjectSuccessAction,
-    UploadProjectSuccessAction
+    UploadProjectSuccessAction,
+    GetFavoriteProjectsAttemptAction,
+    GetFavoriteProjectsSuccessAction
 } from './project.actions';
 import { Project, PROJECT } from '../api/types';
 import { ProjectEntitiesState, initialProjectEntitiesState } from './public-api';
@@ -39,7 +41,21 @@ describe('projectEntitiesReducer', () => {
         createdBy: 'user',
         creationDate: new Date(),
         lastModifiedBy: 'user',
-        lastModifiedDate: new Date()
+        lastModifiedDate: new Date(),
+        favorite: false
+    };
+
+    const mockProject1: Project = {
+        id: 'app-id-1',
+        name: 'app-name',
+        description: 'description',
+        version: '0.0.1',
+        type: PROJECT,
+        createdBy: 'user',
+        creationDate: new Date(),
+        lastModifiedBy: 'user',
+        lastModifiedDate: new Date(),
+        favorite: true
     };
 
     let initialState: ProjectEntitiesState;
@@ -55,6 +71,15 @@ describe('projectEntitiesReducer', () => {
 
     describe('GET_PROJECTS_ATTEMPT', () => {
         const action = new GetProjectsAttemptAction();
+
+        it('loading should be true', () => {
+            const newState = projectEntitiesReducer(initialState, action);
+            expect(newState.loading).toBe(true);
+        });
+    });
+
+    describe('GET_FAVORITE_PROJECTS_ATTEMPT', () => {
+        const action = new GetFavoriteProjectsAttemptAction();
 
         it('loading should be true', () => {
             const newState = projectEntitiesReducer(initialState, action);
@@ -82,6 +107,40 @@ describe('projectEntitiesReducer', () => {
         });
 
         it ('should handle GET_PROJECT_SUCCESS', () => {
+            const project: Partial<Project> = {
+                type: 'project',
+                /* cspell: disable-next-line */
+                id: 'appid',
+                /* cspell: disable-next-line */
+                name: 'appname'
+            };
+            const initState = {...initialState};
+            const newState = projectEntitiesReducer(initState, new GetProjectSuccessAction(project));
+
+            expect(newState.entities[project.id]).toEqual(project);
+        });
+    });
+
+    describe('GET_FAVORITE_PROJECTS_SUCCESS', () => {
+        const mockPagination = {
+            count: 1,
+            hasMoreItems: false,
+            maxItems: 10,
+            skipCount: 0,
+            totalItems: 1
+        };
+        const action = new GetFavoriteProjectsSuccessAction([mockProject1], mockPagination);
+
+        it('should load the projects', () => {
+            const newState = projectEntitiesReducer(initialState, action);
+
+            expect(newState.loaded).toBe(true);
+            expect(newState.loading).toBe(false);
+            expect(newState.entities).toEqual({ [mockProject1.id]: mockProject1 });
+            expect(newState.pagination).toEqual(mockPagination);
+        });
+
+        it ('should handle GET_FAVORITE_PROJECT_SUCCESS', () => {
             const project: Partial<Project> = {
                 type: 'project',
                 /* cspell: disable-next-line */

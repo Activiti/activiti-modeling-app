@@ -30,7 +30,10 @@ import {
     DELETE_PROJECT_SUCCESS,
     DeleteProjectSuccessAction,
     UPLOAD_PROJECT_SUCCESS,
-    UploadProjectSuccessAction
+    UploadProjectSuccessAction,
+    GET_FAVORITE_PROJECTS_SUCCESS,
+    GetFavoriteProjectsSuccessAction,
+    GET_FAVORITE_PROJECTS_ATTEMPT
 } from './project.actions';
 import { Pagination } from '../api/types';
 
@@ -45,8 +48,18 @@ export function projectEntitiesReducer(state: ProjectEntitiesState = initialProj
             loading: true
         };
 
+        case GET_FAVORITE_PROJECTS_ATTEMPT:
+        return {
+            ...state,
+            loading: true
+        };
+
         case GET_PROJECTS_SUCCESS:
             newState = setProjects(state, <GetProjectsSuccessAction>action);
+            break;
+
+        case GET_FAVORITE_PROJECTS_SUCCESS:
+            newState = setProjects(state, <GetFavoriteProjectsSuccessAction>action);
             break;
 
         case CREATE_PROJECT_SUCCESS:
@@ -76,7 +89,7 @@ export function projectEntitiesReducer(state: ProjectEntitiesState = initialProj
     return newState;
 }
 
-function setProjects(state: ProjectEntitiesState, action: GetProjectsSuccessAction): ProjectEntitiesState {
+function setProjects(state: ProjectEntitiesState, action: GetProjectsSuccessAction | GetFavoriteProjectsSuccessAction): ProjectEntitiesState {
     const newState = projectAdapter.removeAll({ ...state });
     return projectAdapter.addMany(action.payload, {
         ...newState,

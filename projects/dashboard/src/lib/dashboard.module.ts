@@ -49,7 +49,7 @@ import { SearchHeaderComponent } from './components/search-header/search-header.
     ],
     declarations: [
         ProjectsListComponent,
-        SearchHeaderComponent
+        SearchHeaderComponent,
     ],
     exports: [DashboardRoutingModule],
     providers: [

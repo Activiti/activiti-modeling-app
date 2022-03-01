@@ -22,11 +22,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { map, takeUntil } from 'rxjs/operators';
 import {
     AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting,
-    SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption,
-    PROJECT_CONTEXT_MENU_OPTIONS, ProjectContextMenuActionClass,
-    selectLoading, selectPagination, selectProjectSummaries, GetProjectsAttemptAction,
-    DeleteProjectAttemptAction, UpdateProjectAttemptAction, OpenSaveAsProjectDialogAction,
-    SaveAsProjectAttemptAction, ExportProjectAction, AddToFavoritesProjectAttemptAction, RemoveFromFavoritesProjectAttemptAction
+    SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption, PROJECT_CONTEXT_MENU_OPTIONS,
+    ProjectContextMenuActionClass, selectLoading, selectPagination, selectProjectSummaries,
+     GetProjectsAttemptAction, DeleteProjectAttemptAction, UpdateProjectAttemptAction, OpenSaveAsProjectDialogAction,
+    SaveAsProjectAttemptAction, ExportProjectAction, AddToFavoritesProjectAttemptAction, RemoveFromFavoritesProjectAttemptAction,
+    GetFavoriteProjectsAttemptAction, selectFavoriteProjectSummaries
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
@@ -62,6 +62,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
 
     private maxItems = 25;
     private skipCount = 0;
+    isFavoriteList: boolean;
 
     constructor(
         @Inject(PROJECT_CONTEXT_MENU_OPTIONS)
@@ -72,6 +73,11 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.route.url.pipe(takeUntil(this.unsubscribe$)).subscribe(params => {
+            if (params[0].path === 'favorite-projects') {
+                this.isFavoriteList = true;
+            }
+        });
         this.route.queryParams.pipe(takeUntil(this.unsubscribe$))
             .subscribe(params => {
                 this.maxItems = +params.maxItems || 25;
@@ -83,7 +89,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
 
         this.loading$ = this.store.select(selectLoading);
         this.pagination$ = this.store.select(selectPagination);
-        this.dataSource$ = (this.customDataSource$ || this.store.select(selectProjectSummaries).pipe(
+        this.dataSource$ = (this.customDataSource$ || this.store.select(this.isFavoriteList ? selectFavoriteProjectSummaries : selectProjectSummaries).pipe(
             map(entries => Object.keys(entries).map(id => entries[id]))
         )).pipe(
             map(entriesArray => new MatTableDataSource<Partial<Project>>(entriesArray))
@@ -105,7 +111,8 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     private loadProjects() {
         const { maxItems, skipCount, sorting, search } = this;
 
-        this.store.dispatch(
+        this.store.dispatch(this.isFavoriteList ?
+            new GetFavoriteProjectsAttemptAction({ maxItems, skipCount }, sorting, search) :
             new GetProjectsAttemptAction({ maxItems, skipCount }, sorting, search)
         );
     }
@@ -115,7 +122,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
         const skipCount = event.pageSize === pagination.maxItems ? event.pageSize * event.pageIndex : 0;
 
         this.router.navigate(
-            ['dashboard', 'projects'],
+            ['dashboard', this.redirectTo()],
             {
                 queryParams: { maxItems, skipCount },
                 queryParamsHandling: 'merge'
@@ -124,9 +131,8 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     }
 
     onSearchChanged(value: string) {
-
         this.router.navigate(
-            ['dashboard', 'projects'],
+            ['dashboard', this.redirectTo()],
             {
                 queryParams: {
                     sort: `${this.sorting.key},${this.sorting.direction}`,
@@ -140,7 +146,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
 
     onSortChange(sort: Sort) {
         this.router.navigate(
-            ['dashboard', 'projects'],
+            ['dashboard', this.redirectTo()],
             {
                 queryParams: {
                     sort: `${sort.active},${sort.direction}`,
@@ -149,6 +155,14 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
                 queryParamsHandling: 'merge'
             }
         );
+    }
+
+    redirectTo() {
+        let redirectTo = 'projects';
+        if (this.isFavoriteList) {
+            redirectTo = 'favorite-projects';
+        }
+        return redirectTo;
     }
 
     rowSelected(item: Partial<Project>): void {
@@ -207,7 +221,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
 
     addOrRemoveProjectFavorite(item: Partial<Project>) {
         if (item?.favorite) {
-            this.store.dispatch(new RemoveFromFavoritesProjectAttemptAction(item.id, this.sorting, this.search));
+            this.store.dispatch(new RemoveFromFavoritesProjectAttemptAction(item.id, this.sorting, this.search, this.isFavoriteList));
         } else {
             this.store.dispatch(new AddToFavoritesProjectAttemptAction(item.id, this.sorting, this.search));
         }

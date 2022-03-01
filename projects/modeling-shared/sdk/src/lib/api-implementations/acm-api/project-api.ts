@@ -121,13 +121,24 @@ export class ACMProjectApi implements ProjectApi {
     public getAll(
         fetchQueries: FetchQueries = {},
         sorting: ServerSideSorting = { key: 'name', direction: 'asc' },
-        search: SearchQuery = { key: 'name', value: '' }
+        search: SearchQuery = { key: 'name', value: '' },
+        fetchFavorites: boolean
     ): Observable<PaginatedEntries<Project>> {
-        const queryParams = {
-            ...fetchQueries,
-            sort: `${sorting.key},${sorting.direction}`,
-            [search.key]: search.value
-        };
+        let queryParams;
+        if (!fetchFavorites) {
+            queryParams = {
+                ...fetchQueries,
+                sort: `${sorting.key},${sorting.direction}`,
+                [search.key]: search.value
+            };
+        } else {
+            queryParams = {
+                ...fetchQueries,
+                sort: `${sorting.key},${sorting.direction}`,
+                [search.key]: search.value,
+                filters: 'favorites'
+            };
+        }
 
         return this.requestApiHelper
             .get('/modeling-service/v1/projects', { queryParams })

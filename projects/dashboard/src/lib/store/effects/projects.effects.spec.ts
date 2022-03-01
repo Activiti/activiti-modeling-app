@@ -56,7 +56,9 @@ import {
     AddToFavoritesProjectAttemptAction,
     AddToFavoritesProjectSuccessAction,
     RemoveFromFavoritesProjectAttemptAction,
-    RemoveFromFavoritesProjectSuccessAction
+    RemoveFromFavoritesProjectSuccessAction,
+    GetFavoriteProjectsAttemptAction,
+    GetFavoriteProjectsSuccessAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { TranslateModule } from '@ngx-translate/core';
@@ -480,6 +482,38 @@ describe('ProjectsEffects', () => {
             });
 
             expect(effects.getProjectsAttemptEffect).toBeObservable(expected);
+        });
+    });
+
+    describe('GetFavoriteProjectsAttemptEffect', () => {
+
+        it('should dispatch an action', () => {
+            expect(metadata.getFavoriteProjectsAttemptEffect.dispatch).toBeTruthy();
+        });
+
+        it('should trigger the right action on successful get', () => {
+            dashboardService.fetchProjects = jest.fn().mockReturnValue(of({
+                entries: [mockProject],
+                pagination: null
+            }));
+            actions$ = hot('a', { a: new GetFavoriteProjectsAttemptAction() });
+
+            const expected = cold('b', {
+                b: new GetFavoriteProjectsSuccessAction([mockProject], null)
+            });
+
+            expect(effects.getFavoriteProjectsAttemptEffect).toBeObservable(expected);
+        });
+
+        it('should trigger the right action on unsuccessful get', () => {
+            dashboardService.fetchProjects = jest.fn().mockReturnValue(throwError(new Error()));
+            actions$ = hot('a', { a: new GetFavoriteProjectsAttemptAction() });
+
+            const expected = cold('b', {
+                b: new SnackbarErrorAction('NEW_STUDIO_DASHBOARD.ERROR.LOAD_FAVORITE_PROJECTS')
+            });
+
+            expect(effects.getFavoriteProjectsAttemptEffect).toBeObservable(expected);
         });
     });
 

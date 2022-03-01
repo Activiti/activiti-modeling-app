@@ -25,12 +25,21 @@ const selectLoadingFromState = (state: ProjectEntitiesState) => state.loading;
 const selectProjectsLoadedFromState = (state: ProjectEntitiesState) => state.loaded;
 const selectProjectSummariesFromState = (state: ProjectEntitiesState) => state.entities;
 const selectPaginationFromState = (state: ProjectEntitiesState) => state.pagination;
+const selectFavoriteProjectSummariesFromState = (state: ProjectEntitiesState) => {
+    return Object.keys(state.entities).reduce((acc, val) => {
+        if (state.entities[val].favorite) {
+            acc[val] = state.entities[val];
+        }
+        return acc;
+    }, {});
+};
 
 export const selectLoading = createSelector(getDashboardFeatureState, selectLoadingFromState);
 export const selectPagination = createSelector(getDashboardFeatureState, selectPaginationFromState);
 export const selectProjectsLoaded = createSelector(getDashboardFeatureState, selectProjectsLoadedFromState);
 export const selectProjectSummaries = createSelector(getDashboardFeatureState, selectProjectSummariesFromState);
 export const selectProjectsArray = createSelector(selectProjectSummaries, project => Object.values(project));
+export const selectFavoriteProjectSummaries = createSelector(getDashboardFeatureState, selectFavoriteProjectSummariesFromState);
 
 export const selectProjectById = (projectId: string) => createSelector(
     selectProjectSummaries,

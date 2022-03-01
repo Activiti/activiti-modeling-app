@@ -67,6 +67,9 @@ import {
     RemoveFromFavoritesProjectAttemptAction,
     REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT,
     RemoveFromFavoritesProjectSuccessAction,
+    GetFavoriteProjectsAttemptAction,
+    GET_FAVORITE_PROJECTS_ATTEMPT,
+    GetFavoriteProjectsSuccessAction,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 
@@ -134,13 +137,19 @@ export class ProjectsEffects {
         ofType<RemoveFromFavoritesProjectAttemptAction>(REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT),
         map(action => action),
         withLatestFrom(this.store.select(selectPagination)),
-        mergeMap(([action, pagination]) => this.removeFromFavoritesProject(action.projectId, action.sorting, action.search, pagination))
+        mergeMap(([action, pagination]) => this.removeFromFavoritesProject(action.projectId, action.sorting, action.search, pagination, action.isFavoriteList))
     );
 
     @Effect()
     getProjectsAttemptEffect = this.actions$.pipe(
         ofType<GetProjectsAttemptAction>(GET_PROJECTS_ATTEMPT),
         switchMap(action => this.getProjectsAttempt(<FetchQueries> action.pagination, action.sorting, action.search))
+    );
+
+    @Effect()
+    getFavoriteProjectsAttemptEffect = this.actions$.pipe(
+        ofType<GetFavoriteProjectsAttemptAction>(GET_FAVORITE_PROJECTS_ATTEMPT),
+        switchMap(action => this.getFavoriteProjectsAttempt(<FetchQueries> action.pagination, action.sorting, action.search))
     );
 
     @Effect({ dispatch: false })
@@ -208,7 +217,9 @@ export class ProjectsEffects {
         );
     }
 
-    private removeFromFavoritesProject(projectId: string, sorting: ServerSideSorting, search: SearchQuery, pagination: Pagination) {
+    private removeFromFavoritesProject(projectId: string, sorting: ServerSideSorting, search: SearchQuery, pagination: Pagination, isFavoriteList: boolean) {
+        let action;
+        action = isFavoriteList ? GetFavoriteProjectsAttemptAction : GetProjectsAttemptAction;
         let skipCount;
         if (pagination.count === 1) {
             skipCount = 0;
@@ -219,7 +230,7 @@ export class ProjectsEffects {
             switchMap(() => [
                 new RemoveFromFavoritesProjectSuccessAction(projectId),
                 new SnackbarInfoAction('NEW_STUDIO_DASHBOARD.REMOVE_FROM_FAVORITES'),
-                new GetProjectsAttemptAction({
+                new action({
                     skipCount,
                     maxItems: pagination.maxItems
                 }, {
@@ -265,6 +276,13 @@ export class ProjectsEffects {
         return this.dashboardService.fetchProjects(pagination, sorting, search).pipe(
             switchMap(data => [new GetProjectsSuccessAction(data.entries, data.pagination)]),
             catchError(e => this.handleError('DASHBOARD.ERROR.LOAD_PROJECTS'))
+        );
+    }
+
+    private getFavoriteProjectsAttempt(pagination: FetchQueries, sorting: ServerSideSorting, search: SearchQuery) {
+        return this.dashboardService.fetchProjects(pagination, sorting, search, true).pipe(
+            switchMap(data => [new GetFavoriteProjectsSuccessAction(data.entries, data.pagination)]),
+            catchError(e => this.handleError('NEW_STUDIO_DASHBOARD.ERROR.LOAD_FAVORITE_PROJECTS'))
         );
     }
 

@@ -24,8 +24,8 @@ import { Project, AmaApi, EntityDialogForm, ServerSideSorting, FetchQueries, Sea
 export class DashboardService {
     constructor(private amaApi: AmaApi) {}
 
-    fetchProjects(pagination?: FetchQueries, sorting?: ServerSideSorting, search?: SearchQuery): Observable<PaginatedEntries<Project>> {
-        return this.amaApi.Project.getAll(pagination, sorting, search);
+    fetchProjects(pagination?: FetchQueries, sorting?: ServerSideSorting, search?: SearchQuery, fetchFavorites?: boolean): Observable<PaginatedEntries<Project>> {
+        return this.amaApi.Project.getAll(pagination, sorting, search, fetchFavorites);
     }
 
     createProject(form: Partial<EntityDialogForm>): Observable<Partial<Project>> {

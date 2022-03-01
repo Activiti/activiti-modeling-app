@@ -35,7 +35,7 @@ export abstract class ProjectApi {
 
     public abstract import(file: File, name?: string):  Observable<any>;
     public abstract export(projectId: string): Observable<Blob>;
-    public abstract getAll(fetchQueries?: FetchQueries, sorting?: ServerSideSorting, search?: SearchQuery): Observable<PaginatedEntries<Project>>;
+    public abstract getAll(fetchQueries?: FetchQueries, sorting?: ServerSideSorting, search?: SearchQuery, fetchFavorites?: boolean): Observable<PaginatedEntries<Project>>;
     public abstract release(projectId: string): Observable<Release>;
     public abstract getProjectReleases(projectId: string, pagination?: Partial<Pagination>): Observable<PaginatedEntries<ReleaseEntry>>;
     public abstract getCollaborators(projectId: string): Observable<PaginatedEntries<CollaboratorEntry>>;

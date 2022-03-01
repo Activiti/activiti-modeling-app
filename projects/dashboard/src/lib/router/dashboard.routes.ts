@@ -35,6 +35,10 @@ export const dashboardRoutes: Routes = [
                 outlet: 'content-header'
             },
             {
+                path: 'favorite-projects',
+                component: ProjectsListComponent
+            },
+            {
                 path: '',
                 component: SearchHeaderComponent,
                 outlet: 'search'

@@ -53,6 +53,12 @@ export class GetProjectsAttemptAction implements Action {
     constructor(public pagination?: FetchQueries, public sorting?: ServerSideSorting, public search?: SearchQuery) {}
 }
 
+export const GET_FAVORITE_PROJECTS_ATTEMPT = 'GET_FAVORITE_PROJECTS_ATTEMPT';
+export class GetFavoriteProjectsAttemptAction implements Action {
+    readonly type = GET_FAVORITE_PROJECTS_ATTEMPT;
+    constructor(public pagination?: FetchQueries, public sorting?: ServerSideSorting, public search?: SearchQuery) {}
+}
+
 export const GET_PROJECT_ATTEMPT = 'GET_PROJECT_ATTEMPT';
 export class GetProjectAttemptAction implements Action {
     readonly type = GET_PROJECT_ATTEMPT;
@@ -139,7 +145,7 @@ export class AddToFavoritesProjectSuccessAction implements Action {
 export const REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT = 'REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT';
 export class RemoveFromFavoritesProjectAttemptAction implements Action {
     readonly type = REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT;
-    constructor(public projectId: string, public sorting?, public search?: SearchQuery) {}
+    constructor(public projectId: string, public sorting?, public search?: SearchQuery, public isFavoriteList: boolean = false) {}
 }
 
 export const REMOVE_FROM_FAVORITES_PROJECT_SUCCESS = 'REMOVE_FROM_FAVORITES_PROJECT_SUCCESS';
@@ -151,6 +157,12 @@ export class RemoveFromFavoritesProjectSuccessAction implements Action {
 export const GET_PROJECTS_SUCCESS = 'GET_PROJECTS_SUCCESS';
 export class GetProjectsSuccessAction implements Action {
     readonly type = GET_PROJECTS_SUCCESS;
+    constructor(public payload: Project[], public pagination: Pagination) {}
+}
+
+export const GET_FAVORITE_PROJECTS_SUCCESS = 'GET_FAVORITE_PROJECTS_SUCCESS';
+export class GetFavoriteProjectsSuccessAction implements Action {
+    readonly type = GET_FAVORITE_PROJECTS_SUCCESS;
     constructor(public payload: Project[], public pagination: Pagination) {}
 }
 
