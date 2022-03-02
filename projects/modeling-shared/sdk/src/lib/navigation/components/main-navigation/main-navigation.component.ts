@@ -17,6 +17,57 @@
 
 import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
+export const navigationData = {
+    process: [
+        {
+            header_label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.FAVORITE_PROJECTS.HEADER_LABEL',
+            label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.FAVORITE_PROJECTS.LABEL',
+            title: 'DASHBOARD.NAVIGATION.FAVORITE_PROJECTS.TOOLTIP',
+            disabled: false,
+            route: {
+                url: '/dashboard/favorite-projects'
+            }
+        },
+        {
+            header_label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.HEADER_LABEL',
+            label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.LABEL',
+            title: 'DASHBOARD.NAVIGATION.ALL_PROJECTS.TOOLTIP',
+            disabled: false,
+            route: {
+                url: '/dashboard/projects'
+            }
+        },
+        {
+            header_label: 'ADV_EXAMPLE_PROJECTS.NAVIGATION.HEADER_LABEL',
+            label: 'ADV_EXAMPLE_PROJECTS.NAVIGATION.LABEL',
+            title: 'ADV_EXAMPLE_PROJECTS.NAVIGATION.TOOLTIP',
+            disabled: false,
+            route: {
+                url: '/example-projects'
+            }
+        }],
+    contentModels: [
+        {
+            header_label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.SHARED_MODELS.HEADER_LABEL',
+            label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.SHARED_MODELS.LABEL',
+            title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.SHARED_MODELS.TOOLTIP',
+            disabled: false,
+            route: {
+                url: '/global-models'
+            }
+        }],
+    dataModels: [
+        {
+            header_label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.DATA_MODELS.HEADER_LABEL',
+            label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.DATA_MODELS.LABEL',
+            title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.DATA_MODELS.TOOLTIP',
+            disabled: false,
+            route: {
+                url: '/global-data-models'
+            }
+        }]
+};
+
 @Component({
     templateUrl: './main-navigation.component.html',
     styleUrls: ['./main-navigation.component.scss'],
@@ -24,51 +75,5 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainNavigationComponent {
-
-    navigation = {
-        process: [
-            {
-                'label': 'NEW_STUDIO_DASHBOARD.NAVIGATION.FAVORITE_PROJECTS.LABEL',
-                'title': 'DASHBOARD.NAVIGATION.FAVORITE_PROJECTS.TOOLTIP',
-                'disabled': false,
-                'route': {
-                    'url': '/dashboard/favorite-projects'
-                }
-            },
-            {
-                label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.LABEL',
-                title: 'DASHBOARD.NAVIGATION.ALL_PROJECTS.TOOLTIP',
-                disabled: false,
-                route: {
-                    url: '/dashboard/projects'
-                }
-            },
-            {
-                label: 'ADV_EXAMPLE_PROJECTS.NAVIGATION.LABEL',
-                title: 'ADV_EXAMPLE_PROJECTS.NAVIGATION.TOOLTIP',
-                disabled: false,
-                route: {
-                    url: '/example-projects'
-                }
-            }],
-        contentModels: [
-            {
-                label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.SHARED_MODELS.LABEL',
-                title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.SHARED_MODELS.TOOLTIP',
-                disabled: false,
-                route: {
-                    url: '/global-models'
-                }
-            }],
-        dataModels: [
-            {
-                label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.DATA_MODELS.LABEL',
-                title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.DATA_MODELS.TOOLTIP',
-                disabled: false,
-                route: {
-                    url: '/global-data-models'
-                }
-            }]
-    };
-
+    navigation = navigationData;
 }

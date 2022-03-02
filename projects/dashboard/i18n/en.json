@@ -65,22 +65,27 @@
             "CUSTOM_MODEL_TITLE": "Custom Models",
             "DATA_MODELS_TITLE": "Data Models",
             "ALL_PROJECTS": {
+                "HEADER_LABEL": "My projects",
                 "LABEL": "All projects",
                 "TOOLTIP": "All Published Projects"
             },
             "FAVORITE_PROJECTS": {
+                "HEADER_LABEL": "My favorite projects",
                 "LABEL": "Favorite projects",
                 "TOOLTIP": "Favorites Projects"
             },
             "MY_MODELS": {
+                "HEADER_LABEL": "My models",
                 "LABEL": "My models",
                 "TOOLTIP": "Models created by the user"
             },
             "SHARED_MODELS": {
+                "HEADER_LABEL": "My shared models",
                 "LABEL": "Shared models",
                 "TOOLTIP": "Models shared across the projects"
             },
             "DATA_MODELS": {
+                "HEADER_LABEL": "My data models",
                 "LABEL": "Data models",
                 "TOOLTIP": "Published data models"
             }

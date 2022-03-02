@@ -15,7 +15,9 @@
  * limitations under the License.
  */
 
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { navigationData } from '../main-navigation/main-navigation.component';
 
 @Component({
   templateUrl: './main-navigation-header.component.html',
@@ -23,8 +25,18 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainNavigationHeaderComponent {
+export class MainNavigationHeaderComponent implements OnInit {
 
-  constructor() { }
+  headerLabel = '';
+  constructor(private router: Router) { }
 
+  ngOnInit() {
+    const url = this.router.url;
+    Object.values(navigationData).find(data => {
+      const navigationDetails = data.find(nav => url.includes(nav.route.url));
+      if (navigationDetails) {
+        this.headerLabel = navigationDetails.header_label;
+      }
+    });
+  }
 }
