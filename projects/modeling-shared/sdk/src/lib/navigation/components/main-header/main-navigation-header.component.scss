@@ -8,4 +8,34 @@
         font-size: 20px;
         line-height: 40px;
     }
+
+    &-section {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &-actions {
+        width: 25%;
+        display: flex;
+        justify-content: space-evenly;
+        margin-right: 12px;
+
+        button {
+            font-weight: bold;
+            height: fit-content;
+            border-radius: 6px;
+            justify-content: center;
+            align-items: center;
+            position: static;
+            min-width: fit-content;
+        }
+
+        .studio-upload-button {
+            background: rgba(33, 33, 33, 0.05);
+        }
+
+        .studio-create-button {
+            background-color: #ffc600;
+        }
+    }
 }

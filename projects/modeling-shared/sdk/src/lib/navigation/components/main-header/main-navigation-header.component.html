@@ -1,5 +1,14 @@
 <section class="studio-project-list-header">
-    <div class="studio-project-list-header-title">
-        {{ headerLabel | translate }}
+    <div class="studio-project-list-header-section">
+        <div class="studio-project-list-header-title">
+            {{ headerLabel$ | async | translate }}
+        </div>
+        <div class="studio-project-list-header-actions">
+            <ng-container *ngFor="let action of actions">
+                <button mat-button (click)="runAction(action.handler)" class="studio-{{action.actionName}}-button">
+                    <span>{{ action.title | translate }}</span>
+                </button>
+            </ng-container>
+        </div>
     </div>
 </section>

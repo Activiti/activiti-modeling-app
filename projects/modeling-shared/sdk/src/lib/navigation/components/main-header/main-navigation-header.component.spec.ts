@@ -17,16 +17,23 @@
 
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { By } from '@angular/platform-browser';
+import { Router, RouterEvent } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
+import { of, ReplaySubject } from 'rxjs';
+import { AmaState } from '../../../store/app.state';
 import { MainNavigationHeaderComponent } from './main-navigation-header.component';
 
 describe('MainNavigationHeaderComponent', () => {
     let fixture: ComponentFixture<MainNavigationHeaderComponent>;
     let component: MainNavigationHeaderComponent;
+    let store: Store<AmaState>;
+    let routerEventReplaySubject: ReplaySubject<RouterEvent>;
 
     beforeEach(() => {
+        routerEventReplaySubject = new ReplaySubject<RouterEvent>(1);
         TestBed.configureTestingModule({
             declarations: [
                 MainNavigationHeaderComponent
@@ -40,7 +47,14 @@ describe('MainNavigationHeaderComponent', () => {
                 {
                     provide: Router,
                     useValue: {
-                       url: '/dashboard/projects'
+                       url: '/dashboard/projects',
+                       events: routerEventReplaySubject.asObservable()
+                    }
+                },
+                {
+                    provide: Store,
+                    useValue: {
+                        dispatch: jest.fn().mockReturnValue(of({}))
                     }
                 }
             ]
@@ -53,6 +67,7 @@ describe('MainNavigationHeaderComponent', () => {
         fixture = TestBed.createComponent(MainNavigationHeaderComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
+        store = TestBed.inject(Store);
     });
 
     afterEach(() => {
@@ -61,6 +76,16 @@ describe('MainNavigationHeaderComponent', () => {
     });
 
     it('should show the header as My Projects on routing to /projects', () => {
-        expect(component.headerLabel).toEqual('NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.HEADER_LABEL');
+        const title = fixture.debugElement.query(By.css('.studio-project-list-header-title'));
+        expect(title.nativeElement.textContent).toEqual(' NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.HEADER_LABEL ');
+    });
+
+    it('should dispatch correct action on click of action button', () => {
+        spyOn(store, 'dispatch');
+        const createButton = fixture.debugElement.query(By.css('.studio-create-button'));
+        createButton.triggerEventHandler('click', {});
+        fixture.detectChanges();
+
+        expect(store.dispatch).toHaveBeenCalledWith({'type': 'CREATE_PROJECT_DIALOG'});
     });
 });

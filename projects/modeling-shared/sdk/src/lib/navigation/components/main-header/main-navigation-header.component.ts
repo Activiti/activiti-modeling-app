@@ -15,8 +15,12 @@
  * limitations under the License.
  */
 
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
+import { AmaState } from '../../../store/app.state';
 import { navigationData } from '../main-navigation/main-navigation.component';
 
 @Component({
@@ -25,18 +29,44 @@ import { navigationData } from '../main-navigation/main-navigation.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainNavigationHeaderComponent implements OnInit {
+export class MainNavigationHeaderComponent implements OnInit, OnDestroy {
 
-  headerLabel = '';
-  constructor(private router: Router) { }
+  url = '';
+  headerLabel$ = new BehaviorSubject<string>('');
+  actions = [];
+  constructor(private router: Router, private store: Store<AmaState>) { }
+  onDestroy$: Subject<void> = new Subject<void>();
 
   ngOnInit() {
-    const url = this.router.url;
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationStart),
+      takeUntil(this.onDestroy$)
+    ).subscribe((event: NavigationStart) => {
+      this.url = event.url.split('?')[0];
+      this.loadNavigationDetails();
+    });
+    if (!this.url) {
+      this.url = this.router.url.split('?')[0];
+      this.loadNavigationDetails();
+    }
+  }
+
+  loadNavigationDetails() {
     Object.values(navigationData).find(data => {
-      const navigationDetails = data.find(nav => url.includes(nav.route.url));
+      const navigationDetails = data.find(nav => this.url === nav.route.url);
       if (navigationDetails) {
-        this.headerLabel = navigationDetails.header_label;
+        this.headerLabel$.next(navigationDetails.header_label);
+        this.actions = navigationDetails.actions;
       }
     });
+  }
+
+  runAction(type: string) {
+    this.store.dispatch({ type });
+  }
+
+  ngOnDestroy() {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 }

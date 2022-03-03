@@ -26,7 +26,19 @@ export const navigationData = {
             disabled: false,
             route: {
                 url: '/dashboard/favorite-projects'
-            }
+            },
+            actions: [
+                {
+                    actionName: 'upload',
+                    title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.UPLOAD',
+                    handler: 'IMPORT_PROJECT_DIALOG'
+                },
+                {
+                    actionName: 'create',
+                    title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.CREATE',
+                    handler: 'CREATE_PROJECT_DIALOG'
+                }
+            ]
         },
         {
             header_label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.HEADER_LABEL',
@@ -35,7 +47,19 @@ export const navigationData = {
             disabled: false,
             route: {
                 url: '/dashboard/projects'
-            }
+            },
+            actions: [
+                {
+                    actionName: 'upload',
+                    title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.UPLOAD',
+                    handler: 'IMPORT_PROJECT_DIALOG'
+                },
+                {
+                    actionName: 'create',
+                    title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.CREATE',
+                    handler: 'CREATE_PROJECT_DIALOG'
+                }
+            ]
         },
         {
             header_label: 'ADV_EXAMPLE_PROJECTS.NAVIGATION.HEADER_LABEL',
@@ -54,7 +78,14 @@ export const navigationData = {
             disabled: false,
             route: {
                 url: '/global-models'
-            }
+            },
+            actions: [
+                {
+                    actionName: 'create',
+                    title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.SHARED_MODELS.ACTIONS.CREATE',
+                    handler: 'CREATE_GLOBAL_PROJECT_MODE'
+                }
+            ]
         }],
     dataModels: [
         {
@@ -64,7 +95,14 @@ export const navigationData = {
             disabled: false,
             route: {
                 url: '/global-data-models'
-            }
+            },
+            actions: [
+                {
+                    actionName: 'create',
+                    title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.DATA_MODELS.ACTIONS.CREATE',
+                    handler: 'CREATE_GLOBAL_DATA_MODEL'
+                }
+            ]
         }]
 };
 
