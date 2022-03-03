@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, Inject, Optional, ViewEncapsulation } from '@angular/core';
-import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction, ModelScope, Model, CONNECTOR, AUTHENTICATION } from '@alfresco-dbp/modeling-shared/sdk';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, Inject, Optional, ViewEncapsulation, SimpleChanges, OnChanges } from '@angular/core';
+import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction, ModelScope, CONNECTOR, AUTHENTICATION, Filter, DEFAULT_CATEGORIES } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
-import { AppConfigService } from '@alfresco/adf-core';
+import { AppConfigService, ItemsByCategory, SortByCategoryMapperService } from '@alfresco/adf-core';
 
 @Component({
     selector: 'ama-project-tree-filter',
@@ -27,14 +27,18 @@ import { AppConfigService } from '@alfresco/adf-core';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProjectTreeFilterComponent implements OnInit {
+
+export class ProjectTreeFilterComponent implements OnInit, OnChanges {
     @Input() projectId: string;
     @Input() filter: ModelFilter;
-    @Input() contents: any[];
+    @Input() contents: Partial<Filter>[];
     @Input() loading: boolean;
     @Input() expanded: boolean;
+
     @Output() opened = new EventEmitter<{ projectId: string; type: string, loadData: boolean }>();
     @Output() closed = new EventEmitter<{ type: string }>();
+
+    contentsByCategory: ItemsByCategory<Filter>[] = [];
 
     ignoreOpenEmit: boolean;
 
@@ -43,12 +47,22 @@ export class ProjectTreeFilterComponent implements OnInit {
         @Optional()
         @Inject(MODEL_CREATORS)
         private creators: ModelCreator[],
-        private appConfig: AppConfigService
+        private appConfig: AppConfigService,
+        private categoryMapper: SortByCategoryMapperService<Filter>
     ) {}
 
     ngOnInit() {
         if (this.expanded) {
             this.ignoreOpenEmit = true;
+        }
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        const contentsChanged = changes['contents'];
+
+        if (contentsChanged?.currentValue !== contentsChanged?.previousValue) {
+            const newItems: Filter[] = contentsChanged.currentValue ?? [];
+            this.setFilteredItems(newItems);
         }
     }
 
@@ -68,6 +82,10 @@ export class ProjectTreeFilterComponent implements OnInit {
         }
     }
 
+    private setFilteredItems(items: Filter[]): void {
+        this.contentsByCategory = this.categoryMapper.mapItems(items, DEFAULT_CATEGORIES);
+    }
+
     openModelCreationModal(event: Event): void {
         event.stopPropagation();
 
@@ -80,8 +98,8 @@ export class ProjectTreeFilterComponent implements OnInit {
         }
     }
 
-    isScopeGlobal(content: Model): boolean {
-        return content.scope === ModelScope.GLOBAL;
+    isScopeGlobal(scope?: ModelScope): boolean {
+        return scope === ModelScope.GLOBAL;
     }
 
     isAllowed(type: MODEL_TYPE): boolean {

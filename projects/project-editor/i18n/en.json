@@ -16,6 +16,7 @@
         "SEARCH": "Search",
         "UPLOAD_FILE_SUCCESS": "File uploaded",
         "NO_CONTENT": "<empty>",
+        "UNCATEGORIZED": "Uncategorized",
         "NO_SELECTION": "Create a new model or edit an existing one using the sidebar",
         "NEW_MENU": {
             "LABEL": "NEW",

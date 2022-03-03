@@ -145,6 +145,7 @@ export enum ModelScope {
 
 export interface Filter extends Model {
     icon?: string;
+    category?: string;
 }
 
 export interface Process extends Model {

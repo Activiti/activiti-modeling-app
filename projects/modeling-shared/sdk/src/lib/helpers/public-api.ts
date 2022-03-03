@@ -23,6 +23,7 @@ export * from './utils/empty-decision-table';
 export * from './primitive-types';
 export * from './utils/createJsonBlob';
 export * from './utils/default-email-template';
+export * from './utils/default-categories';
 export * from './components/entity-dialog/entity-dialog.component';
 export * from './components/entity-dialog/dialog-content/entity-dialog-content.component';
 export * from './directives/allowed-characters.directive';

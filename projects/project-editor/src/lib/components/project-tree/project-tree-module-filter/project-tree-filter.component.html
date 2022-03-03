@@ -20,23 +20,39 @@
 
     <div class="ama-project-tree-filter__content" [attr.data-automation-id]="'project-filter-' + filter.type + '-container'">
         <ng-container *ngIf="!loading">
-            <a mat-button
-                [attr.data-automation-id]="filter.type + '-' + item.id"
-                class="ama-project-tree-filter__button"
-                *ngFor="let item of contents"
-                [routerLink]="[filter.type, item.id]"
-                [routerLinkActive]="['active']"
-                [class.ama-project-tree-filter-global-item]="isScopeGlobal(item)"
-                [title]="item.name">
+            <ng-container *ngIf="contentsByCategory">
+                <div *ngFor="let contentByCategory of contentsByCategory" data-automation-id="ama-project-tree-filter-item-category">
+                    <div *ngIf="contentByCategory.category" class="ama-project-tree-filter__category">
+                        <span> {{ contentByCategory.category }}</span>
+                    </div>
 
-                <span *ngIf="item.icon" class="ama-project-tree-filter__item_icon {{item.icon}}"></span>
-                <mat-icon *ngIf="!item.icon" class="ama-project-tree-filter__icon">{{ filter.icon }}</mat-icon>
+                    <div *ngIf="!contentByCategory.category" class="ama-project-tree-filter__category">
+                        <span *ngIf="contentsByCategory.length > 1">
+                            {{ "PROJECT_EDITOR.UNCATEGORIZED" | translate }}
+                        </span>
+                    </div>
 
-                <span class="{{ 'ama-project-tree-filter__name ' +  filter.type }}">{{ item.name }}</span>
-            </a>
-            <div class="ama-project-tree-filter__no-content" *ngIf="contentsAreEmpty()">
-                {{ 'PROJECT_EDITOR.NO_CONTENT' | translate }}
-            </div>
+                    <div *ngFor="let content of contentByCategory.items" data-automation-id="ama-project-tree-filter-contents-list">
+                        <a
+                            mat-button
+                            [attr.data-automation-id]="filter.type + '-' + content.id"
+                            class="ama-project-tree-filter__button"
+                            [routerLink]="[filter.type, content.id]"
+                            [routerLinkActive]="['active']"
+                            [class.ama-project-tree-filter-global-item]="isScopeGlobal(content?.scope)"
+                            [title]="content.name"
+                        >
+                            <span *ngIf="content.icon" class="ama-project-tree-filter__item_icon {{content.icon}}"></span>
+                            <mat-icon *ngIf="!content.icon" class="ama-project-tree-filter__icon">{{ filter.icon }}</mat-icon>
+                            <span class="{{ 'ama-project-tree-filter__name ' +  filter.type }}">{{ content.name }}</span>
+                            
+                        </a>
+                    </div>
+                </div>
+                <div class="ama-project-tree-filter__no-content" *ngIf="contentsAreEmpty()">
+                    {{ 'PROJECT_EDITOR.NO_CONTENT' | translate }}
+                </div>
+            </ng-container>
         </ng-container>
         <ama-upload-file-button
             *ngIf="isAllowed(filter.type) && isUploadButtonEnabled(filter.type)"

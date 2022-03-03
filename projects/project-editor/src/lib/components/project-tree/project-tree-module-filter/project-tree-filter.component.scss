@@ -81,6 +81,7 @@
         font-size: 12px;
         white-space: nowrap;
         height: 26px;
+        width: 100%;
         line-height: 26px;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -91,6 +92,12 @@
             height: 22px;
             line-height: 20px;
         }
+    }
+
+    &__category {
+        padding-left: 25px;
+        font-weight: bolder;
+        font-size: var(--theme-caption-font-size);
     }
 
     &__spinner {

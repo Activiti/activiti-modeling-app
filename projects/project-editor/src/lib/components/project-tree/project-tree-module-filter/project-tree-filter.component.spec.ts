@@ -18,8 +18,8 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { ProjectTreeFilterComponent } from './project-tree-filter.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { SharedModule, PROCESS, MODEL_CREATORS, ModelScope, CONNECTOR } from '@alfresco-dbp/modeling-shared/sdk';
+import { NO_ERRORS_SCHEMA, SimpleChanges } from '@angular/core';
+import { SharedModule, PROCESS, MODEL_CREATORS, ModelScope, CONNECTOR, Filter } from '@alfresco-dbp/modeling-shared/sdk';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslationMock, TranslationService, AppConfigService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
@@ -131,7 +131,7 @@ describe('ProjectTreeFilterComponent ', () => {
             type: PROCESS
         };
 
-        component.contents = [
+        const contents = [
             {
                 'id': 'local-process-id',
                 'type': 'PROCESS',
@@ -146,6 +146,16 @@ describe('ProjectTreeFilterComponent ', () => {
             }
         ];
 
+        const changes: SimpleChanges = {
+            contents: {
+                currentValue: contents,
+                firstChange: false,
+                isFirstChange: () => false,
+                previousValue: undefined
+            }
+        };
+
+        component.ngOnChanges(changes);
         fixture.detectChanges();
 
         const localProcess = fixture.debugElement.query(By.css('[data-automation-id="process-local-process-id"]'));
@@ -153,6 +163,147 @@ describe('ProjectTreeFilterComponent ', () => {
 
         expect(localProcess.classes['ama-project-tree-filter-global-item']).toBeFalsy();
         expect(globalProcess.classes['ama-project-tree-filter-global-item']).toBeTruthy();
+    });
+
+    it('should filter categories and their processes', () => {
+        component.expanded = true;
+        component.projectId = 'projectIdTest';
+        component.filter = <any>{
+            icon: '',
+            name: 'Processes',
+            type: PROCESS
+        };
+
+        const contents = [{ 'id': 'process1', 'name': 'local-process', 'category': 'cat1' },
+                          { 'id': 'process2', 'name': 'global-process', 'category': 'cat2' },
+                          { 'id': 'process3', 'name': 'global-process-2', 'category': 'cat1' }];
+
+        const changes: SimpleChanges = {
+            contents: {
+                currentValue: contents,
+                firstChange: false,
+                isFirstChange: () => false,
+                previousValue: undefined
+            }
+        };
+
+        component.ngOnChanges(changes);
+        fixture.detectChanges();
+
+        const processesByCategory = fixture.debugElement.queryAll(
+            By.css('[data-automation-id="ama-project-tree-filter-item-category"]')
+        );
+
+        expect(processesByCategory.length).toBe(2);
+        expect(processesByCategory[0].children[0].nativeElement.textContent.trim()).toBe('cat1');
+        expect(processesByCategory[1].children[0].nativeElement.textContent.trim()).toBe('cat2');
+
+        const processesByName = fixture.debugElement.queryAll(
+            By.css('.ama-project-tree-filter__name')
+        );
+
+        expect(processesByName.length).toBe(3);
+
+        const categoryOneProcessesElements = processesByCategory[0].queryAll(By.css('[data-automation-id="ama-project-tree-filter-contents-list"]'));
+        expect(categoryOneProcessesElements.length).toBe(2);
+        const categoryTwoProcessesElements = processesByCategory[1].queryAll(By.css('[data-automation-id="ama-project-tree-filter-contents-list"]'));
+        expect(categoryTwoProcessesElements.length).toBe(1);
+    });
+
+    it('should not display default category', () => {
+        component.expanded = true;
+        component.projectId = 'projectIdTest';
+        component.filter = <any>{
+            icon: '',
+            name: 'Processes',
+            type: PROCESS
+        };
+
+        const changes: SimpleChanges = {
+            contents: {
+                currentValue: undefined,
+                firstChange: false,
+                isFirstChange: () => false,
+                previousValue: undefined
+            }
+        };
+
+        component.ngOnChanges(changes);
+
+        fixture.detectChanges();
+
+        const contentsByCategory = fixture.debugElement.queryAll(
+            By.css('.ama-project-tree-filter__category')
+        );
+
+        expect(contentsByCategory.length).toBe(0);
+    });
+
+    it('should display items under default category when there is not any category in the project', async () => {
+        component.expanded = true;
+        component.projectId = 'projectIdTest';
+        component.filter = <any>{
+            icon: '',
+            name: 'Processes',
+            type: PROCESS
+        };
+
+        const contents = [
+            {'name': 'Default_a', 'category': 'http://bpmn.io/schema/bpmn' },
+            { 'name': 'Default_b', 'category': ''}
+        ];
+
+        const changes: SimpleChanges = {
+            contents: {
+                currentValue: contents,
+                firstChange: false,
+                isFirstChange: () => false,
+                previousValue: undefined
+            }
+        };
+
+        component.ngOnChanges(changes);
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const contentByCategory = fixture.debugElement.queryAll(
+            By.css('[data-automation-id="ama-project-tree-filter-item-category"]')
+        );
+
+        expect(contentByCategory.length).toBe(1);
+        expect(contentByCategory[0].children[0].nativeElement.textContent.trim()).toBe('');
+    });
+
+    it('should display items under no category label when there is at least one process without category', async () => {
+        component.expanded = true;
+        component.projectId = 'projectIdTest';
+        component.filter = <any>{
+            icon: '',
+            name: 'Processes',
+            type: PROCESS
+        };
+
+        const content = [{ 'name': 'Default_a', 'category': 'http://bpmn.io/schema/bpmn' },
+                         { 'name': 'Default_b', 'category': 'newCategory' }];
+
+        const change: SimpleChanges = {
+            contents: {
+                currentValue: content,
+                firstChange: false,
+                isFirstChange: () => false,
+                previousValue: undefined
+            }
+        };
+
+        component.ngOnChanges(change);
+        fixture.detectChanges();
+
+        const contentsByCategory = fixture.debugElement.queryAll(
+            By.css('[data-automation-id="ama-project-tree-filter-item-category"]')
+        );
+
+        expect(contentsByCategory.length).toBe(2);
+        expect(contentsByCategory[0].children[0].nativeElement.textContent.trim()).toBe('newCategory');
     });
 
     it('should not display connector add and upload options when enableCustomConnectors is false', () => {
