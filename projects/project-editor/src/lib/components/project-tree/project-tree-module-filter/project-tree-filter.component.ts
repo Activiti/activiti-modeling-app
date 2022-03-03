@@ -88,7 +88,6 @@ export class ProjectTreeFilterComponent implements OnInit, OnChanges {
 
     openModelCreationModal(event: Event): void {
         event.stopPropagation();
-
         if (this.creators && this.creators.length > 0) {
             const modelCreator = this.creators.find(creator => creator.type === this.filter.type);
 

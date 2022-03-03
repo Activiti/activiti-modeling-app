@@ -45,7 +45,7 @@ import { EnvironmentModule } from '@alfresco-dbp/adf-candidates/core/environment
         AmaServicesModule.forApplication(),
         ACMApiModule.forRoot(),
         DashboardModule,
-        ProjectEditorModule,
+        ProjectEditorModule.forRoot(environment),
         ProcessEditorModule,
         ConnectorEditorModule,
         MatInputModule,

@@ -6,14 +6,27 @@
             [displayMode]="'flat'"
             class="ama-project-tree">
             <ng-container *ngFor="let filter of filters">
-                <ama-project-tree-filter [projectId]="selectedProjectId"
+                <div class="ama-project-tree-filter">
+                <button class="ama-project-tree-chevron-icon"
+                        [id]="'expand-button-filter-'+filter.type"
+                        disableRipple="true"
+                        (click)="changeFilterStatus(filter)"
+                        mat-icon-button aria-label="Arrow that indicates that the panel is open or closed">
+                    <mat-icon>
+                        {{ (getFilteredContentExpandedState(filter.type) | async) ? 'expand_more' : 'chevron_right'}}
+                     </mat-icon>
+                </button>
+
+                  <ama-project-tree-filter [projectId]="selectedProjectId"
                     [filter]="filter"
                     [expanded]="getFilteredContentExpandedState(filter.type) | async"
                     [contents]="getFilteredContents(filter.type) | async"
                     [loading]="getFilteredContentLoading(filter.type) | async"
                     (closed)="closeFilter($event)"
                     (opened)="openFilter($event)">
-                </ama-project-tree-filter>
+                   </ama-project-tree-filter>
+                </div>
+
             </ng-container>
         </mat-accordion>
     </div>

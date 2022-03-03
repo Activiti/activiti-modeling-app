@@ -20,7 +20,7 @@ import { CONNECTOR } from '../api/types';
 import { MODELER_NAME_REGEX } from '../helpers/utils/create-entries-names';
 import { CreateConnectorAttemptAction } from './connector-editor.actions';
 
-export const CONNECTOR_ICON = 'wrap_text';
+export const CONNECTOR_ICON = 'link';
 
 export function createConnectorCreator(callback = (param) => {}): ModelCreator {
     return {

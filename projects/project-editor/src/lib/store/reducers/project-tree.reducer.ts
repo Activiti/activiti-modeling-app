@@ -17,7 +17,7 @@
 
 import { Action } from '@ngrx/store';
 import { ProjectTreeState, INITIAL_PROJECT_TREE_STATE as init, OPEN_FILTER, OpenFilterAction, SELECT_PROJECT } from '@alfresco-dbp/modeling-shared/sdk';
-import { CLOSE_FILTER, CloseFilterAction } from '../project-editor.actions';
+import { CLOSE_FILTER, CloseFilterAction, CHANGE_FILTER_STATUS, ChangeFilterStatus } from '../project-editor.actions';
 
 export function projectTreeReducer(state: ProjectTreeState = init, action: Action): ProjectTreeState {
     let newState: ProjectTreeState;
@@ -33,6 +33,10 @@ export function projectTreeReducer(state: ProjectTreeState = init, action: Actio
 
         case CLOSE_FILTER:
             newState = closeFilter(state, <CloseFilterAction>action);
+            break;
+
+        case CHANGE_FILTER_STATUS:
+            newState = changeFilterStatus(state, <ChangeFilterStatus>action);
             break;
 
         default:
@@ -57,6 +61,20 @@ function closeFilter(state: ProjectTreeState, action: CloseFilterAction): Projec
         ...state,
         openedFilters: state.openedFilters.filter(filter => filter !== action.filterType)
     };
+
+    return newState;
+}
+
+function changeFilterStatus(state: ProjectTreeState, action: ChangeFilterStatus): ProjectTreeState {
+    const newState = { ...state, openedFilters: [...state.openedFilters] };
+
+    const filterIndex = newState.openedFilters.indexOf(action.filterType);
+
+    if (filterIndex < 0) {
+        newState.openedFilters.push(action.filterType);
+    } else {
+        newState.openedFilters.splice(filterIndex, 1);
+    }
 
     return newState;
 }

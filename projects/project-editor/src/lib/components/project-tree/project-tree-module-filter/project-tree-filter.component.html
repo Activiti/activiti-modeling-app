@@ -9,13 +9,6 @@
             {{ filter.icon }}
         </mat-icon>
         <span class="ama-project-tree-filter__title">{{ filter.name | translate }}</span>
-        <button mat-icon-button
-            *ngIf="isAllowed(filter.type)"
-            (click)="openModelCreationModal($event)"
-            [title]="'PROJECT_EDITOR.CREATE_NEW' | translate"
-            [class]="'add-new-' + filter.type">
-            <mat-icon>add</mat-icon>
-        </button>
     </mat-expansion-panel-header>
 
     <div class="ama-project-tree-filter__content" [attr.data-automation-id]="'project-filter-' + filter.type + '-container'">

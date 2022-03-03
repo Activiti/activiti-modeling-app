@@ -16,7 +16,7 @@
  */
 
 import { ProjectTreeState, INITIAL_PROJECT_TREE_STATE, OpenFilterAction, CONNECTOR, PROCESS, SELECT_PROJECT } from '@alfresco-dbp/modeling-shared/sdk';
-import { CloseFilterAction } from '../project-editor.actions';
+import { ChangeFilterStatus, CloseFilterAction } from '../project-editor.actions';
 import { projectTreeReducer } from './project-tree.reducer';
 
 describe('ProjectTreeReducer', () => {
@@ -40,5 +40,16 @@ describe('ProjectTreeReducer', () => {
         const newState = projectTreeReducer(initialState, new CloseFilterAction(PROCESS));
 
         expect(newState.openedFilters).toEqual([ CONNECTOR ]);
+    });
+
+    it('should handle CHANGE_FILTER_STATUS', () => {
+        const initialState = { ...initState, openedFilters: [ PROCESS, CONNECTOR ]};
+        const newStateRemoved = projectTreeReducer(initialState, new ChangeFilterStatus(PROCESS));
+
+        expect(newStateRemoved.openedFilters).toEqual([ CONNECTOR ]);
+
+        const newState = projectTreeReducer(newStateRemoved, new ChangeFilterStatus(PROCESS));
+
+        expect(newState.openedFilters).toEqual([ CONNECTOR, PROCESS ]);
     });
 });

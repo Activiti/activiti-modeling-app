@@ -28,6 +28,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Element } from '@angular/compiler';
+import { MatButtonModule } from '@angular/material/button';
 
 describe('ProjectTreeFilterComponent ', () => {
     let fixture: ComponentFixture<ProjectTreeFilterComponent>;
@@ -40,6 +41,7 @@ describe('ProjectTreeFilterComponent ', () => {
                 MatExpansionModule,
                 MatIconModule,
                 MatProgressSpinnerModule,
+                MatButtonModule,
                 TranslateModule.forRoot(),
                 SharedModule,
                 NoopAnimationsModule
@@ -308,31 +310,21 @@ describe('ProjectTreeFilterComponent ', () => {
 
     it('should not display connector add and upload options when enableCustomConnectors is false', () => {
         setUpComponentForEnableCustomConnectors(false);
-        const connectorCreateButton = getAddConnectorButton();
         const connectorUploadInput = getUploadConnectorInput();
-        expect(connectorCreateButton).toBeNull();
         expect(connectorUploadInput).toBeNull();
     });
 
     it('should display connector add and upload options when enableCustomConnectors is true', () => {
         setUpComponentForEnableCustomConnectors(true);
-        const connectorCreateButton = getAddConnectorButton();
         const connectorUploadInput = getUploadConnectorInput();
-        expect(connectorCreateButton).not.toBeNull();
         expect(connectorUploadInput).not.toBeNull();
     });
 
     it('should display connector add and upload options when enableCustomConnectors is null', () => {
         setUpComponentForEnableCustomConnectors(null);
-        const connectorCreateButton = getAddConnectorButton();
         const connectorUploadInput = getUploadConnectorInput();
-        expect(connectorCreateButton).not.toBeNull();
         expect(connectorUploadInput).not.toBeNull();
     });
-
-    function getAddConnectorButton(): Element {
-        return fixture.debugElement.nativeElement.querySelector('.add-new-connector');
-    }
 
     function getUploadConnectorInput(): Element {
         return fixture.debugElement.nativeElement.querySelector('[data-automation-id="upload-connector"]');

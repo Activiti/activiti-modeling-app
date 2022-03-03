@@ -16,11 +16,10 @@
  */
 
 import { createSelector } from '@ngrx/store';
-import { selectProjectTree, ProjectTreeState, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
+import { selectProjectTree, ProjectTreeState } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const selectOpenedFilters = createSelector(selectProjectTree,
     (state: ProjectTreeState) => {
-        const openedFilters = state.openedFilters;
-        return openedFilters.length ? openedFilters : [PROCESS];
+        return  state.openedFilters;
     }
 );

@@ -20,7 +20,7 @@ import { ProjectTreeComponent } from './project-tree.component';
 import { Store } from '@ngrx/store';
 import { ProjectTreeHelper } from './project-tree.helper';
 import { of } from 'rxjs';
-import { PROCESS, FORM, selectSelectedProjectId, selectMenuOpened } from '@alfresco-dbp/modeling-shared/sdk';
+import { PROCESS, FORM, selectSelectedProjectId, selectMenuOpened, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -32,10 +32,13 @@ import { UploadFileButtonComponent } from '../upload-file-button/upload-file-but
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { ChangeFilterStatus } from '../../store/project-editor.actions';
 
 describe('ProjectTreeFilterComponent ', () => {
     let fixture: ComponentFixture<ProjectTreeComponent>;
     let helper: ProjectTreeHelper;
+    let store: Store<AmaState>;
 
     const mockFilters = [
         { type: PROCESS, name: 'PROJECT_EDITOR.TREE.PROCESSES', icon: 'device_hub' },
@@ -54,7 +57,8 @@ describe('ProjectTreeFilterComponent ', () => {
                 MatProgressSpinnerModule,
                 HttpClientTestingModule,
                 MatIconModule,
-                RouterModule
+                RouterModule,
+                MatButtonModule
             ],
             declarations: [
                 ProjectTreeComponent,
@@ -96,6 +100,7 @@ describe('ProjectTreeFilterComponent ', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ProjectTreeComponent);
         helper = TestBed.inject(ProjectTreeHelper);
+        store = TestBed.inject(Store);
     });
 
     it ('project tree should contain all the expected filters', () => {
@@ -103,6 +108,13 @@ describe('ProjectTreeFilterComponent ', () => {
 
         const filters = fixture.nativeElement.querySelectorAll('ama-project-tree-filter');
         expect(filters.length).toBe(2);
+    });
+
+    it ('project tree should show the process filter opened once loaded', () => {
+        fixture.detectChanges();
+
+        const filters = fixture.nativeElement.querySelectorAll('ama-project-tree-filter .process.mat-expanded');
+        expect(filters.length).toBe(1);
     });
 
     it ('if filter is opened method getDataAdapter should be called with the filter type', () => {

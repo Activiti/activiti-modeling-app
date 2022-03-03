@@ -18,12 +18,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectSelectedProjectId, MODEL_TYPE, ModelFilter, OpenFilterAction, Filter, AmaState, selectMenuOpened } from '@alfresco-dbp/modeling-shared/sdk';
+import { selectSelectedProjectId, MODEL_TYPE, ModelFilter, OpenFilterAction, Filter, AmaState, selectMenuOpened, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProjectTreeHelper } from './project-tree.helper';
-import { CloseFilterAction } from '../../store/project-editor.actions';
+import { ChangeFilterStatus, CloseFilterAction } from '../../store/project-editor.actions';
 import { selectOpenedFilters } from '../../store/selectors/project-tree.selectors';
 import { delay, map } from 'rxjs/operators';
-
 @Component({
     selector: 'ama-project-tree',
     templateUrl: './project-tree.component.html',
@@ -45,6 +44,7 @@ export class ProjectTreeComponent implements OnInit {
         this.expanded$ = this.store.select(selectMenuOpened);
         this.selectedProjectId$ = this.store.select(selectSelectedProjectId);
         this.openedFilters$ = this.store.select(selectOpenedFilters);
+        this.store.dispatch(new OpenFilterAction(PROCESS));
     }
 
     getFilteredContentExpandedState(filterType: string): Observable<boolean> {
@@ -69,5 +69,9 @@ export class ProjectTreeComponent implements OnInit {
             this.projectTreeHelper.getDataAdapter(type).load(projectId);
         }
         this.store.dispatch(new OpenFilterAction(type));
+    }
+
+    changeFilterStatus({ type }) {
+        this.store.dispatch(new ChangeFilterStatus(type));
     }
 }

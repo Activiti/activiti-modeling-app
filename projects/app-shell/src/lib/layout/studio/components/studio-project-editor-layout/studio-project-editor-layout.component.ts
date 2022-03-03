@@ -15,14 +15,12 @@
  * limitations under the License.
  */
 
-import { RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { projectEditorRoutes } from './project-editor.routes';
+import { Component, ViewEncapsulation } from '@angular/core';
 
-@NgModule({
-    imports: [
-        RouterModule.forChild(projectEditorRoutes)
-    ],
-    exports: [RouterModule]
+@Component({
+    templateUrl: './studio-project-editor-layout.component.html',
+    styleUrls: ['./studio-project-editor-layout.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
-export class ProjectEditorRoutingModule {}
+export class StudioProjectEditorLayoutComponent {
+}

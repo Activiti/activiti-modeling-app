@@ -16,22 +16,11 @@
  */
 
 import { selectOpenedFilters } from './project-tree.selectors';
-import { PROCESS, FORM, UI } from '@alfresco-dbp/modeling-shared/sdk';
+import { FORM, UI } from '@alfresco-dbp/modeling-shared/sdk';
 
 describe('Project tree selectors', () => {
 
     describe('selectOpenedFilters', () => {
-        it ('should return [PROCESS] by default if nothing is opened', () => {
-            const state = {
-                'project-editor': {
-                    tree: { openedFilters: [] }
-                }
-            };
-
-            const openedFilters = selectOpenedFilters(state);
-
-            expect(openedFilters).toEqual([PROCESS]);
-        });
 
         it ('should return the array something if something is already in there', () => {
             const state = {

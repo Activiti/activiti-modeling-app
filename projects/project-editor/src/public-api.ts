@@ -16,4 +16,3 @@
  */
 
 export * from './lib/project-editor.module';
-export * from './lib/router/project-editor.routes';

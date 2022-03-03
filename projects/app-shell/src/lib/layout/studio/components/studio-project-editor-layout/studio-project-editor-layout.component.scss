@@ -1,0 +1,59 @@
+mat-sidenav-container.studio-project-layout {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    .app-navigation {
+        width: 300px;
+    }
+
+    .studio-project-layout-content {
+        height : 100%;
+
+        .mat-sidenav-container {
+            height: 100%;
+
+            .ama-canvas-editor {
+                position: unset;
+            }
+        }
+
+        .mat-sidenav-content {
+              > div {
+                height: 100%;
+
+                > div {
+                    display: flex;
+                    flex-direction: column;
+
+                    ng-component {
+                        flex: 1;
+                    }
+
+                    ama-projects-list {
+                        min-height: 0;
+                        flex: 1;
+                    }
+
+                    ama-about {
+                        overflow: auto;
+                        min-height: 0;
+                        flex: 1;
+                    }
+                }
+            }
+
+            .adf-toolbar .mat-toolbar {
+                border-left: none;
+                border-right: none;
+                height: 48px;
+            }
+        }
+
+        .mat-sidenav {
+            background-color: var(--theme-app-bar-bg-color);
+        }
+    }
+
+
+}

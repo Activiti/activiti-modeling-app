@@ -22,6 +22,7 @@ import { StudioLayoutComponent } from './components/studio-layout/studio-layout.
 import { ErrorContentComponent } from '../../common/components/error/error-content.component';
 import { AboutComponent } from '../../common/components/about/about.component';
 import { AmaLocalStorageMergeGuard, AmaModelSchemaLoaderGuard, AmaRoleGuard } from '../../router';
+import { StudioProjectEditorLayoutComponent } from './components/studio-project-editor-layout/studio-project-editor-layout.component';
 
 export const studioLayoutRoutes: Routes = [
     {
@@ -48,21 +49,24 @@ export const studioLayoutRoutes: Routes = [
                         // Impossible to lazily load ADF modules, that is why the hack
                         data: { hostFor: DASHBOARD_ROUTES }
                     },
-                    {
-                        path: 'projects',
-                        canActivate: [AmaRoleGuard],
-                        children: [
-                            {
-                                path: ':projectId',
-                                // Impossible to lazily load ADF modules, that is why the hack
-                                data: { hostFor: MODEL_EDITOR_ROUTES },
-                                canActivate: [ SelectedProjectSetterGuard, ProjectLoaderGuard ],
-                                children: []
-                            }
-                        ]
-                    },
+
                     { path: 'home', redirectTo: 'dashboard', pathMatch: 'full' },
                     { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+                ]
+            },
+            {
+                path: 'projects',
+                canActivate: [AmaRoleGuard],
+                component: StudioProjectEditorLayoutComponent,
+                data: { hostFor: AUTHENTICATED_ROUTES },
+                children: [
+                    {
+                        path: ':projectId',
+                        // Impossible to lazily load ADF modules, that is why the hack
+                        data: { hostFor: MODEL_EDITOR_ROUTES },
+                        canActivate: [ SelectedProjectSetterGuard, ProjectLoaderGuard ],
+                        children: []
+                    }
                 ]
             }
         ]

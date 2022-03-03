@@ -1,4 +1,15 @@
 .ama-project-tree {
+
+    &-filter {
+        display: flex;
+        align-items: center;
+    }
+
+    &-chevron-icon {
+      margin-top: 3px;
+      align-self: flex-start;
+    }
+
     .mat-expansion-panel {
         background: transparent;
 

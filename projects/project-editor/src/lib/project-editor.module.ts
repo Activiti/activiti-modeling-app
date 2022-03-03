@@ -15,13 +15,12 @@
  * limitations under the License.
  */
 
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { CoreModule } from '@alfresco/adf-core';
-import { SharedModule, getProjectEditorLogInitiator, PROJECT_EDITOR_STATE_NAME, provideLogFilter, provideTranslations } from '@alfresco-dbp/modeling-shared/sdk';
-import { ProjectEditorRoutingModule } from './router/project-editor-routing.module';
+import { SharedModule, getProjectEditorLogInitiator, PROJECT_EDITOR_STATE_NAME, provideLogFilter, provideTranslations, FEATURES } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProjectEffects } from './store/effects/project.effects';
 import { projectTreeReducer as tree } from './store/reducers/project-tree.reducer';
 import { ProjectContentComponent } from './components/project-content/project-content.component';
@@ -35,17 +34,21 @@ import { ProjectTreeIconsComponent } from './components/project-tree/project-tre
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ExtensionsModule } from '@alfresco/adf-extensions';
 import { ProjectImportMenuComponent } from './components/project-import-menu/project-import-menu.component';
+import { provideRoutes, RouterModule } from '@angular/router';
+import { Environment } from '@alfresco-dbp/adf-candidates/core/environment';
+import { projectEditorRoutes } from './router/project-editor.routes';
+import { studioProjectEditorRoutes } from './router/studio-editor-project.routes';
 
 @NgModule({
     imports: [
         CommonModule,
-        ProjectEditorRoutingModule,
         CoreModule.forChild(),
         SharedModule,
         OverlayModule,
         StoreModule.forFeature(PROJECT_EDITOR_STATE_NAME, { tree }),
         EffectsModule.forFeature([ProjectEffects]),
-        ExtensionsModule
+        ExtensionsModule,
+        RouterModule
     ],
     declarations: [
         ProjectContentComponent,
@@ -56,7 +59,6 @@ import { ProjectImportMenuComponent } from './components/project-import-menu/pro
         ProjectTreeIconsComponent,
         ProjectImportMenuComponent
     ],
-    exports: [ProjectEditorRoutingModule],
     providers: [
         ProjectEditorService,
         ProjectTreeHelper,
@@ -64,4 +66,13 @@ import { ProjectImportMenuComponent } from './components/project-import-menu/pro
         provideLogFilter(getProjectEditorLogInitiator())
     ]
 })
-export class ProjectEditorModule {}
+export class ProjectEditorModule {
+    static forRoot<T extends typeof FEATURES>(environment: Environment<T>): ModuleWithProviders<ProjectEditorModule> {
+        return {
+            ngModule: ProjectEditorModule,
+            providers: [
+                ...(environment.features.studioLayout ? provideRoutes(studioProjectEditorRoutes) : provideRoutes(projectEditorRoutes) )
+            ]
+        };
+    }
+}
