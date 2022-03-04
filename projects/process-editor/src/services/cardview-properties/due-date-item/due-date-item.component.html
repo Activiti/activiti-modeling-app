@@ -1,29 +1,107 @@
 <div class="ama-due-date-block">
     <form [formGroup]="dueDateForm">
         <div class="adf-property-label">{{'PROCESS_EDITOR.ELEMENT_PROPERTIES.DUE_DATE' | translate}}</div>
-        <mat-checkbox formControlName="useProcessVariable">
-            {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.USE_PROCESS_VARIABLE' | translate}}
-        </mat-checkbox>
-        <div *ngIf="useProcessVariable.value"
-             class="date-time-variable">
-            <mat-form-field>
-                <mat-select formControlName="processVariable">
-                    <mat-option></mat-option>
-                    <mat-option *ngFor="let processVariable of processVariables"
-                                [value]="processVariable.name">
-                        {{processVariable.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
 
-        <div *ngIf="!useProcessVariable.value"
-             class="ama-due-date-input">
-            <adf-card-view [properties]="properties"
-                           [editable]="true"
-                           [displayClearAction]="true">
-            </adf-card-view>
-        </div>
+        <mat-radio-group
+            formControlName="selectedDueDateType"
+            class="ama-due-date-type-selector-container"
+        >
+            <mat-radio-button [value]="dueDateType.StaticDate">
+                {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.USE_STATIC_DATE' | translate}}
+            </mat-radio-button>
 
+            <mat-radio-button [value]="dueDateType.TimeDuration">
+                {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.USE_TIME_DURATION' | translate}}
+            </mat-radio-button>
+
+            <mat-radio-button [value]="dueDateType.ProcessVariable">
+                {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.USE_PROCESS_VARIABLE' | translate}}
+            </mat-radio-button>
+        </mat-radio-group>
+
+        <ng-container [ngSwitch]="selectedDueDateType.value">
+            <div
+                *ngSwitchCase="dueDateType.ProcessVariable"
+                class="date-time-variable"
+            >
+                <mat-form-field>
+                    <mat-select formControlName="processVariable">
+                        <mat-option></mat-option>
+                        <mat-option *ngFor="let processVariable of processVariables"
+                                    [value]="processVariable.name">
+                            {{processVariable.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div
+                *ngSwitchCase="dueDateType.StaticDate"
+                class="ama-due-date-input"
+            >
+                <adf-card-view [properties]="properties"
+                               [editable]="true"
+                               [displayClearAction]="true">
+                </adf-card-view>
+            </div>
+
+            <div
+                *ngSwitchCase="dueDateType.TimeDuration"
+                formGroupName="timeDuration"
+                class="ama-due-date-time-duration-block"
+            >
+                <mat-form-field>
+                    <div class="adf-property-label">
+                        {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIME_DURATION_UNITS.MONTHS' | translate}}
+                    </div>
+                    <input
+                        matInput
+                        formControlName="months"
+                        data-automation-id="ama-date-time-duration-months"
+                        min="0"
+                        type="number"
+                    >
+                </mat-form-field>
+
+                <mat-form-field>
+                    <div class="adf-property-label">
+                        {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIME_DURATION_UNITS.DAYS' | translate}}
+                    </div>
+                    <input
+                        matInput
+                        formControlName="days"
+                        data-automation-id="ama-date-time-duration-days"
+                        min="0"
+                        type="number"
+                    >
+                </mat-form-field>
+
+                <mat-form-field>
+                    <div class="adf-property-label">
+                        {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIME_DURATION_UNITS.HOURS' | translate}}
+                    </div>
+                    <input
+                        matInput
+                        formControlName="hours"
+                        data-automation-id="ama-date-time-duration-hours"
+                        min="0"
+                        type="number"
+                    >
+                </mat-form-field>
+
+                <mat-form-field>
+                    <div class="adf-property-label">
+                        {{'PROCESS_EDITOR.ELEMENT_PROPERTIES.TIME_DURATION_UNITS.MINUTES' | translate}}
+                    </div>
+                    <input
+                        matInput
+                        formControlName="minutes"
+                        data-automation-id="ama-date-time-duration-minutes"
+                        min="0"
+                        type="number"
+                    >
+                </mat-form-field>
+            </div>
+        </ng-container>
     </form>
 </div>

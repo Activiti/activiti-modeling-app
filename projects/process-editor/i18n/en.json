@@ -91,7 +91,15 @@
             "PROCESS_VARIABLE": "Process variable",
             "FILTER_PROCESS_VARIABLE": "Filter Process variable",
             "USE_PROCESS_VARIABLE": "Use process variable",
+            "USE_STATIC_DATE": "Use static date",
             "USE_EXPRESSION": "Use expression",
+            "USE_TIME_DURATION": "Use time duration",
+            "TIME_DURATION_UNITS": {
+                "MONTHS": "Months",
+                "DAYS": "Days",
+                "HOURS": "Hours",
+                "MINUTES": "Minutes"
+            },
             "PROCESS_VARIABLES": "Process variables",
             "EXPRESSION": "Condition expression",
             "FORM_SELECTOR": "Form name",

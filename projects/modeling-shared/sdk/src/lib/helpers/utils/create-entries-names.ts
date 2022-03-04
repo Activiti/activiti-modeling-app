@@ -34,6 +34,7 @@ export const DATA_FILE_FORMAT = '.json';
 export const MODELER_NAME_REGEX = /^[a-z]([-a-z0-9]{0,24}[a-z0-9])?$/;
 export const FIELD_VARIABLE_NAME_REGEX = /^[a-z][a-z0-9_]*$/i;
 export const PROCESS_NAME_REGEX = /^[\w!@#£\$%\^\?\&*\)\(+\[\]\=/._-]([\Wa-zA-Z0-9_]{0,24}[\Wa-zA-Z0-9_])?$/;
+export const ISO_8601_TIME_DURATION_REGEX = /^P(?!$)(\d+(?:\.\d+)?Y)?(\d+(?:\.\d+)?M)?(\d+(?:\.\d+)?W)?(\d+(?:\.\d+)?D)?(T(?=\d)(\d+(?:\.\d+)?H)?(\d+(?:\.\d+)?M)?(\d+(?:\.\d+)?S)?)?$/;
 
 export const sanitizeString = (text: string) => {
     const pastedText = text,

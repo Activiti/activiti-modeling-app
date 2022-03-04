@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { CardViewDueDateItemComponent } from './due-date-item.component';
-import { CardViewUpdateService } from '@alfresco/adf-core';
+import { CardViewUpdateService, CoreTestingModule } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
@@ -25,6 +25,9 @@ import { Store } from '@ngrx/store';
 import { AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 import { of } from 'rxjs';
 import { DueDateItemModel } from './due-date-item.model';
+import { By } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatRadioModule } from '@angular/material/radio';
 
 describe('CardViewDueDateItemComponent', () => {
     let fixture: ComponentFixture<CardViewDueDateItemComponent>;
@@ -78,7 +81,12 @@ describe('CardViewDueDateItemComponent', () => {
                 },
             ],
             declarations: [CardViewDueDateItemComponent],
-            imports: [TranslateModule.forRoot()],
+            imports: [
+                CoreTestingModule,
+                TranslateModule.forRoot(),
+                MatRadioModule,
+                NoopAnimationsModule
+            ],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
     }));
@@ -101,8 +109,8 @@ describe('CardViewDueDateItemComponent', () => {
         expect(dateTimeVariableInput).toBeNull();
     });
 
-    it('should not display date input when processVariables is not enabled', () => {
-        component.useProcessVariable.setValue(true);
+    it('should not display date input when processVariables is enabled', () => {
+        component.selectedDueDateType.setValue(component.dueDateType.ProcessVariable);
         fixture.detectChanges();
 
         const dueDateInput = fixture.nativeElement.querySelector('div[class="due-date-input"]');
@@ -113,7 +121,7 @@ describe('CardViewDueDateItemComponent', () => {
 
     it('should update due date property when process variable is selected', () => {
         spyOn(cardViewUpdateService, 'update');
-        component.useProcessVariable.setValue(true);
+        component.selectedDueDateType.setValue(component.dueDateType.ProcessVariable);
         component.processVariable.setValue('foo');
 
         component.updateDueDate();
@@ -125,5 +133,44 @@ describe('CardViewDueDateItemComponent', () => {
     it('should set only datetime process variables when process is retrieved', () => {
         expect(component.processVariables.length).toBe(1);
         expect(component.processVariables[0].name).toBe('bar');
+    });
+
+    it('should set time duration values', fakeAsync(() => {
+        spyOn(cardViewUpdateService, 'update');
+        component.selectedDueDateType.setValue(component.dueDateType.TimeDuration);
+
+        fixture.detectChanges();
+
+        const monthInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-date-time-duration-months"]`));
+        const daysInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-date-time-duration-days"]`));
+        const hoursInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-date-time-duration-hours"]`));
+        const minutesInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-date-time-duration-minutes"]`));
+
+        monthInput.triggerEventHandler('input', { target: { value: '1' } });
+        daysInput.triggerEventHandler('input', { target: { value: '2' } });
+        hoursInput.triggerEventHandler('input', { target: { value: '3' } });
+        minutesInput.triggerEventHandler('input', { target: { value: '4' } });
+
+        tick(300);
+
+        expect(cardViewUpdateService.update).toHaveBeenCalledWith(component.property, 'P1M2DT3H4M');
+    }));
+
+    it('should extract time duration values from iso string', () => {
+        spyOn(cardViewUpdateService, 'update');
+        component.property = { value: 'P1M2DT3H4M' } as DueDateItemModel;
+        component.ngOnInit();
+
+       const {
+            months,
+            days,
+            hours,
+            minutes,
+       } = component.timeDurationForm.value;
+
+       expect(months).toBe('1');
+       expect(days).toBe('2');
+       expect(hours).toBe('3');
+       expect(minutes).toBe('4');
     });
 });

@@ -10,4 +10,17 @@
     .ama-due-date-input {
         padding-top: 10px;
     }
+
+    .ama-due-date-type-selector-container {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 10px;
+        row-gap: 5px;
+    }
+
+    .ama-due-date-time-duration-block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 4px;
+    }
 }

@@ -19,15 +19,21 @@ import { Component, Input, OnInit, OnDestroy, ViewEncapsulation } from '@angular
 import { CardItemTypeService, CardViewUpdateService, MomentDateAdapter, CardViewDatetimeItemModel, CardViewItem } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { AmaState, selectSelectedProcess, AMA_DATETIME_FORMATS, MOMENT_DATETIME_FORMAT,
-    EntityProperty, ANGULAR_DATETIME_DISPLAY_FORMAT, ProcessExtensionsModel } from '@alfresco-dbp/modeling-shared/sdk';
+    EntityProperty, ANGULAR_DATETIME_DISPLAY_FORMAT, ProcessExtensionsModel, ISO_8601_TIME_DURATION_REGEX } from '@alfresco-dbp/modeling-shared/sdk';
 import { filter, take, debounceTime, takeUntil } from 'rxjs/operators';
-import { FormBuilder, FormGroup, FormControl, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import moment from 'moment-es6';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { DatetimeAdapter, MAT_DATETIME_FORMATS } from '@mat-datetimepicker/core';
 import { MomentDatetimeAdapter } from '@mat-datetimepicker/moment';
 import { DueDateItemModel } from './due-date-item.model';
+
+enum DueDateType {
+    ProcessVariable = 'ProcessVariable',
+    StaticDate = 'StaticDate',
+    TimeDuration = 'TimeDuration',
+}
 
 @Component({
     selector: 'ama-process-due-date',
@@ -49,8 +55,21 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
     dueDateForm: FormGroup;
     today = new Date();
     properties: CardViewItem[] = [];
+    dueDateType = DueDateType;
 
     onDestroy$: Subject<void> = new Subject<void>();
+
+    get timeDurationForm(): FormGroup {
+        return this.dueDateForm.get('timeDuration') as FormGroup;
+    }
+
+    get processVariable(): FormControl {
+        return this.dueDateForm.get('processVariable') as FormControl;
+    }
+
+    get selectedDueDateType(): FormControl {
+        return this.dueDateForm.get('selectedDueDateType') as FormControl;
+    }
 
     constructor(private cardViewUpdateService: CardViewUpdateService,
                 private store: Store<AmaState>,
@@ -75,13 +94,19 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
 
     buildForm() {
         this.dueDateForm = this.formBuilder.group({
-            processVariable: new FormControl(undefined, []),
-            useProcessVariable: new FormControl(false, []),
+            processVariable:  [undefined],
+            selectedDueDateType: [this.dueDateType.StaticDate],
+            timeDuration: this.formBuilder.group({
+                minutes: [''],
+                hours: [''],
+                days: [''],
+                months: [''],
+            }),
         });
 
         this.dueDateForm.valueChanges
             .pipe(
-                debounceTime(500),
+                debounceTime(300),
                 takeUntil(this.onDestroy$)
             )
             .subscribe(() => {
@@ -92,8 +117,12 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
     updateDueDate() {
         let dueDateValue: string;
 
-        if (this.useProcessVariable.value) {
+        if (this.selectedDueDateType.value === this.dueDateType.ProcessVariable) {
             dueDateValue = this.processVariable.value ? '${' + this.processVariable.value + '}' : undefined;
+        }
+
+        if (this.selectedDueDateType.value === this.dueDateType.TimeDuration) {
+            dueDateValue = this.mapTimeDurationFormToDueDateValue();
         }
 
         this.cardViewUpdateService.update(this.property, dueDateValue);
@@ -111,11 +140,17 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
                 data: this.property.data
             })
         ];
+
         if (dateDefinitionValue) {
             if (dateDefinitionValue.includes('$')) {
                 this.extractProcessVariable(dateDefinitionValue);
+                this.selectedDueDateType.setValue(this.dueDateType.ProcessVariable, { emitEvent: false });
+            } else if (ISO_8601_TIME_DURATION_REGEX.test(dateDefinitionValue)) {
+                this.extractTimeDuration(dateDefinitionValue);
+                this.selectedDueDateType.setValue(this.dueDateType.TimeDuration, { emitEvent: false });
             } else {
                 this.properties[0].value = moment(dateDefinitionValue, MOMENT_DATETIME_FORMAT).toDate();
+                this.selectedDueDateType.setValue(this.dueDateType.StaticDate, { emitEvent: false });
             }
         }
     }
@@ -123,7 +158,6 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
     extractProcessVariable(processVariableDefinition: string) {
         const processVariable = processVariableDefinition.substr(2, processVariableDefinition.length - 3);
         this.processVariable.setValue(processVariable);
-        this.useProcessVariable.setValue(true);
     }
 
     ngOnDestroy() {
@@ -131,12 +165,57 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
         this.onDestroy$.complete();
     }
 
-    get processVariable(): AbstractControl {
-        return this.dueDateForm.get('processVariable');
+    private mapTimeDurationFormToDueDateValue(): string {
+        const {
+            months,
+            days,
+            hours,
+            minutes,
+       } = this.timeDurationForm.value;
+
+        const isoMonths = months ? `${months}M` : '';
+        const isoDays = days ? `${days}D` : '';
+        const isoHours = hours ? `${hours}H` : '';
+        const isoMinutes = minutes ? `${minutes}M` : '';
+
+        const hasAnyTime = isoMinutes || isoHours;
+        const hasAnyDays = isoDays || isoMonths;
+
+        if (hasAnyTime || hasAnyDays) {
+            return `P${isoMonths}${isoDays}${hasAnyTime ? 'T' : ''}${isoHours}${isoMinutes}`;
+        }
+
+        return '';
     }
 
-    get useProcessVariable(): AbstractControl {
-        return this.dueDateForm.get('useProcessVariable');
-    }
+    private extractTimeDuration(iso8601TimeDurationValue: string): void {
+        const [datePart, timePart] = iso8601TimeDurationValue.split('T');
+        let months = '';
+        let days = '';
+        let minutes = '';
+        let hours = '';
 
+        if (datePart) {
+            const monthsValue = datePart.match(/(\d*)M/);
+            months = monthsValue?.length > 0 ? monthsValue[1] : '';
+
+            const daysValue = datePart.match(/(\d*)D/);
+            days = daysValue?.length > 0 ? daysValue[1] : '';
+        }
+
+        if (timePart) {
+            const minutesValue = timePart.match(/(\d*)M/);
+            minutes = minutesValue?.length > 0 ? minutesValue[1] : '';
+
+            const hoursValue = timePart.match(/(\d*)H/);
+            hours = hoursValue?.length > 0 ? hoursValue[1] : '';
+        }
+
+        this.timeDurationForm.patchValue({
+            months,
+            days,
+            minutes,
+            hours
+        }, { emitEvent: false });
+    }
 }
