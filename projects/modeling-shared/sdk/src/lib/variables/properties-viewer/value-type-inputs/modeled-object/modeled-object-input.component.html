@@ -24,7 +24,7 @@
         class="ama-modeled-object-primitive-type-hint">
         info
     </mat-icon>
-    <modelingsdk-value-type-input class="ama-modeled-object-primitive" [value]="value || model.const"
+    <modelingsdk-value-type-input class="ama-modeled-object-primitive" [value]="value || model?.const"
         (onChange)="primitiveTypeChanges($event)" [type]="primitiveType.length > 1 ? 'json' : primitiveType[0]"
         [model]="(primitiveType.length > 1 || primitiveType[0] === 'json') ? null : model"
         [placeholder]="model?.title || placeholder" [autocompletionContext]="autocompletionContext">

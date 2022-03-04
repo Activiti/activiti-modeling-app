@@ -236,5 +236,14 @@ describe('JuelExpressionSimulatorComponent', () => {
             expect(component.result).toBeNull();
             expect(component.loading).toBe(false);
         });
+
+        it('should return false when the result is false', () => {
+            spyOn(service, 'getSimulationResult').and.returnValue(of(false));
+
+            component.executeSimulation();
+            getTestScheduler().flush();
+
+            expect(component.result).toBe('false');
+        });
     });
 });

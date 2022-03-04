@@ -105,7 +105,7 @@ export class JuelExpressionSimulatorComponent implements OnInit, OnDestroy {
         this.subscription = this.service.getSimulationResult(this.getExpressionBracketedIfNeeded(this.expression), variables).pipe(first())
             .subscribe(
                 (result) => {
-                    this.result = !!result ? JSON.stringify(result, null, 4) : 'null';
+                    this.result = (result !== null && result !== undefined) ? JSON.stringify(result, null, 4) : 'null';
                     this.loading = false;
                     this.simulation = true;
                 },

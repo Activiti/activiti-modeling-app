@@ -44,12 +44,13 @@
                         </button>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-                <modelingsdk-modeled-object-input
+                <modelingsdk-value-type-input
+                    [type]="variable.type"
                     [model]="variable.model"
                     [value]="variable.value"
                     [autocompletionContext]="variables"
-                    (valueChanges)="variableChanges(i, $event.value)">
-                </modelingsdk-modeled-object-input>
+                    (onChange)="variableChanges(i, $event)">
+                </modelingsdk-value-type-input>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
