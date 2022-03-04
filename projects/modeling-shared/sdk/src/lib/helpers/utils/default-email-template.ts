@@ -45,3 +45,7 @@ export const getDefaultCandidateEmailTemplate = (): string => {
     </html>
     `;
 }
+
+export const getDefaultTaskNotificationSubject = (): string => {
+    return `The task \${taskName} awaits your action`;
+}

@@ -222,6 +222,8 @@ export enum TaskTemplateType {
 export interface TaskTemplate {
     type: TaskTemplateType;
     value: string;
+    from: string;
+    subject: string;
 }
 export interface TaskTemplateMapping {
     assignee?: TaskTemplate;
