@@ -53,9 +53,22 @@
         .mat-header-row {
             background-color: var(--theme-card-background-color);
             padding: 0 24px 0 0;
+            border-top-color: var(--theme-border-color);
+            border-bottom-color: var(--theme-border-color);
+            border-top-width: 1px;
+            min-height: 48px;
+        }
+
+        .mat-header-cell {
+            color: var(--theme-primary-color);
+        }
+
+        .mat-sort-header-arrow {
+            color: var(--theme-primary-color);
         }
 
         .mat-row {
+            border: none;
             cursor: pointer;
             transition: background-color 250ms;
             padding: 0 24px 0 0;
@@ -80,6 +93,8 @@
 
         .mat-table {
             padding-bottom: 15px;
+            font-family: 'Inter';
+            height: calc(100% - 30px);
         }
 
         .cdk-column-thumbnail {
