@@ -169,13 +169,13 @@
             },
             "VALIDATION": {
                 "REQUIRED": "Input is required",
-                "INVALID_FORMAT": "Invalid input format",
-                "INVALID_MIN_LENGTH": "Invalid minimum length",
-                "INVALID_MAX_LENGTH": "Invalid maximum length",
-                "INVALID_MIN_VALUE": "Invalid value. It should be greater or equal than",
-                "INVALID_MAX_VALUE": "Invalid value. It should be less or equal than",
-                "INVALID_MULTIPLE_OF_VALUE": "Invalid value. It should be a multiple of",
-                "GENERIC_ERROR": "Invalid value"
+                "INVALID_FORMAT": "Invalid input format: ",
+                "INVALID_MIN_LENGTH": "Invalid minimum length: ",
+                "INVALID_MAX_LENGTH": "Invalid maximum length: ",
+                "INVALID_MIN_VALUE": "Invalid value. It should be greater or equal than: ",
+                "INVALID_MAX_VALUE": "Invalid value. It should be less or equal than: ",
+                "INVALID_MULTIPLE_OF_VALUE": "Invalid value. It should be a multiple of: ",
+                "GENERIC_ERROR": "Invalid value: "
             }
         },
         "JSON_SCHEMA_EDITOR": {

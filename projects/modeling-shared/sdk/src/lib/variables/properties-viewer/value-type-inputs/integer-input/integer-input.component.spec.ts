@@ -129,21 +129,21 @@ describe('PropertiesViewerIntegerInputComponent', () => {
             stringInput.dispatchEvent(new Event('blur'));
             fixture.detectChanges();
             error = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
-            expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MIN_VALUE: ' + component.model.minimum);
+            expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MIN_VALUE' + component.model.minimum);
 
             stringInput.value = '26';
             stringInput.dispatchEvent(new Event('input'));
             stringInput.dispatchEvent(new Event('blur'));
             fixture.detectChanges();
             error = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
-            expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MAX_VALUE: ' + component.model.maximum);
+            expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MAX_VALUE' + component.model.maximum);
 
             stringInput.value = '11';
             stringInput.dispatchEvent(new Event('input'));
             stringInput.dispatchEvent(new Event('blur'));
             fixture.detectChanges();
             error = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
-            expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MULTIPLE_OF_VALUE: ' + component.model.multipleOf);
+            expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MULTIPLE_OF_VALUE' + component.model.multipleOf);
         });
     });
 });

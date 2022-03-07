@@ -151,21 +151,21 @@ describe('PropertiesViewerStringInputComponent', () => {
             stringInput.dispatchEvent(new Event('blur'));
             fixture.detectChanges();
             error = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
-            expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_FORMAT: ' + '^' + component.model.pattern + '$');
+            expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_FORMAT' + '^' + component.model.pattern + '$');
 
             stringInput.value = 'short';
             stringInput.dispatchEvent(new Event('input'));
             stringInput.dispatchEvent(new Event('blur'));
             fixture.detectChanges();
             error = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
-            expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MIN_LENGTH: ' + component.model.minLength);
+            expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MIN_LENGTH' + component.model.minLength);
 
             stringInput.value = 'this1input2is3too4long';
             stringInput.dispatchEvent(new Event('input'));
             stringInput.dispatchEvent(new Event('blur'));
             fixture.detectChanges();
             error = fixture.debugElement.query(By.css('mat-error div')).nativeElement;
-            expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MAX_LENGTH: ' + component.model.maxLength);
+            expect(error.innerHTML.trim()).toEqual('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MAX_LENGTH' + component.model.maxLength);
         });
     });
 });
