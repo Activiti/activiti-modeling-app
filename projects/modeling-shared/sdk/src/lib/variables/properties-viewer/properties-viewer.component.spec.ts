@@ -55,9 +55,9 @@ describe('PropertiesViewerComponent', () => {
         close: jest.fn()
     };
     const data = {
-        '123' : {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': ''},
-        '234' : {'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''},
-        '345' : {'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': ''}
+        '123': { 'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': '' },
+        '234': { 'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': '' },
+        '345': { 'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': '' }
     };
 
     beforeEach(() => {
@@ -67,7 +67,7 @@ describe('PropertiesViewerComponent', () => {
                 CodeValidatorService,
                 DialogService,
                 { provide: MatDialogRef, useValue: mockDialog },
-                { provide: Store, useValue: { dispatch: jest.fn(), select: jest.fn().mockReturnValue(of()) }},
+                { provide: Store, useValue: { dispatch: jest.fn(), select: jest.fn().mockReturnValue(of()) } },
                 { provide: UuidService, useValue: { generate() { return 'generated-uuid'; } } },
                 {
                     provide: ExpressionsEditorService, useValue: {
@@ -113,7 +113,7 @@ describe('PropertiesViewerComponent', () => {
 
     it('should call sendData of VariableDialogService when clicking on delete ', () => {
         component.requiredCheckbox = true;
-        component.data = {...data};
+        component.data = { ...data };
         fixture.detectChanges();
         spyOn(service, 'sendData');
 
@@ -122,8 +122,8 @@ describe('PropertiesViewerComponent', () => {
         fixture.detectChanges();
 
         const data2 = {
-            '234' : {'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''},
-            '345' : {'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': ''}
+            '234': { 'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': '' },
+            '345': { 'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': '' }
         };
 
         expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data2, null, 2), null);
@@ -133,9 +133,9 @@ describe('PropertiesViewerComponent', () => {
     it('should have the same number of rows as properties in table', () => {
         component.requiredCheckbox = true;
         const data1 = {
-          '123': {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': ''},
-          '243': {'id': '243', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''},
-          '345': {'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': ''}
+            '123': { 'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': '' },
+            '243': { 'id': '243', 'name': 'var2', 'type': 'string', 'required': false, 'value': '' },
+            '345': { 'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': '' }
         };
 
         component.dataSource = new MatTableDataSource(Object.values(data1));
@@ -148,7 +148,7 @@ describe('PropertiesViewerComponent', () => {
 
     it('should show no properties if row was not clicked', () => {
         component.requiredCheckbox = true;
-        component.data = {...data};
+        component.data = { ...data };
         fixture.detectChanges();
 
         const template = fixture.nativeElement.querySelector('.ama-properties-form');
@@ -161,7 +161,7 @@ describe('PropertiesViewerComponent', () => {
 
     it('should show edit form if row was clicked', () => {
         component.requiredCheckbox = true;
-        component.data = {...data};
+        component.data = { ...data };
         fixture.detectChanges();
 
         const editRow = fixture.nativeElement.querySelector('.mat-row');
@@ -179,9 +179,9 @@ describe('PropertiesViewerComponent', () => {
     it('should call sendData of VariablesDialogService and change property if a property was edited and saved', () => {
         component.requiredCheckbox = true;
         const data1 = {
-           '123' : {'id': '123', 'name': 'var1', 'type': 'string', 'value': '', 'required': false },
-           '245' : {'id': '245', 'name': 'var2', 'type': 'string', 'value': '', 'required': false },
-           '345' : {'id': '345', 'name': 'var3', 'type': 'string', 'value': '', 'required': false }
+            '123': { 'id': '123', 'name': 'var1', 'type': 'string', 'value': '', 'required': false },
+            '245': { 'id': '245', 'name': 'var2', 'type': 'string', 'value': '', 'required': false },
+            '345': { 'id': '345', 'name': 'var3', 'type': 'string', 'value': '', 'required': false }
         };
 
         spyOn(service, 'sendData');
@@ -202,19 +202,19 @@ describe('PropertiesViewerComponent', () => {
         fixture.detectChanges();
 
         const data2 = {
-            '123' : {'id': '123', 'name': 'changed', 'type': 'string', 'value': '', 'required': false},
-            '245' : {'id': '245', 'name': 'var2', 'type': 'string', 'value': '', 'required': false},
-            '345' : {'id': '345', 'name': 'var3', 'type': 'string', 'value': '', 'required': false}
+            '123': { 'id': '123', 'name': 'changed', 'type': 'string', 'value': '', 'required': false },
+            '245': { 'id': '245', 'name': 'var2', 'type': 'string', 'value': '', 'required': false },
+            '345': { 'id': '345', 'name': 'var3', 'type': 'string', 'value': '', 'required': false }
         };
 
-       expect(component.form.name).toEqual('changed');
-       expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data2, null, 2), null);
+        expect(component.form.name).toEqual('changed');
+        expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data2, null, 2), null);
 
     });
 
     it('should show error if name is invalid', () => {
         const data1 = {
-           '123' : {'id': '123', 'name': 'var1', 'type': 'string', 'value': '', 'required': false }
+            '123': { 'id': '123', 'name': 'var1', 'type': 'string', 'value': '', 'required': false }
         };
 
         spyOn(service, 'sendData');
@@ -235,20 +235,20 @@ describe('PropertiesViewerComponent', () => {
         fixture.detectChanges();
 
         const data2 = {
-            '123' : {'id': '123', 'name': 'a2_#', 'type': 'string', 'value': '', 'required': false}
+            '123': { 'id': '123', 'name': 'a2_#', 'type': 'string', 'value': '', 'required': false }
         };
 
         expect(component.form.name).toEqual('a2_#');
         expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data2, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.INVALID_NAME');
         const infoIconWhenError = fixture.nativeElement.querySelector('.ama-variable-name-info-icon');
-        expect (infoIconWhenError === null).toBeFalsy();
+        expect(infoIconWhenError === null).toBeFalsy();
     });
 
     it('should call sendData with valid property name', () => {
 
         const data1 = {
-            '123' : {'id': '123', 'name': 'var1', 'type': 'string', 'value': '', 'required': false }
-         };
+            '123': { 'id': '123', 'name': 'var1', 'type': 'string', 'value': '', 'required': false }
+        };
 
         spyOn(service, 'sendData');
 
@@ -268,13 +268,13 @@ describe('PropertiesViewerComponent', () => {
         fixture.detectChanges();
 
         const data3 = {
-            '123' : {'id': '123', 'name': 'a2_', 'type': 'string', 'value': '', 'required': false}
+            '123': { 'id': '123', 'name': 'a2_', 'type': 'string', 'value': '', 'required': false }
         };
 
         expect(component.form.name).toEqual('a2_');
         expect(service.sendData).toHaveBeenCalledWith(JSON.stringify(data3, null, 2), null);
         const infoIcon = fixture.nativeElement.querySelector('.ama-variable-name-info-icon');
-        expect (infoIcon === null).toBeTruthy();
+        expect(infoIcon === null).toBeTruthy();
     });
 
     it('should call sendData of VariablesDialog when clicking on add button', () => {
@@ -304,6 +304,8 @@ describe('PropertiesViewerComponent', () => {
         const addButton = fixture.nativeElement.querySelector('[data-automation-id="add-variable"]');
         addButton.dispatchEvent(new Event('click'));
         fixture.detectChanges();
+
+        component.form.type = 'string';
 
         const invalidName: HTMLElement = fixture.nativeElement.querySelector('.mat-error');
         expect(invalidName.textContent).toEqual('SDK.VARIABLES_EDITOR.ERRORS.EMPTY_NAME');
@@ -337,7 +339,7 @@ describe('PropertiesViewerComponent', () => {
         await fixture.whenStable();
 
         expect(component.dataSource.filter).toBe('var2');
-        expect(component.dataSource.filteredData).toEqual([{'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': ''}]);
+        expect(component.dataSource.filteredData).toEqual([{ 'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': '' }]);
     });
 
     it('should filter only based on name column', async () => {
@@ -366,7 +368,7 @@ describe('PropertiesViewerComponent', () => {
 
     it('should set filterValue from input', () => {
         const input = fixture.debugElement.query(By.css('[data-automation-id="variable-filter"]'));
-        input.triggerEventHandler('input', { target: { value: 'string'}});
+        input.triggerEventHandler('input', { target: { value: 'string' } });
         fixture.detectChanges();
 
         expect(component.filterValue).toEqual('string');
@@ -375,9 +377,9 @@ describe('PropertiesViewerComponent', () => {
     it('should show the correct tab in editor', () => {
         component.requiredCheckbox = true;
         const data1 = {
-          '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello'},
-          '243':  {'id': '243', 'name': 'var2', 'type': 'string', 'required': false, 'value': '${123}'},
-          '345':  {'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': ''}
+            '123': { 'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello' },
+            '243': { 'id': '243', 'name': 'var2', 'type': 'string', 'required': false, 'value': '${123}' },
+            '345': { 'id': '345', 'name': 'var3', 'type': 'string', 'required': false, 'value': '' }
         };
 
         component.dataSource = new MatTableDataSource(Object.values(data1));
@@ -398,7 +400,7 @@ describe('PropertiesViewerComponent', () => {
     it('should not display tabs when expression is not allowed', () => {
         component.allowExpressions = false;
         const data1 = {
-            '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello'},
+            '123': { 'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello' },
         };
 
         component.dataSource = new MatTableDataSource(Object.values(data1));
@@ -415,7 +417,7 @@ describe('PropertiesViewerComponent', () => {
     it('should display tabs when expression is allowed', () => {
         component.allowExpressions = true;
         const data1 = {
-            '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello'},
+            '123': { 'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello' },
         };
 
         component.dataSource = new MatTableDataSource(Object.values(data1));
@@ -434,7 +436,7 @@ describe('PropertiesViewerComponent', () => {
     it('should display the expression editor in the expression tab content', () => {
         component.allowExpressions = true;
         const data1 = {
-            '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello'},
+            '123': { 'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello' },
         };
 
         component.dataSource = new MatTableDataSource(Object.values(data1));
@@ -456,7 +458,7 @@ describe('PropertiesViewerComponent', () => {
     it('should not display tabs when expression is not allowed', () => {
         component.allowExpressions = false;
         const data1 = {
-            '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello'},
+            '123': { 'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello' },
         };
 
         component.dataSource = new MatTableDataSource(Object.values(data1));
@@ -473,7 +475,7 @@ describe('PropertiesViewerComponent', () => {
     it('should display tabs when expression is allowed', () => {
         component.allowExpressions = true;
         const data1 = {
-            '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello'},
+            '123': { 'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello' },
         };
 
         component.dataSource = new MatTableDataSource(Object.values(data1));
@@ -492,7 +494,7 @@ describe('PropertiesViewerComponent', () => {
     it('should display the expression editor in the expression tab content', () => {
         component.allowExpressions = true;
         const data1 = {
-            '123':  {'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello'},
+            '123': { 'id': '123', 'name': 'var1', 'type': 'string', 'required': false, 'value': 'hello' },
         };
 
         component.dataSource = new MatTableDataSource(Object.values(data1));
@@ -514,9 +516,9 @@ describe('PropertiesViewerComponent', () => {
     it('should not disable update button when json values are correct', () => {
 
         const jsonData: EntityProperties = {
-            '1' : {'id': '1', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': '{ "correct": "json" }'},
+            '1': { 'id': '1', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': '{ "correct": "json" }' },
             // the code editor is passing valid json as object,
-            '4' : {'id': '4', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': { aa: 'aa' } as unknown as string},
+            '4': { 'id': '4', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': { aa: 'aa' } as unknown as string },
         };
 
         component.data = jsonData;
@@ -532,9 +534,9 @@ describe('PropertiesViewerComponent', () => {
     it('should disable update button when any of the table rows contain invalid json data', () => {
 
         const jsonData: EntityProperties = {
-            '1' : {'id': '1', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': '{ "correct": "json" }'},
-            '2' : {'id': '2', 'name': 'invalid_json', 'type': 'json', 'required': false, 'value': '{ "missTyped": "json }'},
-            '3' : {'id': '3', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': '{ "correct": "json" }'},
+            '1': { 'id': '1', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': '{ "correct": "json" }' },
+            '2': { 'id': '2', 'name': 'invalid_json', 'type': 'json', 'required': false, 'value': '{ "missTyped": "json }' },
+            '3': { 'id': '3', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': '{ "correct": "json" }' },
         };
 
         component.data = jsonData;
@@ -585,15 +587,15 @@ describe('PropertiesViewerComponent', () => {
 
     describe('Table Rows actions', () => {
 
-        const validJsonVariable = {'id': '1', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': '{ "correct": "json" }'};
-        const invalidJsonVariable = {'id': '2', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': '{ "missTyped": "json }'};
+        const validJsonVariable = { 'id': '1', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': '{ "correct": "json" }' };
+        const invalidJsonVariable = { 'id': '2', 'name': 'valid_json', 'type': 'json', 'required': false, 'value': '{ "missTyped": "json }' };
 
         beforeEach(() => {
 
             const input: EntityProperties = {
-                '1' : validJsonVariable,
-                '2' : invalidJsonVariable,
-                '3' : {...validJsonVariable, id: '3'},
+                '1': validJsonVariable,
+                '2': invalidJsonVariable,
+                '3': { ...validJsonVariable, id: '3' },
             };
 
             component.data = input;
@@ -604,8 +606,8 @@ describe('PropertiesViewerComponent', () => {
             it('should notify service that remained values are not correct, and set error flag to true', () => {
 
                 const expected: EntityProperties = {
-                    '1' : validJsonVariable,
-                    '2' : invalidJsonVariable,
+                    '1': validJsonVariable,
+                    '2': invalidJsonVariable,
                 };
                 const variablesServiceSpy = spyOn(service, 'sendData').and.callThrough();
 
@@ -633,6 +635,22 @@ describe('PropertiesViewerComponent', () => {
             });
         });
 
+    });
+
+    it('should disable update button when any of the table rows contain invalid json data', () => {
+        const jsonData: EntityProperties = {
+            '1': { 'id': '1', 'name': 'valid_json', 'type': null, 'required': false, 'value': '{ "correct": "json" }' },
+            '2': { 'id': '2', 'name': 'string', 'type': 'string', 'required': false, 'value': 'string' },
+        };
+
+        component.data = jsonData;
+        component.form.name = 'changed';
+
+        const variablesServiceSpy = spyOn(service, 'sendData');
+
+        component.saveChanges();
+        expect(component.error).toBe(true);
+        expect(variablesServiceSpy).toHaveBeenCalledWith(JSON.stringify(jsonData, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_TYPE');
     });
 
 });

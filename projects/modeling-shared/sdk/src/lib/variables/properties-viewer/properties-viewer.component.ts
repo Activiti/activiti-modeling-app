@@ -216,7 +216,15 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
             return 'APP.GENERAL.ERRORS.NOT_VALID_JSON';
         }
 
+        if (this.hasVariableWithoutType(entityProperties)) {
+            return 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_TYPE';
+        }
+
         return null;
+    }
+
+    private hasVariableWithoutType(entityProperties: EntityProperties) {
+        return !!Object.keys(entityProperties).find(variable => !entityProperties[variable].type);
     }
 
     updateVariableValue(value?: any): void {
@@ -277,7 +285,7 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
     }
 
     hasInvalidJson(data: EntityProperties): boolean {
-        return Object.values(data).filter(({type}) => type === 'json').some(({value}) => !this.isValidJson(value));
+        return Object.values(data).filter(({ type }) => type === 'json').some(({ value }) => !this.isValidJson(value));
     }
 
     isValid(name: string): boolean {

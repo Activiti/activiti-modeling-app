@@ -102,7 +102,8 @@
                 [automationId]="'variable-type'"
                 [onlyPrimitiveTypes]="true"
                 [(ngModel)]="form"
-                (change)="onTypeChange()">
+                (change)="onTypeChange()"
+                [required]="true">
             </modelingsdk-property-type-selector-smart>
             <mat-checkbox *ngIf="requiredCheckbox && allowExpressions" [(ngModel)]="form.required" (change)="saveChanges()" color="primary"
                 data-automation-id="variable-required" class="ama-variable-required">

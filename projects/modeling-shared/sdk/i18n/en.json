@@ -20,6 +20,7 @@
         "VARIABLES_EDITOR": {
             "ERRORS": {
                 "EMPTY_NAME": "A name is required",
+                "EMPTY_TYPE": "A type is required",
                 "INVALID_NAME": "Invalid variable name",
                 "VARIABLE_NAME_TOOLTIP": "The name can must start with a letter and can only contain alphanumeric characters and underscores",
                 "NAME_ALREADY_EXISTS": "Variable names must be unique",

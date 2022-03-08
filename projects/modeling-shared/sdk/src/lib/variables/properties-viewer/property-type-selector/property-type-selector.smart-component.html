@@ -20,3 +20,4 @@
     <modelingsdk-property-type-item-ui #menu [items]="hierarchy" [automationId]="automationId"
         (change)="onSelectionChanges($event)"></modelingsdk-property-type-item-ui>
 </ng-container>
+<p class="mat-error ama-property-type-selector-error" *ngIf="required && !property?.type">{{ 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_TYPE' | translate }}</p>

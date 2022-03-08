@@ -59,6 +59,7 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
     @Input() automationId = 'ama-property-type-selector';
     @Input() onlyPrimitiveTypes = false;
     @Input() staticHierarchy: PropertyTypeItem[];
+    @Input() required: boolean;
 
     placeholder: string;
 

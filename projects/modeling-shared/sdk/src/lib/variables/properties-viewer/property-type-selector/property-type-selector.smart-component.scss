@@ -30,3 +30,8 @@ span.ama-property-type-selector-custom-icon {
     display: table-cell;
     text-align: center;
 }
+
+.ama-property-type-selector-error.mat-error {
+    margin: 0;
+    font-size: var(--theme-subheading-2-font-size);
+}
