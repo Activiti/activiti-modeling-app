@@ -25,6 +25,7 @@ import { HeaderBreadcrumbsComponent } from './header-breadcrumbs/header-breadcru
 import { PaletteOverlayDirective } from './directives/palette-overlay.directive';
 import { EntityDialogComponent } from './components/entity-dialog/entity-dialog.component';
 import { EntityDialogContentComponent } from './components/entity-dialog/dialog-content/entity-dialog-content.component';
+import { ActiveClassDirective } from './directives/active-class.directive';
 
 @NgModule({
     imports: [
@@ -38,14 +39,16 @@ import { EntityDialogContentComponent } from './components/entity-dialog/dialog-
         EntityDialogComponent,
         EntityDialogContentComponent,
         AllowedCharactersDirective,
-        PaletteOverlayDirective
+        PaletteOverlayDirective,
+        ActiveClassDirective
     ],
     exports: [
         HeaderBreadcrumbsComponent,
         EntityDialogComponent,
         EntityDialogContentComponent,
         AllowedCharactersDirective,
-        PaletteOverlayDirective
+        PaletteOverlayDirective,
+        ActiveClassDirective
     ]
 })
 export class SharedModule { }

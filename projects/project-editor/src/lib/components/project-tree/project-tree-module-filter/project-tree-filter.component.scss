@@ -1,4 +1,5 @@
 .ama-project-tree-filter {
+
     .mat-expansion-panel {
         &-body {
             padding: 0 0 16px 24px;
@@ -65,10 +66,30 @@
         }
     }
 
+    &__container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    &__create_button {
+        display: none;
+    }
+
+    &__active {
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+    }
+
+
     &__title {
         display: flex;
         align-items: center;
-        width: 90px;
+        justify-content: flex-start;
+        width: 65%;
         font-size: 13px;
         white-space: nowrap;
     }

@@ -5,10 +5,18 @@
     (closed)="filterClosed(filter.type)">
 
     <mat-expansion-panel-header [attr.data-automation-id]="'project-filter-' + filter.type">
-        <mat-icon class="ama-project-tree-filter__icon ama-filter-icon" *ngIf="!loading; else contentsAreLoading;">
-            {{ filter.icon }}
-        </mat-icon>
-        <span class="ama-project-tree-filter__title">{{ filter.name | translate }}</span>
+        <div class="ama-project-tree-filter__container" [modelingsdk-active-class]="'ama-project-tree-filter__active'">
+            <mat-icon class="ama-project-tree-filter__icon ama-filter-icon" *ngIf="!loading; else contentsAreLoading;">
+                {{ filter.icon }}
+            </mat-icon>
+            <span class="ama-project-tree-filter__title">{{ filter.name | translate }}</span>
+            <button mat-icon-button class="ama-project-tree-filter__create_button"
+                    *ngIf="isAllowed(filter.type)" [disableRipple]="true"
+                   (click)="openModelCreationModal($event)"
+                [title]="'PROJECT_EDITOR.CREATE_NEW' | translate" [class]="'add-new-' + filter.type">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
     </mat-expansion-panel-header>
 
     <div class="ama-project-tree-filter__content" [attr.data-automation-id]="'project-filter-' + filter.type + '-container'">
@@ -38,7 +46,7 @@
                             <span *ngIf="content.icon" class="ama-project-tree-filter__item_icon {{content.icon}}"></span>
                             <mat-icon *ngIf="!content.icon" class="ama-project-tree-filter__icon">{{ filter.icon }}</mat-icon>
                             <span class="{{ 'ama-project-tree-filter__name ' +  filter.type }}">{{ content.name }}</span>
-                            
+
                         </a>
                     </div>
                 </div>

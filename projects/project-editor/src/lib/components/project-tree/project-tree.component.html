@@ -18,6 +18,7 @@
                 </button>
 
                   <ama-project-tree-filter [projectId]="selectedProjectId"
+                    class="ama-project-tree__filter_details"
                     [filter]="filter"
                     [expanded]="getFilteredContentExpandedState(filter.type) | async"
                     [contents]="getFilteredContents(filter.type) | async"
