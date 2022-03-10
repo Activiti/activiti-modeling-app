@@ -17,7 +17,7 @@
 
 import { Routes } from '@angular/router';
 import { AuthGuard } from '@alfresco/adf-core';
-import { DASHBOARD_ROUTES, MODEL_EDITOR_ROUTES, SelectedProjectSetterGuard, ProjectLoaderGuard, AUTHENTICATED_ROUTES, MainNavigationComponent } from '@alfresco-dbp/modeling-shared/sdk';
+import { DASHBOARD_ROUTES, MODEL_EDITOR_ROUTES, SelectedProjectSetterGuard, ProjectLoaderGuard, AUTHENTICATED_ROUTES, MainNavigationComponent, StudioHeaderComponent } from '@alfresco-dbp/modeling-shared/sdk';
 import { StudioLayoutComponent } from './components/studio-layout/studio-layout.component';
 import { ErrorContentComponent } from '../../common/components/error/error-content.component';
 import { AboutComponent } from '../../common/components/about/about.component';
@@ -66,7 +66,8 @@ export const studioLayoutRoutes: Routes = [
                         data: { hostFor: MODEL_EDITOR_ROUTES },
                         canActivate: [ SelectedProjectSetterGuard, ProjectLoaderGuard ],
                         children: []
-                    }
+                    },
+                    { path: '', component: StudioHeaderComponent, outlet: 'main-header'}
                 ]
             }
         ]
