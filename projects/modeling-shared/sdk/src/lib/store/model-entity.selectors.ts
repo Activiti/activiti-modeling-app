@@ -46,10 +46,16 @@ export class ModelEntitySelectors {
         return createSelector(
             this.selectModelMetadataById(modelId),
             (selectedModelMetadata) => {
-                if (!selectedModelMetadata) {
-                    return null;
-                }
-                return { name: selectedModelMetadata.name };
+                return { name: selectedModelMetadata ? selectedModelMetadata.name : '' };
+            }
+        );
+    }
+
+    selectBreadCrumbsWithVersion(modelId: string) {
+        return createSelector(
+            this.selectModelMetadataById(modelId),
+            (selectedModelMetadata) => {
+                return { name: selectedModelMetadata ? `${selectedModelMetadata.name} (${selectedModelMetadata.version})` : '' };
             }
         );
     }

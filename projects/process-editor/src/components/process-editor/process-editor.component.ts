@@ -117,7 +117,7 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
     ) {}
 
     ngOnInit() {
-        this.breadcrumbs$ = this.breadCrumbHelperService.getModelCrumbs(this.entitySelector.selectBreadCrumbs(this.modelId));
+        this.breadcrumbs$ = this.breadCrumbHelperService.getModelCrumbs(this.entitySelector.selectBreadCrumbsWithVersion(this.modelId));
         this.contentFromStore$ = this.store.select(this.entitySelector.selectModelContentById(this.modelId)).pipe(
             filter(content => !!content),
             take(1)

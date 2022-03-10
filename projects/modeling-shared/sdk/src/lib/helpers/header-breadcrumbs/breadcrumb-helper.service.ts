@@ -37,7 +37,7 @@ export class BreadCrumbHelperService {
         return combineLatest([
             of({ url: '/home', name: 'Dashboard' }),
             this.store.select(selectProjectCrumb).pipe(filter(value => value !== null)),
-            this.store.select(modelCrumbSelector$).pipe(filter(value => value !== null))
+            this.store.select(modelCrumbSelector$).pipe(filter(value => !!value))
         ]);
     }
 }
