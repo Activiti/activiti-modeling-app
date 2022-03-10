@@ -76,6 +76,11 @@ $defaults: (
   --theme-title-font-size: mat-font-size($alfresco-typography, title),
   --theme-subheading-2-font-size: mat-font-size($alfresco-typography, subheading-2),
   --theme-card-bg-color: mat-color($background, card),
+  --theme-colors-mat-grey-dark: mat-color($mat-grey, A400),
+  --theme-adf-picture-1-font-size: map-get(
+    $adf-custom-theme-sizes,
+    'theme-adf-picture-1-font-size'
+  ),
   --adf-card-view-datetime-border-color: mat-color($foreground, text, 0.42),
 
   // ADF components and services
