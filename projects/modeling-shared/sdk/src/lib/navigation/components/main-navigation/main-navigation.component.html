@@ -12,7 +12,7 @@
             <modelingsdk-user-info-menu></modelingsdk-user-info-menu>
         </div>
     </div>
-    <div>
+    <div class="studio-main-navigation-container">
         <div class="studio-main-navigation-section">
             <a class="studio-main-navigation-main-title">{{'NEW_STUDIO_DASHBOARD.NAVIGATION.PROJECT_TITLE' | translate}}</a>
             <ul class="studio-main-navigation-menu">
@@ -20,14 +20,17 @@
                     <li class="studio-main-navigation-menu-element" routerLinkActive #rla="routerLinkActive"
                         title="{{ item.title || '' | translate }}" *ngIf="!item.disabled">
 
-                        <button mat-icon-button mat-ripple matRippleColor="primary" [routerLink]="item.route.url"
-                            [color]="rla.isActive ? 'accent' : 'primary'" [matRippleTrigger]="rippleTrigger"
-                            [matRippleCentered]="true" [title]="item.label | translate">
-                            <span #rippleTrigger class="" [routerLink]="item.route.url"
-                            [ngClass]="{
-                                'studio-main-navigation-menu-element-active': rla.isActive,
-                                'studio-main-navigation-menu-element': !rla.isActive
-                            }">{{ item.label | translate }}</span>
+                        <button mat-icon-button mat-ripple matRippleColor="primary"
+                                class="studio-main-navigation-menu-element-button"
+                                [routerLink]="item.route.url"
+                                [disableRipple]="true"
+                                [color]="rla.isActive ? 'accent' : 'primary'"
+                                [title]="item.label | translate">
+                            <span [routerLink]="item.route.url"
+                                  [ngClass]="{ 'studio-main-navigation-menu-element-active': rla.isActive,
+                                          'studio-main-navigation-menu-element': !rla.isActive}">
+                                {{ item.label | translate }}
+                            </span>
                         </button>
 
                     </li>
