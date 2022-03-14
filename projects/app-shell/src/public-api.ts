@@ -18,4 +18,3 @@
 export { OriginsAppShellModule, StudioAppShellModule } from './lib/app-shell-main.module';
 export * from './lib/common/components/about/about.module';
 export * from './lib/common/services/plugin-routes-manager.service';
-export * from './lib/store/actions/app.actions';

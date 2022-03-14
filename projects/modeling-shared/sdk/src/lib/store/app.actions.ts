@@ -98,3 +98,9 @@ export class SetLogHistoryVisibilityAction implements Action {
     readonly type = SET_LOG_HISTORY_VISIBILITY;
     constructor(public visible: boolean) {}
 }
+
+export const APP_RESET_ACTION = '[App] Reset';
+export class ResetAction implements Action {
+    readonly type = APP_RESET_ACTION;
+    constructor() {}
+}

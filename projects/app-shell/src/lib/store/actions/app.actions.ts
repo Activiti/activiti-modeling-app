@@ -21,8 +21,7 @@ import { AppTheme } from '@alfresco-dbp/modeling-shared/sdk';
 export enum AppActionTypes {
     AsyncInit = '[App] AsyncInit',
     LoggedIn = '[App] LoggedIn',
-    Logout = '[App] Logout',
-    Reset = '[App] Reset'
+    Logout = '[App] Logout'
 }
 
 export class AsyncInitAction implements Action {
@@ -43,10 +42,5 @@ export class LoggedInAction implements Action {
 export const CLEAR_LOG_HISTORY = '[App] CLEAR_LOG_HISTORY';
 export class ClearLogHistoryAction implements Action {
     readonly type = CLEAR_LOG_HISTORY;
-    constructor() {}
-}
-
-export class ResetAction implements Action {
-    readonly type = AppActionTypes.Reset;
     constructor() {}
 }

@@ -15,12 +15,13 @@
  * limitations under the License.
  */
 
+import { APP_RESET_ACTION } from '@alfresco-dbp/modeling-shared/sdk';
 import { AppActionTypes } from '../actions/app.actions';
 import { INITIAL_APP_STATE } from '../states/app.state';
 
 export function logoutMetaReducer(reducer) {
     return function logoutReducer(state, action) {
-        if (action.type === AppActionTypes.Logout || action.type === AppActionTypes.Reset) {
+        if (action.type === AppActionTypes.Logout || action.type === APP_RESET_ACTION) {
             return reducer({ ...INITIAL_APP_STATE }, action);
         }
         return reducer(state, action);
