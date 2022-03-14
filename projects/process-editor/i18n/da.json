@@ -1,9 +1,11 @@
 {
-  "PROCESS_EDITOR": {
+  "ADV_PROCESS_EDITOR": {
     "DOWNLOAD_PROCESS": "Download proces",
     "SAVE_PROCESS_IMAGE": "Gem procesdiagram som SVG",
     "VALIDATE_PROCESS": "Bekræft proces",
-    "SAVE_PROCESS": "Gem proces",
+    "SAVE_PROCESS": "Gem proces"
+  },
+  "PROCESS_EDITOR": {
     "SELECT_PROCESS_VARIABLE": "Vælg procesvariabel",
     "SCRIPT_NAME": "Navn på script",
     "PRIORITIES": {
@@ -89,7 +91,15 @@
       "PROCESS_VARIABLE": "Procesvariabel",
       "FILTER_PROCESS_VARIABLE": "Filtrer procesvariabel",
       "USE_PROCESS_VARIABLE": "Anvend procesvariabel",
+      "USE_STATIC_DATE": "Brug statisk dato",
       "USE_EXPRESSION": "Anvend udtryk",
+      "USE_TIME_DURATION": "Brug tidsvarighed",
+      "TIME_DURATION_UNITS": {
+        "MONTHS": "Måneder",
+        "DAYS": "Dage",
+        "HOURS": "Timer",
+        "MINUTES": "Minutter"
+      },
       "PROCESS_VARIABLES": "Procesvariabler",
       "EXPRESSION": "Betingelsesudtryk",
       "FORM_SELECTOR": "Formularnavn",
@@ -184,10 +194,11 @@
           "TITLE": "Udtryk",
           "CANDIDATE_EMPTY": "Kandidater kan ikke være tomme, angiv enten kandidatbrugere eller kandidatgrupper",
           "ASSIGNEE_EMPTY": "Assignaten kan ikke være tom",
-          "ASSIGNEE_INVALID_ERROR": "Ugyldigt udtryk f.eks. {assignat:${var1}}",
-          "CANDIDATE_INVALID_ERROR": "Ugyldigt udtryk f.eks. {kandidatbrugere: ${var1}, kandidatgrupper: ${var2}}"
+          "ASSIGNEE_INVALID_ERROR": "Ugyldigt udtryk f.eks. { assignat:${var1}  }",
+          "CANDIDATE_INVALID_ERROR": "Ugyldigt udtryk f.eks. { candidateUsers: ${var1}, candidateGroups: ${var2} }"
         }
-      }
+      },
+      "INHERIT_BUSINESS_KEY": "Arv forretningsnøgle"
     },
     "PROPERTIES_BUTTON": "Egenskaber",
     "UPLOAD_SUCCESS": "Proces blev uploadet",

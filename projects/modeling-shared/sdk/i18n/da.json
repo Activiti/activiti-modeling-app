@@ -20,6 +20,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Der skal angives et navn",
+        "EMPTY_TYPE": "Der skal angives et type",
         "INVALID_NAME": "Ugyldigt navn på variabel",
         "VARIABLE_NAME_TOOLTIP": "Navnet skal starte med et bogstav og må kun indeholde alfanumeriske tegn og understregninger",
         "NAME_ALREADY_EXISTS": "Variabelnavne skal være unikke",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "Rediger i dialog",
       "EXPRESSION_EDITOR": "Udtryk redigeringsenhed",
-      "NO_BRACKETS_HINT": "Hele udtrykket i denne redigeringsenhed gemmes inden i de krøllede parenteser (${...}) så du ikke behøver at indtaste dem"
+      "NO_BRACKETS_HINT": "Hele udtrykket i denne redigeringsenhed gemmes inden i de krøllede parenteser (${...}) så du ikke behøver at indtaste dem",
+      "JUEL_EXPRESSION_SIMULATOR": "JUEL-udtrykssimulator",
+      "TEST": "Test",
+      "TEST_DISABLED_TOOLTIP": "Tilføj en variabel til testen, før du udfører den.",
+      "TEST_ENABLED_TOOLTIP": "Test udtrykket med de værdier, der leveres til variablerne.",
+      "OPEN_TESTER": "Åbn tester",
+      "CLOSE_TESTER": "Luk tester",
+      "SET_VARIABLES_VALUES": "Angiv variabels værdier",
+      "SET_VARIABLES_VALUES_TOOLTIP": "Vælg en variabel for at angive dens værdi i testen",
+      "DELETE_VARIABLE_FROM_TEST": "Slet variabel fra test"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "Grundlæggende",
+      "PRIMITIVE_PROPERTIES_TYPES": "Stamfunktioner",
       "DATE": {
         "CURRENT_DATE": "I dag",
         "CLEAR_BUTTON": "Ryd"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "Input er påkrævet",
-        "INVALID_FORMAT": "Ugyldigt inputformat",
-        "INVALID_MIN_LENGTH": "Ugyldig minimumlængde",
-        "INVALID_MAX_LENGTH": "Ugyldig maksimumlængde",
-        "INVALID_MIN_VALUE": "Ugyldig værdi. Den skal være større end eller lig med",
-        "INVALID_MAX_VALUE": "Ugyldig værdi. Den skal være mindre end eller lig med",
-        "INVALID_MULTIPLE_OF_VALUE": "Ugyldig værdi. Den skal være et multiplum af",
-        "GENERIC_ERROR": "Ugyldig værdi"
+        "INVALID_FORMAT": "Ugyldigt inputformat: {{error}}",
+        "INVALID_MIN_LENGTH": "Ugyldig minimumlængde: {{error}}",
+        "INVALID_MAX_LENGTH": "Ugyldig maksimumlængde: {{error}}",
+        "INVALID_MIN_VALUE": "Ugyldig værdi. Den skal være større end eller lig med: {{error}}",
+        "INVALID_MAX_VALUE": "Ugyldig værdi. Den skal være mindre end eller lig med: {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "Ugyldig værdi. Den skal være et multiplum af: {{error}}",
+        "GENERIC_ERROR": "Ugyldig værdi: {{error_1}} - {{error_2}}"
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "Udvid",
+      "COLLAPSE": "Skjul",
+      "NAME": "Navn",
+      "INVALID_NAME": "Ugyldigt navn",
+      "REQUIRED": "Påkrævet",
+      "REFERENCE": "Reference",
+      "TITLE": "Titel",
+      "ADD_PROPERTY": "Tilføj egenskab",
+      "ADD_CHILD_ALL_OF": "Tilføj underordnet til allOf",
+      "ADD_CHILD_ANY_OF": "Tilføj underordnet til anyOf",
+      "ADD_CHILD_ONE_OF": "Tilføj underordnet til oneOf",
+      "ADVANCED_SETTINGS": "Avancerede indstillinger",
+      "REMOVE_NODE": "Fjern node",
+      "ADD_DEFINITION": "Tilføj definition",
+      "BASIC_ATTRIBUTES": "Grundlæggende attributter",
+      "CUSTOM_ATTRIBUTES": "Tilpassede attributter",
+      "ADD_CUSTOM_ATTRIBUTE": "Tilføj tilpassede attributter",
+      "DELETE_CUSTOM_ATTRIBUTE": "Slet tilpasset attribut",
+      "ATTRIBUTE_NAME": "Attributnavn",
+      "ATTRIBUTE_VALUE": "Attributværdi",
+      "CONFIRM_ATTRIBUTE_ADDITION": "Bekræft attributtilføjelse",
+      "CANCEL_ATTRIBUTE_ADDITION": "Annullér attributtilføjelse",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "JSON-skematyper",
+        "ENUMERATION": "Optælling",
+        "MODELING_APP": "Modelleringsapp",
+        "COMPOSITION": "Komposition"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "Beskrivelse",
+        "MAX_ITEMS": "Maks. elementer",
+        "MIN_ITEMS": "Min. elementer",
+        "UNIQUE_ITEMS": "Entydige elementer",
+        "ENUMERATED_VALUES": "Optalte værdier",
+        "MAXIMUM": "Maksimum",
+        "MINIMUM": "Minimum",
+        "EXCLUSIVE_MAXIMUM": "Eksklusivt maksimum",
+        "EXCLUSIVE_MINIMUM": "Eksklusivt minimum",
+        "MAX_PROPERTIES": "Maks. antal egenskaber",
+        "MIN_PROPERTIES": "Min. antal egenskaber",
+        "MAX_LENGTH": "Maksimumlængde",
+        "MIN_LENGTH": "Minimumlængde",
+        "PATTERN": "Mønster",
+        "FORMAT": "Format",
+        "ADDITIONAL_PROPERTIES": "Yderligere egenskaber"
+      },
+      "PREVIEW": "Forhåndsvis"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "Opret brugerdefineret model",
+      "CREATE_MODEL_DESCRIPTION": "Opret en brugerdefineret model, og tildel den til enheden",
+      "EDIT_MODEL": "Rediger brugerdefineret model",
+      "EDIT_MODEL_DESCRIPTION": "Rediger den tidligere oprettede brugerdefinerede model til enheden"
     }
   }
 }

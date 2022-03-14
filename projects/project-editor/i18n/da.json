@@ -16,6 +16,7 @@
     "SEARCH": "Søg",
     "UPLOAD_FILE_SUCCESS": "Fil blev uploadet",
     "NO_CONTENT": "<tom>",
+    "UNCATEGORIZED": "Ikke-kategoriseret",
     "NO_SELECTION": "Opret en ny model, eller redigér en eksisterende model ved hjælp af sidepanelet",
     "NEW_MENU": {
       "LABEL": "NY",
@@ -190,6 +191,8 @@
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} med samme navn findes allerede",
       "UPLOAD_FILE": "Der opstod et problem under upload af filen. Prøv at uploade den igen.",
       "DELETE_PROJECT": "Der opstod et problem under sletning af projektet. Prøv at slette det igen.",
+      "ADD_TO_FAVORITES": "Vi stødte på et problem under tilføjelse af projektet til favoritter. Prøv at tilføje det igen.",
+      "REMOVE_FROM_FAVORITES": "Vi stødte på et problem med fjernelsen af projektet  fra favoritter. Prøv at fjerne det igen.",
       "CHANGE_FAVORITE": "Der opstod et problem under angivelse af dette projekt som favorit. Prøv at angive det igen som favorit.",
       "DELETE_PROCESS": "Der opstod et problem under sletning af processen. Prøv at slette den igen.",
       "LOAD_MODELS": "Der er opstået et problem under indlæsning af modellerne. Prøv at opdatere siden.",

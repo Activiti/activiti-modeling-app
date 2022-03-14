@@ -1,9 +1,11 @@
 {
-  "PROCESS_EDITOR": {
+  "ADV_PROCESS_EDITOR": {
     "DOWNLOAD_PROCESS": "Скачать процесс",
     "SAVE_PROCESS_IMAGE": "Сохранить схему процесса в виде SVG",
     "VALIDATE_PROCESS": "Проверить процесс",
-    "SAVE_PROCESS": "Сохранить процесс",
+    "SAVE_PROCESS": "Сохранить процесс"
+  },
+  "PROCESS_EDITOR": {
     "SELECT_PROCESS_VARIABLE": "Выберите переменную процесса",
     "SCRIPT_NAME": "Имя сценария",
     "PRIORITIES": {
@@ -89,7 +91,15 @@
       "PROCESS_VARIABLE": "Переменная процесса",
       "FILTER_PROCESS_VARIABLE": "Фильтровать переменную процесса",
       "USE_PROCESS_VARIABLE": "Использовать переменную процесса",
+      "USE_STATIC_DATE": "Использовать статическую дату",
       "USE_EXPRESSION": "Использовать выражение",
+      "USE_TIME_DURATION": "Использовать продолжительность",
+      "TIME_DURATION_UNITS": {
+        "MONTHS": "Месяцы",
+        "DAYS": "Дни",
+        "HOURS": "Часы",
+        "MINUTES": "Минуты"
+      },
       "PROCESS_VARIABLES": "Переменные процесса",
       "EXPRESSION": "Выражение условия",
       "FORM_SELECTOR": "Имя формы",
@@ -187,7 +197,8 @@
           "ASSIGNEE_INVALID_ERROR": "Недопустимое выражение, например, { испонитель:${var1} }",
           "CANDIDATE_INVALID_ERROR": "Недопустимое выражение, например, { пользователи-кандидаты: ${var1}, группы-кандидаты: ${var2} }"
         }
-      }
+      },
+      "INHERIT_BUSINESS_KEY": "Наследовать бизнес-ключ"
     },
     "PROPERTIES_BUTTON": "Свойства",
     "UPLOAD_SUCCESS": "Процесс выгружен",

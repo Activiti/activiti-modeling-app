@@ -1,9 +1,11 @@
 {
-  "PROCESS_EDITOR": {
+  "ADV_PROCESS_EDITOR": {
     "DOWNLOAD_PROCESS": "Télécharger le processus",
     "SAVE_PROCESS_IMAGE": "Enregistrer le diagramme de processus au format SVG",
     "VALIDATE_PROCESS": "Valider le processus",
-    "SAVE_PROCESS": "Enregistrer le processus",
+    "SAVE_PROCESS": "Enregistrer le processus"
+  },
+  "PROCESS_EDITOR": {
     "SELECT_PROCESS_VARIABLE": "Sélectionner une variable de processus",
     "SCRIPT_NAME": "Nom du script",
     "PRIORITIES": {
@@ -89,7 +91,15 @@
       "PROCESS_VARIABLE": "Variable de processus",
       "FILTER_PROCESS_VARIABLE": "Filtrer une variable de processus",
       "USE_PROCESS_VARIABLE": "Utiliser une variable de processus",
+      "USE_STATIC_DATE": "Utiliser une date statique",
       "USE_EXPRESSION": "Utiliser une expression",
+      "USE_TIME_DURATION": "Utiliser la durée",
+      "TIME_DURATION_UNITS": {
+        "MONTHS": "Mois",
+        "DAYS": "Jours",
+        "HOURS": "Heures",
+        "MINUTES": "Minutes"
+      },
       "PROCESS_VARIABLES": "Variables de processus",
       "EXPRESSION": "Expression de la condition",
       "FORM_SELECTOR": "Nom du formulaire",
@@ -187,7 +197,8 @@
           "ASSIGNEE_INVALID_ERROR": "Expression non valide par ex. { assignee:${var1} }",
           "CANDIDATE_INVALID_ERROR": "Expression non valide par ex. { candidateUsers: ${var1}, candidateGroups: ${var2} }"
         }
-      }
+      },
+      "INHERIT_BUSINESS_KEY": "Hériter d'une clé d'entreprise"
     },
     "PROPERTIES_BUTTON": "Propriétés",
     "UPLOAD_SUCCESS": "Processus importé",

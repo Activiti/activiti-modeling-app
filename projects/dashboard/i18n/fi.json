@@ -43,7 +43,9 @@
       "COLUMN_VERSION": "Versio",
       "COLUMN_CREATED": "Luotu",
       "COLUMN_CREATED_BY": "Tekijä",
+      "COLUMN_MODIFIED": "Päivitetty",
       "COLUMN_OPTIONS": "Asetukset",
+      "COLUMN_ACTIONS": "Toiminnot",
       "NO_ITEMS": "Luo tai tuo projekti, jotta voit tarkastella sitä luettelossa.",
       "NO_FAV_PROCESSES": "Lisää prosessi suosikkeihin saattaaksesi sen käytettäväksi täällä.",
       "NO_FAV_PROJECTS": "Lisää projekti suosikkeihin saattaaksesi sen käytettäväksi täällä.",
@@ -54,6 +56,61 @@
       "LOAD_PROJECTS": "Projektien lataamisessa ilmeni ongelma. Päivitä sivu ja yritä uudelleen.",
       "LOAD_RELEASES": "Julkaisujen lataamisessa ilmeni ongelma. Päivitä sivu ja yritä uudelleen.",
       "LOAD_PROCESSES": "Prosessien lataamisessa ilmeni ongelma. Päivitä sivu ja yrtiä uudelleen."
+    }
+  },
+  "NEW_STUDIO_DASHBOARD": {
+    "NAME": "Mallintaja",
+    "NAVIGATION": {
+      "PROJECT_TITLE": "Projektit",
+      "CUSTOM_MODEL_TITLE": "Mukautetut mallit",
+      "DATA_MODELS_TITLE": "Tietomallit",
+      "ALL_PROJECTS": {
+        "HEADER_LABEL": "Omat projektit",
+        "LABEL": "Kaikki projektit",
+        "TOOLTIP": "Kaikki julkaistut projektit",
+        "ACTIONS": {
+          "CREATE": "Luo projekti",
+          "UPLOAD": "Lataa"
+        }
+      },
+      "FAVORITE_PROJECTS": {
+        "HEADER_LABEL": "Omat suosikkiprojektit",
+        "LABEL": "Suosikkiprojektit",
+        "TOOLTIP": "Suosikkiprojektit"
+      },
+      "MY_MODELS": {
+        "HEADER_LABEL": "Omat mallit",
+        "LABEL": "Omat mallit",
+        "TOOLTIP": "Käyttäjän luomat mallit",
+        "ACTIONS": {
+          "CREATE": "Luo malli"
+        }
+      },
+      "SHARED_MODELS": {
+        "HEADER_LABEL": "Omat jaetut mallit",
+        "LABEL": "Jaetut mallit",
+        "TOOLTIP": "Projektien kesken jaetut mallit",
+        "ACTIONS": {
+          "CREATE": "Luo jaettu malli"
+        }
+      },
+      "DATA_MODELS": {
+        "HEADER_LABEL": "Omat tietomallit",
+        "LABEL": "Tietomallit",
+        "TOOLTIP": "Julkaistut tietomallit",
+        "ACTIONS": {
+          "CREATE": "Luo datamalli"
+        }
+      }
+    },
+    "USER_INFO_MENU": {
+      "ADMIN": "Hallinta",
+      "DOCUMENTATION": "Dokumentaatio"
+    },
+    "ADD_TO_FAVORITES": "Projekti lisättiin suosikkeihin",
+    "REMOVE_FROM_FAVORITES": "Projekti poistettiin suosikeista",
+    "ERROR": {
+      "LOAD_FAVORITE_PROJECTS": "SUosikkiprojektien lataamisessa ilmeni ongelma. Päivitä sivu ja yritä uudelleen."
     }
   }
 }

@@ -20,6 +20,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "È obbligatorio specificare un nome",
+        "EMPTY_TYPE": "È obbligatorio specificare un tipo",
         "INVALID_NAME": "Nome variabile non valido",
         "VARIABLE_NAME_TOOLTIP": "Il nome deve iniziare con una lettera e può contenere solo caratteri alfanumerici e di sottolineatura",
         "NAME_ALREADY_EXISTS": "II nomi delle variabili devono essere univoci",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "Modifica nella finestra di dialogo",
       "EXPRESSION_EDITOR": "Editor espressione",
-      "NO_BRACKETS_HINT": "L'intera espressione contenuta nell'editor verrà salvata tra parentesi graffe (${...}) che, pertanto, non dovranno essere digitate"
+      "NO_BRACKETS_HINT": "L'intera espressione contenuta nell'editor verrà salvata tra parentesi graffe (${...}) che, pertanto, non dovranno essere digitate",
+      "JUEL_EXPRESSION_SIMULATOR": "Simulatore espressione JUEL",
+      "TEST": "Test",
+      "TEST_DISABLED_TOOLTIP": "Aggiungi una variabile al testo prima di eseguirlo",
+      "TEST_ENABLED_TOOLTIP": "Verifica l'espressione utilizzando i valori forniti per le variabili",
+      "OPEN_TESTER": "Apri tester",
+      "CLOSE_TESTER": "Chiudi tester",
+      "SET_VARIABLES_VALUES": "Imposta valori della variabile",
+      "SET_VARIABLES_VALUES_TOOLTIP": "Seleziona una variabile per impostare il suo valore nel test",
+      "DELETE_VARIABLE_FROM_TEST": "Elimina variabile dal test"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "Standard",
+      "PRIMITIVE_PROPERTIES_TYPES": "Primitive",
       "DATE": {
         "CURRENT_DATE": "Oggi",
         "CLEAR_BUTTON": "Cancella"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "È richiesto un input",
-        "INVALID_FORMAT": "Formato di input non valido",
-        "INVALID_MIN_LENGTH": "Lunghezza minima non valida",
-        "INVALID_MAX_LENGTH": "Lunghezza massima non valida",
-        "INVALID_MIN_VALUE": "Valore non valido. Deve essere maggiore o uguale a",
-        "INVALID_MAX_VALUE": "Valore non valido. Deve essere inferiore o uguale a",
-        "INVALID_MULTIPLE_OF_VALUE": "Valore non valido. Deve essere un multiplo di",
-        "GENERIC_ERROR": "Valore non valido"
+        "INVALID_FORMAT": "Formato di input non valido: {{error}}",
+        "INVALID_MIN_LENGTH": "Lunghezza minima non valida: {{error}}",
+        "INVALID_MAX_LENGTH": "Lunghezza massima non valida: {{error}}",
+        "INVALID_MIN_VALUE": "Valore non valido. Deve essere maggiore o uguale a: {{error}}",
+        "INVALID_MAX_VALUE": "Valore non valido. Deve essere inferiore o uguale a: {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "Valore non valido. Deve essere un multiplo di: {{error}}",
+        "GENERIC_ERROR": "Valore non valido: {{error_1}} - {{error_2}}"
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "Espandi",
+      "COLLAPSE": "Comprimi",
+      "NAME": "Nome",
+      "INVALID_NAME": "Nome non valido",
+      "REQUIRED": "Obbligatorio",
+      "REFERENCE": "Riferimento",
+      "TITLE": "Titolo",
+      "ADD_PROPERTY": "Aggiungi proprietà",
+      "ADD_CHILD_ALL_OF": "Aggiungi elemento secondario a allOf",
+      "ADD_CHILD_ANY_OF": "Aggiungi elemento secondario a anyOf",
+      "ADD_CHILD_ONE_OF": "Aggiungi elemento secondario a oneOf",
+      "ADVANCED_SETTINGS": "Impost. avanzate",
+      "REMOVE_NODE": "Rimuovi nodo",
+      "ADD_DEFINITION": "Aggiungi definizione",
+      "BASIC_ATTRIBUTES": "Attributi di base",
+      "CUSTOM_ATTRIBUTES": "Attributi personalizzati",
+      "ADD_CUSTOM_ATTRIBUTE": "Aggiungi attributo personalizzato",
+      "DELETE_CUSTOM_ATTRIBUTE": "Elimina attributo personalizzato",
+      "ATTRIBUTE_NAME": "Nome attributo",
+      "ATTRIBUTE_VALUE": "Valore attributo",
+      "CONFIRM_ATTRIBUTE_ADDITION": "Conferma aggiunta attributo",
+      "CANCEL_ATTRIBUTE_ADDITION": "Annulla aggiunta attributo",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "Tipi di schema JSON",
+        "ENUMERATION": "Enumerazione",
+        "MODELING_APP": "App di modellazione",
+        "COMPOSITION": "Composizione"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "Descrizione",
+        "MAX_ITEMS": "Numero massimo elementi",
+        "MIN_ITEMS": "Numero minimo elementi",
+        "UNIQUE_ITEMS": "Elementi univoci",
+        "ENUMERATED_VALUES": "Valori enumerati",
+        "MAXIMUM": "Massimo",
+        "MINIMUM": "Minimo",
+        "EXCLUSIVE_MAXIMUM": "Massimo esclusivo",
+        "EXCLUSIVE_MINIMUM": "Minimo esclusivo",
+        "MAX_PROPERTIES": "Numero massimo proprietà",
+        "MIN_PROPERTIES": "Numero minimo proprietà",
+        "MAX_LENGTH": "Lunghezza max.",
+        "MIN_LENGTH": "Lunghezza min.",
+        "PATTERN": "Modello",
+        "FORMAT": "Formato",
+        "ADDITIONAL_PROPERTIES": "Proprietà aggiuntive"
+      },
+      "PREVIEW": "Anteprima"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "Crea modello personalizzato",
+      "CREATE_MODEL_DESCRIPTION": "Crea un modello personalizzato e lo assegna all'entità",
+      "EDIT_MODEL": "Modifica modello personalizzato",
+      "EDIT_MODEL_DESCRIPTION": "Modifica il modello personalizzato dell'entità creato in precedenza"
     }
   }
 }

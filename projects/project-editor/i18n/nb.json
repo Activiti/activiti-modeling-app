@@ -16,6 +16,7 @@
     "SEARCH": "Søk",
     "UPLOAD_FILE_SUCCESS": "Fil lastet opp",
     "NO_CONTENT": "<tom>",
+    "UNCATEGORIZED": "Ukategorisert",
     "NO_SELECTION": "Opprett en ny modell eller rediger en eksisterende modell med sidepanelet",
     "NEW_MENU": {
       "LABEL": "Ny",
@@ -190,6 +191,8 @@
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} med samme navn finnes allerede",
       "UPLOAD_FILE": "Vi støtte på et problem med å laste opp filen. Prøv å laste den opp på nytt.",
       "DELETE_PROJECT": "Vi støtte på et problem med å slette prosjektet. Prøv å slette det på nytt.",
+      "ADD_TO_FAVORITES": "Vi støtte på et problem med å legge prosjektet til i favoritter. Prøv å legge det til på nytt.",
+      "REMOVE_FROM_FAVORITES": "Vi støtte på et problem med å fjerne prosjektet fra favoritter. Prøv å fjerne det på nytt.",
       "CHANGE_FAVORITE": "Vi støtte på et problem med å legge til prosjektet i favoritter. Prøv å legge det til i favoritter på nytt.",
       "DELETE_PROCESS": "Vi støtte på et problem med å slette prosessen. Prøv å slette den på nytt.",
       "LOAD_MODELS": "Vi støtte på et problem med å laste inn modellene. Prøv å oppdatere siden.",

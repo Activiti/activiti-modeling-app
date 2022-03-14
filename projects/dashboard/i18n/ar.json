@@ -43,7 +43,9 @@
       "COLUMN_VERSION": "الإصدار",
       "COLUMN_CREATED": "تم الإنشاء",
       "COLUMN_CREATED_BY": "تم الإنشاء بواسطة",
+      "COLUMN_MODIFIED": "تم التحديث",
       "COLUMN_OPTIONS": "خيارات",
+      "COLUMN_ACTIONS": "إجراءات",
       "NO_ITEMS": "إنشاء مشروع أو استيراده لعرضه في القائمة.",
       "NO_FAV_PROCESSES": "تفضيل عملية لجعلها متاحة هنا.",
       "NO_FAV_PROJECTS": "تفضيل مشروع لجعله متاحًا هنا.",
@@ -54,6 +56,61 @@
       "LOAD_PROJECTS": "واجهتنا مشكلة في تحميل المشروعات. حاول تحديث الصفحة.",
       "LOAD_RELEASES": "واجهتنا مشكلة في تحميل الإصدارات. حاول تحديث الصفحة",
       "LOAD_PROCESSES": "واجهتنا مشكلة في تحميل العمليات. حاول تحديث الصفحة"
+    }
+  },
+  "NEW_STUDIO_DASHBOARD": {
+    "NAME": "العارض",
+    "NAVIGATION": {
+      "PROJECT_TITLE": "المشروعات",
+      "CUSTOM_MODEL_TITLE": "النماذج المخصصة",
+      "DATA_MODELS_TITLE": "نماذج البيانات",
+      "ALL_PROJECTS": {
+        "HEADER_LABEL": "مشاريعي",
+        "LABEL": "كل المشاريع",
+        "TOOLTIP": "جميع المشاريع المنشورة",
+        "ACTIONS": {
+          "CREATE": "أنشئ مشروعًا",
+          "UPLOAD": "تحميل"
+        }
+      },
+      "FAVORITE_PROJECTS": {
+        "HEADER_LABEL": "المشاريع الخاصة بي المفضلة",
+        "LABEL": "المشاريع المفضلة",
+        "TOOLTIP": "المشاريع المفضلة"
+      },
+      "MY_MODELS": {
+        "HEADER_LABEL": "النماذج الخاصة بي",
+        "LABEL": "النماذج الخاصة بي",
+        "TOOLTIP": "النماذج التي أنشأها المستخدم",
+        "ACTIONS": {
+          "CREATE": "إنشاء نموذج"
+        }
+      },
+      "SHARED_MODELS": {
+        "HEADER_LABEL": "النماذج الخاصة بي المشتركة",
+        "LABEL": "النماذج المشتركة",
+        "TOOLTIP": "نماذج مشتركة عبر المشاريع",
+        "ACTIONS": {
+          "CREATE": "إنشاء نموذج مشترك"
+        }
+      },
+      "DATA_MODELS": {
+        "HEADER_LABEL": "نماذج البيانات الخاصة بي",
+        "LABEL": "نماذج البيانات",
+        "TOOLTIP": "نماذج البيانات المنشورة",
+        "ACTIONS": {
+          "CREATE": "تكوين نموذج بيانات"
+        }
+      }
+    },
+    "USER_INFO_MENU": {
+      "ADMIN": "مشرف",
+      "DOCUMENTATION": "الوثائق"
+    },
+    "ADD_TO_FAVORITES": "تمت إضافة المشروع إلى المفضلة",
+    "REMOVE_FROM_FAVORITES": "تمت إزالة المشروع من المفضلة",
+    "ERROR": {
+      "LOAD_FAVORITE_PROJECTS": "واجهتنا مشكلة في تحميل المشاريع المفضلة. حاول تحديث الصفحة."
     }
   }
 }

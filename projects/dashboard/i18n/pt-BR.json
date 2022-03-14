@@ -11,8 +11,8 @@
       "PROJECT_RELEASED": "Projeto liberado",
       "PROJECT_DELETED": "Projeto excluído",
       "MENU_ITEMS": {
-        "CREATE_PROJECT": "Criar Projeto",
-        "UPLOAD_PROJECT": "Carregar Projeto",
+        "CREATE_PROJECT": "Criar projeto",
+        "UPLOAD_PROJECT": "Carregar projeto",
         "CREATE_MODEL": "Modelo de conteúdo"
       }
     },
@@ -43,7 +43,9 @@
       "COLUMN_VERSION": "Versão",
       "COLUMN_CREATED": "Criado",
       "COLUMN_CREATED_BY": "Criado por",
+      "COLUMN_MODIFIED": "Atualizado",
       "COLUMN_OPTIONS": "Opções",
+      "COLUMN_ACTIONS": "Ações",
       "NO_ITEMS": "Crie ou importe um projeto para exibi-lo na lista.",
       "NO_FAV_PROCESSES": "Marcar um processo como favorito para deixá-lo disponível aqui.",
       "NO_FAV_PROJECTS": "Marcar um projeto como favorito para deixá-lo disponível aqui.",
@@ -54,6 +56,61 @@
       "LOAD_PROJECTS": "Encontramos um problema ao carregar os projetos. Tente atualizar a página.",
       "LOAD_RELEASES": "Encontramos um problema ao carregar as versões. Tente atualizar a página.",
       "LOAD_PROCESSES": "Encontramos um problema ao carregar os processos. Tente atualizar a página."
+    }
+  },
+  "NEW_STUDIO_DASHBOARD": {
+    "NAME": "Modelador",
+    "NAVIGATION": {
+      "PROJECT_TITLE": "Projetos",
+      "CUSTOM_MODEL_TITLE": "Modelos personalizados",
+      "DATA_MODELS_TITLE": "Modelos de dados",
+      "ALL_PROJECTS": {
+        "HEADER_LABEL": "Meus projetos",
+        "LABEL": "Todos os projetos",
+        "TOOLTIP": "Todos os projetos publicados",
+        "ACTIONS": {
+          "CREATE": "Criar projeto",
+          "UPLOAD": "Carregar"
+        }
+      },
+      "FAVORITE_PROJECTS": {
+        "HEADER_LABEL": "Meus projetos favoritos",
+        "LABEL": "Projetos favoritos",
+        "TOOLTIP": "Projetos favoritos"
+      },
+      "MY_MODELS": {
+        "HEADER_LABEL": "Meus modelos",
+        "LABEL": "Meus modelos",
+        "TOOLTIP": "Modelos criados pelo usuário",
+        "ACTIONS": {
+          "CREATE": "Criar modelo"
+        }
+      },
+      "SHARED_MODELS": {
+        "HEADER_LABEL": "Meus modelos compartilhados",
+        "LABEL": "Modelos compartilhados",
+        "TOOLTIP": "Modelos compartilhados nos projetos",
+        "ACTIONS": {
+          "CREATE": "Criar modelo compartilhado"
+        }
+      },
+      "DATA_MODELS": {
+        "HEADER_LABEL": "Meus modelos de dados",
+        "LABEL": "Modelos de dados",
+        "TOOLTIP": "Modelos de dados publicados",
+        "ACTIONS": {
+          "CREATE": "Criar modelo de dados"
+        }
+      }
+    },
+    "USER_INFO_MENU": {
+      "ADMIN": "Administração",
+      "DOCUMENTATION": "Documentação"
+    },
+    "ADD_TO_FAVORITES": "Projeto adicionado a favoritos",
+    "REMOVE_FROM_FAVORITES": "Projeto removido de favoritos",
+    "ERROR": {
+      "LOAD_FAVORITE_PROJECTS": "Erro ao carregar os projetos favoritos. Tente atualizar a página."
     }
   }
 }

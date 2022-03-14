@@ -20,6 +20,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Ein Name ist erforderlich",
+        "EMPTY_TYPE": "Ein Typ ist erforderlich",
         "INVALID_NAME": "Ungültiger Variablenname",
         "VARIABLE_NAME_TOOLTIP": "Der Name muss mit einem Buchstaben beginnen und darf nur alphanumerische Zeichen und Unterstriche enthalten",
         "NAME_ALREADY_EXISTS": "Variablennamen müssen eindeutig sein",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "Im Dialogfeld bearbeiten",
       "EXPRESSION_EDITOR": "Ausdrucks-Editor",
-      "NO_BRACKETS_HINT": "Der gesamte Ausdruck in diesem Editor wird in geschweiften Klammern (${...}) gespeichert, sodass Sie ihn nicht eingeben müssen"
+      "NO_BRACKETS_HINT": "Der gesamte Ausdruck in diesem Editor wird in geschweiften Klammern (${...}) gespeichert, sodass Sie ihn nicht eingeben müssen",
+      "JUEL_EXPRESSION_SIMULATOR": "Testbereich für JUEL-Ausdrücke",
+      "TEST": "Test",
+      "TEST_DISABLED_TOOLTIP": "Fügen Sie dem Test eine Variable hinzu, bevor Sie den Test starten.",
+      "TEST_ENABLED_TOOLTIP": "Über die eingetragenen Werte der Variablen kann der Ausdruck getestet werden.",
+      "OPEN_TESTER": "Testbereich öffnen",
+      "CLOSE_TESTER": "Testbereich schließen",
+      "SET_VARIABLES_VALUES": "Werte der Variable festlegen",
+      "SET_VARIABLES_VALUES_TOOLTIP": "Nach Auswahl einer Variable muss für diese der Wert während des Tests festgelegt werden.",
+      "DELETE_VARIABLE_FROM_TEST": "Testvariable löschen"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "Kernwerte",
+      "PRIMITIVE_PROPERTIES_TYPES": "Basiswerte",
       "DATE": {
         "CURRENT_DATE": "Heute",
         "CLEAR_BUTTON": "Löschen"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "Eingabe erforderlich",
-        "INVALID_FORMAT": "Eingabeformat nicht zulässig",
-        "INVALID_MIN_LENGTH": "Mindestlängenangabe nicht zulässig",
-        "INVALID_MAX_LENGTH": "Höchstlängenangabe nicht zulässig",
-        "INVALID_MIN_VALUE": "Ungültiger Wert. Zulässige Eingaben sind größer oder gleich",
-        "INVALID_MAX_VALUE": "Ungültiger Wert. Zulässige Eingaben sind kleiner oder gleich",
-        "INVALID_MULTIPLE_OF_VALUE": "Ungültiger Wert. Zulässige Eingaben sind ein Vielfaches von",
-        "GENERIC_ERROR": "Ungültiger Wert"
+        "INVALID_FORMAT": "Eingabeformat nicht zulässig: {{error}}",
+        "INVALID_MIN_LENGTH": "Mindestlängenangabe nicht zulässig: {{error}}",
+        "INVALID_MAX_LENGTH": "Höchstlängenangabe nicht zulässig: {{error}}",
+        "INVALID_MIN_VALUE": "Ungültiger Wert. Zulässige Eingaben sind größer oder gleich: {{error}}",
+        "INVALID_MAX_VALUE": "Ungültiger Wert. Zulässige Eingaben sind kleiner oder gleich: {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "Ungültiger Wert. Zulässige Eingaben sind ein Vielfaches von: {{error}}",
+        "GENERIC_ERROR": "Ungültiger Wert: {{error_1}} - {{error_2}}"
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "Erweitern",
+      "COLLAPSE": "Ausklappen",
+      "NAME": "Name",
+      "INVALID_NAME": "Name nicht zulässig",
+      "REQUIRED": "Erforderlich",
+      "REFERENCE": "Bezug",
+      "TITLE": "Titel",
+      "ADD_PROPERTY": "Eigenschaft hinzufügen",
+      "ADD_CHILD_ALL_OF": "Untergeordnetes Element zu allOf hinzufügen",
+      "ADD_CHILD_ANY_OF": "Untergeordnetes Element zu anyOf hinzufügen",
+      "ADD_CHILD_ONE_OF": "Untergeordnetes Element zu oneOf hinzufügen",
+      "ADVANCED_SETTINGS": "Erweiterte Einstellungen",
+      "REMOVE_NODE": "Node entfernen",
+      "ADD_DEFINITION": "Definition hinzufügen",
+      "BASIC_ATTRIBUTES": "Standardattribute",
+      "CUSTOM_ATTRIBUTES": "Benutzerdefinierte Attribute",
+      "ADD_CUSTOM_ATTRIBUTE": "Benutzerdefiniertes Attribut hinzufügen",
+      "DELETE_CUSTOM_ATTRIBUTE": "Benutzerdefiniertes Attribut löschen",
+      "ATTRIBUTE_NAME": "Attributname",
+      "ATTRIBUTE_VALUE": "Attributwert",
+      "CONFIRM_ATTRIBUTE_ADDITION": "Hinzufügen des Attributs bestätigen",
+      "CANCEL_ATTRIBUTE_ADDITION": "Hinzufügen des Attributs abbrechen",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "JSON-Schematypen",
+        "ENUMERATION": "Nummerierung",
+        "MODELING_APP": "Modellierungsanwendung",
+        "COMPOSITION": "Zusammenstellung"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "Beschreibung",
+        "MAX_ITEMS": "Anzahlmaximum",
+        "MIN_ITEMS": "Anzahlminimum",
+        "UNIQUE_ITEMS": "Sonderangaben",
+        "ENUMERATED_VALUES": "Nummerierte Werte",
+        "MAXIMUM": "Maximum",
+        "MINIMUM": "Minimum",
+        "EXCLUSIVE_MAXIMUM": "Maximum nach Ausschluss",
+        "EXCLUSIVE_MINIMUM": "Minimum nach Ausschluss",
+        "MAX_PROPERTIES": "Eigenschaftsmaximum",
+        "MIN_PROPERTIES": "Eigenschaftsminimum",
+        "MAX_LENGTH": "Höchstlänge",
+        "MIN_LENGTH": "Mindestlänge",
+        "PATTERN": "Muster",
+        "FORMAT": "Format",
+        "ADDITIONAL_PROPERTIES": "Zusätzliche Eigenschaften"
+      },
+      "PREVIEW": "Vorschau"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "Benutzerdefiniertes Modell erstellen",
+      "CREATE_MODEL_DESCRIPTION": "Erstellt ein benutzerdefiniertes Modell und weist es dem Hauptelement zu",
+      "EDIT_MODEL": "Benutzerdefiniertes Modell bearbeiten",
+      "EDIT_MODEL_DESCRIPTION": "Bearbeiten des zuvor erstellten, benutzerdefinierten Modells des Hauptelements"
     }
   }
 }

@@ -43,7 +43,9 @@
       "COLUMN_VERSION": "バージョン",
       "COLUMN_CREATED": "作成日",
       "COLUMN_CREATED_BY": "作成者",
+      "COLUMN_MODIFIED": "更新日",
       "COLUMN_OPTIONS": "オプション",
+      "COLUMN_ACTIONS": "アクション",
       "NO_ITEMS": "リストに表示するプロジェクトを作成するかインポートしてください。",
       "NO_FAV_PROCESSES": "ここで使用するプロセスをお気に入りに登録します。",
       "NO_FAV_PROJECTS": "ここで使用するプロジェクトをお気に入りに登録します。",
@@ -54,6 +56,61 @@
       "LOAD_PROJECTS": "プロジェクトの読み込み中に問題が発生しました。ページを再読み込みしてください。",
       "LOAD_RELEASES": "リリースの読み込み中に問題が発生しました。ページを再読み込みしてください。",
       "LOAD_PROCESSES": "プロセスの読み込み中に問題が発生しました。ページを再読み込みしてください。"
+    }
+  },
+  "NEW_STUDIO_DASHBOARD": {
+    "NAME": "モデラー",
+    "NAVIGATION": {
+      "PROJECT_TITLE": "プロジェクト",
+      "CUSTOM_MODEL_TITLE": "カスタムモデル",
+      "DATA_MODELS_TITLE": "データモデル",
+      "ALL_PROJECTS": {
+        "HEADER_LABEL": "あなたのプロジェクト",
+        "LABEL": "すべてのプロジェクト",
+        "TOOLTIP": "公開されたすべてのプロジェクト",
+        "ACTIONS": {
+          "CREATE": "プロジェクトの作成",
+          "UPLOAD": "アップロード"
+        }
+      },
+      "FAVORITE_PROJECTS": {
+        "HEADER_LABEL": "あなたのお気に入りプロジェクト",
+        "LABEL": "お気に入りプロジェクト",
+        "TOOLTIP": "お気に入りプロジェクト"
+      },
+      "MY_MODELS": {
+        "HEADER_LABEL": "あなたのモデル",
+        "LABEL": "あなたのモデル",
+        "TOOLTIP": "ユーザーによって作成されたモデルです",
+        "ACTIONS": {
+          "CREATE": "モデルの作成"
+        }
+      },
+      "SHARED_MODELS": {
+        "HEADER_LABEL": "あなたの共有されたモデル",
+        "LABEL": "共有されたモデル",
+        "TOOLTIP": "プロジェクト全体で共有されたモデル",
+        "ACTIONS": {
+          "CREATE": "共有モデルの作成"
+        }
+      },
+      "DATA_MODELS": {
+        "HEADER_LABEL": "あなたのデータモデル",
+        "LABEL": "データモデル",
+        "TOOLTIP": "公開されたデータモデル",
+        "ACTIONS": {
+          "CREATE": "データモデルの作成"
+        }
+      }
+    },
+    "USER_INFO_MENU": {
+      "ADMIN": "管理",
+      "DOCUMENTATION": "文書化"
+    },
+    "ADD_TO_FAVORITES": "お気に入りに追加されたプロジェクト",
+    "REMOVE_FROM_FAVORITES": "お気に入りから削除されたプロジェクト",
+    "ERROR": {
+      "LOAD_FAVORITE_PROJECTS": "お気に入りプロジェクトの読み込み中に問題が発生しました。ページを更新してください。"
     }
   }
 }

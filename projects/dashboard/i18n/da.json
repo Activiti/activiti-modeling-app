@@ -43,7 +43,9 @@
       "COLUMN_VERSION": "Version",
       "COLUMN_CREATED": "Oprettet",
       "COLUMN_CREATED_BY": "Oprettet af",
+      "COLUMN_MODIFIED": "Opdateret",
       "COLUMN_OPTIONS": "Indstillinger",
+      "COLUMN_ACTIONS": "Handlinger",
       "NO_ITEMS": "Opret eller importér et projekt, så det vises på listen.",
       "NO_FAV_PROCESSES": "Angiv en proces som favorit for at gøre den tilgængelig her.",
       "NO_FAV_PROJECTS": "Angiv et projekt som favorit for at gøre det tilgængeligt her.",
@@ -54,6 +56,61 @@
       "LOAD_PROJECTS": "Der opstod et problem under indlæsning af projekterne. Prøv at opdatere siden.",
       "LOAD_RELEASES": "Der opstod et problem under indlæsning af frigivelserne. Prøv at opdatere siden.",
       "LOAD_PROCESSES": "Der opstod et problem under indlæsning af processerne. Prøv at opdatere siden."
+    }
+  },
+  "NEW_STUDIO_DASHBOARD": {
+    "NAME": "Modellering",
+    "NAVIGATION": {
+      "PROJECT_TITLE": "Projekter",
+      "CUSTOM_MODEL_TITLE": "Brugerdefinerede modeller",
+      "DATA_MODELS_TITLE": "Datamodeller",
+      "ALL_PROJECTS": {
+        "HEADER_LABEL": "Mine projekter",
+        "LABEL": "Alle projekter",
+        "TOOLTIP": "Alle udgivne projekter",
+        "ACTIONS": {
+          "CREATE": "Opret projekt",
+          "UPLOAD": "Upload"
+        }
+      },
+      "FAVORITE_PROJECTS": {
+        "HEADER_LABEL": "Mine favoritprojekter",
+        "LABEL": "Favoritprojekter",
+        "TOOLTIP": "Favoritprojekter"
+      },
+      "MY_MODELS": {
+        "HEADER_LABEL": "Mine modeller",
+        "LABEL": "Mine modeller",
+        "TOOLTIP": "Modeller oprettet af brugeren",
+        "ACTIONS": {
+          "CREATE": "Opret model"
+        }
+      },
+      "SHARED_MODELS": {
+        "HEADER_LABEL": "Mine delte modeller",
+        "LABEL": "Delte modeller",
+        "TOOLTIP": "Modeller delt på tværs af projekterne",
+        "ACTIONS": {
+          "CREATE": "Opret delt model"
+        }
+      },
+      "DATA_MODELS": {
+        "HEADER_LABEL": "Mine datamodeller",
+        "LABEL": "Datamodeller",
+        "TOOLTIP": "Udgivne datamodeller",
+        "ACTIONS": {
+          "CREATE": "Opret datamodel"
+        }
+      }
+    },
+    "USER_INFO_MENU": {
+      "ADMIN": "Admin.",
+      "DOCUMENTATION": "Dokumentation"
+    },
+    "ADD_TO_FAVORITES": "Projekt tilføjet til favoritter",
+    "REMOVE_FROM_FAVORITES": "Projekt fjernet fra favoritter",
+    "ERROR": {
+      "LOAD_FAVORITE_PROJECTS": "Vi stødte på et problem under indlæsning af favoritprojekterne. Prøv at opdatere siden."
     }
   }
 }

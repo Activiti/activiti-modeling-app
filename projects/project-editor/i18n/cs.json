@@ -16,6 +16,7 @@
     "SEARCH": "Hledat",
     "UPLOAD_FILE_SUCCESS": "Soubor byl odeslán",
     "NO_CONTENT": "<prázdný>",
+    "UNCATEGORIZED": "Nekategorizováno",
     "NO_SELECTION": "Vytvořte nový model nebo upravte existující pomocí bočního panelu.",
     "NEW_MENU": {
       "LABEL": "Nový",
@@ -190,6 +191,8 @@
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} se stejným názvem již existuje",
       "UPLOAD_FILE": "Došlo k problému při odesílání souboru. Zkuste ho odeslat znovu.",
       "DELETE_PROJECT": "Došlo k problému při odstraňování projektu. Zkuste ho odstranit znovu.",
+      "ADD_TO_FAVORITES": "Při přidávání projektu do oblíbených se vyskytl problém. Zkuste ho přidat znovu.",
+      "REMOVE_FROM_FAVORITES": "Při odebírání projektu z oblíbených se vyskytl problém. Zkuste ho odebrat znovu.",
       "CHANGE_FAVORITE": "Došlo k problému při přidávání projektu do oblíbených. Zkuste ho přidat do oblíbených znovu.",
       "DELETE_PROCESS": "Došlo k problému při odstraňování procesu. Zkuste ho odstranit znovu.",
       "LOAD_MODELS": "Došlo k problému při načítání modelů. Zkuste obnovit stránku.",

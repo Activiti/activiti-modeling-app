@@ -20,6 +20,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Ett namn krävs",
+        "EMPTY_TYPE": "Ett typ krävs",
         "INVALID_NAME": "Ogiltigt variabelnamn",
         "VARIABLE_NAME_TOOLTIP": "Namnet kan börja med en bokstav och kan endast innehålla alfanumeriska tecken och understrykningar",
         "NAME_ALREADY_EXISTS": "Variabla namn måste vara unika",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "Redigera i dialog",
       "EXPRESSION_EDITOR": "Uttryckseditor",
-      "NO_BRACKETS_HINT": "Hela uttrycket i den här editor kommer att sparas inrymt i lockiga parenteser ($ {...}) så att du inte behöver skriva dem"
+      "NO_BRACKETS_HINT": "Hela uttrycket i den här editor kommer att sparas inrymt i lockiga parenteser ($ {...}) så att du inte behöver skriva dem",
+      "JUEL_EXPRESSION_SIMULATOR": "JUEL-uttryckssimulator",
+      "TEST": "Test",
+      "TEST_DISABLED_TOOLTIP": "Lägg till en variabel till testet innan du kör det",
+      "TEST_ENABLED_TOOLTIP": "Testa uttrycket med värdena som tillhandahålls för variablerna",
+      "OPEN_TESTER": "Öppna testare",
+      "CLOSE_TESTER": "Stäng testare",
+      "SET_VARIABLES_VALUES": "Ange variabelns värden",
+      "SET_VARIABLES_VALUES_TOOLTIP": "Välj en variabel för att ställ in dess värden i testet",
+      "DELETE_VARIABLE_FROM_TEST": "Radera variabeln från testet"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "Grundläggande",
+      "PRIMITIVE_PROPERTIES_TYPES": "Primitiva",
       "DATE": {
         "CURRENT_DATE": "I dag",
         "CLEAR_BUTTON": "Rensa"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "Inmatning krävs",
-        "INVALID_FORMAT": "Ogiltigt inmatningsformat",
-        "INVALID_MIN_LENGTH": "Ogiltig minimilängd",
-        "INVALID_MAX_LENGTH": "Ogiltig maxlängd",
-        "INVALID_MIN_VALUE": "Ogiltigt värde. Det ska vara större än eller lika med",
-        "INVALID_MAX_VALUE": "Ogiltigt värde. Det ska vara mindre än eller lika med",
-        "INVALID_MULTIPLE_OF_VALUE": "Ogiltigt värde. Det måste vara en multipel av",
-        "GENERIC_ERROR": "Ogiltigt värde"
+        "INVALID_FORMAT": "Ogiltigt inmatningsformat: {{error}}",
+        "INVALID_MIN_LENGTH": "Ogiltig minimilängd: {{error}}",
+        "INVALID_MAX_LENGTH": "Ogiltig maxlängd: {{error}}",
+        "INVALID_MIN_VALUE": "Ogiltigt värde. Det ska vara större än eller lika med: {{error}}",
+        "INVALID_MAX_VALUE": "Ogiltigt värde. Det ska vara större än eller lika med: {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "Ogiltigt värde. Det måste vara en multipel av:  {{error}}",
+        "GENERIC_ERROR": "Ogiltigt värde: {{error_1}} - {{error_2}}"
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "Expandera",
+      "COLLAPSE": "Minimera",
+      "NAME": "Namn",
+      "INVALID_NAME": "Ogiltigt namn",
+      "REQUIRED": "Obligatorisk",
+      "REFERENCE": "Referens",
+      "TITLE": "Titel",
+      "ADD_PROPERTY": "Lägg till egenskap",
+      "ADD_CHILD_ALL_OF": "Lägg till underordnad till allOf",
+      "ADD_CHILD_ANY_OF": "Lägg till underordnad till anyOf",
+      "ADD_CHILD_ONE_OF": "Lägg till underordnad till oneOf",
+      "ADVANCED_SETTINGS": "Avancerade inställningar",
+      "REMOVE_NODE": "Ta bort nod",
+      "ADD_DEFINITION": "Lägg till definition",
+      "BASIC_ATTRIBUTES": "Grundläggande attribut",
+      "CUSTOM_ATTRIBUTES": "Anpassade attribut",
+      "ADD_CUSTOM_ATTRIBUTE": "Lägg till anpassat attribut",
+      "DELETE_CUSTOM_ATTRIBUTE": "Radera anpassat attribut",
+      "ATTRIBUTE_NAME": "Attributnamn",
+      "ATTRIBUTE_VALUE": "Attributvärde",
+      "CONFIRM_ATTRIBUTE_ADDITION": "Bekräfta attributtillägg",
+      "CANCEL_ATTRIBUTE_ADDITION": "Avbryt attributtillägg",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "JSON-schematyper",
+        "ENUMERATION": "Uppräkning",
+        "MODELING_APP": "Modelleringsapp",
+        "COMPOSITION": "Sammansättning"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "Beskrivning",
+        "MAX_ITEMS": "Max. antal artiklar",
+        "MIN_ITEMS": "Min. antal artiklar",
+        "UNIQUE_ITEMS": "Unika artiklar",
+        "ENUMERATED_VALUES": "Uppräknade artiklar",
+        "MAXIMUM": "Maximalt",
+        "MINIMUM": "Minimalt",
+        "EXCLUSIVE_MAXIMUM": "Exklusive maximalt",
+        "EXCLUSIVE_MINIMUM": "Exklusive minimalt",
+        "MAX_PROPERTIES": "Max. antal egenskaper",
+        "MIN_PROPERTIES": "Min. antal egenskaper",
+        "MAX_LENGTH": "Max. längd",
+        "MIN_LENGTH": "Min. längd",
+        "PATTERN": "Mönster",
+        "FORMAT": "Format",
+        "ADDITIONAL_PROPERTIES": "Ytterligare egenskaper"
+      },
+      "PREVIEW": "Förhandsgranskning"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "Skapa anpassad modell",
+      "CREATE_MODEL_DESCRIPTION": "Skapa en anpassad modell och tilldela den till entiteten",
+      "EDIT_MODEL": "Redigera anpassad modell",
+      "EDIT_MODEL_DESCRIPTION": "Redigera tidigare skapad anpassad modell av entiteten"
     }
   }
 }

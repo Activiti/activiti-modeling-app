@@ -43,7 +43,7 @@
         "RELEASE": "Czy na pewno chcesz zwolnić nowe wydanie tego projektu?",
         "TYPES": {
           "DECISION": "tabela decyzji",
-          "DATA": "dane",
+          "DATA_MODEL": "model danych",
           "UI": "Interfejs użytkownika",
           "CONNECTOR": "łącznik",
           "FORM": "Formularz",
@@ -56,22 +56,19 @@
         },
         "DELETE": {
           "PROJECT": "Czy na pewno chcesz usunąć ten projekt?",
-          "DATA": "Czy na pewno chcesz usunąć ten obiekt danych?"
+          "DATA_MODEL": "Czy na pewno chcesz usunąć ten obiekt danych?"
         },
         "SAVE": {
           "PROCESS": "Czy na pewno chcesz zapisać ten proces?",
-          "DATA": "Czy na pewno chcesz zapisać ten obiekt danych?",
+          "DATA_MODEL": "Czy na pewno chcesz zapisać ten obiekt danych?",
           "EMAIL_TEMPLATE": "Czy na pewno chcesz nadpisać ten szablon wiadomości e-mail?"
         },
         "SAVE_AS": {
-          "PROCESS": "Czy na pewno chcesz skopiować ten proces?",
-          "DATA": "Czy na pewno chcesz skopiować ten obiekt danych?",
-          "FILE": "Czy na pewno chcesz skopiować ten plik?",
-          "SCRIPT": "Czy na pewno chcesz skopiować ten skrypt?"
+          "DATA_MODEL": "Czy na pewno chcesz skopiować ten obiekt danych?"
         },
         "DOWNLOAD": {
           "IMAGE": "Czy na pewno chcesz pobrać obraz svg tego procesu?",
-          "DATA": "Czy na pewno chcesz pobrać ten obiekt danych?"
+          "DATA_MODEL": "Czy na pewno chcesz pobrać ten obiekt danych?"
         }
       }
     },

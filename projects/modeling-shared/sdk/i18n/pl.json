@@ -20,6 +20,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Nazwa jest wymagana",
+        "EMPTY_TYPE": "Typ jest wymagany",
         "INVALID_NAME": "Nieprawidłowa nazwa zmiennej",
         "VARIABLE_NAME_TOOLTIP": "Nazwa musi zaczynać się literą i może zawierać tylko znaki alfanumeryczne i podkreślenia",
         "NAME_ALREADY_EXISTS": "Nazwy zmiennych muszą być unikatowe",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "Edytuj w oknie dialogowym",
       "EXPRESSION_EDITOR": "Edytor wyrażeń",
-      "NO_BRACKETS_HINT": "Całe wyrażenie w tym edytorze zostanie zapisane wewnątrz nawiasów klamrowych (${...}), więc nie trzeba ich wpisywać."
+      "NO_BRACKETS_HINT": "Całe wyrażenie w tym edytorze zostanie zapisane wewnątrz nawiasów klamrowych (${...}), więc nie trzeba ich wpisywać.",
+      "JUEL_EXPRESSION_SIMULATOR": "Symulator wyrażeń JUEL",
+      "TEST": "Test",
+      "TEST_DISABLED_TOOLTIP": "Dodaj zmienną do testu przed jego wykonaniem",
+      "TEST_ENABLED_TOOLTIP": "Przetestuj wyrażenie, używając podanych wartości zmiennych",
+      "OPEN_TESTER": "Otwórz tester",
+      "CLOSE_TESTER": "Zamknij tester",
+      "SET_VARIABLES_VALUES": "Ustaw wartości zmiennej",
+      "SET_VARIABLES_VALUES_TOOLTIP": "Wybierz zmienną, aby ustawić jej wartość w teście",
+      "DELETE_VARIABLE_FROM_TEST": "Usuń zmienną z testu"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "Podstawy",
+      "PRIMITIVE_PROPERTIES_TYPES": "Wartości pierwotne",
       "DATE": {
         "CURRENT_DATE": "Dzisiaj",
         "CLEAR_BUTTON": "Wyczyść"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "Dane wejściowe są wymagane",
-        "INVALID_FORMAT": "Nieprawidłowy format danych wejściowych",
-        "INVALID_MIN_LENGTH": "Nieprawidłowa długość minimalna",
-        "INVALID_MAX_LENGTH": "Nieprawidłowa długość maksymalna",
-        "INVALID_MIN_VALUE": "Nieprawidłowa wartość. Powinna być większa lub równa",
-        "INVALID_MAX_VALUE": "Nieprawidłowa wartość. Powinna być mniejsza lub równa",
-        "INVALID_MULTIPLE_OF_VALUE": "Nieprawidłowa wartość. Powinna być wielokrotnością",
-        "GENERIC_ERROR": "Nieprawidłowa wartość"
+        "INVALID_FORMAT": "Nieprawidłowy format danych wejściowych: {{error}}",
+        "INVALID_MIN_LENGTH": "Nieprawidłowa długość minimalna: {{error}}",
+        "INVALID_MAX_LENGTH": "Nieprawidłowa długość maksymalna: {{error}}",
+        "INVALID_MIN_VALUE": "Nieprawidłowa wartość. Powinna być większa lub równa: {{error}}",
+        "INVALID_MAX_VALUE": "Nieprawidłowa wartość. Powinna być mniejsza lub równa: {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "Nieprawidłowa wartość. Powinna być wielokrotnością: {{error}}",
+        "GENERIC_ERROR": "Nieprawidłowa wartość:  {{error_1}} - {{error_2}}"
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "Rozwiń",
+      "COLLAPSE": "Zwiń",
+      "NAME": "Nazwa",
+      "INVALID_NAME": "Nazwa jest nieprawidłowa",
+      "REQUIRED": "Wymagane",
+      "REFERENCE": "Odniesienie",
+      "TITLE": "Tytuł",
+      "ADD_PROPERTY": "Dodaj właściwość",
+      "ADD_CHILD_ALL_OF": "Dodaj element podrzędny allOf",
+      "ADD_CHILD_ANY_OF": "Dodaj element podrzędny anyOf",
+      "ADD_CHILD_ONE_OF": "Dodaj element podrzędny oneOf",
+      "ADVANCED_SETTINGS": "Ustawienie zaawansowane",
+      "REMOVE_NODE": "Usuń węzeł",
+      "ADD_DEFINITION": "Dodaj definicję",
+      "BASIC_ATTRIBUTES": "Atrybuty podstawowe",
+      "CUSTOM_ATTRIBUTES": "Atrybuty niestandardowe",
+      "ADD_CUSTOM_ATTRIBUTE": "Dodaj atrybut niestandardowy",
+      "DELETE_CUSTOM_ATTRIBUTE": "Usuń atrybut niestandardowy",
+      "ATTRIBUTE_NAME": "Nazwa atrybutu",
+      "ATTRIBUTE_VALUE": "Wartość atrybutu",
+      "CONFIRM_ATTRIBUTE_ADDITION": "Potwierdź dodanie atrybutu",
+      "CANCEL_ATTRIBUTE_ADDITION": "Anuluj dodanie atrybutu",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "Typy schematu JSON",
+        "ENUMERATION": "Wyliczenie",
+        "MODELING_APP": "Aplikacja do modelowania",
+        "COMPOSITION": "Kompozycja"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "Opis",
+        "MAX_ITEMS": "Maks. liczba pozycji",
+        "MIN_ITEMS": "Min. liczba pozycji",
+        "UNIQUE_ITEMS": "Unikatowe pozycje",
+        "ENUMERATED_VALUES": "Wyliczone wartości",
+        "MAXIMUM": "Maksimum",
+        "MINIMUM": "Minimum",
+        "EXCLUSIVE_MAXIMUM": "Wyłączne maksimum",
+        "EXCLUSIVE_MINIMUM": "Wyłączne minimum",
+        "MAX_PROPERTIES": "Maks. liczba właściwości",
+        "MIN_PROPERTIES": "Min. liczba właściwości",
+        "MAX_LENGTH": "Maks. długość",
+        "MIN_LENGTH": "Min. długość",
+        "PATTERN": "Wzorzec",
+        "FORMAT": "Format",
+        "ADDITIONAL_PROPERTIES": "Dodatkowe właściwości"
+      },
+      "PREVIEW": "Podgląd"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "Utwórz model niestandardowy",
+      "CREATE_MODEL_DESCRIPTION": "Utwórz model niestandardowy i przypisz go do jednostki",
+      "EDIT_MODEL": "Edytuj model niestandardowy",
+      "EDIT_MODEL_DESCRIPTION": "Edytuj poprzednio utworzony model niestandardowy jednostki"
     }
   }
 }

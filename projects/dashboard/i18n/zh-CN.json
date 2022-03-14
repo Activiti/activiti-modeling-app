@@ -43,7 +43,9 @@
       "COLUMN_VERSION": "版本",
       "COLUMN_CREATED": "已创建",
       "COLUMN_CREATED_BY": "创建者",
+      "COLUMN_MODIFIED": "已更新",
       "COLUMN_OPTIONS": "选项",
+      "COLUMN_ACTIONS": "操作",
       "NO_ITEMS": "创建或导入项目以在列表中查看它。",
       "NO_FAV_PROCESSES": "收藏流程以使其在此处可用。",
       "NO_FAV_PROJECTS": "收藏项目以使其在此处可用。",
@@ -54,6 +56,61 @@
       "LOAD_PROJECTS": "加载项目时遇到问题。尝试刷新页面。",
       "LOAD_RELEASES": "加载发布时遇到问题。尝试刷新页面",
       "LOAD_PROCESSES": "加载流程时遇到问题。尝试刷新页面"
+    }
+  },
+  "NEW_STUDIO_DASHBOARD": {
+    "NAME": "建模器",
+    "NAVIGATION": {
+      "PROJECT_TITLE": "项目",
+      "CUSTOM_MODEL_TITLE": "自定义模型",
+      "DATA_MODELS_TITLE": "数据模型",
+      "ALL_PROJECTS": {
+        "HEADER_LABEL": "我的项目",
+        "LABEL": "所有项目",
+        "TOOLTIP": "所有已发布的项目",
+        "ACTIONS": {
+          "CREATE": "创建项目",
+          "UPLOAD": "上传"
+        }
+      },
+      "FAVORITE_PROJECTS": {
+        "HEADER_LABEL": "我的收藏项目",
+        "LABEL": "收藏项目",
+        "TOOLTIP": "收藏项目"
+      },
+      "MY_MODELS": {
+        "HEADER_LABEL": "我的模型",
+        "LABEL": "我的模型",
+        "TOOLTIP": "用户创建的模型",
+        "ACTIONS": {
+          "CREATE": "创建模型"
+        }
+      },
+      "SHARED_MODELS": {
+        "HEADER_LABEL": "我的共享模型",
+        "LABEL": "共享模型",
+        "TOOLTIP": "项目间共享的模型",
+        "ACTIONS": {
+          "CREATE": "创建共享模型"
+        }
+      },
+      "DATA_MODELS": {
+        "HEADER_LABEL": "我的数据模型",
+        "LABEL": "数据模型",
+        "TOOLTIP": "发布的数据模型",
+        "ACTIONS": {
+          "CREATE": "创建数据模型"
+        }
+      }
+    },
+    "USER_INFO_MENU": {
+      "ADMIN": "管理员",
+      "DOCUMENTATION": "文档"
+    },
+    "ADD_TO_FAVORITES": "添加到收藏夹的项目",
+    "REMOVE_FROM_FAVORITES": "从收藏夹中移除项目",
+    "ERROR": {
+      "LOAD_FAVORITE_PROJECTS": "加载收藏项目时遇到问题。尝试刷新页面。"
     }
   }
 }

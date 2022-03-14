@@ -1,9 +1,11 @@
 {
-  "PROCESS_EDITOR": {
+  "ADV_PROCESS_EDITOR": {
     "DOWNLOAD_PROCESS": "プロセスをダウンロード",
     "SAVE_PROCESS_IMAGE": "プロセス図を SVG として保存",
     "VALIDATE_PROCESS": "プロセスを検証",
-    "SAVE_PROCESS": "プロセスを保存",
+    "SAVE_PROCESS": "プロセスを保存"
+  },
+  "PROCESS_EDITOR": {
     "SELECT_PROCESS_VARIABLE": "プロセス変数を選択",
     "SCRIPT_NAME": "スクリプト名",
     "PRIORITIES": {
@@ -89,7 +91,15 @@
       "PROCESS_VARIABLE": "プロセス変数",
       "FILTER_PROCESS_VARIABLE": "プロセス変数をフィルタ",
       "USE_PROCESS_VARIABLE": "プロセス変数を使用",
+      "USE_STATIC_DATE": "静的な日付の使用",
       "USE_EXPRESSION": "式を使用",
+      "USE_TIME_DURATION": "期間の使用",
+      "TIME_DURATION_UNITS": {
+        "MONTHS": "月",
+        "DAYS": "日",
+        "HOURS": "時間",
+        "MINUTES": "分"
+      },
       "PROCESS_VARIABLES": "プロセス変数",
       "EXPRESSION": "条件式",
       "FORM_SELECTOR": "フォームの名前",
@@ -187,7 +197,8 @@
           "ASSIGNEE_INVALID_ERROR": "無効な式 例 { assignee:${var1} }",
           "CANDIDATE_INVALID_ERROR": "無効な式 例 { candidateUsers: ${var1}, candidateGroups: ${var2} }"
         }
-      }
+      },
+      "INHERIT_BUSINESS_KEY": "ビジネスキーの継承"
     },
     "PROPERTIES_BUTTON": "プロパティ",
     "UPLOAD_SUCCESS": "プロセスがアップロードされました",

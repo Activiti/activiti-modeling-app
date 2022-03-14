@@ -20,6 +20,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Vous devez spécifier un nom",
+        "EMPTY_TYPE": "Vouz devez spécifier un type",
         "INVALID_NAME": "Nom de variable non valide",
         "VARIABLE_NAME_TOOLTIP": "Le nom doit commencer par une lettre et peut contenir uniquement des caractères alphanumériques et des traits de soulignement",
         "NAME_ALREADY_EXISTS": "Les noms de variables doivent être uniques",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "Modifier dans la boîte de dialogue",
       "EXPRESSION_EDITOR": "Editeur d'expressions",
-      "NO_BRACKETS_HINT": "L'expression complète dans cet éditeur sera enregistrée entre accolades (${...}). Vous n'avez donc pas besoin de les saisir"
+      "NO_BRACKETS_HINT": "L'expression complète dans cet éditeur sera enregistrée entre accolades (${...}). Vous n'avez donc pas besoin de les saisir",
+      "JUEL_EXPRESSION_SIMULATOR": "Simulateur d'expression JUEL",
+      "TEST": "Test",
+      "TEST_DISABLED_TOOLTIP": "Ajouter une variable au test avant de l'exécuter",
+      "TEST_ENABLED_TOOLTIP": "Testez l'expression en utilisant les valeurs fournies pour les variables",
+      "OPEN_TESTER": "Ouvrir le testeur",
+      "CLOSE_TESTER": "Fermer le testeur",
+      "SET_VARIABLES_VALUES": "Définir les valeurs de la variable",
+      "SET_VARIABLES_VALUES_TOOLTIP": "Sélectionner une variable pour définir sa valeur dans le test",
+      "DELETE_VARIABLE_FROM_TEST": "Supprimer la variable du test"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "Types de base",
+      "PRIMITIVE_PROPERTIES_TYPES": "Primitives",
       "DATE": {
         "CURRENT_DATE": "Aujourd'hui",
         "CLEAR_BUTTON": "Supprimer"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "Une valeur est obligatoire",
-        "INVALID_FORMAT": "Format d'entrée non valide",
-        "INVALID_MIN_LENGTH": "Longueur minimale non valide",
-        "INVALID_MAX_LENGTH": "Longueur maximale non valide",
-        "INVALID_MIN_VALUE": "Valeur non valide. Elle doit être supérieure ou égale à",
-        "INVALID_MAX_VALUE": "Valeur non valide. Elle doit être inférieure ou égale à",
-        "INVALID_MULTIPLE_OF_VALUE": "Valeur non valide. Elle doit être un multiple de",
-        "GENERIC_ERROR": "Valeur non valide"
+        "INVALID_FORMAT": "Format d'entrée non valide : {{error}}",
+        "INVALID_MIN_LENGTH": "Longueur minimum non valide : {{error}}",
+        "INVALID_MAX_LENGTH": "Longueur maximum non valide : {{error}}",
+        "INVALID_MIN_VALUE": "Valeur non valide. Elle doit être supérieure ou égale à : {{error}}",
+        "INVALID_MAX_VALUE": "Valeur non valide. Elle doit être inférieure ou égale à : {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "Valeur non valide. Elle doit être un multiple de : {{error}}",
+        "GENERIC_ERROR": "Valeur non valide : {{error_1}} - {{error_2}} "
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "Développer",
+      "COLLAPSE": "Réduire",
+      "NAME": "Nom",
+      "INVALID_NAME": "Nom non valide",
+      "REQUIRED": "Requis",
+      "REFERENCE": "Référence",
+      "TITLE": "Titre",
+      "ADD_PROPERTY": "Ajouter une propriété",
+      "ADD_CHILD_ALL_OF": "Ajouter le sous-répertoire à allOf",
+      "ADD_CHILD_ANY_OF": "Ajouter le sous-répertoire à anyOf",
+      "ADD_CHILD_ONE_OF": "Ajouter le sous-répertoire à oneOf",
+      "ADVANCED_SETTINGS": "Paramètres avancés",
+      "REMOVE_NODE": "Supprimer le nœud",
+      "ADD_DEFINITION": "Ajouter une définition",
+      "BASIC_ATTRIBUTES": "Attributs de base",
+      "CUSTOM_ATTRIBUTES": "Attributs personnalisés",
+      "ADD_CUSTOM_ATTRIBUTE": "Ajouter un attribut personnalisé",
+      "DELETE_CUSTOM_ATTRIBUTE": "Supprimer l'attribut personnalisé",
+      "ATTRIBUTE_NAME": "Nom de l'attribut",
+      "ATTRIBUTE_VALUE": "Valeur de l'attribut",
+      "CONFIRM_ATTRIBUTE_ADDITION": "Confirmer l'ajout de l'attribut",
+      "CANCEL_ATTRIBUTE_ADDITION": "Annuler l'ajout d'attribut",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "Types de schémas JSON",
+        "ENUMERATION": "Énumération",
+        "MODELING_APP": "Application de modélisation",
+        "COMPOSITION": "Composition"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "Description",
+        "MAX_ITEMS": "Maximum d'éléments",
+        "MIN_ITEMS": "Minimum d'éléments",
+        "UNIQUE_ITEMS": "Éléments uniques",
+        "ENUMERATED_VALUES": "Valeurs énumérées",
+        "MAXIMUM": "Maximum",
+        "MINIMUM": "Minimum",
+        "EXCLUSIVE_MAXIMUM": "Maximum exclusif",
+        "EXCLUSIVE_MINIMUM": "Minimum exclusif",
+        "MAX_PROPERTIES": "Propriétés maximales",
+        "MIN_PROPERTIES": "Propriétés minimales",
+        "MAX_LENGTH": "Longueur maximale",
+        "MIN_LENGTH": "Longueur minimale",
+        "PATTERN": "Motif",
+        "FORMAT": "Format",
+        "ADDITIONAL_PROPERTIES": "Propriétés supplémentaires"
+      },
+      "PREVIEW": "Aperçu"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "Créer un modèle personnalisé",
+      "CREATE_MODEL_DESCRIPTION": "Créer un modèle personnalisé et l'assigner à l'entité",
+      "EDIT_MODEL": "Modifier le modèle personnalisé",
+      "EDIT_MODEL_DESCRIPTION": "Modifier le modèle personnalisé de l'entité créé précédemment"
     }
   }
 }

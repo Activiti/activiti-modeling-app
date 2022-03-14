@@ -1,9 +1,11 @@
 {
-  "PROCESS_EDITOR": {
+  "ADV_PROCESS_EDITOR": {
     "DOWNLOAD_PROCESS": "Last ned prosess",
     "SAVE_PROCESS_IMAGE": "Lagre prosessdiagram som SVG",
     "VALIDATE_PROCESS": "Valider prosess",
-    "SAVE_PROCESS": "Lagre prosess",
+    "SAVE_PROCESS": "Lagre prosess"
+  },
+  "PROCESS_EDITOR": {
     "SELECT_PROCESS_VARIABLE": "Velg prosessvariabel",
     "SCRIPT_NAME": "Skriptnavn",
     "PRIORITIES": {
@@ -89,7 +91,15 @@
       "PROCESS_VARIABLE": "Prosessvariabel",
       "FILTER_PROCESS_VARIABLE": "Filtrer prosessvariabel",
       "USE_PROCESS_VARIABLE": "Bruk prosessvariabel",
+      "USE_STATIC_DATE": "Bruk statisk dato",
       "USE_EXPRESSION": "Bruk uttrykk",
+      "USE_TIME_DURATION": "Bruk tidsvarighet",
+      "TIME_DURATION_UNITS": {
+        "MONTHS": "Måneder",
+        "DAYS": "Dager",
+        "HOURS": "Timer",
+        "MINUTES": "Minutter"
+      },
       "PROCESS_VARIABLES": "Prosessvariabler",
       "EXPRESSION": "Betingelses uttrykk",
       "FORM_SELECTOR": "Skjemaets navn",
@@ -187,7 +197,8 @@
           "ASSIGNEE_INVALID_ERROR": "Ugyldig uttrykk, f.eks. { assignee:${var1} }",
           "CANDIDATE_INVALID_ERROR": "Ugyldig uttrykk, f.eks. { candidateUsers: ${var1}, candidateGroups: ${var2} }"
         }
-      }
+      },
+      "INHERIT_BUSINESS_KEY": "Arv forretningsnøkkel"
     },
     "PROPERTIES_BUTTON": "Egenskaper",
     "UPLOAD_SUCCESS": "Prosess lastet opp",

@@ -16,6 +16,7 @@
     "SEARCH": "Buscar",
     "UPLOAD_FILE_SUCCESS": "Fichero cargado",
     "NO_CONTENT": "<vacío>",
+    "UNCATEGORIZED": "Sin categorizar",
     "NO_SELECTION": "Crear un nuevo modelo o editar uno existente usando la barra lateral",
     "NEW_MENU": {
       "LABEL": "Nuevo",
@@ -190,6 +191,8 @@
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} con el mismo nombre ya existe",
       "UPLOAD_FILE": "Ha surgido un problema al cargar el fichero. Vuelva a intentar cargarlo.",
       "DELETE_PROJECT": "Ha surgido un problema al eliminar el proyecto. Vuelva a intentar eliminarlo.",
+      "ADD_TO_FAVORITES": "Ha surgido un problema al marcar el proyecto como favorito. Vuelva a intentarlo.",
+      "REMOVE_FROM_FAVORITES": "Ha surgido un problema al eliminar el proyecto marcado como favorito. Intente eliminarlo de nuevo.",
       "CHANGE_FAVORITE": "Ha surgido un problema al marcar ese proyecto como favorito. Vuelva a intentar marcarlo como favorito.",
       "DELETE_PROCESS": "Ha surgido un problema al eliminar el proceso. Vuelva a intentar eliminarlo.",
       "LOAD_MODELS": "Ha surgido un problema al cargar los modelos. Vuelva a intentar actualizar la página.",

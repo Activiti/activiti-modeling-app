@@ -1,9 +1,11 @@
 {
-  "PROCESS_EDITOR": {
+  "ADV_PROCESS_EDITOR": {
     "DOWNLOAD_PROCESS": "Prozess herunterladen",
     "SAVE_PROCESS_IMAGE": "Prozessdiagramm als SVG speichern",
     "VALIDATE_PROCESS": "Prozess validieren",
-    "SAVE_PROCESS": "Prozess speichern",
+    "SAVE_PROCESS": "Prozess speichern"
+  },
+  "PROCESS_EDITOR": {
     "SELECT_PROCESS_VARIABLE": "Prozessvariable auswählen",
     "SCRIPT_NAME": "Skript-Name",
     "PRIORITIES": {
@@ -89,7 +91,15 @@
       "PROCESS_VARIABLE": "Prozessvariable",
       "FILTER_PROCESS_VARIABLE": "Prozessvariable filtern",
       "USE_PROCESS_VARIABLE": "Prozessvariable verwenden",
+      "USE_STATIC_DATE": "Nutzungsdatum",
       "USE_EXPRESSION": "Ausdruck verwenden",
+      "USE_TIME_DURATION": "Nutzungsdauer",
+      "TIME_DURATION_UNITS": {
+        "MONTHS": "Monate",
+        "DAYS": "Tage",
+        "HOURS": "Stunden",
+        "MINUTES": "Minuten"
+      },
       "PROCESS_VARIABLES": "Prozessvariablen",
       "EXPRESSION": "Bedingungsausdruck",
       "FORM_SELECTOR": "Formularname",
@@ -187,7 +197,8 @@
           "ASSIGNEE_INVALID_ERROR": "Ungültiger Ausdruck, z. B. { assignee:${var1} }",
           "CANDIDATE_INVALID_ERROR": "Ungültiger Ausdruck, z. B. { candidateUsers: ${var1}, candidateGroups: ${var2} }"
         }
-      }
+      },
+      "INHERIT_BUSINESS_KEY": "Übernommener Geschäftsschlüssel"
     },
     "PROPERTIES_BUTTON": "Eigenschaften",
     "UPLOAD_SUCCESS": "Prozess hochgeladen",

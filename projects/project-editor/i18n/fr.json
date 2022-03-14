@@ -16,6 +16,7 @@
     "SEARCH": "Rechercher",
     "UPLOAD_FILE_SUCCESS": "Fichier importé",
     "NO_CONTENT": "<vide>",
+    "UNCATEGORIZED": "Sans catégorie",
     "NO_SELECTION": "Créer un nouveau modèle ou en modifier un existant à l'aide de la barre latérale",
     "NEW_MENU": {
       "LABEL": "Nouveau",
@@ -190,6 +191,8 @@
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} du même nom existe déjà",
       "UPLOAD_FILE": "Un problème est survenu lors de l'importation du fichier. Essayez de l'importer à nouveau.",
       "DELETE_PROJECT": "Un problème est survenu lors de la suppression du projet. Essayez de le supprimer à nouveau.",
+      "ADD_TO_FAVORITES": "Un problème est survenu lors de l'ajout du projet aux favoris. Essayez de l'ajouter à nouveau.",
+      "REMOVE_FROM_FAVORITES": "Un problème est survenu lors de la suppression du projet des favoris. Essayez de le supprimer à nouveau.",
       "CHANGE_FAVORITE": "Un problème est survenu lors de l'ajout du projet aux favoris. Essayez à nouveau de l'ajouter aux favoris.",
       "DELETE_PROCESS": "Un problème est survenu lors de la suppression du processus. Essayez de le supprimer à nouveau.",
       "LOAD_MODELS": "Un problème est survenu lors du chargement des modèles. Essayez d'actualiser la page.",

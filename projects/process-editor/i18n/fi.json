@@ -1,9 +1,11 @@
 {
-  "PROCESS_EDITOR": {
+  "ADV_PROCESS_EDITOR": {
     "DOWNLOAD_PROCESS": "Lataa prosessi",
     "SAVE_PROCESS_IMAGE": "Tallenna prosessikaavio svg-kuvana",
     "VALIDATE_PROCESS": "Vahvista prosessi",
-    "SAVE_PROCESS": "Tallenna prosessi",
+    "SAVE_PROCESS": "Tallenna prosessi"
+  },
+  "PROCESS_EDITOR": {
     "SELECT_PROCESS_VARIABLE": "Valitse prosessimuuttuja",
     "SCRIPT_NAME": "Komentosarjan nimi",
     "PRIORITIES": {
@@ -89,7 +91,15 @@
       "PROCESS_VARIABLE": "Prosessimuuttuja",
       "FILTER_PROCESS_VARIABLE": "Suodata prosessimuuttujia",
       "USE_PROCESS_VARIABLE": "Käytä prosessimuuttujaa",
+      "USE_STATIC_DATE": "Käytä staattista päivämäärää",
       "USE_EXPRESSION": "Käytä lauseketta",
+      "USE_TIME_DURATION": "Käytä ajanjaksoa",
+      "TIME_DURATION_UNITS": {
+        "MONTHS": "Kuukaudet",
+        "DAYS": "Päivät",
+        "HOURS": "Tunnit",
+        "MINUTES": "Minuutit"
+      },
       "PROCESS_VARIABLES": "Prosessimuuttujat",
       "EXPRESSION": "Ehtolauseke",
       "FORM_SELECTOR": "Lomakkeen nimi",
@@ -187,7 +197,8 @@
           "ASSIGNEE_INVALID_ERROR": "Virheellinen lauseke, esim. { assignee:${var1} }",
           "CANDIDATE_INVALID_ERROR": "Virheellinen lauseke, esim. { candidateUsers: ${var1}, candidateGroups: ${var2} }"
         }
-      }
+      },
+      "INHERIT_BUSINESS_KEY": "Peri liiketoiminta-avain"
     },
     "PROPERTIES_BUTTON": "Ominaisuudet",
     "UPLOAD_SUCCESS": "Prosessi ladattu palvelimelle",

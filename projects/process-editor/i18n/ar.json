@@ -1,9 +1,11 @@
 {
-  "PROCESS_EDITOR": {
+  "ADV_PROCESS_EDITOR": {
     "DOWNLOAD_PROCESS": "تنزيل العملية",
     "SAVE_PROCESS_IMAGE": "احفظ مخطط العملية بتنسيق SVG",
     "VALIDATE_PROCESS": "التحقق من صحة العملية",
-    "SAVE_PROCESS": "حفظ العملية",
+    "SAVE_PROCESS": "حفظ العملية"
+  },
+  "PROCESS_EDITOR": {
     "SELECT_PROCESS_VARIABLE": "تحديد متغير العملية",
     "SCRIPT_NAME": "اسم البرنامج النصي",
     "PRIORITIES": {
@@ -89,7 +91,15 @@
       "PROCESS_VARIABLE": "متغير العملية",
       "FILTER_PROCESS_VARIABLE": "متغير عملية التصفية",
       "USE_PROCESS_VARIABLE": "استخدم متغير العملية",
+      "USE_STATIC_DATE": "استخدم التاريخ الثابت",
       "USE_EXPRESSION": "استخدم التعبير",
+      "USE_TIME_DURATION": "استخدم مدة الوقت",
+      "TIME_DURATION_UNITS": {
+        "MONTHS": "شهور",
+        "DAYS": "أيام",
+        "HOURS": "ساعات",
+        "MINUTES": "الدقائق"
+      },
       "PROCESS_VARIABLES": "متغيرات العملية",
       "EXPRESSION": "تعبير الشرط",
       "FORM_SELECTOR": "اسم النموذج",
@@ -184,10 +194,11 @@
           "TITLE": "التعبير",
           "CANDIDATE_EMPTY": "لا يجوز ترك المرشحين فارغ، قم بتوفير إما مستخدمين مرشحين أو مجموعات مرشحة",
           "ASSIGNEE_EMPTY": "لا يجوز أن يكون المعين فارغ",
-          "ASSIGNEE_INVALID_ERROR": "تعبير غير صالح ، على سبيل المثال: {assignee: $ {var1}}",
-          "CANDIDATE_INVALID_ERROR": "تعبير غير صالح ، على سبيل المثال: {filterUsers: $ {var1}، OptionalGroups: $ {var2}}"
+          "ASSIGNEE_INVALID_ERROR": "تعبير غير صالح ، على سبيل المثال: { assignee:${var1} }",
+          "CANDIDATE_INVALID_ERROR": "تعبير غير صالح ، على سبيل المثال: { candidateUsers: ${var1}, candidateGroups: ${var2} }"
         }
-      }
+      },
+      "INHERIT_BUSINESS_KEY": "وراثة مفتاح العمل"
     },
     "PROPERTIES_BUTTON": "الخصائص",
     "UPLOAD_SUCCESS": "تم تحميل العملية",

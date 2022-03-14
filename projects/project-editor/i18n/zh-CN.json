@@ -16,6 +16,7 @@
     "SEARCH": "搜索",
     "UPLOAD_FILE_SUCCESS": "文件已上传",
     "NO_CONTENT": "<空>",
+    "UNCATEGORIZED": "未分类",
     "NO_SELECTION": "使用侧边栏新建模型或编辑现有模型",
     "NEW_MENU": {
       "LABEL": "新建",
@@ -190,6 +191,8 @@
       "UPLOAD_DUPLICATE_FILE": "同名的{{modelType}}已经存在。",
       "UPLOAD_FILE": "上传文件时遇到问题。尝试重新上传。",
       "DELETE_PROJECT": "删除项目时遇到问题。尝试重新删除。",
+      "ADD_TO_FAVORITES": "将项目添加到收藏夹时遇到问题。尝试再次添加它。",
+      "REMOVE_FROM_FAVORITES": "从收藏夹中移除项目时遇到问题。尝试重新移除。",
       "CHANGE_FAVORITE": "收藏该项目时遇到问题。尝试重新收藏。",
       "DELETE_PROCESS": "删除流程时遇到问题。尝试重新删除。",
       "LOAD_MODELS": "加载模型时遇到问题。尝试重新更新。",

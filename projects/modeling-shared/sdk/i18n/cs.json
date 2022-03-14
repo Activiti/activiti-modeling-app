@@ -19,7 +19,8 @@
     "TYPE": "Typ",
     "VARIABLES_EDITOR": {
       "ERRORS": {
-        "EMPTY_NAME": "Název je povinný.",
+        "EMPTY_NAME": "Název je povinný",
+        "EMPTY_TYPE": "Typ je povinný",
         "INVALID_NAME": "Neplatný název proměnné",
         "VARIABLE_NAME_TOOLTIP": "Název musí začínat písmenem a může obsahovat jen alfanumerické znaky a podtržítko",
         "NAME_ALREADY_EXISTS": "Názvy proměnných musí být jedinečné",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "Upravit v dialogu",
       "EXPRESSION_EDITOR": "Editor výrazů",
-      "NO_BRACKETS_HINT": "Celý výraz v tomto editoru bude uložen uzavřený do složených závorek (${...}), takže je nemusíte zapisovat"
+      "NO_BRACKETS_HINT": "Celý výraz v tomto editoru bude uložen uzavřený do složených závorek (${...}), takže je nemusíte zapisovat",
+      "JUEL_EXPRESSION_SIMULATOR": "Simulátor výrazu JUEL",
+      "TEST": "Test",
+      "TEST_DISABLED_TOOLTIP": "Před provedením testu do něj přidejte proměnnou",
+      "TEST_ENABLED_TOOLTIP": "Otestujte výraz pomocí hodnot zadaných pro proměnné",
+      "OPEN_TESTER": "Otevřít testovací nástroj",
+      "CLOSE_TESTER": "Zavřít testovací nástroj",
+      "SET_VARIABLES_VALUES": "Nastavit hodnoty proměnné",
+      "SET_VARIABLES_VALUES_TOOLTIP": "Vyberte proměnnou, pro kterou chcete nastavit hodnotu v testu",
+      "DELETE_VARIABLE_FROM_TEST": "Odstranit proměnnou z testu"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "Základy",
+      "PRIMITIVE_PROPERTIES_TYPES": "Primitivy",
       "DATE": {
         "CURRENT_DATE": "Dnes",
         "CLEAR_BUTTON": "Vymazat"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "Je požadován vstup",
-        "INVALID_FORMAT": "Neplatný formát vstupu",
-        "INVALID_MIN_LENGTH": "Neplatná minimální délka",
-        "INVALID_MAX_LENGTH": "Neplatná maximální délka",
-        "INVALID_MIN_VALUE": "Neplatná hodnota. Musí být větší než nebo rovna",
-        "INVALID_MAX_VALUE": "Neplatná hodnota. Musí být menší než nebo rovna",
-        "INVALID_MULTIPLE_OF_VALUE": "Neplatná hodnota. Musí být násobkem",
-        "GENERIC_ERROR": "Neplatná hodnota"
+        "INVALID_FORMAT": "Neplatný formát vstupu: {{error}}",
+        "INVALID_MIN_LENGTH": "Neplatná minimální délka: {{error}}",
+        "INVALID_MAX_LENGTH": "Neplatná maximální délka: {{error}}",
+        "INVALID_MIN_VALUE": "Neplatná hodnota. Musí být větší než nebo rovna: {{error}}",
+        "INVALID_MAX_VALUE": "Neplatná hodnota. Musí být menší než nebo rovna: {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "Neplatná hodnota. Musí být násobkem: {{error}}",
+        "GENERIC_ERROR": "Neplatná hodnota: {{error_1}} - {{error_2}}"
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "Rozbalit",
+      "COLLAPSE": "Sbalit",
+      "NAME": "Název",
+      "INVALID_NAME": "Neplatný název",
+      "REQUIRED": "Povinné",
+      "REFERENCE": "Reference",
+      "TITLE": "Označení",
+      "ADD_PROPERTY": "Přidat vlastnost",
+      "ADD_CHILD_ALL_OF": "Přidat podřízený prvek k allOf",
+      "ADD_CHILD_ANY_OF": "Přidat podřízený prvek k anyOf",
+      "ADD_CHILD_ONE_OF": "Přidat podřízený prvek k oneOf",
+      "ADVANCED_SETTINGS": "Pokročilá nastavení",
+      "REMOVE_NODE": "Odebrat uzel",
+      "ADD_DEFINITION": "Přidat definici",
+      "BASIC_ATTRIBUTES": "Základní atributy",
+      "CUSTOM_ATTRIBUTES": "Vlastní atributy",
+      "ADD_CUSTOM_ATTRIBUTE": "Přidat vlastní atribut",
+      "DELETE_CUSTOM_ATTRIBUTE": "Odstranit vlastní atribut",
+      "ATTRIBUTE_NAME": "Název atributu",
+      "ATTRIBUTE_VALUE": "Hodnota atributu",
+      "CONFIRM_ATTRIBUTE_ADDITION": "Potvrdit přidání atributu",
+      "CANCEL_ATTRIBUTE_ADDITION": "Zrušit přidání atributu",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "Typy schémat JSON",
+        "ENUMERATION": "Výčet",
+        "MODELING_APP": "Aplikace modelování",
+        "COMPOSITION": "Kompozice"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "Popis",
+        "MAX_ITEMS": "Max. počet položek",
+        "MIN_ITEMS": "Min. počet položek",
+        "UNIQUE_ITEMS": "Jedinečné položky",
+        "ENUMERATED_VALUES": "Hodnoty výčtu",
+        "MAXIMUM": "Maximum",
+        "MINIMUM": "Minimum",
+        "EXCLUSIVE_MAXIMUM": "Výlučné maximum",
+        "EXCLUSIVE_MINIMUM": "Výlučné minimum",
+        "MAX_PROPERTIES": "Vlastnosti maxima",
+        "MIN_PROPERTIES": "Vlastnosti minima",
+        "MAX_LENGTH": "Max. délka",
+        "MIN_LENGTH": "Min. délka",
+        "PATTERN": "Vzor",
+        "FORMAT": "Formát",
+        "ADDITIONAL_PROPERTIES": "Další vlastnosti"
+      },
+      "PREVIEW": "Náhled"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "Vytvořit vlastní model",
+      "CREATE_MODEL_DESCRIPTION": "Vytvořte vlastní model a přiřaďte ho entitě",
+      "EDIT_MODEL": "Upravit vlastní model",
+      "EDIT_MODEL_DESCRIPTION": "Upravit dříve vytvořený vlastní model entity"
     }
   }
 }

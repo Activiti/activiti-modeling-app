@@ -1,9 +1,11 @@
 {
-  "PROCESS_EDITOR": {
+  "ADV_PROCESS_EDITOR": {
     "DOWNLOAD_PROCESS": "Descargar proceso",
     "SAVE_PROCESS_IMAGE": "Guardar el diagrama del proceso como SVG",
     "VALIDATE_PROCESS": "Validar proceso",
-    "SAVE_PROCESS": "Guardar proceso",
+    "SAVE_PROCESS": "Guardar proceso"
+  },
+  "PROCESS_EDITOR": {
     "SELECT_PROCESS_VARIABLE": "Seleccionar variable de proceso",
     "SCRIPT_NAME": "Nombre de script",
     "PRIORITIES": {
@@ -89,7 +91,15 @@
       "PROCESS_VARIABLE": "Variable del proceso",
       "FILTER_PROCESS_VARIABLE": "Filtrar variable de proceso",
       "USE_PROCESS_VARIABLE": "Utilizar variable de proceso",
+      "USE_STATIC_DATE": "Utilizar fecha estática",
       "USE_EXPRESSION": "Utilizar expresión",
+      "USE_TIME_DURATION": "Utilizar duración del tiempo",
+      "TIME_DURATION_UNITS": {
+        "MONTHS": "Meses",
+        "DAYS": "Días",
+        "HOURS": "Horas",
+        "MINUTES": "Minutos"
+      },
       "PROCESS_VARIABLES": "Variables de proceso",
       "EXPRESSION": "Expresión de condición",
       "FORM_SELECTOR": "Nombre del formulario",
@@ -187,7 +197,8 @@
           "ASSIGNEE_INVALID_ERROR": "Expresión no válida, por ejemplo { assignee:${var1} }",
           "CANDIDATE_INVALID_ERROR": "Expresión no válida, por ejemplo { candidateUsers: ${var1}, candidateGroups: ${var2} }"
         }
-      }
+      },
+      "INHERIT_BUSINESS_KEY": "Heredar clave de negocio"
     },
     "PROPERTIES_BUTTON": "Propiedades",
     "UPLOAD_SUCCESS": "Proceso cargado",

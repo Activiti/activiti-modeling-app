@@ -43,7 +43,7 @@
         "RELEASE": "Weet u zeker dat u een nieuwe versie van dit project wilt vrijgeven?",
         "TYPES": {
           "DECISION": "beslissingstabel",
-          "DATA": "gegevens",
+          "DATA_MODEL": "gegevensmodel",
           "UI": "UI",
           "CONNECTOR": "connector",
           "FORM": "Formulier",
@@ -56,22 +56,19 @@
         },
         "DELETE": {
           "PROJECT": "Weet u zeker dat u dit project wilt verwijderen?",
-          "DATA": "Weet u zeker dat u dit gegevensobject wilt verwijderen?"
+          "DATA_MODEL": "Weet u zeker dat u dit gegevensobject wilt verwijderen?"
         },
         "SAVE": {
           "PROCESS": "Weet u zeker dat u dit proces wilt opslaan?",
-          "DATA": "Weet u zeker dat u dit gegevensobject wilt opslaan?",
+          "DATA_MODEL": "Weet u zeker dat u dit gegevensobject wilt opslaan?",
           "EMAIL_TEMPLATE": "Weet u zeker dat u de e-mailsjabloon wilt overschrijven?"
         },
         "SAVE_AS": {
-          "PROCESS": "Weet u zeker dat u dit proces wilt kopiëren?",
-          "DATA": "Weet u zeker dat u dit gegevensobject wilt kopiëren?",
-          "FILE": "Weet u zeker dat u dit bestand wilt kopiëren?",
-          "SCRIPT": "Weet u zeker dat u dit script wilt kopiëren?"
+          "DATA_MODEL": "Weet u zeker dat u dit gegevensobject wilt kopiëren?"
         },
         "DOWNLOAD": {
           "IMAGE": "Weet u zeker dat u de svg-afbeelding van dit proces wilt downloaden?",
-          "DATA": "Weet u zeker dat u dit gegevensobject wilt downloaden?"
+          "DATA_MODEL": "Weet u zeker dat u dit gegevensobject wilt downloaden?"
         }
       }
     },

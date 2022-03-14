@@ -43,7 +43,7 @@
         "RELEASE": "Rilasciare una nuova versione di questo progetto?",
         "TYPES": {
           "DECISION": "tabella decisioni",
-          "DATA": "dati",
+          "DATA_MODEL": "modello di dati",
           "UI": "UI",
           "CONNECTOR": "connettore",
           "FORM": "Modulo",
@@ -56,22 +56,19 @@
         },
         "DELETE": {
           "PROJECT": "Eliminare questo progetto?",
-          "DATA": "Eliminare questo oggetto dati?"
+          "DATA_MODEL": "Eliminare questo oggetto dati?"
         },
         "SAVE": {
           "PROCESS": "Salvare questo processo?",
-          "DATA": "Salvare questo oggetto dati?",
+          "DATA_MODEL": "Salvare questo oggetto dati?",
           "EMAIL_TEMPLATE": "Sovrascrivere il modello di e-mail?"
         },
         "SAVE_AS": {
-          "PROCESS": "Copiare questo processo?",
-          "DATA": "Copiare questo oggetto dati?",
-          "FILE": "Copiare questo file?",
-          "SCRIPT": "Copiare questo script?"
+          "DATA_MODEL": "Copiare questo oggetto dati?"
         },
         "DOWNLOAD": {
           "IMAGE": "Scaricare l'immagine svg di questo processo?",
-          "DATA": "Scaricare questo oggetto dati?"
+          "DATA_MODEL": "Scaricare questo oggetto dati?"
         }
       }
     },

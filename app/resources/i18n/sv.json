@@ -43,7 +43,7 @@
         "RELEASE": "Är du säker på att du vill avsäga en ny version av det här projektet?",
         "TYPES": {
           "DECISION": "beslutstabell",
-          "DATA": "data",
+          "DATA_MODEL": "datamodell",
           "UI": "Gränssnitt",
           "CONNECTOR": "konnektor",
           "FORM": "Formulär",
@@ -56,22 +56,19 @@
         },
         "DELETE": {
           "PROJECT": "Är du säker på att du vill radera det här projektet?",
-          "DATA": "Är du säker på att du vill radera det här dataobjektet?"
+          "DATA_MODEL": "Är du säker på att du vill radera det här dataobjektet?"
         },
         "SAVE": {
           "PROCESS": "Är du säker på att du vill spara den här processen?",
-          "DATA": "Är du säker på att du vill spara det här dataobjektet?",
+          "DATA_MODEL": "Är du säker på att du vill spara det här dataobjektet?",
           "EMAIL_TEMPLATE": "Vill du verkligen skriva över e-postmallen?"
         },
         "SAVE_AS": {
-          "PROCESS": "Vill du verkligen kopiera den här processen?",
-          "DATA": "Vill du verkligen kopiera detta dataobjekt?",
-          "FILE": "Vill du verkligen kopiera den här filen?",
-          "SCRIPT": "Vill du verkligen kopiera det här skriptet?"
+          "DATA_MODEL": "Vill du verkligen kopiera detta dataobjekt?"
         },
         "DOWNLOAD": {
           "IMAGE": "Är du säker på att du vill ladda ner svg-bilden av denna process?",
-          "DATA": "Är du säker på att du vill ladda ner det här dataobjeketet?"
+          "DATA_MODEL": "Är du säker på att du vill ladda ner det här dataobjeketet?"
         }
       }
     },

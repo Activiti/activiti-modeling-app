@@ -43,7 +43,9 @@
       "COLUMN_VERSION": "Verze",
       "COLUMN_CREATED": "Vytvořeno",
       "COLUMN_CREATED_BY": "Vytvořil(a)",
+      "COLUMN_MODIFIED": "Aktualizováno",
       "COLUMN_OPTIONS": "Možnosti",
+      "COLUMN_ACTIONS": "Akce",
       "NO_ITEMS": "Vytvořte nebo naimportujte projekt, který chcete zobrazit v seznamu.",
       "NO_FAV_PROCESSES": "Označte proces jako oblíbený, aby byl k dispozici zde.",
       "NO_FAV_PROJECTS": "Označte projekt jako oblíbený, aby byl k dispozici zde.",
@@ -54,6 +56,61 @@
       "LOAD_PROJECTS": "Došlo k problému při načítání projektů. Zkuste obnovit stránku.",
       "LOAD_RELEASES": "Došlo k problému při načítání verzí. Zkuste obnovit stránku.",
       "LOAD_PROCESSES": "Došlo k problému při načítání procesů. Zkuste obnovit stránku."
+    }
+  },
+  "NEW_STUDIO_DASHBOARD": {
+    "NAME": "Nástroj pro vytváření modelů",
+    "NAVIGATION": {
+      "PROJECT_TITLE": "Projekty",
+      "CUSTOM_MODEL_TITLE": "Vlastní modely",
+      "DATA_MODELS_TITLE": "Datové modely",
+      "ALL_PROJECTS": {
+        "HEADER_LABEL": "Moje projekty",
+        "LABEL": "Všechny projekty",
+        "TOOLTIP": "Všechny publikované projekty",
+        "ACTIONS": {
+          "CREATE": "Vytvoření projektu",
+          "UPLOAD": "Odeslat"
+        }
+      },
+      "FAVORITE_PROJECTS": {
+        "HEADER_LABEL": "Moje oblíbené projekty",
+        "LABEL": "Oblíbené projekty",
+        "TOOLTIP": "Projekty v oblíbených"
+      },
+      "MY_MODELS": {
+        "HEADER_LABEL": "Moje modely",
+        "LABEL": "Moje modely",
+        "TOOLTIP": "Modely vytvořené uživatelem",
+        "ACTIONS": {
+          "CREATE": "Vytvořit model"
+        }
+      },
+      "SHARED_MODELS": {
+        "HEADER_LABEL": "Moje sdílené modely",
+        "LABEL": "Sdílené modely",
+        "TOOLTIP": "Modely sdílené napříč projekty",
+        "ACTIONS": {
+          "CREATE": "Vytvořit sdílený model"
+        }
+      },
+      "DATA_MODELS": {
+        "HEADER_LABEL": "Moje datové modely",
+        "LABEL": "Datové modely",
+        "TOOLTIP": "Publikované datové modely",
+        "ACTIONS": {
+          "CREATE": "Vytvořit datový model"
+        }
+      }
+    },
+    "USER_INFO_MENU": {
+      "ADMIN": "Správce",
+      "DOCUMENTATION": "Dokumentace"
+    },
+    "ADD_TO_FAVORITES": "Projekt přidaný do oblíbených",
+    "REMOVE_FROM_FAVORITES": "Projekt odebraný z oblíbených",
+    "ERROR": {
+      "LOAD_FAVORITE_PROJECTS": "Narazili jsme na problém při načítání oblíbených projektů. Zkuste obnovit stránku."
     }
   }
 }

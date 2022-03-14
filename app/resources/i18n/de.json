@@ -43,7 +43,7 @@
         "RELEASE": "Sind Sie sicher, dass Sie eine neue Version dieses Projekts freigeben möchten?",
         "TYPES": {
           "DECISION": "Entscheidungstabelle",
-          "DATA": "Daten",
+          "DATA_MODEL": "Datenmodell",
           "UI": "UI",
           "CONNECTOR": "Connector",
           "FORM": "Formular",
@@ -56,22 +56,19 @@
         },
         "DELETE": {
           "PROJECT": "Möchten Sie dieses Projekt wirklich löschen?",
-          "DATA": "Möchten Sie dieses Datenobjekt wirklich löschen?"
+          "DATA_MODEL": "Möchten Sie dieses Datenobjekt wirklich löschen?"
         },
         "SAVE": {
           "PROCESS": "Möchten Sie diesen Prozess wirklich löschen?",
-          "DATA": "Möchten Sie dieses Datenobjekt wirklich speichern?",
+          "DATA_MODEL": "Möchten Sie dieses Datenobjekt wirklich speichern?",
           "EMAIL_TEMPLATE": "Möchten Sie die E-Mail-Vorlage wirklich überschreiben?"
         },
         "SAVE_AS": {
-          "PROCESS": "Möchten Sie diesen Prozess wirklich kopieren?",
-          "DATA": "Möchten Sie dieses Datenobjekt wirklich kopieren?",
-          "FILE": "Möchten Sie diese Datei wirklich kopieren?",
-          "SCRIPT": "Möchten Sie dieses Skript wirklich kopieren?"
+          "DATA_MODEL": "Möchten Sie dieses Datenobjekt wirklich kopieren?"
         },
         "DOWNLOAD": {
           "IMAGE": "Möchten Sie das SVG-Bild dieses Prozesses wirklich herunterladen?",
-          "DATA": "Möchten Sie dieses Datenobjekt wirklich herunterladen?"
+          "DATA_MODEL": "Möchten Sie dieses Datenobjekt wirklich herunterladen?"
         }
       }
     },

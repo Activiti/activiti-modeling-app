@@ -43,7 +43,7 @@
         "RELEASE": "Haluatko varmasti julkaista uuden version tästä projektista?",
         "TYPES": {
           "DECISION": "päätöstaulukko",
-          "DATA": "data",
+          "DATA_MODEL": "tietomalli",
           "UI": "käyttöliittymä",
           "CONNECTOR": "liitin",
           "FORM": "Lomake",
@@ -56,22 +56,19 @@
         },
         "DELETE": {
           "PROJECT": "Haluatko varmasti poistaa tämän projektin?",
-          "DATA": "Haluatko varmasti poistaa tämän dataobjektin?"
+          "DATA_MODEL": "Haluatko varmasti poistaa tämän dataobjektin?"
         },
         "SAVE": {
           "PROCESS": "Haluatko varmasti tallentaa tämän prosessin?",
-          "DATA": "Haluatko varmasti tallentaa tämän dataobjektin?",
+          "DATA_MODEL": "Haluatko varmasti tallentaa tämän dataobjektin?",
           "EMAIL_TEMPLATE": "Haluatko varmasti korvata tämän sähköpostimallin?"
         },
         "SAVE_AS": {
-          "PROCESS": "Haluatko varmasti kopioida tämän prosessin?",
-          "DATA": "Haluatko varmasti kopioida tämän dataobjektin?",
-          "FILE": "Haluatko varmasti kopioida tämän tiedoston?",
-          "SCRIPT": "Haluatko varmasti kopioida tämän komentosarjan?"
+          "DATA_MODEL": "Haluatko varmasti kopioida tämän dataobjektin?"
         },
         "DOWNLOAD": {
           "IMAGE": "Haluatko varmasti ladata tämän prosessin svg-kuvan?",
-          "DATA": "Haluatko varmasti ladata tämän dataobjektin?"
+          "DATA_MODEL": "Haluatko varmasti ladata tämän dataobjektin?"
         }
       }
     },

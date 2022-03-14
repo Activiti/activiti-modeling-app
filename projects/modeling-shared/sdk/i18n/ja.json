@@ -20,6 +20,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "名前は必須です",
+        "EMPTY_TYPE": "タイプは必須です",
         "INVALID_NAME": "無効な変数名",
         "VARIABLE_NAME_TOOLTIP": "名前は文字で始まり、英数字とアンダースコアしか使用できません",
         "NAME_ALREADY_EXISTS": "変数名は固有な必要があります",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "ダイアログで編集",
       "EXPRESSION_EDITOR": "式エディタ",
-      "NO_BRACKETS_HINT": "このエディタの全体式は中括弧（$ {...}）で囲まれて保存されるため、入力する必要はありません"
+      "NO_BRACKETS_HINT": "このエディタの全体式は中括弧（$ {...}）で囲まれて保存されるため、入力する必要はありません",
+      "JUEL_EXPRESSION_SIMULATOR": "JUEL式シミュレーター",
+      "TEST": "テスト",
+      "TEST_DISABLED_TOOLTIP": "実行する前に変数をテストに追加します",
+      "TEST_ENABLED_TOOLTIP": "変数用に提供された値を使用して式をテストします",
+      "OPEN_TESTER": "テスターを開く",
+      "CLOSE_TESTER": "テスターを閉じる",
+      "SET_VARIABLES_VALUES": "変数値の設定",
+      "SET_VARIABLES_VALUES_TOOLTIP": "テストで値を設定する変数を選択します",
+      "DELETE_VARIABLE_FROM_TEST": "テストからの変数の削除"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "基本",
+      "PRIMITIVE_PROPERTIES_TYPES": "プリミティブ",
       "DATE": {
         "CURRENT_DATE": "今日",
         "CLEAR_BUTTON": "消去"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "入力は必須です",
-        "INVALID_FORMAT": "無効な入力形式",
-        "INVALID_MIN_LENGTH": "無効な最小の長さ",
-        "INVALID_MAX_LENGTH": "無効な最大の長さ",
-        "INVALID_MIN_VALUE": "無効な値。より大きいか等しくなければなりません",
-        "INVALID_MAX_VALUE": "無効な値。より小さいか等しくなければなりません",
-        "INVALID_MULTIPLE_OF_VALUE": "無効な値。次の倍数でなければなりません：",
-        "GENERIC_ERROR": "無効な値"
+        "INVALID_FORMAT": "無効な入力形式：{{error}}",
+        "INVALID_MIN_LENGTH": "無効な最小の長さ：{{error}}",
+        "INVALID_MAX_LENGTH": "無効な最大の長さ：{{error}}",
+        "INVALID_MIN_VALUE": "無効な値。より大きいか等しくなければなりません：{{error}}",
+        "INVALID_MAX_VALUE": "無効な値。より小さいか等しくなければなりません：{{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "無効な値。倍数でなければなりません：{{error}}",
+        "GENERIC_ERROR": "無効な値： {{error_1}} - {{error_2}}"
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "展開",
+      "COLLAPSE": "折りたたみ",
+      "NAME": "名前",
+      "INVALID_NAME": "無効な名前",
+      "REQUIRED": "必須",
+      "REFERENCE": "参照",
+      "TITLE": "タイトル",
+      "ADD_PROPERTY": "プロパティの追加",
+      "ADD_CHILD_ALL_OF": "allOfに子を追加",
+      "ADD_CHILD_ANY_OF": "anyOfに子を追加",
+      "ADD_CHILD_ONE_OF": "oneOfに子を追加",
+      "ADVANCED_SETTINGS": "詳細設定",
+      "REMOVE_NODE": "ノードの削除",
+      "ADD_DEFINITION": "定義の追加",
+      "BASIC_ATTRIBUTES": "基本属性",
+      "CUSTOM_ATTRIBUTES": "カスタム属性",
+      "ADD_CUSTOM_ATTRIBUTE": "カスタム属性の追加",
+      "DELETE_CUSTOM_ATTRIBUTE": "カスタム属性の削除",
+      "ATTRIBUTE_NAME": "属性名",
+      "ATTRIBUTE_VALUE": "属性値",
+      "CONFIRM_ATTRIBUTE_ADDITION": "属性の追加を確認",
+      "CANCEL_ATTRIBUTE_ADDITION": "属性の追加をキャンセル",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "JSONスキーマタイプ",
+        "ENUMERATION": "列挙",
+        "MODELING_APP": "モデリングアプリケーション",
+        "COMPOSITION": "作成"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "説明",
+        "MAX_ITEMS": "最大項目数",
+        "MIN_ITEMS": "最小項目数",
+        "UNIQUE_ITEMS": "固有な項目",
+        "ENUMERATED_VALUES": "列挙値",
+        "MAXIMUM": "最大",
+        "MINIMUM": "最小",
+        "EXCLUSIVE_MAXIMUM": "排他的排除",
+        "EXCLUSIVE_MINIMUM": "排他的最小",
+        "MAX_PROPERTIES": "最大プロパティ数",
+        "MIN_PROPERTIES": "最小プロパティ数",
+        "MAX_LENGTH": "最大の長さ",
+        "MIN_LENGTH": "最小の長さ",
+        "PATTERN": "パターン",
+        "FORMAT": "フォーマット",
+        "ADDITIONAL_PROPERTIES": "追加のプロパティ"
+      },
+      "PREVIEW": "プレビュー"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "カスタムモデルの作成",
+      "CREATE_MODEL_DESCRIPTION": "カスタムモデルを作成し、エンティティに割り当てます",
+      "EDIT_MODEL": "カスタムモデルの編集",
+      "EDIT_MODEL_DESCRIPTION": "前に作成したエンティティのカスタムモデルを編集します"
     }
   }
 }

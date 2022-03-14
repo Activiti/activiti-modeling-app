@@ -20,6 +20,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "O nome é obrigatório",
+        "EMPTY_TYPE": "Um tipo é necessário",
         "INVALID_NAME": "Nome inválido da variável",
         "VARIABLE_NAME_TOOLTIP": "O nome deve iniciar com uma letra e só pode conter caracteres alfanuméricos e sublinhados",
         "NAME_ALREADY_EXISTS": "Nomes de variáveis devem ser exclusivos",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "Editar na caixa de diálogo",
       "EXPRESSION_EDITOR": "Editor de expressão",
-      "NO_BRACKETS_HINT": "A expressão inteira neste editor será salva entre chaves (${...}) para que você não precise digitá-la"
+      "NO_BRACKETS_HINT": "A expressão inteira neste editor será salva entre chaves (${...}) para que você não precise digitá-la",
+      "JUEL_EXPRESSION_SIMULATOR": "Simulador de expressão JUEL",
+      "TEST": "Teste",
+      "TEST_DISABLED_TOOLTIP": "Adicione uma variável ao teste antes de executá-la",
+      "TEST_ENABLED_TOOLTIP": "Teste a expressão usando os valores fornecidos para as variáveis",
+      "OPEN_TESTER": "Abrir verificador",
+      "CLOSE_TESTER": "Fechar verificador",
+      "SET_VARIABLES_VALUES": "Definir os valores da variável",
+      "SET_VARIABLES_VALUES_TOOLTIP": "Selecione uma variável para definir seu valor no teste",
+      "DELETE_VARIABLE_FROM_TEST": "Excluir variável do teste"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "Básico",
+      "PRIMITIVE_PROPERTIES_TYPES": "Primitivos",
       "DATE": {
         "CURRENT_DATE": "Hoje",
         "CLEAR_BUTTON": "Limpar"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "Entrada é necessária",
-        "INVALID_FORMAT": "Formato de entrada inválido",
-        "INVALID_MIN_LENGTH": "Comprimento mínimo inválido",
-        "INVALID_MAX_LENGTH": "Comprimento máximo inválido",
-        "INVALID_MIN_VALUE": "Valor inválido. O valor deve ser maior que ou igual a",
-        "INVALID_MAX_VALUE": "Valor inválido. O valor deve ser menor que ou igual a",
-        "INVALID_MULTIPLE_OF_VALUE": "Valor inválido. O valor deve ser um múltiplo de",
-        "GENERIC_ERROR": "Valor inválido"
+        "INVALID_FORMAT": "Formato de entrada inválido: {{error}}",
+        "INVALID_MIN_LENGTH": "Comprimento mínimo inválido: {{error}}",
+        "INVALID_MAX_LENGTH": "Comprimento máximo inválido: {{error}}",
+        "INVALID_MIN_VALUE": "Valor inválido. O valor deve ser maior que ou igual a: {{error}}",
+        "INVALID_MAX_VALUE": "Valor inválido. O valor deve ser menor que ou igual a: {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "Valor inválido. O valor deve ser um múltiplo de: {{error}}",
+        "GENERIC_ERROR": "Valor inválido: {{error_1}} - {{error_2}} "
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "Expandir",
+      "COLLAPSE": "Recolher",
+      "NAME": "Nome",
+      "INVALID_NAME": "Nome inválido",
+      "REQUIRED": "Obrigatório",
+      "REFERENCE": "Referência",
+      "TITLE": "Título",
+      "ADD_PROPERTY": "Adicionar propriedade",
+      "ADD_CHILD_ALL_OF": "Adicionar filho para allOf",
+      "ADD_CHILD_ANY_OF": "Adicionar filho para anyOf",
+      "ADD_CHILD_ONE_OF": "Adicionar filho para oneOf",
+      "ADVANCED_SETTINGS": "Configurações avançadas",
+      "REMOVE_NODE": "Remover nó",
+      "ADD_DEFINITION": "Adicionar definição",
+      "BASIC_ATTRIBUTES": "Atributos básicos",
+      "CUSTOM_ATTRIBUTES": "Atributos personalizados",
+      "ADD_CUSTOM_ATTRIBUTE": "Adicionar atributo personalizado",
+      "DELETE_CUSTOM_ATTRIBUTE": "Excluir atributo personalizado",
+      "ATTRIBUTE_NAME": "Nome do atributo",
+      "ATTRIBUTE_VALUE": "Valor do atributo",
+      "CONFIRM_ATTRIBUTE_ADDITION": "Confirmar adição do atributo",
+      "CANCEL_ATTRIBUTE_ADDITION": "Cancelar adição do atributo",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "Tipos de esquema JSON",
+        "ENUMERATION": "Enumeração",
+        "MODELING_APP": "Aplicativo de modelagem",
+        "COMPOSITION": "Composição"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "Descrição",
+        "MAX_ITEMS": "Itens máximos",
+        "MIN_ITEMS": "Itens mínimos",
+        "UNIQUE_ITEMS": "Itens exclusivos",
+        "ENUMERATED_VALUES": "Valores enumerados",
+        "MAXIMUM": "Máximo",
+        "MINIMUM": "Mínimo",
+        "EXCLUSIVE_MAXIMUM": "Máximo exclusivo",
+        "EXCLUSIVE_MINIMUM": "Mínimo exclusivo",
+        "MAX_PROPERTIES": "Propriedades máximas",
+        "MIN_PROPERTIES": "Propriedades mínimas",
+        "MAX_LENGTH": "Comprimento máximo",
+        "MIN_LENGTH": "Comprimento mínimo",
+        "PATTERN": "Padrão",
+        "FORMAT": "Formato",
+        "ADDITIONAL_PROPERTIES": "Propriedades adicionais"
+      },
+      "PREVIEW": "Visualizar"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "Criar modelo personalizado",
+      "CREATE_MODEL_DESCRIPTION": "Crie um modelo personalizado e atribua-o à entidade",
+      "EDIT_MODEL": "Editar modelo personalizado",
+      "EDIT_MODEL_DESCRIPTION": "Edite o modelo personalizado da entidade criado previamente"
     }
   }
 }

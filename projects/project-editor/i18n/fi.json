@@ -16,6 +16,7 @@
     "SEARCH": "Hae",
     "UPLOAD_FILE_SUCCESS": "Tiedosto ladattu palvelimelle",
     "NO_CONTENT": "<tyhjä>",
+    "UNCATEGORIZED": "Luokittelematon",
     "NO_SELECTION": "Luo uusi malli tai käytä jo olemassa olevaa mallia sivupalkista",
     "NEW_MENU": {
       "LABEL": "Uusi",
@@ -190,6 +191,8 @@
       "UPLOAD_DUPLICATE_FILE": "Samanniminen {{modelType}} on jo olemassa",
       "UPLOAD_FILE": "Tiedoston lataamisessa palvelimelle ilmeni ongelma. Yritä ladata se uudelleen.",
       "DELETE_PROJECT": "Projektin poistamisessa ilmeni ongelma. Yritä poistaa se uudelleen.",
+      "ADD_TO_FAVORITES": "Projektin suosikkeihin lisäämisessä ilmeni ongelma. Yritä uudelleen.",
+      "REMOVE_FROM_FAVORITES": "Projektin poistamisessa suosikeista ilmeni onglema. Yritä poistaa se uudelleen.",
       "CHANGE_FAVORITE": "Projektin lisäämisessä suosikkeihin ilmeni ongelma. Yritä lisätä se uudelleen.",
       "DELETE_PROCESS": "Prosessin poistamisessa ilmeni ongelma. Yritä poistaa se uudelleen.",
       "LOAD_MODELS": "Mallien lataamisessa ilmeni ongelma. Päivitä sivu ja yritä ladata uudelleen.",

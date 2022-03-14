@@ -16,6 +16,7 @@
     "SEARCH": "Szukaj",
     "UPLOAD_FILE_SUCCESS": "Przesłano plik",
     "NO_CONTENT": "<puste>",
+    "UNCATEGORIZED": "Bez kategorii",
     "NO_SELECTION": "Utwórz nowy model lub edytuj istniejący za pomocą paska bocznego",
     "NEW_MENU": {
       "LABEL": "Nowy",
@@ -190,6 +191,8 @@
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} o tej nazwie już istnieje",
       "UPLOAD_FILE": "Wystąpił problem podczas przesyłania pliku. Spróbuj przesłać go ponownie.",
       "DELETE_PROJECT": "Wystąpił problem podczas usuwania projektu. Spróbuj usunąć go ponownie.",
+      "ADD_TO_FAVORITES": "Wystąpił problem podczas dodawania projektu do ulubionych. Spróbuj dodać go ponownie.",
+      "REMOVE_FROM_FAVORITES": "Wystąpił problem podczas usuwania projektu z ulubionych. Spróbuj usunąć go ponownie.",
       "CHANGE_FAVORITE": "Wystąpił problem podczas dodawania projektu do ulubionych. Spróbuj dodać go do ulubionych ponownie.",
       "DELETE_PROCESS": "Wystąpił problem podczas usuwania procesu. Spróbuj usunąć go ponownie.",
       "LOAD_MODELS": "Wystąpił problem podczas ładowania modeli. Spróbuj odświeżyć stronę.",

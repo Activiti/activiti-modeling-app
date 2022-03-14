@@ -16,6 +16,7 @@
     "SEARCH": "Sök",
     "UPLOAD_FILE_SUCCESS": "Fil uppladdad",
     "NO_CONTENT": "<empty>",
+    "UNCATEGORIZED": "Ej kategoriserad",
     "NO_SELECTION": "Skapa en ny modell eller redigera en befintlig med sidoraden",
     "NEW_MENU": {
       "LABEL": "Ny",
@@ -190,6 +191,8 @@
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} med samma namn finns redan",
       "UPLOAD_FILE": "Vi stötte på ett problem med att ladda upp filen. Försök att ladda upp den igen.",
       "DELETE_PROJECT": "Vi stötte på ett problem när filen raderades. Försök att radera den igen.",
+      "ADD_TO_FAVORITES": "Vi påträffade ett problem när vi lade till projektet till favoriter. Försök att lägga till det igen.",
+      "REMOVE_FROM_FAVORITES": "Vi stötte på ett problem när projektet togs bort från favoriter. Försök ta bort det igen.",
       "CHANGE_FAVORITE": "Vi stötte på ett problem när filen skulle favoritmarkeras. Försök att favoritmarkera den igen.",
       "DELETE_PROCESS": "Vi stötte på ett problem när processen skulle raderas Försök att radera den igen.",
       "LOAD_MODELS": "Vi stötte på ett problem med att läsa in modellerna. Prova att uppdatera sidan.",

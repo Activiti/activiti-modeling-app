@@ -43,7 +43,7 @@
         "RELEASE": "Er du sikker på, at du vil frigive en ny version af dette projekt?",
         "TYPES": {
           "DECISION": "beslutningstabel",
-          "DATA": "data",
+          "DATA_MODEL": "datamodel",
           "UI": "UI",
           "CONNECTOR": "forbindelse",
           "FORM": "Formular",
@@ -56,22 +56,19 @@
         },
         "DELETE": {
           "PROJECT": "Er du sikker på, at du vil slette dette projekt?",
-          "DATA": "Er du sikker på, at du vil slette dette dataobjekt?"
+          "DATA_MODEL": "Er du sikker på, at du vil slette dette dataobjekt?"
         },
         "SAVE": {
           "PROCESS": "Er du sikker på, at du vil gemme denne proces?",
-          "DATA": "Er du sikker på, at du vil gemme dette dataobjekt?",
+          "DATA_MODEL": "Er du sikker på, at du vil gemme dette dataobjekt?",
           "EMAIL_TEMPLATE": "Er du sikker på, at du vil overskrive e-mail-skabelonen?"
         },
         "SAVE_AS": {
-          "PROCESS": "Er du sikker på, at du vil kopiere denne proces?",
-          "DATA": "Er du sikker på, at du vil gemme dette dataobjekt?",
-          "FILE": "Er du sikker på, at du vil gemme denne fil?",
-          "SCRIPT": "Er du sikker på, at du vil gemme dette script?"
+          "DATA_MODEL": "Er du sikker på, at du vil gemme dette dataobjekt?"
         },
         "DOWNLOAD": {
           "IMAGE": "Er du sikker på, at du vil downloade svg-billedet for denne proces?",
-          "DATA": "Er du sikker på, at du vil downloade dette dataobjekt?"
+          "DATA_MODEL": "Er du sikker på, at du vil downloade dette dataobjekt?"
         }
       }
     },
@@ -91,7 +88,7 @@
       "ERRORS": {
         "CHANGE_USER": "Skift bruger",
         "NOT_VALID_JSON": "Ugyldigt JSON-objekt",
-        "NOT_VALID_HTML": "Ugyldigt JSON-objekt",
+        "NOT_VALID_HTML": "Ugyldigt HTML-objekt",
         "NOT_VALID_SCHEMA": "JSON-objektet matcher ikke skemaet"
       }
     },

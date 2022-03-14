@@ -16,6 +16,7 @@
     "SEARCH": "Cerca",
     "UPLOAD_FILE_SUCCESS": "File caricato",
     "NO_CONTENT": "<vuoto>",
+    "UNCATEGORIZED": "Senza categoria",
     "NO_SELECTION": "Creare un nuovo modello o modificarne uno esistente usando la barra laterale",
     "NEW_MENU": {
       "LABEL": "Nuovo",
@@ -190,6 +191,8 @@
       "UPLOAD_DUPLICATE_FILE": "Esiste già {{modelType}} con lo stesso nome",
       "UPLOAD_FILE": "Si è verificato un problema durante il caricamento del file. Riprovare.",
       "DELETE_PROJECT": "Si è verificato un problema durante l'eliminazione del progetto. Riprovare.",
+      "ADD_TO_FAVORITES": "Si è verificato un problema durante l'aggiunta del progetto ai preferiti. Riprovare.",
+      "REMOVE_FROM_FAVORITES": "Si è verificato un problema durante la rimozione del progetto dai preferiti. Riprovare.",
       "CHANGE_FAVORITE": "Si è verificato un problema durante la scelta del progetto come preferito. Riprovare.",
       "DELETE_PROCESS": "Si è verificato un problema durante l'eliminazione del processo. Riprovare.",
       "LOAD_MODELS": "Si è verificato un problema durante il caricamento dei modelli. Provare ad aggiornare la pagina.",

@@ -16,6 +16,7 @@
     "SEARCH": "Suchen",
     "UPLOAD_FILE_SUCCESS": "Datei hochgeladen",
     "NO_CONTENT": "<leer>",
+    "UNCATEGORIZED": "Ohne Kategorie",
     "NO_SELECTION": "Erstellen Sie ein neues Modell oder bearbeiten Sie ein bestehendes Modell über die Seitenleiste",
     "NEW_MENU": {
       "LABEL": "Neu",
@@ -190,6 +191,8 @@
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} mit dem gleichen Namen ist bereits vorhanden",
       "UPLOAD_FILE": "Beim Hochladen der Datei ist ein Problem aufgetreten. Versuchen Sie noch einmal, sie hochzuladen.",
       "DELETE_PROJECT": "Beim Löschen des Projekts ist ein Problem aufgetreten. Versuchen Sie noch einmal, es zu löschen.",
+      "ADD_TO_FAVORITES": "Beim Hinzufügen des Projekts zu den Favoriten ist ein Problem aufgetreten. Bitte wiederholen Sie den Vorgang.",
+      "REMOVE_FROM_FAVORITES": "Beim Entfernen des Projekts aus den Favoriten ist ein Problem aufgetreten. Bitte wiederholen Sie den Vorgang.",
       "CHANGE_FAVORITE": "Beim Markieren des Projekts als Favorit ist ein Problem aufgetreten. Versuchen Sie noch einmal, es als Favorit zu markieren.",
       "DELETE_PROCESS": "Beim Löschen des Prozesses ist ein Problem aufgetreten. Versuchen Sie noch einmal, es zu löschen.",
       "LOAD_MODELS": "Beim Laden der Modelle ist ein Problem aufgetreten. Versuchen Sie, die Seite zu aktualisieren.",

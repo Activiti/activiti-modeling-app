@@ -20,6 +20,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Необходимо указать имя",
+        "EMPTY_TYPE": "Необходимо указать тип",
         "INVALID_NAME": "Недопустимое имя переменной",
         "VARIABLE_NAME_TOOLTIP": "Имя должно начинаться с буквы и может содержать только буквенно-цифровые символы и символы подчеркивания",
         "NAME_ALREADY_EXISTS": "Имена переменных должны быть уникальными",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "Редактировать в диалоговом окне",
       "EXPRESSION_EDITOR": "Редактор выражений",
-      "NO_BRACKETS_HINT": "Все выражение в этом редакторе будет сохранено в фигурных скобках (${...}), поэтому вам не нужно их вводить."
+      "NO_BRACKETS_HINT": "Все выражение в этом редакторе будет сохранено в фигурных скобках (${...}), поэтому вам не нужно их вводить.",
+      "JUEL_EXPRESSION_SIMULATOR": "Средство моделирования выражений JUEL",
+      "TEST": "Тест",
+      "TEST_DISABLED_TOOLTIP": "Добавьте переменную в тест перед его выполнением",
+      "TEST_ENABLED_TOOLTIP": "Протестировать выражение, используя значения, предусмотренные для переменных",
+      "OPEN_TESTER": "Открыть средство тестирования",
+      "CLOSE_TESTER": "Закрыть средство тестирования",
+      "SET_VARIABLES_VALUES": "Установить значения переменной",
+      "SET_VARIABLES_VALUES_TOOLTIP": "Выберите переменную, чтобы установиь ее значение в тесте",
+      "DELETE_VARIABLE_FROM_TEST": "Удалить переменную из теста"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "Базовый",
+      "PRIMITIVE_PROPERTIES_TYPES": "Примитивы",
       "DATE": {
         "CURRENT_DATE": "Сегодня",
         "CLEAR_BUTTON": "Очистить"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "Необходимо ввести данные",
-        "INVALID_FORMAT": "Недопустимый формат входных данных",
-        "INVALID_MIN_LENGTH": "Недопустимая минимальная длина",
-        "INVALID_MAX_LENGTH": "Недопустимая максимальная длина",
-        "INVALID_MIN_VALUE": "Недопустимое значение. Оно должно быть больше или равно",
-        "INVALID_MAX_VALUE": "Недопустимое значение. Оно должно быть меньше или равно",
-        "INVALID_MULTIPLE_OF_VALUE": "Недопустимое значение. Оно должно быть кратно",
-        "GENERIC_ERROR": "Недопустимое значение"
+        "INVALID_FORMAT": "Недопустимый формат входных данных: {{error}}",
+        "INVALID_MIN_LENGTH": "Недопустимая минимальная длина: {{error}}",
+        "INVALID_MAX_LENGTH": "Недопустимая максимальная длина: {{error}}",
+        "INVALID_MIN_VALUE": "Недопустимое значение. Оно должно быть больше или равно: {{error}}",
+        "INVALID_MAX_VALUE": "Недопустимое значение. Оно должно быть меньше или равно: {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "Недопустимое значение. Оно должно быть кратно: {{error}}",
+        "GENERIC_ERROR": "Недопустимое значение: {{error_1}} - {{error_2}}"
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "Развернуть",
+      "COLLAPSE": "Свернуть",
+      "NAME": "Имя",
+      "INVALID_NAME": "Недопустимое имя",
+      "REQUIRED": "Обязательно",
+      "REFERENCE": "Ссылка",
+      "TITLE": "Название",
+      "ADD_PROPERTY": "Добавить свойство",
+      "ADD_CHILD_ALL_OF": "Добавить дочерний элемент к allOf",
+      "ADD_CHILD_ANY_OF": "Добавить дочерний элемент к anyOf",
+      "ADD_CHILD_ONE_OF": "Добавить дочерний элемент к oneOf",
+      "ADVANCED_SETTINGS": "Расширенные параметры",
+      "REMOVE_NODE": "Удалить узел",
+      "ADD_DEFINITION": "Добавить определение",
+      "BASIC_ATTRIBUTES": "Основные атрибуты",
+      "CUSTOM_ATTRIBUTES": "Настраиваемые атрибуты",
+      "ADD_CUSTOM_ATTRIBUTE": "Добавить настраиваемый атрибут",
+      "DELETE_CUSTOM_ATTRIBUTE": "Удалить настраиваемый атрибут",
+      "ATTRIBUTE_NAME": "Имя атрибута",
+      "ATTRIBUTE_VALUE": "Значение атрибута",
+      "CONFIRM_ATTRIBUTE_ADDITION": "Подтвердить добавление атрибута",
+      "CANCEL_ATTRIBUTE_ADDITION": "Отменить добавление атрибута",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "Типы схем JSON",
+        "ENUMERATION": "Перечисление",
+        "MODELING_APP": "Приложение моделирования",
+        "COMPOSITION": "Состав"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "Описание",
+        "MAX_ITEMS": "Макс. количество элементов",
+        "MIN_ITEMS": "Мин. количество элементов",
+        "UNIQUE_ITEMS": "Уникальные элементы",
+        "ENUMERATED_VALUES": "Перечисленные значения",
+        "MAXIMUM": "Максимум",
+        "MINIMUM": "Минимум",
+        "EXCLUSIVE_MAXIMUM": "Эксклюзивный максимум",
+        "EXCLUSIVE_MINIMUM": "Эксклюзивный минимум",
+        "MAX_PROPERTIES": "Макс. количество свойств",
+        "MIN_PROPERTIES": "Мин. количество свойств",
+        "MAX_LENGTH": "Макс. длина",
+        "MIN_LENGTH": "Мин. длина",
+        "PATTERN": "Шаблон",
+        "FORMAT": "Формат",
+        "ADDITIONAL_PROPERTIES": "Дополнительные свойства"
+      },
+      "PREVIEW": "Предварительный просмотр"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "Создать пользовательскую модель",
+      "CREATE_MODEL_DESCRIPTION": "Создать пользовательскую модель и назначить ее объекту",
+      "EDIT_MODEL": "Редактировать пользовательскую модель",
+      "EDIT_MODEL_DESCRIPTION": "Редактировать ранее созданную пользовательскую модель объекта"
     }
   }
 }

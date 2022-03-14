@@ -43,7 +43,7 @@
         "RELEASE": "Er du sikker på at du vil utgi en ny versjon av dette prosjektet?",
         "TYPES": {
           "DECISION": "beslutningstabell",
-          "DATA": "data",
+          "DATA_MODEL": "datamodell",
           "UI": "Brukergrensesnitt",
           "CONNECTOR": "kobling",
           "FORM": "skjema",
@@ -56,22 +56,19 @@
         },
         "DELETE": {
           "PROJECT": "Er du sikker på at du vil slette dette prosjektet?",
-          "DATA": "Er du sikker på at du vil slette dette dataobjektet?"
+          "DATA_MODEL": "Er du sikker på at du vil slette dette dataobjektet?"
         },
         "SAVE": {
           "PROCESS": "Er du sikker på at du vil lagre denne prosessen?",
-          "DATA": "Er du sikker på at du vil lagre dette dataobjektet?",
+          "DATA_MODEL": "Er du sikker på at du vil lagre dette dataobjektet?",
           "EMAIL_TEMPLATE": "Er du sikker på at du vil overskrive e-postmalen?"
         },
         "SAVE_AS": {
-          "PROCESS": "Er du sikker på at du vil kopiere denne prosessen?",
-          "DATA": "Er du sikker på at du vil kopiere dette dataobjektet?",
-          "FILE": "Er du sikker på at du vil kopiere denne filen?",
-          "SCRIPT": "Er du sikker på at du vil kopiere dette skriptet?"
+          "DATA_MODEL": "Er du sikker på at du vil kopiere dette dataobjektet?"
         },
         "DOWNLOAD": {
           "IMAGE": "Er du sikker på at du vil laste ned SVG-bildet for denne prosessen?",
-          "DATA": "Er du sikker på at du vil laste ned dette dataobjektet?"
+          "DATA_MODEL": "Er du sikker på at du vil laste ned dette dataobjektet?"
         }
       }
     },

@@ -43,7 +43,7 @@
         "RELEASE": "确定要发布新版本的此项目吗？",
         "TYPES": {
           "DECISION": "决策表",
-          "DATA": "数据",
+          "DATA_MODEL": "数据模型",
           "UI": "UI",
           "CONNECTOR": "连接器",
           "FORM": "表单",
@@ -56,22 +56,19 @@
         },
         "DELETE": {
           "PROJECT": "确定要删除此项目吗？",
-          "DATA": "确定要删除此数据对象吗？"
+          "DATA_MODEL": "确定要删除此数据对象吗？"
         },
         "SAVE": {
           "PROCESS": "确定要保存此流程吗？",
-          "DATA": "确定要保存此数据对象吗？",
+          "DATA_MODEL": "确定要保存此数据对象吗？",
           "EMAIL_TEMPLATE": "确定要覆盖电子邮件模板吗？"
         },
         "SAVE_AS": {
-          "PROCESS": "确定要复制此进程吗？",
-          "DATA": "确定要复制这个数据对象吗？",
-          "FILE": "确定要复制这个文件吗？",
-          "SCRIPT": "确定要复制这个脚本吗？"
+          "DATA_MODEL": "确定要复制这个数据对象吗？"
         },
         "DOWNLOAD": {
           "IMAGE": "确定要下载此流程的 SVG 图像吗？",
-          "DATA": "确定要下载此数据对象吗？"
+          "DATA_MODEL": "确定要下载此数据对象吗？"
         }
       }
     },

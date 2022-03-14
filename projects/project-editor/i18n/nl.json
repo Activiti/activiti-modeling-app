@@ -16,6 +16,7 @@
     "SEARCH": "Zoeken",
     "UPLOAD_FILE_SUCCESS": "Bestand geüpload",
     "NO_CONTENT": "<leeg>",
+    "UNCATEGORIZED": "Niet-gecategoriseerd",
     "NO_SELECTION": "Maak een nieuw model of bewerk een bestaand model met de zijmarge",
     "NEW_MENU": {
       "LABEL": "Nieuw",
@@ -190,6 +191,8 @@
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} met dezelfde naam bestaat al",
       "UPLOAD_FILE": "Er is een probleem opgetreden bij het uploaden van het bestand. Probeer het opnieuw te uploaden.",
       "DELETE_PROJECT": "Er is een probleem opgetreden bij het verwijderen van het project. Probeer het opnieuw te verwijderen.",
+      "ADD_TO_FAVORITES": "Er is een fout opgetreden bij het toevoegen van het project aan favorieten. Probeer het opnieuw toe te voegen.",
+      "REMOVE_FROM_FAVORITES": "Er is een probleem opgetreden bij het verwijderen van het project uit favorieten. Probeer het opnieuw te verwijderen.",
       "CHANGE_FAVORITE": "Er is een probleem opgetreden bij het instellen van dat project als favoriet. Probeer het opnieuw in te stellen als favoriet.",
       "DELETE_PROCESS": "Er is een probleem opgetreden bij het verwijderen van het proces. Probeer het opnieuw te verwijderen.",
       "LOAD_MODELS": "Er is een probleem opgetreden bij laden van de modellen. Vernieuw de pagina.",

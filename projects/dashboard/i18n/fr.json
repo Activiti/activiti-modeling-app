@@ -43,7 +43,9 @@
       "COLUMN_VERSION": "Version",
       "COLUMN_CREATED": "Créé",
       "COLUMN_CREATED_BY": "Créé par",
+      "COLUMN_MODIFIED": "Mis à jour",
       "COLUMN_OPTIONS": "Options",
+      "COLUMN_ACTIONS": "Actions",
       "NO_ITEMS": "Créer ou importer un projet pour l'afficher dans la liste.",
       "NO_FAV_PROCESSES": "Ajouter un processus aux favoris pour qu'il soit disponible ici.",
       "NO_FAV_PROJECTS": "Ajouter un projet aux favoris pour qu'il soit disponible ici.",
@@ -54,6 +56,61 @@
       "LOAD_PROJECTS": "Un problème est survenu lors du chargement des projets. Essayez d'actualiser la page.",
       "LOAD_RELEASES": "Un problème est survenu lors du chargement des versions. Essayez d'actualiser la page.",
       "LOAD_PROCESSES": "Un problème est survenu lors du chargement des processus. Essayez d'actualiser la page."
+    }
+  },
+  "NEW_STUDIO_DASHBOARD": {
+    "NAME": "Modeleur",
+    "NAVIGATION": {
+      "PROJECT_TITLE": "Projets",
+      "CUSTOM_MODEL_TITLE": "Modèles personnalisés",
+      "DATA_MODELS_TITLE": "Modèles de données",
+      "ALL_PROJECTS": {
+        "HEADER_LABEL": "Mes projets",
+        "LABEL": "Tous les projets",
+        "TOOLTIP": "Tous les projets publiés",
+        "ACTIONS": {
+          "CREATE": "Créer un projet",
+          "UPLOAD": "Importer"
+        }
+      },
+      "FAVORITE_PROJECTS": {
+        "HEADER_LABEL": "Mes projets favoris",
+        "LABEL": "Projets favoris",
+        "TOOLTIP": "Projets favoris"
+      },
+      "MY_MODELS": {
+        "HEADER_LABEL": "Mes modèles",
+        "LABEL": "Mes modèles",
+        "TOOLTIP": "Modèles créés par l'utilisateur",
+        "ACTIONS": {
+          "CREATE": "Créer un modèle"
+        }
+      },
+      "SHARED_MODELS": {
+        "HEADER_LABEL": "Mes modèles partagés",
+        "LABEL": "Modèles partagés",
+        "TOOLTIP": "Modèles partagés entre projets",
+        "ACTIONS": {
+          "CREATE": "Créer un modèle partagé"
+        }
+      },
+      "DATA_MODELS": {
+        "HEADER_LABEL": "Mes modèles de données",
+        "LABEL": "Modèles de données",
+        "TOOLTIP": "Modèles de données publiés",
+        "ACTIONS": {
+          "CREATE": "Créer un modèle de données"
+        }
+      }
+    },
+    "USER_INFO_MENU": {
+      "ADMIN": "Admin",
+      "DOCUMENTATION": "Documentation"
+    },
+    "ADD_TO_FAVORITES": "Projet ajouté aux favoris",
+    "REMOVE_FROM_FAVORITES": "Projet retiré des favoris",
+    "ERROR": {
+      "LOAD_FAVORITE_PROJECTS": "Un problème est survenu lors du chargement des projets favoris. Essayez de rafraîchir la page."
     }
   }
 }

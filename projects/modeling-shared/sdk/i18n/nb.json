@@ -20,6 +20,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Et navn er påkrevd",
+        "EMPTY_TYPE": "Et type er påkrevd",
         "INVALID_NAME": "Ugyldig variabelnavn",
         "VARIABLE_NAME_TOOLTIP": "Navnet må begynne med en bokstav og kan kun inneholde alfanumeriske tegn og understrekingstegn",
         "NAME_ALREADY_EXISTS": "Variabelnavn må være unike",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "Rediger i dialog",
       "EXPRESSION_EDITOR": "Uttrykksredigering",
-      "NO_BRACKETS_HINT": "Hele uttrykket i denne redigeringen vil bli lagret inne i klemmeparanteser (${...}), slik at du slipper å skrive dem inn"
+      "NO_BRACKETS_HINT": "Hele uttrykket i denne redigeringen vil bli lagret inne i klemmeparanteser (${...}), slik at du slipper å skrive dem inn",
+      "JUEL_EXPRESSION_SIMULATOR": "JUEL-uttrykkssimulator",
+      "TEST": "Test",
+      "TEST_DISABLED_TOOLTIP": "Legg en variabel til testen før du kjører den",
+      "TEST_ENABLED_TOOLTIP": "Test uttrykket ved hjelp av verdiene oppgitt for variablene",
+      "OPEN_TESTER": "Åpne tester",
+      "CLOSE_TESTER": "Lukk tester",
+      "SET_VARIABLES_VALUES": "Angi variabelens verdier",
+      "SET_VARIABLES_VALUES_TOOLTIP": "Velg en variabel for å angi dens verdi i testen",
+      "DELETE_VARIABLE_FROM_TEST": "Slett variabel fra test"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "Grunnleggende",
+      "PRIMITIVE_PROPERTIES_TYPES": "Primitiver",
       "DATE": {
         "CURRENT_DATE": "I dag",
         "CLEAR_BUTTON": "Fjern"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "Inndata er påkrevd",
-        "INVALID_FORMAT": "Ugyldig inndataformat",
-        "INVALID_MIN_LENGTH": "Ugyldig minimumslengde",
-        "INVALID_MAX_LENGTH": "Ugyldig maksimumslengde",
-        "INVALID_MIN_VALUE": "Ugyldig verdi. Den skal være større enn eller lik",
-        "INVALID_MAX_VALUE": "Ugyldig verdi. Den skal være mindre enn eller lik",
-        "INVALID_MULTIPLE_OF_VALUE": "Ugyldig verdi. Den skal være et multiplum av",
-        "GENERIC_ERROR": "Ugyldig verdi"
+        "INVALID_FORMAT": "Ugyldig inndataformat: {{error}}",
+        "INVALID_MIN_LENGTH": "Ugyldig minimumslengde: {{error}}",
+        "INVALID_MAX_LENGTH": "Ugyldig maksimumslengde: {{error}}",
+        "INVALID_MIN_VALUE": "Ugyldig verdi. Den skal være større enn eller lik: {{error}}",
+        "INVALID_MAX_VALUE": "Ugyldig verdi. Den skal være mindre enn eller lik: {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "Ugyldig verdi. Den skal være et multiplum av: {{error}}",
+        "GENERIC_ERROR": "Ugyldig verdi: {{error_1}} - {{error_2}}"
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "Utvid",
+      "COLLAPSE": "Skjul",
+      "NAME": "Navn",
+      "INVALID_NAME": "Ugyldig navn",
+      "REQUIRED": "Påkrevd",
+      "REFERENCE": "Referanse",
+      "TITLE": "Tittel",
+      "ADD_PROPERTY": "Legg til egenskap",
+      "ADD_CHILD_ALL_OF": "Legg underordnet til alle",
+      "ADD_CHILD_ANY_OF": "Legg underordnet til hvilke som helst av",
+      "ADD_CHILD_ONE_OF": "Legg underordnet til én av",
+      "ADVANCED_SETTINGS": "Avanserte innstillinger",
+      "REMOVE_NODE": "Fjern node",
+      "ADD_DEFINITION": "Legg til definisjon",
+      "BASIC_ATTRIBUTES": "Grunnleggende attributter",
+      "CUSTOM_ATTRIBUTES": "Egendefinerte attributter",
+      "ADD_CUSTOM_ATTRIBUTE": "Legg til egendefinert attributt",
+      "DELETE_CUSTOM_ATTRIBUTE": "Slett egendefinert attributt",
+      "ATTRIBUTE_NAME": "Attributtnavn",
+      "ATTRIBUTE_VALUE": "Attributtverdi",
+      "CONFIRM_ATTRIBUTE_ADDITION": "Bekreft tillegg av attributt",
+      "CANCEL_ATTRIBUTE_ADDITION": "Avbryt tillegg av attributt",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "JSON-skjematyper",
+        "ENUMERATION": "Oppregning",
+        "MODELING_APP": "Modelleringsapp",
+        "COMPOSITION": "Sammensetning"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "Beskrivelse",
+        "MAX_ITEMS": "Maks elementer",
+        "MIN_ITEMS": "Min. elementer",
+        "UNIQUE_ITEMS": "Unike elementer",
+        "ENUMERATED_VALUES": "Oppregnede verdier",
+        "MAXIMUM": "Maksimum",
+        "MINIMUM": "Minimum",
+        "EXCLUSIVE_MAXIMUM": "Eksklusivt maksimum",
+        "EXCLUSIVE_MINIMUM": "Eksklusivt minimum",
+        "MAX_PROPERTIES": "Maks egenskaper",
+        "MIN_PROPERTIES": "Min. egenskaper",
+        "MAX_LENGTH": "Maks lengde",
+        "MIN_LENGTH": "Min lengde",
+        "PATTERN": "Mønster",
+        "FORMAT": "Format",
+        "ADDITIONAL_PROPERTIES": "Tilleggsegenskaper"
+      },
+      "PREVIEW": "Forhåndsvis"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "Opprett egendefinert modell",
+      "CREATE_MODEL_DESCRIPTION": "Opprett en egendefinert modell og tilordne den til enheten",
+      "EDIT_MODEL": "Rediger egendefinert modell",
+      "EDIT_MODEL_DESCRIPTION": "Rediger den tidligere opprettede egendefinerte modellen for enheten"
     }
   }
 }

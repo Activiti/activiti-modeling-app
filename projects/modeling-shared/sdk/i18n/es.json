@@ -20,6 +20,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Se requiere un nombre",
+        "EMPTY_TYPE": "Se require un tipo",
         "INVALID_NAME": "Nombre de la variable no es válido",
         "VARIABLE_NAME_TOOLTIP": "El nombre debe empezar por una letra y sólo puede contener caracteres alfanuméricos y guiones bajos",
         "NAME_ALREADY_EXISTS": "Los nombres de las variables deben ser únicos",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "Editar en el diálogo",
       "EXPRESSION_EDITOR": "Editor de expresiones",
-      "NO_BRACKETS_HINT": "La expresión completa en este editor se guardará entre llaves (${...}) para que no tenga que escribirlas"
+      "NO_BRACKETS_HINT": "La expresión completa en este editor se guardará entre llaves (${...}) para que no tenga que escribirlas",
+      "JUEL_EXPRESSION_SIMULATOR": "Simulador de expresión JUEL",
+      "TEST": "Prueba",
+      "TEST_DISABLED_TOOLTIP": "Añadir una variable a la prueba antes de ejecutarla",
+      "TEST_ENABLED_TOOLTIP": "Probar la expresión utilizando los valores proporcionados para las variables",
+      "OPEN_TESTER": "Abrir probador",
+      "CLOSE_TESTER": "Cerrar probador",
+      "SET_VARIABLES_VALUES": "Establecer los valores de las variables",
+      "SET_VARIABLES_VALUES_TOOLTIP": "Seleccionar una variable para establecer su valor en la prueba",
+      "DELETE_VARIABLE_FROM_TEST": "Eliminar variable de la prueba"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "Fundamentos",
+      "PRIMITIVE_PROPERTIES_TYPES": "Primitivas",
       "DATE": {
         "CURRENT_DATE": "Hoy",
         "CLEAR_BUTTON": "Borrar"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "Se requiere una entrada",
-        "INVALID_FORMAT": "Formato de entrada no es válido",
-        "INVALID_MIN_LENGTH": "Longitud mínima no es válida",
-        "INVALID_MAX_LENGTH": "Longitud máxima no es válida",
-        "INVALID_MIN_VALUE": "El valor no es válido. Debe ser mayor o igual que",
-        "INVALID_MAX_VALUE": "El valor no es válido. Debe ser menor o igual que",
-        "INVALID_MULTIPLE_OF_VALUE": "Valor no válido. Debe ser un múltiple de",
-        "GENERIC_ERROR": "Valor no válido"
+        "INVALID_FORMAT": "El formato de entrada no es válido: {{error}}",
+        "INVALID_MIN_LENGTH": "La longitud mínima no es válida: {{error}}",
+        "INVALID_MAX_LENGTH": "La longitud máxima no es válida: {{error}}",
+        "INVALID_MIN_VALUE": "El valor no es válido. Debe ser mayor o igual que: {{error}}",
+        "INVALID_MAX_VALUE": "El valor no es válido. Debe ser menor o igual que: {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "Valor no válido. Debe ser un múltiple de: {{error}}",
+        "GENERIC_ERROR": "Valor no válido: {{error_1}} - {{error_2}}"
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "Ampliar",
+      "COLLAPSE": "Contraer",
+      "NAME": "Nombre",
+      "INVALID_NAME": "Nombre no válido",
+      "REQUIRED": "Obligatorio",
+      "REFERENCE": "Referencia",
+      "TITLE": "Título",
+      "ADD_PROPERTY": "Añadir propiedad",
+      "ADD_CHILD_ALL_OF": "Añadir subdirectorio a allOf",
+      "ADD_CHILD_ANY_OF": "Añadir subdirectorio a anyOf",
+      "ADD_CHILD_ONE_OF": "Añadir subdirectorio a oneOf",
+      "ADVANCED_SETTINGS": "Ajustes avanzados",
+      "REMOVE_NODE": "Eliminar el nodo",
+      "ADD_DEFINITION": "Añadir definición",
+      "BASIC_ATTRIBUTES": "Atributos básicos",
+      "CUSTOM_ATTRIBUTES": "Atributos personalizados",
+      "ADD_CUSTOM_ATTRIBUTE": "Añadir atributo personalizado",
+      "DELETE_CUSTOM_ATTRIBUTE": "Eliminar atributo personalizado",
+      "ATTRIBUTE_NAME": "Nombre del atributo",
+      "ATTRIBUTE_VALUE": "Valor del atributo",
+      "CONFIRM_ATTRIBUTE_ADDITION": "Confirmar la adición de atributos",
+      "CANCEL_ATTRIBUTE_ADDITION": "Cancelar la adición de atributos",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "Tipos de esquemas JSON",
+        "ENUMERATION": "Enumeración",
+        "MODELING_APP": "Aplicación de modelado",
+        "COMPOSITION": "Composición"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "Descripción",
+        "MAX_ITEMS": "Elementos máx.",
+        "MIN_ITEMS": "Elementos mín.",
+        "UNIQUE_ITEMS": "Elementos únicos",
+        "ENUMERATED_VALUES": "Valores enumerados",
+        "MAXIMUM": "Máximo",
+        "MINIMUM": "Mínimo",
+        "EXCLUSIVE_MAXIMUM": "Máximo exclusivo",
+        "EXCLUSIVE_MINIMUM": "Mínimo exclusivo",
+        "MAX_PROPERTIES": "Propiedades máx.",
+        "MIN_PROPERTIES": "Propiedades mín.",
+        "MAX_LENGTH": "Longitud máx.",
+        "MIN_LENGTH": "Longitud mín.",
+        "PATTERN": "Patrón",
+        "FORMAT": "Formato",
+        "ADDITIONAL_PROPERTIES": "Propiedades adicionales"
+      },
+      "PREVIEW": "Vista previa"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "Crear modelo personalizado",
+      "CREATE_MODEL_DESCRIPTION": "Crear un modelo personalizado y asignarlo a la entidad",
+      "EDIT_MODEL": "Editar modelo personalizado",
+      "EDIT_MODEL_DESCRIPTION": "Editar el modelo personalizado previamente creado de la entidad"
     }
   }
 }

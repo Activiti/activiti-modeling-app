@@ -1,9 +1,11 @@
 {
-  "PROCESS_EDITOR": {
+  "ADV_PROCESS_EDITOR": {
     "DOWNLOAD_PROCESS": "下载流程",
     "SAVE_PROCESS_IMAGE": "将流程图另存为 SVG",
     "VALIDATE_PROCESS": "验证流程",
-    "SAVE_PROCESS": "保存流程",
+    "SAVE_PROCESS": "保存流程"
+  },
+  "PROCESS_EDITOR": {
     "SELECT_PROCESS_VARIABLE": "选择流程变量",
     "SCRIPT_NAME": "脚本名称",
     "PRIORITIES": {
@@ -89,7 +91,15 @@
       "PROCESS_VARIABLE": "流程变量",
       "FILTER_PROCESS_VARIABLE": "筛选流程变量",
       "USE_PROCESS_VARIABLE": "使用流程变量",
+      "USE_STATIC_DATE": "使用静态日期",
       "USE_EXPRESSION": "使用表达式",
+      "USE_TIME_DURATION": "使用持续时间",
+      "TIME_DURATION_UNITS": {
+        "MONTHS": "月",
+        "DAYS": "天数",
+        "HOURS": "小时",
+        "MINUTES": "分钟"
+      },
       "PROCESS_VARIABLES": "多个流程变量",
       "EXPRESSION": "条件表达式",
       "FORM_SELECTOR": "表单名称",
@@ -187,7 +197,8 @@
           "ASSIGNEE_INVALID_ERROR": "无效的表达式, 例如 { assignee:${var1} }",
           "CANDIDATE_INVALID_ERROR": "无效的表达式, 例如 { candidateUsers: ${var1}, candidateGroups: ${var2} }"
         }
-      }
+      },
+      "INHERIT_BUSINESS_KEY": "继承业务密钥"
     },
     "PROPERTIES_BUTTON": "属性",
     "UPLOAD_SUCCESS": "流程已上传",

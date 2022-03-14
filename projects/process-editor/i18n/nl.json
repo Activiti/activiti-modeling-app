@@ -1,9 +1,11 @@
 {
-  "PROCESS_EDITOR": {
+  "ADV_PROCESS_EDITOR": {
     "DOWNLOAD_PROCESS": "Proces downloaden",
     "SAVE_PROCESS_IMAGE": "Procesdiagram opslaan als SVG",
     "VALIDATE_PROCESS": "Proces valideren",
-    "SAVE_PROCESS": "Proces opslaan",
+    "SAVE_PROCESS": "Proces opslaan"
+  },
+  "PROCESS_EDITOR": {
     "SELECT_PROCESS_VARIABLE": "Procesvariabele selecteren",
     "SCRIPT_NAME": "Scriptnaam",
     "PRIORITIES": {
@@ -89,7 +91,15 @@
       "PROCESS_VARIABLE": "Procesvariabele",
       "FILTER_PROCESS_VARIABLE": "Procesvariabele filteren",
       "USE_PROCESS_VARIABLE": "Procesvariabele gebruiken",
+      "USE_STATIC_DATE": "Statische datum gebruiken",
       "USE_EXPRESSION": "Expressie gebruiken",
+      "USE_TIME_DURATION": "Tijdsduur gebruiken",
+      "TIME_DURATION_UNITS": {
+        "MONTHS": "Maanden",
+        "DAYS": "Dagen",
+        "HOURS": "Uren",
+        "MINUTES": "Minuten"
+      },
       "PROCESS_VARIABLES": "Procesvariabelen",
       "EXPRESSION": "Voorwaarde-expressie",
       "FORM_SELECTOR": "Formuliernaam",
@@ -187,7 +197,8 @@
           "ASSIGNEE_INVALID_ERROR": "Ongeldige expressie, bijv. { assignee:${var1} }",
           "CANDIDATE_INVALID_ERROR": "Ongeldige expressie, bijv. { candidateUsers: ${var1}, candidateGroups: ${var2} }"
         }
-      }
+      },
+      "INHERIT_BUSINESS_KEY": "Business key overnemen"
     },
     "PROPERTIES_BUTTON": "Eigenschappen",
     "UPLOAD_SUCCESS": "Proces geüpload",

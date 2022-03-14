@@ -20,6 +20,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Nimi on pakollinen",
+        "EMPTY_TYPE": "Tyyppi on pakollinen",
         "INVALID_NAME": "Virheellinen muuttujanimi",
         "VARIABLE_NAME_TOOLTIP": "Nimen tulee alkaa kirjaimella, ja se voi sisältää ainoastaan aakkosnumeerisia merkkejä ja alaviivoja",
         "NAME_ALREADY_EXISTS": "Muuttujanimien tulee olla yksilöllisiä",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "Muokkaa valintaikkunassa",
       "EXPRESSION_EDITOR": "Lauseke-editori",
-      "NO_BRACKETS_HINT": "Tässä editorissa oleva lauseke tallennetaan aaltosulkeisiin (${...}), jotta sinun ei tarvitse kirjoittaa sitä"
+      "NO_BRACKETS_HINT": "Tässä editorissa oleva lauseke tallennetaan aaltosulkeisiin (${...}), jotta sinun ei tarvitse kirjoittaa sitä",
+      "JUEL_EXPRESSION_SIMULATOR": "JUEL-lausekkeen simulaattori",
+      "TEST": "Testaa",
+      "TEST_DISABLED_TOOLTIP": "Lisää testiin muuttuja ennen kuin suoritat sen",
+      "TEST_ENABLED_TOOLTIP": "Testaa lauseke käyttämällä muuttujille tarjottuja arvoja",
+      "OPEN_TESTER": "Avaa testaaja",
+      "CLOSE_TESTER": "Sulje testaaja",
+      "SET_VARIABLES_VALUES": "Aseta muuttujan arvot",
+      "SET_VARIABLES_VALUES_TOOLTIP": "Valitse muuttuja asettaaksesi sen arvon testiin",
+      "DELETE_VARIABLE_FROM_TEST": "Poista muuttuja testistä"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "Olennaiset",
+      "PRIMITIVE_PROPERTIES_TYPES": "Primitiivit",
       "DATE": {
         "CURRENT_DATE": "Tänään",
         "CLEAR_BUTTON": "Tyhjennä"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "Syöte on pakollinen",
-        "INVALID_FORMAT": "Virheellinen syötemuoto",
-        "INVALID_MIN_LENGTH": "Virheellinen minimipituus",
-        "INVALID_MAX_LENGTH": "Virheellinen maksimipituus",
-        "INVALID_MIN_VALUE": "Virheellinen arvo. Arvon tulee olla suurempi tai yhtä suuri kuin",
-        "INVALID_MAX_VALUE": "Virheellinen arvo. Arvon tulee olla pienempi tai yhtä suuri kuin",
-        "INVALID_MULTIPLE_OF_VALUE": "Virheellinen arvo. Arvon tulee olla seuraavien yhteissumma",
-        "GENERIC_ERROR": "Virheellinen arvo"
+        "INVALID_FORMAT": "Virheellinen syötemuoto: {{error}}",
+        "INVALID_MIN_LENGTH": "Virheellinen vähimmäispituus: {{error}}",
+        "INVALID_MAX_LENGTH": "Virheellinen enimmäispituus: {{error}}",
+        "INVALID_MIN_VALUE": "Virheellinen arvo. Arvon tulee olla suurempi tai yhtä suuri kuin: {{error}}",
+        "INVALID_MAX_VALUE": "Virheellinen arvo. Arvon tulee olla pienempi tai yhtä suuri kuin: {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "Virheellinen arvo. Arvon tulee olla seuraavien yhteissumma: {{error}}",
+        "GENERIC_ERROR": "Virheellinen arvo: {{error_1}} - {{error_2}}"
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "Laajenna",
+      "COLLAPSE": "Tiivistä",
+      "NAME": "Nimi",
+      "INVALID_NAME": "Virheellinen nimi",
+      "REQUIRED": "Pakollinen",
+      "REFERENCE": "Viittaus",
+      "TITLE": "Otsikko",
+      "ADD_PROPERTY": "Lisää ominaisuus",
+      "ADD_CHILD_ALL_OF": "Lisää alataso kohtaan allOf",
+      "ADD_CHILD_ANY_OF": "Lisää alataso kohtaan anyOf",
+      "ADD_CHILD_ONE_OF": "Lisää alataso kohtaan oneOf",
+      "ADVANCED_SETTINGS": "Lisäasetukset",
+      "REMOVE_NODE": "Poista solmu",
+      "ADD_DEFINITION": "Lisää määritelmä",
+      "BASIC_ATTRIBUTES": "Perusmääritteet",
+      "CUSTOM_ATTRIBUTES": "Mukautetut määritteet",
+      "ADD_CUSTOM_ATTRIBUTE": "Lisää mukautettu määrite",
+      "DELETE_CUSTOM_ATTRIBUTE": "Poista mukautettu määrite",
+      "ATTRIBUTE_NAME": "Määritteen nimi",
+      "ATTRIBUTE_VALUE": "Määritteen arvo",
+      "CONFIRM_ATTRIBUTE_ADDITION": "Vahvista määritteen lisäys",
+      "CANCEL_ATTRIBUTE_ADDITION": "Peruuta määritteen lisäys",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "JSON-rakennetyypit",
+        "ENUMERATION": "Luettelo",
+        "MODELING_APP": "Mallinnussovellus",
+        "COMPOSITION": "Sommittelu"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "Kuvaus",
+        "MAX_ITEMS": "Enimm. kohteet",
+        "MIN_ITEMS": "Väh. kohteet",
+        "UNIQUE_ITEMS": "Ainutlaatuiset kohteet",
+        "ENUMERATED_VALUES": "Luetteloarvot",
+        "MAXIMUM": "Enimmäinen",
+        "MINIMUM": "Vähimmäinen",
+        "EXCLUSIVE_MAXIMUM": "Yksinomainen enimmäinen",
+        "EXCLUSIVE_MINIMUM": "Yksinomainen vähimmäinen",
+        "MAX_PROPERTIES": "Enimm. ominaisuudet",
+        "MIN_PROPERTIES": "Väh. ominaisuudet",
+        "MAX_LENGTH": "Enimmäispituus",
+        "MIN_LENGTH": "Vähimmäispituus",
+        "PATTERN": "Kaava",
+        "FORMAT": "Muoto",
+        "ADDITIONAL_PROPERTIES": "Lisäominaisuudet"
+      },
+      "PREVIEW": "Esikatselu"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "Luo mukautettu malli",
+      "CREATE_MODEL_DESCRIPTION": "Luo mukautettu malli ja määritä se kokonaisuudelle",
+      "EDIT_MODEL": "Muokkaa mukautettua mallia",
+      "EDIT_MODEL_DESCRIPTION": "Muokkaa kokonaisuuden aiemmin luotua mukautettua mallia"
     }
   }
 }

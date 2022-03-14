@@ -16,6 +16,7 @@
     "SEARCH": "Pesquisar",
     "UPLOAD_FILE_SUCCESS": "Arquivo carregado",
     "NO_CONTENT": "<vazio>",
+    "UNCATEGORIZED": "Não categorizado",
     "NO_SELECTION": "Crie ou edite um modelo usando a barra lateral",
     "NEW_MENU": {
       "LABEL": "Novo",
@@ -72,7 +73,7 @@
     },
     "FORM_DIALOG": {
       "TITLE_CREATE": "Criar formulário",
-      "TITLE_UPDATE": "Atualizar Formulário",
+      "TITLE_UPDATE": "Atualizar formulário",
       "FORM_NAME": "Nome do formulário:",
       "FORM_DESC": "Descrição do formulário:",
       "FORM_CREATED": "Formulário criado",
@@ -90,8 +91,8 @@
       "UI_UPDATED": "UI salva"
     },
     "DATA_DIALOG": {
-      "TITLE_CREATE": "Criar Objeto de Dados",
-      "TITLE_UPDATE": "Atualizar Objeto de Dados",
+      "TITLE_CREATE": "Criar objeto de dados",
+      "TITLE_UPDATE": "Atualizar objeto de dados",
       "DATA_NAME": "Nome do objeto de dados:",
       "DATA_DESC": "Descrição do objeto de dados:",
       "DATA_CREATED": "Objeto de dados criado",
@@ -190,6 +191,8 @@
       "UPLOAD_DUPLICATE_FILE": "{{modelType}} com o mesmo nome já existe",
       "UPLOAD_FILE": "Encontramos um problema ao carregar o arquivo. Tente carregar novamente.",
       "DELETE_PROJECT": "Encontramos um problema ao excluir o projeto. Tente excluir novamente.",
+      "ADD_TO_FAVORITES": "Erro ao adicionar o projeto a favoritos. Tente adicioná-lo novamente.",
+      "REMOVE_FROM_FAVORITES": "Erro ao remover o projeto de favoritos. Tente removê-lo novamente.",
       "CHANGE_FAVORITE": "Encontramos um problema ao marcar o projeto como favorito. Tente marcar como favorito novamente.",
       "DELETE_PROCESS": "Encontramos um problema ao excluir o processo. Tente excluir novamente.",
       "LOAD_MODELS": "Encontramos um problema ao carregar os modelos. Tente atualizar a página.",

@@ -2,11 +2,11 @@
   "SDK": {
     "MODEL_EDITOR": {
       "DIALOG": {
-        "CONFIRM_INVALID_MODEL_SAVE": "هل أنت متأكد أنك تريد حفظ {{modelType}}؟",
-        "CONFIRM_DELETE_MODEL": "هل أنت متأكد أنك تريد حذف {{modelType}}؟",
-        "CONFIRM_DOWNLOAD_MODEL": "هل أنت متأكد أنك تريد تنزيل هذا {{modelType}}؟",
-        "CONFIRM_SAVE_AS_MODEL": "هل أنت متأكد أنك تريد نسخ {{modelType}}؟",
-        "INVALID_MODEL": "يحتوي {{modelType}} على أخطاء التحقق من الصحة.",
+        "CONFIRM_INVALID_MODEL_SAVE": "هل أنت متأكد أنك تريد حفظ {{ modelType }}؟",
+        "CONFIRM_DELETE_MODEL": "هل أنت متأكد أنك تريد حذف {{ modelType }}؟",
+        "CONFIRM_DOWNLOAD_MODEL": "هل أنت متأكد أنك تريد تنزيل هذا {{ modelType }}؟",
+        "CONFIRM_SAVE_AS_MODEL": "هل أنت متأكد أنك تريد نسخ {{ modelType }}؟",
+        "INVALID_MODEL": "يحتوي {{ modelType }} على أخطاء التحقق من الصحة.",
         "VALID_MODEL": "{{modelType}} صالح"
       }
     },
@@ -20,6 +20,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "مطلوب اسم",
+        "EMPTY_TYPE": "النوع مطلوب",
         "INVALID_NAME": "اسم متغير غير صالح",
         "VARIABLE_NAME_TOOLTIP": "يجب أن يبدأ الاسم بحرف ويمكن أن يحتوي فقط على أحرف أبجدية رقمية وشرطات سفلية",
         "NAME_ALREADY_EXISTS": "يجب أن تكون أسماء المتغيرات فريدة",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "تحرير في مربع الحوار",
       "EXPRESSION_EDITOR": "محرر التعبير",
-      "NO_BRACKETS_HINT": "سيتم حفظ التعبير كاملاً في هذا المحرر داخل أقواس متعرجة ($ {...}) حتى لا تحتاج إلى كتابتها"
+      "NO_BRACKETS_HINT": "سيتم حفظ التعبير كاملاً في هذا المحرر داخل أقواس متعرجة ($ {...}) حتى لا تحتاج إلى كتابتها",
+      "JUEL_EXPRESSION_SIMULATOR": "محاكاة التعبير JUEL",
+      "TEST": "اختبار",
+      "TEST_DISABLED_TOOLTIP": "أضف متغيرًا للاختبار قبل تنفيذه",
+      "TEST_ENABLED_TOOLTIP": "اختبر التعبير باستخدام القيم المتوفرة للمتغيرات",
+      "OPEN_TESTER": "فتح اختبار",
+      "CLOSE_TESTER": "إغلاق مجرب",
+      "SET_VARIABLES_VALUES": "تعيين قيم المتغير",
+      "SET_VARIABLES_VALUES_TOOLTIP": "حدد متغيرًا لتعيين قيمته في الاختبار",
+      "DELETE_VARIABLE_FROM_TEST": "حذف المتغير من الاختبار"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "أساسي",
+      "PRIMITIVE_PROPERTIES_TYPES": "البدائية",
       "DATE": {
         "CURRENT_DATE": "اليوم",
         "CLEAR_BUTTON": "مسح"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "الإدخال مطلوب",
-        "INVALID_FORMAT": "تنسيق الإدخال غير صالح",
-        "INVALID_MIN_LENGTH": "الطول الأدنى غير صالح",
-        "INVALID_MAX_LENGTH": "الطول الأقصى غير صالح",
-        "INVALID_MIN_VALUE": "قيمة غير صالحة. يجب أن يكون أكبر من أو يساوي",
-        "INVALID_MAX_VALUE": "قيمة غير صالحة. يجب أن يكون أقل من أو يساوي",
-        "INVALID_MULTIPLE_OF_VALUE": "قيمة غير صالحة. يجب أن يكون من مضاعفات",
-        "GENERIC_ERROR": "قيمة غير صالحة"
+        "INVALID_FORMAT": "تنسيق الإدخال غير صالح: {{error}}",
+        "INVALID_MIN_LENGTH": "الطول الأدنى غير صالح: {{error}} ",
+        "INVALID_MAX_LENGTH": "الطول الأقصى غير صالح: {{error}}",
+        "INVALID_MIN_VALUE": "قيمة غير صالحة. يجب أن تكون أكبر من أو تساوي: {{error}}",
+        "INVALID_MAX_VALUE": "قيمة غير صالحة. يجب أن تكون أقل من أو تساوي: {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "قيمة غير صالحة. يجب أن يكون من مضاعفات: {{error}}",
+        "GENERIC_ERROR": "قيمة غير صالحة: {{error_1}} - {{error_2}}"
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "يوسع",
+      "COLLAPSE": "طي",
+      "NAME": "الاسم",
+      "INVALID_NAME": "اسم غير صحيح",
+      "REQUIRED": "مطلوب",
+      "REFERENCE": "مرجع",
+      "TITLE": "العنوان",
+      "ADD_PROPERTY": "أضف خاصية",
+      "ADD_CHILD_ALL_OF": "أضف الطفل إلى allOf",
+      "ADD_CHILD_ANY_OF": "أضف الطفل إلى anyOf",
+      "ADD_CHILD_ONE_OF": "أضف الطفل إلى oneOf",
+      "ADVANCED_SETTINGS": "إعدادات متقدمة",
+      "REMOVE_NODE": "إزالة العقدة",
+      "ADD_DEFINITION": "أضف التعريف",
+      "BASIC_ATTRIBUTES": "السمات الأساسية",
+      "CUSTOM_ATTRIBUTES": "السمات المخصصة",
+      "ADD_CUSTOM_ATTRIBUTE": "أضف سمة مخصصة",
+      "DELETE_CUSTOM_ATTRIBUTE": "حذف السمة المخصصة",
+      "ATTRIBUTE_NAME": "اسم السمة",
+      "ATTRIBUTE_VALUE": "قيمة السمة",
+      "CONFIRM_ATTRIBUTE_ADDITION": "تأكيد إضافة السمة",
+      "CANCEL_ATTRIBUTE_ADDITION": "إلغاء إضافة السمة",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "أنواع مخطط JSON",
+        "ENUMERATION": "تعداد",
+        "MODELING_APP": "تطبيق التصميم",
+        "COMPOSITION": "تركيب"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "الوصف",
+        "MAX_ITEMS": "الحد الأقصى. للعناصر",
+        "MIN_ITEMS": "الحد الأدنى. للعناصر",
+        "UNIQUE_ITEMS": "عناصر فريدة من نوعها",
+        "ENUMERATED_VALUES": "القيم المعدودة",
+        "MAXIMUM": "الحد الأقصى",
+        "MINIMUM": "الحد الأدنى",
+        "EXCLUSIVE_MAXIMUM": "الحد الأقصى الحصري",
+        "EXCLUSIVE_MINIMUM": "الحد الأدنى الحصري",
+        "MAX_PROPERTIES": "الحد الأقصى. للخصائص",
+        "MIN_PROPERTIES": "الحد الأدنى. للخصائص",
+        "MAX_LENGTH": "الحد الأقصى. للطول",
+        "MIN_LENGTH": "الحد الأدنى. للطول",
+        "PATTERN": "نمط",
+        "FORMAT": "التنسيق",
+        "ADDITIONAL_PROPERTIES": "خصائص إضافية"
+      },
+      "PREVIEW": "معاينة"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "إنشاء نموذج مخصص",
+      "CREATE_MODEL_DESCRIPTION": "قم بإنشاء نموذج مخصص وقم بتعيينه للكيان",
+      "EDIT_MODEL": "تحرير نموذج مخصص",
+      "EDIT_MODEL_DESCRIPTION": "قم بتحرير النموذج المخصص الذي تم إنشاؤه مسبقًا للكيان"
     }
   }
 }

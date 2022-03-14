@@ -43,7 +43,9 @@
       "COLUMN_VERSION": "Wersja",
       "COLUMN_CREATED": "Utworzono",
       "COLUMN_CREATED_BY": "Utworzone przez",
+      "COLUMN_MODIFIED": "Zaktualizowane",
       "COLUMN_OPTIONS": "Opcje",
+      "COLUMN_ACTIONS": "Czynności",
       "NO_ITEMS": "Utwórz lub zaimportuj projekt, aby wyświetlić go na liście.",
       "NO_FAV_PROCESSES": "Dodaj proces do ulubionych, aby udostępnić go tutaj.",
       "NO_FAV_PROJECTS": "Dodaj projekt do ulubionych, aby udostępnić go tutaj.",
@@ -54,6 +56,61 @@
       "LOAD_PROJECTS": "Wystąpił problem podczas ładowania projektów. Spróbuj odświeżyć stronę.",
       "LOAD_RELEASES": "Wystąpił problem podczas ładowania wydań. Spróbuj odświeżyć stronę.",
       "LOAD_PROCESSES": "Wystąpił problem podczas ładowania procesów. Spróbuj odświeżyć stronę."
+    }
+  },
+  "NEW_STUDIO_DASHBOARD": {
+    "NAME": "Narzędzie do modelowania",
+    "NAVIGATION": {
+      "PROJECT_TITLE": "Projekty",
+      "CUSTOM_MODEL_TITLE": "Modele niestandardowe",
+      "DATA_MODELS_TITLE": "Modele danych",
+      "ALL_PROJECTS": {
+        "HEADER_LABEL": "Moje projekty",
+        "LABEL": "Wszystkie projekty",
+        "TOOLTIP": "Wszystkie opublikowane projekty",
+        "ACTIONS": {
+          "CREATE": "Utwórz projekt",
+          "UPLOAD": "Prześlij"
+        }
+      },
+      "FAVORITE_PROJECTS": {
+        "HEADER_LABEL": "Moje ulubione projekty",
+        "LABEL": "Ulubione projekty",
+        "TOOLTIP": "Ulubione projekty"
+      },
+      "MY_MODELS": {
+        "HEADER_LABEL": "Moje modele",
+        "LABEL": "Moje modele",
+        "TOOLTIP": "Modele utworzone przez użytkownika",
+        "ACTIONS": {
+          "CREATE": "Utwórz model"
+        }
+      },
+      "SHARED_MODELS": {
+        "HEADER_LABEL": "Moje udostępnione modele",
+        "LABEL": "Udostępnione modele",
+        "TOOLTIP": "Modele udostępnione w projektach",
+        "ACTIONS": {
+          "CREATE": "Utwórz udostępniony model"
+        }
+      },
+      "DATA_MODELS": {
+        "HEADER_LABEL": "Moje modele danych",
+        "LABEL": "Modele danych",
+        "TOOLTIP": "Opublikowane modele danych",
+        "ACTIONS": {
+          "CREATE": "Utwórz model danych"
+        }
+      }
+    },
+    "USER_INFO_MENU": {
+      "ADMIN": "Administrator",
+      "DOCUMENTATION": "Dokumentacja"
+    },
+    "ADD_TO_FAVORITES": "Projekt dodany do ulubionych",
+    "REMOVE_FROM_FAVORITES": "Projekt usunięty z ulubionych",
+    "ERROR": {
+      "LOAD_FAVORITE_PROJECTS": "Wystąpił problem podczas ładowania ulubionych projektów. Spróbuj odświeżyć stronę."
     }
   }
 }

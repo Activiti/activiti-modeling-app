@@ -20,6 +20,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Een naam is vereist",
+        "EMPTY_TYPE": "Een type is vereist",
         "INVALID_NAME": "Ongeldige variabelenaam",
         "VARIABLE_NAME_TOOLTIP": "De naam moet beginnen met een letter en mag alleen alfanumerieke tekens en onderstrepingstekens bevatten",
         "NAME_ALREADY_EXISTS": "Variabelenamen moeten uniek zijn",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "Bewerken in dialoogvenster",
       "EXPRESSION_EDITOR": "Expressie-editor",
-      "NO_BRACKETS_HINT": "De volledige expressie in deze editor wordt opgeslagen binnen accolades (${...}), zodat u deze niet hoeft te typen"
+      "NO_BRACKETS_HINT": "De volledige expressie in deze editor wordt opgeslagen binnen accolades (${...}), zodat u deze niet hoeft te typen",
+      "JUEL_EXPRESSION_SIMULATOR": "JUEL-expressiesimulator",
+      "TEST": "Test",
+      "TEST_DISABLED_TOOLTIP": "Voeg een variabele toe aan de test voordat u deze uitvoert",
+      "TEST_ENABLED_TOOLTIP": "Test de expressie met de waarden die zijn verstrekt voor de variabelen",
+      "OPEN_TESTER": "Tester openen",
+      "CLOSE_TESTER": "Tester sluiten",
+      "SET_VARIABLES_VALUES": "Waarden van variabele instellen",
+      "SET_VARIABLES_VALUES_TOOLTIP": "Selecteer een variabele waarvan u de waarde wilt instellen in de test",
+      "DELETE_VARIABLE_FROM_TEST": "Variabele verwijderen uit test"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "Basis",
+      "PRIMITIVE_PROPERTIES_TYPES": "Primitieven",
       "DATE": {
         "CURRENT_DATE": "Vandaag",
         "CLEAR_BUTTON": "Wissen"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "Invoer is vereist",
-        "INVALID_FORMAT": "Ongeldige invoerindeling",
-        "INVALID_MIN_LENGTH": "Ongeldige minimumlengte",
-        "INVALID_MAX_LENGTH": "Ongeldige maximumlengte",
-        "INVALID_MIN_VALUE": "Ongeldige waarde. Deze moet groter zijn dan of gelijk zijn aan",
-        "INVALID_MAX_VALUE": "Ongeldige waarde. Deze moet kleiner zijn dan of gelijk zijn aan",
-        "INVALID_MULTIPLE_OF_VALUE": "Ongeldige waarde. Deze moet een meervoud zijn van",
-        "GENERIC_ERROR": "Ongeldige waarde"
+        "INVALID_FORMAT": "Ongeldige invoerindeling: {{error}}",
+        "INVALID_MIN_LENGTH": "Ongeldige minimumlengte: {{error}}",
+        "INVALID_MAX_LENGTH": "Ongeldige maximumlengte: {{error}}",
+        "INVALID_MIN_VALUE": "Ongeldige waarde. Deze moet groter zijn dan of gelijk zijn aan: {{error}}",
+        "INVALID_MAX_VALUE": "Ongeldige waarde. Deze moet kleiner zijn dan of gelijk zijn aan: {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "Ongeldige waarde. Deze moet een meervoud zijn van: {{error}}",
+        "GENERIC_ERROR": "Ongeldige waarde: {{error_1}} - {{error_2}}"
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "Uitvouwen",
+      "COLLAPSE": "Samenvouwen",
+      "NAME": "Naam",
+      "INVALID_NAME": "Ongeldige naam",
+      "REQUIRED": "Vereist",
+      "REFERENCE": "Verwijzing",
+      "TITLE": "Titel",
+      "ADD_PROPERTY": "Eigenschap toevoegen",
+      "ADD_CHILD_ALL_OF": "Onderliggend element toevoegen aan allOf",
+      "ADD_CHILD_ANY_OF": "Onderliggend element toevoegen aan anyOf",
+      "ADD_CHILD_ONE_OF": "Onderliggend element toevoegen aan oneOf",
+      "ADVANCED_SETTINGS": "Geavanceerde instellingen",
+      "REMOVE_NODE": "Knooppunt verwijderen",
+      "ADD_DEFINITION": "Definitie toevoegen",
+      "BASIC_ATTRIBUTES": "Basiskenmerken",
+      "CUSTOM_ATTRIBUTES": "Aangepaste kenmerken",
+      "ADD_CUSTOM_ATTRIBUTE": "Aangepast kenmerk toevoegen",
+      "DELETE_CUSTOM_ATTRIBUTE": "Aangepast kenmerk verwijderen",
+      "ATTRIBUTE_NAME": "Kenmerknaam",
+      "ATTRIBUTE_VALUE": "Kenmerkwaarde",
+      "CONFIRM_ATTRIBUTE_ADDITION": "Toevoeging kenmerk bevestigen",
+      "CANCEL_ATTRIBUTE_ADDITION": "Toevoeging kenmerk annuleren",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "Json-schematypen",
+        "ENUMERATION": "Inventarisering",
+        "MODELING_APP": "Modellerings-app",
+        "COMPOSITION": "Compositie"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "Beschrijving",
+        "MAX_ITEMS": "Max. items",
+        "MIN_ITEMS": "Min. items",
+        "UNIQUE_ITEMS": "Unieke items",
+        "ENUMERATED_VALUES": "Geïnventariseerde waarden",
+        "MAXIMUM": "Maximum",
+        "MINIMUM": "Minimum",
+        "EXCLUSIVE_MAXIMUM": "Exclusief maximum",
+        "EXCLUSIVE_MINIMUM": "Exclusief minimum",
+        "MAX_PROPERTIES": "Max. eigenschappen",
+        "MIN_PROPERTIES": "Min. eigenschappen",
+        "MAX_LENGTH": "Max. lengte",
+        "MIN_LENGTH": "Min. lengte",
+        "PATTERN": "Patroon",
+        "FORMAT": "Indeling",
+        "ADDITIONAL_PROPERTIES": "Aanvullende eigenschappen"
+      },
+      "PREVIEW": "Preview"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "Aangepast model maken",
+      "CREATE_MODEL_DESCRIPTION": "Een aangepast model maken en dit toewijzen aan de entiteit",
+      "EDIT_MODEL": "Aangepast model bewerken",
+      "EDIT_MODEL_DESCRIPTION": "Het eerder gemaakte aangepaste model van de entiteit bewerken"
     }
   }
 }

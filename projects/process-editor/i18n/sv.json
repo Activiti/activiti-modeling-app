@@ -1,9 +1,11 @@
 {
-  "PROCESS_EDITOR": {
+  "ADV_PROCESS_EDITOR": {
     "DOWNLOAD_PROCESS": "Nedladdningsprocess",
     "SAVE_PROCESS_IMAGE": "Spara processdiagram som SVG",
     "VALIDATE_PROCESS": "Validera process",
-    "SAVE_PROCESS": "Spara process",
+    "SAVE_PROCESS": "Spara process"
+  },
+  "PROCESS_EDITOR": {
     "SELECT_PROCESS_VARIABLE": "Välj processvariabel",
     "SCRIPT_NAME": "Skriptnamn",
     "PRIORITIES": {
@@ -89,7 +91,15 @@
       "PROCESS_VARIABLE": "Processvariabel",
       "FILTER_PROCESS_VARIABLE": "Filtrera processvariabel",
       "USE_PROCESS_VARIABLE": "Använd processvariabel",
+      "USE_STATIC_DATE": "Använd statiskt datum",
       "USE_EXPRESSION": "Använd uttryck",
+      "USE_TIME_DURATION": "Använd tidsvaraktighet",
+      "TIME_DURATION_UNITS": {
+        "MONTHS": "Månader",
+        "DAYS": "Dagar",
+        "HOURS": "Timmar",
+        "MINUTES": "Minuter"
+      },
       "PROCESS_VARIABLES": "Processvariabler",
       "EXPRESSION": "Villkorsuttryck",
       "FORM_SELECTOR": "Formulärnamn",
@@ -187,7 +197,8 @@
           "ASSIGNEE_INVALID_ERROR": "Ogiltigt uttryck t.ex. { tilldelad användare:${var1} }",
           "CANDIDATE_INVALID_ERROR": "Ogiltigt uttryck t.ex. { kandidatanvändare: ${var1}, kandidatgrupper: ${var2} }"
         }
-      }
+      },
+      "INHERIT_BUSINESS_KEY": "Ärv affärsnyckel"
     },
     "PROPERTIES_BUTTON": "Egenskaper",
     "UPLOAD_SUCCESS": "Process uppladdad",

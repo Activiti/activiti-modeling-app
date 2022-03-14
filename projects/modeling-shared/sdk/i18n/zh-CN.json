@@ -20,6 +20,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "需要名称",
+        "EMPTY_TYPE": "类型是必需的",
         "INVALID_NAME": "无效的变量名称",
         "VARIABLE_NAME_TOOLTIP": "名称必须以字母开头，只能包含字母数字字符和下划线",
         "NAME_ALREADY_EXISTS": "变量名称必须是唯一的",
@@ -103,7 +104,16 @@
     "EXPRESSION_CODE_EDITOR": {
       "EDIT_IN_DIALOG": "在对话框中编辑",
       "EXPRESSION_EDITOR": "表达式编辑器",
-      "NO_BRACKETS_HINT": "此编辑器中的整个表达式将被保存在波形括号 (${...}) 内，因此不需要键入它们"
+      "NO_BRACKETS_HINT": "此编辑器中的整个表达式将被保存在波形括号 (${...}) 内，因此不需要键入它们",
+      "JUEL_EXPRESSION_SIMULATOR": "JUEL 表达式模拟器",
+      "TEST": "测试",
+      "TEST_DISABLED_TOOLTIP": "执行测试之前，在测试中添加一个变量",
+      "TEST_ENABLED_TOOLTIP": "使用为变量提供的值测试表达式",
+      "OPEN_TESTER": "打开测试器",
+      "CLOSE_TESTER": "关闭测试器",
+      "SET_VARIABLES_VALUES": "设置变量的值",
+      "SET_VARIABLES_VALUES_TOOLTIP": "选择一个变量以在测试中设置其值",
+      "DELETE_VARIABLE_FROM_TEST": "从测试中删除变量"
     },
     "VARIABLES_SELECTORS": {
       "ACTIONS": {
@@ -143,7 +153,7 @@
       }
     },
     "VARIABLE_TYPE_INPUT": {
-      "BASIC_PROPERTIES_TYPES": "基本",
+      "PRIMITIVE_PROPERTIES_TYPES": "基元",
       "DATE": {
         "CURRENT_DATE": "今天",
         "CLEAR_BUTTON": "清除"
@@ -160,14 +170,69 @@
       },
       "VALIDATION": {
         "REQUIRED": "需要输入",
-        "INVALID_FORMAT": "无效的输入格式",
-        "INVALID_MIN_LENGTH": "无效的最小长度",
-        "INVALID_MAX_LENGTH": "无效的最大长度",
-        "INVALID_MIN_VALUE": "无效的值。它应该大于或等于",
-        "INVALID_MAX_VALUE": "无效的值。它应该小于或等于",
-        "INVALID_MULTIPLE_OF_VALUE": "无效的值。它应该是以下数字的倍数",
-        "GENERIC_ERROR": "无效的值"
+        "INVALID_FORMAT": "无效的输入格式: {{error}}",
+        "INVALID_MIN_LENGTH": "无效的最小长度: {{error}}",
+        "INVALID_MAX_LENGTH": "无效的最大长度: {{error}}",
+        "INVALID_MIN_VALUE": "无效的值。它应该大于或等于: {{error}}",
+        "INVALID_MAX_VALUE": "无效的值。它应该小于或等于: {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "无效的值。它应该是以下数字的倍数: {{error}}",
+        "GENERIC_ERROR": "无效的值: {{error_1}} - {{error_2}}"
       }
+    },
+    "JSON_SCHEMA_EDITOR": {
+      "EXPAND": "展开",
+      "COLLAPSE": "折叠",
+      "NAME": "名称",
+      "INVALID_NAME": "无效的名称",
+      "REQUIRED": "必需",
+      "REFERENCE": "引用",
+      "TITLE": "标题",
+      "ADD_PROPERTY": "添加属性",
+      "ADD_CHILD_ALL_OF": "将子项添加到 allOf",
+      "ADD_CHILD_ANY_OF": "将孩子添加到 anyOf",
+      "ADD_CHILD_ONE_OF": "将孩子添加到 oneOf",
+      "ADVANCED_SETTINGS": "高级设置",
+      "REMOVE_NODE": "移除结点",
+      "ADD_DEFINITION": "添加定义",
+      "BASIC_ATTRIBUTES": "基本属性",
+      "CUSTOM_ATTRIBUTES": "自定义属性",
+      "ADD_CUSTOM_ATTRIBUTE": "添加自定义属性",
+      "DELETE_CUSTOM_ATTRIBUTE": "删除自定义属性",
+      "ATTRIBUTE_NAME": "属性名",
+      "ATTRIBUTE_VALUE": "属性值",
+      "CONFIRM_ATTRIBUTE_ADDITION": "确认属性添加",
+      "CANCEL_ATTRIBUTE_ADDITION": "取消属性添加",
+      "TYPES_GROUPS": {
+        "JSON_SCHEMA_TYPES": "JSON 模式类型",
+        "ENUMERATION": "枚举",
+        "MODELING_APP": "建模应用",
+        "COMPOSITION": "创作"
+      },
+      "ATTRIBUTES": {
+        "DESCRIPTION": "说明",
+        "MAX_ITEMS": "最大项目",
+        "MIN_ITEMS": "最小项目",
+        "UNIQUE_ITEMS": "唯一项",
+        "ENUMERATED_VALUES": "枚举值",
+        "MAXIMUM": "最大",
+        "MINIMUM": "最小",
+        "EXCLUSIVE_MAXIMUM": "专用的最大值",
+        "EXCLUSIVE_MINIMUM": "专用的最小值",
+        "MAX_PROPERTIES": "最大属性",
+        "MIN_PROPERTIES": "最小属性",
+        "MAX_LENGTH": "最大长度",
+        "MIN_LENGTH": "最小长度",
+        "PATTERN": "模式",
+        "FORMAT": "格式",
+        "ADDITIONAL_PROPERTIES": "附加属性"
+      },
+      "PREVIEW": "预览"
+    },
+    "PROPERTY_TYPE_SELECTOR": {
+      "CREATE_MODEL": "创建自定义模型",
+      "CREATE_MODEL_DESCRIPTION": "创建自定义模型并将其分配给实体",
+      "EDIT_MODEL": "编辑自定义模型",
+      "EDIT_MODEL_DESCRIPTION": "编辑以前创建的实体自定义模型"
     }
   }
 }

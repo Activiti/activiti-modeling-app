@@ -43,7 +43,7 @@
         "RELEASE": "Opravdu chcete vydat novou verzi tohoto projektu?",
         "TYPES": {
           "DECISION": "Rozhodovací tabulka",
-          "DATA": "Data",
+          "DATA_MODEL": "datový model",
           "UI": "Uživatelské rozhraní",
           "CONNECTOR": "Konektor",
           "FORM": "Formulář",
@@ -56,22 +56,19 @@
         },
         "DELETE": {
           "PROJECT": "Opravdu chcete tento projekt odstranit?",
-          "DATA": "Opravdu chcete tento datový objekt odstranit?"
+          "DATA_MODEL": "Opravdu chcete tento datový objekt odstranit?"
         },
         "SAVE": {
           "PROCESS": "Opravdu chcete tento proces uložit?",
-          "DATA": "Opravdu chcete tento datový objekt uložit?",
+          "DATA_MODEL": "Opravdu chcete tento datový objekt uložit?",
           "EMAIL_TEMPLATE": "Opravdu chcete přepsat e-mailovou šablonu?"
         },
         "SAVE_AS": {
-          "PROCESS": "Opravdu chcete tento proces kopírovat?",
-          "DATA": "Opravdu chcete kopírovat tento datový objekt?",
-          "FILE": "Opravdu chcete kopírovat tento soubor?",
-          "SCRIPT": "Opravdu chcete kopírovat tento skript?"
+          "DATA_MODEL": "Opravdu chcete kopírovat tento datový objekt?"
         },
         "DOWNLOAD": {
           "IMAGE": "Opravdu chcete stáhnout obraz SVG tohoto procesu?",
-          "DATA": "Opravdu chcete tento datový objekt stáhnout?"
+          "DATA_MODEL": "Opravdu chcete tento datový objekt stáhnout?"
         }
       }
     },

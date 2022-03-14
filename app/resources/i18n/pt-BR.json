@@ -43,7 +43,7 @@
         "RELEASE": "Tem certeza de que deseja liberar uma nova versão deste projeto?",
         "TYPES": {
           "DECISION": "tabela de decisão",
-          "DATA": "dados",
+          "DATA_MODEL": "modelo de dados",
           "UI": "UI",
           "CONNECTOR": "conector",
           "FORM": "Formulário",
@@ -56,22 +56,19 @@
         },
         "DELETE": {
           "PROJECT": "Tem certeza de que deseja excluir este projeto?",
-          "DATA": "Tem certeza de que deseja excluir este objeto de dados?"
+          "DATA_MODEL": "Tem certeza de que deseja excluir este objeto de dados?"
         },
         "SAVE": {
           "PROCESS": "Tem certeza de que deseja salvar este processo?",
-          "DATA": "Tem certeza de que deseja salvar este objeto de dados?",
+          "DATA_MODEL": "Tem certeza de que deseja salvar este objeto de dados?",
           "EMAIL_TEMPLATE": "Tem certeza de que deseja substituir o modelo de email?"
         },
         "SAVE_AS": {
-          "PROCESS": "Tem certeza de que deseja copiar este processo?",
-          "DATA": "Tem certeza de que deseja copiar este objeto de dados?",
-          "FILE": "Tem certeza de que deseja copiar este arquivo?",
-          "SCRIPT": "Tem certeza de que deseja copiar este script?"
+          "DATA_MODEL": "Tem certeza de que deseja copiar este objeto de dados?"
         },
         "DOWNLOAD": {
           "IMAGE": "Tem certeza de que deseja baixar a imagem svg deste processo?",
-          "DATA": "Tem certeza de que deseja baixar este objeto de dados?"
+          "DATA_MODEL": "Tem certeza de que deseja baixar este objeto de dados?"
         }
       }
     },

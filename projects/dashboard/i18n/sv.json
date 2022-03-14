@@ -43,7 +43,9 @@
       "COLUMN_VERSION": "Version",
       "COLUMN_CREATED": "Skapad",
       "COLUMN_CREATED_BY": "Skapad av",
+      "COLUMN_MODIFIED": "Uppdaterad",
       "COLUMN_OPTIONS": "Alternativ",
+      "COLUMN_ACTIONS": "Åtgärder",
       "NO_ITEMS": "Skapa eller importera ett projekt som ska visas i listan.",
       "NO_FAV_PROCESSES": "Favoritmärk en process för att göra den tillgänglig här.",
       "NO_FAV_PROJECTS": "Favoritmarkera ett projekt för att göra det tillgängligt här.",
@@ -54,6 +56,61 @@
       "LOAD_PROJECTS": "Vi stötte på ett problem med att läsa in projekten. Prova att uppdatera sidan.",
       "LOAD_RELEASES": "Vi stötte på ett problem med att läsa in avsägningarna. Prova att uppdatera sidan.",
       "LOAD_PROCESSES": "Vi stötte på ett problem med att läsa in processerna. Prova att uppdatera sidan."
+    }
+  },
+  "NEW_STUDIO_DASHBOARD": {
+    "NAME": "Modeller",
+    "NAVIGATION": {
+      "PROJECT_TITLE": "Projekt",
+      "CUSTOM_MODEL_TITLE": "Anpassade modeller",
+      "DATA_MODELS_TITLE": "Datamodeller",
+      "ALL_PROJECTS": {
+        "HEADER_LABEL": "Mina projekt",
+        "LABEL": "Alla projekt",
+        "TOOLTIP": "Alla publicerade projekt",
+        "ACTIONS": {
+          "CREATE": "Skapa projekt",
+          "UPLOAD": "Ladda upp"
+        }
+      },
+      "FAVORITE_PROJECTS": {
+        "HEADER_LABEL": "Mina favoritprojekt",
+        "LABEL": "Favoritprojekt",
+        "TOOLTIP": "Favoritprojekt"
+      },
+      "MY_MODELS": {
+        "HEADER_LABEL": "Mina modeller",
+        "LABEL": "Mina modeller",
+        "TOOLTIP": "Modeller skapade av användaren",
+        "ACTIONS": {
+          "CREATE": "Skapa modell"
+        }
+      },
+      "SHARED_MODELS": {
+        "HEADER_LABEL": "Mina delade modeller",
+        "LABEL": "Delade modeller",
+        "TOOLTIP": "Modeller som delas över projekten",
+        "ACTIONS": {
+          "CREATE": "Skapa delad modell"
+        }
+      },
+      "DATA_MODELS": {
+        "HEADER_LABEL": "Mina datamodeller",
+        "LABEL": "Datamodeller",
+        "TOOLTIP": "Publicerade datamodeller",
+        "ACTIONS": {
+          "CREATE": "Skapa datamodell"
+        }
+      }
+    },
+    "USER_INFO_MENU": {
+      "ADMIN": "Administratör",
+      "DOCUMENTATION": "Dokumentation"
+    },
+    "ADD_TO_FAVORITES": "Projekt lades till i favoriter",
+    "REMOVE_FROM_FAVORITES": "Projekt togs bort från favoriter",
+    "ERROR": {
+      "LOAD_FAVORITE_PROJECTS": "Vi stötte på ett problem vid inläsningen av favoritprojekten. Prova att uppdatera sidan."
     }
   }
 }

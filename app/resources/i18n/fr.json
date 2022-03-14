@@ -43,7 +43,7 @@
         "RELEASE": "Voulez-vous vraiment lancer une nouvelle version de ce projet ?",
         "TYPES": {
           "DECISION": "table de décision",
-          "DATA": "donnée",
+          "DATA_MODEL": "Modèle de données",
           "UI": "IU",
           "CONNECTOR": "connecteur",
           "FORM": "Formulaire",
@@ -56,22 +56,19 @@
         },
         "DELETE": {
           "PROJECT": "Voulez-vous vraiment supprimer ce projet ?",
-          "DATA": "Voulez-vous vraiment supprimer cet objet de données ?"
+          "DATA_MODEL": "Voulez-vous vraiment supprimer cet objet de données ?"
         },
         "SAVE": {
           "PROCESS": "Voulez-vous vraiment enregistrer ce processus ?",
-          "DATA": "Voulez-vous vraiment enregistrer cet objet de données ?",
+          "DATA_MODEL": "Voulez-vous vraiment enregistrer cet objet de données ?",
           "EMAIL_TEMPLATE": "Voulez-vous vraiment remplacer le modèle d'e-mail ?"
         },
         "SAVE_AS": {
-          "PROCESS": "Voulez-vous vraiment copier ce processus ?",
-          "DATA": "Voulez-vous vraiment copier cet objet de données ?",
-          "FILE": "Voulez-vous vraiment copier ce fichier ?",
-          "SCRIPT": "Voulez-vous vraiment copier ce script ?"
+          "DATA_MODEL": "Voulez-vous vraiment copier cet objet de données ?"
         },
         "DOWNLOAD": {
           "IMAGE": "Voulez-vous vraiment télécharger l'image svg de ce processus ?",
-          "DATA": "Voulez-vous vraiment télécharger cet objet de données ?"
+          "DATA_MODEL": "Voulez-vous vraiment télécharger cet objet de données ?"
         }
       }
     },
