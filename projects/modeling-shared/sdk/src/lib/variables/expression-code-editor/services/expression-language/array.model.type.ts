@@ -209,7 +209,7 @@ export const arrayModelType: ModelingType = {
         },
         {
             signature: 'subList',
-            type: 'json',
+            type: 'array',
             documentation: 'Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.',
             parameters: [
                 {

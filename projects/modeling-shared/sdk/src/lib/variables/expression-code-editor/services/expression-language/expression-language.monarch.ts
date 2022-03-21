@@ -88,6 +88,9 @@ export const expressionLanguageMonarch = {
     functions: [
         {
             signature: 'now',
+            model: {
+                $ref: '#/$defs/primitive/date'
+            },
             type: 'date',
             documentation: 'Return the current system date.'
         },

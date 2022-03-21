@@ -161,11 +161,11 @@ describe('ExpressionsEditorService', () => {
         it('should return the return type of language registered functions', () => {
             let modelSchema = ExpressionsEditorService.getModelSchemaFromLanguageFunctions('now()', modelingTypesService);
 
-            expect(modelSchema).toEqual(primitiveTypesSchema.$defs.primitive['date']);
+            expect(modelSchema).toEqual({ $ref: '#/$defs/primitive/date' });
 
             modelSchema = ExpressionsEditorService.getModelSchemaFromLanguageFunctions('now', modelingTypesService);
 
-            expect(modelSchema).toEqual(primitiveTypesSchema.$defs.primitive['date']);
+            expect(modelSchema).toEqual({ $ref: '#/$defs/primitive/date' });
         });
     });
 });

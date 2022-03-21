@@ -1277,7 +1277,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             },
             {
                 signature: 'subList',
-                type: 'json',
+                type: 'array',
                 documentation: 'Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.',
                 parameters: [
                     {
@@ -1524,12 +1524,12 @@ export const expectedArrayMethodSuggestions: ModelingTypeSuggestion[] = [
         command: undefined,
     },
     {
-        label: 'subList(fromIndex, toIndex): json',
+        label: 'subList(fromIndex, toIndex): array',
         filterText: 'subList',
         kind: 0,
         insertText: 'subList(${1:fromIndex}, ${2:toIndex})',
         documentation: 'Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.',
-        detail: 'json',
+        detail: 'array',
         insertTextRules: 4,
         command: {
             id: 'editor.action.triggerParameterHints',
@@ -1934,7 +1934,7 @@ export const expectedArraySignatureHelpers = [
         },
     },
     {
-        label: 'subList(fromIndex, toIndex): json',
+        label: 'subList(fromIndex, toIndex): array',
         documentation: 'Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.',
         parameters: [
             {
@@ -1948,7 +1948,7 @@ export const expectedArraySignatureHelpers = [
         ],
         method: {
             signature: 'subList',
-            type: 'json',
+            type: 'array',
             documentation: 'Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.',
             parameters: [
                 {

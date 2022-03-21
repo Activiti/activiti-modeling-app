@@ -19,6 +19,7 @@ import { TranslationService } from '@alfresco/adf-core';
 import { Injectable } from '@angular/core';
 import { EntityProperty, JSONSchemaInfoBasics } from '../../../api/types';
 import { expressionLanguageConfiguration, expressionLanguageMonarch } from './expression-language/expression-language.monarch';
+import { ModelingTypeMethodDescription } from './modeling-type.model';
 import { ModelingTypesService } from './modeling-types.service';
 
 @Injectable({
@@ -26,8 +27,7 @@ import { ModelingTypesService } from './modeling-types.service';
 })
 export class ExpressionsEditorService {
 
-    static wordRegex = /((\w+((\.?\w+){0,1}(\[\S+\]){0,1}(\((?:[^)(]+|\((?:[^)(]+|\([^)(]*\))*\))*\)){0,1})*)|\W)/g;
-    static wordRegexSignature = /\w+((\.?\w+){0,1}(\[\S+\]){0,1}(\((?:[^)(]+|\((?:[^)(]+|\([^)(]*\))*\))*\)){0,1})*/g;
+    static wordRegex = /(\w+(\((.)*\))?(\[(.)*\])?\.?)+/g;
 
     constructor(private translationService: TranslationService, private modelingTypesService: ModelingTypesService) {
     }
@@ -49,7 +49,8 @@ export class ExpressionsEditorService {
         let modelSchema: JSONSchemaInfoBasics = null;
 
         if (words) {
-            const activeTyping = words[words.length - 1 - offset];
+            let activeTyping = words[words.length - 1];
+            activeTyping = activeTyping.endsWith('.') ? activeTyping.substring(0, activeTyping.length - 1) : activeTyping;
             modelSchema = ExpressionsEditorService.getModelSchemaOfWord(activeTyping, parameters, modelingTypesService, offset);
         }
         return modelSchema;
@@ -66,46 +67,78 @@ export class ExpressionsEditorService {
                 const method = element.match(/([a-z][\w]*)\((\S|\s)*\)/);
                 const arrayAfterMethod = element.match(/([a-z][\w]*)\((\S|\s)*\)\[(\S)*\]/);
                 if (array) {
-                    if (!modelSchema) {
-                        modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(parameters.find(parameter => parameter.name === array[1]));
-                        modelSchema = ExpressionsEditorService.extractItemsModelSchema(modelSchema);
-                    } else {
-                        modelSchema = ExpressionsEditorService.extractItemsModelSchema(modelSchema);
-                    }
+                    modelSchema = ExpressionsEditorService.getModelSchemaFromArrayAccess(modelSchema, modelingTypesService, parameters, array);
                 } else if (modelSchema && arrayAfterMethod) {
-                    modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(
-                        modelingTypesService.getMethodsByModelSchema(modelSchema)
-                            .filter(registeredMethod => !!registeredMethod)
-                            .find(registeredMethod => registeredMethod.signature.startsWith(arrayAfterMethod[1]))
-                    );
-                    modelSchema = ExpressionsEditorService.extractItemsModelSchema(modelSchema);
-                } else if (modelSchema && method) {
-                    const methodDescription = modelingTypesService.getMethodsByModelSchema(modelSchema)
-                        .filter(registeredMethod => !!registeredMethod)
-                        .find(registeredMethod => registeredMethod.signature.startsWith(method[1]));
-                    if (methodDescription?.isArrayAccessor && methodDescription?.type === 'json') {
-                        modelSchema = ExpressionsEditorService.extractItemsModelSchema(modelSchema);
-                    } else if (methodDescription?.isSameTypeAsObject && methodDescription?.type === 'json') {
-                        modelSchema = modelSchema;
-                    } else {
-                        modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(methodDescription);
-                    }
+                    modelSchema = ExpressionsEditorService.getModelSchemaFromArrayAfterMethod(modelSchema, modelingTypesService, arrayAfterMethod);
+                } else if (method) {
+                    modelSchema = ExpressionsEditorService.getModelSchemaFromMethodCall(modelSchema, modelingTypesService, method);
                 } else {
-                    if (!modelSchema) {
-                        modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(parameters.find(parameter => parameter.name === element))
-                            || ExpressionsEditorService.getModelSchemaFromLanguageFunctions(element, modelingTypesService);
-                    } else {
-                        modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(
-                            modelingTypesService.getPropertiesByModelSchema(modelSchema)
-                                .filter(property => !!property)
-                                .find(property => property.property === element)
-                        );
-                    }
+                    modelSchema = ExpressionsEditorService.getModelSchemaFromLiteral(modelSchema, modelingTypesService, parameters, element);
                 }
             }
             if (!modelSchema) {
                 break;
             }
+        }
+        return modelSchema;
+    }
+
+    private static getModelSchemaFromLiteral(modelSchema: JSONSchemaInfoBasics, modelingTypesService: ModelingTypesService, parameters: EntityProperty[], element: string) {
+        if (!modelSchema) {
+            modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(parameters.find(parameter => parameter.name === element))
+                || ExpressionsEditorService.getModelSchemaFromLanguageFunctions(element, modelingTypesService);
+        } else {
+            modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(
+                modelingTypesService.getPropertiesByModelSchema(modelSchema)
+                    .filter(property => !!property)
+                    .find(property => property.property === element)
+            );
+        }
+        return modelSchema;
+    }
+
+    private static getModelSchemaFromMethodCall(modelSchema: JSONSchemaInfoBasics, modelingTypesService: ModelingTypesService, method: RegExpMatchArray) {
+        let methodDescription: ModelingTypeMethodDescription;
+        if (modelSchema) {
+            methodDescription = modelingTypesService.getMethodsByModelSchema(modelSchema)
+                .filter(registeredMethod => !!registeredMethod)
+                .find(registeredMethod => registeredMethod.signature.startsWith(method[1]));
+        } else {
+            methodDescription = expressionLanguageMonarch.functions.filter(registeredMethod => !!registeredMethod)
+                .find(registeredMethod => registeredMethod.signature.startsWith(method[1]));
+        }
+
+        if (methodDescription?.isArrayAccessor && methodDescription?.type === 'json') {
+            modelSchema = ExpressionsEditorService.extractItemsModelSchema(modelSchema);
+        } else if (methodDescription?.isSameTypeAsObject && methodDescription?.type === 'json') {
+            modelSchema = modelSchema;
+        } else {
+            modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(methodDescription);
+        }
+        return modelSchema;
+    }
+
+    private static getModelSchemaFromArrayAfterMethod(modelSchema: JSONSchemaInfoBasics, modelingTypesService: ModelingTypesService, arrayAfterMethod: RegExpMatchArray) {
+        modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(
+            modelingTypesService.getMethodsByModelSchema(modelSchema)
+                .filter(registeredMethod => !!registeredMethod)
+                .find(registeredMethod => registeredMethod.signature.startsWith(arrayAfterMethod[1]))
+        );
+        modelSchema = ExpressionsEditorService.extractItemsModelSchema(modelSchema);
+        return modelSchema;
+    }
+
+    private static getModelSchemaFromArrayAccess(
+        modelSchema: JSONSchemaInfoBasics,
+        modelingTypesService: ModelingTypesService,
+        parameters: EntityProperty[],
+        array: RegExpMatchArray
+    ) {
+        if (!modelSchema) {
+            modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(parameters.find(parameter => parameter.name === array[1]));
+            modelSchema = ExpressionsEditorService.extractItemsModelSchema(modelSchema);
+        } else {
+            modelSchema = ExpressionsEditorService.extractItemsModelSchema(modelSchema);
         }
         return modelSchema;
     }
@@ -358,7 +391,7 @@ export class ExpressionsEditorService {
                     endLineNumber: position.lineNumber,
                     endColumn: position.column
                 });
-                const words = lineBeforeCursor.match(ExpressionsEditorService.wordRegexSignature);
+                const words = lineBeforeCursor.match(ExpressionsEditorService.wordRegex);
                 if (words) {
                     const offset = word.word.length > 0 ? activeParameter + 1 : activeParameter;
                     const activeTyping = words[words.length - 1 - offset];
