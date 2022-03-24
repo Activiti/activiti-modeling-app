@@ -27,6 +27,38 @@ mat-sidenav-container.studio-project-layout {
             }
         }
 
+        .mat-sidenav-content {
+              > div {
+                height: 100%;
+
+                > div {
+                    display: flex;
+                    flex-direction: column;
+
+                    ng-component {
+                        flex: 1;
+                    }
+
+                    ama-projects-list {
+                        min-height: 0;
+                        flex: 1;
+                    }
+
+                    ama-about {
+                        overflow: auto;
+                        min-height: 0;
+                        flex: 1;
+                    }
+                }
+            }
+
+            .adf-toolbar .mat-toolbar {
+                border-left: none;
+                border-right: none;
+                height: 48px;
+            }
+        }
+
         .mat-sidenav {
             background-color: var(--theme-app-bar-bg-color);
         }

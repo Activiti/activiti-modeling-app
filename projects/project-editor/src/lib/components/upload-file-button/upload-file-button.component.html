@@ -1,7 +1,7 @@
 <div class="ama-upload-button">
 
     <div>
-        <div #ref (click)="onClick($event)" data-automation-id="upload-button-ref"><ng-content></ng-content></div>
+        <div #ref (click)="onClick($event)" data-automation-id="upload-button-ref" class="ama-upload-button-ref"><ng-content></ng-content></div>
 
         <div *ngIf="!ref.innerHTML.trim()">
             <button class="ama-default-upload-button" (click)="onClick($event)" data-automation-id="upload-button-menu" mat-stroked-button>

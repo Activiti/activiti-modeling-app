@@ -1,0 +1,104 @@
+.ama-project-creator {
+    &-drawer {
+        height: 350px;
+        width: 100%;
+
+        &-action {
+            padding: 0 6px 0 0;
+
+            &-button {
+                padding: 0 10px;
+            }
+
+            &-icon {
+                padding-right: 6px;
+            }
+        }
+    }
+
+    &-main-content {
+        background-color: var(--theme-dialog-bg-color);
+
+        .mat-list-base {
+            display: flex;
+        }
+    }
+
+    &-filter {
+
+        &-list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: space-evenly;
+
+            .mat-list-option {
+                display: flex;
+                justify-content: space-evenly;
+                flex: 1 1 30%;
+                margin: 8px;
+                padding-top: 15px;
+            }
+        }
+
+        &-icon {
+            display: flex;
+            align-self: center;
+            justify-content: space-evenly;
+        }
+
+        &-name {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+  }
+
+.ama-project-upload-button-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    &-main {
+        display: flex;
+        flex: 0 1 30%;
+        margin: 8px;
+        padding-top: 15px;
+        align-items: center;
+        justify-content: space-evenly;
+
+        .ama-upload-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .material-icons {
+                font-size: 16px;
+            }
+
+            .ama-upload-button-ref {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+    }
+
+    &-filter {
+
+        &-name {
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+        }
+    }
+
+
+}

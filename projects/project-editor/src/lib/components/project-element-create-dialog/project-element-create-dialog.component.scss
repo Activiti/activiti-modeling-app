@@ -1,0 +1,32 @@
+.ama-create-element-dialog {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+    padding: 0;
+    margin: 0;
+
+    &-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 7px;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 24px;
+        letter-spacing: 0.15px;
+        border-bottom: 1px ridge;
+    }
+
+    &-content {
+        padding: 0;
+        margin: 0;
+    }
+
+    .mat-dialog-container {
+        padding: 0;
+        margin: 0;
+    }
+}

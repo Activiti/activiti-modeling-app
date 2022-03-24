@@ -18,8 +18,10 @@
         "NO_CONTENT": "<empty>",
         "UNCATEGORIZED": "Uncategorized",
         "NO_SELECTION": "Create a new model or edit an existing one using the sidebar",
+        "NO_OPTION_SELECTED": "None",
+        "SELECT_MODEL_TYPE": "Select model type",
         "NEW_MENU": {
-            "LABEL": "NEW",
+            "LABEL": "New",
             "CREATE": "Create",
             "UPLOAD": "Upload",
             "IMPORT": "Import",

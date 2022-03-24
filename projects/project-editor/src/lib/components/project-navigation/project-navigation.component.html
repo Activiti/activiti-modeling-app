@@ -2,62 +2,11 @@
 
     <div class="app-navigation__section app-navigation__section--new adf-sidebar-action-menu"
         [ngClass]="{ 'ama-section--new--mini': !(expanded$ | async) }">
-        <button mat-button *ngIf="(expanded$ | async)" [matMenuTriggerFor]="menu" data-automation-id="create-button"
-            class="adf-sidebar-action-menu-button">
-            <span class="adf-sidebar-action-menu-text">{{ 'PROJECT_EDITOR.NEW_MENU.LABEL' | translate }}</span>
-            <mat-icon>arrow_drop_down</mat-icon>
+        <button mat-button data-automation-id="create-button" class="app-create-new-button" (click)="openDialog()">
+            <mat-icon class="app-navigation-new-button-icon">add</mat-icon>
+            <p class="app-navigation-new-button-label">{{ 'PROJECT_EDITOR.NEW_MENU.LABEL' | translate }}</p>
         </button>
-
-        <div *ngIf="!(expanded$ | async)" class="adf-sidebar-action-menu-icon">
-            <mat-icon [matMenuTriggerFor]="menu">add_box</mat-icon>
-        </div>
-
-        <mat-menu #menu="matMenu" class="app-navigation-options">
-            <button mat-menu-item [matMenuTriggerFor]="create" data-automation-id="app-navigation-create">
-                <mat-icon>add</mat-icon>
-                <span>{{ 'PROJECT_EDITOR.NEW_MENU.CREATE' | translate }}</span>
-            </button>
-            <button mat-menu-item [matMenuTriggerFor]="upload" data-automation-id="app-navigation-upload">
-                <mat-icon>file_upload</mat-icon>
-                <span>{{ 'PROJECT_EDITOR.NEW_MENU.UPLOAD' | translate }}</span>
-            </button>
-            <button *ngIf="isImportEnabled()" mat-menu-item [matMenuTriggerFor]="import"
-                data-automation-id="app-navigation-import">
-                <mat-icon>language</mat-icon>
-                <span>{{ 'PROJECT_EDITOR.NEW_MENU.IMPORT' | translate }}</span>
-            </button>
-        </mat-menu>
-
-        <mat-menu #create="matMenu" class="app-navigation-options">
-            <ng-container *ngFor="let creator of creators">
-                <button mat-menu-item *ngIf="isAllowed(creator, 'create')"
-                    [attr.data-automation-id]="'app-navigation-create-' + getKey(creator)"
-                    (click)="openModelCreationDialog(creator.dialog)">
-                    <mat-icon>{{ creator.icon }}</mat-icon>
-                    <span>{{ creator.name | translate }}</span>
-                </button>
-            </ng-container>
-        </mat-menu>
-
-        <mat-menu #upload="matMenu" class="app-navigation-options">
-            <ng-container *ngFor="let creator of creators">
-                <ama-upload-file-button class="mat-menu-item" *ngIf="isAllowed(creator, 'upload')"
-                    [attr.data-automation-id]="'app-navigation-upload-' + getKey(creator)" [type]="getKey(creator)"
-                    [projectId]="selectedProjectId$ | async">
-                    <mat-icon>{{ creator.icon }}</mat-icon>
-                    <span>{{ creator.name | translate }}</span>
-                </ama-upload-file-button>
-            </ng-container>
-        </mat-menu>
-
-        <mat-menu #import="matMenu" class="app-navigation-options">
-            <ng-container *ngIf="isImportEnabled()">
-                <ama-project-import-menu *ngFor="let creator of creators" [type]="creator.type"
-                    [projectId]="selectedProjectId$ | async"></ama-project-import-menu>
-            </ng-container>
-        </mat-menu>
     </div>
-
 
     <div class="app-navigation__section app-navigation__section--menu">
         <ng-container *ngIf="(expanded$ | async); else collapsedProjectTree">

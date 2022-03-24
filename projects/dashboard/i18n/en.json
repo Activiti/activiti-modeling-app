@@ -1,7 +1,7 @@
 {
     "DASHBOARD": {
         "NEW_MENU": {
-            "LABEL": "NEW",
+            "LABEL": "New",
             "CREATE_PROJECT_TITLE": "Create Project",
             "OVERRIDE_PROJECT_TITLE": "A project with that name already exists.",
             "EDIT_PROJECT_TITLE": "Edit Project",

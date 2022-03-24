@@ -1,0 +1,11 @@
+<div class="ama-create-element-dialog">
+    <div class="ama-create-element-dialog-title">
+        <span>{{'PROJECT_EDITOR.NEW_MENU.LABEL' | translate }}</span>
+        <button mat-icon-button aria-label="Close button for create element dialog" disableRipple="true" (click)="onClickClose()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <mat-dialog-content class="ama-create-element-dialog-content">
+        <ama-project-element-create (actionExecuted)="onClickClose()"></ama-project-element-create>
+    </mat-dialog-content>
+</div>

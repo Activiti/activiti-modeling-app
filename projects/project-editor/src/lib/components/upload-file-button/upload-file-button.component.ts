@@ -15,11 +15,10 @@
  * limitations under the License.
  */
 
-import { Component, Input, ElementRef, ViewChild, Inject, Optional, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, Inject, Optional, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { LogService } from '@alfresco/adf-core';
 import { ModelUploader, AmaState, MODEL_UPLOADERS } from '@alfresco-dbp/modeling-shared/sdk';
-
 @Component({
     selector: 'ama-upload-file-button',
     templateUrl: './upload-file-button.component.html',
@@ -29,6 +28,7 @@ import { ModelUploader, AmaState, MODEL_UPLOADERS } from '@alfresco-dbp/modeling
 export class UploadFileButtonComponent {
     @Input() type: string;
     @Input() projectId: string;
+    @Output() fileUploaded = new EventEmitter();
     @ViewChild('fileInput', { static: true }) fileInput: ElementRef;
 
     get acceptedFileTypes(): string {
@@ -67,10 +67,12 @@ export class UploadFileButtonComponent {
 
                 this.store.dispatch(new ActionClass({ file: files[0], projectId: this.projectId }));
                 this.fileInput.nativeElement.value = null;
+                this.fileUploaded.emit('success');
             }
         } catch (error) {
             this.logger.error('Problem occurred while trying to upload model.');
             this.logger.error(error);
+            this.fileUploaded.emit('error');
         }
     }
 }

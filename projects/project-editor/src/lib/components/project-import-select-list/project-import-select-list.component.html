@@ -1,0 +1,31 @@
+<div class="ama-model-importer">
+    <mat-form-field class="ama-model-importer-select">
+        <mat-label>{{'PROJECT_EDITOR.SELECT_MODEL_TYPE' | translate}}</mat-label>
+        <mat-select name="modelChoice" #selection
+                    id="ama-model-importers-select-object"
+                    (selectionChange)="onModelTypeChange($event)">
+            <mat-option [value]="" selected>{{'PROJECT_EDITOR.NO_OPTION_SELECTED' | translate}}</mat-option>
+            <mat-option *ngFor="let importer of importers"
+                [attr.id]="'item-importer-'+importer.type"
+                [attr.data-automation-id]="'item-importer-'+importer.type"
+                [value]="importer">
+                {{importer.type}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-selection-list [multiple]="false" *ngIf="!(isLoading | async); else loading" class="ama-model-importer-select-list">
+        <mat-list-option *ngFor="let item of items"
+            [value]="item.id" matTooltip="{{item.description}}"
+            [attr.data-automation-id]="'item-' + getDataAutomationFromDisplayName(item.displayName, selection.value)"
+            (click)="onImport(item.id, selection.value)">
+            <mat-icon mat-list-icon>{{item.iconName}}</mat-icon>
+            <span>{{item.displayName}}</span>
+        </mat-list-option>
+    </mat-selection-list>
+</div>
+
+<ng-template #loading>
+    <div class="ama-model-importer-spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>

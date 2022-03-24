@@ -1,0 +1,19 @@
+.ama-model-importer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &-select {
+        width: 90%;
+
+        &-list {
+            width: 100%;
+        }
+    }
+
+    &-spinner {
+        display: flex;
+        justify-content: center;
+    }
+}

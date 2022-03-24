@@ -21,9 +21,9 @@ import { Observable } from 'rxjs';
 import {
     AmaState, selectSelectedProjectId, ModelCreatorDialogParams,
     MODEL_CREATORS, ModelCreator, OpenEntityDialogAction, MODEL_IMPORTERS,
-    ModelImporter, CONNECTOR, selectMenuOpened
+    ModelImporter, selectMenuOpened, OpenDialogAction
 } from '@alfresco-dbp/modeling-shared/sdk';
-import { AppConfigService } from '@alfresco/adf-core';
+import { ProjectElementCreateDialogComponent } from '../project-element-create-dialog/project-element-create-dialog.component';
 
 const orderBy = require('lodash/orderBy');
 
@@ -36,15 +36,10 @@ export class ProjectNavigationComponent implements AfterContentInit {
     expanded$: Observable<boolean>;
     selectedProjectId$: Observable<string>;
     public creators: ModelCreator[];
-    enableCustomConnectors: boolean;
 
-    constructor(
-        private store: Store<AmaState>,
+    constructor(private store: Store<AmaState>,
         @Inject(MODEL_CREATORS) modelCreators: ModelCreator[],
-        @Optional() @Inject(MODEL_IMPORTERS) private importers: ModelImporter[],
-        private appConfig: AppConfigService
-    ) {
-        this.enableCustomConnectors = this.isCustomConnectorsEnabled();
+        @Optional() @Inject(MODEL_IMPORTERS) private importers: ModelImporter[]) {
         this.creators = orderBy(modelCreators, ['order'], ['asc']);
     }
 
@@ -61,25 +56,12 @@ export class ProjectNavigationComponent implements AfterContentInit {
         this.selectedProjectId$ = this.store.select(selectSelectedProjectId);
     }
 
-    public isAllowed(creator: ModelCreator, action: 'create' | 'upload'): boolean {
-        let allow = true;
-        switch (action) {
-            case 'create':
-                allow = !creator.disableCreate;
-                break;
-            case 'upload':
-                allow = !creator.disableUpload;
-                break;
-        }
-
-        return allow && (creator.type !== CONNECTOR || this.isCustomConnectorsEnabled());
-    }
-
-    public getKey(creator: ModelCreator): string {
-        return creator.key || creator.type;
-    }
-
-    private isCustomConnectorsEnabled(): boolean {
-        return this.appConfig.get('enableCustomConnectors') === false ? false : true;
+    openDialog() {
+        this.store.dispatch(new OpenDialogAction(ProjectElementCreateDialogComponent, {
+            height: '400px',
+            width: '680px',
+            panelClass: 'ama-create-element-dialog',
+            data: {}
+        }));
     }
 }

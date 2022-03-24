@@ -33,12 +33,15 @@ import { ProjectTreeHelper } from './components/project-tree/project-tree.helper
 import { ProjectTreeIconsComponent } from './components/project-tree/project-tree-icons/project-tree-icons.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ExtensionsModule } from '@alfresco/adf-extensions';
-import { ProjectImportMenuComponent } from './components/project-import-menu/project-import-menu.component';
 import { provideRoutes, RouterModule } from '@angular/router';
 import { Environment } from '@alfresco-dbp/adf-candidates/core/environment';
 import { projectEditorRoutes } from './router/project-editor.routes';
 import { studioProjectEditorRoutes } from './router/studio-editor-project.routes';
-
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { ProjectElementCreateComponent } from './components/project-element-create/project-element-create.component';
+import { ProjectElementCreateDialogComponent } from './components/project-element-create-dialog/project-element-create-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
+import { ProjectImportSelectListComponent } from './components/project-import-select-list/project-import-select-list.component';
 @NgModule({
     imports: [
         CommonModule,
@@ -48,7 +51,9 @@ import { studioProjectEditorRoutes } from './router/studio-editor-project.routes
         StoreModule.forFeature(PROJECT_EDITOR_STATE_NAME, { tree }),
         EffectsModule.forFeature([ProjectEffects]),
         ExtensionsModule,
-        RouterModule
+        RouterModule,
+        MatSidenavModule,
+        MatSelectModule
     ],
     declarations: [
         ProjectContentComponent,
@@ -57,7 +62,9 @@ import { studioProjectEditorRoutes } from './router/studio-editor-project.routes
         ProjectTreeFilterComponent,
         UploadFileButtonComponent,
         ProjectTreeIconsComponent,
-        ProjectImportMenuComponent
+        ProjectImportSelectListComponent,
+        ProjectElementCreateComponent,
+        ProjectElementCreateDialogComponent
     ],
     providers: [
         ProjectEditorService,
