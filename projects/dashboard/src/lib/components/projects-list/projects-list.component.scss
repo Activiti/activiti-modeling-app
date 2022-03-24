@@ -60,11 +60,11 @@
         }
 
         .mat-header-cell {
-            color: var(--theme-primary-color);
+            color: var(--theme-accent-color);
         }
 
         .mat-sort-header-arrow {
-            color: var(--theme-primary-color);
+            color: var(--theme-accent-color);
         }
 
         .mat-row {
@@ -93,7 +93,7 @@
 
         .mat-table {
             padding-bottom: 15px;
-            font-family: 'Inter';
+            font-family: var(--theme-font-family);
             height: calc(100% - 30px);
         }
 

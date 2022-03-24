@@ -3,7 +3,6 @@
     height: 20px;
     line-height: 40px;
     padding: 15px 0 35px 15px;
-    background: var(--theme-card-bg-color);
 
     &-title {
         font-size: 20px;
@@ -36,7 +35,7 @@
         }
 
         .studio-create-button {
-            background-color: #ffc600;
+            background-color: var(--theme-primary-color);
         }
     }
 }

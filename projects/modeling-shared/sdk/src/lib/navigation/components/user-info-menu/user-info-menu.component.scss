@@ -1,5 +1,5 @@
 .ama-user-menu {
-    font-family: 'Inter';
+    font-family: var(--theme-font-family);
 
     &-initials {
 
@@ -13,7 +13,7 @@
             line-height: 32px !important;
             text-align: center;
             vertical-align: middle;
-            background-color: var(--theme-accent-color) !important;
+            background-color: var(--theme-primary-color) !important;
             border: none;
         }
 

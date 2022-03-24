@@ -24,7 +24,7 @@
                                 class="studio-main-navigation-menu-element-button"
                                 [routerLink]="item.route.url"
                                 [disableRipple]="true"
-                                [color]="rla.isActive ? 'accent' : 'primary'"
+                                [color]="rla.isActive ? 'primary' : 'accent'"
                                 [title]="item.label | translate">
                             <span [routerLink]="item.route.url"
                                   [ngClass]="{ 'studio-main-navigation-menu-element-active': rla.isActive,
@@ -38,14 +38,14 @@
             </ul>
         </div>
         <div class="studio-main-navigation-section" >
-            <a class="studio-main-navigation-main-title">{{'NEW_STUDIO_DASHBOARD.NAVIGATION.CUSTOM_MODEL_TITLE' | translate}}</a>
+            <a class="studio-main-navigation-main-title">{{'NEW_STUDIO_DASHBOARD.NAVIGATION.CONTENT_MODEL_TITLE' | translate}}</a>
             <ul class="studio-main-navigation-menu">
                 <ng-container *ngFor="let item of navigation.contentModels">
                     <li class="studio-main-navigation-menu-element" routerLinkActive #rla="routerLinkActive"
                         title="{{ item.title || '' | translate }}" *ngIf="!item.disabled">
 
-                        <button mat-icon-button mat-ripple matRippleColor="primary" [routerLink]="item.route.url"
-                            [color]="rla.isActive ? 'accent' : 'primary'" [matRippleTrigger]="rippleTrigger"
+                        <button mat-icon-button mat-ripple matRippleColor="accent" [routerLink]="item.route.url"
+                            [color]="rla.isActive ? 'primary' : 'accent'" [matRippleTrigger]="rippleTrigger"
                             [matRippleCentered]="true" [title]="item.label | translate">
                             <span #rippleTrigger class="" [routerLink]="item.route.url"
                             [ngClass]="{
@@ -65,8 +65,8 @@
                     <li class="studio-main-navigation-menu-element" routerLinkActive #rla="routerLinkActive"
                         title="{{ item.title || '' | translate }}" *ngIf="!item.disabled">
 
-                        <button mat-icon-button mat-ripple matRippleColor="primary" [routerLink]="item.route.url"
-                            [color]="rla.isActive ? 'accent' : 'primary'" [matRippleTrigger]="rippleTrigger"
+                        <button mat-icon-button mat-ripple matRippleColor="accent" [routerLink]="item.route.url"
+                            [color]="rla.isActive ? 'primary' : 'accent'" [matRippleTrigger]="rippleTrigger"
                             [matRippleCentered]="true" [title]="item.label | translate">
                             <span #rippleTrigger class="" [routerLink]="item.route.url"
                             [ngClass]="{

@@ -34,14 +34,84 @@ $studio-orange: (
     )
 );
 
-// $primary: mat-palette($studio-orange);
-$primary: mat-palette($mat-grey);
-$accent: mat-palette($mat-orange);
-$warn: mat-palette($mat-deep-orange);
+$studio-light-warn: (
+    50 : #ffede0,
+    100 : #ffd3b3,
+    200 : #ffb580,
+    300 : #ff974d,
+    400 : #ff8126,
+    500 : #ff6b00,
+    600 : #ff6300,
+    700 : #ff5800,
+    800 : #ff4e00,
+    900 : #ff3c00,
+    A100 : #ffffff,
+    A200 : #fff4f2,
+    A400 : #ffcabf,
+    A700 : #ffb5a6,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$studio-dark-warn: (
+    50 : #fff6f2,
+    100 : #ffe9de,
+    200 : #ffdac8,
+    300 : #ffcbb2,
+    400 : #ffc0a2,
+    500 : #ffb591,
+    600 : #ffae89,
+    700 : #ffa57e,
+    800 : #ff9d74,
+    900 : #ff8d62,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #fff1eb,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+$studio-background: rgba(33, 33, 33, 0.12);
+
+$primary: mat-palette($studio-orange);
+$accent: mat-palette($mat-grey);
+$warn: mat-palette($studio-light-warn);
 $theme: mat-light-theme($primary, $accent, $warn);
 
-$dark-primary: mat-palette($mat-cyan);
-$dark-accent: mat-palette($mat-orange);
-$dark-warn: mat-palette($alfresco-warn);
+$dark-primary: mat-palette($studio-orange);
+$dark-accent: mat-palette($mat-grey);
+$dark-warn: mat-palette($studio-dark-warn);
 $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 

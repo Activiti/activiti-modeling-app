@@ -4,12 +4,16 @@
 
 @include mat-core($alfresco-typography);
 
+$studio-typography: mat-typography-config(
+    $font-family: 'Inter'
+);
+
 body, html {
     margin: 0;
     height: 100%;
     overflow: hidden;
     font-size: mat-font-size($alfresco-typography, body-1);
-    font-family: mat-font-family($alfresco-typography);
+    font-family: mat-font-family($studio-typography);
     line-height: mat-line-height($alfresco-typography, body-1);
 }
 
@@ -68,7 +72,7 @@ $defaults: (
   --theme-ama-condition-builder-accent-text-color: mat-color($accent, text, 0.75),
   --theme-disabled-bg-color: mat-color($foreground, text, 0.05),
   --theme-hint-bg-color: mat-color($foreground, text, 0.5),
-  --theme-font-family: mat-font-family($alfresco-typography),
+  --theme-font-family: mat-font-family($studio-typography),
   --theme-body-1-font-size: mat-font-size($alfresco-typography, body-1),
   --theme-body-1-line-height: mat-line-height($alfresco-typography, body-1),
   --theme-caption-font-size: mat-font-size($alfresco-typography, caption),

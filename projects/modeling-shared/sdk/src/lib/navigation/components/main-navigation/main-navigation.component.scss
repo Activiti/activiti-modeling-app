@@ -1,7 +1,7 @@
 .studio-main-navigation {
     width: 288px;
     height: calc(100% - 15px);
-    background: var(--theme-app-bar-bg-color);
+    background: var(--theme-ama-var-selector-bg-color);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -29,7 +29,7 @@
                 &-circle {
                     width: 22px;
                     height: 22px;
-                    background-color: #ffc600;
+                    background-color:  var(--theme-primary-color);
                     border-radius: 11px;
                 }
 
@@ -58,6 +58,12 @@
             padding: 5px;
             width: 40%;
             justify-content: space-around;
+
+            adf-notification-history {
+                .mat-badge-content {
+                    background: var(--theme-primary-color);
+                }
+            }
         }
     }
 
@@ -69,7 +75,7 @@
     }
 
     &-main-title {
-        font-family: 'Inter';
+        font-family: var(--theme-font-family);
         font-style: normal;
         font-weight: 500;
         font-size: 10px;
@@ -88,7 +94,6 @@
         width: 100%;
 
         &-element {
-            font-family: 'Inter';
             font-style: normal;
             font-weight: normal;
             font-size: 14px;
@@ -111,8 +116,8 @@
             }
 
             &-active {
-                color: var(--theme-accent-color);
+                color: var(--theme-primary-color);
             }
         }
-      }
+    }
 }

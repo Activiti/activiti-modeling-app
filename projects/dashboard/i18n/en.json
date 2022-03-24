@@ -62,7 +62,7 @@
         "NAME": "Modeler",
         "NAVIGATION": {
             "PROJECT_TITLE": "Projects",
-            "CUSTOM_MODEL_TITLE": "Custom Models",
+            "CONTENT_MODEL_TITLE": "Content Models",
             "DATA_MODELS_TITLE": "Data Models",
             "ALL_PROJECTS": {
                 "HEADER_LABEL": "My projects",
