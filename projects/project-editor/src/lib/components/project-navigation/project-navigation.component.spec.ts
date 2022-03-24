@@ -103,53 +103,6 @@ describe('ProjectNavigationComponent', () => {
             expect(icons === null).toBeFalsy();
             expect(appTree === null).toBeTruthy();
         });
-
-        // xit('should not display connector creator options when enableCustomConnectors is false', () => {
-        //     setUpComponentForEnableCustomConnectors(false);
-        //     const component = fixture.componentInstance;
-        //     const buttonProcess = element.query(By.css('[data-automation-id="app-navigation-create-process"]'));
-        //     const buttonConnector = element.query(By.css('[data-automation-id="app-navigation-create-connector"]'));
-
-        //     expect(component.enableCustomConnectors).toBe(false);
-        //     expect(buttonProcess).not.toBeNull();
-        //     expect(buttonConnector).toBeNull();
-        // });
-
-        // xit('should display connector creator options when enableCustomConnectors is true', () => {
-        //     setUpComponentForEnableCustomConnectors(true);
-        //     const component = fixture.componentInstance;
-        //     const buttonProcess = element.query(By.css('[data-automation-id="app-navigation-create-process"]'));
-        //     const buttonConnector = element.query(By.css('[data-automation-id="app-navigation-create-connector"]'));
-
-        //     expect(component.enableCustomConnectors).toBe(true);
-        //     expect(buttonProcess).not.toBeNull();
-        //     expect(buttonConnector).not.toBeNull();
-        // });
-
-        // xit('should display connector creator options when enableCustomConnectors is null', () => {
-        //     setUpComponentForEnableCustomConnectors(null);
-        //     const component = fixture.componentInstance;
-        //     const buttonProcess = element.query(By.css('[data-automation-id="app-navigation-create-process"]'));
-        //     const buttonConnector = element.query(By.css('[data-automation-id="app-navigation-create-connector"]'));
-
-        //     expect(component.enableCustomConnectors).toBe(true);
-        //     expect(buttonProcess).not.toBeNull();
-        //     expect(buttonConnector).not.toBeNull();
-        // });
-
-        // function setUpComponentForEnableCustomConnectors(enable: boolean): void {
-        //     appConfig = TestBed.inject(AppConfigService);
-        //     appConfig.config.enableCustomConnectors = enable;
-        //     fixture = TestBed.createComponent(ProjectNavigationComponent);
-        //     element = fixture.debugElement;
-        //     fixture.detectChanges();
-
-        //     const button = element.query(By.css('.adf-sidebar-action-menu-icon .mat-icon'));
-        //     button.triggerEventHandler('click', { stopPropagation: jest.fn() });
-
-        //     const button2 = element.query(By.css('[data-automation-id="app-navigation-create"]'));
-        //     button2.triggerEventHandler('click', { stopPropagation: jest.fn() });
-        // }
     });
 
     describe('For tests when expanded is true', () => {
