@@ -26,7 +26,7 @@ import {
     ProjectContextMenuActionClass, selectLoading, selectPagination, selectProjectSummaries,
      GetProjectsAttemptAction, DeleteProjectAttemptAction, UpdateProjectAttemptAction, OpenSaveAsProjectDialogAction,
     SaveAsProjectAttemptAction, ExportProjectAction, AddToFavoritesProjectAttemptAction, RemoveFromFavoritesProjectAttemptAction,
-    GetFavoriteProjectsAttemptAction, selectFavoriteProjectSummaries
+    GetFavoriteProjectsAttemptAction, selectFavoriteProjectSummaries, LayoutService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
@@ -69,7 +69,8 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
         @Optional() public buttons: ProjectContextMenuOption[],
         private store: Store<AmaState>,
         private router: Router,
-        private route: ActivatedRoute) {
+        private route: ActivatedRoute,
+        private layoutService: LayoutService) {
     }
 
     ngOnInit() {
@@ -115,6 +116,10 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
             new GetFavoriteProjectsAttemptAction({ maxItems, skipCount }, sorting, search) :
             new GetProjectsAttemptAction({ maxItems, skipCount }, sorting, search)
         );
+    }
+
+    isMobileScreen() {
+        return this.layoutService.isTabletWidth();
     }
 
     onPageChange(event: PageEvent, pagination: Pagination) {

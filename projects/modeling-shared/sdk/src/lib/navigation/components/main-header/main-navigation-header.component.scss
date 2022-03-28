@@ -1,8 +1,10 @@
 .studio-project-list-header {
     box-sizing: content-box;
-    height: 20px;
+    height: 30px;
     line-height: 40px;
-    padding: 15px 0 35px 15px;
+    padding: 25px 0 35px 15px;
+    background: var(--theme-card-background-color);
+    border: 1px solid var(--theme-studio-background);
 
     &-title {
         font-size: 20px;
@@ -17,10 +19,11 @@
     &-actions {
         width: 25%;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: flex-end;
         margin-right: 12px;
+        align-items: center;
 
-        button {
+        .mat-button {
             font-weight: bold;
             height: fit-content;
             border-radius: 6px;
@@ -36,6 +39,19 @@
 
         .studio-create-button {
             background-color: var(--theme-primary-color);
+            margin-left: 15px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .studio-create-button.mat-mini-fab.mat-accent {
+                background-color: #ffc600;
+                box-shadow: unset;
+            }
+
+            .studio-upload-button.mat-mini-fab.mat-accent {
+                background: rgba(33, 33, 33, 0.05);
+                box-shadow: unset;
+            }
         }
     }
 }

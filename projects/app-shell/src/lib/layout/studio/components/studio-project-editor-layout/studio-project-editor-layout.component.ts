@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+import { LayoutService } from '@alfresco-dbp/modeling-shared/sdk';
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
@@ -23,4 +24,13 @@ import { Component, ViewEncapsulation } from '@angular/core';
     encapsulation: ViewEncapsulation.None
 })
 export class StudioProjectEditorLayoutComponent {
+
+    mediaQueryList: MediaQueryList;
+
+    constructor(private layoutService: LayoutService) {
+    }
+
+    get isMobileScreenSize(): boolean {
+        return this.layoutService.isSmallScreenWidth();
+    }
 }

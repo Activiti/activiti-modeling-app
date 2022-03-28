@@ -17,12 +17,14 @@
 
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
 import { By } from '@angular/platform-browser';
 import { Router, RouterEvent } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { of, ReplaySubject } from 'rxjs';
+import { LayoutService } from '../../../services/layout.service';
 import { AmaState } from '../../../store/app.state';
 import { MainNavigationHeaderComponent } from './main-navigation-header.component';
 
@@ -40,7 +42,8 @@ describe('MainNavigationHeaderComponent', () => {
             ],
             imports: [
                 TranslateModule.forRoot(),
-                RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([]),
+                MatIconModule
             ],
             providers: [
                 { provide: TranslationService, useClass: TranslationMock },
@@ -56,7 +59,8 @@ describe('MainNavigationHeaderComponent', () => {
                     useValue: {
                         dispatch: jest.fn().mockReturnValue(of({}))
                     }
-                }
+                },
+                LayoutService
             ]
         });
 

@@ -1,9 +1,15 @@
 <!-- <router-outlet name="search"></router-outlet> -->
 <mat-sidenav-container class="studio-layout">
-    <mat-sidenav mode="side" position="start" opened="true">
+    <mat-sidenav position="start"
+                 leftSidenav
+                 [mode]="isMobileScreenSize ? 'over' : 'side'"
+                 [opened]="!this.isMobileScreenSize"
+                 [(opened)]="leftOpened">
         <router-outlet name="left-sidebar"></router-outlet>
     </mat-sidenav>
-    <mat-sidenav mode="side" position="end">
+    <mat-sidenav [mode]="isMobileScreenSize ? 'over' : 'side'"
+                 [opened]="!isMobileScreenSize"
+                  position="end">
         <router-outlet name="right-sidenav"></router-outlet>
     </mat-sidenav>
     <section class="studio-layout-content">

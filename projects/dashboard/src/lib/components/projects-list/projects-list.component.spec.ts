@@ -23,7 +23,7 @@ import { Store } from '@ngrx/store';
 import {
     AmaState, AmaApi, PROJECT_CONTEXT_MENU_OPTIONS, selectLoading,
     selectPagination, selectProjectSummaries, ExportProjectAction,
-    RemoveFromFavoritesProjectAttemptAction, AddToFavoritesProjectAttemptAction
+    RemoveFromFavoritesProjectAttemptAction, AddToFavoritesProjectAttemptAction, LayoutService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { By } from '@angular/platform-browser';
 import { of, BehaviorSubject } from 'rxjs';
@@ -44,6 +44,7 @@ describe ('Projects List Component', () => {
     let component: ProjectsListComponent;
     let fixture: ComponentFixture<ProjectsListComponent>;
     let store: Store<AmaState>;
+    let layoutService: LayoutService;
 
     const projectsLoaded$ = new BehaviorSubject<boolean>(false);
     const paginationLoaded$ = new BehaviorSubject<Pagination>(paginationMock);
@@ -87,7 +88,8 @@ describe ('Projects List Component', () => {
                 },
                 { provide: PROJECT_CONTEXT_MENU_OPTIONS, useValue: []},
                 { provide: TranslationService, useClass: TranslationMock },
-                { provide: AppConfigService, useValue: { get() { return {}; } } }
+                { provide: AppConfigService, useValue: { get() { return {}; } } },
+                LayoutService
             ],
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
         }).overrideModule(MatIconModule, {
@@ -100,6 +102,8 @@ describe ('Projects List Component', () => {
         dashboardService = TestBed.inject(DashboardService);
         fixture = TestBed.createComponent(ProjectsListComponent);
         store = TestBed.inject(Store);
+        layoutService = TestBed.inject(LayoutService);
+        layoutService.isTabletWidth = jest.fn().mockReturnValue(false);
         component = fixture.componentInstance;
         component.ngOnInit();
         fixture.detectChanges();

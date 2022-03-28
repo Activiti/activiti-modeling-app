@@ -15,12 +15,34 @@
  * limitations under the License.
  */
 
-import { Component, ViewEncapsulation } from '@angular/core';
-
+import { LayoutService } from '@alfresco-dbp/modeling-shared/sdk';
+import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 @Component({
     templateUrl: './studio-layout.component.html',
     styleUrls: ['./studio-layout.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class StudioLayoutComponent {
+export class StudioLayoutComponent implements OnDestroy {
+
+    leftOpened = true;
+    onDestroy$: Subject<boolean> = new Subject<boolean>();
+
+    constructor(private layoutService: LayoutService) {
+        this.layoutService.sidenavStatus$
+            .pipe(takeUntil(this.onDestroy$))
+            .subscribe(() => {
+                this.leftOpened = !this.leftOpened;
+            });
+    }
+
+    ngOnDestroy(): void {
+        this.onDestroy$.next(true);
+        this.onDestroy$.complete();
+    }
+
+    get isMobileScreenSize(): boolean {
+        return this.layoutService.isSmallScreenWidth();
+    }
 }

@@ -1,9 +1,9 @@
 <router-outlet name="main-header"></router-outlet>
 <mat-sidenav-container class="studio-project-layout">
-    <mat-sidenav mode="side" position="start" opened="true">
+    <mat-sidenav mode="side" position="start" [mode]="isMobileScreenSize ? 'over' : 'side'" [opened]="!isMobileScreenSize">
         <router-outlet name="left-sidebar"></router-outlet>
     </mat-sidenav>
-    <mat-sidenav mode="side" position="end">
+    <mat-sidenav mode="side" position="end" [mode]="isMobileScreenSize ? 'over' : 'side'" [opened]="!isMobileScreenSize">
         <router-outlet name="right-sidenav"></router-outlet>
     </mat-sidenav>
     <section class="studio-project-layout-content">

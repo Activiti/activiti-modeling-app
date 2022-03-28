@@ -17,6 +17,7 @@
     .mat-paginator {
         &-container {
             position: relative;
+            background: transparent;
             .mat-paginator-page-size {
                 position: absolute;
                 left: 20px;
@@ -26,6 +27,12 @@
         .mat-form-field-type-mat-select {
             width: 56px;
         }
+
+        @media only screen and (max-width: 425px) {
+            .mat-paginator-page-size-label {
+                display: none;
+            }
+        }
     }
 
     &-list {
@@ -34,8 +41,8 @@
 
         &-container {
             overflow: scroll;
-            height: calc(100% - 55px);
-            background: transparent;
+            height: 100%;
+            background-color: var(--theme-card-background-color);
 
             &-favorite-cell {
                 justify-content: center;
@@ -68,14 +75,14 @@
         }
 
         .mat-row {
-            border: none;
             cursor: pointer;
             transition: background-color 250ms;
             padding: 0 24px 0 0;
 
+
             .mat-cell {
-                line-height: 48px;
                 vertical-align: middle;
+                border: none;
             }
 
             .mat-icon.ama-thumbnail {
@@ -92,9 +99,14 @@
         }
 
         .mat-table {
-            padding-bottom: 15px;
+            padding-bottom: 10px;
             font-family: var(--theme-font-family);
-            height: calc(100% - 30px);
+            width: 100%;
+            margin-bottom: 3%;
+
+            @media only screen and (max-width: 768px) {
+                padding: 0 10px 15px;
+            }
         }
 
         .cdk-column-thumbnail {
@@ -115,6 +127,88 @@
             flex: 0 1 auto;
             padding-right: 24px;
         }
+
+        @media (max-width: 768px) {
+            .mat-table {
+               thead {
+                   display: none;
+               }
+
+              .mat-header-row {
+                display: flex;
+                flex-wrap: wrap;
+                height: auto;
+                position: sticky;
+                top: 0;
+                z-index: 2;
+
+                th.mat-header-cell {
+                  display: flex;
+                  flex: 1;
+                  align-items: center;
+                  padding: 1px 0.5px;
+                  justify-content: space-around;
+
+                  & > .mat-sort-header-container {
+                    padding-left: 15px;
+                  }
+
+                  &:not([mat-sort-header]),
+                  &.mat-sort-header-disabled,
+                  &.mat-column-actions {
+                    display: none;
+                  }
+                }
+              }
+
+              .mat-row {
+                height: auto;
+
+                td.mat-cell:not(.mat-column-actions) {
+                  display: grid;
+                  grid-template-columns: 50% 50%;
+                  padding: 0.5px;
+                  text-align: right;
+                  word-break: break-word;
+                  border-bottom: 1px inset;
+
+                  & > * {
+                    grid-column: 2;
+                  }
+
+                  &::before {
+                    content: attr(data-column-name);
+                    text-align: left;
+                  }
+                }
+
+                td.mat-column-actions {
+                  display: flex;
+                  justify-content: center;
+                  padding: 0 0.5px;
+
+                  & > button {
+                    margin: 0.5px 0;
+                  }
+                }
+
+                &:last-of-type td:last-of-type {
+                  border: none;
+                }
+
+                &:not(:last-of-type) td:last-of-type {
+                  border-bottom: 0.5px solid #fafafa;
+                }
+              }
+            }
+
+            .mat-card,
+            .mat-expansion-panel {
+              .mat-table {
+                border: 0.5px solid #fafafa;
+              }
+            }
+          }
     }
 
     &-spinner {
@@ -126,4 +220,5 @@
         margin-top: 48px;
         text-align: center;
     }
+
 }

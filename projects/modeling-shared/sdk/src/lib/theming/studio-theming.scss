@@ -1,6 +1,8 @@
 @import '@alfresco/adf-core/theming';
 @import '~@angular/material/theming';
 
+$studio-background: rgba(33, 33, 33, 0.12);
+
 $studio-orange: (
     50: #fff8e0,
     100: #ffeeb3,
@@ -17,7 +19,7 @@ $studio-orange: (
     A400: #ffe5bf,
     A700: #ffdba6,
     contrast: (
-        50: $black-87-opacity,
+        50:  $studio-background,
         100: $black-87-opacity,
         200: $black-87-opacity,
         300: white,
@@ -101,9 +103,6 @@ $studio-dark-warn: (
     )
 );
 
-
-
-$studio-background: rgba(33, 33, 33, 0.12);
 
 $primary: mat-palette($studio-orange);
 $accent: mat-palette($mat-grey);

@@ -31,12 +31,14 @@ export const navigationData = {
                 {
                     actionName: 'upload',
                     title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.UPLOAD',
-                    handler: 'IMPORT_PROJECT_DIALOG'
+                    handler: 'IMPORT_PROJECT_DIALOG',
+                    icon: 'file_upload'
                 },
                 {
                     actionName: 'create',
                     title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.CREATE',
-                    handler: 'CREATE_PROJECT_DIALOG'
+                    handler: 'CREATE_PROJECT_DIALOG',
+                    icon: 'add'
                 }
             ]
         },
@@ -52,12 +54,14 @@ export const navigationData = {
                 {
                     actionName: 'upload',
                     title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.UPLOAD',
-                    handler: 'IMPORT_PROJECT_DIALOG'
+                    handler: 'IMPORT_PROJECT_DIALOG',
+                    icon: 'file_upload'
                 },
                 {
                     actionName: 'create',
                     title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.CREATE',
-                    handler: 'CREATE_PROJECT_DIALOG'
+                    handler: 'CREATE_PROJECT_DIALOG',
+                    icon: 'add'
                 }
             ]
         },
@@ -83,7 +87,8 @@ export const navigationData = {
                 {
                     actionName: 'create',
                     title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.SHARED_MODELS.ACTIONS.CREATE',
-                    handler: 'CREATE_GLOBAL_PROJECT_MODE'
+                    handler: 'CREATE_GLOBAL_PROJECT_MODE',
+                    icon: 'public'
                 }
             ]
         }],
@@ -100,7 +105,8 @@ export const navigationData = {
                 {
                     actionName: 'create',
                     title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.DATA_MODELS.ACTIONS.CREATE',
-                    handler: 'CREATE_GLOBAL_DATA_MODEL'
+                    handler: 'CREATE_GLOBAL_DATA_MODEL',
+                    icon: 'add'
                 }
             ]
         }]

@@ -15,58 +15,73 @@
  * limitations under the License.
  */
 
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { LayoutService } from '../../../services/layout.service';
 import { AmaState } from '../../../store/app.state';
 import { navigationData } from '../main-navigation/main-navigation.component';
 
 @Component({
-  templateUrl: './main-navigation-header.component.html',
-  styleUrls: ['./main-navigation-header.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: './main-navigation-header.component.html',
+    styleUrls: ['./main-navigation-header.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class MainNavigationHeaderComponent implements OnInit, OnDestroy {
 
-  url = '';
-  headerLabel$ = new BehaviorSubject<string>('');
-  actions = [];
-  constructor(private router: Router, private store: Store<AmaState>) { }
-  onDestroy$: Subject<void> = new Subject<void>();
+    headerLabel$ = new BehaviorSubject<string>('');
+    onDestroy$: Subject<void> = new Subject<void>();
+    actions = [];
+    url = '';
+    mediaQueryList: MediaQueryList;
 
-  ngOnInit() {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationStart),
-      takeUntil(this.onDestroy$)
-    ).subscribe((event: NavigationStart) => {
-      this.url = event.url.split('?')[0];
-      this.loadNavigationDetails();
-    });
-    if (!this.url) {
-      this.url = this.router.url.split('?')[0];
-      this.loadNavigationDetails();
+    constructor(private router: Router, private store: Store<AmaState>, private layoutService: LayoutService) {
     }
-  }
 
-  loadNavigationDetails() {
-    Object.values(navigationData).find(data => {
-      const navigationDetails = data.find(nav => this.url === nav.route.url);
-      if (navigationDetails) {
-        this.headerLabel$.next(navigationDetails.header_label);
-        this.actions = navigationDetails.actions;
-      }
-    });
-  }
+    get isTabletScreen(): boolean {
+        return this.layoutService.isTabletWidth();
+    }
 
-  runAction(type: string) {
-    this.store.dispatch({ type });
-  }
+    get isSmallScreen(): boolean {
+        return this.layoutService.isSmallScreenWidth();
+    }
 
-  ngOnDestroy() {
-    this.onDestroy$.next();
-    this.onDestroy$.complete();
-  }
+    openSidenav() {
+        this.layoutService.toggleSideNav();
+    }
+
+    ngOnInit() {
+        this.router.events.pipe(
+            filter(event => event instanceof NavigationStart),
+            takeUntil(this.onDestroy$)
+        ).subscribe((event: NavigationStart) => {
+            this.url = event.url.split('?')[0];
+            this.loadNavigationDetails();
+        });
+        if (!this.url) {
+            this.url = this.router.url.split('?')[0];
+            this.loadNavigationDetails();
+        }
+    }
+
+    loadNavigationDetails() {
+        Object.values(navigationData).find(data => {
+            const navigationDetails = data.find(nav => this.url === nav.route.url);
+            if (navigationDetails) {
+                this.headerLabel$.next(navigationDetails.header_label);
+                this.actions = navigationDetails.actions;
+            }
+        });
+    }
+
+    runAction(type: string) {
+        this.store.dispatch({ type });
+    }
+
+    ngOnDestroy() {
+        this.onDestroy$.next();
+        this.onDestroy$.complete();
+    }
 }

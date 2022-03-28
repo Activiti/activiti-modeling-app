@@ -5,101 +5,86 @@
             <ng-container *ngIf="dataSource.data.length; else noDataTemplate">
                 <div class="ama-dashboard-list">
                     <div class="ama-dashboard-list-container">
-                            <mat-table
-                            [dataSource]="dataSource"
-                            matSort
-                            [matSortActive]="sorting.key"
-                            [matSortDirection]="$any(sorting.direction)"
-                            [matSortDisableClear]="true"
-                            (matSortChange)="onSortChange($event)">
+                        <table mat-table [dataSource]="dataSource" matSort modelingsdk-mat-table-responsive
+                            [matSortActive]="sorting.key" [matSortDirection]="$any(sorting.direction)"
+                            [matSortDisableClear]="true" (matSortChange)="onSortChange($event)">
 
                             <ng-container matColumnDef="name">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'DASHBOARD.TABLE.COLUMN_NAME' | translate }}</mat-header-cell>
-                                <mat-cell
-                                    *matCellDef="let element"
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'DASHBOARD.TABLE.COLUMN_NAME' |
+                                    translate }}</th>
+                                <td mat-cell *matCellDef="let element" [attr.data-column-name]="'DASHBOARD.TABLE.COLUMN_NAME' | translate"
                                     (click)="rowSelected(element)"
                                     [attr.data-automation-id]="'project-' + element.id"
-                                    [attr.data-project-id]="element.id"
-                                    [attr.data-project-name]="element.name">
+                                    [attr.data-project-id]="element.id" [attr.data-project-name]="element.name">
                                     <span> {{element.name}} </span>
-                                </mat-cell>
+                                </td>
                             </ng-container>
 
                             <ng-container matColumnDef="creationDate">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'DASHBOARD.TABLE.COLUMN_CREATED' | translate }}</mat-header-cell>
-                                <mat-cell *matCellDef="let element" (click)="rowSelected(element)"> {{ element.creationDate | amTimeAgo }} </mat-cell>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{
+                                    'DASHBOARD.TABLE.COLUMN_CREATED' | translate }}</th>
+                                <td mat-cell *matCellDef="let element" [attr.data-column-name]="'DASHBOARD.TABLE.COLUMN_CREATED' | translate"
+                                    (click)="rowSelected(element)"> {{
+                                    element.creationDate | amTimeAgo }} </td>
                             </ng-container>
 
                             <ng-container matColumnDef="createdBy">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'DASHBOARD.TABLE.COLUMN_CREATED_BY' | translate }}</mat-header-cell>
-                                <mat-cell *matCellDef="let element" (click)="rowSelected(element)"> {{ element.createdBy }} </mat-cell>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{
+                                    'DASHBOARD.TABLE.COLUMN_CREATED_BY' | translate }}</th>
+                                <td mat-cell *matCellDef="let element" [attr.data-column-name]="'DASHBOARD.TABLE.COLUMN_CREATED_BY' | translate"
+                                    (click)="rowSelected(element)"> {{
+                                    element.createdBy }} </td>
                             </ng-container>
 
                             <ng-container matColumnDef="lastModifiedDate">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'DASHBOARD.TABLE.COLUMN_MODIFIED' | translate }}</mat-header-cell>
-                                <mat-cell *matCellDef="let element" (click)="rowSelected(element)">{{ element.lastModifiedDate | amTimeAgo }}</mat-cell>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{
+                                    'DASHBOARD.TABLE.COLUMN_MODIFIED' | translate }}</th>
+                                <td mat-cell *matCellDef="let element" [attr.data-column-name]="'DASHBOARD.TABLE.COLUMN_MODIFIED' | translate"
+                                    (click)="rowSelected(element)">{{
+                                    element.lastModifiedDate | amTimeAgo }}</td>
                             </ng-container>
 
                             <ng-container matColumnDef="version">
-                                <mat-header-cell *matHeaderCellDef>{{ 'DASHBOARD.TABLE.COLUMN_VERSION' | translate }}</mat-header-cell>
-                                <mat-cell *matCellDef="let element" [attr.data-automation-id]="'project-version-' + element.id" (click)="rowSelected(element)"> {{ element.version }} </mat-cell>
+                                <th mat-header-cell *matHeaderCellDef>{{ 'DASHBOARD.TABLE.COLUMN_VERSION' | translate }}
+                                </th>
+                                <td mat-cell *matCellDef="let element" [attr.data-column-name]="'DASHBOARD.TABLE.COLUMN_VERSION' | translate"
+                                    [attr.data-automation-id]="'project-version-' + element.id"
+                                    (click)="rowSelected(element)"> {{ element.version }} </td>
                             </ng-container>
 
                             <ng-container matColumnDef="menu">
-                                <mat-header-cell *matHeaderCellDef>{{ 'DASHBOARD.TABLE.COLUMN_OPTIONS' | translate }}</mat-header-cell>
-                                <mat-cell *matCellDef="let element">
-                                    <button mat-icon-button [matMenuTriggerFor]="menu" [attr.data-automation-id]="'project-context-' + element.id"
-                                        [title]="'APP.MORE_ACTIONS' | translate">
-                                        <mat-icon>more_vert</mat-icon>
-                                    </button>
-                                    <mat-menu #menu="matMenu">
-                                        <button mat-menu-item (click)="editRow(element)" [attr.data-automation-id]="'project-edit-' + element.id">
-                                            <mat-icon>create</mat-icon> <span>{{ 'APP.MENU.EDIT' | translate }}</span>
-                                        </button>
-                                        <button mat-menu-item (click)="deleteRow(element)" [attr.data-automation-id]="'project-delete-' + element.id">
-                                            <mat-icon>delete</mat-icon> <span>{{ 'APP.MENU.DELETE' | translate }}</span>
-                                        </button>
-                                        <button mat-menu-item (click)="downloadProject(element)" [attr.data-automation-id]="'project-download-' + element.id">
-                                            <mat-icon>file_download</mat-icon> <span>{{ 'APP.MENU.DOWNLOAD' | translate }}</span>
-                                        </button>
-                                        <button mat-menu-item (click)="saveAsProject(element)" [attr.data-automation-id]="'project-save-as-' + element.id">
-                                            <mat-icon svgIcon="save_as"></mat-icon> <span>{{ 'APP.MENU.SAVE_AS' | translate }}</span>
-                                        </button>
-                                        <button *ngFor="let button of buttons" mat-menu-item
-                                            [attr.data-automation-id]="'project-' + button.automationId + '-' + element.id"
-                                            (click)="handleClick(button.actionClass, element.id)">
-                                                <mat-icon>{{ button.icon }}</mat-icon> <span>{{ button.title | translate }}</span>
-                                        </button>
-                                    </mat-menu>
-                                </mat-cell>
+                                <th mat-header-cell *matHeaderCellDef>{{ 'DASHBOARD.TABLE.COLUMN_OPTIONS' | translate }}
+                                </th>
+                                <td mat-cell *matCellDef="let element" [attr.data-column-name]="'DASHBOARD.TABLE.COLUMN_OPTIONS' | translate">
+                                    <ng-container [ngTemplateOutlet]="!isMobileScreen() ? actioMenu : mobileButtons"
+                                                  [ngTemplateOutletContext]="{element: element}">
+                                    </ng-container>
+                                </td>
                             </ng-container>
 
                             <ng-container matColumnDef="favorite">
-                                <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                                <mat-cell
-                                    *matCellDef="let element"
+                                <th mat-header-cell *matHeaderCellDef></th>
+                                <td mat-cell *matCellDef="let element"
                                     [attr.data-automation-id]="'project-favorite-' + element.id"
                                     (click)="addOrRemoveProjectFavorite(element)"
                                     class="ama-dashboard-list-container-favorite-cell">
-                                    <mat-icon data-automation-id="favorite-project" *ngIf="element.favorite">star</mat-icon>
-                                    <mat-icon data-automation-id="non-favorite-project" *ngIf="!element.favorite">star_border</mat-icon>
-                                </mat-cell>
+                                    <mat-icon data-automation-id="favorite-project" *ngIf="element.favorite">star
+                                    </mat-icon>
+                                    <mat-icon data-automation-id="non-favorite-project" *ngIf="!element.favorite">
+                                        star_border</mat-icon>
+                                </td>
                             </ng-container>
 
-                            <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-                            <mat-row *matRowDef="let row; columns: displayedColumns;">
-                            </mat-row>
-                        </mat-table>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
                     </div>
 
                     <div *ngIf="(dataSource$ | async).data.length" class="ama-paginator-block">
-                        <mat-paginator
-                            *ngIf="pagination$ | async; let pagination"
+                        <mat-paginator *ngIf="pagination$ | async; let pagination"
                             (page)="onPageChange($event, pagination)"
-                            [pageIndex]="pagination.skipCount / pagination.maxItems"
-                            [length]="pagination.totalItems"
-                            [pageSize]="pagination.maxItems"
-                            [pageSizeOptions]="pageSizeOptions">
+                            [pageIndex]="pagination.skipCount / pagination.maxItems" [length]="pagination.totalItems"
+                            [pageSize]="pagination.maxItems" [pageSizeOptions]="pageSizeOptions">
                         </mat-paginator>
                     </div>
 
@@ -107,10 +92,7 @@
             </ng-container>
 
             <ng-template #noDataTemplate>
-                <adf-empty-content
-                    icon="apps"
-                    class="ama-dashboard-emptylist"
-                    title="DASHBOARD.TABLE.NO_ITEMS">
+                <adf-empty-content icon="apps" class="ama-dashboard-emptylist" title="DASHBOARD.TABLE.NO_ITEMS">
                 </adf-empty-content>
             </ng-template>
         </ng-container>
@@ -121,6 +103,61 @@
         <div class="ama-dashboard-list">
             <mat-spinner class="ama-dashboard-spinner"></mat-spinner>
         </div>
+    </ng-template>
+
+    <ng-template #mobileButtons let-element="element">
+        <div class="ama-project-list-icon-button-menu">
+            <button mat-icon-button (click)="editRow(element)" [attr.data-automation-id]="'project-edit-' + element.id"
+                aria-label="Create icon button">
+                <mat-icon>create</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteRow(element)"
+                [attr.data-automation-id]="'project-delete-' + element.id" aria-label="Delete icon button">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button (click)="downloadProject(element)"
+                [attr.data-automation-id]="'project-download-' + element.id" aria-label="Download icon button">
+                <mat-icon>file_download</mat-icon>
+            </button>
+            <button mat-icon-button (click)="saveAsProject(element)"
+                [attr.data-automation-id]="'project-save-as-' + element.id" aria-label="Save as icon button">
+                <mat-icon svgIcon="save_as"></mat-icon>
+            </button>
+            <button *ngFor="let button of buttons" mat-icon-button
+                [attr.data-automation-id]="'project-' + button.automationId + '-' + element.id"
+                (click)="handleClick(button.actionClass, element.id)">
+                <mat-icon>{{ button.icon }}</mat-icon>
+            </button>
+        </div>
+    </ng-template>
+
+    <ng-template #actioMenu let-element="element">
+        <button mat-icon-button [matMenuTriggerFor]="menu" [attr.data-automation-id]="'project-context-' + element.id"
+            [title]="'APP.MORE_ACTIONS' | translate">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="editRow(element)" [attr.data-automation-id]="'project-edit-' + element.id">
+                <mat-icon>create</mat-icon> <span>{{ 'APP.MENU.EDIT' | translate }}</span>
+            </button>
+            <button mat-menu-item (click)="deleteRow(element)"
+                [attr.data-automation-id]="'project-delete-' + element.id">
+                <mat-icon>delete</mat-icon> <span>{{ 'APP.MENU.DELETE' | translate }}</span>
+            </button>
+            <button mat-menu-item (click)="downloadProject(element)"
+                [attr.data-automation-id]="'project-download-' + element.id">
+                <mat-icon>file_download</mat-icon> <span>{{ 'APP.MENU.DOWNLOAD' | translate }}</span>
+            </button>
+            <button mat-menu-item (click)="saveAsProject(element)"
+                [attr.data-automation-id]="'project-save-as-' + element.id">
+                <mat-icon svgIcon="save_as"></mat-icon> <span>{{ 'APP.MENU.SAVE_AS' | translate }}</span>
+            </button>
+            <button *ngFor="let button of buttons" mat-menu-item
+                [attr.data-automation-id]="'project-' + button.automationId + '-' + element.id"
+                (click)="handleClick(button.actionClass, element.id)">
+                <mat-icon>{{ button.icon }}</mat-icon> <span>{{ button.title | translate }}</span>
+            </button>
+        </mat-menu>
     </ng-template>
 
 </div>
