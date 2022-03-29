@@ -50,7 +50,12 @@ export class AuthenticationApiVariation<M extends Authentication, C extends Auth
         return <C>{
             id: formatUuid(this.contentType, model.id),
             name: model.name,
-            description: model.description
+            description: model.description,
+            authProperties: {
+                authenticationType: 'basic',
+                username: '',
+                password: ''
+            }
         };
     }
 
