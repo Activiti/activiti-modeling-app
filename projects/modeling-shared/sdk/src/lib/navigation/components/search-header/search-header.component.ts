@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ServerSideSorting } from '@alfresco-dbp/modeling-shared/sdk';
-import {SearchTextStateEnum} from '@alfresco/adf-core';
+import { SearchTextStateEnum } from '@alfresco/adf-core';
+import { ServerSideSorting } from '../../../api/types';
 
 const DEFAULT_SORT_KEY = 'name';
 const DEFAULT_SORT_DIRECTION = 'asc';
@@ -27,15 +27,15 @@ const maxItems = 25;
 const skipCount = 0;
 const SEARCH_KEY = 'name';
 
-/**
- * @deprecated, use SearchHeaderComponent inside modeling-shared sdk instead.
- */
 @Component({
-  selector: 'ama-search-header',
+  selector: 'modelingsdk-search-header',
   templateUrl: './search-header.component.html',
   encapsulation: ViewEncapsulation.None
 })
 export class SearchHeaderComponent implements OnInit {
+
+  @Output()
+  isSearchBarExpanded = new EventEmitter<boolean>();
 
   value: string;
   expandable: boolean;
@@ -77,5 +77,9 @@ export class SearchHeaderComponent implements OnInit {
 
   onReset() {
     this.searchProjects('');
+  }
+
+  onSearchVisibilityChange(isVisible: boolean) {
+    this.isSearchBarExpanded.emit(isVisible);
   }
 }

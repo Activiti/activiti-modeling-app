@@ -26,6 +26,7 @@ import { MainNavigationComponent } from './components/main-navigation/main-navig
 import { MainNavigationHeaderComponent } from './components/main-header/main-navigation-header.component';
 import { UserInfoMenuComponent } from './components/user-info-menu/user-info-menu.component';
 import { StudioHeaderComponent } from './components/studio-header/studio-header.component';
+import { SearchHeaderComponent } from './components/search-header/search-header.component';
 
 @NgModule({
     imports: [
@@ -35,7 +36,7 @@ import { StudioHeaderComponent } from './components/studio-header/studio-header.
         RouterModule.forChild([]),
         CoreModule.forChild()
     ],
-    declarations: [ RootNavigationComponent, MainNavigationComponent, MainNavigationHeaderComponent, UserInfoMenuComponent, StudioHeaderComponent] ,
-    exports: [ RootNavigationComponent, MainNavigationComponent, MainNavigationHeaderComponent, UserInfoMenuComponent, StudioHeaderComponent ]
+    declarations: [ RootNavigationComponent, MainNavigationComponent, MainNavigationHeaderComponent, UserInfoMenuComponent, StudioHeaderComponent, SearchHeaderComponent] ,
+    exports: [ RootNavigationComponent, MainNavigationComponent, MainNavigationHeaderComponent, UserInfoMenuComponent, StudioHeaderComponent, SearchHeaderComponent ]
 })
 export class NavigationModule { }

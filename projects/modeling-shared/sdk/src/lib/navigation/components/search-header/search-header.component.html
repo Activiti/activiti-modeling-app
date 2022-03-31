@@ -1,0 +1,12 @@
+<adf-search-text-input
+    class="ama-search-input"
+    [searchTerm]= "value"
+    [placeholder]="'DASHBOARD.SEARCH_PLACEHOLDER' | translate"
+    [debounceTime]="500"
+    [showClearButton]="true"
+    [collapseOnSubmit]="false"
+    [collapseOnBlur]="false"
+    (searchVisibility)="onSearchVisibilityChange($event)"
+    (reset)="onReset()"
+    (submit)="onSearchSubmit($event)">
+</adf-search-text-input>

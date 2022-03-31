@@ -13,7 +13,56 @@
 
     &-section {
         display: flex;
-        justify-content: space-between;
+
+        .studio-title-actions {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .studio-header-vertical {
+            height: 32px;
+            display: flex;
+            margin-top: 2px;
+            border: 1px solid rgba(33, 33, 33, 0.12);
+        }
+
+        .studio-header-search-bar-inactive {
+            float: right;
+            display: flex;
+            justify-content: center;
+            margin-left: 10px;
+
+            .mat-form-field {
+                display: none;
+            }
+
+            modelingsdk-search-header {
+                display: flex;
+                align-items: center;
+
+                /* stylelint-disable-next-line */
+                .ng-trigger-transitionMessages {
+                    transform: translateX(12%) !important;
+                }
+            }
+        }
+
+        .studio-header-search-bar-active {
+            width: 100%;
+
+            .adf-input-form-field-divider {
+                width: 84%;
+            }
+
+            .mat-form-field-underline {
+                display: none;
+            }
+
+            .adf-search-text-input {
+                width: inherit;
+            }
+        }
     }
 
     &-actions {

@@ -38,6 +38,7 @@
                 "TOOLTIP": "Favorites"
             }
         },
+        "SEARCH_PLACEHOLDER": "Search",
         "TABLE": {
             "COLUMN_NAME": "Name",
             "COLUMN_VERSION": "Version",

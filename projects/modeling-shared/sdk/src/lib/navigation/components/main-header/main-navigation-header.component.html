@@ -5,15 +5,22 @@
                 <i class="material-icons-outlined">space_dashboard</i>
             </button>
         </div>
-        <div class="studio-project-list-header-title">
-            {{ headerLabel$ | async | translate }}
+        <div class="studio-title-actions" *ngIf="!searchBarExpanded">
+            <div class="studio-project-list-header-title">
+                {{ headerLabel$ | async | translate }}
+            </div>
+            <div class="studio-project-list-header-actions" *ngIf="!isTabletScreen; else iconButtons">
+                <ng-container *ngFor="let action of actions">
+                    <button mat-button (click)="runAction(action.handler)" class="studio-{{action.actionName}}-button">
+                        <span>{{ action.title | translate }}</span>
+                    </button>
+                </ng-container>
+            </div>
         </div>
-        <div class="studio-project-list-header-actions" *ngIf="!isTabletScreen; else iconButtons">
-            <ng-container *ngFor="let action of actions">
-                <button mat-button (click)="runAction(action.handler)" class="studio-{{action.actionName}}-button">
-                    <span>{{ action.title | translate }}</span>
-                </button>
-            </ng-container>
+        <div class="studio-header-vertical" *ngIf="!searchBarExpanded"></div>
+
+        <div *ngIf="showSearchBar" [ngClass]="searchBarExpanded === true ? 'studio-header-search-bar-active' : 'studio-header-search-bar-inactive'">
+            <modelingsdk-search-header (isSearchBarExpanded)="isSearchBarExpanded($event)"></modelingsdk-search-header>
         </div>
     </div>
 </section>

@@ -39,13 +39,15 @@
         position: relative;
         height: 100%;
 
+
         &-container {
             overflow: scroll;
             height: 100%;
             background-color: var(--theme-card-background-color);
 
-            &-favorite-cell {
+            &-custom-cell {
                 justify-content: center;
+                width: 6%;
             }
 
             .mat-column-version {

@@ -30,7 +30,8 @@ import { navigationData } from '../main-navigation/main-navigation.component';
     encapsulation: ViewEncapsulation.None
 })
 export class MainNavigationHeaderComponent implements OnInit, OnDestroy {
-
+    searchBarExpanded = false;
+    showSearchBar = true;
     headerLabel$ = new BehaviorSubject<string>('');
     onDestroy$: Subject<void> = new Subject<void>();
     actions = [];
@@ -59,11 +60,21 @@ export class MainNavigationHeaderComponent implements OnInit, OnDestroy {
         ).subscribe((event: NavigationStart) => {
             this.url = event.url.split('?')[0];
             this.loadNavigationDetails();
+            this.setSearchBarVisibility();
         });
         if (!this.url) {
             this.url = this.router.url.split('?')[0];
             this.loadNavigationDetails();
+            this.setSearchBarVisibility();
         }
+    }
+
+    setSearchBarVisibility() {
+      this.showSearchBar = (this.url === navigationData.process[1].route.url);
+    }
+
+    isSearchBarExpanded(value) {
+      this.searchBarExpanded = value;
     }
 
     loadNavigationDetails() {
