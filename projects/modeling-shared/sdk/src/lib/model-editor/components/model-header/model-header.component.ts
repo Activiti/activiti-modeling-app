@@ -20,7 +20,7 @@ import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BreadcrumbItem } from '../../../helpers/header-breadcrumbs/breadcrumb-helper.service';
 import { BasicModelCommands } from '../../commands/commands.interface';
-import { CommandButtonPriority, ShowCommandButton } from '../../services/command.model';
+import { ButtonType, ShowCommandButton } from '../../services/command.model';
 import { ModelCommandsService } from '../../services/model-commands.service';
 import { MODEL_COMMAND_SERVICE_TOKEN } from '../model-editor/model-editors.token';
 
@@ -37,20 +37,21 @@ export class ModelHeaderComponent implements OnInit {
     @Input()
     modelName: string;
 
-    primaryButtons: ShowCommandButton[];
-    secondaryButtons: ShowCommandButton[];
+    standardButtons: ShowCommandButton[];
+    menuButtons: ShowCommandButton[];
 
     constructor(@Inject(MODEL_COMMAND_SERVICE_TOKEN)
                 private modelCommands: ModelCommandsService) {
     }
 
     ngOnInit() {
-        this.primaryButtons = this.modelCommands.getCommandButtons(CommandButtonPriority.PRIMARY);
-        this.secondaryButtons = this.modelCommands.getCommandButtons(CommandButtonPriority.SECONDARY);
+        this.standardButtons = this.modelCommands.getCommandButtons(ButtonType.STANDARD);
+        this.menuButtons = this.modelCommands.getCommandButtons(ButtonType.MENU);
     }
 
-    showMenu() {
-        const buttonsVisible$ = this.secondaryButtons.map(button => button.visible$);
+    showMenu(commandName): Observable<boolean> {
+        const menuButton = this.menuButtons.find(button => button.commandName === commandName);
+        const buttonsVisible$ = menuButton.createdMenuItems.map(button => button.visible$);
         return combineLatest(buttonsVisible$).pipe(map(buttonsVisible => buttonsVisible.some(isVisible => isVisible)));
     }
 

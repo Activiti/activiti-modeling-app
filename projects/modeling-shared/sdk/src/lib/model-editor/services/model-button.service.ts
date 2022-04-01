@@ -18,7 +18,7 @@
 import { BehaviorSubject} from 'rxjs';
 import { MODEL_TYPE } from '../../api/types';
 import { BasicModelCommands, ModelCommand } from '../commands/commands.interface';
-import { CommandButton, CommandButtonPriority, CreateCommandButton, ShowCommandButton } from './command.model';
+import { ButtonType, CommandButton, CommandButtonRequest, CreateCommandButton, ShowCommandButton } from './command.model';
 
 const iconMapping = {
     [BasicModelCommands.save]: 'save',
@@ -26,11 +26,12 @@ const iconMapping = {
     [BasicModelCommands.download]: 'file_download',
     [BasicModelCommands.delete]: 'delete',
     [BasicModelCommands.saveAs]: 'save-as',
+    [BasicModelCommands.moreMenu]: 'more_vert'
 };
 
 const priorityMapping = {
-    [CommandButtonPriority.PRIMARY]: [BasicModelCommands.save, BasicModelCommands.validate, BasicModelCommands.download],
-    [CommandButtonPriority.SECONDARY]: [BasicModelCommands.saveAs, BasicModelCommands.delete]
+    [ButtonType.STANDARD]: [BasicModelCommands.save, BasicModelCommands.validate, BasicModelCommands.download],
+    [ButtonType.MENU]: [BasicModelCommands.saveAs, BasicModelCommands.delete]
 };
 
 export class ModelButtonService {
@@ -42,18 +43,35 @@ export class ModelButtonService {
             commandName,
             title: this.buildTitleForButton(modelName, commandName),
             icon: iconMapping[commandName],
-            priority: this.getButtonPriority(commandName),
             isSvgIcon: this.isSvgIcon(commandName),
+            buttonType: ButtonType.STANDARD,
             action
+        };
+    }
+
+    public getMenuButtonFor(commandName: BasicModelCommands, menuItems: CommandButtonRequest, modelName: MODEL_TYPE): CommandButton {
+        const menuButtons: CommandButton[] = Object.keys(menuItems).map(item => {
+            if (Object.values(BasicModelCommands).includes(<BasicModelCommands>item)) {
+                return this.getCommandButtonFor(<BasicModelCommands>item, menuItems[item], modelName);
+            }
+            return menuItems[item];
+        });
+        return {
+            commandName,
+            title: this.buildTitleForButton(modelName, commandName),
+            icon: iconMapping[commandName],
+            isSvgIcon: this.isSvgIcon(commandName),
+            buttonType: ButtonType.MENU,
+            menuItems: menuButtons
         };
     }
 
     private buildTitleForButton(modelName: string, commandName: BasicModelCommands): string {
         let title = '';
-        if (priorityMapping[CommandButtonPriority.PRIMARY].includes(commandName)) {
-            title = this.getFormattedModelName(modelName, commandName);
-        } else {
+        if (priorityMapping[ButtonType.MENU].includes(commandName)) {
             title = `APP.MENU.${this.formatValue(commandName)}`;
+        } else {
+            title = this.getFormattedModelName(modelName, commandName);
         }
         return title;
     }
@@ -66,38 +84,76 @@ export class ModelButtonService {
         return value.toUpperCase().split('-').join('_');
     }
 
-    private getButtonPriority(commandName: BasicModelCommands): CommandButtonPriority {
-        return !!priorityMapping[CommandButtonPriority.PRIMARY].includes(commandName) ? CommandButtonPriority.PRIMARY : CommandButtonPriority.SECONDARY;
+    public getStandardButtons(): ShowCommandButton[] {
+        return this.buttons
+            .filter((button) => button.buttonType === ButtonType.STANDARD)
+            .map(commandButton => this.getShowCommandButtons(commandButton));
     }
 
-    public getCommandButtons(priority?: CommandButtonPriority): ShowCommandButton[] {
+    public getMenuButtons(): ShowCommandButton[] {
         return this.buttons
-            .filter((button) => button.priority === priority)
+            .filter((button) => button.buttonType === ButtonType.MENU)
             .map(commandButton => {
+                const menuItems = commandButton.createdMenuItems.map(button => this.getShowCommandButtons(button));
                 return <ShowCommandButton>{
-                    ...commandButton,
-                    disabled$: commandButton.disabled$.asObservable(),
-                    visible$: commandButton.visible$.asObservable()
+                    createdMenuItems: menuItems,
+                    ...this.getShowCommandButtons(commandButton)
                 };
             });
     }
 
-    public addButton(commandButton: CommandButton) {
-        this.buttons.push({
+    getShowCommandButtons(commandButton: CreateCommandButton): ShowCommandButton {
+        return <ShowCommandButton>{
             ...commandButton,
-            disabled$: new BehaviorSubject<boolean>(false),
-            visible$: new BehaviorSubject<boolean>(true)
+            disabled$: commandButton.disabled$.asObservable(),
+            visible$: commandButton.visible$.asObservable(),
+            showIcon$: commandButton.showIcon$.asObservable()
+        };
+    }
+
+    public addStandardButton(commandButton: CommandButton) {
+        this.buttons.push(this.getCreateCommandButtons(commandButton));
+    }
+
+    public addMenuButton(commandButton: CommandButton) {
+        const menuItems = commandButton.menuItems.map(button => this.getCreateCommandButtons(button));
+        this.buttons.push({
+            createdMenuItems: menuItems,
+            ...this.getCreateCommandButtons(commandButton)
         });
     }
 
+    private getCreateCommandButtons(commandButton: CommandButton): CreateCommandButton {
+        return <CreateCommandButton>{
+            ...commandButton,
+            disabled$: new BehaviorSubject<boolean>(false),
+            visible$: new BehaviorSubject<boolean>(true),
+            showIcon$: new BehaviorSubject<boolean>(true)
+        };
+    }
+
     public setDisable(commandName: BasicModelCommands, value: boolean) {
-        const currentButton = this.buttons.find((button) => button.commandName === commandName);
+        const currentButton = this.getCurrentButton(commandName);
         currentButton.disabled$.next(value);
     }
 
     public setVisible(commandName: BasicModelCommands, value: boolean) {
-        const currentButton = this.buttons.find((button) => button.commandName === commandName);
+        const currentButton = this.getCurrentButton(commandName);
         currentButton.visible$.next(value);
+    }
+
+    public setIconVisibility(commandName: BasicModelCommands, value: boolean) {
+        const currentButton = this.getCurrentButton(commandName);
+        currentButton.showIcon$.next(value);
+    }
+
+    private getCurrentButton(commandName: BasicModelCommands): CreateCommandButton {
+        let currentButton;
+        this.buttons.find((button) => (button.buttonType === ButtonType.MENU) ?
+            currentButton = button.createdMenuItems.find((menuItem) => menuItem.commandName === commandName) :
+            (button.commandName === commandName) ? currentButton = button : false
+        );
+        return currentButton;
     }
 
     public isSvgIcon(commandName: string): boolean {

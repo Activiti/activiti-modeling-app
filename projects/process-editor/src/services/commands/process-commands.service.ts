@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { BasicModelCommands, CommandButton, CommandButtonPriority, ModelCommandsService, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
+import { BasicModelCommands, ButtonType, CommandButton, ModelCommandsService, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
 import { Injectable } from '@angular/core';
 import { DeleteProcessCommand } from './delete-process.command';
 import { DownloadProcessCommand } from './download-process.command';
@@ -42,19 +42,23 @@ export class ProcessCommandsService extends ModelCommandsService {
             commandName: <BasicModelCommands> ProcessCommandsService.DOWNLOAD_PROCESS_SVG_IMAGE_COMMAND_BUTTON,
             title: 'ADV_PROCESS_EDITOR.SAVE_PROCESS_IMAGE',
             icon: 'image',
-            priority: CommandButtonPriority.PRIMARY,
             isSvgIcon: false,
+            buttonType: ButtonType.STANDARD,
             action: downloadProcessSvgImageCommand
         };
 
         [
-            downloadProcessSvgImageCommandButton,
-            ...this.getBasicModelCommands({
+            ...this.getBasicStandardCommands({
                 [BasicModelCommands.save] : saveCommand,
-                [BasicModelCommands.delete]: deleteCommand,
                 [BasicModelCommands.download]: downloadCommand,
-                [BasicModelCommands.validate]: validateCommand,
-                [BasicModelCommands.saveAs]: saveAsCommand
+                [BasicModelCommands.validate]: validateCommand
+            }, PROCESS),
+            ...this.getBasicMenuCommands({
+                [BasicModelCommands.moreMenu] : {
+                    [BasicModelCommands.saveAs]: saveAsCommand,
+                    [BasicModelCommands.delete]: deleteCommand,
+                    [downloadProcessSvgImageCommandButton.commandName]: downloadProcessSvgImageCommandButton
+                }
             }, PROCESS)
         ].forEach(command => this.registerCommand(command));
     }

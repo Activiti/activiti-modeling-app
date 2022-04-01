@@ -28,7 +28,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
 import { SharedModule } from '../../../helpers/shared.module';
 import { BasicModelCommands } from '../../commands/commands.interface';
-import { CommandButtonPriority, ShowCommandButton } from '../../services/command.model';
+import { ButtonType, ShowCommandButton } from '../../services/command.model';
 import { ModelCommandsService } from '../../services/model-commands.service';
 import { MODEL_COMMAND_SERVICE_TOKEN } from '../model-editor/model-editors.token';
 import { ModelHeaderComponent } from './model-header.component';
@@ -36,67 +36,107 @@ import { ModelHeaderComponent } from './model-header.component';
 describe('ModelHeaderComponent', () => {
     const mockTestCommand = {execute() {}};
 
-    const mockPrimaryButtons: ShowCommandButton[] = [
+    const standardButtons: ShowCommandButton[] = [
         {
             commandName: BasicModelCommands.save,
             title: 'Save',
             icon: 'save',
-            priority: CommandButtonPriority.PRIMARY,
+            buttonType: ButtonType.STANDARD,
             isSvgIcon: false,
             action: mockTestCommand,
             disabled$: of(false),
-            visible$: of(true)
+            visible$: of(true),
+            showIcon$: of(true)
         },
         {
             commandName: BasicModelCommands.validate,
             title: 'Validate',
             icon: 'done',
-            priority: CommandButtonPriority.PRIMARY,
+            buttonType: ButtonType.STANDARD,
             isSvgIcon: false,
             action: mockTestCommand,
             disabled$: of(true),
-            visible$: of(true)
+            visible$: of(true),
+            showIcon$: of(true)
         },
         {
             commandName: <BasicModelCommands> 'hidden-primary',
             title: 'Hidden primary',
             icon: 'delete',
-            priority: CommandButtonPriority.PRIMARY,
+            buttonType: ButtonType.STANDARD,
             isSvgIcon: false,
             action: mockTestCommand,
             disabled$: of(false),
-            visible$: of(false)
+            visible$: of(false),
+            showIcon$: of(true)
         }
     ];
-    const mockSecondaryButtons = [
+    const menuButtons: ShowCommandButton[] = [
         {
-            commandName: BasicModelCommands.delete,
-            title: 'Delete',
-            icon: 'delete',
-            priority: CommandButtonPriority.SECONDARY,
+            commandName: <BasicModelCommands> 'menu',
+            title: 'Menu primary',
+            icon: 'remove_red_eye',
+            buttonType: ButtonType.MENU,
             isSvgIcon: false,
-            action: mockTestCommand,
+            createdMenuItems: [
+                {
+                    commandName: BasicModelCommands.delete,
+                    title: 'Delete',
+                    icon: 'delete',
+                    buttonType: ButtonType.STANDARD,
+                    isSvgIcon: false,
+                    action: mockTestCommand,
+                    disabled$: of(false),
+                    visible$: of(true),
+                    showIcon$: of(true)
+                },
+                {
+                    commandName: <BasicModelCommands> 'hidden-secondary',
+                    title: 'Hidden secondary',
+                    icon: 'delete',
+                    buttonType: ButtonType.STANDARD,
+                    isSvgIcon: false,
+                    action: mockTestCommand,
+                    disabled$: of(false),
+                    visible$: of(false),
+                    showIcon$: of(true)
+                }
+            ],
             disabled$: of(false),
-            visible$: of(false)
+            visible$: of(true),
+            showIcon$: of(true)
         },
         {
-            commandName: <BasicModelCommands> 'hidden-secondary',
-            title: 'Hidden secondary',
-            icon: 'delete',
-            priority: CommandButtonPriority.SECONDARY,
+            commandName: <BasicModelCommands> 'menu-1',
+            title: 'Menu 1',
+            icon: 'remove_red_eye',
+            buttonType: ButtonType.MENU,
             isSvgIcon: false,
-            action: mockTestCommand,
+            createdMenuItems: [
+                {
+                    commandName: BasicModelCommands.delete,
+                    title: 'Delete',
+                    icon: 'delete',
+                    buttonType: ButtonType.STANDARD,
+                    isSvgIcon: false,
+                    action: mockTestCommand,
+                    disabled$: of(false),
+                    visible$: of(false),
+                    showIcon$: of(true)
+                }
+            ],
             disabled$: of(false),
-            visible$: of(false)
+            visible$: of(true),
+            showIcon$: of(true)
         }
     ];
 
     const modelCommand =  {
         getCommandButtons: jest.fn().mockImplementation(command => {
-            if (command === CommandButtonPriority.PRIMARY) {
-                return mockPrimaryButtons;
+            if (command === ButtonType.STANDARD) {
+                return standardButtons;
             }
-            return mockSecondaryButtons;
+            return menuButtons;
         }),
         setDisable: jest.fn().mockImplementation(() => of()),
         dispatchEvent: jest.fn().mockImplementation((value) => of()),
@@ -145,14 +185,14 @@ describe('ModelHeaderComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should dispatch action event on primary button click', () => {
+    it('should dispatch action event on standard button click', () => {
         const emitSpy = spyOn(modelCommand, 'dispatchEvent');
         fixture.detectChanges();
 
         const button = fixture.debugElement.query(By.css('[data-automation-id="test-editor-save-button"]'));
         button.triggerEventHandler('click', null);
         fixture.detectChanges();
-        expect(emitSpy).toHaveBeenCalledWith(mockPrimaryButtons[0].commandName);
+        expect(emitSpy).toHaveBeenCalledWith(standardButtons[0].commandName);
     });
 
     it('should disable the button when disabled is set to true', () => {
@@ -169,9 +209,21 @@ describe('ModelHeaderComponent', () => {
         expect(secondaryHiddenButton).toBeNull();
     });
 
-    it('should hide the menu button when all secondary buttons visibility is set to false', () => {
-        const menuButton = fixture.debugElement.query(By.css('[data-automation-id="test-editor-menu-button"]'));
+    it('should hide the menu button when all menu-items buttons visibility is set to false', () => {
+        const menuButton = fixture.debugElement.query(By.css('[data-automation-id="test-editor-menu-1-button"]'));
         fixture.detectChanges();
         expect(menuButton).toBeNull();
+    });
+
+    it('should display menu items', () => {
+        const menuButton = fixture.debugElement.query(By.css('[data-automation-id="test-editor-menu-button"]'));
+        menuButton.triggerEventHandler('click', {});
+        fixture.detectChanges();
+
+        const menuItem = fixture.debugElement.query(By.css('[data-automation-id="test-editor-delete-button"] span'));
+        fixture.detectChanges();
+
+        expect(menuItem).not.toBeNull();
+        expect(menuItem.nativeElement.textContent).toEqual(menuButtons[0].createdMenuItems[0].title);
     });
 });

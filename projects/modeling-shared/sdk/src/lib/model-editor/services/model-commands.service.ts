@@ -22,7 +22,7 @@ import { ContentType } from '../../api-implementations/acm-api/content-types';
 import { MODEL_TYPE } from '../../api/types';
 import { BasicModelCommands, ModelCommand } from '../commands/commands.interface';
 import { ModelCommandCallback, ModelCommandCallbackEvent } from './model-command-callback';
-import { CommandButton, CommandButtonPriority, ShowCommandButton, CommandButtonRequest } from './command.model';
+import { CommandButton, ShowCommandButton, CommandButtonRequest, ButtonType, MenuButtonRequest } from './command.model';
 
 interface EventMethod {
     eventName: string;
@@ -73,15 +73,32 @@ export class ModelCommandsService {
     }
 
     public registerCommand(command: CommandButton) {
-        this.addEventListener(command.commandName, command.action);
-        this.modelButtonService.addButton(command);
+        if (command.buttonType === ButtonType.STANDARD) {
+            this.addEventListener(command.commandName, command.action);
+            this.modelButtonService.addStandardButton(command);
+        } else {
+            command.menuItems.forEach(menuItem => {
+                this.addEventListener(menuItem.commandName, menuItem.action);
+            });
+            this.modelButtonService.addMenuButton(command);
+        }
     }
 
-    public getBasicModelCommands(buttonRequest: CommandButtonRequest, modelType: MODEL_TYPE): CommandButton [] {
+    public getBasicStandardCommands(buttonRequest: CommandButtonRequest, modelType: MODEL_TYPE): CommandButton [] {
         const basicCommands = [];
         for (const command in buttonRequest) {
             if (!!command && buttonRequest.hasOwnProperty(command)) {
                 basicCommands.push(this.modelButtonService.getCommandButtonFor(<BasicModelCommands>command, buttonRequest[command], modelType));
+            }
+        }
+        return basicCommands;
+    }
+
+    public getBasicMenuCommands(menuRequest: MenuButtonRequest, modelType: MODEL_TYPE): CommandButton [] {
+        const basicCommands = [];
+        for (const command in menuRequest) {
+            if (!!command && menuRequest.hasOwnProperty(command)) {
+                basicCommands.push(this.modelButtonService.getMenuButtonFor(<BasicModelCommands>command, menuRequest[command], modelType));
             }
         }
         return basicCommands;
@@ -105,8 +122,10 @@ export class ModelCommandsService {
         };
     }
 
-    public getCommandButtons(priority?: CommandButtonPriority): ShowCommandButton[] {
-        return this.modelButtonService.getCommandButtons(priority);
+    public getCommandButtons(buttonType?: ButtonType): ShowCommandButton[] {
+        return (buttonType === ButtonType.STANDARD) ?
+            this.modelButtonService.getStandardButtons() :
+            this.modelButtonService.getMenuButtons();
     }
 
     public setDisable(commandName: BasicModelCommands, value: boolean) {
@@ -115,6 +134,10 @@ export class ModelCommandsService {
 
     public setVisible(commandName: BasicModelCommands, value: boolean) {
         this.modelButtonService.setVisible(commandName, value);
+    }
+
+    public setIconVisible(commandName: BasicModelCommands, value: boolean) {
+        this.modelButtonService.setIconVisibility(commandName, value);
     }
 
 }

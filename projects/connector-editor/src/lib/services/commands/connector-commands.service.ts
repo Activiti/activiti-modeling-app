@@ -35,12 +35,16 @@ export class ConnectorCommandsService extends ModelCommandsService {
         super();
 
         [
-            ...this.getBasicModelCommands({
+            ...this.getBasicStandardCommands({
                 [BasicModelCommands.save] : saveCommand,
-                [BasicModelCommands.delete]: deleteCommand,
                 [BasicModelCommands.download]: downloadCommand,
-                [BasicModelCommands.validate]: validateCommand,
-                [BasicModelCommands.saveAs]: saveAsCommand
+                [BasicModelCommands.validate]: validateCommand
+            }, CONNECTOR),
+            ...this.getBasicMenuCommands({
+                [BasicModelCommands.moreMenu] : {
+                    [BasicModelCommands.saveAs]: saveAsCommand,
+                    [BasicModelCommands.delete]: deleteCommand
+                }
             }, CONNECTOR)
         ].forEach(command => this.registerCommand(command));
     }

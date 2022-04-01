@@ -18,15 +18,19 @@
 import { Observable, Subject } from 'rxjs';
 import { BasicModelCommands, ModelCommand } from '../commands/commands.interface';
 
-export enum CommandButtonPriority { PRIMARY, SECONDARY }
+export enum ButtonType {
+    STANDARD = 'standard',
+    MENU = 'menu'
+}
 
 export interface CommandButton {
     commandName: BasicModelCommands;
     title: string;
     icon: string;
-    priority: CommandButtonPriority;
     isSvgIcon: boolean;
-    action: ModelCommand;
+    buttonType: ButtonType;
+    action?: ModelCommand;
+    menuItems?: CommandButton[];
 }
 export interface CommandButtonRequest {
     [BasicModelCommands.save]?: ModelCommand;
@@ -36,12 +40,20 @@ export interface CommandButtonRequest {
     [BasicModelCommands.saveAs]?: ModelCommand;
 }
 
+export interface MenuButtonRequest {
+    [BasicModelCommands.moreMenu]?: CommandButtonRequest;
+}
+
 export interface ShowCommandButton extends CommandButton {
+    createdMenuItems?: ShowCommandButton[];
     disabled$: Observable<boolean>;
     visible$: Observable<boolean>;
+    showIcon$: Observable<boolean>;
 }
 
 export interface CreateCommandButton extends CommandButton {
+    createdMenuItems?: CreateCommandButton[];
     disabled$: Subject<boolean>;
     visible$: Subject<boolean>;
+    showIcon$: Subject<boolean>;
 }

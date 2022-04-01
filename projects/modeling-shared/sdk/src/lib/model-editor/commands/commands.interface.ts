@@ -25,7 +25,8 @@ export enum BasicModelCommands {
     saveAs = 'save-as',
     download = 'download',
     delete = 'delete',
-    validate = 'validate'
+    validate = 'validate',
+    moreMenu = 'more-menu',
 }
 
 export interface UpdateActionLike {
