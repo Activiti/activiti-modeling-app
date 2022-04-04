@@ -402,7 +402,7 @@ export class ModelingJSONSchemaService {
         }
     }
 
-    private deepCopy(obj: any): any {
+    deepCopy(obj: any): any {
         let copy;
 
         if (null == obj || 'object' !== typeof obj) {

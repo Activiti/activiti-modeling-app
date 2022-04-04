@@ -139,7 +139,7 @@ export class ModelingTypesService {
     }
 
     getEventJsonSchemaFromDataSchema(dataSchema: JSONSchemaInfoBasics): JSONSchemaInfoBasics {
-        const result = { ...eventSchema };
+        const result = this.modelingJSONSchemaService.deepCopy(eventSchema);
         result.properties.data = this.modelingJSONSchemaService.flatSchemaReference(dataSchema, true);
         return result;
     }
