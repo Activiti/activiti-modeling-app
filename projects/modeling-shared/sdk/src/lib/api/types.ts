@@ -102,14 +102,15 @@ export interface CollaboratorEntry {
 export interface Release {
     id: string;
     name: string;
-    creationDate: Date;
-    createdBy: string;
-    lastModifiedDate: Date;
-    lastModifiedBy: string;
+    creationDate?: Date;
+    createdBy?: string;
+    lastModifiedDate?: Date;
+    lastModifiedBy?: string;
     version?: string;
     projectName?: string;
     projectId?: string;
     imported?: boolean;
+    comment?: string;
 }
 
 export interface Collaborator {

@@ -51,6 +51,7 @@
             "NO_FAV_PROCESSES": "Favorite a process to make it available here.",
             "NO_FAV_PROJECTS": "Favorite a project to make it available here.",
             "RELEASE_ID": "Release ID",
+            "RELEASE_COMMENT": "Comment",
             "PROJECT_NAME": "Project Name"
         },
         "ERROR": {

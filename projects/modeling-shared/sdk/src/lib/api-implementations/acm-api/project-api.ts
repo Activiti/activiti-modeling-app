@@ -239,4 +239,12 @@ export class ACMProjectApi implements ProjectApi {
                 map((response: any) => response.entry)
             );
     }
+
+    public updateRelease(release: Release): Observable<Release> {
+        return this.requestApiHelper
+            .put(`/modeling-service/v1/releases/${release.id}`, { bodyParam: release })
+            .pipe(
+                map((response: any) => response.entry)
+            );
+    }
 }

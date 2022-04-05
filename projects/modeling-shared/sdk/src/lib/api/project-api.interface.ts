@@ -44,4 +44,5 @@ export abstract class ProjectApi {
     public abstract downloadRelease(releaseId: string): Observable<Blob>;
     public abstract uploadRelease(projectId: string, file: File): Observable<Release>;
     public abstract restoreRelease(releaseId: string): Observable<Release>;
+    public abstract updateRelease(release: Release): Observable<Release>;
 }
