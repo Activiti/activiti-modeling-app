@@ -73,13 +73,11 @@
         align-items: center;
 
         .mat-button {
-            font-weight: bold;
-            height: fit-content;
             border-radius: 6px;
-            justify-content: center;
-            align-items: center;
-            position: static;
-            min-width: fit-content;
+            font-family: var(--theme-font-family);
+            letter-spacing: 0.25px;
+            font-weight: bold;
+            font-size: 14px;
         }
 
         .studio-upload-button {

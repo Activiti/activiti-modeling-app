@@ -25,7 +25,7 @@ import {
     SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption, PROJECT_CONTEXT_MENU_OPTIONS,
     ProjectContextMenuActionClass, selectLoading, selectPagination, selectProjectSummaries,
      GetProjectsAttemptAction, DeleteProjectAttemptAction, UpdateProjectAttemptAction, OpenSaveAsProjectDialogAction,
-    SaveAsProjectAttemptAction, ExportProjectAction, AddToFavoritesProjectAttemptAction, RemoveFromFavoritesProjectAttemptAction,
+    SaveAsProjectAttemptAction, ExportProjectAction,
     GetFavoriteProjectsAttemptAction, selectFavoriteProjectSummaries, LayoutService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTableDataSource } from '@angular/material/table';
@@ -224,11 +224,4 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
         this.unsubscribe$.complete();
     }
 
-    addOrRemoveProjectFavorite(item: Partial<Project>) {
-        if (item?.favorite) {
-            this.store.dispatch(new RemoveFromFavoritesProjectAttemptAction(item.id, this.sorting, this.search, this.isFavoriteList));
-        } else {
-            this.store.dispatch(new AddToFavoritesProjectAttemptAction(item.id, this.sorting, this.search));
-        }
-    }
 }

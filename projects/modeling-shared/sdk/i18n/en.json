@@ -1,5 +1,13 @@
 {
     "SDK": {
+        "PROJECT_HEADER" : {
+            "VALIDATE" : "Validate",
+            "RELEASE" : "Release",
+            "SAVE_AS": "Save as",
+            "DOWNLOAD": "Download project",
+            "VIEW_RELEASES": "View releases",
+            "VERSION": "Version"
+        },
         "MODEL_EDITOR": {
             "DIALOG": {
                 "CONFIRM_INVALID_MODEL_SAVE": "Are you sure you want to save this {{ modelType }}?",

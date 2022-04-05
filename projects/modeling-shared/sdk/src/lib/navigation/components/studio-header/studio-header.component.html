@@ -1,11 +1,40 @@
 <div class="ama-studio-project-header">
-    <button mat-icon-button aria-label="Back arrow">
-        <mat-icon>arrow_back</mat-icon>
-    </button>
-    <button mat-icon-button aria-label="Hide left sidenav">
-        <i class="material-icons-outlined">space_dashboard</i>
-    </button>
-    <button mat-icon-button aria-label="Preferred project indicator">
-        <mat-icon>star_border</mat-icon>
-    </button>
+    <ng-container *ngIf="project$ | async as project;">
+        <div class="ama-studio-project-header-navigation">
+            <button mat-icon-button aria-label="Back arrow" (click)="onBackArrowClick()" data-automation-id="studio-header-dashboard-button">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="Hide left sidenav" data-automation-id="studio-header-toggle-left-sidenav"
+                (click)="onToggleLeftSideNav()">
+                <i class="material-icons-outlined">space_dashboard</i>
+            </button>
+            <div>
+                <modelingsdk-prefer-project-button [projectId]="project.id" [isPreferred]="project.favorite">
+                </modelingsdk-prefer-project-button>
+            </div>
+        </div>
+
+        <div class="ama-studio-project-header-menu">
+            <button mat-button [matMenuTriggerFor]="belowMenu">{{project.name}}
+                <span class="material-icons">
+                    expand_more
+                </span>
+            </button>
+            <mat-menu #belowMenu="matMenu" yPosition="below">
+                <button mat-menu-item (click)="saveAsProject(project)">{{'SDK.PROJECT_HEADER.SAVE_AS' | translate }}</button>
+                <button mat-menu-item (click)="downloadProject(project)">{{'SDK.PROJECT_HEADER.DOWNLOAD' | translate }}</button>
+                <button mat-menu-item>{{'SDK.PROJECT_HEADER.VIEW_RELEASES' | translate }}</button>
+                <span class="ama-studio-project-header-menu-version">{{'SDK.PROJECT_HEADER.VERSION' | translate }} {{project.version}}</span>
+            </mat-menu>
+        </div>
+
+        <div class="ama-studio-project-header-action">
+            <button mat-flat-button class="ama-studio-project-header-action-validate" (click)="onValidateProject(project.id)">
+                {{'SDK.PROJECT_HEADER.VALIDATE' | translate }}
+            </button>
+            <button mat-flat-button class="ama-studio-project-header-action-release" (click)="onReleaseProject(project.id)">
+                {{'SDK.PROJECT_HEADER.RELEASE' | translate }}
+            </button>
+        </div>
+    </ng-container>
 </div>

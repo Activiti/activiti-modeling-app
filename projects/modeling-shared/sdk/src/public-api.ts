@@ -27,6 +27,7 @@ export * from './lib/components/output-mapping-table/public-api';
 export * from './lib/components/variable-mapping/public-api';
 export * from './lib/components/mapping-dialog/public-api';
 export * from './lib/components/process-name-selector/public-api';
+export * from './lib/components/prefer-project-button/public-api';
 export * from './lib/process-editor/public-api';
 export * from './lib/connector-editor/public-api';
 export * from './lib/connector-editor/public-api';

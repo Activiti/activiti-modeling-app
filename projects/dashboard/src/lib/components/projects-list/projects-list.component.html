@@ -15,7 +15,8 @@
                                 <td mat-cell *matCellDef="let element" [attr.data-column-name]="'DASHBOARD.TABLE.COLUMN_NAME' | translate"
                                     (click)="rowSelected(element)"
                                     [attr.data-automation-id]="'project-' + element.id"
-                                    [attr.data-project-id]="element.id" [attr.data-project-name]="element.name">
+                                    [attr.data-project-id]="element.id"
+                                    [attr.data-project-name]="element.name">
                                     <span> {{element.name}} </span>
                                 </td>
                             </ng-container>
@@ -55,7 +56,7 @@
                             <ng-container matColumnDef="menu">
                                 <th mat-header-cell *matHeaderCellDef>{{ 'DASHBOARD.TABLE.COLUMN_OPTIONS' | translate }}
                                 </th>
-                                <td mat-cell *matCellDef="let element" 
+                                <td mat-cell *matCellDef="let element"
                                     [attr.data-column-name]="'DASHBOARD.TABLE.COLUMN_OPTIONS' | translate"
                                     class="ama-dashboard-list-container-custom-cell">
                                     <ng-container [ngTemplateOutlet]="!isMobileScreen() ? actioMenu : mobileButtons"
@@ -68,12 +69,9 @@
                                 <th mat-header-cell *matHeaderCellDef></th>
                                 <td mat-cell *matCellDef="let element"
                                     [attr.data-automation-id]="'project-favorite-' + element.id"
-                                    (click)="addOrRemoveProjectFavorite(element)"
-                                    class="ama-dashboard-list-container-custom-cell">
-                                    <mat-icon data-automation-id="favorite-project" *ngIf="element.favorite">star
-                                    </mat-icon>
-                                    <mat-icon data-automation-id="non-favorite-project" *ngIf="!element.favorite">
-                                        star_border</mat-icon>
+                                    class="ama-dashboard-list-container-favorite-cell">
+                                    <modelingsdk-prefer-project-button [projectId]="element.id" [isPreferred]="element.favorite">
+                                    </modelingsdk-prefer-project-button>
                                 </td>
                             </ng-container>
 

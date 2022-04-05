@@ -34,4 +34,12 @@ export class ProjectEditorService {
     validateProject(projectId: string): Observable<void | ValidationErrors> {
         return this.amaApi.Project.validate(projectId);
     }
+
+    addToFavoritesProject(projectId: string): Observable<void> {
+        return this.amaApi.Project.addToFavorites(projectId);
+    }
+
+    removeFromFavoritesProject(projectId: string): Observable<void> {
+        return this.amaApi.Project.removeFromFavorites(projectId);
+    }
 }

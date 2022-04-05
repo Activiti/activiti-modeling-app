@@ -6,6 +6,7 @@
 
 .ama-dashboard {
     height: 100%;
+    background-color: var(--theme-card-background-color);
 
     .ama-paginator-block {
         border-top: 1px solid var(--theme-border-color);
@@ -41,8 +42,8 @@
 
 
         &-container {
-            overflow: scroll;
-            height: 100%;
+            overflow: auto;
+            max-height: calc(100% - 18px);
             background-color: var(--theme-card-background-color);
 
             &-custom-cell {
@@ -101,10 +102,10 @@
         }
 
         .mat-table {
-            padding-bottom: 10px;
             font-family: var(--theme-font-family);
             width: 100%;
             margin-bottom: 3%;
+            height: 100%;
 
             @media only screen and (max-width: 768px) {
                 padding: 0 10px 15px;
@@ -166,6 +167,7 @@
               .mat-row {
                 height: auto;
 
+
                 td.mat-cell:not(.mat-column-actions) {
                   display: grid;
                   grid-template-columns: 50% 50%;
@@ -173,6 +175,7 @@
                   text-align: right;
                   word-break: break-word;
                   border-bottom: 1px inset;
+                  width: 100%;
 
                   & > * {
                     grid-column: 2;

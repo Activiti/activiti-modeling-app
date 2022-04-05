@@ -27,7 +27,7 @@ import { ProjectsListComponent } from './components/projects-list/projects-list.
 
 import { EffectsModule } from '@ngrx/effects';
 import { ProjectsEffects } from './store/effects/projects.effects';
-import { SharedModule, PROJECT_ENTITY_KEY, AmaStoreModule, projectEntitiesReducer, provideTranslations } from '@alfresco-dbp/modeling-shared/sdk';
+import { SharedModule, PROJECT_ENTITY_KEY, AmaStoreModule, projectEntitiesReducer, provideTranslations, PreferProjectButtonModule } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { SearchHeaderComponent } from './components/search-header/search-header.component';
@@ -45,7 +45,8 @@ import { SearchHeaderComponent } from './components/search-header/search-header.
             key: PROJECT_ENTITY_KEY,
             reducer: projectEntitiesReducer
         }),
-        EffectsModule.forFeature([ProjectsEffects])
+        EffectsModule.forFeature([ProjectsEffects]),
+        PreferProjectButtonModule
     ],
     declarations: [
         ProjectsListComponent,

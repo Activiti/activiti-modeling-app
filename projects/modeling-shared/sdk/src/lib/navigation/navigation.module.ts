@@ -27,12 +27,14 @@ import { MainNavigationHeaderComponent } from './components/main-header/main-nav
 import { UserInfoMenuComponent } from './components/user-info-menu/user-info-menu.component';
 import { StudioHeaderComponent } from './components/studio-header/studio-header.component';
 import { SearchHeaderComponent } from './components/search-header/search-header.component';
+import { PreferProjectButtonModule } from '../components/prefer-project-button/prefer-project-button.module';
 
 @NgModule({
     imports: [
         CommonModule,
         MatIconModule,
         MatButtonModule,
+        PreferProjectButtonModule,
         RouterModule.forChild([]),
         CoreModule.forChild()
     ],

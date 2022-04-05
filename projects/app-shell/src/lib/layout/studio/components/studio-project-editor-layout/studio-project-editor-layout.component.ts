@@ -16,21 +16,36 @@
  */
 
 import { LayoutService } from '@alfresco-dbp/modeling-shared/sdk';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     templateUrl: './studio-project-editor-layout.component.html',
     styleUrls: ['./studio-project-editor-layout.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class StudioProjectEditorLayoutComponent {
+export class StudioProjectEditorLayoutComponent implements OnDestroy {
+
+    onDestroy$: Subject<void> = new Subject<void>();
 
     mediaQueryList: MediaQueryList;
+    leftPanelOpened = true;
 
     constructor(private layoutService: LayoutService) {
+        this.layoutService.sidenavStatus$.pipe(takeUntil(this.onDestroy$))
+        .subscribe(() => {
+            this.leftPanelOpened = !this.leftPanelOpened;
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.onDestroy$.next();
+        this.onDestroy$.complete();
     }
 
     get isMobileScreenSize(): boolean {
         return this.layoutService.isSmallScreenWidth();
     }
+
 }

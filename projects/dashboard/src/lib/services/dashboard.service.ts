@@ -47,12 +47,4 @@ export class DashboardService {
     saveAsProject(projectId: string, name: string): Observable<Partial<Project>> {
         return this.amaApi.Project.copy(projectId, name);
     }
-
-    addToFavoritesProject(projectId: string): Observable<void> {
-        return this.amaApi.Project.addToFavorites(projectId);
-    }
-
-    removeFromFavoritesProject(projectId: string): Observable<void> {
-        return this.amaApi.Project.removeFromFavorites(projectId);
-    }
 }

@@ -14,12 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { map, switchMap, catchError, filter, mergeMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, LogFactoryService,
+import {
+    OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadResourceService, LogFactoryService,
     LeaveProjectAction,
     SnackbarInfoAction,
     getProjectEditorLogInitiator,
@@ -29,17 +31,21 @@ import { OpenConfirmDialogAction, BlobService, SnackbarErrorAction, DownloadReso
     OpenInfoDialogAction,
     ExportProjectAction,
     EXPORT_PROJECT,
-    ModelingJSONSchemaService} from '@alfresco-dbp/modeling-shared/sdk';
-import { DialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
-import { ProjectEditorService } from '../../services/project-editor.service';
-import {
+    ModelingJSONSchemaService,
+    AddToFavoritesProjectAttemptAction,
+    ADD_TO_FAVORITES_PROJECT_ATTEMPT,
+    RemoveFromFavoritesProjectAttemptAction,
+    REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT,
+    UpdateProjectSuccessAction,
     ValidateProjectAttemptAction,
     VALIDATE_PROJECT_ATTEMPT,
     ExportProjectAttemptAction,
     EXPORT_PROJECT_ATTEMPT,
     ExportProjectAttemptPayload,
-} from '../project-editor.actions';
- import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
+} from '@alfresco-dbp/modeling-shared/sdk';
+import { DialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
+import { ProjectEditorService } from '../../services/project-editor.service';
+import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 
 @Injectable()
 export class ProjectEffects {
@@ -51,7 +57,7 @@ export class ProjectEffects {
         private logFactory: LogFactoryService,
         protected blobService: BlobService,
         private modelingJSONSchemaService: ModelingJSONSchemaService
-    ) {}
+    ) { }
 
     @Effect()
     getProjectEffect = this.actions$.pipe(
@@ -61,7 +67,7 @@ export class ProjectEffects {
     );
 
     @Effect()
-       validateProjectAttemptEffect$ = this.actions$.pipe(
+    validateProjectAttemptEffect$ = this.actions$.pipe(
         ofType<ValidateProjectAttemptAction>(VALIDATE_PROJECT_ATTEMPT),
         switchMap(action => this.validateProject(action.projectId))
     );
@@ -85,6 +91,20 @@ export class ProjectEffects {
         ofType<RouterNavigatedAction>(ROUTER_NAVIGATED),
         filter(() => !this.router.url.startsWith('/projects')),
         mergeMap(() => of(new LeaveProjectAction()))
+    );
+
+    @Effect()
+    addToFavoritesProjectAttemptEffect = this.actions$.pipe(
+        ofType<AddToFavoritesProjectAttemptAction>(ADD_TO_FAVORITES_PROJECT_ATTEMPT),
+        map(action => action),
+        mergeMap((action) => this.addToFavoritesProject(action.projectId))
+    );
+
+    @Effect()
+    removeFromFavoritesProjectAttemptEffect = this.actions$.pipe(
+        ofType<RemoveFromFavoritesProjectAttemptAction>(REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT),
+        map(action => action),
+        mergeMap((action) => this.removeFromFavoritesProject(action.projectId))
     );
 
     private getProject(projectId: string) {
@@ -119,7 +139,7 @@ export class ProjectEffects {
                     })
                 ])
             )
-        ));
+            ));
     }
 
     private validateProject(projectId: string) {
@@ -132,7 +152,7 @@ export class ProjectEffects {
                 switchMap(dialogData => {
                     return [
                         this.logFactory.logError(getProjectEditorLogInitiator(), dialogData.messages),
-                        new OpenInfoDialogAction({dialogData})
+                        new OpenInfoDialogAction({ dialogData })
                     ];
                 })
             ))
@@ -149,10 +169,32 @@ export class ProjectEffects {
                     messages: errors
                 });
             }
-        ));
+            ));
     }
 
     private handleError(userMessage: string): Observable<SnackbarErrorAction> {
         return of(new SnackbarErrorAction(userMessage));
+    }
+
+    private addToFavoritesProject(projectId: string) {
+        return this.projectEditorService.addToFavoritesProject(projectId).pipe(
+            switchMap(() => this.projectEditorService.fetchProject(projectId)),
+            switchMap((project) => [
+                new UpdateProjectSuccessAction({ id: project.id, changes: project }),
+                new SnackbarInfoAction('NEW_STUDIO_DASHBOARD.ADD_TO_FAVORITES')
+            ]),
+            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.ADD_TO_FAVORITES'))
+        );
+    }
+
+    private removeFromFavoritesProject(projectId: string) {
+        return this.projectEditorService.removeFromFavoritesProject(projectId).pipe(
+            switchMap(() => this.projectEditorService.fetchProject(projectId)),
+            switchMap((project) => [
+                new UpdateProjectSuccessAction({ id: project.id, changes: project }),
+                new SnackbarInfoAction('NEW_STUDIO_DASHBOARD.REMOVE_FROM_FAVORITES')
+            ]),
+            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.REMOVE_FROM_FAVORITES'))
+        );
     }
 }

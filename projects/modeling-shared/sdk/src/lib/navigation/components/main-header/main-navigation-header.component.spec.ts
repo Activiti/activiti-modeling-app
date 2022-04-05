@@ -16,6 +16,7 @@
  */
 
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { By } from '@angular/platform-browser';
@@ -30,7 +31,6 @@ import { MainNavigationHeaderComponent } from './main-navigation-header.componen
 
 describe('MainNavigationHeaderComponent', () => {
     let fixture: ComponentFixture<MainNavigationHeaderComponent>;
-    let component: MainNavigationHeaderComponent;
     let store: Store<AmaState>;
     let routerEventReplaySubject: ReplaySubject<RouterEvent>;
 
@@ -61,7 +61,8 @@ describe('MainNavigationHeaderComponent', () => {
                     }
                 },
                 LayoutService
-            ]
+            ],
+            schemas: [NO_ERRORS_SCHEMA]
         });
 
         TestBed.compileComponents();
@@ -69,7 +70,6 @@ describe('MainNavigationHeaderComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(MainNavigationHeaderComponent);
-        component = fixture.componentInstance;
         fixture.detectChanges();
         store = TestBed.inject(Store);
     });

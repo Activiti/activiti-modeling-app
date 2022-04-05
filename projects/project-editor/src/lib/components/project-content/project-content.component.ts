@@ -23,10 +23,14 @@ import {
     selectProject,
     PROJECT_CONTEXT_MENU_OPTIONS,
     ProjectContextMenuOption,
-    ProjectContextMenuActionClass, OpenSaveAsProjectDialogAction, SaveAsProjectAttemptAction, ExportProjectAction
-} from '@alfresco-dbp/modeling-shared/sdk';
+    ProjectContextMenuActionClass,
+    OpenSaveAsProjectDialogAction,
+    SaveAsProjectAttemptAction,
+    ExportProjectAction,
+    ValidateProjectAttemptAction,
+    ExportProjectAttemptAction,
+    ExportProjectAttemptPayload } from '@alfresco-dbp/modeling-shared/sdk';
 import { Observable, Subscription } from 'rxjs';
-import { ValidateProjectAttemptAction, ExportProjectAttemptAction, ExportProjectAttemptPayload } from '../../store/project-editor.actions';
 
 @Component({
     templateUrl: './project-content.component.html',

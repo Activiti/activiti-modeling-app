@@ -127,30 +127,4 @@ describe ('Projects List Component', () => {
             projectName: 'mock-project-name'
         });
     });
-
-    it('should dispatch RemoveFromFavoritesProjectAttemptAction action if the project is favorite', () => {
-        const dispatchSpy = spyOn(store, 'dispatch');
-        const favoriteStar = fixture.debugElement.query(By.css('[data-automation-id="favorite-project"]'));
-        expect(favoriteStar.nativeElement).not.toBeNull();
-        const button = fixture.debugElement.query(By.css('[data-automation-id="project-favorite-mock-project-id"]'));
-        button.triggerEventHandler('click', {});
-        fixture.detectChanges();
-        const removeFromFavorites: RemoveFromFavoritesProjectAttemptAction = dispatchSpy.calls.argsFor(0)[0];
-
-        expect(removeFromFavorites.type).toBe('REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT');
-        expect(removeFromFavorites.projectId).toEqual('mock-project-id');
-    });
-
-    it('should dispatch AddToFavoritesProjectAttemptAction action if the project is not favorite', () => {
-        const dispatchSpy = spyOn(store, 'dispatch');
-        const nonFavoriteStar = fixture.debugElement.query(By.css('[data-automation-id="non-favorite-project"]'));
-        expect(nonFavoriteStar.nativeElement).not.toBeNull();
-        const button = fixture.debugElement.query(By.css('[data-automation-id="project-favorite-mock-project-id-1"]'));
-        button.triggerEventHandler('click', {});
-        fixture.detectChanges();
-        const addToFavorites: AddToFavoritesProjectAttemptAction = dispatchSpy.calls.argsFor(0)[0];
-
-        expect(addToFavorites.type).toBe('ADD_TO_FAVORITES_PROJECT_ATTEMPT');
-        expect(addToFavorites.projectId).toEqual('mock-project-id-1');
-    });
 });

@@ -136,22 +136,10 @@ export class AddToFavoritesProjectAttemptAction implements Action {
     constructor(public projectId: string, public sorting?, public search?: SearchQuery) {}
 }
 
-export const ADD_TO_FAVORITES_PROJECT_SUCCESS = 'ADD_TO_FAVORITES_PROJECT_SUCCESS';
-export class AddToFavoritesProjectSuccessAction implements Action {
-    readonly type = ADD_TO_FAVORITES_PROJECT_SUCCESS;
-    constructor(public payload: string) {}
-}
-
 export const REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT = 'REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT';
 export class RemoveFromFavoritesProjectAttemptAction implements Action {
     readonly type = REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT;
-    constructor(public projectId: string, public sorting?, public search?: SearchQuery, public isFavoriteList: boolean = false) {}
-}
-
-export const REMOVE_FROM_FAVORITES_PROJECT_SUCCESS = 'REMOVE_FROM_FAVORITES_PROJECT_SUCCESS';
-export class RemoveFromFavoritesProjectSuccessAction implements Action {
-    readonly type = REMOVE_FROM_FAVORITES_PROJECT_SUCCESS;
-    constructor(public payload: string) {}
+    constructor(public projectId: string) {}
 }
 
 export const GET_PROJECTS_SUCCESS = 'GET_PROJECTS_SUCCESS';
@@ -198,4 +186,22 @@ export const SELECT_PROJECT = 'SELECT_PROJECT';
 export class SelectProjectAction implements Action {
     readonly type = SELECT_PROJECT;
     constructor(public payload: string) {}
+}
+
+export const VALIDATE_PROJECT_ATTEMPT = 'VALIDATE_PROJECT_ATTEMPT';
+export class ValidateProjectAttemptAction implements Action {
+    readonly type = VALIDATE_PROJECT_ATTEMPT;
+    constructor(public projectId: string) {}
+}
+
+export interface ExportProjectAttemptPayload {
+    projectId: string;
+    projectName: string;
+    action?: Action;
+}
+
+export const EXPORT_PROJECT_ATTEMPT = 'EXPORT_PROJECT_ATTEMPT';
+export class ExportProjectAttemptAction implements Action {
+    readonly type = EXPORT_PROJECT_ATTEMPT;
+    constructor(public payload: ExportProjectAttemptPayload) {}
 }

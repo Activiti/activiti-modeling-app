@@ -16,12 +16,77 @@
  */
 
 import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Project } from '../../../api/types';
+import { LayoutService } from '../../../services/layout.service';
+import { AmaState } from '../../../store/app.state';
+import { AddToFavoritesProjectAttemptAction,
+         ExportProjectAction,
+         OpenSaveAsProjectDialogAction,
+         RemoveFromFavoritesProjectAttemptAction,
+         SaveAsProjectAttemptAction,
+         ValidateProjectAttemptAction,
+         ExportProjectAttemptAction,
+         ExportProjectAttemptPayload,
+         ReleaseProjectAttemptAction} from '../../../store/project.actions';
+import { selectProject } from '../../../store/project.selectors';
 
 @Component({
-  templateUrl: './studio-header.component.html',
-  styleUrls: ['./studio-header.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+    templateUrl: './studio-header.component.html',
+    styleUrls: ['./studio-header.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StudioHeaderComponent  {
+export class StudioHeaderComponent {
+
+    project$: Observable<Partial<Project>>;
+
+    constructor(private store: Store<AmaState>,
+                private router: Router,
+                private layoutService: LayoutService) {
+        this.project$ = this.store.select(selectProject);
+    }
+
+    onBackArrowClick() {
+        this.router.navigate(['']);
+    }
+
+    onToggleLeftSideNav() {
+        this.layoutService.toggleSideNav();
+    }
+
+    addRemoveFavoriteProject(item: Partial<Project>) {
+        if (item?.favorite) {
+            this.store.dispatch(new RemoveFromFavoritesProjectAttemptAction(item.id));
+        } else {
+            this.store.dispatch(new AddToFavoritesProjectAttemptAction(item.id));
+        }
+    }
+
+    onValidateProject(projectId: string) {
+        this.store.dispatch(new ValidateProjectAttemptAction(projectId));
+    }
+
+    onReleaseProject(projectId: string) {
+        this.store.dispatch(new ReleaseProjectAttemptAction(projectId));
+    }
+
+    saveAsProject(project: Partial<Project>) {
+        this.store.dispatch(new OpenSaveAsProjectDialogAction({
+            id: project.id,
+            name: project.name,
+            action: SaveAsProjectAttemptAction
+        }));
+    }
+
+    downloadProject(project: Partial<Project>) {
+        const payload: ExportProjectAttemptPayload = {
+            projectId: project.id,
+            projectName: project.name,
+            action: new ExportProjectAction({ projectId: project.id, projectName: project.name})
+        };
+        this.store.dispatch(new ExportProjectAttemptAction(payload));
+    }
 }

@@ -20,7 +20,7 @@ import { ProjectTreeComponent } from './project-tree.component';
 import { Store } from '@ngrx/store';
 import { ProjectTreeHelper } from './project-tree.helper';
 import { of } from 'rxjs';
-import { PROCESS, FORM, selectSelectedProjectId, selectMenuOpened, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
+import { PROCESS, FORM, selectSelectedProjectId, selectMenuOpened, SharedModule } from '@alfresco-dbp/modeling-shared/sdk';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -33,12 +33,10 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { ChangeFilterStatus } from '../../store/project-editor.actions';
 
 describe('ProjectTreeFilterComponent ', () => {
     let fixture: ComponentFixture<ProjectTreeComponent>;
     let helper: ProjectTreeHelper;
-    let store: Store<AmaState>;
 
     const mockFilters = [
         { type: PROCESS, name: 'PROJECT_EDITOR.TREE.PROCESSES', icon: 'device_hub' },
@@ -58,6 +56,7 @@ describe('ProjectTreeFilterComponent ', () => {
                 HttpClientTestingModule,
                 MatIconModule,
                 RouterModule,
+                SharedModule,
                 MatButtonModule
             ],
             declarations: [
@@ -100,7 +99,6 @@ describe('ProjectTreeFilterComponent ', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ProjectTreeComponent);
         helper = TestBed.inject(ProjectTreeHelper);
-        store = TestBed.inject(Store);
     });
 
     it ('project tree should contain all the expected filters', () => {

@@ -1,7 +1,7 @@
 mat-sidenav-container.studio-project-layout {
     display: block;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 65px);
 
     .app-navigation {
         width: 300px;

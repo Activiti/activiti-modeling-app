@@ -15,16 +15,5 @@
  * limitations under the License.
  */
 
-import { Action } from '@ngrx/store';
-import { MODEL_TYPE } from '@alfresco-dbp/modeling-shared/sdk';
-
-export const CLOSE_FILTER = '[App Tree] Close filter';
-export const CHANGE_FILTER_STATUS = '[App Tree] Change filter status';
-export class CloseFilterAction implements Action {
-    readonly type = CLOSE_FILTER;
-    constructor(public filterType: MODEL_TYPE) {}
-}
-export class ChangeFilterStatus implements Action {
-    readonly type = CHANGE_FILTER_STATUS;
-    constructor(public filterType: MODEL_TYPE) {}
-}
+export * from './prefer-project-button.component';
+export * from './prefer-project-button.module';

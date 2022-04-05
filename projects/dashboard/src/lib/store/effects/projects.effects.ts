@@ -61,12 +61,6 @@ import {
     SAVE_AS_PROJECT_ATTEMPT,
     SaveAsProjectDialogPayload,
     SaveAsProjectDialogComponent,
-    AddToFavoritesProjectAttemptAction,
-    ADD_TO_FAVORITES_PROJECT_ATTEMPT,
-    AddToFavoritesProjectSuccessAction,
-    RemoveFromFavoritesProjectAttemptAction,
-    REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT,
-    RemoveFromFavoritesProjectSuccessAction,
     GetFavoriteProjectsAttemptAction,
     GET_FAVORITE_PROJECTS_ATTEMPT,
     GetFavoriteProjectsSuccessAction,
@@ -125,22 +119,6 @@ export class ProjectsEffects {
     );
 
     @Effect()
-    addToFavoritesProjectAttemptEffect = this.actions$.pipe(
-        ofType<AddToFavoritesProjectAttemptAction>(ADD_TO_FAVORITES_PROJECT_ATTEMPT),
-        map(action => action),
-        withLatestFrom(this.store.select(selectPagination)),
-        mergeMap(([action, pagination]) => this.addToFavoritesProject(action.projectId, action.sorting, action.search, pagination))
-    );
-
-    @Effect()
-    removeFromFavoritesProjectAttemptEffect = this.actions$.pipe(
-        ofType<RemoveFromFavoritesProjectAttemptAction>(REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT),
-        map(action => action),
-        withLatestFrom(this.store.select(selectPagination)),
-        mergeMap(([action, pagination]) => this.removeFromFavoritesProject(action.projectId, action.sorting, action.search, pagination, action.isFavoriteList))
-    );
-
-    @Effect()
     getProjectsAttemptEffect = this.actions$.pipe(
         ofType<GetProjectsAttemptAction>(GET_PROJECTS_ATTEMPT),
         switchMap(action => this.getProjectsAttempt(<FetchQueries> action.pagination, action.sorting, action.search))
@@ -191,54 +169,6 @@ export class ProjectsEffects {
                 }, search)
             ]),
             catchError(_ => of(new SnackbarErrorAction('PROJECT_EDITOR.ERROR.DELETE_PROJECT')))
-        );
-    }
-
-    private addToFavoritesProject(projectId: string, sorting: ServerSideSorting, search: SearchQuery, pagination: Pagination) {
-        let skipCount;
-        if (pagination.count === 1) {
-            skipCount = 0;
-        } else {
-            skipCount = pagination.skipCount < (pagination.totalItems - 1) ? pagination.skipCount : pagination.skipCount - pagination.maxItems;
-        }
-        return this.dashboardService.addToFavoritesProject(projectId).pipe(
-            switchMap(() => [
-                new AddToFavoritesProjectSuccessAction(projectId),
-                new SnackbarInfoAction('NEW_STUDIO_DASHBOARD.ADD_TO_FAVORITES'),
-                new GetProjectsAttemptAction({
-                    skipCount,
-                    maxItems: pagination.maxItems
-                }, {
-                    key: sorting.key,
-                    direction: sorting.direction
-                }, search)
-            ]),
-            catchError(_ => of(new SnackbarErrorAction('PROJECT_EDITOR.ERROR.ADD_TO_FAVORITES')))
-        );
-    }
-
-    private removeFromFavoritesProject(projectId: string, sorting: ServerSideSorting, search: SearchQuery, pagination: Pagination, isFavoriteList: boolean) {
-        let action;
-        action = isFavoriteList ? GetFavoriteProjectsAttemptAction : GetProjectsAttemptAction;
-        let skipCount;
-        if (pagination.count === 1) {
-            skipCount = 0;
-        } else {
-            skipCount = pagination.skipCount < (pagination.totalItems - 1) ? pagination.skipCount : pagination.skipCount - pagination.maxItems;
-        }
-        return this.dashboardService.removeFromFavoritesProject(projectId).pipe(
-            switchMap(() => [
-                new RemoveFromFavoritesProjectSuccessAction(projectId),
-                new SnackbarInfoAction('NEW_STUDIO_DASHBOARD.REMOVE_FROM_FAVORITES'),
-                new action({
-                    skipCount,
-                    maxItems: pagination.maxItems
-                }, {
-                    key: sorting.key,
-                    direction: sorting.direction
-                }, search)
-            ]),
-            catchError(_ => of(new SnackbarErrorAction('PROJECT_EDITOR.ERROR.REMOVE_FROM_FAVORITES')))
         );
     }
 

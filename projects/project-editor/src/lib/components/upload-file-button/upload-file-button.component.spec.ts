@@ -21,9 +21,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
-import { AmaState, MODEL_UPLOADERS, PROCESS } from '@alfresco-dbp/modeling-shared/sdk';
+import { AmaState, MODEL_UPLOADERS, PROCESS, ValidateProjectAttemptAction, VALIDATE_PROJECT_ATTEMPT } from '@alfresco-dbp/modeling-shared/sdk';
 import { HttpClientModule } from '@angular/common/http';
-import { ValidateProjectAttemptAction, VALIDATE_PROJECT_ATTEMPT } from '../../store/project-editor.actions';
 
 describe('UploadFileButtonComponent', () => {
     let component: UploadFileButtonComponent;
