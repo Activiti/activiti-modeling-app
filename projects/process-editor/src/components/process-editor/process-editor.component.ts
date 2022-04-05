@@ -42,10 +42,8 @@ import {
     ContentType,
     ModelExtensions,
     ModelEntitySelectors,
-    BreadCrumbHelperService,
-    BreadcrumbItem,
     BasicModelCommands,
-    MODEL_COMMAND_SERVICE_TOKEN
+    MODEL_COMMAND_SERVICE_TOKEN,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import {
     ChangeProcessModelContextAction,
@@ -102,7 +100,6 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
     processFileUri: string;
     extensionsLanguageType = 'json';
     processesLanguageType = 'xml';
-    breadcrumbs$: Observable<BreadcrumbItem[]>;
 
     constructor(
         private store: Store<AmaState>,
@@ -112,12 +109,10 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
         private statusBarService: StatusBarService,
         private modelCommands: ProcessCommandsService,
         @Inject(PROCESS_MODEL_ENTITY_SELECTORS)
-        private entitySelector: ModelEntitySelectors,
-        private breadCrumbHelperService: BreadCrumbHelperService,
+        private entitySelector: ModelEntitySelectors
     ) {}
 
     ngOnInit() {
-        this.breadcrumbs$ = this.breadCrumbHelperService.getModelCrumbs(this.entitySelector.selectBreadCrumbsWithVersion(this.modelId));
         this.contentFromStore$ = this.store.select(this.entitySelector.selectModelContentById(this.modelId)).pipe(
             filter(content => !!content),
             take(1)
@@ -135,6 +130,12 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
             map(process => JSON.stringify(process.extensions, undefined, 4).trim())
         );
 
+        this.modelCommands.tabIndexChanged$.subscribe(
+            (index: number) => {
+                this.selectedTabIndex = index;
+            }
+        );
+
         this.modelId$ = of(this.modelId); // Refactor this to not be an observable
         this.modelCommands.init(PROCESS, ContentType.Process, this.modelId$, this.editorContent$, this.modelMetadata$);
 
@@ -142,7 +143,7 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
         this.extensionFileUri = getFileUri(PROCESS, this.extensionsLanguageType, this.modelId);
 
         this.loading$ = this.store.select(selectProcessLoading);
-        this.modelCommands.setVisible(<BasicModelCommands> ProcessCommandsService.DOWNLOAD_PROCESS_SVG_IMAGE_COMMAND_BUTTON, this.isDiagramTabSelected());
+        this.setVisibilityConditions();
     }
 
     async onBpmnEditorChange(): Promise<void> {
@@ -183,7 +184,7 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
         this.selectedTabIndex = event.index;
         this.statusBarService.setText(this.tabNames[this.selectedTabIndex]);
         this.store.dispatch(new ChangeProcessModelContextAction(this.modelContext[this.selectedTabIndex]));
-        this.modelCommands.setVisible(<BasicModelCommands> ProcessCommandsService.DOWNLOAD_PROCESS_SVG_IMAGE_COMMAND_BUTTON, this.isDiagramTabSelected());
+        this.setVisibilityConditions();
     }
 
     codeEditorPositionChanged(position: CodeEditorPosition) {
@@ -224,6 +225,21 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
 
     private isDiagramTabSelected(): boolean {
         return this.modelContext[this.selectedTabIndex] === ProcessModelContext.diagram;
+    }
+
+    private isXmlTabSelected(): boolean {
+        return this.modelContext[this.selectedTabIndex] === ProcessModelContext.bpmn;
+    }
+
+    private isExtensionsTabSelected(): boolean {
+        return this.modelContext[this.selectedTabIndex] === ProcessModelContext.extension;
+    }
+
+    private setVisibilityConditions() {
+        this.modelCommands.setVisible(<BasicModelCommands> ProcessCommandsService.DOWNLOAD_PROCESS_SVG_IMAGE_COMMAND_BUTTON, this.isDiagramTabSelected());
+        this.modelCommands.setIconVisible(<BasicModelCommands> ProcessCommandsService.DIAGRAM_MENU_ITEM, this.isDiagramTabSelected());
+        this.modelCommands.setIconVisible(<BasicModelCommands> ProcessCommandsService.XML_MENU_ITEM, this.isXmlTabSelected());
+        this.modelCommands.setIconVisible(<BasicModelCommands> ProcessCommandsService.EXTENSIONS_MENU_ITEM, this.isExtensionsTabSelected());
     }
 
     updateDisabledStatusForButton(status: boolean) {

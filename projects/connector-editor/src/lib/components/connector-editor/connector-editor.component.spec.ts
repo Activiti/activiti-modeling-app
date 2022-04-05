@@ -100,8 +100,7 @@ describe('ConnectorEditorComponent', () => {
                 {
                     provide: CONNECTOR_MODEL_ENTITY_SELECTORS,
                     useValue: {
-                        selectModelContentById: jest.fn().mockImplementation(() => of()),
-                        selectBreadCrumbs: jest.fn().mockImplementation(() => of())
+                        selectModelContentById: jest.fn().mockImplementation(() => of())
                     }
                 }
             ],

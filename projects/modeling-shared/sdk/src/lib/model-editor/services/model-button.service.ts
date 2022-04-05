@@ -26,12 +26,13 @@ const iconMapping = {
     [BasicModelCommands.download]: 'file_download',
     [BasicModelCommands.delete]: 'delete',
     [BasicModelCommands.saveAs]: 'save-as',
-    [BasicModelCommands.moreMenu]: 'more_vert'
+    [BasicModelCommands.moreMenu]: 'more_vert',
+    [BasicModelCommands.editorsMenu]: 'remove_red_eye'
 };
 
 const priorityMapping = {
     [ButtonType.STANDARD]: [BasicModelCommands.save, BasicModelCommands.validate, BasicModelCommands.download],
-    [ButtonType.MENU]: [BasicModelCommands.saveAs, BasicModelCommands.delete]
+    [ButtonType.MENU]: [BasicModelCommands.moreMenu, BasicModelCommands.editorsMenu, BasicModelCommands.saveAs, BasicModelCommands.delete]
 };
 
 export class ModelButtonService {
@@ -77,7 +78,7 @@ export class ModelButtonService {
     }
 
     private getFormattedModelName(modelName: string, commandName: string): string {
-        return `ADV_${this.formatValue(modelName)}_EDITOR.${commandName.toUpperCase()}_${this.formatValue(modelName)}`;
+        return `ADV_${this.formatValue(modelName)}_EDITOR.${this.formatValue(commandName)}_${this.formatValue(modelName)}`;
     }
 
     private formatValue(value: string): string {

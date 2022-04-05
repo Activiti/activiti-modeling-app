@@ -1,12 +1,5 @@
-<adf-toolbar>
-    <adf-toolbar-title>
-        <modelingsdk-header-breadcrumbs [breadcrumbs$]="breadcrumbs$">
-        </modelingsdk-header-breadcrumbs>
-    </adf-toolbar-title>
-
-    <div class="adf-toolbar--spacer"></div>
-
-    <span *ngFor="let button of standardButtons">
+<adf-toolbar class="ama-model-header">
+    <span *ngFor="let button of standardButtons" class="ama-model-header-standard-buttons">
         <button mat-icon-button
             [title]="(button.title | translate)"
             [disabled]="button.disabled$ | async"
@@ -23,11 +16,11 @@
             [disabled]="button.disabled$ | async"
             *ngIf="(showMenu(button.commandName) | async) && (button.visible$ | async)"
             [attr.data-automation-id]="modelName+'-editor-'+button.commandName+'-button'"
-            [matMenuTriggerFor]="primary_menu">
+            [matMenuTriggerFor]="menu">
             <mat-icon>{{button.icon}}</mat-icon>
         </button>
 
-        <mat-menu #primary_menu="matMenu">
+        <mat-menu #menu="matMenu">
             <span *ngFor="let menuButton of button.createdMenuItems">
                 <button mat-menu-item
                     [attr.data-automation-id]="modelName+'-editor-'+menuButton.commandName+'-button'"

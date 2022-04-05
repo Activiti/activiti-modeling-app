@@ -27,6 +27,9 @@ import { DownloadProcessSVGImageCommand } from './download-process-svg-image.com
 @Injectable()
 export class ProcessCommandsService extends ModelCommandsService {
     public static readonly DOWNLOAD_PROCESS_SVG_IMAGE_COMMAND_BUTTON = 'download-svg-image';
+    public static readonly DIAGRAM_MENU_ITEM = 'diagram-menu-item';
+    public static readonly EXTENSIONS_MENU_ITEM = 'extensions-menu-item';
+    public static readonly XML_MENU_ITEM = 'xml-menu-item';
 
     constructor(
         saveCommand: SaveProcessCommand,
@@ -34,9 +37,13 @@ export class ProcessCommandsService extends ModelCommandsService {
         validateCommand: ValidateProcessCommand,
         downloadCommand: DownloadProcessCommand,
         saveAsCommand: SaveAsProcessCommand,
-        downloadProcessSvgImageCommand: DownloadProcessSVGImageCommand
+        downloadProcessSvgImageCommand: DownloadProcessSVGImageCommand,
     ) {
         super();
+
+        const selectProcessEditorTab = (index: number) => {
+            this.setTabIndex(index);
+        };
 
         const downloadProcessSvgImageCommandButton: CommandButton = {
             commandName: <BasicModelCommands> ProcessCommandsService.DOWNLOAD_PROCESS_SVG_IMAGE_COMMAND_BUTTON,
@@ -47,15 +54,47 @@ export class ProcessCommandsService extends ModelCommandsService {
             action: downloadProcessSvgImageCommand
         };
 
+        const diagramMenuItemCommandButton: CommandButton = {
+            commandName: <BasicModelCommands> ProcessCommandsService.DIAGRAM_MENU_ITEM,
+            title: 'PROCESS_EDITOR.TABS.DIAGRAM_EDITOR',
+            icon: 'done',
+            isSvgIcon: false,
+            buttonType: ButtonType.STANDARD,
+            action: { execute: () =>  selectProcessEditorTab(0)}
+        };
+
+        const xmlMenuItemCommandButton: CommandButton = {
+            commandName: <BasicModelCommands> ProcessCommandsService.XML_MENU_ITEM,
+            title: 'PROCESS_EDITOR.TABS.RAW_EDITOR',
+            icon: 'done',
+            isSvgIcon: false,
+            buttonType: ButtonType.STANDARD,
+            action: { execute: () =>  selectProcessEditorTab(1) }
+        };
+
+        const extensionsMenuItemCommandButton: CommandButton = {
+            commandName: <BasicModelCommands> ProcessCommandsService.EXTENSIONS_MENU_ITEM,
+            title: 'PROCESS_EDITOR.TABS.EXTENSIONS_EDITOR',
+            icon: 'done',
+            isSvgIcon: false,
+            buttonType: ButtonType.STANDARD,
+            action: { execute: () =>  selectProcessEditorTab(2)}
+        };
+
         [
             ...this.getBasicStandardCommands({
-                [BasicModelCommands.save] : saveCommand,
-                [BasicModelCommands.download]: downloadCommand,
+                [BasicModelCommands.save]: saveCommand,
                 [BasicModelCommands.validate]: validateCommand
             }, PROCESS),
             ...this.getBasicMenuCommands({
-                [BasicModelCommands.moreMenu] : {
+                [BasicModelCommands.editorsMenu]: {
+                    [diagramMenuItemCommandButton.commandName]: diagramMenuItemCommandButton,
+                    [xmlMenuItemCommandButton.commandName]: xmlMenuItemCommandButton,
+                    [extensionsMenuItemCommandButton.commandName]: extensionsMenuItemCommandButton
+                },
+                [BasicModelCommands.moreMenu]: {
                     [BasicModelCommands.saveAs]: saveAsCommand,
+                    [BasicModelCommands.download]: downloadCommand,
                     [BasicModelCommands.delete]: deleteCommand,
                     [downloadProcessSvgImageCommandButton.commandName]: downloadProcessSvgImageCommandButton
                 }

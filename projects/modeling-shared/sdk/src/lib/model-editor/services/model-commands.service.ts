@@ -16,7 +16,7 @@
  */
 
 import { ModelButtonService } from './model-button.service';
-import { Observable, zip } from 'rxjs';
+import { BehaviorSubject, Observable, zip } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { ContentType } from '../../api-implementations/acm-api/content-types';
 import { MODEL_TYPE } from '../../api/types';
@@ -40,9 +40,15 @@ export class ModelCommandsService {
 
     protected commands: EventMethod[] = [];
     protected modelButtonService: ModelButtonService = new ModelButtonService();
+    private tabIndex$ = new BehaviorSubject<number>(0);
+    tabIndexChanged$ = this.tabIndex$.asObservable();
 
     constructor() {
         this.eventTarget = new EventTarget();
+    }
+
+    public setTabIndex(index: number) {
+        this.tabIndex$.next(index);
     }
 
     public init(modelType: MODEL_TYPE, modelContentType: ContentType, modelId$: Observable<string>, modelContent$: Observable<string>, modelMetadata$?: Observable<any>) {

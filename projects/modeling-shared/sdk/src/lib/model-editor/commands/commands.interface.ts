@@ -27,6 +27,7 @@ export enum BasicModelCommands {
     delete = 'delete',
     validate = 'validate',
     moreMenu = 'more-menu',
+    editorsMenu = 'editors-menu'
 }
 
 export interface UpdateActionLike {

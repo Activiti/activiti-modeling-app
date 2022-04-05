@@ -18,7 +18,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { BreadcrumbItem } from '../../../helpers/header-breadcrumbs/breadcrumb-helper.service';
 import { BasicModelCommands } from '../../commands/commands.interface';
 import { ButtonType, ShowCommandButton } from '../../services/command.model';
 import { ModelCommandsService } from '../../services/model-commands.service';
@@ -27,12 +26,10 @@ import { MODEL_COMMAND_SERVICE_TOKEN } from '../model-editor/model-editors.token
 @Component({
     /* cspell: disable-next-line */
     selector: 'modelingsdk-model-header',
-    templateUrl: './model-header.component.html'
+    templateUrl: './model-header.component.html',
+    styleUrls: [ './model-header.component.scss' ]
 })
 export class ModelHeaderComponent implements OnInit {
-
-    @Input()
-    breadcrumbs$: Observable<BreadcrumbItem[]>;
 
     @Input()
     modelName: string;

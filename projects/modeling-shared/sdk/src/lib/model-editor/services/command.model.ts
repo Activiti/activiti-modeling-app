@@ -42,6 +42,7 @@ export interface CommandButtonRequest {
 
 export interface MenuButtonRequest {
     [BasicModelCommands.moreMenu]?: CommandButtonRequest;
+    [BasicModelCommands.editorsMenu]?: CommandButtonRequest;
 }
 
 export interface ShowCommandButton extends CommandButton {

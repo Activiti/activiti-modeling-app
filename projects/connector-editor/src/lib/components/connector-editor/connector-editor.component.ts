@@ -37,8 +37,6 @@ import {
     ContentType,
     CONNECTOR_MODEL_ENTITY_SELECTORS,
     ModelEntitySelectors,
-    BreadcrumbItem,
-    BreadCrumbHelperService,
     MODEL_COMMAND_SERVICE_TOKEN
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTabChangeEvent } from '@angular/material/tabs';
@@ -81,7 +79,6 @@ export class ConnectorEditorComponent implements OnInit, CanComponentDeactivate,
         'ADV_CONNECTOR_EDITOR.TABS.JSON_EDITOR'
     ];
     selectedTabIndex = 0;
-    breadcrumbs$: Observable<BreadcrumbItem[]>;
 
     constructor(
         private store: Store<AmaState>,
@@ -91,12 +88,10 @@ export class ConnectorEditorComponent implements OnInit, CanComponentDeactivate,
         private componentRegister: ComponentRegisterService,
         private statusBarService: StatusBarService,
         @Inject(CONNECTOR_MODEL_ENTITY_SELECTORS)
-        private entitySelector: ModelEntitySelectors,
-        private breadCrumbHelperService: BreadCrumbHelperService
+        private entitySelector: ModelEntitySelectors
     ) {}
 
     ngOnInit() {
-        this.breadcrumbs$ = this.breadCrumbHelperService.getModelCrumbs(this.entitySelector.selectBreadCrumbs(this.modelId));
         this.loadingState$ = this.store.select(selectConnectorLoadingState);
         this.modelId$ = of(this.modelId);
         const contentFromStore$ = this.store.select(this.entitySelector.selectModelContentById(this.modelId)).pipe(

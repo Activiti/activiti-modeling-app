@@ -41,22 +41,4 @@ export class ModelEntitySelectors {
             state => state.entities[modelId]
         );
     }
-
-    selectBreadCrumbs(modelId: string) {
-        return createSelector(
-            this.selectModelMetadataById(modelId),
-            (selectedModelMetadata) => {
-                return { name: selectedModelMetadata ? selectedModelMetadata.name : '' };
-            }
-        );
-    }
-
-    selectBreadCrumbsWithVersion(modelId: string) {
-        return createSelector(
-            this.selectModelMetadataById(modelId),
-            (selectedModelMetadata) => {
-                return { name: selectedModelMetadata ? `${selectedModelMetadata.name} (${selectedModelMetadata.version})` : '' };
-            }
-        );
-    }
 }
