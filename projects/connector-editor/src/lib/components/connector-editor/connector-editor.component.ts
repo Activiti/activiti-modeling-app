@@ -37,7 +37,8 @@ import {
     ContentType,
     CONNECTOR_MODEL_ENTITY_SELECTORS,
     ModelEntitySelectors,
-    MODEL_COMMAND_SERVICE_TOKEN
+    MODEL_COMMAND_SERVICE_TOKEN,
+    BasicModelCommands
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ConnectorCommandsService } from '../../services/commands/connector-commands.service';
@@ -106,14 +107,22 @@ export class ConnectorEditorComponent implements OnInit, CanComponentDeactivate,
             return { connectorContent, onChangeAttempt };
         });
 
+        this.modelCommands.tabIndexChanged$.subscribe(
+            (index: number) => {
+                this.selectedTabIndex = index;
+            }
+        );
+
         this.fileUri = getFileUri(CONNECTOR, this.languageType, this.modelId);
         this.modelCommands.init(CONNECTOR, ContentType.Connector, this.modelId$, this.editorContent$);
+        this.setVisibilityConditions();
     }
 
     onTabChange(event: MatTabChangeEvent): void {
         this.disableSave = false;
         this.selectedTabIndex = event.index;
         this.statusBarService.setText(this.tabNames[this.selectedTabIndex]);
+        this.setVisibilityConditions();
     }
 
     isAdvancedEditorEmbedded(): boolean {
@@ -159,6 +168,11 @@ export class ConnectorEditorComponent implements OnInit, CanComponentDeactivate,
                 map(state => state === ModelEditorState.SAVED),
                 catchError(() => of(false))
             );
+    }
+
+    private setVisibilityConditions() {
+        this.modelCommands.setIconVisible(<BasicModelCommands> ConnectorCommandsService.CONNECTOR_EDITOR_MENU_ITEM, this.selectedTabIndex === 0);
+        this.modelCommands.setIconVisible(<BasicModelCommands> ConnectorCommandsService.JSON_EDITOR_MENU_ITEM, this.selectedTabIndex === 1);
     }
 
     ngOnDestroy() {

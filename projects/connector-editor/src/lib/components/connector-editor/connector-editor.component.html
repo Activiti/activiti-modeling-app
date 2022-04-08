@@ -10,7 +10,8 @@
                 <mat-tab-group
                     (selectedTabChange)="onTabChange($event)"
                     [@.disabled]="true"
-                    class="ama-connector-tab-group">
+                    class="ama-connector-tab-group"
+                    [(selectedIndex)]="selectedTabIndex" animationDuration="0ms">
                     <mat-tab label="{{ 'ADV_CONNECTOR_EDITOR.TABS.CONNECTOR_EDITOR' | translate }}">
                         <div class="ama-connector-page"
                             data-automation-id="connector-advanced-tab">

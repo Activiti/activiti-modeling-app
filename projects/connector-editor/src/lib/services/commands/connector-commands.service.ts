@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ModelCommandsService, BasicModelCommands, CONNECTOR } from '@alfresco-dbp/modeling-shared/sdk';
+import { ModelCommandsService, BasicModelCommands, CONNECTOR, ButtonType, CommandButton } from '@alfresco-dbp/modeling-shared/sdk';
 import { Injectable } from '@angular/core';
 import { DeleteConnectorCommand } from './delete-connector.command';
 import { SaveAsConnectorCommand } from './save-as-connector.command';
@@ -25,6 +25,10 @@ import { ValidateConnectorCommand } from './validate-connector.command';
 
 @Injectable()
 export class ConnectorCommandsService extends ModelCommandsService {
+
+    public static readonly CONNECTOR_EDITOR_MENU_ITEM = 'connector-editor-menu-item';
+    public static readonly JSON_EDITOR_MENU_ITEM = 'json-editor-menu-item';
+
     constructor(
         saveCommand: SaveConnectorCommand,
         deleteCommand: DeleteConnectorCommand,
@@ -34,15 +38,41 @@ export class ConnectorCommandsService extends ModelCommandsService {
         ) {
         super();
 
+        const selectConnectorEditorTab = (index: number) => {
+            this.setTabIndex(index);
+        };
+
+        const connectorEditorMenuItemCommandButton: CommandButton = {
+            commandName: <BasicModelCommands> ConnectorCommandsService.CONNECTOR_EDITOR_MENU_ITEM,
+            title: 'ADV_CONNECTOR_EDITOR.TABS.CONNECTOR_EDITOR',
+            icon: 'done',
+            isSvgIcon: false,
+            buttonType: ButtonType.STANDARD,
+            action: { execute: () =>  selectConnectorEditorTab(0)}
+        };
+
+        const jsonEditorMenuItemCommandButton: CommandButton = {
+            commandName: <BasicModelCommands> ConnectorCommandsService.JSON_EDITOR_MENU_ITEM,
+            title: 'ADV_CONNECTOR_EDITOR.TABS.JSON_EDITOR',
+            icon: 'done',
+            isSvgIcon: false,
+            buttonType: ButtonType.STANDARD,
+            action: { execute: () =>  selectConnectorEditorTab(1) }
+        };
+
         [
             ...this.getBasicStandardCommands({
                 [BasicModelCommands.save] : saveCommand,
-                [BasicModelCommands.download]: downloadCommand,
                 [BasicModelCommands.validate]: validateCommand
             }, CONNECTOR),
             ...this.getBasicMenuCommands({
+                [BasicModelCommands.editorsMenu]: {
+                    [connectorEditorMenuItemCommandButton.commandName]: connectorEditorMenuItemCommandButton,
+                    [jsonEditorMenuItemCommandButton.commandName]: jsonEditorMenuItemCommandButton
+                },
                 [BasicModelCommands.moreMenu] : {
                     [BasicModelCommands.saveAs]: saveAsCommand,
+                    [BasicModelCommands.download]: downloadCommand,
                     [BasicModelCommands.delete]: deleteCommand
                 }
             }, CONNECTOR)
