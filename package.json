@@ -143,6 +143,7 @@
     "cpx": "1.5.0",
     "cspell": "^5.3.12",
     "deepmerge": "^4.2.2",
+    "deepmerge-json": "^1.2.0",
     "dotenv": "8.2.0",
     "envsub": "^4.0.7",
     "fs-extra": "^9.1.0",
