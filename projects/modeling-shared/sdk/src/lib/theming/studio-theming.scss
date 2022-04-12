@@ -2,6 +2,7 @@
 @import '~@angular/material/theming';
 
 $studio-background: rgba(33, 33, 33, 0.12);
+$studio-light-gray: rgba(33, 33, 33, 0.05);
 
 $studio-orange: (
     50: #fff8e0,
@@ -20,7 +21,7 @@ $studio-orange: (
     A700: #ffdba6,
     contrast: (
         50:  $studio-background,
-        100: $black-87-opacity,
+        100: $studio-light-gray,
         200: $black-87-opacity,
         300: white,
         400: white,

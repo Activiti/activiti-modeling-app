@@ -33,7 +33,7 @@ export class StudioProjectEditorLayoutComponent implements OnDestroy {
     leftPanelOpened = true;
 
     constructor(private layoutService: LayoutService) {
-        this.layoutService.sidenavStatus$.pipe(takeUntil(this.onDestroy$))
+        this.layoutService.sidenavToggleEvent$.pipe(takeUntil(this.onDestroy$))
         .subscribe(() => {
             this.leftPanelOpened = !this.leftPanelOpened;
         });

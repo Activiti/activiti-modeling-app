@@ -33,6 +33,7 @@ $primary: map-get($theme, primary);
 $defaults: (
   --theme-primary-color: mat-color($primary),
   --theme-studio-background: mat-contrast($primary, 50),
+  --theme-studio-gray-color: mat-contrast($primary, 100),
   --theme-primary-color-default-contrast: mat-color($primary, default-contrast),
   --theme-warn-color: mat-color($warn),
   --theme-warn-color-default-contrast: mat-color($warn, default-contrast),

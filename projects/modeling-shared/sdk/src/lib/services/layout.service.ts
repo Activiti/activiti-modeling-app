@@ -26,7 +26,7 @@ export class LayoutService {
 
     private sideNavStatusSubject$: Subject<boolean> = new Subject();
 
-    sidenavStatus$ = this.sideNavStatusSubject$.asObservable();
+    sidenavToggleEvent$ = this.sideNavStatusSubject$.asObservable();
     tabletMediaQuery: MediaQueryList;
     smallScreenMediaQuery: MediaQueryList;
 

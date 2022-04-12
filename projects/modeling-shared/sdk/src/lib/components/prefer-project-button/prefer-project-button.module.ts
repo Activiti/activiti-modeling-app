@@ -37,6 +37,7 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 import { PreferProjectButtonComponent } from './prefer-project-button.component';
 
 @NgModule({
@@ -44,7 +45,8 @@ import { PreferProjectButtonComponent } from './prefer-project-button.component'
         CommonModule,
         MatIconModule,
         MatTooltipModule,
-        MatButtonModule
+        MatButtonModule,
+        TranslateModule.forChild()
     ],
     declarations: [PreferProjectButtonComponent],
     exports: [PreferProjectButtonComponent]

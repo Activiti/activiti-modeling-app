@@ -15,12 +15,15 @@
  * limitations under the License.
  */
 
+import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { SimpleChanges } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
+import { TranslateModule } from '@ngx-translate/core';
 import { AmaState } from '../../store/app.state';
 import { AddToFavoritesProjectAttemptAction, RemoveFromFavoritesProjectAttemptAction } from '../../store/project.actions';
 import { PreferProjectButtonComponent } from './prefer-project-button.component';
@@ -35,7 +38,9 @@ describe('PreferProjectButton', () => {
             imports: [
                 MatTooltipModule,
                 MatIconModule,
-                MatButtonModule
+                MatButtonModule,
+                TranslateModule.forRoot(),
+                NoopAnimationsModule
             ],
             declarations: [
                 PreferProjectButtonComponent
@@ -45,6 +50,7 @@ describe('PreferProjectButton', () => {
                     provide: Store,
                     useValue: {dispatch: jest.fn()}
                 },
+                { provide: TranslationService, useClass: TranslationMock }
             ]
         }).compileComponents();
     }));

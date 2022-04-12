@@ -96,14 +96,12 @@ export class ProjectEffects {
     @Effect()
     addToFavoritesProjectAttemptEffect = this.actions$.pipe(
         ofType<AddToFavoritesProjectAttemptAction>(ADD_TO_FAVORITES_PROJECT_ATTEMPT),
-        map(action => action),
         mergeMap((action) => this.addToFavoritesProject(action.projectId))
     );
 
     @Effect()
     removeFromFavoritesProjectAttemptEffect = this.actions$.pipe(
         ofType<RemoveFromFavoritesProjectAttemptAction>(REMOVE_FROM_FAVORITES_PROJECT_ATTEMPT),
-        map(action => action),
         mergeMap((action) => this.removeFromFavoritesProject(action.projectId))
     );
 

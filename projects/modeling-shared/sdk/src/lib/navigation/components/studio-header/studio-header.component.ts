@@ -15,11 +15,12 @@
  * limitations under the License.
  */
 
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Inject, Optional } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Project } from '../../../api/types';
+import { ProjectContextMenuActionClass, ProjectContextMenuOption, PROJECT_CONTEXT_MENU_OPTIONS, PROJECT_MENU_HEADER_ACTIONS } from '../../../project-editor/project-context-menu';
 import { LayoutService } from '../../../services/layout.service';
 import { AmaState } from '../../../store/app.state';
 import { AddToFavoritesProjectAttemptAction,
@@ -29,8 +30,8 @@ import { AddToFavoritesProjectAttemptAction,
          SaveAsProjectAttemptAction,
          ValidateProjectAttemptAction,
          ExportProjectAttemptAction,
-         ExportProjectAttemptPayload,
-         ReleaseProjectAttemptAction} from '../../../store/project.actions';
+         ExportProjectAttemptPayload
+        } from '../../../store/project.actions';
 import { selectProject } from '../../../store/project.selectors';
 
 @Component({
@@ -45,8 +46,23 @@ export class StudioHeaderComponent {
 
     constructor(private store: Store<AmaState>,
                 private router: Router,
+                @Inject(PROJECT_CONTEXT_MENU_OPTIONS)
+                @Optional() public buttons: ProjectContextMenuOption[],
+                @Inject(PROJECT_MENU_HEADER_ACTIONS)
+                @Optional() public headerButtons: ProjectContextMenuOption[],
                 private layoutService: LayoutService) {
         this.project$ = this.store.select(selectProject);
+        if (this.buttons) {
+            this.buttons = this.filterObjectArray(this.buttons, this.headerButtons);
+        }
+    }
+
+    private filterObjectArray(buttons, buttonsToFilter) {
+       return buttons.filter( button =>
+            buttonsToFilter.some( filterButton =>
+                button.title !== filterButton.title
+            )
+        );
     }
 
     onBackArrowClick() {
@@ -69,8 +85,8 @@ export class StudioHeaderComponent {
         this.store.dispatch(new ValidateProjectAttemptAction(projectId));
     }
 
-    onReleaseProject(projectId: string) {
-        this.store.dispatch(new ReleaseProjectAttemptAction(projectId));
+    handleClick(actionClass: ProjectContextMenuActionClass, projectId: string) {
+        this.store.dispatch(new actionClass(projectId));
     }
 
     saveAsProject(project: Partial<Project>) {

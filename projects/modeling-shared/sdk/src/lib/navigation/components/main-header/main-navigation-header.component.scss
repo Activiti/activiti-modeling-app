@@ -6,6 +6,10 @@
     background: var(--theme-card-background-color);
     border: 1px solid var(--theme-studio-background);
 
+    @media only screen and (max-width: 320px) {
+        padding: 25px 0 35px;
+    }
+
     &-title {
         font-size: 20px;
         line-height: 40px;
@@ -81,22 +85,28 @@
         }
 
         .studio-upload-button {
-            background: rgba(33, 33, 33, 0.05);
+            background: var(--theme-studio-gray-color);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .studio-create-button {
             background-color: var(--theme-primary-color);
             margin-left: 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         @media only screen and (max-width: 768px) {
             .studio-create-button.mat-mini-fab.mat-accent {
-                background-color: #ffc600;
+                background-color: var(--theme-primary-color);
                 box-shadow: unset;
             }
 
             .studio-upload-button.mat-mini-fab.mat-accent {
-                background: rgba(33, 33, 33, 0.05);
+                background-color: var(--theme-studio-gray-color);
                 box-shadow: unset;
             }
         }

@@ -39,3 +39,4 @@ export interface ProjectContextMenuActionClass  {
 }
 
 export const PROJECT_CONTEXT_MENU_OPTIONS = new InjectionToken<ProjectContextMenuOption[]>('project-context-menu-options');
+export const PROJECT_MENU_HEADER_ACTIONS = new InjectionToken<ProjectContextMenuOption[]>('project-menu-header-actions');

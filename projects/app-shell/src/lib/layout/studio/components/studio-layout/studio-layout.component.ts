@@ -30,7 +30,7 @@ export class StudioLayoutComponent implements OnDestroy {
     onDestroy$: Subject<boolean> = new Subject<boolean>();
 
     constructor(private layoutService: LayoutService) {
-        this.layoutService.sidenavStatus$
+        this.layoutService.sidenavToggleEvent$
             .pipe(takeUntil(this.onDestroy$))
             .subscribe(() => {
                 this.leftOpened = !this.leftOpened;
