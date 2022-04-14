@@ -1,13 +1,16 @@
 .ama-model-header {
-    .mat-toolbar-single-row {
-        height: 40px;
+    .adf-toolbar {
+        .mat-toolbar-single-row {
+            background-color: var(--theme-card-bg-color);
+            border: none;
+            height: 42px;
+        }
     }
 
-    .mat-toolbar {
-        background: var(--theme-card-bg-color);
-    }
-
-    &-standard-buttons {
-        padding-right: 8px;
+    &-toolbar {
+        &-standard-buttons {
+            padding-right: 8px;
+        }
     }
 }
+

@@ -70,6 +70,9 @@ export class MainNavigationHeaderComponent implements OnInit, OnDestroy {
     }
 
     setSearchBarVisibility() {
+       if (this.url === navigationData.process[0].route.url) {
+        this.searchBarExpanded = false;
+       }
       this.showSearchBar = (this.url === navigationData.process[1].route.url);
     }
 

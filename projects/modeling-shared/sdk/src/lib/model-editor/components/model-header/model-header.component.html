@@ -1,48 +1,50 @@
-<adf-toolbar class="ama-model-header">
-    <span *ngFor="let button of standardButtons" class="ama-model-header-standard-buttons">
-        <button mat-icon-button
-            [title]="(button.title | translate)"
-            [disabled]="button.disabled$ | async"
-            *ngIf="button.visible$ | async"
-            [attr.data-automation-id]="modelName+'-editor-'+button.commandName+'-button'"
-            (click)="onClick(button.commandName)">
-            <mat-icon>{{button.icon}}</mat-icon>
-        </button>
-    </span>
-    
-    <span *ngFor="let button of menuButtons">
-        <button mat-icon-button
-            [title]="(button.title | translate)"
-            [disabled]="button.disabled$ | async"
-            *ngIf="(showMenu(button.commandName) | async) && (button.visible$ | async)"
-            [attr.data-automation-id]="modelName+'-editor-'+button.commandName+'-button'"
-            [matMenuTriggerFor]="menu">
-            <mat-icon>{{button.icon}}</mat-icon>
-        </button>
+<div class="ama-model-header">
+    <adf-toolbar class="ama-model-header-toolbar">
+        <span *ngFor="let button of standardButtons" class="ama-model-header-standard-buttons">
+            <button mat-icon-button
+                [title]="(button.title | translate)"
+                [disabled]="button.disabled$ | async"
+                *ngIf="button.visible$ | async"
+                [attr.data-automation-id]="modelName+'-editor-'+button.commandName+'-button'"
+                (click)="onClick(button.commandName)">
+                <mat-icon>{{button.icon}}</mat-icon>
+            </button>
+        </span>
 
-        <mat-menu #menu="matMenu">
-            <span *ngFor="let menuButton of button.createdMenuItems">
-                <button mat-menu-item
-                    [attr.data-automation-id]="modelName+'-editor-'+menuButton.commandName+'-button'"
-                    [disabled]="menuButton.disabled$ | async"
-                    *ngIf="menuButton.visible$ | async"
-                    (click)="onClick(menuButton.commandName)">
-                    <ng-container
-                        [ngTemplateOutlet]=" menuButton.isSvgIcon ? svg_icon : standard_icon"
-                        [ngTemplateOutletContext]="{menuButton:menuButton}">
-                    </ng-container>
-                    <span>{{ menuButton.title | translate }}</span>
-                </button>
-            </span>
-        </mat-menu>
-    </span>
+        <span *ngFor="let button of menuButtons">
+            <button mat-icon-button
+                [title]="(button.title | translate)"
+                [disabled]="button.disabled$ | async"
+                *ngIf="(showMenu(button.commandName) | async) && (button.visible$ | async)"
+                [attr.data-automation-id]="modelName+'-editor-'+button.commandName+'-button'"
+                [matMenuTriggerFor]="menu">
+                <mat-icon>{{button.icon}}</mat-icon>
+            </button>
 
-</adf-toolbar>
+            <mat-menu #menu="matMenu">
+                <span *ngFor="let menuButton of button.createdMenuItems">
+                    <button mat-menu-item
+                        [attr.data-automation-id]="modelName+'-editor-'+menuButton.commandName+'-button'"
+                        [disabled]="menuButton.disabled$ | async"
+                        *ngIf="menuButton.visible$ | async"
+                        (click)="onClick(menuButton.commandName)">
+                        <ng-container
+                            [ngTemplateOutlet]=" menuButton.isSvgIcon ? svg_icon : standard_icon"
+                            [ngTemplateOutletContext]="{menuButton:menuButton}">
+                        </ng-container>
+                        <span>{{ menuButton.title | translate }}</span>
+                    </button>
+                </span>
+            </mat-menu>
+        </span>
 
-<ng-template #standard_icon let-menuButton='menuButton'>
-    <mat-icon>{{ (menuButton?.showIcon$ | async) ? menuButton?.icon : ''}}</mat-icon>
-</ng-template>
+    </adf-toolbar>
 
-<ng-template #svg_icon let-menuButton='menuButton'>
-    <mat-icon [svgIcon]="menuButton?.icon"></mat-icon>
-</ng-template>
+    <ng-template #standard_icon let-menuButton='menuButton'>
+        <mat-icon>{{ (menuButton?.showIcon$ | async) ? menuButton?.icon : ''}}</mat-icon>
+    </ng-template>
+
+    <ng-template #svg_icon let-menuButton='menuButton'>
+        <mat-icon [svgIcon]="menuButton?.icon"></mat-icon>
+    </ng-template>
+</div>

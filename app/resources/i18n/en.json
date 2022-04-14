@@ -79,7 +79,9 @@
             "COLLABORATORS": "Collaborators",
             "SEE_RELEASES": "View Releases",
             "DOWNLOAD": "Download",
-            "SAVE_AS": "Save as"
+            "SAVE_AS": "Save as",
+            "EDITORS_MENU": "Editors Menu",
+            "MORE_MENU": "More Menu"
         },
         "SETTINGS": {
             "HEADER": "App settings"

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BasicModelCommands } from '../../commands/commands.interface';
@@ -27,7 +27,8 @@ import { MODEL_COMMAND_SERVICE_TOKEN } from '../model-editor/model-editors.token
     /* cspell: disable-next-line */
     selector: 'modelingsdk-model-header',
     templateUrl: './model-header.component.html',
-    styleUrls: [ './model-header.component.scss' ]
+    styleUrls: [ './model-header.component.scss' ],
+    encapsulation: ViewEncapsulation.None,
 })
 export class ModelHeaderComponent implements OnInit {
 
