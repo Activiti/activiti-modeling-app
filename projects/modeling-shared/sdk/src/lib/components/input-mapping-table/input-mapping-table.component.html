@@ -31,10 +31,11 @@
                     [panelHeight]="panelHeight"
                     [panelWidth]="panelWidth"
                     [expressionEditorVariables]="expressionEditorVariables"
-                    [required]="parameter.required || false"
+                    [required]="parameter.required || false"
                     [disabled]="parameter.readOnly"
                     [attr.data-automation-id]="'variable-selector-' + parameter.id"
-                    [ngClass]="'input-mapping'">
+                    [ngClass]="'input-mapping'"
+                    [expressionSyntax]="expressionSyntax">
                     </modelingsdk-mapping-variable-expression-dropdown>
             </ng-container>
             <ng-container *ngIf="parameter.type === 'process'">

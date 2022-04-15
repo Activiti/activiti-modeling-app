@@ -17,7 +17,7 @@
 
 import { Component, EventEmitter, Input, OnChanges, Output, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ConnectorParameter, ElementVariable, MappingType, ProcessEditorElementVariable, ServiceParameterMapping } from '../../api/types';
+import { ConnectorParameter, ElementVariable, ExpressionSyntax, MappingType, ProcessEditorElementVariable, ServiceParameterMapping } from '../../api/types';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
 import { Subject } from 'rxjs';
@@ -74,6 +74,9 @@ export class InputMappingTableComponent implements OnChanges {
 
     @Input()
     expressionEditorVariables: ElementVariable[];
+
+    @Input()
+    expressionSyntax: ExpressionSyntax = ExpressionSyntax.JUEL;
 
     @Output()
     update = new EventEmitter<ServiceParameterMapping>();
@@ -170,6 +173,7 @@ export class InputMappingTableComponent implements OnChanges {
             selectedRow: parameterRow,
             inputMappingUpdate$,
             extensionObject: { ...this.extensionObject, editDialogKeyHeader: this.editDialogKeyHeader, editDialogValueHeader: this.editDialogValueHeader },
+            expressionSyntax: this.expressionSyntax
         };
 
         this.dialogService.openDialog(MappingDialogComponent, {

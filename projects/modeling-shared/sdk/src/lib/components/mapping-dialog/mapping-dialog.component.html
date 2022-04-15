@@ -167,7 +167,7 @@
                             </ng-container>
                         </mat-tab>
                         <mat-tab label="{{'SDK.MAPPING_DIALOG.EXPRESSION_MAPPING'| translate}}"
-                            data-automation-id="expression-mapping-tab">
+                            data-automation-id="expression-mapping-tab" *ngIf="data?.expressionSyntax!=='none'">
                             <ng-container *ngIf="selectedTab===2 && tabCheck === selectedTab">
                                 <modelingsdk-expression-code-editor
                                     class="monaco-editor ama-mapping-dialog-expression-editor"
@@ -178,7 +178,8 @@
                                     [language]="$any(dataSource[selectedRow]) | variableExpressionLanguage"
                                     [removeEnclosingBrackets]="false" [enableDialogEditor]="true"
                                     [enableInlineEditor]="true" [removeLineNumbers]="true" [lineWrapping]="true"
-                                    [nonBracketedOutput]="false">
+                                    [nonBracketedOutput]="false"
+                                    [expressionSyntax]="data?.expressionSyntax">
                                 </modelingsdk-expression-code-editor>
                             </ng-container>
                         </mat-tab>

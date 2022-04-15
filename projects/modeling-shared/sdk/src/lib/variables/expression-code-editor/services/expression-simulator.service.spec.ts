@@ -14,19 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { AlfrescoApiService, AppConfigService, TranslationMock, TranslationService } from '@alfresco/adf-core';
+import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
+import { of, throwError } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { ExpressionSyntax } from '../../../api/types';
 import { SnackbarErrorAction } from '../../../store/app.actions';
 import { AmaState, MESSAGE } from '../../../store/app.state';
 import { LogAction } from '../../../store/logging.actions';
-import { JuelExpressionSimulatorService } from './juel-expression-simulator.service';
+import { ExpressionSimulatorService } from './expression-simulator.service';
+import { ExpressionSyntaxProvider, EXPRESSION_SYNTAX_HANDLER } from './expression-syntax.provider';
 
-describe('JuelExpressionSimulatorService', () => {
-    let service: JuelExpressionSimulatorService;
-    let api: AlfrescoApiService;
+describe('ExpressionSimulatorService', () => {
+    let service: ExpressionSimulatorService;
+    const provider: ExpressionSyntaxProvider = {
+        type: 'mock' as ExpressionSyntax,
+        initExpressionEditor: () => {},
+        resolveExpression: () => of('')
+    };
     let store: Store<AmaState>;
 
     const expression = '${a.concat(b).concat(c)}';
@@ -35,67 +42,52 @@ describe('JuelExpressionSimulatorService', () => {
         b: '23',
         c: '456'
     };
-    const oauth2Auth = { oauth2Auth: { callCustomApi: jest.fn() } };
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 {
-                    provide: AlfrescoApiService,
-                    useValue: {
-                        getInstance: () => oauth2Auth
-                    }
-                },
-                {
-                    provide: AppConfigService,
-                    useValue: {
-                        get: () => 'https://alfresco.com'
-                    }
+                    provide: EXPRESSION_SYNTAX_HANDLER,
+                    useValue: [provider]
                 },
                 provideMockStore({}),
                 { provide: TranslationService, useClass: TranslationMock }
             ]
         });
-        service = TestBed.inject(JuelExpressionSimulatorService);
-        api = TestBed.inject(AlfrescoApiService);
+        service = TestBed.inject(ExpressionSimulatorService);
         store = TestBed.inject(Store);
     });
 
-    it('should return result when simulation is success', async () => {
-        jest.spyOn(api.getInstance().oauth2Auth, 'callCustomApi').mockReturnValue(Promise.resolve({ result: '123456' }));
-        const url = 'https://alfresco.com/modeling-service/v1/juel';
+    it('should call the provider to get the expression', async () => {
+        spyOn(provider, 'resolveExpression').and.returnValue(of('123456'));
 
-        const result = await service.getSimulationResult(expression, variables).pipe(first()).toPromise();
+        const result = await service.getSimulationResult(expression, variables, 'mock' as ExpressionSyntax).pipe(first()).toPromise();
 
         expect(result).toEqual('123456');
 
-        expect(api.getInstance().oauth2Auth.callCustomApi).toHaveBeenCalledWith(
-            url,
-            'POST',
-            null,
-            null,
-            null,
-            null,
-            { expression, variables },
-            ['application/json'],
-            ['application/json']
-        );
+        expect(provider.resolveExpression).toHaveBeenCalledWith(expression, variables);
+    });
+
+    it('should call the none expression syntax provider when no expression syntax is provided', async() => {
+        const result = await service.getSimulationResult(expression, variables).pipe(first()).toPromise();
+
+        expect(result).toEqual(expression);
     });
 
     it('should handle error when simulation errors', async () => {
-        jest.spyOn(api.getInstance().oauth2Auth, 'callCustomApi').mockReturnValue(Promise.reject(Error('{"error":"This is an error"}')));
+        spyOn(provider, 'resolveExpression').and.returnValue(throwError(new Error('{"error":"This is an error"}')));
         spyOn(store, 'dispatch');
         let logAction: LogAction;
 
         try {
-            await service.getSimulationResult(expression, variables).pipe(first()).toPromise();
+            await service.getSimulationResult(expression, variables, 'mock' as ExpressionSyntax).pipe(first()).toPromise();
         } catch (error) {
             expect(JSON.parse(error.message).error).toBe('This is an error');
             logAction = new LogAction({
                 type: MESSAGE.ERROR,
                 datetime: jasmine.any(Date) as undefined as Date,
                 initiator: {
-                    key: 'JUEL expression simulator',
+                    key: 'Expression simulator',
                     displayName: 'SDK.EXPRESSION_CODE_EDITOR.JUEL_EXPRESSION_SIMULATOR'
                 },
                 messages: [JSON.stringify(JSON.parse(error.message), null, 4)]

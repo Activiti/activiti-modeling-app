@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ServiceParameterMapping, ConnectorParameter, MappingType, ProcessEditorElementVariable, ElementVariable, EntityProperty } from '../api/types';
+import { ServiceParameterMapping, ConnectorParameter, MappingType, ProcessEditorElementVariable, ElementVariable, EntityProperty, ExpressionSyntax } from '../api/types';
 import { Subject } from 'rxjs';
 import { InputTypeItem, INPUT_TYPE_ITEM_HANDLER } from '../variables/public-api';
 import { Inject, Injectable } from '@angular/core';
@@ -34,6 +34,7 @@ export interface MappingDialogData {
     inputMappingUpdate$?: Subject<ServiceParameterMapping>;
     outputMappingUpdate$?: Subject<ServiceParameterMapping>;
     extensionObject?: any;
+    expressionSyntax?: ExpressionSyntax;
 }
 
 export enum VariableMappingType {

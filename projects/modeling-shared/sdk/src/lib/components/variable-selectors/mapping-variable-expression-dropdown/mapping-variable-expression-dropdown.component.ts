@@ -18,7 +18,7 @@
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ElementVariable, MappingType, ProcessEditorElementVariable } from '../../../api/types';
+import { ElementVariable, ExpressionSyntax, MappingType, ProcessEditorElementVariable } from '../../../api/types';
 import { ExpressionCodeEditorDialogComponent } from '../../../variables/expression-code-editor/components/expression-code-editor-dialog/expression-code-editor-dialog.component';
 import { ModelingJSONSchemaService } from '../../../services/modeling-json-schema.service';
 import { VariableExpressionLanguagePipe } from '../../../variables/properties-viewer/variable-expression-language.pipe';
@@ -65,6 +65,9 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
 
     @Input()
     panelWidth: number;
+
+    @Input()
+    expressionSyntax: ExpressionSyntax = ExpressionSyntax.JUEL;
 
     @Input()
     variablesTitle = 'SDK.VARIABLE_EXPRESSION.TITLE.VARIABLES';
@@ -237,7 +240,8 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
                 this.expressionEditorVariables.filter(variable => !variable.name.match(this.EXPRESSION_REGEX)) :
                 this.expressionEditorVariables,
             nonBracketedOutput: false,
-            expressionUpdate$: expressionUpdate$
+            expressionUpdate$: expressionUpdate$,
+            expressionSyntax: this.expressionSyntax
         };
 
         this.dialogService.openDialog(ExpressionCodeEditorDialogComponent, {

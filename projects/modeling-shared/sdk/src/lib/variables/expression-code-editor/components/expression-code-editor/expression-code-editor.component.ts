@@ -17,7 +17,7 @@
 
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, Renderer2, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
-import { EntityProperty } from '../../../../api/types';
+import { EntityProperty, ExpressionSyntax } from '../../../../api/types';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { UuidService } from '../../../../services/uuid.service';
 import { ExpressionsEditorService } from '../../services/expressions-editor.service';
@@ -71,6 +71,9 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
 
     @Input()
     dialogLineWrapping = false;
+
+    @Input()
+    expressionSyntax: ExpressionSyntax = ExpressionSyntax.JUEL;
 
     @Output()
     expressionChange = new EventEmitter<string>();
@@ -189,7 +192,7 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
     private initLanguage() {
         this.expressionLanguage = this.EXPRESSION_LANGUAGE_PREFIX + '-' + this.uuidService.generate();
         this.fileUri = getFileUri(this.EXPRESSION_LANGUAGE_PREFIX, this.language, this.expressionLanguage);
-        this.expressionsEditorService.initExpressionEditor(this.expressionLanguage, this.variables, this.language, this.workingRemoveEnclosingBrackets);
+        this.expressionsEditorService.initExpressionEditor(this.expressionLanguage, this.variables, this.expressionSyntax, this.language, this.workingRemoveEnclosingBrackets);
     }
 
     private initExpressionViewerIfNeeded() {
@@ -239,7 +242,8 @@ export class ExpressionCodeEditorComponent implements OnInit, AfterViewInit, OnC
             nonBracketedOutput: this.nonBracketedOutput,
             lineWrapping: this.dialogLineWrapping,
             removeLineNumbers: this.dialogRemoveLineNumbers,
-            expressionUpdate$: expressionUpdate$
+            expressionUpdate$: expressionUpdate$,
+            expressionSyntax: this.expressionSyntax
         };
 
         this.dialogService.openDialog(ExpressionCodeEditorDialogComponent, {

@@ -57,8 +57,10 @@ import { DisplayAddMenuPipe } from './json-schema/pipes/display-add-menu/display
 import { PropertyTypeDialogComponent } from './properties-viewer/property-type-dialog/property-type-dialog.component';
 import { ExpressionCodeEditorComponent } from './expression-code-editor/components/expression-code-editor/expression-code-editor.component';
 import { ExpressionCodeEditorDialogComponent } from './expression-code-editor/components/expression-code-editor-dialog/expression-code-editor-dialog.component';
-import { JuelExpressionSimulatorComponent } from './expression-code-editor/components/juel-expression-simulator/juel-expression-simulator.component';
+import { ExpressionSimulatorComponent } from './expression-code-editor/components/expression-simulator/expression-simulator.component';
 import { VariableIconPipe } from './expression-code-editor/pipes/variable-icon.pipe';
+import { provideExpressionSyntaxHandler } from './expression-code-editor/services/expression-syntax.provider';
+import { JuelExpressionSyntax } from './expression-code-editor/services/expression-language/juel-expression-syntax';
 
 @NgModule({
     imports: [
@@ -102,7 +104,7 @@ import { VariableIconPipe } from './expression-code-editor/pipes/variable-icon.p
         PropertyTypeDialogComponent,
         ExpressionCodeEditorComponent,
         ExpressionCodeEditorDialogComponent,
-        JuelExpressionSimulatorComponent,
+        ExpressionSimulatorComponent,
         VariableIconPipe
     ],
     providers: [
@@ -116,7 +118,8 @@ import { VariableIconPipe } from './expression-code-editor/pipes/variable-icon.p
         provideInputTypeItemHandler('folder', PropertiesViewerJsonInputComponent),
         provideInputTypeItemHandler('array', PropertiesViewerArrayInputComponent),
         provideInputTypeItemHandler('enum', PropertiesViewerEnumInputComponent, 'json'),
-        provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
+        provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider),
+        provideExpressionSyntaxHandler(JuelExpressionSyntax)
     ],
     exports: [
         ValueTypeInputComponent,

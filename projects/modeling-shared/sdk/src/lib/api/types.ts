@@ -355,6 +355,7 @@ export interface FormDefinition {
     outcomes: FormOutcome[];
     metadata: {};
     variables: EntityProperties[];
+    rules?: any;
 }
 
 export interface UiPlugin {
@@ -682,7 +683,9 @@ export enum ProcessEditorElementWithVariables {
     ContentServiceTask = 'CONTENT_SERVICE',
     UserTask = 'USER_TASK',
     Event = 'EVENT',
-    Participant = 'PARTICIPANT'
+    Participant = 'PARTICIPANT',
+    FormFields = 'FORM_FIELDS',
+    FormVariables = 'FORM_VARIABLES'
 }
 
 export interface ProcessEditorElementVariable {
@@ -701,4 +704,9 @@ export interface ElementVariable extends EntityProperty {
 
 export interface Data extends Model {
     type: DATA_TYPE;
+}
+
+export enum ExpressionSyntax {
+    JUEL= 'juel',
+    NONE = 'none'
 }

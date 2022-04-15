@@ -28,6 +28,7 @@ import { ExpressionCodeEditorDialogComponent } from '../expression-code-editor-d
 import { ExpressionCodeEditorComponent } from './expression-code-editor.component';
 import { CodeEditorModule } from '../../../../code-editor/code-editor.module';
 import { CodeEditorComponent } from '../../../../code-editor/components/code-editor/code-editor.component';
+import { ExpressionSyntax } from '../../../../api/types';
 
 describe('ExpressionCodeEditorComponent', () => {
     let fixture: ComponentFixture<ExpressionCodeEditorComponent>;
@@ -218,7 +219,7 @@ describe('ExpressionCodeEditorComponent', () => {
 
             component.ngOnChanges(changes);
 
-            expect(expressionsEditorService.initExpressionEditor).toHaveBeenCalledWith('expression-generated-uuid', [], 'javascript', false);
+            expect(expressionsEditorService.initExpressionEditor).toHaveBeenCalledWith('expression-generated-uuid', [], ExpressionSyntax.JUEL, 'javascript', false);
             expect(component.expressionLanguage).toEqual('expression-generated-uuid');
             expect(expressionsEditorService.colorizeElement).toHaveBeenCalled();
             expect(component.fileUri).toEqual('expression://javascript:expression-generated-uuid');
@@ -283,7 +284,7 @@ describe('ExpressionCodeEditorComponent', () => {
             component.ngOnChanges(changes);
 
             expect(uuidService.generate).toHaveBeenCalled();
-            expect(expressionsEditorService.initExpressionEditor).toHaveBeenCalledWith('expression-new-generated-uuid', null, 'javascript', false);
+            expect(expressionsEditorService.initExpressionEditor).toHaveBeenCalledWith('expression-new-generated-uuid', null, ExpressionSyntax.JUEL, 'javascript', false);
             expect(component.expressionLanguage).toEqual('expression-new-generated-uuid');
             expect(expressionsEditorService.colorizeElement).toHaveBeenCalled();
         });
@@ -491,7 +492,8 @@ describe('ExpressionCodeEditorComponent', () => {
                 nonBracketedOutput: false,
                 lineWrapping: true,
                 removeLineNumbers: true,
-                expressionUpdate$: jasmine.any(Object)
+                expressionUpdate$: jasmine.any(Object),
+                expressionSyntax: ExpressionSyntax.JUEL
             }
         });
     });

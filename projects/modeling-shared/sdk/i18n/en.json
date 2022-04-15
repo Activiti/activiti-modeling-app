@@ -141,7 +141,9 @@
                 "EVENT": "Event",
                 "EMAIL_SERVICE_TASK": "Email service task",
                 "DOCGEN_SERVICE": "Docgen service task",
-                "PARTICIPANT": "Process"
+                "PARTICIPANT": "Process",
+                "FORM_FIELDS": "Form fields",
+                "FORM_VARIABLES": "Form variables"
             },
             "TOOLTIP": {
                 "VARIABLE": "Variable",

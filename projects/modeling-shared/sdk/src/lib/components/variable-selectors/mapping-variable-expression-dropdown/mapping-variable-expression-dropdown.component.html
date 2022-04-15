@@ -43,7 +43,7 @@
                     <span *ngIf="mode === 'expression'">{{'SDK.VARIABLE_EXPRESSION.TITLE.EXPRESSION' |
                         translate}}</span>
                 </div>
-                <div class="modelingsdk-mapping-variable-expression-dropdown-panel-title-actions">
+                <div class="modelingsdk-mapping-variable-expression-dropdown-panel-title-actions" *ngIf="expressionSyntax !== 'none'">
                     <button mat-icon-button (click)="openExpressionEditor()" *ngIf="mode === 'variables'"
                         class="modelingsdk-mapping-variable-expression-dropdown-panel-title-button expression"
                         matTooltip="{{'SDK.VARIABLE_EXPRESSION.TITLE.OPEN_EXPRESSION_EDITOR'| translate}}">
@@ -67,7 +67,7 @@
                 <modelingsdk-expression-code-editor *ngIf="mode === 'expression'" [expression]="expression"
                     [language]="language" [variables]="vars" [removeEnclosingBrackets]="false"
                     [enableInlineEditor]="false" [ngStyle]="{ 'max-height.px': panelHeight - 14 - 28 }"
-                    (expressionChange)="onExpressionChanges($event)">
+                    (expressionChange)="onExpressionChanges($event)" [expressionSyntax]="expressionSyntax">
                 </modelingsdk-expression-code-editor>
             </div>
         </mat-card-content>

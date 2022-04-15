@@ -15,49 +15,40 @@
  * limitations under the License.
  */
 
-import { AlfrescoApiService, AppConfigService } from '@alfresco/adf-core';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { from, Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { ExpressionSyntax } from '../../../api/types';
 import { LogFactoryService } from '../../../services/log-factory.service';
 import { SnackbarErrorAction } from '../../../store/app.actions';
 import { AmaState } from '../../../store/app.state';
+import { ExpressionSyntaxProvider, EXPRESSION_SYNTAX_HANDLER, getExpressionSyntaxProviderByType } from './expression-syntax.provider';
 
 @Injectable({
     providedIn: 'root'
 })
-export class JuelExpressionSimulatorService {
+export class ExpressionSimulatorService {
 
-    constructor(private alfrescoApiService: AlfrescoApiService,
-        private appConfigService: AppConfigService,
+    constructor(@Optional() @Inject(EXPRESSION_SYNTAX_HANDLER) private expressionSyntaxHandlers: ExpressionSyntaxProvider[],
         private store: Store<AmaState>,
-        private logFactory: LogFactoryService) {
-    }
+        private logFactory: LogFactoryService) { }
 
     private logInitiator = {
-        key: 'JUEL expression simulator',
+        key: 'Expression simulator',
         displayName: 'SDK.EXPRESSION_CODE_EDITOR.JUEL_EXPRESSION_SIMULATOR'
     };
 
-    private getHostName(): string {
-        return this.appConfigService.get('bpmHost', '').match(/^(?:https?:)?(?:\/\/)?([^\/\?]+)/g)[0];
-    }
-
     /**
     * Gets Simulated result for the requested payload
-    * @param expression The JUEL expression to be evaluated
+    * @param expression The expression to be evaluated
     * @param variables A key value map containing the variable values for the simulation
     * @return return `Observable of the evaluated expression`
     */
-    getSimulationResult(expression: string, variables: { [key: string]: any }): Observable<any> {
-        const url = `${this.getHostName()}/modeling-service/v1/juel`;
-        const api = this.alfrescoApiService.getInstance().oauth2Auth;
+    getSimulationResult(expression: string, variables: { [key: string]: any }, expressionSyntax?: ExpressionSyntax): Observable<any> {
+        const handler = getExpressionSyntaxProviderByType(this.expressionSyntaxHandlers, expressionSyntax);
 
-        const apiCall = api.callCustomApi(url, 'POST', null, null, null, null, { expression, variables }, ['application/json'], ['application/json']);
-
-        return from(apiCall).pipe(
-            map((response: { result: any; }) => response.result),
+        return handler.resolveExpression(expression, variables).pipe(
             catchError((error: Error) => {
                 const errorMessage = JSON.parse(error.message);
                 if (Array.isArray(errorMessage)) {

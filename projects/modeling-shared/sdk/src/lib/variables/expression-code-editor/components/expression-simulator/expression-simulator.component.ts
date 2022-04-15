@@ -19,16 +19,16 @@ import { Component, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } fro
 import { MatMenuTrigger } from '@angular/material/menu';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { EntityProperty } from '../../../../api/types';
-import { JuelExpressionSimulatorService } from '../../services/juel-expression-simulator.service';
+import { EntityProperty, ExpressionSyntax } from '../../../../api/types';
+import { ExpressionSimulatorService } from '../../services/expression-simulator.service';
 
 @Component({
-    selector: 'modelingsdk-juel-expression-simulator',
-    templateUrl: './juel-expression-simulator.component.html',
-    styleUrls: ['./juel-expression-simulator.component.scss'],
+    selector: 'modelingsdk-expression-simulator',
+    templateUrl: './expression-simulator.component.html',
+    styleUrls: ['./expression-simulator.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class JuelExpressionSimulatorComponent implements OnInit, OnDestroy {
+export class ExpressionSimulatorComponent implements OnInit, OnDestroy {
 
     @Input()
     expression = '';
@@ -38,6 +38,9 @@ export class JuelExpressionSimulatorComponent implements OnInit, OnDestroy {
 
     @Input()
     removeEnclosingBrackets = false;
+
+    @Input()
+    expressionSyntax: ExpressionSyntax = ExpressionSyntax.JUEL;
 
     @ViewChild(MatMenuTrigger)
     trigger: MatMenuTrigger;
@@ -53,7 +56,7 @@ export class JuelExpressionSimulatorComponent implements OnInit, OnDestroy {
 
     private readonly expressionRegex = /^\${([^]*)}$/m;
 
-    constructor(private service: JuelExpressionSimulatorService) { }
+    constructor(private service: ExpressionSimulatorService) { }
 
     ngOnInit(): void {
         this.filteredVars = [...this.variables];
@@ -102,7 +105,7 @@ export class JuelExpressionSimulatorComponent implements OnInit, OnDestroy {
         this.variablesToSimulate.forEach(variable => variables[variable.name] = variable.value);
 
         this.loading = true;
-        this.subscription = this.service.getSimulationResult(this.getExpressionBracketedIfNeeded(this.expression), variables).pipe(first())
+        this.subscription = this.service.getSimulationResult(this.getExpressionBracketedIfNeeded(this.expression), variables, this.expressionSyntax).pipe(first())
             .subscribe(
                 (result) => {
                     this.result = (result !== null && result !== undefined) ? JSON.stringify(result, null, 4) : 'null';

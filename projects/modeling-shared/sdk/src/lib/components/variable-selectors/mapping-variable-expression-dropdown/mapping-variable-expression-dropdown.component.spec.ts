@@ -31,7 +31,7 @@ import { expectedVariables } from '../../../mocks/process-editor.mock';
 import { UuidService } from '../../../services/uuid.service';
 import { ExpressionsEditorService } from '../../../variables/expression-code-editor/services/expressions-editor.service';
 import { VariablesModule } from '../../../variables/variables.module';
-import { ElementVariable, MappingType } from '../../../api/types';
+import { ElementVariable, ExpressionSyntax, MappingType } from '../../../api/types';
 import { ExpressionCodeEditorDialogComponent } from '../../../variables/expression-code-editor/components/expression-code-editor-dialog/expression-code-editor-dialog.component';
 import { VariableExpressionLanguagePipe } from '../../../variables/properties-viewer/variable-expression-language.pipe';
 
@@ -233,7 +233,8 @@ describe('MappingVariableExpressionDropdownComponent', () => {
                     removeEnclosingBrackets: false,
                     variables: jasmine.any(Array),
                     nonBracketedOutput: false,
-                    expressionUpdate$: jasmine.any(Object)
+                    expressionUpdate$: jasmine.any(Object),
+                    expressionSyntax: ExpressionSyntax.JUEL
                 }
             });
         });

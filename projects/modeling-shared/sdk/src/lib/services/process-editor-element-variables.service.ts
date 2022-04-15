@@ -234,7 +234,7 @@ export class ProcessEditorElementVariablesService {
         }
     }
 
-    private getVariableTooltip(variable: ElementVariable, source: any): string {
+    getVariableTooltip(variable: ElementVariable, source: any, headerText = 'SDK.CONDITION.TOOLTIP.VARIABLE'): string {
         let tooltipText = '';
         const name = source?.name || '';
         if (source?.type === ProcessEditorElementWithVariables.Process) {
@@ -245,7 +245,7 @@ export class ProcessEditorElementVariablesService {
         }
         return `
             <div class="ama-variables-selector-tooltip">
-                <h3 class="ama-variables-selector-tooltip-first-header">${this.translateService.instant('SDK.CONDITION.TOOLTIP.VARIABLE')}</h3>
+                <h3 class="ama-variables-selector-tooltip-first-header">${this.translateService.instant(headerText)}</h3>
                 <div class="ama-variables-selector-tooltip-text">
                     <p>${tooltipText.trim()}.</p>
                     <span>${variable.description ? '<p>' + variable.description + '</p>' : ''}</span>
@@ -261,7 +261,7 @@ export class ProcessEditorElementVariablesService {
         `;
     }
 
-    private getTypeIcon(type: string, aggregatedTypes: string[]): string {
+    getTypeIcon(type: string, aggregatedTypes: string[]): string {
         if (!aggregatedTypes || aggregatedTypes.length === 1) {
             switch (type) {
                 case 'datetime':

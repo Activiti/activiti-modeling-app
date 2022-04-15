@@ -5,11 +5,12 @@
     data-automation-id="ama-expression-code-editor-dialog">
     <mat-sidenav-container>
         <mat-sidenav [opened]="simulation" mode="side" position="end" disableClose>
-            <modelingsdk-juel-expression-simulator #simulator
+            <modelingsdk-expression-simulator #simulator
                 [variables]="data.variables"
                 [expression]="expression"
-                [removeEnclosingBrackets]="data.removeEnclosingBrackets">
-            </modelingsdk-juel-expression-simulator>
+                [removeEnclosingBrackets]="data.removeEnclosingBrackets"
+                [expressionSyntax]="data.expressionSyntax">
+            </modelingsdk-expression-simulator>
         </mat-sidenav>
         <mat-sidenav-content>
             <modelingsdk-expression-code-editor
@@ -22,7 +23,8 @@
                 [nonBracketedOutput]="data.nonBracketedOutput"
                 [removeLineNumbers]="data.removeLineNumbers"
                 [lineWrapping]="data.lineWrapping"
-                (expressionChange)="simulator.resetSimulation()">
+                (expressionChange)="simulator.resetSimulation()"
+                [expressionSyntax]="data.expressionSyntax">
             </modelingsdk-expression-code-editor>
         </mat-sidenav-content>
     </mat-sidenav-container>

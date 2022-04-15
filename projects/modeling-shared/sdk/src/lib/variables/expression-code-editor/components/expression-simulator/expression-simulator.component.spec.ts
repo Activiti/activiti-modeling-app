@@ -23,15 +23,15 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { getTestScheduler } from 'jasmine-marbles';
 import { of, throwError } from 'rxjs';
-import { EntityProperty } from '../../../../api/types';
+import { EntityProperty, ExpressionSyntax } from '../../../../api/types';
 import { VariableIconPipe } from '../../pipes/variable-icon.pipe';
-import { JuelExpressionSimulatorService } from '../../services/juel-expression-simulator.service';
-import { JuelExpressionSimulatorComponent } from './juel-expression-simulator.component';
+import { ExpressionSimulatorService } from '../../services/expression-simulator.service';
+import { ExpressionSimulatorComponent } from './expression-simulator.component';
 
-describe('JuelExpressionSimulatorComponent', () => {
-    let component: JuelExpressionSimulatorComponent;
-    let fixture: ComponentFixture<JuelExpressionSimulatorComponent>;
-    let service: JuelExpressionSimulatorService;
+describe('ExpressionSimulatorComponent', () => {
+    let component: ExpressionSimulatorComponent;
+    let fixture: ComponentFixture<ExpressionSimulatorComponent>;
+    let service: ExpressionSimulatorService;
 
     const expression = '${str.concat(int).concat(bool)}';
 
@@ -62,13 +62,13 @@ describe('JuelExpressionSimulatorComponent', () => {
                 NoopAnimationsModule
             ],
             declarations: [
-                JuelExpressionSimulatorComponent,
+                ExpressionSimulatorComponent,
                 VariableIconPipe
             ],
             providers: [
                 { provide: TranslationService, useClass: TranslationMock },
                 {
-                    provide: JuelExpressionSimulatorService,
+                    provide: ExpressionSimulatorService,
                     useValue: {
                         getSimulationResult: jest.fn()
                     }
@@ -76,8 +76,8 @@ describe('JuelExpressionSimulatorComponent', () => {
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });
-        fixture = TestBed.createComponent(JuelExpressionSimulatorComponent);
-        service = TestBed.inject(JuelExpressionSimulatorService);
+        fixture = TestBed.createComponent(ExpressionSimulatorComponent);
+        service = TestBed.inject(ExpressionSimulatorService);
         component = fixture.componentInstance;
         fixture.detectChanges();
 
@@ -198,7 +198,7 @@ describe('JuelExpressionSimulatorComponent', () => {
             component.executeSimulation();
             getTestScheduler().flush();
 
-            expect(service.getSimulationResult).toHaveBeenCalledWith(expression, { str: '123456', int: 123456 });
+            expect(service.getSimulationResult).toHaveBeenCalledWith(expression, { str: '123456', int: 123456 }, ExpressionSyntax.JUEL);
             expect(component.simulation).toBe(true);
             expect(component.result).toBe('"myResult"');
             expect(component.loading).toBe(false);
@@ -222,7 +222,7 @@ describe('JuelExpressionSimulatorComponent', () => {
             component.executeSimulation();
             getTestScheduler().flush();
 
-            expect(service.getSimulationResult).toHaveBeenCalledWith(`\${${expressionNoBracketed}}`, {});
+            expect(service.getSimulationResult).toHaveBeenCalledWith(`\${${expressionNoBracketed}}`, {}, ExpressionSyntax.JUEL);
         });
 
         it('should not display the simulation result on success', () => {
@@ -231,7 +231,7 @@ describe('JuelExpressionSimulatorComponent', () => {
             component.executeSimulation();
             getTestScheduler().flush();
 
-            expect(service.getSimulationResult).toHaveBeenCalledWith(expression, {});
+            expect(service.getSimulationResult).toHaveBeenCalledWith(expression, {}, ExpressionSyntax.JUEL);
             expect(component.simulation).toBe(false);
             expect(component.result).toBeNull();
             expect(component.loading).toBe(false);
