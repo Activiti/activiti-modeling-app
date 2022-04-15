@@ -265,10 +265,6 @@
             "onlyDependOnLibsWithTags": ["scope:shared-testing", "scope:modeling-testing"]
           },
           {
-            "sourceTag": "scope:modeling-ce-dashboard-e2e",
-            "onlyDependOnLibsWithTags": ["scope:shared-testing", "scope:modeling-testing"]
-          },
-          {
             "sourceTag": "scope:modeling-ce-connector-editor-e2e",
             "onlyDependOnLibsWithTags": ["scope:shared-testing", "scope:modeling-testing"]
           },
