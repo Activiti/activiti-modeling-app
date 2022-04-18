@@ -18,7 +18,7 @@
 import { Injectable } from '@angular/core';
 import { ProjectApi } from '../../api/project-api.interface';
 import { Observable } from 'rxjs';
-import { Project, PROJECT, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery, CollaboratorEntry, FetchQueries } from '../../api/types';
+import { Project, PROJECT, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery, CollaboratorEntry, FetchQueries, ReleaseInfo } from '../../api/types';
 import { map } from 'rxjs/operators';
 import { RequestApiHelper } from './request-api.helper';
 import { ValidationErrors } from '../../interfaces/validation-errors.interface';
@@ -161,9 +161,9 @@ export class ACMProjectApi implements ProjectApi {
         };
     }
 
-    public release(projectId: string): Observable<Release> {
+    public release(projectId: string, releaseInfo?: ReleaseInfo): Observable<Release> {
         return this.requestApiHelper
-            .post(`/modeling-service/v1/projects/${projectId}/releases`)
+            .post(`/modeling-service/v1/projects/${projectId}/releases`, { bodyParam: releaseInfo })
             .pipe(
                 map((response: any) => response.entry)
             );

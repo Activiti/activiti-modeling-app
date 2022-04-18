@@ -710,3 +710,8 @@ export enum ExpressionSyntax {
     JUEL= 'juel',
     NONE = 'none'
 }
+
+export interface ReleaseInfo {
+    name: string;
+    comment?: string;
+}

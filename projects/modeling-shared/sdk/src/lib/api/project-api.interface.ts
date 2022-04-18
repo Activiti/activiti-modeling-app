@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Project, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery, CollaboratorEntry, FetchQueries } from './types';
+import { Project, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery, CollaboratorEntry, FetchQueries, ReleaseInfo } from './types';
 import { ValidationErrors } from '../interfaces/validation-errors.interface';
 import { PaginatedEntries } from '@alfresco/js-api';
 import { IdentityUserModel } from '@alfresco/adf-core';
@@ -36,7 +36,7 @@ export abstract class ProjectApi {
     public abstract import(file: File, name?: string):  Observable<any>;
     public abstract export(projectId: string): Observable<Blob>;
     public abstract getAll(fetchQueries?: FetchQueries, sorting?: ServerSideSorting, search?: SearchQuery, fetchFavorites?: boolean): Observable<PaginatedEntries<Project>>;
-    public abstract release(projectId: string): Observable<Release>;
+    public abstract release(projectId: string, releaseInfo?: ReleaseInfo): Observable<Release>;
     public abstract getProjectReleases(projectId: string, pagination?: Partial<Pagination>): Observable<PaginatedEntries<ReleaseEntry>>;
     public abstract getCollaborators(projectId: string): Observable<PaginatedEntries<CollaboratorEntry>>;
     public abstract addCollaborator(projectId: string, collaborator: IdentityUserModel): Observable<CollaboratorEntry>;

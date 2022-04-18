@@ -17,7 +17,7 @@
 
 import { EntityDialogForm } from '../helpers/common';
 import { Action } from '@ngrx/store';
-import { Release, ServerSideSorting, SearchQuery, Project, FetchQueries } from '../api/types';
+import { Release, ServerSideSorting, SearchQuery, Project, FetchQueries, ReleaseInfo } from '../api/types';
 import { Update } from '@ngrx/entity';
 import { Pagination } from '@alfresco/js-api';
 import { SaveAsProjectDialogPayload } from '../components/save-as-project-dialog/save-as-project-dialog.component';
@@ -68,7 +68,7 @@ export class GetProjectAttemptAction implements Action {
 export const RELEASE_PROJECT_ATTEMPT = 'RELEASE_PROJECT_ATTEMPT';
 export class ReleaseProjectAttemptAction implements Action {
     readonly type = RELEASE_PROJECT_ATTEMPT;
-    constructor(public projectId: string, public refresh = false, public pagination?: Pagination) {}
+    constructor(public projectId: string, public refresh = false, public pagination?: Pagination, public releaseInfo?: ReleaseInfo) {}
 }
 
 export const RELEASE_PROJECT_SUCCESS = 'RELEASE_PROJECT_SUCCESS';
