@@ -109,5 +109,55 @@
             "icon": "file_upload",
             "handler": "IMPORT_PROJECT_DIALOG"
         }
-    ]
+    ],
+    "studioLayoutNavigationData": {
+        "process": [
+            {
+                "header_label": "NEW_STUDIO_DASHBOARD.NAVIGATION.FAVORITE_PROJECTS.HEADER_LABEL",
+                "label": "NEW_STUDIO_DASHBOARD.NAVIGATION.FAVORITE_PROJECTS.LABEL",
+                "title": "DASHBOARD.NAVIGATION.FAVORITE_PROJECTS.TOOLTIP",
+                "disabled": false,
+                "route": {
+                    "url": "/dashboard/favorite-projects"
+                },
+                "actions": [
+                    {
+                        "actionName": "upload",
+                        "title": "NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.UPLOAD",
+                        "handler": "IMPORT_PROJECT_DIALOG",
+                        "icon": "file_upload"
+                    },
+                    {
+                        "actionName": "create",
+                        "title": "NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.CREATE",
+                        "handler": "CREATE_PROJECT_DIALOG",
+                        "icon": "add"
+                    }
+                ]
+            },
+            {
+                "header_label": "NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.HEADER_LABEL",
+                "label": "NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.LABEL",
+                "title": "DASHBOARD.NAVIGATION.ALL_PROJECTS.TOOLTIP",
+                "disabled": false,
+                "route": {
+                    "url": "/dashboard/projects"
+                },
+                "actions": [
+                    {
+                        "actionName": "upload",
+                        "title": "NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.UPLOAD",
+                        "handler": "IMPORT_PROJECT_DIALOG",
+                        "icon": "file_upload"
+                    },
+                    {
+                        "actionName": "create",
+                        "title": "NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.CREATE",
+                        "handler": "CREATE_PROJECT_DIALOG",
+                        "icon": "add"
+                    }
+                ]
+            }
+        ]
+    }
 }

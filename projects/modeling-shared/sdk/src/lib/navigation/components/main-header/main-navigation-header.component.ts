@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+import { AppConfigService } from '@alfresco/adf-core';
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -22,7 +23,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { LayoutService } from '../../../services/layout.service';
 import { AmaState } from '../../../store/app.state';
-import { navigationData } from '../main-navigation/main-navigation.component';
+import { NavigationData } from '../main-navigation/main-navigation.component';
 
 @Component({
     templateUrl: './main-navigation-header.component.html',
@@ -37,8 +38,13 @@ export class MainNavigationHeaderComponent implements OnInit, OnDestroy {
     actions = [];
     url = '';
     mediaQueryList: MediaQueryList;
+    navigation: NavigationData;
 
-    constructor(private router: Router, private store: Store<AmaState>, private layoutService: LayoutService) {
+    constructor(
+        private router: Router,
+        private store: Store<AmaState>,
+        private layoutService: LayoutService,
+        private appConfig: AppConfigService) {
     }
 
     get isTabletScreen(): boolean {
@@ -54,6 +60,7 @@ export class MainNavigationHeaderComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.navigation = this.appConfig.get('studioLayoutNavigationData');
         this.router.events.pipe(
             filter(event => event instanceof NavigationStart),
             takeUntil(this.onDestroy$)
@@ -70,10 +77,10 @@ export class MainNavigationHeaderComponent implements OnInit, OnDestroy {
     }
 
     setSearchBarVisibility() {
-       if (this.url === navigationData.process[0].route.url) {
+       if (this.url === this.navigation.process[0]?.route.url) {
         this.searchBarExpanded = false;
        }
-      this.showSearchBar = (this.url === navigationData.process[1].route.url);
+      this.showSearchBar = (this.url === this.navigation.process[1]?.route.url);
     }
 
     isSearchBarExpanded(value) {
@@ -81,7 +88,7 @@ export class MainNavigationHeaderComponent implements OnInit, OnDestroy {
     }
 
     loadNavigationDetails() {
-        Object.values(navigationData).find(data => {
+        Object.values(this.navigation).find(data => {
             const navigationDetails = data.find(nav => this.url === nav.route.url);
             if (navigationDetails) {
                 this.headerLabel$.next(navigationDetails.header_label);

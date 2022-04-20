@@ -37,7 +37,7 @@
                 </ng-container>
             </ul>
         </div>
-        <div class="studio-main-navigation-section" >
+        <div class="studio-main-navigation-section" *ngIf="navigation.contentModels?.length > 0">
             <a class="studio-main-navigation-main-title">{{'NEW_STUDIO_DASHBOARD.NAVIGATION.CONTENT_MODEL_TITLE' | translate}}</a>
             <ul class="studio-main-navigation-menu">
                 <ng-container *ngFor="let item of navigation.contentModels">
@@ -58,7 +58,7 @@
                 </ng-container>
             </ul>
         </div>
-        <div class="studio-main-navigation-section" >
+        <div class="studio-main-navigation-section" *ngIf="navigation.dataModels?.length > 0">
             <a class="studio-main-navigation-main-title">{{'NEW_STUDIO_DASHBOARD.NAVIGATION.DATA_MODELS_TITLE' | translate}}</a>
             <ul class="studio-main-navigation-menu">
                 <ng-container *ngFor="let item of navigation.dataModels">

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { TranslationMock, TranslationService } from '@alfresco/adf-core';
+import { AppConfigService, TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
@@ -33,6 +33,36 @@ describe('MainNavigationHeaderComponent', () => {
     let fixture: ComponentFixture<MainNavigationHeaderComponent>;
     let store: Store<AmaState>;
     let routerEventReplaySubject: ReplaySubject<RouterEvent>;
+    const mockNavigationData = {
+        process: [
+            {
+                header_label: 'header_1',
+                label: 'label_1',
+                title: 'title_1',
+                disabled: false,
+                route: {
+                    url: '/dashboard/favorite-projects'
+                }
+            },
+            {
+                header_label: 'header_2',
+                label: 'label_2',
+                title: 'title_2',
+                disabled: false,
+                route: {
+                    url: '/dashboard/projects'
+                },
+                actions: [
+                    {
+                        actionName: 'create',
+                        title: 'CREATE',
+                        handler: 'create_handler',
+                        icon: 'add'
+                    }
+                ]
+            },
+        ]
+    };
 
     beforeEach(() => {
         routerEventReplaySubject = new ReplaySubject<RouterEvent>(1);
@@ -60,6 +90,7 @@ describe('MainNavigationHeaderComponent', () => {
                         dispatch: jest.fn().mockReturnValue(of({}))
                     }
                 },
+                { provide: AppConfigService, useValue: { get() { return mockNavigationData; } } },
                 LayoutService
             ],
             schemas: [NO_ERRORS_SCHEMA]
@@ -81,7 +112,7 @@ describe('MainNavigationHeaderComponent', () => {
 
     it('should show the header as My Projects on routing to /projects', () => {
         const title = fixture.debugElement.query(By.css('.studio-project-list-header-title'));
-        expect(title.nativeElement.textContent).toEqual(' NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.HEADER_LABEL ');
+        expect(title.nativeElement.textContent).toEqual(' header_2 ');
     });
 
     it('should dispatch correct action on click of action button', () => {
@@ -90,6 +121,6 @@ describe('MainNavigationHeaderComponent', () => {
         createButton.triggerEventHandler('click', {});
         fixture.detectChanges();
 
-        expect(store.dispatch).toHaveBeenCalledWith({'type': 'CREATE_PROJECT_DIALOG'});
+        expect(store.dispatch).toHaveBeenCalledWith({'type': 'create_handler'});
     });
 });

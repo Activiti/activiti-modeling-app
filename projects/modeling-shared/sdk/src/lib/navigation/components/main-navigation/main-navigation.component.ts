@@ -15,102 +15,29 @@
  * limitations under the License.
  */
 
-import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { AppConfigService } from '@alfresco/adf-core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, OnInit } from '@angular/core';
+export interface NavigableItem {
+    header_label: string;
+    label: string;
+    title: string;
+    disabled: boolean;
+    route: {
+        url: string;
+    };
+    actions?: {
+        actionName: string;
+        title: string;
+        handler: string;
+        icon: string;
+    }[];
+}
 
-export const navigationData = {
-    process: [
-        {
-            header_label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.FAVORITE_PROJECTS.HEADER_LABEL',
-            label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.FAVORITE_PROJECTS.LABEL',
-            title: 'DASHBOARD.NAVIGATION.FAVORITE_PROJECTS.TOOLTIP',
-            disabled: false,
-            route: {
-                url: '/dashboard/favorite-projects'
-            },
-            actions: [
-                {
-                    actionName: 'upload',
-                    title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.UPLOAD',
-                    handler: 'IMPORT_PROJECT_DIALOG',
-                    icon: 'file_upload'
-                },
-                {
-                    actionName: 'create',
-                    title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.CREATE',
-                    handler: 'CREATE_PROJECT_DIALOG',
-                    icon: 'add'
-                }
-            ]
-        },
-        {
-            header_label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.HEADER_LABEL',
-            label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.LABEL',
-            title: 'DASHBOARD.NAVIGATION.ALL_PROJECTS.TOOLTIP',
-            disabled: false,
-            route: {
-                url: '/dashboard/projects'
-            },
-            actions: [
-                {
-                    actionName: 'upload',
-                    title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.UPLOAD',
-                    handler: 'IMPORT_PROJECT_DIALOG',
-                    icon: 'file_upload'
-                },
-                {
-                    actionName: 'create',
-                    title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.ACTIONS.CREATE',
-                    handler: 'CREATE_PROJECT_DIALOG',
-                    icon: 'add'
-                }
-            ]
-        },
-        {
-            header_label: 'ADV_EXAMPLE_PROJECTS.NAVIGATION.HEADER_LABEL',
-            label: 'ADV_EXAMPLE_PROJECTS.NAVIGATION.LABEL',
-            title: 'ADV_EXAMPLE_PROJECTS.NAVIGATION.TOOLTIP',
-            disabled: false,
-            route: {
-                url: '/example-projects'
-            }
-        }],
-    contentModels: [
-        {
-            header_label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.SHARED_MODELS.HEADER_LABEL',
-            label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.SHARED_MODELS.LABEL',
-            title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.SHARED_MODELS.TOOLTIP',
-            disabled: false,
-            route: {
-                url: '/global-models'
-            },
-            actions: [
-                {
-                    actionName: 'create',
-                    title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.SHARED_MODELS.ACTIONS.CREATE',
-                    handler: 'CREATE_GLOBAL_PROJECT_MODE',
-                    icon: 'public'
-                }
-            ]
-        }],
-    dataModels: [
-        {
-            header_label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.DATA_MODELS.HEADER_LABEL',
-            label: 'NEW_STUDIO_DASHBOARD.NAVIGATION.DATA_MODELS.LABEL',
-            title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.DATA_MODELS.TOOLTIP',
-            disabled: false,
-            route: {
-                url: '/global-data-models'
-            },
-            actions: [
-                {
-                    actionName: 'create',
-                    title: 'NEW_STUDIO_DASHBOARD.NAVIGATION.DATA_MODELS.ACTIONS.CREATE',
-                    handler: 'CREATE_GLOBAL_DATA_MODEL',
-                    icon: 'add'
-                }
-            ]
-        }]
-};
+export interface NavigationData {
+    process: NavigableItem[];
+    contentModels?: NavigableItem[];
+    dataModels?: NavigableItem[];
+}
 
 @Component({
     templateUrl: './main-navigation.component.html',
@@ -118,6 +45,11 @@ export const navigationData = {
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainNavigationComponent {
-    navigation = navigationData;
+export class MainNavigationComponent implements OnInit {
+    navigation: NavigationData;
+    constructor(private appConfig: AppConfigService) {}
+
+    ngOnInit() {
+        this.navigation = this.appConfig.get('studioLayoutNavigationData');
+    }
 }
