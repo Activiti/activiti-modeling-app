@@ -20,6 +20,7 @@
     ],
     "ban": [
       true,
+      "__LINT_CONFIG_TEST_KEYWORD__",
       "eval",
       "fdescribe",
       "fit"
