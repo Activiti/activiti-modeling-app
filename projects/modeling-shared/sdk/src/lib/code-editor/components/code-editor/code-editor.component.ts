@@ -116,6 +116,11 @@ export class CodeEditorComponent implements OnDestroy, OnInit, OnChanges {
             timer = window.setTimeout(() => this.onEditorChange(), 1);
         });
 
+        editor.onDidBlurEditorWidget(() => {
+            clearTimeout(timer);
+            timer = window.setTimeout(() => this.onEditorChange(), 1);
+        });
+
         editor.onDidChangeCursorPosition((event: { position: CodeEditorPosition }) => {
             this.positionChanged.emit(event.position);
         });

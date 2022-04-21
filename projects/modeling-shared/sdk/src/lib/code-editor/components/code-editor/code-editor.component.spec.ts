@@ -69,6 +69,7 @@ describe('CodeEditorComponent', () => {
         const editor = {
             onKeyUp: jest.fn(),
             onDidChangeCursorPosition: jest.fn(),
+            onDidBlurEditorWidget: jest.fn(),
             dispose: jest.fn()
         } as unknown as monaco.editor.ICodeEditor;
 
@@ -119,7 +120,7 @@ describe('CodeEditorComponent', () => {
     });
 
     describe('onKeyUp', () => {
-        let dummyEditor: any, storedCallback, storedPositionCallback;
+        let dummyEditor: any, storedCallback, storedPositionCallback, blurEditorCallback;
 
         beforeEach(() => {
             dummyEditor = <any>{
@@ -130,11 +131,17 @@ describe('CodeEditorComponent', () => {
                 onDidChangeCursorPosition(callback) {
                     storedPositionCallback = callback;
                 },
+                onDidBlurEditorWidget(callback) {
+                    blurEditorCallback = callback;
+                },
                 triggerKeyUp() {
                     storedCallback();
                 },
                 triggerPositionChange(position: CodeEditorPosition) {
                     storedPositionCallback({ position });
+                },
+                triggerBlurEditorWidget(content: string) {
+                    blurEditorCallback(content);
                 },
                 getValue() {
                     return JSON.stringify({ foo: 'bar' });
@@ -157,6 +164,19 @@ describe('CodeEditorComponent', () => {
             });
 
             dummyEditor.triggerPositionChange(expectedPosition);
+        });
+
+        it('should trigger an event on widget blur with the content', done => {
+            /* cspell: disable-next-line */
+            component.content = 'Lorem ipsum dolor sit amet';
+            component.onEditorInit(dummyEditor);
+
+            component.changed.subscribe(content => {
+                expect(content).toBe(component.content);
+                done();
+            });
+
+            dummyEditor.triggerBlurEditorWidget(component.content);
         });
 
     });
