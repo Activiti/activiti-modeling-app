@@ -115,13 +115,16 @@ export class ProcessExtensionsModel {
     }
 
     private checkAssignmentCopied(existingAssignment, assignment): boolean {
-        return !!existingAssignment && existingAssignment.id === assignment.id;
+        return !!existingAssignment &&
+            existingAssignment.id === assignment.id &&
+            existingAssignment.type === assignment.type;
     }
 
     private checkAssignmentChange(newAssignmentObj, currentAssignmentObj): boolean {
         return currentAssignmentObj === undefined ||
             newAssignmentObj.id !== currentAssignmentObj.id ||
-            newAssignmentObj.assignment !== currentAssignmentObj.assignment;
+            newAssignmentObj.assignment !== currentAssignmentObj.assignment ||
+            newAssignmentObj.type !== currentAssignmentObj.type;
     }
 
     getAssignments(processId: string): TaskAssignmentContent {
