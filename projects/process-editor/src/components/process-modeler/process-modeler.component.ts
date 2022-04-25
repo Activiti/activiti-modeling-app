@@ -74,6 +74,9 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
             changeHandler: event => {
                 this.store.dispatch(new SetAppDirtyStateAction(true));
                 this.onChange.emit(event);
+                if (event.element.type === BpmnElement.UserTask && !event.element.businessObject.assignee) {
+                    this.processModelerService.updateElementProperty(event.element.id, BpmnProperty.assignee, '${initiator}');
+                }
             },
             removeHandler: event =>
                 this.store.dispatch(new RemoveDiagramElementAction(createSelectedElement(event.element))),
