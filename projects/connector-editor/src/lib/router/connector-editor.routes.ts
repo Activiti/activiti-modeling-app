@@ -24,7 +24,9 @@ import {
     ModelEditorProxyComponent,
     ModelEditorRouterGuardData,
     ModelEditorRouterData,
-    LoadConnectorAttemptAction
+    LoadConnectorAttemptAction,
+    ModelHeaderBreadcrumbProxyComponent,
+    CONNECTORS_ENTITY_KEY
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ConnectorsLoaderGuard } from './guards/connectors-loader.guard';
 
@@ -35,15 +37,29 @@ export const connectorEditorRoutes: Routes = [
         children: [
             {
                 path: ':modelId',
-                canActivate: [ ModelLoaderGuard ],
-                canDeactivate: [ UnsavedPageGuard ],
-                component: ModelEditorProxyComponent,
-                data: {
-                    modelType: CONNECTOR,
-                    actionClass: LoadConnectorAttemptAction
-                } as ModelEditorRouterGuardData & ModelEditorRouterData
+                children: [
+                    {
+                        path: '',
+                        canActivate: [ModelLoaderGuard],
+                        canDeactivate: [UnsavedPageGuard],
+                        component: ModelEditorProxyComponent,
+                        data: {
+                            modelType: CONNECTOR,
+                            actionClass: LoadConnectorAttemptAction
+                        } as ModelEditorRouterGuardData & ModelEditorRouterData
+                    },
+                    {
+                        path: '',
+                        component: ModelHeaderBreadcrumbProxyComponent,
+                        outlet: 'editors-headers',
+                        data: {
+                            modelType: CONNECTORS_ENTITY_KEY
+                        }
+                    }
+                ]
+
             }
         ],
-        canActivate: [ ConnectorsLoaderGuard ]
+        canActivate: [ConnectorsLoaderGuard]
     }
 ];

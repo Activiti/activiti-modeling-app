@@ -27,6 +27,7 @@ import { ModelHeaderComponent } from './components/model-header/model-header.com
 import { SharedModule } from '../helpers/shared.module';
 import { MaterialModule, ToolbarModule } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
+import { ModelHeaderBreadcrumbProxyComponent } from './components/model-header-breadcrumb/model-header-breadcrumb-proxy.component';
 @NgModule({
     imports: [
         CommonModule,
@@ -39,13 +40,15 @@ import { TranslateModule } from '@ngx-translate/core';
         DynamicComponentDirective,
         ModelEditorComponent,
         ModelEditorProxyComponent,
-        ModelHeaderComponent
+        ModelHeaderComponent,
+        ModelHeaderBreadcrumbProxyComponent
     ],
     exports: [
         CommonModule,
         ModelEditorComponent,
         ModelEditorProxyComponent,
-        ModelHeaderComponent
+        ModelHeaderComponent,
+        ModelHeaderBreadcrumbProxyComponent
     ],
     providers: [
         UnsavedPageGuard,

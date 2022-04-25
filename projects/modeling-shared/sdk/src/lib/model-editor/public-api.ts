@@ -21,3 +21,4 @@ export * from './services/public-api';
 export * from './router/guards/public-api';
 export { MODEL_COMMAND_SERVICE_TOKEN } from './components/model-editor/model-editors.token';
 export { ModelEditorProxyComponent, ModelEditorRouterData } from './components/model-editor-proxy/model-editor-proxy.component';
+export * from './components/model-header-breadcrumb/model-header-breadcrumb-proxy.component';

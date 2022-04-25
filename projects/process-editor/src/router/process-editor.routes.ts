@@ -23,7 +23,9 @@ import {
     ModelLoaderGuard,
     ModelEditorProxyComponent,
     ModelEditorRouterGuardData,
-    ModelEditorRouterData
+    ModelEditorRouterData,
+    ModelHeaderBreadcrumbProxyComponent,
+    PROCESSES_ENTITY_KEY
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProcessDeactivateGuard } from './guards/process-deactivate.guard';
 import { ProcessesLoaderGuard } from './guards/processes-loader.guard';
@@ -36,15 +38,28 @@ export const processEditorRoutes: Routes = [
         children: [
             {
                 path: ':modelId',
-                canActivate: [ ModelLoaderGuard ],
-                canDeactivate: [ UnsavedPageGuard, ProcessDeactivateGuard ],
-                component: ModelEditorProxyComponent,
-                data: {
-                    modelType: PROCESS,
-                    actionClass: GetProcessAttemptAction
-                } as ModelEditorRouterGuardData & ModelEditorRouterData
+                children: [
+                    {
+                        path: '',
+                        canActivate: [ModelLoaderGuard],
+                        canDeactivate: [UnsavedPageGuard, ProcessDeactivateGuard],
+                        component: ModelEditorProxyComponent,
+                        data: {
+                            modelType: PROCESS,
+                            actionClass: GetProcessAttemptAction
+                        } as ModelEditorRouterGuardData & ModelEditorRouterData
+                    },
+                    {
+                        path: '',
+                        component: ModelHeaderBreadcrumbProxyComponent,
+                        outlet: 'editors-headers',
+                        data: {
+                            modelType: PROCESSES_ENTITY_KEY
+                        }
+                    }
+                ]
             }
         ],
-        canActivate: [ ProcessesLoaderGuard ]
+        canActivate: [ProcessesLoaderGuard]
     }
 ];

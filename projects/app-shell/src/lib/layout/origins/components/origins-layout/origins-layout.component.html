@@ -29,7 +29,10 @@
 
     <adf-sidenav-layout-content>
         <ng-template>
-            <router-outlet></router-outlet>
+            <div class="editors-headers-layout">
+                <router-outlet name="editors-headers"></router-outlet>
+            </div>
+            <router-outlet class="content-layout"></router-outlet>
             <ama-editor-footer class="ama-editor-footer"></ama-editor-footer>
         </ng-template>
 

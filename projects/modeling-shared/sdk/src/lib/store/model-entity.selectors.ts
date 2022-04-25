@@ -21,6 +21,7 @@ import { getEntitiesState } from './entity.selectors';
 
 export const selectModelEntityContainer = (modelType: string) => createSelector(getEntitiesState, (state: any) => state[modelType]);
 export const selectModelEntityContents = (modelType: string) => createSelector(selectModelEntityContainer(modelType), state => state.entityContents);
+export const selectModelEntity = (modelType: string, modelId: string) => createSelector(selectModelEntityContainer(modelType), state => state.entities[modelId]);
 
 @Injectable({
     providedIn: 'root'
@@ -41,4 +42,5 @@ export class ModelEntitySelectors {
             state => state.entities[modelId]
         );
     }
+
 }
