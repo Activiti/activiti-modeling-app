@@ -4,7 +4,7 @@
         <mat-form-field class="ama-variables-filter">
             <mat-label>{{filterPlaceholder | translate}}</mat-label>
             <input [(ngModel)]="filterValue" matInput autocomplete="false" data-automation-id="variable-filter" (ngModelChange)="applyFilter($event)">
-            <button mat-button *ngIf="filterValue" matSuffix mat-icon-button attr.aria-label="{{'SDK.VARIABLES_EDITOR.TABLE.CLEAR' | translate}}" (click)="filterValue = ''"
+            <button mat-button *ngIf="filterValue" matSuffix mat-icon-button attr.aria-label="{{'SDK.VARIABLES_EDITOR.TABLE.CLEAR' | translate}}" (click)="clearFilterInput()"
                 data-automation-id="variable-clear-filter">
                 <mat-icon>close</mat-icon>
             </button>

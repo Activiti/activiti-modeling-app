@@ -366,6 +366,26 @@ describe('PropertiesViewerComponent', () => {
         expect(component.filterValue).toEqual('');
     });
 
+    it('should clear filter input and also the filtered data on click of clearFilterInput button', async () => {
+        const changes = { filterValue: new SimpleChange(null, 'var2', false) };
+        component.ngOnChanges(changes);
+        await fixture.whenStable();
+        component.filterValue = 'var2';
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        expect(component.dataSource.filteredData).toEqual([{ 'id': '234', 'name': 'var2', 'type': 'string', 'required': false, 'value': '' }]);
+
+        const clearFilterButton: HTMLElement = fixture.nativeElement.querySelector('[data-automation-id="variable-clear-filter"]');
+        clearFilterButton.click();
+
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        expect(component.dataSource.filteredData).toEqual(Object.values(data));
+        expect(component.filterValue).toEqual('');
+    });
+
     it('should set filterValue from input', () => {
         const input = fixture.debugElement.query(By.css('[data-automation-id="variable-filter"]'));
         input.triggerEventHandler('input', { target: { value: 'string' } });
