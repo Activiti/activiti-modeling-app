@@ -45,6 +45,9 @@ import { createSelectedElement } from '../../store/process-editor.state';
     host: { class: 'ama-process-modeler ama-canvas-editor' }
 })
 export class ProcessModelerComponent implements OnInit, OnDestroy {
+
+    private static ASSIGNEE = '${initiator}';
+
     diagramData$ = new BehaviorSubject<ProcessContent>(null);
     onDestroy$ = new Subject<void>();
 
@@ -74,9 +77,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
             changeHandler: event => {
                 this.store.dispatch(new SetAppDirtyStateAction(true));
                 this.onChange.emit(event);
-                if (event.element.type === BpmnElement.UserTask && !event.element.businessObject.assignee) {
-                    this.processModelerService.updateElementProperty(event.element.id, BpmnProperty.assignee, '${initiator}');
-                }
+                this.handleDefaultAssigneeInUserTask(event);
             },
             removeHandler: event =>
                 this.store.dispatch(new RemoveDiagramElementAction(createSelectedElement(event.element))),
@@ -139,5 +140,40 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
 
     redo() {
         this.processModelerService.redo();
+    }
+
+    private handleDefaultAssigneeInUserTask(event: any) {
+        this.setDefaultAssigneeInUserTask(event);
+        this.removeDefaultAssigneeFromUserTask(event);
+    }
+
+    private setDefaultAssigneeInUserTask(event: any) {
+        if (event.element.type === BpmnElement.UserTask && this.businessObjectHasNoAssignment(event.element.businessObject)) {
+            this.addDefaultAssignee(event.element.id);
+        }
+    }
+
+    private removeDefaultAssigneeFromUserTask(event: any) {
+        if (event.element.type === BpmnElement.UserTask && event.element.businessObject.assignee === ProcessModelerComponent.ASSIGNEE &&
+            this.businessObjectHasCandidates(event.element.businessObject)) {
+            this.removeDefaultAssignee(event.element.id);
+        }
+    }
+
+    private businessObjectHasNoAssignment(businessObject) {
+        return !businessObject.hasOwnProperty(BpmnProperty.assignee) &&
+            !businessObject.hasOwnProperty(BpmnProperty.candidateUsers) && !businessObject.hasOwnProperty(BpmnProperty.candidateGroups);
+    }
+
+    private businessObjectHasCandidates(businessObject) {
+        return businessObject.hasOwnProperty(BpmnProperty.candidateUsers) || businessObject.hasOwnProperty(BpmnProperty.candidateGroups);
+    }
+
+    private addDefaultAssignee(elementId: string) {
+        this.processModelerService.updateElementProperty(elementId, BpmnProperty.assignee, ProcessModelerComponent.ASSIGNEE);
+    }
+
+    private removeDefaultAssignee(elementId: string) {
+        this.processModelerService.updateElementProperty(elementId, BpmnProperty.assignee, null);
     }
 }
