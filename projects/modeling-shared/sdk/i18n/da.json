@@ -1,5 +1,13 @@
 {
   "SDK": {
+    "PROJECT_HEADER": {
+      "VALIDATE": "Bekræft",
+      "RELEASE": "Frigiv",
+      "SAVE_AS": "Gem som",
+      "DOWNLOAD": "Downloade projekt",
+      "VIEW_RELEASES": "Vis frigivelser",
+      "VERSION": "Version"
+    },
     "MODEL_EDITOR": {
       "DIALOG": {
         "CONFIRM_INVALID_MODEL_SAVE": "Er du sikker på, at du vil gemme denne {{ modelType }}?",
@@ -133,7 +141,9 @@
         "EVENT": "Hændelse",
         "EMAIL_SERVICE_TASK": "E-mail serviceopgave",
         "DOCGEN_SERVICE": "Docgen-serviceopgave",
-        "PARTICIPANT": "Proces"
+        "PARTICIPANT": "Proces",
+        "FORM_FIELDS": "Formularfelter",
+        "FORM_VARIABLES": "Formularvariabler"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabel",
@@ -233,6 +243,9 @@
       "CREATE_MODEL_DESCRIPTION": "Opret en brugerdefineret model, og tildel den til enheden",
       "EDIT_MODEL": "Rediger brugerdefineret model",
       "EDIT_MODEL_DESCRIPTION": "Rediger den tidligere oprettede brugerdefinerede model til enheden"
+    },
+    "PREFER_BUTTON": {
+      "ARIA_LABEL": "Vippekontakt for foretrukket"
     }
   }
 }

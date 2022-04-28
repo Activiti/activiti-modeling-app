@@ -18,6 +18,8 @@
     "NO_CONTENT": "<空>",
     "UNCATEGORIZED": "未分类",
     "NO_SELECTION": "使用侧边栏新建模型或编辑现有模型",
+    "NO_OPTION_SELECTED": "无",
+    "SELECT_MODEL_TYPE": "选择模型类型",
     "NEW_MENU": {
       "LABEL": "新建",
       "CREATE": "创建",

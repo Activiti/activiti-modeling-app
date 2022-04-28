@@ -18,6 +18,8 @@
     "NO_CONTENT": "<leeg>",
     "UNCATEGORIZED": "Niet-gecategoriseerd",
     "NO_SELECTION": "Maak een nieuw model of bewerk een bestaand model met de zijmarge",
+    "NO_OPTION_SELECTED": "Geen",
+    "SELECT_MODEL_TYPE": "Modeltype selecteren",
     "NEW_MENU": {
       "LABEL": "Nieuw",
       "CREATE": "Maken",

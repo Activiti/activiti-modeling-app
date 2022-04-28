@@ -1,5 +1,13 @@
 {
   "SDK": {
+    "PROJECT_HEADER": {
+      "VALIDATE": "验证",
+      "RELEASE": "发布",
+      "SAVE_AS": "保存为",
+      "DOWNLOAD": "下载项目",
+      "VIEW_RELEASES": "查看发布",
+      "VERSION": "版本"
+    },
     "MODEL_EDITOR": {
       "DIALOG": {
         "CONFIRM_INVALID_MODEL_SAVE": "确定要保存此 {{ modelType }} 吗？",
@@ -133,7 +141,9 @@
         "EVENT": "事件",
         "EMAIL_SERVICE_TASK": "电子邮件服务任务",
         "DOCGEN_SERVICE": "Docgen 服务任务",
-        "PARTICIPANT": "流程"
+        "PARTICIPANT": "流程",
+        "FORM_FIELDS": "表单字段",
+        "FORM_VARIABLES": "表单变量"
       },
       "TOOLTIP": {
         "VARIABLE": "变量",
@@ -233,6 +243,9 @@
       "CREATE_MODEL_DESCRIPTION": "创建自定义模型并将其分配给实体",
       "EDIT_MODEL": "编辑自定义模型",
       "EDIT_MODEL_DESCRIPTION": "编辑以前创建的实体自定义模型"
+    },
+    "PREFER_BUTTON": {
+      "ARIA_LABEL": "切换为首选"
     }
   }
 }

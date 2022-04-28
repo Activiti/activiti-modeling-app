@@ -38,6 +38,7 @@
         "TOOLTIP": "お気に入り"
       }
     },
+    "SEARCH_PLACEHOLDER": "検索",
     "TABLE": {
       "COLUMN_NAME": "名前",
       "COLUMN_VERSION": "バージョン",
@@ -50,6 +51,7 @@
       "NO_FAV_PROCESSES": "ここで使用するプロセスをお気に入りに登録します。",
       "NO_FAV_PROJECTS": "ここで使用するプロジェクトをお気に入りに登録します。",
       "RELEASE_ID": "リリース ID",
+      "RELEASE_COMMENT": "コメント",
       "PROJECT_NAME": "プロジェクト名"
     },
     "ERROR": {
@@ -62,7 +64,7 @@
     "NAME": "モデラー",
     "NAVIGATION": {
       "PROJECT_TITLE": "プロジェクト",
-      "CUSTOM_MODEL_TITLE": "カスタムモデル",
+      "CONTENT_MODEL_TITLE": "コンテンツモデル",
       "DATA_MODELS_TITLE": "データモデル",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "あなたのプロジェクト",

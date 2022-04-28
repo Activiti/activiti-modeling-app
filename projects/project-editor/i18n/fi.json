@@ -18,6 +18,8 @@
     "NO_CONTENT": "<tyhjä>",
     "UNCATEGORIZED": "Luokittelematon",
     "NO_SELECTION": "Luo uusi malli tai käytä jo olemassa olevaa mallia sivupalkista",
+    "NO_OPTION_SELECTED": "Ei yhtään",
+    "SELECT_MODEL_TYPE": "Valitse mallityyppi",
     "NEW_MENU": {
       "LABEL": "Uusi",
       "CREATE": "Luo",

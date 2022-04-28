@@ -79,7 +79,9 @@
       "COLLABORATORS": "Współpracownicy",
       "SEE_RELEASES": "Wyświetl wydania",
       "DOWNLOAD": "Pobierz",
-      "SAVE_AS": "Zapisz jako"
+      "SAVE_AS": "Zapisz jako",
+      "EDITORS_MENU": "Menu edytorów",
+      "MORE_MENU": "Menu Więcej"
     },
     "SETTINGS": {
       "HEADER": "Ustawienia aplikacji"

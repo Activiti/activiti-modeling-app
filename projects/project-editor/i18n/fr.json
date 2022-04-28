@@ -18,6 +18,8 @@
     "NO_CONTENT": "<vide>",
     "UNCATEGORIZED": "Sans catégorie",
     "NO_SELECTION": "Créer un nouveau modèle ou en modifier un existant à l'aide de la barre latérale",
+    "NO_OPTION_SELECTED": "Aucun",
+    "SELECT_MODEL_TYPE": "Sélectionnez le type de modèle",
     "NEW_MENU": {
       "LABEL": "Nouveau",
       "CREATE": "Créer",

@@ -18,6 +18,8 @@
     "NO_CONTENT": "<prázdný>",
     "UNCATEGORIZED": "Nekategorizováno",
     "NO_SELECTION": "Vytvořte nový model nebo upravte existující pomocí bočního panelu.",
+    "NO_OPTION_SELECTED": "Žádné",
+    "SELECT_MODEL_TYPE": "Vybrat typ modelu",
     "NEW_MENU": {
       "LABEL": "Nový",
       "CREATE": "Vytvořit",

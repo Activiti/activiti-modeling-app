@@ -1,5 +1,13 @@
 {
   "SDK": {
+    "PROJECT_HEADER": {
+      "VALIDATE": "Validere",
+      "RELEASE": "Versjon som skal utgis",
+      "SAVE_AS": "Lagre som",
+      "DOWNLOAD": "Last ned prosjekt",
+      "VIEW_RELEASES": "Vis utgivelser",
+      "VERSION": "Versjon"
+    },
     "MODEL_EDITOR": {
       "DIALOG": {
         "CONFIRM_INVALID_MODEL_SAVE": "Er du sikker på at du vil lagre denne {{ modelType }}?",
@@ -133,12 +141,14 @@
         "EVENT": "Hendelse",
         "EMAIL_SERVICE_TASK": "Serviceoppgave for e-post",
         "DOCGEN_SERVICE": "Docgen-tjenesteoppgave",
-        "PARTICIPANT": "Prosess"
+        "PARTICIPANT": "Prosess",
+        "FORM_FIELDS": "Skjemafelt",
+        "FORM_VARIABLES": "Skjemavariabler"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabel",
         "PROCESS_VARIABLE_TOOLTIP": "Prosessvariabel for {{processName}}",
-        "NONE_VARIABLE_TOOLTIP": "Velg \"Ingen\" for å fjerne valget",
+        "NONE_VARIABLE_TOOLTIP": "Velg 'Ingen' for å fjerne valget",
         "OUTPUT_VARIABLE_TOOLTIP": "Utdata for {{taskType}} {{taskName}}",
         "PROPERTIES": "Egenskaper"
       }
@@ -233,6 +243,9 @@
       "CREATE_MODEL_DESCRIPTION": "Opprett en egendefinert modell og tilordne den til enheten",
       "EDIT_MODEL": "Rediger egendefinert modell",
       "EDIT_MODEL_DESCRIPTION": "Rediger den tidligere opprettede egendefinerte modellen for enheten"
+    },
+    "PREFER_BUTTON": {
+      "ARIA_LABEL": "Veksle til foretrukket"
     }
   }
 }

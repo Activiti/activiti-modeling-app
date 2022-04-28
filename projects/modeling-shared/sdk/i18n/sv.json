@@ -1,5 +1,13 @@
 {
   "SDK": {
+    "PROJECT_HEADER": {
+      "VALIDATE": "Validera",
+      "RELEASE": "Version",
+      "SAVE_AS": "Spara som",
+      "DOWNLOAD": "Ladda ner projekt",
+      "VIEW_RELEASES": "Visa versioner",
+      "VERSION": "Version"
+    },
     "MODEL_EDITOR": {
       "DIALOG": {
         "CONFIRM_INVALID_MODEL_SAVE": "Är du säker på att du vill spara den här {{ modelType }}?",
@@ -20,7 +28,7 @@
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Ett namn krävs",
-        "EMPTY_TYPE": "Ett typ krävs",
+        "EMPTY_TYPE": "En typ krävs",
         "INVALID_NAME": "Ogiltigt variabelnamn",
         "VARIABLE_NAME_TOOLTIP": "Namnet kan börja med en bokstav och kan endast innehålla alfanumeriska tecken och understrykningar",
         "NAME_ALREADY_EXISTS": "Variabla namn måste vara unika",
@@ -133,7 +141,9 @@
         "EVENT": "Händelse",
         "EMAIL_SERVICE_TASK": "E-post serviceuppgift",
         "DOCGEN_SERVICE": "Docgen serviceuppgift",
-        "PARTICIPANT": "Process"
+        "PARTICIPANT": "Process",
+        "FORM_FIELDS": "Formulärfält",
+        "FORM_VARIABLES": "Formulärvariabler"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabel",
@@ -172,10 +182,10 @@
         "REQUIRED": "Inmatning krävs",
         "INVALID_FORMAT": "Ogiltigt inmatningsformat: {{error}}",
         "INVALID_MIN_LENGTH": "Ogiltig minimilängd: {{error}}",
-        "INVALID_MAX_LENGTH": "Ogiltig maxlängd: {{error}}",
-        "INVALID_MIN_VALUE": "Ogiltigt värde. Det ska vara större än eller lika med: {{error}}",
-        "INVALID_MAX_VALUE": "Ogiltigt värde. Det ska vara större än eller lika med: {{error}}",
-        "INVALID_MULTIPLE_OF_VALUE": "Ogiltigt värde. Det måste vara en multipel av:  {{error}}",
+        "INVALID_MAX_LENGTH": "Ogiltig maximilängd: {{error}}",
+        "INVALID_MIN_VALUE": "Ogiltigt värde. Det måste vara större än eller lika med: {{error}}",
+        "INVALID_MAX_VALUE": "Ogiltigt värde. Det måste vara mindre än eller lika med: {{error}}",
+        "INVALID_MULTIPLE_OF_VALUE": "Ogiltigt värde. Det måste vara en multipel av: {{error}}",
         "GENERIC_ERROR": "Ogiltigt värde: {{error_1}} - {{error_2}}"
       }
     },
@@ -233,6 +243,9 @@
       "CREATE_MODEL_DESCRIPTION": "Skapa en anpassad modell och tilldela den till entiteten",
       "EDIT_MODEL": "Redigera anpassad modell",
       "EDIT_MODEL_DESCRIPTION": "Redigera tidigare skapad anpassad modell av entiteten"
+    },
+    "PREFER_BUTTON": {
+      "ARIA_LABEL": "Ställ in som föredragen"
     }
   }
 }

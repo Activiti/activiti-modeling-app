@@ -1,5 +1,13 @@
 {
   "SDK": {
+    "PROJECT_HEADER": {
+      "VALIDATE": "Valider",
+      "RELEASE": "Version à publier",
+      "SAVE_AS": "Enregistrer sous",
+      "DOWNLOAD": "Télécharger le projet",
+      "VIEW_RELEASES": "Voir les versions",
+      "VERSION": "Version"
+    },
     "MODEL_EDITOR": {
       "DIALOG": {
         "CONFIRM_INVALID_MODEL_SAVE": "Voulez-vous vraiment enregistrer ce {{ modelType }} ?",
@@ -133,7 +141,9 @@
         "EVENT": "Evénement",
         "EMAIL_SERVICE_TASK": "Tâche du service de messagerie",
         "DOCGEN_SERVICE": "Tâche de service Docgen",
-        "PARTICIPANT": "Processus"
+        "PARTICIPANT": "Processus",
+        "FORM_FIELDS": "champs de formulaire",
+        "FORM_VARIABLES": "Variables de formulaire"
       },
       "TOOLTIP": {
         "VARIABLE": "Variable",
@@ -176,7 +186,7 @@
         "INVALID_MIN_VALUE": "Valeur non valide. Elle doit être supérieure ou égale à : {{error}}",
         "INVALID_MAX_VALUE": "Valeur non valide. Elle doit être inférieure ou égale à : {{error}}",
         "INVALID_MULTIPLE_OF_VALUE": "Valeur non valide. Elle doit être un multiple de : {{error}}",
-        "GENERIC_ERROR": "Valeur non valide : {{error_1}} - {{error_2}} "
+        "GENERIC_ERROR": "Valeur non valide : {{error_1}} - {{error_2}}"
       }
     },
     "JSON_SCHEMA_EDITOR": {
@@ -233,6 +243,9 @@
       "CREATE_MODEL_DESCRIPTION": "Créer un modèle personnalisé et l'assigner à l'entité",
       "EDIT_MODEL": "Modifier le modèle personnalisé",
       "EDIT_MODEL_DESCRIPTION": "Modifier le modèle personnalisé de l'entité créé précédemment"
+    },
+    "PREFER_BUTTON": {
+      "ARIA_LABEL": "Basculez pour le préféré"
     }
   }
 }

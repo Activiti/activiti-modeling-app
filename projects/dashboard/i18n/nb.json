@@ -38,6 +38,7 @@
         "TOOLTIP": "Favoritter"
       }
     },
+    "SEARCH_PLACEHOLDER": "Søk",
     "TABLE": {
       "COLUMN_NAME": "Navn",
       "COLUMN_VERSION": "Versjon",
@@ -50,6 +51,7 @@
       "NO_FAV_PROCESSES": "Gjør en prosess til favoritt for å gjøre den tilgjengelig her.",
       "NO_FAV_PROJECTS": "Gjør et prosjekt til favoritt for å gjøre det tilgjengelig her.",
       "RELEASE_ID": "Utgivelses-ID",
+      "RELEASE_COMMENT": "Kommentar",
       "PROJECT_NAME": "Prosjektnavn"
     },
     "ERROR": {
@@ -62,7 +64,7 @@
     "NAME": "Modellbygger",
     "NAVIGATION": {
       "PROJECT_TITLE": "Prosjekter",
-      "CUSTOM_MODEL_TITLE": "Egendefinerte modeller",
+      "CONTENT_MODEL_TITLE": "Innholdsmodeller",
       "DATA_MODELS_TITLE": "Datamodeller",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "Mine prosjekter",

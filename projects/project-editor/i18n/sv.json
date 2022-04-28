@@ -18,6 +18,8 @@
     "NO_CONTENT": "<empty>",
     "UNCATEGORIZED": "Ej kategoriserad",
     "NO_SELECTION": "Skapa en ny modell eller redigera en befintlig med sidoraden",
+    "NO_OPTION_SELECTED": "Ingen",
+    "SELECT_MODEL_TYPE": "Välj modelltyp",
     "NEW_MENU": {
       "LABEL": "Ny",
       "CREATE": "Skapa",

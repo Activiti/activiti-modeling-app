@@ -139,7 +139,7 @@
         "NO_PROPERTIES": "メッセージにペイロードがありません。メッセージのスローイベントにペイロードを追加してください。",
         "FORM": {
           "NAME": "名前",
-          "TYPE": "種類",
+          "TYPE": "タイプ",
           "PROCESS_VARIABLE": "プロセス変数",
           "VALUE": "値"
         },
@@ -148,7 +148,7 @@
       "CALLED_ELEMENT": {
         "DIALOG": {
           "TITLE": "呼び出された要素",
-          "STATIC": "固定",
+          "STATIC": "静的",
           "EXPRESSION": "式"
         }
       },
@@ -160,7 +160,7 @@
         "MONTHS": "月",
         "WEEKS": "週",
         "DAYS": "日",
-        "HOURS": "時",
+        "HOURS": "時間",
         "MINUTES": "分",
         "SECONDS": "秒",
         "REPETITIONS": "繰り返し",
@@ -177,7 +177,7 @@
         "SUB_TITLE": "割りて当オプションを選択",
         "SINGLE_USER": "単一ユーザーにタスクを割り当て",
         "CANDIDATES": "候補にタスクを割り当て",
-        "STATIC": "固定",
+        "STATIC": "静的",
         "IDENTITY": "ID",
         "ASSIGNEE": "担当者",
         "CANDIDATE_WARNING": "candidateUsers または candidateGroups の間の1つのフィールドは必須です。値を入力して Enter キーを押してください。",
@@ -220,7 +220,7 @@
     "PROPERTIES": {
       "TABLE": {
         "COLUMN_NAME": "名前",
-        "COLUMN_TYPE": "種類",
+        "COLUMN_TYPE": "タイプ",
         "COLUMN_REQUIRED": "必須",
         "COLUMN_VALUE": "値",
         "NO_PROPERTIES": "プロパティを表示する変数を選択するか作成してください"

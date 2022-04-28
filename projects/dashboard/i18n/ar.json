@@ -38,6 +38,7 @@
         "TOOLTIP": "مفضلات"
       }
     },
+    "SEARCH_PLACEHOLDER": "بحث",
     "TABLE": {
       "COLUMN_NAME": "الاسم",
       "COLUMN_VERSION": "الإصدار",
@@ -50,6 +51,7 @@
       "NO_FAV_PROCESSES": "تفضيل عملية لجعلها متاحة هنا.",
       "NO_FAV_PROJECTS": "تفضيل مشروع لجعله متاحًا هنا.",
       "RELEASE_ID": "معرف الإصدار",
+      "RELEASE_COMMENT": "تعليق",
       "PROJECT_NAME": "اسم المشروع"
     },
     "ERROR": {
@@ -62,7 +64,7 @@
     "NAME": "العارض",
     "NAVIGATION": {
       "PROJECT_TITLE": "المشروعات",
-      "CUSTOM_MODEL_TITLE": "النماذج المخصصة",
+      "CONTENT_MODEL_TITLE": "نموذج المحتوى",
       "DATA_MODELS_TITLE": "نماذج البيانات",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "مشاريعي",

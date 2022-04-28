@@ -79,7 +79,9 @@
       "COLLABORATORS": "Spolupracovníci",
       "SEE_RELEASES": "Zobrazit verze",
       "DOWNLOAD": "Stáhnout",
-      "SAVE_AS": "Uložit jako"
+      "SAVE_AS": "Uložit jako",
+      "EDITORS_MENU": "Nabídka Editory",
+      "MORE_MENU": "Nabídka Více"
     },
     "SETTINGS": {
       "HEADER": "Nastavení aplikace"

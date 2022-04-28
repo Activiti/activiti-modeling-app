@@ -79,7 +79,9 @@
       "COLLABORATORS": "协作者",
       "SEE_RELEASES": "查看发布",
       "DOWNLOAD": "下载",
-      "SAVE_AS": "保存为"
+      "SAVE_AS": "保存为",
+      "EDITORS_MENU": "编辑菜单",
+      "MORE_MENU": "更多菜单"
     },
     "SETTINGS": {
       "HEADER": "App 设置"

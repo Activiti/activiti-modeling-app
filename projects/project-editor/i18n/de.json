@@ -18,6 +18,8 @@
     "NO_CONTENT": "<leer>",
     "UNCATEGORIZED": "Ohne Kategorie",
     "NO_SELECTION": "Erstellen Sie ein neues Modell oder bearbeiten Sie ein bestehendes Modell über die Seitenleiste",
+    "NO_OPTION_SELECTED": "Keine",
+    "SELECT_MODEL_TYPE": "Modelltyp auswählen",
     "NEW_MENU": {
       "LABEL": "Neu",
       "CREATE": "Erstellen",

@@ -38,6 +38,7 @@
         "TOOLTIP": "Избранное"
       }
     },
+    "SEARCH_PLACEHOLDER": "Поиск",
     "TABLE": {
       "COLUMN_NAME": "Имя",
       "COLUMN_VERSION": "Версия",
@@ -50,6 +51,7 @@
       "NO_FAV_PROCESSES": "Добавить в избранное процесс, чтобы сделать его доступным здесь.",
       "NO_FAV_PROJECTS": "Добавить в избранное проект, чтобы сделать его доступным здесь.",
       "RELEASE_ID": "Идентификатор выпуска",
+      "RELEASE_COMMENT": "Комментарий",
       "PROJECT_NAME": "Имя проекта"
     },
     "ERROR": {
@@ -62,7 +64,7 @@
     "NAME": "Администратор моделей",
     "NAVIGATION": {
       "PROJECT_TITLE": "Проекты",
-      "CUSTOM_MODEL_TITLE": "Пользовательские модели",
+      "CONTENT_MODEL_TITLE": "Модели содержимого",
       "DATA_MODELS_TITLE": "Модели данных",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "Мои проекты",

@@ -1,5 +1,13 @@
 {
   "SDK": {
+    "PROJECT_HEADER": {
+      "VALIDATE": "Convalida",
+      "RELEASE": "Versione da pubblicare",
+      "SAVE_AS": "Salva con nome",
+      "DOWNLOAD": "Scarica progetto",
+      "VIEW_RELEASES": "Visualizza versioni",
+      "VERSION": "Versione"
+    },
     "MODEL_EDITOR": {
       "DIALOG": {
         "CONFIRM_INVALID_MODEL_SAVE": "Salvare questo {{ modelType }}?",
@@ -133,7 +141,9 @@
         "EVENT": "Evento",
         "EMAIL_SERVICE_TASK": "Compito servizio e-mail",
         "DOCGEN_SERVICE": "Compito Servizio docgen",
-        "PARTICIPANT": "Processo"
+        "PARTICIPANT": "Processo",
+        "FORM_FIELDS": "Campi del modulo",
+        "FORM_VARIABLES": "Variabili del modulo"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabile",
@@ -233,6 +243,9 @@
       "CREATE_MODEL_DESCRIPTION": "Crea un modello personalizzato e lo assegna all'entità",
       "EDIT_MODEL": "Modifica modello personalizzato",
       "EDIT_MODEL_DESCRIPTION": "Modifica il modello personalizzato dell'entità creato in precedenza"
+    },
+    "PREFER_BUTTON": {
+      "ARIA_LABEL": "Attiva/disattiva preferiti"
     }
   }
 }

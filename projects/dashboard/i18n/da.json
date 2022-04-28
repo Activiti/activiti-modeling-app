@@ -1,7 +1,7 @@
 {
   "DASHBOARD": {
     "NEW_MENU": {
-      "LABEL": "NY",
+      "LABEL": "Ny",
       "CREATE_PROJECT_TITLE": "Opret projekt",
       "OVERRIDE_PROJECT_TITLE": "Der findes allerede et projekt med det navn.",
       "EDIT_PROJECT_TITLE": "Redigér projekt",
@@ -38,6 +38,7 @@
         "TOOLTIP": "Favoritter"
       }
     },
+    "SEARCH_PLACEHOLDER": "Søg",
     "TABLE": {
       "COLUMN_NAME": "Navn",
       "COLUMN_VERSION": "Version",
@@ -50,6 +51,7 @@
       "NO_FAV_PROCESSES": "Angiv en proces som favorit for at gøre den tilgængelig her.",
       "NO_FAV_PROJECTS": "Angiv et projekt som favorit for at gøre det tilgængeligt her.",
       "RELEASE_ID": "Frigivelses-id",
+      "RELEASE_COMMENT": "Kommentar",
       "PROJECT_NAME": "Projektnavn"
     },
     "ERROR": {
@@ -62,7 +64,7 @@
     "NAME": "Modellering",
     "NAVIGATION": {
       "PROJECT_TITLE": "Projekter",
-      "CUSTOM_MODEL_TITLE": "Brugerdefinerede modeller",
+      "CONTENT_MODEL_TITLE": "Indholdsmodeller",
       "DATA_MODELS_TITLE": "Datamodeller",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "Mine projekter",

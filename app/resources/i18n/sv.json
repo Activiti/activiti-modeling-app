@@ -75,11 +75,13 @@
     "MENU": {
       "EDIT": "Redigera",
       "DELETE": "Radera",
-      "RELEASE": "Avsäga",
+      "RELEASE": "Version",
       "COLLABORATORS": "Medarbetare",
       "SEE_RELEASES": "Visa versioner",
       "DOWNLOAD": "Ladda ner",
-      "SAVE_AS": "Spara som"
+      "SAVE_AS": "Spara som",
+      "EDITORS_MENU": "Meny Editor",
+      "MORE_MENU": "Meny Mer"
     },
     "SETTINGS": {
       "HEADER": "Programinställningar"

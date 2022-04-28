@@ -1,5 +1,13 @@
 {
   "SDK": {
+    "PROJECT_HEADER": {
+      "VALIDATE": "Valideren",
+      "RELEASE": "Te publiceren versie",
+      "SAVE_AS": "Opslaan als",
+      "DOWNLOAD": "Project downloaden",
+      "VIEW_RELEASES": "Versies weergeven",
+      "VERSION": "Versie"
+    },
     "MODEL_EDITOR": {
       "DIALOG": {
         "CONFIRM_INVALID_MODEL_SAVE": "Weet u zeker dat u dit {{ modelType }} wilt opslaan?",
@@ -133,7 +141,9 @@
         "EVENT": "Gebeurtenis",
         "EMAIL_SERVICE_TASK": "E-mailservicetaak",
         "DOCGEN_SERVICE": "Docgen-servicetaak",
-        "PARTICIPANT": "Proces"
+        "PARTICIPANT": "Proces",
+        "FORM_FIELDS": "Formuliervelden",
+        "FORM_VARIABLES": "Formuliervariabelen"
       },
       "TOOLTIP": {
         "VARIABLE": "Variabele",
@@ -233,6 +243,9 @@
       "CREATE_MODEL_DESCRIPTION": "Een aangepast model maken en dit toewijzen aan de entiteit",
       "EDIT_MODEL": "Aangepast model bewerken",
       "EDIT_MODEL_DESCRIPTION": "Het eerder gemaakte aangepaste model van de entiteit bewerken"
+    },
+    "PREFER_BUTTON": {
+      "ARIA_LABEL": "In-/uitschakelen voor voorkeur"
     }
   }
 }

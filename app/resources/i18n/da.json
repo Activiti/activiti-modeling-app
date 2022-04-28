@@ -79,7 +79,9 @@
       "COLLABORATORS": "Samarbejdspartnere",
       "SEE_RELEASES": "Vis frigivelser",
       "DOWNLOAD": "Download",
-      "SAVE_AS": "Gem som"
+      "SAVE_AS": "Gem som",
+      "EDITORS_MENU": "Menuen Editorer",
+      "MORE_MENU": "Menuen Mere"
     },
     "SETTINGS": {
       "HEADER": "Appindstillinger"

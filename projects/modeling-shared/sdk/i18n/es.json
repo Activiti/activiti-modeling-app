@@ -1,5 +1,13 @@
 {
   "SDK": {
+    "PROJECT_HEADER": {
+      "VALIDATE": "Validar",
+      "RELEASE": "Versión a publicar",
+      "SAVE_AS": "Guardar como",
+      "DOWNLOAD": "Descargar proyecto",
+      "VIEW_RELEASES": "Ver versiones",
+      "VERSION": "Versión"
+    },
     "MODEL_EDITOR": {
       "DIALOG": {
         "CONFIRM_INVALID_MODEL_SAVE": "¿Está seguro de que desea guardar este {{ modelType }}?",
@@ -133,7 +141,9 @@
         "EVENT": "Evento",
         "EMAIL_SERVICE_TASK": "Tarea de servicio de correo electrónico",
         "DOCGEN_SERVICE": "Tarea de servicio de Docgen",
-        "PARTICIPANT": "Proceso"
+        "PARTICIPANT": "Proceso",
+        "FORM_FIELDS": "Campos de formulario",
+        "FORM_VARIABLES": "Variables de formulario"
       },
       "TOOLTIP": {
         "VARIABLE": "Variable",
@@ -233,6 +243,9 @@
       "CREATE_MODEL_DESCRIPTION": "Crear un modelo personalizado y asignarlo a la entidad",
       "EDIT_MODEL": "Editar modelo personalizado",
       "EDIT_MODEL_DESCRIPTION": "Editar el modelo personalizado previamente creado de la entidad"
+    },
+    "PREFER_BUTTON": {
+      "ARIA_LABEL": "Alternar para seleccionar preferido"
     }
   }
 }

@@ -18,6 +18,8 @@
     "NO_CONTENT": "<tom>",
     "UNCATEGORIZED": "Ukategorisert",
     "NO_SELECTION": "Opprett en ny modell eller rediger en eksisterende modell med sidepanelet",
+    "NO_OPTION_SELECTED": "Ingen",
+    "SELECT_MODEL_TYPE": "Velg  modelltype",
     "NEW_MENU": {
       "LABEL": "Ny",
       "CREATE": "Opprett",

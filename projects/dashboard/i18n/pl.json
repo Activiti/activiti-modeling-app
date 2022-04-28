@@ -38,6 +38,7 @@
         "TOOLTIP": "Ulubione"
       }
     },
+    "SEARCH_PLACEHOLDER": "Szukaj",
     "TABLE": {
       "COLUMN_NAME": "Nazwa",
       "COLUMN_VERSION": "Wersja",
@@ -50,6 +51,7 @@
       "NO_FAV_PROCESSES": "Dodaj proces do ulubionych, aby udostępnić go tutaj.",
       "NO_FAV_PROJECTS": "Dodaj projekt do ulubionych, aby udostępnić go tutaj.",
       "RELEASE_ID": "Identyfikator wydania",
+      "RELEASE_COMMENT": "Komentarz",
       "PROJECT_NAME": "Nazwa projektu"
     },
     "ERROR": {
@@ -62,7 +64,7 @@
     "NAME": "Narzędzie do modelowania",
     "NAVIGATION": {
       "PROJECT_TITLE": "Projekty",
-      "CUSTOM_MODEL_TITLE": "Modele niestandardowe",
+      "CONTENT_MODEL_TITLE": "Modele treści",
       "DATA_MODELS_TITLE": "Modele danych",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "Moje projekty",

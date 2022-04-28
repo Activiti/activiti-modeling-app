@@ -18,6 +18,8 @@
     "NO_CONTENT": "<vacío>",
     "UNCATEGORIZED": "Sin categorizar",
     "NO_SELECTION": "Crear un nuevo modelo o editar uno existente usando la barra lateral",
+    "NO_OPTION_SELECTED": "Ninguna",
+    "SELECT_MODEL_TYPE": "Seleccionar tipo de modelo",
     "NEW_MENU": {
       "LABEL": "Nuevo",
       "CREATE": "Crear",

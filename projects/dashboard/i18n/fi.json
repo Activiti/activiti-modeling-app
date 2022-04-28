@@ -38,6 +38,7 @@
         "TOOLTIP": "Suosikit"
       }
     },
+    "SEARCH_PLACEHOLDER": "Hae",
     "TABLE": {
       "COLUMN_NAME": "Nimi",
       "COLUMN_VERSION": "Versio",
@@ -50,6 +51,7 @@
       "NO_FAV_PROCESSES": "Lisää prosessi suosikkeihin saattaaksesi sen käytettäväksi täällä.",
       "NO_FAV_PROJECTS": "Lisää projekti suosikkeihin saattaaksesi sen käytettäväksi täällä.",
       "RELEASE_ID": "Julkaisun tunnus",
+      "RELEASE_COMMENT": "Kommentti",
       "PROJECT_NAME": "Projektin nimi"
     },
     "ERROR": {
@@ -62,7 +64,7 @@
     "NAME": "Mallintaja",
     "NAVIGATION": {
       "PROJECT_TITLE": "Projektit",
-      "CUSTOM_MODEL_TITLE": "Mukautetut mallit",
+      "CONTENT_MODEL_TITLE": "Sisältömallit",
       "DATA_MODELS_TITLE": "Tietomallit",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "Omat projektit",

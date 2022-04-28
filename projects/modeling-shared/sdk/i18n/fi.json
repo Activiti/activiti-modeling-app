@@ -1,5 +1,13 @@
 {
   "SDK": {
+    "PROJECT_HEADER": {
+      "VALIDATE": "Vahvista",
+      "RELEASE": "Julkaisu",
+      "SAVE_AS": "Tallenna nimellä",
+      "DOWNLOAD": "Lataa projekti",
+      "VIEW_RELEASES": "Näytä julkaisut",
+      "VERSION": "Versio"
+    },
     "MODEL_EDITOR": {
       "DIALOG": {
         "CONFIRM_INVALID_MODEL_SAVE": "Haluatko varmasti tallentaa tämän {{ modelType }} mallityypin?",
@@ -133,7 +141,9 @@
         "EVENT": "Tapahtuma",
         "EMAIL_SERVICE_TASK": "Sähköpostipalvelutehtävä",
         "DOCGEN_SERVICE": "Docgen-palvelutehtävä",
-        "PARTICIPANT": "Prosessi"
+        "PARTICIPANT": "Prosessi",
+        "FORM_FIELDS": "Lomakekentät",
+        "FORM_VARIABLES": "Lomakemuuttujat"
       },
       "TOOLTIP": {
         "VARIABLE": "Muuttuja",
@@ -233,6 +243,9 @@
       "CREATE_MODEL_DESCRIPTION": "Luo mukautettu malli ja määritä se kokonaisuudelle",
       "EDIT_MODEL": "Muokkaa mukautettua mallia",
       "EDIT_MODEL_DESCRIPTION": "Muokkaa kokonaisuuden aiemmin luotua mukautettua mallia"
+    },
+    "PREFER_BUTTON": {
+      "ARIA_LABEL": "Näytä tai piilota suosikit"
     }
   }
 }

@@ -75,11 +75,13 @@
     "MENU": {
       "EDIT": "Editar",
       "DELETE": "Eliminar",
-      "RELEASE": "Liberar",
+      "RELEASE": "Versión a publicar",
       "COLLABORATORS": "Colaboradores",
       "SEE_RELEASES": "Ver versiones",
       "DOWNLOAD": "Descargar",
-      "SAVE_AS": "Guardar como"
+      "SAVE_AS": "Guardar como",
+      "EDITORS_MENU": "Menú de editores",
+      "MORE_MENU": "Menú Más"
     },
     "SETTINGS": {
       "HEADER": "Config. de aplicación"

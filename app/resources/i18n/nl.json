@@ -75,11 +75,13 @@
     "MENU": {
       "EDIT": "Bewerken",
       "DELETE": "Verwijderen",
-      "RELEASE": "Vrijgeven",
+      "RELEASE": "Te publiceren versie",
       "COLLABORATORS": "Samenwerkers",
-      "SEE_RELEASES": "Releases weergeven",
+      "SEE_RELEASES": "Versies weergeven",
       "DOWNLOAD": "Downloaden",
-      "SAVE_AS": "Opslaan als"
+      "SAVE_AS": "Opslaan als",
+      "EDITORS_MENU": "Menu Editors",
+      "MORE_MENU": "Menu Meer"
     },
     "SETTINGS": {
       "HEADER": "App-instellingen"

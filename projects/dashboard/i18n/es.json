@@ -38,6 +38,7 @@
         "TOOLTIP": "Favoritos"
       }
     },
+    "SEARCH_PLACEHOLDER": "Buscar",
     "TABLE": {
       "COLUMN_NAME": "Nombre",
       "COLUMN_VERSION": "Versión",
@@ -50,6 +51,7 @@
       "NO_FAV_PROCESSES": "Marque un proceso como favorito para que esté disponible aquí.",
       "NO_FAV_PROJECTS": "Marque un proyecto como favorito para que esté disponible aquí.",
       "RELEASE_ID": "ID de versión",
+      "RELEASE_COMMENT": "Comentario",
       "PROJECT_NAME": "Nombre de proyecto"
     },
     "ERROR": {
@@ -62,7 +64,7 @@
     "NAME": "Modelador",
     "NAVIGATION": {
       "PROJECT_TITLE": "Proyectos",
-      "CUSTOM_MODEL_TITLE": "Modelos personalizados",
+      "CONTENT_MODEL_TITLE": "Modelos de contenido",
       "DATA_MODELS_TITLE": "Modelos de datos",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "Mis proyectos",

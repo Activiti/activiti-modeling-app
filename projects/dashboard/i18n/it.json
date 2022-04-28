@@ -26,8 +26,8 @@
         "TOOLTIP": "Progetti pubblicati"
       },
       "RELEASES": {
-        "LABEL": "Rilasci",
-        "TOOLTIP": "Rilasci"
+        "LABEL": "Versioni",
+        "TOOLTIP": "Versioni"
       },
       "PROCESSES": {
         "LABEL": "Processi",
@@ -38,6 +38,7 @@
         "TOOLTIP": "Preferiti"
       }
     },
+    "SEARCH_PLACEHOLDER": "Cerca",
     "TABLE": {
       "COLUMN_NAME": "Nome",
       "COLUMN_VERSION": "Versione",
@@ -49,12 +50,13 @@
       "NO_ITEMS": "Creare o importare un progetto per visualizzarlo nell'elenco.",
       "NO_FAV_PROCESSES": "Scegliere un processo preferito da rendere disponibile qui.",
       "NO_FAV_PROJECTS": "Scegliere un progetto preferito da rendere disponibile qui.",
-      "RELEASE_ID": "ID rilascio",
+      "RELEASE_ID": "ID versione",
+      "RELEASE_COMMENT": "Commento",
       "PROJECT_NAME": "Nome progetto"
     },
     "ERROR": {
       "LOAD_PROJECTS": "Si è verificato un problema durante il caricamento dei progetti. Provare ad aggiornare la pagina.",
-      "LOAD_RELEASES": "Si è verificato un problema durante il caricamento dei rilasci. Provare ad aggiornare la pagina.",
+      "LOAD_RELEASES": "Si è verificato un problema durante il caricamento delle versioni. Provare ad aggiornare la pagina.",
       "LOAD_PROCESSES": "Si è verificato un problema durante il caricamento dei processi. Provare ad aggiornare la pagina."
     }
   },
@@ -62,7 +64,7 @@
     "NAME": "Modellatore",
     "NAVIGATION": {
       "PROJECT_TITLE": "Progetti",
-      "CUSTOM_MODEL_TITLE": "Modelli personalizzati",
+      "CONTENT_MODEL_TITLE": "Modelli di contenuto",
       "DATA_MODELS_TITLE": "Modelli di dati",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "I miei progetti",

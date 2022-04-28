@@ -38,6 +38,7 @@
         "TOOLTIP": "收藏夹"
       }
     },
+    "SEARCH_PLACEHOLDER": "搜索",
     "TABLE": {
       "COLUMN_NAME": "名称",
       "COLUMN_VERSION": "版本",
@@ -50,6 +51,7 @@
       "NO_FAV_PROCESSES": "收藏流程以使其在此处可用。",
       "NO_FAV_PROJECTS": "收藏项目以使其在此处可用。",
       "RELEASE_ID": "发布 ID",
+      "RELEASE_COMMENT": "注释",
       "PROJECT_NAME": "项目名称"
     },
     "ERROR": {
@@ -62,7 +64,7 @@
     "NAME": "建模器",
     "NAVIGATION": {
       "PROJECT_TITLE": "项目",
-      "CUSTOM_MODEL_TITLE": "自定义模型",
+      "CONTENT_MODEL_TITLE": "内容模型",
       "DATA_MODELS_TITLE": "数据模型",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "我的项目",

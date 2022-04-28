@@ -38,6 +38,7 @@
         "TOOLTIP": "Oblíbené"
       }
     },
+    "SEARCH_PLACEHOLDER": "Hledat",
     "TABLE": {
       "COLUMN_NAME": "Název",
       "COLUMN_VERSION": "Verze",
@@ -50,6 +51,7 @@
       "NO_FAV_PROCESSES": "Označte proces jako oblíbený, aby byl k dispozici zde.",
       "NO_FAV_PROJECTS": "Označte projekt jako oblíbený, aby byl k dispozici zde.",
       "RELEASE_ID": "ID verze",
+      "RELEASE_COMMENT": "Komentář",
       "PROJECT_NAME": "Název projektu"
     },
     "ERROR": {
@@ -62,7 +64,7 @@
     "NAME": "Nástroj pro vytváření modelů",
     "NAVIGATION": {
       "PROJECT_TITLE": "Projekty",
-      "CUSTOM_MODEL_TITLE": "Vlastní modely",
+      "CONTENT_MODEL_TITLE": "Modely ACS",
       "DATA_MODELS_TITLE": "Datové modely",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "Moje projekty",

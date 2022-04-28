@@ -18,6 +18,8 @@
     "NO_CONTENT": "<فارغ>",
     "UNCATEGORIZED": "غير مصنف",
     "NO_SELECTION": "إنشاء نموذج جديد أو تحرير نموذج قائم باستخدام الشريط الجانبي",
+    "NO_OPTION_SELECTED": "بلا",
+    "SELECT_MODEL_TYPE": "حدد نوع الطراز",
     "NEW_MENU": {
       "LABEL": "جديد",
       "CREATE": "إنشاء",

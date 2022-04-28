@@ -1,5 +1,13 @@
 {
   "SDK": {
+    "PROJECT_HEADER": {
+      "VALIDATE": "Weryfikuj",
+      "RELEASE": "Zwolnij",
+      "SAVE_AS": "Zapisz jako",
+      "DOWNLOAD": "Pobierz projekt",
+      "VIEW_RELEASES": "Wyświetl wydania",
+      "VERSION": "Wersja"
+    },
     "MODEL_EDITOR": {
       "DIALOG": {
         "CONFIRM_INVALID_MODEL_SAVE": "Czy na pewno chcesz zapisać ten {{ modelType }}?",
@@ -133,7 +141,9 @@
         "EVENT": "Zdarzenie",
         "EMAIL_SERVICE_TASK": "Zadanie usługi e-mail",
         "DOCGEN_SERVICE": "Zadanie usługi docgen",
-        "PARTICIPANT": "Proces"
+        "PARTICIPANT": "Proces",
+        "FORM_FIELDS": "Pola formularza",
+        "FORM_VARIABLES": "Zmienne formularza"
       },
       "TOOLTIP": {
         "VARIABLE": "Zmienna",
@@ -233,6 +243,9 @@
       "CREATE_MODEL_DESCRIPTION": "Utwórz model niestandardowy i przypisz go do jednostki",
       "EDIT_MODEL": "Edytuj model niestandardowy",
       "EDIT_MODEL_DESCRIPTION": "Edytuj poprzednio utworzony model niestandardowy jednostki"
+    },
+    "PREFER_BUTTON": {
+      "ARIA_LABEL": "Przełącz na preferowane"
     }
   }
 }

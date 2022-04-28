@@ -75,11 +75,13 @@
     "MENU": {
       "EDIT": "Rediger",
       "DELETE": "Slett",
-      "RELEASE": "Frigi",
+      "RELEASE": "Versjon som skal utgis",
       "COLLABORATORS": "Samarbeidspartnere",
       "SEE_RELEASES": "Vis utgivelser",
       "DOWNLOAD": "Last ned",
-      "SAVE_AS": "Lagre som"
+      "SAVE_AS": "Lagre som",
+      "EDITORS_MENU": "Redaktørmeny",
+      "MORE_MENU": "Mer-meny"
     },
     "SETTINGS": {
       "HEADER": "Programinnstillinger"

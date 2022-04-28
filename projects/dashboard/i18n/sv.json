@@ -38,6 +38,7 @@
         "TOOLTIP": "Favoriter"
       }
     },
+    "SEARCH_PLACEHOLDER": "Sök",
     "TABLE": {
       "COLUMN_NAME": "Namn",
       "COLUMN_VERSION": "Version",
@@ -50,6 +51,7 @@
       "NO_FAV_PROCESSES": "Favoritmärk en process för att göra den tillgänglig här.",
       "NO_FAV_PROJECTS": "Favoritmarkera ett projekt för att göra det tillgängligt här.",
       "RELEASE_ID": "Versions-ID",
+      "RELEASE_COMMENT": "Kommentar",
       "PROJECT_NAME": "Projektnamn"
     },
     "ERROR": {
@@ -62,7 +64,7 @@
     "NAME": "Modeller",
     "NAVIGATION": {
       "PROJECT_TITLE": "Projekt",
-      "CUSTOM_MODEL_TITLE": "Anpassade modeller",
+      "CONTENT_MODEL_TITLE": "Innehållsmodeller",
       "DATA_MODELS_TITLE": "Datamodeller",
       "ALL_PROJECTS": {
         "HEADER_LABEL": "Mina projekt",

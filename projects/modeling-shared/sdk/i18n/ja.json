@@ -1,5 +1,13 @@
 {
   "SDK": {
+    "PROJECT_HEADER": {
+      "VALIDATE": "検証",
+      "RELEASE": "リリース",
+      "SAVE_AS": "名前を付けて保存",
+      "DOWNLOAD": "プロジェクトのダウンロード",
+      "VIEW_RELEASES": "リリースの表示",
+      "VERSION": "バージョン"
+    },
     "MODEL_EDITOR": {
       "DIALOG": {
         "CONFIRM_INVALID_MODEL_SAVE": "この{{ modelType }}を保存しますか?",
@@ -16,7 +24,7 @@
     "ALL": "すべて",
     "VALUE": "値",
     "EXPRESSION": "式",
-    "TYPE": "種類",
+    "TYPE": "タイプ",
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "名前は必須です",
@@ -32,7 +40,7 @@
       },
       "TABLE": {
         "COLUMN_NAME": "名前",
-        "COLUMN_TYPE": "種類",
+        "COLUMN_TYPE": "タイプ",
         "COLUMN_REQUIRED": "必須",
         "COLUMN_VALUE": "値",
         "NO_PROPERTIES": "プロパティを表示する変数を選択するか作成してください",
@@ -92,7 +100,7 @@
       "VALUE_MAPPING": "値",
       "EXPRESSION_MAPPING": "式",
       "NONE": "なし",
-      "TYPE": "種類"
+      "TYPE": "タイプ"
     },
     "SAVE_AS_DIALOG": {
       "TITLE": "名前を付けて保存",
@@ -133,7 +141,9 @@
         "EVENT": "イベント",
         "EMAIL_SERVICE_TASK": "Eメールサービスタスク",
         "DOCGEN_SERVICE": "Docgenサービスタスク",
-        "PARTICIPANT": "プロセス"
+        "PARTICIPANT": "プロセス",
+        "FORM_FIELDS": "フォームフィールド",
+        "FORM_VARIABLES": "フォームの変数"
       },
       "TOOLTIP": {
         "VARIABLE": "変数",
@@ -233,6 +243,9 @@
       "CREATE_MODEL_DESCRIPTION": "カスタムモデルを作成し、エンティティに割り当てます",
       "EDIT_MODEL": "カスタムモデルの編集",
       "EDIT_MODEL_DESCRIPTION": "前に作成したエンティティのカスタムモデルを編集します"
+    },
+    "PREFER_BUTTON": {
+      "ARIA_LABEL": "優先に切り替え"
     }
   }
 }

@@ -1,5 +1,13 @@
 {
   "SDK": {
+    "PROJECT_HEADER": {
+      "VALIDATE": "VALIDIEREN",
+      "RELEASE": "Version",
+      "SAVE_AS": "Speichern unter",
+      "DOWNLOAD": "Projekt herunterladen",
+      "VIEW_RELEASES": "Versionen anzeigen",
+      "VERSION": "Version"
+    },
     "MODEL_EDITOR": {
       "DIALOG": {
         "CONFIRM_INVALID_MODEL_SAVE": "Möchten Sie \"{{ modelType }}\" wirklich speichern?",
@@ -133,7 +141,9 @@
         "EVENT": "Ereignis",
         "EMAIL_SERVICE_TASK": "E-Mail-Serviceaufgabe",
         "DOCGEN_SERVICE": "Docgen-Serviceaufgabe",
-        "PARTICIPANT": "Prozess"
+        "PARTICIPANT": "Prozess",
+        "FORM_FIELDS": "Formularfelder",
+        "FORM_VARIABLES": "Formularvariablen"
       },
       "TOOLTIP": {
         "VARIABLE": "Variable",
@@ -233,6 +243,9 @@
       "CREATE_MODEL_DESCRIPTION": "Erstellt ein benutzerdefiniertes Modell und weist es dem Hauptelement zu",
       "EDIT_MODEL": "Benutzerdefiniertes Modell bearbeiten",
       "EDIT_MODEL_DESCRIPTION": "Bearbeiten des zuvor erstellten, benutzerdefinierten Modells des Hauptelements"
+    },
+    "PREFER_BUTTON": {
+      "ARIA_LABEL": "Für bevorzugte umschalten"
     }
   }
 }

@@ -1,5 +1,13 @@
 {
   "SDK": {
+    "PROJECT_HEADER": {
+      "VALIDATE": "تحقق",
+      "RELEASE": "إصدار",
+      "SAVE_AS": "حفظ باسم",
+      "DOWNLOAD": "تنزيل المشروع",
+      "VIEW_RELEASES": "عرض الإصدارات",
+      "VERSION": "الإصدار"
+    },
     "MODEL_EDITOR": {
       "DIALOG": {
         "CONFIRM_INVALID_MODEL_SAVE": "هل أنت متأكد أنك تريد حفظ {{ modelType }}؟",
@@ -133,7 +141,9 @@
         "EVENT": "حدث",
         "EMAIL_SERVICE_TASK": "مهمة خدمة البريد الإلكتروني",
         "DOCGEN_SERVICE": "مهمة خدمة Docgen",
-        "PARTICIPANT": "العملية"
+        "PARTICIPANT": "العملية",
+        "FORM_FIELDS": "حقول النموذج",
+        "FORM_VARIABLES": "متغيرات النموذج"
       },
       "TOOLTIP": {
         "VARIABLE": "متغير",
@@ -171,7 +181,7 @@
       "VALIDATION": {
         "REQUIRED": "الإدخال مطلوب",
         "INVALID_FORMAT": "تنسيق الإدخال غير صالح: {{error}}",
-        "INVALID_MIN_LENGTH": "الطول الأدنى غير صالح: {{error}} ",
+        "INVALID_MIN_LENGTH": "الطول الأدنى غير صالح: {{error}}",
         "INVALID_MAX_LENGTH": "الطول الأقصى غير صالح: {{error}}",
         "INVALID_MIN_VALUE": "قيمة غير صالحة. يجب أن تكون أكبر من أو تساوي: {{error}}",
         "INVALID_MAX_VALUE": "قيمة غير صالحة. يجب أن تكون أقل من أو تساوي: {{error}}",
@@ -233,6 +243,9 @@
       "CREATE_MODEL_DESCRIPTION": "قم بإنشاء نموذج مخصص وقم بتعيينه للكيان",
       "EDIT_MODEL": "تحرير نموذج مخصص",
       "EDIT_MODEL_DESCRIPTION": "قم بتحرير النموذج المخصص الذي تم إنشاؤه مسبقًا للكيان"
+    },
+    "PREFER_BUTTON": {
+      "ARIA_LABEL": "تبديل للمفضلة"
     }
   }
 }

@@ -18,6 +18,8 @@
     "NO_CONTENT": "<empty>",
     "UNCATEGORIZED": "Без категории",
     "NO_SELECTION": "Создать новую модель или редактировать существующую с помощью боковой панели",
+    "NO_OPTION_SELECTED": "Нет",
+    "SELECT_MODEL_TYPE": "Выбрать тип модели",
     "NEW_MENU": {
       "LABEL": "Создать",
       "CREATE": "Создать",

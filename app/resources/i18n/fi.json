@@ -79,7 +79,9 @@
       "COLLABORATORS": "Yhteistyökumppanit",
       "SEE_RELEASES": "Näytä julkaisut",
       "DOWNLOAD": "Lataa",
-      "SAVE_AS": "Tallenna nimellä"
+      "SAVE_AS": "Tallenna nimellä",
+      "EDITORS_MENU": "Editorin valikko",
+      "MORE_MENU": "Laajempi valikko"
     },
     "SETTINGS": {
       "HEADER": "Sovellusasetukset"

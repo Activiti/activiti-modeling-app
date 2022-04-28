@@ -2,7 +2,7 @@
   "APP": {
     "APPLICATION": "アプリケーション",
     "BACKEND_SERVICE": "バックエンドサービス",
-    "MORE_ACTIONS": "その他の処理",
+    "MORE_ACTIONS": "その他のアクション",
     "VALIDATE_PROJECT": "プロジェクトの検証",
     "DOWNLOAD_PROJECT": "プロジェクトのダウンロード",
     "ADD_ACTION": "新規処理の追加",
@@ -39,7 +39,7 @@
         "TITLE": "実行しますか?",
         "SUBTITLE": "この処理を実行しますか?",
         "EMAIL_TEMPLATE_DESCRIPTION": "このアクションは元に戻せません",
-        "BUTTON": "確定",
+        "BUTTON": "確認",
         "RELEASE": "このプロジェクトの新しいバージョンをリリースしますか?",
         "TYPES": {
           "DECISION": "ディシジョンテーブル",
@@ -75,11 +75,13 @@
     "MENU": {
       "EDIT": "編集",
       "DELETE": "削除",
-      "RELEASE": "担当解除",
+      "RELEASE": "リリース",
       "COLLABORATORS": "コラボレーター",
       "SEE_RELEASES": "リリースの表示",
       "DOWNLOAD": "ダウンロード",
-      "SAVE_AS": "名前を付けて保存"
+      "SAVE_AS": "名前を付けて保存",
+      "EDITORS_MENU": "エディターメニュー",
+      "MORE_MENU": "その他のメニュー"
     },
     "SETTINGS": {
       "HEADER": "アプリケーションの設定"

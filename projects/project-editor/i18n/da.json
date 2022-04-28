@@ -18,8 +18,10 @@
     "NO_CONTENT": "<tom>",
     "UNCATEGORIZED": "Ikke-kategoriseret",
     "NO_SELECTION": "Opret en ny model, eller redigér en eksisterende model ved hjælp af sidepanelet",
+    "NO_OPTION_SELECTED": "Ingen",
+    "SELECT_MODEL_TYPE": "Vælg modeltype",
     "NEW_MENU": {
-      "LABEL": "NY",
+      "LABEL": "Ny",
       "CREATE": "Opret",
       "UPLOAD": "Upload",
       "IMPORT": "Importér",

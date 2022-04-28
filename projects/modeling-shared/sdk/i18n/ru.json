@@ -1,5 +1,13 @@
 {
   "SDK": {
+    "PROJECT_HEADER": {
+      "VALIDATE": "Проверить",
+      "RELEASE": "Выпуск",
+      "SAVE_AS": "Сохранить как",
+      "DOWNLOAD": "Скачать проект",
+      "VIEW_RELEASES": "Просмотреть выпуски",
+      "VERSION": "Версия"
+    },
     "MODEL_EDITOR": {
       "DIALOG": {
         "CONFIRM_INVALID_MODEL_SAVE": "Вы действительно хотите сохранить данную {{ modelType }}?",
@@ -133,7 +141,9 @@
         "EVENT": "Событие",
         "EMAIL_SERVICE_TASK": "Задача для почтового сервиса",
         "DOCGEN_SERVICE": "Сервисная задача docgen",
-        "PARTICIPANT": "Процесс"
+        "PARTICIPANT": "Процесс",
+        "FORM_FIELDS": "Поле формы",
+        "FORM_VARIABLES": "Переменные форм"
       },
       "TOOLTIP": {
         "VARIABLE": "Переменная",
@@ -233,6 +243,9 @@
       "CREATE_MODEL_DESCRIPTION": "Создать пользовательскую модель и назначить ее объекту",
       "EDIT_MODEL": "Редактировать пользовательскую модель",
       "EDIT_MODEL_DESCRIPTION": "Редактировать ранее созданную пользовательскую модель объекта"
+    },
+    "PREFER_BUTTON": {
+      "ARIA_LABEL": "Переключение на предпочтительный вариант"
     }
   }
 }
