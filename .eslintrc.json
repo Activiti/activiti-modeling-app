@@ -1,0 +1,343 @@
+{
+    "root": true,
+    "ignorePatterns": ["**/*"],
+    "plugins": ["@nrwl/nx"],
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "extends": [
+                "plugin:@nrwl/nx/typescript",
+                "plugin:@nrwl/nx/angular",
+                "plugin:@angular-eslint/template/process-inline-templates"
+            ],
+            "rules": {
+                "ban/ban": [
+                    "error",
+                    { "name": "__LINT_CONFIG_TEST_KEYWORD__", "message": "__LINT_CONFIG_TEST_KEYWORD__" },
+                    { "name": "eval", "message": "Calls to eval is not allowed." },
+                    { "name": "fdescribe", "message": "Calls to fdescribe is not allowed" },
+                    { "name": "fit", "message": "Calls to fit is not allowed" },
+                    { "name": "xit", "message": "Calls to xit is not allowed" },
+                    { "name": "xdescribe", "message": "Calls to xdescribe is not allowed" },
+                    { "name": ["test", "only"], "message": "Calls to test.only is not allowed" },
+                    { "name": ["describe", "only"], "message": "Calls to describe.only is not allowed" }
+                ],
+                "@nrwl/nx/enforce-module-boundaries": [
+                    "error",
+                    {
+                        "allow": ["@alfresco-dbp/shared-testing/**"],
+                        "depConstraints": [
+                            {
+                                "sourceTag": "scope:modeling-sdk",
+                                "onlyDependOnLibsWithTags": [
+                                    "scope:modeling-sdk",
+                                    "scope:adf-candidates"
+                                ]
+                            },
+                            {
+                                "sourceTag": "scope:modeling-ce-connector-editor",
+                                "onlyDependOnLibsWithTags": [
+                                    "scope:modeling-ce-connector-editor",
+                                    "scope:modeling-sdk",
+                                    "scope:adf-candidates"
+                                ]
+                            },
+                            {
+                                "sourceTag": "scope:modeling-ce-process-editor",
+                                "onlyDependOnLibsWithTags": [
+                                    "scope:modeling-ce-process-editor",
+                                    "scope:modeling-sdk",
+                                    "scope:adf-candidates"
+                                ]
+                            },
+                            {
+                                "sourceTag": "scope:modeling-ce-dashboard",
+                                "onlyDependOnLibsWithTags": [
+                                    "scope:modeling-ce-dashboard",
+                                    "scope:modeling-sdk",
+                                    "scope:adf-candidates"
+                                ]
+                            },
+                            {
+                                "sourceTag": "scope:modeling-ce-project-editor",
+                                "onlyDependOnLibsWithTags": [
+                                    "scope:modeling-ce-project-editor",
+                                    "scope:modeling-sdk",
+                                    "scope:adf-candidates"
+                                ]
+                            },
+                            {
+                                "sourceTag": "scope:modeling-ce-app-shell",
+                                "onlyDependOnLibsWithTags": [
+                                    "scope:modeling-sdk",
+                                    "scope:adf-candidates",
+                                    "scope:modeling-ce-dashboard",
+                                    "scope:modeling-ce-project-editor"
+                                ]
+                            },
+                            {
+                                "sourceTag": "scope:modeling-ce-project-e2e",
+                                "onlyDependOnLibsWithTags": [
+                                    "scope:shared-testing",
+                                    "scope:modeling-testing"
+                                ]
+                            },
+                            {
+                                "sourceTag": "scope:modeling-ce-process-editor-e2e",
+                                "onlyDependOnLibsWithTags": [
+                                    "scope:shared-testing",
+                                    "scope:modeling-testing"
+                                ]
+                            },
+                            {
+                                "sourceTag": "scope:modeling-ce-connector-editor-e2e",
+                                "onlyDependOnLibsWithTags": [
+                                    "scope:shared-testing",
+                                    "scope:modeling-testing"
+                                ]
+                            },
+                            {
+                                "sourceTag": "scope:modeling-ce",
+                                "onlyDependOnLibsWithTags": [
+                                    "scope:modeling-ce",
+                                    "scope:modeling-sdk",
+                                    "scope:modeling-ce-connector-editor",
+                                    "scope:modeling-ce-process-editor",
+                                    "scope:adf-candidates",
+                                    "scope:modeling-ce-dashboard",
+                                    "scope:modeling-ce-project-editor",
+                                    "scope:modeling-ce-app-shell"
+                                ]
+                            },
+                            {
+                                "sourceTag": "scope:modeling-ce-e2e",
+                                "onlyDependOnLibsWithTags": [
+                                    "scope:modeling-ce-e2e",
+                                    "scope:modeling-sdk",
+                                    "scope:modeling-testing",
+                                    "scope:shared-testing"
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "@angular-eslint/component-class-suffix": "error",
+                "@angular-eslint/directive-class-suffix": "error",
+                "@angular-eslint/no-conflicting-lifecycle": "error",
+                "@angular-eslint/no-empty-lifecycle-method": "warn",
+                "@typescript-eslint/no-floating-promises": "warn",
+                "@angular-eslint/no-host-metadata-property": "off",
+                "@angular-eslint/no-input-rename": "error",
+                "@angular-eslint/no-inputs-metadata-property": "error",
+                "@angular-eslint/no-output-native": "warn",
+                "@angular-eslint/no-output-on-prefix": "warn",
+                "@angular-eslint/no-output-rename": "error",
+                "@angular-eslint/no-outputs-metadata-property": "error",
+                "@angular-eslint/use-lifecycle-interface": "error",
+                "@angular-eslint/use-pipe-transform-interface": "error",
+                "@typescript-eslint/consistent-type-definitions": "error",
+                "@typescript-eslint/dot-notation": "off",
+                "@typescript-eslint/explicit-member-accessibility": [
+                    "off",
+                    {
+                        "accessibility": "explicit"
+                    }
+                ],
+                "@typescript-eslint/indent": [
+                    "warn",
+                    4,
+                    {
+                        "FunctionDeclaration": {
+                            "parameters": "first"
+                        },
+                        "FunctionExpression": {
+                            "parameters": "first"
+                        }
+                    }
+                ],
+                "@typescript-eslint/member-delimiter-style": [
+                    "warn",
+                    {
+                        "multiline": {
+                            "delimiter": "semi",
+                            "requireLast": true
+                        },
+                        "singleline": {
+                            "delimiter": "semi",
+                            "requireLast": false
+                        }
+                    }
+                ],
+                "@typescript-eslint/member-ordering": "error",
+                "@typescript-eslint/naming-convention": "off",
+                "@typescript-eslint/no-empty-function": "off",
+                "@typescript-eslint/no-empty-interface": "warn",
+                "@typescript-eslint/no-explicit-any": "off",
+                "@typescript-eslint/ban-types": "warn",
+                "@typescript-eslint/no-inferrable-types": [
+                    "warn",
+                    {
+                        "ignoreParameters": true
+                    }
+                ],
+                "@typescript-eslint/no-misused-new": "error",
+                "@typescript-eslint/no-non-null-assertion": "warn",
+                "@typescript-eslint/no-shadow": [
+                    "warn",
+                    {
+                        "hoist": "all"
+                    }
+                ],
+                "@typescript-eslint/no-unused-expressions": "warn",
+                "@typescript-eslint/no-var-requires": "off",
+                "@typescript-eslint/prefer-function-type": "error",
+                "@typescript-eslint/quotes": [
+                    "error",
+                    "single",
+                    {
+                        "avoidEscape": true,
+                        "allowTemplateLiterals": true
+                    }
+                ],
+                "@typescript-eslint/semi": ["warn", "always"],
+                "@typescript-eslint/triple-slash-reference": "warn",
+                "@typescript-eslint/type-annotation-spacing": "error",
+                "@typescript-eslint/unified-signatures": "error",
+                "arrow-body-style": "warn",
+                "brace-style": ["warn", "1tbs", { "allowSingleLine": true }],
+                "constructor-super": "error",
+                "curly": "error",
+                "dot-notation": "off",
+                "eol-last": "error",
+                "eqeqeq": ["error", "smart"],
+                "guard-for-in": "error",
+                "id-denylist": "off",
+                "id-match": "off",
+                "import/no-deprecated": "warn",
+                "import/order": "off",
+                "indent": "off",
+                "max-lines":"warn",
+                "max-len": [
+                    "warn",
+                    {
+                        "code": 180
+                    }
+                ],
+                "no-async-promise-executor": "warn",
+                "no-bitwise": "error",
+                "no-caller": "error",
+                "no-cond-assign": "error",
+                "no-console": [
+                    "error",
+                    {
+                        "allow": [
+                            "warn",
+                            "dir",
+                            "timeLog",
+                            "assert",
+                            "clear",
+                            "count",
+                            "countReset",
+                            "group",
+                            "groupEnd",
+                            "table",
+                            "dirxml",
+                            "error",
+                            "groupCollapsed",
+                            "Console",
+                            "profile",
+                            "profileEnd",
+                            "timeStamp",
+                            "context"
+                        ]
+                    }
+                ],
+                "no-debugger": "error",
+                "no-duplicate-imports": "warn",
+                "no-empty": "off",
+                "no-empty-function": "off",
+                "no-eval": "error",
+                "no-extra-boolean-cast":"warn",
+                "no-fallthrough": "error",
+                "no-multiple-empty-lines": "error",
+                "no-prototype-builtins":"warn",
+                "no-new-wrappers": "error",
+                "no-restricted-imports": ["error", "rxjs/Rx"],
+                "no-return-await": "error",
+                "no-self-assign":"warn",
+                "no-shadow": "off",
+                "no-throw-literal": "error",
+                "no-trailing-spaces": "error",
+                "no-undef-init": "warn",
+                "no-underscore-dangle": "off",
+                "no-unused-expressions": "off",
+                "no-unused-labels": "error",
+                "no-var": "warn",
+                "prefer-const": "warn",
+                "quotes": "off",
+                "radix": "error",
+                "rxjs/ban-operators": "error",
+                "rxjs/no-create": "error",
+                "rxjs/no-ignored-subscribe": "warn",
+                "rxjs/no-subject-unsubscribe": "error",
+                "rxjs/no-subject-value": "error",
+                "rxjs/no-unsafe-catch": [
+                    "error",
+                    {
+                        "observable": "action(s|\\$)?"
+                    }
+                ],
+                "rxjs/no-unsafe-switchmap": [
+                    "error",
+                    {
+                        "disallow": [
+                            "add",
+                            "create",
+                            "delete",
+                            "post",
+                            "put",
+                            "remove",
+                            "set",
+                            "update"
+                        ],
+                        "observable": "action(s|\\$)?"
+                    }
+                ],
+                "rxjs/no-unsafe-takeuntil": "error",
+                "semi": "error",
+                "no-useless-escape": "warn",
+                "no-case-declarations":"warn",
+                "spaced-comment": [
+                    "warn",
+                    "always",
+                    {
+                        "markers": ["/"]
+                    }
+                ],
+                "unicorn/filename-case": "warn"
+            },
+            "plugins": [
+                "ban",
+                "eslint-plugin-import",
+                "@angular-eslint/eslint-plugin",
+                "eslint-plugin-unicorn",
+                "eslint-plugin-rxjs",
+                "@typescript-eslint"
+            ]
+        },
+        {
+            "files": ["*.js"],
+            "extends": ["plugin:@nrwl/nx/javascript"],
+            "rules": {}
+        },
+        {
+            "files": ["*.html"],
+            "rules": {
+                "@angular-eslint/template/banana-in-box": "error",
+                "@angular-eslint/template/eqeqeq": "off",
+                "@angular-eslint/template/no-negated-async": "off"
+            },
+            "extends": ["plugin:@nrwl/nx/angular-template"]
+        }
+    ]
+}
