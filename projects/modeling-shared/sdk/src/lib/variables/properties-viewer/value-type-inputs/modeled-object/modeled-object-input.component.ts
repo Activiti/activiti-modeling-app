@@ -34,7 +34,7 @@ export interface ModeledObjectChanges {
 })
 export class PropertiesViewerModeledObjectInputComponent implements OnChanges {
 
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     @Output() valueChanges: EventEmitter<ModeledObjectChanges> = new EventEmitter();
     @Output() valid: EventEmitter<boolean> = new EventEmitter();
     @Input() value: any;

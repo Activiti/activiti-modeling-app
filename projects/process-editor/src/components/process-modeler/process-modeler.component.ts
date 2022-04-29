@@ -51,7 +51,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
     diagramData$ = new BehaviorSubject<ProcessContent>(null);
     onDestroy$ = new Subject<void>();
 
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     @Output()
     onChange = new EventEmitter<any>();
 

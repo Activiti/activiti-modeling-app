@@ -27,7 +27,7 @@ import { TranslationService } from '@alfresco/adf-core';
 })
 export class AllowedCharactersDirective {
 
-    /* tslint:disable-next-line:no-input-rename */
+    /* eslint-disable-next-line @angular-eslint/no-input-rename */
     @Input('modelingsdk-allowed-characters') regexInput: RegExp = MODELER_NAME_REGEX;
 
     constructor(

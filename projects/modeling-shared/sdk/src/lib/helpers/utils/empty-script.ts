@@ -16,7 +16,7 @@
  */
 
 
-/* tslint:disable */
+/* eslint-disable */
 /* cSpell:disable */
 export const getEmptyScript = (model) => {
 

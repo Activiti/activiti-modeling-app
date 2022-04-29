@@ -18,7 +18,7 @@
 import { createModelName, formatUuid } from './create-entries-names';
 import { ContentType } from './../../api-implementations/acm-api/content-types';
 
-/* tslint:disable */
+/* eslint-disable */
 export const getEmptyDiagram = (model, processId) => {
     const modelId = formatUuid(ContentType.Model, model.id);
 

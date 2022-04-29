@@ -45,7 +45,7 @@ export interface ArrayInputExtendedProperties {
 })
 export class PropertiesViewerArrayInputComponent implements OnChanges {
 
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     @Output() change = new EventEmitter();
     @Input() value: any[];
     @Input() disabled: boolean;

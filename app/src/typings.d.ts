@@ -26,5 +26,5 @@ interface NodeModule {
   id: string;
 }
 
-/* tslint:disable-next-line */
+/* eslint-disable-next-line */
 interface WebKitFileEntry {}

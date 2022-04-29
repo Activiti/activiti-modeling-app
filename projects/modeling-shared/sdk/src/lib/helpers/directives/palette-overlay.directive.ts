@@ -18,7 +18,7 @@
 import { Directive, ElementRef, TemplateRef, AfterViewInit, Input, HostListener, ViewContainerRef, OnDestroy } from '@angular/core';
 import { OverlayRef, PositionStrategy, Overlay, ConnectionPositionPair } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-// tslint:disable:directive-selector
+/* eslint-disable @angular-eslint/directive-selector */
 
  @Directive({
      selector: '[ama-palette-overlay]'

@@ -70,7 +70,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 
 export class PropertiesViewerDateInputComponent implements OnChanges {
 
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     @Output() change = new EventEmitter();
     @Input() value: string;
     @Input() disabled: boolean;

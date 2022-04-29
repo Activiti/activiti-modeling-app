@@ -102,7 +102,7 @@ export class VariablesComponent implements OnInit, OnDestroy {
             const data = JSON.parse(this.editorContent);
             this.validVariables = this.validateDuplicateVariable(<EntityProperties>data);
         } catch (e) {
-            // tslint:disable-next-line:no-console
+            // eslint-disable-next-line no-console
             console.log('Error cannot parse JSON', e);
         }
     }

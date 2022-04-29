@@ -36,7 +36,7 @@ import { AmaApi } from '../api/api.interface';
                 for (const process of processes) {
                     observables.push(this.amaApi.Process.export(process.id));
                 }
-                // tslint:disable-next-line
+                // eslint-disable-next-line
                 return forkJoin(...observables).pipe(
                     map((processContents: string[]) => {
                         return this.createProcessesModelProcessDefinitionIdStructure(processes, processContents);

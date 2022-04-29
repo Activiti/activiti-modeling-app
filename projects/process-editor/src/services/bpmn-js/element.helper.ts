@@ -29,7 +29,7 @@ export const ElementHelper = {
             const get = handler.get;
             return get(element);
         } catch (error) {
-            /*tslint:disable-next-line*/
+            /* eslint-disable-next-line */
             console.error(`Handler::get is not defined for ${propertyName}`, error);
             return null;
         }
@@ -42,7 +42,7 @@ export const ElementHelper = {
 
             set(modeling, element, value, moddle);
         } catch (error) {
-            /*tslint:disable-next-line*/
+            /* eslint-disable-next-line */
             console.error(`Handler::set is not defined for ${propertyName}`, error);
         }
     }

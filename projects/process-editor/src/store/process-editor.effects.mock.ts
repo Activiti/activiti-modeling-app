@@ -23,7 +23,7 @@ export const mockOpenSaveAsDialog: SaveAsDialogPayload = {
     sourceModelContent: 'content'
 };
 
-// tslint:disable-next-line
+// eslint-disable-next-line
 // cSpell:disable
 export const mockXMLProcess = `<?xml version="1.0" encoding="UTF-8"?>
 <bpmn2:definitions name="process-test" id="model-fd525131-8580-4b28-98fd-484bde7c3ff1" xmlns:activiti="http://activiti.org/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" targetNamespace="http://bpmn.io/schema/bpmn">
@@ -41,7 +41,7 @@ export const mockXMLProcess = `<?xml version="1.0" encoding="UTF-8"?>
 </bpmn2:definitions>`;
 /* cSpell:enable */
 
-// tslint:disable-next-line
+// eslint-disable-next-line
 // cSpell:disable
 export const mockXMLProcessPool = `<?xml version="1.0" encoding="UTF-8"?>
 <bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="model-855d0072-6b80-4202-ab47-00d8f9e47f6d" name="proc-test" targetNamespace="http://bpmn.io/schema/bpmn" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">

@@ -49,7 +49,7 @@ export interface EnumExtendedProperties {
 
 export class PropertiesViewerEnumInputComponent implements OnInit {
 
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     @Output() change = new EventEmitter();
     @Input() value: any;
     @Input() disabled: boolean;

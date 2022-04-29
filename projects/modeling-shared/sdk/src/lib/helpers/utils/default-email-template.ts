@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-/* tslint:disable */
+/* eslint-disable */
 export const getDefaultAssigneeEmailTemplate = (): string => {
     return `
     <!doctype html>

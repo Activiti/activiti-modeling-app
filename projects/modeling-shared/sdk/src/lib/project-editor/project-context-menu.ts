@@ -34,7 +34,7 @@ export interface ProjectContextMenuOption {
 }
 
 export interface ProjectContextMenuActionClass  {
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     new(projectId: string): ProjectContextMenuAction;
 }
 

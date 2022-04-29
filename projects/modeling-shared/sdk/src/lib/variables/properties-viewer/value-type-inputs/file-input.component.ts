@@ -59,7 +59,7 @@ export interface FileInputExtendedProperties {
 
 export class PropertiesViewerFileInputComponent implements OnInit {
 
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     @Output() change = new EventEmitter();
     @Input() value: FileExtensions;
     @Input() disabled: boolean;
