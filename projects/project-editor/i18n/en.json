@@ -190,7 +190,7 @@
             "AUTHENTICATION_UPDATED": "Authentication saved"
         },
         "ERROR": {
-            "UPLOAD_DUPLICATE_FILE": "{{modelType}} with the same name already exist",
+            "UPLOAD_DUPLICATE_FILE": "{{modelType}} with the same name already exists.",
             "UPLOAD_FILE": "We hit a problem uploading the file. Try uploading it again.",
             "DELETE_PROJECT": "We hit a problem deleting the project. Try deleting it again.",
             "ADD_TO_FAVORITES": "We hit a problem adding the project to favorites. Try adding it again.",
