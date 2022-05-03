@@ -150,6 +150,8 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
         this.modeler.on('shape.remove', this.modelerInitOptions.removeHandler);
         this.modeler.on('create.end', this.modelerInitOptions.createHandler);
         this.modeler.on('selection.changed', this.modelerInitOptions.selectHandler);
+        this.modeler.on('copyPaste.copyElement', this.modelerInitOptions.copyActionHandler);
+        this.modeler.on('copyPaste.pasteElement', this.modelerInitOptions.pasteActionHandler);
     }
 
     private muteEventHandlers() {
@@ -158,6 +160,8 @@ export class ProcessModelerServiceImplementation implements ProcessModelerServic
         this.modeler.off('shape.remove', this.modelerInitOptions.removeHandler);
         this.modeler.off('create.end', this.modelerInitOptions.createHandler);
         this.modeler.off('selection.changed', this.modelerInitOptions.selectHandler);
+        this.modeler.off('copyPaste.copyElement', this.modelerInitOptions.copyActionHandler);
+        this.modeler.off('copyPaste.pasteElement', this.modelerInitOptions.pasteActionHandler);
     }
 
     public createEventHandlerForAction(actionName: string, handler: (event) => any | void) {

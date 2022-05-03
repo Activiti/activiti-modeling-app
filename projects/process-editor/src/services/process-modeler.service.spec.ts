@@ -46,7 +46,9 @@ describe('ProcessModelerServiceImplementation', () => {
             changeHandler: jest.fn(),
             removeHandler: jest.fn(),
             selectHandler: jest.fn(),
-            createHandler: jest.fn()
+            createHandler: jest.fn(),
+            copyActionHandler: jest.fn(),
+            pasteActionHandler: jest.fn()
         };
         service.init(initConfig);
     });
@@ -65,7 +67,7 @@ describe('ProcessModelerServiceImplementation', () => {
         }
 
         function fireEventHandlers() {
-            const events = ['element.click', 'element.changed', 'shape.remove', 'selection.changed', 'create.end'];
+            const events = ['element.click', 'element.changed', 'shape.remove', 'selection.changed', 'create.end', 'copyPaste.copyElement', 'copyPaste.pasteElement'];
             events.forEach(event => {
                 bpmnFactoryMock.modeler.get('eventBus').fire(event);
             });

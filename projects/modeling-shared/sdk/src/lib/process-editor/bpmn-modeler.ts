@@ -26,6 +26,8 @@ export interface ModelerInitOptions {
     removeHandler: (event) => any | void;
     createHandler: (event) => any | void;
     selectHandler: (event) => any | void;
+    copyActionHandler: (event) => any | void;
+    pasteActionHandler: (event) => any | void;
 }
 
 export interface XmlParsingProblem {

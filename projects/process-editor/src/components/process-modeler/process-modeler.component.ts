@@ -17,7 +17,7 @@
 
 import { Component, ElementRef, Input, OnDestroy, OnInit, Output, EventEmitter, Inject, ViewEncapsulation } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { filter, switchMap, takeUntil } from 'rxjs/operators';
+import { filter, switchMap, take, takeUntil } from 'rxjs/operators';
 import {
     ProcessContent,
     SnackbarErrorAction,
@@ -35,7 +35,9 @@ import {
 } from '../../store/process-editor.actions';
 import { ProcessEntitiesState } from '../../store/process-entities.state';
 import { ProcessDiagramLoaderService } from '../../services/process-diagram-loader.service';
-import { createSelectedElement } from '../../store/process-editor.state';
+import { createSelectedElement, SelectedProcessElement } from '../../store/process-editor.state';
+import { TaskAssignmentService } from '../../services/cardview-properties/task-assignment-item/task-assignment.service';
+import { selectSelectedElement } from '../../store/process-editor.selectors';
 
 @Component({
     selector: 'ama-process-modeler',
@@ -50,6 +52,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
 
     diagramData$ = new BehaviorSubject<ProcessContent>(null);
     onDestroy$ = new Subject<void>();
+    currentProcessSelected = '';
 
     // eslint-disable-next-line
     @Output()
@@ -65,10 +68,18 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
         @Inject(ProcessModelerServiceToken) private processModelerService: ProcessModelerService,
         private processLoaderService: ProcessDiagramLoaderService,
         private canvas: ElementRef,
-        private statusBarService: StatusBarService
+        private statusBarService: StatusBarService,
+        private taskAssignmentService: TaskAssignmentService
     ) { }
 
     ngOnInit() {
+        this.store
+            .select(selectSelectedElement).pipe(
+                filter(element => !!element),
+                take(1))
+            .subscribe((selectedElement: SelectedProcessElement) => {
+                this.currentProcessSelected = selectedElement.id;
+        });
         this.processModelerService.init({
             clickHandler: event => {
                 this.store.dispatch(new SelectModelerElementAction(createSelectedElement(event.element)));
@@ -99,6 +110,12 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
                 if (element.type === BpmnElement.CallActivity) {
                     this.processModelerService.updateElementProperty(element.id, BpmnProperty.inheritBusinessKey, true);
                 }
+            },
+            copyActionHandler: event => {
+                this.taskAssignmentService.copyActionHandler(this.currentProcessSelected);
+            },
+            pasteActionHandler: event => {
+                this.taskAssignmentService.pasteActionHandler(event, this.currentProcessSelected);
             }
         });
 

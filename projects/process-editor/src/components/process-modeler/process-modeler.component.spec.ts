@@ -33,6 +33,7 @@ import { createSelectedElement } from '../../store/process-editor.state';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { TaskAssignmentService } from '../../services/cardview-properties/task-assignment-item/task-assignment.service';
 
 @Component({
     selector: 'ama-process-palette',
@@ -59,6 +60,7 @@ describe('ProcessModelerComponent', () => {
                 NoopAnimationsModule
             ],
             providers: [
+                TaskAssignmentService,
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
                 { provide: BpmnFactoryToken, useClass: BpmnFactoryMock },
