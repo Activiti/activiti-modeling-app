@@ -68,13 +68,14 @@ export class ProcessVariablesEffects {
         const title = 'PROCESS_EDITOR.ELEMENT_PROPERTIES.PROCESS_VARIABLES';
         const filterPlaceholder = 'PROCESS_EDITOR.ELEMENT_PROPERTIES.FILTER_PROCESS_VARIABLE';
         const required = true;
-        const columns = [ 'name', 'type', 'required', 'value', 'delete' ];
+        const columns = [ 'name', 'type', 'required', 'displayName', 'value', 'delete' ];
         const allowExpressions = true;
 
         this.dialogService.openDialog(VariablesComponent, {
             disableClose: true,
-            height: '530px',
+            height: '650px',
             width: '1000px',
+            panelClass: 'ama-process-variables-dialog',
             data: { properties, title, filterPlaceholder, columns, required, allowExpressions, propertiesUpdate$ },
         });
 

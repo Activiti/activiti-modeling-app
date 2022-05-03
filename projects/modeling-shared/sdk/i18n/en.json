@@ -25,10 +25,19 @@
         "VALUE": "Value",
         "EXPRESSION": "Expression",
         "TYPE": "Type",
+        "DISPLAY_NAME_VISIBILITY": {
+            "YES": "Yes",
+            "NO": "No",
+            "DISPLAY_NAME": "Display Name",
+            "DISPLAY_NAME_AVAILABILITY": "Available in the web application",
+            "ENTER_DISPLAY_NAME": "Enter Display name",
+            "DISPLAY_NAME_TOOLTIP": "Display name is used in the web application, for instance as a column name in the Tasks List, in the Processes List and in the API."
+        },
         "VARIABLES_EDITOR": {
             "ERRORS": {
                 "EMPTY_NAME": "A name is required",
                 "EMPTY_TYPE": "A type is required",
+                "EMPTY_DISPLAY_NAME": "A display name is required",
                 "INVALID_NAME": "Invalid variable name",
                 "VARIABLE_NAME_TOOLTIP": "The name can must start with a letter and can only contain alphanumeric characters and underscores",
                 "NAME_ALREADY_EXISTS": "Variable names must be unique",

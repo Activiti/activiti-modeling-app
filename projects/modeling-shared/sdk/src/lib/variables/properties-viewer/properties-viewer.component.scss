@@ -82,6 +82,22 @@ modelingsdk-properties-viewer {
         width: 100%;
     }
 
+    .ama-display-name-tooltip {
+        display: flex;
+        column-gap: 5px;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .ama-display-name-toggle {
+        width: 99%;
+        margin-bottom: 10px;
+
+        mat-button-toggle {
+            width: 100%;
+        }
+    }
+
     .ama-variable-name-info-icon {
         vertical-align: middle;
         font-size: medium;
@@ -157,9 +173,12 @@ modelingsdk-properties-viewer {
     }
 
     .mat-column-value {
-        flex-grow: 1.3;
         padding-left: 28px;
         position: relative;
+    }
+
+    .mat-column-displayName {
+        flex: 0.7 0 8%;
     }
 }
 

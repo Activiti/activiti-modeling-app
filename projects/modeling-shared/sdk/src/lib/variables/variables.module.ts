@@ -61,6 +61,7 @@ import { ExpressionSimulatorComponent } from './expression-code-editor/component
 import { VariableIconPipe } from './expression-code-editor/pipes/variable-icon.pipe';
 import { provideExpressionSyntaxHandler } from './expression-code-editor/services/expression-syntax.provider';
 import { JuelExpressionSyntax } from './expression-code-editor/services/expression-language/juel-expression-syntax';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
     imports: [
@@ -69,7 +70,8 @@ import { JuelExpressionSyntax } from './expression-code-editor/services/expressi
         CodeEditorModule,
         SharedModule,
         MatSortModule,
-        FormsModule
+        FormsModule,
+        MatButtonToggleModule
     ],
     declarations: [
         VariablesComponent,

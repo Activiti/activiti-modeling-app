@@ -43,6 +43,15 @@
             </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="displayName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SDK.DISPLAY_NAME_VISIBILITY.DISPLAY_NAME' |
+                translate }}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="ama-ellipsis-cell">
+                {{element.displayName}}
+            </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="value">
             <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_VALUE' | translate
                 }}
@@ -109,6 +118,43 @@
                 data-automation-id="variable-required" class="ama-variable-required">
                 {{ 'SDK.VARIABLES_EDITOR.TABLE.COLUMN_REQUIRED' | translate }}
             </mat-checkbox>
+        </div>
+
+        <div *ngIf="['string', 'date', 'datetime', 'integer', 'boolean'].includes(form.type)">
+            <div class="ama-display-name-tooltip">
+                <span class="adf-property-label">{{ 'SDK.DISPLAY_NAME_VISIBILITY.DISPLAY_NAME_AVAILABILITY' | translate }}</span>
+                <mat-icon matTooltip="{{ 'SDK.DISPLAY_NAME_VISIBILITY.DISPLAY_NAME_TOOLTIP' | translate }}">info_outline</mat-icon>
+            </div>
+
+            <mat-button-toggle-group class='ama-display-name-toggle' (change)="showDisplayName($event.value)">
+                <mat-button-toggle data-automation-id='ama-display-name-visible-toggle'
+                    [value]="true"
+                    [checked]="form?.display">
+                {{ 'SDK.DISPLAY_NAME_VISIBILITY.YES' | translate }}
+                </mat-button-toggle>
+    
+                <mat-button-toggle
+                    [value]="false"
+                    [checked]="!form?.display">
+                {{ 'SDK.DISPLAY_NAME_VISIBILITY.NO' | translate }}
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+
+            <div *ngIf="form.display" class="ama-visible-column">
+                <mat-form-field>
+                    <mat-label>{{ 'SDK.DISPLAY_NAME_VISIBILITY.ENTER_DISPLAY_NAME' | translate }}</mat-label>
+                    <input matInput
+                        [(ngModel)]="form.displayName"
+                        (keyup)="saveChanges()"
+                        data-automation-id="ama-display-name-input">
+                    <p
+                        class="mat-error"
+                        *ngIf="!form.displayName"
+                        data-automation-id="ama-display-name-input-error">
+                        {{ 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_DISPLAY_NAME' | translate }}
+                    </p>
+                </mat-form-field>
+            </div>
         </div>
 
         <mat-tab-group *ngIf="allowExpressions && form.type" [selectedIndex]="tabIndex" class="ama-variable-tab--auto-height">

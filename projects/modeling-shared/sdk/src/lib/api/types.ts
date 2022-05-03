@@ -257,6 +257,8 @@ export interface EntityProperty {
     id: string;
     name: string;
     label?: string;
+    display?: boolean;
+    displayName?: string;
     type: string;
     model?: JSONSchemaInfoBasics;
     required?: boolean;

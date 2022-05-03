@@ -39,7 +39,7 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
     @Input() types: string[] = primitive_types;
     @Input() properties = '';
     @Input() requiredCheckbox = true;
-    @Input() displayedColumns = ['name', 'type', 'required', 'value', 'delete'];
+    @Input() displayedColumns = ['name', 'type', 'required', 'displayName', 'value', 'delete'];
     @Input() filterValue = '';
     @Input() filterPlaceholder: string;
     @Input() allowExpressions = false;
@@ -117,6 +117,16 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         });
 
         this.dataSource.filterPredicate = (data, filter) => (data.name.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1);
+    }
+
+    showDisplayName(value: boolean) {
+        this.form.display = value;
+
+        if (!this.form.display) {
+            this.form.displayName = undefined;
+        }
+
+        this.saveChanges();
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -220,11 +230,19 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
             return 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_TYPE';
         }
 
+        if (this.hasVariableWithoutDisplayName(entityProperties)) {
+            return 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_DISPLAY_NAME';
+        }
+
         return null;
     }
 
     private hasVariableWithoutType(entityProperties: EntityProperties) {
         return !!Object.keys(entityProperties).find(variable => !entityProperties[variable].type);
+    }
+
+    hasVariableWithoutDisplayName(entityProperties: EntityProperties) {
+        return Object.keys(entityProperties).some(variable => entityProperties[variable].display && !entityProperties[variable].displayName);
     }
 
     updateVariableValue(value?: any): void {
