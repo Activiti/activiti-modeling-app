@@ -13,7 +13,8 @@
             "SETTINGS": "Settings",
             "ABOUT": "About",
             "LANGUAGE": "Language",
-            "SEARCH": "Search"
+            "SEARCH": "Search",
+            "APPEARANCE": "Appearance"
         },
         "DIALOGS": {
             "CANCEL": "Cancel",

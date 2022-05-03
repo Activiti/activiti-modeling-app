@@ -44,6 +44,8 @@ import {
     SELECT_PROJECT,
     SetMenuAction,
     SET_MENU,
+    CHANGE_THEME,
+    ChangeThemeAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action): AppState {
@@ -55,6 +57,9 @@ export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action):
             break;
         case UPDATE_SETTINGS:
             newState = updateSettings(state, <UpdateSettingsAction>action);
+            break;
+        case CHANGE_THEME:
+            newState = updateSettings(state, <ChangeThemeAction>action);
             break;
 
         case SET_MENU:
@@ -129,7 +134,7 @@ function asyncInit(state: AppState, action: AsyncInitAction): AppState {
     };
 }
 
-function updateSettings(state: AppState, action: UpdateSettingsAction): AppState {
+function updateSettings(state: AppState, action: UpdateSettingsAction | ChangeThemeAction): AppState {
     const newState = Object.assign({}, state);
     newState.selectedTheme = appThemes.find(appTheme => appTheme.className === action.payload.theme);
     return newState;

@@ -23,6 +23,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
@@ -55,6 +56,10 @@ describe('UserInfoMenuComponent', () => {
             providers: [
                 AuthTokenProcessorService,
                 AppConfigService,
+                {
+                    provide: Router,
+                    useValue: { navigate: jest.fn() }
+                },
                 {
                     provide: Store,
                     useValue: {

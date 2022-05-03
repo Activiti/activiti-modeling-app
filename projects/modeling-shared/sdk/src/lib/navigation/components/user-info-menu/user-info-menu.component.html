@@ -6,32 +6,55 @@
     </div>
 
     <mat-menu #menu="matMenu" xPosition="before">
-        <a *ngIf="isUserAdmin()" mat-menu-item class="ama-user-menu-admin" (click)="openAdminApp()">
-            <mat-icon svgIcon="admin"></mat-icon> 
-            <span>{{ 'NEW_STUDIO_DASHBOARD.USER_INFO_MENU.ADMIN' | translate }}</span>
-        </a>
-        <mat-divider *ngIf="isUserAdmin()"></mat-divider>
 
-        <button mat-menu-item (click)="onOpenSettings()" data-automation-id="ama-user-menu-settings">
-            <mat-icon>settings</mat-icon>
-            <span>{{ 'APP.HEADER.SETTINGS' | translate }}</span>
-        </button>
-        <a mat-menu-item data-automation-id="ama-user-menu-docs" (click)="navigateToDocs()">
-            <mat-icon>book</mat-icon>
-            <span>{{ 'NEW_STUDIO_DASHBOARD.USER_INFO_MENU.DOCUMENTATION' | translate }}</span>
-        </a>
-        <mat-divider></mat-divider>
-
-        <div mat-menu-item class="ama-user-menu-initials">
-            <button class="ama-user-initials">
+        <div mat-menu-item class="ama-user-menu-initials ama-details">
+            <button class="ama-user-initials ama-details">
                 <div [outerHTML]="userDetails |  usernameInitials"></div>
             </button>
-            <span class="ama-user-menu-name">{{ userName }}</span>
+            <div class="ama-user-name-mail">
+                <div class="ama-user-menu-name">{{ userName }}</div>
+                <div class="ama-user-menu-name">{{ userMail }}</div>
+            </div>
         </div>
+
+        <mat-divider></mat-divider>
+
+        <button mat-menu-item [matMenuTriggerFor]="langMenu" data-automation-id="user-language-menu">
+            <mat-icon>translate</mat-icon>
+            <span>{{ 'APP.HEADER.LANGUAGE' | translate }}</span>
+        </button>
+    
+        <mat-menu #langMenu="matMenu">
+            <adf-language-menu></adf-language-menu>
+        </mat-menu>
+
+        <button mat-menu-item [matMenuTriggerFor]="themeMenu" data-automation-id="user-theme-menu">
+            <mat-icon>brightness_2</mat-icon>
+            <span>{{ 'APP.HEADER.APPEARANCE' | translate }}</span>
+        </button>
+    
+        <mat-menu #themeMenu="matMenu">
+            <modelingsdk-theme-menu></modelingsdk-theme-menu>
+        </mat-menu>
+
+        <button mat-menu-item data-automation-id="about" (click)="navigateToAbout()">
+            <mat-icon>info</mat-icon>
+            <span>{{ 'APP.HEADER.ABOUT' | translate }}</span>
+        </button>
 
         <button mat-menu-item data-automation-id="ama-user-menu-logout" adf-logout [enableRedirect]="false">
             <mat-icon>exit_to_app</mat-icon>
             <span>{{ 'APP.HEADER.SIGN_OUT' | translate }}</span>
         </button>
+        <mat-divider></mat-divider>
+
+        <a *ngIf="isUserAdmin()" mat-menu-item class="ama-user-menu-admin" (click)="openAdminApp()">
+            <mat-icon svgIcon="admin"></mat-icon> 
+            <span>{{ 'NEW_STUDIO_DASHBOARD.USER_INFO_MENU.ADMIN' | translate }}</span>
+        </a>
+        <a mat-menu-item data-automation-id="ama-user-menu-docs" (click)="navigateToDocs()">
+            <mat-icon>book</mat-icon>
+            <span>{{ 'NEW_STUDIO_DASHBOARD.USER_INFO_MENU.DOCUMENTATION' | translate }}</span>
+        </a>
     </mat-menu>
 </div>

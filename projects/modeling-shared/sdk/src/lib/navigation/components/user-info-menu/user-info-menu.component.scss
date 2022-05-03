@@ -17,9 +17,23 @@
             border: none;
         }
 
-        .ama-user-menu-name {
-            margin-left: 10px;
+        .ama-user-initials.ama-details {
+            margin-top: 15px;
         }
+
+        .ama-user-name-mail {
+            margin-left: 15px;
+            line-height: 40px;
+        }
+
+        .ama-user-menu-name {
+            height: 24px;
+        }
+    }
+
+    &-initials.ama-details {
+        display: flex;
+        height: 66px;
     }
 
     &-admin {

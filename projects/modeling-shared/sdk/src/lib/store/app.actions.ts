@@ -51,6 +51,10 @@ export interface OpenConfirmDialogActionPayload extends OpenInfoDialogActionPayl
     action?: Action;
 }
 
+export interface ChangeThemePayload {
+    theme: string;
+}
+
 export const OPEN_CONFIRM_DIALOG = 'OPEN_CONFIRM_DIALOG';
 export class OpenConfirmDialogAction implements Action {
     readonly type = OPEN_CONFIRM_DIALOG;
@@ -67,6 +71,12 @@ export const OPEN_SETTINGS_DIALOG = 'OPEN_SETTINGS_DIALOG';
 export class OpenSettingsDialogAction implements Action {
     readonly type = OPEN_SETTINGS_DIALOG;
     constructor() {}
+}
+
+export const CHANGE_THEME = 'CHANGE_THEME';
+export class ChangeThemeAction implements Action {
+    readonly type = CHANGE_THEME;
+    constructor(public payload: ChangeThemePayload) {}
 }
 
 export const OPEN_FILTER = '[App Tree] Open filter';

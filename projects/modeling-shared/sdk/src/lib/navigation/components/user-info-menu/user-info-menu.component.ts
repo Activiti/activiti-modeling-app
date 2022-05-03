@@ -17,10 +17,8 @@
 
 import { AppConfigService } from '@alfresco/adf-core';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 import { AuthTokenProcessorService } from '../../../services/auth.service';
-import { OpenSettingsDialogAction } from '../../../store/app.actions';
-import { AmaState } from '../../../store/app.state';
 
 const ROLE_ADMIN = 'ACTIVITI_ADMIN';
 interface UserDetails {
@@ -38,11 +36,12 @@ export class UserInfoMenuComponent implements OnInit {
 
     userDetails: UserDetails;
     userName = '';
+    userMail = '';
 
     constructor(
-        private store: Store<AmaState>,
         private authService: AuthTokenProcessorService,
-        private config: AppConfigService
+        private config: AppConfigService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -51,6 +50,7 @@ export class UserInfoMenuComponent implements OnInit {
             lastName: this.authService.getValueFromToken('family_name') ?? ''
         };
         this.userName = this.getUserName();
+        this.userMail = this.authService.getValueFromToken('email');
     }
 
     getUserName(): string {
@@ -66,11 +66,11 @@ export class UserInfoMenuComponent implements OnInit {
         window.open( `${hostValue}/admin`);
     }
 
-    onOpenSettings() {
-        this.store.dispatch(new OpenSettingsDialogAction());
-    }
-
     navigateToDocs() {
         window.open('https://docs.alfresco.com/');
+    }
+
+    navigateToAbout() {
+        this.router.navigate(['about']);
     }
 }

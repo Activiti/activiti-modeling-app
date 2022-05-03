@@ -25,7 +25,7 @@ const iconMapping = {
     [BasicModelCommands.validate]: 'done',
     [BasicModelCommands.download]: 'file_download',
     [BasicModelCommands.delete]: 'delete',
-    [BasicModelCommands.saveAs]: 'save-as',
+    [BasicModelCommands.saveAs]: 'save_as',
     [BasicModelCommands.moreMenu]: 'more_vert',
     [BasicModelCommands.editorsMenu]: 'remove_red_eye'
 };
