@@ -105,6 +105,8 @@
                             }
                         ],
                         "styles": [
+                            "app/src/assets/fonts/material-icons/material-icons.css",
+                            "app/src/assets/fonts/muli/muli.css",
                             "node_modules/cropperjs/dist/cropper.min.css",
                             "app/src/old-styles.scss"
                         ],
@@ -144,6 +146,7 @@
                         },
                         "canary": {
                             "styles": [
+                                "app/src/assets/fonts/material-icons/material-icons.css",
                                 "node_modules/cropperjs/dist/cropper.min.css",
                                 "app/src/styles.scss"
                             ],
