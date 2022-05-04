@@ -42,6 +42,8 @@ import { ProjectElementCreateComponent } from './components/project-element-crea
 import { ProjectElementCreateDialogComponent } from './components/project-element-create-dialog/project-element-create-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ProjectImportSelectListComponent } from './components/project-import-select-list/project-import-select-list.component';
+import { ProjectEmptyContentComponent } from './components/project-empty-content/project-empty-content.component';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -57,6 +59,7 @@ import { ProjectImportSelectListComponent } from './components/project-import-se
     ],
     declarations: [
         ProjectContentComponent,
+        ProjectEmptyContentComponent,
         ProjectNavigationComponent,
         ProjectTreeComponent,
         ProjectTreeFilterComponent,
