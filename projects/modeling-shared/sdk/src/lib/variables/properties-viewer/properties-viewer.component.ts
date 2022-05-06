@@ -105,9 +105,10 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
             const dataArray = Object.values(parsedData);
 
             this.dataSource = new MatTableDataSource(dataArray);
+            this.applyFilter(this.filterValue);
             this.data = parsedData;
 
-            const item = dataArray.find((_, index) => index === this.position);
+            const item = this.dataSource.filteredData.find((_, index) => index === this.position);
 
             if (item) {
                 this.form = item;

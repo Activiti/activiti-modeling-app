@@ -754,4 +754,27 @@ describe('PropertiesViewerComponent', () => {
         expect(variablesServiceSpy).toHaveBeenCalledWith(JSON.stringify(jsonData, null, 2), 'SDK.VARIABLES_EDITOR.ERRORS.EMPTY_DISPLAY_NAME');
     });
 
+    it('should show correct row information in the properties section when the row is selected', async() => {
+        const changes = { filterValue: new SimpleChange(null, 'var', false) };
+        component.ngOnChanges(changes);
+        await fixture.whenStable();
+        component.filterValue = 'var';
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        expect(component.dataSource.filteredData).toEqual(Object.values(data));
+
+        const var1 = fixture.debugElement.query(By.css(`[data-automation-id="variable-name-cell-var1"]`)).nativeElement;
+        var1.click();
+        fixture.detectChanges();
+
+        expect(component.form.name).toEqual('var1');
+
+        const var2 = fixture.debugElement.query(By.css(`[data-automation-id="variable-name-cell-var2"]`)).nativeElement;
+        var2.click();
+        fixture.detectChanges();
+
+        expect(component.form.name).toEqual('var2');
+    });
+
 });
