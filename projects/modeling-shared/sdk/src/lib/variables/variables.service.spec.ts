@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { Validators } from '@angular/forms';
 import { EntityProperty } from '../api/types';
 import { primitive_types } from '../helpers/primitive-types';

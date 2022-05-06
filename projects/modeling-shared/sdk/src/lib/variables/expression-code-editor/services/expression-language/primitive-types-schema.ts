@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 export const primitiveTypesSchema = {
     '$schema': 'https://json-schema.org/draft/2020-12/schema',
     '$id': 'primitiveTypes',

@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-
 /* eslint-disable */
 /* cSpell:disable */
 export const getEmptyScript = (model) => {

@@ -15,7 +15,7 @@
     "test": "ng test",
     "test:ci": "nx affected:test --all",
     "lint": "ng lint --quiet",
-    "lint:ci": "nx affected:lint --all",
+    "lint:ci": "nx affected:lint --all --quiet",
     "dep-graph": "nx dep-graph"
   },
   "repository": {
@@ -158,6 +158,7 @@
     "eslint-plugin-ban": "^1.6.0",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-jsdoc": "30.7.6",
+    "eslint-plugin-license-header": "^0.4.0",
     "eslint-plugin-prefer-arrow": "1.2.2",
     "eslint-plugin-rxjs": "^5.0.2",
     "eslint-plugin-unicorn": "41.0.0",

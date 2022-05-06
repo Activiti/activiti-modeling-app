@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { Injectable, Inject } from '@angular/core';
 import { AbstractControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -76,51 +77,49 @@ export class VariablesService {
     }
 
     private variableNameExists(variable: EntityProperty, variables: EntityProperties): boolean {
-        const variableIndex = Object.keys(variables).findIndex(key => {
-            return variables[key].name === variable.name && variables[key].id !== variable.id;
-        });
+        const variableIndex = Object.keys(variables).findIndex(key => variables[key].name === variable.name && variables[key].id !== variable.id);
         return variableIndex > -1;
     }
 
     getValidatorsFromModel(model: JSONSchemaInfoBasics, required?: boolean): ValidatorFn[] {
         const validators: ValidatorFn[] = [];
         switch (model?.type) {
-            case 'string':
-                if (model.pattern) {
-                    validators.push(Validators.pattern(model.pattern));
-                }
+        case 'string':
+            if (model.pattern) {
+                validators.push(Validators.pattern(model.pattern));
+            }
 
-                if (model.minLength) {
-                    validators.push(Validators.minLength(model.minLength));
-                }
+            if (model.minLength) {
+                validators.push(Validators.minLength(model.minLength));
+            }
 
-                if (model.maxLength) {
-                    validators.push(Validators.maxLength(model.maxLength));
-                }
-                break;
-            case 'integer':
-                if (model.multipleOf) {
-                    validators.push(multipleOfValidator(model.multipleOf));
-                }
+            if (model.maxLength) {
+                validators.push(Validators.maxLength(model.maxLength));
+            }
+            break;
+        case 'integer':
+            if (model.multipleOf) {
+                validators.push(multipleOfValidator(model.multipleOf));
+            }
 
-                if (model.minimum) {
-                    validators.push(Validators.min(model.minimum));
-                }
+            if (model.minimum) {
+                validators.push(Validators.min(model.minimum));
+            }
 
-                if (model.exclusiveMinimum) {
-                    validators.push(Validators.min(model.minimum + 1));
-                }
+            if (model.exclusiveMinimum) {
+                validators.push(Validators.min(model.minimum + 1));
+            }
 
-                if (model.maximum) {
-                    validators.push(Validators.max(model.maximum));
-                }
+            if (model.maximum) {
+                validators.push(Validators.max(model.maximum));
+            }
 
-                if (model.exclusiveMaximum) {
-                    validators.push(Validators.max(model.maximum - 1));
-                }
-                break;
-            default:
-                break;
+            if (model.exclusiveMaximum) {
+                validators.push(Validators.max(model.maximum - 1));
+            }
+            break;
+        default:
+            break;
         }
 
         if (model?.required || required) {

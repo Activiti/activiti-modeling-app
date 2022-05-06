@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { Component, Input, Inject, ViewEncapsulation, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { MODEL_IMPORTERS, ModelImporter, Model, sanitizeString, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
@@ -96,7 +97,7 @@ export class ProjectImportSelectListComponent implements OnDestroy {
         return 'app-navigation-import-' + importerType + '-' + sanitizeString(displayName.trim().toLowerCase().replace(/(\s)+/g, '-'));
     }
 
-    onImport(modelId: String, currentImporter: ModelImporter): void {
+    onImport(modelId: string, currentImporter: ModelImporter): void {
         try {
             const ActionClass = currentImporter.action;
 

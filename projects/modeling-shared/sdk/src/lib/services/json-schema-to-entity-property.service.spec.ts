@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { TestBed } from '@angular/core/testing';
 import { CodeEditorService } from '../code-editor/services/code-editor-service.service';
 import { JSONSchemaToEntityPropertyService } from './json-schema-to-entity-property.service';

@@ -22,6 +22,7 @@
                     { "name": ["test", "only"], "message": "Calls to test.only is not allowed" },
                     { "name": ["describe", "only"], "message": "Calls to describe.only is not allowed" }
                 ],
+                "license-header/header": [ "error", "./license-header-community.txt" ],
                 "@nrwl/nx/enforce-module-boundaries": [
                     "error",
                     {
@@ -318,6 +319,7 @@
             },
             "plugins": [
                 "ban",
+                "license-header",
                 "eslint-plugin-import",
                 "@angular-eslint/eslint-plugin",
                 "eslint-plugin-unicorn",
