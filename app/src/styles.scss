@@ -82,7 +82,7 @@ $defaults: (
   --theme-subheading-2-font-size: mat-font-size($alfresco-typography, subheading-2),
   --theme-card-bg-color: mat-color($background, card),
   --adf-card-view-datetime-border-color: mat-color($foreground, text, 0.42),
-
+  --theme-document-color: #00953b,
   // ADF components and services
   --adf-snackbar-error-bg-color: mat-color($warn),
   --adf-snackbar-error-action-color: white,

@@ -21,6 +21,14 @@
                                 </td>
                             </ng-container>
 
+                            <ng-container matColumnDef="lastModifiedDate">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{
+                                    'DASHBOARD.TABLE.COLUMN_MODIFIED' | translate }}</th>
+                                <td mat-cell *matCellDef="let element" [attr.data-column-name]="'DASHBOARD.TABLE.COLUMN_MODIFIED' | translate"
+                                    (click)="rowSelected(element)">{{
+                                    element.lastModifiedDate | amTimeAgo }}</td>
+                            </ng-container>
+
                             <ng-container matColumnDef="creationDate">
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header>{{
                                     'DASHBOARD.TABLE.COLUMN_CREATED' | translate }}</th>
@@ -35,14 +43,6 @@
                                 <td mat-cell *matCellDef="let element" [attr.data-column-name]="'DASHBOARD.TABLE.COLUMN_CREATED_BY' | translate"
                                     (click)="rowSelected(element)"> {{
                                     element.createdBy }} </td>
-                            </ng-container>
-
-                            <ng-container matColumnDef="lastModifiedDate">
-                                <th mat-header-cell *matHeaderCellDef mat-sort-header>{{
-                                    'DASHBOARD.TABLE.COLUMN_MODIFIED' | translate }}</th>
-                                <td mat-cell *matCellDef="let element" [attr.data-column-name]="'DASHBOARD.TABLE.COLUMN_MODIFIED' | translate"
-                                    (click)="rowSelected(element)">{{
-                                    element.lastModifiedDate | amTimeAgo }}</td>
                             </ng-container>
 
                             <ng-container matColumnDef="version">

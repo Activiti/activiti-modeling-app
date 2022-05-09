@@ -67,7 +67,7 @@ export class UserInfoMenuComponent implements OnInit {
     }
 
     navigateToDocs() {
-        window.open('https://docs.alfresco.com/');
+        window.open('https://docs.alfresco.com/process-automation/latest/');
     }
 
     navigateToAbout() {

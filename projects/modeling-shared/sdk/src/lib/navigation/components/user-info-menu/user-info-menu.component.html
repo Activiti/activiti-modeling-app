@@ -53,7 +53,7 @@
             <span>{{ 'NEW_STUDIO_DASHBOARD.USER_INFO_MENU.ADMIN' | translate }}</span>
         </a>
         <a mat-menu-item data-automation-id="ama-user-menu-docs" (click)="navigateToDocs()">
-            <mat-icon>book</mat-icon>
+            <mat-icon [ngStyle]="{'color': 'var(--theme-document-color)'}">book</mat-icon>
             <span>{{ 'NEW_STUDIO_DASHBOARD.USER_INFO_MENU.DOCUMENTATION' | translate }}</span>
         </a>
     </mat-menu>

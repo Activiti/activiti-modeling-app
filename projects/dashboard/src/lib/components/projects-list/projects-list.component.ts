@@ -45,7 +45,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     dataSource$: Observable<MatTableDataSource<Partial<Project>>>;
     loading$: Observable<boolean>;
     pagination$: Observable<Pagination>;
-    displayedColumns = ['name', 'creationDate', 'createdBy', 'lastModifiedDate', 'version', 'menu', 'favorite'];
+    displayedColumns = ['name', 'lastModifiedDate', 'creationDate', 'createdBy', 'version', 'menu', 'favorite'];
     pageSizeOptions = [10, 25, 50, 100, 1000];
     sorting: ServerSideSorting = {
         key: DEFAULT_SORT_KEY,
