@@ -37,29 +37,29 @@ export function connectorEditorReducer(
 
     switch (action.type) {
 
-        case GET_CONNECTOR_SUCCESS:
-        case UPDATE_CONNECTOR_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                updateState: ModelEditorState.SAVED
-            };
+    case GET_CONNECTOR_SUCCESS:
+    case UPDATE_CONNECTOR_SUCCESS:
+        return {
+            ...state,
+            loading: false,
+            updateState: ModelEditorState.SAVED
+        };
 
-        case LOAD_CONNECTOR_ATTEMPT:
-        case GET_CONNECTOR_ATTEMPT:
-            return {
-                ...state,
-                loading: true
-            };
+    case LOAD_CONNECTOR_ATTEMPT:
+    case GET_CONNECTOR_ATTEMPT:
+        return {
+            ...state,
+            loading: true
+        };
 
-        case UPDATE_CONNECTOR_CONTENT_ATTEMPT:
-            return setSavingState(state, ModelEditorState.SAVING);
+    case UPDATE_CONNECTOR_CONTENT_ATTEMPT:
+        return setSavingState(state, ModelEditorState.SAVING);
 
-        case UPDATE_CONNECTOR_FAILED:
-            return setSavingState(state, ModelEditorState.FAILED);
+    case UPDATE_CONNECTOR_FAILED:
+        return setSavingState(state, ModelEditorState.FAILED);
 
-        default:
-            newState = { ...state };
+    default:
+        newState = { ...state };
     }
 
     return newState;

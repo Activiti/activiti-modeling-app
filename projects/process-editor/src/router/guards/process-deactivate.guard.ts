@@ -26,7 +26,7 @@ import { SelectModelerElementAction } from '../../store/process-editor.actions';
 export class ProcessDeactivateGuard implements CanDeactivate<CanComponentDeactivate> {
     constructor(private store: Store<AmaState>) {}
 
-    canDeactivate(component: CanComponentDeactivate): boolean | Observable<boolean> | Promise<boolean> {
+    canDeactivate(): boolean | Observable<boolean> | Promise<boolean> {
         this.store.dispatch(new SelectModelerElementAction(null));
         return true;
     }

@@ -142,7 +142,7 @@ export class CardViewMessagePayloadItemComponent implements OnInit {
         );
     }
 
-    getMessagePayload(): Object {
+    getMessagePayload(): any {
         const messagePayload = {};
         this.payloadProperties.forEach((payloadProperty) => {
             messagePayload[payloadProperty.name] = {

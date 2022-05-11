@@ -31,31 +31,29 @@ describe('ParticipantElementVariablesProviderService', () => {
                 {
                     provide: Store,
                     useValue: {
-                        select: jest.fn().mockImplementation(() => {
-                            return of({
-                                'c2f8729e-5056-44d2-8cd7-fb1bada7f4ba': {
-                                    'id': 'c2f8729e-5056-44d2-8cd7-fb1bada7f4ba',
-                                    'name': 'one',
-                                    'type': 'string',
-                                    'value': 'one',
-                                    'required': false
-                                },
-                                'b1b04bf1-19cb-4930-b750-eecb6f39770f': {
-                                    'id': 'b1b04bf1-19cb-4930-b750-eecb6f39770f',
-                                    'name': 'two',
-                                    'type': 'integer',
-                                    'required': false,
-                                    'value': 2
-                                },
-                                '695b2110-1060-4819-a513-400b114c9324': {
-                                    'id': '695b2110-1060-4819-a513-400b114c9324',
-                                    'name': 'three',
-                                    'type': 'boolean',
-                                    'required': false,
-                                    'value': true
-                                }
-                            });
-                        })
+                        select: jest.fn().mockImplementation(() => of({
+                            'c2f8729e-5056-44d2-8cd7-fb1bada7f4ba': {
+                                'id': 'c2f8729e-5056-44d2-8cd7-fb1bada7f4ba',
+                                'name': 'one',
+                                'type': 'string',
+                                'value': 'one',
+                                'required': false
+                            },
+                            'b1b04bf1-19cb-4930-b750-eecb6f39770f': {
+                                'id': 'b1b04bf1-19cb-4930-b750-eecb6f39770f',
+                                'name': 'two',
+                                'type': 'integer',
+                                'required': false,
+                                'value': 2
+                            },
+                            '695b2110-1060-4819-a513-400b114c9324': {
+                                'id': '695b2110-1060-4819-a513-400b114c9324',
+                                'name': 'three',
+                                'type': 'boolean',
+                                'required': false,
+                                'value': true
+                            }
+                        }))
                     }
                 }
             ]

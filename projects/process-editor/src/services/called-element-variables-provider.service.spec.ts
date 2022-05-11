@@ -92,9 +92,7 @@ describe('CalledElementVariablesProviderService', () => {
                 {
                     provide: Store,
                     useValue: {
-                        select: jest.fn().mockImplementation(() => {
-                            return of([processExtensions]);
-                        })
+                        select: jest.fn().mockImplementation(() => of([processExtensions]))
                     }
                 }
             ]

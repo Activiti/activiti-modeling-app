@@ -41,20 +41,20 @@ export class ToolsHandler implements TriggerHandler {
 
     processEvent(event: any, tool: ToolTrigger) {
         switch (tool.type) {
-            case 'hand-tool':
-                this.handTool.activateHand(event);
+        case 'hand-tool':
+            this.handTool.activateHand(event);
             break;
 
-            case 'connect-tool':
-                this.globalConnect.toggle(event);
+        case 'connect-tool':
+            this.globalConnect.toggle(event);
             break;
 
-            case 'space-tool':
-                this.spaceTool.activateSelection(event);
+        case 'space-tool':
+            this.spaceTool.activateSelection(event);
             break;
 
-            case 'lasso-tool':
-                this.lassoTool.activateSelection(event);
+        case 'lasso-tool':
+            this.lassoTool.activateSelection(event);
             break;
         }
     }

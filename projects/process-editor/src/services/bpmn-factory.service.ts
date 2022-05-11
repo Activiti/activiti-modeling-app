@@ -64,7 +64,7 @@ export class BpmnFactoryService implements BpmnFactory {
         return {
             __init__: [ 'angularInjector' ],
             angularInjector: [ 'value', this.injector ]
-          };
+        };
     }
 
     private getBpmnRenderers() {

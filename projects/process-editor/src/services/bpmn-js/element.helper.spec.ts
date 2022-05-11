@@ -56,9 +56,7 @@ describe('ElementHelper', () => {
         });
 
         it(`should return null, if the given property doesn't have a handler defined`, () => {
-            const getter = () => {
-                return ElementHelper.getProperty(element, propertyWithoutHandler);
-            };
+            const getter = () => ElementHelper.getProperty(element, propertyWithoutHandler);
             expect(getter).not.toThrow();
 
             const propertyValue = getter();

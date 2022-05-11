@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-lines */
+
 import { Component, OnInit, Inject, OnDestroy, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import {
@@ -81,9 +83,9 @@ export const identityCandidateValidator: ValidatorFn = (candidateFormGroup: Form
     const candidateGroupsChips = candidateGroupsFormGroup.get('candidateGroupsChips');
 
     const isCandidateUserChipsEmpty = isCandidateFormGroupDirtyTouched && candidateUsersChips ?
-    candidateUsersChips.value === null || candidateUsersChips.value === '' : false;
+        candidateUsersChips.value === null || candidateUsersChips.value === '' : false;
     const isCandidateGroupChipsEmpty = isCandidateFormGroupDirtyTouched && candidateGroupsChips ?
-    candidateGroupsChips.value === null || candidateGroupsChips.value === '' : false;
+        candidateGroupsChips.value === null || candidateGroupsChips.value === '' : false;
 
     const hasValidationError = isCandidateUserChipsEmpty && isCandidateGroupChipsEmpty;
     return hasValidationError ? { 'custom': true } : null;

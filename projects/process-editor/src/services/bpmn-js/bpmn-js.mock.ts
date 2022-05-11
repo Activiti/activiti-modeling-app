@@ -90,8 +90,8 @@ export function getModdleMock(): Bpmn.Moddle {
     const bpmnFactory = {
         create(tagName: string, properties) {
             return { $type: tagName,
-                    ...properties
-                };
+                ...properties
+            };
         }
     };
 

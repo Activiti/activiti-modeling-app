@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-lines */
+
 import { Component, Input, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, AppConfigService, MomentDateAdapter } from '@alfresco/adf-core';
 import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';

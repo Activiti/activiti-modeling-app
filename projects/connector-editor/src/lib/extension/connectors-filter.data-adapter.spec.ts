@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
@@ -37,7 +37,7 @@ describe('ConnectorsFilterDataAdapter ', () => {
         projectId: 'mock-app-id'
     };
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [MatDialogModule, NoopAnimationsModule],
             declarations: [],
@@ -60,8 +60,8 @@ describe('ConnectorsFilterDataAdapter ', () => {
                 },
                 { provide: CONNECTOR_SELECTORS_TOKEN, useValue: selectProjectConnectorsArray }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         store = TestBed.inject(Store);

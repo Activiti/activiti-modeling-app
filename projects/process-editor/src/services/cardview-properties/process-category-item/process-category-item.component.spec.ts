@@ -57,9 +57,9 @@ describe('CardProcessCategoryItemComponent', () => {
             providers: [
                 provideMockStore({
                     selectors: [
-                      { selector: selectProcessCategories, value: ['Category 1', 'Category 2'] },
+                        { selector: selectProcessCategories, value: ['Category 1', 'Category 2'] },
                     ],
-                  }),
+                }),
                 { provide: ProcessModelerServiceToken, useValue: processModelerServiceMock },
                 { provide: TranslationService, useClass: TranslationMock },
             ]

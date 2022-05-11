@@ -15,13 +15,12 @@
  * limitations under the License.
  */
 
-import { FactoryProps } from './interfaces/cardview-properties.interfaces';
 import { BpmnCompositeProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { CardViewTaskAssignmentItemModel } from './task-assignment-item/task-assignment-item.model';
 
 const propertyName = BpmnCompositeProperty.assignment;
 
-export function createAssignmentProperty({ element }: FactoryProps) {
+export function createAssignmentProperty() {
     return new CardViewTaskAssignmentItemModel({
         label: '',
         value: '',

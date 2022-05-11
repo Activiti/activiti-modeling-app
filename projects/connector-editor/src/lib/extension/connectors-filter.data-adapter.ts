@@ -33,7 +33,7 @@ import { selectConnectorsLoading } from '../store/connector-editor.selectors';
 export class ConnectorsFilterDataAdapter implements FilterDataAdapter {
     constructor(
         private store: Store<AmaState>,
-        @Inject(CONNECTOR_SELECTORS_TOKEN) private selectProjectConnectorsArray: MemoizedSelector<object, Connector[]>
+        @Inject(CONNECTOR_SELECTORS_TOKEN) private selectProjectConnectorsArray: MemoizedSelector<any, Connector[]>
     ) {}
 
     get expandedPredicate() {

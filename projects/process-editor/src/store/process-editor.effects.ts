@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-lines */
+
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Inject, Injectable } from '@angular/core';
 import { catchError, filter, map, mergeMap, switchMap, take, tap, withLatestFrom } from 'rxjs/operators';
@@ -179,8 +181,8 @@ export class ProcessEditorEffects {
     deleteProcessSuccessEffect = this.actions$.pipe(
         ofType<DeleteProcessSuccessAction>(DELETE_PROCESS_SUCCESS),
         withLatestFrom(this.store.select(selectSelectedProjectId)),
-        map(([action, projectId]) => {
-            this.router.navigate(['/projects', projectId]);
+        map(([, projectId]) => {
+            void this.router.navigate(['/projects', projectId]);
         })
     );
 
@@ -190,7 +192,7 @@ export class ProcessEditorEffects {
         withLatestFrom(this.store.select(selectSelectedProjectId)),
         tap(([action, projectId]) => {
             if (action.navigateTo) {
-                this.router.navigate(['/projects', projectId, 'process', action.process.id]);
+                void this.router.navigate(['/projects', projectId, 'process', action.process.id]);
             }
         })
     );
@@ -264,14 +266,12 @@ export class ProcessEditorEffects {
         ofType<ChangedProcessAction>(CHANGED_PROCESS_DIAGRAM),
         map(action => action.element),
         mergeMap(element => zip(of(element), this.store.select(selectSelectedElement))),
-        filter(([element, selected]) => {
-            return (
-                selected !== null &&
+        filter(([element, selected]) => (
+            selected !== null &&
                 selected.id === element.id &&
                 (selected.name !== element.name || selected.type !== element.type)
-            );
-        }),
-        mergeMap(([element, selected]) => of(new SelectModelerElementAction(element)))
+        )),
+        mergeMap(([element]) => of(new SelectModelerElementAction(element)))
     );
 
     @Effect({ dispatch: false })
@@ -319,7 +319,7 @@ export class ProcessEditorEffects {
         );
     }
 
-    private updateProcess(payload: UpdateProcessPayload, projectId: string): Observable<SnackbarErrorAction | {}> {
+    private updateProcess(payload: UpdateProcessPayload, projectId: string): Observable<SnackbarErrorAction | any> {
         return this.processEditorService.update(
             payload.modelId,
             payload.modelMetadata,
@@ -344,14 +344,14 @@ export class ProcessEditorEffects {
 
     private downloadProcessDiagram(modelId: string) {
         return zip(
-                this.store.select(this.entitySelector.selectModelMetadataById(modelId)),
-                this.store.select(this.entitySelector.selectModelContentById(modelId))).pipe(
+            this.store.select(this.entitySelector.selectModelMetadataById(modelId)),
+            this.store.select(this.entitySelector.selectModelContentById(modelId))).pipe(
             map(([metadata, content]) => {
                 const name = createModelName(metadata.name);
                 return this.processEditorService.downloadDiagram(name, content);
             }),
             take(1),
-            catchError(e => this.handleError('APP.PROCESSES.ERRORS.DOWNLOAD_DIAGRAM')));
+            catchError(() => this.handleError('APP.PROCESSES.ERRORS.DOWNLOAD_DIAGRAM')));
     }
 
     private downloadProcessSVGImage(processName: string) {
@@ -359,7 +359,7 @@ export class ProcessEditorEffects {
         return this.processModelerService
             .export(PROCESS_SVG_IMAGE)
             .then(data => this.processEditorService.downloadSVGImage(name, data))
-            .catch(_ => this.handleError('APP.PROCESSES.ERRORS.DOWNLOAD_SVG_IMAGE'));
+            .catch(() => this.handleError('APP.PROCESSES.ERRORS.DOWNLOAD_SVG_IMAGE'));
     }
 
     private getProcess(processId: string, projectId: string) {
@@ -372,11 +372,11 @@ export class ProcessEditorEffects {
                 new ModelOpenedAction({ id: process.id, type: process.type }),
                 new SetAppDirtyStateAction(false)
             ]),
-            catchError(e =>
+            catchError(() =>
                 this.handleError('PROCESS_EDITOR.ERRORS.LOAD_DIAGRAM')));
     }
 
-    private uploadProcess(payload: UploadFileAttemptPayload): Observable<void | {} | SnackbarInfoAction | CreateProcessSuccessAction> {
+    private uploadProcess(payload: UploadFileAttemptPayload): Observable<void | any | SnackbarInfoAction | CreateProcessSuccessAction> {
         return this.processEditorService.upload(payload).pipe(
             switchMap(process => [
                 new CreateProcessSuccessAction(process, true),
@@ -393,13 +393,13 @@ export class ProcessEditorEffects {
         );
     }
 
-    private getProcesses(projectId: string): Observable<{} | GetProcessesSuccessAction> {
+    private getProcesses(projectId: string): Observable<any | GetProcessesSuccessAction> {
         return this.processEditorService.getAll(projectId).pipe(
             switchMap(processes => of(new GetProcessesSuccessAction(processes))),
-            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.LOAD_MODELS')));
+            catchError(() => this.handleError('PROJECT_EDITOR.ERROR.LOAD_MODELS')));
     }
 
-    private deleteProcess(processId: string): Observable<{} | SnackbarInfoAction | DeleteProcessSuccessAction> {
+    private deleteProcess(processId: string): Observable<any | SnackbarInfoAction | DeleteProcessSuccessAction> {
         return this.processEditorService.delete(processId).pipe(
             switchMap(() => [
                 new DeleteProcessSuccessAction(processId),
@@ -407,10 +407,10 @@ export class ProcessEditorEffects {
                 new ModelClosedAction({ id: processId, type: PROCESS }),
                 new SnackbarInfoAction('PROJECT_EDITOR.PROCESS_DIALOG.PROCESS_DELETED')
             ]),
-            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.DELETE_PROCESS')));
+            catchError(() => this.handleError('PROJECT_EDITOR.ERROR.DELETE_PROCESS')));
     }
 
-    private createProcess(form: Partial<ProcessEntityDialogForm>, navigateTo: boolean, projectId: string): Observable<{} | SnackbarInfoAction | CreateProcessSuccessAction> {
+    private createProcess(form: Partial<ProcessEntityDialogForm>, navigateTo: boolean, projectId: string): Observable<any | SnackbarInfoAction | CreateProcessSuccessAction> {
         return this.processEditorService.create(form, projectId).pipe(
             switchMap((process) => [
                 new CreateProcessSuccessAction(process, navigateTo),
@@ -423,7 +423,7 @@ export class ProcessEditorEffects {
         return of(new SnackbarErrorAction(userMessage));
     }
 
-    private handleProcessUpdatingError(error: ErrorResponse): Observable<SnackbarErrorAction | {}> {
+    private handleProcessUpdatingError(error: ErrorResponse): Observable<SnackbarErrorAction | any> {
         let errorMessage;
         const message = error.message ? JSON.parse(error.message) : {};
 
@@ -463,11 +463,11 @@ export class ProcessEditorEffects {
     private saveAsProcess(
         processPayload: Partial<SaveAsDialogPayload>,
         navigateTo: boolean,
-        projectId: string): Observable<{} | SnackbarInfoAction | CreateProcessSuccessAction> {
+        projectId: string): Observable<any | SnackbarInfoAction | CreateProcessSuccessAction> {
         return this.processEditorService.create({ name: processPayload.name, description: processPayload.description }, projectId).pipe(
             tap((process: Process) => this.updateProcessExtensionsOnSaveAs(processPayload, process)),
             tap((process: Process) => processPayload.sourceModelContent = this.updateContentOnSaveAs(processPayload.sourceModelContent,
-                 this.getProcessKey(process.extensions), processPayload.name, processPayload.description)),
+                this.getProcessKey(process.extensions), processPayload.name, processPayload.description)),
             mergeMap((process: Process) => this.processEditorService.update(process.id, process, processPayload.sourceModelContent, projectId)),
             switchMap((process: Process) => [
                 new CreateProcessSuccessAction(process, navigateTo),

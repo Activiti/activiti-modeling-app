@@ -37,20 +37,18 @@ export class ConnectorErrorProviderService implements ExtensionErrorProviderInte
 
     modelType = CONNECTOR;
 
-    prepareEntities(projectId: string): void {
+    prepareEntities(): void {
     }
 
     getErrors(): Observable<ExtensionErrorGroup[]> {
         const connectorContentObservables: Observable<ConnectorContent>[] = [];
         this.getConnectorsIds().forEach(id => connectorContentObservables.push(this.connectorEditorService.getContent(id)));
         return forkJoin([...connectorContentObservables]).pipe(
-            map((contents: ConnectorContent[]) => contents.map(content => {
-                return {
-                    type: CONNECTOR,
-                    name: content.name,
-                    errors: content.errors?.map(error => ({ name: error.name, code: error.code }))
-                };
-            })),
+            map((contents: ConnectorContent[]) => contents.map(content => ({
+                type: CONNECTOR,
+                name: content.name,
+                errors: content.errors?.map(error => ({ name: error.name, code: error.code }))
+            }))),
             take(1)
         );
     }
@@ -59,9 +57,7 @@ export class ConnectorErrorProviderService implements ExtensionErrorProviderInte
         let connectorsIds: string[];
         this.store.select(selectProjectConnectorsArray).pipe(take(1))
             .subscribe((connectors: Connector[]) => {
-                connectorsIds = connectors.map(connector => {
-                    return connector.id;
-                });
+                connectorsIds = connectors.map(connector => connector.id);
             });
         return connectorsIds;
     }

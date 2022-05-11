@@ -34,8 +34,7 @@ export class ConnectorCommandsService extends ModelCommandsService {
         deleteCommand: DeleteConnectorCommand,
         saveAsCommand: SaveAsConnectorCommand,
         downloadCommand: DownloadConnectorCommand,
-        validateCommand: ValidateConnectorCommand
-        ) {
+        validateCommand: ValidateConnectorCommand) {
         super();
 
         const selectConnectorEditorTab = (index: number) => {

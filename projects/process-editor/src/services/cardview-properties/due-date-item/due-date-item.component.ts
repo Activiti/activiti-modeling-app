@@ -171,7 +171,7 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
             days,
             hours,
             minutes,
-       } = this.timeDurationForm.value;
+        } = this.timeDurationForm.value;
 
         const isoMonths = months ? `${months}M` : '';
         const isoDays = days ? `${days}D` : '';

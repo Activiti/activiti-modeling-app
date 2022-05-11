@@ -79,7 +79,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
                 take(1))
             .subscribe((selectedElement: SelectedProcessElement) => {
                 this.currentProcessSelected = selectedElement.id;
-        });
+            });
         this.processModelerService.init({
             clickHandler: event => {
                 this.store.dispatch(new SelectModelerElementAction(createSelectedElement(event.element)));

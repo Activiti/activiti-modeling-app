@@ -39,35 +39,35 @@ export function processEditorReducer(
     let newState: ProcessEditorState;
 
     switch (action.type) {
-        case GET_PROCESS_ATTEMPT:
-            newState = { ...state, loading: true };
-            break;
+    case GET_PROCESS_ATTEMPT:
+        newState = { ...state, loading: true };
+        break;
 
-        case GET_PROCESS_SUCCESS:
-            newState = getInitialProcessEditorState();
-            break;
+    case GET_PROCESS_SUCCESS:
+        newState = getInitialProcessEditorState();
+        break;
 
-        case SELECT_MODELER_ELEMENT:
-            newState = setSelectedElement(state, <SelectModelerElementAction>action);
-            break;
+    case SELECT_MODELER_ELEMENT:
+        newState = setSelectedElement(state, <SelectModelerElementAction>action);
+        break;
 
-        case REMOVE_DIAGRAM_ELEMENT:
-            return removeElement(state, <RemoveDiagramElementAction> action);
+    case REMOVE_DIAGRAM_ELEMENT:
+        return removeElement(state, <RemoveDiagramElementAction> action);
 
-        case CHANGE_PROCESS_MODEL_ACTION:
-            return setSelectedTab(state, <ChangeProcessModelContextAction> action);
+    case CHANGE_PROCESS_MODEL_ACTION:
+        return setSelectedTab(state, <ChangeProcessModelContextAction> action);
 
-        case UPDATE_PROCESS_ATTEMPT:
-            return setSavingState(state, ModelEditorState.SAVING);
+    case UPDATE_PROCESS_ATTEMPT:
+        return setSavingState(state, ModelEditorState.SAVING);
 
-        case UPDATE_PROCESS_SUCCESS:
-            return setSavingState(state, ModelEditorState.SAVED);
+    case UPDATE_PROCESS_SUCCESS:
+        return setSavingState(state, ModelEditorState.SAVED);
 
-        case UPDATE_PROCESS_FAILED:
-            return setSavingState(state, ModelEditorState.FAILED);
+    case UPDATE_PROCESS_FAILED:
+        return setSavingState(state, ModelEditorState.FAILED);
 
-        default:
-            newState = Object.assign({}, state);
+    default:
+        newState = Object.assign({}, state);
     }
 
     return newState;

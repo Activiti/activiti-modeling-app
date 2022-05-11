@@ -21,15 +21,15 @@ import { is } from 'bpmn-js/lib/util/ModelUtil';
 import { DECISION_TASK_IMPLEMENTATION } from '@alfresco-dbp/modeling-shared/sdk';
 
 export function DecisionTableRender(eventBus, bpmnRenderer) {
-  BaseRenderer.call(this, eventBus, 1500);
+    BaseRenderer.call(this, eventBus, 1500);
 
-  this.canRender = function(element) {
-    return is(element, 'bpmn:ServiceTask') && element.businessObject.get('implementation') === DECISION_TASK_IMPLEMENTATION;
-  };
+    this.canRender = function(element) {
+        return is(element, 'bpmn:ServiceTask') && element.businessObject.get('implementation') === DECISION_TASK_IMPLEMENTATION;
+    };
 
-  this.drawShape = function(parentGfx, element) {
-    return bpmnRenderer.handlers['bpmn:BusinessRuleTask'](parentGfx, element);
-  };
+    this.drawShape = function(parentGfx, element) {
+        return bpmnRenderer.handlers['bpmn:BusinessRuleTask'](parentGfx, element);
+    };
 }
 
 inherits(DecisionTableRender, BaseRenderer);
@@ -37,6 +37,6 @@ inherits(DecisionTableRender, BaseRenderer);
 DecisionTableRender.$inject = [ 'eventBus', 'bpmnRenderer' ];
 
 export const DecisionTableRenderModule = {
-  __init__: [ 'decisionTableRenderer' ],
-  decisionTableRenderer: [ 'type', DecisionTableRender ]
+    __init__: [ 'decisionTableRenderer' ],
+    decisionTableRenderer: [ 'type', DecisionTableRender ]
 };

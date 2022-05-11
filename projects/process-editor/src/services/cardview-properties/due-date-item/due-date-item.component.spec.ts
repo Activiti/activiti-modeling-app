@@ -161,16 +161,16 @@ describe('CardViewDueDateItemComponent', () => {
         component.property = { value: 'P1M2DT3H4M' } as DueDateItemModel;
         component.ngOnInit();
 
-       const {
+        const {
             months,
             days,
             hours,
             minutes,
-       } = component.timeDurationForm.value;
+        } = component.timeDurationForm.value;
 
-       expect(months).toBe('1');
-       expect(days).toBe('2');
-       expect(hours).toBe('3');
-       expect(minutes).toBe('4');
+        expect(months).toBe('1');
+        expect(days).toBe('2');
+        expect(hours).toBe('3');
+        expect(minutes).toBe('4');
     });
 });

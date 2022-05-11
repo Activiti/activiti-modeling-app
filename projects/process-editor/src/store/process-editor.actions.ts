@@ -16,7 +16,9 @@
  */
 
 import { Action } from '@ngrx/store';
-import { Process, ProcessContent, UpdateServiceParametersAction, ModelExtensions, EntityDialogForm, UploadFileAttemptPayload, SaveAsDialogPayload, ShowProcessesAction } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    Process, ProcessContent, UpdateServiceParametersAction, ModelExtensions, EntityDialogForm, UploadFileAttemptPayload, SaveAsDialogPayload, ShowProcessesAction
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { SelectedProcessElement, ProcessModelContext } from './process-editor.state';
 import { Update } from '@ngrx/entity';
 

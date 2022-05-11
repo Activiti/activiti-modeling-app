@@ -60,9 +60,7 @@ export class CardViewMessageItemComponent implements OnInit {
 
     ngOnInit() {
         this.selectedMessage = this.eventDefinition.messageRef;
-        this.messages = this.rootElements.filter(element => {
-            return element.$type === 'bpmn:Message';
-        });
+        this.messages = this.rootElements.filter(element => element.$type === 'bpmn:Message');
     }
 
     createNewMessage() {

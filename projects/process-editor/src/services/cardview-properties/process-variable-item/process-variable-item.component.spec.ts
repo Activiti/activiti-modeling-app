@@ -48,7 +48,7 @@ describe('ProcessVariableItemComponent', () => {
     it('template should have button', () => {
         const button = fixture.nativeElement.querySelector('button');
         expect (button === null).toBeFalsy();
-        expect(button.innerHTML).toEqual('<mat-icon class=\"ama-variables-icon\">layers</mat-icon>APP.DIALOGS.EDIT_PROPERTIES');
+        expect(button.innerHTML).toEqual('<mat-icon class="ama-variables-icon">layers</mat-icon>APP.DIALOGS.EDIT_PROPERTIES');
     });
 
     it('clicking on edit button should dispatch a OPEN_VARIABLES_DIALOG action', () => {

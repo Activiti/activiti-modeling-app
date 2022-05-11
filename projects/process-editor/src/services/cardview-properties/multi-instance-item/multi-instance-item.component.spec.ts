@@ -75,9 +75,7 @@ describe('CardViewMultiInstanceItemComponent', () => {
         appConfig.config = Object.assign(appConfig.config, appConfigMock);
 
         spyOn(processModelerService, 'getFromModeler').and.returnValue({
-            create: () => {
-                return loopCharacteristicsMock;
-            }
+            create: () => loopCharacteristicsMock
         });
 
         spyOn(processModelerService, 'updateElementProperty');

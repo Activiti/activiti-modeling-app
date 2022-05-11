@@ -26,21 +26,15 @@ import {
     CONTENT_SERVICE_NAME
 } from '@alfresco-dbp/modeling-shared/sdk';
 
-const isSignalEvent = (element: Bpmn.DiagramElement) => {
-    return !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.SignalEventDefinition;
-};
-const isTimerEvent = (element: Bpmn.DiagramElement) => {
-    return !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.TimerEventDefinition;
-};
-const isErrorEvent = (element: Bpmn.DiagramElement) => {
-    return !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.ErrorEventDefinition;
-};
-const isMessageEvent = (element: Bpmn.DiagramElement) => {
-    return !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.MessageEventDefinition;
-};
-const isInsideSubProcess = (element: Bpmn.DiagramElement) => {
-    return element.businessObject.$parent.$type === BpmnElement.SubProcess;
-};
+const isSignalEvent = (element: Bpmn.DiagramElement) =>
+    !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.SignalEventDefinition;
+const isTimerEvent = (element: Bpmn.DiagramElement) =>
+    !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.TimerEventDefinition;
+const isErrorEvent = (element: Bpmn.DiagramElement) =>
+    !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.ErrorEventDefinition;
+const isMessageEvent = (element: Bpmn.DiagramElement) =>
+    !!element.businessObject.eventDefinitions && element.businessObject.eventDefinitions[0].$type === BpmnElement.MessageEventDefinition;
+const isInsideSubProcess = (element: Bpmn.DiagramElement) => element.businessObject.$parent.$type === BpmnElement.SubProcess;
 const haveSignalRef = (element: Bpmn.DiagramElement) => !!element.businessObject.eventDefinitions[0].signalRef;
 const haveConditionExpression = (element: Bpmn.DiagramElement) => !!element.businessObject.conditionExpression;
 const isDecisionTask = (element: Bpmn.DiagramElement) => element.businessObject.implementation === DECISION_TASK_IMPLEMENTATION;

@@ -21,15 +21,15 @@ import { is } from 'bpmn-js/lib/util/ModelUtil';
 import { SCRIPT_TASK_IMPLEMENTATION } from '@alfresco-dbp/modeling-shared/sdk';
 
 export function ScriptRender(eventBus, bpmnRenderer) {
-  BaseRenderer.call(this, eventBus, 1500);
+    BaseRenderer.call(this, eventBus, 1500);
 
-  this.canRender = function(element) {
-    return is(element, 'bpmn:ServiceTask') && element.businessObject.get('implementation') === SCRIPT_TASK_IMPLEMENTATION;
-  };
+    this.canRender = function(element) {
+        return is(element, 'bpmn:ServiceTask') && element.businessObject.get('implementation') === SCRIPT_TASK_IMPLEMENTATION;
+    };
 
-  this.drawShape = function(parentGfx, element) {
-    return bpmnRenderer.handlers['bpmn:ScriptTask'](parentGfx, element);
-  };
+    this.drawShape = function(parentGfx, element) {
+        return bpmnRenderer.handlers['bpmn:ScriptTask'](parentGfx, element);
+    };
 }
 
 inherits(ScriptRender, BaseRenderer);
@@ -37,6 +37,6 @@ inherits(ScriptRender, BaseRenderer);
 ScriptRender.$inject = [ 'eventBus', 'bpmnRenderer' ];
 
 export const ScriptRenderModule = {
-  __init__: [ 'scriptRenderer' ],
-  scriptRenderer: [ 'type', ScriptRender ]
+    __init__: [ 'scriptRenderer' ],
+    scriptRenderer: [ 'type', ScriptRender ]
 };

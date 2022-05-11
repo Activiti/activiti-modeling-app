@@ -103,16 +103,16 @@ export class CardViewMultiInstanceItemComponent implements OnInit, OnDestroy {
 
     onTypeChange(selection: MultiInstanceType) {
         switch (selection) {
-            case MultiInstanceType.parallel:
-            case MultiInstanceType.sequence:
-                this.multiInstanceItemService.createOrUpdateMultiInstanceElement(selection);
-                this.cardViewUpdateService.update(this.property, {value: true});
-                break;
-            case MultiInstanceType.none:
-                delete this.element[MultiInstanceProps.loopCharacteristics];
-                this.cardViewUpdateService.update(this.property, {value: false});
-                this.form.reset();
-                break;
+        case MultiInstanceType.parallel:
+        case MultiInstanceType.sequence:
+            this.multiInstanceItemService.createOrUpdateMultiInstanceElement(selection);
+            this.cardViewUpdateService.update(this.property, {value: true});
+            break;
+        case MultiInstanceType.none:
+            delete this.element[MultiInstanceProps.loopCharacteristics];
+            this.cardViewUpdateService.update(this.property, {value: false});
+            this.form.reset();
+            break;
         }
         this.multiInstanceItemService.updateEditor();
     }
@@ -182,14 +182,14 @@ export class CardViewMultiInstanceItemComponent implements OnInit, OnDestroy {
 
     validateExpression(formGroup: FormGroup) {
         const cardinalityControl = formGroup.controls['cardinality'], elementControl =  formGroup.controls['elementVariable'];
-        const expression: RegExp = /{([^}]+)}/;
+        const expression = /{([^}]+)}/;
         if (cardinalityControl.value) {
             const isValidCardinality: boolean = expression.test(cardinalityControl.value) || _isNumberValue(cardinalityControl.value);
             cardinalityControl.setErrors(isValidCardinality ? null : {
                 message: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_CARDINALITY'
             });
         }
-        const isValidElementVariable: boolean = !_isNumberValue(elementControl.value);
+        const isValidElementVariable = !_isNumberValue(elementControl.value);
         elementControl.setErrors(isValidElementVariable ? null : {
             message: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INVALID_ELEMENT_VARIABLE'
         });

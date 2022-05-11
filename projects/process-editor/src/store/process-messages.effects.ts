@@ -41,8 +41,8 @@ export class ProcessMessagesEffects {
     openProcessMessagesDialogEffect = this.actions$.pipe(
         ofType<OpenProcessMessagesDialogAction>(OPEN_PROCESS_MESSAGES_DIALOG),
         switchMap(() => this.store.select(selectSelectedProcess).pipe(take(1))),
-        tap(() => this.openMessagesDialog()
-    ));
+        tap(() => this.openMessagesDialog())
+    );
 
     private openMessagesDialog() {
         const propertiesUpdate$ = new Subject<Bpmn.DiagramElement[]>();

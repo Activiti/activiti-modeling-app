@@ -28,96 +28,96 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 
 describe('ProcessCategorySelectorComponent', () => {
-  let component: ProcessCategorySelectorComponent;
-  let fixture: ComponentFixture<ProcessCategorySelectorComponent>;
-  const OTHER_CATEGORY = 'Other';
-  const allCategories = ['Category 1', 'Category 2', OTHER_CATEGORY];
-  const processCategoryInputSelectorId = '[data-automation-id="process-category-selector-input"]';
+    let component: ProcessCategorySelectorComponent;
+    let fixture: ComponentFixture<ProcessCategorySelectorComponent>;
+    const OTHER_CATEGORY = 'Other';
+    const allCategories = ['Category 1', 'Category 2', OTHER_CATEGORY];
+    const processCategoryInputSelectorId = '[data-automation-id="process-category-selector-input"]';
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ProcessCategorySelectorComponent ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        MatFormFieldModule,
-        MatAutocompleteModule,
-        MatInputModule,
-        BrowserAnimationsModule,
-        ReactiveFormsModule,
-      ],
-      providers: [
-        provideMockStore({
-          selectors: [
-            { selector: selectProcessCategories, value: allCategories },
-          ],
-        }),
-      ],
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [ ProcessCategorySelectorComponent ]
+        })
+            .compileComponents();
     });
 
-    fixture = TestBed.createComponent(ProcessCategorySelectorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                MatFormFieldModule,
+                MatAutocompleteModule,
+                MatInputModule,
+                BrowserAnimationsModule,
+                ReactiveFormsModule,
+            ],
+            providers: [
+                provideMockStore({
+                    selectors: [
+                        { selector: selectProcessCategories, value: allCategories },
+                    ],
+                }),
+            ],
+        });
 
-  it('should show all categories', async () => {
-    const categoryInput = fixture.debugElement.query(By.css(processCategoryInputSelectorId)).nativeElement;
-    categoryInput.click();
-
-    await fixture.whenStable();
-
-    const options = fixture.debugElement.queryAll(By.css('mat-option'));
-
-    expect(options.length).toBe(allCategories.length);
-
-    options.forEach(option => {
-      expect(allCategories.includes(option.nativeElement.textContent.trim())).toBeTruthy();
+        fixture = TestBed.createComponent(ProcessCategorySelectorComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
     });
-  });
 
-  it('should show filtered categories', async () => {
-    component.category = OTHER_CATEGORY;
+    it('should show all categories', async () => {
+        const categoryInput = fixture.debugElement.query(By.css(processCategoryInputSelectorId)).nativeElement;
+        categoryInput.click();
 
-    const categoryInput = fixture.debugElement.query(By.css(processCategoryInputSelectorId)).nativeElement;
-    categoryInput.click();
+        await fixture.whenStable();
 
-    component.ngOnInit();
-    fixture.detectChanges();
-    await fixture.whenStable();
+        const options = fixture.debugElement.queryAll(By.css('mat-option'));
 
-    const options = fixture.debugElement.queryAll(By.css('mat-option'));
+        expect(options.length).toBe(allCategories.length);
 
-    expect(options.length).toBe(1);
-    expect(options[0].nativeElement.textContent.trim()).toBe(OTHER_CATEGORY);
-  });
+        options.forEach(option => {
+            expect(allCategories.includes(option.nativeElement.textContent.trim())).toBeTruthy();
+        });
+    });
 
-  it('should filter categories on category change', async () => {
-    const categoryInput = fixture.debugElement.query(By.css(processCategoryInputSelectorId)).nativeElement;
-    categoryInput.click();
-    categoryInput.value = 'Cat';
-    categoryInput.dispatchEvent(new Event('input'));
+    it('should show filtered categories', async () => {
+        component.category = OTHER_CATEGORY;
 
-    fixture.detectChanges();
-    await fixture.whenStable();
+        const categoryInput = fixture.debugElement.query(By.css(processCategoryInputSelectorId)).nativeElement;
+        categoryInput.click();
 
-    const options = fixture.debugElement.queryAll(By.css('mat-option'));
+        component.ngOnInit();
+        fixture.detectChanges();
+        await fixture.whenStable();
 
-    expect(options.length).toBe(2);
-    expect(options[0].nativeElement.textContent.trim()).toBe(allCategories[0]);
-    expect(options[1].nativeElement.textContent.trim()).toBe(allCategories[1]);
-  });
+        const options = fixture.debugElement.queryAll(By.css('mat-option'));
 
-  it('should emit on category change', () => {
-    spyOn(component.categoryChange, 'emit');
-    const categoryInput = fixture.debugElement.query(By.css(processCategoryInputSelectorId)).nativeElement;
-    categoryInput.click();
-    categoryInput.value = 'Cat';
-    categoryInput.dispatchEvent(new Event('input'));
+        expect(options.length).toBe(1);
+        expect(options[0].nativeElement.textContent.trim()).toBe(OTHER_CATEGORY);
+    });
 
-    expect(component.categoryChange.emit).toHaveBeenCalledWith('Cat');
-  });
+    it('should filter categories on category change', async () => {
+        const categoryInput = fixture.debugElement.query(By.css(processCategoryInputSelectorId)).nativeElement;
+        categoryInput.click();
+        categoryInput.value = 'Cat';
+        categoryInput.dispatchEvent(new Event('input'));
+
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const options = fixture.debugElement.queryAll(By.css('mat-option'));
+
+        expect(options.length).toBe(2);
+        expect(options[0].nativeElement.textContent.trim()).toBe(allCategories[0]);
+        expect(options[1].nativeElement.textContent.trim()).toBe(allCategories[1]);
+    });
+
+    it('should emit on category change', () => {
+        spyOn(component.categoryChange, 'emit');
+        const categoryInput = fixture.debugElement.query(By.css(processCategoryInputSelectorId)).nativeElement;
+        categoryInput.click();
+        categoryInput.value = 'Cat';
+        categoryInput.dispatchEvent(new Event('input'));
+
+        expect(component.categoryChange.emit).toHaveBeenCalledWith('Cat');
+    });
 });

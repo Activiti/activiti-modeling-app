@@ -43,40 +43,40 @@ export function connectorEntitiesReducer(
     action: Action
 ): ConnectorEntitiesState {
     switch (action.type) {
-        case CREATE_CONNECTOR_SUCCESS:
-            return createConnector(state, <CreateConnectorSuccessAction> action);
+    case CREATE_CONNECTOR_SUCCESS:
+        return createConnector(state, <CreateConnectorSuccessAction> action);
 
-        case GET_CONNECTORS_ATTEMPT:
-            return {
-                ...state,
-                loading: true
-            };
+    case GET_CONNECTORS_ATTEMPT:
+        return {
+            ...state,
+            loading: true
+        };
 
-        case GET_CONNECTORS_SUCCESS:
-            return getConnectorsSuccess(state, <GetConnectorsSuccessAction> action);
+    case GET_CONNECTORS_SUCCESS:
+        return getConnectorsSuccess(state, <GetConnectorsSuccessAction> action);
 
-        case DELETE_CONNECTOR_SUCCESS:
-            return removeConnector(state, <DeleteConnectorSuccessAction> action);
+    case DELETE_CONNECTOR_SUCCESS:
+        return removeConnector(state, <DeleteConnectorSuccessAction> action);
 
-        case UPDATE_CONNECTOR_SUCCESS:
-            return updateConnector(state, <UpdateConnectorSuccessAction>action);
+    case UPDATE_CONNECTOR_SUCCESS:
+        return updateConnector(state, <UpdateConnectorSuccessAction>action);
 
-        case GET_CONNECTOR_SUCCESS:
-            return getConnectorSuccess(state, <GetConnectorSuccessAction>action);
-        case LEAVE_PROJECT:
-            return {
-                ...state,
-                loaded: false
-            };
+    case GET_CONNECTOR_SUCCESS:
+        return getConnectorSuccess(state, <GetConnectorSuccessAction>action);
+    case LEAVE_PROJECT:
+        return {
+            ...state,
+            loaded: false
+        };
 
-        case SAVE_AS_PROJECT_ATTEMPT:
-            return {
-                ...state,
-                loaded: false
-            };
+    case SAVE_AS_PROJECT_ATTEMPT:
+        return {
+            ...state,
+            loaded: false
+        };
 
-        default:
-            return { ...state };
+    default:
+        return { ...state };
     }
 }
 

@@ -159,12 +159,12 @@ describe('CardViewErrorRefItemComponent', () => {
                     provide: ProcessConnectorService, useValue: {
                         getContent: jest.fn().mockImplementation(id => {
                             switch (id) {
-                                case '4421a40f-41e5-4a16-b74a-fc15ec54f381':
-                                    return of(connectorContentMock);
-                                case '4421a40f-41e5-4a16-b74a-fc15ec54f382':
-                                    return of(connector2ContentMock);
-                                default:
-                                    return of();
+                            case '4421a40f-41e5-4a16-b74a-fc15ec54f381':
+                                return of(connectorContentMock);
+                            case '4421a40f-41e5-4a16-b74a-fc15ec54f382':
+                                return of(connector2ContentMock);
+                            default:
+                                return of();
                             }
                         })
                     }
@@ -206,9 +206,7 @@ describe('CardViewErrorRefItemComponent', () => {
     it('should load connector errors when serviceTask connector', () => {
         // setup
         spyOn(component, 'getAttachedErrorProvider').and.callFake(() => component['errorProvider'] = providerMock);
-        spyOn(component, 'getErrorAsBpmnElement').and.callFake((error) => {
-            return { id: error.id, name: error.name, errorCode: error };
-        });
+        spyOn(component, 'getErrorAsBpmnElement').and.callFake((error) => ({ id: error.id, name: error.name, errorCode: error }));
         const processModelerService = TestBed.inject(ProcessModelerServiceToken);
         spyOn(processModelerService, 'getRootProcessElement').and.returnValue(rootElementsMock);
         const getConnectorErrorsSpy = spyOn(component, 'loadErrorsGroupFromProvider').and.returnValue(of(providersContentMock));
@@ -236,9 +234,7 @@ describe('CardViewErrorRefItemComponent', () => {
         propertyMock.data.element.businessObject.eventDefinitions[0].errorRef = null;
         const processModelerService = TestBed.inject(ProcessModelerServiceToken);
         const processModelerServiceSpy = spyOn(processModelerService, 'getRootProcessElement').and.returnValue(rootElementsMock);
-        const getErrorsFromProviderSpy =  spyOn(component, 'getErrorsFromProvider').and.callFake((error) => {
-            return of(providerErrorMock);
-        });
+        const getErrorsFromProviderSpy =  spyOn(component, 'getErrorsFromProvider').and.callFake(() => of(providerErrorMock));
         fixture.detectChanges();
         // verify
         expect(getErrorsFromProviderSpy).toHaveBeenCalled();

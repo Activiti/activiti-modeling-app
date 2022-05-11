@@ -43,9 +43,9 @@ export class TaskAssignmentService implements OnDestroy {
     updateDisplayValue(data: AssignmentModel): CardViewArrayItem[] {
         const [ assignee, candidateUsers, candidateGroups ] = data.assignments.map((assignment) => assignment.value);
         return this.prepareDisplayValue(
-                this.convertStringToArray(assignee),
-                this.convertStringToArray(candidateUsers),
-                this.convertStringToArray(candidateGroups)).filter((res) => res.value);
+            this.convertStringToArray(assignee),
+            this.convertStringToArray(candidateUsers),
+            this.convertStringToArray(candidateGroups)).filter((res) => res.value);
     }
 
     getAssignments(element: Bpmn.DiagramElement): AssignmentSettings {
@@ -80,8 +80,8 @@ export class TaskAssignmentService implements OnDestroy {
         return {
             icon: 'person',
             value: candidateUsers && candidateUsers.length > 0 ? candidateUsers.length === 1 ?
-            this.translationService.instant('PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.USER', { count: 1 }) :
-            this.translationService.instant('PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.USERS', { count: candidateUsers.length }) : undefined
+                this.translationService.instant('PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.USER', { count: 1 }) :
+                this.translationService.instant('PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.USERS', { count: candidateUsers.length }) : undefined
         };
 
     }
@@ -90,8 +90,8 @@ export class TaskAssignmentService implements OnDestroy {
         return {
             icon: 'group',
             value: candidateGroups && candidateGroups.length > 0 ? candidateGroups.length === 1 ?
-            this.translationService.instant('PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.GROUP', { count: 1 }) :
-            this.translationService.instant('PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.GROUPS', { count: candidateGroups.length }) : undefined
+                this.translationService.instant('PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.GROUP', { count: 1 }) :
+                this.translationService.instant('PROCESS_EDITOR.ELEMENT_PROPERTIES.TASK_ASSIGNMENT.GROUPS', { count: candidateGroups.length }) : undefined
         };
     }
 
@@ -108,7 +108,7 @@ export class TaskAssignmentService implements OnDestroy {
     }
 
     getProcessIdForElement(element): string {
-      return ElementHelper.getProperty(element, BpmnProperty.processId);
+        return ElementHelper.getProperty(element, BpmnProperty.processId);
     }
 
     private updateUserExtension(processUUid: string, selectedElement: any, assignees: AssignmentSettings) {

@@ -19,9 +19,7 @@ import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
 
 const categoryKey = BpmnProperty.category;
 
-const get = (element: Bpmn.DiagramElement): string => {
-    return element.businessObject?.$parent.get(categoryKey);
-};
+const get = (element: Bpmn.DiagramElement): string => element.businessObject?.$parent.get(categoryKey);
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any): void => {
     element.businessObject.$parent[categoryKey] = value;

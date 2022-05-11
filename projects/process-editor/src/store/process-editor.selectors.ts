@@ -49,9 +49,9 @@ export const selectProcessesArray = createSelector(
     selectProcessEntities,
     selectSelectedProjectId,
     (processes, selectedProjectId) => <Process[]>Object.values(processes).filter((process: Process) =>
-    selectedProjectId ?
-        (process.projectIds && process.projectIds.indexOf(selectedProjectId) >= 0) :
-        process.scope === ModelScope.GLOBAL)
+        selectedProjectId ?
+            (process.projectIds && process.projectIds.indexOf(selectedProjectId) >= 0) :
+            process.scope === ModelScope.GLOBAL)
 );
 
 export const selectProcessCategories = createSelector(

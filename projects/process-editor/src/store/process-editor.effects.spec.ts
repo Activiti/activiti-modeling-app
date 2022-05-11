@@ -68,7 +68,7 @@ import { ProcessEntitiesState } from './process-entities.state';
 import { getProcessLogInitiator } from '../services/process-editor.constants';
 import { TranslateModule } from '@ngx-translate/core';
 import { SelectedProcessElement } from './process-editor.state';
-import { mockOpenSaveAsDialog, mockProcessPoolSaveAsAttemptDialog, mockProcessSaveAsAttemptDialog, mockXMLProcessPool } from './process-editor.effects.mock';
+import { mockOpenSaveAsDialog, mockProcessPoolSaveAsAttemptDialog, mockProcessSaveAsAttemptDialog } from './process-editor.effects.mock';
 
 describe('ProcessEditorEffects', () => {
     let effects: ProcessEditorEffects;

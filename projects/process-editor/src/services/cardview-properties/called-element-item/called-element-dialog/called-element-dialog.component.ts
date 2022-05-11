@@ -88,11 +88,11 @@ export class CalledElementDialogComponent implements OnInit, OnDestroy {
 
     validateCalledElement() {
         switch (this.currentActiveTab) {
-            case 0:
-                this.isCalledElementValid = !!this.processId;
-                break;
-            case 1:
-                this.isCalledElementValid = this.calledElementService.isExpressionValid(this.expression.trim());
+        case 0:
+            this.isCalledElementValid = !!this.processId;
+            break;
+        case 1:
+            this.isCalledElementValid = this.calledElementService.isExpressionValid(this.expression.trim());
         }
     }
 

@@ -26,8 +26,7 @@ export class SaveConnectorCommand extends GenericSaveModelCommand {
     constructor(
         protected store: Store<AmaState>,
         protected serializer: ModelContentSerializer<string>,
-        protected translationService: TranslationService
-        ) {
+        protected translationService: TranslationService) {
         super(store, serializer, translationService);
     }
 

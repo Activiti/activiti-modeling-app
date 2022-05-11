@@ -56,7 +56,7 @@ export class MessageVariableMappingService {
 
     parseMessagePayload(payloadMessageEvent: Bpmn.BusinessObject, messageMappings: ServiceParameterMappings): MessagePayload[] {
         const messagePayload = [];
-        if (!!payloadMessageEvent) {
+        if (payloadMessageEvent) {
             const messagePayloadMappings = messageMappings[payloadMessageEvent.id] && messageMappings[payloadMessageEvent.id].inputs
                 ? messageMappings[payloadMessageEvent.id].inputs : {};
 
@@ -73,14 +73,12 @@ export class MessageVariableMappingService {
     }
 
     getPayloadMessageEventByMessageId(modelEvents: Bpmn.BusinessObject[], messageId: string, messageEventId: string): Bpmn.BusinessObject {
-        return modelEvents.find((processEvent) => {
-            return processEvent
+        return modelEvents.find((processEvent) => processEvent
                 && processEvent.id !== messageEventId
                 && processEvent.eventDefinitions
                 && processEvent.eventDefinitions[0].$type === BpmnElement.MessageEventDefinition
                 && processEvent.eventDefinitions[0].messageRef
-                && processEvent.eventDefinitions[0].messageRef.id === messageId;
-        });
+                && processEvent.eventDefinitions[0].messageRef.id === messageId);
     }
 
 }

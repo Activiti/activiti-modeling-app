@@ -47,8 +47,8 @@ export class ProcessTaskAssignmentEffects {
     openTaskAssignmentDialogEffect = this.actions$.pipe(
         ofType<OpenTaskAssignmentDialogAction>(OPEN_TASK_ASSIGNMENT_DIALOG),
         switchMap(() => this.store.select(selectSelectedElement).pipe(take(1))),
-        tap((element) => this.openTaskAssignmentDialog(this.processModelerService.getElement(element.id))
-    ));
+        tap((element) => this.openTaskAssignmentDialog(this.processModelerService.getElement(element.id)))
+    );
 
     @Effect()
     updateTaskAssignmentEffect = this.actions$.pipe(
@@ -83,6 +83,7 @@ export class ProcessTaskAssignmentEffects {
     private findParentProcess(element) {
         if (element.$type === 'bpmn:Process') { return element; }
         for (const i in element) {
+            // eslint-disable-next-line no-prototype-builtins
             if (element.hasOwnProperty(i)) {
                 const parentProcess = this.findParentProcess(element.$parent);
                 if (parentProcess) { return parentProcess; }

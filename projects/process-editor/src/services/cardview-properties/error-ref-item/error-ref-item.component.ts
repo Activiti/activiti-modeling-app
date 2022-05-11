@@ -192,14 +192,10 @@ export class CardViewErrorRefItemComponent implements OnInit, OnDestroy {
     getErrorsFromProvider(provider: ExtensionErrorProviderInterface): Observable<ErrorGroup[]> {
         return this.getErrorProviderHandler(provider).getErrors().pipe(
             delay(0),
-            map((groups: ExtensionErrorGroup[]) => {
-                return groups.map((group: ExtensionErrorGroup) => {
-                    return {
-                        name: group.name,
-                        errors: this.transformErrorsToBpmnElements(group.name, group.errors, group.type)
-                    };
-                });
-            }),
+            map((groups: ExtensionErrorGroup[]) => groups.map((group: ExtensionErrorGroup) => ({
+                name: group.name,
+                errors: this.transformErrorsToBpmnElements(group.name, group.errors, group.type)
+            }))),
             takeUntil(this.unsubscribe$)
         );
     }

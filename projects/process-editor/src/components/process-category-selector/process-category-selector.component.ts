@@ -24,51 +24,51 @@ import { map, switchMap, tap } from 'rxjs/operators';
 import { selectProcessCategories } from '../../store/process-editor.selectors';
 
 @Component({
-  selector: 'ama-process-category-selector',
-  templateUrl: './process-category-selector.component.html',
-  styleUrls: ['./process-category-selector.component.scss']
+    selector: 'ama-process-category-selector',
+    templateUrl: './process-category-selector.component.html',
+    styleUrls: ['./process-category-selector.component.scss']
 })
 export class ProcessCategorySelectorComponent implements OnInit {
-  @Input()
-  category = '';
+    @Input()
+    category = '';
 
-  @Input()
-  showLabel = true;
+    @Input()
+    showLabel = true;
 
-  @Output()
-  categoryChange = new EventEmitter<string>();
+    @Output()
+    categoryChange = new EventEmitter<string>();
 
-  allCategories$: Observable<string[]>;
-  filteredCategories$: Observable<string[]>;
+    allCategories$: Observable<string[]>;
+    filteredCategories$: Observable<string[]>;
 
-  categorySearchInput = new FormControl();
+    categorySearchInput = new FormControl();
 
-  constructor(private store: Store<AmaState>) { }
+    constructor(private store: Store<AmaState>) { }
 
-  ngOnInit(): void {
-    this.categorySearchInput.setValue(this.category);
+    ngOnInit(): void {
+        this.categorySearchInput.setValue(this.category);
 
-    this.allCategories$ = this.store.select(selectProcessCategories);
+        this.allCategories$ = this.store.select(selectProcessCategories);
 
-    this.filteredCategories$ = this.allCategories$.pipe(
-      map((allCategories) =>
-        this.filterCategories(allCategories, this.categorySearchInput.value)
-      )
-    );
+        this.filteredCategories$ = this.allCategories$.pipe(
+            map((allCategories) =>
+                this.filterCategories(allCategories, this.categorySearchInput.value)
+            )
+        );
 
-    this.categorySearchInput.valueChanges.pipe(
-      tap((categoryInputValue) => this.categoryChange.emit(categoryInputValue)),
-      switchMap((categoryInputValue) => this.allCategories$.pipe(
-        map((allCategories) => this.filterCategories(allCategories, categoryInputValue))
-      )),
-    ).subscribe(categories => {
-      this.filteredCategories$ = of(categories);
-    });
-  }
+        this.categorySearchInput.valueChanges.pipe(
+            tap((categoryInputValue) => this.categoryChange.emit(categoryInputValue)),
+            switchMap((categoryInputValue) => this.allCategories$.pipe(
+                map((allCategories) => this.filterCategories(allCategories, categoryInputValue))
+            )),
+        ).subscribe(categories => {
+            this.filteredCategories$ = of(categories);
+        });
+    }
 
-  private filterCategories(categories: string[], categoryName: string): string[] {
-    return categories.filter(
-      category => category.toLowerCase().indexOf(this.categorySearchInput.value.toLowerCase()) > -1
-    );
-  }
+    private filterCategories(categories: string[], categoryName: string): string[] {
+        return categories.filter(
+            category => category.toLowerCase().indexOf(this.categorySearchInput.value.toLowerCase()) > -1
+        );
+    }
 }

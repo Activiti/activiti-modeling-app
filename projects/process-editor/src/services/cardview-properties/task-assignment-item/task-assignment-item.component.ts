@@ -95,7 +95,7 @@ export class CardViewTaskAssignmentItemComponent implements OnInit, OnDestroy {
         this.processModelerService.createEventHandlerForAction('copyPaste.pasteElement', this.pasteActionHandler.bind(this));
     }
 
-    private copyActionHandler(event) {
+    private copyActionHandler() {
         this.taskAssignmentService.copyActionHandler(this.currentProcessSelected);
     }
 

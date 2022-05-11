@@ -102,9 +102,7 @@ describe('CardViewMessageItemComponent', () => {
         store = TestBed.inject(Store);
 
         spyOn(processModelerService, 'getRootProcessElement').and.returnValue(processMock);
-        spyOn(processModelerService, 'getFromModeler').and.returnValue({create: () => {
-            return messageMock;
-        }});
+        spyOn(processModelerService, 'getFromModeler').and.returnValue({create: () => messageMock});
         spyOn(store, 'dispatch');
         spyOn(cardViewUpdateService, 'update');
 

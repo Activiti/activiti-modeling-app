@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-len */
+
 import { SaveAsDialogPayload } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const mockOpenSaveAsDialog: SaveAsDialogPayload = {
@@ -79,25 +81,25 @@ export const mockXMLProcessPool = `<?xml version="1.0" encoding="UTF-8"?>
 // cSpell:disable
 
 export const mockProcessPoolSaveAsAttemptDialog: SaveAsDialogPayload = {
-  name: 'test-name',
-  description: 'test-description',
-  sourceModelContent: mockXMLProcessPool,
-  sourceModelMetadata: {
-    extensions: {
-      'Process_ruTEr0CHz': {
-          'constants': {},
-          'mappings': {},
-          'properties': {},
-          'assignments': {
-              'UserTask_191ib1o': {
-                  'type': 'static',
-                  'assignment': 'assignee',
-                  'id': 'UserTask_191ib1o'
-              }
-          }
-      }
+    name: 'test-name',
+    description: 'test-description',
+    sourceModelContent: mockXMLProcessPool,
+    sourceModelMetadata: {
+        extensions: {
+            'Process_ruTEr0CHz': {
+                'constants': {},
+                'mappings': {},
+                'properties': {},
+                'assignments': {
+                    'UserTask_191ib1o': {
+                        'type': 'static',
+                        'assignment': 'assignee',
+                        'id': 'UserTask_191ib1o'
+                    }
+                }
+            }
+        }
     }
-  }
 };
 
 export const mockProcessSaveAsAttemptDialog: SaveAsDialogPayload = {
@@ -105,19 +107,19 @@ export const mockProcessSaveAsAttemptDialog: SaveAsDialogPayload = {
     description: 'test-description',
     sourceModelContent: mockXMLProcess,
     sourceModelMetadata: {
-      extensions: {
-        'Process_ruTEr0CHz': {
-          'constants': {},
-          'mappings': {},
-          'properties': {},
-          'assignments': {
-              'UserTask_191ib1o': {
-                  'type': 'static',
-                  'assignment': 'assignee',
-                  'id': 'UserTask_191ib1o'
-              }
-          }
+        extensions: {
+            'Process_ruTEr0CHz': {
+                'constants': {},
+                'mappings': {},
+                'properties': {},
+                'assignments': {
+                    'UserTask_191ib1o': {
+                        'type': 'static',
+                        'assignment': 'assignee',
+                        'id': 'UserTask_191ib1o'
+                    }
+                }
+            }
         }
-      }
     }
 };

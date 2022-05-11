@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
- import { CardViewBaseItemModel, CardViewItem, DynamicComponentModel } from '@alfresco/adf-core';
+import { CardViewBaseItemModel, CardViewItem, DynamicComponentModel } from '@alfresco/adf-core';
 import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
 
 export class MultiInstanceItemModel extends CardViewBaseItemModel implements CardViewItem, DynamicComponentModel {

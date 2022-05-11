@@ -27,7 +27,7 @@ export const elementMock = {
             'body': '${expression}'
         },
         'isSequential': false,
-        set: (prop, value) => null
+        set: () => null
     },
 };
 

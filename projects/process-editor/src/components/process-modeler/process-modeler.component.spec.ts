@@ -38,9 +38,9 @@ import { TaskAssignmentService } from '../../services/cardview-properties/task-a
 @Component({
     selector: 'ama-process-palette',
     template: ''
-  })
-  class MockPaletteComponent {
-  }
+})
+class MockPaletteComponent {
+}
 
 describe('ProcessModelerComponent', () => {
     let fixture: ComponentFixture<ProcessModelerComponent>;

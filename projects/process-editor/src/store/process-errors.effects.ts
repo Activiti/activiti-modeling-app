@@ -41,8 +41,8 @@ export class ProcessErrorsEffects {
     openProcessErrorsDialogEffect = this.actions$.pipe(
         ofType<OpenProcessErrorsDialogAction>(OPEN_PROCESS_ERRORS_DIALOG),
         switchMap(() => this.store.select(selectSelectedProcess).pipe(take(1))),
-        tap(() => this.openProcessErrorsDialog()
-    ));
+        tap(() => this.openProcessErrorsDialog())
+    );
 
     private openProcessErrorsDialog() {
         const propertiesUpdate$ = new Subject<Bpmn.DiagramElement[]>();

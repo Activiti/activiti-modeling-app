@@ -15,13 +15,12 @@
  * limitations under the License.
  */
 
-import { FactoryProps } from './interfaces/cardview-properties.interfaces';
 import { BpmnCompositeProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { CardViewProcessErrorsItemModel } from './process-errors-item/process-errors-item.model';
 
 const propertyName = BpmnCompositeProperty.errors;
 
-export function createProcessErrorsProperty({ element }: FactoryProps) {
+export function createProcessErrorsProperty() {
     return new CardViewProcessErrorsItemModel({
         label: '',
         value: '',

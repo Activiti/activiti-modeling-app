@@ -103,9 +103,7 @@ export class ConnectorEditorComponent implements OnInit, CanComponentDeactivate,
         this.editorContent$ = concat(contentFromStore$, this.editorContentSubject$).pipe(shareReplay(1));
 
         this.boundOnChangeAttempt = this.onChangeAttempt.bind(this);
-        this.getMemoizedDynamicComponentData = memoize((connectorContent, onChangeAttempt) => {
-            return { connectorContent, onChangeAttempt };
-        });
+        this.getMemoizedDynamicComponentData = memoize((connectorContent, onChangeAttempt) => ({ connectorContent, onChangeAttempt }));
 
         this.modelCommands.tabIndexChanged$.subscribe(
             (index: number) => {
@@ -134,7 +132,7 @@ export class ConnectorEditorComponent implements OnInit, CanComponentDeactivate,
     }
 
     onChangeAttempt(connectorContentString: string): void {
-       this.disableSave = !this.validate(connectorContentString).valid;
+        this.disableSave = !this.validate(connectorContentString).valid;
 
         if (!this.disableSave) {
             this.editorContentSubject$.next(connectorContentString);
@@ -160,14 +158,14 @@ export class ConnectorEditorComponent implements OnInit, CanComponentDeactivate,
 
     canDeactivate(): Observable<boolean> {
         return this.editorContent$.pipe(
-                take(1),
-                tap((content) => this.store.dispatch(this.saveAction(content))),
-                switchMap(() => this.store.select(selectConnectorEditorSaving)),
-                filter(updateState => (updateState === ModelEditorState.SAVED) || (updateState === ModelEditorState.FAILED)),
-                take(1),
-                map(state => state === ModelEditorState.SAVED),
-                catchError(() => of(false))
-            );
+            take(1),
+            tap((content) => this.store.dispatch(this.saveAction(content))),
+            switchMap(() => this.store.select(selectConnectorEditorSaving)),
+            filter(updateState => (updateState === ModelEditorState.SAVED) || (updateState === ModelEditorState.FAILED)),
+            take(1),
+            map(state => state === ModelEditorState.SAVED),
+            catchError(() => of(false))
+        );
     }
 
     private setVisibilityConditions() {

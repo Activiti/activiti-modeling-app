@@ -22,7 +22,7 @@ import { CalledElementItemModel } from './called-element-item/called-element-ite
 
 const propertyName = BpmnProperty.calledElement;
 
-export function createCalledElementProperty({ element, store }: FactoryProps) {
+export function createCalledElementProperty({ element }: FactoryProps) {
     return new CalledElementItemModel({
         label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.ACTIVITY_NAME',
         value: ElementHelper.getProperty(element, propertyName),

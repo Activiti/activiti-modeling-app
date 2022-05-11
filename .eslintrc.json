@@ -305,7 +305,8 @@
                     "warn",
                     "always",
                     {
-                        "markers": ["/"]
+                        "markers": ["/"],
+                        "exceptions": ["!", "*"]
                     }
                 ],
                 "unicorn/filename-case": "warn"
@@ -333,6 +334,19 @@
                 "@angular-eslint/template/no-negated-async": "off"
             },
             "extends": ["plugin:@nrwl/nx/angular-template"]
+        },
+        {
+            "files": ["*.spec.ts"],
+            "rules": {
+                "@typescript-eslint/no-floating-promises": "off",
+                "max-lines": "off"
+            }
+        },
+        {
+            "files": ["*.e2e.ts", "*.mock.ts"],
+            "rules": {
+                "max-lines": "off"
+            }
         }
     ]
 }

@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-lines */
+
 import { Action } from '@ngrx/store';
 import {
     GET_PROCESSES_ATTEMPT,
@@ -60,59 +62,59 @@ export function processEntitiesReducer(
     action: Action
 ): ProcessEntitiesState {
     switch (action.type) {
-        case CREATE_PROCESS_SUCCESS:
-            return createProcess(state, <CreateProcessSuccessAction>action);
+    case CREATE_PROCESS_SUCCESS:
+        return createProcess(state, <CreateProcessSuccessAction>action);
 
-        case GET_PROCESSES_ATTEMPT:
-            return { ...state, loading: true };
+    case GET_PROCESSES_ATTEMPT:
+        return { ...state, loading: true };
 
-        case GET_PROCESSES_SUCCESS:
-            return getProcessesSuccess(state, <GetProcessesSuccessAction>action);
+    case GET_PROCESSES_SUCCESS:
+        return getProcessesSuccess(state, <GetProcessesSuccessAction>action);
 
-        case DELETE_PROCESS_SUCCESS:
-            return removeProcess(state, <DeleteProcessSuccessAction>action);
+    case DELETE_PROCESS_SUCCESS:
+        return removeProcess(state, <DeleteProcessSuccessAction>action);
 
-        case UPDATE_PROCESS_SUCCESS:
-            return updateProcess(state, <UpdateProcessSuccessAction>action);
+    case UPDATE_PROCESS_SUCCESS:
+        return updateProcess(state, <UpdateProcessSuccessAction>action);
 
-        case GET_PROCESS_SUCCESS:
-            return getProcessSuccess(state, <GetProcessSuccessAction>action);
+    case GET_PROCESS_SUCCESS:
+        return getProcessSuccess(state, <GetProcessSuccessAction>action);
 
-        case UPDATE_PROCESS_VARIABLES:
-            return updateProcessVariables(state, <UpdateProcessVariablesAction>action);
+    case UPDATE_PROCESS_VARIABLES:
+        return updateProcessVariables(state, <UpdateProcessVariablesAction>action);
 
-        case UPDATE_SERVICE_PARAMETERS:
-            return updateProcessVariablesMapping(state, <UpdateServiceParametersAction>action);
+    case UPDATE_SERVICE_PARAMETERS:
+        return updateProcessVariablesMapping(state, <UpdateServiceParametersAction>action);
 
-        case UPDATE_TASK_ASSIGNMENTS:
-            return updateProcessTaskAssignments(state, <UpdateServiceAssignmentAction>action);
+    case UPDATE_TASK_ASSIGNMENTS:
+        return updateProcessTaskAssignments(state, <UpdateServiceAssignmentAction>action);
 
-        case UPDATE_TASK_TEMPLATE:
-            return updateUserTaskTemplate(state, <UpdateUserTaskTemplateAction>action);
+    case UPDATE_TASK_TEMPLATE:
+        return updateUserTaskTemplate(state, <UpdateUserTaskTemplateAction>action);
 
-        case UPDATE_PROCESS_EXTENSIONS:
-            return updateExtensions(state, <UpdateProcessExtensionsAction>action);
+    case UPDATE_PROCESS_EXTENSIONS:
+        return updateExtensions(state, <UpdateProcessExtensionsAction>action);
 
-        case DELETE_PROCESS_EXTENSION:
-            return deleteExtensions(state, <DeleteProcessExtensionAction>action);
+    case DELETE_PROCESS_EXTENSION:
+        return deleteExtensions(state, <DeleteProcessExtensionAction>action);
 
-        case REMOVE_ELEMENT_MAPPING:
-            return removeElementMapping(state, <RemoveElementMappingAction>action);
+    case REMOVE_ELEMENT_MAPPING:
+        return removeElementMapping(state, <RemoveElementMappingAction>action);
 
-        case LEAVE_PROJECT:
-            return {
-                ...state,
-                loaded: false
-            };
+    case LEAVE_PROJECT:
+        return {
+            ...state,
+            loaded: false
+        };
 
-        case SAVE_AS_PROJECT_ATTEMPT:
-            return {
-                ...state,
-                loaded: false
-            };
+    case SAVE_AS_PROJECT_ATTEMPT:
+        return {
+            ...state,
+            loaded: false
+        };
 
-        default:
-            return { ...state };
+    default:
+        return { ...state };
     }
 }
 
@@ -200,9 +202,9 @@ function removeUpdatedPropertyMappings(newProcessExtensions: ProcessExtensionsCo
 }
 
 function removeDeletedPropertyMapping(newProcessExtensions: ProcessExtensionsContent, oldProperties: EntityProperties) {
-    const deletedProperties = Object.keys(oldProperties).filter((oldProperty) => {
-        return Object.keys(newProcessExtensions.properties).findIndex(newProperty => newProperty === oldProperty) === -1;
-    });
+    const deletedProperties = Object.keys(oldProperties).filter(
+        (oldProperty) => Object.keys(newProcessExtensions.properties).findIndex(newProperty => newProperty === oldProperty) === -1
+    );
     Object.values(deletedProperties).forEach((oldPropertyId) => {
         Object.keys(newProcessExtensions.mappings).forEach((elementId) => {
             removeParamMappings(newProcessExtensions.mappings, elementId, oldProperties[oldPropertyId].name);
