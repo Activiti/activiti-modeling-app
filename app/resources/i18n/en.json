@@ -99,6 +99,10 @@
             "NAME": "Name",
             "DESCRIPTION": "Description",
             "TITLE": "Application title"
+        },
+        "THEME": {
+          "LIGHT": "Light theme",
+          "DARK": "Dark theme"
         }
     }
 }

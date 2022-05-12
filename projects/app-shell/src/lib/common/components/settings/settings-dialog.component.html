@@ -6,7 +6,7 @@
     <mat-form-field>
         <mat-select placeholder="Theme" [(ngModel)]="form.theme">
             <mat-option *ngFor="let theme of themes" [value]="theme.className">
-                {{ theme.name }}
+                {{ theme.name | translate }}
             </mat-option>
         </mat-select>
     </mat-form-field>

@@ -18,6 +18,6 @@
 import { AppTheme } from '@alfresco-dbp/modeling-shared/sdk';
 
 export const appThemes: AppTheme[] = [
-    { name: 'Light theme', className: 'light-theme' },
-    { name: 'Dark theme', className: 'dark-theme' }
+    { name: 'APP.THEME.LIGHT', className: 'light-theme' },
+    { name: 'APP.THEME.DARK', className: 'dark-theme' }
 ];
