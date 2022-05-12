@@ -15,11 +15,10 @@
  * limitations under the License.
  */
 
-import { Component, Input, Inject, ViewEncapsulation, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Inject, ViewEncapsulation, OnDestroy, Output, EventEmitter, OnInit } from '@angular/core';
 import { MODEL_IMPORTERS, ModelImporter, Model, sanitizeString, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
-import { MatSelectChange } from '@angular/material/select';
 import { Store } from '@ngrx/store';
 import { LogService } from '@alfresco/adf-core';
 
@@ -37,7 +36,7 @@ export interface MenuItem {
     encapsulation: ViewEncapsulation.None
 })
 
-export class ProjectImportSelectListComponent implements OnDestroy {
+export class ProjectImportSelectListComponent implements OnInit, OnDestroy {
     @Input()
     projectId: string;
 
@@ -50,11 +49,11 @@ export class ProjectImportSelectListComponent implements OnDestroy {
     isLoading = this.loadingStatus.asObservable();
     items: MenuItem[] = [];
     onDestroy$: Subject<void> = new Subject<void>();
+    selectedTabIndex = 0;
 
     constructor(private store: Store<AmaState>,
                 private logger: LogService,
                 @Inject(MODEL_IMPORTERS) public importers: ModelImporter[]) {
-
         importers.flatMap((importer) => {
             const isImporterSelected$ = this.currentImporter$.pipe(
                 filter((currentImporter) => importer.type === currentImporter.type),
@@ -66,17 +65,18 @@ export class ProjectImportSelectListComponent implements OnDestroy {
         });
     }
 
+    ngOnInit(): void {
+        this.onModelTypeChange();
+    }
+
     ngOnDestroy(): void {
         this.onDestroy$.next();
         this.onDestroy$.complete();
     }
 
-    onModelTypeChange(selectedValue: MatSelectChange) {
-        const importer: ModelImporter = selectedValue.value;
-        if (importer) {
-            this.loadingStatus.next(true);
-            this.currentImporter$.next(importer);
-        }
+    onModelTypeChange() {
+        this.loadingStatus.next(true);
+        this.currentImporter$.next(this.importers[this.selectedTabIndex]);
     }
 
     private getMenuItemFromModels(globalModels: Model[], iconName: string): MenuItem[] {

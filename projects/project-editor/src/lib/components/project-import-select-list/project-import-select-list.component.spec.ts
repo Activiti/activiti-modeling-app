@@ -17,7 +17,6 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -27,9 +26,7 @@ import { of, Observable } from 'rxjs';
 import { MODEL_IMPORTERS, AmaState, ModelScope, ModelImporter } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProjectImportSelectListComponent } from './project-import-select-list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { By } from '@angular/platform-browser';
-import { MatSelectChange } from '@angular/material/select';
-
+import { MatTabsModule } from '@angular/material/tabs';
 export class ImportModelAttemptAction implements Action {
     readonly type = 'ImportGlobalModel';
     constructor(public projectId: string, public modelId: string) { }
@@ -105,12 +102,6 @@ describe('ProjectImportSelectListComponent', () => {
     let component: ProjectImportSelectListComponent;
     let store: Store<AmaState>;
 
-    function openModelTypeSelect() {
-        const importerSelector = fixture.nativeElement.querySelector('#ama-model-importers-select-object');
-        importerSelector.dispatchEvent(new Event('click'));
-        fixture.detectChanges();
-    }
-
     beforeEach(async(() => {
 
         TestBed.configureTestingModule({
@@ -118,7 +109,7 @@ describe('ProjectImportSelectListComponent', () => {
                 TranslateModule.forRoot(),
                 NoopAnimationsModule,
                 MatIconModule,
-                MatMenuModule,
+                MatTabsModule,
                 HttpClientModule
             ],
             providers: [
@@ -133,7 +124,7 @@ describe('ProjectImportSelectListComponent', () => {
             ],
             schemas: [NO_ERRORS_SCHEMA],
             declarations: [ProjectImportSelectListComponent]
-        }).compileComponents();
+        });
     }));
 
     beforeEach(() => {
@@ -144,23 +135,7 @@ describe('ProjectImportSelectListComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should show the possible importers on the select and an empty choice', async () => {
-        openModelTypeSelect();
-        await fixture.whenStable();
-        const options = fixture.debugElement.queryAll(By.css('mat-option'));
-
-        expect(options.length).toBe(3);
-    });
-
     it('should filter global models by project Id', async () => {
-        openModelTypeSelect();
-        await fixture.whenStable();
-        const importerSelector = fixture.nativeElement.querySelector('#ama-model-importers-select-object');
-        importerSelector.value = selectionImporters[0];
-        fixture.detectChanges();
-
-        const selectChange: MatSelectChange = { source: null, value: selectionImporters[0] };
-        component.onModelTypeChange(selectChange);
         fixture.detectChanges();
         await fixture.whenStable();
 
@@ -169,14 +144,13 @@ describe('ProjectImportSelectListComponent', () => {
     });
 
     it('should show models related to the importer selected', async () => {
-        openModelTypeSelect();
-        await fixture.whenStable();
-        const importerSelector = fixture.nativeElement.querySelector('#ama-model-importers-select-object');
-        importerSelector.value = selectionImporters[1];
         fixture.detectChanges();
+        await fixture.whenStable();
 
-        const selectChange: MatSelectChange = { source: null, value: selectionImporters[1] };
-        component.onModelTypeChange(selectChange);
+        const tabs = Array.from(fixture.nativeElement.querySelectorAll('.ama-model-importer-tab-group div.mat-tab-label'));
+        const dataTab: any = tabs[1];
+        dataTab.dispatchEvent(new Event('click'));
+
         fixture.detectChanges();
         await fixture.whenStable();
 
