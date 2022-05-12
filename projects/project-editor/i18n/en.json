@@ -53,7 +53,8 @@
             "SCRIPTS": "Scripts",
             "TRIGGERS": "Triggers",
             "DATA_MODELS": "Data Models",
-            "AUTHENTICATIONS": "Authentications"
+            "AUTHENTICATIONS": "Authentications",
+            "FORM_WIDGETS": "Form Widgets"
         },
         "PROCESS_DIALOG": {
             "TITLE_CREATE": "Create Process",
