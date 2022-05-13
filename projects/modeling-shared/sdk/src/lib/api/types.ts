@@ -338,6 +338,7 @@ export interface FormRepresentation {
     contentForm?: boolean;
     contentType?: string;
     updateMetadataOnSubmit?: boolean;
+    leftLabels?: boolean;
 }
 
 export interface FormTab {
