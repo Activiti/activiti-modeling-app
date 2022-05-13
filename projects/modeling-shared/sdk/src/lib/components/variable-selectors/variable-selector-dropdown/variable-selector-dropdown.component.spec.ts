@@ -18,7 +18,7 @@
 import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
@@ -35,7 +35,7 @@ describe('VariableSelectorDropdownComponent', () => {
     let component: VariableSelectorDropdownComponent;
     let vars: ElementVariable[];
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 { provide: TranslationService, useClass: TranslationMock },
@@ -50,7 +50,7 @@ describe('VariableSelectorDropdownComponent', () => {
                 BrowserAnimationsModule
             ],
             declarations: [VariableSelectorComponent, VariableSelectorDropdownComponent]
-        }).compileComponents();
+        });
         vars = [];
         expectedVariables.filter((variable) => variable.variables && variable.variables.length > 0).forEach((element) => vars = vars.concat(element.variables));
 
@@ -59,7 +59,7 @@ describe('VariableSelectorDropdownComponent', () => {
         component.variables = expectedVariables;
         component.ngOnInit();
         fixture.detectChanges();
-    }));
+    });
 
     it('should display the variable selector when clicking on the select', async () => {
         const dropdown = fixture.debugElement.query(By.css('.modelingsdk-variable-selector-dropdown-input'));

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { ProcessModelerServiceImplementation } from './process-modeler.service';
 import { BpmnFactoryToken, ModelerInitOptions, MESSAGE, XmlParsingProblem } from '@alfresco-dbp/modeling-shared/sdk';
 import { BpmnFactoryMock } from './bpmn-js/bpmn-js.mock';
@@ -27,15 +27,15 @@ describe('ProcessModelerServiceImplementation', () => {
     let bpmnFactoryMock: BpmnFactoryMock;
     let initConfig: ModelerInitOptions;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [],
             providers: [
                 ProcessModelerServiceImplementation,
                 { provide: BpmnFactoryToken, useClass: BpmnFactoryMock }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         service = TestBed.inject(ProcessModelerServiceImplementation);
@@ -62,7 +62,7 @@ describe('ProcessModelerServiceImplementation', () => {
         function expectEventHandlersCalledTimes(times: number) {
             const handlers = Object.keys(initConfig);
             handlers.forEach(handler => {
-                expect(initConfig[handler].mock.calls.length).toEqual(times, `${handler} was not called in the right amount of number.`);
+                expect(initConfig[handler].mock.calls.length).toEqual(times);
             });
         }
 

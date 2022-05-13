@@ -15,8 +15,7 @@
  * limitations under the License.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -50,7 +49,7 @@ describe('PropertiesViewerArrayInputComponent', () => {
         close: jasmine.createSpy('close')
     };
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 NoopAnimationsModule,
@@ -76,9 +75,8 @@ describe('PropertiesViewerArrayInputComponent', () => {
                 provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
             ],
             schemas: [NO_ERRORS_SCHEMA]
-        })
-            .compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(PropertiesViewerArrayInputComponent);

@@ -18,7 +18,7 @@
 import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
@@ -42,7 +42,7 @@ describe('MappingVariableExpressionDropdownComponent', () => {
     let vars: ElementVariable[];
     let dialogService: DialogService;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 DialogService,
@@ -77,7 +77,7 @@ describe('MappingVariableExpressionDropdownComponent', () => {
                 VariablesModule
             ],
             declarations: [VariableSelectorComponent, MappingVariableExpressionDropdownComponent]
-        }).compileComponents();
+        });
         dialogService = TestBed.inject(DialogService);
         vars = [];
         expectedVariables.filter((variable) => variable.variables && variable.variables.length > 0).forEach((element) => vars = vars.concat(element.variables));
@@ -87,7 +87,7 @@ describe('MappingVariableExpressionDropdownComponent', () => {
         component.variables = expectedVariables;
         component.ngOnInit();
         fixture.detectChanges();
-    }));
+    });
 
     describe('variable selection', () => {
         it('should display the selected variable name in the dropdown input at start', () => {

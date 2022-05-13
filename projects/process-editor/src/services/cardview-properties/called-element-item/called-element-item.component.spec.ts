@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CardViewUpdateService, CardViewModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -50,7 +50,7 @@ describe('CalledElementComponent', () => {
         value: 'id2'
     };
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 FormBuilder,
@@ -78,8 +78,8 @@ describe('CalledElementComponent', () => {
             declarations: [CalledElementComponent],
             imports: [TranslateModule.forRoot(), CardViewModule],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(CalledElementComponent);

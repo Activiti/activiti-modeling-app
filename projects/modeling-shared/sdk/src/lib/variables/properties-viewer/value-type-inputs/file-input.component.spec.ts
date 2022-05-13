@@ -15,8 +15,7 @@
  * limitations under the License.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
@@ -34,7 +33,7 @@ describe('PropertiesViewerArrayInputComponent', () => {
     let fixture: ComponentFixture<PropertiesViewerFileInputComponent>;
     let component: PropertiesViewerFileInputComponent;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 MatSelectModule,
@@ -62,8 +61,8 @@ describe('PropertiesViewerArrayInputComponent', () => {
             ],
             declarations: [PropertiesViewerFileInputComponent],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(PropertiesViewerFileInputComponent);

@@ -16,18 +16,20 @@
  */
 
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { ProcessEditorElementVariablesService } from './process-editor-element-variables.service';
 import { provideProcessEditorElementVariablesProvider } from './process-editor-element-variables-provider.service';
-import { calledActivitiElement, CalledElementVariablesProviderService, expectedVariables, ProcessElementVariablesProviderService, sequenceFlowElement3, sequenceFlowElement4 } from '../mocks/process-editor.mock';
+import {
+    calledActivitiElement, CalledElementVariablesProviderService, expectedVariables, ProcessElementVariablesProviderService, sequenceFlowElement3, sequenceFlowElement4
+} from '../mocks/process-editor.mock';
 import { Store } from '@ngrx/store';
 import { ElementVariable } from '../api/types';
 
 describe('ProcessEditorElementVariablesService', () => {
     let service: ProcessEditorElementVariablesService;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 {
@@ -41,7 +43,7 @@ describe('ProcessEditorElementVariablesService', () => {
                 provideProcessEditorElementVariablesProvider(CalledElementVariablesProviderService)
             ]
         });
-    }));
+    });
 
     beforeEach(() => {
         service = TestBed.inject(ProcessEditorElementVariablesService);
@@ -49,7 +51,7 @@ describe('ProcessEditorElementVariablesService', () => {
 
     describe('Implicit mapping', () => {
         beforeEach(() => {
-            jest.spyOn<any, any>(service, 'isMappingOutputsImplicitly').mockImplementation((processId, elementId) => {
+            jest.spyOn<any, any>(service, 'isMappingOutputsImplicitly').mockImplementation((processId) => {
                 if (processId) {
                     return of(true);
                 } else {
@@ -82,9 +84,7 @@ describe('ProcessEditorElementVariablesService', () => {
 
     describe('Explicit mapping', () => {
         beforeEach(() => {
-            jest.spyOn<any, any>(service, 'isMappingOutputsImplicitly').mockImplementation((processId, elementId) => {
-                return of(false);
-            });
+            jest.spyOn<any, any>(service, 'isMappingOutputsImplicitly').mockImplementation(() => of(false));
         });
 
         it('should retrieve only process variables mapping is explicit', async () => {

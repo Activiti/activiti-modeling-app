@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { FormsModule } from '@angular/forms';
 import { MatDialogRef, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -40,7 +40,7 @@ describe('VariablesComponent', () => {
         propertiesUpdate$: new Subject()
     };
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 { provide: CodeValidatorService, useValue: { validator: jest.fn() } },
@@ -52,8 +52,8 @@ describe('VariablesComponent', () => {
             declarations: [VariablesComponent],
             imports: [FormsModule, NoopAnimationsModule, MatDialogModule, TranslateModule.forRoot()],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(VariablesComponent);

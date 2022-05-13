@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { CardViewDueDateItemComponent } from './due-date-item.component';
 import { CardViewUpdateService, CoreTestingModule } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
@@ -69,7 +69,7 @@ describe('CardViewDueDateItemComponent', () => {
         }
     };
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 FormBuilder,
@@ -88,8 +88,8 @@ describe('CardViewDueDateItemComponent', () => {
                 NoopAnimationsModule
             ],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(CardViewDueDateItemComponent);

@@ -16,7 +16,7 @@
  */
 
 import { PluginRoutesManagerService } from './plugin-routes-manager.service';
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { RouterModule, Router, Route } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 import { MatButtonModule, MatButton } from '@angular/material/button';
@@ -35,7 +35,7 @@ describe('PluginRoutesManagerService', () => {
     let service: PluginRoutesManagerService;
     let router: Router;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 RouterModule.forRoot([]),
@@ -44,8 +44,8 @@ describe('PluginRoutesManagerService', () => {
             providers: [
                 { provide: APP_BASE_HREF, useValue: '/' }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         service = TestBed.inject(PluginRoutesManagerService);

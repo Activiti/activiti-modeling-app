@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
@@ -194,9 +194,9 @@ describe('MappingDialogComponent', () => {
     }
 
     describe('Display existing input mapping', () => {
-        beforeEach(async(() => {
+        beforeEach(() => {
             setUpTestBed(mockDialogDataInputMapping);
-        }));
+        });
 
         it('should render input mapping table correctly', () => {
             const parameters = Object.values(mockDialogDataInputMapping.inputParameters).sort(fixture.componentInstance.sortByName);
@@ -242,9 +242,9 @@ describe('MappingDialogComponent', () => {
 
     describe('Display custom table headers in input mapping', () => {
 
-        beforeEach(async(() => {
+        beforeEach(() => {
             setUpTestBed(mockDialogDataInputMappingCustomHeaders);
-        }));
+        });
 
         it('should render input mapping table with custom headers', () => {
             const headers = element.queryAll(By.css('div.ama-mapping-table-viewer mat-header-cell'));
@@ -257,9 +257,9 @@ describe('MappingDialogComponent', () => {
     });
 
     describe('Display existing output mapping', () => {
-        beforeEach(async(() => {
+        beforeEach(() => {
             setUpTestBed(mockDialogDataOutputMapping);
-        }));
+        });
 
         it('should render output mapping table correctly', () => {
             const outputMapping = Object.keys(mockDialogDataOutputMapping.outputMapping);

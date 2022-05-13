@@ -17,7 +17,7 @@
 
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { SimpleChanges } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -33,7 +33,7 @@ describe('PreferProjectButton', () => {
     let fixture: ComponentFixture<PreferProjectButtonComponent>;
     let store: Store<AmaState>;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 MatTooltipModule,
@@ -52,8 +52,8 @@ describe('PreferProjectButton', () => {
                 },
                 { provide: TranslationService, useClass: TranslationMock }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(PreferProjectButtonComponent);

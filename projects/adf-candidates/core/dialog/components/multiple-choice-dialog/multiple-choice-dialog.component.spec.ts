@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MultipleChoiceDialogComponent } from './multiple-choice-dialog.component';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -51,14 +51,14 @@ describe('MultipleChoiceDialog Component', () => {
                 { provide: MAT_DIALOG_DATA, useValue: customMockDialogData },
                 { provide: TranslationService, useClass: TranslationMock }
             ]
-        }).compileComponents();
+        });
     }
 
     describe('For tests with no injected value for title and subtitle', () => {
-        beforeEach(async(() => {
+        beforeEach(() => {
             mockDialogData.subject = new Subject<MultipleChoiceDialogReturnType<fakeType>>();
             setUpTestBed(mockDialogData);
-        }));
+        });
 
         beforeEach(() => {
             fixture = TestBed.createComponent<MultipleChoiceDialogComponent<fakeType>>(MultipleChoiceDialogComponent);
@@ -69,7 +69,7 @@ describe('MultipleChoiceDialog Component', () => {
     });
 
     describe('For tests with injected value for title and subtitle', () => {
-        beforeEach(async(() => {
+        beforeEach(() => {
             mockDialogData.subject = new Subject<MultipleChoiceDialogReturnType<fakeType>>();
             mockDialogData.title = 'Test title';
             mockDialogData.subtitle = 'Do you want to save the changes made to your model?';
@@ -79,7 +79,7 @@ describe('MultipleChoiceDialog Component', () => {
                 { title: 'Save', choice: fakeType.WITH_SAVE }
             ];
             setUpTestBed(mockDialogData);
-        }));
+        });
 
         beforeEach(() => {
             fixture = TestBed.createComponent<MultipleChoiceDialogComponent<fakeType>>(MultipleChoiceDialogComponent);

@@ -16,7 +16,7 @@
  */
 
 import { UploadFileButtonComponent } from './upload-file-button.component';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,7 +29,7 @@ describe('UploadFileButtonComponent', () => {
     let fixture: ComponentFixture<UploadFileButtonComponent>;
     let store: Store<AmaState>;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 TranslateModule.forRoot(),
@@ -55,8 +55,8 @@ describe('UploadFileButtonComponent', () => {
                     multi: true
                 }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(UploadFileButtonComponent);

@@ -16,7 +16,7 @@
  */
 
 import { VariableMappingTypeComponent } from './variable-mapping.component';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,7 +31,7 @@ describe('VariableMappingComponent', () => {
     let fixture: ComponentFixture<VariableMappingTypeComponent>;
     let component: VariableMappingTypeComponent;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 CoreModule,
@@ -48,8 +48,8 @@ describe('VariableMappingComponent', () => {
                 { provide: TranslationService, useClass: TranslationMock },
             ],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(VariableMappingTypeComponent);
@@ -57,7 +57,7 @@ describe('VariableMappingComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should validate the 2 mapping type options', async () => {
+    it('should validate the 2 mapping type options', () => {
         fixture.detectChanges();
         const select1 = fixture.debugElement.query(By.css('[data-automation-id="mapping-type"] mat-select'));
         select1.nativeElement.click();

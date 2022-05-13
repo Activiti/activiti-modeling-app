@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
@@ -37,7 +37,7 @@ describe('EntityDialogContentComponent', () => {
         action: CreateProjectAttemptAction
     };
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [TranslateModule.forRoot(), NoopAnimationsModule, MatDialogModule],
             declarations: [EntityDialogContentComponent],
@@ -46,8 +46,8 @@ describe('EntityDialogContentComponent', () => {
                 { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
             ],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EntityDialogContentComponent);

@@ -34,11 +34,10 @@ describe('ProcessCategorySelectorComponent', () => {
     const allCategories = ['Category 1', 'Category 2', OTHER_CATEGORY];
     const processCategoryInputSelectorId = '[data-automation-id="process-category-selector-input"]';
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
+    beforeEach(() => {
+        TestBed.configureTestingModule({
             declarations: [ ProcessCategorySelectorComponent ]
-        })
-            .compileComponents();
+        });
     });
 
     beforeEach(() => {

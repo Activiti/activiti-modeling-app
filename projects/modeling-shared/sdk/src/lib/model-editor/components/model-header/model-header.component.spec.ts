@@ -17,7 +17,7 @@
 
 import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { CommonModule } from '@angular/common';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { By } from '@angular/platform-browser';
@@ -139,13 +139,13 @@ describe('ModelHeaderComponent', () => {
             return menuButtons;
         }),
         setDisable: jest.fn().mockImplementation(() => of()),
-        dispatchEvent: jest.fn().mockImplementation((value) => of()),
+        dispatchEvent: jest.fn().mockImplementation(() => of()),
     };
 
     let fixture: ComponentFixture<ModelHeaderComponent>;
     let component: ModelHeaderComponent;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule,
@@ -175,8 +175,8 @@ describe('ModelHeaderComponent', () => {
                     }
                 }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ModelHeaderComponent);

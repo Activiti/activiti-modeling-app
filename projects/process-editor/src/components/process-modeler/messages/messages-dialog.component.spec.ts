@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MessagesDialogComponent } from './messages-dialog.component';
@@ -47,7 +47,7 @@ describe('MessageDialogComponent', () => {
         { 'id': '345', 'name': 'message3', 'type': 'bpmn:message' }
     ];
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 { provide: MatDialogRef, useValue: mockDialog },
@@ -59,7 +59,7 @@ describe('MessageDialogComponent', () => {
             imports: [MatTableModule, TranslateModule.forRoot(), MatDialogModule],
             schemas: [NO_ERRORS_SCHEMA]
         });
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(MessagesDialogComponent);

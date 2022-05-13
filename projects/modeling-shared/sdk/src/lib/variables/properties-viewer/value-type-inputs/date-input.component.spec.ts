@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationService, TranslationMock, CoreModule } from '@alfresco/adf-core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -32,7 +32,7 @@ describe('PropertiesViewerDateInputComponent', () => {
     let component: PropertiesViewerDateInputComponent;
     let fixture: ComponentFixture<PropertiesViewerDateInputComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 NoopAnimationsModule,
@@ -51,8 +51,8 @@ describe('PropertiesViewerDateInputComponent', () => {
                 { provide: TranslationService, useClass: TranslationMock }
             ],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(PropertiesViewerDateInputComponent);

@@ -53,7 +53,7 @@ describe('CreateProcessDialogComponent', () => {
     };
 
     beforeEach(async () => {
-        await TestBed.configureTestingModule({
+        TestBed.configureTestingModule({
             imports: [
                 TranslateModule.forRoot(),
                 NoopAnimationsModule,
@@ -76,7 +76,7 @@ describe('CreateProcessDialogComponent', () => {
                 { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
             ],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
+        });
 
         createProjectAttemptActionMock.mockClear();
 

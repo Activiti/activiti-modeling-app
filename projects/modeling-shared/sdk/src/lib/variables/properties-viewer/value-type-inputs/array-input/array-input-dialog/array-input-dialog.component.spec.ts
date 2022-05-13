@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
@@ -87,13 +87,13 @@ describe('ArrayInputDialogComponent', () => {
                 { provide: MAT_DIALOG_DATA, useValue: customMockDialogData },
                 { provide: TranslationService, useClass: TranslationMock }
             ]
-        }).compileComponents();
+        });
     }
 
     describe('Creating', () => {
-        beforeEach(async(() => {
+        beforeEach(() => {
             setUpTestBed(mockDialogDataCreate);
-        }));
+        });
 
         beforeEach(() => {
             fixture = TestBed.createComponent(ArrayInputDialogComponent);
@@ -122,9 +122,9 @@ describe('ArrayInputDialogComponent', () => {
     });
 
     describe('Editing', () => {
-        beforeEach(async(() => {
+        beforeEach(() => {
             setUpTestBed(mockDialogDataEdit);
-        }));
+        });
 
         beforeEach(() => {
             fixture = TestBed.createComponent(ArrayInputDialogComponent);

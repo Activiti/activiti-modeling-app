@@ -18,7 +18,7 @@
 import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
@@ -34,7 +34,7 @@ describe('VariableSelectorComponent', () => {
     let component: VariableSelectorComponent;
     let vars: ElementVariable[];
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 { provide: TranslationService, useClass: TranslationMock },
@@ -49,7 +49,7 @@ describe('VariableSelectorComponent', () => {
                 BrowserAnimationsModule
             ],
             declarations: [VariableSelectorComponent]
-        }).compileComponents();
+        });
         vars = [];
         expectedVariables.filter((variable) => variable.variables && variable.variables.length > 0).forEach((element) => vars = vars.concat(element.variables));
 
@@ -58,7 +58,7 @@ describe('VariableSelectorComponent', () => {
         component.variables = expectedVariables;
         component.ngOnInit();
         fixture.detectChanges();
-    }));
+    });
 
     it('should display variable list', () => {
         const variableIcons = fixture.debugElement.queryAll(By.css('.ama-variables-selector-variables-group-list-item-type'));

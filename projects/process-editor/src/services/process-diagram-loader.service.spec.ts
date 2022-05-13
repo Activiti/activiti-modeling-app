@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { ProcessDiagramLoaderService } from './process-diagram-loader.service';
 import { ProcessModelerServiceImplementation } from './process-modeler.service';
 import {
@@ -43,7 +43,7 @@ describe('ProcessDiagramLoaderService', () => {
     let store: Store<any>;
     let logFactory: LogFactoryService;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [],
             providers: [
@@ -57,8 +57,8 @@ describe('ProcessDiagramLoaderService', () => {
                     }
                 }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         logFactory = TestBed.inject(LogFactoryService);

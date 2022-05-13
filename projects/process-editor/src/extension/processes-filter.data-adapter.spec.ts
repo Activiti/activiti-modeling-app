@@ -17,7 +17,7 @@
 
 import { Store } from '@ngrx/store';
 import { ProcessesFilterDataAdapter } from './processes-filter.data-adapter';
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { cold } from 'jasmine-marbles';
 import { PROCESS, AmaState } from '@alfresco-dbp/modeling-shared/sdk';
@@ -27,7 +27,7 @@ describe('ProcessesFilterDataAdapter ', () => {
     let store: Store<AmaState>;
     let processFilterDataAdapter: ProcessesFilterDataAdapter;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [],
             declarations: [],
@@ -47,8 +47,8 @@ describe('ProcessesFilterDataAdapter ', () => {
                     }
                 }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         store = TestBed.inject(Store);

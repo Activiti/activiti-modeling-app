@@ -15,8 +15,7 @@
  * limitations under the License.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,7 +32,7 @@ describe('PropertiesViewerEnumInputComponent', () => {
     let dropdownElement: DebugElement;
     let allOptions: DebugElement[];
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 NoopAnimationsModule,
@@ -45,8 +44,8 @@ describe('PropertiesViewerEnumInputComponent', () => {
             providers: [
                 { provide: TranslationService, useClass: TranslationMock }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(PropertiesViewerEnumInputComponent);

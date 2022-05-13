@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CardViewProcessVariablesItemComponent } from './process-variable-item.component';
 import { Store } from '@ngrx/store';
 import { ProcessEditorState } from '../../../store/process-editor.state';
@@ -29,14 +29,14 @@ describe('ProcessVariableItemComponent', () => {
     let component: CardViewProcessVariablesItemComponent;
     let store: Store<ProcessEditorState>;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [{provide: Store, useValue: { dispatch: jest.fn()}}],
             declarations: [CardViewProcessVariablesItemComponent],
             imports: [TranslateModule.forRoot()],
             schemas: [ NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(CardViewProcessVariablesItemComponent);

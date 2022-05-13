@@ -50,8 +50,8 @@ describe('PropertyTypeSelectorSmartComponent', () => {
         description: 'this is a test property'
     };
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
+    beforeEach(() => {
+        TestBed.configureTestingModule({
             imports: [
                 NoopAnimationsModule,
                 MatFormFieldModule,
@@ -73,8 +73,7 @@ describe('PropertyTypeSelectorSmartComponent', () => {
                 provideInputTypeItemHandler('employee', PropertiesViewerJsonInputComponent, 'json', exampleJSONSchema),
                 provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
             ]
-        })
-            .compileComponents();
+        });
     });
 
     beforeEach(() => {
@@ -85,10 +84,6 @@ describe('PropertyTypeSelectorSmartComponent', () => {
         component.property = { ...property };
         component.ngOnChanges({ property: { currentValue: property, previousValue: null, firstChange: false, isFirstChange: () => false } });
         fixture.detectChanges();
-    });
-
-    it('should create', () => {
-        expect(component).toBeTruthy();
     });
 
     it('should initialize values on init', () => {

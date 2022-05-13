@@ -15,8 +15,7 @@
  * limitations under the License.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
@@ -34,7 +33,7 @@ describe('ProcessNameSelectorComponent', () => {
     let fixture: ComponentFixture<ProcessNameSelectorComponent>;
     let processService: ProcessService;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 NoopAnimationsModule,
@@ -46,37 +45,32 @@ describe('ProcessNameSelectorComponent', () => {
                 AmaApi,
                 {
                     provide: Store, useValue: {
-                        select: jest.fn().mockImplementation(selector => {
-                            return of('testProjectId');
-                        }),
+                        select: jest.fn().mockImplementation(() => of('testProjectId')),
                         dispatch: jest.fn()
                     }
                 },
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: ProcessService, useValue: {
-                        getProcesses: jest.fn().mockImplementation(projectId => {
-                            return of({
-                                testProcess: [{
-                                    processName: 'testProcessName',
-                                    processDefinitionId: 'testProcessDefinitionId',
-                                    processProperties: []
-                                }],
-                                testProcess1: [{
-                                    processName: 'testProcessName1',
-                                    processDefinitionId: 'testProcessDefinitionId1',
-                                    processProperties: []
-                                }]
-                            });
-                        }),
+                        getProcesses: jest.fn().mockImplementation(() => of({
+                            testProcess: [{
+                                processName: 'testProcessName',
+                                processDefinitionId: 'testProcessDefinitionId',
+                                processProperties: []
+                            }],
+                            testProcess1: [{
+                                processName: 'testProcessName1',
+                                processDefinitionId: 'testProcessDefinitionId1',
+                                processProperties: []
+                            }]
+                        })),
                         dispatch: jest.fn()
                     }
                 }
             ],
             schemas: [NO_ERRORS_SCHEMA]
-        })
-            .compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ProcessNameSelectorComponent);

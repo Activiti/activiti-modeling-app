@@ -17,7 +17,7 @@
 
 import { AllowedCharactersDirective } from './allowed-characters.directive';
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { TestBed, async, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { AmaState } from '../../store/app.state';
@@ -43,7 +43,7 @@ describe('AllowedCharactersDirective', () => {
         fixture: ComponentFixture<TestComponent>,
         store: Store<AmaState>;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [CommonModule],
             declarations: [
@@ -55,8 +55,8 @@ describe('AllowedCharactersDirective', () => {
                 { provide: TranslateService, useValue: { instant: jest.fn() } },
                 { provide: TranslationService, useClass: TranslationMock }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TestComponent);

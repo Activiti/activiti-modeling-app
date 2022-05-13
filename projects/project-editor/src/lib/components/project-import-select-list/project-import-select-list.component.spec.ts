@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
@@ -102,8 +102,13 @@ describe('ProjectImportSelectListComponent', () => {
     let component: ProjectImportSelectListComponent;
     let store: Store<AmaState>;
 
-    beforeEach(async(() => {
+    function openModelTypeSelect() {
+        const importerSelector = fixture.nativeElement.querySelector('#ama-model-importers-select-object');
+        importerSelector.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+    }
 
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 TranslateModule.forRoot(),
@@ -125,7 +130,7 @@ describe('ProjectImportSelectListComponent', () => {
             schemas: [NO_ERRORS_SCHEMA],
             declarations: [ProjectImportSelectListComponent]
         });
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ProjectImportSelectListComponent);

@@ -16,7 +16,7 @@
  */
 
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
@@ -44,7 +44,7 @@ describe('PropertiesViewerJsonInputComponent', () => {
     let component: PropertiesViewerJsonInputComponent;
     let fixture: ComponentFixture<PropertiesViewerJsonInputComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 NoopAnimationsModule,
@@ -76,8 +76,8 @@ describe('PropertiesViewerJsonInputComponent', () => {
                 { provide: Store, useValue: { dispatch: jest.fn() } },
                 provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider)
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(PropertiesViewerJsonInputComponent);

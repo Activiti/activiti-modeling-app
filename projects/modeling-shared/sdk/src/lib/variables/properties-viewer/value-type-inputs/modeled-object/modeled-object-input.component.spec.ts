@@ -15,8 +15,7 @@
  * limitations under the License.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -58,7 +57,7 @@ describe('PropertiesViewerModeledObjectInputComponent', () => {
 
     const value = { name: 'one' };
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 NoopAnimationsModule,
@@ -91,8 +90,8 @@ describe('PropertiesViewerModeledObjectInputComponent', () => {
                 { provide: TranslationService, useClass: TranslationMock },
                 { provide: Store, useValue: { dispatch: jest.fn() } }
             ]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(PropertiesViewerModeledObjectInputComponent);

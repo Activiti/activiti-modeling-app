@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { ProjectTreeFilterComponent } from './project-tree-filter.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA, SimpleChanges } from '@angular/core';
-import { SharedModule, PROCESS, MODEL_CREATORS, ModelScope, CONNECTOR, Filter } from '@alfresco-dbp/modeling-shared/sdk';
+import { SharedModule, PROCESS, MODEL_CREATORS, ModelScope, CONNECTOR } from '@alfresco-dbp/modeling-shared/sdk';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslationMock, TranslationService, AppConfigService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
@@ -35,7 +35,7 @@ describe('ProjectTreeFilterComponent ', () => {
     let component: ProjectTreeFilterComponent;
     let appConfig: AppConfigService;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
                 MatExpansionModule,
@@ -66,8 +66,8 @@ describe('ProjectTreeFilterComponent ', () => {
                 AppConfigService
             ],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ProjectTreeFilterComponent);
@@ -177,8 +177,8 @@ describe('ProjectTreeFilterComponent ', () => {
         };
 
         const contents = [{ 'id': 'process1', 'name': 'local-process', 'category': 'cat1' },
-                          { 'id': 'process2', 'name': 'global-process', 'category': 'cat2' },
-                          { 'id': 'process3', 'name': 'global-process-2', 'category': 'cat1' }];
+            { 'id': 'process2', 'name': 'global-process', 'category': 'cat2' },
+            { 'id': 'process3', 'name': 'global-process-2', 'category': 'cat1' }];
 
         const changes: SimpleChanges = {
             contents: {
@@ -286,7 +286,7 @@ describe('ProjectTreeFilterComponent ', () => {
         };
 
         const content = [{ 'name': 'Default_a', 'category': 'http://bpmn.io/schema/bpmn' },
-                         { 'name': 'Default_b', 'category': 'newCategory' }];
+            { 'name': 'Default_b', 'category': 'newCategory' }];
 
         const change: SimpleChanges = {
             contents: {

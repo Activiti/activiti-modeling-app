@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EntityDialogComponent } from './entity-dialog.component';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
@@ -35,9 +35,7 @@ describe('EntityDialogComponent', () => {
 
     const callback = jest.fn();
     const createProjectAttemptActionImplementationMock = jest.fn();
-    const createProjectAttemptActionMock = jest.fn().mockImplementation(() => {
-        return createProjectAttemptActionImplementationMock;
-    });
+    const createProjectAttemptActionMock = jest.fn().mockImplementation(() => createProjectAttemptActionImplementationMock);
 
     const mockDialog = {
         close: jest.fn()
@@ -56,8 +54,8 @@ describe('EntityDialogComponent', () => {
         callback
     };
 
-    beforeEach(async(async () => {
-        await TestBed.configureTestingModule({
+    beforeEach(() => {
+        TestBed.configureTestingModule({
             imports: [TranslateModule.forRoot(), NoopAnimationsModule, MatDialogModule],
             declarations: [EntityDialogComponent, EntityDialogContentComponent],
             providers: [
@@ -67,10 +65,10 @@ describe('EntityDialogComponent', () => {
                 { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
             ],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
+        });
 
         createProjectAttemptActionMock.mockClear();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EntityDialogComponent);

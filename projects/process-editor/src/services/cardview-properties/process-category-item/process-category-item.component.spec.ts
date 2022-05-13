@@ -40,7 +40,7 @@ describe('CardProcessCategoryItemComponent', () => {
     let categoryItemComponent: CardProcessCategoryItemComponent;
 
     beforeEach(async () => {
-        await TestBed.configureTestingModule({
+        TestBed.configureTestingModule({
             imports: [
                 TranslateModule.forRoot(),
                 NoopAnimationsModule,
@@ -63,7 +63,7 @@ describe('CardProcessCategoryItemComponent', () => {
                 { provide: ProcessModelerServiceToken, useValue: processModelerServiceMock },
                 { provide: TranslationService, useClass: TranslationMock },
             ]
-        }).compileComponents();
+        });
 
         const componentInput = {
             data: {

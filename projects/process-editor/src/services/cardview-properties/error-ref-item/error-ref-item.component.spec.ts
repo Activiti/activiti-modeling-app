@@ -16,7 +16,7 @@
  */
 
 import { CardViewErrorRefItemComponent } from './error-ref-item.component';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {
     ProcessModelerServiceToken, selectProjectConnectorsArray,
     selectSelectedProjectId, ErrorProvidersToken, SCRIPT, CONNECTOR
@@ -138,7 +138,7 @@ describe('CardViewErrorRefItemComponent', () => {
         prepareEntities: jest.fn()
     };
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 {
@@ -190,8 +190,8 @@ describe('CardViewErrorRefItemComponent', () => {
             declarations: [CardViewErrorRefItemComponent],
             imports: [TranslateModule.forRoot(), RouterTestingModule],
             schemas: [NO_ERRORS_SCHEMA]
-        }).compileComponents();
-    }));
+        });
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(CardViewErrorRefItemComponent);

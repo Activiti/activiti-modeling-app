@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoDialogComponent } from './info-dialog.component';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -44,14 +44,14 @@ describe('InfoDialog Component', () => {
                 { provide: MAT_DIALOG_DATA, useValue: customMockDialogData },
                 { provide: TranslationService, useClass: TranslationMock }
             ]
-        }).compileComponents();
+        });
     }
 
     describe('For tests with no injected value for title and subtitle', () => {
-        beforeEach(async(() => {
+        beforeEach(() => {
             mockDialogData.subject = new Subject<boolean>();
             setUpTestBed(mockDialogData);
-        }));
+        });
 
         beforeEach(() => {
             fixture = TestBed.createComponent(InfoDialogComponent);
@@ -68,14 +68,14 @@ describe('InfoDialog Component', () => {
     });
 
     describe('For tests with injected value for title and subtitle', () => {
-        beforeEach(async(() => {
+        beforeEach(() => {
             mockDialogData.subject = new Subject<boolean>();
             mockDialogData.title = 'Test title';
             mockDialogData.subtitle = 'Test subtitle';
             mockDialogData.messages = ['error'];
 
             setUpTestBed(mockDialogData);
-        }));
+        });
 
         beforeEach(() => {
             fixture = TestBed.createComponent(InfoDialogComponent);

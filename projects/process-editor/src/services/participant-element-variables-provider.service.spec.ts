@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { ParticipantElementVariablesProviderService } from './participant-element-variables-provider.service';
@@ -24,7 +24,7 @@ import { participantVariablesProviderElement, participantVariablesProviderVariab
 describe('ParticipantElementVariablesProviderService', () => {
     let service: ParticipantElementVariablesProviderService;
 
-    beforeEach(async(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
                 ParticipantElementVariablesProviderService,
@@ -58,7 +58,7 @@ describe('ParticipantElementVariablesProviderService', () => {
                 }
             ]
         });
-    }));
+    });
 
     beforeEach(() => {
         service = TestBed.inject(ParticipantElementVariablesProviderService);
