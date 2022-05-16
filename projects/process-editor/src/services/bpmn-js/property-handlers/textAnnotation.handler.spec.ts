@@ -22,7 +22,7 @@ import { getModelingMock, getDiagramElementMock } from '../bpmn-js.mock';
 describe('textAnnotationHandler', () => {
     const property = BpmnProperty.textAnnotation;
 
-    let handler: { get, set };
+    let handler: { get; set };
     let mockElement: Bpmn.DiagramElement ;
     let modeling: Bpmn.Modeling;
 

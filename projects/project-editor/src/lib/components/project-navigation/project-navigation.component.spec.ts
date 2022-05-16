@@ -72,7 +72,7 @@ describe('ProjectNavigationComponent', () => {
                         }
                     },
                     AppConfigService
-            ],
+                ],
                 schemas: [NO_ERRORS_SCHEMA],
                 declarations: [ProjectNavigationComponent]
             });
@@ -125,7 +125,7 @@ describe('ProjectNavigationComponent', () => {
                         provide: Store,
                         useValue: { select() { return of(true); }, dispatch: jest.fn()}
                     }
-            ],
+                ],
                 schemas: [NO_ERRORS_SCHEMA],
                 declarations: [ProjectNavigationComponent]
             });

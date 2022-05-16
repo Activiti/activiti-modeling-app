@@ -35,7 +35,7 @@ export class ProjectTreeFilterComponent implements OnInit, OnChanges {
     @Input() loading: boolean;
     @Input() expanded: boolean;
 
-    @Output() opened = new EventEmitter<{ projectId: string; type: string, loadData: boolean }>();
+    @Output() opened = new EventEmitter<{ projectId: string; type: string; loadData: boolean }>();
     @Output() closed = new EventEmitter<{ type: string }>();
 
     contentsByCategory: ItemsByCategory<Filter>[] = [];

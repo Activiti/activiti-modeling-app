@@ -20,7 +20,7 @@ import { ElementVariable, ProcessEditorElementVariable, ProcessEditorElementWith
 import { BpmnElement } from '../process-editor/bpmn-element';
 import { ProcessEditorElementVariablesProvider } from '../services/process-editor-element-variables-provider.service';
 
-/*cspell: disable*/
+/* cspell: disable*/
 export const expectedVariables: ProcessEditorElementVariable[] = [
     {
         'source': {
@@ -210,7 +210,7 @@ export class CalledElementVariablesProviderService implements ProcessEditorEleme
     }
 }
 
-/*cspell: enable*/
+/* cspell: enable*/
 export const processExtensions = {
     extensions: {
         'CalledElementProcessDefinitionId': {

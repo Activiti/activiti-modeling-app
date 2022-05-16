@@ -30,7 +30,7 @@ export enum MODEL_SCHEMA_TYPE {
     AUTHENTICATION = 'AUTHENTICATION'
 }
 
-export interface JsonArray extends Array<string|number|boolean|Date|Json|JsonArray> { }
+export type JsonArray = Array<string|number|boolean|Date|Json|JsonArray>;
 export interface Json {
     [key: string]: string|number|boolean|Date|Json|JsonArray;
 }

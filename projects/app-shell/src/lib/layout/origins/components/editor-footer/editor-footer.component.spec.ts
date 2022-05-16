@@ -33,7 +33,7 @@ import { LogHistoryComponent } from '../log-history/log-history.component';
 import { LogHistoryEntryComponent } from '../log-history/log-history-entry/log-history-entry.component';
 import { of } from 'rxjs';
 
- describe('EditorFooterComponent', () => {
+describe('EditorFooterComponent', () => {
 
     let fixture: ComponentFixture<EditorFooterComponent>;
 
@@ -73,7 +73,7 @@ import { of } from 'rxjs';
                 provideLogFilter({
                     key: '*',
                     displayName: 'SDK.ALL'
-            })
+                })
             ]
         });
 
@@ -95,4 +95,4 @@ import { of } from 'rxjs';
         const loading = fixture.debugElement.query(By.css('.loading-indicator'));
         expect(loading).toBeNull();
     });
- });
+});

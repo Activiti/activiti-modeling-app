@@ -50,37 +50,23 @@ export const createProcessModelName = (text: string) => {
     return sanitizedValue;
 };
 
-export const createModelName = (name) => {
-    return createProcessModelName(name.replace(PROCESS_FILE_FORMAT, ''));
-};
+export const createModelName = (name) => createProcessModelName(name.replace(PROCESS_FILE_FORMAT, ''));
 
-export const createDecisionTableName = (name) => {
-    return sanitizeString(name.replace(DECISION_TABLE_FILE_FORMAT, ''));
-};
+export const createDecisionTableName = (name) => sanitizeString(name.replace(DECISION_TABLE_FILE_FORMAT, ''));
 
 export const changeFileName = (file: File, newName: string): File => {
     const blob = file.slice(0, file.size, file.type);
     return new File([blob], newName, { type: file.type });
 };
 
-export const formatUuid = (contentType: string, uuid: string): string => {
-    return `${contentType.toLowerCase()}-${uuid}`;
-};
+export const formatUuid = (contentType: string, uuid: string): string => `${contentType.toLowerCase()}-${uuid}`;
 
 /* cspell: disable-next-line */
-export const getRandomCharsAndNums = (noOfCharStringLengths: number): string => {
-    return Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, noOfCharStringLengths);
+export const getRandomCharsAndNums = (noOfCharStringLengths: number): string => Math.random().toString(36).replace(/[^a-z0-9]+/g, '').substr(0, noOfCharStringLengths);
+
+export const variableNameValidator = (): ValidatorFn => (control: AbstractControl): { [key: string]: any } | null => {
+    const isTemplateNameValid = MODELER_NAME_REGEX.test(control.value) && control.value.length > 0;
+    return !isTemplateNameValid ? { 'invalidVariableName': { value: control.value } } : null;
 };
 
-export const variableNameValidator = (): ValidatorFn => {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-        const isTemplateNameValid = MODELER_NAME_REGEX.test(control.value) && control.value.length > 0;
-        return !isTemplateNameValid ? { 'invalidVariableName': { value: control.value } } : null;
-    };
-};
-
-export const availableVariableValidator = (variableNames: string[]): ValidatorFn => {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-        return variableNames.includes(control.value) ? { 'takenVariableName': { value: control.value } } : null;
-    };
-};
+export const availableVariableValidator = (variableNames: string[]): ValidatorFn => (control: AbstractControl): { [key: string]: any } | null => variableNames.includes(control.value) ? { 'takenVariableName': { value: control.value } } : null;

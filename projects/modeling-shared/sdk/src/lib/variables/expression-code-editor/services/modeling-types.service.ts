@@ -121,7 +121,7 @@ export class ModelingTypesService {
         return signatures;
     }
 
-    getModelSchemaFromEntityProperty(property: { type: string, model?: JSONSchemaInfoBasics }): JSONSchemaInfoBasics {
+    getModelSchemaFromEntityProperty(property: { type: string; model?: JSONSchemaInfoBasics }): JSONSchemaInfoBasics {
         if (property) {
             const modelSchema = property.model || primitiveTypesSchema.$defs.primitive[property.type] || {};
             return this.modelingJSONSchemaService.flatSchemaReference(modelSchema, true);
@@ -130,7 +130,7 @@ export class ModelingTypesService {
         }
     }
 
-    getFunctionsSuggestions(functions: { signature: string; type: string; documentation: string; }[]): any {
+    getFunctionsSuggestions(functions: { signature: string; type: string; documentation: string }[]): any {
         const suggestions = [];
         if (functions) {
             functions.filter(primitiveFunction => !!primitiveFunction).forEach(primitiveFunction => suggestions.push(this.getMethodSuggestion(primitiveFunction)));
@@ -165,29 +165,29 @@ export class ModelingTypesService {
             this.addModelingType(this.addTypeFromArrayOfTypes(jsonSchema.oneOf, modelingTypes, schemaName, jsonSchema, schemaName), schemaName, modelingTypes, true);
         } else if (jsonSchema.type) {
             switch (jsonSchema.type) {
-                case 'object':
-                    this.addModelingType({
-                        id: schemaName,
-                        methods: jsonModelType.methods,
-                        properties: this.getProperties(jsonSchema.properties, modelingTypes, schemaName, jsonSchema, schemaName)
-                    }, schemaName, modelingTypes);
-                    break;
-                case 'array':
-                    this.addModelingType({
-                        id: schemaName,
-                        methods: arrayModelType.methods,
-                        properties: arrayModelType.properties,
-                        collectionOf: this.getArrayCollectionType(jsonSchema.items, modelingTypes, schemaName, jsonSchema, schemaName)
-                    }, schemaName, modelingTypes);
-                    break;
-                case 'string':
-                    modelingTypes[schemaName] = { ...stringModelType, id: schemaName };
-                    break;
-                default:
-                    modelingTypes[schemaName] = {
-                        id: schemaName
-                    };
-                    break;
+            case 'object':
+                this.addModelingType({
+                    id: schemaName,
+                    methods: jsonModelType.methods,
+                    properties: this.getProperties(jsonSchema.properties, modelingTypes, schemaName, jsonSchema, schemaName)
+                }, schemaName, modelingTypes);
+                break;
+            case 'array':
+                this.addModelingType({
+                    id: schemaName,
+                    methods: arrayModelType.methods,
+                    properties: arrayModelType.properties,
+                    collectionOf: this.getArrayCollectionType(jsonSchema.items, modelingTypes, schemaName, jsonSchema, schemaName)
+                }, schemaName, modelingTypes);
+                break;
+            case 'string':
+                modelingTypes[schemaName] = { ...stringModelType, id: schemaName };
+                break;
+            default:
+                modelingTypes[schemaName] = {
+                    id: schemaName
+                };
+                break;
             }
         }
         if (existingModelingTypes?.length > 0) {
@@ -360,53 +360,53 @@ export class ModelingTypesService {
                 this.addModelingType(modelingType, typeName, modelingTypes);
             } else {
                 switch (property.type) {
-                    case 'object':
-                        this.addModelingType({
-                            id: typeName,
-                            methods: jsonModelType.methods,
-                            properties: this.getProperties(property.properties, modelingTypes, typeName, originalJsonSchema, schemaName)
-                        }, typeName, modelingTypes);
-                        break;
-                    case 'array':
-                        this.addModelingType({
-                            id: typeName,
-                            methods: arrayModelType.methods || [],
-                            properties: arrayModelType.properties || [],
-                            collectionOf: this.getArrayCollectionType(property.items, modelingTypes, typeName, originalJsonSchema, schemaName)
-                        }, typeName, modelingTypes);
-                        break;
-                    case 'string':
-                        if (!schemaName) {
-                            if (typeName === 'date' || typeName === 'datetime') {
-                                this.addModelingType({ ...dateModelType, id: typeName }, typeName, modelingTypes);
-                            } else {
-                                this.addModelingType({
-                                    id: 'string',
-                                    properties: stringModelType.properties || [],
-                                    methods: stringModelType.methods || []
-                                }, 'string', modelingTypes);
-                                typeName = 'string';
-                            }
+                case 'object':
+                    this.addModelingType({
+                        id: typeName,
+                        methods: jsonModelType.methods,
+                        properties: this.getProperties(property.properties, modelingTypes, typeName, originalJsonSchema, schemaName)
+                    }, typeName, modelingTypes);
+                    break;
+                case 'array':
+                    this.addModelingType({
+                        id: typeName,
+                        methods: arrayModelType.methods || [],
+                        properties: arrayModelType.properties || [],
+                        collectionOf: this.getArrayCollectionType(property.items, modelingTypes, typeName, originalJsonSchema, schemaName)
+                    }, typeName, modelingTypes);
+                    break;
+                case 'string':
+                    if (!schemaName) {
+                        if (typeName === 'date' || typeName === 'datetime') {
+                            this.addModelingType({ ...dateModelType, id: typeName }, typeName, modelingTypes);
                         } else {
+                            this.addModelingType({
+                                id: 'string',
+                                properties: stringModelType.properties || [],
+                                methods: stringModelType.methods || []
+                            }, 'string', modelingTypes);
                             typeName = 'string';
                         }
-                        break;
-                    case 'number':
-                        if (!schemaName) {
-                            this.addModelingType({
-                                id: 'integer'
-                            }, 'integer', modelingTypes);
-                        }
-                        typeName = 'integer';
-                        break;
-                    default:
-                        if (!schemaName) {
-                            this.addModelingType({
-                                id: property.type
-                            }, property.type, modelingTypes);
-                        }
-                        typeName = property.type;
-                        break;
+                    } else {
+                        typeName = 'string';
+                    }
+                    break;
+                case 'number':
+                    if (!schemaName) {
+                        this.addModelingType({
+                            id: 'integer'
+                        }, 'integer', modelingTypes);
+                    }
+                    typeName = 'integer';
+                    break;
+                default:
+                    if (!schemaName) {
+                        this.addModelingType({
+                            id: property.type
+                        }, property.type, modelingTypes);
+                    }
+                    typeName = property.type;
+                    break;
                 }
             }
         } else if (property.$ref) {

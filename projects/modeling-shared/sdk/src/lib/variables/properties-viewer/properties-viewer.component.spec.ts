@@ -361,14 +361,14 @@ describe('PropertiesViewerComponent', () => {
         displayNameInput.dispatchEvent(new Event('keyup'));
 
         const expected = JSON.stringify({
-                'generated-uuid': {
-                    'id': 'generated-uuid',
-                    'name': 'name',
-                    'type': 'string',
-                    'required': false,
-                    'display': true,
-                    'displayName': 'newColumn'
-               }}, null, 2);
+            'generated-uuid': {
+                'id': 'generated-uuid',
+                'name': 'name',
+                'type': 'string',
+                'required': false,
+                'display': true,
+                'displayName': 'newColumn'
+            }}, null, 2);
 
         expect(variablesServiceSpy).toHaveBeenLastCalledWith(expected, null);
     });

@@ -16,7 +16,7 @@
  */
 
 export const updateEventDefinitionProperty = (element: Bpmn.DiagramElement, propertyKey: string, value: any) => {
-    if (!!value) {
+    if (value) {
         element.businessObject.eventDefinitions[0][propertyKey] = value;
     } else {
         delete element.businessObject.eventDefinitions[0][propertyKey];

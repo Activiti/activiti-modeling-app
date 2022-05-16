@@ -80,8 +80,8 @@ describe('MainNavigationHeaderComponent', () => {
                 {
                     provide: Router,
                     useValue: {
-                       url: '/dashboard/projects',
-                       events: routerEventReplaySubject.asObservable()
+                        url: '/dashboard/projects',
+                        events: routerEventReplaySubject.asObservable()
                     }
                 },
                 {

@@ -22,11 +22,11 @@ export function extractProcessData(property: string, content: ProcessContent, me
     const description = getXmlContentByTagName('bpmn2:documentation', content);
 
     switch (property) {
-        case 'name':
-            return metadata.name;
-        case 'description':
-            return description;
-        default:
-            return null;
+    case 'name':
+        return metadata.name;
+    case 'description':
+        return description;
+    default:
+        return null;
     }
 }

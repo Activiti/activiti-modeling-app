@@ -31,7 +31,7 @@ export type FORM_WIDGET_TYPE = 'custom-form-widget';
 export type DATA_TYPE = 'data';
 export type AUTHENTICATION_TYPE = 'authentication';
 export type MODEL_TYPE = PROCESS_TYPE | FORM_TYPE | CONNECTOR_TYPE | DECISION_TABLE_TYPE | UI_TYPE | FILE_TYPE | SCRIPT_TYPE | TRIGGER_TYPE | CUSTOM_MODEL_TYPE
-    | FORM_WIDGET_TYPE | DATA_TYPE | AUTHENTICATION_TYPE;
+| FORM_WIDGET_TYPE | DATA_TYPE | AUTHENTICATION_TYPE;
 
 export const PROJECT: PROJECT_TYPE = 'project';
 export const CUSTOM_MODEL: CUSTOM_MODEL_TYPE = 'model';
@@ -165,7 +165,7 @@ export enum MappingType {
 
 export interface ServiceParameterMapping {
     [name: string]: {
-        type: MappingType,
+        type: MappingType;
         value: any;
     };
 }

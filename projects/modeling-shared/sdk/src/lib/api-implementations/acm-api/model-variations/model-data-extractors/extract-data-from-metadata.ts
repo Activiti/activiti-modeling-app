@@ -19,11 +19,11 @@ import { Model } from '../../../../api/types';
 
 export function extractDataFromMetadata<T, K extends Model>(property: string, content: T, metadata: K) {
     switch (property) {
-        case 'name':
-            return metadata.name;
-        case 'description':
-            return metadata.description ?? '';
-        default:
-            return null;
+    case 'name':
+        return metadata.name;
+    case 'description':
+        return metadata.description ?? '';
+    default:
+        return null;
     }
 }

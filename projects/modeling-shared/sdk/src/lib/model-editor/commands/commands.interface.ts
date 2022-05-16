@@ -31,10 +31,10 @@ export enum BasicModelCommands {
 }
 
 export interface UpdateActionLike {
-    new(payload: { modelId: string; modelContent: any, modelMetadata?: any });
+    new(payload: { modelId: string; modelContent: any; modelMetadata?: any });
 }
 export interface ValidateActionLike {
-    new(payload: { title: string; modelId: string; modelContent: any, modelMetadata?: any, action: Action | Action[], errorAction?: Action });
+    new(payload: { title: string; modelId: string; modelContent: any; modelMetadata?: any; action: Action | Action[]; errorAction?: Action });
 }
 export interface DeleteActionLike {
     new(modelId: string);

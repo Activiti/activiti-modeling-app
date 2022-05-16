@@ -46,16 +46,12 @@ export interface EntitiesState {
 
 export const getEntitiesState = createFeatureSelector<EntityMap<ModelEntitiesState>>('entities');
 
-export const selectModelsEntityContainer = (entityContainer: string) => {
-    return createSelector<object, EntityMap<ModelEntitiesState>, ModelEntitiesState>(
-        getEntitiesState,
-        state => state[entityContainer]
-    );
-};
+export const selectModelsEntityContainer = (entityContainer: string) => createSelector<object, EntityMap<ModelEntitiesState>, ModelEntitiesState>(
+    getEntitiesState,
+    state => state[entityContainer]
+);
 
-export const selectModelsLoaded = (entityContainer: string) => {
-    return createSelector(
-        selectModelsEntityContainer(entityContainer),
-        state => state.loaded
-    );
-};
+export const selectModelsLoaded = (entityContainer: string) => createSelector(
+    selectModelsEntityContainer(entityContainer),
+    state => state.loaded
+);

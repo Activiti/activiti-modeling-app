@@ -27,12 +27,12 @@ export type FeaturesInfo<T> = {
 };
 
 export interface Environment<T> {
-  production: boolean;
-  devTools: boolean;
-  e2e: boolean;
-  features: {
-      [Property in keyof T]: boolean
-  };
+    production: boolean;
+    devTools: boolean;
+    e2e: boolean;
+    features: {
+        [Property in keyof T]: boolean
+    };
 }
 
 @Injectable()
@@ -50,8 +50,8 @@ export class EnvironmentService<T> {
     describeFeatures() {
         return Object.keys(this.featuresInfo)
             .map<FeatureDescription & {active: boolean}>(key => ({
-                active: this.config.features[key],
-                ...this.featuresInfo[key]
-            }));
+            active: this.config.features[key],
+            ...this.featuresInfo[key]
+        }));
     }
 }

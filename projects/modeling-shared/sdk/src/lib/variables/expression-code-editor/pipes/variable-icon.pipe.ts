@@ -30,12 +30,12 @@ export class VariableIconPipe implements PipeTransform {
 
         if (!variable.aggregatedTypes || variable.aggregatedTypes.length === 1) {
             switch (variable.type) {
-                case 'datetime':
-                    return 'dt';
-                case 'folder':
-                    return 'fo';
-                default:
-                    return variable.type && variable.type.length > 0 ? variable.type.trim().substring(0, 1).toLowerCase() : '?';
+            case 'datetime':
+                return 'dt';
+            case 'folder':
+                return 'fo';
+            default:
+                return variable.type && variable.type.length > 0 ? variable.type.trim().substring(0, 1).toLowerCase() : '?';
             }
         } else {
             return 'm';

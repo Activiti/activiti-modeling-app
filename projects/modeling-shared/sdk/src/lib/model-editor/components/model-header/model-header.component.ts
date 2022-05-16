@@ -39,7 +39,7 @@ export class ModelHeaderComponent implements OnInit {
     menuButtons: ShowCommandButton[];
 
     constructor(@Inject(MODEL_COMMAND_SERVICE_TOKEN)
-                private modelCommands: ModelCommandsService) {
+    private modelCommands: ModelCommandsService) {
     }
 
     ngOnInit() {

@@ -15,19 +15,17 @@
  * limitations under the License.
  */
 
-const get = element => {
-    return element.businessObject.eventDefinitions[0].timeCycle ||
+const get = element => element.businessObject.eventDefinitions[0].timeCycle ||
         element.businessObject.eventDefinitions[0].timeDuration ||
         element.businessObject.eventDefinitions[0].timeDate;
-};
 
-const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: { type: string, definition: string }, bpmnFactory: Bpmn.Moddle) => {
+const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: { type: string; definition: string }, bpmnFactory: Bpmn.Moddle) => {
 
     delete element.businessObject.eventDefinitions[0].timeCycle;
     delete element.businessObject.eventDefinitions[0].timeDuration;
     delete element.businessObject.eventDefinitions[0].timeDate;
 
-    let timer = undefined;
+    let timer;
     timer = bpmnFactory.create('bpmn:FormalExpression', { body: value.definition });
     timer.$parent = element.businessObject.eventDefinitions[0];
     element.businessObject.eventDefinitions[0][value.type] = timer;

@@ -28,130 +28,130 @@ import { AmaTitleService } from '../../../services/title.service';
 import { selectAppDirtyState } from '../../../store/app.selectors';
 
 class MockComponent implements CanComponentDeactivate {
-  returnValue: Observable<boolean> = of(false);
+    returnValue: Observable<boolean> = of(false);
 
-  canDeactivate(): Observable<boolean> {
-    return this.returnValue;
-  }
+    canDeactivate(): Observable<boolean> {
+        return this.returnValue;
+    }
 }
 
 describe('UnsavedPageGuard', () => {
-  let mockComponent: MockComponent;
-  let unsavedPageGuard: UnsavedPageGuard;
-  let titleService: AmaTitleService;
-  let dialogService: DialogService;
-  const mockDialogRef = {
-    open: jasmine.createSpy('open'),
-    close: jasmine.createSpy('close')
-  };
-  let canDeactivateSpy: jasmine.Spy;
-  let titleServiceSpy: jasmine.Spy;
-  const modelMock = {};
-  let isDirtyState = true;
+    let mockComponent: MockComponent;
+    let unsavedPageGuard: UnsavedPageGuard;
+    let titleService: AmaTitleService;
+    let dialogService: DialogService;
+    const mockDialogRef = {
+        open: jasmine.createSpy('open'),
+        close: jasmine.createSpy('close')
+    };
+    let canDeactivateSpy: jasmine.Spy;
+    let titleServiceSpy: jasmine.Spy;
+    const modelMock = {};
+    let isDirtyState = true;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        MatDialogModule,
-        TranslateModule.forRoot(),
-        BrowserAnimationsModule
-      ],
-      providers: [
-        UnsavedPageGuard,
-        MockComponent,
-        DialogService,
-        {
-          provide: TranslationService,
-          useClass: TranslationMock
-        },
-        { provide: MatDialogRef, useValue: mockDialogRef },
-        {
-          provide: Store,
-          useValue: {
-              select: jest.fn().mockImplementation((selector) => {
-                  if (selector === selectAppDirtyState) {
-                      return of(isDirtyState);
-                  } else {
-                      return of(modelMock);
-                  }
-              })
-          },
-        },
-      ]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                MatDialogModule,
+                TranslateModule.forRoot(),
+                BrowserAnimationsModule
+            ],
+            providers: [
+                UnsavedPageGuard,
+                MockComponent,
+                DialogService,
+                {
+                    provide: TranslationService,
+                    useClass: TranslationMock
+                },
+                { provide: MatDialogRef, useValue: mockDialogRef },
+                {
+                    provide: Store,
+                    useValue: {
+                        select: jest.fn().mockImplementation((selector) => {
+                            if (selector === selectAppDirtyState) {
+                                return of(isDirtyState);
+                            } else {
+                                return of(modelMock);
+                            }
+                        })
+                    },
+                },
+            ]
+        });
     });
-  });
 
-  beforeEach(() => {
-    unsavedPageGuard = TestBed.inject(UnsavedPageGuard);
-    mockComponent = TestBed.inject(MockComponent);
-    dialogService = TestBed.inject(DialogService);
-    titleService = TestBed.inject(AmaTitleService);
-    titleServiceSpy = spyOn(titleService, 'setSavedTitle');
-  });
-
-  it('should instantiate UnsavedPageGuard', () => {
-    expect(unsavedPageGuard).toBeTruthy();
-  });
-
-  it('should not deactivate when choice is ABORT and canDeactivate method of component is not called', (done) => {
-    canDeactivateSpy = spyOn(mockComponent, 'canDeactivate');
-    spyOn(dialogService, 'openMultipleChoiceDialog').and.returnValue(of({dialogRef: mockDialogRef, choice: 'ABORT' }));
-
-    unsavedPageGuard.canDeactivate(mockComponent).subscribe((canDeactivate) => {
-      expect(canDeactivateSpy).not.toHaveBeenCalled();
-      expect(titleServiceSpy).not.toHaveBeenCalled();
-      expect(mockDialogRef.close).toHaveBeenCalled();
-      expect(canDeactivate).toEqual(false);
-      done();
+    beforeEach(() => {
+        unsavedPageGuard = TestBed.inject(UnsavedPageGuard);
+        mockComponent = TestBed.inject(MockComponent);
+        dialogService = TestBed.inject(DialogService);
+        titleService = TestBed.inject(AmaTitleService);
+        titleServiceSpy = spyOn(titleService, 'setSavedTitle');
     });
-  });
 
-  it('should deactivate when choice is WITHOUT_SAVE and canDeactivate method of component is not called', (done) => {
-    canDeactivateSpy = spyOn(mockComponent, 'canDeactivate');
-    spyOn(dialogService, 'openMultipleChoiceDialog').and.returnValue(of({dialogRef: mockDialogRef, choice: 'WITHOUT_SAVE' }));
-
-    unsavedPageGuard.canDeactivate(mockComponent).subscribe((canDeactivate) => {
-      expect(canDeactivateSpy).not.toHaveBeenCalled();
-      expect(titleServiceSpy).toHaveBeenCalled();
-      expect(mockDialogRef.close).toHaveBeenCalled();
-      expect(canDeactivate).toEqual(true);
-      done();
+    it('should instantiate UnsavedPageGuard', () => {
+        expect(unsavedPageGuard).toBeTruthy();
     });
-  });
 
-  it('should deactivate when choice is WITH_SAVE and when canDeactivate of component returns true', (done) => {
-    canDeactivateSpy = spyOn(mockComponent, 'canDeactivate').and.returnValue(of(true));
-    spyOn(dialogService, 'openMultipleChoiceDialog').and.returnValue(of({dialogRef: mockDialogRef, choice: 'WITH_SAVE' }));
+    it('should not deactivate when choice is ABORT and canDeactivate method of component is not called', (done) => {
+        canDeactivateSpy = spyOn(mockComponent, 'canDeactivate');
+        spyOn(dialogService, 'openMultipleChoiceDialog').and.returnValue(of({dialogRef: mockDialogRef, choice: 'ABORT' }));
 
-    unsavedPageGuard.canDeactivate(mockComponent).subscribe((canDeactivate) => {
-      expect(titleServiceSpy).toHaveBeenCalled();
-      expect(canDeactivateSpy).toHaveBeenCalled();
-      expect(mockDialogRef.close).toHaveBeenCalled();
-      expect(canDeactivate).toEqual(true);
-      done();
+        unsavedPageGuard.canDeactivate(mockComponent).subscribe((canDeactivate) => {
+            expect(canDeactivateSpy).not.toHaveBeenCalled();
+            expect(titleServiceSpy).not.toHaveBeenCalled();
+            expect(mockDialogRef.close).toHaveBeenCalled();
+            expect(canDeactivate).toEqual(false);
+            done();
+        });
     });
-  });
 
-  it('should not deactivate when choice is WITH_SAVE and when canDeactivate of component returns false', (done) => {
-    canDeactivateSpy = spyOn(mockComponent, 'canDeactivate').and.returnValue(of(false));
-    spyOn(dialogService, 'openMultipleChoiceDialog').and.returnValue(of({dialogRef: mockDialogRef, choice: 'WITH_SAVE' }));
+    it('should deactivate when choice is WITHOUT_SAVE and canDeactivate method of component is not called', (done) => {
+        canDeactivateSpy = spyOn(mockComponent, 'canDeactivate');
+        spyOn(dialogService, 'openMultipleChoiceDialog').and.returnValue(of({dialogRef: mockDialogRef, choice: 'WITHOUT_SAVE' }));
 
-    unsavedPageGuard.canDeactivate(mockComponent).subscribe((canDeactivate) => {
-      expect(titleServiceSpy).toHaveBeenCalled();
-      expect(canDeactivateSpy).toHaveBeenCalled();
-      expect(mockDialogRef.close).toHaveBeenCalled();
-      expect(canDeactivate).toEqual(false);
-      done();
+        unsavedPageGuard.canDeactivate(mockComponent).subscribe((canDeactivate) => {
+            expect(canDeactivateSpy).not.toHaveBeenCalled();
+            expect(titleServiceSpy).toHaveBeenCalled();
+            expect(mockDialogRef.close).toHaveBeenCalled();
+            expect(canDeactivate).toEqual(true);
+            done();
+        });
     });
-  });
 
-  it('should deactivate when the component is not dirty', (done) => {
-    isDirtyState = false;
-    unsavedPageGuard.canDeactivate(mockComponent).subscribe((canDeactivate) => {
-      expect(titleServiceSpy).not.toHaveBeenCalled();
-      expect(mockDialogRef.open).not.toHaveBeenCalled();
-      expect(canDeactivate).toEqual(true);
-      done();
+    it('should deactivate when choice is WITH_SAVE and when canDeactivate of component returns true', (done) => {
+        canDeactivateSpy = spyOn(mockComponent, 'canDeactivate').and.returnValue(of(true));
+        spyOn(dialogService, 'openMultipleChoiceDialog').and.returnValue(of({dialogRef: mockDialogRef, choice: 'WITH_SAVE' }));
+
+        unsavedPageGuard.canDeactivate(mockComponent).subscribe((canDeactivate) => {
+            expect(titleServiceSpy).toHaveBeenCalled();
+            expect(canDeactivateSpy).toHaveBeenCalled();
+            expect(mockDialogRef.close).toHaveBeenCalled();
+            expect(canDeactivate).toEqual(true);
+            done();
+        });
     });
-  });
+
+    it('should not deactivate when choice is WITH_SAVE and when canDeactivate of component returns false', (done) => {
+        canDeactivateSpy = spyOn(mockComponent, 'canDeactivate').and.returnValue(of(false));
+        spyOn(dialogService, 'openMultipleChoiceDialog').and.returnValue(of({dialogRef: mockDialogRef, choice: 'WITH_SAVE' }));
+
+        unsavedPageGuard.canDeactivate(mockComponent).subscribe((canDeactivate) => {
+            expect(titleServiceSpy).toHaveBeenCalled();
+            expect(canDeactivateSpy).toHaveBeenCalled();
+            expect(mockDialogRef.close).toHaveBeenCalled();
+            expect(canDeactivate).toEqual(false);
+            done();
+        });
+    });
+
+    it('should deactivate when the component is not dirty', (done) => {
+        isDirtyState = false;
+        unsavedPageGuard.canDeactivate(mockComponent).subscribe((canDeactivate) => {
+            expect(titleServiceSpy).not.toHaveBeenCalled();
+            expect(mockDialogRef.open).not.toHaveBeenCalled();
+            expect(canDeactivate).toEqual(true);
+            done();
+        });
+    });
 });

@@ -50,12 +50,12 @@ export class JsonSchemaEditorService {
                 }
             });
         } else {
-            if (!!value.type) {
+            if (value.type) {
                 types.push(value.type as string);
             }
         }
 
-        if (!!value.$ref) {
+        if (value.$ref) {
             if (value.$ref === DATE_TYPE_REFERENCE) {
                 types.push('date');
             } else if (value.$ref === DATETIME_TYPE_REFERENCE) {
@@ -68,19 +68,19 @@ export class JsonSchemaEditorService {
                 types.push('ref');
             }
 
-        } if (!!value.enum) {
+        } if (value.enum) {
             types.push('enum');
         }
 
-        if (!!value.anyOf) {
+        if (value.anyOf) {
             types.push('anyOf');
         }
 
-        if (!!value.allOf) {
+        if (value.allOf) {
             types.push('allOf');
         }
 
-        if (!!value.oneOf) {
+        if (value.oneOf) {
             types.push('oneOf');
         }
 
@@ -89,93 +89,93 @@ export class JsonSchemaEditorService {
 
     setType(type: string, added: boolean, value: JSONSchemaInfoBasics) {
         switch (type) {
-            case 'date':
-                if (added) {
-                    value.$ref = DATE_TYPE_REFERENCE;
-                } else {
-                    delete value.$ref;
+        case 'date':
+            if (added) {
+                value.$ref = DATE_TYPE_REFERENCE;
+            } else {
+                delete value.$ref;
+            }
+            break;
+        case 'datetime':
+            if (added) {
+                value.$ref = DATETIME_TYPE_REFERENCE;
+            } else {
+                delete value.$ref;
+            }
+            break;
+        case 'file':
+            if (added) {
+                value.$ref = FILE_TYPE_REFERENCE;
+            } else {
+                delete value.$ref;
+            }
+            break;
+        case 'folder':
+            if (added) {
+                value.$ref = FOLDER_TYPE_REFERENCE;
+            } else {
+                delete value.$ref;
+            }
+            break;
+        case 'enum':
+            if (added) {
+                value.enum = [];
+            } else {
+                delete value.enum;
+            }
+            break;
+        case 'ref':
+            if (added) {
+                value.$ref = '#/$defs';
+            } else {
+                delete value.$ref;
+            }
+            break;
+        case 'allOf':
+            if (added) {
+                value.allOf = [];
+            } else {
+                delete value.allOf;
+            }
+            break;
+        case 'anyOf':
+            if (added) {
+                value.anyOf = [];
+            } else {
+                delete value.anyOf;
+            }
+            break;
+        case 'oneOf':
+            if (added) {
+                value.oneOf = [];
+            } else {
+                delete value.oneOf;
+            }
+            break;
+        default:
+            if (added) {
+                this.addType(type, value);
+                if (type === 'array') {
+                    value.items = { type: 'string' };
                 }
-                break;
-            case 'datetime':
-                if (added) {
-                    value.$ref = DATETIME_TYPE_REFERENCE;
-                } else {
-                    delete value.$ref;
+                if (type === 'object') {
+                    value.properties = {};
                 }
-                break;
-            case 'file':
-                if (added) {
-                    value.$ref = FILE_TYPE_REFERENCE;
-                } else {
-                    delete value.$ref;
+            } else {
+                this.removeType(type, value);
+                if (type === 'array') {
+                    delete value.items;
                 }
-                break;
-            case 'folder':
-                if (added) {
-                    value.$ref = FOLDER_TYPE_REFERENCE;
-                } else {
-                    delete value.$ref;
+                if (type === 'object') {
+                    delete value.properties;
                 }
-                break;
-            case 'enum':
-                if (added) {
-                    value.enum = [];
-                } else {
-                    delete value.enum;
-                }
-                break;
-            case 'ref':
-                if (added) {
-                    value.$ref = '#/$defs';
-                } else {
-                    delete value.$ref;
-                }
-                break;
-            case 'allOf':
-                if (added) {
-                    value.allOf = [];
-                } else {
-                    delete value.allOf;
-                }
-                break;
-            case 'anyOf':
-                if (added) {
-                    value.anyOf = [];
-                } else {
-                    delete value.anyOf;
-                }
-                break;
-            case 'oneOf':
-                if (added) {
-                    value.oneOf = [];
-                } else {
-                    delete value.oneOf;
-                }
-                break;
-            default:
-                if (added) {
-                    this.addType(type, value);
-                    if (type === 'array') {
-                        value.items = { type: 'string' };
-                    }
-                    if (type === 'object') {
-                        value.properties = {};
-                    }
-                } else {
-                    this.removeType(type, value);
-                    if (type === 'array') {
-                        delete value.items;
-                    }
-                    if (type === 'object') {
-                        delete value.properties;
-                    }
-                }
-                break;
+            }
+            break;
         }
     }
 
     private addType(type: string, value: JSONSchemaInfoBasics) {
-        if (!!value.type) {
+        if (value.type) {
             if (Array.isArray(value.type)) {
                 value.type.push(type);
             } else {

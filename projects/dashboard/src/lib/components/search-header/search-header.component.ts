@@ -31,51 +31,51 @@ const SEARCH_KEY = 'name';
  * @deprecated, use SearchHeaderComponent inside modeling-shared sdk instead.
  */
 @Component({
-  selector: 'ama-search-header',
-  templateUrl: './search-header.component.html',
-  encapsulation: ViewEncapsulation.None
+    selector: 'ama-search-header',
+    templateUrl: './search-header.component.html',
+    encapsulation: ViewEncapsulation.None
 })
 export class SearchHeaderComponent implements OnInit {
 
-  value: string;
-  expandable: boolean;
-  searchInputState = SearchTextStateEnum.collapsed;
+    value: string;
+    expandable: boolean;
+    searchInputState = SearchTextStateEnum.collapsed;
 
-  sorting: ServerSideSorting = {
-    key: DEFAULT_SORT_KEY,
-    direction: DEFAULT_SORT_DIRECTION
-  };
+    sorting: ServerSideSorting = {
+        key: DEFAULT_SORT_KEY,
+        direction: DEFAULT_SORT_DIRECTION
+    };
 
-  constructor(
-      private router: Router,
-      private route: ActivatedRoute) { }
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute) { }
 
-  ngOnInit() {
-    this.value = this.route.snapshot.queryParamMap.get(SEARCH_KEY);
-    this.searchInputState = this.value ? SearchTextStateEnum.expanded : SearchTextStateEnum.collapsed;
-  }
-
-  onSearchSubmit(event: KeyboardEvent) {
-    const value = (event.target as HTMLInputElement).value.toLowerCase();
-    this.searchProjects(value);
-  }
-
-  searchProjects(value: string) {
-    if (value !== this.value) {
-      this.router.navigate(
-        ['dashboard', 'projects'],
-        {
-            queryParams: {
-              maxItems, skipCount ,
-              sort: `${this.sorting.key},${this.sorting.direction}`,
-              [SEARCH_KEY]: value
-            },
-            queryParamsHandling: 'merge'
-        });
+    ngOnInit() {
+        this.value = this.route.snapshot.queryParamMap.get(SEARCH_KEY);
+        this.searchInputState = this.value ? SearchTextStateEnum.expanded : SearchTextStateEnum.collapsed;
     }
-  }
 
-  onReset() {
-    this.searchProjects('');
-  }
+    onSearchSubmit(event: KeyboardEvent) {
+        const value = (event.target as HTMLInputElement).value.toLowerCase();
+        this.searchProjects(value);
+    }
+
+    searchProjects(value: string) {
+        if (value !== this.value) {
+            this.router.navigate(
+                ['dashboard', 'projects'],
+                {
+                    queryParams: {
+                        maxItems, skipCount ,
+                        sort: `${this.sorting.key},${this.sorting.direction}`,
+                        [SEARCH_KEY]: value
+                    },
+                    queryParamsHandling: 'merge'
+                });
+        }
+    }
+
+    onReset() {
+        this.searchProjects('');
+    }
 }

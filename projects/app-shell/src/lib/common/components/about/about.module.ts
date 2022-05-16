@@ -24,15 +24,15 @@ import { DEV_MODE_TOKEN } from './dev-mode.tokens';
 import { EnvironmentModule } from '@alfresco-dbp/adf-candidates/core/environment';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    CoreModule.forChild(),
-    EnvironmentModule,
-    MatTableModule
-  ],
-  declarations: [
-    AboutComponent
-  ]
+    imports: [
+        CommonModule,
+        CoreModule.forChild(),
+        EnvironmentModule,
+        MatTableModule
+    ],
+    declarations: [
+        AboutComponent
+    ]
 })
 export class AboutModule {
     public static forRoot(devMode: boolean): ModuleWithProviders<AboutModule> {

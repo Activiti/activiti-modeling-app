@@ -152,85 +152,85 @@ export class ProcessEditorElementVariablesService {
     private getTypeFromBpmnDiagramElementType(element: Bpmn.DiagramElement): ProcessEditorElementWithVariables {
         const type = element.type;
         switch (type) {
-            case 'bpmn:Process':
-                return ProcessEditorElementWithVariables.Process;
-            case 'bpmn:StartEvent':
-                return ProcessEditorElementWithVariables.StartEvent;
-            case 'bpmn:CallActivity':
-                return ProcessEditorElementWithVariables.CalledElement;
-            case 'bpmn:UserTask':
-                return ProcessEditorElementWithVariables.UserTask;
-            case 'bpmn:ServiceTask':
-                const implementation = element.businessObject[BpmnProperty.implementation];
-                switch (implementation) {
-                    case 'script.EXECUTE':
-                        return ProcessEditorElementWithVariables.ScriptTask;
-                    case 'dmn-connector.EXECUTE_TABLE':
-                        return ProcessEditorElementWithVariables.DecisionTable;
-                    case 'email-service.SEND':
-                        return ProcessEditorElementWithVariables.EmailServiceTask;
-                    case 'docgen-service.GENERATE':
-                        return ProcessEditorElementWithVariables.DocgenServiceTask;
-                    default:
-                        return ProcessEditorElementWithVariables.ServiceTask;
-                }
-            case ProcessEditorElementWithVariables.Event:
-                return ProcessEditorElementWithVariables.Event;
-            case 'bpmn:Participant':
-                return ProcessEditorElementWithVariables.Participant;
-            case 'bpmn:IntermediateCatchEvent':
-            case 'bpmn:IntermediateThrowEvent':
-            case 'bpmn:ErrorEventDefinition':
-            case 'bpmn:TimerEventDefinition':
-            case 'bpmn:SignalEventDefinition':
-            case 'bpmn:MessageEventDefinition':
-            case 'bpmn:Message':
-            case 'bpmn:EndEvent':
-            case 'bpmn:BoundaryEvent':
-            case 'bpmn:SequenceFlow':
-            case 'bpmn:ExclusiveGateway':
-            case 'bpmn:FormalExpression':
-            case 'bpmn:ParallelGateway':
-            case 'bpmn:InclusiveGateway':
-            case 'bpmn:SubProcess':
-            case 'bpmn:MultiInstanceLoopCharacteristics':
-            case 'bpmn:Expression':
-            case 'bpmn:DataOutput':
-            case 'bpmn:Task':
-            case 'bpmn:TextAnnotation':
-            case 'bpmn:Collaboration':
-            case 'bpmn:Lane':
-            case 'bpmn:Error':
-            case 'label':
+        case 'bpmn:Process':
+            return ProcessEditorElementWithVariables.Process;
+        case 'bpmn:StartEvent':
+            return ProcessEditorElementWithVariables.StartEvent;
+        case 'bpmn:CallActivity':
+            return ProcessEditorElementWithVariables.CalledElement;
+        case 'bpmn:UserTask':
+            return ProcessEditorElementWithVariables.UserTask;
+        case 'bpmn:ServiceTask':
+            const implementation = element.businessObject[BpmnProperty.implementation];
+            switch (implementation) {
+            case 'script.EXECUTE':
+                return ProcessEditorElementWithVariables.ScriptTask;
+            case 'dmn-connector.EXECUTE_TABLE':
+                return ProcessEditorElementWithVariables.DecisionTable;
+            case 'email-service.SEND':
+                return ProcessEditorElementWithVariables.EmailServiceTask;
+            case 'docgen-service.GENERATE':
+                return ProcessEditorElementWithVariables.DocgenServiceTask;
             default:
-                return null;
+                return ProcessEditorElementWithVariables.ServiceTask;
+            }
+        case ProcessEditorElementWithVariables.Event:
+            return ProcessEditorElementWithVariables.Event;
+        case 'bpmn:Participant':
+            return ProcessEditorElementWithVariables.Participant;
+        case 'bpmn:IntermediateCatchEvent':
+        case 'bpmn:IntermediateThrowEvent':
+        case 'bpmn:ErrorEventDefinition':
+        case 'bpmn:TimerEventDefinition':
+        case 'bpmn:SignalEventDefinition':
+        case 'bpmn:MessageEventDefinition':
+        case 'bpmn:Message':
+        case 'bpmn:EndEvent':
+        case 'bpmn:BoundaryEvent':
+        case 'bpmn:SequenceFlow':
+        case 'bpmn:ExclusiveGateway':
+        case 'bpmn:FormalExpression':
+        case 'bpmn:ParallelGateway':
+        case 'bpmn:InclusiveGateway':
+        case 'bpmn:SubProcess':
+        case 'bpmn:MultiInstanceLoopCharacteristics':
+        case 'bpmn:Expression':
+        case 'bpmn:DataOutput':
+        case 'bpmn:Task':
+        case 'bpmn:TextAnnotation':
+        case 'bpmn:Collaboration':
+        case 'bpmn:Lane':
+        case 'bpmn:Error':
+        case 'label':
+        default:
+            return null;
         }
     }
 
     private getParentProcessFromElement(element: Bpmn.DiagramElement): Bpmn.DiagramElement {
         switch (element.type) {
-            case BpmnElement.Process:
-                return element;
-            case BpmnElement.Participant:
-                return element.businessObject.processRef;
-            case BpmnElement.UserTask:
-            case BpmnElement.ServiceTask:
-            case BpmnElement.StartEvent:
-            case BpmnElement.EndEvent:
-            case BpmnElement.BoundaryEvent:
-            case BpmnElement.IntermediateCatchEvent:
-            case BpmnElement.IntermediateThrowEvent:
-            case BpmnElement.CallActivity:
-            case BpmnElement.Label:
-                if (element.businessObject.$parent?.$type === BpmnElement.SubProcess) {
-                    return element.parent.parent;
-                } else {
-                    return element.parent;
-                }
-            case BpmnElement.SequenceFlow:
+        case BpmnElement.Process:
+            return element;
+        case BpmnElement.Participant:
+            return element.businessObject.processRef;
+        case BpmnElement.UserTask:
+        case BpmnElement.ServiceTask:
+        case BpmnElement.StartEvent:
+        case BpmnElement.EndEvent:
+        case BpmnElement.BoundaryEvent:
+        case BpmnElement.IntermediateCatchEvent:
+        case BpmnElement.IntermediateThrowEvent:
+        case BpmnElement.CallActivity:
+        case BpmnElement.Label:
+            if (element.businessObject.$parent?.$type === BpmnElement.SubProcess) {
+                return element.parent.parent;
+            } else {
                 return element.parent;
-            default:
-                throw new Error(`Process not found for element type ${element.type}`);
+            }
+        case BpmnElement.SequenceFlow:
+            return element.parent;
+        default:
+            throw new Error(`Process not found for element type ${element.type}`);
         }
     }
 
@@ -264,12 +264,12 @@ export class ProcessEditorElementVariablesService {
     getTypeIcon(type: string, aggregatedTypes: string[]): string {
         if (!aggregatedTypes || aggregatedTypes.length === 1) {
             switch (type) {
-                case 'datetime':
-                    return 'dt';
-                case 'folder':
-                    return 'fo';
-                default:
-                    return type && type.length > 0 ? type.trim().substring(0, 1).toLowerCase() : '?';
+            case 'datetime':
+                return 'dt';
+            case 'folder':
+                return 'fo';
+            default:
+                return type && type.length > 0 ? type.trim().substring(0, 1).toLowerCase() : '?';
             }
         } else {
             return 'm';

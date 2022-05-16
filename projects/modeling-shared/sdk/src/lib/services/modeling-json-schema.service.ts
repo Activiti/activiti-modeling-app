@@ -230,7 +230,7 @@ export class ModelingJSONSchemaService {
     getPrimitiveTypes(schema: JSONSchemaInfoBasics): string[] {
         let primitiveType: string[] = [];
 
-        if (!!schema) {
+        if (schema) {
             if (schema.$ref && schema.$ref.startsWith(ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH)) {
                 const accessor = schema.$ref.substring(schema.$ref.lastIndexOf('#') + 2).split('/');
                 primitiveType.push(this.getMappingPrimitiveTypeForString(accessor[accessor.length - 1]));
@@ -262,15 +262,15 @@ export class ModelingJSONSchemaService {
         let type = 'json';
 
         switch (jsonSchemaType) {
-            case 'number':
-                type = 'string';
-                break;
-            case 'object':
-                type = 'json';
-                break;
-            default:
-                type = this.getMappingPrimitiveTypeForString(jsonSchemaType);
-                break;
+        case 'number':
+            type = 'string';
+            break;
+        case 'object':
+            type = 'json';
+            break;
+        default:
+            type = this.getMappingPrimitiveTypeForString(jsonSchemaType);
+            break;
         }
 
         return type;

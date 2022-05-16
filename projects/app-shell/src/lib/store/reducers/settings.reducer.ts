@@ -24,10 +24,10 @@ export function settingsReducer(
     action: Action
 ): AmaSettingsState {
     switch (action.type) {
-        case AppActionTypes.AsyncInit:
-            return loadFromLocalStorage(state, <AsyncInitAction> action);
-        default:
-            return { ...state };
+    case AppActionTypes.AsyncInit:
+        return loadFromLocalStorage(state, <AsyncInitAction> action);
+    default:
+        return { ...state };
     }
 }
 

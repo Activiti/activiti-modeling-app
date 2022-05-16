@@ -33,7 +33,7 @@ export class JsonSchemaEditorDialogComponent {
     private customAttributesDeleted = [];
 
     addingCustomProperty = false;
-    addProp: { key: string, value: any } = { key: '', value: '' };
+    addProp: { key: string; value: any } = { key: '', value: '' };
 
     node: any;
     private readonly PROTECTED_ATTRIBUTES = ['type', '$ref', '$defs', 'anyOf', 'allOf', 'oneOf', 'properties', 'required', 'title', 'items'];

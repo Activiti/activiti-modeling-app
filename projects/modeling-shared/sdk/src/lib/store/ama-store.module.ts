@@ -22,12 +22,10 @@ export const ENTITIES_REDUCER_TOKEN = new InjectionToken<ActionReducerMap<any>>(
 export const ENTITY_REDUCERS_TOKEN = new InjectionToken<ActionReducerMap<any>>('entity-reducer');
 
 export function entityReducerFactory(entityReducers: any[]): ActionReducerMap<any> {
-    return entityReducers.reduce((reducers, entityReducer) => {
-        return {
-            ...reducers,
-            [entityReducer.key]: entityReducer.reducer
-        };
-    }, {});
+    return entityReducers.reduce((reducers, entityReducer) => ({
+        ...reducers,
+        [entityReducer.key]: entityReducer.reducer
+    }), {});
 }
 
 // Don't remove this line below, otherwise typescript dies with metadata error in AOT

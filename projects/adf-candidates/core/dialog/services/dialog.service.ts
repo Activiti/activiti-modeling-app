@@ -44,7 +44,7 @@ export class DialogService {
     }
 
     confirm(dialogData?: DialogData): Observable<boolean> {
-      return this.openObservableDialog(ConfirmationDialogComponent, { disableClose: true }, dialogData);
+        return this.openObservableDialog(ConfirmationDialogComponent, { disableClose: true }, dialogData);
     }
 
     private openObservableDialog(dialog, options = {}, data = {}): Observable<any> {

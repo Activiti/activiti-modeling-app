@@ -63,8 +63,8 @@ describe('UserInfoMenuComponent', () => {
                 {
                     provide: Store,
                     useValue: {
-                      dispatch: () => {},
-                      select: () => of({})
+                        dispatch: () => {},
+                        select: () => of({})
                     }
                 },
                 {

@@ -35,7 +35,7 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
 
     @Input()
     mapping: {
-        type: MappingType,
+        type: MappingType;
         value: any;
     };
 
@@ -92,7 +92,7 @@ export class MappingVariableExpressionDropdownComponent implements OnInit, After
 
     @Output()
     mappingChanged = new EventEmitter<{
-        type: MappingType,
+        type: MappingType;
         value: any;
     }>();
 

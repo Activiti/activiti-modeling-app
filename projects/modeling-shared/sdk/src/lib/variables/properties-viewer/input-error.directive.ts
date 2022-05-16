@@ -51,45 +51,45 @@ export class InputErrorDirective implements AfterViewInit, OnDestroy {
 
             Object.keys(controlErrors).forEach(error => {
                 switch (error) {
-                    case 'required':
-                        this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.REQUIRED'));
-                        break;
-                    case 'pattern':
-                        this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_FORMAT', {
-                            error: this.inputRef.ngControl.getError(error)['requiredPattern']
-                        }));
-                        break;
-                    case 'minlength':
-                        this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MIN_LENGTH', {
-                            error: this.inputRef.ngControl.getError(error)['requiredLength']
-                        }));
-                        break;
-                    case 'maxlength':
-                        this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MAX_LENGTH', {
-                            error: this.inputRef.ngControl.getError(error)['requiredLength']
-                        }));
-                        break;
-                    case 'min':
-                        this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MIN_VALUE', {
-                            error: this.inputRef.ngControl.getError(error)[error]
-                        }));
-                        break;
-                    case 'max':
-                        this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MAX_VALUE', {
-                            error: this.inputRef.ngControl.getError(error)[error]
-                        }));
-                        break;
-                    case 'multipleOf':
-                        this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MULTIPLE_OF_VALUE', {
-                            error: this.inputRef.ngControl.getError(error)[error]
-                        }));
-                        break;
-                    default:
-                        this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.GENERIC_ERROR', {
-                            error_1: error,
-                            error_2: JSON.stringify(this.inputRef.ngControl.getError(error))
-                        }));
-                        break;
+                case 'required':
+                    this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.REQUIRED'));
+                    break;
+                case 'pattern':
+                    this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_FORMAT', {
+                        error: this.inputRef.ngControl.getError(error)['requiredPattern']
+                    }));
+                    break;
+                case 'minlength':
+                    this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MIN_LENGTH', {
+                        error: this.inputRef.ngControl.getError(error)['requiredLength']
+                    }));
+                    break;
+                case 'maxlength':
+                    this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MAX_LENGTH', {
+                        error: this.inputRef.ngControl.getError(error)['requiredLength']
+                    }));
+                    break;
+                case 'min':
+                    this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MIN_VALUE', {
+                        error: this.inputRef.ngControl.getError(error)[error]
+                    }));
+                    break;
+                case 'max':
+                    this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MAX_VALUE', {
+                        error: this.inputRef.ngControl.getError(error)[error]
+                    }));
+                    break;
+                case 'multipleOf':
+                    this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.INVALID_MULTIPLE_OF_VALUE', {
+                        error: this.inputRef.ngControl.getError(error)[error]
+                    }));
+                    break;
+                default:
+                    this.errors.push(this.translationService.instant('SDK.VARIABLE_TYPE_INPUT.VALIDATION.GENERIC_ERROR', {
+                        error_1: error,
+                        error_2: JSON.stringify(this.inputRef.ngControl.getError(error))
+                    }));
+                    break;
                 }
             });
 
@@ -100,7 +100,7 @@ export class InputErrorDirective implements AfterViewInit, OnDestroy {
             this.renderer.appendChild(errorMsg, this.renderer.createText(error));
             this.renderer.appendChild(this.elementRef.nativeElement, errorMsg);
         });
-    }
+    };
 
     initializeErrors() {
         this.errors = [];

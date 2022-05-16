@@ -19,26 +19,26 @@ import { BpmnElement } from '@alfresco-dbp/modeling-shared/sdk';
 
 const get = (element) => {
     switch (element.type) {
-        case BpmnElement.Process:
-            return element.businessObject.id;
-        case BpmnElement.Participant:
-            return element.businessObject.processRef.id;
-        case BpmnElement.UserTask:
-        case BpmnElement.ServiceTask:
-        case BpmnElement.StartEvent:
-        case BpmnElement.EndEvent:
-        case BpmnElement.BoundaryEvent:
-        case BpmnElement.IntermediateCatchEvent:
-        case BpmnElement.IntermediateThrowEvent:
-        case BpmnElement.CallActivity:
-        case BpmnElement.Label:
-            if (element.businessObject.$parent.$type === BpmnElement.SubProcess) {
-                return element.businessObject.$parent.$parent.id;
-            } else {
-                return element.businessObject.$parent.id;
-            }
-        default:
-            throw new Error(`Process id not found for element type ${element.type}`);
+    case BpmnElement.Process:
+        return element.businessObject.id;
+    case BpmnElement.Participant:
+        return element.businessObject.processRef.id;
+    case BpmnElement.UserTask:
+    case BpmnElement.ServiceTask:
+    case BpmnElement.StartEvent:
+    case BpmnElement.EndEvent:
+    case BpmnElement.BoundaryEvent:
+    case BpmnElement.IntermediateCatchEvent:
+    case BpmnElement.IntermediateThrowEvent:
+    case BpmnElement.CallActivity:
+    case BpmnElement.Label:
+        if (element.businessObject.$parent.$type === BpmnElement.SubProcess) {
+            return element.businessObject.$parent.$parent.id;
+        } else {
+            return element.businessObject.$parent.id;
+        }
+    default:
+        throw new Error(`Process id not found for element type ${element.type}`);
     }
 };
 

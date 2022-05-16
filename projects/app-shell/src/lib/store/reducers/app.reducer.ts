@@ -52,69 +52,69 @@ export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action):
     let newState: AppState;
 
     switch (action.type) {
-        case AppActionTypes.AsyncInit:
-            newState = asyncInit(state, <AsyncInitAction>action);
-            break;
-        case UPDATE_SETTINGS:
-            newState = updateSettings(state, <UpdateSettingsAction>action);
-            break;
-        case CHANGE_THEME:
-            newState = updateSettings(state, <ChangeThemeAction>action);
-            break;
+    case AppActionTypes.AsyncInit:
+        newState = asyncInit(state, <AsyncInitAction>action);
+        break;
+    case UPDATE_SETTINGS:
+        newState = updateSettings(state, <UpdateSettingsAction>action);
+        break;
+    case CHANGE_THEME:
+        newState = updateSettings(state, <ChangeThemeAction>action);
+        break;
 
-        case SET_MENU:
-            newState = setMenuState(state, <SetMenuAction>action);
-            break;
+    case SET_MENU:
+        newState = setMenuState(state, <SetMenuAction>action);
+        break;
 
-        case SELECT_PROJECT:
-            newState = selectProject(state, <SelectProjectAction>action);
-            break;
+    case SELECT_PROJECT:
+        newState = selectProject(state, <SelectProjectAction>action);
+        break;
 
-        case MODEL_OPENED:
-            newState = selectOpenedModel(state, <ModelOpenedAction>action);
-            break;
+    case MODEL_OPENED:
+        newState = selectOpenedModel(state, <ModelOpenedAction>action);
+        break;
 
-        case MODEL_CLOSED:
-            newState = deselectOpenedModel(state, <ModelClosedAction>action);
-            break;
+    case MODEL_CLOSED:
+        newState = deselectOpenedModel(state, <ModelClosedAction>action);
+        break;
 
-        case SET_APP_DIRTY_STATE:
-            newState = setDirtyState(state, <SetAppDirtyStateAction>action);
-            break;
+    case SET_APP_DIRTY_STATE:
+        newState = setDirtyState(state, <SetAppDirtyStateAction>action);
+        break;
 
-         case TOOLBAR_MESSAGE:
-            return {
-                    ...state,
-                    toolbar: {
-                        ...state.toolbar,
-                        userMessage: (<ToolbarMessageAction>action).message
-                    }
-                };
+    case TOOLBAR_MESSAGE:
+        return {
+            ...state,
+            toolbar: {
+                ...state.toolbar,
+                userMessage: (<ToolbarMessageAction>action).message
+            }
+        };
 
-        case LOADED_APPLICATION:
-            return setLoadedAppState(state, <SetApplicationLoadingStateAction> action);
-            break;
+    case LOADED_APPLICATION:
+        return setLoadedAppState(state, <SetApplicationLoadingStateAction> action);
+        break;
 
-        case LOG_ACTION:
-            return storeLog(state, <LogAction> action);
+    case LOG_ACTION:
+        return storeLog(state, <LogAction> action);
 
-        case CLEAR_LOG_HISTORY:
-            return {
-                ...state,
-                logs: []
-            };
+    case CLEAR_LOG_HISTORY:
+        return {
+            ...state,
+            logs: []
+        };
 
-        case SET_LOG_HISTORY_VISIBILITY:
-            return {
-                ...state,
-                toolbar: {
-                    ...state.toolbar,
-                    logHistoryVisible: (<SetLogHistoryVisibilityAction>action).visible
-                    }
-                };
+    case SET_LOG_HISTORY_VISIBILITY:
+        return {
+            ...state,
+            toolbar: {
+                ...state.toolbar,
+                logHistoryVisible: (<SetLogHistoryVisibilityAction>action).visible
+            }
+        };
 
-        default:
-            newState = Object.assign({}, state);
+    default:
+        newState = Object.assign({}, state);
     }
 
     return newState;

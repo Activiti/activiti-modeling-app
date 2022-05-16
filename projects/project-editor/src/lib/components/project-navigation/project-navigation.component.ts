@@ -39,7 +39,7 @@ export class ProjectNavigationComponent implements AfterContentInit {
 
     constructor(private store: Store<AmaState>,
         @Inject(MODEL_CREATORS) modelCreators: ModelCreator[],
-        @Optional() @Inject(MODEL_IMPORTERS) private importers: ModelImporter[]) {
+                @Optional() @Inject(MODEL_IMPORTERS) private importers: ModelImporter[]) {
         this.creators = orderBy(modelCreators, ['order'], ['asc']);
     }
 

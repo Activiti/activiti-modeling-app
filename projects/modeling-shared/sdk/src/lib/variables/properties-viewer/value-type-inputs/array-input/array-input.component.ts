@@ -114,9 +114,7 @@ export class PropertiesViewerArrayInputComponent implements OnChanges {
 
             this.filteredItems = this.arrayCtrl.valueChanges.pipe(
                 startWith(null),
-                map((item: string) => {
-                    return item ? this.extendedProperties.getFilteredAutocompleteValues(item) : this.extendedProperties.getDefaultAutocompleteValues();
-                })
+                map((item: string) => item ? this.extendedProperties.getFilteredAutocompleteValues(item) : this.extendedProperties.getDefaultAutocompleteValues())
             );
         }
     }

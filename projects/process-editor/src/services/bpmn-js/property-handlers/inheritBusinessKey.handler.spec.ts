@@ -22,7 +22,7 @@ import { getDiagramElementMock, getModelingMock } from '../bpmn-js.mock';
 describe('inheritBusinessKey', () => {
     const property = BpmnProperty.inheritBusinessKey;
 
-    let handler: { get, set };
+    let handler: { get; set };
     let mockElement: Bpmn.DiagramElement;
     let modeling: Bpmn.Modeling;
 

@@ -19,9 +19,7 @@ import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
 
 const multiInstanceKey = BpmnProperty.loopCharacteristics;
 
-const get = (element) => {
-    return element.businessObject.loopCharacteristics;
-};
+const get = (element) => element.businessObject.loopCharacteristics;
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
     modeling.updateProperties(element, {

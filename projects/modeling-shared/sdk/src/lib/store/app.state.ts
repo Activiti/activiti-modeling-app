@@ -55,7 +55,7 @@ export enum MESSAGE {
 }
 
 export interface LogMessageInitiator {
-    key: string | Symbol;
+    key: string | symbol;
     displayName: string;
     extra?: any;
 }

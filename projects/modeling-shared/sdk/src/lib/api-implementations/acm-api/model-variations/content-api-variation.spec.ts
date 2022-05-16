@@ -78,9 +78,7 @@ describe('ModelContentApiVariation', () => {
             {
                 provide: AuthenticationService,
                 useValue: {
-                    getBpmUsername: jest.fn().mockImplementation(() => {
-                        return 'testUser';
-                    })
+                    getBpmUsername: jest.fn().mockImplementation(() => 'testUser')
                 }
             }
         ]
@@ -89,9 +87,9 @@ describe('ModelContentApiVariation', () => {
     beforeAll(() => {
         authenticationService = TestBed.inject(AuthenticationService);
         variation = new ModelContentApiVariation(
-          authenticationService,
-          {register: () => {}} as unknown as ModelContentSerializer,
-          {register: () => {}} as unknown as ModelDataExtractor,
+            authenticationService,
+            {register: () => {}} as unknown as ModelContentSerializer,
+            {register: () => {}} as unknown as ModelDataExtractor,
         );
     });
 

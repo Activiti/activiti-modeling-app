@@ -38,6 +38,4 @@ export const selectProjectTree = createSelector(
     (state: ProjectEditorState) => state.tree
 );
 
-export const selectProjectCrumb = createSelector(selectProject, project => {
-    return project ? { url: `/projects/${project.id}`, name: project.name } : null;
-});
+export const selectProjectCrumb = createSelector(selectProject, project => project ? { url: `/projects/${project.id}`, name: project.name } : null);

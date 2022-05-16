@@ -37,9 +37,7 @@ export class SnackbarEffects {
 
     @Effect({ dispatch: true }) infoEffect = this.actions$.pipe(
         ofType<SnackbarInfoAction>(SNACKBAR_INFO),
-        mergeMap(({ message, params, action }) => {
-           return zip(of(action), this.notificationService.showInfo(message, action?.name, params).onAction());
-        }),
+        mergeMap(({ message, params, action }) => zip(of(action), this.notificationService.showInfo(message, action?.name, params).onAction())),
         mergeMap(([action]) => of(...action.actions))
     );
 

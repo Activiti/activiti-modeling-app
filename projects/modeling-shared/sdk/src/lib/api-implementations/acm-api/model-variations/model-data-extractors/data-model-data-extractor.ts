@@ -18,12 +18,12 @@
 import { Data, JSONSchemaInfoBasics } from '../../../../api/types';
 
 export function extractDataModelData(property: string, content: JSONSchemaInfoBasics, metadata: Data) {
-   switch (property) {
-        case 'name':
-            return metadata.name;
-        case 'description':
-            return content.description;
-        default:
-            return null;
+    switch (property) {
+    case 'name':
+        return metadata.name;
+    case 'description':
+        return content.description;
+    default:
+        return null;
     }
 }

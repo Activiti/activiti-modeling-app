@@ -564,14 +564,14 @@ export class JuelExpressionSyntax implements ExpressionSyntaxProvider {
         }
     }
 
-    resolveExpression(expression: string, variables: { [key: string]: any; }): Observable<any> {
+    resolveExpression(expression: string, variables: { [key: string]: any }): Observable<any> {
         const url = `${this.getHostName()}/modeling-service/v1/juel`;
         const api = this.alfrescoApiService.getInstance().oauth2Auth;
 
         const apiCall = api.callCustomApi(url, 'POST', null, null, null, null, { expression, variables }, ['application/json'], ['application/json']);
 
         return from(apiCall).pipe(
-            map((response: { result: any; }) => response.result)
+            map((response: { result: any }) => response.result)
         );
     }
 

@@ -15,9 +15,7 @@
  * limitations under the License.
  */
 
-const get = (element: Bpmn.DiagramElement): string => {
-    return element.businessObject.text || '';
-};
+const get = (element: Bpmn.DiagramElement): string => element.businessObject.text || '';
 
 const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
     element.businessObject.text = value;

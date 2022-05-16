@@ -38,9 +38,7 @@ import { AmaApi } from '../api/api.interface';
                 }
                 // eslint-disable-next-line
                 return forkJoin(...observables).pipe(
-                    map((processContents: string[]) => {
-                        return this.createProcessesModelProcessDefinitionIdStructure(processes, processContents);
-                    })
+                    map((processContents: string[]) => this.createProcessesModelProcessDefinitionIdStructure(processes, processContents))
                 );
             })
         );

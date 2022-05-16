@@ -24,7 +24,7 @@ import {
     AmaState, Project, OpenConfirmDialogAction, MODELER_NAME_REGEX, Pagination, ServerSideSorting,
     SearchQuery, OpenEntityDialogAction, ProjectContextMenuOption, PROJECT_CONTEXT_MENU_OPTIONS,
     ProjectContextMenuActionClass, selectLoading, selectPagination, selectProjectSummaries,
-     GetProjectsAttemptAction, DeleteProjectAttemptAction, UpdateProjectAttemptAction, OpenSaveAsProjectDialogAction,
+    GetProjectsAttemptAction, DeleteProjectAttemptAction, UpdateProjectAttemptAction, OpenSaveAsProjectDialogAction,
     SaveAsProjectAttemptAction, ExportProjectAction,
     GetFavoriteProjectsAttemptAction, selectFavoriteProjectSummaries, LayoutService
 } from '@alfresco-dbp/modeling-shared/sdk';
@@ -86,7 +86,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
                 this.sorting = this.parseSorting(params.sort);
                 this.search.value = params[this.search.key];
                 this.loadProjects();
-        });
+            });
 
         this.loading$ = this.store.select(selectLoading);
         this.pagination$ = this.store.select(selectPagination);

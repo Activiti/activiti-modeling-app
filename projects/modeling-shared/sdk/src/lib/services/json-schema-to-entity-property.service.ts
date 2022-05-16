@@ -77,27 +77,27 @@ export class JSONSchemaToEntityPropertyService {
                 entityProperties.push(entityProperty);
             } else {
                 switch (jsonSchema.type) {
-                    case 'object':
-                        if (jsonSchema.properties && Object.keys(jsonSchema.properties).length > 0) {
-                            Object.keys(jsonSchema.properties).forEach(property => {
-                                entityProperties.push(this.getPrimitiveEntityProperty(jsonSchema.properties[property], property, prefix));
+                case 'object':
+                    if (jsonSchema.properties && Object.keys(jsonSchema.properties).length > 0) {
+                        Object.keys(jsonSchema.properties).forEach(property => {
+                            entityProperties.push(this.getPrimitiveEntityProperty(jsonSchema.properties[property], property, prefix));
+                        });
+                        if (jsonSchema.required) {
+                            jsonSchema.required.forEach(requiredProperty => {
+                                const index = entityProperties.filter(property => !!property).findIndex(property => property.name === requiredProperty);
+                                if (index >= 0) {
+                                    entityProperties[index].required = true;
+                                }
                             });
-                            if (jsonSchema.required) {
-                                jsonSchema.required.forEach(requiredProperty => {
-                                    const index = entityProperties.filter(property => !!property).findIndex(property => property.name === requiredProperty);
-                                    if (index >= 0) {
-                                        entityProperties[index].required = true;
-                                    }
-                                });
-                            }
                         }
-                        break;
-                    default:
-                        const entityProperty = this.getPrimitiveEntityProperty(jsonSchema, name, prefix);
-                        if (entityProperty) {
-                            entityProperties.push(entityProperty);
-                        }
-                        break;
+                    }
+                    break;
+                default:
+                    const entityProperty = this.getPrimitiveEntityProperty(jsonSchema, name, prefix);
+                    if (entityProperty) {
+                        entityProperties.push(entityProperty);
+                    }
+                    break;
                 }
             }
         }
@@ -153,16 +153,16 @@ export class JSONSchemaToEntityPropertyService {
             } else {
                 if (jsonSchema.type) {
                     switch (jsonSchema.type) {
-                        case 'object':
-                            entityProperty.type = 'json';
-                            break;
-                        case 'number':
-                            entityProperty.type = 'string';
-                            break;
-                        case null:
-                            return null;
-                        default:
-                            break;
+                    case 'object':
+                        entityProperty.type = 'json';
+                        break;
+                    case 'number':
+                        entityProperty.type = 'string';
+                        break;
+                    case null:
+                        return null;
+                    default:
+                        break;
                     }
                 } else if (jsonSchema.const) {
                     entityProperty.value = jsonSchema.const;

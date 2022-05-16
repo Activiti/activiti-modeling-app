@@ -17,11 +17,11 @@
 
 declare namespace Diagram {
     export interface BaseRenderer {
-       canRender(): boolean;
-       drawShape(): SVGAElement;
-       drawConnection(): SVGAElement;
-       getShapePath(): string;
-       getConnectionPath(): string;
+        canRender(): boolean;
+        drawShape(): SVGAElement;
+        drawConnection(): SVGAElement;
+        getShapePath(): string;
+        getConnectionPath(): string;
     }
 
     export interface CustomRendererModule {

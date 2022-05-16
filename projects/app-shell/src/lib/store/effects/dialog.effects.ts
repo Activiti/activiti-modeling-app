@@ -120,9 +120,7 @@ export class DialogEffects {
     @Effect({ dispatch: false })
     settingsDialogEffect = this.actions$.pipe(
         ofType<OpenInfoDialogAction>(OPEN_SETTINGS_DIALOG),
-        map(() => {
-            return this.dialogService.openDialog(SettingsDialogComponent);
-        })
+        map(() => this.dialogService.openDialog(SettingsDialogComponent))
     );
 
     @Effect()

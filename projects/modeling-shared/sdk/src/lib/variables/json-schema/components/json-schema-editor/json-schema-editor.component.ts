@@ -55,12 +55,12 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor {
     @Output() changes = new EventEmitter<JSONSchemaInfoBasics>();
     @Output() propertyDeleted = new EventEmitter<string>();
     @Output() childrenDeleted = new EventEmitter<ChildrenDeletedEvent>();
-    @Output() requiredChanges = new EventEmitter<{ key: string, value: boolean }>();
-    @Output() nameChanges = new EventEmitter<{ oldName: string, newName: string }>();
+    @Output() requiredChanges = new EventEmitter<{ key: string; value: boolean }>();
+    @Output() nameChanges = new EventEmitter<{ oldName: string; newName: string }>();
 
     readonly typeNames = TYPES;
 
-    properties: { key: string, definition: JSONSchemaInfoBasics }[] = [];
+    properties: { key: string; definition: JSONSchemaInfoBasics }[] = [];
     definitions: JSONSchemaDefinition[] = [];
     collapsed = false;
     definitionsCollapsed = false;
@@ -99,7 +99,7 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor {
     private initProperties() {
         this.properties = [];
 
-        if (!!this.value.properties) {
+        if (this.value.properties) {
             Object.keys(this.value.properties).forEach(key => this.properties.push({ key, definition: this.value.properties![key] }));
         }
     }
@@ -214,7 +214,7 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor {
         this.requiredChanges.emit({ key: this.key, value: checkboxChange.checked });
     }
 
-    onRequiredChanges(change: { key: string, value: boolean }) {
+    onRequiredChanges(change: { key: string; value: boolean }) {
         if (change.value) {
             if (this.value.required && this.value.required.indexOf(change.key) === -1) {
                 this.value.required.push(change.key);
@@ -244,7 +244,7 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor {
         }
     }
 
-    onNameChanges(changes: { oldName: string, newName: string }) {
+    onNameChanges(changes: { oldName: string; newName: string }) {
         if (this.value.type === 'object' && this.value.properties) {
             const newProperties = {};
             Object.keys(this.value.properties).forEach(key => {
@@ -268,7 +268,7 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor {
         this.onChanges();
     }
 
-    onDefinitionNameChanges(changes: { oldName: string, newName: string }) {
+    onDefinitionNameChanges(changes: { oldName: string; newName: string }) {
         if (this.value.$defs) {
             const newDefinitions = {};
             Object.keys(this.value.$defs).forEach(key => {
@@ -324,8 +324,8 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor {
             minWidth: '520px'
         });
 
-        dialogRef.afterClosed().subscribe((result: { node: JSONSchemaInfoBasics, customAttributesDeleted: string[] }) => {
-            if (!!result) {
+        dialogRef.afterClosed().subscribe((result: { node: JSONSchemaInfoBasics; customAttributesDeleted: string[] }) => {
+            if (result) {
                 Object.assign(this.value, result.node);
                 Object.keys(typeAttributes).filter(key => this.isNull((<any>result.node)[key])).forEach(key => delete (<any>this.value)[key]);
                 result.customAttributesDeleted.forEach(key => delete (<any>this.value)[key]);
@@ -356,7 +356,7 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor {
         if (!this.isEmpty(this.value.allOf)) {
             return 'allOf';
         }
-        if (!!this.value.items) {
+        if (this.value.items) {
             return 'array';
         }
 

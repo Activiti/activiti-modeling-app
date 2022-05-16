@@ -17,11 +17,11 @@
 
 export function extractDataFromContent<T, K>(property: string, content: T, metadata: K) {
     switch (property) {
-        case 'name':
-            return content['name'];
-        case 'description':
-            return content['description'];
-        default:
-            return null;
+    case 'name':
+        return content['name'];
+    case 'description':
+        return content['description'];
+    default:
+        return null;
     }
 }

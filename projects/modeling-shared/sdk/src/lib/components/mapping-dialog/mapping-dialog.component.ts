@@ -122,15 +122,15 @@ export class MappingDialogComponent implements OnInit {
         let mapping: ServiceParameterMapping;
         let parameters: ConnectorParameter[];
         switch (type) {
-            case VariableMappingType.output:
-                this.service = this.outputMappingDataSourceService;
-                mapping = this.outputMapping;
-                parameters = this.outputParameters;
-                break;
-            default:
-                this.service = this.inputMappingDataSourceService;
-                mapping = this.inputMapping;
-                parameters = this.inputParameters;
+        case VariableMappingType.output:
+            this.service = this.outputMappingDataSourceService;
+            mapping = this.outputMapping;
+            parameters = this.outputParameters;
+            break;
+        default:
+            this.service = this.inputMappingDataSourceService;
+            mapping = this.inputMapping;
+            parameters = this.inputParameters;
         }
         this.dataSource = this.service.dataSourceInit(mapping, parameters, this.processProperties);
     }
@@ -149,18 +149,18 @@ export class MappingDialogComponent implements OnInit {
 
     private initSelectedTab(i: number, isInit?: boolean) {
         switch (this.dataSource[i].mappingValueType) {
-            case MappingValueType.variable:
-                this.selectedTab = 0;
-                break;
-            case MappingValueType.value:
-                this.selectedTab = 1;
-                break;
-            case MappingValueType.expression:
-                this.selectedTab = 2;
-                break;
-            default:
-                this.selectedTab = 0;
-                break;
+        case MappingValueType.variable:
+            this.selectedTab = 0;
+            break;
+        case MappingValueType.value:
+            this.selectedTab = 1;
+            break;
+        case MappingValueType.expression:
+            this.selectedTab = 2;
+            break;
+        default:
+            this.selectedTab = 0;
+            break;
         }
 
         if (isInit) {
@@ -170,34 +170,34 @@ export class MappingDialogComponent implements OnInit {
 
     isMappingSelectorEnabled(): boolean {
         switch (this.mappingType) {
-            case VariableMappingType.output:
-                return this.inputParameters !== undefined && this.inputParameters !== null && this.inputParameters.length > 0;
-            default:
-                return this.outputParameters !== undefined && this.outputParameters !== null && this.outputParameters.length > 0;
+        case VariableMappingType.output:
+            return this.inputParameters !== undefined && this.inputParameters !== null && this.inputParameters.length > 0;
+        default:
+            return this.outputParameters !== undefined && this.outputParameters !== null && this.outputParameters.length > 0;
         }
     }
 
     selectedTabChange() {
         switch (this.selectedTab) {
-            case 0:
-                this.dataSource[this.selectedRow].mappingValueType = MappingValueType.variable;
-                this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.variableValue);
-                break;
-            case 1:
-                this.dataSource[this.selectedRow].mappingValueType = MappingValueType.value;
-                if (this.variableValue && this.service.getPrimitiveType(this.dataSource[this.selectedRow].type) === 'json' && this.valueValue) {
-                    this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.parseObjectOrString(this.valueValue));
-                } else {
-                    this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.valueValue);
-                }
-                break;
-            case 2:
-                this.dataSource[this.selectedRow].mappingValueType = MappingValueType.expression;
-                if (this.expressionValue && this.service.getPrimitiveType(this.dataSource[this.selectedRow].type) === 'json' && this.expressionValue) {
-                    this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.parseObjectOrString(this.expressionValue));
-                } else {
-                    this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.expressionValue);
-                }
+        case 0:
+            this.dataSource[this.selectedRow].mappingValueType = MappingValueType.variable;
+            this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.variableValue);
+            break;
+        case 1:
+            this.dataSource[this.selectedRow].mappingValueType = MappingValueType.value;
+            if (this.variableValue && this.service.getPrimitiveType(this.dataSource[this.selectedRow].type) === 'json' && this.valueValue) {
+                this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.parseObjectOrString(this.valueValue));
+            } else {
+                this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.valueValue);
+            }
+            break;
+        case 2:
+            this.dataSource[this.selectedRow].mappingValueType = MappingValueType.expression;
+            if (this.expressionValue && this.service.getPrimitiveType(this.dataSource[this.selectedRow].type) === 'json' && this.expressionValue) {
+                this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.parseObjectOrString(this.expressionValue));
+            } else {
+                this.service.setDataSourceValue(this.dataSource, this.selectedRow, this.expressionValue);
+            }
         }
         this.tabCheck = this.selectedTab;
     }
@@ -295,8 +295,8 @@ export class MappingDialogComponent implements OnInit {
     }
 
     addOutputMapping(defaultOutputParameter: string) {
-        let type = undefined;
-        let label = undefined;
+        let type;
+        let label;
         let mappingValueType = MappingValueType.expression;
         if (defaultOutputParameter) {
             const outputParameter = this.outputParameters.find(parameter => parameter.name === defaultOutputParameter);
@@ -349,15 +349,15 @@ export class MappingDialogComponent implements OnInit {
     private getExtendedProperties(inputType: string): any {
         let extendedProperties;
         switch (inputType) {
-            case 'content-metadata':
-                extendedProperties = { editorVariables: this.editorVariables };
-                break;
-            case 'expression-mapping':
-                extendedProperties = this.extensionObject;
-                extendedProperties['panelWidth'] = 200;
-                break;
-            default:
-                extendedProperties = {};
+        case 'content-metadata':
+            extendedProperties = { editorVariables: this.editorVariables };
+            break;
+        case 'expression-mapping':
+            extendedProperties = this.extensionObject;
+            extendedProperties['panelWidth'] = 200;
+            break;
+        default:
+            extendedProperties = {};
         }
         return extendedProperties;
     }

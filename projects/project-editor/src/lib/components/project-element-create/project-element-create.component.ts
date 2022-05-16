@@ -48,13 +48,13 @@ export class ProjectElementCreateComponent implements OnInit {
     }
 
     constructor(private store: Store<AmaState>,
-                @Inject(MODEL_CREATORS) modelCreators: ModelCreator[],
+        @Inject(MODEL_CREATORS) modelCreators: ModelCreator[],
                 private appConfig: AppConfigService) {
         this.creators = orderBy(modelCreators, ['order'], ['asc']);
     }
 
     ngOnInit(): void {
-       this.selectedProjectId$ = this.store.select(selectSelectedProjectId);
+        this.selectedProjectId$ = this.store.select(selectSelectedProjectId);
     }
 
     onCreateElementClicked(creator: ModelCreator) {
@@ -73,12 +73,12 @@ export class ProjectElementCreateComponent implements OnInit {
     public isAllowed(creator: ModelCreator, action: ActionTypes): boolean {
         let allow = true;
         switch (action) {
-            case ActionTypes.CREATE_ACTION:
-                allow = !creator.disableCreate;
-                break;
-            case ActionTypes.UPLOAD_ACTION:
-                allow = !creator.disableUpload;
-                break;
+        case ActionTypes.CREATE_ACTION:
+            allow = !creator.disableCreate;
+            break;
+        case ActionTypes.UPLOAD_ACTION:
+            allow = !creator.disableUpload;
+            break;
         }
 
         return allow && (creator.type !== CONNECTOR || this.isCustomConnectorsEnabled());

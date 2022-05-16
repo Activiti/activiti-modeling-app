@@ -75,7 +75,7 @@ export class PropertiesViewerDateInputComponent implements OnChanges {
     @Input() value: string;
     @Input() disabled: boolean;
     @Input() placeholder;
-    @Input() extendedProperties: { allowExpressions: boolean; } = { allowExpressions: true };
+    @Input() extendedProperties: { allowExpressions: boolean } = { allowExpressions: true };
 
     format = 'YYYY-MM-DD';
     currentDate = false;

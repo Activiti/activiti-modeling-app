@@ -27,7 +27,7 @@ export class ModelCommandCallbackEvent extends Event {
         public modelId$: Observable<string>,
         public modelContent$: Observable<string>,
         public modelMetadata$: Observable<Record<string, any>>) {
-            super(type, {});
+        super(type, {});
     }
 }
 

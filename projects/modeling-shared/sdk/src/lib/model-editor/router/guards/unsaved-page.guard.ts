@@ -38,7 +38,7 @@ export enum UNSAVED_MODEL_REDIRECTION_CHOICE {
 
 @Injectable()
 export class UnsavedPageGuard
-    implements CanDeactivate<CanComponentDeactivate> {
+implements CanDeactivate<CanComponentDeactivate> {
 
     constructor(
         private store: Store<AmaState>,
@@ -66,9 +66,7 @@ export class UnsavedPageGuard
                     };
 
                     return this.dialogService.openMultipleChoiceDialog<UNSAVED_MODEL_REDIRECTION_CHOICE>(dialogData).pipe(
-                        switchMap(({dialogRef, choice}) => {
-                            return this.selectedChoiceActions(component, dialogRef, choice);
-                        })
+                        switchMap(({dialogRef, choice}) => this.selectedChoiceActions(component, dialogRef, choice))
                     );
                 } else {
                     return of(true);

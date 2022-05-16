@@ -36,13 +36,13 @@ export class EditorFooterComponent {
     logs$: Observable<LogMessage[]>;
 
     constructor(
-            @Inject(EDITOR_FOOTER_SERVICE_TOKEN) public editorFooterService: EditorFooterService,
-            @Inject( LOG_FILTER_ITEM_TOKEN ) public logFilters: LogMessageInitiator[],
-            private store: Store<AmaState>
-        ) {
-         this.showConsole$ = this.store.select(selectToolbarLogsVisibility);
-         this.logs$ = this.editorFooterService.logs$;
-         this.filters = [].concat(...logFilters) || [];
+        @Inject(EDITOR_FOOTER_SERVICE_TOKEN) public editorFooterService: EditorFooterService,
+        @Inject( LOG_FILTER_ITEM_TOKEN ) public logFilters: LogMessageInitiator[],
+        private store: Store<AmaState>
+    ) {
+        this.showConsole$ = this.store.select(selectToolbarLogsVisibility);
+        this.logs$ = this.editorFooterService.logs$;
+        this.filters = [].concat(...logFilters) || [];
     }
 
     toggleConsole() {
@@ -56,6 +56,6 @@ export class EditorFooterComponent {
     }
 
     changeFilter() {
-     this.logs$ = this.store.select(selectLogsByInitiator(this.filterType));
+        this.logs$ = this.store.select(selectLogsByInitiator(this.filterType));
     }
 }

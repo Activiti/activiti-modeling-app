@@ -56,7 +56,7 @@ export class PropertyTypeItemUiComponent {
         });
 
         dialogRef.afterClosed().subscribe((model: JSONSchemaInfoBasics) => {
-            if (!!model) {
+            if (model) {
                 item.value = model;
                 this.change.emit(item);
             }

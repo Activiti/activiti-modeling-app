@@ -32,58 +32,50 @@ export const selectSelectedProcess = createSelector(
     selectProcessEntityContainer,
     (openedModel, state) => openedModel ? state.entities[openedModel.id] : null);
 
-export const selectProcessPropertiesArrayFor = (processId: string) => {
-    return createSelector(
-        selectSelectedProcess,
-        (process): EntityProperty[] => {
-            if (process && process.extensions) {
-                return Object.values(new ProcessExtensionsModel(process.extensions).getProperties(processId));
-            } else {
-                return [];
-            }
+export const selectProcessPropertiesArrayFor = (processId: string) => createSelector(
+    selectSelectedProcess,
+    (process): EntityProperty[] => {
+        if (process && process.extensions) {
+            return Object.values(new ProcessExtensionsModel(process.extensions).getProperties(processId));
+        } else {
+            return [];
         }
-    );
-};
+    }
+);
 
-export const selectExternalProcessPropertiesArrayFor = (modelId: string) => {
-    return createSelector(
-        selectProcessEntityContainer,
-        (processes): EntityProperty[] => {
-            const process = processes.entities[modelId];
-            if (process && process.extensions) {
-                return Object.values(new ProcessExtensionsModel(process.extensions).getAllProperties());
-            } else {
-                return [];
-            }
+export const selectExternalProcessPropertiesArrayFor = (modelId: string) => createSelector(
+    selectProcessEntityContainer,
+    (processes): EntityProperty[] => {
+        const process = processes.entities[modelId];
+        if (process && process.extensions) {
+            return Object.values(new ProcessExtensionsModel(process.extensions).getAllProperties());
+        } else {
+            return [];
         }
-    );
-};
+    }
+);
 
-export const selectProcessMappingsFor = (processId: string, elementId: string) => {
-    return createSelector(
-        selectSelectedProcess,
-        (process): ServiceParameterMappings => {
-            let mapping = {};
-            if (process && process.extensions) {
-                mapping = new ProcessExtensionsModel(process.extensions).getMappings(processId);
-            }
-            return mapping && mapping[elementId] ? mapping[elementId] : null;
+export const selectProcessMappingsFor = (processId: string, elementId: string) => createSelector(
+    selectSelectedProcess,
+    (process): ServiceParameterMappings => {
+        let mapping = {};
+        if (process && process.extensions) {
+            mapping = new ProcessExtensionsModel(process.extensions).getMappings(processId);
         }
-    );
-};
+        return mapping && mapping[elementId] ? mapping[elementId] : null;
+    }
+);
 
-export const selectProcessTaskAssignmentFor = (processId: string, serviceId: string) => {
-    return createSelector(
-        selectSelectedProcess,
-        (process) => {
-            if (!process || !process.extensions) {
-                return {};
-            }
-            const assignments = <TaskAssignmentContent>new ProcessExtensionsModel(process.extensions).getAssignments(processId);
-            return assignments && assignments[serviceId] ? assignments[serviceId] : {};
+export const selectProcessTaskAssignmentFor = (processId: string, serviceId: string) => createSelector(
+    selectSelectedProcess,
+    (process) => {
+        if (!process || !process.extensions) {
+            return {};
         }
-    );
-};
+        const assignments = <TaskAssignmentContent>new ProcessExtensionsModel(process.extensions).getAssignments(processId);
+        return assignments && assignments[serviceId] ? assignments[serviceId] : {};
+    }
+);
 
 export const selectProcessesArray = createSelector(
     selectProcessEntities,

@@ -23,24 +23,24 @@ export function projectTreeReducer(state: ProjectTreeState = init, action: Actio
     let newState: ProjectTreeState;
 
     switch (action.type) {
-        case SELECT_PROJECT:
-            newState = { ...init };
-            break;
+    case SELECT_PROJECT:
+        newState = { ...init };
+        break;
 
-        case OPEN_FILTER:
-            newState = openFilter(state, <OpenFilterAction>action);
-            break;
+    case OPEN_FILTER:
+        newState = openFilter(state, <OpenFilterAction>action);
+        break;
 
-        case CLOSE_FILTER:
-            newState = closeFilter(state, <CloseFilterAction>action);
-            break;
+    case CLOSE_FILTER:
+        newState = closeFilter(state, <CloseFilterAction>action);
+        break;
 
-        case CHANGE_FILTER_STATUS:
-            newState = changeFilterStatus(state, <ChangeFilterStatus>action);
-            break;
+    case CHANGE_FILTER_STATUS:
+        newState = changeFilterStatus(state, <ChangeFilterStatus>action);
+        break;
 
-        default:
-            newState = Object.assign({}, state);
+    default:
+        newState = Object.assign({}, state);
     }
 
     return newState;

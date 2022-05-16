@@ -20,39 +20,39 @@ import { OverlayRef, PositionStrategy, Overlay, ConnectionPositionPair } from '@
 import { TemplatePortal } from '@angular/cdk/portal';
 /* eslint-disable @angular-eslint/directive-selector */
 
- @Directive({
-     selector: '[ama-palette-overlay]'
- })
+@Directive({
+    selector: '[ama-palette-overlay]'
+})
 
- export class PaletteOverlayDirective implements AfterViewInit, OnDestroy {
+export class PaletteOverlayDirective implements AfterViewInit, OnDestroy {
     overlayPosition: PositionStrategy;
     templatePortal: TemplatePortal;
     @Input() templatePortalContent: TemplateRef<any>;
     @Input() amaPaletteItem: any;
     @Input() amaPaletteOverlayRef: OverlayRef;
 
-     constructor(
+    constructor(
         public submenuBtnRef: ElementRef,
         public amaPaletteContainerRef: ViewContainerRef,
         private overlay: Overlay
-     ) {
-     }
+    ) {
+    }
 
-     ngAfterViewInit() {
+    ngAfterViewInit() {
         this.amaPaletteOverlayRef = this.overlay.create({
             positionStrategy: this.getOverlayPosition(),
             scrollStrategy: this.overlay.scrollStrategies.reposition()
         });
     }
 
-     getOverlayPosition(): PositionStrategy {
-         this.overlayPosition = this.overlay
-             .position()
-             .flexibleConnectedTo(this.submenuBtnRef)
-             .withPositions([new ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'bottom' })]);
+    getOverlayPosition(): PositionStrategy {
+        this.overlayPosition = this.overlay
+            .position()
+            .flexibleConnectedTo(this.submenuBtnRef)
+            .withPositions([new ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'bottom' })]);
 
-         return this.overlayPosition;
-     }
+        return this.overlayPosition;
+    }
 
     @HostListener('window:click', ['$event']) onWindowClick($event: Event) {
         if ($event.target === this.submenuBtnRef.nativeElement) {

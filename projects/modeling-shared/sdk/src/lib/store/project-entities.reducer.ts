@@ -42,48 +42,48 @@ export function projectEntitiesReducer(state: ProjectEntitiesState = initialProj
 
     switch (action.type) {
 
-        case GET_PROJECTS_ATTEMPT:
+    case GET_PROJECTS_ATTEMPT:
         return {
             ...state,
             loading: true
         };
 
-        case GET_FAVORITE_PROJECTS_ATTEMPT:
+    case GET_FAVORITE_PROJECTS_ATTEMPT:
         return {
             ...state,
             loading: true
         };
 
-        case GET_PROJECTS_SUCCESS:
-            newState = setProjects(state, <GetProjectsSuccessAction>action);
-            break;
+    case GET_PROJECTS_SUCCESS:
+        newState = setProjects(state, <GetProjectsSuccessAction>action);
+        break;
 
-        case GET_FAVORITE_PROJECTS_SUCCESS:
-            newState = setProjects(state, <GetFavoriteProjectsSuccessAction>action);
-            break;
+    case GET_FAVORITE_PROJECTS_SUCCESS:
+        newState = setProjects(state, <GetFavoriteProjectsSuccessAction>action);
+        break;
 
-        case CREATE_PROJECT_SUCCESS:
-            newState = createProject(state, <CreateProjectSuccessAction>action);
-            break;
+    case CREATE_PROJECT_SUCCESS:
+        newState = createProject(state, <CreateProjectSuccessAction>action);
+        break;
 
-        case UPDATE_PROJECT_SUCCESS:
-            newState = updateProject(state, <UpdateProjectSuccessAction>action);
-            break;
+    case UPDATE_PROJECT_SUCCESS:
+        newState = updateProject(state, <UpdateProjectSuccessAction>action);
+        break;
 
-        case DELETE_PROJECT_SUCCESS:
-            newState = deleteProject(state, <DeleteProjectSuccessAction>action);
-            break;
+    case DELETE_PROJECT_SUCCESS:
+        newState = deleteProject(state, <DeleteProjectSuccessAction>action);
+        break;
 
-        case UPLOAD_PROJECT_SUCCESS:
-            newState = uploadProject(state, <UploadProjectSuccessAction> action);
-            break;
+    case UPLOAD_PROJECT_SUCCESS:
+        newState = uploadProject(state, <UploadProjectSuccessAction> action);
+        break;
 
-        case GET_PROJECT_SUCCESS:
-            newState = setProject(state, <GetProjectSuccessAction>action);
-            break;
+    case GET_PROJECT_SUCCESS:
+        newState = setProject(state, <GetProjectSuccessAction>action);
+        break;
 
-        default:
-            newState = Object.assign({}, state);
+    default:
+        newState = Object.assign({}, state);
     }
 
     return newState;

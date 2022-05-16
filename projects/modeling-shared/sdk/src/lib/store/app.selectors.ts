@@ -37,7 +37,5 @@ export const selectSelectedModel = createSelector(getEntitiesState, selectApp, (
 });
 
 export const selectSelectedModelIdFor = function(modelType: string) {
-    return createSelector(selectApp, (state: AppState) => {
-        return state.openedModel && state.openedModel.type.toLowerCase() === modelType.toLowerCase() ? state.openedModel.id : null;
-    });
+    return createSelector(selectApp, (state: AppState) => state.openedModel && state.openedModel.type.toLowerCase() === modelType.toLowerCase() ? state.openedModel.id : null);
 };

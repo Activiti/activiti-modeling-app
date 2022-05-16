@@ -19,11 +19,11 @@ import { Form, FormContent } from '../../../../api/types';
 
 export function extractFormData(property: string, content: FormContent, metadata: Form) {
     switch (property) {
-        case 'name':
-            return content.formRepresentation.name;
-        case 'description':
-            return content.formRepresentation.description;
-        default:
-            return null;
+    case 'name':
+        return content.formRepresentation.name;
+    case 'description':
+        return content.formRepresentation.description;
+    default:
+        return null;
     }
 }

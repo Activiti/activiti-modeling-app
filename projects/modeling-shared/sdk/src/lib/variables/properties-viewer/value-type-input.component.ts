@@ -73,7 +73,7 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
     _onChange: any = () => { };
 
     constructor(private resolver: ComponentFactoryResolver,
-        @Inject(INPUT_TYPE_ITEM_HANDLER) private inputTypeItemHandler: InputTypeItem[]) { }
+                @Inject(INPUT_TYPE_ITEM_HANDLER) private inputTypeItemHandler: InputTypeItem[]) { }
 
     setInputValue(value) {
         this.value = value;

@@ -17,8 +17,7 @@
 
 import { ContentModel } from '../../api/types';
 
-export const getEmptyContentModel = (contentModel: ContentModel, username: string) => {
-    return `<?xml version="1.0" encoding="UTF-8"?>
+export const getEmptyContentModel = (contentModel: ContentModel, username: string) => `<?xml version="1.0" encoding="UTF-8"?>
   <model name="${contentModel.name.replace(/-/g, '')}:${contentModel.name}" xmlns="http://www.alfresco.org/model/dictionary/1.0">
     <description><![CDATA[${contentModel.description}]]></description>
     <author>${username}</author>
@@ -31,4 +30,3 @@ export const getEmptyContentModel = (contentModel: ContentModel, username: strin
       <namespace uri="http://www.alfresco.org/model/${contentModel.name}" prefix="${contentModel.name.replace(/-/g, '')}"/>
     </namespaces>
   </model>`;
-};

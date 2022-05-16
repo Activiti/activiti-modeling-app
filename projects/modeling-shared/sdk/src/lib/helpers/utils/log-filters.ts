@@ -20,8 +20,8 @@ import { LogMessageInitiator } from '../../store/app.state';
 
 export const ALL_LOGS = '*';
 export const allLogFilter: LogMessageInitiator  = {
-        key: ALL_LOGS,
-        displayName: 'SDK.ALL'
+    key: ALL_LOGS,
+    displayName: 'SDK.ALL'
 };
 
 export const LOG_FILTER_ITEM_TOKEN = new InjectionToken<LogMessageInitiator>('log-filter-item');

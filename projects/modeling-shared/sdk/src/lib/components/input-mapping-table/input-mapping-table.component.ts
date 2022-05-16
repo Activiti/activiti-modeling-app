@@ -24,7 +24,7 @@ import { Subject } from 'rxjs';
 import { MappingDialogData, VariableMappingType } from '../../services/mapping-dialog.service';
 
 export interface ParameterSelectOption {
-    id: string | Symbol;
+    id: string | symbol;
     name: string;
 }
 export interface ParametersSelectOptions {
@@ -107,7 +107,7 @@ export class InputMappingTableComponent implements OnChanges {
 
     selectVariable(
         selection: {
-            type: MappingType,
+            type: MappingType;
             value: any;
         },
         param: ConnectorParameter

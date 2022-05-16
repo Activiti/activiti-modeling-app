@@ -147,12 +147,10 @@ export class ProjectEffects {
                 this.logFactory.logInfo(getProjectEditorLogInitiator(), 'PROJECT_EDITOR.PROJECT_VALID')
             ]),
             catchError(response => this.getDialogData(response).pipe(
-                switchMap(dialogData => {
-                    return [
-                        this.logFactory.logError(getProjectEditorLogInitiator(), dialogData.messages),
-                        new OpenInfoDialogAction({ dialogData })
-                    ];
-                })
+                switchMap(dialogData => [
+                    this.logFactory.logError(getProjectEditorLogInitiator(), dialogData.messages),
+                    new OpenInfoDialogAction({ dialogData })
+                ])
             ))
         );
     }

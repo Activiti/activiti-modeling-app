@@ -48,7 +48,7 @@ export class ArrayInputDialogComponent implements OnInit {
     ngOnInit() {
         this.title = this.data.title;
         this.edit = !!this.data.value;
-        this.value = !!this.data.value ? this.data.value : {};
+        this.value = this.data.value ? this.data.value : {};
         this.model = this.data.model;
         this.disabled = this.data.disabled;
         this.autocompletionContext = this.data.autocompletionContext;

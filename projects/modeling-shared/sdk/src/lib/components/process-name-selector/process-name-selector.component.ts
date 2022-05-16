@@ -41,7 +41,7 @@ export class ProcessNameSelectorComponent implements OnInit {
     @Input() placeholder: string;
     @Input() extendedProperties: {
         plain: boolean;
-        excludedProcesses: string[]
+        excludedProcesses: string[];
     };
 
     processes: Observable<ProcessDropdownStructure>;

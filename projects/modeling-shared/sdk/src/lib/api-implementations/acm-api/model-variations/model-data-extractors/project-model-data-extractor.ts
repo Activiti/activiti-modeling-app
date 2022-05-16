@@ -22,11 +22,11 @@ export function extractProjectModelData(property: string, content: ContentModelX
     const description = getXmlContentByTagName('description', content);
 
     switch (property) {
-        case 'name':
-            return metadata.name;
-        case 'description':
-            return description;
-        default:
-            return null;
+    case 'name':
+        return metadata.name;
+    case 'description':
+        return description;
+    default:
+        return null;
     }
 }

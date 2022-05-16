@@ -57,8 +57,6 @@ export class PluginRoutesManagerService {
     }
 
     private getRoutesForHost(hostFor: string, pluginRoutes: Route[]) {
-        return pluginRoutes.filter(pluginRoute => {
-            return pluginRoute.data[TARGET_PROPERTY] === hostFor;
-        });
+        return pluginRoutes.filter(pluginRoute => pluginRoute.data[TARGET_PROPERTY] === hostFor);
     }
 }

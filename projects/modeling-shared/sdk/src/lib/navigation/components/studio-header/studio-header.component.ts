@@ -24,14 +24,14 @@ import { ProjectContextMenuActionClass, ProjectContextMenuOption, PROJECT_CONTEX
 import { LayoutService } from '../../../services/layout.service';
 import { AmaState } from '../../../store/app.state';
 import { AddToFavoritesProjectAttemptAction,
-         ExportProjectAction,
-         OpenSaveAsProjectDialogAction,
-         RemoveFromFavoritesProjectAttemptAction,
-         SaveAsProjectAttemptAction,
-         ValidateProjectAttemptAction,
-         ExportProjectAttemptAction,
-         ExportProjectAttemptPayload
-        } from '../../../store/project.actions';
+    ExportProjectAction,
+    OpenSaveAsProjectDialogAction,
+    RemoveFromFavoritesProjectAttemptAction,
+    SaveAsProjectAttemptAction,
+    ValidateProjectAttemptAction,
+    ExportProjectAttemptAction,
+    ExportProjectAttemptPayload
+} from '../../../store/project.actions';
 import { selectProject } from '../../../store/project.selectors';
 
 @Component({
@@ -58,7 +58,7 @@ export class StudioHeaderComponent {
     }
 
     private filterObjectArray(buttons, buttonsToFilter) {
-       return buttons.filter( button =>
+        return buttons.filter( button =>
             buttonsToFilter.some( filterButton =>
                 button.title !== filterButton.title
             )

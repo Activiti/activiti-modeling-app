@@ -23,7 +23,7 @@ describe('LoopDataOutputRef', () => {
     const property = BpmnProperty.loopDataOutputRef;
     const multiInstanceKey = BpmnProperty.loopCharacteristics;
 
-    let handler: { get, set };
+    let handler: { get; set };
     let mockElement: Bpmn.DiagramElement;
     let modeling: Bpmn.Modeling;
 

@@ -63,13 +63,13 @@ export class SaveAsDialogComponent implements OnInit {
     submit(): void {
         if (this.validate()) {
             this.store.dispatch(new this.data.action(
-            {
-                name: this.name,
-                description: this.description,
-                sourceModelContent: this.data.sourceModelContent,
-                sourceModelMetadata: this.data.sourceModelMetadata ? this.data.sourceModelMetadata : null
-            },
-            true));
+                {
+                    name: this.name,
+                    description: this.description,
+                    sourceModelContent: this.data.sourceModelContent,
+                    sourceModelMetadata: this.data.sourceModelMetadata ? this.data.sourceModelMetadata : null
+                },
+                true));
             this.dialog.close();
         }
     }

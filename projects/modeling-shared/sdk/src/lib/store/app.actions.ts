@@ -28,7 +28,7 @@ export class SnackbarErrorAction implements Action {
 export const SNACKBAR_INFO = 'SNACKBAR_INFO';
 export class SnackbarInfoAction implements Action {
     readonly type = SNACKBAR_INFO;
-    constructor(public message: string, public action?: { actions: Action[], name: string }, public params?: any) {}
+    constructor(public message: string, public action?: { actions: Action[]; name: string }, public params?: any) {}
 }
 
 export const SNACKBAR_WARNING = 'SNACKBAR_WARNING';

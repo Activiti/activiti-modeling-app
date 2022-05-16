@@ -24,7 +24,7 @@ import { numberTypeSpecificProperties } from './number';
 import { objectTypeSpecificProperties } from './object';
 import { stringTypeSpecificProperties } from './string';
 
-export const TYPES: { name: string, value: string[] }[] = [
+export const TYPES: { name: string; value: string[] }[] = [
     { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.JSON_SCHEMA_TYPES', value: ['array', 'boolean', 'integer', 'object', 'number', 'string'] },
     { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.MODELING_APP', value: ['date', 'datetime', 'file', 'folder'] },
     { name: 'SDK.JSON_SCHEMA_EDITOR.TYPES_GROUPS.ENUMERATION', value: ['enum'] },

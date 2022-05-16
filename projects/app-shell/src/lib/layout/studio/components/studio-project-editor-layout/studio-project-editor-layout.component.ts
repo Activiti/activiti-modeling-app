@@ -34,9 +34,9 @@ export class StudioProjectEditorLayoutComponent implements OnDestroy {
 
     constructor(private layoutService: LayoutService) {
         this.layoutService.sidenavToggleEvent$.pipe(takeUntil(this.onDestroy$))
-        .subscribe(() => {
-            this.leftPanelOpened = !this.leftPanelOpened;
-        });
+            .subscribe(() => {
+                this.leftPanelOpened = !this.leftPanelOpened;
+            });
     }
 
     ngOnDestroy(): void {
