@@ -50,7 +50,6 @@ export class UiApiVariation<M extends Ui, C extends UiContent> implements ModelA
             id: formatUuid(this.contentType, model.id),
             name: model.name,
             description: model.description,
-            'adf-template': 'content',
             plugins: []
         };
     }
