@@ -1,29 +1,31 @@
 <mat-menu #childMenu="matMenu" [overlapTrigger]="false" yPosition="below" xPosition="after">
-    <span [attr.data-automation-id]="'menu-' + automationId">
-        <span *ngFor="let child of items">
-            <span *ngIf="child.children && child.children.length > 0">
-                <button mat-menu-item color="primary" [matMenuTriggerFor]="menu.childMenu"
-                    matTooltip="{{child.description}}" matTooltipPosition="below" matTooltipShowDelay="1000"
-                    [attr.data-automation-id]="child.displayName | automationId : automationId : 'item'">
-                    <mat-icon *ngIf="!child.isCustomIcon">{{child.iconName}}</mat-icon>
-                    <span *ngIf="child.isCustomIcon"
-                        class="{{child.iconName}} mat-icon-no-color ama-property-type-selector-custom-menu-icon"></span>
-                    <span>{{child.displayName}}</span>
-                </button>
-                <modelingsdk-property-type-item-ui #menu [items]="child.children" (change)="onChange($event)"
-                    [automationId]="child.displayName | automationId : automationId">
-                </modelingsdk-property-type-item-ui>
-            </span>
-            <span *ngIf="!child.children || child.children.length === 0">
-                <button mat-menu-item (click)="onChange(child)" matTooltip="{{child.description}}"
-                    matTooltipPosition="below" matTooltipShowDelay="1000"
-                    [attr.data-automation-id]="child.displayName | automationId : automationId : 'item'">
-                    <mat-icon *ngIf="!child.isCustomIcon">{{child.iconName}}</mat-icon>
-                    <span *ngIf="child.isCustomIcon"
-                        class="{{child.iconName}} mat-icon-no-color ama-property-type-selector-custom-menu-icon"></span>
-                    <span>{{child.displayName}}</span>
-                </button>
+    <ng-template matMenuContent>
+        <span [attr.data-automation-id]="'menu-' + automationId">
+            <span *ngFor="let child of items">
+                <span *ngIf="child.children && child.children.length > 0">
+                    <button mat-menu-item color="primary" [matMenuTriggerFor]="menu.childMenu"
+                        matTooltip="{{child.description}}" matTooltipPosition="below" matTooltipShowDelay="1000"
+                        [attr.data-automation-id]="child.displayName | automationId : automationId : 'item'">
+                        <mat-icon *ngIf="!child.isCustomIcon">{{child.iconName}}</mat-icon>
+                        <span *ngIf="child.isCustomIcon"
+                            class="{{child.iconName}} mat-icon-no-color ama-property-type-selector-custom-menu-icon"></span>
+                        <span>{{child.displayName}}</span>
+                    </button>
+                    <modelingsdk-property-type-item-ui #menu [items]="child.children" (change)="onChange($event)"
+                        [automationId]="child.displayName | automationId : automationId">
+                    </modelingsdk-property-type-item-ui>
+                </span>
+                <span *ngIf="!child.children || child.children.length === 0">
+                    <button mat-menu-item (click)="onChange(child)" matTooltip="{{child.description}}"
+                        matTooltipPosition="below" matTooltipShowDelay="1000"
+                        [attr.data-automation-id]="child.displayName | automationId : automationId : 'item'">
+                        <mat-icon *ngIf="!child.isCustomIcon">{{child.iconName}}</mat-icon>
+                        <span *ngIf="child.isCustomIcon"
+                            class="{{child.iconName}} mat-icon-no-color ama-property-type-selector-custom-menu-icon"></span>
+                        <span>{{child.displayName}}</span>
+                    </button>
+                </span>
             </span>
         </span>
-    </span>
+    </ng-template>
 </mat-menu>
