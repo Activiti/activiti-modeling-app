@@ -17,28 +17,27 @@
 
 import { Injectable } from '@angular/core';
 import { createSelector } from '@ngrx/store';
-import { getEntitiesState } from './entity.selectors';
+import { getEntitiesState, MODELS_ENTITY_KEY } from './entity.selectors';
 
-export const selectModelEntityContainerByType = (modelType: string) => createSelector(getEntitiesState, (state: any) => state[modelType]);
-export const selectModelEntityContentsByType = (modelType: string) => createSelector(selectModelEntityContainerByType(modelType), state => state.entityContents);
-export const selectModelEntityByType = (modelType: string, modelId: string) => createSelector(selectModelEntityContainerByType(modelType), state => state.entities[modelId]);
+export const selectModelEntity = (modelId: string) => createSelector(selectModelsContainer(), state => state.entities[modelId]);
+export const selectModelsContainer = () => createSelector(getEntitiesState, (state: any) => state[MODELS_ENTITY_KEY]);
+export const selectModelEntityContents = () => createSelector(selectModelsContainer(), state => state.entityContents);
 
 @Injectable({
     providedIn: 'root'
 })
-export class ModelEntitySelectors {
-    constructor(private modelType: string) {}
+export class ModelSelectors {
 
     selectModelContentById(modelId: string) {
         return createSelector(
-            selectModelEntityContentsByType(this.modelType),
+            selectModelEntityContents(),
             (entityContents) => entityContents[modelId]
         );
     }
 
     selectModelMetadataById(modelId: string) {
         return createSelector(
-            selectModelEntityContainerByType(this.modelType),
+            selectModelsContainer(),
             state => state.entities[modelId]
         );
     }

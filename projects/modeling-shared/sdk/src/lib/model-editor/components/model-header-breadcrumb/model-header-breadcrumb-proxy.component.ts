@@ -19,9 +19,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
-import { MODEL_TYPE } from '../../../api/types';
+import { MODEL_TYPE, UI } from '../../../api/types';
 import { BreadCrumbHelperService, BreadcrumbItem } from '../../../helpers/public-api';
-import { selectModelEntity } from '../../../store/model-entity.selectors';
+import { selectModelEntityByType } from '../../../store/model-entity.selectors';
+import { selectModelEntity } from '../../../store/model.selectors';
 
 interface ModelEditorRouterParams {
     projectId: string;
@@ -42,6 +43,8 @@ export class ModelHeaderBreadcrumbProxyComponent implements OnInit {
 
     breadcrumbs$: Observable<BreadcrumbItem[]>;
 
+    private migratedModels = [UI];
+
     constructor(private activatedRoute: ActivatedRoute, private breadCrumbHelperService: BreadCrumbHelperService) { }
 
     public ngOnInit(): void {
@@ -50,9 +53,17 @@ export class ModelHeaderBreadcrumbProxyComponent implements OnInit {
 
         this.breadcrumbs$ = combineLatest([this.modelType$, this.modelId$]).pipe(
             filter(([modelType, modelId]) => !!modelType && !!modelId),
-            mergeMap(([modelType, modelId]) =>
-                this.breadCrumbHelperService.getModelCrumbs(selectModelEntity(modelType, modelId))
-            ));
+            mergeMap(([modelType, modelId]) => {
+                if (this.isMigratedModel(modelType)) {
+                    return this.breadCrumbHelperService.getModelCrumbs(selectModelEntity(modelId));
+                }else {
+                    return this.breadCrumbHelperService.getModelCrumbs(selectModelEntityByType(modelType, modelId));
+                }
+            }));
+    }
+
+    private isMigratedModel(modelType) {
+        return this.migratedModels.includes(modelType);
     }
 
 }
