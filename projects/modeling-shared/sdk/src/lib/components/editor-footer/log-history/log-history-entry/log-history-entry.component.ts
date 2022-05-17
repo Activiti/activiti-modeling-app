@@ -15,18 +15,16 @@
  * limitations under the License.
  */
 
-import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { LogMessage } from '@alfresco-dbp/modeling-shared/sdk';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { LogMessage } from '../../../../store/app.state';
 
 @Component({
-    selector: 'ama-log-history',
-    templateUrl: './log-history.component.html',
-    styleUrls: ['./log-history.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.None
+    selector: 'modelingsdk-log-history-entry',
+    templateUrl: './log-history-entry.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LogHistoryComponent {
+export class LogHistoryEntryComponent {
 
     @Input()
-    messages: LogMessage[];
+    log: LogMessage;
 }

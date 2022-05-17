@@ -15,22 +15,17 @@
  * limitations under the License.
  */
 
-import { EditorFooterComponent } from './components/editor-footer/editor-footer.component';
 import { OriginsLayoutComponent } from './components/origins-layout/origins-layout.component';
-import { LogHistoryEntryComponent } from './components/log-history/log-history-entry/log-history-entry.component';
 import { HeaderMenuComponent } from './components/header/header-menu.component';
-import { LogHistoryComponent } from './components/log-history/log-history.component';
 import { CommonModule } from '@angular/common';
 import { CoreModule, MaterialModule } from '@alfresco/adf-core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { NavigationModule } from '@alfresco-dbp/modeling-shared/sdk';
+import { AppFooterService, EditorFooterModule, EDITOR_FOOTER_SERVICE_TOKEN, NavigationModule } from '@alfresco-dbp/modeling-shared/sdk';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { EDITOR_FOOTER_SERVICE_TOKEN } from './components/editor-footer/editor-footer.service.interface';
-import { AppFooterService } from './services/app-footer.service';
 import { RouterModule } from '@angular/router';
 
 /** @deprecated: theming **/
@@ -45,14 +40,12 @@ import { RouterModule } from '@angular/router';
         FlexLayoutModule,
         NavigationModule,
         TranslateModule.forChild(),
-        CoreModule.forChild()
+        CoreModule.forChild(),
+        EditorFooterModule
     ],
     declarations: [
         OriginsLayoutComponent,
         HeaderMenuComponent,
-        LogHistoryComponent,
-        LogHistoryEntryComponent,
-        EditorFooterComponent,
     ],
     providers: [
         { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: AppFooterService },

@@ -22,7 +22,6 @@ import { appThemes } from '../../common/components/themes';
 import {
     AppActionTypes,
     AsyncInitAction,
-    CLEAR_LOG_HISTORY
 } from '../actions/app.actions';
 import {
     AppState,
@@ -45,7 +44,8 @@ import {
     SetMenuAction,
     SET_MENU,
     CHANGE_THEME,
-    ChangeThemeAction
+    ChangeThemeAction,
+    CLEAR_LOG_HISTORY
 } from '@alfresco-dbp/modeling-shared/sdk';
 
 export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action): AppState {

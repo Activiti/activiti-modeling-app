@@ -18,20 +18,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EditorFooterComponent } from './editor-footer.component';
 import { Store } from '@ngrx/store';
-import { SharedModule, provideLogFilter } from '@alfresco-dbp/modeling-shared/sdk';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { EDITOR_FOOTER_SERVICE_TOKEN } from './editor-footer.service.interface';
-import { AppFooterService } from '../../services/app-footer.service';
-import { selectToolbarInProgress } from '../../../../store';
 import { By } from '@angular/platform-browser';
-import { LogHistoryComponent } from '../log-history/log-history.component';
-import { LogHistoryEntryComponent } from '../log-history/log-history-entry/log-history-entry.component';
 import { of } from 'rxjs';
+import { LogHistoryComponent } from './log-history/log-history.component';
+import { LogHistoryEntryComponent } from './log-history/log-history-entry/log-history-entry.component';
+import { selectToolbarInProgress } from '../../store/app.selectors';
+import { AppFooterService } from '../../services/app-footer.service';
+import { SharedModule } from '../../helpers/shared.module';
+import { EDITOR_FOOTER_SERVICE_TOKEN } from '../../services/editor-footer.service.interface';
+import { provideLogFilter } from '../../helpers/utils/log-filters';
 
 describe('EditorFooterComponent', () => {
 

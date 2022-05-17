@@ -31,3 +31,5 @@ export * from './json-schema-to-entity-property.service';
 export * from './modeling-json-schema-provider.service';
 export * from './modeling-json-schema.service';
 export * from './layout.service';
+export * from './editor-footer.service.interface';
+export * from './app-footer.service';

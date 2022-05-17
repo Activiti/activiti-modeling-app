@@ -16,6 +16,7 @@
  */
 
 import { createSelector } from '@ngrx/store';
+import { allLogFilter } from '../helpers/utils/log-filters';
 import { AmaState, AppState } from './app.state';
 import { getEntitiesState } from './entity.selectors';
 
@@ -39,3 +40,19 @@ export const selectSelectedModel = createSelector(getEntitiesState, selectApp, (
 export const selectSelectedModelIdFor = function(modelType: string) {
     return createSelector(selectApp, (state: AppState) => state.openedModel && state.openedModel.type.toLowerCase() === modelType.toLowerCase() ? state.openedModel.id : null);
 };
+
+
+const selectToolbarState = createSelector(selectApp, (state: AppState) => state.toolbar);
+export const selectToolbarUserMessage = createSelector(selectToolbarState, (state) => state.userMessage);
+export const selectToolbarInProgress = createSelector(selectToolbarState, (state) => state.inProgress);
+export const selectToolbarLogs = createSelector(selectApp, (state: AppState) => state.logs);
+export const selectToolbarLogsVisibility = createSelector(selectToolbarState, (state) => state.logHistoryVisible);
+export const selectLogsByInitiator = initiator => createSelector(
+    selectToolbarLogs,
+    (logs) => {
+        if (initiator.key === allLogFilter.key) {
+            return logs;
+        }
+        return logs.filter(log => log.initiator.key === initiator.key);
+    }
+);

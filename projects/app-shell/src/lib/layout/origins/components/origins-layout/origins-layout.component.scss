@@ -51,6 +51,17 @@
     adf-layout-header .mat-toolbar-single-row {
         background-color: var(--theme-primary-color);
     }
+
+    .ama-editor-footer {
+        z-index: 1;
+        .mat-toolbar {
+            .ama-log-history-controls {
+                .ama-log-close {
+                    display: none;
+                }
+            }   
+        }
+    }
 }
 
 .error-snackbar {

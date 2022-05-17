@@ -25,6 +25,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { StudioLayoutComponent } from './components/studio-layout/studio-layout.component';
 import { StudioProjectEditorLayoutComponent } from './components/studio-project-editor-layout/studio-project-editor-layout.component';
+import { AppFooterService, EditorFooterModule, EDITOR_FOOTER_SERVICE_TOKEN } from '@alfresco-dbp/modeling-shared/sdk';
 @NgModule({
     imports: [
         CommonModule,
@@ -34,13 +35,15 @@ import { StudioProjectEditorLayoutComponent } from './components/studio-project-
         FlexLayoutModule,
         RouterModule,
         TranslateModule.forChild(),
-        CoreModule.forChild()
+        CoreModule.forChild(),
+        EditorFooterModule
     ],
     declarations: [
         StudioLayoutComponent,
-        StudioProjectEditorLayoutComponent
+        StudioProjectEditorLayoutComponent,
     ],
     providers: [
+        { provide: EDITOR_FOOTER_SERVICE_TOKEN, useClass: AppFooterService },
     ]
 })
 export class StudioLayoutModule {}

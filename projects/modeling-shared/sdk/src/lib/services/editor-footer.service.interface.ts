@@ -17,7 +17,7 @@
 
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LogMessage } from '@alfresco-dbp/modeling-shared/sdk';
+import { LogMessage } from '../store/app.state';
 
 export interface EditorFooterService {
     userMessage$: Observable<string>;

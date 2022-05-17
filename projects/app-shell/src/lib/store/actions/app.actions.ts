@@ -38,9 +38,3 @@ export class LoggedInAction implements Action {
     readonly type = AppActionTypes.LoggedIn;
     constructor() {}
 }
-
-export const CLEAR_LOG_HISTORY = '[App] CLEAR_LOG_HISTORY';
-export class ClearLogHistoryAction implements Action {
-    readonly type = CLEAR_LOG_HISTORY;
-    constructor() {}
-}

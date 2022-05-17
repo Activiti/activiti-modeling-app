@@ -16,15 +16,16 @@
  */
 
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
-import { EDITOR_FOOTER_SERVICE_TOKEN, EditorFooterService } from './editor-footer.service.interface';
 import { Store } from '@ngrx/store';
-import { AmaState, LogMessage,  LOG_FILTER_ITEM_TOKEN, LogMessageInitiator  } from '@alfresco-dbp/modeling-shared/sdk';
-import { selectToolbarLogsVisibility, selectLogsByInitiator } from '../../../../store';
+import { selectToolbarLogsVisibility, selectLogsByInitiator } from '../../store/app.selectors';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { AmaState, LogMessage, LogMessageInitiator } from '../../store/app.state';
+import { EditorFooterService, EDITOR_FOOTER_SERVICE_TOKEN } from '../../services/editor-footer.service.interface';
+import { LOG_FILTER_ITEM_TOKEN } from '../../helpers/utils/log-filters';
 
 @Component({
-    selector: 'ama-editor-footer',
+    selector: 'modelingsdk-editor-footer',
     styleUrls: ['./editor-footer.component.scss'],
     templateUrl: './editor-footer.component.html',
     encapsulation: ViewEncapsulation.None
@@ -37,12 +38,12 @@ export class EditorFooterComponent {
 
     constructor(
         @Inject(EDITOR_FOOTER_SERVICE_TOKEN) public editorFooterService: EditorFooterService,
-        @Inject( LOG_FILTER_ITEM_TOKEN ) public logFilters: LogMessageInitiator[],
+        @Inject( LOG_FILTER_ITEM_TOKEN ) private logFilters: LogMessageInitiator[],
         private store: Store<AmaState>
     ) {
         this.showConsole$ = this.store.select(selectToolbarLogsVisibility);
         this.logs$ = this.editorFooterService.logs$;
-        this.filters = [].concat(...logFilters) || [];
+        this.filters = [].concat(...this.logFilters) || [];
     }
 
     toggleConsole() {

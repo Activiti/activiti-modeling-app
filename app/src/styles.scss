@@ -83,6 +83,8 @@ $defaults: (
   --theme-card-bg-color: mat-color($background, card),
   --adf-card-view-datetime-border-color: mat-color($foreground, text, 0.42),
   --theme-document-color: #00953b,
+  --theme-ama-log-panel-bg-color: mat-color($foreground, text, 0.01),
+
   // ADF components and services
   --adf-snackbar-error-bg-color: mat-color($warn),
   --adf-snackbar-error-action-color: white,

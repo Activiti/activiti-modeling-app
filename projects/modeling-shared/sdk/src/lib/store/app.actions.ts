@@ -114,3 +114,9 @@ export class ResetAction implements Action {
     readonly type = APP_RESET_ACTION;
     constructor() {}
 }
+
+export const CLEAR_LOG_HISTORY = '[App] CLEAR_LOG_HISTORY';
+export class ClearLogHistoryAction implements Action {
+    readonly type = CLEAR_LOG_HISTORY;
+    constructor() {}
+}

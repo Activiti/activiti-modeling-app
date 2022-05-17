@@ -7,15 +7,18 @@
                 </mat-option>
             </mat-select>
         <div class="ama-log-history-controls">
-            <button mat-icon-button data-automation-id='collapse' (click)="toggleConsole()">
+            <button mat-icon-button data-automation-id='collapse' (click)="toggleConsole()" class="ama-log-expand">
                 <mat-icon>expand_more</mat-icon>
             </button>
             <button mat-icon-button data-automation-id='deleteLogs' (click)="clearLogs()">
                 <mat-icon>delete_sweep</mat-icon>
             </button>
+            <button mat-icon-button data-automation-id='collapse' (click)="toggleConsole()" class="ama-log-close">
+                <mat-icon class="ama-log-close">close</mat-icon>
+            </button>
         </div>
     </mat-toolbar>
-    <ama-log-history class="ama-log-history" [messages]="logs$ | async"></ama-log-history>
+    <modelingsdk-log-history class="ama-log-history" [messages]="logs$ | async"></modelingsdk-log-history>
 </ng-container>
 <mat-toolbar class="ama-editor-footer-toolbar">
     <div class="ama-editor-footer-toolbar-left">

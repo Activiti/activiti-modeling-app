@@ -11,8 +11,9 @@
     <mat-sidenav mode="side" position="end" [mode]="isMobileScreenSize ? 'over' : 'side'" [opened]="!isMobileScreenSize">
         <router-outlet name="right-sidenav"></router-outlet>
     </mat-sidenav>
-    <section class="studio-project-layout-content">
+    <mat-sidenav-content class="studio-project-layout-content">
         <router-outlet name="content-header"></router-outlet>
-        <router-outlet></router-outlet>
-    </section>
+        <router-outlet class="studio-project-layout-content-section"></router-outlet>
+        <modelingsdk-editor-footer class="ama-editor-footer"></modelingsdk-editor-footer>
+    </mat-sidenav-content>
 </mat-sidenav-container>
