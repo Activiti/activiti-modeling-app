@@ -10,7 +10,7 @@
         "host": "${APP_CONFIG_OAUTH2_HOST}",
         "authPath": "/protocol/openid-connect/token/",
         "clientId": "${APP_CONFIG_OAUTH2_CLIENTID}",
-        "scope": "openid",
+        "scope": "openid profile email",
         "secret": "",
         "implicitFlow": ${APP_CONFIG_OAUTH2_IMPLICIT_FLOW},
         "silentLogin": ${APP_CONFIG_OAUTH2_SILENT_LOGIN},
