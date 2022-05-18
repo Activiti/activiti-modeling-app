@@ -48,8 +48,6 @@ import { selectSelectedElement } from '../../store/process-editor.selectors';
 })
 export class ProcessModelerComponent implements OnInit, OnDestroy {
 
-    private static ASSIGNEE = '${initiator}';
-
     diagramData$ = new BehaviorSubject<ProcessContent>(null);
     onDestroy$ = new Subject<void>();
     currentProcessSelected = '';
@@ -88,7 +86,6 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
             changeHandler: event => {
                 this.store.dispatch(new SetAppDirtyStateAction(true));
                 this.onChange.emit(event);
-                this.handleDefaultAssigneeInUserTask(event);
             },
             removeHandler: event =>
                 this.store.dispatch(new RemoveDiagramElementAction(createSelectedElement(event.element))),
@@ -103,10 +100,6 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
             },
             createHandler: event => {
                 const element = createSelectedElement(event.elements[0]);
-                if (element.type === BpmnElement.UserTask) {
-                    this.processModelerService.updateElementProperty(element.id, BpmnProperty.priority, 0);
-                    this.processModelerService.updateElementProperty(element.id, BpmnProperty.assignee, '${initiator}');
-                }
                 if (element.type === BpmnElement.CallActivity) {
                     this.processModelerService.updateElementProperty(element.id, BpmnProperty.inheritBusinessKey, true);
                 }
@@ -157,40 +150,5 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
 
     redo() {
         this.processModelerService.redo();
-    }
-
-    private handleDefaultAssigneeInUserTask(event: any) {
-        this.setDefaultAssigneeInUserTask(event);
-        this.removeDefaultAssigneeFromUserTask(event);
-    }
-
-    private setDefaultAssigneeInUserTask(event: any) {
-        if (event.element.type === BpmnElement.UserTask && this.businessObjectHasNoAssignment(event.element.businessObject)) {
-            this.addDefaultAssignee(event.element.id);
-        }
-    }
-
-    private removeDefaultAssigneeFromUserTask(event: any) {
-        if (event.element.type === BpmnElement.UserTask && event.element.businessObject.assignee === ProcessModelerComponent.ASSIGNEE &&
-            this.businessObjectHasCandidates(event.element.businessObject)) {
-            this.removeDefaultAssignee(event.element.id);
-        }
-    }
-
-    private businessObjectHasNoAssignment(businessObject) {
-        return !businessObject.hasOwnProperty(BpmnProperty.assignee) &&
-            !businessObject.hasOwnProperty(BpmnProperty.candidateUsers) && !businessObject.hasOwnProperty(BpmnProperty.candidateGroups);
-    }
-
-    private businessObjectHasCandidates(businessObject) {
-        return businessObject.hasOwnProperty(BpmnProperty.candidateUsers) || businessObject.hasOwnProperty(BpmnProperty.candidateGroups);
-    }
-
-    private addDefaultAssignee(elementId: string) {
-        this.processModelerService.updateElementProperty(elementId, BpmnProperty.assignee, ProcessModelerComponent.ASSIGNEE);
-    }
-
-    private removeDefaultAssignee(elementId: string) {
-        this.processModelerService.updateElementProperty(elementId, BpmnProperty.assignee, null);
     }
 }

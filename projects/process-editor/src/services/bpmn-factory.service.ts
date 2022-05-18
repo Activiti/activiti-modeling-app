@@ -29,6 +29,7 @@ import { ClipboardService } from './clipboard/clipboard.service';
 import { emptyPaletteModule } from './palette/dummy-bpmn-palette.provider';
 import { DecisionTableRenderModule } from './bpmn-js/renderers/decision-table.renderer';
 import { ScriptRenderModule } from './bpmn-js/renderers/script.renderer';
+import { UserTaskDefaultValuesBpmnJsModule } from './bpmn-js/default-values-handlers/user-task.handler';
 
 const activitiModdleDescriptor = require('./activiti.json');
 const redefineModdleDescriptor = require('./redefine-bpmn.json');
@@ -54,7 +55,8 @@ export class BpmnFactoryService implements BpmnFactory {
                 ScriptRenderModule,
                 ...this.getBpmnRenderers(),
                 { clipboard: ['value', this.clipboardService] },
-                ...this.getBpmnPropertiesPanelConfig()
+                ...this.getBpmnPropertiesPanelConfig(),
+                ...this.getDefaultValuesBpmnJsModules()
             ],
             moddleExtensions: { activiti: activitiModdleDescriptor, bpmn: redefineModdleDescriptor }
         });
@@ -74,6 +76,12 @@ export class BpmnFactoryService implements BpmnFactory {
     protected getBpmnPropertiesPanelConfig() {
         return [
             bpmnPropertiesProviderModule
+        ];
+    }
+
+    protected getDefaultValuesBpmnJsModules() {
+        return [
+            UserTaskDefaultValuesBpmnJsModule
         ];
     }
 }
