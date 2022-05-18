@@ -19,6 +19,7 @@
 
             <mat-menu #menu="matMenu" overlapTrigger="false">
                 <button mat-menu-item class="ama-project-tree-filter__create_button"
+                    [attr.data-automation-id]="'add-' + filter.type"
                     *ngIf="isAllowed(filter.type)" [disableRipple]="true"
                     (click)="openModelCreationModal($event); menuTrigger.closeMenu()"
                     [title]="'PROJECT_EDITOR.CREATE_NEW' | translate" [class]="'add-new-' + filter.type">
@@ -74,11 +75,6 @@
                 </div>
             </ng-container>
         </ng-container>
-        <ama-upload-file-button
-            *ngIf="isAllowed(filter.type) && isUploadButtonEnabled(filter.type)"
-            [attr.data-automation-id]="'upload-' + filter.type"
-            [projectId]="projectId" [type]="filter.type">
-        </ama-upload-file-button>
     </div>
 </mat-expansion-panel>
 

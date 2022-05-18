@@ -18,7 +18,7 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { ProjectTreeFilterComponent } from './project-tree-filter.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { NO_ERRORS_SCHEMA, SimpleChanges } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA, SimpleChanges } from '@angular/core';
 import { SharedModule, PROCESS, MODEL_CREATORS, ModelScope, CONNECTOR } from '@alfresco-dbp/modeling-shared/sdk';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslationMock, TranslationService, AppConfigService } from '@alfresco/adf-core';
@@ -27,7 +27,6 @@ import { By } from '@angular/platform-browser';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { Element } from '@angular/compiler';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 
@@ -102,6 +101,24 @@ describe('ProjectTreeFilterComponent ', () => {
             type: PROCESS,
             loadData: true
         });
+    });
+
+    it('should display add and upload options on click of menu', () => {
+        component.filter = <any>{
+            icon: '',
+            name: 'Processes',
+            type: PROCESS
+        };
+        fixture.detectChanges();
+        const filterElement = fixture.debugElement.nativeElement.querySelector(`[data-automation-id="project-filter-process"]`);
+        filterElement.dispatchEvent(new Event('mouseenter'));
+        const menuButton = fixture.debugElement.nativeElement.querySelector(`[data-automation-id="menu-process"]`);
+        menuButton.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+        const addButton = fixture.debugElement.query(By.css('.add-new-process'));
+        const uploadButton = fixture.debugElement.query(By.css('[data-automation-id="upload-process"]'));
+        expect(addButton).not.toBeNull();
+        expect(uploadButton).not.toBeNull();
     });
 
     it('when tree filter is closed the correct data should be emitted', () => {
@@ -328,8 +345,14 @@ describe('ProjectTreeFilterComponent ', () => {
         expect(connectorUploadInput).not.toBeNull();
     });
 
-    function getUploadConnectorInput(): Element {
-        return fixture.debugElement.nativeElement.querySelector('[data-automation-id="upload-connector"]');
+    function getUploadConnectorInput(): DebugElement {
+        const filterElement = fixture.debugElement.nativeElement.querySelector(`[data-automation-id="project-filter-connector"]`);
+        filterElement.dispatchEvent(new Event('mouseenter'));
+        fixture.detectChanges();
+        const menuButton = fixture.debugElement.nativeElement.querySelector(`[data-automation-id="menu-connector"]`);
+        menuButton.dispatchEvent(new Event('click'));
+        fixture.detectChanges();
+        return fixture.debugElement.query(By.css('[data-automation-id="upload-connector"]'));
     }
 
     function setUpComponentForEnableCustomConnectors(enable: boolean): void {
