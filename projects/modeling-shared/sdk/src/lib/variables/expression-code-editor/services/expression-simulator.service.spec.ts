@@ -44,6 +44,8 @@ describe('ExpressionSimulatorService', () => {
         c: '456'
     };
 
+    const mockError = '{ "timestamp": "2022-05-18T13:46:28.782+0000", "status": 400, "error": "Bad Request", "message": "This is an error", "path": "/v1/juel" }';
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
@@ -76,14 +78,14 @@ describe('ExpressionSimulatorService', () => {
     });
 
     it('should handle error when simulation errors', async () => {
-        spyOn(provider, 'resolveExpression').and.returnValue(throwError(new Error('{"error":"This is an error"}')));
+        spyOn(provider, 'resolveExpression').and.returnValue(throwError(new Error(mockError)));
         spyOn(store, 'dispatch');
         let logAction: LogAction;
 
         try {
             await service.getSimulationResult(expression, variables, 'mock' as ExpressionSyntax).pipe(first()).toPromise();
         } catch (error) {
-            expect(JSON.parse(error.message).error).toBe('This is an error');
+            expect(JSON.parse(error.message).message).toBe('This is an error');
             logAction = new LogAction({
                 type: MESSAGE.ERROR,
                 datetime: jasmine.any(Date) as undefined as Date,

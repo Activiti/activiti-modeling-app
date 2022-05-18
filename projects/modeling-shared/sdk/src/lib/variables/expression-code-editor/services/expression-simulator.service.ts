@@ -52,9 +52,9 @@ export class ExpressionSimulatorService {
             catchError((error: Error) => {
                 const errorMessage = JSON.parse(error.message);
                 if (Array.isArray(errorMessage)) {
-                    this.logError(errorMessage.flatMap((e) => e.severity ? (e.message + ' ' + e.severity) : e.error || JSON.stringify(e)).join('\n '), errorMessage);
+                    this.logError(errorMessage.flatMap((e) => e.severity ? (e.message + ' ' + e.severity) : e.message || JSON.stringify(e)).join('\n '), errorMessage);
                 } else {
-                    this.logError(errorMessage.error || JSON.stringify(errorMessage), errorMessage);
+                    this.logError(errorMessage.message || JSON.stringify(errorMessage), errorMessage);
                 }
                 return throwError(error);
             })
