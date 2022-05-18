@@ -4,6 +4,7 @@
             "VALIDATE" : "Validate",
             "RELEASE" : "Release",
             "SAVE_AS": "Save as",
+            "SAVE_AS_ICON": "Save as icon",
             "DOWNLOAD": "Download project",
             "VIEW_RELEASES": "View releases",
             "VERSION": "Version"

@@ -22,6 +22,10 @@
             </button>
             <mat-menu #belowMenu="matMenu" yPosition="below">
                 <button mat-menu-item (click)="downloadProject(project)">{{'SDK.PROJECT_HEADER.DOWNLOAD' | translate }}</button>
+                <button mat-menu-item (click)="saveAsProject(project)"
+                    [attr.data-automation-id]="'project-save-as-' + project.id" [attr.aria-label]="'SDK.PROJECT_HEADER.SAVE_AS_ICON' | translate">
+                    {{'SDK.PROJECT_HEADER.SAVE_AS' | translate }}
+                </button>
                 <button mat-menu-item *ngFor="let button of buttons"
                 [attr.data-automation-id]="'project-' + button.automationId"
                 (click)="handleClick(button.actionClass, project.id)">
