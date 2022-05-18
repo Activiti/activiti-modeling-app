@@ -18,11 +18,12 @@
         margin-bottom: 5px;
         line-height: 25px;
         text-align: left;
-        padding-left: 25px;
+        border: none;
+        background: none;
+        padding: 0;
+        color: var(--theme-text-fg-color);
 
         mat-icon {
-            font-size: 18px;
-            color: var(--theme-icons-fg-color);
             line-height: 25px;
         }
     }

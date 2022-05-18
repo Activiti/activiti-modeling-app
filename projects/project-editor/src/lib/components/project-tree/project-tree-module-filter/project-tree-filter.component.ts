@@ -29,6 +29,7 @@ import { AppConfigService, ItemsByCategory, SortByCategoryMapperService } from '
 })
 
 export class ProjectTreeFilterComponent implements OnInit, OnChanges {
+    isMenuOpen = false;
     @Input() projectId: string;
     @Input() filter: ModelFilter;
     @Input() contents: Partial<Filter>[];

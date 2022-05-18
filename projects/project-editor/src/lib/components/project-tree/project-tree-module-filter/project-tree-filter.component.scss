@@ -72,8 +72,14 @@
         width: 100%;
     }
 
-    &__create_button {
+    &__menu_close {
         display: none;
+    }
+
+    &__menu_open {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
     }
 
     &__active {

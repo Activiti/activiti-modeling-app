@@ -4,7 +4,7 @@
         <div #ref (click)="onClick($event)" data-automation-id="upload-button-ref" class="ama-upload-button-ref"><ng-content></ng-content></div>
 
         <div *ngIf="!ref.innerHTML.trim()">
-            <button class="ama-default-upload-button" (click)="onClick($event)" data-automation-id="upload-button-menu" mat-stroked-button>
+            <button class="ama-default-upload-button" (click)="onClick($event)" data-automation-id="upload-button-menu">
                 <mat-icon>file_upload</mat-icon> {{'PROJECT_EDITOR.UPLOAD' | translate }}
             </button>
         </div>

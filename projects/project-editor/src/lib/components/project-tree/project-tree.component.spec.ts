@@ -33,6 +33,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 describe('ProjectTreeFilterComponent ', () => {
     let fixture: ComponentFixture<ProjectTreeComponent>;
@@ -57,7 +58,8 @@ describe('ProjectTreeFilterComponent ', () => {
                 MatIconModule,
                 RouterModule,
                 SharedModule,
-                MatButtonModule
+                MatButtonModule,
+                MatMenuModule
             ],
             declarations: [
                 ProjectTreeComponent,

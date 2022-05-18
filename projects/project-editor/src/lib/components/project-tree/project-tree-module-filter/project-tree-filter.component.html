@@ -10,12 +10,31 @@
                 {{ filter.icon }}
             </mat-icon>
             <span class="ama-project-tree-filter__title">{{ filter.name | translate }}</span>
-            <button mat-icon-button class="ama-project-tree-filter__create_button"
-                    *ngIf="isAllowed(filter.type)" [disableRipple]="true"
-                   (click)="openModelCreationModal($event)"
-                [title]="'PROJECT_EDITOR.CREATE_NEW' | translate" [class]="'add-new-' + filter.type">
-                <mat-icon>add</mat-icon>
+
+            <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" [attr.data-automation-id]="'menu-' + filter.type"
+                (menuOpened)="isMenuOpen=true" (menuClosed)="isMenuOpen=false" [disableRipple]="true"
+                [ngClass]="isMenuOpen ? 'ama-project-tree-filter__menu_open' : 'ama-project-tree-filter__menu_close'">
+                <mat-icon>more_vert</mat-icon>
             </button>
+
+            <mat-menu #menu="matMenu" overlapTrigger="false">
+                <button mat-menu-item class="ama-project-tree-filter__create_button"
+                    *ngIf="isAllowed(filter.type)" [disableRipple]="true"
+                    (click)="openModelCreationModal($event); menuTrigger.closeMenu()"
+                    [title]="'PROJECT_EDITOR.CREATE_NEW' | translate" [class]="'add-new-' + filter.type">
+                    <mat-icon>add</mat-icon>
+                    <span>Create</span>
+                </button>
+                <button mat-menu-item (mouseleave)="menuTrigger.closeMenu()" [disableRipple]="true">
+                    <ama-upload-file-button
+                        *ngIf="isAllowed(filter.type) && isUploadButtonEnabled(filter.type)"
+                        [attr.data-automation-id]="'upload-' + filter.type"
+                        [projectId]="projectId" [type]="filter.type">
+                    </ama-upload-file-button>
+                </button>
+                
+            </mat-menu>
+            
         </div>
     </mat-expansion-panel-header>
 
