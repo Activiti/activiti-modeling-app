@@ -1,4 +1,4 @@
-const getJestConfig = require('../projects/adf-candidates/testing/jest/jest.get-config');
+const getJestConfig = require(__dirname + '/../projects/adf-candidates/testing/jest/jest.get-config');
 
 module.exports = getJestConfig({
     coverageDirectory: '<rootDir>/../../../coverage/modeling-ce/app',

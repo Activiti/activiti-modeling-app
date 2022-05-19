@@ -1,5 +1,5 @@
 const path = require('path');
-const getJestConfig = require('./testing/jest/jest.get-config');
+const getJestConfig = require(__dirname + '/testing/jest/jest.get-config');
 
 module.exports = getJestConfig({
     rootDir: path.resolve(__dirname),
