@@ -118,7 +118,7 @@
     "@nrwl/nx-plugin": "12.10.1",
     "@nrwl/workspace": "12.10.1",
     "@octokit/core": "^3.4.0",
-    "@playwright/test": "^1.19.1",
+    "@playwright/test": "^1.20.2",
     "@reportportal/agent-js-playwright": "^5.0.2",
     "@schematics/angular": "^11.2.8",
     "@types/archiver": "^5.1.1",
