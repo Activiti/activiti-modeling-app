@@ -25,10 +25,10 @@ export interface InputTypeItem {
     type: string;
     primitiveType: string;
     model?: JSONSchemaInfoBasics;
-    implementationClass: Type<{}>;
+    implementationClass: Type<any>;
 }
 
-export function provideInputTypeItemHandler(type: string, implementationClass: Type<{}>, primitiveType?: string, model?: JSONSchemaInfoBasics) {
+export function provideInputTypeItemHandler(type: string, implementationClass: Type<any>, primitiveType?: string, model?: JSONSchemaInfoBasics) {
     return {
         provide: INPUT_TYPE_ITEM_HANDLER,
         useValue: {

@@ -37,11 +37,11 @@ export interface ExpressionSyntaxProvider {
 export class NoneExpressionSyntax implements ExpressionSyntaxProvider {
     type = ExpressionSyntax.NONE;
 
-    initExpressionEditor(language: string, parameters: EntityProperty[], hostLanguage: string, highlightAllText: any) {
+    initExpressionEditor() {
         return;
     }
 
-    resolveExpression(expression: string, variables: { [key: string]: any }): Observable<any> {
+    resolveExpression(expression: string): Observable<any> {
         return of(expression);
     }
 

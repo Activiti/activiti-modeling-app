@@ -104,7 +104,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
                     this.processModelerService.updateElementProperty(element.id, BpmnProperty.inheritBusinessKey, true);
                 }
             },
-            copyActionHandler: event => {
+            copyActionHandler: () => {
                 this.taskAssignmentService.copyActionHandler(this.currentProcessSelected);
             },
             pasteActionHandler: event => {

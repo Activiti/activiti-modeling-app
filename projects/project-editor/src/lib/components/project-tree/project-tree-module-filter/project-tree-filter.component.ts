@@ -16,7 +16,9 @@
  */
 
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit, Inject, Optional, ViewEncapsulation, SimpleChanges, OnChanges } from '@angular/core';
-import { MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction, ModelScope, CONNECTOR, AUTHENTICATION, Filter, DEFAULT_CATEGORIES } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    MODEL_TYPE, ModelFilter, ModelCreator, AmaState, MODEL_CREATORS, OpenEntityDialogAction, ModelScope, CONNECTOR, AUTHENTICATION, Filter, DEFAULT_CATEGORIES
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { AppConfigService, ItemsByCategory, SortByCategoryMapperService } from '@alfresco/adf-core';
 

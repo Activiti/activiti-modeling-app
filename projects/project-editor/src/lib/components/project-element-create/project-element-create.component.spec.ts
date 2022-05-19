@@ -101,7 +101,9 @@ describe('ProjectNavigationComponent', () => {
     describe('CREATE section', () => {
 
         it('should have the "CREATE" section by default', () => {
-            const selectedElement: HTMLOptionElement = fixture.nativeElement.querySelector('[data-automation-id="ama-project-creator-create-section"].mat-list-single-selected-option');
+            const selectedElement: HTMLOptionElement = fixture.nativeElement.querySelector(
+                '[data-automation-id="ama-project-creator-create-section"].mat-list-single-selected-option'
+            );
 
             expect(selectedElement).not.toBeNull();
             expect(selectedElement).toBeDefined();

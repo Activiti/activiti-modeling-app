@@ -53,8 +53,6 @@ import {
     SaveAsProjectDialogPayload,
     SaveAsProjectAttemptAction,
     OpenSaveAsProjectDialogAction,
-    AddToFavoritesProjectAttemptAction,
-    RemoveFromFavoritesProjectAttemptAction,
     GetFavoriteProjectsAttemptAction,
     GetFavoriteProjectsSuccessAction
 } from '@alfresco-dbp/modeling-shared/sdk';

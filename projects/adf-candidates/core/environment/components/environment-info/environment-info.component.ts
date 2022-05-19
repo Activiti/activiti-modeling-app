@@ -26,7 +26,7 @@ import { EnvironmentService, FeatureDescription } from '../../services/environme
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EnvironmentInfoComponent<T extends object> implements OnInit {
+export class EnvironmentInfoComponent<T> implements OnInit {
     public features: (FeatureDescription & {active: boolean})[];
 
     constructor(@Inject(ENVIRONMENT_SERVICE_TOKEN) private environmentService: EnvironmentService<T>) {}

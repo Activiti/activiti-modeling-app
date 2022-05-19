@@ -51,8 +51,8 @@ describe('PluginRoutesManagerService', () => {
         service = TestBed.inject(PluginRoutesManagerService);
         router = TestBed.inject(Router);
 
-        projectsPath = { path: 'projects', data: {}, component: MatButton },
-        dashboardPath = { path: 'dashboard', component: MatButton },
+        projectsPath = { path: 'projects', data: {}, component: MatButton };
+        dashboardPath = { path: 'dashboard', component: MatButton };
         processesPath = { path: 'processes', data: { injectTo: INJECTION_POINT }, component: MatButton };
         connectorsPath = { path: 'connectors', data: { injectTo: INJECTION_POINT }, component: MatButton };
         kittensPath = { path: 'kittens', data: { injectTo: ANOTHER_INJECTION_POINT }, component: MatButton };

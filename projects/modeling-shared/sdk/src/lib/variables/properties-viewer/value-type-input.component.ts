@@ -129,7 +129,7 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
         this.writeValue(this.value);
     }
 
-    private getInputItemImplementationClass(type: string): Type<{}> {
+    private getInputItemImplementationClass(type: string): Type<any> {
         for (const handler of this.inputTypeItemHandler) {
             if (handler.type === type) {
                 return handler.implementationClass;
@@ -138,7 +138,7 @@ export class ValueTypeInputComponent implements OnDestroy, OnChanges, ControlVal
         return this.getDefaultImplementationClass();
     }
 
-    private getDefaultImplementationClass(): Type<{}> {
+    private getDefaultImplementationClass(): Type<any> {
         for (const handler of this.inputTypeItemHandler) {
             if (handler.type === 'json') {
                 return handler.implementationClass;

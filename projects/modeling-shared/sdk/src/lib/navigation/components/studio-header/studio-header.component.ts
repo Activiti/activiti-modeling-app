@@ -66,7 +66,7 @@ export class StudioHeaderComponent {
     }
 
     onBackArrowClick() {
-        this.router.navigate(['']);
+        void this.router.navigate(['']);
     }
 
     onToggleLeftSideNav() {

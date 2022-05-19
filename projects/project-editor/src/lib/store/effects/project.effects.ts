@@ -111,7 +111,7 @@ export class ProjectEffects {
                 this.modelingJSONSchemaService.initializeProjectSchema(projectId);
                 return of(new GetProjectSuccessAction(project));
             }),
-            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.GET_PROJECT')));
+            catchError(() => this.handleError('PROJECT_EDITOR.ERROR.GET_PROJECT')));
     }
 
     private exportProject(projectId: string, name: string) {
@@ -122,7 +122,7 @@ export class ProjectEffects {
                     this.logFactory.logInfo(getProjectEditorLogInitiator(), 'PROJECT_EDITOR.EXPORT_SUCCESS')
                 ];
             }),
-            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.EXPORT_PROJECT')));
+            catchError(() => this.handleError('PROJECT_EDITOR.ERROR.EXPORT_PROJECT')));
     }
 
     private exportProjectAttempt(payload: ExportProjectAttemptPayload) {
@@ -179,7 +179,7 @@ export class ProjectEffects {
                 new UpdateProjectSuccessAction({ id: project.id, changes: project }),
                 new SnackbarInfoAction('NEW_STUDIO_DASHBOARD.ADD_TO_FAVORITES')
             ]),
-            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.ADD_TO_FAVORITES'))
+            catchError(() => this.handleError('PROJECT_EDITOR.ERROR.ADD_TO_FAVORITES'))
         );
     }
 
@@ -190,7 +190,7 @@ export class ProjectEffects {
                 new UpdateProjectSuccessAction({ id: project.id, changes: project }),
                 new SnackbarInfoAction('NEW_STUDIO_DASHBOARD.REMOVE_FROM_FAVORITES')
             ]),
-            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.REMOVE_FROM_FAVORITES'))
+            catchError(() => this.handleError('PROJECT_EDITOR.ERROR.REMOVE_FROM_FAVORITES'))
         );
     }
 }

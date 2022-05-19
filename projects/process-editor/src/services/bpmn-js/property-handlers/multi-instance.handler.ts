@@ -42,7 +42,7 @@ export function getMultiInstanceType(element): MultiInstanceType {
 
 const get = element => getMultiInstanceType(element.businessObject.loopCharacteristics);
 
-const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
+const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement) => {
     modeling.updateProperties(element, {});
 };
 

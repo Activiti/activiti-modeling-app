@@ -71,6 +71,6 @@ export class UserInfoMenuComponent implements OnInit {
     }
 
     navigateToAbout() {
-        this.router.navigate(['about']);
+        void this.router.navigate(['about']);
     }
 }

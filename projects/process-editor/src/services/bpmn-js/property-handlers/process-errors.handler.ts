@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
+const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement) => {
     modeling.updateProperties(element, {});
 };
 

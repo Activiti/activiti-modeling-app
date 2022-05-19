@@ -18,6 +18,7 @@
 import { ModelingType } from '../modeling-type.model';
 import { jsonModelType } from './json.model.type';
 
+/* eslint-disable max-lines */
 /* cspell: disable */
 
 export const stringModelType: ModelingType = {
@@ -554,6 +555,7 @@ export const stringModelType: ModelingType = {
         {
             type: 'string',
             signature: 'trim',
+            // eslint-disable-next-line max-len
             documentation: 'Returns a string whose value is this string, with all leading and trailing space removed, where space is defined as any character whose codepoint is less than or equal to \'U+ 0020\' (the space character).'
         }
     ], jsonModelType.methods].flat()

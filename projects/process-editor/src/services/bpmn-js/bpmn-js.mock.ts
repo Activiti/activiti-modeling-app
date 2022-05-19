@@ -79,7 +79,11 @@ export function getDiagramElementMock(businessObject): Bpmn.DiagramElement {
 export function getModelingMock(): Bpmn.Modeling {
     const modeling = {
         updateProperties(element: Bpmn.DiagramElement, properties) {
-            element.businessObject ? Object.assign(element.businessObject, properties) : Object.assign(element, properties);
+            if (element.businessObject) {
+                Object.assign(element.businessObject, properties);
+            } else {
+                Object.assign(element, properties);
+            }
         }
     };
 

@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-lines */
+
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, ViewChild, ChangeDetectorRef, AfterViewInit, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
@@ -287,7 +289,7 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         return Object.values(data).every(item => !!item.name.trim().length);
     }
 
-    isValidJson(value?: string | Object) {
+    isValidJson(value?: string | any) {
         if (!value || typeof value === 'object') {
             return true;
         }
@@ -295,7 +297,7 @@ export class PropertiesViewerComponent implements OnInit, OnChanges, OnDestroy, 
         return this.codeValidatorService.validateJson(value).valid;
     }
 
-    getValueErrorMessage(value: string | Object, type: string): string {
+    getValueErrorMessage(value: string | any, type: string): string {
         if (type === 'json' && !this.isValidJson(value)) {
             return 'APP.GENERAL.ERRORS.NOT_VALID_JSON';
         }

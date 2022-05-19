@@ -38,7 +38,7 @@ export class AmaRoleGuard implements CanActivate {
         });
 
         if (!this.isAllowed) {
-            this.router.navigate(['/error/403']);
+            void this.router.navigate(['/error/403']);
             return false;
         }
 

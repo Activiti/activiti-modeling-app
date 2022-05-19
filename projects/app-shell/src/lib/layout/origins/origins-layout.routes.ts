@@ -17,7 +17,9 @@
 
 import { Routes } from '@angular/router';
 import { AuthGuard } from '@alfresco/adf-core';
-import { DASHBOARD_ROUTES, MODEL_EDITOR_ROUTES, SelectedProjectSetterGuard, ProjectLoaderGuard, AUTHENTICATED_ROUTES, RootNavigationComponent } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    DASHBOARD_ROUTES, MODEL_EDITOR_ROUTES, SelectedProjectSetterGuard, ProjectLoaderGuard, AUTHENTICATED_ROUTES, RootNavigationComponent
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { OriginsLayoutComponent } from './components/origins-layout/origins-layout.component';
 import { ErrorContentComponent } from '../../common/components/error/error-content.component';
 import { AboutComponent } from '../../common/components/about/about.component';

@@ -50,7 +50,7 @@ export class FormApiVariation<M extends Form, C extends FormContent> implements 
         return <C>createEmptyForm(formatUuid(ContentType.Form, model.id), model.name, model.description);
     }
 
-    public createSummaryPatch(model: Partial<M>, { formRepresentation }: C) {
+    public createSummaryPatch(_model: Partial<M>, { formRepresentation }: C) {
         const { name, description } = formRepresentation;
         return {
             name,

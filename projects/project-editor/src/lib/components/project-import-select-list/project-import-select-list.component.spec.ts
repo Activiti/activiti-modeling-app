@@ -102,12 +102,6 @@ describe('ProjectImportSelectListComponent', () => {
     let component: ProjectImportSelectListComponent;
     let store: Store<AmaState>;
 
-    function openModelTypeSelect() {
-        const importerSelector = fixture.nativeElement.querySelector('#ama-model-importers-select-object');
-        importerSelector.dispatchEvent(new Event('click'));
-        fixture.detectChanges();
-    }
-
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [

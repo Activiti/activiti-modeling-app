@@ -62,7 +62,7 @@ export class SearchHeaderComponent implements OnInit {
 
     searchProjects(value: string) {
         if (value !== this.value) {
-            this.router.navigate(
+            void this.router.navigate(
                 ['dashboard', 'projects'],
                 {
                     queryParams: {

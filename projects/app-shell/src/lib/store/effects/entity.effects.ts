@@ -65,10 +65,10 @@ export class EntityEffects {
         mergeMap(action => this.getModels(action.projectId, action.modelType))
     );
 
-    private getModels(projectId: string, modelType: MODEL_TYPE): Observable<{} | GetModelsSuccessAction> {
+    private getModels(projectId: string, modelType: MODEL_TYPE): Observable<any | GetModelsSuccessAction> {
         return this.modelStorageService.fetchAll(projectId, modelType).pipe(
             mergeMap(models => of(new GetModelsSuccessAction(models, modelType))),
-            catchError(_ => this.handleError('PROJECT_EDITOR.ERROR.LOAD_MODELS')));
+            catchError(() => this.handleError('PROJECT_EDITOR.ERROR.LOAD_MODELS')));
     }
 
     private handleError(userMessage: string): Observable<SnackbarErrorAction> {

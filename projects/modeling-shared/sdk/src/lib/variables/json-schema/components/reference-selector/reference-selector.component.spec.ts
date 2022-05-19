@@ -25,7 +25,6 @@ import { ReferenceSelectorComponent } from './reference-selector.component';
 describe('ReferenceSelectorComponent', () => {
     let component: ReferenceSelectorComponent;
     let fixture: ComponentFixture<ReferenceSelectorComponent>;
-    let element: HTMLElement;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -40,7 +39,6 @@ describe('ReferenceSelectorComponent', () => {
 
         fixture = TestBed.createComponent(ReferenceSelectorComponent);
         component = fixture.componentInstance;
-        element = fixture.debugElement.nativeElement;
     });
 
     it('should create property', () => {

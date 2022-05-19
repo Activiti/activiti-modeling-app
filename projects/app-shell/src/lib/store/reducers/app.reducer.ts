@@ -30,7 +30,6 @@ import {
     MODEL_OPENED,
     ModelOpenedAction,
     MODEL_CLOSED,
-    ModelClosedAction,
     TOOLBAR_MESSAGE,
     ToolbarMessageAction,
     LOADED_APPLICATION,
@@ -75,7 +74,7 @@ export function appReducer(state: AppState = INITIAL_APP_STATE, action: Action):
         break;
 
     case MODEL_CLOSED:
-        newState = deselectOpenedModel(state, <ModelClosedAction>action);
+        newState = deselectOpenedModel(state);
         break;
 
     case SET_APP_DIRTY_STATE:
@@ -159,7 +158,7 @@ function selectOpenedModel(state: AppState, action: ModelOpenedAction): AppState
     return newState;
 }
 
-function deselectOpenedModel(state: AppState, action: ModelClosedAction): AppState {
+function deselectOpenedModel(state: AppState): AppState {
     const newState = Object.assign({}, state);
     newState.openedModel = null;
     return newState;

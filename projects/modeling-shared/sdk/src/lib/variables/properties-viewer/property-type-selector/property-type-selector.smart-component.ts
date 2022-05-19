@@ -247,7 +247,7 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
         return false;
     }
 
-    @HostListener('paste', ['$event']) onPaste(event: Event) {
+    @HostListener('paste', ['$event']) onPaste() {
         return false;
     }
 

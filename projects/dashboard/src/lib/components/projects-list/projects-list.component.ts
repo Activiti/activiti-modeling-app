@@ -126,7 +126,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
         const maxItems = event.pageSize;
         const skipCount = event.pageSize === pagination.maxItems ? event.pageSize * event.pageIndex : 0;
 
-        this.router.navigate(
+        void this.router.navigate(
             ['dashboard', this.redirectTo()],
             {
                 queryParams: { maxItems, skipCount },
@@ -136,7 +136,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     }
 
     onSearchChanged(value: string) {
-        this.router.navigate(
+        void this.router.navigate(
             ['dashboard', this.redirectTo()],
             {
                 queryParams: {
@@ -150,7 +150,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     }
 
     onSortChange(sort: Sort) {
-        this.router.navigate(
+        void this.router.navigate(
             ['dashboard', this.redirectTo()],
             {
                 queryParams: {
@@ -171,7 +171,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     }
 
     rowSelected(item: Partial<Project>): void {
-        this.router.navigate(['projects', item.id]);
+        void this.router.navigate(['projects', item.id]);
     }
 
     editRow(item: Partial<Project>): void {

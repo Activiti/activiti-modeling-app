@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { CoreTestingModule, StorageService } from '@alfresco/adf-core';
+import { CoreTestingModule } from '@alfresco/adf-core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
@@ -29,7 +29,6 @@ describe('ThemeMenuComponent', () => {
 
     let fixture: ComponentFixture<ThemeMenuComponent>;
     let component: ThemeMenuComponent;
-    let storageService: StorageService;
     let store: Store<AmaState>;
     const appState = {
         selectedTheme: {
@@ -59,7 +58,6 @@ describe('ThemeMenuComponent', () => {
 
         fixture = TestBed.createComponent(ThemeMenuComponent);
         component = fixture.componentInstance;
-        storageService = TestBed.inject(StorageService);
         store = TestBed.inject(Store);
     });
 

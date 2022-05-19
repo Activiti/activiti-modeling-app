@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-lines */
+
 import { Component, Input, forwardRef, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';

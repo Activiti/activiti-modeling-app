@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-lines */
+
 import { Injectable } from '@angular/core';
 import { JSONSchemaInfoBasics, JSONSchemaPropertyBasics } from '../../../api/types';
 import { JSONSchemaToEntityPropertyService } from '../../../services/json-schema-to-entity-property.service';
@@ -26,7 +28,9 @@ import { eventSchema } from './expression-language/event-schema';
 import { jsonModelType } from './expression-language/json.model.type';
 import { primitiveTypesSchema } from './expression-language/primitive-types-schema';
 import { stringModelType } from './expression-language/string.model.type';
-import { ModelingType, ModelingTypeMap, ModelingTypeMethodDescription, ModelingTypePropertyDescription, ModelingTypeSignatureHelper, ModelingTypeSuggestion } from './modeling-type.model';
+import {
+    ModelingType, ModelingTypeMap, ModelingTypeMethodDescription, ModelingTypePropertyDescription, ModelingTypeSignatureHelper, ModelingTypeSuggestion
+} from './modeling-type.model';
 
 @Injectable({
     providedIn: 'root'

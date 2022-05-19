@@ -22,7 +22,9 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToolbarModule } from '@alfresco/adf-core';
-import { ProjectEditorState, PROJECT_CONTEXT_MENU_OPTIONS, OpenSaveAsProjectDialogAction, SaveAsProjectAttemptAction, AmaApi, ExportProjectAction } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    ProjectEditorState, PROJECT_CONTEXT_MENU_OPTIONS, OpenSaveAsProjectDialogAction, SaveAsProjectAttemptAction, AmaApi, ExportProjectAction
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';

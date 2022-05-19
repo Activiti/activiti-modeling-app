@@ -28,7 +28,7 @@ export const jsonModelType: ModelingType = {
             parameters: [
                 {
                     label: 'obj',
-                    documentation: 'obj: object – the reference object with which to compare'
+                    documentation: 'obj: object - the reference object with which to compare'
                 }
             ]
         },

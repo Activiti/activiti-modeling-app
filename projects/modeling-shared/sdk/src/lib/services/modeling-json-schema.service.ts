@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-lines */
+
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
@@ -143,7 +145,11 @@ export class ModelingJSONSchemaService {
             if (JSON.stringify(result) === JSON.stringify(schema) && Object.keys(schema).length === 1) {
                 result = flattenedReferencedSchema;
             } else {
-                result.allOf ? result.allOf.push(flattenedReferencedSchema) : result.allOf = [flattenedReferencedSchema];
+                if (result.allOf) {
+                    result.allOf.push(flattenedReferencedSchema);
+                } else {
+                    result.allOf = [flattenedReferencedSchema];
+                }
             }
             delete result.$ref;
         }
@@ -360,7 +366,7 @@ export class ModelingJSONSchemaService {
             const result: JSONSchemaInfoBasics = {};
             Object.keys(schema).forEach(key => {
                 if (key === '$ref' && !this.getSchemaInProjectFromReference(schema[key]) && !!this.getSchemaInSchemaFromReference(schema[key], originalSchema)) {
-                    result[key] = schema[key].replace(/\#/g, ModelingJSONSchemaService.DEFINITIONS_PATH + '/' + typeIdPath.join('/'));
+                    result[key] = schema[key].replace(/#/g, ModelingJSONSchemaService.DEFINITIONS_PATH + '/' + typeIdPath.join('/'));
                 } else if (typeof schema[key] === 'object' && !Array.isArray(schema[key])) {
                     result[key] = this.fixReferences(schema[key], typeIdPath, originalSchema);
                 } else {

@@ -26,7 +26,7 @@ import { ENVIRONMENT_SERVICE_TOKEN } from '../../services/environment.provider';
 import { EnvironmentService } from '../../services/environment.service';
 
 @Directive({ selector: '[adf-feature]' })
-export class FeatureDirective<T extends object> {
+export class FeatureDirective<T> {
     private hasView = false;
 
     constructor(

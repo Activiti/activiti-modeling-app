@@ -23,7 +23,7 @@ import { Store } from '@ngrx/store';
 import {
     AmaState, AmaApi, PROJECT_CONTEXT_MENU_OPTIONS, selectLoading,
     selectPagination, selectProjectSummaries, ExportProjectAction,
-    RemoveFromFavoritesProjectAttemptAction, AddToFavoritesProjectAttemptAction, LayoutService
+    LayoutService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { By } from '@angular/platform-browser';
 import { of, BehaviorSubject } from 'rxjs';

@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-lines */
+
 import { VariableMappingBehavior } from '../interfaces/variable-mapping-type.interface';
 
 export type PROJECT_TYPE = 'project';

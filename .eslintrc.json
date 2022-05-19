@@ -119,7 +119,7 @@
                 "@angular-eslint/directive-class-suffix": "error",
                 "@angular-eslint/no-conflicting-lifecycle": "error",
                 "@angular-eslint/no-empty-lifecycle-method": "warn",
-                "@typescript-eslint/no-floating-promises": "warn",
+                "@typescript-eslint/no-floating-promises": "error",
                 "@angular-eslint/no-host-metadata-property": "off",
                 "@angular-eslint/no-input-rename": "error",
                 "@angular-eslint/no-inputs-metadata-property": "error",
@@ -137,35 +137,10 @@
                         "accessibility": "explicit"
                     }
                 ],
-                "@typescript-eslint/indent": [
-                    "warn",
-                    4,
-                    {
-                        "FunctionDeclaration": {
-                            "parameters": "first"
-                        },
-                        "FunctionExpression": {
-                            "parameters": "first"
-                        }
-                    }
-                ],
-                "@typescript-eslint/member-delimiter-style": [
-                    "warn",
-                    {
-                        "multiline": {
-                            "delimiter": "semi",
-                            "requireLast": true
-                        },
-                        "singleline": {
-                            "delimiter": "semi",
-                            "requireLast": false
-                        }
-                    }
-                ],
                 "@typescript-eslint/member-ordering": "error",
                 "@typescript-eslint/naming-convention": "off",
                 "@typescript-eslint/no-empty-function": "off",
-                "@typescript-eslint/no-empty-interface": "warn",
+                "@typescript-eslint/no-empty-interface": "error",
                 "@typescript-eslint/no-explicit-any": "off",
                 "@typescript-eslint/ban-types": "warn",
                 "@typescript-eslint/no-inferrable-types": [
@@ -182,7 +157,7 @@
                         "hoist": "all"
                     }
                 ],
-                "@typescript-eslint/no-unused-expressions": "warn",
+                "@typescript-eslint/no-unused-expressions": "error",
                 "@typescript-eslint/no-var-requires": "off",
                 "@typescript-eslint/prefer-function-type": "error",
                 "@typescript-eslint/quotes": [
@@ -212,7 +187,7 @@
                 "indent": "off",
                 "max-lines":"warn",
                 "max-len": [
-                    "warn",
+                    "error",
                     {
                         "code": 180
                     }
@@ -251,7 +226,7 @@
                 "no-empty": "off",
                 "no-empty-function": "off",
                 "no-eval": "error",
-                "no-extra-boolean-cast":"warn",
+                "no-extra-boolean-cast":"error",
                 "no-fallthrough": "error",
                 "no-multiple-empty-lines": "error",
                 "no-prototype-builtins":"warn",
@@ -302,7 +277,7 @@
                 "no-useless-escape": "warn",
                 "no-case-declarations":"warn",
                 "spaced-comment": [
-                    "warn",
+                    "error",
                     "always",
                     {
                         "markers": ["/"],

@@ -25,8 +25,7 @@ const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: { typ
     delete element.businessObject.eventDefinitions[0].timeDuration;
     delete element.businessObject.eventDefinitions[0].timeDate;
 
-    let timer;
-    timer = bpmnFactory.create('bpmn:FormalExpression', { body: value.definition });
+    const timer: any = bpmnFactory.create('bpmn:FormalExpression', { body: value.definition });
     timer.$parent = element.businessObject.eventDefinitions[0];
     element.businessObject.eventDefinitions[0][value.type] = timer;
 

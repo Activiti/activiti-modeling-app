@@ -131,7 +131,7 @@ describe('AssignmentDialogComponent', () => {
                 {
                     provide: Store,
                     useValue: {
-                        select: jest.fn().mockImplementation((selector) => mockStreams.assignments),
+                        select: jest.fn().mockImplementation(() => mockStreams.assignments),
                         dispatch: jest.fn()
                     }
                 }
@@ -487,9 +487,9 @@ describe('AssignmentDialogComponent', () => {
             fixture.detectChanges();
             await fixture.whenStable();
 
-            expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates, 'Before tab change');
+            expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates);
             component.onTabChange({index: AssignmentTabs.STATIC, tab: null});
-            expect(JSON.parse(component.expressionContent)).toEqual(JSON.parse(mockEmptyCandidates), 'After tab change');
+            expect(JSON.parse(component.expressionContent)).toEqual(JSON.parse(mockEmptyCandidates));
         });
     });
 
@@ -567,15 +567,15 @@ describe('AssignmentDialogComponent', () => {
                 fixture.detectChanges();
                 await fixture.whenStable();
 
-                expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates, 'Before tab change');
+                expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates);
 
                 component.onTabChange({index: AssignmentTabs.STATIC, tab: null});
                 fixture.detectChanges();
-                expect(JSON.parse(component.expressionContent)).toEqual(JSON.parse(mockEmptyCandidates), 'After tab change');
+                expect(JSON.parse(component.expressionContent)).toEqual(JSON.parse(mockEmptyCandidates));
 
                 component.onTabChange({index: AssignmentTabs.EXPRESSION, tab: null});
                 fixture.detectChanges();
-                expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates, 'Before tab change');
+                expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates);
             });
         });
 
@@ -636,7 +636,7 @@ describe('AssignmentDialogComponent', () => {
                 fixture.detectChanges();
                 await fixture.whenStable();
 
-                expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates, 'Before tab change');
+                expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates);
 
                 openSelect();
                 fixture.detectChanges();
@@ -644,14 +644,14 @@ describe('AssignmentDialogComponent', () => {
                 assigneeOption.nativeElement.click();
 
                 fixture.detectChanges();
-                expect(JSON.parse(component.expressionContent)).toEqual(JSON.parse(AssignmentDialogComponent.ASSIGNEE_CONTENT), 'After tab change');
+                expect(JSON.parse(component.expressionContent)).toEqual(JSON.parse(AssignmentDialogComponent.ASSIGNEE_CONTENT));
 
                 openSelect();
                 fixture.detectChanges();
                 const candidateOption = fixture.debugElement.query(By.css('[data-automation-id="ama-assignment-option-candidates"]'));
                 candidateOption.nativeElement.click();
                 fixture.detectChanges();
-                expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates, 'Before tab change');
+                expect(JSON.parse(component.expressionContent)).toEqual(mockCandidates);
             });
 
             it('Should reload static candidate values if the user change to original mode', async () => {

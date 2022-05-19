@@ -42,7 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.alfrescoApiService.getInstance().oauth2Auth.on('error', (error: ErrorResponse) => {
             if (error.status === 403 && this.router.url !== '/') {
-                this.router.navigate(['error', 403]);
+                void this.router.navigate(['error', 403]);
             }
         });
 

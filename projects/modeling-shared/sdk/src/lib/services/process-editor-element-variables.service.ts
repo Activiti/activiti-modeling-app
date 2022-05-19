@@ -160,7 +160,7 @@ export class ProcessEditorElementVariablesService {
             return ProcessEditorElementWithVariables.CalledElement;
         case 'bpmn:UserTask':
             return ProcessEditorElementWithVariables.UserTask;
-        case 'bpmn:ServiceTask':
+        case 'bpmn:ServiceTask': {
             const implementation = element.businessObject[BpmnProperty.implementation];
             switch (implementation) {
             case 'script.EXECUTE':
@@ -174,6 +174,7 @@ export class ProcessEditorElementVariablesService {
             default:
                 return ProcessEditorElementWithVariables.ServiceTask;
             }
+        }
         case ProcessEditorElementWithVariables.Event:
             return ProcessEditorElementWithVariables.Event;
         case 'bpmn:Participant':

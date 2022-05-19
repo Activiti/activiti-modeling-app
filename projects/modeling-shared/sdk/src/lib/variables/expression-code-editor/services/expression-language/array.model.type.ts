@@ -52,6 +52,7 @@ export const arrayModelType: ModelingType = {
         {
             signature: 'addAll',
             type: 'boolean',
+            // eslint-disable-next-line max-len
             documentation: 'Appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection\'s iterator (optional operation).',
             parameters: [
                 {

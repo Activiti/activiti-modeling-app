@@ -17,7 +17,7 @@
 
 /* eslint-disable @angular-eslint/component-selector */
 
-import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
@@ -30,10 +30,9 @@ import { MODEL_EDITORS_TOKEN } from './model-editors.token';
     selector: 'process-editor',
     template: '<div data-automation-id="process-editor">{{ modelId }}</div>'
 })
-export class TestProcessEditorComponent implements OnInit, OnDestroy {
+export class TestProcessEditorComponent implements OnDestroy {
     @Input() modelId: string;
     constructor(@Inject('destroyService') private destroyService: Subject<void>) {}
-    ngOnInit() {}
     ngOnDestroy() {
         this.destroyService.next();
         this.destroyService.complete();
@@ -44,10 +43,9 @@ export class TestProcessEditorComponent implements OnInit, OnDestroy {
     selector: 'connector-editor',
     template: '<div data-automation-id="connector-editor">{{ modelId }}</div>'
 })
-export class TestConnectorEditorComponent implements OnInit, OnDestroy {
+export class TestConnectorEditorComponent implements OnDestroy {
     @Input() modelId: string;
     constructor(@Inject('destroyService') private destroyService: Subject<void>) {}
-    ngOnInit() {}
     ngOnDestroy() {
         this.destroyService.next();
         this.destroyService.complete();

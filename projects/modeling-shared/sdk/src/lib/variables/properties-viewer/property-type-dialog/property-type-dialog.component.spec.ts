@@ -26,7 +26,6 @@ import { VariablesModule } from '../../public-api';
 import { PropertyTypeDialogComponent } from './property-type-dialog.component';
 
 describe('PropertyTypeDialogComponent', () => {
-    let component: PropertyTypeDialogComponent;
     let fixture: ComponentFixture<PropertyTypeDialogComponent>;
 
     const mockDialog = {
@@ -55,7 +54,6 @@ describe('PropertyTypeDialogComponent', () => {
         });
 
         fixture = TestBed.createComponent(PropertyTypeDialogComponent);
-        component = fixture.componentInstance;
         fixture.detectChanges();
     });
 

@@ -90,7 +90,7 @@ implements CanDeactivate<CanComponentDeactivate> {
                         this.titleService.setSavedTitle();
                         dialogRef.close();
                     }),
-                    catchError((error) => {
+                    catchError(() => {
                         dialogRef.close();
                         return of(false);
                     })

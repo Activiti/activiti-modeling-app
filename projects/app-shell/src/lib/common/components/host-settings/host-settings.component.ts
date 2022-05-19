@@ -27,10 +27,10 @@ export class HostSettingsComponent {
     constructor(private router: Router) {}
 
     onCancel() {
-        this.router.navigate(['/login']);
+        void this.router.navigate(['/login']);
     }
 
     onSuccess() {
-        this.router.navigate(['/login']);
+        void this.router.navigate(['/login']);
     }
 }

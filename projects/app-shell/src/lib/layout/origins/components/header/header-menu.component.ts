@@ -41,6 +41,6 @@ export class HeaderMenuComponent {
     }
 
     navigateToAbout() {
-        this.router.navigate(['about']);
+        void this.router.navigate(['about']);
     }
 }

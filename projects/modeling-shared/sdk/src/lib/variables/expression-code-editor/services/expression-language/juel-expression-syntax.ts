@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-lines */
+
 import { AlfrescoApiService, AppConfigService, TranslationService } from '@alfresco/adf-core';
 import { Injectable } from '@angular/core';
 import { from, Observable, } from 'rxjs';
@@ -211,7 +213,7 @@ export class JuelExpressionSyntax implements ExpressionSyntaxProvider {
         const words = lineBeforeCursor.replace('\t', '').split(' ');
         const activeTyping = words[words.length - 1];
 
-        return (activeTyping.match(/\,(?=([^"\\]*(\\.|"([^"\\]*\\.)*[^"\\]*"))*[^"]*$)/g) || []).length;
+        return (activeTyping.match(/,(?=([^"\\]*(\\.|"([^"\\]*\\.)*[^"\\]*"))*[^"]*$)/g) || []).length;
     }
 
     static getHoverCard(
@@ -223,8 +225,7 @@ export class JuelExpressionSyntax implements ExpressionSyntaxProvider {
         let hoverCard;
         if (modelSchema) {
 
-            let methodHover;
-            methodHover = modelingTypesService.getMethodsByModelSchema(modelSchema).
+            const methodHover = modelingTypesService.getMethodsByModelSchema(modelSchema).
                 filter(method => !!method).find(method => method.signature === word);
 
             const propertyHover = modelingTypesService.getPropertiesByModelSchema(modelSchema).
@@ -362,7 +363,7 @@ export class JuelExpressionSyntax implements ExpressionSyntaxProvider {
         monaco.languages.registerSignatureHelpProvider(language, {
             signatureHelpTriggerCharacters: ['(', ','],
             signatureHelpRetriggerCharacters: [],
-            provideSignatureHelp: (model, position, token) => {
+            provideSignatureHelp: (model, position) => {
                 const word = model.getWordUntilPosition(position);
                 const range = {
                     startLineNumber: position.lineNumber,
@@ -576,7 +577,7 @@ export class JuelExpressionSyntax implements ExpressionSyntaxProvider {
     }
 
     private getHostName(): string {
-        return this.appConfigService.get('bpmHost', '').match(/^(?:https?:)?(?:\/\/)?([^\/\?]+)/g)[0];
+        return this.appConfigService.get('bpmHost', '').match(/^(?:https?:)?(?:\/\/)?([^/?]+)/g)[0];
     }
 
 }

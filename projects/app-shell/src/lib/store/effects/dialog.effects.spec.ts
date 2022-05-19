@@ -48,7 +48,7 @@ describe('DialogEffects', () => {
                 {
                     provide: Store,
                     useValue: {
-                        select: jest.fn().mockImplementation(selector => of({}))
+                        select: jest.fn().mockImplementation(() => of({}))
                     }
                 }
             ]

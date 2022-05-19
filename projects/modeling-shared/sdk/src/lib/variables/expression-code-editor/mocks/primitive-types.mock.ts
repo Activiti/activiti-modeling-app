@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-len */
+
 import { ModelingTypeMap, ModelingTypeSuggestion } from '../services/modeling-type.model';
 
 /* cspell: disable */
@@ -32,7 +34,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'type': 'string',
                 'signature': 'charAt',
-                'documentation': 'Returns the char value at the specified index.',
+                'documentation': 'Returns the char value at the specified index.',
                 'parameters': [
                     {
                         'label': 'index',
@@ -59,7 +61,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'type': 'integer',
                 'signature': 'codePointCount',
-                'documentation': 'Returns the number of Unicode code points in the specified text range of this String.',
+                'documentation': 'Returns the number of Unicode code points in the specified text range of this String.',
                 'parameters': [
                     {
                         'label': 'beginIndex',
@@ -118,7 +120,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'type': 'boolean',
                 'signature': 'contentEquals',
-                'documentation': 'Compares this string to the specified CharSequence.',
+                'documentation': 'Compares this string to the specified CharSequence.',
                 'parameters': [
                     {
                         'label': 's',
@@ -140,7 +142,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'type': 'boolean',
                 'signature': 'equalsIgnoreCase',
-                'documentation': 'Compares this String to another String, ignoring case considerations.',
+                'documentation': 'Compares this String to another String, ignoring case considerations.',
                 'parameters': [
                     {
                         'label': 'anotherString',
@@ -151,12 +153,12 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'type': 'array',
                 'signature': 'getBytes',
-                'documentation': 'Encodes this String into a sequence of bytes using the platform\'s default charset, storing the result into a new byte array.'
+                'documentation': 'Encodes this String into a sequence of bytes using the platform\'s default charset, storing the result into a new byte array.'
             },
             {
                 'type': 'array',
                 'signature': 'getBytes',
-                'documentation': 'Encodes this String into a sequence of bytes using the named charset, storing the result into a new byte array.',
+                'documentation': 'Encodes this String into a sequence of bytes using the named charset, storing the result into a new byte array.',
                 'parameters': [
                     {
                         'label': 'charsetName',
@@ -252,12 +254,12 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'type': 'boolean',
                 'signature': 'isBlank',
-                'documentation': 'Returns true if the string is empty or contains only white space codepoints, otherwise false.'
+                'documentation': 'Returns true if the string is empty or contains only white space codepoints, otherwise false.'
             },
             {
                 'type': 'boolean',
                 'signature': 'isEmpty',
-                'documentation': 'Returns true if, and only if, length() is 0.'
+                'documentation': 'Returns true if, and only if, length() is 0.'
             },
             {
                 'type': 'integer',
@@ -319,7 +321,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'type': 'boolean',
                 'signature': 'matches',
-                'documentation': 'Tells whether or not this string matches the given regular expression.',
+                'documentation': 'Tells whether or not this string matches the given regular expression.',
                 'parameters': [
                     {
                         'label': 'regex',
@@ -330,7 +332,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'type': 'integer',
                 'signature': 'offsetByCodePoints',
-                'documentation': 'Returns the index within this String that is offset from the given index by codePointOffset code points.',
+                'documentation': 'Returns the index within this String that is offset from the given index by codePointOffset code points.',
                 'parameters': [
                     {
                         'label': 'index',
@@ -406,7 +408,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'type': 'string',
                 'signature': 'replace',
-                'documentation': 'Returns a string resulting from replacing all occurrences of oldChar in this string with newChar.',
+                'documentation': 'Returns a string resulting from replacing all occurrences of oldChar in this string with newChar.',
                 'parameters': [
                     {
                         'label': 'oldChar',
@@ -421,7 +423,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'type': 'string',
                 'signature': 'replaceAll',
-                'documentation': 'Replaces each substring of this string that matches the given regular expression with the given replacement.',
+                'documentation': 'Replaces each substring of this string that matches the given regular expression with the given replacement.',
                 'parameters': [
                     {
                         'label': 'regex',
@@ -549,12 +551,12 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'type': 'string',
                 'signature': 'toLowerCase',
-                'documentation': 'Converts all of the characters in this String to lower case using the rules of the default locale.'
+                'documentation': 'Converts all of the characters in this String to lower case using the rules of the default locale.'
             },
             {
                 'type': 'string',
                 'signature': 'toUpperCase',
-                'documentation': 'Converts all of the characters in this String to upper case using the rules of the default locale.'
+                'documentation': 'Converts all of the characters in this String to upper case using the rules of the default locale.'
             },
             {
                 'type': 'string',
@@ -564,11 +566,11 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -580,7 +582,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ]
     },
@@ -590,11 +592,11 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -606,7 +608,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': []
@@ -622,7 +624,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
                 'parameters': [
                     {
                         'label': 'date',
-                        'documentation': 'date: date – the reference object with which to compare'
+                        'documentation': 'date: date - the reference object with which to compare'
                     }
                 ]
             },
@@ -633,7 +635,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
                 'parameters': [
                     {
                         'label': 'date',
-                        'documentation': 'date: date – the reference object with which to compare'
+                        'documentation': 'date: date - the reference object with which to compare'
                     }
                 ]
             },
@@ -644,7 +646,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
                 'parameters': [
                     {
                         'label': 'anotherDate',
-                        'documentation': 'anotherDate: date – the date to be compared'
+                        'documentation': 'anotherDate: date - the date to be compared'
                     }
                 ]
             },
@@ -660,18 +662,18 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
                 'parameters': [
                     {
                         'label': 'time',
-                        'documentation': 'time: integer – the number of milliseconds'
+                        'documentation': 'time: integer - the number of milliseconds'
                     }
                 ]
             },
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -683,7 +685,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ]
     },
@@ -698,7 +700,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
                 'parameters': [
                     {
                         'label': 'date',
-                        'documentation': 'date: date – the reference object with which to compare'
+                        'documentation': 'date: date - the reference object with which to compare'
                     }
                 ]
             },
@@ -709,7 +711,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
                 'parameters': [
                     {
                         'label': 'date',
-                        'documentation': 'date: date – the reference object with which to compare'
+                        'documentation': 'date: date - the reference object with which to compare'
                     }
                 ]
             },
@@ -720,7 +722,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
                 'parameters': [
                     {
                         'label': 'anotherDate',
-                        'documentation': 'anotherDate: date – the date to be compared'
+                        'documentation': 'anotherDate: date - the date to be compared'
                     }
                 ]
             },
@@ -736,18 +738,18 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
                 'parameters': [
                     {
                         'label': 'time',
-                        'documentation': 'time: integer – the number of milliseconds'
+                        'documentation': 'time: integer - the number of milliseconds'
                     }
                 ]
             },
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -759,7 +761,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ]
     },
@@ -769,11 +771,11 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -785,7 +787,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -807,11 +809,11 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -823,7 +825,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -854,11 +856,11 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -870,7 +872,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -888,11 +890,11 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -904,7 +906,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -941,11 +943,11 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -957,7 +959,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -979,11 +981,11 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -995,7 +997,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -1013,11 +1015,11 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -1029,7 +1031,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -1060,11 +1062,11 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -1076,7 +1078,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -1303,7 +1305,7 @@ export const expectedPrimitiveTypes: ModelingTypeMap = {
                 parameters: [
                     {
                         label: 'obj',
-                        documentation: 'obj: object – the reference object with which to compare',
+                        documentation: 'obj: object - the reference object with which to compare',
                     },
                 ],
             },
@@ -1979,7 +1981,7 @@ export const expectedArraySignatureHelpers = [
         parameters: [
             {
                 label: 'obj',
-                documentation: 'obj: object – the reference object with which to compare',
+                documentation: 'obj: object - the reference object with which to compare',
             },
         ],
         method: {
@@ -1989,7 +1991,7 @@ export const expectedArraySignatureHelpers = [
             parameters: [
                 {
                     label: 'obj',
-                    documentation: 'obj: object – the reference object with which to compare',
+                    documentation: 'obj: object - the reference object with which to compare',
                 },
             ],
         },
@@ -2023,11 +2025,11 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -2039,7 +2041,7 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -2059,11 +2061,11 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -2075,7 +2077,7 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -2099,11 +2101,11 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -2115,7 +2117,7 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -2133,11 +2135,11 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -2149,7 +2151,7 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': []
@@ -2160,11 +2162,11 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -2176,7 +2178,7 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -2194,11 +2196,11 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -2210,7 +2212,7 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -2274,11 +2276,11 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -2290,7 +2292,7 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -2310,11 +2312,11 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -2326,7 +2328,7 @@ export const expectedEventSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -2373,11 +2375,11 @@ export const expectedEventExtendedSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -2389,7 +2391,7 @@ export const expectedEventExtendedSchemaTypes: ModelingTypeMap = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -2440,11 +2442,11 @@ export const expectedRestEventSchemaTypes = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -2456,7 +2458,7 @@ export const expectedRestEventSchemaTypes = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': []
@@ -2467,11 +2469,11 @@ export const expectedRestEventSchemaTypes = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -2483,7 +2485,7 @@ export const expectedRestEventSchemaTypes = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': []
@@ -2494,11 +2496,11 @@ export const expectedRestEventSchemaTypes = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -2510,7 +2512,7 @@ export const expectedRestEventSchemaTypes = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
@@ -2542,11 +2544,11 @@ export const expectedRestEventSchemaTypes = {
             {
                 'signature': 'equals',
                 'type': 'boolean',
-                'documentation': 'Indicates whether some other object is \"equal to\" this one.',
+                'documentation': 'Indicates whether some other object is "equal to" this one.',
                 'parameters': [
                     {
                         'label': 'obj',
-                        'documentation': 'obj: object – the reference object with which to compare'
+                        'documentation': 'obj: object - the reference object with which to compare'
                     }
                 ]
             },
@@ -2558,7 +2560,7 @@ export const expectedRestEventSchemaTypes = {
             {
                 'signature': 'toString',
                 'type': 'string',
-                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that \"textually represents\" this object.'
+                'documentation': 'Returns a string representation of the object. In general, the toString method returns a string that "textually represents" this object.'
             }
         ],
         'properties': [
