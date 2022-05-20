@@ -132,7 +132,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
         PropertyTypeSelectorSmartComponent,
         JsonSchemaEditorComponent,
         PropertiesViewerModeledObjectInputComponent,
-        ExpressionCodeEditorComponent
+        ExpressionCodeEditorComponent,
+        InputErrorDirective
     ]
 })
 export class VariablesModule { }
