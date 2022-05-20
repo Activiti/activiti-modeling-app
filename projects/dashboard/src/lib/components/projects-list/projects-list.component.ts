@@ -32,8 +32,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 
-const DEFAULT_SORT_KEY = 'name';
-const DEFAULT_SORT_DIRECTION = 'asc';
+const DEFAULT_SORT_KEY = 'lastModifiedDate';
+const DEFAULT_SORT_DIRECTION = 'desc';
 
 @Component({
     selector: 'ama-projects-list',

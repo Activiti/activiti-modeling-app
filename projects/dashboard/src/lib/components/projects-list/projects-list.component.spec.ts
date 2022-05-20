@@ -127,4 +127,9 @@ describe ('Projects List Component', () => {
             projectName: 'mock-project-name'
         });
     });
+
+    it('should sort by updated column desc by default', () => {
+        expect(component.sorting.key).toEqual('lastModifiedDate');
+        expect(component.sorting.direction).toEqual('desc');
+    });
 });
