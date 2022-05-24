@@ -20,7 +20,7 @@
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Inject, Injectable } from '@angular/core';
 import { catchError, filter, map, mergeMap, switchMap, take, tap, withLatestFrom } from 'rxjs/operators';
-import { forkJoin, Observable, of, zip } from 'rxjs';
+import { EMPTY, forkJoin, Observable, of, zip } from 'rxjs';
 import { Router } from '@angular/router';
 
 import {
@@ -137,7 +137,7 @@ export class ProcessEditorEffects {
         ofType<ShowProcessesAction>(SHOW_PROCESSES),
         map(action => action.projectId),
         switchMap(projectId => zip(of(projectId), this.store.select(selectProcessesLoaded))),
-        switchMap(([projectId, loaded]) => loaded ? of() : of(new GetProcessesAttemptAction(projectId)))
+        switchMap(([projectId, loaded]) => loaded ? EMPTY : of(new GetProcessesAttemptAction(projectId)))
     );
 
     @Effect()

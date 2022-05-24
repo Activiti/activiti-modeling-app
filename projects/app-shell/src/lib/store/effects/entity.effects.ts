@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Observable, of, zip } from 'rxjs';
+import { EMPTY, Observable, of, zip } from 'rxjs';
 import { mergeMap, catchError } from 'rxjs/operators';
 import {
     GetModelsAttemptAction,
@@ -54,7 +54,7 @@ export class EntityEffects {
             if (!loaded) {
                 return of(new GetModelsAttemptAction(action.projectId, action.modelType));
             } else {
-                return of();
+                return EMPTY;
             }
         })
     );

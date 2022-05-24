@@ -55,7 +55,7 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ConnectorEditorService } from '../services/connector-editor.service';
-import { of, zip, forkJoin, Observable } from 'rxjs';
+import { of, zip, forkJoin, Observable, EMPTY } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectConnectorsLoaded } from './connector-editor.selectors';
@@ -205,7 +205,7 @@ export class ConnectorEditorEffects {
             if (!loaded) {
                 return of(new GetConnectorsAttemptAction(projectId));
             } else {
-                return of();
+                return EMPTY;
             }
         })
     );
