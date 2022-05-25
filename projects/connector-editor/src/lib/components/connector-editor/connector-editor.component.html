@@ -13,25 +13,29 @@
                     class="ama-connector-tab-group"
                     [(selectedIndex)]="selectedTabIndex" animationDuration="0ms">
                     <mat-tab label="{{ 'ADV_CONNECTOR_EDITOR.TABS.CONNECTOR_EDITOR' | translate }}">
-                        <div class="ama-connector-page"
-                            data-automation-id="connector-advanced-tab">
-                            <adf-dynamic-component
-                                [id]="componentKey"
-                                [data]="getDynamicComponentData(editorContent)">
-                            </adf-dynamic-component>
-                        </div>
+                        <ng-template matTabContent>
+                            <div class="ama-connector-page"
+                                data-automation-id="connector-advanced-tab">
+                                <adf-dynamic-component
+                                    [id]="componentKey"
+                                    [data]="getDynamicComponentData(editorContent)">
+                                </adf-dynamic-component>
+                            </div>
+                        </ng-template>
                     </mat-tab>
                     <mat-tab label="{{ 'ADV_CONNECTOR_EDITOR.TABS.JSON_EDITOR' | translate }}">
-                        <div class="ama-connector-page ama-connector-page-raw-editor"
-                            data-automation-id="connector-basic-tab">
-                            <modelingsdk-code-editor
-                                [content]="editorContent"
-                                (positionChanged)="codeEditorPositionChanged($event)"
-                                (changed)="onChangeAttempt($event)"
-                                [fileUri]="fileUri"
-                                [language]="languageType">
-                            </modelingsdk-code-editor>
-                        </div>
+                        <ng-template matTabContent>
+                            <div class="ama-connector-page ama-connector-page-raw-editor"
+                                data-automation-id="connector-basic-tab">
+                                <modelingsdk-code-editor
+                                    [content]="editorContent"
+                                    (positionChanged)="codeEditorPositionChanged($event)"
+                                    (changed)="onChangeAttempt($event)"
+                                    [fileUri]="fileUri"
+                                    [language]="languageType">
+                                </modelingsdk-code-editor>
+                            </div>
+                        </ng-template>
                     </mat-tab>
                 </mat-tab-group>
             </ng-container>
