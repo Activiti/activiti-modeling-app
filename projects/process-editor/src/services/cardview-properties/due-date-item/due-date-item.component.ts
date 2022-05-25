@@ -18,8 +18,10 @@
 import { Component, Input, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { CardItemTypeService, CardViewUpdateService, MomentDateAdapter, CardViewDatetimeItemModel, CardViewItem } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
-import { AmaState, selectSelectedProcess, AMA_DATETIME_FORMATS, MOMENT_DATETIME_FORMAT,
-    EntityProperty, ANGULAR_DATETIME_DISPLAY_FORMAT, ProcessExtensionsModel, ISO_8601_TIME_DURATION_REGEX } from '@alfresco-dbp/modeling-shared/sdk';
+import {
+    AmaState, selectSelectedProcess, AMA_DATETIME_FORMATS, MOMENT_DATETIME_FORMAT,
+    EntityProperty, ANGULAR_DATETIME_DISPLAY_FORMAT, ProcessExtensionsModel, ISO_8601_TIME_DURATION_REGEX
+} from '@alfresco-dbp/modeling-shared/sdk';
 import { filter, take, debounceTime, takeUntil } from 'rxjs/operators';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -29,7 +31,7 @@ import { DatetimeAdapter, MAT_DATETIME_FORMATS } from '@mat-datetimepicker/core'
 import { MomentDatetimeAdapter } from '@mat-datetimepicker/moment';
 import { DueDateItemModel } from './due-date-item.model';
 
-enum DueDateType {
+export enum DueDateType {
     ProcessVariable = 'ProcessVariable',
     StaticDate = 'StaticDate',
     TimeDuration = 'TimeDuration',
@@ -72,8 +74,8 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
     }
 
     constructor(private cardViewUpdateService: CardViewUpdateService,
-                private store: Store<AmaState>,
-                private formBuilder: FormBuilder) {
+        private store: Store<AmaState>,
+        private formBuilder: FormBuilder) {
     }
 
     ngOnInit() {
@@ -94,7 +96,7 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
 
     buildForm() {
         this.dueDateForm = this.formBuilder.group({
-            processVariable:  [undefined],
+            processVariable: [undefined],
             selectedDueDateType: [this.dueDateType.StaticDate],
             timeDuration: this.formBuilder.group({
                 minutes: [''],
@@ -117,12 +119,19 @@ export class CardViewDueDateItemComponent implements OnInit, OnDestroy {
     updateDueDate() {
         let dueDateValue: string;
 
-        if (this.selectedDueDateType.value === this.dueDateType.ProcessVariable) {
-            dueDateValue = this.processVariable.value ? '${' + this.processVariable.value + '}' : undefined;
-        }
+        switch (this.selectedDueDateType.value) {
+            case this.dueDateType.ProcessVariable:
+                dueDateValue = this.processVariable.value ? '${' + this.processVariable.value + '}' : undefined;
+                break;
+            case this.dueDateType.TimeDuration:
+                dueDateValue = this.mapTimeDurationFormToDueDateValue();
+                break;
+            case this.dueDateType.StaticDate:
+                dueDateValue = this.properties && this.properties.length > 0 ? this.properties[0].value : dueDateValue;
+                break;
 
-        if (this.selectedDueDateType.value === this.dueDateType.TimeDuration) {
-            dueDateValue = this.mapTimeDurationFormToDueDateValue();
+            default:
+                break;
         }
 
         this.cardViewUpdateService.update(this.property, dueDateValue);

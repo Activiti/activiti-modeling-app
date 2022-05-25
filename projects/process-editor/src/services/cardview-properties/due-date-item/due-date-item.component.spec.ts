@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { CardViewDueDateItemComponent } from './due-date-item.component';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { CardViewDueDateItemComponent, DueDateType } from './due-date-item.component';
 import { CardViewUpdateService, CoreTestingModule } from '@alfresco/adf-core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -91,7 +91,7 @@ describe('CardViewDueDateItemComponent', () => {
         });
     });
 
-    beforeEach(() => {
+    beforeEach(async () => {
         fixture = TestBed.createComponent(CardViewDueDateItemComponent);
         store = TestBed.inject(Store);
         component = fixture.componentInstance;
@@ -99,7 +99,9 @@ describe('CardViewDueDateItemComponent', () => {
 
         cardViewUpdateService = TestBed.inject(CardViewUpdateService);
         spyOn(store, 'select').and.returnValue(of(processMock));
+        component.ngOnInit();
         fixture.detectChanges();
+        await fixture.whenStable();
     });
 
     it('should not display variable selector when processVariables is not enabled', () => {
@@ -119,16 +121,13 @@ describe('CardViewDueDateItemComponent', () => {
         expect(dateTimeVariableInput).toBeDefined();
     });
 
-    it('should update due date property when process variable is selected', () => {
+    it('should update due date property when process variable is selected', fakeAsync(() => {
         spyOn(cardViewUpdateService, 'update');
-        component.selectedDueDateType.setValue(component.dueDateType.ProcessVariable);
-        component.processVariable.setValue('foo');
 
-        component.updateDueDate();
-        fixture.detectChanges();
+        setProcessVariable(component, fixture, 1);
 
-        expect(cardViewUpdateService.update).toHaveBeenCalledWith(component.property, '${foo}');
-    });
+        expect(cardViewUpdateService.update).toHaveBeenCalledWith(component.property, '${bar}');
+    }));
 
     it('should set only datetime process variables when process is retrieved', () => {
         expect(component.processVariables.length).toBe(1);
@@ -137,28 +136,15 @@ describe('CardViewDueDateItemComponent', () => {
 
     it('should set time duration values', fakeAsync(() => {
         spyOn(cardViewUpdateService, 'update');
-        component.selectedDueDateType.setValue(component.dueDateType.TimeDuration);
 
-        fixture.detectChanges();
-
-        const monthInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-date-time-duration-months"]`));
-        const daysInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-date-time-duration-days"]`));
-        const hoursInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-date-time-duration-hours"]`));
-        const minutesInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-date-time-duration-minutes"]`));
-
-        monthInput.triggerEventHandler('input', { target: { value: '1' } });
-        daysInput.triggerEventHandler('input', { target: { value: '2' } });
-        hoursInput.triggerEventHandler('input', { target: { value: '3' } });
-        minutesInput.triggerEventHandler('input', { target: { value: '4' } });
-
-        tick(300);
+        setTimeDuration(component, fixture);
 
         expect(cardViewUpdateService.update).toHaveBeenCalledWith(component.property, 'P1M2DT3H4M');
     }));
 
     it('should extract time duration values from iso string', () => {
         spyOn(cardViewUpdateService, 'update');
-        component.property = { value: 'P1M2DT3H4M' } as DueDateItemModel;
+        component.property = { data: propertyMock.data, value: 'P1M2DT3H4M' } as DueDateItemModel;
         component.ngOnInit();
 
         const {
@@ -173,4 +159,67 @@ describe('CardViewDueDateItemComponent', () => {
         expect(hours).toBe('3');
         expect(minutes).toBe('4');
     });
+
+    it('should maintain values when switching between due date type', fakeAsync(() => {
+        spyOn(cardViewUpdateService, 'update');
+
+        cardViewUpdateService.update(component.property, '2022-05-25T12:00:00');
+
+        setTimeDuration(component, fixture);
+        expect(cardViewUpdateService.update).toHaveBeenCalledWith(component.property, 'P1M2DT3H4M');
+
+        setProcessVariable(component, fixture, 1);
+        expect(cardViewUpdateService.update).toHaveBeenCalledWith(component.property, '${bar}');
+
+        changeDueDateType(component, fixture, DueDateType.StaticDate);
+        expect(cardViewUpdateService.update).toHaveBeenCalledWith(component.property, '2022-05-25T12:00:00');
+
+        changeDueDateType(component, fixture, DueDateType.TimeDuration);
+        expect(cardViewUpdateService.update).toHaveBeenCalledWith(component.property, 'P1M2DT3H4M');
+
+        changeDueDateType(component, fixture, DueDateType.ProcessVariable);
+        expect(cardViewUpdateService.update).toHaveBeenCalledWith(component.property, '${bar}');
+
+        changeDueDateType(component, fixture, DueDateType.TimeDuration);
+        expect(cardViewUpdateService.update).toHaveBeenCalledWith(component.property, 'P1M2DT3H4M');
+
+        changeDueDateType(component, fixture, DueDateType.StaticDate);
+        expect(cardViewUpdateService.update).toHaveBeenCalledWith(component.property, '2022-05-25T12:00:00');
+    }));
 });
+
+function setTimeDuration(component: CardViewDueDateItemComponent, fixture: ComponentFixture<CardViewDueDateItemComponent>) {
+    changeDueDateType(component, fixture, DueDateType.TimeDuration);
+
+    const monthInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-date-time-duration-months"]`));
+    const daysInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-date-time-duration-days"]`));
+    const hoursInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-date-time-duration-hours"]`));
+    const minutesInput = fixture.debugElement.query(By.css(`[data-automation-id="ama-date-time-duration-minutes"]`));
+
+    monthInput.triggerEventHandler('input', { target: { value: '1' } });
+    daysInput.triggerEventHandler('input', { target: { value: '2' } });
+    hoursInput.triggerEventHandler('input', { target: { value: '3' } });
+    minutesInput.triggerEventHandler('input', { target: { value: '4' } });
+
+    fixture.detectChanges();
+    tick(300);
+}
+
+function setProcessVariable(component: CardViewDueDateItemComponent, fixture: ComponentFixture<CardViewDueDateItemComponent>, index: number) {
+    changeDueDateType(component, fixture, DueDateType.ProcessVariable);
+
+    const variableSelect = fixture.debugElement.query(By.css('mat-select'));
+    variableSelect.nativeElement.click();
+    fixture.detectChanges();
+
+    const options = fixture.debugElement.queryAll(By.css('mat-option'));
+    options[index].nativeElement.click();
+
+    tick(300);
+}
+
+function changeDueDateType(component: CardViewDueDateItemComponent, fixture: ComponentFixture<CardViewDueDateItemComponent>, type: DueDateType) {
+    component.selectedDueDateType.setValue(type);
+    fixture.detectChanges();
+    tick(300);
+}
