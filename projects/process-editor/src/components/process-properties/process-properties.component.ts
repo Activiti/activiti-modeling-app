@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, OnDestroy, Inject, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, ChangeDetectionStrategy, ViewEncapsulation, Input } from '@angular/core';
 import { CardViewItem, CardViewUpdateService, UpdateNotification, CardItemTypeService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { selectSelectedElement } from '../../store/process-editor.selectors';
@@ -40,6 +40,8 @@ import { SelectedProcessElement } from '../../store/process-editor.state';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProcessPropertiesComponent implements OnInit, OnDestroy {
+    @Input()
+    processVersion: string;
     onDestroy$: Subject<void> = new Subject<void>();
     properties$: Observable<CardViewItem[]>;
 

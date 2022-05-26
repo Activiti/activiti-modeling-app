@@ -12,8 +12,12 @@
 
                         <modelingsdk-workbench-layout>
                             <modelingsdk-workbench-layout-sidenav>
-                                <ama-process-properties [attr.data-automation-id]="'process-editor-properties'">
-                                </ama-process-properties>
+                                <ng-container *ngIf="modelMetadata$ | async as modelMetadata;">
+                                    <ama-process-properties
+                                        [attr.data-automation-id]="'process-editor-properties'"
+                                        [processVersion]="modelMetadata.version">
+                                    </ama-process-properties>
+                                </ng-container>
                             </modelingsdk-workbench-layout-sidenav>
 
                             <modelingsdk-workbench-layout-content>
