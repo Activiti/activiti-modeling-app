@@ -50,6 +50,7 @@ const hasProcessInside = (element: Bpmn.DiagramElement) => !!element.businessObj
 export const elementsProperties = {
     [BpmnElement.Process]: [
         BpmnProperty.processId,
+        BpmnProperty.version,
         BpmnProperty.modelName,
         BpmnProperty.processName,
         BpmnProperty.isExecutable,

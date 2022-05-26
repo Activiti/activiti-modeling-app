@@ -51,9 +51,11 @@ import { loopCharacteristics } from './loopCharacteristics.handler';
 import { loopDataOutputRef } from './loopDataOutputRef.handler';
 import { emailServiceTaskHandler } from './emailServiceTask.handler';
 import { inheritBusinessKeyHandler } from './inheritBusinessKey.handler';
+import { versionHandler } from './version.handler';
 
 export const handlers = {
     [BpmnProperty.id]: idHandler,
+    [BpmnProperty.version]: versionHandler,
     [BpmnProperty.processName]: processNameHandler,
     [BpmnProperty.processId]: processIdHandler,
     [BpmnProperty.modelName]: modelNameHandler,

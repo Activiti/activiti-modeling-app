@@ -19,6 +19,7 @@ import { Type, InjectionToken } from '@angular/core';
 
 export enum BpmnProperty {
     id = 'id',
+    version = 'version',
     name = 'name',
     modelName = 'modelName',
     documentation = 'documentation',

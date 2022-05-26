@@ -54,9 +54,11 @@ import { createEmailServiceTaskProperty } from './emailServiceTask-cardview-prop
 import { createDocgenServiceTaskProperty } from './docgenServiceTask-cardview-property';
 import { createContentServiceTaskProperty } from './contentServiceTask-cardview-property';
 import { createInheritBusinessKeyProperty } from './inheritBusinessKey-cardview-property';
+import { createModelVersionProperty } from './model-version-cardview-property';
 
 export const bpmn2cardView = {
     [BpmnProperty.id]: createIdProperty,
+    [BpmnProperty.version]: createModelVersionProperty,
     [BpmnProperty.name]: createNameProperty,
     [BpmnProperty.documentation]: createDocumentationProperty,
     [BpmnProperty.implementation]: createImplementationProperty,

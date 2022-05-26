@@ -125,6 +125,7 @@ import { DownloadProcessCommand } from './services/commands/download-process.com
 import { ParticipantElementVariablesProviderService } from './services/participant-element-variables-provider.service';
 import { SaveAsProcessCommand } from './services/commands/save-as-process.command';
 import { DownloadProcessSVGImageCommand } from './services/commands/download-process-svg-image.command';
+import { CardProcessVersionItemComponent } from './services/cardview-properties/process-version-item/process-version-item.component';
 
 @NgModule({
     imports: [
@@ -195,6 +196,7 @@ import { DownloadProcessSVGImageCommand } from './services/commands/download-pro
         CardViewConditionExpressionItemComponent,
         CreateProcessDialogComponent,
         ProcessCategorySelectorComponent,
+        CardProcessVersionItemComponent
     ],
     exports: [ProcessEditorRoutingModule],
     providers: [
@@ -238,6 +240,7 @@ import { DownloadProcessSVGImageCommand } from './services/commands/download-pro
         providePropertyHandler(BpmnProperty.processName, CardViewProcessNameItemComponent),
         providePropertyHandler(BpmnProperty.conditionExpression, CardViewConditionExpressionItemComponent),
         providePropertyHandler(BpmnProperty.category, CardProcessCategoryItemComponent),
+        providePropertyHandler(BpmnProperty.version, CardProcessVersionItemComponent),
         ...getProcessesFilterProvider(),
         ...getProcessCreatorProvider(),
         ...getProcessUploaderProvider(),

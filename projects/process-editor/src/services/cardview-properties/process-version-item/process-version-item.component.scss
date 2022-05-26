@@ -1,0 +1,20 @@
+.ama-process-properties {
+    &-version {
+        display: grid;
+
+        &-title {
+            color: var(--theme-text-color);
+            font-size: var(--theme-caption-font-size);
+            word-wrap: break-word;
+            padding-bottom: 0.5em;
+        }
+
+        &-value {
+            width: 100%;
+            display: inline-block;
+            position: relative;
+            text-align: left;
+        }
+    }
+
+}
