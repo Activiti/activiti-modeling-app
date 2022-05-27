@@ -326,6 +326,7 @@ describe('PropertiesViewerComponent', () => {
         fixture.detectChanges();
 
         component.form.type = 'string';
+        component.allowExpressions = true;
         fixture.detectChanges();
 
         const toggle = fixture.debugElement.query(By.css('.ama-display-name-toggle'));
@@ -345,6 +346,7 @@ describe('PropertiesViewerComponent', () => {
         fixture.detectChanges();
 
         component.form.type = 'string';
+        component.allowExpressions = true;
         fixture.detectChanges();
 
         const visibleToggle = fixture.debugElement.query(By.css('.ama-display-name-toggle'));

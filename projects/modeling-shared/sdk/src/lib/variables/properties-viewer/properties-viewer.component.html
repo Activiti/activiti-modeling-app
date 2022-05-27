@@ -120,7 +120,7 @@
             </mat-checkbox>
         </div>
 
-        <div *ngIf="['string', 'date', 'datetime', 'integer', 'boolean'].includes(form.type)">
+        <div *ngIf="['string', 'date', 'datetime', 'integer', 'boolean'].includes(form.type) && allowExpressions">
             <div class="ama-display-name-tooltip">
                 <span class="adf-property-label">{{ 'SDK.DISPLAY_NAME_VISIBILITY.DISPLAY_NAME_AVAILABILITY' | translate }}</span>
                 <mat-icon matTooltip="{{ 'SDK.DISPLAY_NAME_VISIBILITY.DISPLAY_NAME_TOOLTIP' | translate }}">info_outline</mat-icon>
