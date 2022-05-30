@@ -75,6 +75,7 @@ $defaults: (
   --theme-caption-font-size: mat-font-size($alfresco-typography, caption),
   --theme-title-font-size: mat-font-size($alfresco-typography, title),
   --theme-subheading-2-font-size: mat-font-size($alfresco-typography, subheading-2),
+  --theme-headline-line-height: mat-line-height($alfresco-typography, headline),
   --theme-card-bg-color: mat-color($background, card),
   --theme-colors-mat-grey-dark: mat-color($mat-grey, A400),
   --theme-adf-picture-1-font-size: map-get(

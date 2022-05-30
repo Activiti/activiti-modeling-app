@@ -80,6 +80,7 @@ $defaults: (
   --theme-caption-font-size: mat-font-size($alfresco-typography, caption),
   --theme-title-font-size: mat-font-size($alfresco-typography, title),
   --theme-subheading-2-font-size: mat-font-size($alfresco-typography, subheading-2),
+  --theme-headline-line-height: mat-line-height($alfresco-typography, headline),
   --theme-card-bg-color: mat-color($background, card),
   --adf-card-view-datetime-border-color: mat-color($foreground, text, 0.42),
   --theme-document-color: #00953b,
