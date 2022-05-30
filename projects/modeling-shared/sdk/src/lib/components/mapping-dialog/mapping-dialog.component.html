@@ -119,9 +119,10 @@
                 </div>
                 <div class="ama-mapping-value">
                     <mat-tab-group [(selectedIndex)]="selectedTab" (selectedTabChange)="selectedTabChange()">
-                        <mat-tab *ngIf="mappingType === 'input'" data-automation-id="process-variable-tab"
+                        <mat-tab *ngIf="mappingType === 'input' && enableVariableSelection" data-automation-id="process-variable-tab"
                             label="{{ valueColumnHeader | translate}}">
-                            <ng-container *ngIf="selectedTab===0 && tabCheck === selectedTab">
+                            <ng-container
+                                 *ngIf="selectedTab | mappingDialogSelectedTab:'variable' :tabCheck :enableVariableSelection :enableValueSelection :data?.expressionSyntax">
                                 <div class="ama-mapping-dialog-variable-selector">
                                     <modelingsdk-variable-selector [variables]="editorVariables"
                                         [varIdSelected]="variableValue | variableIdFromVariableName: editorVariables"
@@ -133,10 +134,11 @@
                                 </div>
                             </ng-container>
                         </mat-tab>
-                        <mat-tab *ngIf="mappingType === 'output'" data-automation-id="output-parameter-tab"
+                        <mat-tab *ngIf="mappingType === 'output' && enableVariableSelection" data-automation-id="output-parameter-tab"
                             [disabled]="mappingType === 'output' && !dataSource[selectedRow].type"
                             label="{{'SDK.MAPPING_DIALOG.OUTPUT_PARAMETER'| translate}}">
-                            <ng-container *ngIf="selectedTab===0 && tabCheck === selectedTab">
+                            <ng-container
+                                *ngIf="selectedTab | mappingDialogSelectedTab:'variable' :tabCheck :enableVariableSelection :enableValueSelection :data?.expressionSyntax">
                                 <mat-select [value]="dataSource[selectedRow].name"
                                     data-automation-id="output-parameter-select"
                                     (selectionChange)="mappingChanges($event.value,selectedRow)">
@@ -150,9 +152,10 @@
                             </ng-container>
                         </mat-tab>
                         <mat-tab label="{{'SDK.MAPPING_DIALOG.VALUE_MAPPING'| translate}}"
-                            data-automation-id="value-mapping-tab"
+                            data-automation-id="value-mapping-tab" *ngIf="enableValueSelection"
                             [disabled]="mappingType === 'output' && !dataSource[selectedRow].type">
-                            <ng-container *ngIf="selectedTab===1 && tabCheck === selectedTab">
+                            <ng-container
+                                *ngIf="selectedTab | mappingDialogSelectedTab:'value' :tabCheck :enableVariableSelection :enableValueSelection :data?.expressionSyntax">
                                 <modelingsdk-value-type-input #valueInput data-automation-id="value-mapping-input"
                                     class="ama-value-mapping-input" (onChange)="valueMappingValueChange($event,selectedRow)"
                                     [(ngModel)]="valueValue" [index]="selectedRow+1"
@@ -168,7 +171,8 @@
                         </mat-tab>
                         <mat-tab label="{{'SDK.MAPPING_DIALOG.EXPRESSION_MAPPING'| translate}}"
                             data-automation-id="expression-mapping-tab" *ngIf="data?.expressionSyntax!=='none'">
-                            <ng-container *ngIf="selectedTab===2 && tabCheck === selectedTab">
+                            <ng-container
+                                *ngIf="selectedTab | mappingDialogSelectedTab:'expression' :tabCheck :enableVariableSelection :enableValueSelection :data?.expressionSyntax">
                                 <modelingsdk-expression-code-editor
                                     class="monaco-editor ama-mapping-dialog-expression-editor"
                                     [attr.data-automation-id]="'mapping-dialog-expression-editor'"

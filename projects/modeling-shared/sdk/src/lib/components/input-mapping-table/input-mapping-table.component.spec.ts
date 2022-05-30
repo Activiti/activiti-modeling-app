@@ -20,13 +20,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ConnectorParameter, MappingType, ProcessEditorElementWithVariables } from '../../api/types';
+import { ConnectorParameter, ExpressionSyntax, MappingType, ProcessEditorElementWithVariables } from '../../api/types';
 import { InputMappingTableComponent } from './input-mapping-table.component';
 import { InputMappingTableModule } from './input-mapping-table.module';
 import { CoreModule, TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { selectSelectedTheme } from '../../store/app.selectors';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { PropertiesViewerStringInputComponent, INPUT_TYPE_ITEM_HANDLER } from '../../variables/public-api';
@@ -35,12 +35,15 @@ import { ExpressionsEditorService } from '../../variables/expression-code-editor
 import { UuidService } from '../../services/uuid.service';
 import { provideModelingJsonSchemaProvider } from '../../services/modeling-json-schema-provider.service';
 import { RegisteredInputsModelingJsonSchemaProvider } from '../../services/registered-inputs-modeling-json-schema-provider.service';
+import { VariableMappingType } from '../../services/mapping-dialog.service';
+import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
 
 describe('InputMappingTableComponent', () => {
     let fixture: ComponentFixture<InputMappingTableComponent>;
     let component: InputMappingTableComponent;
     let uuidService: UuidService;
     let expressionsEditorService: ExpressionsEditorService;
+    let dialogService: DialogService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -84,6 +87,7 @@ describe('InputMappingTableComponent', () => {
         uuidService = TestBed.inject(UuidService);
         spyOn(uuidService, 'generate').and.returnValue('generated-uuid');
         expressionsEditorService = TestBed.inject(ExpressionsEditorService);
+        dialogService = TestBed.inject(DialogService);
         spyOn(expressionsEditorService, 'initExpressionEditor');
         fixture = TestBed.createComponent(InputMappingTableComponent);
         component = fixture.componentInstance;
@@ -242,5 +246,68 @@ describe('InputMappingTableComponent', () => {
         component.mapping[component.parameters[0].name].value = null;
         component.ngOnChanges();
         expect(component.mappingTypes[component.parameters[0].name]).toBe(MappingType.variable);
+    });
+
+    it('should open the edit dialog', () => {
+        spyOn(dialogService, 'openDialog');
+
+        component.edit(0);
+
+        expect(dialogService.openDialog).toHaveBeenCalledWith(MappingDialogComponent, {
+            data: {
+                editorVariables: [
+                    {
+                        source: {
+                            name: 'Process',
+                            type: ProcessEditorElementWithVariables.Process
+                        },
+                        variables: [{
+                            id: '1',
+                            name: 'var1',
+                            type: 'string',
+                        },
+                        {
+                            id: '2',
+                            name: 'var2',
+                            type: 'date',
+                        }]
+                    }
+                ],
+                enableValueSelection: true,
+                enableVariableSelection: true,
+                expressionSyntax: ExpressionSyntax.JUEL,
+                extensionObject: {
+                    editDialogKeyHeader: 'SDK.VARIABLE_MAPPING.PARAMETER',
+                    editDialogValueHeader: 'SDK.VARIABLE_MAPPING.PROCESS_VARIABLE'
+                },
+                inputMapping: {},
+                inputMappingUpdate$: jasmine.any(Subject),
+                inputParameters: [
+                    {
+                        description: 'desc',
+                        id: 'id1',
+                        name: 'name',
+                        required: false,
+                        type: 'string'
+                    }
+                ],
+                mappingType: VariableMappingType.input,
+                selectedRow: 0
+            },
+            disableClose: true,
+            height: '530px',
+            width: '1000px'
+        });
+    });
+
+    it('should display NONE as placeholder in modeling-sdk-variable-selector when variable selection is disabled', async () => {
+        component.enableVariableSelection = false;
+        component.ngOnChanges();
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const variableSelector: HTMLElement = fixture.debugElement.nativeElement.querySelector('[data-automation-id="variable-selector-id1"]');
+
+        expect(variableSelector.textContent).toEqual('SDK.VARIABLE_MAPPING.NONE');
     });
 });

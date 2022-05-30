@@ -22,11 +22,11 @@
         <mat-cell *matCellDef="let parameter; let i = index">
             <ng-container *ngIf="parameter.type !== 'process'">
                     <modelingsdk-mapping-variable-expression-dropdown
-                    [variables]="processProperties"
+                    [variables]="enableVariableSelection ? processProperties : []"
                     [mapping]="data[parameter.name] || null"
                     [typeFilter]="parameter | variablePrimitiveType"
                     [placeholder]="placeholder | translate"
-                    [noVariablePlaceholder]="'SDK.VARIABLE_MAPPING.NO_PROCESS_PROPERTIES'"
+                    [noVariablePlaceholder]="enableVariableSelection ? 'SDK.VARIABLE_MAPPING.NO_PROCESS_PROPERTIES' : 'SDK.VARIABLE_MAPPING.NONE'"
                     (mappingChanged)="selectVariable($event, parameter)"
                     [panelHeight]="panelHeight"
                     [panelWidth]="panelWidth"

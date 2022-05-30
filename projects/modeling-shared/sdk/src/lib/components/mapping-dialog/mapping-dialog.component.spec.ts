@@ -22,7 +22,7 @@ import { MatTableModule } from '@angular/material/table';
 import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { MappingDialogComponent } from './mapping-dialog.component';
 import { MappingDialogData, MappingValueType, VariableMappingType } from '../../services/mapping-dialog.service';
-import { MappingType } from '../../api/types';
+import { ExpressionSyntax, MappingType } from '../../api/types';
 import { MODELING_JSON_SCHEMA_PROVIDERS, UuidService } from '../../services/public-api';
 import { InputMappingDialogService } from '../../services/input-mapping-dialog.service';
 import { OutputMappingDialogService } from '../../services/output-mapping-dialog.service';
@@ -44,6 +44,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { VariableExpressionLanguagePipe } from '../../variables/properties-viewer/variable-expression-language.pipe';
 import { VariableIdFromVariableNamePipe } from '../variable-selectors/variable-id-from-variable-name.pipe';
 import { VariablePrimitiveTypePipe } from '../../variables/properties-viewer/variable-primitive-type.pipe';
+import { MappingDialogSelectedTabPipe } from './mapping-dialog-selected-tab.pipe';
 
 describe('MappingDialogComponent', () => {
     let fixture: ComponentFixture<MappingDialogComponent>;
@@ -167,7 +168,8 @@ describe('MappingDialogComponent', () => {
                 VariableValuePipe,
                 VariableExpressionLanguagePipe,
                 VariableIdFromVariableNamePipe,
-                VariablePrimitiveTypePipe
+                VariablePrimitiveTypePipe,
+                MappingDialogSelectedTabPipe
             ],
             providers: [
                 { provide: MatDialogRef, useValue: mockDialog },
@@ -337,5 +339,87 @@ describe('MappingDialogComponent', () => {
 
         expect(component.dataSource[5].mappingValueType).toEqual(MappingValueType.expression);
         expect(component.dataSource[5].value).toEqual(null);
+    });
+
+    describe('Display tabs', () => {
+        it('should display the process variable tab when it is enabled', async () => {
+            setUpTestBed(mockDialogDataInputMapping);
+            component.enableVariableSelection = true;
+
+            component.ngOnInit();
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const tab = fixture.debugElement.nativeElement.querySelector('[data-automation-id="process-variable-tab"]');
+
+            expect(tab).toBeTruthy();
+        });
+
+        it('should display the value tab when it is enabled', async () => {
+            setUpTestBed(mockDialogDataInputMapping);
+            component.enableValueSelection = true;
+
+            component.ngOnInit();
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const tab = fixture.debugElement.nativeElement.querySelector('[data-automation-id="value-mapping-tab"]');
+
+            expect(tab).toBeTruthy();
+        });
+
+        it('should display the expression tab when it has an expression language set', async () => {
+            setUpTestBed(mockDialogDataInputMapping);
+            component.data.expressionSyntax = ExpressionSyntax.JUEL;
+
+            component.ngOnInit();
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const tab = fixture.debugElement.nativeElement.querySelector('[data-automation-id="expression-mapping-tab"]');
+
+            expect(tab).toBeTruthy();
+        });
+    });
+
+    describe('Hide tabs', () => {
+        it('should hide the process variable tab when it is not enabled', async () => {
+            setUpTestBed(mockDialogDataInputMapping);
+            component.enableVariableSelection = false;
+
+            component.ngOnInit();
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const tab = fixture.debugElement.nativeElement.querySelector('[data-automation-id="process-variable-tab"]');
+
+            expect(tab).toBeFalsy();
+        });
+
+        it('should hide the value tab when it is not enabled', async () => {
+            setUpTestBed(mockDialogDataInputMapping);
+            component.enableValueSelection = false;
+
+            component.ngOnInit();
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const tab = fixture.debugElement.nativeElement.querySelector('[data-automation-id="value-mapping-tab"]');
+
+            expect(tab).toBeFalsy();
+        });
+
+        it('should hide the expression tab when it has no expression language set', async () => {
+            setUpTestBed(mockDialogDataInputMapping);
+            component.data.expressionSyntax = ExpressionSyntax.NONE;
+
+            component.ngOnInit();
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const tab = fixture.debugElement.nativeElement.querySelector('[data-automation-id="expression-mapping-tab"]');
+
+            expect(tab).toBeFalsy();
+        });
     });
 });

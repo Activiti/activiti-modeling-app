@@ -35,6 +35,8 @@ export interface MappingDialogData {
     outputMappingUpdate$?: Subject<ServiceParameterMapping>;
     extensionObject?: any;
     expressionSyntax?: ExpressionSyntax;
+    enableVariableSelection?: boolean;
+    enableValueSelection?: boolean;
 }
 
 export enum VariableMappingType {

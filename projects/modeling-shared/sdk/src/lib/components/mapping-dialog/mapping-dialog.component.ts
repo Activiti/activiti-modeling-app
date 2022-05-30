@@ -16,7 +16,6 @@
  */
 
 /* eslint-disable max-lines */
-
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { ConnectorParameter, ElementVariable, EntityProperty, ProcessEditorElementVariable, ServiceParameterMapping } from '../../api/types';
 import { VariableMappingType, MappingRowModel, MappingValueType, MappingDialogService, MappingDialogData } from '../../services/mapping-dialog.service';
@@ -64,6 +63,8 @@ export class MappingDialogComponent implements OnInit {
     extendedProperties = {};
     editorVariables: ProcessEditorElementVariable[];
     expressionEditorVariables: ElementVariable[];
+    enableVariableSelection = true;
+    enableValueSelection = true;
 
     private readonly EXPRESSION_REGEX = /\${([^]*)}/gm;
 
@@ -79,6 +80,8 @@ export class MappingDialogComponent implements OnInit {
         this.outputParameters = this.getSortedCopy(data.outputParameters);
         this.editorVariables = data.editorVariables;
         this.expressionEditorVariables = data.expressionEditorVariables;
+        this.enableVariableSelection = data.enableVariableSelection === false ? data.enableVariableSelection : this.enableVariableSelection;
+        this.enableValueSelection = data.enableValueSelection === false ? data.enableValueSelection : this.enableValueSelection;
         this.processProperties = this.getSortedCopy(this.getVariablesList(this.editorVariables));
         this.mappingType = data.mappingType;
         this.selectedRow = data.selectedRow;
