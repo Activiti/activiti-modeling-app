@@ -126,6 +126,7 @@ import { ParticipantElementVariablesProviderService } from './services/participa
 import { SaveAsProcessCommand } from './services/commands/save-as-process.command';
 import { DownloadProcessSVGImageCommand } from './services/commands/download-process-svg-image.command';
 import { CardProcessVersionItemComponent } from './services/cardview-properties/process-version-item/process-version-item.component';
+import { ProcessModelerActionsComponent } from './components/process-modeler/process-modeler-actions/process-modeler-actions.component';
 
 @NgModule({
     imports: [
@@ -169,6 +170,7 @@ import { CardProcessVersionItemComponent } from './services/cardview-properties/
         ProcessEditorComponent,
         PaletteComponent,
         ProcessModelerComponent,
+        ProcessModelerActionsComponent,
         ProcessPropertiesComponent,
         MessagesDialogComponent,
         ProcessErrorsDialogComponent,

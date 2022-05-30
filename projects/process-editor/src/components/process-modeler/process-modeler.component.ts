@@ -41,10 +41,9 @@ import { selectSelectedElement } from '../../store/process-editor.selectors';
 
 @Component({
     selector: 'ama-process-modeler',
-    templateUrl: './process-modeler.component.html',
+    template: '<div class="ama-canvas-editor"></div>',
     styleUrls: ['./process-modeler.component.scss', './process-modeler-bpmnjs.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    host: { class: 'ama-process-modeler ama-canvas-editor' }
 })
 export class ProcessModelerComponent implements OnInit, OnDestroy {
 

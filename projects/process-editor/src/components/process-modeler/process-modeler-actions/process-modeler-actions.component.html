@@ -1,0 +1,36 @@
+<div class="ama-process-header-modeler-actions">
+    <div>
+        <button mat-icon-button
+            [title]="'PROCESS_EDITOR.ACTIONS.UNDO' | translate"
+            data-automation-class="undo-button"
+            (click)="undo()">
+            <mat-icon>undo</mat-icon>
+        </button>
+        <button mat-icon-button
+            [title]="'PROCESS_EDITOR.ACTIONS.REDO' | translate"
+            data-automation-class="redo-button"
+            (click)="redo()">
+            <mat-icon>redo</mat-icon>
+        </button>
+        <button mat-icon-button
+            [title]="'PROCESS_EDITOR.ACTIONS.FIT_VIEW_PORT' | translate"
+            data-automation-class="fit-view-port-button"
+            (click)="fitViewPort()">
+            <mat-icon>center_focus_strong</mat-icon>
+        </button>
+    </div>
+    <div class="ama-modeler-actions">
+        <button mat-icon-button
+            [title]="'PROCESS_EDITOR.ACTIONS.ZOOM_OUT' | translate"
+            data-automation-class="zoom-out-button"
+            (click)="zoomOut()">
+            <mat-icon>remove</mat-icon>
+        </button>
+        <button mat-icon-button
+            [title]="'PROCESS_EDITOR.ACTIONS.ZOOM_IN' | translate"
+            data-automation-class="zoom-in-button"
+            (click)="zoomIn()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</div>

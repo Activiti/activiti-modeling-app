@@ -1,8 +1,11 @@
 <div class="ama-process-editor">
     <ng-container *ngIf="!(loading$ | async); else loading;">
         <div class="ama-process-editor-modeling" [attr.data-automation-id]="'process-editor-modeling'">
-            <modelingsdk-model-header [modelName]="modelType">
-            </modelingsdk-model-header>
+            <div class="ama-process-header-section">
+                <modelingsdk-model-header [modelName]="modelType" class="ama-process-header-actions">
+                </modelingsdk-model-header>
+                <ama-process-modeler-actions class="ama-process-modeler-actions"></ama-process-modeler-actions>
+            </div>
 
             <mat-tab-group class="ama-process-tab-group" *ngIf="modelMetadata$ | async as process;"
                            (selectedTabChange)="selectedTabChange($event)"
@@ -17,7 +20,7 @@
                             </modelingsdk-workbench-layout-sidenav>
 
                             <modelingsdk-workbench-layout-content>
-                                <ama-process-modeler
+                                <ama-process-modeler class="ama-process-modeler"
                                     (onChange)="onBpmnEditorChange()"
                                     [source]="contentFromStore$ | async"
                                     [attr.data-automation-id]="'process-editor-modeler'">
