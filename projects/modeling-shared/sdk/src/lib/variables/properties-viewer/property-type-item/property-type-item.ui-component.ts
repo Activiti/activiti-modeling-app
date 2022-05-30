@@ -29,7 +29,7 @@ import { PropertyTypeItem } from './models';
     encapsulation: ViewEncapsulation.None
 })
 export class PropertyTypeItemUiComponent {
-
+    // eslint-disable-next-line @angular-eslint/no-output-native
     @Output() change = new EventEmitter();
     @Input() items: PropertyTypeItem[];
     @Input() automationId: string;
@@ -87,7 +87,7 @@ export class PropertyTypeItemUiComponent {
         if (obj instanceof Object) {
             copy = {};
             for (const attr in obj) {
-                if (obj.hasOwnProperty(attr)) {
+                if (Object.prototype.hasOwnProperty.call(obj, attr)) {
                     (<any>copy)[attr] = this.deepCopy(obj[attr]);
                 }
             }

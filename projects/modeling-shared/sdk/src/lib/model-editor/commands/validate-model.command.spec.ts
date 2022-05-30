@@ -35,7 +35,7 @@ class TestValidateAction {
 
 class TestSuccessAction {
     type: 'success';
-    constructor(actions: Action[]) {}
+    constructor(_actions: Action[]) {}
 }
 
 class TestEffectSuccessActionAlfa {
@@ -50,7 +50,7 @@ class TestEffectSuccessActionBeta {
 
 class TestErrorAction {
     type: 'error';
-    constructor(message: string, params: any) {}
+    constructor(_message: string, _params: any) {}
 }
 class SpecificValidateModelCommand extends GenericValidateModelCommand {
     constructor(store: Store<any>, translationService: any) {

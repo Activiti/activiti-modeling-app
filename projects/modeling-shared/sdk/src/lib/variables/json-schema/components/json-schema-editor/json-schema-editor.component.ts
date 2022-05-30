@@ -102,7 +102,7 @@ export class JsonSchemaEditorComponent implements ControlValueAccessor {
         this.properties = [];
 
         if (this.value.properties) {
-            Object.keys(this.value.properties).forEach(key => this.properties.push({ key, definition: this.value.properties![key] }));
+            Object.keys(this.value.properties).forEach(key => this.properties.push({ key, definition: this.value.properties?.[key] }));
         }
     }
 

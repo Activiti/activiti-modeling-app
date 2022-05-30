@@ -59,6 +59,7 @@ export class CodeEditorComponent implements OnDestroy, OnInit, OnChanges {
     @Input() content = '';
     @Output() changed = new EventEmitter<string>();
     @Output() positionChanged = new EventEmitter<CodeEditorPosition>();
+    // eslint-disable-next-line @angular-eslint/no-output-on-prefix
     @Output() onInit = new EventEmitter<monaco.editor.ICodeEditor>();
 
     editorModel: NgxEditorModel;

@@ -22,7 +22,7 @@ import { CreateConnectorAttemptAction } from './connector-editor.actions';
 
 export const CONNECTOR_ICON = 'link';
 
-export function createConnectorCreator(callback = (param) => {}): ModelCreator {
+export function createConnectorCreator(callback = (_param) => {}): ModelCreator {
     return {
         name: 'PROJECT_EDITOR.NEW_MENU.MENU_ITEMS.CREATE_CONNECTOR',
         icon: CONNECTOR_ICON,

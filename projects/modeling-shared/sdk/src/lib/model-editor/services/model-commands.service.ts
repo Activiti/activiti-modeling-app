@@ -93,7 +93,7 @@ export class ModelCommandsService {
     public getBasicStandardCommands(buttonRequest: CommandButtonRequest, modelType: MODEL_TYPE): CommandButton [] {
         const basicCommands = [];
         for (const command in buttonRequest) {
-            if (!!command && buttonRequest.hasOwnProperty(command)) {
+            if (!!command && Object.prototype.hasOwnProperty.call(buttonRequest, command)) {
                 basicCommands.push(this.modelButtonService.getCommandButtonFor(<BasicModelCommands>command, buttonRequest[command], modelType));
             }
         }
@@ -103,7 +103,7 @@ export class ModelCommandsService {
     public getBasicMenuCommands(menuRequest: MenuButtonRequest, modelType: MODEL_TYPE): CommandButton [] {
         const basicCommands = [];
         for (const command in menuRequest) {
-            if (!!command && menuRequest.hasOwnProperty(command)) {
+            if (!!command && Object.prototype.hasOwnProperty.call(menuRequest, command)) {
                 basicCommands.push(this.modelButtonService.getMenuButtonFor(<BasicModelCommands>command, menuRequest[command], modelType));
             }
         }

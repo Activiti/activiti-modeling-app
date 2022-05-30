@@ -30,6 +30,7 @@ import { PropertyTypeItem } from '../../../properties-viewer/property-type-item/
 })
 export class ReferenceSelectorComponent implements ControlValueAccessor {
 
+    // eslint-disable-next-line @angular-eslint/no-output-native
     @Output() change = new EventEmitter();
     @Input() reference: string;
     @Input() hierarchy: PropertyTypeItem[];

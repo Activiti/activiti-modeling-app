@@ -142,6 +142,7 @@ export interface Model extends MinimalModelSummary {
 }
 
 export enum ModelScope {
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     PROJECT = 'PROJECT',
     GLOBAL = 'GLOBAL'
 }

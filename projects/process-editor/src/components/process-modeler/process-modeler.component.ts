@@ -51,8 +51,8 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
     onDestroy$ = new Subject<void>();
     currentProcessSelected = '';
 
-    // eslint-disable-next-line
     @Output()
+    // eslint-disable-next-line @angular-eslint/no-output-on-prefix
     onChange = new EventEmitter<any>();
 
     @Input()

@@ -24,6 +24,7 @@ import { ModeledObjectChanges } from '../modeled-object/modeled-object-input.com
     templateUrl: './json-input.component.html'
 })
 export class PropertiesViewerJsonInputComponent implements OnChanges {
+    // eslint-disable-next-line @angular-eslint/no-output-native
     @Output() change = new EventEmitter();
     @Input() value: any;
     @Input() disabled = false;

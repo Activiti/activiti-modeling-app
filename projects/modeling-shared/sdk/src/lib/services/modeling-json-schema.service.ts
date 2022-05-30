@@ -435,7 +435,7 @@ export class ModelingJSONSchemaService {
         if (obj instanceof Object) {
             copy = {};
             for (const attr in obj) {
-                if (obj.hasOwnProperty(attr)) {
+                if (Object.prototype.hasOwnProperty.call(obj, attr)) {
                     (<any>copy)[attr] = this.deepCopy(obj[attr]);
                 }
             }

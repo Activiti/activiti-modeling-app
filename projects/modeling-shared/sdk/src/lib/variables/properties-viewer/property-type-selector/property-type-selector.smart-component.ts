@@ -53,6 +53,7 @@ export class PropertyTypeSelectorSmartComponent implements ControlValueAccessor,
     public static readonly PROVIDER_NAME = 'PropertyTypeSelectorSmartComponent';
     private static readonly PRIMITIVE_REFERENCE_PREFIX = ModelingJSONSchemaService.PRIMITIVE_DEFINITIONS_PATH + '/';
 
+    // eslint-disable-next-line @angular-eslint/no-output-native
     @Output() change = new EventEmitter();
     @Input() property: EntityProperty;
     @Input() disabled: boolean;

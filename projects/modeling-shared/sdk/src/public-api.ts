@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+/* eslint-disable @typescript-eslint/triple-slash-reference */
 /// <reference path="./lib/process-editor/bpmn.d.ts" />
 /// <reference path="./lib/process-editor/diagram.d.ts" />
 

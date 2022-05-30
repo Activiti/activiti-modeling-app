@@ -25,6 +25,7 @@ import { VariablesService } from '../variables.service';
 
 @Component({ template: '' })
 export abstract class PropertiesViewerModelValidatedInputComponent implements OnInit, OnChanges, OnDestroy {
+    // eslint-disable-next-line @angular-eslint/no-output-native
     @Output() change = new EventEmitter();
     @Input() value: any;
     @Input() disabled = false;

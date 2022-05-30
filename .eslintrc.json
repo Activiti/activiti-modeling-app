@@ -123,8 +123,8 @@
                 "@angular-eslint/no-host-metadata-property": "off",
                 "@angular-eslint/no-input-rename": "error",
                 "@angular-eslint/no-inputs-metadata-property": "error",
-                "@angular-eslint/no-output-native": "warn",
-                "@angular-eslint/no-output-on-prefix": "warn",
+                "@angular-eslint/no-output-native": "error",
+                "@angular-eslint/no-output-on-prefix": "error",
                 "@angular-eslint/no-output-rename": "error",
                 "@angular-eslint/no-outputs-metadata-property": "error",
                 "@angular-eslint/use-lifecycle-interface": "error",
@@ -150,9 +150,9 @@
                     }
                 ],
                 "@typescript-eslint/no-misused-new": "error",
-                "@typescript-eslint/no-non-null-assertion": "warn",
+                "@typescript-eslint/no-non-null-assertion": "error",
                 "@typescript-eslint/no-shadow": [
-                    "warn",
+                    "error",
                     {
                         "hoist": "all"
                     }
@@ -169,9 +169,10 @@
                     }
                 ],
                 "@typescript-eslint/semi": ["warn", "always"],
-                "@typescript-eslint/triple-slash-reference": "warn",
+                "@typescript-eslint/triple-slash-reference": "error",
                 "@typescript-eslint/type-annotation-spacing": "error",
                 "@typescript-eslint/unified-signatures": "error",
+                "@typescript-eslint/no-unused-vars": "warn",
                 "arrow-body-style": "warn",
                 "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
                 "constructor-super": "error",
@@ -229,7 +230,7 @@
                 "no-extra-boolean-cast":"error",
                 "no-fallthrough": "error",
                 "no-multiple-empty-lines": "error",
-                "no-prototype-builtins":"warn",
+                "no-prototype-builtins":"error",
                 "no-new-wrappers": "error",
                 "no-restricted-imports": ["error", "rxjs/Rx"],
                 "no-return-await": "error",
@@ -275,7 +276,7 @@
                 "rxjs/no-unsafe-takeuntil": "error",
                 "semi": "error",
                 "no-useless-escape": "error",
-                "no-case-declarations":"warn",
+                "no-case-declarations":"error",
                 "spaced-comment": [
                     "error",
                     "always",
