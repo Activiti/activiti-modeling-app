@@ -20,7 +20,7 @@ import {Store} from '@ngrx/store';
 import {filter} from 'rxjs/operators';
 import { LogoutAction } from '../../store';
 
-export function unauthorizedServiceFactory(alfrescoApiService: AlfrescoApiService, store: Store ): Function {
+export function unauthorizedServiceFactory(alfrescoApiService: AlfrescoApiService, store: Store ) {
     return () => alfrescoApiService.alfrescoApiInitialized.pipe(filter((isInitialized) => isInitialized))
         .subscribe(() => alfrescoApiService.getInstance().oauth2Auth.on('unauthorized', () => store.dispatch(new LogoutAction())));
 }

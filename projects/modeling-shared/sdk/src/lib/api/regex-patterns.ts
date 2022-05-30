@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-export const NAME_REGEXP = /^([A-Za-z0-9\-\_]+)?$/;
+export const NAME_REGEXP = /^([A-Za-z0-9\-_]+)?$/;
 export const COLOR_HEX_REGEXP = /^#([a-z0-9]{3}|[a-z0-9]{4}|[a-z0-9]{6})$/i;
 export const URL_REGEXP = /^[A-Za-z][A-Za-z\d.+-]*:\/*(?:\w+(?::\w+)?@)?[^\s/]+(?::\d+)?(?:\/[\w#!:.?+=&%@\-/]*)?$/;
 export const EXTERNAL_URL_REGEXP = /^(http|https):\/\/.*[^/]$/;

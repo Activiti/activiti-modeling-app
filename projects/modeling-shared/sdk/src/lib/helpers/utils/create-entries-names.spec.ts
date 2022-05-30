@@ -54,7 +54,7 @@ describe('Create entries names', () => {
     });
 
     it('PROCESS_NAME_REGEX should allow Special characters in process name', () => {
-        const testString = 'name !@#£\$%\^\&*\)\(+=._-';
+        const testString = 'name !@#£$%^&*)(+=._-';
         expect(PROCESS_NAME_REGEX.test(testString)).toBe(true);
     });
 

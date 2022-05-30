@@ -20,9 +20,7 @@ import { ChangeFilterStatus, CloseFilterAction } from '../project-editor.actions
 import { projectTreeReducer } from './project-tree.reducer';
 
 describe('ProjectTreeReducer', () => {
-    let initState: ProjectTreeState;
-
-    initState = {...INITIAL_PROJECT_TREE_STATE};
+    const initState: ProjectTreeState = {...INITIAL_PROJECT_TREE_STATE};
 
     it('should handle SELECT_PROJECT', () => {
         const newState = projectTreeReducer(initState, {type: SELECT_PROJECT});

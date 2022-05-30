@@ -52,21 +52,21 @@ export class ProcessCategorySelectorComponent implements OnInit {
 
         this.filteredCategories$ = this.allCategories$.pipe(
             map((allCategories) =>
-                this.filterCategories(allCategories, this.categorySearchInput.value)
+                this.filterCategories(allCategories)
             )
         );
 
         this.categorySearchInput.valueChanges.pipe(
             tap((categoryInputValue) => this.categoryChange.emit(categoryInputValue)),
-            switchMap((categoryInputValue) => this.allCategories$.pipe(
-                map((allCategories) => this.filterCategories(allCategories, categoryInputValue))
+            switchMap(() => this.allCategories$.pipe(
+                map((allCategories) => this.filterCategories(allCategories))
             )),
         ).subscribe(categories => {
             this.filteredCategories$ = of(categories);
         });
     }
 
-    private filterCategories(categories: string[], categoryName: string): string[] {
+    private filterCategories(categories: string[]): string[] {
         return categories.filter(
             category => category.toLowerCase().indexOf(this.categorySearchInput.value.toLowerCase()) > -1
         );

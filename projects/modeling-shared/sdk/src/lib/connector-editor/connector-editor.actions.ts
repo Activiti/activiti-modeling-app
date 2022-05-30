@@ -40,7 +40,7 @@ export class CreateConnectorSuccessAction implements Action {
 export const CREATE_CONNECTOR_ATTEMPT = '[Connector] Create attempt';
 export class CreateConnectorAttemptAction implements Action {
     readonly type = CREATE_CONNECTOR_ATTEMPT;
-    constructor(public payload: Partial<EntityDialogForm>, public navigateTo = false, public callback?: Function) {}
+    constructor(public payload: Partial<EntityDialogForm>, public navigateTo = false, public callback?: (param: Connector) => any) {}
 }
 
 export const SHOW_CONNECTORS = '[Connectors] Show the list';

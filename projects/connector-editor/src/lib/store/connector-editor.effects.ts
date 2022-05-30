@@ -292,7 +292,7 @@ export class ConnectorEditorEffects {
     }
 
     private createConnector(form: Partial<EntityDialogForm>, navigateTo: boolean,
-                            projectId: string, callback: Function): Observable<any | SnackbarInfoAction | CreateConnectorSuccessAction> {
+                            projectId: string, callback: (param: Connector) => any): Observable<any | SnackbarInfoAction | CreateConnectorSuccessAction> {
         return this.connectorEditorService.create(form, projectId).pipe(
             tap((connector) => callback && callback(connector)),
             mergeMap((connector) => [

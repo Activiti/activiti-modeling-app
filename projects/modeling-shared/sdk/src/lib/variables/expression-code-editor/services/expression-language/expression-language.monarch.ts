@@ -18,7 +18,7 @@
 /* cspell: disable */
 
 export const expressionLanguageConfiguration = {
-    wordPattern: /(-?\d*\.\d\w*)|([^\`\~\!\@\#\%\^\&\*\(\)\-\=\+\[\{\]\}\\\|\;\:\'\"\,\.\<\>\/\?\s]+)/g,
+    wordPattern: /(-?\d*\.\d\w*)|([^`~!@#%^&*()\-=+[{\]}\\|;:'",.<>/?\s]+)/g,
 
     comments: {
         lineComment: '//',
@@ -33,20 +33,20 @@ export const expressionLanguageConfiguration = {
 
     onEnterRules: [
         {
-            beforeText: /^\s*\/\*\*(?!\/)([^\*]|\*(?!\/))*$/,
+            beforeText: /^\s*\/\*\*(?!\/)([^*]|\*(?!\/))*$/,
             afterText: /^\s*\*\/$/,
             action: { indentAction: 2, appendText: ' * ' }
         },
         {
-            beforeText: /^\s*\/\*\*(?!\/)([^\*]|\*(?!\/))*$/,
+            beforeText: /^\s*\/\*\*(?!\/)([^*]|\*(?!\/))*$/,
             action: { indentAction: 0, appendText: ' * ' }
         },
         {
-            beforeText: /^(\t|(\ \ ))*\ \*(\ ([^\*]|\*(?!\/))*)?$/,
+            beforeText: /^(\t|( {2}))* \*( ([^*]|\*(?!\/))*)?$/,
             action: { indentAction: 0, appendText: '* ' }
         },
         {
-            beforeText: /^(\t|(\ \ ))*\ \*\/\s*$/,
+            beforeText: /^(\t|( {2}))* \*\/\s*$/,
             action: { indentAction: 0, removeText: 1 }
         }
     ],
@@ -107,7 +107,7 @@ export const expressionLanguageMonarch = {
         }
     ],
 
-    symbols: /[=><!~?:&|+\-*\/\^%]+/,
+    symbols: /[=><!~?:&|+\-*/^%]+/,
     escapes: /\\(?:[abfnrtv\\"']|x[0-9A-Fa-f]{1,4}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})/,
     digits: /\d+(_+\d+)*/,
     octaldigits: /[0-7]+(_+[0-7]+)*/,
@@ -160,11 +160,11 @@ export const expressionLanguageMonarch = {
                 }
             }],
 
-            [/[A-Z][\w\$]*/, 'type.identifier'],
+            [/[A-Z][\w$]*/, 'type.identifier'],
 
             { include: '@whitespace' },
 
-            [/[()\[\]]/, '@brackets'],
+            [/[()[\]]/, '@brackets'],
             [/[<>](?!@symbols)/, '@brackets'],
             [/@symbols/, {
                 cases: {
@@ -173,8 +173,8 @@ export const expressionLanguageMonarch = {
                 }
             }],
 
-            [/(@digits)[eE]([\-+]?(@digits))?/, 'number.float'],
-            [/(@digits)\.(@digits)([eE][\-+]?(@digits))?/, 'number.float'],
+            [/(@digits)[eE]([-+]?(@digits))?/, 'number.float'],
+            [/(@digits)\.(@digits)([eE][-+]?(@digits))?/, 'number.float'],
             [/0[xX](@hexdigits)/, 'number.hex'],
             [/0[oO]?(@octaldigits)/, 'number.octal'],
             [/0[bB](@binarydigits)/, 'number.binary'],
@@ -195,9 +195,9 @@ export const expressionLanguageMonarch = {
         ],
 
         comment: [
-            [/[^\/*]+/, 'comment'],
+            [/[^/*]+/, 'comment'],
             [/\*\//, 'comment', '@pop'],
-            [/[\/*]/, 'comment']
+            [/[/*]/, 'comment']
         ],
 
         string_double: [

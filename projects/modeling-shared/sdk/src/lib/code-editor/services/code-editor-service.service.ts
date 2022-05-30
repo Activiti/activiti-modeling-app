@@ -29,7 +29,7 @@ export class CodeEditorService {
         return this.schemas.find(schema => schema.schema?.$id === uri)?.schema;
     }
 
-    addSchema(uri: string, fileMatch: string | string[], schema: string | Object) {
+    addSchema(uri: string, fileMatch: string | string[], schema: string | any) {
         this.schemas.push({
             uri,
             fileMatch: Array.isArray(fileMatch) ? fileMatch : [ fileMatch ],
@@ -37,7 +37,7 @@ export class CodeEditorService {
         });
     }
 
-    replaceSchema(uri: string, fileMatch: string | string[], schema: string | Object) {
+    replaceSchema(uri: string, fileMatch: string | string[], schema: string | any) {
         const schemaIndex = this.getSchemaIndexByUri(uri);
         if (schemaIndex === -1) {
             this.addSchema(uri, fileMatch, schema);

@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+/* eslint-disable max-lines */
+
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { ConnectorParameter, ElementVariable, EntityProperty, ProcessEditorElementVariable, ServiceParameterMapping } from '../../api/types';
 import { VariableMappingType, MappingRowModel, MappingValueType, MappingDialogService, MappingDialogData } from '../../services/mapping-dialog.service';

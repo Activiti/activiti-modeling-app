@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { MappingDialogService, MappingRowModel, MappingValueType } from './mapping-dialog.service';
-import { ServiceParameterMapping, ConnectorParameter, MappingType, EntityProperty } from '../api/types';
+import { ServiceParameterMapping, ConnectorParameter, MappingType } from '../api/types';
 
 @Injectable({
     providedIn: 'root'
@@ -33,7 +33,7 @@ export class InputMappingDialogService extends MappingDialogService {
         dataSource[i].value = value;
     }
 
-    dataSourceInit(mapping: ServiceParameterMapping, parameters: ConnectorParameter[], properties: EntityProperty[]): MappingRowModel[] {
+    dataSourceInit(mapping: ServiceParameterMapping, parameters: ConnectorParameter[]): MappingRowModel[] {
         const dataSource: MappingRowModel[] = [];
 
         if (mapping === undefined || mapping === null) {

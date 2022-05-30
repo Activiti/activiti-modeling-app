@@ -34,7 +34,7 @@ type EntityDialogContentSubmitPayload = CreateActionSubmitPayload | EditActionSu
 export interface EntityDialogContentSubmitData {
     payload: EntityDialogContentSubmitPayload;
     navigateTo: boolean;
-    callback: Function;
+    callback: () => any;
 }
 @Component({
     selector: 'modelingsdk-entity-dialog-content',
@@ -46,6 +46,7 @@ export class EntityDialogContentComponent implements OnInit {
     data: EntityDialogPayload;
 
     @Output()
+    // eslint-disable-next-line @angular-eslint/no-output-native
     submit = new EventEmitter<EntityDialogContentSubmitData>();
 
     submitButton: string;

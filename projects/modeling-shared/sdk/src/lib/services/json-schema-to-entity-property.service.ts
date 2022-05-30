@@ -92,12 +92,13 @@ export class JSONSchemaToEntityPropertyService {
                         }
                     }
                     break;
-                default:
+                default: {
                     const entityProperty = this.getPrimitiveEntityProperty(jsonSchema, name, prefix);
                     if (entityProperty) {
                         entityProperties.push(entityProperty);
                     }
                     break;
+                }
                 }
             }
         }

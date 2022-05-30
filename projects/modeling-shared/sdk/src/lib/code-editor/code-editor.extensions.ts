@@ -19,7 +19,7 @@ import { InjectionToken, ValueProvider } from '@angular/core';
 import { MODEL_TYPE } from '../api/types';
 import { MODEL_SCHEMA_TYPE } from '../api/model-schema-api.interface';
 
-export type JsonSchemaTransformer = (jsonSchema: Object) => any;
+export type JsonSchemaTransformer = (jsonSchema: any) => any;
 
 export interface SchemaModelMap {
     modelType: MODEL_TYPE;

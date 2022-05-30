@@ -50,7 +50,7 @@ export class ScriptApiVariation<M extends ActivitiScript, C extends ActivitiScri
         return <C>getEmptyScript(model);
     }
 
-    public createSummaryPatch(model: Partial<M>, modelContent: C) {
+    public createSummaryPatch(model: Partial<M>) {
         const { name, description, extensions } = model;
         return {
             name,

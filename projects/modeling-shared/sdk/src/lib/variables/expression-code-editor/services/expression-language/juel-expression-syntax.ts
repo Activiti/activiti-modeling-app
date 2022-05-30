@@ -123,7 +123,6 @@ export class JuelExpressionSyntax implements ExpressionSyntaxProvider {
         if (methodDescription?.isArrayAccessor && methodDescription?.type === 'json') {
             modelSchema = JuelExpressionSyntax.extractItemsModelSchema(modelSchema);
         } else if (methodDescription?.isSameTypeAsObject && methodDescription?.type === 'json') {
-            modelSchema = modelSchema;
         } else {
             modelSchema = modelingTypesService.getModelSchemaFromEntityProperty(methodDescription);
         }

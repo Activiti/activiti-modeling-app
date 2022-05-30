@@ -58,7 +58,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
             .pipe(
                 map((nodePaging) => nodePaging.list.entries
                     .map(entry => entry.entry)
-                    .map((entry) => this.createEntity(entry, containerId)))
+                    .map((entry) => this.createEntity(entry)))
             );
     }
 
@@ -73,12 +73,12 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
                     // Patch: BE does not return the description...
                     const createdEntityWithDescription: T = <T>{
                         description: model.description,
-                        ...<object>createdEntity
+                        ...createdEntity
                     };
 
                     return this.updateContent(createdEntityWithDescription, this.modelVariation.createInitialContent(createdEntityWithDescription));
                 }),
-                map(createdEntity => this.createEntity(createdEntity, containerId))
+                map(createdEntity => this.createEntity(createdEntity))
             );
     }
 
@@ -88,7 +88,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
             `/modeling-service/v1/models/${modelId}`,
             { queryParams: queryParams })
             .pipe(
-                map(response => this.createEntity(response.entry, containerId))
+                map(response => this.createEntity(response.entry))
             );
     }
 
@@ -100,7 +100,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
             .put<ModelResponse<T>>(`/modeling-service/v1/models/${modelId}`, { bodyParam: summary })
             .pipe(
                 concatMap(response => ignoreContent ? of(response.entry) : this.updateContent(response.entry, content)),
-                map(updatedEntity => this.createEntity(updatedEntity, containerId))
+                map(updatedEntity => this.createEntity(updatedEntity))
             );
     }
 
@@ -169,7 +169,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
         return this.requestApiHelper
             .post<ModelResponse<T>>(`/modeling-service/v1/projects/${containerId}/models/import`, requestOptions)
             .pipe(
-                map(response => this.createEntity(response.entry, containerId))
+                map(response => this.createEntity(response.entry))
             );
     }
 
@@ -181,12 +181,12 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
         return this.requestApiHelper.get<S>(`/modeling-service/v1/models/${modelId}/content`, requestOptions);
     }
 
-    private createEntity(entity: Partial<T>, containerId: string): T {
+    private createEntity(entity: Partial<T>): T {
         return {
             description: '',
             version: '0.0.1',
             // Patch: BE does not return empty or not yet defined properties at all, like extensions
-            ...(this.modelVariation.patchModel(entity) as object)
+            ...(this.modelVariation.patchModel(entity))
         } as T;
     }
 
@@ -213,7 +213,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
             `/modeling-service/v1/projects/${containerId}/models/${modelId}`,
             { queryParams: { scope, force } })
             .pipe(
-                map(response => this.createEntity(response.entry, containerId))
+                map(response => this.createEntity(response.entry))
             );
     }
 
@@ -222,7 +222,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
             .delete<ModelResponse<T>>(
             `/modeling-service/v1/projects/${containerId}/models/${modelId}`)
             .pipe(
-                map(response => this.createEntity(response.entry, containerId))
+                map(response => this.createEntity(response.entry))
             );
     }
 
@@ -244,7 +244,7 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
             .pipe(
                 map((nodePaging: any) => ({
                     pagination: nodePaging.list.pagination,
-                    entries: nodePaging.list.entries.map(entry => this.createEntity(entry.entry, null))
+                    entries: nodePaging.list.entries.map(entry => this.createEntity(entry.entry))
                 }))
             );
     }
@@ -260,12 +260,12 @@ export class ModelApi<T extends Model, S> implements ModelApiInterface<T, S> {
                     // Patch: BE does not return the description...
                     const createdEntityWithDescription: T = <T>{
                         description: model.description,
-                        ...<object>createdEntity
+                        ...createdEntity
                     };
 
                     return this.updateContent(createdEntityWithDescription, this.modelVariation.createInitialContent(createdEntityWithDescription));
                 }),
-                map(createdEntity => this.createEntity(createdEntity, null))
+                map(createdEntity => this.createEntity(createdEntity))
             );
     }
 }

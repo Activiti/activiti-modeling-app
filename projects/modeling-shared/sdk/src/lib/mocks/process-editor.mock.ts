@@ -186,11 +186,11 @@ export class ProcessElementVariablesProviderService implements ProcessEditorElem
         return [ProcessEditorElementWithVariables.Process];
     }
 
-    getOutputVariables(element: Bpmn.DiagramElement): Observable<ElementVariable[]> {
+    getOutputVariables(): Observable<ElementVariable[]> {
         return of(expectedVariables[0].variables);
     }
 
-    getInputVariables(element: Bpmn.DiagramElement): Observable<ElementVariable[]> {
+    getInputVariables(): Observable<ElementVariable[]> {
         return of(expectedVariables[0].variables);
     }
 }
@@ -201,11 +201,11 @@ export class CalledElementVariablesProviderService implements ProcessEditorEleme
         return [ProcessEditorElementWithVariables.CalledElement];
     }
 
-    getOutputVariables(element: Bpmn.DiagramElement): Observable<ElementVariable[]> {
+    getOutputVariables(): Observable<ElementVariable[]> {
         return of(expectedVariables[1].variables);
     }
 
-    getInputVariables(element: Bpmn.DiagramElement): Observable<ElementVariable[]> {
+    getInputVariables(): Observable<ElementVariable[]> {
         return of(expectedVariables[1].variables);
     }
 }
@@ -322,7 +322,7 @@ export const sequenceFlowElement3: Bpmn.DiagramElement = {
         conditionExpression: {
             body: expressionParsedStringMock
         },
-        get(key: string) {
+        get() {
             return { body: expressionParsedStringMock };
         }
     },

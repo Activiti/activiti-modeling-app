@@ -358,7 +358,7 @@ export interface FormDefinition {
     tabs: FormTab[];
     fields: any[];
     outcomes: FormOutcome[];
-    metadata: {};
+    metadata: any;
     variables: EntityProperties[];
     rules?: any;
 }

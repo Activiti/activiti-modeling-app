@@ -28,7 +28,7 @@ export interface ModelCreatorDialogParams {
     descriptionField: string;
     allowedCharacters?: AllowedCharacters;
     action: ActionConstructor;
-    callback: Function;
+    callback: (param?: any) => any;
     dialog?: any;
 }
 

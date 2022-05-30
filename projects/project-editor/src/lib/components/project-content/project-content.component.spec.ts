@@ -18,7 +18,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectContentComponent } from './project-content.component';
 import { Store } from '@ngrx/store';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToolbarModule } from '@alfresco/adf-core';
@@ -67,11 +67,6 @@ describe('ProjectContentComponent', () => {
                 { provide: PROJECT_CONTEXT_MENU_OPTIONS, useValue: [] }
             ],
             schemas: [NO_ERRORS_SCHEMA]
-        }).overrideModule(MatIconModule, {
-            remove: {
-                declarations: [MatIcon],
-                exports: [MatIcon]
-            }
         });
     });
 
