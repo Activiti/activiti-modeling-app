@@ -336,6 +336,7 @@ export interface FormRepresentation {
     description: string;
     version?: number;
     formDefinition?: FormDefinition;
+    confirmMessage?: ConfirmMessage;
     standAlone?: boolean;
     contentForm?: boolean;
     contentType?: string;
@@ -361,6 +362,11 @@ export interface FormDefinition {
     metadata: any;
     variables: EntityProperties[];
     rules?: any;
+}
+
+export interface ConfirmMessage {
+    show: boolean;
+    message: string;
 }
 
 export interface UiPlugin {
