@@ -30,6 +30,7 @@ import { emptyPaletteModule } from './palette/dummy-bpmn-palette.provider';
 import { DecisionTableRenderModule } from './bpmn-js/renderers/decision-table.renderer';
 import { ScriptRenderModule } from './bpmn-js/renderers/script.renderer';
 import { UserTaskDefaultValuesBpmnJsModule } from './bpmn-js/default-values-handlers/user-task.handler';
+import { CustomReplaceMenuProviderBpmnJsModule } from './replace-menu/custom-replace-menu.provider';
 
 const activitiModdleDescriptor = require('./activiti.json');
 const redefineModdleDescriptor = require('./redefine-bpmn.json');
@@ -56,7 +57,8 @@ export class BpmnFactoryService implements BpmnFactory {
                 ...this.getBpmnRenderers(),
                 { clipboard: ['value', this.clipboardService] },
                 ...this.getBpmnPropertiesPanelConfig(),
-                ...this.getDefaultValuesBpmnJsModules()
+                ...this.getDefaultValuesBpmnJsModules(),
+                CustomReplaceMenuProviderBpmnJsModule
             ],
             moddleExtensions: { activiti: activitiModdleDescriptor, bpmn: redefineModdleDescriptor }
         });

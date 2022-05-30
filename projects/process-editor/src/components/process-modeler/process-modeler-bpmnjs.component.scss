@@ -73,6 +73,11 @@
             &.bpmn-icon-transaction {
                 display: none;
             }
+
+            &.bpmn-icon-business-rule.activiti,
+            &.bpmn-icon-script.activiti {
+                display: inherit;
+            }
         }
 
         .entry:hover {
