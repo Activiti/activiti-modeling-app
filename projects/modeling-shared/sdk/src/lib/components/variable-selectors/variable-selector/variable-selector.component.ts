@@ -122,6 +122,7 @@ export class VariableSelectorComponent implements OnInit, OnChanges {
         const vars = [];
         variables.forEach(variable => {
             if (
+                !variable.onlyForExpression &&
                 (!this.search || this.search.trim().length === 0 || variable.name.includes(this.search.trim())) &&
                 (!this.typeFilter || this.modelingJSONSchemaService.variableMatchesTypeFilter(variable, this.typeFilter))
             ) {

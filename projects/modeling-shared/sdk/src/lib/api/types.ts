@@ -711,6 +711,7 @@ export interface ProcessEditorElementVariable {
 export interface ElementVariable extends EntityProperty {
     icon?: string;
     tooltip?: string;
+    onlyForExpression?: boolean;
 }
 
 export interface Data extends Model {

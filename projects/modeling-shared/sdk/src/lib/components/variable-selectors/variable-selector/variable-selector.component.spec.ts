@@ -22,11 +22,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
-import { ElementVariable } from '../../../api/types';
+import { ElementVariable, ProcessEditorElementVariable } from '../../../api/types';
 import { expectedVariables } from '../../../mocks/process-editor.mock';
 import { MODELING_JSON_SCHEMA_PROVIDERS } from '../../../services/modeling-json-schema-provider.service';
 import { INPUT_TYPE_ITEM_HANDLER } from '../../../variables/properties-viewer/value-type-inputs/value-type-inputs';
 import { VariableSelectorComponent } from './variable-selector.component';
+
+const cloneDeep = require('lodash/cloneDeep');
 
 describe('VariableSelectorComponent', () => {
 
@@ -207,5 +209,32 @@ describe('VariableSelectorComponent', () => {
             expect(component.search).toEqual('');
             expect(component.variableSelected.emit).toHaveBeenCalledWith(null);
         });
+    });
+
+    it('should not include in the filtered variables list those that are only for expressions', () => {
+        const variableToBeOmitted: ElementVariable = {
+            id: 'toBeOmitted',
+            name: 'toBeOmitted',
+            type: 'boolean',
+            onlyForExpression: true
+        };
+        const variableToBeIncluded: ElementVariable = {
+            id: 'toBeIncluded',
+            name: 'toBeIncluded',
+            type: 'boolean'
+        };
+        const variables: ProcessEditorElementVariable[] = cloneDeep(expectedVariables);
+        variables[0].variables.push(variableToBeOmitted);
+        variables[0].variables.push(variableToBeIncluded);
+        component.variables = variables;
+        component.ngOnInit();
+
+        let filteredVars = [];
+        component.filteredVars
+            .filter((variable) => variable.variables && variable.variables.length > 0)
+            .forEach((element) => filteredVars = filteredVars.concat(element.variables));
+
+        expect(filteredVars).not.toContainEqual(variableToBeOmitted);
+        expect(filteredVars).toContainEqual(variableToBeIncluded);
     });
 });

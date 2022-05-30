@@ -274,6 +274,9 @@ export class ModelingJSONSchemaService {
         case 'object':
             type = 'json';
             break;
+        case 'execution':
+            type = 'execution';
+            break;
         default:
             type = this.getMappingPrimitiveTypeForString(jsonSchemaType);
             break;

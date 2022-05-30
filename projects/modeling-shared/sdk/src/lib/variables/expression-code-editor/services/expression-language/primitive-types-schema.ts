@@ -52,6 +52,9 @@ export const primitiveTypesSchema = {
         },
         {
             '$ref': '#/$defs/primitive/array'
+        },
+        {
+            '$ref': '#/$defs/primitive/execution'
         }
     ],
     '$defs': {
@@ -173,6 +176,9 @@ export const primitiveTypesSchema = {
                 'items': {
                     '$ref': '#/$defs/primitive/json'
                 }
+            },
+            'execution': {
+                'type': 'execution'
             }
         }
     }

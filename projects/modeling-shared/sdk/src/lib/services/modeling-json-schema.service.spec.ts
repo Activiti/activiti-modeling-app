@@ -300,4 +300,12 @@ describe('ModelingJSONSchemaService', () => {
 
         expect(notification).toEqual(expectedNotification);
     });
+
+    it('should return execution as modeling type when is type is execution', () => {
+        expect(service.getModelingTypeFromJSONSchemaType('execution')).toEqual('execution');
+    });
+
+    it('should return execution as primitive type when is type is execution', () => {
+        expect(service.getPrimitiveTypes({ type: 'execution' })).toEqual(['execution']);
+    });
 });

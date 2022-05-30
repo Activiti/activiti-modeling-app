@@ -34,6 +34,13 @@ export class ProcessElementVariablesProviderService implements ProcessEditorElem
 
     constructor(private store: Store<AmaApi>) { }
 
+    public static readonly EXECUTION_OBJECT = {
+        id: 'execution',
+        name: 'execution',
+        type: 'execution',
+        onlyForExpression: true
+    };
+
     getHandledTypes(): ProcessEditorElementWithVariables[] {
         return [ProcessEditorElementWithVariables.Process];
     }
@@ -47,16 +54,18 @@ export class ProcessElementVariablesProviderService implements ProcessEditorElem
     }
 
     getVariablesFromElement(element: Bpmn.DiagramElement): Observable<ElementVariable[]> {
+        let result: ElementVariable[] = [ProcessElementVariablesProviderService.EXECUTION_OBJECT];
+
         if (!element.id) {
-            return of([]);
+            return of(result);
         }
         const processDefinitionKey = element.id;
         return this.store.select(selectProcessPropertiesArrayFor(processDefinitionKey)).pipe(
             map(variables => {
                 if (variables) {
-                    return variables;
+                    result = result.concat(variables);
                 }
-                return [];
+                return result;
             })
         );
     }

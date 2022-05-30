@@ -25,6 +25,7 @@ import { arrayModelType } from './expression-language/array.model.type';
 import { dateModelType } from './expression-language/date.model.type';
 import { enumModelType } from './expression-language/enum.model.type';
 import { eventSchema } from './expression-language/event-schema';
+import { executionModelType } from './expression-language/execution.model.type';
 import { jsonModelType } from './expression-language/json.model.type';
 import { primitiveTypesSchema } from './expression-language/primitive-types-schema';
 import { stringModelType } from './expression-language/string.model.type';
@@ -45,6 +46,7 @@ export class ModelingTypesService {
     ) {
         this.registeredTypes = this.getPrimitiveModelingTypesFromJSONSchema();
         this.registeredTypes['enum'] = { ...enumModelType, id: 'enum' };
+        this.registeredTypes['execution'] = { ...executionModelType, id: 'execution' };
     }
 
     getRegisteredType(type: string): ModelingType {

@@ -109,4 +109,8 @@ describe('ModelingTypesService', () => {
 
         expect(actual).toEqual(expectedFunctionsSuggestions);
     });
+
+    it('should the execution object has been registered', () => {
+        expect(service.getRegisteredType('execution')).toBeDefined();
+    });
 });
