@@ -17,7 +17,7 @@
 
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { createBlobFormDataFromStringContent } from '../helpers/utils/createJsonBlob';
+import { createBlobFormDataFromStringContent } from '../helpers/utils/create-json-blob';
 
 @Injectable({ providedIn: 'root' })
 export class BlobService {

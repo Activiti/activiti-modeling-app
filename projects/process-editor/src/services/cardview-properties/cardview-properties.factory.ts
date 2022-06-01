@@ -20,7 +20,7 @@ import { CardViewItem, AppConfigService } from '@alfresco/adf-core';
 import { ElementHelper } from '../bpmn-js/element.helper';
 import { elementsProperties } from '../bpmn/elements-properties';
 import { BpmnProperty, AmaState, PROCESS_ELEMENTS_TOKEN, PROCESS_CARDVIEW_PROPERTIES_TOKEN } from '@alfresco-dbp/modeling-shared/sdk';
-import { bpmn2cardView } from './bpmn2CardView';
+import { bpmn2cardView } from './bpmn2-card-view';
 import { Store } from '@ngrx/store';
 
 @Injectable()

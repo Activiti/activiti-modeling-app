@@ -20,7 +20,7 @@ import { RequestApiHelper, RequestApiHelperOptions } from './request-api.helper'
 import { map, concatMap, flatMap } from 'rxjs/operators';
 import { ModelApiInterface } from '../../api/generalmodel-api.interface';
 import { Model, MinimalModelSummary, ModelScope, FetchQueries, ServerSideSorting } from '../../api/types';
-import { createBlobFormDataFromStringContent, createBlobFormData } from '../../helpers/utils/createJsonBlob';
+import { createBlobFormDataFromStringContent, createBlobFormData } from '../../helpers/utils/create-json-blob';
 import { PaginatedEntries } from '@alfresco/js-api';
 
 export interface ModelResponse<T extends Model> {

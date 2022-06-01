@@ -285,7 +285,7 @@
                         "exceptions": ["!", "*"]
                     }
                 ],
-                "unicorn/filename-case": "warn"
+                "unicorn/filename-case": "error"
             },
             "plugins": [
                 "ban",

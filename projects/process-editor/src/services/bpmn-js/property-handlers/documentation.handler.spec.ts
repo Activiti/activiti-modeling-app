@@ -38,10 +38,6 @@ describe('documentationHandler', () => {
         modeling = getModelingMock();
     });
 
-    it('should be defined', () => {
-        expect(handler).not.toBe(undefined, `Bpmn property: ${property}, should have a handler defined.`);
-    });
-
     describe('get', () => {
         it('should return the documentation from the element', () => {
             const get = handler.get;

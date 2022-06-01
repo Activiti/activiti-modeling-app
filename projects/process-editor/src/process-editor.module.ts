@@ -99,7 +99,7 @@ import { AssignmentDialogComponent } from './components/assignment/assignment-di
 import { ProcessTaskAssignmentEffects } from './store/process-task-assignment.effects';
 import { CardViewTaskAssignmentItemComponent } from './services/cardview-properties/task-assignment-item/task-assignment-item.component';
 import { TaskAssignmentService } from './services/cardview-properties/task-assignment-item/task-assignment.service';
-import { transformJsonSchema } from './services/transformJsonSchema';
+import { transformJsonSchema } from './services/transform-json-schema';
 import { CardViewProcessNameItemComponent } from './services/cardview-properties/process-name-item/process-name-item.component';
 import { ProcessConnectorService } from './services/process-connector-service';
 import { MatTooltipModule } from '@angular/material/tooltip';

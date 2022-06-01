@@ -38,10 +38,6 @@ describe('conditionExpressionHandler', () => {
         modeling = getModelingMock();
     });
 
-    it('should be defined', () => {
-        expect(handler).not.toBe(undefined, `Bpmn property: ${property}, should have a handler defined.`);
-    });
-
     describe('get', () => {
         it('should return the expression from the element', () => {
             const get = handler.get;

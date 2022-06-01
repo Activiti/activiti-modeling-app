@@ -19,10 +19,12 @@ import { handlers } from './property.handlers';
 import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
 import { getDiagramElementMock, getModelingMock } from '../bpmn-js.mock';
 
-describe('candidateUsersHandler', () => {
-    const property = BpmnProperty.candidateUsers;
+describe('calledElementHandler', () => {
+    const property = BpmnProperty.calledElement;
 
-    let handler, mockElement, modeling;
+    let handler;
+    let mockElement;
+    let modeling;
 
     beforeEach(() => {
         handler = handlers[property];
@@ -30,29 +32,25 @@ describe('candidateUsersHandler', () => {
         modeling = getModelingMock();
     });
 
-    it('should be defined', () => {
-        expect(handler).not.toBe(undefined, `Bpmn property: ${property}, should have a handler defined.`);
-    });
-
     describe('get', () => {
-        it('should return the candidateUsers from the element', () => {
+        it('should return the calledElement from the element', () => {
             const get = handler.get;
-            const candidateUsers = get(mockElement);
+            const calledElement = get(mockElement);
 
-            expect(candidateUsers).toBe('new-value');
+            expect(calledElement).toBe('new-value');
         });
     });
 
     describe('set', () => {
-        it('should set the new candidateUsers value', () => {
+        it('should set the new calledElement value', () => {
             const set = handler.set,
                 get = handler.get,
                 modifiedValue = 'modified-value';
 
             set(modeling, mockElement, modifiedValue);
-            const candidateUsers = get(mockElement);
+            const calledElement = get(mockElement);
 
-            expect(candidateUsers).toBe('modified-value');
+            expect(calledElement).toBe('modified-value');
         });
     });
 });
