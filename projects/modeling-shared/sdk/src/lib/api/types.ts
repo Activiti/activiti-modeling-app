@@ -132,7 +132,7 @@ export interface Model extends MinimalModelSummary {
     description: string;
     version: string;
     applicationId?: string; // To remove, since BE finally returns it
-    type: string;
+    type: MODEL_TYPE;
     creationDate: Date;
     createdBy: string;
     lastModifiedDate: Date;

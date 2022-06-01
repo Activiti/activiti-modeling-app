@@ -1,0 +1,56 @@
+.ama-tab-models {
+    height: 100%;
+    width: 100%;
+
+    .mat-tab-header {
+        background: var(--theme-card-bg-color);
+        border: 0.5px solid var(--theme-studio-gray-color);
+    }
+
+    .mat-ink-bar {
+        display: none;
+        visibility: hidden;
+    }
+
+    .mat-tab-label {
+        background: var(--theme-studio-background);
+        border-right: 2px solid var(--theme-studio-background);
+        border-left: 1px solid var(--theme-studio-background);
+        padding: 5px;
+    }
+
+    .mat-tab-label-active {
+        border-bottom: none;
+        background: unset;
+    }
+
+    .mat-tab-label-content {
+        display: flex;
+        flex: 1;
+    }
+
+    .mat-tab-body-wrapper {
+        height: 100%;
+        width: 100%;
+    }
+
+    .ama-tab-model-body {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 1;
+    }
+
+    .ama-tab-model-icon-close {
+        font-size: 15px;
+    }
+
+    .ama-tab-model-icon {
+        padding-right: 5px;
+    }
+}
+
+.modelingsdk-tab-manager {
+    display: flex;
+    flex: 1 0 auto;
+}

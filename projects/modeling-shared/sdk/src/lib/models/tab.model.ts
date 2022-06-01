@@ -15,16 +15,23 @@
  * limitations under the License.
  */
 
-import { Environment } from '@alfresco-dbp/adf-candidates/core/environment';
-import { FEATURES } from '@alfresco-dbp/modeling-shared/sdk';
+import { MODEL_TYPE } from '../api/types';
 
-export const environment: Environment<typeof FEATURES> = {
-    production: true,
-    devTools: true,
-    e2e: false,
-    features: {
-        canary: true,
-        studioLayout: false,
-        tabEditors: false
+export class TabModelData {
+    modelId: string;
+    modelType: MODEL_TYPE;
+}
+
+export class TabModel {
+    public tabId: number;
+    public title: string;
+    public icon: string;
+    public active: boolean;
+    public tabData: TabModelData;
+
+   constructor(title: string, icon: string, tabData: TabModelData) {
+        this.tabData = tabData;
+        this.title = title;
+        this.icon = icon;
     }
-};
+}

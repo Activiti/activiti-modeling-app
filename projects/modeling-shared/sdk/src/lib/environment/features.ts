@@ -19,7 +19,8 @@ import { FeaturesInfo } from '@alfresco-dbp/adf-candidates/core/environment';
 
 export enum FEATURES {
     canary = 'canary',
-    studioLayout = 'studioLayout'
+    studioLayout = 'studioLayout',
+    tabEditors = 'tabEditors'
 }
 
 export const featuresInfo: FeaturesInfo<typeof FEATURES> = {
@@ -30,5 +31,9 @@ export const featuresInfo: FeaturesInfo<typeof FEATURES> = {
     studioLayout: {
         name: 'Studio layout',
         description: 'Experimental (HxP) Studio layout'
+    },
+    tabEditors: {
+        name: 'Editor will open in tabs',
+        description: 'Experimental (HxP) Editor will open up in tabs'
     }
 };
