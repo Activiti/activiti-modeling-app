@@ -47,7 +47,7 @@ import { EnvironmentModule } from '@alfresco-dbp/adf-candidates/core/environment
         DashboardModule,
         ProjectEditorModule.forRoot(environment),
         ProcessEditorModule,
-        ConnectorEditorModule,
+        ConnectorEditorModule.forRoot(environment),
         MatInputModule,
         DialogsModule,
         ...(environment.features.studioLayout ? [ StudioAppShellModule ] : [ OriginsAppShellModule ]),
