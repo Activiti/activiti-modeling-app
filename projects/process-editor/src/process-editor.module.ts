@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
@@ -29,7 +29,6 @@ import { ProcessModelerServiceImplementation } from './services/process-modeler.
 import { ProcessEditorService } from './services/process-editor.service';
 import { ProcessEditorEffects } from './store/process-editor.effects';
 import { StoreModule } from '@ngrx/store';
-import { ProcessEditorRoutingModule } from './router/process-editor-routing.module';
 import { CardViewPropertiesFactory } from './services/cardview-properties/cardview-properties.factory';
 import { Title } from '@angular/platform-browser';
 import {
@@ -57,7 +56,8 @@ import {
     VariableMappingTypeModule,
     provideProcessEditorElementVariablesProvider,
     ModelEditorModule,
-    ModelEntitySelectors
+    ModelEntitySelectors,
+    FEATURES
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { BpmnFactoryService } from './services/bpmn-factory.service';
 import { ProcessDiagramLoaderService } from './services/process-diagram-loader.service';
@@ -127,13 +127,18 @@ import { SaveAsProcessCommand } from './services/commands/save-as-process.comman
 import { DownloadProcessSVGImageCommand } from './services/commands/download-process-svg-image.command';
 import { CardProcessVersionItemComponent } from './services/cardview-properties/process-version-item/process-version-item.component';
 import { ProcessModelerActionsComponent } from './components/process-modeler/process-modeler-actions/process-modeler-actions.component';
+import { Environment } from '@alfresco-dbp/adf-candidates/core/environment';
+import { provideRoutes } from '@angular/router';
+import { processEditorTabRoutes } from './router/process-editor-tab.routes';
+import { processEditorRoutes } from './router/process-editor.routes';
+import { ProcessesLoaderGuard } from './router/guards/processes-loader.guard';
+import { ProcessDeactivateGuard } from './router/guards/process-deactivate.guard';
 
 @NgModule({
     imports: [
         CommonModule,
         CoreModule.forChild(),
         ProcessServicesCloudModule,
-        ProcessEditorRoutingModule,
         EffectsModule.forFeature([
             ProcessEditorEffects,
             ProcessVariablesEffects,
@@ -200,7 +205,6 @@ import { ProcessModelerActionsComponent } from './components/process-modeler/pro
         ProcessCategorySelectorComponent,
         CardProcessVersionItemComponent
     ],
-    exports: [ProcessEditorRoutingModule],
     providers: [
         DeleteProcessCommand,
         SaveProcessCommand,
@@ -210,6 +214,8 @@ import { ProcessModelerActionsComponent } from './components/process-modeler/pro
         DownloadProcessSVGImageCommand,
         ProcessEditorService,
         ProcessDiagramLoaderService,
+        ProcessesLoaderGuard,
+        ProcessDeactivateGuard,
         { provide: BpmnFactoryToken, useClass: BpmnFactoryService },
         { provide: ProcessModelerServiceToken, useClass: ProcessModelerServiceImplementation },
         ProcessModelerPaletteService,
@@ -262,4 +268,13 @@ import { ProcessModelerActionsComponent } from './components/process-modeler/pro
         }
     ]
 })
-export class ProcessEditorModule { }
+export class ProcessEditorModule {
+    static forRoot<T extends typeof FEATURES>(environment: Environment<T>): ModuleWithProviders<ProcessEditorModule> {
+        return {
+            ngModule: ProcessEditorModule,
+            providers: [
+                ...(environment.features.tabEditors ? provideRoutes(processEditorTabRoutes) : provideRoutes(processEditorRoutes))
+            ]
+        };
+    }
+}
