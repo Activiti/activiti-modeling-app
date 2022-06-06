@@ -1,81 +1,79 @@
-<mat-expansion-panel class="{{ 'ama-project-tree-filter ' + filter.type }}"
-    [expanded]="expanded"
-    [hideToggle]="true"
-    (opened)="filterOpened(filter.type)"
-    (closed)="filterClosed(filter.type)">
-
-    <mat-expansion-panel-header [attr.data-automation-id]="'project-filter-' + filter.type">
-        <div class="ama-project-tree-filter__container" [modelingsdk-active-class]="'ama-project-tree-filter__active'">
-            <mat-icon class="ama-project-tree-filter__icon ama-filter-icon" *ngIf="!loading; else contentsAreLoading;">
-                {{ filter.icon }}
-            </mat-icon>
-            <span class="ama-project-tree-filter__title">{{ filter.name | translate }}</span>
-
-            <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" [attr.data-automation-id]="'menu-' + filter.type"
-                (menuOpened)="isMenuOpen=true" (menuClosed)="isMenuOpen=false" [disableRipple]="true"
-                [ngClass]="isMenuOpen ? 'ama-project-tree-filter__menu_open' : 'ama-project-tree-filter__menu_close'">
-                <mat-icon>more_vert</mat-icon>
-            </button>
-
-            <mat-menu #menu="matMenu" overlapTrigger="false">
-                <button mat-menu-item class="ama-project-tree-filter__create_button"
-                    [attr.data-automation-id]="'add-' + filter.type"
-                    *ngIf="isAllowed(filter.type)" [disableRipple]="true"
-                    (click)="openModelCreationModal($event); menuTrigger.closeMenu()"
-                    [title]="'PROJECT_EDITOR.CREATE_NEW' | translate" [class]="'add-new-' + filter.type">
-                    <mat-icon>add</mat-icon>
-                    <span>Create</span>
-                </button>
-                <button *ngIf="isAllowed(filter.type) && isUploadButtonEnabled(filter.type)" mat-menu-item (mouseleave)="menuTrigger.closeMenu()" [disableRipple]="true">
-                    <ama-upload-file-button
-                        [attr.data-automation-id]="'upload-' + filter.type"
-                        [projectId]="projectId" [type]="filter.type">
-                    </ama-upload-file-button>
-                </button>
-                
-            </mat-menu>
-            
-        </div>
-    </mat-expansion-panel-header>
-
-    <div class="ama-project-tree-filter__content" [attr.data-automation-id]="'project-filter-' + filter.type + '-container'">
-        <ng-container *ngIf="!loading">
-            <ng-container *ngIf="contentsByCategory">
-                <div *ngFor="let contentByCategory of contentsByCategory" data-automation-id="ama-project-tree-filter-item-category">
-                    <div *ngIf="contentByCategory.category" class="ama-project-tree-filter__category">
-                        <span> {{ contentByCategory.category }}</span>
+<div class="ama-filter-container">
+    <mat-expansion-panel class="{{ 'ama-project-tree-filter ' + filter.type }}" [expanded]="expanded" [hideToggle]="true"
+        (opened)="filterOpened(filter.type)" (closed)="filterClosed(filter.type)">
+    
+        <mat-expansion-panel-header [attr.data-automation-id]="'project-filter-' + filter.type">
+            <div class="ama-project-tree-filter__container" [modelingsdk-active-class]="'ama-project-tree-filter__active'">
+                <mat-icon class="ama-project-tree-filter__icon ama-filter-icon" *ngIf="!loading; else contentsAreLoading;">
+                    {{ filter.icon }}
+                </mat-icon>
+                <span class="ama-project-tree-filter__title">{{ filter.name | translate }}</span>
+            </div>
+        </mat-expansion-panel-header>
+    
+        <div class="ama-project-tree-filter__content"
+            [attr.data-automation-id]="'project-filter-' + filter.type + '-container'">
+            <ng-container *ngIf="!loading">
+                <ng-container *ngIf="contentsByCategory">
+                    <div *ngFor="let contentByCategory of contentsByCategory"
+                        data-automation-id="ama-project-tree-filter-item-category">
+                        <div *ngIf="contentByCategory.category" class="ama-project-tree-filter__category">
+                            <span> {{ contentByCategory.category }}</span>
+                        </div>
+    
+                        <div *ngIf="!contentByCategory.category" class="ama-project-tree-filter__category">
+                            <span *ngIf="contentsByCategory.length > 1">
+                                {{ "PROJECT_EDITOR.UNCATEGORIZED" | translate }}
+                            </span>
+                        </div>
+    
+                        <div *ngFor="let content of contentByCategory.items"
+                            data-automation-id="ama-project-tree-filter-contents-list">
+                            <a mat-button [attr.data-automation-id]="filter.type + '-' + content.id"
+                                class="ama-project-tree-filter__button" [routerLink]="[filter.type, content.id]"
+                                [routerLinkActive]="['active']"
+                                [class.ama-project-tree-filter-global-item]="isScopeGlobal(content?.scope)"
+                                [title]="content.name">
+                                <span *ngIf="content.icon"
+                                    class="ama-project-tree-filter__item_icon {{content.icon}}"></span>
+                                <mat-icon *ngIf="!content.icon" class="ama-project-tree-filter__icon">{{ filter.icon }}
+                                </mat-icon>
+                                <span class="{{ 'ama-project-tree-filter__name ' +  filter.type }}">{{ content.name }}</span>
+                            </a>
+                        </div>
                     </div>
-
-                    <div *ngIf="!contentByCategory.category" class="ama-project-tree-filter__category">
-                        <span *ngIf="contentsByCategory.length > 1">
-                            {{ "PROJECT_EDITOR.UNCATEGORIZED" | translate }}
-                        </span>
+                    <div class="ama-project-tree-filter__no-content" *ngIf="contentsAreEmpty()">
+                        {{ 'PROJECT_EDITOR.NO_CONTENT' | translate }}
                     </div>
-
-                    <div *ngFor="let content of contentByCategory.items" data-automation-id="ama-project-tree-filter-contents-list">
-                        <a
-                            mat-button
-                            [attr.data-automation-id]="filter.type + '-' + content.id"
-                            class="ama-project-tree-filter__button"
-                            [routerLink]="[filter.type, content.id]"
-                            [routerLinkActive]="['active']"
-                            [class.ama-project-tree-filter-global-item]="isScopeGlobal(content?.scope)"
-                            [title]="content.name"
-                        >
-                            <span *ngIf="content.icon" class="ama-project-tree-filter__item_icon {{content.icon}}"></span>
-                            <mat-icon *ngIf="!content.icon" class="ama-project-tree-filter__icon">{{ filter.icon }}</mat-icon>
-                            <span class="{{ 'ama-project-tree-filter__name ' +  filter.type }}">{{ content.name }}</span>
-
-                        </a>
-                    </div>
-                </div>
-                <div class="ama-project-tree-filter__no-content" *ngIf="contentsAreEmpty()">
-                    {{ 'PROJECT_EDITOR.NO_CONTENT' | translate }}
-                </div>
+                </ng-container>
             </ng-container>
-        </ng-container>
+        </div>
+    </mat-expansion-panel>
+    <div class="ama-add-more-container" [class.ama-add-more-container-visible]="isMenuOpen">
+        <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger"
+            [attr.data-automation-id]="'menu-' + filter.type" (menuOpened)="isMenuOpen=true" (menuClosed)="isMenuOpen=false"
+            [disableRipple]="true">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+    
+        <mat-menu #menu="matMenu" overlapTrigger="false">
+            <button mat-menu-item class="ama-project-tree-filter__create_button"
+                [attr.data-automation-id]="'add-' + filter.type" *ngIf="isAllowed(filter.type)" [disableRipple]="true"
+                (click)="openModelCreationModal($event); menuTrigger.closeMenu()"
+                [title]="'PROJECT_EDITOR.CREATE_NEW' | translate" [class]="'add-new-' + filter.type">
+                <mat-icon>add</mat-icon>
+                <span>Create</span>
+            </button>
+            <button *ngIf="isAllowed(filter.type) && isUploadButtonEnabled(filter.type)" mat-menu-item
+                (mouseleave)="menuTrigger.closeMenu()" [disableRipple]="true">
+                <ama-upload-file-button [attr.data-automation-id]="'upload-' + filter.type" [projectId]="projectId"
+                    [type]="filter.type">
+                </ama-upload-file-button>
+            </button>
+    
+        </mat-menu>
     </div>
-</mat-expansion-panel>
+</div>
 
 <ng-template #contentsAreLoading>
     <div class="ama-project-tree-filter__spinner">

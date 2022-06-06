@@ -1,5 +1,29 @@
 .ama-project-tree-filter {
 
+    .ama-ama-filter-container {
+        display: flex;
+
+        mat-expansion-panel {
+            width: 100%;
+        }
+
+        .ama-add-more-container {
+            margin-top: 4px;
+        }
+    }
+
+    .ama-filter-container .ama-add-more-container {
+        visibility: hidden;
+    }
+
+    .ama-filter-container:hover .ama-add-more-container {
+        visibility: visible;
+    }
+
+    .ama-add-more-container-visible {
+        visibility: visible !important;
+    }
+
     .mat-expansion-panel {
         &-body {
             padding: 0 0 16px 24px;
@@ -72,16 +96,6 @@
         width: 100%;
     }
 
-    &__menu_close {
-        display: none;
-    }
-
-    &__menu_open {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-    }
-
     &__active {
         button {
             display: flex;
@@ -89,7 +103,6 @@
             justify-content: flex-end;
         }
     }
-
 
     &__title {
         display: flex;
