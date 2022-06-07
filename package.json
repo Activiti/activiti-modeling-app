@@ -14,8 +14,8 @@
     "start": "ng serve",
     "test": "ng test",
     "test:ci": "nx affected:test --all",
-    "lint": "ng lint --quiet",
-    "lint:ci": "nx affected:lint --all --quiet",
+    "lint": "ng lint",
+    "lint:ci": "nx affected:lint --all",
     "dep-graph": "nx dep-graph"
   },
   "repository": {
