@@ -158,10 +158,10 @@ export class MappingDialogComponent implements OnInit {
             this.selectedTab = 0;
             break;
         case MappingValueType.value:
-            this.selectedTab = 1;
+            this.selectedTab = this.enableVariableSelection ? 1 : 0;
             break;
         case MappingValueType.expression:
-            this.selectedTab = 2;
+            this.selectedTab = this.enableVariableSelection ? (this.enableValueSelection ? 2 : 1) : (this.enableValueSelection ? 1 : 0);
             break;
         default:
             this.selectedTab = 0;

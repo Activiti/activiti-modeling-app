@@ -422,4 +422,72 @@ describe('MappingDialogComponent', () => {
             expect(tab).toBeFalsy();
         });
     });
+
+    describe('Init tabs', () => {
+        describe('variable tab', () => {
+            beforeEach(() => {
+                setUpTestBed(mockDialogDataInputMapping);
+                component.selectedRow = 0;
+            });
+
+            it('should init to 0', () => {
+                component.ngOnInit();
+                expect(component.selectedTab).toEqual(0);
+            });
+        });
+
+        describe('value tab', () => {
+            beforeEach(() => {
+                setUpTestBed(mockDialogDataInputMapping);
+                component.selectedRow = 6;
+            });
+
+            it('should init to 1 when variables selection is enabled', () => {
+                component.enableVariableSelection = true;
+                component.ngOnInit();
+                expect(component.selectedTab).toEqual(1);
+            });
+
+            it('should init to 0 when variables selection is disabled', () => {
+                component.enableVariableSelection = false;
+                component.ngOnInit();
+                expect(component.selectedTab).toEqual(0);
+            });
+        });
+
+        describe('expression tab', () => {
+            beforeEach(() => {
+                setUpTestBed(mockDialogDataInputMapping);
+                component.selectedRow = 4;
+            });
+
+            it('should init to 2 when variables selection is enabled and value selection is enabled', () => {
+                component.enableVariableSelection = true;
+                component.enableValueSelection = true;
+                component.ngOnInit();
+                expect(component.selectedTab).toEqual(2);
+            });
+
+            it('should init to 1 when variables selection is enabled and value selection is disabled', () => {
+                component.enableVariableSelection = true;
+                component.enableValueSelection = false;
+                component.ngOnInit();
+                expect(component.selectedTab).toEqual(1);
+            });
+
+            it('should init to 1 when variables selection is disabled and value selection is enabled', () => {
+                component.enableVariableSelection = false;
+                component.enableValueSelection = true;
+                component.ngOnInit();
+                expect(component.selectedTab).toEqual(1);
+            });
+
+            it('should init to 0 when variables selection is disabled and value selection is disabled', () => {
+                component.enableVariableSelection = false;
+                component.enableValueSelection = false;
+                component.ngOnInit();
+                expect(component.selectedTab).toEqual(0);
+            });
+        });
+    });
 });

@@ -62,6 +62,7 @@ import { VariableIconPipe } from './expression-code-editor/pipes/variable-icon.p
 import { provideExpressionSyntaxHandler } from './expression-code-editor/services/expression-syntax.provider';
 import { JuelExpressionSyntax } from './expression-code-editor/services/expression-language/juel-expression-syntax';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { PropertiesViewerFolderInputComponent } from './properties-viewer/value-type-inputs/folder-input/folder-input.component';
 
 @NgModule({
     imports: [
@@ -107,7 +108,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
         ExpressionCodeEditorComponent,
         ExpressionCodeEditorDialogComponent,
         ExpressionSimulatorComponent,
-        VariableIconPipe
+        VariableIconPipe,
+        PropertiesViewerFolderInputComponent
     ],
     providers: [
         provideInputTypeItemHandler('string', PropertiesViewerStringInputComponent),
@@ -117,7 +119,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
         provideInputTypeItemHandler('datetime', PropertiesViewerDateTimeInputComponent),
         provideInputTypeItemHandler('json', PropertiesViewerJsonInputComponent),
         provideInputTypeItemHandler('file', PropertiesViewerFileInputComponent),
-        provideInputTypeItemHandler('folder', PropertiesViewerJsonInputComponent),
+        provideInputTypeItemHandler('folder', PropertiesViewerFolderInputComponent),
         provideInputTypeItemHandler('array', PropertiesViewerArrayInputComponent),
         provideInputTypeItemHandler('enum', PropertiesViewerEnumInputComponent, 'json'),
         provideModelingJsonSchemaProvider(RegisteredInputsModelingJsonSchemaProvider),
