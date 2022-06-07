@@ -15,9 +15,12 @@
  * limitations under the License.
  */
 
-import { Component, Inject, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Component, Inject, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { combineLatest, Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
+import { selectAppDirtyState } from '../../../store/app.selectors';
+import { AmaState } from '../../../store/app.state';
 import { BasicModelCommands } from '../../commands/commands.interface';
 import { ButtonType, ShowCommandButton } from '../../services/command.model';
 import { ModelCommandsService } from '../../services/model-commands.service';
@@ -30,21 +33,24 @@ import { MODEL_COMMAND_SERVICE_TOKEN } from '../model-editor/model-editors.token
     styleUrls: [ './model-header.component.scss' ],
     encapsulation: ViewEncapsulation.None,
 })
-export class ModelHeaderComponent implements OnInit {
+export class ModelHeaderComponent implements OnInit, OnDestroy {
 
     @Input()
     modelName: string;
 
+    onDestroy$: Subject<void> = new Subject<void>();
     standardButtons: ShowCommandButton[];
     menuButtons: ShowCommandButton[];
 
     constructor(@Inject(MODEL_COMMAND_SERVICE_TOKEN)
-    private modelCommands: ModelCommandsService) {
+    private modelCommands: ModelCommandsService,
+    private store: Store<AmaState>) {
     }
 
     ngOnInit() {
         this.standardButtons = this.modelCommands.getCommandButtons(ButtonType.STANDARD);
         this.menuButtons = this.modelCommands.getCommandButtons(ButtonType.MENU);
+        this.updateIconOnDirtyState();
     }
 
     showMenu(commandName): Observable<boolean> {
@@ -53,7 +59,24 @@ export class ModelHeaderComponent implements OnInit {
         return combineLatest(buttonsVisible$).pipe(map(buttonsVisible => buttonsVisible.some(isVisible => isVisible)));
     }
 
+    updateIconOnDirtyState() {
+        this.store.select(selectAppDirtyState).pipe(takeUntil(this.onDestroy$)).subscribe(isDirty => {
+            if (isDirty) {
+                this.modelCommands.updateIcon(BasicModelCommands.save, 'cloud_upload');
+                this.modelCommands.setDisable(BasicModelCommands.save, false);
+            } else {
+                this.modelCommands.updateIcon(BasicModelCommands.save, 'cloud_done');
+                this.modelCommands.setDisable(BasicModelCommands.save, true);
+            }
+        });
+    }
+
     onClick(commandName: BasicModelCommands) {
         this.modelCommands.dispatchEvent(commandName);
+    }
+
+    ngOnDestroy() {
+        this.onDestroy$.next();
+        this.onDestroy$.complete();
     }
 }

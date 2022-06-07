@@ -46,7 +46,8 @@ describe('ModelHeaderComponent', () => {
             action: mockTestCommand,
             disabled$: of(false),
             visible$: of(true),
-            showIcon$: of(true)
+            showIcon$: of(true),
+            updatedIcon$: of('save')
         },
         {
             commandName: BasicModelCommands.validate,
@@ -57,7 +58,8 @@ describe('ModelHeaderComponent', () => {
             action: mockTestCommand,
             disabled$: of(true),
             visible$: of(true),
-            showIcon$: of(true)
+            showIcon$: of(true),
+            updatedIcon$: of('done')
         },
         {
             commandName: <BasicModelCommands> 'hidden-primary',
@@ -68,7 +70,8 @@ describe('ModelHeaderComponent', () => {
             action: mockTestCommand,
             disabled$: of(false),
             visible$: of(false),
-            showIcon$: of(true)
+            showIcon$: of(true),
+            updatedIcon$: of('delete')
         }
     ];
     const menuButtons: ShowCommandButton[] = [
@@ -88,7 +91,8 @@ describe('ModelHeaderComponent', () => {
                     action: mockTestCommand,
                     disabled$: of(false),
                     visible$: of(true),
-                    showIcon$: of(true)
+                    showIcon$: of(true),
+                    updatedIcon$: of('delete')
                 },
                 {
                     commandName: <BasicModelCommands> 'hidden-secondary',
@@ -99,12 +103,14 @@ describe('ModelHeaderComponent', () => {
                     action: mockTestCommand,
                     disabled$: of(false),
                     visible$: of(false),
-                    showIcon$: of(true)
+                    showIcon$: of(true),
+                    updatedIcon$: of('delete')
                 }
             ],
             disabled$: of(false),
             visible$: of(true),
-            showIcon$: of(true)
+            showIcon$: of(true),
+            updatedIcon$: of('remove_red_eye')
         },
         {
             commandName: <BasicModelCommands> 'menu-1',
@@ -122,12 +128,14 @@ describe('ModelHeaderComponent', () => {
                     action: mockTestCommand,
                     disabled$: of(false),
                     visible$: of(false),
-                    showIcon$: of(true)
+                    showIcon$: of(true),
+                    updatedIcon$: of('delete')
                 }
             ],
             disabled$: of(false),
             visible$: of(true),
-            showIcon$: of(true)
+            showIcon$: of(true),
+            updatedIcon$: of('remove_red_eye')
         }
     ];
 

@@ -7,7 +7,7 @@
                 *ngIf="button.visible$ | async"
                 [attr.data-automation-id]="modelName+'-editor-'+button.commandName+'-button'"
                 (click)="onClick(button.commandName)">
-                <mat-icon>{{button.icon}}</mat-icon>
+                <mat-icon>{{ button.updatedIcon$ | async }}</mat-icon>
             </button>
         </span>
 

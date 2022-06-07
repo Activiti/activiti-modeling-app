@@ -50,6 +50,7 @@ export interface ShowCommandButton extends CommandButton {
     disabled$: Observable<boolean>;
     visible$: Observable<boolean>;
     showIcon$: Observable<boolean>;
+    updatedIcon$: Observable<string>;
 }
 
 export interface CreateCommandButton extends CommandButton {
@@ -57,4 +58,5 @@ export interface CreateCommandButton extends CommandButton {
     disabled$: Subject<boolean>;
     visible$: Subject<boolean>;
     showIcon$: Subject<boolean>;
+    updatedIcon$: Subject<string>;
 }

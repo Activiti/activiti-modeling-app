@@ -146,4 +146,7 @@ export class ModelCommandsService {
         this.modelButtonService.setIconVisibility(commandName, value);
     }
 
+    public updateIcon(commandName: BasicModelCommands, value: string) {
+        this.modelButtonService.updateIcon(commandName, value);
+    }
 }

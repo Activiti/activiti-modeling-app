@@ -21,7 +21,7 @@ import { BasicModelCommands, ModelCommand } from '../commands/commands.interface
 import { ButtonType, CommandButton, CommandButtonRequest, CreateCommandButton, ShowCommandButton } from './command.model';
 
 const iconMapping = {
-    [BasicModelCommands.save]: 'save',
+    [BasicModelCommands.save]: 'cloud_done',
     [BasicModelCommands.validate]: 'done',
     [BasicModelCommands.download]: 'file_download',
     [BasicModelCommands.delete]: 'delete',
@@ -108,7 +108,8 @@ export class ModelButtonService {
             ...commandButton,
             disabled$: commandButton.disabled$.asObservable(),
             visible$: commandButton.visible$.asObservable(),
-            showIcon$: commandButton.showIcon$.asObservable()
+            showIcon$: commandButton.showIcon$.asObservable(),
+            updatedIcon$: commandButton.updatedIcon$.asObservable()
         };
     }
 
@@ -129,7 +130,8 @@ export class ModelButtonService {
             ...commandButton,
             disabled$: new BehaviorSubject<boolean>(false),
             visible$: new BehaviorSubject<boolean>(true),
-            showIcon$: new BehaviorSubject<boolean>(true)
+            showIcon$: new BehaviorSubject<boolean>(true),
+            updatedIcon$: new BehaviorSubject<string>(iconMapping[commandButton.commandName])
         };
     }
 
@@ -146,6 +148,11 @@ export class ModelButtonService {
     public setIconVisibility(commandName: BasicModelCommands, value: boolean) {
         const currentButton = this.getCurrentButton(commandName);
         currentButton.showIcon$.next(value);
+    }
+
+    public updateIcon(commandName: BasicModelCommands, value: string) {
+        const currentButton = this.getCurrentButton(commandName);
+        currentButton.updatedIcon$.next(value);
     }
 
     private getCurrentButton(commandName: BasicModelCommands): CreateCommandButton {
