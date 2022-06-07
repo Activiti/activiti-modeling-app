@@ -74,8 +74,8 @@ export abstract class MappingDialogService {
         return 'json';
     }
 
-    getFilteredProcessVariables(dataSource: MappingRowModel[], processProperties: EntityProperty[], i: number): EntityProperty[] {
-        let filteredProcessVariables = processProperties.filter(() => true);
+    getFilteredProcessVariables(dataSource: MappingRowModel[], processProperties: ElementVariable[], i: number): ElementVariable[] {
+        let filteredProcessVariables = processProperties.filter((property) => !property.onlyForExpression);
         const element = dataSource[i];
         if (element.type) {
             filteredProcessVariables = processProperties.filter(variable => variable.type === element.type);

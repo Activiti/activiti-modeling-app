@@ -20,7 +20,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { MappingType, ProcessEditorElementWithVariables, ServiceParameterMapping } from '../../api/types';
+import { ExpressionSyntax, MappingType, ProcessEditorElementWithVariables, ServiceParameterMapping } from '../../api/types';
 import { OutputMappingTableComponent } from './output-mapping-table.component';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { OutputMappingTableModule } from './output-mapping-table.module';
@@ -30,13 +30,16 @@ import { Store } from '@ngrx/store';
 import { selectSelectedTheme } from '../../store/app.selectors';
 import { mockDropDownFields, mockDropDownProcessVariable, mockValueMapping } from './output-mapping-table.component.mock';
 import { TranslateModule } from '@ngx-translate/core';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { PROCESS_EDITOR_ELEMENT_VARIABLES_PROVIDERS } from '../../services/process-editor-element-variables-provider.service';
 import { ProcessEditorElementVariablesService } from '../../services/process-editor-element-variables.service';
+import { VariableMappingType } from '../../services/mapping-dialog.service';
+import { MappingDialogComponent } from '../mapping-dialog/mapping-dialog.component';
 
 describe('OutputMappingTableComponent', () => {
     let fixture: ComponentFixture<OutputMappingTableComponent>;
     let component: OutputMappingTableComponent;
+    let dialogService: DialogService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -74,6 +77,7 @@ describe('OutputMappingTableComponent', () => {
     });
 
     beforeEach(() => {
+        dialogService = TestBed.inject(DialogService);
         fixture = TestBed.createComponent(OutputMappingTableComponent);
         component = fixture.componentInstance;
         component.parameters = [{
@@ -224,5 +228,31 @@ describe('OutputMappingTableComponent', () => {
         component.ngOnChanges();
 
         expect(component.selectedVariablesArray).toEqual([undefined, '2beb4fd9-dd04-4413-993b-1c102b88e60d', '87a99fda-ff12-4ec4-a516-27415e7bd2d0']);
+    });
+
+    it('should use JUEL expression syntax by default', () => {
+        spyOn(dialogService, 'openDialog');
+        const data = {
+            mappingType: VariableMappingType.output,
+            outputMapping: component.mapping,
+            outputParameters: component.parameters,
+            editorVariables: component.processProperties,
+            selectedProcessVariable: undefined,
+            selectedOutputParameter: component.tableParameters[0].name,
+            outputMappingUpdate$: jasmine.any(Subject),
+            expressionSyntax: ExpressionSyntax.JUEL
+        };
+
+        const expectedData = {
+            disableClose: true,
+            height: '530px',
+            width: '1000px',
+            data
+        };
+
+        component.edit(0);
+
+        expect(component.expressionSyntax).toEqual(ExpressionSyntax.JUEL);
+        expect(dialogService.openDialog).toHaveBeenCalledWith(MappingDialogComponent, expectedData);
     });
 });
