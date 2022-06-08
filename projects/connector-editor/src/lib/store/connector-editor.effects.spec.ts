@@ -64,7 +64,8 @@ import {
     ModelScope,
     SaveAsDialogPayload,
     ShowConnectorsAction,
-    CONNECTOR_MODEL_ENTITY_SELECTORS
+    CONNECTOR_MODEL_ENTITY_SELECTORS,
+    UpdateTabTitle
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { Update } from '@ngrx/entity';
@@ -327,10 +328,11 @@ describe('ConnectorEditorEffects', () => {
         });
 
         it('updateConnectorSuccessEffect should dispatch SetAppDirtyStateAction', () => {
-            actions$ = hot('a', { a: new UpdateConnectorSuccessAction(<Update<Partial<Connector>>>{}) });
-            const expected = cold('(bc)', {
-                b: new SetApplicationLoadingStateAction(false),
-                c: new SetAppDirtyStateAction(false)
+            actions$ = hot('a', { a: new UpdateConnectorSuccessAction(<Update<Partial<Connector>>>{changes: {name: ''}, id: ''}) });
+            const expected = cold('(bcd)', {
+                b: new UpdateTabTitle('', ''),
+                c: new SetApplicationLoadingStateAction(false),
+                d: new SetAppDirtyStateAction(false)
             });
 
             expect(effects.updateConnectorSuccessEffect).toBeObservable(expected);

@@ -30,6 +30,7 @@ import { rootReducers } from './reducers/reducers';
 import { INITIAL_STATE } from './states/app.state';
 import { metaReducers } from './reducers/meta.reducers';
 import { ChangeThemeEffects } from './effects/change-theme.effects';
+import { TabEffects } from './effects/tab.effects';
 
 @NgModule({
     imports: [
@@ -47,7 +48,8 @@ import { ChangeThemeEffects } from './effects/change-theme.effects';
             DialogEffects,
             SettingsEffects,
             ChangeThemeEffects,
-            UiEffects
+            UiEffects,
+            TabEffects
         ]),
         StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     ],

@@ -97,6 +97,7 @@ import {
     ShowProcessesAction,
     SHOW_PROCESSES,
     ModelEntitySelectors,
+    UpdateTabTitle,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProcessEditorService } from '../services/process-editor.service';
@@ -208,7 +209,10 @@ export class ProcessEditorEffects {
     @Effect()
     updateProcessSuccessEffect = this.actions$.pipe(
         ofType<UpdateProcessSuccessAction>(UPDATE_PROCESS_SUCCESS),
-        mergeMap(() => of(new SetApplicationLoadingStateAction(false)))
+        mergeMap((action) =>[
+            new UpdateTabTitle(action.payload.changes.name, action.payload.id),
+            new SetApplicationLoadingStateAction(false)
+        ])
     );
 
     @Effect()

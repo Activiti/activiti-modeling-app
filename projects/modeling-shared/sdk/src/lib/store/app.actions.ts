@@ -43,6 +43,12 @@ export class SetAppDirtyStateAction implements Action {
     constructor(public payload: boolean) {}
 }
 
+export const UPDATE_TAB_TITLE = 'Update tab title';
+export class UpdateTabTitle implements Action {
+    readonly type = UPDATE_TAB_TITLE;
+    constructor(public title: string, public modelId: string | number) {}
+}
+
 export interface OpenInfoDialogActionPayload {
     dialogData?: DialogData;
 }

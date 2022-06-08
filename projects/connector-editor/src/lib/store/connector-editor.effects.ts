@@ -51,7 +51,8 @@ import {
     SHOW_CONNECTORS,
     ConnectorContent,
     CONNECTOR_MODEL_ENTITY_SELECTORS,
-    ModelEntitySelectors
+    ModelEntitySelectors,
+    UpdateTabTitle
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ConnectorEditorService } from '../services/connector-editor.service';
@@ -177,7 +178,8 @@ export class ConnectorEditorEffects {
     @Effect()
     updateConnectorSuccessEffect = this.actions$.pipe(
         ofType<UpdateConnectorSuccessAction>(UPDATE_CONNECTOR_SUCCESS),
-        mergeMap(() => [
+        mergeMap((action) => [
+            new UpdateTabTitle(action.connector.changes.name, action.connector.id),
             new SetApplicationLoadingStateAction(false),
             new SetAppDirtyStateAction(false)
         ])
