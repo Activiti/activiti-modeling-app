@@ -8,6 +8,7 @@
                 </span>
             </ng-template>
             <ng-template matTabContent>
+                <ng-container *ngIf="items.length; else noDataTemplate">
                 <mat-selection-list [multiple]="false" [attr.data-automation-id]="'item-importer-'+importer.type+'-list'">
                     <mat-list-option *ngFor="let item of items"
                         [value]="item.id" matTooltip="{{item.description}}"
@@ -17,10 +18,16 @@
                         <span>{{item.displayName}}</span>
                     </mat-list-option>
                 </mat-selection-list>
+                </ng-container>
             </ng-template>
         </mat-tab>
       </mat-tab-group>
 </div>
+
+<ng-template #noDataTemplate>
+    <adf-empty-content icon="web_asset" title="PROJECT_EDITOR.NEW_MENU.NO_ITEMS_TO_IMPORT">
+    </adf-empty-content>
+</ng-template>
 
 <ng-template #loading>
     <div class="ama-model-importer-spinner">

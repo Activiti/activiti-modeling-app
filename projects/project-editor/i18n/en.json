@@ -25,6 +25,7 @@
             "CREATE": "Create",
             "UPLOAD": "Upload",
             "IMPORT": "Import",
+            "NO_ITEMS_TO_IMPORT": "There are no models to import",
             "CREATE_PROCESS_TITLE": "Create Process",
             "MENU_ITEMS": {
                 "CREATE_PROCESS": "Process",
