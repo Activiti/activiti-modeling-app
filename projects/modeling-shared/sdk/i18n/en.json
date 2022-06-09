@@ -110,7 +110,8 @@
             "VALUE_MAPPING": "Value",
             "EXPRESSION_MAPPING": "Expression",
             "NONE": "None",
-            "TYPE": "Type"
+            "TYPE": "Type",
+            "WRONG_OUTPUT_MAPPING": "The output mapping is incorrect. Not all the added mappings map an expression to a variable"
         },
         "SAVE_AS_DIALOG": {
             "TITLE": "Save as",

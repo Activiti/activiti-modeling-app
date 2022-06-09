@@ -65,6 +65,7 @@ export class MappingDialogComponent implements OnInit {
     expressionEditorVariables: ElementVariable[];
     enableVariableSelection = true;
     enableValueSelection = true;
+    changeDetectorRef = Math.random();
 
     private readonly EXPRESSION_REGEX = /\${([^]*)}/gm;
 
@@ -258,12 +259,14 @@ export class MappingDialogComponent implements OnInit {
         } else {
             this.variableMappingValueChange(event, i);
         }
+        this.changeDetectorRef = Math.random();
     }
 
     variableMappingValueChange(name: string, i: number) {
         this.dataSource[i].mappingValueType = MappingValueType.variable;
         this.variableValue = name;
         this.service.setDataSourceValue(this.dataSource, i, name);
+        this.changeDetectorRef = Math.random();
     }
 
     valueMappingValueChange($event: any, i: number) {
@@ -276,6 +279,7 @@ export class MappingDialogComponent implements OnInit {
             this.expressionValue = JSON.stringify($event);
         }
         this.service.setDataSourceValue(this.dataSource, i, value);
+        this.changeDetectorRef = Math.random();
     }
 
     valueMappingExpressionChange($event: string, i: number) {
@@ -287,6 +291,7 @@ export class MappingDialogComponent implements OnInit {
         } else {
             this.service.setDataSourceValue(this.dataSource, i, this.expressionValue);
         }
+        this.changeDetectorRef = Math.random();
     }
 
     outputMappingDestinationChange($event: MatSelectChange) {
@@ -297,6 +302,7 @@ export class MappingDialogComponent implements OnInit {
         }
         this.dataSource[this.selectedRow].type = processVariable.type;
         this.dataSource[this.selectedRow].value = $event.value;
+        this.changeDetectorRef = Math.random();
     }
 
     addOutputMapping(defaultOutputParameter: string) {

@@ -45,6 +45,7 @@ import { VariableExpressionLanguagePipe } from '../../variables/properties-viewe
 import { VariableIdFromVariableNamePipe } from '../variable-selectors/variable-id-from-variable-name.pipe';
 import { VariablePrimitiveTypePipe } from '../../variables/properties-viewer/variable-primitive-type.pipe';
 import { MappingDialogSelectedTabPipe } from './mapping-dialog-selected-tab.pipe';
+import { MappingDialogSavePipe } from './mapping-dialog-save.pipe';
 
 describe('MappingDialogComponent', () => {
     let fixture: ComponentFixture<MappingDialogComponent>;
@@ -169,7 +170,8 @@ describe('MappingDialogComponent', () => {
                 VariableExpressionLanguagePipe,
                 VariableIdFromVariableNamePipe,
                 VariablePrimitiveTypePipe,
-                MappingDialogSelectedTabPipe
+                MappingDialogSelectedTabPipe,
+                MappingDialogSavePipe
             ],
             providers: [
                 { provide: MatDialogRef, useValue: mockDialog },

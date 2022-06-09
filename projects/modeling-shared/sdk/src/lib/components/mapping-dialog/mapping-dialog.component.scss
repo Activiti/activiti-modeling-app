@@ -15,6 +15,7 @@ modelingsdk-mapping-dialog {
 }
 
 div.ama-mapping-dialog-content-container {
+    min-height: 385px;
     display: flex;
     flex-direction: column;
 
@@ -168,7 +169,7 @@ div.ama-mapping-dialog-content-container {
 
                         mat-tab-body {
                             height: 100%;
-                            padding: 24px;
+                            padding: 24px 24px 24px 0;
                         }
 
                         mat-form-field {

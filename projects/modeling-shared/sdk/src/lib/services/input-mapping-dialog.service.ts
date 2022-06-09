@@ -76,4 +76,8 @@ export class InputMappingDialogService extends MappingDialogService {
         });
         return inputMapping;
     }
+
+    validateMapping(): boolean {
+        return true;
+    }
 }

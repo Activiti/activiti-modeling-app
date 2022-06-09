@@ -196,13 +196,16 @@
 
 
 <mat-dialog-actions align="end">
+    <mat-error *ngIf="mappingType === 'output' && !(dataSource | mappingDialogSave : mappingType : changeDetectorRef)">
+        {{ 'SDK.MAPPING_DIALOG.WRONG_OUTPUT_MAPPING' | translate}}
+    </mat-error>
     <span class="adf-fill-remaining-space"></span>
 
     <button mat-button mat-dialog-close (click)="onClose()" data-automation-id="mapping-close-button">
         {{ 'APP.DIALOGS.CANCEL' | translate }}
     </button>
 
-    <button class="adf-dialog-action-button save-btn" color="primary" mat-button (click)="save()"
+    <button class="adf-dialog-action-button save-btn" color="primary" mat-button (click)="save()" [disabled]="!(dataSource | mappingDialogSave : mappingType : changeDetectorRef)"
         data-automation-id="mapping-update-button">
         {{ 'APP.DIALOGS.UPDATE' | translate }}
     </button>

@@ -80,4 +80,8 @@ export class OutputMappingDialogService extends MappingDialogService {
         });
         return outputMapping;
     }
+
+    validateMapping(dataSource: MappingRowModel[]): boolean {
+        return dataSource.every(item => !!item.name && (item.mappingValueType === MappingValueType.expression ? !!item.value : true));
+    }
 }

@@ -42,4 +42,8 @@ describe('InputMappingDialogService', () => {
 
         expect(mapping).toEqual(output);
     });
+
+    it('should return true when validating the input mapping', () => {
+        expect(inputMappingDialogService.validateMapping()).toBeTruthy();
+    });
 });

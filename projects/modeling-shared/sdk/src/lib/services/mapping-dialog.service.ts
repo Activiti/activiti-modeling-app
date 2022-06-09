@@ -64,6 +64,7 @@ export abstract class MappingDialogService {
     abstract setDataSourceValue(dataSource: MappingRowModel[], i: number, value: any);
     abstract dataSourceInit(mapping: ServiceParameterMapping, parameters: ConnectorParameter[], properties: EntityProperty[]): MappingRowModel[];
     abstract createMappingFromDataSource(dataSource: MappingRowModel[]): ServiceParameterMapping;
+    abstract validateMapping(dataSource: MappingRowModel[]): boolean;
 
     getPrimitiveType(type: string) {
         for (const handler of this.inputTypeItemHandler) {
