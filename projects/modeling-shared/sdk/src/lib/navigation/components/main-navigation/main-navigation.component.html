@@ -26,11 +26,10 @@
                                 [disableRipple]="true"
                                 [color]="rla.isActive ? 'primary' : 'accent'"
                                 [title]="item.label | translate">
-                            <span [routerLink]="item.route.url"
-                                  [ngClass]="{ 'studio-main-navigation-menu-element-active': rla.isActive,
-                                          'studio-main-navigation-menu-element': !rla.isActive}">
-                                {{ item.label | translate }}
-                            </span>
+                            <span [ngClass]="{
+                                'studio-main-navigation-menu-element-active': rla.isActive,
+                                'studio-main-navigation-menu-element': !rla.isActive
+                            }">{{ item.label | translate }}</span>
                         </button>
 
                     </li>
@@ -47,8 +46,7 @@
                         <button mat-icon-button mat-ripple [disableRipple]="true" [routerLink]="item.route.url"
                             [color]="rla.isActive ? 'primary' : 'accent'"
                             [title]="item.label | translate">
-                            <span [routerLink]="item.route.url"
-                            [ngClass]="{
+                            <span [ngClass]="{
                                 'studio-main-navigation-menu-element-active': rla.isActive,
                                 'studio-main-navigation-menu-element': !rla.isActive
                             }">{{ item.label | translate }}</span>
@@ -65,11 +63,10 @@
                     <li class="studio-main-navigation-menu-element" routerLinkActive #rla="routerLinkActive"
                         title="{{ item.title || '' | translate }}" *ngIf="!item.disabled">
 
-                        <button mat-icon-button mat-ripple matRippleColor="accent" [routerLink]="item.route.url"
-                            [color]="rla.isActive ? 'primary' : 'accent'" [matRippleTrigger]="rippleTrigger"
-                            [matRippleCentered]="true" [title]="item.label | translate">
-                            <span #rippleTrigger class="" [routerLink]="item.route.url"
-                            [ngClass]="{
+                        <button mat-icon-button mat-ripple [disableRipple]="true" [routerLink]="item.route.url"
+                            [color]="rla.isActive ? 'primary' : 'accent'"
+                            [title]="item.label | translate">
+                            <span [ngClass]="{
                                 'studio-main-navigation-menu-element-active': rla.isActive,
                                 'studio-main-navigation-menu-element': !rla.isActive
                             }">{{ item.label | translate }}</span>
