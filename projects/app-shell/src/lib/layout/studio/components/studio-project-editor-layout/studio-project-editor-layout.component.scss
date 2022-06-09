@@ -2,6 +2,22 @@ mat-sidenav-container.studio-project-layout {
     display: block;
     width: 100%;
     height: calc(100% - 65px);
+    /* stylelint-disable */
+    .projecteditor-release-list {
+        width: calc(100vw - 305px);
+
+        .releases {
+            height: calc(100% - 70px);
+        }
+        .releases-list-container {
+            height: calc(100% - 70px);
+        }
+
+        .adf-toolbar .mat-toolbar-single-row  {
+            height: 45px;
+        }
+    }
+
 
     .app-navigation {
         width: 300px;

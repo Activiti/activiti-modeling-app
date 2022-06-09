@@ -44,10 +44,10 @@
                     <li class="studio-main-navigation-menu-element" routerLinkActive #rla="routerLinkActive"
                         title="{{ item.title || '' | translate }}" *ngIf="!item.disabled">
 
-                        <button mat-icon-button mat-ripple matRippleColor="accent" [routerLink]="item.route.url"
-                            [color]="rla.isActive ? 'primary' : 'accent'" [matRippleTrigger]="rippleTrigger"
-                            [matRippleCentered]="true" [title]="item.label | translate">
-                            <span #rippleTrigger class="" [routerLink]="item.route.url"
+                        <button mat-icon-button mat-ripple [disableRipple]="true" [routerLink]="item.route.url"
+                            [color]="rla.isActive ? 'primary' : 'accent'"
+                            [title]="item.label | translate">
+                            <span [routerLink]="item.route.url"
                             [ngClass]="{
                                 'studio-main-navigation-menu-element-active': rla.isActive,
                                 'studio-main-navigation-menu-element': !rla.isActive
