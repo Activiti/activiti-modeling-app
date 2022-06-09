@@ -16,7 +16,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Model } from '../api/types';
 import { TabModel } from '../models/tab.model';
 
@@ -34,12 +34,20 @@ export class TabManagerService {
     private activeTab = new BehaviorSubject<number>(0);
     public activeTab$ = this.activeTab.asObservable();
 
-    public removeTab(index: number) {
+    private resetTabs = new Subject<void>();
+    public resetTabs$ = this.resetTabs.asObservable();
+
+    public removeTabByIndex(index: number) {
         this.tabs.splice(index, 1);
         if (this.tabs.length > 0) {
             this.tabs[this.tabs.length - 1].active = true;
         }
         this.tabSub.next(this.tabs);
+    }
+
+    public removeTabByModelUuid(modelUuid: string) {
+        const modelIndex = this.getTabIndexByModelId(modelUuid);
+        this.removeTabByIndex(modelIndex);
     }
 
     public openTab(model: Model, modelIcon: string) {
@@ -53,6 +61,17 @@ export class TabManagerService {
             this.tabSub.next(this.tabs);
             this.setActiveTab(openedTab.tabId-1);
         }
+    }
+
+    public getTabByIndex(tabIndex: number): TabModel {
+        return this.tabs[tabIndex];
+    }
+
+    public reset() {
+        this.tabs = [];
+        this.tabSub.next(this.tabs);
+        this.activeTab.next(-1);
+        this.resetTabs.next();
     }
 
     private getTabIndexByModelId(modelId: string): number {

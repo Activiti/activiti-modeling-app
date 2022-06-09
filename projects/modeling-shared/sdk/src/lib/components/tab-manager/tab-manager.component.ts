@@ -15,20 +15,22 @@
  * limitations under the License.
  */
 
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
+import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { combineLatest, Observable } from 'rxjs';
-import { distinctUntilChanged, filter, map, mergeMap, withLatestFrom } from 'rxjs/operators';
+import { distinctUntilChanged, filter, map, switchMap, takeUntil, withLatestFrom } from 'rxjs/operators';
 import { Model, MODEL_TYPE } from '../../api/types';
 import { ModelEditorComponent } from '../../model-editor/components/model-editor/model-editor.component';
 import { CanComponentDeactivate } from '../../model-editor/router/guards/unsaved-page.guard';
 import { TabModel } from '../../models/tab.model';
 import { TabManagerService } from '../../services/tab-manager.service';
+import { selectAppDirtyState } from '../../store/app.selectors';
 import { AmaState } from '../../store/app.state';
 import { selectModelEntityByType } from '../../store/model-entity.selectors';
-
-
+import { ModelOpenedAction } from '../../store/project.actions';
 @Component({
     selector: 'modelingsdk-tab-manager',
     templateUrl: './tab-manager.component.html',
@@ -43,13 +45,16 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
     modelIcon$: Observable<string>;
     currentTabs$: Observable<TabModel[]>;
     selectedTabIndex$: Observable<number>;
+    isDirtyState = false;
 
     @ViewChild('modelEditor')
     private modelEditor: ModelEditorComponent;
 
     constructor(private activatedRoute: ActivatedRoute,
-                private tabManagerService: TabManagerService,
-                private store: Store<AmaState>) {
+        private tabManagerService: TabManagerService,
+        private location: Location,
+        private store: Store<AmaState>,
+        private dialogService: DialogService) {
         this.currentTabs$ = this.tabManagerService.tabs$;
         this.selectedTabIndex$ = this.tabManagerService.activeTab$;
     }
@@ -58,12 +63,18 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
         this.modelId$ = this.activatedRoute.params.pipe(map((params) => params.modelId));
         this.modelEntity$ = this.activatedRoute.data.pipe(map((data) => data.modelEntity));
         this.modelIcon$ = this.activatedRoute.data.pipe(map((data) => data.entityIcon));
-        combineLatest([this.modelId$,this.modelEntity$]).pipe(
-            mergeMap(([modelId, modelEntity]) => this.store.select(selectModelEntityByType(modelEntity, modelId)).pipe(distinctUntilChanged())),
+        combineLatest([this.modelId$, this.modelEntity$]).pipe(
+            switchMap(([modelId, modelEntity]) => this.store.select(selectModelEntityByType(modelEntity, modelId)).pipe(distinctUntilChanged())),
             filter((model) => !!model),
-            map((model) => <Model> {...model, type: model.type.toLocaleLowerCase()} ),
-            withLatestFrom(this.modelIcon$)
-        ).subscribe( ([model, modelIcon])=> this.tabManagerService.openTab(model, modelIcon));
+            map((model) => <Model>{ ...model, type: model.type.toLocaleLowerCase() }),
+            withLatestFrom(this.modelIcon$),
+            takeUntil(this.tabManagerService.resetTabs$)
+        ).subscribe(([model, modelIcon]) => this.tabManagerService.openTab(model, modelIcon));
+
+        this.store.select(selectAppDirtyState)
+            .pipe(takeUntil(this.tabManagerService.resetTabs$))
+            .subscribe((isDirtyState) => this.isDirtyState = isDirtyState);
+
     }
 
     canDeactivate(): Observable<boolean> {
@@ -71,7 +82,30 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
     }
 
     onRemoveTab(tabIndex: number) {
-        this.tabManagerService.removeTab(tabIndex);
+        if (this.isDirtyState) {
+            this.dialogService.confirm({
+                title: 'SDK.MODEL_EDITOR.CONFiRM.TITLE',
+                messages: ['SDK.MODEL_EDITOR.CONFiRM.MESSAGE']
+            })
+                .subscribe((choice) => {
+                    if (choice) {
+                        this.tabManagerService.removeTabByIndex(tabIndex);
+                    }
+                });
+        } else {
+            this.tabManagerService.removeTabByIndex(tabIndex);
+        }
+    }
+
+    onSelectedTabChanged(tabIndex: number) {
+        const currentTab: TabModel = this.tabManagerService.getTabByIndex(tabIndex);
+        if (currentTab) {
+            this.store.dispatch(new ModelOpenedAction({ id: currentTab.tabData.modelId, type: currentTab.tabData.modelType }));
+            const splitUrl = this.location.path().split('/');
+            splitUrl.splice(splitUrl.length - 2, 2);
+            const reworkedUrl = splitUrl.concat([currentTab.tabData.modelType, currentTab.tabData.modelId]).join('/');
+            this.location.replaceState(reworkedUrl);
+        }
     }
 
 }

@@ -38,12 +38,13 @@ import { ProcessDiagramLoaderService } from '../../services/process-diagram-load
 import { createSelectedElement, SelectedProcessElement } from '../../store/process-editor.state';
 import { TaskAssignmentService } from '../../services/cardview-properties/task-assignment-item/task-assignment.service';
 import { selectSelectedElement } from '../../store/process-editor.selectors';
+// import { ProcessModelerServiceImplementation } from '../../services/process-modeler.service';
 
 @Component({
     selector: 'ama-process-modeler',
     template: '<div class="ama-canvas-editor"></div>',
     styleUrls: ['./process-modeler.component.scss', './process-modeler-bpmnjs.component.scss'],
-    encapsulation: ViewEncapsulation.None,
+    encapsulation: ViewEncapsulation.None
 })
 export class ProcessModelerComponent implements OnInit, OnDestroy {
 

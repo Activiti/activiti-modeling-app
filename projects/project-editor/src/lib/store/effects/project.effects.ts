@@ -42,6 +42,7 @@ import {
     ExportProjectAttemptAction,
     EXPORT_PROJECT_ATTEMPT,
     ExportProjectAttemptPayload,
+    TabManagerService,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProjectEditorService } from '../../services/project-editor.service';
@@ -56,7 +57,8 @@ export class ProjectEffects {
         protected downloadService: DownloadResourceService,
         private logFactory: LogFactoryService,
         protected blobService: BlobService,
-        private modelingJSONSchemaService: ModelingJSONSchemaService
+        private modelingJSONSchemaService: ModelingJSONSchemaService,
+        private tabManagerService: TabManagerService
     ) { }
 
     @Effect()
@@ -90,7 +92,7 @@ export class ProjectEffects {
     leaveProjectEffect = this.actions$.pipe(
         ofType<RouterNavigatedAction>(ROUTER_NAVIGATED),
         filter(() => !this.router.url.startsWith('/projects')),
-        mergeMap(() => of(new LeaveProjectAction()))
+        mergeMap(() => this.leftProjectAction())
     );
 
     @Effect()
@@ -193,4 +195,9 @@ export class ProjectEffects {
             catchError(() => this.handleError('PROJECT_EDITOR.ERROR.REMOVE_FROM_FAVORITES'))
         );
     }
-}
+
+    private leftProjectAction(){
+        this.tabManagerService.reset();
+        return of(new LeaveProjectAction());
+    }
+ }

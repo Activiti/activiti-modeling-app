@@ -22,16 +22,22 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TabManagerComponent } from './tab-manager.component';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { TabManagerService } from '../../services/tab-manager.service';
 import { Model } from '../../api/types';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
-import { provideMockStore } from '@ngrx/store/testing';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import * as EntitySelector from '../../store/model-entity.selectors';
+import * as AppStateSelector from '../../store/app.selectors';
+import { ModelOpenedAction } from '../../store/project.actions';
+import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { Location } from '@angular/common';
 
 const activatedRoute = {
+    url: new Observable<any[]>(),
     params: new BehaviorSubject<any>({modelId: 'fake-ui-id'}),
     data: new BehaviorSubject<any>({ modelEntity: 'models'}),
 };
@@ -74,6 +80,10 @@ function triggerModelIdChangeWithId(newModelId: string) {
 
 describe('TabManagerComponent', () => {
     let fixture: ComponentFixture<TabManagerComponent>;
+    let mockStore: MockStore;
+    let location: Location;
+    let dispatchSpy: any;
+    let dirtyStateSpy: any;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -82,7 +92,8 @@ describe('TabManagerComponent', () => {
                 NoopAnimationsModule,
                 MatTabsModule,
                 MatIconModule,
-                RouterTestingModule.withRoutes([])
+                RouterTestingModule.withRoutes([]),
+                MatDialogModule
             ],
             declarations: [
                 TabManagerComponent
@@ -91,14 +102,21 @@ describe('TabManagerComponent', () => {
                 { provide: ActivatedRoute, useValue: activatedRoute },
                 { provide: TranslationService, useClass: TranslationMock },
                 provideMockStore({initialState: fakeEntityState}),
-                TabManagerService
+                TabManagerService,
+                DialogService
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });
     });
 
-    beforeEach(async () => {
+    beforeEach(() => {
         fixture = TestBed.createComponent(TabManagerComponent);
+        mockStore = TestBed.inject(MockStore);
+        location = TestBed.inject(Location);
+        dispatchSpy = jest.spyOn(mockStore, 'dispatch');
+        jest.spyOn(fixture.componentInstance, 'canDeactivate').mockReturnValue(of(true));
+        dirtyStateSpy = jest.spyOn(AppStateSelector, 'selectAppDirtyState');
+
         spyOn(EntitySelector, 'selectModelEntityByType').and.callFake((modelType, modelId) => {
             if (modelId === fakeModelUI.id) {
                 return () => fakeModelUI;
@@ -106,9 +124,16 @@ describe('TabManagerComponent', () => {
                 return () => fakeModelProcess;
             }
         });
+
     });
 
-    it('should show a tab when a navigation to a new model navigation is triggered', async () =>{
+    afterEach(() => {
+        fixture.destroy();
+    });
+
+    it('should show a tab when a navigation to a new model navigation is triggered', async () => {
+        dirtyStateSpy.mockReturnValue(false);
+        triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
         await fixture.whenStable();
 
@@ -119,6 +144,8 @@ describe('TabManagerComponent', () => {
     });
 
     it('should open a new tab for a model not already opened', async () => {
+        dirtyStateSpy.mockReturnValue(false);
+        triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
         await fixture.whenStable();
 
@@ -134,6 +161,8 @@ describe('TabManagerComponent', () => {
     });
 
     it('should show set active an already opened tab when the model is clicked', async () => {
+        dirtyStateSpy.mockReturnValue(false);
+        triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
         await fixture.whenStable();
 
@@ -144,7 +173,6 @@ describe('TabManagerComponent', () => {
         triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
         await fixture.whenStable();
-        fixture.detectChanges();
 
         const activeTabTitle = fixture.nativeElement.querySelector('.mat-tab-label-active .ama-tab-title');
         expect(activeTabTitle).toBeDefined();
@@ -157,20 +185,9 @@ describe('TabManagerComponent', () => {
         expect(tabTitles.length).toBe(2);
     });
 
-    it('should close the tab', async () => {
-        fixture.detectChanges();
-        await fixture.whenStable();
-
-        const closeButton: HTMLButtonElement = fixture.nativeElement.querySelector('.ama-tab-model-close');
-        closeButton.click();
-
-        fixture.detectChanges();
-
-        const tabTitles = fixture.nativeElement.querySelectorAll('.ama-tab-title');
-        expect(tabTitles.length).toBe(0);
-    });
-
     it('should set as active the previous tab once a tab is closed', async () => {
+        dirtyStateSpy.mockReturnValue(false);
+        triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
         await fixture.whenStable();
 
@@ -191,6 +208,66 @@ describe('TabManagerComponent', () => {
 
         const afterDeleteActiveTab = fixture.nativeElement.querySelector('.mat-tab-label-active .ama-tab-title');
         expect(afterDeleteActiveTab.textContent).toBe(fakeModelUI.name);
+    });
+
+    it('should close the tab', async () => {
+        dirtyStateSpy.mockReturnValue(false);
+        triggerModelIdChangeWithId('fake-ui-id');
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const closeButton: HTMLButtonElement = fixture.nativeElement.querySelector('.ama-tab-model-close');
+        closeButton.click();
+
+        fixture.detectChanges();
+
+        const tabTitles = fixture.nativeElement.querySelectorAll('.ama-tab-title');
+        expect(tabTitles.length).toBe(0);
+    });
+
+    it('should prevent the tab from closing if the app is in dirty state', async () => {
+        triggerModelIdChangeWithId('fake-ui-id');
+        dirtyStateSpy.mockReturnValue(true);
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const closeButton: HTMLButtonElement = fixture.nativeElement.querySelector('.ama-tab-model-close');
+        closeButton.click();
+
+        fixture.detectChanges();
+
+        const tabTitles = fixture.nativeElement.querySelectorAll('.ama-tab-title');
+        expect(tabTitles.length).toBe(1);
+    });
+
+    it('should trigger a MODEL_OPENED action when changing tab', async () =>{
+        const expectedModelOpenedAction = new ModelOpenedAction({ id: fakeModelProcess.id, type: fakeModelProcess.type });
+        fixture.detectChanges();
+        triggerModelIdChangeWithId('fake-process-id');
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        expect(dispatchSpy).toHaveBeenCalledWith(expectedModelOpenedAction);
+        expect(dispatchSpy).toHaveBeenCalledTimes(1);
+        dispatchSpy.mockRestore();
+    });
+
+    it('should update the url when clicking on a tab', async () => {
+        jest.spyOn(location, 'replaceState');
+        jest.spyOn(location, 'path').mockReturnValue('/project/whatever-project-id/ui/fake-ui-id');
+        triggerModelIdChangeWithId('fake-ui-id');
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        triggerModelIdChangeWithId('fake-process-id');
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const uiTab = fixture.nativeElement.querySelector('[data-automation-id="model-tab-title-'+fakeModelUI.id+'"]');
+        uiTab.click();
+
+        fixture.detectChanges();
+        expect(location.replaceState).toHaveBeenCalledWith('/project/whatever-project-id/process/fake-process-id');
     });
 
 });
