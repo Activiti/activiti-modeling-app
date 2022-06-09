@@ -16,7 +16,7 @@
         "allowJs": true,
         "allowSyntheticDefaultImports": true,
         "typeRoots": ["node_modules/@types", "../../node_modules/@types"],
-        "lib": ["es2018", "dom", "DOM.Iterable", "esnext.array"],
+        "lib": ["es2019", "dom", "DOM.Iterable", "esnext.array"],
         "module": "es2015",
         "types": ["jasmine", "jest", "node"],
         "baseUrl": "./",
