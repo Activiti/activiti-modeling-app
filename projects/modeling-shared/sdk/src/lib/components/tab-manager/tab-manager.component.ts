@@ -18,10 +18,10 @@
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { combineLatest, Observable } from 'rxjs';
-import { distinctUntilChanged, filter, map, switchMap, takeUntil, withLatestFrom } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { distinctUntilChanged, filter, map, switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
 import { Model, MODEL_TYPE } from '../../api/types';
 import { ModelEditorComponent } from '../../model-editor/components/model-editor/model-editor.component';
 import { CanComponentDeactivate } from '../../model-editor/router/guards/unsaved-page.guard';
@@ -54,17 +54,19 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
         private tabManagerService: TabManagerService,
         private location: Location,
         private store: Store<AmaState>,
-        private dialogService: DialogService) {
+        private dialogService: DialogService,
+        private router: Router) {
         this.currentTabs$ = this.tabManagerService.tabs$;
         this.selectedTabIndex$ = this.tabManagerService.activeTab$;
     }
 
     public ngOnInit(): void {
-        this.modelId$ = this.activatedRoute.params.pipe(map((params) => params.modelId));
-        this.modelEntity$ = this.activatedRoute.data.pipe(map((data) => data.modelEntity));
-        this.modelIcon$ = this.activatedRoute.data.pipe(map((data) => data.entityIcon));
-        combineLatest([this.modelId$, this.modelEntity$]).pipe(
-            switchMap(([modelId, modelEntity]) => this.store.select(selectModelEntityByType(modelEntity, modelId)).pipe(distinctUntilChanged())),
+        this.modelId$ = this.activatedRoute.params.pipe(map((params) => params.modelId)).pipe(distinctUntilChanged());
+        this.modelEntity$ = this.activatedRoute.data.pipe(map((data) => data.modelEntity)).pipe(take(1));
+        this.modelIcon$ = this.activatedRoute.data.pipe(map((data) => data.entityIcon)).pipe(take(1));
+        this.modelId$.pipe(
+            withLatestFrom(this.modelEntity$),
+            switchMap(([modelId, modelEntity]) => this.store.select(selectModelEntityByType(modelEntity, modelId))),
             filter((model) => !!model),
             map((model) => <Model>{ ...model, type: model.type.toLocaleLowerCase() }),
             withLatestFrom(this.modelIcon$),
@@ -74,7 +76,6 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
         this.store.select(selectAppDirtyState)
             .pipe(takeUntil(this.tabManagerService.resetTabs$))
             .subscribe((isDirtyState) => this.isDirtyState = isDirtyState);
-
     }
 
     canDeactivate(): Observable<boolean> {
@@ -89,11 +90,20 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
             })
                 .subscribe((choice) => {
                     if (choice) {
-                        this.tabManagerService.removeTabByIndex(tabIndex);
+                        this.removeTabByIndex(tabIndex);
                     }
                 });
         } else {
-            this.tabManagerService.removeTabByIndex(tabIndex);
+            this.removeTabByIndex(tabIndex);
+        }
+    }
+
+    private removeTabByIndex(tabIndex: number) {
+        this.tabManagerService.removeTabByIndex(tabIndex);
+        if(this.tabManagerService.isNoTabOpened()) {
+            const projectUrl = this.buildNextUrl();
+            void this.router.navigate([projectUrl], {relativeTo: this.activatedRoute});
+            this.tabManagerService.reset();
         }
     }
 
@@ -101,11 +111,23 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
         const currentTab: TabModel = this.tabManagerService.getTabByIndex(tabIndex);
         if (currentTab) {
             this.store.dispatch(new ModelOpenedAction({ id: currentTab.tabData.modelId, type: currentTab.tabData.modelType }));
-            const splitUrl = this.location.path().split('/');
-            splitUrl.splice(splitUrl.length - 2, 2);
-            const reworkedUrl = splitUrl.concat([currentTab.tabData.modelType, currentTab.tabData.modelId]).join('/');
-            this.location.replaceState(reworkedUrl);
+            const nextUrl = this.buildNextUrl(currentTab.tabData.modelType, currentTab.tabData.modelId);
+            this.location.replaceState(nextUrl);
         }
+    }
+
+    private buildNextUrl(modelType?: string, modelId?: string): string {
+        const splitUrl = this.location.path().split('/');
+        splitUrl.splice(splitUrl.length - 2, 2);
+        const addOnPieces = [];
+        if (modelType) {
+            addOnPieces.push(modelType);
+        }
+        if (modelId) {
+            addOnPieces.push(modelId);
+        }
+        const reworkedUrl = addOnPieces.length > 0 ? splitUrl.concat(addOnPieces).join('/') : splitUrl.join('/');
+        return reworkedUrl;
     }
 
 }

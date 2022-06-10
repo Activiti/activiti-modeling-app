@@ -74,6 +74,10 @@ export class TabManagerService {
         this.resetTabs.next();
     }
 
+    public isNoTabOpened(): boolean {
+        return this.tabs.length === 0;
+    }
+
     private getTabIndexByModelId(modelId: string): number {
         return this.tabs.findIndex((tab) => tab.tabData.modelId === modelId);
     }

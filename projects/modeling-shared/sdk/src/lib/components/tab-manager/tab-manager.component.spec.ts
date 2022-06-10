@@ -21,7 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TabManagerComponent } from './tab-manager.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { TabManagerService } from '../../services/tab-manager.service';
 import { Model } from '../../api/types';
@@ -75,7 +75,7 @@ const fakeModelProcess: Model = {
 };
 
 function triggerModelIdChangeWithId(newModelId: string) {
-    activatedRoute.params.next( { modelId: newModelId});
+    activatedRoute.params.next( { modelId: newModelId });
 }
 
 describe('TabManagerComponent', () => {
@@ -84,6 +84,8 @@ describe('TabManagerComponent', () => {
     let location: Location;
     let dispatchSpy: any;
     let dirtyStateSpy: any;
+    let router: Router;
+    let tabManagerService: TabManagerService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -102,6 +104,10 @@ describe('TabManagerComponent', () => {
                 { provide: ActivatedRoute, useValue: activatedRoute },
                 { provide: TranslationService, useClass: TranslationMock },
                 provideMockStore({initialState: fakeEntityState}),
+                {
+                    provide: Router,
+                    useValue: { navigate: jest.fn() }
+                },
                 TabManagerService,
                 DialogService
             ],
@@ -116,6 +122,8 @@ describe('TabManagerComponent', () => {
         dispatchSpy = jest.spyOn(mockStore, 'dispatch');
         jest.spyOn(fixture.componentInstance, 'canDeactivate').mockReturnValue(of(true));
         dirtyStateSpy = jest.spyOn(AppStateSelector, 'selectAppDirtyState');
+        router = TestBed.inject(Router);
+        tabManagerService = TestBed.inject(TabManagerService);
 
         spyOn(EntitySelector, 'selectModelEntityByType').and.callFake((modelType, modelId) => {
             if (modelId === fakeModelUI.id) {
@@ -225,6 +233,20 @@ describe('TabManagerComponent', () => {
         expect(tabTitles.length).toBe(0);
     });
 
+    it('when no tabs are opened should navigate back to the project url', async () => {
+        jest.spyOn(location, 'path').mockReturnValue('/project/whatever-project-id/ui/fake-ui-id');
+        dirtyStateSpy.mockReturnValue(false);
+        triggerModelIdChangeWithId('fake-ui-id');
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const closeButton: HTMLButtonElement = fixture.nativeElement.querySelector('.ama-tab-model-close');
+        closeButton.click();
+
+        fixture.detectChanges();
+        expect(router.navigate).toHaveBeenCalledWith(['/project/whatever-project-id'], jasmine.any(Object));
+    });
+
     it('should prevent the tab from closing if the app is in dirty state', async () => {
         triggerModelIdChangeWithId('fake-ui-id');
         dirtyStateSpy.mockReturnValue(true);
@@ -269,5 +291,4 @@ describe('TabManagerComponent', () => {
         fixture.detectChanges();
         expect(location.replaceState).toHaveBeenCalledWith('/project/whatever-project-id/process/fake-process-id');
     });
-
 });
