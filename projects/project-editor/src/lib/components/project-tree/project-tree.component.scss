@@ -1,7 +1,7 @@
 .ama-project-tree {
 
     &__filter_details {
-        width: 100%;
+        width: calc(100% - 40px);
     }
 
     &-filter {
