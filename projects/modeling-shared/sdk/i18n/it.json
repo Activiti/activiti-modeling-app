@@ -4,6 +4,7 @@
       "VALIDATE": "Convalida",
       "RELEASE": "Versione da pubblicare",
       "SAVE_AS": "Salva con nome",
+      "SAVE_AS_ICON": "Salva come icona",
       "DOWNLOAD": "Scarica progetto",
       "VIEW_RELEASES": "Visualizza versioni",
       "VERSION": "Versione"
@@ -25,10 +26,19 @@
     "VALUE": "Valore",
     "EXPRESSION": "Espressione",
     "TYPE": "Tipo",
+    "DISPLAY_NAME_VISIBILITY": {
+      "YES": "Sì",
+      "NO": "No",
+      "DISPLAY_NAME": "Nome visualizzato",
+      "DISPLAY_NAME_AVAILABILITY": "Disponibile nell'applicazione Web",
+      "ENTER_DISPLAY_NAME": "Immetti nome visualizzato",
+      "DISPLAY_NAME_TOOLTIP": "Il nome visualizzato viene utilizzato nelle applicazioni Web, ad esempio come nome di colonna nell'Elenco compiti, nell'Elenco processi e nell'API."
+    },
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "È obbligatorio specificare un nome",
         "EMPTY_TYPE": "È obbligatorio specificare un tipo",
+        "EMPTY_DISPLAY_NAME": "È obbligatorio specificare un nome visualizzato",
         "INVALID_NAME": "Nome variabile non valido",
         "VARIABLE_NAME_TOOLTIP": "Il nome deve iniziare con una lettera e può contenere solo caratteri alfanumerici e di sottolineatura",
         "NAME_ALREADY_EXISTS": "II nomi delle variabili devono essere univoci",

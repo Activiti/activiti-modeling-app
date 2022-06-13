@@ -53,7 +53,8 @@
       "SCRIPTS": "多个脚本",
       "TRIGGERS": "多个触发器",
       "DATA_MODELS": "数据模型",
-      "AUTHENTICATIONS": "身份验证"
+      "AUTHENTICATIONS": "身份验证",
+      "FORM_WIDGETS": "表单小组件"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "创建流程",

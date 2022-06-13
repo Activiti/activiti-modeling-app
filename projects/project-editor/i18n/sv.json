@@ -53,7 +53,8 @@
       "SCRIPTS": "Skript",
       "TRIGGERS": "Utlösare",
       "DATA_MODELS": "Datamodeller",
-      "AUTHENTICATIONS": "Autentiseringar"
+      "AUTHENTICATIONS": "Autentiseringar",
+      "FORM_WIDGETS": "Widgetform"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Skapa process",

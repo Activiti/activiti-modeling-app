@@ -4,6 +4,7 @@
       "VALIDATE": "VALIDAR",
       "RELEASE": "Versão",
       "SAVE_AS": "Salvar como",
+      "SAVE_AS_ICON": "Salvar como ícone",
       "DOWNLOAD": "Baixar projeto",
       "VIEW_RELEASES": "Exibir Versões",
       "VERSION": "Versão"
@@ -25,10 +26,19 @@
     "VALUE": "Valor",
     "EXPRESSION": "Expressão",
     "TYPE": "Tipo",
+    "DISPLAY_NAME_VISIBILITY": {
+      "YES": "Sim",
+      "NO": "Não",
+      "DISPLAY_NAME": "Nome de exibição",
+      "DISPLAY_NAME_AVAILABILITY": "Disponível no aplicativo da Web",
+      "ENTER_DISPLAY_NAME": "Insira o nome de exibição",
+      "DISPLAY_NAME_TOOLTIP": "O nome de exibição é usado no aplicativo da web, por exemplo, como um nome de coluna na lista de tarefas, na lista de processos e na API."
+    },
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "O nome é obrigatório",
         "EMPTY_TYPE": "Um tipo é necessário",
+        "EMPTY_DISPLAY_NAME": "Um nome de exibição é necessário",
         "INVALID_NAME": "Nome inválido da variável",
         "VARIABLE_NAME_TOOLTIP": "O nome deve iniciar com uma letra e só pode conter caracteres alfanuméricos e sublinhados",
         "NAME_ALREADY_EXISTS": "Nomes de variáveis devem ser exclusivos",

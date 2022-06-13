@@ -53,7 +53,8 @@
       "SCRIPTS": "スクリプト",
       "TRIGGERS": "トリガー",
       "DATA_MODELS": "データモデル",
-      "AUTHENTICATIONS": "認証"
+      "AUTHENTICATIONS": "認証",
+      "FORM_WIDGETS": "フォームウィジェット"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "プロセスを作成",
@@ -190,7 +191,7 @@
       "AUTHENTICATION_UPDATED": "認証が保存されました"
     },
     "ERROR": {
-      "UPLOAD_DUPLICATE_FILE": "同じ名前の{{modelType}}が既に存在しています",
+      "UPLOAD_DUPLICATE_FILE": "同じ名前の{{modelType}}は、既に存在しています",
       "UPLOAD_FILE": "ファイルのアップロード中に問題が発生しました。アップロードをやり直してください。",
       "DELETE_PROJECT": "プロジェクトの削除中に問題が発生しました。削除をやり直してください。",
       "ADD_TO_FAVORITES": "お気に入りにプロジェクトを追加中に問題が発生しました。追加をやり直してください。",

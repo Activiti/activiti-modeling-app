@@ -4,6 +4,7 @@
       "VALIDATE": "Ověřit",
       "RELEASE": "Vzdát se",
       "SAVE_AS": "Uložit jako",
+      "SAVE_AS_ICON": "Uložit jako ikonu",
       "DOWNLOAD": "Stáhnout projekt",
       "VIEW_RELEASES": "Zobrazit verze",
       "VERSION": "Verze"
@@ -25,10 +26,19 @@
     "VALUE": "Hodnota",
     "EXPRESSION": "Výraz",
     "TYPE": "Typ",
+    "DISPLAY_NAME_VISIBILITY": {
+      "YES": "Ano",
+      "NO": "Ne",
+      "DISPLAY_NAME": "Zobrazované jméno",
+      "DISPLAY_NAME_AVAILABILITY": "K dispozici ve webové aplikaci",
+      "ENTER_DISPLAY_NAME": "Zadejte název zobrazení",
+      "DISPLAY_NAME_TOOLTIP": "Název zobrazení se používá ve webové aplikaci, například jako název sloupce v Seznamu úkolů, v Seznamu procesů a v rozhraní API."
+    },
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Název je povinný",
         "EMPTY_TYPE": "Typ je povinný",
+        "EMPTY_DISPLAY_NAME": "Název zobrazení je povinný",
         "INVALID_NAME": "Neplatný název proměnné",
         "VARIABLE_NAME_TOOLTIP": "Název musí začínat písmenem a může obsahovat jen alfanumerické znaky a podtržítko",
         "NAME_ALREADY_EXISTS": "Názvy proměnných musí být jedinečné",

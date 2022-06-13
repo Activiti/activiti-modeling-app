@@ -4,6 +4,7 @@
       "VALIDATE": "Valider",
       "RELEASE": "Version à publier",
       "SAVE_AS": "Enregistrer sous",
+      "SAVE_AS_ICON": "Icône Enregistrer sous",
       "DOWNLOAD": "Télécharger le projet",
       "VIEW_RELEASES": "Voir les versions",
       "VERSION": "Version"
@@ -25,10 +26,19 @@
     "VALUE": "Valeur",
     "EXPRESSION": "Expression",
     "TYPE": "Type",
+    "DISPLAY_NAME_VISIBILITY": {
+      "YES": "Oui",
+      "NO": "Non",
+      "DISPLAY_NAME": "Nom affiché",
+      "DISPLAY_NAME_AVAILABILITY": "Disponible dans l'application web",
+      "ENTER_DISPLAY_NAME": "Entrez le nom d'affichage",
+      "DISPLAY_NAME_TOOLTIP": "Le nom d'affichage est utilisé dans l'application web, par exemple comme nom de colonne dans la liste des tâches, dans la liste des processus et dans l'API."
+    },
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Vous devez spécifier un nom",
         "EMPTY_TYPE": "Vouz devez spécifier un type",
+        "EMPTY_DISPLAY_NAME": "Un nom d'affichage est requis",
         "INVALID_NAME": "Nom de variable non valide",
         "VARIABLE_NAME_TOOLTIP": "Le nom doit commencer par une lettre et peut contenir uniquement des caractères alphanumériques et des traits de soulignement",
         "NAME_ALREADY_EXISTS": "Les noms de variables doivent être uniques",

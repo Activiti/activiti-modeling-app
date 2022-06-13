@@ -4,6 +4,7 @@
       "VALIDATE": "Valideren",
       "RELEASE": "Te publiceren versie",
       "SAVE_AS": "Opslaan als",
+      "SAVE_AS_ICON": "Opslaan als pictogram",
       "DOWNLOAD": "Project downloaden",
       "VIEW_RELEASES": "Versies weergeven",
       "VERSION": "Versie"
@@ -25,10 +26,19 @@
     "VALUE": "Waarde",
     "EXPRESSION": "Expressie",
     "TYPE": "Type",
+    "DISPLAY_NAME_VISIBILITY": {
+      "YES": "Ja",
+      "NO": "Nee",
+      "DISPLAY_NAME": "Weergavenaam",
+      "DISPLAY_NAME_AVAILABILITY": "Beschikbaar in de webtoepassing",
+      "ENTER_DISPLAY_NAME": "Weergavenaam invoeren",
+      "DISPLAY_NAME_TOOLTIP": "Weergavenaam wordt al gebruikt in de webtoepassing, bijvoorbeeld als een kolomnaam in de lijst Taken, in de lijst Processen en in de API."
+    },
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Een naam is vereist",
         "EMPTY_TYPE": "Een type is vereist",
+        "EMPTY_DISPLAY_NAME": "Een weergavenaam is vereist",
         "INVALID_NAME": "Ongeldige variabelenaam",
         "VARIABLE_NAME_TOOLTIP": "De naam moet beginnen met een letter en mag alleen alfanumerieke tekens en onderstrepingstekens bevatten",
         "NAME_ALREADY_EXISTS": "Variabelenamen moeten uniek zijn",

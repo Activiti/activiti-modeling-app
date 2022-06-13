@@ -53,7 +53,8 @@
       "SCRIPTS": "Skript",
       "TRIGGERS": "Utløsere",
       "DATA_MODELS": "Datamodeller",
-      "AUTHENTICATIONS": "Godkjenninger"
+      "AUTHENTICATIONS": "Godkjenninger",
+      "FORM_WIDGETS": "Skjema-widgeter"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Opprett prosess",
@@ -190,7 +191,7 @@
       "AUTHENTICATION_UPDATED": "Godkjenning lagret"
     },
     "ERROR": {
-      "UPLOAD_DUPLICATE_FILE": "{{modelType}} med samme navn finnes allerede",
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} med samme navn finnes allerede.",
       "UPLOAD_FILE": "Vi støtte på et problem med å laste opp filen. Prøv å laste den opp på nytt.",
       "DELETE_PROJECT": "Vi støtte på et problem med å slette prosjektet. Prøv å slette det på nytt.",
       "ADD_TO_FAVORITES": "Vi støtte på et problem med å legge prosjektet til i favoritter. Prøv å legge det til på nytt.",
@@ -245,7 +246,7 @@
         "GENERAL": "Vi støtte på et problem med å opprette godkjenningen. Prøv å opprette den på nytt."
       },
       "UPDATE_AUTHENTICATION": {
-        "DUPLICATION": "Et godkjenning med dette navnet finnes alt",
+        "DUPLICATION": "En godkjenning med dette navnet finnes alt",
         "GENERAL": "Vi støtte på et problem med å lagre godkjenningen. Prøv å lagre den på nytt."
       },
       "CREATE_DATA_MODEL": {

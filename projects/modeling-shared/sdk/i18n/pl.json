@@ -4,6 +4,7 @@
       "VALIDATE": "Weryfikuj",
       "RELEASE": "Zwolnij",
       "SAVE_AS": "Zapisz jako",
+      "SAVE_AS_ICON": "Zapisz jako ikonę",
       "DOWNLOAD": "Pobierz projekt",
       "VIEW_RELEASES": "Wyświetl wydania",
       "VERSION": "Wersja"
@@ -25,10 +26,19 @@
     "VALUE": "Wartość",
     "EXPRESSION": "Wyrażenie",
     "TYPE": "Typ",
+    "DISPLAY_NAME_VISIBILITY": {
+      "YES": "Tak",
+      "NO": "Nie",
+      "DISPLAY_NAME": "Nazwa wyświetlana",
+      "DISPLAY_NAME_AVAILABILITY": "Dostępna w aplikacji internetowej",
+      "ENTER_DISPLAY_NAME": "Wprowadź wyświetlaną nazwę",
+      "DISPLAY_NAME_TOOLTIP": "Wyświetlana nazwa jest używana w aplikacji internetowej, na przykład jako nazwa kolumny na Liście zadań, na Liście procesów oraz w interfejsie API."
+    },
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Nazwa jest wymagana",
         "EMPTY_TYPE": "Typ jest wymagany",
+        "EMPTY_DISPLAY_NAME": "Wyświetlana nazwa jest wymagana",
         "INVALID_NAME": "Nieprawidłowa nazwa zmiennej",
         "VARIABLE_NAME_TOOLTIP": "Nazwa musi zaczynać się literą i może zawierać tylko znaki alfanumeryczne i podkreślenia",
         "NAME_ALREADY_EXISTS": "Nazwy zmiennych muszą być unikatowe",

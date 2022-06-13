@@ -13,7 +13,8 @@
       "SETTINGS": "الإعدادات",
       "ABOUT": "حول",
       "LANGUAGE": "اللغة",
-      "SEARCH": "بحث"
+      "SEARCH": "بحث",
+      "APPEARANCE": "مظهر"
     },
     "DIALOGS": {
       "CANCEL": "إلغاء",
@@ -78,6 +79,7 @@
       "RELEASE": "إصدار",
       "COLLABORATORS": "المتعاونون",
       "SEE_RELEASES": "عرض الإصدارات",
+      "LOG_HISTORY": "سجل التاريخ",
       "DOWNLOAD": "تنزيل",
       "SAVE_AS": "حفظ باسم",
       "EDITORS_MENU": "قائمة المحررين",
@@ -98,6 +100,10 @@
       "NAME": "الاسم",
       "DESCRIPTION": "الوصف",
       "TITLE": "عنوان التطبيق"
+    },
+    "THEME": {
+      "LIGHT": "نسق فاتح",
+      "DARK": "نسق داكن"
     }
   }
 }

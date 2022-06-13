@@ -53,7 +53,8 @@
       "SCRIPTS": "Komentosarjat",
       "TRIGGERS": "Laukaisijat",
       "DATA_MODELS": "Tietomallit",
-      "AUTHENTICATIONS": "Todennukset"
+      "AUTHENTICATIONS": "Todennukset",
+      "FORM_WIDGETS": "Lomake-pienohjelma"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Luo prosessi",

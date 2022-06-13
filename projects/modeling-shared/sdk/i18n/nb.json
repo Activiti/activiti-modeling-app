@@ -4,6 +4,7 @@
       "VALIDATE": "Validere",
       "RELEASE": "Versjon som skal utgis",
       "SAVE_AS": "Lagre som",
+      "SAVE_AS_ICON": "Lagre som ikon",
       "DOWNLOAD": "Last ned prosjekt",
       "VIEW_RELEASES": "Vis utgivelser",
       "VERSION": "Versjon"
@@ -25,10 +26,19 @@
     "VALUE": "Verdi",
     "EXPRESSION": "Uttrykk",
     "TYPE": "Type",
+    "DISPLAY_NAME_VISIBILITY": {
+      "YES": "Ja",
+      "NO": "Nei",
+      "DISPLAY_NAME": "Visningsnavn",
+      "DISPLAY_NAME_AVAILABILITY": "Tilgjengelig i nettapplikasjonen",
+      "ENTER_DISPLAY_NAME": "Skriv inn visningsnavn",
+      "DISPLAY_NAME_TOOLTIP": "Visningsnavnet brukes i nettapplikasjonen, for eksempel som kolonnenavn i oppgavelisten, i prosesslisten og i API."
+    },
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Et navn er påkrevd",
         "EMPTY_TYPE": "Et type er påkrevd",
+        "EMPTY_DISPLAY_NAME": "Et visningsnavn er påkrevd",
         "INVALID_NAME": "Ugyldig variabelnavn",
         "VARIABLE_NAME_TOOLTIP": "Navnet må begynne med en bokstav og kan kun inneholde alfanumeriske tegn og understrekingstegn",
         "NAME_ALREADY_EXISTS": "Variabelnavn må være unike",

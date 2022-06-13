@@ -4,6 +4,7 @@
       "VALIDATE": "Validera",
       "RELEASE": "Version",
       "SAVE_AS": "Spara som",
+      "SAVE_AS_ICON": "Spara som ikon",
       "DOWNLOAD": "Ladda ner projekt",
       "VIEW_RELEASES": "Visa versioner",
       "VERSION": "Version"
@@ -25,10 +26,19 @@
     "VALUE": "Värde",
     "EXPRESSION": "Uttryck",
     "TYPE": "Typ",
+    "DISPLAY_NAME_VISIBILITY": {
+      "YES": "Ja",
+      "NO": "Nej",
+      "DISPLAY_NAME": "Visningsnamn",
+      "DISPLAY_NAME_AVAILABILITY": "Tillgänglig i webbapplikationen",
+      "ENTER_DISPLAY_NAME": "Ange visningsnamn",
+      "DISPLAY_NAME_TOOLTIP": "Visningsnamn används i webbapplikationen, t.ex. som kolumnrubrik i Uppgiftslistan, Processlistan och i API."
+    },
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Ett namn krävs",
         "EMPTY_TYPE": "En typ krävs",
+        "EMPTY_DISPLAY_NAME": "Ett visningsnamn krävs",
         "INVALID_NAME": "Ogiltigt variabelnamn",
         "VARIABLE_NAME_TOOLTIP": "Namnet kan börja med en bokstav och kan endast innehålla alfanumeriska tecken och understrykningar",
         "NAME_ALREADY_EXISTS": "Variabla namn måste vara unika",

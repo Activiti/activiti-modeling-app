@@ -13,7 +13,8 @@
       "SETTINGS": "Ustawienia",
       "ABOUT": "Informacje",
       "LANGUAGE": "Język",
-      "SEARCH": "Szukaj"
+      "SEARCH": "Szukaj",
+      "APPEARANCE": "Wygląd"
     },
     "DIALOGS": {
       "CANCEL": "Anuluj",
@@ -78,6 +79,7 @@
       "RELEASE": "Zwolnij",
       "COLLABORATORS": "Współpracownicy",
       "SEE_RELEASES": "Wyświetl wydania",
+      "LOG_HISTORY": "Historia logu",
       "DOWNLOAD": "Pobierz",
       "SAVE_AS": "Zapisz jako",
       "EDITORS_MENU": "Menu edytorów",
@@ -98,6 +100,10 @@
       "NAME": "Nazwa",
       "DESCRIPTION": "Opis",
       "TITLE": "Tytuł aplikacji"
+    },
+    "THEME": {
+      "LIGHT": "Jasny motyw",
+      "DARK": "Ciemny motyw"
     }
   }
 }

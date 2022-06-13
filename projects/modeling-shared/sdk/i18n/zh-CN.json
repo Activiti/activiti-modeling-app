@@ -4,6 +4,7 @@
       "VALIDATE": "验证",
       "RELEASE": "发布",
       "SAVE_AS": "保存为",
+      "SAVE_AS_ICON": "另存为图标",
       "DOWNLOAD": "下载项目",
       "VIEW_RELEASES": "查看发布",
       "VERSION": "版本"
@@ -25,10 +26,19 @@
     "VALUE": "值",
     "EXPRESSION": "表达式",
     "TYPE": "类型",
+    "DISPLAY_NAME_VISIBILITY": {
+      "YES": "是",
+      "NO": "否",
+      "DISPLAY_NAME": "显示名称",
+      "DISPLAY_NAME_AVAILABILITY": "在 Web 应用程序中可用",
+      "ENTER_DISPLAY_NAME": "输入显示名称",
+      "DISPLAY_NAME_TOOLTIP": "显示名称在 Web 应用程序中使用，例如作为任务列表、进程列表和 API 中的列名。"
+    },
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "需要名称",
         "EMPTY_TYPE": "类型是必需的",
+        "EMPTY_DISPLAY_NAME": "显示名称是必需的",
         "INVALID_NAME": "无效的变量名称",
         "VARIABLE_NAME_TOOLTIP": "名称必须以字母开头，只能包含字母数字字符和下划线",
         "NAME_ALREADY_EXISTS": "变量名称必须是唯一的",

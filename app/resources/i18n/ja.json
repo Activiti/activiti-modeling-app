@@ -13,7 +13,8 @@
       "SETTINGS": "設定",
       "ABOUT": "バージョン情報",
       "LANGUAGE": "言語",
-      "SEARCH": "検索"
+      "SEARCH": "検索",
+      "APPEARANCE": "外観"
     },
     "DIALOGS": {
       "CANCEL": "キャンセル",
@@ -78,6 +79,7 @@
       "RELEASE": "リリース",
       "COLLABORATORS": "コラボレーター",
       "SEE_RELEASES": "リリースの表示",
+      "LOG_HISTORY": "ログ履歴",
       "DOWNLOAD": "ダウンロード",
       "SAVE_AS": "名前を付けて保存",
       "EDITORS_MENU": "エディターメニュー",
@@ -98,6 +100,10 @@
       "NAME": "名前",
       "DESCRIPTION": "説明",
       "TITLE": "アプリケーションタイトル"
+    },
+    "THEME": {
+      "LIGHT": "薄い色のテーマ",
+      "DARK": "暗い色のテーマ"
     }
   }
 }

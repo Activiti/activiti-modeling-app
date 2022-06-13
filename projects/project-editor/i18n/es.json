@@ -47,13 +47,14 @@
       "FORMS": "Formularios",
       "CONNECTORS": "Conectores",
       "DATA": "datos",
-      "DECISION_TABLES": "Tablas decisión",
+      "DECISION_TABLES": "Tablas de decisión",
       "UIS": "IU",
       "FILES": "Ficheros",
       "SCRIPTS": "Scripts",
       "TRIGGERS": "Desencadenadores",
       "DATA_MODELS": "Modelos de datos",
-      "AUTHENTICATIONS": "Autenticaciones"
+      "AUTHENTICATIONS": "Autenticaciones",
+      "FORM_WIDGETS": "Widget de formulario"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Crear proceso",
@@ -190,7 +191,7 @@
       "AUTHENTICATION_UPDATED": "Autenticación guardada"
     },
     "ERROR": {
-      "UPLOAD_DUPLICATE_FILE": "{{modelType}} con el mismo nombre ya existe",
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} con el mismo nombre ya existe.",
       "UPLOAD_FILE": "Ha surgido un problema al cargar el fichero. Vuelva a intentar cargarlo.",
       "DELETE_PROJECT": "Ha surgido un problema al eliminar el proyecto. Vuelva a intentar eliminarlo.",
       "ADD_TO_FAVORITES": "Ha surgido un problema al marcar el proyecto como favorito. Vuelva a intentarlo.",

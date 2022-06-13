@@ -53,7 +53,8 @@
       "SCRIPTS": "Scripts",
       "TRIGGERS": "Triggers",
       "DATA_MODELS": "Gegevensmodellen",
-      "AUTHENTICATIONS": "Verificaties"
+      "AUTHENTICATIONS": "Verificaties",
+      "FORM_WIDGETS": "Formulierwidgets"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Proces maken",
@@ -190,7 +191,7 @@
       "AUTHENTICATION_UPDATED": "Verificatie opgeslagen"
     },
     "ERROR": {
-      "UPLOAD_DUPLICATE_FILE": "{{modelType}} met dezelfde naam bestaat al",
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} met dezelfde naam bestaat al.",
       "UPLOAD_FILE": "Er is een probleem opgetreden bij het uploaden van het bestand. Probeer het opnieuw te uploaden.",
       "DELETE_PROJECT": "Er is een probleem opgetreden bij het verwijderen van het project. Probeer het opnieuw te verwijderen.",
       "ADD_TO_FAVORITES": "Er is een fout opgetreden bij het toevoegen van het project aan favorieten. Probeer het opnieuw toe te voegen.",

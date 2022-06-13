@@ -53,7 +53,8 @@
       "SCRIPTS": "البرامج النصية",
       "TRIGGERS": "المشغلات",
       "DATA_MODELS": "نماذج البيانات",
-      "AUTHENTICATIONS": "المصادقات"
+      "AUTHENTICATIONS": "المصادقات",
+      "FORM_WIDGETS": "عناصر واجهة النموذج"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "إنشاء عملية",
@@ -190,7 +191,7 @@
       "AUTHENTICATION_UPDATED": "تم حفظ المصادقة"
     },
     "ERROR": {
-      "UPLOAD_DUPLICATE_FILE": "{{modelType}} بنفس الاسم موجودة بالفعل",
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} بنفس الاسم موجود بالفعل.",
       "UPLOAD_FILE": "نواجه مشكلة في تحميل الملف. حاول تحميله مرة أخرى.",
       "DELETE_PROJECT": "نواجه مشكلة في حذف المشروع. حاول حذفه مرة أخرى.",
       "ADD_TO_FAVORITES": "واجهتنا مشكلة في إضافة المشروع إلى المفضلة. حاول إضافته مرة أخرى.",

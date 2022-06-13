@@ -4,6 +4,7 @@
       "VALIDATE": "تحقق",
       "RELEASE": "إصدار",
       "SAVE_AS": "حفظ باسم",
+      "SAVE_AS_ICON": "حفظ كرمز",
       "DOWNLOAD": "تنزيل المشروع",
       "VIEW_RELEASES": "عرض الإصدارات",
       "VERSION": "الإصدار"
@@ -25,10 +26,19 @@
     "VALUE": "القيمة",
     "EXPRESSION": "التعبير",
     "TYPE": "النوع",
+    "DISPLAY_NAME_VISIBILITY": {
+      "YES": "نعم",
+      "NO": "لا",
+      "DISPLAY_NAME": "اسم العرض",
+      "DISPLAY_NAME_AVAILABILITY": "متوفر في تطبيق الويب",
+      "ENTER_DISPLAY_NAME": "أدخل اسم العرض",
+      "DISPLAY_NAME_TOOLTIP": "يتم استخدام اسم العرض في تطبيق الويب ، على سبيل المثال كاسم عمود في قائمة المهام وقائمة العمليات وواجهة برمجة التطبيقات."
+    },
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "مطلوب اسم",
         "EMPTY_TYPE": "النوع مطلوب",
+        "EMPTY_DISPLAY_NAME": "اسم العرض مطلوب",
         "INVALID_NAME": "اسم متغير غير صالح",
         "VARIABLE_NAME_TOOLTIP": "يجب أن يبدأ الاسم بحرف ويمكن أن يحتوي فقط على أحرف أبجدية رقمية وشرطات سفلية",
         "NAME_ALREADY_EXISTS": "يجب أن تكون أسماء المتغيرات فريدة",

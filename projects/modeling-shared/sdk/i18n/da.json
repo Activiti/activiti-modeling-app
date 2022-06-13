@@ -4,6 +4,7 @@
       "VALIDATE": "Bekræft",
       "RELEASE": "Frigiv",
       "SAVE_AS": "Gem som",
+      "SAVE_AS_ICON": "Gem som ikon",
       "DOWNLOAD": "Downloade projekt",
       "VIEW_RELEASES": "Vis frigivelser",
       "VERSION": "Version"
@@ -25,10 +26,19 @@
     "VALUE": "Værdi",
     "EXPRESSION": "Udtryk",
     "TYPE": "Type",
+    "DISPLAY_NAME_VISIBILITY": {
+      "YES": "Ja",
+      "NO": "Nej",
+      "DISPLAY_NAME": "Visningsnavn",
+      "DISPLAY_NAME_AVAILABILITY": "Findes i web-applikationen",
+      "ENTER_DISPLAY_NAME": "Indtast visningsnavnet",
+      "DISPLAY_NAME_TOOLTIP": "Visningsnavnet anvendes i web-applikationen, for eksempel som et spaltenavn i opgavelisten, i proceslisten og API'en."
+    },
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Der skal angives et navn",
         "EMPTY_TYPE": "Der skal angives et type",
+        "EMPTY_DISPLAY_NAME": "Der kræves et visningsnavnet",
         "INVALID_NAME": "Ugyldigt navn på variabel",
         "VARIABLE_NAME_TOOLTIP": "Navnet skal starte med et bogstav og må kun indeholde alfanumeriske tegn og understregninger",
         "NAME_ALREADY_EXISTS": "Variabelnavne skal være unikke",

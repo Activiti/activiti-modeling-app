@@ -53,7 +53,8 @@
       "SCRIPTS": "Scripts",
       "TRIGGERS": "Déclencheurs",
       "DATA_MODELS": "Modèles de données",
-      "AUTHENTICATIONS": "Authentifications"
+      "AUTHENTICATIONS": "Authentifications",
+      "FORM_WIDGETS": "Widgets de formulaire"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Créer un processus",
@@ -190,7 +191,7 @@
       "AUTHENTICATION_UPDATED": "Authentification enregistrée"
     },
     "ERROR": {
-      "UPLOAD_DUPLICATE_FILE": "{{modelType}} du même nom existe déjà",
+      "UPLOAD_DUPLICATE_FILE": "Un {{modelType}} du même nom existe déjà.",
       "UPLOAD_FILE": "Un problème est survenu lors de l'importation du fichier. Essayez de l'importer à nouveau.",
       "DELETE_PROJECT": "Un problème est survenu lors de la suppression du projet. Essayez de le supprimer à nouveau.",
       "ADD_TO_FAVORITES": "Un problème est survenu lors de l'ajout du projet aux favoris. Essayez de l'ajouter à nouveau.",

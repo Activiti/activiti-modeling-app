@@ -13,7 +13,8 @@
       "SETTINGS": "Innstillinger",
       "ABOUT": "Om",
       "LANGUAGE": "Språk",
-      "SEARCH": "Søk"
+      "SEARCH": "Søk",
+      "APPEARANCE": "Utseende"
     },
     "DIALOGS": {
       "CANCEL": "Avbryt",
@@ -78,6 +79,7 @@
       "RELEASE": "Versjon som skal utgis",
       "COLLABORATORS": "Samarbeidspartnere",
       "SEE_RELEASES": "Vis utgivelser",
+      "LOG_HISTORY": "Logghistorikk",
       "DOWNLOAD": "Last ned",
       "SAVE_AS": "Lagre som",
       "EDITORS_MENU": "Redaktørmeny",
@@ -98,6 +100,10 @@
       "NAME": "Navn",
       "DESCRIPTION": "Beskrivelse",
       "TITLE": "Programtittel"
+    },
+    "THEME": {
+      "LIGHT": "Lyst tema",
+      "DARK": "Mørkt tema"
     }
   }
 }

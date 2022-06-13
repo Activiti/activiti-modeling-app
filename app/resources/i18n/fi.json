@@ -13,7 +13,8 @@
       "SETTINGS": "Asetukset",
       "ABOUT": "Tietoja",
       "LANGUAGE": "Kieli",
-      "SEARCH": "Hae"
+      "SEARCH": "Hae",
+      "APPEARANCE": "Ulkonäkö"
     },
     "DIALOGS": {
       "CANCEL": "Peruuta",
@@ -75,9 +76,10 @@
     "MENU": {
       "EDIT": "Muokkaa",
       "DELETE": "Poista",
-      "RELEASE": "Julkaise",
+      "RELEASE": "Julkaisu",
       "COLLABORATORS": "Yhteistyökumppanit",
       "SEE_RELEASES": "Näytä julkaisut",
+      "LOG_HISTORY": "Lokihistoria",
       "DOWNLOAD": "Lataa",
       "SAVE_AS": "Tallenna nimellä",
       "EDITORS_MENU": "Editorin valikko",
@@ -98,6 +100,10 @@
       "NAME": "Nimi",
       "DESCRIPTION": "Kuvaus",
       "TITLE": "Sovelluksen otsikko"
+    },
+    "THEME": {
+      "LIGHT": "Vaalea teema",
+      "DARK": "Tumma teema"
     }
   }
 }

@@ -13,7 +13,8 @@
       "SETTINGS": "Instellingen",
       "ABOUT": "Info",
       "LANGUAGE": "Taal",
-      "SEARCH": "Zoeken"
+      "SEARCH": "Zoeken",
+      "APPEARANCE": "Vormgeving"
     },
     "DIALOGS": {
       "CANCEL": "Annuleren",
@@ -78,6 +79,7 @@
       "RELEASE": "Te publiceren versie",
       "COLLABORATORS": "Samenwerkers",
       "SEE_RELEASES": "Versies weergeven",
+      "LOG_HISTORY": "Logboekgeschiedenis",
       "DOWNLOAD": "Downloaden",
       "SAVE_AS": "Opslaan als",
       "EDITORS_MENU": "Menu Editors",
@@ -98,6 +100,10 @@
       "NAME": "Naam",
       "DESCRIPTION": "Beschrijving",
       "TITLE": "Toepassingsnaam"
+    },
+    "THEME": {
+      "LIGHT": "Licht thema",
+      "DARK": "Donker thema"
     }
   }
 }

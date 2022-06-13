@@ -4,6 +4,7 @@
       "VALIDATE": "VALIDIEREN",
       "RELEASE": "Version",
       "SAVE_AS": "Speichern unter",
+      "SAVE_AS_ICON": "Als Symbol speichern",
       "DOWNLOAD": "Projekt herunterladen",
       "VIEW_RELEASES": "Versionen anzeigen",
       "VERSION": "Version"
@@ -25,10 +26,19 @@
     "VALUE": "Wert",
     "EXPRESSION": "Ausdruck",
     "TYPE": "Typ",
+    "DISPLAY_NAME_VISIBILITY": {
+      "YES": "Ja",
+      "NO": "Nein",
+      "DISPLAY_NAME": "Namen anzeigen",
+      "DISPLAY_NAME_AVAILABILITY": "In der Webanwendung verfügbar",
+      "ENTER_DISPLAY_NAME": "Anzeigenamen eingeben",
+      "DISPLAY_NAME_TOOLTIP": "Der Anzeigename wird in der Webanwendung verwendet, zum Beispiel als Spaltenname in der Aufgabenliste, in der Prozessliste und in der API."
+    },
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Ein Name ist erforderlich",
         "EMPTY_TYPE": "Ein Typ ist erforderlich",
+        "EMPTY_DISPLAY_NAME": "Ein Anzeigename ist erforderlich",
         "INVALID_NAME": "Ungültiger Variablenname",
         "VARIABLE_NAME_TOOLTIP": "Der Name muss mit einem Buchstaben beginnen und darf nur alphanumerische Zeichen und Unterstriche enthalten",
         "NAME_ALREADY_EXISTS": "Variablennamen müssen eindeutig sein",

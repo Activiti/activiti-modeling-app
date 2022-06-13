@@ -53,7 +53,8 @@
       "SCRIPTS": "Scripts",
       "TRIGGERS": "Triggere",
       "DATA_MODELS": "Datamodeller",
-      "AUTHENTICATIONS": "Godkendelser"
+      "AUTHENTICATIONS": "Godkendelser",
+      "FORM_WIDGETS": "Formularwidget"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Opret proces",
@@ -190,7 +191,7 @@
       "AUTHENTICATION_UPDATED": "Godkendelse gemt"
     },
     "ERROR": {
-      "UPLOAD_DUPLICATE_FILE": "{{modelType}} med samme navn findes allerede",
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} med samme navn findes allerede.",
       "UPLOAD_FILE": "Der opstod et problem under upload af filen. Prøv at uploade den igen.",
       "DELETE_PROJECT": "Der opstod et problem under sletning af projektet. Prøv at slette det igen.",
       "ADD_TO_FAVORITES": "Vi stødte på et problem under tilføjelse af projektet til favoritter. Prøv at tilføje det igen.",

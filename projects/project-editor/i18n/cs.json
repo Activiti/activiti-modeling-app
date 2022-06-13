@@ -53,7 +53,8 @@
       "SCRIPTS": "Skripty",
       "TRIGGERS": "Aktivační procedury",
       "DATA_MODELS": "Datové modely",
-      "AUTHENTICATIONS": "Ověřování"
+      "AUTHENTICATIONS": "Ověřování",
+      "FORM_WIDGETS": "Widgety formulářů"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Vytvořit proces",
@@ -190,7 +191,7 @@
       "AUTHENTICATION_UPDATED": "Ověřování uloženo"
     },
     "ERROR": {
-      "UPLOAD_DUPLICATE_FILE": "{{modelType}} se stejným názvem již existuje",
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} se stejným názvem již existuje.",
       "UPLOAD_FILE": "Došlo k problému při odesílání souboru. Zkuste ho odeslat znovu.",
       "DELETE_PROJECT": "Došlo k problému při odstraňování projektu. Zkuste ho odstranit znovu.",
       "ADD_TO_FAVORITES": "Při přidávání projektu do oblíbených se vyskytl problém. Zkuste ho přidat znovu.",

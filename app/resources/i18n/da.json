@@ -13,7 +13,8 @@
       "SETTINGS": "Indstillinger",
       "ABOUT": "Om",
       "LANGUAGE": "Sprog",
-      "SEARCH": "Søg"
+      "SEARCH": "Søg",
+      "APPEARANCE": "Udseende"
     },
     "DIALOGS": {
       "CANCEL": "Annuller",
@@ -78,6 +79,7 @@
       "RELEASE": "Frigiv",
       "COLLABORATORS": "Samarbejdspartnere",
       "SEE_RELEASES": "Vis frigivelser",
+      "LOG_HISTORY": "Loghistorie",
       "DOWNLOAD": "Download",
       "SAVE_AS": "Gem som",
       "EDITORS_MENU": "Menuen Editorer",
@@ -98,6 +100,10 @@
       "NAME": "Navn",
       "DESCRIPTION": "Beskrivelse",
       "TITLE": "Programtitel"
+    },
+    "THEME": {
+      "LIGHT": "Tema lyst",
+      "DARK": "Tema mørkt"
     }
   }
 }

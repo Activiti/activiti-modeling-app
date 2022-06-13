@@ -13,7 +13,8 @@
       "SETTINGS": "设置",
       "ABOUT": "关于",
       "LANGUAGE": "语言",
-      "SEARCH": "搜索"
+      "SEARCH": "搜索",
+      "APPEARANCE": "外观"
     },
     "DIALOGS": {
       "CANCEL": "取消",
@@ -78,6 +79,7 @@
       "RELEASE": "发布",
       "COLLABORATORS": "协作者",
       "SEE_RELEASES": "查看发布",
+      "LOG_HISTORY": "日志历史记录",
       "DOWNLOAD": "下载",
       "SAVE_AS": "保存为",
       "EDITORS_MENU": "编辑菜单",
@@ -98,6 +100,10 @@
       "NAME": "名称",
       "DESCRIPTION": "说明",
       "TITLE": "应用程序标题"
+    },
+    "THEME": {
+      "LIGHT": "浅色主题",
+      "DARK": "深色主题"
     }
   }
 }

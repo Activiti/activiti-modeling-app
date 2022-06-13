@@ -4,6 +4,7 @@
       "VALIDATE": "検証",
       "RELEASE": "リリース",
       "SAVE_AS": "名前を付けて保存",
+      "SAVE_AS_ICON": "アイコンとして保存",
       "DOWNLOAD": "プロジェクトのダウンロード",
       "VIEW_RELEASES": "リリースの表示",
       "VERSION": "バージョン"
@@ -25,10 +26,19 @@
     "VALUE": "値",
     "EXPRESSION": "式",
     "TYPE": "タイプ",
+    "DISPLAY_NAME_VISIBILITY": {
+      "YES": "はい",
+      "NO": "いいえ",
+      "DISPLAY_NAME": "表示名",
+      "DISPLAY_NAME_AVAILABILITY": "Webアプリケーションで利用可能",
+      "ENTER_DISPLAY_NAME": "表示名の入力",
+      "DISPLAY_NAME_TOOLTIP": "表示名は、タスクリスト、プロセスリスト、API の列名など、Web アプリケーションで使用されます。"
+    },
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "名前は必須です",
         "EMPTY_TYPE": "タイプは必須です",
+        "EMPTY_DISPLAY_NAME": "表示名は必須です",
         "INVALID_NAME": "無効な変数名",
         "VARIABLE_NAME_TOOLTIP": "名前は文字で始まり、英数字とアンダースコアしか使用できません",
         "NAME_ALREADY_EXISTS": "変数名は固有な必要があります",

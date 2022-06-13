@@ -4,6 +4,7 @@
       "VALIDATE": "Vahvista",
       "RELEASE": "Julkaisu",
       "SAVE_AS": "Tallenna nimellä",
+      "SAVE_AS_ICON": "Tallenna kuvakkeena",
       "DOWNLOAD": "Lataa projekti",
       "VIEW_RELEASES": "Näytä julkaisut",
       "VERSION": "Versio"
@@ -25,10 +26,19 @@
     "VALUE": "Arvo",
     "EXPRESSION": "Lauseke",
     "TYPE": "Tyyppi",
+    "DISPLAY_NAME_VISIBILITY": {
+      "YES": "Kyllä",
+      "NO": "Ei",
+      "DISPLAY_NAME": "Näyttönimi",
+      "DISPLAY_NAME_AVAILABILITY": "Saatavana verkkosovelluksena",
+      "ENTER_DISPLAY_NAME": "Syötä näytön nimi",
+      "DISPLAY_NAME_TOOLTIP": "Näyttönimeä käytetään verkkosovelluksessa, esimerkiksi sarakkeen nimenä tehtäväluettelossa, prosessiluettelossa ja API:ssa."
+    },
     "VARIABLES_EDITOR": {
       "ERRORS": {
         "EMPTY_NAME": "Nimi on pakollinen",
         "EMPTY_TYPE": "Tyyppi on pakollinen",
+        "EMPTY_DISPLAY_NAME": "Näyttönimi vaaditaan",
         "INVALID_NAME": "Virheellinen muuttujanimi",
         "VARIABLE_NAME_TOOLTIP": "Nimen tulee alkaa kirjaimella, ja se voi sisältää ainoastaan aakkosnumeerisia merkkejä ja alaviivoja",
         "NAME_ALREADY_EXISTS": "Muuttujanimien tulee olla yksilöllisiä",

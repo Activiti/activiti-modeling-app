@@ -53,7 +53,8 @@
       "SCRIPTS": "Skripte",
       "TRIGGERS": "Trigger",
       "DATA_MODELS": "Datenmodelle",
-      "AUTHENTICATIONS": "Authentifizierungen"
+      "AUTHENTICATIONS": "Authentifizierungen",
+      "FORM_WIDGETS": "Formular-Widgets"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Prozess erstellen",

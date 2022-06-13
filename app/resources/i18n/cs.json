@@ -13,7 +13,8 @@
       "SETTINGS": "Nastavení",
       "ABOUT": "O aplikaci",
       "LANGUAGE": "Jazyk",
-      "SEARCH": "Hledat"
+      "SEARCH": "Hledat",
+      "APPEARANCE": "Vzhled"
     },
     "DIALOGS": {
       "CANCEL": "Zrušit",
@@ -78,6 +79,7 @@
       "RELEASE": "Vzdát se",
       "COLLABORATORS": "Spolupracovníci",
       "SEE_RELEASES": "Zobrazit verze",
+      "LOG_HISTORY": "Historie protokolu",
       "DOWNLOAD": "Stáhnout",
       "SAVE_AS": "Uložit jako",
       "EDITORS_MENU": "Nabídka Editory",
@@ -98,6 +100,10 @@
       "NAME": "Název",
       "DESCRIPTION": "Popis",
       "TITLE": "Název aplikace"
+    },
+    "THEME": {
+      "LIGHT": "Světlý motiv",
+      "DARK": "Tmavý motiv"
     }
   }
 }

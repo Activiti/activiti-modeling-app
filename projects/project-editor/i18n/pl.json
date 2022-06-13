@@ -53,7 +53,8 @@
       "SCRIPTS": "Skrypty",
       "TRIGGERS": "Wyzwalacze",
       "DATA_MODELS": "Modele danych",
-      "AUTHENTICATIONS": "Uwierzytelnienia"
+      "AUTHENTICATIONS": "Uwierzytelnienia",
+      "FORM_WIDGETS": "Widżety formularza"
     },
     "PROCESS_DIALOG": {
       "TITLE_CREATE": "Utwórz proces",
@@ -190,7 +191,7 @@
       "AUTHENTICATION_UPDATED": "Zapisano uwierzytelnianie"
     },
     "ERROR": {
-      "UPLOAD_DUPLICATE_FILE": "{{modelType}} o tej nazwie już istnieje",
+      "UPLOAD_DUPLICATE_FILE": "{{modelType}} o tej samej nazwie już istnieje",
       "UPLOAD_FILE": "Wystąpił problem podczas przesyłania pliku. Spróbuj przesłać go ponownie.",
       "DELETE_PROJECT": "Wystąpił problem podczas usuwania projektu. Spróbuj usunąć go ponownie.",
       "ADD_TO_FAVORITES": "Wystąpił problem podczas dodawania projektu do ulubionych. Spróbuj dodać go ponownie.",
