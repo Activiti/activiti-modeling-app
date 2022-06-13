@@ -16,12 +16,13 @@
  */
 
 import { Component, Inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { PROCESS_MODEL_ENTITY_SELECTORS, selectSelectedElement } from '../../../store/process-editor.selectors';
+import { PROCESS_MODEL_ENTITY_SELECTORS } from '../../../store/process-editor.selectors';
 import { filter, switchMap, take, takeUntil } from 'rxjs/operators';
 import { AmaState, ModelEntitySelectors } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { CardItemTypeService } from '@alfresco/adf-core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'ama-card-process-version',
@@ -37,14 +38,15 @@ export class CardProcessVersionItemComponent implements OnInit, OnDestroy {
     constructor(
         private store: Store<AmaState>,
         @Inject(PROCESS_MODEL_ENTITY_SELECTORS)
-        private entitySelector: ModelEntitySelectors
+        private entitySelector: ModelEntitySelectors,
+        private route: ActivatedRoute
     ) {}
 
     ngOnInit() {
-        this.store.select(selectSelectedElement)
+        this.route.params
             .pipe(
                 take(1),
-                switchMap(selectedElement => this.store.select(this.entitySelector.selectModelMetadataById(selectedElement.processId.split('model-')[1]))),
+                switchMap((params) => this.store.select(this.entitySelector.selectModelMetadataById(params.modelId))),
                 filter(metadata => !!metadata),
                 takeUntil(this.onDestroy$)
             ).subscribe(metadata => {

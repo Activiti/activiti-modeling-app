@@ -52,7 +52,7 @@ export const mockProcessModel: Process = {
     lastModifiedDate: new Date(),
     lastModifiedBy: 'test',
     description: '',
-    version: '',
+    version: '0.0.1',
     scope: ModelScope.GLOBAL,
     projectIds: [],
     extensions: {
