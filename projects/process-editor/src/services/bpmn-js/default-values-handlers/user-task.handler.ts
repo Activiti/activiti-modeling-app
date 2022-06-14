@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+/* eslint-disable no-prototype-builtins */
 import CommandInterceptor from 'diagram-js/lib/command/CommandInterceptor';
 import * as inherits from 'inherits';
 import { updateShapeProperty } from '../property-handlers/update-shape-property.handler';
@@ -28,16 +29,36 @@ export function UserTaskDefaultValuesHandler(eventBus, elementRegistry) {
 
     this.postExecuted(
         'shape.create',
-        context => {
-            const element = elementRegistry.get(context.shape.id);
-
-            if (element.type === BpmnElement.UserTask) {
-                updateShapeProperty(element, BpmnProperty.assignee, ASSIGNEE_DEFAULT_VALUE);
-                updateShapeProperty(element, BpmnProperty.priority, PRIORITY_DEFAULT_VALUE);
-            }
-        },
+        context => execute(context, elementRegistry),
         true
     );
+}
+
+export function execute(context, elementRegistry) {
+    const element = elementRegistry.get(context.shape.id);
+
+    if (element.type === BpmnElement.UserTask && businessObjectHasNoAssignment(element.businessObject)) {
+        updateShapeProperty(element, BpmnProperty.assignee, ASSIGNEE_DEFAULT_VALUE);
+        updateShapeProperty(element, BpmnProperty.priority, PRIORITY_DEFAULT_VALUE);
+    }
+
+    if (element.type === BpmnElement.UserTask && element.businessObject.assignee === ASSIGNEE_DEFAULT_VALUE &&
+        businessObjectHasCandidates(element.businessObject)) {
+        removeDefaultAssignee(element);
+    }
+}
+
+export function businessObjectHasNoAssignment(businessObject) {
+    return !businessObject.hasOwnProperty(BpmnProperty.assignee) &&
+        !businessObject.hasOwnProperty(BpmnProperty.candidateUsers) && !businessObject.hasOwnProperty(BpmnProperty.candidateGroups);
+}
+
+export function businessObjectHasCandidates(businessObject) {
+    return businessObject.hasOwnProperty(BpmnProperty.candidateUsers) || businessObject.hasOwnProperty(BpmnProperty.candidateGroups);
+}
+
+export function removeDefaultAssignee(element) {
+    updateShapeProperty(element, BpmnProperty.assignee, null);
 }
 
 inherits(UserTaskDefaultValuesHandler, CommandInterceptor);

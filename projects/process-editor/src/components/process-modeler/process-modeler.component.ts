@@ -131,24 +131,4 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
         this.onDestroy$.complete();
         this.processModelerService.destroy();
     }
-
-    fitViewPort() {
-        this.processModelerService.fitViewPort();
-    }
-
-    zoomIn() {
-        this.processModelerService.zoomIn();
-    }
-
-    zoomOut() {
-        this.processModelerService.zoomOut();
-    }
-
-    undo() {
-        this.processModelerService.undo();
-    }
-
-    redo() {
-        this.processModelerService.redo();
-    }
 }

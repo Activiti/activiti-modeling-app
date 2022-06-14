@@ -95,8 +95,10 @@ export class TabManagerService {
 
     updateTabTitle(newTitle: string, modelId: string | number) {
         const currentTabIndex = this.getTabIndexByModelId(<string>modelId);
-        this.tabs[currentTabIndex].title = newTitle;
-        this.tabSub.next(this.tabs);
+        if (this.tabs[currentTabIndex]) {
+            this.tabs[currentTabIndex].title = newTitle;
+            this.tabSub.next(this.tabs);
+        }
     }
 
 }
