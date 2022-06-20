@@ -36,6 +36,13 @@
         margin-right: 12px;
     }
 
+    adf-notification-history {
+        .mat-badge-content {
+            background: var(--theme-primary-color);
+        }
+        margin-right: 12px;
+    }
+
     &-action {
         display: flex;
         flex-direction: row;
