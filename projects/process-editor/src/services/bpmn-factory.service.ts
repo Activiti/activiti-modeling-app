@@ -32,6 +32,7 @@ import { ScriptRenderModule } from './bpmn-js/renderers/script.renderer';
 import { UserTaskDefaultValuesBpmnJsModule } from './bpmn-js/default-values-handlers/user-task.handler';
 import { CustomReplaceMenuProviderBpmnJsModule } from './replace-menu/custom-replace-menu.provider';
 import { CallActivityDefaultValuesBpmnJsModule } from './bpmn-js/default-values-handlers/call-activity.handler';
+import { CustomContextPadProviderBpmnJsModule } from './context-pad/custom-context-pad.provider';
 
 const activitiModdleDescriptor = require('./activiti.json');
 const redefineModdleDescriptor = require('./redefine-bpmn.json');
@@ -59,7 +60,8 @@ export class BpmnFactoryService implements BpmnFactory {
                 { clipboard: ['value', this.clipboardService] },
                 ...this.getBpmnPropertiesPanelConfig(),
                 ...this.getDefaultValuesBpmnJsModules(),
-                CustomReplaceMenuProviderBpmnJsModule
+                CustomReplaceMenuProviderBpmnJsModule,
+                CustomContextPadProviderBpmnJsModule,
             ],
             moddleExtensions: { activiti: activitiModdleDescriptor, bpmn: redefineModdleDescriptor }
         });

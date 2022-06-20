@@ -126,6 +126,11 @@ export const elementsProperties = {
         BpmnProperty.documentation,
         ...(isExclusiveGateway(element) || isConditionalFlow(element) || isInclusiveGateway(element) ? [BpmnProperty.conditionExpression] : []),
     ],
+    [BpmnElement.Gateway]: [
+        BpmnProperty.id,
+        BpmnProperty.name,
+        BpmnProperty.documentation
+    ],
     [BpmnElement.ExclusiveGateway]: [
         BpmnProperty.id,
         BpmnProperty.name,

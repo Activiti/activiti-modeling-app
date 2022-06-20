@@ -45,6 +45,7 @@ export enum BpmnElement {
     BoundaryEvent = 'bpmn:BoundaryEvent',
     SequenceFlow = 'bpmn:SequenceFlow',
     Participant = 'bpmn:Participant',
+    Gateway = 'bpmn:Gateway',
     ExclusiveGateway = 'bpmn:ExclusiveGateway',
     FormalExpression = 'bpmn:FormalExpression',
     ParallelGateway = 'bpmn:ParallelGateway',
