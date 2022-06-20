@@ -113,7 +113,6 @@
     "studioLayoutNavigationData": {
         "process": [
             {
-                "header_label": "NEW_STUDIO_DASHBOARD.NAVIGATION.FAVORITE_PROJECTS.HEADER_LABEL",
                 "label": "NEW_STUDIO_DASHBOARD.NAVIGATION.FAVORITE_PROJECTS.LABEL",
                 "title": "DASHBOARD.NAVIGATION.FAVORITE_PROJECTS.TOOLTIP",
                 "disabled": false,
@@ -136,7 +135,6 @@
                 ]
             },
             {
-                "header_label": "NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.HEADER_LABEL",
                 "label": "NEW_STUDIO_DASHBOARD.NAVIGATION.ALL_PROJECTS.LABEL",
                 "title": "DASHBOARD.NAVIGATION.ALL_PROJECTS.TOOLTIP",
                 "disabled": false,

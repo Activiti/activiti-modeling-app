@@ -18,7 +18,6 @@
 import { AppConfigService } from '@alfresco/adf-core';
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, OnInit } from '@angular/core';
 export interface NavigableItem {
-    header_label: string;
     label: string;
     title: string;
     disabled: boolean;

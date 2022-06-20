@@ -36,7 +36,6 @@ describe('MainNavigationHeaderComponent', () => {
     const mockNavigationData = {
         process: [
             {
-                header_label: 'header_1',
                 label: 'label_1',
                 title: 'title_1',
                 disabled: false,
@@ -45,7 +44,6 @@ describe('MainNavigationHeaderComponent', () => {
                 }
             },
             {
-                header_label: 'header_2',
                 label: 'label_2',
                 title: 'title_2',
                 disabled: false,
@@ -112,7 +110,7 @@ describe('MainNavigationHeaderComponent', () => {
 
     it('should show the header as My Projects on routing to /projects', () => {
         const title = fixture.debugElement.query(By.css('.studio-project-list-header-title'));
-        expect(title.nativeElement.textContent).toEqual(' header_2 ');
+        expect(title.nativeElement.textContent).toEqual(' label_2 ');
     });
 
     it('should dispatch correct action on click of action button', () => {

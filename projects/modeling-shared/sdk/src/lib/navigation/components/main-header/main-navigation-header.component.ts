@@ -91,7 +91,7 @@ export class MainNavigationHeaderComponent implements OnInit, OnDestroy {
         Object.values(this.navigation).find(data => {
             const navigationDetails = data.find(nav => this.url === nav.route.url);
             if (navigationDetails) {
-                this.headerLabel$.next(navigationDetails.header_label);
+                this.headerLabel$.next(navigationDetails.label);
                 this.actions = navigationDetails.actions;
             }
         });
