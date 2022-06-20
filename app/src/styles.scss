@@ -66,6 +66,7 @@ $defaults: (
   --theme-ama-palette-bg-color: mat-color($foreground, text, 0.03),
   --theme-ama-palette-separator-color: mat-color($foreground, text, 0.05),
   --theme-ama-var-selector-bg-color: mat-color($foreground, text, 0.05),
+  --theme-ama-studio-bg-color: var(--adf-snackbar-info-action-color),
   --theme-ama-var-selector-selected-text-bg-color: mat-color($foreground, text, 0.1),
   --theme-ama-form-editor-btn-color: mat-color($foreground, text, 0.25),
   --theme-ama-form-editor-btn-hover-color: mat-color($foreground, text, 1),
@@ -85,6 +86,11 @@ $defaults: (
   --adf-card-view-datetime-border-color: mat-color($foreground, text, 0.42),
   --theme-document-color: #00953b,
   --theme-ama-log-panel-bg-color: mat-color($foreground, text, 0.01),
+  --theme-dark-background-color: #424242,
+  --theme-dark-mat-drawer-background-color: #303030,
+  --theme-dark-header-toolbar-color: #212121,
+  --theme-dark-monoco-editor-color: black,
+  --theme-light-monoco-editor-color: #fffffe,
 
   // ADF components and services
   --adf-snackbar-error-bg-color: mat-color($warn),
@@ -107,9 +113,38 @@ $defaults: (
 body {
     @include angular-material-theme($theme);
     @include adf-core-theme($theme);
+    background-color: var(--adf-snackbar-info-action-color);
+    .mat-drawer-content {
+      background-color: var(--adf-snackbar-info-action-color);
+    }
+
+    .monaco-editor {
+      background-color: var(--theme-light-monoco-editor-color);
+    }
+
+    .ama-model-header .mat-toolbar-single-row {
+      background-color: var(--theme-card-bg-color);
+    }
 }
 
 body.dark-theme {
     @include angular-material-theme($dark-theme);
     @include adf-core-theme($dark-theme);
+    background-color: var(--theme-dark-background-color);
+
+    .mat-drawer-content {
+      background-color: var(--theme-dark-mat-drawer-background-color);
+    }
+
+    .monaco-editor {
+      background-color: var(--theme-dark-monoco-editor-color);
+
+      &-background {
+        background-color: var(--theme-dark-monoco-editor-color);
+      }
+    }
+
+    .ama-model-header .mat-toolbar-single-row {
+      background: var(--theme-dark-header-toolbar-color);
+    }
 }

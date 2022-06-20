@@ -83,6 +83,9 @@ $defaults: (
     'theme-adf-picture-1-font-size'
   ),
   --adf-card-view-datetime-border-color: mat-color($foreground, text, 0.42),
+  --theme-dark-background-color: #424242,
+  --theme-dark-mat-drawer-background-color: #303030,
+  --theme-dark-header-toolbar-color: #212121,
 
   // ADF components and services
   --adf-snackbar-error-bg-color: mat-color($warn),
@@ -105,9 +108,26 @@ $defaults: (
 body {
     @include angular-material-theme($theme);
     @include adf-core-theme($theme);
+    background-color: var(--adf-snackbar-info-action-color);
+
+    .mat-drawer-content {
+      background-color: var(--adf-snackbar-info-action-color);
+    }
+
+    .ama-model-header .mat-toolbar-single-row {
+      background-color: var(--theme-card-bg-color);
+    }
 }
 
 body.dark-theme {
     @include angular-material-theme($dark-theme);
     @include adf-core-theme($dark-theme);
+    background-color: var(--theme-dark-background-color);
+    .mat-drawer-content {
+      background-color: var(--theme-dark-mat-drawer-background-color);
+    }
+
+    .ama-model-header .mat-toolbar-single-row {
+      background: var(--theme-dark-header-toolbar-color);
+    }
 }
