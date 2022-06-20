@@ -15,15 +15,20 @@
  * limitations under the License.
  */
 
-import { BpmnProperty } from '@alfresco-dbp/modeling-shared/sdk';
+import { CallActivityDefaultValuesHandler } from './call-activity.handler';
 
-const propertyKey = BpmnProperty.inheritBusinessKey;
+describe('CallActivityDefaultValuesHandler', () => {
 
-const get = (element) => !!element.businessObject[propertyKey];
+    const eventBus = {
+        on: jest.fn()
+    };
 
-const set = (modeling: Bpmn.Modeling, element: Bpmn.DiagramElement, value: any) => {
-    element.businessObject[propertyKey] = value;
-    modeling.updateProperties(element, {});
-};
+    const elementRegistry = {
+        get: jest.fn()
+    };
 
-export const inheritBusinessKeyHandler = { get, set };
+    it('should be defined', () => {
+        const handler = new CallActivityDefaultValuesHandler(eventBus, elementRegistry);
+        expect(handler).not.toBe(undefined);
+    });
+});

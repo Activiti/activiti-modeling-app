@@ -27,7 +27,7 @@ export function createInheritBusinessKeyProperty({ element }: FactoryProps) {
         label: 'PROCESS_EDITOR.ELEMENT_PROPERTIES.INHERIT_BUSINESS_KEY',
         value: ElementHelper.getProperty(element, propertyName),
         key: propertyName,
-        default: true,
+        default: false,
         editable: true,
         data: { id: element.id }
     });

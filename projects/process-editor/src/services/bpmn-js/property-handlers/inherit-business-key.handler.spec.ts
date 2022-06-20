@@ -29,7 +29,7 @@ describe('inheritBusinessKey', () => {
     beforeEach(() => {
         handler = handlers[property];
         modeling = getModelingMock();
-        mockElement = getDiagramElementMock({ $attrs: { [property]: true } });
+        mockElement = getDiagramElementMock({ [property]: true });
         mockElement.type = BpmnElement.CallActivity;
     });
 

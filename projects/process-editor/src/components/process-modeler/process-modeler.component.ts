@@ -24,8 +24,6 @@ import {
     ProcessModelerServiceToken,
     ProcessModelerService,
     SetAppDirtyStateAction,
-    BpmnElement,
-    BpmnProperty,
     StatusBarService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { Store } from '@ngrx/store';
@@ -38,7 +36,6 @@ import { ProcessDiagramLoaderService } from '../../services/process-diagram-load
 import { createSelectedElement, SelectedProcessElement } from '../../store/process-editor.state';
 import { TaskAssignmentService } from '../../services/cardview-properties/task-assignment-item/task-assignment.service';
 import { selectSelectedElement } from '../../store/process-editor.selectors';
-// import { ProcessModelerServiceImplementation } from '../../services/process-modeler.service';
 
 @Component({
     selector: 'ama-process-modeler',
@@ -98,12 +95,7 @@ export class ProcessModelerComponent implements OnInit, OnDestroy {
                     );
                 }
             },
-            createHandler: event => {
-                const element = createSelectedElement(event.elements[0]);
-                if (element.type === BpmnElement.CallActivity) {
-                    this.processModelerService.updateElementProperty(element.id, BpmnProperty.inheritBusinessKey, true);
-                }
-            },
+            createHandler: () => { },
             copyActionHandler: () => {
                 this.taskAssignmentService.copyActionHandler(this.currentProcessSelected);
             },

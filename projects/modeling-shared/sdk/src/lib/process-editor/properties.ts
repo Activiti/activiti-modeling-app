@@ -55,7 +55,7 @@ export enum BpmnProperty {
     emailServiceTask = 'emailServiceTask',
     docgenServiceTask = 'docgenServiceTask',
     contentServiceTask = 'contentServiceTask',
-    inheritBusinessKey = 'activiti:inheritBusinessKey'
+    inheritBusinessKey = 'inheritBusinessKey'
 }
 
 export enum BpmnCompositeProperty {

@@ -364,8 +364,7 @@
                 {
                     "name": "inheritBusinessKey",
                     "isAttr": true,
-                    "type": "Boolean",
-                    "default": true
+                    "type": "Boolean"
                 }
             ]
         },

@@ -31,6 +31,7 @@ import { DecisionTableRenderModule } from './bpmn-js/renderers/decision-table.re
 import { ScriptRenderModule } from './bpmn-js/renderers/script.renderer';
 import { UserTaskDefaultValuesBpmnJsModule } from './bpmn-js/default-values-handlers/user-task.handler';
 import { CustomReplaceMenuProviderBpmnJsModule } from './replace-menu/custom-replace-menu.provider';
+import { CallActivityDefaultValuesBpmnJsModule } from './bpmn-js/default-values-handlers/call-activity.handler';
 
 const activitiModdleDescriptor = require('./activiti.json');
 const redefineModdleDescriptor = require('./redefine-bpmn.json');
@@ -83,7 +84,8 @@ export class BpmnFactoryService implements BpmnFactory {
 
     protected getDefaultValuesBpmnJsModules() {
         return [
-            UserTaskDefaultValuesBpmnJsModule
+            UserTaskDefaultValuesBpmnJsModule,
+            CallActivityDefaultValuesBpmnJsModule
         ];
     }
 }
