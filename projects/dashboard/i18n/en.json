@@ -72,7 +72,7 @@
                 "TOOLTIP": "All Published Projects",
                 "ACTIONS": {
                     "CREATE": "Create Project",
-                    "UPLOAD": "Upload"
+                    "UPLOAD": "Upload Project"
                 }
             },
             "FAVORITE_PROJECTS": {
@@ -113,6 +113,11 @@
         "REMOVE_FROM_FAVORITES": "Project removed from favorites",
         "ERROR": {
             "LOAD_FAVORITE_PROJECTS": "We hit a problem loading the favorite projects. Try refreshing the page."
+        }
+    },
+    "SEARCH": {
+        "BUTTON": {
+            "TOOLTIP": "Search"
         }
     }
 }
