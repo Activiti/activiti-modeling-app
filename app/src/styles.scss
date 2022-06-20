@@ -44,7 +44,7 @@ $defaults: (
   --theme-text-bold-color: mat-color($foreground, text, 0.87),
   --theme-title-color: mat-color($foreground, text, 0.87),
   --theme-text-disabled-color: mat-color($foreground, text, 0.38),
-  --theme-text-selection-color: mat-color($foreground, text, 0.3),
+  --theme-text-selection-color: rgba(255, 198, 0, 0.24),
   --theme-border-color: mat-color($foreground, text, 0.07),
   --theme-border-color-light: mat-color($foreground, text, 0.2),
   --theme-card-background-color: mat-color($background, card),
@@ -83,6 +83,7 @@ $defaults: (
   --theme-subheading-2-font-size: mat-font-size($alfresco-typography, subheading-2),
   --theme-headline-line-height: mat-line-height($alfresco-typography, headline),
   --theme-card-bg-color: mat-color($background, card),
+  --theme-colors-mat-grey-dark: mat-color($mat-grey, A400),
   --adf-card-view-datetime-border-color: mat-color($foreground, text, 0.42),
   --theme-document-color: #00953b,
   --theme-ama-log-panel-bg-color: mat-color($foreground, text, 0.01),
@@ -91,6 +92,7 @@ $defaults: (
   --theme-dark-header-toolbar-color: #212121,
   --theme-dark-monoco-editor-color: black,
   --theme-light-monoco-editor-color: #fffffe,
+  --theme-ama-border-color: #dce0e6,
 
   // ADF components and services
   --adf-snackbar-error-bg-color: mat-color($warn),

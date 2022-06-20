@@ -3,7 +3,7 @@
     width: 100%;
 
     .mat-tab-header {
-        border: 0.5px solid var(--theme-studio-gray-color);
+        background: var(--theme-card-bg-color);
     }
 
     .mat-ink-bar {
@@ -13,8 +13,7 @@
 
     .mat-tab-label {
         background: var(--theme-studio-background);
-        border-right: 2px solid var(--theme-studio-background);
-        border-left: 1px solid var(--theme-studio-background);
+        border-right: 1px solid var(--theme-ama-border-color);
         padding: 5px;
     }
 
@@ -42,6 +41,7 @@
 
     .ama-tab-model-icon-close {
         font-size: 15px;
+        font-weight: bolder;
     }
 
     .ama-tab-model-icon {

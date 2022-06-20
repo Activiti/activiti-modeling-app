@@ -17,7 +17,7 @@
             display: flex;
             flex: 0 0 auto;
             padding: 6px 7px;
-            height: 25px;
+            height: 36px;
             align-items: center;
             justify-content: space-between;
         }
@@ -55,6 +55,7 @@
         align-items: center;
 
         .app-navigation-new-button-label {
+            margin-left: 14px;
             display: none;
         }
 

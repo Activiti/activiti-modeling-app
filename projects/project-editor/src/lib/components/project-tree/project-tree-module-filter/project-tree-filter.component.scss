@@ -72,6 +72,7 @@
         height: 22px;
         line-height: 20px;
         display: inline-block;
+        color: var(--theme-text-color);
 
         &.ama-filter-icon {
             color: var(--theme-primary-color);
@@ -123,7 +124,7 @@
         font-size: 12px;
         white-space: nowrap;
         height: 26px;
-        width: 100%;
+        width: calc(100% - 20px);
         line-height: 26px;
         overflow: hidden;
         text-overflow: ellipsis;
