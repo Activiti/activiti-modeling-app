@@ -35,16 +35,23 @@ import { ModelOpenedAction } from '../../store/project.actions';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { Location } from '@angular/common';
+import { EntityCacheEffects, EntityDataModule, EntityDataService } from '@ngrx/data';
+import { TabManagerEntityService } from './tab-manager-entity.service';
+import { EffectsModule } from '@ngrx/effects';
+import { ScannedActionsSubject } from '@ngrx/store';
+import { TabModel } from '../../models/tab.model';
+import { map } from 'rxjs/operators';
+import { entityMetaData } from './tab-manager.module';
 
 const activatedRoute = {
     url: new Observable<any[]>(),
-    params: new BehaviorSubject<any>({modelId: 'fake-ui-id'}),
-    data: new BehaviorSubject<any>({ modelEntity: 'models'}),
+    params: new BehaviorSubject<any>({ modelId: 'fake-ui-id' }),
+    data: new BehaviorSubject<any>({ modelEntity: 'models' }),
 };
 
-const fakeEntityState =  {
-    entities: { models: { entities: []}, processes: { entities: [] } }
-  };
+const fakeEntityState = {
+    entities: { models: { entities: [] }, processes: { entities: [] } }
+};
 
 const fakeModelUI: Model = {
     id: 'fake-ui-id',
@@ -75,17 +82,19 @@ const fakeModelProcess: Model = {
 };
 
 function triggerModelIdChangeWithId(newModelId: string) {
-    activatedRoute.params.next( { modelId: newModelId });
+    activatedRoute.params.next({ modelId: newModelId });
 }
 
 describe('TabManagerComponent', () => {
     let fixture: ComponentFixture<TabManagerComponent>;
     let mockStore: MockStore;
     let location: Location;
-    let dispatchSpy: any;
+    let dispatchSpy: jest.SpyInstance;
     let dirtyStateSpy: any;
     let router: Router;
-    let tabManagerService: TabManagerService;
+    let tabManagerEntityService: TabManagerEntityService;
+    let tabListMock = [];
+    const tabSubjectMock = new BehaviorSubject<TabModel[]>(tabListMock);
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -95,7 +104,11 @@ describe('TabManagerComponent', () => {
                 MatTabsModule,
                 MatIconModule,
                 RouterTestingModule.withRoutes([]),
-                MatDialogModule
+                MatDialogModule,
+                EntityDataModule.forRoot({
+                    entityMetadata: entityMetaData
+                }),
+                EffectsModule.forRoot([])
             ],
             declarations: [
                 TabManagerComponent
@@ -103,19 +116,26 @@ describe('TabManagerComponent', () => {
             providers: [
                 { provide: ActivatedRoute, useValue: activatedRoute },
                 { provide: TranslationService, useClass: TranslationMock },
-                provideMockStore({initialState: fakeEntityState}),
+                provideMockStore({ initialState: fakeEntityState }),
                 {
                     provide: Router,
                     useValue: { navigate: jest.fn() }
                 },
                 TabManagerService,
-                DialogService
+                DialogService,
+                TabManagerEntityService,
+                { provide: EntityCacheEffects, useValue: {} },
+                { provide: EntityDataService, useValue: null },
+                ScannedActionsSubject
             ],
             schemas: [NO_ERRORS_SCHEMA]
         });
     });
 
     beforeEach(() => {
+        tabManagerEntityService = TestBed.inject(TabManagerEntityService);
+        tabManagerEntityService.entities$ = tabSubjectMock.asObservable();
+        tabManagerEntityService.filteredEntities$ = tabSubjectMock.asObservable().pipe(map((tabs) => tabs.filter(tab => tab.active)));
         fixture = TestBed.createComponent(TabManagerComponent);
         mockStore = TestBed.inject(MockStore);
         location = TestBed.inject(Location);
@@ -123,7 +143,6 @@ describe('TabManagerComponent', () => {
         jest.spyOn(fixture.componentInstance, 'canDeactivate').mockReturnValue(of(true));
         dirtyStateSpy = jest.spyOn(AppStateSelector, 'selectAppDirtyState');
         router = TestBed.inject(Router);
-        tabManagerService = TestBed.inject(TabManagerService);
 
         spyOn(EntitySelector, 'selectModelEntityByType').and.callFake((modelType, modelId) => {
             if (modelId === fakeModelUI.id) {
@@ -133,22 +152,47 @@ describe('TabManagerComponent', () => {
             }
         });
 
+        spyOn(tabManagerEntityService, 'addOneToCache').and.callFake((tabModel) => {
+            tabListMock.push(tabModel);
+            tabSubjectMock.next(tabListMock);
+        });
+
+        spyOn(tabManagerEntityService, 'removeOneFromCache').and.callFake((tabModel) => {
+            const removeTabIndex = tabListMock.findIndex((tab) => tab.id === tabModel.id);
+            tabListMock.splice(removeTabIndex, 1);
+            tabSubjectMock.next(tabListMock);
+        });
+
+        spyOn(tabManagerEntityService, 'updateOneInCache').and.callFake((tabModel) => {
+            const updateIndex = tabListMock.findIndex((tab) => tab.id === tabModel.id);
+            tabListMock[updateIndex] = tabModel;
+            tabSubjectMock.next(tabListMock);
+        });
+
+        spyOn(tabManagerEntityService, 'updateManyInCache').and.callFake((changedTabModels: TabModel[]) => {
+            tabListMock.map(tab => changedTabModels.find(changedTab => changedTab.id === tab.id) || tab);
+            tabSubjectMock.next(tabListMock);
+        });
     });
 
     afterEach(() => {
+        tabListMock = [];
+        tabSubjectMock.next([]);
         fixture.destroy();
+        jest.clearAllMocks();
     });
 
     it('should show a tab when a navigation to a new model navigation is triggered', async () => {
         dirtyStateSpy.mockReturnValue(false);
         triggerModelIdChangeWithId('fake-ui-id');
+
         fixture.detectChanges();
         await fixture.whenStable();
 
         const tabTitle = fixture.nativeElement.querySelector('.ama-tab-title');
         expect(tabTitle).toBeDefined();
         expect(tabTitle).not.toBeNull();
-        expect(tabTitle.textContent ).toBe(fakeModelUI.name);
+        expect(tabTitle.textContent).toBe(fakeModelUI.name);
     });
 
     it('should open a new tab for a model not already opened', async () => {
@@ -206,10 +250,11 @@ describe('TabManagerComponent', () => {
         const activeTabTitle = fixture.nativeElement.querySelector('.mat-tab-label-active .ama-tab-title');
         expect(activeTabTitle.textContent).toBe(fakeModelProcess.name);
 
-        const closeButton: HTMLButtonElement = fixture.nativeElement.querySelector('#model-tab-close-button-'+fakeModelProcess.id);
+        const closeButton: HTMLButtonElement = fixture.nativeElement.querySelector('#model-tab-close-button-' + fakeModelProcess.id);
         closeButton.click();
 
         fixture.detectChanges();
+        await fixture.whenStable();
 
         const tabTitles = fixture.nativeElement.querySelectorAll('.ama-tab-title');
         expect(tabTitles.length).toBe(1);
@@ -262,7 +307,7 @@ describe('TabManagerComponent', () => {
         expect(tabTitles.length).toBe(1);
     });
 
-    it('should trigger a MODEL_OPENED action when changing tab', async () =>{
+    it('should trigger a MODEL_OPENED action when opening tab', async () => {
         const expectedModelOpenedAction = new ModelOpenedAction({ id: fakeModelProcess.id, type: fakeModelProcess.type });
         fixture.detectChanges();
         triggerModelIdChangeWithId('fake-process-id');
@@ -270,7 +315,9 @@ describe('TabManagerComponent', () => {
         await fixture.whenStable();
 
         expect(dispatchSpy).toHaveBeenCalledWith(expectedModelOpenedAction);
-        expect(dispatchSpy).toHaveBeenCalledTimes(1);
+        const dispatchCallList = dispatchSpy.mock.calls.flat();
+        const filteredCalls = dispatchCallList.filter((call) => call.type === expectedModelOpenedAction.type);
+        expect(filteredCalls.length).toBe(1);
         dispatchSpy.mockRestore();
     });
 
@@ -285,7 +332,7 @@ describe('TabManagerComponent', () => {
         fixture.detectChanges();
         await fixture.whenStable();
 
-        const uiTab = fixture.nativeElement.querySelector('[data-automation-id="model-tab-title-'+fakeModelUI.id+'"]');
+        const uiTab = fixture.nativeElement.querySelector('[data-automation-id="model-tab-title-' + fakeModelUI.id + '"]');
         uiTab.click();
 
         fixture.detectChanges();

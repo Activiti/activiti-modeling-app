@@ -1,15 +1,15 @@
-<mat-tab-group #tabs class="ama-tab-models" [selectedIndex]="selectedTabIndex$ | async" (selectedIndexChange)="onSelectedTabChanged($event)">
+<mat-tab-group #tabs class="ama-tab-models" [(selectedIndex)]="selectedTabIndex" (selectedIndexChange)="onSelectedTabChanged($event)">
     <mat-tab class="ama-tab-model" *ngFor="let tab of currentTabs$ | async; let tabIndex = index"  >
         <ng-template mat-tab-label>
             <div class="ama-tab-model-body">
-                <mat-icon class="ama-tab-model-icon" [attr.data-automation-id]="'model-tab-icon-'+tab.tabData.modelId">{{ tab.icon }}</mat-icon>
-                <p [attr.data-automation-id]="'model-tab-title-'+tab.tabData.modelId" class="ama-tab-title">{{ tab.title }}</p>
-                <button mat-icon-button [attr.data-automation-id]="'model-tab-close-button-'+tab.tabData.modelId"
-                        class="ama-tab-model-close" [id]="'model-tab-close-button-'+tab.tabData.modelId" (click)="onRemoveTab(tabIndex)">
+                <mat-icon class="ama-tab-model-icon" [attr.data-automation-id]="'model-tab-icon-'+tab.id">{{ tab.icon }}</mat-icon>
+                <p [attr.data-automation-id]="'model-tab-title-'+tab.id" class="ama-tab-title">{{ tab.title }}</p>
+                <button mat-icon-button [attr.data-automation-id]="'model-tab-close-button-'+tab.id"
+                        class="ama-tab-model-close" [id]="'model-tab-close-button-'+tab.id" (click)="onRemoveTab(tab)">
                     <mat-icon class="ama-tab-model-icon-close">close</mat-icon>
                 </button>
             </div>
         </ng-template>
-        <modelingsdk-model-editor #modelEditor [modelId]="tab.tabData.modelId" [modelType]="tab.tabData.modelType"></modelingsdk-model-editor>
+        <modelingsdk-model-editor #modelEditor [modelId]="tab.id" [modelType]="tab.modelType"></modelingsdk-model-editor>
     </mat-tab>
 </mat-tab-group>

@@ -15,19 +15,17 @@
  * limitations under the License.
  */
 
-import { MODEL_TYPE } from '../api/types';
-export class TabModel {
-    public id: string;
-    public title: string;
-    public icon: string;
-    public active: boolean;
-    public modelType: MODEL_TYPE;
+import { Injectable } from '@angular/core';
+import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
+import { TabModel } from '../../models/tab.model';
 
-   constructor(title: string, icon: string, modelId: string, modelType: MODEL_TYPE, active: boolean) {
-        this.id = modelId;
-        this.title = title;
-        this.icon = icon;
-        this.modelType = modelType;
-        this.active = active;
-    }
+@Injectable({
+    providedIn: 'root'
+})
+export class TabManagerEntityService extends EntityCollectionServiceBase<TabModel>{
+
+  constructor(serviceElementFactory: EntityCollectionServiceElementsFactory) {
+    super('TabModel', serviceElementFactory);
+  }
+
 }

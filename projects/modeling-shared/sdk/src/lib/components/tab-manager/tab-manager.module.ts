@@ -20,10 +20,21 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { EntityMetadataMap } from '@ngrx/data';
 import { ModelEditorModule } from '../../model-editor/model-editor.module';
 import { TabManagerService } from '../../services/tab-manager.service';
+import { TabManagerEntityService } from './tab-manager-entity.service';
 import { TabManagerComponent } from './tab-manager.component';
 
+export function activeTab(entities: { active: boolean }[]) {
+    return entities.filter(e => e.active === true);
+}
+
+export const entityMetaData: EntityMetadataMap = {
+    TabModel: {
+        filterFn : activeTab
+    }
+};
 @NgModule({
     imports: [
         CommonModule,
@@ -32,7 +43,7 @@ import { TabManagerComponent } from './tab-manager.component';
         ModelEditorModule,
         MatButtonModule
     ],
-    providers: [TabManagerService],
+    providers: [TabManagerService, TabManagerEntityService],
     declarations: [TabManagerComponent],
     exports: [TabManagerComponent]
 })

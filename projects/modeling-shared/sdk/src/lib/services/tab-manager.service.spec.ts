@@ -17,46 +17,44 @@
 
 import { TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { TabManagerEntityService } from '../components/tab-manager/tab-manager-entity.service';
 import { TabManagerService } from './tab-manager.service';
+
 
 describe('TabManagerService', () => {
     let service: TabManagerService;
+    let entityService: TabManagerEntityService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
-                { provide: TranslationService, useClass: TranslationMock }
+                { provide: TranslationService, useClass: TranslationMock },
+                {
+                    provide: TabManagerEntityService, useValue: {
+                        updateOneInCache: jasmine.createSpy(),
+                        entities$: of([])
+                    }
+                }
             ]
         });
 
         service = TestBed.inject(TabManagerService);
+        entityService = TestBed.inject(TabManagerEntityService);
     });
 
     it('should not update title when tab is not found in tabs registry', (done) => {
-        service.tabs = [];
         service.updateTabTitle('new-name', 'id-1');
-        service.tabs$.subscribe((tabs) => {
+        entityService.entities$.subscribe((tabs) => {
             expect(tabs).toEqual([]);
             done();
         });
     });
 
-    it('should update title when tab is found in tabs registry', (done) => {
-        service.tabs = [{
-            tabId: 1,
-            title: 'tab-1',
-            icon: '',
-            active: true,
-            tabData: {
-                modelId: 'model-1',
-                modelType: 'connector'
-            }
-        }];
+    it('should update title when tab is found in tabs registry', () => {
         service.updateTabTitle('new-name', 'model-1');
-        service.tabs$.subscribe((tabs) => {
-            const foundTab = tabs.find(tab => tab.tabData.modelId === 'model-1');
-            expect(foundTab.title).toBe('new-name');
-            done();
-        });
+
+        expect(entityService.updateOneInCache).toHaveBeenCalledWith({id : 'model-1', title: 'new-name'});
     });
+
 });

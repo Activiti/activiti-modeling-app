@@ -16,8 +16,9 @@
  */
 
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { Model } from '../api/types';
+import { Observable, Subject } from 'rxjs';
+import { distinctUntilKeyChanged, filter, map, takeUntil, withLatestFrom } from 'rxjs/operators';
+import { TabManagerEntityService } from '../components/tab-manager/tab-manager-entity.service';
 import { TabModel } from '../models/tab.model';
 
 @Injectable({
@@ -25,80 +26,55 @@ import { TabModel } from '../models/tab.model';
 })
 export class TabManagerService {
 
-    public tabs: TabModel[] = [
-    ];
-
-    private tabSub = new BehaviorSubject<TabModel[]>(this.tabs);
-    public tabs$ = this.tabSub.asObservable();
-
-    private activeTab = new BehaviorSubject<number>(0);
-    public activeTab$ = this.activeTab.asObservable();
-
     private resetTabs = new Subject<void>();
     public resetTabs$ = this.resetTabs.asObservable();
 
-    public removeTabByIndex(index: number) {
-        this.tabs.splice(index, 1);
-        if (this.tabs.length > 0) {
-            this.tabs[this.tabs.length - 1].active = true;
+    constructor(private tabManagerEntityService: TabManagerEntityService) {
+    }
+
+    public removeTab(tab: TabModel, openedTabs: TabModel[]) {
+        this.setNewActiveTab(tab, openedTabs);
+        this.tabManagerEntityService.removeOneFromCache(tab);
+    }
+
+    public getActiveTab(): Observable<[TabModel, TabModel[]]> {
+        this.tabManagerEntityService.setFilter(true);
+        return this.tabManagerEntityService.filteredEntities$.pipe(
+            filter(tabActives => tabActives.length === 1),
+            map(tabActives => tabActives[0]),
+            distinctUntilKeyChanged('id'),
+            withLatestFrom(this.tabManagerEntityService.entities$),
+            takeUntil(this.resetTabs$));
+    }
+
+    private setNewActiveTab(tab: TabModel, openedTabs: TabModel[]){
+        const currentOpenTabIndex = openedTabs.findIndex((openedTab) => openedTab.id === tab.id);
+        if(currentOpenTabIndex-1 !== -1) {
+            const nextActiveTab = openedTabs[currentOpenTabIndex-1];
+            nextActiveTab.active = true;
+            this.tabManagerEntityService.updateOneInCache(tab);
         }
-        this.tabSub.next(this.tabs);
     }
 
-    public removeTabByModelUuid(modelUuid: string) {
-        const modelIndex = this.getTabIndexByModelId(modelUuid);
-        this.removeTabByIndex(modelIndex);
-    }
-
-    public openTab(model: Model, modelIcon: string) {
-        const currentTabIndex = this.getTabIndexByModelId(model.id);
-        if(currentTabIndex !== -1) {
-            this.setActiveTab(currentTabIndex);
-        } else {
-            const openedTab = new TabModel(model.name, modelIcon, { modelId: model.id, modelType: model.type});
-            openedTab.active = true;
-            openedTab.tabId = this.tabs.push(openedTab);
-            this.tabSub.next(this.tabs);
-            this.setActiveTab(openedTab.tabId-1);
+    public openTab(tab: TabModel, currentActiveTab: TabModel) {
+        if (currentActiveTab && tab.id !== currentActiveTab.id) {
+            this.setTabActive(tab, currentActiveTab);
         }
     }
 
-    public getTabByIndex(tabIndex: number): TabModel {
-        return this.tabs[tabIndex];
+    public setTabActive(tab: TabModel, currentActiveTab: TabModel){
+        tab.active = true;
+        currentActiveTab.active = false;
+        this.tabManagerEntityService.updateManyInCache([tab, currentActiveTab]);
     }
 
     public reset() {
-        this.tabs = [];
-        this.tabSub.next(this.tabs);
-        this.activeTab.next(-1);
         this.resetTabs.next();
-    }
-
-    public isNoTabOpened(): boolean {
-        return this.tabs.length === 0;
-    }
-
-    private getTabIndexByModelId(modelId: string): number {
-        return this.tabs.findIndex((tab) => tab.tabData.modelId === modelId);
-    }
-
-    private setActiveTab(tabIndex: number) {
-        const currentActiveTabIndex = this.tabs.findIndex((tab) => !!tab && tab.active);
-        if(currentActiveTabIndex !== tabIndex && currentActiveTabIndex !== -1) {
-            this.tabs[currentActiveTabIndex].active = false;
-            this.tabs[tabIndex].active = true;
-            this.activeTab.next(tabIndex);
-        } else {
-            this.activeTab.next(currentActiveTabIndex);
-        }
+        this.tabManagerEntityService.clearCache();
     }
 
     updateTabTitle(newTitle: string, modelId: string | number) {
-        const currentTabIndex = this.getTabIndexByModelId(<string>modelId);
-        if (this.tabs[currentTabIndex]) {
-            this.tabs[currentTabIndex].title = newTitle;
-            this.tabSub.next(this.tabs);
-        }
+        this.tabManagerEntityService.updateOneInCache({ id: modelId+'', title: newTitle});
     }
 
 }

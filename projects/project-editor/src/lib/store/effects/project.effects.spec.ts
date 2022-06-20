@@ -22,7 +22,7 @@ import { Observable, throwError, of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import {
-    ACMApiModule, DownloadResourceService, BlobService, SnackbarErrorAction, ExportProjectAction, ModelingJSONSchemaService, GetProjectAttemptAction
+    ACMApiModule, DownloadResourceService, BlobService, SnackbarErrorAction, ExportProjectAction, ModelingJSONSchemaService, GetProjectAttemptAction, TabManagerEntityService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { ProjectEditorService } from '../../services/project-editor.service';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -87,6 +87,12 @@ describe('Project Effects', () => {
                 {
                     provide: BlobService,
                     useValue: { convert2Json: jest.fn().mockReturnValue(of({ message: 'test', errors: [{ description: 'd1' }, { description: 'd2' }, { description: 'd3' }] })) }
+                },
+                {
+                    provide: TabManagerEntityService, useValue: {
+                        updateOneInCache: jasmine.createSpy(),
+                        entities$: of([])
+                    }
                 }
             ]
         });

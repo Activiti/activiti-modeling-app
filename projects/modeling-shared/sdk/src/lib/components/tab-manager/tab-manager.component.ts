@@ -20,9 +20,9 @@ import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { distinctUntilChanged, filter, map, switchMap, take, takeUntil, withLatestFrom } from 'rxjs/operators';
-import { Model, MODEL_TYPE } from '../../api/types';
+import { Observable, of } from 'rxjs';
+import { distinctUntilChanged, distinctUntilKeyChanged, filter, map, switchMap, take, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
+import { MODEL_TYPE } from '../../api/types';
 import { ModelEditorComponent } from '../../model-editor/components/model-editor/model-editor.component';
 import { CanComponentDeactivate } from '../../model-editor/router/guards/unsaved-page.guard';
 import { TabModel } from '../../models/tab.model';
@@ -31,6 +31,7 @@ import { selectAppDirtyState } from '../../store/app.selectors';
 import { AmaState } from '../../store/app.state';
 import { selectModelEntityByType } from '../../store/model-entity.selectors';
 import { ModelOpenedAction } from '../../store/project.actions';
+import { TabManagerEntityService } from './tab-manager-entity.service';
 @Component({
     selector: 'modelingsdk-tab-manager',
     templateUrl: './tab-manager.component.html',
@@ -43,35 +44,56 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
     modelId$: Observable<string>;
     modelEntity$: Observable<MODEL_TYPE>;
     modelIcon$: Observable<string>;
-    currentTabs$: Observable<TabModel[]>;
     selectedTabIndex$: Observable<number>;
     isDirtyState = false;
+    currentActiveTab: TabModel = null;
+    selectedTabIndex = -1;
 
     @ViewChild('modelEditor')
     private modelEditor: ModelEditorComponent;
+    currentTabs$: Observable<TabModel[]> | Store<TabModel[]>;
+    openedTabs: TabModel[] = [];
+    currentActiveTab$: Observable<[TabModel, TabModel[]]>;
 
     constructor(private activatedRoute: ActivatedRoute,
         private tabManagerService: TabManagerService,
         private location: Location,
         private store: Store<AmaState>,
         private dialogService: DialogService,
-        private router: Router) {
-        this.currentTabs$ = this.tabManagerService.tabs$;
-        this.selectedTabIndex$ = this.tabManagerService.activeTab$;
+        private router: Router,
+        private tabManagerEntityService: TabManagerEntityService) {
+
+        this.currentTabs$ = this.tabManagerEntityService.entities$.pipe(
+            tap(entities => this.openedTabs = entities),
+            takeUntil(this.tabManagerService.resetTabs$)
+        );
+
+        this.currentActiveTab$ = this.tabManagerService.getActiveTab();
     }
 
     public ngOnInit(): void {
         this.modelId$ = this.activatedRoute.params.pipe(map((params) => params.modelId)).pipe(distinctUntilChanged());
         this.modelEntity$ = this.activatedRoute.data.pipe(map((data) => data.modelEntity)).pipe(take(1));
         this.modelIcon$ = this.activatedRoute.data.pipe(map((data) => data.entityIcon)).pipe(take(1));
+
+        this.currentActiveTab$.pipe(takeUntil(this.tabManagerService.resetTabs$))
+            .subscribe(([tab, currentTabs]) => {
+                this.currentActiveTab = tab;
+                this.selectedTabIndex = currentTabs.findIndex((indexTab) => indexTab.id === tab.id);
+            });
+
         this.modelId$.pipe(
-            withLatestFrom(this.modelEntity$),
-            switchMap(([modelId, modelEntity]) => this.store.select(selectModelEntityByType(modelEntity, modelId))),
-            filter((model) => !!model),
-            map((model) => <Model>{ ...model, type: model.type.toLocaleLowerCase() }),
-            withLatestFrom(this.modelIcon$),
+            withLatestFrom(this.currentTabs$, this.modelEntity$, this.modelIcon$),
+            switchMap(([modelId, openedTabs, entityType, modelIcon]) => {
+                const existingTab = openedTabs.find((tab: { id: any; }) => tab.id === modelId);
+                if (existingTab) {
+                    return of(existingTab);
+                } else {
+                    return this.createNewTab(modelId, entityType, modelIcon);
+                }
+            }),
             takeUntil(this.tabManagerService.resetTabs$)
-        ).subscribe(([model, modelIcon]) => this.tabManagerService.openTab(model, modelIcon));
+        ).subscribe((tab: TabModel) => this.tabManagerService.openTab(tab, this.currentActiveTab));
 
         this.store.select(selectAppDirtyState)
             .pipe(takeUntil(this.tabManagerService.resetTabs$))
@@ -82,7 +104,7 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
         return this.modelEditor.canDeactivate();
     }
 
-    onRemoveTab(tabIndex: number) {
+    onRemoveTab(tab: TabModel) {
         if (this.isDirtyState) {
             this.dialogService.confirm({
                 title: 'SDK.MODEL_EDITOR.CONFiRM.TITLE',
@@ -90,28 +112,42 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
             })
                 .subscribe((choice) => {
                     if (choice) {
-                        this.removeTabByIndex(tabIndex);
+                        this.removeTab(tab);
                     }
                 });
         } else {
-            this.removeTabByIndex(tabIndex);
+            this.removeTab(tab);
         }
     }
 
-    private removeTabByIndex(tabIndex: number) {
-        this.tabManagerService.removeTabByIndex(tabIndex);
-        if(this.tabManagerService.isNoTabOpened()) {
-            const projectUrl = this.buildNextUrl();
-            void this.router.navigate([projectUrl], {relativeTo: this.activatedRoute});
-            this.tabManagerService.reset();
+    private removeTab(tab: TabModel) {
+        this.tabManagerService.removeTab(tab, this.openedTabs);
+        if (this.openedTabs.length === 0) {
+            this.resetToProjectUrl();
         }
+    }
+
+    private resetToProjectUrl() {
+        const projectUrl = this.buildNextUrl();
+        void this.router.navigate([projectUrl], { relativeTo: this.activatedRoute });
+        this.tabManagerService.reset();
+    }
+
+    private createNewTab(modelId: string, entityType: MODEL_TYPE, modelIcon: string) {
+        return this.store.select(selectModelEntityByType(entityType, modelId)).pipe(
+            filter((model) => !!model),
+            map((model) => new TabModel(model.name, modelIcon, model.id, model.type.toLocaleLowerCase(), true)),
+            distinctUntilKeyChanged('id'),
+            tap((tab: TabModel) => this.tabManagerEntityService.addOneToCache(tab)),
+            takeUntil(this.tabManagerService.resetTabs$)
+        );
     }
 
     onSelectedTabChanged(tabIndex: number) {
-        const currentTab: TabModel = this.tabManagerService.getTabByIndex(tabIndex);
+        const currentTab: TabModel = this.openedTabs[tabIndex];
         if (currentTab) {
-            this.store.dispatch(new ModelOpenedAction({ id: currentTab.tabData.modelId, type: currentTab.tabData.modelType }));
-            const nextUrl = this.buildNextUrl(currentTab.tabData.modelType, currentTab.tabData.modelId);
+            this.store.dispatch(new ModelOpenedAction({ id: currentTab.id, type: currentTab.modelType }));
+            const nextUrl = this.buildNextUrl(currentTab.modelType, currentTab.id);
             this.location.replaceState(nextUrl);
         }
     }

@@ -16,13 +16,12 @@
  */
 
 import { TestBed } from '@angular/core/testing';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { hot, getTestScheduler } from 'jasmine-marbles';
 import { EffectsMetadata, getEffectsMetadata } from '@ngrx/effects';
-import { CoreModule, TranslationService, TranslationMock } from '@alfresco/adf-core';
+import { TranslationService, TranslationMock } from '@alfresco/adf-core';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { TranslateModule } from '@ngx-translate/core';
-import { TabManagerService, UpdateTabTitle } from '@alfresco-dbp/modeling-shared/sdk';
+import { TabManagerEntityService, TabManagerService, UpdateTabTitle } from '@alfresco-dbp/modeling-shared/sdk';
 import { TabEffects } from './tab.effects';
 
 describe('TabEffects', () => {
@@ -33,9 +32,6 @@ describe('TabEffects', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [
-                CoreModule.forChild(),
-                TranslateModule.forRoot()],
             providers: [
                 TabEffects,
                 TabManagerService,
@@ -43,6 +39,11 @@ describe('TabEffects', () => {
                 {
                     provide: TranslationService,
                     useClass: TranslationMock
+                },
+                {
+                    provide: TabManagerEntityService, useValue: {
+                        entities$: of([])
+                    }
                 }
             ]
         });

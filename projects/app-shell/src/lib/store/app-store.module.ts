@@ -31,7 +31,8 @@ import { INITIAL_STATE } from './states/app.state';
 import { metaReducers } from './reducers/meta.reducers';
 import { ChangeThemeEffects } from './effects/change-theme.effects';
 import { TabEffects } from './effects/tab.effects';
-
+import { EntityDataModule } from '@ngrx/data';
+import { entityMetaData } from '@alfresco-dbp/modeling-shared/sdk';
 @NgModule({
     imports: [
         StoreModule.forRoot(rootReducers, {
@@ -52,6 +53,7 @@ import { TabEffects } from './effects/tab.effects';
             TabEffects
         ]),
         StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
+        EntityDataModule.forRoot({entityMetadata: entityMetaData})
     ],
     providers: [{ provide: RouterStateSerializer, useClass: AmaRouterStateSerializer }]
 })

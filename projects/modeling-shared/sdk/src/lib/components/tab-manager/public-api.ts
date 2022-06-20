@@ -17,3 +17,4 @@
 
 export * from './tab-manager.component';
 export * from './tab-manager.module';
+export * from './tab-manager-entity.service';

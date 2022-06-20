@@ -35,6 +35,7 @@ import { mockProject } from './project-content.mock';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ExportProjectAttemptAction } from '../../store/project-editor.actions';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MatIconTestingModule } from '@angular/material/icon/testing';
 
 describe('ProjectContentComponent', () => {
     let fixture: ComponentFixture<ProjectContentComponent>;
@@ -46,7 +47,7 @@ describe('ProjectContentComponent', () => {
             imports: [
                 CommonModule,
                 RouterTestingModule,
-                MatIconModule,
+                MatIconTestingModule,
                 MatButtonModule,
                 MatMenuModule,
                 ToolbarModule,
