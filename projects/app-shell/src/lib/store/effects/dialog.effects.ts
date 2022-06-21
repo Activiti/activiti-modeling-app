@@ -41,11 +41,14 @@ import {
     UploadProjectAttemptAction,
     OPEN_INFO_DIALOG,
     OpenInfoDialogAction,
-    OPEN_SETTINGS_DIALOG
+    OPEN_SETTINGS_DIALOG,
+    OpenAboutDialogAction,
+    OPEN_ABOUT_DIALOG
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService, DialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { Action, Store } from '@ngrx/store';
 import { SettingsDialogComponent } from '../../common/components/settings/settings-dialog.component';
+import { AboutComponent } from '../../common/components/about/about.component';
 
 @Injectable()
 export class DialogEffects {
@@ -121,6 +124,12 @@ export class DialogEffects {
     settingsDialogEffect = this.actions$.pipe(
         ofType<OpenInfoDialogAction>(OPEN_SETTINGS_DIALOG),
         map(() => this.dialogService.openDialog(SettingsDialogComponent))
+    );
+
+    @Effect({ dispatch: false })
+    openAboutDialogEffect$ = this.actions$.pipe(
+        ofType<OpenAboutDialogAction>(OPEN_ABOUT_DIALOG),
+        map(() => this.dialogService.openDialog(AboutComponent, { width: '700px'}))
     );
 
     @Effect()

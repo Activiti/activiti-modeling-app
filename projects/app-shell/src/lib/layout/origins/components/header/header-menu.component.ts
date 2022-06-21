@@ -15,8 +15,9 @@
  * limitations under the License.
  */
 
+import { AmaState, OpenAboutDialogAction } from '@alfresco-dbp/modeling-shared/sdk';
 import { Component, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 /** @deprecated: theming **/
 @Component({
@@ -33,7 +34,7 @@ export class HeaderMenuComponent {
 
     user: any = null;
 
-    constructor(private router: Router) {
+    constructor(private store: Store<AmaState>) {
     }
 
     onOpenSettings() {
@@ -41,6 +42,6 @@ export class HeaderMenuComponent {
     }
 
     navigateToAbout() {
-        void this.router.navigate(['about']);
+        this.store.dispatch(new OpenAboutDialogAction());
     }
 }

@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+import { LayoutService } from '@alfresco-dbp/modeling-shared/sdk';
 import { Component, Inject } from '@angular/core';
 import pkg from 'package.json';
 import { DEV_MODE_TOKEN } from './dev-mode.tokens';
@@ -28,8 +29,12 @@ export class AboutComponent {
     pkg: any;
     dev: any;
 
-    constructor(@Inject(DEV_MODE_TOKEN) devMode) {
+    constructor(@Inject(DEV_MODE_TOKEN) devMode, private layoutService: LayoutService) {
         this.dev = !devMode;
         this.pkg = pkg;
+    }
+
+    get isMobileScreenSize(): boolean {
+        return this.layoutService.isSmallScreenWidth();
     }
 }

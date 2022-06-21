@@ -1,4 +1,16 @@
-<div class="ama-about-container">
-    <adf-environment-info *adf-feature="'canary'"></adf-environment-info>
-    <adf-about [dev]="dev" [pkg]="pkg"></adf-about>
-</div>
+<mat-dialog-content>
+    <div class="ama-about-container">
+        <adf-environment-info 
+            *adf-feature="'canary'"
+            [ngClass]="isMobileScreenSize ? 'ama-environment-info-small' : 'ama-environment-info-large'"
+        ></adf-environment-info>
+        <adf-about [dev]="dev" [pkg]="pkg"></adf-about>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="adf-dialog-buttons">
+    <span class="adf-fill-remaining-space"></span>
+
+    <button mat-button mat-dialog-close>
+        {{ 'APP.DIALOGS.CANCEL' | translate }}
+    </button>
+</mat-dialog-actions>

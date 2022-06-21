@@ -17,8 +17,10 @@
 
 import { AppConfigService } from '@alfresco/adf-core';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { AuthTokenProcessorService } from '../../../services/auth.service';
+import { OpenAboutDialogAction } from '../../../store/app.actions';
+import { AmaState } from '../../../store/app.state';
 
 const ROLE_ADMIN = 'ACTIVITI_ADMIN';
 interface UserDetails {
@@ -41,7 +43,7 @@ export class UserInfoMenuComponent implements OnInit {
     constructor(
         private authService: AuthTokenProcessorService,
         private config: AppConfigService,
-        private router: Router
+        private store: Store<AmaState>
     ) {}
 
     ngOnInit() {
@@ -71,6 +73,6 @@ export class UserInfoMenuComponent implements OnInit {
     }
 
     navigateToAbout() {
-        void this.router.navigate(['about']);
+        this.store.dispatch(new OpenAboutDialogAction());
     }
 }

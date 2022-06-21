@@ -22,7 +22,6 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { OriginsLayoutComponent } from './components/origins-layout/origins-layout.component';
 import { ErrorContentComponent } from '../../common/components/error/error-content.component';
-import { AboutComponent } from '../../common/components/about/about.component';
 import { AmaLocalStorageMergeGuard, AmaModelSchemaLoaderGuard, AmaRoleGuard } from '../../router';
 
 /** @deprecated: theming **/
@@ -40,7 +39,6 @@ export const originsLayoutRoutes: Routes = [
                     AmaModelSchemaLoaderGuard
                 ],
                 children: [
-                    { path: 'about', component: AboutComponent },
                     { path: 'error/:id', component: ErrorContentComponent },
                     {
                         path: 'dashboard',

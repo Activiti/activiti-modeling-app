@@ -126,3 +126,9 @@ export class ClearLogHistoryAction implements Action {
     readonly type = CLEAR_LOG_HISTORY;
     constructor() {}
 }
+
+export const OPEN_ABOUT_DIALOG = 'Open About Dialog';
+export class OpenAboutDialogAction implements Action {
+    readonly type = OPEN_ABOUT_DIALOG;
+    constructor() {}
+}

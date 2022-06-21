@@ -22,7 +22,6 @@ import {
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { StudioLayoutComponent } from './components/studio-layout/studio-layout.component';
 import { ErrorContentComponent } from '../../common/components/error/error-content.component';
-import { AboutComponent } from '../../common/components/about/about.component';
 import { AmaLocalStorageMergeGuard, AmaModelSchemaLoaderGuard, AmaRoleGuard } from '../../router';
 import { StudioProjectEditorLayoutComponent } from './components/studio-project-editor-layout/studio-project-editor-layout.component';
 
@@ -31,7 +30,6 @@ export const studioLayoutRoutes: Routes = [
         path: '',
         canActivate: [AuthGuard],
         children: [
-            { path: 'about', component: AboutComponent },
             {
                 path: '',
                 component: StudioLayoutComponent,
