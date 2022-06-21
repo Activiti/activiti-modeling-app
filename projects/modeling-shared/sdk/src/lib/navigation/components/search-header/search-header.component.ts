@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SearchTextStateEnum } from '@alfresco/adf-core';
 import { ServerSideSorting } from '../../../api/types';
@@ -33,6 +33,9 @@ const SEARCH_KEY = 'name';
     encapsulation: ViewEncapsulation.None
 })
 export class SearchHeaderComponent implements OnInit {
+
+    @Input()
+    url: string;
 
     @Output()
     isSearchBarExpanded = new EventEmitter<boolean>();
@@ -58,12 +61,14 @@ export class SearchHeaderComponent implements OnInit {
     onSearchSubmit(event: KeyboardEvent) {
         const value = (event.target as HTMLInputElement).value.toLowerCase();
         this.searchProjects(value);
+        this.isSearchBarExpanded.emit(true);
     }
 
     searchProjects(value: string) {
         if (value !== this.value) {
+            const [, dashboardUrl, projectListUrl] = this.url.split('/');
             void this.router.navigate(
-                ['dashboard', 'projects'],
+                [dashboardUrl, projectListUrl],
                 {
                     queryParams: {
                         maxItems, skipCount ,

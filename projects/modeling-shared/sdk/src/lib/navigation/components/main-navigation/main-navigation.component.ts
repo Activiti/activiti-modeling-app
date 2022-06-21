@@ -21,6 +21,7 @@ export interface NavigableItem {
     label: string;
     title: string;
     disabled: boolean;
+    showSearchBar: boolean,
     route: {
         url: string;
     };

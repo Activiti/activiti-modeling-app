@@ -20,7 +20,7 @@
         <div class="studio-header-vertical" *ngIf="!searchBarExpanded"></div>
 
         <div *ngIf="showSearchBar" [ngClass]="searchBarExpanded === true ? 'studio-header-search-bar-active' : 'studio-header-search-bar-inactive'">
-            <modelingsdk-search-header (isSearchBarExpanded)="isSearchBarExpanded($event)"></modelingsdk-search-header>
+            <modelingsdk-search-header (isSearchBarExpanded)="isSearchBarExpanded($event)" [url]="url"></modelingsdk-search-header>
         </div>
     </div>
 </section>
