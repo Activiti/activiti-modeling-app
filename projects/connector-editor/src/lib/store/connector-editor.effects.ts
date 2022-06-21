@@ -52,7 +52,8 @@ import {
     ConnectorContent,
     CONNECTOR_MODEL_ENTITY_SELECTORS,
     ModelEntitySelectors,
-    UpdateTabTitle
+    UpdateTabTitle,
+    SetLogHistoryVisibilityAction
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ConnectorEditorService } from '../services/connector-editor.service';
@@ -251,7 +252,8 @@ export class ConnectorEditorEffects {
                 if (errorAction) {
                     return [
                         errorAction,
-                        this.logFactory.logError(getConnectorLogInitiator(), errors)
+                        this.logFactory.logError(getConnectorLogInitiator(), errors),
+                        new SetLogHistoryVisibilityAction(true)
                     ];
                 }
                 return [

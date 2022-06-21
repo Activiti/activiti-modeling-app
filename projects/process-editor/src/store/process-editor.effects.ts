@@ -98,6 +98,7 @@ import {
     SHOW_PROCESSES,
     ModelEntitySelectors,
     UpdateTabTitle,
+    SetLogHistoryVisibilityAction,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProcessEditorService } from '../services/process-editor.service';
@@ -305,7 +306,8 @@ export class ProcessEditorEffects {
                 if (payload.errorAction) {
                     return [
                         payload.errorAction,
-                        this.logFactory.logError(getProcessLogInitiator(), errors)
+                        this.logFactory.logError(getProcessLogInitiator(), errors),
+                        new SetLogHistoryVisibilityAction(true)
                     ];
                 }
                 return [
