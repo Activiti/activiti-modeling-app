@@ -172,7 +172,7 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
 
     onExtensionEditorChange(extensions: string): void {
         const validation = this.codeValidatorService.validateJson<ProcessExtensions>(extensions);
-        this.updateDisabledStatusForButton(!validation.valid);
+        this.updateDisabledStatusForButton(!validation.valid, [BasicModelCommands.save, BasicModelCommands.saveAs]);
 
         if (validation.valid) {
             this.store.dispatch(new UpdateProcessExtensionsAction({ extensions: JSON.parse(extensions), modelId: this.modelId }));
@@ -242,9 +242,8 @@ export class ProcessEditorComponent implements OnInit, CanComponentDeactivate, O
         this.modelCommands.setIconVisible(<BasicModelCommands> ProcessCommandsService.EXTENSIONS_MENU_ITEM, this.isExtensionsTabSelected());
     }
 
-    updateDisabledStatusForButton(status: boolean) {
-        this.modelCommands.setDisable(BasicModelCommands.save, status);
-        this.modelCommands.setDisable(BasicModelCommands.saveAs, status);
+    updateDisabledStatusForButton(status: boolean, buttons: BasicModelCommands[]) {
+        buttons.forEach(button => this.modelCommands.setDisable(button, status));
     }
 
     ngOnDestroy() {

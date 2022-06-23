@@ -77,6 +77,10 @@ ama-process-palette .mat-card {
     }
 }
 
+ama-process-palette .mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: none;
+}
+
 .mat-card.ama-palette-drawer {
     min-width: 25px;
     box-sizing: content-box;
