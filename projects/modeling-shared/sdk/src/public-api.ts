@@ -59,6 +59,8 @@ export * from './lib/api-implementations/acm-api/form-definition';
 export * from './lib/services/process-editor-element-variables-provider.service';
 export * from './lib/services/process-editor-element-variables.service';
 
+export * from './lib/models/modeling-roles.enum';
+
 // TODO: Remove it ===================================================
 export * from './lib/api-implementations/acm-api/content-types';
 export * from './lib/api-implementations/acm-api/form-definition';

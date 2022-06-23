@@ -15,6 +15,6 @@
  * limitations under the License.
  */
 
-export * from './guards/ama-localstorage-merge-guard.service';
-export * from './guards/ama-model-schema-loader-guard.service';
-export * from './app-routing.module';
+export enum MODELING_ROLES {
+    MODELER = 'ACTIVITI_MODELER'
+}

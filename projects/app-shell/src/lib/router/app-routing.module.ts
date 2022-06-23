@@ -20,7 +20,6 @@ import { CommonModule } from '@angular/common';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { AmaLocalStorageMergeGuard } from './guards/ama-localstorage-merge-guard.service';
 import { AmaModelSchemaLoaderGuard } from './guards/ama-model-schema-loader-guard.service';
-import { AmaRoleGuard } from './guards/ama-role-guard.service';
 
 @NgModule({
     imports: [
@@ -29,8 +28,7 @@ import { AmaRoleGuard } from './guards/ama-role-guard.service';
     ],
     providers: [
         AmaLocalStorageMergeGuard,
-        AmaModelSchemaLoaderGuard,
-        AmaRoleGuard,
+        AmaModelSchemaLoaderGuard
     ],
     exports: [RouterModule],
 })

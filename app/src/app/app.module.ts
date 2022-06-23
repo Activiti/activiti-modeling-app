@@ -25,7 +25,6 @@ import { MatInputModule } from '@angular/material/input';
 import {
     ACMApiModule,
     AmaServicesModule,
-    AuthTokenProcessorService,
     allLogFilter,
     provideLogFilter,
     featuresInfo,
@@ -60,7 +59,6 @@ import { EnvironmentModule } from '@alfresco-dbp/adf-candidates/core/environment
         AppComponent
     ],
     providers: [
-        AuthTokenProcessorService,
         provideLogFilter(allLogFilter)
     ],
     bootstrap: [AppComponent]

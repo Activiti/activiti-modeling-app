@@ -25,7 +25,6 @@
         "name": "Activiti Modeling Application"
     },
     "languagePicker": true,
-    "roles": ["ACTIVITI_MODELER"],
     "locale": "en",
     "languages": [
         {

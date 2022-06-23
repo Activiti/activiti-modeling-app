@@ -16,13 +16,19 @@
  */
 
 import { Routes } from '@angular/router';
-import { AuthGuard } from '@alfresco/adf-core';
+import { AuthGuard, AuthGuardSsoRoleService } from '@alfresco/adf-core';
 import {
-    DASHBOARD_ROUTES, MODEL_EDITOR_ROUTES, SelectedProjectSetterGuard, ProjectLoaderGuard, AUTHENTICATED_ROUTES, RootNavigationComponent
+    DASHBOARD_ROUTES,
+    MODEL_EDITOR_ROUTES,
+    SelectedProjectSetterGuard,
+    ProjectLoaderGuard,
+    AUTHENTICATED_ROUTES,
+    RootNavigationComponent,
+    MODELING_ROLES
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { OriginsLayoutComponent } from './components/origins-layout/origins-layout.component';
 import { ErrorContentComponent } from '../../common/components/error/error-content.component';
-import { AmaLocalStorageMergeGuard, AmaModelSchemaLoaderGuard, AmaRoleGuard } from '../../router';
+import { AmaLocalStorageMergeGuard, AmaModelSchemaLoaderGuard } from '../../router';
 
 /** @deprecated: theming **/
 export const originsLayoutRoutes: Routes = [
@@ -42,20 +48,31 @@ export const originsLayoutRoutes: Routes = [
                     { path: 'error/:id', component: ErrorContentComponent },
                     {
                         path: 'dashboard',
-                        canActivate: [AmaRoleGuard],
+                        canActivate: [AuthGuardSsoRoleService],
+                        data: {
+                            roles: [
+                                MODELING_ROLES.MODELER
+                            ],
+                            redirectUrl: '/error/403',
+                            hostFor: DASHBOARD_ROUTES
+                        },
                         children: [
                             { path: '', component: RootNavigationComponent, outlet: 'navigation' }
                         ],
-                        // Impossible to lazily load ADF modules, that is why the hack
-                        data: { hostFor: DASHBOARD_ROUTES }
                     },
                     {
                         path: 'projects',
-                        canActivate: [AmaRoleGuard],
+                        canActivate: [AuthGuardSsoRoleService],
+                        data: {
+                            roles: [
+                                MODELING_ROLES.MODELER
+                            ],
+                            redirectUrl: '/error/403',
+                            hostFor: DASHBOARD_ROUTES
+                        },
                         children: [
                             {
                                 path: ':projectId',
-                                // Impossible to lazily load ADF modules, that is why the hack
                                 data: { hostFor: MODEL_EDITOR_ROUTES },
                                 canActivate: [ SelectedProjectSetterGuard, ProjectLoaderGuard ],
                                 children: []

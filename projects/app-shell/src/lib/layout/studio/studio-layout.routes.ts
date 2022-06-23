@@ -16,13 +16,20 @@
  */
 
 import { Routes } from '@angular/router';
-import { AuthGuard } from '@alfresco/adf-core';
+import { AuthGuard, AuthGuardSsoRoleService } from '@alfresco/adf-core';
 import {
-    DASHBOARD_ROUTES, MODEL_EDITOR_ROUTES, SelectedProjectSetterGuard, ProjectLoaderGuard, AUTHENTICATED_ROUTES, MainNavigationComponent, StudioHeaderComponent
+    DASHBOARD_ROUTES,
+    MODEL_EDITOR_ROUTES,
+    SelectedProjectSetterGuard,
+    ProjectLoaderGuard,
+    AUTHENTICATED_ROUTES,
+    MainNavigationComponent,
+    StudioHeaderComponent,
+    MODELING_ROLES
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { StudioLayoutComponent } from './components/studio-layout/studio-layout.component';
 import { ErrorContentComponent } from '../../common/components/error/error-content.component';
-import { AmaLocalStorageMergeGuard, AmaModelSchemaLoaderGuard, AmaRoleGuard } from '../../router';
+import { AmaLocalStorageMergeGuard, AmaModelSchemaLoaderGuard } from '../../router';
 import { StudioProjectEditorLayoutComponent } from './components/studio-project-editor-layout/studio-project-editor-layout.component';
 
 export const studioLayoutRoutes: Routes = [
@@ -42,12 +49,18 @@ export const studioLayoutRoutes: Routes = [
                     { path: 'error/:id', component: ErrorContentComponent },
                     {
                         path: 'dashboard',
-                        canActivate: [AmaRoleGuard],
+                        canActivate: [AuthGuardSsoRoleService],
+                        data: {
+                            roles: [
+                                MODELING_ROLES.MODELER
+                            ],
+                            redirectUrl: '/error/403',
+                            hostFor: DASHBOARD_ROUTES
+                        },
                         children: [
                             { path: '', component: MainNavigationComponent, outlet: 'left-sidebar' }
                         ],
                         // Impossible to lazily load ADF modules, that is why the hack
-                        data: { hostFor: DASHBOARD_ROUTES }
                     },
 
                     { path: 'home', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -56,9 +69,15 @@ export const studioLayoutRoutes: Routes = [
             },
             {
                 path: 'projects',
-                canActivate: [AmaRoleGuard],
+                canActivate: [AuthGuardSsoRoleService],
+                data: {
+                    roles: [
+                        MODELING_ROLES.MODELER
+                    ],
+                    redirectUrl: '/error/403',
+                    hostFor: AUTHENTICATED_ROUTES
+                },
                 component: StudioProjectEditorLayoutComponent,
-                data: { hostFor: AUTHENTICATED_ROUTES },
                 children: [
                     {
                         path: ':projectId',
