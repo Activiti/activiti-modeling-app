@@ -22,6 +22,7 @@ import { Observable } from 'rxjs';
 import { Project } from '../../../api/types';
 import { ProjectContextMenuActionClass, ProjectContextMenuOption, PROJECT_CONTEXT_MENU_OPTIONS, PROJECT_MENU_HEADER_ACTIONS } from '../../../project-editor/project-context-menu';
 import { LayoutService } from '../../../services/layout.service';
+import { OpenLogHistory } from '../../../store/app.actions';
 import { AmaState } from '../../../store/app.state';
 import { AddToFavoritesProjectAttemptAction,
     ExportProjectAction,
@@ -87,6 +88,10 @@ export class StudioHeaderComponent {
 
     handleClick(actionClass: ProjectContextMenuActionClass, projectId: string) {
         this.store.dispatch(new actionClass(projectId));
+    }
+
+    openLogHistory(projectId: string) {
+        this.store.dispatch(new OpenLogHistory(projectId));
     }
 
     saveAsProject(project: Partial<Project>) {
