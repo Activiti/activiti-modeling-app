@@ -32,7 +32,6 @@ import { provideInputTypeItemHandler } from '../../variables/properties-viewer/v
     ],
     providers: [provideInputTypeItemHandler('process', ProcessNameSelectorComponent, 'string')],
     declarations: [ProcessNameSelectorComponent],
-    exports: [ProcessNameSelectorComponent],
-    entryComponents: [ProcessNameSelectorComponent]
+    exports: [ProcessNameSelectorComponent]
 })
 export class ProcessNameSelectorModule { }

@@ -13,16 +13,37 @@
             "rules": {
                 "ban/ban": [
                     "error",
-                    { "name": "__LINT_CONFIG_TEST_KEYWORD__", "message": "__LINT_CONFIG_TEST_KEYWORD__" },
-                    { "name": "eval", "message": "Calls to eval is not allowed." },
-                    { "name": "fdescribe", "message": "Calls to fdescribe is not allowed" },
+                    {
+                        "name": "__LINT_CONFIG_TEST_KEYWORD__",
+                        "message": "__LINT_CONFIG_TEST_KEYWORD__"
+                    },
+                    {
+                        "name": "eval",
+                        "message": "Calls to eval is not allowed."
+                    },
+                    {
+                        "name": "fdescribe",
+                        "message": "Calls to fdescribe is not allowed"
+                    },
                     { "name": "fit", "message": "Calls to fit is not allowed" },
                     { "name": "xit", "message": "Calls to xit is not allowed" },
-                    { "name": "xdescribe", "message": "Calls to xdescribe is not allowed" },
-                    { "name": ["test", "only"], "message": "Calls to test.only is not allowed" },
-                    { "name": ["describe", "only"], "message": "Calls to describe.only is not allowed" }
+                    {
+                        "name": "xdescribe",
+                        "message": "Calls to xdescribe is not allowed"
+                    },
+                    {
+                        "name": ["test", "only"],
+                        "message": "Calls to test.only is not allowed"
+                    },
+                    {
+                        "name": ["describe", "only"],
+                        "message": "Calls to describe.only is not allowed"
+                    }
                 ],
-                "license-header/header": [ "error", "./license-header-community.txt" ],
+                "license-header/header": [
+                    "error",
+                    "./license-header-community.txt"
+                ],
                 "@nrwl/nx/enforce-module-boundaries": [
                     "error",
                     {
@@ -186,7 +207,7 @@
                 "import/no-deprecated": "error",
                 "import/order": "off",
                 "indent": "off",
-                "max-lines":"warn",
+                "max-lines": "warn",
                 "max-len": [
                     "error",
                     {
@@ -227,14 +248,14 @@
                 "no-empty": "off",
                 "no-empty-function": "off",
                 "no-eval": "error",
-                "no-extra-boolean-cast":"error",
+                "no-extra-boolean-cast": "error",
                 "no-fallthrough": "error",
                 "no-multiple-empty-lines": "error",
-                "no-prototype-builtins":"error",
+                "no-prototype-builtins": "error",
                 "no-new-wrappers": "error",
                 "no-restricted-imports": ["error", "rxjs/Rx"],
                 "no-return-await": "error",
-                "no-self-assign":"error",
+                "no-self-assign": "error",
                 "no-shadow": "off",
                 "no-throw-literal": "error",
                 "no-trailing-spaces": "error",
@@ -276,7 +297,7 @@
                 "rxjs/no-unsafe-takeuntil": "error",
                 "semi": "error",
                 "no-useless-escape": "error",
-                "no-case-declarations":"error",
+                "no-case-declarations": "error",
                 "spaced-comment": [
                     "error",
                     "always",

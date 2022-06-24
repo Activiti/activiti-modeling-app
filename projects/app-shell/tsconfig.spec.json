@@ -3,7 +3,7 @@
     "compilerOptions": {
         "outDir": "../../out-tsc/app-shell-spec"
     },
-    "include": [ "**/*.spec.ts", "**/*.d.ts" ],
+    "include": ["**/*.spec.ts", "**/*.test.ts", "**/*.d.ts"],
     "angularCompilerOptions": {
         "skipTemplateCodegen": true,
         "strictMetadataEmit": true,
