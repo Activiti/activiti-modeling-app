@@ -14,7 +14,9 @@
     </mat-sidenav>
     <section class="studio-layout-content">
         <router-outlet name="content-header"></router-outlet>
-        <router-outlet class="studio-layout-content-section"></router-outlet>
+        <div class="studio-layout-content-area">
+            <router-outlet class="studio-layout-content-section"></router-outlet>
+        </div>
         <modelingsdk-editor-footer class="ama-editor-footer"></modelingsdk-editor-footer>
     </section>
 </mat-sidenav-container>

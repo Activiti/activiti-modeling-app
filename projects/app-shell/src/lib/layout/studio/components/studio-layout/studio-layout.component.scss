@@ -20,6 +20,18 @@ mat-sidenav-container.studio-layout {
             flex: 0 0;
         }
 
+        &-area {
+            height: 100%;
+            display: contents;
+
+            ng-component {
+                height: 100%;
+            }
+        }
+        project-model-global-models {
+            height: calc(100% - 48px);
+        }
+
         ama-projects-list {
             flex: 1;
             min-height: 0;
