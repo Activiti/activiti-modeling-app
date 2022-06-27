@@ -42,6 +42,7 @@ import { ScannedActionsSubject } from '@ngrx/store';
 import { TabModel } from '../../models/tab.model';
 import { map } from 'rxjs/operators';
 import { entityMetaData } from './tab-manager.module';
+import { UnsavedPageGuard } from '../../model-editor/public-api';
 
 const activatedRoute = {
     url: new Observable<any[]>(),
@@ -95,6 +96,7 @@ describe('TabManagerComponent', () => {
     let tabManagerEntityService: TabManagerEntityService;
     let tabListMock = [];
     const tabSubjectMock = new BehaviorSubject<TabModel[]>(tabListMock);
+    let unsavedPageGuard: UnsavedPageGuard = null;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -124,6 +126,9 @@ describe('TabManagerComponent', () => {
                 TabManagerService,
                 DialogService,
                 TabManagerEntityService,
+                { provide: UnsavedPageGuard, useValue: {
+                    canDeactivate: jest.fn()
+                }},
                 { provide: EntityCacheEffects, useValue: {} },
                 { provide: EntityDataService, useValue: null },
                 ScannedActionsSubject
@@ -143,6 +148,7 @@ describe('TabManagerComponent', () => {
         jest.spyOn(fixture.componentInstance, 'canDeactivate').mockReturnValue(of(true));
         dirtyStateSpy = jest.spyOn(AppStateSelector, 'selectAppDirtyState');
         router = TestBed.inject(Router);
+        unsavedPageGuard = TestBed.inject(UnsavedPageGuard);
 
         spyOn(EntitySelector, 'selectModelEntityByType').and.callFake((modelType, modelId) => {
             if (modelId === fakeModelUI.id) {
@@ -239,6 +245,7 @@ describe('TabManagerComponent', () => {
 
     it('should set as active the previous tab once a tab is closed', async () => {
         dirtyStateSpy.mockReturnValue(false);
+        jest.spyOn(unsavedPageGuard, 'canDeactivate').mockReturnValue(of(true));
         triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
         await fixture.whenStable();
@@ -265,6 +272,7 @@ describe('TabManagerComponent', () => {
 
     it('should close the tab', async () => {
         dirtyStateSpy.mockReturnValue(false);
+        jest.spyOn(unsavedPageGuard, 'canDeactivate').mockReturnValue(of(true));
         triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
         await fixture.whenStable();
@@ -280,6 +288,7 @@ describe('TabManagerComponent', () => {
 
     it('when no tabs are opened should navigate back to the project url', async () => {
         jest.spyOn(location, 'path').mockReturnValue('/project/whatever-project-id/ui/fake-ui-id');
+        jest.spyOn(unsavedPageGuard, 'canDeactivate').mockReturnValue(of(true));
         dirtyStateSpy.mockReturnValue(false);
         triggerModelIdChangeWithId('fake-ui-id');
         fixture.detectChanges();
@@ -289,12 +298,14 @@ describe('TabManagerComponent', () => {
         closeButton.click();
 
         fixture.detectChanges();
+        await fixture.whenStable();
         expect(router.navigate).toHaveBeenCalledWith(['/project/whatever-project-id'], jasmine.any(Object));
     });
 
     it('should prevent the tab from closing if the app is in dirty state', async () => {
         triggerModelIdChangeWithId('fake-ui-id');
         dirtyStateSpy.mockReturnValue(true);
+        jest.spyOn(unsavedPageGuard, 'canDeactivate').mockReturnValue(of(false));
         fixture.detectChanges();
         await fixture.whenStable();
 
@@ -302,6 +313,7 @@ describe('TabManagerComponent', () => {
         closeButton.click();
 
         fixture.detectChanges();
+        await fixture.whenStable();
 
         const tabTitles = fixture.nativeElement.querySelectorAll('.ama-tab-title');
         expect(tabTitles.length).toBe(1);

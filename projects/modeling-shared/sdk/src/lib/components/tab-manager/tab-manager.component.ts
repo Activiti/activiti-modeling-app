@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,10 +23,10 @@ import { Observable, of } from 'rxjs';
 import { distinctUntilChanged, distinctUntilKeyChanged, filter, map, switchMap, take, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 import { MODEL_TYPE } from '../../api/types';
 import { ModelEditorComponent } from '../../model-editor/components/model-editor/model-editor.component';
-import { CanComponentDeactivate } from '../../model-editor/router/guards/unsaved-page.guard';
+import { CanComponentDeactivate, UnsavedPageGuard } from '../../model-editor/router/guards/unsaved-page.guard';
 import { TabModel } from '../../models/tab.model';
 import { TabManagerService } from '../../services/tab-manager.service';
-import { selectAppDirtyState } from '../../store/app.selectors';
+import { SetAppDirtyStateAction } from '../../store/app.actions';
 import { AmaState } from '../../store/app.state';
 import { selectModelEntityByType } from '../../store/model-entity.selectors';
 import { ModelOpenedAction } from '../../store/project.actions';
@@ -45,12 +44,12 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
     modelEntity$: Observable<MODEL_TYPE>;
     modelIcon$: Observable<string>;
     selectedTabIndex$: Observable<number>;
-    isDirtyState = false;
     currentActiveTab: TabModel = null;
     selectedTabIndex = -1;
 
     @ViewChild('modelEditor')
     private modelEditor: ModelEditorComponent;
+
     currentTabs$: Observable<TabModel[]> | Store<TabModel[]>;
     openedTabs: TabModel[] = [];
     currentActiveTab$: Observable<[TabModel, TabModel[]]>;
@@ -59,9 +58,9 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
         private tabManagerService: TabManagerService,
         private location: Location,
         private store: Store<AmaState>,
-        private dialogService: DialogService,
         private router: Router,
-        private tabManagerEntityService: TabManagerEntityService) {
+        private tabManagerEntityService: TabManagerEntityService,
+        private unsavedChanges: UnsavedPageGuard) {
 
         this.currentTabs$ = this.tabManagerEntityService.entities$.pipe(
             tap(entities => this.openedTabs = entities),
@@ -94,10 +93,6 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
             }),
             takeUntil(this.tabManagerService.resetTabs$)
         ).subscribe((tab: TabModel) => this.tabManagerService.openTab(tab, this.currentActiveTab));
-
-        this.store.select(selectAppDirtyState)
-            .pipe(takeUntil(this.tabManagerService.resetTabs$))
-            .subscribe((isDirtyState) => this.isDirtyState = isDirtyState);
     }
 
     canDeactivate(): Observable<boolean> {
@@ -105,26 +100,17 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
     }
 
     onRemoveTab(tab: TabModel) {
-        if (this.isDirtyState) {
-            this.dialogService.confirm({
-                title: 'SDK.MODEL_EDITOR.CONFiRM.TITLE',
-                messages: ['SDK.MODEL_EDITOR.CONFiRM.MESSAGE']
-            })
-                .subscribe((choice) => {
-                    if (choice) {
-                        this.removeTab(tab);
-                    }
-                });
-        } else {
-            this.removeTab(tab);
-        }
+        this.unsavedChanges.canDeactivate(this.modelEditor).pipe(take(1))
+            .subscribe((choice) => {
+                this.store.dispatch(new SetAppDirtyStateAction(false));
+                if (choice) {
+                    this.removeTab(tab);
+                }
+            });
     }
 
     private removeTab(tab: TabModel) {
         this.tabManagerService.removeTab(tab, this.openedTabs);
-        if (this.openedTabs.length === 0) {
-            this.resetToProjectUrl();
-        }
     }
 
     private resetToProjectUrl() {
@@ -145,7 +131,9 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
 
     onSelectedTabChanged(tabIndex: number) {
         const currentTab: TabModel = this.openedTabs[tabIndex];
-        if (currentTab) {
+        if (this.openedTabs.length === 0) {
+            this.resetToProjectUrl();
+        } else if (currentTab) {
             this.store.dispatch(new ModelOpenedAction({ id: currentTab.id, type: currentTab.modelType }));
             const nextUrl = this.buildNextUrl(currentTab.modelType, currentTab.id);
             this.location.replaceState(nextUrl);

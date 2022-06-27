@@ -17,10 +17,6 @@
                 "CONFIRM_SAVE_AS_MODEL": "Are you sure you want to copy this {{ modelType }}?",
                 "INVALID_MODEL": "{{ modelType }} contains validation error(s).",
                 "VALID_MODEL" : "{{ modelType }} is valid"
-            },
-            "CONFiRM": {
-                "TITLE" : "Unsaved changes",
-                "MESSAGE": "You are leaving the editor without saving the changes. Do you wish to continue?"
             }
         },
         "SNACKBAR": {
