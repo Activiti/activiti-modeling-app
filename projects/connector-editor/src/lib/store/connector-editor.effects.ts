@@ -53,7 +53,9 @@ import {
     CONNECTOR_MODEL_ENTITY_SELECTORS,
     ModelEntitySelectors,
     UpdateTabTitle,
-    SetLogHistoryVisibilityAction
+    SetLogHistoryVisibilityAction,
+    TabManagerEntityService,
+    TabManagerService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ConnectorEditorService } from '../services/connector-editor.service';
@@ -106,6 +108,8 @@ export class ConnectorEditorEffects {
         private translationService: TranslationService,
         @Inject(CONNECTOR_MODEL_ENTITY_SELECTORS)
         private entitySelector: ModelEntitySelectors,
+        private tabManagerEntityService: TabManagerEntityService,
+        private tabManagerService: TabManagerService
     ) {}
 
     @Effect()
@@ -139,9 +143,13 @@ export class ConnectorEditorEffects {
     @Effect({ dispatch: false })
     deleteConnectorSuccessEffect = this.actions$.pipe(
         ofType<DeleteConnectorSuccessAction>(DELETE_CONNECTOR_SUCCESS),
-        withLatestFrom(this.store.select(selectSelectedProjectId)),
-        map(([, projectId]) => {
-            void this.router.navigate(['/projects', projectId]);
+        withLatestFrom(this.store.select(selectSelectedProjectId), this.tabManagerEntityService.entities$),
+        map(([deletedSuccessAction, projectId, openedTabs]) => {
+            if (openedTabs && openedTabs.length > 0) {
+                this.tabManagerService.removeTabByModelId(deletedSuccessAction.connectorId, openedTabs);
+            } else {
+                void this.router.navigate(['/projects', projectId]);
+            }
         })
     );
 

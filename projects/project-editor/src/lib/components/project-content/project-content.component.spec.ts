@@ -18,7 +18,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProjectContentComponent } from './project-content.component';
 import { Store } from '@ngrx/store';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { ToolbarModule } from '@alfresco/adf-core';

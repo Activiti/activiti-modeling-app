@@ -136,7 +136,7 @@ export class TabManagerComponent implements OnInit, CanComponentDeactivate {
         } else if (currentTab) {
             this.store.dispatch(new ModelOpenedAction({ id: currentTab.id, type: currentTab.modelType }));
             const nextUrl = this.buildNextUrl(currentTab.modelType, currentTab.id);
-            this.location.replaceState(nextUrl);
+            void this.router.navigateByUrl(nextUrl, {relativeTo: this.activatedRoute});
         }
     }
 

@@ -61,7 +61,9 @@ import {
     OpenConfirmDialogAction,
     BpmnElement,
     SaveAsDialogPayload,
-    ShowProcessesAction
+    ShowProcessesAction,
+    TabManagerService,
+    TabManagerEntityService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProcessEntitiesState } from './process-entities.state';
@@ -146,7 +148,13 @@ describe('ProcessEditorEffects', () => {
                         selectModelContentById: jest.fn().mockReturnValue(mockSelector),
                         selectModelMetadataById: jest.fn().mockReturnValue(mockSelector)
                     }
-                }
+                },
+                {
+                    provide: TabManagerEntityService, useValue: {
+                        entities$: of([])
+                    }
+                },
+                TabManagerService
             ]
         });
 

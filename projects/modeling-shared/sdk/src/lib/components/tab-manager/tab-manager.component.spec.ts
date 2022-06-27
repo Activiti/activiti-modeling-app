@@ -121,7 +121,7 @@ describe('TabManagerComponent', () => {
                 provideMockStore({ initialState: fakeEntityState }),
                 {
                     provide: Router,
-                    useValue: { navigate: jest.fn() }
+                    useValue: { navigate: jest.fn(), navigateByUrl: jest.fn() }
                 },
                 TabManagerService,
                 DialogService,
@@ -348,6 +348,6 @@ describe('TabManagerComponent', () => {
         uiTab.click();
 
         fixture.detectChanges();
-        expect(location.replaceState).toHaveBeenCalledWith('/project/whatever-project-id/process/fake-process-id');
+        expect(router.navigateByUrl).toHaveBeenCalledWith('/project/whatever-project-id/process/fake-process-id', jasmine.any(Object));
     });
 });

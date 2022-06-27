@@ -65,7 +65,9 @@ import {
     SaveAsDialogPayload,
     ShowConnectorsAction,
     CONNECTOR_MODEL_ENTITY_SELECTORS,
-    UpdateTabTitle
+    UpdateTabTitle,
+    TabManagerService,
+    TabManagerEntityService
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogService } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { Update } from '@ngrx/entity';
@@ -171,7 +173,13 @@ describe('ConnectorEditorEffects', () => {
                     useValue: {
                         selectModelMetadataById: jest.fn().mockReturnValue(mockSelector)
                     }
-                }
+                },
+                {
+                    provide: TabManagerEntityService, useValue: {
+                        entities$: of([])
+                    }
+                },
+                TabManagerService
             ]
         });
 

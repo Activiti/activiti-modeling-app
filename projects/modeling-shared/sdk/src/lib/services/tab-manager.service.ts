@@ -37,6 +37,11 @@ export class TabManagerService {
         this.tabManagerEntityService.removeOneFromCache(tab);
     }
 
+    public removeTabByModelId(modelId: string, openedTabs: TabModel[]) {
+        const deletedTab = openedTabs.find(tab => tab.id === modelId);
+        this.removeTab(deletedTab, openedTabs);
+    }
+
     public getActiveTab(): Observable<[TabModel, TabModel[]]> {
         this.tabManagerEntityService.setFilter(true);
         return this.tabManagerEntityService.filteredEntities$.pipe(
