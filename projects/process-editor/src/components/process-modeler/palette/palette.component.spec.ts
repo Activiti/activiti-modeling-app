@@ -21,7 +21,7 @@ import { TranslationService, TranslationMock, CoreModule, AppConfigService } fro
 import { TranslateModule } from '@ngx-translate/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ProcessModelerPaletteService } from '../../../services/palette/process-modeler-palette.service';
 import { PaletteElementsToken, PaletteOverlayDirective, PaletteGroupElement, BpmnTrigger } from '@alfresco-dbp/modeling-shared/sdk';
 import { MatMenuModule } from '@angular/material/menu';
