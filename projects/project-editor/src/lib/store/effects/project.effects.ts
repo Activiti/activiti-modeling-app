@@ -43,6 +43,7 @@ import {
     EXPORT_PROJECT_ATTEMPT,
     ExportProjectAttemptPayload,
     TabManagerService,
+    SetLogHistoryVisibilityAction,
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { DialogData } from '@alfresco-dbp/adf-candidates/core/dialog';
 import { ProjectEditorService } from '../../services/project-editor.service';
@@ -151,7 +152,8 @@ export class ProjectEffects {
             catchError(response => this.getDialogData(response).pipe(
                 switchMap(dialogData => [
                     this.logFactory.logError(getProjectEditorLogInitiator(), dialogData.messages),
-                    new OpenInfoDialogAction({ dialogData })
+                    new OpenInfoDialogAction({ dialogData }),
+                    new SetLogHistoryVisibilityAction(true)
                 ])
             ))
         );
