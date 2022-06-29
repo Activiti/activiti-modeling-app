@@ -1,5 +1,14 @@
 {
   "PROJECT_EDITOR": {
+    "CONTENT_MODEL_DIALOG": {
+        "TITLE_CREATE": "إنشاء نموذج المحتوى",
+        "TITLE_UPDATE": "تحديث نموذج المحتوى",
+        "CONTENT_MODEL_NAME": "اسم نموذج المحتوى:",
+        "CONTENT_MODEL_DESC": "وصف نموذج المحتوى:",
+        "CONTENT_MODEL_CREATED": "تم إنشاء نموذج المحتوى",
+        "CONTENT_MODEL_DELETED": "تم حذف نموذج المحتوى",
+        "CONTENT_MODEL_UPDATED": "تم حفظ نموذج المحتوى"
+    },
     "BACK_TO": "عودة إلى المشروعات",
     "NAME": "محرر المشروعات",
     "UPLOAD_FILE": "تحميل ملف",
@@ -39,7 +48,8 @@
         "CREATE_PROJECT_MODEL": "نموذج المحتوى",
         "CREATE_FORM_WIDGET": "عنصر واجهة النموذج",
         "CREATE_DATA_MODEL": "نموذج البيانات",
-        "CREATE_AUTHENTICATION": "المصادقة"
+        "CREATE_AUTHENTICATION": "المصادقة",
+        "CREATE_CONTENT_MODEL": "نموذج المحتوى"
       }
     },
     "TREE": {

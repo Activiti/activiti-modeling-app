@@ -1,5 +1,14 @@
 {
   "PROJECT_EDITOR": {
+    "CONTENT_MODEL_DIALOG": {
+        "TITLE_CREATE": "Создать модель содержимого",
+        "TITLE_UPDATE": "Обновить модель содержимого",
+        "CONTENT_MODEL_NAME": "Имя модели содержимого:",
+        "CONTENT_MODEL_DESC": "Описание модели содержимого:",
+        "CONTENT_MODEL_CREATED": "Модель содержимого создана",
+        "CONTENT_MODEL_DELETED": "Модель содержимого удалена",
+        "CONTENT_MODEL_UPDATED": "Модель содержимого сохранена"
+    },
     "BACK_TO": "Вернуться назад к проектам",
     "NAME": "Редактор проектов",
     "UPLOAD_FILE": "Выгрузить файл",
@@ -39,7 +48,8 @@
         "CREATE_PROJECT_MODEL": "Модель содержимого",
         "CREATE_FORM_WIDGET": "Виджет формы",
         "CREATE_DATA_MODEL": "Модель данных",
-        "CREATE_AUTHENTICATION": "Авторизация"
+        "CREATE_AUTHENTICATION": "Авторизация",
+        "CREATE_CONTENT_MODEL": "Модель содержимого"
       }
     },
     "TREE": {

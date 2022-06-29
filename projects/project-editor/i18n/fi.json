@@ -1,5 +1,14 @@
 {
   "PROJECT_EDITOR": {
+    "CONTENT_MODEL_DIALOG": {
+        "TITLE_CREATE": "Luo sisältömalli",
+        "TITLE_UPDATE": "Päivitä sisältömalli",
+        "CONTENT_MODEL_NAME": "Sisältömallin nimi:",
+        "CONTENT_MODEL_DESC": "Sisältömallin kuvaus:",
+        "CONTENT_MODEL_CREATED": "Sisältömalli luotu",
+        "CONTENT_MODEL_DELETED": "Sisältömalli poistettu",
+        "CONTENT_MODEL_UPDATED": "Sisältömalli tallennettu"
+    },
     "BACK_TO": "Takaisin projekteihin",
     "NAME": "Projektieditori",
     "UPLOAD_FILE": "Lataa tiedosto",
@@ -39,7 +48,8 @@
         "CREATE_PROJECT_MODEL": "Sisältömalli",
         "CREATE_FORM_WIDGET": "Lomakepiensovellus",
         "CREATE_DATA_MODEL": "Tietomalli",
-        "CREATE_AUTHENTICATION": "Todennus"
+        "CREATE_AUTHENTICATION": "Todennus",
+        "CREATE_CONTENT_MODEL": "Sisältömalli"
       }
     },
     "TREE": {

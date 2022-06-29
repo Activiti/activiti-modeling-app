@@ -1,5 +1,14 @@
 {
   "PROJECT_EDITOR": {
+    "CONTENT_MODEL_DIALOG": {
+        "TITLE_CREATE": "Opprett innholdsmodell",
+        "TITLE_UPDATE": "Oppdater innholdsmodell",
+        "CONTENT_MODEL_NAME": "Innholdsmodellens navn:",
+        "CONTENT_MODEL_DESC": "Beskrivelse av innholdsmodell:",
+        "CONTENT_MODEL_CREATED": "Innholdsmodell opprettet",
+        "CONTENT_MODEL_DELETED": "Innholdsmodell slettet",
+        "CONTENT_MODEL_UPDATED": "Innholdsmodell lagret"
+    },
     "BACK_TO": "Tilbake til prosjekter",
     "NAME": "Prosjektredigering",
     "UPLOAD_FILE": "Last opp fil",
@@ -39,7 +48,8 @@
         "CREATE_PROJECT_MODEL": "Innholdsmodell",
         "CREATE_FORM_WIDGET": "Skjema-widget",
         "CREATE_DATA_MODEL": "Datamodell",
-        "CREATE_AUTHENTICATION": "Godkjenning"
+        "CREATE_AUTHENTICATION": "Godkjenning",
+        "CREATE_CONTENT_MODEL": "Innholdsmodell"
       }
     },
     "TREE": {

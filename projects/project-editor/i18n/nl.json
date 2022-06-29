@@ -1,5 +1,14 @@
 {
   "PROJECT_EDITOR": {
+    "CONTENT_MODEL_DIALOG": {
+        "TITLE_CREATE": "Contentmodel maken",
+        "TITLE_UPDATE": "Contentmodel bijwerken",
+        "CONTENT_MODEL_NAME": "Naam contentmodel:",
+        "CONTENT_MODEL_DESC": "Beschrijving contentmodel:",
+        "CONTENT_MODEL_CREATED": "Contentmodel gemaakt",
+        "CONTENT_MODEL_DELETED": "Contentmodel verwijderd",
+        "CONTENT_MODEL_UPDATED": "Contentmodel opgeslagen"
+    },
     "BACK_TO": "Terug naar projecten",
     "NAME": "Projecteditor",
     "UPLOAD_FILE": "Bestand uploaden",
@@ -39,7 +48,8 @@
         "CREATE_PROJECT_MODEL": "Contentmodel",
         "CREATE_FORM_WIDGET": "Formulierwidget",
         "CREATE_DATA_MODEL": "Gegevensmodel",
-        "CREATE_AUTHENTICATION": "Verificatie"
+        "CREATE_AUTHENTICATION": "Verificatie",
+        "CREATE_CONTENT_MODEL": "Contentmodel"
       }
     },
     "TREE": {

@@ -1,5 +1,14 @@
 {
     "PROJECT_EDITOR": {
+        "CONTENT_MODEL_DIALOG": {
+            "TITLE_CREATE": "Create Content Model",
+            "TITLE_UPDATE": "Update Content Model",
+            "CONTENT_MODEL_NAME": "Content Model name:",
+            "CONTENT_MODEL_DESC": "Content Model description:",
+            "CONTENT_MODEL_CREATED": "Content Model created",
+            "CONTENT_MODEL_DELETED": "Content Model deleted",
+            "CONTENT_MODEL_UPDATED": "Content Model saved"
+        },
         "BACK_TO": "Back to projects",
         "NAME": "Project Editor",
         "UPLOAD_FILE": "Upload file",
@@ -40,7 +49,8 @@
                 "CREATE_PROJECT_MODEL": "Content Model",
                 "CREATE_FORM_WIDGET": "Form Widget",
                 "CREATE_DATA_MODEL": "Data Model",
-                "CREATE_AUTHENTICATION": "Authentication"
+                "CREATE_AUTHENTICATION": "Authentication",
+                "CREATE_CONTENT_MODEL": "Content Model"
             }
         },
         "TREE": {

@@ -1,5 +1,14 @@
 {
   "PROJECT_EDITOR": {
+    "CONTENT_MODEL_DIALOG": {
+        "TITLE_CREATE": "Utwórz model zawartości",
+        "TITLE_UPDATE": "Aktualizuj model zawartości",
+        "CONTENT_MODEL_NAME": "Nazwa modelu zawartości:",
+        "CONTENT_MODEL_DESC": "Opis modelu zawartości:",
+        "CONTENT_MODEL_CREATED": "Utworzono model zawartości",
+        "CONTENT_MODEL_DELETED": "Usunięto model zawartości",
+        "CONTENT_MODEL_UPDATED": "Zapisano model zawartości"
+    },
     "BACK_TO": "Wstecz do projektów",
     "NAME": "Edytor projektów",
     "UPLOAD_FILE": "Prześlij plik",
@@ -39,7 +48,8 @@
         "CREATE_PROJECT_MODEL": "Model treści",
         "CREATE_FORM_WIDGET": "Widżet formularza",
         "CREATE_DATA_MODEL": "Model danych",
-        "CREATE_AUTHENTICATION": "Uwierzytelnianie"
+        "CREATE_AUTHENTICATION": "Uwierzytelnianie",
+        "CREATE_CONTENT_MODEL": "Model treści"
       }
     },
     "TREE": {

@@ -1,5 +1,14 @@
 {
   "PROJECT_EDITOR": {
+    "CONTENT_MODEL_DIALOG": {
+        "TITLE_CREATE": "Vytvořit model ACS",
+        "TITLE_UPDATE": "Aktualizovat model ACS",
+        "CONTENT_MODEL_NAME": "Název modelu ACS:",
+        "CONTENT_MODEL_DESC": "Popis modelu ACS:",
+        "CONTENT_MODEL_CREATED": "Vytvoření modelu ACS",
+        "CONTENT_MODEL_DELETED": "Odstranění modelu ACS",
+        "CONTENT_MODEL_UPDATED": "Uložení modelu ACS"
+    },
     "BACK_TO": "Zpět k projektům",
     "NAME": "Editor projektů",
     "UPLOAD_FILE": "Odeslat soubor",
@@ -39,7 +48,8 @@
         "CREATE_PROJECT_MODEL": "Model obsahu",
         "CREATE_FORM_WIDGET": "Widget formuláře",
         "CREATE_DATA_MODEL": "Datový model",
-        "CREATE_AUTHENTICATION": "Ověřování"
+        "CREATE_AUTHENTICATION": "Ověřování",
+        "CREATE_CONTENT_MODEL": "Model obsahu"
       }
     },
     "TREE": {

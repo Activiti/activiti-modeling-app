@@ -1,5 +1,14 @@
 {
   "PROJECT_EDITOR": {
+    "CONTENT_MODEL_DIALOG": {
+        "TITLE_CREATE": "Skapa innehållsmodell",
+        "TITLE_UPDATE": "Uppdatera innehållsmodell",
+        "CONTENT_MODEL_NAME": "Innehållsmodellens namn:",
+        "CONTENT_MODEL_DESC": "Beskrivning av innehållsmodell:",
+        "CONTENT_MODEL_CREATED": "Innehållsmodell skapad",
+        "CONTENT_MODEL_DELETED": "Innehållsmodell raderad",
+        "CONTENT_MODEL_UPDATED": "Innehållsmodell sparad"
+    },
     "BACK_TO": "Tillbaka till projekt",
     "NAME": "Projekteditor",
     "UPLOAD_FILE": "Ladda upp fil",
@@ -39,7 +48,8 @@
         "CREATE_PROJECT_MODEL": "Innehållsmodell",
         "CREATE_FORM_WIDGET": "Widgetform",
         "CREATE_DATA_MODEL": "Datamodell",
-        "CREATE_AUTHENTICATION": "Autentisering"
+        "CREATE_AUTHENTICATION": "Autentisering",
+        "CREATE_CONTENT_MODEL": "Innehållsmodell"
       }
     },
     "TREE": {

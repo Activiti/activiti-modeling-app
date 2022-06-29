@@ -1,5 +1,14 @@
 {
   "PROJECT_EDITOR": {
+    "CONTENT_MODEL_DIALOG": {
+        "TITLE_CREATE": "Opret indholdsmodel",
+        "TITLE_UPDATE": "Aktualiser indholdsmodel",
+        "CONTENT_MODEL_NAME": "Indholdsmodellens navn",
+        "CONTENT_MODEL_DESC": "Beskrivelse af indholdsmodel:",
+        "CONTENT_MODEL_CREATED": "Indholdsmodel oprettet",
+        "CONTENT_MODEL_DELETED": "Indholdsmodel blev slettet",
+        "CONTENT_MODEL_UPDATED": "Indholsmodel gemt"
+    },
     "BACK_TO": "Tilbage til projekter",
     "NAME": "Projekteditor",
     "UPLOAD_FILE": "Upload fil",
@@ -39,7 +48,8 @@
         "CREATE_PROJECT_MODEL": "Indholdsmodel",
         "CREATE_FORM_WIDGET": "Formularwidget",
         "CREATE_DATA_MODEL": "Datamodel",
-        "CREATE_AUTHENTICATION": "Godkendelse"
+        "CREATE_AUTHENTICATION": "Godkendelse",
+        "CREATE_CONTENT_MODEL": "Indholdsmodel"
       }
     },
     "TREE": {

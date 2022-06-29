@@ -1,5 +1,14 @@
 {
   "PROJECT_EDITOR": {
+    "CONTENT_MODEL_DIALOG": {
+        "TITLE_CREATE": "コンテンツモデルを作成",
+        "TITLE_UPDATE": "コンテンツモデルを更新",
+        "CONTENT_MODEL_NAME": "コンテンツモデル名:",
+        "CONTENT_MODEL_DESC": "コンテンツモデルの説明:",
+        "CONTENT_MODEL_CREATED": "コンテンツモデルが作成されました",
+        "CONTENT_MODEL_DELETED": "コンテンツモデルが削除されました",
+        "CONTENT_MODEL_UPDATED": "コンテンツモデルが保存されました"
+    },
     "BACK_TO": "プロジェクトに戻る",
     "NAME": "プロジェクトエディタ",
     "UPLOAD_FILE": "ファイルのアップロード",
@@ -39,7 +48,8 @@
         "CREATE_PROJECT_MODEL": "コンテンツモデル",
         "CREATE_FORM_WIDGET": "フォームウィジェット",
         "CREATE_DATA_MODEL": "データモデル",
-        "CREATE_AUTHENTICATION": "認証"
+        "CREATE_AUTHENTICATION": "認証",
+        "CREATE_CONTENT_MODEL": "コンテンツモデル"
       }
     },
     "TREE": {
