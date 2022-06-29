@@ -4,17 +4,22 @@
 
     .mat-tab-header {
         background: var(--theme-card-bg-color);
+        border: none;
     }
 
     .mat-ink-bar {
-        display: none;
-        visibility: hidden;
+        background-color: white !important;
+    }
+
+    .mat-tab-labels, .mat-tab-header-pagination-before, .mat-tab-header-pagination-after {
+        border-bottom: 1px solid var(--theme-ama-border-color);
     }
 
     .mat-tab-label {
         background: var(--theme-studio-background);
         border-right: 1px solid var(--theme-ama-border-color);
         padding: 5px;
+        border-bottom: 1px solid var(--theme-ama-border-color);
     }
 
     .mat-tab-label-active {

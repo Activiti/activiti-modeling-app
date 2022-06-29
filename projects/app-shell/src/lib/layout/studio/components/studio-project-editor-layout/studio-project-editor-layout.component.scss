@@ -55,6 +55,10 @@ mat-sidenav-container.studio-project-layout {
             }
         }
 
+        .ama-model-header, .ama-process-modeler-actions {
+            border-bottom: 1px solid var(--theme-ama-border-color);
+        }
+
         .ama-editor-footer {
             z-index: 1;
             .mat-toolbar {
