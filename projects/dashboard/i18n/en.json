@@ -61,7 +61,7 @@
         }
     },
     "NEW_STUDIO_DASHBOARD" :{
-        "NAME": "Modeler",
+        "NAME": "Modeling Application",
         "NAVIGATION": {
             "PROJECT_TITLE": "Projects",
             "CONTENT_MODEL_TITLE": "Content Models",
@@ -90,18 +90,18 @@
             },
             "SHARED_MODELS": {
                 "HEADER_LABEL": "My shared models",
-                "LABEL": "Shared models",
+                "LABEL": "Global models",
                 "TOOLTIP": "Models shared across the projects",
                 "ACTIONS": {
-                    "CREATE": "Create Shared Model"
+                    "CREATE": "Create content model"
                 }
             },
             "DATA_MODELS": {
                 "HEADER_LABEL": "My data models",
-                "LABEL": "Data models",
+                "LABEL": "Global models",
                 "TOOLTIP": "Published data models",
                 "ACTIONS": {
-                    "CREATE": "Create Data Model"
+                    "CREATE": "Create data model"
                 }
             }
         },
