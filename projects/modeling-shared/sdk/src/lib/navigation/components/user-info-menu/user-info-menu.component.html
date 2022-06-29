@@ -28,15 +28,6 @@
             <adf-language-menu></adf-language-menu>
         </mat-menu>
 
-        <button mat-menu-item [matMenuTriggerFor]="themeMenu" data-automation-id="user-theme-menu">
-            <mat-icon>brightness_2</mat-icon>
-            <span>{{ 'APP.HEADER.APPEARANCE' | translate }}</span>
-        </button>
-    
-        <mat-menu #themeMenu="matMenu">
-            <modelingsdk-theme-menu></modelingsdk-theme-menu>
-        </mat-menu>
-
         <button mat-menu-item data-automation-id="about" (click)="navigateToAbout()">
             <mat-icon>info</mat-icon>
             <span>{{ 'APP.HEADER.ABOUT' | translate }}</span>
