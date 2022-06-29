@@ -20,7 +20,7 @@ import { Observable } from 'rxjs';
 import { Project, Release, Pagination, ReleaseEntry, ServerSideSorting, SearchQuery, CollaboratorEntry, FetchQueries, ReleaseInfo } from './types';
 import { ValidationErrors } from '../interfaces/validation-errors.interface';
 import { PaginatedEntries } from '@alfresco/js-api';
-import { IdentityUserModel } from '@alfresco/adf-core';
+import { IdentityUserModel } from '@alfresco/adf-process-services-cloud';
 
 @Injectable()
 export abstract class ProjectApi {

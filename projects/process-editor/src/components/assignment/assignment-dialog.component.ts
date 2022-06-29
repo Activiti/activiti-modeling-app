@@ -35,13 +35,13 @@ import {
     CodeEditorComponent
 } from '@alfresco-dbp/modeling-shared/sdk';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { IdentityUserModel, IdentityGroupModel } from '@alfresco/adf-core';
 import { Store } from '@ngrx/store';
 import { filter, take, takeUntil } from 'rxjs/operators';
 import { AbstractControl, FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { MatSelectChange } from '@angular/material/select';
+import { IdentityGroupModel, IdentityUserModel } from '@alfresco/adf-process-services-cloud';
 
 export interface AssignmentSettings {
     assignee: string[];
