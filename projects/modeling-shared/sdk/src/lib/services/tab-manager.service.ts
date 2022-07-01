@@ -17,7 +17,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { distinctUntilKeyChanged, filter, map, takeUntil, withLatestFrom } from 'rxjs/operators';
+import { distinctUntilKeyChanged, filter, map, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 import { TabManagerEntityService } from '../components/tab-manager/tab-manager-entity.service';
 import { TabModel } from '../models/tab.model';
 
@@ -28,18 +28,31 @@ export class TabManagerService {
 
     private resetTabs = new Subject<void>();
     public resetTabs$ = this.resetTabs.asObservable();
+    private tabList: TabModel[];
 
     constructor(private tabManagerEntityService: TabManagerEntityService) {
     }
 
-    public removeTab(tab: TabModel, openedTabs: TabModel[]) {
-        this.setNewActiveTab(tab, openedTabs);
+    public removeTab(tab: TabModel) {
+        this.setNewActiveTab(tab, this.tabList);
         this.tabManagerEntityService.removeOneFromCache(tab);
     }
 
     public removeTabByModelId(modelId: string, openedTabs: TabModel[]) {
         const deletedTab = openedTabs.find(tab => tab.id === modelId);
-        this.removeTab(deletedTab, openedTabs);
+        this.removeTab(deletedTab);
+    }
+
+    public getTabs(): Observable<TabModel[]> {
+        return this.tabManagerEntityService.entities$.pipe(tap(entities => this.tabList = entities), takeUntil(this.resetTabs$));
+    }
+
+    public isTabListEmpty(): boolean {
+        return this.tabList && this.tabList.length === 0;
+    }
+
+    public getTabByIndex(index: number): TabModel {
+        return this.tabList[index];
     }
 
     public getActiveTab(): Observable<[TabModel, TabModel[]]> {
@@ -52,13 +65,17 @@ export class TabManagerService {
             takeUntil(this.resetTabs$));
     }
 
-    private setNewActiveTab(tab: TabModel, openedTabs: TabModel[]){
+    private setNewActiveTab(tab: TabModel, openedTabs: TabModel[]) {
         const currentOpenTabIndex = openedTabs.findIndex((openedTab) => openedTab.id === tab.id);
-        if(currentOpenTabIndex-1 !== -1) {
-            const nextActiveTab = openedTabs[currentOpenTabIndex-1];
+        if (currentOpenTabIndex - 1 !== -1) {
+            const nextActiveTab = openedTabs[currentOpenTabIndex - 1];
             nextActiveTab.active = true;
             this.tabManagerEntityService.updateOneInCache(tab);
         }
+    }
+
+    public addTabToList(tab: TabModel) {
+        this.tabManagerEntityService.addOneToCache(tab);
     }
 
     public openTab(tab: TabModel, currentActiveTab: TabModel) {
@@ -67,7 +84,7 @@ export class TabManagerService {
         }
     }
 
-    public setTabActive(tab: TabModel, currentActiveTab: TabModel){
+    public setTabActive(tab: TabModel, currentActiveTab: TabModel) {
         tab.active = true;
         currentActiveTab.active = false;
         this.tabManagerEntityService.updateManyInCache([tab, currentActiveTab]);
@@ -75,11 +92,16 @@ export class TabManagerService {
 
     public reset() {
         this.resetTabs.next();
+        this.resetTabs.complete();
+        this.tabList = [];
         this.tabManagerEntityService.clearCache();
     }
 
     updateTabTitle(newTitle: string, modelId: string | number) {
-        this.tabManagerEntityService.updateOneInCache({ id: modelId+'', title: newTitle});
+        const tab = this.tabList.find(openTab => openTab.id === modelId);
+        if (tab && tab.title.toLocaleLowerCase() !== newTitle.toLocaleLowerCase()) {
+            this.tabManagerEntityService.updateOneInCache({ id: modelId + '', title: newTitle });
+        }
     }
 
 }

@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-import { TranslationMock, TranslationService } from '@alfresco/adf-core';
+import { TabModel, TranslationMock, TranslationService } from '@alfresco/adf-core';
 import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { TabManagerEntityService } from '../components/tab-manager/tab-manager-entity.service';
 import { TabManagerService } from './tab-manager.service';
 
@@ -25,6 +25,8 @@ import { TabManagerService } from './tab-manager.service';
 describe('TabManagerService', () => {
     let service: TabManagerService;
     let entityService: TabManagerEntityService;
+    const entitySubject = new BehaviorSubject<TabModel[]>([]);
+    const fakeTabModel: TabModel = <TabModel> {id: 'id-1', title: 'new-name'};
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -32,8 +34,8 @@ describe('TabManagerService', () => {
                 { provide: TranslationService, useClass: TranslationMock },
                 {
                     provide: TabManagerEntityService, useValue: {
-                        updateOneInCache: jasmine.createSpy(),
-                        entities$: of([])
+                        updateOneInCache: jest.fn(),
+                        entities$: entitySubject
                     }
                 }
             ]
@@ -44,17 +46,29 @@ describe('TabManagerService', () => {
     });
 
     it('should not update title when tab is not found in tabs registry', (done) => {
-        service.updateTabTitle('new-name', 'id-1');
-        entityService.entities$.subscribe((tabs) => {
-            expect(tabs).toEqual([]);
+        service.getTabs().subscribe(() => {
+            service.updateTabTitle('new-name', 'id-1');
+            expect(entityService.updateOneInCache).not.toHaveBeenCalled();
             done();
         });
     });
 
-    it('should update title when tab is found in tabs registry', () => {
-        service.updateTabTitle('new-name', 'model-1');
+    it('should not update title when tab title has not been changed', (done) => {
+        entitySubject.next([fakeTabModel]);
+        service.getTabs().subscribe(() => {
+            service.updateTabTitle('new-name', 'id-1');
+            expect(entityService.updateOneInCache).not.toHaveBeenCalled();
+            done();
+        });
+    });
 
-        expect(entityService.updateOneInCache).toHaveBeenCalledWith({id : 'model-1', title: 'new-name'});
+    it('should update title when tab is found in tabs registry', (done) => {
+        entitySubject.next([fakeTabModel]);
+        service.getTabs().subscribe(() => {
+            service.updateTabTitle('new-name-changed', 'id-1');
+            expect(entityService.updateOneInCache).toHaveBeenCalledWith({id: 'id-1', title: 'new-name-changed'});
+            done();
+        });
     });
 
 });

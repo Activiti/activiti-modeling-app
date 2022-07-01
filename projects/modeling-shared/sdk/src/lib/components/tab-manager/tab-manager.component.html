@@ -1,5 +1,5 @@
 <mat-tab-group #tabs class="ama-tab-models" [(selectedIndex)]="selectedTabIndex" (selectedIndexChange)="onSelectedTabChanged($event)">
-    <mat-tab class="ama-tab-model" *ngFor="let tab of currentTabs$ | async; let tabIndex = index"  >
+    <mat-tab class="ama-tab-model" *ngFor="let tab of currentTabs$ | async" >
         <ng-template mat-tab-label>
             <div class="ama-tab-model-body">
                 <mat-icon class="ama-tab-model-icon" [attr.data-automation-id]="'model-tab-icon-'+tab.id">{{ tab.icon }}</mat-icon>
@@ -10,6 +10,8 @@
                 </button>
             </div>
         </ng-template>
-        <modelingsdk-model-editor #modelEditor [modelId]="tab.id" [modelType]="tab.modelType"></modelingsdk-model-editor>
+        <ng-template matTabContent>
+            <modelingsdk-model-editor #modelEditor [modelId]="tab.id" [modelType]="tab.modelType"></modelingsdk-model-editor>
+        </ng-template>
     </mat-tab>
 </mat-tab-group>

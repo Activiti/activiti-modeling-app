@@ -121,7 +121,7 @@ describe('TabManagerComponent', () => {
                 provideMockStore({ initialState: fakeEntityState }),
                 {
                     provide: Router,
-                    useValue: { navigate: jest.fn(), navigateByUrl: jest.fn() }
+                    useValue: { navigate: jest.fn(), navigateByUrl: jest.fn(() => Promise.resolve(true)) }
                 },
                 TabManagerService,
                 DialogService,
