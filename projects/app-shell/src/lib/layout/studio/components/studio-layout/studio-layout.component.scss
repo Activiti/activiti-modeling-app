@@ -4,11 +4,43 @@ mat-sidenav-container.studio-layout {
     height: 100%;
     background-color: var(--theme-ama-studio-bg-color);
 
-    .mat-sidenav-content {
+    .studio-layout-content {
         overflow: inherit;
+        margin-right: 1px !important;
+        margin-left: 324px !important;
+
+        .modelingsdk-workbench-layout {
+            .mat-sidenav-content {
+                margin-left: 0 !important;
+            }
+        }
     }
 
-    .studio-layout-content {
+    .studio-layout-content-rtl {
+        margin-left: 1px !important;
+        margin-right: 324px !important;
+
+        .modelingsdk-workbench-layout {
+            .mat-sidenav .mat-drawer-inner-container {
+                border-right: 1px solid var(--theme-border-color);
+            }
+
+            .mat-sidenav-content {
+                margin-right: 0 !important;
+
+                .ama-toggle-tree-buttons {
+                    float: left;
+                }
+            }
+        }
+
+        .modelingsdk-workbench-layout_button {
+            transform: rotate(90deg) translateX(-50%) translateY(-200%);
+            right: 0;
+        }
+    }
+
+    .studio-layout-content, .studio-layout-content-rtl {
         display: flex;
         flex: 1;
         flex-direction: column;

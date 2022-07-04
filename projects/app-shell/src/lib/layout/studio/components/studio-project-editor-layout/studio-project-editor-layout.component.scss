@@ -24,7 +24,74 @@ mat-sidenav-container.studio-project-layout {
     }
 
     .studio-project-layout-content {
-        margin-right: 1px;
+        margin-right: 1px !important;
+        margin-left: 300px !important;
+
+        &-closed {
+            margin-left: 0px !important;
+
+            .modelingsdk-workbench-layout {
+                .mat-sidenav-content {
+                    margin-left: 0px !important;
+                }
+            }
+        }
+
+        .modelingsdk-workbench-layout {
+            .mat-sidenav-content {
+                margin-left: 0px !important;
+            }
+        }
+    }
+
+    .studio-project-layout-sidenav-rtl {
+        .app-navigation__section--new {
+            border-left: 1px solid var(--theme-border-color);
+        }
+
+        .ama-add-more-container {
+            right: 235px;
+        }
+
+        .ama-project-tree-filter__button.mat-button {
+            text-align: right;
+            margin: 0 32px 0 0;
+        }
+    }
+
+    .studio-project-layout-content-rtl {
+        margin-left: 1px !important;
+        margin-right: 300px !important;
+
+        .modelingsdk-workbench-layout {
+            .mat-sidenav .mat-drawer-inner-container{
+                border-right: 1px solid var(--theme-border-color);
+            }
+
+            .mat-sidenav-content {
+                margin-right: 0px !important;
+
+                .ama-toggle-tree-buttons {
+                    float: left;
+                }
+            }
+        }
+
+        .app-navigation__section--new, .ama-tab-models .mat-tab-label-active {
+            border-left: 1px solid var(--theme-border-color);
+        }
+
+        .ama-process-palette {
+            left: auto;
+        }
+
+        .modelingsdk-workbench-layout_button {
+            transform: rotate(90deg) translateX(-50%) translateY(-200%);
+            right: 0px;
+        }
+    }
+
+    .studio-project-layout-content, .studio-project-layout-content-rtl, .studio-project-layout-content-closed {
         display: flex;
         flex: 1;
         flex-direction: column;

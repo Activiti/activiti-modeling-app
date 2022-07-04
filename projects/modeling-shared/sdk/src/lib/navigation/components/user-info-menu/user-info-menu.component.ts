@@ -75,4 +75,5 @@ export class UserInfoMenuComponent implements OnInit {
     navigateToAbout() {
         this.store.dispatch(new OpenAboutDialogAction());
     }
+
 }

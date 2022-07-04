@@ -16,6 +16,8 @@
  */
 
 import { LayoutService } from '@alfresco-dbp/modeling-shared/sdk';
+import { UserPreferencesService } from '@alfresco/adf-core';
+import { Direction } from '@angular/cdk/bidi';
 import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -28,14 +30,21 @@ import { takeUntil } from 'rxjs/operators';
 export class StudioProjectEditorLayoutComponent implements OnDestroy {
 
     onDestroy$: Subject<void> = new Subject<void>();
-
+    direction = 'ltr';
     mediaQueryList: MediaQueryList;
     leftPanelOpened = true;
 
-    constructor(private layoutService: LayoutService) {
+    constructor(private layoutService: LayoutService, private userPreferencesService: UserPreferencesService) {
         this.layoutService.sidenavToggleEvent$.pipe(takeUntil(this.onDestroy$))
             .subscribe(() => {
                 this.leftPanelOpened = !this.leftPanelOpened;
+            });
+
+        this.userPreferencesService
+            .select('textOrientation')
+            .pipe(takeUntil(this.onDestroy$))
+            .subscribe((direction: Direction) => {
+                this.direction = direction;
             });
     }
 
