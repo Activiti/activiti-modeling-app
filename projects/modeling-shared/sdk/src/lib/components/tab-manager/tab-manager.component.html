@@ -1,10 +1,10 @@
-<mat-tab-group #tabs class="ama-tab-models" [(selectedIndex)]="selectedTabIndex" (selectedIndexChange)="onSelectedTabChanged($event)">
+<mat-tab-group [@.disabled]="true" #tabs class="ama-tab-models" [(selectedIndex)]="selectedTabIndex" (selectedIndexChange)="onSelectedTabChanged($event)">
     <mat-tab class="ama-tab-model" *ngFor="let tab of currentTabs$ | async" >
         <ng-template mat-tab-label>
             <div class="ama-tab-model-body">
                 <mat-icon class="ama-tab-model-icon" [attr.data-automation-id]="'model-tab-icon-'+tab.id">{{ tab.icon }}</mat-icon>
                 <p [attr.data-automation-id]="'model-tab-title-'+tab.id" class="ama-tab-title">{{ tab.title }}</p>
-                <button mat-icon-button [attr.data-automation-id]="'model-tab-close-button-'+tab.id"
+                <button mat-icon-button [disableRipple]="true" [attr.data-automation-id]="'model-tab-close-button-'+tab.id"
                         class="ama-tab-model-close" [id]="'model-tab-close-button-'+tab.id" (click)="onRemoveTab(tab)">
                     <mat-icon class="ama-tab-model-icon-close">close</mat-icon>
                 </button>

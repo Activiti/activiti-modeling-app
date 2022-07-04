@@ -1,6 +1,9 @@
 .ama-tab-models {
     height: 100%;
     width: 100%;
+    transition: none !important;
+    transition-duration: 0ms !important;
+    transition-delay: 0ms !important;
 
     .mat-tab-header {
         background: var(--theme-card-bg-color);
@@ -9,6 +12,8 @@
 
     .mat-ink-bar {
         background-color: white !important;
+        height: 1px;
+        width: 159px !important;
     }
 
     .mat-tab-labels, .mat-tab-header-pagination-before, .mat-tab-header-pagination-after {
@@ -52,6 +57,15 @@
     .ama-tab-model-icon {
         padding-right: 5px;
     }
+
+    .mat-button-focus-overlay {
+        background-color: transparent !important;
+    }
+
+    .mat-tab-label:focus {
+        background-color: transparent !important;
+    }
+
 }
 
 .modelingsdk-tab-manager {
