@@ -98,7 +98,7 @@ export class TabManagerService {
     }
 
     updateTabTitle(newTitle: string, modelId: string | number) {
-        const tab = this.tabList.find(openTab => openTab.id === modelId);
+        const tab = this.tabList?.find(openTab => openTab.id === modelId);
         if (tab && tab.title.toLocaleLowerCase() !== newTitle.toLocaleLowerCase()) {
             this.tabManagerEntityService.updateOneInCache({ id: modelId + '', title: newTitle });
         }

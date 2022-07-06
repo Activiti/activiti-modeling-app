@@ -23,6 +23,13 @@ export const selectModelEntityContainerByType = (modelType: string) => createSel
 export const selectModelEntityContentsByType = (modelType: string) => createSelector(selectModelEntityContainerByType(modelType), state => state.entityContents);
 export const selectModelEntityByType = (modelType: string, modelId: string) => createSelector(selectModelEntityContainerByType(modelType), state => state.entities[modelId]);
 
+export const selectModelDraftEntityContainerByType = (modelType: string) => createSelector(
+    selectModelEntityContainerByType(modelType), state => state.draftEntities?.entities);
+export const selectModelDraftEntityContentsByType = (modelType: string) => createSelector(
+    selectModelEntityContainerByType(modelType), state => state.draftEntities?.entityContents);
+export const selectModelDraftEntityContentByTypeAndModelId = (modelType: string, modelId: string) =>
+    createSelector(selectModelEntityContainerByType(modelType), state => state.draftEntities?.entityContents[modelId]);
+
 @Injectable({
     providedIn: 'root'
 })
@@ -40,6 +47,29 @@ export class ModelEntitySelectors {
         return createSelector(
             selectModelEntityContainerByType(this.modelType),
             state => state.entities[modelId]
+        );
+    }
+
+    selectModelDraftContentById(modelId: string) {
+        return createSelector(
+            selectModelEntityContentsByType(this.modelType),
+            selectModelDraftEntityContentsByType(this.modelType),
+            (entityContents, draftEntityContents) => draftEntityContents[modelId] ?? entityContents[modelId]
+        );
+    }
+
+    selectModelDraftMetadataById(modelId: string) {
+        return createSelector(
+            selectModelEntityContainerByType(this.modelType),
+            selectModelDraftEntityContainerByType(this.modelType),
+            (state, draftState) => draftState[modelId] ?? state.entities[modelId]
+        );
+    }
+
+    selectModelDraftStateExists(modelId: string) {
+        return createSelector(
+            selectModelDraftEntityContentByTypeAndModelId(this.modelType, modelId),
+            (draftEntityContents) => draftEntityContents ? true : false
         );
     }
 }

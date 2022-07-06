@@ -43,14 +43,14 @@ export class ModelHeaderComponent implements OnInit, OnDestroy {
     menuButtons: ShowCommandButton[];
 
     constructor(@Inject(MODEL_COMMAND_SERVICE_TOKEN)
-    private modelCommands: ModelCommandsService,
-    private store: Store<AmaState>) {
-    }
+        private modelCommands: ModelCommandsService,
+        private store: Store<AmaState>
+    ) { }
 
     ngOnInit() {
         this.standardButtons = this.modelCommands.getCommandButtons(ButtonType.STANDARD);
         this.menuButtons = this.modelCommands.getCommandButtons(ButtonType.MENU);
-        this.updateIconOnDirtyState();
+        this.updateIconOnDirtyState(); // to be removed once dirty state for each model is updated
     }
 
     showMenu(commandName): Observable<boolean> {
